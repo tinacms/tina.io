@@ -1,0 +1,31 @@
+{
+  "name": "tinacms-next",
+  "version": "1.0.0",
+  "description": "A hub for Tina's documentation, blog & general info.",
+  "main": "n/a",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "format": "prettier --write \"src/**/*.{ts,tsx,md}\"",
+    "lint": "tslint 'src/**/*.{ts,tsx}' -p tsconfig.json"
+  },
+  "author": "Forestry.io",
+  "license": "MIT",
+  "dependencies": {
+    "next": "^9.1.7",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "^13.1.4",
+    "@types/react": "^16.9.17",
+    "prettier": "^1.18.2",
+    "tslint": "^5.18.0",
+    "tslint-config-kata": "^1.1.3",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.0.1",
+    "tslint-react": "^4.0.0",
+    "typescript": "^3.7.4"
+  }
+}
