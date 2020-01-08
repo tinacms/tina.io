@@ -1,13 +1,25 @@
 import React from "react";
 import styled from "styled-components";
+import Layout from "../components/Layout";
 
-function Home() {
-  return <Title>Welcome to TinaCMS!</Title>;
-}
+const Index = props => {
+  return (
+    <Layout pathname="/">
+      <Title>Welcome to TinaCMS!</Title>
+    </Layout>
+  );
+};
 
 const Title = styled.h1`
   font-size: 50px;
   color: ${({ theme }) => theme.colors.primary};
 `;
 
-export default Home;
+export default Index;
+
+Index.getInitialProps = async function() {
+  const configData = await import(`../data/config.json`);
+  return {
+    ...configData
+  };
+};
