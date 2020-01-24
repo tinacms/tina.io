@@ -85,6 +85,9 @@ export const GlobalStyle = createGlobalStyle`
     min-height: 100%;
     box-sizing: border-box;
 
+    --color-primary: #EC4815;
+
+
     * {
       box-sizing: inherit;
       font-variant-numeric: inherit;

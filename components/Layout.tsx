@@ -1,10 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import { GlobalStyle } from "./GlobalStyle";
 
 const Layout = styled(({ children, ...styleProps }) => {
-  return <div {...styleProps}>{children}</div>;
-})`
-  background: pink;
-`;
+  return (
+    <div {...styleProps}>
+      <GlobalStyle />
+      {children}
+    </div>
+  );
+})``;
 
 export default Layout;
