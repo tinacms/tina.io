@@ -183,11 +183,11 @@ export default EditableCommunityPage
 EditableCommunityPage.getInitialProps = async function() {
   // TODO: need to fix something in tina before we use this
   // const siteMetadata = await import('../content/siteConfig.json')
-  const communityData = await import('../content/community.json')
+  const communityData = await import('../content/pages/community.json')
   return {
     // siteMetadata,
     jsonFile: {
-      fileRelativePath: `content/community.json`,
+      fileRelativePath: `content/pages/community.json`,
       data: communityData,
     },
   }
