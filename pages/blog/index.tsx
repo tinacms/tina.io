@@ -1,5 +1,5 @@
 import React from "react";
-
+import Link from "next/link";
 import Layout from "../../components/Layout";
 import Header from "../../components/Header";
 import matter from "gray-matter";
@@ -9,10 +9,14 @@ const Index = props => {
   return (
     <Layout pathname="/">
       <Header />
-      My blog
       {props.posts.map(post => (
         <div>
-          <h3>{post.data.title}</h3>
+          <Link
+            key={post.data.slug}
+            href={{ pathname: `/blog/${post.data.slug}` }}
+          >
+            <h3>{post.data.title}</h3>
+          </Link>
           <ReactMarkdown source={post.content} />
           <br />
         </div>
@@ -27,7 +31,11 @@ Index.getInitialProps = async function(ctx) {
     const values = keys.map(context);
     const data = keys.map((key: string, index: number) => {
       // Create slug from filename
-      const slug = key.replace(/^.*[\\\/]/, "");
+      const slug = key
+        .replace(/^.*[\\\/]/, "")
+        .split(".")
+        .slice(0, -1)
+        .join(".");
       const value = values[index];
       // Parse yaml metadata & markdownbody in document
       const post = matter(value.default);
