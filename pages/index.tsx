@@ -1,11 +1,12 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import Head from 'next/head'
 
 import Layout from '../components/layout/Layout'
 import Header from '../components/layout/Header'
-import Hero from '../components/Hero'
-import ArrowList from '../components/ArrowList'
+import Hero from '../components/layout/Hero'
+import ArrowList from '../components/layout/ArrowList'
+import Wrapper from '../components/layout/Wrapper'
 
 const heroVideo = 'v1571425758/tina-hero-demo-v2'
 
