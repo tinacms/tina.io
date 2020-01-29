@@ -4,9 +4,7 @@ import Link from 'next/link'
 
 import Nav from './Nav'
 import Button from '../ui/Button'
-import TinaWordmark from '../icons/TinaWordmark'
-import TwitterIcon from '../icons/TwitterIcon'
-import GithubIcon from '../icons/GithubIcon'
+import { TinaWordmark, TwitterIcon, GithubIcon } from '../icons'
 
 const Footer = styled(({ ...styleProps }) => {
   return (

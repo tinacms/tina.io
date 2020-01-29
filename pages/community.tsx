@@ -1,7 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import styled from 'styled-components'
-import matter from 'gray-matter'
+import { inlineJsonForm } from 'next-tinacms-json'
 
 import Layout from '../components/layout/Layout'
 import Button from '../components/ui/Button'
@@ -16,9 +16,22 @@ import { EmailForm } from '../components/forms'
 import ReactMarkdown from 'react-markdown'
 
 function CommunityPage(props) {
-  console.log(props)
-  const data = props.jsonFile.data
-  const metadata = props.siteMetadata
+  const data = props.jsonFile
+  /* TODO:
+   ** add proper metadata
+   ** back in once Tina bug is fixed
+   */
+  // const metadata = props.siteMetadata
+  const metadata = {
+    roadmapUrl: 'https://github.com/tinacms/tinacms/blob/master/ROADMAP.md',
+    social: {
+      twitter: 'https://twitter.com/tina_cms',
+      github: 'https://github.com/tinacms/tinacms',
+      forum: 'https://community.tinacms.org/',
+      slack:
+        'https://join.slack.com/t/tinacms/shared_invite/enQtNzgxNDY1OTA3ODI3LTNkNWEwYjQyYTA2ZDZjZGQ2YmI5Y2ZlOWVmMjlkYmYxMzVmNjM0YTk2MWM2MTIzMmMxMDg3NWIxN2EzOWQ0NDM',
+    },
+  }
   return (
     <Layout>
       <Helmet>
@@ -41,7 +54,7 @@ function CommunityPage(props) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <TwitterIcon color={`${colors.hunterOrange}`} />
+              <TwitterIcon />
               <h5>Tweet us</h5>
             </a>
             <span className="dotted-line" />
@@ -52,7 +65,7 @@ function CommunityPage(props) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <GithubIcon color={`${colors.hunterOrange}`} />
+              <GithubIcon />
               <h5>Fork us</h5>
             </a>
             <span className="dotted-line" />
@@ -63,7 +76,7 @@ function CommunityPage(props) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <SlackIcon color={`${colors.hunterOrange}`} />
+              <SlackIcon />
               <h5>Slack us</h5>
             </a>
             <span className="dotted-line" />
@@ -125,7 +138,7 @@ function CommunityPage(props) {
   )
 }
 
-const CommunityTemplateOptions = {
+const CommunityPageOptions = {
   fields: [
     {
       label: 'Headline',
@@ -155,25 +168,34 @@ const CommunityTemplateOptions = {
       label: 'Secondary Body Copy',
       name: 'supporting_body',
       description: 'Enter the body copy here',
-      component: 'textarea',
+      component: 'markdown',
     },
   ],
 }
 
-// export default remarkForm(CommunityTemplate, CommunityTemplateOptions)
-export default CommunityPage
+const EditableCommunityPage = inlineJsonForm(
+  CommunityPage,
+  CommunityPageOptions
+)
 
-CommunityPage.getInitialProps = async function() {
-  const siteMetadata = await import('../content/siteConfig.json')
+export default EditableCommunityPage
+
+EditableCommunityPage.getInitialProps = async function() {
+  // TODO: need to fix something in tina before we use this
+  // const siteMetadata = await import('../content/siteConfig.json')
   const communityData = await import('../content/community.json')
   return {
-    siteMetadata,
+    // siteMetadata,
     jsonFile: {
-      fileRelativePath: `data/info.md`,
+      fileRelativePath: `content/community.json`,
       data: communityData,
     },
   }
 }
+
+/*
+ ** STYLES -------------------------------------------------
+ **/
 
 export const Wrapper = styled('div')`
   padding: 0 ${space.smallMobile}px ${space.xSmallMobile}px
