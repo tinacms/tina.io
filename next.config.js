@@ -7,5 +7,13 @@ module.exports = withSvgr({
       "/": { page: "/" },
       "/about": { page: "/about" }
     };
+  },
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.md$/,
+      use: "raw-loader"
+    });
+
+    return config;
   }
 });
