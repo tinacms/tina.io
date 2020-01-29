@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const TinaWordmark = styled(({ ...styleProps }, props) => {
+export const TinaWordmark = styled(({ ...styleProps }, props) => {
   return (
     <a href="/" {...styleProps}>
       <h1>
@@ -31,5 +31,3 @@ const TinaWordmark = styled(({ ...styleProps }, props) => {
     width: auto;
   }
 `
-
-export default TinaWordmark
