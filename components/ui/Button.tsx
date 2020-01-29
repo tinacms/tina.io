@@ -19,6 +19,7 @@ const Button = styled.button`
   font-weight: regular;
   font-style: normal;
   text-decoration: none;
+  opacity: 1;
 
   ${props =>
     props.white &&
