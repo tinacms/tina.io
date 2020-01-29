@@ -15,7 +15,7 @@ const Page = props => {
       <Header />
 
       <Hero>
-        <h1>Join the club</h1>
+        <h2 className="h1">Join the club</h2>
       </Hero>
 
       <SocialBar />

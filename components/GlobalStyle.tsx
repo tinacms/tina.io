@@ -136,23 +136,26 @@ export const GlobalStyle = createGlobalStyle`
       font-size: 100%;
       font-weight: normal;
     }
-
-    @media (min-width: 800px) {
-      font-size: 112.5%;
-    }
-
-    @media (min-width: 1200px) {
-      font-size: 125%;
-    }
-
-    @media (min-width: 1600px) {
-      font-size: 137.5%;
-    }
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'tuner-regular', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
       "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
       "Helvetica Neue", sans-serif;
+    font-weight: regular;
+    font-style: normal;
+    color: var(--color-primary, #EC4815);
+  }
+
+  h1, .h1 {
+    font-size: 4rem;
+    line-height: 1.3;
+    letter-spacing: 0.1px;
+  }
+
+  h2, .h2 {
+    font-size: 2rem;
+    line-height: 1.3;
+    letter-spacing: 0.1px;
   }
 `;

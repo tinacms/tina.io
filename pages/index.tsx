@@ -10,7 +10,7 @@ const Index = props => {
     <Layout pathname="/">
       <Header />
       <Hero>
-        <h1>Build real-time editing into your site.</h1>
+        <h2 className="h1">Build real-time editing into your site.</h2>
       </Hero>
     </Layout>
   );
