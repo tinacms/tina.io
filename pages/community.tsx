@@ -1,7 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import styled from 'styled-components'
-import matter from 'gray-matter'
 
 import Layout from '../components/layout/Layout'
 import Button from '../components/ui/Button'
@@ -16,7 +15,6 @@ import { EmailForm } from '../components/forms'
 import ReactMarkdown from 'react-markdown'
 
 function CommunityPage(props) {
-  console.log(props)
   const data = props.jsonFile.data
   const metadata = props.siteMetadata
   return (
@@ -155,12 +153,11 @@ const CommunityTemplateOptions = {
       label: 'Secondary Body Copy',
       name: 'supporting_body',
       description: 'Enter the body copy here',
-      component: 'textarea',
+      component: 'markdown',
     },
   ],
 }
 
-// export default remarkForm(CommunityTemplate, CommunityTemplateOptions)
 export default CommunityPage
 
 CommunityPage.getInitialProps = async function() {
@@ -169,11 +166,15 @@ CommunityPage.getInitialProps = async function() {
   return {
     siteMetadata,
     jsonFile: {
-      fileRelativePath: `data/info.md`,
+      fileRelativePath: `data/community.json`,
       data: communityData,
     },
   }
 }
+
+/*
+ ** STYLES -------------------------------------------------
+ **/
 
 export const Wrapper = styled('div')`
   padding: 0 ${space.smallMobile}px ${space.xSmallMobile}px
