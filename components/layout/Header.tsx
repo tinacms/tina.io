@@ -18,8 +18,8 @@ const Header = styled(({ ...styleProps }) => {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1rem;
   z-index: 100;
+  padding: 1.25rem 2rem;
 `
 
 const Github = styled.div``

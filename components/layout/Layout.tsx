@@ -15,7 +15,7 @@ const Layout = styled(({ children, ...styleProps }) => {
       <GlobalStyle />
       <Header />
       {children}
-      {/* <Footer /> */}
+      <Footer />
     </div>
   )
 })``

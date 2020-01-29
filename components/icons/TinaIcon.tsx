@@ -16,6 +16,7 @@ export const TinaIcon = styled(({ ...styleProps }, props) => {
 
   h1 {
     margin: 0;
+    font-size: 2rem;
   }
 
   svg {
