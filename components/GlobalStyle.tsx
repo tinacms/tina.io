@@ -164,6 +164,10 @@ export const GlobalStyle = createGlobalStyle`
       font-style: normal;
       color: var(--color-secondary-dark, #241748);
     }
+
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
   }
 
   h1, .h1 {
