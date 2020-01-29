@@ -53,6 +53,7 @@ const FooterSocial = styled.div`
 const FooterNav = styled(Nav)`
   display: flex;
   flex-direction: column;
+  margin: -0.5rem 0 0 0;
 
   ${Button} {
     font-size: 1.5rem;
@@ -65,7 +66,7 @@ const FooterNav = styled(Nav)`
 const FooterTop = styled.div`
   display: grid;
   grid-gap: 1rem;
-  padding: 1.25rem 2rem;
+  padding: 2rem 2rem;
   background-color: var(--color-primary);
   align-items: start;
   grid-template-areas: 'logo social' 'nav nav';

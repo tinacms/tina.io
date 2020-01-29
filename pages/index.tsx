@@ -114,6 +114,11 @@ const Index = props => {
                   updating in realtime
                 </li>
               </ArrowList>
+              <Link href={'/docs/getting-started/introduction/'} passHref>
+                <Button as="a" primary>
+                  Get Started
+                </Button>
+              </Link>
             </div>
             <div>
               <CodeExample

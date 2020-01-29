@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react'
+import styled from 'styled-components'
 
 const ArrowList = styled(({ children, ...styleProps }) => {
-  return <ul {...styleProps}>{children}</ul>;
+  return <ul {...styleProps}>{children}</ul>
 })`
   margin: 0;
   list-style: none;
@@ -12,17 +12,18 @@ const ArrowList = styled(({ children, ...styleProps }) => {
     position: relative;
     margin-bottom: 1rem;
     padding-left: 2.5em;
+    font-size: 1.125rem;
     &:before {
-      content: "↳";
+      content: '↳';
       position: absolute;
       font-weight: bold;
       left: 2px;
-      top: 0;
-      font-size: 1.8em;
-      line-height: 1.1;
+      top: -1px;
+      font-size: 1.75rem;
+      line-height: 1;
       color: var(--color-primary, #ec4815);
     }
   }
-`;
+`
 
-export default ArrowList;
+export default ArrowList
