@@ -5,6 +5,7 @@ import Head from "next/head";
 import Layout from "../components/Layout";
 import Hero from "../components/Hero";
 import ArrowList from "../components/ArrowList";
+import Wrapper from "../components/Wrapper";
 
 const heroVideo = "v1571425758/tina-hero-demo-v2";
 
@@ -196,12 +197,6 @@ const Section = styled.section`
     css`
       background-color: var(--color-seafoam);
     `};
-`;
-
-const Wrapper = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
 `;
 
 const InfoLayout = styled.div`
