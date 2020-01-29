@@ -3,6 +3,9 @@ import Head from "next/head";
 import styled from "styled-components";
 import { GlobalStyle } from "./GlobalStyle";
 
+import Header from "./Header";
+import Footer from "./Footer";
+
 const Layout = styled(({ children, ...styleProps }) => {
   return (
     <div {...styleProps}>
@@ -10,7 +13,9 @@ const Layout = styled(({ children, ...styleProps }) => {
         <link rel="shortcut icon" href="/favicon/favicon.ico" />
       </Head>
       <GlobalStyle />
+      <Header />
       {children}
+      {/* <Footer /> */}
     </div>
   );
 })``;

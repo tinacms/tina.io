@@ -167,9 +167,13 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   h1, .h1 {
-    font-size: 4rem;
+    font-size: 3rem;
     line-height: 1.3;
     letter-spacing: 0.1px;
+
+    @media (min-width: 1200px) {
+      font-size: 4rem;
+    }
   }
 
   h2, .h2 {
@@ -200,5 +204,14 @@ export const GlobalStyle = createGlobalStyle`
       color: var(--color-primary, #EC4815);
       text-decoration-color: var(--color-primary, #EC4815);
     }
+  }
+
+  hr {
+    display: block;
+    width: 70px;
+    height: 1px;
+    border: none;
+    border-bottom: 3px dotted var(--color-primary, #EC4815);
+    margin: 0px 0px 28px 5px;
   }
 `;
