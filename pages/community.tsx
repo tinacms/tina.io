@@ -1,19 +1,20 @@
 import React from 'react'
-import { Helmet } from 'react-helmet'
 import styled from 'styled-components'
 import matter from 'gray-matter'
+import ReactMarkdown from 'react-markdown'
+import Link from 'next/link'
+import Head from 'next/head'
 
 import Layout from '../components/layout/Layout'
 import Button from '../components/ui/Button'
-import {
-  TwitterIcon,
-  GithubIcon,
-  ForumIcon,
-  SlackIcon,
-} from '../components/icons'
-import { colors, space, breakpoints } from '../components/styles/variables'
 import { EmailForm } from '../components/forms'
-import ReactMarkdown from 'react-markdown'
+import Hero from '../components/layout/Hero'
+import Wrapper from '../components/layout/Wrapper'
+
+import TwitterIconSvg from '../public/svg/twitter-icon.svg'
+import GithubIconSvg from '../public/svg/github-icon.svg'
+import SlackIconSvg from '../public/svg/slack-icon.svg'
+import ForumIconSvg from '../public/svg/forum-icon.svg'
 
 function CommunityPage(props) {
   console.log(props)
@@ -21,18 +22,14 @@ function CommunityPage(props) {
   const metadata = props.siteMetadata
   return (
     <Layout>
-      <Helmet>
+      <Head>
         <meta property="og:title" content="TinaCMS - Community" />
         <meta name="twitter:title" content="TinaCMS - Community" />
-      </Helmet>
+      </Head>
+      <Hero>
+        <h1>{data.headline}</h1>
+      </Hero>
       <Wrapper>
-        {/* TODO: replace this hero seciton with Hero component? */}
-        <HeroSection>
-          <aside id="base">
-            <aside id="white-ellipse" />
-          </aside>
-          <h1>{data.headline}</h1>
-        </HeroSection>
         {/* TODO: Replace this section with social bar component? */}
         <SocialSection>
           <SocialItem>
@@ -41,7 +38,7 @@ function CommunityPage(props) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <TwitterIcon color={`${colors.hunterOrange}`} />
+              <TwitterIconSvg />
               <h5>Tweet us</h5>
             </a>
             <span className="dotted-line" />
@@ -52,7 +49,7 @@ function CommunityPage(props) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <GithubIcon color={`${colors.hunterOrange}`} />
+              <GithubIconSvg />
               <h5>Fork us</h5>
             </a>
             <span className="dotted-line" />
@@ -63,7 +60,7 @@ function CommunityPage(props) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <SlackIcon color={`${colors.hunterOrange}`} />
+              <SlackIconSvg />
               <h5>Slack us</h5>
             </a>
             <span className="dotted-line" />
@@ -74,7 +71,7 @@ function CommunityPage(props) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <ForumIcon color={`${colors.hunterOrange}`} />
+              <ForumIconSvg />
               <h5>Ask us</h5>
             </a>
           </SocialItem>
@@ -87,21 +84,12 @@ function CommunityPage(props) {
             <h5>{data.supporting_headline}</h5>
             <ReactMarkdown>{data.supporting_body}</ReactMarkdown>
             <span id="buttons">
-              <Button
-                to="/docs/contributing/guidelines"
-                bgColor={`${colors.seafoam}`}
-                textColor={`${colors.burntSienna}`}
-              >
-                Contribute
-              </Button>
-              <Button
-                to={`${metadata.roadmapUrl}`}
-                bgColor={`${colors.seafoam}`}
-                textColor={`${colors.burntSienna}`}
-                isExternal={true}
-              >
-                View Roadmap
-              </Button>
+              <Link href={'/docs/contributing/guidelines'} passHref>
+                <Button as="a">Contribute</Button>
+              </Link>
+              <Link href={metadata.roadmapUrl} passHref>
+                <Button as="a">View Roadmap</Button>
+              </Link>
             </span>
           </span>
         </InfoSection>
@@ -113,13 +101,8 @@ function CommunityPage(props) {
             ✌️
           </span>
         </h2>
-        <EmailForm
-          cta="We move quick. Stay up to date."
-          inputColor="#fff"
-          textColor={colors.hunterOrange}
-          btnColor={colors.hunterOrange}
-          btnTextColor={colors.seafoam}
-        />
+        <p>We move quick. Stay up to date.</p>
+        <EmailForm />
       </NewsletterSection>
     </Layout>
   )
@@ -175,80 +158,13 @@ CommunityPage.getInitialProps = async function() {
   }
 }
 
-export const Wrapper = styled('div')`
-  padding: 0 ${space.smallMobile}px ${space.xSmallMobile}px
-    ${space.smallMobile}px;
-  @media (min-width: ${breakpoints.lg}px) {
-    padding: 0 ${space.smallDesktop}px ${space.xSmallDesktop}px
-      ${space.smallDesktop}px;
-  }
-`
-export const HeroSection = styled('section')`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: ${colors.hunterOrange};
-  text-align: center;
-  aside#base {
-    background-color: ${colors.seafoam};
-    background: radial-gradient(
-      circle at center bottom,
-      rgb(203, 238, 243, 0.6),
-      #e6faf8 50%
-    );
-    width: 100%;
-    height: 280px;
-    z-index: -2;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  aside#white-ellipse {
-    width: 120%;
-    height: 10vh;
-    background-color: #fff;
-    z-index: -1;
-    position: absolute;
-    bottom: -5vh;
-    left: -10%;
-    clip-path: ellipse();
-  }
-  h1 {
-    max-width: 320px;
-    margin-top: 57px;
-  }
-  @media (min-width: ${breakpoints.md}px) {
-    aside#base {
-      height: 400px;
-      min-height: unset;
-      max-height: unset;
-    }
-    h1 {
-      max-width: 800px;
-      margin-top: ${space.lrgDesktop}px;
-    }
-  }
-  @media (min-width: ${breakpoints.desktop}px) {
-    aside#base {
-      height: 520px;
-    }
-    aside#white-ellipse {
-      height: 20vh;
-      bottom: -10vh;
-    }
-    h1 {
-      margin-top: 110px;
-    }
-  }
-`
-
 const SocialSection = styled('section')`
   display: grid;
   grid-template-rows: repeat(4, auto);
   grid-row-gap: 22px;
   justify-content: center;
   margin: 145px 0 65px 0;
-  @media (min-width: ${breakpoints.md}px) {
+  @media (min-width: 800px) {
     margin-top: 260px;
     grid-template-rows: unset;
     grid-template-columns: repeat(4, auto);
@@ -256,7 +172,7 @@ const SocialSection = styled('section')`
     width: 700px;
     margin: 260px auto 165px auto;
   }
-  @media (min-width: ${breakpoints.lg}px) {
+  @media (min-width: 1200px) {
     grid-column-gap: 32px;
   }
 `
@@ -266,6 +182,8 @@ const SocialItem = styled('div')`
   display: flex;
   flex-direction: column;
   align-items: center;
+  fill: var(--color-primary);
+
   a {
     display: flex;
     flex-direction: column;
@@ -298,9 +216,9 @@ const SocialItem = styled('div')`
   span.dotted-line {
     display: block;
     height: 30px;
-    border-left: 2px dotted ${colors.hunterOrange};
+    border-left: 2px dotted var(--color-primary);
   }
-  @media (min-width: ${breakpoints.md}px) {
+  @media (min-width: 800px) {
     flex-direction: row;
     width: unset;
     align-items: flex-end;
@@ -311,12 +229,12 @@ const SocialItem = styled('div')`
       height: 1px;
       width: 57px;
       border-left: unset;
-      border-top: 3px dotted ${colors.hunterOrange};
+      border-top: 3px dotted var(--color-primary);
       padding-bottom: 8px;
       margin-left: 20px;
     }
   }
-  @media (min-width: ${breakpoints.lg}px) {
+  @media (min-width: 1200px) {
     span.dotted-line {
       margin-left: 32px;
     }
@@ -324,7 +242,6 @@ const SocialItem = styled('div')`
 `
 
 const InfoSection = styled('section')`
-  margin-bottom: ${space.lrgMobile}px;
   text-align: center;
   figure {
     display: flex;
@@ -345,13 +262,6 @@ const InfoSection = styled('section')`
   span#info-wrap {
     grid-area: info;
   }
-  h2 {
-    margin: ${space.medMobile}px auto 0 auto;
-    width: 80%;
-  }
-  p {
-    margin: ${space.smallMobile}px 0 ${space.medMobile}px 0;
-  }
   span#buttons > a:first-of-type {
     display: none;
   }
@@ -360,14 +270,13 @@ const InfoSection = styled('section')`
     display: flex;
     justify-content: center;
   }
-  @media (min-width: ${breakpoints.md}px) {
+  @media (min-width: 800px) {
     text-align: left;
     max-width: 1150px;
-    margin: 0 auto ${space.lrgDesktop}px auto;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-areas: 'info gif';
-    grid-column-gap: ${space.smallMobile}px;
+    grid-column-gap: 1rem;
     figure {
       flex-direction: row;
     }
@@ -379,11 +288,10 @@ const InfoSection = styled('section')`
       justify-content: flex-start;
     }
     h2 {
-      margin-top: ${space.xs}px;
       width: unset;
     }
   }
-  @media (min-width: ${breakpoints.lg}px) {
+  @media (min-width: 1200px) {
     margin-bottom: 165px;
     span#info-wrap {
       width: 85%;
@@ -399,8 +307,7 @@ const InfoSection = styled('section')`
 `
 
 const NewsletterSection = styled('section')`
-  background-color: ${colors.seafoam};
-  padding: ${space.medMobile}px ${space.smallMobile}px;
+  background-color: var(--color-seafoam);
   form {
     display: flex;
     flex-direction: column-reverse;
@@ -411,10 +318,10 @@ const NewsletterSection = styled('section')`
     input {
       filter: inset 3px 1px 5px rgba(0, 0, 0, 0.15);
       margin-top: 0;
-      margin-bottom: ${space.smallMobile}px;
+      margin-bottom: 1rem;
     }
   }
-  @media (min-width: ${breakpoints.md}px) {
+  @media (min-width: 800px) {
     text-align: center;
     form {
       display: grid;
@@ -440,8 +347,5 @@ const NewsletterSection = styled('section')`
         grid-area: btn;
       }
     }
-  }
-  @media (min-width: ${breakpoints.lg}px) {
-    padding: ${space.lrgMobile}px ${space.smallDesktop}px;
   }
 `

@@ -4,9 +4,9 @@ import Link from 'next/link'
 
 import Nav from './Nav'
 import Button from '../ui/Button'
-import TinaWordmark from '../icons/TinaWordmark'
-import TwitterIcon from '../icons/TwitterIcon'
-import GithubIcon from '../icons/GithubIcon'
+import TinaWordmark from '../logo/TinaWordmark'
+import TwitterIconSvg from '../../public/svg/twitter-icon.svg'
+import GithubIconSvg from '../../public/svg/github-icon.svg'
 
 const Footer = styled(({ ...styleProps }) => {
   return (
@@ -21,14 +21,14 @@ const Footer = styled(({ ...styleProps }) => {
             </Button>
           </Link>
           <a href="https://twitter.com/tina_cms" target="_blank">
-            <TwitterIcon />
+            <TwitterIconSvg />
           </a>
           <a
             className="github"
             href="https://github.com/tinacms/tinacms"
             target="_blank"
           >
-            <GithubIcon />
+            <GithubIconSvg />
           </a>
         </FooterSocial>
       </FooterTop>

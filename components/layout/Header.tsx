@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { TinaIcon } from '../icons'
+import { TinaIcon } from '../logo/TinaIcon'
 import Nav from './Nav'
 
 const Header = styled(({ ...styleProps }) => {
