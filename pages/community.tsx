@@ -3,13 +3,17 @@
 // path: /community
 import React from "react";
 import styled from "styled-components";
+
 import Layout from "../components/Layout";
+import Header from "../components/Header";
 import SocialBar from "../components/SocialBar";
 import Hero from "../components/Hero";
 
 const Page = props => {
   return (
     <Layout pathname={"/community"}>
+      <Header />
+
       <Hero>
         <h1>Join the club</h1>
       </Hero>
