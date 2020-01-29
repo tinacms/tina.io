@@ -159,6 +159,11 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: regular;
     font-style: normal;
     color: var(--color-primary, #EC4815);
+
+    em {
+      font-style: normal;
+      color: var(--color-secondary-dark, #241748);
+    }
   }
 
   h1, .h1 {
@@ -181,6 +186,7 @@ export const GlobalStyle = createGlobalStyle`
 
   p {
     font-size: 1.125rem;
+    color: var(--color-secondary-dark, #241748);
   }
 
   a {

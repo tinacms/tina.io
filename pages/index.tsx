@@ -46,8 +46,10 @@ const Index = props => {
       </HeroVideo>
 
       <h2>
-        Tina is an open-source site editing toolkit for React-based frameworks —
-        Gatsby & Next.js
+        <em>
+          Tina is an open-source site editing toolkit for React-based frameworks
+          — Gatsby & Next.js
+        </em>
       </h2>
       <h3>Choose your tools</h3>
       <p>
