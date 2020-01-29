@@ -1,9 +1,9 @@
-import React from "react";
-import Link from "next/link";
-import Layout from "../../components/Layout";
-import Header from "../../components/Header";
-import matter from "gray-matter";
-import ReactMarkdown from "react-markdown";
+import React from 'react'
+import Link from 'next/link'
+import Layout from '../../components/layout/Layout'
+import Header from '../../components/layout/Header'
+import matter from 'gray-matter'
+import ReactMarkdown from 'react-markdown'
 
 const Index = props => {
   return (
@@ -22,36 +22,36 @@ const Index = props => {
         </div>
       ))}
     </Layout>
-  );
-};
+  )
+}
 
 Index.getInitialProps = async function(ctx) {
   const posts = (context => {
-    const keys = context.keys();
-    const values = keys.map(context);
+    const keys = context.keys()
+    const values = keys.map(context)
     const data = keys.map((key: string, index: number) => {
       // Create slug from filename
       const slug = key
-        .replace(/^.*[\\\/]/, "")
-        .split(".")
+        .replace(/^.*[\\\/]/, '')
+        .split('.')
         .slice(0, -1)
-        .join(".");
-      const value = values[index];
+        .join('.')
+      const value = values[index]
       // Parse yaml metadata & markdownbody in document
-      const post = matter(value.default);
-      console.log(JSON.stringify(post));
+      const post = matter(value.default)
+      console.log(JSON.stringify(post))
       return {
         data: { ...post.data, slug },
-        content: post.content.substring(0, 300)
-      };
-    });
+        content: post.content.substring(0, 300),
+      }
+    })
 
-    return data;
-  })((require as any).context("../../content/blog", true, /\.md$/));
+    return data
+  })((require as any).context('../../content/blog', true, /\.md$/))
 
   return {
-    posts
-  };
-};
+    posts,
+  }
+}
 
-export default Index;
+export default Index

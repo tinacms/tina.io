@@ -1,13 +1,13 @@
-import React from "react";
-import styled, { css } from "styled-components";
-import Head from "next/head";
+import React from 'react'
+import styled from 'styled-components'
+import Head from 'next/head'
 
-import Layout from "../components/Layout";
-import Hero from "../components/Hero";
-import ArrowList from "../components/ArrowList";
-import Wrapper from "../components/Wrapper";
+import Layout from '../components/layout/Layout'
+import Header from '../components/layout/Header'
+import Hero from '../components/Hero'
+import ArrowList from '../components/ArrowList'
 
-const heroVideo = "v1571425758/tina-hero-demo-v2";
+const heroVideo = 'v1571425758/tina-hero-demo-v2'
 
 const Index = props => {
   return (
@@ -121,7 +121,7 @@ module.exports = {
 };
 
 export <b>WithTina</b>( <b>Component</b> );
-`
+`,
                 }}
               ></CodeExample>
             </div>
@@ -129,22 +129,22 @@ export <b>WithTina</b>( <b>Component</b> );
         </Wrapper>
       </Section>
     </Layout>
-  );
-};
+  )
+}
 
 const HomepageTitle = styled(({ children, ...styleProps }) => {
   return (
     <div {...styleProps}>
       <h2 className="h1">{children}</h2>
     </div>
-  );
+  )
 })`
   h2 {
     max-width: 9em;
     text-align: center;
     margin: 0 auto;
   }
-`;
+`
 
 const HeroVideo = styled.div`
   display: block;
@@ -159,7 +159,7 @@ const HeroVideo = styled.div`
     max-width: 934px;
     width: 100%;
   }
-`;
+`
 
 const CodeExample = styled.code`
   border-radius: 50px;
@@ -168,7 +168,7 @@ const CodeExample = styled.code`
   padding: 50px;
   font-size: 20px;
   line-height: 1.2;
-  font-family: "Hack", Monaco, "Courier New", Courier, monospace;
+  font-family: 'Hack', Monaco, 'Courier New', Courier, monospace;
   white-space: pre;
   filter: drop-shadow(rgba(104, 120, 125, 0.2) 0px 7px 8px);
   align-self: flex-start;
@@ -183,7 +183,7 @@ const CodeExample = styled.code`
   span {
     opacity: 0.5;
   }
-`;
+`
 
 const Section = styled.section`
   padding: 3rem 0;
@@ -197,7 +197,7 @@ const Section = styled.section`
     css`
       background-color: var(--color-seafoam);
     `};
-`;
+`
 
 const InfoLayout = styled.div`
   display: grid;
@@ -205,7 +205,7 @@ const InfoLayout = styled.div`
   @media (min-width: 800px) {
     grid-template-columns: repeat(3, 1fr);
   }
-`;
+`
 
 const SetupLayout = styled.div`
   display: grid;
@@ -213,7 +213,7 @@ const SetupLayout = styled.div`
   @media (min-width: 800px) {
     grid-template-columns: repeat(2, 1fr);
   }
-`;
+`
 
 const CtaLayout = styled.div`
   max-width: 35rem;
@@ -225,6 +225,6 @@ const CtaLayout = styled.div`
   @media (min-width: 800px) {
     padding: 0 0 5rem 0;
   }
-`;
+`
 
-export default Index;
+export default Index

@@ -1,41 +1,41 @@
-import React from "react";
-import styled from "styled-components";
-import Button from "./Button";
-import Link from "next/link";
+import React from 'react'
+import styled from 'styled-components'
+import Button from '../ui/Button'
+import Link from 'next/link'
 
 const Nav = styled(({ ...styleProps }) => {
   return (
     <ul {...styleProps}>
       <li>
-        <Link href={"/docs"} passHref>
+        <Link href={'/docs'} passHref>
           <Button as="a" white>
             DOCS
           </Button>
         </Link>
       </li>
       <li>
-        <Link href={"/blog"} passHref>
+        <Link href={'/blog'} passHref>
           <Button as="a" white>
             BLOG
           </Button>
         </Link>
       </li>
       <li>
-        <Link href={"/community"} passHref>
+        <Link href={'/community'} passHref>
           <Button as="a" white>
             COMMUNITY
           </Button>
         </Link>
       </li>
       <li>
-        <Link href={"/teams"} passHref>
+        <Link href={'/teams'} passHref>
           <Button as="a" white>
             TEAMS
           </Button>
         </Link>
       </li>
     </ul>
-  );
+  )
 })`
   padding: 0;
   margin: 0;
@@ -45,5 +45,5 @@ const Nav = styled(({ ...styleProps }) => {
   li {
     margin: 0 0.3725rem;
   }
-`;
-export default Nav;
+`
+export default Nav

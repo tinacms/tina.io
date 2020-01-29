@@ -1,5 +1,4 @@
-import React from "react";
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components'
 
 const Button = styled.button`
   font-size: 1rem;
@@ -46,6 +45,6 @@ const Button = styled.button`
   &:active {
     filter: none;
   }
-`;
+`
 
-export default Button;
+export default Button

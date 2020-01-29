@@ -1,10 +1,10 @@
-import React from "react";
-import Head from "next/head";
-import styled from "styled-components";
-import { GlobalStyle } from "./GlobalStyle";
+import React from 'react'
+import Head from 'next/head'
+import styled from 'styled-components'
+import { GlobalStyle } from '../styles/GlobalStyle'
 
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from './Header'
+import Footer from './Footer'
 
 const Layout = styled(({ children, ...styleProps }) => {
   return (
@@ -17,7 +17,7 @@ const Layout = styled(({ children, ...styleProps }) => {
       {children}
       {/* <Footer /> */}
     </div>
-  );
-})``;
+  )
+})``
 
-export default Layout;
+export default Layout
