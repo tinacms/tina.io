@@ -1580,6 +1580,13 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
+"@babel/runtime@^7.6.3":
+  version "7.8.3"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.8.3.tgz#0811944f73a6c926bb2ad35e918dcc1bfab279f1"
+  integrity sha512-fVHx1rzEmwB130VTkLnxR+HmxcTjGzH12LYQcFFoBwakMd3aOMD4OsRN7tGG/UOYE2ektgFrS8uACAoRk1CY0w==
+  dependencies:
+    regenerator-runtime "^0.13.2"
+
 "@babel/template@^7.7.0", "@babel/template@^7.7.4":
   version "7.7.4"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.7.4.tgz#428a7d9eecffe27deac0a98e23bf8e3675d2a77b"
@@ -2107,6 +2114,14 @@ argparse@^1.0.7:
   integrity sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==
   dependencies:
     sprintf-js "~1.0.2"
+
+"argparse@~ 0.1.11":
+  version "0.1.16"
+  resolved "https://registry.yarnpkg.com/argparse/-/argparse-0.1.16.tgz#cfd01e0fbba3d6caed049fbd758d40f65196f57c"
+  integrity sha1-z9AeD7uj1srtBJ+9dY1A9lGW9Xw=
+  dependencies:
+    underscore "~1.7.0"
+    underscore.string "~2.4.0"
 
 arr-diff@^4.0.0:
   version "4.0.0"
@@ -3500,6 +3515,11 @@ esprima@^4.0.0:
   resolved "https://registry.yarnpkg.com/esprima/-/esprima-4.0.1.tgz#13b04cdb3e6c5d19df91ab6987a8695619b0aa71"
   integrity sha512-eGuFFw7Upda+g4p+QHvnW0RyTX/SVeJBDM/gCtMARO0cLuT2HcEKnTPvhjV6aGeqrCB/sbNop0Kszm0jsaWU4A==
 
+"esprima@~ 1.0.2":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/esprima/-/esprima-1.0.4.tgz#9f557e08fc3b4d26ece9dd34f8fbf476b62585ad"
+  integrity sha1-n1V+CPw7TSbs6d00+Pv0drYlha0=
+
 esrecurse@^4.1.0:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/esrecurse/-/esrecurse-4.2.1.tgz#007a3b9fdbc2b3bb87e4879ea19c92fdbd3942cf"
@@ -4484,6 +4504,14 @@ js-yaml@^3.11.0, js-yaml@^3.13.1:
     argparse "^1.0.7"
     esprima "^4.0.0"
 
+js-yaml@~2.1.0:
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-2.1.3.tgz#0ffb5617be55525878063d7a16aee7fdd282e84c"
+  integrity sha1-D/tWF75VUlh4Bj16Fq7n/dKC6Ew=
+  dependencies:
+    argparse "~ 0.1.11"
+    esprima "~ 1.0.2"
+
 jsesc@^2.5.1:
   version "2.5.2"
   resolved "https://registry.yarnpkg.com/jsesc/-/jsesc-2.5.2.tgz#80564d2e483dacf6e8ef209650a67df3f0c283a4"
@@ -4743,6 +4771,14 @@ markdown-escapes@^1.0.0:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/markdown-escapes/-/markdown-escapes-1.0.4.tgz#c95415ef451499d7602b91095f3c8e8975f78535"
   integrity sha512-8z4efJYk43E0upd0NbVXwgSTQs6cT3T06etieCMEg7dRbzCbxUCK/GHlX8mhHRDcp+OLlHkPKsvqQTCvsRl2cg==
+
+matter@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/matter/-/matter-0.2.0.tgz#892c6af745389f788661210755807f39dc012ffa"
+  integrity sha1-iSxq90U4n3iGYSEHVYB/OdwBL/o=
+  dependencies:
+    js-yaml "~2.1.0"
+    underscore "~1.5.2"
 
 md5.js@^1.3.4:
   version "1.3.5"
@@ -5594,6 +5630,13 @@ pnp-webpack-plugin@1.5.0:
   dependencies:
     ts-pnp "^1.1.2"
 
+polished@^3.4.4:
+  version "3.4.4"
+  resolved "https://registry.yarnpkg.com/polished/-/polished-3.4.4.tgz#ac8cd6e704887398f3b802718f9d389b9ea4307b"
+  integrity sha512-x9PKeExyI9AhWrJP3Q57I1k7GInujjiVBJMPFmycj9hX1yCOo/X9eu9eZwxgOziiXge3WbFQ5XOmkzunOntBSA==
+  dependencies:
+    "@babel/runtime" "^7.6.3"
+
 posix-character-classes@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/posix-character-classes/-/posix-character-classes-0.1.1.tgz#01eac0fe3b5af71a2a6c02feabb8c1fef7e00eab"
@@ -6183,6 +6226,21 @@ react-error-overlay@5.1.6:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.1.6.tgz#0cd73407c5d141f9638ae1e0c63e7b2bf7e9929d"
   integrity sha512-X1Y+0jR47ImDVr54Ab6V9eGk0Hnu7fVWGeHQSOXHf/C2pF9c6uy3gef8QUeuUiWlNb0i08InPSE5a/KJzNzw1Q==
 
+react-fast-compare@^2.0.2:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
+  integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
+
+react-helmet@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/react-helmet/-/react-helmet-5.2.1.tgz#16a7192fdd09951f8e0fe22ffccbf9bb3e591ffa"
+  integrity sha512-CnwD822LU8NDBnjCpZ4ySh8L6HYyngViTZLfBBb3NjtrpN8m49clH8hidHouq20I51Y6TpCTISCBbqiY5GamwA==
+  dependencies:
+    object-assign "^4.1.1"
+    prop-types "^15.5.4"
+    react-fast-compare "^2.0.2"
+    react-side-effect "^1.1.0"
+
 react-is@16.8.6:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.6.tgz#5bbc1e2d29141c9fbdfed456343fe2bc430a6a16"
@@ -6206,6 +6264,13 @@ react-markdown@^4.3.1:
     unified "^6.1.5"
     unist-util-visit "^1.3.0"
     xtend "^4.0.1"
+
+react-side-effect@^1.1.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-side-effect/-/react-side-effect-1.2.0.tgz#0e940c78faba0c73b9b0eba9cd3dda8dfb7e7dae"
+  integrity sha512-v1ht1aHg5k/thv56DRcjw+WtojuuDHFUgGfc+bFHOWsF4ZK6C2V57DO0Or0GPsg6+LSTE0M6Ry/gfzhzSwbc5w==
+  dependencies:
+    shallowequal "^1.0.1"
 
 react@^16.12.0:
   version "16.12.0"
@@ -6612,6 +6677,11 @@ shallow-clone@^0.1.2:
     lazy-cache "^0.2.3"
     mixin-object "^2.0.1"
 
+shallowequal@^1.0.1:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/shallowequal/-/shallowequal-1.1.0.tgz#188d521de95b9087404fd4dcb68b13df0ae4e7f8"
+  integrity sha512-y0m1JoUZSlPAjXVtPPW70aZWfIL/dSP7AFkRnniLCrK/8MDKog3TySTBmckD+RObVxH0v4Tox67+F14PdED2oQ==
+
 shebang-command@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/shebang-command/-/shebang-command-1.2.0.tgz#44aac65b695b03398968c39f363fee5deafdf1ea"
@@ -7010,7 +7080,7 @@ term-size@^1.2.0:
   dependencies:
     execa "^0.7.0"
 
-terser-webpack-plugin@^1.4.1:
+terser-webpack-plugin@^1.4.1, terser-webpack-plugin@^1.4.3:
   version "1.4.3"
   resolved "https://registry.yarnpkg.com/terser-webpack-plugin/-/terser-webpack-plugin-1.4.3.tgz#5ecaf2dbdc5fb99745fd06791f46fc9ddb1c9a7c"
   integrity sha512-QMxecFz/gHQwteWwSo5nTc6UaICqN1bMedC5sMtUc7y3Ha3Q8y6ZO0iCR8pq4RJC8Hjf0FEPEHZqcMB/+DFCrA==
@@ -7285,6 +7355,21 @@ typescript@^3.7.4:
   version "3.7.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.7.4.tgz#1743a5ec5fef6a1fa9f3e4708e33c81c73876c19"
   integrity sha512-A25xv5XCtarLwXpcDNZzCGvW2D1S3/bACratYBx2sax8PefsFhlYmkQicKHvpYflFS8if4zne5zT5kpJ7pzuvw==
+
+underscore.string@~2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/underscore.string/-/underscore.string-2.4.0.tgz#8cdd8fbac4e2d2ea1e7e2e8097c42f442280f85b"
+  integrity sha1-jN2PusTi0uoefi6Al8QvRCKA+Fs=
+
+underscore@~1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.5.2.tgz#1335c5e4f5e6d33bbb4b006ba8c86a00f556de08"
+  integrity sha1-EzXF5PXm0zu7SwBrqMhqAPVW3gg=
+
+underscore@~1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.7.0.tgz#6bbaf0877500d36be34ecaa584e0db9fef035209"
+  integrity sha1-a7rwh3UA02vjTsqlhODbn+8DUgk=
 
 unfetch@4.1.0, unfetch@^4.0.0:
   version "4.1.0"
@@ -7633,6 +7718,35 @@ webpack@4.41.2:
     schema-utils "^1.0.0"
     tapable "^1.1.3"
     terser-webpack-plugin "^1.4.1"
+    watchpack "^1.6.0"
+    webpack-sources "^1.4.1"
+
+webpack@^4.41.5:
+  version "4.41.5"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.41.5.tgz#3210f1886bce5310e62bb97204d18c263341b77c"
+  integrity sha512-wp0Co4vpyumnp3KlkmpM5LWuzvZYayDwM2n17EHFr4qxBBbRokC7DJawPJC7TfSFZ9HZ6GsdH40EBj4UV0nmpw==
+  dependencies:
+    "@webassemblyjs/ast" "1.8.5"
+    "@webassemblyjs/helper-module-context" "1.8.5"
+    "@webassemblyjs/wasm-edit" "1.8.5"
+    "@webassemblyjs/wasm-parser" "1.8.5"
+    acorn "^6.2.1"
+    ajv "^6.10.2"
+    ajv-keywords "^3.4.1"
+    chrome-trace-event "^1.0.2"
+    enhanced-resolve "^4.1.0"
+    eslint-scope "^4.0.3"
+    json-parse-better-errors "^1.0.2"
+    loader-runner "^2.4.0"
+    loader-utils "^1.2.3"
+    memory-fs "^0.4.1"
+    micromatch "^3.1.10"
+    mkdirp "^0.5.1"
+    neo-async "^2.6.1"
+    node-libs-browser "^2.2.1"
+    schema-utils "^1.0.0"
+    tapable "^1.1.3"
+    terser-webpack-plugin "^1.4.3"
     watchpack "^1.6.0"
     webpack-sources "^1.4.1"
 
