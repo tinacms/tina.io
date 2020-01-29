@@ -1,21 +1,30 @@
 import React from "react";
 import styled from "styled-components";
 import Button from "./Button";
+import Link from "next/link";
 
 const Nav = styled(({ ...styleProps }) => {
   return (
     <ul {...styleProps}>
       <li>
-        <Button>DOCS</Button>
+        <Link href={"/docs"}>
+          <Button>DOCS</Button>
+        </Link>
       </li>
       <li>
-        <Button>BLOG</Button>
+        <Link href={"/blog"}>
+          <Button>BLOG</Button>
+        </Link>
       </li>
       <li>
-        <Button>COMMUNITY</Button>
+        <Link href={"/community"}>
+          <Button>COMMUNITY</Button>
+        </Link>
       </li>
       <li>
-        <Button>TEAMS</Button>
+        <Link href={"/teams"}>
+          <Button>TEAMS</Button>
+        </Link>
       </li>
     </ul>
   );
