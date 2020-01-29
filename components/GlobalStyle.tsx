@@ -81,8 +81,8 @@ export const GlobalStyle = createGlobalStyle`
     font-style: normal;
     font-weight: regular;
     font-display: fallback;
-    src: url("/static/fonts/tunerweb-regular.eot") format("eot"),
-        url("/static/fonts/tunerweb-regular.woff") format("woff");
+    src: url("/fonts/tunerweb-regular.eot") format("eot"),
+        url("/fonts/tunerweb-regular.woff") format("woff");
   }
 
   /* Inter Regular */
@@ -91,8 +91,8 @@ export const GlobalStyle = createGlobalStyle`
     font-style:  normal;
     font-weight: 400;
     font-display: swap;
-    src: url("/static/fonts/Inter-Regular.woff2") format("woff2"),
-        url("/static/fonts/Inter-Regular.woff") format("woff");
+    src: url("/fonts/Inter-Regular.woff2") format("woff2"),
+        url("/fonts/Inter-Regular.woff") format("woff");
   }
 
   /* Inter Italic */
@@ -101,8 +101,8 @@ export const GlobalStyle = createGlobalStyle`
     font-style:  italic;
     font-weight: 400;
     font-display: swap;
-    src: url("/static/fonts/Inter-Italic.woff2") format("woff2"),
-        url("/static/fonts/Inter-Italic.woff") format("woff");
+    src: url("/fonts/Inter-Italic.woff2") format("woff2"),
+        url("/fonts/Inter-Italic.woff") format("woff");
   }
 
   /* Inter Bold */
@@ -111,8 +111,8 @@ export const GlobalStyle = createGlobalStyle`
     font-style:  normal;
     font-weight: 700;
     font-display: swap;
-    src: url("/static/fonts/Inter-Bold.woff2") format("woff2"),
-        url("/static/fonts/Inter-Bold.woff") format("woff");
+    src: url("/fonts/Inter-Bold.woff2") format("woff2"),
+        url("/fonts/Inter-Bold.woff") format("woff");
   }
 
   html {

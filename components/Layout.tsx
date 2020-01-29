@@ -7,7 +7,7 @@ const Layout = styled(({ children, ...styleProps }) => {
   return (
     <div {...styleProps}>
       <Head>
-        <link rel="shortcut icon" href="/static/favicon/favicon.ico" />
+        <link rel="shortcut icon" href="/favicon/favicon.ico" />
       </Head>
       <GlobalStyle />
       {children}
