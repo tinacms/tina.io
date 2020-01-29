@@ -1,9 +1,15 @@
-import App from "next/app";
-import React from "react";
+import React from 'react'
+import App from 'next/app'
+import { withTina } from 'tinacms'
+import { GitClient } from '@tinacms/git-client'
 
-export default class MyApp extends App {
-  render() {
-    const { Component, pageProps } = this.props;
-    return <Component {...pageProps} />;
-  }
-}
+export default withTina(App, {
+  cms: {
+    apis: {
+      git: new GitClient('http://localhost:3000/___tina'),
+    },
+  },
+  sidebar: {
+    hidden: process.env.NODE_ENV === 'production',
+  },
+})
