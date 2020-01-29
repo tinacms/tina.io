@@ -19,6 +19,7 @@ const Header = styled(({ ...styleProps }) => {
   justify-content: space-between;
   align-items: center;
   padding: 0 1rem;
+  z-index: 100;
 `;
 
 const Github = styled.div``;
