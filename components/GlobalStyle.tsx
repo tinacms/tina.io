@@ -167,9 +167,13 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   h1, .h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     line-height: 1.3;
     letter-spacing: 0.1px;
+
+    @media (min-width: 800px) {
+      font-size: 3rem;
+    }
 
     @media (min-width: 1200px) {
       font-size: 4rem;

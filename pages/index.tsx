@@ -19,8 +19,8 @@ const Index = props => {
         />
       </Head>
 
-      <Hero>
-        <h2 className="h1">Build real-time editing into your site.</h2>
+      <Hero overlap>
+        <HomepageTitle>Build real-time editing into your site.</HomepageTitle>
       </Hero>
 
       <HeroVideo>
@@ -127,6 +127,20 @@ export <b>WithTina</b>( <b>Component</b> );
     </Layout>
   );
 };
+
+const HomepageTitle = styled(({ children, ...styleProps }) => {
+  return (
+    <div {...styleProps}>
+      <h2 className="h1">{children}</h2>
+    </div>
+  );
+})`
+  h2 {
+    max-width: 9em;
+    text-align: center;
+    margin: 0 auto;
+  }
+`;
 
 const HeroVideo = styled.div`
   display: block;

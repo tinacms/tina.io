@@ -1,7 +1,7 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-const Hero = styled(({ children, ...styleProps }) => {
+const Hero = styled(({ overlap, children, ...styleProps }) => {
   return <div {...styleProps}>{children}</div>;
 })`
   position: relative;
@@ -27,8 +27,20 @@ const Hero = styled(({ children, ...styleProps }) => {
   }
 
   @media (min-width: 1200px) {
-    padding: 10rem 1rem;
+    padding: 9rem 1rem;
   }
+
+  ${props =>
+    props.overlap &&
+    css`
+      padding-bottom: 12rem;
+      margin-bottom: -6rem;
+
+      @media (min-width: 1200px) {
+        padding: 9rem 1rem 21rem 1rem;
+        margin-bottom: -14rem;
+      }
+    `};
 `;
 
 export default Hero;
