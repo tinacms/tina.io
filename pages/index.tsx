@@ -5,6 +5,7 @@ import Head from "next/head";
 import Layout from "../components/Layout";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
+import ArrowList from "../components/ArrowList";
 
 const heroVideo = "v1571425758/tina-hero-demo-v2";
 
@@ -70,7 +71,7 @@ const Index = props => {
         community of contributors.
       </h3>
       <h2 className="h1">Make your site editable in five minutes.</h2>
-      <ul>
+      <ArrowList>
         <li>Install and configure Tina plugins</li>
         <li>
           Wrap and export your templates with Tina components specific to your
@@ -83,9 +84,10 @@ const Index = props => {
           Open the sidebar 🤩, edit your site and watch the content updating in
           realtime
         </li>
-        <CodeExample
-          dangerouslySetInnerHTML={{
-            __html: `yarn add <b>gatsby-plugin-tinacms</b>
+      </ArrowList>
+      <CodeExample
+        dangerouslySetInnerHTML={{
+          __html: `yarn add <b>gatsby-plugin-tinacms</b>
 
 module.exports = {
   <span>// ...</span>
@@ -97,9 +99,8 @@ module.exports = {
 
 export <b>WithTina</b>( <b>Component</b> );
 `
-          }}
-        ></CodeExample>
-      </ul>
+        }}
+      ></CodeExample>
     </Layout>
   );
 };
@@ -128,6 +129,10 @@ const CodeExample = styled.code`
   white-space: pre;
   filter: drop-shadow(rgba(104, 120, 125, 0.2) 0px 7px 8px);
   align-self: flex-start;
+  width: 100%;
+  display: block;
+  margin-top: 40px;
+  margin-bottom: 40px;
 
   b {
     color: var(--color-primary, #ec4815);
