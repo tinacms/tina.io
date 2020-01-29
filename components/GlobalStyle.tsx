@@ -75,6 +75,15 @@ const CssReset = css`
 export const GlobalStyle = createGlobalStyle`
   ${CssReset}
 
+  @font-face {
+    font-family: 'tuner-regular';
+    font-style: normal;
+    font-weight: regular;
+    font-display: fallback;
+    src: url('tunerweb-regular.eot') format('embedded-opentype');
+    src: url('tunerweb-regular.eot?#iefix') format('embedded-opentype'), url('tunerweb-regular.woff') format('woff');
+  }
+
   html {
     font-size: 100%;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
@@ -108,5 +117,11 @@ export const GlobalStyle = createGlobalStyle`
     @media (min-width: 1600px) {
       font-size: 137.5%;
     }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'tuner-regular', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+      "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+      "Helvetica Neue", sans-serif;
   }
 `;

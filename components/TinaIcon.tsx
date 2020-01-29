@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import TinaIconSvg from "../svg/tina-icon.svg";
+import TinaIconSvg from "../public/svg/tina-icon.svg";
 
 const TinaIcon = styled(({ ...styleProps }) => {
   return (
