@@ -1,5 +1,5 @@
-import React from "react";
-import { createGlobalStyle, css } from "styled-components";
+import React from 'react'
+import { createGlobalStyle, css } from 'styled-components'
 
 const CssReset = css`
   html,
@@ -70,7 +70,7 @@ const CssReset = css`
     padding: 0;
     text-align: left;
   }
-`;
+`
 
 export const GlobalStyle = createGlobalStyle`
   ${CssReset}
@@ -164,15 +164,15 @@ export const GlobalStyle = createGlobalStyle`
     font-family: var(--font-tuner);
     font-weight: regular;
     font-style: normal;
-    color: var(--color-primary, #EC4815);
+    color: var(--color-primary);
 
     em {
       font-style: normal;
-      color: var(--color-secondary-dark, #241748);
+      color: var(--color-secondary-dark);
     }
 
     &:not(:last-child) {
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
   }
 
@@ -204,7 +204,7 @@ export const GlobalStyle = createGlobalStyle`
 
   p {
     font-size: 1.125rem;
-    color: var(--color-secondary-dark, #241748);
+    color: var(--color-secondary-dark);
   }
 
   a {
@@ -215,18 +215,18 @@ export const GlobalStyle = createGlobalStyle`
 
     &:hover, &:focus {
       opacity: 1;
-      color: var(--color-primary, #EC4815);
-      text-decoration-color: var(--color-primary, #EC4815);
+      color: var(--color-primary);
+      text-decoration-color: var(--color-primary);
     }
   }
 
   hr {
     border: none;
-    border-bottom: 3px dotted var(--color-primary, #EC4815);
+    border-bottom: 3px dotted var(--color-primary);
     width: 8rem;
     max-width: 100%;
     display: block;
     height: 0px;
     margin: 2rem 0;
   }
-`;
+`
