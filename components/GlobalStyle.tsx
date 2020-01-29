@@ -75,18 +75,49 @@ const CssReset = css`
 export const GlobalStyle = createGlobalStyle`
   ${CssReset}
 
+  /* Tuner Regular */
   @font-face {
     font-family: 'tuner-regular';
     font-style: normal;
     font-weight: regular;
     font-display: fallback;
-    src: url('tunerweb-regular.eot') format('embedded-opentype');
-    src: url('tunerweb-regular.eot?#iefix') format('embedded-opentype'), url('tunerweb-regular.woff') format('woff');
+    src: url("/static/fonts/tunerweb-regular.eot") format("eot"),
+        url("/static/fonts/tunerweb-regular.woff") format("woff");
+  }
+
+  /* Inter Regular */
+  @font-face {
+    font-family: 'Inter';
+    font-style:  normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/static/fonts/Inter-Regular.woff2") format("woff2"),
+        url("/static/fonts/Inter-Regular.woff") format("woff");
+  }
+
+  /* Inter Italic */
+  @font-face {
+    font-family: 'Inter';
+    font-style:  italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/static/fonts/Inter-Italic.woff2") format("woff2"),
+        url("/static/fonts/Inter-Italic.woff") format("woff");
+  }
+
+  /* Inter Bold */
+  @font-face {
+    font-family: 'Inter';
+    font-style:  normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("/static/fonts/Inter-Bold.woff2") format("woff2"),
+        url("/static/fonts/Inter-Bold.woff") format("woff");
   }
 
   html {
     font-size: 100%;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
       "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
       "Helvetica Neue", sans-serif;
     line-height: 1.5;
