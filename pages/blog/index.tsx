@@ -10,30 +10,31 @@ const Index = props => {
     <Layout pathname="/">
       <Header />
       My blog
-      {props.posts.map(p => (
-        <div>Blog</div>
+      {props.posts.map(post => (
+        <div>
+          <h3>{post.data.title}</h3>
+          <ReactMarkdown source={post.content} />
+          <br />
+        </div>
       ))}
     </Layout>
   );
 };
 
 Index.getInitialProps = async function(ctx) {
-  console.log("abc");
   const posts = (context => {
     const keys = context.keys();
     const values = keys.map(context);
     const data = keys.map((key: string, index: number) => {
       // Create slug from filename
-      // const slug = key.replace(/^.*[\\\/]/, "");
+      const slug = key.replace(/^.*[\\\/]/, "");
       const value = values[index];
       // Parse yaml metadata & markdownbody in document
       const post = matter(value.default);
+      console.log(JSON.stringify(post));
       return {
-        post: {
-          ...post,
-          content: post.content.substring(0, 100)
-        }
-        // slug
+        data: { ...post.data, slug },
+        content: post.content.substring(0, 300)
       };
     });
 
