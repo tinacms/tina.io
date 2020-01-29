@@ -21,20 +21,9 @@ const Button = styled.button`
   text-decoration: none;
   opacity: 1;
 
-  ${props =>
-    props.white &&
-    css`
-      background-color: white;
-    `};
-
-  ${props =>
-    props.primary &&
-    css`
-      background-color: var(--color-primary);
-    `};
-
   &:hover,
   &:focus {
+    color: var(--color-primary);
     text-decoration: none;
     transform: translate3d(-1px, -2px, 0);
     transition: transform 180ms ease-out;
@@ -46,6 +35,24 @@ const Button = styled.button`
   &:active {
     filter: none;
   }
+
+  ${props =>
+    props.white &&
+    css`
+      background-color: white;
+    `};
+
+  ${props =>
+    props.primary &&
+    css`
+      background-color: var(--color-primary);
+      color: white;
+
+      &:hover,
+      &:focus {
+        color: white;
+      }
+    `};
 `
 
 export default Button

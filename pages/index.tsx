@@ -1,12 +1,14 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import Head from 'next/head'
+import Link from 'next/link'
 
 import Layout from '../components/layout/Layout'
 import Header from '../components/layout/Header'
 import Hero from '../components/layout/Hero'
 import ArrowList from '../components/layout/ArrowList'
 import Wrapper from '../components/layout/Wrapper'
+import Button from '../components/ui/Button'
 
 const heroVideo = 'v1571425758/tina-hero-demo-v2'
 
@@ -52,6 +54,11 @@ const Index = props => {
                 frameworks — Gatsby & Next.js
               </em>
             </h2>
+            <Link href={'/docs/getting-started/introduction/'} passHref>
+              <Button as="a" primary>
+                Get Started
+              </Button>
+            </Link>
           </CtaLayout>
           <InfoLayout>
             <div>
@@ -220,8 +227,11 @@ const CtaLayout = styled.div`
   max-width: 35rem;
   text-align: center;
   margin: 0 auto;
-
   padding: 0 0 3rem 0;
+
+  ${Button} {
+    margin: 2rem auto 0 auto;
+  }
 
   @media (min-width: 800px) {
     padding: 0 0 5rem 0;
