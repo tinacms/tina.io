@@ -125,8 +125,22 @@ export const GlobalStyle = createGlobalStyle`
     min-height: 100%;
     box-sizing: border-box;
 
+    /* Color */
     --color-primary: #EC4815;
+    --color-primary-dark: #CE411D;
+    --color-secondary: #302454;
+    --color-secondary-dark: #241748;
+    --color-seafoam: #E6FAF8;
+    --color-seafoam-dark: #B4F4E0;
+    --color-light: #f4f4f4;
+    --color-light-dark: #E9E9EC;
+    --color-grey: #595959;
+    --color-grey-dark: #404040;
 
+    /* Layout */
+    --breakpoint-small: 400px;
+    --breakpoint-medium: 800px;
+    --breakpoint-large: 1200px;
 
     * {
       box-sizing: inherit;
@@ -157,5 +171,28 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 2rem;
     line-height: 1.3;
     letter-spacing: 0.1px;
+  }
+
+  h3, .h3 {
+    font-size: 1.5rem;
+    line-height: 1.3;
+    letter-spacing: 0.1px;
+  }
+
+  p {
+    font-size: 1.125rem;
+  }
+
+  a {
+    color: inherit;
+    opacity: 0.8;
+    text-decoration: underline rgba(0, 0, 0, 0.3);
+    transition: all 185ms ease-out;
+
+    &:hover, &:focus {
+      opacity: 1;
+      color: var(--color-primary, #EC4815);
+      text-decoration-color: var(--color-primary, #EC4815);
+    }
   }
 `;
