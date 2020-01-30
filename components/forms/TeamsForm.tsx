@@ -85,9 +85,9 @@ export function TeamsForm(props: any) {
 
   return (
     <StyledForm onSubmit={handleSubmit}>
-      <h5>Teams Early Access</h5>
+      <h3>Teams Early Access</h3>
       <label>
-        <p className="body">First Name</p>
+        <p>First Name</p>
         <Input
           type="text"
           id="name"
@@ -97,7 +97,7 @@ export function TeamsForm(props: any) {
         />
       </label>
       <label>
-        <p className="body">Last Name</p>
+        <p>Last Name</p>
         <Input
           type="text"
           id="surname"
@@ -107,7 +107,7 @@ export function TeamsForm(props: any) {
         />
       </label>
       <label>
-        <p className="body">Email</p>
+        <p>Email</p>
         <Input
           type="text"
           id="email"
@@ -118,7 +118,7 @@ export function TeamsForm(props: any) {
         />
       </label>
       <label>
-        <p className="body">Tell us a little bit about your project</p>
+        <p>Tell us a little bit about your project</p>
         <Textarea
           id="project-details"
           name="project-details"
@@ -135,4 +135,23 @@ export function TeamsForm(props: any) {
   )
 }
 
-const StyledForm = styled.form``
+const StyledForm = styled.form`
+  padding: 2rem 5rem;
+  background-color: var(--color-secondary);
+  border-radius: 3rem;
+
+  h3 {
+    text-transform: uppercase;
+    color: var(--color-primary);
+    text-align: center;
+  }
+
+  ${Button} {
+    margin: 1.5rem auto 0 auto;
+  }
+
+  p {
+    color: var(--color-seafoam-dark);
+    margin: 1rem 0 0.5rem 0;
+  }
+`

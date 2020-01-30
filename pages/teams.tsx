@@ -19,13 +19,15 @@ function TeamsPage(props) {
       </Head>
       <TeamsSection>
         <Wrapper>
-          <h2>{data.headline}</h2>
-          <hr />
-          <ArrowList>
-            {data.supporting_points.map(item => (
-              <li key={item.point.trim()}>{item.point}</li>
-            ))}
-          </ArrowList>
+          <TeamsContent>
+            <h2>{data.headline}</h2>
+            <hr />
+            <ArrowList>
+              {data.supporting_points.map(item => (
+                <li key={item.point.trim()}>{item.point}</li>
+              ))}
+            </ArrowList>
+          </TeamsContent>
           <TeamsForm hubspotFormID={process.env.GATSBY_HUBSPOT_FORM_ID} />
         </Wrapper>
       </TeamsSection>
@@ -41,7 +43,9 @@ const TeamsLayout = styled(Layout)`
 const TeamsSection = styled(Section)`
   flex: 1 0 auto;
   padding: 5rem 0 3rem 0;
+`
 
+const TeamsContent = styled.div`
   li {
     color: white;
   }
