@@ -55,4 +55,15 @@ const Button = styled.button`
     `};
 `
 
+export const ButtonGroup = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  ${Button} {
+    margin-right: 1rem;
+  }
+`
+
 export default Button

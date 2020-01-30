@@ -7,7 +7,6 @@ const Hero = styled(({ overlap, children, ...styleProps }) => {
   position: relative;
   text-align: center;
   padding: 8rem 1rem 6rem 1rem;
-  margin-bottom: 2rem;
 
   &:before {
     content: '';

@@ -8,6 +8,7 @@ import Header from '../components/layout/Header'
 import Hero from '../components/layout/Hero'
 import ArrowList from '../components/layout/ArrowList'
 import Wrapper from '../components/layout/Wrapper'
+import Section from '../components/layout/Section'
 import Button from '../components/ui/Button'
 
 const heroVideo = 'v1571425758/tina-hero-demo-v2'
@@ -181,7 +182,7 @@ const CodeExample = styled.code`
   padding: 50px;
   font-size: 20px;
   line-height: 1.2;
-  font-family: 'Hack', Monaco, 'Courier New', Courier, monospace;
+  font-family: Monaco, 'Courier New', Courier, monospace;
   white-space: pre;
   filter: drop-shadow(rgba(104, 120, 125, 0.2) 0px 7px 8px);
   align-self: flex-start;
@@ -190,26 +191,12 @@ const CodeExample = styled.code`
   margin-top: 0.5rem;
 
   b {
-    color: var(--color-primary, #ec4815);
+    color: var(--color-primary);
   }
 
   span {
     opacity: 0.5;
   }
-`
-
-const Section = styled.section`
-  padding: 3rem 0;
-
-  @media (min-width: 800px) {
-    padding: 5rem 0;
-  }
-
-  ${props =>
-    props.seafoam &&
-    css`
-      background-color: var(--color-seafoam);
-    `};
 `
 
 const InfoLayout = styled.div`
