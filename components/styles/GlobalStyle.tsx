@@ -1,6 +1,8 @@
 import React from 'react'
 import { createGlobalStyle, css } from 'styled-components'
 
+import Code from './Code'
+
 const CssReset = css`
   html,
   body,
@@ -74,6 +76,7 @@ const CssReset = css`
 
 export const GlobalStyle = createGlobalStyle`
   ${CssReset}
+  ${Code}
 
   /* Tuner Regular */
   @font-face {
