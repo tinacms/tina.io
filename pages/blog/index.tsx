@@ -12,7 +12,7 @@ const Index = props => {
     <Layout>
       <BlogWrapper>
         {props.posts.map(post => (
-          <div>
+          <BlogExcerpt>
             <Link
               key={post.data.slug}
               href={{ pathname: `/blog/${post.data.slug}` }}
@@ -21,10 +21,14 @@ const Index = props => {
                 <em>{post.data.title}</em>
               </h3>
             </Link>
+            <StyledBlogMetaData>
+              <p>By: {post.data.author}</p>
+              <p>{post.data.date}</p>
+            </StyledBlogMetaData>
             <ReactMarkdown source={post.content} />
             <hr />
             <br />
-          </div>
+          </BlogExcerpt>
         ))}
       </BlogWrapper>
     </Layout>
@@ -34,6 +38,31 @@ const Index = props => {
 const BlogWrapper = styled(Wrapper)`
   padding-top: 10rem;
   max-width: 704px;
+`
+
+const BlogExcerpt = styled.article`
+  hr {
+    opacity: 0.3;
+    filter: saturate(0%);
+  }
+`
+
+const StyledBlogMetaData = styled('div')`
+  width: 100%;
+  justify-content: space-between;
+  display: flex;
+  flex-grow: 1;
+  margin-bottom: 1.5rem;
+  margin-top: -0.5rem;
+  opacity: 0.8;
+  p {
+    margin: 0;
+    color: 0;
+    display: block;
+  }
+  p:first-child {
+    max-width: 250px;
+  }
 `
 
 Index.getInitialProps = async function(ctx) {
