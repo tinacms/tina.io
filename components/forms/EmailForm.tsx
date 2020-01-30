@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 import addToMailchimp from '../../utils/addToMailchimp'
 
-import Input from '../ui/Input'
-import Button from '../ui/Button'
+import { Input, Button } from '../ui'
 
 interface EmailFormProps {
   isFooter: boolean

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Button from '../ui/Button'
+import { Button } from '../ui'
 import Link from 'next/link'
 import data from '../../content/navigation.json'
 
@@ -16,7 +16,7 @@ export const NavToggle = styled(({ ...styleProps }) => {
   fill: var(--color-primary);
 `
 
-const Nav = styled(({ darkNav, ...styleProps }) => {
+export const Nav = styled(({ darkNav, ...styleProps }) => {
   return (
     <ul {...styleProps}>
       {data &&
@@ -73,4 +73,3 @@ const Nav = styled(({ darkNav, ...styleProps }) => {
     }
   }
 `
-export default Nav

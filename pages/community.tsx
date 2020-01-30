@@ -6,12 +6,10 @@ import Link from 'next/link'
 import Head from 'next/head'
 import { inlineJsonForm } from 'next-tinacms-json'
 
-import Layout from '../components/layout/Layout'
-import Button, { ButtonGroup } from '../components/ui/Button'
+import { Layout, Hero, Wrapper, Section } from '../components/layout'
+
+import { Button, ButtonGroup } from '../components/ui'
 import { EmailForm } from '../components/forms'
-import Hero from '../components/layout/Hero'
-import Wrapper from '../components/layout/Wrapper'
-import Section from '../components/layout/Section'
 
 import TwitterIconSvg from '../public/svg/twitter-icon.svg'
 import GithubIconSvg from '../public/svg/github-icon.svg'

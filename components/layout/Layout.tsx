@@ -1,12 +1,11 @@
 import React from 'react'
 import Head from 'next/head'
 import styled from 'styled-components'
+
 import { GlobalStyle } from '../styles/GlobalStyle'
+import { Header, Footer } from '../layout'
 
-import Header from './Header'
-import Footer from './Footer'
-
-const Layout = styled(({ children, darkHeader, ...styleProps }) => {
+export const Layout = styled(({ children, darkHeader, ...styleProps }) => {
   return (
     <div {...styleProps}>
       <Head>
@@ -25,5 +24,3 @@ const Layout = styled(({ children, darkHeader, ...styleProps }) => {
   flex: 1 1 auto;
   min-height: 100%;
 `
-
-export default Layout

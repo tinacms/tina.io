@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import Button from '../ui/Button'
-import Input from '../ui/Input'
-import Textarea from '../ui/Textarea'
+
+import { Input, Button, Textarea } from '../ui'
 
 export function TeamsForm(props: any) {
   const [firstName, setFirstName] = useState('')

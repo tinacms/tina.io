@@ -1,10 +1,7 @@
 import matter from 'gray-matter'
 import styled, { css } from 'styled-components'
-import ReactMarkdown from 'react-markdown'
 
-import Layout from '../../components/layout/Layout'
-import Hero from '../../components/layout/Hero'
-import Wrapper from '../../components/layout/Wrapper'
+import { Layout, Hero, Wrapper, MarkdownContent } from '../../components/layout'
 
 export default function BlogTemplate(props) {
   return (
@@ -17,7 +14,7 @@ export default function BlogTemplate(props) {
           <p>By: {props.post.data.author}</p>
           <p>{props.post.data.date}</p>
         </BlogMeta>
-        <ReactMarkdown source={props.post.content} />
+        <MarkdownContent content={props.post.content} />
       </BlogWrapper>
     </Layout>
   )

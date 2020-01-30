@@ -1,8 +1,8 @@
 import matter from 'gray-matter'
 import ReactMarkdown from 'react-markdown'
-import Layout from '../../components/layout/Layout'
-import Header from '../../components/layout/Header'
 import Link from 'next/link'
+
+import { Layout, Header, MarkdownContent } from '../../components/layout'
 
 interface DocSection {
   id: string
@@ -34,7 +34,7 @@ export default function DocTemplate(props) {
       <Header />
       <h1>{props.doc.data.title}</h1>
       {props.docsNav.map(DocSection)}
-      <ReactMarkdown source={props.doc.content} />
+      <MarkdownContent content={props.doc.content} />
     </Layout>
   )
 }

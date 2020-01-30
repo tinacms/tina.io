@@ -4,9 +4,7 @@ import matter from 'gray-matter'
 import ReactMarkdown from 'react-markdown'
 import styled from 'styled-components'
 
-import Layout from '../../components/layout/Layout'
-import Wrapper from '../../components/layout/Wrapper'
-import Hero from '../../components/layout/Hero'
+import { Layout, Wrapper, Hero } from '../../components/layout'
 
 const Index = props => {
   return (

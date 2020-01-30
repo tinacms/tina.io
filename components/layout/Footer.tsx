@@ -2,14 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
 
-import Nav from './Nav'
-import Button from '../ui/Button'
+import { Nav } from './Nav'
+import { Button } from '../ui'
 import TinaWordmark from '../logo/TinaWordmark'
 import TwitterIconSvg from '../../public/svg/twitter-icon.svg'
 import GithubIconSvg from '../../public/svg/github-icon.svg'
 import { EmailForm } from '../forms'
 
-const Footer = styled(({ ...styleProps }) => {
+export const Footer = styled(({ ...styleProps }) => {
   return (
     <div {...styleProps}>
       <FooterTop>
@@ -160,5 +160,3 @@ const Footnote = styled.span`
     }
   }
 `
-
-export default Footer

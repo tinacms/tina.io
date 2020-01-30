@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
-const Section = styled.section`
+export const Section = styled.section`
   padding: 3rem 0;
 
   @media (min-width: 800px) {
@@ -14,5 +14,3 @@ const Section = styled.section`
       background-color: var(--color-seafoam);
     `};
 `
-
-export default Section

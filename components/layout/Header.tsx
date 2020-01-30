@@ -2,9 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { TinaIcon } from '../logo/TinaIcon'
-import Nav, { NavToggle } from './Nav'
+import { Nav, NavToggle } from './Nav'
 
-const Header = styled(({ darkHeader, ...styleProps }) => {
+export const Header = styled(({ darkHeader, ...styleProps }) => {
   return (
     <header {...styleProps}>
       <TinaIcon />
@@ -67,5 +67,3 @@ const Header = styled(({ darkHeader, ...styleProps }) => {
     }
   }
 `
-
-export default Header
