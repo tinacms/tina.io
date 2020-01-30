@@ -136,10 +136,6 @@ export function TeamsForm(props: any) {
 }
 
 const StyledForm = styled.form`
-  padding: 2rem 5rem;
-  background-color: var(--color-secondary);
-  border-radius: 3rem;
-
   h3 {
     text-transform: uppercase;
     color: var(--color-primary);

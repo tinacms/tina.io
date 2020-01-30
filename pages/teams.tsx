@@ -19,16 +19,20 @@ function TeamsPage(props) {
       </Head>
       <TeamsSection>
         <Wrapper>
-          <TeamsContent>
-            <h2>{data.headline}</h2>
-            <hr />
-            <ArrowList>
-              {data.supporting_points.map(item => (
-                <li key={item.point.trim()}>{item.point}</li>
-              ))}
-            </ArrowList>
-          </TeamsContent>
-          <TeamsForm hubspotFormID={process.env.GATSBY_HUBSPOT_FORM_ID} />
+          <TeamsGrid>
+            <TeamsContent>
+              <h2>{data.headline}</h2>
+              <hr />
+              <ArrowList>
+                {data.supporting_points.map(item => (
+                  <li key={item.point.trim()}>{item.point}</li>
+                ))}
+              </ArrowList>
+            </TeamsContent>
+            <TeamsFormWrapper>
+              <TeamsForm hubspotFormID={process.env.GATSBY_HUBSPOT_FORM_ID} />
+            </TeamsFormWrapper>
+          </TeamsGrid>
         </Wrapper>
       </TeamsSection>
     </TeamsLayout>
@@ -40,9 +44,34 @@ const TeamsLayout = styled(Layout)`
   background-color: var(--color-secondary-dark);
   color: white;
 `
+
 const TeamsSection = styled(Section)`
   flex: 1 0 auto;
-  padding: 5rem 0 3rem 0;
+  padding: 6rem 0 3rem 0;
+  display: flex;
+  flex-direction: column;
+
+  ${Wrapper} {
+    display: flex;
+    flex: 1 0 auto;
+  }
+`
+
+const TeamsGrid = styled.div`
+  display: grid;
+  grid-gap: 2rem;
+  min-height: 100%;
+
+  @media (min-width: 800px) {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+`
+
+const TeamsFormWrapper = styled.div`
+  padding: 2rem 5rem;
+  background-color: var(--color-secondary);
+  border-radius: 3rem;
 `
 
 const TeamsContent = styled.div`

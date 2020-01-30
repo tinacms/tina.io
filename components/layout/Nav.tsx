@@ -59,7 +59,7 @@ const Nav = styled(({ darkNav, ...styleProps }) => {
       }
       &:not(:last-child) {
         ${Button} {
-          border-right: 1px solid var(--color-seafoam);
+          border-right: 1px solid rgba(155, 155, 155, 0.15);
           border-top-right-radius: 0;
           border-bottom-right-radius: 0;
         }
