@@ -7,10 +7,11 @@ import Head from 'next/head'
 import { inlineJsonForm } from 'next-tinacms-json'
 
 import Layout from '../components/layout/Layout'
-import Button from '../components/ui/Button'
+import Button, { ButtonGroup } from '../components/ui/Button'
 import { EmailForm } from '../components/forms'
 import Hero from '../components/layout/Hero'
 import Wrapper from '../components/layout/Wrapper'
+import Section from '../components/layout/Section'
 
 import TwitterIconSvg from '../public/svg/twitter-icon.svg'
 import GithubIconSvg from '../public/svg/github-icon.svg'
@@ -41,83 +42,86 @@ function CommunityPage(props) {
         <meta name="twitter:title" content="TinaCMS - Community" />
       </Head>
       <Hero>
-        <h1>{data.headline}</h1>
+        <h2 className="h1">{data.headline}</h2>
       </Hero>
-      <Wrapper>
-        {/* TODO: Replace this section with social bar component? */}
-        <SocialSection>
-          <SocialItem>
-            <a
-              href={`${metadata.social.twitter}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <TwitterIconSvg />
-              <h5>Tweet us</h5>
-            </a>
-            <span className="dotted-line" />
-          </SocialItem>
-          <SocialItem>
-            <a
-              href={`${metadata.social.github}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <GithubIconSvg />
-              <h5>Fork us</h5>
-            </a>
-            <span className="dotted-line" />
-          </SocialItem>
-          <SocialItem>
-            <a
-              href={`${metadata.social.slack}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <SlackIconSvg />
-              <h5>Slack us</h5>
-            </a>
-            <span className="dotted-line" />
-          </SocialItem>
-          <SocialItem>
-            <a
-              href={`${metadata.social.forum}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <ForumIconSvg />
-              <h5>Ask us</h5>
-            </a>
-          </SocialItem>
-        </SocialSection>
-        <InfoSection>
-          <figure>
-            {/* <img src={data.gif[0].src} alt={data.gif[0].gif_alt} /> */}
-          </figure>
-          <span id="info-wrap">
-            <h5>{data.supporting_headline}</h5>
-            <ReactMarkdown>{data.supporting_body}</ReactMarkdown>
-            <span id="buttons">
-              <Link href={'/docs/contributing/guidelines'} passHref>
-                <Button as="a">Contribute</Button>
-              </Link>
-              <Link href={metadata.roadmapUrl} passHref>
-                <Button as="a">View Roadmap</Button>
-              </Link>
+      <SocialBar>
+        <SocialItem>
+          <a
+            href={`${metadata.social.twitter}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <TwitterIconSvg />
+            <h5>Tweet us</h5>
+          </a>
+          <span className="dotted-line" />
+        </SocialItem>
+        <SocialItem>
+          <a
+            href={`${metadata.social.github}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <GithubIconSvg />
+            <h5>Fork us</h5>
+          </a>
+          <span className="dotted-line" />
+        </SocialItem>
+        <SocialItem>
+          <a
+            href={`${metadata.social.slack}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <SlackIconSvg />
+            <h5>Slack us</h5>
+          </a>
+          <span className="dotted-line" />
+        </SocialItem>
+        <SocialItem>
+          <a
+            href={`${metadata.social.forum}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <ForumIconSvg />
+            <h5>Ask us</h5>
+          </a>
+        </SocialItem>
+      </SocialBar>
+      <Section>
+        <Wrapper>
+          <InfoLayout>
+            <InfoContent>
+              <InfoText>
+                <h3 className="h2">{data.supporting_headline}</h3>
+                <ReactMarkdown>{data.supporting_body}</ReactMarkdown>
+              </InfoText>
+              <ButtonGroup>
+                <Link href={'/docs/contributing/guidelines'} passHref>
+                  <Button as="a">Contribute</Button>
+                </Link>
+                <Link href={metadata.roadmapUrl} passHref>
+                  <Button as="a">View Roadmap</Button>
+                </Link>
+              </ButtonGroup>
+            </InfoContent>
+            <InfoImage src="/img/rico-replacement.jpg" />
+          </InfoLayout>
+        </Wrapper>
+      </Section>
+      <FormSection seafoam>
+        <Wrapper>
+          <h2>
+            Newsletter{' '}
+            <span role="img" aria-label="two finger peace sign">
+              ✌️
             </span>
-          </span>
-        </InfoSection>
-      </Wrapper>
-      <NewsletterSection>
-        <h2>
-          Newsletter{' '}
-          <span role="img" aria-label="two finger peace sign">
-            ✌️
-          </span>
-        </h2>
-        <p>We move quick. Stay up to date.</p>
-        <EmailForm />
-      </NewsletterSection>
+          </h2>
+          <p>We move quick. Stay up to date.</p>
+          <EmailForm />
+        </Wrapper>
+      </FormSection>
     </Layout>
   )
 }
@@ -177,27 +181,23 @@ EditableCommunityPage.getInitialProps = async function() {
   }
 }
 
-const SocialSection = styled('section')`
+const SocialBar = styled.div`
   display: grid;
   grid-template-rows: repeat(4, auto);
-  grid-row-gap: 22px;
+  grid-gap: 1.5rem;
   justify-content: center;
-  margin: 145px 0 65px 0;
+  margin: 6rem auto;
   @media (min-width: 800px) {
-    margin-top: 260px;
     grid-template-rows: unset;
     grid-template-columns: repeat(4, auto);
-    grid-column-gap: 20px;
     width: 700px;
-    margin: 260px auto 165px auto;
   }
   @media (min-width: 1200px) {
-    grid-column-gap: 32px;
+    grid-column-gap: 2rem;
   }
 `
 
 const SocialItem = styled('div')`
-  width: 85px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -207,10 +207,7 @@ const SocialItem = styled('div')`
     display: flex;
     flex-direction: column;
     align-items: center;
-    svg {
-      transform: scale3d(1, 1, 1);
-      transition: transform 180ms ease-in;
-    }
+    text-decoration: none;
   }
   a:hover,
   a:focus {
@@ -225,12 +222,14 @@ const SocialItem = styled('div')`
     text-decoration: underline;
   }
   svg {
-    width: 66px;
-    margin-bottom: 15px;
+    width: 4rem;
+    margin-bottom: 1rem;
+    transform: scale3d(1, 1, 1);
+    transition: transform 180ms ease-in;
   }
   h5 {
     text-transform: uppercase;
-    margin-bottom: 18px;
+    text-decoration: none;
   }
   span.dotted-line {
     display: block;
@@ -260,111 +259,60 @@ const SocialItem = styled('div')`
   }
 `
 
-const InfoSection = styled('section')`
-  text-align: center;
-  figure {
-    display: flex;
-    flex-direction: column;
-    grid-area: gif;
-    width: 80%;
-    margin: 0 auto;
-    border-radius: 10%;
-    overflow: hidden;
-    img {
-      object-fit: cover;
-      object-position: center;
-      width: 100%;
-      height: auto;
-      min-height: 100%;
-    }
-  }
-  span#info-wrap {
-    grid-area: info;
-  }
-  span#buttons > a:first-of-type {
-    display: none;
-  }
-  span#buttons {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
+const InfoLayout = styled.div`
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+  grid-template-columns: auto;
+  grid-gap: 2rem;
+
   @media (min-width: 800px) {
-    text-align: left;
-    max-width: 1150px;
-    display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-areas: 'info gif';
-    grid-column-gap: 1rem;
-    figure {
-      flex-direction: row;
-    }
-    span#info-wrap {
-      width: 90%;
-      margin: auto;
-    }
-    span#buttons {
-      justify-content: flex-start;
-    }
-    h2 {
-      width: unset;
-    }
-  }
-  @media (min-width: 1200px) {
-    margin-bottom: 165px;
-    span#info-wrap {
-      width: 85%;
-      span#buttons {
-        display: flex;
-      }
-    }
-    span#buttons > a:first-of-type {
-      display: flex;
-      margin-right: 20px;
-    }
+    grid-template-rows: auto;
+    align-items: stretch;
   }
 `
 
-const NewsletterSection = styled('section')`
-  background-color: var(--color-seafoam);
-  form {
+const InfoContent = styled.div`
+  @media (min-width: 800px) {
     display: flex;
-    flex-direction: column-reverse;
-    padding: 24px 0 0 0;
-    h3 {
-      display: none;
-    }
-    input {
-      filter: inset 3px 1px 5px rgba(0, 0, 0, 0.15);
-      margin-top: 0;
-      margin-bottom: 1rem;
-    }
+    flex-direction: column;
+    justify-content: space-between;
   }
+`
+
+const InfoText = styled.div`
+  margin-bottom: 1.5rem;
+  @media (min-width: 800px) {
+    flex: 1 0 auto;
+  }
+`
+
+const InfoImage = styled(({ src, ...styleProps }) => {
+  return (
+    <div {...styleProps}>
+      <img src={src} alt="" />
+    </div>
+  )
+})`
+  border-radius: 2rem;
+  overflow: hidden;
+
+  img {
+    display: block;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`
+
+const FormSection = styled(Section)`
   @media (min-width: 800px) {
     text-align: center;
-    form {
-      display: grid;
-      grid-template-columns: minMax(70%, 1fr);
-      grid-column-gap: 40px;
-      grid-template-rows: auto;
-      grid-row-gap: 38px;
-      grid-template-areas:
-        'cta cta'
-        'input btn';
-      max-width: 620px;
-      margin: 0 auto;
-      padding: 18px 0 24px 0;
-      h3 {
-        grid-area: cta;
-        display: block;
-      }
-      input {
-        grid-area: input;
-        margin: 0;
-      }
-      button {
-        grid-area: btn;
-      }
-    }
+  }
+
+  p {
+    margin-bottom: 2rem;
+    font-family: var(--font-tuner);
   }
 `

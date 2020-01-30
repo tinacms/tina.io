@@ -38,11 +38,6 @@ export const EmailForm = (props: EmailFormProps) => {
 
   return (
     <StyledForm id="newsletter-signup" onSubmit={handleSubmit}>
-      {props.isFooter ? (
-        isEntering && <Button type="submit">Subscribe</Button>
-      ) : (
-        <Button type="submit">Subscribe</Button>
-      )}
       <input
         placeholder="Your email..."
         name="email"
@@ -50,6 +45,13 @@ export const EmailForm = (props: EmailFormProps) => {
         onChange={handleEmailChange}
         onFocus={handleEmailChange}
       />
+      {props.isFooter ? (
+        isEntering && <Button type="submit">Subscribe</Button>
+      ) : (
+        <Button type="submit" primary>
+          Subscribe
+        </Button>
+      )}
     </StyledForm>
   )
 }
@@ -59,22 +61,17 @@ EmailForm.defaultProps = {
 }
 
 const StyledForm = styled('form')`
-  padding: 0;
   display: grid;
-  grid-template-columns: repeat(2, auto);
-  grid-template-rows: auto;
-  grid-template-areas:
-    'cta btn'
-    'input input';
-  h3 {
-    grid-area: cta;
-    align-self: center;
-    margin-right: 12px;
-  }
+  grid-template-rows: auto auto;
+  grid-template-columns: auto;
+  grid-gap: 1rem;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 38rem;
+  padding: 0;
   input {
     box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08),
       0px 2px 3px rgba(0, 0, 0, 0.12);
-    grid-area: input;
     border: 0;
     border-radius: 5px;
     background: ${p => p.inputColor};
@@ -102,6 +99,10 @@ const StyledForm = styled('form')`
     &:hover,
     &:focus {
     }
+    &:focus {
+      box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px inset,
+        rgba(236, 72, 21, 0.7) 0px 0px 0px 3px, rgba(0, 0, 0, 0.12) 0px 2px 3px;
+    }
     &:focus,
     &:active {
       outline: none;
@@ -111,19 +112,9 @@ const StyledForm = styled('form')`
       }
     }
   }
-  @media (min-width: 1200px) {
-    padding: 10px 0;
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-    grid-template-areas: 'cta input btn';
-    grid-column-gap: 1rem;
-    input {
-      margin: 0;
-      width: revert;
-    }
-    h3 {
-      font-size: 18px;
-      margin-right: 0;
-    }
+
+  @media (min-width: 800px) {
+    grid-template-rows: auto;
+    grid-template-columns: auto 8rem;
   }
 `

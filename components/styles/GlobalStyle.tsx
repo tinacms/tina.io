@@ -160,6 +160,12 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
+  h1, h2, h3, h4, h5, h6, p {
+    &:not(:last-child) {
+      margin-bottom: 1.5rem;
+    }
+  }
+
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-tuner);
     font-weight: regular;
@@ -169,10 +175,6 @@ export const GlobalStyle = createGlobalStyle`
     em {
       font-style: normal;
       color: var(--color-secondary-dark);
-    }
-
-    &:not(:last-child) {
-      margin-bottom: 1.5rem;
     }
   }
 
