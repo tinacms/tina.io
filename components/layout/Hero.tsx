@@ -40,6 +40,18 @@ const Hero = styled(({ overlap, children, ...styleProps }) => {
         margin-bottom: -14rem;
       }
     `};
+
+  ${props =>
+    props.mini &&
+    css`
+      padding: 0;
+      height: 10rem;
+      margin-bottom: -6rem;
+
+      @media (min-width: 1200px) {
+        padding: 0;
+      }
+    `};
 `
 
 export default Hero

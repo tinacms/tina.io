@@ -6,10 +6,12 @@ import styled from 'styled-components'
 
 import Layout from '../../components/layout/Layout'
 import Wrapper from '../../components/layout/Wrapper'
+import Hero from '../../components/layout/Hero'
 
 const Index = props => {
   return (
     <Layout>
+      <Hero mini></Hero>
       <BlogWrapper>
         {props.posts.map(post => (
           <Link
