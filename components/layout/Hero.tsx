@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
-const Hero = styled(({ overlap, children, ...styleProps }) => {
+export const Hero = styled(({ overlap, children, ...styleProps }) => {
   return <div {...styleProps}>{children}</div>
 })`
   position: relative;
@@ -53,5 +53,3 @@ const Hero = styled(({ overlap, children, ...styleProps }) => {
       }
     `};
 `
-
-export default Hero

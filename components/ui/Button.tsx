@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-const Button = styled.button`
+export const Button = styled.button`
   font-size: 1rem;
   border-radius: 2rem;
   cursor: pointer;
@@ -86,5 +86,3 @@ export const ButtonGroup = styled.div`
     margin-right: 1rem;
   }
 `
-
-export default Button

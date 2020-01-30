@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-const Textarea = styled.textarea`
+export const Textarea = styled.textarea`
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08),
     0px 2px 3px rgba(0, 0, 0, 0.12);
   border: 0;
@@ -39,5 +39,3 @@ const Textarea = styled.textarea`
     }
   }
 `
-
-export default Textarea

@@ -1,13 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import { inlineJsonForm } from 'next-tinacms-json'
-
-import Layout from '../components/layout/Layout'
-import Wrapper from '../components/layout/Wrapper'
-import Section from '../components/layout/Section'
-import { TeamsForm } from '../components/forms'
-import ArrowList from '../components/layout/ArrowList'
 import Head from 'next/head'
+
+import { Layout, Wrapper, Section, ArrowList } from '../components/layout'
+import { TeamsForm } from '../components/forms'
 
 function TeamsPage(props) {
   const data = props.jsonFile
