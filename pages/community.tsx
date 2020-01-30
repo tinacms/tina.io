@@ -315,6 +315,10 @@ const InfoImage = styled(({ src, ...styleProps }) => {
 const FormSection = styled(Section)`
   @media (min-width: 800px) {
     text-align: center;
+
+    form {
+      margin: 0 auto;
+    }
   }
 
   p {

@@ -7,6 +7,7 @@ import Button from '../ui/Button'
 import TinaWordmark from '../logo/TinaWordmark'
 import TwitterIconSvg from '../../public/svg/twitter-icon.svg'
 import GithubIconSvg from '../../public/svg/github-icon.svg'
+import { EmailForm } from '../forms'
 
 const Footer = styled(({ ...styleProps }) => {
   return (
@@ -32,7 +33,22 @@ const Footer = styled(({ ...styleProps }) => {
           </a>
         </FooterSocial>
       </FooterTop>
-      <FooterBottom></FooterBottom>
+      <FooterBottom>
+        <FooterForm>
+          <span>Stay in touch 👉</span>
+          <EmailForm isFooter />
+        </FooterForm>
+        <Footnote>
+          <a
+            href="https://github.com/tinacms/tinacms/blob/master/LICENSE"
+            target="_blank"
+          >
+            License
+          </a>
+          &nbsp;&nbsp;|&nbsp;&nbsp;&copy; TinaCMS 2019–
+          {new Date().getFullYear()}
+        </Footnote>
+      </FooterBottom>
     </div>
   )
 })``
@@ -63,6 +79,22 @@ const FooterNav = styled(Nav)`
   }
 `
 
+const FooterForm = styled.div`
+  display: flex;
+  color: white;
+  align-items: center;
+  margin-bottom: 1.5rem;
+
+  span {
+    margin-right: 1rem;
+    white-space: nowrap;
+  }
+
+  @media (min-width: 1200px) {
+    margin-bottom: 0;
+  }
+`
+
 const FooterTop = styled.div`
   display: grid;
   grid-gap: 1rem;
@@ -90,8 +122,22 @@ const FooterTop = styled.div`
 `
 
 const FooterBottom = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   padding: 1.25rem 2rem;
   background-color: var(--color-primary-dark);
+
+  @media (min-width: 1200px) {
+    flex-direction: row;
+  }
+`
+
+const Footnote = styled.span`
+  color: white;
+  opacity: 0.5;
+  white-space: nowrap;
 `
 
 export default Footer

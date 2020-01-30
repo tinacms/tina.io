@@ -7,6 +7,7 @@ const ArrowList = styled(({ children, ...styleProps }) => {
   margin: 0;
   list-style: none;
   padding-left: 0;
+  padding-bottom: 0.5rem;
   color: var(--color-secondary-dark, #241748);
   li {
     position: relative;

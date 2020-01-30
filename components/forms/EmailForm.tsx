@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 //TODO: set up mailchimp stuff
 // import addToMailchimp from 'gatsby-plugin-mailchimp'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
+import Input from '../ui/Input'
 import Button from '../ui/Button'
 
 interface EmailFormProps {
@@ -37,8 +38,12 @@ export const EmailForm = (props: EmailFormProps) => {
   }
 
   return (
-    <StyledForm id="newsletter-signup" onSubmit={handleSubmit}>
-      <input
+    <StyledForm
+      id="newsletter-signup"
+      onSubmit={handleSubmit}
+      isFooter={props.isFooter}
+    >
+      <Input
         placeholder="Your email..."
         name="email"
         type="text"
@@ -65,56 +70,26 @@ const StyledForm = styled('form')`
   grid-template-rows: auto auto;
   grid-template-columns: auto;
   grid-gap: 1rem;
-  margin: 0 auto;
   width: 100%;
   max-width: 38rem;
   padding: 0;
-  input {
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08),
-      0px 2px 3px rgba(0, 0, 0, 0.12);
-    border: 0;
-    border-radius: 5px;
-    background: ${p => p.inputColor};
-    color: ${p => p.textColor};
-    line-height: 1.2;
-    white-space: nowrap;
-    text-decoration: none;
-    cursor: text;
-    height: 40px;
-    width: 100%;
-    padding: 0 16px;
-    transition: all 85ms ease-out;
-    font-family: 'tuner-regular', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-      'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-      'Helvetica Neue', sans-serif;
-    font-size: 16px;
-    ::placeholder {
-      opacity: 1;
-      font-family: 'tuner-regular', -apple-system, BlinkMacSystemFont,
-        'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
-        'Droid Sans', 'Helvetica Neue', sans-serif;
-      font-size: 16px;
-      transition: opacity 200ms ease;
-    }
-    &:hover,
-    &:focus {
-    }
-    &:focus {
-      box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px inset,
-        rgba(236, 72, 21, 0.7) 0px 0px 0px 3px, rgba(0, 0, 0, 0.12) 0px 2px 3px;
-    }
-    &:focus,
-    &:active {
-      outline: none;
-      ::placeholder {
-        opacity: 0.5;
-        transition: opacity 200ms ease;
-      }
-    }
-  }
 
   @media (min-width: 800px) {
     grid-template-rows: auto;
     grid-template-columns: auto 8rem;
   }
+
+  ${props =>
+    props.isFooter &&
+    css`
+      width: auto;
+      ${Input} {
+        width: 18rem;
+        background: rgba(0, 0, 0, 0.1);
+        color: white;
+        ::placeholder {
+          color: white;
+        }
+      }
+    `};
 `
