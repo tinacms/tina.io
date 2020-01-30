@@ -1,0 +1,214 @@
+[
+  {
+    "title": "Getting Started",
+    "id": "getting-started",
+    "items": [
+      {
+        "id": "/docs/getting-started/introduction",
+        "slug": "/docs/getting-started/introduction",
+        "title": "Introduction"
+      },
+      {
+        "id": "/docs/getting-started/how-tina-works",
+        "slug": "/docs/getting-started/how-tina-works",
+        "title": "How Tina Works"
+      }
+    ]
+  },
+  {
+    "title": "Concepts",
+    "id": "concepts",
+    "items": [
+      {
+        "id": "/docs/concepts/sidebar",
+        "slug": "/docs/concepts/sidebar",
+        "title": "Sidebar"
+      },
+      {
+        "id": "/docs/concepts/forms",
+        "slug": "/docs/concepts/forms",
+        "title": "Forms"
+      },
+      {
+        "id": "/docs/concepts/fields",
+        "slug": "/docs/concepts/fields",
+        "title": "Fields"
+      },
+      {
+        "id": "/docs/concepts/backends",
+        "slug": "/docs/concepts/backends",
+        "title": "Backends"
+      },
+      {
+        "id": "/docs/concepts/plugins",
+        "slug": "/docs/concepts/plugins",
+        "title": "Plugins"
+      }
+    ]
+  },
+  {
+    "title": "Fields",
+    "id": "fields",
+    "slug": "/docs/fields",
+    "items": [
+      {
+        "id": "/docs/fields/text",
+        "slug": "/docs/fields/text",
+        "title": "Text"
+      },
+      {
+        "id": "/docs/fields/textarea",
+        "slug": "/docs/fields/textarea",
+        "title": "Text Area"
+      },
+      {
+        "id": "/docs/fields/markdown",
+        "slug": "/docs/fields/markdown",
+        "title": "Markdown"
+      },
+      {
+        "id": "/docs/fields/date",
+        "slug": "/docs/fields/date",
+        "title": "Date & Time"
+      },
+      {
+        "id": "/docs/fields/image",
+        "slug": "/docs/fields/image",
+        "title": "Image"
+      },
+      {
+        "id": "/docs/fields/color",
+        "slug": "/docs/fields/color",
+        "title": "Color"
+      },
+      {
+        "id": "/docs/fields/toggle",
+        "slug": "/docs/fields/toggle",
+        "title": "Toggle"
+      },
+      {
+        "id": "/docs/fields/group",
+        "slug": "/docs/fields/group",
+        "title": "Group"
+      },
+      {
+        "id": "/docs/fields/group-list",
+        "slug": "/docs/fields/group-list",
+        "title": "Group List"
+      },
+      {
+        "id": "/docs/fields/blocks",
+        "slug": "/docs/fields/blocks",
+        "title": "Blocks"
+      },
+      {
+        "id": "/docs/fields/custom-fields",
+        "slug": "/docs/fields/custom-fields",
+        "title": "Custom Fields"
+      }
+    ]
+  },
+  {
+    "title": "Tina + Gatsby",
+    "id": "gasby",
+    "items": [
+      {
+        "id": "/docs/gatsby/quickstart",
+        "slug": "/docs/gatsby/quickstart",
+        "title": "Quickstart"
+      },
+      {
+        "id": "/docs/gatsby/manual-setup",
+        "slug": "/docs/gatsby/manual-setup",
+        "title": "Manual Setup"
+      },
+      {
+        "id": "/docs/gatsby/markdown",
+        "slug": "/docs/gatsby/markdown",
+        "title": "Using Markdown Files"
+      },
+      {
+        "id": "/docs/gatsby/json",
+        "slug": "/docs/gatsby/json",
+        "title": "Using JSON Files"
+      },
+      {
+        "id": "/docs/gatsby/creating-new-files",
+        "slug": "/docs/gatsby/creating-new-files",
+        "title": "Creating New Files"
+      },
+      {
+        "id": "/docs/gatsby/configure-git-plugin",
+        "slug": "/docs/gatsby/configure-git-plugin",
+        "title": "Configure Git plugin"
+      },
+      {
+        "id": "/docs/gatsby/custom-fields",
+        "slug": "/docs/gatsby/custom-fields",
+        "title": "Custom Fields"
+      },
+      {
+        "id": "/docs/gatsby/inline-editing",
+        "slug": "/docs/gatsby/inline-editing",
+        "title": "Inline Editing"
+      }
+    ]
+  },
+  {
+    "title": "Tina + NextJS",
+    "id": "nextjs",
+    "items": [
+      {
+        "id": "/docs/nextjs/overview",
+        "slug": "/docs/nextjs/overview",
+        "title": "Overview"
+      },
+      {
+        "id": "/docs/nextjs/bootstrapping",
+        "slug": "/docs/nextjs/bootstrapping",
+        "title": "Bootstrapping Tina"
+      },
+      {
+        "id": "/docs/nextjs/adding-backends",
+        "slug": "/docs/nextjs/adding-backends",
+        "title": "Adding a Backend"
+      },
+      {
+        "id": "/docs/nextjs/creating-forms",
+        "slug": "/docs/nextjs/creating-forms",
+        "title": "Creating Forms"
+      }
+    ]
+  },
+  {
+    "title": "Contributing",
+    "id": "contributing",
+    "items": [
+      {
+        "id": "/docs/contributing/guidelines",
+        "slug": "/docs/contributing/guidelines",
+        "title": "Guidelines"
+      },
+      {
+        "id": "/docs/contributing/setting-up",
+        "slug": "/docs/contributing/setting-up",
+        "title": "Setting Up"
+      },
+      {
+        "id": "/docs/contributing/releasing",
+        "slug": "/docs/contributing/releasing",
+        "title": "Releasing"
+      },
+      {
+        "id": "/docs/contributing/troubleshooting",
+        "slug": "/docs/contributing/troubleshooting",
+        "title": "Troubleshooting"
+      },
+      {
+        "id": "/docs/contributing/style-guide",
+        "slug": "/docs/contributing/style-guide",
+        "title": "Style Guide"
+      }
+    ]
+  }
+]

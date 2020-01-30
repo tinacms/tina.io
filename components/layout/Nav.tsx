@@ -19,7 +19,7 @@ const Nav = styled(({ ...styleProps }) => {
   return (
     <ul {...styleProps}>
       <li>
-        <Link href={'/docs'} passHref>
+        <Link href={'/docs/getting-started/introduction'} passHref>
           <Button as="a" white>
             DOCS
           </Button>
