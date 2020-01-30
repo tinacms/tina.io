@@ -6,7 +6,6 @@ import { inlineJsonForm } from 'next-tinacms-json'
 import Layout from '../components/layout/Layout'
 import { colors, space, breakpoints } from '../components/styles/variables'
 import { TeamsForm } from '../components/forms'
-import EditableCommunityPage from './community'
 
 /**
  * TODOS:
