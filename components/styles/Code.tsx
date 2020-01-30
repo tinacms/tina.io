@@ -1,5 +1,16 @@
 import { css } from 'styled-components'
 
+/*
+    Code styles adapted from: 
+
+    Name:       Base16 Atelier Sulphurpool Light
+    Author:     Bram de Haan (http://atelierbram.github.io/syntax-highlighting/atelier-schemes/sulphurpool)
+
+    Prism template by Bram de Haan (http://atelierbram.github.io/syntax-highlighting/prism/)
+    Original Base16 color scheme by Chris Kempson (https://github.com/chriskempson/base16)
+
+  */
+
 const Code = css`
   code[class*='language-'],
   pre[class*='language-'] {
