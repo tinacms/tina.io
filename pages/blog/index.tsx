@@ -1,29 +1,40 @@
 import React from 'react'
 import Link from 'next/link'
-import Layout from '../../components/layout/Layout'
-import Header from '../../components/layout/Header'
 import matter from 'gray-matter'
 import ReactMarkdown from 'react-markdown'
+import styled from 'styled-components'
+
+import Layout from '../../components/layout/Layout'
+import Wrapper from '../../components/layout/Wrapper'
 
 const Index = props => {
   return (
-    <Layout pathname="/">
-      <Header />
-      {props.posts.map(post => (
-        <div>
-          <Link
-            key={post.data.slug}
-            href={{ pathname: `/blog/${post.data.slug}` }}
-          >
-            <h3>{post.data.title}</h3>
-          </Link>
-          <ReactMarkdown source={post.content} />
-          <br />
-        </div>
-      ))}
+    <Layout>
+      <BlogWrapper>
+        {props.posts.map(post => (
+          <div>
+            <Link
+              key={post.data.slug}
+              href={{ pathname: `/blog/${post.data.slug}` }}
+            >
+              <h3 className="h2">
+                <em>{post.data.title}</em>
+              </h3>
+            </Link>
+            <ReactMarkdown source={post.content} />
+            <hr />
+            <br />
+          </div>
+        ))}
+      </BlogWrapper>
     </Layout>
   )
 }
+
+const BlogWrapper = styled(Wrapper)`
+  padding-top: 10rem;
+  max-width: 704px;
+`
 
 Index.getInitialProps = async function(ctx) {
   const posts = (context => {

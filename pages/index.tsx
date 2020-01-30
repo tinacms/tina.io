@@ -163,7 +163,7 @@ const HeroVideo = styled.div`
   display: block;
   margin: 0 auto;
   text-align: center;
-  max-width: 90%;
+  padding: 0 2rem;
   img,
   video {
     margin: 0 auto;

@@ -1,16 +1,16 @@
-import React from "react";
-import styled, { css } from "styled-components";
+import React from 'react'
+import styled, { css } from 'styled-components'
 
 const Hero = styled(({ overlap, children, ...styleProps }) => {
-  return <div {...styleProps}>{children}</div>;
+  return <div {...styleProps}>{children}</div>
 })`
   position: relative;
   text-align: center;
-  padding: 6rem 1rem;
+  padding: 8rem 1rem 6rem 1rem;
   margin-bottom: 2rem;
 
   &:before {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     top: 0;
@@ -18,7 +18,7 @@ const Hero = styled(({ overlap, children, ...styleProps }) => {
     width: 100%;
     height: 100%;
     min-width: 800px;
-    background-image: url("/svg/header-bg.svg");
+    background-image: url('/svg/header-bg.svg');
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -41,6 +41,6 @@ const Hero = styled(({ overlap, children, ...styleProps }) => {
         margin-bottom: -14rem;
       }
     `};
-`;
+`
 
-export default Hero;
+export default Hero
