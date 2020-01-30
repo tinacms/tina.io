@@ -2,6 +2,7 @@ import matter from 'gray-matter'
 import ReactMarkdown from 'react-markdown'
 import Layout from '../../components/layout/Layout'
 import Header from '../../components/layout/Header'
+import Link from 'next/link'
 
 interface DocSection {
   id: string
@@ -13,7 +14,13 @@ interface DocSection {
 const DocSection = (section: DocSection) => {
   return (
     <div>
-      <div>{section.slug}</div>
+      {section.slug ? (
+        <Link href={section.slug}>
+          <a>{section.title}</a>
+        </Link>
+      ) : (
+        <b>{section.title}</b>
+      )}
       {(section.items || []).map(item => (
         <DocSection {...item} />
       ))}
@@ -44,8 +51,6 @@ DocTemplate.getInitialProps = async function(ctx) {
   const docsNav = Object.keys(docsNavData).map(function(key) {
     return docsNavData[key]
   })
-
-  console.log(JSON.stringify(docsNav))
 
   return {
     doc: {
