@@ -186,7 +186,7 @@ const SocialBar = styled.div`
   grid-template-rows: repeat(4, auto);
   grid-gap: 1.5rem;
   justify-content: center;
-  margin: 6rem auto;
+  margin: 4rem auto;
   @media (min-width: 800px) {
     grid-template-rows: unset;
     grid-template-columns: repeat(4, auto);
@@ -194,6 +194,7 @@ const SocialBar = styled.div`
   }
   @media (min-width: 1200px) {
     grid-column-gap: 2rem;
+    margin: 6rem auto;
   }
 `
 
@@ -264,6 +265,11 @@ const InfoLayout = styled.div`
   grid-template-rows: repeat(2, auto);
   grid-template-columns: auto;
   grid-gap: 2rem;
+  margin-bottom: 2rem;
+
+  @media (min-width: 1200px) {
+    margin-bottom: 4rem;
+  }
 
   @media (min-width: 800px) {
     grid-template-columns: repeat(2, 1fr);
