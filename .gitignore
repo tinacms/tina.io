@@ -12,6 +12,9 @@ test/node_modules
 # logs & pids
 *.log
 pids
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # coverage
 .nyc_output
@@ -27,3 +30,6 @@ test/**/next-env.d.ts
 
 # example output
 examples/**/out
+
+# env variables
+.env
