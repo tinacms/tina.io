@@ -6,6 +6,7 @@
   "scripts": {
     "dev-next": "next",
     "dev": "node server.js",
+    "create-indices": "node createIndex.js",
     "develop": "yarn dev",
     "build": "next build",
     "preexport": "npm run build",
@@ -20,6 +21,7 @@
   "dependencies": {
     "@tinacms/api-git": "^0.5.4",
     "@tinacms/git-client": "^0.4.1",
+    "algoliasearch": "^3.35.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
