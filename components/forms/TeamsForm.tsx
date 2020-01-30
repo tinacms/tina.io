@@ -74,12 +74,11 @@ export function TeamsForm(props: any) {
         },
       ],
     }
-    // if (process.env.NODE_ENV === 'production') {
-    //   postForm(formData)
-    // } else {
-    //   console.error('Teams form only posts in production')
-    // }
-    postForm(formData)
+    if (process.env.NODE_ENV === 'production') {
+      postForm(formData)
+    } else {
+      console.error('Teams form only posts in production')
+    }
   }
 
   return (
