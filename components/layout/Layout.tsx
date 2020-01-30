@@ -6,14 +6,14 @@ import { GlobalStyle } from '../styles/GlobalStyle'
 import Header from './Header'
 import Footer from './Footer'
 
-const Layout = styled(({ children, ...styleProps }) => {
+const Layout = styled(({ children, darkHeader, ...styleProps }) => {
   return (
     <div {...styleProps}>
       <Head>
         <link rel="shortcut icon" href="/favicon/favicon.ico" />
       </Head>
       <GlobalStyle />
-      <Header />
+      {darkHeader ? <Header darkHeader /> : <Header />}
       {children}
       <Footer />
     </div>

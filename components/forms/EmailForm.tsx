@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import addToMailchimp from '../../utils/addToMailchimp'
-
 
 import Input from '../ui/Input'
 import Button from '../ui/Button'

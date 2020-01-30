@@ -62,6 +62,18 @@ const Button = styled.button`
         color: white;
       }
     `};
+
+  ${props =>
+    props.secondary &&
+    css`
+      background-color: var(--color-secondary);
+      color: var(--color-primary);
+
+      &:hover,
+      &:focus {
+        color: white;
+      }
+    `};
 `
 
 export const ButtonGroup = styled.div`
