@@ -5,19 +5,17 @@ import { rgba } from 'polished'
 import { colors, breakpoints, space } from '../styles/variables'
 
 export function TeamsForm(props: any) {
-  /*
-   ** TODO: set up the hubspot portal without
-   ** the gatsby plugin.
-   */
   const [firstName, setFirstName] = useState('')
   const [surname, setSurname] = useState('')
   const [projectDetails, setProjectDetails] = useState('')
   const [email, setEmail] = useState('')
-  const { hubspotFormID } = props
 
   async function postForm(data: any) {
-    if (hubspotFormID && process.env.GATSBY_HUBSPOT_PORTAL_ID) {
-      const url = `https://api.hsforms.com/submissions/v3/integration/submit/${process.env.GATSBY_HUBSPOT_PORTAL_ID}/${hubspotFormID}`
+    const hubspotFormID = process.env.HUBSPOT_FORM_ID
+    const hubspotPortalID = process.env.HUBSPOT_PORTAL_ID
+
+    if (hubspotFormID && hubspotPortalID) {
+      const url = `https://api.hsforms.com/submissions/v3/integration/submit/${hubspotPortalID}/${hubspotFormID}`
       try {
         const rawResponse = await fetch(url, {
           method: 'POST',
@@ -76,11 +74,12 @@ export function TeamsForm(props: any) {
         },
       ],
     }
-    if (process.env.NODE_ENV === 'production') {
-      postForm(formData)
-    } else {
-      console.error('Teams form only posts in production')
-    }
+    // if (process.env.NODE_ENV === 'production') {
+    //   postForm(formData)
+    // } else {
+    //   console.error('Teams form only posts in production')
+    // }
+    postForm(formData)
   }
 
   return (

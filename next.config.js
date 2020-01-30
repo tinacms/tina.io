@@ -11,6 +11,8 @@ module.exports = withSvgr({
     MAILCHIMP_ENDPOINT: isProd
       ? process.env.MAILCHIMP_ENDPOINT
       : dummyMailchimpEndpoint,
+    HUBSPOT_FORM_ID: process.env.NEXT_HUBSPOT_FORM_ID,
+    HUBSPOT_PORTAL_ID: process.env.NEXT_HUBSPOT_PORTAL_ID,
   },
   exportTrailingSlash: true,
   exportPathMap: async function() {
