@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-//TODO: set up mailchimp stuff
-// import addToMailchimp from 'gatsby-plugin-mailchimp'
 import styled from 'styled-components'
+import addToMailchimp from '../../utils/addToMailchimp'
 
 import Button from '../ui/Button'
 
@@ -15,20 +14,20 @@ export const EmailForm = (props: EmailFormProps) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // addToMailchimp(email)
-    // 	.then(data => {
-    // 		alert(data.msg)
-    // 	})
-    // 	.catch((error: Error) => {
-    // 		// Errors in here are client side
-    // 		// Mailchimp always returns a 200
-    // 		if (error.message === 'Timeout') {
-    // 			alert(
-    // 				'Looks like your browser is blocking this. Try to disable any tracker-blocking feature and resubmit.'
-    // 			)
-    // 		}
-    // 		console.error(error)
-    // 	})
+    addToMailchimp(email)
+      .then((data: any) => {
+        alert(data.msg)
+      })
+      .catch((error: Error) => {
+        // Errors in here are client side
+        // Mailchimp always returns a 200
+        if (error.message === 'Timeout') {
+          alert(
+            'Looks like your browser is blocking this. Try to disable any tracker-blocking feature and resubmit.'
+          )
+        }
+        console.error(error)
+      })
   }
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
