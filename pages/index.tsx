@@ -247,6 +247,12 @@ const CodeExample = styled.code`
 const InfoLayout = styled.div`
   display: grid;
   grid-gap: 2rem;
+
+  h3,
+  h4 {
+    color: var(--color-primary);
+  }
+
   @media (min-width: 800px) {
     grid-template-columns: repeat(3, 1fr);
   }

@@ -18,6 +18,12 @@ const Layout = styled(({ children, ...styleProps }) => {
       <Footer />
     </div>
   )
-})``
+})`
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 100%;
+`
 
 export default Layout

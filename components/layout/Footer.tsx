@@ -45,8 +45,11 @@ const Footer = styled(({ ...styleProps }) => {
           >
             License
           </a>
-          &nbsp;&nbsp;|&nbsp;&nbsp;&copy; TinaCMS 2019–
-          {new Date().getFullYear()}
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <p>
+            &copy; TinaCMS 2019–
+            {new Date().getFullYear()}
+          </p>
         </Footnote>
       </FooterBottom>
     </div>
@@ -73,7 +76,8 @@ const FooterNav = styled(Nav)`
 
   ${Button} {
     font-size: 1.5rem;
-    padding: 0;
+    padding-top: 0;
+    padding-bottom: 0;
     color: white !important;
     background: transparent;
   }
@@ -135,9 +139,26 @@ const FooterBottom = styled.div`
 `
 
 const Footnote = styled.span`
+  display: flex;
   color: white;
-  opacity: 0.5;
-  white-space: nowrap;
+  font-size: 1rem;
+
+  p {
+    color: white;
+    margin: 0;
+    font-size: 1rem;
+    opacity: 0.65;
+  }
+
+  a {
+    text-decoration: none;
+    color: white;
+    opacity: 0.65;
+    &:hover {
+      color: white;
+      opacity: 1;
+    }
+  }
 `
 
 export default Footer

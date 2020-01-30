@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { rgba } from 'polished'
-
-import { colors, breakpoints, space } from '../styles/variables'
+import Button from '../ui/Button'
+import Input from '../ui/Input'
+import Textarea from '../ui/Textarea'
 
 export function TeamsForm(props: any) {
   /*
@@ -88,7 +88,7 @@ export function TeamsForm(props: any) {
       <h5>Teams Early Access</h5>
       <label>
         <p className="body">First Name</p>
-        <input
+        <Input
           type="text"
           id="name"
           name="name"
@@ -98,7 +98,7 @@ export function TeamsForm(props: any) {
       </label>
       <label>
         <p className="body">Last Name</p>
-        <input
+        <Input
           type="text"
           id="surname"
           name="surname"
@@ -108,7 +108,7 @@ export function TeamsForm(props: any) {
       </label>
       <label>
         <p className="body">Email</p>
-        <input
+        <Input
           type="text"
           id="email"
           name="email"
@@ -119,7 +119,7 @@ export function TeamsForm(props: any) {
       </label>
       <label>
         <p className="body">Tell us a little bit about your project</p>
-        <textarea
+        <Textarea
           id="project-details"
           name="project-details"
           rows={4}
@@ -128,107 +128,11 @@ export function TeamsForm(props: any) {
           onChange={handleProjectDetailsChange}
         />
       </label>
-      <StyledButton type="submit">
-        <h5>Request Access</h5>
-      </StyledButton>
+      <Button type="submit" primary>
+        Request Access
+      </Button>
     </StyledForm>
   )
 }
 
-const StyledForm = styled('form')`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  max-width: 600px;
-  margin: ${space.smallDesktop}px auto;
-  p {
-    color: ${colors.mintChocoChip};
-    margin-bottom: 10px;
-  }
-  label {
-    margin-bottom: ${space.xSmallDesktop}px;
-  }
-
-  input {
-    height: 40px;
-    padding: 0 16px;
-  }
-  input,
-  textarea {
-    width: 100%;
-    padding: 8px;
-    border-radius: 4px;
-    background-color: ${colors.seafoam};
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08),
-      0px 2px 3px rgba(0, 0, 0, 0.12);
-    border: 0;
-    border-radius: 5px;
-    color: ${colors.black};
-    line-height: 1.2;
-    white-space: nowrap;
-    text-decoration: none;
-    cursor: text;
-    width: 100%;
-    transition: all 85ms ease-out;
-    font-family: 'tuner-regular', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-      'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-      'Helvetica Neue', sans-serif;
-    font-size: 16px;
-    &:hover,
-    &:focus {
-      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08),
-        0 0 0 3px ${rgba(colors.seafoam, 0.7)}, 0px 2px 3px rgba(0, 0, 0, 0.12);
-    }
-    &:focus,
-    &:active {
-      outline: none;
-      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08),
-        0 0 0 3px ${rgba(colors.seafoam, 0.7)}, 0px 2px 3px rgba(0, 0, 0, 0.12);
-    }
-  }
-
-  @media (min-width: ${breakpoints.lg}px) {
-    height: unset;
-    width: 65%;
-    border-radius: 60px;
-  }
-`
-
-const StyledButton = styled('button')`
-  align-self: center;
-  width: max-content;
-  margin-top: 24px;
-  transform: translate3d(0px, 0px, 0px);
-  transition: transform 180ms ease-in;
-  backface-visibility: hidden;
-  display: flex;
-  align-items: center;
-  background-color: ${colors.hunterOrange};
-  border-radius: 100px;
-  border: 0;
-  cursor: pointer;
-  white-space: no-wrap;
-  text-decoration: none;
-  text-transform: uppercase;
-  height: 45px;
-  padding: 0;
-  &:hover,
-  &:focus {
-    text-decoration: none;
-    transform: translate3d(-1px, -2px, 2px);
-    transition: transform 150ms ease-out;
-  }
-  &:focus {
-    box-shadow: 0 0 0 3px ${rgba(colors.hunterOrange, 0.5)};
-  }
-  &:focus,
-  &:active {
-    outline: none;
-  }
-  &:active {
-    filter: none;
-  }
-  h5 {
-    padding: 0 24px;
-  }
-`
+const StyledForm = styled.form``
