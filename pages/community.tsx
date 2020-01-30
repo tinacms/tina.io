@@ -176,7 +176,7 @@ EditableCommunityPage.getInitialProps = async function() {
     // siteMetadata,
     jsonFile: {
       fileRelativePath: `content/pages/community.json`,
-      data: communityData,
+      data: communityData.default,
     },
   }
 }

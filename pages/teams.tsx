@@ -79,7 +79,7 @@ EditableTeamsPage.getInitialProps = async function() {
   return {
     jsonFile: {
       fileRelativePath: `content/pages/teams.json`,
-      data: teamsData,
+      data: teamsData.default,
     },
   }
 }
