@@ -28,6 +28,10 @@ const Button = styled.button`
     transform: translate3d(-1px, -2px, 0);
     transition: transform 180ms ease-out;
   }
+  &:focus {
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px inset,
+      rgba(236, 72, 21, 0.7) 0px 0px 0px 3px, rgba(0, 0, 0, 0.12) 0px 2px 3px;
+  }
   &:focus,
   &:active {
     outline: none;
@@ -40,6 +44,11 @@ const Button = styled.button`
     props.white &&
     css`
       background-color: white;
+      &:focus {
+        box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px inset,
+          rgba(255, 255, 255, 0.7) 0px 0px 0px 3px,
+          rgba(0, 0, 0, 0.12) 0px 2px 3px;
+      }
     `};
 
   ${props =>
