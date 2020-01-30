@@ -12,23 +12,22 @@ const Index = props => {
     <Layout>
       <BlogWrapper>
         {props.posts.map(post => (
-          <BlogExcerpt>
-            <Link
-              key={post.data.slug}
-              href={{ pathname: `/blog/${post.data.slug}` }}
-            >
-              <h3 className="h2">
-                <em>{post.data.title}</em>
-              </h3>
-            </Link>
-            <StyledBlogMetaData>
-              <p>By: {post.data.author}</p>
-              <p>{post.data.date}</p>
-            </StyledBlogMetaData>
-            <ReactMarkdown source={post.content} />
-            <hr />
-            <br />
-          </BlogExcerpt>
+          <Link
+            key={post.data.slug}
+            href={{ pathname: `/blog/${post.data.slug}` }}
+            passHref
+          >
+            <BlogExcerpt>
+              <BlogTitle>{post.data.title}</BlogTitle>
+              <StyledBlogMetaData>
+                <p>By: {post.data.author}</p>
+                <p>{post.data.date}</p>
+              </StyledBlogMetaData>
+              <ReactMarkdown source={post.content} />
+              <hr />
+              <br />
+            </BlogExcerpt>
+          </Link>
         ))}
       </BlogWrapper>
     </Layout>
@@ -37,10 +36,29 @@ const Index = props => {
 
 const BlogWrapper = styled(Wrapper)`
   padding-top: 10rem;
-  max-width: 704px;
+  max-width: 768px;
 `
 
-const BlogExcerpt = styled.article`
+const BlogTitle = styled(({ children, ...styleProps }) => {
+  return <h3 {...styleProps}>{children}</h3>
+})`
+  font-size: 1.5rem;
+  color: inherit;
+  transition: all 180ms ease-out;
+
+  @media (min-width: 800px) {
+    font-size: 2rem;
+  }
+`
+
+const BlogExcerpt = styled.a`
+  cursor: pointer;
+  text-decoration: none;
+  &:hover {
+    ${BlogTitle} {
+      color: var(--color-primary) !important;
+    }
+  }
   hr {
     opacity: 0.3;
     filter: saturate(0%);
