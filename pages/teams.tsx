@@ -3,7 +3,13 @@ import styled from 'styled-components'
 import { inlineJsonForm } from 'next-tinacms-json'
 import Head from 'next/head'
 
-import { Layout, Wrapper, Section, ArrowList } from '../components/layout'
+import {
+  Layout,
+  Wrapper,
+  Section,
+  ArrowList,
+  RichTextWrapper,
+} from '../components/layout'
 import { TeamsForm } from '../components/forms'
 
 function TeamsPage(props) {
@@ -16,20 +22,22 @@ function TeamsPage(props) {
       </Head>
       <TeamsSection>
         <Wrapper>
-          <TeamsGrid>
-            <TeamsContent>
-              <h2>{data.headline}</h2>
-              <hr />
-              <ArrowList>
-                {data.supporting_points.map(item => (
-                  <li key={item.point.trim()}>{item.point}</li>
-                ))}
-              </ArrowList>
-            </TeamsContent>
-            <TeamsFormWrapper>
-              <TeamsForm hubspotFormID={process.env.GATSBY_HUBSPOT_FORM_ID} />
-            </TeamsFormWrapper>
-          </TeamsGrid>
+          <RichTextWrapper>
+            <TeamsGrid>
+              <TeamsContent>
+                <h2>{data.headline}</h2>
+                <hr />
+                <ArrowList>
+                  {data.supporting_points.map(item => (
+                    <li key={item.point.trim()}>{item.point}</li>
+                  ))}
+                </ArrowList>
+              </TeamsContent>
+              <TeamsFormWrapper>
+                <TeamsForm hubspotFormID={process.env.GATSBY_HUBSPOT_FORM_ID} />
+              </TeamsFormWrapper>
+            </TeamsGrid>
+          </RichTextWrapper>
         </Wrapper>
       </TeamsSection>
     </TeamsLayout>
@@ -76,14 +84,12 @@ const TeamsContent = styled.div`
     color: white;
   }
 
-  h1,
-  h2,
-  h3 {
-    color: var(--color-seafoam-dark);
+  h2 {
+    color: var(--color-seafoam-dark) !important;
   }
 
   hr {
-    border-color: var(--color-seafoam-dark);
+    border-color: var(--color-seafoam-dark) !important;
   }
 `
 

@@ -7,6 +7,7 @@ import {
   HeroTitle,
   Wrapper,
   MarkdownContent,
+  RichTextWrapper,
 } from '../../components/layout'
 
 export default function BlogTemplate(props) {
@@ -14,11 +15,13 @@ export default function BlogTemplate(props) {
     <Layout pathname="/">
       <Hero>{props.post.data.title}</Hero>
       <BlogWrapper>
-        <BlogMeta>
-          <p>By: {props.post.data.author}</p>
-          <p>{props.post.data.date}</p>
-        </BlogMeta>
-        <MarkdownContent content={props.post.content} />
+        <RichTextWrapper>
+          <BlogMeta>
+            <p>By: {props.post.data.author}</p>
+            <p>{props.post.data.date}</p>
+          </BlogMeta>
+          <MarkdownContent content={props.post.content} />
+        </RichTextWrapper>
       </BlogWrapper>
     </Layout>
   )
@@ -52,11 +55,6 @@ const BlogMeta = styled.div`
   margin-top: -0.5rem;
   opacity: 0.5;
   p {
-    margin: 0;
-    color: 0;
-    display: block;
-  }
-  p:first-child {
-    max-width: 250px;
+    margin: 0 !important;
   }
 `

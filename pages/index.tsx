@@ -11,6 +11,7 @@ import {
   ArrowList,
   Wrapper,
   Section,
+  RichTextWrapper,
 } from '../components/layout'
 import { Button, Video } from '../components/ui'
 
@@ -29,50 +30,53 @@ const HomePage = props => {
         {data.headline}
       </Hero>
       <Video src={'v1571425758/tina-hero-demo-v2'} />
-      <Section>
-        <Wrapper>
-          <CtaLayout>
-            <h2>
-              <em>{data.description}</em>
-            </h2>
-            <Link href={'/docs/getting-started/introduction/'} passHref>
-              <Button as="a" primary>
-                Get Started
-              </Button>
-            </Link>
-          </CtaLayout>
-          <InfoLayout>
-            {data.three_points.map(point => (
-              <div key={point.main.slice(0, 8)}>
-                <h3>{point.main}</h3>
-                <p>{point.supporting}</p>
-              </div>
-            ))}
-          </InfoLayout>
-        </Wrapper>
-      </Section>
-
-      <Section seafoam>
-        <Wrapper>
-          <SetupLayout>
-            <div>
-              <h2 className="h1">{data.headline}</h2>
-              <hr />
-              <ArrowList>
-                {data.setup.steps.map(item => (
-                  <li key={item.step.slice(0, 8)}>{item.step}</li>
-                ))}
-              </ArrowList>
+      <RichTextWrapper>
+        <Section>
+          <Wrapper>
+            <CtaLayout>
+              <h2>
+                <em>{data.description}</em>
+              </h2>
               <Link href={'/docs/getting-started/introduction/'} passHref>
                 <Button as="a" primary>
                   Get Started
                 </Button>
               </Link>
-            </div>
-            <div>
-              <CodeExample
-                dangerouslySetInnerHTML={{
-                  __html: `yarn add <b>gatsby-plugin-tinacms</b>
+            </CtaLayout>
+            <InfoLayout>
+              {data.three_points.map(point => (
+                <div key={point.main.slice(0, 8)}>
+                  <h3>
+                    <em>{point.main}</em>
+                  </h3>
+                  <p>{point.supporting}</p>
+                </div>
+              ))}
+            </InfoLayout>
+          </Wrapper>
+        </Section>
+
+        <Section seafoam>
+          <Wrapper>
+            <SetupLayout>
+              <div>
+                <h2 className="h1">{data.headline}</h2>
+                <hr />
+                <ArrowList>
+                  {data.setup.steps.map(item => (
+                    <li key={item.step.slice(0, 8)}>{item.step}</li>
+                  ))}
+                </ArrowList>
+                <Link href={'/docs/getting-started/introduction/'} passHref>
+                  <Button as="a" primary>
+                    Get Started
+                  </Button>
+                </Link>
+              </div>
+              <div>
+                <CodeExample
+                  dangerouslySetInnerHTML={{
+                    __html: `yarn add <b>gatsby-plugin-tinacms</b>
 
 module.exports = {
   <span>// ...</span>
@@ -84,12 +88,13 @@ module.exports = {
 
 export <b>WithTina</b>( <b>Component</b> );
                   `,
-                }}
-              ></CodeExample>
-            </div>
-          </SetupLayout>
-        </Wrapper>
-      </Section>
+                  }}
+                ></CodeExample>
+              </div>
+            </SetupLayout>
+          </Wrapper>
+        </Section>
+      </RichTextWrapper>
     </Layout>
   )
 }
@@ -202,11 +207,6 @@ const CodeExample = styled.code`
 const InfoLayout = styled.div`
   display: grid;
   grid-gap: 2rem;
-
-  h3,
-  h4 {
-    color: var(--color-primary);
-  }
 
   @media (min-width: 800px) {
     grid-template-columns: repeat(3, 1fr);

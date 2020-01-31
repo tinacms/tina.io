@@ -41,7 +41,6 @@ const RichText = css`
     font-style: normal;
     em {
       font-style: normal;
-      color: var(--color-secondary-dark);
     }
   }
 
@@ -51,6 +50,10 @@ const RichText = css`
     line-height: 1.3;
     letter-spacing: 0.1px;
     color: var(--color-primary);
+
+    em {
+      color: var(--color-secondary-dark);
+    }
 
     @media (min-width: 800px) {
       font-size: 3rem;
@@ -67,6 +70,10 @@ const RichText = css`
     line-height: 1.3;
     letter-spacing: 0.1px;
     color: var(--color-primary);
+
+    em {
+      color: var(--color-secondary-dark);
+    }
   }
 
   h3,
@@ -75,6 +82,22 @@ const RichText = css`
     line-height: 1.3;
     letter-spacing: 0.1px;
     color: var(--color-secondary-dark);
+
+    em {
+      color: var(--color-primary);
+    }
+  }
+
+  h4,
+  .h4 {
+    font-size: 1.25rem;
+    line-height: 1.3;
+    letter-spacing: 0.1px;
+    color: var(--color-secondary-dark);
+
+    em {
+      color: var(--color-primary);
+    }
   }
 
   p {
@@ -93,7 +116,7 @@ const RichText = css`
     }
   }
 
-  a {
+  a:not([class]) {
     color: inherit;
     opacity: 0.8;
     text-decoration: underline rgba(0, 0, 0, 0.3);
@@ -130,6 +153,14 @@ const RichText = css`
     color: var(--color-primary);
     font-size: 18px;
     line-height: 28px;
+  }
+
+  pre {
+    border-radius: 5px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(237, 238, 238);
+    border-image: initial;
   }
 `
 

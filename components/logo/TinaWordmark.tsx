@@ -19,8 +19,9 @@ const TinaWordmark = styled(({ ...styleProps }, props) => {
   }
 
   svg {
-    height: 40px;
+    height: 35px;
     width: auto;
+    fill: var(--color-secondary);
   }
 `
 

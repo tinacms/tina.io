@@ -135,7 +135,7 @@ export function TeamsForm(props: any) {
 const StyledForm = styled.form`
   h3 {
     text-transform: uppercase;
-    color: var(--color-primary);
+    color: var(--color-primary) !important;
     text-align: center;
   }
 
@@ -144,7 +144,7 @@ const StyledForm = styled.form`
   }
 
   p {
-    color: var(--color-seafoam-dark);
-    margin: 1rem 0 0.5rem 0;
+    color: var(--color-seafoam-dark) !important;
+    margin: 1rem 0 0.5rem 0 !important;
   }
 `
