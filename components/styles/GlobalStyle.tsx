@@ -124,6 +124,8 @@ export const GlobalStyle = createGlobalStyle`
       "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
       "Helvetica Neue", sans-serif;
     line-height: 1.5;
+    width: 100%;
+    overflow-x: hidden;
     height: 100%;
     min-height: 100%;
     box-sizing: border-box;
