@@ -16,12 +16,10 @@ module.exports = withSvgr({
   },
   exportTrailingSlash: true,
   exportPathMap: async function() {
-    // TODO: test if the docs and blog routes grab the index file
     const routes = {
       '/': { page: '/' },
       '/community': { page: '/community' },
       '/teams': { page: '/teams' },
-      '/blog': { page: '/blog/index' },
       '/docs': { page: '/docs' },
     }
 
@@ -35,7 +33,7 @@ module.exports = withSvgr({
     const postsPerPage = 8
     const numPages = Math.ceil(blogs.length / postsPerPage)
     Array.from({ length: numPages }).forEach((_, i) => {
-      const path = i === 0 ? `/blog` : `/blog/page/${i + 1}`
+      const path = i === 0 ? `/blog/` : `/blog/page/${i + 1}`
       routes[path] = {
         page: '/blog/index',
         query: {
@@ -62,7 +60,7 @@ module.exports = withSvgr({
     })
 
     // TODO: Add docs routes
-
+    console.log('routes', routes)
     return routes
   },
   webpack(config) {
