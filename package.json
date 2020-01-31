@@ -51,6 +51,7 @@
     "webpack": "^4.41.5"
   },
   "devDependencies": {
+    "@types/glob": "^7.1.1",
     "@types/node": "^13.1.4",
     "@types/react": "^16.9.17",
     "babel-plugin-styled-components": "^1.8.0",

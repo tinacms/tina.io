@@ -4,15 +4,17 @@ import algoliasearch from 'algoliasearch'
 import fetchDocs from '../api/fetchDocs'
 import fetchBlogs from '../api/fetchBlogs'
 
+const MAX_BODY_LENGTH = 3000
+
 const client = algoliasearch(
   process.env.ALGOLIA_APP_ID,
   process.env.ALGOLIA_ADMIN_KEY
 )
 const index = client.initIndex('Tina-Docs-test')
 
-fetchDocs().then(data => {
+fetchDocs().then(docs => {
   index
-    .saveObjects(data)
+    .saveObjects(docs.map(mapContentToIndex))
     .then(({ objectIDs }) => {
       console.log(`created docs index: ${objectIDs}`)
     })
@@ -21,9 +23,9 @@ fetchDocs().then(data => {
     })
 })
 
-fetchBlogs().then(data => {
+fetchBlogs().then(blogs => {
   index
-    .saveObjects(data)
+    .saveObjects(blogs.map(mapContentToIndex))
     .then(({ objectIDs }) => {
       console.log(`created blogs index: ${objectIDs}`)
     })
@@ -31,3 +33,13 @@ fetchBlogs().then(data => {
       console.log(`failed creating blogs index: ${err}`)
     })
 })
+
+const mapContentToIndex = (
+  obj: Partial<{ data: { slug: string }; content: string }>
+) => {
+  return {
+    ...obj,
+    content: (obj.content || '').substring(0, MAX_BODY_LENGTH),
+    objectID: obj.data.slug,
+  }
+}
