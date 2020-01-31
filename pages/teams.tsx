@@ -74,9 +74,13 @@ const TeamsGrid = styled.div`
 `
 
 const TeamsFormWrapper = styled.div`
-  padding: 2rem 5rem;
+  padding: 2rem;
   background-color: var(--color-secondary);
   border-radius: 3rem;
+
+  @media (min-width: 800px) {
+    padding: 2rem 5rem;
+  }
 `
 
 const TeamsContent = styled.div`
