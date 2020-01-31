@@ -1,5 +1,10 @@
 import { css } from 'styled-components'
 
+/* Styles rich text (markdown output).
+   Use the RichTextWrapper component to easily apply these styles,
+   or add the css via ${RichText} to a component
+*/
+
 const RichText = css`
   /* Spacing */
 
@@ -26,6 +31,16 @@ const RichText = css`
     &:last-child {
       margin-bottom: 0;
     }
+  }
+
+  ul,
+  ol {
+    padding-left: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
   }
 
   /* Styling */
@@ -142,6 +157,11 @@ const RichText = css`
 
   strong {
     font-weight: bold;
+  }
+
+  li {
+    font-size: 1.125rem;
+    color: var(--color-secondary-dark);
   }
 
   :not(pre) > code {
