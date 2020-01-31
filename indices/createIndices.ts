@@ -13,7 +13,7 @@ const client = algoliasearch(
 
 fetchDocs().then(docs => {
   client
-    .initIndex('Tina-Docs-test')
+    .initIndex('Tina-Docs-Next')
     .saveObjects(docs.map(mapContentToIndex))
     .then(() => {
       console.log(`created docs index`)
@@ -25,7 +25,7 @@ fetchDocs().then(docs => {
 
 fetchBlogs().then(blogs => {
   client
-    .initIndex('Tina-Blogs-test')
+    .initIndex('Tina-Blogs-Next')
     .saveObjects(blogs.map(mapContentToIndex))
     .then(() => {
       console.log(`created blogs index`)

@@ -117,6 +117,7 @@ const RichText = css`
 
   p {
     font-size: 1.125rem;
+    line-height: 1.5;
     color: var(--color-secondary-dark);
 
     img {
@@ -157,6 +158,10 @@ const RichText = css`
 
   strong {
     font-weight: bold;
+  }
+
+  ul {
+    list-style-type: disc;
   }
 
   li {
