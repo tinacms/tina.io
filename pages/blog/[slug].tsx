@@ -20,7 +20,7 @@ export default function BlogTemplate(props) {
             <p>By: {props.post.data.author}</p>
             <p>{props.post.data.date}</p>
           </BlogMeta>
-          <MarkdownContent content={props.post.content} />
+          <MarkdownContent escapeHtml={false} content={props.post.content} />
         </RichTextWrapper>
       </BlogWrapper>
     </Layout>

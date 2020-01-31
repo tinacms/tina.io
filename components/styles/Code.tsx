@@ -1,6 +1,9 @@
 import { css } from 'styled-components'
 
 /*
+    
+    TODO: SHOULD WE DELETE THIS FILE SINCE WERE USING A THEME???
+
     Code styles adapted from: 
 
     Name:       Base16 Atelier Sulphurpool Light
