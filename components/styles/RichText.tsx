@@ -160,6 +160,10 @@ const RichText = css`
     font-weight: bold;
   }
 
+  ul {
+    list-style-type: disc;
+  }
+
   li {
     font-size: 1.125rem;
     color: var(--color-secondary-dark);

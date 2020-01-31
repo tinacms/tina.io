@@ -22,9 +22,7 @@ const DocSection = (section: DocSection) => {
   return (
     <div>
       {section.slug ? (
-        <Link href={section.slug}>
-          <a>{section.title}</a>
-        </Link>
+        <Link href={section.slug}>{section.title}</Link>
       ) : (
         <b>{section.title}</b>
       )}
@@ -37,7 +35,7 @@ const DocSection = (section: DocSection) => {
 
 export default function DocTemplate(props) {
   return (
-    <Layout pathname="/" buttonColor={'seafoam'}>
+    <Layout buttonColor={'seafoam'} fixedIcon noFooter>
       <DocsLayout>
         <DocsNav>{props.docsNav.map(DocSection)}</DocsNav>
         <DocsContent>
@@ -66,13 +64,34 @@ const DocsLayout = styled.div`
 `
 
 const DocsNav = styled.div`
+  padding: 6rem 0 3rem 0;
+  font-family: var(--font-tuner);
   grid-area: nav;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   transform: translate3d(-100%, 0, 0);
+
+  /* Background */
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-seafoam);
+    opacity: 0.5;
+    z-index: -1;
+  }
+
   @media (min-width: 800px) {
-    position: relative;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
     transform: translate3d(0, 0, 0);
   }
 `

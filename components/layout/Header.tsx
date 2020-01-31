@@ -1,10 +1,10 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { TinaIcon } from '../logo/TinaIcon'
 import { Nav, NavToggle } from './Nav'
 
-export const Header = styled(({ buttonColor, ...styleProps }) => {
+export const Header = styled(({ buttonColor, fixedIcon, ...styleProps }) => {
   return (
     <header {...styleProps}>
       <TinaIcon />
@@ -66,4 +66,16 @@ export const Header = styled(({ buttonColor, ...styleProps }) => {
       transform: translate3d(0, -50%, 0);
     }
   }
+
+  ${props =>
+    props.fixedIcon &&
+    css`
+      ${TinaIcon} {
+        @media (min-width: 500px) {
+          position: fixed;
+          top: 2.5rem;
+          left: 2rem;
+        }
+      }
+    `};
 `
