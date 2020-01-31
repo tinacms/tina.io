@@ -22,21 +22,17 @@ consumes:
     details: Imports useLocalForm and useWatchFormValues from react-tinacms metapackage
 ---
 
-<div style="text-align: left;">
-  <br>
-    <h1>Tina + Next: Part II</h1>
-  <br>
-</div>
+## Tina + Next: Part II
 
 **Note: This blog was updated as of 12.06.19 related to [these changes](https://tinacms.org/blog/deprecating-tina-git-server/)**
 
 This blog is a part of a series exploring the use of Next.js + Tina. In [Part I](https://tinacms.org/blog/simple-markdown-blog-nextjs/), we learned how to create a simple markdown-based blog with Next. In this post we’ll add content editing capacity by configuring the site with TinaCMS.
 
-## Next.js Recap ▲
+### Next.js Recap ▲
 
 [Next.js](https://nextjs.org/) is **a React “metaframework”** (a framework built on a framework) for developing web applications, built by the team at [ZEIT](https://zeit.co/). Read [Part I](https://tinacms.org/blog/simple-markdown-blog-nextjs/) to get familiar with Next.js basics.
 
-## Tina Overview 🦙
+### Tina Overview 🦙
 
 We like to say that "[Tina](https://tinacms.org/) is not a CMS". Rather, Tina is a collection of open-source javascript components that you build into your site codebase — **a toolkit for creating a real time content-editing UI.** It's incredibly flexible, developers are in absolute control over content management, and editors get a "real-time WYSIWYG" experience.
 
@@ -343,7 +339,10 @@ return (
   <Layout siteTitle={props.title}>
     <article className="blog">
       <figure className="blog__hero">
-        <img src={post.frontmatter.hero_image} alt={`blog_hero_${post.frontmatter.title}`} />
+        <img
+          src={post.frontmatter.hero_image}
+          alt={`blog_hero_${post.frontmatter.title}`}
+        />
       </figure>
       <div className="blog__info">
         <h1>{post.frontmatter.title}</h1>

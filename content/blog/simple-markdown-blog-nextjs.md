@@ -5,23 +5,15 @@ author: Kendall Strautman
 draft: false
 ---
 
-<div style="text-align: left;">
-  <br>
-    <h1>Tina + Next Part I</h1>
-</div>
+## Tina + Next Part I
 
 _Want to skip to using Tina with Next.js? Jump to [Part II](https://tinacms.org/blog/using-tinacms-with-nextjs/) of this series._
-
-<br>
 
 Next.js is a React "metaframework" (a framework built on a framework) for developing web applications. Next.js has become a popular choice for web developers due to its bootstrapped React environment (similar to `create-react-app`) and its simple, file-based routing for writing backend code.
 
 **Next.js is simple and flexible.** Compared to a full-fledged static site generator, there are less prescriptive guiderails placed on developers in the implementation of an app or site. Due to this flexibility, this article shares just one perspective to approach building a simple, markdown-based blog. Take what’s helpful 🤗, disregard the rest.
 
-&nbsp;
-<tip>
-If you'd like to skip ahead and reference final versions of the starter, feel free to checkout the [finished implementation](https://github.com/kendallstrautman/brevifolia-nextjs).
-</tip>
+> If you'd like to skip ahead and reference final versions of the starter, feel free to checkout the [finished implementation](https://github.com/kendallstrautman/brevifolia-nextjs).
 
 ## Clone the starter
 
@@ -59,7 +51,11 @@ Let’s look at the `pages/index.js` file:
 ```javascript
 const Index = props => {
   return (
-    <Layout pathname="/" siteTitle={props.title} siteDescription={props.description}>
+    <Layout
+      pathname="/"
+      siteTitle={props.title}
+      siteDescription={props.description}
+    >
       <section>
         <BlogList />
       </section>
@@ -263,7 +259,11 @@ Now that we have all of the blog data, pass it as a prop to the `BlogList` compo
 ```javascript
 const Index = props => {
   return (
-    <Layout pathname="/" siteTitle={props.title} siteDescription={props.description}>
+    <Layout
+      pathname="/"
+      siteTitle={props.title}
+      siteDescription={props.description}
+    >
       <section>
         <BlogList allBlogs={props.allBlogs} />
       </section>
