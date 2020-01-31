@@ -21,11 +21,31 @@ module.exports = withSvgr({
       '/': { page: '/' },
       '/community': { page: '/community' },
       '/teams': { page: '/teams' },
-      '/blog': { page: '/blog' },
+      '/blog': { page: '/blog/index' },
       '/docs': { page: '/docs' },
     }
+
+    /*
+     ** Export blog routes
+     */
     //get all .md files in the blogs dir
     const blogs = glob.sync('content/blog/**/*.md')
+
+    // create pagination for the blog index
+    const postsPerPage = 8
+    const numPages = Math.ceil(blogs.length / postsPerPage)
+    Array.from({ length: numPages }).forEach((_, i) => {
+      const path = i === 0 ? `/blog` : `/blog/page/${i + 1}`
+      routes[path] = {
+        page: '/blog/index',
+        query: {
+          limit: postsPerPage,
+          skip: i * postsPerPage,
+          numPages,
+          currentPage: i + 1,
+        },
+      }
+    })
 
     //remove path and extension to leave filename only
     const blogSlugs = blogs.map(file =>

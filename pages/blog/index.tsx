@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
+import Router from 'next/router'
 import matter from 'gray-matter'
 import styled from 'styled-components'
 import removeMarkdown from 'remove-markdown'
 
 import { Layout, Wrapper, Hero, MarkdownContent } from '../../components/layout'
 import RichText from '../../components/styles/RichText'
+import SmallArrow from '../../public/svg/small-arrow.svg'
 
 const Index = props => {
   function formatDate(fullDate) {
@@ -17,6 +19,32 @@ const Index = props => {
       day: 'numeric',
     }
     return date.toLocaleDateString('en-US', dateOptions)
+  }
+
+  /*
+   ** Handle Pagination
+   */
+  const { currentPage, numPages } = props
+  const isFirst = currentPage === 1
+  const isLast = currentPage === numPages
+  const prevPage =
+    currentPage - 1 === 1
+      ? '/blog/'
+      : `/blog/page/${(currentPage - 1).toString()}`
+  const nextPage = `/blog/page/${(currentPage + 1).toString()}`
+  const [selectValue, setSelectValue] = useState(currentPage)
+  function handleSelectChange(e) {
+    e.preventDefault()
+    const pageNumber = e.target.value
+    setSelectValue(pageNumber)
+    if (pageNumber === '1') {
+      /*
+       ** things are wonky when navigating back to blog
+       */
+      Router.push('/blog/')
+    } else {
+      Router.push(`/blog/page/${pageNumber}`)
+    }
   }
 
   return (
@@ -42,6 +70,46 @@ const Index = props => {
           </Link>
         ))}
       </BlogWrapper>
+      <Pagination>
+        <div className="prev-next">
+          {!isFirst && (
+            <Link href={prevPage}>
+              <p>← Newer</p>
+            </Link>
+          )}
+          {!isLast && (
+            <Link href={nextPage}>
+              <p>Older →</p>
+            </Link>
+          )}
+        </div>
+        <div className="list-numbers">
+          <ul>
+            <PaginationSelect>
+              <p>Page</p>
+              <div className="select">
+                <select
+                  aria-label="Pagination Dropdown"
+                  value={selectValue}
+                  onChange={handleSelectChange}
+                >
+                  {Array.from({ length: numPages }, (_, i) => (
+                    <option
+                      arial-label={`Go to Page ${i + 1}`}
+                      aria-current={i + 1 === currentPage ? true : false}
+                      value={i + 1}
+                    >
+                      {i + 1}
+                    </option>
+                  ))}
+                </select>
+                <SmallArrow />
+              </div>
+              <p> of {numPages}</p>
+            </PaginationSelect>
+          </ul>
+        </div>
+      </Pagination>
     </Layout>
   )
 }
@@ -69,7 +137,8 @@ function formatExcerpt(content) {
   return `${plainTextExcerpt}...`
 }
 
-Index.getInitialProps = async function() {
+Index.getInitialProps = async function(ctx) {
+  // grab all md files
   const rawPosts = (context => {
     const keys = context.keys()
     const values = keys.map(context)
@@ -95,8 +164,13 @@ Index.getInitialProps = async function() {
 
   const orderedPosts = orderPosts(rawPosts)
 
+  // data for pagination set in next.config
+  const { limit, skip, numPages, currentPage } = ctx.query
+  const paginatedPosts = orderedPosts.slice(skip, skip + limit)
   return {
-    posts: orderedPosts,
+    posts: paginatedPosts,
+    numPages,
+    currentPage,
   }
 }
 
@@ -155,5 +229,98 @@ const BlogMeta = styled.div`
   }
   p:first-child {
     max-width: 250px;
+  }
+`
+
+const Pagination = styled.div`
+  max-width: 704px;
+  width: 100%;
+  margin: 0 auto 1.5rem auto;
+  display: flex;
+  padding: 0 32px;
+  justify-content: space-between;
+  align-items: center;
+  div.prev-next {
+    display: flex;
+    align-items: center;
+    p {
+      margin-right: 24px;
+    }
+  }
+  p {
+    margin-bottom: 0;
+  }
+  div.list-numbers {
+    display: flex;
+    align-items: center;
+  }
+  ul {
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li {
+      padding: 3px 8px 6px 8px;
+      border-radius: 5px;
+      margin-right: 8px;
+      a {
+        text-decoration: none;
+      }
+    }
+
+    li:first-of-type {
+      margin-left: 8px;
+    }
+
+    span.page-dots {
+      align-self: flex-end;
+      padding-bottom: 6px;
+      color: rgba(0, 0, 0, 0.3);
+    }
+    li.current-li {
+      a {
+        color: var(--color-primary);
+      }
+    }
+  }
+  @media (min-width: 704px) {
+    padding: 0;
+  }
+`
+
+const PaginationSelect = styled.div`
+  display: flex;
+  div.select {
+    border: 1px solid var(--color-seafoam);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding: 2px 5px 3px 5px;
+    margin: 0 8px;
+    position: relative;
+  }
+  select {
+    margin-right: 3px;
+    padding-right: 6px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    border: medium none;
+    font-size: 18px;
+  }
+  option {
+    color: inherit;
+    padding: 8px;
+    font-family: sans-serif;
+  }
+  svg {
+    width: 8px;
+    position: absolute;
+    right: 6px;
+    pointer-events: none;
+  }
+  p {
+    padding-top: 2px;
+    margin-bottom: 0;
   }
 `
