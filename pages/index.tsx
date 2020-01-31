@@ -1,19 +1,16 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import Head from 'next/head'
 import Link from 'next/link'
+import { inlineJsonForm } from 'next-tinacms-json'
 
-import Layout from '../components/layout/Layout'
-import Header from '../components/layout/Header'
-import Hero from '../components/layout/Hero'
-import ArrowList from '../components/layout/ArrowList'
-import Wrapper from '../components/layout/Wrapper'
-import Section from '../components/layout/Section'
-import Button from '../components/ui/Button'
+import { Layout, Hero, ArrowList, Wrapper, Section } from '../components/layout'
+import { Button } from '../components/ui'
 
 const heroVideo = 'v1571425758/tina-hero-demo-v2'
 
-const Index = props => {
+const HomePage = props => {
+  const data = props.jsonFile
   return (
     <Layout pathname="/">
       <Head>
@@ -23,11 +20,9 @@ const Index = props => {
           content="Tina is an open-source site editing toolkit for React-based frameworks — Gatsby & Next.js."
         />
       </Head>
-
       <Hero overlap>
-        <HomepageTitle>Build real-time editing into your site.</HomepageTitle>
+        <HomepageTitle>{data.headline}</HomepageTitle>
       </Hero>
-
       <HeroVideo>
         <video
           autoPlay
@@ -50,10 +45,7 @@ const Index = props => {
         <Wrapper>
           <CtaLayout>
             <h2>
-              <em>
-                Tina is an open-source site editing toolkit for React-based
-                frameworks — Gatsby & Next.js
-              </em>
+              <em>{data.description}</em>
             </h2>
             <Link href={'/docs/getting-started/introduction/'} passHref>
               <Button as="a" primary>
@@ -62,34 +54,12 @@ const Index = props => {
             </Link>
           </CtaLayout>
           <InfoLayout>
-            <div>
-              <h3>Choose your tools</h3>
-              <p>
-                Use Tina with your favorite modern javascript frameworks. While
-                currently compatible with most React-based workflows —
-                specifically Gatsby, Next.js and React SPA’s — plan on adding
-                Tina to your Vue, Gridsome or Nuxt projects very soon.
-              </p>
-            </div>
-            <div>
-              <h3>Edit from your site</h3>
-              <p>
-                Manage content on your own site, not another platform. Import
-                Tina directly into your components to expose an editing
-                interface for controlling and updating layers of your content
-                mesh. You define the content model and editing powers specific
-                to your site.
-              </p>
-            </div>
-            <div>
-              <h3>Extend & contribute</h3>
-              <p>
-                This is not one-size-fits-all CMS. Tina is a grassroots open
-                source javascript toolkit with a plugin-rich ecosystem. You can
-                customize and extend the toolkit to suit your needs. Get and
-                give help with a robust community of contributors.
-              </p>
-            </div>
+            {data.three_points.map(point => (
+              <div key={point.main.slice(0, 8)}>
+                <h3>{point.main}</h3>
+                <p>{point.supporting}</p>
+              </div>
+            ))}
           </InfoLayout>
         </Wrapper>
       </Section>
@@ -98,22 +68,12 @@ const Index = props => {
         <Wrapper>
           <SetupLayout>
             <div>
-              <h2 className="h1">Make your site editable in five minutes.</h2>
+              <h2 className="h1">{data.headline}</h2>
               <hr />
               <ArrowList>
-                <li>Install and configure Tina plugins</li>
-                <li>
-                  Wrap and export your templates with Tina components specific
-                  to your data
-                </li>
-                <li>
-                  Customize and define the content fields by passing an options
-                  argument
-                </li>
-                <li>
-                  Open the sidebar 🤩, edit your site and watch the content
-                  updating in realtime
-                </li>
+                {data.setup.steps.map(item => (
+                  <li key={item.step.slice(0, 8)}>{item.step}</li>
+                ))}
               </ArrowList>
               <Link href={'/docs/getting-started/introduction/'} passHref>
                 <Button as="a" primary>
@@ -135,7 +95,7 @@ module.exports = {
 };
 
 export <b>WithTina</b>( <b>Component</b> );
-`,
+                  `,
                 }}
               ></CodeExample>
             </div>
@@ -145,6 +105,87 @@ export <b>WithTina</b>( <b>Component</b> );
     </Layout>
   )
 }
+
+const formOptions = {
+  label: 'Home Page',
+  fields: [
+    {
+      label: 'Headline',
+      name: 'headline',
+      description: 'Enter the main headline here',
+      component: 'text',
+    },
+    {
+      label: 'Description',
+      name: 'description',
+      description: 'Enter supporting main description',
+      component: 'textarea',
+    },
+    {
+      label: 'Selling Points',
+      name: 'three_points',
+      description: 'Edit the points here',
+      component: 'group-list',
+      itemProps: item => ({
+        key: item.id,
+        label: `${item.main.slice(0, 15)}...`,
+      }),
+      fields: [
+        {
+          label: 'Main',
+          name: 'main',
+          component: 'textarea',
+        },
+        {
+          label: 'Supporting',
+          name: 'supporting',
+          component: 'textarea',
+        },
+      ],
+    },
+    {
+      label: 'Setup Headline',
+      name: 'setup.headline',
+      description: 'Enter the "setup" headline here',
+      component: 'textarea',
+    },
+    {
+      label: 'Setup Steps',
+      name: 'setup.steps',
+      description: 'Edit the steps here',
+      component: 'group-list',
+      itemProps: item => ({
+        key: item.id,
+        label: `${item.step.slice(0, 15)}...`,
+      }),
+      fields: [
+        {
+          label: 'Step',
+          name: 'step',
+          component: 'textarea',
+        },
+      ],
+    },
+  ],
+}
+
+const EditableHomePage = inlineJsonForm(HomePage, formOptions)
+export default EditableHomePage
+
+EditableHomePage.getInitialProps = async function() {
+  const homeData = await import('../content/pages/home.json')
+
+  return {
+    jsonFile: {
+      fileRelativePath: 'content/pages/home.json',
+      data: homeData.default,
+    },
+  }
+}
+
+/*
+ ** STYLES -------------------------------------------------------
+ */
 
 const HomepageTitle = styled(({ children, ...styleProps }) => {
   return (
@@ -202,6 +243,12 @@ const CodeExample = styled.code`
 const InfoLayout = styled.div`
   display: grid;
   grid-gap: 2rem;
+
+  h3,
+  h4 {
+    color: var(--color-primary);
+  }
+
   @media (min-width: 800px) {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -229,5 +276,3 @@ const CtaLayout = styled.div`
     padding: 0 0 5rem 0;
   }
 `
-
-export default Index

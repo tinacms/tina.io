@@ -4,9 +4,7 @@ import matter from 'gray-matter'
 import ReactMarkdown from 'react-markdown'
 import styled from 'styled-components'
 
-import Layout from '../../components/layout/Layout'
-import Wrapper from '../../components/layout/Wrapper'
-import Hero from '../../components/layout/Hero'
+import { Layout, Wrapper, Hero } from '../../components/layout'
 
 const Index = props => {
   return (
@@ -21,10 +19,10 @@ const Index = props => {
           >
             <BlogExcerpt>
               <BlogTitle>{post.data.title}</BlogTitle>
-              <StyledBlogMetaData>
+              <BlogMeta>
                 <p>By: {post.data.author}</p>
                 <p>{post.data.date}</p>
-              </StyledBlogMetaData>
+              </BlogMeta>
               <ReactMarkdown source={post.content} />
               <hr />
               <br />
@@ -67,14 +65,14 @@ const BlogExcerpt = styled.a`
   }
 `
 
-const StyledBlogMetaData = styled('div')`
+const BlogMeta = styled.div`
   width: 100%;
   justify-content: space-between;
   display: flex;
   flex-grow: 1;
   margin-bottom: 1.5rem;
   margin-top: -0.5rem;
-  opacity: 0.8;
+  opacity: 0.5;
   p {
     margin: 0;
     color: 0;

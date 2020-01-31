@@ -1,47 +1,91 @@
 import React from 'react'
-import { Helmet } from 'react-helmet'
 import styled from 'styled-components'
 import { inlineJsonForm } from 'next-tinacms-json'
+import Head from 'next/head'
 
-import Layout from '../components/layout/Layout'
-import { colors, space, breakpoints } from '../components/styles/variables'
+import { Layout, Wrapper, Section, ArrowList } from '../components/layout'
 import { TeamsForm } from '../components/forms'
-import EditableCommunityPage from './community'
-
-/**
- * TODOS:
- * Right now the bullet points are the same
- * color as the background so they're invisbile
- */
 
 function TeamsPage(props) {
   const data = props.jsonFile
   return (
-    <Layout page="teams">
-      <Helmet>
+    <TeamsLayout page="teams" darkHeader>
+      <Head>
         <meta property="og:title" content="TinaCMS - Teams" />
         <meta name="twitter:title" content="TinaCMS - Teams" />
-      </Helmet>
-      <BgColor />
-      <Wrapper>
-        <StyledInfoSection>
-          <h2>{data.headline}</h2>
-          <span id="dotted-line" />
-          <StyledPoints>
-            {data.supporting_points.map(item => (
-              <li key={item.point.trim()}>
-                <p>{item.point}</p>
-              </li>
-            ))}
-          </StyledPoints>
-        </StyledInfoSection>
-        <StyledFormSection>
-          <TeamsForm hubspotFormID={process.env.GATSBY_HUBSPOT_FORM_ID} />
-        </StyledFormSection>
-      </Wrapper>
-    </Layout>
+      </Head>
+      <TeamsSection>
+        <Wrapper>
+          <TeamsGrid>
+            <TeamsContent>
+              <h2>{data.headline}</h2>
+              <hr />
+              <ArrowList>
+                {data.supporting_points.map(item => (
+                  <li key={item.point.trim()}>{item.point}</li>
+                ))}
+              </ArrowList>
+            </TeamsContent>
+            <TeamsFormWrapper>
+              <TeamsForm hubspotFormID={process.env.GATSBY_HUBSPOT_FORM_ID} />
+            </TeamsFormWrapper>
+          </TeamsGrid>
+        </Wrapper>
+      </TeamsSection>
+    </TeamsLayout>
   )
 }
+
+const TeamsLayout = styled(Layout)`
+  min-height: 100%;
+  background-color: var(--color-secondary-dark);
+  color: white;
+`
+
+const TeamsSection = styled(Section)`
+  flex: 1 0 auto;
+  padding: 6rem 0 3rem 0;
+  display: flex;
+  flex-direction: column;
+
+  ${Wrapper} {
+    display: flex;
+    flex: 1 0 auto;
+  }
+`
+
+const TeamsGrid = styled.div`
+  display: grid;
+  grid-gap: 2rem;
+  min-height: 100%;
+
+  @media (min-width: 800px) {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+`
+
+const TeamsFormWrapper = styled.div`
+  padding: 2rem 5rem;
+  background-color: var(--color-secondary);
+  border-radius: 3rem;
+`
+
+const TeamsContent = styled.div`
+  li {
+    color: white;
+  }
+
+  h1,
+  h2,
+  h3 {
+    color: var(--color-seafoam-dark);
+  }
+
+  hr {
+    border-color: var(--color-seafoam-dark);
+  }
+`
 
 const TeamsPageOptions = {
   fields: [
@@ -80,104 +124,7 @@ EditableTeamsPage.getInitialProps = async function() {
   return {
     jsonFile: {
       fileRelativePath: `content/pages/teams.json`,
-      data: teamsData,
+      data: teamsData.default,
     },
   }
 }
-
-/*
- ** STYLES ----------------------------------------------------
- */
-
-const BgColor = styled('aside')`
-  background-color: ${colors.darkPurple};
-  width: 100vw;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -10;
-`
-
-const Wrapper = styled('div')`
-  @media (min-width: ${breakpoints.lg}px) {
-    max-width: 1150px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-  }
-`
-
-const StyledInfoSection = styled('section')`
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 38px ${space.smallMobile}px 20px ${space.smallMobile}px;
-  span#dotted-line {
-    display: block;
-    width: 60px;
-    height: 1px;
-    border-bottom: 3px dotted ${colors.mintChocoChip};
-    margin: 20px 0 32px 1px;
-  }
-  h2.coming-soon {
-    display: none;
-  }
-  @media (min-width: ${breakpoints.lg}px) {
-    padding: ${space.lrgDesktop}px ${space.smallDesktop}px 0
-      ${space.smallDesktop}px;
-    max-width: 560px;
-    margin: 0 ${space.lrgDesktop}px 100px 0;
-    h2.coming-soon {
-      display: block;
-    }
-    ul {
-      max-width: 500px;
-    }
-  }
-`
-
-const StyledPoints = styled('ul')`
-  margin: 0;
-  list-style: none;
-  padding-left: 0;
-  color: ${colors.white};
-  li {
-    position: relative;
-    margin-bottom: ${space.smallMobile}px;
-    padding-left: 2.5em;
-    &:before {
-      content: '↳';
-      position: absolute;
-      font-weight: bold;
-      left: 2px;
-      top: 0;
-      font-size: 1.8em;
-      line-height: 1.1;
-      color: ${colors.hunterOrange};
-    }
-  }
-  li:last-child {
-    margin-bottom: ${space.smallDesktop}px;
-  }
-`
-
-const StyledFormSection = styled('section')`
-  background-color: ${colors.lightPurple};
-  padding: 38px ${space.smallMobile}px;
-  width: 100%;
-  h5 {
-    font-size: 18px;
-    text-transform: uppercase;
-    margin: 0 auto;
-    width: max-content;
-  }
-  @media (min-width: ${breakpoints.lg}px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 72px 32px 100px 0;
-    padding: unset;
-    border-radius: 60px;
-  }
-`

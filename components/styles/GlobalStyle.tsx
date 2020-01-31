@@ -1,6 +1,8 @@
 import React from 'react'
 import { createGlobalStyle, css } from 'styled-components'
 
+import Code from './Code'
+
 const CssReset = css`
   html,
   body,
@@ -74,6 +76,7 @@ const CssReset = css`
 
 export const GlobalStyle = createGlobalStyle`
   ${CssReset}
+  ${Code}
 
   /* Tuner Regular */
   @font-face {
@@ -170,11 +173,12 @@ export const GlobalStyle = createGlobalStyle`
     font-family: var(--font-tuner);
     font-weight: regular;
     font-style: normal;
-    color: var(--color-primary);
-
     em {
       font-style: normal;
       color: var(--color-secondary-dark);
+    }
+    &:not(:first-child) {
+      margin-top: 2rem;
     }
   }
 
@@ -182,6 +186,7 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 2.5rem;
     line-height: 1.3;
     letter-spacing: 0.1px;
+    color: var(--color-primary);
 
     @media (min-width: 800px) {
       font-size: 3rem;
@@ -196,17 +201,30 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 2rem;
     line-height: 1.3;
     letter-spacing: 0.1px;
+    color: var(--color-primary);
   }
 
   h3, .h3 {
     font-size: 1.5rem;
     line-height: 1.3;
     letter-spacing: 0.1px;
+    color: var(--color-secondary-dark);
   }
 
   p {
     font-size: 1.125rem;
     color: var(--color-secondary-dark);
+
+    img {
+      display: block;
+      margin: 1.5rem auto;
+      border-radius: 5px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: rgb(237, 238, 238);
+      border-image: initial;
+      overflow: hidden;
+    }
   }
 
   a {
@@ -230,5 +248,9 @@ export const GlobalStyle = createGlobalStyle`
     display: block;
     height: 0px;
     margin: 2rem 0;
+  }
+
+  strong {
+    font-weight: bold;
   }
 `

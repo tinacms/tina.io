@@ -2,13 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
 
-import Nav from './Nav'
-import Button from '../ui/Button'
+import { Nav } from './Nav'
+import { Button } from '../ui'
 import TinaWordmark from '../logo/TinaWordmark'
 import TwitterIconSvg from '../../public/svg/twitter-icon.svg'
 import GithubIconSvg from '../../public/svg/github-icon.svg'
+import { EmailForm } from '../forms'
 
-const Footer = styled(({ ...styleProps }) => {
+export const Footer = styled(({ ...styleProps }) => {
   return (
     <div {...styleProps}>
       <FooterTop>
@@ -32,7 +33,25 @@ const Footer = styled(({ ...styleProps }) => {
           </a>
         </FooterSocial>
       </FooterTop>
-      <FooterBottom></FooterBottom>
+      <FooterBottom>
+        <FooterForm>
+          <span>Stay in touch 👉</span>
+          <EmailForm isFooter />
+        </FooterForm>
+        <Footnote>
+          <a
+            href="https://github.com/tinacms/tinacms/blob/master/LICENSE"
+            target="_blank"
+          >
+            License
+          </a>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <p>
+            &copy; TinaCMS 2019–
+            {new Date().getFullYear()}
+          </p>
+        </Footnote>
+      </FooterBottom>
     </div>
   )
 })``
@@ -57,9 +76,26 @@ const FooterNav = styled(Nav)`
 
   ${Button} {
     font-size: 1.5rem;
-    padding: 0;
+    padding-top: 0;
+    padding-bottom: 0;
     color: white !important;
     background: transparent;
+  }
+`
+
+const FooterForm = styled.div`
+  display: flex;
+  color: white;
+  align-items: center;
+  margin-bottom: 1.5rem;
+
+  span {
+    margin-right: 1rem;
+    white-space: nowrap;
+  }
+
+  @media (min-width: 1200px) {
+    margin-bottom: 0;
   }
 `
 
@@ -90,8 +126,37 @@ const FooterTop = styled.div`
 `
 
 const FooterBottom = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   padding: 1.25rem 2rem;
   background-color: var(--color-primary-dark);
+
+  @media (min-width: 1200px) {
+    flex-direction: row;
+  }
 `
 
-export default Footer
+const Footnote = styled.span`
+  display: flex;
+  color: white;
+  font-size: 1rem;
+
+  p {
+    color: white;
+    margin: 0;
+    font-size: 1rem;
+    opacity: 0.65;
+  }
+
+  a {
+    text-decoration: none;
+    color: white;
+    opacity: 0.65;
+    &:hover {
+      color: white;
+      opacity: 1;
+    }
+  }
+`

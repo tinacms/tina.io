@@ -1,12 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const ArrowList = styled(({ children, ...styleProps }) => {
+export const ArrowList = styled(({ children, ...styleProps }) => {
   return <ul {...styleProps}>{children}</ul>
 })`
   margin: 0;
   list-style: none;
   padding-left: 0;
+  padding-bottom: 0.5rem;
   color: var(--color-secondary-dark, #241748);
   li {
     position: relative;
@@ -25,5 +26,3 @@ const ArrowList = styled(({ children, ...styleProps }) => {
     }
   }
 `
-
-export default ArrowList

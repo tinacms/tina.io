@@ -2,13 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { TinaIcon } from '../logo/TinaIcon'
-import Nav, { NavToggle } from './Nav'
+import { Nav, NavToggle } from './Nav'
 
-const Header = styled(({ ...styleProps }) => {
+export const Header = styled(({ darkHeader, ...styleProps }) => {
   return (
     <header {...styleProps}>
       <TinaIcon />
-      <Nav />
+      <Nav darkNav={darkHeader ? true : false} />
       <iframe
         src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
         frameBorder="0"
@@ -66,9 +66,4 @@ const Header = styled(({ ...styleProps }) => {
       transform: translate3d(0, -50%, 0);
     }
   }
-
-  @media (min-width: 800px) {
-  }
 `
-
-export default Header

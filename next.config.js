@@ -1,7 +1,19 @@
 const withSvgr = require('next-svgr')
 const glob = require('glob')
+require('dotenv').config()
+
+const isProd = process.env.environment == 'production'
+const dummyMailchimpEndpoint =
+  'https://theDomainHere.us18.list-manage.com/subscribe/post?u=1512315231251&amp;id=0asd21t12e1'
 
 module.exports = withSvgr({
+  env: {
+    MAILCHIMP_ENDPOINT: isProd
+      ? process.env.MAILCHIMP_ENDPOINT
+      : dummyMailchimpEndpoint,
+    HUBSPOT_FORM_ID: process.env.NEXT_HUBSPOT_FORM_ID,
+    HUBSPOT_PORTAL_ID: process.env.NEXT_HUBSPOT_PORTAL_ID,
+  },
   exportTrailingSlash: true,
   exportPathMap: async function() {
     // TODO: test if the docs and blog routes grab the index file

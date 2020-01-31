@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import Button from '../ui/Button'
+import { Button } from '../ui'
 import Link from 'next/link'
+import data from '../../content/navigation.json'
 
 import BurgerSvg from '../../public/svg/burger-menu.svg'
 
@@ -15,37 +16,27 @@ export const NavToggle = styled(({ ...styleProps }) => {
   fill: var(--color-primary);
 `
 
-const Nav = styled(({ ...styleProps }) => {
+export const Nav = styled(({ darkNav, ...styleProps }) => {
   return (
     <ul {...styleProps}>
-      <li>
-        <Link href={'/docs/getting-started/introduction'} passHref>
-          <Button as="a" white>
-            DOCS
-          </Button>
-        </Link>
-      </li>
-      <li>
-        <Link href={'/blog'} passHref>
-          <Button as="a" white>
-            BLOG
-          </Button>
-        </Link>
-      </li>
-      <li>
-        <Link href={'/community'} passHref>
-          <Button as="a" white>
-            COMMUNITY
-          </Button>
-        </Link>
-      </li>
-      <li>
-        <Link href={'/teams'} passHref>
-          <Button as="a" white>
-            TEAMS
-          </Button>
-        </Link>
-      </li>
+      {data &&
+        data.map(({ id, href, label }) => {
+          return (
+            <li key={id}>
+              <Link href={href} passHref>
+                {darkNav ? (
+                  <Button as="a" secondary>
+                    {label}
+                  </Button>
+                ) : (
+                  <Button as="a" white>
+                    {label}
+                  </Button>
+                )}
+              </Link>
+            </li>
+          )
+        })}
     </ul>
   )
 })`
@@ -68,7 +59,7 @@ const Nav = styled(({ ...styleProps }) => {
       }
       &:not(:last-child) {
         ${Button} {
-          border-right: 1px solid var(--color-seafoam);
+          border-right: 1px solid rgba(155, 155, 155, 0.15);
           border-top-right-radius: 0;
           border-bottom-right-radius: 0;
         }
@@ -82,4 +73,3 @@ const Nav = styled(({ ...styleProps }) => {
     }
   }
 `
-export default Nav
