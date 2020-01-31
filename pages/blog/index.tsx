@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown'
 import styled from 'styled-components'
 
 import { Layout, Wrapper, Hero } from '../../components/layout'
+import RichText from '../../components/styles/RichText'
 
 const Index = props => {
   return (
@@ -52,6 +53,7 @@ const BlogTitle = styled(({ children, ...styleProps }) => {
 `
 
 const BlogExcerpt = styled.a`
+  ${RichText}
   cursor: pointer;
   text-decoration: none;
   &:hover {

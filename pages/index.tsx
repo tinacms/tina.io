@@ -4,10 +4,16 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { inlineJsonForm } from 'next-tinacms-json'
 
-import { Layout, Hero, ArrowList, Wrapper, Section } from '../components/layout'
-import { Button } from '../components/ui'
-
-const heroVideo = 'v1571425758/tina-hero-demo-v2'
+import {
+  Layout,
+  Hero,
+  HeroTitle,
+  ArrowList,
+  Wrapper,
+  Section,
+  RichTextWrapper,
+} from '../components/layout'
+import { Button, Video } from '../components/ui'
 
 const HomePage = props => {
   const data = props.jsonFile
@@ -20,71 +26,57 @@ const HomePage = props => {
           content="Tina is an open-source site editing toolkit for React-based frameworks — Gatsby & Next.js."
         />
       </Head>
-      <Hero overlap>
-        <HomepageTitle>{data.headline}</HomepageTitle>
+      <Hero overlap narrow>
+        {data.headline}
       </Hero>
-      <HeroVideo>
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster={`https://res.cloudinary.com/forestry-demo/video/upload/so_0/${heroVideo}.jpg`}
-        >
-          <source
-            src={`https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/${heroVideo}.webm`}
-            type="video/webm"
-          />
-          <source
-            src={`https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/${heroVideo}.mp4`}
-            type="video/mp4"
-          />
-        </video>
-      </HeroVideo>
-      <Section>
-        <Wrapper>
-          <CtaLayout>
-            <h2>
-              <em>{data.description}</em>
-            </h2>
-            <Link href={'/docs/getting-started/introduction/'} passHref>
-              <Button as="a" primary>
-                Get Started
-              </Button>
-            </Link>
-          </CtaLayout>
-          <InfoLayout>
-            {data.three_points.map(point => (
-              <div key={point.main.slice(0, 8)}>
-                <h3>{point.main}</h3>
-                <p>{point.supporting}</p>
-              </div>
-            ))}
-          </InfoLayout>
-        </Wrapper>
-      </Section>
-
-      <Section seafoam>
-        <Wrapper>
-          <SetupLayout>
-            <div>
-              <h2 className="h1">{data.headline}</h2>
-              <hr />
-              <ArrowList>
-                {data.setup.steps.map(item => (
-                  <li key={item.step.slice(0, 8)}>{item.step}</li>
-                ))}
-              </ArrowList>
+      <Video src={'v1571425758/tina-hero-demo-v2'} />
+      <RichTextWrapper>
+        <Section>
+          <Wrapper>
+            <CtaLayout>
+              <h2>
+                <em>{data.description}</em>
+              </h2>
               <Link href={'/docs/getting-started/introduction/'} passHref>
                 <Button as="a" primary>
                   Get Started
                 </Button>
               </Link>
-            </div>
-            <div>
-              <CodeExample
-                dangerouslySetInnerHTML={{
-                  __html: `yarn add <b>gatsby-plugin-tinacms</b>
+            </CtaLayout>
+            <InfoLayout>
+              {data.three_points.map(point => (
+                <div key={point.main.slice(0, 8)}>
+                  <h3>
+                    <em>{point.main}</em>
+                  </h3>
+                  <p>{point.supporting}</p>
+                </div>
+              ))}
+            </InfoLayout>
+          </Wrapper>
+        </Section>
+
+        <Section seafoam>
+          <Wrapper>
+            <SetupLayout>
+              <div>
+                <h2 className="h1">{data.headline}</h2>
+                <hr />
+                <ArrowList>
+                  {data.setup.steps.map(item => (
+                    <li key={item.step.slice(0, 8)}>{item.step}</li>
+                  ))}
+                </ArrowList>
+                <Link href={'/docs/getting-started/introduction/'} passHref>
+                  <Button as="a" primary>
+                    Get Started
+                  </Button>
+                </Link>
+              </div>
+              <div>
+                <CodeExample
+                  dangerouslySetInnerHTML={{
+                    __html: `yarn add <b>gatsby-plugin-tinacms</b>
 
 module.exports = {
   <span>// ...</span>
@@ -96,12 +88,13 @@ module.exports = {
 
 export <b>WithTina</b>( <b>Component</b> );
                   `,
-                }}
-              ></CodeExample>
-            </div>
-          </SetupLayout>
-        </Wrapper>
-      </Section>
+                  }}
+                ></CodeExample>
+              </div>
+            </SetupLayout>
+          </Wrapper>
+        </Section>
+      </RichTextWrapper>
     </Layout>
   )
 }
@@ -187,35 +180,6 @@ EditableHomePage.getInitialProps = async function() {
  ** STYLES -------------------------------------------------------
  */
 
-const HomepageTitle = styled(({ children, ...styleProps }) => {
-  return (
-    <div {...styleProps}>
-      <h2 className="h1">{children}</h2>
-    </div>
-  )
-})`
-  h2 {
-    max-width: 9em;
-    text-align: center;
-    margin: 0 auto;
-  }
-`
-
-const HeroVideo = styled.div`
-  display: block;
-  margin: 0 auto;
-  text-align: center;
-  padding: 0 2rem;
-  img,
-  video {
-    margin: 0 auto;
-    filter: drop-shadow(rgba(104, 120, 125, 0.3) 0px 14px 16px);
-    border-radius: 10px;
-    max-width: 934px;
-    width: 100%;
-  }
-`
-
 const CodeExample = styled.code`
   border-radius: 50px;
   background-color: #d4f0ee;
@@ -236,18 +200,13 @@ const CodeExample = styled.code`
   }
 
   span {
-    opacity: 0.5;
+    opacity: 0.3;
   }
 `
 
 const InfoLayout = styled.div`
   display: grid;
   grid-gap: 2rem;
-
-  h3,
-  h4 {
-    color: var(--color-primary);
-  }
 
   @media (min-width: 800px) {
     grid-template-columns: repeat(3, 1fr);

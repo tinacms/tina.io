@@ -6,7 +6,13 @@ import Link from 'next/link'
 import Head from 'next/head'
 import { inlineJsonForm } from 'next-tinacms-json'
 
-import { Layout, Hero, Wrapper, Section } from '../components/layout'
+import {
+  Layout,
+  Hero,
+  Wrapper,
+  Section,
+  RichTextWrapper,
+} from '../components/layout'
 
 import { Button, ButtonGroup } from '../components/ui'
 import { EmailForm } from '../components/forms'
@@ -15,6 +21,7 @@ import TwitterIconSvg from '../public/svg/twitter-icon.svg'
 import GithubIconSvg from '../public/svg/github-icon.svg'
 import SlackIconSvg from '../public/svg/slack-icon.svg'
 import ForumIconSvg from '../public/svg/forum-icon.svg'
+import RichText from '../components/styles/RichText'
 
 function CommunityPage(props) {
   const data = props.jsonFile
@@ -87,39 +94,41 @@ function CommunityPage(props) {
           </a>
         </SocialItem>
       </SocialBar>
-      <Section>
-        <Wrapper>
-          <InfoLayout>
-            <InfoContent>
-              <InfoText>
-                <h3 className="h2">{data.supporting_headline}</h3>
-                <ReactMarkdown>{data.supporting_body}</ReactMarkdown>
-              </InfoText>
-              <ButtonGroup>
-                <Link href={'/docs/contributing/guidelines'} passHref>
-                  <Button as="a">Contribute</Button>
-                </Link>
-                <Link href={metadata.roadmapUrl} passHref>
-                  <Button as="a">View Roadmap</Button>
-                </Link>
-              </ButtonGroup>
-            </InfoContent>
-            <InfoImage src="/img/rico-replacement.jpg" />
-          </InfoLayout>
-        </Wrapper>
-      </Section>
-      <FormSection seafoam>
-        <Wrapper>
-          <h2>
-            Newsletter{' '}
-            <span role="img" aria-label="two finger peace sign">
-              ✌️
-            </span>
-          </h2>
-          <p>We move quick. Stay up to date.</p>
-          <EmailForm />
-        </Wrapper>
-      </FormSection>
+      <RichTextWrapper>
+        <Section>
+          <Wrapper>
+            <InfoLayout>
+              <InfoContent>
+                <InfoText>
+                  <h3 className="h2">{data.supporting_headline}</h3>
+                  <ReactMarkdown>{data.supporting_body}</ReactMarkdown>
+                </InfoText>
+                <ButtonGroup>
+                  <Link href={'/docs/contributing/guidelines'} passHref>
+                    <Button as="a">Contribute</Button>
+                  </Link>
+                  <Link href={metadata.roadmapUrl} passHref>
+                    <Button as="a">View Roadmap</Button>
+                  </Link>
+                </ButtonGroup>
+              </InfoContent>
+              <InfoImage src="/img/rico-replacement.jpg" />
+            </InfoLayout>
+          </Wrapper>
+        </Section>
+        <FormSection seafoam>
+          <Wrapper>
+            <h2>
+              Newsletter{' '}
+              <span role="img" aria-label="two finger peace sign">
+                ✌️
+              </span>
+            </h2>
+            <p>We move quick. Stay up to date.</p>
+            <EmailForm />
+          </Wrapper>
+        </FormSection>
+      </RichTextWrapper>
     </Layout>
   )
 }
@@ -207,11 +216,16 @@ const SocialItem = styled('div')`
     flex-direction: column;
     align-items: center;
     text-decoration: none;
+    color: var(--color-secondary-dark);
+    font-family: var(--font-tuner);
+    font-weight: regular;
+    font-style: normal;
   }
   a:hover,
   a:focus {
     outline: none;
     text-decoration: none;
+    color: var(--color-primary);
     svg {
       transform: scale3d(1.1, 1.1, 1.1);
       transition: transform 250ms ease-out;
@@ -227,6 +241,7 @@ const SocialItem = styled('div')`
     transition: transform 180ms ease-in;
   }
   h5 {
+    margin-bottom: 1rem;
     text-transform: uppercase;
     text-decoration: none;
   }
@@ -240,7 +255,7 @@ const SocialItem = styled('div')`
     width: unset;
     align-items: flex-end;
     h5 {
-      margin-bottom: 0;
+      margin: 0;
     }
     span.dotted-line {
       height: 1px;

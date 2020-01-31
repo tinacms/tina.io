@@ -11,14 +11,14 @@ export const Button = styled.button`
   align-items: center;
   background-color: var(--color-seafoam);
   color: var(--color-primary);
-  border-radius: 100px;
+  border-radius: 2rem;
   text-transform: uppercase;
-  padding: 0.5rem 1rem;
+  padding: 0.625rem 1.25rem;
   border: none;
   font-family: var(--font-tuner);
   font-weight: regular;
   font-style: normal;
-  text-decoration: none;
+  text-decoration: none !important;
   opacity: 1;
 
   &:hover,
