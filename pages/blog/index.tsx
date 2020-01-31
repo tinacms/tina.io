@@ -4,7 +4,13 @@ import matter from 'gray-matter'
 import styled from 'styled-components'
 import removeMarkdown from 'remove-markdown'
 
-import { Layout, Wrapper, Hero, MarkdownContent } from '../../components/layout'
+import {
+  Layout,
+  Wrapper,
+  Hero,
+  MarkdownContent,
+  RichTextWrapper,
+} from '../../components/layout'
 import RichText from '../../components/styles/RichText'
 
 const Index = props => {
@@ -31,12 +37,14 @@ const Index = props => {
           >
             <BlogExcerpt>
               <BlogTitle>{post.data.title}</BlogTitle>
-              <BlogMeta>
-                <p>By: {post.data.author}</p>
-                <p>{formatDate(post.data.date)}</p>
-              </BlogMeta>
-              <MarkdownContent skipHtml={true} content={post.content} />
-              <hr />
+              <RichTextWrapper>
+                <BlogMeta>
+                  <p>By: {post.data.author}</p>
+                  <p>{formatDate(post.data.date)}</p>
+                </BlogMeta>
+                <MarkdownContent skipHtml={true} content={post.content} />
+                <hr />
+              </RichTextWrapper>
               <br />
             </BlogExcerpt>
           </Link>
@@ -112,21 +120,28 @@ const BlogWrapper = styled(Wrapper)`
 `
 
 const BlogTitle = styled(({ children, ...styleProps }) => {
-  return <h3 {...styleProps}>{children}</h3>
+  return (
+    <h3 class {...styleProps}>
+      {children}
+    </h3>
+  )
 })`
+  font-family: var(--font-tuner);
+  font-weight: regular;
+  font-style: normal;
   font-size: 1.5rem;
   color: inherit;
   transition: all 180ms ease-out;
-  max-width: 66%;
-  line-height: 1.5;
-
+  max-width: 80%;
+  line-height: 1.3;
+  margin-bottom: 1.5rem;
+  color: var(--color-secondary);
   @media (min-width: 800px) {
     font-size: 2rem;
   }
 `
 
 const BlogExcerpt = styled.a`
-  ${RichText}
   cursor: pointer;
   text-decoration: none;
   &:hover {
