@@ -1,13 +1,24 @@
 import React from 'react'
 import Link from 'next/link'
 import matter from 'gray-matter'
-import ReactMarkdown from 'react-markdown'
 import styled from 'styled-components'
+import removeMarkdown from 'remove-markdown'
 
-import { Layout, Wrapper, Hero } from '../../components/layout'
+import { Layout, Wrapper, Hero, MarkdownContent } from '../../components/layout'
 import RichText from '../../components/styles/RichText'
 
 const Index = props => {
+  function formatDate(fullDate) {
+    const date = new Date(fullDate)
+    const dateOptions = {
+      formatMatcher: 'best fit',
+      month: 'long',
+      year: 'numeric',
+      day: 'numeric',
+    }
+    return date.toLocaleDateString('en-US', dateOptions)
+  }
+
   return (
     <Layout>
       <Hero mini></Hero>
@@ -22,9 +33,9 @@ const Index = props => {
               <BlogTitle>{post.data.title}</BlogTitle>
               <BlogMeta>
                 <p>By: {post.data.author}</p>
-                <p>{post.data.date}</p>
+                <p>{formatDate(post.data.date)}</p>
               </BlogMeta>
-              <ReactMarkdown source={post.content} />
+              <MarkdownContent skipHtml={true} content={post.content} />
               <hr />
               <br />
             </BlogExcerpt>
@@ -34,6 +45,66 @@ const Index = props => {
     </Layout>
   )
 }
+
+function orderPosts(posts) {
+  function sortByDate(a, b) {
+    const dateA = new Date(a.data.date).getTime()
+    const dateB = new Date(b.data.date).getTime()
+    return dateA < dateB ? 1 : -1
+  }
+  return posts.sort(sortByDate)
+}
+
+function formatExcerpt(content) {
+  const plainTextExcerpt = removeMarkdown(content, {
+    stripListLeaders: true,
+    listUnicodeChar: '',
+    gfm: true,
+    useImgAltText: false,
+  })
+    .replace(/(\r\n|\n|\r)/gm, '')
+    .substring(0, 200)
+    .trimEnd()
+
+  return `${plainTextExcerpt}...`
+}
+
+Index.getInitialProps = async function() {
+  const rawPosts = (context => {
+    const keys = context.keys()
+    const values = keys.map(context)
+    const data = keys.map((key: string, index: number) => {
+      // Create slug from filename
+      const slug = key
+        .replace(/^.*[\\\/]/, '')
+        .split('.')
+        .slice(0, -1)
+        .join('.')
+      const value = values[index]
+      // Parse yaml metadata & markdownbody in document
+      const post = matter(value.default)
+      const formattedContent = formatExcerpt(post.content)
+      return {
+        data: { ...post.data, slug },
+        content: formattedContent,
+      }
+    })
+
+    return data
+  })((require as any).context('../../content/blog', true, /\.md$/))
+
+  const orderedPosts = orderPosts(rawPosts)
+
+  return {
+    posts: orderedPosts,
+  }
+}
+
+export default Index
+
+/**
+ *  STYLES -----------------------------------------------------
+ */
 
 const BlogWrapper = styled(Wrapper)`
   padding-top: 10rem;
@@ -46,6 +117,8 @@ const BlogTitle = styled(({ children, ...styleProps }) => {
   font-size: 1.5rem;
   color: inherit;
   transition: all 180ms ease-out;
+  max-width: 66%;
+  line-height: 1.5;
 
   @media (min-width: 800px) {
     font-size: 2rem;
@@ -84,34 +157,3 @@ const BlogMeta = styled.div`
     max-width: 250px;
   }
 `
-
-Index.getInitialProps = async function(ctx) {
-  const posts = (context => {
-    const keys = context.keys()
-    const values = keys.map(context)
-    const data = keys.map((key: string, index: number) => {
-      // Create slug from filename
-      const slug = key
-        .replace(/^.*[\\\/]/, '')
-        .split('.')
-        .slice(0, -1)
-        .join('.')
-      const value = values[index]
-      // Parse yaml metadata & markdownbody in document
-      const post = matter(value.default)
-      console.log(JSON.stringify(post))
-      return {
-        data: { ...post.data, slug },
-        content: post.content.substring(0, 300),
-      }
-    })
-
-    return data
-  })((require as any).context('../../content/blog', true, /\.md$/))
-
-  return {
-    posts,
-  }
-}
-
-export default Index

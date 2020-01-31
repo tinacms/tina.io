@@ -1,5 +1,4 @@
 import matter from 'gray-matter'
-import ReactMarkdown from 'react-markdown'
 import Link from 'next/link'
 
 import { Layout, Header, MarkdownContent } from '../../components/layout'
