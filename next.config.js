@@ -60,7 +60,6 @@ module.exports = withSvgr({
     })
 
     // TODO: Add docs routes
-    console.log('routes', routes)
     return routes
   },
   webpack(config) {
