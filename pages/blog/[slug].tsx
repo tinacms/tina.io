@@ -1,14 +1,18 @@
 import matter from 'gray-matter'
 import styled, { css } from 'styled-components'
 
-import { Layout, Hero, Wrapper, MarkdownContent } from '../../components/layout'
+import {
+  Layout,
+  Hero,
+  HeroTitle,
+  Wrapper,
+  MarkdownContent,
+} from '../../components/layout'
 
 export default function BlogTemplate(props) {
   return (
     <Layout pathname="/">
-      <Hero>
-        <BlogTitle>{props.post.data.title}</BlogTitle>
-      </Hero>
+      <Hero>{props.post.data.title}</Hero>
       <BlogWrapper>
         <BlogMeta>
           <p>By: {props.post.data.author}</p>
@@ -37,20 +41,6 @@ BlogTemplate.getInitialProps = async function(ctx) {
 const BlogWrapper = styled(Wrapper)`
   padding: 4rem 2rem;
   max-width: 768px;
-`
-
-const BlogTitle = styled(({ children, ...styleProps }) => {
-  return (
-    <div {...styleProps}>
-      <h2 className="h1">{children}</h2>
-    </div>
-  )
-})`
-  h2 {
-    max-width: 12em;
-    text-align: center;
-    margin: 0 auto;
-  }
 `
 
 const BlogMeta = styled.div`

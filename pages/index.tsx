@@ -4,10 +4,15 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { inlineJsonForm } from 'next-tinacms-json'
 
-import { Layout, Hero, ArrowList, Wrapper, Section } from '../components/layout'
-import { Button } from '../components/ui'
-
-const heroVideo = 'v1571425758/tina-hero-demo-v2'
+import {
+  Layout,
+  Hero,
+  HeroTitle,
+  ArrowList,
+  Wrapper,
+  Section,
+} from '../components/layout'
+import { Button, Video } from '../components/ui'
 
 const HomePage = props => {
   const data = props.jsonFile
@@ -20,27 +25,10 @@ const HomePage = props => {
           content="Tina is an open-source site editing toolkit for React-based frameworks — Gatsby & Next.js."
         />
       </Head>
-      <Hero overlap>
-        <HomepageTitle>{data.headline}</HomepageTitle>
+      <Hero overlap narrow>
+        {data.headline}
       </Hero>
-      <HeroVideo>
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster={`https://res.cloudinary.com/forestry-demo/video/upload/so_0/${heroVideo}.jpg`}
-        >
-          <source
-            src={`https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/${heroVideo}.webm`}
-            type="video/webm"
-          />
-          <source
-            src={`https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/${heroVideo}.mp4`}
-            type="video/mp4"
-          />
-        </video>
-      </HeroVideo>
+      <Video src={'v1571425758/tina-hero-demo-v2'} />
       <Section>
         <Wrapper>
           <CtaLayout>
@@ -187,35 +175,6 @@ EditableHomePage.getInitialProps = async function() {
  ** STYLES -------------------------------------------------------
  */
 
-const HomepageTitle = styled(({ children, ...styleProps }) => {
-  return (
-    <div {...styleProps}>
-      <h2 className="h1">{children}</h2>
-    </div>
-  )
-})`
-  h2 {
-    max-width: 9em;
-    text-align: center;
-    margin: 0 auto;
-  }
-`
-
-const HeroVideo = styled.div`
-  display: block;
-  margin: 0 auto;
-  text-align: center;
-  padding: 0 2rem;
-  img,
-  video {
-    margin: 0 auto;
-    filter: drop-shadow(rgba(104, 120, 125, 0.3) 0px 14px 16px);
-    border-radius: 10px;
-    max-width: 934px;
-    width: 100%;
-  }
-`
-
 const CodeExample = styled.code`
   border-radius: 50px;
   background-color: #d4f0ee;
@@ -236,7 +195,7 @@ const CodeExample = styled.code`
   }
 
   span {
-    opacity: 0.5;
+    opacity: 0.3;
   }
 `
 

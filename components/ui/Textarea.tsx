@@ -12,7 +12,7 @@ export const Textarea = styled.textarea`
   text-decoration: none;
   cursor: text;
   width: 100%;
-  padding: 0 16px;
+  padding: 0.75rem 1rem;
   transition: all 85ms ease-out;
   font-family: var(--font-tuner);
   font-size: 16px;

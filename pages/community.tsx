@@ -15,6 +15,7 @@ import TwitterIconSvg from '../public/svg/twitter-icon.svg'
 import GithubIconSvg from '../public/svg/github-icon.svg'
 import SlackIconSvg from '../public/svg/slack-icon.svg'
 import ForumIconSvg from '../public/svg/forum-icon.svg'
+import RichText from '../components/styles/RichText'
 
 function CommunityPage(props) {
   const data = props.jsonFile
@@ -227,6 +228,7 @@ const SocialItem = styled('div')`
     transition: transform 180ms ease-in;
   }
   h5 {
+    margin-bottom: 1rem;
     text-transform: uppercase;
     text-decoration: none;
   }
@@ -240,7 +242,7 @@ const SocialItem = styled('div')`
     width: unset;
     align-items: flex-end;
     h5 {
-      margin-bottom: 0;
+      margin: 0;
     }
     span.dotted-line {
       height: 1px;
@@ -285,6 +287,7 @@ const InfoContent = styled.div`
 `
 
 const InfoText = styled.div`
+  ${RichText}
   margin-bottom: 1.5rem;
   @media (min-width: 800px) {
     flex: 1 0 auto;
@@ -311,6 +314,7 @@ const InfoImage = styled(({ src, ...styleProps }) => {
 `
 
 const FormSection = styled(Section)`
+  ${RichText}
   @media (min-width: 800px) {
     text-align: center;
 
