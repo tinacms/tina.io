@@ -5,14 +5,14 @@ import styled from 'styled-components'
 import { GlobalStyle } from '../styles/GlobalStyle'
 import { Header, Footer } from '../layout'
 
-export const Layout = styled(({ children, darkHeader, ...styleProps }) => {
+export const Layout = styled(({ children, buttonColor, ...styleProps }) => {
   return (
     <div {...styleProps}>
       <Head>
         <link rel="shortcut icon" href="/favicon/favicon.ico" />
       </Head>
       <GlobalStyle />
-      {darkHeader ? <Header darkHeader /> : <Header />}
+      <Header buttonColor={buttonColor} />
       {children}
       <Footer />
     </div>

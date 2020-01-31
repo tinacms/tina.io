@@ -4,11 +4,11 @@ import styled from 'styled-components'
 import { TinaIcon } from '../logo/TinaIcon'
 import { Nav, NavToggle } from './Nav'
 
-export const Header = styled(({ darkHeader, ...styleProps }) => {
+export const Header = styled(({ buttonColor, ...styleProps }) => {
   return (
     <header {...styleProps}>
       <TinaIcon />
-      <Nav darkNav={darkHeader ? true : false} />
+      <Nav buttonColor={buttonColor} />
       <iframe
         src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
         frameBorder="0"
