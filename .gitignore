@@ -34,3 +34,6 @@ examples/**/out
 
 # env variables
 .env
+
+#indices
+indices/out
