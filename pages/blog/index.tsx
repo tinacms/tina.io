@@ -29,9 +29,11 @@ const Index = props => {
   const isLast = currentPage === numPages
   const prevPage =
     currentPage - 1 === 1
-      ? '/blog/'
+      ? '/blog'
       : `/blog/page/${(currentPage - 1).toString()}`
   const nextPage = `/blog/page/${(currentPage + 1).toString()}`
+  const prevPagePath = `${prevPage}/index.js`
+  const nextPagePath = `${nextPage}/index.js`
   const [selectValue, setSelectValue] = useState(currentPage)
   function handleSelectChange(e) {
     e.preventDefault()
@@ -39,9 +41,10 @@ const Index = props => {
     setSelectValue(pageNumber)
     if (pageNumber === '1') {
       /*
-       ** things are wonky when navigating back to blog
+       ** TODO: things are wonky when navigating back to blog
+       ** fix this to work the same as Link as
        */
-      Router.push('/blog/')
+      Router.push('/blog/index.js', '/blog')
     } else {
       Router.push(`/blog/page/${pageNumber}`)
     }
@@ -73,12 +76,12 @@ const Index = props => {
       <Pagination>
         <div className="prev-next">
           {!isFirst && (
-            <Link href={prevPage}>
+            <Link href={prevPagePath} as={prevPage}>
               <p>← Newer</p>
             </Link>
           )}
           {!isLast && (
-            <Link href={nextPage}>
+            <Link href={nextPagePath} as={nextPage}>
               <p>Older →</p>
             </Link>
           )}
@@ -136,6 +139,10 @@ function formatExcerpt(content) {
 
   return `${plainTextExcerpt}...`
 }
+
+/*
+ ** GET INITIAL PROPS ---------------------------------
+ */
 
 Index.getInitialProps = async function(ctx) {
   // grab all md files

@@ -20,7 +20,6 @@ module.exports = withSvgr({
       '/': { page: '/' },
       '/community': { page: '/community' },
       '/teams': { page: '/teams' },
-      '/docs': { page: '/docs' },
     }
 
     /*
@@ -33,7 +32,7 @@ module.exports = withSvgr({
     const postsPerPage = 8
     const numPages = Math.ceil(blogs.length / postsPerPage)
     Array.from({ length: numPages }).forEach((_, i) => {
-      const path = i === 0 ? `/blog/` : `/blog/page/${i + 1}`
+      const path = i === 0 ? `/blog` : `/blog/page/${i + 1}`
       routes[path] = {
         page: '/blog/index',
         query: {
