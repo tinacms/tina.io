@@ -20,10 +20,10 @@ export const Nav = styled(({ darkNav, ...styleProps }) => {
   return (
     <ul {...styleProps}>
       {data &&
-        data.map(({ id, href, label }) => {
+        data.map(({ id, href, label, as }) => {
           return (
             <li key={id}>
-              <Link href={href} passHref>
+              <Link href={href} as={as} passHref>
                 {darkNav ? (
                   <Button as="a" secondary>
                     {label}
