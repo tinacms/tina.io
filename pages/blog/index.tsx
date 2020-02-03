@@ -12,8 +12,8 @@ import {
   MarkdownContent,
   RichTextWrapper,
 } from '../../components/layout'
-import RichText from '../../components/styles/RichText'
 import SmallArrow from '../../public/svg/small-arrow.svg'
+import { type } from 'os'
 
 const Index = props => {
   function formatDate(fullDate) {
@@ -34,25 +34,18 @@ const Index = props => {
   const isFirst = currentPage === 1
   const isLast = currentPage === numPages
   const prevPage =
-    currentPage - 1 === 1
-      ? '/blog'
-      : `/blog/page/${(currentPage - 1).toString()}`
-  const nextPage = `/blog/page/${(currentPage + 1).toString()}`
-  const prevPagePath = `${prevPage}/index.js`
-  const nextPagePath = `${nextPage}/index.js`
+    currentPage - 1 === 1 ? '/blog' : `/blog?page=${currentPage - 1}`
+  const nextPage = `/blog?page=${currentPage + 1}`
   const [selectValue, setSelectValue] = useState(currentPage)
+
   function handleSelectChange(e) {
     e.preventDefault()
     const pageNumber = e.target.value
     setSelectValue(pageNumber)
     if (pageNumber === '1') {
-      /*
-       ** TODO: things are wonky when navigating back to blog
-       ** fix this to work the same as Link as
-       */
       Router.push('/blog/index.js', '/blog')
     } else {
-      Router.push(`/blog/page/${pageNumber}`)
+      Router.push(`/blog?page=${pageNumber}`)
     }
   }
 
@@ -84,12 +77,12 @@ const Index = props => {
       <Pagination>
         <div className="prev-next">
           {!isFirst && (
-            <Link href={prevPagePath} as={prevPage}>
+            <Link href={prevPage}>
               <p>← Newer</p>
             </Link>
           )}
           {!isLast && (
-            <Link href={nextPagePath} as={nextPage}>
+            <Link href={nextPage}>
               <p>Older →</p>
             </Link>
           )}
@@ -152,9 +145,9 @@ function formatExcerpt(content) {
  ** GET INITIAL PROPS ---------------------------------
  */
 
-Index.getInitialProps = async function(ctx) {
+Index.getInitialProps = async function({ query: { page = 1 } }) {
   // grab all md files
-  const rawPosts = (context => {
+  const blogData = (context => {
     const keys = context.keys()
     const values = keys.map(context)
     const data = keys.map((key: string, index: number) => {
@@ -174,18 +167,22 @@ Index.getInitialProps = async function(ctx) {
       }
     })
 
-    return data
+    // for pagination and ordering
+    const postsPerPage = 8
+    const numPages = Math.ceil(keys.length / postsPerPage)
+    const pageIndex = page - 1
+    const orderedPosts = orderPosts(data).slice(
+      pageIndex,
+      pageIndex + postsPerPage
+    )
+
+    return { orderedPosts, numPages }
   })((require as any).context('../../content/blog', true, /\.md$/))
 
-  const orderedPosts = orderPosts(rawPosts)
-
-  // data for pagination set in next.config
-  const { limit, skip, numPages, currentPage } = ctx.query
-  const paginatedPosts = orderedPosts.slice(skip, skip + limit)
   return {
-    posts: paginatedPosts,
-    numPages,
-    currentPage,
+    posts: blogData.orderedPosts,
+    numPages: blogData.numPages,
+    currentPage: Number(page),
   }
 }
 
@@ -202,7 +199,7 @@ const BlogWrapper = styled(Wrapper)`
 
 const BlogTitle = styled(({ children, ...styleProps }) => {
   return (
-    <h3 class {...styleProps}>
+    <h3 className {...styleProps}>
       {children}
     </h3>
   )
@@ -271,6 +268,7 @@ const Pagination = styled.div`
   }
   p {
     margin-bottom: 0;
+    cursor: pointer;
   }
   div.list-numbers {
     display: flex;
