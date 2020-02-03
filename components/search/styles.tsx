@@ -80,6 +80,7 @@ export const IndexContainer = styled.div`
   flex: 1 0 auto;
   overflow-y: auto;
   overflow-x: auto;
+  padding: 1rem 1.25rem 0 1.5rem;
 `
 
 export const HitsResults = styled.div`
@@ -87,15 +88,6 @@ export const HitsResults = styled.div`
   width: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
-  padding: 1rem 1.25rem;
-  overflow: -moz-scrollbars-none;
-  -ms-overflow-style: none;
-  &::-webkit-scrollbar {
-    width: 0 !important;
-  }
-  * {
-    padding: 0;
-  }
 `
 
 export const HitsWrapper = styled.div<HitsWrapperProps>`
@@ -115,9 +107,11 @@ export const HitsWrapper = styled.div<HitsWrapperProps>`
   filter: drop-shadow(1px 2px 18px rgb(0, 0, 0, 12%));
   padding: 0;
   background: white;
+  li {
+    margin: 0 !important;
+    padding: 0.5rem 0;
+  }
   li + li {
-    margin-top: 0.7em;
-    padding-top: 0.7em;
     border-top: 1px solid var(--color-seafoam-dark);
   }
   ul {
@@ -130,16 +124,27 @@ export const HitsWrapper = styled.div<HitsWrapperProps>`
     flex: 0 0 auto;
     position: sticky;
     top: 0;
-    color: var(--color-secondary-dark);
+    color: rgba(0, 0, 0, 0.5);
     h3 {
-      padding: 0.1em 0em;
+      margin: 0;
+      color: var(--color-primary);
+      font-family: var(--font-tuner);
+      text-transform: uppercase;
+      font-size: 1.125rem;
     }
-  }
-  h3 {
-    margin: 0 0 0.5em;
   }
   h4 {
     margin-bottom: 0.3em;
+    cursor: pointer;
+    text-decoration: underline rgba(0, 0, 0, 0.3);
+    transition: all 185ms ease-out;
+
+    &:hover,
+    &:focus {
+      opacity: 1;
+      color: var(--color-primary);
+      text-decoration-color: var(--color-primary);
+    }
   }
   a {
     color: var(--color-primary);
@@ -147,16 +152,21 @@ export const HitsWrapper = styled.div<HitsWrapperProps>`
 `
 
 export const NoResultsLabel = styled.div`
-  padding: 16px 24px;
+  padding: 1rem 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--color-primary);
 `
 
-export const PoweredBy = styled(() => (
-  <span>
+export const PoweredBy = styled(({ ...styleProps }) => (
+  <span {...styleProps}>
     Powered by{` `}
     <a href="https://algolia.com">Algolia</a>
   </span>
 ))`
-  font-size: 0.6em;
-  text-align: end;
+  opacity: 0.5;
+  font-size: 0.8rem;
   padding: 0;
+  display: block;
+  padding: 0.5rem 1.25rem 0.5rem 1.5rem;
 `
