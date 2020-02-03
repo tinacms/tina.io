@@ -26,7 +26,7 @@ const DocSection = (section: DocSection) => {
         <b>{section.title}</b>
       )}
       {(section.items || []).map(item => (
-        <DocSection {...item} />
+        <DocSection key={section.id} {...item} />
       ))}
     </div>
   )
@@ -36,7 +36,11 @@ export default function DocTemplate(props) {
   return (
     <Layout buttonColor={'seafoam'} fixedIcon noFooter>
       <DocsLayout>
-        <DocsNav>{props.docsNav.map(DocSection)}</DocsNav>
+        <DocsNav>
+          {props.docsNav.map(section => (
+            <DocSection key={section.id} {...section} />
+          ))}
+        </DocsNav>
         <DocsContent>
           <RichTextWrapper>
             <Wrapper narrow>
@@ -127,16 +131,11 @@ DocTemplate.getInitialProps = async function(ctx) {
 
   const docsNavData = await import('../../content/pages/toc-doc.json')
 
-  //workaround for json data imported as indexed Obj
-  const docsNav = Object.keys(docsNavData).map(function(key) {
-    return docsNavData[key]
-  })
-
   return {
     doc: {
       data: { ...doc.data, slug: fullSlug },
       content: doc.content,
     },
-    docsNav,
+    docsNav: docsNavData.default,
   }
 }
