@@ -16,7 +16,7 @@ export const NavToggle = styled(({ ...styleProps }) => {
   fill: var(--color-primary);
 `
 
-export const Nav = styled(({ darkNav, ...styleProps }) => {
+export const Nav = styled(({ buttonColor, ...styleProps }) => {
   return (
     <ul {...styleProps}>
       {data &&
@@ -24,8 +24,12 @@ export const Nav = styled(({ darkNav, ...styleProps }) => {
           return (
             <li key={id}>
               <Link href={href} as={as} passHref>
-                {darkNav ? (
+                {buttonColor === 'secondary' ? (
                   <Button as="a" secondary>
+                    {label}
+                  </Button>
+                ) : buttonColor === 'seafoam' ? (
+                  <Button as="a" seafoam>
                     {label}
                   </Button>
                 ) : (
