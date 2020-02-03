@@ -61,23 +61,14 @@ export const Nav = styled(({ buttonColor, noSearch, ...styleProps }) => {
   display: flex;
   justify-content: center;
 
+  li {
+    margin: 0 0.25rem;
+  }
+
   @media (max-width: 799px) {
     li {
       ${Button} {
         font-size: 0.8rem;
-      }
-      &:not(:first-child) {
-        ${Button} {
-          border-top-left-radius: 0;
-          border-bottom-left-radius: 0;
-        }
-      }
-      &:not(:last-child) {
-        ${Button} {
-          border-right: 1px solid rgba(155, 155, 155, 0.15);
-          border-top-right-radius: 0;
-          border-bottom-right-radius: 0;
-        }
       }
     }
   }

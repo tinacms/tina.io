@@ -53,7 +53,7 @@ export const Input = styled.input<InputProps>`
 
 export const SearchContainer = styled.div`
   position: relative;
-  font-size: 1rem;
+  font-size: 0.8rem;
   padding: 0.625rem 0;
   font-family: var(--font-tuner);
   background-color: white;
@@ -69,6 +69,10 @@ export const SearchContainer = styled.div`
     text-decoration: none;
     /* filter: drop-shadow(1px 5px 18px rgb(0, 0, 0, 25%)); */
     transition: filter 250ms ease;
+  }
+
+  @media (min-width: 800px) {
+    font-size: 1rem;
   }
 `
 

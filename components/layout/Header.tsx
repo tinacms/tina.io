@@ -13,7 +13,7 @@ export const Header = styled(({ buttonColor, fixedIcon, ...styleProps }) => {
         src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
         frameBorder="0"
         scrolling="0"
-        width="160px"
+        width="145px"
         height="30px"
       ></iframe>
     </header>
@@ -30,25 +30,25 @@ export const Header = styled(({ buttonColor, fixedIcon, ...styleProps }) => {
     left: 50%;
     transform: translate3d(-50%, -50%, 0);
 
-    @media (min-width: 500px) {
+    @media (min-width: 685px) {
       left: 2rem;
       transform: translate3d(0, -50%, 0);
     }
   }
 
   ${Nav} {
-    @media (max-width: 499px) {
+    @media (max-width: 684px) {
       display: none;
     }
 
-    @media (min-width: 500px) {
+    @media (min-width: 685px) {
       position: absolute;
       right: 1rem;
       top: 50%;
       transform: translate3d(0, -50%, 0);
     }
 
-    @media (min-width: 800px) {
+    @media (min-width: 920px) {
       right: auto;
       left: 50%;
       transform: translate3d(-50%, -50%, 0);
@@ -58,11 +58,11 @@ export const Header = styled(({ buttonColor, fixedIcon, ...styleProps }) => {
   iframe {
     display: none;
 
-    @media (min-width: 800px) {
+    @media (min-width: 1030px) {
       display: block;
       position: absolute;
       top: 50%;
-      right: 1rem;
+      right: 2rem;
       transform: translate3d(0, -50%, 0);
     }
   }
