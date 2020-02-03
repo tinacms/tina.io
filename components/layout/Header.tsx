@@ -3,19 +3,12 @@ import styled, { css } from 'styled-components'
 
 import { TinaIcon } from '../logo/TinaIcon'
 import { Nav, NavToggle } from './Nav'
-import Search from '../search'
-
-const searchIndices = [
-  { name: `Tina-Docs-Next`, title: `Docs`, hitComp: `DocHit` },
-  { name: `Tina-Blogs-Next`, title: `Blog`, hitComp: `BlogHit` },
-]
 
 export const Header = styled(({ buttonColor, fixedIcon, ...styleProps }) => {
   return (
     <header {...styleProps}>
       <TinaIcon />
       <Nav buttonColor={buttonColor} />
-      <Search collapse indices={searchIndices} />
       <iframe
         src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
         frameBorder="0"

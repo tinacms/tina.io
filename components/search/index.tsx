@@ -50,7 +50,7 @@ const useClickOutside = (ref: any, handler: any, events?: any) => {
   })
 }
 
-export default function Search({ indices, collapse }: any) {
+export default function Search({ indices, collapse, color }: any) {
   const ref = createRef()
   const [query, setQuery] = useState(``)
   const [focus, setFocus] = useState(false)

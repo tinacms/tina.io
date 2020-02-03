@@ -5,6 +5,12 @@ import Link from 'next/link'
 import data from '../../content/navigation.json'
 
 import BurgerSvg from '../../public/svg/burger-menu.svg'
+import Search from '../search'
+
+const searchIndices = [
+  { name: `Tina-Docs-Next`, title: `Docs`, hitComp: `DocHit` },
+  { name: `Tina-Blogs-Next`, title: `Blog`, hitComp: `BlogHit` },
+]
 
 export const NavToggle = styled(({ ...styleProps }) => {
   return (
@@ -16,7 +22,7 @@ export const NavToggle = styled(({ ...styleProps }) => {
   fill: var(--color-primary);
 `
 
-export const Nav = styled(({ buttonColor, ...styleProps }) => {
+export const Nav = styled(({ buttonColor, noSearch, ...styleProps }) => {
   return (
     <ul {...styleProps}>
       {data &&
@@ -41,6 +47,11 @@ export const Nav = styled(({ buttonColor, ...styleProps }) => {
             </li>
           )
         })}
+      {!noSearch && (
+        <li>
+          <Search collapse indices={searchIndices} color={buttonColor} />
+        </li>
+      )}
     </ul>
   )
 })`

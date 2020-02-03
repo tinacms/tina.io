@@ -14,7 +14,7 @@ export const Footer = styled(({ ...styleProps }) => {
     <div {...styleProps}>
       <FooterTop>
         <TinaWordmark />
-        <FooterNav />
+        <FooterNav noSearch />
         <FooterSocial>
           <Link href={'/teams'} passHref>
             <Button as="a" white>

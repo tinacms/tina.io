@@ -1,22 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
-const colors = {
-  //Mint Green
-  seafoam: '#E6FAF8',
-  mintChocoChip: '#B4F4E0',
-  greyWhite: '#f4f4f4',
-  greyWhite02: '#E9E9EC',
-  hunterOrange: '#EC4815',
-  burntSienna: '#CE411D',
-  link: '#000',
-  linkHover: '#EC4815',
-  lightPurple: '#302454',
-  darkPurple: '#241748',
-  grey: '#595959',
-  darkGrey: '#404040',
-}
-
 export const Root = styled.div`
   position: relative;
   display: grid;
@@ -26,16 +10,18 @@ export const Root = styled.div`
 export const IconWrapper = styled.div`
   position: absolute;
   right: 0;
-  width: 40px;
-  height: 40px;
-  padding: 7px;
-  fill: ${colors.hunterOrange};
+  width: 44px;
+  height: 44px;
+  fill: var(--color-primary);
   pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   svg {
-    width: 100%;
-    height: auto;
     fill: inherit;
     padding: 0;
+    width: 1.5rem;
+    height: auto;
   }
 `
 
@@ -47,43 +33,41 @@ interface InputProps {
 export const Input = styled.input<InputProps>`
   outline: none;
   border: none;
-  font-size: 1em;
+  width: 2.75rem;
   background: transparent;
   transition: all 150ms ease-out;
-  width: 40px;
   opacity: 0;
-  padding: 0;
+  padding: 0 1.25rem;
   box-sizing: border-box;
   cursor: pointer;
-  color: ${colors.darkPurple};
+  color: inherit;
 
   ${p =>
     p.focus &&
     css`
       width: 12rem;
       opacity: 1;
-      padding: 0 40px 0 1.25rem;
       cursor: text;
     `};
 `
 
 export const SearchContainer = styled.div`
   position: relative;
-  height: 40px;
-  min-width: 40px;
-  border-radius: 40px;
+  font-size: 1rem;
+  padding: 0.625rem 0;
+  font-family: var(--font-tuner);
   background-color: white;
+  color: var(--color-secondary-dark);
   display: flex;
   align-items: center;
-  margin-left: 12px;
   transition: filter 250ms ease;
   border-radius: 100px;
   text-transform: uppercase;
-  filter: drop-shadow(1px 2px 18px rgb(0, 0, 0, 12%));
+  /* filter: drop-shadow(1px 2px 18px rgb(0, 0, 0, 12%)); */
   :hover,
   :focus {
     text-decoration: none;
-    filter: drop-shadow(1px 5px 18px rgb(0, 0, 0, 25%));
+    /* filter: drop-shadow(1px 5px 18px rgb(0, 0, 0, 25%)); */
     transition: filter 250ms ease;
   }
 `
@@ -134,7 +118,7 @@ export const HitsWrapper = styled.div<HitsWrapperProps>`
   li + li {
     margin-top: 0.7em;
     padding-top: 0.7em;
-    border-top: 1px solid ${colors.mintChocoChip};
+    border-top: 1px solid var(--color-seafoam-dark);
   }
   ul {
     list-style: none;
@@ -146,7 +130,7 @@ export const HitsWrapper = styled.div<HitsWrapperProps>`
     flex: 0 0 auto;
     position: sticky;
     top: 0;
-    color: ${colors.darkPurple};
+    color: var(--color-secondary-dark);
     h3 {
       padding: 0.1em 0em;
     }
@@ -158,7 +142,7 @@ export const HitsWrapper = styled.div<HitsWrapperProps>`
     margin-bottom: 0.3em;
   }
   a {
-    color: ${colors.hunterOrange};
+    color: var(--color-primary);
   }
 `
 
