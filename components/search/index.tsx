@@ -61,8 +61,11 @@ export default function Search({ indices, collapse }: any) {
       onSearchStateChange={({ query }) => setQuery(query)}
       root={{ Root, props: {} }}
     >
-      <Input onFocus={() => setFocus(true)} {...{ collapse, focus }} />
-      {query.length > 0 && focus && (
+      <Input
+        onMouseUp={() => setTimeout(() => setFocus(true), 0)} //workaround, otherwise click to open search also closes
+        {...{ collapse, focus }}
+      />
+      {focus && (
         <ClientSideDismissible
           click // call onDismiss if clicking outside of this
           escape // call onDismiss if the user presses escape
@@ -70,41 +73,43 @@ export default function Search({ indices, collapse }: any) {
             setFocus(false)
           }}
         >
-          <HitsWrapper show={true}>
-            <HitsResults>
-              <AllIndicesResults />
-              {indices.map(
-                ({
-                  name,
-                  title,
-                  hitComp,
-                }: {
-                  name: string
-                  title: string
-                  hitComp: any
-                }) => (
-                  <Index key={name} indexName={name}>
-                    <IndexResults>
-                      <IndexContainer>
-                        <header>
-                          <h3>{title}</h3>
-                          <IndexStats />
-                        </header>
-                        {/*
+          {query.length > 0 && (
+            <HitsWrapper show={true}>
+              <HitsResults>
+                <AllIndicesResults />
+                {indices.map(
+                  ({
+                    name,
+                    title,
+                    hitComp,
+                  }: {
+                    name: string
+                    title: string
+                    hitComp: any
+                  }) => (
+                    <Index key={name} indexName={name}>
+                      <IndexResults>
+                        <IndexContainer>
+                          <header>
+                            <h3>{title}</h3>
+                            <IndexStats />
+                          </header>
+                          {/*
                     // @ts-ignore */}
-                        <Hits
-                          hitComponent={hitComponents[hitComp](() =>
-                            setFocus(false)
-                          )}
-                        />
-                      </IndexContainer>
-                    </IndexResults>
-                  </Index>
-                )
-              )}
-              <PoweredBy />
-            </HitsResults>
-          </HitsWrapper>
+                          <Hits
+                            hitComponent={hitComponents[hitComp](() =>
+                              setFocus(false)
+                            )}
+                          />
+                        </IndexContainer>
+                      </IndexResults>
+                    </Index>
+                  )
+                )}
+                <PoweredBy />
+              </HitsResults>
+            </HitsWrapper>
+          )}
         </ClientSideDismissible>
       )}
     </InstantSearch>
