@@ -13,7 +13,6 @@ import {
   RichTextWrapper,
 } from '../../components/layout'
 import SmallArrow from '../../public/svg/small-arrow.svg'
-import { type } from 'os'
 
 const Index = props => {
   function formatDate(fullDate) {
