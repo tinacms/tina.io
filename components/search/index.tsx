@@ -55,21 +55,21 @@ export default function Search({ indices, collapse }: any) {
   )
 
   return (
-    <ClientSideDismissible
-      click // call onDismiss if clicking outside of this
-      escape // call onDismiss if the user presses escape
-      onDismiss={() => {
-        setFocus(false)
-      }}
+    <InstantSearch
+      searchClient={searchClient}
+      indexName={indices[0].name}
+      onSearchStateChange={({ query }) => setQuery(query)}
+      root={{ Root, props: {} }}
     >
-      <InstantSearch
-        searchClient={searchClient}
-        indexName={indices[0].name}
-        onSearchStateChange={({ query }) => setQuery(query)}
-        root={{ Root, props: {} }}
-      >
-        <Input onFocus={() => setFocus(true)} {...{ collapse, focus }} />
-        {query.length > 0 && focus && (
+      <Input onFocus={() => setFocus(true)} {...{ collapse, focus }} />
+      {query.length > 0 && focus && (
+        <ClientSideDismissible
+          click // call onDismiss if clicking outside of this
+          escape // call onDismiss if the user presses escape
+          onDismiss={() => {
+            setFocus(false)
+          }}
+        >
           <HitsWrapper show={true}>
             <HitsResults>
               <AllIndicesResults />
@@ -105,9 +105,9 @@ export default function Search({ indices, collapse }: any) {
               <PoweredBy />
             </HitsResults>
           </HitsWrapper>
-        )}
-      </InstantSearch>
-    </ClientSideDismissible>
+        </ClientSideDismissible>
+      )}
+    </InstantSearch>
   )
 }
 
