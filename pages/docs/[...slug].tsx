@@ -39,24 +39,36 @@ export default function DocTemplate(props) {
   )
 }
 
-DocTemplate.getInitialProps = async function(ctx) {
-  const { slug: slugs } = ctx.query
-  const fullSlug = slugs.join('/')
-  const content = await import(`../../content/docs/${fullSlug}.md`)
+export async function unstable_getStaticProps(ctx) {
+  let { slug: slugs } = ctx.params
+
+  const slug = slugs.join('/')
+  const content = await import(`../../content/docs/${slug}.md`)
   const doc = matter(content.default)
 
   const docsNavData = await import('../../content/pages/toc-doc.json')
-
-  //workaround for json data imported as indexed Obj
+  // workaround for json data imported as indexed Obj
   const docsNav = Object.keys(docsNavData).map(function(key) {
     return docsNavData[key]
   })
 
   return {
-    doc: {
-      data: { ...doc.data, slug: fullSlug },
-      content: doc.content,
+    props: {
+      doc: {
+        data: { ...doc.data, slug },
+        content: doc.content,
+      },
+      docsNav,
     },
-    docsNav,
   }
+}
+
+export async function unstable_getStaticPaths() {
+  const fg = require('fast-glob')
+  const contentDir = './content/docs/'
+  const files = await fg(`${contentDir}**/*.md`)
+  return files.map(file => {
+    const path = file.substring(contentDir.length, file.length - 3)
+    return { params: { slug: path.split('/') } }
+  })
 }

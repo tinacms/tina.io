@@ -22,7 +22,6 @@ module.exports = withSvgr({
       '/community': { page: '/community' },
       '/teams': { page: '/teams' },
       '/blog': { page: '/blog' },
-      '/docs': { page: '/docs' },
     }
     //get all .md files in the blogs dir
     const blogs = glob.sync('content/blog/**/*.md')
