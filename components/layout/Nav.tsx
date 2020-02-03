@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Button } from '../ui'
 import Link from 'next/link'
 import data from '../../content/navigation.json'
@@ -22,7 +22,7 @@ export const NavToggle = styled(({ ...styleProps }) => {
   fill: var(--color-primary);
 `
 
-export const Nav = styled(({ buttonColor, noSearch, ...styleProps }) => {
+export const Nav = styled(({ color, noSearch, ...styleProps }) => {
   return (
     <ul {...styleProps}>
       {data &&
@@ -30,26 +30,16 @@ export const Nav = styled(({ buttonColor, noSearch, ...styleProps }) => {
           return (
             <li key={id}>
               <Link href={href} passHref>
-                {buttonColor === 'secondary' ? (
-                  <Button as="a" secondary>
-                    {label}
-                  </Button>
-                ) : buttonColor === 'seafoam' ? (
-                  <Button as="a" seafoam>
-                    {label}
-                  </Button>
-                ) : (
-                  <Button as="a" white>
-                    {label}
-                  </Button>
-                )}
+                <Button as="a" variable>
+                  {label}
+                </Button>
               </Link>
             </li>
           )
         })}
       {!noSearch && (
-        <li>
-          <Search collapse indices={searchIndices} color={buttonColor} />
+        <li key="nav-search">
+          <Search collapse indices={searchIndices} />
         </li>
       )}
     </ul>
@@ -78,4 +68,23 @@ export const Nav = styled(({ buttonColor, noSearch, ...styleProps }) => {
       margin: 0 0.5rem;
     }
   }
+
+  --color-background: white;
+  --color-foreground: var(--color-primary);
+
+  ${props =>
+    props.color &&
+    props.color === 'secondary' &&
+    css`
+      --color-background: var(--color-secondary);
+      --color-foreground: var(--color-primary);
+    `};
+
+  ${props =>
+    props.color &&
+    props.color === 'seafoam' &&
+    css`
+      --color-background: var(--color-seafoam);
+      --color-foreground: var(--color-primary);
+    `};
 `

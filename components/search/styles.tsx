@@ -56,18 +56,16 @@ export const SearchContainer = styled.div`
   font-size: 0.8rem;
   padding: 0.625rem 0;
   font-family: var(--font-tuner);
-  background-color: white;
-  color: var(--color-secondary-dark);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
   display: flex;
   align-items: center;
   transition: filter 250ms ease;
   border-radius: 100px;
   text-transform: uppercase;
-  /* filter: drop-shadow(1px 2px 18px rgb(0, 0, 0, 12%)); */
   :hover,
   :focus {
     text-decoration: none;
-    /* filter: drop-shadow(1px 5px 18px rgb(0, 0, 0, 25%)); */
     transition: filter 250ms ease;
   }
 
@@ -109,6 +107,7 @@ export const HitsWrapper = styled.div<HitsWrapperProps>`
   max-width: 35rem;
   border-radius: 24px;
   filter: drop-shadow(1px 2px 18px rgb(0, 0, 0, 12%));
+  color: var(--color-secondary);
   padding: 0;
   background: white;
   li {
@@ -156,7 +155,7 @@ export const HitsWrapper = styled.div<HitsWrapperProps>`
 `
 
 export const NoResultsLabel = styled.div`
-  padding: 1rem 0;
+  padding: 1rem 1.25rem 0 1.5rem;
   font-size: 1.25rem;
   font-weight: bold;
   color: var(--color-primary);

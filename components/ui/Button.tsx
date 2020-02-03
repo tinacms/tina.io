@@ -74,6 +74,17 @@ export const Button = styled.button`
         color: white;
       }
     `};
+
+  ${props =>
+    props.variable &&
+    css`
+      background-color: var(--color-background);
+      color: var(--color-foreground);
+      &:focus {
+        background-color: var(--color-background);
+        color: var(--color-foreground);
+      }
+    `};
 `
 
 export const ButtonGroup = styled.div`

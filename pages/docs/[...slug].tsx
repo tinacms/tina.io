@@ -34,7 +34,7 @@ const DocSection = (section: DocSection) => {
 
 export default function DocTemplate(props) {
   return (
-    <Layout buttonColor={'seafoam'} fixedIcon noFooter>
+    <Layout color={'seafoam'} fixedIcon noFooter>
       <DocsLayout>
         <DocsNav>{props.docsNav.map(DocSection)}</DocsNav>
         <DocsContent>
