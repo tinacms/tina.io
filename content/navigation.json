@@ -3,28 +3,24 @@
     "id": "docs",
     "label": "Docs",
     "href": "/docs/getting-started/introduction",
-    "external": false,
-    "as": "/docs/getting-started/introduction"
+    "external": false
   },
   {
     "id": "blog",
     "label": "Blog",
-    "href": "/blog/index.tsx",
-    "external": false,
-    "as": "/blog"
+    "href": "/blog",
+    "external": false
   },
   {
     "id": "community",
     "label": "Community",
     "href": "/community",
-    "external": false,
-    "as": "/community"
+    "external": false
   },
   {
     "id": "teams",
     "label": "Teams",
     "href": "/teams",
-    "external": false,
-    "as": "/teams"
+    "external": false
   }
 ]
