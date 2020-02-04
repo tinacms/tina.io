@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 
 import { TinaIcon } from '../logo/TinaIcon'
@@ -9,24 +9,30 @@ interface HeaderProps {
   fixedIcon?: boolean
 }
 
-export const Header = styled(
-  ({ color, fixedIcon, ...styleProps }: HeaderProps) => {
-    return (
-      <header {...styleProps}>
-        <TinaIcon />
-        <NavToggle />
-        <Nav color={color} />
-        <iframe
-          src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
-          frameBorder="0"
-          scrolling="0"
-          width="145px"
-          height="30px"
-        ></iframe>
-      </header>
-    )
-  }
-)`
+export const Header = ({ color, fixedIcon, ...styleProps }: HeaderProps) => {
+  const [open, setOpen] = useState(false)
+  return (
+    <StyledHeader open={open} fixedIcon={fixedIcon} {...styleProps}>
+      <TinaIcon />
+      <NavToggle onClick={() => setOpen(!open)} />
+      <Nav color={color} open={open} />
+      <iframe
+        src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
+        frameBorder="0"
+        scrolling="0"
+        width="145px"
+        height="30px"
+      ></iframe>
+    </StyledHeader>
+  )
+}
+
+interface StyledHeaderProps {
+  fixedIcon?: boolean
+  open: boolean
+}
+
+const StyledHeader = styled.header<StyledHeaderProps>`
   position: absolute;
   width: 100%;
   z-index: 100;
@@ -49,6 +55,7 @@ export const Header = styled(
     top: 50%;
     left: 1rem;
     transform: translate3d(0, -50%, 0);
+    z-index: 200;
 
     @media (min-width: 685px) {
       display: none;
@@ -56,10 +63,6 @@ export const Header = styled(
   }
 
   ${Nav} {
-    @media (max-width: 684px) {
-      display: none;
-    }
-
     @media (min-width: 685px) {
       position: absolute;
       right: 1rem;
@@ -97,4 +100,28 @@ export const Header = styled(
         }
       }
     `};
+
+  @media (max-width: 684px) {
+    &:after {
+      content: '';
+      display: block;
+      position: fixed;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--color-secondary);
+      transition: all 180ms ease-out;
+      opacity: 0;
+    }
+
+    ${props =>
+      props.open &&
+      css`
+        &:after {
+          opacity: 0.7;
+        }
+      `};
+  }
 `

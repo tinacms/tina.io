@@ -19,6 +19,9 @@ export const NavToggle = styled(({ ...styleProps }) => {
     </button>
   )
 })`
+  background: transparent;
+  border: none;
+  outline: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,6 +36,7 @@ export const NavToggle = styled(({ ...styleProps }) => {
 
 interface NavProps {
   color?: 'white' | 'secondary' | 'seafoam'
+  open: boolean
 }
 
 export const HeaderNav = styled(({ color, ...styleProps }: NavProps) => {
@@ -64,6 +68,43 @@ export const HeaderNav = styled(({ color, ...styleProps }: NavProps) => {
 
   li {
     margin: 0 0.25rem;
+  }
+
+  @media (max-width: 684px) {
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    padding-top: 6rem;
+    height: 100%;
+    width: 70%;
+    background: white;
+    transform: translate3d(-100%, 0, 0);
+    transition: all 140ms ease-in;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: visible;
+
+    li {
+      display: block;
+    }
+
+    ${Button} {
+      font-size: 1.5rem !important;
+      color: var(--color-primary);
+      background: transparent;
+    }
+
+    ${props =>
+      props.open &&
+      css`
+        transition: all 240ms ease-out;
+        transform: translate3d(0, 0, 0);
+
+        &:after {
+          opacity: 0.7;
+        }
+      `};
   }
 
   @media (max-width: 799px) {
