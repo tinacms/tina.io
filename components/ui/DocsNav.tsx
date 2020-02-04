@@ -19,6 +19,11 @@ const NavSectionTitle = styled.span<NavSectionTitleProps>`
   text-decoration: none;
   transition: all 180ms ease-out;
 
+  &:hover,
+  &:focus {
+    color: var(--color-primary);
+  }
+
   ${props =>
     props.open &&
     css`
