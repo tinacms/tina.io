@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
-import addToMailchimp from '../../utils/addToMailchimp'
 
+import { addToMailchimp } from '../../utils'
 import { Input, Button } from '../ui'
 
 interface EmailFormProps {
