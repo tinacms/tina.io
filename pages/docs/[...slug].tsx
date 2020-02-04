@@ -69,7 +69,7 @@ DocTemplate.getInitialProps = async function(ctx) {
   const content = await import(`../../content/docs/${fullSlug}.md`)
   const doc = matter(content.default)
 
-  const docsNavData = await import('../../content/pages/toc-doc.json')
+  const docsNavData = await import('../../content/toc-doc.json')
 
   return {
     doc: {
