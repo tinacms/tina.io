@@ -14,7 +14,8 @@
     "start": "serve out",
     "format": "prettier --write \"src/**/*.{ts,tsx,md}\"",
     "lint": "tslint 'src/**/*.{ts,tsx}' -p tsconfig.json",
-    "create-indices": "tsc --project ./indices/tsconfig.json --outDir ./indices/out && node ./indices/out/indices/createIndices.js"
+    "create-indices": "tsc --project ./indices/tsconfig.json --outDir ./indices/out && node ./indices/out/indices/createIndices.js",
+    "deploy": "yarn build && yarn export"
   },
   "author": "Forestry.io",
   "license": "MIT",

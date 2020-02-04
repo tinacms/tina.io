@@ -16,14 +16,16 @@ module.exports = withSvgr({
   },
   exportTrailingSlash: true,
   exportPathMap: async function() {
-    // TODO: test if the docs and blog routes grab the index file
     const routes = {
       '/': { page: '/' },
       '/community': { page: '/community' },
       '/teams': { page: '/teams' },
       '/blog': { page: '/blog' },
-      '/docs': { page: '/docs' },
     }
+
+    /*
+     ** Export blog routes
+     */
     //get all .md files in the blogs dir
     const blogs = glob.sync('content/blog/**/*.md')
 
@@ -42,7 +44,6 @@ module.exports = withSvgr({
     })
 
     // TODO: Add docs routes
-
     return routes
   },
   webpack(config) {
