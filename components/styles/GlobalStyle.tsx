@@ -139,7 +139,7 @@ export const GlobalStyle = createGlobalStyle`
     --color-secondary-dark: #241748;
     --color-seafoam: #E6FAF8;
     --color-seafoam-dark: #B4F4E0;
-    --color-light: #f4f4f4;
+    --color-light: #FAFAFA;
     --color-light-dark: #E9E9EC;
     --color-grey: #595959;
     --color-grey-dark: #404040;

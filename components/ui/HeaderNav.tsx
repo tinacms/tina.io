@@ -78,7 +78,7 @@ export const HeaderNav = styled(({ color, ...styleProps }: NavProps) => {
     padding-top: 6rem;
     height: 100%;
     width: 70%;
-    background: white;
+    background: var(--color-light);
     transform: translate3d(-100%, 0, 0);
     transition: all 140ms ease-in;
     flex-direction: column;
@@ -87,12 +87,15 @@ export const HeaderNav = styled(({ color, ...styleProps }: NavProps) => {
 
     li {
       display: block;
+      margin-bottom: 0.5rem;
     }
 
     ${Button} {
       font-size: 1.5rem !important;
       color: var(--color-primary);
       background: transparent;
+      padding: 0 0.5rem;
+      margin: 0 0.75rem;
     }
 
     ${props =>

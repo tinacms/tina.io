@@ -52,10 +52,9 @@ const StyledHeader = styled.header<StyledHeaderProps>`
   }
 
   ${NavToggle} {
-    position: absolute;
-    top: 50%;
+    position: fixed;
+    top: 1.5rem;
     left: 1rem;
-    transform: translate3d(0, -50%, 0);
     z-index: 200;
 
     @media (min-width: 685px) {

@@ -160,7 +160,7 @@ export const DocsNav = styled(({ navItems, ...styleProps }) => {
   left: 0;
   transform: translate3d(-100%, 0, 0);
   list-style-type: none;
-  background-color: #fafafa;
+  background-color: var(--color-light);
 
   ::-webkit-scrollbar {
     display: none;
