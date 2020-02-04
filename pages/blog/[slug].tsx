@@ -1,11 +1,10 @@
 import matter from 'gray-matter'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { formatDate } from '../../utils'
 
 import {
   Layout,
   Hero,
-  HeroTitle,
   Wrapper,
   MarkdownContent,
   RichTextWrapper,
