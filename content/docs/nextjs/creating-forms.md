@@ -42,7 +42,7 @@ The `getInitialProps` function is run by Next when the page is requested to load
 
 ## Adding a Form with _useLocalForm_
 
-<tip>Update react-tinacms version:0.9.0: The previous hook `useCMSForm` used to create custom forms is now the same as `useLocalForm`</tip>
+> Update react-tinacms version:0.9.0: The previous hook `useCMSForm` used to create custom forms is now the same as `useLocalForm`
 
 To add forms to the Tina sidebar, we'll use the `useLocalForm` hook inside our page component. Using this hook, we will configure the following:
 

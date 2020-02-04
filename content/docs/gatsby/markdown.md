@@ -68,7 +68,7 @@ There are three ways to register remark forms with the CMS, depending on the com
 
 All of these options can only take data (transformed by `gatsby-transformer-remark`) from a `markdownRemark` query. If you need more information on using Markdown in Gatsby, refer to [this documentation](https://www.gatsbyjs.org/docs/adding-markdown-pages/).
 
-<tip>If you're adding Tina to a page component in Gatsby, skip to [`remarkForm`](http://tinacms.org/docs/gatsby/markdown#3-the-higher-order-component-remarkform).</tip>
+> If you're adding Tina to a page component in Gatsby, skip to [`remarkForm`](http://tinacms.org/docs/gatsby/markdown#3-the-higher-order-component-remarkform).
 
 ### 1. The Hook: useLocalRemarkForm
 
@@ -234,7 +234,7 @@ There are 3 steps to making a Markdown file editable with `remarkForm`:
 2. Wrap your template with `remarkForm`
 3. Add `...TinaRemark` to the GraphQL query
 
-<tip>Required fields used to be queried individually: `id`, `fileRelativePath`, `rawFrontmatter`, & `rawMarkdownBody`. The same fields are now being queried via `...TinaRemark`</tip>
+> Required fields used to be queried individually: `id`, `fileRelativePath`, `rawFrontmatter`, & `rawMarkdownBody`. The same fields are now being queried via `...TinaRemark`
 
 **Example: src/templates/blog-post.js**
 

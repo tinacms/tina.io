@@ -81,7 +81,7 @@ Notice the use of [getInitialProps](https://nextjs.org/docs#fetching-data-and-co
 
 **This is your bread and butter for retrieving page-level data in Next.** You can use `getInitialProps` fetch data from an external api, or as seen in this example, you can get ahold of local data sources.
 
-<tip>**Note:** this method only works for components defined in the `pages/` directory, i.e., `page` components. You cannot use this method on child components, but you can pass down the data received to these child components, as you see being done with `Layout` in the example above.</tip>
+> **Note:** this method only works for components defined in the `pages/` directory, i.e., `page` components. You cannot use this method on child components, but you can pass down the data received to these child components, as you see being done with `Layout` in the example above.
 
 `Layout` is being passed props such as the site title and description. If you look at the data in `src/data/config.json`, you’ll see the values these props are referencing. Go ahead and change the site title to your project name, then watch it update in the header.
 

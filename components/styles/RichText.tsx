@@ -117,7 +117,6 @@ const RichText = css`
 
   p {
     font-size: 1.125rem;
-    line-height: 1.5;
     color: var(--color-secondary-dark);
 
     img {
@@ -144,6 +143,17 @@ const RichText = css`
       color: var(--color-primary);
       text-decoration-color: var(--color-primary);
     }
+  }
+
+  blockquote {
+    display: block;
+    font-size: 1.125rem;
+    background-color: var(--color-seafoam);
+    border: 1px solid var(--color-seafoam-dark);
+    border-left-width: 6px;
+    border-radius: 3px;
+    padding: 1em;
+    margin: 0.5em 0;
   }
 
   hr {

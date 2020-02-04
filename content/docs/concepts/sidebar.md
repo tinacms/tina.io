@@ -48,7 +48,7 @@ For example, in your `gatsby-config.js` file...
     },
   }...
 ```
-<tip>These display options were updated from `fixed` and `float`. Consider `fixed` to equal `displace` & `float` to equal `overlay`. The updates are backwards compatible; the older options will still work.</tip>
+> These display options were updated from `fixed` and `float`. Consider `fixed` to equal `displace` & `float` to equal `overlay`. The updates are backwards compatible; the older options will still work.
 
 ## Hiding Sidebar in Production
 
@@ -103,7 +103,7 @@ class MyApp extends App {
 }
 ```
 
-<tip>_Note:_ This is an intermediate workaround that we plan on enhancing further to extract Tina code during production builds.</tip>
+> _Note:_ This is an intermediate workaround that we plan on enhancing further to extract Tina code during production builds.
 
 ## Customizing the Sidebar Theme
 

@@ -20,7 +20,7 @@ consumes:
 - [Content Creator Plugins](https://tinacms.org/docs/gatsby/creating-new-files#1-add-content-creator-plugin)
 - Screen Plugins
 
-<tip>**Please note:** creating or consuming custom plugins is considered an advanced use-case. It is recommended for most folks to use Tina's predefined plugins mentioned above.</tip>
+> **Please note:** creating or consuming custom plugins is considered an advanced use-case. It is recommended for most folks to use Tina's predefined plugins mentioned above.
 
 ## Defining Plugins
 

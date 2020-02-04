@@ -122,7 +122,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
       "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
       "Helvetica Neue", sans-serif;
-    line-height: 1.5;
+    line-height: 1.6;
     width: 100%;
     overflow-x: hidden;
     height: 100%;
