@@ -1,26 +1,28 @@
 import matter from 'gray-matter'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
+import { formatDate } from '../../utils'
 
 import {
   Layout,
   Hero,
-  HeroTitle,
   Wrapper,
   MarkdownContent,
   RichTextWrapper,
 } from '../../components/layout'
 
 export default function BlogTemplate(props) {
+  const frontmatter = props.post.data
+  const markdownBody = props.post.content
   return (
     <Layout pathname="/">
-      <Hero>{props.post.data.title}</Hero>
+      <Hero>{frontmatter.title}</Hero>
       <BlogWrapper>
         <RichTextWrapper>
           <BlogMeta>
-            <p>By: {props.post.data.author}</p>
-            <p>{props.post.data.date}</p>
+            <p>By: {frontmatter.author}</p>
+            <p>{formatDate(frontmatter.date)}</p>
           </BlogMeta>
-          <MarkdownContent escapeHtml={false} content={props.post.content} />
+          <MarkdownContent escapeHtml={false} content={markdownBody} />
         </RichTextWrapper>
       </BlogWrapper>
     </Layout>
