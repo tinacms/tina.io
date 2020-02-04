@@ -22,6 +22,7 @@
     "@tinacms/api-git": "^0.5.4",
     "@tinacms/git-client": "^0.4.1",
     "@types/react-instantsearch-dom": "^5.2.6",
+    "@types/styled-components": "^4.4.2",
     "algoliasearch": "^3.35.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
