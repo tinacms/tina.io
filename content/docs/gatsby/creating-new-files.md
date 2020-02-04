@@ -88,15 +88,15 @@ const CreatePostPlugin = new RemarkCreatorPlugin({
       component: 'text',
       label: 'Filename',
       placeholder: 'content/blog/hello-world/index.md',
-      description: 'The full path to the new Markdown file, relative to the repository root.',
+      description:
+        'The full path to the new Markdown file, relative to the repository root.',
     },
   ],
 })
 ```
 
->  The `createRemarkButton` function is deprecated as of `gatsby-tinacms-remark: 0.4.0`.
-This is a function that served the same purpose as the `RemarkCreatorPlugin` class. Below is an example of `createRemarkButton` in use.
-
+> The `createRemarkButton` function is deprecated as of `gatsby-tinacms-remark: 0.4.0`.
+> This is a function that served the same purpose as the `RemarkCreatorPlugin` class. Below is an example of `createRemarkButton` in use.
 
 ```javascript
 import { createRemarkButton } from 'gatsby-tinacms-remark'
@@ -132,7 +132,8 @@ const CreatePostPlugin = new JsonCreatorPlugin({
       component: 'text',
       label: 'Filename',
       placeholder: 'content/data/puppies.json',
-      description: 'The full path to the new Markdown file, relative to the repository root.',
+      description:
+        'The full path to the new Markdown file, relative to the repository root.',
     },
   ],
 })
@@ -214,7 +215,8 @@ const CreatePostPlugin = new RemarkCreatorPlugin({
       component: 'text',
       label: 'Filename',
       placeholder: 'content/blog/hello-world/index.md',
-      description: 'The full path to the new markdown file, relative to the repository root.',
+      description:
+        'The full path to the new markdown file, relative to the repository root.',
     },
   ],
   filename: form => {
@@ -262,7 +264,9 @@ The `RemarkCreatorPlugin` must be given a `filename` function that calculates th
 ```javascript
 const CreatePostPlugin = new RemarkCreatorPlugin({
   label: 'Create Post',
-  fields: [{ name: 'title', label: 'Title', component: 'text', required: true }],
+  fields: [
+    { name: 'title', label: 'Title', component: 'text', required: true },
+  ],
   filename: form => `content/blog/${form.title}.md`,
 })
 ```
@@ -272,7 +276,9 @@ const CreatePostPlugin = new RemarkCreatorPlugin({
 ```javascript
 const CreatePostPlugin = new RemarkCreatorPlugin({
   label: 'Create Post',
-  fields: [{ name: 'title', label: 'Title', component: 'text', required: true }],
+  fields: [
+    { name: 'title', label: 'Title', component: 'text', required: true },
+  ],
   filename: form => `content/blog/${form.title}/index.md`,
 })
 ```
@@ -284,7 +290,9 @@ const CreatePostPlugin = new RemarkCreatorPlugin({
 ```javascript
 const CreatePostPlugin = new RemarkCreatorPlugin({
   label: 'Create Post',
-  fields: [{ name: 'title', label: 'Title', component: 'text', required: true }],
+  fields: [
+    { name: 'title', label: 'Title', component: 'text', required: true },
+  ],
   filename: form => {
     let slug = form.title.replace(/\s+/, '-').toLowerCase()
 
@@ -302,7 +310,9 @@ The `RemarkCreatorPlugin` function can be given a `frontmatter` function that re
 ```javascript
 const CreatePostPlugin = new RemarkCreatorPlugin({
   label: 'Create Post',
-  fields: [{ name: 'title', label: 'Title', component: 'text', required: true }],
+  fields: [
+    { name: 'title', label: 'Title', component: 'text', required: true },
+  ],
   filename: form => {
     let slug = form.title.replace(/\s+/, '-').toLowerCase()
 
@@ -324,7 +334,9 @@ The `RemarkCreatorPlugin` function can be given a `body` function that returns t
 ```javascript
 const CreatePostPlugin = new RemarkCreatorPlugin({
   label: 'Create Post',
-  fields: [{ name: 'title', label: 'Title', component: 'text', required: true }],
+  fields: [
+    { name: 'title', label: 'Title', component: 'text', required: true },
+  ],
   filename: form => {
     let slug = form.title.replace(/\s+/, '-').toLowerCase()
 
@@ -346,7 +358,7 @@ Head to the template file where you may have a Tina form setup. Read more on set
 import { remarkForm, DeleteAction } from 'gatsby-tinacms-remark'
 
 const BlogTemplateOptions = {
-  actions: [ DeleteAction ],
+  actions: [DeleteAction],
   fields: [
     //...
   ],

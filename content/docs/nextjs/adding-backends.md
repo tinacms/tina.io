@@ -16,7 +16,7 @@ consumes:
     details: Creates cms instance with TinaCMS
 ---
 
-The `<Tina>` component makes it possible to attach [forms](../concepts/forms.md) to the Tina sidebar, but we need to wire up a [backend](../concepts/backends.md) in order for content changes to be persisted anywhere. Let's set up the default git backend.
+The `<Tina>` component makes it possible to attach [forms](/docs/concepts/forms) to the Tina sidebar, but we need to wire up a [backend](/docs/concepts/backends) in order for content changes to be persisted anywhere. Let's set up the default git backend.
 
 The git backend consists of two parts:
 
@@ -150,3 +150,4 @@ class MyApp extends App {
 
 export default MyApp
 ```
+
