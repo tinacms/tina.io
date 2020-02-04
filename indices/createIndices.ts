@@ -16,22 +16,25 @@ const mapContentToIndex = (
   }
 }
 
+const saveIndex = async (client: any, indexName: string, data: any) => {
+  const index = client.initIndex(indexName)
+  const result = await index.saveObjects(index)
+  console.log(`updated ${indexName}: ${result.objectIDs}`)
+}
+
 const createIndices = async () => {
   const client = algoliasearch(
     process.env.ALGOLIA_APP_ID,
     process.env.ALGOLIA_ADMIN_KEY
   )
-  const index = client.initIndex('Tina-Docs-test')
-
   const docs = await fetchDocs()
-  index.saveObjects(docs.map(mapContentToIndex)).then(({ objectIDs }) => {
-    console.log(`created docs index: ${objectIDs}`)
-  })
+  await saveIndex(client, 'Tina-Docs-Next', docs.map(mapContentToIndex))
 
   const blogs = await fetchBlogs()
-  index.saveObjects(blogs.map(mapContentToIndex)).then(({ objectIDs }) => {
-    console.log(`created blogs index: ${objectIDs}`)
-  })
+  await saveIndex(client, 'Tina-Blogs-Next', blogs.map(mapContentToIndex))
 }
 
-createIndices()
+createIndices().catch(e => {
+  console.error(e.message)
+  process.kill(1)
+})
