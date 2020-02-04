@@ -11,6 +11,7 @@ consumes:
 
 The `textarea` field represents a multi-line text input. It should be used for content values that are long strings: for example, a page description.
 
+![tinacms-textarea-field](/fields/textarea.png)
 
 ## Definition
 

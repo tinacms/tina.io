@@ -11,7 +11,7 @@ consumes:
     details: Demonstrates useRemarkForm usage
   - file: /packages/gatsby-tinacms-remark/src/remark-fragment.ts
     details: Explains what the fragment adds
-  - file: /packages/@tinacms/core/src/cms-forms/form.ts
+  - file: /packages/@tinacms/forms/src/form.ts
     details: Explains form options interface
 ---
 
@@ -27,6 +27,8 @@ The [`gatsby-transformer-remark`](https://github.com/gatsbyjs/gatsby/tree/master
 
 - `gatsby-tinacms-remark`: Provides hooks and components for creating Remark forms.
 - `gatsby-tinacms-git`: Extends the gatsby development server to write changes to the local filesystem.
+
+> This guide assumes your Gatsby site is already setup to use Markdown. Check out the [Gatsby Docs](https://www.gatsbyjs.org/docs/adding-markdown-pages/) to learn how to use Markdown in your site.
 
 ## Install the Git & Markdown Packages
 
@@ -62,9 +64,9 @@ module.exports = {
 
 There are three ways to register remark forms with the CMS, depending on the component:
 
-- [`useLocalRemarkForm`](http://tinacms.org/docs/gatsby/markdown#1-the-hook-code-classlanguage-textuseremarkformremark-values-formcode) - A [React Hook](https://reactjs.org/docs/hooks-intro.html) — useful for any function component. You can use this with components that source data from a [static query](https://www.gatsbyjs.org/docs/static-query/#how-staticquery-differs-from-page-query) using Gatsby's `useStaticQuery` hook.
-- [`RemarkForm`](http://tinacms.org/docs/gatsby/markdown#2-the-render-props-component-code-classlanguage-textremarkformcode) — A [Render Props](https://reactjs.org/docs/render-props.html#use-render-props-for-cross-cutting-concerns) component — useful for any class component. Can be used with components sourcing data from a [static query](https://www.gatsbyjs.org/docs/static-query/#how-staticquery-differs-from-page-query) using Gatsby's [`StaticQuery`](https://www.gatsbyjs.org/docs/static-query/) render props component.
-- [`remarkForm`](http://tinacms.org/docs/gatsby/markdown#3-the-higher-order-component-code-classlanguage-textremarkformcode) — A [Higher-Order Component](https://reactjs.org/docs/higher-order-components.html) — useful for [page components](https://www.gatsbyjs.org/docs/recipes/#creating-pages-automatically) (function or class), that source data from a [page query](https://www.gatsbyjs.org/docs/page-query/).
+- [`useLocalRemarkForm`](https://tinacms.org/docs/gatsby/markdown/#1-the-hook-uselocalremarkform) - A [React Hook](https://reactjs.org/docs/hooks-intro.html) — useful for any function component. You can use this with components that source data from a [static query](https://www.gatsbyjs.org/docs/static-query/#how-staticquery-differs-from-page-query) using Gatsby's `useStaticQuery` hook.
+- [`RemarkForm`](https://tinacms.org/docs/gatsby/markdown/#2-the-render-props-component-remarkform) — A [Render Props](https://reactjs.org/docs/render-props.html#use-render-props-for-cross-cutting-concerns) component — useful for any class component. Can be used with components sourcing data from a [static query](https://www.gatsbyjs.org/docs/static-query/#how-staticquery-differs-from-page-query) using Gatsby's [`StaticQuery`](https://www.gatsbyjs.org/docs/static-query/) render props component.
+- [`remarkForm`](https://tinacms.org/docs/gatsby/markdown/#3-the-higher-order-component-remarkform) — A [Higher-Order Component](https://reactjs.org/docs/higher-order-components.html) — useful for [page components](https://www.gatsbyjs.org/docs/recipes/#creating-pages-automatically) (function or class), that source data from a [page query](https://www.gatsbyjs.org/docs/page-query/).
 
 All of these options can only take data (transformed by `gatsby-transformer-remark`) from a `markdownRemark` query. If you need more information on using Markdown in Gatsby, refer to [this documentation](https://www.gatsbyjs.org/docs/adding-markdown-pages/).
 
@@ -91,19 +93,18 @@ This hook connects the `markdownRemark` data with Tina to be made editable. It i
 
 ```javascript
 /*
-** example component --> src/components/Title.js
-*/
+ ** example component --> src/components/Title.js
+ */
 
 // 1. import useLocalRemarkForm
 import { useLocalRemarkForm } from 'gatsby-tinacms-remark'
 import { useStaticQuery } from 'gatsby'
 
-const Title = (data) => {
-
+const Title = data => {
   // 2. Add required GraphQL fragment
   const data = useStaticQuery(graphql`
     query TitleQuery {
-      markdownRemark(fields: {slug: {eq: "song-of-myself"}}) {
+      markdownRemark(fields: { slug: { eq: "song-of-myself" } }) {
         ...TinaRemark
         frontmatter {
           title
@@ -113,7 +114,7 @@ const Title = (data) => {
   `)
 
   // 3. Call the hook and pass in the data
-  const [ markdownRemark ] = useLocalRemarkForm(data.markdownRemark)
+  const [markdownRemark] = useLocalRemarkForm(data.markdownRemark)
 
   return <h1>{markdownRemark.frontmatter.title}</h1>
 }
@@ -140,8 +141,8 @@ You can use this with both page and non-page components in Gatsby. Below is an e
 
 ```javascript
 /*
-** example component --> src/components/Title.js
-*/
+ ** example component --> src/components/Title.js
+ */
 import { StaticQuery, graphql } from 'gatsby'
 
 // 1. import RemarkFrom
@@ -149,42 +150,46 @@ import { RemarkForm } from 'gatsby-tinacms-remark'
 
 class Title extends React.Component {
   render() {
-    return <StaticQuery
-              // 2. add ...TinaRemark fragment to query
-              query ={graphql`
-                query TitleQuery {
-                  markdownRemark(fields: {slug: {eq: "song-of-myself"}}) {
-                    ...TinaRemark
-                    frontmatter {
-                      title
-                    }
-                  }
-                }
-              `}
-              render = { data => (
-                /*
-                ** 3. Return RemarkForm, pass in the props
-                **    and then return the JSX this component
-                **    should render
-                */
-                <RemarkForm
-                  remark = {data.markdownRemark}
-                  render = {({ markdownRemark }) => {
-                    return <h1>{ markdownRemark.frontmatter.title }</h1>
-                }}
-              />)}
-            />
+    return (
+      <StaticQuery
+        // 2. add ...TinaRemark fragment to query
+        query={graphql`
+          query TitleQuery {
+            markdownRemark(fields: { slug: { eq: "song-of-myself" } }) {
+              ...TinaRemark
+              frontmatter {
+                title
+              }
+            }
+          }
+        `}
+        render={data => (
+          /*
+           ** 3. Return RemarkForm, pass in the props
+           **    and then return the JSX this component
+           **    should render
+           */
+          <RemarkForm
+            remark={data.markdownRemark}
+            render={({ markdownRemark }) => {
+              return <h1>{markdownRemark.frontmatter.title}</h1>
+            }}
+          />
+        )}
+      />
+    )
   }
 }
 
 export default Title
 ```
+
 Here is another example using `RemarkForm` with a page component:
 
 ```js
 /*
-** src/templates/blog-post.js
-*/
+ ** src/templates/blog-post.js
+ */
 
 // 1. import RemarkForm
 import { RemarkForm } from '@tinacms/gatsby-tinacms-remark'
@@ -192,10 +197,10 @@ import { RemarkForm } from '@tinacms/gatsby-tinacms-remark'
 class BlogPostTemplate extends React.Component {
   render() {
     /*
-    ** 2. Return RemarkForm, pass in markdownRemark
-    **    as props and return the jsx this component
-    **    should render
-    */
+     ** 2. Return RemarkForm, pass in markdownRemark
+     **    as props and return the jsx this component
+     **    should render
+     */
     return (
       <RemarkForm
         remark={this.props.data.markdownRemark}
@@ -327,8 +332,8 @@ The `remarkForm` HOC and `useLocalRemarkForm` hook both accept an optional `conf
 
 ```jsx
 /*
-** src/templates/blog-post.js
-*/
+ ** src/templates/blog-post.js
+ */
 
 import { remarkForm } from 'gatsby-tinacms-remark'
 
@@ -370,7 +375,6 @@ export default remarkForm(BlogPostTemplate, BlogPostForm)
 import { useLocalRemarkForm } from 'gatsby-tinacms-remark'
 
 function BlogPostTemplate(props) {
-
   // 1. Define the form
   const BlogPostForm = {
     label: 'Blog Post',
@@ -391,7 +395,10 @@ function BlogPostTemplate(props) {
   }
 
   // 2. Pass the form as the second argument
-  const [ markdownRemark ] = useLocalRemarkForm(props.markdownRemark, BlogPostForm)
+  const [markdownRemark] = useLocalRemarkForm(
+    props.markdownRemark,
+    BlogPostForm
+  )
   return (
     <>
       <h1>{markdownRemark.frontmatter.title}</h1>
@@ -418,13 +425,13 @@ class BlogPostTemplate extends React.Component {
         render={({ markdownRemark }) => {
           return (
             <>
-             <h1>{markdownRemark.frontmatter.title}</h1>
+              <h1>{markdownRemark.frontmatter.title}</h1>
               <p>{markdownRemark.frontmatter.description}</p>
             </>
           )
         }}
-        label = 'Blog Post'
-        fields = {[
+        label="Blog Post"
+        fields={[
           {
             label: 'Title',
             name: 'frontmatter.title',
@@ -445,3 +452,42 @@ class BlogPostTemplate extends React.Component {
 
 export default BlogPostTemplate
 ```
+
+## Avoiding Errors Caused by Empty Fields
+
+If a value is empty from a source file, for example an empty string, Tina will delete the entire key-value pair from the file. This will cause Gatsby to throw a GraphQL error, since it's trying to query a field that doesn't exist. If you're editing in Tina and you completely delete the text from a field, you may see this error.
+
+This may not be a problem if you have a query that is running over numerous files with a similar data shape. Let's say you have a collection of recipes, and they all have the same frontmatter data. The recipe pages are generated from a template where this query lives. If a key-value pair gets deleted from one recipe file, the query will still run since there are other files that still have the populated value.
+
+However, if you have a single source file for a page, you will run into issues because this is the only instance of the data shape. If the value is deleted, then GraphQL doesn't know what field it's querying.
+
+To work around this, we need to create either a dummy file or manually override the parse value in the field object by passing in an empty string.
+
+### Option 1: Override the parse value
+
+```js
+/*
+** Override the parse value
+** in the field definition object
+*/
+
+fields: [
+  {
+    label: "Favorite Food",
+    name: "frontmatter.fav_food",
+    component: "text",
+    // If there's no value, return empty string
+    parse(value) {
+      return value || ""
+    },
+  },...
+]
+```
+
+This option will provide an empty string if no value exists, so the frontmatter key/value pair will not get fully deleted from the source file.
+
+### Option 2: Creating a Dummy File
+
+This second option involves **creating a dummy source file** with the same shape of data in your real source files, but filled with dummy values. This works best when you're using a template to generate numerous pages.
+
+> Check-out this approach implemented in Tina Grande: the [dummy file](https://github.com/tinacms/tina-starter-grande/blob/master/content/pages/dummy.json), the [other content files files](https://github.com/tinacms/tina-starter-grande/tree/master/content/pages), and the [query](https://github.com/tinacms/tina-starter-grande/blob/master/src/templates/page.js#L136).

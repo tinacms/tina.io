@@ -11,7 +11,7 @@ consumes:
   - file: /packages/@tinacms/fields/src/Wysiwyg/Wysiwyg.tsx
     details: TinaField uses Wysiwyg component for inline editing
   - file: /packages/@tinacms/form-builder/src/Form.tsx
-    details: Depends on TinaField accepting compponent & name, shows example
+    details: 'Depends on TinaField accepting compponent & name, shows example'
 ---
 
 **Inline editing** refers to the ability to edit content directly on your site's page, as opposed to editing within the CMS sidebar.
@@ -20,9 +20,11 @@ consumes:
 
 Creating an inline editing experience for Remark content only requires a few extra steps. Note that users will still be able to edit via the sidebar when inline editing is configured.
 
-### 1. Replace remarkForm with liveRemarkForm
+### 1. Replace remarkForm with inlineRemarkForm
 
-If you followed the [editing markdown in Gatsby](/docs/gatsby/markdown#editing-markdown-content) guide, you used the `remarkForm` function to attach the CMS to your page template. Once you've added some inline fields into your template, all you have to do is replace the call to `remarkForm` with a call to `liveRemarkForm`
+If you followed the [editing markdown in Gatsby](/docs/gatsby/markdown#editing-markdown-content) guide, you used the `remarkForm` function to attach the CMS to your page template. Once you've added some inline fields into your template, all you have to do is replace the call to `remarkForm` with a call to `inlineRemarkForm`
+
+> `liveRemarkForm` is deprecated in `gatsby-tinacms-remark` for versions >= 0.6.5. It is recommended to use `inlineRemarkForm` instead.
 
 **Before**
 
@@ -30,7 +32,10 @@ If you followed the [editing markdown in Gatsby](/docs/gatsby/markdown#editing-m
 import { remarkForm } from 'gatsby-tinacms-remark'
 
 const Template = ({ data }) => (
-  <section class="content" dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}></section>
+  <section
+    class="content"
+    dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
+  ></section>
 )
 
 export default remarkForm(Template)
@@ -39,13 +44,16 @@ export default remarkForm(Template)
 **After**
 
 ```jsx
-import { liveRemarkForm } from 'gatsby-tinacms-remark'
+import { inlineRemarkForm } from 'gatsby-tinacms-remark'
 
 const Template = ({ data }) => (
-  <section class="content" dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}></section>
+  <section
+    class="content"
+    dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
+  ></section>
 )
 
-export default liveRemarkForm(Template)
+export default inlineRemarkForm(Template)
 ```
 
 ### 2. Add Inline Fields
@@ -57,48 +65,59 @@ In the following example, we wrap the `section` that renders the Markdown conten
 **Before**
 
 ```jsx
-import { liveRemarkForm } from 'gatsby-tinacms-remark'
+import { inlineRemarkForm } from 'gatsby-tinacms-remark'
 
 const Template = ({ data }) => (
-  <section class="content" dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}></section>
+  <section
+    class="content"
+    dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
+  ></section>
 )
 
-export default liveRemarkForm(Template)
+export default inlineRemarkForm(Template)
 ```
 
 **After**
 
 ```jsx
-import { liveRemarkForm } from 'gatsby-tinacms-remark'
+import { inlineRemarkForm } from 'gatsby-tinacms-remark'
 import { Wysiwyg } from '@tinacms/fields'
 import { TinaField } from '@tinacms/form-builder'
 
 const Template = ({ data }) => (
   <TinaField name="rawMarkdownBody" Component={Wysiwyg}>
-    <section class="content" dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}></section>
+    <section
+      class="content"
+      dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
+    ></section>
   </TinaField>
 )
 
-export default liveRemarkForm(Template)
+export default inlineRemarkForm(Template)
 ```
 
 ### 3. Trigger Edit Mode
 
-When your template is processed through the `liveRemarkForm` function, it will have the properties `isEditing` and `setIsEditing` that you can use to create a trigger for activating inline editing mode.
+When your template is processed through the `inlineRemarkForm` function, it will have the properties `isEditing` and `setIsEditing` that you can use to create a trigger for activating inline editing mode.
 
 ```jsx
-import { liveRemarkForm } from 'gatsby-tinacms-remark'
+import { inlineRemarkForm } from 'gatsby-tinacms-remark'
 import { Wysiwyg } from '@tinacms/fields'
 import { TinaField } from '@tinacms/form-builder'
 
 const Template = ({ data, isEditing, setIsEditing }) => (
   <TinaField name="rawMarkdownBody" Component={Wysiwyg}>
-    <section class="content" dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}></section>
-    <button onClick={() => setIsEditing(p => !p)}>{isEditing ? 'Preview' : 'Edit'}</button>
+    <section
+      class="content"
+      dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
+    ></section>
+    <button onClick={() => setIsEditing(p => !p)}>
+      {isEditing ? 'Preview' : 'Edit'}
+    </button>
   </TinaField>
 )
 
-export default liveRemarkForm(Template)
+export default inlineRemarkForm(Template)
 ```
 
 For the time being, users will still need to open the CMS sidebar in order to save.

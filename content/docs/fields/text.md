@@ -10,6 +10,8 @@ consumes:
 
 The `text` field represents a single line text input. It should be used for content values that are short strings: for example, a page title.
 
+![tinacms-text-field](/fields/text.png)
+
 ## Definition
 
 Below is an example of how a `text` field could be defined in a Gatsby remark form. [Read more on passing in form field options](/docs/gatsby/markdown#customizing-remark-forms).
