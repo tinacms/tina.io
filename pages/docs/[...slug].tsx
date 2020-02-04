@@ -60,14 +60,6 @@ const DocsContent = styled.div`
   h2,
   .h2 {
     font-size: 1.75rem;
-
-    @media (min-width: 800px) {
-      font-size: 3rem;
-    }
-
-    @media (min-width: 1200px) {
-      font-size: 2.5rem;
-    }
   }
 `
 
