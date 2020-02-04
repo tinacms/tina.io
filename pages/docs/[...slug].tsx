@@ -1,16 +1,19 @@
+import Link from 'next/link'
 import matter from 'gray-matter'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
+
 import {
   Layout,
-  Header,
   MarkdownContent,
   RichTextWrapper,
   Wrapper,
+  Pagination,
 } from '../../components/layout'
-
-import { DocsNav, NavSection } from '../../components/ui/DocsNav'
+import { DocsNav } from '../../components/ui/DocsNav'
 
 export default function DocTemplate(props) {
+  const frontmatter = props.doc.data
+  const markdownBody = props.doc.content
   return (
     <Layout color={'seafoam'} fixedIcon noFooter>
       <DocsLayout>
@@ -18,12 +21,13 @@ export default function DocTemplate(props) {
         <DocsContent>
           <RichTextWrapper>
             <Wrapper narrow>
-              <h1>{props.doc.data.title}</h1>
+              <h1>{frontmatter.title}</h1>
               <hr />
-              <MarkdownContent content={props.doc.content} />
+              <MarkdownContent content={markdownBody} />
             </Wrapper>
           </RichTextWrapper>
         </DocsContent>
+        <Pagination prevPage={props.prevPage} nextPage={props.nextPage} />
       </DocsLayout>
     </Layout>
   )
@@ -70,6 +74,12 @@ DocTemplate.getInitialProps = async function(ctx) {
   const doc = matter(content.default)
 
   const docsNavData = await import('../../content/toc-doc.json')
+  const nextDocPage =
+    doc.data.next &&
+    matter((await import(`../../content${doc.data.next}.md`)).default)
+  const prevDocPage =
+    doc.data.prev &&
+    matter((await import(`../../content${doc.data.prev}.md`)).default)
 
   return {
     doc: {
@@ -77,5 +87,13 @@ DocTemplate.getInitialProps = async function(ctx) {
       content: doc.content,
     },
     docsNav: docsNavData.default,
+    nextPage: {
+      slug: doc.data.next,
+      title: nextDocPage && nextDocPage.data.title,
+    },
+    prevPage: {
+      slug: doc.data.prev,
+      title: prevDocPage && prevDocPage.data.title,
+    },
   }
 }
