@@ -16,6 +16,7 @@ export const Header = ({ color, fixedIcon, ...styleProps }: HeaderProps) => {
       <TinaIcon />
       <NavToggle onClick={() => setOpen(!open)} />
       <Nav color={color} open={open} />
+      <MenuOverlay open={open} onClick={() => setOpen(false)} />
       <iframe
         src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
         frameBorder="0"
@@ -100,28 +101,33 @@ const StyledHeader = styled.header<StyledHeaderProps>`
         }
       }
     `};
+`
+
+interface MenuOverlay {
+  open: boolean
+}
+
+const MenuOverlay = styled.div<MenuOverlay>`
+  display: none;
 
   @media (max-width: 684px) {
-    &:after {
-      content: '';
-      display: block;
-      position: fixed;
-      z-index: -1;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: var(--color-secondary);
-      transition: all 180ms ease-out;
-      opacity: 0;
-    }
+    pointer-events: none;
+    display: block;
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-secondary);
+    transition: all 180ms ease-out;
+    opacity: 0;
 
     ${props =>
       props.open &&
       css`
-        &:after {
-          opacity: 0.7;
-        }
+        opacity: 0.7;
+        pointer-events: all;
       `};
   }
 `
