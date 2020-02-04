@@ -17,6 +17,7 @@ const NavSectionTitle = styled.span<NavSectionTitleProps>`
   padding: 0.5rem 3.5rem 0.5rem 1.5rem;
   color: var(--color-secondary);
   text-decoration: none;
+  transition: all 180ms ease-out;
 
   ${props =>
     props.open &&
@@ -29,14 +30,26 @@ const SubNav = styled.ul`
   list-style-type: none;
   margin: 0px;
   background: white;
-  border-top: 1px solid var(--color-light-dark);
-  border-bottom: 1px solid var(--color-light-dark);
-  padding: 0.5rem 0;
+  padding: 0;
+  overflow: hidden;
+  transition: all 180ms ease-out;
+  box-shadow: inset 0 1px 0 var(--color-light-dark),
+    inset 0 -1px 0 var(--color-light-dark);
 
   ${NavSectionTitle} {
     font-size: 0.9375rem;
     text-transform: uppercase;
     padding: 0.3rem 1.5rem 0.3rem 2rem;
+  }
+
+  li:first-child {
+    ${NavSectionTitle} {
+      padding-top: 0.75rem;
+    }
+  }
+
+  li:last-child {
+    padding-bottom: 0.75rem;
   }
 `
 
@@ -47,6 +60,7 @@ interface NavItemProps {
 const NavItem = styled.li<NavItemProps>`
   position: relative;
   cursor: pointer;
+  user-select: none;
 
   svg {
     position: absolute;
@@ -56,17 +70,19 @@ const NavItem = styled.li<NavItemProps>`
     width: 1.25rem;
     height: auto;
     fill: var(--color-grey);
+    transition: all 180ms ease-out;
   }
 
   ${SubNav} {
-    display: none;
+    max-height: 0;
   }
 
   ${props =>
     props.open &&
     css`
       ${SubNav} {
-        display: block;
+        max-height: 40rem;
+        transition: all 180ms ease-in;
       }
 
       svg {
