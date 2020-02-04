@@ -34,7 +34,11 @@ const createIndices = async () => {
   await saveIndex(client, 'Tina-Blogs-Next', blogs.map(mapContentToIndex))
 }
 
-createIndices().catch(e => {
-  console.error(e.message)
-  process.kill(1)
-})
+createIndices()
+  .then(() => {
+    console.log('indices created')
+  })
+  .catch(e => {
+    console.error(e)
+    process.kill(1)
+  })
