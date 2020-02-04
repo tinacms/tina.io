@@ -4,21 +4,28 @@ import styled, { css } from 'styled-components'
 import { TinaIcon } from '../logo/TinaIcon'
 import { Nav, NavToggle } from './Nav'
 
-export const Header = styled(({ color, fixedIcon, ...styleProps }) => {
-  return (
-    <header {...styleProps}>
-      <TinaIcon />
-      <Nav color={color} />
-      <iframe
-        src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
-        frameBorder="0"
-        scrolling="0"
-        width="145px"
-        height="30px"
-      ></iframe>
-    </header>
-  )
-})`
+interface HeaderProps {
+  color?: 'white' | 'secondary' | 'seafoam'
+  fixedIcon?: boolean
+}
+
+export const Header = styled(
+  ({ color, fixedIcon, ...styleProps }: HeaderProps) => {
+    return (
+      <header {...styleProps}>
+        <TinaIcon />
+        <Nav color={color} />
+        <iframe
+          src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
+          frameBorder="0"
+          scrolling="0"
+          width="145px"
+          height="30px"
+        ></iframe>
+      </header>
+    )
+  }
+)`
   position: absolute;
   width: 100%;
   z-index: 100;

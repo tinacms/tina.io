@@ -22,7 +22,12 @@ export const NavToggle = styled(({ ...styleProps }) => {
   fill: var(--color-primary);
 `
 
-export const Nav = styled(({ color, noSearch, ...styleProps }) => {
+interface NavProps {
+  color?: 'white' | 'secondary' | 'seafoam'
+  noSearch?: boolean
+}
+
+export const Nav = styled(({ color, noSearch, ...styleProps }: NavProps) => {
   return (
     <ul {...styleProps}>
       {data &&
