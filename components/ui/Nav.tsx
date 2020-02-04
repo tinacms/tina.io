@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Button } from '../ui'
+import { Button } from '.'
 import Link from 'next/link'
 import data from '../../content/navigation.json'
 
@@ -19,7 +19,16 @@ export const NavToggle = styled(({ ...styleProps }) => {
     </button>
   )
 })`
-  fill: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  svg {
+    fill: var(--color-primary);
+    width: 2rem;
+    height: 2rem;
+  }
 `
 
 interface NavProps {

@@ -18,17 +18,18 @@ Below is an example of how a `date` field could be defined in a Gatsby remark fo
 ```javascript
 const BlogPostForm = {
   fields: [
-   {
+    {
       label: 'Date',
       name: 'rawFrontmatter.date',
       component: 'date',
-      dateFormat: "MMMM DD YYYY",
-      timeFormat: false
+      dateFormat: 'MMMM DD YYYY',
+      timeFormat: false,
     },
     // ...
   ],
 }
 ```
+
 ## Options
 
 This field plugin uses [`react-datettime`](https://www.npmjs.com/package/react-datetime) under the hood.
@@ -43,13 +44,14 @@ interface DateConfig extends DatetimepickerProps {
   timeFormat?: boolean | string // Moment date format
 }
 ```
+
 #### Tina Options
 
- - `name`: The path to some value in the data being edited.
- - `component`: The name of the React component that should be used to edit this field. Available field component types are [defined here](/docs/concepts/fields#field-types)
- - `label`: A human readable label for the field. This label displays in the sidebar and is optional. If no label is provided, the sidebar will default to the name.
- - `description`: An optional description that expands on the purpose of the field or prompts a specific action.
+- `name`: The path to some value in the data being edited.
+- `component`: The name of the React component that should be used to edit this field. Available field component types are [defined here](/docs/concepts/fields#field-types)
+- `label`: A human readable label for the field. This label displays in the sidebar and is optional. If no label is provided, the sidebar will default to the name.
+- `description`: An optional description that expands on the purpose of the field or prompts a specific action.
 
- #### Additional Options
+#### Additional Options
 
 Any extra properties added to the the `date` field definition will be passed along to the [`react-datettime`](https://www.npmjs.com/package/react-datetime) component. [Moment.js](https://momentjs.com/docs/#/displaying/format/) format is used. See the full list of options [here](https://www.npmjs.com/package/react-datetime#api).

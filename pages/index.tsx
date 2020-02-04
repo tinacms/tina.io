@@ -8,12 +8,11 @@ import {
   Layout,
   Hero,
   HeroTitle,
-  ArrowList,
   Wrapper,
   Section,
   RichTextWrapper,
 } from '../components/layout'
-import { Button, Video } from '../components/ui'
+import { Button, Video, ArrowList } from '../components/ui'
 
 const HomePage = props => {
   const data = props.jsonFile

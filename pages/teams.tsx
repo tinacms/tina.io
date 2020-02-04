@@ -3,13 +3,8 @@ import styled from 'styled-components'
 import { inlineJsonForm } from 'next-tinacms-json'
 import Head from 'next/head'
 
-import {
-  Layout,
-  Wrapper,
-  Section,
-  ArrowList,
-  RichTextWrapper,
-} from '../components/layout'
+import { Layout, Wrapper, Section, RichTextWrapper } from '../components/layout'
+import { ArrowList } from '../components/ui'
 import { TeamsForm } from '../components/forms'
 
 function TeamsPage(props) {
