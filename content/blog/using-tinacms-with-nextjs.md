@@ -44,7 +44,7 @@ The best way to get a feel for how Tina works is to use it. We hope that by the 
 
 This tutorial will show you how to install and **configure Tina for editing content on a simple markdown-based blog** that was created in last week’s post. If you want to dig into how the base blog was made, read [Part I](https://tinacms.org/blog/simple-markdown-blog-nextjs/) of this series.
 
-<tip>Jump ahead to see the [final repo here](https://github.com/kendallstrautman/brevifolia-next-tinacms). Or check out the [Tina + Next.js documentation](https://tinacms.org/docs/nextjs/overview) here </tip>
+> Jump ahead to see the [final repo here](https://github.com/kendallstrautman/brevifolia-next-tinacms). Or check out the [Tina + Next.js documentation](https://tinacms.org/docs/nextjs/overview) here 
 
 ### Some Background 🏜
 
@@ -163,7 +163,7 @@ Then in your package.json file, add this script:
 
 This will have Next use your custom server code instead if its default development server. Take a look at the [Next.js custom server docs](https://nextjs.org/docs#custom-server-and-routing) and [Tina's Next.js docs](/docs/nextjs/adding-backends) for more information.
 
-<tip>In the [example repo](https://github.com/kendallstrautman/brevifolia-nextjs), the pages and site components live in a `src` directory. If, in your project, these files live in the root, the code to retrieve the Next.js application would look something like this: `const app = next({ dev })`</tip>
+> In the [example repo](https://github.com/kendallstrautman/brevifolia-nextjs), the pages and site components live in a `src` directory. If, in your project, these files live in the root, the code to retrieve the Next.js application would look something like this: `const app = next({ dev })`
 
 ### Connecting Back & Front 🖇
 
@@ -403,7 +403,7 @@ If all went well, your blog posts will now be editable by Tina. Let's see it in 
 
 Start up the dev server by running `yarn develop`, and open up a blog post in the browser. Go ahead and make edits, and then check the source file in a text editor. If you keep the browser and code editor open side-by-side, you should be able to watch the changes reflect in real time in both places!
 
-<tip> **Troubleshooting Tip**: If you’re only seeing changes update in the browser, but not immediately writing to the file system, **make sure you are using the correct script** that initiates both the next dev server and the git api via `concurrently`. </tip>
+>  **Troubleshooting Tip**: If you’re only seeing changes update in the browser, but not immediately writing to the file system, **make sure you are using the correct script** that initiates both the next dev server and the git api via `concurrently`. 
 
 ### Next Steps 🚶‍♀️
 

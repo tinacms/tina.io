@@ -94,9 +94,9 @@ const CreatePostPlugin = new RemarkCreatorPlugin({
 })
 ```
 
-<tip> The `createRemarkButton` function is deprecated as of `gatsby-tinacms-remark: 0.4.0`.
+>  The `createRemarkButton` function is deprecated as of `gatsby-tinacms-remark: 0.4.0`.
 This is a function that served the same purpose as the `RemarkCreatorPlugin` class. Below is an example of `createRemarkButton` in use.
-</tip>
+
 
 ```javascript
 import { createRemarkButton } from 'gatsby-tinacms-remark'
@@ -226,7 +226,7 @@ const CreatePostPlugin = new RemarkCreatorPlugin({
 export default withPlugin(BlogIndex, CreatePostPlugin)
 ```
 
-<tip>NOTE: No changes need to be made to the `BlogIndex` component itself.</tip>
+> NOTE: No changes need to be made to the `BlogIndex` component itself.
 
 ### Creating Content
 
@@ -279,7 +279,7 @@ const CreatePostPlugin = new RemarkCreatorPlugin({
 
 **Example 3: Slugify Name**
 
-<tip>The [`slugify`](https://www.npmjs.com/package/slugify) package is also great for this usecase.</tip>
+> The [`slugify`](https://www.npmjs.com/package/slugify) package is also great for this usecase.
 
 ```javascript
 const CreatePostPlugin = new RemarkCreatorPlugin({

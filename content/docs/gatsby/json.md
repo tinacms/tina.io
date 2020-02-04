@@ -113,7 +113,7 @@ There are two approaches to registering local JSON forms with Tina. The approach
 1. [`useLocalJsonForm`](#useLocalJsonForm): A [Hook](https://reactjs.org/docs/hooks-intro.html) used when the template is a function.
 2. [`JsonForm`](#JsonForm): A [Render Props](https://reactjs.org/docs/render-props.html#use-render-props-for-cross-cutting-concerns) component to use when the template is a class component.
 
-<tip>Nov 18, 2019: The hook for creating a local form changed from `useJsonForm` 👉 `useLocalJsonForm`</tip>
+> Nov 18, 2019: The hook for creating a local form changed from `useJsonForm` 👉 `useLocalJsonForm`
 
 ### useLocalJsonForm
 
@@ -238,9 +238,9 @@ The `useLocalJsonForm` hook accepts an optional `config` object for overriding t
   - `label`: A human readable label for the field.
   - `description`: An optional description that expands on the purpose of the field or prompts a specific action.
 
-<tip>
+> 
 NOTE: there may be additional properties specific to each field, but the above are the rudimentary properties of every field. Check the `Fields` section of the docs for particulars on the properties for each field.
-</tip>
+
 
 ```js
 import { useLocalJsonForm } from 'gatsby-tinacms-json'

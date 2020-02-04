@@ -178,7 +178,7 @@ export default withPlugin(Layout, CreateBlogPlugin)
 
 Start up your development server (`gatsby develop`) and you should see a blue plus (+) icon in the top menu of the sidebar. Click it and you’ll see the `label` you set in your plugin configuration. Try to create a new file! See what happens.
 
-<tip>**Troubleshooting Tip:** If you don't see the icon, check if the component where you added the plugin is actively rendered.</tip>
+> **Troubleshooting Tip:** If you don't see the icon, check if the component where you added the plugin is actively rendered.
 
 ## 3. Customize The Create Form
 
