@@ -2,7 +2,7 @@ import React from 'react'
 import ReactMarkdown from 'react-markdown/with-html'
 // import ReactMarkdown from 'react-markdown'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { prism } from 'react-syntax-highlighter/dist/cjs/styles/prism'
+import CodeStyle from '../styles/Code'
 
 interface MarkdownContentProps {
   content: string
@@ -12,7 +12,7 @@ interface MarkdownContentProps {
 
 function WithCodeStyles({ language, value }) {
   return (
-    <SyntaxHighlighter language={language} style={prism}>
+    <SyntaxHighlighter language={language} style={CodeStyle}>
       {value}
     </SyntaxHighlighter>
   )
