@@ -20,6 +20,7 @@ fetchDocs().then(docs => {
     })
     .catch(err => {
       console.log(`failed creating docs index: ${err}`)
+      throw err
     })
 })
 
@@ -30,7 +31,8 @@ fetchBlogs().then(blogs => {
       console.log(`created blogs index: ${objectIDs}`)
     })
     .catch(err => {
-      console.log(`failed creating blogs index: ${err}`)
+      console.error(`failed creating blogs index: ${err}`)
+      throw err
     })
 })
 
