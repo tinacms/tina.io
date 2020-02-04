@@ -1,6 +1,10 @@
 import styled, { css } from 'styled-components'
 
-export const Button = styled.button`
+interface ButtonProps {
+  color?: 'white' | 'primary' | 'secondary' | 'seafoam' | 'variable'
+}
+
+export const Button = styled.button<ButtonProps>`
   font-size: 1rem;
   border-radius: 2rem;
   cursor: pointer;
@@ -41,7 +45,7 @@ export const Button = styled.button`
   }
 
   ${props =>
-    props.white &&
+    props.color === 'white' &&
     css`
       background-color: white;
       &:focus {
@@ -52,7 +56,7 @@ export const Button = styled.button`
     `};
 
   ${props =>
-    props.primary &&
+    props.color === 'primary' &&
     css`
       background-color: var(--color-primary);
       color: white;
@@ -64,7 +68,7 @@ export const Button = styled.button`
     `};
 
   ${props =>
-    props.secondary &&
+    props.color === 'secondary' &&
     css`
       background-color: var(--color-secondary);
       color: var(--color-primary);
@@ -76,7 +80,7 @@ export const Button = styled.button`
     `};
 
   ${props =>
-    props.variable &&
+    props.color === 'variable' &&
     css`
       background-color: var(--color-background);
       color: var(--color-foreground);

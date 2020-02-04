@@ -39,7 +39,7 @@ const HomePage = props => {
               </h2>
               <CtaBar>
                 <Link href={'/docs/getting-started/introduction/'} passHref>
-                  <Button as="a" primary>
+                  <Button as="a" color="primary">
                     Get Started
                   </Button>
                 </Link>
@@ -65,7 +65,7 @@ const HomePage = props => {
           </Wrapper>
         </Section>
 
-        <Section seafoam>
+        <Section color="seafoam">
           <Wrapper>
             <SetupLayout>
               <div>
@@ -77,7 +77,7 @@ const HomePage = props => {
                   ))}
                 </ArrowList>
                 <Link href={'/docs/getting-started/introduction/'} passHref>
-                  <Button as="a" primary>
+                  <Button as="a" color="primary">
                     Get Started
                   </Button>
                 </Link>

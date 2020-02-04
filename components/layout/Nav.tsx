@@ -30,7 +30,7 @@ export const Nav = styled(({ color, noSearch, ...styleProps }) => {
           return (
             <li key={id}>
               <Link href={href} passHref>
-                <Button as="a" variable>
+                <Button as="a" color="variable">
                   {label}
                 </Button>
               </Link>
