@@ -10,7 +10,7 @@ export function TeamsForm(props: any) {
   const [email, setEmail] = useState('')
 
   async function postForm(data: any) {
-    const hubspotFormID = process.env.HUBSPOT_FORM_ID
+    const hubspotFormID = process.env.HUBSPOT_TEAMS_FORM_ID
     const hubspotPortalID = process.env.HUBSPOT_PORTAL_ID
 
     if (hubspotFormID && hubspotPortalID) {

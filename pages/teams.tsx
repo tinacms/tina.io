@@ -34,7 +34,7 @@ function TeamsPage(props) {
                 </ArrowList>
               </TeamsContent>
               <TeamsFormWrapper>
-                <TeamsForm hubspotFormID={process.env.GATSBY_HUBSPOT_FORM_ID} />
+                <TeamsForm hubspotFormID={process.env.HUBSPOT_TEAMS_FORM_ID} />
               </TeamsFormWrapper>
             </TeamsGrid>
           </RichTextWrapper>
