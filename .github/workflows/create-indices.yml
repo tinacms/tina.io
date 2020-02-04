@@ -1,7 +1,9 @@
 name: Create Indices
 
-on: [push]
-
+on:
+  push:
+    branches:
+      - master
 jobs:
   create_indices:
     runs-on: ubuntu-latest
