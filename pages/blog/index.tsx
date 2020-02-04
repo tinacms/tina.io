@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import Router from 'next/router'
-import matter from 'gray-matter'
 import styled from 'styled-components'
-import removeMarkdown from 'remove-markdown'
+import matter from 'gray-matter'
 
+import { orderPosts, formatExcerpt, formatDate } from '../../utils'
 import {
   Layout,
   Wrapper,
@@ -15,17 +15,6 @@ import {
 import SmallArrow from '../../public/svg/small-arrow.svg'
 
 const Index = props => {
-  function formatDate(fullDate) {
-    const date = new Date(fullDate)
-    const dateOptions = {
-      formatMatcher: 'best fit',
-      month: 'long',
-      year: 'numeric',
-      day: 'numeric',
-    }
-    return date.toLocaleDateString('en-US', dateOptions)
-  }
-
   /*
    ** Handle Pagination
    */
@@ -115,29 +104,6 @@ const Index = props => {
       </Pagination>
     </Layout>
   )
-}
-
-function orderPosts(posts) {
-  function sortByDate(a, b) {
-    const dateA = new Date(a.data.date).getTime()
-    const dateB = new Date(b.data.date).getTime()
-    return dateA < dateB ? 1 : -1
-  }
-  return posts.sort(sortByDate)
-}
-
-function formatExcerpt(content) {
-  const plainTextExcerpt = removeMarkdown(content, {
-    stripListLeaders: true,
-    listUnicodeChar: '',
-    gfm: true,
-    useImgAltText: false,
-  })
-    .replace(/(\r\n|\n|\r)/gm, '')
-    .substring(0, 200)
-    .trimEnd()
-
-  return `${plainTextExcerpt}...`
 }
 
 /*
