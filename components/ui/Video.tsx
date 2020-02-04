@@ -1,7 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export const Video = styled(({ src, ...styleProps }) => {
+interface VideoProps {
+  src: string
+}
+
+export const Video = styled(({ src, ...styleProps }: VideoProps) => {
   return (
     <div {...styleProps}>
       <video

@@ -37,11 +37,20 @@ const HomePage = props => {
               <h2>
                 <em>{data.description}</em>
               </h2>
-              <Link href={'/docs/getting-started/introduction/'} passHref>
-                <Button as="a" primary>
-                  Get Started
-                </Button>
-              </Link>
+              <CtaBar>
+                <Link href={'/docs/getting-started/introduction/'} passHref>
+                  <Button as="a" color="primary">
+                    Get Started
+                  </Button>
+                </Link>
+                <iframe
+                  src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
+                  frameBorder="0"
+                  scrolling="0"
+                  width="145px"
+                  height="30px"
+                ></iframe>
+              </CtaBar>
             </CtaLayout>
             <InfoLayout>
               {data.three_points.map(point => (
@@ -56,7 +65,7 @@ const HomePage = props => {
           </Wrapper>
         </Section>
 
-        <Section seafoam>
+        <Section color="seafoam">
           <Wrapper>
             <SetupLayout>
               <div>
@@ -68,7 +77,7 @@ const HomePage = props => {
                   ))}
                 </ArrowList>
                 <Link href={'/docs/getting-started/introduction/'} passHref>
-                  <Button as="a" primary>
+                  <Button as="a" color="primary">
                     Get Started
                   </Button>
                 </Link>
@@ -227,11 +236,22 @@ const CtaLayout = styled.div`
   margin: 0 auto;
   padding: 0 0 3rem 0;
 
-  ${Button} {
-    margin: 2rem auto 0 auto;
-  }
-
   @media (min-width: 800px) {
     padding: 0 0 5rem 0;
+  }
+`
+
+const CtaBar = styled.div`
+  margin: 2rem auto 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  iframe {
+    margin-left: 1rem;
+  }
+  @media (min-width: 1030px) {
+    iframe {
+      display: none;
+    }
   }
 `

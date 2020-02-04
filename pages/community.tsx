@@ -116,7 +116,7 @@ function CommunityPage(props) {
             </InfoLayout>
           </Wrapper>
         </Section>
-        <FormSection seafoam>
+        <FormSection color="seafoam">
           <Wrapper>
             <h2>
               Newsletter{' '}

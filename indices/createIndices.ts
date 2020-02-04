@@ -10,13 +10,13 @@ const client = algoliasearch(
   process.env.ALGOLIA_APP_ID,
   process.env.ALGOLIA_ADMIN_KEY
 )
-const index = client.initIndex('Tina-Docs-test')
 
 fetchDocs().then(docs => {
-  index
+  client
+    .initIndex('Tina-Docs-Next')
     .saveObjects(docs.map(mapContentToIndex))
-    .then(({ objectIDs }) => {
-      console.log(`created docs index: ${objectIDs}`)
+    .then(() => {
+      console.log(`created docs index`)
     })
     .catch(err => {
       console.log(`failed creating docs index: ${err}`)
@@ -24,22 +24,24 @@ fetchDocs().then(docs => {
 })
 
 fetchBlogs().then(blogs => {
-  index
+  client
+    .initIndex('Tina-Blogs-Next')
     .saveObjects(blogs.map(mapContentToIndex))
-    .then(({ objectIDs }) => {
-      console.log(`created blogs index: ${objectIDs}`)
+    .then(() => {
+      console.log(`created blogs index`)
     })
     .catch(err => {
       console.log(`failed creating blogs index: ${err}`)
     })
 })
 
-const mapContentToIndex = (
-  obj: Partial<{ data: { slug: string }; content: string }>
-) => {
+const mapContentToIndex = ({
+  content,
+  ...obj
+}: Partial<{ data: { slug: string }; content: string }>) => {
   return {
-    ...obj,
-    content: (obj.content || '').substring(0, MAX_BODY_LENGTH),
+    ...obj.data,
+    excerpt: (content || '').substring(0, MAX_BODY_LENGTH),
     objectID: obj.data.slug,
   }
 }

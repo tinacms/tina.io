@@ -15,7 +15,7 @@ import { TeamsForm } from '../components/forms'
 function TeamsPage(props) {
   const data = props.jsonFile
   return (
-    <TeamsLayout page="teams" buttonColor={'secondary'}>
+    <TeamsLayout page="teams" color={'secondary'}>
       <Head>
         <meta property="og:title" content="TinaCMS - Teams" />
         <meta name="twitter:title" content="TinaCMS - Teams" />

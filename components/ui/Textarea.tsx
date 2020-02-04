@@ -5,8 +5,8 @@ export const Textarea = styled.textarea`
     0px 2px 3px rgba(0, 0, 0, 0.12);
   border: 0;
   border-radius: 5px;
-  background: ${p => p.inputColor};
-  color: ${p => p.textColor};
+  background: white;
+  color: var(--color-secondary);
   line-height: 1.2;
   white-space: nowrap;
   text-decoration: none;

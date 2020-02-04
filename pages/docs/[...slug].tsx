@@ -19,9 +19,11 @@ interface DocSection {
 
 const DocSection = (section: DocSection) => {
   return (
-    <div>
+    <div key={section.slug}>
       {section.slug ? (
-        <Link href={section.slug}>{section.title}</Link>
+        <Link href={section.slug}>
+          <a>{section.title}</a>
+        </Link>
       ) : (
         <b>{section.title}</b>
       )}
@@ -34,7 +36,7 @@ const DocSection = (section: DocSection) => {
 
 export default function DocTemplate(props) {
   return (
-    <Layout buttonColor={'seafoam'} fixedIcon noFooter>
+    <Layout color={'seafoam'} fixedIcon noFooter>
       <DocsLayout>
         <DocsNav>
           {props.docsNav.map(section => (

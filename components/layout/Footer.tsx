@@ -14,10 +14,10 @@ export const Footer = styled(({ ...styleProps }) => {
     <div {...styleProps}>
       <FooterTop>
         <TinaWordmark />
-        <FooterNav />
+        <FooterNav noSearch />
         <FooterSocial>
           <Link href={'/teams'} passHref>
-            <Button as="a" white>
+            <Button as="a" color="white">
               Tina for Teams
             </Button>
           </Link>
