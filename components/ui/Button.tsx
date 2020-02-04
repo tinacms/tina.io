@@ -91,6 +91,10 @@ export const Button = styled.button<ButtonProps>`
     `};
 `
 
+Button.defaultProps = {
+  color: 'seafoam',
+}
+
 export const ButtonGroup = styled.div`
   width: 100%;
   display: flex;

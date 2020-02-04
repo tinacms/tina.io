@@ -1,7 +1,5 @@
 import matter from 'gray-matter'
-import Link from 'next/link'
-import styled from 'styled-components'
-
+import styled, { css } from 'styled-components'
 import {
   Layout,
   Header,
@@ -10,39 +8,13 @@ import {
   Wrapper,
 } from '../../components/layout'
 
-interface DocSection {
-  id: string
-  slug: string
-  title: string
-  items: DocSection[]
-}
-
-const DocSection = (section: DocSection) => {
-  return (
-    <div key={section.slug}>
-      {section.slug ? (
-        <Link href={section.slug}>
-          <a>{section.title}</a>
-        </Link>
-      ) : (
-        <b>{section.title}</b>
-      )}
-      {(section.items || []).map(item => (
-        <DocSection key={section.id} {...item} />
-      ))}
-    </div>
-  )
-}
+import { DocsNav, NavSection } from '../../components/ui/DocsNav'
 
 export default function DocTemplate(props) {
   return (
     <Layout color={'seafoam'} fixedIcon noFooter>
       <DocsLayout>
-        <DocsNav>
-          {props.docsNav.map(section => (
-            <DocSection key={section.id} {...section} />
-          ))}
-        </DocsNav>
+        <DocsNav navItems={props.docsNav} />
         <DocsContent>
           <RichTextWrapper>
             <Wrapper narrow>
@@ -65,39 +37,6 @@ const DocsLayout = styled.div`
   @media (min-width: 800px) {
     grid-template-areas: 'nav content';
     grid-template-columns: 14rem auto;
-  }
-`
-
-const DocsNav = styled.div`
-  padding: 6rem 0 3rem 0;
-  font-family: var(--font-tuner);
-  grid-area: nav;
-  position: fixed;
-  top: 0;
-  left: 0;
-  transform: translate3d(-100%, 0, 0);
-
-  /* Background */
-  &:after {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--color-seafoam);
-    opacity: 0.5;
-    z-index: -1;
-  }
-
-  @media (min-width: 800px) {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
-    transform: translate3d(0, 0, 0);
   }
 `
 
