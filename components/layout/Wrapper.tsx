@@ -1,6 +1,10 @@
 import styled, { css } from 'styled-components'
 
-export const Wrapper = styled.div`
+interface WrapperProps {
+  narrow?: boolean
+}
+
+export const Wrapper = styled.div<WrapperProps>`
   width: 100%;
   max-width: 1232px;
   margin: 0 auto;

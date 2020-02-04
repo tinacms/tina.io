@@ -6,14 +6,14 @@ import { GlobalStyle } from '../styles/GlobalStyle'
 import { Header, Footer } from '../layout'
 
 export const Layout = styled(
-  ({ children, fixedIcon, noFooter, buttonColor, ...styleProps }) => {
+  ({ children, fixedIcon, noFooter, color, ...styleProps }) => {
     return (
       <div {...styleProps}>
         <Head>
           <link rel="shortcut icon" href="/favicon/favicon.ico" />
         </Head>
         <GlobalStyle />
-        <Header buttonColor={buttonColor} fixedIcon={fixedIcon} />
+        <Header color={color} fixedIcon={fixedIcon} />
         {children}
         {!noFooter && <Footer />}
       </div>

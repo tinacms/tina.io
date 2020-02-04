@@ -1,7 +1,11 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
-export const Section = styled.section`
+interface SectionProps {
+  color?: 'seafoam'
+}
+
+export const Section = styled.section<SectionProps>`
   padding: 3rem 0;
 
   @media (min-width: 800px) {
@@ -9,7 +13,7 @@ export const Section = styled.section`
   }
 
   ${props =>
-    props.seafoam &&
+    props.color === 'seafoam' &&
     css`
       background-color: var(--color-seafoam);
     `};

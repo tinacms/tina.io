@@ -161,6 +161,20 @@ export const GlobalStyle = createGlobalStyle`
       line-height: inherit;
       font-size: 100%;
       font-weight: normal;
+      scrollbar-width: thin;
+      scrollbar-color: #E1DDEC transparent;
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+        border-left: 1px solid var(--color-light-dark);
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: #E1DDEC;
+        border-radius: 0;
+        border: none;
+      }
     }
   }
 `

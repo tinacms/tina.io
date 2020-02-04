@@ -6,19 +6,20 @@ import fetchBlogs from '../api/fetchBlogs'
 
 const MAX_BODY_LENGTH = 3000
 
-const mapContentToIndex = (
-  obj: Partial<{ data: { slug: string }; content: string }>
-) => {
+const mapContentToIndex = ({
+  content,
+  ...obj
+}: Partial<{ data: { slug: string }; content: string }>) => {
   return {
-    ...obj,
-    content: (obj.content || '').substring(0, MAX_BODY_LENGTH),
+    ...obj.data,
+    excerpt: (content || '').substring(0, MAX_BODY_LENGTH),
     objectID: obj.data.slug,
   }
 }
 
 const saveIndex = async (client: any, indexName: string, data: any) => {
   const index = client.initIndex(indexName)
-  const result = await index.saveObjects(index)
+  const result = await index.saveObjects(data)
   console.log(`updated ${indexName}: ${result.objectIDs}`)
 }
 
