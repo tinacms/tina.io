@@ -33,10 +33,9 @@ export const NavToggle = styled(({ ...styleProps }) => {
 
 interface NavProps {
   color?: 'white' | 'secondary' | 'seafoam'
-  noSearch?: boolean
 }
 
-export const Nav = styled(({ color, noSearch, ...styleProps }: NavProps) => {
+export const HeaderNav = styled(({ color, ...styleProps }: NavProps) => {
   return (
     <ul {...styleProps}>
       {data &&
@@ -51,11 +50,9 @@ export const Nav = styled(({ color, noSearch, ...styleProps }: NavProps) => {
             </li>
           )
         })}
-      {!noSearch && (
-        <li key="nav-search">
-          <Search collapse indices={searchIndices} />
-        </li>
-      )}
+      <li key="nav-search">
+        <Search collapse indices={searchIndices} />
+      </li>
     </ul>
   )
 })`

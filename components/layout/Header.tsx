@@ -2,7 +2,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 
 import { TinaIcon } from '../logo/TinaIcon'
-import { Nav, NavToggle } from '../ui'
+import { HeaderNav as Nav, NavToggle } from '../ui'
 
 interface HeaderProps {
   color?: 'white' | 'secondary' | 'seafoam'

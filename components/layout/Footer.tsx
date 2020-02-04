@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
 
-import { Button, Nav } from '../ui'
+import { Button, FooterNav } from '../ui'
 import TinaWordmark from '../logo/TinaWordmark'
 import TwitterIconSvg from '../../public/svg/twitter-icon.svg'
 import GithubIconSvg from '../../public/svg/github-icon.svg'
@@ -13,7 +13,7 @@ export const Footer = styled(({ ...styleProps }) => {
     <div {...styleProps}>
       <FooterTop>
         <TinaWordmark />
-        <FooterNav noSearch />
+        <FooterNav />
         <FooterSocial>
           <Link href={'/teams'} passHref>
             <Button as="a" color="white">
@@ -65,20 +65,6 @@ const FooterSocial = styled.div`
     height: auto;
     fill: white;
     margin-left: 1rem;
-  }
-`
-
-const FooterNav = styled(Nav)`
-  display: flex;
-  flex-direction: column;
-  margin: -0.5rem 0 0 0;
-
-  ${Button} {
-    font-size: 1.5rem;
-    padding-top: 0;
-    padding-bottom: 0;
-    color: white !important;
-    background: transparent;
   }
 `
 
