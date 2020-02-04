@@ -24,10 +24,10 @@ export default function DocTemplate(props) {
               <h1>{frontmatter.title}</h1>
               <hr />
               <MarkdownContent content={markdownBody} />
+              <Pagination prevPage={props.prevPage} nextPage={props.nextPage} />
             </Wrapper>
           </RichTextWrapper>
         </DocsContent>
-        <Pagination prevPage={props.prevPage} nextPage={props.nextPage} />
       </DocsLayout>
     </Layout>
   )
