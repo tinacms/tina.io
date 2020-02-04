@@ -19,9 +19,11 @@ interface DocSection {
 
 const DocSection = (section: DocSection) => {
   return (
-    <div>
+    <div key={section.slug}>
       {section.slug ? (
-        <Link href={section.slug}>{section.title}</Link>
+        <Link href={section.slug}>
+          <a>{section.title}</a>
+        </Link>
       ) : (
         <b>{section.title}</b>
       )}
