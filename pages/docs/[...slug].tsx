@@ -30,11 +30,10 @@ export default function DocTemplate(props) {
 }
 
 const DocsLayout = styled.div`
-  display: grid;
-  grid-template-areas: 'content';
   padding: 6rem 0 3rem 0;
 
-  @media (min-width: 800px) {
+  @media (min-width: 1100px) {
+    display: grid;
     grid-template-areas: 'nav content';
     grid-template-columns: 14rem auto;
   }
@@ -61,6 +60,14 @@ const DocsContent = styled.div`
   h2,
   .h2 {
     font-size: 1.75rem;
+
+    @media (min-width: 800px) {
+      font-size: 3rem;
+    }
+
+    @media (min-width: 1200px) {
+      font-size: 2.5rem;
+    }
   }
 `
 

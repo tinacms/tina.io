@@ -179,7 +179,7 @@ export const DocsNav = styled(({ navItems, ...styleProps }) => {
     display: none;
   }
 
-  @media (min-width: 800px) {
+  @media (min-width: 1100px) {
     position: fixed;
     top: 0;
     bottom: 0;
