@@ -3,7 +3,7 @@ name: Create Indices
 on: [push]
 
 jobs:
-  build:
+  create_indices:
     runs-on: ubuntu-latest
 
     strategy:

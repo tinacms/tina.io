@@ -6,24 +6,6 @@ import fetchBlogs from '../api/fetchBlogs'
 
 const MAX_BODY_LENGTH = 3000
 
-const client = algoliasearch(
-  process.env.ALGOLIA_APP_ID,
-  process.env.ALGOLIA_ADMIN_KEY
-)
-const index = client.initIndex('Tina-Docs-test')
-
-fetchDocs().then(docs => {
-  index.saveObjects(docs.map(mapContentToIndex)).then(({ objectIDs }) => {
-    console.log(`created docs index: ${objectIDs}`)
-  })
-})
-
-fetchBlogs().then(blogs => {
-  index.saveObjects(blogs.map(mapContentToIndex)).then(({ objectIDs }) => {
-    console.log(`created blogs index: ${objectIDs}`)
-  })
-})
-
 const mapContentToIndex = (
   obj: Partial<{ data: { slug: string }; content: string }>
 ) => {
@@ -33,3 +15,23 @@ const mapContentToIndex = (
     objectID: obj.data.slug,
   }
 }
+
+const createIndices = async () => {
+  const client = algoliasearch(
+    process.env.ALGOLIA_APP_ID,
+    process.env.ALGOLIA_ADMIN_KEY
+  )
+  const index = client.initIndex('Tina-Docs-test')
+
+  const docs = await fetchDocs()
+  index.saveObjects(docs.map(mapContentToIndex)).then(({ objectIDs }) => {
+    console.log(`created docs index: ${objectIDs}`)
+  })
+
+  const blogs = await fetchBlogs()
+  index.saveObjects(blogs.map(mapContentToIndex)).then(({ objectIDs }) => {
+    console.log(`created blogs index: ${objectIDs}`)
+  })
+}
+
+createIndices()
