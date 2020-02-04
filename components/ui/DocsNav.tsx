@@ -39,7 +39,7 @@ const SubNav = styled.ul`
   ${NavSectionTitle} {
     font-size: 0.9375rem;
     text-transform: uppercase;
-    padding: 0.3rem 1.5rem 0.3rem 2rem;
+    padding: 0.25rem 1.5rem 0.25rem 2rem;
   }
 
   li:first-child {
