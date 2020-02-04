@@ -13,27 +13,15 @@ const client = algoliasearch(
 const index = client.initIndex('Tina-Docs-test')
 
 fetchDocs().then(docs => {
-  index
-    .saveObjects(docs.map(mapContentToIndex))
-    .then(({ objectIDs }) => {
-      console.log(`created docs index: ${objectIDs}`)
-    })
-    .catch(err => {
-      console.log(`failed creating docs index: ${err}`)
-      throw err
-    })
+  index.saveObjects(docs.map(mapContentToIndex)).then(({ objectIDs }) => {
+    console.log(`created docs index: ${objectIDs}`)
+  })
 })
 
 fetchBlogs().then(blogs => {
-  index
-    .saveObjects(blogs.map(mapContentToIndex))
-    .then(({ objectIDs }) => {
-      console.log(`created blogs index: ${objectIDs}`)
-    })
-    .catch(err => {
-      console.error(`failed creating blogs index: ${err}`)
-      throw err
-    })
+  index.saveObjects(blogs.map(mapContentToIndex)).then(({ objectIDs }) => {
+    console.log(`created blogs index: ${objectIDs}`)
+  })
 })
 
 const mapContentToIndex = (
