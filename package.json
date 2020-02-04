@@ -14,6 +14,8 @@
     "start": "serve out",
     "format": "prettier --write \"src/**/*.{ts,tsx,md}\"",
     "lint": "tslint 'src/**/*.{ts,tsx}' -p tsconfig.json",
+    "test": "npm run type-check && npm run lint",
+    "type-check": "tsc",
     "create-indices": "tsc --project ./indices/tsconfig.json --outDir ./indices/out && node ./indices/out/indices/createIndices.js",
     "deploy": "yarn build && yarn export"
   },

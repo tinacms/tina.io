@@ -6,35 +6,6 @@ import fetchBlogs from '../api/fetchBlogs'
 
 const MAX_BODY_LENGTH = 3000
 
-const client = algoliasearch(
-  process.env.ALGOLIA_APP_ID,
-  process.env.ALGOLIA_ADMIN_KEY
-)
-
-fetchDocs().then(docs => {
-  client
-    .initIndex('Tina-Docs-Next')
-    .saveObjects(docs.map(mapContentToIndex))
-    .then(() => {
-      console.log(`created docs index`)
-    })
-    .catch(err => {
-      console.log(`failed creating docs index: ${err}`)
-    })
-})
-
-fetchBlogs().then(blogs => {
-  client
-    .initIndex('Tina-Blogs-Next')
-    .saveObjects(blogs.map(mapContentToIndex))
-    .then(() => {
-      console.log(`created blogs index`)
-    })
-    .catch(err => {
-      console.log(`failed creating blogs index: ${err}`)
-    })
-})
-
 const mapContentToIndex = ({
   content,
   ...obj
@@ -45,3 +16,30 @@ const mapContentToIndex = ({
     objectID: obj.data.slug,
   }
 }
+
+const saveIndex = async (client: any, indexName: string, data: any) => {
+  const index = client.initIndex(indexName)
+  const result = await index.saveObjects(data)
+  console.log(`updated ${indexName}: ${result.objectIDs}`)
+}
+
+const createIndices = async () => {
+  const client = algoliasearch(
+    process.env.ALGOLIA_APP_ID,
+    process.env.ALGOLIA_ADMIN_KEY
+  )
+  const docs = await fetchDocs()
+  await saveIndex(client, 'Tina-Docs-Next', docs.map(mapContentToIndex))
+
+  const blogs = await fetchBlogs()
+  await saveIndex(client, 'Tina-Blogs-Next', blogs.map(mapContentToIndex))
+}
+
+createIndices()
+  .then(() => {
+    console.log('indices created')
+  })
+  .catch(e => {
+    console.error(e)
+    process.kill(1)
+  })
