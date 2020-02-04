@@ -14,7 +14,7 @@ export const Header = ({ color, fixedIcon, ...styleProps }: HeaderProps) => {
   return (
     <StyledHeader open={open} fixedIcon={fixedIcon} {...styleProps}>
       <TinaIcon />
-      <NavToggle onClick={() => setOpen(!open)} />
+      <NavToggle open={open} onClick={() => setOpen(!open)} />
       <Nav color={color} open={open} />
       <MenuOverlay open={open} onClick={() => setOpen(false)} />
       <iframe

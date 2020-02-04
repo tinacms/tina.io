@@ -12,10 +12,12 @@ const searchIndices = [
   { name: `Tina-Blogs-Next`, title: `Blog`, hitComp: `BlogHit` },
 ]
 
-export const NavToggle = styled(({ ...styleProps }) => {
+export const NavToggle = styled(({ open, ...styleProps }) => {
   return (
     <button {...styleProps}>
-      <BurgerSvg />
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
   )
 })`
@@ -26,12 +28,47 @@ export const NavToggle = styled(({ ...styleProps }) => {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  user-select: none;
 
-  svg {
-    fill: var(--color-primary);
+  span {
     width: 2rem;
-    height: 2rem;
+    height: 3px;
+    margin-top: -1.5px;
+    border-radius: 3px;
+    display: block;
+    position: absolute;
+    background-color: var(--color-primary);
+    top: 50%;
+    transition: all 180ms ease-out;
+    transform: translate3d(0, -0.625rem, 0);
+
+    &:nth-child(2) {
+      transform: translate3d(0, 0, 0);
+    }
+
+    &:last-child {
+      transform: translate3d(0, 0.625rem, 0);
+    }
   }
+
+  ${props =>
+    props.open &&
+    css`
+      span {
+        transform: translate3d(0, 0, 0) rotate(45deg);
+
+        &:nth-child(2) {
+          opacity: 0;
+          transform: translate3d(0, 0, 0) scale3d(0, 1, 1);
+        }
+
+        &:last-child {
+          transform: translate3d(0, 0, 0) rotate(-45deg);
+        }
+      }
+    `};
 `
 
 interface NavProps {
