@@ -1,7 +1,7 @@
 ---
 title: Quickstart
 id: /docs/gatsby/quickstart
-prev: how-tina-works
+prev: null
 next: /docs/gatsby/manual-setup
 ---
 

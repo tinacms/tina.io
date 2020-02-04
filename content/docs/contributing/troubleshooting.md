@@ -1,7 +1,7 @@
 ---
 id: /docs/contributing/troubleshooting
 title: Contribution Troubleshooting
-prev: /docs/contributing/setting-up
+prev: /docs/contributing/releasing
 next: /docs/contributing/style-guide
 ---
 

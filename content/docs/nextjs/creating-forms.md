@@ -2,7 +2,7 @@
 title: Creating Forms
 id: /docs/nextjs/creating-forms
 prev: /docs/nextjs/adding-backends
-next: /docs/contributing/inline-editing
+next: /docs/nextjs/inline-editing
 consumes:
   - file: /packages/next-tinacms-json/src/use-json-form.ts
     details: Demonstrates using useLocalJsonForm on a Next.js site
