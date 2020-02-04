@@ -11,7 +11,6 @@ const blogPostsRssXml = blogPosts => {
   let latestPostDate: string = ''
   let rssItemsXml = ''
   blogPosts.forEach(post => {
-    console.log(post)
     const postDate = Date.parse(post.data.date)
     if (!latestPostDate || postDate > Date.parse(latestPostDate)) {
       latestPostDate = post.createdAt
