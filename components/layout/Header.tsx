@@ -93,7 +93,7 @@ const StyledHeader = styled.header<StyledHeaderProps>`
     props.fixedIcon &&
     css`
       ${TinaIcon} {
-        @media (min-width: 500px) {
+        @media (min-width: 685px) {
           position: fixed;
           top: 2.5rem;
           left: 2rem;
