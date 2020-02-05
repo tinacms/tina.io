@@ -65,6 +65,11 @@ const FooterSocial = styled.div`
     justify-content: flex-end;
   }
 
+  a {
+    display: flex;
+    align-items: center;
+  }
+
   svg {
     width: 2rem;
     height: auto;
