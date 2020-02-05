@@ -1,7 +1,7 @@
 ---
 title: Quickstart
 id: /docs/gatsby/quickstart
-prev: how-tina-works
+prev: null
 next: /docs/gatsby/manual-setup
 ---
 
@@ -40,6 +40,7 @@ gatsby new my-tina-starter https://github.com/tinacms/gatsby-starter-tinacms
 The project is generated in a folder titled `my-tina-starter`, feel free to change or update that name.
 
 ### 3. Start the Server
+
 Now let's start the development server to see how Tina edits our files.
 
 ```

@@ -47,6 +47,50 @@ export default function DocTemplate(props) {
   )
 }
 
+export async function unstable_getStaticProps(ctx) {
+  let { slug: slugs } = ctx.params
+
+  const slug = slugs.join('/')
+  const content = await import(`../../content/docs/${slug}.md`)
+  const doc = matter(content.default)
+
+  const docsNavData = await import('../../content/toc-doc.json')
+  const nextDocPage =
+    doc.data.next &&
+    matter((await import(`../../content${doc.data.next}.md`)).default)
+  const prevDocPage =
+    doc.data.prev &&
+    matter((await import(`../../content${doc.data.prev}.md`)).default)
+
+  return {
+    props: {
+      doc: {
+        data: { ...doc.data, slug },
+        content: doc.content,
+      },
+      docsNav: docsNavData.default,
+      nextPage: {
+        slug: doc.data.next,
+        title: nextDocPage && nextDocPage.data.title,
+      },
+      prevPage: {
+        slug: doc.data.prev,
+        title: prevDocPage && prevDocPage.data.title,
+      },
+    },
+  }
+}
+
+export async function unstable_getStaticPaths() {
+  const fg = require('fast-glob')
+  const contentDir = './content/docs/'
+  const files = await fg(`${contentDir}**/*.md`)
+  return files.map(file => {
+    const path = file.substring(contentDir.length, file.length - 3)
+    return { params: { slug: path.split('/') } }
+  })
+}
+
 interface DocsHeader {
   open: boolean
 }
@@ -130,34 +174,3 @@ const DocsContent = styled.div`
     font-size: 1.75rem;
   }
 `
-
-DocTemplate.getInitialProps = async function(ctx) {
-  const { slug: slugs } = ctx.query
-  const fullSlug = slugs.join('/')
-  const content = await import(`../../content/docs/${fullSlug}.md`)
-  const doc = matter(content.default)
-
-  const docsNavData = await import('../../content/toc-doc.json')
-  const nextDocPage =
-    doc.data.next &&
-    matter((await import(`../../content${doc.data.next}.md`)).default)
-  const prevDocPage =
-    doc.data.prev &&
-    matter((await import(`../../content${doc.data.prev}.md`)).default)
-
-  return {
-    doc: {
-      data: { ...doc.data, slug: fullSlug },
-      content: doc.content,
-    },
-    docsNav: docsNavData.default,
-    nextPage: {
-      slug: doc.data.next,
-      title: nextDocPage && nextDocPage.data.title,
-    },
-    prevPage: {
-      slug: doc.data.prev,
-      title: prevDocPage && prevDocPage.data.title,
-    },
-  }
-}

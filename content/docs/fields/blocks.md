@@ -11,7 +11,6 @@ The **Blocks** field represents a list of items, similar to the [Group List](/do
 
 > For an in-depth explanation of the Blocks field, read our ["What are Blocks?"](/blog/what-are-blocks/) blog post. To see a real-world example of Blocks in use, check out the [Tina Grande Starter](https://github.com/tinacms/tina-starter-grande).
 
-
 ![tinacms-blocks-gif](/gif/blocks.gif)
 
 In the gif above, you see a list of Blocks: **Title**, **Image**, and **Content**. The form for this field could be configured like this:

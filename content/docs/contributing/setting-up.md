@@ -2,7 +2,7 @@
 id: /docs/contributing/setting-up
 title: Contribution Set-up
 prev: /docs/contributing/guidelines
-next: /docs/contributing/troubleshooting
+next: /docs/contributing/releasing
 consumes:
   - file: /package.json
     details: Uses scripts for local dev

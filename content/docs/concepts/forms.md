@@ -4,7 +4,7 @@ id: /docs/concepts/forms
 prev: /docs/concepts/sidebar
 next: /docs/concepts/fields
 consumes:
-  - file: /packages/@tinacms/core/src/cms-forms/form.ts
+  - file: /packages/@tinacms/forms/src/form.ts
     details: Shows Form Options interface
   - file: /packages/@tinacms/react-core/src/use-form.ts
     details: Creates custom form with useForm & useLocalForm
@@ -99,7 +99,7 @@ interface FormOptions {
 import { useLocalForm } from 'react-tinacms'
 
 function PageTemplate(props) {
-  let [ someData ] = useLocalForm({
+  let [someData] = useLocalForm({
     id: 'uid',
     label: 'someData',
     initialValues: props.data.someData,
@@ -116,4 +116,5 @@ function PageTemplate(props) {
   )
 }
 ```
+
 > Update react-tinacms version:0.9.0: The previous hook `useCMSForm` used to create custom forms is now the same as `useLocalForm`

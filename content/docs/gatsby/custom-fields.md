@@ -6,7 +6,7 @@ next: /docs/gatsby/inline-editing
 consumes:
   - file: /packages/@tinacms/form-builder/src/field-plugin.tsx
     details: Depends on Field Plugin props
-  - file: /packages/@tinacms/core/src/cms-forms/form.ts
+  - file: /packages/@tinacms/forms/src/form.ts
     details: Depends on Field props
   - file: /packages/@tinacms/core/src/plugins.ts
     details: Depends on plugin manager methods
