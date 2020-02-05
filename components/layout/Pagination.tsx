@@ -51,12 +51,12 @@ interface PaginationLinkProps {
 const PaginationLink = styled.a<PaginationLinkProps>`
   padding: 1rem;
   display: block;
-  flex: 1 0 auto;
+  flex: 1 1 auto;
   font-family: var(--font-tuner);
   font-weight: regular;
   font-style: normal;
   text-decoration: none;
-  background-color: #FAFAFA;
+  background-color: #fafafa;
   color: var(--color-secondary);
   position: relative;
   text-align: right;
