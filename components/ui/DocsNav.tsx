@@ -149,7 +149,7 @@ const menuIsActive = (section: NavSection, currentPath: string) => {
   )
 }
 
-export const DocsNav = styled(({ navItems, ...styleProps }) => {
+export const DocsNav = styled(({ open, navItems, ...styleProps }) => {
   return (
     <ul {...styleProps}>
       {navItems &&
@@ -164,8 +164,29 @@ export const DocsNav = styled(({ navItems, ...styleProps }) => {
   overflow-y: auto;
   line-height: 1.25;
   box-shadow: inset -1px 0 0 var(--color-light-dark);
+  padding: 6rem 0 1rem 0;
+  grid-area: nav;
 
   ::-webkit-scrollbar {
     display: none;
+  }
+
+  @media (max-width: 999px) {
+    position: fixed;
+    z-index: 250;
+    left: 0;
+    top: 0;
+    width: calc(50% + 2.25rem);
+    height: 100%;
+    z-index: 250;
+    transform: translate3d(-100%, 0, 0);
+    transition: all 140ms ease-in;
+
+    ${props =>
+      props.open &&
+      css`
+        transition: all 240ms ease-out;
+        transform: translate3d(0, 0, 0);
+      `};
   }
 `

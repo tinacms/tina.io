@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 
 import { TinaIcon } from '../logo/TinaIcon'
-import { HeaderNav, NavToggle, Overlay } from '../ui'
+import { HeaderNav, Button, NavToggle, Overlay } from '../ui'
 
 interface HeaderProps {
   color?: 'white' | 'secondary' | 'seafoam'
@@ -63,10 +63,6 @@ const StyledHeader = styled.header<StyledHeaderProps>`
   }
 
   ${HeaderNav} {
-    @media (max-width: 684px) {
-      display: none;
-    }
-
     position: absolute;
     right: 1rem;
     top: 50%;
@@ -76,6 +72,46 @@ const StyledHeader = styled.header<StyledHeaderProps>`
       right: auto;
       left: 50%;
       transform: translate3d(-50%, -50%, 0);
+    }
+
+    @media (max-width: 684px) {
+      position: fixed;
+      z-index: 250;
+      width: calc(50% + 2.25rem);
+      left: 0;
+      top: 0;
+      padding-top: 6rem;
+      height: 100%;
+      background: var(--color-light);
+      transform: translate3d(-100%, 0, 0);
+      transition: all 140ms ease-in;
+      flex-direction: column;
+      justify-content: flex-start;
+      overflow: visible;
+
+      li {
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+
+      ${Button} {
+        font-size: 1.5rem !important;
+        color: var(--color-primary);
+        background: transparent;
+        padding: 0 0.5rem;
+        margin: 0 0.75rem;
+      }
+
+      ${props =>
+        props.open &&
+        css`
+          transition: all 240ms ease-out;
+          transform: translate3d(0, 0, 0);
+
+          &:after {
+            opacity: 0.7;
+          }
+        `};
     }
   }
 

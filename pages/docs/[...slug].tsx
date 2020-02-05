@@ -19,13 +19,12 @@ export default function DocTemplate(props) {
   const markdownBody = props.doc.content
   return (
     <DocsLayout>
-      <DocsNav navItems={props.docsNav} />
+      <DocsNav open={open} navItems={props.docsNav} />
       <DocsContent>
         <DocsHeader open={open}>
           <TinaIcon />
           <NavToggle open={open} onClick={() => setOpen(!open)} />
           <HeaderNav color={'seafoam'} open={open} />
-          <Overlay open={open} onClick={() => setOpen(false)} />
           <iframe
             src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
             frameBorder="0"
@@ -43,6 +42,7 @@ export default function DocTemplate(props) {
           </Wrapper>
         </RichTextWrapper>
       </DocsContent>
+      <Overlay open={open} onClick={() => setOpen(false)} />
     </DocsLayout>
   )
 }
@@ -56,7 +56,7 @@ const DocsHeader = styled.div<DocsHeader>`
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 100;
+  z-index: 250;
   height: 5rem;
   display: flex;
   justify-content: flex-end;
@@ -67,6 +67,7 @@ const DocsHeader = styled.div<DocsHeader>`
     top: 50%;
     left: 50%;
     transform: translate3d(-50%, -50%, 0);
+    z-index: 500;
 
     @media (min-width: 999px) {
       left: 2rem;
