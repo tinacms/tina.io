@@ -19,6 +19,11 @@ const NavSectionTitle = styled.span<NavSectionTitleProps>`
   text-decoration: none;
   transition: all 180ms ease-out;
 
+  &:hover,
+  &:focus {
+    color: var(--color-primary);
+  }
+
   ${props =>
     props.open &&
     css`
@@ -39,17 +44,17 @@ const SubNav = styled.ul`
   ${NavSectionTitle} {
     font-size: 0.9375rem;
     text-transform: uppercase;
-    padding: 0.25rem 1.5rem 0.25rem 2rem;
+    padding: 0.375rem 1.5rem 0.375rem 2rem;
   }
 
   li:first-child {
     ${NavSectionTitle} {
-      padding-top: 0.75rem;
+      padding-top: 1rem;
     }
   }
 
   li:last-child {
-    padding-bottom: 0.75rem;
+    padding-bottom: 1rem;
   }
 `
 
@@ -144,7 +149,7 @@ const menuIsActive = (section: NavSection, currentPath: string) => {
   )
 }
 
-export const DocsNav = styled(({ navItems, ...styleProps }) => {
+export const DocsNav = styled(({ open, navItems, ...styleProps }) => {
   return (
     <ul {...styleProps}>
       {navItems &&
@@ -152,26 +157,36 @@ export const DocsNav = styled(({ navItems, ...styleProps }) => {
     </ul>
   )
 })`
-  padding: 6rem 0 3rem 0;
   font-family: var(--font-tuner);
-  grid-area: nav;
-  position: fixed;
-  top: 0;
-  left: 0;
-  transform: translate3d(-100%, 0, 0);
   list-style-type: none;
-  background-color: #fafafa;
+  background-color: var(--color-light);
+  overflow-x: hidden;
+  overflow-y: auto;
+  line-height: 1.25;
+  box-shadow: inset -1px 0 0 var(--color-light-dark);
+  padding: 6rem 0 1rem 0;
+  grid-area: nav;
 
   ::-webkit-scrollbar {
     display: none;
   }
 
-  @media (min-width: 1100px) {
+  @media (max-width: 999px) {
     position: fixed;
+    z-index: 250;
+    left: 0;
     top: 0;
-    bottom: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
-    transform: translate3d(0, 0, 0);
+    width: calc(50% + 2.25rem);
+    height: 100%;
+    z-index: 250;
+    transform: translate3d(-100%, 0, 0);
+    transition: all 140ms ease-in;
+
+    ${props =>
+      props.open &&
+      css`
+        transition: all 240ms ease-out;
+        transform: translate3d(0, 0, 0);
+      `};
   }
 `

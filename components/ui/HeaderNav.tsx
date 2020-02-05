@@ -1,10 +1,9 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Button } from '../ui'
+import { Button } from '.'
 import Link from 'next/link'
 import data from '../../content/navigation.json'
 
-import BurgerSvg from '../../public/svg/burger-menu.svg'
 import Search from '../search'
 
 const searchIndices = [
@@ -12,22 +11,12 @@ const searchIndices = [
   { name: `Tina-Blogs-Next`, title: `Blog`, hitComp: `BlogHit` },
 ]
 
-export const NavToggle = styled(({ ...styleProps }) => {
-  return (
-    <button {...styleProps}>
-      <BurgerSvg />
-    </button>
-  )
-})`
-  fill: var(--color-primary);
-`
-
 interface NavProps {
   color?: 'white' | 'secondary' | 'seafoam'
-  noSearch?: boolean
+  open: boolean
 }
 
-export const Nav = styled(({ color, noSearch, ...styleProps }: NavProps) => {
+export const HeaderNav = styled(({ color, ...styleProps }: NavProps) => {
   return (
     <ul {...styleProps}>
       {data &&
@@ -42,11 +31,9 @@ export const Nav = styled(({ color, noSearch, ...styleProps }: NavProps) => {
             </li>
           )
         })}
-      {!noSearch && (
-        <li key="nav-search">
-          <Search collapse indices={searchIndices} />
-        </li>
-      )}
+      <li key="nav-search">
+        <Search collapse indices={searchIndices} />
+      </li>
     </ul>
   )
 })`
@@ -61,10 +48,8 @@ export const Nav = styled(({ color, noSearch, ...styleProps }: NavProps) => {
   }
 
   @media (max-width: 799px) {
-    li {
-      ${Button} {
-        font-size: 0.8rem;
-      }
+    ${Button} {
+      font-size: 0.8rem;
     }
   }
 

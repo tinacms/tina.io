@@ -42,6 +42,10 @@ export const Input = styled.input<InputProps>`
   cursor: pointer;
   color: inherit;
 
+  @media (max-width: 684px) {
+    width: 100%;
+  }
+
   ${p =>
     p.focus &&
     css`
@@ -67,6 +71,14 @@ export const SearchContainer = styled.div`
   :focus {
     text-decoration: none;
     transition: filter 250ms ease;
+  }
+
+  @media (max-width: 684px) {
+    /* Begin temp fix */
+    display: none;
+    /* End temp fix */
+    margin: 1rem;
+    border: 1px solid var(--color-light-dark);
   }
 
   @media (min-width: 800px) {

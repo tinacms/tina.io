@@ -1,35 +1,49 @@
+import React, { useState } from 'react'
 import matter from 'gray-matter'
 import styled from 'styled-components'
 
 import {
-  Layout,
+  DocsLayout,
   MarkdownContent,
   RichTextWrapper,
   Wrapper,
   Pagination,
 } from '../../components/layout'
-import { DocsNav } from '../../components/ui/DocsNav'
+import { DocsNav, NavToggle, HeaderNav, Overlay } from '../../components/ui'
+import { TinaIcon } from '../../components/logo/TinaIcon'
 import { readFile } from '../../utils/readFile'
 
 export default function DocTemplate(props) {
+  const [open, setOpen] = useState(false)
   const frontmatter = props.doc.data
   const markdownBody = props.doc.content
   return (
-    <Layout color={'seafoam'} fixedIcon noFooter>
-      <DocsLayout>
-        <DocsNav navItems={props.docsNav} />
-        <DocsContent>
-          <RichTextWrapper>
-            <Wrapper narrow>
-              <h1>{frontmatter.title}</h1>
-              <hr />
-              <MarkdownContent content={markdownBody} />
-              <Pagination prevPage={props.prevPage} nextPage={props.nextPage} />
-            </Wrapper>
-          </RichTextWrapper>
-        </DocsContent>
-      </DocsLayout>
-    </Layout>
+    <DocsLayout>
+      <DocsNav open={open} navItems={props.docsNav} />
+      <DocsContent>
+        <DocsHeader open={open}>
+          <TinaIcon />
+          <NavToggle open={open} onClick={() => setOpen(!open)} />
+          <HeaderNav color={'seafoam'} open={open} />
+          <iframe
+            src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
+            frameBorder="0"
+            scrolling="0"
+            width="145px"
+            height="30px"
+          ></iframe>
+        </DocsHeader>
+        <RichTextWrapper>
+          <Wrapper narrow>
+            <h1>{frontmatter.title}</h1>
+            <hr />
+            <MarkdownContent content={markdownBody} />
+            <Pagination prevPage={props.prevPage} nextPage={props.nextPage} />
+          </Wrapper>
+        </RichTextWrapper>
+      </DocsContent>
+      <Overlay open={open} onClick={() => setOpen(false)} />
+    </DocsLayout>
   )
 }
 
@@ -75,20 +89,70 @@ export async function unstable_getStaticPaths() {
   })
 }
 
-const DocsLayout = styled.div`
-  padding: 6rem 0 3rem 0;
+interface DocsHeader {
+  open: boolean
+}
 
-  @media (min-width: 1100px) {
-    display: grid;
-    grid-template-areas: 'nav content';
-    grid-template-columns: 14rem auto;
+const DocsHeader = styled.div<DocsHeader>`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 250;
+  height: 5rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  ${TinaIcon} {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    z-index: 500;
+
+    @media (min-width: 999px) {
+      left: 2rem;
+      transform: translate3d(0, -50%, 0);
+      position: fixed;
+      top: 2.5rem;
+      left: 2rem;
+    }
+  }
+
+  ${NavToggle} {
+    position: fixed;
+    top: 1.25rem;
+    left: 1rem;
+    z-index: 500;
+
+    @media (min-width: 999px) {
+      display: none;
+    }
+  }
+
+  ${HeaderNav} {
+    @media (max-width: 999px) {
+      display: none;
+    }
+  }
+
+  iframe {
+    margin: 0 2rem 0 1rem;
+    @media (max-width: 450px) {
+      display: none;
+    }
   }
 `
 
 const DocsContent = styled.div`
   grid-area: content;
+  overflow-y: auto;
 
-  /* Adjust header sizes for docs */
+  ${Wrapper} {
+    padding-top: 6rem;
+    padding-bottom: 3rem;
+  }
 
   h1,
   .h1 {
