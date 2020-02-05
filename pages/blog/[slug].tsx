@@ -45,7 +45,8 @@ BlogTemplate.getInitialProps = async function(ctx) {
 }
 
 const BlogWrapper = styled(Wrapper)`
-  padding: 4rem 2rem;
+  padding-top: 4rem;
+  padding-bottom: 3rem;
   max-width: 768px;
 `
 
