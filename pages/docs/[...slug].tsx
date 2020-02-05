@@ -51,7 +51,56 @@ interface DocsHeader {
   open: boolean
 }
 
-const DocsHeader = styled.div<DocsHeader>``
+const DocsHeader = styled.div<DocsHeader>`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  height: 5rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  ${TinaIcon} {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+
+    @media (min-width: 999px) {
+      left: 2rem;
+      transform: translate3d(0, -50%, 0);
+      position: fixed;
+      top: 2.5rem;
+      left: 2rem;
+    }
+  }
+
+  ${NavToggle} {
+    position: fixed;
+    top: 1.25rem;
+    left: 1rem;
+    z-index: 500;
+
+    @media (min-width: 999px) {
+      display: none;
+    }
+  }
+
+  ${HeaderNav} {
+    @media (max-width: 999px) {
+      display: none;
+    }
+  }
+
+  iframe {
+    margin: 0 2rem 0 1rem;
+    @media (max-width: 450px) {
+      display: none;
+    }
+  }
+`
 
 const DocsContent = styled.div`
   grid-area: content;
@@ -61,8 +110,6 @@ const DocsContent = styled.div`
     padding-top: 6rem;
     padding-bottom: 3rem;
   }
-
-  /* Adjust header sizes for docs */
 
   h1,
   .h1 {
