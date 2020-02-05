@@ -1,62 +1,66 @@
-import Link from 'next/link'
+import React, { useState } from 'react'
 import matter from 'gray-matter'
 import styled from 'styled-components'
 
 import {
-  Layout,
+  DocsLayout,
   MarkdownContent,
   RichTextWrapper,
   Wrapper,
   Pagination,
+  Header,
 } from '../../components/layout'
-import { DocsNav } from '../../components/ui/DocsNav'
+import { DocsNav, NavToggle, HeaderNav, Overlay } from '../../components/ui'
+import { TinaIcon } from '../../components/logo/TinaIcon'
 
 export default function DocTemplate(props) {
+  const [open, setOpen] = useState(false)
   const frontmatter = props.doc.data
   const markdownBody = props.doc.content
   return (
-    <Layout color={'seafoam'} fixedIcon noFooter>
-      <DocsLayout>
-        <DocsNav navItems={props.docsNav} />
-        <DocsContent>
-          <RichTextWrapper>
-            <Wrapper narrow>
-              <h1>{frontmatter.title}</h1>
-              <hr />
-              <MarkdownContent content={markdownBody} />
-              <Pagination prevPage={props.prevPage} nextPage={props.nextPage} />
-            </Wrapper>
-          </RichTextWrapper>
-        </DocsContent>
-      </DocsLayout>
-    </Layout>
+    <DocsLayout>
+      <DocsNav navItems={props.docsNav} />
+      <DocsContent>
+        <DocsHeader open={open}>
+          <TinaIcon />
+          <NavToggle open={open} onClick={() => setOpen(!open)} />
+          <HeaderNav color={'seafoam'} open={open} />
+          <Overlay open={open} onClick={() => setOpen(false)} />
+          <iframe
+            src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
+            frameBorder="0"
+            scrolling="0"
+            width="145px"
+            height="30px"
+          ></iframe>
+        </DocsHeader>
+        <RichTextWrapper>
+          <Wrapper narrow>
+            <h1>{frontmatter.title}</h1>
+            <hr />
+            <MarkdownContent content={markdownBody} />
+            <Pagination prevPage={props.prevPage} nextPage={props.nextPage} />
+          </Wrapper>
+        </RichTextWrapper>
+      </DocsContent>
+    </DocsLayout>
   )
 }
 
-const DocsLayout = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  /* padding: 6rem 0 3rem 0; */
+interface DocsHeader {
+  open: boolean
+}
 
-  ${DocsNav} {
-    padding: 6rem 0 1rem 0;
-    grid-area: nav;
-  }
-
-  @media (min-width: 1100px) {
-    display: grid;
-    grid-template-areas: 'nav content';
-    grid-template-columns: 16rem auto;
-  }
-`
+const DocsHeader = styled.div<DocsHeader>``
 
 const DocsContent = styled.div`
   grid-area: content;
   overflow-y: auto;
-  padding: 6rem 0 3rem 0;
+
+  ${Wrapper} {
+    padding-top: 6rem;
+    padding-bottom: 3rem;
+  }
 
   /* Adjust header sizes for docs */
 
