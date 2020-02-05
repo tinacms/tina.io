@@ -50,19 +50,18 @@ interface PaginationLinkProps {
 
 const PaginationLink = styled.a<PaginationLinkProps>`
   padding: 1rem;
+  display: block;
   flex: 1 0 auto;
   font-family: var(--font-tuner);
   font-weight: regular;
   font-style: normal;
   text-decoration: none;
+  background-color: #FAFAFA;
   color: var(--color-secondary);
   position: relative;
   text-align: right;
-  padding-right: 4rem;
-
-  &:not(:last-child) {
-    border-right: 1px solid var(--color-light-dark);
-  }
+  padding-right: 3.5rem;
+  margin: 0 1px 1px 0;
 
   span {
     font-size: 0.9375rem;
@@ -79,7 +78,7 @@ const PaginationLink = styled.a<PaginationLinkProps>`
 
   svg {
     position: absolute;
-    right: 1rem;
+    right: 0.75rem;
     top: 50%;
     transform: translate3d(0, -50%, 0);
     width: 2rem;
@@ -100,13 +99,13 @@ const PaginationLink = styled.a<PaginationLinkProps>`
   ${props =>
     props.previous &&
     css`
-      padding-right: 0;
-      padding-left: 4rem;
+      padding-right: 1rem;
+      padding-left: 3.5rem;
       text-align: left;
 
       svg {
         right: auto;
-        left: 1rem;
+        left: 0.75rem;
         transform: translate3d(0, -50%, 0) rotate(180deg);
       }
     `};
@@ -114,10 +113,11 @@ const PaginationLink = styled.a<PaginationLinkProps>`
 
 const Wrapper = styled.div`
   margin-top: 2rem;
-  background-color: #fafafa;
+  background-color: var(--color-light-dark);
   display: flex;
   border-radius: 5px;
-  border: 1px solid var(--color-light-dark);
   overflow: hidden;
   justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 1px 0 0 1px;
 `
