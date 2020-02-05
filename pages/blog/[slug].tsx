@@ -31,6 +31,7 @@ export default function BlogTemplate(props) {
 
 BlogTemplate.getInitialProps = async function(ctx) {
   const { slug } = ctx.query
+  //TODO - change to fs.readFile once we move to getStaticProps
   const content = await import(`../../content/blog/${slug}.md`)
   const post = matter(content.default)
 
