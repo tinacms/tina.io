@@ -50,9 +50,9 @@ const TeamsLayout = styled(Layout)`
   color: white;
 `
 
-const TeamsSection = styled(Section)`
+const TeamsSection = styled.section`
   flex: 1 0 auto;
-  padding: 6rem 0 3rem 0;
+  padding: 8rem 0 5rem 0;
   display: flex;
   flex-direction: column;
 
