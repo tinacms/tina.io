@@ -61,6 +61,7 @@ const TeamsGrid = styled.div`
   @media (min-width: 800px) {
     grid-template-columns: 1fr 1fr;
     align-items: center;
+    grid-gap: 4rem;
   }
 `
 
@@ -77,6 +78,7 @@ const TeamsFormWrapper = styled.div`
 const TeamsContent = styled.div`
   li {
     color: white;
+    max-width: 30rem;
   }
 
   h2 {
