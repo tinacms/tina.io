@@ -4,72 +4,12 @@ import { Button } from '.'
 import Link from 'next/link'
 import data from '../../content/navigation.json'
 
-import BurgerSvg from '../../public/svg/burger-menu.svg'
 import Search from '../search'
 
 const searchIndices = [
   { name: `Tina-Docs-Next`, title: `Docs`, hitComp: `DocHit` },
   { name: `Tina-Blogs-Next`, title: `Blog`, hitComp: `BlogHit` },
 ]
-
-export const NavToggle = styled(({ open, ...styleProps }) => {
-  return (
-    <button {...styleProps}>
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  )
-})`
-  background: transparent;
-  border: none;
-  outline: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  width: 2rem;
-  height: 2rem;
-  user-select: none;
-
-  span {
-    width: 2rem;
-    height: 3px;
-    margin-top: -1.5px;
-    border-radius: 3px;
-    display: block;
-    position: absolute;
-    background-color: var(--color-primary);
-    top: 50%;
-    transition: all 180ms ease-out;
-    transform: translate3d(0, -0.625rem, 0);
-
-    &:nth-child(2) {
-      transform: translate3d(0, 0, 0);
-    }
-
-    &:last-child {
-      transform: translate3d(0, 0.625rem, 0);
-    }
-  }
-
-  ${props =>
-    props.open &&
-    css`
-      span {
-        transform: translate3d(0, 0, 0) rotate(45deg);
-
-        &:nth-child(2) {
-          opacity: 0;
-          transform: translate3d(0, 0, 0) scale3d(0, 1, 1);
-        }
-
-        &:last-child {
-          transform: translate3d(0, 0, 0) rotate(-45deg);
-        }
-      }
-    `};
-`
 
 interface NavProps {
   color?: 'white' | 'secondary' | 'seafoam'
@@ -107,51 +47,9 @@ export const HeaderNav = styled(({ color, ...styleProps }: NavProps) => {
     margin: 0 0.25rem;
   }
 
-  @media (max-width: 684px) {
-    position: fixed;
-    z-index: 100;
-    left: 0;
-    top: 0;
-    padding-top: 6rem;
-    height: 100%;
-    width: 70%;
-    background: var(--color-light);
-    transform: translate3d(-100%, 0, 0);
-    transition: all 140ms ease-in;
-    flex-direction: column;
-    justify-content: flex-start;
-    overflow: visible;
-
-    li {
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    ${Button} {
-      font-size: 1.5rem !important;
-      color: var(--color-primary);
-      background: transparent;
-      padding: 0 0.5rem;
-      margin: 0 0.75rem;
-    }
-
-    ${props =>
-      props.open &&
-      css`
-        transition: all 240ms ease-out;
-        transform: translate3d(0, 0, 0);
-
-        &:after {
-          opacity: 0.7;
-        }
-      `};
-  }
-
   @media (max-width: 799px) {
-    li {
-      ${Button} {
-        font-size: 0.8rem;
-      }
+    ${Button} {
+      font-size: 0.8rem;
     }
   }
 

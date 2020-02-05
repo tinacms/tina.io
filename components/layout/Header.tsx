@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 
 import { TinaIcon } from '../logo/TinaIcon'
-import { HeaderNav as Nav, NavToggle } from '../ui'
+import { HeaderNav, NavToggle } from '../ui'
 
 interface HeaderProps {
   color?: 'white' | 'secondary' | 'seafoam'
@@ -15,7 +15,7 @@ export const Header = ({ color, fixedIcon, ...styleProps }: HeaderProps) => {
     <StyledHeader open={open} fixedIcon={fixedIcon} {...styleProps}>
       <TinaIcon />
       <NavToggle open={open} onClick={() => setOpen(!open)} />
-      <Nav color={color} open={open} />
+      <HeaderNav color={color} open={open} />
       <MenuOverlay open={open} onClick={() => setOpen(false)} />
       <iframe
         src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
@@ -53,22 +53,24 @@ const StyledHeader = styled.header<StyledHeaderProps>`
 
   ${NavToggle} {
     position: fixed;
-    top: 1.5rem;
+    top: 1.25rem;
     left: 1rem;
-    z-index: 200;
+    z-index: 500;
 
     @media (min-width: 685px) {
       display: none;
     }
   }
 
-  ${Nav} {
-    @media (min-width: 685px) {
-      position: absolute;
-      right: 1rem;
-      top: 50%;
-      transform: translate3d(0, -50%, 0);
+  ${HeaderNav} {
+    @media (max-width: 684px) {
+      display: none;
     }
+
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translate3d(0, -50%, 0);
 
     @media (min-width: 920px) {
       right: auto;
@@ -121,6 +123,7 @@ const MenuOverlay = styled.div<MenuOverlay>`
     background-color: var(--color-secondary);
     transition: all 180ms ease-out;
     opacity: 0;
+    z-index: 250;
 
     ${props =>
       props.open &&

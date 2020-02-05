@@ -34,17 +34,29 @@ export default function DocTemplate(props) {
 }
 
 const DocsLayout = styled.div`
-  padding: 6rem 0 3rem 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* padding: 6rem 0 3rem 0; */
+
+  ${DocsNav} {
+    padding: 6rem 0 1rem 0;
+    grid-area: nav;
+  }
 
   @media (min-width: 1100px) {
     display: grid;
     grid-template-areas: 'nav content';
-    grid-template-columns: 14rem auto;
+    grid-template-columns: 16rem auto;
   }
 `
 
 const DocsContent = styled.div`
   grid-area: content;
+  overflow-y: auto;
+  padding: 6rem 0 3rem 0;
 
   /* Adjust header sizes for docs */
 
