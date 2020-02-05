@@ -8,10 +8,10 @@ import {
   RichTextWrapper,
   Wrapper,
   Pagination,
-  Header,
 } from '../../components/layout'
 import { DocsNav, NavToggle, HeaderNav, Overlay } from '../../components/ui'
 import { TinaIcon } from '../../components/logo/TinaIcon'
+import { readFile } from '../../utils/readFile'
 
 export default function DocTemplate(props) {
   const [open, setOpen] = useState(false)
@@ -51,16 +51,14 @@ export async function unstable_getStaticProps(ctx) {
   let { slug: slugs } = ctx.params
 
   const slug = slugs.join('/')
-  const content = await import(`../../content/docs/${slug}.md`)
-  const doc = matter(content.default)
+  const content = await readFile(`content/docs/${slug}.md`)
+  const doc = matter(content)
 
   const docsNavData = await import('../../content/toc-doc.json')
   const nextDocPage =
-    doc.data.next &&
-    matter((await import(`../../content${doc.data.next}.md`)).default)
+    doc.data.next && matter(await readFile(`content${doc.data.next}.md`))
   const prevDocPage =
-    doc.data.prev &&
-    matter((await import(`../../content${doc.data.prev}.md`)).default)
+    doc.data.prev && matter(await readFile(`content${doc.data.prev}.md`))
 
   return {
     props: {
