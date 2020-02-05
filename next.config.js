@@ -20,28 +20,7 @@ module.exports = withSvgr({
       '/': { page: '/' },
       '/community': { page: '/community' },
       '/teams': { page: '/teams' },
-      '/blog': { page: '/blog' },
     }
-
-    /*
-     ** Export blog routes
-     */
-    //get all .md files in the blogs dir
-    const blogs = glob.sync('content/blog/**/*.md')
-
-    //remove path and extension to leave filename only
-    const blogSlugs = blogs.map(file =>
-      file
-        .split('/')[2]
-        .replace(/ /g, '-')
-        .slice(0, -3)
-        .trim()
-    )
-
-    //add each blog to the routes obj
-    blogSlugs.forEach(blog => {
-      routes[`/blog/${blog}`] = { page: '/blog/[slug]', query: { slug: blog } }
-    })
 
     // TODO: Add docs routes
     return routes
@@ -51,6 +30,9 @@ module.exports = withSvgr({
       test: /\.md$/,
       use: 'raw-loader',
     })
+    config.node = {
+      fs: 'empty',
+    }
 
     return config
   },

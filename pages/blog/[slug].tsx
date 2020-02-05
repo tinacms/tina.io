@@ -1,6 +1,7 @@
 import matter from 'gray-matter'
 import styled from 'styled-components'
 import { formatDate } from '../../utils'
+import { readFile } from '../../utils/readFile'
 
 import {
   Layout,
@@ -9,6 +10,7 @@ import {
   MarkdownContent,
   RichTextWrapper,
 } from '../../components/layout'
+const fg = require('fast-glob')
 
 export default function BlogTemplate(props) {
   const frontmatter = props.post.data
@@ -29,19 +31,34 @@ export default function BlogTemplate(props) {
   )
 }
 
-BlogTemplate.getInitialProps = async function(ctx) {
-  const { slug } = ctx.query
+export async function unstable_getStaticProps(ctx) {
+  const { slug } = ctx.params
   //TODO - change to fs.readFile once we move to getStaticProps
-  const content = await import(`../../content/blog/${slug}.md`)
-  const post = matter(content.default)
+  const content = await readFile(`content/blog/${slug}.md`)
+  const post = matter(content)
 
   return {
-    // fileRelativePath: `src/posts/${slug}.md`,
-    post: {
-      data: { ...post.data, slug },
-      content: post.content,
+    props: {
+      // fileRelativePath: `src/posts/${slug}.md`,
+      post: {
+        data: { ...post.data, slug },
+        content: post.content,
+      },
     },
   }
+}
+
+export async function unstable_getStaticPaths() {
+  const blogs = await fg(`./content/blog/**/*.md`)
+  return blogs.map(file => {
+    const slug = file
+      .split('/blog/')[1]
+      .replace(/ /g, '-')
+      .slice(0, -3)
+      .trim()
+    console.log(`slugii ${file}`)
+    return { params: { slug } }
+  })
 }
 
 const BlogWrapper = styled(Wrapper)`
