@@ -18,17 +18,10 @@ const HomePage = props => {
   const data = props.jsonFile
   return (
     <Layout pathname="/">
-      <Head>
-        <title>TinaCMS | Build real-time editing into your site.</title>
-        <meta
-          name="description"
-          content="Tina is an open-source site editing toolkit for React-based frameworks — Gatsby & Next.js."
-        />
-      </Head>
       <Hero overlap narrow>
         {data.headline}
       </Hero>
-      <Video src={'v1571425758/tina-hero-demo-v2'} />
+      <Video src={data.hero_video} />
       <RichTextWrapper>
         <Section>
           <Wrapper>

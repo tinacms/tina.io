@@ -42,10 +42,6 @@ function CommunityPage(props) {
   }
   return (
     <Layout>
-      <Head>
-        <meta property="og:title" content="TinaCMS - Community" />
-        <meta name="twitter:title" content="TinaCMS - Community" />
-      </Head>
       <Hero>
         <h2 className="h1">{data.headline}</h2>
       </Hero>
