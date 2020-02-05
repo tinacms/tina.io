@@ -39,6 +39,12 @@ const StyledHeader = styled.header<StyledHeaderProps>`
   z-index: 100;
   height: 5rem;
 
+  ${Overlay} {
+    @media (min-width: 685px) {
+      display: none;
+    }
+  }
+
   ${TinaIcon} {
     position: absolute;
     top: 50%;

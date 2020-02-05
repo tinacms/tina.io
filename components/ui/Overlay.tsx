@@ -6,27 +6,23 @@ interface Overlay {
 }
 
 export const Overlay = styled.div<Overlay>`
-  display: none;
+  pointer-events: none;
+  display: block;
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-secondary);
+  transition: all 180ms ease-out;
+  opacity: 0;
+  z-index: 200;
 
-  @media (max-width: 684px) {
-    pointer-events: none;
-    display: block;
-    position: fixed;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--color-secondary);
-    transition: all 180ms ease-out;
-    opacity: 0;
-    z-index: 200;
-
-    ${props =>
-      props.open &&
-      css`
-        opacity: 0.7;
-        pointer-events: all;
-      `};
-  }
+  ${props =>
+    props.open &&
+    css`
+      opacity: 0.7;
+      pointer-events: all;
+    `};
 `
