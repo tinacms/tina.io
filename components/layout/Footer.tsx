@@ -58,8 +58,12 @@ export const Footer = styled(({ ...styleProps }) => {
 
 const FooterSocial = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
+
+  @media (min-width: 550px) {
+    justify-content: flex-end;
+  }
 
   svg {
     width: 2rem;
@@ -85,13 +89,19 @@ const FooterNav = styled(Nav)`
 
 const FooterForm = styled.div`
   display: flex;
+  flex-direction: column;
   color: white;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   margin-bottom: 1.5rem;
 
   span {
-    margin-right: 1rem;
+    margin: 0.5rem 1rem 0.5rem 0;
     white-space: nowrap;
+  }
+
+  @media (min-width: 550px) {
+    flex-direction: row;
   }
 
   @media (min-width: 1200px) {
@@ -105,7 +115,11 @@ const FooterTop = styled.div`
   padding: 2rem 2rem;
   background-color: var(--color-primary);
   align-items: start;
-  grid-template-areas: 'logo social' 'nav nav';
+  grid-template-areas: 'logo' 'social' 'nav';
+
+  @media (min-width: 550px) {
+    grid-template-areas: 'logo social' 'nav nav';
+  }
 
   @media (min-width: 800px) {
     grid-template-columns: 1fr 3fr 1fr;
