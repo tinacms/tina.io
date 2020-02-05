@@ -11,18 +11,21 @@ module.exports = withSvgr({
     MAILCHIMP_ENDPOINT: isProd
       ? process.env.MAILCHIMP_ENDPOINT
       : dummyMailchimpEndpoint,
-    HUBSPOT_FORM_ID: process.env.NEXT_HUBSPOT_FORM_ID,
-    HUBSPOT_PORTAL_ID: process.env.NEXT_HUBSPOT_PORTAL_ID,
+    HUBSPOT_TEAMS_FORM_ID: process.env.HUBSPOT_TEAMS_FORM_ID,
+    HUBSPOT_PORTAL_ID: process.env.HUBSPOT_PORTAL_ID,
   },
   exportTrailingSlash: true,
   exportPathMap: async function() {
-    // TODO: test if the docs and blog routes grab the index file
     const routes = {
       '/': { page: '/' },
       '/community': { page: '/community' },
       '/teams': { page: '/teams' },
       '/blog': { page: '/blog' },
     }
+
+    /*
+     ** Export blog routes
+     */
     //get all .md files in the blogs dir
     const blogs = glob.sync('content/blog/**/*.md')
 
@@ -41,7 +44,6 @@ module.exports = withSvgr({
     })
 
     // TODO: Add docs routes
-
     return routes
   },
   webpack(config) {

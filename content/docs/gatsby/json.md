@@ -5,9 +5,8 @@ next: /docs/gatsby/configure-git-plugin
 consumes:
   - file: /packages/gatsby-tinacms-json/src/use-json-form.ts
     details: Demonstrates use of useLocalJsonForm and JsonForm
-  - file: /packages/@tinacms/core/src/cms-forms/form.ts
+  - file: /packages/@tinacms/forms/src/form.ts
     details: Explains form options interface
-
 ---
 
 ## Editing JSON in Gatsby
@@ -16,7 +15,7 @@ Creating forms for content provided by the [`gatsby-transformer-json`](https://g
 
 - `gatsby-tinacms-json`: Provides hooks and components for creating JSON forms.
 - `gatsby-tinacms-git`: Extends the gatsby dev server to write changes to the local filesystem;
-  and registers [CMS Backend](../concepts/backends.md) for saving changes to that backend.
+  and registers [CMS Backend](/docs/concepts/backends) for saving changes to that backend.
 
 **Note on top-level arrays:**
 
@@ -30,7 +29,11 @@ If you need a top-level array of objects like above, we recommend creating separ
 
 ```json
 {
-  "menu": [{ "breakfast": "granola" }, { "lunch": "tacos" }, { "dinner": "pizza" }]
+  "menu": [
+    { "breakfast": "granola" },
+    { "lunch": "tacos" },
+    { "dinner": "pizza" }
+  ]
 }
 ```
 
@@ -82,7 +85,7 @@ query MyQuery {
 
 ## Creating JSON Forms
 
-In order to edit a JSON file, you must register a form with the CMS. There are two different types of forms in Tina: global & local. Please refer to the [form concepts](../concepts/forms) doc to get clarity on the differences.
+In order to edit a JSON file, you must register a form with the CMS. There are two different types of forms in Tina: global & local. Please refer to the [form concepts](/docs/concepts/forms) doc to get clarity on the differences.
 
 #### Note: required query data
 
@@ -113,7 +116,7 @@ There are two approaches to registering local JSON forms with Tina. The approach
 1. [`useLocalJsonForm`](#useLocalJsonForm): A [Hook](https://reactjs.org/docs/hooks-intro.html) used when the template is a function.
 2. [`JsonForm`](#JsonForm): A [Render Props](https://reactjs.org/docs/render-props.html#use-render-props-for-cross-cutting-concerns) component to use when the template is a class component.
 
-<tip>Nov 18, 2019: The hook for creating a local form changed from `useJsonForm` 👉 `useLocalJsonForm`</tip>
+> Nov 18, 2019: The hook for creating a local form changed from `useJsonForm` 👉 `useLocalJsonForm`
 
 ### useLocalJsonForm
 
@@ -134,7 +137,7 @@ useLocalJsonForm(data): [values, form]
 
 - `[values, form]`
   - `values`: The current values to be displayed. This has the same shape as the `data` argument.
-  - `form`: A reference to the [CMS Form](../concepts/forms.md) object. The `form` is rarely needed in the template.
+  - `form`: A reference to the [CMS Form](/docs/concepts/forms) object. The `form` is rarely needed in the template.
 
 **src/templates/blog-post.js**
 
@@ -151,7 +154,7 @@ function DataTemplate(props) {
 ### JsonForm
 
 `JsonForm` is a [Render Props](https://reactjs.org/docs/render-props.html#use-render-props-for-cross-cutting-concerns)
-based component for accessing [CMS Forms](../concepts/forms.md).
+based component for accessing [CMS Forms](/docs/concepts/forms).
 
 This Component is a thin wrapper of `useLocalJsonForm`. Since [React Hooks](https://reactjs.org/docs/hooks-intro.html) are
 only available within Function Components you will need to use `JsonForm` if your template is Class Component.
@@ -161,7 +164,7 @@ only available within Function Components you will need to use `JsonForm` if you
 - `data`: The data returned from a Gatsby `dataJson` query.
 - `render({ data, form }): JSX.Element`: A function that returns JSX elements
   - `data`: The current values to be displayed. This has the same shape as the data in the `Json` prop.
-  - `form`: A reference to the [CMS Form](../concepts/forms.md) object. The `form` is rarely needed in the template.
+  - `form`: A reference to the [CMS Form](/docs/concepts/forms) object. The `form` is rarely needed in the template.
 
 **src/templates/blog-post.js**
 
@@ -200,12 +203,11 @@ useGlobalJsonForm(data): [values, form]
 
 - `[values, form]`
   - `values`: The current values to be displayed. This has the same shape as the `data` argument.
-  - `form`: A reference to the [CMS Form](../concepts/forms.md) object. The `form` is rarely needed in the template.
+  - `form`: A reference to the [CMS Form](/docs/concepts/forms) object. The `form` is rarely needed in the template.
 
 **Example**
 
 ```jsx
-
 import { useGlobalJsonForm } from 'gatsby-tinacms-json'
 
 function DataTemplate(props) {
@@ -214,6 +216,7 @@ function DataTemplate(props) {
   return <h1>{data.siteName}</h1>
 }
 ```
+
 You can essentially treat `useGlobalJsonForm` and `useLocalJsonForm` as interchangeable. You would choose to use either one depending on the type of content you want to edit and whether you want this editing capacity to be available sitewide, or contextually based on the page. Try switching between a local and global form and see how they behave differently in the sidebar.
 
 ## Customizing Json Forms
@@ -238,9 +241,7 @@ The `useLocalJsonForm` hook accepts an optional `config` object for overriding t
   - `label`: A human readable label for the field.
   - `description`: An optional description that expands on the purpose of the field or prompts a specific action.
 
-<tip>
-NOTE: there may be additional properties specific to each field, but the above are the rudimentary properties of every field. Check the `Fields` section of the docs for particulars on the properties for each field.
-</tip>
+> _Note:_ there may be additional properties specific to each field, but the above are the rudimentary properties of every field. Check the **Fields** section of the docs for particulars on the properties for each field.
 
 ```js
 import { useLocalJsonForm } from 'gatsby-tinacms-json'
@@ -277,3 +278,5 @@ const FormOptions = {
 
 export default Page
 ```
+
+> _Important:_ You may need to implement default values or dummy files to avoid a GraphQL error when a field is empty. Take a look at our [empty field troubleshooting guide](https://tinacms.org/docs/gatsby/markdown#avoiding-errors-caused-by-empty-fields) for more information.

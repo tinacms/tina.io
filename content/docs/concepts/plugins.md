@@ -20,16 +20,16 @@ consumes:
 - [Content Creator Plugins](https://tinacms.org/docs/gatsby/creating-new-files#1-add-content-creator-plugin)
 - Screen Plugins
 
-<tip>**Please note:** creating or consuming custom plugins is considered an advanced use-case. It is recommended for most folks to use Tina's predefined plugins mentioned above.</tip>
+> **Please note:** creating or consuming custom plugins is considered an advanced use-case. It is recommended for most folks to use Tina's predefined plugins mentioned above.
 
 ## Defining Plugins
 
-``` ts
+```ts
 interface Plugin {
   /*
-  ** Required. Plugins can use the `__type` property to
-  ** determine which other plugins they can communicate with
-  */
+   ** Required. Plugins can use the `__type` property to
+   ** determine which other plugins they can communicate with
+   */
   __type: string
   name: string
   icon?: string
@@ -61,8 +61,6 @@ cms.plugins.all('say-hello').map(plugin => plugin.hello())
 ### withPlugin HOC & usePlugins Hook
 
 The best way to add plugins to the CMS is via the `withPlugin` HOC or `usePlugins` hook. `usePlugins` accepts a single plugin or an array of plugins and will update the plugins registered with the CMS by adding and removing them [dynamically](https://tinacms.org/blog/dynamic-plugin-system/).
-
-
 
 In the example below, a custom `postCreatorPlugin` was created. And the `usePlugins` hook will dynamically add this plugin to the CMS only when the `BlogIndex` component is rendered.
 

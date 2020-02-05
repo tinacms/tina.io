@@ -1,35 +1,34 @@
 import React from 'react'
-import ReactMarkdown from 'react-markdown'
+import ReactMarkdown from 'react-markdown/with-html'
+// import ReactMarkdown from 'react-markdown'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-/*
- ** A few Prism themes to choose from
- ** that I thought looked fine. I think
- ** the og prism one looks best.
- ** once we know what were goin with, let's
- ** delete the unused imports.
- **/
-import {
-  base16AteliersulphurpoolLight,
-  coy,
-  duotoneLight,
-  tomorrow,
-  prism,
-  hopscotch,
-} from 'react-syntax-highlighter/dist/cjs/styles/prism'
-import Code from '../styles/Code'
+import CodeStyle from '../styles/Code'
 
 interface MarkdownContentProps {
   content: string
+  escapeHtml?: boolean // eq:false --> if the component needs to render html
+  skipHtml?: boolean
 }
 
 function WithCodeStyles({ language, value }) {
   return (
-    <SyntaxHighlighter language={language} style={prism}>
+    <SyntaxHighlighter language={language} style={CodeStyle}>
       {value}
     </SyntaxHighlighter>
   )
 }
 
-export function MarkdownContent({ content }: MarkdownContentProps) {
-  return <ReactMarkdown source={content} renderers={{ code: WithCodeStyles }} />
+export function MarkdownContent({
+  content,
+  escapeHtml,
+  skipHtml,
+}: MarkdownContentProps) {
+  return (
+    <ReactMarkdown
+      escapeHtml={escapeHtml ? escapeHtml : true}
+      skipHtml={skipHtml ? skipHtml : false}
+      source={content}
+      renderers={{ code: WithCodeStyles }}
+    />
+  )
 }

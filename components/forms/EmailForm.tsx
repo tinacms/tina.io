@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
-import addToMailchimp from '../../utils/addToMailchimp'
 
+import { addToMailchimp } from '../../utils'
 import { Input, Button } from '../ui'
 
 interface EmailFormProps {
@@ -36,7 +36,7 @@ export const EmailForm = (props: EmailFormProps) => {
   }
 
   return (
-    <StyledForm
+    <StyledEmailForm
       id="newsletter-signup"
       onSubmit={handleSubmit}
       isFooter={props.isFooter}
@@ -51,11 +51,11 @@ export const EmailForm = (props: EmailFormProps) => {
       {props.isFooter ? (
         isEntering && <Button type="submit">Subscribe</Button>
       ) : (
-        <Button type="submit" primary>
+        <Button type="submit" color="primary">
           Subscribe
         </Button>
       )}
-    </StyledForm>
+    </StyledEmailForm>
   )
 }
 
@@ -63,7 +63,11 @@ EmailForm.defaultProps = {
   isFooter: false,
 }
 
-const StyledForm = styled('form')`
+interface StyledEmailFormProps {
+  isFooter?: boolean
+}
+
+const StyledEmailForm = styled.form<StyledEmailFormProps>`
   display: grid;
   grid-template-rows: auto auto;
   grid-template-columns: auto;

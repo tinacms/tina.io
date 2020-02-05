@@ -4,7 +4,7 @@ id: /docs/concepts/forms
 prev: /docs/concepts/sidebar
 next: /docs/concepts/fields
 consumes:
-  - file: /packages/@tinacms/core/src/cms-forms/form.ts
+  - file: /packages/@tinacms/forms/src/form.ts
     details: Shows Form Options interface
   - file: /packages/@tinacms/react-core/src/use-form.ts
     details: Creates custom form with useForm & useLocalForm
@@ -32,7 +32,7 @@ Most of the time, you will be using predefined forms provided by Tina. If you're
 
 If you want to make custom forms, they can be created by invoking the `useForm`, `useLocalForm`, or `useGlobalForm` hooks. They are incredibly similar, the main difference being that `useLocalForm` & `useGlobalForm` will register the forms as plugins, and `useForm` does not.
 
-<tip>**Please note:** creating custom forms is considered an advanced use-case. It is recommended for most folks to use Tina's predefined forms mentioned above.</tip>
+> **Please note:** creating custom forms is considered an advanced use-case. It is recommended for most folks to use Tina's predefined forms mentioned above.
 
 ### useForm
 
@@ -99,7 +99,7 @@ interface FormOptions {
 import { useLocalForm } from 'react-tinacms'
 
 function PageTemplate(props) {
-  let [ someData ] = useLocalForm({
+  let [someData] = useLocalForm({
     id: 'uid',
     label: 'someData',
     initialValues: props.data.someData,
@@ -116,4 +116,5 @@ function PageTemplate(props) {
   )
 }
 ```
-<tip>Update react-tinacms version:0.9.0: The previous hook `useCMSForm` used to create custom forms is now the same as `useLocalForm`</tip>
+
+> Update react-tinacms version:0.9.0: The previous hook `useCMSForm` used to create custom forms is now the same as `useLocalForm`

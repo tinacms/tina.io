@@ -145,6 +145,17 @@ const RichText = css`
     }
   }
 
+  blockquote {
+    display: block;
+    font-size: 1.125rem;
+    background-color: var(--color-seafoam);
+    border: 1px solid var(--color-seafoam-dark);
+    border-left-width: 6px;
+    border-radius: 3px;
+    padding: 1em;
+    margin: 0.5em 0;
+  }
+
   hr {
     border: none;
     border-bottom: 3px dotted var(--color-primary);
@@ -157,6 +168,10 @@ const RichText = css`
 
   strong {
     font-weight: bold;
+  }
+
+  ul {
+    list-style-type: disc;
   }
 
   li {

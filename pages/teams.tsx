@@ -15,7 +15,7 @@ import { TeamsForm } from '../components/forms'
 function TeamsPage(props) {
   const data = props.jsonFile
   return (
-    <TeamsLayout page="teams" darkHeader>
+    <TeamsLayout page="teams" color={'secondary'}>
       <Head>
         <meta property="og:title" content="TinaCMS - Teams" />
         <meta name="twitter:title" content="TinaCMS - Teams" />
@@ -34,7 +34,7 @@ function TeamsPage(props) {
                 </ArrowList>
               </TeamsContent>
               <TeamsFormWrapper>
-                <TeamsForm hubspotFormID={process.env.GATSBY_HUBSPOT_FORM_ID} />
+                <TeamsForm hubspotFormID={process.env.HUBSPOT_TEAMS_FORM_ID} />
               </TeamsFormWrapper>
             </TeamsGrid>
           </RichTextWrapper>

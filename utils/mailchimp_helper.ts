@@ -42,7 +42,7 @@ const subscribeEmailToMailchimp = url =>
  *  }
  */
 
-const addToMailchimp = function addToMailchimp(email) {
+export const addToMailchimp = function addToMailchimp(email) {
   const isEmailValid = validate(email)
   const emailEncoded = encodeURIComponent(email)
   if (!isEmailValid) {
@@ -63,5 +63,3 @@ const addToMailchimp = function addToMailchimp(email) {
 
   return subscribeEmailToMailchimp(url)
 }
-
-export default addToMailchimp

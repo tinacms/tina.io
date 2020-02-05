@@ -11,6 +11,8 @@ consumes:
 
 The `date` field represents a date and time picker. It can be used for data values that are valid date strings.
 
+![tinacms-date-field](/fields/date.jpg)
+
 ## Definition
 
 Below is an example of how a `date` field could be defined in a Gatsby remark form. Read more on passing in form field options [here](/docs/gatsby/markdown#customizing-remark-forms).

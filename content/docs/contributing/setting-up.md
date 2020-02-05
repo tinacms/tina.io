@@ -2,7 +2,7 @@
 id: /docs/contributing/setting-up
 title: Contribution Set-up
 prev: /docs/contributing/guidelines
-next: /docs/contributing/troubleshooting
+next: /docs/contributing/releasing
 consumes:
   - file: /package.json
     details: Uses scripts for local dev
@@ -30,7 +30,7 @@ npm run start
 
 **Do not run `npm install` from inside the `packages` directory**
 
-<tip>**TinaCMS** uses [**Lerna**](https://lerna.js.org/) to manage dependencies when developing locally. This allows the various packages to reference each other via symlinks. Running `npm install` from within a package replaces the symlinks with references to the packages in the npm registry.</tip>
+> **TinaCMS** uses [**Lerna**](https://lerna.js.org/) to manage dependencies when developing locally. This allows the various packages to reference each other via symlinks. Running `npm install` from within a package replaces the symlinks with references to the packages in the npm registry.
 
 ## Commands
 

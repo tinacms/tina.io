@@ -1,40 +1,34 @@
-import matter from 'gray-matter'
-import ReactMarkdown from 'react-markdown'
 import Link from 'next/link'
+import matter from 'gray-matter'
+import styled from 'styled-components'
 
-import { Layout, Header, MarkdownContent } from '../../components/layout'
-
-interface DocSection {
-  id: string
-  slug: string
-  title: string
-  items: DocSection[]
-}
-
-const DocSection = (section: DocSection) => {
-  return (
-    <div>
-      {section.slug ? (
-        <Link href={section.slug}>
-          <a>{section.title}</a>
-        </Link>
-      ) : (
-        <b>{section.title}</b>
-      )}
-      {(section.items || []).map(item => (
-        <DocSection {...item} />
-      ))}
-    </div>
-  )
-}
+import {
+  Layout,
+  MarkdownContent,
+  RichTextWrapper,
+  Wrapper,
+  Pagination,
+} from '../../components/layout'
+import { DocsNav } from '../../components/ui/DocsNav'
 
 export default function DocTemplate(props) {
+  const frontmatter = props.doc.data
+  const markdownBody = props.doc.content
   return (
-    <Layout pathname="/">
-      <Header />
-      <h1>{props.doc.data.title}</h1>
-      {props.docsNav.map(DocSection)}
-      <MarkdownContent content={props.doc.content} />
+    <Layout color={'seafoam'} fixedIcon noFooter>
+      <DocsLayout>
+        <DocsNav navItems={props.docsNav} />
+        <DocsContent>
+          <RichTextWrapper>
+            <Wrapper narrow>
+              <h1>{frontmatter.title}</h1>
+              <hr />
+              <MarkdownContent content={markdownBody} />
+              <Pagination prevPage={props.prevPage} nextPage={props.nextPage} />
+            </Wrapper>
+          </RichTextWrapper>
+        </DocsContent>
+      </DocsLayout>
     </Layout>
   )
 }
@@ -46,11 +40,13 @@ export async function unstable_getStaticProps(ctx) {
   const content = await import(`../../content/docs/${slug}.md`)
   const doc = matter(content.default)
 
-  const docsNavData = await import('../../content/pages/toc-doc.json')
-  // workaround for json data imported as indexed Obj
-  const docsNav = Object.keys(docsNavData).map(function(key) {
-    return docsNavData[key]
-  })
+  const docsNavData = await import('../../content/toc-doc.json')
+  const nextDocPage =
+    doc.data.next &&
+    matter((await import(`../../content${doc.data.next}.md`)).default)
+  const prevDocPage =
+    doc.data.prev &&
+    matter((await import(`../../content${doc.data.prev}.md`)).default)
 
   return {
     props: {
@@ -58,7 +54,15 @@ export async function unstable_getStaticProps(ctx) {
         data: { ...doc.data, slug },
         content: doc.content,
       },
-      docsNav,
+      docsNav: docsNavData.default,
+      nextPage: {
+        slug: doc.data.next,
+        title: nextDocPage && nextDocPage.data.title,
+      },
+      prevPage: {
+        slug: doc.data.prev,
+        title: prevDocPage && prevDocPage.data.title,
+      },
     },
   }
 }
@@ -72,3 +76,37 @@ export async function unstable_getStaticPaths() {
     return { params: { slug: path.split('/') } }
   })
 }
+
+const DocsLayout = styled.div`
+  padding: 6rem 0 3rem 0;
+
+  @media (min-width: 1100px) {
+    display: grid;
+    grid-template-areas: 'nav content';
+    grid-template-columns: 14rem auto;
+  }
+`
+
+const DocsContent = styled.div`
+  grid-area: content;
+
+  /* Adjust header sizes for docs */
+
+  h1,
+  .h1 {
+    font-size: 2rem;
+
+    @media (min-width: 800px) {
+      font-size: 3rem;
+    }
+
+    @media (min-width: 1200px) {
+      font-size: 2.5rem;
+    }
+  }
+
+  h2,
+  .h2 {
+    font-size: 1.75rem;
+  }
+`

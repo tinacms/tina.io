@@ -9,6 +9,8 @@ consumes:
 
 The `markdown` field represents a chunk of Markdown content. This field is typically used for the body of Markdown files.
 
+![tinacms-markdown-field](/fields/markdown.png)
+
 ## Definition
 
 Below is an example of how a `markdown` field could be defined in a Gatsby remark form. [Read more on passing in form field options](/docs/gatsby/markdown#customizing-remark-forms).

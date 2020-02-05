@@ -3,7 +3,7 @@ title: Fields
 prev: /docs/concepts/forms
 next: /docs/concepts/backends
 consumes:
-  - file: /packages/@tinacms/core/src/cms-forms/form.ts
+  - file: /packages/@tinacms/forms/src/form.ts
     details: Shows Field interface
 ---
 

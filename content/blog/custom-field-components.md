@@ -30,7 +30,7 @@ Tina was intended to be fully customizable and extensible. Creating **custom fie
 
 <br>
 
-<tip> Want to jump ahead? Feel free to check out a **[finished version](https://github.com/kendallstrautman/llama-filters) of the custom range input field** seen in the gif above, or take a peak at a more complex [_Authors_ field plugin](https://github.com/tinacms/tina-starter-grande/blob/master/src/fields/authors.js) in the Tina Grande repo.</tip>
+> Want to jump ahead? Feel free to check out a **[finished version](https://github.com/kendallstrautman/llama-filters) of the custom range input field** seen in the gif above, or take a peak at a more complex [_Authors_ field plugin](https://github.com/tinacms/tina-starter-grande/blob/master/src/fields/authors.js) in the Tina Grande repo.
 
 ## Two Methods — Let’s start simple
 
@@ -44,61 +44,61 @@ There are some advantages to creating a plugin versus an inline field — the ma
 
 Say we have a [Tina Form](https://tinacms.org/docs/concepts/forms) set up for an _About Me_ page:
 
-<tip>_Note:_ The examples below will be referencing a Next.js setup, but this approach can be applied to Gatsby as well.</tip>
+> _Note:_ The examples below will be referencing a Next.js setup, but this approach can be applied to Gatsby as well.
 
-``` js
- const formOptions = {
-   label: 'About Me Page',
-   fields: [
-     {
-       label: "Name",
-       name: "name",
-       component: "text",
-     },
-     {
-       label: "Hometown",
-       name: "hometown",
-       component: "text",
-     },
-     {
-       label:"Color",
-       name:"background_color",
-       description: "Background Color",
-       component: "color"
-     },
-   ]
- }
-
+```js
+const formOptions = {
+  label: 'About Me Page',
+  fields: [
+    {
+      label: 'Name',
+      name: 'name',
+      component: 'text',
+    },
+    {
+      label: 'Hometown',
+      name: 'hometown',
+      component: 'text',
+    },
+    {
+      label: 'Color',
+      name: 'background_color',
+      description: 'Background Color',
+      component: 'color',
+    },
+  ],
+}
 ```
+
 We could add a custom inline field component to further organize the sidebar:
 
-``` js
+```js
 const formOptions = {
-   label: 'Info Page',
-   fields: [
-     {
-       label: "Name",
-       name: "name",
-       component: "text",
-     },
-     {
-       label: "Hometown",
-       name: "hometown",
-       component: "text",
-     },
-     // This is our custom inline field 👀
-     {
-       name: "_",
-       component: () => <h4>Page Styles</h4>,
-     },
-     {
-       label:"Color",
-       name:"background_color",
-       description: "Background Color",
-       component: "color"
-     },
-   ]
- }
+  label: 'Info Page',
+  fields: [
+    {
+      label: 'Name',
+      name: 'name',
+      component: 'text',
+    },
+    {
+      label: 'Hometown',
+      name: 'hometown',
+      component: 'text',
+    },
+    // This is our custom inline field 👀
+    {
+      name: '_',
+      component: () => <h4>Page Styles</h4>,
+    },
+    {
+      label: 'Color',
+      name: 'background_color',
+      description: 'Background Color',
+      component: 'color',
+    },
+  ],
+}
 ```
 
 _Pretty cool huh?_ 🤩
@@ -122,41 +122,40 @@ Say we had an image on the _About Me_ page and we wanted to be able to control s
 
 We can create a custom input field to provide editing control over these visual filters. **Let’s make a custom field that controls image saturation.**
 
-<tip>**Tip:** Saturation in photography relates to the _intensity of particular colors in an image_. A highly saturated image would be very bright, with colors bordering on neon. An image with low saturation would appear muted and grey.</tip>
+> **Tip:** Saturation in photography relates to the _intensity of particular colors in an image_. A highly saturated image would be very bright, with colors bordering on neon. An image with low saturation would appear muted and grey.
 
 ### 1. Create the input field component
 
 To create a custom input field, we need to make a **React component that takes input and updates data when the input is altered**. For this example, we are going to make a [range input field](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range) that handles the state of the saturation value and updates that state whenever the range control is slid.
 
-``` jsx
+```jsx
 // An example of a custom range field component
 function RangeInput(props) {
-   return (
-     <>
-       <div>
-         <label htmlFor="saturation">Image Saturation</label>
-       </div>
-       <div>
-         <input
-            name="saturation"
-            id="saturation"
-            type="range"
-            min="0"
-            max="10"
-            step=".1"
-            /*
-            ** This special input
-            ** object sets essential
-            ** input props: value,
-            ** onChange, onFocus etc.
-            */
-            {...props.input}
-          />
-        </div>
-     </>
-   )
- }
-
+  return (
+    <>
+      <div>
+        <label htmlFor="saturation">Image Saturation</label>
+      </div>
+      <div>
+        <input
+          name="saturation"
+          id="saturation"
+          type="range"
+          min="0"
+          max="10"
+          step=".1"
+          /*
+           ** This special input
+           ** object sets essential
+           ** input props: value,
+           ** onChange, onFocus etc.
+           */
+          {...props.input}
+        />
+      </div>
+    </>
+  )
+}
 ```
 
 #### 👽 Take a closer look — Props:
@@ -165,7 +164,7 @@ Notice this line, `{...props.input}`. You may be wondering where this magical ob
 
 When the custom field is registered with Tina, this **input object** is passed in as a prop to the field. This object contains necessary data and callbacks for the input to function properly: [`value`](https://final-form.org/docs/react-final-form/types/FieldRenderProps#inputvalue), [`name`](https://final-form.org/docs/react-final-form/types/FieldRenderProps#inputname), [`onChange`](https://final-form.org/docs/react-final-form/types/FieldRenderProps#inputonchange), [`onFocus`](https://final-form.org/docs/react-final-form/types/FieldRenderProps#inputonfocus), [`onBlur`](https://final-form.org/docs/react-final-form/types/FieldRenderProps#inputonblur).
 
-<tip> If your custom component is not a standard [HTML input element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input), you will need to manually pass in the necessary input props, as opposed to using the [spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax).</tip>
+>  If your custom component is not a standard [HTML input element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input), you will need to manually pass in the necessary input props, as opposed to using the [spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax).
 
 **All of the props** passed to the field component are:
 
@@ -215,7 +214,7 @@ AboutMe.getInitialProps = async function() {
 
 It could also be defined in its own file and imported into the file where the Tina form options are configured:
 
-``` jsx
+```jsx
 /*
 ** Custom field definition kept in
 ** separate file and imported
@@ -253,7 +252,7 @@ For our example, let's say we have a local JSON file called `about.json`. This f
 
 The value can be any integer or floating point number that exists between the range defined in our `RangeInput` component — 0 to 10, with a step of 0.1 (meaning each 'slide step' of the range increments or decrements the value by 0.1). As a saturation value, **zero would be totally grayscale** or no color, so we can fill in something like 3 to get a more 'normal' look.
 
-``` JSON
+```JSON
 // Example About Me Page source data --> about.json
 {
  “name”: “Koba Weasley”,
@@ -262,7 +261,8 @@ The value can be any integer or floating point number that exists between the ra
  "image_saturation": 3,
 }
 ```
-<tip> If you’re using Gatsby, you will **need to update your GraphQL query** to get this new data. Add the `image_saturation` field to your query.</tip>
+
+>  If you’re using Gatsby, you will **need to update your GraphQL query** to get this new data. Add the `image_saturation` field to your query.
 
 So now we have a source value that can be connected to the custom input field. This way, **Tina can update the value in the source file** in sync with the changes picked up by the `RangeInput` component.
 
@@ -272,54 +272,54 @@ How about we wire up this custom field to Tina? 🎊
 
 In this step, we need to create the custom field definition and pass in the `RangeInput` component inline. We'll go back to our _About Me_ page [form options](https://tinacms.org/docs/gatsby/json#customizing-json-forms):
 
-``` jsx
+```jsx
 const formOptions = {
-   label: 'About Me Page',
-   fields: [
-     {
-       label: "Name",
-       name: "name",
-       component: "text",
-     },
-     {
-       label: "Hometown",
-       name: "hometown",
-       component: "text",
-     },
-     {
-       name: "",
-       component: () => <h4>Page Styles</h4>,
-     },
-     // Pass `RangeInput` to the `component` property
-     {
-       label: "Image Saturation",
-       name: "image_saturation",
-       component: RangeInput,
-     },
-     {
-       label:"Color",
-       name:"background_color",
-       description: "Background Color",
-       component: "color"
-     },
-   ]
- }
+  label: 'About Me Page',
+  fields: [
+    {
+      label: 'Name',
+      name: 'name',
+      component: 'text',
+    },
+    {
+      label: 'Hometown',
+      name: 'hometown',
+      component: 'text',
+    },
+    {
+      name: '',
+      component: () => <h4>Page Styles</h4>,
+    },
+    // Pass `RangeInput` to the `component` property
+    {
+      label: 'Image Saturation',
+      name: 'image_saturation',
+      component: RangeInput,
+    },
+    {
+      label: 'Color',
+      name: 'background_color',
+      description: 'Background Color',
+      component: 'color',
+    },
+  ],
+}
 ```
 
 Start the development server and you should see the custom `RangeInput` field in the sidebar. If you slide it, you should see the value updating in `about.json`.
 
 ### 4. Dynamically set the CSS filter
 
- If all went well, our custom input field should be wired up, but there's one last thing to do. We haven’t connected the _saturation value_ with a CSS filter to actually see an effect on the image.
+If all went well, our custom input field should be wired up, but there's one last thing to do. We haven’t connected the _saturation value_ with a CSS filter to actually see an effect on the image.
 
 In order to do this, you’ll need to be using a [_CSS-in-JS_](https://css-tricks.com/bridging-the-gap-between-css-and-javascript-css-in-js/) framework so we can dynamically update the filter values through the component props. If you’re using Next.js, `styled-jsx` works out-of-the-box and is pretty fantastic. Below is an example of the _saturation value_ being connected to the CSS filter with `styled-jsx`:
 
-``` jsx
+```jsx
 /*
-**  Example component for the
-**  About Me page in Next.js
-*/
-import { useLocalJsonForm } from "next-tinacms-json";
+ **  Example component for the
+ **  About Me page in Next.js
+ */
+import { useLocalJsonForm } from 'next-tinacms-json'
 
 function AboutMe(props) {
   const [data] = useLocalJsonForm(props.data, formOptions)
@@ -329,7 +329,10 @@ function AboutMe(props) {
         <h1>Hi 👩‍🎤 my name is {data.name}</h1>
         <p>Currently gallivanting around {data.hometown}</p>
         {/* This is the image that will get the treatment */}
-        <img alt="random-unsplash" src="https://source.unsplash.com/random/800x600" />
+        <img
+          alt="random-unsplash"
+          src="https://source.unsplash.com/random/800x600"
+        />
       </section>
       {/* Pass in the image_saturation value */}
       <style jsx>{`
@@ -340,7 +343,6 @@ function AboutMe(props) {
     </Layout>
   )
 }
-
 ```
 
 Some other examples of awesome _CSS-in-JS_ frameworks are [styled-components](https://www.styled-components.com/) and [emotion.js](https://emotion.sh/docs/introduction). Note that the above implementation for these alternative frameworks this will look slightly different.
@@ -351,7 +353,7 @@ A good next step would be _adding styles to the custom `RangeInput` component_. 
 
 If we wanted to reuse this component throughout the site, **we could take a step further and make it into a [Field Plugin](https://tinacms.org/docs/fields/custom-fields#2-creating-field-plugins)**. Stay tuned for a follow-up post that dives into creating custom Field Plugins, or swing by the [docs](https://tinacms.org/docs/fields/custom-fields#2-creating-field-plugins) to get a head start.
 
-<tip>Feel free to check out a **[finished version](https://github.com/kendallstrautman/llama-filters) of this custom range input field**, or take a peak at a more complex [_Authors_ field plugin](https://github.com/tinacms/tina-starter-grande/blob/master/src/fields/authors.js) in the Tina Grande repo.</tip>
+> Feel free to check out a **[finished version](https://github.com/kendallstrautman/llama-filters) of this custom range input field**, or take a peak at a more complex [_Authors_ field plugin](https://github.com/tinacms/tina-starter-grande/blob/master/src/fields/authors.js) in the Tina Grande repo.
 
 ### Takeaways 🕺🏻
 

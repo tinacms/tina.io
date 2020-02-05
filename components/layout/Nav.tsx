@@ -1,10 +1,16 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Button } from '../ui'
 import Link from 'next/link'
 import data from '../../content/navigation.json'
 
 import BurgerSvg from '../../public/svg/burger-menu.svg'
+import Search from '../search'
+
+const searchIndices = [
+  { name: `Tina-Docs-Next`, title: `Docs`, hitComp: `DocHit` },
+  { name: `Tina-Blogs-Next`, title: `Blog`, hitComp: `BlogHit` },
+]
 
 export const NavToggle = styled(({ ...styleProps }) => {
   return (
@@ -16,7 +22,12 @@ export const NavToggle = styled(({ ...styleProps }) => {
   fill: var(--color-primary);
 `
 
-export const Nav = styled(({ darkNav, ...styleProps }) => {
+interface NavProps {
+  color?: 'white' | 'secondary' | 'seafoam'
+  noSearch?: boolean
+}
+
+export const Nav = styled(({ color, noSearch, ...styleProps }: NavProps) => {
   return (
     <ul {...styleProps}>
       {data &&
@@ -24,19 +35,18 @@ export const Nav = styled(({ darkNav, ...styleProps }) => {
           return (
             <li key={id}>
               <Link href={href} passHref>
-                {darkNav ? (
-                  <Button as="a" secondary>
-                    {label}
-                  </Button>
-                ) : (
-                  <Button as="a" white>
-                    {label}
-                  </Button>
-                )}
+                <Button as="a" color="variable">
+                  {label}
+                </Button>
               </Link>
             </li>
           )
         })}
+      {!noSearch && (
+        <li key="nav-search">
+          <Search collapse indices={searchIndices} />
+        </li>
+      )}
     </ul>
   )
 })`
@@ -46,23 +56,14 @@ export const Nav = styled(({ darkNav, ...styleProps }) => {
   display: flex;
   justify-content: center;
 
+  li {
+    margin: 0 0.25rem;
+  }
+
   @media (max-width: 799px) {
     li {
       ${Button} {
         font-size: 0.8rem;
-      }
-      &:not(:first-child) {
-        ${Button} {
-          border-top-left-radius: 0;
-          border-bottom-left-radius: 0;
-        }
-      }
-      &:not(:last-child) {
-        ${Button} {
-          border-right: 1px solid rgba(155, 155, 155, 0.15);
-          border-top-right-radius: 0;
-          border-bottom-right-radius: 0;
-        }
       }
     }
   }
@@ -72,4 +73,23 @@ export const Nav = styled(({ darkNav, ...styleProps }) => {
       margin: 0 0.5rem;
     }
   }
+
+  --color-background: white;
+  --color-foreground: var(--color-primary);
+
+  ${props =>
+    props.color &&
+    props.color === 'secondary' &&
+    css`
+      --color-background: var(--color-secondary);
+      --color-foreground: var(--color-primary);
+    `};
+
+  ${props =>
+    props.color &&
+    props.color === 'seafoam' &&
+    css`
+      --color-background: var(--color-seafoam);
+      --color-foreground: var(--color-primary);
+    `};
 `

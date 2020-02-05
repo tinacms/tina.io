@@ -7,7 +7,7 @@ consumes:
     details: Uses the add method from plugin manager
   - file: /packages/@tinacms/form-builder/src/field-plugin.tsx
     details: Shows the field plugin interface
-  - file: /packages/@tinacms/core/src/cms-forms/form.ts
+  - file: /packages/@tinacms/forms/src/form.ts
     details: Depends on Field props
 ---
 
@@ -36,7 +36,7 @@ A field plugin is a JavaScript object with three properties:
 
 **Interface**
 
-``` typescript
+```typescript
 interface FieldPlugin {
   __type: 'field'
   name: string
@@ -106,6 +106,83 @@ cms.fields.add({
     if (!isValidEmail) return 'Invalid email address'
   },
 })
+```
+
+## Using Tina Styles
+
+If you want to style the custom field to fit in with the rest of the Tina sidebar, you'll need to access Tina theme styles from [`@tinacms/styles`](https://github.com/tinacms/tinacms/blob/master/packages/%40tinacms/styles/src/Styles.tsx).
+
+If the Tina theme has been [customized](https://tinacms.org/docs/concepts/sidebar#customizing-the-sidebar-theme), the `Theme` values will be a combination of the customized styles and those set by [`DefaultTheme`](https://tinacms.org/docs/concepts/sidebar#default-theme). The theme will fallback to all default values if no customization is set.
+
+To utilize these `Theme` values, helper functions have been created.
+
+### Helper Functions
+
+> The helpers will only work when using [`styled-components`](https://styled-components.com/) to style custom fields. If using another _CSS-in-JS_ framework, use the [`DefaultTheme` object directly](https://tinacms.org/docs/fields/custom-fields#using-the-default-theme).
+
+| Color                                                 | Default Value |
+| ----------------------------------------------------- | ------------- |
+| `primary(value?: "light" | "medium" | "dark")`        | "medium"      |
+| `grey(value?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9)` | 0             |
+| `error(value?: "light" | "medium" | "dark")`          | "medium"      |
+
+| Font                                      | Default Value |
+| ----------------------------------------- | ------------- |
+| `size(value?: 0 | 1 | 2 | 3 | 4 | 5 | 6)` | 0             |
+| `weight(value?: "regular" | "bold")`      | "regular"     |
+
+| Misc                                          | Default       | Notes               |
+| --------------------------------------------- | ------------- | ------------------- |
+| `radius(size?: "small" | "big")`              | "big"         | For `border-radius` |
+| `padding(size?: "small" | "big")`             | "big"         |                     |
+| `shadow(size?: "small" | "big")`              | "big"         | For `box-shadow`    |
+| `timing(length: "medium" | "short" | "long")` | `length` req. | For `transition`    |
+
+```jsx
+/*
+ ** Example: Helper functions used
+ ** within a styled component that will
+ ** render in a custom field
+ */
+
+// 1. Import the helpers
+import { padding, color, radius, font } from '@tinacms/styles'
+import styled from 'styled-components'
+
+// 2. Use the helpers in your styled components
+const Label = styled.h3`
+  color: ${color.primary()};
+  font-size: ${font.size(3)};
+  font-weight: ${font.weight('bold')};
+  border-radius: ${radius()};
+  border: 1px solid ${color.primary('light')};
+  transition: color linear ease ${timing('medium')};
+  padding: ${padding('small')};
+`
+```
+
+### Using the Default Theme
+
+You can also access the [`DefaultTheme`](https://tinacms.org/docs/concepts/sidebar#default-theme) directly without using the helpers. This is helpful when you want to utilize Tina Theme styles outside of `styled-components` or if you just prefer working with the theme values directly, without helpers.
+
+> Although it's called `DefaultTheme`, note that if you pass [custom values to the sidebar](https://tinacms.org/docs/concepts/sidebar#customizing-the-sidebar-theme), `DefaultTheme` provides the overridden values instead of the true Tina defaults.
+
+```jsx
+/*
+ ** Example: Using `DefaultTheme`
+ ** directly with a CSS-in-JS,
+ ** framework `styled-jsx`
+ */
+
+// 1. Import `DefaultTheme`
+import { DefaultTheme } from '@tinacms/styles'
+
+//2. Use `DefaultTheme` values in your styles
+;<style jsx>{`
+  label {
+    color: ${DefaultTheme.color.primary.medium};
+  }
+`}</style>
 ```
 
 ## Further Reading

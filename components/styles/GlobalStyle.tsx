@@ -122,7 +122,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
       "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
       "Helvetica Neue", sans-serif;
-    line-height: 1.5;
+    line-height: 1.6;
     width: 100%;
     overflow-x: hidden;
     height: 100%;
@@ -161,6 +161,20 @@ export const GlobalStyle = createGlobalStyle`
       line-height: inherit;
       font-size: 100%;
       font-weight: normal;
+      scrollbar-width: thin;
+      scrollbar-color: #E1DDEC transparent;
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+        border-left: 1px solid var(--color-light-dark);
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: #E1DDEC;
+        border-radius: 0;
+        border: none;
+      }
     }
   }
 `

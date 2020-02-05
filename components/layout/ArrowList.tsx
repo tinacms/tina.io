@@ -5,7 +5,7 @@ export const ArrowList = styled(({ children, ...styleProps }) => {
   return <ul {...styleProps}>{children}</ul>
 })`
   margin: 0;
-  list-style: none;
+  list-style: none !important;
   padding-left: 0 !important;
   padding-bottom: 0 !important;
   color: var(--color-secondary-dark, #241748);

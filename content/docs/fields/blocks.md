@@ -9,8 +9,7 @@ consumes:
 
 The **Blocks** field represents a list of items, similar to the [Group List](/docs/fields/group-list) field, but allows each entity in the list to have a unique shape.
 
-<tip>For an in-depth explanation of the Blocks field, read our ["What are Blocks?"](/blog/what-are-blocks/) blog post. To see a real-world example of Blocks in use, check out the [Tina Grande Starter](https://github.com/tinacms/tina-starter-grande).
-</tip>
+> For an in-depth explanation of the Blocks field, read our ["What are Blocks?"](/blog/what-are-blocks/) blog post. To see a real-world example of Blocks in use, check out the [Tina Grande Starter](https://github.com/tinacms/tina-starter-grande).
 
 ![tinacms-blocks-gif](/gif/blocks.gif)
 

@@ -9,7 +9,7 @@ consumes:
   - file: /packages/tinacms/src/components/Tina.tsx
     details: Explains hiding sidebar in prod
   - file: /packages/@tinacms/styles/src/Styles.tsx
-    details: Shows the Theme interface
+    details: Shows the Theme interface and Default Theme values
 ---
 
 The **sidebar** is the primary interface in Tina. It is the shell that holds [forms](/docs/concepts/forms 'Tina Concepts: Forms') and [plugins](/docs/concepts/plugins 'Tina Concepts: Plugins').
@@ -48,7 +48,8 @@ For example, in your `gatsby-config.js` file...
     },
   }...
 ```
-<tip>These display options were updated from `fixed` and `float`. Consider `fixed` to equal `displace` & `float` to equal `overlay`. The updates are backwards compatible; the older options will still work.</tip>
+
+> These display options were updated from `fixed` and `float`. Consider `fixed` to equal `displace` & `float` to equal `overlay`. The updates are backwards compatible; the older options will still work.
 
 ## Hiding Sidebar in Production
 
@@ -87,9 +88,9 @@ class MyApp extends App {
   }
   // Sidebar options
   options = {
-      sidebar: {
-        hidden: process.env.NODE_ENV === "production"
-      }
+    sidebar: {
+      hidden: process.env.NODE_ENV === 'production',
+    },
   }
   render() {
     const { Component, pageProps } = this.props
@@ -103,16 +104,14 @@ class MyApp extends App {
 }
 ```
 
-<tip>_Note:_ This is an intermediate workaround that we plan on enhancing further to extract Tina code during production builds.</tip>
+> _Note:_ This is an intermediate workaround that we plan on enhancing further to extract Tina code during production builds.
 
 ## Customizing the Sidebar Theme
 
 We want you to be able to mold Tina to fit your use-case, including the styling of the sidebar UI. You can override the sidebar theme by passing in your theme object in either a `gatsby-config` file or however sidebar options are passed to Tina.
 
-``` javascript
+```javascript
 // gatsby-config.js
-
-const theme = require("./content/settings/theme.json")
 
 {
   resolve: 'gatsby-plugin-tinacms',
@@ -121,9 +120,9 @@ const theme = require("./content/settings/theme.json")
       theme: {
         color: {
           primary: {
-            light: theme.color.primary,
-            medium: theme.color.primary,
-            dark: theme.color.primary,
+            light: #E6FAF8,
+            medium: #EC4815,
+            dark: #241748,
           },
         },
       },
@@ -132,9 +131,11 @@ const theme = require("./content/settings/theme.json")
 }
 ```
 
+### Theme Options
+
 Below is the interface for the Tina Theme — all the properties to play with.
 
-``` typescript
+```typescript
 interface Theme {
   color: {
     primary: {
@@ -194,3 +195,69 @@ interface Theme {
   }
 }
 ```
+
+### Default Theme
+
+If no theme options are passed, these are the default values:
+
+```js
+const DefaultTheme = {
+  color: {
+    primary: {
+      light: '#2296FE',
+      medium: '#0084ff',
+      dark: '#0574E4',
+    },
+    error: {
+      light: '#EB6337',
+      medium: '#EC4815',
+      dark: '#DC4419',
+    },
+    grey: {
+      0: '#FFFFFF',
+      1: '#F6F6F9',
+      2: '#EDECF3',
+      3: '#E1DDEC',
+      4: '#B2ADBE',
+      5: '#918C9E',
+      6: '#716C7F',
+      7: '#565165',
+      8: '#433E52',
+      9: '#363145',
+    },
+  },
+  radius: {
+    small: '5px',
+    big: '24px',
+  },
+  padding: {
+    small: '12px',
+    big: '20px',
+  },
+  font: {
+    size: {
+      0: '11px',
+      1: '13px',
+      2: '15px',
+      3: '16px',
+      4: '18px',
+      5: '20px',
+      6: '22px',
+    },
+    weight: {
+      regular: 500,
+      bold: 600,
+    },
+  },
+  shadow: {
+    small: '0px 2px 3px rgba(0, 0, 0, 0.12)',
+    big: '0px 2px 3px rgba(0, 0, 0, 0.12), 0px 4px 8px rgba(48, 48, 48, 0.1)',
+  },
+  timing: {
+    short: '85ms',
+    medium: '150ms',
+    long: '250ms',
+  },
+```
+
+You can import this `DefaultTheme` from `@tinacms/styles` to utilize theme values in your styles. This can be especially helpful when [making custom fields](https://tinacms.org/docs/fields/custom-fields). Read more on [using Tina styles with custom fields](/docs/fields/custom-fields#using-tina-styles).
