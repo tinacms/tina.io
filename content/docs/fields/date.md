@@ -11,7 +11,7 @@ consumes:
 
 The `date` field represents a date and time picker. It can be used for data values that are valid date strings.
 
-![tinacms-date-field](/fields/date.jpg)
+![tinacms-date-field](/img/fields/date.jpg)
 
 ## Definition
 
