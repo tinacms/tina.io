@@ -120,4 +120,69 @@ There is another hook, `useGlobalJsonForm`, that registers a [Global Form](https
 
 Using this hook looks almost exactly the same as the example for `useLocalJsonForm`. This hook expects an object with the properties, `fileRelativePath` and `data`. The value of `data` should be the contents of the JSON file. The [Global Form](https://tinacms.org/docs/concepts/forms#local--global-forms) can be customized by passing in an _options_ object as the second argument.
 
+## Using _jsonForm_ HOC
+
+Using a hook is an incredibly flexible and intuitive way to register forms with Tina. Unfortunately hooks only work with function components in React. If you need to register a form with Tina on a class component, or are fond of the [higher-order component](https://reactjs.org/docs/higher-order-components.html) pattern, `jsonForm` is the function you can utilize.
+
+`jsonForm`accepts a component and optional configuration object as arguments. This component is expected to receive data as props that matches the `jsonFile` interface outlined above.
+
+```typescript
+// A datastructure representing a JSON file stored in Git
+interface JsonFile<T = any> {
+  fileRelativePath: string
+  data: T
+}
+```
+
+`jsonForm` returns the original component with a local form registered with Tina. Below is the same example from `useLocalJsonForm`, but refactored to use the HOC.
+
+**Example**
+
+```js
+// /pages/[slug].js
+import * as React from 'react'
+/*
+ ** 1. import jsonForm
+ */
+import { jsonForm } from 'next-tinacms-json'
+
+function Page({ jsonFile }) {
+  return (
+    <>
+      <h1>{jsonFile.data.title}</h1>
+    </>
+  )
+}
+
+/*
+ ** 2. Wrap the Page component with jsonForm
+ */
+const EditablePage = jsonForm(Page)
+
+/*
+ ** 3. Export the editable component
+ */
+export default EditablePage
+
+/*
+ ** 4. Call your data fetching method
+ **    on the editable component
+ */
+EditablePage.getInitialProps = function(ctx) {
+  const { slug } = ctx.query
+  let content = require(`../posts/${slug}.json`)
+
+  return {
+    /*
+     ** 5. Ensure your return data has
+     **    the same shape.
+     */
+    jsonFile: {
+      fileRelativePath: `/posts/${slug}.json`,
+      data: content.default,
+    },
+  }
+}
+```
+
 [More info: creating custom forms](/docs/concepts/forms#creating-custom-forms)
