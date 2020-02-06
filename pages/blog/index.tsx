@@ -13,6 +13,7 @@ import {
   RichTextWrapper,
 } from '../../components/layout'
 import SmallArrow from '../../public/svg/small-arrow.svg'
+import { NextSeo } from 'next-seo'
 
 const Index = props => {
   /*
@@ -39,6 +40,12 @@ const Index = props => {
 
   return (
     <Layout>
+      <NextSeo
+        title="Blog"
+        openGraph={{
+          title: 'Blog',
+        }}
+      />
       <Hero mini></Hero>
       <BlogWrapper>
         {props.posts.map(post => (
@@ -175,12 +182,12 @@ const BlogTitle = styled(({ children, ...styleProps }) => {
   font-size: 1.5rem;
   color: inherit;
   transition: all 180ms ease-out;
-  max-width: 80%;
   line-height: 1.3;
   margin-bottom: 1.5rem;
   color: var(--color-secondary);
   @media (min-width: 800px) {
     font-size: 2rem;
+    max-width: 80%;
   }
 `
 

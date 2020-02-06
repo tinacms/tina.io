@@ -1,6 +1,6 @@
 import matter from 'gray-matter'
 import styled from 'styled-components'
-import { formatDate } from '../../utils'
+import { formatDate, formatExcerpt } from '../../utils'
 
 import {
   Layout,
@@ -9,12 +9,24 @@ import {
   MarkdownContent,
   RichTextWrapper,
 } from '../../components/layout'
+import { NextSeo } from 'next-seo'
+import siteData from '../../content/siteConfig.json'
 
 export default function BlogTemplate(props) {
   const frontmatter = props.post.data
   const markdownBody = props.post.content
+  const excerpt = formatExcerpt(props.post.content)
   return (
     <Layout pathname="/">
+      <NextSeo
+        title={frontmatter.title}
+        titleTemplate={'%s | ' + siteData.title + ' Blog'}
+        description={excerpt}
+        openGraph={{
+          title: frontmatter.title,
+          description: excerpt,
+        }}
+      />
       <Hero>{frontmatter.title}</Hero>
       <BlogWrapper>
         <RichTextWrapper>
@@ -45,7 +57,8 @@ BlogTemplate.getInitialProps = async function(ctx) {
 }
 
 const BlogWrapper = styled(Wrapper)`
-  padding: 4rem 2rem;
+  padding-top: 4rem;
+  padding-bottom: 3rem;
   max-width: 768px;
 `
 
