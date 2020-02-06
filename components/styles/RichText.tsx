@@ -198,6 +198,36 @@ const RichText = css`
     border-color: rgb(237, 238, 238);
     border-image: initial;
   }
+
+  table {
+    width: 100%;
+    line-height: 1.375;
+  }
+
+  tr {
+    &:nth-child(even) {
+      background-color: var(--color-light);
+    }
+  }
+
+  th,
+  td {
+    padding: 0.25rem 0.5rem;
+  }
+
+  th {
+    border-bottom: 3px solid var(--color-light-dark);
+    font-family: var(--font-tuner);
+    font-weight: regular;
+    font-style: normal;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  td {
+    border-bottom: 1px solid var(--color-light-dark);
+  }
 `
 
 export default RichText
