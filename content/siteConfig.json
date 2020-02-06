@@ -1,7 +1,7 @@
 {
   "title": "TinaCMS",
   "sidebarTitle": "TinaCMS",
-  "seoTitle": "TinaCMS | Build real-time editing into your site.",
+  "seoDefaultTitle": "Build real-time editing into your site.",
   "description": "Tina is an open-source site editing toolkit for React-based frameworks — Gatsby & Next.js.",
   "siteUrl": "https://tinacms.org",
   "roadmapUrl": "https://github.com/tinacms/tinacms/blob/master/ROADMAP.md",

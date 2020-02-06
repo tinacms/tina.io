@@ -11,7 +11,8 @@ class Site extends App {
     return (
       <>
         <DefaultSeo
-          title={data.seoTitle}
+          title={data.seoDefaultTitle}
+          titleTemplate={data.title + ' | %s'}
           description={data.description}
           openGraph={{
             type: 'website',
