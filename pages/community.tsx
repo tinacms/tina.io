@@ -180,15 +180,16 @@ const EditableCommunityPage = inlineJsonForm(
 
 export default EditableCommunityPage
 
-EditableCommunityPage.getInitialProps = async function() {
+export async function unstable_getStaticProps() {
   // TODO: need to fix something in tina before we use this
   // const siteMetadata = await import('../content/siteConfig.json')
   const communityData = await import('../content/pages/community.json')
   return {
-    // siteMetadata,
-    jsonFile: {
-      fileRelativePath: `content/pages/community.json`,
-      data: communityData.default,
+    props: {
+      jsonFile: {
+        fileRelativePath: `content/pages/community.json`,
+        data: communityData.default,
+      },
     },
   }
 }

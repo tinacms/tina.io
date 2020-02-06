@@ -168,13 +168,15 @@ const formOptions = {
 const EditableHomePage = inlineJsonForm(HomePage, formOptions)
 export default EditableHomePage
 
-EditableHomePage.getInitialProps = async function() {
+export async function unstable_getStaticProps() {
   const homeData = await import('../content/pages/home.json')
 
   return {
-    jsonFile: {
-      fileRelativePath: 'content/pages/home.json',
-      data: homeData.default,
+    props: {
+      jsonFile: {
+        fileRelativePath: 'content/pages/home.json',
+        data: homeData.default,
+      },
     },
   }
 }

@@ -34,7 +34,6 @@
     "fast-glob": "^3.1.1",
     "final-form": "^4.18.7",
     "fs": "^0.0.1-security",
-    "glob": "^7.1.6",
     "gray-matter": "^4.0.2",
     "html-parser": "^0.11.0",
     "isomorphic-unfetch": "^3.0.0",
