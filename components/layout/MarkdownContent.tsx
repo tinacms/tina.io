@@ -23,9 +23,14 @@ function WithCodeStyles({ language, value }) {
   )
 }
 
-function WithHeadings({ children, level }) {
-  const HeadingTag = `h${level}` as any
-  const value = children[0].props.value
+function WithHeadings(props) {
+  const HeadingTag = `h${props.level}` as any
+  const getChildText = (child: { props: { children: any } }) =>
+    Array.isArray(child.props.children)
+      ? child.props.children.map(getChildText).join('')
+      : child.props.children || ''
+
+  const value = getChildText({ props })
   var slugger = new GithubSlugger()
   const slug = slugger.slug(value)
   return (
@@ -33,7 +38,7 @@ function WithHeadings({ children, level }) {
       <HeadingLink href={`#${slug}`} aria-label={value} className="anchor">
         <LinkSvg />
       </HeadingLink>
-      {value}
+      {props.children}
     </HeadingTag>
   )
 }
