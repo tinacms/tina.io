@@ -26,8 +26,6 @@ Currently, Tina provides `content-creator` plugins for both Markdown and JSON fi
 
 ### General steps
 
-<br>
-
 1. Add a `content-creator` plugin
 2. Register the plugin with Tina
 3. Configure how content is created by:
@@ -345,8 +343,6 @@ const CreatePostPlugin = new RemarkCreatorPlugin({
   body: form => `This is a new blog post. Please write some content.`,
 })
 ```
-
-<br>
 
 # Deleting Files
 

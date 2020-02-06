@@ -13,22 +13,17 @@ import {
   RichTextWrapper,
 } from '../components/layout'
 import { Button, Video, ArrowList } from '../components/ui'
+import { NextSeo, DefaultSeo } from 'next-seo'
 
 const HomePage = props => {
   const data = props.jsonFile
   return (
     <Layout pathname="/">
-      <Head>
-        <title>TinaCMS | Build real-time editing into your site.</title>
-        <meta
-          name="description"
-          content="Tina is an open-source site editing toolkit for React-based frameworks — Gatsby & Next.js."
-        />
-      </Head>
+      <DefaultSeo titleTemplate={data.title + ' | %s'} />
       <Hero overlap narrow>
         {data.headline}
       </Hero>
-      <Video src={'v1571425758/tina-hero-demo-v2'} />
+      <Video src={data.hero_video} />
       <RichTextWrapper>
         <Section>
           <Wrapper>
@@ -68,7 +63,7 @@ const HomePage = props => {
           <Wrapper>
             <SetupLayout>
               <div>
-                <h2 className="h1">{data.headline}</h2>
+                <h2 className="h1">{data.setup.headline}</h2>
                 <hr />
                 <ArrowList>
                   {data.setup.steps.map(item => (
@@ -173,13 +168,15 @@ const formOptions = {
 const EditableHomePage = inlineJsonForm(HomePage, formOptions)
 export default EditableHomePage
 
-EditableHomePage.getInitialProps = async function() {
+export async function unstable_getStaticProps() {
   const homeData = await import('../content/pages/home.json')
 
   return {
-    jsonFile: {
-      fileRelativePath: 'content/pages/home.json',
-      data: homeData.default,
+    props: {
+      jsonFile: {
+        fileRelativePath: 'content/pages/home.json',
+        data: homeData.default,
+      },
     },
   }
 }

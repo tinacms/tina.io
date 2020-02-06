@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import matter from 'gray-matter'
 import styled from 'styled-components'
 
+import siteData from '../../content/siteConfig.json'
+import { formatExcerpt } from '../../utils'
 import {
   DocsLayout,
   MarkdownContent,
@@ -12,13 +14,24 @@ import {
 import { DocsNav, NavToggle, HeaderNav, Overlay } from '../../components/ui'
 import { TinaIcon } from '../../components/logo/TinaIcon'
 import { readFile } from '../../utils/readFile'
+import { NextSeo } from 'next-seo'
 
 export default function DocTemplate(props) {
   const [open, setOpen] = useState(false)
   const frontmatter = props.doc.data
   const markdownBody = props.doc.content
+  const excerpt = formatExcerpt(props.doc.content)
   return (
     <DocsLayout>
+      <NextSeo
+        title={frontmatter.title}
+        titleTemplate={'%s | ' + siteData.title + ' Docs'}
+        description={excerpt}
+        openGraph={{
+          title: frontmatter.title,
+          description: excerpt,
+        }}
+      />
       <DocsNav open={open} navItems={props.docsNav} />
       <DocsContent>
         <DocsHeader open={open}>
@@ -169,6 +182,6 @@ const DocsContent = styled.div`
 
   h2,
   .h2 {
-    font-size: 1.75rem;
+    font-size: 1.625rem;
   }
 `
