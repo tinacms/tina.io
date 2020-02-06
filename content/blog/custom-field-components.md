@@ -24,11 +24,7 @@ Throughout the post, I'll refer to a few core TinaCMS concepts such as [forms](h
 
 Tina was intended to be fully customizable and extensible. Creating **custom fields can provide precise control** over the sidebar configuration and styling, along with implementing unique field functionality.
 
-<br>
-
 ![saturation-custom-field-gif](/gif/saturate-custom-field.gif)
-
-<br>
 
 > Want to jump ahead? Feel free to check out a **[finished version](https://github.com/kendallstrautman/llama-filters) of the custom range input field** seen in the gif above, or take a peak at a more complex [_Authors_ field plugin](https://github.com/tinacms/tina-starter-grande/blob/master/src/fields/authors.js) in the Tina Grande repo.
 
@@ -113,8 +109,6 @@ Now this example component is super simple — a glorified label. This type of c
 
 Say we had an image on the _About Me_ page and we wanted to be able to control some [CSS filters](https://css-tricks.com/almanac/properties/f/filter/) on that image. The pen below shows all the CSS filters we have to play with.
 
-<br>
-
 <iframe height="450" style="width: 100%;" scrolling="no" title="CSS Filters + A Springer Spaniel" src="https://codepen.io/kendallstrautman/embed/WNbzLJZ?height=265&theme-id=default&default-tab=css,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/kendallstrautman/pen/WNbzLJZ'>CSS Filters + A Springer Spaniel</a> by Kendall strautman
   (<a href='https://codepen.io/kendallstrautman'>@kendallstrautman</a>) on <a href='https://codepen.io'>CodePen</a>.
@@ -164,7 +158,7 @@ Notice this line, `{...props.input}`. You may be wondering where this magical ob
 
 When the custom field is registered with Tina, this **input object** is passed in as a prop to the field. This object contains necessary data and callbacks for the input to function properly: [`value`](https://final-form.org/docs/react-final-form/types/FieldRenderProps#inputvalue), [`name`](https://final-form.org/docs/react-final-form/types/FieldRenderProps#inputname), [`onChange`](https://final-form.org/docs/react-final-form/types/FieldRenderProps#inputonchange), [`onFocus`](https://final-form.org/docs/react-final-form/types/FieldRenderProps#inputonfocus), [`onBlur`](https://final-form.org/docs/react-final-form/types/FieldRenderProps#inputonblur).
 
->  If your custom component is not a standard [HTML input element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input), you will need to manually pass in the necessary input props, as opposed to using the [spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax).
+> If your custom component is not a standard [HTML input element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input), you will need to manually pass in the necessary input props, as opposed to using the [spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax).
 
 **All of the props** passed to the field component are:
 
@@ -262,7 +256,7 @@ The value can be any integer or floating point number that exists between the ra
 }
 ```
 
->  If you’re using Gatsby, you will **need to update your GraphQL query** to get this new data. Add the `image_saturation` field to your query.
+> If you’re using Gatsby, you will **need to update your GraphQL query** to get this new data. Add the `image_saturation` field to your query.
 
 So now we have a source value that can be connected to the custom input field. This way, **Tina can update the value in the source file** in sync with the changes picked up by the `RangeInput` component.
 
