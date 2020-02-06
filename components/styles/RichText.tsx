@@ -51,6 +51,7 @@ const RichText = css`
   h4,
   h5,
   h6 {
+    position: relative;
     font-family: var(--font-tuner);
     font-weight: regular;
     font-style: normal;
