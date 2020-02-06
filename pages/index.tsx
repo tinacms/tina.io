@@ -61,7 +61,7 @@ const HomePage = props => {
           <Wrapper>
             <SetupLayout>
               <div>
-                <h2 className="h1">{data.headline}</h2>
+                <h2 className="h1">{data.setup.headline}</h2>
                 <hr />
                 <ArrowList>
                   {data.setup.steps.map(item => (
