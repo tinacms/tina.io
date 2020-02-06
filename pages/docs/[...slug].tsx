@@ -50,7 +50,7 @@ export default function DocTemplate(props) {
           <Wrapper narrow>
             <h1>{frontmatter.title}</h1>
             <hr />
-            <MarkdownContent content={markdownBody} />
+            <MarkdownContent escapeHtml={false} content={markdownBody} />
             <Pagination prevPage={props.prevPage} nextPage={props.nextPage} />
           </Wrapper>
         </RichTextWrapper>
