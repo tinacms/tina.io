@@ -37,20 +37,13 @@ export default function DocTemplate(props) {
         <DocsHeader open={open}>
           <TinaIcon />
           <NavToggle open={open} onClick={() => setOpen(!open)} />
-          <HeaderNav color={'seafoam'} open={open} />
-          <iframe
-            src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
-            frameBorder="0"
-            scrolling="0"
-            width="145px"
-            height="30px"
-          ></iframe>
+          <HeaderNav color={'light'} open={open} />
         </DocsHeader>
         <RichTextWrapper>
           <Wrapper narrow>
             <h1>{frontmatter.title}</h1>
             <hr />
-            <MarkdownContent content={markdownBody} />
+            <MarkdownContent escapeHtml={false} content={markdownBody} />
             <Pagination prevPage={props.prevPage} nextPage={props.nextPage} />
           </Wrapper>
         </RichTextWrapper>
@@ -107,7 +100,7 @@ interface DocsHeader {
 }
 
 const DocsHeader = styled.div<DocsHeader>`
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
@@ -149,13 +142,6 @@ const DocsHeader = styled.div<DocsHeader>`
       display: none;
     }
   }
-
-  iframe {
-    margin: 0 2rem 0 1rem;
-    @media (max-width: 450px) {
-      display: none;
-    }
-  }
 `
 
 const DocsContent = styled.div`
@@ -163,7 +149,7 @@ const DocsContent = styled.div`
   overflow-y: auto;
 
   ${Wrapper} {
-    padding-top: 6rem;
+    padding-top: 2rem;
     padding-bottom: 3rem;
   }
 

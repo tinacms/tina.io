@@ -43,7 +43,6 @@ const SubNav = styled.ul`
 
   ${NavSectionTitle} {
     font-size: 0.9375rem;
-    text-transform: uppercase;
     padding: 0.375rem 1.5rem 0.375rem 2rem;
   }
 
@@ -154,6 +153,15 @@ export const DocsNav = styled(({ open, navItems, ...styleProps }) => {
     <ul {...styleProps}>
       {navItems &&
         navItems.map(section => <NavSection key={section.id} {...section} />)}
+      <li>
+        <iframe
+          src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
+          frameBorder="0"
+          scrolling="0"
+          width="145px"
+          height="30px"
+        ></iframe>
+      </li>
     </ul>
   )
 })`
@@ -169,6 +177,11 @@ export const DocsNav = styled(({ open, navItems, ...styleProps }) => {
 
   ::-webkit-scrollbar {
     display: none;
+  }
+
+  iframe {
+    margin: 1.5rem 3.5rem 0.5rem 1.5rem;
+    display: block;
   }
 
   @media (max-width: 999px) {

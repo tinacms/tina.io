@@ -4,6 +4,7 @@ import { Button } from '.'
 import Link from 'next/link'
 import data from '../../content/navigation.json'
 
+import { SearchContainer } from '../search/styles'
 import Search from '../search'
 
 const searchIndices = [
@@ -12,7 +13,7 @@ const searchIndices = [
 ]
 
 interface NavProps {
-  color?: 'white' | 'secondary' | 'seafoam'
+  color?: 'white' | 'secondary' | 'seafoam' | 'light'
   open: boolean
 }
 
@@ -76,5 +77,17 @@ export const HeaderNav = styled(({ color, ...styleProps }: NavProps) => {
     css`
       --color-background: var(--color-seafoam);
       --color-foreground: var(--color-primary);
+    `};
+
+  ${props =>
+    props.color &&
+    props.color === 'light' &&
+    css`
+      --color-background: var(--color-light);
+      --color-foreground: var(--color-primary);
+
+      ${Button}, ${SearchContainer} {
+        border: 1px solid var(--color-light-dark);
+      }
     `};
 `
