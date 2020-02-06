@@ -2118,6 +2118,11 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-gtm-module@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@types/react-gtm-module/-/react-gtm-module-2.0.0.tgz#25a118bbcadd518f376ee52626ab0829cb824874"
+  integrity sha512-2d7TUhOQBG6cSVSSSWaoSu+Ds84VQFTuVKLeGNc2GtfA7JDr+z3ujl4n/rezaRRNEhjn+9SllwHy1iNxxP8jDg==
+
 "@types/react-instantsearch-core@*":
   version "5.2.9"
   resolved "https://registry.yarnpkg.com/@types/react-instantsearch-core/-/react-instantsearch-core-5.2.9.tgz#c8050dedefcb86ff01a0ff584c1801f5b165fe4a"
@@ -7672,6 +7677,11 @@ react-final-form@^6.3.0:
   dependencies:
     "@babel/runtime" "^7.8.3"
     ts-essentials "^5.0.0"
+
+react-gtm-module@^2.0.8:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/react-gtm-module/-/react-gtm-module-2.0.8.tgz#0d37c4f2a4e3a8efa40c76c8b2aa1b7cacc16c6f"
+  integrity sha512-OU5FwAHC3gWnnxJ+MLwBMLZO1Pmn1DiVCGHqptwDnNojE3QRrNxjqozkW5cNS4Zp+C6HZ8a4ZIt0QPNlpzua4Q==
 
 react-helmet@^5.2.1:
   version "5.2.1"
