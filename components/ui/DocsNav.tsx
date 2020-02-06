@@ -4,6 +4,147 @@ import styled, { css } from 'styled-components'
 import RightArrowSvg from '../../public/svg/right-arrow.svg'
 import { useState } from 'react'
 
+import { LinkNav } from './LinkNav'
+
+interface NavSection {
+  id: string
+  slug: string
+  title: string
+  items: NavSection[]
+}
+
+export const NavSection = (section: NavSection) => {
+  const router = useRouter()
+  const currentPath = router.asPath
+  const [open, setOpen] = useState(menuIsActive(section, currentPath))
+  return (
+    <NavItem key={section.slug} open={open}>
+      <NavItemHeader>
+        {section.slug ? (
+          <Link href={section.slug} passHref>
+            <NavSectionTitle as="a" open={open}>
+              {section.title}
+            </NavSectionTitle>
+          </Link>
+        ) : (
+          <NavSectionTitle open={open} onClick={() => setOpen(!open)}>
+            {section.title}
+          </NavSectionTitle>
+        )}
+        {section.items && section.items.length > 0 && <RightArrowSvg />}
+      </NavItemHeader>
+      {section.items && section.items.length > 0 && (
+        <SubNav>
+          {(section.items || []).map(item => (
+            <NavSection key={section.id} {...item} />
+          ))}
+        </SubNav>
+      )}
+    </NavItem>
+  )
+}
+
+const menuIsActive = (section: NavSection, currentPath: string) => {
+  if (section.slug && currentPath.includes(section.slug)) {
+    return true
+  }
+  return (
+    section.items &&
+    section.items.reduce((isActive, section) => {
+      if (section.slug && currentPath.includes(section.slug)) {
+        return true
+      }
+      return isActive
+    }, false)
+  )
+}
+
+export const DocsNav = styled(({ open, navItems, ...styleProps }) => {
+  return (
+    <ul {...styleProps}>
+      <MobileMainNav>
+        <LinkNav />
+      </MobileMainNav>
+      {navItems &&
+        navItems.map(section => <NavSection key={section.id} {...section} />)}
+      <li>
+        <iframe
+          src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
+          frameBorder="0"
+          scrolling="0"
+          width="145px"
+          height="30px"
+        ></iframe>
+      </li>
+    </ul>
+  )
+})`
+  font-family: var(--font-tuner);
+  list-style-type: none;
+  background-color: var(--color-light);
+  overflow-x: hidden;
+  overflow-y: auto;
+  line-height: 1.25;
+  box-shadow: inset -1px 0 0 var(--color-light-dark);
+  padding: 6rem 0 1rem 0;
+  grid-area: nav;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  iframe {
+    margin: 1.5rem 3.5rem 0.5rem 1.5rem;
+    display: block;
+  }
+
+  @media (max-width: 999px) {
+    position: fixed;
+    z-index: 250;
+    left: 0;
+    top: 0;
+    width: calc(50% + 2.25rem);
+    height: 100%;
+    z-index: 250;
+    transform: translate3d(-100%, 0, 0);
+    transition: all 140ms ease-in;
+    padding: 0 0 1rem 0;
+
+    ${props =>
+      props.open &&
+      css`
+        transition: all 240ms ease-out;
+        transform: translate3d(0, 0, 0);
+      `};
+  }
+`
+
+const MobileMainNav = styled.li`
+  padding-top: 5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-light-dark);
+  background-color: white;
+
+  ul {
+  }
+
+  li {
+    margin: 0;
+  }
+
+  a {
+    display: block;
+    padding: 0.5rem 3.5rem 0.5rem 1.5rem;
+    color: var(--color-primary);
+    margin: 0;
+  }
+
+  @media (min-width: 1000px) {
+    display: none;
+  }
+`
+
 const NavItemHeader = styled.div`
   position: relative;
 `
@@ -93,113 +234,4 @@ const NavItem = styled.li<NavItemProps>`
         transform: translate3d(0, -50%, 0) rotate(90deg);
       }
     `};
-`
-
-interface NavSection {
-  id: string
-  slug: string
-  title: string
-  items: NavSection[]
-}
-
-export const NavSection = (section: NavSection) => {
-  const router = useRouter()
-  const currentPath = router.asPath
-  const [open, setOpen] = useState(menuIsActive(section, currentPath))
-  return (
-    <NavItem key={section.slug} open={open}>
-      <NavItemHeader>
-        {section.slug ? (
-          <Link href={section.slug} passHref>
-            <NavSectionTitle as="a" open={open}>
-              {section.title}
-            </NavSectionTitle>
-          </Link>
-        ) : (
-          <NavSectionTitle open={open} onClick={() => setOpen(!open)}>
-            {section.title}
-          </NavSectionTitle>
-        )}
-        {section.items && section.items.length > 0 && <RightArrowSvg />}
-      </NavItemHeader>
-      {section.items && section.items.length > 0 && (
-        <SubNav>
-          {(section.items || []).map(item => (
-            <NavSection key={section.id} {...item} />
-          ))}
-        </SubNav>
-      )}
-    </NavItem>
-  )
-}
-
-const menuIsActive = (section: NavSection, currentPath: string) => {
-  if (section.slug && currentPath.includes(section.slug)) {
-    return true
-  }
-  return (
-    section.items &&
-    section.items.reduce((isActive, section) => {
-      if (section.slug && currentPath.includes(section.slug)) {
-        return true
-      }
-      return isActive
-    }, false)
-  )
-}
-
-export const DocsNav = styled(({ open, navItems, ...styleProps }) => {
-  return (
-    <ul {...styleProps}>
-      {navItems &&
-        navItems.map(section => <NavSection key={section.id} {...section} />)}
-      <li>
-        <iframe
-          src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
-          frameBorder="0"
-          scrolling="0"
-          width="145px"
-          height="30px"
-        ></iframe>
-      </li>
-    </ul>
-  )
-})`
-  font-family: var(--font-tuner);
-  list-style-type: none;
-  background-color: var(--color-light);
-  overflow-x: hidden;
-  overflow-y: auto;
-  line-height: 1.25;
-  box-shadow: inset -1px 0 0 var(--color-light-dark);
-  padding: 6rem 0 1rem 0;
-  grid-area: nav;
-
-  ::-webkit-scrollbar {
-    display: none;
-  }
-
-  iframe {
-    margin: 1.5rem 3.5rem 0.5rem 1.5rem;
-    display: block;
-  }
-
-  @media (max-width: 999px) {
-    position: fixed;
-    z-index: 250;
-    left: 0;
-    top: 0;
-    width: calc(50% + 2.25rem);
-    height: 100%;
-    z-index: 250;
-    transform: translate3d(-100%, 0, 0);
-    transition: all 140ms ease-in;
-
-    ${props =>
-      props.open &&
-      css`
-        transition: all 240ms ease-out;
-        transform: translate3d(0, 0, 0);
-      `};
-  }
 `
