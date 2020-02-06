@@ -221,7 +221,7 @@ const SocialItem = styled('div')`
     flex-direction: column;
     align-items: center;
     text-decoration: none;
-    color: var(--color-secondary-dark);
+    color: var(--color-primary);
     font-family: var(--font-tuner);
     font-weight: regular;
     font-style: normal;
