@@ -200,6 +200,7 @@ const RichText = css`
 
   table {
     width: 100%;
+    line-height: 1.375;
   }
 
   tr {
