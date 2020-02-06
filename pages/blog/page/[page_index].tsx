@@ -219,14 +219,29 @@ const BlogTitle = styled(({ children, ...styleProps }) => {
 const BlogExcerpt = styled.a`
   cursor: pointer;
   text-decoration: none;
-  &:hover {
+  &:hover,
+  &:focus {
+    outline: none;
     ${BlogTitle} {
       color: var(--color-primary) !important;
     }
   }
+  &:focus {
+    hr {
+      transition: all 230ms ease-out;
+      width: 100%;
+    }
+  }
   hr {
-    opacity: 0.3;
-    filter: saturate(0%);
+    transition: all 180ms ease-out;
+  }
+  &:not(:focus) {
+    &:not(:hover) {
+      hr {
+        opacity: 0.3;
+        filter: saturate(0%);
+      }
+    }
   }
 `
 
