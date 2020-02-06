@@ -180,7 +180,7 @@ const RichText = css`
     color: var(--color-secondary-dark);
   }
 
-  :not(pre) > code {
+  *:not(pre) > code {
     padding: 0.1em 0.2em;
     border-radius: 0.3em;
     background-color: var(--color-light);
@@ -212,7 +212,7 @@ const RichText = css`
 
   th,
   td {
-    padding: 0.25rem 0.5rem;
+    padding: 0.4rem 0.5rem;
   }
 
   th {
@@ -221,8 +221,10 @@ const RichText = css`
     font-weight: regular;
     font-style: normal;
     color: var(--color-primary);
-    text-transform: uppercase;
     letter-spacing: 0.5px;
+    font-size: 1.125rem;
+    line-height: 1.3;
+    letter-spacing: 0.1px;
   }
 
   td {

@@ -15,11 +15,6 @@ export const Footer = styled(({ ...styleProps }) => {
         <TinaWordmark />
         <LinkNav />
         <FooterSocial>
-          <Link href={'/teams'} passHref>
-            <Button as="a" color="white">
-              Tina for Teams
-            </Button>
-          </Link>
           <a href="https://twitter.com/tina_cms" target="_blank">
             <TwitterIconSvg />
           </a>
@@ -57,12 +52,8 @@ export const Footer = styled(({ ...styleProps }) => {
 
 const FooterSocial = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
   align-items: center;
-
-  @media (min-width: 550px) {
-    justify-content: flex-end;
-  }
 
   a {
     display: flex;
@@ -88,6 +79,8 @@ const FooterForm = styled.div`
   span {
     margin: 0.5rem 1rem 0.5rem 0;
     white-space: nowrap;
+    font-size: 1.25rem;
+    line-height: 1;
   }
 
   @media (min-width: 550px) {
@@ -105,11 +98,7 @@ const FooterTop = styled.div`
   padding: 2rem 2rem;
   background-color: var(--color-primary);
   align-items: start;
-  grid-template-areas: 'logo' 'social' 'nav';
-
-  @media (min-width: 550px) {
-    grid-template-areas: 'logo social' 'nav nav';
-  }
+  grid-template-areas: 'logo social' 'nav nav';
 
   @media (min-width: 800px) {
     grid-template-columns: 1fr 3fr 1fr;
@@ -118,6 +107,7 @@ const FooterTop = styled.div`
 
   ${TinaWordmark} {
     grid-area: logo;
+    margin-bottom: 1rem;
   }
 
   ${LinkNav} {
@@ -133,11 +123,11 @@ const FooterBottom = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   padding: 1.25rem 2rem;
   background-color: var(--color-primary-dark);
 
-  @media (min-width: 1200px) {
+  @media (min-width: 1000px) {
     flex-direction: row;
   }
 `

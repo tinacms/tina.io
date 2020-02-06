@@ -35,6 +35,15 @@ export const HeaderNav = styled(({ color, ...styleProps }: NavProps) => {
       <li key="nav-search">
         <Search collapse indices={searchIndices} />
       </li>
+      <li>
+        <iframe
+          src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
+          frameBorder="0"
+          scrolling="0"
+          width="145px"
+          height="30px"
+        ></iframe>
+      </li>
     </ul>
   )
 })`
@@ -46,6 +55,15 @@ export const HeaderNav = styled(({ color, ...styleProps }: NavProps) => {
 
   li {
     margin: 0 0.25rem;
+  }
+
+  iframe {
+    margin: 1.5rem 3.5rem 0.5rem 1.25rem;
+    display: block;
+
+    @media (min-width: 685px) {
+      display: none;
+    }
   }
 
   @media (max-width: 799px) {
