@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { inlineJsonForm } from 'next-tinacms-json'
 import Head from 'next/head'
+import { NextSeo } from 'next-seo'
 
 import { Layout, Wrapper, Section, RichTextWrapper } from '../components/layout'
 import { ArrowList } from '../components/ui'
@@ -11,10 +12,14 @@ function TeamsPage(props) {
   const data = props.jsonFile
   return (
     <TeamsLayout page="teams" color={'secondary'}>
-      <Head>
-        <meta property="og:title" content="TinaCMS - Teams" />
-        <meta name="twitter:title" content="TinaCMS - Teams" />
-      </Head>
+      <NextSeo
+        title={data.title}
+        description={data.description}
+        openGraph={{
+          title: data.title,
+          description: data.description,
+        }}
+      />
       <TeamsSection>
         <Wrapper>
           <RichTextWrapper>
@@ -65,6 +70,7 @@ const TeamsGrid = styled.div`
   @media (min-width: 800px) {
     grid-template-columns: 1fr 1fr;
     align-items: center;
+    grid-gap: 4rem;
   }
 `
 
@@ -81,6 +87,7 @@ const TeamsFormWrapper = styled.div`
 const TeamsContent = styled.div`
   li {
     color: white;
+    max-width: 30rem;
   }
 
   h2 {
