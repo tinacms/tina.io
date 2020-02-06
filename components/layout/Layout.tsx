@@ -1,6 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import styled from 'styled-components'
+import { NextSeo } from 'next-seo'
 
 import { GlobalStyle } from '../styles/GlobalStyle'
 import { Header, Footer } from '../layout'

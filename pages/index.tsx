@@ -13,11 +13,13 @@ import {
   RichTextWrapper,
 } from '../components/layout'
 import { Button, Video, ArrowList } from '../components/ui'
+import { NextSeo, DefaultSeo } from 'next-seo'
 
 const HomePage = props => {
   const data = props.jsonFile
   return (
     <Layout pathname="/">
+      <DefaultSeo titleTemplate={data.title + ' | %s'} />
       <Hero overlap narrow>
         {data.headline}
       </Hero>

@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { inlineJsonForm } from 'next-tinacms-json'
 import Head from 'next/head'
+import { NextSeo } from 'next-seo'
 
 import { Layout, Wrapper, Section, RichTextWrapper } from '../components/layout'
 import { ArrowList } from '../components/ui'
@@ -11,6 +12,14 @@ function TeamsPage(props) {
   const data = props.jsonFile
   return (
     <TeamsLayout page="teams" color={'secondary'}>
+      <NextSeo
+        title={data.title}
+        description={data.description}
+        openGraph={{
+          title: data.title,
+          description: data.description,
+        }}
+      />
       <TeamsSection>
         <Wrapper>
           <RichTextWrapper>

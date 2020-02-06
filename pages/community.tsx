@@ -22,6 +22,7 @@ import GithubIconSvg from '../public/svg/github-icon.svg'
 import SlackIconSvg from '../public/svg/slack-icon.svg'
 import ForumIconSvg from '../public/svg/forum-icon.svg'
 import RichText from '../components/styles/RichText'
+import { NextSeo } from 'next-seo'
 
 function CommunityPage(props) {
   const data = props.jsonFile
@@ -42,6 +43,14 @@ function CommunityPage(props) {
   }
   return (
     <Layout>
+      <NextSeo
+        title={data.title}
+        description={data.description}
+        openGraph={{
+          title: data.title,
+          description: data.description,
+        }}
+      />
       <Hero>
         <h2 className="h1">{data.headline}</h2>
       </Hero>
