@@ -4,8 +4,17 @@ import { withTina } from 'tinacms'
 import { GitClient } from '@tinacms/git-client'
 import { DefaultSeo } from 'next-seo'
 import data from '../content/siteConfig.json'
+import TagManager from 'react-gtm-module'
 
 class Site extends App {
+  componentDidMount() {
+    if (process.env.GTM_ID) {
+      TagManager.initialize({
+        gtmId: process.env.GTM_ID,
+      })
+    }
+  }
+
   render() {
     const { Component, pageProps } = this.props
     return (
