@@ -68,6 +68,7 @@ Since the object we're returning from `getInitialProps` already matches the `Jso
  // /pages/[slug].js
 
  import * as React from 'react'
+ import { useLocalJsonForm } from 'next-tinacms-json'
 
  export default function Page({ post }) {
 +  const [postData] = useLocalJsonForm(post)
