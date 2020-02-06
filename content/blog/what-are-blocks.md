@@ -5,7 +5,7 @@ draft: false
 author: DJ Walker
 ---
 
-_"There are only two hard things in Computer Science: cache invalidation and naming things."_
+> "There are only two hard things in Computer Science: cache invalidation and naming things."
 
 This axiom, [attributed to Phil Karlton](http://www.tbray.org/ongoing/When/200x/2005/12/23/UPI), resonates with anyone who has spent any amount of time working with software. The post you're currently reading is, in some ways, about the latter problem.
 
@@ -21,7 +21,7 @@ The field types we’ve implemented in Tina can be broadly grouped into two cate
 
 **Compound fields** are fields that can’t be represented by a single value. Data exported by a compound field is _structured._ When saved, a compound field’s data will be represented by a non-scalar data type such as an array or object. Compound fields are **fields composed of other fields**. The compound fields in Tina include the Group, Group List, and Blocks.
 
-## _Groups_ and _Group Lists_
+## Groups and Group Lists
 
 Tina’s **Group** field is a collection of **simple fields**. The fields that comprise a Group field can all be of the same type, or be of different types. Group fields are good for representing a single _entity_ that is comprised of smaller pieces of data.
 
@@ -76,7 +76,7 @@ We could use a **Group List** here. All entities in the Group List have the same
 | DJ        | Walker   |
 | Nolan     | Phillips |
 
-## _Blocks_: Like a _Group List_, But Different
+## Blocks: Like a Group List, But Different
 
 <img alt="diagram of different shapes linked together" style="margin: auto; padding: 2rem .5rem; border: none;" src="/img/blog/fig-blocks.svg" />
 
