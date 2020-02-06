@@ -59,7 +59,9 @@ const Index = props => {
               <BlogTitle>{post.data.title}</BlogTitle>
               <RichTextWrapper>
                 <BlogMeta>
-                  <p>By: {post.data.author}</p>
+                  <p>
+                    <span>By</span> {post.data.author}
+                  </p>
                   <p>{formatDate(post.data.date)}</p>
                 </BlogMeta>
                 <MarkdownContent skipHtml={true} content={post.content} />
@@ -250,6 +252,7 @@ const BlogMeta = styled.div`
   justify-content: space-between;
   display: flex;
   flex-grow: 1;
+  flex-direction: column;
   margin-bottom: 1.5rem;
   margin-top: -0.5rem;
   opacity: 0.5;
@@ -258,8 +261,12 @@ const BlogMeta = styled.div`
     color: 0;
     display: block;
   }
-  p:first-child {
-    max-width: 250px;
+  span {
+    opacity: 0.5;
+  }
+
+  @media (min-width: 550px) {
+    flex-direction: row;
   }
 `
 
