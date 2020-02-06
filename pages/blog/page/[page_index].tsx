@@ -4,6 +4,7 @@ import Router from 'next/router'
 import styled from 'styled-components'
 import matter from 'gray-matter'
 import { NextSeo } from 'next-seo'
+import { readFile } from '../../../utils/readFile'
 
 import { orderPosts, formatExcerpt, formatDate } from '../../../utils'
 import {
@@ -140,42 +141,44 @@ export async function unstable_getStaticProps(ctx) {
   let page = (ctx.params && ctx.params.page_index) || '1'
 
   // grab all md files
-  const blogData = (context => {
-    const keys = context.keys()
-    const values = keys.map(context)
-    const data = keys.map((key: string, index: number) => {
-      // Create slug from filename
-      const slug = key
+  const fg = require('fast-glob')
+  const files = await fg(`./content/blog/**/*.md`)
+  const posts = await Promise.all(
+    files.map(async file => {
+      const rawData = await readFile(file)
+
+      // create slug from filename
+      const slug = file
         .replace(/^.*[\\\/]/, '')
         .split('.')
         .slice(0, -1)
         .join('.')
-      const value = values[index]
-      // Parse yaml metadata & markdownbody in document
-      const post = matter(value.default)
-      const formattedContent = formatExcerpt(post.content)
+
+      // parse yaml & markdown body
+      const post = matter(rawData)
+
+      const excerpt = formatExcerpt(post.content)
+
       return {
         data: { ...post.data, slug },
-        content: formattedContent,
+        content: excerpt,
       }
     })
+  )
 
-    // for pagination and ordering
-    const numPages = Math.ceil(keys.length / POSTS_PER_PAGE)
-    const pageIndex = page - 1
-    const orderedPosts = orderPosts(data).slice(
-      pageIndex,
-      pageIndex + POSTS_PER_PAGE
-    )
-
-    return { orderedPosts, numPages }
-  })((require as any).context('../../../content/blog', true, /\.md$/))
+  // for pagination and ordering
+  const numPages = Math.ceil(posts.length / POSTS_PER_PAGE)
+  const pageIndex = page - 1
+  const orderedPosts = orderPosts(posts).slice(
+    pageIndex * POSTS_PER_PAGE,
+    (pageIndex + 1) * POSTS_PER_PAGE
+  )
 
   return {
     props: {
-      posts: blogData.orderedPosts,
-      numPages: blogData.numPages,
-      currentPage: Number(page),
+      posts: orderedPosts,
+      numPages: numPages,
+      currentPage: parseInt(page),
     },
   }
 }
