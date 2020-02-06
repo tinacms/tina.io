@@ -118,7 +118,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   html {
-    font-size: 100%;
+    font-size: 81.25%;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
       "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
       "Helvetica Neue", sans-serif;
@@ -131,6 +131,14 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smooth: 'antialiased';
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
+
+    @media (min-width: 450px) {
+      font-size: 87.5%;
+    }
+
+    @media (min-width: 685px) {
+      font-size: 100%;
+    }
 
     /* Color */
     --color-primary: #EC4815;

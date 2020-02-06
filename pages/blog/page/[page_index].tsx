@@ -4,6 +4,7 @@ import Router from 'next/router'
 import styled from 'styled-components'
 import matter from 'gray-matter'
 import { NextSeo } from 'next-seo'
+import { readFile } from '../../../utils/readFile'
 
 import { orderPosts, formatExcerpt, formatDate } from '../../../utils'
 import {
@@ -58,7 +59,9 @@ const Index = props => {
               <BlogTitle>{post.data.title}</BlogTitle>
               <RichTextWrapper>
                 <BlogMeta>
-                  <p>By: {post.data.author}</p>
+                  <p>
+                    <span>By</span> {post.data.author}
+                  </p>
                   <p>{formatDate(post.data.date)}</p>
                 </BlogMeta>
                 <MarkdownContent skipHtml={true} content={post.content} />
@@ -140,42 +143,44 @@ export async function unstable_getStaticProps(ctx) {
   let page = (ctx.params && ctx.params.page_index) || '1'
 
   // grab all md files
-  const blogData = (context => {
-    const keys = context.keys()
-    const values = keys.map(context)
-    const data = keys.map((key: string, index: number) => {
-      // Create slug from filename
-      const slug = key
+  const fg = require('fast-glob')
+  const files = await fg(`./content/blog/**/*.md`)
+  const posts = await Promise.all(
+    files.map(async file => {
+      const rawData = await readFile(file)
+
+      // create slug from filename
+      const slug = file
         .replace(/^.*[\\\/]/, '')
         .split('.')
         .slice(0, -1)
         .join('.')
-      const value = values[index]
-      // Parse yaml metadata & markdownbody in document
-      const post = matter(value.default)
-      const formattedContent = formatExcerpt(post.content)
+
+      // parse yaml & markdown body
+      const post = matter(rawData)
+
+      const excerpt = formatExcerpt(post.content)
+
       return {
         data: { ...post.data, slug },
-        content: formattedContent,
+        content: excerpt,
       }
     })
+  )
 
-    // for pagination and ordering
-    const numPages = Math.ceil(keys.length / POSTS_PER_PAGE)
-    const pageIndex = page - 1
-    const orderedPosts = orderPosts(data).slice(
-      pageIndex,
-      pageIndex + POSTS_PER_PAGE
-    )
-
-    return { orderedPosts, numPages }
-  })((require as any).context('../../../content/blog', true, /\.md$/))
+  // for pagination and ordering
+  const numPages = Math.ceil(posts.length / POSTS_PER_PAGE)
+  const pageIndex = page - 1
+  const orderedPosts = orderPosts(posts).slice(
+    pageIndex * POSTS_PER_PAGE,
+    (pageIndex + 1) * POSTS_PER_PAGE
+  )
 
   return {
     props: {
-      posts: blogData.orderedPosts,
-      numPages: blogData.numPages,
-      currentPage: Number(page),
+      posts: orderedPosts,
+      numPages: numPages,
+      currentPage: parseInt(page),
     },
   }
 }
@@ -216,14 +221,29 @@ const BlogTitle = styled(({ children, ...styleProps }) => {
 const BlogExcerpt = styled.a`
   cursor: pointer;
   text-decoration: none;
-  &:hover {
+  &:hover,
+  &:focus {
+    outline: none;
     ${BlogTitle} {
       color: var(--color-primary) !important;
     }
   }
+  &:focus {
+    hr {
+      transition: all 230ms ease-out;
+      width: 100%;
+    }
+  }
   hr {
-    opacity: 0.3;
-    filter: saturate(0%);
+    transition: all 180ms ease-out;
+  }
+  &:not(:focus) {
+    &:not(:hover) {
+      hr {
+        opacity: 0.3;
+        filter: saturate(0%);
+      }
+    }
   }
 `
 
@@ -232,6 +252,7 @@ const BlogMeta = styled.div`
   justify-content: space-between;
   display: flex;
   flex-grow: 1;
+  flex-direction: column;
   margin-bottom: 1.5rem;
   margin-top: -0.5rem;
   opacity: 0.5;
@@ -240,8 +261,12 @@ const BlogMeta = styled.div`
     color: 0;
     display: block;
   }
-  p:first-child {
-    max-width: 250px;
+  span {
+    opacity: 0.5;
+  }
+
+  @media (min-width: 550px) {
+    flex-direction: row;
   }
 `
 

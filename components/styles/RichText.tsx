@@ -51,6 +51,7 @@ const RichText = css`
   h4,
   h5,
   h6 {
+    position: relative;
     font-family: var(--font-tuner);
     font-weight: regular;
     font-style: normal;
@@ -179,7 +180,7 @@ const RichText = css`
     color: var(--color-secondary-dark);
   }
 
-  :not(pre) > code {
+  *:not(pre) > code {
     padding: 0.1em 0.2em;
     border-radius: 0.3em;
     background-color: var(--color-light);
@@ -196,6 +197,38 @@ const RichText = css`
     border-style: solid;
     border-color: rgb(237, 238, 238);
     border-image: initial;
+  }
+
+  table {
+    width: 100%;
+    line-height: 1.375;
+  }
+
+  tr {
+    &:nth-child(even) {
+      background-color: var(--color-light);
+    }
+  }
+
+  th,
+  td {
+    padding: 0.4rem 0.5rem;
+  }
+
+  th {
+    border-bottom: 3px solid var(--color-light-dark);
+    font-family: var(--font-tuner);
+    font-weight: regular;
+    font-style: normal;
+    color: var(--color-primary);
+    letter-spacing: 0.5px;
+    font-size: 1.125rem;
+    line-height: 1.3;
+    letter-spacing: 0.1px;
+  }
+
+  td {
+    border-bottom: 1px solid var(--color-light-dark);
   }
 `
 

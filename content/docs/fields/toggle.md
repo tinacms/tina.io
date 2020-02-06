@@ -11,7 +11,7 @@ consumes:
 
 The `toggle` field represents a true/false toggle. This field is typically used for boolean content values. You could use this to toggle a certain feature on the page on or off.
 
-![tinacms-toggle-field](/fields/toggle.png)
+![tinacms-toggle-field](/img/fields/toggle.png)
 
 ## Definition
 
@@ -33,12 +33,12 @@ const BlogPostForm = {
 
 ## Options
 
- - `name`: The path to some value in the data being edited.
- - `component`: The name of the React component that should be used to edit this field. Available field component types are [defined here](/docs/concepts/fields#field-types)
- - `label`: A human readable label for the field. This label displays in the sidebar and is optional. If no label is provided, the sidebar will default to the name.
- - `description`: An optional description that expands on the purpose of the field or prompts a specific action.
+- `name`: The path to some value in the data being edited.
+- `component`: The name of the React component that should be used to edit this field. Available field component types are [defined here](/docs/concepts/fields#field-types)
+- `label`: A human readable label for the field. This label displays in the sidebar and is optional. If no label is provided, the sidebar will default to the name.
+- `description`: An optional description that expands on the purpose of the field or prompts a specific action.
 
- ## Interface
+## Interface
 
 ```typescript
 interface ToggleConfig {

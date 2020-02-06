@@ -4,7 +4,7 @@ import { Button } from '.'
 import Link from 'next/link'
 import data from '../../content/navigation.json'
 
-export const FooterNav = styled(({ ...styleProps }) => {
+export const LinkNav = styled(({ ...styleProps }) => {
   return (
     <ul {...styleProps}>
       {data &&

@@ -4,97 +4,7 @@ import styled, { css } from 'styled-components'
 import RightArrowSvg from '../../public/svg/right-arrow.svg'
 import { useState } from 'react'
 
-const NavItemHeader = styled.div`
-  position: relative;
-`
-
-interface NavSectionTitleProps {
-  open: boolean
-}
-
-const NavSectionTitle = styled.span<NavSectionTitleProps>`
-  display: block;
-  padding: 0.5rem 3.5rem 0.5rem 1.5rem;
-  color: var(--color-secondary);
-  text-decoration: none;
-  transition: all 180ms ease-out;
-
-  &:hover,
-  &:focus {
-    color: var(--color-primary);
-  }
-
-  ${props =>
-    props.open &&
-    css`
-      color: var(--color-primary);
-    `};
-`
-
-const SubNav = styled.ul`
-  list-style-type: none;
-  margin: 0px;
-  background: white;
-  padding: 0;
-  overflow: hidden;
-  transition: all 180ms ease-out;
-  box-shadow: inset 0 1px 0 var(--color-light-dark),
-    inset 0 -1px 0 var(--color-light-dark);
-
-  ${NavSectionTitle} {
-    font-size: 0.9375rem;
-    text-transform: uppercase;
-    padding: 0.375rem 1.5rem 0.375rem 2rem;
-  }
-
-  li:first-child {
-    ${NavSectionTitle} {
-      padding-top: 1rem;
-    }
-  }
-
-  li:last-child {
-    padding-bottom: 1rem;
-  }
-`
-
-interface NavItemProps {
-  open: boolean
-}
-
-const NavItem = styled.li<NavItemProps>`
-  position: relative;
-  cursor: pointer;
-  user-select: none;
-
-  svg {
-    position: absolute;
-    right: 1.25rem;
-    top: 50%;
-    transform: translate3d(0, -50%, 0);
-    width: 1.25rem;
-    height: auto;
-    fill: var(--color-grey);
-    transition: all 180ms ease-out;
-  }
-
-  ${SubNav} {
-    max-height: 0;
-  }
-
-  ${props =>
-    props.open &&
-    css`
-      ${SubNav} {
-        max-height: 40rem;
-        transition: all 180ms ease-in;
-      }
-
-      svg {
-        transform: translate3d(0, -50%, 0) rotate(90deg);
-      }
-    `};
-`
+import { LinkNav } from './LinkNav'
 
 interface NavSection {
   id: string
@@ -152,8 +62,20 @@ const menuIsActive = (section: NavSection, currentPath: string) => {
 export const DocsNav = styled(({ open, navItems, ...styleProps }) => {
   return (
     <ul {...styleProps}>
+      <MobileMainNav>
+        <LinkNav />
+      </MobileMainNav>
       {navItems &&
         navItems.map(section => <NavSection key={section.id} {...section} />)}
+      <li>
+        <iframe
+          src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
+          frameBorder="0"
+          scrolling="0"
+          width="145px"
+          height="30px"
+        ></iframe>
+      </li>
     </ul>
   )
 })`
@@ -171,6 +93,11 @@ export const DocsNav = styled(({ open, navItems, ...styleProps }) => {
     display: none;
   }
 
+  iframe {
+    margin: 1.5rem 3.5rem 0.5rem 1.5rem;
+    display: block;
+  }
+
   @media (max-width: 999px) {
     position: fixed;
     z-index: 250;
@@ -181,6 +108,7 @@ export const DocsNav = styled(({ open, navItems, ...styleProps }) => {
     z-index: 250;
     transform: translate3d(-100%, 0, 0);
     transition: all 140ms ease-in;
+    padding: 0 0 1rem 0;
 
     ${props =>
       props.open &&
@@ -189,4 +117,121 @@ export const DocsNav = styled(({ open, navItems, ...styleProps }) => {
         transform: translate3d(0, 0, 0);
       `};
   }
+`
+
+const MobileMainNav = styled.li`
+  padding-top: 5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-light-dark);
+  background-color: white;
+
+  ul {
+  }
+
+  li {
+    margin: 0;
+  }
+
+  a {
+    display: block;
+    padding: 0.5rem 3.5rem 0.5rem 1.5rem;
+    color: var(--color-primary);
+    margin: 0;
+  }
+
+  @media (min-width: 1000px) {
+    display: none;
+  }
+`
+
+const NavItemHeader = styled.div`
+  position: relative;
+`
+
+interface NavSectionTitleProps {
+  open: boolean
+}
+
+const NavSectionTitle = styled.span<NavSectionTitleProps>`
+  display: block;
+  padding: 0.5rem 3.5rem 0.5rem 1.5rem;
+  color: var(--color-secondary);
+  text-decoration: none;
+  transition: all 180ms ease-out;
+
+  &:hover,
+  &:focus {
+    color: var(--color-primary);
+  }
+
+  ${props =>
+    props.open &&
+    css`
+      color: var(--color-primary);
+    `};
+`
+
+const SubNav = styled.ul`
+  list-style-type: none;
+  margin: 0px;
+  background: white;
+  padding: 0;
+  overflow: hidden;
+  transition: all 180ms ease-out;
+  box-shadow: inset 0 1px 0 var(--color-light-dark),
+    inset 0 -1px 0 var(--color-light-dark);
+
+  ${NavSectionTitle} {
+    font-size: 0.9375rem;
+    padding: 0.375rem 1.5rem 0.375rem 2rem;
+  }
+
+  li:first-child {
+    ${NavSectionTitle} {
+      padding-top: 1rem;
+    }
+  }
+
+  li:last-child {
+    padding-bottom: 1rem;
+  }
+`
+
+interface NavItemProps {
+  open: boolean
+}
+
+const NavItem = styled.li<NavItemProps>`
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+
+  svg {
+    position: absolute;
+    right: 1.25rem;
+    top: 50%;
+    transform: translate3d(0, -50%, 0);
+    width: 1.25rem;
+    height: auto;
+    fill: var(--color-grey);
+    transition: all 180ms ease-out;
+  }
+
+  ${SubNav} {
+    max-height: 0;
+  }
+
+  ${props =>
+    props.open &&
+    css`
+      ${SubNav} {
+        max-height: 40rem;
+        transition: all 180ms ease-in;
+      }
+
+      svg {
+        transform: translate3d(0, -50%, 0) rotate(90deg);
+      }
+    `};
 `

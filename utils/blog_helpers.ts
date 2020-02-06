@@ -4,9 +4,9 @@ export function orderPosts(posts) {
   function sortByDate(a, b) {
     const dateA = new Date(a.data.date).getTime()
     const dateB = new Date(b.data.date).getTime()
-    return dateA < dateB ? 1 : -1
+    return dateB - dateA
   }
-  return posts.sort(sortByDate)
+  return posts.slice().sort(sortByDate)
 }
 
 export function formatExcerpt(content) {
