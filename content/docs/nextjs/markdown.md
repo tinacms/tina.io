@@ -12,13 +12,13 @@ consumes:
 
 The `next-tinacms-markdown` package provides a set of methods for editing content sourced from Markdown files.
 
-- `useLocalMarkdownForm( markdownFile, options? ):[values, form]` - A React hook for registering local forms with function components.
-- `useGlobalMarkdownForm( markdownFile, options? ):[values, form]` - A React hook for registering global forms with function components.
-- `markdownForm( Component, options? ): Component` - A React higher-order component for registering local forms with class or function components.
+- `useLocalMarkdownForm( markdownFile, options? ):[values, form]` - A [React Hook](https://reactjs.org/docs/hooks-intro.html) for registering local forms with [function components](https://reactjs.org/docs/components-and-props.html#function-and-class-components).
+- `useGlobalMarkdownForm( markdownFile, options? ):[values, form]` - A [React Hook](https://reactjs.org/docs/hooks-intro.html) for registering global forms with [function components](https://reactjs.org/docs/components-and-props.html#function-and-class-components).
+- `markdownForm( Component, options? ): Component` - A [React Higher-Order Component](https://reactjs.org/docs/higher-order-components.html) for registering local forms with class or function components.
 
 ## Using the hooks
 
-The hooks, `useLocalMarkdownForm` & `useGlobalMarkdownForm`, work similarly, the biggest difference being whether they register [local or global](https://tinacms.org/docs/concepts/forms#local--global-forms) forms wih the CMS. They can only be used with [function components](https://reactjs.org/docs/components-and-props.html#function-and-class-components).
+The hooks, `useLocalMarkdownForm` & `useGlobalMarkdownForm`, work similarly. The biggest difference between them is whether they register [local or global](https://tinacms.org/docs/concepts/forms#local--global-forms) forms wih the CMS.
 
 **Arguments**
 
@@ -112,7 +112,7 @@ Info.getInitialProps = async function() {
 
 ## Using _markdownForm_ HOC
 
-The higher-order component, `markdownForm`, accepts a component and optional configuration object as arguments. This component is expected to receive data as props that matches the `markdownFile` interface outlined above.
+`markdownForm` accepts two arguments: _a component and an [form configuration object](https://tinacms.org/docs/gatsby/markdown/#customizing-remark-forms)_. The component being passed is expected to receive data as props that matches the `markdownFile` interface outlined below.
 
 ```typescript
 // A datastructure representing a MarkdownFile file stored in Git
@@ -183,7 +183,8 @@ EditableInfo.getInitialProps = async function() {
     /*
     ** 5. Structure your return object
     **    with this shape. Make sure
-    **    it's called `markdownFile`
+    **    to use the `markdownFile`
+    **    property name
     */
     markdownFile: {
       fileRelativePath: `data/info.md`,

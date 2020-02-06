@@ -2,7 +2,7 @@
 title: Creating Forms
 id: /docs/nextjs/creating-forms
 prev: /docs/nextjs/adding-backends
-next: /docs/nextjs/inline-editing
+next: /docs/nextjs/markdown
 consumes:
   - file: /packages/next-tinacms-json/src/use-json-form.ts
     details: Demonstrates using useLocalJsonForm on a Next.js site
@@ -122,9 +122,9 @@ Using this hook looks almost exactly the same as the example for `useLocalJsonFo
 
 ## Using _jsonForm_ HOC
 
-Using a hook is an incredibly flexible and intuitive way to register forms with Tina. Unfortunately hooks only work with function components in React. If you need to register a form with Tina on a class component, or are fond of the [higher-order component](https://reactjs.org/docs/higher-order-components.html) pattern, `jsonForm` is the function you can utilize.
+Using a hook is an incredibly flexible and intuitive way to register forms with Tina. Unfortunately hooks only work with function components in React. If you need to register a form with Tina on a class component, or are fond of the [higher-order component](https://reactjs.org/docs/higher-order-components.html) pattern, `jsonForm` is the function to reach for.
 
-`jsonForm`accepts a component and optional configuration object as arguments. This component is expected to receive data as props that matches the `jsonFile` interface outlined above.
+`jsonForm` accepts two arguments: _a component and an optional [form configuration object](https://tinacms.org/docs/gatsby/markdown/#customizing-remark-forms)_. The component being passed is expected to receive data as props that matches the `jsonFile` interface outlined below.
 
 ```typescript
 // A datastructure representing a JSON file stored in Git
@@ -134,17 +134,16 @@ interface JsonFile<T = any> {
 }
 ```
 
-`jsonForm` returns the original component with a local form registered with Tina. Below is the same example from `useLocalJsonForm`, but refactored to use the HOC.
+`jsonForm` returns the original component with a local form registered with Tina. Below is the same example from `useLocalJsonForm`, but refactored to use the `jsonForm` HOC.
 
 **Example**
 
 ```js
-// /pages/[slug].js
-import * as React from 'react'
 /*
  ** 1. import jsonForm
  */
 import { jsonForm } from 'next-tinacms-json'
+import * as React from 'react'
 
 function Page({ jsonFile }) {
   return (
@@ -175,7 +174,7 @@ EditablePage.getInitialProps = function(ctx) {
   return {
     /*
      ** 5. Ensure your return data has
-     **    the same shape.
+     **    this shape.
      */
     jsonFile: {
       fileRelativePath: `/posts/${slug}.json`,
