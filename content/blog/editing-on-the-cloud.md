@@ -50,14 +50,8 @@ Since users will need to authenticate with Tina Teams, we can **tie commits back
 
 Not all sites fit into the same box, so we're giving you the flexibility to manage your cloud development environment in any way that makes sense for you. Running a development environment on **Gatsby Cloud** without **Tina Teams** will work for some, and certain users may require deeper user management with **Tina Teams**. We'll soon be posting examples of how to host your cloud editing environment on additional services as well..
 
-<br />
-
 We've also got some other "down the road" features planned which will make it much easier to work alongside other team members on your cloud environment, such as locking files when being edited by another user. Stay tuned!
 
-<br />
-
 # ✨
-
-<br />
 
 Thanks for reading! If you think Tina Teams might be a fit, you can sign up for our [Tina Teams Beta](http://tinacms.org/teams) to try it out early!

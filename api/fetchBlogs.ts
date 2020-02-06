@@ -1,11 +1,11 @@
 import matter from 'gray-matter'
-import { getLocalFiles } from './getLocalFiles'
+const fg = require('fast-glob')
 var fs = require('fs')
 var path = require('path')
 
 export default async function fetchBlogs() {
   const directory = path.resolve('./content/blog')
-  const files = await getLocalFiles(directory + '/**/*.md')
+  const files = await fg(directory + '/**/*.md')
 
   return files.map(fileName => {
     const fullPath = path.resolve(directory, fileName)
