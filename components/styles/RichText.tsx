@@ -225,6 +225,7 @@ const RichText = css`
   }
 
   td {
+    border-bottom: 1px solid var(--color-light-dark);
   }
 `
 
