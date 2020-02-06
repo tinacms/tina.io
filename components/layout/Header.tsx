@@ -74,7 +74,7 @@ const StyledHeader = styled.header<StyledHeaderProps>`
     top: 50%;
     transform: translate3d(0, -50%, 0);
 
-    @media (min-width: 920px) {
+    @media (min-width: 1030px) {
       right: auto;
       left: 50%;
       transform: translate3d(-50%, -50%, 0);
@@ -121,7 +121,7 @@ const StyledHeader = styled.header<StyledHeaderProps>`
     }
   }
 
-  iframe {
+  > iframe {
     display: none;
 
     @media (min-width: 1030px) {
