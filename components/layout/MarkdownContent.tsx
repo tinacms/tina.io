@@ -25,7 +25,7 @@ export function MarkdownContent({
 }: MarkdownContentProps) {
   return (
     <ReactMarkdown
-      escapeHtml={escapeHtml ? escapeHtml : true}
+      escapeHtml={escapeHtml === false ? escapeHtml : true}
       skipHtml={skipHtml ? skipHtml : false}
       source={content}
       renderers={{ code: WithCodeStyles }}
