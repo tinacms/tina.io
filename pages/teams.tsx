@@ -124,12 +124,14 @@ const EditableTeamsPage = inlineJsonForm(TeamsPage, TeamsPageOptions)
 
 export default EditableTeamsPage
 
-EditableTeamsPage.getInitialProps = async function() {
+export async function unstable_getStaticProps() {
   const teamsData = await import('../content/pages/teams.json')
   return {
-    jsonFile: {
-      fileRelativePath: `content/pages/teams.json`,
-      data: teamsData.default,
+    props: {
+      jsonFile: {
+        fileRelativePath: `content/pages/teams.json`,
+        data: teamsData.default,
+      },
     },
   }
 }

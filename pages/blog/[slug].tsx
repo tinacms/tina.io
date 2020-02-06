@@ -56,7 +56,6 @@ export async function unstable_getStaticPaths() {
       .replace(/ /g, '-')
       .slice(0, -3)
       .trim()
-    console.log(`slugii ${file}`)
     return { params: { slug } }
   })
 }

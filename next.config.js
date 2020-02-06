@@ -14,17 +14,6 @@ module.exports = withSvgr({
     HUBSPOT_TEAMS_FORM_ID: process.env.HUBSPOT_TEAMS_FORM_ID,
     HUBSPOT_PORTAL_ID: process.env.HUBSPOT_PORTAL_ID,
   },
-  exportTrailingSlash: true,
-  exportPathMap: async function() {
-    const routes = {
-      '/': { page: '/' },
-      '/community': { page: '/community' },
-      '/teams': { page: '/teams' },
-    }
-
-    // TODO: Add docs routes
-    return routes
-  },
   webpack(config) {
     config.module.rules.push({
       test: /\.md$/,
