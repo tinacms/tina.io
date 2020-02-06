@@ -26,11 +26,7 @@ function WithCodeStyles({ language, value }) {
 function WithHeadings({ children, level }) {
   const HeadingTag = `h${level}` as any
   const value = children
-    .map(child =>
-      child.props.value
-        ? child.props.value
-        : child.props.children[0].props.value
-    )
+    .map(child => child.props.value || child.props.children[0].props.value)
     .join('')
   var slugger = new GithubSlugger()
   const slug = slugger.slug(value)
