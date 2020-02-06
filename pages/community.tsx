@@ -105,7 +105,8 @@ function CommunityPage(props) {
             <InfoLayout>
               <InfoContent>
                 <InfoText>
-                  <h3 className="h2">{data.supporting_headline}</h3>
+                  <h2>{data.supporting_headline}</h2>
+                  <hr />
                   <ReactMarkdown>{data.supporting_body}</ReactMarkdown>
                 </InfoText>
                 <ButtonGroup>
@@ -198,10 +199,11 @@ const SocialBar = styled.div`
   grid-template-rows: repeat(4, auto);
   grid-gap: 1.5rem;
   justify-content: center;
-  margin: 4rem auto;
+  margin: 3em auto 1rem auto;
   @media (min-width: 800px) {
     grid-template-rows: unset;
     grid-template-columns: repeat(4, auto);
+    margin: 4rem auto;
     width: 700px;
   }
   @media (min-width: 1200px) {
@@ -284,6 +286,7 @@ const InfoLayout = styled.div`
   grid-template-columns: auto;
   grid-gap: 2rem;
   margin-bottom: 2rem;
+  grid-template-areas: 'image' 'content';
 
   @media (min-width: 1200px) {
     margin-bottom: 4rem;
@@ -293,10 +296,12 @@ const InfoLayout = styled.div`
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
     align-items: stretch;
+    grid-template-areas: 'content image';
   }
 `
 
 const InfoContent = styled.div`
+  grid-area: content;
   @media (min-width: 800px) {
     display: flex;
     flex-direction: column;
@@ -306,7 +311,31 @@ const InfoContent = styled.div`
 
 const InfoText = styled.div`
   margin-bottom: 1.5rem;
+  h1,
+  h2,
+  h3,
+  .h1,
+  .h2,
+  .h3 {
+    text-align: center;
+  }
+  hr {
+    margin-left: auto;
+    margin-right: auto;
+  }
   @media (min-width: 800px) {
+    h1,
+    h2,
+    h3,
+    .h1,
+    .h2,
+    .h3 {
+      text-align: left;
+    }
+    hr {
+      margin-left: 0;
+      margin-right: 0;
+    }
     flex: 1 0 auto;
   }
 `
@@ -318,6 +347,10 @@ const InfoImage = styled(({ src, ...styleProps }) => {
     </div>
   )
 })`
+  display: block;
+  grid-area: image;
+  max-width: 65vw;
+  margin: 0 auto;
   border-radius: 2rem;
   overflow: hidden;
 
