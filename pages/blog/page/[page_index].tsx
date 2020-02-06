@@ -132,8 +132,6 @@ export async function unstable_getStaticPaths() {
 export async function unstable_getStaticProps(ctx) {
   let page = (ctx.params && ctx.params.page_index) || '1'
 
-  // const ctx{ query: { page = 1 } }
-
   // grab all md files
   const blogData = (context => {
     const keys = context.keys()
