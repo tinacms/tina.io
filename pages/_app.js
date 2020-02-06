@@ -8,7 +8,7 @@ import TagManager from 'react-gtm-module'
 
 class Site extends App {
   componentDidMount() {
-    if (process.env.GTM_ID) {
+    if (process.env.NODE_ENV === 'production') {
       TagManager.initialize({
         gtmId: process.env.GTM_ID,
       })
