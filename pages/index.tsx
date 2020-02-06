@@ -76,7 +76,7 @@ const HomePage = props => {
                   </Button>
                 </Link>
               </div>
-              <div>
+              <CodeWrapper>
                 <CodeExample
                   dangerouslySetInnerHTML={{
                     __html: `yarn add <b>gatsby-plugin-tinacms</b>
@@ -93,7 +93,7 @@ export <b>WithTina</b>( <b>Component</b> );
                   `,
                   }}
                 ></CodeExample>
-              </div>
+              </CodeWrapper>
             </SetupLayout>
           </Wrapper>
         </Section>
@@ -183,11 +183,17 @@ EditableHomePage.getInitialProps = async function() {
  ** STYLES -------------------------------------------------------
  */
 
-const CodeExample = styled.code`
+const CodeWrapper = styled.div`
   border-radius: 50px;
   background-color: #d4f0ee;
+  display: block;
+  overflow: auto;
+`
+
+const CodeExample = styled.code`
+  display: block;
+  padding: 3rem;
   color: #241748;
-  padding: 50px;
   font-size: 20px;
   line-height: 1.2;
   font-family: Monaco, 'Courier New', Courier, monospace;
@@ -196,7 +202,6 @@ const CodeExample = styled.code`
   align-self: flex-start;
   width: 100%;
   display: block;
-  margin-top: 0.5rem;
 
   b {
     color: var(--color-primary);
@@ -220,6 +225,8 @@ const SetupLayout = styled.div`
   display: grid;
   grid-gap: 2rem;
   @media (min-width: 800px) {
+    align-items: start;
+    grid-gap: 4rem;
     grid-template-columns: repeat(2, 1fr);
   }
 `
