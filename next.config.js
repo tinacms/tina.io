@@ -1,5 +1,4 @@
 const withSvgr = require('next-svgr')
-const glob = require('glob')
 require('dotenv').config()
 
 const isProd = process.env.environment == 'production'
