@@ -25,15 +25,22 @@ function WithCodeStyles({ language, value }) {
 
 function WithHeadings({ children, level }) {
   const HeadingTag = `h${level}` as any
-  const value = children[0].props.value
+  const value = children
+    .map(child =>
+      child.props.value
+        ? child.props.value
+        : child.props.children[0].props.value
+    )
+    .join('')
   var slugger = new GithubSlugger()
   const slug = slugger.slug(value)
+
   return (
     <HeadingTag id={slug}>
       <HeadingLink href={`#${slug}`} aria-label={value} className="anchor">
         <LinkSvg />
       </HeadingLink>
-      {value}
+      {children}
     </HeadingTag>
   )
 }
