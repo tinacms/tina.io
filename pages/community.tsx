@@ -182,7 +182,7 @@ const EditableCommunityPage = inlineJsonForm(
 
 export default EditableCommunityPage
 
-export async function unstable_getStaticProps() {
+export async function unstable_getServerProps() {
   // TODO: need to fix something in tina before we use this
   // const siteMetadata = await import('../content/siteConfig.json')
   const communityData = await import('../content/pages/community.json')

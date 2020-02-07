@@ -10,7 +10,6 @@ import {
   MarkdownContent,
   RichTextWrapper,
 } from '../../components/layout'
-const fg = require('fast-glob')
 import { NextSeo } from 'next-seo'
 import siteData from '../../content/siteConfig.json'
 
@@ -58,9 +57,9 @@ export default function BlogTemplate(props) {
   )
 }
 
-export async function unstable_getStaticProps(ctx) {
+export async function unstable_getServerProps(ctx) {
   const { slug } = ctx.params
-  //TODO - change to fs.readFile once we move to getStaticProps
+  //TODO - change to fs.readFile once we move to getServerProps
   const content = await readFile(`content/blog/${slug}.md`)
   const post = matter(content)
 
@@ -75,17 +74,18 @@ export async function unstable_getStaticProps(ctx) {
   }
 }
 
-export async function unstable_getStaticPaths() {
-  const blogs = await fg(`./content/blog/**/*.md`)
-  return blogs.map(file => {
-    const slug = file
-      .split('/blog/')[1]
-      .replace(/ /g, '-')
-      .slice(0, -3)
-      .trim()
-    return { params: { slug } }
-  })
-}
+// export async function disabled_unstable_getStaticPaths() {
+//   const fg = require('fast-glob')
+//   const blogs = await fg(`./content/blog/**/*.md`)
+//   return blogs.map(file => {
+//     const slug = file
+//       .split('/blog/')[1]
+//       .replace(/ /g, '-')
+//       .slice(0, -3)
+//       .trim()
+//     return { params: { slug } }
+//   })
+// }
 
 const BlogWrapper = styled(Wrapper)`
   padding-top: 4rem;

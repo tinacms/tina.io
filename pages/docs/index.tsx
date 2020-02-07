@@ -2,7 +2,7 @@ import DocTemplate from './[...slug]'
 import matter from 'gray-matter'
 import { readFile } from '../../utils/readFile'
 
-export async function unstable_getStaticProps(ctx) {
+export async function unstable_getServerProps(ctx) {
   const content = await readFile(`content/docs/index.md`)
   const doc = matter(content)
 

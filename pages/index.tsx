@@ -169,7 +169,7 @@ const formOptions = {
 const EditableHomePage = inlineJsonForm(HomePage, formOptions)
 export default EditableHomePage
 
-export async function unstable_getStaticProps() {
+export async function unstable_getServerProps() {
   const homeData = await import('../content/pages/home.json')
 
   return {

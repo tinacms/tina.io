@@ -123,7 +123,7 @@ const Index = props => {
 
 const POSTS_PER_PAGE = 8
 
-export async function unstable_getStaticPaths() {
+export async function disabled_unstable_getStaticPaths() {
   const fg = require('fast-glob')
   const contentDir = './content/blog/'
   const posts = await fg(`${contentDir}**/*.md`)
@@ -140,7 +140,7 @@ export async function unstable_getStaticPaths() {
   return pages
 }
 
-export async function unstable_getStaticProps(ctx) {
+export async function unstable_getServerProps(ctx) {
   let page = (ctx.params && ctx.params.page_index) || '1'
 
   // grab all md files

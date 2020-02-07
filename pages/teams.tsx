@@ -131,7 +131,7 @@ const EditableTeamsPage = inlineJsonForm(TeamsPage, TeamsPageOptions)
 
 export default EditableTeamsPage
 
-export async function unstable_getStaticProps() {
+export async function unstable_getServerProps() {
   const teamsData = await import('../content/pages/teams.json')
   return {
     props: {

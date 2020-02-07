@@ -64,7 +64,7 @@ export default function DocTemplate(props) {
   )
 }
 
-export async function unstable_getStaticProps(ctx) {
+export async function unstable_getServerProps(ctx) {
   let { slug: slugs } = ctx.params
 
   const slug = slugs.join('/')
@@ -96,7 +96,7 @@ export async function unstable_getStaticProps(ctx) {
   }
 }
 
-export async function unstable_getStaticPaths() {
+export async function disabled_unstable_getStaticPaths() {
   const fg = require('fast-glob')
   const contentDir = './content/docs/'
   const files = await fg(`${contentDir}**/*.md`)
