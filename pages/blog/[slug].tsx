@@ -27,6 +27,21 @@ export default function BlogTemplate(props) {
         openGraph={{
           title: frontmatter.title,
           description: excerpt,
+          images: [
+            {
+              url:
+                'https://res.cloudinary.com/forestry-demo/image/upload/l_text:tuner-regular.ttf_70:' +
+                encodeURI(frontmatter.title) +
+                ',g_north_west,x_270,y_95,w_840,c_fit,co_rgb:EC4815/l_text:tuner-regular.ttf_30:By%20' +
+                encodeURI(frontmatter.author) +
+                '%20on%20' +
+                encodeURI(formatDate(frontmatter.date).replace(',', '')) +
+                '.,g_north_west,x_270,y_500,w_840,c_fit,co_rgb:241748/v1581087220/TinaCMS/tinacms-social-empty.png',
+              width: 1200,
+              height: 628,
+              alt: 'Social Share Image',
+            },
+          ],
         }}
       />
       <Hero>{frontmatter.title}</Hero>
