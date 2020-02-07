@@ -24,9 +24,10 @@ const HomePage = props => {
         {data.headline}
       </Hero>
       <Video src={data.hero_video} />
-      <RichTextWrapper>
-        <Section>
-          <Wrapper>
+
+      <Section>
+        <Wrapper>
+          <RichTextWrapper>
             <CtaLayout>
               <h2>
                 <em>{data.description}</em>
@@ -49,30 +50,31 @@ const HomePage = props => {
                 </div>
               ))}
             </InfoLayout>
-          </Wrapper>
-        </Section>
+          </RichTextWrapper>
+        </Wrapper>
+      </Section>
 
-        <Section color="seafoam">
-          <Wrapper>
-            <SetupLayout>
-              <div>
-                <h2 className="h1">{data.setup.headline}</h2>
-                <hr />
-                <ArrowList>
-                  {data.setup.steps.map(item => (
-                    <li key={item.step.slice(0, 8)}>{item.step}</li>
-                  ))}
-                </ArrowList>
-                <Link href={'/docs/getting-started/introduction/'} passHref>
-                  <Button as="a" color="primary">
-                    Get Started
-                  </Button>
-                </Link>
-              </div>
-              <CodeWrapper>
-                <CodeExample
-                  dangerouslySetInnerHTML={{
-                    __html: `yarn add <b>gatsby-plugin-tinacms</b>
+      <Section color="seafoam">
+        <Wrapper>
+          <SetupLayout>
+            <RichTextWrapper>
+              <h2 className="h1">{data.setup.headline}</h2>
+              <hr />
+              <ArrowList>
+                {data.setup.steps.map(item => (
+                  <li key={item.step.slice(0, 8)}>{item.step}</li>
+                ))}
+              </ArrowList>
+              <Link href={'/docs/getting-started/introduction/'} passHref>
+                <Button as="a" color="primary">
+                  Get Started
+                </Button>
+              </Link>
+            </RichTextWrapper>
+            <CodeWrapper>
+              <CodeExample
+                dangerouslySetInnerHTML={{
+                  __html: `yarn add <b>gatsby-plugin-tinacms</b>
 
 module.exports = {
   <span>// ...</span>
@@ -84,13 +86,12 @@ module.exports = {
 
 export <b>WithTina</b>( <b>Component</b> );
                   `,
-                  }}
-                ></CodeExample>
-              </CodeWrapper>
-            </SetupLayout>
-          </Wrapper>
-        </Section>
-      </RichTextWrapper>
+                }}
+              ></CodeExample>
+            </CodeWrapper>
+          </SetupLayout>
+        </Wrapper>
+      </Section>
     </Layout>
   )
 }
