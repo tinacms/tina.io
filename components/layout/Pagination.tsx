@@ -1,8 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import Link from 'next/link'
 import RightArrowSvg from '../../public/svg/right-arrow.svg'
-
+import { DynamicLink } from '../ui/DynamicLink'
 interface NextPrevPageProps {
   title: string
   slug: string
@@ -17,22 +16,22 @@ export function Pagination({ prevPage, nextPage }: PaginationProps) {
   return (
     <Wrapper>
       {prevPage && prevPage.slug && (
-        <Link href={`${prevPage.slug}`} passHref>
+        <DynamicLink href={`${prevPage.slug}`} passHref>
           <PaginationLink previous>
             <span>Previous</span>
             <h5>{prevPage.title}</h5>
             <RightArrowSvg />
           </PaginationLink>
-        </Link>
+        </DynamicLink>
       )}
       {nextPage && nextPage.slug && (
-        <Link href={`${nextPage.slug}`} passHref>
+        <DynamicLink href={`${nextPage.slug}`} passHref>
           <PaginationLink>
             <span>Next</span>
             <h5>{nextPage.title}</h5>
             <RightArrowSvg />
           </PaginationLink>
-        </Link>
+        </DynamicLink>
       )}
     </Wrapper>
   )

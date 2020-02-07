@@ -20,6 +20,7 @@ jobs:
         run: |
           yarn install
           yarn build --if-present
+          yarn lint
           yarn test
         env:
           CI: true
