@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Head from 'next/head'
 import Link from 'next/link'
 import { inlineJsonForm } from 'next-tinacms-json'
+import { DynamicLink } from '../components/ui/DynamicLink'
 
 import {
   Layout,
@@ -33,11 +34,14 @@ const HomePage = props => {
                 <em>{data.description}</em>
               </h2>
               <CtaBar>
-                <Link href={'/docs/getting-started/introduction/'} passHref>
+                <DynamicLink
+                  href={'/docs/getting-started/introduction/'}
+                  passHref
+                >
                   <Button as="a" color="primary">
                     Get Started
                   </Button>
-                </Link>
+                </DynamicLink>
               </CtaBar>
             </CtaLayout>
             <InfoLayout>
@@ -65,11 +69,14 @@ const HomePage = props => {
                   <li key={item.step.slice(0, 8)}>{item.step}</li>
                 ))}
               </ArrowList>
-              <Link href={'/docs/getting-started/introduction/'} passHref>
+              <DynamicLink
+                href={'/docs/getting-started/introduction/'}
+                passHref
+              >
                 <Button as="a" color="primary">
                   Get Started
                 </Button>
-              </Link>
+              </DynamicLink>
             </RichTextWrapper>
             <CodeWrapper>
               <CodeExample

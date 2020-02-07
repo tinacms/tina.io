@@ -15,6 +15,7 @@ import {
   RichTextWrapper,
 } from '../../../components/layout'
 import SmallArrow from '../../../public/svg/small-arrow.svg'
+import { DynamicLink } from '../../../components/ui/DynamicLink'
 
 const Index = props => {
   /*
@@ -50,9 +51,9 @@ const Index = props => {
       <Hero mini></Hero>
       <BlogWrapper>
         {props.posts.map(post => (
-          <Link
+          <DynamicLink
             key={post.data.slug}
-            href={{ pathname: `/blog/${post.data.slug}` }}
+            href={`/blog/${post.data.slug}`}
             passHref
           >
             <BlogExcerpt>
@@ -69,20 +70,20 @@ const Index = props => {
               </RichTextWrapper>
               <br />
             </BlogExcerpt>
-          </Link>
+          </DynamicLink>
         ))}
       </BlogWrapper>
       <Pagination>
         <div className="prev-next">
           {!isFirst && (
-            <Link href={prevPage}>
+            <DynamicLink href={prevPage}>
               <p>← Newer</p>
-            </Link>
+            </DynamicLink>
           )}
           {!isLast && (
-            <Link href={nextPage}>
+            <DynamicLink href={nextPage}>
               <p>Older →</p>
-            </Link>
+            </DynamicLink>
           )}
         </div>
         <div className="list-numbers">

@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import styled, { css } from 'styled-components'
 import RightArrowSvg from '../../public/svg/right-arrow.svg'
 import { useState } from 'react'
+import { DynamicLink } from './DynamicLink'
 
 import { LinkNav } from './LinkNav'
 
@@ -21,11 +22,11 @@ export const NavSection = (section: NavSection) => {
     <NavItem key={section.slug} open={open}>
       <NavItemHeader>
         {section.slug ? (
-          <Link href={section.slug} passHref>
+          <DynamicLink href={section.slug} passHref>
             <NavSectionTitle as="a" open={open}>
               {section.title}
             </NavSectionTitle>
-          </Link>
+          </DynamicLink>
         ) : (
           <NavSectionTitle open={open} onClick={() => setOpen(!open)}>
             {section.title}

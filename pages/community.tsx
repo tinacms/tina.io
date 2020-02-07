@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown'
 import Link from 'next/link'
 import Head from 'next/head'
 import { inlineJsonForm } from 'next-tinacms-json'
+import { DynamicLink } from '../components/ui/DynamicLink'
 
 import {
   Layout,
@@ -110,12 +111,12 @@ function CommunityPage(props) {
                   <ReactMarkdown>{data.supporting_body}</ReactMarkdown>
                 </InfoText>
                 <ButtonGroup>
-                  <Link href={'/docs/contributing/guidelines'} passHref>
+                  <DynamicLink href={'/docs/contributing/guidelines'} passHref>
                     <Button as="a">Contribute</Button>
-                  </Link>
-                  <Link href={metadata.roadmapUrl} passHref>
+                  </DynamicLink>
+                  <DynamicLink href={metadata.roadmapUrl} passHref>
                     <Button as="a">View Roadmap</Button>
-                  </Link>
+                  </DynamicLink>
                 </ButtonGroup>
               </InfoContent>
               <InfoImage src="/img/rico-replacement.jpg" />

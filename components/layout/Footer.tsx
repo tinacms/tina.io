@@ -1,7 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import Link from 'next/link'
-
 import { Button, LinkNav } from '../ui'
 import TinaWordmark from '../logo/TinaWordmark'
 import TwitterIconSvg from '../../public/svg/twitter-icon.svg'

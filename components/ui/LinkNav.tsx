@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button } from '.'
-import Link from 'next/link'
+import { DynamicLink } from './DynamicLink'
 import data from '../../content/navigation.json'
 
 export const LinkNav = styled(({ ...styleProps }) => {
@@ -11,9 +10,9 @@ export const LinkNav = styled(({ ...styleProps }) => {
         data.map(({ id, href, label }) => {
           return (
             <li key={id}>
-              <Link href={href} passHref>
+              <DynamicLink href={href} passHref>
                 <a>{label}</a>
-              </Link>
+              </DynamicLink>
             </li>
           )
         })}

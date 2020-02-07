@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { Button } from '.'
-import Link from 'next/link'
+import { DynamicLink } from './DynamicLink'
 import data from '../../content/navigation.json'
 
 import { SearchContainer } from '../search/styles'
@@ -24,11 +24,11 @@ export const HeaderNav = styled(({ color, ...styleProps }: NavProps) => {
         data.map(({ id, href, label }) => {
           return (
             <li key={id}>
-              <Link href={href} passHref>
+              <DynamicLink href={href} passHref>
                 <Button as="a" color="variable">
                   {label}
                 </Button>
-              </Link>
+              </DynamicLink>
             </li>
           )
         })}
