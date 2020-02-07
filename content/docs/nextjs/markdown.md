@@ -12,10 +12,13 @@ consumes:
 
 The `next-tinacms-markdown` package provides a set of methods for editing content sourced from Markdown files.
 
-- `useLocalMarkdownForm( markdownFile, options? ):[values, form]`
-- `useGlobalMarkdownForm( markdownFile, options? ):[values, form]`
+- `useLocalMarkdownForm( markdownFile, options? ):[values, form]` - A [React Hook](https://reactjs.org/docs/hooks-intro.html) for registering local forms with [function components](https://reactjs.org/docs/components-and-props.html#function-and-class-components).
+- `useGlobalMarkdownForm( markdownFile, options? ):[values, form]` - A [React Hook](https://reactjs.org/docs/hooks-intro.html) for registering global forms with [function components](https://reactjs.org/docs/components-and-props.html#function-and-class-components).
+- `markdownForm( Component, options? ): Component` - A [React Higher-Order Component](https://reactjs.org/docs/higher-order-components.html) for registering local forms with class or function components.
 
-These hooks work similarly, the biggest difference being whether they register [local or global](https://tinacms.org/docs/concepts/forms#local--global-forms) forms wih the CMS. They can only be used with [function components](https://reactjs.org/docs/components-and-props.html#function-and-class-components).
+## Using the hooks
+
+The hooks, `useLocalMarkdownForm` & `useGlobalMarkdownForm`, work similarly. The biggest difference between them is whether they register [local or global](https://tinacms.org/docs/concepts/forms#local--global-forms) forms wih the CMS.
 
 **Arguments**
 
@@ -37,7 +40,7 @@ export interface MarkdownFile {
 - `values`: An object containing the current values from `frontmatter` and `markdownBody`. You can use these values to render content.
 - `form`: A reference to the `Form` registered to the CMS. Most of the time you won't need to work directly with the `Form`, so you won't see it used in the example.
 
-### _useLocalMarkdownForm_ In Use
+### _useLocalMarkdownForm_ Example
 
 The `useLocalMarkdownForm` hook will connect the return data from `getInitialProps` with Tina, then return the `frontmatter` and `markdownBody` values to be rendered.
 
@@ -72,7 +75,7 @@ export default function Info(props) {
   **    `data` object returned from `getInitialProps`,
   **    along with any form options.
   */
-  const [data] = useLocalMarkdownForm(props.data, formOptions)
+  const [data] = useLocalMarkdownForm(props.markdownFile, formOptions)
 
   /*
   **  3. Render content from your Markdown source file
@@ -96,7 +99,7 @@ Info.getInitialProps = async function() {
     /*
     ** 4. Make sure your return data matches this shape
     */
-    data: {
+    markdownFile: {
       fileRelativePath: `data/info.md`,
       frontmatter: data.data,
       markdownBody: data.content,
@@ -106,3 +109,88 @@ Info.getInitialProps = async function() {
 ```
 
 > You can use [`gray-matter`](https://github.com/jonschlinkert/gray-matter) to parse the YAML frontmatter when importing a raw Markdown file.
+
+## Using _markdownForm_ HOC
+
+`markdownForm` accepts two arguments: _a component and an [form configuration object](https://tinacms.org/docs/gatsby/markdown/#customizing-remark-forms)_. The component being passed is expected to receive data as props that matches the `markdownFile` interface outlined below.
+
+```typescript
+// A datastructure representing a MarkdownFile file stored in Git
+export interface MarkdownFile {
+  fileRelativePath: string
+  frontmatter: any
+  markdownBody: string
+}
+```
+
+`markdownForm` returns the original component with a local form registered with Tina. Below is the same example from `useLocalMarkdownForm`, but refactored to use the HOC.
+
+```ts
+/*
+** 1. import `markdownForm`
+*/
+import { markdownForm } from 'next-tinacms-markdown'
+import ReactMarkdown from 'react-markdown'
+import matter from 'gray-matter'
+import Layout from '../components/Layout'
+
+function Info(props) {
+  const data = props.markdownFile
+  return (
+    <Layout>
+      <section>
+        <h1>{data.frontmatter.name}<h2>
+        <ReactMarkdown>{data.markdownBody}</ReactMarkdown>
+      </section>
+    </Layout>
+  )
+}
+
+/*
+** Optional — define an options object
+** to customize the form
+*/
+const formOptions = {
+  //...
+}
+
+/*
+ ** 2. Wrap your component with `markdownForm`,
+ **    pass in optional form field config object
+ **    and declare a new variable to hold the
+ **    returned component
+ */
+const EditableInfo = markdownForm(Info, formOptions)
+
+/*
+ ** 3. Export the 'editable' version of the
+ **    original component
+ */
+export default EditableInfo
+
+/*
+ ** 4. Call your data fetching method
+ **    on the 'editable' component
+ */
+EditableInfo.getInitialProps = async function() {
+  const configData = await import(`../data/config.json`)
+  const infoData = await import(`../data/info.md`)
+  const data = matter(infoData.default)
+
+  return {
+    title: configData.title,
+    description: configData.description,
+    /*
+    ** 5. Structure your return object
+    **    with this shape. Make sure
+    **    to use the `markdownFile`
+    **    property name
+    */
+    markdownFile: {
+      fileRelativePath: `data/info.md`,
+      frontmatter: data.data,
+      markdownBody: data.content,
+    },
+  }
+}
+```
