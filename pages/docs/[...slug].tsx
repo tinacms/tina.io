@@ -169,13 +169,21 @@ const DocsContent = styled.div`
   h1,
   .h1,
   h2,
-  .h2,
+  .h2 {
+    color: var(--color-primary);
+    em {
+      color: var(--color-primary);
+      font-style: italic;
+    }
+  }
+
   h3,
   .h3,
   h4,
   .h4 {
+    color: var(--color-secondary);
     em {
-      color: var(--color-primary);
+      color: var(--color-secondary);
       font-style: italic;
     }
   }
@@ -183,8 +191,7 @@ const DocsContent = styled.div`
   h1,
   .h1 {
     font-size: 2rem;
-
-    @media (min-width: 800px) {
+    gi @media (min-width: 800px) {
       font-size: 3rem;
     }
 
