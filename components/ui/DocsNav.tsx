@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import styled, { css } from 'styled-components'
 import RightArrowSvg from '../../public/svg/right-arrow.svg'
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { DynamicLink } from './DynamicLink'
 
 import { LinkNav } from './LinkNav'
@@ -17,7 +17,13 @@ interface NavSection {
 export const NavSection = (section: NavSection) => {
   const router = useRouter()
   const currentPath = router.asPath
-  const [open, setOpen] = useState(menuIsActive(section, currentPath))
+  const isCurrentPage = useMemo(() => {
+    if (section.slug && currentPath.includes(section.slug)) {
+      return true
+    }
+  }, [section.slug, currentPath])
+  const [expanded, setExpanded] = useState(menuIsActive(section, currentPath))
+  const open = isCurrentPage || expanded
   return (
     <NavItem key={section.slug} open={open}>
       <NavItemHeader>
@@ -28,7 +34,7 @@ export const NavSection = (section: NavSection) => {
             </NavSectionTitle>
           </DynamicLink>
         ) : (
-          <NavSectionTitle open={open} onClick={() => setOpen(!open)}>
+          <NavSectionTitle open={open} onClick={() => setExpanded(!expanded)}>
             {section.title}
           </NavSectionTitle>
         )}
@@ -46,9 +52,6 @@ export const NavSection = (section: NavSection) => {
 }
 
 const menuIsActive = (section: NavSection, currentPath: string) => {
-  if (section.slug && currentPath.includes(section.slug)) {
-    return true
-  }
   return (
     section.items &&
     section.items.reduce((isActive, section) => {
