@@ -10,7 +10,6 @@ interface DynamicLinkProps extends ExtraProps {
 
 export const DynamicLink = ({ children, href, ...props }: DynamicLinkProps) => {
   const dynamicHref = getDynamicUrl(href)
-  console.log(dynamicHref)
   return (
     <Link href={dynamicHref} as={href} {...props}>
       {children}
