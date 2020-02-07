@@ -43,7 +43,7 @@ function WithHeadings({ children, level }) {
 
 const HeadingLink = styled.a`
   fill: var(--color-secondary);
-  opacity: 0.15;
+  opacity: 0;
   display: flex;
   align-items: center;
   position: absolute;
@@ -54,8 +54,8 @@ const HeadingLink = styled.a`
   transition: all 180ms ease-out;
 
   svg {
-    width: 1em;
-    height: 1em;
+    width: 1.25rem;
+    height: 1.25rem;
   }
 
   &:hover,
