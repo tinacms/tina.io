@@ -27,13 +27,28 @@ export default function BlogTemplate(props) {
         openGraph={{
           title: frontmatter.title,
           description: excerpt,
+          images: [
+            {
+              url:
+                'https://res.cloudinary.com/forestry-demo/image/upload/l_text:tuner-regular.ttf_70:' +
+                encodeURI(frontmatter.title) +
+                ',g_north_west,x_270,y_95,w_840,c_fit,co_rgb:EC4815/l_text:tuner-regular.ttf_35:' +
+                encodeURI(frontmatter.author) +
+                ',g_north_west,x_270,y_500,w_840,c_fit,co_rgb:241748/v1581087220/TinaCMS/tinacms-social-empty.png',
+              width: 1200,
+              height: 628,
+              alt: frontmatter.title + ` | TinaCMS Blog`,
+            },
+          ],
         }}
       />
       <Hero>{frontmatter.title}</Hero>
       <BlogWrapper>
         <RichTextWrapper>
           <BlogMeta>
-            <p>By: {frontmatter.author}</p>
+            <p>
+              <span>By</span> {frontmatter.author}
+            </p>
             <p>{formatDate(frontmatter.date)}</p>
           </BlogMeta>
           <MarkdownContent escapeHtml={false} content={markdownBody} />
@@ -83,10 +98,20 @@ const BlogMeta = styled.div`
   justify-content: space-between;
   display: flex;
   flex-grow: 1;
+  flex-direction: column;
   margin-bottom: 1.5rem;
   margin-top: -0.5rem;
   opacity: 0.5;
   p {
-    margin: 0 !important;
+    margin: 0;
+    color: 0;
+    display: block;
+  }
+  span {
+    opacity: 0.5;
+  }
+
+  @media (min-width: 550px) {
+    flex-direction: row;
   }
 `

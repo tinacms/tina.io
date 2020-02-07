@@ -28,6 +28,14 @@ class Site extends App {
             locale: 'en_CA',
             url: data.siteUrl,
             site_name: data.title,
+            images: [
+              {
+                url: 'https://tinacms.org/img/tina-twitter-share.png',
+                width: 1200,
+                height: 628,
+                alt: `TinaCMS`,
+              },
+            ],
           }}
           twitter={{
             handle: data.social.twitterHandle,
