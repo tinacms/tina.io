@@ -33,7 +33,9 @@ export default function BlogTemplate(props) {
       <BlogWrapper>
         <RichTextWrapper>
           <BlogMeta>
-            <p>By: {frontmatter.author}</p>
+            <p>
+              <span>By</span> {frontmatter.author}
+            </p>
             <p>{formatDate(frontmatter.date)}</p>
           </BlogMeta>
           <MarkdownContent escapeHtml={false} content={markdownBody} />
@@ -83,10 +85,20 @@ const BlogMeta = styled.div`
   justify-content: space-between;
   display: flex;
   flex-grow: 1;
+  flex-direction: column;
   margin-bottom: 1.5rem;
   margin-top: -0.5rem;
   opacity: 0.5;
   p {
-    margin: 0 !important;
+    margin: 0;
+    color: 0;
+    display: block;
+  }
+  span {
+    opacity: 0.5;
+  }
+
+  @media (min-width: 550px) {
+    flex-direction: row;
   }
 `
