@@ -23,18 +23,21 @@ export const NavSection = (section: NavSection) => {
     }
   }, [section.slug, currentPath])
   const [expanded, setExpanded] = useState(menuIsActive(section, currentPath))
-  const open = isCurrentPage || expanded
+  const highlighted = isCurrentPage || expanded
   return (
-    <NavItem key={section.slug} open={open}>
+    <NavItem key={section.slug} open={highlighted}>
       <NavItemHeader>
         {section.slug ? (
           <DynamicLink href={section.slug} passHref>
-            <NavSectionTitle as="a" open={open}>
+            <NavSectionTitle as="a" open={highlighted}>
               {section.title}
             </NavSectionTitle>
           </DynamicLink>
         ) : (
-          <NavSectionTitle open={open} onClick={() => setExpanded(!expanded)}>
+          <NavSectionTitle
+            open={highlighted}
+            onClick={() => setExpanded(!expanded)}
+          >
             {section.title}
           </NavSectionTitle>
         )}
