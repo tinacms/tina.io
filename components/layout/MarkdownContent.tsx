@@ -69,8 +69,8 @@ export function MarkdownContent({
 }: MarkdownContentProps) {
   return (
     <ReactMarkdown
-      escapeHtml={escapeHtml}
-      skipHtml={skipHtml}
+      escapeHtml={escapeHtml === false ? escapeHtml : true}
+      skipHtml={skipHtml ? skipHtml : false}
       source={content}
       renderers={{ code: WithCodeStyles, heading: WithHeadings }}
     />

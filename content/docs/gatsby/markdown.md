@@ -17,8 +17,6 @@ consumes:
 
 Gatsby allows you to build sites from many different data sources. Currently Tina has plugins for editing content in [Markdown](/docs/gatsby/markdown#editing-markdown-content) & [JSON](/docs/gatsby/json#editing-json-in-gatsby) files, with plans to support many more data sources.
 
-<!-- callout -->
-
 Have an idea for a Tina content editing plugin? [Consider contributing](/docs/contributing/guidelines)! Check out how to create your own [form](/docs/using-tina/creating-forms) or [field plugin](/docs/using-tina/creating-fields).
 
 ## Editing Markdown in Gatsby
