@@ -39,7 +39,7 @@ export default function BlogTemplate(props) {
                 '.,g_north_west,x_270,y_500,w_840,c_fit,co_rgb:241748/v1581087220/TinaCMS/tinacms-social-empty.png',
               width: 1200,
               height: 628,
-              alt: 'Social Share Image',
+              alt: frontmatter.title + ` | TinaCMS Blog`,
             },
           ],
         }}

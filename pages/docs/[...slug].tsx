@@ -21,6 +21,11 @@ export default function DocTemplate(props) {
   const frontmatter = props.doc.data
   const markdownBody = props.doc.content
   const excerpt = formatExcerpt(props.doc.content)
+  const urlExcerpt = encodeURIComponent(
+    excerpt.indexOf('.')
+      ? excerpt.substring(0, excerpt.indexOf('.') + 1)
+      : excerpt + '...'
+  )
   return (
     <DocsLayout>
       <NextSeo
@@ -30,6 +35,19 @@ export default function DocTemplate(props) {
         openGraph={{
           title: frontmatter.title,
           description: excerpt,
+          images: [
+            {
+              url:
+                'https://res.cloudinary.com/forestry-demo/image/upload/l_text:tuner-regular.ttf_70:' +
+                encodeURI(frontmatter.title) +
+                ',g_north_west,x_270,y_140,w_840,c_fit,co_rgb:EC4815/l_text:tuner-regular.ttf_30:' +
+                urlExcerpt +
+                ',g_north_west,x_270,y_360,w_750,c_fit,co_rgb:241748/v1581087220/TinaCMS/tinacms-social-empty-docs.png',
+              width: 1200,
+              height: 628,
+              alt: frontmatter.title + ` | TinaCMS Docs`,
+            },
+          ],
         }}
       />
       <DocsNav open={open} navItems={props.docsNav} />
