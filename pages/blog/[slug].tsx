@@ -74,18 +74,18 @@ export async function unstable_getServerProps(ctx) {
   }
 }
 
-// export async function disabled_unstable_getStaticPaths() {
-//   const fg = require('fast-glob')
-//   const blogs = await fg(`./content/blog/**/*.md`)
-//   return blogs.map(file => {
-//     const slug = file
-//       .split('/blog/')[1]
-//       .replace(/ /g, '-')
-//       .slice(0, -3)
-//       .trim()
-//     return { params: { slug } }
-//   })
-// }
+export async function disabled_unstable_getStaticPaths() {
+  const fg = require('fast-glob')
+  const blogs = await fg(`./content/blog/**/*.md`)
+  return blogs.map(file => {
+    const slug = file
+      .split('/blog/')[1]
+      .replace(/ /g, '-')
+      .slice(0, -3)
+      .trim()
+    return { params: { slug } }
+  })
+}
 
 const BlogWrapper = styled(Wrapper)`
   padding-top: 4rem;
