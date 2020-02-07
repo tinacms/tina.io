@@ -20,7 +20,6 @@
     "deploy": "yarn build && yarn export"
   },
   "author": "Forestry.io",
-  "license": "MIT",
   "dependencies": {
     "@tinacms/api-git": "^0.5.4",
     "@tinacms/git-client": "^0.4.1",
