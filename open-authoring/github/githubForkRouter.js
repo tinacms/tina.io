@@ -5,7 +5,8 @@ const path = require("path");
 const { createFork } = require("./api");
 
 const GITHUB_FORK_COOKIE_KEY = "tina-github-fork-name";
-const GITHUB_FORK_COOKIE_EXP = "tina-github-fork-exp"
+const GITHUB_FORK_COOKIE_EXP = "tina-github-fork-exp";
+const GITHUB_AUTH_COOKIE_KEY = "tina-github-auth";
 const NO_COOKIES_ERROR = `@tinacms/teams \`authenticate\` middleware could not find cookies on the request.
 
 Try adding the \`cookie-parser\` middleware to your express app.
@@ -30,10 +31,13 @@ function githubForkRouter() {
       });
   });
 
-  const validateFork = (forkURL) => {
+  const validateFork = (forkURL, token) => {    
     return axios({
       method: 'GET',
-      url: `https://api.github.com/repos/${forkURL}`
+      url: `https://api.github.com/repos/${forkURL}`,
+      headers: {
+        Authorization: 'token ' + token
+      },
     }).then( response => {
       if (response.data.full_name === forkURL) {
         return true;
@@ -57,7 +61,8 @@ function githubForkRouter() {
       throw new Error(NO_COOKIES_ERROR);
     }
     const forkUrl = req.cookies[GITHUB_FORK_COOKIE_KEY];
-    const forkExp = req.cookies[GITHUB_FORK_COOKIE_EXP]
+    const forkExp = req.cookies[GITHUB_FORK_COOKIE_EXP];
+    const authToken = req.cookies[GITHUB_AUTH_COOKIE_KEY];
 
     if (!forkUrl || !forkExp) {
       showForkRequest(res);
@@ -66,12 +71,14 @@ function githubForkRouter() {
 
     const currTime = Date.now();
   
-    if (currTime - parseInt(forkExp) < 30 * 1000) { // less than 10 seconds since validation
+    if (currTime - parseInt(forkExp) < 5 *  60 * 1000) { // 5 minutes less than  since validation
       next();
       return;
     }
 
-    validateFork(forkUrl).then( isValid => {
+    
+
+    validateFork(forkUrl, authToken).then( isValid => {
       if (isValid) {
         res.cookie(GITHUB_FORK_COOKIE_EXP, currTime.toString());
         next();
