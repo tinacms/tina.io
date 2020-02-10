@@ -28,7 +28,7 @@ export const BlogPagination = styled(
     return (
       <div {...styleProps}>
         <PaginationLinks>
-          {isFirst && (
+          {!isFirst && (
             <DynamicLink href={prevPage} passHref>
               <a>← Newer</a>
             </DynamicLink>
