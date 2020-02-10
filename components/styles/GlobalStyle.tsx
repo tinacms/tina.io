@@ -92,7 +92,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Inter';
     font-style:  normal;
     font-weight: 400;
-    font-display: swap;
+    font-display: fallback;
     src: url("/fonts/Inter-Regular.woff2") format("woff2"),
         url("/fonts/Inter-Regular.woff") format("woff");
   }
@@ -102,7 +102,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Inter';
     font-style:  italic;
     font-weight: 400;
-    font-display: swap;
+    font-display: fallback;
     src: url("/fonts/Inter-Italic.woff2") format("woff2"),
         url("/fonts/Inter-Italic.woff") format("woff");
   }
@@ -112,7 +112,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Inter';
     font-style:  normal;
     font-weight: 700;
-    font-display: swap;
+    font-display: fallback;
     src: url("/fonts/Inter-Bold.woff2") format("woff2"),
         url("/fonts/Inter-Bold.woff") format("woff");
   }
