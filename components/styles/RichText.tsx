@@ -23,7 +23,10 @@ const RichText = css`
     }
   }
 
-  p {
+  p,
+  iframe,
+  blockquote,
+  image {
     margin: 1.5rem 0;
     &:first-child {
       margin-top: 0;
@@ -165,7 +168,6 @@ const RichText = css`
     border-left-width: 6px;
     border-radius: 3px;
     padding: 1em;
-    margin: 0.5em 0;
   }
 
   hr {
