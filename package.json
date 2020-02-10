@@ -27,6 +27,7 @@
     "@types/react-instantsearch-dom": "^5.2.6",
     "@types/styled-components": "^4.4.2",
     "algoliasearch": "^3.35.1",
+    "atob": "^2.1.2",
     "axios": "^0.19.2",
     "btoa": "^1.2.1",
     "cookie-parser": "^1.4.4",

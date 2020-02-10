@@ -4,6 +4,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { inlineJsonForm } from 'next-tinacms-json'
 import { DynamicLink } from '../components/ui/DynamicLink'
+const atob = require('atob')
 
 import {
   Layout,
@@ -15,6 +16,14 @@ import {
 } from '../components/layout'
 import { Button, Video, ArrowList } from '../components/ui'
 import { NextSeo, DefaultSeo } from 'next-seo'
+import matter from 'gray-matter'
+
+const {
+  createPR,
+  getContent,
+  saveContent,
+  fetchExistingPR,
+} = require('../open-authoring/github/api')
 
 const HomePage = props => {
   const data = props.jsonFile
@@ -169,16 +178,41 @@ const formOptions = {
 const EditableHomePage = inlineJsonForm(HomePage, formOptions)
 export default EditableHomePage
 
-export async function unstable_getServerProps() {
-  const homeData = await import('../content/pages/home.json')
+export async function unstable_getServerProps(ctx) {
+  const filePath = 'content/pages/home.json'
+  if (process.env.USE_CONTENT_API) {
+    const access_token = ctx.req.cookies['tina-github-auth']
+    const forkFullName = ctx.req.cookies['tina-github-fork-name']
 
-  return {
-    props: {
-      jsonFile: {
-        fileRelativePath: 'content/pages/home.json',
-        data: homeData.default,
+    const branch = ctx.query.branch || 'master'
+    const homeData = await getContent(
+      forkFullName,
+      branch,
+      filePath,
+      access_token
+    )
+
+    const home = JSON.parse(atob(homeData.data.content))
+
+    return {
+      props: {
+        jsonFile: {
+          fileRelativePath: filePath,
+          data: home,
+        },
       },
-    },
+    }
+  } else {
+    const homeData = await import(`../content/${filePath}`)
+
+    return {
+      props: {
+        jsonFile: {
+          fileRelativePath: filePath,
+          data: homeData.default,
+        },
+      },
+    }
   }
 }
 
