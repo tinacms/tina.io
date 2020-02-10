@@ -17,36 +17,38 @@ interface NavProps {
   open: boolean
 }
 
-export const HeaderNav = styled(({ color, ...styleProps }: NavProps) => {
-  return (
-    <ul {...styleProps}>
-      {data &&
-        data.map(({ id, href, label }) => {
-          return (
-            <li key={id}>
-              <DynamicLink href={href} passHref>
-                <Button as="a" color="variable">
-                  {label}
-                </Button>
-              </DynamicLink>
-            </li>
-          )
-        })}
-      <li key="nav-search">
-        <Search collapse indices={searchIndices} />
-      </li>
-      <li>
-        <iframe
-          src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
-          frameBorder="0"
-          scrolling="0"
-          width="145px"
-          height="30px"
-        ></iframe>
-      </li>
-    </ul>
-  )
-})`
+export const HeaderNav = styled(
+  React.memo(({ color, ...styleProps }: NavProps) => {
+    return (
+      <ul {...styleProps}>
+        {data &&
+          data.map(({ id, href, label }) => {
+            return (
+              <li key={id}>
+                <DynamicLink href={href} passHref>
+                  <Button as="a" color="variable">
+                    {label}
+                  </Button>
+                </DynamicLink>
+              </li>
+            )
+          })}
+        <li key="nav-search">
+          <Search collapse indices={searchIndices} />
+        </li>
+        <li>
+          <iframe
+            src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
+            frameBorder="0"
+            scrolling="0"
+            width="145px"
+            height="30px"
+          ></iframe>
+        </li>
+      </ul>
+    )
+  })
+)`
   padding: 0;
   margin: 0;
   list-style-type: none;
