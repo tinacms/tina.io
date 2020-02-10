@@ -1,15 +1,19 @@
 const btoa = require("btoa");
 const axios = require("axios");
 const qs = require("qs");
+const baseBranch = process.env.BASE_BRANCH
 
-const fetchExistingPR = (baseRepoFullName, forkRepoFullName, branch) => {
+const fetchExistingPR = (baseRepoFullName, forkRepoFullName, headBranch, token) => {
   return axios({
     method: "GET",
-    url: `https://api.github.com/repos/${baseRepoFullName}/pulls`
+    url: `https://api.github.com/repos/${baseRepoFullName}/pulls`,
+    headers: {
+      Authorization: 'token ' + token
+    }
   }).then(response => {
     for (i = 0; i < response.data.length; i++) {
       const pull = response.data[i]      
-      if (branch === pull.head.ref && branch === pull.base.ref) {
+      if (headBranch === pull.head.ref) {
         if (pull.head.repo.full_name === forkRepoFullName && pull.base.repo.full_name === baseRepoFullName) {          
           return pull; // found matching PR
         }
@@ -22,29 +26,30 @@ const fetchExistingPR = (baseRepoFullName, forkRepoFullName, branch) => {
   })
 }
 
-const createPR = (baseRepoFullName, forkRepoFullName, branch, accessToken) => {  
+
+const createPR = (baseRepoFullName, forkRepoFullName, headBranch, accessToken, title, body) => {  
   return axios({
     method: "POST",
     url: `https://api.github.com/repos/${baseRepoFullName}/pulls?access_token=${accessToken}`,
     data: {
-      title: "Update from TinaCMS",
-      body: "Please pull these awesome changes in!",
-      head: `${forkRepoFullName.split("/")[0]}:${branch}`,
-      base: branch
+      title: (title ? title : "Update from TinaCMS"),
+      body: (body ? body : "Please pull these awesome changes in!"),
+      head: `${forkRepoFullName.split("/")[0]}:${headBranch}`,
+      base: baseBranch
     }
   });
 };
 
-const getContent = async (repoFullName, branch, path, accessToken) => {
+const getContent = async (repoFullName, headBranch, path, accessToken) => {
   return axios({
     method: "GET",
-    url: `https://api.github.com/repos/${repoFullName}/contents/${path}?access_token=${accessToken}&ref=${branch}`
+    url: `https://api.github.com/repos/${repoFullName}/contents/${path}?access_token=${accessToken}&ref=${headBranch}`
   });
 };
 
 const saveContent = async (
   repoFullName,
-  branch,
+  headBranch,
   path,
   accessToken,
   sha,
@@ -58,7 +63,7 @@ const saveContent = async (
       message,
       content: btoa(content),
       sha,
-      branch
+      headBranch
     }
   });
 };
