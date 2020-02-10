@@ -1,13 +1,13 @@
 {
   "title": "Home",
-  "headline": "Build real-time editing into your site.",
-  "description": "Tina is an open-source site editing toolkit for React-based frameworks — Gatsby & Next.js",
+  "headline": "Build real-time editing into your site!",
+  "description": "Tina is an open-source site editing toolkit for React-based frameworks â Gatsby & Next.js",
   "hero_video": "v1571425758/tina-hero-demo-v2",
   "hero_alt": "TinaCMS_video",
   "three_points": [
     {
       "main": "Choose your tools",
-      "supporting": "Use Tina with your favorite modern javascript frameworks. While currently compatible with most React-based workflows — specifically Gatsby, Next.js and React SPA’s — plan on adding Tina to your Vue, Gridsome or Nuxt projects very soon."
+      "supporting": "Use Tina with your favorite modern javascript frameworks. While currently compatible with most React-based workflows â specifically Gatsby, Next.js and React SPAâs â plan on adding Tina to your Vue, Gridsome or Nuxt projects very soon."
     },
     {
       "main": "Edit from your site",
@@ -31,7 +31,7 @@
         "step": "Customize and define the content fields by passing an options argument"
       },
       {
-        "step": "Open the sidebar 🤩, edit your site and watch the content updating in realtime"
+        "step": "Open the sidebar ð¤©, edit your site and watch the content updating in realtime"
       }
     ],
     "code_ex": "/img/terminal.png"
