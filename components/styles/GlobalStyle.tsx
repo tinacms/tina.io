@@ -1,8 +1,6 @@
 import React from 'react'
 import { createGlobalStyle, css } from 'styled-components'
 
-import Code from './Code'
-
 const CssReset = css`
   html,
   body,
