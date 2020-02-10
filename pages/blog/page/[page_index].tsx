@@ -208,7 +208,3 @@ const BlogMeta = styled.div`
     flex-direction: row;
   }
 `
-
-const Pagination = styled.div``
-
-const PaginationSelect = styled.div``

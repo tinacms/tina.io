@@ -1,7 +1,8 @@
 {
-  "name": "tinacms-next",
+  "name": "tinacms.org",
   "version": "1.0.0",
   "description": "A hub for Tina's documentation, blog & general info.",
+  "author": "Forestry.io",
   "main": "n/a",
   "scripts": {
     "dev-next": "next",
@@ -20,7 +21,6 @@
     "create-indices": "tsc --project ./indices/tsconfig.json --outDir ./indices/out && node ./indices/out/indices/createIndices.js",
     "deploy": "yarn build && yarn export"
   },
-  "author": "Forestry.io",
   "dependencies": {
     "@tinacms/api-git": "^0.5.4",
     "@tinacms/git-client": "^0.4.1",
@@ -62,7 +62,7 @@
     "remove-markdown": "^0.3.0",
     "serve": "11.2.0",
     "styled-components": "^4.4.1",
-    "tinacms": "^0.12.0",
+    "tinacms": "^0.12.1",
     "webpack": "^4.41.5"
   },
   "devDependencies": {
