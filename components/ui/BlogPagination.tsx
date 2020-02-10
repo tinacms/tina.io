@@ -10,7 +10,7 @@ export const BlogPagination = styled(
     const isFirst = currentPage === 1
     const isLast = currentPage === numPages
     const prevPage =
-      currentPage - 1 === 1 ? '/blog' : `/blog/page/${currentPage - 1}`
+      `/blog/page/${currentPage - 1}`
     const nextPage = `/blog/page/${currentPage + 1}`
     const [selectValue, setSelectValue] = useState(currentPage)
 
