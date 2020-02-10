@@ -117,7 +117,7 @@ const BlogWrapper = styled(Wrapper)`
   h1,
   .h1 {
     font-size: 2rem;
-    gi @media (min-width: 800px) {
+    @media (min-width: 800px) {
       font-size: 3rem;
     }
 
