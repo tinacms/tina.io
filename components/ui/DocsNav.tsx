@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import styled, { css } from 'styled-components'
 import RightArrowSvg from '../../public/svg/right-arrow.svg'
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { DynamicLink } from './DynamicLink'
 
 import { LinkNav } from './LinkNav'
@@ -24,6 +24,11 @@ export const NavSection = (section: NavSection) => {
   }, [section.slug, currentPath])
   const [expanded, setExpanded] = useState(menuIsActive(section, currentPath))
   const highlighted = isCurrentPage || expanded
+
+  useEffect(() => {
+    setExpanded(menuIsActive(section, currentPath))
+  }, [currentPath])
+
   return (
     <NavItem key={section.slug} open={highlighted}>
       <NavItemHeader>

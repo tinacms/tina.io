@@ -6,17 +6,19 @@ import { GlobalStyle } from '../../components/styles/GlobalStyle'
 import { DocsNav } from '../ui/DocsNav'
 import { Overlay } from '../ui'
 
-export const DocsLayout = styled(({ children, ...styleProps }) => {
-  return (
-    <div {...styleProps}>
-      <Head>
-        <link rel="shortcut icon" href="/favicon/favicon.ico" />
-      </Head>
-      <GlobalStyle />
-      {children}
-    </div>
-  )
-})`
+export const DocsLayout = styled(
+  React.memo(({ children, ...styleProps }) => {
+    return (
+      <div {...styleProps}>
+        <Head>
+          <link rel="shortcut icon" href="/favicon/favicon.ico" />
+        </Head>
+        <GlobalStyle />
+        {children}
+      </div>
+    )
+  })
+)`
   @media (min-width: 1000px) {
     position: fixed;
     top: 0;

@@ -12,7 +12,7 @@ interface PaginationProps {
   nextPage?: NextPrevPageProps
 }
 
-export function Pagination({ prevPage, nextPage }: PaginationProps) {
+export function DocsPagination({ prevPage, nextPage }: PaginationProps) {
   return (
     <Wrapper>
       {prevPage && prevPage.slug && (
@@ -37,7 +37,7 @@ export function Pagination({ prevPage, nextPage }: PaginationProps) {
   )
 }
 
-export default Pagination
+export default DocsPagination
 
 /*
  ** Styles ------------------------------------------

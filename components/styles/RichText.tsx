@@ -23,7 +23,10 @@ const RichText = css`
     }
   }
 
-  p {
+  p,
+  iframe,
+  blockquote,
+  image {
     margin: 1.5rem 0;
     &:first-child {
       margin-top: 0;
@@ -132,6 +135,17 @@ const RichText = css`
     }
   }
 
+  iframe {
+    display: block;
+    margin: 1.5rem auto;
+    border-radius: 5px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(237, 238, 238);
+    border-image: initial;
+    overflow: hidden;
+  }
+
   a:not([class]) {
     color: inherit;
     opacity: 0.8;
@@ -154,7 +168,6 @@ const RichText = css`
     border-left-width: 6px;
     border-radius: 3px;
     padding: 1em;
-    margin: 0.5em 0;
   }
 
   hr {

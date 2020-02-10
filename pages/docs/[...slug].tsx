@@ -9,9 +9,14 @@ import {
   MarkdownContent,
   RichTextWrapper,
   Wrapper,
-  Pagination,
 } from '../../components/layout'
-import { DocsNav, NavToggle, HeaderNav, Overlay } from '../../components/ui'
+import {
+  DocsNav,
+  NavToggle,
+  HeaderNav,
+  Overlay,
+  DocsPagination,
+} from '../../components/ui'
 import { TinaIcon } from '../../components/logo/TinaIcon'
 import { readFile } from '../../utils/readFile'
 import { NextSeo } from 'next-seo'
@@ -43,19 +48,20 @@ export default function DocTemplate(props) {
           ],
         }}
       />
+      <DocsTinaIcon />
       <DocsNav open={open} navItems={props.docsNav} />
+      <DocsNavToggle open={open} onClick={() => setOpen(!open)} />
       <DocsContent>
-        <DocsHeader open={open}>
-          <TinaIcon />
-          <NavToggle open={open} onClick={() => setOpen(!open)} />
-          <HeaderNav color={'light'} open={open} />
-        </DocsHeader>
+        <DocsHeaderNav color={'light'} open={open} />
         <RichTextWrapper>
           <Wrapper narrow>
             <h1>{frontmatter.title}</h1>
             <hr />
             <MarkdownContent escapeHtml={false} content={markdownBody} />
-            <Pagination prevPage={props.prevPage} nextPage={props.nextPage} />
+            <DocsPagination
+              prevPage={props.prevPage}
+              nextPage={props.nextPage}
+            />
           </Wrapper>
         </RichTextWrapper>
       </DocsContent>
@@ -108,52 +114,44 @@ export async function unstable_getStaticPaths() {
     })
 }
 
-interface DocsHeader {
-  open: boolean
-}
+const DocsNavToggle = styled(NavToggle)`
+  position: fixed;
+  top: 1.25rem;
+  left: 1rem;
+  z-index: 500;
 
-const DocsHeader = styled.div<DocsHeader>`
+  @media (min-width: 999px) {
+    display: none;
+  }
+`
+
+const DocsTinaIcon = styled(TinaIcon)`
   position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 250;
-  height: 5rem;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  display: block;
+  padding: 1rem 0;
 
-  ${TinaIcon} {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate3d(-50%, -50%, 0);
-    z-index: 500;
-
-    @media (min-width: 999px) {
-      left: 2rem;
-      transform: translate3d(0, -50%, 0);
-      position: fixed;
-      top: 2.5rem;
-      left: 2rem;
-    }
+  h1 {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  ${NavToggle} {
+  @media (min-width: 999px) {
+    left: 2rem;
+    transform: translate3d(0, -50%, 0);
     position: fixed;
-    top: 1.25rem;
-    left: 1rem;
-    z-index: 500;
-
-    @media (min-width: 999px) {
-      display: none;
-    }
+    top: 2.5rem;
+    left: 2rem;
   }
+`
 
-  ${HeaderNav} {
-    @media (max-width: 999px) {
-      display: none;
-    }
+const DocsHeaderNav = styled(HeaderNav)`
+  justify-content: flex-end;
+  padding: 1rem 0;
+
+  @media (max-width: 999px) {
+    display: none;
   }
 `
 
@@ -191,7 +189,7 @@ const DocsContent = styled.div`
   h1,
   .h1 {
     font-size: 2rem;
-    gi @media (min-width: 800px) {
+    @media (min-width: 800px) {
       font-size: 3rem;
     }
 
