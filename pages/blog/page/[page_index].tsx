@@ -1,6 +1,4 @@
-import React, { useState } from 'react'
-import Link from 'next/link'
-import Router from 'next/router'
+import React from 'react'
 import styled from 'styled-components'
 import matter from 'gray-matter'
 import { NextSeo } from 'next-seo'
@@ -15,30 +13,10 @@ import {
   RichTextWrapper,
 } from '../../../components/layout'
 import SmallArrow from '../../../public/svg/small-arrow.svg'
-import { DynamicLink } from '../../../components/ui/DynamicLink'
+import { DynamicLink, BlogPagination } from '../../../components/ui'
 
 const Index = props => {
-  /*
-   ** Handle Pagination
-   */
   const { currentPage, numPages } = props
-  const isFirst = currentPage === 1
-  const isLast = currentPage === numPages
-  const prevPage =
-    currentPage - 1 === 1 ? '/blog' : `/blog/page/${currentPage - 1}`
-  const nextPage = `/blog/page/${currentPage + 1}`
-  const [selectValue, setSelectValue] = useState(currentPage)
-
-  function handleSelectChange(e) {
-    e.preventDefault()
-    const pageNumber = e.target.value
-    setSelectValue(pageNumber)
-    if (pageNumber === '1') {
-      Router.push('/blog/index.js', '/blog')
-    } else {
-      Router.push(`/blog/page/${pageNumber}`)
-    }
-  }
 
   return (
     <Layout>
@@ -72,47 +50,8 @@ const Index = props => {
             </BlogExcerpt>
           </DynamicLink>
         ))}
+        <BlogPagination currentPage={currentPage} numPages={numPages} />
       </BlogWrapper>
-      <Pagination>
-        <div className="prev-next">
-          {!isFirst && (
-            <DynamicLink href={prevPage}>
-              <p>← Newer</p>
-            </DynamicLink>
-          )}
-          {!isLast && (
-            <DynamicLink href={nextPage}>
-              <p>Older →</p>
-            </DynamicLink>
-          )}
-        </div>
-        <div className="list-numbers">
-          <ul>
-            <PaginationSelect>
-              <p>Page</p>
-              <div className="select">
-                <select
-                  aria-label="Pagination Dropdown"
-                  value={selectValue}
-                  onChange={handleSelectChange}
-                >
-                  {Array.from({ length: numPages }, (_, i) => (
-                    <option
-                      arial-label={`Go to Page ${i + 1}`}
-                      aria-current={i + 1 === currentPage ? true : false}
-                      value={i + 1}
-                    >
-                      {i + 1}
-                    </option>
-                  ))}
-                </select>
-                <SmallArrow />
-              </div>
-              <p> of {numPages}</p>
-            </PaginationSelect>
-          </ul>
-        </div>
-      </Pagination>
     </Layout>
   )
 }
@@ -271,96 +210,6 @@ const BlogMeta = styled.div`
   }
 `
 
-const Pagination = styled.div`
-  max-width: 704px;
-  width: 100%;
-  margin: 0 auto 1.5rem auto;
-  display: flex;
-  padding: 0 32px;
-  justify-content: space-between;
-  align-items: center;
-  div.prev-next {
-    display: flex;
-    align-items: center;
-    p {
-      margin-right: 24px;
-    }
-  }
-  p {
-    margin-bottom: 0;
-    cursor: pointer;
-  }
-  div.list-numbers {
-    display: flex;
-    align-items: center;
-  }
-  ul {
-    display: flex;
-    justify-content: space-evenly;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    li {
-      padding: 3px 8px 6px 8px;
-      border-radius: 5px;
-      margin-right: 8px;
-      a {
-        text-decoration: none;
-      }
-    }
+const Pagination = styled.div``
 
-    li:first-of-type {
-      margin-left: 8px;
-    }
-
-    span.page-dots {
-      align-self: flex-end;
-      padding-bottom: 6px;
-      color: rgba(0, 0, 0, 0.3);
-    }
-    li.current-li {
-      a {
-        color: var(--color-primary);
-      }
-    }
-  }
-  @media (min-width: 704px) {
-    padding: 0;
-  }
-`
-
-const PaginationSelect = styled.div`
-  display: flex;
-  div.select {
-    border: 1px solid var(--color-seafoam);
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    padding: 2px 5px 3px 5px;
-    margin: 0 8px;
-    position: relative;
-  }
-  select {
-    margin-right: 3px;
-    padding-right: 6px;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    border: medium none;
-    font-size: 18px;
-  }
-  option {
-    color: inherit;
-    padding: 8px;
-    font-family: sans-serif;
-  }
-  svg {
-    width: 8px;
-    position: absolute;
-    right: 6px;
-    pointer-events: none;
-  }
-  p {
-    padding-top: 2px;
-    margin-bottom: 0;
-  }
-`
+const PaginationSelect = styled.div``
