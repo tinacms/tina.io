@@ -138,7 +138,6 @@ const DocsTinaIcon = styled(TinaIcon)`
   }
 
   @media (min-width: 999px) {
-    display: none;
     left: 2rem;
     transform: translate3d(0, -50%, 0);
     position: fixed;
