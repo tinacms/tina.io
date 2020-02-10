@@ -9170,7 +9170,7 @@ react-fast-compare@^2.0.2:
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
   integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
 
-react-final-form@^6.3.0:
+react-final-form@^6.3.0, react-final-form@^6.3.5:
   version "6.3.5"
   resolved "https://registry.yarnpkg.com/react-final-form/-/react-final-form-6.3.5.tgz#772781071d26d26493b0c8ef4f97f76f06fc1c0f"
   integrity sha512-btqEp1+n1WO4bUDopBdvUoIuoGHf91n/EOJg0QU5YjhX9CK+4RIsBI0M41lmyT3H6hWv6NELdX5n5zBJyOIXoA==
@@ -9297,6 +9297,11 @@ react-syntax-highlighter@^12.2.1:
     lowlight "1.12.1"
     prismjs "^1.8.4"
     refractor "^2.4.1"
+
+react-tinacms-inline@^0.1.0-alpha.0:
+  version "0.1.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/react-tinacms-inline/-/react-tinacms-inline-0.1.0-alpha.0.tgz#d1383d55c6c164c92d9306b826f9727cb5e21545"
+  integrity sha512-/fdTUx646qa5xF/Jyv6rVlgXE6QTv/Hq7NF+PebLYTvUIcuDZ4BydS28vr3Em8wjaX+GQLei+3Jnw6zcjLWNcg==
 
 react-transition-group@^2.2.1:
   version "2.9.0"
