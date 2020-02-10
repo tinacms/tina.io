@@ -1,5 +1,7 @@
 import matter from 'gray-matter'
 import styled from 'styled-components'
+import { useLocalMarkdownForm } from 'next-tinacms-markdown'
+
 import { readFile } from '../../utils/readFile'
 import { formatDate, formatExcerpt } from '../../utils'
 
@@ -15,9 +17,43 @@ import { NextSeo } from 'next-seo'
 import siteData from '../../content/siteConfig.json'
 
 export default function BlogTemplate(props) {
-  const frontmatter = props.post.data
-  const markdownBody = props.post.content
-  const excerpt = formatExcerpt(props.post.content)
+  const formOptions = {
+    label: 'Blog Post',
+    fields: [
+      {
+        label: 'Title',
+        name: 'frontmatter.title',
+        component: 'text',
+      },
+      {
+        label: 'Author',
+        name: 'frontmatter.author',
+        component: 'text',
+      },
+      {
+        name: 'frontmatter.draft',
+        component: 'toggle',
+        label: 'Draft',
+      },
+      {
+        label: 'Date Posted',
+        name: 'frontmatter.date',
+        component: 'date',
+        dateFormat: 'MMMM DD YYYY',
+        timeFormat: false,
+      },
+      {
+        label: 'Body',
+        name: 'markdownBody',
+        component: 'markdown',
+      },
+    ],
+  }
+  const [data] = useLocalMarkdownForm(props.markdownFile, formOptions)
+  const frontmatter = data.frontmatter
+  const markdownBody = data.markdownBody
+  const excerpt = formatExcerpt(data.markdownBody)
+
   return (
     <Layout pathname="/">
       <NextSeo
@@ -62,14 +98,15 @@ export async function unstable_getStaticProps(ctx) {
   const { slug } = ctx.params
   //TODO - change to fs.readFile once we move to getStaticProps
   const content = await readFile(`content/blog/${slug}.md`)
+
   const post = matter(content)
 
   return {
     props: {
-      // fileRelativePath: `src/posts/${slug}.md`,
-      post: {
-        data: { ...post.data, slug },
-        content: post.content,
+      markdownFile: {
+        fileRelativePath: `content/blog/${slug}.md`,
+        frontmatter: post.data,
+        markdownBody: post.content,
       },
     },
   }
@@ -86,6 +123,10 @@ export async function unstable_getStaticPaths() {
     return { params: { slug } }
   })
 }
+
+/*
+ ** STYLES ---------------------------------------------------------
+ */
 
 const BlogWrapper = styled(Wrapper)`
   padding-top: 4rem;
