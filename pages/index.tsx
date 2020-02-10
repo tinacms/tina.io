@@ -197,7 +197,7 @@ const CodeExample = styled.code`
   display: block;
   padding: 3rem;
   color: #241748;
-  font-size: 20px;
+  font-size: 1.125rem;
   line-height: 1.2;
   font-family: Monaco, 'Courier New', Courier, monospace;
   white-space: pre;
@@ -212,6 +212,10 @@ const CodeExample = styled.code`
 
   span {
     opacity: 0.3;
+  }
+
+  @media (min-width: 1200px) {
+    font-size: 1.3725rem;
   }
 `
 
