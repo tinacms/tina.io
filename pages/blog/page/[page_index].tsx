@@ -12,7 +12,6 @@ import {
   MarkdownContent,
   RichTextWrapper,
 } from '../../../components/layout'
-import SmallArrow from '../../../public/svg/small-arrow.svg'
 import { DynamicLink, BlogPagination } from '../../../components/ui'
 
 const Index = props => {
