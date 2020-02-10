@@ -9,9 +9,14 @@ import {
   MarkdownContent,
   RichTextWrapper,
   Wrapper,
-  Pagination,
 } from '../../components/layout'
-import { DocsNav, NavToggle, HeaderNav, Overlay } from '../../components/ui'
+import {
+  DocsNav,
+  NavToggle,
+  HeaderNav,
+  Overlay,
+  DocsPagination,
+} from '../../components/ui'
 import { TinaIcon } from '../../components/logo/TinaIcon'
 import { readFile } from '../../utils/readFile'
 import { NextSeo } from 'next-seo'
@@ -53,7 +58,10 @@ export default function DocTemplate(props) {
             <h1>{frontmatter.title}</h1>
             <hr />
             <MarkdownContent escapeHtml={false} content={markdownBody} />
-            <Pagination prevPage={props.prevPage} nextPage={props.nextPage} />
+            <DocsPagination
+              prevPage={props.prevPage}
+              nextPage={props.nextPage}
+            />
           </Wrapper>
         </RichTextWrapper>
       </DocsContent>
