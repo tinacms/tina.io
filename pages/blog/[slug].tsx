@@ -3,11 +3,7 @@ import styled from 'styled-components'
 const fg = require('fast-glob')
 import { NextSeo } from 'next-seo'
 import { useLocalMarkdownForm } from 'next-tinacms-markdown'
-import {
-  InlineForm,
-  InlineTextField,
-  useInlineForm,
-} from 'react-tinacms-inline'
+import { InlineForm } from 'react-tinacms-inline'
 
 import { readFile } from '../../utils/readFile'
 import { formatDate, formatExcerpt } from '../../utils'
@@ -18,6 +14,12 @@ import {
   MarkdownContent,
   RichTextWrapper,
 } from '../../components/layout'
+import {
+  EditToggle,
+  DiscardButton,
+  InlineWysiwyg,
+  InlineTextareaField,
+} from '../../components/ui'
 
 export default function BlogTemplate({ markdownFile, siteConfig }) {
   const formOptions = {
@@ -85,11 +87,15 @@ export default function BlogTemplate({ markdownFile, siteConfig }) {
           }}
         />
         <Hero>
-          <InlineTextField name="frontmatter.title" />
+          <InlineTextareaField name="frontmatter.title" />
         </Hero>
         <BlogWrapper>
-          <EditToggle />
-          <DiscardChanges />
+          {process.env.NODE_ENV === 'development' && (
+            <EditControls>
+              <EditToggle />
+              <DiscardButton />
+            </EditControls>
+          )}
           <RichTextWrapper>
             <BlogMeta>
               <p>
@@ -97,7 +103,9 @@ export default function BlogTemplate({ markdownFile, siteConfig }) {
               </p>
               <p>{formatDate(frontmatter.date)}</p>
             </BlogMeta>
-            <MarkdownContent escapeHtml={false} content={markdownBody} />
+            <InlineWysiwyg name="markdownBody">
+              <MarkdownContent escapeHtml={false} content={markdownBody} />
+            </InlineWysiwyg>
           </RichTextWrapper>
         </BlogWrapper>
       </Layout>
@@ -138,38 +146,6 @@ export async function unstable_getStaticPaths() {
       .trim()
     return { params: { slug } }
   })
-}
-
-/*
- ** Inline Controls --------------------------------------------------
- */
-
-function EditToggle() {
-  const { status, deactivate, activate } = useInlineForm()
-
-  return (
-    <button
-      onClick={() => {
-        status === 'active' ? deactivate() : activate()
-      }}
-    >
-      {status === 'active' ? 'Preview' : 'Edit'}
-    </button>
-  )
-}
-
-function DiscardChanges() {
-  const { form } = useInlineForm()
-
-  return (
-    <button
-      onClick={() => {
-        form.finalForm.reset()
-      }}
-    >
-      Discard Changes
-    </button>
-  )
 }
 
 /*
@@ -218,6 +194,18 @@ const BlogWrapper = styled(Wrapper)`
   h2,
   .h2 {
     font-size: 1.625rem;
+  }
+`
+const EditControls = styled.div`
+  position: sticky;
+  top: 1.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  button {
+    text-transform: none;
+    opacity: 1;
   }
 `
 
