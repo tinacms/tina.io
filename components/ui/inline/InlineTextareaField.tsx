@@ -21,7 +21,6 @@ export function InlineTextareaField({ name }: InlineTextFieldProps) {
 const Input = styled.textarea`
   width: 100%;
   word-wrap: break-word;
-  word-break: break-all;
   font-size: inherit;
   color: inherit;
   letter-spacing: inherit;
@@ -29,4 +28,5 @@ const Input = styled.textarea`
   margin: 0 auto;
   max-width: inherit;
   background-color: inherit;
+  text-align: inherit;
 `

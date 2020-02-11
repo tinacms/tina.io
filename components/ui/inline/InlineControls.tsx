@@ -5,13 +5,11 @@ export function InlineControls({ children }: any) {
 }
 
 const EditControls = styled.div`
-  position: sticky;
-  top: 1.5rem;
   width: 100%;
   display: flex;
-  justify-content: space-between;
   margin-bottom: 1.5rem;
   button {
+    margin-right: 1rem;
     text-transform: none;
     opacity: 1;
   }
