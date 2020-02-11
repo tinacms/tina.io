@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import matter from 'gray-matter'
 import styled from 'styled-components'
 
-import siteData from '../../content/siteConfig.json'
 import { formatExcerpt } from '../../utils'
 import {
   DocsLayout,
@@ -30,7 +29,7 @@ export default function DocTemplate(props) {
     <DocsLayout>
       <NextSeo
         title={frontmatter.title}
-        titleTemplate={'%s | ' + siteData.title + ' Docs'}
+        titleTemplate={'%s | ' + props.siteConfig.title + ' Docs'}
         description={excerpt}
         openGraph={{
           title: frontmatter.title,
@@ -74,6 +73,7 @@ export async function unstable_getStaticProps(ctx) {
   let { slug: slugs } = ctx.params
 
   const slug = slugs.join('/')
+  const siteConfig = await readFile('content/siteConfig.json')
   const content = await readFile(`content/docs/${slug}.md`)
   const doc = matter(content)
 
@@ -85,6 +85,9 @@ export async function unstable_getStaticProps(ctx) {
 
   return {
     props: {
+      siteConfig: {
+        title: siteConfig.title,
+      },
       doc: {
         data: { ...doc.data, slug },
         content: doc.content,
