@@ -56,6 +56,7 @@ export const HeaderNav = styled(
   justify-content: center;
 
   li {
+    position: relative;
     margin: 0 0.25rem;
   }
 
