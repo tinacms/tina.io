@@ -33,7 +33,7 @@ $ yarn dev
 
 After you clone the project and start the dev server, navigate to `http://localhost:3000/` in your browser to see what we're working with.
 
-![nextjs starter blog](/blog/next-blog-1.png)
+![nextjs starter blog](/img/blog/next-blog-1.png)
 
 As you can see, it's pretty simple at the moment. If you look at the project in your code editor, you will see the following directory structure:
 
