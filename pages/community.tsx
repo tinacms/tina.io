@@ -24,6 +24,10 @@ import SlackIconSvg from '../public/svg/slack-icon.svg'
 import ForumIconSvg from '../public/svg/forum-icon.svg'
 import RichText from '../components/styles/RichText'
 import { NextSeo } from 'next-seo'
+import { getGithubContext } from '../utils/github/getGithubContext'
+import { getContent, saveContent } from '../open-authoring/github/api'
+import { b64DecodeUnicode } from '../utils/base64'
+import { useCMS, useLocalForm } from 'tinacms'
 
 function CommunityPage(props) {
   const data = props.jsonFile
@@ -42,18 +46,84 @@ function CommunityPage(props) {
         'https://join.slack.com/t/tinacms/shared_invite/enQtNzgxNDY1OTA3ODI3LTNkNWEwYjQyYTA2ZDZjZGQ2YmI5Y2ZlOWVmMjlkYmYxMzVmNjM0YTk2MWM2MTIzMmMxMDg3NWIxN2EzOWQ0NDM',
     },
   }
+
+  const cms = useCMS()
+
+  const [formData, form] = useLocalForm({
+    id: props.fileRelativePath, // needs to be unique
+    label: 'Community',
+    initialValues: {
+      fileRelativePath: props.fileRelativePath,
+      data: props.data,
+      sha: props.sha,
+    },
+    fields: [
+      {
+        label: 'Headline',
+        name: 'data.headline',
+        description: 'Enter the main headline here',
+        component: 'textarea',
+      },
+      {
+        label: 'Gif',
+        name: 'data.gif.src',
+        description: 'Enter path to gif from static',
+        component: 'text',
+      },
+      {
+        label: 'Gif Alt',
+        name: 'data.gif.alt',
+        description: 'Enter Gif alt tag here',
+        component: 'text',
+      },
+      {
+        label: 'Secondary Headline',
+        name: 'data.supporting_headline',
+        description: 'Enter the secondary headline here',
+        component: 'textarea',
+      },
+      {
+        label: 'Secondary Body Copy',
+        name: 'data.supporting_body',
+        description: 'Enter the body copy here',
+        component: 'markdown',
+      },
+    ],
+    // save & commit the file when the "save" button is pressed
+    onSubmit(formData, form) {
+      if (process.env.USE_CONTENT_API) {
+        saveContent(
+          props.forkFullName,
+          props.branch,
+          props.fileRelativePath,
+          props.access_token,
+          props.sha,
+          JSON.stringify(formData.data),
+          'Update from TinaCMS'
+        ).then(response => {
+          window.location.reload()
+        }) //hack so sha updates
+      } else {
+        // create commit?
+        alert('saves on localhost not supported')
+      }
+    },
+  })
+
+  const communityData = formData.data
+
   return (
     <Layout>
       <NextSeo
-        title={data.title}
-        description={data.description}
+        title={communityData.title}
+        description={communityData.description}
         openGraph={{
-          title: data.title,
-          description: data.description,
+          title: communityData.title,
+          description: communityData.description,
         }}
       />
       <Hero>
-        <h2 className="h1">{data.headline}</h2>
+        <h2 className="h1">{communityData.headline}</h2>
       </Hero>
       <SocialBar>
         <SocialItem>
@@ -106,9 +176,9 @@ function CommunityPage(props) {
             <InfoLayout>
               <InfoContent>
                 <InfoText>
-                  <h2>{data.supporting_headline}</h2>
+                  <h2>{communityData.supporting_headline}</h2>
                   <hr />
-                  <ReactMarkdown>{data.supporting_body}</ReactMarkdown>
+                  <ReactMarkdown>{communityData.supporting_body}</ReactMarkdown>
                 </InfoText>
                 <ButtonGroup>
                   <DynamicLink href={'/docs/contributing/guidelines'} passHref>
@@ -140,59 +210,45 @@ function CommunityPage(props) {
   )
 }
 
-const CommunityPageOptions = {
-  fields: [
-    {
-      label: 'Headline',
-      name: 'headline',
-      description: 'Enter the main headline here',
-      component: 'textarea',
-    },
-    {
-      label: 'Gif',
-      name: 'gif.src',
-      description: 'Enter path to gif from static',
-      component: 'text',
-    },
-    {
-      label: 'Gif Alt',
-      name: 'gif.alt',
-      description: 'Enter Gif alt tag here',
-      component: 'text',
-    },
-    {
-      label: 'Secondary Headline',
-      name: 'supporting_headline',
-      description: 'Enter the secondary headline here',
-      component: 'textarea',
-    },
-    {
-      label: 'Secondary Body Copy',
-      name: 'supporting_body',
-      description: 'Enter the body copy here',
-      component: 'markdown',
-    },
-  ],
-}
+export default CommunityPage
 
-const EditableCommunityPage = inlineJsonForm(
-  CommunityPage,
-  CommunityPageOptions
-)
-
-export default EditableCommunityPage
-
-export async function unstable_getServerProps() {
+export async function unstable_getServerProps(ctx) {
   // TODO: need to fix something in tina before we use this
   // const siteMetadata = await import('../content/siteConfig.json')
-  const communityData = await import('../content/pages/community.json')
-  return {
-    props: {
-      jsonFile: {
-        fileRelativePath: `content/pages/community.json`,
+
+  const filePath = 'content/pages/community.json'
+  if (process.env.USE_CONTENT_API) {
+    const { accessToken, forkFullName } = getGithubContext(ctx)
+
+    const branch = ctx.query.branch || 'master'
+    const communityData = await getContent(
+      forkFullName,
+      branch,
+      filePath,
+      accessToken
+    )
+    const community = JSON.parse(b64DecodeUnicode(communityData.data.content))
+
+    return {
+      props: {
+        fileRelativePath: filePath,
+        forkFullName,
+        branch,
+        access_token: accessToken,
+        sha: communityData.data.sha,
+        baseRepoFullName: process.env.REPO_FULL_NAME,
+        data: community,
+      },
+    }
+  } else {
+    const communityData = await import(`../content/${filePath}`)
+
+    return {
+      props: {
+        fileRelativePath: filePath,
         data: communityData.default,
       },
-    },
+    }
   }
 }
 

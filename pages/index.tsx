@@ -17,6 +17,7 @@ import { Button, Video, ArrowList } from '../components/ui'
 import { NextSeo, DefaultSeo } from 'next-seo'
 import matter from 'gray-matter'
 import { useCMS, useLocalForm } from 'tinacms'
+import { getGithubContext } from '../utils/github/getGithubContext'
 
 const {
   createPR,
@@ -210,15 +211,14 @@ export default HomePage
 export async function unstable_getServerProps(ctx) {
   const filePath = 'content/pages/home.json'
   if (process.env.USE_CONTENT_API) {
-    const access_token = ctx.req.cookies['tina-github-auth']
-    const forkFullName = ctx.req.cookies['tina-github-fork-name']
+    const { accessToken, forkFullName } = getGithubContext(ctx)
 
     const branch = ctx.query.branch || 'master'
     const homeData = await getContent(
       forkFullName,
       branch,
       filePath,
-      access_token
+      accessToken
     )
     const home = JSON.parse(b64DecodeUnicode(homeData.data.content))
 
@@ -227,7 +227,7 @@ export async function unstable_getServerProps(ctx) {
         fileRelativePath: filePath,
         forkFullName,
         branch,
-        access_token,
+        access_token: accessToken,
         sha: homeData.data.sha,
         baseRepoFullName: process.env.REPO_FULL_NAME,
         data: home,
