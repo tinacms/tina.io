@@ -217,27 +217,25 @@ export async function unstable_getServerProps(ctx) {
   // const siteMetadata = await import('../content/siteConfig.json')
 
   const filePath = 'content/pages/community.json'
-  if (process.env.USE_CONTENT_API) {
-    const { accessToken, forkFullName } = getGithubContext(ctx)
 
-    const branch = ctx.query.branch || 'master'
+  if (process.env.USE_CONTENT_API) {
+    const githubContext = getGithubContext(ctx)
+
     const communityData = await getContent(
-      forkFullName,
-      branch,
+      githubContext.forkFullName,
+      githubContext.branch,
       filePath,
-      accessToken
+      githubContext.accessToken
     )
-    const community = JSON.parse(b64DecodeUnicode(communityData.data.content))
 
     return {
       props: {
         fileRelativePath: filePath,
-        forkFullName,
-        branch,
-        access_token: accessToken,
         sha: communityData.data.sha,
-        baseRepoFullName: process.env.REPO_FULL_NAME,
-        data: community,
+        forkFullName: githubContext.forkFullName,
+        branch: githubContext.branch,
+        access_token: githubContext.accessToken,
+        data: JSON.parse(b64DecodeUnicode(communityData.data.content)),
       },
     }
   } else {

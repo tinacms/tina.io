@@ -211,26 +211,23 @@ export default HomePage
 export async function unstable_getServerProps(ctx) {
   const filePath = 'content/pages/home.json'
   if (process.env.USE_CONTENT_API) {
-    const { accessToken, forkFullName } = getGithubContext(ctx)
-
-    const branch = ctx.query.branch || 'master'
+    const githubContext = getGithubContext(ctx)
     const homeData = await getContent(
-      forkFullName,
-      branch,
+      githubContext.forkFullName,
+      githubContext.branch,
       filePath,
-      accessToken
+      githubContext.accessToken
     )
-    const home = JSON.parse(b64DecodeUnicode(homeData.data.content))
 
     return {
       props: {
         fileRelativePath: filePath,
-        forkFullName,
-        branch,
-        access_token: accessToken,
+        forkFullName: githubContext.forkFullName,
+        branch: githubContext.branch,
+        access_token: githubContext.accessToken,
         sha: homeData.data.sha,
         baseRepoFullName: process.env.REPO_FULL_NAME,
-        data: home,
+        data: JSON.parse(b64DecodeUnicode(homeData.data.content)),
       },
     }
   } else {
