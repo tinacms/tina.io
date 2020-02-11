@@ -1,4 +1,3 @@
-import { b64EncodeUnicode } from "../../../utils/base64"
 const axios = require('axios')
 const qs = require('qs')
 const baseBranch = process.env.BASE_BRANCH
@@ -55,7 +54,7 @@ const createPR = (
       body: body ? body : 'Please pull these awesome changes in!',
       head: `${forkRepoFullName.split('/')[0]}:${headBranch}`,
       base: baseBranch,
-    }
+    },
   })
 }
 
@@ -65,7 +64,7 @@ const getContent = async (repoFullName, headBranch, path, accessToken) => {
     url: `https://api.github.com/repos/${repoFullName}/contents/${path}?ref=${headBranch}`,
     headers: {
       Authorization: 'token ' + accessToken,
-    }
+    },
   })
 }
 
@@ -106,12 +105,26 @@ const createAccessToken = (clientId, clientSecret, code) => {
 
 const createFork = (repoFullName, accessToken) => {
   return axios({
-    method: "POST",
+    method: 'POST',
     url: `https://api.github.com/repos/${repoFullName}/forks`,
     headers: {
       Authorization: 'token ' + accessToken,
-    }
+    },
   })
+}
+
+function b64EncodeUnicode(str) {
+  // first we use encodeURIComponent to get percent-encoded UTF-8,
+  // then we convert the percent encodings into raw bytes which
+  // can be fed into btoa.
+  return btoa(
+    encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function toSolidBytes(
+      match,
+      p1
+    ) {
+      return String.fromCharCode(parseInt(p1, 16))
+    })
+  )
 }
 
 module.exports = {
