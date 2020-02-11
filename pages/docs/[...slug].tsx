@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import matter from 'gray-matter'
 import styled from 'styled-components'
 
-import { formatExcerpt } from '../../utils'
+import { formatExcerpt, readFile } from '../../utils'
 import {
   DocsLayout,
   MarkdownContent,
@@ -17,7 +17,6 @@ import {
   DocsPagination,
 } from '../../components/ui'
 import { TinaIcon } from '../../components/logo/TinaIcon'
-import { readFile } from '../../utils/readFile'
 import { NextSeo } from 'next-seo'
 
 export default function DocTemplate(props) {

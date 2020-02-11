@@ -5,8 +5,7 @@ import { NextSeo } from 'next-seo'
 import { useLocalMarkdownForm } from 'next-tinacms-markdown'
 import { InlineForm, InlineTextField } from 'react-tinacms-inline'
 
-import { readFile } from '../../utils/readFile'
-import { formatDate, formatExcerpt } from '../../utils'
+import { formatDate, formatExcerpt, readFile } from '../../utils'
 import {
   Layout,
   Hero,
