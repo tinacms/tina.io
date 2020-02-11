@@ -1,17 +1,18 @@
 import React from 'react'
-import Head from 'next/head'
 import styled from 'styled-components'
-
-import { GlobalStyle } from '../styles/GlobalStyle'
+import { DefaultSeo } from 'next-seo'
+import { useRouter } from 'next/router'
 import { Header, Footer } from '../layout'
 
 export const Layout = styled(({ children, color, ...styleProps }) => {
+  const router = useRouter()
   return (
     <div {...styleProps}>
-      <Head>
-        <link rel="shortcut icon" href="/favicon/favicon.ico" />
-      </Head>
-      <GlobalStyle />
+      <DefaultSeo
+        openGraph={{
+          url: 'https://tinacms.org' + router.asPath,
+        }}
+      />
       <Header color={color} />
       {children}
       <Footer />

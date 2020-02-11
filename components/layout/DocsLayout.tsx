@@ -1,21 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
-import Head from 'next/head'
-
-import { GlobalStyle } from '../../components/styles/GlobalStyle'
-import { DocsNav } from '../ui/DocsNav'
+import { DefaultSeo } from 'next-seo'
+import { useRouter } from 'next/router'
 import { Overlay } from '../ui'
 
 export const DocsLayout = styled(
   React.memo(({ children, ...styleProps }) => {
+    const router = useRouter()
     return (
-      <div {...styleProps}>
-        <Head>
-          <link rel="shortcut icon" href="/favicon/favicon.ico" />
-        </Head>
-        <GlobalStyle />
-        {children}
-      </div>
+      <>
+        <DefaultSeo
+          openGraph={{
+            url: 'https://tinacms.org' + router.asPath,
+          }}
+        />
+        <div {...styleProps}>{children}</div>
+      </>
     )
   })
 )`
