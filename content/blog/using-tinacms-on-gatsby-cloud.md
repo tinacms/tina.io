@@ -44,6 +44,7 @@ To get Tina working in Gatsby Cloud, we'll need to configure a few environment v
 
     GIT_AUTHOR_EMAIL
     GIT_AUTHOR_NAME
+    TINA_CEE
     SSH_KEY
 
 ### `GIT_AUTHOR_NAME` & `GIT_AUTHOR_EMAIL` 🗣️
@@ -52,6 +53,10 @@ These values will define who will show up in the author field when commits are m
 ![tinacms-add-new-file-gif](/img/commit_author_scott.png)
 
 If you want the author to be based off of the logged-in user instead of a static value in your env, you might want to take a look at [Tina Teams](/teams 'Tina Teams')!
+
+### `TINA_CEE
+
+This needs to be set to ensure that Tina knows that it is being run in a *Cloud Editing Environment*. Set it to `true`.
 
 ### `SSH_KEY` 🔑
 
