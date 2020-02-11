@@ -29,9 +29,10 @@ import { TinaIcon } from '../../components/logo'
 
 export default function DocTemplate(props) {
   const [open, setOpen] = useState(false)
-  const frontmatter = props.doc.data
-  const markdownBody = props.doc.content
-  const excerpt = formatExcerpt(props.doc.content)
+  const frontmatter = props.markdownFile.frontmatter
+  const markdownBody = props.markdownFile.markdownBody
+  const excerpt = formatExcerpt(props.markdownFile.markdownBody)
+  console.log(props)
   return (
     <DocsLayout>
       <NextSeo
@@ -80,7 +81,7 @@ export async function unstable_getStaticProps(ctx) {
   let { slug: slugs } = ctx.params
 
   const slug = slugs.join('/')
-  const siteConfig = await readFile('content/siteConfig.json')
+  const siteConfig = await import('../../content/siteConfig.json')
   const content = await readFile(`content/docs/${slug}.md`)
   const doc = matter(content)
 
@@ -95,9 +96,10 @@ export async function unstable_getStaticProps(ctx) {
       siteConfig: {
         title: siteConfig.title,
       },
-      doc: {
-        data: { ...doc.data, slug },
-        content: doc.content,
+      markdownFile: {
+        fileRelativePath: `content/docs/${slug}.md`,
+        frontmatter: doc.data,
+        markdownBody: doc.content,
       },
       docsNav: docsNavData.default,
       nextPage: {

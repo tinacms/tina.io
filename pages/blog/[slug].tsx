@@ -116,12 +116,14 @@ export async function unstable_getStaticProps(ctx) {
   const { slug } = ctx.params
   //TODO - change to fs.readFile once we move to getStaticProps
   const content = await readFile(`content/blog/${slug}.md`)
-  const siteConfig = await readFile('content/siteConfig.json')
+  const siteConfig = await import('../../content/siteConfig.json')
   const post = matter(content)
 
   return {
     props: {
-      siteConfig,
+      siteConfig: {
+        title: siteConfig.title,
+      },
       markdownFile: {
         fileRelativePath: `content/blog/${slug}.md`,
         frontmatter: post.data,
