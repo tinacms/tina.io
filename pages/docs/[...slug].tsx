@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import matter from 'gray-matter'
 import styled from 'styled-components'
+import { NextSeo } from 'next-seo'
+import { useLocalMarkdownForm } from 'next-tinacms-markdown'
+import { InlineForm, InlineTextField } from 'react-tinacms-inline'
 
 import { formatExcerpt, readFile } from '../../utils'
 import {
@@ -16,8 +19,13 @@ import {
   Overlay,
   DocsPagination,
 } from '../../components/ui'
-import { TinaIcon } from '../../components/logo/TinaIcon'
-import { NextSeo } from 'next-seo'
+import {
+  EditToggle,
+  DiscardButton,
+  InlineWysiwyg,
+  InlineTextareaField,
+} from '../../components/ui/inline'
+import { TinaIcon } from '../../components/logo'
 
 export default function DocTemplate(props) {
   const [open, setOpen] = useState(false)
