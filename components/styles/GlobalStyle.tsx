@@ -72,7 +72,7 @@ const CssReset = css`
   }
 `
 
-export const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = React.memo(createGlobalStyle`
   ${CssReset}
 
   /* Tuner Regular */
@@ -183,4 +183,4 @@ export const GlobalStyle = createGlobalStyle`
       }
     }
   }
-`
+`)
