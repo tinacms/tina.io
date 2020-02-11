@@ -3,7 +3,7 @@ import styled from 'styled-components'
 const fg = require('fast-glob')
 import { NextSeo } from 'next-seo'
 import { useLocalMarkdownForm } from 'next-tinacms-markdown'
-import { InlineForm } from 'react-tinacms-inline'
+import { InlineForm, InlineTextField } from 'react-tinacms-inline'
 
 import { readFile } from '../../utils/readFile'
 import { formatDate, formatExcerpt } from '../../utils'
@@ -46,11 +46,6 @@ export default function BlogTemplate({ markdownFile, siteConfig }) {
         component: 'date',
         dateFormat: 'MMMM DD YYYY',
         timeFormat: false,
-      },
-      {
-        label: 'Body',
-        name: 'markdownBody',
-        component: 'markdown',
       },
     ],
   }
@@ -99,7 +94,8 @@ export default function BlogTemplate({ markdownFile, siteConfig }) {
           <RichTextWrapper>
             <BlogMeta>
               <p>
-                <span>By</span> {frontmatter.author}
+                <span>By</span>
+                <InlineTextField name="frontmatter.author" />
               </p>
               <p>{formatDate(frontmatter.date)}</p>
             </BlogMeta>
