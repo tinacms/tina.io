@@ -1,4 +1,4 @@
-const btoa = require('btoa')
+import { b64EncodeUnicode } from "../../../utils/base64"
 const axios = require('axios')
 const qs = require('qs')
 const baseBranch = process.env.BASE_BRANCH
@@ -86,7 +86,7 @@ const saveContent = async (
     },
     data: {
       message,
-      content: btoa(content),
+      content: b64EncodeUnicode(content),
       sha,
       branch: headBranch,
     },

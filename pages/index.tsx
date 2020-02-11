@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { inlineJsonForm } from 'next-tinacms-json'
 import { DynamicLink } from '../components/ui/DynamicLink'
-import { b64DecodeUnicode } from '../utils/base64Decode'
+import { b64DecodeUnicode } from '../utils/base64'
 import toMarkdownString from '../utils/toMarkdownString'
 
 import {
