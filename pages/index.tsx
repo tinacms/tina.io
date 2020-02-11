@@ -16,6 +16,7 @@ import {
 import { Button, Video, ArrowList } from '../components/ui'
 import { NextSeo, DefaultSeo } from 'next-seo'
 import matter from 'gray-matter'
+import { useCMS, useLocalForm } from 'tinacms'
 
 const {
   createPR,
@@ -25,21 +26,115 @@ const {
 } = require('../open-authoring/github/api')
 
 const HomePage = (props: any) => {
-  const data = props.jsonFile
+  const cms = useCMS()
+
+  const [formData, form] = useLocalForm({
+    id: props.fileRelativePath, // needs to be unique
+    label: 'Home Page',
+    initialValues: {
+      fileRelativePath: props.fileRelativePath,
+      data: props.data,
+      markdownBody: props.content,
+      sha: props.sha,
+    },
+    fields: [
+      {
+        label: 'Headline',
+        name: 'data.headline',
+        description: 'Enter the main headline here',
+        component: 'text',
+      },
+      {
+        label: 'Description',
+        name: 'data.description',
+        description: 'Enter supporting main description',
+        component: 'textarea',
+      },
+      {
+        label: 'Selling Points',
+        name: 'data.three_points',
+        description: 'Edit the points here',
+        component: 'group-list',
+        //@ts-ignore
+        itemProps: item => ({
+          key: item.id,
+          label: `${item.main.slice(0, 15)}...`,
+        }),
+        fields: [
+          {
+            label: 'Main',
+            name: 'data.main',
+            component: 'textarea',
+          },
+          {
+            label: 'Supporting',
+            name: 'data.supporting',
+            component: 'textarea',
+          },
+        ],
+      },
+      {
+        label: 'Setup Headline',
+        name: 'data.setup.headline',
+        description: 'Enter the "setup" headline here',
+        component: 'textarea',
+      },
+      {
+        label: 'Setup Steps',
+        name: 'data.setup.steps',
+        description: 'Edit the steps here',
+        component: 'group-list',
+        //@ts-ignore
+        itemProps: item => ({
+          key: item.id,
+          label: `${item.step.slice(0, 15)}...`,
+        }),
+        fields: [
+          {
+            label: 'Step',
+            name: 'step',
+            component: 'textarea',
+          },
+        ],
+      },
+    ],
+    // save & commit the file when the "save" button is pressed
+    onSubmit(formData, form) {
+      if (process.env.USE_CONTENT_API) {
+        saveContent(
+          props.forkFullName,
+          props.branch,
+          props.fileRelativePath,
+          props.access_token,
+          props.sha,
+          JSON.stringify(formData.data),
+          'Update from TinaCMS'
+        ).then(response => {
+          window.location.reload()
+        }) //hack so sha updates
+      } else {
+        // create commit?
+        alert('saves on localhost not supported')
+      }
+    },
+  })
+
+  const homeData = formData.data
+
   return (
     <Layout pathname="/">
-      <DefaultSeo titleTemplate={data.title + ' | %s'} />
+      <DefaultSeo titleTemplate={homeData.title + ' | %s'} />
       <Hero overlap narrow>
-        {data.headline}
+        {homeData.headline}
       </Hero>
-      <Video src={data.hero_video} />
+      <Video src={homeData.hero_video} />
 
       <Section>
         <Wrapper>
           <RichTextWrapper>
             <CtaLayout>
               <h2>
-                <em>{data.description}</em>
+                <em>{homeData.description}</em>
               </h2>
               <CtaBar>
                 <DynamicLink
@@ -53,7 +148,7 @@ const HomePage = (props: any) => {
               </CtaBar>
             </CtaLayout>
             <InfoLayout>
-              {data.three_points.map(point => (
+              {homeData.three_points.map(point => (
                 <div key={point.main.slice(0, 8)}>
                   <h3>
                     <em>{point.main}</em>
@@ -70,10 +165,10 @@ const HomePage = (props: any) => {
         <Wrapper>
           <SetupLayout>
             <RichTextWrapper>
-              <h2 className="h1">{data.setup.headline}</h2>
+              <h2 className="h1">{homeData.setup.headline}</h2>
               <hr />
               <ArrowList>
-                {data.setup.steps.map(item => (
+                {homeData.setup.steps.map(item => (
                   <li key={item.step.slice(0, 8)}>{item.step}</li>
                 ))}
               </ArrowList>
@@ -111,90 +206,7 @@ export <b>WithTina</b>( <b>Component</b> );
   )
 }
 
-const formOptions = {
-  label: 'Home Page',
-  fields: [
-    {
-      label: 'Headline',
-      name: 'headline',
-      description: 'Enter the main headline here',
-      component: 'text',
-    },
-    {
-      label: 'Description',
-      name: 'description',
-      description: 'Enter supporting main description',
-      component: 'textarea',
-    },
-    {
-      label: 'Selling Points',
-      name: 'three_points',
-      description: 'Edit the points here',
-      component: 'group-list',
-      itemProps: item => ({
-        key: item.id,
-        label: `${item.main.slice(0, 15)}...`,
-      }),
-      fields: [
-        {
-          label: 'Main',
-          name: 'main',
-          component: 'textarea',
-        },
-        {
-          label: 'Supporting',
-          name: 'supporting',
-          component: 'textarea',
-        },
-      ],
-    },
-    {
-      label: 'Setup Headline',
-      name: 'setup.headline',
-      description: 'Enter the "setup" headline here',
-      component: 'textarea',
-    },
-    {
-      label: 'Setup Steps',
-      name: 'setup.steps',
-      description: 'Edit the steps here',
-      component: 'group-list',
-      itemProps: item => ({
-        key: item.id,
-        label: `${item.step.slice(0, 15)}...`,
-      }),
-      fields: [
-        {
-          label: 'Step',
-          name: 'step',
-          component: 'textarea',
-        },
-      ],
-    },
-  ],
-  // save & commit the file when the "save" button is pressed
-  onSubmit(data, form) {
-    if (process.env.USE_CONTENT_API) {
-      saveContent(
-        data.forkFullName,
-        data.branch,
-        data.fileRelativePath,
-        data.access_token,
-        data.sha,
-        toMarkdownString(data),
-        'Update from TinaCMS'
-      ).then(response => {
-        window.location.reload()
-      }) //hack so sha updates
-    } else {
-      // create commit?
-      alert('saves on localhost not supported')
-    }
-  },
-}
-
-const EditableHomePage = inlineJsonForm(HomePage, formOptions)
-export default EditableHomePage
+export default HomePage
 
 export async function unstable_getServerProps(ctx) {
   const filePath = 'content/pages/home.json'
@@ -211,16 +223,15 @@ export async function unstable_getServerProps(ctx) {
     )
 
     const home = JSON.parse(atob(homeData.data.content))
-
     return {
       props: {
-        jsonFile: {
-          fileRelativePath: filePath,
-          forkFullName,
-          branch,
-          access_token,
-          data: home,
-        },
+        fileRelativePath: filePath,
+        forkFullName,
+        branch,
+        access_token,
+        sha: homeData.data.sha,
+        baseRepoFullName: process.env.REPO_FULL_NAME,
+        data: home,
       },
     }
   } else {
@@ -228,10 +239,8 @@ export async function unstable_getServerProps(ctx) {
 
     return {
       props: {
-        jsonFile: {
-          fileRelativePath: filePath,
-          data: homeData.default,
-        },
+        fileRelativePath: filePath,
+        data: homeData.default,
       },
     }
   }

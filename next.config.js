@@ -13,6 +13,7 @@ module.exports = withSvgr({
     HUBSPOT_TEAMS_FORM_ID: process.env.HUBSPOT_TEAMS_FORM_ID,
     HUBSPOT_PORTAL_ID: process.env.HUBSPOT_PORTAL_ID,
     GTM_ID: process.env.GTM_ID,
+    USE_CONTENT_API: process.env.USE_CONTENT_API,
   },
   exportTrailingSlash: true,
   exportPathMap: async function() {
