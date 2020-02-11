@@ -28,6 +28,7 @@ import { getGithubContext } from '../utils/github/getGithubContext'
 import { getContent, saveContent } from '../open-authoring/github/api'
 import { b64DecodeUnicode } from '../utils/base64'
 import { useCMS, useLocalForm } from 'tinacms'
+import { getJsonFormProps } from '../utils/getJsonFormProps'
 
 function CommunityPage(props) {
   const data = props.jsonFile
@@ -213,41 +214,8 @@ function CommunityPage(props) {
 export default CommunityPage
 
 export async function unstable_getServerProps(ctx) {
-  // TODO: need to fix something in tina before we use this
-  // const siteMetadata = await import('../content/siteConfig.json')
-
-  const filePath = 'content/pages/community.json'
-
-  if (process.env.USE_CONTENT_API) {
-    const githubContext = getGithubContext(ctx)
-
-    const communityData = await getContent(
-      githubContext.forkFullName,
-      githubContext.branch,
-      filePath,
-      githubContext.accessToken
-    )
-
-    return {
-      props: {
-        fileRelativePath: filePath,
-        sha: communityData.data.sha,
-        forkFullName: githubContext.forkFullName,
-        branch: githubContext.branch,
-        access_token: githubContext.accessToken,
-        data: JSON.parse(b64DecodeUnicode(communityData.data.content)),
-      },
-    }
-  } else {
-    const communityData = await import(`../content/${filePath}`)
-
-    return {
-      props: {
-        fileRelativePath: filePath,
-        data: communityData.default,
-      },
-    }
-  }
+  const props = await getJsonFormProps(ctx, 'content/pages/community.json')
+  return { props }
 }
 
 const SocialBar = styled.div`

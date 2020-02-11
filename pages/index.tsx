@@ -18,6 +18,7 @@ import { NextSeo, DefaultSeo } from 'next-seo'
 import matter from 'gray-matter'
 import { useCMS, useLocalForm } from 'tinacms'
 import { getGithubContext } from '../utils/github/getGithubContext'
+import { getJsonFormProps } from '../utils/getJsonFormProps'
 
 const {
   createPR,
@@ -209,37 +210,8 @@ export <b>WithTina</b>( <b>Component</b> );
 export default HomePage
 
 export async function unstable_getServerProps(ctx) {
-  const filePath = 'content/pages/home.json'
-  if (process.env.USE_CONTENT_API) {
-    const githubContext = getGithubContext(ctx)
-    const homeData = await getContent(
-      githubContext.forkFullName,
-      githubContext.branch,
-      filePath,
-      githubContext.accessToken
-    )
-
-    return {
-      props: {
-        fileRelativePath: filePath,
-        forkFullName: githubContext.forkFullName,
-        branch: githubContext.branch,
-        access_token: githubContext.accessToken,
-        sha: homeData.data.sha,
-        baseRepoFullName: process.env.REPO_FULL_NAME,
-        data: JSON.parse(b64DecodeUnicode(homeData.data.content)),
-      },
-    }
-  } else {
-    const homeData = await import(`../content/${filePath}`)
-
-    return {
-      props: {
-        fileRelativePath: filePath,
-        data: homeData.default,
-      },
-    }
-  }
+  const props = await getJsonFormProps(ctx, 'content/pages/home.json')
+  return { props }
 }
 
 /*
