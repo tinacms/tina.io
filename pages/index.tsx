@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { inlineJsonForm } from 'next-tinacms-json'
 import { DynamicLink } from '../components/ui/DynamicLink'
-const atob = require('atob')
+import { b64DecodeUnicode } from "../utils/base64Decode"
 import toMarkdownString from '../utils/toMarkdownString'
 
 import {
@@ -205,7 +205,96 @@ export <b>WithTina</b>( <b>Component</b> );
   )
 }
 
+<<<<<<< HEAD
 export default HomePage
+=======
+const formOptions = {
+  label: 'Home Page',
+  fields: [
+    {
+      label: 'Headline',
+      name: 'headline',
+      description: 'Enter the main headline here',
+      component: 'text',
+    },
+    {
+      label: 'Description',
+      name: 'description',
+      description: 'Enter supporting main description',
+      component: 'textarea',
+    },
+    {
+      label: 'Selling Points',
+      name: 'three_points',
+      description: 'Edit the points here',
+      component: 'group-list',
+      itemProps: item => ({
+        key: item.id,
+        label: `${item.main.slice(0, 15)}...`,
+      }),
+      fields: [
+        {
+          label: 'Main',
+          name: 'main',
+          component: 'textarea',
+        },
+        {
+          label: 'Supporting',
+          name: 'supporting',
+          component: 'textarea',
+        },
+      ],
+    },
+    {
+      label: 'Setup Headline',
+      name: 'setup.headline',
+      description: 'Enter the "setup" headline here',
+      component: 'textarea',
+    },
+    {
+      label: 'Setup Steps',
+      name: 'setup.steps',
+      description: 'Edit the steps here',
+      component: 'group-list',
+      itemProps: item => ({
+        key: item.id,
+        label: `${item.step.slice(0, 15)}...`,
+      }),
+      fields: [
+        {
+          label: 'Step',
+          name: 'step',
+          component: 'textarea',
+        },
+      ],
+    },
+  ],
+  // save & commit the file when the "save" button is pressed
+  onSubmit(data, form) {
+    if (process.env.USE_CONTENT_API) {
+      saveContent(
+        data.forkFullName,
+        data.branch,
+        data.fileRelativePath,
+        data.access_token,
+        data.sha,
+        toMarkdownString(data),
+        'Update from TinaCMS'
+      ).then(response => {
+        window.location.reload()
+      }) //hack so sha updates
+    } else {
+      // create commit?
+      alert('saves on localhost not supported')
+    }
+  },
+}
+
+
+
+const EditableHomePage = inlineJsonForm(HomePage, formOptions)
+export default EditableHomePage
+>>>>>>> 43dc0e9c4af5f3a5d7b615a25278066ca6fc2467
 
 export async function unstable_getServerProps(ctx) {
   const filePath = 'content/pages/home.json'
@@ -220,8 +309,13 @@ export async function unstable_getServerProps(ctx) {
       filePath,
       access_token
     )
+<<<<<<< HEAD
 
     const home = JSON.parse(atob(homeData.data.content))
+=======
+    const home = JSON.parse(b64DecodeUnicode(homeData.data.content))
+
+>>>>>>> 43dc0e9c4af5f3a5d7b615a25278066ca6fc2467
     return {
       props: {
         fileRelativePath: filePath,
