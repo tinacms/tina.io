@@ -18,6 +18,7 @@ import {
   DiscardButton,
   InlineWysiwyg,
   InlineTextareaField,
+  InlineControls,
 } from '../../components/ui/inline'
 
 export default function BlogTemplate({ markdownFile, siteConfig }) {
@@ -85,10 +86,10 @@ export default function BlogTemplate({ markdownFile, siteConfig }) {
         </Hero>
         <BlogWrapper>
           {process.env.NODE_ENV === 'development' && (
-            <EditControls>
+            <InlineControls>
               <EditToggle />
               <DiscardButton />
-            </EditControls>
+            </InlineControls>
           )}
           <RichTextWrapper>
             <BlogMeta>
@@ -191,18 +192,6 @@ const BlogWrapper = styled(Wrapper)`
   h2,
   .h2 {
     font-size: 1.625rem;
-  }
-`
-const EditControls = styled.div`
-  position: sticky;
-  top: 1.5rem;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1.5rem;
-  button {
-    text-transform: none;
-    opacity: 1;
   }
 `
 
