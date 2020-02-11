@@ -1,8 +1,9 @@
 import matter from 'gray-matter'
 import styled from 'styled-components'
-import { useLocalMarkdownForm } from 'next-tinacms-markdown'
 const fg = require('fast-glob')
 import { NextSeo } from 'next-seo'
+import { useLocalMarkdownForm } from 'next-tinacms-markdown'
+import { InlineForm, InlineTextField } from 'react-tinacms-inline'
 
 import { readFile } from '../../utils/readFile'
 import { formatDate, formatExcerpt } from '../../utils'
@@ -47,48 +48,50 @@ export default function BlogTemplate({ markdownFile, siteConfig }) {
       },
     ],
   }
-  const [data] = useLocalMarkdownForm(markdownFile, formOptions)
+  const [data, form] = useLocalMarkdownForm(markdownFile, formOptions)
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
   const excerpt = formatExcerpt(data.markdownBody)
 
   return (
-    <Layout pathname="/">
-      <NextSeo
-        title={frontmatter.title}
-        titleTemplate={'%s | ' + siteConfig.title + ' Blog'}
-        description={excerpt}
-        openGraph={{
-          title: frontmatter.title,
-          description: excerpt,
-          images: [
-            {
-              url:
-                'https://res.cloudinary.com/forestry-demo/image/upload/l_text:tuner-regular.ttf_70:' +
-                encodeURI(frontmatter.title) +
-                ',g_north_west,x_270,y_95,w_840,c_fit,co_rgb:EC4815/l_text:tuner-regular.ttf_35:' +
-                encodeURI(frontmatter.author) +
-                ',g_north_west,x_270,y_500,w_840,c_fit,co_rgb:241748/v1581087220/TinaCMS/tinacms-social-empty.png',
-              width: 1200,
-              height: 628,
-              alt: frontmatter.title + ` | TinaCMS Blog`,
-            },
-          ],
-        }}
-      />
-      <Hero>{frontmatter.title}</Hero>
-      <BlogWrapper>
-        <RichTextWrapper>
-          <BlogMeta>
-            <p>
-              <span>By</span> {frontmatter.author}
-            </p>
-            <p>{formatDate(frontmatter.date)}</p>
-          </BlogMeta>
-          <MarkdownContent escapeHtml={false} content={markdownBody} />
-        </RichTextWrapper>
-      </BlogWrapper>
-    </Layout>
+    <InlineForm form={form}>
+      <Layout pathname="/">
+        <NextSeo
+          title={frontmatter.title}
+          titleTemplate={'%s | ' + siteConfig.title + ' Blog'}
+          description={excerpt}
+          openGraph={{
+            title: frontmatter.title,
+            description: excerpt,
+            images: [
+              {
+                url:
+                  'https://res.cloudinary.com/forestry-demo/image/upload/l_text:tuner-regular.ttf_70:' +
+                  encodeURI(frontmatter.title) +
+                  ',g_north_west,x_270,y_95,w_840,c_fit,co_rgb:EC4815/l_text:tuner-regular.ttf_35:' +
+                  encodeURI(frontmatter.author) +
+                  ',g_north_west,x_270,y_500,w_840,c_fit,co_rgb:241748/v1581087220/TinaCMS/tinacms-social-empty.png',
+                width: 1200,
+                height: 628,
+                alt: frontmatter.title + ` | TinaCMS Blog`,
+              },
+            ],
+          }}
+        />
+        <Hero>{frontmatter.title}</Hero>
+        <BlogWrapper>
+          <RichTextWrapper>
+            <BlogMeta>
+              <p>
+                <span>By</span> {frontmatter.author}
+              </p>
+              <p>{formatDate(frontmatter.date)}</p>
+            </BlogMeta>
+            <MarkdownContent escapeHtml={false} content={markdownBody} />
+          </RichTextWrapper>
+        </BlogWrapper>
+      </Layout>
+    </InlineForm>
   )
 }
 
