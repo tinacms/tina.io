@@ -40,6 +40,11 @@
         "title": "Backends"
       },
       {
+        "id": "/docs/concepts/media",
+        "slug": "/docs/concepts/media",
+        "title": "Media"
+      },
+      {
         "id": "/docs/concepts/plugins",
         "slug": "/docs/concepts/plugins",
         "title": "Plugins"
