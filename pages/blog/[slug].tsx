@@ -1,10 +1,11 @@
 import matter from 'gray-matter'
 import styled from 'styled-components'
 import { useLocalMarkdownForm } from 'next-tinacms-markdown'
+const fg = require('fast-glob')
+import { NextSeo } from 'next-seo'
 
 import { readFile } from '../../utils/readFile'
 import { formatDate, formatExcerpt } from '../../utils'
-
 import {
   Layout,
   Hero,
@@ -12,11 +13,8 @@ import {
   MarkdownContent,
   RichTextWrapper,
 } from '../../components/layout'
-const fg = require('fast-glob')
-import { NextSeo } from 'next-seo'
-import siteData from '../../content/siteConfig.json'
 
-export default function BlogTemplate(props) {
+export default function BlogTemplate({ markdownFile, siteConfig }) {
   const formOptions = {
     label: 'Blog Post',
     fields: [
@@ -49,7 +47,7 @@ export default function BlogTemplate(props) {
       },
     ],
   }
-  const [data] = useLocalMarkdownForm(props.markdownFile, formOptions)
+  const [data] = useLocalMarkdownForm(markdownFile, formOptions)
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
   const excerpt = formatExcerpt(data.markdownBody)
@@ -58,7 +56,7 @@ export default function BlogTemplate(props) {
     <Layout pathname="/">
       <NextSeo
         title={frontmatter.title}
-        titleTemplate={'%s | ' + siteData.title + ' Blog'}
+        titleTemplate={'%s | ' + siteConfig.title + ' Blog'}
         description={excerpt}
         openGraph={{
           title: frontmatter.title,
@@ -98,11 +96,12 @@ export async function unstable_getStaticProps(ctx) {
   const { slug } = ctx.params
   //TODO - change to fs.readFile once we move to getStaticProps
   const content = await readFile(`content/blog/${slug}.md`)
-
+  const siteConfig = await readFile('content/siteConfig.json')
   const post = matter(content)
 
   return {
     props: {
+      siteConfig,
       markdownFile: {
         fileRelativePath: `content/blog/${slug}.md`,
         frontmatter: post.data,
