@@ -8,7 +8,6 @@
     "dev": "node server.js",
     "develop": "yarn dev",
     "build": "next build",
-    "postinstall": "tsc",
     "preexport": "yarn build",
     "export": "next export",
     "prestart": "yarn export",
