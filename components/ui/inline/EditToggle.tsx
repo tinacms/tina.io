@@ -1,5 +1,5 @@
 import { useInlineForm } from 'react-tinacms-inline'
-import { Button } from './Button'
+import { Button } from '../Button'
 
 export function EditToggle() {
   const { status, deactivate, activate } = useInlineForm()

@@ -19,7 +19,7 @@ import {
   DiscardButton,
   InlineWysiwyg,
   InlineTextareaField,
-} from '../../components/ui'
+} from '../../components/ui/inline'
 
 export default function BlogTemplate({ markdownFile, siteConfig }) {
   const formOptions = {
