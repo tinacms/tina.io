@@ -46,20 +46,26 @@ const createPR = (
 ) => {
   return axios({
     method: 'POST',
-    url: `https://api.github.com/repos/${baseRepoFullName}/pulls?access_token=${accessToken}`,
+    url: `https://api.github.com/repos/${baseRepoFullName}/pulls`,
+    headers: {
+      Authorization: 'token ' + accessToken,
+    },
     data: {
       title: title ? title : 'Update from TinaCMS',
       body: body ? body : 'Please pull these awesome changes in!',
       head: `${forkRepoFullName.split('/')[0]}:${headBranch}`,
       base: baseBranch,
-    },
+    }
   })
 }
 
 const getContent = async (repoFullName, headBranch, path, accessToken) => {
   return axios({
     method: 'GET',
-    url: `https://api.github.com/repos/${repoFullName}/contents/${path}?access_token=${accessToken}&ref=${headBranch}`,
+    url: `https://api.github.com/repos/${repoFullName}/contents/${path}?ref=${headBranch}`,
+    headers: {
+      Authorization: 'token ' + accessToken,
+    }
   })
 }
 
@@ -74,7 +80,10 @@ const saveContent = async (
 ) => {
   return axios({
     method: 'PUT',
-    url: `https://api.github.com/repos/${repoFullName}/contents/${path}?access_token=${accessToken}`,
+    url: `https://api.github.com/repos/${repoFullName}/contents/${path}`,
+    headers: {
+      Authorization: 'token ' + accessToken,
+    },
     data: {
       message,
       content: btoa(content),
@@ -96,11 +105,13 @@ const createAccessToken = (clientId, clientSecret, code) => {
 }
 
 const createFork = (repoFullName, accessToken) => {
-  return axios.post(
-    `https://api.github.com/repos/${repoFullName}/forks?${qs.stringify({
-      access_token: accessToken,
-    })}`
-  )
+  return axios({
+    method: "POST",
+    url: `https://api.github.com/repos/${repoFullName}/forks`,
+    headers: {
+      Authorization: 'token ' + accessToken,
+    }
+  })
 }
 
 module.exports = {
