@@ -3,7 +3,11 @@ import styled from 'styled-components'
 const fg = require('fast-glob')
 import { NextSeo } from 'next-seo'
 import { useLocalMarkdownForm } from 'next-tinacms-markdown'
-import { InlineForm, InlineTextField } from 'react-tinacms-inline'
+import {
+  InlineForm,
+  InlineTextField,
+  useInlineForm,
+} from 'react-tinacms-inline'
 
 import { readFile } from '../../utils/readFile'
 import { formatDate, formatExcerpt } from '../../utils'
@@ -80,8 +84,12 @@ export default function BlogTemplate({ markdownFile, siteConfig }) {
             ],
           }}
         />
-        <Hero>{frontmatter.title}</Hero>
+        <Hero>
+          <InlineTextField name="frontmatter.title" />
+        </Hero>
         <BlogWrapper>
+          <EditToggle />
+          <DiscardChanges />
           <RichTextWrapper>
             <BlogMeta>
               <p>
@@ -96,6 +104,10 @@ export default function BlogTemplate({ markdownFile, siteConfig }) {
     </InlineForm>
   )
 }
+
+/*
+ ** Data Fetching --------------------------------------------------
+ */
 
 export async function unstable_getStaticProps(ctx) {
   const { slug } = ctx.params
@@ -126,6 +138,38 @@ export async function unstable_getStaticPaths() {
       .trim()
     return { params: { slug } }
   })
+}
+
+/*
+ ** Inline Controls --------------------------------------------------
+ */
+
+function EditToggle() {
+  const { status, deactivate, activate } = useInlineForm()
+
+  return (
+    <button
+      onClick={() => {
+        status === 'active' ? deactivate() : activate()
+      }}
+    >
+      {status === 'active' ? 'Preview' : 'Edit'}
+    </button>
+  )
+}
+
+function DiscardChanges() {
+  const { form } = useInlineForm()
+
+  return (
+    <button
+      onClick={() => {
+        form.finalForm.reset()
+      }}
+    >
+      Discard Changes
+    </button>
+  )
 }
 
 /*
