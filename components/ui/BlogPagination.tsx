@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import styled, { css } from 'styled-components'
-import Link from 'next/link'
+import styled from 'styled-components'
 import Router from 'next/router'
 
 import { DynamicLink } from './DynamicLink'

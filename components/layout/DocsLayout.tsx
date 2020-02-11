@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import Head from 'next/head'
 
 import { GlobalStyle } from '../../components/styles/GlobalStyle'
-import { DocsNav } from '../ui/DocsNav'
 import { Overlay } from '../ui'
 
 export const DocsLayout = styled(

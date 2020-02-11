@@ -1,9 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import matter from 'gray-matter'
 import ReactMarkdown from 'react-markdown'
-import Link from 'next/link'
-import Head from 'next/head'
 import { inlineJsonForm } from 'next-tinacms-json'
 import { DynamicLink } from '../components/ui/DynamicLink'
 
@@ -22,7 +19,6 @@ import TwitterIconSvg from '../public/svg/twitter-icon.svg'
 import GithubIconSvg from '../public/svg/github-icon.svg'
 import SlackIconSvg from '../public/svg/slack-icon.svg'
 import ForumIconSvg from '../public/svg/forum-icon.svg'
-import RichText from '../components/styles/RichText'
 import { NextSeo } from 'next-seo'
 
 function CommunityPage(props) {

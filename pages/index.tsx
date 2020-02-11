@@ -1,20 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
-import Head from 'next/head'
-import Link from 'next/link'
 import { inlineJsonForm } from 'next-tinacms-json'
 import { DynamicLink } from '../components/ui/DynamicLink'
 
 import {
   Layout,
   Hero,
-  HeroTitle,
   Wrapper,
   Section,
   RichTextWrapper,
 } from '../components/layout'
 import { Button, Video, ArrowList } from '../components/ui'
-import { NextSeo, DefaultSeo } from 'next-seo'
+import { DefaultSeo } from 'next-seo'
 
 const HomePage = props => {
   const data = props.jsonFile
