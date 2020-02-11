@@ -1,6 +1,7 @@
 ---
 title: Number Field
-next: /docs/fields/textarea
+prev: /docs/fields/markdown
+next: /docs/fields/date
 consumes:
   - file: /packages/tinacms/src/plugins/fields/NumberFieldPlugin.tsx
     details: Shows text field interface and config options
@@ -10,7 +11,7 @@ consumes:
 
 The `number` field represents a number input.
 
-<!-- TODO: Provide image of number field -->
+![tinacms-number-field](/img/fields/number-field.png)
 
 ## Definition
 
@@ -49,5 +50,3 @@ interface TextConfig {
   step?: string
 }
 ```
-
--->
