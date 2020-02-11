@@ -22,7 +22,7 @@ app.prepare().then(() => {
   }
 
   server.use(cors())
-  server.use('/___tina', gitApi.router())
+  // server.use('/___tina', gitApi.router())
 
   server.all('*', (req, res) => {
     return handle(req, res)

@@ -1,10 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import Head from 'next/head'
-import Link from 'next/link'
 import { inlineJsonForm } from 'next-tinacms-json'
 import { DynamicLink } from '../components/ui/DynamicLink'
 const atob = require('atob')
+import toMarkdownString from '../utils/toMarkdownString'
 
 import {
   Layout,
@@ -25,7 +24,7 @@ const {
   fetchExistingPR,
 } = require('../open-authoring/github/api')
 
-const HomePage = props => {
+const HomePage = (props: any) => {
   const data = props.jsonFile
   return (
     <Layout pathname="/">
@@ -173,6 +172,25 @@ const formOptions = {
       ],
     },
   ],
+  // save & commit the file when the "save" button is pressed
+  onSubmit(data, form) {
+    if (process.env.USE_CONTENT_API) {
+      saveContent(
+        data.forkFullName,
+        data.branch,
+        data.fileRelativePath,
+        data.access_token,
+        data.sha,
+        toMarkdownString(data),
+        'Update from TinaCMS'
+      ).then(response => {
+        window.location.reload()
+      }) //hack so sha updates
+    } else {
+      // create commit?
+      alert('saves on localhost not supported')
+    }
+  },
 }
 
 const EditableHomePage = inlineJsonForm(HomePage, formOptions)
@@ -198,6 +216,9 @@ export async function unstable_getServerProps(ctx) {
       props: {
         jsonFile: {
           fileRelativePath: filePath,
+          forkFullName,
+          branch,
+          access_token,
           data: home,
         },
       },
