@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { inlineJsonForm } from 'next-tinacms-json'
 import { DynamicLink } from '../components/ui/DynamicLink'
-const atob = require('atob')
+import { b64DecodeUnicode } from "../utils/base64Decode"
 import toMarkdownString from '../utils/toMarkdownString'
 
 import {
@@ -193,6 +193,8 @@ const formOptions = {
   },
 }
 
+
+
 const EditableHomePage = inlineJsonForm(HomePage, formOptions)
 export default EditableHomePage
 
@@ -209,8 +211,7 @@ export async function unstable_getServerProps(ctx) {
       filePath,
       access_token
     )
-
-    const home = JSON.parse(atob(homeData.data.content))
+    const home = JSON.parse(b64DecodeUnicode(homeData.data.content))
 
     return {
       props: {
