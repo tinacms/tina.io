@@ -34,7 +34,6 @@ const HomePage = (props: any) => {
     initialValues: {
       fileRelativePath: props.fileRelativePath,
       data: props.data,
-      markdownBody: props.content,
       sha: props.sha,
     },
     fields: [
