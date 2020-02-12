@@ -106,15 +106,17 @@ import { Wysiwyg } from '@tinacms/fields'
 import { TinaField } from '@tinacms/form-builder'
 
 const Template = ({ data, isEditing, setIsEditing }) => (
+  <>
   <TinaField name="rawMarkdownBody" Component={Wysiwyg}>
     <section
       class="content"
       dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
     ></section>
-    <button onClick={() => setIsEditing(p => !p)}>
-      {isEditing ? 'Preview' : 'Edit'}
-    </button>
   </TinaField>
+  <button onClick={() => setIsEditing(p => !p)}>
+    {isEditing ? 'Preview' : 'Edit'}
+  </button>
+  </>
 )
 
 export default inlineRemarkForm(Template)
