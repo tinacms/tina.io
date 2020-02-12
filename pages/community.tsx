@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import ReactMarkdown from 'react-markdown'
-import { inlineJsonForm } from 'next-tinacms-json'
+import { useLocalJsonForm } from 'next-tinacms-json'
 import { DynamicLink } from '../components/ui/DynamicLink'
+import { InlineForm } from 'react-tinacms-inline'
 
 import {
   Layout,
@@ -10,180 +11,186 @@ import {
   Wrapper,
   Section,
   RichTextWrapper,
+  MarkdownContent,
 } from '../components/layout'
-
+import {
+  EditToggle,
+  DiscardButton,
+  InlineWysiwyg,
+  InlineTextareaField,
+  InlineTextField,
+  InlineControls,
+} from '../components/ui/inline'
 import { Button, ButtonGroup } from '../components/ui'
 import { EmailForm } from '../components/forms'
-
 import TwitterIconSvg from '../public/svg/twitter-icon.svg'
 import GithubIconSvg from '../public/svg/github-icon.svg'
 import SlackIconSvg from '../public/svg/slack-icon.svg'
 import ForumIconSvg from '../public/svg/forum-icon.svg'
 import { NextSeo } from 'next-seo'
 
-function CommunityPage(props) {
-  const data = props.jsonFile
-  /* TODO:
-   ** add proper metadata
-   ** back in once Tina bug is fixed
-   */
-  // const metadata = props.siteMetadata
-  const metadata = {
-    roadmapUrl: 'https://github.com/tinacms/tinacms/blob/master/ROADMAP.md',
-    social: {
-      twitter: 'https://twitter.com/tina_cms',
-      github: 'https://github.com/tinacms/tinacms',
-      forum: 'https://community.tinacms.org/',
-      slack:
-        'https://join.slack.com/t/tinacms/shared_invite/enQtNzgxNDY1OTA3ODI3LTNkNWEwYjQyYTA2ZDZjZGQ2YmI5Y2ZlOWVmMjlkYmYxMzVmNjM0YTk2MWM2MTIzMmMxMDg3NWIxN2EzOWQ0NDM',
-    },
+export default function CommunityPage({ jsonFile, metadata }) {
+  const formOptions = {
+    fields: [
+      {
+        label: 'Headline',
+        name: 'headline',
+        description: 'Enter the main headline here',
+        component: 'text',
+      },
+      /*
+       ** TODO: make this gif an image field
+       */
+      {
+        label: 'Gif',
+        name: 'gif.src',
+        description: 'Enter path to gif from static',
+        component: 'text',
+      },
+      {
+        label: 'Gif Alt',
+        name: 'gif.alt',
+        description: 'Enter Gif alt tag here',
+        component: 'text',
+      },
+      {
+        label: 'Secondary Headline',
+        name: 'supporting_headline',
+        description: 'Enter the secondary headline here',
+        component: 'textarea',
+      },
+      {
+        label: 'Secondary Body Copy',
+        name: 'supporting_body',
+        description: 'Enter the body copy here',
+        component: 'markdown',
+      },
+    ],
   }
+  const [data, form] = useLocalJsonForm(jsonFile, formOptions)
+
+  /* ¡Important! */
+  if (!form) return null
+
   return (
-    <Layout>
-      <NextSeo
-        title={data.title}
-        description={data.description}
-        openGraph={{
-          title: data.title,
-          description: data.description,
-        }}
-      />
-      <Hero>
-        <h2 className="h1">{data.headline}</h2>
-      </Hero>
-      <SocialBar>
-        <SocialItem>
-          <a
-            href={`${metadata.social.twitter}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <TwitterIconSvg />
-            <h5>Tweet us</h5>
-          </a>
-          <span className="dotted-line" />
-        </SocialItem>
-        <SocialItem>
-          <a
-            href={`${metadata.social.github}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <GithubIconSvg />
-            <h5>Fork us</h5>
-          </a>
-          <span className="dotted-line" />
-        </SocialItem>
-        <SocialItem>
-          <a
-            href={`${metadata.social.slack}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <SlackIconSvg />
-            <h5>Slack us</h5>
-          </a>
-          <span className="dotted-line" />
-        </SocialItem>
-        <SocialItem>
-          <a
-            href={`${metadata.social.forum}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <ForumIconSvg />
-            <h5>Ask us</h5>
-          </a>
-        </SocialItem>
-      </SocialBar>
-      <RichTextWrapper>
-        <Section>
-          <Wrapper>
-            <InfoLayout>
-              <InfoContent>
-                <InfoText>
-                  <h2>{data.supporting_headline}</h2>
-                  <hr />
-                  <ReactMarkdown>{data.supporting_body}</ReactMarkdown>
-                </InfoText>
-                <ButtonGroup>
-                  <DynamicLink href={'/docs/contributing/guidelines'} passHref>
-                    <Button as="a">Contribute</Button>
-                  </DynamicLink>
-                  <DynamicLink href={metadata.roadmapUrl} passHref>
-                    <Button as="a">View Roadmap</Button>
-                  </DynamicLink>
-                </ButtonGroup>
-              </InfoContent>
-              <InfoImage src="/img/rico-replacement.jpg" />
-            </InfoLayout>
-          </Wrapper>
-        </Section>
-        <FormSection color="seafoam">
-          <Wrapper>
-            <h2>
-              Newsletter{' '}
-              <span role="img" aria-label="two finger peace sign">
-                ✌️
-              </span>
-            </h2>
-            <p>We move quick. Stay up to date.</p>
-            <EmailForm />
-          </Wrapper>
-        </FormSection>
-      </RichTextWrapper>
-    </Layout>
+    <InlineForm form={form}>
+      <Layout>
+        <NextSeo
+          title={data.title}
+          description={data.description}
+          openGraph={{
+            title: data.title,
+            description: data.description,
+          }}
+        />
+        <Hero>
+          <h2 className="h1">{data.headline}</h2>
+        </Hero>
+        <SocialBar>
+          <SocialItem>
+            <a
+              href={`${metadata.social.twitter}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <TwitterIconSvg />
+              <h5>Tweet us</h5>
+            </a>
+            <span className="dotted-line" />
+          </SocialItem>
+          <SocialItem>
+            <a
+              href={`${metadata.social.github}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <GithubIconSvg />
+              <h5>Fork us</h5>
+            </a>
+            <span className="dotted-line" />
+          </SocialItem>
+          <SocialItem>
+            <a
+              href={`${metadata.social.slack}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <SlackIconSvg />
+              <h5>Slack us</h5>
+            </a>
+            <span className="dotted-line" />
+          </SocialItem>
+          <SocialItem>
+            <a
+              href={`${metadata.social.forum}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <ForumIconSvg />
+              <h5>Ask us</h5>
+            </a>
+          </SocialItem>
+        </SocialBar>
+        <RichTextWrapper>
+          <Section>
+            <InlineControls>
+              <EditToggle />
+              <DiscardButton />
+            </InlineControls>
+            <Wrapper>
+              <InfoLayout>
+                <InfoContent>
+                  <InfoText>
+                    <h2>
+                      <InlineTextareaField name="supporting_headline" />
+                    </h2>
+                    <hr />
+                    <InlineWysiwyg name="supporting_body">
+                      <MarkdownContent content={data.supporting_body} />
+                    </InlineWysiwyg>
+                  </InfoText>
+                  <ButtonGroup>
+                    <DynamicLink
+                      href={'/docs/contributing/guidelines'}
+                      passHref
+                    >
+                      <Button as="a">Contribute</Button>
+                    </DynamicLink>
+                    <DynamicLink href={metadata.roadmapUrl} passHref>
+                      <Button as="a">View Roadmap</Button>
+                    </DynamicLink>
+                  </ButtonGroup>
+                </InfoContent>
+                <InfoImage src="/img/rico-replacement.jpg" />
+              </InfoLayout>
+            </Wrapper>
+          </Section>
+          <FormSection color="seafoam">
+            <Wrapper>
+              <h2>
+                Newsletter{' '}
+                <span role="img" aria-label="two finger peace sign">
+                  ✌️
+                </span>
+              </h2>
+              <p>
+                <InlineTextField name="newsletter_cta" />
+              </p>
+              <EmailForm />
+            </Wrapper>
+          </FormSection>
+        </RichTextWrapper>
+      </Layout>
+    </InlineForm>
   )
 }
 
-const CommunityPageOptions = {
-  fields: [
-    {
-      label: 'Headline',
-      name: 'headline',
-      description: 'Enter the main headline here',
-      component: 'textarea',
-    },
-    {
-      label: 'Gif',
-      name: 'gif.src',
-      description: 'Enter path to gif from static',
-      component: 'text',
-    },
-    {
-      label: 'Gif Alt',
-      name: 'gif.alt',
-      description: 'Enter Gif alt tag here',
-      component: 'text',
-    },
-    {
-      label: 'Secondary Headline',
-      name: 'supporting_headline',
-      description: 'Enter the secondary headline here',
-      component: 'textarea',
-    },
-    {
-      label: 'Secondary Body Copy',
-      name: 'supporting_body',
-      description: 'Enter the body copy here',
-      component: 'markdown',
-    },
-  ],
-}
-
-const EditableCommunityPage = inlineJsonForm(
-  CommunityPage,
-  CommunityPageOptions
-)
-
-export default EditableCommunityPage
-
 export async function unstable_getStaticProps() {
-  // TODO: need to fix something in tina before we use this
-  // const siteMetadata = await import('../content/siteConfig.json')
+  const siteMetadata = await import('../content/siteConfig.json')
   const communityData = await import('../content/pages/community.json')
   return {
     props: {
+      metadata: siteMetadata,
       jsonFile: {
         fileRelativePath: `content/pages/community.json`,
         data: communityData.default,
@@ -191,6 +198,10 @@ export async function unstable_getStaticProps() {
     },
   }
 }
+
+/*
+ ** STYLES ------------------------------------------------------
+ */
 
 const SocialBar = styled.div`
   display: grid;
