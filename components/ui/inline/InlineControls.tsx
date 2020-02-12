@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
 export function InlineControls({ children }: any) {
+  if (process.env.NODE_ENV === 'production') return null
+
   return <EditControls>{children}</EditControls>
 }
 

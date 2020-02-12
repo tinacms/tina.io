@@ -3,7 +3,7 @@ import styled from 'styled-components'
 const fg = require('fast-glob')
 import { NextSeo } from 'next-seo'
 import { useLocalMarkdownForm } from 'next-tinacms-markdown'
-import { InlineForm, InlineTextField } from 'react-tinacms-inline'
+import { InlineForm } from 'react-tinacms-inline'
 
 import { formatDate, formatExcerpt, readFile } from '../../utils'
 import {
@@ -18,6 +18,7 @@ import {
   DiscardButton,
   InlineWysiwyg,
   InlineTextareaField,
+  InlineTextField,
   InlineControls,
 } from '../../components/ui/inline'
 
@@ -54,6 +55,7 @@ export default function BlogTemplate({ markdownFile, siteConfig }) {
   const markdownBody = data.markdownBody
   const excerpt = formatExcerpt(data.markdownBody)
 
+  /* ¡Important! */
   if (!form) return null
 
   return (
@@ -85,12 +87,10 @@ export default function BlogTemplate({ markdownFile, siteConfig }) {
           <InlineTextareaField name="frontmatter.title" />
         </Hero>
         <BlogWrapper>
-          {process.env.NODE_ENV === 'development' && (
-            <InlineControls>
-              <EditToggle />
-              <DiscardButton />
-            </InlineControls>
-          )}
+          <InlineControls>
+            <EditToggle />
+            <DiscardButton />
+          </InlineControls>
           <RichTextWrapper>
             <BlogMeta>
               <p>

@@ -56,6 +56,7 @@ export default function DocTemplate(props) {
   const markdownBody = data.markdownBody
   const excerpt = formatExcerpt(props.markdownFile.markdownBody)
 
+  /* ¡Important! */
   if (!form) return null
 
   return (
@@ -88,12 +89,10 @@ export default function DocTemplate(props) {
           <DocsHeaderNav color={'light'} open={open} />
           <RichTextWrapper>
             <Wrapper narrow>
-              {process.env.NODE_ENV === 'development' && (
-                <InlineControls>
-                  <EditToggle />
-                  <DiscardButton />
-                </InlineControls>
-              )}
+              <InlineControls>
+                <EditToggle />
+                <DiscardButton />
+              </InlineControls>
               <h1>
                 <InlineTextField name="frontmatter.title" />
               </h1>
