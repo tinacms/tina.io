@@ -11,17 +11,19 @@ export async function getJsonFormProps(
 
     const response = await getContent(
       githubContext.forkFullName,
-      githubContext.branch,
+      githubContext.headBranch,
       filePath,
       githubContext.accessToken
     )
 
     return {
+      baseRepoFullName: githubContext.baseRepoFullName,
       fileRelativePath: filePath,
       sha: response.data.sha,
       forkFullName: githubContext.forkFullName,
-      branch: githubContext.branch,
+      headBranch: githubContext.headBranch,
       access_token: githubContext.accessToken,
+      
       data: JSON.parse(b64DecodeUnicode(response.data.content)),
     }
   } else {
