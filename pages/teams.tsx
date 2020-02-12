@@ -1,48 +1,148 @@
 import React from 'react'
 import styled from 'styled-components'
-import { inlineJsonForm } from 'next-tinacms-json'
-import Head from 'next/head'
+import { useLocalJsonForm } from 'next-tinacms-json'
+import {
+  InlineForm,
+  InlineBlocks,
+  BlocksControls,
+  BlockText,
+} from 'react-tinacms-inline'
+import { BlockTemplate } from 'tinacms'
 import { NextSeo } from 'next-seo'
 
-import { Layout, Wrapper, Section, RichTextWrapper } from '../components/layout'
+import { Layout, Wrapper, RichTextWrapper } from '../components/layout'
 import { ArrowList } from '../components/ui'
 import { TeamsForm } from '../components/forms'
+import {
+  EditToggle,
+  DiscardButton,
+  InlineTextareaField,
+  InlineTextField,
+  InlineControls,
+} from '../components/ui/inline'
 
-function TeamsPage(props) {
-  const data = props.jsonFile
+export default function TeamsPage(props) {
+  const formOptions = {
+    fields: [
+      {
+        label: 'Headline',
+        name: 'headline',
+        description: 'Enter the main headline here',
+        component: 'textarea',
+      },
+      {
+        label: 'Supporting Points',
+        name: 'supporting_points',
+        description: 'Edit the points here',
+        component: 'group-list',
+        itemProps: item => ({
+          key: item.id,
+          label: `${item.point.slice(0, 25)}...`,
+        }),
+        fields: [
+          {
+            label: 'Point',
+            name: 'point',
+            component: 'textarea',
+          },
+        ],
+      },
+    ],
+  }
+  const [data, form] = useLocalJsonForm(props.jsonFile, formOptions)
+
+  // ¡Important!
+  if (!form) return null
+
   return (
-    <TeamsLayout page="teams" color={'secondary'}>
-      <NextSeo
-        title={data.title}
-        description={data.description}
-        openGraph={{
-          title: data.title,
-          description: data.description,
-        }}
-      />
-      <TeamsSection>
-        <Wrapper>
-          <RichTextWrapper>
-            <TeamsGrid>
-              <TeamsContent>
-                <h2>{data.headline}</h2>
-                <hr />
-                <ArrowList>
-                  {data.supporting_points.map(item => (
-                    <li key={item.point.trim()}>{item.point}</li>
-                  ))}
-                </ArrowList>
-              </TeamsContent>
-              <TeamsFormWrapper>
-                <TeamsForm hubspotFormID={process.env.HUBSPOT_TEAMS_FORM_ID} />
-              </TeamsFormWrapper>
-            </TeamsGrid>
-          </RichTextWrapper>
-        </Wrapper>
-      </TeamsSection>
-    </TeamsLayout>
+    <InlineForm form={form}>
+      <TeamsLayout page="teams" color={'secondary'}>
+        <NextSeo
+          title={data.title}
+          description={data.description}
+          openGraph={{
+            title: data.title,
+            description: data.description,
+          }}
+        />
+        <TeamsSection>
+          <InlineControls>
+            <EditToggle />
+            <DiscardButton />
+          </InlineControls>
+          <Wrapper>
+            <RichTextWrapper>
+              <TeamsGrid>
+                <TeamsContent>
+                  <h2>
+                    <InlineTextareaField name="headline" />
+                  </h2>
+                  <hr />
+                  <ArrowList>
+                    <InlineBlocks
+                      name="supporting_points"
+                      blocks={TEAMS_POINTS_BLOCKS}
+                    />
+                  </ArrowList>
+                </TeamsContent>
+                <TeamsFormWrapper>
+                  <TeamsForm
+                    hubspotFormID={process.env.HUBSPOT_TEAMS_FORM_ID}
+                  />
+                </TeamsFormWrapper>
+              </TeamsGrid>
+            </RichTextWrapper>
+          </Wrapper>
+        </TeamsSection>
+      </TeamsLayout>
+    </InlineForm>
   )
 }
+
+export async function unstable_getStaticProps() {
+  const teamsData = await import('../content/pages/teams.json')
+  return {
+    props: {
+      jsonFile: {
+        fileRelativePath: `content/pages/teams.json`,
+        data: teamsData.default,
+      },
+    },
+  }
+}
+
+/*
+ ** BLOCKS CONFIG ------------------------------------------------------
+ */
+
+function SupportingPoint({ data, index }) {
+  return (
+    <BlocksControls index={index}>
+      <li>
+        <BlockText name="point" />
+      </li>
+    </BlocksControls>
+  )
+}
+
+const point_template: BlockTemplate = {
+  type: 'point',
+  label: 'Teams Point',
+  defaultItem: { point: 'Something dope about TinaTeams 🤙' },
+  key: undefined,
+  fields: [],
+}
+
+const TEAMS_POINTS_BLOCKS = {
+  point: {
+    Component: SupportingPoint,
+    template: point_template,
+  },
+}
+
+/*
+ ** STYLES --------------------------------------------------------------
+ */
 
 const TeamsLayout = styled(Layout)`
   min-height: 100%;
@@ -98,47 +198,3 @@ const TeamsContent = styled.div`
     border-color: var(--color-seafoam-dark) !important;
   }
 `
-
-const TeamsPageOptions = {
-  fields: [
-    {
-      label: 'Headline',
-      name: 'headline',
-      description: 'Enter the main headline here',
-      component: 'textarea',
-    },
-    {
-      label: 'Supporting Points',
-      name: 'supporting_points',
-      description: 'Edit the points here',
-      component: 'group-list',
-      itemProps: item => ({
-        key: item.id,
-        label: `${item.point.slice(0, 25)}...`,
-      }),
-      fields: [
-        {
-          label: 'Point',
-          name: 'point',
-          component: 'textarea',
-        },
-      ],
-    },
-  ],
-}
-
-const EditableTeamsPage = inlineJsonForm(TeamsPage, TeamsPageOptions)
-
-export default EditableTeamsPage
-
-export async function unstable_getStaticProps() {
-  const teamsData = await import('../content/pages/teams.json')
-  return {
-    props: {
-      jsonFile: {
-        fileRelativePath: `content/pages/teams.json`,
-        data: teamsData.default,
-      },
-    },
-  }
-}
