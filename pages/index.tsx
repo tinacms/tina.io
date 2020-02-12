@@ -2,12 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { BlockTemplate } from 'tinacms'
 import { useLocalJsonForm } from 'next-tinacms-json'
-import {
-  InlineForm,
-  BlocksControls,
-  BlockText,
-  InlineBlocks,
-} from 'react-tinacms-inline'
+import { InlineForm, BlocksControls, InlineBlocks } from 'react-tinacms-inline'
 import { DefaultSeo } from 'next-seo'
 
 import { DynamicLink } from '../components/ui/DynamicLink'
@@ -22,10 +17,10 @@ import { Button, Video, ArrowList } from '../components/ui'
 import {
   EditToggle,
   DiscardButton,
-  InlineWysiwyg,
   InlineTextareaField,
-  InlineTextField,
   InlineControls,
+  BlockText,
+  BlockTextArea,
 } from '../components/ui/inline'
 
 export default function HomePage(props) {
@@ -217,7 +212,7 @@ function SellingPoint({ data, index }) {
           </em>
         </h3>
         <p>
-          <BlockText name="supporting" />
+          <BlockTextArea name="supporting" />
         </p>
       </div>
     </BlocksControls>
@@ -248,7 +243,7 @@ function SetupPoint({ data, index }) {
   return (
     <BlocksControls index={index}>
       <li key={data.step.slice(0, 8)}>
-        <BlockText name="step" />
+        <BlockTextArea name="step" />
       </li>
     </BlocksControls>
   )

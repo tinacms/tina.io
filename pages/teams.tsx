@@ -1,12 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useLocalJsonForm } from 'next-tinacms-json'
-import {
-  InlineForm,
-  InlineBlocks,
-  BlocksControls,
-  BlockText,
-} from 'react-tinacms-inline'
+import { InlineForm, InlineBlocks, BlocksControls } from 'react-tinacms-inline'
 import { BlockTemplate } from 'tinacms'
 import { NextSeo } from 'next-seo'
 
@@ -17,7 +12,7 @@ import {
   EditToggle,
   DiscardButton,
   InlineTextareaField,
-  InlineTextField,
+  BlockTextArea,
   InlineControls,
 } from '../components/ui/inline'
 
@@ -119,7 +114,7 @@ function SupportingPoint({ data, index }) {
   return (
     <BlocksControls index={index}>
       <li key={data.point.slice(0, 8)}>
-        <BlockText name="point" />
+        <BlockTextArea name="point" />
       </li>
     </BlocksControls>
   )
