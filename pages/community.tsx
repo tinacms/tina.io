@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import ReactMarkdown from 'react-markdown'
 import { useLocalJsonForm } from 'next-tinacms-json'
 import { DynamicLink } from '../components/ui/DynamicLink'
 import { InlineForm } from 'react-tinacms-inline'
