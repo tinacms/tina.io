@@ -1,5 +1,6 @@
 const axios = require('axios')
 const qs = require('qs')
+const { b64EncodeUnicode } = require("../../../utils/base64")
 const baseBranch = process.env.BASE_BRANCH
 
 const fetchExistingPR = (
@@ -113,19 +114,6 @@ const createFork = (repoFullName, accessToken) => {
   })
 }
 
-function b64EncodeUnicode(str) {
-  // first we use encodeURIComponent to get percent-encoded UTF-8,
-  // then we convert the percent encodings into raw bytes which
-  // can be fed into btoa.
-  return btoa(
-    encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function toSolidBytes(
-      match,
-      p1
-    ) {
-      return String.fromCharCode(parseInt(p1, 16))
-    })
-  )
-}
 
 module.exports = {
   createPR,

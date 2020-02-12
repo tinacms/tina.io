@@ -7,17 +7,78 @@ import { NextSeo } from 'next-seo'
 import { Layout, Wrapper, Section, RichTextWrapper } from '../components/layout'
 import { ArrowList } from '../components/ui'
 import { TeamsForm } from '../components/forms'
+import { getJsonFormProps } from '../utils/getJsonFormProps'
+import { useCMS, useLocalForm } from 'tinacms'
+import { saveContent } from '../open-authoring/github/api'
 
 function TeamsPage(props) {
-  const data = props.jsonFile
+  const cms = useCMS()
+
+  const [formData, form] = useLocalForm({
+    id: props.fileRelativePath, // needs to be unique
+    label: 'Teams',
+    initialValues: {
+      fileRelativePath: props.fileRelativePath,
+      data: props.data,
+      sha: props.sha,
+    },
+    fields: [
+      {
+        label: 'Headline',
+        name: 'data.headline',
+        description: 'Enter the main headline here',
+        component: 'textarea',
+      },
+      {
+        label: 'Supporting Points',
+        name: 'data.supporting_points',
+        description: 'Edit the points here',
+        component: 'group-list',
+        //@ts-ignore
+        itemProps: item => ({
+          key: item.id,
+          label: `${item.point.slice(0, 25)}...`,
+        }),
+        fields: [
+          {
+            label: 'Point',
+            name: 'data.point',
+            component: 'textarea',
+          },
+        ],
+      },
+    ],
+    // save & commit the file when the "save" button is pressed
+    onSubmit(formData, form) {
+      if (process.env.USE_CONTENT_API) {
+        saveContent(
+          props.forkFullName,
+          props.branch,
+          props.fileRelativePath,
+          props.access_token,
+          props.sha,
+          JSON.stringify(formData.data),
+          'Update from TinaCMS'
+        ).then(response => {
+          window.location.reload()
+        }) //hack so sha updates
+      } else {
+        // create commit?
+        alert('saves on localhost not supported')
+      }
+    },
+  })
+
+  const teamsData = formData.data
+
   return (
     <TeamsLayout page="teams" color={'secondary'}>
       <NextSeo
-        title={data.title}
-        description={data.description}
+        title={teamsData.title}
+        description={teamsData.description}
         openGraph={{
-          title: data.title,
-          description: data.description,
+          title: teamsData.title,
+          description: teamsData.description,
         }}
       />
       <TeamsSection>
@@ -25,10 +86,10 @@ function TeamsPage(props) {
           <RichTextWrapper>
             <TeamsGrid>
               <TeamsContent>
-                <h2>{data.headline}</h2>
+                <h2>{teamsData.headline}</h2>
                 <hr />
                 <ArrowList>
-                  {data.supporting_points.map(item => (
+                  {teamsData.supporting_points.map(item => (
                     <li key={item.point.trim()}>{item.point}</li>
                   ))}
                 </ArrowList>
@@ -99,46 +160,9 @@ const TeamsContent = styled.div`
   }
 `
 
-const TeamsPageOptions = {
-  fields: [
-    {
-      label: 'Headline',
-      name: 'headline',
-      description: 'Enter the main headline here',
-      component: 'textarea',
-    },
-    {
-      label: 'Supporting Points',
-      name: 'supporting_points',
-      description: 'Edit the points here',
-      component: 'group-list',
-      itemProps: item => ({
-        key: item.id,
-        label: `${item.point.slice(0, 25)}...`,
-      }),
-      fields: [
-        {
-          label: 'Point',
-          name: 'point',
-          component: 'textarea',
-        },
-      ],
-    },
-  ],
-}
+export default TeamsPage
 
-const EditableTeamsPage = inlineJsonForm(TeamsPage, TeamsPageOptions)
-
-export default EditableTeamsPage
-
-export async function unstable_getServerProps() {
-  const teamsData = await import('../content/pages/teams.json')
-  return {
-    props: {
-      jsonFile: {
-        fileRelativePath: `content/pages/teams.json`,
-        data: teamsData.default,
-      },
-    },
-  }
+export async function unstable_getServerProps(ctx) {
+  const props = await getJsonFormProps(ctx, 'content/pages/teams.json')
+  return { props }
 }

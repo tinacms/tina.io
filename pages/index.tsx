@@ -4,9 +4,9 @@ import { inlineJsonForm } from 'next-tinacms-json'
 import { DynamicLink } from '../components/ui/DynamicLink'
 import toMarkdownString from '../utils/toMarkdownString'
 import { b64DecodeUnicode } from "../utils/base64"
+
 import { usePlugins } from "tinacms";
 import { PRPlugin } from "../open-authoring/prPlugin"
-
 
 import {
   Layout,
@@ -20,6 +20,8 @@ import { Button, Video, ArrowList } from '../components/ui'
 import { NextSeo, DefaultSeo } from 'next-seo'
 import matter from 'gray-matter'
 import { useCMS, useLocalForm } from 'tinacms'
+import { getGithubContext } from '../utils/github/getGithubContext'
+import { getJsonFormProps } from '../utils/getJsonFormProps'
 
 const {
   createPR,
@@ -232,41 +234,10 @@ export <b>WithTina</b>( <b>Component</b> );
 export default HomePage
 
 export async function unstable_getServerProps(ctx) {
-  const filePath = 'content/pages/home.json'
-  if (process.env.USE_CONTENT_API) {
-    const access_token = ctx.req.cookies['tina-github-auth']
-    const forkFullName = ctx.req.cookies['tina-github-fork-name']
 
-    const headBranch = ctx.query.branch || 'master'
-    const homeData = await getContent(
-      forkFullName,
-      headBranch,
-      filePath,
-      access_token
-    )
-    const home = JSON.parse(b64DecodeUnicode(homeData.data.content))
+  const props = await getJsonFormProps(ctx, 'content/pages/home.json')
+  return { props }
 
-    return {
-      props: {
-        fileRelativePath: filePath,
-        forkFullName,
-        headBranch,
-        access_token,
-        sha: homeData.data.sha,
-        baseRepoFullName: process.env.REPO_FULL_NAME,
-        data: home,
-      },
-    }
-  } else {
-    const homeData = await import(`../content/${filePath}`)
-
-    return {
-      props: {
-        fileRelativePath: filePath,
-        data: homeData.default,
-      },
-    }
-  }
 }
 
 /*
