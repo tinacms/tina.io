@@ -14,9 +14,10 @@ export async function unstable_getStaticProps(ctx) {
 
   return {
     props: {
-      doc: {
-        data: { ...doc.data, slug: '/docs' },
-        content: doc.content,
+      markdownFile: {
+        data: { slug: '/docs' },
+        frontmatter: doc.data,
+        markdownBody: doc.content,
       },
       docsNav: docsNavData.default,
       nextPage: {
@@ -29,6 +30,23 @@ export async function unstable_getStaticProps(ctx) {
       },
     },
   }
+  // return {
+  //   props: {
+  //     doc: {
+  //       data: { ...doc.data, slug: '/docs' },
+  //       content: doc.content,
+  //     },
+  //     docsNav: docsNavData.default,
+  //     nextPage: {
+  //       slug: doc.data.next,
+  //       title: nextDocPage && nextDocPage.data.title,
+  //     },
+  //     prevPage: {
+  //       slug: doc.data.prev,
+  //       title: prevDocPage && prevDocPage.data.title,
+  //     },
+  //   },
+  // }
 }
 
 export default DocTemplate

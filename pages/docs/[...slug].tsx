@@ -64,7 +64,7 @@ export default function DocTemplate(props) {
       <DocsLayout>
         <NextSeo
           title={frontmatter.title}
-          titleTemplate={'%s | ' + props.siteConfig.title + ' Docs'}
+          titleTemplate={'%s | TinaCMS Docs'}
           description={excerpt}
           openGraph={{
             title: frontmatter.title,
@@ -117,7 +117,6 @@ export async function unstable_getStaticProps(ctx) {
   let { slug: slugs } = ctx.params
 
   const slug = slugs.join('/')
-  const siteConfig = await import('../../content/siteConfig.json')
   const content = await readFile(`content/docs/${slug}.md`)
   const doc = matter(content)
 
@@ -129,9 +128,6 @@ export async function unstable_getStaticProps(ctx) {
 
   return {
     props: {
-      siteConfig: {
-        title: siteConfig.title,
-      },
       markdownFile: {
         fileRelativePath: `content/docs/${slug}.md`,
         frontmatter: doc.data,
