@@ -1,8 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
-import { inlineJsonForm } from 'next-tinacms-json'
-import { DynamicLink } from '../components/ui/DynamicLink'
+import { BlockTemplate } from 'tinacms'
+import { useLocalJsonForm } from 'next-tinacms-json'
+import {
+  InlineForm,
+  BlocksControls,
+  BlockText,
+  InlineBlocks,
+} from 'react-tinacms-inline'
+import { DefaultSeo } from 'next-seo'
 
+import { DynamicLink } from '../components/ui/DynamicLink'
 import {
   Layout,
   Hero,
@@ -11,26 +19,139 @@ import {
   RichTextWrapper,
 } from '../components/layout'
 import { Button, Video, ArrowList } from '../components/ui'
-import { DefaultSeo } from 'next-seo'
+import {
+  EditToggle,
+  DiscardButton,
+  InlineWysiwyg,
+  InlineTextareaField,
+  InlineTextField,
+  InlineControls,
+} from '../components/ui/inline'
 
-const HomePage = props => {
-  const data = props.jsonFile
+export default function HomePage(props) {
+  const formOptions = {
+    label: 'Home Page',
+    fields: [
+      {
+        label: 'Headline',
+        name: 'headline',
+        description: 'Enter the main headline here',
+        component: 'text',
+      },
+      {
+        label: 'Description',
+        name: 'description',
+        description: 'Enter supporting main description',
+        component: 'textarea',
+      },
+      {
+        label: 'Selling Points',
+        name: 'three_points',
+        description: 'Edit the points here',
+        component: 'group-list',
+        itemProps: item => ({
+          key: item.id,
+          label: `${item.main.slice(0, 15)}...`,
+        }),
+        fields: [
+          {
+            label: 'Main',
+            name: 'main',
+            component: 'textarea',
+          },
+          {
+            label: 'Supporting',
+            name: 'supporting',
+            component: 'textarea',
+          },
+        ],
+      },
+      {
+        label: 'Setup Headline',
+        name: 'setup.headline',
+        description: 'Enter the "setup" headline here',
+        component: 'textarea',
+      },
+      {
+        label: 'Setup Steps',
+        name: 'setup.steps',
+        description: 'Edit the steps here',
+        component: 'group-list',
+        itemProps: item => ({
+          key: item.id,
+          label: `${item.step.slice(0, 15)}...`,
+        }),
+        fields: [
+          {
+            label: 'Step',
+            name: 'step',
+            component: 'textarea',
+          },
+        ],
+      },
+    ],
+  }
+  const [data, form] = useLocalJsonForm(props.jsonFile, formOptions)
+
+  /* ¡Important for InlineForm! */
+  if (!form) return null
+
   return (
-    <Layout pathname="/">
-      <DefaultSeo titleTemplate={data.title + ' | %s'} />
-      <Hero overlap narrow>
-        {data.headline}
-      </Hero>
-      <Video src={data.hero_video} />
+    <InlineForm form={form}>
+      <Layout pathname="/">
+        <DefaultSeo titleTemplate={data.title + ' | %s'} />
+        <Hero overlap narrow>
+          <InlineControls>
+            <EditToggle />
+            <DiscardButton />
+          </InlineControls>
+          <InlineTextareaField name="headline" />
+        </Hero>
+        <Video src={data.hero_video} />
+        <Section>
+          <Wrapper>
+            <RichTextWrapper>
+              <CtaLayout>
+                <h2>
+                  <em>
+                    <InlineTextareaField name="description" />
+                  </em>
+                </h2>
+                <CtaBar>
+                  <DynamicLink
+                    href={'/docs/getting-started/introduction/'}
+                    passHref
+                  >
+                    <Button as="a" color="primary">
+                      Get Started
+                    </Button>
+                  </DynamicLink>
+                </CtaBar>
+              </CtaLayout>
+              <InfoLayout>
+                <InlineBlocks
+                  name="three_points"
+                  blocks={SELLING_POINTS_BLOCKS}
+                />
+              </InfoLayout>
+            </RichTextWrapper>
+          </Wrapper>
+        </Section>
 
-      <Section>
-        <Wrapper>
-          <RichTextWrapper>
-            <CtaLayout>
-              <h2>
-                <em>{data.description}</em>
-              </h2>
-              <CtaBar>
+        <Section color="seafoam">
+          <Wrapper>
+            <SetupLayout>
+              <RichTextWrapper>
+                <h2 className="h1">
+                  <InlineTextareaField name="setup.headline" />
+                </h2>
+                <hr />
+                <ArrowList>
+                  <InlineBlocks
+                    name="setup.steps"
+                    blocks={SETUP_POINT_BLOCKS}
+                  />
+                </ArrowList>
                 <DynamicLink
                   href={'/docs/getting-started/introduction/'}
                   passHref
@@ -39,46 +160,11 @@ const HomePage = props => {
                     Get Started
                   </Button>
                 </DynamicLink>
-              </CtaBar>
-            </CtaLayout>
-            <InfoLayout>
-              {data.three_points.map(point => (
-                <div key={point.main.slice(0, 8)}>
-                  <h3>
-                    <em>{point.main}</em>
-                  </h3>
-                  <p>{point.supporting}</p>
-                </div>
-              ))}
-            </InfoLayout>
-          </RichTextWrapper>
-        </Wrapper>
-      </Section>
-
-      <Section color="seafoam">
-        <Wrapper>
-          <SetupLayout>
-            <RichTextWrapper>
-              <h2 className="h1">{data.setup.headline}</h2>
-              <hr />
-              <ArrowList>
-                {data.setup.steps.map(item => (
-                  <li key={item.step.slice(0, 8)}>{item.step}</li>
-                ))}
-              </ArrowList>
-              <DynamicLink
-                href={'/docs/getting-started/introduction/'}
-                passHref
-              >
-                <Button as="a" color="primary">
-                  Get Started
-                </Button>
-              </DynamicLink>
-            </RichTextWrapper>
-            <CodeWrapper>
-              <CodeExample
-                dangerouslySetInnerHTML={{
-                  __html: `yarn add <b>gatsby-plugin-tinacms</b>
+              </RichTextWrapper>
+              <CodeWrapper>
+                <CodeExample
+                  dangerouslySetInnerHTML={{
+                    __html: `yarn add <b>gatsby-plugin-tinacms</b>
 
 module.exports = {
   <span>// ...</span>
@@ -90,81 +176,16 @@ module.exports = {
 
 export <b>WithTina</b>( <b>Component</b> );
                   `,
-                }}
-              ></CodeExample>
-            </CodeWrapper>
-          </SetupLayout>
-        </Wrapper>
-      </Section>
-    </Layout>
+                  }}
+                ></CodeExample>
+              </CodeWrapper>
+            </SetupLayout>
+          </Wrapper>
+        </Section>
+      </Layout>
+    </InlineForm>
   )
 }
-
-const formOptions = {
-  label: 'Home Page',
-  fields: [
-    {
-      label: 'Headline',
-      name: 'headline',
-      description: 'Enter the main headline here',
-      component: 'text',
-    },
-    {
-      label: 'Description',
-      name: 'description',
-      description: 'Enter supporting main description',
-      component: 'textarea',
-    },
-    {
-      label: 'Selling Points',
-      name: 'three_points',
-      description: 'Edit the points here',
-      component: 'group-list',
-      itemProps: item => ({
-        key: item.id,
-        label: `${item.main.slice(0, 15)}...`,
-      }),
-      fields: [
-        {
-          label: 'Main',
-          name: 'main',
-          component: 'textarea',
-        },
-        {
-          label: 'Supporting',
-          name: 'supporting',
-          component: 'textarea',
-        },
-      ],
-    },
-    {
-      label: 'Setup Headline',
-      name: 'setup.headline',
-      description: 'Enter the "setup" headline here',
-      component: 'textarea',
-    },
-    {
-      label: 'Setup Steps',
-      name: 'setup.steps',
-      description: 'Edit the steps here',
-      component: 'group-list',
-      itemProps: item => ({
-        key: item.id,
-        label: `${item.step.slice(0, 15)}...`,
-      }),
-      fields: [
-        {
-          label: 'Step',
-          name: 'step',
-          component: 'textarea',
-        },
-      ],
-    },
-  ],
-}
-
-const EditableHomePage = inlineJsonForm(HomePage, formOptions)
-export default EditableHomePage
 
 export async function unstable_getStaticProps() {
   const homeData = await import('../content/pages/home.json')
@@ -179,6 +200,76 @@ export async function unstable_getStaticProps() {
   }
 }
 
+/*
+ ** BLOCKS CONFIG ------------------------------------------------------
+ */
+/*
+ ** TODO: these selling point blocks should be an inline group-list
+ */
+
+function SellingPoint({ data, index }) {
+  return (
+    <BlocksControls index={index}>
+      <div key={data.main.slice(0, 8)}>
+        <h3>
+          <em>
+            <BlockText name="main" />
+          </em>
+        </h3>
+        <p>
+          <BlockText name="supporting" />
+        </p>
+      </div>
+    </BlocksControls>
+  )
+}
+
+const selling_point_template: BlockTemplate = {
+  type: 'selling_point',
+  label: 'Selling Point',
+  defaultItem: {
+    main: 'Tina is dope 🤙',
+    supporting:
+      'It’s pretty much my favorite animal. It’s like a lion and a tiger mixed… bred for its skills in magic.',
+  },
+  // TODO: figure out what to do with keys
+  key: undefined,
+  fields: [],
+}
+
+const SELLING_POINTS_BLOCKS = {
+  selling_point: {
+    Component: SellingPoint,
+    template: selling_point_template,
+  },
+}
+
+function SetupPoint({ data, index }) {
+  return (
+    <BlocksControls index={index}>
+      <li key={data.step.slice(0, 8)}>
+        <BlockText name="step" />
+      </li>
+    </BlocksControls>
+  )
+}
+
+const setup_point_template: BlockTemplate = {
+  type: 'setup_point',
+  label: 'Setup Point',
+  defaultItem: {
+    step: 'Make yourself a dang quesadilla',
+  },
+  key: undefined,
+  fields: [],
+}
+
+const SETUP_POINT_BLOCKS = {
+  setup_point: {
+    Component: SetupPoint,
+    template: setup_point_template,
+  },
+}
 /*
  ** STYLES -------------------------------------------------------
  */
