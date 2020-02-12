@@ -7,7 +7,7 @@ draft: false
 
 One of the core features of an editorial workflow is to provide writers & editors a safe space for creating and iterating on content without these in-process posts publishing to production — **draft-mode**.
 
-This post will outline how to add a draft-state to your markdown files in a [Gatsby](https://www.gatsbyjs.org/ "Gatsby") site using TinaCMS. Based on the environment and the file's draft state, they will be selectively ‘published’ or not published. In development, we will ‘publish’ all files so we can view and edit drafts and completed posts alike; whereas in production we are going to filter out draft posts in our graphQL queries.
+This post will outline how to add a draft-state to your markdown files in a [Gatsby](https://www.gatsbyjs.org/ 'Gatsby') site using TinaCMS. Based on the environment and the file's draft state, they will be selectively ‘published’ or not published. In development, we will ‘publish’ all files so we can view and edit drafts and completed posts alike; whereas in production we are going to filter out draft posts in our graphQL queries.
 
 The code examples are based on the [gatsby-starter-tinacms](https://github.com/tinacms/gatsby-starter-tinacms). Feel free to reference that as you go along.
 
@@ -17,14 +17,14 @@ The code examples are based on the [gatsby-starter-tinacms](https://github.com/t
 
 First off, we need to create a way to tell Gatsby what files to include (or not include) in the build process depending on the environment. To do this, we will add a `published` field to every MarkdownRemark node. The `published` field is the faucet from which files get included in the build process. In development mode, the faucet is fully open, and all posts, regardless of their draft state, will be ‘published’ or sent through the build process. In production mode, the faucet filters out anything in draft state. So think of the `published` as a sort-of misnomer for `includedInBuild`.
 
-The first file we need to touch to do this is the  **gatsby-node.js** file, which typically lives in the root of a site. This is a special gatsby file where we can access all of [Gatsby’s Node-API’s](https://www.gatsbyjs.org/docs/node-apis/), or access points to the GraphQL layer that processes all the data in a Gatsby site. The API we will use is called [`setFieldsOnGraphQLNodeType`](https://www.gatsbyjs.org/docs/node-apis/#setFieldsOnGraphQLNodeType):
+The first file we need to touch to do this is the **gatsby-node.js** file, which typically lives in the root of a site. This is a special gatsby file where we can access all of [Gatsby’s Node-API’s](https://www.gatsbyjs.org/docs/node-apis/), or access points to the GraphQL layer that processes all the data in a Gatsby site. The API we will use is called [`setFieldsOnGraphQLNodeType`](https://www.gatsbyjs.org/docs/node-apis/#setFieldsOnGraphQLNodeType):
 
 ```js
 const { GraphQLBoolean } = require('gatsby/graphql')
 
 exports.setFieldsOnGraphQLNodeType = ({ type }) => {
   // if the node is a markdown file, add the `published` field
-  if ("MarkdownRemark" === type.name) {
+  if ('MarkdownRemark' === type.name) {
     return {
       published: {
         type: GraphQLBoolean,
@@ -33,7 +33,7 @@ exports.setFieldsOnGraphQLNodeType = ({ type }) => {
           `published` is always true in development
               so both drafts and finished posts are built
           */
-          if (process.env.NODE_ENV !== "production") {
+          if (process.env.NODE_ENV !== 'production') {
             return true
           }
           /*
@@ -180,11 +180,7 @@ There’s lots of ways you can incorporate the ‘draft’ indicator status into
     marginBottom: rhythm(1),
   }}
 >
-  {post.frontmatter.draft ? (
-    <DraftIndicator />
-  ) : (
-    post.frontmatter.date
-  )}
+  {post.frontmatter.draft ? <DraftIndicator /> : post.frontmatter.date}
 </p>
 ```
 
@@ -201,9 +197,9 @@ Finally, let’s add this draft toggle field to the form, where we edit our blog
 ```
 
 ##### Note:
+
 Tina will only add the draft frontmatter value to files after it's been edited. If the draft frontmatter value is not set on a file, it will be `null` (falsy)and will get published in all environments.
 
 ### That’s it!
 
-We successfully added ‘draft-mode’ to a simple blog. Now this configuration might look slightly different depending on your site, but feel free to reference the [TinaCMS-site](https://github.com/tinacms/tinacms-site) repo, specifically the blog template, to see this feature in action on a more complicated site.
-
+We successfully added ‘draft-mode’ to a simple blog. Now this configuration might look slightly different depending on your site, but feel free to reference the [TinaCMS-site](https://github.com/tinacms/tinacms.org) repo, specifically the blog template, to see this feature in action on a more complicated site.
