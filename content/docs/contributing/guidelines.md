@@ -13,7 +13,7 @@ The following is a set of guidelines and tips for contributing to the TinaCMS an
 
 - [Reporting Bugs](https://github.com/tinacms/tinacms/issues)
 - [Suggesting Enhancements](https://github.com/tinacms/tinacms/issues)
-- [Writing Docs, Guides, or Blog Posts](https://github.com/tinacms/tinacms-site)
+- [Writing Docs, Guides, or Blog Posts](https://github.com/tinacms/tinacms.org)
 - Voluntering for User Testing
 - [Adding features, fixing bugs etc.](https://github.com/tinacms/tinacms/issues)
 - [Answer questions in the Tina Forum](https://community.tinacms.org/)
