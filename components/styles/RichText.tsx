@@ -200,8 +200,8 @@ const RichText = css`
     border: 1px solid var(--color-light-dark);
     border-radius: 0.3rem;
     color: var(--color-primary);
-    font-size: 18px;
-    line-height: 28px;
+    font-size: 1em;
+    line-height: inherit;
   }
 
   pre {

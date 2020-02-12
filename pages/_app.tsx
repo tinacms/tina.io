@@ -1,10 +1,12 @@
 import React from 'react'
 import App from 'next/app'
+import Head from 'next/head'
 import { withTina } from 'tinacms'
 import { GitClient } from '@tinacms/git-client'
 import { DefaultSeo } from 'next-seo'
 import data from '../content/siteConfig.json'
 import TagManager from 'react-gtm-module'
+import { GlobalStyle } from '../components/styles/GlobalStyle'
 
 class Site extends App {
   componentDidMount() {
@@ -43,6 +45,11 @@ class Site extends App {
             cardType: 'summary_large_image',
           }}
         />
+        <Head>
+          <link rel="shortcut icon" href="/favicon/favicon.ico" />
+          <meta name="theme-color" content="#E6FAF8" />
+        </Head>
+        <GlobalStyle />
         <Component {...pageProps} />
       </>
     )
