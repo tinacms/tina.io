@@ -14,6 +14,7 @@ module.exports = withSvgr({
     HUBSPOT_PORTAL_ID: process.env.HUBSPOT_PORTAL_ID,
     GTM_ID: process.env.GTM_ID,
     USE_CONTENT_API: process.env.USE_CONTENT_API,
+    BASE_BRANCH: process.env.BASE_BRANCH,
   },
   exportTrailingSlash: true,
   exportPathMap: async function() {

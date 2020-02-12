@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import { inlineJsonForm } from 'next-tinacms-json'
 import { DynamicLink } from '../components/ui/DynamicLink'
-import { b64DecodeUnicode } from '../utils/base64'
 import toMarkdownString from '../utils/toMarkdownString'
+import { b64DecodeUnicode } from "../utils/base64"
+import { usePlugins } from "tinacms";
+import { PRPlugin } from "../open-authoring/prPlugin"
+
 
 import {
   Layout,
@@ -118,6 +121,27 @@ const HomePage = (props: any) => {
     },
   })
 
+  function usePRPlugin() {
+    const brancher = useMemo(() => {
+      return new PRPlugin(
+        props.baseRepoFullName,
+        props.forkFullName,
+        props.headBranch,
+        props.access_token
+      );
+    }, [
+      props.baseRepoFullName,
+      props.forkFullName,
+      props.headBranch,
+      props.access_token
+    ]);
+
+    usePlugins(brancher);
+  }
+  if (process.env.USE_CONTENT_API) {
+    usePRPlugin();
+  }
+
   const homeData = formData.data
 
   return (
@@ -213,10 +237,10 @@ export async function unstable_getServerProps(ctx) {
     const access_token = ctx.req.cookies['tina-github-auth']
     const forkFullName = ctx.req.cookies['tina-github-fork-name']
 
-    const branch = ctx.query.branch || 'master'
+    const headBranch = ctx.query.branch || 'master'
     const homeData = await getContent(
       forkFullName,
-      branch,
+      headBranch,
       filePath,
       access_token
     )
@@ -226,7 +250,7 @@ export async function unstable_getServerProps(ctx) {
       props: {
         fileRelativePath: filePath,
         forkFullName,
-        branch,
+        headBranch,
         access_token,
         sha: homeData.data.sha,
         baseRepoFullName: process.env.REPO_FULL_NAME,
