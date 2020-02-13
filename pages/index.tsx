@@ -169,8 +169,13 @@ const formOptions = {
 const EditableHomePage = inlineJsonForm(HomePage, formOptions)
 export default EditableHomePage
 
-export async function unstable_getStaticProps() {
+export async function unstable_getStaticProps({ preview, previewData }) {
   const homeData = await import('../content/pages/home.json')
+
+  if (preview) {
+    console.log(`preview mode!`)
+    console.log(previewData)
+  }
 
   return {
     props: {

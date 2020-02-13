@@ -12,6 +12,7 @@
     "export": "next export",
     "prestart": "npm run export",
     "start": "serve out",
+    "next-start": "next start",
     "format": "prettier --write \"src/**/*.{ts,tsx,md}\"",
     "lint": "yarn type-check && tslint 'src/**/*.{ts,tsx}' -p tsconfig.json",
     "test": "jest --passWithNoTests",
