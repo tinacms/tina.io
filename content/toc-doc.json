@@ -16,35 +16,14 @@
     ]
   },
   {
-    "title": "Concepts",
-    "id": "concepts",
-    "items": [
-      {
-        "id": "/docs/concepts/sidebar",
-        "slug": "/docs/concepts/sidebar",
-        "title": "Sidebar"
-      },
-      {
-        "id": "/docs/concepts/forms",
-        "slug": "/docs/concepts/forms",
-        "title": "Forms"
-      },
-      {
-        "id": "/docs/concepts/fields",
-        "slug": "/docs/concepts/fields",
-        "title": "Fields"
-      },
-      {
-        "id": "/docs/concepts/backends",
-        "slug": "/docs/concepts/backends",
-        "title": "Backends"
-      },
-      {
-        "id": "/docs/concepts/plugins",
-        "slug": "/docs/concepts/plugins",
-        "title": "Plugins"
-      }
-    ]
+    "title": "The CMS",
+    "id": "the-cms",
+    "slug": "/docs/cms"
+  },
+  {
+    "title": "Forms",
+    "id": "forms",
+    "slug": "/docs/forms"
   },
   {
     "title": "Fields",
@@ -106,6 +85,16 @@
         "title": "Custom Fields"
       }
     ]
+  },
+  {
+    "title": "Inline Editing",
+    "id": "inline-editing",
+    "slug": "/docs/inline-editing"
+  },
+  {
+    "title": "Media",
+    "id": "media",
+    "slug": "/docs/media"
   },
   {
     "title": "Tina + Gatsby",
