@@ -1,10 +1,32 @@
 import { useEffect } from 'react'
+import Cookies from 'js-cookie'
 
 export const EditLink = () => {
   const onClick = async () => {
+    let authTab
     const url = `https://github.com/login/oauth/authorize?scope=public_repo&client_id=${process.env.GITHUB_CLIENT_ID}`
-    const code = await waitForURLQueryParam(url, 'code')
-    const token = requestGithubAccessToken(code)
+    authTab = window.open(
+      url,
+      '_blank',
+      'fullscreen=no, width=1000, height=800'
+    )
+
+    const code = await waitForURLQueryParam(authTab, 'code')
+    const token = await requestGithubAccessToken(code)
+    Cookies.set('github_access_token', token)
+
+    authTab.location = '/github/fork'
+
+    function updateStorageEvent(e) {
+      if (e.key == 'fork_full_name') {
+        Cookies.set('fork_full_name', e.newValue)
+        fetch(`/api/preview`).then(() => {
+          window.location.reload()
+        })
+      }
+    }
+    localStorage.setItem('fork_full_name', '')
+    window.addEventListener('storage', updateStorageEvent, true)
   }
 
   useEffect(() => {
@@ -25,22 +47,16 @@ const requestGithubAccessToken = async (code: string) => {
 }
 
 const waitForURLQueryParam = (
-  url: string,
+  authTab: Window,
   paramKey: string
 ): Promise<string> => {
-  let authTab
   return new Promise((resolve, reject) => {
-    authTab = window.open(
-      url,
-      '_blank',
-      'fullscreen=no, width=1000, height=800'
-    )
-
     const cancelAuth = () => {
       checkForAuthFinished && clearInterval(checkForAuthFinished)
     }
 
     const checkForAuthFinished = setInterval(() => {
+      //todo - connect to this from a localstorage event instead of interval
       if (!authTab || authTab.closed) {
         reject('Window was closed')
       }

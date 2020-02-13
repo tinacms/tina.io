@@ -8,7 +8,6 @@ export default (req, res) => {
     req.query.code
   ).then(tokenResp => {
     const { access_token } = qs.parse(tokenResp.data)
-    console.log(access_token)
     res.status(200).json({ access_token })
   })
 }

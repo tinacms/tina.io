@@ -14,6 +14,7 @@ module.exports = withSvgr({
     HUBSPOT_PORTAL_ID: process.env.HUBSPOT_PORTAL_ID,
     GTM_ID: process.env.GTM_ID,
     GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
+    REPO_FULL_NAME: process.env.REPO_FULL_NAME,
   },
   exportTrailingSlash: true,
   exportPathMap: async function() {
