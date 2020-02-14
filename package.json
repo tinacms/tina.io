@@ -29,6 +29,7 @@
     "@types/styled-components": "^4.4.2",
     "algoliasearch": "^3.35.1",
     "axios": "^0.19.2",
+    "btoa": "^1.2.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "email-validator": "^2.0.4",
