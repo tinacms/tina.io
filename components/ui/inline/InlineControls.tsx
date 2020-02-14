@@ -20,6 +20,7 @@ export const InlineControls = styled(({ children, ...styleProps }: any) => {
   ${TinaButton} {
     font-size: 16px;
     height: 44px;
+    outline: none !important;
   }
 
   ${TinaReset} {
