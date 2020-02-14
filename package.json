@@ -28,6 +28,7 @@
     "@types/react-instantsearch-dom": "^5.2.6",
     "@types/styled-components": "^4.4.2",
     "algoliasearch": "^3.35.1",
+    "autosize": "^4.0.2",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "email-validator": "^2.0.4",
