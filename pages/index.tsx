@@ -19,9 +19,13 @@ import {
 import { Button, Video, ArrowList } from '../components/ui'
 import { NextSeo, DefaultSeo } from 'next-seo'
 import { saveContent, getContent } from '../open-authoring/github/api'
+import { useEditContext } from '../utils/editContext'
 
 const HomePage = (props: any) => {
   const cms = useCMS()
+
+  const editContext = useEditContext()
+  editContext.setIsEditMode(props.editMode)
 
   const [formData, form] = useLocalForm({
     id: props.fileRelativePath, // needs to be unique
