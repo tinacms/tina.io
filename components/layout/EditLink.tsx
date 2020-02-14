@@ -48,11 +48,11 @@ async function updateStorageEvent(e) {
 
 async function handleAuthCode(code: string) {
   const token = await requestGithubAccessToken(code)
-  Cookies.set('github_access_token', token)
+  Cookies.set('github_access_token', token, { sameSite: 'strict' })
 }
 
 async function handleForkCreated(forkName: string) {
-  Cookies.set('fork_full_name', forkName)
+  Cookies.set('fork_full_name', forkName, { sameSite: 'strict' })
   fetch(`/api/preview`).then(() => {
     window.location.reload()
   })
