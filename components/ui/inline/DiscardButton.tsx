@@ -4,6 +4,10 @@ import { Button as TinaButton } from '@tinacms/styles'
 export function DiscardButton() {
   const { form } = useInlineForm()
 
+  if (form.finalForm.getState().pristine) {
+    return null
+  }
+
   return (
     <TinaButton
       color="primary"
