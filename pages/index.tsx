@@ -93,13 +93,13 @@ export default function HomePage(props) {
 
   return (
     <InlineForm form={form}>
+      <InlineControls>
+        <EditToggle />
+        <DiscardButton />
+      </InlineControls>
       <Layout pathname="/">
         <DefaultSeo titleTemplate={data.title + ' | %s'} />
         <Hero overlap narrow>
-          <InlineControls>
-            <EditToggle />
-            <DiscardButton />
-          </InlineControls>
           <InlineTextareaField name="headline" />
         </Hero>
         <Video src={data.hero_video} />
