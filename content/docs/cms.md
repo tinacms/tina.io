@@ -41,6 +41,28 @@ export default function App() {
 }
 ```
 
+Alternatively, you can use the `withTina` higher-order component to wrap your site with the `<Tina>` component. `withTina` will automatically instantiate the CMS object.
+
+```javascript
+import { withTina } from 'tinacms'
+import MyApp from './my-app'
+
+export default withTina(MyApp)
+```
+
+`withTina` accepts a [configuration object](#cms-configuration) as a second argument that is passed to the `TinaCMS` constructor.
+
+```javascript
+import { withTina } from 'tinacms'
+import MyApp from './my-app'
+
+export default withTina(MyApp, {
+  sidebar: {
+    hidden: process.env.NODE_ENV === 'production',
+  },
+})
+```
+
 ## Accessing the CMS Object
 
 The CMS object can be retrieved from context via the `useCMS` hook.
