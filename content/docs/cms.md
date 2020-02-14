@@ -1,5 +1,6 @@
 ---
 title: The CMS
+next: /docs/forms
 ---
 
 The CMS object in Tina is a container for attaching and accessing Plugins and APIs. On its own, the CMS does very little; however, since it's the central integration point for everything that Tina does, it's extremely important!
@@ -88,6 +89,26 @@ cms.plugins.add({
 })
 ```
 
+Alternatively, you can call the `usePlugins` hook from inside a function component.
+
+```jsx
+import * as React from 'react'
+import { usePlugins } from 'tinacms'
+
+export function SomeComponent() {
+  usePlugins([
+    {
+      __type: 'hello',
+      name: 'hello-dj',
+      user: 'DJ',
+    },
+  ])
+  //...
+}
+```
+
+When adding plugins from inside a React component, the plugin is added when the component mounts, and removed when the component unmounts. This is both expected and encouraged, as Tina has a [Dynamic Plugin System](/blog/dynamic-plugin-system).
+
 ### Using a Plugin
 
 Retrieve all plugins of a given type via `cms.plugins.all`.
@@ -131,6 +152,8 @@ class HelloApi {
 const cms = new TinaCMS()
 cms.registerApi('hello', new HelloApi())
 ```
+
+> Unlike Plugins, APIs should be registered when the CMS is instantiated, and never removed.
 
 ### Using an API
 
@@ -201,6 +224,8 @@ interface TinaCMSConfig {
 }
 ```
 
+---
+
 | key                  | usage                                                                                                   |
 | -------------------- | ------------------------------------------------------------------------------------------------------- |
 | **plugins**          | Array of plugins to be added to the CMS object.                                                         |
@@ -209,6 +234,8 @@ interface TinaCMSConfig {
 | **sidebar.hidden**   | Removes the sidebar outright                                                                            |
 | **sidebar.position** | 'displace': sidebar pushes content to the side when open; 'overlay': sidebar overlaps content when open |
 | **sidebar.theme**    | Override certain sidebar styles                                                                         |
+
+---
 
 ```javascript
 import { TinaCMS } from 'tinacms'
