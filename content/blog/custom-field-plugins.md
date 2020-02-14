@@ -34,35 +34,31 @@ import { GitClient } from '@tinacms/git-client'
  */
 import RangeInput from '../components/RangeInput'
 
-export default class MyApp extends App {
+export default class Site extends App {
   constructor() {
     super()
     this.cms = new TinaCMS({
       apis: {
-        git: new GitClient('http://localhost:3001/___tina'),
+        git: new GitClient('http://localhost:3000/___tina'),
       },
       sidebar: {
         position: 'overlay',
         hidden: process.env.NODE_ENV === 'production',
       },
     })
+
+    /*
+     ** 2. Define the field plugin
+     */
+    this.customFieldPlugin = {
+      name: 'range-input',
+      Component: RangeInput,
+    }
+    /*
+     ** 3. Register the plugin with the cms
+     */
+    this.cms.fields.add(this.customFieldPlugin)
   }
-
-  /*
-  ** 2. Define the field plugin
-  */
-  customFieldPlugin = {
-    name: 'range-input',
-    Component: RangeInput,
-  }
-
-  /*
-  ** 3. Register the plugin with the cms
-  */
-  this.cms.fields.add(this.customFieldPlugin)
-
-  // TODO - TEST THIS UPDATE.
-  // should I add it on the CMS definition like the sidebar??
 
   render() {
     const { Component, pageProps } = this.props
