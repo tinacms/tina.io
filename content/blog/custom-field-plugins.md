@@ -14,6 +14,12 @@ consumes:
 
 In the [previous post](https://tinacms.org/blog/custom-field-components), we learned how to create a custom field component and register it to the sidebar. So let's **go full circle on the topic of custom fields** in TinaCMS. In this short but sweet post we’ll cover how to _turn a plain ol’ field component into a field plugin._
 
+In general a plugin is used to extend functionality in the CMS. A field plugin in particular allows us to create and register custom fields to the CMS. _There are a few reasons why you may want to create a field plugin._ By creating custom fields, you can completely control the editing experience and functionality. If the basic fields provided by Tina don't 100% fit your usecase, you can fill the gaps with a custom field.
+
+When a custom field is registered as a plugin, you can enclose all the custom functionality into a single plugin that can be used _ad infinitum_ in form definitions throughout your site. If the field has complex logic around parsing, validation, or formatting, this can be configured on the plugin itself (as opposed to a form definition). This can be helpful later down the line if and when you need to update or swap out a field plugin. In that case, you will only need to touch the files where the plugin is defined and registered with the CMS, as opposed to tracking down each form where it's used to make individual updates.
+
+Using the plugin API makes our 'higher-level' code more reusable and contained. This approach in particular upholds the [Dependency Inversion Principle](https://stackify.com/dependency-inversion-principle/), keeping the the field behavior and logic independent from the lower-level, core CMS functionality.
+
 **Getting Started 👏**
 
 To follow along, you should have a custom field component set-up with a Tina form. If not, no worries! Just take a gander at the post on [how to create a custom field component](https://tinacms.org/blog/custom-field-components); it should provide enough working knowledge to get going. In the following examples, I will continue using the [llama-filters](https://github.com/kendallstrautman/llama-filters) demo created in the previous post.
@@ -34,6 +40,14 @@ import { GitClient } from '@tinacms/git-client'
  */
 import RangeInput from '../components/RangeInput'
 
+/*
+ ** 2. Define the field plugin
+ */
+const customFieldPlugin = {
+  name: 'range-input',
+  Component: RangeInput,
+}
+
 export default class Site extends App {
   constructor() {
     super()
@@ -46,18 +60,10 @@ export default class Site extends App {
         hidden: process.env.NODE_ENV === 'production',
       },
     })
-
-    /*
-     ** 2. Define the field plugin
-     */
-    this.customFieldPlugin = {
-      name: 'range-input',
-      Component: RangeInput,
-    }
     /*
      ** 3. Register the plugin with the cms
      */
-    this.cms.fields.add(this.customFieldPlugin)
+    this.cms.fields.add(customFieldPlugin)
   }
 
   render() {
@@ -75,11 +81,9 @@ You’ll want to import the custom field component and then register the plugin 
 
 > If you’re working with Gatsby, this [looks slightly different](https://tinacms.org/docs/gatsby/custom-fields/). _Hint_: you’ll head to the **gatsby-browser.js** file to access the CMS instance.
 
-### Field Plugin Definition
+### Field Plugin Interface
 
-A plugin is used to extend functionality in the CMS. A field plugin in particular allows us to create and register custom fields to the CMS.
-
-The field plugin definition **requires (at a minimum) a name and a component.** The name will be used to reference the custom field in form definitions. The component is what will actually be rendered in the sidebar.
+The field plugin **requires (at a minimum) a name and a component.** The name will be used to reference the custom field in form definitions. The component is what will actually be rendered in the sidebar. The interface below should provide some insight into all that can go into creating a field plugin. When you register a field plugin with Tina, it expects an object with this similar shape.
 
 ```ts
 interface FieldPlugin {
@@ -99,7 +103,7 @@ interface FieldPlugin {
 }
 ```
 
-You can see that there are additional configuration functions and options. These options are incredibly useful for creating more complex fields that require [validation](https://tinacms.org/docs/fields/custom-fields#validate-optional) or formatting, such as an [email field](https://tinacms.org/docs/gatsby/custom-fields/).
+You can see that there are additional configuration functions and options. These options are incredibly useful for creating more complex fields that require [validation](https://tinacms.org/docs/fields/custom-fields#validate-optional), parsing, or formatting, such as an [email field](https://tinacms.org/docs/gatsby/custom-fields/).
 
 ## 2. Use the custom field in a form
 
