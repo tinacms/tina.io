@@ -107,7 +107,7 @@ You can see that there are additional configuration functions and options. These
 
 ## 2. Use the custom field in a form
 
-Now that the plugin is registered with the CMS, we can use it in any form definition. Going back to the [llama-filters demo](https://github.com/kendallstrautman/llama-filters), let’s head to index.js where the Tina form is configured. We need to **update the form options** for our image saturation field to reference the field plugin as opposed to calling the component directly.
+Now that the plugin is registered with the CMS, we can use it in any form definition. Going back to the [llama-filters demo](https://github.com/kendallstrautman/llama-filters), let’s head to `index.js` where the Tina form is configured. We need to **update the form options** for our image saturation field to reference the field plugin as opposed to calling the component directly.
 
 ```diff
 /*
