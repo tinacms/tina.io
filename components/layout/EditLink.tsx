@@ -9,7 +9,7 @@ export const EditLink = () => {
     localStorage.setItem('fork_full_name', '')
 
     authTab = window.open(
-      `https://github.com/login/oauth/authorize?scope=public_repo&client_id=${process.env.GITHUB_CLIENT_ID}`,
+      `/github/start-auth`,
       '_blank',
       'fullscreen=no, width=1000, height=800'
     )
