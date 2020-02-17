@@ -1,6 +1,6 @@
 ---
 title: Creating Field Plugins
-date: '2020-02-14T07:00:00.000Z'
+date: '2020-02-17T07:00:00.000Z'
 author: Kendall Strautman
 draft: false
 consumes:
