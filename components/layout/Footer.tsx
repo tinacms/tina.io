@@ -5,6 +5,7 @@ import TinaWordmark from '../logo/TinaWordmark'
 import TwitterIconSvg from '../../public/svg/twitter-icon.svg'
 import GithubIconSvg from '../../public/svg/github-icon.svg'
 import { EmailForm } from '../forms'
+import { EditLink } from './EditLink'
 
 export const Footer = styled(({ ...styleProps }) => {
   return (
@@ -31,6 +32,8 @@ export const Footer = styled(({ ...styleProps }) => {
           <EmailForm isFooter />
         </FooterForm>
         <Footnote>
+          <EditLink />
+          &nbsp;&nbsp;|&nbsp;&nbsp;
           <a
             href="https://github.com/tinacms/tinacms/blob/master/LICENSE"
             target="_blank"

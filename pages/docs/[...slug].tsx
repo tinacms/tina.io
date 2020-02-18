@@ -23,6 +23,11 @@ import { NextSeo } from 'next-seo'
 
 export default function DocTemplate(props) {
   const [open, setOpen] = useState(false)
+
+  //workaround for fallback being not implemented
+  if (!props.doc) {
+    return <div></div>
+  }
   const frontmatter = props.doc.data
   const markdownBody = props.doc.content
   const excerpt = formatExcerpt(props.doc.content)
@@ -106,12 +111,14 @@ export async function unstable_getStaticPaths() {
   const fg = require('fast-glob')
   const contentDir = './content/docs/'
   const files = await fg(`${contentDir}**/*.md`)
-  return files
-    .filter(file => !file.endsWith('index.md'))
-    .map(file => {
-      const path = file.substring(contentDir.length, file.length - 3)
-      return { params: { slug: path.split('/') } }
-    })
+  return {
+    paths: files
+      .filter(file => !file.endsWith('index.md'))
+      .map(file => {
+        const path = file.substring(contentDir.length, file.length - 3)
+        return { params: { slug: path.split('/') } }
+      }),
+  }
 }
 
 const DocsNavToggle = styled(NavToggle)`

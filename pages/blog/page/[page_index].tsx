@@ -18,6 +18,11 @@ import { DynamicLink, BlogPagination } from '../../../components/ui'
 const Index = props => {
   const { currentPage, numPages } = props
 
+  //workaround for fallback being not implemented
+  if (!props.posts) {
+    return <div></div>
+  }
+
   return (
     <Layout>
       <NextSeo
@@ -76,7 +81,7 @@ export async function unstable_getStaticPaths() {
     })
   }
 
-  return pages
+  return { paths: pages }
 }
 
 export async function unstable_getStaticProps(ctx) {
@@ -85,6 +90,7 @@ export async function unstable_getStaticProps(ctx) {
   // grab all md files
   const fg = require('fast-glob')
   const files = await fg(`./content/blog/**/*.md`)
+
   const posts = await Promise.all(
     files.map(async file => {
       const rawData = await readFile(file)

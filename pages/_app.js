@@ -1,26 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 import App from 'next/app'
 import Head from 'next/head'
-import { withTina } from 'tinacms'
+import { TinaCMS, Tina } from 'tinacms'
 import { GitClient } from '@tinacms/git-client'
 import { DefaultSeo } from 'next-seo'
 import data from '../content/siteConfig.json'
 import TagManager from 'react-gtm-module'
 import { GlobalStyle } from '../components/styles/GlobalStyle'
+import { EditModeContext } from '../utils/editContext'
 
-class Site extends App {
-  componentDidMount() {
-    if (process.env.NODE_ENV === 'production') {
-      TagManager.initialize({
-        gtmId: process.env.GTM_ID,
-      })
-    }
+const MainLayout = ({ Component, pageProps }) => {
+  const [isEditMode, setIsEditMode] = useState(false)
+
+  const tinaConfig = {
+    cms: {
+      apis: {
+        git: new GitClient('http://localhost:3000/___tina'),
+      },
+    },
+    sidebar: {
+      hidden: !isEditMode,
+    },
   }
 
-  render() {
-    const { Component, pageProps } = this.props
-    return (
-      <>
+  const cms = React.useMemo(() => new TinaCMS(tinaConfig), [tinaConfig])
+
+  const exitEditMode = () => {
+    fetch(`/api/reset-preview`).then(() => {
+      window.location.reload()
+    })
+  }
+
+  return (
+    <EditModeContext.Provider value={{ isEditMode, setIsEditMode }}>
+      <Tina cms={cms} {...tinaConfig.sidebar}>
         <DefaultSeo
           title={data.seoDefaultTitle}
           titleTemplate={'%s | ' + data.title}
@@ -50,19 +63,26 @@ class Site extends App {
           <meta name="theme-color" content="#E6FAF8" />
         </Head>
         <GlobalStyle />
+        {isEditMode && <div onClick={exitEditMode}>Exit edit mode</div>}
         <Component {...pageProps} />
-      </>
-    )
+      </Tina>
+    </EditModeContext.Provider>
+  )
+}
+
+class Site extends App {
+  componentDidMount() {
+    if (process.env.NODE_ENV === 'production') {
+      TagManager.initialize({
+        gtmId: process.env.GTM_ID,
+      })
+    }
+  }
+
+  render() {
+    const { Component, pageProps } = this.props
+    return <MainLayout Component={Component} pageProps={pageProps} />
   }
 }
 
-export default withTina(Site, {
-  cms: {
-    apis: {
-      git: new GitClient('http://localhost:3000/___tina'),
-    },
-  },
-  sidebar: {
-    hidden: process.env.NODE_ENV === 'production',
-  },
-})
+export default Site

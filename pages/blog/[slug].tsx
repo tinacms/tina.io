@@ -15,6 +15,11 @@ import { NextSeo } from 'next-seo'
 import siteData from '../../content/siteConfig.json'
 
 export default function BlogTemplate(props) {
+  //workaround for fallback being not implemented
+  if (!props.post) {
+    return <div></div>
+  }
+
   const frontmatter = props.post.data
   const markdownBody = props.post.content
   const excerpt = formatExcerpt(props.post.content)
@@ -77,14 +82,16 @@ export async function unstable_getStaticProps(ctx) {
 
 export async function unstable_getStaticPaths() {
   const blogs = await fg(`./content/blog/**/*.md`)
-  return blogs.map(file => {
-    const slug = file
-      .split('/blog/')[1]
-      .replace(/ /g, '-')
-      .slice(0, -3)
-      .trim()
-    return { params: { slug } }
-  })
+  return {
+    paths: blogs.map(file => {
+      const slug = file
+        .split('/blog/')[1]
+        .replace(/ /g, '-')
+        .slice(0, -3)
+        .trim()
+      return { params: { slug } }
+    }),
+  }
 }
 
 const BlogWrapper = styled(Wrapper)`
