@@ -1,8 +1,11 @@
 const axios = require('axios')
 
-/* 
-  data: {
-    ...proxy data
+/*
+  ...
+  body: {
+    proxy_data: {
+      ...proxy data
+    }
   }
 */
 export default (req, res) => {
