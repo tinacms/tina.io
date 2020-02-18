@@ -21,7 +21,7 @@ Below is an example of how a `number` field could be defined in a Gatsby remark 
 const BlogPostForm = {
   fields: [
     {
-      name: 'rawFrontmatter.weight',
+      name: 'frontmatter.weight',
       component: 'number',
       label: 'Weight',
       description: 'Enter a weight for post sorting',
@@ -42,7 +42,7 @@ const BlogPostForm = {
 ## Interface
 
 ```typescript
-interface TextConfig {
+interface NumberConfig {
   name: string
   component: 'number'
   label?: string
