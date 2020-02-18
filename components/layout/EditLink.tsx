@@ -5,7 +5,6 @@ export const EditLink = () => {
   let authTab: Window
 
   const onClick = async () => {
-    localStorage.setItem('github_access_token', '')
     localStorage.setItem('fork_full_name', '')
 
     authTab = window.open(
@@ -48,7 +47,6 @@ async function updateStorageEvent(e) {
 
 async function handleAuthCode(code: string) {
   const token = await requestGithubAccessToken(code)
-  Cookies.set('github_access_token', token, { sameSite: 'strict' })
 }
 
 async function handleForkCreated(forkName: string) {

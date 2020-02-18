@@ -8,6 +8,9 @@ export default (req, res) => {
     req.query.code
   ).then(tokenResp => {
     const { access_token } = qs.parse(tokenResp.data)
+    res.cookie('github_access_token', access_token, {
+      httpOnly: true,
+    })
     res.status(200).json({ access_token })
   })
 }
