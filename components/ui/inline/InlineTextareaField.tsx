@@ -63,7 +63,6 @@ const InputFocusWrapper = styled.div`
     pointer-events: none;
     z-index: 1000;
     transition: all 150ms ease-out;
-    transition-delay: 300ms;
   }
 `
 
