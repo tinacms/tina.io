@@ -2,16 +2,15 @@ import Cookies from 'js-cookie'
 
 export default function Authorizing() {
   const createFork = async () => {
-    const accessToken = Cookies.get('github_access_token')
-    const resp = await fetch(
-      `https://api.github.com/repos/${process.env.REPO_FULL_NAME}/forks`,
-      {
-        method: 'POST',
-        headers: {
-          Authorization: 'token ' + accessToken,
+    const resp = await fetch(`/api/proxy-github`, {
+      method: 'POST',
+      body: JSON.stringify({
+        proxy_data: {
+          url: `https://api.github.com/repos/${process.env.REPO_FULL_NAME}/forks`,
+          method: 'POST',
         },
-      }
-    )
+      }),
+    })
 
     const { full_name } = await resp.json()
     const forkFullName = full_name
