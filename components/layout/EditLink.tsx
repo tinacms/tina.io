@@ -4,15 +4,76 @@ import Cookies from 'js-cookie'
 export const EditLink = () => {
   let authTab: Window
 
+  const isTokenValid = async () => {
+    try {
+      const response = await fetch(`/api/proxy-github`, {
+        method: 'POST',
+        body: JSON.stringify({
+          proxy_data: {
+            url: `https://api.github.com/user`,
+            method: 'GET',
+          },
+        }),
+      })
+      const data = await response.json()
+      if (data.login) {
+        return true
+      }
+      return false
+    }
+    catch (e) {
+      return false
+    }
+  }
+
+  const isForkValid = async (fork) => {
+    const branch = "master"; // static branch for now
+    try {
+      const response = await fetch(`/api/proxy-github`, {
+        method: 'POST',
+        body: JSON.stringify({
+          proxy_data: {
+            url: `https://api.github.com/repos/${fork}/git/ref/heads/${branch}`,
+            method: 'GET',
+          },
+        }),
+      })
+      const data = await response.json()
+      
+      if (data.ref === "refs/heads/" + branch) {
+        return true
+      }
+      return false
+    } catch (e) {
+      return false
+    }
+  }
+
   const onClick = async () => {
+    const accessTokenAlreadyExists = await isTokenValid();
+    const fork = Cookies.get("fork_full_name");
+    
     localStorage.setItem('fork_full_name', '')
-
-    authTab = window.open(
-      `/github/start-auth`,
-      '_blank',
-      'fullscreen=no, width=1000, height=800'
-    )
-
+    if (accessTokenAlreadyExists) {
+      if (fork && await isForkValid(fork)) {
+          handleForkCreated(fork)
+          return;
+      } else {
+        authTab = window.open(
+          `/github/fork`,
+          '_blank',
+          'fullscreen=no, width=1000, height=800'
+        )
+      }
+    } else {
+      authTab = window.open(
+        `/github/start-auth`,
+        '_blank',
+        'fullscreen=no, width=1000, height=800'
+      )
+    }
+    
+    
     window.addEventListener(
       'storage',
       e => {
