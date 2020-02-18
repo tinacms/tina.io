@@ -1,5 +1,3 @@
-import Cookies from 'js-cookie'
-
 export default function Authorizing() {
   const createFork = async () => {
     const resp = await fetch(`/api/proxy-github`, {

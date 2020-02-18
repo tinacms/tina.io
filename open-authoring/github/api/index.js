@@ -93,13 +93,14 @@ const saveContent = async (
   })
 }
 
-const createAccessToken = (clientId, clientSecret, code) => {
+const createAccessToken = (clientId, clientSecret, code, state) => {
   return axios.post(
     `https://github.com/login/oauth/access_token`,
     qs.stringify({
       client_id: clientId,
       client_secret: clientSecret,
       code: code,
+      state,
     })
   )
 }
