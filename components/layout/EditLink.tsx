@@ -32,8 +32,8 @@ export const EditLink = () => {
       `/github/start-auth?state=${authState}`,
       '_blank',
       window,
-      700,
-      500
+      1000,
+      700
     )
 
     window.addEventListener(
