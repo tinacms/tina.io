@@ -25,12 +25,6 @@ const MainLayout = ({ Component, pageProps }) => {
 
   const cms = React.useMemo(() => new TinaCMS(tinaConfig.cms), [tinaConfig])
 
-  const exitEditMode = () => {
-    fetch(`/api/reset-preview`).then(() => {
-      window.location.reload()
-    })
-  }
-
   return (
     <EditModeContext.Provider value={{ isEditMode, setIsEditMode }}>
       <Tina cms={cms} {...tinaConfig.sidebar}>
