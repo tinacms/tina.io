@@ -56,7 +56,7 @@ const Index = props => {
 }
 
 /*
- ** GET STATIC PROPS ---------------------------------
+ ** DATA FETCHING ---------------------------------
  */
 
 const POSTS_PER_PAGE = 8

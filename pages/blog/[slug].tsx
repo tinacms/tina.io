@@ -23,33 +23,7 @@ import {
 } from '../../components/ui/inline'
 
 export default function BlogTemplate({ markdownFile, siteConfig }) {
-  const formOptions = {
-    label: 'Blog Post',
-    fields: [
-      {
-        label: 'Title',
-        name: 'frontmatter.title',
-        component: 'text',
-      },
-      {
-        label: 'Author',
-        name: 'frontmatter.author',
-        component: 'text',
-      },
-      {
-        name: 'frontmatter.draft',
-        component: 'toggle',
-        label: 'Draft',
-      },
-      {
-        label: 'Date Posted',
-        name: 'frontmatter.date',
-        component: 'date',
-        dateFormat: 'MMMM DD YYYY',
-        timeFormat: false,
-      },
-    ],
-  }
+  // Registers Tina Form
   const [data, form] = useLocalMarkdownForm(markdownFile, formOptions)
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
@@ -97,7 +71,7 @@ export default function BlogTemplate({ markdownFile, siteConfig }) {
           <RichTextWrapper>
             <BlogMeta>
               <p>
-                <span>By</span>
+                <span>By: </span>
                 <InlineTextField name="frontmatter.author" />
               </p>
               <p>{formatDate(frontmatter.date)}</p>
@@ -113,7 +87,7 @@ export default function BlogTemplate({ markdownFile, siteConfig }) {
 }
 
 /*
- ** Data Fetching --------------------------------------------------
+ ** DATA FETCHING --------------------------------------------------
  */
 
 export async function unstable_getStaticProps(ctx) {
@@ -147,6 +121,47 @@ export async function unstable_getStaticPaths() {
       .trim()
     return { params: { slug } }
   })
+}
+
+/*
+ ** TINA FORM CONFIG --------------------------------------------------
+ */
+
+const formOptions = {
+  label: 'Blog Post',
+  fields: [
+    {
+      label: 'Title',
+      name: 'frontmatter.title',
+      component: 'text',
+    },
+    {
+      label: 'Author',
+      name: 'frontmatter.author',
+      component: 'text',
+    },
+    /*
+     ** TODO: add this back in once
+     ** draft functionality works again
+     */
+    // {
+    //   name: 'frontmatter.draft',
+    //   component: 'toggle',
+    //   label: 'Draft',
+    // },
+    {
+      label: 'Date Posted',
+      name: 'frontmatter.date',
+      component: 'date',
+      dateFormat: 'MMMM DD YYYY',
+      timeFormat: false,
+    },
+    {
+      label: 'Blog Body',
+      name: 'markdownBody',
+      component: 'markdown',
+    },
+  ],
 }
 
 /*
