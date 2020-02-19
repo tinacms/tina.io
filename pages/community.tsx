@@ -29,48 +29,7 @@ import ForumIconSvg from '../public/svg/forum-icon.svg'
 import { NextSeo } from 'next-seo'
 
 export default function CommunityPage({ jsonFile, metadata }) {
-  const formOptions = {
-    fields: [
-      {
-        label: 'Headline',
-        name: 'headline',
-        description: 'Enter the main headline here',
-        component: 'text',
-      },
-      /*
-       ** TODO: make this gif an image field
-       */
-      {
-        label: 'Gif',
-        name: 'gif.src',
-        description: 'Enter path to gif from static',
-        component: 'text',
-      },
-      {
-        label: 'Gif Alt',
-        name: 'gif.alt',
-        description: 'Enter Gif alt tag here',
-        component: 'text',
-      },
-      {
-        label: 'Secondary Headline',
-        name: 'supporting_headline',
-        description: 'Enter the secondary headline here',
-        component: 'textarea',
-      },
-      {
-        label: 'Secondary Body Copy',
-        name: 'supporting_body',
-        description: 'Enter the body copy here',
-        component: 'markdown',
-      },
-      {
-        label: 'Newsletter CTA',
-        name: 'newsletter_cta',
-        component: 'text',
-      },
-    ],
-  }
+  // Registers Tina Form
   const [data, form] = useLocalJsonForm(jsonFile, formOptions)
 
   return (
@@ -192,6 +151,10 @@ export default function CommunityPage({ jsonFile, metadata }) {
   )
 }
 
+/*
+ ** DATA FETCHING -----------------------------------------------
+ */
+
 export async function unstable_getStaticProps() {
   const siteMetadata = await import('../content/siteConfig.json')
   const communityData = await import('../content/pages/community.json')
@@ -206,6 +169,53 @@ export async function unstable_getStaticProps() {
   }
 }
 
+/**
+ *  TINA FORM CONFIG --------------------------------------------
+ */
+const formOptions = {
+  label: 'Community Page',
+  fields: [
+    {
+      label: 'Headline',
+      name: 'headline',
+      description: 'Enter the main headline here',
+      component: 'text',
+    },
+    {
+      label: 'Community Image',
+      name: 'img',
+      component: 'group',
+      fields: [
+        {
+          label: 'Image',
+          name: 'src',
+          component: 'image',
+          parse: filename => `../public/img/${filename}`,
+          uploadDir: () => '/public/img/',
+          previewSrc: data => `${data.img.src}`,
+        },
+        { label: 'Alt Text', name: 'alt', component: 'text' },
+      ],
+    },
+    {
+      label: 'Secondary Headline',
+      name: 'supporting_headline',
+      description: 'Enter the secondary headline here',
+      component: 'textarea',
+    },
+    {
+      label: 'Secondary Body Copy',
+      name: 'supporting_body',
+      description: 'Enter the body copy here',
+      component: 'markdown',
+    },
+    {
+      label: 'Newsletter CTA',
+      name: 'newsletter_cta',
+      component: 'text',
+    },
+  ],
+}
 /*
  ** STYLES ------------------------------------------------------
  */
