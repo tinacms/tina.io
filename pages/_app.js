@@ -20,6 +20,7 @@ const MainLayout = ({ Component, pageProps }) => {
     },
     sidebar: {
       hidden: !isEditMode,
+      position: 'displace',
     },
   }
 
