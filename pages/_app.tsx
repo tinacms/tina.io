@@ -20,16 +20,11 @@ const MainLayout = ({ Component, pageProps }) => {
     },
     sidebar: {
       hidden: !isEditMode,
+      position: 'displace' as any,
     },
   }
 
-  const cms = React.useMemo(() => new TinaCMS(tinaConfig), [tinaConfig])
-
-  const exitEditMode = () => {
-    fetch(`/api/reset-preview`).then(() => {
-      window.location.reload()
-    })
-  }
+  const cms = React.useMemo(() => new TinaCMS(tinaConfig.cms), [tinaConfig])
 
   return (
     <EditModeContext.Provider value={{ isEditMode, setIsEditMode }}>
@@ -63,7 +58,6 @@ const MainLayout = ({ Component, pageProps }) => {
           <meta name="theme-color" content="#E6FAF8" />
         </Head>
         <GlobalStyle />
-        {isEditMode && <div onClick={exitEditMode}>Exit edit mode</div>}
         <Component {...pageProps} />
       </Tina>
     </EditModeContext.Provider>

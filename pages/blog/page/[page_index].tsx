@@ -12,7 +12,6 @@ import {
   MarkdownContent,
   RichTextWrapper,
 } from '../../../components/layout'
-import SmallArrow from '../../../public/svg/small-arrow.svg'
 import { DynamicLink, BlogPagination } from '../../../components/ui'
 
 const Index = props => {
@@ -62,7 +61,7 @@ const Index = props => {
 }
 
 /*
- ** GET INITIAL PROPS ---------------------------------
+ ** DATA FETCHING ---------------------------------
  */
 
 const POSTS_PER_PAGE = 8
@@ -215,7 +214,3 @@ const BlogMeta = styled.div`
     flex-direction: row;
   }
 `
-
-const Pagination = styled.div``
-
-const PaginationSelect = styled.div``

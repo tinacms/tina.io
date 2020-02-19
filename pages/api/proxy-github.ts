@@ -18,5 +18,7 @@ export default (req, res) => {
     },
   }).then(resp => {
     res.status(resp.status).json(resp.data)
+  }).catch(err => {
+    res.status(err.response.status).json(err.response.data)
   })
 }

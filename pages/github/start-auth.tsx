@@ -1,4 +1,7 @@
 import { useEffect } from 'react'
+import { AuthLayout } from '../../components/layout'
+import styled from 'styled-components'
+import { Button } from '../../components/ui'
 
 export default function StartAuth() {
   const onStartAuth = () => {
@@ -9,11 +12,18 @@ export default function StartAuth() {
     )
   }
   return (
-    <>
-      <div>
-        This site can be edited through Tina, which requires a Github Account
-      </div>
-      <button onClick={onStartAuth}>Get Started</button>
-    </>
+    <AuthLayout>
+      <h2>
+        This site can be edited through Tina, which requires access to your
+        GitHub account.
+      </h2>
+      <AuthButton color="primary" onClick={onStartAuth}>
+        Authorize GitHub
+      </AuthButton>
+    </AuthLayout>
   )
 }
+
+const AuthButton = styled(Button)`
+  margin: 0 auto 1rem auto;
+`
