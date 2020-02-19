@@ -1,4 +1,6 @@
 const qs = require('qs')
+import { serialize } from 'cookie'
+
 const { createAccessToken } = require('../../open-authoring/github/api')
 
 export default (req, res) => {
@@ -12,9 +14,13 @@ export default (req, res) => {
     if (error) {
       res.status(400).json({ error })
     } else {
-      res.cookie('github_access_token', access_token, {
-        httpOnly: true,
-      })
+      res.setHeader(
+        'Set-Cookie',
+        serialize('github_access_token', access_token, {
+          path: '/',
+          httpOnly: true,
+        })
+      )
       res.status(200).json({ access_token })
     }
   })
