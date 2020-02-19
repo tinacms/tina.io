@@ -88,9 +88,6 @@ export default function HomePage(props) {
   }
   const [data, form] = useLocalJsonForm(props.jsonFile, formOptions)
 
-  /* ¡Important for InlineForm! */
-  if (!form) return null
-
   return (
     <InlineForm form={form}>
       <Layout pathname="/">

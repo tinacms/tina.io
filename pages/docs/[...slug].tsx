@@ -56,9 +56,6 @@ export default function DocTemplate(props) {
   const markdownBody = data.markdownBody
   const excerpt = formatExcerpt(props.markdownFile.markdownBody)
 
-  /* ¡Important! */
-  if (!form) return null
-
   return (
     <InlineForm form={form}>
       <DocsLayout>

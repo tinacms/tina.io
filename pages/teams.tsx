@@ -46,9 +46,6 @@ export default function TeamsPage(props) {
   }
   const [data, form] = useLocalJsonForm(props.jsonFile, formOptions)
 
-  // ¡Important!
-  if (!form) return null
-
   return (
     <InlineForm form={form}>
       <TeamsLayout page="teams" color={'secondary'}>

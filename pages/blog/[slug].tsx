@@ -55,9 +55,6 @@ export default function BlogTemplate({ markdownFile, siteConfig }) {
   const markdownBody = data.markdownBody
   const excerpt = formatExcerpt(data.markdownBody)
 
-  /* ¡Important! */
-  if (!form) return null
-
   return (
     <InlineForm form={form}>
       <Layout pathname="/">

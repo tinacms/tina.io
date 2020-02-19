@@ -68,9 +68,6 @@ export default function CommunityPage({ jsonFile, metadata }) {
   }
   const [data, form] = useLocalJsonForm(jsonFile, formOptions)
 
-  /* ¡Important! */
-  if (!form) return null
-
   return (
     <InlineForm form={form}>
       <Layout>
