@@ -73,7 +73,7 @@ Since _Tyra_ is a Git repository, all changes in content will need to be committ
 
 In the _Tyra Starter_, blog posts are contained in a functional `Post` component, which renders the markdown, SEO-focused metadata, and the hero image for each post.
 
-To let our content authors edit these, we can wrap our `Post` component in a higher-order component provided by Tina- `liveRemarkForm`.
+To let our content authors edit these, we can wrap our `Post` component in a higher-order component provided by Tina- `inlineRemarkForm`.
 
 Here's what that looks like:
 
@@ -88,7 +88,7 @@ import Seo from './seo.js'
 import MetaSeo from '../common/seo'
 import { graphql } from 'gatsby'
 
-import { liveRemarkForm } from 'gatsby-tinacms-remark' // New Tina Imports!
+import { inlineRemarkForm } from 'gatsby-tinacms-remark' // New Tina Imports!
 
 const Post = ({ location, data }) => {
   const {
@@ -158,12 +158,12 @@ export const query = graphql`
   }
 `
 
-export default liveRemarkForm(Post, { queryName: 'post' })
+export default inlineRemarkForm(Post, { queryName: 'post' })
 ```
 
-The function `liveRemarkForm` will take our `Post` component as an argument and return a wrapped component with all the plumbing Tina needs. This pattern is named ["higher-order components"](https://reactjs.org/docs/higher-order-components.html)- it allows the injection of custom logic into existing React components.
+The function `inlineRemarkForm` will take our `Post` component as an argument and return a wrapped component with all the plumbing Tina needs. This pattern is named ["higher-order components"](https://reactjs.org/docs/higher-order-components.html)- it allows the injection of custom logic into existing React components.
 
-In our GraphQL, we've added a fragment `TinaRemark`. This pulls out additional data that Tina needs in order to allow file editing. I also used a non-standard query name for my post data (`post`). Thankfully, it's easy to change what data Tina uses by passing in a configuration object to `liveRemarkForm`.
+In our GraphQL, we've added a fragment `TinaRemark`. This pulls out additional data that Tina needs in order to allow file editing. I also used a non-standard query name for my post data (`post`). Thankfully, it's easy to change what data Tina uses by passing in a configuration object to `inlineRemarkForm`.
 
 At this point, if we start our application, we can hop over to [localhost:8000](http://localhost:8000/) and see that Tina is working!
 
@@ -284,7 +284,7 @@ const FormConfig = {
   ]
 };
 
-export default liveRemarkForm(Post, FormConfig);  // Replaces the inline form config.
+export default inlineRemarkForm(Post, FormConfig);  // Replaces the inline form config.
 ```
 
 We're using `text`, `markdown`, `date`, and even `image` fields to make the post authoring experience nicer. Tina has [a bunch](https://tinacms.org/docs/fields/) of built-in fields, and even allows you to [add your own](https://tinacms.org/docs/fields/custom-fields) if you'd like.
@@ -312,9 +312,7 @@ Putting all that together, our sidebar looks a _lot_ more inviting and easier to
 
 ![We have a sidebar that's nice!](/img/blog/gatsby-tina-101/madalyn_blog_2.png)
 
-> **Note:**
->
-> Since your content authors may not fill out all fields immediately (like a developer in a Markdown file), its important to make sure your site robustly handles potentially empty fields in `frontmatter`.
+> **Note:** Since your content authors may not fill out all fields immediately (like a developer in a Markdown file), its important to make sure your site robustly handles potentially empty fields in `frontmatter`.
 
 It'd sure be nicer though if we could just edit content right on the page, though. Let's do that now.
 
@@ -326,7 +324,7 @@ Thankfully, Tina supports inline editing with a "what you see is what you get" (
 
 ### Adding Edit Props
 
-The higher order `liveRemarkForm` component passes down two props we haven't used yet: `isEditing` and `setIsEditing`. You can use these props to toggle and observe "edit mode" in your code. These need to be added to your component that gets wrapped in `liveRemarkForm`:
+The higher order `inlineRemarkForm` component passes down two props we haven't used yet: `isEditing` and `setIsEditing`. You can use these props to toggle and observe "edit mode" in your code. These need to be added to your component that gets wrapped in `inlineRemarkForm`:
 
 ```
 // src/blog/post.js
