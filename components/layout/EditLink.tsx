@@ -32,11 +32,12 @@ export const EditLink = () => {
   }
 
   const isForkValid = async (fork: string) => {
-    const branch = 'master' // static branch for now
+    const branch = Cookies.get('head_branch') || 'master'
 
     const forkData = await getBranch(fork, branch)
     if (!forkData) return false
     if (forkData.ref === 'refs/heads/' + branch) {
+      Cookies.set('head_branch', branch)
       return true
     }
     return false
@@ -101,7 +102,7 @@ export const EditLink = () => {
   }, [])
 
   return (
-    <a href="#" onClick={isEditMode ? exitEditMode : enterEditMode}>
+    <a href="javascript:void();" onClick={isEditMode ? exitEditMode : enterEditMode}>
       {isEditMode ? 'Exit Edit Mode' : 'Edit This Site'}
     </a>
   )

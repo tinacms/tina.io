@@ -23,6 +23,7 @@ export default function Authorizing() {
     const forkFullName = full_name
     if (forkFullName) {
       localStorage.setItem('fork_full_name', full_name)
+      Cookies.set('head_branch', 'master') // default fork branch
       window.close()
     } else {
       alert('Could not fork the site') //TODO - show clean error message
@@ -33,7 +34,7 @@ export default function Authorizing() {
 
   useEffect(() => {  // check if user already has a fork and if so use it
     (async () => {
-      const branch = "master";
+      const branch = Cookies.get('head_branch') || "master"
 
       const userData = await getUser()
       if (!userData) return setForkValidating(false)
@@ -43,6 +44,7 @@ export default function Authorizing() {
       if (!forkData) return setForkValidating(false)
       if (forkData.ref === "refs/heads/" + branch) { // found fork
         localStorage.setItem('fork_full_name', expectedFork)
+        Cookies.set('head_branch', branch)
         window.close()
         return
       }
