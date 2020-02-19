@@ -117,7 +117,7 @@ async function updateStorageEvent(e, authState: string) {
 }
 
 async function handleAuthCode(code: string, authState: string) {
-  const token = await requestGithubAccessToken(code, authState)
+  await requestGithubAccessToken(code, authState)
 }
 
 async function handleForkCreated(forkName: string) {
@@ -131,6 +131,4 @@ const requestGithubAccessToken = async (code: string, authState: string) => {
   const resp = await fetch(
     `/api/get-github-access-token?code=${code}&state=${authState}`
   )
-  const tokenData = await resp.json()
-  return tokenData.access_token
 }

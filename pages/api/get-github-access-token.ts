@@ -21,7 +21,7 @@ export default (req, res) => {
           httpOnly: true,
         })
       )
-      res.status(200).json({ access_token })
+      res.status(200).json({})
     }
   })
 }
