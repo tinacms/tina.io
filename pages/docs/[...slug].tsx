@@ -29,28 +29,8 @@ import {
 import { TinaIcon } from '../../components/logo'
 
 export default function DocTemplate(props) {
-  const formOptions = {
-    label: 'Tina Doc',
-    fields: [
-      {
-        label: 'Title',
-        name: 'frontmatter.title',
-        component: 'text',
-      },
-      {
-        label: 'Previous Doc',
-        name: 'frontmatter.prev',
-        component: 'text',
-      },
-      {
-        label: 'Next Doc',
-        name: 'frontmatter.next',
-        component: 'text',
-      },
-    ],
-  }
+  // Registers Tina Form
   const [data, form] = useLocalMarkdownForm(props.markdownFile, formOptions)
-
   const [open, setOpen] = useState(false)
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
@@ -116,6 +96,10 @@ export default function DocTemplate(props) {
   )
 }
 
+/*
+ * DATA FETCHING ------------------------------------------------------
+ */
+
 export async function unstable_getStaticProps(ctx) {
   let { slug: slugs } = ctx.params
 
@@ -171,6 +155,40 @@ const DocsNavToggle = styled(NavToggle)`
     display: none;
   }
 `
+
+/*
+ * TINA FORM CONFIG -----------------------------------------------------
+ */
+
+const formOptions = {
+  label: 'Tina Doc',
+  fields: [
+    {
+      label: 'Title',
+      name: 'frontmatter.title',
+      component: 'text',
+    },
+    {
+      label: 'Previous Doc',
+      name: 'frontmatter.prev',
+      component: 'text',
+    },
+    {
+      label: 'Next Doc',
+      name: 'frontmatter.next',
+      component: 'text',
+    },
+    {
+      label: 'Documentation Body',
+      name: 'markdownBody',
+      component: 'markdown',
+    },
+  ],
+}
+
+/*
+ * STYLES --------------------------------------------------------------
+ */
 
 const DocsTinaIcon = styled(TinaIcon)`
   position: relative;
