@@ -82,21 +82,20 @@ If you followed the implementation in our Next.js docs, you'll want to go to the
 class MyApp extends App {
   constructor() {
     super()
-    this.cms = new TinaCMS()
-    const client = new GitClient('http://localhost:3001/___tina')
-    this.cms.registerApi('git', client)
-  }
-  // Sidebar options
-  options = {
-    sidebar: {
-      hidden: process.env.NODE_ENV === 'production',
-    },
+    this.cms = new TinaCMS({
+      apis: {
+        git: new GitClient('http://localhost:3001/___tina'),
+      },
+      sidebar: {
+        hidden: process.env.NODE_ENV === 'production',
+      },
+    })
   }
   render() {
     const { Component, pageProps } = this.props
-    // Pass in sidebar options to Tina component
+
     return (
-      <Tina cms={this.cms} {...this.options.sidebar}>
+      <Tina cms={this.cms}>
         <Component {...pageProps} />
       </Tina>
     )
