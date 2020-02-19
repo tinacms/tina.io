@@ -1,6 +1,7 @@
 import Cookies from 'js-cookie'
 import { useEffect, useState } from 'react'
 import { response } from 'express'
+import { getUser, getBranch } from '../../open-authoring/github/api'
 
 export default function Authorizing() {
   const createFork = async () => {
@@ -25,45 +26,29 @@ export default function Authorizing() {
   }
 
   const [forkValidating, setForkValidating] = useState(true)
- 
-  useEffect(() => {  
+
+  useEffect(() => {  // check if user already has a fork and if so use it
     const branch = "master";
-    fetch(`/api/proxy-github`, {
-      method: 'POST',
-      body: JSON.stringify({
-        proxy_data: {
-          url: `https://api.github.com/user`,
-          method: 'GET',
-        },
-      }),
-    }).then( rawResponse => {
-      return rawResponse.json()
-    }).then( data => {
-      return data.login
-    }).then( login => {
+    getUser().then( async rawResponse => {
+      const data = await rawResponse.json()
+      const login = data.login
       const expectedFork = login + "/" + process.env.REPO_FULL_NAME.split('/')[1]
-      fetch(`/api/proxy-github`, {
-        method: 'POST',
-        body: JSON.stringify({
-          proxy_data: {
-            url: `https://api.github.com/repos/${expectedFork}/git/ref/heads/${branch}`,
-            method: 'GET',
-          },
-        }),
-      }).then( forkRawResponse => {
-        return forkRawResponse.json()
-      }).then( forkData => {
-        console.log(forkData);
+      
+      try {
+        const forkRawResponse = await getBranch(expectedFork, branch)
+        const forkData = await forkRawResponse.json()
+
         if (forkData.ref === "refs/heads/" + branch) {
           localStorage.setItem('fork_full_name', expectedFork)
           window.close()
+          return
         }
         setForkValidating(false);
         return;
-      }).catch( err => {
+      } catch (err) {
         setForkValidating(false);
         return;
-      })
+      }
     }).catch( err => {
       setForkValidating(false);
       return;

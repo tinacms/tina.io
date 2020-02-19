@@ -1,20 +1,13 @@
 import { useEffect } from 'react'
 import Cookies from 'js-cookie'
+import { getUser, getBranch } from '../../open-authoring/github/api'
 
 export const EditLink = () => {
   let authTab: Window
 
   const isTokenValid = async () => {
     try {
-      const response = await fetch(`/api/proxy-github`, {
-        method: 'POST',
-        body: JSON.stringify({
-          proxy_data: {
-            url: `https://api.github.com/user`,
-            method: 'GET',
-          },
-        }),
-      })
+      const response = await getUser()
       const data = await response.json()
       if (data.login) {
         return true
@@ -26,20 +19,12 @@ export const EditLink = () => {
     }
   }
 
-  const isForkValid = async (fork) => {
+  const isForkValid = async (fork: string) => {
     const branch = "master"; // static branch for now
+
     try {
-      const response = await fetch(`/api/proxy-github`, {
-        method: 'POST',
-        body: JSON.stringify({
-          proxy_data: {
-            url: `https://api.github.com/repos/${fork}/git/ref/heads/${branch}`,
-            method: 'GET',
-          },
-        }),
-      })
+      const response = await getBranch(fork, branch)
       const data = await response.json()
-      
       if (data.ref === "refs/heads/" + branch) {
         return true
       }

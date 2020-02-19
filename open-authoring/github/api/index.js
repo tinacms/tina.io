@@ -114,6 +114,30 @@ const createFork = (repoFullName, accessToken) => {
   })
 }
 
+const getBranch = (repoFullName, branch) => { // uses proxy
+  return fetch(`/api/proxy-github`, {
+    method: 'POST',
+    body: JSON.stringify({
+      proxy_data: {
+        url: `https://api.github.com/repos/${repoFullName}/git/ref/heads/${branch}`,
+        method: 'GET',
+      },
+    }),
+  })
+}
+
+const getUser = () => { // uses proxy
+  return fetch(`/api/proxy-github`, {
+    method: 'POST',
+    body: JSON.stringify({
+      proxy_data: {
+        url: `https://api.github.com/user`,
+        method: 'GET',
+      },
+    }),
+  })
+}
+
 module.exports = {
   createPR,
   saveContent,
@@ -121,4 +145,6 @@ module.exports = {
   createAccessToken,
   createFork,
   fetchExistingPR,
+  getBranch,
+  getUser
 }
