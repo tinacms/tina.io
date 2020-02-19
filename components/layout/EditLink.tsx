@@ -1,5 +1,6 @@
-import { useEffect } from 'react'
+import { useEffect, useContext } from 'react'
 import Cookies from 'js-cookie'
+import { EditModeContext } from '../../utils/editContext'
 
 function popupWindow(url, title, window, w, h) {
   const y = window.top.outerHeight / 2 + window.top.screenY - h / 2
@@ -20,12 +21,20 @@ function popupWindow(url, title, window, w, h) {
 
 export const EditLink = () => {
   let authTab: Window
+  let editMode = useContext(EditModeContext)
+  let isEditMode = editMode.isEditMode
 
   const authState = Math.random()
     .toString(36)
     .substring(7)
 
-  const onClick = async () => {
+  const exitEditMode = () => {
+    fetch(`/api/reset-preview`).then(() => {
+      window.location.reload()
+    })
+  }
+
+  const enterEditMode = async () => {
     localStorage.setItem('fork_full_name', '')
 
     authTab = popupWindow(
@@ -57,8 +66,8 @@ export const EditLink = () => {
   }, [])
 
   return (
-    <a href="#" onClick={onClick}>
-      Edit this page
+    <a href="#" onClick={isEditMode ? exitEditMode : enterEditMode}>
+      {isEditMode ? 'Exit Edit Mode' : 'Edit This Site'}
     </a>
   )
 }
