@@ -8,8 +8,8 @@
       "GITHUB_CLIENT_ID": "c5c941269fc704d04722",
       "GITHUB_CLIENT_SECRET": "@github_client_secret",
       "REPO_FULL_NAME": "tinacms/tinacms.org",
-      "BASE_BRANCH": "master",
-      "USE_CONTENT_API": "true"
+      "USE_CONTENT_API": "true",
+      "BASE_BRANCH": "master"
     }
   }
 }
