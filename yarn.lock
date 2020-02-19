@@ -1706,15 +1706,9 @@
     "@types/react-instantsearch-core" "*"
 
 "@types/react-native@*":
-<<<<<<< HEAD
   version "0.61.16"
   resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.61.16.tgz#8dc5f5d3fe0b2b4d1454bbc84641434c7afcdcf5"
   integrity sha512-S2g8w7AZHMBt+JkncuOXy9WjVShejdlbcaxxkE7Y/cbPNPHDQvkigqIRsFwUqRXH5u2MWER6qxEjej81l9kqZQ==
-=======
-  version "0.61.15"
-  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.61.15.tgz#3b2032a9abd5e37c8a8cb0fc6a724d57811d4dbc"
-  integrity sha512-+lOUYk3yOfpyMy2HcVbR5bZnbExiVahMr3AqWNPh/01N0quH7nBzlou+/rpbvmDXSGwCh3QjWWfEkLNRfvbiiA==
->>>>>>> b144eb85dbb1bd964a23f021f20bacb3c12c91c5
   dependencies:
     "@types/react" "*"
 
@@ -3961,15 +3955,9 @@ ee-first@1.1.1:
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
 electron-to-chromium@^1.3.322, electron-to-chromium@^1.3.349:
-<<<<<<< HEAD
   version "1.3.355"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.355.tgz#ff805ed8a3d68e550a45955134e4e81adf1122ba"
   integrity sha512-zKO/wS+2ChI/jz9WAo647xSW8t2RmgRLFdbUb/77cORkUTargO+SCj4ctTHjBn2VeNFrsLgDT7IuDVrd3F8mLQ==
-=======
-  version "1.3.354"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.354.tgz#6c6ad9ef63654c4c022269517c5a3095cebc94db"
-  integrity sha512-24YMkNiZWOUeF6YeoscWfIGP0oMx+lJpU/miwI+lcu7plIDpyZn8Gx0lx0qTDlzGoz7hx+lpyD8QkbkX5L2Pqw==
->>>>>>> b144eb85dbb1bd964a23f021f20bacb3c12c91c5
 
 elliptic@^6.0.0:
   version "6.5.2"
@@ -6878,20 +6866,12 @@ next-tick@~1.0.0:
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
-<<<<<<< HEAD
-next-tinacms-json@^0.3.1:
-=======
 next-tinacms-json@^0.3.2:
->>>>>>> b144eb85dbb1bd964a23f021f20bacb3c12c91c5
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/next-tinacms-json/-/next-tinacms-json-0.3.2.tgz#330788718275d1f034a0ff25022f139f154e3ffc"
   integrity sha512-rhb4likuyrdFSw3jr1gYyEBg5DdNt8qTyFzDynC0Z5GablAPhwi2N2jgPI17HnQB+K3WYOv6tA8A/zkvyTcb4w==
 
-<<<<<<< HEAD
-next-tinacms-markdown@^0.2.1:
-=======
 next-tinacms-markdown@^0.2.2:
->>>>>>> b144eb85dbb1bd964a23f021f20bacb3c12c91c5
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/next-tinacms-markdown/-/next-tinacms-markdown-0.2.2.tgz#44aece97ebcf9d95a5a4b58bbb3559f76c3fea3c"
   integrity sha512-3QbOTdEqMxPhSI1aG+T4HBKV6FUj0bn2WKMoeyk7b/lfkYLxjIAUgNZoyhKI7ivqEzJWgIQ//SPP29xnAxGJdQ==
@@ -8683,11 +8663,7 @@ react-syntax-highlighter@^12.2.1:
     prismjs "^1.8.4"
     refractor "^2.4.1"
 
-<<<<<<< HEAD
-react-tinacms-inline@^0.1.0:
-=======
 react-tinacms-inline@^0.1.1:
->>>>>>> b144eb85dbb1bd964a23f021f20bacb3c12c91c5
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/react-tinacms-inline/-/react-tinacms-inline-0.1.1.tgz#c2cc3163b2a6a66d30b770c1f86ff0d6339d956e"
   integrity sha512-YDWPlxn7YtnEd3qHj4swqmf8FZuD744GutJByyNEth6Ytm8JsQjkH3VcmzZIV6c7oBwrvmBp6eZXDpwrg6Re0A==
@@ -10016,11 +9992,7 @@ timers-browserify@^2.0.4:
   dependencies:
     setimmediate "^1.0.4"
 
-<<<<<<< HEAD
-tinacms@^0.13.0:
-=======
 tinacms@^0.13.1:
->>>>>>> b144eb85dbb1bd964a23f021f20bacb3c12c91c5
   version "0.13.1"
   resolved "https://registry.yarnpkg.com/tinacms/-/tinacms-0.13.1.tgz#94cc9dec10249f226134803b63d0b6430bcddfc6"
   integrity sha512-GefrYlCa3Cogv6YomrM4JW/fCBMD/VxjeCrArS/hRPcZxe1gOjKGDeW3Bb1QYOsXVVdsv4eFcH+k1JFYnrKPjw==
