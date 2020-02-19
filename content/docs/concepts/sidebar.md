@@ -105,6 +105,34 @@ class MyApp extends App {
 
 > _Note:_ This is an intermediate workaround that we plan on enhancing further to extract Tina code during production builds.
 
+### Setting _hidden_ directly
+
+There may be situations when you need to control the `hidden` state of the sidebar beyond the `env` variables. For example, you may want to **conditionally render the sidebar in a production environment** to toggle an editing state. You can manually override this by setting `hidden` directly on the CMS instance.
+
+```jsx
+/*
+** Example applicable to any
+** React function component
+*/
+
+// 1. Import `useCMS`
+import { useCMS } from "tinacms"
+
+function ExampleComponent() {
+
+    // 2. Access the CMS instance
+    const cms = useCMS()
+
+    // 3. Set the hidden property
+    cms.sidebar.hidden = true
+
+    return (
+      //...
+    )
+}
+
+```
+
 ## Customizing the Sidebar Theme
 
 We want you to be able to mold Tina to fit your use-case, including the styling of the sidebar UI. You can override the sidebar theme by passing in your theme object in either a `gatsby-config` file or however sidebar options are passed to Tina.

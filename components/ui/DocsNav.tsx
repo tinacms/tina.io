@@ -1,10 +1,9 @@
-import Link from 'next/link'
+import { useState, useMemo, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import styled, { css } from 'styled-components'
-import RightArrowSvg from '../../public/svg/right-arrow.svg'
-import { useState, useMemo, useEffect } from 'react'
-import { DynamicLink } from './DynamicLink'
 
+import RightArrowSvg from '../../public/svg/right-arrow.svg'
+import { DynamicLink } from './DynamicLink'
 import { LinkNav } from './LinkNav'
 
 interface NavSection {
