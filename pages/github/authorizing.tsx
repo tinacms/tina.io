@@ -7,5 +7,9 @@ export default function Authorizing() {
     const code = urlParams.get('code')
     localStorage.setItem('github_code', code)
   }, [])
-  return <AuthLayout>Authorizing with Github, Please wait</AuthLayout>
+  return (
+    <AuthLayout>
+      <h2>Authorizing with Github, Please wait...</h2>
+    </AuthLayout>
+  )
 }
