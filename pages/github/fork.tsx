@@ -1,3 +1,5 @@
+import { AuthLayout } from '../../components/layout'
+
 export default function Authorizing() {
   const createFork = async () => {
     const resp = await fetch(`/api/proxy-github`, {
@@ -21,7 +23,7 @@ export default function Authorizing() {
   }
 
   return (
-    <div>
+    <AuthLayout>
       <button
         onClick={() => {
           createFork()
@@ -29,6 +31,6 @@ export default function Authorizing() {
       >
         Create a fork
       </button>
-    </div>
+    </AuthLayout>
   )
 }

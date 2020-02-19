@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { AuthLayout } from '../../components/layout'
 
 export default function StartAuth() {
   const onStartAuth = () => {
@@ -9,11 +10,11 @@ export default function StartAuth() {
     )
   }
   return (
-    <>
+    <AuthLayout>
       <div>
         This site can be edited through Tina, which requires a Github Account
       </div>
       <button onClick={onStartAuth}>Get Started</button>
-    </>
+    </AuthLayout>
   )
 }
