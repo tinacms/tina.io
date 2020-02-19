@@ -1,6 +1,7 @@
 import { useEffect, useContext } from 'react'
 import Cookies from 'js-cookie'
 import { EditModeContext } from '../../utils/editContext'
+import { getUser, getBranch } from '../../open-authoring/github/api'
 
 function popupWindow(url, title, window, w, h) {
   const y = window.top.outerHeight / 2 + window.top.screenY - h / 2
@@ -24,6 +25,23 @@ export const EditLink = () => {
   let editMode = useContext(EditModeContext)
   let isEditMode = editMode.isEditMode
 
+  const isTokenValid = async () => {
+    const userData = await getUser()
+    if (!userData) return false
+    return true
+  }
+
+  const isForkValid = async (fork: string) => {
+    const branch = 'master' // static branch for now
+
+    const forkData = await getBranch(fork, branch)
+    if (!forkData) return false
+    if (forkData.ref === 'refs/heads/' + branch) {
+      return true
+    }
+    return false
+  }
+
   const authState = Math.random()
     .toString(36)
     .substring(7)
@@ -35,15 +53,32 @@ export const EditLink = () => {
   }
 
   const enterEditMode = async () => {
-    localStorage.setItem('fork_full_name', '')
+    const accessTokenAlreadyExists = await isTokenValid()
+    const fork = Cookies.get('fork_full_name')
 
-    authTab = popupWindow(
-      `/github/start-auth?state=${authState}`,
-      '_blank',
-      window,
-      1000,
-      700
-    )
+    localStorage.setItem('fork_full_name', '')
+    if (accessTokenAlreadyExists) {
+      if (fork && (await isForkValid(fork))) {
+        handleForkCreated(fork)
+        return
+      } else {
+        authTab = popupWindow(
+          `/github/fork?state=${authState}`,
+          '_blank',
+          window,
+          1000,
+          700
+        )
+      }
+    } else {
+      authTab = popupWindow(
+        `/github/start-auth?state=${authState}`,
+        '_blank',
+        window,
+        1000,
+        700
+      )
+    }
 
     window.addEventListener(
       'storage',
