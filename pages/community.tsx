@@ -64,6 +64,11 @@ export default function CommunityPage({ jsonFile, metadata }) {
         description: 'Enter the body copy here',
         component: 'markdown',
       },
+      {
+        label: 'Newsletter CTA',
+        name: 'newsletter_cta',
+        component: 'text',
+      },
     ],
   }
   const [data, form] = useLocalJsonForm(jsonFile, formOptions)
