@@ -102,7 +102,7 @@ export const EditLink = () => {
   }, [])
 
   return (
-    <a href="javascript:void();" onClick={isEditMode ? exitEditMode : enterEditMode}>
+    <a href={null} onClick={isEditMode ? exitEditMode : enterEditMode}>
       {isEditMode ? 'Exit Edit Mode' : 'Edit This Site'}
     </a>
   )
