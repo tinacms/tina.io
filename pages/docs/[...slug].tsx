@@ -145,17 +145,6 @@ export async function unstable_getStaticPaths() {
     })
 }
 
-const DocsNavToggle = styled(NavToggle)`
-  position: fixed;
-  top: 1.25rem;
-  left: 1rem;
-  z-index: 500;
-
-  @media (min-width: 999px) {
-    display: none;
-  }
-`
-
 /*
  * TINA FORM CONFIG -----------------------------------------------------
  */
@@ -189,6 +178,17 @@ const formOptions = {
 /*
  * STYLES --------------------------------------------------------------
  */
+
+const DocsNavToggle = styled(NavToggle)`
+  position: fixed;
+  top: 1.25rem;
+  left: 1rem;
+  z-index: 500;
+
+  @media (min-width: 999px) {
+    display: none;
+  }
+`
 
 const DocsTinaIcon = styled(TinaIcon)`
   position: relative;
