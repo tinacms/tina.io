@@ -2,6 +2,23 @@ import { useEffect } from 'react'
 import Cookies from 'js-cookie'
 import { getUser, getBranch } from '../../open-authoring/github/api'
 
+function popupWindow(url, title, window, w, h) {
+  const y = window.top.outerHeight / 2 + window.top.screenY - h / 2
+  const x = window.top.outerWidth / 2 + window.top.screenX - w / 2
+  return window.open(
+    url,
+    title,
+    'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' +
+      w +
+      ', height=' +
+      h +
+      ', top=' +
+      y +
+      ', left=' +
+      x
+  )
+}
+
 export const EditLink = () => {
   let authTab: Window
 
@@ -39,20 +56,23 @@ export const EditLink = () => {
           handleForkCreated(fork)
           return;
       } else {
-        authTab = window.open(
+        authTab = popupWindow(
           `/github/fork?state=${authState}`,
           '_blank',
-          'fullscreen=no, width=1000, height=800'
+          window,
+          1000,
+          700
         )
       }
     } else {
-      authTab = window.open(
+      authTab = popupWindow(
         `/github/start-auth?state=${authState}`,
         '_blank',
-        'fullscreen=no, width=1000, height=800'
+        window,
+        1000,
+        700
       )
     }
-    
     
     window.addEventListener(
       'storage',
@@ -75,9 +95,9 @@ export const EditLink = () => {
   }, [])
 
   return (
-    <div onClick={onClick}>
-      <a>Edit this page</a>
-    </div>
+    <a href="#" onClick={onClick}>
+      Edit this page
+    </a>
   )
 }
 

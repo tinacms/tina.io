@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useEffect } from 'react'
 import styled from 'styled-components'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -20,9 +20,16 @@ import { Button, Video, ArrowList } from '../components/ui'
 import { NextSeo, DefaultSeo } from 'next-seo'
 import { saveContent, getContent } from '../open-authoring/github/api'
 import { useEditContext } from '../utils/editContext'
+import { setCachedFormData, getCachedFormData } from '../utils/formCache'
 
 const HomePage = (props: any) => {
   const cms = useCMS()
+
+  useEffect(() => {
+    setCachedFormData(props.fileRelativePath, {
+      sha: props.sha,
+    })
+  }, [])
 
   const editContext = useEditContext()
   editContext.setIsEditMode(props.editMode)
@@ -110,12 +117,14 @@ const HomePage = (props: any) => {
         props.branch,
         props.fileRelativePath,
         props.accessToken,
-        props.sha,
+        getCachedFormData(props.fileRelativePath).sha,
         JSON.stringify(formData.data),
         'Update from TinaCMS'
       ).then(response => {
-        window.location.reload()
-      }) //hack so sha updates
+        setCachedFormData(props.fileRelativePath, {
+          sha: response.data.content.sha,
+        })
+      })
     },
   })
 

@@ -2,6 +2,10 @@ import Cookies from 'js-cookie'
 import { useEffect, useState } from 'react'
 import { response } from 'express'
 import { getUser, getBranch } from '../../open-authoring/github/api'
+import { AuthLayout } from '../../components/layout'
+import { Button } from '../../components/ui'
+import styled from 'styled-components'
+
 
 export default function Authorizing() {
   const createFork = async () => {
@@ -48,23 +52,28 @@ export default function Authorizing() {
 
 
   return (
-    <div>
+    <AuthButton>
       {!forkValidating &&
-          <div>
-            <button
-            onClick={() => {
-              createFork()
-            }}
-          >
-            Create a fork
-          </button>
-        </div>
+          <h2>You will need a fork of the site to save your changes.</h2>
+            <p>Later you will be able to create a pull request from Tina.</p>
+            <AuthButton
+              color="primary"
+              onClick={() => {
+                createFork()
+              }}
+            >
+        Create a fork
+      </AuthButton>
       }
       {forkValidating &&
         <p>
         Checking for fork...
         </p>
       }
-    </div>
+    </AuthButton>
   )
 }
+
+const AuthButton = styled(Button)`
+  margin: 0 auto 1rem auto;
+`

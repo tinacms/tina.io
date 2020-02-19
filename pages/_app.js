@@ -23,7 +23,7 @@ const MainLayout = ({ Component, pageProps }) => {
     },
   }
 
-  const cms = React.useMemo(() => new TinaCMS(tinaConfig), [tinaConfig])
+  const cms = React.useMemo(() => new TinaCMS(tinaConfig.cms), [tinaConfig])
 
   const exitEditMode = () => {
     fetch(`/api/reset-preview`).then(() => {

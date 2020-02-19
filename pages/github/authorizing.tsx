@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { AuthLayout } from '../../components/layout'
 
 export default function Authorizing() {
   useEffect(() => {
@@ -6,5 +7,9 @@ export default function Authorizing() {
     const code = urlParams.get('code')
     localStorage.setItem('github_code', code)
   }, [])
-  return <div>Authorizing with Github, Please wait</div>
+  return (
+    <AuthLayout>
+      <h2>Authorizing with Github, Please wait...</h2>
+    </AuthLayout>
+  )
 }
