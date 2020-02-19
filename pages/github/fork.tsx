@@ -54,16 +54,18 @@ export default function Authorizing() {
   return (
     <AuthButton>
       {!forkValidating &&
-          <h2>You will need a fork of the site to save your changes.</h2>
-            <p>Later you will be able to create a pull request from Tina.</p>
-            <AuthButton
-              color="primary"
-              onClick={() => {
-                createFork()
-              }}
-            >
-        Create a fork
-      </AuthButton>
+        <>
+            <h2>You will need a fork of the site to save your changes.</h2>
+              <p>Later you will be able to create a pull request from Tina.</p>
+              <AuthButton
+                color="primary"
+                onClick={() => {
+                  createFork()
+                }}
+              >
+          Create a fork
+        </AuthButton>
+      </>
       }
       {forkValidating &&
         <p>
