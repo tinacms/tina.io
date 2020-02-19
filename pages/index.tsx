@@ -3,24 +3,32 @@ import styled from 'styled-components'
 import Head from 'next/head'
 import Link from 'next/link'
 import { inlineJsonForm } from 'next-tinacms-json'
-import { DynamicLink } from '../components/ui/DynamicLink'
 import { useCMS, useLocalForm, usePlugins } from 'tinacms'
 import { PRPlugin } from '../open-authoring/prPlugin'
 import { b64DecodeUnicode } from '../open-authoring/utils/base64'
+import { BlockTemplate } from 'tinacms'
+import { useLocalJsonForm } from 'next-tinacms-json'
+import {
+  InlineForm,
+  BlocksControls,
+  InlineBlocks,
+  BlockText,
+} from 'react-tinacms-inline'
+import { DefaultSeo } from 'next-seo'
 
+import { DynamicLink } from '../components/ui/DynamicLink'
 import {
   Layout,
   Hero,
-  HeroTitle,
   Wrapper,
   Section,
   RichTextWrapper,
 } from '../components/layout'
 import { Button, Video, ArrowList } from '../components/ui'
-import { NextSeo, DefaultSeo } from 'next-seo'
 import { saveContent, getContent } from '../open-authoring/github/api'
 import { useEditContext } from '../utils/editContext'
 import { setCachedFormData, getCachedFormData } from '../utils/formCache'
+import { InlineTextareaField, BlockTextArea } from '../components/ui/inline'
 
 const HomePage = (props: any) => {
   const cms = useCMS()
@@ -135,11 +143,7 @@ const HomePage = (props: any) => {
         props.forkFullName,
         props.accessToken
       )
-    }, [
-      props.baseRepoFullName,
-      props.forkFullName,
-      props.accessToken,
-    ])
+    }, [props.baseRepoFullName, props.forkFullName, props.accessToken])
 
     usePlugins(brancher)
   }
@@ -150,21 +154,58 @@ const HomePage = (props: any) => {
   const homeData = formData.data
 
   return (
-    <Layout pathname="/">
-      <DefaultSeo titleTemplate={homeData.title + ' | %s'} />
-      <Hero overlap narrow>
-        {homeData.headline}
-      </Hero>
-      <Video src={homeData.hero_video} />
+    <InlineForm form={form}>
+      <Layout pathname="/">
+        <DefaultSeo titleTemplate={homeData.title + ' | %s'} />
+        <Hero overlap narrow>
+          <InlineTextareaField name="data.headline" />
+        </Hero>
+        <Video src={homeData.hero_video} />
 
-      <Section>
-        <Wrapper>
-          <RichTextWrapper>
-            <CtaLayout>
-              <h2>
-                <em>{homeData.description}</em>
-              </h2>
-              <CtaBar>
+        <Section>
+          <Wrapper>
+            <RichTextWrapper>
+              <CtaLayout>
+                <h2>
+                  <em>
+                    <InlineTextareaField name="data.description" />
+                  </em>
+                </h2>
+                <CtaBar>
+                  <DynamicLink
+                    href={'/docs/getting-started/introduction/'}
+                    passHref
+                  >
+                    <Button as="a" color="primary">
+                      Get Started
+                    </Button>
+                  </DynamicLink>
+                </CtaBar>
+              </CtaLayout>
+              <InfoLayout>
+                <InlineBlocks
+                  name="data.three_points"
+                  blocks={SELLING_POINTS_BLOCKS}
+                />
+              </InfoLayout>
+            </RichTextWrapper>
+          </Wrapper>
+        </Section>
+
+        <Section color="seafoam">
+          <Wrapper>
+            <SetupLayout>
+              <RichTextWrapper>
+                <h2 className="h1">
+                  <InlineTextareaField name="data.setup.headline" />
+                </h2>
+                <hr />
+                <ArrowList>
+                  <InlineBlocks
+                    name="data.setup.steps"
+                    blocks={SETUP_POINT_BLOCKS}
+                  />
+                </ArrowList>
                 <DynamicLink
                   href={'/docs/getting-started/introduction/'}
                   passHref
@@ -173,46 +214,11 @@ const HomePage = (props: any) => {
                     Get Started
                   </Button>
                 </DynamicLink>
-              </CtaBar>
-            </CtaLayout>
-            <InfoLayout>
-              {homeData.three_points.map(point => (
-                <div key={point.main.slice(0, 8)}>
-                  <h3>
-                    <em>{point.main}</em>
-                  </h3>
-                  <p>{point.supporting}</p>
-                </div>
-              ))}
-            </InfoLayout>
-          </RichTextWrapper>
-        </Wrapper>
-      </Section>
-
-      <Section color="seafoam">
-        <Wrapper>
-          <SetupLayout>
-            <RichTextWrapper>
-              <h2 className="h1">{homeData.setup.headline}</h2>
-              <hr />
-              <ArrowList>
-                {homeData.setup.steps.map(item => (
-                  <li key={item.step.slice(0, 8)}>{item.step}</li>
-                ))}
-              </ArrowList>
-              <DynamicLink
-                href={'/docs/getting-started/introduction/'}
-                passHref
-              >
-                <Button as="a" color="primary">
-                  Get Started
-                </Button>
-              </DynamicLink>
-            </RichTextWrapper>
-            <CodeWrapper>
-              <CodeExample
-                dangerouslySetInnerHTML={{
-                  __html: `yarn add <b>gatsby-plugin-tinacms</b>
+              </RichTextWrapper>
+              <CodeWrapper>
+                <CodeExample
+                  dangerouslySetInnerHTML={{
+                    __html: `yarn add <b>gatsby-plugin-tinacms</b>
 
 module.exports = {
   <span>// ...</span>
@@ -224,13 +230,14 @@ module.exports = {
 
 export <b>WithTina</b>( <b>Component</b> );
                   `,
-                }}
-              ></CodeExample>
-            </CodeWrapper>
-          </SetupLayout>
-        </Wrapper>
-      </Section>
-    </Layout>
+                  }}
+                ></CodeExample>
+              </CodeWrapper>
+            </SetupLayout>
+          </Wrapper>
+        </Section>
+      </Layout>
+    </InlineForm>
   )
 }
 
@@ -242,7 +249,7 @@ export async function unstable_getStaticProps({ preview, previewData }) {
   if (preview) {
     const { fork_full_name, github_access_token, head_branch } = previewData
 
-    const headBranch = head_branch || "master"
+    const headBranch = head_branch || 'master'
     const response = await getContent(
       fork_full_name,
       headBranch,
@@ -273,6 +280,76 @@ export async function unstable_getStaticProps({ preview, previewData }) {
   }
 }
 
+/*
+ ** BLOCKS CONFIG ------------------------------------------------------
+ */
+/*
+ ** TODO: these selling point blocks should be an inline group-list
+ */
+
+function SellingPoint({ data, index }) {
+  return (
+    <BlocksControls index={index}>
+      <div key={data.main.slice(0, 8)}>
+        <h3>
+          <em>
+            <BlockText name="main" />
+          </em>
+        </h3>
+        <p>
+          <BlockTextArea name="supporting" />
+        </p>
+      </div>
+    </BlocksControls>
+  )
+}
+
+const selling_point_template: BlockTemplate = {
+  type: 'selling_point',
+  label: 'Selling Point',
+  defaultItem: {
+    main: 'Tina is dope 🤙',
+    supporting:
+      'It’s pretty much my favorite animal. It’s like a lion and a tiger mixed… bred for its skills in magic.',
+  },
+  // TODO: figure out what to do with keys
+  key: undefined,
+  fields: [],
+}
+
+const SELLING_POINTS_BLOCKS = {
+  selling_point: {
+    Component: SellingPoint,
+    template: selling_point_template,
+  },
+}
+
+function SetupPoint({ data, index }) {
+  return (
+    <BlocksControls index={index}>
+      <li key={data.step.slice(0, 8)}>
+        <BlockTextArea name="step" />
+      </li>
+    </BlocksControls>
+  )
+}
+
+const setup_point_template: BlockTemplate = {
+  type: 'setup_point',
+  label: 'Setup Point',
+  defaultItem: {
+    step: 'Make yourself a dang quesadilla',
+  },
+  key: undefined,
+  fields: [],
+}
+
+const SETUP_POINT_BLOCKS = {
+  setup_point: {
+    Component: SetupPoint,
+    template: setup_point_template,
+  },
+}
 /*
  ** STYLES -------------------------------------------------------
  */

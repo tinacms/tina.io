@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 
-import { TinaIcon } from '../logo/TinaIcon'
+import { TinaIcon } from '../logo'
 import { HeaderNav, Button, NavToggle, Overlay } from '../ui'
 
 interface HeaderProps {

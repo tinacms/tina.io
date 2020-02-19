@@ -14,9 +14,10 @@ export async function unstable_getStaticProps(ctx) {
 
   return {
     props: {
-      doc: {
-        data: { ...doc.data, slug: '/docs' },
-        content: doc.content,
+      markdownFile: {
+        data: { slug: '/docs' },
+        frontmatter: doc.data,
+        markdownBody: doc.content,
       },
       docsNav: docsNavData.default,
       nextPage: {
