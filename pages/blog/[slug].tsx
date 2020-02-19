@@ -23,6 +23,11 @@ import {
 } from '../../components/ui/inline'
 
 export default function BlogTemplate({ markdownFile, siteConfig }) {
+  //workaround for fallback being not implemented
+  if (!markdownFile) {
+    return <div></div>
+  }
+
   // Registers Tina Form
   const [data, form] = useLocalMarkdownForm(markdownFile, formOptions)
   const frontmatter = data.frontmatter
