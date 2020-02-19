@@ -17,33 +17,7 @@ import {
 } from '../components/ui/inline'
 
 export default function TeamsPage(props) {
-  const formOptions = {
-    fields: [
-      {
-        label: 'Headline',
-        name: 'headline',
-        description: 'Enter the main headline here',
-        component: 'textarea',
-      },
-      {
-        label: 'Supporting Points',
-        name: 'supporting_points',
-        description: 'Edit the points here',
-        component: 'group-list',
-        itemProps: item => ({
-          key: item.id,
-          label: `${item.point.slice(0, 25)}...`,
-        }),
-        fields: [
-          {
-            label: 'Point',
-            name: 'point',
-            component: 'textarea',
-          },
-        ],
-      },
-    ],
-  }
+  // Adds Tina Form
   const [data, form] = useLocalJsonForm(props.jsonFile, formOptions)
 
   return (
@@ -97,6 +71,10 @@ export default function TeamsPage(props) {
   )
 }
 
+/*
+ ** DATA FETCHING --------------------------------------------------
+ */
+
 export async function unstable_getStaticProps() {
   const teamsData = await import('../content/pages/teams.json')
   return {
@@ -107,6 +85,38 @@ export async function unstable_getStaticProps() {
       },
     },
   }
+}
+
+/*
+ ** TINA FORM CONFIG -------------------------------------------------
+ */
+
+const formOptions = {
+  fields: [
+    {
+      label: 'Headline',
+      name: 'headline',
+      description: 'Enter the main headline here',
+      component: 'textarea',
+    },
+    {
+      label: 'Supporting Points',
+      name: 'supporting_points',
+      description: 'Edit the points here',
+      component: 'group-list',
+      itemProps: item => ({
+        key: item.id,
+        label: `${item.point.slice(0, 25)}...`,
+      }),
+      fields: [
+        {
+          label: 'Point',
+          name: 'point',
+          component: 'textarea',
+        },
+      ],
+    },
+  ],
 }
 
 /*
