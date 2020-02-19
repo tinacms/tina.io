@@ -4,15 +4,15 @@ prev: /docs/cms
 next: /docs/fields
 ---
 
-To make your content editable, start by adding a **Form**.
+**Forms** in Tina are the main building blocks of your CMS. You will use Forms to:
 
-The recommended way to create forms with Tina is to use the form hooks.
+- Arrange the editing interface for your content
+- Expose your content to mutation through user edits
+- Process and persist the changes to your content
 
-```javascript
-const [modifiedValues, form] = useForm(formConfig, watchedVars)
-```
+The recommended way to create forms with Tina is to use the form hooks. These are explained in detail later on in this document, but let's start with a high-level overview of how form hooks are used.
 
-a simplified example looks like:
+When using form hooks, they should be called inside a **Page** component; that is, the component that takes your content and renders a page from it. In the following contrived example, we have a Page component that receives its content in the component's props, including a `title` and some `markdownContent`:
 
 ```javascript
 import * as React from React
@@ -28,17 +28,19 @@ export function Page(props) {
 }
 ```
 
+We can call the `useLocalForm` hook here to create a form that will be used to edit this content. `useLocalForm` returns an object containing all of the form's values that will change as the content is updated in the form. By switching out our original `props` in the rendering code for this new object, our page will re-render as the content is changed, giving us a real-time preview of the content!
+
 ```javascript
 import * as React from React
 import ReactMarkdown from 'react-markdown'
-import { useForm } from 'tinacms'
+import { useLocalForm } from 'tinacms'
 
 export function Page(props) {
-    const [modifiedProps] = useForm(options) // options omitted for brevity; we'll get to this later
+    const [modifiedValues] = useLocalForm(formConfig) // formConfig omitted for brevity; we'll get to this later
     return (
         <main>
-            <h1>{modifiedProps.title}</h1>
-            <ReactMarkdown source={modifiedProps.markdownContent}>
+            <h1>{modifiedValues.title}</h1>
+            <ReactMarkdown source={modifiedValues.markdownContent}>
         </main>
     )
 }
@@ -70,6 +72,12 @@ In all cases, (configuration, what they return, etc)
 (or:) all three forms ...
 
 ## Form Configuration
+
+The signature of a form hook looks something like this:
+
+```javascript
+const [modifiedValues, form] = useForm(formConfig, watchedVars)
+```
 
 Forms in Tina use the [Final Form](https://final-form.org/) library, ...
 
