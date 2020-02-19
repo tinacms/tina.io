@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import Cookies from 'js-cookie'
+import { getUser, getBranch } from '../../open-authoring/github/api'
 
 function popupWindow(url, title, window, w, h) {
   const y = window.top.outerHeight / 2 + window.top.screenY - h / 2
@@ -21,21 +22,58 @@ function popupWindow(url, title, window, w, h) {
 export const EditLink = () => {
   let authTab: Window
 
+  
+  const isTokenValid = async () => {
+    const userData = await getUser()
+    if (!userData) return false
+    return true
+  }
+
+  const isForkValid = async (fork: string) => {
+    const branch = "master"; // static branch for now
+
+    const forkData = await getBranch(fork, branch)
+    if (!forkData) return false
+    if (forkData.ref === "refs/heads/" + branch) {
+      return true
+    }
+    return false
+  }
+
   const authState = Math.random()
     .toString(36)
     .substring(7)
 
+  
+
   const onClick = async () => {
+    const accessTokenAlreadyExists = await isTokenValid();
+    const fork = Cookies.get("fork_full_name");
+    
     localStorage.setItem('fork_full_name', '')
-
-    authTab = popupWindow(
-      `/github/start-auth?state=${authState}`,
-      '_blank',
-      window,
-      1000,
-      700
-    )
-
+    if (accessTokenAlreadyExists) {
+      if (fork && await isForkValid(fork)) {
+          handleForkCreated(fork)
+          return;
+      } else {
+        authTab = popupWindow(
+          `/github/fork?state=${authState}`,
+          '_blank',
+          window,
+          1000,
+          700
+        )
+      }
+    } else {
+      authTab = popupWindow(
+        `/github/start-auth?state=${authState}`,
+        '_blank',
+        window,
+        1000,
+        700
+      )
+    }
+    
     window.addEventListener(
       'storage',
       e => {
