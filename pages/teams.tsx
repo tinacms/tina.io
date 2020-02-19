@@ -61,10 +61,16 @@ export default function TeamsPage(props) {
           }}
         />
         <TeamsSection>
-          <InlineControls>
+          {/*
+           *** Inline controls shouldn't render
+           *** until we're ready for Inline release
+           */}
+          {/*
+            <InlineControls>
             <EditToggle />
             <DiscardButton />
-          </InlineControls>
+            </InlineControls>
+          */}
           <Wrapper>
             <RichTextWrapper>
               <TeamsGrid>

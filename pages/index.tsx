@@ -96,10 +96,16 @@ export default function HomePage(props) {
       <Layout pathname="/">
         <DefaultSeo titleTemplate={data.title + ' | %s'} />
         <Hero overlap narrow>
-          <InlineControls>
+          {/*
+           *** Inline controls shouldn't render
+           *** until we're ready for Inline release
+           */}
+          {/*
+            <InlineControls>
             <EditToggle />
             <DiscardButton />
-          </InlineControls>
+            </InlineControls>
+          */}
           <InlineTextareaField name="headline" />
         </Hero>
         <Video src={data.hero_video} />

@@ -89,10 +89,16 @@ export default function DocTemplate(props) {
           <DocsHeaderNav color={'light'} open={open} />
           <RichTextWrapper>
             <Wrapper narrow>
-              <InlineControls>
+              {/*
+               *** Inline controls shouldn't render
+               *** until we're ready for Inline release
+               */}
+              {/*
+                <InlineControls>
                 <EditToggle />
                 <DiscardButton />
-              </InlineControls>
+                </InlineControls>
+              */}
               <h1>
                 <InlineTextField name="frontmatter.title" />
               </h1>

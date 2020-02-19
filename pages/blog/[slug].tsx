@@ -87,10 +87,16 @@ export default function BlogTemplate({ markdownFile, siteConfig }) {
           <InlineTextareaField name="frontmatter.title" />
         </Hero>
         <BlogWrapper>
-          <InlineControls>
+          {/*
+           *** Inline controls shouldn't render
+           *** until we're ready for Inline release
+           */}
+          {/*
+            <InlineControls>
             <EditToggle />
             <DiscardButton />
-          </InlineControls>
+            </InlineControls>
+          */}
           <RichTextWrapper>
             <BlogMeta>
               <p>

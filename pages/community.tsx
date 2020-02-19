@@ -132,10 +132,16 @@ export default function CommunityPage({ jsonFile, metadata }) {
         </SocialBar>
         <RichTextWrapper>
           <Section>
-            <InlineControls>
+            {/*
+             *** Inline controls shouldn't render
+             *** until we're ready for Inline release
+             */}
+            {/*
+              <InlineControls>
               <EditToggle />
               <DiscardButton />
-            </InlineControls>
+              </InlineControls>
+            */}
             <Wrapper>
               <InfoLayout>
                 <InfoContent>
