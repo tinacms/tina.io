@@ -1,39 +1,94 @@
 import React from 'react'
 import styled from 'styled-components'
-import Head from 'next/head'
-import Link from 'next/link'
-import { inlineJsonForm } from 'next-tinacms-json'
-import { DynamicLink } from '../components/ui/DynamicLink'
+import { BlockTemplate } from 'tinacms'
+import { useLocalJsonForm } from 'next-tinacms-json'
+import { InlineForm, BlocksControls, InlineBlocks } from 'react-tinacms-inline'
+import { DefaultSeo } from 'next-seo'
 
+import { DynamicLink } from '../components/ui/DynamicLink'
 import {
   Layout,
   Hero,
-  HeroTitle,
   Wrapper,
   Section,
   RichTextWrapper,
 } from '../components/layout'
 import { Button, Video, ArrowList } from '../components/ui'
-import { NextSeo, DefaultSeo } from 'next-seo'
+import {
+  EditToggle,
+  DiscardButton,
+  InlineTextareaField,
+  InlineControls,
+  BlockText,
+  BlockTextArea,
+} from '../components/ui/inline'
 
-const HomePage = props => {
-  const data = props.jsonFile
+export default function HomePage(props) {
+  // Registers Tina Form
+  const [data, form] = useLocalJsonForm(props.jsonFile, formOptions)
+
   return (
-    <Layout pathname="/">
-      <DefaultSeo titleTemplate={data.title + ' | %s'} />
-      <Hero overlap narrow>
-        {data.headline}
-      </Hero>
-      <Video src={data.hero_video} />
+    <InlineForm form={form}>
+      <Layout pathname="/">
+        <DefaultSeo titleTemplate={data.title + ' | %s'} />
+        <Hero overlap narrow>
+          {/*
+           *** Inline controls shouldn't render
+           *** until we're ready for Inline release
+           */}
+          {/*
+            <InlineControls>
+            <EditToggle />
+            <DiscardButton />
+            </InlineControls>
+          */}
+          <InlineTextareaField name="headline" />
+        </Hero>
+        <Video src={data.hero_video} />
+        <Section>
+          <Wrapper>
+            <RichTextWrapper>
+              <CtaLayout>
+                <h2>
+                  <em>
+                    <InlineTextareaField name="description" />
+                  </em>
+                </h2>
+                <CtaBar>
+                  <DynamicLink
+                    href={'/docs/getting-started/introduction/'}
+                    passHref
+                  >
+                    <Button as="a" color="primary">
+                      Get Started
+                    </Button>
+                  </DynamicLink>
+                </CtaBar>
+              </CtaLayout>
+              <InfoLayout>
+                <InlineBlocks
+                  name="three_points"
+                  blocks={SELLING_POINTS_BLOCKS}
+                />
+              </InfoLayout>
+            </RichTextWrapper>
+          </Wrapper>
+        </Section>
 
-      <Section>
-        <Wrapper>
-          <RichTextWrapper>
-            <CtaLayout>
-              <h2>
-                <em>{data.description}</em>
-              </h2>
-              <CtaBar>
+        <Section color="seafoam">
+          <Wrapper>
+            <SetupLayout>
+              <RichTextWrapper>
+                <h2 className="h1">
+                  <InlineTextareaField name="setup.headline" />
+                </h2>
+                <hr />
+                <ArrowList>
+                  <InlineBlocks
+                    name="setup.steps"
+                    blocks={SETUP_POINT_BLOCKS}
+                  />
+                </ArrowList>
                 <DynamicLink
                   href={'/docs/getting-started/introduction/'}
                   passHref
@@ -42,46 +97,11 @@ const HomePage = props => {
                     Get Started
                   </Button>
                 </DynamicLink>
-              </CtaBar>
-            </CtaLayout>
-            <InfoLayout>
-              {data.three_points.map(point => (
-                <div key={point.main.slice(0, 8)}>
-                  <h3>
-                    <em>{point.main}</em>
-                  </h3>
-                  <p>{point.supporting}</p>
-                </div>
-              ))}
-            </InfoLayout>
-          </RichTextWrapper>
-        </Wrapper>
-      </Section>
-
-      <Section color="seafoam">
-        <Wrapper>
-          <SetupLayout>
-            <RichTextWrapper>
-              <h2 className="h1">{data.setup.headline}</h2>
-              <hr />
-              <ArrowList>
-                {data.setup.steps.map(item => (
-                  <li key={item.step.slice(0, 8)}>{item.step}</li>
-                ))}
-              </ArrowList>
-              <DynamicLink
-                href={'/docs/getting-started/introduction/'}
-                passHref
-              >
-                <Button as="a" color="primary">
-                  Get Started
-                </Button>
-              </DynamicLink>
-            </RichTextWrapper>
-            <CodeWrapper>
-              <CodeExample
-                dangerouslySetInnerHTML={{
-                  __html: `yarn add <b>gatsby-plugin-tinacms</b>
+              </RichTextWrapper>
+              <CodeWrapper>
+                <CodeExample
+                  dangerouslySetInnerHTML={{
+                    __html: `yarn add <b>gatsby-plugin-tinacms</b>
 
 module.exports = {
   <span>// ...</span>
@@ -93,15 +113,37 @@ module.exports = {
 
 export <b>WithTina</b>( <b>Component</b> );
                   `,
-                }}
-              ></CodeExample>
-            </CodeWrapper>
-          </SetupLayout>
-        </Wrapper>
-      </Section>
-    </Layout>
+                  }}
+                ></CodeExample>
+              </CodeWrapper>
+            </SetupLayout>
+          </Wrapper>
+        </Section>
+      </Layout>
+    </InlineForm>
   )
 }
+
+/*
+ ** DATA FETCHING --------------------------------------------------
+ */
+
+export async function unstable_getStaticProps() {
+  const homeData = await import('../content/pages/home.json')
+
+  return {
+    props: {
+      jsonFile: {
+        fileRelativePath: 'content/pages/home.json',
+        data: homeData.default,
+      },
+    },
+  }
+}
+
+/*
+ ** TINA FORM CONFIG ----------------------------------------------------
+ */
 
 const formOptions = {
   label: 'Home Page',
@@ -166,22 +208,76 @@ const formOptions = {
   ],
 }
 
-const EditableHomePage = inlineJsonForm(HomePage, formOptions)
-export default EditableHomePage
+/*
+ ** BLOCKS CONFIG ------------------------------------------------------
+ */
+/*
+ ** TODO: these selling point blocks should be an inline group-list
+ */
 
-export async function unstable_getStaticProps() {
-  const homeData = await import('../content/pages/home.json')
-
-  return {
-    props: {
-      jsonFile: {
-        fileRelativePath: 'content/pages/home.json',
-        data: homeData.default,
-      },
-    },
-  }
+function SellingPoint({ data, index }) {
+  return (
+    <BlocksControls index={index}>
+      <div key={data.main.slice(0, 8)}>
+        <h3>
+          <em>
+            <BlockText name="main" />
+          </em>
+        </h3>
+        <p>
+          <BlockTextArea name="supporting" />
+        </p>
+      </div>
+    </BlocksControls>
+  )
 }
 
+const selling_point_template: BlockTemplate = {
+  type: 'selling_point',
+  label: 'Selling Point',
+  defaultItem: {
+    main: 'Tina is dope 🤙',
+    supporting:
+      'It’s pretty much my favorite animal. It’s like a lion and a tiger mixed… bred for its skills in magic.',
+  },
+  // TODO: figure out what to do with keys
+  key: undefined,
+  fields: [],
+}
+
+const SELLING_POINTS_BLOCKS = {
+  selling_point: {
+    Component: SellingPoint,
+    template: selling_point_template,
+  },
+}
+
+function SetupPoint({ data, index }) {
+  return (
+    <BlocksControls index={index}>
+      <li key={data.step.slice(0, 8)}>
+        <BlockTextArea name="step" />
+      </li>
+    </BlocksControls>
+  )
+}
+
+const setup_point_template: BlockTemplate = {
+  type: 'setup_point',
+  label: 'Setup Point',
+  defaultItem: {
+    step: 'Make yourself a dang quesadilla',
+  },
+  key: undefined,
+  fields: [],
+}
+
+const SETUP_POINT_BLOCKS = {
+  setup_point: {
+    Component: SetupPoint,
+    template: setup_point_template,
+  },
+}
 /*
  ** STYLES -------------------------------------------------------
  */

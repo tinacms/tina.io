@@ -4,29 +4,16 @@
   "headline": "The power of Tina for the entire team",
   "supporting_points": [
     {
+      "_template": "point",
       "point": "Manage a custom cloud editing environment for you and your team"
     },
     {
+      "_template": "point",
       "point": "Authentication and role-based access controls"
     },
     {
+      "_template": "point",
       "point": "Git-backed (other data sources coming soon)"
     }
-  ],
-  "default": {
-    "title": "",
-    "headline": "Join the club",
-    "gif": {
-      "src": "/img/rico-replacement.jpg",
-      "alt": "Join the club"
-    },
-    "supporting_headline": "Open source, extensible and community driven",
-    "supporting_body": "Tina is made better by the wisdom of crowds. blah blah blah. "
-  },
-  "gif": {
-    "src": "/img/rico-replacement.jpg",
-    "alt": "Join the club"
-  },
-  "supporting_headline": "Open source, extensible and community driven",
-  "supporting_body": "Tina is made better by the wisdom of crowds. blah blah blah. "
+  ]
 }
