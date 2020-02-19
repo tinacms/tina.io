@@ -24,68 +24,7 @@ import {
 } from '../components/ui/inline'
 
 export default function HomePage(props) {
-  const formOptions = {
-    label: 'Home Page',
-    fields: [
-      {
-        label: 'Headline',
-        name: 'headline',
-        description: 'Enter the main headline here',
-        component: 'text',
-      },
-      {
-        label: 'Description',
-        name: 'description',
-        description: 'Enter supporting main description',
-        component: 'textarea',
-      },
-      {
-        label: 'Selling Points',
-        name: 'three_points',
-        description: 'Edit the points here',
-        component: 'group-list',
-        itemProps: item => ({
-          key: item.id,
-          label: `${item.main.slice(0, 15)}...`,
-        }),
-        fields: [
-          {
-            label: 'Main',
-            name: 'main',
-            component: 'textarea',
-          },
-          {
-            label: 'Supporting',
-            name: 'supporting',
-            component: 'textarea',
-          },
-        ],
-      },
-      {
-        label: 'Setup Headline',
-        name: 'setup.headline',
-        description: 'Enter the "setup" headline here',
-        component: 'textarea',
-      },
-      {
-        label: 'Setup Steps',
-        name: 'setup.steps',
-        description: 'Edit the steps here',
-        component: 'group-list',
-        itemProps: item => ({
-          key: item.id,
-          label: `${item.step.slice(0, 15)}...`,
-        }),
-        fields: [
-          {
-            label: 'Step',
-            name: 'step',
-            component: 'textarea',
-          },
-        ],
-      },
-    ],
-  }
+  // Registers Tina Form
   const [data, form] = useLocalJsonForm(props.jsonFile, formOptions)
 
   return (
@@ -185,6 +124,10 @@ export <b>WithTina</b>( <b>Component</b> );
   )
 }
 
+/*
+ ** DATA FETCHING --------------------------------------------------
+ */
+
 export async function unstable_getStaticProps() {
   const homeData = await import('../content/pages/home.json')
 
@@ -196,6 +139,73 @@ export async function unstable_getStaticProps() {
       },
     },
   }
+}
+
+/*
+ ** TINA FORM CONFIG ----------------------------------------------------
+ */
+
+const formOptions = {
+  label: 'Home Page',
+  fields: [
+    {
+      label: 'Headline',
+      name: 'headline',
+      description: 'Enter the main headline here',
+      component: 'text',
+    },
+    {
+      label: 'Description',
+      name: 'description',
+      description: 'Enter supporting main description',
+      component: 'textarea',
+    },
+    {
+      label: 'Selling Points',
+      name: 'three_points',
+      description: 'Edit the points here',
+      component: 'group-list',
+      itemProps: item => ({
+        key: item.id,
+        label: `${item.main.slice(0, 15)}...`,
+      }),
+      fields: [
+        {
+          label: 'Main',
+          name: 'main',
+          component: 'textarea',
+        },
+        {
+          label: 'Supporting',
+          name: 'supporting',
+          component: 'textarea',
+        },
+      ],
+    },
+    {
+      label: 'Setup Headline',
+      name: 'setup.headline',
+      description: 'Enter the "setup" headline here',
+      component: 'textarea',
+    },
+    {
+      label: 'Setup Steps',
+      name: 'setup.steps',
+      description: 'Edit the steps here',
+      component: 'group-list',
+      itemProps: item => ({
+        key: item.id,
+        label: `${item.step.slice(0, 15)}...`,
+      }),
+      fields: [
+        {
+          label: 'Step',
+          name: 'step',
+          component: 'textarea',
+        },
+      ],
+    },
+  ],
 }
 
 /*

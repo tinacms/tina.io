@@ -56,7 +56,7 @@ const Index = props => {
 }
 
 /*
- ** GET INITIAL PROPS ---------------------------------
+ ** GET STATIC PROPS ---------------------------------
  */
 
 const POSTS_PER_PAGE = 8
