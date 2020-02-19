@@ -5,34 +5,29 @@ import { getUser, getBranch } from '../../open-authoring/github/api'
 export const EditLink = () => {
   let authTab: Window
 
+  
   const isTokenValid = async () => {
-    try {
-      const response = await getUser()
-      const data = await response.json()
-      if (data.login) {
-        return true
-      }
-      return false
-    }
-    catch (e) {
-      return false
-    }
+    const userData = await getUser()
+    if (!userData) return false
+    return true
   }
 
   const isForkValid = async (fork: string) => {
     const branch = "master"; // static branch for now
 
-    try {
-      const response = await getBranch(fork, branch)
-      const data = await response.json()
-      if (data.ref === "refs/heads/" + branch) {
-        return true
-      }
-      return false
-    } catch (e) {
-      return false
+    const forkData = await getBranch(fork, branch)
+    if (!forkData) return false
+    if (forkData.ref === "refs/heads/" + branch) {
+      return true
     }
+    return false
   }
+
+  const authState = Math.random()
+    .toString(36)
+    .substring(7)
+
+  
 
   const onClick = async () => {
     const accessTokenAlreadyExists = await isTokenValid();
@@ -45,14 +40,14 @@ export const EditLink = () => {
           return;
       } else {
         authTab = window.open(
-          `/github/fork`,
+          `/github/fork?state=${authState}`,
           '_blank',
           'fullscreen=no, width=1000, height=800'
         )
       }
     } else {
       authTab = window.open(
-        `/github/start-auth`,
+        `/github/start-auth?state=${authState}`,
         '_blank',
         'fullscreen=no, width=1000, height=800'
       )
@@ -62,8 +57,8 @@ export const EditLink = () => {
     window.addEventListener(
       'storage',
       e => {
-        updateStorageEvent(e)
-        authTab.location.pathname = '/github/fork'
+        updateStorageEvent(e, authState)
+        authTab.location.assign(`/github/fork`)
       },
       true
     )
@@ -71,7 +66,11 @@ export const EditLink = () => {
 
   useEffect(() => {
     return () => {
-      window.removeEventListener('storage', updateStorageEvent, true)
+      window.removeEventListener(
+        'storage',
+        e => updateStorageEvent(e, authState),
+        true
+      )
     }
   }, [])
 
@@ -82,17 +81,17 @@ export const EditLink = () => {
   )
 }
 
-async function updateStorageEvent(e) {
+async function updateStorageEvent(e, authState: string) {
   if (e.key == 'github_code') {
-    await handleAuthCode(e.newValue)
+    await handleAuthCode(e.newValue, authState)
   }
   if (e.key == 'fork_full_name') {
     handleForkCreated(e.newValue)
   }
 }
 
-async function handleAuthCode(code: string) {
-  const token = await requestGithubAccessToken(code)
+async function handleAuthCode(code: string, authState: string) {
+  const token = await requestGithubAccessToken(code, authState)
 }
 
 async function handleForkCreated(forkName: string) {
@@ -102,8 +101,10 @@ async function handleForkCreated(forkName: string) {
   })
 }
 
-const requestGithubAccessToken = async (code: string) => {
-  const resp = await fetch(`/api/get-github-access-token?code=${code}`)
+const requestGithubAccessToken = async (code: string, authState: string) => {
+  const resp = await fetch(
+    `/api/get-github-access-token?code=${code}&state=${authState}`
+  )
   const tokenData = await resp.json()
   return tokenData.access_token
 }

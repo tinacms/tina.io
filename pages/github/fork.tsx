@@ -28,32 +28,22 @@ export default function Authorizing() {
   const [forkValidating, setForkValidating] = useState(true)
 
   useEffect(() => {  // check if user already has a fork and if so use it
-    const branch = "master";
-    getUser().then( async rawResponse => {
-      const data = await rawResponse.json()
-      const login = data.login
-      const expectedFork = login + "/" + process.env.REPO_FULL_NAME.split('/')[1]
-      
-      try {
-        const forkRawResponse = await getBranch(expectedFork, branch)
-        const forkData = await forkRawResponse.json()
+    (async () => {
+      const branch = "master";
 
-        if (forkData.ref === "refs/heads/" + branch) {
-          localStorage.setItem('fork_full_name', expectedFork)
-          window.close()
-          return
-        }
-        setForkValidating(false);
-        return;
-      } catch (err) {
-        setForkValidating(false);
-        return;
+      const userData = await getUser()
+      if (!userData) return setForkValidating(false)
+      const login = userData.login
+      const expectedFork = login + "/" + process.env.REPO_FULL_NAME.split('/')[1]
+      const forkData = await getBranch(expectedFork, branch)
+      if (!forkData) return setForkValidating(false)
+      if (forkData.ref === "refs/heads/" + branch) { // found fork
+        localStorage.setItem('fork_full_name', expectedFork)
+        window.close()
+        return
       }
-    }).catch( err => {
-      setForkValidating(false);
-      return;
-    })
-  
+      return setForkValidating(false)
+    })()  
   })
 
 

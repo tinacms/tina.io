@@ -93,13 +93,14 @@ const saveContent = async (
   })
 }
 
-const createAccessToken = (clientId, clientSecret, code) => {
+const createAccessToken = (clientId, clientSecret, code, state) => {
   return axios.post(
     `https://github.com/login/oauth/access_token`,
     qs.stringify({
       client_id: clientId,
       client_secret: clientSecret,
       code: code,
+      state,
     })
   )
 }
@@ -114,28 +115,44 @@ const createFork = (repoFullName, accessToken) => {
   })
 }
 
-const getBranch = (repoFullName, branch) => { // uses proxy
-  return fetch(`/api/proxy-github`, {
-    method: 'POST',
-    body: JSON.stringify({
-      proxy_data: {
-        url: `https://api.github.com/repos/${repoFullName}/git/ref/heads/${branch}`,
-        method: 'GET',
-      },
-    }),
-  })
+const getBranch = async (repoFullName, branch) => { // uses proxy
+  try {
+    const response = await fetch(`/api/proxy-github`, {
+      method: 'POST',
+      body: JSON.stringify({
+        proxy_data: {
+          url: `https://api.github.com/repos/${repoFullName}/git/ref/heads/${branch}`,
+          method: 'GET',
+        },
+      }),
+    })
+
+    const data = await response.json()
+    if (response.status === 200) return data
+    return
+  } catch (err) {
+    return
+  }
 }
 
-const getUser = () => { // uses proxy
-  return fetch(`/api/proxy-github`, {
-    method: 'POST',
-    body: JSON.stringify({
-      proxy_data: {
-        url: `https://api.github.com/user`,
-        method: 'GET',
-      },
-    }),
-  })
+const getUser =  async() => { // uses proxy
+  try {
+    const response = await fetch(`/api/proxy-github`, {
+      method: 'POST',
+      body: JSON.stringify({
+        proxy_data: {
+          url: `https://api.github.com/user`,
+          method: 'GET',
+        },
+      }),
+    })
+
+    const data = await response.json()
+    if (response.status === 200) return data
+    return
+  } catch (err) {
+    return
+  }
 }
 
 module.exports = {
