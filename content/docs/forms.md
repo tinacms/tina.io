@@ -28,7 +28,7 @@ export function Page(props) {
 }
 ```
 
-We can call the `useLocalForm` hook here to create a form that will be used to edit this content. `useLocalForm` returns an object containing all of the form's values that will change as the content is updated in the form. By switching out our original `props` in the rendering code for this new object, our page will re-render as the content is changed, giving us a real-time preview of the content!
+Here's how we might call `useLocalForm` to create a form that will be used to edit this content:
 
 ```javascript
 import * as React from React
@@ -47,9 +47,11 @@ export function Page(props) {
 
 ```
 
+`useLocalForm` returns an object containing all of the form's values that will change as the content is updated in the form. By switching out our original `props` in the rendering code for this new object, our page will re-render as the content is changed, giving us a real-time preview of the content!
+
 ## Form Hooks
 
-Tina includes three hooks for creating forms: `useForm`, `useLocalForm`, and `useGlobalForm`.
+Tina includes three hooks for creating forms: `useForm`, `useLocalForm`, and `useGlobalForm`. The API of each of these hooks is exactly the same, and the behavior is mostly similar; the only difference is where the form appears in Tina's sidebar interface.
 
 ### _useLocalForm_
 
@@ -66,10 +68,6 @@ Note that calling `useGlobalForm` in a non-global context will still cause the f
 ### _useForm_
 
 `useForm` will create a form, but will not add it to the sidebar UI at all. You might use this for content that will be [edited inline](/docs/inline-editing), if you don't want the form to also appear in the sidebar.
-
-Whichever you use,
-In all cases, (configuration, what they return, etc)
-(or:) all three forms ...
 
 ## Form Configuration
 
