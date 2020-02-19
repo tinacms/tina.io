@@ -30,6 +30,11 @@ import { TinaIcon } from '../../components/logo'
 
 export default function DocTemplate(props) {
   // Registers Tina Form
+
+  if (!props.markdownFile) {
+    return <div></div>
+  }
+
   const [data, form] = useLocalMarkdownForm(props.markdownFile, formOptions)
   const [open, setOpen] = useState(false)
   const frontmatter = data.frontmatter
