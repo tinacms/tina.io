@@ -1,9 +1,10 @@
 import React from "react"
+import Cookies from "js-cookie"
 const { createPR, fetchExistingPR } = require("./github/api/index");
 const baseBranch = process.env.BASE_BRANCH
 
 export class PRPlugin {
-    constructor(baseRepoFullName, forkRepoFullName, headBranch, accessToken) {
+    constructor(baseRepoFullName, forkRepoFullName, accessToken) {
         this.__type = "screen";
         this.name = "Create Pull Request";
         this.Icon = () => <>🚀</>;
@@ -13,11 +14,15 @@ export class PRPlugin {
         fetchedPR: null
         };
 
+        const getHeadBranch = () => {
+            return Cookies.get('head_branch') || "master"
+        }
+
         this.titleInput = React.createRef()
         this.bodyInput = React.createRef()
 
         this.checkForPR = () => {
-        fetchExistingPR(baseRepoFullName, forkRepoFullName, headBranch, accessToken).then( pull => {
+        fetchExistingPR(baseRepoFullName, forkRepoFullName, getHeadBranch(), accessToken).then( pull => {
             if (pull) {
             this.state.fetchedPR = pull;
             this.name = "Existing Pull Request";
@@ -31,7 +36,7 @@ export class PRPlugin {
         
 
         this.createPR = () => {
-        createPR(baseRepoFullName, forkRepoFullName, headBranch, accessToken, this.titleInput.current.value, this.bodyInput.current.value)
+        createPR(baseRepoFullName, forkRepoFullName, getHeadBranch(), accessToken, this.titleInput.current.value, this.bodyInput.current.value)
             .then(response => {
             alert(`you made a PR!: ${response.data.html_url}`);
             this.checkForPR()
@@ -53,7 +58,7 @@ export class PRPlugin {
                 target="_blank"
                 href={`https://github.com/${baseRepoFullName}/compare/${baseBranch}...${
                     forkRepoFullName.split("/")[0]
-                    }:${headBranch}`}
+                    }:${getHeadBranch()}`}
                 >
                 See Changes
                 </a>
@@ -61,7 +66,7 @@ export class PRPlugin {
                 This will create a PR from:
                 <br />
                 <b>
-                    {forkRepoFullName} - {headBranch}
+                    {forkRepoFullName} - {getHeadBranch()}
                 </b>{" "}
                 <br />
                 into <br />
@@ -94,7 +99,7 @@ export class PRPlugin {
                 target="_blank"
                     href={`https://github.com/${baseRepoFullName}/compare/${baseBranch}...${
                     forkRepoFullName.split("/")[0]
-                    }:${headBranch}`}
+                    }:${getHeadBranch()}`}
                 >
                     See Changes
                 </a>

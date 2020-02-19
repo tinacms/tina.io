@@ -133,13 +133,11 @@ const HomePage = (props: any) => {
       return new PRPlugin(
         props.baseRepoFullName,
         props.forkFullName,
-        props.headBranch,
         props.accessToken
       )
     }, [
       props.baseRepoFullName,
       props.forkFullName,
-      props.headBranch,
       props.accessToken,
     ])
 
@@ -242,9 +240,9 @@ export async function unstable_getStaticProps({ preview, previewData }) {
   const filePath = 'content/pages/home.json'
 
   if (preview) {
-    const { fork_full_name, github_access_token } = previewData
+    const { fork_full_name, github_access_token, head_branch } = previewData
 
-    const headBranch = 'master'
+    const headBranch = head_branch || "master"
     const response = await getContent(
       fork_full_name,
       headBranch,
