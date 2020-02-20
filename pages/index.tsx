@@ -62,6 +62,7 @@ const HomePage = (props: any) => {
           defaultItem: () => ({
             main: 'New Point',
             supporting: '',
+            _template: 'selling_point',
           }),
           fields: [
             {
@@ -94,6 +95,7 @@ const HomePage = (props: any) => {
           }),
           defaultItem: () => ({
             step: 'New Step',
+            _template: 'setup_point',
           }),
           fields: [
             {
