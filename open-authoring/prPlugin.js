@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import { Button as TinaButton } from '@tinacms/styles'
 import { Input, TextArea } from '@tinacms/fields'
 import { ModalBody, ModalActions, FieldMeta } from 'tinacms'
+import GitIconSvg from '../public/svg/git-icon.svg'
+
 const { createPR, fetchExistingPR } = require('./github/api/index')
 const baseBranch = process.env.BASE_BRANCH
 
@@ -11,7 +13,7 @@ export class PRPlugin {
   constructor(baseRepoFullName, forkRepoFullName, accessToken) {
     this.__type = 'screen'
     this.name = 'Create Pull Request'
-    this.Icon = () => <>🚀</>
+    this.Icon = GitIconSvg
     this.layout = 'popup'
     this.state = {
       responseMessage: '',
@@ -66,7 +68,7 @@ export class PRPlugin {
     this.Component = () => {
       return (
         <>
-          <ModalBody padded>
+          <PrModalBody>
             {!this.state.fetchedPR.id && (
               <>
                 <ModalDescription>
@@ -112,9 +114,8 @@ export class PRPlugin {
               </div>
             )}
             {!this.state.fetchedPR && <div>Loading...</div>}
-          </ModalBody>
+          </PrModalBody>
           <ModalActions>
-            <TinaButton onClick={() => {}}>Cancel</TinaButton>
             <TinaButton primary onClick={this.createPR}>
               Create Pull Request
             </TinaButton>
@@ -139,4 +140,8 @@ const ModalDescription = styled.p`
   b {
     font-weight: bold;
   }
+`
+
+const PrModalBody = styled(ModalBody)`
+  padding: 1.25rem 1.25rem 0 1.25rem;
 `

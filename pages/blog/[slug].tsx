@@ -1,11 +1,9 @@
-import matter from 'gray-matter'
 import styled from 'styled-components'
 const fg = require('fast-glob')
 import { NextSeo } from 'next-seo'
-import { useLocalMarkdownForm } from 'next-tinacms-markdown'
 import { InlineForm } from 'react-tinacms-inline'
 
-import { formatDate, formatExcerpt, readFile } from '../../utils'
+import { formatDate, formatExcerpt } from '../../utils'
 import {
   Layout,
   Hero,
@@ -19,17 +17,30 @@ import {
   InlineWysiwyg,
   InlineTextareaField,
   InlineTextField,
-  InlineControls,
 } from '../../components/ui/inline'
+import { getGithubDataFromPreviewProps } from '../../utils/github/sourceProviderConnection'
+import getMarkdownData from '../../utils/github/getMarkdownData'
+import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'
 
-export default function BlogTemplate({ markdownFile, siteConfig }) {
+export default function BlogTemplate({
+  markdownFile,
+  sourceProviderConnection,
+  siteConfig,
+  editMode,
+}) {
   //workaround for fallback being not implemented
   if (!markdownFile) {
     return <div></div>
   }
 
   // Registers Tina Form
-  const [data, form] = useLocalMarkdownForm(markdownFile, formOptions)
+  const [data, form] = useLocalGithubMarkdownForm(
+    markdownFile,
+    formOptions,
+    sourceProviderConnection,
+    editMode
+  )
+
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
   const excerpt = formatExcerpt(data.markdownBody)
@@ -95,23 +106,30 @@ export default function BlogTemplate({ markdownFile, siteConfig }) {
  ** DATA FETCHING --------------------------------------------------
  */
 
-export async function unstable_getStaticProps(ctx) {
+export async function unstable_getStaticProps({
+  preview,
+  previewData,
+  ...ctx
+}) {
   const { slug } = ctx.params
-  //TODO - change to fs.readFile once we move to getStaticProps
-  const content = await readFile(`content/blog/${slug}.md`)
+
+  const sourceProviderConnection = getGithubDataFromPreviewProps(previewData)
+  const file = await getMarkdownData(
+    `content/blog/${slug}.md`,
+    sourceProviderConnection
+  )
+
+  //TODO - move to readFile
   const siteConfig = await import('../../content/siteConfig.json')
-  const post = matter(content)
 
   return {
     props: {
+      sourceProviderConnection,
+      editMode: !!preview,
       siteConfig: {
         title: siteConfig.title,
       },
-      markdownFile: {
-        fileRelativePath: `content/blog/${slug}.md`,
-        frontmatter: post.data,
-        markdownBody: post.content,
-      },
+      markdownFile: file,
     },
   }
 }

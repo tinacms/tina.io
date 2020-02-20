@@ -1,13 +1,6 @@
-import React, { useMemo, useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import Head from 'next/head'
-import Link from 'next/link'
-import { inlineJsonForm } from 'next-tinacms-json'
-import { useCMS, useLocalForm, usePlugins } from 'tinacms'
-import { PRPlugin } from '../open-authoring/prPlugin'
-import { b64DecodeUnicode } from '../open-authoring/utils/base64'
 import { BlockTemplate } from 'tinacms'
-import { useLocalJsonForm } from 'next-tinacms-json'
 import {
   InlineForm,
   BlocksControls,
@@ -25,142 +18,103 @@ import {
   RichTextWrapper,
 } from '../components/layout'
 import { Button, Video, ArrowList } from '../components/ui'
-import { saveContent, getContent } from '../open-authoring/github/api'
 import { useEditContext } from '../utils/editContext'
-import { setCachedFormData, getCachedFormData } from '../utils/formCache'
 import { InlineTextareaField, BlockTextArea } from '../components/ui/inline'
+import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
+import getJsonData from '../utils/github/getJsonData'
+import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 
 const HomePage = (props: any) => {
-  const cms = useCMS()
-
-  useEffect(() => {
-    setCachedFormData(props.fileRelativePath, {
-      sha: props.sha,
-    })
-  }, [])
-
   const editContext = useEditContext()
   editContext.setIsEditMode(props.editMode)
 
-  const [formData, form] = useLocalForm({
-    id: props.fileRelativePath, // needs to be unique
-    label: 'Home Page',
-    initialValues: {
-      fileRelativePath: props.fileRelativePath,
-      data: props.data,
-      sha: props.sha,
+  const [formData, form] = useLocalGithubJsonForm(
+    props.home,
+    {
+      label: 'Home Page',
+      fields: [
+        {
+          label: 'Headline',
+          name: 'headline',
+          description: 'Enter the main headline here',
+          component: 'text',
+        },
+        {
+          label: 'Description',
+          name: 'description',
+          description: 'Enter supporting main description',
+          component: 'textarea',
+        },
+        {
+          label: 'Selling Points',
+          name: 'three_points',
+          description: 'Edit the points here',
+          component: 'group-list',
+          //@ts-ignore
+          itemProps: item => ({
+            key: item.id,
+            label: `${item.main.slice(0, 15)}...`,
+          }),
+          defaultItem: () => ({
+            main: 'New Point',
+            supporting: '',
+            _template: 'selling_point',
+          }),
+          fields: [
+            {
+              label: 'Main',
+              name: 'main',
+              component: 'textarea',
+            },
+            {
+              label: 'Supporting',
+              name: 'supporting',
+              component: 'textarea',
+            },
+          ],
+        },
+        {
+          label: 'Setup Headline',
+          name: 'setup.headline',
+          description: 'Enter the "setup" headline here',
+          component: 'textarea',
+        },
+        {
+          label: 'Setup Steps',
+          name: 'setup.steps',
+          description: 'Edit the steps here',
+          component: 'group-list',
+          //@ts-ignore
+          itemProps: item => ({
+            key: item.id,
+            label: `${item.step.slice(0, 15)}...`,
+          }),
+          defaultItem: () => ({
+            step: 'New Step',
+            _template: 'setup_point',
+          }),
+          fields: [
+            {
+              label: 'Step',
+              name: 'step',
+              component: 'textarea',
+            },
+          ],
+        },
+      ],
     },
-    fields: [
-      {
-        label: 'Headline',
-        name: 'data.headline',
-        description: 'Enter the main headline here',
-        component: 'text',
-      },
-      {
-        label: 'Description',
-        name: 'data.description',
-        description: 'Enter supporting main description',
-        component: 'textarea',
-      },
-      {
-        label: 'Selling Points',
-        name: 'data.three_points',
-        description: 'Edit the points here',
-        component: 'group-list',
-        //@ts-ignore
-        itemProps: item => ({
-          key: item.id,
-          label: `${item.main.slice(0, 15)}...`,
-        }),
-        defaultItem: () => ({
-          main: 'New Point',
-          supporting: '',
-        }),
-        fields: [
-          {
-            label: 'Main',
-            name: 'main',
-            component: 'textarea',
-          },
-          {
-            label: 'Supporting',
-            name: 'supporting',
-            component: 'textarea',
-          },
-        ],
-      },
-      {
-        label: 'Setup Headline',
-        name: 'data.setup.headline',
-        description: 'Enter the "setup" headline here',
-        component: 'textarea',
-      },
-      {
-        label: 'Setup Steps',
-        name: 'data.setup.steps',
-        description: 'Edit the steps here',
-        component: 'group-list',
-        //@ts-ignore
-        itemProps: item => ({
-          key: item.id,
-          label: `${item.step.slice(0, 15)}...`,
-        }),
-        defaultItem: () => ({
-          step: 'New Step',
-        }),
-        fields: [
-          {
-            label: 'Step',
-            name: 'step',
-            component: 'textarea',
-          },
-        ],
-      },
-    ],
-    // save & commit the file when the "save" button is pressed
-    onSubmit(formData, form) {
-      saveContent(
-        props.forkFullName,
-        props.branch,
-        props.fileRelativePath,
-        props.accessToken,
-        getCachedFormData(props.fileRelativePath).sha,
-        JSON.stringify(formData.data),
-        'Update from TinaCMS'
-      ).then(response => {
-        setCachedFormData(props.fileRelativePath, {
-          sha: response.data.content.sha,
-        })
-      })
-    },
-  })
-
-  function usePRPlugin() {
-    const brancher = useMemo(() => {
-      return new PRPlugin(
-        props.baseRepoFullName,
-        props.forkFullName,
-        props.accessToken
-      )
-    }, [props.baseRepoFullName, props.forkFullName, props.accessToken])
-
-    usePlugins(brancher)
-  }
-  if (props.editMode) {
-    usePRPlugin()
-  }
-
-  const homeData = formData.data
+    props.sourceProviderConnection,
+    props.editMode
+  )
 
   return (
     <InlineForm form={form}>
       <Layout pathname="/">
-        <DefaultSeo titleTemplate={homeData.title + ' | %s'} />
+        <DefaultSeo titleTemplate={formData.title + ' | %s'} />
         <Hero overlap narrow>
-          <InlineTextareaField name="data.headline" />
+          <InlineTextareaField name="headline" />
         </Hero>
-        <Video src={homeData.hero_video} />
+        <Video src={formData.hero_video} />
 
         <Section>
           <Wrapper>
@@ -168,7 +122,7 @@ const HomePage = (props: any) => {
               <CtaLayout>
                 <h2>
                   <em>
-                    <InlineTextareaField name="data.description" />
+                    <InlineTextareaField name="description" />
                   </em>
                 </h2>
                 <CtaBar>
@@ -184,7 +138,7 @@ const HomePage = (props: any) => {
               </CtaLayout>
               <InfoLayout>
                 <InlineBlocks
-                  name="data.three_points"
+                  name="three_points"
                   blocks={SELLING_POINTS_BLOCKS}
                 />
               </InfoLayout>
@@ -197,12 +151,12 @@ const HomePage = (props: any) => {
             <SetupLayout>
               <RichTextWrapper>
                 <h2 className="h1">
-                  <InlineTextareaField name="data.setup.headline" />
+                  <InlineTextareaField name="setup.headline" />
                 </h2>
                 <hr />
                 <ArrowList>
                   <InlineBlocks
-                    name="data.setup.steps"
+                    name="setup.steps"
                     blocks={SETUP_POINT_BLOCKS}
                   />
                 </ArrowList>
@@ -244,39 +198,17 @@ export <b>WithTina</b>( <b>Component</b> );
 export default HomePage
 
 export async function unstable_getStaticProps({ preview, previewData }) {
-  const filePath = 'content/pages/home.json'
-
-  if (preview) {
-    const { fork_full_name, github_access_token, head_branch } = previewData
-
-    const headBranch = head_branch || 'master'
-    const response = await getContent(
-      fork_full_name,
-      headBranch,
-      filePath,
-      github_access_token
-    )
-
-    return {
-      props: {
-        editMode: true,
-        forkFullName: fork_full_name,
-        headBranch,
-        accessToken: github_access_token,
-        baseRepoFullName: process.env.REPO_FULL_NAME,
-        sha: response.data.sha,
-        fileRelativePath: filePath,
-        data: JSON.parse(b64DecodeUnicode(response.data.content)),
-      },
-    }
-  } else {
-    const data = await import(`../content/pages/home.json`)
-
-    return {
-      props: {
-        data: data.default,
-      },
-    }
+  const sourceProviderConnection = getGithubDataFromPreviewProps(previewData)
+  const homeData = await getJsonData(
+    'content/pages/home.json',
+    sourceProviderConnection
+  )
+  return {
+    props: {
+      home: homeData,
+      sourceProviderConnection,
+      editMode: !!preview,
+    },
   }
 }
 

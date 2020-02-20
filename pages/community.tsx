@@ -27,10 +27,23 @@ import GithubIconSvg from '../public/svg/github-icon.svg'
 import SlackIconSvg from '../public/svg/slack-icon.svg'
 import ForumIconSvg from '../public/svg/forum-icon.svg'
 import { NextSeo } from 'next-seo'
+import getJsonData from '../utils/github/getJsonData'
+import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
+import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
 
-export default function CommunityPage({ jsonFile, metadata }) {
+export default function CommunityPage({
+  community,
+  metadata,
+  sourceProviderConnection,
+  editMode,
+}) {
   // Registers Tina Form
-  const [data, form] = useLocalJsonForm(jsonFile, formOptions)
+  const [data, form] = useLocalGithubJsonForm(
+    community,
+    formOptions,
+    sourceProviderConnection,
+    editMode
+  )
 
   return (
     <InlineForm form={form}>
@@ -155,16 +168,20 @@ export default function CommunityPage({ jsonFile, metadata }) {
  ** DATA FETCHING -----------------------------------------------
  */
 
-export async function unstable_getStaticProps() {
+export async function unstable_getStaticProps({ preview, previewData }) {
+  const sourceProviderConnection = getGithubDataFromPreviewProps(previewData)
   const siteMetadata = await import('../content/siteConfig.json')
-  const communityData = await import('../content/pages/community.json')
+
+  const communityData = await getJsonData(
+    'content/pages/community.json',
+    sourceProviderConnection
+  )
   return {
     props: {
       metadata: siteMetadata,
-      jsonFile: {
-        fileRelativePath: `content/pages/community.json`,
-        data: communityData.default,
-      },
+      community: communityData,
+      sourceProviderConnection,
+      editMode: !!preview,
     },
   }
 }

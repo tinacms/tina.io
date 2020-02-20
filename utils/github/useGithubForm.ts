@@ -1,0 +1,47 @@
+import { useEffect, useMemo } from 'react'
+import { useCMS, usePlugins } from 'tinacms'
+import { PRPlugin } from '../../open-authoring/prPlugin'
+import { setCachedFormData } from '../formCache'
+
+export interface GitFile<T = any> {
+  fileRelativePath: string
+  sha: string
+  data: T
+}
+
+export interface GithubOptions {
+  baseRepoFullName: string
+  forkFullName: string
+  branch: string
+  accessToken: string
+}
+
+export const useGithubForm = <T = any>(
+  file: GitFile<T>,
+  githubOptions: GithubOptions,
+  isEditMode: boolean
+) => {
+  const cms = useCMS()
+
+  useEffect(() => {
+    setCachedFormData(file.fileRelativePath, {
+      sha: file.sha,
+    })
+  }, [])
+
+  // TODO - this might cause an issue if editmode dynamically changes
+  if (isEditMode) {
+    const prPlugin = useMemo(() => {
+      return new PRPlugin(
+        githubOptions.baseRepoFullName,
+        githubOptions.forkFullName,
+        githubOptions.accessToken
+      )
+    }, [
+      githubOptions.baseRepoFullName,
+      githubOptions.forkFullName,
+      githubOptions.accessToken,
+    ])
+    usePlugins(prPlugin)
+  }
+}
