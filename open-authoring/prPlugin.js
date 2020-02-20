@@ -68,7 +68,7 @@ export class PRPlugin {
     this.Component = () => {
       return (
         <>
-          <ModalBody padded>
+          <PrModalBody>
             {!this.state.fetchedPR.id && (
               <>
                 <ModalDescription>
@@ -114,7 +114,7 @@ export class PRPlugin {
               </div>
             )}
             {!this.state.fetchedPR && <div>Loading...</div>}
-          </ModalBody>
+          </PrModalBody>
           <ModalActions>
             <TinaButton onClick={() => {}}>Cancel</TinaButton>
             <TinaButton primary onClick={this.createPR}>
@@ -141,4 +141,8 @@ const ModalDescription = styled.p`
   b {
     font-weight: bold;
   }
+`
+
+const PrModalBody = styled(ModalBody)`
+  padding: 1.25rem 1.25rem 0 1.25rem;
 `
