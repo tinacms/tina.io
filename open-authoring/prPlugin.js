@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import { Button as TinaButton } from '@tinacms/styles'
 import { Input, TextArea } from '@tinacms/fields'
 import { ModalBody, ModalActions, FieldMeta } from 'tinacms'
+import GitIconSvg from '../public/svg/git-icon.svg'
+
 const { createPR, fetchExistingPR } = require('./github/api/index')
 const baseBranch = process.env.BASE_BRANCH
 
@@ -11,7 +13,7 @@ export class PRPlugin {
   constructor(baseRepoFullName, forkRepoFullName, accessToken) {
     this.__type = 'screen'
     this.name = 'Create Pull Request'
-    this.Icon = () => <>🚀</>
+    this.Icon = GitIconSvg
     this.layout = 'popup'
     this.state = {
       responseMessage: '',
