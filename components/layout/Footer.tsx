@@ -33,14 +33,14 @@ export const Footer = styled(({ ...styleProps }) => {
         </FooterForm>
         <Footnote>
           <EditLink />
-          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <FooterDivider />
           <a
             href="https://github.com/tinacms/tinacms/blob/master/LICENSE"
             target="_blank"
           >
             License
           </a>
-          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <FooterDivider />
           <p>
             &copy; TinaCMS 2019–
             {new Date().getFullYear()}
@@ -130,6 +130,7 @@ const FooterBottom = styled.div`
 
   @media (min-width: 1000px) {
     flex-direction: row;
+    align-items: center;
   }
 `
 
@@ -153,5 +154,13 @@ const Footnote = styled.span`
       color: white;
       opacity: 1;
     }
+  }
+`
+
+const FooterDivider = styled.span`
+  &:after {
+    content: '|';
+    margin: 0 0.5rem;
+    opacity: 0.3;
   }
 `
