@@ -114,20 +114,20 @@ export async function unstable_getStaticProps({
   let { slug: slugs } = ctx.params
 
   const slug = slugs.join('/')
-  const content = await readFile(`content/docs/${slug}.md`)
-  const doc = matter(content)
-
-  const docsNavData = await import('../../content/toc-doc.json')
-  const nextDocPage =
-    doc.data.next && matter(await readFile(`content${doc.data.next}.md`))
-  const prevDocPage =
-    doc.data.prev && matter(await readFile(`content${doc.data.prev}.md`))
 
   const sourceProviderConnection = getGithubDataFromPreviewProps(previewData)
   const file = await getMarkdownData(
     `content/docs/${slug}.md`,
     sourceProviderConnection
   )
+
+  const docsNavData = await import('../../content/toc-doc.json')
+  const nextDocPage =
+    file.data.frontmatter.next &&
+    matter(await readFile(`content${file.data.frontmatter.next}.md`))
+  const prevDocPage =
+    file.data.frontmatter.prev &&
+    matter(await readFile(`content${file.data.frontmatter.prev}.md`))
 
   return {
     props: {
@@ -136,11 +136,11 @@ export async function unstable_getStaticProps({
       editMode: !!preview,
       docsNav: docsNavData.default,
       nextPage: {
-        slug: doc.data.next,
+        slug: file.data.frontmatter.next,
         title: nextDocPage && nextDocPage.data.title,
       },
       prevPage: {
-        slug: doc.data.prev,
+        slug: file.data.frontmatter.prev,
         title: prevDocPage && prevDocPage.data.title,
       },
     },
