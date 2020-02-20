@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { b64DecodeUnicode } from '../open-authoring/utils/base64'
 import { BlockTemplate } from 'tinacms'
 import {
   InlineForm,
@@ -19,10 +18,10 @@ import {
   RichTextWrapper,
 } from '../components/layout'
 import { Button, Video, ArrowList } from '../components/ui'
-import { getContent } from '../open-authoring/github/api'
 import { useEditContext } from '../utils/editContext'
 import { InlineTextareaField, BlockTextArea } from '../components/ui/inline'
-import { useLocalGithubJsonForm } from '../utils/useLocalGithubJsonForm'
+import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
+import getJsonData from '../utils/github/getJsonData'
 
 const HomePage = (props: any) => {
   const editContext = useEditContext()
@@ -110,7 +109,8 @@ const HomePage = (props: any) => {
       branch: props.branch,
       accessToken: props.accessToken,
       baseRepoFullName: props.baseRepoFullName,
-    }
+    },
+    props.editMode
   )
 
   return (
@@ -204,39 +204,12 @@ export <b>WithTina</b>( <b>Component</b> );
 export default HomePage
 
 export async function unstable_getStaticProps({ preview, previewData }) {
-  const filePath = 'content/pages/home.json'
-
-  if (preview) {
-    const { fork_full_name, github_access_token, head_branch } = previewData
-
-    const headBranch = head_branch || 'master'
-    const response = await getContent(
-      fork_full_name,
-      headBranch,
-      filePath,
-      github_access_token
-    )
-
-    return {
-      props: {
-        editMode: true,
-        forkFullName: fork_full_name,
-        headBranch,
-        accessToken: github_access_token,
-        baseRepoFullName: process.env.REPO_FULL_NAME,
-        sha: response.data.sha,
-        fileRelativePath: filePath,
-        data: JSON.parse(b64DecodeUnicode(response.data.content)),
-      },
-    }
-  } else {
-    const data = await import(`../content/pages/home.json`)
-
-    return {
-      props: {
-        data: data.default,
-      },
-    }
+  const data = await getJsonData('content/pages/home.json', previewData)
+  return {
+    props: {
+      ...data,
+      editMode: !!preview,
+    },
   }
 }
 

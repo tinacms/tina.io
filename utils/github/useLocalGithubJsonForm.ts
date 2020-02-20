@@ -1,8 +1,9 @@
 import { FormOptions, useLocalForm, useCMS, usePlugins } from 'tinacms'
-import { saveContent } from '../open-authoring/github/api'
-import { getCachedFormData, setCachedFormData } from './formCache'
+import { saveContent } from '../../open-authoring/github/api'
+import { getCachedFormData, setCachedFormData } from '../formCache'
 import { useEffect, useMemo } from 'react'
-import { PRPlugin } from '../open-authoring/prPlugin'
+import { PRPlugin } from '../../open-authoring/prPlugin'
+import { useEditContext } from '../editContext'
 
 interface JsonFile<T = any> {
   fileRelativePath: string
@@ -20,7 +21,8 @@ interface GithubOptions {
 const useGithubJsonForm = <T = any>(
   jsonFile: JsonFile<T>,
   formOptions: FormOptions<any>,
-  githubOptions: GithubOptions
+  githubOptions: GithubOptions,
+  isEditMode: boolean
 ) => {
   const cms = useCMS()
 
@@ -30,19 +32,21 @@ const useGithubJsonForm = <T = any>(
     })
   }, [])
 
-  const prPlugin = useMemo(() => {
-    return new PRPlugin(
+  // TODO - this might cause an issue if editmode dynamically changes
+  if (isEditMode) {
+    const prPlugin = useMemo(() => {
+      return new PRPlugin(
+        githubOptions.baseRepoFullName,
+        githubOptions.forkFullName,
+        githubOptions.accessToken
+      )
+    }, [
       githubOptions.baseRepoFullName,
       githubOptions.forkFullName,
-      githubOptions.accessToken
-    )
-  }, [
-    githubOptions.baseRepoFullName,
-    githubOptions.forkFullName,
-    githubOptions.accessToken,
-  ])
-
-  usePlugins(prPlugin)
+      githubOptions.accessToken,
+    ])
+    usePlugins(prPlugin)
+  }
 
   const [formData, form] = useLocalForm({
     id: jsonFile.fileRelativePath, // needs to be unique
@@ -73,9 +77,15 @@ const useGithubJsonForm = <T = any>(
 export function useLocalGithubJsonForm(
   jsonFile: JsonFile,
   formOptions: FormOptions<any>,
-  githubOptions: GithubOptions
+  githubOptions: GithubOptions,
+  isEditMode: boolean
 ) {
-  const [values, form] = useGithubJsonForm(jsonFile, formOptions, githubOptions)
+  const [values, form] = useGithubJsonForm(
+    jsonFile,
+    formOptions,
+    githubOptions,
+    isEditMode
+  )
   usePlugins(form as any)
   return [values, form]
 }
