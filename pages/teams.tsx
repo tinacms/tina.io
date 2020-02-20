@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useLocalJsonForm } from 'next-tinacms-json'
 import { InlineForm, InlineBlocks, BlocksControls } from 'react-tinacms-inline'
 import { BlockTemplate } from 'tinacms'
 import { NextSeo } from 'next-seo'
@@ -8,13 +7,7 @@ import { NextSeo } from 'next-seo'
 import { Layout, Wrapper, RichTextWrapper } from '../components/layout'
 import { ArrowList } from '../components/ui'
 import { TeamsForm } from '../components/forms'
-import {
-  EditToggle,
-  DiscardButton,
-  InlineTextareaField,
-  BlockTextArea,
-  InlineControls,
-} from '../components/ui/inline'
+import { InlineTextareaField, BlockTextArea } from '../components/ui/inline'
 import getJsonData from '../utils/github/getJsonData'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'

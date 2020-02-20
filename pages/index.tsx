@@ -29,11 +29,7 @@ const HomePage = (props: any) => {
   editContext.setIsEditMode(props.editMode)
 
   const [formData, form] = useLocalGithubJsonForm(
-    {
-      fileRelativePath: props.fileRelativePath,
-      data: props.data,
-      sha: props.sha,
-    },
+    props.home,
     {
       label: 'Home Page',
       fields: [
@@ -107,12 +103,7 @@ const HomePage = (props: any) => {
         },
       ],
     },
-    {
-      forkFullName: props.forkFullName,
-      branch: props.branch,
-      accessToken: props.accessToken,
-      baseRepoFullName: props.baseRepoFullName,
-    },
+    props.sourceProviderConnection,
     props.editMode
   )
 
@@ -214,8 +205,8 @@ export async function unstable_getStaticProps({ preview, previewData }) {
   )
   return {
     props: {
-      ...homeData,
-      ...sourceProviderConnection,
+      home: homeData,
+      sourceProviderConnection,
       editMode: !!preview,
     },
   }
