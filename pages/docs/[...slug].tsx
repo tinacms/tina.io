@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import matter from 'gray-matter'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
-import { useLocalMarkdownForm } from 'next-tinacms-markdown'
 import { InlineForm } from 'react-tinacms-inline'
 
 import { formatExcerpt, readFile } from '../../utils'
@@ -19,14 +18,11 @@ import {
   Overlay,
   DocsPagination,
 } from '../../components/ui'
-import {
-  InlineControls,
-  EditToggle,
-  DiscardButton,
-  InlineWysiwyg,
-  InlineTextField,
-} from '../../components/ui/inline'
+import { InlineWysiwyg, InlineTextField } from '../../components/ui/inline'
 import { TinaIcon } from '../../components/logo'
+import getMarkdownData from '../../utils/github/getMarkdownData'
+import { getGithubDataFromPreviewProps } from '../../utils/github/sourceProviderConnection'
+import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'
 
 export default function DocTemplate(props) {
   // Registers Tina Form
@@ -35,11 +31,16 @@ export default function DocTemplate(props) {
     return <div></div>
   }
 
-  const [data, form] = useLocalMarkdownForm(props.markdownFile, formOptions)
+  const [data, form] = useLocalGithubMarkdownForm(
+    props.markdownFile,
+    formOptions,
+    props.sourceProviderConnection,
+    props.editMode
+  )
   const [open, setOpen] = useState(false)
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
-  const excerpt = formatExcerpt(props.markdownFile.markdownBody)
+  const excerpt = formatExcerpt(props.markdownFile.data.markdownBody)
 
   return (
     <InlineForm form={form}>
@@ -105,7 +106,11 @@ export default function DocTemplate(props) {
  * DATA FETCHING ------------------------------------------------------
  */
 
-export async function unstable_getStaticProps(ctx) {
+export async function unstable_getStaticProps({
+  preview,
+  previewData,
+  ...ctx
+}) {
   let { slug: slugs } = ctx.params
 
   const slug = slugs.join('/')
@@ -118,13 +123,17 @@ export async function unstable_getStaticProps(ctx) {
   const prevDocPage =
     doc.data.prev && matter(await readFile(`content${doc.data.prev}.md`))
 
+  const sourceProviderConnection = getGithubDataFromPreviewProps(previewData)
+  const file = await getMarkdownData(
+    `content/docs/${slug}.md`,
+    sourceProviderConnection
+  )
+
   return {
     props: {
-      markdownFile: {
-        fileRelativePath: `content/docs/${slug}.md`,
-        frontmatter: doc.data,
-        markdownBody: doc.content,
-      },
+      markdownFile: file,
+      sourceProviderConnection,
+      editMode: !!preview,
       docsNav: docsNavData.default,
       nextPage: {
         slug: doc.data.next,

@@ -2,6 +2,7 @@ import { FormOptions, useLocalForm, usePlugins, Field } from 'tinacms'
 import { saveContent } from '../../open-authoring/github/api'
 import { getCachedFormData, setCachedFormData } from '../formCache'
 import { useGithubForm, GithubOptions, GitFile } from './useGithubForm'
+import { toMarkdownString } from 'next-tinacms-markdown'
 
 export interface Options {
   id?: string
@@ -10,48 +11,48 @@ export interface Options {
   actions?: FormOptions<any>['actions']
 }
 
-const useGithubJsonForm = <T = any>(
-  jsonFile: GitFile<T>,
+const useGithubMarkdownForm = <T = any>(
+  markdownFile: GitFile<T>,
   formOptions: Options,
   githubOptions: GithubOptions,
   isEditMode: boolean
 ) => {
-  useGithubForm(jsonFile, githubOptions, isEditMode)
+  useGithubForm(markdownFile, githubOptions, isEditMode)
 
   const [formData, form] = useLocalForm({
-    id: jsonFile.fileRelativePath, // needs to be unique
-    label: formOptions.label || jsonFile.fileRelativePath,
-    initialValues: jsonFile.data,
+    id: markdownFile.fileRelativePath, // needs to be unique
+    label: formOptions.label || markdownFile.fileRelativePath,
+    initialValues: markdownFile.data,
     fields: formOptions.fields || [],
     // save & commit the file when the "save" button is pressed
     onSubmit(formData, form) {
       saveContent(
         githubOptions.forkFullName,
         githubOptions.branch,
-        jsonFile.fileRelativePath,
+        markdownFile.fileRelativePath,
         githubOptions.accessToken,
-        getCachedFormData(jsonFile.fileRelativePath).sha,
-        JSON.stringify(formData),
+        getCachedFormData(markdownFile.fileRelativePath).sha,
+        toMarkdownString(formData),
         'Update from TinaCMS'
       ).then(response => {
-        setCachedFormData(jsonFile.fileRelativePath, {
+        setCachedFormData(markdownFile.fileRelativePath, {
           sha: response.data.content.sha,
         })
       })
     },
   })
 
-  return [formData || jsonFile.data, form]
+  return [formData || markdownFile.data, form]
 }
 
-export function useLocalGithubJsonForm(
-  jsonFile: GitFile,
+export function useLocalGithubMarkdownForm(
+  markdownFile: GitFile,
   formOptions: Options,
   githubOptions: GithubOptions,
   isEditMode: boolean
 ) {
-  const [values, form] = useGithubJsonForm(
-    jsonFile,
+  const [values, form] = useGithubMarkdownForm(
+    markdownFile,
     formOptions,
     githubOptions,
     isEditMode

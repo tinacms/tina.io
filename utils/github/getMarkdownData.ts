@@ -3,8 +3,9 @@ import { b64DecodeUnicode } from '../../open-authoring/utils/base64'
 import { readFile } from '../readFile'
 import { SourceProviderConnection } from './sourceProviderConnection'
 import path from 'path'
+import matter from 'gray-matter'
 
-const getJsonData = async (
+const getMarkdownData = async (
   filePath: string,
   sourceProviderConnection: SourceProviderConnection
 ) => {
@@ -16,18 +17,22 @@ const getJsonData = async (
       sourceProviderConnection.accessToken
     )
 
+    const { content: markdownBody, data: frontmatter } = matter(
+      b64DecodeUnicode(response.data.content)
+    )
+
     return {
       sha: response.data.sha,
       fileRelativePath: filePath,
-      data: JSON.parse(b64DecodeUnicode(response.data.content)),
+      data: { frontmatter, markdownBody },
     }
   } else {
-    const data = await readFile(path.resolve(`${filePath}`))
+    const doc = matter(await readFile(path.resolve(`${filePath}`)))
     return {
       fileRelativePath: filePath,
-      data: JSON.parse(data),
+      data: { frontmatter: doc.data, markdownBody: doc.content },
     }
   }
 }
 
-export default getJsonData
+export default getMarkdownData
