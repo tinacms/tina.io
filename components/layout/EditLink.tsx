@@ -1,8 +1,8 @@
-import { useEffect, useContext } from 'react'
+import { useEffect } from 'react'
 import Cookies from 'js-cookie'
-import { EditModeContext } from '../../utils/editContext'
-import { getUser, getBranch } from '../../open-authoring/github/api'
 import styled from 'styled-components'
+import { isEditMode } from '../../utils'
+import { getUser, getBranch } from '../../open-authoring/github/api'
 
 function popupWindow(url, title, window, w, h) {
   const y = window.top.outerHeight / 2 + window.top.screenY - h / 2
@@ -23,8 +23,7 @@ function popupWindow(url, title, window, w, h) {
 
 export const EditLink = () => {
   let authTab: Window
-  let editMode = useContext(EditModeContext)
-  let isEditMode = editMode.isEditMode
+  let _isEditMode = isEditMode()
 
   const isTokenValid = async () => {
     const userData = await getUser()
@@ -103,8 +102,8 @@ export const EditLink = () => {
   }, [])
 
   return (
-    <EditButton onClick={isEditMode ? exitEditMode : enterEditMode}>
-      {isEditMode ? 'Exit Edit Mode' : 'Edit This Site'}
+    <EditButton onClick={_isEditMode ? exitEditMode : enterEditMode}>
+      {_isEditMode ? 'Exit Edit Mode' : 'Edit This Site'}
     </EditButton>
   )
 }

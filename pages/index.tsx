@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { BlockTemplate } from 'tinacms'
 import {
@@ -18,15 +18,15 @@ import {
   RichTextWrapper,
 } from '../components/layout'
 import { Button, Video, ArrowList } from '../components/ui'
-import { useEditContext } from '../utils/editContext'
+import { setIsEditMode } from '../utils'
 import { InlineTextareaField, BlockTextArea } from '../components/ui/inline'
 import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
 import getJsonData from '../utils/github/getJsonData'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 
 const HomePage = (props: any) => {
-  const editContext = useEditContext()
-  editContext.setIsEditMode(props.editMode)
+  // sets cms.sidebar.hidden based on editMode
+  setIsEditMode(props.editMode)
 
   const [formData, form] = useLocalGithubJsonForm(
     props.home,
