@@ -2,6 +2,7 @@ import { useEffect, useContext } from 'react'
 import Cookies from 'js-cookie'
 import { EditModeContext } from '../../utils/editContext'
 import { getUser, getBranch } from '../../open-authoring/github/api'
+import styled from 'styled-components'
 
 function popupWindow(url, title, window, w, h) {
   const y = window.top.outerHeight / 2 + window.top.screenY - h / 2
@@ -102,9 +103,9 @@ export const EditLink = () => {
   }, [])
 
   return (
-    <a href={null} onClick={isEditMode ? exitEditMode : enterEditMode}>
+    <EditButton onClick={isEditMode ? exitEditMode : enterEditMode}>
       {isEditMode ? 'Exit Edit Mode' : 'Edit This Site'}
-    </a>
+    </EditButton>
   )
 }
 
@@ -133,3 +134,29 @@ const requestGithubAccessToken = async (code: string, authState: string) => {
     `/api/get-github-access-token?code=${code}&state=${authState}`
   )
 }
+
+const EditButton = styled.button`
+  background: none;
+  padding: 0;
+  display: inline;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: white;
+  transition: all 150ms ease-out;
+  transform: translate3d(0px, 0px, 0px);
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    transform: translate3d(-1px, -2px, 0);
+    transition: transform 180ms ease-out;
+  }
+  &:focus,
+  &:active {
+    outline: none;
+  }
+  &:active {
+    filter: none;
+  }
+`
