@@ -1,7 +1,5 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { useCMS, usePlugins } from 'tinacms'
-import { PRPlugin } from '../open-authoring/prPlugin'
 import { b64DecodeUnicode } from '../open-authoring/utils/base64'
 import { BlockTemplate } from 'tinacms'
 import {
@@ -111,23 +109,9 @@ const HomePage = (props: any) => {
       forkFullName: props.forkFullName,
       branch: props.branch,
       accessToken: props.accessToken,
+      baseRepoFullName: props.baseRepoFullName,
     }
   )
-
-  function usePRPlugin() {
-    const brancher = useMemo(() => {
-      return new PRPlugin(
-        props.baseRepoFullName,
-        props.forkFullName,
-        props.accessToken
-      )
-    }, [props.baseRepoFullName, props.forkFullName, props.accessToken])
-
-    usePlugins(brancher)
-  }
-  if (props.editMode) {
-    usePRPlugin()
-  }
 
   return (
     <InlineForm form={form}>
