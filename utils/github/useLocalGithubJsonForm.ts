@@ -1,4 +1,4 @@
-import { FormOptions, useLocalForm, useCMS, usePlugins } from 'tinacms'
+import { FormOptions, useLocalForm, useCMS, usePlugins, Field } from 'tinacms'
 import { saveContent } from '../../open-authoring/github/api'
 import { getCachedFormData, setCachedFormData } from '../formCache'
 import { useEffect, useMemo } from 'react'
@@ -18,9 +18,16 @@ interface GithubOptions {
   accessToken: string
 }
 
+export interface Options {
+  id?: string
+  label?: string
+  fields?: Field[]
+  actions?: FormOptions<any>['actions']
+}
+
 const useGithubJsonForm = <T = any>(
   jsonFile: JsonFile<T>,
-  formOptions: FormOptions<any>,
+  formOptions: Options,
   githubOptions: GithubOptions,
   isEditMode: boolean
 ) => {
@@ -76,7 +83,7 @@ const useGithubJsonForm = <T = any>(
 
 export function useLocalGithubJsonForm(
   jsonFile: JsonFile,
-  formOptions: FormOptions<any>,
+  formOptions: Options,
   githubOptions: GithubOptions,
   isEditMode: boolean
 ) {
