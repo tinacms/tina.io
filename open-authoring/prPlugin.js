@@ -116,7 +116,6 @@ export class PRPlugin {
             {!this.state.fetchedPR && <div>Loading...</div>}
           </PrModalBody>
           <ModalActions>
-            <TinaButton onClick={() => {}}>Cancel</TinaButton>
             <TinaButton primary onClick={this.createPR}>
               Create Pull Request
             </TinaButton>
