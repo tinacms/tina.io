@@ -1,8 +1,8 @@
 import { useEffect, useContext, useCallback } from 'react'
 import Cookies from 'js-cookie'
 import { EditModeContext } from '../../utils/editContext'
-import { getUser, getBranch } from '../../open-authoring/github/api'
 import styled from 'styled-components'
+import { useOpenAuthoring } from './OpenAuthoring'
 
 function popupWindow(url, title, window, w, h) {
   const y = window.top.outerHeight / 2 + window.top.screenY - h / 2
@@ -21,28 +21,15 @@ function popupWindow(url, title, window, w, h) {
   )
 }
 
+const openAuthWindow = (initialView: string) =>
+  popupWindow(initialView, '_blank', window, 1000, 700)
+
 export const EditLink = () => {
   let authTab: Window
   let editMode = useContext(EditModeContext)
   let isEditMode = editMode.isEditMode
 
-  const isTokenValid = async () => {
-    const userData = await getUser()
-    if (!userData) return false
-    return true
-  }
-
-  const isForkValid = async (fork: string) => {
-    const branch = Cookies.get('head_branch') || 'master'
-
-    const forkData = await getBranch(fork, branch)
-    if (!forkData) return false
-    if (forkData.ref === 'refs/heads/' + branch) {
-      Cookies.set('head_branch', branch)
-      return true
-    }
-    return false
-  }
+  const openAuthoring = useOpenAuthoring()
 
   const authState = Math.random()
     .toString(36)
@@ -69,19 +56,13 @@ export const EditLink = () => {
     [authState]
   )
 
-  const openAuthWindow = useCallback(
-    (initialView: string) =>
-      popupWindow(initialView, '_blank', window, 1000, 700),
-    []
-  )
-
-  const enterEditMode = async () => {
-    const accessTokenAlreadyExists = await isTokenValid()
+  const enterEditMode = () => {
+    const accessTokenAlreadyExists = openAuthoring.githubAuthenticated
     const fork = Cookies.get('fork_full_name')
 
     localStorage.setItem('fork_full_name', '')
     if (accessTokenAlreadyExists) {
-      if (fork && (await isForkValid(fork))) {
+      if (fork && openAuthoring.forkValid) {
         handleForkCreated(fork)
         return
       } else {
