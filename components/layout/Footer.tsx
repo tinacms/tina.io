@@ -89,6 +89,7 @@ const FooterBottom = styled.div`
   @media (min-width: 1000px) {
     flex-direction: row;
     align-items: center;
+    flex-wrap: wrap;
   }
 `
 
@@ -96,6 +97,12 @@ const Footnote = styled.span`
   display: flex;
   color: inherit;
   font-size: 1rem;
+
+  p,
+  a,
+  button {
+    white-space: nowrap;
+  }
 
   p {
     color: inherit;
