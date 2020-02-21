@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react'
+import { useEffect, useContext, useCallback } from 'react'
 import Cookies from 'js-cookie'
 import { EditModeContext } from '../../utils/editContext'
 import { getUser, getBranch } from '../../open-authoring/github/api'
@@ -48,11 +48,32 @@ export const EditLink = () => {
     .toString(36)
     .substring(7)
 
+  const forkURL = `/github/fork?state=${authState}`
+
   const exitEditMode = () => {
     fetch(`/api/reset-preview`).then(() => {
       window.location.reload()
     })
   }
+
+  const onUpdateStorageEvent = useCallback(
+    async e => {
+      if (e.key == 'github_code') {
+        await handleAuthCode(e.newValue, authState)
+        authTab.location.assign(forkURL)
+      }
+      if (e.key == 'fork_full_name') {
+        handleForkCreated(e.newValue)
+      }
+    },
+    [authState]
+  )
+
+  const openAuthWindow = useCallback(
+    (initialView: string) =>
+      popupWindow(initialView, '_blank', window, 1000, 700),
+    []
+  )
 
   const enterEditMode = async () => {
     const accessTokenAlreadyExists = await isTokenValid()
@@ -64,41 +85,18 @@ export const EditLink = () => {
         handleForkCreated(fork)
         return
       } else {
-        authTab = popupWindow(
-          `/github/fork?state=${authState}`,
-          '_blank',
-          window,
-          1000,
-          700
-        )
+        authTab = openAuthWindow(forkURL)
       }
     } else {
-      authTab = popupWindow(
-        `/github/start-auth?state=${authState}`,
-        '_blank',
-        window,
-        1000,
-        700
-      )
+      authTab = openAuthWindow(`/github/start-auth?state=${authState}`)
     }
 
-    window.addEventListener(
-      'storage',
-      e => {
-        updateStorageEvent(e, authState)
-        authTab.location.assign(`/github/fork`)
-      },
-      true
-    )
+    window.addEventListener('storage', onUpdateStorageEvent, true)
   }
 
   useEffect(() => {
     return () => {
-      window.removeEventListener(
-        'storage',
-        e => updateStorageEvent(e, authState),
-        true
-      )
+      window.removeEventListener('storage', onUpdateStorageEvent, true)
     }
   }, [])
 
@@ -109,20 +107,11 @@ export const EditLink = () => {
   )
 }
 
-async function updateStorageEvent(e, authState: string) {
-  if (e.key == 'github_code') {
-    await handleAuthCode(e.newValue, authState)
-  }
-  if (e.key == 'fork_full_name') {
-    handleForkCreated(e.newValue)
-  }
-}
-
 async function handleAuthCode(code: string, authState: string) {
   await requestGithubAccessToken(code, authState)
 }
 
-async function handleForkCreated(forkName: string) {
+function handleForkCreated(forkName: string) {
   Cookies.set('fork_full_name', forkName, { sameSite: 'strict' })
   fetch(`/api/preview`).then(() => {
     window.location.reload()
