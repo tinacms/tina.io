@@ -22,7 +22,7 @@ Deploying a preview with Gatsby Cloud can be done in just a few clicks. Once we'
 
 And tada! ✨ Our site's preview should be live! Any commits we make to the repo going forward will automatically trigger a rebuild of our Gatsby preview.
 
-> 
+>
 Note: This preview will act as our "Cloud Editing Environment" and not our production site. Your production site should be built and deployed separately.
 
 
@@ -34,7 +34,7 @@ We don't want just any stranger making commits from our cloud editing environmen
 
 ## Configuring Git for Cloud Commits ✔️
 
-> 
+>
 If you are using the gatsby-tinacms-git plugin, make sure to use version: 0.2.16-canary.0 or later!
 
 
@@ -44,6 +44,7 @@ To get Tina working in Gatsby Cloud, we'll need to configure a few environment v
 
     GIT_AUTHOR_EMAIL
     GIT_AUTHOR_NAME
+    TINA_CEE
     SSH_KEY
 
 ### `GIT_AUTHOR_NAME` & `GIT_AUTHOR_EMAIL` 🗣️
@@ -52,6 +53,10 @@ These values will define who will show up in the author field when commits are m
 ![tinacms-add-new-file-gif](/img/commit_author_scott.png)
 
 If you want the author to be based off of the logged-in user instead of a static value in your env, you might want to take a look at [Tina Teams](/teams 'Tina Teams')!
+
+### `TINA_CEE
+
+This needs to be set to ensure that Tina knows that it is being run in a *Cloud Editing Environment*. Set it to `true`.
 
 ### `SSH_KEY` 🔑
 
@@ -87,10 +92,33 @@ Let's add this as an environment variable within Gatsby Cloud:
 SSH_KEY: [value logged out above]
 ```
 
+Lastly, we need to add this to the gatsby-tinacms-git configuration in `gatsby-config.js`:
+
+```js
+plugins: [
+  {
+    resolve: "gatsby-plugin-tinacms",
+    options: {
+      plugins: [
+        ...
+        {
+          resolve: "gatsby-tinacms-git",
+          options: {
+            ...
+            sshKey: process.env.SSH_KEY
+          },
+        },
+      ],
+    },
+  }
+  ...
+]
+```
+
 Now after you trigger a rebuild, it should be able to commit to your repository!
 
-> 
-Note that Base64 encoding the key DOES NOT make it safe to make public!! We are Base64 encoding the key only to avoid formatting issues when using it as an environment variable.
+>
+Note that Base64 encoding the key DOES NOT make it safe to make public!! **Do not commit this value to your repository.** We are Base64 encoding the key only to avoid formatting issues when using it as an environment variable.
 
 
 ## Site Configuration 🔨
