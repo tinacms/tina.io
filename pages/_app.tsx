@@ -10,22 +10,22 @@ import { GlobalStyle } from '../components/styles/GlobalStyle'
 
 const MainLayout = ({ Component, pageProps }) => {
   const tinaConfig = {
-    cms: {
-      apis: {
-        git: new GitClient('http://localhost:3000/___tina'),
-      },
+    apis: {
+      git: new GitClient('http://localhost:3000/___tina'),
     },
+
     sidebar: {
       // editMode initially set here
-      hidden: process.env.NODE_ENV === 'production' && true,
+      hidden: process.env.NODE_ENV === 'production',
       position: 'displace' as any,
     },
   }
 
-  const cms = React.useMemo(() => new TinaCMS(tinaConfig.cms), [tinaConfig])
+  // const cms = React.useMemo(() => new TinaCMS(tinaConfig.cms), [tinaConfig])
+  const cms = new TinaCMS(tinaConfig)
 
   return (
-    <Tina cms={cms} {...tinaConfig.sidebar}>
+    <Tina cms={cms}>
       <DefaultSeo
         title={data.seoDefaultTitle}
         titleTemplate={'%s | ' + data.title}

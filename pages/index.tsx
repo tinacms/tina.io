@@ -8,6 +8,7 @@ import {
   BlockText,
 } from 'react-tinacms-inline'
 import { DefaultSeo } from 'next-seo'
+import { useCMS } from 'tinacms'
 
 import { DynamicLink } from '../components/ui/DynamicLink'
 import {
@@ -18,7 +19,7 @@ import {
   RichTextWrapper,
 } from '../components/layout'
 import { Button, Video, ArrowList } from '../components/ui'
-import { setIsEditMode } from '../utils'
+// import { setIsEditMode } from '../utils'
 import { InlineTextareaField, BlockTextArea } from '../components/ui/inline'
 import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
 import getJsonData from '../utils/github/getJsonData'
@@ -26,7 +27,13 @@ import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderCon
 
 const HomePage = (props: any) => {
   // sets cms.sidebar.hidden based on editMode
-  setIsEditMode(props.editMode)
+  // setIsEditMode(props.editMode)
+
+  const cms = useCMS()
+
+  useEffect(() => {
+    cms.sidebar.hidden = !props.editMode
+  }, [props.editMode])
 
   const [formData, form] = useLocalGithubJsonForm(
     props.home,
