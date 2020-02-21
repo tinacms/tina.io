@@ -31,7 +31,7 @@ const useGithubJsonForm = <T = any>(
         jsonFile.fileRelativePath,
         githubOptions.accessToken,
         getCachedFormData(jsonFile.fileRelativePath).sha,
-        JSON.stringify(formData),
+        JSON.stringify(formData, null, 2),
         'Update from TinaCMS'
       ).then(response => {
         setCachedFormData(jsonFile.fileRelativePath, {
