@@ -56,7 +56,7 @@ interface FieldPlugin {
 
 ### Validate (optional)
 
-The optional `validate` function let's you define how you 're
+The optional `validate` function can be utilized to configure field validation.
 
 **Arguments**
 

@@ -72,7 +72,7 @@ useRemarkForm(remark, {
 })
 ```
 
-##2. Validating the Email Field
+## 2. Validating the Email Field
 
 An optional `validate` function can also be added to your Field Plugin.
 

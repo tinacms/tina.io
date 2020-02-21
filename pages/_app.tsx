@@ -57,12 +57,11 @@ class Site extends App {
 }
 
 export default withTina(Site, {
-  cms: {
-    apis: {
-      git: new GitClient('http://localhost:3000/___tina'),
-    },
+  apis: {
+    git: new GitClient('http://localhost:3000/___tina'),
   },
   sidebar: {
     hidden: process.env.NODE_ENV === 'production',
+    position: 'displace',
   },
 })

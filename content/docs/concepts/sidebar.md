@@ -82,21 +82,20 @@ If you followed the implementation in our Next.js docs, you'll want to go to the
 class MyApp extends App {
   constructor() {
     super()
-    this.cms = new TinaCMS()
-    const client = new GitClient('http://localhost:3001/___tina')
-    this.cms.registerApi('git', client)
-  }
-  // Sidebar options
-  options = {
-    sidebar: {
-      hidden: process.env.NODE_ENV === 'production',
-    },
+    this.cms = new TinaCMS({
+      apis: {
+        git: new GitClient('http://localhost:3001/___tina'),
+      },
+      sidebar: {
+        hidden: process.env.NODE_ENV === 'production',
+      },
+    })
   }
   render() {
     const { Component, pageProps } = this.props
-    // Pass in sidebar options to Tina component
+
     return (
-      <Tina cms={this.cms} {...this.options.sidebar}>
+      <Tina cms={this.cms}>
         <Component {...pageProps} />
       </Tina>
     )
@@ -105,6 +104,34 @@ class MyApp extends App {
 ```
 
 > _Note:_ This is an intermediate workaround that we plan on enhancing further to extract Tina code during production builds.
+
+### Setting _hidden_ directly
+
+There may be situations when you need to control the `hidden` state of the sidebar beyond the `env` variables. For example, you may want to **conditionally render the sidebar in a production environment** to toggle an editing state. You can manually override this by setting `hidden` directly on the CMS instance.
+
+```jsx
+/*
+** Example applicable to any
+** React function component
+*/
+
+// 1. Import `useCMS`
+import { useCMS } from "tinacms"
+
+function ExampleComponent() {
+
+    // 2. Access the CMS instance
+    const cms = useCMS()
+
+    // 3. Set the hidden property
+    cms.sidebar.hidden = true
+
+    return (
+      //...
+    )
+}
+
+```
 
 ## Customizing the Sidebar Theme
 

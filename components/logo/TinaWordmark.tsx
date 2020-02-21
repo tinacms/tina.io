@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import TinaWordmarkSvg from '../../public/svg/tina-wordmark.svg'
 
-const TinaWordmark = styled(({ ...styleProps }, props) => {
+export const TinaWordmark = styled(({ ...styleProps }) => {
   return (
     <a href="/" {...styleProps}>
       <h1>
@@ -26,5 +26,3 @@ const TinaWordmark = styled(({ ...styleProps }, props) => {
     fill: var(--color-secondary);
   }
 `
-
-export default TinaWordmark

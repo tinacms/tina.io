@@ -1,8 +1,11 @@
 import matter from 'gray-matter'
 import styled from 'styled-components'
-import { readFile } from '../../utils/readFile'
-import { formatDate, formatExcerpt } from '../../utils'
+const fg = require('fast-glob')
+import { NextSeo } from 'next-seo'
+import { useLocalMarkdownForm } from 'next-tinacms-markdown'
+import { InlineForm } from 'react-tinacms-inline'
 
+import { formatDate, formatExcerpt, readFile } from '../../utils'
 import {
   Layout,
   Hero,
@@ -10,66 +13,99 @@ import {
   MarkdownContent,
   RichTextWrapper,
 } from '../../components/layout'
-const fg = require('fast-glob')
-import { NextSeo } from 'next-seo'
-import siteData from '../../content/siteConfig.json'
+import {
+  EditToggle,
+  DiscardButton,
+  InlineWysiwyg,
+  InlineTextareaField,
+  InlineTextField,
+  InlineControls,
+} from '../../components/ui/inline'
 
-export default function BlogTemplate(props) {
-  const frontmatter = props.post.data
-  const markdownBody = props.post.content
-  const excerpt = formatExcerpt(props.post.content)
+export default function BlogTemplate({ markdownFile, siteConfig }) {
+  // Registers Tina Form
+  const [data, form] = useLocalMarkdownForm(markdownFile, formOptions)
+  const frontmatter = data.frontmatter
+  const markdownBody = data.markdownBody
+  const excerpt = formatExcerpt(data.markdownBody)
+
   return (
-    <Layout pathname="/">
-      <NextSeo
-        title={frontmatter.title}
-        titleTemplate={'%s | ' + siteData.title + ' Blog'}
-        description={excerpt}
-        openGraph={{
-          title: frontmatter.title,
-          description: excerpt,
-          images: [
-            {
-              url:
-                'https://res.cloudinary.com/forestry-demo/image/upload/l_text:tuner-regular.ttf_70:' +
-                encodeURI(frontmatter.title) +
-                ',g_north_west,x_270,y_95,w_840,c_fit,co_rgb:EC4815/l_text:tuner-regular.ttf_35:' +
-                encodeURI(frontmatter.author) +
-                ',g_north_west,x_270,y_500,w_840,c_fit,co_rgb:241748/v1581087220/TinaCMS/tinacms-social-empty.png',
-              width: 1200,
-              height: 628,
-              alt: frontmatter.title + ` | TinaCMS Blog`,
-            },
-          ],
-        }}
-      />
-      <Hero>{frontmatter.title}</Hero>
-      <BlogWrapper>
-        <RichTextWrapper>
-          <BlogMeta>
-            <p>
-              <span>By</span> {frontmatter.author}
-            </p>
-            <p>{formatDate(frontmatter.date)}</p>
-          </BlogMeta>
-          <MarkdownContent escapeHtml={false} content={markdownBody} />
-        </RichTextWrapper>
-      </BlogWrapper>
-    </Layout>
+    <InlineForm form={form}>
+      <Layout pathname="/">
+        <NextSeo
+          title={frontmatter.title}
+          titleTemplate={'%s | ' + siteConfig.title + ' Blog'}
+          description={excerpt}
+          openGraph={{
+            title: frontmatter.title,
+            description: excerpt,
+            images: [
+              {
+                url:
+                  'https://res.cloudinary.com/forestry-demo/image/upload/l_text:tuner-regular.ttf_70:' +
+                  encodeURI(frontmatter.title) +
+                  ',g_north_west,x_270,y_95,w_840,c_fit,co_rgb:EC4815/l_text:tuner-regular.ttf_35:' +
+                  encodeURI(frontmatter.author) +
+                  ',g_north_west,x_270,y_500,w_840,c_fit,co_rgb:241748/v1581087220/TinaCMS/tinacms-social-empty.png',
+                width: 1200,
+                height: 628,
+                alt: frontmatter.title + ` | TinaCMS Blog`,
+              },
+            ],
+          }}
+        />
+        <Hero>
+          <InlineTextareaField name="frontmatter.title" />
+        </Hero>
+        <BlogWrapper>
+          {/*
+           *** Inline controls shouldn't render
+           *** until we're ready for Inline release
+           */}
+          {/*
+            <InlineControls>
+            <EditToggle />
+            <DiscardButton />
+            </InlineControls>
+          */}
+          <RichTextWrapper>
+            <BlogMeta>
+              <p>
+                <span>By: </span>
+                <InlineTextField name="frontmatter.author" />
+              </p>
+              <p>{formatDate(frontmatter.date)}</p>
+            </BlogMeta>
+            <InlineWysiwyg name="markdownBody">
+              <MarkdownContent escapeHtml={false} content={markdownBody} />
+            </InlineWysiwyg>
+          </RichTextWrapper>
+        </BlogWrapper>
+      </Layout>
+    </InlineForm>
   )
 }
+
+/*
+ ** DATA FETCHING --------------------------------------------------
+ */
 
 export async function unstable_getStaticProps(ctx) {
   const { slug } = ctx.params
   //TODO - change to fs.readFile once we move to getStaticProps
   const content = await readFile(`content/blog/${slug}.md`)
+  const siteConfig = await import('../../content/siteConfig.json')
   const post = matter(content)
 
   return {
     props: {
-      // fileRelativePath: `src/posts/${slug}.md`,
-      post: {
-        data: { ...post.data, slug },
-        content: post.content,
+      siteConfig: {
+        title: siteConfig.title,
+      },
+      markdownFile: {
+        fileRelativePath: `content/blog/${slug}.md`,
+        frontmatter: post.data,
+        markdownBody: post.content,
       },
     },
   }
@@ -86,6 +122,51 @@ export async function unstable_getStaticPaths() {
     return { params: { slug } }
   })
 }
+
+/*
+ ** TINA FORM CONFIG --------------------------------------------------
+ */
+
+const formOptions = {
+  label: 'Blog Post',
+  fields: [
+    {
+      label: 'Title',
+      name: 'frontmatter.title',
+      component: 'text',
+    },
+    {
+      label: 'Author',
+      name: 'frontmatter.author',
+      component: 'text',
+    },
+    /*
+     ** TODO: add this back in once
+     ** draft functionality works again
+     */
+    // {
+    //   name: 'frontmatter.draft',
+    //   component: 'toggle',
+    //   label: 'Draft',
+    // },
+    {
+      label: 'Date Posted',
+      name: 'frontmatter.date',
+      component: 'date',
+      dateFormat: 'MMMM DD YYYY',
+      timeFormat: false,
+    },
+    {
+      label: 'Blog Body',
+      name: 'markdownBody',
+      component: 'markdown',
+    },
+  ],
+}
+
+/*
+ ** STYLES ---------------------------------------------------------
+ */
 
 const BlogWrapper = styled(Wrapper)`
   padding-top: 4rem;

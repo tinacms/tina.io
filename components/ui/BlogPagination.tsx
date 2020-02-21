@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import styled, { css } from 'styled-components'
-import Link from 'next/link'
+import styled from 'styled-components'
 import Router from 'next/router'
 
 import { DynamicLink } from './DynamicLink'
@@ -9,8 +8,7 @@ export const BlogPagination = styled(
   ({ currentPage, numPages, ...styleProps }) => {
     const isFirst = currentPage === 1
     const isLast = currentPage === numPages
-    const prevPage =
-      `/blog/page/${currentPage - 1}`
+    const prevPage = `/blog/page/${currentPage - 1}`
     const nextPage = `/blog/page/${currentPage + 1}`
     const [selectValue, setSelectValue] = useState(currentPage)
 
@@ -18,11 +16,7 @@ export const BlogPagination = styled(
       e.preventDefault()
       const pageNumber = e.target.value
       setSelectValue(pageNumber)
-      if (pageNumber === '1') {
-        Router.push('/blog/index.js', '/blog')
-      } else {
-        Router.push(`/blog/page/${pageNumber}`)
-      }
+      return Router.push(`/blog/page/${pageNumber}`)
     }
 
     return (

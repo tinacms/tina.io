@@ -55,4 +55,6 @@ module.exports = {
 - `defaultCommitMessage`: The default commit message. Default: 'Edited with TinaCMS'
 - `defaultCommitName`: The default git user name.
 - `defaultCommitEmail`: The default git user email.
-- `pushOnCommit`: Indicates if every commit should also be pushed automatically. Default: true.
+- `pushOnCommit`: Indicates if every commit should also be pushed automatically. Default: `true`.
+- `gitRemote`: Git SSH remote url for the repository. Default: `undefined`.
+- `sshKey`: Base64 encoded SSH private key that has access to the repository. **This should not be committed to your repository.** This value should be `undefined` or load the key from an environment variable (ie. `process.env.SSH_KEY`) Default: `undefined`.

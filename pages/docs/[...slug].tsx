@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import matter from 'gray-matter'
 import styled from 'styled-components'
+import { NextSeo } from 'next-seo'
+import { useLocalMarkdownForm } from 'next-tinacms-markdown'
+import { InlineForm } from 'react-tinacms-inline'
 
-import siteData from '../../content/siteConfig.json'
-import { formatExcerpt } from '../../utils'
+import { formatExcerpt, readFile } from '../../utils'
 import {
   DocsLayout,
   MarkdownContent,
@@ -17,58 +19,86 @@ import {
   Overlay,
   DocsPagination,
 } from '../../components/ui'
-import { TinaIcon } from '../../components/logo/TinaIcon'
-import { readFile } from '../../utils/readFile'
-import { NextSeo } from 'next-seo'
+import {
+  InlineControls,
+  EditToggle,
+  DiscardButton,
+  InlineWysiwyg,
+  InlineTextField,
+} from '../../components/ui/inline'
+import { TinaIcon } from '../../components/logo'
 
 export default function DocTemplate(props) {
+  // Registers Tina Form
+  const [data, form] = useLocalMarkdownForm(props.markdownFile, formOptions)
   const [open, setOpen] = useState(false)
-  const frontmatter = props.doc.data
-  const markdownBody = props.doc.content
-  const excerpt = formatExcerpt(props.doc.content)
+  const frontmatter = data.frontmatter
+  const markdownBody = data.markdownBody
+  const excerpt = formatExcerpt(props.markdownFile.markdownBody)
+
   return (
-    <DocsLayout>
-      <NextSeo
-        title={frontmatter.title}
-        titleTemplate={'%s | ' + siteData.title + ' Docs'}
-        description={excerpt}
-        openGraph={{
-          title: frontmatter.title,
-          description: excerpt,
-          images: [
-            {
-              url:
-                'https://res.cloudinary.com/forestry-demo/image/upload/l_text:tuner-regular.ttf_90_center:' +
-                encodeURI(frontmatter.title) +
-                ',g_center,x_0,y_50,w_850,c_fit,co_rgb:EC4815/v1581087220/TinaCMS/tinacms-social-empty-docs.png',
-              width: 1200,
-              height: 628,
-              alt: frontmatter.title + ` | TinaCMS Docs`,
-            },
-          ],
-        }}
-      />
-      <DocsTinaIcon />
-      <DocsNav open={open} navItems={props.docsNav} />
-      <DocsNavToggle open={open} onClick={() => setOpen(!open)} />
-      <DocsContent>
-        <DocsHeaderNav color={'light'} open={open} />
-        <RichTextWrapper>
-          <Wrapper narrow>
-            <h1>{frontmatter.title}</h1>
-            <hr />
-            <MarkdownContent escapeHtml={false} content={markdownBody} />
-            <DocsPagination
-              prevPage={props.prevPage}
-              nextPage={props.nextPage}
-            />
-          </Wrapper>
-        </RichTextWrapper>
-      </DocsContent>
-      <Overlay open={open} onClick={() => setOpen(false)} />
-    </DocsLayout>
+    <InlineForm form={form}>
+      <DocsLayout>
+        <NextSeo
+          title={frontmatter.title}
+          titleTemplate={'%s | TinaCMS Docs'}
+          description={excerpt}
+          openGraph={{
+            title: frontmatter.title,
+            description: excerpt,
+            images: [
+              {
+                url:
+                  'https://res.cloudinary.com/forestry-demo/image/upload/l_text:tuner-regular.ttf_90_center:' +
+                  encodeURI(frontmatter.title) +
+                  ',g_center,x_0,y_50,w_850,c_fit,co_rgb:EC4815/v1581087220/TinaCMS/tinacms-social-empty-docs.png',
+                width: 1200,
+                height: 628,
+                alt: frontmatter.title + ` | TinaCMS Docs`,
+              },
+            ],
+          }}
+        />
+        <DocsTinaIcon />
+        <DocsNav open={open} navItems={props.docsNav} />
+        <DocsNavToggle open={open} onClick={() => setOpen(!open)} />
+        <DocsContent>
+          <DocsHeaderNav color={'light'} open={open} />
+          <RichTextWrapper>
+            <Wrapper narrow>
+              {/*
+               *** Inline controls shouldn't render
+               *** until we're ready for Inline release
+               */}
+              {/*
+                <InlineControls>
+                <EditToggle />
+                <DiscardButton />
+                </InlineControls>
+              */}
+              <h1>
+                <InlineTextField name="frontmatter.title" />
+              </h1>
+              <hr />
+              <InlineWysiwyg name="markdownBody">
+                <MarkdownContent escapeHtml={false} content={markdownBody} />
+              </InlineWysiwyg>
+              <DocsPagination
+                prevPage={props.prevPage}
+                nextPage={props.nextPage}
+              />
+            </Wrapper>
+          </RichTextWrapper>
+        </DocsContent>
+        <Overlay open={open} onClick={() => setOpen(false)} />
+      </DocsLayout>
+    </InlineForm>
   )
 }
+
+/*
+ * DATA FETCHING ------------------------------------------------------
+ */
 
 export async function unstable_getStaticProps(ctx) {
   let { slug: slugs } = ctx.params
@@ -85,9 +115,10 @@ export async function unstable_getStaticProps(ctx) {
 
   return {
     props: {
-      doc: {
-        data: { ...doc.data, slug },
-        content: doc.content,
+      markdownFile: {
+        fileRelativePath: `content/docs/${slug}.md`,
+        frontmatter: doc.data,
+        markdownBody: doc.content,
       },
       docsNav: docsNavData.default,
       nextPage: {
@@ -113,6 +144,40 @@ export async function unstable_getStaticPaths() {
       return { params: { slug: path.split('/') } }
     })
 }
+
+/*
+ * TINA FORM CONFIG -----------------------------------------------------
+ */
+
+const formOptions = {
+  label: 'Tina Doc',
+  fields: [
+    {
+      label: 'Title',
+      name: 'frontmatter.title',
+      component: 'text',
+    },
+    {
+      label: 'Previous Doc',
+      name: 'frontmatter.prev',
+      component: 'text',
+    },
+    {
+      label: 'Next Doc',
+      name: 'frontmatter.next',
+      component: 'text',
+    },
+    {
+      label: 'Documentation Body',
+      name: 'markdownBody',
+      component: 'markdown',
+    },
+  ],
+}
+
+/*
+ * STYLES --------------------------------------------------------------
+ */
 
 const DocsNavToggle = styled(NavToggle)`
   position: fixed;

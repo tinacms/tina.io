@@ -24,7 +24,9 @@ export function formatExcerpt(content) {
 }
 
 export function formatDate(fullDate) {
-  const date = new Date(fullDate)
+  let date = new Date(fullDate)
+  // normalizes UTC with local timezone
+  date.setMinutes(date.getMinutes() + date.getTimezoneOffset())
   const dateOptions = {
     formatMatcher: 'best fit',
     month: 'long',

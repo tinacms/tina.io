@@ -1,6 +1,6 @@
 ---
 title: Date & Time Field
-prev: /docs/fields/markdown
+prev: /docs/fields/number
 next: /docs/fields/image
 consumes:
   - file: /packages/tinacms/src/plugins/fields/DateFieldPlugin.tsx
