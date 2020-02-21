@@ -10,6 +10,7 @@ import {
   MarkdownContent,
   RichTextWrapper,
   Wrapper,
+  Footer,
 } from '../../components/layout'
 import {
   DocsNav,
@@ -95,6 +96,7 @@ export default function DocTemplate(props) {
               />
             </Wrapper>
           </RichTextWrapper>
+          <Footer light />
         </DocsContent>
         <Overlay open={open} onClick={() => setOpen(false)} />
       </DocsLayout>

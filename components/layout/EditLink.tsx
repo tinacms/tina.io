@@ -112,7 +112,7 @@ const EditButton = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
-  color: white;
+  color: inherit;
   transition: all 150ms ease-out;
   transform: translate3d(0px, 0px, 0px);
 

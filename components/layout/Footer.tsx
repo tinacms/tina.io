@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { LinkNav } from '../ui'
 import { TinaWordmark } from '../logo'
 import TwitterIconSvg from '../../public/svg/twitter-icon.svg'
@@ -7,7 +7,123 @@ import GithubIconSvg from '../../public/svg/github-icon.svg'
 import { EmailForm } from '../forms'
 import { EditLink } from './EditLink'
 
-export const Footer = styled(({ ...styleProps }) => {
+const FooterSocial = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  color: inherit;
+
+  a {
+    display: flex;
+    align-items: center;
+    color: inherit;
+  }
+
+  svg {
+    width: 2rem;
+    height: auto;
+    fill: inherit;
+    margin-left: 1rem;
+  }
+`
+
+const FooterForm = styled.div`
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-bottom: 1.5rem;
+
+  span {
+    margin: 0.5rem 1rem 0.5rem 0;
+    white-space: nowrap;
+    font-size: 1.25rem;
+    line-height: 1;
+  }
+
+  @media (min-width: 550px) {
+    flex-direction: row;
+  }
+
+  @media (min-width: 1200px) {
+    margin-bottom: 0;
+  }
+`
+
+const FooterTop = styled.div`
+  display: grid;
+  grid-gap: 1rem;
+  padding: 2rem 2rem;
+  background-color: var(--color-background);
+  align-items: start;
+  grid-template-areas: 'logo social' 'nav nav';
+
+  @media (min-width: 800px) {
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-areas: 'logo nav social';
+  }
+
+  ${TinaWordmark} {
+    grid-area: logo;
+    margin-bottom: 1rem;
+  }
+
+  ${LinkNav} {
+    grid-area: nav;
+  }
+
+  ${FooterSocial} {
+    grid-area: social;
+  }
+`
+
+const FooterBottom = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1.25rem 2rem;
+  background-color: var(--color-background);
+
+  @media (min-width: 1000px) {
+    flex-direction: row;
+    align-items: center;
+  }
+`
+
+const Footnote = styled.span`
+  display: flex;
+  color: inherit;
+  font-size: 1rem;
+
+  p {
+    color: inherit;
+    margin: 0;
+    font-size: 1rem;
+    opacity: 0.65;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    opacity: 0.65;
+    &:hover {
+      color: inherit;
+      opacity: 1;
+    }
+  }
+`
+
+const FooterDivider = styled.span`
+  &:after {
+    content: '|';
+    margin: 0 0.5rem;
+    opacity: 0.3;
+  }
+`
+
+export const Footer = styled(({ light: boolean, ...styleProps }) => {
   return (
     <div {...styleProps}>
       <FooterTop>
@@ -49,118 +165,42 @@ export const Footer = styled(({ ...styleProps }) => {
       </FooterBottom>
     </div>
   )
-})``
-
-const FooterSocial = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-
-  a {
-    display: flex;
-    align-items: center;
-  }
-
-  svg {
-    width: 2rem;
-    height: auto;
-    fill: white;
-    margin-left: 1rem;
-  }
-`
-
-const FooterForm = styled.div`
-  display: flex;
-  flex-direction: column;
+})`
   color: white;
-  align-items: flex-start;
-  justify-content: flex-start;
-  margin-bottom: 1.5rem;
-
-  span {
-    margin: 0.5rem 1rem 0.5rem 0;
-    white-space: nowrap;
-    font-size: 1.25rem;
-    line-height: 1;
-  }
-
-  @media (min-width: 550px) {
-    flex-direction: row;
-  }
-
-  @media (min-width: 1200px) {
-    margin-bottom: 0;
-  }
-`
-
-const FooterTop = styled.div`
-  display: grid;
-  grid-gap: 1rem;
-  padding: 2rem 2rem;
-  background-color: var(--color-primary);
-  align-items: start;
-  grid-template-areas: 'logo social' 'nav nav';
-
-  @media (min-width: 800px) {
-    grid-template-columns: 1fr 3fr 1fr;
-    grid-template-areas: 'logo nav social';
-  }
+  --color-background: var(--color-primary);
+  --color-background-dark: var(--color-primary-dark);
 
   ${TinaWordmark} {
-    grid-area: logo;
-    margin-bottom: 1rem;
-  }
-
-  ${LinkNav} {
-    grid-area: nav;
+    fill: var(--color-secondary);
   }
 
   ${FooterSocial} {
-    grid-area: social;
-  }
-`
-
-const FooterBottom = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 1.25rem 2rem;
-  background-color: var(--color-primary-dark);
-
-  @media (min-width: 1000px) {
-    flex-direction: row;
-    align-items: center;
-  }
-`
-
-const Footnote = styled.span`
-  display: flex;
-  color: white;
-  font-size: 1rem;
-
-  p {
-    color: white;
-    margin: 0;
-    font-size: 1rem;
-    opacity: 0.65;
+    fill: white;
   }
 
-  a {
-    text-decoration: none;
-    color: white;
-    opacity: 0.65;
-    &:hover {
-      color: white;
-      opacity: 1;
-    }
+  ${FooterBottom} {
+    --color-background: var(--color-primary-dark);
   }
-`
 
-const FooterDivider = styled.span`
-  &:after {
-    content: '|';
-    margin: 0 0.5rem;
-    opacity: 0.3;
-  }
+  ${props =>
+    props.light &&
+    css`
+      border-top: 1px solid var(--color-light-dark);
+      color: var(--color-primary);
+      --color-background: var(--color-light);
+      --color-background-dark: var(--color-light-dark);
+
+      ${TinaWordmark} {
+        fill: var(--color-primary);
+      }
+
+      ${FooterSocial} {
+        fill: var(--color-primary);
+      }
+
+      ${FooterBottom} {
+        color: white;
+        --color-background: var(--color-primary);
+      }
+    `};
 `

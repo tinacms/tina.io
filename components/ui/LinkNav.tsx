@@ -38,7 +38,7 @@ export const LinkNav = styled(({ ...styleProps }) => {
   a {
     font-size: 1.5rem;
     text-transform: uppercase;
-    color: white;
+    color: inherit;
     text-decoration: none;
     cursor: pointer;
     font-family: var(--font-tuner);
