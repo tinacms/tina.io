@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useCallback } from 'react'
 import Cookies from 'js-cookie'
 import styled from 'styled-components'
 import { useCMS, useSubscribable } from 'tinacms'
