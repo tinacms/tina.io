@@ -10,6 +10,15 @@ next: /docs/fields
 - Expose your content to mutation through user edits
 - Process and persist the changes to your content
 
+> **Use Form Helpers to Get Started Faster**
+>
+> This document explains how to set up forms in any React project. If you're using Gatsby or Next.js, we have helper packages that streamline this process for specific workflows:
+>
+> - [Editing Markdown Files with Gatsby](/docs/gatsby/markdown)
+> - [Editing JSON Files with Gatsby](/docs/gatsby/json)
+> - [Editing Markdown Files with Next.js](/docs/nextjs/markdown)
+> - [Editing JSON Files with Next.js](/docs/nextjs/creating-forms)
+
 The recommended way to create forms with Tina is to use the form hooks. These are explained in detail later on in this document, but let's start with a high-level overview of how form hooks are used.
 
 When using form hooks, they should be called inside a **Page** component; that is, the component that takes your content and renders a page from it. In the following contrived example, we have a Page component that receives its content in the component's props, including a `title` and some `markdownContent`:
@@ -69,7 +78,7 @@ Note that calling `useGlobalForm` in a non-global context will still cause the f
 
 `useForm` will create a form, but will not add it to the sidebar UI at all. You might use this for content that will be [edited inline](/docs/inline-editing), if you don't want the form to also appear in the sidebar.
 
-## Form Configuration
+## Calling Form Hooks
 
 The signature of a form hook looks something like this:
 
@@ -77,33 +86,101 @@ The signature of a form hook looks something like this:
 const [modifiedValues, form] = useForm(formConfig, watchedVars)
 ```
 
-Forms in Tina use the [Final Form](https://final-form.org/) library, ...
+All three basic form hooks follow this same structure.
+
+### Hook Return Values
+
+Like other React hooks, the form hooks enclose their return data in an array, expecting developers to assign these values via destructuring.
+
+The first piece of data returned (`modifiedValues` in the above example) is an object containing all the data that is made editable by the form. As users edit data in the form, the values in this object change.
+
+The second piece of data (`form` in the above example) is an object representing the form.
+
+<!-- TODO expand upon form object and demonstrate a use case where you might need it -->
+
+### Form Configuration
+
+The first argument that a form hook receives (`formConfig` in the above example`) is an object used to configure the form. Forms in Tina are built upon the [Final Form](https://final-form.org/) library, and inherit all of Final Form's configuration options.
+
+You can see the all of Final Form's form config options in the [Form Config Documentation](https://final-form.org/docs/final-form/types/Config), but the following options will most commonly be used when creating a form:
+
+| key             | description                                         |
+| --------------- | --------------------------------------------------- |
+| `initialValues` | An object containing the initial state of the form. |
+| `onSubmit`      | A function that runs when the form is saved.        |
+
+In addition to Final Form's options, Tina's form hooks accept the following additional configuration options:
 
 ```typescript
 interface FormOptions<S> {
   id: any
   label: string
   fields: Field[]
-  __type?: string
+  loadInitialValues?: () => Promise<S>
   reset?(): void
   actions?: any[]
   meta?: {
     [key: string]: string
   }
-  loadInitialValues?: () => Promise<S>
+  __type?: string
 }
 ```
 
-| key                 | description                                                                                                                                                                                                   | default |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| id                  | A unique identifier for the form. This should be derived from the content to distinguish it from other instances of the form.                                                                                 |         |
-| label               | A label for the form that will appear in the sidebar.                                                                                                                                                         |         |
-| fields              | An array of fields. See [fields](/docs/fields) for information on how to configure this.                                                                                                                      |         |
-| \_\_type            | Used to identify local vs global (I think)                                                                                                                                                                    |         |
-| reset()             | Customize the way that the form "rolls back" its data.                                                                                                                                                        |         |
-| actions             | Array of additional actions for the form. These will appear at the bottom near the **Save** button.                                                                                                           |         |
-| meta                | Object of miscellaneous data that you can include in the form. Not used by Tina.                                                                                                                              |         |
-| loadInitialValues() | Can be used to retrieve the initial values for the form asynchronously. The form will be initialized with `initialValues` and then hydrated with the value returned by `loadInitialValues` once it completes. |         |
+| key                 | description                                                                                                                                   |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                | A unique identifier for the form. This should be derived from the content to distinguish it from other instances of the form.                 |
+| `label`             | A label for the form that will appear in the sidebar.                                                                                         |
+| `fields`            | An array of fields that will define the shape of the form and how content is edited.                                                          |
+| `loadInitialValues` | _Optional:_ A function to load the initial form state asynchronously. Return a promise that passes an object of form values when it resolves. |
+| `reset`             | _Optional:_ A function that runs when the form state is reset by the user.                                                                    |
+| `actions`           | _Optional:_ An array of custom actions that will be added to the form.                                                                        |
+| `meta`              | _Optional:_ Arbitrary key-value pairs for your internal use.                                                                                  |
+| `__type`            | _Optional:_ Sets the Form's plugin type. Automatically set based on which form hook is used.                                                  |
+
+Now that we know how to configure a form, let's revisit the simplified example from the beginning of this document to demonstrate how we might configure this form:
+
+```javascript
+import * as React from React
+import ReactMarkdown from 'react-markdown'
+import { useLocalForm } from 'tinacms'
+
+export function Page(props) {
+    const [modifiedValues] = useLocalForm({
+      id: props.fileRelativePath,
+      label: props.title,
+      fields: [
+        {
+          name: 'title',
+          label: 'Title',
+          component: 'text',
+        },
+        {
+          name: 'markdownContent',
+          label: 'content',
+          component: 'markdown',
+        }
+      ],
+      initialValues: {
+        title: props.title,
+        markdownContent: props.markdownContent
+      },
+      onSubmit: (formData) => {
+        // save the new form data
+      },
+    })
+    return (
+        <main>
+            <h1>{modifiedValues.title}</h1>
+            <ReactMarkdown source={modifiedValues.markdownContent}>
+        </main>
+    )
+}
+
+```
+
+Note that when using these basic hooks, you are expected to implement the save functionality yourself by adding an `onSubmit` function. By default, Tina makes no assumptions about how your content is stored. These basic form hooks are building blocks for creating more purpose-built tools to fit specific use cases.
+
+### Watched Vars
 
 watch
 
