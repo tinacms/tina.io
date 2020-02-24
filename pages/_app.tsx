@@ -16,13 +16,12 @@ const MainLayout = ({ Component, pageProps }) => {
 
     sidebar: {
       // editMode initially set here
-      hidden: process.env.NODE_ENV === 'production',
+      hidden: true,
       position: 'displace' as any,
     },
   }
 
-  // const cms = React.useMemo(() => new TinaCMS(tinaConfig.cms), [tinaConfig])
-  const cms = new TinaCMS(tinaConfig)
+  const cms = React.useMemo(() => new TinaCMS(tinaConfig), [])
 
   return (
     <Tina cms={cms}>
