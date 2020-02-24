@@ -26,13 +26,15 @@ import getJsonData from '../utils/github/getJsonData'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 
 const HomePage = (props: any) => {
-  // sets cms.sidebar.hidden based on editMode
-  // setIsEditMode(props.editMode)
-
   const cms = useCMS()
 
+  /*
+   ** Random Fix: sidebar state isn't updated properly
+   ** without this timeout. If and when the 'preview'
+   ** state is accessible in _app, we'd like to move
+   ** the editMode/sidebar.hidden stuff to _app
+   */
   setTimeout(() => (cms.sidebar.hidden = !props.editMode), 1)
-  console.log('hidden in index', cms.sidebar.hidden)
 
   const [formData, form] = useLocalGithubJsonForm(
     props.home,

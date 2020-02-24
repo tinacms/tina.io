@@ -32,10 +32,6 @@ export const EditLink = () => {
     _isEditMode = !cms.sidebar.hidden
   })
 
-  // useEffect(() => {
-  //   _isEditMode = !cms.sidebar.hidden
-  // }, [cms.sidebar.hidden])
-
   const isTokenValid = async () => {
     const userData = await getUser()
     if (!userData) return false

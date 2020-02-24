@@ -9,6 +9,11 @@ import TagManager from 'react-gtm-module'
 import { GlobalStyle } from '../components/styles/GlobalStyle'
 
 const MainLayout = ({ Component, pageProps }) => {
+  /*
+   ** TODO: If and when 'preview' state becomes accessible
+   ** at the _app level, we should move the sidebar / editMode
+   ** logic to be handled here
+   */
   const tinaConfig = {
     apis: {
       git: new GitClient('http://localhost:3000/___tina'),
