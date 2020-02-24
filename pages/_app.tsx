@@ -25,7 +25,7 @@ const MainLayout = ({ Component, pageProps }) => {
     },
   }
 
-  const cms = React.useMemo(() => new TinaCMS(tinaConfig.cms), [tinaConfig])
+  const cms = React.useMemo(() => new TinaCMS(tinaConfig.cms), [])
 
   return (
     <EditModeContext.Provider value={{ isEditMode, setIsEditMode }}>
