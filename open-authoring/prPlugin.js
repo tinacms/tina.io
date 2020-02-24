@@ -1,7 +1,7 @@
 import React from 'react'
 import Cookies from 'js-cookie'
 import styled from 'styled-components'
-import { Button as TinaButton } from '@tinacms/styles'
+import { Button as RawTinaButton } from '@tinacms/styles'
 import { Input, TextArea } from '@tinacms/fields'
 import { ModalBody, ModalActions, FieldMeta } from 'tinacms'
 import GitIconSvg from '../public/svg/git-icon.svg'
@@ -35,8 +35,9 @@ export class PRPlugin {
         accessToken
       ).then(pull => {
         if (pull) {
+          console.log(pull)
           this.state.fetchedPR = pull
-          this.name = 'Existing Pull Request'
+          this.name = 'View Pull Request'
         } else {
           this.state.fetchedPR = { id: null }
         }
@@ -101,24 +102,47 @@ export class PRPlugin {
               </>
             )}
             {this.state.fetchedPR.id && (
-              <div>
-                <a
-                  target="_blank"
-                  href={`https://github.com/${baseRepoFullName}/compare/${baseBranch}...${
-                    forkRepoFullName.split('/')[0]
-                  }:${getHeadBranch()}`}
-                >
-                  See Changes
-                </a>
-                <p>A Pull request already exists.</p>
-              </div>
+              <ModalDescription>
+                You've created a pull request from{' '}
+                <b>
+                  {forkRepoFullName} - {getHeadBranch()}
+                </b>{' '}
+                into{' '}
+                <b>
+                  {baseRepoFullName} - {baseBranch}
+                </b>
+                .
+              </ModalDescription>
             )}
             {!this.state.fetchedPR && <div>Loading...</div>}
           </PrModalBody>
           <ModalActions>
-            <TinaButton primary onClick={this.createPR}>
-              Create Pull Request
-            </TinaButton>
+            {!this.state.fetchedPR.id && (
+              <TinaButton primary onClick={this.createPR}>
+                Create Pull Request
+              </TinaButton>
+            )}
+            {this.state.fetchedPR && this.state.fetchedPR.html_url && (
+              <>
+                <TinaButton
+                  as="a"
+                  href={`https://github.com/${baseRepoFullName}/compare/${baseBranch}...${
+                    forkRepoFullName.split('/')[0]
+                  }:${getHeadBranch()}`}
+                  target="_blank"
+                >
+                  View Diff
+                </TinaButton>
+                <TinaButton
+                  as="a"
+                  primary
+                  href={this.state.fetchedPR.html_url}
+                  target="_blank"
+                >
+                  View Pull Request
+                </TinaButton>
+              </>
+            )}
           </ModalActions>
         </>
       )
@@ -133,6 +157,14 @@ export class PRPlugin {
     this.state.userSetPRBody = event.target.value
   }
 }
+
+const TinaButton = styled(RawTinaButton)`
+  height: auto;
+  padding-top: 0.8125rem;
+  padding-bottom: 0.8125rem;
+  text-decoration: none;
+  line-height: 1;
+`
 
 const ModalDescription = styled.p`
   margin-bottom: 1rem;

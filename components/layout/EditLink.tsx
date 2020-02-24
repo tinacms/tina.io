@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import Cookies from 'js-cookie'
 import styled from 'styled-components'
-// import { isEditMode } from '../../utils'
 import { useCMS, useSubscribable } from 'tinacms'
 import { getUser, getBranch } from '../../open-authoring/github/api'
+import { useOpenAuthoring } from './OpenAuthoring'
 
 function popupWindow(url, title, window, w, h) {
   const y = window.top.outerHeight / 2 + window.top.screenY - h / 2
@@ -22,6 +22,9 @@ function popupWindow(url, title, window, w, h) {
   )
 }
 
+const openAuthWindow = (initialView: string) =>
+  popupWindow(initialView, '_blank', window, 1000, 700)
+
 export const EditLink = () => {
   let authTab: Window
   const cms = useCMS()
@@ -32,27 +35,13 @@ export const EditLink = () => {
     _isEditMode = !cms.sidebar.hidden
   })
 
-  const isTokenValid = async () => {
-    const userData = await getUser()
-    if (!userData) return false
-    return true
-  }
-
-  const isForkValid = async (fork: string) => {
-    const branch = Cookies.get('head_branch') || 'master'
-
-    const forkData = await getBranch(fork, branch)
-    if (!forkData) return false
-    if (forkData.ref === 'refs/heads/' + branch) {
-      Cookies.set('head_branch', branch)
-      return true
-    }
-    return false
-  }
+  const openAuthoring = useOpenAuthoring()
 
   const authState = Math.random()
     .toString(36)
     .substring(7)
+
+  const forkURL = `/github/fork?state=${authState}`
 
   const exitEditMode = () => {
     fetch(`/api/reset-preview`).then(() => {
@@ -60,51 +49,41 @@ export const EditLink = () => {
     })
   }
 
-  const enterEditMode = async () => {
-    const accessTokenAlreadyExists = await isTokenValid()
+  const onUpdateStorageEvent = useCallback(
+    async e => {
+      if (e.key == 'github_code') {
+        await handleAuthCode(e.newValue, authState)
+        authTab.location.assign(forkURL)
+      }
+      if (e.key == 'fork_full_name') {
+        handleForkCreated(e.newValue)
+      }
+    },
+    [authState]
+  )
+
+  const enterEditMode = () => {
+    const accessTokenAlreadyExists = openAuthoring.githubAuthenticated
     const fork = Cookies.get('fork_full_name')
 
     localStorage.setItem('fork_full_name', '')
     if (accessTokenAlreadyExists) {
-      if (fork && (await isForkValid(fork))) {
+      if (fork && openAuthoring.forkValid) {
         handleForkCreated(fork)
         return
       } else {
-        authTab = popupWindow(
-          `/github/fork?state=${authState}`,
-          '_blank',
-          window,
-          1000,
-          700
-        )
+        authTab = openAuthWindow(forkURL)
       }
     } else {
-      authTab = popupWindow(
-        `/github/start-auth?state=${authState}`,
-        '_blank',
-        window,
-        1000,
-        700
-      )
+      authTab = openAuthWindow(`/github/start-auth?state=${authState}`)
     }
 
-    window.addEventListener(
-      'storage',
-      e => {
-        updateStorageEvent(e, authState)
-        authTab.location.assign(`/github/fork`)
-      },
-      true
-    )
+    window.addEventListener('storage', onUpdateStorageEvent, true)
   }
 
   useEffect(() => {
     return () => {
-      window.removeEventListener(
-        'storage',
-        e => updateStorageEvent(e, authState),
-        true
-      )
+      window.removeEventListener('storage', onUpdateStorageEvent, true)
     }
   }, [])
 
@@ -115,20 +94,11 @@ export const EditLink = () => {
   )
 }
 
-async function updateStorageEvent(e, authState: string) {
-  if (e.key == 'github_code') {
-    await handleAuthCode(e.newValue, authState)
-  }
-  if (e.key == 'fork_full_name') {
-    handleForkCreated(e.newValue)
-  }
-}
-
 async function handleAuthCode(code: string, authState: string) {
   await requestGithubAccessToken(code, authState)
 }
 
-async function handleForkCreated(forkName: string) {
+function handleForkCreated(forkName: string) {
   Cookies.set('fork_full_name', forkName, { sameSite: 'strict' })
   fetch(`/api/preview`).then(() => {
     window.location.reload()
@@ -148,7 +118,7 @@ const EditButton = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
-  color: white;
+  color: inherit;
   transition: all 150ms ease-out;
   transform: translate3d(0px, 0px, 0px);
 
