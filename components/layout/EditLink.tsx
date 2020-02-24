@@ -1,7 +1,8 @@
-import { useEffect, useContext, useCallback } from 'react'
+import { useEffect, useCallback } from 'react'
 import Cookies from 'js-cookie'
-import { EditModeContext } from '../../utils/editContext'
 import styled from 'styled-components'
+import { useCMS, useSubscribable } from 'tinacms'
+import { getUser, getBranch } from '../../open-authoring/github/api'
 import { useOpenAuthoring } from './OpenAuthoring'
 
 function popupWindow(url, title, window, w, h) {
@@ -26,8 +27,13 @@ const openAuthWindow = (initialView: string) =>
 
 export const EditLink = () => {
   let authTab: Window
-  let editMode = useContext(EditModeContext)
-  let isEditMode = editMode.isEditMode
+  const cms = useCMS()
+
+  let _isEditMode = !cms.sidebar.hidden
+
+  useSubscribable(cms.sidebar, () => {
+    _isEditMode = !cms.sidebar.hidden
+  })
 
   const openAuthoring = useOpenAuthoring()
 
@@ -82,8 +88,8 @@ export const EditLink = () => {
   }, [])
 
   return (
-    <EditButton onClick={isEditMode ? exitEditMode : enterEditMode}>
-      {isEditMode ? 'Exit Edit Mode' : 'Edit This Site'}
+    <EditButton onClick={_isEditMode ? exitEditMode : enterEditMode}>
+      {_isEditMode ? 'Exit Edit Mode' : 'Edit This Site'}
     </EditButton>
   )
 }

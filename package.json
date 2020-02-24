@@ -23,7 +23,7 @@
     "deploy": "yarn build && yarn export"
   },
   "dependencies": {
-    "@tinacms/api-git": "^0.5.5",
+    "@tinacms/api-git": "^0.5.6",
     "@tinacms/git-client": "^0.4.2",
     "@types/react-instantsearch-dom": "^5.2.6",
     "@types/styled-components": "^4.4.2",
@@ -49,8 +49,8 @@
     "next": "9.2.2-canary.18",
     "next-seo": "^4.1.0",
     "next-svgr": "0.0.2",
-    "next-tinacms-json": "^0.3.2",
-    "next-tinacms-markdown": "^0.2.2",
+    "next-tinacms-json": "^0.3.3",
+    "next-tinacms-markdown": "^0.2.3",
     "node-fetch": "^2.6.0",
     "polished": "^3.4.4",
     "prop-types": "^15.7.2",
@@ -65,11 +65,11 @@
     "react-instantsearch-dom": "^6.3.0",
     "react-markdown": "^4.3.1",
     "react-syntax-highlighter": "^12.2.1",
-    "react-tinacms-inline": "^0.1.1",
+    "react-tinacms-inline": "^0.1.2",
     "remove-markdown": "^0.3.0",
     "serve": "11.2.0",
     "styled-components": "^4.4.1",
-    "tinacms": "^0.13.1",
+    "tinacms": "^0.14.0",
     "webpack": "^4.41.5"
   },
   "devDependencies": {
