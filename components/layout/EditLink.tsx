@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import Cookies from 'js-cookie'
 import styled from 'styled-components'
 // import { isEditMode } from '../../utils'
-import { useCMS } from 'tinacms'
+import { useCMS, useSubscribable } from 'tinacms'
 import { getUser, getBranch } from '../../open-authoring/github/api'
 
 function popupWindow(url, title, window, w, h) {
@@ -28,9 +28,13 @@ export const EditLink = () => {
 
   let _isEditMode = !cms.sidebar.hidden
 
-  useEffect(() => {
+  useSubscribable(cms.sidebar, () => {
     _isEditMode = !cms.sidebar.hidden
-  }, [cms.sidebar.hidden])
+  })
+
+  // useEffect(() => {
+  //   _isEditMode = !cms.sidebar.hidden
+  // }, [cms.sidebar.hidden])
 
   const isTokenValid = async () => {
     const userData = await getUser()

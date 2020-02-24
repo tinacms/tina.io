@@ -31,9 +31,8 @@ const HomePage = (props: any) => {
 
   const cms = useCMS()
 
-  useEffect(() => {
-    cms.sidebar.hidden = !props.editMode
-  }, [props.editMode])
+  setTimeout(() => (cms.sidebar.hidden = !props.editMode), 1)
+  console.log('hidden in index', cms.sidebar.hidden)
 
   const [formData, form] = useLocalGithubJsonForm(
     props.home,
