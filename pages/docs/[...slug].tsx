@@ -23,14 +23,18 @@ import { TinaIcon } from '../../components/logo'
 import getMarkdownData from '../../utils/github/getMarkdownData'
 import { getGithubDataFromPreviewProps } from '../../utils/github/sourceProviderConnection'
 import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'
+import { setIsEditMode } from '../../utils'
 
 export default function DocTemplate(props) {
-  // Registers Tina Form
+  // Sets sidebar.hidden based on preview props
+  setIsEditMode(props.editMode)
 
+  // Workaround for fallback being not implemented
   if (!props.markdownFile) {
     return <div></div>
   }
 
+  // Registers Tina Form
   const [data, form] = useLocalGithubMarkdownForm(
     props.markdownFile,
     formOptions,

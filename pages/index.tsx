@@ -19,22 +19,15 @@ import {
   RichTextWrapper,
 } from '../components/layout'
 import { Button, Video, ArrowList } from '../components/ui'
-// import { setIsEditMode } from '../utils'
 import { InlineTextareaField, BlockTextArea } from '../components/ui/inline'
 import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
 import getJsonData from '../utils/github/getJsonData'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
+import { setIsEditMode } from '../utils'
 
 const HomePage = (props: any) => {
-  const cms = useCMS()
-
-  /*
-   ** Random Fix: sidebar state isn't updated properly
-   ** without this timeout. If and when the 'preview'
-   ** state is accessible in _app, we'd like to move
-   ** the editMode/sidebar.hidden stuff to _app
-   */
-  setTimeout(() => (cms.sidebar.hidden = !props.editMode), 1)
+  // Sets sidebar.hidden based on preview props
+  setIsEditMode(props.editMode)
 
   const [formData, form] = useLocalGithubJsonForm(
     props.home,
