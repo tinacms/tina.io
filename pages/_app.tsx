@@ -21,13 +21,7 @@ const MainLayout = ({ Component, pageProps }) => {
     },
   }
 
-  // const cms = React.useMemo(() => new TinaCMS(tinaConfig.cms), [tinaConfig])
   const cms = React.useMemo(() => new TinaCMS(tinaConfig), [])
-  // const cms = new TinaCMS(tinaConfig)
-
-  React.useEffect(() => {
-    console.log('hidden _app', cms.sidebar.hidden)
-  })
 
   return (
     <Tina cms={cms}>
