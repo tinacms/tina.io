@@ -147,7 +147,7 @@ import { useLocalForm } from 'tinacms'
 export function Page(props) {
     const [modifiedValues] = useLocalForm({
       id: props.fileRelativePath,
-      label: props.title,
+      label: 'Edit Post',
       fields: [
         {
           name: 'title',
@@ -180,9 +180,9 @@ export function Page(props) {
 
 Note that when using these basic hooks, you are expected to implement the save functionality yourself by adding an `onSubmit` function. By default, Tina makes no assumptions about how your content is stored. These basic form hooks are building blocks for creating more purpose-built tools to fit specific use cases.
 
-### Watched Vars
+### Watched Vars: Preserve Form Reactivity
 
-watch
+The second argument that can be passed to the form hooks is an optional object containing values that the form will need to react to. Use this when dealing with data from external sources or in an environment with Hot Module Replacement; in other words, when you expect this data to change and it's essential to keep the form in sync with it.
 
 ```typescript
 interface WatchableFormValue {
@@ -192,20 +192,16 @@ interface WatchableFormValue {
 }
 ```
 
-Pass these in as the second param and the form will update when they are changed.
-
-label - good for when label is derived from editable content
-fields - makes it possible to use dynamic fields
-values - keep data in sync with another content source. Use case here is for local-git, re-updating values after they're saved to disk
+| key      | description                                                                                                                                                                     |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `values` | Form will update its values when this data changes, but will avoid updating a field if it has UI focus. This is useful for keeping values in sync with a remote content source. |
+| `fields` | By watching the form's fields, they can be added/removed dynamically.                                                                                                           |
+| `label`  | When the form's label is derived from a dynamic value, this will ensure it is updated correctly.                                                                                |
 
 ### Form Helpers
 
 The three hooks described thus far are the basic interface for creating forms, and they aim to support a broad set of use cases. For specific use cases, we've created some simplified interfaces for quickly setting up forms. Take a look at our [Next.js form docs](/docs/nextjs/creating-forms) and [Gatsby docs](/docs/gatsby/markdown) to learn how to use these.
 
-> **Creating Your Own Form Helpers**
->
-> Maybe give a simple example of using the `useForm` or `useLocalForm` hook to make your own helper
-
 ## Inline Forms
 
-for more info, check out the inline editing docs
+Refer to the [Inline Editing](/docs/inline-editing) docs.
