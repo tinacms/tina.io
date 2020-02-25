@@ -12,7 +12,13 @@ app.prepare().then(() => {
   const server = express()
 
   server.use(cors())
-  server.use('/___tina', gitApi.router())
+  server.use(
+    '/___tina',
+    gitApi.router({
+      pathToRepo: process.cwd(),
+      pathToContent: 'content',
+    })
+  )
 
   server.all('*', (req, res) => {
     return handle(req, res)
