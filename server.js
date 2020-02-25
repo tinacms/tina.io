@@ -16,7 +16,7 @@ app.prepare().then(() => {
     '/___tina',
     gitApi.router({
       pathToRepo: process.cwd(),
-      pathToContent: 'content',
+      pathToContent: '',
     })
   )
 
