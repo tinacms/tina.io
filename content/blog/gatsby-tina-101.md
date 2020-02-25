@@ -341,7 +341,7 @@ const Post = ({ location, data, isEditing, setIsEditing }) => {
 }
 ```
 
-We can toggle the "editing mode" through a simple button that will display right above the post. That said, the toggle can be anything you want! Fancier options could look like using [React Portals](https://reactjs.org/docs/portals.html) to render buttons elsewhere in the DOM, or listening to click or keyboard events.
+We can toggle the "editing mode" through a simple button that displays right above the post. That said, the toggle can be anything you want! Fancier options could look like using [React Portals](https://reactjs.org/docs/portals.html) to render buttons elsewhere in the DOM, or listening to click or keyboard events.
 
 With standard "props drilling", I passed down the editing state to my `Body` component:
 
