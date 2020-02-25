@@ -162,7 +162,7 @@ export const query = graphql`
 export default inlineRemarkForm(Post, { queryName: 'post' })
 ```
 
-`inlineRemarkForm` will take our `Post` component as an argument and return a component wrapped with Tina plumbing. [Higher-Order Components](https://reactjs.org/docs/higher-order-components.html) inject custom logic into existing React components.
+`inlineRemarkForm` takes our `Post` component as an argument and return a component wrapped with Tina plumbing. [Higher-Order Components](https://reactjs.org/docs/higher-order-components.html) inject custom logic into existing React components.
 
 In our GraphQL query, we've added a fragment, `TinaRemark`, that pulls out extra data for Tina to edit files. I also used a non-standard query name for my post data (`post`). Thankfully, it's easy to change what data Tina uses by passing in a configuration object to `inlineRemarkForm`.
 
