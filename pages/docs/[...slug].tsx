@@ -150,6 +150,7 @@ export async function unstable_getStaticProps({
         title: prevDocPage && prevDocPage.data.title,
       },
     },
+    revalidate: 3156400,
   }
 }
 

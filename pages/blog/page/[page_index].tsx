@@ -127,6 +127,7 @@ export async function unstable_getStaticProps(ctx) {
       numPages: numPages,
       currentPage: parseInt(page),
     },
+    revalidate: 3156400,
   }
 }
 
