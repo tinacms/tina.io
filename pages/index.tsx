@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import {
   InlineForm,
@@ -26,6 +26,7 @@ import { setIsEditMode } from '../utils'
 const HomePage = (props: any) => {
   // Sets sidebar.hidden based on preview props
   setIsEditMode(props.editMode)
+  
 
   const [formData, form] = useLocalGithubJsonForm(
     props.home,
@@ -106,11 +107,29 @@ const HomePage = (props: any) => {
     props.editMode
   )
 
+  const [autoAuthPopupShown, setAutoAuthPopupShown] = useState(false)
+
   const refreshPage = () => {
     fetch(`/api/reset-preview`).then(() => {
-      window.location.reload()
+      window.location.href = "/?autoAuth"
     })
   }
+
+  useEffect(() => {
+    const autoOpenAuth = () => { // little hacky
+      if (window.location.href.includes("autoAuth") && !autoAuthPopupShown) {
+        var el = document.getElementById("OpenAuthoringEditButton")
+        el.click()
+        setAutoAuthPopupShown(true)
+      }
+      
+    }
+
+    autoOpenAuth()
+  })
+
+  
+  
 
   return (
     <InlineForm form={form}>
@@ -203,9 +222,12 @@ export <b>WithTina</b>( <b>Component</b> );
   )
 }
 
+
 export default HomePage
 
-export async function unstable_getStaticProps({ preview, previewData }) {
+export async function unstable_getStaticProps({ preview, previewData, query }) {
+  console.log("QUERY: " + query);
+  
   const sourceProviderConnection = getGithubDataFromPreviewProps(previewData)
   const homeData = await getJsonData(
     'content/pages/home.json',
