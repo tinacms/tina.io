@@ -112,15 +112,17 @@ export default function DocTemplate(props) {
  * DATA FETCHING ------------------------------------------------------
  */
 
-export async function unstable_getStaticProps({
-  preview,
-  previewData,
-  ...ctx
-}) {
-  let { slug: slugs } = ctx.params
+export async function unstable_getStaticProps(props) {
+  let { slug: slugs } = props.params
 
   const slug = slugs.join('/')
+  return getDocProps(props, slug)
+}
 
+export async function getDocProps(
+  { preview, previewData, ...ctx }: any,
+  slug: string
+) {
   const sourceProviderConnection = getGithubDataFromPreviewProps(previewData)
   const file = await getMarkdownData(
     `content/docs/${slug}.md`,
@@ -150,6 +152,7 @@ export async function unstable_getStaticProps({
         title: prevDocPage && prevDocPage.data.title,
       },
     },
+    revalidate: 3156400,
   }
 }
 
