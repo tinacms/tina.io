@@ -2,6 +2,11 @@
 title: Inline Editing
 prev: /docs/fields
 next: /docs/contributing/guidelines
+consumes:
+  - file: /packages/react-tinacms-inline/src/inline-form.tsx
+    description: InlineForm
+  - file: /packages/react-tinacms-inline/src/inline-field.tsx
+    description: InlineField
 ---
 
 **Inline Editing** in Tina refers to editing values directly in the area they appear on the page, instead of in the Tina sidebar.
