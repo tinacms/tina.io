@@ -1,6 +1,6 @@
 ---
 title: Number Field
-prev: /docs/fields/markdown
+prev: /docs/fields/html
 next: /docs/fields/date
 consumes:
   - file: /packages/tinacms/src/plugins/fields/NumberFieldPlugin.tsx
