@@ -12,25 +12,25 @@ consumes:
     details: TinaField uses Wysiwyg component for inline editing
 ---
 
-Static site generators like [Gatsby](https://www.gatsbyjs.org/) are a huge win for developers. They provide us with easy deployments, faster development cycles, and reduced security burden.
+Static site generators like [Gatsby](https://www.gatsbyjs.org/) are a massive win for developers. They provide us with automated deployments, faster development cycles, and reduced security burden.
 
-Despite the techincal gains, static sites can have a hampered content editing story. Those comfortable with Git and Markdown might edit files directly. But content authors need a better solution for editing.
+Despite the technical gains, static sites can have a hampered content editing story. Those comfortable with Git and Markdown might edit files directly. But content authors need a better solution for editing.
 
-[TinaCMS](https://tinacms.org/docs/getting-started/introduction) is a _extensible_ toolkit that can help meet these needs. Tina allows developers to use formats we love, like Markdown and JSON, while providing a slick experience for content authors.
+[TinaCMS](https://tinacms.org/docs/getting-started/introduction) is an _extensible_ toolkit that can help meet these needs. Tina allows developers to use formats we love, like Markdown and JSON, while providing a smooth experience for content authors.
 
 To understand better how Tina works, I decided to add it to an existing site, my [Gatsby starter, _Tyra_](https://github.com/madelyneriksen/gatsby-starter-tyra/). What follows is a walkthrough of my process. Feel free to use this as a reference for adding TinaCMS to an existing Gatsby site!
 
-> **In a rush?** _Check out the code [on Github](https://github.com/madelyneriksen/gatsby-starter-tyra)_
+> **In a rush?** _Check out the code [on Github](https://github.com/madelyneriksen/gatsby-starter-tyra/tree/feature/add-tyra)_
 
 ## Getting Started with Tina
 
-Tina is a non-intrusive library you can use to add editing capabilities to your site. All your page generation logic can remain _exactly_ the same. This makes it easier to 'drop in' dynamic content editing.
+Tina is a non-intrusive library you can use to add editing capabilities to your site. All your page generation logic can remain _exactly_ the same, making it easier to 'drop-in' dynamic content editing.
 
-There are a collection of plugins you will need to install and register with Gatsby to add Tina into your site. Let's do that now.
+There is a collection of plugins you need to install and register with Gatsby to add Tina to your site. Let's do that now.
 
 ### Installing Tina
 
-Like most things in the Javascript world, we can install the packages we need with `npm` or `yarn`. Use whichever package manager is relevant for your project.
+Like most things in the JavaScript world, we can install the packages we need with `npm` or `yarn`. Use whichever package manager is relevant for your project.
 
 ```bash
 # With npm
@@ -71,7 +71,7 @@ module.exports = {
 
 _Tyra_ uses Markdown for content, but TinaCMS also supports JSON files via [gatsby-tinacms-json](https://tinacms.org/docs/gatsby/json/). I find that JSON is great for page content and [blocks](https://tinacms.org/blog/what-are-blocks/). But for simple blog posts, Markdown works great.
 
-Since the content _Tyra_ is Git based, all edits will need to be committed back into the repository. `gatsby-tinacms-git` tracks content changes and handles the creation of new commits with content. By default, changes are pushed to a remote branch, but the plugin is configurable.
+Since the content _Tyra_ is Git-based, all edits need to be committed back into the repository. `gatsby-tinacms-git` tracks content changes and handles the creation of new commits with content. By default, changes are pushed to a remote branch, but the plugin is configurable.
 
 ## Tina-Powered Editing
 
@@ -166,9 +166,9 @@ export const query = graphql`
 export default inlineRemarkForm(Post, { queryName: 'post' })
 ```
 
-`inlineRemarkForm` will take our `Post` component as an argument and return a component wrapped with Tina plumbing. [Higher-Order Components](https://reactjs.org/docs/higher-order-components.html) inject custom logic into existing React components.
+`inlineRemarkForm` takes our `Post` component as an argument and return a component wrapped with Tina plumbing. [Higher-Order Components](https://reactjs.org/docs/higher-order-components.html) inject custom logic into existing React components.
 
-In our GraphQL query, we've added a fragment, `TinaRemark`. This pulls out extra data for Tina to edit files. I also used a non-standard query name for my post data (`post`). Thankfully, it's easy to change what data Tina uses by passing in a configuration object to `inlineRemarkForm`.
+In our GraphQL query, we've added a fragment, `TinaRemark`, that pulls out extra data for Tina to edit files. I also used a non-standard query name for my post data (`post`). Thankfully, it's easy to change what data Tina uses by passing in a configuration object to `inlineRemarkForm`.
 
 At this point, if we start our application, we can hop over to [localhost:8000](http://localhost:8000/) and see that Tina is working!
 
@@ -180,9 +180,9 @@ Navigate to a blog post and click the "Pencil" icon in the bottom left-hand corn
 
 ![Woohoo! Markdown editing is working!](/img/blog/gatsby-tina-101/madalyn_blog_1.png)
 
-Awesome right? Here I've changed the author from "Jane Doe" to "Madelyn Eriksen". I can actually save those changes in the Tina sidebar too. That process triggers an automatic commit in `git` and will push to a remote branch.
+Awesome right? Here I've changed the author from "Jane Doe" to "Madelyn Eriksen". I can save those changes in the Tina sidebar too. That process triggers an automatic commit in `git` and pushes to a remote branch.
 
-How Tina interacts with git is completely configurable. It's possible to change the commit message, disable automatic commits, or even change the git user.
+How Tina interacts with git is entirely configurable. It's possible to change the commit message, disable automatic commits, or even change the git user.
 
 ```diff
 //gatsby-config.js
@@ -213,11 +213,11 @@ module.exports = {
 
 ### Friendly Form Fields
 
-Right now our sidebar forms for editing are 'okay,' but there's room for improvement. It would be a lot nicer if the form fields labelled with things like `rawFrontmatter.title`. Our content authors would likely not appreciate labels like that!
+Right now our sidebar forms for editing are 'okay,' but there's room for improvement. It would be a lot nicer if the form fields weren't labeled with things like `rawFrontmatter.title`. Our content authors would likely not appreciate labels like that!
 
 There are also fields _Tyra_ uses that should be "private" and not available to edit in the sidebar. For example, the `type` frontmatter value to identify posts.
 
-We can configure the sidebar form by passing in a `FormConfig` object to Tina. [Customizing forms with Tina](https://tinacms.org/docs/gatsby/markdown/#customizing-remark-forms) is straightforward. We only need to define a Javascript object to declare the desired form fields for Tina to render.
+We can configure the sidebar form by passing in a `FormConfig` object to Tina. [Customizing forms with Tina](https://tinacms.org/docs/gatsby/markdown/#customizing-remark-forms) is straightforward. We need to define a JavaScript object to declare the desired form fields for Tina to render.
 
 Back in `src/blog/post.js`, we can add this configuration object.
 
@@ -296,7 +296,7 @@ export default inlineRemarkForm(Post, FormConfig)
 
 In the `FormConfig`, we're using `text`, `markdown`, `date`, and even `image` fields to make the post authoring experience nicer. Tina has [a bunch](https://tinacms.org/docs/fields/) of built-in fields, and even allows you to [add your own](https://tinacms.org/docs/fields/custom-fields).
 
-The `image` field can be tricky to configure. For the _post image_, we need Tina to handle image uploads, as well as update previews. To configure uploads, you declare the upload directory and parse out a preview thumbnail from uploaded image.
+The `image` field can be tricky to configure. For the _post image_, we need Tina to handle image uploads, as well as update previews. To configure uploads, you declare the upload directory and parse out a preview thumbnail from the uploaded image.
 
 ```javascript
 {
@@ -320,7 +320,7 @@ Putting all that together, our sidebar looks a _lot_ more inviting and easier to
 
 ![We have a sidebar that's nice!](/img/blog/gatsby-tina-101/madalyn_blog_2.png)
 
-> **Note:** While editing, there may be fields that don't have values or are not filled. In this case, it's important to make sure your site can handle empty field values and not 'blow up.'
+> **Note:** While editing, there may be fields that don't have values or are not filled. In this case, it's essential to make sure your site can handle empty field values and not 'blow up.'
 
 Even with the fancy sidebar, it'd sure be nicer to just edit content right on the page.
 
@@ -345,7 +345,7 @@ const Post = ({ location, data, isEditing, setIsEditing }) => {
 }
 ```
 
-We can toggle the "editing mode" through a simple button that will display right above the post. That said, the toggle can be anything you want! Fancier options could look like using [React Portals](https://reactjs.org/docs/portals.html) to render buttons elsewhere in the DOM, or listening to click or keyboard events.
+We can toggle the "editing mode" through a simple button that displays right above the post. That said, the toggle can be anything you want! Fancier options could look like using [React Portals](https://reactjs.org/docs/portals.html) to render buttons elsewhere in the DOM, or listening to click or keyboard events.
 
 With standard "props drilling", I passed down the editing state to my `Body` component:
 
