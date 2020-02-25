@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import matter from 'gray-matter'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
@@ -25,6 +25,7 @@ import getMarkdownData from '../../utils/github/getMarkdownData'
 import { getGithubDataFromPreviewProps } from '../../utils/github/sourceProviderConnection'
 import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'
 import { setIsEditMode } from '../../utils'
+import getJsonData from '../../utils/github/getJsonData'
 
 export default function DocTemplate(props) {
   // Sets sidebar.hidden based on preview props
@@ -119,37 +120,42 @@ export async function unstable_getStaticProps(props) {
   return getDocProps(props, slug)
 }
 
-export async function getDocProps(
-  { preview, previewData, ...ctx }: any,
-  slug: string
-) {
+export async function getDocProps({ preview, previewData }: any, slug: string) {
   const sourceProviderConnection = getGithubDataFromPreviewProps(previewData)
   const file = await getMarkdownData(
     `content/docs/${slug}.md`,
     sourceProviderConnection
   )
 
-  const docsNavData = await import('../../content/toc-doc.json')
+  const getJson = async (filePath: string) => {
+    return (await getJsonData(filePath, sourceProviderConnection)).data
+  }
+
+  const getMarkdown = async (filePath: string) => {
+    return (await getMarkdownData(filePath, sourceProviderConnection)).data
+  }
+
+  const docsNavData = await getJson('content/toc-doc.json')
   const nextDocPage =
     file.data.frontmatter.next &&
-    matter(await readFile(`content${file.data.frontmatter.next}.md`))
+    (await getMarkdown(`content${file.data.frontmatter.next}.md`)).frontmatter
   const prevDocPage =
     file.data.frontmatter.prev &&
-    matter(await readFile(`content${file.data.frontmatter.prev}.md`))
+    (await getMarkdown(`content${file.data.frontmatter.prev}.md`)).frontmatter
 
   return {
     props: {
       markdownFile: file,
       sourceProviderConnection,
       editMode: !!preview,
-      docsNav: docsNavData.default,
+      docsNav: docsNavData,
       nextPage: {
         slug: file.data.frontmatter.next,
-        title: nextDocPage && nextDocPage.data.title,
+        title: nextDocPage && nextDocPage.title,
       },
       prevPage: {
         slug: file.data.frontmatter.prev,
-        title: prevDocPage && prevDocPage.data.title,
+        title: prevDocPage && prevDocPage.title,
       },
     },
     revalidate: 3156400,
