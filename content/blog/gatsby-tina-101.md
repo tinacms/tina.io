@@ -176,7 +176,7 @@ Navigate to a blog post and click the "Pencil" icon in the bottom left-hand corn
 
 ![Woohoo! Markdown editing is working!](/img/blog/gatsby-tina-101/madalyn_blog_1.png)
 
-Awesome right? Here I've changed the author from "Jane Doe" to "Madelyn Eriksen". I can actually save those changes in the Tina sidebar too. That process triggers an automatic commit in `git` and will push to a remote branch.
+Awesome right? Here I've changed the author from "Jane Doe" to "Madelyn Eriksen". I can save those changes in the Tina sidebar too. That process triggers an automatic commit in `git` and pushes to a remote branch.
 
 How Tina interacts with git is completely configurable. It's possible to change the commit message, disable automatic commits, or even change the git user.
 
