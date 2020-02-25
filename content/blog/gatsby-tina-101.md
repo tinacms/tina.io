@@ -67,7 +67,7 @@ module.exports = {
 
 _Tyra_ uses Markdown for content, but TinaCMS also supports JSON files via [gatsby-tinacms-json](https://tinacms.org/docs/gatsby/json/). I find that JSON is great for page content and [blocks](https://tinacms.org/blog/what-are-blocks/). But for simple blog posts, Markdown works great.
 
-Since the content _Tyra_ is Git based, all edits will need to be committed back into the repository. `gatsby-tinacms-git` tracks content changes and handles the creation of new commits with content. By default, changes are pushed to a remote branch, but the plugin is configurable.
+Since the content _Tyra_ is Git-based, all edits need to be committed back into the repository. `gatsby-tinacms-git` tracks content changes and handles the creation of new commits with content. By default, changes are pushed to a remote branch, but the plugin is configurable.
 
 ## Tina-Powered Editing
 
