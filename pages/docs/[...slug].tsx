@@ -26,6 +26,7 @@ import { getGithubDataFromPreviewProps } from '../../utils/github/sourceProvider
 import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'
 import { setIsEditMode } from '../../utils'
 import getJsonData from '../../utils/github/getJsonData'
+import { getDocProps } from '../../utils/docs/getDocProps'
 
 export default function DocTemplate(props) {
   // Sets sidebar.hidden based on preview props
@@ -118,48 +119,6 @@ export async function unstable_getStaticProps(props) {
 
   const slug = slugs.join('/')
   return getDocProps(props, slug)
-}
-
-export async function getDocProps({ preview, previewData }: any, slug: string) {
-  const sourceProviderConnection = getGithubDataFromPreviewProps(previewData)
-  const file = await getMarkdownData(
-    `content/docs/${slug}.md`,
-    sourceProviderConnection
-  )
-
-  const getJson = async (filePath: string) => {
-    return (await getJsonData(filePath, sourceProviderConnection)).data
-  }
-
-  const getMarkdown = async (filePath: string) => {
-    return (await getMarkdownData(filePath, sourceProviderConnection)).data
-  }
-
-  const docsNavData = await getJson('content/toc-doc.json')
-  const nextDocPage =
-    file.data.frontmatter.next &&
-    (await getMarkdown(`content${file.data.frontmatter.next}.md`)).frontmatter
-  const prevDocPage =
-    file.data.frontmatter.prev &&
-    (await getMarkdown(`content${file.data.frontmatter.prev}.md`)).frontmatter
-
-  return {
-    props: {
-      markdownFile: file,
-      sourceProviderConnection,
-      editMode: !!preview,
-      docsNav: docsNavData,
-      nextPage: {
-        slug: file.data.frontmatter.next,
-        title: nextDocPage && nextDocPage.title,
-      },
-      prevPage: {
-        slug: file.data.frontmatter.prev,
-        title: prevDocPage && prevDocPage.title,
-      },
-    },
-    revalidate: 3156400,
-  }
 }
 
 export async function unstable_getStaticPaths() {
