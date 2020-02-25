@@ -54,7 +54,7 @@ These values will define who will show up in the author field when commits are m
 
 If you want the author to be based off of the logged-in user instead of a static value in your env, you might want to take a look at [Tina Teams](/teams 'Tina Teams')!
 
-### `TINA_CEE
+### `TINA_CEE`
 
 This needs to be set to ensure that Tina knows that it is being run in a *Cloud Editing Environment*. Set it to `true`.
 
