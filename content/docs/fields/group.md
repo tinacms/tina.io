@@ -21,7 +21,7 @@ If the source JSON for the example contact info looked like this:
     "email": "hello@tinacms.org",
     "twitter_handle": "tina_cms",
     "github_handle": "tinacms"
-  },
+  }
 }
 ```
 
@@ -29,47 +29,46 @@ Our form options would look like this:
 
 ```javascript
 const formOptions = {
-    label: 'Info Page',
-    fields: [
-      {
-        label:"Contact Info",
-        name:"rawJson.contact",
-        description: "Contact info",
-        component: "group",
-        fields: [
-          {
-            label:"Email",
-            name:"email",
-            description: "Contact email",
-            component: "text"
-          },
-          {
-            label:"Twitter",
-            name:"twitter_handle",
-            description: "Twitter handle",
-            component: "text"
-          },
-          {
-            label:"Github",
-            name:"github_handle",
-            description: "Github username",
-            component: "text"
-          }
-        ]
-      },
-      //...
-    ]
-  }
+  label: 'Info Page',
+  fields: [
+    {
+      label: 'Contact Info',
+      name: 'rawJson.contact',
+      description: 'Contact info',
+      component: 'group',
+      fields: [
+        {
+          label: 'Email',
+          name: 'email',
+          description: 'Contact email',
+          component: 'text',
+        },
+        {
+          label: 'Twitter',
+          name: 'twitter_handle',
+          description: 'Twitter handle',
+          component: 'text',
+        },
+        {
+          label: 'Github',
+          name: 'github_handle',
+          description: 'Github username',
+          component: 'text',
+        },
+      ],
+    },
+    //...
+  ],
+}
 ```
 
 ## Options
 
- - `name`: The path to some value in the data being edited.
- - `component`: The name of the React component that should be used to edit this field. Available field component types are [defined here](/docs/concepts/fields#field-types)
- - `label`: A human readable label for the field. This label displays in the sidebar and is optional. If no label is provided, the sidebar will default to the name.
- - `description`: An optional description of the field.
- - `fields`: An array of group values that will render as a sub-menu.
-
+- `name`: The path to some value in the data being edited.
+- `component`: The name of the React component that should be used to edit this field. Available field component types are [defined here](/docs/fields)
+- `label`: A human readable label for the field. This label displays in the sidebar and is optional. If no label is provided, the sidebar will default to the name.
+- `description`: An optional description of the field.
+- `fields`: An array of group values that will render as a sub-menu.
 
 ## Interface
 

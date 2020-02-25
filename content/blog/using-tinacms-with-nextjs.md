@@ -44,7 +44,7 @@ The best way to get a feel for how Tina works is to use it. We hope that by the 
 
 This tutorial will show you how to install and **configure Tina for editing content on a simple markdown-based blog** that was created in last week’s post. If you want to dig into how the base blog was made, read [Part I](https://tinacms.org/blog/simple-markdown-blog-nextjs/) of this series.
 
-> Jump ahead to see the [final repo here](https://github.com/kendallstrautman/brevifolia-next-tinacms). Or check out the [Tina + Next.js documentation](https://tinacms.org/docs/nextjs/overview) here 
+> Jump ahead to see the [final repo here](https://github.com/kendallstrautman/brevifolia-next-tinacms). Or check out the [Tina + Next.js documentation](https://tinacms.org/docs/nextjs/overview) here
 
 ### Some Background 🏜
 
@@ -108,7 +108,7 @@ class MyApp extends App {
 export default MyApp
 ```
 
-If you restart the dev server, you should now see a pencil icon in the lower left-hand corner. Go ahead and click it to reveal a [sidebar](https://tinacms.org/docs/concepts/sidebar). The `Tina` component we added in `_app.js` gives each page access to this [sidebar](https://tinacms.org/docs/concepts/sidebar). Think of it as your "home base" for editing content with Tina.
+If you restart the dev server, you should now see a pencil icon in the lower left-hand corner. Go ahead and click it to reveal a sidebar. The `Tina` component we added in `_app.js` gives each page access to this sidebar). Think of it as your "home base" for editing content with Tina.
 
 ### Setting up a Git Backend 👾
 
@@ -198,7 +198,7 @@ That’s all the config for tracking and persisting content changes with git & T
 
 ### Creating Content Forms 📝
 
-Alright, now the fun starts — let’s dig into [editing content](https://tinacms.org/docs/nextjs/creating-forms). We access Tina’s editing powers by registering forms to the `cms`. When creating these [forms](https://tinacms.org/docs/concepts/forms), we define [fields](https://tinacms.org/docs/concepts/fields) that connect to bits and pieces of the content you want to make editable.
+Alright, now the fun starts — let’s dig into [editing content](https://tinacms.org/docs/nextjs/creating-forms). We access Tina’s editing powers by registering forms to the `cms`. When creating these [forms](https://tinacms.org/docs/forms), we define [fields](https://tinacms.org/docs/fields) that connect to bits and pieces of the content you want to make editable.
 
 Since our site is mainly comprised of blog data, let’s configure Tina to edit blog posts. Open up the [blog template](https://github.com/kendallstrautman/brevifolia-nextjs/blob/master/src/pages/blog/%5Bslug%5D.js) file (`src/pages/blog/[slug].js`).
 
@@ -223,7 +223,7 @@ BlogTemplate.getInitialProps = async function(ctx) {
 }
 ```
 
-Next, we will create and register a form with the `useLocalForm` hook. When registering a form, it needs to know four things: a unique `id`, what `initialValues` it can edit, the shape of the content via [`field`](https://tinacms.org/docs/concepts/fields) definitions, and what to do `onSubmit`.
+Next, we will create and register a form with the `useLocalForm` hook. When registering a form, it needs to know four things: a unique `id`, what `initialValues` it can edit, the shape of the content via [`field`](https://tinacms.org/docs/fields) definitions, and what to do `onSubmit`.
 
 Check out the code below to see an example of invoking `useLocalForm`:
 
@@ -403,7 +403,7 @@ If all went well, your blog posts will now be editable by Tina. Let's see it in 
 
 Start up the dev server by running `yarn develop`, and open up a blog post in the browser. Go ahead and make edits, and then check the source file in a text editor. If you keep the browser and code editor open side-by-side, you should be able to watch the changes reflect in real time in both places!
 
->  **Troubleshooting Tip**: If you’re only seeing changes update in the browser, but not immediately writing to the file system, **make sure you are using the correct script** that initiates both the next dev server and the git api via `concurrently`. 
+> **Troubleshooting Tip**: If you’re only seeing changes update in the browser, but not immediately writing to the file system, **make sure you are using the correct script** that initiates both the next dev server and the git api via `concurrently`.
 
 ### Next Steps 🚶‍♀️
 
