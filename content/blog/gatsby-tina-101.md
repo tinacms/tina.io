@@ -316,7 +316,7 @@ Putting all that together, our sidebar looks a _lot_ more inviting and easier to
 
 ![We have a sidebar that's nice!](/img/blog/gatsby-tina-101/madalyn_blog_2.png)
 
-> **Note:** While editing, there may be fields that don't have values or are not filled. In this case, it's important to make sure your site can handle empty field values and not 'blow up.'
+> **Note:** While editing, there may be fields that don't have values or are not filled. In this case, it's essential to make sure your site can handle empty field values and not 'blow up.'
 
 Even with the fancy sidebar, it'd sure be nicer to just edit content right on the page.
 
