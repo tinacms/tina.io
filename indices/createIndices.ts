@@ -1,8 +1,8 @@
 require('dotenv').config()
 
 import algoliasearch from 'algoliasearch'
-import fetchDocs from '../api/fetchDocs'
-import fetchBlogs from '../api/fetchBlogs'
+import fetchDocs from '../data-api/fetchDocs'
+import fetchBlogs from '../data-api/fetchBlogs'
 
 const MAX_BODY_LENGTH = 3000
 

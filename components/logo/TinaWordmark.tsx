@@ -23,6 +23,6 @@ export const TinaWordmark = styled(({ ...styleProps }) => {
   svg {
     height: 35px;
     width: auto;
-    fill: var(--color-secondary);
+    fill: inherit;
   }
 `

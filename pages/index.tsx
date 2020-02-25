@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { BlockTemplate } from 'tinacms'
 import {
@@ -8,6 +8,7 @@ import {
   BlockText,
 } from 'react-tinacms-inline'
 import { DefaultSeo } from 'next-seo'
+import { useCMS } from 'tinacms'
 
 import { DynamicLink } from '../components/ui/DynamicLink'
 import {
@@ -18,15 +19,15 @@ import {
   RichTextWrapper,
 } from '../components/layout'
 import { Button, Video, ArrowList } from '../components/ui'
-import { useEditContext } from '../utils/editContext'
 import { InlineTextareaField, BlockTextArea } from '../components/ui/inline'
 import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
 import getJsonData from '../utils/github/getJsonData'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
+import { setIsEditMode } from '../utils'
 
 const HomePage = (props: any) => {
-  const editContext = useEditContext()
-  editContext.setIsEditMode(props.editMode)
+  // Sets sidebar.hidden based on preview props
+  setIsEditMode(props.editMode)
 
   const [formData, form] = useLocalGithubJsonForm(
     props.home,
@@ -209,6 +210,7 @@ export async function unstable_getStaticProps({ preview, previewData }) {
       sourceProviderConnection,
       editMode: !!preview,
     },
+    revalidate: 3156400,
   }
 }
 

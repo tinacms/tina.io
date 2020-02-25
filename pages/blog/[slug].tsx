@@ -21,6 +21,7 @@ import {
 import { getGithubDataFromPreviewProps } from '../../utils/github/sourceProviderConnection'
 import getMarkdownData from '../../utils/github/getMarkdownData'
 import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'
+import { setIsEditMode } from '../../utils'
 
 export default function BlogTemplate({
   markdownFile,
@@ -28,6 +29,9 @@ export default function BlogTemplate({
   siteConfig,
   editMode,
 }) {
+  // Sets sidebar.hidden based on preview props
+  setIsEditMode(editMode)
+
   //workaround for fallback being not implemented
   if (!markdownFile) {
     return <div></div>
@@ -131,6 +135,7 @@ export async function unstable_getStaticProps({
       },
       markdownFile: file,
     },
+    revalidate: 3156400,
   }
 }
 

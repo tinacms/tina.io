@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from 'react'
 import { useCMS, usePlugins } from 'tinacms'
-import { PRPlugin } from '../../open-authoring/prPlugin'
+import { PRPlugin } from '../../open-authoring/PRPlugin'
 import { setCachedFormData } from '../formCache'
 
 export interface GitFile<T = any> {
