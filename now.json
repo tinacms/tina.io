@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    { "source": "/concepts/sidebar", "destination": "/docs/cms" },
+    { "source": "/concepts/forms", "destination": "/docs/forms" },
+    { "source": "/concepts/fields", "destination": "/docs/fields" },
+    { "source": "/concepts/backends", "destination": "/docs/cms#apis" },
+    { "source": "/concepts/plugins", "destination": "/docs/cms#plugins" }
+  ]
+}
