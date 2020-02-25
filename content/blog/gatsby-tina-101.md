@@ -1,11 +1,15 @@
 ---
 title: Gatsby + Tina 101
-date: '2020-02-24T07:00:00.000Z'
+date: '2020-02-25T07:00:00.000Z'
 author: Madelyn Eriksen
 draft: false
 consumes:
   - file: /packages/gatsby-tinacms-remark/src/remark-creator-plugin.ts
     details: Demonstrates use of RemarkCreatorPlugin
+  - file: /packages/gatsby-tinacms-remark/src/remarkFormHoc.tsx
+    details: Shows how to use inlineRemarkForm HOC
+  - file: /packages/@tinacms/fields/src/Wysiwyg/Wysiwyg.tsx
+    details: TinaField uses Wysiwyg component for inline editing
 ---
 
 Static site generators like [Gatsby](https://www.gatsbyjs.org/) are a huge win for developers. They provide us with easy deployments, faster development cycles, and reduced security burden.
