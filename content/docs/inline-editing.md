@@ -89,3 +89,27 @@ export function Page(props) {
 ```
 
 > Note that we switched the call to `useLocalForm` with a call to `useForm`. This will prevent the form from showing in the Tina sidebar. If you want the form to also be available in the sidebar, `useForm` can be replaced with `useLocalForm`.
+
+## Activating Edit Mode for Inline Forms
+
+In order to use the editing UI in an inline form, editing mode must be activated by the user. One way to do this is to create a button to toggle edit mode on and off, and insert it somewhere in your inline form:
+
+```jsx
+import { useInlineForm } from 'react-tinacms-inline'
+
+export function EditToggle() {
+  const { status, deactivate, activate } = useInlineForm()
+
+  return (
+    <button
+      onClick={() => {
+        status === 'active' ? deactivate() : activate()
+      }}
+    >
+      {status === 'active' ? 'Preview' : 'Edit'}
+    </button>
+  )
+}
+```
+
+After creating this component, you can insert the `<EditToggle />` component anywhere inside of an `InlineForm` to allow the user to turn edit mode on and off.
