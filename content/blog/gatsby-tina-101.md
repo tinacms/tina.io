@@ -16,7 +16,7 @@ Despite the techincal gains, static sites can have a hampered content editing st
 
 To understand better how Tina works, I decided to add it to an existing site, my [Gatsby starter, _Tyra_](https://github.com/madelyneriksen/gatsby-starter-tyra/). What follows is a walkthrough of my process. Feel free to use this as a reference for adding TinaCMS to an existing Gatsby site!
 
-> **In a rush?** _Check out the code [on Github](https://github.com/madelyneriksen/gatsby-starter-tyra)_
+> **In a rush?** _Check out the code [on Github](https://github.com/madelyneriksen/gatsby-starter-tyra/tree/feature/add-tyra)_
 
 ## Getting Started with Tina
 
