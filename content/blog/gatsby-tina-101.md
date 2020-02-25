@@ -8,7 +8,7 @@ consumes:
     details: Demonstrates use of RemarkCreatorPlugin
 ---
 
-Static site generators like [Gatsby](https://www.gatsbyjs.org/) are a huge win for developers. They provide us with easy deployments, faster development cycles, and reduced security burden.
+Static site generators like [Gatsby](https://www.gatsbyjs.org/) are a massive win for developers. They provide us with automated deployments, faster development cycles, and reduced security burden.
 
 Despite the technical gains, static sites can have a hampered content editing story. Those comfortable with Git and Markdown might edit files directly. But content authors need a better solution for editing.
 
