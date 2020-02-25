@@ -66,6 +66,10 @@ const getContent = async (repoFullName, headBranch, path, accessToken) => {
     headers: {
       Authorization: 'token ' + accessToken,
     },
+  }).then( resp => {
+    return resp
+  }).catch( err => {
+    return err
   })
 }
 
