@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import matter from 'gray-matter'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
@@ -34,7 +34,10 @@ export default function DocTemplate(props) {
   const [open, setOpen] = useState(false)
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
-  const excerpt = formatExcerpt(props.markdownFile.markdownBody)
+  const excerpt = useMemo(
+    () => formatExcerpt(props.markdownFile.markdownBody),
+    [props.markdownFile.markdownBody]
+  )
 
   return (
     <InlineForm form={form}>
