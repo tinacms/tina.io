@@ -10,7 +10,7 @@ consumes:
 
 Static site generators like [Gatsby](https://www.gatsbyjs.org/) are a huge win for developers. They provide us with easy deployments, faster development cycles, and reduced security burden.
 
-Despite the techincal gains, static sites can have a hampered content editing story. Those comfortable with Git and Markdown might edit files directly. But content authors need a better solution for editing.
+Despite the technical gains, static sites can have a hampered content editing story. Those comfortable with Git and Markdown might edit files directly. But content authors need a better solution for editing.
 
 [TinaCMS](https://tinacms.org/docs/getting-started/introduction) is a _extensible_ toolkit that can help meet these needs. Tina allows developers to use formats we love, like Markdown and JSON, while providing a slick experience for content authors.
 
