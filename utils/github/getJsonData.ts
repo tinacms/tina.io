@@ -8,22 +8,20 @@ const getJsonData = async (
   filePath: string,
   sourceProviderConnection: SourceProviderConnection
 ) => {
-
   if (sourceProviderConnection) {
-    console.log("GETTING JSON DATA");
-    
+    console.log('GETTING JSON DATA')
+
     const response = await getContent(
       sourceProviderConnection.forkFullName,
       sourceProviderConnection.headBranch || 'master',
       filePath,
       sourceProviderConnection.accessToken
-    ) 
-      
-    if (response.response) {    
-      if (response.response.status == 404) return "Content Not Found (perhaps the fork doesn't exist)"
+    )
+
+    if (response.response) {
+      if (response.response.status == 404)
+        return 'Content not found. Your fork may have been deleted.'
     }
-    
-    
 
     return {
       sha: response.data.sha,

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import { BlockTemplate } from 'tinacms'
+import { TinaReset, Button as TinaButton } from '@tinacms/styles'
 import {
   InlineForm,
   BlocksControls,
@@ -8,7 +8,15 @@ import {
   BlockText,
 } from 'react-tinacms-inline'
 import { DefaultSeo } from 'next-seo'
-import { useCMS } from 'tinacms'
+import {
+  BlockTemplate,
+  useCMS,
+  Modal,
+  ModalPopup,
+  ModalBody,
+  ModalHeader,
+  ModalProvider,
+} from 'tinacms'
 
 import { DynamicLink } from '../components/ui/DynamicLink'
 import {
@@ -17,6 +25,8 @@ import {
   Wrapper,
   Section,
   RichTextWrapper,
+  AuthWrapper,
+  AuthLayout,
 } from '../components/layout'
 import { Button, Video, ArrowList } from '../components/ui'
 import { InlineTextareaField, BlockTextArea } from '../components/ui/inline'
@@ -115,14 +125,28 @@ const HomePage = (props: any) => {
   }
 
   return (
-    
     <InlineForm form={form}>
-      {props.previewError &&
-        <>
-          <p>{props.previewError}</p>
-          <button onClick={refreshPage}>Refresh</button>
-        </>
-      }
+      {props.previewError && (
+        <ModalProvider>
+          <TinaReset>
+            <Modal>
+              <ModalPopup>
+                <ModalBody padded>
+                  <AuthLayout>
+                    <h2>Error</h2>
+                    <p>{props.previewError}</p>
+                    <Center>
+                      <Button color="primary" onClick={refreshPage}>
+                        Continue
+                      </Button>
+                    </Center>
+                  </AuthLayout>
+                </ModalBody>
+              </ModalPopup>
+            </Modal>
+          </TinaReset>
+        </ModalProvider>
+      )}
       <Layout pathname="/">
         <DefaultSeo titleTemplate={formData.title + ' | %s'} />
         <Hero overlap narrow>
@@ -217,12 +241,12 @@ export async function unstable_getStaticProps({ preview, previewData }) {
     'content/pages/home.json',
     sourceProviderConnection
   )
-  const previewError = typeof homeData == "string" ? homeData : null
-  console.log(previewError);
-  
+  const previewError = typeof homeData == 'string' ? homeData : null
+  console.log(previewError)
+
   return {
     props: {
-      home: homeData ,
+      home: homeData,
       previewError: previewError,
       sourceProviderConnection,
       editMode: !!preview,
@@ -303,6 +327,12 @@ const SETUP_POINT_BLOCKS = {
 /*
  ** STYLES -------------------------------------------------------
  */
+
+const Center = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
 
 const CodeWrapper = styled.div`
   border-radius: 50px;
