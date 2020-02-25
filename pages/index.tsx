@@ -199,7 +199,6 @@ export <b>WithTina</b>( <b>Component</b> );
 export default HomePage
 
 export async function unstable_getStaticProps({ preview, previewData }) {
-  console.log(`preview mode ${!!preview}`)
   const sourceProviderConnection = getGithubDataFromPreviewProps(previewData)
   const homeData = await getJsonData(
     'content/pages/home.json',
