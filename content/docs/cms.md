@@ -1,6 +1,19 @@
 ---
 title: The CMS
 next: /docs/forms
+consumes:
+  - file: /packages/tinacms/src/tina-cms.ts
+    description: Creates TinaCMS instance and describes config
+  - file: /packages/tinacms/src/react-tinacms/with-tina.tsx
+    description: Shows how to use withTina HOC
+  - file: /packages/tinacms/src/use-cms.ts
+    description: Demonstrates useCMS hook
+  - file: /packages/@tinacms/core/src/plugins.ts
+    description: Describes Plugin interface
+  - file: /packages/tinacms/src/react-tinacms/use-plugin.ts
+    descrition: Demonstrates usePlugin
+  - file: /packages/@tinacms/core/src/cms.ts
+    description: Demonstrates adding plugins and APIs to CMS obj
 ---
 
 The CMS object in Tina is a container for attaching and accessing Plugins and APIs. On its own, the CMS does very little; however, since it's the central integration point for everything that Tina does, it's extremely important!
