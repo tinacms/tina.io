@@ -26,7 +26,7 @@ There is a collection of plugins you need to install and register with Gatsby to
 
 ### Installing Tina
 
-Like most things in the Javascript world, we can install the packages we need with `npm` or `yarn`. Use whichever package manager is relevant for your project.
+Like most things in the JavaScript world, we can install the packages we need with `npm` or `yarn`. Use whichever package manager is relevant for your project.
 
 ```bash
 # With npm
