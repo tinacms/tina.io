@@ -2,6 +2,8 @@ import styled from 'styled-components'
 const fg = require('fast-glob')
 import { NextSeo } from 'next-seo'
 import { InlineForm } from 'react-tinacms-inline'
+import { usePlugin } from 'tinacms'
+import { MarkdownCreatorPlugin } from '../../utils/plugins'
 
 import { formatDate, formatExcerpt } from '../../utils'
 import {
@@ -29,6 +31,27 @@ export default function BlogTemplate({
   siteConfig,
   editMode,
 }) {
+  const CreateBlogPlugin = new MarkdownCreatorPlugin({
+    label: 'New Blog Post',
+    filename: form => {
+      const slug = form.title.replace(/\s+/, '-').toLowerCase()
+      return `content/blog/${slug}.md`
+    },
+    fields: [
+      {
+        name: 'title',
+        component: 'text',
+        label: 'Title',
+        placeholder: 'My New Post',
+        description: 'The title of the new blog post.',
+      },
+    ],
+    githubOptions: sourceProviderConnection,
+    isEditMode: editMode,
+  })
+
+  usePlugin(CreateBlogPlugin)
+
   // Sets sidebar.hidden based on preview props
   setIsEditMode(editMode)
 
@@ -51,7 +74,11 @@ export default function BlogTemplate({
 
   return (
     <InlineForm form={form}>
-      <Layout pathname="/">
+      <Layout
+        pathname="/"
+        githubOptions={sourceProviderConnection}
+        editMode={editMode}
+      >
         <NextSeo
           title={frontmatter.title}
           titleTemplate={'%s | ' + siteConfig.title + ' Blog'}
