@@ -12,7 +12,7 @@ Static site generators like [Gatsby](https://www.gatsbyjs.org/) are a huge win f
 
 Despite the technical gains, static sites can have a hampered content editing story. Those comfortable with Git and Markdown might edit files directly. But content authors need a better solution for editing.
 
-[TinaCMS](https://tinacms.org/docs/getting-started/introduction) is a _extensible_ toolkit that can help meet these needs. Tina allows developers to use formats we love, like Markdown and JSON, while providing a slick experience for content authors.
+[TinaCMS](https://tinacms.org/docs/getting-started/introduction) is an _extensible_ toolkit that can help meet these needs. Tina allows developers to use formats we love, like Markdown and JSON, while providing a smooth experience for content authors.
 
 To understand better how Tina works, I decided to add it to an existing site, my [Gatsby starter, _Tyra_](https://github.com/madelyneriksen/gatsby-starter-tyra/). What follows is a walkthrough of my process. Feel free to use this as a reference for adding TinaCMS to an existing Gatsby site!
 
