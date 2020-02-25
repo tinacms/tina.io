@@ -72,7 +72,13 @@ export const PRModal = ({
   }, [])
 
   if (!fetchedPR) {
-    return <div>Loading...</div>
+    return (
+      <PrModalBody>
+        <ModalDescription>
+          <p>Loading...</p>
+        </ModalDescription>
+      </PrModalBody>
+    )
   }
 
   return (
