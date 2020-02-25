@@ -209,7 +209,7 @@ module.exports = {
 
 ### Friendly Form Fields
 
-Right now our sidebar forms for editing are 'okay,' but there's room for improvement. It would be a lot nicer if the form fields labelled with things like `rawFrontmatter.title`. Our content authors would likely not appreciate labels like that!
+Right now our sidebar forms for editing are 'okay,' but there's room for improvement. It would be a lot nicer if the form fields weren't labeled with things like `rawFrontmatter.title`. Our content authors would likely not appreciate labels like that!
 
 There are also fields _Tyra_ uses that should be "private" and not available to edit in the sidebar. For example, the `type` frontmatter value to identify posts.
 
