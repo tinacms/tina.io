@@ -213,7 +213,7 @@ Right now our sidebar forms for editing are 'okay,' but there's room for improve
 
 There are also fields _Tyra_ uses that should be "private" and not available to edit in the sidebar. For example, the `type` frontmatter value to identify posts.
 
-We can configure the sidebar form by passing in a `FormConfig` object to Tina. [Customizing forms with Tina](https://tinacms.org/docs/gatsby/markdown/#customizing-remark-forms) is straightforward. We only need to define a Javascript object to declare the desired form fields for Tina to render.
+We can configure the sidebar form by passing in a `FormConfig` object to Tina. [Customizing forms with Tina](https://tinacms.org/docs/gatsby/markdown/#customizing-remark-forms) is straightforward. We need to define a JavaScript object to declare the desired form fields for Tina to render.
 
 Back in `src/blog/post.js`, we can add this configuration object.
 
