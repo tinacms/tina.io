@@ -1,7 +1,7 @@
 ---
 title: Inline Editing
 prev: /docs/fields
-next: /docs/media
+next: /docs/contributing/guidelines
 ---
 
 **Inline Editing** in Tina refers to editing values directly in the area they appear on the page, instead of in the Tina sidebar.

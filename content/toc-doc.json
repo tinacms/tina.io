@@ -98,11 +98,6 @@
     "slug": "/docs/inline-editing"
   },
   {
-    "title": "Media",
-    "id": "media",
-    "slug": "/docs/media"
-  },
-  {
     "title": "Tina + Gatsby",
     "id": "gasby",
     "items": [
