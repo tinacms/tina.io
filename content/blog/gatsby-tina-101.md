@@ -292,7 +292,7 @@ export default inlineRemarkForm(Post, FormConfig)
 
 In the `FormConfig`, we're using `text`, `markdown`, `date`, and even `image` fields to make the post authoring experience nicer. Tina has [a bunch](https://tinacms.org/docs/fields/) of built-in fields, and even allows you to [add your own](https://tinacms.org/docs/fields/custom-fields).
 
-The `image` field can be tricky to configure. For the _post image_, we need Tina to handle image uploads, as well as update previews. To configure uploads, you declare the upload directory and parse out a preview thumbnail from uploaded image.
+The `image` field can be tricky to configure. For the _post image_, we need Tina to handle image uploads, as well as update previews. To configure uploads, you declare the upload directory and parse out a preview thumbnail from the uploaded image.
 
 ```javascript
 {
