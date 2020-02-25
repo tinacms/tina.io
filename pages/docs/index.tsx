@@ -27,7 +27,6 @@ export async function unstable_getStaticProps(ctx) {
         title: prevDocPage && prevDocPage.data.title,
       },
     },
-    revalidate: 3156400,
   }
 }
 
