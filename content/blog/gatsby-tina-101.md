@@ -22,7 +22,7 @@ To understand better how Tina works, I decided to add it to an existing site, my
 
 Tina is a non-intrusive library you can use to add editing capabilities to your site. All your page generation logic can remain _exactly_ the same, making it easier to 'drop-in' dynamic content editing.
 
-There are a collection of plugins you will need to install and register with Gatsby to add Tina into your site. Let's do that now.
+There is a collection of plugins you need to install and register with Gatsby to add Tina to your site. Let's do that now.
 
 ### Installing Tina
 
