@@ -14,17 +14,17 @@ consumes:
 
 Static site generators like [Gatsby](https://www.gatsbyjs.org/) are a massive win for developers. They provide us with automated deployments, faster development cycles, and reduced security burden.
 
-Despite the technical gains, static sites can have a hampered content editing story. Those comfortable with Git and Markdown might edit files directly. But content authors need a better solution for editing.
+Despite the technical gains, **static sites can have a hampered content editing story.** Those comfortable with Git and Markdown might edit files directly. But content authors need a better solution for editing.
 
 [TinaCMS](https://tinacms.org/docs/getting-started/introduction) is an _extensible_ toolkit that can help meet these needs. Tina allows developers to use formats we love, like Markdown and JSON, while providing a smooth experience for content authors.
 
-To understand better how Tina works, I decided to add it to an existing site, my [Gatsby starter, _Tyra_](https://github.com/madelyneriksen/gatsby-starter-tyra/). What follows is a walkthrough of my process. Feel free to use this as a reference for adding TinaCMS to an existing Gatsby site!
+To understand better how Tina works, I decided to add it to an existing site, my [Gatsby starter, _Tyra_](https://github.com/madelyneriksen/gatsby-starter-tyra/). What follows is a walkthrough of my process. Feel free to _use this as a reference for adding TinaCMS to an existing Gatsby site!_
 
 > **In a rush?** _Check out the code [on Github](https://github.com/madelyneriksen/gatsby-starter-tyra/tree/feature/add-tyra)_
 
 ## Getting Started with Tina
 
-Tina is a non-intrusive library you can use to add editing capabilities to your site. All your page generation logic can remain _exactly_ the same, making it easier to 'drop-in' dynamic content editing.
+Tina is a non-intrusive library you can use to add editing capabilities to your site. All your **page generation logic can remain exactly the same**, making it easier to 'drop-in' dynamic content editing.
 
 There is a collection of plugins you need to install and register with Gatsby to add Tina to your site. Let's do that now.
 
@@ -50,6 +50,7 @@ To add new or complex functionality in Gatsby, you can use a plugin. Tina is no 
 
 ```javascript
 # gatsby-config.js
+
 module.exports = {
   siteMetadata: {
     // ...snip
@@ -166,13 +167,14 @@ export const query = graphql`
 export default inlineRemarkForm(Post, { queryName: 'post' })
 ```
 
-`inlineRemarkForm` takes our `Post` component as an argument and return a component wrapped with Tina plumbing. [Higher-Order Components](https://reactjs.org/docs/higher-order-components.html) inject custom logic into existing React components.
+`inlineRemarkForm` will take our `Post` component as an argument and **return a component wrapped with Tina plumbing.** [Higher-Order Components](https://reactjs.org/docs/higher-order-components.html) inject custom logic into existing React components.
 
 In our GraphQL query, we've added a fragment, `TinaRemark`, that pulls out extra data for Tina to edit files. I also used a non-standard query name for my post data (`post`). Thankfully, it's easy to change what data Tina uses by passing in a configuration object to `inlineRemarkForm`.
 
 At this point, if we start our application, we can hop over to [localhost:8000](http://localhost:8000/) and see that Tina is working!
 
 ```bash
+# Start the dev server
 npm start
 ```
 
@@ -182,7 +184,7 @@ Navigate to a blog post and click the "Pencil" icon in the bottom left-hand corn
 
 Awesome right? Here I've changed the author from "Jane Doe" to "Madelyn Eriksen". I can save those changes in the Tina sidebar too. That process triggers an automatic commit in `git` and pushes to a remote branch.
 
-How Tina interacts with git is entirely configurable. It's possible to change the commit message, disable automatic commits, or even change the git user.
+**How Tina interacts with git is entirely configurable.** It's possible to change the commit message, disable automatic commits, or even change the git user.
 
 ```diff
 //gatsby-config.js
@@ -219,7 +221,7 @@ There are also fields _Tyra_ uses that should be "private" and not available to 
 
 We can configure the sidebar form by passing in a `FormConfig` object to Tina. [Customizing forms with Tina](https://tinacms.org/docs/gatsby/markdown/#customizing-remark-forms) is straightforward. We need to define a JavaScript object to declare the desired form fields for Tina to render.
 
-Back in `src/blog/post.js`, we can add this configuration object.
+Back in `src/blog/post.js`, we can add this configuration object:
 
 ```js
 // ...snip
@@ -326,15 +328,13 @@ Even with the fancy sidebar, it'd sure be nicer to just edit content right on th
 
 ## Inline WYSIWYG Editing
 
-Inline editing means **changing the page on the page itself**. Rather than using a different authoring screen, you can click on the page to start making edits. It's an intuitive way to edit content for the web.
+Inline editing means **changing the page content on the page itself**. Rather than using a different authoring screen, you can click on the page to start making edits. It's an intuitive way to edit content for the web.
 
 Thankfully, Tina supports inline editing with a "what you see is what you get" (WYSIWYG) editor for Markdown! Adding an inline editor only requires a few changes to our Tina configuration code.
 
-//------------TODO: may need to update this inline editing reference for the New API
-
 ### Adding Edit Props
 
-`inlineRemarkForm` passes down two props we haven't used yet: `isEditing` and `setIsEditing`. You can use these props to toggle and observe "edit mode" in your code. We can access these values from props:
+`inlineRemarkForm` passes down two props we haven't used yet: `isEditing` and `setIsEditing`. You can **use these props to toggle and observe "edit mode"** in your code. We can access these values from props:
 
 ```js
 // src/blog/post.js
@@ -345,7 +345,7 @@ const Post = ({ location, data, isEditing, setIsEditing }) => {
 }
 ```
 
-We can toggle the "editing mode" through a simple button that displays right above the post. That said, the toggle can be anything you want! Fancier options could look like using [React Portals](https://reactjs.org/docs/portals.html) to render buttons elsewhere in the DOM, or listening to click or keyboard events.
+We can toggle the "edit mode" through a simple button that displays right above the post. That said, the toggle can be anything you want! Fancier options could look like using [React Portals](https://reactjs.org/docs/portals.html) to render buttons elsewhere in the DOM, or listening to click or keyboard events.
 
 With standard "props drilling", I passed down the editing state to my `Body` component:
 
@@ -424,7 +424,7 @@ Neat! Now that we have edit mode configured, we need to add inline editing suppo
 
 ### Adding Inline Editing
 
-Now the complicated part- adding inline editing. Did I say complicated? It's actually only four lines of code! 🥳
+Now the complicated part — adding inline editing. Did I say complicated? It's actually only four lines of code! 🥳
 
 ```javascript
 // src/blog/components/body.js
@@ -469,7 +469,7 @@ Before adding the inline editor, we had a `div` that renders internal HTML. To c
 </TinaField>
 ```
 
-Since it's wrapping Markdown body, we assign the `name` prop the value `rawMarkdownBody`. To render the WYSIWYG editor, we pass in the `Wysiwyg` component from `@tinacms/fields` as a property. Tina renders this component when "edit mode" is active.
+Since it's wrapping Markdown body, we assign the `name` prop the value `rawMarkdownBody`. To render the WYSIWYG editor, we pass in the `Wysiwyg` component from `@tinacms/fields` as a property. **Tina renders this component when "edit mode" is active.**
 
 Of course, we also have to import the relevant Tina components to be able to _use_ them:
 
@@ -604,7 +604,7 @@ const Layout = props => (
 export default withPlugin(Layout, CreatePostPlugin)
 ```
 
-`withPlugin` is another Higher-Order Component — it adds a plugin to the Tina sidebar when the component it wraps is being rendered. Since `Layout` is at the root of every page in _Tyra_, content authors can add posts from anywhere in the site!
+`withPlugin` is another Higher-Order Component — it **adds a plugin to the sidebar when the component it wraps is being rendered**. Since `Layout` is at the root of every page in _Tyra_, content authors can add posts from anywhere in the site!
 
 Now we can use our new plugin in the sidebar! Hitting the "plus" icon in the sidebar will provide an option to create a new blog post. If we click that, our plugin's form pops up in a modal.
 
@@ -612,7 +612,7 @@ Now we can use our new plugin in the sidebar! Hitting the "plus" icon in the sid
 
 ## Conclusions + Next Steps
 
-That's all it takes to create a basic blog CMS with Tina! 🎉 We've allowed content authors to easily create and edit new posts, right on the blog itself. You can check out the finished result over [on Github](TODO: Github Link)!
+That's all it takes to create a basic blog CMS with Tina! 🎉 We've allowed content authors to easily create and edit new posts, right on the blog itself. You can **check out the finished result** over [on Github](https://github.com/madelyneriksen/gatsby-starter-tyra/tree/feature/add-tyra)!
 
 This only scratches the surface of what you can build using Tina. If you want to go further, there's several more advanced features you can use to expand your Gatsby site!
 
