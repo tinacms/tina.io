@@ -16,6 +16,10 @@ const getMarkdownData = async (
       filePath,
       sourceProviderConnection.accessToken
     )
+      
+    if (response.response) {    
+      if (response.response.status == 404) return null //"Content Not Found (perhaps the fork doesn't exist)"
+    }
 
     const { content: markdownBody, data: frontmatter } = matter(
       b64DecodeUnicode(response.data.content)

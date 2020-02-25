@@ -108,8 +108,21 @@ const HomePage = (props: any) => {
     props.editMode
   )
 
+  const refreshPage = () => {
+    fetch(`/api/reset-preview`).then(() => {
+      window.location.reload()
+    })
+  }
+
   return (
+    
     <InlineForm form={form}>
+      {props.previewError &&
+        <>
+          <p>{props.previewError}</p>
+          <button onClick={refreshPage}>Refresh</button>
+        </>
+      }
       <Layout pathname="/">
         <DefaultSeo titleTemplate={formData.title + ' | %s'} />
         <Hero overlap narrow>
@@ -204,9 +217,13 @@ export async function unstable_getStaticProps({ preview, previewData }) {
     'content/pages/home.json',
     sourceProviderConnection
   )
+  const previewError = typeof homeData == "string" ? homeData : null
+  console.log(previewError);
+  
   return {
     props: {
-      home: homeData,
+      home: homeData ,
+      previewError: previewError,
       sourceProviderConnection,
       editMode: !!preview,
     },
