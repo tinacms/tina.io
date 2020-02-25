@@ -2,6 +2,13 @@
 title: Forms
 prev: /docs/cms
 next: /docs/fields
+consumes:
+  - file: /packages/@tinacms/react-core/src/use-form.ts
+    description: useForm and useLocalForm hooks
+  - file: /packages/tinacms/src/react-tinacms/use-form.ts
+    description: useGlobalForm
+  - file: /packages/@tinacms/forms/src/form.ts
+    description: Form configuration
 ---
 
 **Forms** in Tina are the main building blocks of your CMS. You will use Forms to:
