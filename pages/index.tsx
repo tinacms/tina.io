@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { TinaReset, Button as TinaButton } from '@tinacms/styles'
 import {
   InlineForm,
   BlocksControls,
@@ -8,16 +7,7 @@ import {
   BlockText,
 } from 'react-tinacms-inline'
 import { DefaultSeo } from 'next-seo'
-import {
-  BlockTemplate,
-  useCMS,
-  Modal,
-  ModalPopup,
-  ModalBody,
-  ModalHeader,
-  ModalProvider,
-} from 'tinacms'
-
+import { BlockTemplate, useCMS } from 'tinacms'
 import { DynamicLink } from '../components/ui/DynamicLink'
 import {
   Layout,
@@ -25,10 +15,8 @@ import {
   Wrapper,
   Section,
   RichTextWrapper,
-  AuthWrapper,
-  AuthLayout,
 } from '../components/layout'
-import { Button, Video, ArrowList } from '../components/ui'
+import { Button, Video, ArrowList, ErrorModal } from '../components/ui'
 import { InlineTextareaField, BlockTextArea } from '../components/ui/inline'
 import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
 import getJsonData from '../utils/github/getJsonData'
@@ -127,25 +115,7 @@ const HomePage = (props: any) => {
   return (
     <InlineForm form={form}>
       {props.previewError && (
-        <ModalProvider>
-          <TinaReset>
-            <Modal>
-              <ModalPopup>
-                <ModalBody padded>
-                  <AuthLayout>
-                    <h2>Error</h2>
-                    <p>{props.previewError}</p>
-                    <Center>
-                      <Button color="primary" onClick={refreshPage}>
-                        Continue
-                      </Button>
-                    </Center>
-                  </AuthLayout>
-                </ModalBody>
-              </ModalPopup>
-            </Modal>
-          </TinaReset>
-        </ModalProvider>
+        <ErrorModal message={props.previewError} action={refreshPage} />
       )}
       <Layout pathname="/">
         <DefaultSeo titleTemplate={formData.title + ' | %s'} />
@@ -327,12 +297,6 @@ const SETUP_POINT_BLOCKS = {
 /*
  ** STYLES -------------------------------------------------------
  */
-
-const Center = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
 
 const CodeWrapper = styled.div`
   border-radius: 50px;
