@@ -1,28 +1,29 @@
 ---
-title: Markdown Field
-prev: /docs/fields/textarea
-next: /docs/fields/html
+title: HTML Field
+prev: /docs/fields/markdown
+next: /docs/fields/number
 consumes:
-  - file: /packages/tinacms/src/plugins/fields/MarkdownFieldPlugin.tsx
+  - file: /packages/tinacms/src/plugins/fields/HtmlFieldPlugin.tsx
     details: Shows markdown interface and config options
 ---
 
-The `markdown` field represents a chunk of Markdown content. This field is typically used for the body of Markdown files.
+The `html` field represents a chunk of HTML content.
+
+<!-- TODO: Check if this widget still works -->
 
 ![tinacms-markdown-field](/img/fields/markdown.png)
 
 ## Definition
 
-Below is an example of how a `markdown` field could be defined in a Gatsby remark form. [Read more on passing in form field options](/docs/gatsby/markdown#customizing-remark-forms).
+Below is an example of how a `html` field could be defined. [Read more on passing in form field options](/docs/gatsby/markdown#customizing-remark-forms).
 
 ```javascript
 const BlogPostForm = {
   fields: [
     {
-      name: 'rawMarkdownBody',
-      component: 'markdown',
-      label: 'Post Body',
-      description: 'Edit the body of the post here',
+      name: 'frontmatter.summary',
+      component: 'html',
+      label: 'Summary',
     },
     // ...
   ],
@@ -39,9 +40,9 @@ const BlogPostForm = {
 ## Interface
 
 ```typescript
-interface MarkdownConfig {
+interface HtmlConfig {
   name: string
-  component: 'markdown'
+  component: 'html'
   label?: string
   description?: string
 }
