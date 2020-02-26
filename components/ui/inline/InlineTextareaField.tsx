@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { InlineField } from 'react-tinacms-inline'
 import styled from 'styled-components'
-import autosize from 'autosize'
+import TextareaAutosize from 'react-textarea-autosize'
 import { radius, color } from '@tinacms/styles'
 
 interface InlineTextFieldProps {
@@ -10,13 +10,6 @@ interface InlineTextFieldProps {
 
 export function InlineTextareaField({ name }: InlineTextFieldProps) {
   let textInputRef = useRef(null)
-
-  useEffect(() => {
-    if (textInputRef.current) {
-      console.log(textInputRef.current)
-      autosize(textInputRef.current)
-    }
-  }, [textInputRef.current])
 
   return (
     <InlineField name={name}>
@@ -66,7 +59,9 @@ const InputFocusWrapper = styled.div`
   }
 `
 
-const Input = styled.textarea`
+const Input = styled(({ ...styleProps }) => {
+  return <TextareaAutosize {...styleProps} />
+})`
   width: 100%;
   word-wrap: break-word;
   display: block;
