@@ -7,10 +7,10 @@
     },
     { "source": "/jamstack-conf  ", "destination": "/teams" },
     { "source": "/smashing-conf", "destination": "/teams" },
-    { "source": "/concepts/sidebar", "destination": "/docs/cms" },
-    { "source": "/concepts/forms", "destination": "/docs/forms" },
-    { "source": "/concepts/fields", "destination": "/docs/fields" },
-    { "source": "/concepts/backends", "destination": "/docs/cms#apis" },
-    { "source": "/concepts/plugins", "destination": "/docs/cms#plugins" }
+    { "source": "/docs/concepts/sidebar", "destination": "/docs/cms" },
+    { "source": "/docs/concepts/forms", "destination": "/docs/forms" },
+    { "source": "/docs/concepts/fields", "destination": "/docs/fields" },
+    { "source": "/docs/concepts/backends", "destination": "/docs/cms#apis" },
+    { "source": "/docs/concepts/plugins", "destination": "/docs/cms#plugins" }
   ]
 }
