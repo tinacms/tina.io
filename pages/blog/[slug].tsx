@@ -27,7 +27,7 @@ export default function BlogTemplate({ markdownFile, siteConfig }) {
   const [data, form] = useLocalMarkdownForm(markdownFile, formOptions)
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
-  const excerpt = formatExcerpt(data.markdownBody)
+  const excerpt = data.markdownBody.excerpt
 
   return (
     <InlineForm form={form}>
@@ -106,6 +106,7 @@ export async function unstable_getStaticProps(ctx) {
         fileRelativePath: `content/blog/${slug}.md`,
         frontmatter: post.data,
         markdownBody: post.content,
+        excerpt: formatExcerpt(post.content),
       },
     },
   }
