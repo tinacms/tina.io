@@ -134,14 +134,16 @@ const HomePage = (props: any) => {
   return (
     <InlineForm form={form}>
       {autoAuthPopupShow && (
-        <ActionableModal title="Authentication" message="Let's authenticate." actions={[
+        <ActionableModal title="Authentication" message="To edit this site, you first need to be authenticated." actions={[
           {
-            name: "OKAY",
+            name: "Continue",
             action: enterEditMode,
           },
           {
-            name: "nope",
-            action: null,
+            name: "Cancel",
+            action: () => {
+              window.location.href = window.location.pathname
+            },
           }
         ]} />
       )
@@ -244,15 +246,13 @@ export <b>WithTina</b>( <b>Component</b> );
 export default HomePage
 
 export async function unstable_getStaticProps({ preview, previewData, query }) {
-  console.log("QUERY: " + query);
-  
+
   const sourceProviderConnection = getGithubDataFromPreviewProps(previewData)
   const homeData = await getJsonData(
     'content/pages/home.json',
     sourceProviderConnection
   )
   const previewError = typeof homeData == 'string' ? homeData : null
-  console.log(previewError)
 
   return {
     props: {

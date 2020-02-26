@@ -9,7 +9,6 @@ const getJsonData = async (
   sourceProviderConnection: SourceProviderConnection
 ) => {
   if (sourceProviderConnection) {
-    console.log('GETTING JSON DATA')
 
     const response = await getContent(
       sourceProviderConnection.forkFullName,
