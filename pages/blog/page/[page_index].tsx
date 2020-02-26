@@ -1,9 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import matter from 'gray-matter'
 import { NextSeo } from 'next-seo'
-import { readFile } from '../../../utils/readFile'
-
+import getFiles from '../../../utils/github/getFiles'
 import { orderPosts, formatExcerpt, formatDate } from '../../../utils'
 import {
   Layout,
@@ -13,6 +11,8 @@ import {
   RichTextWrapper,
 } from '../../../components/layout'
 import { DynamicLink, BlogPagination } from '../../../components/ui'
+import { getGithubDataFromPreviewProps } from '../../../utils/github/sourceProviderConnection'
+import getMarkdownData from '../../../utils/github/getMarkdownData'
 
 const Index = props => {
   const { currentPage, numPages } = props
@@ -83,16 +83,20 @@ export async function unstable_getStaticPaths() {
   return { paths: pages }
 }
 
-export async function unstable_getStaticProps(ctx) {
+export async function unstable_getStaticProps({
+  preview,
+  previewData,
+  ...ctx
+}) {
+  const sourceProviderConnection = getGithubDataFromPreviewProps(previewData)
   let page = (ctx.params && ctx.params.page_index) || '1'
 
-  // grab all md files
-  const fg = require('fast-glob')
-  const files = await fg(`./content/blog/**/*.md`)
+  const files = await getFiles('content/blog', sourceProviderConnection)
 
   const posts = await Promise.all(
+    // TODO - potentially making a lot of requests here
     files.map(async file => {
-      const rawData = await readFile(file)
+      const post = (await getMarkdownData(file, sourceProviderConnection)).data
 
       // create slug from filename
       const slug = file
@@ -101,13 +105,10 @@ export async function unstable_getStaticProps(ctx) {
         .slice(0, -1)
         .join('.')
 
-      // parse yaml & markdown body
-      const post = matter(rawData)
-
-      const excerpt = formatExcerpt(post.content)
+      const excerpt = formatExcerpt(post.markdownBody)
 
       return {
-        data: { ...post.data, slug },
+        data: { ...post.frontmatter, slug },
         content: excerpt,
       }
     })

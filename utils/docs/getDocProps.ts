@@ -40,6 +40,5 @@ export async function getDocProps({ preview, previewData }: any, slug: string) {
         title: prevDocPage && prevDocPage.title,
       },
     },
-    revalidate: 3156400,
   }
 }

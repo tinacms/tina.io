@@ -1,17 +1,17 @@
 import { useInlineForm } from 'react-tinacms-inline'
-import { Button } from '../Button'
+import { Button as TinaButton } from '@tinacms/styles'
 
 export function EditToggle() {
   const { status, deactivate, activate } = useInlineForm()
 
   return (
-    <Button
-      color="primary"
+    <TinaButton
+      primary
       onClick={() => {
         status === 'active' ? deactivate() : activate()
       }}
     >
       {status === 'active' ? 'Preview' : 'Edit'}
-    </Button>
+    </TinaButton>
   )
 }
