@@ -236,7 +236,7 @@ function SellingPoint({ data, index }) {
       <div key={data.main.slice(0, 8)}>
         <h3>
           <em>
-            <BlockText name="main" />
+            <BlockTextArea name="main" />
           </em>
         </h3>
         <p>

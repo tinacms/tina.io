@@ -15,7 +15,7 @@ export function InlineTextareaField({ name }: InlineTextFieldProps) {
         if (status === 'active') {
           return (
             <InputFocusWrapper>
-              <Input {...input} rows={1} />
+              <InlineTextarea {...input} rows={1} />
             </InputFocusWrapper>
           )
         }
@@ -57,7 +57,7 @@ const InputFocusWrapper = styled.div`
   }
 `
 
-const Input = styled(({ ...styleProps }) => {
+export const InlineTextarea = styled(({ ...styleProps }) => {
   return <TextareaAutosize {...styleProps} />
 })`
   width: 100%;

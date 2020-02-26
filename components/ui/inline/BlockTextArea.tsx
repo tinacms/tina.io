@@ -7,6 +7,7 @@ import {
 } from 'react-tinacms-inline'
 import styled from 'styled-components'
 import { BlockFieldProps, BlockField } from './BlockText'
+import { InlineTextarea } from './InlineTextareaField'
 
 /**
  * InlineTextAreaField
@@ -19,7 +20,7 @@ export function BlockTextArea({ name }: InlineTextFieldProps) {
     <BlockField name={name}>
       {({ input, status }) => {
         if (status === 'active') {
-          return <Input type="text" {...input} />
+          return <InlineTextarea type="text" {...input} />
         }
         return <>{input.value}</>
       }}
