@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState } from 'react'
 import matter from 'gray-matter'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
@@ -34,10 +34,7 @@ export default function DocTemplate(props) {
   const [open, setOpen] = useState(false)
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
-  const excerpt = useMemo(
-    () => formatExcerpt(props.markdownFile.markdownBody),
-    [props.markdownFile.markdownBody]
-  )
+  const excerpt = props.markdownFile.excerpt
 
   return (
     <InlineForm form={form}>
@@ -122,6 +119,7 @@ export async function unstable_getStaticProps(ctx) {
         fileRelativePath: `content/docs/${slug}.md`,
         frontmatter: doc.data,
         markdownBody: doc.content,
+        excerpt: formatExcerpt(doc.content),
       },
       docsNav: docsNavData.default,
       nextPage: {

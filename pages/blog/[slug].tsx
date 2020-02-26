@@ -1,4 +1,3 @@
-import { useMemo } from 'react'
 import matter from 'gray-matter'
 import styled from 'styled-components'
 const fg = require('fast-glob')
@@ -28,9 +27,7 @@ export default function BlogTemplate({ markdownFile, siteConfig }) {
   const [data, form] = useLocalMarkdownForm(markdownFile, formOptions)
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
-  const excerpt = useMemo(() => formatExcerpt(data.markdownBody), [
-    data.markdownBody,
-  ])
+  const excerpt = data.markdownBody.excerpt
 
   return (
     <InlineForm form={form}>
@@ -109,6 +106,7 @@ export async function unstable_getStaticProps(ctx) {
         fileRelativePath: `content/blog/${slug}.md`,
         frontmatter: post.data,
         markdownBody: post.content,
+        excerpt: formatExcerpt(post.content),
       },
     },
   }
