@@ -126,9 +126,6 @@ interface FormOptions<S> {
   loadInitialValues?: () => Promise<S>
   reset?(): void
   actions?: any[]
-  meta?: {
-    [key: string]: string
-  }
   __type?: string
 }
 ```
@@ -141,7 +138,6 @@ interface FormOptions<S> {
 | `loadInitialValues` | _Optional:_ A function to load the initial form state asynchronously. Return a promise that passes an object of form values when it resolves. |
 | `reset`             | _Optional:_ A function that runs when the form state is reset by the user.                                                                    |
 | `actions`           | _Optional:_ An array of custom actions that will be added to the form.                                                                        |
-| `meta`              | _Optional:_ Arbitrary key-value pairs for your internal use.                                                                                  |
 | `__type`            | _Optional:_ Sets the Form's plugin type. Automatically set based on which form hook is used.                                                  |
 
 Now that we know how to configure a form, let's revisit the simplified example from the beginning of this document to demonstrate how we might configure this form:
