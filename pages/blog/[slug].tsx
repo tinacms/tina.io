@@ -45,9 +45,27 @@ export default function BlogTemplate({
         placeholder: 'My New Post',
         description: 'The title of the new blog post.',
       },
+      {
+        label: 'Date',
+        name: 'date',
+        component: 'date',
+        description: 'The default will be today',
+      },
+      {
+        label: 'Author',
+        description: 'Who wrote this, yo?',
+        name: 'author',
+        component: 'text',
+      },
     ],
     githubOptions: sourceProviderConnection,
     isEditMode: editMode,
+    frontmatter: postInfo => ({
+      title: postInfo.title,
+      date: postInfo.date ? postInfo.date : new Date(),
+      author: postInfo.author ? postInfo.author : `Jane Doe`,
+    }),
+    body: postInfo => `New post, who dis?`,
   })
 
   usePlugin(CreateBlogPlugin)
