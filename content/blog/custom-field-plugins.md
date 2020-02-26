@@ -1,5 +1,5 @@
 ---
-title: Creating Field Plugins
+title: Scott's new change
 date: '2020-02-17T07:00:00.000Z'
 author: Cool Dude
 draft: false
@@ -11,6 +11,11 @@ consumes:
   - file: /packages/@tinacms/form-builder/src/field-plugin.tsx
     details: Depends on the FieldPlugin interface
 ---
+
+| asdf |  | asdf | asdf |
+| --- | --- | --- | --- |
+| asdf |  | asdf | asdf |
+| asdf |  | asdfa | asdf |
 
 In the [previous post](https://tinacms.org/blog/custom-field-components), we learned how to create a custom field component and register it to the sidebar. With that baseline, let's go full circle on the topic of custom fields in TinaCMS. In this short but sweet post 🧁, we’ll cover how to _turn a field component into a field plugin._
 
@@ -151,4 +156,4 @@ Index.getInitialProps = async function() {
 
 ## Short and sweet, as promised 🍰
 
-This post, combined with the former, should give you all the building blocks to start making your own field plugins. Feel free to _dive into the documentation_ on [fields](https://tinacms.org/docs/fields/custom-fields/) or [plugins](https://tinacms.org/docs/concepts/plugins). Make sure to **share your groovy custom fields with us [@tina_cms](https://twitter.com/tina_cms)** 🖖. Or, if you feel there is a fundamental field missing from Tina, [open up a PR](https://github.com/tinacms/tinacms/) to contribute your custom field!
+This post, combined with the former, should give you all the building blocks to start making your own field plugins. Feel free to _dive into the documentation_ on [fields](https://tinacms.org/docs/fields/custom-fields/) or [plugins](https://tinacms.org/docs/concepts/plugins). Make sure to **share your groovy custom fields with us** [**@tina_cms**](https://twitter.com/tina_cms) 🖖. Or, if you feel there is a fundamental field missing from Tina, [open up a PR](https://github.com/tinacms/tinacms/) to contribute your custom field!
