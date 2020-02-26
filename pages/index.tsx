@@ -110,6 +110,10 @@ const HomePage = (props: any) => {
 
   return (
     <InlineForm form={form}>
+      <InlineControls>
+        <EditToggle />
+        <DiscardButton />
+      </InlineControls>
       <Layout pathname="/">
         <DefaultSeo titleTemplate={formData.title + ' | %s'} />
         <Hero overlap narrow>
