@@ -25,6 +25,7 @@
   "dependencies": {
     "@tinacms/api-git": "^0.5.6",
     "@tinacms/git-client": "^0.4.2",
+    "@tinacms/styles": "^0.1.2",
     "@types/react-instantsearch-dom": "^5.2.6",
     "@types/styled-components": "^4.4.2",
     "algoliasearch": "^3.35.1",
@@ -65,6 +66,7 @@
     "react-instantsearch-dom": "^6.3.0",
     "react-markdown": "^4.3.1",
     "react-syntax-highlighter": "^12.2.1",
+    "react-textarea-autosize": "^7.1.2",
     "react-tinacms-inline": "^0.1.2",
     "remove-markdown": "^0.3.0",
     "serve": "11.2.0",

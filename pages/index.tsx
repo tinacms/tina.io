@@ -1,12 +1,7 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { BlockTemplate } from 'tinacms'
-import {
-  InlineForm,
-  BlocksControls,
-  InlineBlocks,
-  BlockText,
-} from 'react-tinacms-inline'
+import { InlineForm, InlineBlocks, BlockText } from 'react-tinacms-inline'
 import { DefaultSeo } from 'next-seo'
 import { useCMS } from 'tinacms'
 
@@ -19,7 +14,14 @@ import {
   RichTextWrapper,
 } from '../components/layout'
 import { Button, Video, ArrowList } from '../components/ui'
-import { InlineTextareaField, BlockTextArea } from '../components/ui/inline'
+import {
+  InlineTextareaField,
+  BlockTextArea,
+  InlineControls,
+  EditToggle,
+  DiscardButton,
+  BlocksControls,
+} from '../components/ui/inline'
 import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
 import getJsonData from '../utils/github/getJsonData'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
@@ -110,6 +112,10 @@ const HomePage = (props: any) => {
 
   return (
     <InlineForm form={form}>
+      <InlineControls>
+        {props.editMode && <EditToggle />}
+        <DiscardButton />
+      </InlineControls>
       <Layout pathname="/">
         <DefaultSeo titleTemplate={formData.title + ' | %s'} />
         <Hero overlap narrow>
@@ -210,7 +216,6 @@ export async function unstable_getStaticProps({ preview, previewData }) {
       sourceProviderConnection,
       editMode: !!preview,
     },
-    revalidate: 3156400,
   }
 }
 
@@ -227,7 +232,7 @@ function SellingPoint({ data, index }) {
       <div key={data.main.slice(0, 8)}>
         <h3>
           <em>
-            <BlockText name="main" />
+            <BlockTextArea name="main" />
           </em>
         </h3>
         <p>
