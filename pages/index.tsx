@@ -16,12 +16,13 @@ import {
   Section,
   RichTextWrapper,
 } from '../components/layout'
-import { Button, Video, ArrowList, ErrorModal } from '../components/ui'
+import { Button, Video, ArrowList, ActionableModal } from '../components/ui'
 import { InlineTextareaField, BlockTextArea } from '../components/ui/inline'
 import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
 import getJsonData from '../utils/github/getJsonData'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 import { setIsEditMode } from '../utils'
+import { enterEditMode } from '../open-authoring/authFlow'
 
 const HomePage = (props: any) => {
   // Sets sidebar.hidden based on preview props
@@ -107,7 +108,7 @@ const HomePage = (props: any) => {
     props.editMode
   )
 
-  const [autoAuthPopupShown, setAutoAuthPopupShown] = useState(false)
+  const [autoAuthPopupShow, setAutoAuthPopupShow] = useState(false)
 
   const refreshPage = () => {
     fetch(`/api/reset-preview`).then(() => {
@@ -116,11 +117,10 @@ const HomePage = (props: any) => {
   }
 
   useEffect(() => {
-    const autoOpenAuth = () => { // little hacky
-      if (window.location.href.includes("autoAuth") && !autoAuthPopupShown) {
-        var el = document.getElementById("OpenAuthoringEditButton")
-        el.click()
-        setAutoAuthPopupShown(true)
+    const autoOpenAuth = () => { 
+      if (window.location.href.includes("autoAuth")) {
+        
+        setAutoAuthPopupShow(true)
       }
       
     }
@@ -133,8 +133,26 @@ const HomePage = (props: any) => {
 
   return (
     <InlineForm form={form}>
+      {autoAuthPopupShow && (
+        <ActionableModal title="Authentication" message="Let's authenticate." actions={[
+          {
+            name: "OKAY",
+            action: enterEditMode,
+          },
+          {
+            name: "nope",
+            action: null,
+          }
+        ]} />
+      )
+      }
       {props.previewError && (
-        <ErrorModal message={props.previewError} action={refreshPage} />
+        <ActionableModal title="Error" message={props.previewError} actions={[
+          {
+            name: "Continue",
+            action: refreshPage
+          }
+        ]} />
       )}
       <Layout pathname="/">
         <DefaultSeo titleTemplate={formData.title + ' | %s'} />
