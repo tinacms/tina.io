@@ -1485,10 +1485,10 @@
   resolved "https://registry.yarnpkg.com/@tinacms/core/-/core-0.7.1.tgz#d0d683ae44a409544902746eabe91cc664c23ee5"
   integrity sha512-m0akhzIiV1ZG9xZkRcqfPDG4URbGqIYnv6M09gZ25A6LaGhQpiYvUZpIGyHnsEX4PfyejC0FuDZOlW7/lsM96w==
 
-"@tinacms/fields@^0.5.1":
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/@tinacms/fields/-/fields-0.5.1.tgz#b30b75ebf5c7858733168362b2b2bd1c24e9a0dd"
-  integrity sha512-Ee7foA5mpSxncriy5K29llSliCx4pivhGmNSylRlKJDXGFlxIeGO6DeFxJopcYKqJZXRid2VV765WpWkKqs+wg==
+"@tinacms/fields@^0.5.2-alpha.0":
+  version "0.5.2-alpha.0"
+  resolved "https://registry.yarnpkg.com/@tinacms/fields/-/fields-0.5.2-alpha.0.tgz#e8b9143f244b1e3b119acbd54f379419879ee9c0"
+  integrity sha512-JGBc69Ktb4XlHYga8vXAF1s1ZqxYAWYcNe4JwULDx35E0Wq3nUiPGKS6T9srKtlMpGWCqaJcY2DtCFZqGCLB0Q==
   dependencies:
     "@sambego/storybook-styles" "^1.0.0"
     "@tinacms/core" "^0.7.1"
@@ -1557,6 +1557,11 @@
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@tinacms/styles/-/styles-0.1.2.tgz#6bed4d78d52268901f105f0252302d69472c12a3"
   integrity sha512-cPvJZmvvloOuc/HLHrTjh7EWmnBjqAYmraQAQdzOlpp4+lED3vAQlZm0tvpNEsswNCdnidLzXfGuR0P3/KhdUw==
+
+"@tinacms/styles@^0.1.2-alpha.1":
+  version "0.1.2-alpha.1"
+  resolved "https://registry.yarnpkg.com/@tinacms/styles/-/styles-0.1.2-alpha.1.tgz#d30b9f960b4e95d7399da45128020f48f6bcd8b7"
+  integrity sha512-3T0Vn1VfzKxDiC2i3VO7Dqct6A09mdGXQjRgQhME8Rb/Jk9rcV3FYV8+4V9g3yypxVGRoJj1DQR/m7M+waAMVw==
 
 "@types/algoliasearch-helper@*":
   version "2.26.1"
@@ -2351,11 +2356,6 @@ autoprefixer@^9.6.1:
     num2fraction "^1.2.2"
     postcss "^7.0.26"
     postcss-value-parser "^4.0.2"
-
-autosize@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/autosize/-/autosize-4.0.2.tgz#073cfd07c8bf45da4b9fd153437f5bafbba1e4c9"
-  integrity sha512-jnSyH2d+qdfPGpWlcuhGiHmqBJ6g3X+8T+iRwFrHPLVcdoGJE/x6Qicm6aDHfTsbgZKxyV8UU/YB2p4cjKDRRA==
 
 aws-sign2@~0.7.0:
   version "0.7.0"
@@ -8660,10 +8660,10 @@ react-textarea-autosize@^7.1.2:
     "@babel/runtime" "^7.1.2"
     prop-types "^15.6.0"
 
-react-tinacms-inline@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/react-tinacms-inline/-/react-tinacms-inline-0.1.2.tgz#c3538c88248110e999b4bb401725c1517cdd54a8"
-  integrity sha512-MtCPgkHRg+i6571kQOCZLnFrTiAO1200LU9n/ALRoWSHZDa3h+9I4KWWLZdPcz9q1yDgVK9rIW2JxNugj6iMfQ==
+react-tinacms-inline@^0.2.0-alpha.0:
+  version "0.2.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/react-tinacms-inline/-/react-tinacms-inline-0.2.0-alpha.0.tgz#9a53c7e4340dc2ea5df139866ae109bac56795ca"
+  integrity sha512-9wXnOeuekMSSVhr58XH9NS48ErUayoWTzaSeC69dciEpAzJruQWiU3uekIKzhz5hnDcYLo/4mbkUCNV1DCuBgg==
 
 react-transition-group@^2.2.1:
   version "2.9.0"
@@ -9976,13 +9976,13 @@ timers-browserify@^2.0.4:
   dependencies:
     setimmediate "^1.0.4"
 
-tinacms@^0.14.0:
-  version "0.14.0"
-  resolved "https://registry.yarnpkg.com/tinacms/-/tinacms-0.14.0.tgz#fabc10d39974d0de2caba612aa0dce3c6cc6fe9e"
-  integrity sha512-EHcnxfOx36Mvh6UZaUNoJwmZQuknRfC1zqwptlz5QJJuV0MfnVcC0J5zZlxUIo13LrzqVx9X9SQ9QnGVP6ddmg==
+tinacms@^0.15.0-alpha.0:
+  version "0.15.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/tinacms/-/tinacms-0.15.0-alpha.0.tgz#9752e0ba0b661ca03881e8e02703d520fac046a0"
+  integrity sha512-4HDxWywMEI7RNK7JvXanzAS+fF6lNUNtHof1XOoRmwCbUXwVHO1uUtniVDRx6XH+J/4jYPW9caHsJm+1+ffixw==
   dependencies:
     "@tinacms/core" "^0.7.1"
-    "@tinacms/fields" "^0.5.1"
+    "@tinacms/fields" "^0.5.2-alpha.0"
     "@tinacms/form-builder" "^0.2.15"
     "@tinacms/forms" "^0.2.0"
     "@tinacms/icons" "^0.5.2"
