@@ -204,45 +204,6 @@ export function Hello() {
 }
 ```
 
-> **Combining APIs and Plugins**
->
-> Looking at these two examples and wondering if you could combine them? Sure, _you absolute madman_.
->
-> ```jsx
-> import * as React from 'react'
-> import { TinaCMS, useCMS } from 'tinacms'
->
-> export default function App() {
->   const cms = React.useMemo(() => {
->     const cms = new TinaCMS()
->     cms.plugins.add({
->       __type: 'hello',
->       name: 'hello-dj',
->       user: 'DJ',
->     })
->     cms.registerApi('hello', {
->       sayHello: () => {
->         cms.plugins
->           .all('hello')
->           .forEach(plugin => alert(`Hello, ${plugin.user}!`))
->       },
->     })
->     return cms
->   })
->
->   return (
->     <Tina cms={cms}>
->       <Hello />
->     </Tina>
->   )
-> }
->
-> function Hello() {
->   const cms = useCMS()
->   return <button onClick={cms.api.hello.sayHello}>Say Hello</button>
-> }
-> ```
-
 ## CMS Configuration
 
 When instantiating the `TinaCMS` object, you can pass in a configuration object. This allows you to configure some options for the sidebar, and also allows you to configure Plugins and APIs declaratively.
