@@ -8,6 +8,10 @@
       "point": "Manage a custom cloud editing environment for you and your team"
     },
     {
+      "point": "Stay cool 😎",
+      "_template": "point"
+    },
+    {
       "_template": "point",
       "point": "Authentication and role-based access controls"
     },
