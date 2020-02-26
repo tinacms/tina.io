@@ -41,13 +41,13 @@ import ReactMarkdown from 'react-markdown'
 import { useLocalForm } from 'tinacms'
 
 export function Page(props) {
-    const [modifiedValues] = useLocalForm(formConfig) // formConfig omitted for brevity; we'll get to this later
-    return (
-        <main>
-            <h1>{modifiedValues.title}</h1>
-            <ReactMarkdown source={modifiedValues.markdownContent}>
-        </main>
-    )
+  const [modifiedValues] = useLocalForm(formConfig) // formConfig omitted for brevity; we'll get to this later
+  return (
+    <main>
+      <h1>{modifiedValues.title}</h1>
+      <ReactMarkdown source={modifiedValues.markdownContent}>
+    </main>
+  )
 }
 
 ```
@@ -61,34 +61,34 @@ import { useForm, Wysiwyg } from 'tinacms'
 import { InlineForm, InlineField } from 'react-tinacms-inline'
 
 export function Page(props) {
-    const [, form] = useForm(formConfig)
+  const [, form] = useForm(formConfig)
 
-    return (
-        <InlineForm form={form}>
-            <main>
-                <InlineField name="title">
-                {
-                    ({input, status}) => {
-                        if (status === 'active') {
-                            return <input type='text' {...input} />
-                        }
-                        return <h1>{input.value}</h1>
-                    }
-                }
-                </InlineField>
-                <InlineField name="markdownContent">
-                {
-                    ({input, status}) => {
-                        if (status === 'active') {
-                            return <Wysiwyg input={input} />
-                        }
-                        return <ReactMarkdown source={input.value} />
-                    }
-                }
-                </InlineField>
-            </main>
-        </InlineForm>
-    )
+  return (
+    <InlineForm form={form}>
+      <main>
+        <InlineField name="title">
+        {
+          ({input, status}) => {
+            if (status === 'active') {
+              return <input type='text' {...input} />
+            }
+            return <h1>{input.value}</h1>
+          }
+        }
+        </InlineField>
+        <InlineField name="markdownContent">
+        {
+          ({input, status}) => {
+            if (status === 'active') {
+              return <Wysiwyg input={input} />
+            }
+            return <ReactMarkdown source={input.value} />
+          }
+        }
+        </InlineField>
+      </main>
+    </InlineForm>
+  )
 }
 
 ```

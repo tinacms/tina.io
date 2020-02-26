@@ -152,35 +152,35 @@ import ReactMarkdown from 'react-markdown'
 import { useLocalForm } from 'tinacms'
 
 export function Page(props) {
-    const [modifiedValues] = useLocalForm({
-      id: props.fileRelativePath,
-      label: 'Edit Post',
-      fields: [
-        {
-          name: 'title',
-          label: 'Title',
-          component: 'text',
-        },
-        {
-          name: 'markdownContent',
-          label: 'content',
-          component: 'markdown',
-        }
-      ],
-      initialValues: {
-        title: props.title,
-        markdownContent: props.markdownContent
+  const [modifiedValues] = useLocalForm({
+    id: props.fileRelativePath,
+    label: 'Edit Post',
+    fields: [
+      {
+        name: 'title',
+        label: 'Title',
+        component: 'text',
       },
-      onSubmit: (formData) => {
-        // save the new form data
-      },
-    })
-    return (
-        <main>
-            <h1>{modifiedValues.title}</h1>
-            <ReactMarkdown source={modifiedValues.markdownContent}>
-        </main>
-    )
+      {
+        name: 'markdownContent',
+        label: 'content',
+        component: 'markdown',
+      }
+    ],
+    initialValues: {
+      title: props.title,
+      markdownContent: props.markdownContent
+    },
+    onSubmit: (formData) => {
+      // save the new form data
+    },
+  })
+  return (
+    <main>
+      <h1>{modifiedValues.title}</h1>
+      <ReactMarkdown source={modifiedValues.markdownContent}>
+    </main>
+  )
 }
 
 ```
