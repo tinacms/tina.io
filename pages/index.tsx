@@ -210,7 +210,6 @@ export async function unstable_getStaticProps({ preview, previewData }) {
       sourceProviderConnection,
       editMode: !!preview,
     },
-    revalidate: 3156400,
   }
 }
 
