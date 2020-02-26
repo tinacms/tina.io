@@ -107,7 +107,7 @@ The second piece of data (`form` in the above example) is an object representing
 
 ### Form Configuration
 
-The first argument that a form hook receives (`formConfig` in the above example`) is an object used to configure the form. Forms in Tina are built upon the [Final Form](https://final-form.org/) library, and inherit all of Final Form's configuration options.
+The first argument that a form hook receives (`formConfig` in the above example) is an object used to configure the form. Forms in Tina are built upon the [Final Form](https://final-form.org/) library, and inherit all of Final Form's configuration options.
 
 You can see the all of Final Form's form config options in the [Form Config Documentation](https://final-form.org/docs/final-form/types/Config), but the following options will most commonly be used when creating a form:
 
@@ -185,7 +185,7 @@ export function Page(props) {
 
 ```
 
-Note that when using these basic hooks, you are expected to implement the save functionality yourself by adding an `onSubmit` function. By default, Tina makes no assumptions about how your content is stored. These basic form hooks are building blocks for creating more purpose-built tools to fit specific use cases.
+> Note that when using these basic hooks, you are expected to implement the save functionality yourself by adding an `onSubmit` function. By default, Tina makes no assumptions about how your content is stored. These basic form hooks are building blocks for creating more purpose-built tools to fit specific use cases.
 
 ### Watched Vars: Preserve Form Reactivity
 
