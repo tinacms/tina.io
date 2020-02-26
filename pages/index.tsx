@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
-
 import { InlineForm, InlineBlocks, BlockText } from 'react-tinacms-inline'
 
 import { DefaultSeo } from 'next-seo'
@@ -34,7 +33,6 @@ import { enterEditMode } from '../open-authoring/authFlow'
 const HomePage = (props: any) => {
   // Sets sidebar.hidden based on preview props
   setIsEditMode(props.editMode)
-  
 
   const [formData, form] = useLocalGithubJsonForm(
     props.home,
@@ -119,47 +117,50 @@ const HomePage = (props: any) => {
 
   const refreshPage = () => {
     fetch(`/api/reset-preview`).then(() => {
-      window.location.href = "/?autoAuth"
+      window.location.href = '/?autoAuth'
     })
   }
 
   useEffect(() => {
-    if (window.location.href.includes("autoAuth")) {
+    if (window.location.href.includes('autoAuth')) {
       setAuthPopupDisplayed(true)
     }
   })
 
-  
-  
-
   return (
-    <InlineForm form={form}>
-      {authPopupDisplayed && (
-        <ActionableModal title="Authentication" message="To edit this site, you first need to be authenticated." actions={[
-          {
-            name: "Continue",
-            action: enterEditMode,
-          },
-          {
-            name: "Cancel",
-            action: null,
-          }
-        ]} />
-      )
-      }
-      {props.previewError && (
-        <ActionableModal title="Error" message={props.previewError} actions={[
-          {
-            name: "Continue",
-            action: refreshPage
-          }
-        ]} />
-      )}
-
     <InlineForm
       form={form}
       initialStatus={props.editMode ? 'active' : 'inactive'}
     >
+      {authPopupDisplayed && (
+        <ActionableModal
+          title="Authentication"
+          message="To edit this site, you first need to be authenticated."
+          actions={[
+            {
+              name: 'Continue',
+              action: enterEditMode,
+            },
+            {
+              name: 'Cancel',
+              action: null,
+            },
+          ]}
+        />
+      )}
+      {props.previewError && (
+        <ActionableModal
+          title="Error"
+          message={props.previewError}
+          actions={[
+            {
+              name: 'Continue',
+              action: refreshPage,
+            },
+          ]}
+        />
+      )}
+
       <InlineControls>
         {props.editMode && <EditToggle />}
         <DiscardButton />
@@ -250,11 +251,9 @@ export <b>WithTina</b>( <b>Component</b> );
   )
 }
 
-
 export default HomePage
 
 export async function unstable_getStaticProps({ preview, previewData, query }) {
-
   const sourceProviderConnection = getGithubDataFromPreviewProps(previewData)
   const homeData = await getJsonData(
     'content/pages/home.json',
