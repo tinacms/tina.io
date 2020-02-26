@@ -1,12 +1,7 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { BlockTemplate } from 'tinacms'
-import {
-  InlineForm,
-  BlocksControls,
-  InlineBlocks,
-  BlockText,
-} from 'react-tinacms-inline'
+import { InlineForm, InlineBlocks, BlockText } from 'react-tinacms-inline'
 import { DefaultSeo } from 'next-seo'
 import { useCMS } from 'tinacms'
 
@@ -25,6 +20,7 @@ import {
   InlineControls,
   EditToggle,
   DiscardButton,
+  BlocksControls,
 } from '../components/ui/inline'
 import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
 import getJsonData from '../utils/github/getJsonData'
