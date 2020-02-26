@@ -135,7 +135,6 @@ export async function unstable_getStaticProps({
       },
       markdownFile: file,
     },
-    revalidate: 3156400,
   }
 }
 
