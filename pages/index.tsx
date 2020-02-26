@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
-import { BlockTemplate } from 'tinacms'
+
 import { InlineForm, InlineBlocks, BlockText } from 'react-tinacms-inline'
 
 import { DefaultSeo } from 'next-seo'
