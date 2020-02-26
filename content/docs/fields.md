@@ -13,8 +13,8 @@ All field plugins share a common config:
 ```typescript
 interface FieldConfig {
   name: string
-  parse(): any
-  format(): any
+  parse?: (value: any, name: string, field: Field) => any
+  format?: (value: any, name: string, field: Field) => any
   component: string | ReactComponent
 }
 ```
