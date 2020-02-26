@@ -1,7 +1,7 @@
 ---
 title: Creating Field Plugins
 date: '2020-02-17T07:00:00.000Z'
-author: Kendall Strautman
+author: Cool Dude
 draft: false
 consumes:
   - file: /packages/next-tinacms-json/src/use-local-json-form.ts
