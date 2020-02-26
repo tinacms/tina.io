@@ -193,7 +193,7 @@ The second argument that can be passed to the form hooks is an optional object c
 
 ```typescript
 interface WatchableFormValue {
-  values: any
+  values: object
   label: FormOptions<any>['label']
   fields: FormOptions<any>['fields']
 }
