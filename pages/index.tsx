@@ -115,7 +115,7 @@ const HomePage = (props: any) => {
     props.editMode
   )
 
-  const [autoAuthPopupShow, setAutoAuthPopupShow] = useState(false)
+  const [authPopupDisplayed, setAuthPopupDisplayed] = useState(false)
 
   const refreshPage = () => {
     fetch(`/api/reset-preview`).then(() => {
@@ -124,15 +124,9 @@ const HomePage = (props: any) => {
   }
 
   useEffect(() => {
-    const autoOpenAuth = () => { 
-      if (window.location.href.includes("autoAuth")) {
-        
-        setAutoAuthPopupShow(true)
-      }
-      
+    if (window.location.href.includes("autoAuth")) {
+      setAuthPopupDisplayed(true)
     }
-
-    autoOpenAuth()
   })
 
   
@@ -140,7 +134,7 @@ const HomePage = (props: any) => {
 
   return (
     <InlineForm form={form}>
-      {autoAuthPopupShow && (
+      {authPopupDisplayed && (
         <ActionableModal title="Authentication" message="To edit this site, you first need to be authenticated." actions={[
           {
             name: "Continue",
