@@ -155,6 +155,11 @@ const HomePage = (props: any) => {
           }
         ]} />
       )}
+
+    <InlineForm
+      form={form}
+      initialStatus={props.editMode ? 'active' : 'inactive'}
+    >
       <InlineControls>
         {props.editMode && <EditToggle />}
         <DiscardButton />
