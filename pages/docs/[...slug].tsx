@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import matter from 'gray-matter'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
@@ -25,6 +25,8 @@ import getMarkdownData from '../../utils/github/getMarkdownData'
 import { getGithubDataFromPreviewProps } from '../../utils/github/sourceProviderConnection'
 import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'
 import { setIsEditMode } from '../../utils'
+import getJsonData from '../../utils/github/getJsonData'
+import { getDocProps } from '../../utils/docs/getDocProps'
 
 export default function DocTemplate(props) {
   // Sets sidebar.hidden based on preview props
@@ -112,45 +114,11 @@ export default function DocTemplate(props) {
  * DATA FETCHING ------------------------------------------------------
  */
 
-export async function unstable_getStaticProps({
-  preview,
-  previewData,
-  ...ctx
-}) {
-  let { slug: slugs } = ctx.params
+export async function unstable_getStaticProps(props) {
+  let { slug: slugs } = props.params
 
   const slug = slugs.join('/')
-
-  const sourceProviderConnection = getGithubDataFromPreviewProps(previewData)
-  const file = await getMarkdownData(
-    `content/docs/${slug}.md`,
-    sourceProviderConnection
-  )
-
-  const docsNavData = await import('../../content/toc-doc.json')
-  const nextDocPage =
-    file.data.frontmatter.next &&
-    matter(await readFile(`content${file.data.frontmatter.next}.md`))
-  const prevDocPage =
-    file.data.frontmatter.prev &&
-    matter(await readFile(`content${file.data.frontmatter.prev}.md`))
-
-  return {
-    props: {
-      markdownFile: file,
-      sourceProviderConnection,
-      editMode: !!preview,
-      docsNav: docsNavData.default,
-      nextPage: {
-        slug: file.data.frontmatter.next,
-        title: nextDocPage && nextDocPage.data.title,
-      },
-      prevPage: {
-        slug: file.data.frontmatter.prev,
-        title: prevDocPage && prevDocPage.data.title,
-      },
-    },
-  }
+  return getDocProps(props, slug)
 }
 
 export async function unstable_getStaticPaths() {
