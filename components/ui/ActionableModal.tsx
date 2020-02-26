@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { TinaReset } from '@tinacms/styles'
 import { Modal, ModalPopup, ModalBody, ModalProvider } from 'tinacms'
@@ -13,6 +13,12 @@ interface ActionableModalOptions {
 
 export const ActionableModal = ({ title, message, actions }: ActionableModalOptions) => {
 
+  const [open, setOpen] = useState(true)
+
+  const closeModal = () => {
+    setOpen(false)
+  }
+
   const getButtons = () => {
     var buttons = []
     actions.forEach( individualAction => {
@@ -24,7 +30,7 @@ export const ActionableModal = ({ title, message, actions }: ActionableModalOpti
         )
       } else {
         buttons.push(
-          <Button color="primary" onClick={() => {}}>
+          <Button color="primary" onClick={closeModal}>
             {individualAction.name}
           </Button>
         )
@@ -33,6 +39,8 @@ export const ActionableModal = ({ title, message, actions }: ActionableModalOpti
     })
     return buttons
   }
+
+  if (!open) return (<></>)
 
   return (
     <ModalProvider>

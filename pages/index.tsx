@@ -141,9 +141,7 @@ const HomePage = (props: any) => {
           },
           {
             name: "Cancel",
-            action: () => {
-              window.location.href = window.location.pathname
-            },
+            action: null,
           }
         ]} />
       )
