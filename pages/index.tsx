@@ -19,7 +19,13 @@ import {
   RichTextWrapper,
 } from '../components/layout'
 import { Button, Video, ArrowList } from '../components/ui'
-import { InlineTextareaField, BlockTextArea } from '../components/ui/inline'
+import {
+  InlineTextareaField,
+  BlockTextArea,
+  InlineControls,
+  EditToggle,
+  DiscardButton,
+} from '../components/ui/inline'
 import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
 import getJsonData from '../utils/github/getJsonData'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
