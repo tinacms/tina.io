@@ -117,7 +117,7 @@ const HomePage = (props: any) => {
   return (
     <InlineForm form={form}>
       <InlineControls>
-        <EditToggle />
+        {props.editMode && <EditToggle />}
         <DiscardButton />
       </InlineControls>
       <Layout pathname="/">
