@@ -249,7 +249,7 @@ When instantiating the `TinaCMS` object, you can pass in a configuration object.
 
 ```typescript
 interface TinaCMSConfig {
-  plugins?: Array<Plugin>
+  plugins?: Plugin[]
   apis?: { [key: string]: any }
   sidebar?: {
     hidden?: boolean
