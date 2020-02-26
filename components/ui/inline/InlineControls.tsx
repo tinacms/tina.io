@@ -2,8 +2,6 @@ import styled from 'styled-components'
 import { TinaReset, Button as TinaButton } from '@tinacms/styles'
 
 export const InlineControls = styled(({ children, ...styleProps }: any) => {
-  if (process.env.NODE_ENV === 'production') return null
-
   return (
     <div {...styleProps}>
       <TinaReset>{children}</TinaReset>
