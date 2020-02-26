@@ -9,15 +9,13 @@ interface InlineTextFieldProps {
 }
 
 export function InlineTextareaField({ name }: InlineTextFieldProps) {
-  let textInputRef = useRef(null)
-
   return (
     <InlineField name={name}>
       {({ input, status }) => {
         if (status === 'active') {
           return (
             <InputFocusWrapper>
-              <Input ref={textInputRef} {...input} rows={1} />
+              <Input {...input} rows={1} />
             </InputFocusWrapper>
           )
         }
