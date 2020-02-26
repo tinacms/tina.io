@@ -92,24 +92,24 @@ export const EditLink = () => {
       )
     }
 
-    window.addEventListener(
-      'storage',
-      e => {
-        updateStorageEvent(e, authState)
-        authTab.location.assign(`/github/fork`)
-      },
-      true
-    )
+    // window.addEventListener(
+    //   'storage',
+    //   e => {
+    //     updateStorageEvent(e, authState)
+    //     authTab.location.assign(`/github/fork`)
+    //   },
+    //   true
+    // )
   }
 
   useEffect(() => {
-    return () => {
-      window.removeEventListener(
-        'storage',
-        e => updateStorageEvent(e, authState),
-        true
-      )
-    }
+    // return () => {
+    //   window.removeEventListener(
+    //     'storage',
+    //     e => updateStorageEvent(e, authState),
+    //     true
+    //   )
+    // }
   }, [])
 
   return (
@@ -119,23 +119,21 @@ export const EditLink = () => {
   )
 }
 
-async function updateStorageEvent(e, authState: string) {
-  if (e.key == 'github_code') {
-    await handleAuthCode(e.newValue, authState)
-  }
-  if (e.key == 'fork_full_name') {
-    handleForkCreated(e.newValue)
-  }
-}
+// async function updateStorageEvent(e, authState: string) {
+//   if (e.key == 'github_code') {
+//     await handleAuthCode(e.newValue, authState)
+//   }
+//   if (e.key == 'fork_full_name') {
+//     handleForkCreated(e.newValue)
+//   }
+// }
 
-async function handleAuthCode(code: string, authState: string) {
-  await requestGithubAccessToken(code, authState)
-}
+
 
 async function handleForkCreated(forkName: string) {
   Cookies.set('fork_full_name', forkName, { sameSite: 'strict' })
   fetch(`/api/preview`).then(() => {
-    window.location.reload()
+    window.location.href = window.location.pathname // drops the autoAuth query param
   })
 }
 

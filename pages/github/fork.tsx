@@ -7,6 +7,14 @@ import { Button } from '../../components/ui'
 import styled from 'styled-components'
 
 export default function Authorizing() {
+
+  async function handleForkCreated(forkName: string) {
+    Cookies.set('fork_full_name', forkName, { sameSite: 'strict' })
+    await fetch(`/api/preview`)   
+    
+    window.opener.window.location.href = window.opener.window.location.pathname
+  }
+
   const createFork = async () => {
     const resp = await fetch(`/api/proxy-github`, {
       method: 'POST',
@@ -21,8 +29,8 @@ export default function Authorizing() {
     const { full_name } = await resp.json()
     const forkFullName = full_name
     if (forkFullName) {
-      localStorage.setItem('fork_full_name', full_name)
       Cookies.set('head_branch', 'master') // default fork branch
+      await handleForkCreated(full_name)
       window.close()
     } else {
       alert('Could not fork the site') //TODO - show clean error message
@@ -44,9 +52,9 @@ export default function Authorizing() {
       const forkData = await getBranch(expectedFork, branch)
       if (!forkData) return setForkValidating(false)
       if (forkData.ref === 'refs/heads/' + branch) {
-        // found fork
-        localStorage.setItem('fork_full_name', expectedFork)
+        // found fork\
         Cookies.set('head_branch', branch)
+        await handleForkCreated(expectedFork)
         window.close()
         return
       }

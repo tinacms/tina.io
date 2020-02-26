@@ -2,6 +2,7 @@ const axios = require('axios')
 const qs = require('qs')
 const { b64EncodeUnicode } = require('../../utils/base64')
 const baseBranch = process.env.BASE_BRANCH
+const Cookies = require('js-cookie')
 
 const fetchExistingPR = (
   baseRepoFullName,
@@ -159,6 +160,27 @@ const getUser =  async() => { // uses proxy
   }
 }
 
+const isForkValid = async (forkName) => {
+  if (!forkName) {
+    return false
+  }
+  const branch = Cookies.get('head_branch') || 'master'
+
+  const forkData = await getBranch(forkName, branch)
+  if (!forkData) return false
+  if (forkData.ref === 'refs/heads/' + branch) {
+    Cookies.set('head_branch', branch)
+    return true
+  }
+  return false
+}
+
+const isGithubTokenValid = async () => {
+  const userData = await getUser()
+  if (!userData) return false
+  return true
+}
+
 module.exports = {
   createPR,
   saveContent,
@@ -167,5 +189,7 @@ module.exports = {
   createFork,
   fetchExistingPR,
   getBranch,
-  getUser
+  getUser,
+  isForkValid,
+  isGithubTokenValid
 }
