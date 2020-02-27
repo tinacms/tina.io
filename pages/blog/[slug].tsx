@@ -67,6 +67,13 @@ export default function BlogTemplate({
       author: postInfo.author ? postInfo.author : `Jane Doe`,
     }),
     body: postInfo => `New post, who dis?`,
+    afterCreate: response => {
+      let url = fileToUrl(
+        response.data.content.path.split('content')[1],
+        'blog'
+      )
+      window.location.href = url
+    },
   })
 
   usePlugin(CreateBlogPlugin)
