@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 const fg = require('fast-glob')
 import { NextSeo } from 'next-seo'
-import { InlineForm } from 'react-tinacms-inline'
 
 import { formatDate, formatExcerpt } from '../../utils'
 import {
@@ -12,8 +11,6 @@ import {
   RichTextWrapper,
 } from '../../components/layout'
 import {
-  EditToggle,
-  DiscardButton,
   InlineWysiwyg,
   InlineTextareaField,
   InlineTextField,
@@ -22,6 +19,7 @@ import { getGithubDataFromPreviewProps } from '../../utils/github/sourceProvider
 import getMarkdownData from '../../utils/github/getMarkdownData'
 import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'
 import { setIsEditMode } from '../../utils'
+import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
 
 export default function BlogTemplate({
   markdownFile,
@@ -50,7 +48,7 @@ export default function BlogTemplate({
   const excerpt = formatExcerpt(data.markdownBody)
 
   return (
-    <InlineForm form={form}>
+    <OpenAuthoringSiteForm form={form} editMode={editMode}>
       <Layout pathname="/">
         <NextSeo
           title={frontmatter.title}
@@ -102,7 +100,7 @@ export default function BlogTemplate({
           </RichTextWrapper>
         </BlogWrapper>
       </Layout>
-    </InlineForm>
+    </OpenAuthoringSiteForm>
   )
 }
 

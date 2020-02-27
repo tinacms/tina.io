@@ -114,7 +114,6 @@ const HomePage = (props: any) => {
   return (
     <OpenAuthoringSiteForm
       form={form}
-      initialStatus={props.editMode ? 'active' : 'inactive'}
       editMode={props.editMode}
       previewError={props.previewError}
     >

@@ -18,7 +18,12 @@ const OpenAuthoringSiteForm = ({
   children,
 }: Props) => {
   return (
-    <InlineForm form={form} initialStatus={editMode ? 'active' : 'inactive'}>
+    <InlineForm
+      form={form}
+      initialStatus={
+        typeof document !== 'undefined' && editMode ? 'active' : 'inactive'
+      }
+    >
       <OpenAuthoringModalContainer previewError={previewError} />
       <InlineControls>
         {editMode && <EditToggle />}
