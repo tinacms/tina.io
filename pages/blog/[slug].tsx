@@ -24,6 +24,7 @@ import { getGithubDataFromPreviewProps } from '../../utils/github/sourceProvider
 import getMarkdownData from '../../utils/github/getMarkdownData'
 import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'
 import { setIsEditMode } from '../../utils'
+import { fileToUrl } from '../../utils/urls'
 
 export default function BlogTemplate({
   markdownFile,
