@@ -242,7 +242,7 @@ export async function unstable_getStaticProps({ preview, previewData, query }) {
 function SellingPoint({ data, index }) {
   return (
     <BlocksControls index={index}>
-      <div key={data.main.slice(0, 8)}>
+      <div key={`selling-point-${index}`}>
         <h3>
           <em>
             <BlockTextArea name="main" />
@@ -279,7 +279,7 @@ const SELLING_POINTS_BLOCKS = {
 function SetupPoint({ data, index }) {
   return (
     <BlocksControls index={index}>
-      <li key={data.step.slice(0, 8)}>
+      <li key={`setup-point-${index}`}>
         <BlockTextArea name="step" />
       </li>
     </BlocksControls>
