@@ -122,6 +122,15 @@ const HomePage = (props: any) => {
     })
   }
 
+  const cancelAuth = () => {
+    window.history.replaceState(
+      {},
+      document.title,
+      window.location.href.split('?')[0] //TODO - remove only autoAuth param
+    )
+    setAuthPopupDisplayed(false)
+  }
+
   useEffect(() => {
     if (window.location.href.includes('autoAuth')) {
       setAuthPopupDisplayed(true)
@@ -144,7 +153,7 @@ const HomePage = (props: any) => {
             },
             {
               name: 'Cancel',
-              action: () => setAuthPopupDisplayed(false),
+              action: cancelAuth,
             },
           ]}
         />
