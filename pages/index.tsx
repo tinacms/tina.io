@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { BlockTemplate } from 'tinacms'
-import { InlineForm, InlineBlocks, BlockText } from 'react-tinacms-inline'
-import { DefaultSeo } from 'next-seo'
-import { useCMS } from 'tinacms'
 
+import { InlineForm, InlineBlocks, BlockText } from 'react-tinacms-inline'
+
+import { DefaultSeo } from 'next-seo'
+import { BlockTemplate, useCMS } from 'tinacms'
 import { DynamicLink } from '../components/ui/DynamicLink'
 import {
   Layout,
@@ -13,7 +13,8 @@ import {
   Section,
   RichTextWrapper,
 } from '../components/layout'
-import { Button, Video, ArrowList } from '../components/ui'
+
+import { Button, Video, ArrowList, ActionableModal } from '../components/ui'
 import {
   InlineTextareaField,
   BlockTextArea,
@@ -22,10 +23,13 @@ import {
   DiscardButton,
   BlocksControls,
 } from '../components/ui/inline'
+
 import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
 import getJsonData from '../utils/github/getJsonData'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 import { setIsEditMode } from '../utils'
+import { enterEditMode } from '../open-authoring/authFlow'
+import ContentNotFoundError from '../utils/github/ContentNotFoundError'
 
 const HomePage = (props: any) => {
   // Sets sidebar.hidden based on preview props
@@ -110,11 +114,63 @@ const HomePage = (props: any) => {
     props.editMode
   )
 
+  const [authPopupDisplayed, setAuthPopupDisplayed] = useState(false)
+
+  const refreshPage = () => {
+    fetch(`/api/reset-preview`).then(() => {
+      window.location.href = '/?autoAuth'
+    })
+  }
+
+  const cancelAuth = () => {
+    window.history.replaceState(
+      {},
+      document.title,
+      window.location.href.split('?')[0] //TODO - remove only autoAuth param
+    )
+    setAuthPopupDisplayed(false)
+  }
+
+  useEffect(() => {
+    if (window.location.href.includes('autoAuth')) {
+      setAuthPopupDisplayed(true)
+    }
+  }, [])
+
   return (
     <InlineForm
       form={form}
       initialStatus={props.editMode ? 'active' : 'inactive'}
     >
+      {authPopupDisplayed && (
+        <ActionableModal
+          title="Authentication"
+          message="To edit this site, you first need to be authenticated."
+          actions={[
+            {
+              name: 'Continue',
+              action: enterEditMode,
+            },
+            {
+              name: 'Cancel',
+              action: cancelAuth,
+            },
+          ]}
+        />
+      )}
+      {props.previewError && (
+        <ActionableModal
+          title="Error"
+          message={props.previewError}
+          actions={[
+            {
+              name: 'Continue',
+              action: refreshPage,
+            },
+          ]}
+        />
+      )}
+
       <InlineControls>
         {props.editMode && <EditToggle />}
         <DiscardButton />
@@ -207,15 +263,27 @@ export <b>WithTina</b>( <b>Component</b> );
 
 export default HomePage
 
-export async function unstable_getStaticProps({ preview, previewData }) {
+export async function unstable_getStaticProps({ preview, previewData, query }) {
   const sourceProviderConnection = getGithubDataFromPreviewProps(previewData)
-  const homeData = await getJsonData(
-    'content/pages/home.json',
-    sourceProviderConnection
-  )
+  let previewError: string
+  let homeData = {}
+  try {
+    homeData = await getJsonData(
+      'content/pages/home.json',
+      sourceProviderConnection
+    )
+  } catch (e) {
+    if (e instanceof ContentNotFoundError) {
+      previewError = e.message
+    } else {
+      throw e
+    }
+  }
+
   return {
     props: {
       home: homeData,
+      previewError: previewError,
       sourceProviderConnection,
       editMode: !!preview,
     },

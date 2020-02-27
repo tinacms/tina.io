@@ -37,7 +37,6 @@ export const PRModal = ({
       accessToken
     ).then(pull => {
       if (pull) {
-        console.log(pull)
         setFetchedPR(pull)
         // this.name = 'View Pull Request'
       } else {
