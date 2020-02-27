@@ -18,6 +18,7 @@ interface CreateMarkdownButtonOptions<FormShape, FrontmatterShape> {
   body?(form: FormShape): MaybePromise<string>
   githubOptions: GithubOptions
   isEditMode: boolean
+  afterCreate?(response: any): void
 }
 
 const MISSING_FILENAME_MESSAGE =
@@ -40,6 +41,8 @@ export class MarkdownCreatorPlugin<FormShape = any, FrontmatterShape = any>
   __type: 'content-creator' = 'content-creator'
   name: AddContentPlugin<FormShape>['name']
   fields: AddContentPlugin<FormShape>['fields']
+
+  afterCreate: (response: any) => void
 
   // Markdown Specific
   filename: (form: FormShape) => MaybePromise<string>
@@ -68,6 +71,7 @@ export class MarkdownCreatorPlugin<FormShape = any, FrontmatterShape = any>
     this.frontmatter = options.frontmatter || (() => ({} as FrontmatterShape))
     this.body = options.body || (() => '')
     this.githubOptions = options.githubOptions
+    this.afterCreate = options.afterCreate || null
   }
 
   async onSubmit(form: FormShape, cms: CMS) {
@@ -91,6 +95,9 @@ export class MarkdownCreatorPlugin<FormShape = any, FrontmatterShape = any>
       setCachedFormData(fileRelativePath, {
         sha: response.data.content.sha,
       })
+      if (this.afterCreate) {
+        this.afterCreate(response)
+      }
     })
   }
 }
