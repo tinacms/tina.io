@@ -24,14 +24,10 @@ import {
 import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
 import getJsonData from '../utils/github/getJsonData'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
-import { setIsEditMode } from '../utils'
 import ContentNotFoundError from '../utils/github/ContentNotFoundError'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
 
 const HomePage = (props: any) => {
-  // Sets sidebar.hidden based on preview props
-  setIsEditMode(props.editMode)
-
   const [formData, form] = useLocalGithubJsonForm(
     props.home,
     {

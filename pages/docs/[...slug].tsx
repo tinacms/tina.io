@@ -21,15 +21,11 @@ import { TinaIcon } from '../../components/logo'
 import getMarkdownData from '../../utils/github/getMarkdownData'
 import { getGithubDataFromPreviewProps } from '../../utils/github/sourceProviderConnection'
 import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'
-import { setIsEditMode } from '../../utils'
 import getJsonData from '../../utils/github/getJsonData'
 import { getDocProps } from '../../utils/docs/getDocProps'
 import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
 
 export default function DocTemplate(props) {
-  // Sets sidebar.hidden based on preview props
-  setIsEditMode(props.editMode)
-
   // Workaround for fallback being not implemented
   if (!props.markdownFile) {
     return <div></div>

@@ -5,6 +5,9 @@ import {
   EditToggle,
   DiscardButton,
 } from '../../components/ui/inline'
+import { useEffect } from 'react'
+
+import { useCMS } from 'tinacms'
 interface Props extends InlineFormProps {
   editMode: boolean
   previewError?: string
@@ -17,6 +20,16 @@ const OpenAuthoringSiteForm = ({
   previewError,
   children,
 }: Props) => {
+  const cms = useCMS()
+  useEffect(() => {
+    /*
+     ** Random Fix: sidebar state isn't updated properly
+     ** without this timeout. If and when the 'preview'
+     ** state is accessible in _app, we'd like to move
+     ** the editMode/sidebar.hidden stuff to _app
+     */
+    setTimeout(() => (cms.sidebar.hidden = !editMode), 1)
+  }, [])
   return (
     <InlineForm
       form={form}

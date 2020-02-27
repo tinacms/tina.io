@@ -10,10 +10,9 @@ import { TeamsForm } from '../components/forms'
 import { InlineTextareaField, BlockTextArea } from '../components/ui/inline'
 import getJsonData from '../utils/github/getJsonData'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
-import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
-import { setIsEditMode } from '../utils'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
 import { InlineBlocks } from 'react-tinacms-inline'
+import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
 
 const formOptions = {
   label: 'Teams',
@@ -49,8 +48,6 @@ const formOptions = {
 }
 
 export default function TeamsPage(props) {
-  // Sets sidebar.hidden based on preview props
-  setIsEditMode(props.editMode)
   // Adds Tina Form
   const [data, form] = useLocalGithubJsonForm(
     props.teams,
