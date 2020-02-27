@@ -93,7 +93,10 @@ As mentioned previously, backends in Tina are written as middleware that can be 
     const server = express()
 
 +   server.use(cors())
-+   server.use('/___tina', gitApi.router())
++   server.use('/___tina', gitApi.router({
++     pathToRepo: process.cwd(),
++     pathToContent: "",
++   }))
 
     server.all('*', (req, res) => {
       return handle(req, res)
