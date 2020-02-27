@@ -126,7 +126,7 @@ const HomePage = (props: any) => {
     if (window.location.href.includes('autoAuth')) {
       setAuthPopupDisplayed(true)
     }
-  })
+  }, [])
 
   return (
     <InlineForm
@@ -144,7 +144,7 @@ const HomePage = (props: any) => {
             },
             {
               name: 'Cancel',
-              action: null,
+              action: () => setAuthPopupDisplayed(false),
             },
           ]}
         />
