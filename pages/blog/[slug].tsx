@@ -187,11 +187,7 @@ export async function unstable_getStaticPaths() {
   const blogs = await fg(`./content/blog/**/*.md`)
   return {
     paths: blogs.map(file => {
-      const slug = file
-        .split('/blog/')[1]
-        .replace(/ /g, '-')
-        .slice(0, -3)
-        .trim()
+      const slug = fileToUrl(file, 'blog')
       return { params: { slug } }
     }),
   }
