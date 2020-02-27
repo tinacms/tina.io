@@ -29,6 +29,7 @@ import getJsonData from '../utils/github/getJsonData'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 import { setIsEditMode } from '../utils'
 import { enterEditMode } from '../open-authoring/authFlow'
+import ContentNotFoundError from '../utils/github/ContentNotFoundError'
 
 const HomePage = (props: any) => {
   // Sets sidebar.hidden based on preview props
@@ -255,11 +256,20 @@ export default HomePage
 
 export async function unstable_getStaticProps({ preview, previewData, query }) {
   const sourceProviderConnection = getGithubDataFromPreviewProps(previewData)
-  const homeData = await getJsonData(
-    'content/pages/home.json',
-    sourceProviderConnection
-  )
-  const previewError = typeof homeData == 'string' ? homeData : null
+  let previewError: string
+  let homeData = {}
+  try {
+    homeData = await getJsonData(
+      'content/pages/home.json',
+      sourceProviderConnection
+    )
+  } catch (e) {
+    if (e instanceof ContentNotFoundError) {
+      previewError = e.message
+    } else {
+      throw e
+    }
+  }
 
   return {
     props: {

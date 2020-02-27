@@ -3,13 +3,13 @@ import { b64DecodeUnicode } from '../../open-authoring/utils/base64'
 import { readFile } from '../readFile'
 import { SourceProviderConnection } from './sourceProviderConnection'
 import path from 'path'
+import ContentNotFoundError from './ContentNotFoundError'
 
 const getJsonData = async (
   filePath: string,
   sourceProviderConnection: SourceProviderConnection
 ) => {
   if (sourceProviderConnection) {
-
     const response = await getContent(
       sourceProviderConnection.forkFullName,
       sourceProviderConnection.headBranch || 'master',
@@ -19,7 +19,9 @@ const getJsonData = async (
 
     if (response.response) {
       if (response.response.status == 404)
-        return 'Content not found. Your fork may have been deleted.'
+        throw new ContentNotFoundError(
+          'Content not found. Your fork may have been deleted.'
+        )
     }
 
     return {
