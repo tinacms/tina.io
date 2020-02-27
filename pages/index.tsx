@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
-import { InlineForm, InlineBlocks, BlockText } from 'react-tinacms-inline'
+import { InlineBlocks } from 'react-tinacms-inline'
 
 import { DefaultSeo } from 'next-seo'
 import { BlockTemplate, useCMS } from 'tinacms'
@@ -14,13 +14,10 @@ import {
   RichTextWrapper,
 } from '../components/layout'
 
-import { Button, Video, ArrowList, ActionableModal } from '../components/ui'
+import { Button, Video, ArrowList } from '../components/ui'
 import {
   InlineTextareaField,
   BlockTextArea,
-  InlineControls,
-  EditToggle,
-  DiscardButton,
   BlocksControls,
 } from '../components/ui/inline'
 
@@ -28,8 +25,8 @@ import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
 import getJsonData from '../utils/github/getJsonData'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 import { setIsEditMode } from '../utils'
-import { enterEditMode } from '../open-authoring/authFlow'
 import ContentNotFoundError from '../utils/github/ContentNotFoundError'
+import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
 
 const HomePage = (props: any) => {
   // Sets sidebar.hidden based on preview props
@@ -114,67 +111,12 @@ const HomePage = (props: any) => {
     props.editMode
   )
 
-  const [authPopupDisplayed, setAuthPopupDisplayed] = useState(false)
-
-  const refreshPage = () => {
-    fetch(`/api/reset-preview`).then(() => {
-      window.location.href = '/?autoAuth'
-    })
-  }
-
-  const cancelAuth = () => {
-    window.history.replaceState(
-      {},
-      document.title,
-      window.location.href.split('?')[0] //TODO - remove only autoAuth param
-    )
-    setAuthPopupDisplayed(false)
-  }
-
-  useEffect(() => {
-    if (window.location.href.includes('autoAuth')) {
-      setAuthPopupDisplayed(true)
-    }
-  }, [])
-
   return (
-    <InlineForm
+    <OpenAuthoringSiteForm
       form={form}
-      initialStatus={props.editMode ? 'active' : 'inactive'}
+      editMode={props.editMode}
+      previewError={props.previewError}
     >
-      {authPopupDisplayed && (
-        <ActionableModal
-          title="Authentication"
-          message="To edit this site, you first need to be authenticated."
-          actions={[
-            {
-              name: 'Continue',
-              action: enterEditMode,
-            },
-            {
-              name: 'Cancel',
-              action: cancelAuth,
-            },
-          ]}
-        />
-      )}
-      {props.previewError && (
-        <ActionableModal
-          title="Error"
-          message={props.previewError}
-          actions={[
-            {
-              name: 'Continue',
-              action: refreshPage,
-            },
-          ]}
-        />
-      )}
-
-      <InlineControls>
-        {props.editMode && <EditToggle />}
-        <DiscardButton />
-      </InlineControls>
       <Layout pathname="/">
         <DefaultSeo titleTemplate={formData.title + ' | %s'} />
         <Hero overlap narrow>
@@ -257,7 +199,7 @@ export <b>WithTina</b>( <b>Component</b> );
           </Wrapper>
         </Section>
       </Layout>
-    </InlineForm>
+    </OpenAuthoringSiteForm>
   )
 }
 

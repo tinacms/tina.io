@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { InlineForm, InlineBlocks, BlocksControls } from 'react-tinacms-inline'
+import { BlocksControls } from '../components/ui/inline'
 import { BlockTemplate } from 'tinacms'
 import { NextSeo } from 'next-seo'
 
@@ -12,6 +12,8 @@ import getJsonData from '../utils/github/getJsonData'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
 import { setIsEditMode } from '../utils'
+import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
+import { InlineBlocks } from 'react-tinacms-inline'
 
 const formOptions = {
   label: 'Teams',
@@ -58,7 +60,7 @@ export default function TeamsPage(props) {
   )
 
   return (
-    <InlineForm form={form}>
+    <OpenAuthoringSiteForm form={form} editMode={props.editMode}>
       <TeamsLayout page="teams" color={'secondary'}>
         <NextSeo
           title={data.title}
@@ -104,7 +106,7 @@ export default function TeamsPage(props) {
           </Wrapper>
         </TeamsSection>
       </TeamsLayout>
-    </InlineForm>
+    </OpenAuthoringSiteForm>
   )
 }
 
