@@ -140,7 +140,7 @@ export async function unstable_getStaticProps({ preview, previewData }) {
 function SupportingPoint({ data, index }) {
   return (
     <BlocksControls index={index}>
-      <li key={data.point.slice(0, 8)}>
+      <li key={`supporting-point-${index}`}>
         <BlockTextArea name="point" />
       </li>
     </BlocksControls>
