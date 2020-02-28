@@ -57,10 +57,8 @@ export const PRModal = ({
         checkForPR() // TODO - can we use PR from response instead of refetching?
       })
       .catch(err => {
-        alert(
-          setResponseMessage(
-            `PR failed (Has a PR already been created?): ${JSON.stringify(err)}`
-          )
+        setResponseMessage(
+          `Pull Request failed, are you sure you have any changes?`
         )
       })
   }
