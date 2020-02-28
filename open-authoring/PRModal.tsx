@@ -38,7 +38,6 @@ export const PRModal = ({
     ).then(pull => {
       if (pull) {
         setFetchedPR(pull)
-        // this.name = 'View Pull Request'
       } else {
         setFetchedPR({ id: null })
       }
@@ -55,7 +54,7 @@ export const PRModal = ({
       bodyInput.current.value
     )
       .then(response => {
-        checkForPR()
+        checkForPR() // TODO - can we use PR from response instead of refetching?
       })
       .catch(err => {
         alert(

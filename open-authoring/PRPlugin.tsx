@@ -12,10 +12,9 @@ export class PRPlugin implements ScreenPlugin {
 
   constructor(baseRepoFullName, forkRepoFullName, accessToken) {
     this.__type = 'screen'
-    this.name = 'Create Pull Request'
+    this.name = 'Pull Requests'
     this.Icon = GitIconSvg
     this.layout = 'popup'
-
     this.Component = () => {
       return (
         <PRModal
