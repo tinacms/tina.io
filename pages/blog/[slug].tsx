@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 const fg = require('fast-glob')
 import { NextSeo } from 'next-seo'
-import { usePlugin } from 'tinacms'
+import { usePlugin, useWatchFormValues, useCMS } from 'tinacms'
 import { MarkdownCreatorPlugin } from '../../utils/plugins'
 
 import { formatDate, formatExcerpt } from '../../utils'
@@ -22,6 +22,7 @@ import getMarkdownData from '../../utils/github/getMarkdownData'
 import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'
 import { fileToUrl } from '../../utils/urls'
 import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
+import { useEffect } from 'react'
 
 export default function BlogTemplate({
   markdownFile,
@@ -41,6 +42,23 @@ export default function BlogTemplate({
     sourceProviderConnection,
     editMode
   )
+
+  const cms = useCMS()
+
+  // save to storage on change
+  useWatchFormValues(form, formData => {
+    cms.api.storage.save(markdownFile.fileRelativePath, formData.values)
+  })
+
+  // load from storage on boot
+  useEffect(() => {
+    if (!editMode) return
+
+    const values = cms.api.storage.load(markdownFile.fileRelativePath)
+    if (values) {
+      form.updateValues(values)
+    }
+  }, [editMode])
 
   const CreateBlogPlugin = new MarkdownCreatorPlugin({
     label: 'New Blog Post',

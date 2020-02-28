@@ -8,6 +8,7 @@ import data from '../content/siteConfig.json'
 import TagManager from 'react-gtm-module'
 import { GlobalStyle } from '../components/styles/GlobalStyle'
 import { OpenAuthoring } from '../components/layout/OpenAuthoring'
+import { BrowserStorageApi } from '../utils/plugins/BrowserStorageApi'
 
 const MainLayout = ({ Component, pageProps }) => {
   /*
@@ -18,6 +19,10 @@ const MainLayout = ({ Component, pageProps }) => {
   const tinaConfig = {
     apis: {
       git: new GitClient('http://localhost:3000/___tina'),
+      storage:
+        typeof window !== 'undefined'
+          ? new BrowserStorageApi(window.localStorage)
+          : {},
     },
 
     sidebar: {
