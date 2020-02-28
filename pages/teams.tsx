@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { InlineForm, InlineBlocks, BlocksControls } from 'react-tinacms-inline'
+import { BlocksControls } from '../components/ui/inline'
 import { BlockTemplate } from 'tinacms'
 import { NextSeo } from 'next-seo'
 
@@ -10,8 +10,9 @@ import { TeamsForm } from '../components/forms'
 import { InlineTextareaField, BlockTextArea } from '../components/ui/inline'
 import getJsonData from '../utils/github/getJsonData'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
+import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
+import { InlineBlocks } from 'react-tinacms-inline'
 import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
-import { setIsEditMode } from '../utils'
 
 const formOptions = {
   label: 'Teams',
@@ -47,8 +48,6 @@ const formOptions = {
 }
 
 export default function TeamsPage(props) {
-  // Sets sidebar.hidden based on preview props
-  setIsEditMode(props.editMode)
   // Adds Tina Form
   const [data, form] = useLocalGithubJsonForm(
     props.teams,
@@ -58,7 +57,7 @@ export default function TeamsPage(props) {
   )
 
   return (
-    <InlineForm form={form}>
+    <OpenAuthoringSiteForm form={form} editMode={props.editMode}>
       <TeamsLayout page="teams" color={'secondary'}>
         <NextSeo
           title={data.title}
@@ -104,7 +103,7 @@ export default function TeamsPage(props) {
           </Wrapper>
         </TeamsSection>
       </TeamsLayout>
-    </InlineForm>
+    </OpenAuthoringSiteForm>
   )
 }
 
@@ -138,7 +137,7 @@ export async function unstable_getStaticProps({ preview, previewData }) {
 function SupportingPoint({ data, index }) {
   return (
     <BlocksControls index={index}>
-      <li key={data.point.slice(0, 8)}>
+      <li key={`supporting-point-${index}`}>
         <BlockTextArea name="point" />
       </li>
     </BlocksControls>

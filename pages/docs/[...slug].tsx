@@ -1,9 +1,6 @@
 import React, { useState, useMemo } from 'react'
-import matter from 'gray-matter'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
-import { InlineForm } from 'react-tinacms-inline'
-
 import { formatExcerpt, readFile } from '../../utils'
 import {
   DocsLayout,
@@ -24,14 +21,11 @@ import { TinaIcon } from '../../components/logo'
 import getMarkdownData from '../../utils/github/getMarkdownData'
 import { getGithubDataFromPreviewProps } from '../../utils/github/sourceProviderConnection'
 import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'
-import { setIsEditMode } from '../../utils'
 import getJsonData from '../../utils/github/getJsonData'
 import { getDocProps } from '../../utils/docs/getDocProps'
+import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
 
 export default function DocTemplate(props) {
-  // Sets sidebar.hidden based on preview props
-  setIsEditMode(props.editMode)
-
   // Workaround for fallback being not implemented
   if (!props.markdownFile) {
     return <div></div>
@@ -50,7 +44,7 @@ export default function DocTemplate(props) {
   const excerpt = formatExcerpt(props.markdownFile.data.markdownBody)
 
   return (
-    <InlineForm form={form}>
+    <OpenAuthoringSiteForm form={form} editMode={props.editMode}>
       <DocsLayout>
         <NextSeo
           title={frontmatter.title}
@@ -106,7 +100,7 @@ export default function DocTemplate(props) {
         </DocsContent>
         <Overlay open={open} onClick={() => setOpen(false)} />
       </DocsLayout>
-    </InlineForm>
+    </OpenAuthoringSiteForm>
   )
 }
 

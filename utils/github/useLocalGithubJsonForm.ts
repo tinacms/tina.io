@@ -25,7 +25,7 @@ const useGithubJsonForm = <T = any>(
     fields: formOptions.fields || [],
     // save & commit the file when the "save" button is pressed
     onSubmit(formData, form) {
-      saveContent(
+      return saveContent(
         githubOptions.forkFullName,
         githubOptions.branch,
         jsonFile.fileRelativePath,
@@ -33,11 +33,15 @@ const useGithubJsonForm = <T = any>(
         getCachedFormData(jsonFile.fileRelativePath).sha,
         JSON.stringify(formData, null, 2),
         'Update from TinaCMS'
-      ).then(response => {
-        setCachedFormData(jsonFile.fileRelativePath, {
-          sha: response.data.content.sha,
+      )
+        .then(response => {
+          setCachedFormData(jsonFile.fileRelativePath, {
+            sha: response.data.content.sha,
+          })
         })
-      })
+        .catch(e => {
+          alert('Something went wrong!')
+        })
     },
   })
 

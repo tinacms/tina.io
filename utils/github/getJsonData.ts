@@ -1,15 +1,14 @@
-import { getContent } from '../../open-authoring/github/api'
-import { b64DecodeUnicode } from '../../open-authoring/utils/base64'
 import { readFile } from '../readFile'
 import { SourceProviderConnection } from './sourceProviderConnection'
 import path from 'path'
+import getDecodedData from './getDecodedData'
 
 const getJsonData = async (
   filePath: string,
   sourceProviderConnection: SourceProviderConnection
 ) => {
   if (sourceProviderConnection) {
-    const response = await getContent(
+    const response = await getDecodedData(
       sourceProviderConnection.forkFullName,
       sourceProviderConnection.headBranch || 'master',
       filePath,
@@ -17,9 +16,9 @@ const getJsonData = async (
     )
 
     return {
-      sha: response.data.sha,
+      sha: response.sha,
       fileRelativePath: filePath,
-      data: JSON.parse(b64DecodeUnicode(response.data.content)),
+      data: JSON.parse(response.content),
     }
   } else {
     const data = await readFile(path.resolve(`${filePath}`))

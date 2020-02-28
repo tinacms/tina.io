@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
 import getFiles from '../../../utils/github/getFiles'
@@ -13,9 +13,21 @@ import {
 import { DynamicLink, BlogPagination } from '../../../components/ui'
 import { getGithubDataFromPreviewProps } from '../../../utils/github/sourceProviderConnection'
 import getMarkdownData from '../../../utils/github/getMarkdownData'
+import { useCMS } from 'tinacms'
 
 const Index = props => {
   const { currentPage, numPages } = props
+
+  const cms = useCMS()
+  useEffect(() => {
+    /*
+     ** Random Fix: sidebar state isn't updated properly
+     ** without this timeout. If and when the 'preview'
+     ** state is accessible in _app, we'd like to move
+     ** the editMode/sidebar.hidden stuff to _app
+     */
+    setTimeout(() => (cms.sidebar.hidden = !props.editMode), 1)
+  }, [])
 
   //workaround for fallback being not implemented
   if (!props.posts) {
@@ -127,6 +139,7 @@ export async function unstable_getStaticProps({
       posts: orderedPosts,
       numPages: numPages,
       currentPage: parseInt(page),
+      editMode: !!preview,
     },
   }
 }

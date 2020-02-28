@@ -37,9 +37,7 @@ export const PRModal = ({
       accessToken
     ).then(pull => {
       if (pull) {
-        console.log(pull)
         setFetchedPR(pull)
-        // this.name = 'View Pull Request'
       } else {
         setFetchedPR({ id: null })
       }
@@ -56,13 +54,11 @@ export const PRModal = ({
       bodyInput.current.value
     )
       .then(response => {
-        checkForPR()
+        checkForPR() // TODO - can we use PR from response instead of refetching?
       })
       .catch(err => {
-        alert(
-          setResponseMessage(
-            `PR failed (Has a PR already been created?): ${JSON.stringify(err)}`
-          )
+        setResponseMessage(
+          `Pull Request failed, are you sure you have any changes?`
         )
       })
   }

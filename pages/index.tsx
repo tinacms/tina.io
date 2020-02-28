@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { BlockTemplate } from 'tinacms'
-import { InlineForm, InlineBlocks, BlockText } from 'react-tinacms-inline'
-import { DefaultSeo } from 'next-seo'
-import { useCMS } from 'tinacms'
 
+import { InlineBlocks } from 'react-tinacms-inline'
+
+import { DefaultSeo } from 'next-seo'
+import { BlockTemplate, useCMS } from 'tinacms'
 import { DynamicLink } from '../components/ui/DynamicLink'
 import {
   Layout,
@@ -13,24 +13,21 @@ import {
   Section,
   RichTextWrapper,
 } from '../components/layout'
+
 import { Button, Video, ArrowList } from '../components/ui'
 import {
   InlineTextareaField,
   BlockTextArea,
-  InlineControls,
-  EditToggle,
-  DiscardButton,
   BlocksControls,
 } from '../components/ui/inline'
+
 import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
 import getJsonData from '../utils/github/getJsonData'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
-import { setIsEditMode } from '../utils'
+import ContentNotFoundError from '../utils/github/ContentNotFoundError'
+import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
 
 const HomePage = (props: any) => {
-  // Sets sidebar.hidden based on preview props
-  setIsEditMode(props.editMode)
-
   const [formData, form] = useLocalGithubJsonForm(
     props.home,
     {
@@ -111,11 +108,11 @@ const HomePage = (props: any) => {
   )
 
   return (
-    <InlineForm form={form}>
-      <InlineControls>
-        {props.editMode && <EditToggle />}
-        <DiscardButton />
-      </InlineControls>
+    <OpenAuthoringSiteForm
+      form={form}
+      editMode={props.editMode}
+      previewError={props.previewError}
+    >
       <Layout pathname="/">
         <DefaultSeo titleTemplate={formData.title + ' | %s'} />
         <Hero overlap narrow>
@@ -198,21 +195,33 @@ export <b>WithTina</b>( <b>Component</b> );
           </Wrapper>
         </Section>
       </Layout>
-    </InlineForm>
+    </OpenAuthoringSiteForm>
   )
 }
 
 export default HomePage
 
-export async function unstable_getStaticProps({ preview, previewData }) {
+export async function unstable_getStaticProps({ preview, previewData, query }) {
   const sourceProviderConnection = getGithubDataFromPreviewProps(previewData)
-  const homeData = await getJsonData(
-    'content/pages/home.json',
-    sourceProviderConnection
-  )
+  let previewError: string
+  let homeData = {}
+  try {
+    homeData = await getJsonData(
+      'content/pages/home.json',
+      sourceProviderConnection
+    )
+  } catch (e) {
+    if (e instanceof ContentNotFoundError) {
+      previewError = e.message
+    } else {
+      throw e
+    }
+  }
+
   return {
     props: {
       home: homeData,
+      previewError: previewError,
       sourceProviderConnection,
       editMode: !!preview,
     },
@@ -229,7 +238,7 @@ export async function unstable_getStaticProps({ preview, previewData }) {
 function SellingPoint({ data, index }) {
   return (
     <BlocksControls index={index}>
-      <div key={data.main.slice(0, 8)}>
+      <div key={`selling-point-${index}`}>
         <h3>
           <em>
             <BlockTextArea name="main" />
@@ -266,7 +275,7 @@ const SELLING_POINTS_BLOCKS = {
 function SetupPoint({ data, index }) {
   return (
     <BlocksControls index={index}>
-      <li key={data.step.slice(0, 8)}>
+      <li key={`setup-point-${index}`}>
         <BlockTextArea name="step" />
       </li>
     </BlocksControls>

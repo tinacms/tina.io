@@ -30,7 +30,7 @@ import { NextSeo } from 'next-seo'
 import getJsonData from '../utils/github/getJsonData'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
-import { setIsEditMode } from '../utils'
+import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
 
 export default function CommunityPage({
   community,
@@ -38,8 +38,6 @@ export default function CommunityPage({
   sourceProviderConnection,
   editMode,
 }) {
-  // Sets sidebar.hidden based on preview props
-  setIsEditMode(editMode)
   // Registers Tina Form
   const [data, form] = useLocalGithubJsonForm(
     community,
@@ -49,7 +47,7 @@ export default function CommunityPage({
   )
 
   return (
-    <InlineForm form={form}>
+    <OpenAuthoringSiteForm form={form} editMode={editMode}>
       <Layout>
         <NextSeo
           title={data.title}
@@ -163,7 +161,7 @@ export default function CommunityPage({
           </FormSection>
         </RichTextWrapper>
       </Layout>
-    </InlineForm>
+    </OpenAuthoringSiteForm>
   )
 }
 

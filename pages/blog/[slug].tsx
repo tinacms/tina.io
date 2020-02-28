@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 const fg = require('fast-glob')
 import { NextSeo } from 'next-seo'
-import { InlineForm } from 'react-tinacms-inline'
 import { usePlugin } from 'tinacms'
 import { MarkdownCreatorPlugin } from '../../utils/plugins'
 
@@ -14,8 +13,6 @@ import {
   RichTextWrapper,
 } from '../../components/layout'
 import {
-  EditToggle,
-  DiscardButton,
   InlineWysiwyg,
   InlineTextareaField,
   InlineTextField,
@@ -23,8 +20,8 @@ import {
 import { getGithubDataFromPreviewProps } from '../../utils/github/sourceProviderConnection'
 import getMarkdownData from '../../utils/github/getMarkdownData'
 import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'
-import { setIsEditMode } from '../../utils'
 import { fileToUrl } from '../../utils/urls'
+import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
 
 export default function BlogTemplate({
   markdownFile,
@@ -32,6 +29,19 @@ export default function BlogTemplate({
   siteConfig,
   editMode,
 }) {
+  //workaround for fallback being not implemented
+  if (!markdownFile) {
+    return <div></div>
+  }
+
+  // Registers Tina Form
+  const [data, form] = useLocalGithubMarkdownForm(
+    markdownFile,
+    formOptions,
+    sourceProviderConnection,
+    editMode
+  )
+
   const CreateBlogPlugin = new MarkdownCreatorPlugin({
     label: 'New Blog Post',
     filename: form => {
@@ -78,33 +88,13 @@ export default function BlogTemplate({
 
   usePlugin(CreateBlogPlugin)
 
-  // Sets sidebar.hidden based on preview props
-  setIsEditMode(editMode)
-
-  //workaround for fallback being not implemented
-  if (!markdownFile) {
-    return <div></div>
-  }
-
-  // Registers Tina Form
-  const [data, form] = useLocalGithubMarkdownForm(
-    markdownFile,
-    formOptions,
-    sourceProviderConnection,
-    editMode
-  )
-
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
   const excerpt = formatExcerpt(data.markdownBody)
 
   return (
-    <InlineForm form={form}>
-      <Layout
-        pathname="/"
-        githubOptions={sourceProviderConnection}
-        editMode={editMode}
-      >
+    <OpenAuthoringSiteForm form={form} editMode={editMode}>
+      <Layout pathname="/">
         <NextSeo
           title={frontmatter.title}
           titleTemplate={'%s | ' + siteConfig.title + ' Blog'}
@@ -155,7 +145,7 @@ export default function BlogTemplate({
           </RichTextWrapper>
         </BlogWrapper>
       </Layout>
-    </InlineForm>
+    </OpenAuthoringSiteForm>
   )
 }
 

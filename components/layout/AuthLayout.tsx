@@ -25,7 +25,7 @@ export const AuthLayout = styled(({ children, color, ...styleProps }) => {
   background: var(--color-seafoam);
 `
 
-const AuthWrapper = styled.div`
+export const AuthWrapper = styled.div`
   ${RichText}
 
   h2 {
