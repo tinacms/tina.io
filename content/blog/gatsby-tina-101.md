@@ -25,7 +25,7 @@ We're currently testing this on our own site but in the coming weeks, the API’
 
 ## Using [Next.js](nextjs.org) and [ZEIT](https://zeit.co/) to turn on "Edit-mode"
 
-The timing was perfect...the Next.js team has been polishing their preview feature which we're using to switch your static site over to "Edit Mode". It's really quite magical and a testament to their engineering ability. How does ZEIT fit in here? This is how it works:
+The timing was perfect...the Next.js team has been polishing their preview feature which we're using to switch your static site over to "Edit Mode". It's really quite magical and a testament to high-quality engineering. This is how it works:
 
 <img src="" alt="diagram of edit mode">
 
