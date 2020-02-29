@@ -15,7 +15,7 @@ consumes:
 ---
 We're focused on helping people build better sites, create better content, and ultimately improve the independent web as a whole.
 
-In-line with this mission, we had an idea to build **Open Authoring**, but Tina-style:
+In-line with this mission, we built **Open Authoring**, but Tina-style:
 
 > Picture an _"edit this page on GitHub"_ link, but when you click it, instead of kicking you over the GitHub, the site becomes instantly editable like a Google Doc. 😍
 
