@@ -19,7 +19,7 @@ In-line with this mission, we built Tina-style **Open Authoring**:
 
 > Picture an _"edit this page on GitHub"_ link, but when you click it, instead of kicking you over the GitHub, the site becomes instantly editable like a Google Doc. 😍
 
-This requires authentication with GitHub so after you're done making your changes, you can submit a pull-request for the site owner to review before making it live.
+When using Open Authoring, you can submit your content changes as a pull-request so the site owner can review your work before making it live. 
 
 We're currently testing this on our own site but in the coming weeks, the API’s for integrating open authoring with Tina will become available. In the meantime, click the **edit icon** in the corner of this page to try it out and feel free to reference our site’s source code to see how it works. And if yew sea ani speling misteaks, pleeze ficks thim. Wee wood apprisheate that vary much 😂.
 
@@ -31,4 +31,8 @@ The timing was perfect...the Next.js team has been polishing their preview featu
 
 ## Crowd-sourcing your content
 
-We see this approach as lowering the friction of website editing as a whole. Combine Open Authoring with live-edits and we have ourselves a content editing revolution. The web is all about community, crowd-sourcing, power in multitudinous perspectives. The easier it is to make content contributions, the more perspectives we get. The less context switching, the more space for creativity and expression of ideas themselves.
+We see this approach as lowering the friction of website editing as a whole. Combine Open Authoring with live-editing and we have ourselves a content revolution. The web is all about community, crowd-sourcing, power in multitudinous perspectives. What if it becomes effortless to fix a spelling error on the New York times or update the ReactJS documentation instantly? 
+
+The easier it is to make content contributions, the more perspectives we get. The less context switching, the more space for creativity and expression of ideas themselves. 
+
+Let's democratize content and strengthen the independent web. 
