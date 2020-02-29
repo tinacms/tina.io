@@ -20,7 +20,7 @@ const getFiles = async (
   } else {
     // grab all md files
     const fg = require('fast-glob')
-    const glob = path.join(filePath, '*')
+    const glob = path.resolve(filePath, '*')
     const files = await fg(glob)
 
     return files
