@@ -23,7 +23,7 @@ This is all backed by a Git-workflow 😍. Just click a button when you're ready
 
 We're currently testing this on our own site but in the coming weeks, the API’s for integrating open authoring with Tina will become available. In the meantime, click the **edit icon** in the corner of this page to try it out and feel free to reference our site’s source code to see how it works. And if yew sea ani speling misteaks, pleeze ficks thim. Wee wood apprisheate that vary much 😂.
 
-## Using [Next.js](nextjs.org) and [ZEIT](https://zeit.co/) to turn on "Edit-mode"
+## Using [Next.js](nextjs.org) to enable "Edit-mode"
 
 The timing was perfect...the Next.js team has been polishing their preview feature which we're using to switch your static site over to "Edit Mode". It's really quite magical and a testament to their high-quality engineering. This is how it works:
 
