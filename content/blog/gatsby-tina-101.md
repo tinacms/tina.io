@@ -19,7 +19,7 @@ In-line with this mission, we built Tina-style **Open Authoring**:
 
 > Picture an _"edit this page on GitHub"_ link, but when you click it, instead of kicking you over the GitHub, the site becomes instantly editable like a Google Doc. 😍
 
-This requires authentication with GitHub so after you're done live-editing the site, you can submit your changes as a pull-request.
+This requires authentication with GitHub so after you're done making your changes, you can submit a pull-request for the site owner to review before making it live.
 
 We're currently testing this on our own site but in the coming weeks, the API’s for integrating open authoring with Tina will become available. In the meantime, click the **edit icon** in the corner of this page to try it out and feel free to reference our site’s source code to see how it works. And if yew sea ani speling misteaks, pleeze ficks thim. Wee wood apprisheate that vary much 😂.
 
