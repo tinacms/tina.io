@@ -1,14 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
+import Link from 'next/link'
+
 import TinaIconSvg from '../../public/svg/tina-icon.svg'
 
 export const TinaIcon = styled(({ ...styleProps }, props) => {
   return (
-    <a href="/" {...styleProps}>
-      <h1>
-        <TinaIconSvg />
-      </h1>
-    </a>
+    <Link href="/">
+      <a {...styleProps}>
+        <h1>
+          <TinaIconSvg />
+        </h1>
+      </a>
+    </Link>
   )
 })`
   text-decoration: none;

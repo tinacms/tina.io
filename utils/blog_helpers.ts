@@ -9,6 +9,8 @@ export function orderPosts(posts) {
   return posts.slice().sort(sortByDate)
 }
 
+const captureNewlines = /(\r\n|\n|\r)/gm
+
 export function formatExcerpt(content) {
   const plainTextExcerpt = removeMarkdown(content, {
     stripListLeaders: true,
@@ -16,8 +18,8 @@ export function formatExcerpt(content) {
     gfm: true,
     useImgAltText: false,
   })
-    .replace(/(\r\n|\n|\r)/gm, '')
     .substring(0, 200)
+    .replace(captureNewlines, '')
     .trimEnd()
 
   return `${plainTextExcerpt}...`

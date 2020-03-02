@@ -1,10 +1,9 @@
 import styled from 'styled-components'
-const fg = require('fast-glob')
 import { NextSeo } from 'next-seo'
 import { usePlugin } from 'tinacms'
 import { MarkdownCreatorPlugin } from '../../utils/plugins'
 
-import { formatDate, formatExcerpt } from '../../utils'
+import { formatDate } from '../../utils'
 import {
   Layout,
   Hero,
@@ -23,13 +22,14 @@ import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMar
 import { fileToUrl } from '../../utils/urls'
 import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
 import ContentNotFoundError from '../../utils/github/ContentNotFoundError'
+const fg = require('fast-glob')
 
 export default function BlogTemplate({
   markdownFile,
   sourceProviderConnection,
   siteConfig,
   editMode,
-  previewError
+  previewError,
 }) {
   //workaround for fallback being not implemented
   if (!markdownFile) {
@@ -92,10 +92,14 @@ export default function BlogTemplate({
 
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
-  const excerpt = formatExcerpt(data.markdownBody)
+  const excerpt = data.excerpt
 
   return (
-    <OpenAuthoringSiteForm form={form} editMode={editMode} previewError={previewError}>
+    <OpenAuthoringSiteForm
+      form={form}
+      editMode={editMode}
+      previewError={previewError}
+    >
       <Layout pathname="/">
         <NextSeo
           title={frontmatter.title}
@@ -163,7 +167,6 @@ export async function unstable_getStaticProps({
   const { slug } = ctx.params
 
   const sourceProviderConnection = getGithubDataFromPreviewProps(previewData)
-  
 
   let previewError: string
   let file = {}

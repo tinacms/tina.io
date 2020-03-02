@@ -64,7 +64,7 @@ The source data for the `ContentBlock` might look like the example below. When n
 ## Blocks Field Options
 
 - `name`: The path to the blocks value in the data being edited.
-- `component`: The name of the React component that should be used to edit this field. Available field component types are [defined here](/docs/concepts/fields#field-types).
+- `component`: The name of the React component that should be used to edit this field. Available field component types are [defined here](/docs/fields).
 - `label`: A human readable label for the field. This label displays in the sidebar and is optional. If no label is provided, the sidebar will default to the name.
 - `description`: An optional description of the field.
 - `templates`: A list of **Block templates** that define the fields used in the Blocks.
