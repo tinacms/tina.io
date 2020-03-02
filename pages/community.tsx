@@ -48,7 +48,10 @@ export default function CommunityPage({
 
   return (
     <OpenAuthoringSiteForm form={form} editMode={editMode}>
-      <Layout>
+      <Layout
+        sourceProviderConnection={sourceProviderConnection}
+        editMode={editMode}
+      >
         <NextSeo
           title={data.title}
           description={data.description}
