@@ -64,7 +64,8 @@ export const Layout = styled(
           response.data.content.path.split('content')[1],
           'blog'
         )
-        window.location.href = url
+
+        window.location.href = `/blog/${url}`
       },
     })
 
