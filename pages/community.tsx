@@ -31,12 +31,14 @@ import getJsonData from '../utils/github/getJsonData'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
+import ContentNotFoundError from '../utils/github/ContentNotFoundError'
 
 export default function CommunityPage({
   community,
   metadata,
   sourceProviderConnection,
   editMode,
+  previewError
 }) {
   // Registers Tina Form
   const [data, form] = useLocalGithubJsonForm(
@@ -47,7 +49,7 @@ export default function CommunityPage({
   )
 
   return (
-    <OpenAuthoringSiteForm form={form} editMode={editMode}>
+    <OpenAuthoringSiteForm form={form} editMode={editMode} previewError={previewError}>
       <Layout>
         <NextSeo
           title={data.title}
@@ -173,14 +175,25 @@ export async function unstable_getStaticProps({ preview, previewData }) {
   const sourceProviderConnection = getGithubDataFromPreviewProps(previewData)
   const siteMetadata = await import('../content/siteConfig.json')
 
-  const communityData = await getJsonData(
-    'content/pages/community.json',
-    sourceProviderConnection
-  )
+  let previewError: string
+  let communityData = {}
+  try {
+    communityData = await getJsonData(
+      'content/pages/community.json',
+      sourceProviderConnection
+    )
+  } catch (e) {
+    if (e instanceof ContentNotFoundError) {
+      previewError = e.message
+    } else {
+      throw e
+    }
+  }
   return {
     props: {
       metadata: siteMetadata,
       community: communityData,
+      previewError: previewError,
       sourceProviderConnection,
       editMode: !!preview,
     },

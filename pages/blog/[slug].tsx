@@ -22,12 +22,14 @@ import getMarkdownData from '../../utils/github/getMarkdownData'
 import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'
 import { fileToUrl } from '../../utils/urls'
 import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
+import ContentNotFoundError from '../../utils/github/ContentNotFoundError'
 
 export default function BlogTemplate({
   markdownFile,
   sourceProviderConnection,
   siteConfig,
   editMode,
+  previewError
 }) {
   //workaround for fallback being not implemented
   if (!markdownFile) {
@@ -93,7 +95,7 @@ export default function BlogTemplate({
   const excerpt = formatExcerpt(data.markdownBody)
 
   return (
-    <OpenAuthoringSiteForm form={form} editMode={editMode}>
+    <OpenAuthoringSiteForm form={form} editMode={editMode} previewError={previewError}>
       <Layout pathname="/">
         <NextSeo
           title={frontmatter.title}
@@ -161,10 +163,22 @@ export async function unstable_getStaticProps({
   const { slug } = ctx.params
 
   const sourceProviderConnection = getGithubDataFromPreviewProps(previewData)
-  const file = await getMarkdownData(
-    `content/blog/${slug}.md`,
-    sourceProviderConnection
-  )
+  
+
+  let previewError: string
+  let file = {}
+  try {
+    file = await getMarkdownData(
+      `content/blog/${slug}.md`,
+      sourceProviderConnection
+    )
+  } catch (e) {
+    if (e instanceof ContentNotFoundError) {
+      previewError = e.message
+    } else {
+      throw e
+    }
+  }
 
   //TODO - move to readFile
   const siteConfig = await import('../../content/siteConfig.json')
@@ -173,6 +187,7 @@ export async function unstable_getStaticProps({
     props: {
       sourceProviderConnection,
       editMode: !!preview,
+      previewError: previewError,
       siteConfig: {
         title: siteConfig.title,
       },
