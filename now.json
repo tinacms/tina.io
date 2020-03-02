@@ -11,5 +11,19 @@
       "USE_CONTENT_API": "true",
       "BASE_BRANCH": "master"
     }
-  }
+  },
+  "redirects": [
+    { "source": "/blog/first", "destination": "/blog/announcing-tinacms" },
+    {
+      "source": "/blog/introducing-tina-grande-%F0%9F%8E%89",
+      "destination": "/blog/introducing-tina-grande"
+    },
+    { "source": "/jamstack-conf  ", "destination": "/teams" },
+    { "source": "/smashing-conf", "destination": "/teams" },
+    { "source": "/docs/concepts/sidebar", "destination": "/docs/cms" },
+    { "source": "/docs/concepts/forms", "destination": "/docs/forms" },
+    { "source": "/docs/concepts/fields", "destination": "/docs/fields" },
+    { "source": "/docs/concepts/backends", "destination": "/docs/cms#apis" },
+    { "source": "/docs/concepts/plugins", "destination": "/docs/cms#plugins" }
+  ]
 }

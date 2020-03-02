@@ -1,7 +1,6 @@
 import React, { useState, useMemo } from 'react'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
-import { formatExcerpt, readFile } from '../../utils'
 import {
   DocsLayout,
   MarkdownContent,
@@ -41,7 +40,7 @@ export default function DocTemplate(props) {
   const [open, setOpen] = useState(false)
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
-  const excerpt = formatExcerpt(props.markdownFile.data.markdownBody)
+  const excerpt = props.markdownFile.data.excerpt
 
   return (
     <OpenAuthoringSiteForm form={form} editMode={props.editMode}>

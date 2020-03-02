@@ -1,10 +1,9 @@
 import styled from 'styled-components'
-const fg = require('fast-glob')
 import { NextSeo } from 'next-seo'
 import { usePlugin } from 'tinacms'
 import { MarkdownCreatorPlugin } from '../../utils/plugins'
 
-import { formatDate, formatExcerpt } from '../../utils'
+import { formatDate } from '../../utils'
 import {
   Layout,
   Hero,
@@ -22,6 +21,7 @@ import getMarkdownData from '../../utils/github/getMarkdownData'
 import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'
 import { fileToUrl } from '../../utils/urls'
 import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
+const fg = require('fast-glob')
 
 export default function BlogTemplate({
   markdownFile,
@@ -90,7 +90,7 @@ export default function BlogTemplate({
 
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
-  const excerpt = formatExcerpt(data.markdownBody)
+  const excerpt = data.excerpt
 
   return (
     <OpenAuthoringSiteForm form={form} editMode={editMode}>

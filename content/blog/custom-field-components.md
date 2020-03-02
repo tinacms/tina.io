@@ -18,7 +18,7 @@ Form fields are the bread and butter of any CMS. While Tina provides a solid col
 
 **Prerequisites 👩‍🏫**
 
-Throughout the post, I'll refer to a few core TinaCMS concepts such as [forms](https://tinacms.org/docs/concepts/forms), the [sidebar](https://tinacms.org/docs/concepts/sidebar), and [fields](https://tinacms.org/docs/concepts/fields). It will be helpful to have some basic working knowledge of [**how TinaCMS works**](https://tinacms.org/docs/getting-started/how-tina-works) before reading. Feel free to refer to the [documentation](https://tinacms.org/docs/getting-started/introduction) or read a post on using Tina with [Gatsby](https://www.gatsbyjs.org/blog/2019-12-20-integrate-tinacms-with-your-gatsby-website/) or [Next.js](https://tinacms.org/blog/using-tinacms-with-nextjs/) to get familiar.
+Throughout the post, I'll refer to a few core TinaCMS concepts such as [forms](https://tinacms.org/docs/forms), the sidebar, and [fields](https://tinacms.org/docs/fields). It will be helpful to have some basic working knowledge of [**how TinaCMS works**](https://tinacms.org/docs/getting-started/how-tina-works) before reading. Feel free to refer to the [documentation](https://tinacms.org/docs/getting-started/introduction) or read a post on using Tina with [Gatsby](https://www.gatsbyjs.org/blog/2019-12-20-integrate-tinacms-with-your-gatsby-website/) or [Next.js](https://tinacms.org/blog/using-tinacms-with-nextjs/) to get familiar.
 
 ## Why would you create a custom field?
 
@@ -32,13 +32,13 @@ Tina was intended to be fully customizable and extensible. Creating **custom fie
 
 There are two ways to add [custom fields](https://tinacms.org/docs/fields/custom-fields) to Tina. The first approach involves _defining a React component and passing it into the `component` property_ of a field definition. The Tina Team refers to this as an **inline field component.** This option is more straightforward; it will be the method of focus in this post.
 
-The second approach involves defining a custom component, then registering that component as a [field plugin](https://tinacms.org/docs/fields/custom-fields#2-creating-field-plugins) with the CMS. All the [core fields](https://tinacms.org/docs/concepts/fields) provided by Tina are used as plugins.
+The second approach involves defining a custom component, then registering that component as a [field plugin](https://tinacms.org/docs/fields/custom-fields#2-creating-field-plugins) with the CMS. All the [core fields](https://tinacms.org/docs/fields) provided by Tina are used as plugins.
 
 There are some advantages to creating a plugin versus an inline field — the main points being reusability and access to additional functions for parsing, validation etc. But **for simpler cases**, when you need a custom field in just one form or don’t necessarily need validation, an inline field component will do just fine 👌.
 
 ## Creating a custom inline field
 
-Say we have a [Tina Form](https://tinacms.org/docs/concepts/forms) set up for an _About Me_ page:
+Say we have a [Tina Form](https://tinacms.org/docs/forms) set up for an _About Me_ page:
 
 > _Note:_ The examples below will be referencing a Next.js setup, but this approach can be applied to Gatsby as well.
 
@@ -162,7 +162,7 @@ When the custom field is registered with Tina, this **input object** is passed i
 
 **All of the props** passed to the field component are:
 
-- `field` — A reference to the [field definition](https://tinacms.org/docs/concepts/fields#field-definition).
+- `field` — A reference to the [field definition](https://tinacms.org/docs/fields).
 - `input` — The object with data and callbacks for the field to set and update data. _Outlined above_ ☝️.
 - `meta` — This provides [metadata](https://final-form.org/docs/react-final-form/types/FieldRenderProps#metaactive) about the state of the field.
 - `tinaForm` — A reference to the form where this field is registerd.

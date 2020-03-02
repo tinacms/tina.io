@@ -133,7 +133,7 @@ The form will populate with default text fields. To customize it, you can pass i
 - `remark`: the data returned from a Gatsby `markdownRemark` query.
 - `render(renderProps): JSX.Element`: A function that returns JSX elements
   - `renderProps.markdownRemark`: The current values to be displayed. This has the same shape as the `markdownRemark` data that was passed in.
-  - `renderProps.form`: A reference to the [`Form`](http://localhost:8000/docs/concepts/forms/).
+  - `renderProps.form`: A reference to the [`Form`](http://localhost:8000/docs/forms/).
 
 You can use this with both page and non-page components in Gatsby. Below is an example of using `RemarkForm` in a non-page component using [`StaticQuery`](https://www.gatsbyjs.org/docs/static-query/).
 
