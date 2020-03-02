@@ -8,6 +8,7 @@ import data from '../content/siteConfig.json'
 import TagManager from 'react-gtm-module'
 import { GlobalStyle } from '../components/styles/GlobalStyle'
 import { OpenAuthoring } from '../components/layout/OpenAuthoring'
+import { Toolbar } from '../components/cms/Toolbar'
 
 const MainLayout = ({ Component, pageProps }) => {
   /*
@@ -31,6 +32,7 @@ const MainLayout = ({ Component, pageProps }) => {
 
   return (
     <Tina cms={cms} {...tinaConfig.sidebar}>
+      <Toolbar />
       <OpenAuthoring>
         <DefaultSeo
           title={data.seoDefaultTitle}

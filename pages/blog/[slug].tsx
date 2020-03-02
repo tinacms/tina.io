@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
-import { usePlugin } from 'tinacms'
+import { usePlugin, useCMS } from 'tinacms'
 import { MarkdownCreatorPlugin } from '../../utils/plugins'
 
 import { formatDate } from '../../utils'
@@ -22,6 +22,8 @@ import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMar
 import { fileToUrl } from '../../utils/urls'
 import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
 import ContentNotFoundError from '../../utils/github/ContentNotFoundError'
+import { useEffect } from 'react'
+import Cookies from 'js-cookie'
 const fg = require('fast-glob')
 
 export default function BlogTemplate({
@@ -93,6 +95,47 @@ export default function BlogTemplate({
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
   const excerpt = data.excerpt
+
+  /**
+   * Toolbar Plugins
+   */
+  const cms = useCMS()
+  useEffect(() => {
+    const plugins = [
+      {
+        __type: 'toolbar:tool',
+        name: 'create-pr',
+        component: () => <button>Pull Request</button>,
+      },
+      {
+        __type: 'toolbar:status',
+        name: 'current-fork',
+        component: () => <div>{Cookies.get('fork_full_name')}</div>,
+      },
+      {
+        __type: 'toolbar:form-actions',
+        name: 'base-form-actions',
+        component: () => (
+          <>
+            <button onClick={form.reset}>Reset</button>
+            <button onClick={form.submit}>Save</button>
+          </>
+        ),
+      },
+    ] as any
+
+    const removePlugins = () => {
+      plugins.forEach(plugin => cms.plugins.remove(plugin))
+    }
+
+    if (editMode) {
+      plugins.forEach(plugin => cms.plugins.add(plugin))
+    } else {
+      removePlugins()
+    }
+
+    return removePlugins
+  }, [editMode, form])
 
   return (
     <OpenAuthoringSiteForm
