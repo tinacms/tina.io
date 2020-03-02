@@ -114,7 +114,6 @@ export async function unstable_getStaticProps(props) {
   let { slug: slugs } = props.params
 
   const slug = slugs.join('/')
-  console.log("getting doc props");
   
   try {
     return getDocProps(props, slug)
