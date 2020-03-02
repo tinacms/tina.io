@@ -13,6 +13,7 @@ import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderCon
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
 import { InlineBlocks } from 'react-tinacms-inline'
 import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
+import ContentNotFoundError from '../utils/github/ContentNotFoundError'
 
 const formOptions = {
   label: 'Teams',
@@ -57,7 +58,11 @@ export default function TeamsPage(props) {
   )
 
   return (
-    <OpenAuthoringSiteForm form={form} editMode={props.editMode}>
+    <OpenAuthoringSiteForm
+      form={form}
+      editMode={props.editMode}
+      previewError={props.previewError}
+    >
       <TeamsLayout
         sourceProviderConnection={props.sourceProviderConnection}
         editMode={props.editMode}
@@ -117,13 +122,26 @@ export default function TeamsPage(props) {
 
 export async function unstable_getStaticProps({ preview, previewData }) {
   const sourceProviderConnection = getGithubDataFromPreviewProps(previewData)
-  const teamsData = await getJsonData(
-    'content/pages/teams.json',
-    sourceProviderConnection
-  )
+
+  let previewError: string
+  let teamsData = {}
+  try {
+    teamsData = await getJsonData(
+      'content/pages/teams.json',
+      sourceProviderConnection
+    )
+  } catch (e) {
+    if (e instanceof ContentNotFoundError) {
+      previewError = e.message
+    } else {
+      throw e
+    }
+  }
+
   return {
     props: {
       teams: teamsData,
+      previewError: previewError,
       sourceProviderConnection,
       editMode: !!preview,
     },

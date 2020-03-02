@@ -116,9 +116,9 @@ export default function Page({ post }) {
 
 ### Global Forms
 
-There is another hook, `useGlobalJsonForm`, that registers a [Global Form](https://tinacms.org/docs/concepts/forms#local--global-forms) with the sidebar.
+There is another hook, `useGlobalJsonForm`, that registers a [Global Form](https://tinacms.org/docs/forms) with the sidebar.
 
-Using this hook looks almost exactly the same as the example for `useLocalJsonForm`. This hook expects an object with the properties, `fileRelativePath` and `data`. The value of `data` should be the contents of the JSON file. The [Global Form](https://tinacms.org/docs/concepts/forms#local--global-forms) can be customized by passing in an _options_ object as the second argument.
+Using this hook looks almost exactly the same as the example for `useLocalJsonForm`. This hook expects an object with the properties, `fileRelativePath` and `data`. The value of `data` should be the contents of the JSON file. The [Global Form](https://tinacms.org) can be customized by passing in an _options_ object as the second argument.
 
 ## Using _jsonForm_ HOC
 
@@ -184,4 +184,4 @@ EditablePage.getInitialProps = function(ctx) {
 }
 ```
 
-[More info: creating custom forms](/docs/concepts/forms#creating-custom-forms)
+[More info: creating custom forms](/docs/forms)

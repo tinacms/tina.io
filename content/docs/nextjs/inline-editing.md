@@ -97,7 +97,7 @@ interface JsonFile<T = any> {
 
 ### 2. Add Tina Fields
 
-At this point the the inline form should be registered with the cms. In the next step, you'll need to add [fields](http://localhost:8000/docs/concepts/fields/) into your layout using the `TinaField` component. The `TinaField` component should wrap the HTML that outputs the contents of the field it edits. When editing mode is activated, the content will become editable.
+At this point the the inline form should be registered with the cms. In the next step, you'll need to add [fields](/docs/fields/) into your layout using the `TinaField` component. The `TinaField` component should wrap the HTML that outputs the contents of the field it edits. When editing mode is activated, the content will become editable.
 
 In the following example, we wrap the section that renders the Markdown content in a `TinaField` that uses the `Wysiwyg` component. The `Wysiwyg` component only renders when _editing mode_ is triggered. This provides a field interface for editing on the page. When _editing mode_ is off, the child component will render as normal.
 
@@ -127,7 +127,7 @@ function Index({ jsonFile }) {
 }
 ```
 
-`TinaField` is a higher-order component that accepts similar props as other [fields](https://tinacms.org/docs/concepts/fields#field-definition).
+`TinaField` is a higher-order component that accepts similar props as other [fields](https://tinacms.org/docs/fields).
 
 ```ts
 interface TinaFieldsProps {
@@ -140,7 +140,7 @@ interface TinaFieldsProps {
 
 - `name`: The key for the value we want to edit from the content source.
 - `type`: _Optional_ — Specifies a field plugin type.
-- `Component`: Either a React component that renders the field or a string containing the ID of a [built-in](https://tinacms.org/docs/concepts/fields#field-types) or [custom](https://tinacms.org/docs/fields/custom-fields) field plugin.
+- `Component`: Either a React component that renders the field or a string containing the ID of a [built-in](https://tinacms.org/docs/fields) field plugin.
 - `children`: The child component or element that renders the editable content.
 
 ### 3. Enable Edit Mode

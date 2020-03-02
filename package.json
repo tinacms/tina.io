@@ -68,10 +68,10 @@
     "react-syntax-highlighter": "^12.2.1",
     "react-textarea-autosize": "^7.1.2",
     "react-tinacms-inline": "^0.2.0-alpha.0",
+    "tinacms": "^0.15.0-alpha.0",
     "remove-markdown": "^0.3.0",
     "serve": "11.2.0",
     "styled-components": "^4.4.1",
-    "tinacms": "^0.15.0-alpha.0",
     "webpack": "^4.41.5"
   },
   "devDependencies": {
