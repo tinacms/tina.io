@@ -45,7 +45,14 @@ const OpenAuthoringSiteForm = ({
       {
         __type: 'toolbar:status',
         name: 'current-fork',
-        component: () => <div>{Cookies.get('fork_full_name')}</div>,
+        component: () => {
+          const forkName = Cookies.get('fork_full_name')
+          return (
+            <a target="_blank" href={`https://github.com/${forkName}`}>
+              {forkName}
+            </a>
+          )
+        },
       },
       {
         __type: 'toolbar:form-actions',
