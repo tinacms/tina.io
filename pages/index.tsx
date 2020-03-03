@@ -110,6 +110,7 @@ const HomePage = (props: any) => {
   return (
     <OpenAuthoringSiteForm
       form={form}
+      path={props.home.fileRelativePath}
       editMode={props.editMode}
       previewError={props.previewError}
     >

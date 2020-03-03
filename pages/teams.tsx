@@ -57,7 +57,11 @@ export default function TeamsPage(props) {
   )
 
   return (
-    <OpenAuthoringSiteForm form={form} editMode={props.editMode}>
+    <OpenAuthoringSiteForm
+      path={props.teams.fileRelativePath}
+      form={form}
+      editMode={props.editMode}
+    >
       <TeamsLayout page="teams" color={'secondary'}>
         <NextSeo
           title={data.title}

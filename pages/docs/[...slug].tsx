@@ -44,7 +44,11 @@ export default function DocTemplate(props) {
   const excerpt = formatExcerpt(props.markdownFile.data.markdownBody)
 
   return (
-    <OpenAuthoringSiteForm form={form} editMode={props.editMode}>
+    <OpenAuthoringSiteForm
+      path={props.markdownFile.fileRelativePath}
+      form={form}
+      editMode={props.editMode}
+    >
       <DocsLayout>
         <NextSeo
           title={frontmatter.title}

@@ -43,25 +43,6 @@ export default function BlogTemplate({
     editMode
   )
 
-  const cms = useCMS()
-
-  const saveToStorage = useCallback(formData => {
-    cms.api.storage.save(markdownFile.fileRelativePath, formData.values)
-  }, [])
-
-  // save to storage on change
-  useWatchFormValues(form, saveToStorage)
-
-  // load from storage on boot
-  useEffect(() => {
-    if (!editMode) return
-
-    const values = cms.api.storage.load(markdownFile.fileRelativePath)
-    if (values) {
-      form.updateValues(values)
-    }
-  }, [form, editMode])
-
   const CreateBlogPlugin = new MarkdownCreatorPlugin({
     label: 'New Blog Post',
     filename: form => {
@@ -113,7 +94,11 @@ export default function BlogTemplate({
   const excerpt = formatExcerpt(data.markdownBody)
 
   return (
-    <OpenAuthoringSiteForm form={form} editMode={editMode}>
+    <OpenAuthoringSiteForm
+      path={markdownFile.fileRelativePath}
+      form={form}
+      editMode={editMode}
+    >
       <Layout pathname="/">
         <NextSeo
           title={frontmatter.title}

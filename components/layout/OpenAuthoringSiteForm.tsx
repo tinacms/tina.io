@@ -5,19 +5,21 @@ import {
   EditToggle,
   DiscardButton,
 } from '../../components/ui/inline'
-import { useEffect } from 'react'
+import { useEffect, useCallback } from 'react'
 
-import { useCMS } from 'tinacms'
+import { useCMS, useWatchFormValues } from 'tinacms'
 interface Props extends InlineFormProps {
   editMode: boolean
   previewError?: string
   children: any
+  path: string
 }
 
 const OpenAuthoringSiteForm = ({
   form,
   editMode,
   previewError,
+  path,
   children,
 }: Props) => {
   const cms = useCMS()
@@ -30,6 +32,28 @@ const OpenAuthoringSiteForm = ({
      */
     setTimeout(() => (cms.sidebar.hidden = !editMode), 1)
   }, [])
+
+  /**
+   * persist pending changes to localStorage
+   */
+
+  const saveToStorage = useCallback(formData => {
+    cms.api.storage.save(path, formData.values)
+  }, [])
+
+  // save to storage on change
+  useWatchFormValues(form, saveToStorage)
+
+  // load from storage on boot
+  useEffect(() => {
+    if (!editMode) return
+
+    const values = cms.api.storage.load(path)
+    if (values) {
+      form.updateValues(values)
+    }
+  }, [form, editMode])
+
   return (
     <InlineForm
       form={form}
