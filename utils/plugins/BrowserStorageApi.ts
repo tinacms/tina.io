@@ -31,12 +31,12 @@ export class BrowserStorageApi {
     this.debouncePersist()
   }
 
-  debouncePersist() {
+  private debouncePersist() {
     this.timeout && clearTimeout(this.timeout)
     this.timeout = setTimeout(this.persist.bind(this), 1000)
   }
 
-  persist() {
+  private persist() {
     this.storage.setItem(this.namespace, JSON.stringify(this.data))
   }
 }
