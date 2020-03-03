@@ -96,47 +96,6 @@ export default function BlogTemplate({
   const markdownBody = data.markdownBody
   const excerpt = data.excerpt
 
-  /**
-   * Toolbar Plugins
-   */
-  const cms = useCMS()
-  useEffect(() => {
-    const plugins = [
-      {
-        __type: 'toolbar:tool',
-        name: 'create-pr',
-        component: () => <button>Pull Request</button>,
-      },
-      {
-        __type: 'toolbar:status',
-        name: 'current-fork',
-        component: () => <div>{Cookies.get('fork_full_name')}</div>,
-      },
-      {
-        __type: 'toolbar:form-actions',
-        name: 'base-form-actions',
-        component: () => (
-          <>
-            <button onClick={form.reset}>Reset</button>
-            <button onClick={form.submit}>Save</button>
-          </>
-        ),
-      },
-    ] as any
-
-    const removePlugins = () => {
-      plugins.forEach(plugin => cms.plugins.remove(plugin))
-    }
-
-    if (editMode) {
-      plugins.forEach(plugin => cms.plugins.add(plugin))
-    } else {
-      removePlugins()
-    }
-
-    return removePlugins
-  }, [editMode, form])
-
   return (
     <OpenAuthoringSiteForm
       form={form}
