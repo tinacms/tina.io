@@ -7,7 +7,7 @@ import {
 } from '../../components/ui/inline'
 import { useEffect } from 'react'
 
-import { useCMS } from 'tinacms'
+import { useCMS, Form, TinaCMS } from 'tinacms'
 import Cookies from 'js-cookie'
 interface Props extends InlineFormProps {
   editMode: boolean
@@ -72,6 +72,30 @@ const OpenAuthoringSiteForm = ({
     return removePlugins
   }, [editMode, form])
 
+  useFormStatusPlugin(form, cms, editMode)
+
+  return (
+    <InlineForm
+      form={form}
+      initialStatus={
+        typeof document !== 'undefined' && editMode ? 'active' : 'inactive'
+      }
+    >
+      <OpenAuthoringModalContainer previewError={previewError} />
+      <InlineControls>
+        {editMode && <EditToggle />}
+        <DiscardButton />
+      </InlineControls>
+      {children}
+    </InlineForm>
+  )
+}
+
+const useFormStatusPlugin = (
+  form: Form<any>,
+  cms: TinaCMS,
+  editMode: boolean
+) => {
   useEffect(() => {
     const plugin = {
       __type: 'toolbar:status',
@@ -93,22 +117,6 @@ const OpenAuthoringSiteForm = ({
 
     return () => cms.plugins.remove(plugin)
   }, [editMode, form, form.finalForm.getState().dirty])
-
-  return (
-    <InlineForm
-      form={form}
-      initialStatus={
-        typeof document !== 'undefined' && editMode ? 'active' : 'inactive'
-      }
-    >
-      <OpenAuthoringModalContainer previewError={previewError} />
-      <InlineControls>
-        {editMode && <EditToggle />}
-        <DiscardButton />
-      </InlineControls>
-      {children}
-    </InlineForm>
-  )
 }
 
 export default OpenAuthoringSiteForm
