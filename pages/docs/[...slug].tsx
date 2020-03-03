@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
 import {
@@ -17,10 +17,7 @@ import {
 } from '../../components/ui'
 import { InlineWysiwyg, InlineTextField } from '../../components/ui/inline'
 import { TinaIcon } from '../../components/logo'
-import getMarkdownData from '../../utils/github/getMarkdownData'
-import { getGithubDataFromPreviewProps } from '../../utils/github/sourceProviderConnection'
 import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'
-import getJsonData from '../../utils/github/getJsonData'
 import { getDocProps } from '../../utils/docs/getDocProps'
 import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
 import ContentNotFoundError from '../../utils/github/ContentNotFoundError'

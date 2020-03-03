@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { InlineBlocks } from 'react-tinacms-inline'
 
 import { DefaultSeo } from 'next-seo'
-import { BlockTemplate, useCMS } from 'tinacms'
+import { BlockTemplate } from 'tinacms'
 import { DynamicLink } from '../components/ui/DynamicLink'
 import {
   Layout,

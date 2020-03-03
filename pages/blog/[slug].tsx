@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
-import { usePlugin, useWatchFormValues, useCMS } from 'tinacms'
-import { MarkdownCreatorPlugin } from '../../utils/plugins'
 
 import { formatDate } from '../../utils'
 import {
@@ -21,7 +19,6 @@ import getMarkdownData from '../../utils/github/getMarkdownData'
 import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'
 import { fileToUrl } from '../../utils/urls'
 import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
-import { useEffect, useCallback } from 'react'
 import ContentNotFoundError from '../../utils/github/ContentNotFoundError'
 const fg = require('fast-glob')
 
