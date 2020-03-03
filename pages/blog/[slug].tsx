@@ -22,7 +22,7 @@ import getMarkdownData from '../../utils/github/getMarkdownData'
 import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'
 import { fileToUrl } from '../../utils/urls'
 import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
-import { useEffect } from 'react'
+import { useEffect, useCallback } from 'react'
 
 export default function BlogTemplate({
   markdownFile,
@@ -45,10 +45,12 @@ export default function BlogTemplate({
 
   const cms = useCMS()
 
-  // save to storage on change
-  useWatchFormValues(form, formData => {
+  const saveToStorage = useCallback(formData => {
     cms.api.storage.save(markdownFile.fileRelativePath, formData.values)
-  })
+  }, [])
+
+  // save to storage on change
+  useWatchFormValues(form, saveToStorage)
 
   // load from storage on boot
   useEffect(() => {
