@@ -5,7 +5,7 @@ import {
   EditToggle,
   DiscardButton,
 } from '../../components/ui/inline'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import createDecorator from 'final-form-submit-listener'
 
 import { useCMS } from 'tinacms'
@@ -21,6 +21,7 @@ const OpenAuthoringSiteForm = ({
   previewError,
   children,
 }: Props) => {
+  const [statefulPreviewError, setStatefulPreviewError] = useState(previewError)
   const cms = useCMS()
   useEffect(() => {
     /*
@@ -43,6 +44,15 @@ const OpenAuthoringSiteForm = ({
     return undecorateSaveListener
   }, [form])
 
+  useEffect(() => {
+    const failedListener = createDecorator({
+      afterSubmitFailed: () => setStatefulPreviewError('Failed to save data. Your fork may have been deleted.')
+    })
+
+    const undecorateSaveListener = failedListener(form.finalForm)
+    return undecorateSaveListener
+  }, [form])
+
   return (
     <InlineForm
       form={form}
@@ -50,7 +60,7 @@ const OpenAuthoringSiteForm = ({
         typeof document !== 'undefined' && editMode ? 'active' : 'inactive'
       }
     >
-      <OpenAuthoringModalContainer previewError={previewError} />
+      <OpenAuthoringModalContainer previewError={statefulPreviewError} />
       <InlineControls>
         {editMode && <EditToggle />}
         <DiscardButton />
