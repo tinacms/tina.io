@@ -60,7 +60,7 @@ export default function BlogTemplate({
     if (values) {
       form.updateValues(values)
     }
-  }, [editMode])
+  }, [form, editMode])
 
   const CreateBlogPlugin = new MarkdownCreatorPlugin({
     label: 'New Blog Post',
