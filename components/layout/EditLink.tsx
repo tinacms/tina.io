@@ -1,7 +1,4 @@
-import { useEffect } from 'react'
-import Cookies from 'js-cookie'
 import styled from 'styled-components'
-// import { isEditMode } from '../../utils'
 import { useCMS, useSubscribable } from 'tinacms'
 import { getUser, getBranch } from '../../open-authoring/github/api'
 
