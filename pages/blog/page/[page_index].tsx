@@ -35,7 +35,10 @@ const Index = props => {
   }
 
   return (
-    <Layout>
+    <Layout
+      sourceProviderConnection={props.sourceProviderConnection}
+      editMode={props.editMode}
+    >
       <NextSeo
         title="Blog"
         openGraph={{
@@ -140,6 +143,7 @@ export async function unstable_getStaticProps({
       numPages: numPages,
       currentPage: parseInt(page),
       editMode: !!preview,
+      sourceProviderConnection,
     },
   }
 }

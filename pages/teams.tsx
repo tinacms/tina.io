@@ -58,8 +58,16 @@ export default function TeamsPage(props) {
   )
 
   return (
-    <OpenAuthoringSiteForm form={form} editMode={props.editMode} previewError={props.previewError}>
-      <TeamsLayout page="teams" color={'secondary'}>
+    <OpenAuthoringSiteForm
+      form={form}
+      editMode={props.editMode}
+      previewError={props.previewError}
+    >
+      <TeamsLayout
+        sourceProviderConnection={props.sourceProviderConnection}
+        editMode={props.editMode}
+        color={'secondary'}
+      >
         <NextSeo
           title={data.title}
           description={data.description}
@@ -129,7 +137,7 @@ export async function unstable_getStaticProps({ preview, previewData }) {
       throw e
     }
   }
-  
+
   return {
     props: {
       teams: teamsData,

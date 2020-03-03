@@ -38,7 +38,7 @@ export default function CommunityPage({
   metadata,
   sourceProviderConnection,
   editMode,
-  previewError
+  previewError,
 }) {
   // Registers Tina Form
   const [data, form] = useLocalGithubJsonForm(
@@ -49,8 +49,15 @@ export default function CommunityPage({
   )
 
   return (
-    <OpenAuthoringSiteForm form={form} editMode={editMode} previewError={previewError}>
-      <Layout>
+    <OpenAuthoringSiteForm
+      form={form}
+      editMode={editMode}
+      previewError={previewError}
+    >
+      <Layout
+        sourceProviderConnection={sourceProviderConnection}
+        editMode={editMode}
+      >
         <NextSeo
           title={data.title}
           description={data.description}
