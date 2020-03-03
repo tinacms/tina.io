@@ -41,7 +41,7 @@ const OpenAuthoringSiteForm = ({
 
   const saveToStorage = useCallback(formData => {
     cms.api.storage.save(path, formData.values)
-  }, [])
+  }, [path])
 
   // save to storage on change
   useWatchFormValues(form, saveToStorage)
