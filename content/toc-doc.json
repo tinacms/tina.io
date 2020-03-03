@@ -93,6 +93,11 @@
     ]
   },
   {
+    "title": "Media",
+    "id": "media",
+    "slug": "/docs/media"
+  },
+  {
     "title": "Inline Editing",
     "id": "inline-editing",
     "slug": "/docs/inline-editing"
