@@ -18,13 +18,22 @@ export class BrowserStorageApi {
   }
 
   save(id, content) {
-    this.timeout && clearTimeout(this.timeout)
     this.data[id] = content
-    this.timeout = setTimeout(this.persist.bind(this), 1000)
+    this.debouncePersist()
   }
 
   load(id) {
     return this.data[id]
+  }
+
+  clear(id) {
+    delete this.data[id]
+    this.debouncePersist()
+  }
+
+  debouncePersist() {
+    this.timeout && clearTimeout(this.timeout)
+    this.timeout = setTimeout(this.persist.bind(this), 1000)
   }
 
   persist() {
