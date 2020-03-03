@@ -47,7 +47,7 @@ export default function DocTemplate(props) {
   return (
     <OpenAuthoringSiteForm
       form={form}
-      path={markdownFile.fileRelativePath}
+      path={props.markdownFile.fileRelativePath}
       editMode={props.editMode}
       previewError={props.previewError}
     >
