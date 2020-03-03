@@ -9,6 +9,7 @@ import { useEffect } from 'react'
 import createDecorator from 'final-form-submit-listener'
 
 import { useCMS } from 'tinacms'
+import Cookies from 'js-cookie'
 interface Props extends InlineFormProps {
   editMode: boolean
   previewError?: string
@@ -35,7 +36,12 @@ const OpenAuthoringSiteForm = ({
   // show feedback onSave
   useEffect(() => {
     const submitListener = createDecorator({
-      afterSubmitSucceeded: () => cms.alerts.success('Save Successful'),
+      afterSubmitSucceeded: () =>
+        cms.alerts.success(
+          `Saved Successfully: Changes committed to ${Cookies.get(
+            'fork_full_name'
+          )}`
+        ),
     })
 
     const undecorateSaveListener = submitListener(form.finalForm)
