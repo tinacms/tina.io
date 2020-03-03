@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ActionableModal } from '../components/ui'
 import { enterEditMode } from './authFlow'
+import { useOpenAuthoring } from '../components/layout/OpenAuthoring'
 
 interface Props {
   previewError?: string
@@ -29,6 +30,7 @@ export const OpenAuthoringModalContainer = ({ previewError }: Props) => {
       setAuthPopupDisplayed(true)
     }
   }, [])
+  const openAuthoring = useOpenAuthoring()
 
   return (
     <>
@@ -39,7 +41,11 @@ export const OpenAuthoringModalContainer = ({ previewError }: Props) => {
           actions={[
             {
               name: 'Continue',
-              action: enterEditMode,
+              action: () =>
+                enterEditMode(
+                  openAuthoring.githubAuthenticated,
+                  openAuthoring.forkValid
+                ),
             },
             {
               name: 'Cancel',
