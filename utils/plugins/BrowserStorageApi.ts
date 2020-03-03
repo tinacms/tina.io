@@ -6,7 +6,7 @@ export class BrowserStorageApi {
 
   constructor(storage: Storage, namespace = null) {
     if (!namespace) {
-      this.namespace = window.location.hostname
+      this.namespace = `tina-local-storage:window.location.hostname`
     } else {
       this.namespace = namespace
     }
