@@ -49,6 +49,7 @@ export default function BlogTemplate({
   return (
     <OpenAuthoringSiteForm
       form={form}
+      path={markdownFile.fileRelativePath}
       editMode={editMode}
       previewError={previewError}
     >

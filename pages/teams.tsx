@@ -60,6 +60,7 @@ export default function TeamsPage(props) {
   return (
     <OpenAuthoringSiteForm
       form={form}
+      path={props.teams.fileRelativePath}
       editMode={props.editMode}
       previewError={props.previewError}
     >
