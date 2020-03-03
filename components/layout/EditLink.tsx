@@ -1,13 +1,17 @@
 import { useEffect } from 'react'
 import Cookies from 'js-cookie'
-import styled from 'styled-components'
-// import { isEditMode } from '../../utils'
+import styled, { css } from 'styled-components'
 import { useCMS, useSubscribable } from 'tinacms'
 import { getUser, getBranch } from '../../open-authoring/github/api'
+import { EditIcon } from '@tinacms/icons'
+import { enterEditMode, exitEditMode } from '../../open-authoring/authFlow'
+import { Button } from '../ui'
 
-import { enterEditMode, exitEditMode } from "../../open-authoring/authFlow"
+interface EditLinkProps {
+  color?: 'white' | 'primary' | 'secondary' | 'seafoam' | 'variable'
+}
 
-export const EditLink = () => {
+export const EditLink = ({ color }: EditLinkProps) => {
   const cms = useCMS()
 
   let _isEditMode = !cms.sidebar.hidden
@@ -16,37 +20,19 @@ export const EditLink = () => {
     _isEditMode = !cms.sidebar.hidden
   })
 
-
   return (
-    <EditButton id="OpenAuthoringEditButton" onClick={_isEditMode ? exitEditMode : enterEditMode}>
-      {_isEditMode ? 'Exit Edit Mode' : 'Edit This Site'}
-    </EditButton>
+    <EditToggleButton
+      id="OpenAuthoringEditButton"
+      color={color}
+      onClick={_isEditMode ? exitEditMode : enterEditMode}
+    >
+      <EditIcon /> {_isEditMode ? 'Exit Edit Mode' : 'Edit This Site'}
+    </EditToggleButton>
   )
 }
 
+interface EditToggleButtonProps {
+  isEditMode: boolean
+}
 
-const EditButton = styled.button`
-  background: none;
-  padding: 0;
-  display: inline;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  color: white;
-  transition: all 150ms ease-out;
-  transform: translate3d(0px, 0px, 0px);
-
-  &:hover,
-  &:focus {
-    text-decoration: none;
-    transform: translate3d(-1px, -2px, 0);
-    transition: transform 180ms ease-out;
-  }
-  &:focus,
-  &:active {
-    outline: none;
-  }
-  &:active {
-    filter: none;
-  }
-`
+const EditToggleButton = styled(Button)``

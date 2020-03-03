@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { InlineBlocks } from 'react-tinacms-inline'
-
+import { EditLink } from '../components/layout/EditLink'
 import { DefaultSeo } from 'next-seo'
 import { BlockTemplate, useCMS } from 'tinacms'
 import { DynamicLink } from '../components/ui/DynamicLink'
@@ -138,6 +138,7 @@ const HomePage = (props: any) => {
                       Get Started
                     </Button>
                   </DynamicLink>
+                  <EditLink />
                 </CtaBar>
               </CtaLayout>
               <InfoLayout>
@@ -370,6 +371,9 @@ const CtaBar = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  button {
+    margin: 0.5rem 0.75rem;
+  }
   iframe {
     margin-left: 1rem;
   }

@@ -95,8 +95,31 @@ const FooterBottom = styled.div`
 
 const Footnote = styled.span`
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   color: inherit;
   font-size: 1rem;
+
+  button {
+    height: 40px;
+    color: white;
+    background-color: var(--color-primary);
+    margin-bottom: 1rem;
+
+    &:hover,
+    &:focus {
+      color: white;
+      fill: white;
+    }
+
+    &:focus {
+      border-color: white;
+    }
+
+    svg {
+      fill: white;
+    }
+  }
 
   p,
   a,
@@ -120,13 +143,31 @@ const Footnote = styled.span`
       opacity: 1;
     }
   }
+
+  @media (min-width: 500px) {
+    flex-direction: row;
+    align-items: center;
+
+    button {
+      margin-bottom: 0;
+      margin-right: 1rem;
+    }
+  }
 `
 
 const FooterDivider = styled.span`
   &:after {
-    content: '|';
-    margin: 0 0.5rem;
+    content: '—';
+    margin: 0.5rem 0;
     opacity: 0.3;
+  }
+
+  @media (min-width: 500px) {
+    &:after {
+      content: '|';
+      margin: 0 0.5rem;
+      opacity: 0.3;
+    }
   }
 `
 
@@ -156,7 +197,6 @@ export const Footer = styled(({ light: boolean, ...styleProps }) => {
         </FooterForm>
         <Footnote>
           <EditLink />
-          <FooterDivider />
           <a
             href="https://github.com/tinacms/tinacms/blob/master/LICENSE"
             target="_blank"
