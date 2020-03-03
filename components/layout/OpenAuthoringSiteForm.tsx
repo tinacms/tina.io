@@ -72,6 +72,28 @@ const OpenAuthoringSiteForm = ({
     return removePlugins
   }, [editMode, form])
 
+  useEffect(() => {
+    const plugin = {
+      __type: 'toolbar:status',
+      name: 'form-state-dirty',
+      component: () => (
+        <>
+          {form.finalForm.getState().dirty ? (
+            <div>Dirty</div>
+          ) : (
+            <div>No changes</div>
+          )}
+        </>
+      ),
+    }
+
+    if (editMode) {
+      cms.plugins.add(plugin)
+    }
+
+    return () => cms.plugins.remove(plugin)
+  }, [editMode, form, form.finalForm.getState().dirty])
+
   return (
     <InlineForm
       form={form}
