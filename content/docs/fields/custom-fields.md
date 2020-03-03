@@ -20,7 +20,7 @@ There are two ways to create custom fields with Tina:
 
 A field `Component` is React component that accepts three props:
 
-- `field`: The [field definition](https://tinacms.org/docs/concepts/fields#field-definition) for the current field.
+- `field`: The [field definition](https://tinacms.org/docs/fields) for the current field.
 - `input`: The data and callbacks necessary to make an input.
 - `meta`: Metadata about the field in the form. (e.g. `dirty`, `valid`)
 
@@ -30,7 +30,7 @@ Checkout the [react-final-form](https://github.com/final-form/react-final-form#f
 
 A field plugin is a JavaScript object with three properties:
 
-- `name`: A string used to identify the component. This is the name that is set in a [field definition](https://tinacms.org/docs/concepts/fields#field-definition). This name must be unique; if multiple plugins are registered with the same name, only the last will be used.
+- `name`: A string used to identify the component. This is the name that is set in a [field definition](https://tinacms.org/docs/fields). This name must be unique; if multiple plugins are registered with the same name, only the last will be used.
 - `Component`: The component that will used in the form. The exact nature of this component depends on which form builder is being used.
 - `validate`: An optional function that will be used to validate the field's data.
 
@@ -112,7 +112,7 @@ cms.fields.add({
 
 If you want to style the custom field to fit in with the rest of the Tina sidebar, you'll need to access Tina theme styles from [`@tinacms/styles`](https://github.com/tinacms/tinacms/blob/master/packages/%40tinacms/styles/src/Styles.tsx).
 
-If the Tina theme has been [customized](https://tinacms.org/docs/concepts/sidebar#customizing-the-sidebar-theme), the `Theme` values will be a combination of the customized styles and those set by [`DefaultTheme`](https://tinacms.org/docs/concepts/sidebar#default-theme). The theme will fallback to all default values if no customization is set.
+If the Tina theme has been customized, the `Theme` values will be a combination of the customized styles and those set by `DefaultTheme`. The theme will fallback to all default values if no customization is set.
 
 To utilize these `Theme` values, helper functions have been created.
 
@@ -163,9 +163,9 @@ const Label = styled.h3`
 
 ### Using the Default Theme
 
-You can also access the [`DefaultTheme`](https://tinacms.org/docs/concepts/sidebar#default-theme) directly without using the helpers. This is helpful when you want to utilize Tina Theme styles outside of `styled-components` or if you just prefer working with the theme values directly, without helpers.
+You can also access the `DefaultTheme` directly without using the helpers. This is helpful when you want to utilize Tina Theme styles outside of `styled-components` or if you just prefer working with the theme values directly, without helpers.
 
-> Although it's called `DefaultTheme`, note that if you pass [custom values to the sidebar](https://tinacms.org/docs/concepts/sidebar#customizing-the-sidebar-theme), `DefaultTheme` provides the overridden values instead of the true Tina defaults.
+> Although it's called `DefaultTheme`, note that if you pass custom values to the sidebar, `DefaultTheme` provides the overridden values instead of the true Tina defaults.
 
 ```jsx
 /*

@@ -1,50 +1,53 @@
 ---
-title: Text Area Field
-prev: /docs/fields/text
-next: /docs/fields/markdown
-consumes:
-  - file: /packages/tinacms/src/plugins/fields/TextareaFieldPlugin.tsx
-    details: Shows textarea field interface and config options
-  - file: /packages/@tinacms/fields/src/TextArea.ts
-    details: Shows textarea field interface and config options
+title: Tina is Not a CMS
+id: introduction
+prev: null
+next: /docs/getting-started/how-tina-works
 ---
 
-The `textarea` field represents a multi-line text input. It should be used for content values that are long strings: for example, a page description.
+Tina is a **lightweight but powerful toolkit** for creating a content editing interface with JavaScript components. Tina surfaces superpowers for developers to create an intuitive UI for real-time content editing, built directly into their website.
 
-![tinacms-textarea-field](/img/fields/textarea.png)
+## The Next Generation of Content Management
 
-## Definition
+![tina-gif](https://res.cloudinary.com/forestry-demo/video/upload/du_16,w_700,e_loop/v1571159974/tina-hero-demo.gif)
 
-Below is an example of how a `textarea` field could be defined in a Gatsby remark form. [Read more on passing in form field options](/docs/gatsby/markdown#customizing-remark-forms).
+Tina is optimized for next-gen JAMstack tools. It is written in JavaScript and easily adapted to multiple different frameworks.
 
-```javascript
-const BlogPostForm = {
-  fields: [
-    {
-      name: 'rawFrontmatter.description',
-      component: 'textarea',
-      label: 'Description',
-      description: 'Enter the post description here',
-    },
-    // ...
-  ],
-}
-```
+Tina currently supports React-based frameworks, including:
 
-## Options
+- Create-React-App
+- Gatsby
+- NextJS
 
-- `name`: The path to some value in the data being edited.
-- `component`: The name of the React component that should be used to edit this field. Available field component types are [defined here](/docs/concepts/fields#field-types)
-- `label`: A human readable label for the field. This label displays in the sidebar and is optional. If no label is provided, the sidebar will default to the name.
-- `description`: An optional description that expands on the purpose of the field or prompts a specific action.
+## Get Started
 
-## Interface
+To use Tina, you should have a good working knowledge of your JavaScript framework & JAMstack tools of choice.
 
-```typescript
-interface TextareaConfig {
-  name: string
-  component: 'textarea'
-  label?: string
-  description?: string
-}
-```
+If you want to get started with some code right away, check out the [Gatsby Quickstart](/docs/gatsby/quickstart) or [Next.js Overview](/docs/nextjs/overview).
+
+If you want to dive deep, start by learning more about [how Tina works](/docs/getting-started/how-tina-works) and get familiar with some core concepts.
+
+## For Gatsby
+
+- [Quickstart](/docs/gatsby/quickstart) with a Tina Starter to hit the ground running.
+- [Manual Setup](/docs/gatsby/manual-setup) for adding Tina to an existing Gatsby site.
+
+**Gatsby Starters**
+
+- [Gatsby Blog Starter](https://github.com/tinacms/gatsby-starter-tinacms) with Tina — The classic Gatsby starter, but Tinified.
+- [Tina Grande](https://github.com/tinacms/tina-starter-grande) — A more advanced starter to showcase the power of Tina.
+- [Tina Brevifolia](https://github.com/kendallstrautman/brevifolia-gatsby-tinacms) — A Markdown-based blog with minimalist design and Tina for editing.
+
+Want to add your starter? Make a [PR](/docs/contributing/guidelines) to add your Tina site to this list.
+
+## For Next.js
+
+- [Next.js + Tina Overview](/docs/nextjs/overview) — Get started with the documentation
+- Read an in-depth tutorial on [Using TinaCMS with Next.js](/blog/using-tinacms-with-nextjs/)
+- Check out this sample [Next.js Markdown Blog](https://github.com/kendallstrautman/brevifolia-next-tinacms) with Tina configured for reference.
+
+## Get Involved
+
+Want to help out with Tina's development? Please visit our [Contributing](/docs/contributing/guidelines) section in our docs to learn more.
+
+Looking for help with Tina, or want to stay on top of the latest developments? Checkout the [Tina Community Forum](https://community.tinacms.org/) to get answers, help, and llama-humor.

@@ -2,3 +2,8 @@
 /blog/introducing-tina-grande-%F0%9F%8E%89     /blog/introducing-tina-grande
 /jamstack-conf             /teams
 /smashing-conf              /teams
+/docs/concepts/sidebar       /docs/cms
+/docs/concepts/forms         /docs/forms
+/docs/concepts/fields        /docs/fields
+/docs/concepts/backends      /docs/cms#apis
+/docs/concepts/plugins       /docs/cms#plugins

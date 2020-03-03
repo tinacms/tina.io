@@ -33,7 +33,7 @@ export const BlogPagination = styled(
             </DynamicLink>
           )}
         </PaginationLinks>
-        <p>
+        <div>
           Page{' '}
           <SelectWrapper>
             <select
@@ -46,6 +46,7 @@ export const BlogPagination = styled(
                   arial-label={`Go to Page ${i + 1}`}
                   aria-current={i + 1 === currentPage ? true : false}
                   value={i + 1}
+                  key={`page-${i}`}
                 >
                   {i + 1}
                 </option>
@@ -53,7 +54,7 @@ export const BlogPagination = styled(
             </select>
           </SelectWrapper>{' '}
           of {numPages}
-        </p>
+        </div>
       </div>
     )
   }

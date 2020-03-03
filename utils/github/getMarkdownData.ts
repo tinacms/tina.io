@@ -3,6 +3,7 @@ import { SourceProviderConnection } from './sourceProviderConnection'
 import path from 'path'
 import matter from 'gray-matter'
 import getDecodedData from './getDecodedData'
+import { formatExcerpt } from '..'
 
 const getMarkdownData = async (
   filePath: string,
@@ -29,7 +30,11 @@ const getMarkdownData = async (
     const doc = matter(await readFile(path.resolve(`${filePath}`)))
     return {
       fileRelativePath: filePath,
-      data: { frontmatter: doc.data, markdownBody: doc.content },
+      data: {
+        frontmatter: doc.data,
+        excerpt: formatExcerpt(doc.content),
+        markdownBody: doc.content,
+      },
     }
   }
 }

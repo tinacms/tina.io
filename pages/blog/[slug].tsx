@@ -1,10 +1,9 @@
 import styled from 'styled-components'
-const fg = require('fast-glob')
 import { NextSeo } from 'next-seo'
 import { usePlugin, useWatchFormValues, useCMS } from 'tinacms'
 import { MarkdownCreatorPlugin } from '../../utils/plugins'
 
-import { formatDate, formatExcerpt } from '../../utils'
+import { formatDate } from '../../utils'
 import {
   Layout,
   Hero,
@@ -23,12 +22,15 @@ import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMar
 import { fileToUrl } from '../../utils/urls'
 import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
 import { useEffect, useCallback } from 'react'
+import ContentNotFoundError from '../../utils/github/ContentNotFoundError'
+const fg = require('fast-glob')
 
 export default function BlogTemplate({
   markdownFile,
   sourceProviderConnection,
   siteConfig,
   editMode,
+  previewError,
 }) {
   //workaround for fallback being not implemented
   if (!markdownFile) {
@@ -43,63 +45,21 @@ export default function BlogTemplate({
     editMode
   )
 
-  const CreateBlogPlugin = new MarkdownCreatorPlugin({
-    label: 'New Blog Post',
-    filename: form => {
-      const slug = form.title.replace(/\s+/, '-').toLowerCase()
-      return `content/blog/${slug}.md`
-    },
-    fields: [
-      {
-        name: 'title',
-        component: 'text',
-        label: 'Title',
-        placeholder: 'My New Post',
-        description: 'The title of the new blog post.',
-      },
-      {
-        label: 'Date',
-        name: 'date',
-        component: 'date',
-        description: 'The default will be today',
-      },
-      {
-        label: 'Author',
-        description: 'Who wrote this, yo?',
-        name: 'author',
-        component: 'text',
-      },
-    ],
-    githubOptions: sourceProviderConnection,
-    isEditMode: editMode,
-    frontmatter: postInfo => ({
-      title: postInfo.title,
-      date: postInfo.date ? postInfo.date : new Date(),
-      author: postInfo.author ? postInfo.author : `Jane Doe`,
-    }),
-    body: postInfo => `New post, who dis?`,
-    afterCreate: response => {
-      let url = fileToUrl(
-        response.data.content.path.split('content')[1],
-        'blog'
-      )
-      window.location.href = url
-    },
-  })
-
-  usePlugin(CreateBlogPlugin)
-
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
-  const excerpt = formatExcerpt(data.markdownBody)
+  const excerpt = data.excerpt
 
   return (
     <OpenAuthoringSiteForm
-      path={markdownFile.fileRelativePath}
       form={form}
+      path={markdownFile.fileRelativePath}
       editMode={editMode}
+      previewError={previewError}
     >
-      <Layout pathname="/">
+      <Layout
+        sourceProviderConnection={sourceProviderConnection}
+        editMode={editMode}
+      >
         <NextSeo
           title={frontmatter.title}
           titleTemplate={'%s | ' + siteConfig.title + ' Blog'}
@@ -166,10 +126,21 @@ export async function unstable_getStaticProps({
   const { slug } = ctx.params
 
   const sourceProviderConnection = getGithubDataFromPreviewProps(previewData)
-  const file = await getMarkdownData(
-    `content/blog/${slug}.md`,
-    sourceProviderConnection
-  )
+
+  let previewError: string
+  let file = {}
+  try {
+    file = await getMarkdownData(
+      `content/blog/${slug}.md`,
+      sourceProviderConnection
+    )
+  } catch (e) {
+    if (e instanceof ContentNotFoundError) {
+      previewError = e.message
+    } else {
+      throw e
+    }
+  }
 
   //TODO - move to readFile
   const siteConfig = await import('../../content/siteConfig.json')
@@ -178,6 +149,7 @@ export async function unstable_getStaticProps({
     props: {
       sourceProviderConnection,
       editMode: !!preview,
+      previewError: previewError,
       siteConfig: {
         title: siteConfig.title,
       },

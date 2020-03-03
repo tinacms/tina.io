@@ -6,8 +6,10 @@ import {
   DiscardButton,
 } from '../../components/ui/inline'
 import { useEffect, useCallback } from 'react'
-
 import { useCMS, useWatchFormValues } from 'tinacms'
+import createDecorator from 'final-form-submit-listener'
+import Cookies from 'js-cookie'
+
 interface Props extends InlineFormProps {
   editMode: boolean
   previewError?: string
@@ -53,6 +55,21 @@ const OpenAuthoringSiteForm = ({
       form.updateValues(values)
     }
   }, [form, editMode])
+  // show feedback onSave
+  useEffect(() => {
+    const submitListener = createDecorator({
+      afterSubmitSucceeded: () =>
+        cms.alerts.success(
+          `Saved Successfully: Changes committed to ${Cookies.get(
+            'fork_full_name'
+          )}`
+        ),
+    })
+
+    const undecorateSaveListener = submitListener(form.finalForm)
+
+    return undecorateSaveListener
+  }, [form])
 
   return (
     <InlineForm

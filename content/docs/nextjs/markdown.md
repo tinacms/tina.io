@@ -18,7 +18,7 @@ The `next-tinacms-markdown` package provides a set of methods for editing conten
 
 ## Using the hooks
 
-The hooks, `useLocalMarkdownForm` & `useGlobalMarkdownForm`, work similarly. The biggest difference between them is whether they register [local or global](https://tinacms.org/docs/concepts/forms#local--global-forms) forms wih the CMS.
+The hooks, `useLocalMarkdownForm` & `useGlobalMarkdownForm`, work similarly. The biggest difference between them is whether they register [local or global](https://tinacms.org/docs/forms) forms wih the CMS.
 
 **Arguments**
 

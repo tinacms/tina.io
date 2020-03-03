@@ -114,7 +114,10 @@ const HomePage = (props: any) => {
       editMode={props.editMode}
       previewError={props.previewError}
     >
-      <Layout pathname="/">
+      <Layout
+        sourceProviderConnection={props.sourceProviderConnection}
+        editMode={props.editMode}
+      >
         <DefaultSeo titleTemplate={formData.title + ' | %s'} />
         <Hero overlap narrow>
           <InlineTextareaField name="headline" />

@@ -5,7 +5,8 @@ import styled from 'styled-components'
 import { useCMS, useSubscribable } from 'tinacms'
 import { getUser, getBranch } from '../../open-authoring/github/api'
 
-import { enterEditMode, exitEditMode } from "../../open-authoring/authFlow"
+import { enterEditMode, exitEditMode } from '../../open-authoring/authFlow'
+import { useOpenAuthoring } from './OpenAuthoring'
 
 export const EditLink = () => {
   const cms = useCMS()
@@ -16,14 +17,25 @@ export const EditLink = () => {
     _isEditMode = !cms.sidebar.hidden
   })
 
+  const openAuthoring = useOpenAuthoring()
 
   return (
-    <EditButton id="OpenAuthoringEditButton" onClick={_isEditMode ? exitEditMode : enterEditMode}>
+    <EditButton
+      id="OpenAuthoringEditButton"
+      onClick={
+        _isEditMode
+          ? exitEditMode
+          : () =>
+              enterEditMode(
+                openAuthoring.githubAuthenticated,
+                openAuthoring.forkValid
+              )
+      }
+    >
       {_isEditMode ? 'Exit Edit Mode' : 'Edit This Site'}
     </EditButton>
   )
 }
-
 
 const EditButton = styled.button`
   background: none;

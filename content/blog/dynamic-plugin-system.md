@@ -17,19 +17,17 @@ Usually plugin systems are static. We list all the plugins we need in a config a
 Take the postCreatorPlugin defined below; it adds a button to the sidebar so you can create new blog posts:
 
 ```js
-import slugify from "slugify"
+import slugify from 'slugify'
 
 const postCreatorPlugin = new RemarkCreatorPlugin({
-  label: "Post",
-  fields: [
-    { name: "title", label: "Post", component: "text" },
-  ],
+  label: 'Post',
+  fields: [{ name: 'title', label: 'Post', component: 'text' }],
   filename({ title }) {
     return `content/posts/${slugify(title).toLowerCase()}.md}`
   },
   frontmatter({ title }) {
     return { title }
-  }
+  },
 })
 ```
 
@@ -59,4 +57,4 @@ This plugin system demonstrates how the principle of Inversion of Control influe
 
 This approach benefits both sides: plugin authors don’t have to worry about implementing some complex configuration scheme, and developers can apply the plugin in both simple and complex use cases without resorting to hacks.
 
-If you're interested in learning more about plugins in TinaCMS, checkout the [documentation](https://tinacms.org/docs/concepts/plugins). Interested in creating your own plugin? Head over to the contribution [guidelines](https://tinacms.org/docs/contributing/guidelines). Feel free to post any questions or comments in the [Tina Forum](https://community.tinacms.org/t/dynamic-plugins-in-tinacms/37).
+If you're interested in learning more about plugins in TinaCMS, checkout the [documentation](https://tinacms.org/docs/cms#plugins). Interested in creating your own plugin? Head over to the contribution [guidelines](https://tinacms.org/docs/contributing/guidelines). Feel free to post any questions or comments in the [Tina Forum](https://community.tinacms.org/t/dynamic-plugins-in-tinacms/37).

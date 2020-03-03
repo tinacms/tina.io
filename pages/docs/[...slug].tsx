@@ -1,7 +1,6 @@
 import React, { useState, useMemo } from 'react'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
-import { formatExcerpt, readFile } from '../../utils'
 import {
   DocsLayout,
   MarkdownContent,
@@ -24,11 +23,13 @@ import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMar
 import getJsonData from '../../utils/github/getJsonData'
 import { getDocProps } from '../../utils/docs/getDocProps'
 import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
+import ContentNotFoundError from '../../utils/github/ContentNotFoundError'
+import { OpenAuthoringModalContainer } from '../../open-authoring/OpenAuthoringModalContainer'
 
 export default function DocTemplate(props) {
   // Workaround for fallback being not implemented
   if (!props.markdownFile) {
-    return <div></div>
+    return <OpenAuthoringModalContainer previewError={props.previewError} />
   }
 
   // Registers Tina Form
@@ -41,13 +42,14 @@ export default function DocTemplate(props) {
   const [open, setOpen] = useState(false)
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
-  const excerpt = formatExcerpt(props.markdownFile.data.markdownBody)
+  const excerpt = props.markdownFile.data.excerpt
 
   return (
     <OpenAuthoringSiteForm
-      path={props.markdownFile.fileRelativePath}
       form={form}
+      path={markdownFile.fileRelativePath}
       editMode={props.editMode}
+      previewError={props.previewError}
     >
       <DocsLayout>
         <NextSeo
@@ -116,7 +118,22 @@ export async function unstable_getStaticProps(props) {
   let { slug: slugs } = props.params
 
   const slug = slugs.join('/')
-  return getDocProps(props, slug)
+
+  try {
+    return getDocProps(props, slug)
+  } catch (e) {
+    console.log('failed: ' + e)
+
+    if (e instanceof ContentNotFoundError) {
+      return {
+        props: {
+          previewError: e.message,
+        },
+      }
+    } else {
+      throw e
+    }
+  }
 }
 
 export async function unstable_getStaticPaths() {
