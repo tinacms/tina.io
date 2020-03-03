@@ -38,6 +38,7 @@
     "express": "^4.17.1",
     "fast-glob": "^3.1.1",
     "final-form": "^4.18.7",
+    "final-form-submit-listener": "^1.0.0",
     "fs": "^0.0.1-security",
     "github-slugger": "^1.2.1",
     "gray-matter": "^4.0.2",
@@ -68,10 +69,10 @@
     "react-syntax-highlighter": "^12.2.1",
     "react-textarea-autosize": "^7.1.2",
     "react-tinacms-inline": "^0.2.0-alpha.0",
-    "tinacms": "^0.15.0-alpha.0",
     "remove-markdown": "^0.3.0",
     "serve": "11.2.0",
     "styled-components": "^4.4.1",
+    "tinacms": "0.15.0",
     "webpack": "^4.41.5"
   },
   "devDependencies": {

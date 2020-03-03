@@ -6,6 +6,7 @@ import {
   DiscardButton,
 } from '../../components/ui/inline'
 import { useEffect } from 'react'
+import createDecorator from 'final-form-submit-listener'
 
 import { useCMS } from 'tinacms'
 interface Props extends InlineFormProps {
@@ -30,6 +31,18 @@ const OpenAuthoringSiteForm = ({
      */
     setTimeout(() => (cms.sidebar.hidden = !editMode), 1)
   }, [])
+
+  // show feedback onSave
+  useEffect(() => {
+    const submitListener = createDecorator({
+      afterSubmitSucceeded: () => cms.alerts.success('Save Successful'),
+    })
+
+    const undecorateSaveListener = submitListener(form.finalForm)
+
+    return undecorateSaveListener
+  }, [form])
+
   return (
     <InlineForm
       form={form}
