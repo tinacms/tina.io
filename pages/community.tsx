@@ -112,16 +112,6 @@ export default function CommunityPage({
         </SocialBar>
         <RichTextWrapper>
           <Section>
-            {/*
-             *** Inline controls shouldn't render
-             *** until we're ready for Inline release
-             */}
-            {/*
-              <InlineControls>
-              <EditToggle />
-              <DiscardButton />
-              </InlineControls>
-            */}
             <Wrapper>
               <InfoLayout>
                 <InfoContent>

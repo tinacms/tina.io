@@ -1,10 +1,5 @@
 import { InlineForm, InlineFormProps } from 'react-tinacms-inline'
 import { OpenAuthoringModalContainer } from '../../open-authoring/OpenAuthoringModalContainer'
-import {
-  InlineControls,
-  EditToggle,
-  DiscardButton,
-} from '../../components/ui/inline'
 import { Button, color } from '@tinacms/styles'
 import UndoIconSvg from '../../public/svg/undo-icon.svg'
 import PrIconSvg from '../../public/svg/pr-icon.svg'
@@ -44,6 +39,7 @@ const OpenAuthoringSiteForm = ({
    * Toolbar Plugins
    */
   useEffect(() => {
+    const dirty = form.finalForm.getState().dirty ? true : false
     const plugins = [
       {
         __type: 'toolbar:git',
@@ -73,12 +69,25 @@ const OpenAuthoringSiteForm = ({
         name: 'base-form-actions',
         component: () => (
           <>
-            <ActionButton onClick={form.reset}>
-              <UndoIconSvg /> Discard
-            </ActionButton>
-            <SaveButton primary onClick={form.submit}>
-              Save Page
-            </SaveButton>
+            {form.finalForm.getState().dirty ? (
+              <>
+                <ActionButton onClick={form.reset}>
+                  <UndoIconSvg /> Discard
+                </ActionButton>
+                <SaveButton primary onClick={form.submit}>
+                  Save Page
+                </SaveButton>
+              </>
+            ) : (
+              <>
+                <ActionButton onClick={form.reset} disabled>
+                  <UndoIconSvg /> Discard
+                </ActionButton>
+                <SaveButton primary onClick={form.submit} disabled>
+                  Save Page
+                </SaveButton>
+              </>
+            )}
           </>
         ),
       },
@@ -147,10 +156,6 @@ const OpenAuthoringSiteForm = ({
       }
     >
       <OpenAuthoringModalContainer previewError={statefulPreviewError} />
-      <InlineControls>
-        {editMode && <EditToggle />}
-        <DiscardButton />
-      </InlineControls>
       {children}
     </InlineForm>
   )
