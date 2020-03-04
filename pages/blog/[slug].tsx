@@ -89,10 +89,11 @@ export default function BlogTemplate({
           <RichTextWrapper>
             <BlogMeta>
               <MetaWrap>
-                <p>{formatDate(frontmatter.date)}</p>
-                <p>
-                  By <InlineTextField name="frontmatter.author" />
-                </p>
+                <MetaBit>{formatDate(frontmatter.date)}</MetaBit>
+                <MetaBit>
+                  <span>By</span>{' '}
+                  <InlineTextareaField name="frontmatter.author" />
+                </MetaBit>
               </MetaWrap>
               <EditLink isEditMode={editMode} />
             </BlogMeta>
@@ -255,13 +256,8 @@ const BlogMeta = styled.div`
   align-items: center;
   display: flex;
   flex-direction: row;
-  margin-bottom: 1.5rem;
+  margin-bottom: 3rem;
   margin-top: -0.5rem;
-  p {
-    margin: 0;
-    color: 0;
-    display: block;
-  }
 
   @media (min-width: 550px) {
     flex-direction: row;
@@ -270,6 +266,16 @@ const BlogMeta = styled.div`
 
 const MetaWrap = styled.span`
   opacity: 0.4;
+`
+
+const MetaBit = styled.p`
+  display: flex;
+  margin: 0 !important;
+
+  span {
+    opacity: 0.5;
+    margin-right: 0.25rem;
+  }
 `
 
 /*
