@@ -36,6 +36,6 @@ The ability for a website to run statically by default, and then "wake up" into 
 
 What if it were effortless to fix a spelling error on the New York Times? Imagine contributing to the ReactJS documentation in an instant.
 
-**The web is all about community**, crowdsourcing, and the power of many perspectives. The easier it is to make content contributions, the more viewpoints we incorporate.
+**The web is all about community**, crowdsourcing, and the power of many perspectives. The easier it is to make content contributions, the more viewpoints we incorporate. The less context switching, the _more space for creative expression_ of ideas.
 
 Let's democratize content and strengthen the independent web.
