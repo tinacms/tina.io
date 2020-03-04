@@ -46,6 +46,11 @@
         "title": "Markdown"
       },
       {
+        "id": "/docs/fields/html",
+        "slug": "/docs/fields/html",
+        "title": "HTML"
+      },
+      {
         "id": "/docs/fields/number",
         "slug": "/docs/fields/number",
         "title": "Number"
