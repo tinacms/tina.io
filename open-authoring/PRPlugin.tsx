@@ -1,11 +1,6 @@
 import React, { useState } from 'react'
-import {
-  ActionButton,
-  Modal,
-  ModalPopup,
-  ModalHeader,
-  ModalBody,
-} from 'tinacms'
+import { Modal, ModalPopup, ModalHeader, ModalBody } from 'tinacms'
+import { ToolbarButton } from '../components/layout/OpenAuthoringSiteForm'
 import PrIconSvg from '../public/svg/pr-icon.svg'
 import { PRModal } from './PRModal'
 
@@ -42,10 +37,10 @@ function PullRequestButton({
   const close = () => setOpened(false)
   return (
     <>
-      <ActionButton onClick={() => setOpened(p => !p)}>
+      <ToolbarButton onClick={() => setOpened(p => !p)}>
         <PrIconSvg />
         Pull Request
-      </ActionButton>
+      </ToolbarButton>
       {opened && (
         <Modal>
           <ModalPopup>

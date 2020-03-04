@@ -66,9 +66,9 @@ const OpenAuthoringSiteForm = ({
         name: 'base-form-actions',
         component: () => (
           <>
-            <ActionButton onClick={form.reset}>
+            <ToolbarButton onClick={form.reset}>
               <UndoIconSvg /> Discard
-            </ActionButton>
+            </ToolbarButton>
             <SaveButton primary onClick={form.submit}>
               Save Page
             </SaveButton>
@@ -186,7 +186,7 @@ const MetaLink = styled.a`
   color: ${color.primary('dark')};
 `
 
-const ActionButton = styled(Button)`
+export const ToolbarButton = styled(Button)`
   display: flex;
   align-items: center;
   white-space: nowrap;
@@ -200,7 +200,7 @@ const ActionButton = styled(Button)`
   }
 `
 
-const SaveButton = styled(ActionButton)`
+const SaveButton = styled(ToolbarButton)`
   padding: 0 2rem;
 `
 interface StatusMessageProps {
