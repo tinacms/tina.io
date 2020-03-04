@@ -10,27 +10,25 @@ We're focused on improving the independent web as a whole. We want to craft tool
 
 In-line with this mission, we built Tina-style _Visual Open Authoring_ ✍️. [Netlify CMS](https://www.netlifycms.org/) spearheaded the [core idea](https://css-tricks.com/netlify-cms-open-authoring/#article-header-id-0) this past summer. It involves opening up your website to accept content-related _contributions from anyone_. And now, Tina takes this a step further to establish the **editing context on the page itself**.
 
-![rad gif here]()
-
 ## Picture this:
 
 On your website, there's an _"Edit this page on GitHub"_ link — familiar enough. But imagine that when you click it, instead of kicking you over to GitHub, the site itself becomes editable, **like a Google Doc**.
 
 This should feel familiar for anyone that has used a word processor or site builder. You navigate to the page you want to change, click “Edit”, make updates in a WYSIWYG, and then submit your changes. That’s it 🧞‍♂️.
 
+![TinaCMS Visual Open Authoring](/gif/open_authoring.gif)
+
 ## What's under the hood?
 
 The scaffolding underneath _Visual Open Authoring_ is a Git-based workflow. Triggering 'Edit Mode' creates a new fork to track and commit changes on. When content updates are ready, the editor can make a pull-request. The site owner can then review the work before making it live.
 
-The Tina Team is currently prototyping this on our own site. In the coming weeks, the API’s for integrating _Visual Open Authoring_ with Tina will become available. In the meantime, click the **edit icon** in the corner of this page to try it out. Feel free to reference this site’s [source code](https://github.com/tinacms/tinacms.org) to see how it works.
+The Tina Team is currently prototyping this on our own site. In the coming weeks, the API’s for integrating _Visual Open Authoring_ with Tina will become available. In the meantime, click the **edit button** at the top of this blog to try it out. Feel free to reference this site’s [source code](https://github.com/tinacms/tinacms.org) to see how it works.
 
 > If yew sea ani speling misteaks, pleeze ficks thim. Wee wood apprisheate that vary much 😂.
 
 ## Using Next.js to enable "Edit-mode"
 
 Our ability to execute this idea coincided with updates for [Next.js](https://nextjs.org/). The ZEIT team has been polishing a "preview" feature that was instrumental for our _Visual Open Authoring_ prototype. We're using it to switch a static site into "Edit Mode". It's quite magical — a testament to their high-quality engineering.
-
-<img src="" alt="diagram of edit mode">
 
 ### How it works
 
