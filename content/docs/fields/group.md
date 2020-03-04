@@ -1,6 +1,6 @@
 ---
 title: Group Field
-prev: /docs/fields/toggle
+prev: /docs/fields/select
 next: /docs/fields/group-list
 consumes:
   - file: /packages/tinacms/src/plugins/fields/GroupFieldPlugin.tsx
