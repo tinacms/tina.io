@@ -6,9 +6,13 @@ import {
   DiscardButton,
 } from '../../components/ui/inline'
 import { useEffect } from 'react'
-
-import { useCMS, Form, TinaCMS } from 'tinacms'
+import { Button, color } from '@tinacms/styles'
+import { useCMS, Form, TinaCMS, FieldMeta } from 'tinacms'
 import Cookies from 'js-cookie'
+import SaveIconSvg from '../../public/svg/save-icon.svg'
+import UndoIconSvg from '../../public/svg/undo-icon.svg'
+import styled from 'styled-components'
+
 interface Props extends InlineFormProps {
   editMode: boolean
   previewError?: string
@@ -40,7 +44,7 @@ const OpenAuthoringSiteForm = ({
       {
         __type: 'toolbar:tool',
         name: 'create-pr',
-        component: () => <button>Pull Request</button>,
+        component: () => <Button>Pull Request</Button>,
       },
       {
         __type: 'toolbar:status',
@@ -48,9 +52,11 @@ const OpenAuthoringSiteForm = ({
         component: () => {
           const forkName = Cookies.get('fork_full_name')
           return (
-            <a target="_blank" href={`https://github.com/${forkName}`}>
-              {forkName}
-            </a>
+            <FieldMeta name={'Fork'}>
+              <MetaLink target="_blank" href={`https://github.com/${forkName}`}>
+                {forkName}
+              </MetaLink>
+            </FieldMeta>
           )
         },
       },
@@ -59,8 +65,12 @@ const OpenAuthoringSiteForm = ({
         name: 'base-form-actions',
         component: () => (
           <>
-            <button onClick={form.reset}>Reset</button>
-            <button onClick={form.submit}>Save</button>
+            <ActionButton onClick={form.reset}>
+              <UndoIconSvg /> Discard
+            </ActionButton>
+            <ActionButton primary onClick={form.submit}>
+              <SaveIconSvg /> Save
+            </ActionButton>
           </>
         ),
       },
@@ -125,5 +135,23 @@ const useFormStatusPlugin = (
     return () => cms.plugins.remove(plugin)
   }, [editMode, form, form.finalForm.getState().dirty])
 }
+
+const MetaLink = styled.a`
+  font-size: 18px;
+  color: ${color.primary('dark')};
+`
+
+const ActionButton = styled(Button)`
+  display: flex;
+  align-items: center;
+
+  svg {
+    fill: currentColor;
+    opacity: 0.7;
+    width: 2.5em;
+    height: 2.5em;
+    margin-right: 0.25rem;
+  }
+`
 
 export default OpenAuthoringSiteForm
