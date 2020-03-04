@@ -1,10 +1,10 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { LinkNav } from '../ui'
-import { TinaWordmark } from '../logo'
+import { LinkNav } from '../ui/LinkNav'
+import { TinaWordmark } from '../logo/TinaWordmark'
 import TwitterIconSvg from '../../public/svg/twitter-icon.svg'
 import GithubIconSvg from '../../public/svg/github-icon.svg'
-import { EmailForm } from '../forms'
+import { EmailForm } from '../forms/EmailForm'
 import { EditLink } from './EditLink'
 
 const FooterSocial = styled.div`
