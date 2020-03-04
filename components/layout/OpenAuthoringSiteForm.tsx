@@ -5,26 +5,30 @@ import {
   EditToggle,
   DiscardButton,
 } from '../../components/ui/inline'
-import { useEffect } from 'react'
 import { Button, color } from '@tinacms/styles'
-import { useCMS, Form, TinaCMS, FieldMeta } from 'tinacms'
-import Cookies from 'js-cookie'
 import UndoIconSvg from '../../public/svg/undo-icon.svg'
 import PrIconSvg from '../../public/svg/pr-icon.svg'
 import styled, { css } from 'styled-components'
+import { useEffect, useCallback, useState } from 'react'
+import { useCMS, useWatchFormValues, Form, TinaCMS, FieldMeta } from 'tinacms'
+import createDecorator from 'final-form-submit-listener'
+import Cookies from 'js-cookie'
 
 interface Props extends InlineFormProps {
   editMode: boolean
   previewError?: string
   children: any
+  path: string
 }
 
 const OpenAuthoringSiteForm = ({
   form,
   editMode,
   previewError,
+  path,
   children,
 }: Props) => {
+  const [statefulPreviewError, setStatefulPreviewError] = useState(previewError)
   const cms = useCMS()
   useEffect(() => {
     /*
@@ -95,6 +99,46 @@ const OpenAuthoringSiteForm = ({
 
   useFormStatusPlugin(form, cms, editMode)
 
+  /* persist pending changes to localStorage
+   */
+
+  const saveToStorage = useCallback(
+    formData => {
+      cms.api.storage.save(path, formData.values)
+    },
+    [path]
+  )
+
+  // save to storage on change
+  useWatchFormValues(form, saveToStorage)
+
+  // load from storage on boot
+  useEffect(() => {
+    if (!editMode) return
+
+    const values = cms.api.storage.load(path)
+    if (values) {
+      form.updateValues(values)
+    }
+  }, [form, editMode])
+  // show feedback onSave
+  useEffect(() => {
+    const submitListener = createDecorator({
+      afterSubmitSucceeded: () =>
+        cms.alerts.success(
+          `Saved Successfully: Changes committed to ${Cookies.get(
+            'fork_full_name'
+          )}`
+        ),
+      afterSubmitFailed: failedForm =>
+        setStatefulPreviewError(failedForm.getState().submitError),
+    })
+
+    const undecorateSaveListener = submitListener(form.finalForm)
+
+    return undecorateSaveListener
+  }, [form])
+
   return (
     <InlineForm
       form={form}
@@ -102,7 +146,7 @@ const OpenAuthoringSiteForm = ({
         typeof document !== 'undefined' && editMode ? 'active' : 'inactive'
       }
     >
-      <OpenAuthoringModalContainer previewError={previewError} />
+      <OpenAuthoringModalContainer previewError={statefulPreviewError} />
       <InlineControls>
         {editMode && <EditToggle />}
         <DiscardButton />

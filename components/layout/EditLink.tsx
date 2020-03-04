@@ -10,6 +10,7 @@ import { Button } from '../ui'
 interface EditLinkProps {
   color?: 'white' | 'primary' | 'secondary' | 'seafoam' | 'variable'
 }
+import { useOpenAuthoring } from './OpenAuthoring'
 
 export const EditLink = ({ color }: EditLinkProps) => {
   const cms = useCMS()
@@ -20,11 +21,20 @@ export const EditLink = ({ color }: EditLinkProps) => {
     _isEditMode = !cms.sidebar.hidden
   })
 
+  const openAuthoring = useOpenAuthoring()
   return (
     <EditToggleButton
       id="OpenAuthoringEditButton"
       color={color}
-      onClick={_isEditMode ? exitEditMode : enterEditMode}
+      onClick={
+        _isEditMode
+          ? exitEditMode
+          : () =>
+              enterEditMode(
+                openAuthoring.githubAuthenticated,
+                openAuthoring.forkValid
+              )
+      }
     >
       <EditIcon /> {_isEditMode ? 'Exit Edit Mode' : 'Edit This Site'}
     </EditToggleButton>

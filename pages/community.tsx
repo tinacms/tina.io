@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useLocalJsonForm } from 'next-tinacms-json'
 import { DynamicLink } from '../components/ui/DynamicLink'
-import { InlineForm } from 'react-tinacms-inline'
 
 import {
   Layout,
@@ -13,12 +11,9 @@ import {
   MarkdownContent,
 } from '../components/layout'
 import {
-  EditToggle,
-  DiscardButton,
   InlineWysiwyg,
   InlineTextareaField,
   InlineTextField,
-  InlineControls,
 } from '../components/ui/inline'
 import { Button, ButtonGroup } from '../components/ui'
 import { EmailForm } from '../components/forms'
@@ -38,7 +33,7 @@ export default function CommunityPage({
   metadata,
   sourceProviderConnection,
   editMode,
-  previewError
+  previewError,
 }) {
   // Registers Tina Form
   const [data, form] = useLocalGithubJsonForm(
@@ -49,8 +44,16 @@ export default function CommunityPage({
   )
 
   return (
-    <OpenAuthoringSiteForm form={form} editMode={editMode} previewError={previewError}>
-      <Layout>
+    <OpenAuthoringSiteForm
+      form={form}
+      path={community.fileRelativePath}
+      editMode={editMode}
+      previewError={previewError}
+    >
+      <Layout
+        sourceProviderConnection={sourceProviderConnection}
+        editMode={editMode}
+      >
         <NextSeo
           title={data.title}
           description={data.description}

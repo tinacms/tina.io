@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ActionableModal } from '../components/ui'
 import { enterEditMode } from './authFlow'
+import { useOpenAuthoring } from '../components/layout/OpenAuthoring'
 
 interface Props {
   previewError?: string
@@ -9,11 +10,6 @@ interface Props {
 export const OpenAuthoringModalContainer = ({ previewError }: Props) => {
   const [authPopupDisplayed, setAuthPopupDisplayed] = useState(false)
 
-  const refreshPage = () => {
-    fetch(`/api/reset-preview`).then(() => {
-      window.location.href = '/?autoAuth'
-    })
-  }
 
   const cancelAuth = () => {
     window.history.replaceState(
@@ -29,6 +25,14 @@ export const OpenAuthoringModalContainer = ({ previewError }: Props) => {
       setAuthPopupDisplayed(true)
     }
   }, [])
+  const openAuthoring = useOpenAuthoring()
+
+  const runAuthWorkflow = () => {
+    enterEditMode(
+      openAuthoring.githubAuthenticated,
+      openAuthoring.forkValid
+    )
+  }
 
   return (
     <>
@@ -39,7 +43,7 @@ export const OpenAuthoringModalContainer = ({ previewError }: Props) => {
           actions={[
             {
               name: 'Continue',
-              action: enterEditMode,
+              action: runAuthWorkflow
             },
             {
               name: 'Cancel',
@@ -55,7 +59,7 @@ export const OpenAuthoringModalContainer = ({ previewError }: Props) => {
           actions={[
             {
               name: 'Continue',
-              action: refreshPage,
+              action: runAuthWorkflow
             },
           ]}
         />

@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
-import { usePlugin, useCMS } from 'tinacms'
-import { MarkdownCreatorPlugin } from '../../utils/plugins'
-
+import { CloseIcon, EditIcon } from '@tinacms/icons'
+import { Button } from '../../components/ui'
 import { formatDate } from '../../utils'
 import {
   Layout,
@@ -11,20 +10,16 @@ import {
   MarkdownContent,
   RichTextWrapper,
 } from '../../components/layout'
-import {
-  InlineWysiwyg,
-  InlineTextareaField,
-  InlineTextField,
-} from '../../components/ui/inline'
+import { InlineWysiwyg, InlineTextareaField } from '../../components/ui/inline'
 import { getGithubDataFromPreviewProps } from '../../utils/github/sourceProviderConnection'
 import getMarkdownData from '../../utils/github/getMarkdownData'
 import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'
 import { fileToUrl } from '../../utils/urls'
 import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
 import ContentNotFoundError from '../../utils/github/ContentNotFoundError'
-import { useEffect } from 'react'
-import Cookies from 'js-cookie'
 const fg = require('fast-glob')
+import { enterEditMode, exitEditMode } from '../../open-authoring/authFlow'
+import { useOpenAuthoring } from '../../components/layout/OpenAuthoring'
 
 export default function BlogTemplate({
   markdownFile,
@@ -46,52 +41,6 @@ export default function BlogTemplate({
     editMode
   )
 
-  const CreateBlogPlugin = new MarkdownCreatorPlugin({
-    label: 'New Blog Post',
-    filename: form => {
-      const slug = form.title.replace(/\s+/, '-').toLowerCase()
-      return `content/blog/${slug}.md`
-    },
-    fields: [
-      {
-        name: 'title',
-        component: 'text',
-        label: 'Title',
-        placeholder: 'My New Post',
-        description: 'The title of the new blog post.',
-      },
-      {
-        label: 'Date',
-        name: 'date',
-        component: 'date',
-        description: 'The default will be today',
-      },
-      {
-        label: 'Author',
-        description: 'Who wrote this, yo?',
-        name: 'author',
-        component: 'text',
-      },
-    ],
-    githubOptions: sourceProviderConnection,
-    isEditMode: editMode,
-    frontmatter: postInfo => ({
-      title: postInfo.title,
-      date: postInfo.date ? postInfo.date : new Date(),
-      author: postInfo.author ? postInfo.author : `Jane Doe`,
-    }),
-    body: postInfo => `New post, who dis?`,
-    afterCreate: response => {
-      let url = fileToUrl(
-        response.data.content.path.split('content')[1],
-        'blog'
-      )
-      window.location.href = url
-    },
-  })
-
-  usePlugin(CreateBlogPlugin)
-
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
   const excerpt = data.excerpt
@@ -99,10 +48,14 @@ export default function BlogTemplate({
   return (
     <OpenAuthoringSiteForm
       form={form}
+      path={markdownFile.fileRelativePath}
       editMode={editMode}
       previewError={previewError}
     >
-      <Layout pathname="/">
+      <Layout
+        sourceProviderConnection={sourceProviderConnection}
+        editMode={editMode}
+      >
         <NextSeo
           title={frontmatter.title}
           titleTemplate={'%s | ' + siteConfig.title + ' Blog'}
@@ -129,23 +82,16 @@ export default function BlogTemplate({
           <InlineTextareaField name="frontmatter.title" />
         </Hero>
         <BlogWrapper>
-          {/*
-           *** Inline controls shouldn't render
-           *** until we're ready for Inline release
-           */}
-          {/*
-            <InlineControls>
-            <EditToggle />
-            <DiscardButton />
-            </InlineControls>
-          */}
           <RichTextWrapper>
             <BlogMeta>
-              <p>
-                <span>By: </span>
-                <InlineTextField name="frontmatter.author" />
-              </p>
-              <p>{formatDate(frontmatter.date)}</p>
+              <MetaWrap>
+                <MetaBit>{formatDate(frontmatter.date)}</MetaBit>
+                <MetaBit>
+                  <span>By</span>{' '}
+                  <InlineTextareaField name="frontmatter.author" />
+                </MetaBit>
+              </MetaWrap>
+              <EditLink isEditMode={editMode} />
             </BlogMeta>
             <InlineWysiwyg name="markdownBody">
               <MarkdownContent escapeHtml={false} content={markdownBody} />
@@ -251,7 +197,6 @@ const formOptions = {
     },
   ],
 }
-
 /*
  ** STYLES ---------------------------------------------------------
  */
@@ -304,22 +249,70 @@ const BlogWrapper = styled(Wrapper)`
 const BlogMeta = styled.div`
   width: 100%;
   justify-content: space-between;
+  align-items: center;
   display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-  margin-bottom: 1.5rem;
+  flex-direction: row;
+  margin-bottom: 3rem;
   margin-top: -0.5rem;
-  opacity: 0.5;
-  p {
-    margin: 0;
-    color: 0;
-    display: block;
-  }
-  span {
-    opacity: 0.5;
-  }
 
   @media (min-width: 550px) {
     flex-direction: row;
+  }
+`
+
+const MetaWrap = styled.span`
+  opacity: 0.4;
+`
+
+const MetaBit = styled.p`
+  display: flex;
+  margin: 0 !important;
+
+  span {
+    opacity: 0.5;
+    margin-right: 0.25rem;
+  }
+`
+
+/*
+ ** Edit Button ------------------------------------------------------
+ */
+
+const EditLink = ({ isEditMode }) => {
+  const openAuthoring = useOpenAuthoring()
+
+  return (
+    <EditButton
+      id="OpenAuthoringBlogEditButton"
+      onClick={
+        isEditMode
+          ? exitEditMode
+          : () =>
+              enterEditMode(
+                openAuthoring.githubAuthenticated,
+                openAuthoring.forkValid
+              )
+      }
+    >
+      {isEditMode ? <CloseIcon /> : <EditIcon />}
+      {isEditMode ? 'Exit Edit Mode' : 'Edit This Post'}
+    </EditButton>
+  )
+}
+
+const EditButton = styled(Button)`
+  background: none;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--color-primary);
+  padding: 0 1.25rem;
+  height: 45px;
+  color: var(--color-primary);
+  transition: all 150ms ease-out;
+  transform: translate3d(0px, 0px, 0px);
+
+  svg {
+    fill: currentColor;
+    margin: 0 4px 0 -4px;
   }
 `

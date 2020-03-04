@@ -35,7 +35,10 @@ const Index = props => {
   }
 
   return (
-    <Layout>
+    <Layout
+      sourceProviderConnection={props.sourceProviderConnection}
+      editMode={props.editMode}
+    >
       <NextSeo
         title="Blog"
         openGraph={{
@@ -54,10 +57,10 @@ const Index = props => {
               <BlogTitle>{post.data.title}</BlogTitle>
               <RichTextWrapper>
                 <BlogMeta>
-                  <p>
+                  <MetaBit>
                     <span>By</span> {post.data.author}
-                  </p>
-                  <p>{formatDate(post.data.date)}</p>
+                  </MetaBit>
+                  <MetaBit>{formatDate(post.data.date)}</MetaBit>
                 </BlogMeta>
                 <MarkdownContent skipHtml={true} content={post.content} />
                 <hr />
@@ -140,6 +143,7 @@ export async function unstable_getStaticProps({
       numPages: numPages,
       currentPage: parseInt(page),
       editMode: !!preview,
+      sourceProviderConnection,
     },
   }
 }
@@ -206,6 +210,16 @@ const BlogExcerpt = styled.a`
   }
 `
 
+const MetaBit = styled.p`
+  display: flex;
+  margin: 0 !important;
+
+  span {
+    opacity: 0.5;
+    margin-right: 0.25rem;
+  }
+`
+
 const BlogMeta = styled.div`
   width: 100%;
   justify-content: space-between;
@@ -215,14 +229,6 @@ const BlogMeta = styled.div`
   margin-bottom: 1.5rem;
   margin-top: -0.5rem;
   opacity: 0.5;
-  p {
-    margin: 0;
-    color: 0;
-    display: block;
-  }
-  span {
-    opacity: 0.5;
-  }
 
   @media (min-width: 550px) {
     flex-direction: row;

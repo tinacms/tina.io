@@ -1485,15 +1485,15 @@
   resolved "https://registry.yarnpkg.com/@tinacms/core/-/core-0.7.1.tgz#d0d683ae44a409544902746eabe91cc664c23ee5"
   integrity sha512-m0akhzIiV1ZG9xZkRcqfPDG4URbGqIYnv6M09gZ25A6LaGhQpiYvUZpIGyHnsEX4PfyejC0FuDZOlW7/lsM96w==
 
-"@tinacms/fields@^0.5.2-alpha.0":
-  version "0.5.2-alpha.0"
-  resolved "https://registry.yarnpkg.com/@tinacms/fields/-/fields-0.5.2-alpha.0.tgz#e8b9143f244b1e3b119acbd54f379419879ee9c0"
-  integrity sha512-JGBc69Ktb4XlHYga8vXAF1s1ZqxYAWYcNe4JwULDx35E0Wq3nUiPGKS6T9srKtlMpGWCqaJcY2DtCFZqGCLB0Q==
+"@tinacms/fields@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@tinacms/fields/-/fields-0.6.0.tgz#7a6b6c52b26b42adb1823d6aa94a0b493f7e16af"
+  integrity sha512-LcGKxBy6YiSDlU42HHvIGz3s68oJ4CCHZ2CAmnfylgzcFTAcAqXt5dmdZMIBwklOHzoVblNoo7zJKb8FEWmHqQ==
   dependencies:
     "@sambego/storybook-styles" "^1.0.0"
     "@tinacms/core" "^0.7.1"
-    "@tinacms/icons" "^0.5.2"
-    "@tinacms/styles" "^0.1.2"
+    "@tinacms/icons" "^0.6.0"
+    "@tinacms/styles" "^0.2.0"
     "@types/react-select" "^2.0.11"
     codemirror "^5.42.2"
     color-string "^1.5.3"
@@ -1540,10 +1540,10 @@
   resolved "https://registry.yarnpkg.com/@tinacms/git-client/-/git-client-0.4.2.tgz#2a087fe7df2e08b00656ada072cb9a5414eab741"
   integrity sha512-0FXEL2AEwaeju/fTPZg2eZ8i7amlQCHQn78a8Hm+tgBXxfL3mY7N2HFVC94js9D/of05GWvjews72a4F+QUDHw==
 
-"@tinacms/icons@^0.5.2":
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/@tinacms/icons/-/icons-0.5.2.tgz#6ea07aabb769dea137f12bfffc53829c21dc04af"
-  integrity sha512-VEBAsMu5hmMkaWkq5mpahl4Jsh4tKM5WhgNBClTCDZGcWvqJF6NlJJEpCbGPDOWaqpsRj+66a/9CKNCuNutv+w==
+"@tinacms/icons@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@tinacms/icons/-/icons-0.6.0.tgz#752c3b38e479a7906a79af70979c2c59d3f1be59"
+  integrity sha512-vyQ3N90lkk8atgsPbs0cAilbN/XqVz+689E/tb72S4vRyp5ebU5bOghqkiK6OTV4+oT0UjO4VA0NoBjzABvRwg==
 
 "@tinacms/react-core@^0.2.7":
   version "0.2.7"
@@ -1553,15 +1553,15 @@
     "@tinacms/core" "^0.7.1"
     "@tinacms/forms" "^0.2.0"
 
-"@tinacms/styles@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@tinacms/styles/-/styles-0.1.2.tgz#6bed4d78d52268901f105f0252302d69472c12a3"
-  integrity sha512-cPvJZmvvloOuc/HLHrTjh7EWmnBjqAYmraQAQdzOlpp4+lED3vAQlZm0tvpNEsswNCdnidLzXfGuR0P3/KhdUw==
-
 "@tinacms/styles@^0.1.2-alpha.1":
   version "0.1.2-alpha.1"
   resolved "https://registry.yarnpkg.com/@tinacms/styles/-/styles-0.1.2-alpha.1.tgz#d30b9f960b4e95d7399da45128020f48f6bcd8b7"
   integrity sha512-3T0Vn1VfzKxDiC2i3VO7Dqct6A09mdGXQjRgQhME8Rb/Jk9rcV3FYV8+4V9g3yypxVGRoJj1DQR/m7M+waAMVw==
+
+"@tinacms/styles@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@tinacms/styles/-/styles-0.2.0.tgz#eb1f228567d53b855228eb64cc39b5cbcd0d4368"
+  integrity sha512-mq1g8UqvtGa60XKFugpfM1orcFnX4hKo4wbpDyESp8+lyTvh5ceB0g017P+lioQrslshZNzXd3GsriiM9KgTmg==
 
 "@types/algoliasearch-helper@*":
   version "2.26.1"
@@ -4568,6 +4568,11 @@ final-form-arrays@^3.0.1:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/final-form-arrays/-/final-form-arrays-3.0.2.tgz#9f3bef778dec61432357744eb6f3abef7e7f3847"
   integrity sha512-TfO8aZNz3RrsZCDx8GHMQcyztDNpGxSSi9w4wpSNKlmv2PfFWVVM8P7Yj5tj4n0OWax+x5YwTLhT5BnqSlCi+w==
+
+final-form-submit-listener@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/final-form-submit-listener/-/final-form-submit-listener-1.0.0.tgz#fbaf281f1697ed3b8a87ea5e3a29a91e2e3a39b7"
+  integrity sha512-wXyztZ+VfWteorBKZVKreAntFM2g16rQGcVgn6owMfr1q2mTZ9vXF5QFDA9zqaGXhQcmfBuCJs7PXfbO6ulttg==
 
 final-form@^4.18.2, final-form@^4.18.7:
   version "4.18.7"
@@ -9976,18 +9981,18 @@ timers-browserify@^2.0.4:
   dependencies:
     setimmediate "^1.0.4"
 
-tinacms@^0.15.0-alpha.0:
-  version "0.15.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/tinacms/-/tinacms-0.15.0-alpha.0.tgz#9752e0ba0b661ca03881e8e02703d520fac046a0"
-  integrity sha512-4HDxWywMEI7RNK7JvXanzAS+fF6lNUNtHof1XOoRmwCbUXwVHO1uUtniVDRx6XH+J/4jYPW9caHsJm+1+ffixw==
+tinacms@0.15.0:
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/tinacms/-/tinacms-0.15.0.tgz#6df479f8b9aaf7961aad22bc729e90b46fc6bcd2"
+  integrity sha512-PDxG9HpXde8FdYIb4EtdqwlIe3zYrDpS/gzS3z//f/8Ez8A7nHEUQr85BfegKEHS8sauELMLcC9jQ14S7gEC7w==
   dependencies:
     "@tinacms/core" "^0.7.1"
-    "@tinacms/fields" "^0.5.2-alpha.0"
+    "@tinacms/fields" "^0.6.0"
     "@tinacms/form-builder" "^0.2.15"
     "@tinacms/forms" "^0.2.0"
-    "@tinacms/icons" "^0.5.2"
+    "@tinacms/icons" "^0.6.0"
     "@tinacms/react-core" "^0.2.7"
-    "@tinacms/styles" "^0.1.2"
+    "@tinacms/styles" "^0.2.0"
     "@types/react-beautiful-dnd" "^11.0.3"
     lodash.clonedeep "^4.5.0"
     lodash.merge "^4.6.2"

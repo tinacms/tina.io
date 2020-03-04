@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { InlineBlocks } from 'react-tinacms-inline'
 import { EditLink } from '../components/layout/EditLink'
 import { DefaultSeo } from 'next-seo'
-import { BlockTemplate, useCMS } from 'tinacms'
+import { BlockTemplate } from 'tinacms'
 import { DynamicLink } from '../components/ui/DynamicLink'
 import {
   Layout,
@@ -110,10 +110,14 @@ const HomePage = (props: any) => {
   return (
     <OpenAuthoringSiteForm
       form={form}
+      path={props.home.fileRelativePath}
       editMode={props.editMode}
       previewError={props.previewError}
     >
-      <Layout pathname="/">
+      <Layout
+        sourceProviderConnection={props.sourceProviderConnection}
+        editMode={props.editMode}
+      >
         <DefaultSeo titleTemplate={formData.title + ' | %s'} />
         <Hero overlap narrow>
           <InlineTextareaField name="headline" />
