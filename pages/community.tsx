@@ -63,7 +63,7 @@ export default function CommunityPage({
           }}
         />
         <Hero>
-          <h2 className="h1">{data.headline}</h2>
+          <InlineTextareaField name="headline" />
         </Hero>
         <SocialBar>
           <SocialItem>
