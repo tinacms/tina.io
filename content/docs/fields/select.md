@@ -3,8 +3,10 @@ title: Select Field
 prev: /docs/fields/toggle
 next: /docs/fields/group
 consumes:
-  - file: null
-    details: null
+  - file: /packages/@tinacms/fields/src/Select/Select.tss
+    details: Shows select field and Option interfaces
+  - file: /packages/tinacms/src/plugins/fields/SelectFieldPlugin.tsx
+    details: Shows select field and Option interfaces
 ---
 
 The `select` field represents a select element.
