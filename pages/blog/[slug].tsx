@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
-
+const fg = require('fast-glob')
+import { CloseIcon, EditIcon } from '@tinacms/icons'
+import { Button } from '../../components/ui'
 import { formatDate } from '../../utils'
 import {
   Layout,
@@ -20,7 +22,8 @@ import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMar
 import { fileToUrl } from '../../utils/urls'
 import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
 import ContentNotFoundError from '../../utils/github/ContentNotFoundError'
-const fg = require('fast-glob')
+import { enterEditMode, exitEditMode } from '../../open-authoring/authFlow'
+import { useOpenAuthoring } from '../../components/layout/OpenAuthoring'
 
 export default function BlogTemplate({
   markdownFile,
@@ -83,23 +86,16 @@ export default function BlogTemplate({
           <InlineTextareaField name="frontmatter.title" />
         </Hero>
         <BlogWrapper>
-          {/*
-           *** Inline controls shouldn't render
-           *** until we're ready for Inline release
-           */}
-          {/*
-            <InlineControls>
-            <EditToggle />
-            <DiscardButton />
-            </InlineControls>
-          */}
           <RichTextWrapper>
             <BlogMeta>
-              <p>
-                <span>By: </span>
-                <InlineTextField name="frontmatter.author" />
-              </p>
-              <p>{formatDate(frontmatter.date)}</p>
+              <MetaWrap>
+                <MetaBit>{formatDate(frontmatter.date)}</MetaBit>
+                <MetaBit>
+                  <span>By</span>{' '}
+                  <InlineTextareaField name="frontmatter.author" />
+                </MetaBit>
+              </MetaWrap>
+              <EditLink isEditMode={editMode} />
             </BlogMeta>
             <InlineWysiwyg name="markdownBody">
               <MarkdownContent escapeHtml={false} content={markdownBody} />
@@ -205,7 +201,6 @@ const formOptions = {
     },
   ],
 }
-
 /*
  ** STYLES ---------------------------------------------------------
  */
@@ -258,22 +253,70 @@ const BlogWrapper = styled(Wrapper)`
 const BlogMeta = styled.div`
   width: 100%;
   justify-content: space-between;
+  align-items: center;
   display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-  margin-bottom: 1.5rem;
+  flex-direction: row;
+  margin-bottom: 3rem;
   margin-top: -0.5rem;
-  opacity: 0.5;
-  p {
-    margin: 0;
-    color: 0;
-    display: block;
-  }
-  span {
-    opacity: 0.5;
-  }
 
   @media (min-width: 550px) {
     flex-direction: row;
+  }
+`
+
+const MetaWrap = styled.span`
+  opacity: 0.4;
+`
+
+const MetaBit = styled.p`
+  display: flex;
+  margin: 0 !important;
+
+  span {
+    opacity: 0.5;
+    margin-right: 0.25rem;
+  }
+`
+
+/*
+ ** Edit Button ------------------------------------------------------
+ */
+
+const EditLink = ({ isEditMode }) => {
+  const openAuthoring = useOpenAuthoring()
+
+  return (
+    <EditButton
+      id="OpenAuthoringBlogEditButton"
+      onClick={
+        isEditMode
+          ? exitEditMode
+          : () =>
+              enterEditMode(
+                openAuthoring.githubAuthenticated,
+                openAuthoring.forkValid
+              )
+      }
+    >
+      {isEditMode ? <CloseIcon /> : <EditIcon />}
+      {isEditMode ? 'Exit Edit Mode' : 'Edit This Post'}
+    </EditButton>
+  )
+}
+
+const EditButton = styled(Button)`
+  background: none;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--color-primary);
+  padding: 0 1.25rem;
+  height: 45px;
+  color: var(--color-primary);
+  transition: all 150ms ease-out;
+  transform: translate3d(0px, 0px, 0px);
+
+  svg {
+    fill: currentColor;
+    margin: 0 4px 0 -4px;
   }
 `
