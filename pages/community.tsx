@@ -165,7 +165,10 @@ export default function CommunityPage({
  */
 
 export async function unstable_getStaticProps({ preview, previewData }) {
-  const sourceProviderConnection = getGithubDataFromPreviewProps(previewData)
+  const {
+    sourceProviderConnection,
+    accessToken,
+  } = getGithubDataFromPreviewProps(previewData)
   const siteMetadata = await import('../content/siteConfig.json')
 
   let previewError: string
@@ -173,7 +176,8 @@ export async function unstable_getStaticProps({ preview, previewData }) {
   try {
     communityData = await getJsonData(
       'content/pages/community.json',
-      sourceProviderConnection
+      sourceProviderConnection,
+      accessToken
     )
   } catch (e) {
     if (e instanceof ContentNotFoundError) {

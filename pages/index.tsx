@@ -207,13 +207,17 @@ export <b>WithTina</b>( <b>Component</b> );
 export default HomePage
 
 export async function unstable_getStaticProps({ preview, previewData, query }) {
-  const sourceProviderConnection = getGithubDataFromPreviewProps(previewData)
+  const {
+    sourceProviderConnection,
+    accessToken,
+  } = getGithubDataFromPreviewProps(previewData)
   let previewError: string
   let homeData = {}
   try {
     homeData = await getJsonData(
       'content/pages/home.json',
-      sourceProviderConnection
+      sourceProviderConnection,
+      accessToken
     )
   } catch (e) {
     if (e instanceof ContentNotFoundError) {

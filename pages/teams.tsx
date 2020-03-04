@@ -112,14 +112,18 @@ export default function TeamsPage(props) {
  */
 
 export async function unstable_getStaticProps({ preview, previewData }) {
-  const sourceProviderConnection = getGithubDataFromPreviewProps(previewData)
+  const {
+    sourceProviderConnection,
+    accessToken,
+  } = getGithubDataFromPreviewProps(previewData)
 
   let previewError: string
   let teamsData = {}
   try {
     teamsData = await getJsonData(
       'content/pages/teams.json',
-      sourceProviderConnection
+      sourceProviderConnection,
+      accessToken
     )
   } catch (e) {
     if (e instanceof ContentNotFoundError) {

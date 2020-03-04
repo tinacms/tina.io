@@ -7,13 +7,11 @@ import { PRModal } from './PRModal'
 interface PullRequestButtonOptions {
   baseRepoFullName: string
   forkRepoFullName: string
-  accessToken: string
 }
 
 export const PRPlugin = (
   baseRepoFullName: string,
-  forkRepoFullName: string,
-  accessToken: string
+  forkRepoFullName: string
 ) => ({
   __type: 'toolbar:git',
   name: 'create-pr',
@@ -22,7 +20,6 @@ export const PRPlugin = (
       <PullRequestButton
         baseRepoFullName={baseRepoFullName}
         forkRepoFullName={forkRepoFullName}
-        accessToken={accessToken}
       />
     )
   },
@@ -31,7 +28,6 @@ export const PRPlugin = (
 function PullRequestButton({
   baseRepoFullName,
   forkRepoFullName,
-  accessToken,
 }: PullRequestButtonOptions) {
   const [opened, setOpened] = useState(false)
   const close = () => setOpened(false)
@@ -49,7 +45,6 @@ function PullRequestButton({
               <PRModal
                 baseRepoFullName={baseRepoFullName}
                 forkRepoFullName={forkRepoFullName}
-                accessToken={accessToken}
               />
             </ModalBody>
           </ModalPopup>

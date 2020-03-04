@@ -56,7 +56,7 @@ const OpenAuthoringSiteForm = ({
         },
       },
       // TODO
-      PRPlugin(process.env.REPO_FULL_NAME, forkName, 'TODO_AUTH_TOKEN'),
+      PRPlugin(process.env.REPO_FULL_NAME, forkName),
       {
         __type: 'toolbar:form-actions',
         name: 'base-form-actions',

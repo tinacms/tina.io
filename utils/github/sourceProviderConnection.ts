@@ -1,19 +1,26 @@
 export interface SourceProviderConnection {
   forkFullName: string
   headBranch: string
-  accessToken: string
   baseRepoFullName: string
 }
 
-export const getGithubDataFromPreviewProps = (
-  previewData?: any
-): SourceProviderConnection => {
+interface Response {
+  accessToken: string
+  sourceProviderConnection: SourceProviderConnection
+}
+
+export const getGithubDataFromPreviewProps = (previewData?: any): Response => {
   return previewData
     ? {
-        forkFullName: previewData.fork_full_name,
-        headBranch: previewData.head_branch || 'master',
+        sourceProviderConnection: {
+          forkFullName: previewData.fork_full_name,
+          headBranch: previewData.head_branch || 'master',
+          baseRepoFullName: process.env.REPO_FULL_NAME,
+        },
         accessToken: previewData.github_access_token,
-        baseRepoFullName: process.env.REPO_FULL_NAME,
       }
-    : null
+    : {
+        sourceProviderConnection: null,
+        accessToken: null,
+      }
 }

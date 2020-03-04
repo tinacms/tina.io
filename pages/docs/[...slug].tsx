@@ -109,8 +109,6 @@ export async function unstable_getStaticProps(props) {
   try {
     return getDocProps(props, slug)
   } catch (e) {
-    console.log('failed: ' + e)
-
     if (e instanceof ContentNotFoundError) {
       return {
         props: {

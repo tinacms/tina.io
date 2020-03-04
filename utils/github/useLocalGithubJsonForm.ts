@@ -30,17 +30,15 @@ const useGithubJsonForm = <T = any>(
         githubOptions.forkFullName,
         githubOptions.branch,
         jsonFile.fileRelativePath,
-        githubOptions.accessToken,
         getCachedFormData(jsonFile.fileRelativePath).sha,
         JSON.stringify(formData, null, 2),
         'Update from TinaCMS'
-      )
-        .then(response => {
+      ).then(response => {
           setCachedFormData(jsonFile.fileRelativePath, {
-            sha: response.data.content.sha,
+            sha: response.content.sha,
           })
         }).catch(e => {
-          if (e.response.status == 404) {
+          if (e.message === "Failed") {
             return { [FORM_ERROR]: 'Failed to save data.' }
           }   
         })
