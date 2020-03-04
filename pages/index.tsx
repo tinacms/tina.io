@@ -5,6 +5,7 @@ import { InlineBlocks } from 'react-tinacms-inline'
 import { EditLink } from '../components/layout/EditLink'
 import { DefaultSeo } from 'next-seo'
 import { BlockTemplate } from 'tinacms'
+import { InlineField } from 'react-tinacms-inline'
 import { DynamicLink } from '../components/ui/DynamicLink'
 import {
   Layout,
@@ -122,7 +123,11 @@ const HomePage = (props: any) => {
         <Hero overlap narrow>
           <InlineTextareaField name="headline" />
         </Hero>
-        <Video src={formData.hero_video} />
+        <InlineField name="hero_video">
+          {({ status, input }) => {
+            return <Video src={input.value} autoPlay={status !== 'active'} />
+          }}
+        </InlineField>
 
         <Section>
           <Wrapper>
