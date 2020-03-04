@@ -30,12 +30,12 @@ A new feature coming to [Next.js](https://nextjs.org) has been instrumental to p
 
 The ability for a website to run statically by default, and then "wake up" into a dynamic web application in response to specific user actions, is revolutionary. It significantly simplifies the concerns of operating an editing environment with Tina. With this workflow, we don't have to host a separate [Cloud Editing Environment](https://tinacms.org/blog/editing-on-the-cloud) &mdash; **the live site is the editing environment!** And thanks to Git and our fork-based workflow, we can edit content from the production website worry-free.
 
-## Crowd-sourcing your content
+## Crowdsourcing your content
 
 **Visual Open Authoring** is a unique, low-friction approach to website editing. Thanks to the clever Next.js preview mode, Tina's content flexibility, and the seamless [Inline Editing](https://tinacms.org/docs/inline-editing) experience, we're ready for a digital content revolution.
 
 What if it were effortless to fix a spelling error on the New York Times? Imagine contributing to the ReactJS documentation in an instant.
 
-**The web is all about community**, crowd-sourcing, and the power of many perspectives. The easier it is to make content contributions, the more viewpoints we incorporate.
+**The web is all about community**, crowdsourcing, and the power of many perspectives. The easier it is to make content contributions, the more viewpoints we incorporate.
 
 Let's democratize content and strengthen the independent web.
