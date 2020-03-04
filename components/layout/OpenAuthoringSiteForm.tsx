@@ -45,9 +45,9 @@ const OpenAuthoringSiteForm = ({
       {
         __type: 'toolbar:git',
         name: 'current-fork',
-        component: () => {
+        component: id => {
           return (
-            <FieldMeta name={'Fork'}>
+            <FieldMeta key={id} name={'Fork'}>
               <MetaLink target="_blank" href={`https://github.com/${forkName}`}>
                 {forkName}
               </MetaLink>
@@ -60,8 +60,8 @@ const OpenAuthoringSiteForm = ({
       {
         __type: 'toolbar:form-actions',
         name: 'base-form-actions',
-        component: () => (
-          <>
+        component: id => (
+          <FormActionsWrap key={id}>
             {form.finalForm.getState().dirty ? (
               <>
                 <ToolbarButton
@@ -85,7 +85,7 @@ const OpenAuthoringSiteForm = ({
                 </SaveButton>
               </>
             )}
-          </>
+          </FormActionsWrap>
         ),
       },
     ] as any
@@ -167,8 +167,8 @@ const useFormStatusPlugin = (
     const plugin = {
       __type: 'toolbar:status',
       name: 'form-state-dirty',
-      component: () => (
-        <FieldMeta name={'Form Status'}>
+      component: id => (
+        <FieldMeta key={id} name={'Form Status'}>
           {form.finalForm.getState().dirty ? (
             <StatusMessage warning>
               <span></span> Unsaved changes
@@ -249,6 +249,11 @@ const StatusMessage = styled.p<StatusMessageProps>`
         opacity: 1;
       }
     `};
+`
+
+const FormActionsWrap = styled.span`
+  display: flex;
+  align-items: center;
 `
 
 export default OpenAuthoringSiteForm
