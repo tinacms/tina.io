@@ -1,12 +1,8 @@
 ---
 title: Media
-prev: /docs/inline-editing
-next: /docs/contributing/guidelines
+prev: /docs/fields
+next: /docs/inline-editing
 ---
-
-> **Upcoming Feature**
->
-> This document describes an feature that is not yet available.
 
 **Media** in Tina refers to a set of APIs to allow packages to interact with a central store of files.
 

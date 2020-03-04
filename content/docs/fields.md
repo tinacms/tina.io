@@ -1,7 +1,7 @@
 ---
 title: Fields
 prev: /docs/forms
-next: /docs/inline-editing
+next: /docs/media
 ---
 
 Fields are added to forms via the `fields` array and create the editing interface of a form.
