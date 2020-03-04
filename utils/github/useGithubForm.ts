@@ -13,7 +13,6 @@ export interface GithubOptions {
   baseRepoFullName: string
   forkFullName: string
   branch: string
-  accessToken: string
 }
 
 export const useGithubForm = <T = any>(
@@ -34,13 +33,11 @@ export const useGithubForm = <T = any>(
     const prPlugin = useMemo(() => {
       return new PRPlugin(
         githubOptions.baseRepoFullName,
-        githubOptions.forkFullName,
-        githubOptions.accessToken
+        githubOptions.forkFullName
       )
     }, [
       githubOptions.baseRepoFullName,
       githubOptions.forkFullName,
-      githubOptions.accessToken,
     ])
     usePlugins(prPlugin)
   }

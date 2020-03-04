@@ -7,14 +7,15 @@ import { formatExcerpt } from '..'
 
 const getMarkdownData = async (
   filePath: string,
-  sourceProviderConnection: SourceProviderConnection
+  sourceProviderConnection: SourceProviderConnection,
+  accessToken: string
 ) => {
   if (sourceProviderConnection) {
     const response = await getDecodedData(
       sourceProviderConnection.forkFullName,
       sourceProviderConnection.headBranch || 'master',
       filePath,
-      sourceProviderConnection.accessToken
+      accessToken
     )
 
     const { content: markdownBody, data: frontmatter } = matter(

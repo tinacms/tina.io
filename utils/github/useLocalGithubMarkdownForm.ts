@@ -31,7 +31,6 @@ const useGithubMarkdownForm = <T = any>(
         githubOptions.forkFullName,
         githubOptions.branch,
         markdownFile.fileRelativePath,
-        githubOptions.accessToken,
         getCachedFormData(markdownFile.fileRelativePath).sha,
         toMarkdownString(formData),
         'Update from TinaCMS'

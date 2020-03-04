@@ -11,12 +11,10 @@ const BASE_BRANCH = process.env.BASE_BRANCH
 interface Props {
   baseRepoFullName: string
   forkRepoFullName: string
-  accessToken: string
 }
 
 export const PRModal = ({
   forkRepoFullName,
-  accessToken,
   baseRepoFullName,
 }: Props) => {
   const [responseMessage, setResponseMessage] = useState('')
@@ -34,7 +32,6 @@ export const PRModal = ({
       baseRepoFullName,
       forkRepoFullName,
       getHeadBranch(),
-      accessToken
     ).then(pull => {
       if (pull) {
         setFetchedPR(pull)
@@ -49,7 +46,6 @@ export const PRModal = ({
       baseRepoFullName,
       forkRepoFullName,
       getHeadBranch(),
-      accessToken,
       titleInput.current.value,
       bodyInput.current.value
     )
