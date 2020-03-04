@@ -76,6 +76,11 @@
         "title": "Toggle"
       },
       {
+        "id": "/docs/fields/select",
+        "slug": "/docs/fields/select",
+        "title": "Select"
+      },
+      {
         "id": "/docs/fields/group",
         "slug": "/docs/fields/group",
         "title": "Group"
