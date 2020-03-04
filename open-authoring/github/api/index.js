@@ -24,9 +24,7 @@ const fetchExistingPR = async (
     
     for (i = 0; i < data.length; i++) {
       const pull = data[i]
-      if (headBranch === pull.head.ref) {
-        console.log(pull);
-        
+      if (headBranch === pull.head.ref) {        
         if (
           pull.head.repo?.full_name === forkRepoFullName &&
           pull.base.repo?.full_name === baseRepoFullName
@@ -115,7 +113,6 @@ const saveContent = async (
     })
 
     const data = await response.json()
-    console.log(response.status, data.content);
     
     if (response.status === 200) return data
     
