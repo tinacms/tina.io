@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
 const fg = require('fast-glob')
-
+import { CloseIcon, EditIcon } from '@tinacms/icons'
+import { Button } from '../../components/ui'
 import { formatDate } from '../../utils'
 import {
   Layout,
@@ -90,7 +91,7 @@ export default function BlogTemplate({
               <MetaWrap>
                 <p>{formatDate(frontmatter.date)}</p>
                 <p>
-                  By: <InlineTextField name="frontmatter.author" />
+                  By <InlineTextField name="frontmatter.author" />
                 </p>
               </MetaWrap>
               <EditLink isEditMode={editMode} />
@@ -291,35 +292,25 @@ const EditLink = ({ isEditMode }) => {
               )
       }
     >
-      {isEditMode ? '✗ Exit Edit Mode' : ' ✏️ Edit This Post'}
+      {isEditMode ? <CloseIcon /> : <EditIcon />}
+      {isEditMode ? 'Exit Edit Mode' : 'Edit This Post'}
     </EditButton>
   )
 }
 
-const EditButton = styled.button`
+const EditButton = styled(Button)`
   background: none;
-  padding: 0;
-  display: inline;
+  display: flex;
+  align-items: center;
   border: 1px solid var(--color-primary);
-  padding: 0.625rem 1.25rem;
-  border-radius: 2rem;
-  outline: none;
-  cursor: pointer;
+  padding: 0 1.25rem;
+  height: 45px;
   color: var(--color-primary);
   transition: all 150ms ease-out;
   transform: translate3d(0px, 0px, 0px);
 
-  &:hover,
-  &:focus {
-    text-decoration: none;
-    transform: translate3d(-1px, -2px, 0);
-    transition: transform 180ms ease-out;
-  }
-  &:focus,
-  &:active {
-    outline: none;
-  }
-  &:active {
-    filter: none;
+  svg {
+    fill: currentColor;
+    margin: 0 4px 0 -4px;
   }
 `
