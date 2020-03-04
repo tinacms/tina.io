@@ -7,12 +7,12 @@ import {
 } from '../../components/ui/inline'
 import { Button, color } from '@tinacms/styles'
 import UndoIconSvg from '../../public/svg/undo-icon.svg'
-import PrIconSvg from '../../public/svg/pr-icon.svg'
 import styled, { css } from 'styled-components'
 import { useEffect, useCallback, useState } from 'react'
 import { useCMS, useWatchFormValues, Form, TinaCMS, FieldMeta } from 'tinacms'
 import createDecorator from 'final-form-submit-listener'
 import Cookies from 'js-cookie'
+import { PRPlugin } from '../../open-authoring/PRPlugin'
 
 interface Props extends InlineFormProps {
   editMode: boolean
@@ -59,15 +59,8 @@ const OpenAuthoringSiteForm = ({
           )
         },
       },
-      {
-        __type: 'toolbar:git',
-        name: 'create-pr',
-        component: () => (
-          <ActionButton>
-            <PrIconSvg /> Pull Request
-          </ActionButton>
-        ),
-      },
+      // TODO
+      PRPlugin('pass', 'real', 'values'),
       {
         __type: 'toolbar:form-actions',
         name: 'base-form-actions',

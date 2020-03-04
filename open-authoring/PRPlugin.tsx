@@ -1,28 +1,63 @@
-import React from 'react'
-import GitIconSvg from '../public/svg/git-icon.svg'
+import React, { useState } from 'react'
+import {
+  ActionButton,
+  Modal,
+  ModalPopup,
+  ModalHeader,
+  ModalBody,
+} from 'tinacms'
+import PrIconSvg from '../public/svg/pr-icon.svg'
 import { PRModal } from './PRModal'
-import { ScreenPlugin } from 'tinacms'
 
-export class PRPlugin implements ScreenPlugin {
-  __type: any
-  name: any
-  Component: any
-  Icon: any
-  layout: any
+interface PullRequestButtonOptions {
+  baseRepoFullName: string
+  forkRepoFullName: string
+  accessToken: string
+}
 
-  constructor(baseRepoFullName, forkRepoFullName, accessToken) {
-    this.__type = 'screen'
-    this.name = 'Pull Requests'
-    this.Icon = GitIconSvg
-    this.layout = 'popup'
-    this.Component = () => {
-      return (
-        <PRModal
-          baseRepoFullName={baseRepoFullName}
-          forkRepoFullName={forkRepoFullName}
-          accessToken={accessToken}
-        />
-      )
-    }
-  }
+export const PRPlugin = (
+  baseRepoFullName: string,
+  forkRepoFullName: string,
+  accessToken: string
+) => ({
+  __type: 'toolbar:git',
+  name: 'create-pr',
+  component: () => {
+    return (
+      <PullRequestButton
+        baseRepoFullName={baseRepoFullName}
+        forkRepoFullName={forkRepoFullName}
+        accessToken={accessToken}
+      />
+    )
+  },
+})
+
+function PullRequestButton({
+  baseRepoFullName,
+  forkRepoFullName,
+  accessToken,
+}: PullRequestButtonOptions) {
+  const [opened, setOpened] = useState(false)
+  return (
+    <>
+      <ActionButton onClick={() => setOpened(p => !p)}>
+        <PrIconSvg /> Pull Request
+      </ActionButton>
+      {opened && (
+        <Modal>
+          <ModalPopup>
+            <ModalHeader close={close}>{name}</ModalHeader>
+            <ModalBody>
+              <PRModal
+                baseRepoFullName={baseRepoFullName}
+                forkRepoFullName={forkRepoFullName}
+                accessToken={accessToken}
+              />
+            </ModalBody>
+          </ModalPopup>
+        </Modal>
+      )}
+    </>
+  )
 }
