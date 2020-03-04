@@ -90,8 +90,7 @@ export default function BlogTemplate({
               <MetaWrap>
                 <p>{formatDate(frontmatter.date)}</p>
                 <p>
-                  <span>By: </span>
-                  <InlineTextField name="frontmatter.author" />
+                  By: <InlineTextField name="frontmatter.author" />
                 </p>
               </MetaWrap>
               <EditLink isEditMode={editMode} />
@@ -262,9 +261,6 @@ const BlogMeta = styled.div`
     color: 0;
     display: block;
   }
-  /* span {
-    opacity: 0.5;
-  } */
 
   @media (min-width: 550px) {
     flex-direction: row;
