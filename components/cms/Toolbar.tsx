@@ -28,25 +28,19 @@ export const Toolbar = styled(({ ...styleProps }) => {
         </Create>
         <Github>
           {git.all().length > 0 &&
-            git
-              .all()
-              .map((git: any, i) => <git.component key={`${i}-${git.name}`} />)}
+            git.all().map((git: any) => <git.component key={git.name} />)}
         </Github>
         <Status>
           {status.all().length > 0 &&
             status
               .all()
-              .map((status: any, i) => (
-                <status.component key={`${i}-${status.name}`} />
-              ))}
+              .map((status: any) => <status.component key={status.name} />)}
         </Status>
         <Actions>
           {actions.all().length > 0 &&
             actions
               .all()
-              .map((action: any, i) => (
-                <action.component key={`${i}-${action.name}`} />
-              ))}
+              .map((action: any) => <action.component key={action.name} />)}
         </Actions>
       </div>
     </ModalProvider>
