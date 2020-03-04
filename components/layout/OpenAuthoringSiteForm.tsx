@@ -207,6 +207,11 @@ export const ToolbarButton = styled(Button)`
     height: 2.5em;
     margin-right: 0.25rem;
   }
+
+  &:disabled {
+    opacity: 0.6;
+    filter: grayscale(25%);
+  }
 `
 
 const SaveButton = styled(ToolbarButton)`
