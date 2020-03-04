@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
 import {
@@ -17,10 +17,7 @@ import {
 } from '../../components/ui'
 import { InlineWysiwyg, InlineTextField } from '../../components/ui/inline'
 import { TinaIcon } from '../../components/logo'
-import getMarkdownData from '../../utils/github/getMarkdownData'
-import { getGithubDataFromPreviewProps } from '../../utils/github/sourceProviderConnection'
 import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'
-import getJsonData from '../../utils/github/getJsonData'
 import { getDocProps } from '../../utils/docs/getDocProps'
 import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
 import ContentNotFoundError from '../../utils/github/ContentNotFoundError'
@@ -45,7 +42,12 @@ export default function DocTemplate(props) {
   const excerpt = props.markdownFile.data.excerpt
 
   return (
-    <OpenAuthoringSiteForm form={form} editMode={props.editMode} previewError={props.previewError}>
+    <OpenAuthoringSiteForm
+      form={form}
+      path={props.markdownFile.fileRelativePath}
+      editMode={props.editMode}
+      previewError={props.previewError}
+    >
       <DocsLayout>
         <NextSeo
           title={frontmatter.title}
@@ -113,17 +115,17 @@ export async function unstable_getStaticProps(props) {
   let { slug: slugs } = props.params
 
   const slug = slugs.join('/')
-  
+
   try {
     return getDocProps(props, slug)
   } catch (e) {
-    console.log("failed: " + e);
-    
+    console.log('failed: ' + e)
+
     if (e instanceof ContentNotFoundError) {
       return {
         props: {
-          previewError: e.message
-        }
+          previewError: e.message,
+        },
       }
     } else {
       throw e
@@ -131,7 +133,7 @@ export async function unstable_getStaticProps(props) {
   }
 }
 
-export async function unstable_getStaticPaths() {  
+export async function unstable_getStaticPaths() {
   const fg = require('fast-glob')
   const contentDir = './content/docs/'
   const files = await fg(`${contentDir}**/*.md`)

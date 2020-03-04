@@ -5,20 +5,23 @@ import {
   EditToggle,
   DiscardButton,
 } from '../../components/ui/inline'
-import { useEffect, useState } from 'react'
+import { useEffect, useCallback, useState } from 'react'
+import { useCMS, useWatchFormValues } from 'tinacms'
 import createDecorator from 'final-form-submit-listener'
+import Cookies from 'js-cookie'
 
-import { useCMS } from 'tinacms'
 interface Props extends InlineFormProps {
   editMode: boolean
   previewError?: string
   children: any
+  path: string
 }
 
 const OpenAuthoringSiteForm = ({
   form,
   editMode,
   previewError,
+  path,
   children,
 }: Props) => {
   const [statefulPreviewError, setStatefulPreviewError] = useState(previewError)
@@ -33,10 +36,35 @@ const OpenAuthoringSiteForm = ({
     setTimeout(() => (cms.sidebar.hidden = !editMode), 1)
   }, [])
 
-  // show feedback onSave and onFailure
+
+   * persist pending changes to localStorage
+   */
+
+  const saveToStorage = useCallback(formData => {
+    cms.api.storage.save(path, formData.values)
+  }, [path])
+
+  // save to storage on change
+  useWatchFormValues(form, saveToStorage)
+
+  // load from storage on boot
+  useEffect(() => {
+    if (!editMode) return
+
+    const values = cms.api.storage.load(path)
+    if (values) {
+      form.updateValues(values)
+    }
+  }, [form, editMode])
+  // show feedback onSave
   useEffect(() => {
     const submitListener = createDecorator({
-      afterSubmitSucceeded: () => cms.alerts.success('Save Successful'),
+      afterSubmitSucceeded: () =>
+        cms.alerts.success(
+          `Saved Successfully: Changes committed to ${Cookies.get(
+            'fork_full_name'
+          )}`
+        ),
       afterSubmitFailed: (failedForm) => setStatefulPreviewError(failedForm.getState().submitError)
     })
 
