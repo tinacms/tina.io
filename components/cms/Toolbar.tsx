@@ -1,5 +1,5 @@
 import React from 'react'
-import { useCMS, useSubscribable, FieldMeta } from 'tinacms'
+import { useCMS, useSubscribable, FieldMeta, ModalProvider } from 'tinacms'
 import { Button } from '@tinacms/styles'
 import { CreateContentMenu } from './CreateContent'
 import styled from 'styled-components'
@@ -20,7 +20,7 @@ export const Toolbar = styled(({ ...styleProps }) => {
     return null
   }
   return (
-    <>
+    <ModalProvider>
       <ToolbarPlaceholder />
       <div {...styleProps}>
         <Create>
@@ -38,7 +38,7 @@ export const Toolbar = styled(({ ...styleProps }) => {
             actions.all().map((action: any) => action.component())}
         </Actions>
       </div>
-    </>
+    </ModalProvider>
   )
 })`
   position: fixed;

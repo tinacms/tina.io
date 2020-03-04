@@ -2,12 +2,12 @@ import { InlineForm, InlineFormProps } from 'react-tinacms-inline'
 import { OpenAuthoringModalContainer } from '../../open-authoring/OpenAuthoringModalContainer'
 import { Button, color } from '@tinacms/styles'
 import UndoIconSvg from '../../public/svg/undo-icon.svg'
-import PrIconSvg from '../../public/svg/pr-icon.svg'
 import styled, { css } from 'styled-components'
 import { useEffect, useCallback, useState } from 'react'
 import { useCMS, useWatchFormValues, Form, TinaCMS, FieldMeta } from 'tinacms'
 import createDecorator from 'final-form-submit-listener'
 import Cookies from 'js-cookie'
+import { PRPlugin } from '../../open-authoring/PRPlugin'
 
 interface Props extends InlineFormProps {
   editMode: boolean
@@ -55,15 +55,8 @@ const OpenAuthoringSiteForm = ({
           )
         },
       },
-      {
-        __type: 'toolbar:git',
-        name: 'create-pr',
-        component: () => (
-          <ActionButton>
-            <PrIconSvg /> Pull Request
-          </ActionButton>
-        ),
-      },
+      // TODO
+      PRPlugin('pass', 'real', 'values'),
       {
         __type: 'toolbar:form-actions',
         name: 'base-form-actions',
@@ -71,18 +64,18 @@ const OpenAuthoringSiteForm = ({
           <>
             {form.finalForm.getState().dirty ? (
               <>
-                <ActionButton onClick={form.reset}>
+                <ToolbarButton onClick={form.reset}>
                   <UndoIconSvg /> Discard
-                </ActionButton>
+                </ToolbarButton>
                 <SaveButton primary onClick={form.submit}>
                   Save Page
                 </SaveButton>
               </>
             ) : (
               <>
-                <ActionButton onClick={form.reset} disabled>
+                <ToolbarButton onClick={form.reset} disabled>
                   <UndoIconSvg /> Discard
-                </ActionButton>
+                </ToolbarButton>
                 <SaveButton primary onClick={form.submit} disabled>
                   Save Page
                 </SaveButton>
@@ -198,7 +191,7 @@ const MetaLink = styled.a`
   color: ${color.primary('dark')};
 `
 
-const ActionButton = styled(Button)`
+export const ToolbarButton = styled(Button)`
   display: flex;
   align-items: center;
   white-space: nowrap;
@@ -212,7 +205,7 @@ const ActionButton = styled(Button)`
   }
 `
 
-const SaveButton = styled(ActionButton)`
+const SaveButton = styled(ToolbarButton)`
   padding: 0 2rem;
 `
 interface StatusMessageProps {
