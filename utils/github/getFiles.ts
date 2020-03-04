@@ -4,14 +4,15 @@ import path from 'path'
 
 const getFiles = async (
   filePath: string,
-  sourceProviderConnection: SourceProviderConnection
+  sourceProviderConnection: SourceProviderConnection,
+  accessToken: string
 ) => {
   if (sourceProviderConnection) {
     const response = await getContent(
       sourceProviderConnection.forkFullName,
       sourceProviderConnection.headBranch || 'master',
       filePath,
-      sourceProviderConnection.accessToken
+      accessToken
     )
 
     return response.data

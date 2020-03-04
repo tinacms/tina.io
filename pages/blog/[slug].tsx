@@ -118,14 +118,18 @@ export async function unstable_getStaticProps({
 }) {
   const { slug } = ctx.params
 
-  const sourceProviderConnection = getGithubDataFromPreviewProps(previewData)
+  const {
+    sourceProviderConnection,
+    accessToken,
+  } = getGithubDataFromPreviewProps(previewData)
 
   let previewError: string
   let file = {}
   try {
     file = await getMarkdownData(
       `content/blog/${slug}.md`,
-      sourceProviderConnection
+      sourceProviderConnection,
+      accessToken
     )
   } catch (e) {
     if (e instanceof ContentNotFoundError) {

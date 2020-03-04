@@ -103,15 +103,24 @@ export async function unstable_getStaticProps({
   previewData,
   ...ctx
 }) {
-  const sourceProviderConnection = getGithubDataFromPreviewProps(previewData)
+  const {
+    sourceProviderConnection,
+    accessToken,
+  } = getGithubDataFromPreviewProps(previewData)
   let page = (ctx.params && ctx.params.page_index) || '1'
 
-  const files = await getFiles('content/blog', sourceProviderConnection)
+  const files = await getFiles(
+    'content/blog',
+    sourceProviderConnection,
+    accessToken
+  )
 
   const posts = await Promise.all(
     // TODO - potentially making a lot of requests here
     files.map(async file => {
-      const post = (await getMarkdownData(file, sourceProviderConnection)).data
+      const post = (
+        await getMarkdownData(file, sourceProviderConnection, accessToken)
+      ).data
 
       // create slug from filename
       const slug = file

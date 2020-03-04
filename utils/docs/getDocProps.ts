@@ -3,18 +3,25 @@ import getMarkdownData from '../github/getMarkdownData'
 import getJsonData from '../github/getJsonData'
 
 export async function getDocProps({ preview, previewData }: any, slug: string) {
-  const sourceProviderConnection = getGithubDataFromPreviewProps(previewData)
+  const {
+    sourceProviderConnection,
+    accessToken,
+  } = getGithubDataFromPreviewProps(previewData)
   const file = await getMarkdownData(
     `content/docs/${slug}.md`,
-    sourceProviderConnection
+    sourceProviderConnection,
+    accessToken
   )
 
   const getJson = async (filePath: string) => {
-    return (await getJsonData(filePath, sourceProviderConnection)).data
+    return (await getJsonData(filePath, sourceProviderConnection, accessToken))
+      .data
   }
 
   const getMarkdown = async (filePath: string) => {
-    return (await getMarkdownData(filePath, sourceProviderConnection)).data
+    return (
+      await getMarkdownData(filePath, sourceProviderConnection, accessToken)
+    ).data
   }
 
   const docsNavData = await getJson('content/toc-doc.json')

@@ -5,14 +5,15 @@ import getDecodedData from './getDecodedData'
 
 const getJsonData = async (
   filePath: string,
-  sourceProviderConnection: SourceProviderConnection
+  sourceProviderConnection: SourceProviderConnection,
+  accessToken: string
 ) => {
   if (sourceProviderConnection) {
     const response = await getDecodedData(
       sourceProviderConnection.forkFullName,
       sourceProviderConnection.headBranch || 'master',
       filePath,
-      sourceProviderConnection.accessToken
+      accessToken
     )
 
     return {
