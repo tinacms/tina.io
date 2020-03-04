@@ -25,7 +25,12 @@ const BlogPostForm = {
       component: 'select',
       label: 'Author',
       description: 'Select an author for this post',
-      options: ['Ruth Ozeki', 'Zadie Smith', 'Arundhati Roy'],
+      options: [
+        // Options can be either strings or objects
+        'Arundhati Roy'
+        { value: 'ruth-ozeki', label: 'Ruth Ozeki' },
+        { value: 'zadie-smith', label: 'Zadie Smith' },
+      ],
     },
     // ...
   ],
