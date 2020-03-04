@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
 import { CloseIcon, EditIcon } from '@tinacms/icons'
-import { Button } from '../../components/ui'
 import { formatDate } from '../../utils'
 import {
   Layout,
@@ -20,6 +19,7 @@ import ContentNotFoundError from '../../utils/github/ContentNotFoundError'
 const fg = require('fast-glob')
 import { enterEditMode, exitEditMode } from '../../open-authoring/authFlow'
 import { useOpenAuthoring } from '../../components/layout/OpenAuthoring'
+import { Button } from '../../components/ui/Button'
 
 export default function BlogTemplate({
   markdownFile,
