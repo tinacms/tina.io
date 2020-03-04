@@ -25,12 +25,7 @@ const BlogPostForm = {
       component: 'select',
       label: 'Author',
       description: 'Select an author for this post',
-      options: [
-        // Options can be either strings or objects
-        'Arundhati Roy'
-        { value: 'ruth-ozeki', label: 'Ruth Ozeki' },
-        { value: 'zadie-smith', label: 'Zadie Smith' },
-      ],
+      options: ['Arundhati Roy', 'Ruth Ozeki', 'Zadie Smith'],
     },
     // ...
   ],
@@ -43,7 +38,7 @@ const BlogPostForm = {
 - `component`: The name of the React component that should be used to edit this field. Available field component types are [defined here](/docs/fields)
 - `label`: A human readable label for the field. This label displays in the sidebar and is optional. If no label is provided, the sidebar will default to the name.
 - `description`: An optional description that expands on the purpose of the field or prompts a specific action.
-- `options`: An array of options. The options could be a string, a number, or an `Option` object.
+- `options`: An array of strings.
 
 ## Interface
 
@@ -53,11 +48,6 @@ interface SelectField {
   component: 'select'
   label?: string
   description?: string
-  options: (Option | string | number)[]
-}
-
-interface Option {
-  label: string
-  value: string
+  options: string[]
 }
 ```
