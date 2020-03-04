@@ -63,7 +63,7 @@ export default function CommunityPage({
           }}
         />
         <Hero>
-          <h2 className="h1">{data.headline}</h2>
+          <InlineTextareaField name="headline" />
         </Hero>
         <SocialBar>
           <SocialItem>
@@ -112,16 +112,6 @@ export default function CommunityPage({
         </SocialBar>
         <RichTextWrapper>
           <Section>
-            {/*
-             *** Inline controls shouldn't render
-             *** until we're ready for Inline release
-             */}
-            {/*
-              <InlineControls>
-              <EditToggle />
-              <DiscardButton />
-              </InlineControls>
-            */}
             <Wrapper>
               <InfoLayout>
                 <InfoContent>

@@ -15,7 +15,7 @@ import {
   Overlay,
   DocsPagination,
 } from '../../components/ui'
-import { InlineWysiwyg, InlineTextField } from '../../components/ui/inline'
+import { InlineWysiwyg, InlineTextareaField } from '../../components/ui/inline'
 import { TinaIcon } from '../../components/logo'
 import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'
 import { getDocProps } from '../../utils/docs/getDocProps'
@@ -76,18 +76,8 @@ export default function DocTemplate(props) {
           <DocsHeaderNav color={'light'} open={open} />
           <RichTextWrapper>
             <Wrapper narrow>
-              {/*
-               *** Inline controls shouldn't render
-               *** until we're ready for Inline release
-               */}
-              {/*
-                <InlineControls>
-                <EditToggle />
-                <DiscardButton />
-                </InlineControls>
-              */}
               <h1>
-                <InlineTextField name="frontmatter.title" />
+                <InlineTextareaField name="frontmatter.title" />
               </h1>
               <hr />
               <InlineWysiwyg name="markdownBody">
