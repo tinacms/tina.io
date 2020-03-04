@@ -5,7 +5,7 @@ import {
   EditToggle,
   DiscardButton,
 } from '../../components/ui/inline'
-import { useEffect, useCallback } from 'react'
+import { useEffect, useCallback, useState } from 'react'
 import { useCMS, useWatchFormValues } from 'tinacms'
 import createDecorator from 'final-form-submit-listener'
 import Cookies from 'js-cookie'
@@ -24,6 +24,7 @@ const OpenAuthoringSiteForm = ({
   path,
   children,
 }: Props) => {
+  const [statefulPreviewError, setStatefulPreviewError] = useState(previewError)
   const cms = useCMS()
   useEffect(() => {
     /*
@@ -35,8 +36,8 @@ const OpenAuthoringSiteForm = ({
     setTimeout(() => (cms.sidebar.hidden = !editMode), 1)
   }, [])
 
-  /**
-   * persist pending changes to localStorage
+
+  /* persist pending changes to localStorage
    */
 
   const saveToStorage = useCallback(formData => {
@@ -64,6 +65,7 @@ const OpenAuthoringSiteForm = ({
             'fork_full_name'
           )}`
         ),
+      afterSubmitFailed: (failedForm) => setStatefulPreviewError(failedForm.getState().submitError)
     })
 
     const undecorateSaveListener = submitListener(form.finalForm)
@@ -78,7 +80,7 @@ const OpenAuthoringSiteForm = ({
         typeof document !== 'undefined' && editMode ? 'active' : 'inactive'
       }
     >
-      <OpenAuthoringModalContainer previewError={previewError} />
+      <OpenAuthoringModalContainer previewError={statefulPreviewError} />
       <InlineControls>
         {editMode && <EditToggle />}
         <DiscardButton />

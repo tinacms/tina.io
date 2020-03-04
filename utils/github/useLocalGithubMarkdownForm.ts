@@ -3,6 +3,7 @@ import { saveContent } from '../../open-authoring/github/api'
 import { getCachedFormData, setCachedFormData } from '../formCache'
 import { useGithubForm, GithubOptions, GitFile } from './useGithubForm'
 import { toMarkdownString } from 'next-tinacms-markdown'
+import { FORM_ERROR } from 'final-form'
 
 export interface Options {
   id?: string
@@ -38,6 +39,10 @@ const useGithubMarkdownForm = <T = any>(
         setCachedFormData(markdownFile.fileRelativePath, {
           sha: response.data.content.sha,
         })
+      }).catch(e => {
+        if (e.response.status == 404) {
+          return { [FORM_ERROR]: 'Failed to save data.' }
+        }   
       })
     },
   })

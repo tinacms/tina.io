@@ -3,6 +3,7 @@ import { CMS, Field, AddContentPlugin } from 'tinacms'
 import { saveContent } from '../../open-authoring/github/api'
 import { getCachedFormData, setCachedFormData } from '../formCache'
 import { GithubOptions } from '../github/useGithubForm'
+import { FORM_ERROR } from 'final-form'
 
 type MaybePromise<T> = Promise<T> | T
 
@@ -98,6 +99,10 @@ export class MarkdownCreatorPlugin<FormShape = any, FrontmatterShape = any>
       if (this.afterCreate) {
         this.afterCreate(response)
       }
+    }).catch(e => {
+      if (e.response.status == 404) {
+        return { [FORM_ERROR]: 'Failed to save data.' }
+      }   
     })
   }
 }
