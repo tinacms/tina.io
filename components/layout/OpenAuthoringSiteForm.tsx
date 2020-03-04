@@ -64,7 +64,11 @@ const OpenAuthoringSiteForm = ({
           <>
             {form.finalForm.getState().dirty ? (
               <>
-                <ToolbarButton onClick={form.reset}>
+                <ToolbarButton
+                  onClick={() => {
+                    form.finalForm.reset()
+                  }}
+                >
                   <UndoIconSvg /> Discard
                 </ToolbarButton>
                 <SaveButton primary onClick={form.submit}>
