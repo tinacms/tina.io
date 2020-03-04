@@ -39,15 +39,17 @@ function PullRequestButton({
   accessToken,
 }: PullRequestButtonOptions) {
   const [opened, setOpened] = useState(false)
+  const close = () => setOpened(false)
   return (
     <>
       <ActionButton onClick={() => setOpened(p => !p)}>
-        <PrIconSvg /> Pull Request
+        <PrIconSvg />
+        Pull Request
       </ActionButton>
       {opened && (
         <Modal>
           <ModalPopup>
-            <ModalHeader close={close}>{name}</ModalHeader>
+            <ModalHeader close={close}>Pull Request</ModalHeader>
             <ModalBody>
               <PRModal
                 baseRepoFullName={baseRepoFullName}
