@@ -11,7 +11,7 @@ import { useCMS, Form, TinaCMS, FieldMeta } from 'tinacms'
 import Cookies from 'js-cookie'
 import UndoIconSvg from '../../public/svg/undo-icon.svg'
 import PrIconSvg from '../../public/svg/pr-icon.svg'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 interface Props extends InlineFormProps {
   editMode: boolean
@@ -42,16 +42,7 @@ const OpenAuthoringSiteForm = ({
   useEffect(() => {
     const plugins = [
       {
-        __type: 'toolbar:tool',
-        name: 'create-pr',
-        component: () => (
-          <ActionButton>
-            <PrIconSvg /> Pull Request
-          </ActionButton>
-        ),
-      },
-      {
-        __type: 'toolbar:status',
+        __type: 'toolbar:git',
         name: 'current-fork',
         component: () => {
           const forkName = Cookies.get('fork_full_name')
@@ -63,6 +54,15 @@ const OpenAuthoringSiteForm = ({
             </FieldMeta>
           )
         },
+      },
+      {
+        __type: 'toolbar:git',
+        name: 'create-pr',
+        component: () => (
+          <ActionButton>
+            <PrIconSvg /> Pull Request
+          </ActionButton>
+        ),
       },
       {
         __type: 'toolbar:form-actions',
@@ -124,9 +124,13 @@ const useFormStatusPlugin = (
       component: () => (
         <FieldMeta name={'Form Status'}>
           {form.finalForm.getState().dirty ? (
-            <div>Unsaved changes</div>
+            <StatusMessage warning>
+              <span></span> Unsaved changes
+            </StatusMessage>
           ) : (
-            <div>No changes</div>
+            <StatusMessage>
+              <span></span> No changes
+            </StatusMessage>
           )}
         </FieldMeta>
       ),
@@ -141,13 +145,14 @@ const useFormStatusPlugin = (
 }
 
 const MetaLink = styled.a`
-  font-size: 18px;
+  font-size: 16px;
   color: ${color.primary('dark')};
 `
 
 const ActionButton = styled(Button)`
   display: flex;
   align-items: center;
+  white-space: nowrap;
 
   svg {
     fill: currentColor;
@@ -160,6 +165,39 @@ const ActionButton = styled(Button)`
 
 const SaveButton = styled(ActionButton)`
   padding: 0 2rem;
+`
+interface StatusMessageProps {
+  warning?: boolean
+}
+
+const StatusMessage = styled.p<StatusMessageProps>`
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  color: ${color.grey(6)};
+  padding-right: 4px;
+
+  span {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    margin-top: -1px;
+    background-color: #3cad3a;
+    border: 1px solid #249a21;
+    margin-right: 5px;
+    opacity: 0.5;
+  }
+
+  ${p =>
+    p.warning &&
+    css`
+      span {
+        background-color: #e9d050;
+        border: 1px solid #d3ba38;
+        opacity: 1;
+      }
+    `};
 `
 
 export default OpenAuthoringSiteForm

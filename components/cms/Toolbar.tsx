@@ -6,16 +6,16 @@ import styled from 'styled-components'
 
 export const Toolbar = styled(({ ...styleProps }) => {
   const cms = useCMS()
-  const tools = cms.plugins.findOrCreateMap('toolbar:tool')
   const status = cms.plugins.findOrCreateMap('toolbar:status')
+  const git = cms.plugins.findOrCreateMap('toolbar:git')
   const actions = cms.plugins.findOrCreateMap('toolbar:form-actions')
 
-  useSubscribable(tools)
   useSubscribable(status)
+  useSubscribable(git)
   useSubscribable(actions)
 
   const hasToolbarStuff =
-    tools.all().length + status.all().length + actions.all().length > 0
+    git.all().length + status.all().length + actions.all().length > 0
   if (!hasToolbarStuff) {
     return null
   }
@@ -27,11 +27,12 @@ export const Toolbar = styled(({ ...styleProps }) => {
           <CreateContentMenu />
         </Create>
         <Github>
+          {git.all().length > 0 && git.all().map((git: any) => git.component())}
+        </Github>
+        <Status>
           {status.all().length > 0 &&
             status.all().map((status: any) => status.component())}
-          {tools.all().length > 0 &&
-            tools.all().map((tool: any) => tool.component())}
-        </Github>
+        </Status>
         <Actions>
           {actions.all().length > 0 &&
             actions.all().map((action: any) => action.component())}
@@ -50,8 +51,8 @@ export const Toolbar = styled(({ ...styleProps }) => {
   z-index: 10000;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   display: grid;
-  grid-template-areas: 'create github actions';
-  grid-template-columns: auto 1fr auto;
+  grid-template-areas: 'create github status actions';
+  grid-template-columns: auto 1fr auto auto;
   align-items: stretch;
 `
 
@@ -61,7 +62,36 @@ const Github = styled.div`
   justify-self: end;
   padding-right: 0.75rem;
   border-right: 1px solid white;
-  box-shadow: inset -1px 0 0 #edecf3;
+  box-shadow: inset -1px 0 0 #e1ddec;
+  background-image: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0.01),
+    transparent 3rem
+  );
+
+  > * {
+    margin-bottom: 0;
+    margin-left: 1rem;
+  }
+
+  label {
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+`
+
+const Create = styled.div`
+  grid-area: create;
+  justify-self: start;
+  display: flex;
+  align-items: center;
+`
+
+const Status = styled.div`
+  grid-area: status;
+  justify-self: end;
+  display: flex;
+  align-items: center;
 
   > * {
     margin-bottom: 0;
@@ -71,13 +101,6 @@ const Github = styled.div`
   label {
     margin-bottom: 0;
   }
-`
-
-const Create = styled.div`
-  grid-area: create;
-  justify-self: start;
-  display: flex;
-  align-items: center;
 `
 
 const Actions = styled.div`
