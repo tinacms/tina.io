@@ -154,8 +154,6 @@ const CreateToggleButton = styled(Button)`
 
 const ContentMenuWrapper = styled.div`
   position: relative;
-  grid-area: create;
-  justify-self: start;
 `
 
 const ContentMenu = styled.div<{ open: boolean }>`

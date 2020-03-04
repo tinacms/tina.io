@@ -23,7 +23,9 @@ export const Toolbar = styled(({ ...styleProps }) => {
     <>
       <ToolbarPlaceholder />
       <div {...styleProps}>
-        <CreateContentMenu />
+        <Create>
+          <CreateContentMenu />
+        </Create>
         <Github>
           {status.all().length > 0 &&
             status.all().map((status: any) => status.component())}
@@ -49,14 +51,21 @@ export const Toolbar = styled(({ ...styleProps }) => {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   display: grid;
   grid-template-areas: 'create github actions';
-  align-items: center;
+  grid-template-columns: auto 1fr auto;
+  align-items: stretch;
 `
 
 const Github = styled.div`
   display: flex;
+  align-items: center;
+  justify-self: end;
+  padding-right: 0.75rem;
+  border-right: 1px solid white;
+  box-shadow: inset -1px 0 0 #edecf3;
 
   > * {
     margin-bottom: 0;
+    margin-left: 1rem;
   }
 
   label {
@@ -64,10 +73,18 @@ const Github = styled.div`
   }
 `
 
+const Create = styled.div`
+  grid-area: create;
+  justify-self: start;
+  display: flex;
+  align-items: center;
+`
+
 const Actions = styled.div`
   grid-area: actions;
   justify-self: end;
   display: flex;
+  align-items: center;
 
   ${Button} {
     margin-left: 0.75rem;

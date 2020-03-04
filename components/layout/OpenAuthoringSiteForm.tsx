@@ -9,8 +9,8 @@ import { useEffect } from 'react'
 import { Button, color } from '@tinacms/styles'
 import { useCMS, Form, TinaCMS, FieldMeta } from 'tinacms'
 import Cookies from 'js-cookie'
-import SaveIconSvg from '../../public/svg/save-icon.svg'
 import UndoIconSvg from '../../public/svg/undo-icon.svg'
+import PrIconSvg from '../../public/svg/pr-icon.svg'
 import styled from 'styled-components'
 
 interface Props extends InlineFormProps {
@@ -44,7 +44,11 @@ const OpenAuthoringSiteForm = ({
       {
         __type: 'toolbar:tool',
         name: 'create-pr',
-        component: () => <Button>Pull Request</Button>,
+        component: () => (
+          <ActionButton>
+            <PrIconSvg /> Pull Request
+          </ActionButton>
+        ),
       },
       {
         __type: 'toolbar:status',
@@ -68,9 +72,9 @@ const OpenAuthoringSiteForm = ({
             <ActionButton onClick={form.reset}>
               <UndoIconSvg /> Discard
             </ActionButton>
-            <ActionButton primary onClick={form.submit}>
-              <SaveIconSvg /> Save
-            </ActionButton>
+            <SaveButton primary onClick={form.submit}>
+              Save Page
+            </SaveButton>
           </>
         ),
       },
@@ -118,13 +122,13 @@ const useFormStatusPlugin = (
       __type: 'toolbar:status',
       name: 'form-state-dirty',
       component: () => (
-        <>
+        <FieldMeta name={'Form Status'}>
           {form.finalForm.getState().dirty ? (
-            <div>Dirty</div>
+            <div>Unsaved changes</div>
           ) : (
             <div>No changes</div>
           )}
-        </>
+        </FieldMeta>
       ),
     }
 
@@ -152,6 +156,10 @@ const ActionButton = styled(Button)`
     height: 2.5em;
     margin-right: 0.25rem;
   }
+`
+
+const SaveButton = styled(ActionButton)`
+  padding: 0 2rem;
 `
 
 export default OpenAuthoringSiteForm
