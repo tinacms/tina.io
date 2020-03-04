@@ -50,6 +50,7 @@ export const Toolbar = styled(({ ...styleProps }) => {
   background-color: #f6f6f9;
   z-index: 10000;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid #edecf3;
   display: grid;
   grid-template-areas: 'create github status actions';
   grid-template-columns: auto 1fr auto auto;
