@@ -4,60 +4,75 @@ const { b64EncodeUnicode } = require('../../utils/base64')
 const baseBranch = process.env.BASE_BRANCH
 const Cookies = require('js-cookie')
 
-const fetchExistingPR = (
+const fetchExistingPR = async (
   baseRepoFullName,
   forkRepoFullName,
-  headBranch,
-  token
+  headBranch
 ) => {
-  return axios({
-    method: 'GET',
-    url: `https://api.github.com/repos/${baseRepoFullName}/pulls`,
-    headers: {
-      Authorization: 'token ' + token,
-    },
-  })
-    .then(response => {
-      for (i = 0; i < response.data.length; i++) {
-        const pull = response.data[i]
-        if (headBranch === pull.head.ref) {
-          if (
-            pull.head.repo.full_name === forkRepoFullName &&
-            pull.base.repo.full_name === baseRepoFullName
-          ) {
-            return pull // found matching PR
-          }
+  try {
+    const response = await fetch(`/api/proxy-github`, {
+      method: 'POST',
+      body: JSON.stringify({
+        proxy_data: {
+          url: `https://api.github.com/repos/${baseRepoFullName}/pulls`,
+          method: 'GET',
+        },
+      }),
+    })
+
+    const data = await response.json()
+    
+    for (i = 0; i < data.length; i++) {
+      const pull = data[i]
+      if (headBranch === pull.head.ref) {
+        console.log(pull);
+        
+        if (
+          pull.head.repo?.full_name === forkRepoFullName &&
+          pull.base.repo?.full_name === baseRepoFullName
+        ) {
+          return pull // found matching PR
         }
       }
-      return
-    })
-    .catch(err => {
-      console.log(err)
-      return
-    })
+    }
+
+    return
+  } catch (err) {
+    console.log(err);
+    return
+  }
 }
 
-const createPR = (
+const createPR = async (
   baseRepoFullName,
   forkRepoFullName,
   headBranch,
-  accessToken,
   title,
   body
 ) => {
-  return axios({
-    method: 'POST',
-    url: `https://api.github.com/repos/${baseRepoFullName}/pulls`,
-    headers: {
-      Authorization: 'token ' + accessToken,
-    },
-    data: {
-      title: title ? title : 'Update from TinaCMS',
-      body: body ? body : 'Please pull these awesome changes in!',
-      head: `${forkRepoFullName.split('/')[0]}:${headBranch}`,
-      base: baseBranch,
-    },
-  })
+  try {
+    const response = await fetch(`/api/proxy-github`, {
+      method: 'POST',
+      body: JSON.stringify({
+        proxy_data: {
+          url: `https://api.github.com/repos/${baseRepoFullName}/pulls`,
+          method: 'POST',
+          data: {
+            title: title ? title : 'Update from TinaCMS',
+            body: body ? body : 'Please pull these awesome changes in!',
+            head: `${forkRepoFullName.split('/')[0]}:${headBranch}`,
+            base: baseBranch,
+          },
+        },
+      }),
+    })
+
+    const data = await response.json()
+
+    return data
+  } catch (err) {
+    return err
+  }
 }
 
 const getContent = async (repoFullName, headBranch, path, accessToken) => {
@@ -78,24 +93,36 @@ const saveContent = async (
   repoFullName,
   headBranch,
   path,
-  accessToken,
   sha,
   content,
   message
 ) => {
-  return axios({
-    method: 'PUT',
-    url: `https://api.github.com/repos/${repoFullName}/contents/${path}`,
-    headers: {
-      Authorization: 'token ' + accessToken,
-    },
-    data: {
-      message,
-      content: b64EncodeUnicode(content),
-      sha,
-      branch: headBranch,
-    },
-  })
+  try {
+    const response = await fetch(`/api/proxy-github`, {
+      method: 'POST',
+      body: JSON.stringify({
+        proxy_data: {
+          url: `https://api.github.com/repos/${repoFullName}/contents/${path}`,
+          method: 'PUT',
+          data: {
+            message,
+            content: b64EncodeUnicode(content),
+            sha,
+            branch: headBranch,
+          },
+        },
+      }),
+    })
+
+    const data = await response.json()
+    console.log(response.status, data.content);
+    
+    if (response.status === 200) return data
+    
+    throw new Error("Failed")
+  } catch (err) {
+    throw new Error("Failed")
+  }
 }
 
 const createAccessToken = (clientId, clientSecret, code, state) => {

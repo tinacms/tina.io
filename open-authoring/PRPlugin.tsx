@@ -10,7 +10,7 @@ export class PRPlugin implements ScreenPlugin {
   Icon: any
   layout: any
 
-  constructor(baseRepoFullName, forkRepoFullName, accessToken) {
+  constructor(baseRepoFullName, forkRepoFullName) {
     this.__type = 'screen'
     this.name = 'Pull Requests'
     this.Icon = GitIconSvg
@@ -20,7 +20,6 @@ export class PRPlugin implements ScreenPlugin {
         <PRModal
           baseRepoFullName={baseRepoFullName}
           forkRepoFullName={forkRepoFullName}
-          accessToken={accessToken}
         />
       )
     }

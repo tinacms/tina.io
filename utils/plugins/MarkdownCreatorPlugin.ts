@@ -84,7 +84,6 @@ export class MarkdownCreatorPlugin<FormShape = any, FrontmatterShape = any>
       this.githubOptions.forkFullName,
       this.githubOptions.branch,
       fileRelativePath,
-      this.githubOptions.accessToken,
       getCachedFormData(fileRelativePath).sha,
       toMarkdownString({
         fileRelativePath,
