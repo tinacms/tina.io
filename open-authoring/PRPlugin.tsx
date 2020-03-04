@@ -17,13 +17,12 @@ export const PRPlugin = (
 ) => ({
   __type: 'toolbar:git',
   name: 'create-pr',
-  component: id => {
+  component: () => {
     return (
       <PullRequestButton
         baseRepoFullName={baseRepoFullName}
         forkRepoFullName={forkRepoFullName}
         accessToken={accessToken}
-        key={id}
       />
     )
   },

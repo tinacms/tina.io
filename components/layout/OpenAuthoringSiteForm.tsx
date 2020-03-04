@@ -60,8 +60,8 @@ const OpenAuthoringSiteForm = ({
       {
         __type: 'toolbar:form-actions',
         name: 'base-form-actions',
-        component: id => (
-          <FormActionsWrap key={id}>
+        component: () => (
+          <FormActionsWrap>
             {form.finalForm.getState().dirty ? (
               <>
                 <ToolbarButton
@@ -167,8 +167,8 @@ const useFormStatusPlugin = (
     const plugin = {
       __type: 'toolbar:status',
       name: 'form-state-dirty',
-      component: id => (
-        <FieldMeta key={id} name={'Form Status'}>
+      component: () => (
+        <FieldMeta name={'Form Status'}>
           {form.finalForm.getState().dirty ? (
             <StatusMessage warning>
               <span></span> Unsaved changes
