@@ -37,7 +37,7 @@ const OpenAuthoringSiteForm = ({
   }, [])
 
 
-   * persist pending changes to localStorage
+  /* persist pending changes to localStorage
    */
 
   const saveToStorage = useCallback(formData => {
