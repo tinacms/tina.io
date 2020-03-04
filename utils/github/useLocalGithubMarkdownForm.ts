@@ -41,7 +41,7 @@ const useGithubMarkdownForm = <T = any>(
         })
       }).catch(e => {
         if (e.response.status == 404) {
-          return { [FORM_ERROR]: 'A special error message' }
+          return { [FORM_ERROR]: 'Failed to save data.' }
         }   
       })
     },
