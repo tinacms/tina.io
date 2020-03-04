@@ -44,12 +44,12 @@ const OpenAuthoringSiteForm = ({
    * Toolbar Plugins
    */
   useEffect(() => {
+    const forkName = Cookies.get('fork_full_name')
     const plugins = [
       {
         __type: 'toolbar:git',
         name: 'current-fork',
         component: () => {
-          const forkName = Cookies.get('fork_full_name')
           return (
             <FieldMeta name={'Fork'}>
               <MetaLink target="_blank" href={`https://github.com/${forkName}`}>
@@ -60,7 +60,7 @@ const OpenAuthoringSiteForm = ({
         },
       },
       // TODO
-      PRPlugin('pass', 'real', 'values'),
+      PRPlugin(process.env.REPO_FULL_NAME, forkName, 'TODO_AUTH_TOKEN'),
       {
         __type: 'toolbar:form-actions',
         name: 'base-form-actions',
