@@ -28,18 +28,22 @@ interface SingleDotProps {
   color: string
 }
 
-export const LoadingDots = ({
-  dotSize = 8,
-  color = 'white',
-}: LoadingDotsProps) => {
-  return (
-    <div>
-      <SingleDot dotSize={dotSize} color={color} />
-      <SingleDot dotSize={dotSize} color={color} />
-      <SingleDot dotSize={dotSize} color={color} />
-    </div>
-  )
-}
+export const LoadingDots = styled(
+  ({ dotSize = 6, color = 'white', ...styleProps }: LoadingDotsProps) => {
+    return (
+      <div {...styleProps}>
+        <SingleDot dotSize={dotSize} color={color} />
+        <SingleDot dotSize={dotSize} color={color} />
+        <SingleDot dotSize={dotSize} color={color} />
+      </div>
+    )
+  }
+)`
+  margin: 0 4px;
+  display: flex;
+  align-items: center;
+`
+
 const scaleUpAndDown = keyframes`
   0% { transform: scale(0.1); }
   50% { transform: scale(1); }
@@ -50,7 +54,7 @@ const scaleUpAndDown = keyframes`
 const SingleDot = styled.span<SingleDotProps>`
   animation: ${scaleUpAndDown} 2s linear infinite;
   display: inline-block;
-  margin-right: 4px;
+  margin: 0 5px;
   :nth-child(2) {
     animation-delay: 0.3s;
   }
