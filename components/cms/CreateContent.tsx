@@ -33,6 +33,7 @@ import { Form } from '@tinacms/forms'
 import { AddIcon } from '@tinacms/icons'
 import { color, radius, font, Button, shadow } from '@tinacms/styles'
 import { Dismissible } from 'react-dismissible'
+import { DesktopLabel } from '../layout/OpenAuthoringSiteForm'
 
 export const CreateContentMenu = () => {
   const cms = useCMS()
@@ -46,7 +47,7 @@ export const CreateContentMenu = () => {
     return (
       <ContentMenuWrapper>
         <CreateToggleButton onClick={() => setVisible(true)} open={visible}>
-          <AddIcon /> New
+          <AddIcon /> <DesktopLabel> New</DesktopLabel>
         </CreateToggleButton>
         <ContentMenu open={visible}>
           <Dismissible
@@ -139,6 +140,11 @@ const CreateToggleButton = styled(Button)`
   display: flex;
   align-items: center;
   transition: all 150ms ease-out;
+  padding: 0 10px;
+
+  @media (min-width: 1030px) {
+    padding: 0 20px;
+  }
 
   &:focus {
     outline: none !important;

@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { Modal, ModalPopup, ModalHeader, ModalBody } from 'tinacms'
-import { ToolbarButton } from '../components/layout/OpenAuthoringSiteForm'
+import {
+  ToolbarButton,
+  DesktopLabel,
+} from '../components/layout/OpenAuthoringSiteForm'
 import PrIconSvg from '../public/svg/pr-icon.svg'
 import { PRModal } from './PRModal'
 
@@ -35,7 +38,7 @@ function PullRequestButton({
     <>
       <ToolbarButton onClick={() => setOpened(p => !p)}>
         <PrIconSvg />
-        Pull Request
+        <DesktopLabel> Pull Request</DesktopLabel>
       </ToolbarButton>
       {opened && (
         <Modal>

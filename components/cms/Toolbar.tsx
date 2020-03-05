@@ -62,6 +62,12 @@ export const Toolbar = styled(({ ...styleProps }) => {
   grid-template-areas: 'create github status actions';
   grid-template-columns: auto 1fr auto auto;
   align-items: stretch;
+
+  @media (max-width: 1029px) {
+    label {
+      display: none;
+    }
+  }
 `
 
 const Github = styled.div`
@@ -82,9 +88,19 @@ const Github = styled.div`
     margin-left: 1rem;
   }
 
+  > div {
+    display: none;
+  }
+
   label {
     margin-bottom: 0;
     white-space: nowrap;
+  }
+
+  @media (min-width: 1030px) {
+    > div {
+      display: block;
+    }
   }
 `
 
