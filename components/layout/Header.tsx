@@ -62,7 +62,7 @@ const StyledHeader = styled.header<StyledHeaderProps>`
 
   ${NavToggle} {
     position: fixed;
-    top: 1.25rem;
+    margin-top: 1.25rem;
     left: 1rem;
     z-index: 500;
 
