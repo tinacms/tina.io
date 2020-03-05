@@ -84,7 +84,7 @@ export const Layout = styled(
         />
         <Header color={color} />
         {children}
-        <Footer />
+        <Footer editMode={editMode} />
       </div>
     )
   }

@@ -89,7 +89,7 @@ export default function DocTemplate(props) {
               />
             </Wrapper>
           </RichTextWrapper>
-          <Footer light />
+          <Footer light editMode={props.editMode} />
         </DocsContent>
         <Overlay open={open} onClick={() => setOpen(false)} />
       </DocsLayout>

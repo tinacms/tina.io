@@ -9,17 +9,12 @@ import { Button } from '../ui'
 
 interface EditLinkProps {
   color?: 'white' | 'primary' | 'secondary' | 'seafoam' | 'variable'
+  editMode: boolean
 }
 import { useOpenAuthoring } from './OpenAuthoring'
 
-export const EditLink = ({ color }: EditLinkProps) => {
+export const EditLink = ({ color, editMode }: EditLinkProps) => {
   const cms = useCMS()
-
-  let _isEditMode = !cms.sidebar.hidden
-
-  useSubscribable(cms.sidebar, () => {
-    _isEditMode = !cms.sidebar.hidden
-  })
 
   const openAuthoring = useOpenAuthoring()
   return (
@@ -27,7 +22,7 @@ export const EditLink = ({ color }: EditLinkProps) => {
       id="OpenAuthoringEditButton"
       color={color}
       onClick={
-        _isEditMode
+        editMode
           ? exitEditMode
           : () =>
               enterEditMode(
@@ -36,7 +31,7 @@ export const EditLink = ({ color }: EditLinkProps) => {
               )
       }
     >
-      <EditIcon /> {_isEditMode ? 'Exit Edit Mode' : 'Edit This Site'}
+      <EditIcon /> {editMode ? 'Exit Edit Mode' : 'Edit This Site'}
     </EditToggleButton>
   )
 }

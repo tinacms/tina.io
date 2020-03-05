@@ -36,18 +36,6 @@ const OpenAuthoringSiteForm = ({
 }: Props) => {
   const [statefulPreviewError, setStatefulPreviewError] = useState(previewError)
   const cms = useCMS()
-  const [submitting, setSubmitting] = useState(false)
-
-  useEffect(() => {
-    /*
-     ** Random Fix: sidebar state isn't updated properly
-     ** without this timeout. If and when the 'preview'
-     ** state is accessible in _app, we'd like to move
-     ** the editMode/sidebar.hidden stuff to _app
-     */
-    setTimeout(() => (cms.sidebar.hidden = !editMode), 1)
-  }, [])
-
   const formState = useFormState(form, { dirty: true, submitting: true })
 
   /**

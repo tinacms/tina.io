@@ -139,7 +139,7 @@ const HomePage = (props: any) => {
                   </em>
                 </h2>
                 <CtaBar>
-                  <EditLink color="primary" />
+                  <EditLink color="primary" editMode={props.editMode} />
                   <DynamicLink
                     href={'/docs/getting-started/introduction/'}
                     passHref
