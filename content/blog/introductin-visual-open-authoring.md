@@ -16,7 +16,7 @@ On your website, there's an _"Edit this page on GitHub"_ link — familiar enoug
 
 This should feel familiar for anyone that has used a word processor or site builder. You navigate to the page you want to change, click “Edit”, make updates in a WYSIWYG, and then submit your changes. That’s it 🧞‍♂️.
 
-![TinaCMS Visual Open Authoring](/gif/open_authoring.gif)
+![TinaCMS Visual Open Authoring](/gif/open-auth.gif)
 
 ## What's under the hood?
 
