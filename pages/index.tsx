@@ -139,15 +139,13 @@ const HomePage = (props: any) => {
                   </em>
                 </h2>
                 <CtaBar>
+                  <EditLink color="primary" />
                   <DynamicLink
                     href={'/docs/getting-started/introduction/'}
                     passHref
                   >
-                    <Button as="a" color="primary">
-                      Get Started
-                    </Button>
+                    <Button as="a">Get Started</Button>
                   </DynamicLink>
-                  <EditLink />
                 </CtaBar>
               </CtaLayout>
               <InfoLayout>
