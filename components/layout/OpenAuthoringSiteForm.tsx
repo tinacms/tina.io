@@ -44,7 +44,7 @@ const OpenAuthoringSiteForm = ({
     setTimeout(() => (cms.sidebar.hidden = !editMode), 1)
   }, [])
 
-  const formState = useFormState(form, { dirty: true, values: true })
+  const formState = useFormState(form, { dirty: true })
 
   /**
    * Toolbar Plugins
