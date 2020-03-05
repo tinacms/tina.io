@@ -35,7 +35,7 @@ export const Toolbar = styled(({ ...styleProps }) => {
             status
               .all()
               .map((status: any) => (
-                <status.component key={status.name} form={status.form} />
+                <status.component key={status.name} {...status.props} />
               ))}
         </Status>
         <Actions>

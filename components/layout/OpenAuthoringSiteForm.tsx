@@ -44,13 +44,12 @@ const OpenAuthoringSiteForm = ({
     setTimeout(() => (cms.sidebar.hidden = !editMode), 1)
   }, [])
 
-  const formState = useFormState(form, { dirty: true })
+  const formState = useFormState(form, { dirty: true, values: true })
 
   /**
    * Toolbar Plugins
    */
   useEffect(() => {
-    const dirty = formState.dirty ? true : false
     const forkName = Cookies.get('fork_full_name')
     const plugins = [
       {
@@ -99,6 +98,14 @@ const OpenAuthoringSiteForm = ({
           </>
         ),
       },
+      {
+        __type: 'toolbar:status',
+        name: 'form-state-dirty',
+        props: {
+          dirty: formState.dirty,
+        },
+        component: FormStatus,
+      },
     ] as any
 
     const removePlugins = () => {
@@ -113,8 +120,6 @@ const OpenAuthoringSiteForm = ({
 
     return removePlugins
   }, [editMode, form, formState])
-
-  useFormStatusPlugin(form, cms, editMode)
 
   /* persist pending changes to localStorage
    */
@@ -136,6 +141,7 @@ const OpenAuthoringSiteForm = ({
     const values = cms.api.storage.load(path)
     if (values) {
       form.updateValues(values)
+      console.table(form.finalForm.getState())
     }
   }, [form, editMode])
   // show feedback onSave
@@ -169,8 +175,7 @@ const OpenAuthoringSiteForm = ({
   )
 }
 
-const FormStatus = ({ form }) => {
-  const { dirty } = useFormState(form, { dirty: true })
+const FormStatus = ({ dirty }) => {
   return (
     <FieldMeta name={'Form Status'}>
       {dirty ? (
@@ -184,27 +189,6 @@ const FormStatus = ({ form }) => {
       )}
     </FieldMeta>
   )
-}
-
-const useFormStatusPlugin = (
-  form: Form<any>,
-  cms: TinaCMS,
-  editMode: boolean
-) => {
-  useEffect(() => {
-    const plugin = {
-      __type: 'toolbar:status',
-      name: 'form-state-dirty',
-      form: form,
-      component: FormStatus,
-    }
-
-    if (editMode) {
-      cms.plugins.add(plugin)
-    }
-
-    return () => cms.plugins.remove(plugin)
-  }, [editMode, form])
 }
 
 const MetaLink = styled.a`
