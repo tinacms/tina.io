@@ -10,6 +10,7 @@ import { GlobalStyle } from '../components/styles/GlobalStyle'
 import { OpenAuthoring } from '../components/layout/OpenAuthoring'
 import { Toolbar } from '../components/cms/Toolbar'
 import { BrowserStorageApi } from '../utils/plugins/BrowserStorageApi'
+import { Alerts } from '../components/layout/Alerts'
 
 const MainLayout = ({ Component, pageProps }) => {
   /*
@@ -38,6 +39,7 @@ const MainLayout = ({ Component, pageProps }) => {
   return (
     <Tina cms={cms} {...tinaConfig.sidebar}>
       <Toolbar />
+      <Alerts />
       <OpenAuthoring>
         <DefaultSeo
           title={data.seoDefaultTitle}
