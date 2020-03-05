@@ -45,11 +45,7 @@ export const CreateContentMenu = () => {
   if (contentCreatorPlugins.all().length) {
     return (
       <ContentMenuWrapper>
-        <CreateToggleButton
-          onClick={() => setVisible(true)}
-          open={visible}
-          primary
-        >
+        <CreateToggleButton onClick={() => setVisible(true)} open={visible}>
           <AddIcon /> New
         </CreateToggleButton>
         <ContentMenu open={visible}>
@@ -142,6 +138,11 @@ const FormModal = ({ plugin, close }: any) => {
 const CreateToggleButton = styled(Button)`
   display: flex;
   align-items: center;
+  transition: all 150ms ease-out;
+
+  &:focus {
+    outline: none !important;
+  }
 
   svg {
     fill: currentColor;
@@ -149,7 +150,19 @@ const CreateToggleButton = styled(Button)`
     width: 2em;
     height: 2em;
     margin-right: 0.25rem;
+    transform-origin: 50% 50%;
+    transition: all 150ms ease-out;
   }
+
+  ${p =>
+    p.open &&
+    css`
+      background-color: transparent;
+
+      svg {
+        transform: rotate(45deg);
+      }
+    `};
 `
 
 const ContentMenuWrapper = styled.div`
@@ -179,7 +192,7 @@ const ContentMenu = styled.div<{ open: boolean }>`
     css`
       opacity: 1;
       pointer-events: all;
-      transform: translate3d(0, 44px, 0) scale3d(1, 1, 1);
+      transform: translate3d(0, 46px, 0) scale3d(1, 1, 1);
     `};
 `
 

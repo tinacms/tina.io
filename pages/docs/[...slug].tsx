@@ -48,7 +48,7 @@ export default function DocTemplate(props) {
       editMode={props.editMode}
       previewError={props.previewError}
     >
-      <DocsLayout>
+      <DocsLayout isEditing={props.editMode}>
         <NextSeo
           title={frontmatter.title}
           titleTemplate={'%s | TinaCMS Docs'}
@@ -196,7 +196,7 @@ const DocsTinaIcon = styled(TinaIcon)`
     left: 2rem;
     transform: translate3d(0, -50%, 0);
     position: fixed;
-    top: 2.5rem;
+    margin-top: 2.5rem;
     left: 2rem;
   }
 `

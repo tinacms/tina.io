@@ -34,15 +34,16 @@ const useGithubMarkdownForm = <T = any>(
         getCachedFormData(markdownFile.fileRelativePath).sha,
         toMarkdownString(formData),
         'Update from TinaCMS'
-      ).then(response => {
-        setCachedFormData(markdownFile.fileRelativePath, {
-          sha: response.data.content.sha,
+      )
+        .then(response => {
+          console.log(response)
+          setCachedFormData(markdownFile.fileRelativePath, {
+            sha: response.content.sha,
+          })
         })
-      }).catch(e => {
-        if (e.response.status == 404) {
+        .catch(e => {
           return { [FORM_ERROR]: 'Failed to save data.' }
-        }   
-      })
+        })
     },
   })
 

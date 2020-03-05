@@ -71,6 +71,7 @@ const StyledEmailForm = styled.form<StyledEmailFormProps>`
   display: grid;
   grid-template-rows: auto auto;
   grid-template-columns: auto;
+  align-items: center;
   grid-gap: 1rem;
   width: 100%;
   max-width: 38rem;

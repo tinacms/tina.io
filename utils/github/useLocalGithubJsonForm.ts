@@ -33,14 +33,14 @@ const useGithubJsonForm = <T = any>(
         getCachedFormData(jsonFile.fileRelativePath).sha,
         JSON.stringify(formData, null, 2),
         'Update from TinaCMS'
-      ).then(response => {
+      )
+        .then(response => {
           setCachedFormData(jsonFile.fileRelativePath, {
             sha: response.content.sha,
           })
-        }).catch(e => {
-          if (e.message === "Failed") {
-            return { [FORM_ERROR]: 'Failed to save data.' }
-          }   
+        })
+        .catch(e => {
+          return { [FORM_ERROR]: 'Failed to save data.' }
         })
     },
   })

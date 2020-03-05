@@ -63,7 +63,7 @@ export const Layout = styled(
           body: postInfo => `New post, who dis?`,
           afterCreate: response => {
             let url = fileToUrl(
-              response.data.content.path.split('content')[1],
+              response.content.path.split('content')[1],
               'blog'
             )
 
