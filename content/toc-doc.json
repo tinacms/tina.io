@@ -46,6 +46,11 @@
         "title": "Markdown"
       },
       {
+        "id": "/docs/fields/html",
+        "slug": "/docs/fields/html",
+        "title": "HTML"
+      },
+      {
         "id": "/docs/fields/number",
         "slug": "/docs/fields/number",
         "title": "Number"
@@ -71,6 +76,11 @@
         "title": "Toggle"
       },
       {
+        "id": "/docs/fields/select",
+        "slug": "/docs/fields/select",
+        "title": "Select"
+      },
+      {
         "id": "/docs/fields/group",
         "slug": "/docs/fields/group",
         "title": "Group"
@@ -91,6 +101,11 @@
         "title": "Custom Fields"
       }
     ]
+  },
+  {
+    "title": "Media",
+    "id": "media",
+    "slug": "/docs/media"
   },
   {
     "title": "Inline Editing",

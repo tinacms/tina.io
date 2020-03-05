@@ -1,12 +1,8 @@
 ---
 title: Media
-prev: /docs/inline-editing
-next: /docs/contributing/guidelines
+prev: /docs/fields
+next: /docs/inline-editing
 ---
-
-> **Upcoming Feature**
->
-> This document describes an feature that is not yet available.
 
 **Media** in Tina refers to a set of APIs to allow packages to interact with a central store of files.
 
@@ -44,3 +40,8 @@ import { MyMediaStore } from './my-media-store'
 
 cms.media.store = new MyMediaStore()
 ```
+
+> #### Supported Media Stores
+>
+> - [`GitMediaStore`](/docs/nextjs/adding-backends): Saves media to your Git repository by writing to the local system and commiting directly.
+> - `GithubMediaStore`: **Coming Soon.** Saves media to to your Git repository through the Github API.

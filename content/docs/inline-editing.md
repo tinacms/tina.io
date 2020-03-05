@@ -1,6 +1,6 @@
 ---
 title: Inline Editing
-prev: /docs/fields
+prev: /docs/media
 next: /docs/contributing/guidelines
 consumes:
   - file: /packages/react-tinacms-inline/src/inline-form.tsx

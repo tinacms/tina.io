@@ -1,7 +1,7 @@
 ---
 title: Toggle Field
 prev: /docs/fields/color
-next: /docs/fields/group
+next: /docs/fields/select
 consumes:
   - file: /packages/tinacms/src/plugins/fields/ToggleFieldPlugin.tsx
     details: Shows toggle field interface and config options

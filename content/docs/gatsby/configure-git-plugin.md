@@ -17,8 +17,8 @@ The Git plugin provides some options that can be adjusted.
 **gatsby-config.js**
 
 ```javascript
-const path = require("path")
-const REPO_ABSOLUTE_PATH = path.join(process.cwd(), "../..")
+const path = require('path')
+const REPO_ABSOLUTE_PATH = path.join(process.cwd(), '../..')
 
 module.exports = {
   // ...
@@ -58,3 +58,17 @@ module.exports = {
 - `pushOnCommit`: Indicates if every commit should also be pushed automatically. Default: `true`.
 - `gitRemote`: Git SSH remote url for the repository. Default: `undefined`.
 - `sshKey`: Base64 encoded SSH private key that has access to the repository. **This should not be committed to your repository.** This value should be `undefined` or load the key from an environment variable (ie. `process.env.SSH_KEY`) Default: `undefined`.
+
+> ### Configuring the File Writing Debounce
+>
+> The `TINA_GIT_DEBOUNCE_MS` environment variable can be used to change
+> the debounce rate for file writing. This value defaults to `1000`
+> milliseconds.
+>
+> ```
+> TINA_GIT_DEBOUNCE_MS=3000 gatsby develop
+> ```
+>
+> This is useful when running in your site in cloud editing environment
+> i.e. [Gatsby Cloud](https://tinacms.org/blog/using-tinacms-on-gatsby-cloud) or
+> Heroku.
