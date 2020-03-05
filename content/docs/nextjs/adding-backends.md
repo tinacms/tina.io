@@ -123,7 +123,7 @@ When creating an instance of `GitClient`, we need to pass it the URL where the A
 const client = new GitClient('http://localhost:3000/___tina')
 ```
 
-We'll need to amend our `_app.js` application wrapper to register this with the CMS. We can attach APIs to our CMS using the `registerApi` method.
+We'll need to amend our `_app.js` application wrapper to register this with the CMS. We can attach APIs to our CMS using the `registerApi` method. We will also want to set [`cms.media.store`](/docs/media) so we can upload images for our site.
 
 The `_app.js` file should now look something like this:
 
@@ -139,6 +139,7 @@ class MyApp extends App {
     this.cms = new TinaCMS()
     const client = new GitClient('http://localhost:3000/___tina')
     this.cms.registerApi('git', client)
+    this.cms.media.store = new GitMediaStore(client)
   }
 
   render() {
