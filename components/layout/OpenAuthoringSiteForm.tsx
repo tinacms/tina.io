@@ -9,6 +9,8 @@ import createDecorator from 'final-form-submit-listener'
 import Cookies from 'js-cookie'
 import { PRPlugin } from '../../open-authoring/PRPlugin'
 import { flattenFormData } from '../../utils/plugins/flatten-form-data'
+import { LoadingDots } from '../ui/LoadingDots'
+
 interface Props extends InlineFormProps {
   editMode: boolean
   previewError?: string
@@ -34,6 +36,8 @@ const OpenAuthoringSiteForm = ({
 }: Props) => {
   const [statefulPreviewError, setStatefulPreviewError] = useState(previewError)
   const cms = useCMS()
+  const [submitting, setSubmitting] = useState(false)
+
   useEffect(() => {
     /*
      ** Random Fix: sidebar state isn't updated properly
@@ -81,8 +85,9 @@ const OpenAuthoringSiteForm = ({
                 >
                   <UndoIconSvg /> Discard
                 </ToolbarButton>
-                <SaveButton primary onClick={form.submit}>
-                  Save Page
+                <SaveButton primary onClick={form.submit} busy={submitting}>
+                  {submitting && <LoadingDots />}
+                  {!submitting && `Save Page`}
                 </SaveButton>
               </>
             ) : (
@@ -199,6 +204,10 @@ export const ToolbarButton = styled(Button)`
   display: flex;
   align-items: center;
   white-space: nowrap;
+
+  &:focus {
+    outline: none;
+  }
 
   svg {
     fill: currentColor;

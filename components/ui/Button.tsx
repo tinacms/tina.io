@@ -19,7 +19,7 @@ export const Button = styled.button<ButtonProps>`
   text-transform: uppercase;
   padding: 0 1.25rem;
   height: 45px;
-  border: none;
+  border: 1px solid #b4f4e0;
   font-family: var(--font-tuner);
   font-weight: regular;
   font-style: normal;
@@ -28,7 +28,6 @@ export const Button = styled.button<ButtonProps>`
 
   svg {
     fill: currentColor;
-    margin: ;
   }
 
   &:hover,
@@ -57,6 +56,8 @@ export const Button = styled.button<ButtonProps>`
     props.color === 'white' &&
     css`
       background-color: white;
+      border-color: white;
+
       &:focus {
         box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px inset,
           rgba(255, 255, 255, 0.7) 0px 0px 0px 3px,
@@ -69,6 +70,7 @@ export const Button = styled.button<ButtonProps>`
     css`
       background-color: var(--color-primary);
       color: white;
+      border-color: var(--color-primary);
 
       &:hover,
       &:focus {
@@ -81,6 +83,7 @@ export const Button = styled.button<ButtonProps>`
     css`
       background-color: var(--color-secondary);
       color: var(--color-primary);
+      border-color: var(--color-secondary);
 
       &:hover,
       &:focus {
@@ -93,6 +96,7 @@ export const Button = styled.button<ButtonProps>`
     css`
       background-color: var(--color-background);
       color: var(--color-foreground);
+      border-color: var(--color-background);
       &:focus {
         background-color: var(--color-background);
         color: var(--color-foreground);

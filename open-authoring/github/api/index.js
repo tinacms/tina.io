@@ -81,31 +81,28 @@ const saveContent = async (
   content,
   message
 ) => {
-  try {
-    const response = await fetch(`/api/proxy-github`, {
-      method: 'POST',
-      body: JSON.stringify({
-        proxy_data: {
-          url: `https://api.github.com/repos/${repoFullName}/contents/${path}`,
-          method: 'PUT',
-          data: {
-            message,
-            content: b64EncodeUnicode(content),
-            sha,
-            branch: headBranch,
-          },
+  const response = await fetch(`/api/proxy-github`, {
+    method: 'POST',
+    body: JSON.stringify({
+      proxy_data: {
+        url: `https://api.github.com/repos/${repoFullName}/contents/${path}`,
+        method: 'PUT',
+        data: {
+          message,
+          content: b64EncodeUnicode(content),
+          sha,
+          branch: headBranch,
         },
-      }),
-    })
+      },
+    }),
+  })
 
-    const data = await response.json()
+  const data = await response.json()
 
-    if (response.status === 200) return data
+  //2xx status codes
+  if (response.status.toString()[0] == '2') return data
 
-    throw new Error('Failed')
-  } catch (err) {
-    throw new Error('Failed')
-  }
+  throw new Error('Failed to save')
 }
 
 const getBranch = async (repoFullName, branch) => {

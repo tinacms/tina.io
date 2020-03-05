@@ -91,17 +91,17 @@ export class MarkdownCreatorPlugin<FormShape = any, FrontmatterShape = any>
         markdownBody,
       }),
       'Update from TinaCMS'
-    ).then(response => {
-      setCachedFormData(fileRelativePath, {
-        sha: response.data.content.sha,
+    )
+      .then(response => {
+        setCachedFormData(fileRelativePath, {
+          sha: response.content.sha,
+        })
+        if (this.afterCreate) {
+          this.afterCreate(response)
+        }
       })
-      if (this.afterCreate) {
-        this.afterCreate(response)
-      }
-    }).catch(e => {
-      if (e.response.status == 404) {
-        return { [FORM_ERROR]: 'Failed to save data.' }
-      }   
-    })
+      .catch(e => {
+        return { [FORM_ERROR]: 'Failed to create page.' }
+      })
   }
 }
