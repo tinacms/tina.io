@@ -8,7 +8,7 @@ import { useCMS, useWatchFormValues, Form, TinaCMS, FieldMeta } from 'tinacms'
 import createDecorator from 'final-form-submit-listener'
 import Cookies from 'js-cookie'
 import { PRPlugin } from '../../open-authoring/PRPlugin'
-
+import { flattenFormData } from '../../utils/plugins/flatten-form-data'
 interface Props extends InlineFormProps {
   editMode: boolean
   previewError?: string
@@ -126,7 +126,7 @@ const OpenAuthoringSiteForm = ({
 
   const saveToStorage = useCallback(
     formData => {
-      cms.api.storage.save(path, formData.values)
+      cms.api.storage.save(path, flattenFormData(form.finalForm))
     },
     [path]
   )
@@ -141,7 +141,6 @@ const OpenAuthoringSiteForm = ({
     const values = cms.api.storage.load(path)
     if (values) {
       form.updateValues(values)
-      console.table(form.finalForm.getState())
     }
   }, [form, editMode])
   // show feedback onSave
