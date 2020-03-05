@@ -48,7 +48,7 @@ const OpenAuthoringSiteForm = ({
     setTimeout(() => (cms.sidebar.hidden = !editMode), 1)
   }, [])
 
-  const formState = useFormState(form, { dirty: true })
+  const formState = useFormState(form, { dirty: true, submitting: true })
 
   /**
    * Toolbar Plugins
@@ -85,9 +85,13 @@ const OpenAuthoringSiteForm = ({
                 >
                   <UndoIconSvg /> Discard
                 </ToolbarButton>
-                <SaveButton primary onClick={form.submit} busy={submitting}>
-                  {submitting && <LoadingDots />}
-                  {!submitting && `Save Page`}
+                <SaveButton
+                  primary
+                  onClick={form.submit}
+                  busy={formState.submitting}
+                >
+                  {formState.submitting && <LoadingDots />}
+                  {!formState.submitting && `Save Page`}
                 </SaveButton>
               </>
             ) : (
