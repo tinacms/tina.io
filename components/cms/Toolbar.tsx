@@ -6,9 +6,9 @@ import styled from 'styled-components'
 
 export const Toolbar = styled(({ ...styleProps }) => {
   const cms = useCMS()
-  const status = cms.plugins.findOrCreateMap('toolbar:status')
-  const git = cms.plugins.findOrCreateMap('toolbar:git')
-  const actions = cms.plugins.findOrCreateMap('toolbar:form-actions')
+  const status = cms.plugins.getType('toolbar:status')
+  const git = cms.plugins.getType('toolbar:git')
+  const actions = cms.plugins.getType('toolbar:form-actions')
 
   useSubscribable(status)
   useSubscribable(git)
@@ -34,7 +34,9 @@ export const Toolbar = styled(({ ...styleProps }) => {
           {status.all().length > 0 &&
             status
               .all()
-              .map((status: any) => <status.component key={status.name} />)}
+              .map((status: any) => (
+                <status.component key={status.name} {...status.props} />
+              ))}
         </Status>
         <Actions>
           {actions.all().length > 0 &&

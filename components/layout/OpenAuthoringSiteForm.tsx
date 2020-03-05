@@ -8,6 +8,7 @@ import { useCMS, useWatchFormValues, Form, TinaCMS, FieldMeta } from 'tinacms'
 import createDecorator from 'final-form-submit-listener'
 import Cookies from 'js-cookie'
 import { PRPlugin } from '../../open-authoring/PRPlugin'
+import { flattenFormData } from '../../utils/plugins/flatten-form-data'
 import { LoadingDots } from '../ui/LoadingDots'
 
 interface Props extends InlineFormProps {
@@ -15,6 +16,15 @@ interface Props extends InlineFormProps {
   previewError?: string
   children: any
   path: string
+}
+
+const useFormState = (form, subscription) => {
+  const [state, setState] = useState(form.finalForm.getState())
+  useEffect(() => {
+    form.subscribe(setState, subscription)
+  }, [form])
+
+  return state
 }
 
 const OpenAuthoringSiteForm = ({
@@ -38,11 +48,12 @@ const OpenAuthoringSiteForm = ({
     setTimeout(() => (cms.sidebar.hidden = !editMode), 1)
   }, [])
 
+  const formState = useFormState(form, { dirty: true })
+
   /**
    * Toolbar Plugins
    */
   useEffect(() => {
-    const dirty = form.finalForm.getState().dirty ? true : false
     const forkName = Cookies.get('fork_full_name')
     const plugins = [
       {
@@ -65,7 +76,7 @@ const OpenAuthoringSiteForm = ({
         name: 'base-form-actions',
         component: () => (
           <>
-            {form.finalForm.getState().dirty ? (
+            {formState.dirty ? (
               <>
                 <ToolbarButton
                   onClick={() => {
@@ -92,6 +103,14 @@ const OpenAuthoringSiteForm = ({
           </>
         ),
       },
+      {
+        __type: 'toolbar:status',
+        name: 'form-state-dirty',
+        props: {
+          dirty: formState.dirty,
+        },
+        component: FormStatus,
+      },
     ] as any
 
     const removePlugins = () => {
@@ -105,16 +124,14 @@ const OpenAuthoringSiteForm = ({
     }
 
     return removePlugins
-  }, [editMode, form])
-
-  useFormStatusPlugin(form, cms, editMode)
+  }, [editMode, form, formState])
 
   /* persist pending changes to localStorage
    */
 
   const saveToStorage = useCallback(
     formData => {
-      cms.api.storage.save(path, formData.values)
+      cms.api.storage.save(path, flattenFormData(form.finalForm))
     },
     [path]
   )
@@ -162,36 +179,20 @@ const OpenAuthoringSiteForm = ({
   )
 }
 
-const useFormStatusPlugin = (
-  form: Form<any>,
-  cms: TinaCMS,
-  editMode: boolean
-) => {
-  useEffect(() => {
-    const plugin = {
-      __type: 'toolbar:status',
-      name: 'form-state-dirty',
-      component: () => (
-        <FieldMeta name={'Form Status'}>
-          {form.finalForm.getState().dirty ? (
-            <StatusMessage warning>
-              <span></span> Unsaved changes
-            </StatusMessage>
-          ) : (
-            <StatusMessage>
-              <span></span> No changes
-            </StatusMessage>
-          )}
-        </FieldMeta>
-      ),
-    }
-
-    if (editMode) {
-      cms.plugins.add(plugin)
-    }
-
-    return () => cms.plugins.remove(plugin)
-  }, [editMode, form, form.finalForm.getState().dirty])
+const FormStatus = ({ dirty }) => {
+  return (
+    <FieldMeta name={'Form Status'}>
+      {dirty ? (
+        <StatusMessage warning>
+          <span></span> Unsaved changes
+        </StatusMessage>
+      ) : (
+        <StatusMessage>
+          <span></span> No changes
+        </StatusMessage>
+      )}
+    </FieldMeta>
+  )
 }
 
 const MetaLink = styled.a`
