@@ -94,7 +94,7 @@ const OpenAuthoringSiteForm = ({
                   {formState.submitting && <LoadingDots />}
                   {!formState.submitting && (
                     <>
-                      Save<DesktopLabel> Page</DesktopLabel>
+                      Save <DesktopLabel>&nbsp;Page</DesktopLabel>
                     </>
                   )}
                 </SaveButton>
@@ -106,7 +106,7 @@ const OpenAuthoringSiteForm = ({
                   <DesktopLabel> Discard</DesktopLabel>
                 </ToolbarButton>
                 <SaveButton primary onClick={form.submit} disabled>
-                  Save<DesktopLabel> Page</DesktopLabel>
+                  Save <DesktopLabel>&nbsp;Page</DesktopLabel>
                 </SaveButton>
               </>
             )}
