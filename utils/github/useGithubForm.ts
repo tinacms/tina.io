@@ -20,8 +20,6 @@ export const useGithubForm = <T = any>(
   githubOptions: GithubOptions,
   isEditMode: boolean
 ) => {
-  const cms = useCMS()
-
   useEffect(() => {
     setCachedFormData(file.fileRelativePath, {
       sha: file.sha,
@@ -31,7 +29,7 @@ export const useGithubForm = <T = any>(
   // TODO - this might cause an issue if editmode dynamically changes
   if (isEditMode) {
     const prPlugin = useMemo(() => {
-      return new PRPlugin(
+      return PRPlugin(
         githubOptions.baseRepoFullName,
         githubOptions.forkFullName
       )

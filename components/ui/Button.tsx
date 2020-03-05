@@ -17,13 +17,19 @@ export const Button = styled.button<ButtonProps>`
   color: var(--color-primary);
   border-radius: 2rem;
   text-transform: uppercase;
-  padding: 0.625rem 1.25rem;
+  padding: 0 1.25rem;
+  height: 45px;
   border: none;
   font-family: var(--font-tuner);
   font-weight: regular;
   font-style: normal;
   text-decoration: none !important;
   opacity: 1;
+
+  svg {
+    fill: currentColor;
+    margin: ;
+  }
 
   &:hover,
   &:focus {
@@ -42,6 +48,9 @@ export const Button = styled.button<ButtonProps>`
   }
   &:active {
     filter: none;
+  }
+
+  svg {
   }
 
   ${props =>

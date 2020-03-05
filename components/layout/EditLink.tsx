@@ -1,11 +1,18 @@
-import styled from 'styled-components'
+import { useEffect } from 'react'
+import Cookies from 'js-cookie'
+import styled, { css } from 'styled-components'
 import { useCMS, useSubscribable } from 'tinacms'
 import { getUser, getBranch } from '../../open-authoring/github/api'
-
+import { EditIcon } from '@tinacms/icons'
 import { enterEditMode, exitEditMode } from '../../open-authoring/authFlow'
+import { Button } from '../ui'
+
+interface EditLinkProps {
+  color?: 'white' | 'primary' | 'secondary' | 'seafoam' | 'variable'
+}
 import { useOpenAuthoring } from './OpenAuthoring'
 
-export const EditLink = () => {
+export const EditLink = ({ color }: EditLinkProps) => {
   const cms = useCMS()
 
   let _isEditMode = !cms.sidebar.hidden
@@ -15,10 +22,10 @@ export const EditLink = () => {
   })
 
   const openAuthoring = useOpenAuthoring()
-
   return (
-    <EditButton
+    <EditToggleButton
       id="OpenAuthoringEditButton"
+      color={color}
       onClick={
         _isEditMode
           ? exitEditMode
@@ -29,33 +36,13 @@ export const EditLink = () => {
               )
       }
     >
-      {_isEditMode ? 'Exit Edit Mode' : 'Edit This Site'}
-    </EditButton>
+      <EditIcon /> {_isEditMode ? 'Exit Edit Mode' : 'Edit This Site'}
+    </EditToggleButton>
   )
 }
 
-const EditButton = styled.button`
-  background: none;
-  padding: 0;
-  display: inline;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  color: white;
-  transition: all 150ms ease-out;
-  transform: translate3d(0px, 0px, 0px);
+interface EditToggleButtonProps {
+  isEditMode: boolean
+}
 
-  &:hover,
-  &:focus {
-    text-decoration: none;
-    transform: translate3d(-1px, -2px, 0);
-    transition: transform 180ms ease-out;
-  }
-  &:focus,
-  &:active {
-    outline: none;
-  }
-  &:active {
-    filter: none;
-  }
-`
+const EditToggleButton = styled(Button)``

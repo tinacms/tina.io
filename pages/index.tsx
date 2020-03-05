@@ -2,9 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { InlineBlocks } from 'react-tinacms-inline'
-
+import { EditLink } from '../components/layout/EditLink'
 import { DefaultSeo } from 'next-seo'
 import { BlockTemplate } from 'tinacms'
+import { InlineField } from 'react-tinacms-inline'
 import { DynamicLink } from '../components/ui/DynamicLink'
 import {
   Layout,
@@ -122,7 +123,11 @@ const HomePage = (props: any) => {
         <Hero overlap narrow>
           <InlineTextareaField name="headline" />
         </Hero>
-        <Video src={formData.hero_video} />
+        <InlineField name="hero_video">
+          {({ status, input }) => {
+            return <Video src={input.value} autoPlay={status !== 'active'} />
+          }}
+        </InlineField>
 
         <Section>
           <Wrapper>
@@ -142,6 +147,7 @@ const HomePage = (props: any) => {
                       Get Started
                     </Button>
                   </DynamicLink>
+                  <EditLink />
                 </CtaBar>
               </CtaLayout>
               <InfoLayout>
@@ -378,6 +384,9 @@ const CtaBar = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  button {
+    margin: 0.5rem 0.75rem;
+  }
   iframe {
     margin-left: 1rem;
   }

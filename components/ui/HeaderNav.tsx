@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components'
 import { Button } from '.'
 import { DynamicLink } from './DynamicLink'
 import data from '../../content/navigation.json'
-
 import { SearchContainer } from '../search/styles'
 import Search from '../search'
 
