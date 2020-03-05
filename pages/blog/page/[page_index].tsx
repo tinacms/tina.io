@@ -20,15 +20,6 @@ const Index = props => {
   const { currentPage, numPages } = props
 
   const cms = useCMS()
-  useEffect(() => {
-    /*
-     ** Random Fix: sidebar state isn't updated properly
-     ** without this timeout. If and when the 'preview'
-     ** state is accessible in _app, we'd like to move
-     ** the editMode/sidebar.hidden stuff to _app
-     */
-    setTimeout(() => (cms.sidebar.hidden = !props.editMode), 1)
-  }, [])
 
   //workaround for fallback being not implemented
   if (!props.posts) {
