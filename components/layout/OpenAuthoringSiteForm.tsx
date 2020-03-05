@@ -1,6 +1,6 @@
 import { InlineForm, InlineFormProps } from 'react-tinacms-inline'
 import { OpenAuthoringModalContainer } from '../../open-authoring/OpenAuthoringModalContainer'
-import { Button, color } from '@tinacms/styles'
+import { color } from '@tinacms/styles'
 import UndoIconSvg from '../../public/svg/undo-icon.svg'
 import styled, { css } from 'styled-components'
 import { useEffect, useCallback, useState } from 'react'
@@ -10,6 +10,8 @@ import Cookies from 'js-cookie'
 import { PRPlugin } from '../../open-authoring/PRPlugin'
 import { flattenFormData } from '../../utils/plugins/flatten-form-data'
 import { LoadingDots } from '../ui/LoadingDots'
+import { DesktopLabel } from '../ui/inline/DesktopLabel'
+import { ToolbarButton } from '../ui/inline/ToolbarButton'
 
 interface Props extends InlineFormProps {
   editMode: boolean
@@ -193,13 +195,6 @@ const FormStatus = ({ dirty }) => {
   )
 }
 
-export const DesktopLabel = styled.span`
-  display: none;
-  @media (min-width: 1030px) {
-    display: inline;
-  }
-`
-
 const MetaLink = styled.a`
   display: block;
   max-width: 250px;
@@ -207,37 +202,6 @@ const MetaLink = styled.a`
   text-overflow: ellipsis;
   font-size: 16px;
   color: ${color.primary('dark')};
-`
-
-export const ToolbarButton = styled(Button)`
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-  padding: 0 10px;
-
-  &:focus {
-    outline: none;
-  }
-
-  svg {
-    fill: currentColor;
-    opacity: 0.7;
-    width: 2.5em;
-    height: 2.5em;
-  }
-
-  &:disabled {
-    opacity: 0.6;
-    filter: grayscale(25%);
-  }
-
-  @media (min-width: 1030px) {
-    padding: 0 20px;
-
-    svg {
-      margin-right: 0.25rem;
-    }
-  }
 `
 
 const SaveButton = styled(ToolbarButton)`
