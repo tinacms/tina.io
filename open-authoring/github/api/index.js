@@ -100,7 +100,8 @@ const saveContent = async (
 
     const data = await response.json()
 
-    if (response.status === 200) return data
+    //2xx status codes
+    if (response.status.toString()[0] == '2') return data
 
     throw new Error('Failed')
   } catch (err) {
