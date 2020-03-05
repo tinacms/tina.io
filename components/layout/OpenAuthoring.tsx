@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import Cookies from 'js-cookie'
-import { isForkValid, isGithubTokenValid } from '../../open-authoring/github/api'
-
+import {
+  isForkValid,
+  isGithubTokenValid,
+} from '../../open-authoring/github/api'
 
 export interface OpenAuthoringContext {
   forkValid: boolean
   githubAuthenticated: boolean
+  updateAuthChecks: () => void
 }
 
 export const OpenAuthoringContext = React.createContext<OpenAuthoringContext | null>(
@@ -26,7 +29,6 @@ export const OpenAuthoring = ({ children }) => {
   const [forkValid, setForkValid] = useState(false)
   const [githubAuthenticated, setGithubAuthenticated] = useState(false)
 
-
   const updateAuthChecks = async () => {
     setGithubAuthenticated(await isGithubTokenValid())
 
@@ -38,12 +40,10 @@ export const OpenAuthoring = ({ children }) => {
   }, [])
 
   return (
-    <OpenAuthoringContext.Provider value={{ forkValid, githubAuthenticated }}>
+    <OpenAuthoringContext.Provider
+      value={{ forkValid, githubAuthenticated, updateAuthChecks }}
+    >
       {children}
     </OpenAuthoringContext.Provider>
   )
 }
-
-
-
-

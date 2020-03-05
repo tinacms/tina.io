@@ -10,7 +10,6 @@ interface Props {
 export const OpenAuthoringModalContainer = ({ previewError }: Props) => {
   const [authPopupDisplayed, setAuthPopupDisplayed] = useState(false)
 
-
   const cancelAuth = () => {
     window.history.replaceState(
       {},
@@ -28,11 +27,14 @@ export const OpenAuthoringModalContainer = ({ previewError }: Props) => {
   const openAuthoring = useOpenAuthoring()
 
   const runAuthWorkflow = () => {
-    enterEditMode(
-      openAuthoring.githubAuthenticated,
-      openAuthoring.forkValid
-    )
+    enterEditMode(openAuthoring.githubAuthenticated, openAuthoring.forkValid)
   }
+
+  useEffect(() => {
+    if (previewError) {
+      openAuthoring.updateAuthChecks() //recheck if we need to open auth window as result of error
+    }
+  }, [previewError])
 
   return (
     <>
@@ -43,7 +45,7 @@ export const OpenAuthoringModalContainer = ({ previewError }: Props) => {
           actions={[
             {
               name: 'Continue',
-              action: runAuthWorkflow
+              action: runAuthWorkflow,
             },
             {
               name: 'Cancel',
@@ -59,7 +61,7 @@ export const OpenAuthoringModalContainer = ({ previewError }: Props) => {
           actions={[
             {
               name: 'Continue',
-              action: runAuthWorkflow
+              action: runAuthWorkflow,
             },
           ]}
         />
