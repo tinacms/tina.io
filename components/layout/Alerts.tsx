@@ -115,8 +115,9 @@ const Alert = styled.div<{ level: AlertLevel; index: number }>`
 
   p {
     margin: 0;
-    flex: 1 0 auto;
+    flex: 1 1 auto;
     text-align: left;
+    line-height: 1.125;
   }
 
   svg {
