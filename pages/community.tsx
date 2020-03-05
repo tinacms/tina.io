@@ -143,13 +143,10 @@ export default function CommunityPage({
           <FormSection color="seafoam">
             <Wrapper>
               <h2>
-                Newsletter{' '}
-                <span role="img" aria-label="two finger peace sign">
-                  ✌️
-                </span>
+                <InlineTextareaField name="newsletter_header" />
               </h2>
               <p>
-                <InlineTextField name="newsletter_cta" />
+                <InlineTextareaField name="newsletter_cta" />
               </p>
               <EmailForm />
             </Wrapper>
@@ -236,6 +233,11 @@ const formOptions = {
       name: 'supporting_body',
       description: 'Enter the body copy here',
       component: 'markdown',
+    },
+    {
+      label: 'Newsletter Header',
+      name: 'newsletter_header',
+      component: 'text',
     },
     {
       label: 'Newsletter CTA',
