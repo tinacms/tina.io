@@ -158,6 +158,31 @@ const OpenAuthoringSiteForm = ({
   )
 }
 
+const FormStatus = ({ form }) => {
+  const [dirty, setDirty] = useState(form.finalForm.getState().dirty)
+  useEffect(() => {
+    form.subscribe(
+      ({ dirty }) => {
+        setDirty(dirty)
+      },
+      { dirty: true }
+    )
+  }, [form])
+  return (
+    <FieldMeta name={'Form Status'}>
+      {dirty ? (
+        <StatusMessage warning>
+          <span></span> Unsaved changes
+        </StatusMessage>
+      ) : (
+        <StatusMessage>
+          <span></span> No changes
+        </StatusMessage>
+      )}
+    </FieldMeta>
+  )
+}
+
 const useFormStatusPlugin = (
   form: Form<any>,
   cms: TinaCMS,
@@ -167,19 +192,8 @@ const useFormStatusPlugin = (
     const plugin = {
       __type: 'toolbar:status',
       name: 'form-state-dirty',
-      component: () => (
-        <FieldMeta name={'Form Status'}>
-          {form.finalForm.getState().dirty ? (
-            <StatusMessage warning>
-              <span></span> Unsaved changes
-            </StatusMessage>
-          ) : (
-            <StatusMessage>
-              <span></span> No changes
-            </StatusMessage>
-          )}
-        </FieldMeta>
-      ),
+      form: form,
+      component: FormStatus,
     }
 
     if (editMode) {
