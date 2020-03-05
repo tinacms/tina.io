@@ -4,19 +4,26 @@ import { DefaultSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { Overlay } from '../ui'
 
-export const DocsLayout = ({ isEditing, children }) => {
-  const router = useRouter()
-  return (
-    <>
-      <DefaultSeo
-        openGraph={{
-          url: 'https://tinacms.org' + router.asPath,
-        }}
-      />
-      <DocsLayoutDiv isEditing={isEditing}>{children}</DocsLayoutDiv>
-    </>
-  )
+interface DocsLayoutProps {
+  isEditing: boolean
+  children: any
 }
+
+export const DocsLayout = React.memo(
+  ({ isEditing, children }: DocsLayoutProps) => {
+    const router = useRouter()
+    return (
+      <>
+        <DefaultSeo
+          openGraph={{
+            url: 'https://tinacms.org' + router.asPath,
+          }}
+        />
+        <DocsLayoutDiv isEditing={isEditing}>{children}</DocsLayoutDiv>
+      </>
+    )
+  }
+)
 
 interface DocsLayoutDivProps {
   isEditing: boolean
