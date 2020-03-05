@@ -1,30 +1,33 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { DefaultSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { Overlay } from '../ui'
 
-export const DocsLayout = styled(
-  React.memo(({ children, ...styleProps }) => {
-    const router = useRouter()
-    return (
-      <>
-        <DefaultSeo
-          openGraph={{
-            url: 'https://tinacms.org' + router.asPath,
-          }}
-        />
-        <div {...styleProps}>{children}</div>
-      </>
-    )
-  })
-)`
+export const DocsLayout = ({ isEditing, children }) => {
+  const router = useRouter()
+  return (
+    <>
+      <DefaultSeo
+        openGraph={{
+          url: 'https://tinacms.org' + router.asPath,
+        }}
+      />
+      <DocsLayoutDiv isEditing={isEditing}>{children}</DocsLayoutDiv>
+    </>
+  )
+}
+
+interface DocsLayoutDivProps {
+  isEditing: boolean
+}
+
+const DocsLayoutDiv = styled.div<DocsLayoutDivProps>`
   @media (min-width: 1000px) {
     position: fixed;
-    top: 0;
     left: 0;
-    width: 100%;
     height: 100%;
+    width: 100%;
     display: grid;
     grid-template-areas: 'nav content';
     grid-template-columns: 16rem auto;
@@ -32,5 +35,11 @@ export const DocsLayout = styled(
     ${Overlay} {
       display: none;
     }
+
+    ${p =>
+      p.isEditing &&
+      css`
+        height: calc(100% - 62px);
+      `};
   }
 `
