@@ -66,10 +66,10 @@ export function Alerts() {
 
 const AlertContainer = styled.div`
   position: fixed;
-  top: 50;
+  top: 62px;
   left: 0;
   right: 0;
-  padding: 24px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -79,7 +79,7 @@ const AlertContainer = styled.div`
 const AlertEntranceAnimation = keyframes`
   0% {
     opacity: 0;
-    transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, -100%, 0);
   }
   100% {
     opacity: 1;
