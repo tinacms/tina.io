@@ -16,6 +16,15 @@ interface Props extends InlineFormProps {
   path: string
 }
 
+const useFormState = (form, subscription) => {
+  const [state, setState] = useState(form.finalForm.getState())
+  useEffect(() => {
+    form.subscribe(setState, subscription)
+  }, [form])
+
+  return state
+}
+
 const OpenAuthoringSiteForm = ({
   form,
   editMode,
@@ -35,11 +44,13 @@ const OpenAuthoringSiteForm = ({
     setTimeout(() => (cms.sidebar.hidden = !editMode), 1)
   }, [])
 
+  const formState = useFormState(form, { dirty: true })
+
   /**
    * Toolbar Plugins
    */
   useEffect(() => {
-    const dirty = form.finalForm.getState().dirty ? true : false
+    const dirty = formState.dirty ? true : false
     const forkName = Cookies.get('fork_full_name')
     const plugins = [
       {
@@ -62,7 +73,7 @@ const OpenAuthoringSiteForm = ({
         name: 'base-form-actions',
         component: () => (
           <>
-            {form.finalForm.getState().dirty ? (
+            {formState.dirty ? (
               <>
                 <ToolbarButton
                   onClick={() => {
@@ -101,7 +112,7 @@ const OpenAuthoringSiteForm = ({
     }
 
     return removePlugins
-  }, [editMode, form])
+  }, [editMode, form, formState])
 
   useFormStatusPlugin(form, cms, editMode)
 
@@ -159,15 +170,7 @@ const OpenAuthoringSiteForm = ({
 }
 
 const FormStatus = ({ form }) => {
-  const [dirty, setDirty] = useState(form.finalForm.getState().dirty)
-  useEffect(() => {
-    form.subscribe(
-      ({ dirty }) => {
-        setDirty(dirty)
-      },
-      { dirty: true }
-    )
-  }, [form])
+  const { dirty } = useFormState(form, { dirty: true })
   return (
     <FieldMeta name={'Form Status'}>
       {dirty ? (
@@ -201,7 +204,7 @@ const useFormStatusPlugin = (
     }
 
     return () => cms.plugins.remove(plugin)
-  }, [editMode, form, form.finalForm.getState().dirty])
+  }, [editMode, form])
 }
 
 const MetaLink = styled.a`
