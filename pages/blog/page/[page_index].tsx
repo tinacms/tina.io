@@ -14,7 +14,8 @@ import { DynamicLink, BlogPagination } from '../../../components/ui'
 import { getGithubDataFromPreviewProps } from '../../../utils/github/sourceProviderConnection'
 import getMarkdownData from '../../../utils/github/getMarkdownData'
 import { useCMS } from 'tinacms'
-
+import OpenAuthoringSiteForm from '../../../components/layout/OpenAuthoringSiteForm'
+import { useForm } from 'tinacms'
 const Index = props => {
   const { currentPage, numPages } = props
 
@@ -34,44 +35,53 @@ const Index = props => {
     return <div></div>
   }
 
+  const [, form] = useForm({
+    id: 'blog-list',
+    label: 'Blog',
+    fields: [],
+    onSubmit: () => {},
+  })
+
   return (
-    <Layout
-      sourceProviderConnection={props.sourceProviderConnection}
-      editMode={props.editMode}
-    >
-      <NextSeo
-        title="Blog"
-        openGraph={{
-          title: 'Blog',
-        }}
-      />
-      <Hero mini></Hero>
-      <BlogWrapper>
-        {props.posts.map(post => (
-          <DynamicLink
-            key={post.data.slug}
-            href={`/blog/${post.data.slug}`}
-            passHref
-          >
-            <BlogExcerpt>
-              <BlogTitle>{post.data.title}</BlogTitle>
-              <RichTextWrapper>
-                <BlogMeta>
-                  <MetaBit>
-                    <span>By</span> {post.data.author}
-                  </MetaBit>
-                  <MetaBit>{formatDate(post.data.date)}</MetaBit>
-                </BlogMeta>
-                <MarkdownContent skipHtml={true} content={post.content} />
-                <hr />
-              </RichTextWrapper>
-              <br />
-            </BlogExcerpt>
-          </DynamicLink>
-        ))}
-        <BlogPagination currentPage={currentPage} numPages={numPages} />
-      </BlogWrapper>
-    </Layout>
+    <OpenAuthoringSiteForm editMode={props.editMode} form={form} path={''}>
+      <Layout
+        sourceProviderConnection={props.sourceProviderConnection}
+        editMode={props.editMode}
+      >
+        <NextSeo
+          title="Blog"
+          openGraph={{
+            title: 'Blog',
+          }}
+        />
+        <Hero mini></Hero>
+        <BlogWrapper>
+          {props.posts.map(post => (
+            <DynamicLink
+              key={post.data.slug}
+              href={`/blog/${post.data.slug}`}
+              passHref
+            >
+              <BlogExcerpt>
+                <BlogTitle>{post.data.title}</BlogTitle>
+                <RichTextWrapper>
+                  <BlogMeta>
+                    <MetaBit>
+                      <span>By</span> {post.data.author}
+                    </MetaBit>
+                    <MetaBit>{formatDate(post.data.date)}</MetaBit>
+                  </BlogMeta>
+                  <MarkdownContent skipHtml={true} content={post.content} />
+                  <hr />
+                </RichTextWrapper>
+                <br />
+              </BlogExcerpt>
+            </DynamicLink>
+          ))}
+          <BlogPagination currentPage={currentPage} numPages={numPages} />
+        </BlogWrapper>
+      </Layout>
+    </OpenAuthoringSiteForm>
   )
 }
 
