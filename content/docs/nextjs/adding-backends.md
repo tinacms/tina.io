@@ -131,7 +131,7 @@ The `_app.js` file should now look something like this:
 import React from 'react'
 import App from 'next/app'
 import { Tina, TinaCMS } from 'tinacms'
-import { GitClient } from '@tinacms/git-client'
+import { GitClient, GitMediaStore } from '@tinacms/git-client'
 
 class MyApp extends App {
   constructor() {
