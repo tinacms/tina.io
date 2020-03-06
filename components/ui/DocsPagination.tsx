@@ -71,7 +71,7 @@ const PaginationLink = styled.a<PaginationLinkProps>`
   h5 {
     font-size: 1.25rem;
     line-height: 1.3;
-    margin: 0;
+    margin: 0 !important;
     transition: all 180ms ease-out;
   }
 
