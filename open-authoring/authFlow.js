@@ -7,7 +7,7 @@ function popupWindow(url, title, window, w, h) {
   return window.open(
     url,
     title,
-    'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' +
+    'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, copyhistory=no, width=' +
       w +
       ', height=' +
       h +
