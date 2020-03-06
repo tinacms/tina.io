@@ -69,9 +69,9 @@ export default function DocTemplate(props) {
             ],
           }}
         />
-        <DocsTinaIcon />
-        <DocsNav open={open} navItems={props.docsNav} />
         <DocsNavToggle open={open} onClick={() => setOpen(!open)} />
+        <DocsMobileTinaIcon />
+        <DocsNav open={open} navItems={props.docsNav} />
         <DocsContent>
           <DocsHeaderNav color={'light'} open={open} />
           <RichTextWrapper>
@@ -171,7 +171,7 @@ const formOptions = {
 
 const DocsNavToggle = styled(NavToggle)`
   position: fixed;
-  top: 1.25rem;
+  margin-top: 1.25rem;
   left: 1rem;
   z-index: 500;
 
@@ -180,7 +180,7 @@ const DocsNavToggle = styled(NavToggle)`
   }
 `
 
-const DocsTinaIcon = styled(TinaIcon)`
+const DocsMobileTinaIcon = styled(TinaIcon)`
   position: relative;
   display: block;
   padding: 1rem 0;
@@ -192,12 +192,8 @@ const DocsTinaIcon = styled(TinaIcon)`
     justify-content: center;
   }
 
-  @media (min-width: 999px) {
-    left: 2rem;
-    transform: translate3d(0, -50%, 0);
-    position: fixed;
-    margin-top: 2.5rem;
-    left: 2rem;
+  @media (min-width: 1000px) {
+    display: none;
   }
 `
 
