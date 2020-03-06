@@ -4,7 +4,7 @@ import { DefaultSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { usePlugin } from 'tinacms'
 import { MarkdownCreatorPlugin } from '../../utils/plugins'
-import { fileToUrl } from '../../utils/urls'
+import { fileToUrl, slugify } from '../../utils'
 import { Header, Footer } from '../layout'
 
 interface LayoutProps {
@@ -29,7 +29,7 @@ export const Layout = styled(
         new MarkdownCreatorPlugin({
           label: 'New Blog Post',
           filename: form => {
-            const slug = form.title.replace(/\s+/, '-').toLowerCase()
+            const slug = slugify(form.title)
             return `content/blog/${slug}.md`
           },
           fields: [
