@@ -3,13 +3,14 @@ import styled from 'styled-components'
 
 interface VideoProps {
   src: string
+  autoPlay?: boolean
 }
 
-export const Video = styled(({ src, ...styleProps }: VideoProps) => {
+export const Video = styled(({ src, autoPlay, ...styleProps }: VideoProps) => {
   return (
     <div {...styleProps}>
       <video
-        autoPlay
+        autoPlay={autoPlay}
         loop
         muted
         playsInline

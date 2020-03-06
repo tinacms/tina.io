@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useLocalJsonForm } from 'next-tinacms-json'
 import { DynamicLink } from '../components/ui/DynamicLink'
-import { InlineForm } from 'react-tinacms-inline'
 
 import {
   Layout,
@@ -13,12 +11,9 @@ import {
   MarkdownContent,
 } from '../components/layout'
 import {
-  EditToggle,
-  DiscardButton,
   InlineWysiwyg,
   InlineTextareaField,
   InlineTextField,
-  InlineControls,
 } from '../components/ui/inline'
 import { Button, ButtonGroup } from '../components/ui'
 import { EmailForm } from '../components/forms'
@@ -27,14 +22,38 @@ import GithubIconSvg from '../public/svg/github-icon.svg'
 import SlackIconSvg from '../public/svg/slack-icon.svg'
 import ForumIconSvg from '../public/svg/forum-icon.svg'
 import { NextSeo } from 'next-seo'
+import getJsonData from '../utils/github/getJsonData'
+import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
+import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
+import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
+import ContentNotFoundError from '../utils/github/ContentNotFoundError'
 
-export default function CommunityPage({ jsonFile, metadata }) {
+export default function CommunityPage({
+  community,
+  metadata,
+  sourceProviderConnection,
+  editMode,
+  previewError,
+}) {
   // Registers Tina Form
-  const [data, form] = useLocalJsonForm(jsonFile, formOptions)
+  const [data, form] = useLocalGithubJsonForm(
+    community,
+    formOptions,
+    sourceProviderConnection,
+    editMode
+  )
 
   return (
-    <InlineForm form={form}>
-      <Layout>
+    <OpenAuthoringSiteForm
+      form={form}
+      path={community.fileRelativePath}
+      editMode={editMode}
+      previewError={previewError}
+    >
+      <Layout
+        sourceProviderConnection={sourceProviderConnection}
+        editMode={editMode}
+      >
         <NextSeo
           title={data.title}
           description={data.description}
@@ -44,7 +63,7 @@ export default function CommunityPage({ jsonFile, metadata }) {
           }}
         />
         <Hero>
-          <h2 className="h1">{data.headline}</h2>
+          <InlineTextareaField name="headline" />
         </Hero>
         <SocialBar>
           <SocialItem>
@@ -93,16 +112,6 @@ export default function CommunityPage({ jsonFile, metadata }) {
         </SocialBar>
         <RichTextWrapper>
           <Section>
-            {/*
-             *** Inline controls shouldn't render
-             *** until we're ready for Inline release
-             */}
-            {/*
-              <InlineControls>
-              <EditToggle />
-              <DiscardButton />
-              </InlineControls>
-            */}
             <Wrapper>
               <InfoLayout>
                 <InfoContent>
@@ -134,20 +143,17 @@ export default function CommunityPage({ jsonFile, metadata }) {
           <FormSection color="seafoam">
             <Wrapper>
               <h2>
-                Newsletter{' '}
-                <span role="img" aria-label="two finger peace sign">
-                  ✌️
-                </span>
+                <InlineTextareaField name="newsletter_header" />
               </h2>
               <p>
-                <InlineTextField name="newsletter_cta" />
+                <InlineTextareaField name="newsletter_cta" />
               </p>
               <EmailForm />
             </Wrapper>
           </FormSection>
         </RichTextWrapper>
       </Layout>
-    </InlineForm>
+    </OpenAuthoringSiteForm>
   )
 }
 
@@ -155,16 +161,35 @@ export default function CommunityPage({ jsonFile, metadata }) {
  ** DATA FETCHING -----------------------------------------------
  */
 
-export async function unstable_getStaticProps() {
+export async function unstable_getStaticProps({ preview, previewData }) {
+  const {
+    sourceProviderConnection,
+    accessToken,
+  } = getGithubDataFromPreviewProps(previewData)
   const siteMetadata = await import('../content/siteConfig.json')
-  const communityData = await import('../content/pages/community.json')
+
+  let previewError: string
+  let communityData = {}
+  try {
+    communityData = await getJsonData(
+      'content/pages/community.json',
+      sourceProviderConnection,
+      accessToken
+    )
+  } catch (e) {
+    if (e instanceof ContentNotFoundError) {
+      previewError = e.message
+    } else {
+      throw e
+    }
+  }
   return {
     props: {
       metadata: siteMetadata,
-      jsonFile: {
-        fileRelativePath: `content/pages/community.json`,
-        data: communityData.default,
-      },
+      community: communityData,
+      previewError: previewError,
+      sourceProviderConnection,
+      editMode: !!preview,
     },
   }
 }
@@ -208,6 +233,11 @@ const formOptions = {
       name: 'supporting_body',
       description: 'Enter the body copy here',
       component: 'markdown',
+    },
+    {
+      label: 'Newsletter Header',
+      name: 'newsletter_header',
+      component: 'text',
     },
     {
       label: 'Newsletter CTA',

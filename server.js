@@ -1,3 +1,4 @@
+const path = require('path')
 const express = require('express')
 const next = require('next')
 const cors = require('cors')
@@ -15,8 +16,8 @@ app.prepare().then(() => {
   server.use(
     '/___tina',
     gitApi.router({
-      pathToRepo: process.cwd(),
-      pathToContent: '',
+      pathToRepo: path.join(process.cwd(), '../..'),
+      pathToContent: '/',
     })
   )
 

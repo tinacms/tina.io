@@ -1,35 +1,24 @@
 import DocTemplate from './[...slug]'
 import matter from 'gray-matter'
 import { readFile } from '../../utils/readFile'
+import { getDocProps } from '../../utils/docs/getDocProps'
+import ContentNotFoundError from '../../utils/github/ContentNotFoundError'
 
-export async function unstable_getStaticProps(ctx) {
-  const content = await readFile(`content/docs/index.md`)
-  const doc = matter(content)
-
-  const docsNavData = await import('../../content/toc-doc.json')
-  const nextDocPage =
-    doc.data.next && matter(await readFile(`content${doc.data.next}.md`))
-  const prevDocPage =
-    doc.data.prev && matter(await readFile(`content${doc.data.prev}.md`))
-
-  return {
-    props: {
-      markdownFile: {
-        data: { slug: '/docs' },
-        frontmatter: doc.data,
-        markdownBody: doc.content,
-      },
-      docsNav: docsNavData.default,
-      nextPage: {
-        slug: doc.data.next,
-        title: nextDocPage && nextDocPage.data.title,
-      },
-      prevPage: {
-        slug: doc.data.prev,
-        title: prevDocPage && prevDocPage.data.title,
-      },
-    },
+export async function unstable_getStaticProps(props) {  
+  try {
+    return  await getDocProps(props, 'index')
+  } catch (e) {
+    if (e instanceof ContentNotFoundError) {
+      return {
+        props: {
+          previewError: e.message
+        }
+      }
+    } else {
+      throw e
+    }
   }
+  
 }
 
 export default DocTemplate

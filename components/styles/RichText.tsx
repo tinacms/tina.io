@@ -120,8 +120,12 @@ const RichText = css`
   }
 
   p {
-    font-size: 1.125rem;
+    font-size: 16px;
     color: var(--color-secondary-dark);
+
+    @media (min-width: 685px) {
+      font-size: 18px;
+    }
 
     img {
       display: block;

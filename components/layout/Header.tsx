@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 
-import { TinaIcon } from '../logo'
-import { HeaderNav, Button, NavToggle, Overlay } from '../ui'
+import { TinaIcon } from '../logo/TinaIcon'
+import { HeaderNav } from '../ui/HeaderNav'
+import { Button } from '../ui/Button'
+import { NavToggle } from '../ui/NavToggle'
+import { Overlay } from '../ui/Overlay'
 
 interface HeaderProps {
   color?: 'white' | 'secondary' | 'seafoam'
@@ -59,7 +62,7 @@ const StyledHeader = styled.header<StyledHeaderProps>`
 
   ${NavToggle} {
     position: fixed;
-    top: 1.25rem;
+    margin-top: 1.25rem;
     left: 1rem;
     z-index: 500;
 

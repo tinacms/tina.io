@@ -5,6 +5,7 @@ import styled, { css } from 'styled-components'
 import RightArrowSvg from '../../public/svg/right-arrow.svg'
 import { DynamicLink } from './DynamicLink'
 import { LinkNav } from './LinkNav'
+import { TinaIcon } from '../logo/TinaIcon'
 
 interface NavSection {
   id: string
@@ -72,22 +73,25 @@ const menuIsActive = (section: NavSection, currentPath: string) => {
 
 export const DocsNav = styled(({ open, navItems, ...styleProps }) => {
   return (
-    <ul {...styleProps}>
-      <MobileMainNav>
-        <LinkNav />
-      </MobileMainNav>
-      {navItems &&
-        navItems.map(section => <NavSection key={section.id} {...section} />)}
-      <li>
-        <iframe
-          src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
-          frameBorder="0"
-          scrolling="0"
-          width="145px"
-          height="30px"
-        ></iframe>
-      </li>
-    </ul>
+    <div {...styleProps}>
+      <DocsDesktopTinaIcon />
+      <ul>
+        <MobileMainNav>
+          <LinkNav />
+        </MobileMainNav>
+        {navItems &&
+          navItems.map(section => <NavSection key={section.id} {...section} />)}
+        <li>
+          <iframe
+            src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
+            frameBorder="0"
+            scrolling="0"
+            width="145px"
+            height="30px"
+          ></iframe>
+        </li>
+      </ul>
+    </div>
   )
 })`
   font-family: var(--font-tuner);
@@ -98,7 +102,23 @@ export const DocsNav = styled(({ open, navItems, ...styleProps }) => {
   line-height: 1.25;
   box-shadow: inset -1px 0 0 var(--color-light-dark);
   padding: 6rem 0 1rem 0;
-  grid-area: nav;
+  position: fixed;
+  z-index: 250;
+  left: 0;
+  top: 0;
+  width: calc(50% + 2.25rem);
+  height: 100%;
+  z-index: 250;
+  transform: translate3d(-100%, 0, 0);
+  transition: all 140ms ease-in;
+  padding: 0 0 1rem 0;
+
+  ${props =>
+    props.open &&
+    css`
+      transition: all 240ms ease-out;
+      transform: translate3d(0, 0, 0);
+    `};
 
   ::-webkit-scrollbar {
     display: none;
@@ -109,24 +129,21 @@ export const DocsNav = styled(({ open, navItems, ...styleProps }) => {
     display: block;
   }
 
-  @media (max-width: 999px) {
-    position: fixed;
-    z-index: 250;
+  @media (min-width: 1000px) {
     left: 0;
-    top: 0;
-    width: calc(50% + 2.25rem);
-    height: 100%;
-    z-index: 250;
-    transform: translate3d(-100%, 0, 0);
-    transition: all 140ms ease-in;
-    padding: 0 0 1rem 0;
+    top: auto;
+    width: 16rem;
+    transform: translate3d(0, 0, 0);
+  }
+`
 
-    ${props =>
-      props.open &&
-      css`
-        transition: all 240ms ease-out;
-        transform: translate3d(0, 0, 0);
-      `};
+const DocsDesktopTinaIcon = styled(TinaIcon)`
+  position: relative;
+  display: none;
+  padding: 1.25rem 2rem 2.25rem 2rem;
+
+  @media (min-width: 1000px) {
+    display: block;
   }
 `
 

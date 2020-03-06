@@ -1,28 +1,74 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useLocalJsonForm } from 'next-tinacms-json'
-import { InlineForm, InlineBlocks, BlocksControls } from 'react-tinacms-inline'
+import { BlocksControls } from '../components/ui/inline'
 import { BlockTemplate } from 'tinacms'
 import { NextSeo } from 'next-seo'
 
 import { Layout, Wrapper, RichTextWrapper } from '../components/layout'
 import { ArrowList } from '../components/ui'
 import { TeamsForm } from '../components/forms'
-import {
-  EditToggle,
-  DiscardButton,
-  InlineTextareaField,
-  BlockTextArea,
-  InlineControls,
-} from '../components/ui/inline'
+import { InlineTextareaField, BlockTextArea } from '../components/ui/inline'
+import getJsonData from '../utils/github/getJsonData'
+import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
+import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
+import { InlineBlocks } from 'react-tinacms-inline'
+import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
+import ContentNotFoundError from '../utils/github/ContentNotFoundError'
+
+const formOptions = {
+  label: 'Teams',
+  fields: [
+    {
+      label: 'Headline',
+      name: 'headline',
+      description: 'Enter the main headline here',
+      component: 'textarea',
+    },
+    {
+      label: 'Supporting Points',
+      name: 'supporting_points',
+      description: 'Edit the points here',
+      component: 'group-list',
+      itemProps: item => ({
+        key: item.id,
+        label: `${item.point.slice(0, 25)}...`,
+      }),
+      defaultItem: () => ({
+        point: 'New Point',
+        _template: 'point',
+      }),
+      fields: [
+        {
+          label: 'Point',
+          name: 'point',
+          component: 'textarea',
+        },
+      ],
+    },
+  ],
+}
 
 export default function TeamsPage(props) {
   // Adds Tina Form
-  const [data, form] = useLocalJsonForm(props.jsonFile, formOptions)
+  const [data, form] = useLocalGithubJsonForm(
+    props.teams,
+    formOptions,
+    props.sourceProviderConnection,
+    props.editMode
+  )
 
   return (
-    <InlineForm form={form}>
-      <TeamsLayout page="teams" color={'secondary'}>
+    <OpenAuthoringSiteForm
+      form={form}
+      path={props.teams.fileRelativePath}
+      editMode={props.editMode}
+      previewError={props.previewError}
+    >
+      <TeamsLayout
+        sourceProviderConnection={props.sourceProviderConnection}
+        editMode={props.editMode}
+        color={'secondary'}
+      >
         <NextSeo
           title={data.title}
           description={data.description}
@@ -32,16 +78,6 @@ export default function TeamsPage(props) {
           }}
         />
         <TeamsSection>
-          {/*
-           *** Inline controls shouldn't render
-           *** until we're ready for Inline release
-           */}
-          {/*
-            <InlineControls>
-            <EditToggle />
-            <DiscardButton />
-            </InlineControls>
-          */}
           <Wrapper>
             <RichTextWrapper>
               <TeamsGrid>
@@ -67,7 +103,7 @@ export default function TeamsPage(props) {
           </Wrapper>
         </TeamsSection>
       </TeamsLayout>
-    </InlineForm>
+    </OpenAuthoringSiteForm>
   )
 }
 
@@ -75,14 +111,34 @@ export default function TeamsPage(props) {
  ** DATA FETCHING --------------------------------------------------
  */
 
-export async function unstable_getStaticProps() {
-  const teamsData = await import('../content/pages/teams.json')
+export async function unstable_getStaticProps({ preview, previewData }) {
+  const {
+    sourceProviderConnection,
+    accessToken,
+  } = getGithubDataFromPreviewProps(previewData)
+
+  let previewError: string
+  let teamsData = {}
+  try {
+    teamsData = await getJsonData(
+      'content/pages/teams.json',
+      sourceProviderConnection,
+      accessToken
+    )
+  } catch (e) {
+    if (e instanceof ContentNotFoundError) {
+      previewError = e.message
+    } else {
+      throw e
+    }
+  }
+
   return {
     props: {
-      jsonFile: {
-        fileRelativePath: `content/pages/teams.json`,
-        data: teamsData.default,
-      },
+      teams: teamsData,
+      previewError: previewError,
+      sourceProviderConnection,
+      editMode: !!preview,
     },
   }
 }
@@ -91,34 +147,6 @@ export async function unstable_getStaticProps() {
  ** TINA FORM CONFIG -------------------------------------------------
  */
 
-const formOptions = {
-  fields: [
-    {
-      label: 'Headline',
-      name: 'headline',
-      description: 'Enter the main headline here',
-      component: 'textarea',
-    },
-    {
-      label: 'Supporting Points',
-      name: 'supporting_points',
-      description: 'Edit the points here',
-      component: 'group-list',
-      itemProps: item => ({
-        key: item.id,
-        label: `${item.point.slice(0, 25)}...`,
-      }),
-      fields: [
-        {
-          label: 'Point',
-          name: 'point',
-          component: 'textarea',
-        },
-      ],
-    },
-  ],
-}
-
 /*
  ** BLOCKS CONFIG ------------------------------------------------------
  */
@@ -126,7 +154,7 @@ const formOptions = {
 function SupportingPoint({ data, index }) {
   return (
     <BlocksControls index={index}>
-      <li key={data.point.slice(0, 8)}>
+      <li key={`supporting-point-${index}`}>
         <BlockTextArea name="point" />
       </li>
     </BlocksControls>

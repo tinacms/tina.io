@@ -1,16 +1,12 @@
 import React, { useState } from 'react'
-import matter from 'gray-matter'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
-import { useLocalMarkdownForm } from 'next-tinacms-markdown'
-import { InlineForm } from 'react-tinacms-inline'
-
-import { formatExcerpt, readFile } from '../../utils'
 import {
   DocsLayout,
   MarkdownContent,
   RichTextWrapper,
   Wrapper,
+  Footer,
 } from '../../components/layout'
 import {
   DocsNav,
@@ -19,26 +15,40 @@ import {
   Overlay,
   DocsPagination,
 } from '../../components/ui'
-import {
-  InlineControls,
-  EditToggle,
-  DiscardButton,
-  InlineWysiwyg,
-  InlineTextField,
-} from '../../components/ui/inline'
+import { InlineWysiwyg, InlineTextareaField } from '../../components/ui/inline'
 import { TinaIcon } from '../../components/logo'
+import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'
+import { getDocProps } from '../../utils/docs/getDocProps'
+import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
+import ContentNotFoundError from '../../utils/github/ContentNotFoundError'
+import { OpenAuthoringModalContainer } from '../../open-authoring/OpenAuthoringModalContainer'
 
 export default function DocTemplate(props) {
+  // Workaround for fallback being not implemented
+  if (!props.markdownFile) {
+    return <OpenAuthoringModalContainer previewError={props.previewError} />
+  }
+
   // Registers Tina Form
-  const [data, form] = useLocalMarkdownForm(props.markdownFile, formOptions)
+  const [data, form] = useLocalGithubMarkdownForm(
+    props.markdownFile,
+    formOptions,
+    props.sourceProviderConnection,
+    props.editMode
+  )
   const [open, setOpen] = useState(false)
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
-  const excerpt = props.markdownFile.excerpt
+  const excerpt = props.markdownFile.data.excerpt
 
   return (
-    <InlineForm form={form}>
-      <DocsLayout>
+    <OpenAuthoringSiteForm
+      form={form}
+      path={props.markdownFile.fileRelativePath}
+      editMode={props.editMode}
+      previewError={props.previewError}
+    >
+      <DocsLayout isEditing={props.editMode}>
         <NextSeo
           title={frontmatter.title}
           titleTemplate={'%s | TinaCMS Docs'}
@@ -59,25 +69,15 @@ export default function DocTemplate(props) {
             ],
           }}
         />
-        <DocsTinaIcon />
-        <DocsNav open={open} navItems={props.docsNav} />
         <DocsNavToggle open={open} onClick={() => setOpen(!open)} />
+        <DocsMobileTinaIcon />
+        <DocsNav open={open} navItems={props.docsNav} />
         <DocsContent>
           <DocsHeaderNav color={'light'} open={open} />
           <RichTextWrapper>
             <Wrapper narrow>
-              {/*
-               *** Inline controls shouldn't render
-               *** until we're ready for Inline release
-               */}
-              {/*
-                <InlineControls>
-                <EditToggle />
-                <DiscardButton />
-                </InlineControls>
-              */}
               <h1>
-                <InlineTextField name="frontmatter.title" />
+                <InlineTextareaField name="frontmatter.title" />
               </h1>
               <hr />
               <InlineWysiwyg name="markdownBody">
@@ -89,10 +89,11 @@ export default function DocTemplate(props) {
               />
             </Wrapper>
           </RichTextWrapper>
+          <Footer light editMode={props.editMode} />
         </DocsContent>
         <Overlay open={open} onClick={() => setOpen(false)} />
       </DocsLayout>
-    </InlineForm>
+    </OpenAuthoringSiteForm>
   )
 }
 
@@ -100,37 +101,23 @@ export default function DocTemplate(props) {
  * DATA FETCHING ------------------------------------------------------
  */
 
-export async function unstable_getStaticProps(ctx) {
-  let { slug: slugs } = ctx.params
+export async function unstable_getStaticProps(props) {
+  let { slug: slugs } = props.params
 
   const slug = slugs.join('/')
-  const content = await readFile(`content/docs/${slug}.md`)
-  const doc = matter(content)
 
-  const docsNavData = await import('../../content/toc-doc.json')
-  const nextDocPage =
-    doc.data.next && matter(await readFile(`content${doc.data.next}.md`))
-  const prevDocPage =
-    doc.data.prev && matter(await readFile(`content${doc.data.prev}.md`))
-
-  return {
-    props: {
-      markdownFile: {
-        fileRelativePath: `content/docs/${slug}.md`,
-        frontmatter: doc.data,
-        markdownBody: doc.content,
-        excerpt: formatExcerpt(doc.content),
-      },
-      docsNav: docsNavData.default,
-      nextPage: {
-        slug: doc.data.next,
-        title: nextDocPage && nextDocPage.data.title,
-      },
-      prevPage: {
-        slug: doc.data.prev,
-        title: prevDocPage && prevDocPage.data.title,
-      },
-    },
+  try {
+    return getDocProps(props, slug)
+  } catch (e) {
+    if (e instanceof ContentNotFoundError) {
+      return {
+        props: {
+          previewError: e.message,
+        },
+      }
+    } else {
+      throw e
+    }
   }
 }
 
@@ -138,12 +125,14 @@ export async function unstable_getStaticPaths() {
   const fg = require('fast-glob')
   const contentDir = './content/docs/'
   const files = await fg(`${contentDir}**/*.md`)
-  return files
-    .filter(file => !file.endsWith('index.md'))
-    .map(file => {
-      const path = file.substring(contentDir.length, file.length - 3)
-      return { params: { slug: path.split('/') } }
-    })
+  return {
+    paths: files
+      .filter(file => !file.endsWith('index.md'))
+      .map(file => {
+        const path = file.substring(contentDir.length, file.length - 3)
+        return { params: { slug: path.split('/') } }
+      }),
+  }
 }
 
 /*
@@ -182,7 +171,7 @@ const formOptions = {
 
 const DocsNavToggle = styled(NavToggle)`
   position: fixed;
-  top: 1.25rem;
+  margin-top: 1.25rem;
   left: 1rem;
   z-index: 500;
 
@@ -191,7 +180,7 @@ const DocsNavToggle = styled(NavToggle)`
   }
 `
 
-const DocsTinaIcon = styled(TinaIcon)`
+const DocsMobileTinaIcon = styled(TinaIcon)`
   position: relative;
   display: block;
   padding: 1rem 0;
@@ -203,12 +192,8 @@ const DocsTinaIcon = styled(TinaIcon)`
     justify-content: center;
   }
 
-  @media (min-width: 999px) {
-    left: 2rem;
-    transform: translate3d(0, -50%, 0);
-    position: fixed;
-    top: 2.5rem;
-    left: 2rem;
+  @media (min-width: 1000px) {
+    display: none;
   }
 `
 
