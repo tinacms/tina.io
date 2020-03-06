@@ -25,9 +25,12 @@ export const Button = styled.button<ButtonProps>`
   font-style: normal;
   text-decoration: none !important;
   opacity: 1;
+  line-height: 1.25;
 
   svg {
     fill: currentColor;
+    margin-left: -0.25em;
+    margin-right: 0.125rem;
   }
 
   &:hover,
