@@ -1,11 +1,11 @@
 {
   "env": {
-    "GITHUB_CLIENT_ID": "ecc49f05469714f15496",
+    "GITHUB_CLIENT_ID": "942232a549642aea2bbf",
     "GITHUB_CLIENT_SECRET": "@github_client_secret"
   },
   "build": {
     "env": {
-      "GITHUB_CLIENT_ID": "ecc49f05469714f15496",
+      "GITHUB_CLIENT_ID": "942232a549642aea2bbf",
       "GITHUB_CLIENT_SECRET": "@github_client_secret",
       "REPO_FULL_NAME": "tinacms/tinacms.org",
       "USE_CONTENT_API": "true",
