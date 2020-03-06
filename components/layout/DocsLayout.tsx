@@ -31,22 +31,11 @@ interface DocsLayoutDivProps {
 
 const DocsLayoutDiv = styled.div<DocsLayoutDivProps>`
   @media (min-width: 1000px) {
-    position: fixed;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    display: grid;
-    grid-template-areas: 'nav content';
-    grid-template-columns: 16rem auto;
+    position: relative;
+    padding: 0 0 0 16rem;
 
     ${Overlay} {
       display: none;
     }
-
-    ${p =>
-      p.isEditing &&
-      css`
-        height: calc(100% - 62px);
-      `};
   }
 `
