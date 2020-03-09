@@ -1,6 +1,6 @@
 ---
 title: 2020-03-09 Release Notes
-date: '2020-03-10T00:00:00.000Z'
+date: '2020-03-09T05:00:00.000Z'
 author: Nolan Phillips
 ---
 ## Enhancements
