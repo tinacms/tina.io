@@ -72,7 +72,7 @@
     "remove-markdown": "^0.3.0",
     "serve": "11.2.0",
     "styled-components": "^4.4.1",
-    "tinacms": "^0.16.0-alpha.0",
+    "tinacms": "^0.16.0-alpha.1",
     "webpack": "^4.41.5"
   },
   "devDependencies": {
