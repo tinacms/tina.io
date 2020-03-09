@@ -8,6 +8,7 @@ import { useCMS, useWatchFormValues, Form, TinaCMS, FieldMeta } from 'tinacms'
 import createDecorator from 'final-form-submit-listener'
 import Cookies from 'js-cookie'
 import { PRPlugin } from '../../open-authoring/PRPlugin'
+import { SharePlugin } from '../../open-authoring/share'
 import { flattenFormData } from '../../utils/plugins/flatten-form-data'
 import { LoadingDots } from '../ui/LoadingDots'
 import { DesktopLabel } from '../ui/inline/DesktopLabel'
@@ -61,6 +62,7 @@ const OpenAuthoringSiteForm = ({
       },
       // TODO
       PRPlugin(process.env.REPO_FULL_NAME, forkName),
+      SharePlugin(form),
       {
         __type: 'toolbar:form-actions',
         name: 'base-form-actions',
