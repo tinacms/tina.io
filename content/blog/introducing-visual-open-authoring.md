@@ -5,7 +5,7 @@ author: Scott Gallant
 draft: false
 consumes: null
 ---
-We're focused on improving the independent web as a whole. We want to craft tools that help people build better sites and create better content.
+Woh there!
 
 In line with this mission, we sought to create something we call **Visual Open Authoring** ✍️. The [open authoring concept](https://css-tricks.com/netlify-cms-open-authoring/#article-header-id-0) was originally pioneered by [Netlify CMS](https://www.netlifycms.org/) this past summer and involves opening up your website's CMS to accept content-related contributions from anyone. Using Tina, we were able to take this a step further, establishing the editing context **on the page itself**.
 
