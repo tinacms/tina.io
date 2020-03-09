@@ -85,15 +85,6 @@ export const SharePlugin = form => ({
 function ShareButton({ form }) {
   const [opened, setOpened] = useState(false)
   const close = () => setOpened(false)
-  const [shareLink, setShareLink] = useState(null)
-  const [isPending, setIsPending] = useState(false)
-
-  const share = async () => {
-    setIsPending(true)
-    const shareUrl = await createShareLink(form)
-    setIsPending(false)
-    setShareLink(shareUrl)
-  }
 
   // This is a bit misleading - it's mounted thanks to the fact that toolbar
   // mounts this component, but if the user visited this link while the
@@ -117,38 +108,52 @@ function ShareButton({ form }) {
           <ModalPopup>
             <ModalHeader close={close}>Share</ModalHeader>
             <PrModalBody>
-              <ModalDescription>
-                Anyone with this link will be able to view your changes to this
-                page
-                <div
-                  style={{
-                    height: '50px',
-                    margin: '1rem 0',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  {shareLink ? (
-                    <Copy onCopied={closeOnCopied} text={shareLink} />
-                  ) : (
-                    <TinaButton
-                      as="a"
-                      primary
-                      onClick={share}
-                      target="_blank"
-                      disabled={isPending}
-                    >
-                      Create Link
-                    </TinaButton>
-                  )}
-                </div>
-              </ModalDescription>
+              <Share form={form} onCopied={closeOnCopied} />
             </PrModalBody>
           </ModalPopup>
         </Modal>
       )}
     </>
+  )
+}
+function Share({ form, onCopied }) {
+  const [shareLink, setShareLink] = useState(null)
+  const [isPending, setIsPending] = useState(false)
+
+  const share = async () => {
+    setIsPending(true)
+    const shareUrl = await createShareLink(form)
+    setIsPending(false)
+    setShareLink(shareUrl)
+  }
+
+  return (
+    <ModalDescription>
+      Anyone with this link will be able to view your changes to this page
+      <div
+        style={{
+          height: '50px',
+          margin: '1rem 0',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        {shareLink ? (
+          <Copy onCopied={onCopied} text={shareLink} />
+        ) : (
+          <TinaButton
+            as="a"
+            primary
+            onClick={share}
+            target="_blank"
+            disabled={isPending}
+          >
+            Create Link
+          </TinaButton>
+        )}
+      </div>
+    </ModalDescription>
   )
 }
 
