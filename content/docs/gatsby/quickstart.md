@@ -14,7 +14,7 @@ To run all the tools required you need at least the following installed:
 - [Node.js](https://nodejs.org/en/) (8.0.0+)
 - [Yarn](https://yarnpkg.com) (Optional. You can still use `npm` if you want, but this is for your own sanity.)
 
-##**Use a starter**
+## **Use a starter**
 
 > There are a few awesome starters to choose from with varying styles and levels of complexity. Soon we will have a dedicated starters page; in the meantime check these out: a [basic Gatsby starter](https://github.com/tinacms/gatsby-starter-tinacms), [Tina Grande](https://github.com/tinacms/tina-starter-grande), [Brevifolia](https://github.com/kendallstrautman/brevifolia-gatsby-tinacms)
 
