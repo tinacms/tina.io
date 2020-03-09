@@ -25,6 +25,9 @@ Currently, this requires a GitHub account and some knowledge of Git workflows, m
 
 The Tina Team is currently prototyping this on our own site. In the coming weeks, the APIs for integrating **Visual Open Authoring** with Tina will become available. In the meantime, click the **edit button** at the top of this blog to try it out. Feel free to reference this site’s [source code](https://github.com/tinacms/tinacms.org) to see how it works.
 
+
+![edit](https://res.cloudinary.com/forestry-demo/image/upload/w_800,bo_2px_solid_grey/v1583778760/TinaCMS/click-edit-button.png)
+
 ## Using Next.js to Enable "Edit-mode"
 
 A new feature [announced in Next.js 9.3](https://nextjs.org/blog/next-9-3) has been instrumental to providing the ideal experience for **Visual Open Authoring**. The upcoming _preview mode_ capability allows us to host a website that is fully static by default, but switches to a dynamic mode that runs server code for users that have a special "preview" cookie set. What we refer to as "Edit Mode" for **Visual Open Authoring** is the same as this Next.js "Preview Mode".
