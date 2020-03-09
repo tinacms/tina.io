@@ -149,7 +149,10 @@ const getUser = async () => {
 
 const isForkValid = async forkName => {
   if (!forkName) {
-    return false
+    forkName = Cookies.get("fork_full_name")
+    if (!forkName) {
+      return false
+    }
   }
   const branch = Cookies.get('head_branch') || 'master'
 

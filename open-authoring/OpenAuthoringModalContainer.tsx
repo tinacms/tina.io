@@ -2,12 +2,20 @@ import { useEffect, useState } from 'react'
 import { ActionableModal } from '../components/ui'
 import { enterEditMode } from './authFlow'
 import { useOpenAuthoring } from '../components/layout/OpenAuthoring'
+import OpenAuthoringContextualError from './OpenAuthoringContextualError'
 
 interface Props {
-  previewError?: string
+  error?: OpenAuthoringContextualError
 }
 
-export const OpenAuthoringModalContainer = ({ previewError }: Props) => {
+export enum Actions {
+  authFlow,
+  refresh,
+  doNothing
+}
+
+
+export const OpenAuthoringModalContainer = ({ error }: Props) => {
   const [authPopupDisplayed, setAuthPopupDisplayed] = useState(false)
 
   const cancelAuth = () => {
@@ -30,12 +38,51 @@ export const OpenAuthoringModalContainer = ({ previewError }: Props) => {
     enterEditMode(openAuthoring.githubAuthenticated, openAuthoring.forkValid)
   }
 
-  useEffect(() => {
-    if (previewError) {
-      openAuthoring.updateAuthChecks() //recheck if we need to open auth window as result of error
-      fetch(`/api/reset-preview`) // clear preview cookies
+  const getFuncFromActions = action => {
+    switch (action) {
+      case Actions.authFlow: {
+        return authFlow
+      }
+      case Actions.refresh: {
+        return refresh
+      }
+      case Actions.doNothing: {
+        return close
+      }
     }
-  }, [previewError])
+  }
+
+  const authFlow = () => {
+    runAuthWorkflow()
+  }
+
+  const refresh = () => {
+    window.location.reload()
+  }
+
+  const getActionsFromError = (error: OpenAuthoringContextualError) => {
+    var actions = []
+    error.actions.forEach( action => {
+      actions.push(
+        {
+          name: action.message,
+          action: getFuncFromActions(action.action)
+        }
+      )
+    })
+    return actions
+  }
+
+
+  useEffect(() => {
+    if (error) {
+      openAuthoring.updateAuthChecks() //recheck if we need to open auth window as result of error
+      if (error.shouldClearPreview) {
+        fetch(`/api/reset-preview`) // clear preview cookies
+      }
+      
+    }
+  }, [error])
 
   return (
     <>
@@ -55,16 +102,11 @@ export const OpenAuthoringModalContainer = ({ previewError }: Props) => {
           ]}
         />
       )}
-      {previewError && (
-        <ActionableModal
-          title="Error"
-          message={previewError}
-          actions={[
-            {
-              name: 'Continue',
-              action: runAuthWorkflow,
-            },
-          ]}
+      {error && (
+        <ActionableModal 
+          title={error.title}
+          message={error.message}
+          actions={getActionsFromError(error)}
         />
       )}
     </>

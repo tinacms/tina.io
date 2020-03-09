@@ -12,10 +12,12 @@ import { flattenFormData } from '../../utils/plugins/flatten-form-data'
 import { LoadingDots } from '../ui/LoadingDots'
 import { DesktopLabel } from '../ui/inline/DesktopLabel'
 import { ToolbarButton } from '../ui/inline/ToolbarButton'
+import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
+import interpretError from "../../open-authoring/OpenAuthoringErrorInterpreter"
 
 interface Props extends InlineFormProps {
   editMode: boolean
-  previewError?: string
+  previewError?: OpenAuthoringError
   children: any
   path: string
 }
@@ -37,6 +39,7 @@ const OpenAuthoringSiteForm = ({
   children,
 }: Props) => {
   const [statefulPreviewError, setStatefulPreviewError] = useState(previewError)
+  const [interpretedError, setInterpretedError] = useState(null)
   const cms = useCMS()
   const formState = useFormState(form, { dirty: true, submitting: true })
 
@@ -166,6 +169,15 @@ const OpenAuthoringSiteForm = ({
     return undecorateSaveListener
   }, [form])
 
+  useEffect(() => {
+    (async () => {
+      if (statefulPreviewError) {
+        setInterpretedError(await interpretError(statefulPreviewError))        
+      }
+    })()
+  },
+  [statefulPreviewError])
+
   return (
     <InlineForm
       form={form}
@@ -173,7 +185,7 @@ const OpenAuthoringSiteForm = ({
         typeof document !== 'undefined' && editMode ? 'active' : 'inactive'
       }
     >
-      <OpenAuthoringModalContainer previewError={statefulPreviewError} />
+      <OpenAuthoringModalContainer error={interpretedError} />
       {children}
     </InlineForm>
   )
