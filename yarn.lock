@@ -1438,10 +1438,10 @@
   resolved "https://registry.yarnpkg.com/@tinacms/core/-/core-0.7.2-alpha.0.tgz#deda21f90d84b87cecffe2c63e9054f10427ffcd"
   integrity sha512-OzKoQ5NcjX7Fviw4VPoesjMVDAu4kwF531qubaG8iPIk6/SJhLbIp7nk/iHx8DlaD4Jnf3UV1lUU1et8LoPN3Q==
 
-"@tinacms/fields@^0.7.0-alpha.0":
-  version "0.7.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@tinacms/fields/-/fields-0.7.0-alpha.0.tgz#f0df2fc763d936a85195f2ef29606dee02d70e9b"
-  integrity sha512-/Lx+SK0U2zJqlmTVdu35huKZbo+t2bb9WkHznR7OJiL83xl88UA6MN+51em1lSQoVm3ThKloZgammnPoDBff0A==
+"@tinacms/fields@^0.7.0-alpha.1":
+  version "0.7.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/@tinacms/fields/-/fields-0.7.0-alpha.1.tgz#d519c73f6752e0f07a45f107fd707fb04bbfe6cb"
+  integrity sha512-peDkEt2XUXoI17cIe5zqeJNC2kOcU7utT80wond9TCiFx4nk2FIfEg/afcPp3EkQ+cy80xPmKho8rsl7uVdu5A==
   dependencies:
     "@sambego/storybook-styles" "^1.0.0"
     "@tinacms/core" "^0.7.2-alpha.0"
@@ -9768,13 +9768,13 @@ timers-browserify@^2.0.4:
   dependencies:
     setimmediate "^1.0.4"
 
-tinacms@^0.16.0-alpha.0:
-  version "0.16.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/tinacms/-/tinacms-0.16.0-alpha.0.tgz#5c08209d4fcb359c4539d2cac734b71436c096d0"
-  integrity sha512-VR4j4FwnyTzQ8jsFzWE/0A5g9FHFBlibziWJZ3XtkwdFyEuosuKW0S+lvgVLwBjRbiPQGx+A3T5oXxW0XNMmsg==
+tinacms@^0.16.0-alpha.1:
+  version "0.16.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/tinacms/-/tinacms-0.16.0-alpha.1.tgz#652f82a4adbe9125c2ac5b4015736cbb67c68c10"
+  integrity sha512-t0G3dNXWmX3xtqHQ/wyluMP/d3gCc8dNbbgoel9vVnaGQt/DfM8L3FXJMv1Ea3jN2T2gistIUM/GQ+kJ7MsEoA==
   dependencies:
     "@tinacms/core" "^0.7.2-alpha.0"
-    "@tinacms/fields" "^0.7.0-alpha.0"
+    "@tinacms/fields" "^0.7.0-alpha.1"
     "@tinacms/form-builder" "^0.2.16-alpha.0"
     "@tinacms/forms" "^0.2.1-alpha.0"
     "@tinacms/icons" "^0.7.0-alpha.0"
