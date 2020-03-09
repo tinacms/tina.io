@@ -11,6 +11,12 @@ In line with this mission, we sought to create something we call **Visual Open A
 
 ## Add an "Edit Mode" to Your Site
 
+## Add an "Edit Mode" to Your Site
+
+Hello there:
+
+sdfsdffs
+
 **Picture this:** on your website, there's an _"Edit this page on GitHub"_ link — familiar enough. But imagine that when you click it, instead of kicking you over to GitHub, the site itself becomes editable, **like a Google Doc**.
 
 The experience should feel familiar for anyone that has used a word processor or site builder. You navigate to the page you want to change, click “Edit”, make updates in a WYSIWYG, and then submit your changes. That’s it 🧞‍♂️.
