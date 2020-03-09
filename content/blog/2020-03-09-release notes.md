@@ -27,7 +27,14 @@ author: Nolan Phillips
 
 A big thanks to all our contributors for this release! <3
 
-* Nolan Phillips
+| # Commits | Name |
+| --- | --- |
+| 23 | Nolan Phillips |
+| 4 | jpuri |
+| 2 | Scott Byrne |
+| 1 | DJ |
+| 1 | Kendall Strautman |
+| 1 | Maciej Grzybek |
 
 ## GitHub Milestone
 
