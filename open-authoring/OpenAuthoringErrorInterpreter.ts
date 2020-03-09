@@ -6,9 +6,9 @@ import { isForkValid } from "./github/api";
 export default async function interpretError(error: OpenAuthoringError) : Promise<OpenAuthoringContextualError> {
     if (!error || !error.code) {
         return new OpenAuthoringContextualError(
-            false, // should it be presented as a modal? (if not present a toast)
+            true, // should it be presented as a modal? (if not present a toast)
             "Error", // title
-            "Failed to interpret error. No context provided.", // message (the only thing a toast will present)
+            "An error occured.", // message (the only thing a toast will present)
             [{ 
                 message: "Continue",
                 action: Actions.authFlow
@@ -31,9 +31,9 @@ export default async function interpretError(error: OpenAuthoringError) : Promis
     }
 
     return new OpenAuthoringContextualError(
-        false,
-        "Error",
-        "Failed to interpret error.",
+        true,
+        "Error " + error.code,
+        "An error occured.",
         [{ 
             message: "Continue",
             action: Actions.authFlow

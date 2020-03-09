@@ -161,8 +161,8 @@ const OpenAuthoringSiteForm = ({
             'fork_full_name'
           )}`
         ),
-      afterSubmitFailed: failedForm =>
-        setStatefulError(failedForm.getState().submitError),
+      afterSubmitFailed: async failedForm =>
+        setInterpretedError(await interpretError(failedForm.getState().submitError))
     })
 
     const undecorateSaveListener = submitListener(form.finalForm)
@@ -182,10 +182,6 @@ const OpenAuthoringSiteForm = ({
             contextualError.message
           )
         }
-        
-
-
-              
       }
     })()
   },
