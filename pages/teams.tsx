@@ -14,6 +14,8 @@ import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
 import { InlineBlocks } from 'react-tinacms-inline'
 import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
 import ContentNotFoundError from '../utils/github/ContentNotFoundError'
+import OpenAuthoringError from '../open-authoring/OpenAuthoringError'
+import OpenAuthoringContextualError from '../open-authoring/OpenAuthoringContextualError'
 
 const formOptions = {
   label: 'Teams',
@@ -62,7 +64,7 @@ export default function TeamsPage(props) {
       form={form}
       path={props.teams.fileRelativePath}
       editMode={props.editMode}
-      previewError={props.previewError}
+      error={props.previewError}
     >
       <TeamsLayout
         sourceProviderConnection={props.sourceProviderConnection}
@@ -117,7 +119,7 @@ export async function unstable_getStaticProps({ preview, previewData }) {
     accessToken,
   } = getGithubDataFromPreviewProps(previewData)
 
-  let previewError: string
+  let previewError: OpenAuthoringError
   let teamsData = {}
   try {
     teamsData = await getJsonData(
@@ -126,8 +128,8 @@ export async function unstable_getStaticProps({ preview, previewData }) {
       accessToken
     )
   } catch (e) {
-    if (e instanceof ContentNotFoundError) {
-      previewError = e.message
+    if (e instanceof OpenAuthoringError) {
+      previewError = e
     } else {
       throw e
     }

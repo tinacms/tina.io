@@ -14,10 +14,11 @@ import { DesktopLabel } from '../ui/inline/DesktopLabel'
 import { ToolbarButton } from '../ui/inline/ToolbarButton'
 import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
 import interpretError from "../../open-authoring/OpenAuthoringErrorInterpreter"
+import OpenAuthoringContextualError from '../../open-authoring/OpenAuthoringContextualError'
 
 interface Props extends InlineFormProps {
   editMode: boolean
-  previewError?: OpenAuthoringError
+  error?: OpenAuthoringError
   children: any
   path: string
 }
@@ -34,11 +35,11 @@ const useFormState = (form, subscription) => {
 const OpenAuthoringSiteForm = ({
   form,
   editMode,
-  previewError,
+  error,
   path,
   children,
 }: Props) => {
-  const [statefulPreviewError, setStatefulPreviewError] = useState(previewError)
+  const [statefulError, setStatefulError] = useState(error)
   const [interpretedError, setInterpretedError] = useState(null)
   const cms = useCMS()
   const formState = useFormState(form, { dirty: true, submitting: true })
@@ -161,7 +162,7 @@ const OpenAuthoringSiteForm = ({
           )}`
         ),
       afterSubmitFailed: failedForm =>
-        setStatefulPreviewError(failedForm.getState().submitError),
+        setStatefulError(failedForm.getState().submitError),
     })
 
     const undecorateSaveListener = submitListener(form.finalForm)
@@ -171,12 +172,24 @@ const OpenAuthoringSiteForm = ({
 
   useEffect(() => {
     (async () => {
-      if (statefulPreviewError) {
-        setInterpretedError(await interpretError(statefulPreviewError))        
+      if (statefulError) {
+        const contextualError: OpenAuthoringContextualError = await interpretError(statefulError)
+        
+        if (contextualError.asModal) {
+          setInterpretedError(contextualError)  
+        } else {
+          cms.alerts.error(
+            contextualError.message
+          )
+        }
+        
+
+
+              
       }
     })()
   },
-  [statefulPreviewError])
+  [statefulError])
 
   return (
     <InlineForm

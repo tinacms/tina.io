@@ -114,7 +114,7 @@ const HomePage = (props: any) => {
       form={form}
       path={props.home.fileRelativePath}
       editMode={props.editMode}
-      previewError={props.previewError}
+      error={props.previewError}
     >
       <Layout
         sourceProviderConnection={props.sourceProviderConnection}
