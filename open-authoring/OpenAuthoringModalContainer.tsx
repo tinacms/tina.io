@@ -33,6 +33,7 @@ export const OpenAuthoringModalContainer = ({ previewError }: Props) => {
   useEffect(() => {
     if (previewError) {
       openAuthoring.updateAuthChecks() //recheck if we need to open auth window as result of error
+      fetch(`/api/reset-preview`) // clear preview cookies
     }
   }, [previewError])
 

@@ -11,11 +11,21 @@ const getDecodedData = async (repoFullName, headBranch, path, accessToken) => {
     path,
     accessToken
   )
-
-  if ((response?.response?.status || 0) == 404) {
-    throw new ContentNotFoundError(
-      'Content not found. Your fork may have been deleted.'
-    )
+  
+  const errorStatus = response?.response?.status || 200
+  if (errorStatus != 200) {
+    switch (errorStatus) {
+      case 404: {
+        throw new ContentNotFoundError(
+          'Content not found. Your fork may have been deleted.'
+        )
+      }
+      case 401: {
+        throw new ContentNotFoundError(
+          'Authentication invalid. You will need to re-authenticate.'
+        )
+      }
+    }
   }
 
   return { ...data, content: b64DecodeUnicode(data.content) }
