@@ -22,11 +22,12 @@ import { getDocProps } from '../../utils/docs/getDocProps'
 import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
 import ContentNotFoundError from '../../utils/github/ContentNotFoundError'
 import { OpenAuthoringModalContainer } from '../../open-authoring/OpenAuthoringModalContainer'
+import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
 
 export default function DocTemplate(props) {
   // Workaround for fallback being not implemented
   if (!props.markdownFile) {
-    return <OpenAuthoringModalContainer previewError={props.previewError} />
+    return <OpenAuthoringModalContainer error={props.error} />
   }
 
   // Registers Tina Form
@@ -46,7 +47,7 @@ export default function DocTemplate(props) {
       form={form}
       path={props.markdownFile.fileRelativePath}
       editMode={props.editMode}
-      previewError={props.previewError}
+      error={props.error}
     >
       <DocsLayout isEditing={props.editMode}>
         <NextSeo
@@ -109,10 +110,10 @@ export async function unstable_getStaticProps(props) {
   try {
     return getDocProps(props, slug)
   } catch (e) {
-    if (e instanceof ContentNotFoundError) {
+    if (e instanceof OpenAuthoringError) {
       return {
         props: {
-          previewError: e.message,
+          error: e,
         },
       }
     } else {
