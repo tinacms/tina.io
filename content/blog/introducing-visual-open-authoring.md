@@ -26,7 +26,7 @@ The Tina Team is currently prototyping this on our own site. In the coming weeks
 
 ## Using Next.js to Enable "Edit-mode"
 
-A new feature coming to [Next.js](https://nextjs.org) has been instrumental to providing the ideal experience for **Visual Open Authoring**. The upcoming _preview mode_ capability allows us to host a website that is fully static by default, but switches to a dynamic mode that runs server code for users that have a special "preview" cookie set. What we refer to as "Edit Mode" for **Visual Open Authoring** is the same as this Next.js "Preview Mode".
+A new feature released with [Next.js 9.3](https://nextjs.org/blog/next-9-3) has been instrumental to providing the ideal experience for **Visual Open Authoring**. The _preview mode_ capability allows us to host a website that is fully static by default, but switches to a dynamic mode that runs server code for users that have a special "preview" cookie set. What we refer to as "Edit Mode" for **Visual Open Authoring** is the same as this Next.js "Preview Mode".
 
 The ability for a website to run statically by default, and then "wake up" into a dynamic web application in response to specific user actions, is revolutionary. It significantly simplifies the concerns of operating an editing environment with Tina. With this workflow, we don't have to host a separate [Cloud Editing Environment](https://tinacms.org/blog/editing-on-the-cloud) &mdash; **the live site is the editing environment!** And thanks to Git and our fork-based workflow, we can edit content from the production website worry-free.
 
