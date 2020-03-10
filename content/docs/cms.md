@@ -1,6 +1,6 @@
 ---
 title: The CMS
-next: /docs/forms
+next: /docs/cms/plugins
 consumes:
   - file: /packages/tinacms/src/tina-cms.ts
     description: Creates TinaCMS instance and describes config
@@ -8,12 +8,6 @@ consumes:
     description: Shows how to use withTina HOC
   - file: /packages/tinacms/src/use-cms.ts
     description: Demonstrates useCMS hook
-  - file: /packages/@tinacms/core/src/plugins.ts
-    description: Describes Plugin interface
-  - file: /packages/tinacms/src/react-tinacms/use-plugin.ts
-    descrition: Demonstrates usePlugin
-  - file: /packages/@tinacms/core/src/cms.ts
-    description: Demonstrates adding plugins and APIs to CMS obj
 ---
 
 The CMS object in Tina is a container for attaching and accessing Plugins and APIs. On its own, the CMS does very little; however, since it's the central integration point for everything that Tina does, it's extremely important!
@@ -91,122 +85,9 @@ export default function SomeComponent() {
 }
 ```
 
-## Plugins
-
-**Plugins** are objects used to extend and modify the behavior of the CMS. Plugins are identified by their _type_, and different types of plugins will be used by Tina in different ways.
-
-All plugins must conform to the **Plugin** interface:
-
-```typescript
-interface Plugin {
-  __type: string // Identifies how the plugin should be used
-  name: string //   Unique identifier for the plugin
-}
-```
-
-Beyond that, a plugin's properties will depend on what it's used for. Most of Tina's features, including [Forms](/docs/forms) and [Fields](/docs/fields), are implemented as Plugins!
-
-### Adding Plugins
-
-Call `cms.plugins.add` and pass in the plugin.
-
-```javascript
-import { TinaCMS } from 'tinacms'
-
-const cms = new TinaCMS()
-cms.plugins.add({
-  // essential plugin data
-  __type: 'hello',
-  name: 'hello-dj',
-
-  // plugin-specific data
-  user: 'DJ',
-})
-```
-
-Alternatively, you can call the `usePlugins` hook from inside a function component.
-
-```jsx
-import * as React from 'react'
-import { usePlugins } from 'tinacms'
-
-export function SomeComponent() {
-  usePlugins([
-    {
-      __type: 'hello',
-      name: 'hello-dj',
-      user: 'DJ',
-    },
-  ])
-  //...
-}
-```
-
-When adding plugins from inside a React component, the plugin is added when the component mounts, and removed when the component unmounts. This is both expected and encouraged, as Tina has a [Dynamic Plugin System](/blog/dynamic-plugin-system).
-
-### Using a Plugin
-
-Retrieve all plugins of a given type via `cms.plugins.all`.
-
-```jsx
-import * as React from 'react'
-import { useCMS } from 'tinacms'
-
-export function Hello() {
-  const cms = useCMS()
-  const sayHello = React.useCallback(() => {
-    // get all of the "hello" plugins.
-    const helloPlugins = cms.plugins.all('hello')
-
-    // iterate over all of the "hello" plugins
-    helloPlugins.forEach(plugin => alert(`Hello, ${plugin.user}!`))
-  }, [])
-  return <button onClick={sayHello}>Say Hello</button>
-}
-```
-
-## APIs
-
-**APIs** in the CMS are objects intended to communicate with third-party services. Unlike Plugins, which can modify the behavior of the CMS, APIs do not interact with Tina's UI or internals. APIs allow you to achieve [Dependency Injection](https://en.wikipedia.org/wiki/Dependency_injection) with Tina.
-
-### Adding an API
-
-Whereas Plugins can include multiple objects grouped under a single type, each API registered to the CMS has its own namespace.
-
-Call `cms.registerApi(namespace, api)` to add an API:
-
-```javascript
-import { TinaCMS } from 'tinacms'
-
-class HelloApi {
-  sayHello() {
-    alert('Hello, world!')
-  }
-}
-
-const cms = new TinaCMS()
-cms.registerApi('hello', new HelloApi())
-```
-
-> Unlike Plugins, APIs should be registered when the CMS is instantiated, and never removed.
-
-### Using an API
-
-Access your API directly from the `cms.api` object, via the namespace you registered it to.
-
-```jsx
-import * as React from 'react'
-import { useCMS } from 'tinacms'
-
-export function Hello() {
-  const cms = useCMS()
-  return <button onClick={cms.api.hello.sayHello}>Say Hello</button>
-}
-```
-
 ## CMS Configuration
 
-When instantiating the `TinaCMS` object, you can pass in a configuration object. This allows you to configure some options for the sidebar, and also allows you to configure Plugins and APIs declaratively.
+When instantiating the `TinaCMS` object, you can pass in a configuration object. This allows you to configure some options for the sidebar, and also allows you to configure [Plugins](/docs/cms/plugins) and [APIs](/docs/cms/apis) declaratively.
 
 ```typescript
 interface TinaCMSConfig {

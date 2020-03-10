@@ -18,7 +18,24 @@
   {
     "title": "The CMS",
     "id": "the-cms",
-    "slug": "/docs/cms"
+    "slug": "/docs/cms",
+    "items": [
+      {
+        "id": "/docs/cms/plugins",
+        "title": "Plugins",
+        "slug": "/docs/cms/plugins"
+      },
+      {
+        "id": "/docs/cms/apis",
+        "title": "APIs",
+        "slug": "/docs/cms/apis"
+      },
+      {
+        "id": "/docs/cms/alerts",
+        "title": "Alerts",
+        "slug": "/docs/cms/alerts"
+      }
+    ]
   },
   {
     "title": "Forms",
