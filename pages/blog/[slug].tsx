@@ -10,6 +10,7 @@ import {
   RichTextWrapper,
 } from '../../components/layout'
 import { InlineWysiwyg, InlineTextareaField } from '../../components/ui/inline'
+import { useSharing } from '../../open-authoring/share'
 import { getGithubDataFromPreviewProps } from '../../utils/github/sourceProviderConnection'
 import getMarkdownData from '../../utils/github/getMarkdownData'
 import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'
@@ -40,6 +41,9 @@ export default function BlogTemplate({
     sourceProviderConnection,
     editMode
   )
+
+  // This will allow the shared link to work on unauthenticated views
+  useSharing(form)
 
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
