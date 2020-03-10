@@ -18,8 +18,7 @@ export default async function interpretError(error: OpenAuthoringError) : Promis
             { 
                 message: "Cancel",
                 action: Actions.refresh
-            }], // Action buttons
-            false // clear preview cookies
+            }] // Action buttons
         )
     }
     
@@ -43,8 +42,7 @@ export default async function interpretError(error: OpenAuthoringError) : Promis
         { 
             message: "Cancel",
             action: Actions.refresh
-        }],
-        false
+        }]
     )
 }
 
@@ -58,8 +56,7 @@ function interpretServerError(error: OpenAuthoringError) {
                 [{ 
                     message: "Continue",
                     action: Actions.doNothing
-                }],
-                false
+                }]
             )
         }
     }
@@ -89,8 +86,7 @@ function interpretUnauthorizedError(error: OpenAuthoringError) {
         { 
             message: "Cancel",
             action: Actions.refresh
-        }],
-        true
+        }]
     )
 }
 
@@ -103,8 +99,7 @@ async function interpretNotFoundError(error: OpenAuthoringError) {
             [{
                 message: "Continue",
                 action: Actions.doNothing
-            }],
-            false
+            }]
         )
     }
     return new OpenAuthoringContextualErrorUI(
@@ -118,7 +113,6 @@ async function interpretNotFoundError(error: OpenAuthoringError) {
         {
             message: "Cancel",
             action: Actions.refresh
-        }],
-        true
+        }]
     )   
 }

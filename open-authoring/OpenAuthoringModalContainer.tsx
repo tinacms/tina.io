@@ -53,11 +53,15 @@ export const OpenAuthoringModalContainer = ({ error }: Props) => {
   }
 
   const authFlow = () => {
-    runAuthWorkflow()
+    fetch(`/api/reset-preview`).then( () => {
+      runAuthWorkflow()
+    })
   }
 
   const refresh = () => {
-    window.location.reload()
+    fetch(`/api/reset-preview`).then( () => {
+      window.location.reload()
+    })
   }
 
   const getActionsFromError = (error: OpenAuthoringContextualErrorUI) => {
@@ -77,10 +81,6 @@ export const OpenAuthoringModalContainer = ({ error }: Props) => {
   useEffect(() => {
     if (error) {
       openAuthoring.updateAuthChecks() //recheck if we need to open auth window as result of error
-      if (error.shouldClearPreview) {
-        fetch(`/api/reset-preview`) // clear preview cookies
-      }
-      
     }
   }, [error])
 
