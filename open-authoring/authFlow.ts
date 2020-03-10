@@ -1,5 +1,4 @@
 import Cookies from 'js-cookie'
-import { isForkValid, isGithubTokenValid } from './github/api'
 
 function popupWindow(url, title, window, w, h) {
   const y = window.top.outerHeight / 2 + window.top.screenY - h / 2

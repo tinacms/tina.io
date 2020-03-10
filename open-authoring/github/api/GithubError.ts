@@ -1,10 +1,8 @@
-class GithubError extends Error {
-    status
+export default class GithubError extends Error {
+    status: number
     constructor(message, status) {
         super(message)
         this.message = message
         this.status = status
     }
 }
-
-module.exports = GithubError

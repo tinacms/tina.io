@@ -1,6 +1,4 @@
-import { Actions } from "./OpenAuthoringModalContainer"
-
-export default class OpenAuthoringContextualErrorUIUI {
+export default class OpenAuthoringContextualErrorUI {
     title: string
     message: string
     actions: [{message: string, action: () => boolean}]

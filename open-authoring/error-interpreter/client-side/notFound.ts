@@ -5,7 +5,7 @@ import { enterAuthFlow, refresh, justClose } from "../actions"
 
 
 export default async function interpretNotFoundError(error: OpenAuthoringError) {
-    if (await isForkValid()) { // drill down further in the future
+    if (await isForkValid(null)) { // drill down further in the future
         return new OpenAuthoringContextualErrorUI(
             true,
             "404 Not Found",
