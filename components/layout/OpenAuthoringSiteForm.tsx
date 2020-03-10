@@ -13,7 +13,7 @@ import { LoadingDots } from '../ui/LoadingDots'
 import { DesktopLabel } from '../ui/inline/DesktopLabel'
 import { ToolbarButton } from '../ui/inline/ToolbarButton'
 import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
-import interpretError from "../../open-authoring/error-interpreter"
+import interpretError from '../../open-authoring/error-interpreter'
 import OpenAuthoringContextualErrorUI from '../../open-authoring/OpenAuthoringContextualErrorUI'
 
 interface Props extends InlineFormProps {
@@ -152,6 +152,21 @@ const OpenAuthoringSiteForm = ({
     }
   }, [form, editMode])
   // show feedback onSave
+
+  const updateUIWithError = useCallback(
+    async (err: OpenAuthoringError) => {
+      const errorUIDescriptor: OpenAuthoringContextualErrorUI = await interpretError(
+        err
+      )
+      if (errorUIDescriptor.asModal) {
+        setInterpretedError(errorUIDescriptor)
+      } else {
+        cms.alerts.error(errorUIDescriptor.message)
+      }
+    },
+    [cms, setInterpretedError]
+  )
+
   useEffect(() => {
     const submitListener = createDecorator({
       afterSubmitSucceeded: () =>
@@ -162,15 +177,10 @@ const OpenAuthoringSiteForm = ({
         ),
       afterSubmitFailed: async failedForm => {
         const code = parseInt(failedForm.getState().submitError)
-        const contextualError: OpenAuthoringContextualErrorUI = await interpretError(new OpenAuthoringError("Failed to save content.", code))
-        if (contextualError.asModal) {
-          setInterpretedError(contextualError)  
-        } else {
-          cms.alerts.error(
-            contextualError.message
-          )
-        }
-      }
+        updateUIWithError(
+          new OpenAuthoringError('Failed to save content.', code)
+        )
+      },
     })
 
     const undecorateSaveListener = submitListener(form.finalForm)
@@ -179,21 +189,12 @@ const OpenAuthoringSiteForm = ({
   }, [form])
 
   useEffect(() => {
-    (async () => {
+    ;(async () => {
       if (error) {
-        const contextualError: OpenAuthoringContextualErrorUI = await interpretError(error)
-        
-        if (contextualError.asModal) {
-          setInterpretedError(contextualError)  
-        } else {
-          cms.alerts.error(
-            contextualError.message
-          )
-        }
+        updateUIWithError(error)
       }
     })()
-  },
-  [error])
+  }, [error])
 
   return (
     <InlineForm
