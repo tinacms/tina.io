@@ -4,6 +4,7 @@ import { getCachedFormData, setCachedFormData } from '../formCache'
 import { useGithubForm, GithubOptions, GitFile } from './useGithubForm'
 import { toMarkdownString } from 'next-tinacms-markdown'
 import { FORM_ERROR } from 'final-form'
+import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
 
 export interface Options {
   id?: string
@@ -42,7 +43,7 @@ const useGithubMarkdownForm = <T = any>(
           })
         })
         .catch(e => {
-          return { [FORM_ERROR]: e.message || '404' }
+          return { [FORM_ERROR]: new OpenAuthoringError("Failed to save content.", e.status) }
         })
     },
   })

@@ -3,6 +3,7 @@ import { saveContent } from '../../open-authoring/github/api'
 import { getCachedFormData, setCachedFormData } from '../formCache'
 import { useGithubForm, GithubOptions, GitFile } from './useGithubForm'
 import { FORM_ERROR } from 'final-form'
+import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
 
 export interface Options {
   id?: string
@@ -40,11 +41,7 @@ const useGithubJsonForm = <T = any>(
           })
         })
         .catch(e => {
-          console.log("error: " + e);
-          console.log(e.response);
-          
-          
-          return { [FORM_ERROR]: e.message || '404' }
+          return { [FORM_ERROR]: new OpenAuthoringError("Failed to save content.", e.status) }
         })
     },
   })

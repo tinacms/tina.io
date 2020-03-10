@@ -176,9 +176,8 @@ const OpenAuthoringSiteForm = ({
           )}`
         ),
       afterSubmitFailed: async failedForm => {
-        const code = parseInt(failedForm.getState().submitError)
         updateUIWithError(
-          new OpenAuthoringError('Failed to save content.', code)
+          failedForm.getState().submitError
         )
       },
     })
