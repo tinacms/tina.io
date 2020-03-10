@@ -2,13 +2,22 @@ import { useEffect, useState } from 'react'
 import { ActionableModal } from '../components/ui'
 import { enterEditMode } from './authFlow'
 import { useOpenAuthoring } from '../components/layout/OpenAuthoring'
+import OpenAuthoringContextualErrorUI from './OpenAuthoringContextualErrorUI'
 
 interface Props {
-  previewError?: string
+  error?: OpenAuthoringContextualErrorUI
 }
 
-export const OpenAuthoringModalContainer = ({ previewError }: Props) => {
+export enum Actions {
+  authFlow,
+  refresh,
+  doNothing
+}
+
+
+export const OpenAuthoringModalContainer = ({ error }: Props) => {
   const [authPopupDisplayed, setAuthPopupDisplayed] = useState(false)
+  const [statefulError, setStateFullError] = useState(error)
 
   const cancelAuth = () => {
     window.history.replaceState(
@@ -30,11 +39,30 @@ export const OpenAuthoringModalContainer = ({ previewError }: Props) => {
     enterEditMode(openAuthoring.githubAuthenticated, openAuthoring.forkValid)
   }
 
+  const getActionsFromError = (error: OpenAuthoringContextualErrorUI) => {
+    var actions = []
+    error.actions.forEach( action => {
+      actions.push(
+        {
+          name: action.message,
+          action: () => {
+            if (action.action() === true) { // close modal
+              setStateFullError(null)
+            }
+          }
+        }
+      )
+    })
+    return actions
+  }
+
+
   useEffect(() => {
-    if (previewError) {
+    if (error) {
+      setStateFullError(error)
       openAuthoring.updateAuthChecks() //recheck if we need to open auth window as result of error
     }
-  }, [previewError])
+  }, [error])
 
   return (
     <>
@@ -54,16 +82,11 @@ export const OpenAuthoringModalContainer = ({ previewError }: Props) => {
           ]}
         />
       )}
-      {previewError && (
-        <ActionableModal
-          title="Error"
-          message={previewError}
-          actions={[
-            {
-              name: 'Continue',
-              action: runAuthWorkflow,
-            },
-          ]}
+      {statefulError && (
+        <ActionableModal 
+          title={statefulError.title}
+          message={statefulError.message}
+          actions={getActionsFromError(statefulError)}
         />
       )}
     </>

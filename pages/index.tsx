@@ -27,6 +27,7 @@ import getJsonData from '../utils/github/getJsonData'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 import ContentNotFoundError from '../utils/github/ContentNotFoundError'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
+import OpenAuthoringError from '../open-authoring/OpenAuthoringError'
 
 const HomePage = (props: any) => {
   const [formData, form] = useLocalGithubJsonForm(
@@ -113,7 +114,7 @@ const HomePage = (props: any) => {
       form={form}
       path={props.home.fileRelativePath}
       editMode={props.editMode}
-      previewError={props.previewError}
+      error={props.previewError}
     >
       <Layout
         sourceProviderConnection={props.sourceProviderConnection}
@@ -214,7 +215,7 @@ export async function unstable_getStaticProps({ preview, previewData, query }) {
     sourceProviderConnection,
     accessToken,
   } = getGithubDataFromPreviewProps(previewData)
-  let previewError: string
+  let previewError: OpenAuthoringError
   let homeData = {}
   try {
     homeData = await getJsonData(
@@ -223,8 +224,8 @@ export async function unstable_getStaticProps({ preview, previewData, query }) {
       accessToken
     )
   } catch (e) {
-    if (e instanceof ContentNotFoundError) {
-      previewError = e.message
+    if (e instanceof OpenAuthoringError) {
+      previewError = e
     } else {
       throw e
     }

@@ -4,6 +4,7 @@ import { saveContent } from '../../open-authoring/github/api'
 import { getCachedFormData, setCachedFormData } from '../formCache'
 import { GithubOptions } from '../github/useGithubForm'
 import { FORM_ERROR } from 'final-form'
+import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
 
 type MaybePromise<T> = Promise<T> | T
 
@@ -101,7 +102,7 @@ export class MarkdownCreatorPlugin<FormShape = any, FrontmatterShape = any>
         }
       })
       .catch(e => {
-        return { [FORM_ERROR]: 'Failed to create page.' }
+        return { [FORM_ERROR]: new OpenAuthoringError(e.message, e.status) }
       })
   }
 }

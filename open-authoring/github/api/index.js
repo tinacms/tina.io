@@ -3,6 +3,7 @@ const qs = require('qs')
 const { b64EncodeUnicode } = require('../../utils/base64')
 const baseBranch = process.env.BASE_BRANCH
 const Cookies = require('js-cookie')
+const GithubError = require('./GithubError.js')
 
 const fetchExistingPR = async (
   baseRepoFullName,
@@ -101,8 +102,8 @@ const saveContent = async (
 
   //2xx status codes
   if (response.status.toString()[0] == '2') return data
-
-  throw new Error('Failed to save')
+  
+  throw new GithubError(response.message, response.status)
 }
 
 const getBranch = async (repoFullName, branch) => {
@@ -149,7 +150,10 @@ const getUser = async () => {
 
 const isForkValid = async forkName => {
   if (!forkName) {
-    return false
+    forkName = Cookies.get("fork_full_name")
+    if (!forkName) {
+      return false
+    }
   }
   const branch = Cookies.get('head_branch') || 'master'
 

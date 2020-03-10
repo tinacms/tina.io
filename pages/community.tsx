@@ -27,6 +27,7 @@ import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderCon
 import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
 import ContentNotFoundError from '../utils/github/ContentNotFoundError'
+import OpenAuthoringError from '../open-authoring/OpenAuthoringError'
 
 export default function CommunityPage({
   community,
@@ -48,7 +49,7 @@ export default function CommunityPage({
       form={form}
       path={community.fileRelativePath}
       editMode={editMode}
-      previewError={previewError}
+      error={previewError}
     >
       <Layout
         sourceProviderConnection={sourceProviderConnection}
@@ -168,7 +169,7 @@ export async function unstable_getStaticProps({ preview, previewData }) {
   } = getGithubDataFromPreviewProps(previewData)
   const siteMetadata = await import('../content/siteConfig.json')
 
-  let previewError: string
+  let previewError: OpenAuthoringError
   let communityData = {}
   try {
     communityData = await getJsonData(
@@ -177,8 +178,8 @@ export async function unstable_getStaticProps({ preview, previewData }) {
       accessToken
     )
   } catch (e) {
-    if (e instanceof ContentNotFoundError) {
-      previewError = e.message
+    if (e instanceof OpenAuthoringError) {
+      previewError = e
     } else {
       throw e
     }

@@ -20,6 +20,7 @@ const fg = require('fast-glob')
 import { enterEditMode, exitEditMode } from '../../open-authoring/authFlow'
 import { useOpenAuthoring } from '../../components/layout/OpenAuthoring'
 import { Button } from '../../components/ui/Button'
+import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
 
 export default function BlogTemplate({
   markdownFile,
@@ -50,7 +51,7 @@ export default function BlogTemplate({
       form={form}
       path={markdownFile.fileRelativePath}
       editMode={editMode}
-      previewError={previewError}
+      error={previewError}
     >
       <Layout
         sourceProviderConnection={sourceProviderConnection}
@@ -119,7 +120,7 @@ export async function unstable_getStaticProps({
     accessToken,
   } = getGithubDataFromPreviewProps(previewData)
 
-  let previewError: string
+  let previewError: OpenAuthoringError
   let file = {}
   try {
     file = await getMarkdownData(
@@ -128,8 +129,8 @@ export async function unstable_getStaticProps({
       accessToken
     )
   } catch (e) {
-    if (e instanceof ContentNotFoundError) {
-      previewError = e.message
+    if (e instanceof OpenAuthoringError) {
+      previewError = e
     } else {
       throw e
     }

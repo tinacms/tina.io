@@ -12,10 +12,13 @@ import { flattenFormData } from '../../utils/plugins/flatten-form-data'
 import { LoadingDots } from '../ui/LoadingDots'
 import { DesktopLabel } from '../ui/inline/DesktopLabel'
 import { ToolbarButton } from '../ui/inline/ToolbarButton'
+import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
+import interpretError from '../../open-authoring/error-interpreter'
+import OpenAuthoringContextualErrorUI from '../../open-authoring/OpenAuthoringContextualErrorUI'
 
 interface Props extends InlineFormProps {
   editMode: boolean
-  previewError?: string
+  error?: OpenAuthoringError
   children: any
   path: string
 }
@@ -32,11 +35,11 @@ const useFormState = (form, subscription) => {
 const OpenAuthoringSiteForm = ({
   form,
   editMode,
-  previewError,
+  error,
   path,
   children,
 }: Props) => {
-  const [statefulPreviewError, setStatefulPreviewError] = useState(previewError)
+  const [interpretedError, setInterpretedError] = useState(null)
   const cms = useCMS()
   const formState = useFormState(form, { dirty: true, submitting: true })
 
@@ -149,6 +152,21 @@ const OpenAuthoringSiteForm = ({
     }
   }, [form, editMode])
   // show feedback onSave
+
+  const updateUIWithError = useCallback(
+    async (err: OpenAuthoringError) => {
+      const errorUIDescriptor: OpenAuthoringContextualErrorUI = await interpretError(
+        err
+      )
+      if (errorUIDescriptor.asModal) {
+        setInterpretedError(errorUIDescriptor)
+      } else {
+        cms.alerts.error(errorUIDescriptor.message)
+      }
+    },
+    [cms, setInterpretedError]
+  )
+
   useEffect(() => {
     const submitListener = createDecorator({
       afterSubmitSucceeded: () =>
@@ -157,14 +175,25 @@ const OpenAuthoringSiteForm = ({
             'fork_full_name'
           )}`
         ),
-      afterSubmitFailed: failedForm =>
-        setStatefulPreviewError(failedForm.getState().submitError),
+      afterSubmitFailed: async failedForm => {
+        updateUIWithError(
+          failedForm.getState().submitError
+        )
+      },
     })
 
     const undecorateSaveListener = submitListener(form.finalForm)
 
     return undecorateSaveListener
   }, [form])
+
+  useEffect(() => {
+    ;(async () => {
+      if (error) {
+        updateUIWithError(error)
+      }
+    })()
+  }, [error])
 
   return (
     <InlineForm
@@ -173,7 +202,7 @@ const OpenAuthoringSiteForm = ({
         typeof document !== 'undefined' && editMode ? 'active' : 'inactive'
       }
     >
-      <OpenAuthoringModalContainer previewError={statefulPreviewError} />
+      <OpenAuthoringModalContainer error={interpretedError} />
       {children}
     </InlineForm>
   )
