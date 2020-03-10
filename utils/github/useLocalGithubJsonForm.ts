@@ -40,7 +40,7 @@ const useGithubJsonForm = <T = any>(
           })
         })
         .catch(e => {
-          return { [FORM_ERROR]: 'Failed to save data.' }
+          return { [FORM_ERROR]: e.response?.status?.toString || '404' }
         })
     },
   })

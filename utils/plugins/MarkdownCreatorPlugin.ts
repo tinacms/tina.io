@@ -101,7 +101,7 @@ export class MarkdownCreatorPlugin<FormShape = any, FrontmatterShape = any>
         }
       })
       .catch(e => {
-        return { [FORM_ERROR]: 'Failed to create page.' }
+        return { [FORM_ERROR]: e.response?.status?.toString || '404' }
       })
   }
 }

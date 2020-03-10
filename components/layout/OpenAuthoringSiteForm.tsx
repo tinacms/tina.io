@@ -160,8 +160,17 @@ const OpenAuthoringSiteForm = ({
             'fork_full_name'
           )}`
         ),
-      afterSubmitFailed: async failedForm =>
-        setInterpretedError(await interpretError(failedForm.getState().submitError))
+      afterSubmitFailed: async failedForm => {
+        const code = parseInt(failedForm.getState().submitError)
+        const contextualError: OpenAuthoringContextualErrorUI = await interpretError(new OpenAuthoringError("Failed to save content.", code))
+        if (contextualError.asModal) {
+          setInterpretedError(contextualError)  
+        } else {
+          cms.alerts.error(
+            contextualError.message
+          )
+        }
+      }
     })
 
     const undecorateSaveListener = submitListener(form.finalForm)
