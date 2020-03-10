@@ -39,7 +39,6 @@ const OpenAuthoringSiteForm = ({
   path,
   children,
 }: Props) => {
-  const [statefulError, setStatefulError] = useState(error)
   const [interpretedError, setInterpretedError] = useState(null)
   const cms = useCMS()
   const formState = useFormState(form, { dirty: true, submitting: true })
@@ -172,8 +171,8 @@ const OpenAuthoringSiteForm = ({
 
   useEffect(() => {
     (async () => {
-      if (statefulError) {
-        const contextualError: OpenAuthoringContextualErrorUI = await interpretError(statefulError)
+      if (error) {
+        const contextualError: OpenAuthoringContextualErrorUI = await interpretError(error)
         
         if (contextualError.asModal) {
           setInterpretedError(contextualError)  
@@ -185,7 +184,7 @@ const OpenAuthoringSiteForm = ({
       }
     })()
   },
-  [statefulError])
+  [error])
 
   return (
     <InlineForm
