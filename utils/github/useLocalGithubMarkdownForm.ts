@@ -43,7 +43,7 @@ const useGithubMarkdownForm = <T = any>(
           })
         })
         .catch(e => {
-          return { [FORM_ERROR]: new OpenAuthoringError("Failed to save content.", e.status) }
+          return { [FORM_ERROR]: new OpenAuthoringError(e.message, e.status) }
         })
     },
   })

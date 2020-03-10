@@ -3,6 +3,7 @@ const qs = require('qs')
 const { b64EncodeUnicode } = require('../../utils/base64')
 const baseBranch = process.env.BASE_BRANCH
 const Cookies = require('js-cookie')
+const GithubError = require('./GithubError.js')
 
 const fetchExistingPR = async (
   baseRepoFullName,
@@ -102,7 +103,7 @@ const saveContent = async (
   //2xx status codes
   if (response.status.toString()[0] == '2') return data
   
-  throw response
+  throw new GithubError(response.message, response.status)
 }
 
 const getBranch = async (repoFullName, branch) => {

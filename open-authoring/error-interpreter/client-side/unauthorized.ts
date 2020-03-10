@@ -1,6 +1,6 @@
 import OpenAuthoringError from "../../OpenAuthoringError";
 import OpenAuthoringContextualErrorUI from "../../OpenAuthoringContextualErrorUI"
-import { enterAuthFlow, refresh } from "../actions"
+import { enterAuthFlow, refresh, justClose } from "../actions"
 
 export default function interpretUnauthorizedError(error: OpenAuthoringError) {
     // if authentication is not valid they need to re-authenticate
