@@ -3,7 +3,7 @@ import { Actions } from "./OpenAuthoringModalContainer"
 export default class OpenAuthoringContextualErrorUIUI {
     title: string
     message: string
-    actions: [{message: string, action: Actions}]
+    actions: [{message: string, action: () => boolean}]
     asModal: boolean
 
     constructor(asModal, title, message, actions) {

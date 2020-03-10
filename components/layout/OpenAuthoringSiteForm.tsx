@@ -13,7 +13,7 @@ import { LoadingDots } from '../ui/LoadingDots'
 import { DesktopLabel } from '../ui/inline/DesktopLabel'
 import { ToolbarButton } from '../ui/inline/ToolbarButton'
 import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
-import interpretError from "../../open-authoring/OpenAuthoringErrorInterpreter"
+import interpretError from "../../open-authoring/error-interpreter"
 import OpenAuthoringContextualErrorUI from '../../open-authoring/OpenAuthoringContextualErrorUI'
 
 interface Props extends InlineFormProps {

@@ -17,6 +17,7 @@ export enum Actions {
 
 export const OpenAuthoringModalContainer = ({ error }: Props) => {
   const [authPopupDisplayed, setAuthPopupDisplayed] = useState(false)
+  const [statefulError, setStateFullError] = useState(error)
 
   const cancelAuth = () => {
     window.history.replaceState(
@@ -38,39 +39,17 @@ export const OpenAuthoringModalContainer = ({ error }: Props) => {
     enterEditMode(openAuthoring.githubAuthenticated, openAuthoring.forkValid)
   }
 
-  const getFuncFromActions = action => {
-    switch (action) {
-      case Actions.authFlow: {
-        return authFlow
-      }
-      case Actions.refresh: {
-        return refresh
-      }
-      case Actions.doNothing: {
-        return close
-      }
-    }
-  }
-
-  const authFlow = () => {
-    fetch(`/api/reset-preview`).then( () => {
-      runAuthWorkflow()
-    })
-  }
-
-  const refresh = () => {
-    fetch(`/api/reset-preview`).then( () => {
-      window.location.reload()
-    })
-  }
-
   const getActionsFromError = (error: OpenAuthoringContextualErrorUI) => {
     var actions = []
     error.actions.forEach( action => {
       actions.push(
         {
           name: action.message,
-          action: getFuncFromActions(action.action)
+          action: () => {
+            if (action.action() === true) { // close modal
+              setStateFullError(null)
+            }
+          }
         }
       )
     })
@@ -80,6 +59,7 @@ export const OpenAuthoringModalContainer = ({ error }: Props) => {
 
   useEffect(() => {
     if (error) {
+      setStateFullError(error)
       openAuthoring.updateAuthChecks() //recheck if we need to open auth window as result of error
     }
   }, [error])
@@ -102,11 +82,11 @@ export const OpenAuthoringModalContainer = ({ error }: Props) => {
           ]}
         />
       )}
-      {error && (
+      {statefulError && (
         <ActionableModal 
-          title={error.title}
-          message={error.message}
-          actions={getActionsFromError(error)}
+          title={statefulError.title}
+          message={statefulError.message}
+          actions={getActionsFromError(statefulError)}
         />
       )}
     </>
