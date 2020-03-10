@@ -27,7 +27,8 @@ export const EditLink = ({ color, editMode }: EditLinkProps) => {
           : () =>
               enterEditMode(
                 openAuthoring.githubAuthenticated,
-                openAuthoring.forkValid
+                openAuthoring.forkValid,
+                true
               )
       }
     >

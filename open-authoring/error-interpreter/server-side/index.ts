@@ -16,4 +16,17 @@ export default function interpretServerError(error: OpenAuthoringError) {
             )
         }
     }
+    return new OpenAuthoringContextualErrorUI(
+        true,
+        "Error " + error.code,
+        error.message,
+        [{ 
+            message: "Continue",
+            action: enterAuthFlow
+        },
+        { 
+            message: "Cancel",
+            action: refresh
+        }]
+    )
 }

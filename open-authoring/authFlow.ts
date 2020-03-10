@@ -24,8 +24,18 @@ async function handleForkCreated(forkName) {
   })
 }
 
-export const enterEditMode = (githubAuthenticated, forkValid) => {
+export const enterEditMode = (githubAuthenticated, forkValid, withoutAuth) => {
   let authTab
+
+  if (withoutAuth) {
+    Cookies.set('fork_full_name', process.env.REPO_FULL_NAME)
+    fetch(`/api/preview`).then(() => {
+      window.location.reload()
+    })
+  
+    return
+  }
+  
 
   const authState = Math.random()
     .toString(36)

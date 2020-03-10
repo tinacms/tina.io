@@ -21,7 +21,7 @@ export const enterAuthFlow = async () => {
     const forkValid = await isForkValid(forkName)
 
     fetch(`/api/reset-preview`).then( () => {
-        enterEditMode(authenticated, forkValid)
+        enterEditMode(authenticated, forkValid, false)
     })
 
     return false

@@ -13,9 +13,11 @@ const getDecodedData = async (repoFullName, headBranch, path, accessToken) => {
     accessToken
   )
 
+    
   const errorStatus = response?.response?.status || 200
   if (errorStatus < 200 || errorStatus > 299) {
-    throw new OpenAuthoringError("Failed to get data.", errorStatus)
+    
+    throw new OpenAuthoringError(response?.response?.message || "Failed to save content.", errorStatus)
   }
 
   return { ...data, content: b64DecodeUnicode(data.content) }

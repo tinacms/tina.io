@@ -158,10 +158,10 @@ const OpenAuthoringSiteForm = ({
       const errorUIDescriptor: OpenAuthoringContextualErrorUI = await interpretError(
         err
       )
-      if (errorUIDescriptor.asModal) {
+      if (errorUIDescriptor && errorUIDescriptor.asModal) {
         setInterpretedError(errorUIDescriptor)
       } else {
-        cms.alerts.error(errorUIDescriptor.message)
+        cms.alerts.error(errorUIDescriptor?.message || "Could not interpret.")
       }
     },
     [cms, setInterpretedError]

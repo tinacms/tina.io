@@ -295,7 +295,8 @@ const EditLink = ({ isEditMode }) => {
           : () =>
               enterEditMode(
                 openAuthoring.githubAuthenticated,
-                openAuthoring.forkValid
+                openAuthoring.forkValid,
+                true
               )
       }
     >

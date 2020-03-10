@@ -36,7 +36,7 @@ export const OpenAuthoringModalContainer = ({ error }: Props) => {
   const openAuthoring = useOpenAuthoring()
 
   const runAuthWorkflow = () => {
-    enterEditMode(openAuthoring.githubAuthenticated, openAuthoring.forkValid)
+    enterEditMode(openAuthoring.githubAuthenticated, openAuthoring.forkValid, false)
   }
 
   const getActionsFromError = (error: OpenAuthoringContextualErrorUI) => {

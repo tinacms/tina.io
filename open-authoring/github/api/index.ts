@@ -174,12 +174,16 @@ export const isGithubTokenValid = async () => {
 
 //TODO - move axios endpoints into own file from fetch requests
 export const getContent = async (repoFullName, headBranch, path, accessToken) => {
+  var headers = {}
+  if (accessToken) {
+    headers = {
+      Authorization: 'token ' + accessToken,
+    }
+  }
   return axios({
     method: 'GET',
     url: `https://api.github.com/repos/${repoFullName}/contents/${path}?ref=${headBranch}`,
-    headers: {
-      Authorization: 'token ' + accessToken,
-    },
+    headers: headers
   })
     .then(resp => {
       return resp
