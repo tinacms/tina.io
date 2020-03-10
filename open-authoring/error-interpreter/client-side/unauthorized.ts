@@ -5,7 +5,7 @@ import { enterAuthFlow, refresh } from "../actions"
 export default function interpretUnauthorizedError(error: OpenAuthoringError) {
     // if authentication is not valid they need to re-authenticate
     return new OpenAuthoringContextualErrorUI(
-        false,
+        true,
         "401 Unauthenticated",
         "Authentication is invalid",
         [{ 
