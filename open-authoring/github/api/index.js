@@ -101,8 +101,8 @@ const saveContent = async (
 
   //2xx status codes
   if (response.status.toString()[0] == '2') return data
-
-  throw new Error('Failed to save')
+  
+  throw new Error(response.status.toString())
 }
 
 const getBranch = async (repoFullName, branch) => {

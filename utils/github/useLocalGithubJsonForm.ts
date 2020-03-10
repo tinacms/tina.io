@@ -40,7 +40,11 @@ const useGithubJsonForm = <T = any>(
           })
         })
         .catch(e => {
-          return { [FORM_ERROR]: e.response?.status?.toString || '404' }
+          console.log("error: " + e);
+          console.log(e.response);
+          
+          
+          return { [FORM_ERROR]: e.message || '404' }
         })
     },
   })

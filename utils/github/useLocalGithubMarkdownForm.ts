@@ -42,7 +42,7 @@ const useGithubMarkdownForm = <T = any>(
           })
         })
         .catch(e => {
-          return { [FORM_ERROR]: e.response?.status?.toString || '404' }
+          return { [FORM_ERROR]: e.message || '404' }
         })
     },
   })
