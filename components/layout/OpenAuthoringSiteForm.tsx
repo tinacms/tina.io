@@ -14,7 +14,7 @@ import { DesktopLabel } from '../ui/inline/DesktopLabel'
 import { ToolbarButton } from '../ui/inline/ToolbarButton'
 import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
 import interpretError from "../../open-authoring/OpenAuthoringErrorInterpreter"
-import OpenAuthoringContextualError from '../../open-authoring/OpenAuthoringContextualError'
+import OpenAuthoringContextualErrorUI from '../../open-authoring/OpenAuthoringContextualErrorUI'
 
 interface Props extends InlineFormProps {
   editMode: boolean
@@ -173,7 +173,7 @@ const OpenAuthoringSiteForm = ({
   useEffect(() => {
     (async () => {
       if (statefulError) {
-        const contextualError: OpenAuthoringContextualError = await interpretError(statefulError)
+        const contextualError: OpenAuthoringContextualErrorUI = await interpretError(statefulError)
         
         if (contextualError.asModal) {
           setInterpretedError(contextualError)  

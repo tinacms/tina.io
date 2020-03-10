@@ -1,14 +1,16 @@
 import OpenAuthoringError from "./OpenAuthoringError";
-import OpenAuthoringContextualError from "./OpenAuthoringContextualError";
+import OpenAuthoringContextualErrorUI from "./OpenAuthoringContextualErrorUI";
 import { Actions } from "./OpenAuthoringModalContainer";
 import { isForkValid } from "./github/api";
 
-export default async function interpretError(error: OpenAuthoringError) : Promise<OpenAuthoringContextualError> {
+export default async function interpretError(error: OpenAuthoringError) : Promise<OpenAuthoringContextualErrorUI> {
     if (!error || !error.code) {
-        return new OpenAuthoringContextualError(
+        console.warn("Error Interpreter: called without an error")
+        const message = error?.message || "An error occured."
+        return new OpenAuthoringContextualErrorUI(
             true, // should it be presented as a modal? (if not present a toast)
             "Error", // title
-            "An error occured.", // message (the only thing a toast will present)
+            message, // message (the only thing a toast will present)
             [{ 
                 message: "Continue",
                 action: Actions.authFlow
@@ -29,11 +31,11 @@ export default async function interpretError(error: OpenAuthoringError) : Promis
             return interpretServerError(error)
         }
     }
-
-    return new OpenAuthoringContextualError(
+    console.warn("Error Interpreter: Could not interpret error " + error.code)
+    return new OpenAuthoringContextualErrorUI(
         true,
         "Error " + error.code,
-        "An error occured.",
+        error.message,
         [{ 
             message: "Continue",
             action: Actions.authFlow
@@ -49,10 +51,10 @@ export default async function interpretError(error: OpenAuthoringError) : Promis
 function interpretServerError(error: OpenAuthoringError) {
     switch (error.code) {
         case 500: {
-            return new OpenAuthoringContextualError(
+            return new OpenAuthoringContextualErrorUI(
                 true,
-                "500 Error",
-                "Server error. Your fork may be out of sync.",
+                "Error 500",
+                error.message,
                 [{ 
                     message: "Continue",
                     action: Actions.doNothing
@@ -76,7 +78,7 @@ async function interpretClientError(error: OpenAuthoringError) {
 
 function interpretUnauthorizedError(error: OpenAuthoringError) {
     // if authentication is not valid they need to re-authenticate
-    return new OpenAuthoringContextualError(
+    return new OpenAuthoringContextualErrorUI(
         false,
         "401 Unauthenticated",
         "Authentication is invalid",
@@ -94,7 +96,7 @@ function interpretUnauthorizedError(error: OpenAuthoringError) {
 
 async function interpretNotFoundError(error: OpenAuthoringError) {
     if (await isForkValid()) { // drill down further in the future
-        return new OpenAuthoringContextualError(
+        return new OpenAuthoringContextualErrorUI(
             true,
             "404 Not Found",
             "Failed to get some content.",
@@ -105,7 +107,7 @@ async function interpretNotFoundError(error: OpenAuthoringError) {
             false
         )
     }
-    return new OpenAuthoringContextualError(
+    return new OpenAuthoringContextualErrorUI(
         true,
         "404 Not Found",
         "You are missing a fork.",

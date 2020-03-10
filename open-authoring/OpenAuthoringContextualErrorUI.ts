@@ -1,13 +1,13 @@
 import { Actions } from "./OpenAuthoringModalContainer"
 
-export default class OpenAuthoringContextualError extends Error {
+export default class OpenAuthoringContextualErrorUIUI {
     title: string
+    message: string
     actions: [{message: string, action: Actions}]
     shouldClearPreview: boolean
     asModal: boolean
 
     constructor(asModal, title, message, actions, shouldClearPreview) {
-        super(message)
         this.asModal = asModal
         this.message = message
         this.title = title

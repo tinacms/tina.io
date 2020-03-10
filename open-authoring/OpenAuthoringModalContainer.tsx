@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react'
 import { ActionableModal } from '../components/ui'
 import { enterEditMode } from './authFlow'
 import { useOpenAuthoring } from '../components/layout/OpenAuthoring'
-import OpenAuthoringContextualError from './OpenAuthoringContextualError'
+import OpenAuthoringContextualErrorUI from './OpenAuthoringContextualErrorUI'
 
 interface Props {
-  error?: OpenAuthoringContextualError
+  error?: OpenAuthoringContextualErrorUI
 }
 
 export enum Actions {
@@ -60,7 +60,7 @@ export const OpenAuthoringModalContainer = ({ error }: Props) => {
     window.location.reload()
   }
 
-  const getActionsFromError = (error: OpenAuthoringContextualError) => {
+  const getActionsFromError = (error: OpenAuthoringContextualErrorUI) => {
     var actions = []
     error.actions.forEach( action => {
       actions.push(
