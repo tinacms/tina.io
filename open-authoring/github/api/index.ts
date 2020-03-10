@@ -4,7 +4,7 @@ const { b64EncodeUnicode } = require('../../utils/base64')
 const baseBranch = process.env.BASE_BRANCH
 const Cookies = require('js-cookie')
 
-const fetchExistingPR = async (
+export const fetchExistingPR = async (
   baseRepoFullName,
   forkRepoFullName,
   headBranch
@@ -22,7 +22,7 @@ const fetchExistingPR = async (
 
     const data = await response.json()
 
-    for (i = 0; i < data.length; i++) {
+    for (var i = 0; i < data.length; i++) {
       const pull = data[i]
       if (headBranch === pull.head.ref) {
         if (
@@ -41,7 +41,7 @@ const fetchExistingPR = async (
   }
 }
 
-const createPR = async (
+export const createPR = async (
   baseRepoFullName,
   forkRepoFullName,
   headBranch,
@@ -73,7 +73,7 @@ const createPR = async (
   }
 }
 
-const saveContent = async (
+export const saveContent = async (
   repoFullName,
   headBranch,
   path,
@@ -105,7 +105,7 @@ const saveContent = async (
   throw new Error('Failed to save')
 }
 
-const getBranch = async (repoFullName, branch) => {
+export const getBranch = async (repoFullName, branch) => {
   // uses proxy
   try {
     const response = await fetch(`/api/proxy-github`, {
@@ -126,7 +126,7 @@ const getBranch = async (repoFullName, branch) => {
   }
 }
 
-const getUser = async () => {
+export const getUser = async () => {
   // uses proxy
   try {
     const response = await fetch(`/api/proxy-github`, {
@@ -147,7 +147,7 @@ const getUser = async () => {
   }
 }
 
-const isForkValid = async forkName => {
+export const isForkValid = async forkName => {
   if (!forkName) {
     return false
   }
@@ -162,14 +162,14 @@ const isForkValid = async forkName => {
   return false
 }
 
-const isGithubTokenValid = async () => {
+export const isGithubTokenValid = async () => {
   const userData = await getUser()
   if (!userData) return false
   return true
 }
 
 //TODO - move axios endpoints into own file from fetch requests
-const getContent = async (repoFullName, headBranch, path, accessToken) => {
+export const getContent = async (repoFullName, headBranch, path, accessToken) => {
   return axios({
     method: 'GET',
     url: `https://api.github.com/repos/${repoFullName}/contents/${path}?ref=${headBranch}`,
@@ -185,7 +185,7 @@ const getContent = async (repoFullName, headBranch, path, accessToken) => {
     })
 }
 
-const createAccessToken = (clientId, clientSecret, code, state) => {
+export const createAccessToken = (clientId, clientSecret, code, state) => {
   return axios.post(
     `https://github.com/login/oauth/access_token`,
     qs.stringify({
@@ -195,16 +195,4 @@ const createAccessToken = (clientId, clientSecret, code, state) => {
       state,
     })
   )
-}
-
-module.exports = {
-  createPR,
-  saveContent,
-  getContent,
-  createAccessToken,
-  fetchExistingPR,
-  getBranch,
-  getUser,
-  isForkValid,
-  isGithubTokenValid,
 }
