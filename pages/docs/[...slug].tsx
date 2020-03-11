@@ -27,7 +27,7 @@ import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
 export default function DocTemplate(props) {
   // Workaround for fallback being not implemented
   if (!props.markdownFile) {
-    return <OpenAuthoringModalContainer error={props.error} />
+    return (<><OpenAuthoringModalContainer uninterpretatedError={props.error} /></>)
   }
 
   // Registers Tina Form
@@ -106,18 +106,14 @@ export async function unstable_getStaticProps(props) {
   let { slug: slugs } = props.params
 
   const slug = slugs.join('/')
-
   try {
-    return getDocProps(props, slug)
+    return await getDocProps(props, slug)
   } catch (e) {
-    if (e instanceof OpenAuthoringError) {
-      return {
-        props: {
-          error: e,
-        },
+    
+    return {
+      props: {
+        error: e
       }
-    } else {
-      throw e
     }
   }
 }

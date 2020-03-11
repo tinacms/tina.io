@@ -1,6 +1,7 @@
 import { getGithubDataFromPreviewProps } from '../github/sourceProviderConnection'
 import getMarkdownData from '../github/getMarkdownData'
 import getJsonData from '../github/getJsonData'
+import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
 
 export async function getDocProps({ preview, previewData }: any, slug: string) {
   const {
@@ -11,7 +12,12 @@ export async function getDocProps({ preview, previewData }: any, slug: string) {
     `content/docs/${slug}.md`,
     sourceProviderConnection,
     accessToken
-  )
+  )  
+  // if (!accessToken) {
+  //   console.log("odd");
+    
+  //   throw new OpenAuthoringError("No auth token.", 401)
+  // }
 
   const getJson = async (filePath: string) => {
     return (await getJsonData(filePath, sourceProviderConnection, accessToken))

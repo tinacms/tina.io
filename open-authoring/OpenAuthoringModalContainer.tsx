@@ -3,9 +3,11 @@ import { ActionableModal } from '../components/ui'
 import { enterEditMode } from './authFlow'
 import { useOpenAuthoring } from '../components/layout/OpenAuthoring'
 import OpenAuthoringContextualErrorUI from './OpenAuthoringContextualErrorUI'
+import interpretError from './error-interpreter'
 
 interface Props {
   error?: OpenAuthoringContextualErrorUI
+  uninterpretatedError?
 }
 
 export enum Actions {
@@ -15,7 +17,7 @@ export enum Actions {
 }
 
 
-export const OpenAuthoringModalContainer = ({ error }: Props) => {
+export const OpenAuthoringModalContainer = ({ error, uninterpretatedError }: Props) => {
   const [authPopupDisplayed, setAuthPopupDisplayed] = useState(false)
   const [statefulError, setStateFullError] = useState(error)
 
@@ -27,6 +29,17 @@ export const OpenAuthoringModalContainer = ({ error }: Props) => {
     )
     setAuthPopupDisplayed(false)
   }
+
+  useEffect(() => {
+    ( async () => {
+      if (uninterpretatedError) {
+        const contextualError = await interpretError(uninterpretatedError)
+        if (contextualError.asModal) {
+          setStateFullError(contextualError)
+        }
+      }
+    })()
+  }, [uninterpretatedError])
 
   useEffect(() => {
     if (window.location.href.includes('autoAuth')) {

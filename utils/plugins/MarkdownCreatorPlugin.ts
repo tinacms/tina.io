@@ -102,7 +102,7 @@ export class MarkdownCreatorPlugin<FormShape = any, FrontmatterShape = any>
         }
       })
       .catch(e => {
-        return { [FORM_ERROR]: new OpenAuthoringError(e.message, e.status) }
+        throw new OpenAuthoringError(e.message, e.status)
       })
   }
 }

@@ -116,12 +116,20 @@ export async function unstable_getStaticProps({
     accessToken
   )
 
+  const getPost = async file => {
+    try {
+      return (await getMarkdownData(file, sourceProviderConnection, accessToken)).data
+    } catch (error) {
+          
+    }
+  }
+
   const posts = await Promise.all(
     // TODO - potentially making a lot of requests here
     files.map(async file => {
-      const post = (
-        await getMarkdownData(file, sourceProviderConnection, accessToken)
-      ).data
+
+
+      const post = await getPost(file)
 
       // create slug from filename
       const slug = file

@@ -37,7 +37,6 @@ const useGithubMarkdownForm = <T = any>(
         'Update from TinaCMS'
       )
         .then(response => {
-          console.log(response)
           setCachedFormData(markdownFile.fileRelativePath, {
             sha: response.content.sha,
           })

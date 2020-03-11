@@ -8,14 +8,10 @@ export async function unstable_getStaticProps(props) {
   try {
     return  await getDocProps(props, 'index')
   } catch (e) {
-    if (e instanceof ContentNotFoundError) {
-      return {
-        props: {
-          previewError: e.message
-        }
+    return {
+      props: {
+        previewError: e.message
       }
-    } else {
-      throw e
     }
   }
   

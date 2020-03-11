@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useEffect } from 'react'
 import styled from 'styled-components'
 import { DefaultSeo } from 'next-seo'
 import { useRouter } from 'next/router'
@@ -6,6 +6,7 @@ import { usePlugin } from 'tinacms'
 import { MarkdownCreatorPlugin } from '../../utils/plugins'
 import { fileToUrl, slugify } from '../../utils'
 import { Header, Footer } from '../layout'
+import { isGithubTokenValid } from '../../open-authoring/github/api'
 
 interface LayoutProps {
   children: any[]
@@ -25,8 +26,12 @@ export const Layout = styled(
     const router = useRouter()
 
     const CreateBlogPlugin = useMemo(
-      () =>
-        new MarkdownCreatorPlugin({
+      () => {
+        if (sourceProviderConnection.forkFullName === sourceProviderConnection.baseRepoFullName
+          && sourceProviderConnection.headBranch === process.env.BASE_BRANCH) {          
+          return
+        }
+        return new MarkdownCreatorPlugin({
           label: 'New Blog Post',
           filename: form => {
             const slug = slugify(form.title)
@@ -68,12 +73,17 @@ export const Layout = styled(
             )
 
             window.location.href = `/blog/${url}`
-          },
-        }),
+          }
+        })
+      },
       [editMode, sourceProviderConnection]
     )
 
-    usePlugin(CreateBlogPlugin)
+    
+    usePlugin(CreateBlogPlugin)     
+
+    
+    
 
     return (
       <div {...styleProps}>
