@@ -215,6 +215,7 @@ export async function unstable_getStaticProps({ preview, previewData, query }) {
     sourceProviderConnection,
     accessToken,
   } = getGithubDataFromPreviewProps(previewData)
+  
   let previewError: OpenAuthoringError
   let homeData = {}
   try {
@@ -230,7 +231,7 @@ export async function unstable_getStaticProps({ preview, previewData, query }) {
       throw e
     }
   }
-
+  
   return {
     props: {
       home: homeData,

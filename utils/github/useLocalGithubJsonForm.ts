@@ -19,7 +19,7 @@ const useGithubJsonForm = <T = any>(
   isEditMode: boolean
 ) => {
   useGithubForm(jsonFile, githubOptions, isEditMode)
-
+  
   const [formData, form] = useLocalForm({
     id: jsonFile.fileRelativePath, // needs to be unique
     label: formOptions.label || jsonFile.fileRelativePath,

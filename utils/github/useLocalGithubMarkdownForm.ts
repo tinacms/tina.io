@@ -27,7 +27,7 @@ const useGithubMarkdownForm = <T = any>(
     initialValues: markdownFile.data,
     fields: formOptions.fields || [],
     // save & commit the file when the "save" button is pressed
-    onSubmit(formData, form) {
+    onSubmit(formData, form) {      
       return saveContent(
         githubOptions.forkFullName,
         githubOptions.branch,

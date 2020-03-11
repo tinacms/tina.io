@@ -27,7 +27,7 @@ export const useGithubForm = <T = any>(
   }, [])
 
   // TODO - this might cause an issue if editmode dynamically changes
-  if (isEditMode) {
+  if (isEditMode) {    
     const prPlugin = useMemo(() => {
       return PRPlugin(
         githubOptions.baseRepoFullName,

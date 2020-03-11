@@ -27,8 +27,8 @@ export const Layout = styled(
 
     const CreateBlogPlugin = useMemo(
       () => {
-        if (sourceProviderConnection.forkFullName === sourceProviderConnection.baseRepoFullName
-          && sourceProviderConnection.headBranch === process.env.BASE_BRANCH) {          
+        if ( !sourceProviderConnection || (sourceProviderConnection.forkFullName === sourceProviderConnection.baseRepoFullName
+          && sourceProviderConnection.headBranch === process.env.BASE_BRANCH)) {          
           return
         }
         return new MarkdownCreatorPlugin({

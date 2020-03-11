@@ -11,7 +11,7 @@ const getMarkdownData = async (
   accessToken: string
 ) => {
   
-  if (sourceProviderConnection && accessToken) {
+  if (sourceProviderConnection && accessToken) {    
     const response = await getDecodedData(
       sourceProviderConnection.forkFullName,
       sourceProviderConnection.headBranch || 'master',
