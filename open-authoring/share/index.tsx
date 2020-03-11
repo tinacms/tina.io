@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button as RawTinaButton } from '@tinacms/styles'
-import { Form, ActionButton } from 'tinacms'
+import { Form } from 'tinacms'
 import styled from 'styled-components'
 import { Modal, ModalPopup, ModalHeader, ModalBody } from 'tinacms'
 import { DesktopLabel } from '../../components/ui/inline/DesktopLabel'
@@ -59,21 +59,6 @@ export const createShareLink = async form => {
   return response.parsedBody.shareUrl
 }
 
-export const ShareAction = ({ form }: { form: Form }) => {
-  useSharing(form)
-
-  return (
-    <ActionButton
-      onClick={async () => {
-        const shareUrl = await createShareLink(form)
-        alert(shareUrl)
-      }}
-    >
-      Share
-    </ActionButton>
-  )
-}
-
 export const SharePlugin = form => ({
   __type: 'toolbar:git',
   name: 'share',
@@ -86,10 +71,6 @@ function ShareButton({ form }) {
   const [opened, setOpened] = useState(false)
   const close = () => setOpened(false)
 
-  // This is a bit misleading - it's mounted thanks to the fact that toolbar
-  // mounts this component, but if the user visited this link while the
-  // toolbar wasn't mounted they wouldn't see any changes. That's not
-  // clear from the naming used here.
   useSharing(form)
 
   const closeOnCopied = () => {
@@ -107,15 +88,16 @@ function ShareButton({ form }) {
         <Modal>
           <ModalPopup>
             <ModalHeader close={close}>Share</ModalHeader>
-            <PrModalBody>
+            <ShareModalBody>
               <Share form={form} onCopied={closeOnCopied} />
-            </PrModalBody>
+            </ShareModalBody>
           </ModalPopup>
         </Modal>
       )}
     </>
   )
 }
+
 function Share({ form, onCopied }) {
   const [shareLink, setShareLink] = useState(null)
   const [isPending, setIsPending] = useState(false)
@@ -207,6 +189,6 @@ const ModalDescription = styled.p`
   }
 `
 
-const PrModalBody = styled(ModalBody)`
+const ShareModalBody = styled(ModalBody)`
   padding: 1.25rem 1.25rem 0 1.25rem;
 `
