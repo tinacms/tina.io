@@ -43,6 +43,12 @@ const OpenAuthoringSiteForm = ({
   const cms = useCMS()
   const formState = useFormState(form, { dirty: true, submitting: true })
 
+  const recievedOpenAuthError = (error) => {
+    updateUIWithError(
+      error
+    )
+  }
+
   /**
    * Toolbar Plugins
    */
@@ -63,7 +69,7 @@ const OpenAuthoringSiteForm = ({
         },
       },
       // TODO
-      PRPlugin(process.env.REPO_FULL_NAME, forkName),
+      PRPlugin(process.env.REPO_FULL_NAME, forkName, recievedOpenAuthError),
       {
         __type: 'toolbar:form-actions',
         name: 'base-form-actions',

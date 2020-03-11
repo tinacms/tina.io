@@ -29,6 +29,7 @@ export const enterEditMode = (githubAuthenticated, forkValid, withoutAuth) => {
 
   if (withoutAuth) {
     Cookies.set('fork_full_name', process.env.REPO_FULL_NAME)
+    Cookies.set('head_branch', process.env.BASE_BRANCH)
     fetch(`/api/preview`).then(() => {
       window.location.reload()
     })
