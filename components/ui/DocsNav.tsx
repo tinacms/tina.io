@@ -29,29 +29,35 @@ export const NavSection = (section: NavSection) => {
     setExpanded(menuIsActive(section, currentPath))
   }, [currentPath])
 
+  const hasChildren = section.items && section.items.length > 0
+
   return (
     <NavItem key={section.slug} open={highlighted}>
-      <NavItemHeader>
-        {section.slug ? (
+      <NavItemHeader onClick={() => setExpanded(!expanded)}>
+        {section.slug && !hasChildren ? (
           <DynamicLink href={section.slug} passHref>
             <NavSectionTitle as="a" open={highlighted}>
               {section.title}
             </NavSectionTitle>
           </DynamicLink>
         ) : (
-          <NavSectionTitle
-            open={highlighted}
-            onClick={() => setExpanded(!expanded)}
-          >
-            {section.title}
-          </NavSectionTitle>
+          <NavSectionTitle open={highlighted}>{section.title}</NavSectionTitle>
         )}
-        {section.items && section.items.length > 0 && <RightArrowSvg />}
+        {hasChildren && <RightArrowSvg />}
       </NavItemHeader>
-      {section.items && section.items.length > 0 && (
+      {hasChildren && (
         <SubNav>
+          {section.slug && (
+            <NavSection
+              key={`${section.id}-overview`}
+              id={section.id}
+              slug={section.slug}
+              title="Overview"
+              items={null}
+            />
+          )}
           {(section.items || []).map(item => (
-            <NavSection key={section.id} {...item} />
+            <NavSection key={`${section.id}-${item.id}`} {...item} />
           ))}
         </SubNav>
       )}
