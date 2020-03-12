@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
+import { GetStaticProps } from 'next'
 import getFiles from '../../../utils/github/getFiles'
 import { orderPosts, formatExcerpt, formatDate } from '../../../utils'
 import {
@@ -82,7 +83,7 @@ const Index = props => {
 
 const POSTS_PER_PAGE = 8
 
-export async function unstable_getStaticPaths() {
+export async function getStaticPaths() {
   const fg = require('fast-glob')
   const contentDir = './content/blog/'
   const posts = await fg(`${contentDir}**/*.md`)
@@ -99,12 +100,17 @@ export async function unstable_getStaticPaths() {
   return { paths: pages }
 }
 
-export async function getStaticProps({ preview, previewData, ...ctx }) {
+export const getStaticProps: GetStaticProps = async function({
+  preview,
+  previewData,
+  ...ctx
+}) {
   const {
     sourceProviderConnection,
     accessToken,
   } = getGithubDataFromPreviewProps(previewData)
-  let page = (ctx.params && ctx.params.page_index) || '1'
+  // @ts-ignore page_index should always be a single string
+  const page = parseInt((ctx.params && ctx.params.page_index) || '1')
 
   const files = await getFiles(
     'content/blog',
@@ -147,7 +153,7 @@ export async function getStaticProps({ preview, previewData, ...ctx }) {
     props: {
       posts: orderedPosts,
       numPages: numPages,
-      currentPage: parseInt(page),
+      currentPage: page,
       editMode: !!preview,
       sourceProviderConnection,
     },

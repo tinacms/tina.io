@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { DynamicLink } from '../components/ui/DynamicLink'
+import { GetStaticProps } from 'next'
 
 import {
   Layout,
@@ -162,14 +163,17 @@ export default function CommunityPage({
  ** DATA FETCHING -----------------------------------------------
  */
 
-export async function getStaticProps({ preview, previewData }) {
+export const getStaticProps: GetStaticProps = async function({
+  preview,
+  previewData,
+}) {
   const {
     sourceProviderConnection,
     accessToken,
   } = getGithubDataFromPreviewProps(previewData)
-  const siteMetadata = await import('../content/siteConfig.json')
+  const { default: metadata } = await import('../content/siteConfig.json')
 
-  let previewError: OpenAuthoringError
+  let previewError: OpenAuthoringError = null
   let communityData = {}
   try {
     communityData = await getJsonData(
@@ -186,7 +190,7 @@ export async function getStaticProps({ preview, previewData }) {
   }
   return {
     props: {
-      metadata: siteMetadata,
+      metadata,
       community: communityData,
       previewError: previewError,
       sourceProviderConnection,

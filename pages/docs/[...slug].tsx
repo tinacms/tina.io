@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
+import { GetStaticProps } from 'next'
 import {
   DocsLayout,
   MarkdownContent,
@@ -102,9 +103,10 @@ export default function DocTemplate(props) {
  * DATA FETCHING ------------------------------------------------------
  */
 
-export async function getStaticProps(props) {
+export const getStaticProps: GetStaticProps = async function(props) {
   let { slug: slugs } = props.params
 
+  // @ts-ignore This should maybe always be a string[]?
   const slug = slugs.join('/')
 
   try {
@@ -122,11 +124,12 @@ export async function getStaticProps(props) {
   }
 }
 
-export async function unstable_getStaticPaths() {
+export async function getStaticPaths() {
   const fg = require('fast-glob')
   const contentDir = './content/docs/'
   const files = await fg(`${contentDir}**/*.md`)
   return {
+    fallback: true,
     paths: files
       .filter(file => !file.endsWith('index.md'))
       .map(file => {
