@@ -1,5 +1,5 @@
 import { useOpenAuthoring } from '../../components/layout/OpenAuthoring'
-import { enterEditModeWithAuth } from '../authFlow'
+import { startAuthFlow } from '../authFlow'
 import Cookies from 'js-cookie'
 import { isGithubTokenValid, isForkValid } from '../github/api'
 
@@ -21,7 +21,7 @@ export const enterAuthFlow = async () => {
   const forkValid = await isForkValid(forkName)
 
   fetch(`/api/reset-preview`).then(() => {
-    enterEditModeWithAuth(authenticated, forkValid)
+    startAuthFlow(authenticated, forkValid)
   })
 
   return false

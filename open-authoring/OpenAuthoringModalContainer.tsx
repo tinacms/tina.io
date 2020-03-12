@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ActionableModal } from '../components/ui'
-import { enterEditModeWithAuth } from './authFlow'
+import { startAuthFlow } from './authFlow'
 import { useOpenAuthoring } from '../components/layout/OpenAuthoring'
 import OpenAuthoringContextualErrorUI from './OpenAuthoringContextualErrorUI'
 import interpretError from './error-interpreter'
@@ -51,10 +51,7 @@ export const OpenAuthoringModalContainer = ({
   const openAuthoring = useOpenAuthoring()
 
   const runAuthWorkflow = () => {
-    enterEditModeWithAuth(
-      openAuthoring.githubAuthenticated,
-      openAuthoring.forkValid
-    )
+    startAuthFlow(openAuthoring.githubAuthenticated, openAuthoring.forkValid)
   }
 
   const getActionsFromError = (error: OpenAuthoringContextualErrorUI) => {

@@ -24,7 +24,7 @@ async function handleForkCreated(forkName) {
   })
 }
 
-export const enterEditModeWithoutAuth = () => {
+export const enterEditMode = () => {
   Cookies.set('fork_full_name', process.env.REPO_FULL_NAME)
   Cookies.set('head_branch', process.env.BASE_BRANCH)
   fetch(`/api/preview`).then(() => {
@@ -34,7 +34,7 @@ export const enterEditModeWithoutAuth = () => {
   return
 }
 
-export const enterEditModeWithAuth = (githubAuthenticated, forkValid) => {
+export const startAuthFlow = (githubAuthenticated, forkValid) => {
   let authTab
 
   const authState = Math.random()
