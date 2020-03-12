@@ -6,7 +6,10 @@ import CodeStyle from '../styles/Code'
 import LinkSvg from '../../public/svg/link.svg'
 import styled from 'styled-components'
 
+import * as shortcodeRenderers from '../../utils/shortcodes'
+
 var GithubSlugger = require('github-slugger')
+const shortcodes = require('remark-shortcodes')
 
 interface MarkdownContentProps {
   content: string
@@ -64,6 +67,18 @@ const HeadingLink = styled.a`
   }
 `
 
+// https://github.com/rexxars/react-markdown/issues/113#issuecomment-490060741
+const ShortcodeRenderer = ({ identifier, attributes }) => {
+  const Renderer = shortcodeRenderers[identifier]
+
+  if (!Renderer) {
+    console.warn(`No renderer for shortcode: ${identifier}`)
+    return null
+  }
+
+  return <Renderer {...attributes} />
+}
+
 export function MarkdownContent({
   content,
   escapeHtml,
@@ -74,7 +89,12 @@ export function MarkdownContent({
       escapeHtml={escapeHtml === false ? escapeHtml : true}
       skipHtml={skipHtml ? skipHtml : false}
       source={content}
-      renderers={{ code: WithCodeStyles, heading: WithHeadings }}
+      renderers={{
+        code: WithCodeStyles,
+        heading: WithHeadings,
+        shortcode: ShortcodeRenderer,
+      }}
+      plugins={[[shortcodes]]}
     />
   )
 }
