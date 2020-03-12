@@ -30,11 +30,6 @@ export default function BlogTemplate({
   editMode,
   previewError,
 }) {
-  //workaround for fallback being not implemented
-  if (!markdownFile) {
-    return <div></div>
-  }
-
   // Registers Tina Form
   const [data, form] = useLocalGithubMarkdownForm(
     markdownFile,

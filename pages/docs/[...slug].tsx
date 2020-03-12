@@ -26,11 +26,6 @@ import { OpenAuthoringModalContainer } from '../../open-authoring/OpenAuthoringM
 import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
 
 export default function DocTemplate(props) {
-  // Workaround for fallback being not implemented
-  if (!props.markdownFile) {
-    return <OpenAuthoringModalContainer error={props.error} />
-  }
-
   // Registers Tina Form
   const [data, form] = useLocalGithubMarkdownForm(
     props.markdownFile,

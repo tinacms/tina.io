@@ -22,11 +22,6 @@ const Index = props => {
 
   const cms = useCMS()
 
-  //workaround for fallback being not implemented
-  if (!props.posts) {
-    return <div></div>
-  }
-
   const [, form] = useForm({
     id: 'blog-list',
     label: 'Blog',
