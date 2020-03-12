@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ActionableModal } from '../components/ui'
-import { enterEditMode } from './authFlow'
+import { enterEditModeWithAuth } from './authFlow'
 import { useOpenAuthoring } from '../components/layout/OpenAuthoring'
 import OpenAuthoringContextualErrorUI from './OpenAuthoringContextualErrorUI'
 import interpretError from './error-interpreter'
@@ -13,11 +13,13 @@ interface Props {
 export enum Actions {
   authFlow,
   refresh,
-  doNothing
+  doNothing,
 }
 
-
-export const OpenAuthoringModalContainer = ({ error, uninterpretatedError }: Props) => {
+export const OpenAuthoringModalContainer = ({
+  error,
+  uninterpretatedError,
+}: Props) => {
   const [authPopupDisplayed, setAuthPopupDisplayed] = useState(false)
   const [statefulError, setStateFullError] = useState(error)
 
@@ -31,7 +33,7 @@ export const OpenAuthoringModalContainer = ({ error, uninterpretatedError }: Pro
   }
 
   useEffect(() => {
-    ( async () => {
+    ;(async () => {
       if (uninterpretatedError) {
         const contextualError = await interpretError(uninterpretatedError)
         if (contextualError.asModal) {
@@ -49,26 +51,27 @@ export const OpenAuthoringModalContainer = ({ error, uninterpretatedError }: Pro
   const openAuthoring = useOpenAuthoring()
 
   const runAuthWorkflow = () => {
-    enterEditMode(openAuthoring.githubAuthenticated, openAuthoring.forkValid, false)
+    enterEditModeWithAuth(
+      openAuthoring.githubAuthenticated,
+      openAuthoring.forkValid
+    )
   }
 
   const getActionsFromError = (error: OpenAuthoringContextualErrorUI) => {
     var actions = []
-    error.actions.forEach( action => {
-      actions.push(
-        {
-          name: action.message,
-          action: () => {
-            if (action.action() === true) { // close modal
-              setStateFullError(null)
-            }
+    error.actions.forEach(action => {
+      actions.push({
+        name: action.message,
+        action: () => {
+          if (action.action() === true) {
+            // close modal
+            setStateFullError(null)
           }
-        }
-      )
+        },
+      })
     })
     return actions
   }
-
 
   useEffect(() => {
     if (error) {
@@ -96,7 +99,7 @@ export const OpenAuthoringModalContainer = ({ error, uninterpretatedError }: Pro
         />
       )}
       {statefulError && (
-        <ActionableModal 
+        <ActionableModal
           title={statefulError.title}
           message={statefulError.message}
           actions={getActionsFromError(statefulError)}

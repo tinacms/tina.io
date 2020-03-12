@@ -15,9 +15,11 @@ import getMarkdownData from '../../utils/github/getMarkdownData'
 import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'
 import { fileToUrl } from '../../utils/urls'
 import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
-import ContentNotFoundError from '../../utils/github/ContentNotFoundError'
 const fg = require('fast-glob')
-import { enterEditMode, exitEditMode } from '../../open-authoring/authFlow'
+import {
+  exitEditMode,
+  enterEditModeWithoutAuth,
+} from '../../open-authoring/authFlow'
 import { useOpenAuthoring } from '../../components/layout/OpenAuthoring'
 import { Button } from '../../components/ui/Button'
 import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
@@ -289,16 +291,7 @@ const EditLink = ({ isEditMode }) => {
   return (
     <EditButton
       id="OpenAuthoringBlogEditButton"
-      onClick={
-        isEditMode
-          ? exitEditMode
-          : () =>
-              enterEditMode(
-                openAuthoring.githubAuthenticated,
-                openAuthoring.forkValid,
-                true
-              )
-      }
+      onClick={isEditMode ? exitEditMode : enterEditModeWithoutAuth}
     >
       {isEditMode ? <CloseIcon /> : <EditIcon />}
       {isEditMode ? 'Exit Edit Mode' : 'Edit This Post'}
