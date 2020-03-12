@@ -19,9 +19,9 @@ function popupWindow(url, title, window, w, h) {
 }
 
 export const enterEditMode = async () => {
-  Cookies.set('fork_full_name', process.env.REPO_FULL_NAME)
   Cookies.set('head_branch', process.env.BASE_BRANCH)
   await startPreview()
+  window.location.reload()
 }
 
 export const startAuthFlow = (githubAuthenticated, forkValid) => {
@@ -37,6 +37,7 @@ export const startAuthFlow = (githubAuthenticated, forkValid) => {
   if (githubAuthenticated) {
     if (fork && forkValid) {
       startPreview()
+      window.location.reload()
     } else {
       authTab = popupWindow(
         `/github/fork?state=${authState}`,

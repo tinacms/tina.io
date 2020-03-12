@@ -43,10 +43,8 @@ const OpenAuthoringSiteForm = ({
   const cms = useCMS()
   const formState = useFormState(form, { dirty: true, submitting: true })
 
-  const recievedOpenAuthError = (error) => {
-    updateUIWithError(
-      error
-    )
+  const recievedOpenAuthError = error => {
+    updateUIWithError(error)
   }
 
   /**
@@ -55,19 +53,6 @@ const OpenAuthoringSiteForm = ({
   useEffect(() => {
     const forkName = Cookies.get('fork_full_name')
     const plugins = [
-      {
-        __type: 'toolbar:git',
-        name: 'current-fork',
-        component: () => {
-          return (
-            <FieldMeta name={'Fork'}>
-              <MetaLink target="_blank" href={`https://github.com/${forkName}`}>
-                {forkName}
-              </MetaLink>
-            </FieldMeta>
-          )
-        },
-      },
       // TODO
       PRPlugin(process.env.REPO_FULL_NAME, forkName, recievedOpenAuthError),
       {
@@ -122,6 +107,22 @@ const OpenAuthoringSiteForm = ({
       },
     ] as any
 
+    if (forkName) {
+      plugins.unshift({
+        __type: 'toolbar:git',
+        name: 'current-fork',
+        component: () => {
+          return (
+            <FieldMeta name={'Fork'}>
+              <MetaLink target="_blank" href={`https://github.com/${forkName}`}>
+                {forkName}
+              </MetaLink>
+            </FieldMeta>
+          )
+        },
+      })
+    }
+
     const removePlugins = () => {
       plugins.forEach(plugin => cms.plugins.remove(plugin))
     }
@@ -167,7 +168,7 @@ const OpenAuthoringSiteForm = ({
       if (errorUIDescriptor && errorUIDescriptor.asModal) {
         setInterpretedError(errorUIDescriptor)
       } else {
-        cms.alerts.error(errorUIDescriptor?.message || "Could not interpret.")
+        cms.alerts.error(errorUIDescriptor?.message || 'Could not interpret.')
       }
     },
     [cms, setInterpretedError]
@@ -182,9 +183,7 @@ const OpenAuthoringSiteForm = ({
           )}`
         ),
       afterSubmitFailed: async failedForm => {
-        updateUIWithError(
-          failedForm.getState().submitError
-        )
+        updateUIWithError(failedForm.getState().submitError)
       },
     })
 

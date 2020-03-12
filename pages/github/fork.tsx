@@ -9,6 +9,7 @@ import { startPreview } from '../../utils/previews'
 async function handleForkExists(forkName: string) {
   Cookies.set('fork_full_name', forkName, { sameSite: 'strict' })
   await startPreview()
+  window.opener.window.location.href = window.opener.window.location.pathname
 }
 
 export default function Authorizing() {

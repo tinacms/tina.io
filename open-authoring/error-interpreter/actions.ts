@@ -16,9 +16,7 @@ export const refresh = () => {
 export const enterAuthFlow = async () => {
   const authenticated = await isGithubTokenValid()
 
-  const forkName = Cookies.get('fork_full_name')
-
-  const forkValid = await isForkValid(forkName)
+  const forkValid = await isForkValid(Cookies.get('fork_full_name'))
 
   fetch(`/api/reset-preview`).then(() => {
     startAuthFlow(authenticated, forkValid)

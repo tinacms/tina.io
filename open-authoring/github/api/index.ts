@@ -102,7 +102,7 @@ export const saveContent = async (
 
   //2xx status codes
   if (response.status.toString()[0] == '2') return data
-  
+
   throw new GithubError(response.statusText, response.status)
 }
 
@@ -148,12 +148,11 @@ export const getUser = async () => {
   }
 }
 
+// TODO - The name is misleading, as it also checks if the branch exists.
+// Since it takes in a forkName, it should take in a branch as well
 export const isForkValid = async forkName => {
   if (!forkName) {
-    forkName = Cookies.get("fork_full_name")
-    if (!forkName) {
-      return false
-    }
+    return false
   }
   const branch = Cookies.get('head_branch') || 'master'
 
@@ -173,7 +172,12 @@ export const isGithubTokenValid = async () => {
 }
 
 //TODO - move axios endpoints into own file from fetch requests
-export const getContent = async (repoFullName, headBranch, path, accessToken) => {
+export const getContent = async (
+  repoFullName,
+  headBranch,
+  path,
+  accessToken
+) => {
   var headers = {}
   if (accessToken) {
     headers = {
@@ -183,7 +187,7 @@ export const getContent = async (repoFullName, headBranch, path, accessToken) =>
   return axios({
     method: 'GET',
     url: `https://api.github.com/repos/${repoFullName}/contents/${path}?ref=${headBranch}`,
-    headers: headers
+    headers: headers,
   })
     .then(resp => {
       return resp
