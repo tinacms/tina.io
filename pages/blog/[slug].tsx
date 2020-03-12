@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
-import { GetStaticProps } from 'next'
+import { GetStaticProps, GetStaticPaths } from 'next'
 import { CloseIcon, EditIcon } from '@tinacms/icons'
 import { formatDate } from '../../utils'
 import {
@@ -153,7 +153,7 @@ export const getStaticProps: GetStaticProps = async function({
   }
 }
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async function() {
   const blogs = await fg(`./content/blog/**/*.md`)
   return {
     paths: blogs.map(file => {

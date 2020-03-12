@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
-import { GetStaticProps } from 'next'
+import { GetStaticProps, GetStaticPaths } from 'next'
 import getFiles from '../../../utils/github/getFiles'
 import { orderPosts, formatExcerpt, formatDate } from '../../../utils'
 import {
@@ -83,7 +83,7 @@ const Index = props => {
 
 const POSTS_PER_PAGE = 8
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async function() {
   const fg = require('fast-glob')
   const contentDir = './content/blog/'
   const posts = await fg(`${contentDir}**/*.md`)
@@ -97,7 +97,7 @@ export async function getStaticPaths() {
     })
   }
 
-  return { paths: pages }
+  return { paths: pages, fallback: true }
 }
 
 export const getStaticProps: GetStaticProps = async function({

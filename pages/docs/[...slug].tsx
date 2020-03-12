@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
-import { GetStaticProps } from 'next'
+import { GetStaticProps, GetStaticPaths } from 'next'
 import {
   DocsLayout,
   MarkdownContent,
@@ -124,7 +124,7 @@ export const getStaticProps: GetStaticProps = async function(props) {
   }
 }
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async function() {
   const fg = require('fast-glob')
   const contentDir = './content/docs/'
   const files = await fg(`${contentDir}**/*.md`)
