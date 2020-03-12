@@ -9,7 +9,6 @@ consumes:
   - file: /packages/tinacms/src/use-cms.ts
     description: Demonstrates useCMS hook
 ---
-
 The CMS object in Tina is a container for attaching and accessing Plugins and APIs. On its own, the CMS does very little; however, since it's the central integration point for everything that Tina does, it's extremely important!
 
 ## Setting up the CMS Object
@@ -24,31 +23,31 @@ const cms = new TinaCMS()
 
 The `TinaCMS` constructor receives an object that can be used to configure CMS behavior. See [CMS Configuration](#cms-configuration) for details.
 
-### The &lt;Tina&gt; Component
+### The &lt;TinaProvider&gt; Component
 
-The `<Tina>` component should wrap your entire site. It provides the following:
+The `<TinaProvider>` component should wrap your entire site. It provides the following:
 
 1. The user interface for interacting with Tina, and
 2. A [Context](https://reactjs.org/docs/context.html) for accessing the CMS object via the [useCMS](#accessing-the-cms-object) hook.
 
-After instantiating the CMS object, pass it to the `<Tina>` component via its `cms` prop.
+After instantiating the CMS object, pass it to the `<TinaProvider>` component via its `cms` prop.
 
 ```jsx
 import * as React from 'react'
-import { Tina, TinaCMS } from 'tinacms'
+import { TinaProvider, TinaCMS } from 'tinacms'
 import MyApp from './my-app'
 
 export default function App() {
   const cms = React.useMemo(() => new TinaCMS())
   return (
-    <Tina cms={cms}>
+    <TinaProvider cms={cms}>
       <MyApp />
-    </Tina>
+    </TinaProvider>
   )
 }
 ```
 
-Alternatively, you can use the `withTina` higher-order component to wrap your site with the `<Tina>` component. `withTina` will automatically instantiate the CMS object.
+Alternatively, you can use the `withTina` higher-order component to wrap your site with the `<TinaProvider>` component. `withTina` will automatically instantiate the CMS object.
 
 ```javascript
 import { withTina } from 'tinacms'
@@ -101,18 +100,18 @@ interface TinaCMSConfig {
 }
 ```
 
----
+***
 
-| key                  | usage                                                                                                   |
-| -------------------- | ------------------------------------------------------------------------------------------------------- |
-| **plugins**          | Array of plugins to be added to the CMS object.                                                         |
-| **apis**             | Object containing APIs to be registered to the CMS                                                      |
-| **sidebar**          | Configures behavior of the sidebar                                                                      |
-| **sidebar.hidden**   | Removes the sidebar outright                                                                            |
+| key | usage |
+| --- | --- |
+| **plugins** | Array of plugins to be added to the CMS object. |
+| **apis** | Object containing APIs to be registered to the CMS |
+| **sidebar** | Configures behavior of the sidebar |
+| **sidebar.hidden** | Removes the sidebar outright |
 | **sidebar.position** | 'displace': sidebar pushes content to the side when open; 'overlay': sidebar overlaps content when open |
-| **sidebar.theme**    | Override certain sidebar styles                                                                         |
+| **sidebar.theme** | Override certain sidebar styles |
 
----
+***
 
 ```javascript
 import { TinaCMS } from 'tinacms'
