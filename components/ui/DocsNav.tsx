@@ -32,11 +32,11 @@ export const NavSection = (section: NavSection) => {
   const hasChildren = section.items && section.items.length > 0
 
   return (
-    <NavItem key={section.slug} open={highlighted}>
+    <NavItem key={section.slug} open={expanded}>
       <NavItemHeader onClick={() => setExpanded(!expanded)}>
         {section.slug && !hasChildren ? (
           <DynamicLink href={section.slug} passHref>
-            <NavSectionTitle as="a" open={highlighted}>
+            <NavSectionTitle as="a" open={expanded}>
               {section.title}
             </NavSectionTitle>
           </DynamicLink>
