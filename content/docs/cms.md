@@ -23,7 +23,7 @@ const cms = new TinaCMS()
 
 The `TinaCMS` constructor receives an object that can be used to configure CMS behavior. See [CMS Configuration](#cms-configuration) for details.
 
-### The <TinaProvider> Component
+### The &lt;TinaProvider&gt; Component
 
 The `<TinaProvider>` component should wrap your entire site. It provides the following:
 
