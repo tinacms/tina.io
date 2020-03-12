@@ -80,7 +80,7 @@ export class MarkdownCreatorPlugin<FormShape = any, FrontmatterShape = any>
     const fileRelativePath = await this.filename(form)
     const frontmatter = await this.frontmatter(form)
     const markdownBody = await this.body(form)
-    
+
     saveContent(
       this.githubOptions.forkFullName,
       this.githubOptions.branch,
