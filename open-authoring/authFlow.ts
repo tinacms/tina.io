@@ -17,8 +17,7 @@ function popupWindow(url, title, window, w, h) {
   )
 }
 
-async function handleForkCreated(forkName) {
-  Cookies.set('fork_full_name', forkName, { sameSite: 'strict' })
+const startPreview = () => {
   fetch(`/api/preview`).then(() => {
     window.location.href = window.location.pathname
   })
@@ -46,7 +45,7 @@ export const startAuthFlow = (githubAuthenticated, forkValid) => {
   localStorage.setItem('fork_full_name', '')
   if (githubAuthenticated) {
     if (fork && forkValid) {
-      handleForkCreated(fork)
+      startPreview()
       return
     } else {
       authTab = popupWindow(

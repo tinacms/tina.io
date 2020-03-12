@@ -1,17 +1,15 @@
 import Cookies from 'js-cookie'
 import { useEffect, useState } from 'react'
-import { response } from 'express'
 import { getUser, getBranch } from '../../open-authoring/github/api'
 import { AuthLayout } from '../../components/layout'
 import { Button } from '../../components/ui'
 import styled from 'styled-components'
 
 export default function Authorizing() {
-
   async function handleForkCreated(forkName: string) {
     Cookies.set('fork_full_name', forkName, { sameSite: 'strict' })
-    await fetch(`/api/preview`)   
-    
+    await fetch(`/api/preview`)
+
     window.opener.window.location.href = window.opener.window.location.pathname
   }
 
