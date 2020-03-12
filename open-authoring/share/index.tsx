@@ -8,9 +8,8 @@ import { ToolbarButton } from '../../components/ui/inline/ToolbarButton'
 import { post, get } from './http'
 import useClipboard from './useCopy'
 
-const sharePostUrl =
-  'https://sykpj0iu94.execute-api.us-east-1.amazonaws.com/prod/items'
-const shareUrl = 'https://dekqqd9gssaup.cloudfront.net'
+const sharePostUrl = 'https://sharing.tina.io/items'
+const shareGetUrl = 'https://content.sharing.tina.io'
 
 // To the server
 interface SharingPost {
@@ -32,7 +31,9 @@ export function useSharing(form: Form) {
 
       if (sharingUuid) {
         try {
-          const response = await get<SharingPost>(`${shareUrl}/${sharingUuid}`)
+          const response = await get<SharingPost>(
+            `${shareGetUrl}/${sharingUuid}`
+          )
           if (response.parsedBody.id === form.id) {
             form.updateValues(response.parsedBody.values)
             url.searchParams.delete('_tina')
