@@ -1,5 +1,5 @@
 ---
-title: Introducing Visual Open Authoring
+title: Introducing Visual Open Authoring2
 date: '2020-03-09T07:00:00.000Z'
 author: Scott Gallant
 draft: false
@@ -9,7 +9,7 @@ We're focused on improving the independent web as a whole. We want to craft tool
 
 In line with this mission, we sought to create something we call **Visual Open Authoring** ✍️. The [open authoring concept](https://css-tricks.com/netlify-cms-open-authoring/#article-header-id-0) was originally pioneered by [Netlify CMS](https://www.netlifycms.org/) this past summer and involves opening up your website's CMS to accept content-related contributions from anyone. Using Tina, we were able to take this a step further, establishing the editing context **on the page itself**.
 
-## Add an "Edit Mode" to Your Site
+## Add an "Edit Mode" to Your Site2
 
 **Picture this:** on your website, there's an _"Edit this page on GitHub"_ link — familiar enough. But imagine that when you click it, instead of kicking you over to GitHub, the site itself becomes editable, **like a Google Doc**.
 
