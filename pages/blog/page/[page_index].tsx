@@ -97,7 +97,7 @@ export const getStaticPaths: GetStaticPaths = async function() {
     })
   }
 
-  return { paths: pages, fallback: true }
+  return { paths: pages, fallback: false }
 }
 
 export const getStaticProps: GetStaticProps = async function({

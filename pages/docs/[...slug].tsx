@@ -129,7 +129,7 @@ export const getStaticPaths: GetStaticPaths = async function() {
   const contentDir = './content/docs/'
   const files = await fg(`${contentDir}**/*.md`)
   return {
-    fallback: true,
+    fallback: false,
     paths: files
       .filter(file => !file.endsWith('index.md'))
       .map(file => {
