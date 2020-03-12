@@ -210,7 +210,7 @@ export <b>WithTina</b>( <b>Component</b> );
 
 export default HomePage
 
-export async function unstable_getStaticProps({ preview, previewData, query }) {
+export async function getStaticProps({ preview, previewData, query }) {
   const {
     sourceProviderConnection,
     accessToken,

@@ -108,11 +108,7 @@ export default function BlogTemplate({
  ** DATA FETCHING --------------------------------------------------
  */
 
-export async function unstable_getStaticProps({
-  preview,
-  previewData,
-  ...ctx
-}) {
+export async function getStaticProps({ preview, previewData, ...ctx }) {
   const { slug } = ctx.params
 
   const {

@@ -162,7 +162,7 @@ export default function CommunityPage({
  ** DATA FETCHING -----------------------------------------------
  */
 
-export async function unstable_getStaticProps({ preview, previewData }) {
+export async function getStaticProps({ preview, previewData }) {
   const {
     sourceProviderConnection,
     accessToken,

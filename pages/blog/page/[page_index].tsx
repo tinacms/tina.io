@@ -99,11 +99,7 @@ export async function unstable_getStaticPaths() {
   return { paths: pages }
 }
 
-export async function unstable_getStaticProps({
-  preview,
-  previewData,
-  ...ctx
-}) {
+export async function getStaticProps({ preview, previewData, ...ctx }) {
   const {
     sourceProviderConnection,
     accessToken,

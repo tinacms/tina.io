@@ -112,7 +112,7 @@ export default function TeamsPage(props) {
  ** DATA FETCHING --------------------------------------------------
  */
 
-export async function unstable_getStaticProps({ preview, previewData }) {
+export async function getStaticProps({ preview, previewData }) {
   const {
     sourceProviderConnection,
     accessToken,

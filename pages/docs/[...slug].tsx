@@ -102,7 +102,7 @@ export default function DocTemplate(props) {
  * DATA FETCHING ------------------------------------------------------
  */
 
-export async function unstable_getStaticProps(props) {
+export async function getStaticProps(props) {
   let { slug: slugs } = props.params
 
   const slug = slugs.join('/')
