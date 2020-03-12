@@ -4,12 +4,20 @@ export interface SourceProviderConnection {
   baseRepoFullName: string
 }
 
-interface Response {
+export interface Response {
   accessToken: string
   sourceProviderConnection: SourceProviderConnection
 }
 
-export const getGithubDataFromPreviewProps = (previewData?: any): Response => {
+export interface PreviewData {
+  fork_full_name: string
+  head_branch: string
+  github_access_token: string
+}
+
+export const getGithubDataFromPreviewProps = (
+  previewData?: PreviewData
+): Response => {
   return previewData
     ? {
         sourceProviderConnection: {
