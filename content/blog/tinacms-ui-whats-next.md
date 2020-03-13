@@ -1,13 +1,16 @@
 ---
-title: 'TinaCMS UI: What''s next?'
+title: "TinaCMS UI: What's next?"
 date: '2020-03-13T00:00:00.000Z'
 author: Nolan Phillips
 ---
+
 ## A new UI for Open Authoring
 
-This week we deployed [Visual Open Authoring](https://tinacms.org/blog/introducing-visual-open-authoring "Introducing Visual Open Authoring") on the TinaCMS website to make an the editing experience for ourselves and all the community members totally amazing!
+This week we deployed [Visual Open Authoring](https://tinacms.org/blog/introducing-visual-open-authoring 'Introducing Visual Open Authoring') on the TinaCMS website to make an the editing experience for ourselves and all the community members totally amazing!
 
-You may have noticed that editing interface on [tinacms.org](http://tinacms.org) is different than what's in our videos and what you have running locally. This new Toolbar was an experiment we made directly in the [tinacms.org repository](https://github.com/tinacms/tinacms.org "Github: tinacms.org"). In this post I will talk about why we took this approach and the next steps in making the Tina Toolbar available for everyone.
+You may have noticed that editing interface on [tinacms.org](http://tinacms.org) is different than what's in our videos and what you have running locally. This new Toolbar was an experiment we made directly in the [tinacms.org repository](https://github.com/tinacms/tinacms.org 'Github: tinacms.org'). In this post I will talk about why we took this approach and the next steps in making the Tina Toolbar available for everyone.
+
+![TinaCMS UI Options](https://res.cloudinary.com/forestry-demo/image/upload/v1584111203/TinaCMS/sidebar-toolbar.png)
 
 ## Tina is not a CMS
 
@@ -31,18 +34,18 @@ This separation will give developers the ability to use opt-out of the pre-defin
 
 The following packages will be introduced in this process:
 
-* `@tinacms/media`: the API for interacting with the [CMS media store](https://tinacms.org/docs/media)
-* `@tinacms/alerts`: the API for creating [CMS alerts](https://tinacms.org/docs/cms/alerts)
-* `@tinacms/react-alerts`: the components for rendering CMS _alerts_
-* `@tinacms/react-forms`: the components used to automatically build _forms_
-* `@tinacms/react-modals`: the components for creating _modals_ for the CMS
-* `@tinacms/react-sidebar`: the sidebar components
-* `@tinacms/react-toolbar`: the toolbar components
-* `@tinacms/react-fields`: Primitive field plugins i.e. Text, Textarea, Select, Number, Toggle, Block, Group, Group List
-* `react-tinacms-color`: Color Field plugin
-* `react-tinacms-date`: Date Field plugin
-* `react-tinacms-editor`: HTML and Markdown field plugins + the Wysiwyg itself
-* `react-tinacms-image`: Image plugin
+- `@tinacms/media`: the API for interacting with the [CMS media store](https://tinacms.org/docs/media)
+- `@tinacms/alerts`: the API for creating [CMS alerts](https://tinacms.org/docs/cms/alerts)
+- `@tinacms/react-alerts`: the components for rendering CMS _alerts_
+- `@tinacms/react-forms`: the components used to automatically build _forms_
+- `@tinacms/react-modals`: the components for creating _modals_ for the CMS
+- `@tinacms/react-sidebar`: the sidebar components
+- `@tinacms/react-toolbar`: the toolbar components
+- `@tinacms/react-fields`: Primitive field plugins i.e. Text, Textarea, Select, Number, Toggle, Block, Group, Group List
+- `react-tinacms-color`: Color Field plugin
+- `react-tinacms-date`: Date Field plugin
+- `react-tinacms-editor`: HTML and Markdown field plugins + the Wysiwyg itself
+- `react-tinacms-image`: Image plugin
 
 ### Why separate `alerts` and `react-alerts`?
 
