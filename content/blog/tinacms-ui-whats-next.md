@@ -1,12 +1,11 @@
 ---
-title: "TinaCMS UI: What's next?"
+title: 'TinaCMS UI: What''s next?'
 date: '2020-03-13T00:00:00.000Z'
 author: Nolan Phillips
 ---
+This week we deployed [Visual Open Authoring](https://tinacms.org/blog/introducing-visual-open-authoring "Introducing Visual Open Authoring") on the TinaCMS website to make the editing experience for ourselves and all the community members totally amazing!
 
-This week we deployed [Visual Open Authoring](https://tinacms.org/blog/introducing-visual-open-authoring 'Introducing Visual Open Authoring') on the TinaCMS website to make the editing experience for ourselves and all the community members totally amazing!
-
-You may have noticed that editing interface on [tinacms.org](http://tinacms.org) is different than what's in our videos and what you have running locally. This new Toolbar was an experiment we made directly in the [tinacms.org repository](https://github.com/tinacms/tinacms.org 'Github: tinacms.org'). In this post I will talk about why we took this approach and the next steps in making the Tina Toolbar available for everyone.
+You may have noticed that editing interface on [tinacms.org](http://tinacms.org) is different than what's in our videos and what you have running locally. This new Toolbar was an experiment we made directly in the [tinacms.org repository](https://github.com/tinacms/tinacms.org "Github: tinacms.org"). In this post I will talk about why we took this approach and the next steps in making the Tina Toolbar available for everyone.
 
 ![TinaCMS UI Options](https://res.cloudinary.com/forestry-demo/image/upload/q_100/v1584115021/TinaCMS/sidebar-toolbar.jpg)
 
@@ -16,7 +15,7 @@ It is not an application. It is not intended to be an all-in-one solution. It is
 
 In order to create an amazing inline editing experience for [tinacms.org](http://tinacms.org/) we decided to create an experimental UI. We hid the Sidebar and replaced it with a persistent Toolbar at the top of the screen. This new UI was an instant hit with our team! The Toolbar gives us easier access to common actions without having to open and close the Sidebar. We still love the Sidebar, it's easier to setup and is great when you don't want or need inline editing, but it's not always the best experience.
 
-Unfortunately you'll have to wait a little bit to get your hands on the new Toolbar. The creation of the Toolbar was incredibly exciting project for us. We were able to totally re-imagine the user experience of TinaCMS _without having to change any code in the main repository_. This allowed us to quickly experiment with the interface without considering how it could fit into the overall project. Because of this, it only took a few days to get it production ready. This project validated many of our code design decisions by showing that we could experiment and innovate on top of TinaCMS without having to tear it apart.
+Unfortunately you'll have to wait a little bit to get your hands on the new Toolbar. The creation of the Toolbar was an incredibly exciting project for us. We were able to totally re-imagine the user experience of TinaCMS _without having to change any code in the main repository_. This allowed us to quickly experiment with the interface without considering how it could fit into the overall project. Because of this, it only took a few days to get it production ready. This project validated many of our code design decisions by showing that we could experiment and innovate on top of TinaCMS without having to tear it apart.
 
 Now that Open Authoring with [tinacms.org](http://tinacms.org/) is published, we're getting ready to make it available for everyone. Kendall has already moved over the [new Inline Editing components](https://github.com/tinacms/tinacms/pull/871). Figuring out how the Toolbar will fit in the TinaCMS ecosystem is next. This post lays out the plan for how that will be done.
 
@@ -32,18 +31,18 @@ This separation will give developers the ability to opt-out of the pre-defined U
 
 The following packages will be introduced in this process:
 
-- `@tinacms/media`: the API for interacting with the [CMS media store](https://tinacms.org/docs/media)
-- `@tinacms/alerts`: the API for creating [CMS alerts](https://tinacms.org/docs/cms/alerts)
-- `@tinacms/react-alerts`: the components for rendering CMS _alerts_
-- `@tinacms/react-forms`: the components used to automatically build _forms_
-- `@tinacms/react-modals`: the components for creating _modals_ for the CMS
-- `@tinacms/react-sidebar`: the sidebar components
-- `@tinacms/react-toolbar`: the toolbar components
-- `@tinacms/react-fields`: Primitive field plugins i.e. Text, Textarea, Select, Number, Toggle, Block, Group, Group List
-- `react-tinacms-color`: Color Field plugin
-- `react-tinacms-date`: Date Field plugin
-- `react-tinacms-editor`: HTML and Markdown field plugins + the Wysiwyg itself
-- `react-tinacms-image`: Image plugin
+* `@tinacms/media`: the API for interacting with the [CMS media store](https://tinacms.org/docs/media)
+* `@tinacms/alerts`: the API for creating [CMS alerts](https://tinacms.org/docs/cms/alerts)
+* `@tinacms/react-alerts`: the components for rendering CMS _alerts_
+* `@tinacms/react-forms`: the components used to automatically build _forms_
+* `@tinacms/react-modals`: the components for creating _modals_ for the CMS
+* `@tinacms/react-sidebar`: the sidebar components
+* `@tinacms/react-toolbar`: the toolbar components
+* `@tinacms/react-fields`: Primitive field plugins i.e. Text, Textarea, Select, Number, Toggle, Block, Group, Group List
+* `react-tinacms-color`: Color Field plugin
+* `react-tinacms-date`: Date Field plugin
+* `react-tinacms-editor`: HTML and Markdown field plugins + the Wysiwyg itself
+* `react-tinacms-image`: Image plugin
 
 ### Why separate _alerts_ and _react-alerts_
 
@@ -55,4 +54,4 @@ Packages are scoped to `@tinacms` when they are fundamental pieces of content ma
 
 ## Want to Get Involved?
 
-Check out the [TinaCMS Community Slack](https://join.slack.com/t/tinacms/shared_invite/enQtNzgxNDY1OTA3ODI3LTNkNWEwYjQyYTA2ZDZjZGQ2YmI5Y2ZlOWVmMjlkYmYxMzVmNjM0YTk2MWM2MTIzMmMxMDg3NWIxN2EzOWQ0NDM 'TinaCMS Community Slack') if you have any questions or comments or if you want to get involved with TinaCMS development.
+Check out the [TinaCMS Community Slack](https://join.slack.com/t/tinacms/shared_invite/enQtNzgxNDY1OTA3ODI3LTNkNWEwYjQyYTA2ZDZjZGQ2YmI5Y2ZlOWVmMjlkYmYxMzVmNjM0YTk2MWM2MTIzMmMxMDg3NWIxN2EzOWQ0NDM "TinaCMS Community Slack") if you have any questions or comments or if you want to get involved with TinaCMS development.
