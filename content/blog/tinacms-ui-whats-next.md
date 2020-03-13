@@ -3,11 +3,17 @@ title: 'TinaCMS UI: What''s next?'
 date: '2020-03-13T00:00:00.000Z'
 author: Nolan Phillips
 ---
+## A new UI for Open Authoring
+
+This week we deployed [Visual Open Authoring](https://tinacms.org/blog/introducing-visual-open-authoring "Introducing Visual Open Authoring") on the TinaCMS website to make an the editing experience for ourselves and all the community members totally amazing!
+
+You may have noticed that editing interface on [tinacms.org](http://tinacms.org) is different than what's in our videos and what you have running locally. This new Toolbar was an experiment we made directly in the [tinacms.org repository](https://github.com/tinacms/tinacms.org "Github: tinacms.org"). In this post I will talk about why we took this approach and the next steps in making the Tina Toolbar available for everyone.
+
 ## Tina is not a CMS
 
 It is not an application. It is not intended to be an all-in-one solution. It is a toolkit for building content management directly into your apps and websites. This philosophy has tremendous implications on the architecture of the TinaCMS codebase. For example, the user interface that we provide is only the _default option_.
 
-You may have noticed that [tinacms.org](http://tinacms.org) looks different than what's in our videos and what you have running locally. In order to create an amazing inline editing experience for [tinacms.org](http://tinacms.org/) we decided to create an experimental UI. We decided to hide the Sidebar and replace it with a Toolbar at the top of the screen. This new UI was an instant hit with our team! The Toolbar gives us easier access to common actions without having to open and close the Sidebar. We still love the Sidebar, it's easier to setup and is great when you don't want or need inline editing, but it's not always the best experience.
+In order to create an amazing inline editing experience for [tinacms.org](http://tinacms.org/) we decided to create an experimental UI. We hid the Sidebar and replaced it with a persistent Toolbar at the top of the screen. This new UI was an instant hit with our team! The Toolbar gives us easier access to common actions without having to open and close the Sidebar. We still love the Sidebar, it's easier to setup and is great when you don't want or need inline editing, but it's not always the best experience.
 
 Unfortunately you'll have to wait a little bit to get your hands on the new Toolbar. The creation of the Toolbar was incredibly exciting project for us. We were able to totally re-imagine the user experience of TinaCMS _without having to change any code in the main repository_. This allowed us to quickly experiment with the interface without considering how it could fit into the overall project. Because of this, it only took a few days to get it production ready. This project validated many of code design decision by showing that we could experiment and innovate on top of TinaCMS without having to tear it apart.
 
@@ -17,9 +23,9 @@ Now that Open Authoring with [tinacms.org](http://tinacms.org/) is published. We
 
 Currently, the `tinacms` package implements a number of features directly. The Sidebar, Modals, Alerts, and Screen Plugins are all defined directly here. After this change, `tinacms` will simply be the "quick-start" package for developers looking to get started with Tina as fast as possible. The sole purpose of the `tinacms` package will be to provide a pre-configured CMS instance along with a few simple component that adds the CMS, Alerts, Modals, Screens, and either the Sidebar or the Toolbar to the website. This change will give new-comers to Tina the ability to get started quickly, but it will also give other developers the ability to optimize and modify Tina to fit their needs.
 
-A large problem with `tinacms` is the impact it has on the bundle size of the user's website. This will be made worse when we start adding more features to the toolbar. By breaking these pieces up, a `tinacms` user remove this issue by taking advantage of dynamic imports and code splitting in their custom implementation
+A large problem with `tinacms` is the impact it has on the bundle size of the developer's website. This will be made worse when we start adding more features to the toolbar. By breaking these pieces up, developers can solve this problem by taking advantage of dynamic imports and code splitting in their application.
 
-This separation will give users the ability to use opt-out of the pre-defined UI and roll their own. This will give users the option to deeply integrate the CMS into their website and opens Tina up to the possibility of great UI/UX innovations.
+This separation will give developers the ability to use opt-out of the pre-defined UI and roll their own. This will give developers the option to deeply integrate the CMS into their website and opens Tina up to the possibility of great UI/UX innovations.
 
 ## Upcoming Packages
 
@@ -28,7 +34,7 @@ The following packages will be introduced in this process:
 * `@tinacms/media`: the API for interacting with the [CMS media store](https://tinacms.org/docs/media)
 * `@tinacms/alerts`: the API for creating [CMS alerts](https://tinacms.org/docs/cms/alerts)
 * `@tinacms/react-alerts`: the components for rendering CMS _alerts_
-* `@tinacms/react-forms`: the components used to automatically build _forms_ 
+* `@tinacms/react-forms`: the components used to automatically build _forms_
 * `@tinacms/react-modals`: the components for creating _modals_ for the CMS
 * `@tinacms/react-sidebar`: the sidebar components
 * `@tinacms/react-toolbar`: the toolbar components
@@ -40,8 +46,8 @@ The following packages will be introduced in this process:
 
 ### Why separate `alerts` and `react-alerts`?
 
-TinaCMS is designed to be framework agnostic. We have started with react as the main implementation because it is the framework that the team is most familiar with. This separation allows us to separate the domain from the view library so that TinaCMS will be accessible to more use-cases.
+TinaCMS is designed to be framework agnostic. We started with React as the main implementation because it is the framework that the team is most familiar with. This separation allows us to separate the domain from the view library so that TinaCMS will be accessible to more use-cases.
 
 ### Why are some packages scoped to `@tinacms`?
 
-Packages are scoped to `@tinacms` when they are fundamental pieces of content management. The rules on this are not well defined yeah.
+Packages are scoped to `@tinacms` when they are fundamental pieces of content management. The rules on this are not well defined yet.
