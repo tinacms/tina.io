@@ -44,11 +44,11 @@ The following packages will be introduced in this process:
 * `react-tinacms-editor`: HTML and Markdown field plugins + the Wysiwyg itself
 * `react-tinacms-image`: Image plugin
 
-### Why separate `alerts` and `react-alerts`?
+### Why separate _alerts_ and _react-alerts_
 
 TinaCMS is designed to be framework agnostic. We started with React as the main implementation because it is the framework that the team is most familiar with. This separation allows us to separate the domain from the view library so that TinaCMS will be accessible to more use cases.
 
-### Why are some packages scoped to `@tinacms`?
+### Why are some packages scoped to _@tinacms_ ?
 
 Packages are scoped to `@tinacms` when they are fundamental pieces of content management. The rules on this are not well defined yet.
 
