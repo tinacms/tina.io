@@ -49,7 +49,7 @@ The following packages will be introduced in this process:
 
 ### Why separate `alerts` and `react-alerts`?
 
-TinaCMS is designed to be framework agnostic. We started with React as the main implementation because it is the framework that the team is most familiar with. This separation allows us to separate the domain from the view library so that TinaCMS will be accessible to more use-cases.
+TinaCMS is designed to be framework agnostic. We started with React as the main implementation because it is the framework that the team is most familiar with. This separation allows us to separate the domain from the view library so that TinaCMS will be accessible to more use cases.
 
 ### Why are some packages scoped to `@tinacms`?
 
