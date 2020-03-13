@@ -28,7 +28,7 @@ Currently, the `tinacms` package implements a number of features directly. The S
 
 A large problem with `tinacms` is the impact it has on the bundle size of the developer's website. This will be made worse when we start adding more features to the toolbar. By breaking these pieces up, developers can solve this problem by taking advantage of dynamic imports and code splitting in their application.
 
-This separation will give developers the ability to use opt-out of the pre-defined UI and roll their own. This will give developers the option to deeply integrate the CMS into their website and opens Tina up to the possibility of great UI/UX innovations.
+This separation will give developers the ability to opt-out of the pre-defined UI and roll their own. This will give developers the option to deeply integrate the CMS into their website and opens Tina up to the possibility of great UI/UX innovations.
 
 ## Upcoming Packages
 
