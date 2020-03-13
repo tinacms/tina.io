@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
+import { GetStaticProps, GetStaticPaths } from 'next'
 import {
   DocsLayout,
   MarkdownContent,
@@ -25,11 +26,6 @@ import { OpenAuthoringModalContainer } from '../../open-authoring/OpenAuthoringM
 import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
 
 export default function DocTemplate(props) {
-  // Workaround for fallback being not implemented
-  if (!props.markdownFile) {
-    return <OpenAuthoringModalContainer error={props.error} />
-  }
-
   // Registers Tina Form
   const [data, form] = useLocalGithubMarkdownForm(
     props.markdownFile,
@@ -102,9 +98,10 @@ export default function DocTemplate(props) {
  * DATA FETCHING ------------------------------------------------------
  */
 
-export async function unstable_getStaticProps(props) {
+export const getStaticProps: GetStaticProps = async function(props) {
   let { slug: slugs } = props.params
 
+  // @ts-ignore This should maybe always be a string[]?
   const slug = slugs.join('/')
 
   try {
@@ -122,11 +119,12 @@ export async function unstable_getStaticProps(props) {
   }
 }
 
-export async function unstable_getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async function() {
   const fg = require('fast-glob')
   const contentDir = './content/docs/'
   const files = await fg(`${contentDir}**/*.md`)
   return {
+    fallback: false,
     paths: files
       .filter(file => !file.endsWith('index.md'))
       .map(file => {

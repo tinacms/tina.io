@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
+import { GetStaticProps, GetStaticPaths } from 'next'
 import { CloseIcon, EditIcon } from '@tinacms/icons'
 import { formatDate } from '../../utils'
 import {
@@ -29,11 +30,6 @@ export default function BlogTemplate({
   editMode,
   previewError,
 }) {
-  //workaround for fallback being not implemented
-  if (!markdownFile) {
-    return <div></div>
-  }
-
   // Registers Tina Form
   const [data, form] = useLocalGithubMarkdownForm(
     markdownFile,
@@ -108,7 +104,7 @@ export default function BlogTemplate({
  ** DATA FETCHING --------------------------------------------------
  */
 
-export async function unstable_getStaticProps({
+export const getStaticProps: GetStaticProps = async function({
   preview,
   previewData,
   ...ctx
@@ -120,7 +116,7 @@ export async function unstable_getStaticProps({
     accessToken,
   } = getGithubDataFromPreviewProps(previewData)
 
-  let previewError: OpenAuthoringError
+  let previewError: OpenAuthoringError = null
   let file = {}
   try {
     file = await getMarkdownData(
@@ -137,7 +133,7 @@ export async function unstable_getStaticProps({
   }
 
   //TODO - move to readFile
-  const siteConfig = await import('../../content/siteConfig.json')
+  const { default: siteConfig } = await import('../../content/siteConfig.json')
 
   return {
     props: {
@@ -152,13 +148,14 @@ export async function unstable_getStaticProps({
   }
 }
 
-export async function unstable_getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async function() {
   const blogs = await fg(`./content/blog/**/*.md`)
   return {
     paths: blogs.map(file => {
       const slug = fileToUrl(file, 'blog')
       return { params: { slug } }
     }),
+    fallback: false,
   }
 }
 

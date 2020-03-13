@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
+import { GetStaticProps, GetStaticPaths } from 'next'
 import getFiles from '../../../utils/github/getFiles'
 import { orderPosts, formatExcerpt, formatDate } from '../../../utils'
 import {
@@ -20,11 +21,6 @@ const Index = props => {
   const { currentPage, numPages } = props
 
   const cms = useCMS()
-
-  //workaround for fallback being not implemented
-  if (!props.posts) {
-    return <div></div>
-  }
 
   const [, form] = useForm({
     id: 'blog-list',
@@ -82,7 +78,7 @@ const Index = props => {
 
 const POSTS_PER_PAGE = 8
 
-export async function unstable_getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async function() {
   const fg = require('fast-glob')
   const contentDir = './content/blog/'
   const posts = await fg(`${contentDir}**/*.md`)
@@ -96,10 +92,10 @@ export async function unstable_getStaticPaths() {
     })
   }
 
-  return { paths: pages }
+  return { paths: pages, fallback: false }
 }
 
-export async function unstable_getStaticProps({
+export const getStaticProps: GetStaticProps = async function({
   preview,
   previewData,
   ...ctx
@@ -108,7 +104,8 @@ export async function unstable_getStaticProps({
     sourceProviderConnection,
     accessToken,
   } = getGithubDataFromPreviewProps(previewData)
-  let page = (ctx.params && ctx.params.page_index) || '1'
+  // @ts-ignore page_index should always be a single string
+  const page = parseInt((ctx.params && ctx.params.page_index) || '1')
 
   const files = await getFiles(
     'content/blog',
@@ -151,7 +148,7 @@ export async function unstable_getStaticProps({
     props: {
       posts: orderedPosts,
       numPages: numPages,
-      currentPage: parseInt(page),
+      currentPage: page,
       editMode: !!preview,
       sourceProviderConnection,
     },

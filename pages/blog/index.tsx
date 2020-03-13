@@ -1,5 +1,5 @@
-import { unstable_getStaticProps as getStaticProps } from './page/[page_index]'
+import { getStaticProps } from './page/[page_index]'
 import Index from './page/[page_index]'
 
-export const unstable_getStaticProps = getStaticProps
+export { getStaticProps }
 export default Index

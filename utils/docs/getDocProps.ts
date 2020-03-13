@@ -39,12 +39,12 @@ export async function getDocProps({ preview, previewData }: any, slug: string) {
       editMode: !!preview,
       docsNav: docsNavData,
       nextPage: {
-        slug: file.data.frontmatter.next,
-        title: nextDocPage && nextDocPage.title,
+        slug: file.data.frontmatter.next || null,
+        title: (nextDocPage && nextDocPage.title) || null,
       },
       prevPage: {
-        slug: file.data.frontmatter.prev,
-        title: prevDocPage && prevDocPage.title,
+        slug: file.data.frontmatter.prev || null,
+        title: (prevDocPage && prevDocPage.title) || null,
       },
     },
   }

@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import { GetStaticProps } from 'next'
+
 import { InlineBlocks } from 'react-tinacms-inline'
 import { EditLink } from '../components/layout/EditLink'
 import { DefaultSeo } from 'next-seo'
@@ -210,12 +212,15 @@ export <b>WithTina</b>( <b>Component</b> );
 
 export default HomePage
 
-export async function unstable_getStaticProps({ preview, previewData, query }) {
+export const getStaticProps: GetStaticProps = async function({
+  preview,
+  previewData,
+}) {
   const {
     sourceProviderConnection,
     accessToken,
   } = getGithubDataFromPreviewProps(previewData)
-  let previewError: OpenAuthoringError
+  let previewError: OpenAuthoringError = null
   let homeData = {}
   try {
     homeData = await getJsonData(
