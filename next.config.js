@@ -1,5 +1,6 @@
 const withSvgr = require('next-svgr')
 const path = require('path')
+const fs = require('fs')
 require('dotenv').config()
 
 const dummyMailchimpEndpoint =
@@ -22,17 +23,24 @@ module.exports = withSvgr({
   exportPathMap: async function() {
     return {}
   },
-  webpack(config) {
-    config.resolve.alias['react'] = path.resolve('./node_modules/react')
-    config.resolve.alias['react-dom'] = path.resolve('./node_modules/react-dom')
-    config.resolve.alias['styled'] = path.resolve('./node_modules/styled')
-    config.resolve.alias['@tinacms'] = path.resolve(
-      '../tinacms/packages/@tinacms'
-    )
-    config.resolve.alias['tinacms'] = path.resolve(
-      '../tinacms/packages/tinacms'
-    )
-    console.log(config.resolve.alias)
+  webpack(config, { dev }) {
+    if (dev) {
+      // const pathToTina = '../tinacms'
+      const pathToTinaPackages = '../tinacms/packages'
+      config.resolve.alias['react'] = path.resolve('./node_modules/react')
+      config.resolve.alias['react-dom'] = path.resolve(
+        './node_modules/react-dom'
+      )
+      config.resolve.alias['styled'] = path.resolve('./node_modules/styled')
+      fs.readdir(pathToTinaPackages, (err, files) => {
+        console.log(files)
+        files.forEach(packageBase => {
+          config.resolve.alias[packageBase] = path.resolve(
+            `${pathToTinaPackages}/${packageBase}`
+          )
+        })
+      })
+    }
 
     config.module.rules.push({
       test: /\.md$/,
