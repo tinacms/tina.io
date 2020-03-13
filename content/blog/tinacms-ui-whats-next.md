@@ -22,7 +22,7 @@ Unfortunately you'll have to wait a little bit to get your hands on the new Tool
 
 Now that Open Authoring with [tinacms.org](http://tinacms.org/) is published. We're getting ready to make it available for everyone. Kendall has already moved over the [new Inline Editing components](https://github.com/tinacms/tinacms/pull/871) and figuring out how the Toolbar will fit in the TinaCMS ecosystem is next. This post lays out the plan for how that will be done.
 
-## `tinacms` as a quick-start package
+## _tinacms_ as a quick-start package
 
 Currently, the `tinacms` package implements a number of features directly. The Sidebar, Modals, Alerts, and Screen Plugins are all defined directly here. After this change, `tinacms` will simply be the "quick-start" package for developers looking to get started with Tina as fast as possible. The sole purpose of the `tinacms` package will be to provide a pre-configured CMS instance along with a few simple component that adds the CMS, Alerts, Modals, Screens, and either the Sidebar or the Toolbar to the website. This change will give new-comers to Tina the ability to get started quickly, but it will also give other developers the ability to optimize and modify Tina to fit their needs.
 
