@@ -20,7 +20,7 @@ In order to create an amazing inline editing experience for [tinacms.org](http:/
 
 Unfortunately you'll have to wait a little bit to get your hands on the new Toolbar. The creation of the Toolbar was incredibly exciting project for us. We were able to totally re-imagine the user experience of TinaCMS _without having to change any code in the main repository_. This allowed us to quickly experiment with the interface without considering how it could fit into the overall project. Because of this, it only took a few days to get it production ready. This project validated many of our code design decisions by showing that we could experiment and innovate on top of TinaCMS without having to tear it apart.
 
-Now that Open Authoring with [tinacms.org](http://tinacms.org/) is published. We're getting ready to make it available for everyone. Kendall has already moved over the [new Inline Editing components](https://github.com/tinacms/tinacms/pull/871) and figuring out how the Toolbar will fit in the TinaCMS ecosystem is next. This post lays out the plan for how that will be done.
+Now that Open Authoring with [tinacms.org](http://tinacms.org/) is published, we're getting ready to make it available for everyone. Kendall has already moved over the [new Inline Editing components](https://github.com/tinacms/tinacms/pull/871). Figuring out how the Toolbar will fit in the TinaCMS ecosystem is next. This post lays out the plan for how that will be done.
 
 ## _tinacms_ as a quick-start package
 
