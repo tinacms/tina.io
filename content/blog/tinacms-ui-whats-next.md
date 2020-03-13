@@ -4,8 +4,7 @@ date: '2020-03-13T00:00:00.000Z'
 author: Nolan Phillips
 ---
 
-
-This week we deployed [Visual Open Authoring](https://tinacms.org/blog/introducing-visual-open-authoring 'Introducing Visual Open Authoring') on the TinaCMS website to make an the editing experience for ourselves and all the community members totally amazing!
+This week we deployed [Visual Open Authoring](https://tinacms.org/blog/introducing-visual-open-authoring 'Introducing Visual Open Authoring') on the TinaCMS website to make the editing experience for ourselves and all the community members totally amazing!
 
 You may have noticed that editing interface on [tinacms.org](http://tinacms.org) is different than what's in our videos and what you have running locally. This new Toolbar was an experiment we made directly in the [tinacms.org repository](https://github.com/tinacms/tinacms.org 'Github: tinacms.org'). In this post I will talk about why we took this approach and the next steps in making the Tina Toolbar available for everyone.
 
