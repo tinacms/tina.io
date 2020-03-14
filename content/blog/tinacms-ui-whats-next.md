@@ -31,7 +31,7 @@ This separation will give developers the ability to opt-out of the pre-defined U
 
 The following packages will be introduced in this process:
 
-* `@tinacms/media`: the API for interacting with the [CMS media store](https://tinacms.org/docs/media)
+* `@tinacms/media`: the API for interacting with the [CMS media store](https://tinacms.org/docs/media). – [#878](https://github.com/tinacms/tinacms/pull/878 "feat: introduce @tinacms/media")
 * `@tinacms/alerts`: the API for creating [CMS alerts](https://tinacms.org/docs/cms/alerts)
 * `@tinacms/react-alerts`: the components for rendering CMS _alerts_
 * `@tinacms/react-forms`: the components used to automatically build _forms_
