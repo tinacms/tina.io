@@ -13,11 +13,6 @@ export async function getDocProps({ preview, previewData }: any, slug: string) {
     sourceProviderConnection,
     accessToken
   )  
-  // if (!accessToken) {
-  //   console.log("odd");
-    
-  //   throw new OpenAuthoringError("No auth token.", 401)
-  // }
 
   const getJson = async (filePath: string) => {
     return (await getJsonData(filePath, sourceProviderConnection, accessToken))
