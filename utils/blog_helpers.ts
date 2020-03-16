@@ -1,5 +1,3 @@
-import removeMarkdown from 'remove-markdown'
-
 export function orderPosts(posts) {
   function sortByDate(a, b) {
     const dateA = new Date(a.data.date).getTime()
@@ -11,15 +9,24 @@ export function orderPosts(posts) {
 
 const captureNewlines = /(\r\n|\n|\r)/gm
 
-export function formatExcerpt(content) {
-  const plainTextExcerpt = removeMarkdown(content, {
-    stripListLeaders: true,
-    listUnicodeChar: '',
-    gfm: true,
-    useImgAltText: false,
+async function stripMarkdown(content): Promise<string> {
+  const remark = require('remark')
+  const strip = require('strip-markdown')
+  return new Promise((resolve, reject) => {
+    remark()
+      .use(strip)
+      .process(content, (err, processedContent) => {
+        if (err) reject(err)
+        resolve(String(processedContent))
+      })
   })
+}
+
+export async function formatExcerpt(content) {
+  const plain = await stripMarkdown(content)
+  const plainTextExcerpt = plain
     .substring(0, 200)
-    .replace(captureNewlines, '')
+    .replace(captureNewlines, ' ')
     .trimEnd()
 
   return `${plainTextExcerpt}...`
