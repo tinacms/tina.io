@@ -15,8 +15,7 @@ consumes:
   - file: /packages/tinacms/src/tina-cms.tsx
     details: Creates cms instance with TinaCMS
 ---
-
-The `<Tina>` component makes it possible to attach [forms](/docs/forms) to the Tina sidebar, but we need to wire up a backend in order for content changes to be persisted anywhere. Let's set up the default git backend.
+The `<TinaProvider>` component makes it possible to attach [forms](/docs/forms) to the Tina sidebar, but we need to wire up a backend in order for content changes to be persisted anywhere. Let's set up the default git backend.
 
 The git backend consists of two parts:
 
@@ -29,9 +28,7 @@ Because backends in Tina are designed as Express-compatible middleware, we need 
 
 Run the following installation command:
 
-```
-npm install express cors @tinacms/api-git @tinacms/git-client
-```
+    npm install express cors @tinacms/api-git @tinacms/git-client
 
 ## Adding the Server-side Middleware
 
@@ -113,9 +110,7 @@ As mentioned previously, backends in Tina are written as middleware that can be 
 
 All that's left is to configure the CMS to consume the git API that now runs on the backend. We can do this easily with the `GitClient` class from the `@tinacms/git-client` package. To get started, install the package:
 
-```
-npm install @tinacms/git-client
-```
+    npm install @tinacms/git-client
 
 When creating an instance of `GitClient`, we need to pass it the URL where the API endpoints can be reached. Since we're running the server locally on port 3000, the full URL to our git backend is `http://localhost:3000/___tina`. We could then instantiate the git client as follows:
 
@@ -130,7 +125,7 @@ The `_app.js` file should now look something like this:
 ```javascript
 import React from 'react'
 import App from 'next/app'
-import { Tina, TinaCMS } from 'tinacms'
+import { TinaProvider, TinaCMS } from 'tinacms'
 import { GitClient, GitMediaStore } from '@tinacms/git-client'
 
 class MyApp extends App {
@@ -145,9 +140,9 @@ class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props
     return (
-      <Tina cms={this.cms}>
+      <TinaProvider cms={this.cms}>
         <Component {...pageProps} />
-      </Tina>
+      </TinaProvider>
     )
   }
 }
