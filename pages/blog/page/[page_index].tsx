@@ -16,6 +16,7 @@ import getMarkdownData from '../../../utils/github/getMarkdownData'
 import { useCMS } from 'tinacms'
 import OpenAuthoringSiteForm from '../../../components/layout/OpenAuthoringSiteForm'
 import { useForm } from 'tinacms'
+import { OpenAuthoringModalContainer } from '../../../open-authoring/OpenAuthoringModalContainer'
 const Index = props => {
   const { currentPage, numPages } = props
 
@@ -23,7 +24,7 @@ const Index = props => {
 
   //workaround for fallback being not implemented
   if (!props.posts) {
-    return <div></div>
+    return (<><OpenAuthoringModalContainer uninterpretatedError={props.error} /></>)
   }
 
   const [, form] = useForm({
@@ -117,53 +118,62 @@ export async function unstable_getStaticProps({
   )
 
   const getPost = async file => {
-    try {
-      return (await getMarkdownData(file, sourceProviderConnection, accessToken)).data
-    } catch (error) {
-          
+    return (await getMarkdownData(file, sourceProviderConnection, accessToken)).data
+  }
+  try {
+    const posts = await Promise.all(
+      // TODO - potentially making a lot of requests here
+      files.map(async file => {
+
+
+        const post = await getPost(file)
+        
+        
+
+        // create slug from filename
+        const slug = file
+          .replace(/^.*[\\\/]/, '')
+          .split('.')
+          .slice(0, -1)
+          .join('.')
+
+        const excerpt = formatExcerpt(post.markdownBody)
+
+        return {
+          data: { ...post.frontmatter, slug },
+          content: excerpt,
+        }
+      })
+    )
+
+    // for pagination and ordering
+    const numPages = Math.ceil(posts.length / POSTS_PER_PAGE)
+    const pageIndex = page - 1
+    const orderedPosts = orderPosts(posts).slice(
+      pageIndex * POSTS_PER_PAGE,
+      (pageIndex + 1) * POSTS_PER_PAGE
+    )
+
+    return {
+      props: {
+        posts: orderedPosts,
+        numPages: numPages,
+        currentPage: parseInt(page),
+        editMode: !!preview,
+        sourceProviderConnection,
+      },
+    }
+  } catch (e) {
+    return {
+      props: {
+        error: e
+      }
     }
   }
-
-  const posts = await Promise.all(
-    // TODO - potentially making a lot of requests here
-    files.map(async file => {
+  
 
 
-      const post = await getPost(file)
-
-      // create slug from filename
-      const slug = file
-        .replace(/^.*[\\\/]/, '')
-        .split('.')
-        .slice(0, -1)
-        .join('.')
-
-      const excerpt = formatExcerpt(post.markdownBody)
-
-      return {
-        data: { ...post.frontmatter, slug },
-        content: excerpt,
-      }
-    })
-  )
-
-  // for pagination and ordering
-  const numPages = Math.ceil(posts.length / POSTS_PER_PAGE)
-  const pageIndex = page - 1
-  const orderedPosts = orderPosts(posts).slice(
-    pageIndex * POSTS_PER_PAGE,
-    (pageIndex + 1) * POSTS_PER_PAGE
-  )
-
-  return {
-    props: {
-      posts: orderedPosts,
-      numPages: numPages,
-      currentPage: parseInt(page),
-      editMode: !!preview,
-      sourceProviderConnection,
-    },
-  }
+  
 }
 
 export default Index
