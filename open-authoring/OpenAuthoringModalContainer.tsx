@@ -24,6 +24,10 @@ export const OpenAuthoringModalContainer = ({
     props.openAuthoringErrorUI
   )
 
+  useEffect(() => {
+    setOpenAuthoringErrorUI(props.openAuthoringErrorUI)
+  }, [props.openAuthoringErrorUI])
+
   const cancelAuth = () => {
     window.history.replaceState(
       {},

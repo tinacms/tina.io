@@ -21,20 +21,8 @@ import { TinaIcon } from '../../components/logo'
 import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'
 import { getDocProps } from '../../utils/docs/getDocProps'
 import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
-import ContentNotFoundError from '../../utils/github/ContentNotFoundError'
-import { OpenAuthoringModalContainer } from '../../open-authoring/OpenAuthoringModalContainer'
-import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
 
 export default function DocTemplate(props) {
-  // Workaround for fallback being not implemented
-  if (!props.markdownFile) {
-    return (
-      <>
-        <OpenAuthoringModalContainer openAuthoringError={props.error} />
-      </>
-    )
-  }
-
   // Registers Tina Form
   const [data, form] = useLocalGithubMarkdownForm(
     props.markdownFile,

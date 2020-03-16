@@ -23,12 +23,6 @@ const Index = props => {
 
   const cms = useCMS()
 
-
-  //workaround for fallback being not implemented
-  if (!props.posts) {
-    return (<><OpenAuthoringModalContainer openAuthoringError={props.error} /></>)
-  }
-
   const [, form] = useForm({
     id: 'blog-list',
     label: 'Blog',
@@ -50,7 +44,7 @@ const Index = props => {
         />
         <Hero mini></Hero>
         <BlogWrapper>
-          {props.posts.map(post => (
+          {(props.posts || []).map(post => (
             <DynamicLink
               key={post.data.slug}
               href={`/blog/${post.data.slug}`}
@@ -121,17 +115,14 @@ export const getStaticProps: GetStaticProps = async function({
   )
 
   const getPost = async file => {
-    return (await getMarkdownData(file, sourceProviderConnection, accessToken)).data
+    return (await getMarkdownData(file, sourceProviderConnection, accessToken))
+      .data
   }
   try {
     const posts = await Promise.all(
       // TODO - potentially making a lot of requests here
       files.map(async file => {
-
-
         const post = await getPost(file)
-        
-        
 
         // create slug from filename
         const slug = file
@@ -169,15 +160,10 @@ export const getStaticProps: GetStaticProps = async function({
   } catch (e) {
     return {
       props: {
-        error: e
-      }
+        error: e,
+      },
     }
   }
-  
-
-
-  
-  
 }
 
 export default Index
