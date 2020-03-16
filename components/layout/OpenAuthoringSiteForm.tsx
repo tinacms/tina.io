@@ -15,6 +15,7 @@ import { ToolbarButton } from '../ui/inline/ToolbarButton'
 import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
 import interpretError from '../../open-authoring/error-interpreter'
 import OpenAuthoringContextualErrorUI from '../../open-authoring/OpenAuthoringContextualErrorUI'
+import { useLocalStorageCache } from '../../utils/plugins/useLocalStorageCache'
 
 interface Props extends InlineFormProps {
   editMode: boolean
@@ -129,30 +130,10 @@ const OpenAuthoringSiteForm = ({
     return removePlugins
   }, [editMode, form, formState])
 
-  /* persist pending changes to localStorage
-   */
+  // persist pending changes to localStorage
+  useLocalStorageCache(path, form, editMode)
 
-  const saveToStorage = useCallback(
-    formData => {
-      cms.api.storage.save(path, flattenFormData(form.finalForm))
-    },
-    [path]
-  )
-
-  // save to storage on change
-  useWatchFormValues(form, saveToStorage)
-
-  // load from storage on boot
-  useEffect(() => {
-    if (!editMode) return
-
-    const values = cms.api.storage.load(path)
-    if (values) {
-      form.updateValues(values)
-    }
-  }, [form, editMode])
   // show feedback onSave
-
   const updateUIWithError = useCallback(
     async (err: OpenAuthoringError) => {
       const errorUIDescriptor: OpenAuthoringContextualErrorUI = await interpretError(
@@ -176,9 +157,7 @@ const OpenAuthoringSiteForm = ({
           )}`
         ),
       afterSubmitFailed: async failedForm => {
-        updateUIWithError(
-          failedForm.getState().submitError
-        )
+        updateUIWithError(failedForm.getState().submitError)
       },
     })
 
