@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
+import { GetStaticProps, GetStaticPaths } from 'next'
 import {
   DocsLayout,
   MarkdownContent,
@@ -27,7 +28,11 @@ import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
 export default function DocTemplate(props) {
   // Workaround for fallback being not implemented
   if (!props.markdownFile) {
-    return (<><OpenAuthoringModalContainer uninterpretatedError={props.error} /></>)
+    return (
+      <>
+        <OpenAuthoringModalContainer uninterpretatedError={props.error} />
+      </>
+    )
   }
 
   // Registers Tina Form
@@ -61,7 +66,7 @@ export default function DocTemplate(props) {
               {
                 url:
                   'https://res.cloudinary.com/forestry-demo/image/upload/l_text:tuner-regular.ttf_90_center:' +
-                  encodeURI(frontmatter.title) +
+                  encodeURIComponent(frontmatter.title) +
                   ',g_center,x_0,y_50,w_850,c_fit,co_rgb:EC4815/v1581087220/TinaCMS/tinacms-social-empty-docs.png',
                 width: 1200,
                 height: 628,
@@ -102,27 +107,28 @@ export default function DocTemplate(props) {
  * DATA FETCHING ------------------------------------------------------
  */
 
-export async function unstable_getStaticProps(props) {
+export const getStaticProps: GetStaticProps = async function(props) {
   let { slug: slugs } = props.params
 
+  // @ts-ignore This should maybe always be a string[]?
   const slug = slugs.join('/')
   try {
     return await getDocProps(props, slug)
   } catch (e) {
-    
     return {
       props: {
-        error: e
-      }
+        error: e,
+      },
     }
   }
 }
 
-export async function unstable_getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async function() {
   const fg = require('fast-glob')
   const contentDir = './content/docs/'
   const files = await fg(`${contentDir}**/*.md`)
   return {
+    fallback: false,
     paths: files
       .filter(file => !file.endsWith('index.md'))
       .map(file => {
