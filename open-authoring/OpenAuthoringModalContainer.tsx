@@ -10,13 +10,14 @@ interface Props {
   openAuthoringError?
 }
 
-
 export const OpenAuthoringModalContainer = ({
-  openAuthoringErrorUI,
   openAuthoringError,
+  ...props
 }: Props) => {
   const [authPopupDisplayed, setAuthPopupDisplayed] = useState(false)
-  const [statefulOpenAuthoringErrorUI, setStateFullOpenAuthoringErrorUI] = useState(openAuthoringErrorUI)
+  const [openAuthoringErrorUI, setOpenAuthoringErrorUI] = useState(
+    props.openAuthoringErrorUI
+  )
 
   const cancelAuth = () => {
     window.history.replaceState(
@@ -32,7 +33,7 @@ export const OpenAuthoringModalContainer = ({
       if (openAuthoringError) {
         const contextualError = await getErrorUIFrom(openAuthoringError)
         if (contextualError.asModal) {
-          setStateFullOpenAuthoringErrorUI(contextualError)
+          setOpenAuthoringErrorUI(contextualError)
         }
       }
     })()
@@ -57,7 +58,7 @@ export const OpenAuthoringModalContainer = ({
         action: () => {
           if (action.action() === true) {
             // close modal
-            setStateFullOpenAuthoringErrorUI(null)
+            setOpenAuthoringErrorUI(null)
           }
         },
       })
@@ -67,7 +68,7 @@ export const OpenAuthoringModalContainer = ({
 
   useEffect(() => {
     if (openAuthoringErrorUI) {
-      setStateFullOpenAuthoringErrorUI(openAuthoringErrorUI)
+      setOpenAuthoringErrorUI(openAuthoringErrorUI)
       openAuthoring.updateAuthChecks() //recheck if we need to open auth window as result of error
     }
   }, [openAuthoringErrorUI])
@@ -90,11 +91,11 @@ export const OpenAuthoringModalContainer = ({
           ]}
         />
       )}
-      {statefulOpenAuthoringErrorUI && (
+      {openAuthoringErrorUI && (
         <ActionableModal
-          title={statefulOpenAuthoringErrorUI.title}
-          message={statefulOpenAuthoringErrorUI.message}
-          actions={getActionsFromError(statefulOpenAuthoringErrorUI)}
+          title={openAuthoringErrorUI.title}
+          message={openAuthoringErrorUI.message}
+          actions={getActionsFromError(openAuthoringErrorUI)}
         />
       )}
     </>
