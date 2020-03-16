@@ -34,6 +34,8 @@ export const OpenAuthoring = ({ children }) => {
     const forkFullName = Cookies.get('fork_full_name')
     if (forkFullName) {
       setForkValid(await isForkValid(forkFullName))
+    } else {
+      setForkValid(false)
     }
   }
   useEffect(() => {
