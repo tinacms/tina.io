@@ -39,7 +39,7 @@ author: Nolan Phillips
 As stated above, the `Tina` component has been renamed to `TinaProvider`. This new name better
 describes the purpose of that component.
 
-For now this component an still be accessed as `Tina`.
+For now this component can still be accessed as `Tina`.
 
 ## Contributors
 
