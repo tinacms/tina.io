@@ -6,7 +6,7 @@ Source code for the tinacms.org website.
 
 This site supports shortcodes in markdown content via [remark-shortcodes](https://github.com/djm/remark-shortcodes).
 
-Shortcodes must be written as React components. To add a shortcode, export it from `utils/shortcodes.ts`.
+Shortcodes must be written as React components. To add a shortcode, export it from `utils/shortcodes.tsx`.
 
 ```jsx
 export function MyShortcode({ textContent }) {
