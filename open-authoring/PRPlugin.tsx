@@ -10,13 +10,13 @@ import OpenAuthoringError from './OpenAuthoringError'
 interface PullRequestButtonOptions {
   baseRepoFullName: string
   forkRepoFullName: string
-  sendError?
+  sendErrorToModal?
 }
 
 export const PRPlugin = (
   baseRepoFullName: string,
   forkRepoFullName: string,
-  sendError?: (error: any) => void
+  sendErrorToModal?: (error: any) => void
 ) => ({
   __type: 'toolbar:git',
   name: 'create-pr',
@@ -25,7 +25,7 @@ export const PRPlugin = (
       <PullRequestButton
         baseRepoFullName={baseRepoFullName}
         forkRepoFullName={forkRepoFullName}
-        sendError={sendError}
+        sendErrorToModal={sendErrorToModal}
       />
     )
   },
@@ -34,7 +34,7 @@ export const PRPlugin = (
 function PullRequestButton({
   baseRepoFullName,
   forkRepoFullName,
-  sendError
+  sendErrorToModal
 }: PullRequestButtonOptions) {
 
   const open = async () => {
@@ -42,7 +42,9 @@ function PullRequestButton({
       setOpened(p => !p)
       return
     }
-    sendError(new OpenAuthoringError("Not Authenticated", 401)) 
+    if (sendErrorToModal) {
+      sendErrorToModal(new OpenAuthoringError("Not Authenticated", 401))
+    }
   }
 
   const [opened, setOpened] = useState(false)

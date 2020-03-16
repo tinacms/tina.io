@@ -10,11 +10,6 @@ interface Props {
   uninterpretatedError?
 }
 
-export enum Actions {
-  authFlow,
-  refresh,
-  doNothing,
-}
 
 export const OpenAuthoringModalContainer = ({
   error,
