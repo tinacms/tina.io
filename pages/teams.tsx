@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { BlocksControls } from '../components/ui/inline'
 import { BlockTemplate } from 'tinacms'
 import { NextSeo } from 'next-seo'
+import { GetStaticProps } from 'next'
 
 import { Layout, Wrapper, RichTextWrapper } from '../components/layout'
 import { ArrowList } from '../components/ui'
@@ -112,13 +113,16 @@ export default function TeamsPage(props) {
  ** DATA FETCHING --------------------------------------------------
  */
 
-export async function unstable_getStaticProps({ preview, previewData }) {
+export const getStaticProps: GetStaticProps = async function({
+  preview,
+  previewData,
+}) {
   const {
     sourceProviderConnection,
     accessToken,
   } = getGithubDataFromPreviewProps(previewData)
 
-  let previewError: OpenAuthoringError
+  let previewError: OpenAuthoringError = null
   let teamsData = {}
   try {
     teamsData = await getJsonData(

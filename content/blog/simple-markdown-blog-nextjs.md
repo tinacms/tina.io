@@ -79,6 +79,8 @@ You’ll see that we have a `Layout` component wrapping a `<section>` with a `Bl
 
 Notice the use of [getInitialProps](https://nextjs.org/docs#fetching-data-and-component-lifecycle) below the component. Next.js will run this function to facilitate [server-side rendering](https://nextjs.org/features/server-side-rendering), or SSR. When Next loads this page, it will run the `getInitialProps` method, pass the return value to your page component as its props, and render the component server-side before sending the response to the browser.
 
+> Since the release of [Next.js 9.3](https://nextjs.org/blog/next-9-3), it is recommended to use [`getStaticProps`(for static)](https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation) or [`getServerSideProps`(for SSR)](https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering) instead of `getInitialProps`.
+
 **This is your bread and butter for retrieving page-level data in Next.** You can use `getInitialProps` fetch data from an external api, or as seen in this example, you can get ahold of local data sources.
 
 > **Note:** this method only works for components defined in the `pages/` directory, i.e., `page` components. You cannot use this method on child components, but you can pass down the data received to these child components, as you see being done with `Layout` in the example above.
