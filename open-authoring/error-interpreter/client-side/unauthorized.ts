@@ -6,7 +6,6 @@ import Cookies from 'js-cookie'
 export default function interpretUnauthorizedError(error: OpenAuthoringError) {
   // if authentication is not valid they need to re-authenticate
   const fork = Cookies.get('fork_full_name')
-  const branch = Cookies.get('head_branch')
 
   if (!fork) {
     // TODO - this should be abstracted somewhere

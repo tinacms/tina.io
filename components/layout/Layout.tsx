@@ -7,6 +7,7 @@ import { MarkdownCreatorPlugin } from '../../utils/plugins'
 import { fileToUrl, slugify } from '../../utils'
 import { Header, Footer } from '../layout'
 import { isGithubTokenValid } from '../../open-authoring/github/api'
+import Cookies from 'js-cookie'
 
 interface LayoutProps {
   children: any[]
@@ -69,7 +70,10 @@ export const Layout = styled(
       })
     }, [editMode, sourceProviderConnection])
 
-    usePlugin(CreateBlogPlugin)
+    if (Cookies.get("fork_full_name")) {
+      usePlugin(CreateBlogPlugin)
+    }
+    
 
     return (
       <div {...styleProps}>
