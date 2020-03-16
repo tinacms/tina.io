@@ -149,7 +149,7 @@ const OpenAuthoringSiteForm = ({
       if (errorUIDescriptor && errorUIDescriptor.asModal) {
         setInterpretedError(errorUIDescriptor)
       } else {
-        cms.alerts.error(errorUIDescriptor?.message || 'Could not interpret.')
+        cms.alerts.error(errorUIDescriptor?.message || 'Something went wrong.')
       }
     },
     [cms, setInterpretedError]
