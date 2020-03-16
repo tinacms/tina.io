@@ -21,28 +21,27 @@ consumes:
   - file: /packages/react-tinacms/src/index.ts
     details: Imports useLocalForm and useWatchFormValues from react-tinacms metapackage
 ---
-
 ## Tina + Next: Part II
 
-**Note: This blog was updated as of 12.06.19 related to [these changes](https://tinacms.org/blog/deprecating-tina-git-server/)**
+**Updated on 03/13/20:** renamed `<Tina>`  to `<TinaProvider>` ([#873](https://github.com/tinacms/tinacms/pull/873)).
 
-This blog is a part of a series exploring the use of Next.js + Tina. In [Part I](https://tinacms.org/blog/simple-markdown-blog-nextjs/), we learned how to create a simple markdown-based blog with Next. In this post we’ll add content editing capacity by configuring the site with TinaCMS.
+This blog is a part of a series exploring the use of Next.js + Tina. In [Part I](https://tinacms.org/blog/simple-markdown-blog-nextjs/), we learned how to create a simple markdown-based blog with Next. In this post, we’ll add content editing capacity by configuring the site with TinaCMS.
 
 ### Next.js Recap ▲
 
-[Next.js](https://nextjs.org/) is **a React “metaframework”** (a framework built on a framework) for developing web applications, built by the team at [ZEIT](https://zeit.co/). Read [Part I](https://tinacms.org/blog/simple-markdown-blog-nextjs/) to get familiar with Next.js basics.
+[Next.js](https://nextjs.org/) is **a React “meta-framework”** (a framework built on a framework) for developing web applications, built by the team at [ZEIT](https://zeit.co/). Read [Part I](https://tinacms.org/blog/simple-markdown-blog-nextjs/) to get familiar with Next.js basics.
 
 ### Tina Overview 🦙
 
-We like to say that "[Tina](https://tinacms.org/) is not a CMS". Rather, Tina is a collection of open-source javascript components that you build into your site codebase — **a toolkit for creating a real time content-editing UI.** It's incredibly flexible, developers are in absolute control over content management, and editors get a "real-time WYSIWYG" experience.
+We like to say that "[Tina](https://tinacms.org/) is not a CMS". Rather, Tina is a collection of open-source javascript components that you build into your site codebase — **a toolkit for creating a real-time content-editing UI.** It's incredibly flexible, developers are in absolute control over content management, and editors get a "real-time WYSIWYG" experience.
 
-The best way to get a feel for how Tina works is to use it. We hope that by the end of this tutorial, you’ll not only learn how to use Tina, but also how Tina rethinks the way a CMS should work.
+The best way to get a feel for how Tina works is to use it. We hope that by the end of this tutorial, you’ll not only learn how to use Tina but also how Tina rethinks the way a CMS should work.
 
 ## Let’s Get Started
 
 ![tinacms editing gif](/gif/tina-nextjs.gif)
 
-This tutorial will show you how to install and **configure Tina for editing content on a simple markdown-based blog** that was created in last week’s post. If you want to dig into how the base blog was made, read [Part I](https://tinacms.org/blog/simple-markdown-blog-nextjs/) of this series.
+This tutorial will show you how to install and **configure Tina for editing content on a simple Markdown-based blog** that was created in last week’s post. If you want to dig into how the base blog was made, read [Part I](https://tinacms.org/blog/simple-markdown-blog-nextjs/) of this series.
 
 > Jump ahead to see the [final repo here](https://github.com/kendallstrautman/brevifolia-next-tinacms). Or check out the [Tina + Next.js documentation](https://tinacms.org/docs/nextjs/overview) here
 
@@ -50,7 +49,7 @@ This tutorial will show you how to install and **configure Tina for editing cont
 
 It’s important to note that due to the open-ended nature of Next.js, there are numerous ways you could incorporate Tina into Next.js sites or apps. This tutorial will showcase just one approach with straightforward examples.
 
-It's also worth noting that unlike Gatsby, Next.js does not currently have a plugin system. If you've previously looked at Tina's [Gatsby setup guide](/docs/gatsby/manual-setup), you'll see that we're utilizing a few different plugins to set up Tina. With Next.js, we'll need to write that boostrapping code directly into our project.
+It's also worth noting that unlike Gatsby, Next.js does not currently have a plugin system. If you've previously looked at Tina's [Gatsby setup guide](/docs/gatsby/manual-setup), you'll see that we're utilizing a few different plugins to set up Tina. With Next.js, we'll need to write that bootstrapping code directly into our project.
 
 ### Set up Locally 🏡
 
@@ -72,7 +71,7 @@ Now that the development server is running, navigate to http://localhost:3000/ t
 
 ### Configure TinaCMS in App 🔆
 
-With Next.js, there is an [`App` class component](https://nextjs.org/docs#custom-app) that initializes pages. We need to override this component to wrap every page in a `Tina` component that will provide access to the `cms` instance.
+With Next.js, there is an [`App` class component](https://nextjs.org/docs#custom-app) that initializes pages. We need to override this component to wrap every page in a `TinaProvider` component that will provide access to the `cms` instance.
 
 Following along with the [Tina documentation:](https://tinacms.org/docs/nextjs/bootstrapping)
 
@@ -86,7 +85,7 @@ Create a new file in the root of your project called `_app.js` and add this code
 ```javascript
 import React from 'react'
 import App from 'next/app'
-import { Tina, TinaCMS } from 'tinacms'
+import { TinaProvider, TinaCMS } from 'tinacms'
 
 class MyApp extends App {
   constructor() {
@@ -98,9 +97,9 @@ class MyApp extends App {
     const { Component, pageProps } = this.props
     // Wrap the page with Tina, provide the cms
     return (
-      <Tina cms={this.cms}>
+      <TinaProvider cms={this.cms}>
         <Component {...pageProps} />
-      </Tina>
+      </TinaProvider>
     )
   }
 }
@@ -108,7 +107,7 @@ class MyApp extends App {
 export default MyApp
 ```
 
-If you restart the dev server, you should now see a pencil icon in the lower left-hand corner. Go ahead and click it to reveal a sidebar. The `Tina` component we added in `_app.js` gives each page access to this sidebar). Think of it as your "home base" for editing content with Tina.
+If you restart the dev server, you should now see a pencil icon in the lower left-hand corner. Go ahead and click it to reveal a sidebar. The `TinaProvider` component we added in `_app.js` gives each page access to this sidebar). Think of it as your "home base" for editing content with Tina.
 
 ### Setting up a Git Backend 👾
 
@@ -178,7 +177,7 @@ Now we need to link this git backend with the instance of the `cms` within our s
 ```javascript
 import React from 'react'
 import App from 'next/app'
-import { Tina, TinaCMS } from 'tinacms'
+import { TinaProvider, TinaCMS } from 'tinacms'
 // import the git client
 import { GitClient } from '@tinacms/git-client'
 
@@ -321,8 +320,6 @@ export default function BlogTemplate(props) {
     //...
    );
 }
-
-
 ```
 
 Observe that in the `onSubmit` callback function, we access the git API we registered earlier to write file changes to disk and then commit those changes. We're also serializing our data via the `toMarkdownString` function; the git backend is deliberately unopinionated, so we need to take care of preparing our data for writing before sending it back.
@@ -335,9 +332,9 @@ Look again at the way we're calling `useLocalForm`:
 const [post, form] = useLocalForm(...)
 ```
 
-This is a common pattern for React hooks. `useLocalForm` returns a two-element array that we are destructuring into two separate objects. `form` returns the form object that we can do some neat stuff with (more on that in a moment), but what we really care about right now is the `post` object. This object contains the form data, and will update whenever the values in the form are changed by the user. If we use _this_ data when rendering our layout, our site will update in real time as the data changes!
+This is a common pattern for React hooks. `useLocalForm` returns a two-element array that we are destructuring into two separate objects. `form` returns the form object that we can do some neat stuff with (more on that in a moment), but what we really care about right now is the `post` object. This object contains the form data, and will update whenever the values in the form are changed by the user. If we use _this_ data when rendering our layout, our site will update in real-time as the data changes!
 
-The `post` object will contain the `initialValues` on first render. Since it has the same shape as the `props` we're using in our layout, all we have to do is replace the appropriate references to `props` with `post`:
+The `post` object will contain the `initialValues` on the first render. Since it has the same shape as the `props` we're using in our layout, all we have to do is replace the appropriate references to `props` with `post`:
 
 ```jsx
 // replace "props" with "post" for editable form content
@@ -375,7 +372,7 @@ This is amazing! We wired up Tina to make edits and commit changes. One thing yo
 
 #### Watching for Real-Time Content Changes ⌚️
 
-If you want your changes writing to disk in real time, we’ll need to use another hook, `useWatchFormValues`. This hook allows you to execute a function any time the form state changes. `useWatchFormValues` takes the form object created by the `useLocalForm` hook, and a callback function to invoke when the form changes.
+If you want your changes writing to disk in real-time, we’ll need to use another hook, `useWatchFormValues`. This hook allows you to execute a function any time the form state changes. `useWatchFormValues` takes the form object created by the `useLocalForm` hook, and a callback function to invoke when the form changes.
 
 Add this example code below to your template component just before the `return` statement. Feel free to reference the final file [here](https://github.com/kendallstrautman/brevifolia-next-tinacms/blob/master/src/pages/blog/%5Bslug%5D.js).
 
@@ -407,7 +404,7 @@ export default function BlogTemplate(props) {
 
 If all went well, your blog posts will now be editable by Tina. Let's see it in action!
 
-Start up the dev server by running `yarn develop`, and open up a blog post in the browser. Go ahead and make edits, and then check the source file in a text editor. If you keep the browser and code editor open side-by-side, you should be able to watch the changes reflect in real time in both places!
+Start up the dev server by running `yarn develop`, and open up a blog post in the browser. Go ahead and make edits, and then check the source file in a text editor. If you keep the browser and code editor open side-by-side, you should be able to watch the changes reflect in real-time in both places!
 
 > **Troubleshooting Tip**: If you’re only seeing changes update in the browser, but not immediately writing to the file system, **make sure you are using the correct script** that initiates both the next dev server and the git api via `concurrently`.
 
@@ -415,6 +412,6 @@ Start up the dev server by running `yarn develop`, and open up a blog post in th
 
 Well done! With some config and calling a few hooks, we can now edit all our blog posts with Tina.
 
-To set up content editing on the rest of the site, we’ll want to configure Tina for the ‘info’ page, along with any other general site metadata. Try to implement the same approach in the `info` page component. Checkout the [final repo](https://github.com/kendallstrautman/brevifolia-next-tinacms) for reference on how to do this.
+To set up content editing on the rest of the site, we’ll want to configure Tina for the ‘info’ page, along with any other general site metadata. Try to implement the same approach in the `info` page component. Check out the [final repo](https://github.com/kendallstrautman/brevifolia-next-tinacms) for reference on how to do this.
 
 **Stay tuned:** in subsequent posts, we’ll cover how to setup this site for static export, implementing global forms, and extracting this Tina config into a single reusable function.
