@@ -16,10 +16,9 @@ export interface Options {
 const useGithubMarkdownForm = <T = any>(
   markdownFile: GitFile<T>,
   formOptions: Options,
-  githubOptions: GithubOptions,
-  isEditMode: boolean
+  githubOptions: GithubOptions
 ) => {
-  useGithubForm(markdownFile, githubOptions, isEditMode)
+  useGithubForm(markdownFile)
 
   const [formData, form] = useLocalForm({
     id: markdownFile.fileRelativePath, // needs to be unique
@@ -54,14 +53,12 @@ const useGithubMarkdownForm = <T = any>(
 export function useLocalGithubMarkdownForm(
   markdownFile: GitFile,
   formOptions: Options,
-  githubOptions: GithubOptions,
-  isEditMode: boolean
+  githubOptions: GithubOptions
 ) {
   const [values, form] = useGithubMarkdownForm(
     markdownFile,
     formOptions,
-    githubOptions,
-    isEditMode
+    githubOptions
   )
   usePlugins(form as any)
   return [values, form]

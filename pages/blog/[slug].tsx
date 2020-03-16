@@ -34,8 +34,7 @@ export default function BlogTemplate({
   const [data, form] = useLocalGithubMarkdownForm(
     markdownFile,
     formOptions,
-    sourceProviderConnection,
-    editMode
+    sourceProviderConnection
   )
 
   const frontmatter = data.frontmatter
