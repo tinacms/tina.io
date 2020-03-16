@@ -5,6 +5,11 @@ import { useOpenAuthoring } from '../components/layout/OpenAuthoring'
 import OpenAuthoringContextualErrorUI from './OpenAuthoringContextualErrorUI'
 import getErrorUIFrom from './error-interpreter'
 
+/*
+TODO:
+This should either take in openAuthoringErrorUI, or openAuthoringError, & have it be required.
+Otherwise it's a bit weird to sometimes interpret it outside this contet, and sometimes within this context
+*/
 interface Props {
   openAuthoringErrorUI?: OpenAuthoringContextualErrorUI
   openAuthoringError?
