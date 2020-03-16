@@ -4,7 +4,7 @@ Source code for the tinacms.org website.
 
 ## Shortcodes
 
-This site supports shortcodes in markdown content via [remark-shortcodes](https://github.com/djm/remark-shortcodes).
+This site supports shortcodes in Markdown content via [remark-shortcodes](https://github.com/djm/remark-shortcodes).
 
 Shortcodes must be written as React components. To add a shortcode, export it from `utils/shortcodes.tsx`.
 
