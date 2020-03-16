@@ -34,16 +34,15 @@ export const PRPlugin = (
 function PullRequestButton({
   baseRepoFullName,
   forkRepoFullName,
-  sendErrorToModal
+  sendErrorToModal,
 }: PullRequestButtonOptions) {
-
   const open = async () => {
     if (await isGithubTokenValid()) {
-      setOpened(p => !p)
+      setOpened(true)
       return
     }
     if (sendErrorToModal) {
-      sendErrorToModal(new OpenAuthoringError("Not Authenticated", 401))
+      sendErrorToModal(new OpenAuthoringError('Not Authenticated', 401))
     }
   }
 
