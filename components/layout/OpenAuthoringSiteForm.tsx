@@ -188,7 +188,7 @@ const OpenAuthoringSiteForm = ({
         typeof document !== 'undefined' && editMode ? 'active' : 'inactive'
       }
     >
-      <OpenAuthoringModalContainer error={interpretedError} />
+      <OpenAuthoringModalContainer openAuthoringErrorUI={interpretedError} />
       {children}
     </InlineForm>
   )

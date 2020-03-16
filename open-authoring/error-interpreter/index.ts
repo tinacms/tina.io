@@ -4,7 +4,7 @@ import { enterAuthFlow, refresh } from "./actions"
 import interpretClientError from "./client-side"
 import interpretServerError from "./server-side"
 
-export default async function interpretError(error: OpenAuthoringError) : Promise<OpenAuthoringContextualErrorUI> {
+export default async function getErrorUIFrom(error: OpenAuthoringError) : Promise<OpenAuthoringContextualErrorUI> {
     if (!error || !error.code) {
         console.warn("Error Interpreter: called without an error")
         const message = error?.message || "An error occured."

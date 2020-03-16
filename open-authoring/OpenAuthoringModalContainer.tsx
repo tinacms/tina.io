@@ -3,20 +3,20 @@ import { ActionableModal } from '../components/ui'
 import { startAuthFlow } from './authFlow'
 import { useOpenAuthoring } from '../components/layout/OpenAuthoring'
 import OpenAuthoringContextualErrorUI from './OpenAuthoringContextualErrorUI'
-import interpretError from './error-interpreter'
+import getErrorUIFrom from './error-interpreter'
 
 interface Props {
-  error?: OpenAuthoringContextualErrorUI
-  uninterpretatedError?
+  openAuthoringErrorUI?: OpenAuthoringContextualErrorUI
+  openAuthoringError?
 }
 
 
 export const OpenAuthoringModalContainer = ({
-  error,
-  uninterpretatedError,
+  openAuthoringErrorUI,
+  openAuthoringError,
 }: Props) => {
   const [authPopupDisplayed, setAuthPopupDisplayed] = useState(false)
-  const [statefulError, setStateFullError] = useState(error)
+  const [statefulOpenAuthoringErrorUI, setStateFullOpenAuthoringErrorUI] = useState(openAuthoringErrorUI)
 
   const cancelAuth = () => {
     window.history.replaceState(
@@ -29,14 +29,14 @@ export const OpenAuthoringModalContainer = ({
 
   useEffect(() => {
     ;(async () => {
-      if (uninterpretatedError) {
-        const contextualError = await interpretError(uninterpretatedError)
+      if (openAuthoringError) {
+        const contextualError = await getErrorUIFrom(openAuthoringError)
         if (contextualError.asModal) {
-          setStateFullError(contextualError)
+          setStateFullOpenAuthoringErrorUI(contextualError)
         }
       }
     })()
-  }, [uninterpretatedError])
+  }, [openAuthoringError])
 
   useEffect(() => {
     if (window.location.href.includes('autoAuth')) {
@@ -57,7 +57,7 @@ export const OpenAuthoringModalContainer = ({
         action: () => {
           if (action.action() === true) {
             // close modal
-            setStateFullError(null)
+            setStateFullOpenAuthoringErrorUI(null)
           }
         },
       })
@@ -66,11 +66,11 @@ export const OpenAuthoringModalContainer = ({
   }
 
   useEffect(() => {
-    if (error) {
-      setStateFullError(error)
+    if (openAuthoringErrorUI) {
+      setStateFullOpenAuthoringErrorUI(openAuthoringErrorUI)
       openAuthoring.updateAuthChecks() //recheck if we need to open auth window as result of error
     }
-  }, [error])
+  }, [openAuthoringErrorUI])
 
   return (
     <>
@@ -90,11 +90,11 @@ export const OpenAuthoringModalContainer = ({
           ]}
         />
       )}
-      {statefulError && (
+      {statefulOpenAuthoringErrorUI && (
         <ActionableModal
-          title={statefulError.title}
-          message={statefulError.message}
-          actions={getActionsFromError(statefulError)}
+          title={statefulOpenAuthoringErrorUI.title}
+          message={statefulOpenAuthoringErrorUI.message}
+          actions={getActionsFromError(statefulOpenAuthoringErrorUI)}
         />
       )}
     </>

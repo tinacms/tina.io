@@ -30,7 +30,7 @@ export default function DocTemplate(props) {
   if (!props.markdownFile) {
     return (
       <>
-        <OpenAuthoringModalContainer uninterpretatedError={props.error} />
+        <OpenAuthoringModalContainer openAuthoringError={props.error} />
       </>
     )
   }

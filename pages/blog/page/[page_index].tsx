@@ -26,7 +26,7 @@ const Index = props => {
 
   //workaround for fallback being not implemented
   if (!props.posts) {
-    return (<><OpenAuthoringModalContainer uninterpretatedError={props.error} /></>)
+    return (<><OpenAuthoringModalContainer openAuthoringError={props.error} /></>)
   }
 
   const [, form] = useForm({
