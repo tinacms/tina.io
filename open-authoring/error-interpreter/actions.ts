@@ -13,14 +13,11 @@ export const refresh = () => {
   return false
 }
 
-export const enterAuthFlow = async () => {
-  const authenticated = await isGithubTokenValid()
+export const enterAuthFlow = () => {
+  const authenticated = !!window.githubAuthenticated
+  const forkValid = !!window.forkValid
 
-  const forkValid = await isForkValid(Cookies.get('fork_full_name'))
-
-  fetch(`/api/reset-preview`).then(() => {
-    startAuthFlow(authenticated, forkValid)
-  })
+  startAuthFlow(authenticated, forkValid)
 
   return false
 }
