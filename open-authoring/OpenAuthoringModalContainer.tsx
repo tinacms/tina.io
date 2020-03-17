@@ -3,7 +3,6 @@ import { ActionableModal } from '../components/ui'
 import { startAuthFlow } from './authFlow'
 import { useOpenAuthoring } from '../components/layout/OpenAuthoring'
 import OpenAuthoringContextualErrorUI from './OpenAuthoringContextualErrorUI'
-import getErrorUIFrom from './error-interpreter'
 
 /*
 TODO:
@@ -12,13 +11,16 @@ Otherwise it's a bit weird to sometimes interpret it outside this contet, and so
 */
 interface Props {
   openAuthoringErrorUI?: OpenAuthoringContextualErrorUI
-  openAuthoringError?
 }
 
-export const OpenAuthoringModalContainer = ({
-  openAuthoringError,
-  ...props
-}: Props) => {
+/*
+  TODO - This modal container is responsible for multiple things:
+  - authPopup on initial load,
+  - responding to & interpreting errors
+
+  It should probably be more of a dummy modal component, and move that logic elsewhere
+*/
+export const OpenAuthoringModalContainer = (props: Props) => {
   const [authPopupDisplayed, setAuthPopupDisplayed] = useState(false)
   const [openAuthoringErrorUI, setOpenAuthoringErrorUI] = useState(
     props.openAuthoringErrorUI
@@ -36,17 +38,6 @@ export const OpenAuthoringModalContainer = ({
     )
     setAuthPopupDisplayed(false)
   }
-
-  useEffect(() => {
-    ;(async () => {
-      if (openAuthoringError) {
-        const contextualError = await getErrorUIFrom(openAuthoringError)
-        if (contextualError.asModal) {
-          setOpenAuthoringErrorUI(contextualError)
-        }
-      }
-    })()
-  }, [openAuthoringError])
 
   useEffect(() => {
     if (window.location.href.includes('autoAuth')) {
@@ -77,7 +68,6 @@ export const OpenAuthoringModalContainer = ({
 
   useEffect(() => {
     if (openAuthoringErrorUI) {
-      setOpenAuthoringErrorUI(openAuthoringErrorUI)
       openAuthoring.updateAuthChecks() //recheck if we need to open auth window as result of error
     }
   }, [openAuthoringErrorUI])
