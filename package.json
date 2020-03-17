@@ -78,6 +78,7 @@
     "webpack": "^4.41.5"
   },
   "devDependencies": {
+    "@tinacms/webpack-helpers": "^0.1.0-alpha.0",
     "@types/cookie": "^0.3.3",
     "@types/glob": "^7.1.1",
     "@types/jest": "^25.1.2",
