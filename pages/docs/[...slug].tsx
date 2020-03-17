@@ -21,8 +21,9 @@ import { TinaIcon } from '../../components/logo'
 import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'
 import { getDocProps } from '../../utils/docs/getDocProps'
 import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
+import { withErrorModal } from '../../open-authoring/withErrorModal'
 
-export default function DocTemplate(props) {
+function DocTemplate(props) {
   // Registers Tina Form
   const [data, form] = useLocalGithubMarkdownForm(
     props.markdownFile,
@@ -40,7 +41,7 @@ export default function DocTemplate(props) {
       form={form}
       path={props.markdownFile.fileRelativePath}
       editMode={props.editMode}
-      error={props.error}
+      error={props.previewError}
     >
       <DocsLayout isEditing={props.editMode}>
         <NextSeo
@@ -91,6 +92,8 @@ export default function DocTemplate(props) {
   )
 }
 
+export default withErrorModal(DocTemplate)
+
 /*
  * DATA FETCHING ------------------------------------------------------
  */
@@ -105,7 +108,7 @@ export const getStaticProps: GetStaticProps = async function(props) {
   } catch (e) {
     return {
       props: {
-        error: e,
+        previewError: e,
       },
     }
   }
