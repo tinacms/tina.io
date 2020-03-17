@@ -1510,6 +1510,11 @@
   resolved "https://registry.yarnpkg.com/@tinacms/styles/-/styles-0.3.0-alpha.0.tgz#e7055897553deec7f7e9cc68aeb42e6d375e2251"
   integrity sha512-pHwGhqomvSSfeZpGNXhrASlfBOVftsfyCfbICAkS9CEIQ4IfqbYljZ0UUG/4myZQQkxVLTE+1Nb4oekZWoKj1w==
 
+"@tinacms/webpack-helpers@^0.1.0-alpha.0":
+  version "0.1.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@tinacms/webpack-helpers/-/webpack-helpers-0.1.0-alpha.0.tgz#e919555a434d516b56577281890657a0e1c7ee69"
+  integrity sha512-Eld+er2Kmiv6BSpBOX8onDOshtjtR90W/s+/7ktZZUorSzeJyWhvErk6j94v2GRKa6pPPKVZySrP2DfuUZV8hw==
+
 "@types/algoliasearch-helper@*":
   version "2.26.1"
   resolved "https://registry.yarnpkg.com/@types/algoliasearch-helper/-/algoliasearch-helper-2.26.1.tgz#60cf377e7cb4bd9a55f7eba35182792763230a24"
