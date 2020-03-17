@@ -14,6 +14,7 @@ export const refresh = () => {
 }
 
 export const enterAuthFlow = () => {
+  //use stored value as we can do async checks and open window without it being blocked
   const authenticated = !!window.githubAuthenticated
   const forkValid = !!window.forkValid
 
