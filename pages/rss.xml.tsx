@@ -48,10 +48,10 @@ FeedPage.getInitialProps = async function({ res }: NextPageContext) {
   if (!res) {
     return
   }
-  const blogPosts = (context => {
+  const blogPosts = await (async context => {
     const keys = context.keys()
     const values = keys.map(context)
-    const data = keys.map((key: string, index: number) => {
+    const data = await keys.map(async (key: string, index: number) => {
       // Create slug from filename
       const slug = key
         .replace(/^.*[\\\/]/, '')
@@ -61,7 +61,7 @@ FeedPage.getInitialProps = async function({ res }: NextPageContext) {
       const value = values[index]
       // Parse yaml metadata & markdownbody in document
       const post = matter(value.default)
-      const formattedContent = formatExcerpt(post.content)
+      const formattedContent = await formatExcerpt(post.content)
       return {
         data: { ...post.data, slug },
         content: formattedContent,
