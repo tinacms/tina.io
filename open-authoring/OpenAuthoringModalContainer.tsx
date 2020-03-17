@@ -13,7 +13,7 @@ interface Props {
   openAuthoringErrorUI?: OpenAuthoringContextualErrorUI
 }
 
-export const OpenAuthoringModalContainer = ({ ...props }: Props) => {
+export const OpenAuthoringModalContainer = (props: Props) => {
   const [authPopupDisplayed, setAuthPopupDisplayed] = useState(false)
   const [openAuthoringErrorUI, setOpenAuthoringErrorUI] = useState(
     props.openAuthoringErrorUI
@@ -61,7 +61,6 @@ export const OpenAuthoringModalContainer = ({ ...props }: Props) => {
 
   useEffect(() => {
     if (openAuthoringErrorUI) {
-      setOpenAuthoringErrorUI(openAuthoringErrorUI)
       openAuthoring.updateAuthChecks() //recheck if we need to open auth window as result of error
     }
   }, [openAuthoringErrorUI])
