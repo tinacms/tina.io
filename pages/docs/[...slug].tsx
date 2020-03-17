@@ -107,7 +107,7 @@ export const getStaticProps: GetStaticProps = async function(props) {
   } catch (e) {
     return {
       props: {
-        previewError: e,
+        previewError: { ...e }, //workaround since we cant return error as JSON
       },
     }
   }

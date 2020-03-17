@@ -140,7 +140,7 @@ export const getStaticProps: GetStaticProps = async function({
     props: {
       sourceProviderConnection,
       editMode: !!preview,
-      previewError: previewError,
+      previewError,
       siteConfig: {
         title: siteConfig.title,
       },
