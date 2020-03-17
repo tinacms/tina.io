@@ -3,7 +3,6 @@ import { ActionableModal } from '../components/ui'
 import { startAuthFlow } from './authFlow'
 import { useOpenAuthoring } from '../components/layout/OpenAuthoring'
 import OpenAuthoringContextualErrorUI from './OpenAuthoringContextualErrorUI'
-import getErrorUIFrom from './error-interpreter'
 
 /*
 TODO:
@@ -12,13 +11,9 @@ Otherwise it's a bit weird to sometimes interpret it outside this contet, and so
 */
 interface Props {
   openAuthoringErrorUI?: OpenAuthoringContextualErrorUI
-  openAuthoringError?
 }
 
-export const OpenAuthoringModalContainer = ({
-  openAuthoringError,
-  ...props
-}: Props) => {
+export const OpenAuthoringModalContainer = ({ ...props }: Props) => {
   const [authPopupDisplayed, setAuthPopupDisplayed] = useState(false)
   const [openAuthoringErrorUI, setOpenAuthoringErrorUI] = useState(
     props.openAuthoringErrorUI
@@ -36,17 +31,6 @@ export const OpenAuthoringModalContainer = ({
     )
     setAuthPopupDisplayed(false)
   }
-
-  useEffect(() => {
-    ;(async () => {
-      if (openAuthoringError) {
-        const contextualError = await getErrorUIFrom(openAuthoringError)
-        if (contextualError.asModal) {
-          setOpenAuthoringErrorUI(contextualError)
-        }
-      }
-    })()
-  }, [openAuthoringError])
 
   useEffect(() => {
     if (window.location.href.includes('autoAuth')) {
