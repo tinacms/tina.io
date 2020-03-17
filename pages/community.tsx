@@ -11,11 +11,7 @@ import {
   RichTextWrapper,
   MarkdownContent,
 } from '../components/layout'
-import {
-  InlineWysiwyg,
-  InlineTextareaField,
-  InlineTextField,
-} from '../components/ui/inline'
+import { InlineWysiwyg, InlineTextareaField } from '../components/ui/inline'
 import { Button, ButtonGroup } from '../components/ui'
 import { EmailForm } from '../components/forms'
 import TwitterIconSvg from '../public/svg/twitter-icon.svg'
@@ -27,10 +23,10 @@ import getJsonData from '../utils/github/getJsonData'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
-import ContentNotFoundError from '../utils/github/ContentNotFoundError'
 import OpenAuthoringError from '../open-authoring/OpenAuthoringError'
+import { withErrorModal } from '../open-authoring/withErrorModal'
 
-export default function CommunityPage({
+function CommunityPage({
   community,
   metadata,
   sourceProviderConnection,
@@ -50,7 +46,6 @@ export default function CommunityPage({
       form={form}
       path={community.fileRelativePath}
       editMode={editMode}
-      error={previewError}
     >
       <Layout
         sourceProviderConnection={sourceProviderConnection}
@@ -158,6 +153,8 @@ export default function CommunityPage({
     </OpenAuthoringSiteForm>
   )
 }
+
+export default withErrorModal(CommunityPage)
 
 /*
  ** DATA FETCHING -----------------------------------------------

@@ -41,7 +41,6 @@ function DocTemplate(props) {
       form={form}
       path={props.markdownFile.fileRelativePath}
       editMode={props.editMode}
-      error={props.previewError}
     >
       <DocsLayout isEditing={props.editMode}>
         <NextSeo

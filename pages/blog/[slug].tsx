@@ -47,7 +47,6 @@ function BlogTemplate({
       form={form}
       path={markdownFile.fileRelativePath}
       editMode={editMode}
-      error={previewError}
     >
       <Layout
         sourceProviderConnection={sourceProviderConnection}
