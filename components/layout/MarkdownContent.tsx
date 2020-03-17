@@ -94,7 +94,7 @@ export function MarkdownContent({
         heading: WithHeadings,
         shortcode: ShortcodeRenderer,
       }}
-      plugins={[[shortcodes]]}
+      plugins={[[shortcodes, { startBlock: '{{', endBlock: '}}' }]]}
     />
   )
 }
