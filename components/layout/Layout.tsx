@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect } from 'react'
+import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import { DefaultSeo } from 'next-seo'
 import { useRouter } from 'next/router'
@@ -6,7 +6,7 @@ import { usePlugin } from 'tinacms'
 import { MarkdownCreatorPlugin } from '../../utils/plugins'
 import { fileToUrl, slugify } from '../../utils'
 import { Header, Footer } from '../layout'
-import { isGithubTokenValid } from '../../open-authoring/github/api'
+import moment from 'moment'
 import Cookies from 'js-cookie'
 
 interface LayoutProps {
@@ -58,7 +58,7 @@ export const Layout = styled(
         isEditMode: editMode,
         frontmatter: postInfo => ({
           title: postInfo.title,
-          date: postInfo.date ? postInfo.date : new Date(),
+          date: moment(postInfo.date ? postInfo.date : new Date()).format(),
           author: postInfo.author ? postInfo.author : `Jane Doe`,
         }),
         body: postInfo => `New post, who dis?`,
@@ -70,10 +70,9 @@ export const Layout = styled(
       })
     }, [editMode, sourceProviderConnection])
 
-    if (Cookies.get("fork_full_name")) {
+    if (Cookies.get('fork_full_name')) {
       usePlugin(CreateBlogPlugin)
     }
-    
 
     return (
       <div {...styleProps}>
