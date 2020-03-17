@@ -6,6 +6,7 @@ import { usePlugin } from 'tinacms'
 import { MarkdownCreatorPlugin } from '../../utils/plugins'
 import { fileToUrl, slugify } from '../../utils'
 import { Header, Footer } from '../layout'
+import moment from 'moment'
 
 interface LayoutProps {
   children: any[]
@@ -57,7 +58,7 @@ export const Layout = styled(
           isEditMode: editMode,
           frontmatter: postInfo => ({
             title: postInfo.title,
-            date: postInfo.date ? postInfo.date : new Date(),
+            date: moment(postInfo.date ? postInfo.date : new Date()).format(),
             author: postInfo.author ? postInfo.author : `Jane Doe`,
           }),
           body: postInfo => `New post, who dis?`,
