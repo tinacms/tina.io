@@ -34,6 +34,11 @@
         "id": "/docs/cms/alerts",
         "title": "Alerts",
         "slug": "/docs/cms/alerts"
+      },
+      {
+        "id": "/docs/cms/styles",
+        "title": "Styles",
+        "slug": "/docs/cms/styles"
       }
     ]
   },

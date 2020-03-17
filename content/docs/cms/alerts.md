@@ -1,7 +1,7 @@
 ---
 title: Alerts
 prev: /docs/cms/apis
-next: /docs/forms
+next: /docs/cms/styles
 ---
 
 The CMS' **alerts** feature allows you to display short, ephemeral messages to users.
