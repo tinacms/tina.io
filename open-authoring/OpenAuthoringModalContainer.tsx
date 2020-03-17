@@ -13,6 +13,13 @@ interface Props {
   openAuthoringErrorUI?: OpenAuthoringContextualErrorUI
 }
 
+/*
+  TODO - This modal container is responsible for multiple things:
+  - authPopup on initial load,
+  - responding to & interpreting errors
+
+  It should probably be more of a dummy modal component, and move that logic elsewhere
+*/
 export const OpenAuthoringModalContainer = (props: Props) => {
   const [authPopupDisplayed, setAuthPopupDisplayed] = useState(false)
   const [openAuthoringErrorUI, setOpenAuthoringErrorUI] = useState(
