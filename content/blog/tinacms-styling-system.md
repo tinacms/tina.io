@@ -18,11 +18,11 @@ A major shift in our approach has been the ability to edit content directly inli
 
 Here's an example where we override the primary color (blue by default) and use it in a custom button:
 
-```
+```css
 :root {
-  --tina-color-primary-light: #EB6337;
-  --tina-color-primary: #EC4815;
-  --tina-color-primary-dark: #DC4419;
+  --tina-color-primary-light: #eb6337;
+  --tina-color-primary: #ec4815;
+  --tina-color-primary-dark: #dc4419;
 }
 
 .my-button {
