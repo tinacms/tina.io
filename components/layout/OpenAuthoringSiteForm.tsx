@@ -48,6 +48,10 @@ const OpenAuthoringSiteForm = ({
     updateUIWithError(error)
   }
 
+  const showNeedToAuthenticateModal = async () => {
+    setInterpretedError(await interpretError(new OpenAuthoringError("Need to login", 401)))
+  }
+
   /**
    * Toolbar Plugins
    */
@@ -73,7 +77,7 @@ const OpenAuthoringSiteForm = ({
                 </ToolbarButton>
                 <SaveButton
                   primary
-                  onClick={form.submit}
+                  onClick={forkName ? form.submit : showNeedToAuthenticateModal}
                   busy={formState.submitting}
                 >
                   {formState.submitting && <LoadingDots />}
