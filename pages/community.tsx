@@ -29,8 +29,9 @@ import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
 import ContentNotFoundError from '../utils/github/ContentNotFoundError'
 import OpenAuthoringError from '../open-authoring/OpenAuthoringError'
+import { withErrorModal } from '../open-authoring/withErrrorrModal'
 
-export default function CommunityPage({
+function CommunityPage({
   community,
   metadata,
   sourceProviderConnection,
@@ -41,8 +42,7 @@ export default function CommunityPage({
   const [data, form] = useLocalGithubJsonForm(
     community,
     formOptions,
-    sourceProviderConnection,
-    editMode
+    sourceProviderConnection
   )
 
   return (
@@ -50,7 +50,6 @@ export default function CommunityPage({
       form={form}
       path={community.fileRelativePath}
       editMode={editMode}
-      error={previewError}
     >
       <Layout
         sourceProviderConnection={sourceProviderConnection}
@@ -159,6 +158,8 @@ export default function CommunityPage({
   )
 }
 
+export default withErrorModal(CommunityPage)
+
 /*
  ** DATA FETCHING -----------------------------------------------
  */
@@ -183,7 +184,7 @@ export const getStaticProps: GetStaticProps = async function({
     )
   } catch (e) {
     if (e instanceof OpenAuthoringError) {
-      previewError = e
+      previewError = { ...e } //workaround since we cant return error as JSON
     } else {
       throw e
     }

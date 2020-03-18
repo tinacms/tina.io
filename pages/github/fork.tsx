@@ -1,17 +1,18 @@
-import Cookies from 'js-cookie'
 import { useEffect, useState } from 'react'
-import { response } from 'express'
 import { getUser, getBranch } from '../../open-authoring/github/api'
 import { AuthLayout } from '../../components/layout'
 import { Button } from '../../components/ui'
 import styled from 'styled-components'
+import {
+  setForkName,
+  getHeadBranch,
+} from '../../open-authoring/utils/repository'
 
 export default function Authorizing() {
-
   async function handleForkCreated(forkName: string) {
-    Cookies.set('fork_full_name', forkName, { sameSite: 'strict' })
-    await fetch(`/api/preview`)   
-    
+    setForkName(forkName)
+    await fetch(`/api/preview`)
+
     window.opener.window.location.href = window.opener.window.location.pathname
   }
 
@@ -29,7 +30,6 @@ export default function Authorizing() {
     const { full_name } = await resp.json()
     const forkFullName = full_name
     if (forkFullName) {
-      Cookies.set('head_branch', 'master') // default fork branch
       await handleForkCreated(full_name)
       window.close()
     } else {
@@ -42,7 +42,7 @@ export default function Authorizing() {
   useEffect(() => {
     // check if user already has a fork and if so use it
     ;(async () => {
-      const branch = Cookies.get('head_branch') || 'master'
+      const branch = getHeadBranch()
 
       const userData = await getUser()
       if (!userData) return setForkValidating(false)
@@ -53,7 +53,6 @@ export default function Authorizing() {
       if (!forkData) return setForkValidating(false)
       if (forkData.ref === 'refs/heads/' + branch) {
         // found fork\
-        Cookies.set('head_branch', branch)
         await handleForkCreated(expectedFork)
         window.close()
         return

@@ -32,10 +32,10 @@ This separation will give developers the ability to opt-out of the pre-defined U
 The following packages will be introduced in this process:
 
 * `@tinacms/media`: the API for interacting with the [CMS media store](https://tinacms.org/docs/media). – [#878](https://github.com/tinacms/tinacms/pull/878 "feat: introduce @tinacms/media")
-* `@tinacms/alerts`: the API for creating [CMS alerts](https://tinacms.org/docs/cms/alerts)
-* `@tinacms/react-alerts`: the components for rendering CMS _alerts_
+* `@tinacms/alerts`: the API for creating [CMS alerts](https://tinacms.org/docs/cms/alerts) – [#883](https://github.com/tinacms/tinacms/pull/883)
+* `@tinacms/react-alerts`: the components for rendering CMS _alerts_ – [#883](https://github.com/tinacms/tinacms/pull/883)
 * `@tinacms/react-forms`: the components used to automatically build _forms_
-* `@tinacms/react-modals`: the components for creating _modals_ for the CMS
+* `@tinacms/react-modals`: the components for creating _modals_ for the CMS – [#911](https://github.com/tinacms/tinacms/pull/911)
 * `@tinacms/react-sidebar`: the sidebar components
 * `@tinacms/react-toolbar`: the toolbar components
 * `@tinacms/react-fields`: Primitive field plugins i.e. Text, Textarea, Select, Number, Toggle, Block, Group, Group List

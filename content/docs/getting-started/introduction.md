@@ -26,6 +26,15 @@ If you want to get started with some code right away, check out the [Next.js Ove
 
 If you want to dive deep, start by learning more about [how Tina works](/docs/getting-started/how-tina-works) and get familiar with some core concepts.
 
+## For Next.js
+
+* [Next.js + Tina Overview](/docs/nextjs/overview) — Get started with the documentation
+* Read an in-depth tutorial on [Using TinaCMS with Next.js](/blog/using-tinacms-with-nextjs/)
+
+**Next.js Starters**
+
+* [Next.js Markdown Blog](https://github.com/kendallstrautman/brevifolia-next-tinacms) configured for Tina.
+
 ## For Gatsby
 
 * [Quickstart](/docs/gatsby/quickstart) with a Tina Starter to hit the ground running.
@@ -33,17 +42,11 @@ If you want to dive deep, start by learning more about [how Tina works](/docs/ge
 
 **Gatsby Starters**
 
-* [Gatsby Blog Starter](https://github.com/tinacms/gatsby-starter-tinacms) with Tina — The classic Gatsby starter, but Tinified.
+* [Gatsby Blog Starter](https://github.com/tinacms/gatsby-starter-tinacms) with Tina — The classic Gatsby starter, but Tina-friendly.
 * [Tina Grande](https://github.com/tinacms/tina-starter-grande) — A more advanced starter to showcase the power of Tina.
 * [Tina Brevifolia](https://github.com/kendallstrautman/brevifolia-gatsby-tinacms) — A Markdown-based blog with minimalist design and Tina for editing.
 
 Want to add your starter? Make a [PR](/docs/contributing/guidelines) to add your Tina site to this list.
-
-## For Next.js
-
-* [Next.js + Tina Overview](/docs/nextjs/overview) — Get started with the documentation
-* Read an in-depth tutorial on [Using TinaCMS with Next.js](/blog/using-tinacms-with-nextjs/)
-* Check out this sample [Next.js Markdown Blog](https://github.com/kendallstrautman/brevifolia-next-tinacms) with Tina configured for reference.
 
 ## Get Involved
 

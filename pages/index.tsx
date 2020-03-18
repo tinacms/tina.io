@@ -30,6 +30,7 @@ import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderCon
 import ContentNotFoundError from '../utils/github/ContentNotFoundError'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
 import OpenAuthoringError from '../open-authoring/OpenAuthoringError'
+import { withErrorModal } from '../open-authoring/withErrrorrModal'
 
 const HomePage = (props: any) => {
   const [formData, form] = useLocalGithubJsonForm(
@@ -107,8 +108,7 @@ const HomePage = (props: any) => {
         },
       ],
     },
-    props.sourceProviderConnection,
-    props.editMode
+    props.sourceProviderConnection
   )
 
   return (
@@ -116,7 +116,6 @@ const HomePage = (props: any) => {
       form={form}
       path={props.home.fileRelativePath}
       editMode={props.editMode}
-      error={props.previewError}
     >
       <Layout
         sourceProviderConnection={props.sourceProviderConnection}
@@ -210,7 +209,7 @@ export <b>WithTina</b>( <b>Component</b> );
   )
 }
 
-export default HomePage
+export default withErrorModal(HomePage)
 
 export const getStaticProps: GetStaticProps = async function({
   preview,
@@ -230,7 +229,7 @@ export const getStaticProps: GetStaticProps = async function({
     )
   } catch (e) {
     if (e instanceof OpenAuthoringError) {
-      previewError = e
+      previewError = { ...e } //workaround since we cant return error as JSON
     } else {
       throw e
     }
