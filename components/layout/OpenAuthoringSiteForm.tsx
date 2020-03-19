@@ -19,7 +19,6 @@ import { useLocalStorageCache } from '../../utils/plugins/useLocalStorageCache'
 
 interface Props extends InlineFormProps {
   editMode: boolean
-  error?: OpenAuthoringError
   children: any
   path: string
 }
@@ -33,13 +32,7 @@ const useFormState = (form, subscription) => {
   return state
 }
 
-const OpenAuthoringSiteForm = ({
-  form,
-  editMode,
-  error,
-  path,
-  children,
-}: Props) => {
+const OpenAuthoringSiteForm = ({ form, editMode, path, children }: Props) => {
   const [interpretedError, setInterpretedError] = useState(null)
   const cms = useCMS()
   const formState = useFormState(form, { dirty: true, submitting: true })
@@ -166,14 +159,6 @@ const OpenAuthoringSiteForm = ({
     return undecorateSaveListener
   }, [form])
 
-  useEffect(() => {
-    ;(async () => {
-      if (error) {
-        updateUIWithError(error)
-      }
-    })()
-  }, [error])
-
   return (
     <InlineForm
       form={form}
@@ -181,7 +166,7 @@ const OpenAuthoringSiteForm = ({
         typeof document !== 'undefined' && editMode ? 'active' : 'inactive'
       }
     >
-      <OpenAuthoringModalContainer error={interpretedError} />
+      <OpenAuthoringModalContainer openAuthoringErrorUI={interpretedError} />
       {children}
     </InlineForm>
   )

@@ -22,8 +22,9 @@ import { enterEditMode, exitEditMode } from '../../open-authoring/authFlow'
 import { useOpenAuthoring } from '../../components/layout/OpenAuthoring'
 import { Button } from '../../components/ui/Button'
 import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
+import { withErrorModal } from '../../open-authoring/withErrrorrModal'
 
-export default function BlogTemplate({
+function BlogTemplate({
   markdownFile,
   sourceProviderConnection,
   siteConfig,
@@ -47,7 +48,6 @@ export default function BlogTemplate({
       form={form}
       path={markdownFile.fileRelativePath}
       editMode={editMode}
-      error={previewError}
     >
       <Layout
         sourceProviderConnection={sourceProviderConnection}
@@ -99,6 +99,8 @@ export default function BlogTemplate({
     </OpenAuthoringSiteForm>
   )
 }
+
+export default withErrorModal(BlogTemplate)
 
 /*
  ** DATA FETCHING --------------------------------------------------
