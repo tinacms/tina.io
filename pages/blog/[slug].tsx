@@ -22,6 +22,7 @@ import { enterEditMode, exitEditMode } from '../../open-authoring/authFlow'
 import { useOpenAuthoring } from '../../components/layout/OpenAuthoring'
 import { Button } from '../../components/ui/Button'
 import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
+import Error from 'next/error'
 
 export default function BlogTemplate({
   markdownFile,
@@ -30,6 +31,11 @@ export default function BlogTemplate({
   editMode,
   previewError,
 }) {
+  // fallback workaround
+  if (!markdownFile) {
+    return <Error statusCode={404} />
+  }
+
   // Registers Tina Form
   const [data, form] = useLocalGithubMarkdownForm(
     markdownFile,
@@ -127,6 +133,8 @@ export const getStaticProps: GetStaticProps = async function({
   } catch (e) {
     if (e instanceof OpenAuthoringError) {
       previewError = { ...e } //workaround since we cant return error as JSON
+    } else if (e.code === 'ENOENT') {
+      return { props: {} } // will render the 404 error
     } else {
       throw e
     }
@@ -155,7 +163,7 @@ export const getStaticPaths: GetStaticPaths = async function() {
       const slug = fileToUrl(file, 'blog')
       return { params: { slug } }
     }),
-    fallback: false,
+    fallback: true,
   }
 }
 
