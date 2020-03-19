@@ -1,6 +1,5 @@
 import { Form, useCMS, FieldMeta } from 'tinacms'
 import { useEffect, useState } from 'react'
-import Cookies from 'js-cookie'
 import { ToolbarButton } from '../components/ui/inline/ToolbarButton'
 import { DesktopLabel } from '../components/ui/inline/DesktopLabel'
 import { PRPlugin } from './PRPlugin'
@@ -8,6 +7,7 @@ import styled, { css } from 'styled-components'
 import { color } from '@tinacms/styles'
 import UndoIconSvg from '../public/svg/undo-icon.svg'
 import { LoadingDots } from '../components/ui/LoadingDots'
+import { getForkName } from './utils/repository'
 
 const useFormState = (form, subscription) => {
   const [state, setState] = useState(form.finalForm.getState())
@@ -26,7 +26,7 @@ export const useOpenAuthoringToolbarPlugins = (
   const formState = useFormState(form, { dirty: true, submitting: true })
 
   useEffect(() => {
-    const forkName = Cookies.get('fork_full_name')
+    const forkName = getForkName()
     const plugins = [
       {
         __type: 'toolbar:git',
