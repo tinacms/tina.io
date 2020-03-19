@@ -3,7 +3,7 @@ import { useCallback, useState, useEffect } from 'react'
 import OpenAuthoringError from './OpenAuthoringError'
 import interpretError from './error-interpreter'
 import Cookies from 'js-cookie'
-import OpenAuthoringContextualErrorUI from './OpenAuthoringContextualErrorUI'
+import OpenAuthoringErrorProps from './OpenAuthoringErrorProps'
 import createDecorator from 'final-form-submit-listener'
 import { OpenAuthoringModalContainer } from './OpenAuthoringModalContainer'
 
@@ -14,7 +14,7 @@ const FormAlerts = ({ form }) => {
   // show feedback onSave
   const updateUIWithError = useCallback(
     async (err: OpenAuthoringError) => {
-      const errorUIDescriptor: OpenAuthoringContextualErrorUI = await interpretError(
+      const errorUIDescriptor: OpenAuthoringErrorProps = await interpretError(
         err
       )
       if (errorUIDescriptor.asModal) {

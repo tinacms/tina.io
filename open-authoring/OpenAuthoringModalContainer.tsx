@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { ActionableModal } from '../components/ui'
 import { enterEditMode } from './authFlow'
 import { useOpenAuthoring } from '../components/layout/OpenAuthoring'
-import OpenAuthoringContextualErrorUI from './OpenAuthoringContextualErrorUI'
+import OpenAuthoringErrorProps from './OpenAuthoringErrorProps'
 
 /*
 TODO:
@@ -10,7 +10,7 @@ This should either take in openAuthoringErrorUI, or openAuthoringError, & have i
 Otherwise it's a bit weird to sometimes interpret it outside this contet, and sometimes within this context
 */
 interface Props {
-  openAuthoringErrorUI?: OpenAuthoringContextualErrorUI
+  openAuthoringErrorUI?: OpenAuthoringErrorProps
 }
 
 /*
@@ -50,7 +50,7 @@ export const OpenAuthoringModalContainer = (props: Props) => {
     enterEditMode(openAuthoring.githubAuthenticated, openAuthoring.forkValid)
   }
 
-  const getActionsFromError = (error: OpenAuthoringContextualErrorUI) => {
+  const getActionsFromError = (error: OpenAuthoringErrorProps) => {
     var actions = []
     error.actions.forEach(action => {
       actions.push({
