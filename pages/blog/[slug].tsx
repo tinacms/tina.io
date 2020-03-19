@@ -16,15 +16,15 @@ import getMarkdownData from '../../utils/github/getMarkdownData'
 import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'
 import { fileToUrl } from '../../utils/urls'
 import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
-import ContentNotFoundError from '../../utils/github/ContentNotFoundError'
 const fg = require('fast-glob')
 import { enterEditMode, exitEditMode } from '../../open-authoring/authFlow'
 import { useOpenAuthoring } from '../../components/layout/OpenAuthoring'
 import { Button } from '../../components/ui/Button'
 import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
+import { withErrorModal } from '../../open-authoring/withErrrorrModal'
 import Error from 'next/error'
 
-export default function BlogTemplate({
+function BlogTemplate({
   markdownFile,
   sourceProviderConnection,
   siteConfig,
@@ -53,7 +53,6 @@ export default function BlogTemplate({
       form={form}
       path={markdownFile.fileRelativePath}
       editMode={editMode}
-      error={previewError}
     >
       <Layout
         sourceProviderConnection={sourceProviderConnection}
@@ -105,6 +104,8 @@ export default function BlogTemplate({
     </OpenAuthoringSiteForm>
   )
 }
+
+export default withErrorModal(BlogTemplate)
 
 /*
  ** DATA FETCHING --------------------------------------------------
