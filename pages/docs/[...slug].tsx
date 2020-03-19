@@ -43,7 +43,7 @@ export default function DocTemplate(props) {
       form={form}
       path={props.markdownFile.fileRelativePath}
       editMode={props.editMode}
-      error={props.error}
+      error={props.previewError}
     >
       <DocsLayout isEditing={props.editMode}>
         <NextSeo
@@ -110,7 +110,7 @@ export const getStaticProps: GetStaticProps = async function(props) {
     if (e instanceof OpenAuthoringError) {
       return {
         props: {
-          error: e,
+          previewError: { ...e }, //workaround since we cant return error as JSON
         },
       }
     } else {

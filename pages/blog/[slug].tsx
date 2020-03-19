@@ -126,7 +126,7 @@ export const getStaticProps: GetStaticProps = async function({
     )
   } catch (e) {
     if (e instanceof OpenAuthoringError) {
-      previewError = e
+      previewError = { ...e } //workaround since we cant return error as JSON
     } else {
       throw e
     }
