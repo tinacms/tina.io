@@ -132,7 +132,7 @@ export const getStaticProps: GetStaticProps = async function({
     )
   } catch (e) {
     if (e instanceof OpenAuthoringError) {
-      previewError = e
+      previewError = { ...e } //workaround since we cant return error as JSON
     } else if (e.code === 'ENOENT') {
       return { props: {} } // will render the 404 error
     } else {
