@@ -2,10 +2,10 @@ import { useCMS } from 'tinacms'
 import { useCallback, useState, useEffect } from 'react'
 import OpenAuthoringError from './OpenAuthoringError'
 import interpretError from './error-interpreter'
-import Cookies from 'js-cookie'
 import OpenAuthoringErrorProps from './OpenAuthoringErrorProps'
 import createDecorator from 'final-form-submit-listener'
 import { OpenAuthoringModalContainer } from './OpenAuthoringModalContainer'
+import { getForkName } from './utils/repository'
 
 const FormAlerts = ({ form }) => {
   const cms = useCMS()
@@ -30,9 +30,7 @@ const FormAlerts = ({ form }) => {
     const submitListener = createDecorator({
       afterSubmitSucceeded: () =>
         cms.alerts.success(
-          `Saved Successfully: Changes committed to ${Cookies.get(
-            'fork_full_name'
-          )}`
+          `Saved Successfully: Changes committed to ${getForkName()}`
         ),
       afterSubmitFailed: async failedForm => {
         updateUIWithError(failedForm.getState().submitError)

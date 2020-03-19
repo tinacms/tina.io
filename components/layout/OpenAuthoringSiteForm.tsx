@@ -4,12 +4,12 @@ import UndoIconSvg from '../../public/svg/undo-icon.svg'
 import styled, { css } from 'styled-components'
 import { useEffect, useState } from 'react'
 import { useCMS, FieldMeta } from 'tinacms'
-import Cookies from 'js-cookie'
 import { PRPlugin } from '../../open-authoring/PRPlugin'
 import { LoadingDots } from '../ui/LoadingDots'
 import { DesktopLabel } from '../ui/inline/DesktopLabel'
 import { ToolbarButton } from '../ui/inline/ToolbarButton'
 import { useLocalStorageCache } from '../../utils/plugins/useLocalStorageCache'
+import { getForkName } from '../../open-authoring/utils/repository'
 import FormAlerts from '../../open-authoring/FormAlerts'
 
 interface Props extends InlineFormProps {
@@ -35,7 +35,7 @@ const OpenAuthoringSiteForm = ({ form, editMode, path, children }: Props) => {
    * Toolbar Plugins
    */
   useEffect(() => {
-    const forkName = Cookies.get('fork_full_name')
+    const forkName = getForkName()
     const plugins = [
       {
         __type: 'toolbar:git',

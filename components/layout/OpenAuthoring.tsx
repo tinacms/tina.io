@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import Cookies from 'js-cookie'
 import {
   isForkValid,
   isGithubTokenValid,
 } from '../../open-authoring/github/api'
+import { getForkName } from '../../open-authoring/utils/repository'
 
 export interface OpenAuthoringContext {
   forkValid: boolean
@@ -32,7 +32,7 @@ export const OpenAuthoring = ({ children }) => {
   const updateAuthChecks = async () => {
     setGithubAuthenticated(await isGithubTokenValid())
 
-    const forkName = Cookies.get('fork_full_name')
+    const forkName = getForkName()
     setForkValid(await isForkValid(forkName))
   }
   useEffect(() => {
