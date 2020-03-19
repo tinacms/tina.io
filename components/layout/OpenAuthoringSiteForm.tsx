@@ -1,21 +1,16 @@
 import { InlineForm, InlineFormProps } from 'react-tinacms-inline'
-import { OpenAuthoringModalContainer } from '../../open-authoring/OpenAuthoringModalContainer'
 import { color } from '@tinacms/styles'
 import UndoIconSvg from '../../public/svg/undo-icon.svg'
 import styled, { css } from 'styled-components'
-import { useEffect, useCallback, useState } from 'react'
-import { useCMS, useWatchFormValues, Form, TinaCMS, FieldMeta } from 'tinacms'
-import createDecorator from 'final-form-submit-listener'
+import { useEffect, useState } from 'react'
+import { useCMS, FieldMeta } from 'tinacms'
 import Cookies from 'js-cookie'
 import { PRPlugin } from '../../open-authoring/PRPlugin'
-import { flattenFormData } from '../../utils/plugins/flatten-form-data'
 import { LoadingDots } from '../ui/LoadingDots'
 import { DesktopLabel } from '../ui/inline/DesktopLabel'
 import { ToolbarButton } from '../ui/inline/ToolbarButton'
-import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
-import interpretError from '../../open-authoring/error-interpreter'
-import OpenAuthoringContextualErrorUI from '../../open-authoring/OpenAuthoringContextualErrorUI'
 import { useLocalStorageCache } from '../../utils/plugins/useLocalStorageCache'
+import FormAlerts from '../../open-authoring/FormAlerts'
 
 interface Props extends InlineFormProps {
   editMode: boolean
@@ -33,7 +28,6 @@ const useFormState = (form, subscription) => {
 }
 
 const OpenAuthoringSiteForm = ({ form, editMode, path, children }: Props) => {
-  const [interpretedError, setInterpretedError] = useState(null)
   const cms = useCMS()
   const formState = useFormState(form, { dirty: true, submitting: true })
 
@@ -126,49 +120,18 @@ const OpenAuthoringSiteForm = ({ form, editMode, path, children }: Props) => {
   // persist pending changes to localStorage
   useLocalStorageCache(path, form, editMode)
 
-  // show feedback onSave
-  const updateUIWithError = useCallback(
-    async (err: OpenAuthoringError) => {
-      const errorUIDescriptor: OpenAuthoringContextualErrorUI = await interpretError(
-        err
-      )
-      if (errorUIDescriptor.asModal) {
-        setInterpretedError(errorUIDescriptor)
-      } else {
-        cms.alerts.error(errorUIDescriptor.message)
-      }
-    },
-    [cms, setInterpretedError]
-  )
-
-  useEffect(() => {
-    const submitListener = createDecorator({
-      afterSubmitSucceeded: () =>
-        cms.alerts.success(
-          `Saved Successfully: Changes committed to ${Cookies.get(
-            'fork_full_name'
-          )}`
-        ),
-      afterSubmitFailed: async failedForm => {
-        updateUIWithError(failedForm.getState().submitError)
-      },
-    })
-
-    const undecorateSaveListener = submitListener(form.finalForm)
-
-    return undecorateSaveListener
-  }, [form])
-
   return (
-    <InlineForm
-      form={form}
-      initialStatus={
-        typeof document !== 'undefined' && editMode ? 'active' : 'inactive'
-      }
-    >
-      <OpenAuthoringModalContainer openAuthoringErrorUI={interpretedError} />
-      {children}
-    </InlineForm>
+    <>
+      <FormAlerts form={form} />
+      <InlineForm
+        form={form}
+        initialStatus={
+          typeof document !== 'undefined' && editMode ? 'active' : 'inactive'
+        }
+      >
+        {children}
+      </InlineForm>
+    </>
   )
 }
 
