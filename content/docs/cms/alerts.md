@@ -12,16 +12,16 @@ Display an alert by calling one of the **alert level methods** on the CMS object
 cms.alerts.info('This is an alert')
 ```
 
-[[ AlertTest type="info" message="This is an alert"]]
+{{ AlertTest type="info" message="This is an alert"}}
 
 ## Alert Levels
 
 The CMS supports four alert levels: `success`, `info`, `warn`, and `error`. Each alert level is its own method on `cms.alerts`; call the corresponding method with your message to trigger the appropriate alert.
 
-[[ AlertTest type="success" message="This is a 'success' alert" buttonText="Success"]]
-[[ AlertTest type="info" message="This is an 'info' alert" buttonText="Info"]]
-[[ AlertTest type="warn" message="This is a 'warn' alert" buttonText="Warn"]]
-[[ AlertTest type="error" message="This is an 'error' alert" buttonText="Error"]]
+{{ AlertTest type="success" message="This is a 'success' alert" buttonText="Success"}}
+{{ AlertTest type="info" message="This is an 'info' alert" buttonText="Info"}}
+{{ AlertTest type="warn" message="This is a 'warn' alert" buttonText="Warn"}}
+{{ AlertTest type="error" message="This is an 'error' alert" buttonText="Error"}}
 
 ## Alert Timeout
 
@@ -31,7 +31,7 @@ You can also optionally pass in a _timeout_ argument that specifies the message 
 cms.alerts.info('This alert will hang around a little longer', 5000)
 ```
 
-[[ AlertTest type="info" message="This alert will hang around a little longer", timeout="5000"]]
+{{ AlertTest type="info" message="This alert will hang around a little longer", timeout="5000"}}
 
 ## Usage Example
 

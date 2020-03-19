@@ -127,7 +127,7 @@ export const getStaticProps: GetStaticProps = async function({
         .slice(0, -1)
         .join('.')
 
-      const excerpt = formatExcerpt(post.markdownBody)
+      const excerpt = await formatExcerpt(post.markdownBody)
 
       return {
         data: { ...post.frontmatter, slug },
