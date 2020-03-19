@@ -42,8 +42,7 @@ function CommunityPage({
   const [data, form] = useLocalGithubJsonForm(
     community,
     formOptions,
-    sourceProviderConnection,
-    editMode
+    sourceProviderConnection
   )
 
   return (

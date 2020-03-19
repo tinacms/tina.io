@@ -108,8 +108,7 @@ const HomePage = (props: any) => {
         },
       ],
     },
-    props.sourceProviderConnection,
-    props.editMode
+    props.sourceProviderConnection
   )
 
   return (

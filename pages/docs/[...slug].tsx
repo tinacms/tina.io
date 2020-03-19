@@ -29,8 +29,7 @@ function DocTemplate(props) {
   const [data, form] = useLocalGithubMarkdownForm(
     props.markdownFile,
     formOptions,
-    props.sourceProviderConnection,
-    props.editMode
+    props.sourceProviderConnection
   )
   const [open, setOpen] = useState(false)
   const frontmatter = data.frontmatter

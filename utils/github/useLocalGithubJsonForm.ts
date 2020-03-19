@@ -15,10 +15,9 @@ export interface Options {
 const useGithubJsonForm = <T = any>(
   jsonFile: GitFile<T>,
   formOptions: Options,
-  githubOptions: GithubOptions,
-  isEditMode: boolean
+  githubOptions: GithubOptions
 ) => {
-  useGithubForm(jsonFile, githubOptions, isEditMode)
+  useGithubForm(jsonFile)
 
   const [formData, form] = useLocalForm({
     id: jsonFile.fileRelativePath, // needs to be unique
@@ -52,15 +51,9 @@ const useGithubJsonForm = <T = any>(
 export function useLocalGithubJsonForm(
   jsonFile: GitFile,
   formOptions: Options,
-  githubOptions: GithubOptions,
-  isEditMode: boolean
+  githubOptions: GithubOptions
 ) {
-  const [values, form] = useGithubJsonForm(
-    jsonFile,
-    formOptions,
-    githubOptions,
-    isEditMode
-  )
+  const [values, form] = useGithubJsonForm(jsonFile, formOptions, githubOptions)
   usePlugins(form as any)
   return [values, form]
 }

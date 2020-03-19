@@ -56,8 +56,7 @@ function TeamsPage(props) {
   const [data, form] = useLocalGithubJsonForm(
     props.teams,
     formOptions,
-    props.sourceProviderConnection,
-    props.editMode
+    props.sourceProviderConnection
   )
 
   return (
