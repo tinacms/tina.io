@@ -33,7 +33,7 @@ const getMarkdownData = async (
       fileRelativePath: filePath,
       data: {
         frontmatter: doc.data,
-        excerpt: formatExcerpt(doc.content),
+        excerpt: await formatExcerpt(doc.content),
         markdownBody: doc.content,
       },
     }

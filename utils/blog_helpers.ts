@@ -1,5 +1,3 @@
-import removeMarkdown from 'remove-markdown'
-
 export function orderPosts(posts) {
   function sortByDate(a, b) {
     const dateA = new Date(a.data.date).getTime()
@@ -9,20 +7,47 @@ export function orderPosts(posts) {
   return posts.slice().sort(sortByDate)
 }
 
-const captureNewlines = /(\r\n|\n|\r)/gm
-
-export function formatExcerpt(content) {
-  const plainTextExcerpt = removeMarkdown(content, {
-    stripListLeaders: true,
-    listUnicodeChar: '',
-    gfm: true,
-    useImgAltText: false,
+async function stripMarkdown(content): Promise<string> {
+  const remark = require('remark')
+  const strip = require('strip-markdown')
+  return new Promise((resolve, reject) => {
+    remark()
+      .use(strip)
+      .process(content, (err, processedContent) => {
+        if (err) reject(err)
+        resolve(String(processedContent))
+      })
   })
-    .substring(0, 200)
-    .replace(captureNewlines, '')
-    .trimEnd()
+}
 
-  return `${plainTextExcerpt}...`
+function removeEndingPunctuation(content: string): string {
+  return content.replace(/[^A-Za-z0-9]$/, '')
+}
+
+function truncateAtWordBoundary(content: string, length: Number): string {
+  let truncatedLength = 0
+  let truncatedContent = ''
+  for (let word of content.split(/\s+/)) {
+    if (truncatedContent.length + word.length < length) {
+      truncatedContent += ` ${word}`
+    } else {
+      return truncatedContent
+    }
+  }
+  return truncatedContent
+}
+
+const whitespace = /\s+/gm
+
+export async function formatExcerpt(content) {
+  const plain = await (await stripMarkdown(content)).replace(whitespace, ' ')
+  const plainTextExcerpt = truncateAtWordBoundary(plain, 200)
+
+  if (plain.length > plainTextExcerpt.length) {
+    return removeEndingPunctuation(plainTextExcerpt) + '&hellip;'
+  }
+
+  return plainTextExcerpt
 }
 
 export function formatDate(fullDate) {
