@@ -4,7 +4,7 @@ import { ModalBody, ModalActions, FieldMeta } from 'tinacms'
 import styled from 'styled-components'
 import React, { useEffect, useState } from 'react'
 import { fetchExistingPR, createPR as createGithubPR } from './github/api'
-import { getHeadBranch } from './utils/cookieHelpers'
+import { getHeadBranch } from './utils/repository'
 
 const BASE_BRANCH = process.env.BASE_BRANCH
 

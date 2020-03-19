@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import {
   setForkName,
   getHeadBranch,
-} from '../../open-authoring/utils/cookieHelpers'
+} from '../../open-authoring/utils/repository'
 
 export default function Authorizing() {
   async function handleForkCreated(forkName: string) {

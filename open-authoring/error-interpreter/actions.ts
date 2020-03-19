@@ -1,6 +1,6 @@
 import { enterEditMode } from '../authFlow'
 import { isGithubTokenValid, isForkValid } from '../github/api'
-import { getForkName } from '../utils/cookieHelpers'
+import { getForkName } from '../utils/repository'
 
 // return true if you want the modal to close
 

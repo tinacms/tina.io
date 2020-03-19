@@ -3,7 +3,7 @@ const qs = require('qs')
 const { b64EncodeUnicode } = require('../../utils/base64')
 const baseBranch = process.env.BASE_BRANCH
 import GithubError from './GithubError'
-import { getForkName, getHeadBranch } from '../../utils/cookieHelpers'
+import { getForkName, getHeadBranch } from '../../utils/repository'
 
 export const fetchExistingPR = async (
   baseRepoFullName,

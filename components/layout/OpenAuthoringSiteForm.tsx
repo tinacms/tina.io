@@ -11,7 +11,7 @@ import { LoadingDots } from '../ui/LoadingDots'
 import { DesktopLabel } from '../ui/inline/DesktopLabel'
 import { ToolbarButton } from '../ui/inline/ToolbarButton'
 import { useLocalStorageCache } from '../../utils/plugins/useLocalStorageCache'
-import { getForkName } from '../../open-authoring/utils/cookieHelpers'
+import { getForkName } from '../../open-authoring/utils/repository'
 import FormAlerts from '../../open-authoring/FormAlerts'
 
 interface Props extends InlineFormProps {

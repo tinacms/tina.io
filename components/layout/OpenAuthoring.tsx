@@ -3,7 +3,7 @@ import {
   isForkValid,
   isGithubTokenValid,
 } from '../../open-authoring/github/api'
-import { getForkName } from '../../open-authoring/utils/cookieHelpers'
+import { getForkName } from '../../open-authoring/utils/repository'
 
 export interface OpenAuthoringContext {
   forkValid: boolean

@@ -1,4 +1,4 @@
-import { setForkName, getForkName } from './utils/cookieHelpers'
+import { setForkName, getForkName } from './utils/repository'
 
 function popupWindow(url, title, window, w, h) {
   const y = window.top.outerHeight / 2 + window.top.screenY - h / 2
