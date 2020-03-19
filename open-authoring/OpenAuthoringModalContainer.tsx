@@ -2,22 +2,33 @@ import { useEffect, useState } from 'react'
 import { ActionableModal } from '../components/ui'
 import { enterEditMode } from './authFlow'
 import { useOpenAuthoring } from '../components/layout/OpenAuthoring'
-import OpenAuthoringContextualErrorUI from './OpenAuthoringContextualErrorUI'
+import OpenAuthoringErrorProps from './OpenAuthoringErrorProps'
 
+/*
+TODO:
+This should either take in openAuthoringErrorUI, or openAuthoringError, & have it be required.
+Otherwise it's a bit weird to sometimes interpret it outside this contet, and sometimes within this context
+*/
 interface Props {
-  error?: OpenAuthoringContextualErrorUI
+  openAuthoringErrorUI?: OpenAuthoringErrorProps
 }
 
-export enum Actions {
-  authFlow,
-  refresh,
-  doNothing
-}
+/*
+  TODO - This modal container is responsible for multiple things:
+  - authPopup on initial load,
+  - responding to & interpreting errors
 
-
-export const OpenAuthoringModalContainer = ({ error }: Props) => {
+  It should probably be more of a dummy modal component, and move that logic elsewhere
+*/
+export const OpenAuthoringModalContainer = (props: Props) => {
   const [authPopupDisplayed, setAuthPopupDisplayed] = useState(false)
-  const [statefulError, setStateFullError] = useState(error)
+  const [openAuthoringErrorUI, setOpenAuthoringErrorUI] = useState(
+    props.openAuthoringErrorUI
+  )
+
+  useEffect(() => {
+    setOpenAuthoringErrorUI(props.openAuthoringErrorUI)
+  }, [props.openAuthoringErrorUI])
 
   const cancelAuth = () => {
     window.history.replaceState(
@@ -39,30 +50,27 @@ export const OpenAuthoringModalContainer = ({ error }: Props) => {
     enterEditMode(openAuthoring.githubAuthenticated, openAuthoring.forkValid)
   }
 
-  const getActionsFromError = (error: OpenAuthoringContextualErrorUI) => {
+  const getActionsFromError = (error: OpenAuthoringErrorProps) => {
     var actions = []
-    error.actions.forEach( action => {
-      actions.push(
-        {
-          name: action.message,
-          action: () => {
-            if (action.action() === true) { // close modal
-              setStateFullError(null)
-            }
+    error.actions.forEach(action => {
+      actions.push({
+        name: action.message,
+        action: () => {
+          if (action.action() === true) {
+            // close modal
+            setOpenAuthoringErrorUI(null)
           }
-        }
-      )
+        },
+      })
     })
     return actions
   }
 
-
   useEffect(() => {
-    if (error) {
-      setStateFullError(error)
+    if (openAuthoringErrorUI) {
       openAuthoring.updateAuthChecks() //recheck if we need to open auth window as result of error
     }
-  }, [error])
+  }, [openAuthoringErrorUI])
 
   return (
     <>
@@ -76,17 +84,17 @@ export const OpenAuthoringModalContainer = ({ error }: Props) => {
               action: runAuthWorkflow,
             },
             {
-              name: 'Cancel',
+              name: 'Cancel d',
               action: cancelAuth,
             },
           ]}
         />
       )}
-      {statefulError && (
-        <ActionableModal 
-          title={statefulError.title}
-          message={statefulError.message}
-          actions={getActionsFromError(statefulError)}
+      {openAuthoringErrorUI && (
+        <ActionableModal
+          title={openAuthoringErrorUI.title}
+          message={openAuthoringErrorUI.message}
+          actions={getActionsFromError(openAuthoringErrorUI)}
         />
       )}
     </>
