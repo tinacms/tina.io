@@ -1,10 +1,10 @@
 import { Button as RawTinaButton } from '@tinacms/styles'
 import { Input, TextArea } from '@tinacms/fields'
 import { ModalBody, ModalActions, FieldMeta } from 'tinacms'
-import Cookies from 'js-cookie'
 import styled from 'styled-components'
 import React, { useEffect, useState } from 'react'
 import { fetchExistingPR, createPR as createGithubPR } from './github/api'
+import { getHeadBranch } from './utils/cookieHelpers'
 
 const BASE_BRANCH = process.env.BASE_BRANCH
 
@@ -13,32 +13,23 @@ interface Props {
   forkRepoFullName: string
 }
 
-export const PRModal = ({
-  forkRepoFullName,
-  baseRepoFullName,
-}: Props) => {
+export const PRModal = ({ forkRepoFullName, baseRepoFullName }: Props) => {
   const [responseMessage, setResponseMessage] = useState('')
   const [fetchedPR, setFetchedPR] = useState(undefined)
-
-  const getHeadBranch = () => {
-    return Cookies.get('head_branch') || 'master'
-  }
 
   const titleInput = React.createRef() as any
   const bodyInput = React.createRef() as any
 
   const checkForPR = () => {
-    fetchExistingPR(
-      baseRepoFullName,
-      forkRepoFullName,
-      getHeadBranch(),
-    ).then(pull => {
-      if (pull) {
-        setFetchedPR(pull)
-      } else {
-        setFetchedPR({ id: null })
+    fetchExistingPR(baseRepoFullName, forkRepoFullName, getHeadBranch()).then(
+      pull => {
+        if (pull) {
+          setFetchedPR(pull)
+        } else {
+          setFetchedPR({ id: null })
+        }
       }
-    })
+    )
   }
 
   const createPR = () => {

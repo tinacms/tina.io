@@ -1,4 +1,4 @@
-import Cookies from 'js-cookie'
+import { setForkName, getForkName } from './utils/cookieHelpers'
 
 function popupWindow(url, title, window, w, h) {
   const y = window.top.outerHeight / 2 + window.top.screenY - h / 2
@@ -18,7 +18,7 @@ function popupWindow(url, title, window, w, h) {
 }
 
 async function handleForkCreated(forkName) {
-  Cookies.set('fork_full_name', forkName, { sameSite: 'strict' })
+  setForkName(forkName)
   fetch(`/api/preview`).then(() => {
     window.location.href = window.location.pathname
   })
@@ -31,7 +31,7 @@ export const enterEditMode = (githubAuthenticated, forkValid) => {
     .toString(36)
     .substring(7)
 
-  const fork = Cookies.get('fork_full_name')
+  const fork = getForkName()
 
   localStorage.setItem('fork_full_name', '')
   if (githubAuthenticated) {

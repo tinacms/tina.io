@@ -6,7 +6,6 @@ import styled, { css } from 'styled-components'
 import { useEffect, useCallback, useState } from 'react'
 import { useCMS, useWatchFormValues, Form, TinaCMS, FieldMeta } from 'tinacms'
 import createDecorator from 'final-form-submit-listener'
-import Cookies from 'js-cookie'
 import { PRPlugin } from '../../open-authoring/PRPlugin'
 import { flattenFormData } from '../../utils/plugins/flatten-form-data'
 import { LoadingDots } from '../ui/LoadingDots'
@@ -16,6 +15,7 @@ import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
 import interpretError from '../../open-authoring/error-interpreter'
 import OpenAuthoringContextualErrorUI from '../../open-authoring/OpenAuthoringContextualErrorUI'
 import { useLocalStorageCache } from '../../utils/plugins/useLocalStorageCache'
+import { getForkName } from '../../open-authoring/utils/cookieHelpers'
 
 interface Props extends InlineFormProps {
   editMode: boolean
@@ -48,7 +48,7 @@ const OpenAuthoringSiteForm = ({
    * Toolbar Plugins
    */
   useEffect(() => {
-    const forkName = Cookies.get('fork_full_name')
+    const forkName = getForkName()
     const plugins = [
       {
         __type: 'toolbar:git',
@@ -152,9 +152,7 @@ const OpenAuthoringSiteForm = ({
     const submitListener = createDecorator({
       afterSubmitSucceeded: () =>
         cms.alerts.success(
-          `Saved Successfully: Changes committed to ${Cookies.get(
-            'fork_full_name'
-          )}`
+          `Saved Successfully: Changes committed to ${getForkName()}`
         ),
       afterSubmitFailed: async failedForm => {
         updateUIWithError(failedForm.getState().submitError)

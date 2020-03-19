@@ -2,8 +2,8 @@ const axios = require('axios')
 const qs = require('qs')
 const { b64EncodeUnicode } = require('../../utils/base64')
 const baseBranch = process.env.BASE_BRANCH
-const Cookies = require('js-cookie')
 import GithubError from './GithubError'
+import { getForkName, getHeadBranch } from '../../utils/cookieHelpers'
 
 export const fetchExistingPR = async (
   baseRepoFullName,
@@ -102,7 +102,7 @@ export const saveContent = async (
 
   //2xx status codes
   if (response.status.toString()[0] == '2') return data
-  
+
   throw new GithubError(response.statusText, response.status)
 }
 
@@ -150,17 +150,16 @@ export const getUser = async () => {
 
 export const isForkValid = async forkName => {
   if (!forkName) {
-    forkName = Cookies.get("fork_full_name")
+    forkName = getForkName()
     if (!forkName) {
       return false
     }
   }
-  const branch = Cookies.get('head_branch') || 'master'
+  const branch = getHeadBranch()
 
   const forkData = await getBranch(forkName, branch)
   if (!forkData) return false
   if (forkData.ref === 'refs/heads/' + branch) {
-    Cookies.set('head_branch', branch)
     return true
   }
   return false
@@ -173,7 +172,12 @@ export const isGithubTokenValid = async () => {
 }
 
 //TODO - move axios endpoints into own file from fetch requests
-export const getContent = async (repoFullName, headBranch, path, accessToken) => {
+export const getContent = async (
+  repoFullName,
+  headBranch,
+  path,
+  accessToken
+) => {
   return axios({
     method: 'GET',
     url: `https://api.github.com/repos/${repoFullName}/contents/${path}?ref=${headBranch}`,
