@@ -1,6 +1,6 @@
 const axios = require('axios')
 const qs = require('qs')
-import { getForkName, getHeadBranch } from '../../utils/repository'
+import { getHeadBranch } from '../../utils/repository'
 
 const getBranch = async (repoFullName, branch) => {
   // uses proxy
@@ -16,7 +16,12 @@ const getBranch = async (repoFullName, branch) => {
     })
 
     const data = await response.json()
-    if (response.status === 200) return data
+    if (response.status === 200) {
+      if (data.ref.startsWith('refs/heads/')) {
+        //check if branch, and not tag
+        return data
+      }
+    }
     return
   } catch (err) {
     return
@@ -27,11 +32,8 @@ export const isForkValid = async (forkName: string) => {
   const branch = getHeadBranch()
 
   const forkData = await getBranch(forkName, branch)
-  if (!forkData) return false
-  if (forkData.ref === 'refs/heads/' + branch) {
-    return true
-  }
-  return false
+
+  return !!forkData
 }
 
 //TODO - move axios endpoints into own file from fetch requests

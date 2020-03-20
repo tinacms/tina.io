@@ -21,7 +21,12 @@ export class GithubBackendApi {
       })
 
       const data = await response.json()
-      if (response.status === 200) return data
+      if (response.status === 200) {
+        if (data.ref.startsWith('refs/heads/')) {
+          //check if branch, and not tag
+          return data
+        }
+      }
       return // Bubble up error here?
     } catch (err) {
       return // Bubble up error here?
