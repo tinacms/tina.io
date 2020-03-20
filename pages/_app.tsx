@@ -10,7 +10,7 @@ import { OpenAuthoring } from '../components/layout/OpenAuthoring'
 import { Toolbar } from '../components/cms/Toolbar'
 import { BrowserStorageApi } from '../utils/plugins/BrowserStorageApi'
 import { Alerts } from '../components/layout/Alerts'
-import { GithubBackendApi } from '../utils/plugins/GithubBackendApi'
+import { GithubApi } from '../utils/plugins/GithubApi'
 
 const MainLayout = ({ Component, pageProps }) => {
   /*
@@ -20,7 +20,7 @@ const MainLayout = ({ Component, pageProps }) => {
    */
   const tinaConfig = {
     apis: {
-      github: new GithubBackendApi(`/api/proxy-github`),
+      github: new GithubApi(`/api/proxy-github`),
       storage:
         typeof window !== 'undefined'
           ? new BrowserStorageApi(window.localStorage)

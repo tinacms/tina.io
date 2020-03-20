@@ -1,7 +1,7 @@
 import { b64EncodeUnicode } from '../../open-authoring/utils/base64'
 import GithubError from '../../open-authoring/github/api/GithubError'
 
-export class GithubBackendApi {
+export class GithubApi {
   proxy: string
   constructor(proxy: string) {
     this.proxy = proxy
