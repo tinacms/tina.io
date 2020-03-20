@@ -28,6 +28,13 @@ export class GithubApi {
     }
   }
 
+  async createFork() {
+    return this.proxyRequest({
+      url: `https://api.github.com/repos/${process.env.REPO_FULL_NAME}/forks`,
+      method: 'POST',
+    })
+  }
+
   async createPR(baseRepoFullName, forkRepoFullName, headBranch, title, body) {
     try {
       const response = await this.proxyRequest({

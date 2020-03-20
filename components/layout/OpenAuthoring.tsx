@@ -32,8 +32,6 @@ export const OpenAuthoring = ({ children }) => {
 
   const updateAuthChecks = async () => {
     setGithubAuthenticated(await !!cms.api.github.getUser())
-
-    const forkName = getForkName()
     setForkValid(await cms.api.github.getBranch(getForkName(), getHeadBranch()))
   }
   useEffect(() => {
