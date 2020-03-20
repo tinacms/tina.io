@@ -1,3 +1,3 @@
-import createAccessToken from '../../github/api/create-access-token'
+import createAccessToken from '../../github/api/req/create-access-token'
 
 export default createAccessToken

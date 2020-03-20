@@ -1,7 +1,7 @@
 const qs = require('qs')
 import { serialize } from 'cookie'
 
-const { createAccessToken } = require('../../open-authoring/github/api')
+const { createAccessToken } = require('../../../open-authoring/github/api')
 
 export default (req, res) => {
   createAccessToken(
