@@ -1,5 +1,4 @@
-import { FormOptions, useLocalForm, usePlugins, Field } from 'tinacms'
-import { saveContent } from '../../open-authoring/github/api'
+import { FormOptions, useLocalForm, usePlugins, Field, useCMS } from 'tinacms'
 import { getCachedFormData, setCachedFormData } from '../formCache'
 import { useGithubForm, GithubOptions, GitFile } from './useGithubForm'
 import { FORM_ERROR } from 'final-form'
@@ -17,6 +16,7 @@ const useGithubJsonForm = <T = any>(
   formOptions: Options,
   githubOptions: GithubOptions
 ) => {
+  const cms = useCMS()
   useGithubForm(jsonFile)
 
   const [formData, form] = useLocalForm({
@@ -26,14 +26,15 @@ const useGithubJsonForm = <T = any>(
     fields: formOptions.fields || [],
     // save & commit the file when the "save" button is pressed
     onSubmit(formData, form) {
-      return saveContent(
-        githubOptions.forkFullName,
-        githubOptions.branch,
-        jsonFile.fileRelativePath,
-        getCachedFormData(jsonFile.fileRelativePath).sha,
-        JSON.stringify(formData, null, 2),
-        'Update from TinaCMS'
-      )
+      return cms.api.github
+        .save(
+          githubOptions.forkFullName,
+          githubOptions.branch,
+          jsonFile.fileRelativePath,
+          getCachedFormData(jsonFile.fileRelativePath).sha,
+          JSON.stringify(formData, null, 2),
+          'Update from TinaCMS'
+        )
         .then(response => {
           setCachedFormData(jsonFile.fileRelativePath, {
             sha: response.content.sha,

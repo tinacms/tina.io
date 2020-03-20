@@ -2,7 +2,6 @@ import React from 'react'
 import App from 'next/app'
 import Head from 'next/head'
 import { TinaCMS, Tina } from 'tinacms'
-import { GitClient } from '@tinacms/git-client'
 import { DefaultSeo } from 'next-seo'
 import data from '../content/siteConfig.json'
 import TagManager from 'react-gtm-module'
@@ -11,6 +10,7 @@ import { OpenAuthoring } from '../components/layout/OpenAuthoring'
 import { Toolbar } from '../components/cms/Toolbar'
 import { BrowserStorageApi } from '../utils/plugins/BrowserStorageApi'
 import { Alerts } from '../components/layout/Alerts'
+import { GithubBackendApi } from '../utils/plugins/GithubBackendApi'
 
 const MainLayout = ({ Component, pageProps }) => {
   /*
@@ -20,7 +20,7 @@ const MainLayout = ({ Component, pageProps }) => {
    */
   const tinaConfig = {
     apis: {
-      git: new GitClient('http://localhost:3000/___tina'),
+      github: new GithubBackendApi(`/api/proxy-github`),
       storage:
         typeof window !== 'undefined'
           ? new BrowserStorageApi(window.localStorage)

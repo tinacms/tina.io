@@ -80,9 +80,10 @@ export const saveContent = async (
   path,
   sha,
   content,
-  message
+  message,
+  proxy: string
 ) => {
-  const response = await fetch(`/api/proxy-github`, {
+  const response = await fetch(proxy, {
     method: 'POST',
     body: JSON.stringify({
       proxy_data: {

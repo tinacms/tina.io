@@ -1,6 +1,5 @@
 import { toMarkdownString } from 'next-tinacms-markdown'
 import { CMS, Field, AddContentPlugin } from 'tinacms'
-import { saveContent } from '../../open-authoring/github/api'
 import { getCachedFormData, setCachedFormData } from '../formCache'
 import { GithubOptions } from '../github/useGithubForm'
 import { FORM_ERROR } from 'final-form'
@@ -81,18 +80,19 @@ export class MarkdownCreatorPlugin<FormShape = any, FrontmatterShape = any>
     const frontmatter = await this.frontmatter(form)
     const markdownBody = await this.body(form)
 
-    saveContent(
-      this.githubOptions.forkFullName,
-      this.githubOptions.branch,
-      fileRelativePath,
-      getCachedFormData(fileRelativePath).sha,
-      toMarkdownString({
+    cms.api.github
+      .save(
+        this.githubOptions.forkFullName,
+        this.githubOptions.branch,
         fileRelativePath,
-        frontmatter,
-        markdownBody,
-      }),
-      'Update from TinaCMS'
-    )
+        getCachedFormData(fileRelativePath).sha,
+        toMarkdownString({
+          fileRelativePath,
+          frontmatter,
+          markdownBody,
+        }),
+        'Update from TinaCMS'
+      )
       .then(response => {
         setCachedFormData(fileRelativePath, {
           sha: response.content.sha,
