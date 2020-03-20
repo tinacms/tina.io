@@ -7,6 +7,26 @@ export class GithubBackendApi {
     this.proxy = proxy
   }
 
+  async getBranch(repoFullName: string, branch: string) {
+    try {
+      const response = await fetch(this.proxy, {
+        method: 'POST',
+        body: JSON.stringify({
+          proxy_data: {
+            url: `https://api.github.com/repos/${repoFullName}/git/ref/heads/${branch}`,
+            method: 'GET',
+          },
+        }),
+      })
+
+      const data = await response.json()
+      if (response.status === 200) return data
+      return // TODO - should we be throwing error here?
+    } catch (err) {
+      return //TODO - also here?
+    }
+  }
+
   async save(
     repo: string,
     branch: string,
