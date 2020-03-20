@@ -10,14 +10,9 @@ export class GithubApi {
   async getUser() {
     // uses proxy
     try {
-      const response = await fetch(this.proxy, {
-        method: 'POST',
-        body: JSON.stringify({
-          proxy_data: {
-            url: `https://api.github.com/user`,
-            method: 'GET',
-          },
-        }),
+      const response = await this.proxyRequest({
+        url: `https://api.github.com/user`,
+        method: 'GET',
       })
 
       const data = await response.json()
@@ -35,20 +30,15 @@ export class GithubApi {
 
   async createPR(baseRepoFullName, forkRepoFullName, headBranch, title, body) {
     try {
-      const response = await fetch(this.proxy, {
+      const response = await this.proxyRequest({
+        url: `https://api.github.com/repos/${baseRepoFullName}/pulls`,
         method: 'POST',
-        body: JSON.stringify({
-          proxy_data: {
-            url: `https://api.github.com/repos/${baseRepoFullName}/pulls`,
-            method: 'POST',
-            data: {
-              title: title ? title : 'Update from TinaCMS',
-              body: body ? body : 'Please pull these awesome changes in!',
-              head: `${forkRepoFullName.split('/')[0]}:${headBranch}`,
-              base: process.env.BASE_BRANCH,
-            },
-          },
-        }),
+        data: {
+          title: title ? title : 'Update from TinaCMS',
+          body: body ? body : 'Please pull these awesome changes in!',
+          head: `${forkRepoFullName.split('/')[0]}:${headBranch}`,
+          base: process.env.BASE_BRANCH,
+        },
       })
 
       const data = await response.json()
@@ -61,14 +51,9 @@ export class GithubApi {
 
   async fetchExistingPR(baseRepoFullName, forkRepoFullName, headBranch) {
     try {
-      const response = await fetch(this.proxy, {
-        method: 'POST',
-        body: JSON.stringify({
-          proxy_data: {
-            url: `https://api.github.com/repos/${baseRepoFullName}/pulls`,
-            method: 'GET',
-          },
-        }),
+      const response = await this.proxyRequest({
+        url: `https://api.github.com/repos/${baseRepoFullName}/pulls`,
+        method: 'GET',
       })
 
       const data = await response.json()
@@ -94,14 +79,9 @@ export class GithubApi {
 
   async getBranch(repoFullName: string, branch: string) {
     try {
-      const response = await fetch(this.proxy, {
-        method: 'POST',
-        body: JSON.stringify({
-          proxy_data: {
-            url: `https://api.github.com/repos/${repoFullName}/git/ref/heads/${branch}`,
-            method: 'GET',
-          },
-        }),
+      const response = await this.proxyRequest({
+        url: `https://api.github.com/repos/${repoFullName}/git/ref/heads/${branch}`,
+        method: 'GET',
       })
 
       const data = await response.json()
@@ -120,20 +100,15 @@ export class GithubApi {
     formData: string,
     message: string = 'Update from TinaCMS'
   ) {
-    const response = await fetch(this.proxy, {
-      method: 'POST',
-      body: JSON.stringify({
-        proxy_data: {
-          url: `https://api.github.com/repos/${repo}/contents/${filePath}`,
-          method: 'PUT',
-          data: {
-            message,
-            content: b64EncodeUnicode(formData),
-            sha,
-            branch: branch,
-          },
-        },
-      }),
+    const response = await this.proxyRequest({
+      url: `https://api.github.com/repos/${repo}/contents/${filePath}`,
+      method: 'PUT',
+      data: {
+        message,
+        content: b64EncodeUnicode(formData),
+        sha,
+        branch: branch,
+      },
     })
 
     const data = await response.json()
@@ -142,5 +117,14 @@ export class GithubApi {
     if (response.status.toString()[0] == '2') return data
 
     throw new GithubError(response.statusText, response.status)
+  }
+
+  private proxyRequest(data) {
+    return fetch(this.proxy, {
+      method: 'POST',
+      body: JSON.stringify({
+        proxy_data: data,
+      }),
+    })
   }
 }
