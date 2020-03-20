@@ -22,7 +22,7 @@ export const PRModal = ({ forkRepoFullName, baseRepoFullName }: Props) => {
 
   const checkForPR = () => {
     cms.api.github
-      .fetchExistingPR(baseRepoFullName, forkRepoFullName, getHeadBranch())
+      .fetchExistingPR(forkRepoFullName, getHeadBranch())
       .then(pull => {
         if (pull) {
           setFetchedPR(pull)
@@ -35,7 +35,6 @@ export const PRModal = ({ forkRepoFullName, baseRepoFullName }: Props) => {
   const createPR = () => {
     cms.api.github
       .createPR(
-        baseRepoFullName,
         forkRepoFullName,
         getHeadBranch(),
         titleInput.current.value,

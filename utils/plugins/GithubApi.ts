@@ -3,8 +3,10 @@ import GithubError from '../../open-authoring/github/api/GithubError'
 
 export class GithubApi {
   proxy: string
-  constructor(proxy: string) {
+  baseRepoFullName: string
+  constructor(proxy: string, baseRepoFullName: string) {
     this.proxy = proxy
+    this.baseRepoFullName = baseRepoFullName
   }
 
   async getUser() {
@@ -35,10 +37,10 @@ export class GithubApi {
     })
   }
 
-  async createPR(baseRepoFullName, forkRepoFullName, headBranch, title, body) {
+  async createPR(forkRepoFullName, headBranch, title, body) {
     try {
       const response = await this.proxyRequest({
-        url: `https://api.github.com/repos/${baseRepoFullName}/pulls`,
+        url: `https://api.github.com/repos/${this.baseRepoFullName}/pulls`,
         method: 'POST',
         data: {
           title: title ? title : 'Update from TinaCMS',
@@ -56,10 +58,10 @@ export class GithubApi {
     }
   }
 
-  async fetchExistingPR(baseRepoFullName, forkRepoFullName, headBranch) {
+  async fetchExistingPR(forkRepoFullName, headBranch) {
     try {
       const response = await this.proxyRequest({
-        url: `https://api.github.com/repos/${baseRepoFullName}/pulls`,
+        url: `https://api.github.com/repos/${this.baseRepoFullName}/pulls`,
         method: 'GET',
       })
 
@@ -70,7 +72,7 @@ export class GithubApi {
         if (headBranch === pull.head.ref) {
           if (
             pull.head.repo?.full_name === forkRepoFullName &&
-            pull.base.repo?.full_name === baseRepoFullName
+            pull.base.repo?.full_name === this.baseRepoFullName
           ) {
             return pull // found matching PR
           }

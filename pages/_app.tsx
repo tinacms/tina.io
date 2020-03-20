@@ -20,7 +20,7 @@ const MainLayout = ({ Component, pageProps }) => {
    */
   const tinaConfig = {
     apis: {
-      github: new GithubApi(`/api/proxy-github`),
+      github: new GithubApi('/api/proxy-github', process.env.REPO_FULL_NAME),
       storage:
         typeof window !== 'undefined'
           ? new BrowserStorageApi(window.localStorage)
