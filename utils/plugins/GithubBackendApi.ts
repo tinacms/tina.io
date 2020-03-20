@@ -1,4 +1,5 @@
-import { saveContent } from '../../open-authoring/github/api'
+import { b64EncodeUnicode } from '../../open-authoring/utils/base64'
+import GithubError from '../../open-authoring/github/api/GithubError'
 
 export class GithubBackendApi {
   proxy: string
@@ -6,22 +7,35 @@ export class GithubBackendApi {
     this.proxy = proxy
   }
 
-  save(
-    forkFullName: string,
+  async save(
+    repo: string,
     branch: string,
-    fileRelativePath: string,
+    filePath: string,
     sha: string,
     formData: string,
     message: string = 'Update from TinaCMS'
   ) {
-    return saveContent(
-      forkFullName,
-      branch,
-      fileRelativePath,
-      sha,
-      formData,
-      message,
-      this.proxy
-    )
+    const response = await fetch(this.proxy, {
+      method: 'POST',
+      body: JSON.stringify({
+        proxy_data: {
+          url: `https://api.github.com/repos/${repo}/contents/${filePath}`,
+          method: 'PUT',
+          data: {
+            message,
+            content: b64EncodeUnicode(formData),
+            sha,
+            branch: branch,
+          },
+        },
+      }),
+    })
+
+    const data = await response.json()
+
+    //2xx status codes
+    if (response.status.toString()[0] == '2') return data
+
+    throw new GithubError(response.statusText, response.status)
   }
 }

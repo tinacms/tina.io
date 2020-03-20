@@ -74,39 +74,6 @@ export const createPR = async (
   }
 }
 
-export const saveContent = async (
-  repoFullName,
-  headBranch,
-  path,
-  sha,
-  content,
-  message,
-  proxy: string
-) => {
-  const response = await fetch(proxy, {
-    method: 'POST',
-    body: JSON.stringify({
-      proxy_data: {
-        url: `https://api.github.com/repos/${repoFullName}/contents/${path}`,
-        method: 'PUT',
-        data: {
-          message,
-          content: b64EncodeUnicode(content),
-          sha,
-          branch: headBranch,
-        },
-      },
-    }),
-  })
-
-  const data = await response.json()
-
-  //2xx status codes
-  if (response.status.toString()[0] == '2') return data
-
-  throw new GithubError(response.statusText, response.status)
-}
-
 export const getBranch = async (repoFullName, branch) => {
   // uses proxy
   try {
