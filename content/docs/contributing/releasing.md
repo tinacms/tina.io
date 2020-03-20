@@ -48,7 +48,7 @@ The general release process looks like this:
 
    The source must be compiled, minified, and uglified in preparation for release.
 
-1. **Generate CHANGELOGs and git tags:**
+1. **Generate CHANGELOGs and Git tags:**
 
    We use `lerna` to generate CHANGELOG files automatically from our commit messages.
 
@@ -65,7 +65,7 @@ The general release process looks like this:
 
    You must have an NPM_TOKEN set locally that has access to the `@tinacms` organization
 
-1. **Push CHANGELOGs and git tags to Github:**
+1. **Push CHANGELOGs and Git tags to Github:**
 
    Let everyone know!
 
@@ -79,7 +79,7 @@ The exact commands vary slightly depending on the type of release being made.
    npm run build
    ```
 
-1. **Generate CHANGELOGs and git tags:**
+1. **Generate CHANGELOGs and Git tags:**
 
    ```
    lerna version \
@@ -100,7 +100,7 @@ The exact commands vary slightly depending on the type of release being made.
    ```
    lerna publish from-package --dist-tag next
    ```
-1. **Push CHANGELOGs and git tags to Github:**
+1. **Push CHANGELOGs and Git tags to Github:**
    ```
    git push && git push --tags
    ```
@@ -113,7 +113,7 @@ The exact commands vary slightly depending on the type of release being made.
    npm run build
    ```
 
-1. **Generate CHANGELOGs and git tags:**
+1. **Generate CHANGELOGs and Git tags:**
 
    ```
    lerna version \
@@ -136,7 +136,7 @@ The exact commands vary slightly depending on the type of release being made.
    lerna publish from-package
    ```
 
-1) **Push CHANGELOGs and git tags to Github:**
+1) **Push CHANGELOGs and Git tags to Github:**
    ```
    git push && git push --tags
    ```
@@ -149,7 +149,7 @@ The exact commands vary slightly depending on the type of release being made.
    npm run build
    ```
 
-1. **Generate CHANGELOGs and git tags:**
+1. **Generate CHANGELOGs and Git tags:**
 
    ```
    lerna version \
@@ -169,7 +169,7 @@ The exact commands vary slightly depending on the type of release being made.
    ```
    lerna publish from-package
    ```
-1. **Push CHANGELOGs and git tags to Github:**
+1. **Push CHANGELOGs and Git tags to Github:**
    ```
    git push && git push --tags
    ```

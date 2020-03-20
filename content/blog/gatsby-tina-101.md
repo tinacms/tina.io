@@ -184,7 +184,7 @@ Navigate to a blog post and click the "Pencil" icon in the bottom left-hand corn
 
 Awesome right? Here I've changed the author from "Jane Doe" to "Madelyn Eriksen". I can save those changes in the Tina sidebar too. That process triggers an automatic commit in `git` and pushes to a remote branch.
 
-**How Tina interacts with git is entirely configurable.** It's possible to change the commit message, disable automatic commits, or even change the git user.
+**How Tina interacts with Git is entirely configurable.** It's possible to change the commit message, disable automatic commits, or even change the Git user.
 
 ```diff
 //gatsby-config.js

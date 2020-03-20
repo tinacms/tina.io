@@ -130,6 +130,42 @@
     "slug": "/docs/inline-editing"
   },
   {
+    "title": "Tina + NextJS",
+    "id": "nextjs",
+    "items": [
+      {
+        "id": "/docs/nextjs/overview",
+        "slug": "/docs/nextjs/overview",
+        "title": "Overview"
+      },
+      {
+        "id": "/docs/nextjs/bootstrapping",
+        "slug": "/docs/nextjs/bootstrapping",
+        "title": "Bootstrapping Tina"
+      },
+      {
+        "id": "/docs/nextjs/adding-backends",
+        "slug": "/docs/nextjs/adding-backends",
+        "title": "Adding a Backend"
+      },
+      {
+        "id": "/docs/nextjs/creating-forms",
+        "slug": "/docs/nextjs/creating-forms",
+        "title": "Creating Forms"
+      },
+      {
+        "id": "/docs/nextjs/markdown",
+        "slug": "/docs/nextjs/markdown",
+        "title": "Using Markdown Files"
+      },
+      {
+        "id": "/docs/nextjs/inline-editing",
+        "slug": "/docs/nextjs/inline-editing",
+        "title": "Inline Editing"
+      }
+    ]
+  },
+  {
     "title": "Tina + Gatsby",
     "id": "gasby",
     "items": [
@@ -171,42 +207,6 @@
       {
         "id": "/docs/gatsby/inline-editing",
         "slug": "/docs/gatsby/inline-editing",
-        "title": "Inline Editing"
-      }
-    ]
-  },
-  {
-    "title": "Tina + NextJS",
-    "id": "nextjs",
-    "items": [
-      {
-        "id": "/docs/nextjs/overview",
-        "slug": "/docs/nextjs/overview",
-        "title": "Overview"
-      },
-      {
-        "id": "/docs/nextjs/bootstrapping",
-        "slug": "/docs/nextjs/bootstrapping",
-        "title": "Bootstrapping Tina"
-      },
-      {
-        "id": "/docs/nextjs/adding-backends",
-        "slug": "/docs/nextjs/adding-backends",
-        "title": "Adding a Backend"
-      },
-      {
-        "id": "/docs/nextjs/creating-forms",
-        "slug": "/docs/nextjs/creating-forms",
-        "title": "Creating Forms"
-      },
-      {
-        "id": "/docs/nextjs/markdown",
-        "slug": "/docs/nextjs/markdown",
-        "title": "Using Markdown Files"
-      },
-      {
-        "id": "/docs/nextjs/inline-editing",
-        "slug": "/docs/nextjs/inline-editing",
         "title": "Inline Editing"
       }
     ]
