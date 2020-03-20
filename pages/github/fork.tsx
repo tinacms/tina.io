@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { getUser } from '../../open-authoring/github/api'
 import { AuthLayout } from '../../components/layout'
 import { Button } from '../../components/ui'
 import styled from 'styled-components'
@@ -46,7 +45,7 @@ export default function Authorizing() {
     ;(async () => {
       const branch = getHeadBranch()
 
-      const userData = await getUser()
+      const userData = await cms.api.github.getUser()
       if (!userData) return setForkValidating(false)
       const login = userData.login
       const expectedFork =

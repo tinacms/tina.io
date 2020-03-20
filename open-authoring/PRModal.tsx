@@ -1,9 +1,8 @@
 import { Button as RawTinaButton } from '@tinacms/styles'
 import { Input, TextArea } from '@tinacms/fields'
-import { ModalBody, ModalActions, FieldMeta } from 'tinacms'
+import { ModalBody, ModalActions, FieldMeta, useCMS } from 'tinacms'
 import styled from 'styled-components'
 import React, { useEffect, useState } from 'react'
-import { fetchExistingPR, createPR as createGithubPR } from './github/api'
 import { getHeadBranch } from './utils/repository'
 
 const BASE_BRANCH = process.env.BASE_BRANCH
@@ -16,30 +15,32 @@ interface Props {
 export const PRModal = ({ forkRepoFullName, baseRepoFullName }: Props) => {
   const [responseMessage, setResponseMessage] = useState('')
   const [fetchedPR, setFetchedPR] = useState(undefined)
+  const cms = useCMS()
 
   const titleInput = React.createRef() as any
   const bodyInput = React.createRef() as any
 
   const checkForPR = () => {
-    fetchExistingPR(baseRepoFullName, forkRepoFullName, getHeadBranch()).then(
-      pull => {
+    cms.api.github
+      .fetchExistingPR(baseRepoFullName, forkRepoFullName, getHeadBranch())
+      .then(pull => {
         if (pull) {
           setFetchedPR(pull)
         } else {
           setFetchedPR({ id: null })
         }
-      }
-    )
+      })
   }
 
   const createPR = () => {
-    createGithubPR(
-      baseRepoFullName,
-      forkRepoFullName,
-      getHeadBranch(),
-      titleInput.current.value,
-      bodyInput.current.value
-    )
+    cms.api.github
+      .createPR(
+        baseRepoFullName,
+        forkRepoFullName,
+        getHeadBranch(),
+        titleInput.current.value,
+        bodyInput.current.value
+      )
       .then(response => {
         checkForPR() // TODO - can we use PR from response instead of refetching?
       })
