@@ -23,13 +23,7 @@ const getBranch = async (repoFullName, branch) => {
   }
 }
 
-export const isForkValid = async forkName => {
-  if (!forkName) {
-    forkName = getForkName()
-    if (!forkName) {
-      return false
-    }
-  }
+export const isForkValid = async (forkName: string) => {
   const branch = getHeadBranch()
 
   const forkData = await getBranch(forkName, branch)
