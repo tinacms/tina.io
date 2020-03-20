@@ -60,7 +60,7 @@ This needs to be set to ensure that Tina knows that it is being run in a *Cloud 
 
 ### `SSH_KEY` 🔑
 
-The `SSH_KEY` is a private key that allows write access to your git repo from our cloud editing environment.
+The `SSH_KEY` is a private key that allows write access to your Git repo from our cloud editing environment.
 
 Let's start by creating a new keypair using the following command. (Make a note of your key path/name, and when prompted for a password leave it blank)
 

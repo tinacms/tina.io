@@ -26,7 +26,7 @@ The choice is up to you!
 
 You can fire up a **cloud editing environment** using one of these services and have users start making commits.
 
-> If you're using git as your backend, you may choose to host your master branch on the cloud editing environment (and have all commits deployed to your live site), or you can host a separate staging branch.
+> If you're using Git as your backend, you may choose to host your master branch on the cloud editing environment (and have all commits deployed to your live site), or you can host a separate staging branch.
 
 ### Tina Teams
 

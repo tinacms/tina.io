@@ -7,7 +7,7 @@ consumes:
   - file: /packages/@tinacms/api-git/src/router.ts
     details: Describes GitRouterConfig interface
   - file: /packages/gatsby-tinacms-git/gatsby-node.ts
-    details: Expects gatsby-tinacms-git to pass options directly to git router
+    details: Expects gatsby-tinacms-git to pass options directly to Git router
 ---
 
 The Git plugin provides some options that can be adjusted.
@@ -53,8 +53,8 @@ module.exports = {
 - `pathToRepo`: The base-path to the repository where the content is stored in. Default: The repository root.
 - `pathToContent`: The directory to the root of your app within the repository. Default: The repository root. This can be useful for monorepos, when you have multiple sites within one repository.
 - `defaultCommitMessage`: The default commit message. Default: 'Edited with TinaCMS'
-- `defaultCommitName`: The default git user name.
-- `defaultCommitEmail`: The default git user email.
+- `defaultCommitName`: The default Git user name.
+- `defaultCommitEmail`: The default Git user email.
 - `pushOnCommit`: Indicates if every commit should also be pushed automatically. Default: `true`.
 - `gitRemote`: Git SSH remote url for the repository. Default: `undefined`.
 - `sshKey`: Base64 encoded SSH private key that has access to the repository. **This should not be committed to your repository.** This value should be `undefined` or load the key from an environment variable (ie. `process.env.SSH_KEY`) Default: `undefined`.
