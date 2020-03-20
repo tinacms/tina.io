@@ -8,24 +8,20 @@ export default function Authorizing() {
 
   const requestGithubAccessToken = async (code: string, authState: string) => {
     const resp = await fetch(
-      `/api/get-github-access-token?code=${code}&state=${authState}`
+      `/api/create-github-access-token?code=${code}&state=${authState}`
     )
   }
 
   useEffect(() => {
-    ( async () => {
+    ;(async () => {
       const urlParams = new URLSearchParams(window.location.search)
       const code = urlParams.get('code')
       const state = urlParams.get('state')
-      // localStorage.setItem('github_code', code)
 
       await handleAuthCode(code, state)
 
-      window.location.assign(
-        "/github/fork"
-      )
+      window.location.assign('/github/fork')
     })()
-    
   }, [])
   return (
     <AuthLayout>
