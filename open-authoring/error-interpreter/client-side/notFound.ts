@@ -4,7 +4,8 @@ import OpenAuthoringErrorProps from '../../OpenAuthoringErrorProps'
 import { enterAuthFlow, refresh, justClose } from '../actions'
 
 export default async function interpretNotFoundError(
-  error: OpenAuthoringError
+  error: OpenAuthoringError,
+  github: any
 ) {
   if (await isForkValid(null)) {
     // drill down further in the future
@@ -27,7 +28,7 @@ export default async function interpretNotFoundError(
     [
       {
         message: 'Continue',
-        action: enterAuthFlow,
+        action: () => enterAuthFlow(github),
       },
       {
         message: 'Cancel',

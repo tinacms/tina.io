@@ -23,27 +23,6 @@ const getBranch = async (repoFullName, branch) => {
   }
 }
 
-const getUser = async () => {
-  // uses proxy
-  try {
-    const response = await fetch(`/api/proxy-github`, {
-      method: 'POST',
-      body: JSON.stringify({
-        proxy_data: {
-          url: `https://api.github.com/user`,
-          method: 'GET',
-        },
-      }),
-    })
-
-    const data = await response.json()
-    if (response.status === 200) return data
-    return
-  } catch (err) {
-    return
-  }
-}
-
 export const isForkValid = async forkName => {
   if (!forkName) {
     forkName = getForkName()
@@ -59,12 +38,6 @@ export const isForkValid = async forkName => {
     return true
   }
   return false
-}
-
-export const isGithubTokenValid = async () => {
-  const userData = await getUser()
-  if (!userData) return false
-  return true
 }
 
 //TODO - move axios endpoints into own file from fetch requests
