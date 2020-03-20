@@ -1,6 +1,5 @@
 import { enterEditMode } from '../authFlow'
-import { isForkValid } from '../github/api'
-import { getForkName } from '../utils/repository'
+import { getForkName, getHeadBranch } from '../utils/repository'
 
 // return true if you want the modal to close
 
@@ -15,9 +14,7 @@ export const refresh = () => {
 export const enterAuthFlow = async github => {
   const authenticated = await !!github.getUser()
 
-  const forkName = getForkName()
-
-  const forkValid = await isForkValid(forkName)
+  const forkValid = await github.getBranch(getForkName(), getHeadBranch())
 
   fetch(`/api/reset-preview`).then(() => {
     enterEditMode(authenticated, forkValid)

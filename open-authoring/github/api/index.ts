@@ -1,42 +1,6 @@
 const axios = require('axios')
 const qs = require('qs')
-import { getHeadBranch } from '../../utils/repository'
 
-const getBranch = async (repoFullName, branch) => {
-  // uses proxy
-  try {
-    const response = await fetch(`/api/proxy-github`, {
-      method: 'POST',
-      body: JSON.stringify({
-        proxy_data: {
-          url: `https://api.github.com/repos/${repoFullName}/git/ref/heads/${branch}`,
-          method: 'GET',
-        },
-      }),
-    })
-
-    const data = await response.json()
-    if (response.status === 200) {
-      if (data.ref.startsWith('refs/heads/')) {
-        //check if branch, and not tag
-        return data
-      }
-    }
-    return
-  } catch (err) {
-    return
-  }
-}
-
-export const isForkValid = async (forkName: string) => {
-  const branch = getHeadBranch()
-
-  const forkData = await getBranch(forkName, branch)
-
-  return !!forkData
-}
-
-//TODO - move axios endpoints into own file from fetch requests
 export const getContent = async (
   repoFullName,
   headBranch,

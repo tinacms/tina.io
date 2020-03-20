@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { isForkValid } from '../../open-authoring/github/api'
-import { getForkName } from '../../open-authoring/utils/repository'
+import {
+  getForkName,
+  getHeadBranch,
+} from '../../open-authoring/utils/repository'
 import { useCMS } from 'tinacms'
 
 export interface OpenAuthoringContext {
@@ -32,7 +34,7 @@ export const OpenAuthoring = ({ children }) => {
     setGithubAuthenticated(await !!cms.api.github.getUser())
 
     const forkName = getForkName()
-    setForkValid(await isForkValid(forkName))
+    setForkValid(await cms.api.github.getBranch(getForkName(), getHeadBranch()))
   }
   useEffect(() => {
     updateAuthChecks()
