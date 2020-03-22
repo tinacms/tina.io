@@ -22,7 +22,7 @@ The Git backend consists of two parts:
 1. The server-side application that handles file manipulation and interaction with the Git protocol, and
 2. The client-side adapter that allows forms registered with Tina to send data to the server-side app.
 
-Because backends in Tina are designed as Express-compatible middleware, we need a way to add middleware to our Next.js dev server. To do this, we will need to use Next.js with a [custom development server](https://github.com/zeit/next.js#custom-server-and-routing) that will use Express and allow us to attach the Git middleware.
+Because backends in Tina are designed as Express-compatible middleware, we need a way to add middleware to our Next.js dev server. To do this, we will need to use Next.js with a [custom development server](https://nextjs.org/docs/advanced-features/custom-server) that will use Express and allow us to attach the Git middleware.
 
 ## Installation
 
