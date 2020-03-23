@@ -20,7 +20,7 @@ If you're interested in getting involved then jump into the #dev channel in the 
 #### **react-tinacms-inline**
 
 * **Improved Blocks UI:** See the [PR for more details](https://github.com/tinacms/tinacms/pull/908 "Inline Block Fixes")
-* **New Component:** `BlockImage` let's users add images to blocks.
+* **New Component:** `BlockImage` lets users add images to blocks.
 
 #### **gatsby-tinacms-git:**
 
