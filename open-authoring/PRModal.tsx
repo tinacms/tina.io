@@ -13,7 +13,7 @@ interface Props {
 }
 
 export const PRModal = ({ forkRepoFullName, baseRepoFullName }: Props) => {
-  const [responseMessage, setResponseMessage] = useState('')
+  const [prError, setPrError] = useState('')
   const [fetchedPR, setFetchedPR] = useState(undefined)
   const cms = useCMS()
 
@@ -31,8 +31,7 @@ export const PRModal = ({ forkRepoFullName, baseRepoFullName }: Props) => {
         }
       })
       .catch(err => {
-        setFetchedPR({ id: null })
-        setResponseMessage(`Could not fetch Pull Requests`)
+        setPrError(`Could not fetch Pull Requests`)
       })
   }
 
@@ -48,15 +47,23 @@ export const PRModal = ({ forkRepoFullName, baseRepoFullName }: Props) => {
         checkForPR() // TODO - can we use PR from response instead of refetching?
       })
       .catch(err => {
-        setResponseMessage(
-          `Pull Request failed, are you sure you have any changes?`
-        )
+        setPrError(`Pull Request failed, are you sure you have any changes?`)
       })
   }
 
   useEffect(() => {
     checkForPR()
   }, [])
+
+  if (prError) {
+    return (
+      <PrModalBody>
+        <ModalDescription>
+          <p>{prError}</p>
+        </ModalDescription>
+      </PrModalBody>
+    )
+  }
 
   if (!fetchedPR) {
     return (
@@ -99,7 +106,6 @@ export const PRModal = ({ forkRepoFullName, baseRepoFullName }: Props) => {
             <FieldMeta label="PR Description" name="description">
               <TextArea ref={bodyInput} />
             </FieldMeta>
-            <div>{responseMessage}</div>
           </>
         )}
         {fetchedPR.id && (
@@ -115,7 +121,6 @@ export const PRModal = ({ forkRepoFullName, baseRepoFullName }: Props) => {
             .
           </ModalDescription>
         )}
-        {!fetchedPR && <div>Loading...</div>}
       </PrModalBody>
       <ModalActions>
         {!fetchedPR.id && (
