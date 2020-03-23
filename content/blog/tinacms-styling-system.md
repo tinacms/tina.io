@@ -10,7 +10,11 @@ When you're writing code for a quickly changing project, you want that code to b
 
 All these components — spread across many packages and files — needed a single source of truth. Colors, padding sizes, shadows, fonts… everything had to be consistent between TinaCMS components. Styled Components offered a powerful theming system that was a natural fit for the problem. We could provide theme context to any component looking to use common Tina styles.
 
-A major shift in our approach has been the ability to edit content directly inline where it's displayed. This meant that field specific UI would be displayed right on the user's website, not in an isolated TinaCMS container. We adapted our system to make this work, but the limitations of our approach became obvious. Even a simple button required type references to the styles package and a theme context provider. Theme changes — configured through gatsby-config.js — wouldn't take effect until the server restarted. We needed something more suited to the evolving TinaCMS project.
+Initially, Tina UI was contained within an isolated sidebar inside an iframe. As we moved towards editing content inline with Tina, field specific UI would be displayed right on the user's website, not in an isolated TinaCMS container. We adapted our system to make this work, but the limitations of our approach became obvious. Even a simple button required type references to the styles package and a theme context provider. Theme changes — configured through gatsby-config.js — wouldn't take effect until the server restarted. We needed something more suited to the evolving TinaCMS project.
+
+```
+
+```
 
 ## Enter CSS custom properties.
 
