@@ -30,7 +30,7 @@ import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderCon
 import ContentNotFoundError from '../utils/github/ContentNotFoundError'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
 import OpenAuthoringError from '../open-authoring/OpenAuthoringError'
-import { withErrorModal } from '../open-authoring/withErrrorrModal'
+import { withErrorModal } from '../open-authoring/withErrorModal'
 
 const HomePage = (props: any) => {
   const [formData, form] = useLocalGithubJsonForm(

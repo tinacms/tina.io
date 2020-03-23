@@ -17,7 +17,7 @@ import getMarkdownData from '../../../utils/github/getMarkdownData'
 import { useCMS } from 'tinacms'
 import OpenAuthoringSiteForm from '../../../components/layout/OpenAuthoringSiteForm'
 import { useForm } from 'tinacms'
-import { withErrorModal } from '../../../open-authoring/withErrrorrModal'
+import { withErrorModal } from '../../../open-authoring/withErrorModal'
 const Index = props => {
   const { currentPage, numPages } = props
 

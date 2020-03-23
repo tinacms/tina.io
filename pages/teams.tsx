@@ -16,7 +16,7 @@ import { InlineBlocks } from 'react-tinacms-inline'
 import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
 import ContentNotFoundError from '../utils/github/ContentNotFoundError'
 import OpenAuthoringError from '../open-authoring/OpenAuthoringError'
-import { withErrorModal } from '../open-authoring/withErrrorrModal'
+import { withErrorModal } from '../open-authoring/withErrorModal'
 
 const formOptions = {
   label: 'Teams',
