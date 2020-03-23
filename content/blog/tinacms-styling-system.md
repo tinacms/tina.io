@@ -14,7 +14,7 @@ A major shift in our approach has been the ability to edit content directly inli
 
 ## Enter CSS custom properties.
 
-[CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) bring variables to the CSS masses! Instead of being compile time or dependant on JavaScript, they can be defined and used in plain CSS. CSS custom properties are declared and scoped to a selector, like `:root`. You can override existing properties by redeclaring them, either at the same scope or on a child. In the case of TinaCMS, that means you can easily customize and use our theme in your on project, without having to compile our styles.
+[CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) bring variables to the CSS masses! Instead of being compile time or dependent on JavaScript, they can be defined and used in plain CSS. CSS custom properties are declared and scoped to a selector, like `:root`. You can override existing properties by redeclaring them, either at the same scope or on a child. In the case of TinaCMS, that means you can easily customize and use our theme in your own project, without having to compile our styles.
 
 Here's an example where we override the primary color (blue by default) and use it in a custom button:
 
