@@ -18,11 +18,7 @@ const FormAlerts = ({ form }) => {
         err,
         cms.api.github
       )
-      if (errorUIDescriptor.asModal) {
-        setInterpretedError(errorUIDescriptor)
-      } else {
-        cms.alerts.error(errorUIDescriptor.message)
-      }
+      setInterpretedError(errorUIDescriptor)
     },
     [cms, setInterpretedError]
   )

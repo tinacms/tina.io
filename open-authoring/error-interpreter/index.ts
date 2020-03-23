@@ -12,7 +12,6 @@ export default async function interpretError(
     console.warn('Error Interpreter: called without an error')
     const message = error?.message || 'An error occured.'
     return new OpenAuthoringErrorProps(
-      true, // should it be presented as a modal? (if not present a toast)
       'Error', // title
       message, // message (the only thing a toast will present)
       [
@@ -37,19 +36,14 @@ export default async function interpretError(
     }
   }
   console.warn('Error Interpreter: Could not interpret error ' + error.code)
-  return new OpenAuthoringErrorProps(
-    true,
-    'Error ' + error.code,
-    error.message,
-    [
-      {
-        message: 'Continue',
-        action: enterAuthFlow,
-      },
-      {
-        message: 'Cancel',
-        action: refresh,
-      },
-    ]
-  )
+  return new OpenAuthoringErrorProps('Error ' + error.code, error.message, [
+    {
+      message: 'Continue',
+      action: enterAuthFlow,
+    },
+    {
+      message: 'Cancel',
+      action: refresh,
+    },
+  ])
 }

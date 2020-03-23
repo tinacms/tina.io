@@ -21,9 +21,7 @@ export const withErrorModal = BaseComponent => (props: { previewError }) => {
       if (props.previewError) {
         openAuthoring.updateAuthChecks()
         const contextualError = await getErrorUIFrom(props.previewError, github)
-        if (contextualError.asModal) {
-          setOpenAuthoringErrorUI(contextualError)
-        }
+        setOpenAuthoringErrorUI(contextualError)
       }
     })()
   }, [props.previewError])

@@ -10,7 +10,6 @@ export default async function interpretNotFoundError(
   if (await github.getBranch(getForkName(), getHeadBranch())) {
     // drill down further in the future
     return new OpenAuthoringErrorProps(
-      true,
       '404 Not Found',
       'Failed to get some content.',
       [
@@ -22,7 +21,6 @@ export default async function interpretNotFoundError(
     )
   }
   return new OpenAuthoringErrorProps(
-    true,
     '404 Not Found',
     'You are missing a fork.',
     [
