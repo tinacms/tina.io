@@ -12,7 +12,7 @@ export const refresh = () => {
 }
 
 export const enterAuthFlow = async github => {
-  const authenticated = await !!github.getUser()
+  const authenticated = !!(await github.getUser())
 
   const forkValid = await github.getBranch(getForkName(), getHeadBranch())
 
