@@ -3,11 +3,13 @@ title: 2020-03-23 Release Notes
 date: '2020-03-23T10:40:21-03:00'
 author: Nolan Phillips
 ---
-Since we revealed [Visual Open Authoring](https://tinacms.org/blog/introducing-visual-open-authoring "Introducing Visual Open Authoring") on the TinaCMS website two weeks ago we have been working hard to make this feature available for everyone.
+Two weeks ago we revealed [Visual Open Authoring](https://tinacms.org/blog/introducing-visual-open-authoring "Introducing Visual Open Authoring") on the TinaCMS website and we have been working hard to make this feature available for everyone.
 
 Since most of the development for Open Authoring was done directly in the [tinacms.org repository](https://github.com/tinacms/tinacms.org "GitHub: tinacms.org") itself some house keeping is in order. We changed the [theming system](/blog/designing-an-extensible-styling-system) to be more compatible with inline editing, started moving over our new blocks, and started refactoring `tinacms` to better accommodate the new [Toolbar UI](https://tinacms.org/blog/tinacms-ui-whats-next "TinaCMS UI: What's Next?"). To help make this process smoother, Jeff created the [**@tinacms/webpack-helpers**](https://github.com/tinacms/tinacms/tree/master/packages/@tinacms/webpack-helpers "@tinacms/webpack-helpers") package to make it easy to test changes to tinacms from outside the monorepo.
 
-...
+This week the TinaCMS core team will continue down the path towards Open Authoring for everyone. In order to get a better idea of what packages and guides we will be doing some refactoring in tinacms.org and looking into how the Toolbar UI will relate to the Sidebar. We're also exploring ways to introduce a versioned API reference for all the `tinacms/tinacms` packages.
+
+If you're interested in getting involved then jump into the #dev channel in the [TinaCMS Slack](https://join.slack.com/t/tinacms/shared_invite/enQtNzgxNDY1OTA3ODI3LTNkNWEwYjQyYTA2ZDZjZGQ2YmI5Y2ZlOWVmMjlkYmYxMzVmNjM0YTk2MWM2MTIzMmMxMDg3NWIxN2EzOWQ0NDM "TinaCMS Slack") group or take a look through the list of [open issues](https://github.com/tinacms/tinacms/issues "TinaCMS Issues").
 
 ### Enhancements
 
@@ -53,7 +55,7 @@ Thanks to everyone for contributing.
 | 6 | Jeff See |
 | 3 | Marc Mintel |
 | 2 | jpuri |
-| 2 | Dirty |
+| 2 | Frank Taillandier |
 | 1 | Mitch MacKenzie |
 | 1 | dwalkr |
 | 1 | Chris Flannery |
