@@ -10,95 +10,83 @@ export class GithubApi {
   }
 
   async getUser() {
-    // uses proxy
     try {
-      const response = await this.proxyRequest({
+      const data = await this.req({
         url: `https://api.github.com/user`,
         method: 'GET',
       })
 
-      const data = await response.json()
-      if (response.status === 200) {
-        if (data.ref.startsWith('refs/heads/')) {
-          //check if branch, and not tag
-          return data
-        }
+      return data
+    } catch (e) {
+      if ((e.status = 401)) {
+        return
       }
-      return // Bubble up error here?
-    } catch (err) {
-      return // Bubble up error here?
+      throw e
     }
   }
 
-  async createFork() {
-    return this.proxyRequest({
+  createFork() {
+    return this.req({
       url: `https://api.github.com/repos/${process.env.REPO_FULL_NAME}/forks`,
       method: 'POST',
     })
   }
 
-  async createPR(forkRepoFullName, headBranch, title, body) {
-    try {
-      const response = await this.proxyRequest({
-        url: `https://api.github.com/repos/${this.baseRepoFullName}/pulls`,
-        method: 'POST',
-        data: {
-          title: title ? title : 'Update from TinaCMS',
-          body: body ? body : 'Please pull these awesome changes in!',
-          head: `${forkRepoFullName.split('/')[0]}:${headBranch}`,
-          base: process.env.BASE_BRANCH,
-        },
-      })
-
-      const data = await response.json()
-
-      return data
-    } catch (err) {
-      return err // Returning error here? but other functions catch and swallow
-    }
+  createPR(forkRepoFullName, headBranch, title, body) {
+    return this.req({
+      url: `https://api.github.com/repos/${this.baseRepoFullName}/pulls`,
+      method: 'POST',
+      data: {
+        title: title ? title : 'Update from TinaCMS',
+        body: body ? body : 'Please pull these awesome changes in!',
+        head: `${forkRepoFullName.split('/')[0]}:${headBranch}`,
+        base: process.env.BASE_BRANCH,
+      },
+    })
   }
 
   async fetchExistingPR(forkRepoFullName, headBranch) {
-    try {
-      const response = await this.proxyRequest({
-        url: `https://api.github.com/repos/${this.baseRepoFullName}/pulls`,
-        method: 'GET',
-      })
+    const branches = await this.req({
+      url: `https://api.github.com/repos/${this.baseRepoFullName}/pulls`,
+      method: 'GET',
+    })
 
-      const data = await response.json()
-
-      for (var i = 0; i < data.length; i++) {
-        const pull = data[i]
-        if (headBranch === pull.head.ref) {
-          if (
-            pull.head.repo?.full_name === forkRepoFullName &&
-            pull.base.repo?.full_name === this.baseRepoFullName
-          ) {
-            return pull // found matching PR
-          }
+    for (var i = 0; i < branches.length; i++) {
+      const pull = branches[i]
+      if (headBranch === pull.head.ref) {
+        if (
+          pull.head.repo?.full_name === forkRepoFullName &&
+          pull.base.repo?.full_name === this.baseRepoFullName
+        ) {
+          return pull // found matching PR
         }
       }
-
-      return
-    } catch (err) {
-      console.log(err)
-      return
     }
+
+    return
   }
 
   async getBranch(repoFullName: string, branch: string) {
     try {
-      const response = await this.proxyRequest({
+      const data = await this.req({
         url: `https://api.github.com/repos/${repoFullName}/git/ref/heads/${branch}`,
         method: 'GET',
       })
-
-      const data = await response.json()
-      if (response.status === 200) return data
-      return // TODO - should we be throwing error here?
-    } catch (err) {
-      return //TODO - also here?
+      return data
+    } catch (e) {
+      if ((e.status = 404)) {
+        console.log('404')
+        return
+      }
+      throw e
     }
+
+    // TODO
+    // if (data.ref.startsWith('refs/heads/')) {
+    //   //check if branch, and not tag
+    //   return data
+    // }
+    // return // Bubble up error here?
   }
 
   async save(
@@ -109,7 +97,7 @@ export class GithubApi {
     formData: string,
     message: string = 'Update from TinaCMS'
   ) {
-    const response = await this.proxyRequest({
+    return this.req({
       url: `https://api.github.com/repos/${repo}/contents/${filePath}`,
       method: 'PUT',
       data: {
@@ -119,9 +107,15 @@ export class GithubApi {
         branch: branch,
       },
     })
+  }
 
+  private async req(data) {
+    const response = await this.proxyRequest(data)
+    return this.getGithubResponse(response)
+  }
+
+  private async getGithubResponse(response: Response) {
     const data = await response.json()
-
     //2xx status codes
     if (response.status.toString()[0] == '2') return data
 

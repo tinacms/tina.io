@@ -18,9 +18,8 @@ export default function Authorizing() {
   }
 
   const createFork = async () => {
-    const resp = await cms.api.github.createFork()
+    const { full_name } = await cms.api.github.createFork()
 
-    const { full_name } = await resp.json()
     const forkFullName = full_name
     if (forkFullName) {
       await handleForkCreated(full_name)

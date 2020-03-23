@@ -30,6 +30,10 @@ export const PRModal = ({ forkRepoFullName, baseRepoFullName }: Props) => {
           setFetchedPR({ id: null })
         }
       })
+      .catch(err => {
+        setFetchedPR({ id: null })
+        setResponseMessage(`Could not fetch Pull Requests`)
+      })
   }
 
   const createPR = () => {
