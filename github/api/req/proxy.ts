@@ -1,11 +1,12 @@
 const axios = require('axios')
 
 export default (req, res) => {
-  const { proxy_data } = JSON.parse(req.body)
+  const { headers, ...data } = JSON.parse(req.body)
+
   axios({
-    ...proxy_data,
+    ...data,
     headers: {
-      ...proxy_data.headers,
+      ...headers,
       Authorization: 'token ' + req.cookies['github_access_token'],
     },
   })

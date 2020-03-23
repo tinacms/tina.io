@@ -131,9 +131,7 @@ export class GithubApi {
   private proxyRequest(data) {
     return fetch(this.proxy, {
       method: 'POST',
-      body: JSON.stringify({
-        proxy_data: data,
-      }),
+      body: JSON.stringify(data),
     })
   }
 }
