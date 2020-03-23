@@ -1,6 +1,6 @@
 ---
 title: 'Designing an Extensible Styling System'
-date: '2020-03-18T00:00:00.000Z'
+date: '2020-03-23T00:00:00.000Z'
 author: Scott Byrne
 ---
 
