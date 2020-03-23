@@ -6,8 +6,8 @@ import createDecorator from 'final-form-submit-listener'
 import { getForkName } from './utils/repository'
 import { useActionableModal } from '../components/ui/ActionableModal/ActionableModalContext'
 
-//TODO - this no longer renders anything, so could just be a hook
-const FormAlerts = ({ form }) => {
+// Show feedback on form submission
+const useFormAlerts = form => {
   const cms = useCMS()
   const modalContext = useActionableModal()
 
@@ -35,8 +35,6 @@ const FormAlerts = ({ form }) => {
 
     return undecorateSaveListener
   }, [form])
-
-  return <></>
 }
 
-export default FormAlerts
+export default useFormAlerts
