@@ -3,26 +3,26 @@ title: 2020-03-23 Release Notes
 date: '2020-03-23T10:40:21-03:00'
 author: Nolan Phillips
 ---
-Since we revealed [Visual Open Authoring](https://tinacms.org/blog/introducing-visual-open-authoring "Introducing Visual Open Authoring") on the TinaCMS website two weeks ago we have been working hard to make this feature available for everyone. Since most of the development for Open Authoring was done directly in the [tinacms.org repository](https://github.com/tinacms/tinacms.org "GitHub: tinacms.org") itself, some house keeping is in order. We changed the [theming system](https://tinacms.org/blog/tinacms-styling-system) to be more compatible with inline editing, started moving over our new blocks, and started refactoring `tinacms` to better accommodate the new [Toolbar UI](https://tinacms.org/blog/tinacms-ui-whats-next "TinaCMS UI: What's Next?").
+Since we revealed [Visual Open Authoring](https://tinacms.org/blog/introducing-visual-open-authoring "Introducing Visual Open Authoring") on the TinaCMS website two weeks ago we have been working hard to make this feature available for everyone.
 
-## Changes
+Since most of the development for Open Authoring was done directly in the [tinacms.org repository](https://github.com/tinacms/tinacms.org "GitHub: tinacms.org") itself some house keeping is in order. We changed the [theming system](https://tinacms.org/blog/tinacms-styling-system) to be more compatible with inline editing, started moving over our new blocks, and started refactoring `tinacms` to better accommodate the new [Toolbar UI](https://tinacms.org/blog/tinacms-ui-whats-next "TinaCMS UI: What's Next?"). To help make this process smoother, Jeff created the [**@tinacms/webpack-helpers**](https://github.com/tinacms/tinacms/tree/master/packages/@tinacms/webpack-helpers "@tinacms/webpack-helpers") package to make it easy to test changes to tinacms from outside the monorepo.
+
+...
 
 ### Enhancements
 
-**@tinacms/styles**
+#### **@tinacms/styles**
 
 * theming is done using CSS custom properties
 
-**react-tinacms-inline**
+#### **react-tinacms-inline**
 
 * **Improved Blocks UI:** See the [PR for more details](https://github.com/tinacms/tinacms/pull/908 "Inline Block Fixes")
 * **New Component:** `BlockImage` let's users add images to blocks.
 
-**gatsby-tinacms-git:**
+#### **gatsby-tinacms-git:**
 
-* introduce a generic `DeleteAction` that works for both json and markdown
-
-**TinaCMS:** constructor accepts a media store
+* **Delete Action:** a generic form action that works for both json and markdown
 
 ### Refactoring
 
@@ -41,9 +41,9 @@ Linking apps to a monorepo can be tricky. Tools like `npm link` are buggy and in
 
 [Checkout the README](https://github.com/tinacms/tinacms/tree/master/packages/@tinacms/webpack-helpers "@tinacms/webpack-helpers") to learn how to develop TinaCMS with your website.
 
-## Deprecations
-
 ## Contributors
+
+Thanks to everyone for contributing.
 
 | # Commits | Name |
 | --- | --- |
