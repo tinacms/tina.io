@@ -10,7 +10,7 @@ import { OpenAuthoring } from '../components/layout/OpenAuthoring'
 import { Toolbar } from '../components/cms/Toolbar'
 import { BrowserStorageApi } from '../utils/plugins/BrowserStorageApi'
 import { Alerts } from '../components/layout/Alerts'
-import { GithubApi } from '../utils/plugins/GithubApi'
+import { GithubApi } from '../utils/plugins/github-api/GithubApi'
 
 const MainLayout = ({ Component, pageProps }) => {
   /*
