@@ -4,7 +4,7 @@ prev: /docs/cms/alerts
 next: /docs/forms
 ---
 
-The TinaCMS styles package serves as the foundation for all Tina UI components. It contains a number of related elements:
+The `@tinacms/styles` package serves as the foundation for all Tina UI components. It contains a number of related elements:
 
 - Definitions for a range of CSS custom properties that define color, spacing, sizing & timing of Tina components.
 - `GlobalStyles`, which applies the custom properties alongside an import for [Inter](https://rsms.me/inter/).
