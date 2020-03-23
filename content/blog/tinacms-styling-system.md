@@ -8,7 +8,7 @@ author: Scott Byrne
 
 When you're writing code for a quickly changing project, you want that code to be cheap and replaceable. [Styled Components](https://styled-components.com/) allow us to write styles right alongside the components they're used for. It lets us easily move components around — or completely replace them — with minimum effort.
 
-All these components — spread across many packages and files — need a single source of truth. Colors, padding sizes, shadows, fonts.. everything had to be consistent between TinaCMS components. Styled Components offered a powerful theming system that was a natural fit for the problem. We could provide theme context to any component looking to use common Tina styles.
+All these components — spread across many packages and files — needed a single source of truth. Colors, padding sizes, shadows, fonts… everything had to be consistent between TinaCMS components. Styled Components offered a powerful theming system that was a natural fit for the problem. We could provide theme context to any component looking to use common Tina styles.
 
 Initially, Tina UI was contained within an isolated sidebar inside an iframe. As we moved towards editing content inline with Tina, field specific UI would be displayed right on the user's website, not in an isolated TinaCMS container. We adapted our system to make this work, but the limitations of our approach became obvious. Even a simple button required type references to the styles package and a theme context provider. Theme changes — configured through gatsby-config.js — wouldn't take effect until the server restarted. We needed something more suited to the evolving TinaCMS project.
 
@@ -18,7 +18,7 @@ Initially, Tina UI was contained within an isolated sidebar inside an iframe. As
 
 ## Enter CSS custom properties.
 
-[CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) bring variables to the CSS masses! Instead of being compile time or dependant on JavaScript, they can be defined and used in plain CSS. CSS custom properties are declared and scoped to a selector, like `:root`. You can override existing properties by redeclaring them, either at the same scope or on a child. In the case of TinaCMS, that means you can easily customize and use our theme in your on project, without having to compile our styles.
+[CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) bring variables to the CSS masses! Instead of being compile time or dependent on JavaScript, they can be defined and used in plain CSS. CSS custom properties are declared and scoped to a selector, like `:root`. You can override existing properties by redeclaring them, either at the same scope or on a child. In the case of TinaCMS, that means you can easily customize and use our theme in your own project, without having to compile our styles.
 
 Here's an example where we override the primary color (blue by default) and use it in a custom button:
 
