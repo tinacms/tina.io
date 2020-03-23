@@ -1,21 +1,24 @@
 import OpenAuthoringError from '../../OpenAuthoringError'
-import OpenAuthoringErrorProps from '../../OpenAuthoringErrorProps'
-import { enterAuthFlow, refresh, justClose } from '../actions'
+import { enterAuthFlow, refresh } from '../actions'
+import { ActionableModalOptions } from '../../../components/ui/ActionableModal/ActionableModalContext'
 
-export default function interpretUnauthorizedError(error: OpenAuthoringError) {
+export default function interpretUnauthorizedError(
+  error: OpenAuthoringError,
+  github: any
+): ActionableModalOptions {
   // if authentication is not valid they need to re-authenticate
-  return new OpenAuthoringErrorProps(
-    '401 Unauthenticated',
-    'Authentication is invalid',
-    [
+  return {
+    title: '401 Unauthenticated',
+    message: 'Authentication is invalid',
+    actions: [
       {
-        message: 'Continue',
-        action: enterAuthFlow,
+        name: 'Continue',
+        action: () => enterAuthFlow(github),
       },
       {
-        message: 'Cancel',
+        name: 'Cancel',
         action: refresh,
       },
-    ]
-  )
+    ],
+  }
 }

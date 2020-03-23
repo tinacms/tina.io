@@ -1,7 +1,7 @@
 export default class OpenAuthoringErrorProps {
   title: string
   message: string
-  actions: [{ message: string; action: () => boolean }]
+  actions: [{ message: string; action(): void }]
 
   constructor(title, message, actions) {
     this.message = message

@@ -1,37 +1,37 @@
 import OpenAuthoringError from '../../OpenAuthoringError'
-import OpenAuthoringErrorProps from '../../OpenAuthoringErrorProps'
 import { enterAuthFlow, refresh } from '../actions'
 import { getForkName, getHeadBranch } from '../../utils/repository'
+import { ActionableModalOptions } from '../../../components/ui/ActionableModal/ActionableModalContext'
 
 export default async function interpretNotFoundError(
   error: OpenAuthoringError,
   github: any
-) {
+): Promise<ActionableModalOptions> {
   if (await github.getBranch(getForkName(), getHeadBranch())) {
     // drill down further in the future
-    return new OpenAuthoringErrorProps(
-      '404 Not Found',
-      'Failed to get some content.',
-      [
+    return {
+      title: '404 Not Found',
+      message: 'Failed to get some content.',
+      actions: [
         {
-          message: 'Continue',
+          name: 'Continue',
           action: refresh,
         },
-      ]
-    )
+      ],
+    }
   }
-  return new OpenAuthoringErrorProps(
-    '404 Not Found',
-    'You are missing a fork.',
-    [
+  return {
+    title: '404 Not Found',
+    message: 'You are missing a fork.',
+    actions: [
       {
-        message: 'Continue',
+        name: 'Continue',
         action: () => enterAuthFlow(github),
       },
       {
-        message: 'Cancel',
+        name: 'Cancel',
         action: refresh,
       },
-    ]
-  )
+    ],
+  }
 }

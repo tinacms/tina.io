@@ -9,7 +9,7 @@ export default async function interpretClientError(
   switch (error.code) {
     case 401: {
       // Unauthorized
-      return interpretUnauthorizedError(error)
+      return interpretUnauthorizedError(error, github)
     }
     case 404: {
       // Not Found

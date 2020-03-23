@@ -1,30 +1,30 @@
 import OpenAuthoringError from '../OpenAuthoringError'
-import OpenAuthoringErrorProps from '../OpenAuthoringErrorProps'
 import { enterAuthFlow, refresh } from './actions'
 import interpretClientError from './client-side'
 import interpretServerError from './server-side'
+import { ActionableModalOptions } from '../../components/ui/ActionableModal/ActionableModalContext'
 
 export default async function interpretError(
   error: OpenAuthoringError,
   github: any
-): Promise<OpenAuthoringErrorProps> {
+): Promise<ActionableModalOptions> {
   if (!error || !error.code) {
     console.warn('Error Interpreter: called without an error')
     const message = error?.message || 'An error occured.'
-    return new OpenAuthoringErrorProps(
-      'Error', // title
-      message, // message (the only thing a toast will present)
-      [
+    return {
+      title: 'Error',
+      message,
+      actions: [
         {
-          message: 'Continue',
-          action: enterAuthFlow,
+          name: 'Continue',
+          action: () => enterAuthFlow(github),
         },
         {
-          message: 'Cancel',
+          name: 'Cancel',
           action: refresh,
         },
-      ] // Action buttons
-    )
+      ], // Action buttons
+    }
   }
 
   switch (parseInt(error.code.toString()[0])) {
@@ -36,14 +36,18 @@ export default async function interpretError(
     }
   }
   console.warn('Error Interpreter: Could not interpret error ' + error.code)
-  return new OpenAuthoringErrorProps('Error ' + error.code, error.message, [
-    {
-      message: 'Continue',
-      action: enterAuthFlow,
-    },
-    {
-      message: 'Cancel',
-      action: refresh,
-    },
-  ])
+  return {
+    title: `Error  ${error.code}`,
+    message: error.message,
+    actions: [
+      {
+        name: 'Continue',
+        action: () => enterAuthFlow(github),
+      },
+      {
+        name: 'Cancel',
+        action: refresh,
+      },
+    ],
+  }
 }

@@ -1,8 +1,8 @@
-import { ActionableModalContainer } from '../components/ui/ActionableModal/ActionableModalContainer'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import getErrorUIFrom from './error-interpreter'
 import { useOpenAuthoring } from '../components/layout/OpenAuthoring'
 import { useCMS } from 'tinacms'
+import { useActionableModal } from '../components/ui/ActionableModal/ActionableModalContext'
 
 declare global {
   interface Window {
@@ -14,8 +14,8 @@ declare global {
 export const withOpenAuthoringErrorHandler = BaseComponent => (props: {
   previewError
 }) => {
-  const [openAuthoringErrorUI, setOpenAuthoringErrorUI] = useState(null)
   const openAuthoring = useOpenAuthoring()
+  const modalContext = useActionableModal()
   const { github } = useCMS().api
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export const withOpenAuthoringErrorHandler = BaseComponent => (props: {
       if (props.previewError) {
         openAuthoring.updateAuthChecks()
         const contextualError = await getErrorUIFrom(props.previewError, github)
-        setOpenAuthoringErrorUI(contextualError)
+        modalContext.setModal(contextualError)
       }
     })()
   }, [props.previewError])
@@ -33,11 +33,5 @@ export const withOpenAuthoringErrorHandler = BaseComponent => (props: {
     window.forkValid = openAuthoring.forkValid
   }, [openAuthoring.githubAuthenticated, openAuthoring.forkValid])
 
-  if (props.previewError) {
-    return (
-      <ActionableModalContainer openAuthoringErrorUI={openAuthoringErrorUI} />
-    )
-  } else {
-    return <BaseComponent {...props} />
-  }
+  return <BaseComponent {...props} />
 }

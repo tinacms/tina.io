@@ -1,16 +1,21 @@
 import OpenAuthoringError from '../../OpenAuthoringError'
-import OpenAuthoringErrorProps from '../../OpenAuthoringErrorProps'
-import { enterAuthFlow, refresh } from '../actions'
+import { ActionableModalOptions } from '../../../components/ui/ActionableModal/ActionableModalContext'
 
-export default function interpretServerError(error: OpenAuthoringError) {
+export default function interpretServerError(
+  error: OpenAuthoringError
+): ActionableModalOptions {
   switch (error.code) {
     case 500: {
-      return new OpenAuthoringErrorProps('Error 500', error.message, [
-        {
-          message: 'Continue',
-          action: close,
-        },
-      ])
+      return {
+        title: 'Error 500',
+        message: error.message,
+        actions: [
+          {
+            name: 'Continue',
+            action: close,
+          },
+        ],
+      }
     }
   }
 }

@@ -7,8 +7,6 @@ export const refresh = () => {
   fetch(`/api/reset-preview`).then(() => {
     window.location.reload()
   })
-
-  return false
 }
 
 export const enterAuthFlow = async github => {
@@ -19,8 +17,6 @@ export const enterAuthFlow = async github => {
   fetch(`/api/reset-preview`).then(() => {
     enterEditMode(authenticated, forkValid)
   })
-
-  return false
 }
 
 export const justClose = () => {
