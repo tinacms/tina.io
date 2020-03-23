@@ -1,5 +1,5 @@
 ---
-title: 'TinaCMS Styling System'
+title: 'Styling Tina with CSS Custom Properties'
 date: '2020-03-18T00:00:00.000Z'
 author: Scott Byrne
 ---
@@ -45,5 +45,4 @@ Reducing the complexity of our theme system makes it easier for us to adapt the 
 
 ## What's next?
 
-Styled Components are easy to use and generally a pleasure to work with. But unfortunately they require a runtime. While this isn't an issue in an app or website, it's problematic for a library. It's possible the library consumer is already using a different version of styled components. Or even a different css-in-js library that requires a separate runtime. Ideally TinaCMS styles would be framework agnostic with no runtime.
-Moving our theme system to CSS custom properties was the first step in aligning our style system with the needs of our project.
+Styled Components are easy to use and generally a pleasure to work with, but unfortunately require a runtime. While this isn't an issue in an app or website, it's problematic for a library. It's possible the library consumer is already using a different version of styled components, or even a different css-in-js library that requires a separate runtime. Ideally TinaCMS styles would be framework agnostic with no runtime, consumable by any HTML page. Moving our theme system to CSS custom properties was the first step in aligning our style system with the needs of our project.
