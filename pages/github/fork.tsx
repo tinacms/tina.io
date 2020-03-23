@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { getUser, getBranch } from '../../open-authoring/github/api'
 import { AuthLayout } from '../../components/layout'
 import { Button } from '../../components/ui'
 import styled from 'styled-components'
@@ -7,8 +6,10 @@ import {
   setForkName,
   getHeadBranch,
 } from '../../open-authoring/utils/repository'
+import { useCMS } from 'tinacms'
 
 export default function Authorizing() {
+  const cms = useCMS()
   async function handleForkCreated(forkName: string) {
     setForkName(forkName)
     await fetch(`/api/preview`)
@@ -17,17 +18,8 @@ export default function Authorizing() {
   }
 
   const createFork = async () => {
-    const resp = await fetch(`/api/proxy-github`, {
-      method: 'POST',
-      body: JSON.stringify({
-        proxy_data: {
-          url: `https://api.github.com/repos/${process.env.REPO_FULL_NAME}/forks`,
-          method: 'POST',
-        },
-      }),
-    })
+    const { full_name } = await cms.api.github.createFork()
 
-    const { full_name } = await resp.json()
     const forkFullName = full_name
     if (forkFullName) {
       await handleForkCreated(full_name)
@@ -44,12 +36,12 @@ export default function Authorizing() {
     ;(async () => {
       const branch = getHeadBranch()
 
-      const userData = await getUser()
+      const userData = await cms.api.github.getUser()
       if (!userData) return setForkValidating(false)
       const login = userData.login
       const expectedFork =
         login + '/' + process.env.REPO_FULL_NAME.split('/')[1]
-      const forkData = await getBranch(expectedFork, branch)
+      const forkData = await cms.api.github.getBranch(expectedFork, branch)
       if (!forkData) return setForkValidating(false)
       if (forkData.ref === 'refs/heads/' + branch) {
         // found fork\

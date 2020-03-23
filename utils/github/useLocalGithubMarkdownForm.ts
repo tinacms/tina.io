@@ -1,5 +1,4 @@
-import { FormOptions, useLocalForm, usePlugins, Field } from 'tinacms'
-import { saveContent } from '../../open-authoring/github/api'
+import { FormOptions, useLocalForm, usePlugins, Field, useCMS } from 'tinacms'
 import { getCachedFormData, setCachedFormData } from '../formCache'
 import { useGithubForm, GithubOptions, GitFile } from './useGithubForm'
 import { toMarkdownString } from 'next-tinacms-markdown'
@@ -18,6 +17,7 @@ const useGithubMarkdownForm = <T = any>(
   formOptions: Options,
   githubOptions: GithubOptions
 ) => {
+  const cms = useCMS()
   useGithubForm(markdownFile)
 
   const [formData, form] = useLocalForm({
@@ -27,14 +27,15 @@ const useGithubMarkdownForm = <T = any>(
     fields: formOptions.fields || [],
     // save & commit the file when the "save" button is pressed
     onSubmit(formData, form) {
-      return saveContent(
-        githubOptions.forkFullName,
-        githubOptions.branch,
-        markdownFile.fileRelativePath,
-        getCachedFormData(markdownFile.fileRelativePath).sha,
-        toMarkdownString(formData),
-        'Update from TinaCMS'
-      )
+      return cms.api.github
+        .save(
+          githubOptions.forkFullName,
+          githubOptions.branch,
+          markdownFile.fileRelativePath,
+          getCachedFormData(markdownFile.fileRelativePath).sha,
+          toMarkdownString(formData),
+          'Update from TinaCMS'
+        )
         .then(response => {
           console.log(response)
           setCachedFormData(markdownFile.fileRelativePath, {

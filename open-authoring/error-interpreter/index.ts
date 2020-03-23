@@ -5,7 +5,8 @@ import interpretClientError from './client-side'
 import interpretServerError from './server-side'
 
 export default async function interpretError(
-  error: OpenAuthoringError
+  error: OpenAuthoringError,
+  github: any
 ): Promise<OpenAuthoringErrorProps> {
   if (!error || !error.code) {
     console.warn('Error Interpreter: called without an error')
@@ -29,7 +30,7 @@ export default async function interpretError(
 
   switch (parseInt(error.code.toString()[0])) {
     case 4: {
-      return await interpretClientError(error)
+      return await interpretClientError(error, github)
     }
     case 5: {
       return interpretServerError(error)

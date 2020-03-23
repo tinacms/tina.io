@@ -1,12 +1,13 @@
 import OpenAuthoringError from '../../OpenAuthoringError'
-import { isForkValid } from '../../github/api'
 import OpenAuthoringErrorProps from '../../OpenAuthoringErrorProps'
-import { enterAuthFlow, refresh, justClose } from '../actions'
+import { enterAuthFlow, refresh } from '../actions'
+import { getForkName, getHeadBranch } from '../../utils/repository'
 
 export default async function interpretNotFoundError(
-  error: OpenAuthoringError
+  error: OpenAuthoringError,
+  github: any
 ) {
-  if (await isForkValid(null)) {
+  if (await github.getBranch(getForkName(), getHeadBranch())) {
     // drill down further in the future
     return new OpenAuthoringErrorProps(
       true,
@@ -27,7 +28,7 @@ export default async function interpretNotFoundError(
     [
       {
         message: 'Continue',
-        action: enterAuthFlow,
+        action: () => enterAuthFlow(github),
       },
       {
         message: 'Cancel',

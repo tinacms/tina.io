@@ -15,7 +15,8 @@ const FormAlerts = ({ form }) => {
   const updateUIWithError = useCallback(
     async (err: OpenAuthoringError) => {
       const errorUIDescriptor: OpenAuthoringErrorProps = await interpretError(
-        err
+        err,
+        cms.api.github
       )
       if (errorUIDescriptor.asModal) {
         setInterpretedError(errorUIDescriptor)

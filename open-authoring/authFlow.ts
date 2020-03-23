@@ -24,7 +24,10 @@ async function handleForkCreated(forkName) {
   })
 }
 
-export const enterEditMode = (githubAuthenticated, forkValid) => {
+export const enterEditMode = (
+  githubAuthenticated: boolean,
+  forkValid: boolean
+) => {
   let authTab
 
   const authState = Math.random()
