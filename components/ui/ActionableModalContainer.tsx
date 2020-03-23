@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import { ActionableModal } from '../components/ui'
-import { enterEditMode } from './authFlow'
-import { useOpenAuthoring } from '../components/layout/OpenAuthoring'
-import OpenAuthoringErrorProps from './OpenAuthoringErrorProps'
+import { ActionableModal } from '.'
+import { enterEditMode } from '../../open-authoring/authFlow'
+import { useOpenAuthoring } from '../layout/OpenAuthoring'
+import OpenAuthoringErrorProps from '../../open-authoring/OpenAuthoringErrorProps'
 
 /*
 TODO:
@@ -20,7 +20,7 @@ interface Props {
 
   It should probably be more of a dummy modal component, and move that logic elsewhere
 */
-export const OpenAuthoringModalContainer = (props: Props) => {
+export const ActionableModalContainer = (props: Props) => {
   const [authPopupDisplayed, setAuthPopupDisplayed] = useState(false)
   const [openAuthoringErrorUI, setOpenAuthoringErrorUI] = useState(
     props.openAuthoringErrorUI

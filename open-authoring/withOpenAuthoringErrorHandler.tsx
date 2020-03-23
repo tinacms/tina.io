@@ -1,4 +1,4 @@
-import { OpenAuthoringModalContainer } from './OpenAuthoringModalContainer'
+import { ActionableModalContainer } from '../components/ui/ActionableModalContainer'
 import { useEffect, useState } from 'react'
 import getErrorUIFrom from './error-interpreter'
 import { useOpenAuthoring } from '../components/layout/OpenAuthoring'
@@ -11,7 +11,9 @@ declare global {
   }
 }
 
-export const withErrorModal = BaseComponent => (props: { previewError }) => {
+export const withOpenAuthoringErrorHandler = BaseComponent => (props: {
+  previewError
+}) => {
   const [openAuthoringErrorUI, setOpenAuthoringErrorUI] = useState(null)
   const openAuthoring = useOpenAuthoring()
   const { github } = useCMS().api
@@ -33,9 +35,7 @@ export const withErrorModal = BaseComponent => (props: { previewError }) => {
 
   if (props.previewError) {
     return (
-      <OpenAuthoringModalContainer
-        openAuthoringErrorUI={openAuthoringErrorUI}
-      />
+      <ActionableModalContainer openAuthoringErrorUI={openAuthoringErrorUI} />
     )
   } else {
     return <BaseComponent {...props} />

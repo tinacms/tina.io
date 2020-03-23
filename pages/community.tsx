@@ -29,7 +29,7 @@ import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
 import ContentNotFoundError from '../utils/github/ContentNotFoundError'
 import OpenAuthoringError from '../open-authoring/OpenAuthoringError'
-import { withErrorModal } from '../open-authoring/withErrorModal'
+import { withOpenAuthoringErrorHandler } from '../open-authoring/withOpenAuthoringErrorHandler'
 
 function CommunityPage({
   community,
@@ -158,7 +158,7 @@ function CommunityPage({
   )
 }
 
-export default withErrorModal(CommunityPage)
+export default withOpenAuthoringErrorHandler(CommunityPage)
 
 /*
  ** DATA FETCHING -----------------------------------------------

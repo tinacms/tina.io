@@ -4,7 +4,7 @@ import OpenAuthoringError from './OpenAuthoringError'
 import interpretError from './error-interpreter'
 import OpenAuthoringErrorProps from './OpenAuthoringErrorProps'
 import createDecorator from 'final-form-submit-listener'
-import { OpenAuthoringModalContainer } from './OpenAuthoringModalContainer'
+import { ActionableModalContainer } from '../components/ui/ActionableModalContainer'
 import { getForkName } from './utils/repository'
 
 const FormAlerts = ({ form }) => {
@@ -39,7 +39,7 @@ const FormAlerts = ({ form }) => {
     return undecorateSaveListener
   }, [form])
 
-  return <OpenAuthoringModalContainer openAuthoringErrorUI={interpretedError} />
+  return <ActionableModalContainer openAuthoringErrorUI={interpretedError} />
 }
 
 export default FormAlerts
