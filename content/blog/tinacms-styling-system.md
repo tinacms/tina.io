@@ -1,5 +1,5 @@
 ---
-title: 'Styling Tina with CSS Custom Properties'
+title: 'Designing an Extensible Styling System'
 date: '2020-03-18T00:00:00.000Z'
 author: Scott Byrne
 ---
