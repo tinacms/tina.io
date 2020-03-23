@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react'
-import { ActionableModal } from '.'
-import { enterEditMode } from '../../open-authoring/authFlow'
-import { useOpenAuthoring } from '../layout/OpenAuthoring'
-import OpenAuthoringErrorProps from '../../open-authoring/OpenAuthoringErrorProps'
+import { ActionableModal } from './ActionableModal'
+import { enterEditMode } from '../../../open-authoring/authFlow'
+import { useOpenAuthoring } from '../../layout/OpenAuthoring'
+import OpenAuthoringErrorProps from '../../../open-authoring/OpenAuthoringErrorProps'
+import {
+  ActionableModalContext,
+  ActionableModalOptions,
+} from './ActionableModalContext'
 
 /*
 TODO:
@@ -21,8 +25,11 @@ interface Props {
   It should probably be more of a dummy modal component, and move that logic elsewhere
 */
 export const ActionableModalContainer = (props: Props) => {
-  const [authPopupDisplayed, setAuthPopupDisplayed] = useState(false)
+  const [modal, setModal] = useState<ActionableModalOptions>()
+
+  const [authPopupDisplayed, setAuthPopupDisplayed] = useState(false) //TODO - move this lower into open-authoring implementation
   const [openAuthoringErrorUI, setOpenAuthoringErrorUI] = useState(
+    //TODO - move this lower into open-authoring implementation
     props.openAuthoringErrorUI
   )
 
@@ -70,10 +77,19 @@ export const ActionableModalContainer = (props: Props) => {
     if (openAuthoringErrorUI) {
       openAuthoring.updateAuthChecks() //recheck if we need to open auth window as result of error
     }
+    setModal(
+      openAuthoringErrorUI
+        ? {
+            title: openAuthoringErrorUI.title,
+            message: openAuthoringErrorUI.message,
+            actions: getActionsFromError(openAuthoringErrorUI),
+          }
+        : null
+    )
   }, [openAuthoringErrorUI])
 
   return (
-    <>
+    <ActionableModalContext.Provider value={{ modal, setModal }}>
       {authPopupDisplayed && (
         <ActionableModal
           title="Authentication"
@@ -84,19 +100,13 @@ export const ActionableModalContainer = (props: Props) => {
               action: runAuthWorkflow,
             },
             {
-              name: 'Cancel d',
+              name: 'Cancel',
               action: cancelAuth,
             },
           ]}
         />
       )}
-      {openAuthoringErrorUI && (
-        <ActionableModal
-          title={openAuthoringErrorUI.title}
-          message={openAuthoringErrorUI.message}
-          actions={getActionsFromError(openAuthoringErrorUI)}
-        />
-      )}
-    </>
+      {modal && <ActionableModal {...modal} />}
+    </ActionableModalContext.Provider>
   )
 }

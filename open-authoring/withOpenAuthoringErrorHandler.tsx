@@ -1,4 +1,4 @@
-import { ActionableModalContainer } from '../components/ui/ActionableModalContainer'
+import { ActionableModalContainer } from '../components/ui/ActionableModal/ActionableModalContainer'
 import { useEffect, useState } from 'react'
 import getErrorUIFrom from './error-interpreter'
 import { useOpenAuthoring } from '../components/layout/OpenAuthoring'

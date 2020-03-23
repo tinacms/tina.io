@@ -4,7 +4,7 @@ import OpenAuthoringError from './OpenAuthoringError'
 import interpretError from './error-interpreter'
 import OpenAuthoringErrorProps from './OpenAuthoringErrorProps'
 import createDecorator from 'final-form-submit-listener'
-import { ActionableModalContainer } from '../components/ui/ActionableModalContainer'
+import { ActionableModalContainer } from '../components/ui/ActionableModal/ActionableModalContainer'
 import { getForkName } from './utils/repository'
 
 const FormAlerts = ({ form }) => {
