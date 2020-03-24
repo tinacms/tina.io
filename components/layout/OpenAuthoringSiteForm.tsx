@@ -23,7 +23,6 @@ const OpenAuthoringSiteForm = ({ form, editMode, path, children }: Props) => {
   return (
     <>
       <FormAlerts form={form} />
-      <AutoAuthModal />
       <InlineForm
         form={form}
         initialStatus={
@@ -32,6 +31,7 @@ const OpenAuthoringSiteForm = ({ form, editMode, path, children }: Props) => {
       >
         {children}
       </InlineForm>
+      <AutoAuthModal />
     </>
   )
 }
