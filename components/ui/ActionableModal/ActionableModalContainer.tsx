@@ -1,7 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { ActionableModal } from './ActionableModal'
-import { enterEditMode } from '../../../open-authoring/authFlow'
-import { useOpenAuthoring } from '../../layout/OpenAuthoring'
 import {
   ActionableModalContext,
   ActionableModalOptions,
@@ -9,14 +7,6 @@ import {
 
 export const ActionableModalContainer = ({ children }) => {
   const [modal, setModal] = useState<ActionableModalOptions>()
-
-  const openAuthoring = useOpenAuthoring()
-
-  useEffect(() => {
-    if (modal) {
-      openAuthoring.updateAuthChecks() //recheck if we need to open auth window as result of error
-    }
-  }, [modal])
 
   return (
     <ActionableModalContext.Provider value={{ modal, setModal }}>

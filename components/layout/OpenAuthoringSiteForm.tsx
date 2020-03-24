@@ -3,6 +3,7 @@ import { useOpenAuthoringToolbarPlugins } from '../../open-authoring/useOpenAuth
 import { useLocalStorageCache } from '../../utils/plugins/useLocalStorageCache'
 import useFormAlerts from '../../open-authoring/useFormAlerts'
 import useAutoAuth from '../../open-authoring/useAutoAuth'
+import useUpdateAuthOnFormFail from '../../open-authoring/useUpdateAuthOnFormFail'
 
 interface Props extends InlineFormProps {
   editMode: boolean
@@ -19,6 +20,8 @@ const OpenAuthoringSiteForm = ({ form, editMode, path, children }: Props) => {
 
   // show feedback on save
   useFormAlerts(form)
+
+  useUpdateAuthOnFormFail(form)
 
   // start auth flow based on queryParam
   useAutoAuth()
