@@ -55,7 +55,6 @@ export const getModalProps = async (
     }
   }
 
-  console.warn('Error Interpreter: Could not interpret error ' + error.code)
   return {
     title: `Error  ${error.code}`,
     message: error.message,
