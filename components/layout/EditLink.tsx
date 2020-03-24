@@ -11,8 +11,6 @@ interface EditLinkProps {
 import { useOpenAuthoring } from './OpenAuthoring'
 
 export const EditLink = ({ color, editMode }: EditLinkProps) => {
-  const cms = useCMS()
-
   const openAuthoring = useOpenAuthoring()
   return (
     <EditToggleButton

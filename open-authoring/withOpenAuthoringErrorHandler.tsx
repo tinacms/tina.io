@@ -22,11 +22,6 @@ export const withOpenAuthoringErrorHandler = BaseComponent => (props: {
     })()
   }, [props.previewError])
 
-  useEffect(() => {
-    window.githubAuthenticated = openAuthoring.githubAuthenticated
-    window.forkValid = openAuthoring.forkValid
-  }, [openAuthoring.githubAuthenticated, openAuthoring.forkValid])
-
   // don't show content with initial content error
   // because the data is likely missing
   return props.previewError ? (

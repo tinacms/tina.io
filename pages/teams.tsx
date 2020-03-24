@@ -14,7 +14,6 @@ import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderCon
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
 import { InlineBlocks } from 'react-tinacms-inline'
 import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
-import ContentNotFoundError from '../utils/github/ContentNotFoundError'
 import OpenAuthoringError from '../open-authoring/OpenAuthoringError'
 import { withOpenAuthoringErrorHandler } from '../open-authoring/withOpenAuthoringErrorHandler'
 
