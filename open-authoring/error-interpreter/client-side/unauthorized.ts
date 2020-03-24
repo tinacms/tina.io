@@ -1,6 +1,6 @@
 import OpenAuthoringError from '../../OpenAuthoringError'
 import { enterAuthFlow, refresh } from '../actions'
-import { ActionableModalOptions } from '../../../components/ui/ActionableModal/ActionableModalContext'
+import { ActionableModalOptions } from '../../../components/ui'
 
 export default function interpretUnauthorizedError(
   error: OpenAuthoringError,

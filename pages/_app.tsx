@@ -11,7 +11,6 @@ import { Toolbar } from '../components/cms/Toolbar'
 import { BrowserStorageApi } from '../utils/plugins/BrowserStorageApi'
 import { Alerts } from '../components/layout/Alerts'
 import { GithubApi } from '../utils/plugins/github-api/GithubApi'
-import { ActionableModalContainer } from '../components/ui/ActionableModal/ActionableModalContainer'
 
 const MainLayout = ({ Component, pageProps }) => {
   /*
@@ -43,38 +42,36 @@ const MainLayout = ({ Component, pageProps }) => {
         <Toolbar />
         <Alerts />
         <OpenAuthoring>
-          <ActionableModalContainer>
-            <DefaultSeo
-              title={data.seoDefaultTitle}
-              titleTemplate={'%s | ' + data.title}
-              description={data.description}
-              openGraph={{
-                type: 'website',
-                locale: 'en_CA',
-                url: data.siteUrl,
-                site_name: data.title,
-                images: [
-                  {
-                    url: 'https://tinacms.org/img/tina-twitter-share.png',
-                    width: 1200,
-                    height: 628,
-                    alt: `TinaCMS`,
-                  },
-                ],
-              }}
-              twitter={{
-                handle: data.social.twitterHandle,
-                site: data.social.twitterHandle,
-                cardType: 'summary_large_image',
-              }}
-            />
-            <Head>
-              <link rel="shortcut icon" href="/favicon/favicon.ico" />
-              <meta name="theme-color" content="#E6FAF8" />
-            </Head>
-            <GlobalStyle />
-            <Component {...pageProps} />
-          </ActionableModalContainer>
+          <DefaultSeo
+            title={data.seoDefaultTitle}
+            titleTemplate={'%s | ' + data.title}
+            description={data.description}
+            openGraph={{
+              type: 'website',
+              locale: 'en_CA',
+              url: data.siteUrl,
+              site_name: data.title,
+              images: [
+                {
+                  url: 'https://tinacms.org/img/tina-twitter-share.png',
+                  width: 1200,
+                  height: 628,
+                  alt: `TinaCMS`,
+                },
+              ],
+            }}
+            twitter={{
+              handle: data.social.twitterHandle,
+              site: data.social.twitterHandle,
+              cardType: 'summary_large_image',
+            }}
+          />
+          <Head>
+            <link rel="shortcut icon" href="/favicon/favicon.ico" />
+            <meta name="theme-color" content="#E6FAF8" />
+          </Head>
+          <GlobalStyle />
+          <Component {...pageProps} />
         </OpenAuthoring>
       </ModalProvider>
     </Tina>

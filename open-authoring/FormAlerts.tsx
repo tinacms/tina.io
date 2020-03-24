@@ -1,21 +1,27 @@
-import { useCMS } from 'tinacms'
-import { useCallback, useEffect } from 'react'
+import { useCMS, Form } from 'tinacms'
+import { useCallback, useEffect, useState } from 'react'
 import OpenAuthoringError from './OpenAuthoringError'
 import interpretError from './error-interpreter'
 import createDecorator from 'final-form-submit-listener'
 import { getForkName } from './utils/repository'
-import { useActionableModal } from '../components/ui/ActionableModal/ActionableModalContext'
+import { ActionableModal, ActionableModalOptions } from '../components/ui'
 
+interface Props {
+  form: Form
+}
 // Show feedback on form submission
-const useFormAlerts = form => {
+const FormAlerts = ({ form }: Props) => {
   const cms = useCMS()
-  const modalContext = useActionableModal()
+
+  const [errorModalProps, setErrorModalProps] = useState<
+    ActionableModalOptions
+  >(null)
 
   // show feedback onSave
   const updateUIWithError = useCallback(
     async (err: OpenAuthoringError) => {
       const errorUIDescriptor = await interpretError(err, cms.api.github)
-      modalContext.setModal(errorUIDescriptor)
+      setErrorModalProps(errorUIDescriptor)
     },
     [cms]
   )
@@ -35,6 +41,8 @@ const useFormAlerts = form => {
 
     return undecorateSaveListener
   }, [form])
+
+  return <>{errorModalProps && <ActionableModal {...errorModalProps} />}</>
 }
 
-export default useFormAlerts
+export default FormAlerts

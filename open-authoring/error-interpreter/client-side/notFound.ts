@@ -1,7 +1,7 @@
 import OpenAuthoringError from '../../OpenAuthoringError'
 import { enterAuthFlow, refresh } from '../actions'
 import { getForkName, getHeadBranch } from '../../utils/repository'
-import { ActionableModalOptions } from '../../../components/ui/ActionableModal/ActionableModalContext'
+import { ActionableModalOptions } from '../../../components/ui'
 
 export default async function interpretNotFoundError(
   error: OpenAuthoringError,

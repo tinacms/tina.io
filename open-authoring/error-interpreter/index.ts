@@ -2,7 +2,7 @@ import OpenAuthoringError from '../OpenAuthoringError'
 import { enterAuthFlow, refresh } from './actions'
 import interpretClientError from './client-side'
 import interpretServerError from './server-side'
-import { ActionableModalOptions } from '../../components/ui/ActionableModal/ActionableModalContext'
+import { ActionableModalOptions } from '../../components/ui'
 
 export default async function interpretError(
   error: OpenAuthoringError,

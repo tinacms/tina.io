@@ -1,24 +1,27 @@
 import { useOpenAuthoring } from '../components/layout/OpenAuthoring'
-import { useActionableModal } from '../components/ui/ActionableModal/ActionableModalContext'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { enterEditMode } from './authFlow'
+import { ActionableModal, ActionableModalOptions } from '../components/ui'
 
-const useAutoAuth = () => {
+const AutoAuthModal = () => {
   const openAuthoring = useOpenAuthoring()
 
-  const modalContext = useActionableModal()
+  const [errorModalProps, setErrorModalProps] = useState<
+    ActionableModalOptions
+  >(null)
+
   const cancelAuth = () => {
     window.history.replaceState(
       {},
       document.title,
       window.location.href.split('?')[0] //TODO - remove only autoAuth param
     )
-    modalContext.setModal(null)
+    setErrorModalProps(null)
   }
 
   useEffect(() => {
     if (window.location.href.includes('autoAuth')) {
-      modalContext.setModal({
+      setErrorModalProps({
         title: 'Authentication',
         message: 'To edit this site, you first need to be authenticated.',
         actions: [
@@ -38,6 +41,8 @@ const useAutoAuth = () => {
       })
     }
   }, [])
+
+  return <>{errorModalProps && <ActionableModal {...errorModalProps} />}</>
 }
 
-export default useAutoAuth
+export default AutoAuthModal

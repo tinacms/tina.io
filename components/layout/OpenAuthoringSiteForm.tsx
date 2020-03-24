@@ -1,9 +1,9 @@
 import { InlineForm, InlineFormProps } from 'react-tinacms-inline'
 import { useOpenAuthoringToolbarPlugins } from '../../open-authoring/useOpenAuthoringToolbarPlugins'
 import { useLocalStorageCache } from '../../utils/plugins/useLocalStorageCache'
-import useFormAlerts from '../../open-authoring/useFormAlerts'
-import useAutoAuth from '../../open-authoring/useAutoAuth'
+import FormAlerts from '../../open-authoring/FormAlerts'
 import useUpdateAuthOnFormFail from '../../open-authoring/useUpdateAuthOnFormFail'
+import AutoAuthModal from '../../open-authoring/AutoAuthModal'
 
 interface Props extends InlineFormProps {
   editMode: boolean
@@ -18,23 +18,21 @@ const OpenAuthoringSiteForm = ({ form, editMode, path, children }: Props) => {
   // Persist pending changes to localStorage
   useLocalStorageCache(path, form, editMode)
 
-  // show feedback on save
-  useFormAlerts(form)
-
   useUpdateAuthOnFormFail(form)
 
-  // start auth flow based on queryParam
-  useAutoAuth()
-
   return (
-    <InlineForm
-      form={form}
-      initialStatus={
-        typeof document !== 'undefined' && editMode ? 'active' : 'inactive'
-      }
-    >
-      {children}
-    </InlineForm>
+    <>
+      <FormAlerts form={form} />
+      <AutoAuthModal />
+      <InlineForm
+        form={form}
+        initialStatus={
+          typeof document !== 'undefined' && editMode ? 'active' : 'inactive'
+        }
+      >
+        {children}
+      </InlineForm>
+    </>
   )
 }
 

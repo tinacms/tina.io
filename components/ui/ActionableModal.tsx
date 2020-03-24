@@ -2,9 +2,14 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { TinaReset } from '@tinacms/styles'
 import { Modal, ModalPopup, ModalBody } from 'tinacms'
-import { AuthLayout } from '../../layout'
-import { Button } from '../Button'
-import { ActionableModalOptions } from './ActionableModalContext'
+import { AuthLayout } from '../layout'
+import { Button } from './Button'
+
+export interface ActionableModalOptions {
+  title: string
+  message: string
+  actions: Array<{ name: string; action(): void }>
+}
 
 export const ActionableModal = ({
   title,

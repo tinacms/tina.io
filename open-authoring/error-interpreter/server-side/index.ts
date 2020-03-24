@@ -1,5 +1,5 @@
 import OpenAuthoringError from '../../OpenAuthoringError'
-import { ActionableModalOptions } from '../../../components/ui/ActionableModal/ActionableModalContext'
+import { ActionableModalOptions } from '../../../components/ui'
 
 export default function interpretServerError(
   error: OpenAuthoringError
