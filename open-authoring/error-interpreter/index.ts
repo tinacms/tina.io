@@ -1,8 +1,9 @@
 import OpenAuthoringError from '../OpenAuthoringError'
-import { enterAuthFlow, refresh } from './actions'
+import { enterAuthFlow } from './actions'
 import interpretClientError from './client-side'
 import interpretServerError from './server-side'
 import { ActionableModalOptions } from '../../components/ui'
+import { exitEditMode } from '../authFlow'
 
 export default async function interpretError(
   error: OpenAuthoringError,
@@ -30,7 +31,7 @@ export default async function interpretError(
       },
       {
         name: 'Cancel',
-        action: refresh,
+        action: exitEditMode,
       },
     ],
   }

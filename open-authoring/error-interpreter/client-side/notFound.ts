@@ -1,7 +1,8 @@
 import OpenAuthoringError from '../../OpenAuthoringError'
-import { enterAuthFlow, refresh } from '../actions'
+import { enterAuthFlow } from '../actions'
 import { getForkName, getHeadBranch } from '../../utils/repository'
 import { ActionableModalOptions } from '../../../components/ui'
+import { exitEditMode } from '../../authFlow'
 
 export default async function interpretNotFoundError(
   error: OpenAuthoringError,
@@ -15,7 +16,7 @@ export default async function interpretNotFoundError(
       actions: [
         {
           name: 'Continue',
-          action: refresh,
+          action: exitEditMode,
         },
       ],
     }
@@ -30,7 +31,7 @@ export default async function interpretNotFoundError(
       },
       {
         name: 'Cancel',
-        action: refresh,
+        action: exitEditMode,
       },
     ],
   }

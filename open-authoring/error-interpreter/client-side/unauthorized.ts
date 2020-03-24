@@ -1,6 +1,7 @@
 import OpenAuthoringError from '../../OpenAuthoringError'
-import { enterAuthFlow, refresh } from '../actions'
+import { enterAuthFlow } from '../actions'
 import { ActionableModalOptions } from '../../../components/ui'
+import { exitEditMode } from '../../authFlow'
 
 export default function interpretUnauthorizedError(
   error: OpenAuthoringError,
@@ -17,7 +18,7 @@ export default function interpretUnauthorizedError(
       },
       {
         name: 'Cancel',
-        action: refresh,
+        action: exitEditMode,
       },
     ],
   }
