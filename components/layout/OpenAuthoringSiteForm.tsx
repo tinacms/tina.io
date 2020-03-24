@@ -2,6 +2,7 @@ import { InlineForm, InlineFormProps } from 'react-tinacms-inline'
 import { useOpenAuthoringToolbarPlugins } from '../../open-authoring/useOpenAuthoringToolbarPlugins'
 import { useLocalStorageCache } from '../../utils/plugins/useLocalStorageCache'
 import useFormAlerts from '../../open-authoring/useFormAlerts'
+import useAutoAuth from '../../open-authoring/useAutoAuth'
 
 interface Props extends InlineFormProps {
   editMode: boolean
@@ -18,6 +19,9 @@ const OpenAuthoringSiteForm = ({ form, editMode, path, children }: Props) => {
 
   // show feedback on save
   useFormAlerts(form)
+
+  // start auth flow based on queryParam
+  useAutoAuth()
 
   return (
     <InlineForm
