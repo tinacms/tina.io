@@ -33,5 +33,7 @@ export const withOpenAuthoringErrorHandler = BaseComponent => (props: {
     window.forkValid = openAuthoring.forkValid
   }, [openAuthoring.githubAuthenticated, openAuthoring.forkValid])
 
-  return <BaseComponent {...props} />
+  // don't show content with initial content error
+  // because the data is likely missing
+  return props.previewError ? <></> : <BaseComponent {...props} />
 }
