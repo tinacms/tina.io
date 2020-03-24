@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { TinaReset } from '@tinacms/styles'
-import { Modal, ModalPopup, ModalBody, ModalProvider } from 'tinacms'
+import { Modal, ModalPopup, ModalBody } from 'tinacms'
 import { AuthLayout } from '../../layout'
 import { Button } from '../Button'
 import { ActionableModalOptions } from './ActionableModalContext'
@@ -18,21 +18,19 @@ export const ActionableModal = ({
   ))
 
   return (
-    <ModalProvider>
-      <TinaReset>
-        <Modal>
-          <ModalPopup>
-            <ModalBody padded>
-              <AuthLayout>
-                <h2>{title}</h2>
-                <p>{message}</p>
-                <Center>{buttons}</Center>
-              </AuthLayout>
-            </ModalBody>
-          </ModalPopup>
-        </Modal>
-      </TinaReset>
-    </ModalProvider>
+    <TinaReset>
+      <Modal>
+        <ModalPopup>
+          <ModalBody padded>
+            <AuthLayout>
+              <h2>{title}</h2>
+              <p>{message}</p>
+              <Center>{buttons}</Center>
+            </AuthLayout>
+          </ModalBody>
+        </ModalPopup>
+      </Modal>
+    </TinaReset>
   )
 }
 
