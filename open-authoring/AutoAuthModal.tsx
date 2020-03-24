@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react'
 import { enterEditMode } from './authFlow'
 import { ActionableModal, ActionableModalOptions } from '../components/ui'
 
+// This component checks for the autoAuth query parameter, and
+// conditionally renders the modal to kick off the auth flow
 const AutoAuthModal = () => {
   const openAuthoring = useOpenAuthoring()
 

@@ -1,7 +1,12 @@
 import { getForkName, getHeadBranch } from '../utils/repository'
 import { exitEditMode } from '../authFlow'
+import { ActionableModalOptions } from '../../components/ui'
 
-export const getModalProps = async (error, sourceProvider, startEditing) => {
+export const getModalProps = async (
+  error,
+  sourceProvider,
+  startEditing
+): Promise<ActionableModalOptions> => {
   const reauthenticateAction = {
     name: 'Continue',
     action: startEditing,

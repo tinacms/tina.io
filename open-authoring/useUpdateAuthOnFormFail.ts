@@ -3,6 +3,9 @@ import { useEffect } from 'react'
 import createDecorator from 'final-form-submit-listener'
 import { useOpenAuthoring } from '../components/layout/OpenAuthoring'
 
+// Hook to update root openAuthoring state when form fails.
+// We need to perform to check before an action is clicked (e.g start auth flow)
+// Because if it is perform on-the-fly, the window may be blocked.
 const useUpdateAuthOnFormFail = (form: Form) => {
   const openAuthoring = useOpenAuthoring()
   useEffect(() => {

@@ -7,7 +7,7 @@ import OpenAuthoringErrorModal from './OpenAuthoringErrorModal'
 interface Props {
   form: Form
 }
-// Show feedback on form submission
+// Show success/fail feedback on form submission
 const FormAlerts = ({ form }: Props) => {
   const cms = useCMS()
 

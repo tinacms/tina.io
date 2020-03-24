@@ -27,7 +27,6 @@ import {
 import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
 import getJsonData from '../utils/github/getJsonData'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
-import ContentNotFoundError from '../utils/github/ContentNotFoundError'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
 import OpenAuthoringError from '../open-authoring/OpenAuthoringError'
 import { withOpenAuthoringErrorHandler } from '../open-authoring/withOpenAuthoringErrorHandler'
