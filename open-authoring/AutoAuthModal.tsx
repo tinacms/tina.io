@@ -20,29 +20,29 @@ const AutoAuthModal = () => {
     setShowAuthModal(false)
   }
 
+  if (!showAuthModal) {
+    return null
+  }
+
   return (
-    <>
-      {showAuthModal && (
-        <ActionableModal
-          title="Authentication"
-          message="To edit this site, you first need to be authenticated."
-          actions={[
-            {
-              name: 'Continue',
-              action: () =>
-                enterEditMode(
-                  openAuthoring.githubAuthenticated,
-                  openAuthoring.forkValid
-                ),
-            },
-            {
-              name: 'Cancel',
-              action: cancelAuth,
-            },
-          ]}
-        />
-      )}
-    </>
+    <ActionableModal
+      title="Authentication"
+      message="To edit this site, you first need to be authenticated."
+      actions={[
+        {
+          name: 'Continue',
+          action: () =>
+            enterEditMode(
+              openAuthoring.githubAuthenticated,
+              openAuthoring.forkValid
+            ),
+        },
+        {
+          name: 'Cancel',
+          action: cancelAuth,
+        },
+      ]}
+    />
   )
 }
 
