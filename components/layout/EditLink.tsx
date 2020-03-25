@@ -8,7 +8,7 @@ interface EditLinkProps {
   color?: 'white' | 'primary' | 'secondary' | 'seafoam' | 'variable'
   editMode: boolean
 }
-import { useOpenAuthoring } from './OpenAuthoring'
+import { useOpenAuthoring } from '../../open-authoring/OpenAuthoringProvider'
 
 export const EditLink = ({ color, editMode }: EditLinkProps) => {
   const openAuthoring = useOpenAuthoring()

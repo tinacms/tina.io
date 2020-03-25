@@ -6,7 +6,7 @@ import { DefaultSeo } from 'next-seo'
 import data from '../content/siteConfig.json'
 import TagManager from 'react-gtm-module'
 import { GlobalStyle } from '../components/styles/GlobalStyle'
-import { OpenAuthoring } from '../components/layout/OpenAuthoring'
+import { OpenAuthoringProvider } from '../open-authoring/OpenAuthoringProvider'
 import { Toolbar } from '../components/cms/Toolbar'
 import { BrowserStorageApi } from '../utils/plugins/BrowserStorageApi'
 import { Alerts } from '../components/layout/Alerts'
@@ -41,7 +41,7 @@ const MainLayout = ({ Component, pageProps }) => {
       <ModalProvider>
         <Toolbar />
         <Alerts />
-        <OpenAuthoring>
+        <OpenAuthoringProvider>
           <DefaultSeo
             title={data.seoDefaultTitle}
             titleTemplate={'%s | ' + data.title}
@@ -72,7 +72,7 @@ const MainLayout = ({ Component, pageProps }) => {
           </Head>
           <GlobalStyle />
           <Component {...pageProps} />
-        </OpenAuthoring>
+        </OpenAuthoringProvider>
       </ModalProvider>
     </Tina>
   )

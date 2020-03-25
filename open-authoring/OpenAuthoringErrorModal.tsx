@@ -3,7 +3,7 @@ import { useEffect, useState, useCallback } from 'react'
 import { useCMS } from 'tinacms'
 import OpenAuthoringError from './OpenAuthoringError'
 import { enterEditMode } from './authFlow'
-import { useOpenAuthoring } from '../components/layout/OpenAuthoring'
+import { useOpenAuthoring } from './OpenAuthoringProvider'
 import { getModalProps } from './error-interpreter/github-interpeter'
 
 interface Props {

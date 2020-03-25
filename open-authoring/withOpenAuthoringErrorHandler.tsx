@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useOpenAuthoring } from '../components/layout/OpenAuthoring'
+import { useOpenAuthoring } from './OpenAuthoringProvider'
 import OpenAuthoringErrorModal from './OpenAuthoringErrorModal'
 
 declare global {

@@ -18,7 +18,7 @@ import { fileToUrl } from '../../utils/urls'
 import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
 const fg = require('fast-glob')
 import { enterEditMode, exitEditMode } from '../../open-authoring/authFlow'
-import { useOpenAuthoring } from '../../components/layout/OpenAuthoring'
+import { useOpenAuthoring } from '../../open-authoring/OpenAuthoringProvider'
 import { Button } from '../../components/ui/Button'
 import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
 import { withOpenAuthoringErrorHandler } from '../../open-authoring/withOpenAuthoringErrorHandler'

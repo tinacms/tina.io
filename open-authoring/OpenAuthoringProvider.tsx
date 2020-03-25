@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {
-  getForkName,
-  getHeadBranch,
-} from '../../open-authoring/utils/repository'
+import { getForkName, getHeadBranch } from './utils/repository'
 import { useCMS } from 'tinacms'
 
 export interface OpenAuthoringContext {
@@ -25,7 +22,7 @@ export function useOpenAuthoring() {
   return openAuthoringContext
 }
 
-export const OpenAuthoring = ({ children }) => {
+export const OpenAuthoringProvider = ({ children }) => {
   const [forkValid, setForkValid] = useState(false)
   const [githubAuthenticated, setGithubAuthenticated] = useState(false)
   const cms = useCMS()

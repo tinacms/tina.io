@@ -1,4 +1,4 @@
-import { useOpenAuthoring } from '../components/layout/OpenAuthoring'
+import { useOpenAuthoring } from './OpenAuthoringProvider'
 import { useState } from 'react'
 import { enterEditMode } from './authFlow'
 import { ActionableModal } from '../components/ui'
