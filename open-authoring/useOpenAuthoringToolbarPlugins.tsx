@@ -8,6 +8,7 @@ import { color } from '@tinacms/styles'
 import UndoIconSvg from '../public/svg/undo-icon.svg'
 import { LoadingDots } from '../components/ui/LoadingDots'
 import { getForkName } from './utils/repository'
+import { ForkNamePlugin } from './toolbar-plugins/ForkNamePlugin'
 
 const useFormState = (form, subscription) => {
   const [state, setState] = useState(form.finalForm.getState())
@@ -28,20 +29,7 @@ export const useOpenAuthoringToolbarPlugins = (
   useEffect(() => {
     const forkName = getForkName()
     const plugins = [
-      {
-        __type: 'toolbar:git',
-        name: 'current-fork',
-        component: () => {
-          return (
-            <FieldMeta name={'Fork'}>
-              <MetaLink target="_blank" href={`https://github.com/${forkName}`}>
-                {forkName}
-              </MetaLink>
-            </FieldMeta>
-          )
-        },
-      },
-      // TODO
+      ForkNamePlugin(forkName),
       PRPlugin(process.env.REPO_FULL_NAME, forkName),
       {
         __type: 'toolbar:form-actions',
@@ -112,15 +100,6 @@ export const useOpenAuthoringToolbarPlugins = (
 interface StatusLightProps {
   warning?: boolean
 }
-
-const MetaLink = styled.a`
-  display: block;
-  max-width: 250px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 16px;
-  color: ${color.primary('dark')};
-`
 
 const SaveButton = styled(ToolbarButton)`
   padding: 0 2rem;
