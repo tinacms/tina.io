@@ -1,5 +1,5 @@
 import { b64EncodeUnicode } from './base64'
-import GithubError from '../../../open-authoring/github/api/GithubError'
+import GithubError from './GithubError'
 
 export class GithubApi {
   proxy: string

@@ -1,7 +1,7 @@
 import { useCMS, Form } from 'tinacms'
 import { useEffect, useState } from 'react'
 import createDecorator from 'final-form-submit-listener'
-import { getForkName } from './utils/repository'
+import { getForkName } from '../open-authoring/repository'
 import OpenAuthoringErrorModal from './OpenAuthoringErrorModal'
 
 interface Props {

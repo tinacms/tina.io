@@ -1,4 +1,4 @@
-import { setForkName, getForkName } from './utils/repository'
+import { setForkName, getForkName } from '../open-authoring/repository'
 
 function popupWindow(url, title, window, w, h) {
   const y = window.top.outerHeight / 2 + window.top.screenY - h / 2

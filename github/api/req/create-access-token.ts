@@ -1,7 +1,6 @@
 const qs = require('qs')
+const axios = require('axios')
 import { serialize } from 'cookie'
-
-const { createAccessToken } = require('../../../open-authoring/github/api')
 
 export default (req, res) => {
   createAccessToken(
@@ -24,4 +23,16 @@ export default (req, res) => {
       res.status(200).json({})
     }
   })
+}
+
+const createAccessToken = (clientId, clientSecret, code, state) => {
+  return axios.post(
+    `https://github.com/login/oauth/access_token`,
+    qs.stringify({
+      client_id: clientId,
+      client_secret: clientSecret,
+      code: code,
+      state,
+    })
+  )
 }

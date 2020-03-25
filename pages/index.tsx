@@ -29,7 +29,7 @@ import getJsonData from '../utils/github/getJsonData'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
 import OpenAuthoringError from '../open-authoring/OpenAuthoringError'
-import { withOpenAuthoringErrorHandler } from '../open-authoring/withOpenAuthoringErrorHandler'
+import { withOpenAuthoringErrorHandler } from '../open-authoring/alerts/withOpenAuthoringErrorHandler'
 
 const HomePage = (props: any) => {
   const [formData, form] = useLocalGithubJsonForm(

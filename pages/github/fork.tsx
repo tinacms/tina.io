@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import {
   setForkName,
   getHeadBranch,
-} from '../../open-authoring/utils/repository'
+} from '../../open-authoring/open-authoring/repository'
 import { useCMS } from 'tinacms'
 
 export default function Authorizing() {

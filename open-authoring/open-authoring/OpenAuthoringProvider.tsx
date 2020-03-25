@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { getForkName, getHeadBranch } from './utils/repository'
+import { getForkName, getHeadBranch } from './repository'
 import { useCMS } from 'tinacms'
 
 export interface OpenAuthoringContext {

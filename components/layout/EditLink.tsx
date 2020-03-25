@@ -1,14 +1,14 @@
 import styled from 'styled-components'
 import { useCMS } from 'tinacms'
 import { EditIcon } from '@tinacms/icons'
-import { enterEditMode, exitEditMode } from '../../open-authoring/authFlow'
+import { enterEditMode, exitEditMode } from '../../open-authoring/auth/authFlow'
 import { Button } from '../ui'
 
 interface EditLinkProps {
   color?: 'white' | 'primary' | 'secondary' | 'seafoam' | 'variable'
   editMode: boolean
 }
-import { useOpenAuthoring } from '../../open-authoring/OpenAuthoringProvider'
+import { useOpenAuthoring } from '../../open-authoring/open-authoring/OpenAuthoringProvider'
 
 export const EditLink = ({ color, editMode }: EditLinkProps) => {
   const openAuthoring = useOpenAuthoring()

@@ -1,9 +1,9 @@
 import { InlineForm, InlineFormProps } from 'react-tinacms-inline'
-import { useOpenAuthoringToolbarPlugins } from '../../open-authoring/useOpenAuthoringToolbarPlugins'
+import { useOpenAuthoringToolbarPlugins } from '../../open-authoring/toolbar-plugins/useOpenAuthoringToolbarPlugins'
 import { useLocalStorageCache } from '../../utils/plugins/useLocalStorageCache'
-import FormAlerts from '../../open-authoring/FormAlerts'
-import useUpdateAuthOnFormFail from '../../open-authoring/useUpdateAuthOnFormFail'
-import AutoAuthModal from '../../open-authoring/AutoAuthModal'
+import FormAlerts from '../../open-authoring/alerts/FormAlerts'
+import useUpdateAuthOnFormFail from '../../open-authoring/form/useUpdateAuthOnFormFail'
+import AutoAuthModal from '../open-authoring/AutoAuthModal'
 
 interface Props extends InlineFormProps {
   editMode: boolean

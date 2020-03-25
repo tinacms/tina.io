@@ -1,10 +1,10 @@
 import { Form, useCMS } from 'tinacms'
 import { useEffect, useState } from 'react'
-import PRPlugin from './toolbar-plugins/pull-request'
-import { getForkName } from './utils/repository'
-import { ForkNamePlugin } from './toolbar-plugins/ForkNamePlugin'
-import { FormActionsPlugin } from './toolbar-plugins/FormActionsPlugin'
-import { DirtyIndicatorPlugin } from './toolbar-plugins/DirtyIndicatorPlugin'
+import PRPlugin from './pull-request'
+import { getForkName } from '../open-authoring/repository'
+import { ForkNamePlugin } from './ForkNamePlugin'
+import { FormActionsPlugin } from './FormActionsPlugin'
+import { DirtyIndicatorPlugin } from './DirtyIndicatorPlugin'
 
 const useFormState = (form, subscription) => {
   const [state, setState] = useState(form.finalForm.getState())

@@ -1,4 +1,4 @@
-import { getContent } from '../../open-authoring/github/api'
+import { getContent } from './getContent'
 import { SourceProviderConnection } from './sourceProviderConnection'
 import path from 'path'
 

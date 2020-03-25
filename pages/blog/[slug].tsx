@@ -17,11 +17,11 @@ import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMar
 import { fileToUrl } from '../../utils/urls'
 import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
 const fg = require('fast-glob')
-import { enterEditMode, exitEditMode } from '../../open-authoring/authFlow'
-import { useOpenAuthoring } from '../../open-authoring/OpenAuthoringProvider'
+import { enterEditMode, exitEditMode } from '../../open-authoring/auth/authFlow'
+import { useOpenAuthoring } from '../../open-authoring/open-authoring/OpenAuthoringProvider'
 import { Button } from '../../components/ui/Button'
 import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
-import { withOpenAuthoringErrorHandler } from '../../open-authoring/withOpenAuthoringErrorHandler'
+import { withOpenAuthoringErrorHandler } from '../../open-authoring/alerts/withOpenAuthoringErrorHandler'
 import Error from 'next/error'
 
 function BlogTemplate({

@@ -1,7 +1,7 @@
-import { useOpenAuthoring } from './OpenAuthoringProvider'
+import { useOpenAuthoring } from '../../open-authoring/open-authoring/OpenAuthoringProvider'
 import { useState } from 'react'
-import { enterEditMode } from './authFlow'
-import { ActionableModal } from '../components/ui'
+import { enterEditMode } from '../../open-authoring/auth/authFlow'
+import { ActionableModal } from '../ui'
 
 interface Props {
   autoAuthKey?: string // query param key which kicks off auth flow

@@ -1,7 +1,7 @@
 import { Form } from 'tinacms'
 import { useEffect } from 'react'
 import createDecorator from 'final-form-submit-listener'
-import { useOpenAuthoring } from './OpenAuthoringProvider'
+import { useOpenAuthoring } from '../open-authoring/OpenAuthoringProvider'
 
 // Hook to update root openAuthoring state when form fails.
 // We need to perform to check before an action is clicked (e.g start auth flow)

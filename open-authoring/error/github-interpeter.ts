@@ -1,5 +1,5 @@
-import { getForkName, getHeadBranch } from '../utils/repository'
-import { exitEditMode } from '../authFlow'
+import { getForkName, getHeadBranch } from '../open-authoring/repository'
+import { exitEditMode } from '../auth/authFlow'
 import { ActionableModalOptions } from '../../components/ui'
 
 export const getModalProps = async (

@@ -1,4 +1,4 @@
-import { getContent } from '../../open-authoring/github/api'
+import { getContent } from './getContent'
 import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
 const atob = require('atob')
 
