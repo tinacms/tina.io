@@ -1,14 +1,12 @@
 import { Form, useCMS, FieldMeta } from 'tinacms'
 import { useEffect, useState } from 'react'
-import { ToolbarButton } from '../components/ui/inline/ToolbarButton'
 import { DesktopLabel } from '../components/ui/inline/DesktopLabel'
 import PRPlugin from './toolbar-plugins/pull-request'
 import styled, { css } from 'styled-components'
 import { color } from '@tinacms/styles'
-import UndoIconSvg from '../public/svg/undo-icon.svg'
-import { LoadingDots } from '../components/ui/LoadingDots'
 import { getForkName } from './utils/repository'
 import { ForkNamePlugin } from './toolbar-plugins/ForkNamePlugin'
+import { FormActionsPlugin } from './toolbar-plugins/FormActionsPlugin'
 
 const useFormState = (form, subscription) => {
   const [state, setState] = useState(form.finalForm.getState())
@@ -31,48 +29,7 @@ export const useOpenAuthoringToolbarPlugins = (
     const plugins = [
       ForkNamePlugin(forkName),
       PRPlugin(process.env.REPO_FULL_NAME, forkName),
-      {
-        __type: 'toolbar:form-actions',
-        name: 'base-form-actions',
-        component: () => (
-          <>
-            {formState.dirty ? (
-              <>
-                <ToolbarButton
-                  onClick={() => {
-                    form.finalForm.reset()
-                  }}
-                >
-                  <UndoIconSvg />
-                  <DesktopLabel> Discard</DesktopLabel>
-                </ToolbarButton>
-                <SaveButton
-                  primary
-                  onClick={form.submit}
-                  busy={formState.submitting}
-                >
-                  {formState.submitting && <LoadingDots />}
-                  {!formState.submitting && (
-                    <>
-                      Save <DesktopLabel>&nbsp;Page</DesktopLabel>
-                    </>
-                  )}
-                </SaveButton>
-              </>
-            ) : (
-              <>
-                <ToolbarButton onClick={form.reset} disabled>
-                  <UndoIconSvg />
-                  <DesktopLabel> Discard</DesktopLabel>
-                </ToolbarButton>
-                <SaveButton primary onClick={form.submit} disabled>
-                  Save <DesktopLabel>&nbsp;Page</DesktopLabel>
-                </SaveButton>
-              </>
-            )}
-          </>
-        ),
-      },
+      FormActionsPlugin(form, formState),
       {
         __type: 'toolbar:status',
         name: 'form-state-dirty',
@@ -101,9 +58,6 @@ interface StatusLightProps {
   warning?: boolean
 }
 
-const SaveButton = styled(ToolbarButton)`
-  padding: 0 2rem;
-`
 const StatusLight = styled.span<StatusLightProps>`
   display: inline-block;
   width: 8px;
