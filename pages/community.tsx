@@ -27,9 +27,8 @@ import getJsonData from '../utils/github/getJsonData'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
-import ContentNotFoundError from '../utils/github/ContentNotFoundError'
 import OpenAuthoringError from '../open-authoring/OpenAuthoringError'
-import { withErrorModal } from '../open-authoring/withErrrorrModal'
+import { withOpenAuthoringErrorHandler } from '../open-authoring/withOpenAuthoringErrorHandler'
 
 function CommunityPage({
   community,
@@ -158,7 +157,7 @@ function CommunityPage({
   )
 }
 
-export default withErrorModal(CommunityPage)
+export default withOpenAuthoringErrorHandler(CommunityPage)
 
 /*
  ** DATA FETCHING -----------------------------------------------

@@ -14,9 +14,8 @@ import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderCon
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
 import { InlineBlocks } from 'react-tinacms-inline'
 import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
-import ContentNotFoundError from '../utils/github/ContentNotFoundError'
 import OpenAuthoringError from '../open-authoring/OpenAuthoringError'
-import { withErrorModal } from '../open-authoring/withErrrorrModal'
+import { withOpenAuthoringErrorHandler } from '../open-authoring/withOpenAuthoringErrorHandler'
 
 const formOptions = {
   label: 'Teams',
@@ -108,7 +107,7 @@ function TeamsPage(props) {
   )
 }
 
-export default withErrorModal(TeamsPage)
+export default withOpenAuthoringErrorHandler(TeamsPage)
 
 /*
  ** DATA FETCHING --------------------------------------------------

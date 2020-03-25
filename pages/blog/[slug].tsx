@@ -21,7 +21,7 @@ import { enterEditMode, exitEditMode } from '../../open-authoring/authFlow'
 import { useOpenAuthoring } from '../../components/layout/OpenAuthoring'
 import { Button } from '../../components/ui/Button'
 import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
-import { withErrorModal } from '../../open-authoring/withErrrorrModal'
+import { withOpenAuthoringErrorHandler } from '../../open-authoring/withOpenAuthoringErrorHandler'
 import Error from 'next/error'
 
 function BlogTemplate({
@@ -104,7 +104,7 @@ function BlogTemplate({
   )
 }
 
-export default withErrorModal(BlogTemplate)
+export default withOpenAuthoringErrorHandler(BlogTemplate)
 
 /*
  ** DATA FETCHING --------------------------------------------------

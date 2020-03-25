@@ -75,7 +75,6 @@ export class GithubApi {
       return data
     } catch (e) {
       if ((e.status = 404)) {
-        console.log('404')
         return
       }
       throw e

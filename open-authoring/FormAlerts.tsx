@@ -1,31 +1,17 @@
-import { useCMS } from 'tinacms'
-import { useCallback, useState, useEffect } from 'react'
-import OpenAuthoringError from './OpenAuthoringError'
-import interpretError from './error-interpreter'
-import OpenAuthoringErrorProps from './OpenAuthoringErrorProps'
+import { useCMS, Form } from 'tinacms'
+import { useEffect, useState } from 'react'
 import createDecorator from 'final-form-submit-listener'
-import { OpenAuthoringModalContainer } from './OpenAuthoringModalContainer'
 import { getForkName } from './utils/repository'
+import OpenAuthoringErrorModal from './OpenAuthoringErrorModal'
 
-const FormAlerts = ({ form }) => {
+interface Props {
+  form: Form
+}
+// Show success/fail feedback on form submission
+const FormAlerts = ({ form }: Props) => {
   const cms = useCMS()
-  const [interpretedError, setInterpretedError] = useState(null)
 
-  // show feedback onSave
-  const updateUIWithError = useCallback(
-    async (err: OpenAuthoringError) => {
-      const errorUIDescriptor: OpenAuthoringErrorProps = await interpretError(
-        err,
-        cms.api.github
-      )
-      if (errorUIDescriptor.asModal) {
-        setInterpretedError(errorUIDescriptor)
-      } else {
-        cms.alerts.error(errorUIDescriptor.message)
-      }
-    },
-    [cms, setInterpretedError]
-  )
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     const submitListener = createDecorator({
@@ -34,7 +20,7 @@ const FormAlerts = ({ form }) => {
           `Saved Successfully: Changes committed to ${getForkName()}`
         ),
       afterSubmitFailed: async failedForm => {
-        updateUIWithError(failedForm.getState().submitError)
+        setError(failedForm.getState().submitError)
       },
     })
 
@@ -43,7 +29,7 @@ const FormAlerts = ({ form }) => {
     return undecorateSaveListener
   }, [form])
 
-  return <OpenAuthoringModalContainer openAuthoringErrorUI={interpretedError} />
+  return <>{error && <OpenAuthoringErrorModal error={error} />}</>
 }
 
 export default FormAlerts
