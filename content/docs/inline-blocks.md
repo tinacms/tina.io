@@ -1,7 +1,7 @@
 ---
 title: Inline Blocks
 prev: /docs/inline-editing
-next: /docs/nextjs/overview
+next: /docs/inline-blocks/block-text
 consumes:
   - file: /packages/react-tinacms-inline/src/inline-form.tsx
     description: InlineForm
@@ -11,7 +11,7 @@ Inline Blocks combine the content modelling flexibility of regular [blocks](http
 
 > **Please note:** This is considered an unstable API. Any breaking changes will be shared in the weekly [Release Notes](https://tinacms.org/blog). That said, we will do our best to keep this document up-to-date.
 
-![TODO: add gif]()
+![TinaCMS: Inline Blocks Gif](/gif/inline-blocks.gif)
 
 ## Creating a Block
 
@@ -48,13 +48,15 @@ interface BlockComponentProps {
 }
 ```
 
-This component should render `BlocksControls`, the UI for editing, deleting, or moving blocks and at least one _Block Field_.
+This component should render `BlocksControls`, the UI for editing, deleting, or moving blocks and at least one _Block Field_. The image below shows `BlockTextarea`.
+
+![TinaCMS: Inline Block Controls](/img/inline-blocks/block-controls.png)
 
 **Available Block Fields**:
 
-- [BlockText]()
-- [BlockTextarea]()
-- [BlockImage]()
+- [Text Block](https://tinacms.org/docs/inline-blocks/block-text)
+- [Textarea Block](https://tinacms.org/docs/inline-blocks/block-textarea)
+- [Image Block](https://tinacms.org/docs/inline-blocks/block-image)
 
 ### Block Template
 
@@ -191,7 +193,7 @@ Each individual _block_ object must have a `_template` value to connect its data
 
 To add controls for editing Inline Blocks, you can create your own button components.
 
-![TODO: add photo]()
+![TinaCMS: Inline Controls](/img/inline-blocks/inline-controls.png)
 
 > **Note:** This configuration may change soon as these controls will be moved to a _Global Toolbar_ component.
 
@@ -260,7 +262,7 @@ export function DiscardButton() {
 
 There may be times when a Block needs more field inputs than the inline field. For example, an image may need a field for the ‘alt’ tag. For these additional settings, we can use `ModalProvider` and add additional fields to our Block Template.
 
-![TODO: add photo]()
+![TinaCMS: Inline Blocks Settings Modal](/img/inline-blocks/settings-modal.png)
 
 ### 1. Define Fields in the Block Template
 
@@ -320,7 +322,7 @@ export function Image({ data, index }) {
 
 ### 3. Add the `ModalProvider`
 
-To use the `ModalProvider`, simply wrap it around the `InlineForm` that renders `InlineBlocks`. This will provide the 'Settings Modal' view. The fields defined in the block template will populate the form in that modal.
+To use the `ModalProvider`, wrap it around the `InlineForm` that renders `InlineBlocks`. This will provide the 'Settings Modal' view. The fields defined in the block template will populate the form in that modal.
 
 ```jsx
 import { useJsonForm } from 'next-tinacms-json'

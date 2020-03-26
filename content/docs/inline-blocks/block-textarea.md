@@ -7,8 +7,6 @@ consumes:
 
 Inline `BlockTextarea` represents a multiline text input. It should be used for content values that are long strings: for example, a page description.
 
-![TODO: add image]()
-
 ## Definition
 
 Below is an example of how `BlockTextarea` may be used in a [Block Component](/docs/inline-blocks#block-component) definition.

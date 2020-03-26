@@ -6,8 +6,6 @@ consumes:
 
 The Inline `BlockImage` field represents an image input. This field supports drag and drop upload, or via clicking on the image to select media from the local filesystem.
 
-![TODO: add image photo]()
-
 ## Definition
 
 Below is a simple example of how `BlockImage` could be implemented in a [Block Component](/docs/inline-blocks#block-component) definition.

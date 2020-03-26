@@ -7,8 +7,6 @@ consumes:
 
 Inline `BlockText` represents a single line text input. It should be used for content values that are short strings: for example, a page title.
 
-![TODO: add image]()
-
 ## Definition
 
 Below is an example of how `BlockText` may be used in a [Block Component](/docs/inline-blocks#block-component) definition.
