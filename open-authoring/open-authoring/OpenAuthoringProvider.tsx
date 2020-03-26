@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { getForkName, getHeadBranch, setForkName } from './repository'
 import { useCMS } from 'tinacms'
-import { SourceProviderManager } from '../source-provider-managers/SourceProviderManager'
 import { ActionableModal } from '../../components/ui'
 export interface OpenAuthoringContext {
   forkValid: boolean
   authenticated: boolean
   updateAuthChecks: () => void
-  sourceProviderManager: SourceProviderManager
+  authenticate: () => Promise<void>
   enterEditMode: () => void
   exitEditMode: () => void
 }
@@ -28,15 +27,15 @@ export function useOpenAuthoring() {
 
 interface ProviderProps {
   children: any
-  sourceProviderManager: SourceProviderManager
-  onAuthorize: () => void
+  authenticate: () => Promise<void>
+  enterEditMode: () => void
   exitEditMode: () => void
 }
 
 export const OpenAuthoringProvider = ({
   children,
-  sourceProviderManager,
-  onAuthorize,
+  authenticate,
+  enterEditMode,
   exitEditMode,
 }: ProviderProps) => {
   const [forkValid, setForkValid] = useState(false)
@@ -54,9 +53,9 @@ export const OpenAuthoringProvider = ({
     updateAuthChecks()
   }, [])
 
-  const edit = async () => {
+  const tryEnterEditMode = async () => {
     if (authenticated && forkValid) {
-      onAuthorize()
+      enterEditMode()
     } else {
       setAuthorizing(true)
     }
@@ -69,7 +68,7 @@ export const OpenAuthoringProvider = ({
 
   useEffect(() => {
     if (authorizing && forkValid && authenticated) {
-      onAuthorize()
+      enterEditMode()
     }
   }, [authorizing, forkValid, authenticated])
 
@@ -79,8 +78,8 @@ export const OpenAuthoringProvider = ({
         forkValid,
         authenticated,
         updateAuthChecks,
-        sourceProviderManager,
-        enterEditMode: edit,
+        authenticate,
+        enterEditMode: tryEnterEditMode,
         exitEditMode,
       }}
     >
@@ -106,7 +105,7 @@ const OpenAuthoringAuthModal = ({ onUpdateAuthState }) => {
         {
           name: 'auth',
           action: async () => {
-            await openAuthoring.sourceProviderManager.authenticate()
+            await openAuthoring.authenticate()
             onUpdateAuthState()
           },
         },

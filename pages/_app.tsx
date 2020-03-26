@@ -11,7 +11,7 @@ import { Toolbar } from '../components/cms/Toolbar'
 import { BrowserStorageApi } from '../utils/plugins/browser-storage-api/BrowserStorageApi'
 import { Alerts } from '../components/layout/Alerts'
 import { GithubApi } from '../utils/plugins/github-api/GithubApi'
-import { GithubManager } from '../open-authoring/source-provider-managers/GithubManager'
+import { authenticate } from '../open-authoring/github-auth/authenticate'
 
 const MainLayout = ({ Component, pageProps }) => {
   /*
@@ -37,9 +37,7 @@ const MainLayout = ({ Component, pageProps }) => {
 
   const cms = React.useMemo(() => new TinaCMS(tinaConfig), [])
 
-  const sourceProviderManager = new GithubManager()
-
-  const onAuthorize = () =>
+  const enterEditMode = () =>
     fetch(`/api/preview`).then(() => {
       window.location.href = window.location.pathname
     })
@@ -56,8 +54,8 @@ const MainLayout = ({ Component, pageProps }) => {
         <Toolbar />
         <Alerts />
         <OpenAuthoringProvider
-          sourceProviderManager={sourceProviderManager}
-          onAuthorize={onAuthorize}
+          authenticate={authenticate}
+          enterEditMode={enterEditMode}
           exitEditMode={exitEditMode}
         >
           <DefaultSeo
