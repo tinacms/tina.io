@@ -19,6 +19,13 @@ const OpenAuthoringErrorModal = (props: Props) => {
 
   const openAuthoring = useOpenAuthoring()
 
+  // Hook to update root openAuthoring state when form fails.
+  // We need to perform to check before an action is clicked (e.g start auth flow)
+  // Because if it is perform on-the-fly, the window may be blocked.
+  useEffect(() => {
+    openAuthoring.updateAuthChecks()
+  }, [])
+
   useEffect(() => {
     ;(async () => {
       if (props.error) {

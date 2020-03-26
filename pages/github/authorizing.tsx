@@ -1,5 +1,5 @@
 import { AuthLayout } from '../../components/layout'
-import useGithubAuthRedirect from '../../open-authoring/source-provider-managers/useGithubAuthRedirect'
+import useGithubAuthRedirect from '../../open-authoring/github-auth/useGithubAuthRedirect'
 
 export default function Authorizing() {
   useGithubAuthRedirect()
