@@ -8,7 +8,7 @@ import TagManager from 'react-gtm-module'
 import { GlobalStyle } from '../components/styles/GlobalStyle'
 import { OpenAuthoringProvider } from '../open-authoring/open-authoring/OpenAuthoringProvider'
 import { Toolbar } from '../components/cms/Toolbar'
-import { BrowserStorageApi } from '../utils/plugins/BrowserStorageApi'
+import { BrowserStorageApi } from '../utils/plugins/browser-storage-api/BrowserStorageApi'
 import { Alerts } from '../components/layout/Alerts'
 import { GithubApi } from '../utils/plugins/github-api/GithubApi'
 
