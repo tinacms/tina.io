@@ -1,3 +1,3 @@
 export interface SourceProviderManager {
-  authenticate(): void
+  authenticate(): Promise<void>
 }

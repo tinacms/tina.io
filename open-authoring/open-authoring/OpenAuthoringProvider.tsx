@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { getForkName, getHeadBranch, setForkName } from './repository'
 import { useCMS } from 'tinacms'
 import { SourceProviderManager } from '../source-provider-managers/SourceProviderManager'
-import popupWindow from '../../utils/popupWindow'
 export interface OpenAuthoringContext {
   forkValid: boolean
   githubAuthenticated: boolean
@@ -46,32 +45,18 @@ export const OpenAuthoringProvider = ({
     updateAuthChecks()
   }, [])
 
-  const edit = () => {
-    const fork = getForkName()
-
-    if (githubAuthenticated) {
-      if (fork && forkValid) {
-        setForkName(fork)
-        fetch(`/api/preview`).then(() => {
-          window.location.href = window.location.pathname
-        })
-        return
-      } else {
-        popupWindow(`/github/fork`, '_blank', window, 1000, 700)
-      }
-    } else {
-      const authState = Math.random()
-        .toString(36)
-        .substring(7)
-
-      popupWindow(
-        `/github/start-auth?state=${authState}`,
-        '_blank',
-        window,
-        1000,
-        700
-      )
+  const edit = async () => {
+    if (!githubAuthenticated) {
+      await sourceProviderManager.authenticate()
     }
+    if (!forkValid) {
+      const { full_name } = await cms.api.github.createFork()
+      setForkName(full_name)
+    }
+
+    fetch(`/api/preview`).then(() => {
+      window.location.href = window.location.pathname
+    })
   }
 
   return (
