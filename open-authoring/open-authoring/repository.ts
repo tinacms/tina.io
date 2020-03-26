@@ -2,7 +2,6 @@ import Cookies from 'js-cookie'
 
 export const FORK_COOKIE_KEY = 'fork_full_name'
 export const HEAD_BRANCH_COOKIE_KEY = 'head_branch'
-export const GITHUB_ACCESS_TOKEN_COOKIE_KEY = 'github_access_token'
 
 export const getForkName = () => {
   return getCookie(FORK_COOKIE_KEY)
