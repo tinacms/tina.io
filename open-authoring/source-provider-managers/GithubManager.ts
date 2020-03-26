@@ -1,5 +1,6 @@
 import { SourceProviderManager } from './SourceProviderManager'
 import popupWindow from '../../utils/popupWindow'
+import { GITHUB_AUTH_CODE_KEY } from './useGithubAuthRedirect'
 export class GithubManager implements SourceProviderManager {
   authenticate(): Promise<void> {
     const authState = Math.random()
@@ -11,7 +12,7 @@ export class GithubManager implements SourceProviderManager {
     return new Promise(resolve => {
       let authTab
       window.addEventListener('storage', function(e) {
-        if (e.key == 'github_auth_code') {
+        if (e.key == GITHUB_AUTH_CODE_KEY) {
           fetch(
             `/api/create-github-access-token?code=${e.newValue}&state=${authState}`
           ).then(() => {

@@ -4,7 +4,7 @@ import { useCMS } from 'tinacms'
 import { SourceProviderManager } from '../source-provider-managers/SourceProviderManager'
 export interface OpenAuthoringContext {
   forkValid: boolean
-  githubAuthenticated: boolean
+  authenticated: boolean
   updateAuthChecks: () => void
   sourceProviderManager: SourceProviderManager
   enterEditMode: () => void
@@ -36,11 +36,11 @@ export const OpenAuthoringProvider = ({
   onAuthorize,
 }: ProviderProps) => {
   const [forkValid, setForkValid] = useState(false)
-  const [githubAuthenticated, setGithubAuthenticated] = useState(false)
+  const [authenticated, setauthenticated] = useState(false)
   const cms = useCMS()
 
   const updateAuthChecks = async () => {
-    setGithubAuthenticated(!!(await cms.api.github.getUser()))
+    setauthenticated(!!(await cms.api.github.getUser()))
     setForkValid(await cms.api.github.getBranch(getForkName(), getHeadBranch()))
   }
   useEffect(() => {
@@ -48,7 +48,7 @@ export const OpenAuthoringProvider = ({
   }, [])
 
   const edit = async () => {
-    if (!githubAuthenticated) {
+    if (!authenticated) {
       await sourceProviderManager.authenticate()
     }
     if (!forkValid) {
@@ -63,7 +63,7 @@ export const OpenAuthoringProvider = ({
     <OpenAuthoringContext.Provider
       value={{
         forkValid,
-        githubAuthenticated,
+        authenticated,
         updateAuthChecks,
         sourceProviderManager,
         enterEditMode: edit,

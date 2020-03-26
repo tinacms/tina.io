@@ -4,7 +4,7 @@ import OpenAuthoringErrorModal from './OpenAuthoringErrorModal'
 
 declare global {
   interface Window {
-    githubAuthenticated: boolean
+    authenticated: boolean
     forkValid: boolean
   }
 }
