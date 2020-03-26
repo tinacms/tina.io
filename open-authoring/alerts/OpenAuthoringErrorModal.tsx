@@ -2,7 +2,6 @@ import { ActionableModalOptions, ActionableModal } from '../../components/ui'
 import { useEffect, useState, useCallback } from 'react'
 import { useCMS } from 'tinacms'
 import OpenAuthoringError from '../OpenAuthoringError'
-import { enterEditMode } from '../auth/authFlow'
 import { useOpenAuthoring } from '../open-authoring/OpenAuthoringProvider'
 import { getModalProps } from '../error/github-interpeter'
 
@@ -20,26 +19,20 @@ const OpenAuthoringErrorModal = (props: Props) => {
 
   const openAuthoring = useOpenAuthoring()
 
-  const startEditing = useCallback(
-    () =>
-      enterEditMode(openAuthoring.githubAuthenticated, openAuthoring.forkValid),
-    [openAuthoring.githubAuthenticated, openAuthoring.forkValid]
-  )
-
   useEffect(() => {
     ;(async () => {
       if (props.error) {
         const modalProps = await getModalProps(
           props.error,
           github,
-          startEditing
+          openAuthoring.enterEditMode
         )
         setErrorModalProps(modalProps)
       } else {
         setErrorModalProps(null)
       }
     })()
-  }, [props.error, startEditing])
+  }, [props.error, openAuthoring.enterEditMode])
 
   return errorModalProps ? <ActionableModal {...errorModalProps} /> : <></>
 }

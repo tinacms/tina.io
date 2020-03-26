@@ -1,7 +1,6 @@
 import styled from 'styled-components'
-import { useCMS } from 'tinacms'
 import { EditIcon } from '@tinacms/icons'
-import { enterEditMode, exitEditMode } from '../../open-authoring/auth/authFlow'
+import { exitEditMode } from '../../open-authoring/auth/authFlow'
 import { Button } from '../ui'
 
 interface EditLinkProps {
@@ -16,15 +15,7 @@ export const EditLink = ({ color, editMode }: EditLinkProps) => {
     <EditToggleButton
       id="OpenAuthoringEditButton"
       color={color}
-      onClick={
-        editMode
-          ? exitEditMode
-          : () =>
-              enterEditMode(
-                openAuthoring.githubAuthenticated,
-                openAuthoring.forkValid
-              )
-      }
+      onClick={editMode ? exitEditMode : openAuthoring.enterEditMode}
     >
       <EditIcon /> {editMode ? 'Exit Edit Mode' : 'Edit This Site'}
     </EditToggleButton>

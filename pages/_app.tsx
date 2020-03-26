@@ -11,6 +11,7 @@ import { Toolbar } from '../components/cms/Toolbar'
 import { BrowserStorageApi } from '../utils/plugins/browser-storage-api/BrowserStorageApi'
 import { Alerts } from '../components/layout/Alerts'
 import { GithubApi } from '../utils/plugins/github-api/GithubApi'
+import { GithubManager } from '../open-authoring/source-provider-managers/GithubManager'
 
 const MainLayout = ({ Component, pageProps }) => {
   /*
@@ -36,12 +37,14 @@ const MainLayout = ({ Component, pageProps }) => {
 
   const cms = React.useMemo(() => new TinaCMS(tinaConfig), [])
 
+  const sourceProviderManager = new GithubManager()
+
   return (
     <Tina cms={cms} {...tinaConfig.sidebar}>
       <ModalProvider>
         <Toolbar />
         <Alerts />
-        <OpenAuthoringProvider>
+        <OpenAuthoringProvider sourceProviderManager={sourceProviderManager}>
           <DefaultSeo
             title={data.seoDefaultTitle}
             titleTemplate={'%s | ' + data.title}

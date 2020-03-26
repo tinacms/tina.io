@@ -1,6 +1,5 @@
 import { useOpenAuthoring } from '../../open-authoring/open-authoring/OpenAuthoringProvider'
 import { useState } from 'react'
-import { enterEditMode } from '../../open-authoring/auth/authFlow'
 import { ActionableModal } from '../ui'
 
 interface Props {
@@ -35,11 +34,7 @@ const AutoAuthModal = ({ autoAuthKey = 'autoAuth' }: Props) => {
       actions={[
         {
           name: 'Continue',
-          action: () =>
-            enterEditMode(
-              openAuthoring.githubAuthenticated,
-              openAuthoring.forkValid
-            ),
+          action: openAuthoring.enterEditMode,
         },
         {
           name: 'Cancel',
