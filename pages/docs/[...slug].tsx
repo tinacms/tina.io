@@ -16,7 +16,7 @@ import {
   Overlay,
   DocsPagination,
 } from '../../components/ui'
-import { InlineWysiwyg, InlineTextareaField } from '../../components/ui/inline'
+import { InlineWysiwyg, InlineTextareaField } from 'react-tinacms-inline'
 import { TinaIcon } from '../../components/logo'
 import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'
 import { getDocProps } from '../../utils/docs/getDocProps'

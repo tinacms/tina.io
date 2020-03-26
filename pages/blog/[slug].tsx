@@ -10,7 +10,7 @@ import {
   MarkdownContent,
   RichTextWrapper,
 } from '../../components/layout'
-import { InlineWysiwyg, InlineTextareaField } from '../../components/ui/inline'
+import { InlineWysiwyg, InlineTextareaField } from 'react-tinacms-inline'
 import { getGithubDataFromPreviewProps } from '../../utils/github/sourceProviderConnection'
 import getMarkdownData from '../../utils/github/getMarkdownData'
 import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'

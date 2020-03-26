@@ -11,11 +11,7 @@ import {
   RichTextWrapper,
   MarkdownContent,
 } from '../components/layout'
-import {
-  InlineWysiwyg,
-  InlineTextareaField,
-  InlineTextField,
-} from '../components/ui/inline'
+import { InlineWysiwyg, InlineTextareaField } from 'react-tinacms-inline'
 import { Button, ButtonGroup } from '../components/ui'
 import { EmailForm } from '../components/forms'
 import TwitterIconSvg from '../public/svg/twitter-icon.svg'

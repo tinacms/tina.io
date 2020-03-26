@@ -3,11 +3,16 @@ import styled from 'styled-components'
 
 import { GetStaticProps } from 'next'
 
-import { InlineBlocks } from 'react-tinacms-inline'
+import {
+  InlineBlocks,
+  InlineField,
+  InlineTextareaField,
+  BlockTextArea,
+  BlocksControls,
+} from 'react-tinacms-inline'
 import { EditLink } from '../components/layout/EditLink'
 import { DefaultSeo } from 'next-seo'
 import { BlockTemplate } from 'tinacms'
-import { InlineField } from 'react-tinacms-inline'
 import { DynamicLink } from '../components/ui/DynamicLink'
 import {
   Layout,
@@ -18,12 +23,6 @@ import {
 } from '../components/layout'
 
 import { Button, Video, ArrowList } from '../components/ui'
-import {
-  InlineTextareaField,
-  BlockTextArea,
-  BlocksControls,
-} from '../components/ui/inline'
-
 import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
 import getJsonData from '../utils/github/getJsonData'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
