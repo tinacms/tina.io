@@ -8,6 +8,7 @@ export interface OpenAuthoringContext {
   updateAuthChecks: () => void
   sourceProviderManager: SourceProviderManager
   enterEditMode: () => void
+  exitEditMode: () => void
 }
 
 export const OpenAuthoringContext = React.createContext<OpenAuthoringContext | null>(
@@ -28,12 +29,14 @@ interface ProviderProps {
   children: any
   sourceProviderManager: SourceProviderManager
   onAuthorize: () => void
+  exitEditMode: () => void
 }
 
 export const OpenAuthoringProvider = ({
   children,
   sourceProviderManager,
   onAuthorize,
+  exitEditMode,
 }: ProviderProps) => {
   const [forkValid, setForkValid] = useState(false)
   const [authenticated, setauthenticated] = useState(false)
@@ -43,6 +46,7 @@ export const OpenAuthoringProvider = ({
     setauthenticated(!!(await cms.api.github.getUser()))
     setForkValid(await cms.api.github.getBranch(getForkName(), getHeadBranch()))
   }
+
   useEffect(() => {
     updateAuthChecks()
   }, [])
@@ -67,6 +71,7 @@ export const OpenAuthoringProvider = ({
         updateAuthChecks,
         sourceProviderManager,
         enterEditMode: edit,
+        exitEditMode,
       }}
     >
       {children}

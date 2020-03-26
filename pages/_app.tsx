@@ -44,6 +44,12 @@ const MainLayout = ({ Component, pageProps }) => {
       window.location.href = window.location.pathname
     })
 
+  const exitEditMode = () => {
+    fetch(`/api/reset-preview`).then(() => {
+      window.location.reload()
+    })
+  }
+
   return (
     <Tina cms={cms} {...tinaConfig.sidebar}>
       <ModalProvider>
@@ -52,6 +58,7 @@ const MainLayout = ({ Component, pageProps }) => {
         <OpenAuthoringProvider
           sourceProviderManager={sourceProviderManager}
           onAuthorize={onAuthorize}
+          exitEditMode={exitEditMode}
         >
           <DefaultSeo
             title={data.seoDefaultTitle}

@@ -1,11 +1,11 @@
 import { getForkName, getHeadBranch } from '../open-authoring/repository'
-import { exitEditMode } from '../auth/authFlow'
 import { ActionableModalOptions } from '../../components/ui'
 
 export const getModalProps = async (
   error,
   sourceProvider,
-  startEditing
+  startEditing,
+  stopEditing
 ): Promise<ActionableModalOptions> => {
   const reauthenticateAction = {
     name: 'Continue',
@@ -13,7 +13,7 @@ export const getModalProps = async (
   }
   const cancelEditModeAction = {
     name: 'Cancel',
-    action: exitEditMode,
+    action: stopEditing,
   }
 
   switch (error.code) {

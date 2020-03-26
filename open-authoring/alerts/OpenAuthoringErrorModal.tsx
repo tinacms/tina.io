@@ -25,7 +25,8 @@ const OpenAuthoringErrorModal = (props: Props) => {
         const modalProps = await getModalProps(
           props.error,
           github,
-          openAuthoring.enterEditMode
+          openAuthoring.enterEditMode,
+          openAuthoring.exitEditMode
         )
         setErrorModalProps(modalProps)
       } else {
