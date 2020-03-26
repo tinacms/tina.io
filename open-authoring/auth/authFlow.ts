@@ -30,27 +30,20 @@ export const enterEditMode = (
 ) => {
   let authTab
 
-  const authState = Math.random()
-    .toString(36)
-    .substring(7)
-
   const fork = getForkName()
 
-  localStorage.setItem('fork_full_name', '')
   if (githubAuthenticated) {
     if (fork && forkValid) {
       handleForkCreated(fork)
       return
     } else {
-      authTab = popupWindow(
-        `/github/fork?state=${authState}`,
-        '_blank',
-        window,
-        1000,
-        700
-      )
+      authTab = popupWindow(`/github/fork`, '_blank', window, 1000, 700)
     }
   } else {
+    const authState = Math.random()
+      .toString(36)
+      .substring(7)
+
     authTab = popupWindow(
       `/github/start-auth?state=${authState}`,
       '_blank',
