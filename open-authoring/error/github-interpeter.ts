@@ -35,7 +35,7 @@ export const getModalProps = async (
           actions: [
             {
               name: 'Continue',
-              action: exitEditMode,
+              action: stopEditing,
             },
           ],
         }
