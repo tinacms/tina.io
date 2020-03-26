@@ -39,12 +39,20 @@ const MainLayout = ({ Component, pageProps }) => {
 
   const sourceProviderManager = new GithubManager()
 
+  const onAuthorize = () =>
+    fetch(`/api/preview`).then(() => {
+      window.location.href = window.location.pathname
+    })
+
   return (
     <Tina cms={cms} {...tinaConfig.sidebar}>
       <ModalProvider>
         <Toolbar />
         <Alerts />
-        <OpenAuthoringProvider sourceProviderManager={sourceProviderManager}>
+        <OpenAuthoringProvider
+          sourceProviderManager={sourceProviderManager}
+          onAuthorize={onAuthorize}
+        >
           <DefaultSeo
             title={data.seoDefaultTitle}
             titleTemplate={'%s | ' + data.title}

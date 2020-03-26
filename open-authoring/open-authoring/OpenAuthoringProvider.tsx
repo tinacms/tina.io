@@ -27,11 +27,13 @@ export function useOpenAuthoring() {
 interface ProviderProps {
   children: any
   sourceProviderManager: SourceProviderManager
+  onAuthorize: () => void
 }
 
 export const OpenAuthoringProvider = ({
   children,
   sourceProviderManager,
+  onAuthorize,
 }: ProviderProps) => {
   const [forkValid, setForkValid] = useState(false)
   const [githubAuthenticated, setGithubAuthenticated] = useState(false)
@@ -54,9 +56,7 @@ export const OpenAuthoringProvider = ({
       setForkName(full_name)
     }
 
-    fetch(`/api/preview`).then(() => {
-      window.location.href = window.location.pathname
-    })
+    onAuthorize()
   }
 
   return (
