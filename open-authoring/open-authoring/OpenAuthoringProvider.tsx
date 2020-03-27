@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { getForkName, getHeadBranch, setForkName } from './repository'
 import { useCMS } from 'tinacms'
 import { ActionableModal } from '../../components/ui'
+import OpenAuthoringErrorModal from '../github-error/OpenAuthoringErrorModal'
 export interface OpenAuthoringContext {
   forkValid: boolean
   authenticated: boolean
@@ -9,6 +10,7 @@ export interface OpenAuthoringContext {
   authenticate: () => Promise<void>
   enterEditMode: () => void
   exitEditMode: () => void
+  setError: (err) => void
 }
 
 export const OpenAuthoringContext = React.createContext<OpenAuthoringContext | null>(
@@ -40,6 +42,8 @@ export const OpenAuthoringProvider = ({
 }: ProviderProps) => {
   const [forkValid, setForkValid] = useState(false)
   const [authenticated, setAuthenticated] = useState(false)
+  const [error, setError] = useState(null)
+
   const cms = useCMS()
 
   const [authorizing, setAuthorizing] = useState(false)
@@ -48,10 +52,6 @@ export const OpenAuthoringProvider = ({
     setAuthenticated(!!(await cms.api.github.getUser()))
     setForkValid(await cms.api.github.getBranch(getForkName(), getHeadBranch()))
   }
-
-  useEffect(() => {
-    updateAuthChecks()
-  }, [])
 
   const tryEnterEditMode = async () => {
     if (authenticated && forkValid) {
@@ -72,6 +72,13 @@ export const OpenAuthoringProvider = ({
     }
   }, [authorizing, forkValid, authenticated])
 
+  // Hook to update root openAuthoring state when form fails.
+  // We need to perform to check before an action is clicked (e.g start auth flow)
+  // Because if it is perform on-the-fly, the window may be blocked.
+  useEffect(() => {
+    updateAuthChecks()
+  }, [error])
+
   return (
     <OpenAuthoringContext.Provider
       value={{
@@ -81,8 +88,10 @@ export const OpenAuthoringProvider = ({
         authenticate,
         enterEditMode: tryEnterEditMode,
         exitEditMode,
+        setError,
       }}
     >
+      {error && <OpenAuthoringErrorModal error={error} />}
       {authorizing && (
         <OpenAuthoringAuthModal onUpdateAuthState={onUpdateAuthState} />
       )}
