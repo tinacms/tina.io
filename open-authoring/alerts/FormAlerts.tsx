@@ -15,10 +15,6 @@ const FormAlerts = ({ form }: Props) => {
 
   useEffect(() => {
     const submitListener = createDecorator({
-      afterSubmitSucceeded: () =>
-        cms.alerts.success(
-          `Saved Successfully: Changes committed to ${getForkName()}`
-        ),
       afterSubmitFailed: async failedForm => {
         setError(failedForm.getState().submitError)
       },

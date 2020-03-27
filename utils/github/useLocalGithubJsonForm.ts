@@ -3,6 +3,7 @@ import { getCachedFormData, setCachedFormData } from '../formCache'
 import { useGithubForm, GithubOptions, GitFile } from './useGithubForm'
 import { FORM_ERROR } from 'final-form'
 import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
+import { getForkName } from '../../open-authoring/open-authoring/repository'
 
 export interface Options {
   id?: string
@@ -36,6 +37,10 @@ const useGithubJsonForm = <T = any>(
           'Update from TinaCMS'
         )
         .then(response => {
+          cms.alerts.success(
+            `Saved Successfully: Changes committed to ${getForkName()}`
+          )
+
           setCachedFormData(jsonFile.fileRelativePath, {
             sha: response.content.sha,
           })
