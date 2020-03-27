@@ -15,7 +15,7 @@ import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
 import { InlineBlocks } from 'react-tinacms-inline'
 import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
 import OpenAuthoringError from '../open-authoring/OpenAuthoringError'
-import { withOpenAuthoringErrorHandler } from '../open-authoring/alerts/withOpenAuthoringErrorHandler'
+import { withOpenAuthoringErrorHandler } from '../open-authoring/errors/withOpenAuthoringErrorHandler'
 
 const formOptions = {
   label: 'Teams',

@@ -20,7 +20,7 @@ const fg = require('fast-glob')
 import { useOpenAuthoring } from '../../open-authoring/open-authoring/OpenAuthoringProvider'
 import { Button } from '../../components/ui/Button'
 import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
-import { withOpenAuthoringErrorHandler } from '../../open-authoring/alerts/withOpenAuthoringErrorHandler'
+import { withOpenAuthoringErrorHandler } from '../../open-authoring/errors/withOpenAuthoringErrorHandler'
 import Error from 'next/error'
 
 function BlogTemplate({

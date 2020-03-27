@@ -28,7 +28,7 @@ import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderCon
 import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
 import OpenAuthoringError from '../open-authoring/OpenAuthoringError'
-import { withOpenAuthoringErrorHandler } from '../open-authoring/alerts/withOpenAuthoringErrorHandler'
+import { withOpenAuthoringErrorHandler } from '../open-authoring/errors/withOpenAuthoringErrorHandler'
 
 function CommunityPage({
   community,
