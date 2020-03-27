@@ -1,14 +1,18 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { TinaReset } from '@tinacms/styles'
-import { Modal, ModalPopup, ModalBody } from 'tinacms'
-import { AuthLayout } from '../layout'
-import { Button } from './Button'
+import { TinaReset, Button as TinaButton } from '@tinacms/styles'
+import {
+  Modal,
+  ModalPopup,
+  ModalBody,
+  ModalActions,
+  ModalHeader,
+} from 'tinacms'
 
 export interface ActionableModalOptions {
   title: string
   message: string
-  actions: Array<{ name: string; action(): void }>
+  actions: Array<{ name: string; action(): void; primary?: boolean }>
 }
 
 export const ActionableModal = ({
@@ -16,23 +20,25 @@ export const ActionableModal = ({
   message,
   actions,
 }: ActionableModalOptions) => {
-  const buttons = actions.map(individualAction => (
-    <Button color="primary" onClick={individualAction.action}>
-      {individualAction.name}
-    </Button>
-  ))
+  if (!open) {
+    return null
+  }
 
   return (
     <TinaReset>
       <Modal>
         <ModalPopup>
+          <ModalHeader close={null}>{title}</ModalHeader>
           <ModalBody padded>
-            <AuthLayout>
-              <h2>{title}</h2>
-              <p>{message}</p>
-              <Center>{buttons}</Center>
-            </AuthLayout>
+            <p>{message}</p>
           </ModalBody>
+          <ModalActions>
+            {actions.map(action => (
+              <TinaButton primary={action.primary} onClick={action.action}>
+                {action.name}
+              </TinaButton>
+            ))}
+          </ModalActions>
         </ModalPopup>
       </Modal>
     </TinaReset>
