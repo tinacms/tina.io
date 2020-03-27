@@ -1,6 +1,6 @@
 import popupWindow from '../../utils/popupWindow'
 import { GITHUB_AUTH_CODE_KEY } from './useGithubAuthRedirect'
-export const authenticate = (callbackRoute: string): Promise<void> => {
+export const authenticate = (codeExchangeRoute: string): Promise<void> => {
   const authState = Math.random()
     .toString(36)
     .substring(7)
@@ -11,14 +11,14 @@ export const authenticate = (callbackRoute: string): Promise<void> => {
     let authTab
     window.addEventListener('storage', function(e) {
       if (e.key == GITHUB_AUTH_CODE_KEY) {
-        fetch(`${callbackRoute}?code=${e.newValue}&state=${authState}`).then(
-          () => {
-            if (authTab) {
-              authTab.close()
-            }
-            resolve()
+        fetch(
+          `${codeExchangeRoute}?code=${e.newValue}&state=${authState}`
+        ).then(() => {
+          if (authTab) {
+            authTab.close()
           }
-        )
+          resolve()
+        })
       }
     })
 
