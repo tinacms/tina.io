@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { getForkName, getHeadBranch, setForkName } from './repository'
 import { useCMS } from 'tinacms'
-import { ActionableModal } from '../../components/ui'
 import OpenAuthoringErrorModal from '../github-error/OpenAuthoringErrorModal'
+import { TinaReset, Button as TinaButton } from '@tinacms/styles'
+import {
+  Modal,
+  ModalPopup,
+  ModalBody,
+  ModalActions,
+  ModalHeader,
+} from 'tinacms'
+
 export interface OpenAuthoringContext {
   forkValid: boolean
   authenticated: boolean
@@ -93,14 +101,19 @@ export const OpenAuthoringProvider = ({
     >
       {error && <OpenAuthoringErrorModal error={error} />}
       {authorizing && (
-        <OpenAuthoringAuthModal onUpdateAuthState={onUpdateAuthState} />
+        <OpenAuthoringAuthModal
+          onUpdateAuthState={onUpdateAuthState}
+          close={() => {
+            setAuthorizing(false)
+          }}
+        />
       )}
       {children}
     </OpenAuthoringContext.Provider>
   )
 }
 
-const OpenAuthoringAuthModal = ({ onUpdateAuthState }) => {
+const OpenAuthoringAuthModal = ({ onUpdateAuthState, close }) => {
   let modalProps
 
   const openAuthoring = useOpenAuthoring()
@@ -108,35 +121,65 @@ const OpenAuthoringAuthModal = ({ onUpdateAuthState }) => {
 
   if (!openAuthoring.authenticated) {
     modalProps = {
-      title: 'auth',
-      message: 'A message about auth',
+      title: 'GitHub Authorization',
+      message:
+        'To save edits, Tina requires GitHub authorization. On save, changes will get commited to GitHub using your account.',
       actions: [
         {
-          name: 'auth',
+          name: 'Cancel',
+          action: close,
+        },
+        {
+          name: 'Continue to GitHub',
           action: async () => {
             await openAuthoring.authenticate()
             onUpdateAuthState()
           },
+          primary: true,
         },
       ],
     }
   } else if (!openAuthoring.forkValid) {
     modalProps = {
-      title: 'fork',
-      message: 'A message about forking',
+      title: 'GitHub Authorization',
+      message: 'A fork of this website is required to save changes.',
       actions: [
         {
-          name: 'fork',
+          name: 'Cancel',
+          action: close,
+        },
+        {
+          name: 'Create Fork',
           action: async () => {
             const { full_name } = await cms.api.github.createFork()
             setForkName(full_name)
             onUpdateAuthState()
           },
+          primary: true,
         },
       ],
     }
   } else {
     return null
   }
-  return <ActionableModal {...modalProps} />
+
+  return (
+    <TinaReset>
+      <Modal>
+        <ModalPopup>
+          <ModalHeader close={close}>{modalProps.title}</ModalHeader>
+          <ModalBody padded>
+            <p>{modalProps.message}</p>
+          </ModalBody>
+          <ModalActions>
+            {modalProps.actions.map(action => (
+              <TinaButton primary={action.primary} onClick={action.action}>
+                {action.name}
+              </TinaButton>
+            ))}
+          </ModalActions>
+        </ModalPopup>
+      </Modal>
+    </TinaReset>
+  )
 }

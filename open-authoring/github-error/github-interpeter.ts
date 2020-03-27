@@ -9,10 +9,12 @@ export const getModalProps = async (
 ): Promise<ActionableModalOptions> => {
   const reauthenticateAction = {
     name: 'Continue',
+    primary: true,
     action: startEditing,
   }
   const cancelEditModeAction = {
     name: 'Cancel',
+    primary: false,
     action: stopEditing,
   }
 
@@ -22,7 +24,7 @@ export const getModalProps = async (
       return {
         title: '401 Unauthenticated',
         message: 'Authentication is invalid',
-        actions: [reauthenticateAction, cancelEditModeAction],
+        actions: [cancelEditModeAction, reauthenticateAction],
       }
     }
     case 404: {
@@ -43,7 +45,7 @@ export const getModalProps = async (
       return {
         title: '404 Not Found',
         message: 'You are missing a fork.',
-        actions: [reauthenticateAction, cancelEditModeAction],
+        actions: [cancelEditModeAction, reauthenticateAction],
       }
     }
     case 500: {
@@ -58,6 +60,6 @@ export const getModalProps = async (
   return {
     title: `Error  ${error.code}`,
     message: error.message,
-    actions: [reauthenticateAction, cancelEditModeAction],
+    actions: [cancelEditModeAction, reauthenticateAction],
   }
 }
