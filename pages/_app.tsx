@@ -54,7 +54,7 @@ const MainLayout = ({ Component, pageProps }) => {
         <Toolbar />
         <Alerts />
         <OpenAuthoringProvider
-          authenticate={authenticate}
+          authenticate={() => authenticate('/api/create-github-access-token')}
           enterEditMode={enterEditMode}
           exitEditMode={exitEditMode}
         >
