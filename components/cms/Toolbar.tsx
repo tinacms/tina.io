@@ -52,14 +52,14 @@ export const Toolbar = styled(({ ...styleProps }) => {
         <Create>
           <CreateContentMenu />
         </Create>
-        <Github>
+        <WidgetsContainer>
           {widgets
             .all()
             .sort((a, b) => a.weight - b.weight)
             .map(widget => (
               <widget.component key={widget.name} {...widget.props} />
             ))}
-        </Github>
+        </WidgetsContainer>
         {formState && (
           <>
             <Status>
@@ -112,7 +112,7 @@ export const Toolbar = styled(({ ...styleProps }) => {
   }
 `
 
-const Github = styled.div`
+const WidgetsContainer = styled.div`
   display: flex;
   align-items: center;
   justify-self: end;
