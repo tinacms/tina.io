@@ -27,15 +27,8 @@ export const useOpenAuthoringToolbarPlugins = (
         __type: 'toolbar:widget',
         name: 'current-fork',
         weight: 1,
-        component: () => {
-          return (
-            <FieldMeta name={'Fork'}>
-              <MetaLink target="_blank" href={`https://github.com/${forkName}`}>
-                {forkName}
-              </MetaLink>
-            </FieldMeta>
-          )
-        },
+        props: { forkName },
+        component: ForkInfo,
       },
       // TODO
       PRPlugin(process.env.REPO_FULL_NAME, forkName),
@@ -63,3 +56,13 @@ const MetaLink = styled.a`
   font-size: 16px;
   color: ${color.primary('dark')};
 `
+
+const ForkInfo = ({ forkName }) => {
+  return (
+    <FieldMeta name={'Fork'}>
+      <MetaLink target="_blank" href={`https://github.com/${forkName}`}>
+        {forkName}
+      </MetaLink>
+    </FieldMeta>
+  )
+}
