@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { getForkName, getHeadBranch, setForkName } from './repository'
 import { useCMS } from 'tinacms'
 import OpenAuthoringErrorModal from '../github-error/OpenAuthoringErrorModal'
@@ -173,13 +173,32 @@ const OpenAuthoringAuthModal = ({ onUpdateAuthState, close }) => {
           </ModalBody>
           <ModalActions>
             {modalProps.actions.map(action => (
-              <TinaButton primary={action.primary} onClick={action.action}>
-                {action.name}
-              </TinaButton>
+              <AsyncButton {...action} />
             ))}
           </ModalActions>
         </ModalPopup>
       </Modal>
     </TinaReset>
+  )
+}
+
+interface ButtonProps {
+  name: string
+  action(): Promise<void>
+  primary: boolean
+}
+const AsyncButton = ({ name, primary, action }: ButtonProps) => {
+  const [submitting, setSubmitting] = useState(false)
+
+  const onClick = useCallback(async () => {
+    setSubmitting(true)
+    await action()
+    setSubmitting(false)
+  }, [action, setSubmitting])
+
+  return (
+    <TinaButton primary={primary} onClick={onClick} busy={submitting}>
+      {name}
+    </TinaButton>
   )
 }
