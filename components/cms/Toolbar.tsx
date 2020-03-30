@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { useCMS, useSubscribable, Form } from 'tinacms'
-import { Button } from '@tinacms/styles'
+import { useCMS, useSubscribable, Form, FieldMeta } from 'tinacms'
+import { Button, color } from '@tinacms/styles'
 import { CreateContentMenu } from './CreateContent'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { ToolbarButton } from '../ui/inline/ToolbarButton'
 import UndoIconSvg from '../../public/svg/undo-icon.svg'
 import { DesktopLabel } from '../ui/inline/DesktopLabel'
@@ -56,6 +56,7 @@ export const Toolbar = styled(({ ...styleProps }) => {
           {status.all().map((status: any) => (
             <status.component key={status.name} {...status.props} />
           ))}
+          {form && formState && <FormStatus dirty={!formState.pristine} />}
         </Status>
         <Actions>
           {form && formState && (
@@ -180,4 +181,52 @@ const ToolbarPlaceholder = styled.div`
   display: block;
   width: 100%;
   height: 62px;
+`
+
+const FormStatus = ({ dirty }) => {
+  return (
+    <FieldMeta name={'Form Status'}>
+      {dirty ? (
+        <StatusMessage>
+          <StatusLight warning /> <DesktopLabel>Unsaved changes</DesktopLabel>
+        </StatusMessage>
+      ) : (
+        <StatusMessage>
+          <StatusLight /> <DesktopLabel>No changes</DesktopLabel>
+        </StatusMessage>
+      )}
+    </FieldMeta>
+  )
+}
+
+interface StatusLightProps {
+  warning?: boolean
+}
+
+const StatusLight = styled.span<StatusLightProps>`
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  margin-top: -1px;
+  background-color: #3cad3a;
+  border: 1px solid #249a21;
+  margin-right: 5px;
+  opacity: 0.5;
+
+  ${p =>
+    p.warning &&
+    css`
+      background-color: #e9d050;
+      border: 1px solid #d3ba38;
+      opacity: 1;
+    `};
+`
+
+const StatusMessage = styled.p`
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  color: ${color.grey(6)};
+  padding-right: 4px;
 `
