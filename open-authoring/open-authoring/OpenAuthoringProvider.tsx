@@ -95,6 +95,13 @@ export const OpenAuthoringProvider = ({
     }
   }, [authorizing, forkValid, authenticated])
 
+  // Hook to update root openAuthoring state when form fails.
+  // We need to perform to check before an action is clicked (e.g start auth flow)
+  // Because if it is perform on-the-fly, the window may be blocked.
+  useEffect(() => {
+    updateAuthChecks()
+  }, [error])
+
   return (
     <OpenAuthoringContext.Provider
       value={{
