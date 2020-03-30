@@ -1,17 +1,35 @@
-import React from 'react'
-import { useCMS, useSubscribable } from 'tinacms'
+import React, { useState, useEffect } from 'react'
+import { useCMS, useSubscribable, Form } from 'tinacms'
 import { Button } from '@tinacms/styles'
 import { CreateContentMenu } from './CreateContent'
 import styled from 'styled-components'
+import { ToolbarButton } from '../ui/inline/ToolbarButton'
+import UndoIconSvg from '../../public/svg/undo-icon.svg'
+import { DesktopLabel } from '../ui/inline/DesktopLabel'
+import { LoadingDots } from '../ui/LoadingDots'
+
+const SaveButton = styled(ToolbarButton)`
+  padding: 0 2rem;
+`
+
+const useFormState = (form: Form | null, subscription: any): any => {
+  const [state, setState] = useState<any>()
+  useEffect(() => {
+    if (!form) return
+    form.subscribe(setState, subscription)
+  }, [form])
+
+  return state
+}
 
 export const Toolbar = styled(({ ...styleProps }) => {
   const cms = useCMS()
   const status = cms.plugins.getType('toolbar:status')
   const git = cms.plugins.getType('toolbar:git')
-  const actions = cms.plugins.getType('toolbar:form-actions')
 
   const forms = cms.forms
   const form = cms.forms.all().length ? cms.forms.all()[0] : null
+  const formState = useFormState(form, { pristine: true, submitting: true })
 
   useSubscribable(forms)
   useSubscribable(status)
@@ -40,10 +58,27 @@ export const Toolbar = styled(({ ...styleProps }) => {
           ))}
         </Status>
         <Actions>
-          {form &&
-            actions
-              .all()
-              .map((action: any) => <action.component key={action.name} />)}
+          {form && formState && (
+            <>
+              <ToolbarButton disabled={formState.pristine} onClick={form.reset}>
+                <UndoIconSvg />
+                <DesktopLabel> Discard</DesktopLabel>
+              </ToolbarButton>
+              <SaveButton
+                primary
+                onClick={form.submit}
+                busy={formState.submitting}
+                disabled={formState.pristine}
+              >
+                {formState.submitting && <LoadingDots />}
+                {!formState.submitting && (
+                  <>
+                    Save <DesktopLabel>&nbsp;Page</DesktopLabel>
+                  </>
+                )}
+              </SaveButton>
+            </>
+          )}
         </Actions>
       </div>
     </>
