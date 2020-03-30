@@ -10,6 +10,7 @@ import {
   ModalActions,
   ModalHeader,
 } from 'tinacms'
+import { validate } from '../github-auth/validation'
 
 export interface OpenAuthoringContext {
   forkValid: boolean
@@ -57,22 +58,9 @@ export const OpenAuthoringProvider = ({
   const [authorizing, setAuthorizing] = useState(false)
 
   const updateAuthChecks = async () => {
-    const user = await cms.api.github.getUser()
-    if (user) {
-      setAuthenticated(true)
-      const forkName = getForkName() || (user.login || "") + "/" + process.env.REPO_FULL_NAME.split("/")[1]
-      if (await cms.api.github.getBranch(forkName, getHeadBranch())) {
-        setForkValid(true)
-        if (!getForkName()) {
-          setForkName(forkName)
-        }
-      } else {
-        setForkValid(false)
-      }      
-    } else {
-      setAuthenticated(false)
-      setForkValid(false)
-    }
+    const validations = await validate()
+    setAuthenticated(validations.userIsAuthenticated)
+    setForkValid(validations.forkIsValid)
   }
 
   const tryEnterEditMode = async () => {
