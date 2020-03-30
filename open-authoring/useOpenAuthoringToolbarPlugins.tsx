@@ -25,7 +25,7 @@ export const useOpenAuthoringToolbarPlugins = (
     const forkName = getForkName()
     const plugins = [
       {
-        __type: 'toolbar:git',
+        __type: 'toolbar:widget',
         name: 'current-fork',
         component: () => {
           return (

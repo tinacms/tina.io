@@ -24,18 +24,18 @@ const useFormState = (form: Form | null, subscription: any): any => {
 
 export const Toolbar = styled(({ ...styleProps }) => {
   const cms = useCMS()
-  const git = cms.plugins.getType('toolbar:git')
+  const widgets = cms.plugins.getType('toolbar:widget')
 
   const forms = cms.forms
   const form = cms.forms.all().length ? cms.forms.all()[0] : null
   const formState = useFormState(form, { pristine: true, submitting: true })
 
   useSubscribable(forms)
-  useSubscribable(git)
+  useSubscribable(widgets)
 
-  const hasToolbarStuff = git.all().length
+  const hasToolbarWidgets = widgets.all().length
 
-  if (!hasToolbarStuff) {
+  if (!hasToolbarWidgets) {
     return null
   }
   return (
@@ -46,7 +46,7 @@ export const Toolbar = styled(({ ...styleProps }) => {
           <CreateContentMenu />
         </Create>
         <Github>
-          {git.all().map((git: any) => (
+          {widgets.all().map((git: any) => (
             <git.component key={git.name} />
           ))}
         </Github>

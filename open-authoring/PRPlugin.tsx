@@ -14,7 +14,7 @@ export const PRPlugin = (
   baseRepoFullName: string,
   forkRepoFullName: string
 ) => ({
-  __type: 'toolbar:git',
+  __type: 'toolbar:widget',
   name: 'create-pr',
   component: () => {
     return (
