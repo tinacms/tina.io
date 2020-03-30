@@ -57,11 +57,26 @@ export const OpenAuthoringProvider = ({
   const [authorizing, setAuthorizing] = useState(false)
 
   const updateAuthChecks = async () => {
-    setAuthenticated(!!(await cms.api.github.getUser()))
-    setForkValid(await cms.api.github.getBranch(getForkName(), getHeadBranch()))
+    const user = await cms.api.github.getUser()
+    if (user) {
+      setAuthenticated(true)
+      const forkName = getForkName() || (user.login || "") + "/" + process.env.REPO_FULL_NAME.split("/")[1]
+      if (await cms.api.github.getBranch(forkName, getHeadBranch())) {
+        setForkValid(true)
+        if (!getForkName()) {
+          setForkName(forkName)
+        }
+      } else {
+        setForkValid(false)
+      }      
+    } else {
+      setAuthenticated(false)
+      setForkValid(false)
+    }
   }
 
   const tryEnterEditMode = async () => {
+    await updateAuthChecks()
     if (authenticated && forkValid) {
       enterEditMode()
     } else {
@@ -79,13 +94,6 @@ export const OpenAuthoringProvider = ({
       enterEditMode()
     }
   }, [authorizing, forkValid, authenticated])
-
-  // Hook to update root openAuthoring state when form fails.
-  // We need to perform to check before an action is clicked (e.g start auth flow)
-  // Because if it is perform on-the-fly, the window may be blocked.
-  useEffect(() => {
-    updateAuthChecks()
-  }, [error])
 
   return (
     <OpenAuthoringContext.Provider
