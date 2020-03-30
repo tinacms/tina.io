@@ -124,8 +124,8 @@ const OpenAuthoringAuthModal = ({ close }) => {
   const openAuthoring = useOpenAuthoring()
   const cms = useCMS()
 
-  openAuthoring.userIsAuthenticated().then( isTrue => {
-    if (isTrue) {
+  openAuthoring.userIsAuthenticated().then( isAuthenticated => {
+    if (isAuthenticated) {
       openAuthoring.forkIsValid().then( isValid => {
         if (isValid) {
           return null
