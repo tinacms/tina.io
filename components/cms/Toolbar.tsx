@@ -33,9 +33,10 @@ export const Toolbar = styled(({ ...styleProps }) => {
   useSubscribable(forms)
   useSubscribable(widgets)
 
-  const hasToolbarWidgets = widgets.all().length
+  // TODO: Find a more accurate solution then this.
+  const inEditMode = widgets.all().length
 
-  if (!hasToolbarWidgets) {
+  if (!inEditMode) {
     return null
   }
   return (
@@ -50,12 +51,12 @@ export const Toolbar = styled(({ ...styleProps }) => {
             <git.component key={git.name} />
           ))}
         </Github>
-        <Status>
-          {form && formState && <FormStatus dirty={!formState.pristine} />}
-        </Status>
-        <Actions>
-          {form && formState && (
-            <>
+        {formState && (
+          <>
+            <Status>
+              <FormStatus dirty={!formState.pristine} />}
+            </Status>
+            <Actions>
               <ToolbarButton disabled={formState.pristine} onClick={form.reset}>
                 <UndoIconSvg />
                 <DesktopLabel> Discard</DesktopLabel>
@@ -73,9 +74,9 @@ export const Toolbar = styled(({ ...styleProps }) => {
                   </>
                 )}
               </SaveButton>
-            </>
-          )}
-        </Actions>
+            </Actions>
+          </>
+        )}
       </div>
     </>
   )
