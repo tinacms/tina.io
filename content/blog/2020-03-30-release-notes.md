@@ -15,6 +15,8 @@ There is also a tinacms/rfcs repository where larger changes are described and d
 
 If you're interested in getting involved then jump into the #dev channel in the [TinaCMS Slack](https://join.slack.com/t/tinacms/shared_invite/enQtNzgxNDY1OTA3ODI3LTNkNWEwYjQyYTA2ZDZjZGQ2YmI5Y2ZlOWVmMjlkYmYxMzVmNjM0YTk2MWM2MTIzMmMxMDg3NWIxN2EzOWQ0NDM "TinaCMS Slack") group or take a look through the list of [open issues](https://github.com/tinacms/tinacms/issues "TinaCMS Issues"). And don't forget to Star Tina on GitHub!
 
+## Changes
+
 ### Enhancements
 
 * **Blocks, Groups, & Group List:** These fields now use the description attribute
