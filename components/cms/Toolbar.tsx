@@ -34,7 +34,11 @@ export const Toolbar = styled(({ ...styleProps }) => {
 
   const forms = cms.forms
   const form = cms.forms.all().length ? cms.forms.all()[0] : null
-  const formState = useFormState(form, { pristine: true, submitting: true })
+  // TODO: This doesn't return the correct value initially
+  const formState = useFormState(form, {
+    pristine: true,
+    submitting: true,
+  })
 
   useSubscribable(forms)
   useSubscribable(widgets)
@@ -45,6 +49,15 @@ export const Toolbar = styled(({ ...styleProps }) => {
   if (!inEditMode) {
     return null
   }
+  // TODO: Form#reset should always exist
+  const reset = form && (form.reset || (() => form.finalForm.reset()))
+  const submit = form && form.submit
+  const disabled = !form
+
+  // TODO: There's got to be a better way to get formState
+  const pristine = disabled ? true : formState && formState.pristine
+  const submitting = disabled ? false : !!(formState && formState.submitting)
+
   return (
     <>
       <ToolbarPlaceholder />
@@ -60,32 +73,28 @@ export const Toolbar = styled(({ ...styleProps }) => {
               <widget.component key={widget.name} {...widget.props} />
             ))}
         </WidgetsContainer>
-        {form && formState && (
-          <>
-            <Status>
-              <FormStatus dirty={!formState.pristine} />
-            </Status>
-            <Actions>
-              <ToolbarButton disabled={formState.pristine} onClick={form.reset}>
-                <UndoIconSvg />
-                <DesktopLabel> Discard</DesktopLabel>
-              </ToolbarButton>
-              <SaveButton
-                primary
-                onClick={form.submit}
-                busy={formState.submitting}
-                disabled={formState.pristine}
-              >
-                {formState.submitting && <LoadingDots />}
-                {!formState.submitting && (
-                  <>
-                    Save <DesktopLabel>&nbsp;Page</DesktopLabel>
-                  </>
-                )}
-              </SaveButton>
-            </Actions>
-          </>
-        )}
+        <Status>
+          <FormStatus dirty={!pristine} />
+        </Status>
+        <Actions>
+          <ToolbarButton disabled={disabled || pristine} onClick={reset}>
+            <UndoIconSvg />
+            <DesktopLabel> Discard</DesktopLabel>
+          </ToolbarButton>
+          <SaveButton
+            primary
+            onClick={submit}
+            busy={submitting}
+            disabled={disabled || pristine}
+          >
+            {submitting && <LoadingDots />}
+            {!submitting && (
+              <>
+                Save <DesktopLabel>&nbsp;Page</DesktopLabel>
+              </>
+            )}
+          </SaveButton>
+        </Actions>
       </div>
     </>
   )
