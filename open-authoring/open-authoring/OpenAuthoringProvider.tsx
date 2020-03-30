@@ -12,9 +12,8 @@ import {
 } from 'tinacms'
 
 export interface OpenAuthoringContext {
-  forkValid: boolean
-  authenticated: boolean
-  updateAuthChecks: () => void
+  userIsAuthenticated: () => Promise<boolean>
+  forkIsValid: () => Promise<boolean>
   authenticate: () => Promise<void>
   enterEditMode: () => void
   exitEditMode: () => void
@@ -48,51 +47,38 @@ export const OpenAuthoringProvider = ({
   enterEditMode,
   exitEditMode,
 }: ProviderProps) => {
-  const [forkValid, setForkValid] = useState(false)
-  const [authenticated, setAuthenticated] = useState(false)
   const [error, setError] = useState(null)
 
   const cms = useCMS()
 
   const [authorizing, setAuthorizing] = useState(false)
 
-  const updateAuthChecks = async () => {
-    setAuthenticated(!!(await cms.api.github.getUser()))
-    setForkValid(await cms.api.github.getBranch(getForkName(), getHeadBranch()))
-  }
+  const userIsAuthenticated = async () => !!(await cms.api.github.getUser())
+  const forkIsValid = async () => await cms.api.github.getBranch(getForkName(), getHeadBranch())
 
   const tryEnterEditMode = async () => {
-    if (authenticated && forkValid) {
+    if (await userIsAuthenticated() && await forkIsValid()) {
       enterEditMode()
     } else {
       setAuthorizing(true)
     }
   }
 
-  const onUpdateAuthState = async () => {
-    //TODO replace this with a hook that updates when cookies change?
-    await updateAuthChecks()
-  }
-
   useEffect(() => {
-    if (authorizing && forkValid && authenticated) {
-      enterEditMode()
-    }
-  }, [authorizing, forkValid, authenticated])
+    (async () => {
+      if (authorizing && await forkIsValid() && await userIsAuthenticated()) {
+        enterEditMode()
+      }
+    })()
+  }, [authorizing])
 
-  // Hook to update root openAuthoring state when form fails.
-  // We need to perform to check before an action is clicked (e.g start auth flow)
-  // Because if it is perform on-the-fly, the window may be blocked.
-  useEffect(() => {
-    updateAuthChecks()
-  }, [error])
-
+  
+  
   return (
     <OpenAuthoringContext.Provider
       value={{
-        forkValid,
-        authenticated,
-        updateAuthChecks,
+        userIsAuthenticated,
+        forkIsValid,
         authenticate,
         enterEditMode: tryEnterEditMode,
         exitEditMode,
@@ -102,9 +88,11 @@ export const OpenAuthoringProvider = ({
       {error && <OpenAuthoringErrorModal error={error} />}
       {authorizing && (
         <OpenAuthoringAuthModal
-          onUpdateAuthState={onUpdateAuthState}
-          close={() => {
+          close={async () => {
             setAuthorizing(false)
+            if (authorizing && await forkIsValid() && await userIsAuthenticated()) {
+              enterEditMode()
+            }
           }}
         />
       )}
@@ -113,55 +101,83 @@ export const OpenAuthoringProvider = ({
   )
 }
 
-const OpenAuthoringAuthModal = ({ onUpdateAuthState, close }) => {
-  let modalProps
+const OpenAuthoringAuthModal = ({ close }) => {
+  const [modalProps, setModalProps] = useState({
+    title: 'Loading...',
+    message:
+      '',
+    actions: [
+      {
+        name: 'Cancel',
+        action: close,
+      },
+      {
+        name: 'Loading...',
+        action: async () => {
+          
+        },
+        primary: true,
+      },
+    ],
+  })
 
   const openAuthoring = useOpenAuthoring()
   const cms = useCMS()
 
-  if (!openAuthoring.authenticated) {
-    modalProps = {
-      title: 'GitHub Authorization',
-      message:
-        'To save edits, Tina requires GitHub authorization. On save, changes will get commited to GitHub using your account.',
-      actions: [
-        {
-          name: 'Cancel',
-          action: close,
-        },
-        {
-          name: 'Continue to GitHub',
-          action: async () => {
-            await openAuthoring.authenticate()
-            onUpdateAuthState()
+  openAuthoring.userIsAuthenticated().then( isTrue => {
+    if (isTrue) {
+      openAuthoring.forkIsValid().then( isValid => {
+        if (isValid) {
+          return null
+        } else {
+          setModalProps({
+            title: 'GitHub Authorization',
+            message: 'A fork of this website is required to save changes.',
+            actions: [
+              {
+                name: 'Cancel',
+                action: close,
+              },
+              {
+                name: 'Create Fork',
+                action: async () => {
+                  const { full_name } = await cms.api.github.createFork()
+                  setForkName(full_name)
+
+                  // Auth complete
+                  close()
+                },
+                primary: true,
+              },
+            ],
+          })
+        }
+      })
+    } else {
+      setModalProps({
+        title: 'GitHub Authorization',
+        message:
+          'To save edits, Tina requires GitHub authorization. On save, changes will get commited to GitHub using your account.',
+        actions: [
+          {
+            name: 'Cancel',
+            action: close,
           },
-          primary: true,
-        },
-      ],
-    }
-  } else if (!openAuthoring.forkValid) {
-    modalProps = {
-      title: 'GitHub Authorization',
-      message: 'A fork of this website is required to save changes.',
-      actions: [
-        {
-          name: 'Cancel',
-          action: close,
-        },
-        {
-          name: 'Create Fork',
-          action: async () => {
-            const { full_name } = await cms.api.github.createFork()
-            setForkName(full_name)
-            onUpdateAuthState()
+          {
+            name: 'Continue to GitHub',
+            action: async () => {
+              await openAuthoring.authenticate()
+            },
+            primary: true,
           },
-          primary: true,
-        },
-      ],
+        ],
+      })
     }
-  } else {
-    return null
-  }
+  })
+
+
+
+  
 
   return (
     <TinaReset>
