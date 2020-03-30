@@ -10,12 +10,15 @@ export const Toolbar = styled(({ ...styleProps }) => {
   const git = cms.plugins.getType('toolbar:git')
   const actions = cms.plugins.getType('toolbar:form-actions')
 
+  const forms = cms.forms
+  const form = cms.forms.all().length ? cms.forms.all()[0] : null
+
+  useSubscribable(forms)
   useSubscribable(status)
   useSubscribable(git)
-  useSubscribable(actions)
 
-  const hasToolbarStuff =
-    git.all().length + status.all().length + actions.all().length > 0
+  const hasToolbarStuff = git.all().length || status.all().length
+
   if (!hasToolbarStuff) {
     return null
   }
@@ -39,7 +42,7 @@ export const Toolbar = styled(({ ...styleProps }) => {
               ))}
         </Status>
         <Actions>
-          {actions.all().length > 0 &&
+          {form &&
             actions
               .all()
               .map((action: any) => <action.component key={action.name} />)}
