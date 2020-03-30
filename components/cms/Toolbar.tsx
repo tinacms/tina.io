@@ -16,7 +16,7 @@ const useFormState = (form: Form | null, subscription: any): any => {
   const [state, setState] = useState<any>()
   useEffect(() => {
     if (!form) return
-    form.subscribe(setState, subscription)
+    return form.subscribe(setState, subscription)
   }, [form])
 
   return state
@@ -60,7 +60,7 @@ export const Toolbar = styled(({ ...styleProps }) => {
               <widget.component key={widget.name} {...widget.props} />
             ))}
         </WidgetsContainer>
-        {formState && (
+        {form && formState && (
           <>
             <Status>
               <FormStatus dirty={!formState.pristine} />
