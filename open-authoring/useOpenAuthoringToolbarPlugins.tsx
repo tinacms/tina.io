@@ -44,48 +44,6 @@ export const useOpenAuthoringToolbarPlugins = (
       // TODO
       PRPlugin(process.env.REPO_FULL_NAME, forkName),
       {
-        __type: 'toolbar:form-actions',
-        name: 'base-form-actions',
-        component: () => (
-          <>
-            {formState.dirty ? (
-              <>
-                <ToolbarButton
-                  onClick={() => {
-                    form.finalForm.reset()
-                  }}
-                >
-                  <UndoIconSvg />
-                  <DesktopLabel> Discard</DesktopLabel>
-                </ToolbarButton>
-                <SaveButton
-                  primary
-                  onClick={form.submit}
-                  busy={formState.submitting}
-                >
-                  {formState.submitting && <LoadingDots />}
-                  {!formState.submitting && (
-                    <>
-                      Save <DesktopLabel>&nbsp;Page</DesktopLabel>
-                    </>
-                  )}
-                </SaveButton>
-              </>
-            ) : (
-              <>
-                <ToolbarButton onClick={form.reset} disabled>
-                  <UndoIconSvg />
-                  <DesktopLabel> Discard</DesktopLabel>
-                </ToolbarButton>
-                <SaveButton primary onClick={form.submit} disabled>
-                  Save <DesktopLabel>&nbsp;Page</DesktopLabel>
-                </SaveButton>
-              </>
-            )}
-          </>
-        ),
-      },
-      {
         __type: 'toolbar:status',
         name: 'form-state-dirty',
         props: {
