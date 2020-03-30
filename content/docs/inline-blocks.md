@@ -224,7 +224,7 @@ export function EditToggle() {
 }
 ```
 
-**Note:** The above example imports button styles from `@tinacms/styles`, but this component could be a plain `button` element with it's own styles.
+**Note:** The above example imports button styles from `@tinacms/styles`, but this component could be a plain `button` element with its own styles.
 
 ### Discarding Changes
 
