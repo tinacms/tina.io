@@ -24,7 +24,6 @@ const useFormState = (form: Form | null, subscription: any): any => {
 
 export const Toolbar = styled(({ ...styleProps }) => {
   const cms = useCMS()
-  const status = cms.plugins.getType('toolbar:status')
   const git = cms.plugins.getType('toolbar:git')
 
   const forms = cms.forms
@@ -32,10 +31,9 @@ export const Toolbar = styled(({ ...styleProps }) => {
   const formState = useFormState(form, { pristine: true, submitting: true })
 
   useSubscribable(forms)
-  useSubscribable(status)
   useSubscribable(git)
 
-  const hasToolbarStuff = git.all().length || status.all().length
+  const hasToolbarStuff = git.all().length
 
   if (!hasToolbarStuff) {
     return null
@@ -53,9 +51,6 @@ export const Toolbar = styled(({ ...styleProps }) => {
           ))}
         </Github>
         <Status>
-          {status.all().map((status: any) => (
-            <status.component key={status.name} {...status.props} />
-          ))}
           {form && formState && <FormStatus dirty={!formState.pristine} />}
         </Status>
         <Actions>
