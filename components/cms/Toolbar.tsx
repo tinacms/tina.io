@@ -63,7 +63,7 @@ export const Toolbar = styled(({ ...styleProps }) => {
         {formState && (
           <>
             <Status>
-              <FormStatus dirty={!formState.pristine} />}
+              <FormStatus dirty={!formState.pristine} />
             </Status>
             <Actions>
               <ToolbarButton disabled={formState.pristine} onClick={form.reset}>
