@@ -1,13 +1,11 @@
 import { getForkName, getHeadBranch, setForkName } from "../open-authoring/repository"
 import { useCMS } from "tinacms"
 
-export const validate = async () => {
+export const validate = async (cms) => {
     var validations = {
         userIsAuthenticated: false,
         forkIsValid: false
     }
-
-    const cms = useCMS()
 
     const user = await cms.api.github.getUser()
 

@@ -58,7 +58,7 @@ export const OpenAuthoringProvider = ({
   const [authorizing, setAuthorizing] = useState(false)
 
   const updateAuthChecks = async () => {
-    const validations = await validate()
+    const validations = await validate(cms)
     setAuthenticated(validations.userIsAuthenticated)
     setForkValid(validations.forkIsValid)
   }
