@@ -1,5 +1,5 @@
 ---
-title: Tina is Not a CMS
+title: There Is No Alternative
 id: introduction
 prev: null
 next: /docs/getting-started/how-tina-works
