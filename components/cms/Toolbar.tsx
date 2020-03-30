@@ -30,16 +30,14 @@ export const Toolbar = styled(({ ...styleProps }) => {
           <CreateContentMenu />
         </Create>
         <Github>
-          {git.all().length > 0 &&
-            git.all().map((git: any) => <git.component key={git.name} />)}
+          {git.all().map((git: any) => (
+            <git.component key={git.name} />
+          ))}
         </Github>
         <Status>
-          {status.all().length > 0 &&
-            status
-              .all()
-              .map((status: any) => (
-                <status.component key={status.name} {...status.props} />
-              ))}
+          {status.all().map((status: any) => (
+            <status.component key={status.name} {...status.props} />
+          ))}
         </Status>
         <Actions>
           {form &&
