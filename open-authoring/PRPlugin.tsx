@@ -17,13 +17,10 @@ export const PRPlugin = (
   __type: 'toolbar:widget',
   name: 'create-pr',
   weight: 5,
-  component: () => {
-    return (
-      <PullRequestButton
-        baseRepoFullName={baseRepoFullName}
-        forkRepoFullName={forkRepoFullName}
-      />
-    )
+  component: PullRequestButton,
+  props: {
+    baseRepoFullName,
+    forkRepoFullName,
   },
 })
 

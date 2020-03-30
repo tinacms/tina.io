@@ -22,8 +22,9 @@ const useFormState = (form: Form | null, subscription: any): any => {
   return state
 }
 
-interface ToolbarWidgetPlugin extends Plugin {
+interface ToolbarWidgetPlugin<Props = any> extends Plugin {
   weight: number
+  props?: Props
   component(): React.ReactElement
 }
 
@@ -56,7 +57,7 @@ export const Toolbar = styled(({ ...styleProps }) => {
             .all()
             .sort((a, b) => a.weight - b.weight)
             .map(widget => (
-              <widget.component key={widget.name} />
+              <widget.component key={widget.name} {...widget.props} />
             ))}
         </Github>
         {formState && (
