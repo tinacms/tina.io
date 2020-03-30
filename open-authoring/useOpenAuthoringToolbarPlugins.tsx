@@ -19,7 +19,6 @@ export const useOpenAuthoringToolbarPlugins = (
   editMode: boolean
 ) => {
   const cms = useCMS()
-  const formState = useFormState(form, { dirty: true, submitting: true })
 
   useEffect(() => {
     const forkName = getForkName()
@@ -52,7 +51,7 @@ export const useOpenAuthoringToolbarPlugins = (
     }
 
     return removePlugins
-  }, [editMode, form, formState])
+  }, [editMode, form])
 }
 
 const MetaLink = styled.a`
