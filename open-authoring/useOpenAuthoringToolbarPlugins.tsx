@@ -1,12 +1,8 @@
 import { Form, useCMS, FieldMeta } from 'tinacms'
 import { useEffect, useState } from 'react'
-import { ToolbarButton } from '../components/ui/inline/ToolbarButton'
-import { DesktopLabel } from '../components/ui/inline/DesktopLabel'
 import { PRPlugin } from './PRPlugin'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { color } from '@tinacms/styles'
-import UndoIconSvg from '../public/svg/undo-icon.svg'
-import { LoadingDots } from '../components/ui/LoadingDots'
 import { getForkName } from './utils/repository'
 
 const useFormState = (form, subscription) => {
@@ -43,14 +39,6 @@ export const useOpenAuthoringToolbarPlugins = (
       },
       // TODO
       PRPlugin(process.env.REPO_FULL_NAME, forkName),
-      {
-        __type: 'toolbar:status',
-        name: 'form-state-dirty',
-        props: {
-          dirty: formState.dirty,
-        },
-        component: FormStatus,
-      },
     ] as any
 
     const removePlugins = () => {
@@ -67,10 +55,6 @@ export const useOpenAuthoringToolbarPlugins = (
   }, [editMode, form, formState])
 }
 
-interface StatusLightProps {
-  warning?: boolean
-}
-
 const MetaLink = styled.a`
   display: block;
   max-width: 250px;
@@ -79,50 +63,3 @@ const MetaLink = styled.a`
   font-size: 16px;
   color: ${color.primary('dark')};
 `
-
-const SaveButton = styled(ToolbarButton)`
-  padding: 0 2rem;
-`
-const StatusLight = styled.span<StatusLightProps>`
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 8px;
-  margin-top: -1px;
-  background-color: #3cad3a;
-  border: 1px solid #249a21;
-  margin-right: 5px;
-  opacity: 0.5;
-
-  ${p =>
-    p.warning &&
-    css`
-      background-color: #e9d050;
-      border: 1px solid #d3ba38;
-      opacity: 1;
-    `};
-`
-
-const StatusMessage = styled.p`
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  color: ${color.grey(6)};
-  padding-right: 4px;
-`
-
-const FormStatus = ({ dirty }) => {
-  return (
-    <FieldMeta name={'Form Status'}>
-      {dirty ? (
-        <StatusMessage>
-          <StatusLight warning /> <DesktopLabel>Unsaved changes</DesktopLabel>
-        </StatusMessage>
-      ) : (
-        <StatusMessage>
-          <StatusLight /> <DesktopLabel>No changes</DesktopLabel>
-        </StatusMessage>
-      )}
-    </FieldMeta>
-  )
-}
