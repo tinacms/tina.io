@@ -26,6 +26,7 @@ export const useOpenAuthoringToolbarPlugins = (
       {
         __type: 'toolbar:widget',
         name: 'current-fork',
+        weight: 1,
         component: () => {
           return (
             <FieldMeta name={'Fork'}>

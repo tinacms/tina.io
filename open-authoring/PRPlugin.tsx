@@ -16,6 +16,7 @@ export const PRPlugin = (
 ) => ({
   __type: 'toolbar:widget',
   name: 'create-pr',
+  weight: 5,
   component: () => {
     return (
       <PullRequestButton

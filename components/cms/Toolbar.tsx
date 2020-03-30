@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useCMS, useSubscribable, Form, FieldMeta } from 'tinacms'
+import { useCMS, useSubscribable, Form, FieldMeta, Plugin } from 'tinacms'
 import { Button, color } from '@tinacms/styles'
 import { CreateContentMenu } from './CreateContent'
 import styled, { css } from 'styled-components'
@@ -22,9 +22,14 @@ const useFormState = (form: Form | null, subscription: any): any => {
   return state
 }
 
+interface ToolbarWidgetPlugin extends Plugin {
+  weight: number
+  component(): React.ReactElement
+}
+
 export const Toolbar = styled(({ ...styleProps }) => {
   const cms = useCMS()
-  const widgets = cms.plugins.getType('toolbar:widget')
+  const widgets = cms.plugins.getType<ToolbarWidgetPlugin>('toolbar:widget')
 
   const forms = cms.forms
   const form = cms.forms.all().length ? cms.forms.all()[0] : null
@@ -47,9 +52,12 @@ export const Toolbar = styled(({ ...styleProps }) => {
           <CreateContentMenu />
         </Create>
         <Github>
-          {widgets.all().map((git: any) => (
-            <git.component key={git.name} />
-          ))}
+          {widgets
+            .all()
+            .sort((a, b) => a.weight - b.weight)
+            .map(widget => (
+              <widget.component key={widget.name} />
+            ))}
         </Github>
         {formState && (
           <>
