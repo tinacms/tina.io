@@ -51,7 +51,7 @@ export interface InlineImageProps {
 
 ## Examples
 
-`BlockImage` will also **pass it's children**. Below is an example of how you could use this with _Gatsby Image_.
+`BlockImage` will also **pass its children**. Below is an example of how you could use this with _Gatsby Image_.
 
 ```jsx
 import { BlocksControls, BlockImage } from 'react-tinacms-inline'
