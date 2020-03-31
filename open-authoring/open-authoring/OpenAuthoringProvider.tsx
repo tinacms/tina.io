@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { getForkName, getHeadBranch } from './repository'
 import { useCMS } from 'tinacms'
 import OpenAuthoringErrorModal from '../github-error/OpenAuthoringErrorModal'
-import OpenAuthoringAuthModal from './OenAuthoringAuthModal'
+import OpenAuthoringAuthModal from './OpenAuthoringAuthModal'
 
 export interface OpenAuthoringContext {
   authenticate: () => Promise<void>
