@@ -9,28 +9,16 @@ export interface Options {
   actions?: FormOptions<any>['actions']
 }
 
-const useGithubMarkdownForm = (
-  markdownFile: GitFile<any>,
-  formOptions: Options,
-  githubOptions: GithubOptions
-) => {
-  return useGithubFileForm(
-    markdownFile,
-    formOptions,
-    githubOptions,
-    toMarkdownString
-  )
-}
-
-export function useLocalGithubMarkdownForm(
+export function useGithubMarkdownForm(
   markdownFile: GitFile,
   formOptions: Options,
   githubOptions: GithubOptions
 ) {
-  const [values, form] = useGithubMarkdownForm(
+  const [values, form] = useGithubFileForm(
     markdownFile,
     formOptions,
-    githubOptions
+    githubOptions,
+    toMarkdownString
   )
   usePlugins(form as any)
   return [values, form]

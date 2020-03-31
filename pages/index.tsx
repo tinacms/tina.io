@@ -24,14 +24,14 @@ import {
   BlocksControls,
 } from '../components/ui/inline'
 
-import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
+import { useGithubJsonForm } from '../utils/github/useGithubJsonForm'
 import getJsonData from '../utils/github/getJsonData'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
 import OpenAuthoringError from '../open-authoring/OpenAuthoringError'
 
 const HomePage = (props: any) => {
-  const [formData, form] = useLocalGithubJsonForm(
+  const [formData, form] = useGithubJsonForm(
     props.home,
     {
       label: 'Home Page',

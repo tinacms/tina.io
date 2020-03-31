@@ -13,7 +13,7 @@ import {
 import { InlineWysiwyg, InlineTextareaField } from '../../components/ui/inline'
 import { getGithubDataFromPreviewProps } from '../../utils/github/sourceProviderConnection'
 import getMarkdownData from '../../utils/github/getMarkdownData'
-import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'
+import { useGithubMarkdownForm } from '../../utils/github/useGithubMarkdownForm'
 import { fileToUrl } from '../../utils/urls'
 import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
 const fg = require('fast-glob')
@@ -35,7 +35,7 @@ function BlogTemplate({
   }
 
   // Registers Tina Form
-  const [data, form] = useLocalGithubMarkdownForm(
+  const [data, form] = useGithubMarkdownForm(
     markdownFile,
     formOptions,
     sourceProviderConnection

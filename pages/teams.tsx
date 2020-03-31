@@ -13,7 +13,7 @@ import getJsonData from '../utils/github/getJsonData'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
 import { InlineBlocks } from 'react-tinacms-inline'
-import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
+import { useGithubJsonForm } from '../utils/github/useGithubJsonForm'
 import OpenAuthoringError from '../open-authoring/OpenAuthoringError'
 
 const formOptions = {
@@ -51,7 +51,7 @@ const formOptions = {
 
 function TeamsPage(props) {
   // Adds Tina Form
-  const [data, form] = useLocalGithubJsonForm(
+  const [data, form] = useGithubJsonForm(
     props.teams,
     formOptions,
     props.sourceProviderConnection

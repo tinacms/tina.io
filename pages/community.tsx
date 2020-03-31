@@ -25,7 +25,7 @@ import ForumIconSvg from '../public/svg/forum-icon.svg'
 import { NextSeo } from 'next-seo'
 import getJsonData from '../utils/github/getJsonData'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
-import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
+import { useGithubJsonForm } from '../utils/github/useGithubJsonForm'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
 import OpenAuthoringError from '../open-authoring/OpenAuthoringError'
 
@@ -37,7 +37,7 @@ function CommunityPage({
   previewError,
 }) {
   // Registers Tina Form
-  const [data, form] = useLocalGithubJsonForm(
+  const [data, form] = useGithubJsonForm(
     community,
     formOptions,
     sourceProviderConnection
