@@ -7,7 +7,7 @@ consumes:
     description: Uses BlocksControls
   - file: /packages/react-tinacms-inline/src/blocks/inline-block-text.tsx
     description: Shows BlockText examples
-    - file: /packages/react-tinacms-inline/src/inline-field-text.tsx
+  - file: /packages/react-tinacms-inline/src/inline-field-text.tsx
     description: Depends on inline text field config
 ---
 
