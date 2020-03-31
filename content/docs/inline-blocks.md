@@ -95,12 +95,12 @@ The _Inline Block Template_ **configures the block** with the CMS. It has a simi
 
 ## Configuring Inline Blocks with Inline Form
 
-The initial steps to configuring _Inline Blocks_ involve setting up an [_Inline Form_](https://tinacms.org/docs/inline-editing#inlineform-and-inlinefield) on the page or component where the blocks should render. Then, you should add controls to handle editing state. Finally, you can use a component called `InlineBlocks` that **renders blocks in order** based on the source data.
+The initial steps to configuring _Inline Blocks_ involve setting up an [_Inline Form_](https://tinacms.org/docs/inline-editing#inlineform-and-inlinefield) on the page or component where the blocks should render. Then, you should [add controls](https://tinacms.org/docs/inline-editing#inline-form-controls) to handle editing state. Finally, you can use a component called `InlineBlocks` that **renders blocks in order** based on the source data.
 
 ### The Steps:
 
 1. Wrap your component with `InlineForm`, pass the `form` object.
-2. Set up Inline Controls: `EditToggle` & `DiscardChanges`.
+2. Set up [Inline Controls](https://tinacms.org/docs/inline-editing#inline-form-controls).
 3. Configure `InlineBlocks`, pass the `name` and `blocks` values.
 
 ```jsx
@@ -114,7 +114,7 @@ import {
   Image,
   image_template,
 } from './blocks'
-import { EditToggle, DiscardButton } from './inline-ui'
+import { EditToggle, DiscardButton, SaveButton } from './inline-ui'
 
 /*
  ** Example 'PageBlocks' Component
@@ -127,6 +127,7 @@ export default function PageBlocks({ jsonFile }) {
   return (
     <InlineForm form={form}>
       <EditToggle />
+      <SaveButton />
       <DiscardButton />
       <InlineBlocks name="blocks" blocks={PAGE_BLOCKS} />
     </InlineForm>
@@ -201,75 +202,6 @@ The source data for the blocks in the example above could look something like th
 The key ("blocks" in this example) for the array of individual blocks must match the `name` value passed to `InlineBlocks`.
 
 Each individual _block_ object must have a `_template` value to connect its data with a block template. This value should match the `type` value defined in the associated block template.
-
-## Creating Inline Controls Manually
-
-To add controls for editing _Inline Blocks_, you can create your own button components.
-
-![TinaCMS: Inline Controls](/img/inline-blocks/inline-controls.png)
-
-> **Note:** This configuration **may differ based on the project**. With the introduction of [Open Authoring](https://tinacms.org/blog/introducing-visual-open-authoring), these editing states are handled through a _Global Toolbar_ — more documentation to come.
-
-### Toggle Edit Mode
-
-To access 'edit mode' controls, you can use the `useInlineForm` hook to access the form status and functions to activate or deactivate 'edit mode'.
-
-```jsx
-/*
- ** Example EditToggle button component
- */
-import { useInlineForm } from 'react-tinacms-inline'
-import { Button as TinaButton } from '@tinacms/styles'
-
-export function EditToggle() {
-  const { status, deactivate, activate } = useInlineForm()
-
-  return (
-    <TinaButton
-      primary
-      onClick={() => {
-        status === 'active' ? deactivate() : activate()
-      }}
-    >
-      {status === 'active' ? 'Preview' : 'Edit'}
-    </TinaButton>
-  )
-}
-```
-
-> The above example imports button styles from `@tinacms/styles`, but this component could be a plain `button` element with its own styles.
-
-### Discarding Changes
-
-Creating a `DiscardChanges` button works similarly by calling `useInlineForm`. This button directly resets the state of `InlineForm`.
-
-```js
-import { useInlineForm } from 'react-tinacms-inline'
-import { Button as TinaButton } from '@tinacms/styles'
-
-export function DiscardButton() {
-  const { form } = useInlineForm()
-
-  /*
-   ** If there are no changes
-   ** to discard, return early
-   */
-  if (form.finalForm.getState().pristine) {
-    return null
-  }
-
-  return (
-    <TinaButton
-      color="primary"
-      onClick={() => {
-        form.finalForm.reset()
-      }}
-    >
-      Discard Changes
-    </TinaButton>
-  )
-}
-```
 
 ## Using the Settings Modal
 
