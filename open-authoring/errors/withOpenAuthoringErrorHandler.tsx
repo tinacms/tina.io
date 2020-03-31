@@ -1,16 +1,13 @@
 import { useEffect } from 'react'
 import { useOpenAuthoring } from '../open-authoring/OpenAuthoringProvider'
 
-declare global {
-  interface Window {
-    authenticated: boolean
-    forkValid: boolean
-  }
+interface Props {
+  previewError: any
+  children: any
 }
-
-export const withOpenAuthoringErrorHandler = BaseComponent => (props: {
-  previewError
-}) => {
+export const withOpenAuthoringErrorHandler = BaseComponent => (
+  props: Props
+) => {
   const openAuthoring = useOpenAuthoring()
 
   useEffect(() => {
