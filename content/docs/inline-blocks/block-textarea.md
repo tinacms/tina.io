@@ -11,13 +11,42 @@ Inline `BlockTextarea` represents a multiline text input. It should be used for 
 
 Below is an example of how `BlockTextarea` may be used in a [Block Component](/docs/inline-blocks#block-component) definition.
 
-> **Note:** Styles can be overwritten or extended via _Styled Components_ as in the example below, or the `BlockTextarea` field can just be called directly.
-
 ```jsx
 import styled from 'styled-components'
 import { BlocksControls, BlockTextArea } from 'react-tinacms-inline'
 
 // Example 'SupportCopy' Block
+export function SupportCopy({ index }) {
+  return (
+    <BlocksControls index={index}>
+      <h3>
+        <BlockTextarea name="support_copy" />
+      </h3>
+    </BlocksControls>
+  )
+}
+```
+
+## Options
+
+| Key    | Description                                      |
+| ------ | ------------------------------------------------ |
+| `name` | The path to some value in the data being edited. |
+
+## Interface
+
+```typescript
+export interface BlockTextProps {
+  name: string
+}
+```
+
+## Examples
+
+> **Note:** Styles can be overwritten or extended via [Styled Components](https://styled-components.com/) as in the example below.
+
+```js
+// 'SupportCopy' Block with extended styles
 export function SupportCopy({ index }) {
   return (
     <BlocksControls index={index}>
@@ -33,18 +62,4 @@ const StyledBlockText = styled(BlockTextarea)`
   text-align: center;
   margin: 1rem 0;
 `
-```
-
-## Options
-
-| Key    | Description                                      |
-| ------ | ------------------------------------------------ |
-| `name` | The path to some value in the data being edited. |
-
-## Interface
-
-```typescript
-export interface BlockTextProps {
-  name: string
-}
 ```
