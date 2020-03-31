@@ -1,9 +1,8 @@
-import { Form, useCMS, FieldMeta } from 'tinacms'
-import { useEffect, useState } from 'react'
-import styled from 'styled-components'
-import { color } from '@tinacms/styles'
+import { Form, useCMS } from 'tinacms'
+import { useEffect } from 'react'
 import { getForkName } from '../open-authoring/repository'
 import PRPlugin from './pull-request'
+import { ForkNamePlugin } from './ForkNamePlugin'
 
 export const useOpenAuthoringToolbarPlugins = (
   form: Form<any>,
@@ -14,14 +13,7 @@ export const useOpenAuthoringToolbarPlugins = (
   useEffect(() => {
     const forkName = getForkName()
     const plugins = [
-      {
-        __type: 'toolbar:widget',
-        name: 'current-fork',
-        weight: 1,
-        props: { forkName },
-        component: ForkInfo,
-      },
-      // TODO
+      ForkNamePlugin(forkName),
       PRPlugin(process.env.REPO_FULL_NAME, forkName),
     ] as any
 
@@ -37,23 +29,4 @@ export const useOpenAuthoringToolbarPlugins = (
 
     return removePlugins
   }, [editMode, form])
-}
-
-const MetaLink = styled.a`
-  display: block;
-  max-width: 250px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 16px;
-  color: ${color.primary('dark')};
-`
-
-const ForkInfo = ({ forkName }) => {
-  return (
-    <FieldMeta name={'Fork'}>
-      <MetaLink target="_blank" href={`https://github.com/${forkName}`}>
-        {forkName}
-      </MetaLink>
-    </FieldMeta>
-  )
 }

@@ -3,16 +3,12 @@ import styled from 'styled-components'
 import { color } from '@tinacms/styles'
 
 export const ForkNamePlugin = (forkName: string) => ({
-  __type: 'toolbar:git',
+  __type: 'toolbar:widget',
   name: 'current-fork',
+  weight: 1,
+  props: { forkName },
   component: () => {
-    return (
-      <FieldMeta name={'Fork'}>
-        <MetaLink target="_blank" href={`https://github.com/${forkName}`}>
-          {forkName}
-        </MetaLink>
-      </FieldMeta>
-    )
+    return <ForkInfo forkName={forkName} />
   },
 })
 
@@ -24,3 +20,13 @@ const MetaLink = styled.a`
   font-size: 16px;
   color: ${color.primary('dark')};
 `
+
+const ForkInfo = ({ forkName }) => {
+  return (
+    <FieldMeta name={'Fork'}>
+      <MetaLink target="_blank" href={`https://github.com/${forkName}`}>
+        {forkName}
+      </MetaLink>
+    </FieldMeta>
+  )
+}
