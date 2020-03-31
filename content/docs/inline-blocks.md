@@ -7,7 +7,7 @@ consumes:
     description: InlineForm
 ---
 
-Inline Blocks combine the content modelling flexibility of regular [blocks](https://tinacms.org/blog/what-are-blocks) with the improved editing experience of [Inline Editing](https://tinacms.org/docs/inline-editing).
+Inline Blocks combine the content modelling flexibility of regular [Blocks](https://tinacms.org/blog/what-are-blocks) with the improved editing experience of [Inline Editing](https://tinacms.org/docs/inline-editing).
 
 > **Please note:** This is considered an unstable API. Any breaking changes will be shared in the weekly [Release Notes](https://tinacms.org/blog). That said, we will do our best to keep this document up-to-date.
 
@@ -15,7 +15,7 @@ Inline Blocks combine the content modelling flexibility of regular [blocks](http
 
 ## Creating a Block
 
-A _block_ is comprised of two parts: **a component** that renders in edit mode, and **a template** to configure fields, defaults and other required data.
+A _block_ is **made of two parts**: _a component_ that renders in edit mode, and _a template_ to configure fields, defaults and other required data.
 
 ```ts
 interface Block {
@@ -24,7 +24,7 @@ interface Block {
 }
 ```
 
-### Block Component
+### Part 1: Block Component
 
 ```jsx
 import { BlocksControls, BlockTextArea } from 'react-tinacms-inline'
@@ -48,9 +48,11 @@ interface BlockComponentProps {
 }
 ```
 
-This component should render `BlocksControls`, the UI for editing, deleting, or moving blocks and at least one _Block Field_. The image below shows `BlockTextarea`.
+Since it **renders in 'edit mode,'** this component should display `BlocksControls` and at least one _Block Field_. `BlocksControls` is the UI for editing, deleting, or moving blocks. A _Block Field_ is, at its most basic, an inline input field stripped of styling to blend in with the site.
 
 ![TinaCMS: Inline Block Controls](/img/inline-blocks/block-controls.png)
+
+The image above shows the _Textarea Block_ field in use.
 
 **Available Block Fields**:
 
@@ -58,7 +60,7 @@ This component should render `BlocksControls`, the UI for editing, deleting, or 
 - [Textarea Block](https://tinacms.org/docs/inline-blocks/block-textarea)
 - [Image Block](https://tinacms.org/docs/inline-blocks/block-image)
 
-### Block Template
+### Part 2: Block Template
 
 ```jsx
 export const heading_template = {
@@ -68,24 +70,26 @@ export const heading_template = {
     _template: 'heading',
     text: 'At vero eos et accusamus',
   },
-  key: undefined,
+  key: 'heading-block',
   fields: [],
 }
 ```
 
-The _Inline Block Template_ is similar to a Regular [Block Template](https://tinacms.org/docs/fields/blocks#block-template-options) definition.
+The _Inline Block Template_ **configures the block** with the CMS. It has a similar shape to a Regular [Block Template](https://tinacms.org/docs/fields/blocks#block-template-options) definition.
 
 | Key            |           Type            |                                                                                              Purpose |
 | -------------- | :-----------------------: | ---------------------------------------------------------------------------------------------------: |
-| `type`         |         `string`          |                                                  This value connects source data with this template. |
+| `type`         |         `string`          |                                             This value connects source block data with the template. |
 | `label`        |         `string`          |                                                                              A human readable label. |
 | `defaultItem?` | `object | (() => object)` |                                                              Populates new blocks with default data. |
-| `key`          |         `string`          | A unique value to optimize the [rendering or the list](https://reactjs.org/docs/lists-and-keys.html) |
+| `key`          |         `string`          | A unique value to optimize the [rendering of the list](https://reactjs.org/docs/lists-and-keys.html) |
 | `fields`       |          `Array`          |                                    Populates fields in the [Settings Modal](link to settings modal). |
 
 ## Configuring Inline Blocks with Inline Form
 
-The initial steps to configuring Inline Blocks involve setting up [Inline Form](https://tinacms.org/docs/inline-editing#inlineform-and-inlinefield) on a page or component. We then use a component called `InlineBlocks`, where we will pass the blocks configuration data.
+The initial steps to configuring _Inline Blocks_ involve setting up an [_Inline Form_](https://tinacms.org/docs/inline-editing#inlineform-and-inlinefield) on the page or component where the blocks should render. Then, you should add controls to handle editing state. Finally, you can use a component called `InlineBlocks` that **renders blocks in order** based on the source data.
+
+### The Steps:
 
 1. Wrap your component with `InlineForm`, pass the `form` object.
 2. Set up Inline Controls: `EditToggle` & `DiscardChanges`.
@@ -156,9 +160,10 @@ interface InlineBlocksProps {
 }
 ```
 
-- `blocks`: An object composed of individual [Blocks](/docs/inline-editing/inline-blocks#creating-a-block).
-
-- `name`: The path to the **source data** for the blocks.
+| Key      |   Type   |                                                                                         Purpose |
+| -------- | :------: | ----------------------------------------------------------------------------------------------: |
+| `name`   | `string` |                                                 The path to the **source data** for the blocks. |
+| `blocks` | `object` | An object composed of individual [Blocks](/docs/inline-editing/inline-blocks#creating-a-block). |
 
 ### Blocks Source Data
 
@@ -171,7 +176,7 @@ The source data for the blocks in the example above could look something like th
     {
       "_template": "image",
       "src": "/img/bali-1.jpg",
-      "alt": ""
+      "alt": "bali-viaje"
     },
     {
       "_template": "heading",
@@ -191,11 +196,11 @@ Each individual _block_ object must have a `_template` value to connect its data
 
 ## Creating Inline Controls Manually
 
-To add controls for editing Inline Blocks, you can create your own button components.
+To add controls for editing _Inline Blocks_, you can create your own button components.
 
 ![TinaCMS: Inline Controls](/img/inline-blocks/inline-controls.png)
 
-> **Note:** This configuration may change soon as these controls will be moved to a _Global Toolbar_ component.
+> **Note:** This configuration **may differ based on the project**. With the introduction of [Open Authoring](https://tinacms.org/blog/introducing-visual-open-authoring), these editing states are handled through a _Global Toolbar_ — more documentation to come.
 
 ### Toggle Edit Mode
 
@@ -224,7 +229,7 @@ export function EditToggle() {
 }
 ```
 
-**Note:** The above example imports button styles from `@tinacms/styles`, but this component could be a plain `button` element with its own styles.
+> The above example imports button styles from `@tinacms/styles`, but this component could be a plain `button` element with its own styles.
 
 ### Discarding Changes
 
@@ -260,13 +265,13 @@ export function DiscardButton() {
 
 ## Using the Settings Modal
 
-There may be times when a Block needs more field inputs than the inline field. For example, an image may need a field for the ‘alt’ tag. For these additional settings, we can use `ModalProvider` and add additional fields to our Block Template.
+There may be times when a _Block_ **needs more field inputs** than a single inline field. For example, an image may need a field for the ‘alt’ tag. For this metadata, you can use `ModalProvider` and add additional fields to the _Block Template_.
 
 ![TinaCMS: Inline Blocks Settings Modal](/img/inline-blocks/settings-modal.png)
 
 ### 1. Define Fields in the Block Template
 
-Field definitions added to the `fields` property will render in the Settings Modal. These fields are defined exactly the same as regular [sidebar fields](https://tinacms.org/docs/fields).
+Field definitions added to the `fields` property will render in the _Settings Modal_. These fields are defined exactly the same as regular [sidebar fields](https://tinacms.org/docs/fields).
 
 ```js
 const image_template = {
@@ -277,7 +282,7 @@ const image_template = {
     src: '/img/bali-1.jpg',
     alt: '',
   },
-  key: undefined,
+  key: 'image-block',
   /*
    ** Define fields to render
    ** in a Settings Modal form
@@ -322,7 +327,7 @@ export function Image({ data, index }) {
 
 ### 3. Add the `ModalProvider`
 
-To use the `ModalProvider`, wrap it around the `InlineForm` that renders `InlineBlocks`. This will provide the 'Settings Modal' view. The fields defined in the block template will populate the form in that modal.
+To use the `ModalProvider`, wrap it around the `InlineForm` that renders `InlineBlocks`. This will provide the _Settings Modal_ view. The fields defined in the block template will **populate the form** in that modal.
 
 ```jsx
 import { useJsonForm } from 'next-tinacms-json'
