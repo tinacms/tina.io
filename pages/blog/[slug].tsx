@@ -12,7 +12,7 @@ import {
 } from '../../components/layout'
 import { InlineWysiwyg, InlineTextareaField } from '../../components/ui/inline'
 import { getGithubDataFromPreviewProps } from '../../utils/github/sourceProviderConnection'
-import getMarkdownData from '../../utils/github/getMarkdownData'
+import { getMarkdownData } from '../../utils/getMarkdownData'
 import { useGithubMarkdownForm } from '../../utils/github/useGithubMarkdownForm'
 import { fileToUrl } from '../../utils/urls'
 import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
