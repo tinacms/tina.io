@@ -1,6 +1,7 @@
 ---
 title: Inline Image Block
-next: /docs/inline-blocks/block-image
+prev: /docs/inline-blocks/block-textarea
+next: /docs/nextjs/overview
 consumes:
 ---
 
@@ -13,7 +14,6 @@ Below is a simple example of how `BlockImage` could be implemented in a [Block C
 ```jsx
 import { BlocksControls, BlockImage } from 'react-tinacms-inline'
 
-// Default use of BlockImage, without children
 export function Image({ index }) {
   return (
     <BlocksControls index={index}>
@@ -26,6 +26,10 @@ export function Image({ index }) {
   )
 }
 ```
+
+There are two ways to use `BlockImage`, with and without children. If no children are passed, `BlockImage` will render a default `img` element. However, you may want more control over the image behavior, in which case you can [**pass children**](/docs/inline-blocks/block-image#examples) to `Block Image`.
+
+> **Tip**: Reference [this example](/docs/inline-blocks#using-the-settings-modal) to see how **alt text metadata** could be configured via the _Settings Modal_.
 
 ## Options
 
@@ -51,13 +55,13 @@ export interface InlineImageProps {
 
 ## Examples
 
-`BlockImage` will also **pass its children**. Below is an example of how you could use this with _Gatsby Image_.
+Below is an example of how you could **pass children** to `BlockImage` to work with _Gatsby Image_. Read more on [proper image paths](/docs/fields/image#proper-image-paths-in-gatsby) in Gatsby to get context on the `parse` & `uploadDir` configuration.
 
 ```jsx
 import { BlocksControls, BlockImage } from 'react-tinacms-inline'
 import Img from 'gatsby-image'
 
-// Default use of BlockImage, without children
+// Using BlockImage with Gatsby Image
 export function Image({ data, index }) {
   return (
     <BlocksControls index={index}>
@@ -69,7 +73,6 @@ export function Image({ data, index }) {
           const postPathParts = blogPost.initialValues.fileRelativePath.split(
             '/'
           )
-
           const postDirectory = postPathParts
             .splice(0, postPathParts.length - 1)
             .join('/')
