@@ -1,9 +1,9 @@
 import { toMarkdownString } from 'next-tinacms-markdown'
 import { CMS, Field, AddContentPlugin } from 'tinacms'
-import { getCachedFormData, setCachedFormData } from '../formCache'
-import { GithubOptions } from '../github/useGithubForm'
+import { GithubOptions } from '../github/useGitFileSha'
 import { FORM_ERROR } from 'final-form'
 import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
+import { getCachedFormData, setCachedFormData } from '../formCache'
 
 type MaybePromise<T> = Promise<T> | T
 

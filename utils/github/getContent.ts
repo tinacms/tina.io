@@ -18,6 +18,6 @@ export const getContent = async (
       return resp
     })
     .catch(err => {
-      return err
+      return err // TODO - this should be caught outside of this scope
     })
 }

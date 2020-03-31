@@ -1,19 +1,21 @@
-import { getContent } from './getContent'
 import { SourceProviderConnection } from './sourceProviderConnection'
+import getDecodedData from './getDecodedData'
 
-export const getFiles = async (
+export const getJsonFile = async (
   filePath: string,
   sourceProviderConnection: SourceProviderConnection,
   accessToken: string
 ) => {
-  const response = await getContent(
+  const response = await getDecodedData(
     sourceProviderConnection.forkFullName,
     sourceProviderConnection.headBranch || 'master',
     filePath,
     accessToken
   )
 
-  return response.data
-    .filter(file => file.type === 'file')
-    .map(file => file.path)
+  return {
+    sha: response.sha,
+    fileRelativePath: filePath,
+    data: JSON.parse(response.content),
+  }
 }
