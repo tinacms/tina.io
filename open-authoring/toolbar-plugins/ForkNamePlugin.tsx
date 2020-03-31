@@ -7,9 +7,7 @@ export const ForkNamePlugin = (forkName: string) => ({
   name: 'current-fork',
   weight: 1,
   props: { forkName },
-  component: () => {
-    return <ForkInfo forkName={forkName} />
-  },
+  component: ForkInfo,
 })
 
 const MetaLink = styled.a`
