@@ -12,6 +12,7 @@ import { BrowserStorageApi } from '../utils/plugins/browser-storage-api/BrowserS
 import { Alerts } from '../components/layout/Alerts'
 import { GithubApi } from '../utils/plugins/github-api/GithubApi'
 import { authenticate } from '../open-authoring/github-auth/authenticate'
+import { withOpenAuthoringErrorHandler } from '../open-authoring/errors/withOpenAuthoringErrorHandler'
 
 const MainLayout = ({ Component, pageProps }) => {
   /*
@@ -47,6 +48,8 @@ const MainLayout = ({ Component, pageProps }) => {
       window.location.reload()
     })
   }
+
+  const PageComponent = withOpenAuthoringErrorHandler(Component)
 
   return (
     <Tina cms={cms} {...tinaConfig.sidebar}>
@@ -87,7 +90,7 @@ const MainLayout = ({ Component, pageProps }) => {
             <meta name="theme-color" content="#E6FAF8" />
           </Head>
           <GlobalStyle />
-          <Component {...pageProps} />
+          <PageComponent {...pageProps} />
         </OpenAuthoringProvider>
       </ModalProvider>
     </Tina>

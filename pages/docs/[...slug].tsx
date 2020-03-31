@@ -22,7 +22,6 @@ import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMar
 import { getDocProps } from '../../utils/docs/getDocProps'
 import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
 import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
-import { withOpenAuthoringErrorHandler } from '../../open-authoring/errors/withOpenAuthoringErrorHandler'
 
 function DocTemplate(props) {
   // Registers Tina Form
@@ -91,7 +90,7 @@ function DocTemplate(props) {
   )
 }
 
-export default withOpenAuthoringErrorHandler(DocTemplate)
+export default DocTemplate
 
 /*
  * DATA FETCHING ------------------------------------------------------

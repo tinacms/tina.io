@@ -29,7 +29,6 @@ import getJsonData from '../utils/github/getJsonData'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
 import OpenAuthoringError from '../open-authoring/OpenAuthoringError'
-import { withOpenAuthoringErrorHandler } from '../open-authoring/errors/withOpenAuthoringErrorHandler'
 
 const HomePage = (props: any) => {
   const [formData, form] = useLocalGithubJsonForm(
@@ -208,7 +207,7 @@ export <b>WithTina</b>( <b>Component</b> );
   )
 }
 
-export default withOpenAuthoringErrorHandler(HomePage)
+export default HomePage
 
 export const getStaticProps: GetStaticProps = async function({
   preview,

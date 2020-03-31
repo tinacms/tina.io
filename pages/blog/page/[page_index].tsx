@@ -17,7 +17,6 @@ import getMarkdownData from '../../../utils/github/getMarkdownData'
 import { useCMS } from 'tinacms'
 import OpenAuthoringSiteForm from '../../../components/layout/OpenAuthoringSiteForm'
 import { useForm } from 'tinacms'
-import { withOpenAuthoringErrorHandler } from '../../../open-authoring/errors/withOpenAuthoringErrorHandler'
 const Index = props => {
   const { currentPage, numPages } = props
 
@@ -164,7 +163,7 @@ export const getStaticProps: GetStaticProps = async function({
   }
 }
 
-export default withOpenAuthoringErrorHandler(Index)
+export default Index
 
 /**
  *  STYLES -----------------------------------------------------
