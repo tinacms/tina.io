@@ -4,7 +4,15 @@ prev: /docs/inline-editing
 next: /docs/inline-blocks/block-text
 consumes:
   - file: /packages/react-tinacms-inline/src/inline-form.tsx
-    description: InlineForm
+    description: InlineForm & useInlineForm
+  - file: /packages/react-tinacms-inline/src/blocks/block.ts
+    description: Shows Block interface
+  - file: /packages/@tinacms/fields/src/plugins/BlocksFieldPlugin.tsx
+    description: Shows Block Template interface
+  - file: /packages/react-tinacms-inline/src/blocks/inline-field-blocks.tsx
+    description: Shows Inline Blocks interface and gives example
+  - file: /packages/react-modals/src/ModalProvider.tsx
+    description: Uses ModalProvider for Block Settings
 ---
 
 Inline Blocks combine the content modelling flexibility of regular [Blocks](https://tinacms.org/blog/what-are-blocks) with the improved editing experience of [Inline Editing](https://tinacms.org/docs/inline-editing).

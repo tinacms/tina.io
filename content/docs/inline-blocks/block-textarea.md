@@ -3,6 +3,12 @@ title: Inline Textarea Block
 prev: /docs/inline-blocks/block-text
 next: /docs/inline-blocks/block-image
 consumes:
+  - file: /packages/react-tinacms-inline/src/blocks/inline-block-field-controls.tsx
+    description: Uses BlocksControls
+  - file: /packages/react-tinacms-inline/src/blocks/inline-block-textarea.tsx
+    description: Shows BlockTextarea examples
+  - file: /packages/react-tinacms-inline/src/inline-field-textarea.tsx
+    description: Depends on inline textarea field config
 ---
 
 Inline `BlockTextarea` represents a multiline text input. It should be used for content values that are long strings: for example, a page description.

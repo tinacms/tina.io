@@ -3,6 +3,12 @@ title: Inline Image Block
 prev: /docs/inline-blocks/block-textarea
 next: /docs/nextjs/overview
 consumes:
+  - file: /packages/react-tinacms-inline/src/blocks/inline-block-field-controls.tsx
+    description: Uses BlocksControls
+  - file: /packages/react-tinacms-inline/src/blocks/inline-block-image.tsx
+    description: Shows BlockImage examples
+  - file: /packages/react-tinacms-inline/src/inline-field-image.tsx
+    description: Depends on inline image field config
 ---
 
 The Inline `BlockImage` field represents an image input. This field supports drag and drop upload, or via clicking on the image to select media from the local filesystem.

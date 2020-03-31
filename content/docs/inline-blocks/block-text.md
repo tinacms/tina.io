@@ -3,6 +3,12 @@ title: Inline Text Block
 prev: /docs/inline-blocks
 next: /docs/inline-blocks/block-textarea
 consumes:
+  - file: /packages/react-tinacms-inline/src/blocks/inline-block-field-controls.tsx
+    description: Uses BlocksControls
+  - file: /packages/react-tinacms-inline/src/blocks/inline-block-text.tsx
+    description: Shows BlockText examples
+    - file: /packages/react-tinacms-inline/src/inline-field-text.tsx
+    description: Depends on inline text field config
 ---
 
 Inline `BlockText` represents a **single line text input**. It should be used for content values that are short strings, for example, a page title.
