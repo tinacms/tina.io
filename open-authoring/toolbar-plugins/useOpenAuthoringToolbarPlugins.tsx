@@ -1,34 +1,28 @@
-import { Form, useCMS } from 'tinacms'
+import { Form, useCMS, FieldMeta } from 'tinacms'
 import { useEffect, useState } from 'react'
-import PRPlugin from './pull-request'
+import styled from 'styled-components'
+import { color } from '@tinacms/styles'
 import { getForkName } from '../open-authoring/repository'
-import { ForkNamePlugin } from './ForkNamePlugin'
-import { FormActionsPlugin } from './FormActionsPlugin'
-import { DirtyIndicatorPlugin } from './DirtyIndicatorPlugin'
-
-const useFormState = (form, subscription) => {
-  const [state, setState] = useState(form.finalForm.getState())
-  useEffect(() => {
-    form.subscribe(setState, subscription)
-  }, [form])
-
-  return state
-}
+import PRPlugin from './pull-request'
 
 export const useOpenAuthoringToolbarPlugins = (
   form: Form<any>,
   editMode: boolean
 ) => {
   const cms = useCMS()
-  const formState = useFormState(form, { dirty: true, submitting: true })
 
   useEffect(() => {
     const forkName = getForkName()
     const plugins = [
-      ForkNamePlugin(forkName),
+      {
+        __type: 'toolbar:widget',
+        name: 'current-fork',
+        weight: 1,
+        props: { forkName },
+        component: ForkInfo,
+      },
+      // TODO
       PRPlugin(process.env.REPO_FULL_NAME, forkName),
-      FormActionsPlugin(form, formState),
-      DirtyIndicatorPlugin(formState),
     ] as any
 
     const removePlugins = () => {
@@ -42,5 +36,24 @@ export const useOpenAuthoringToolbarPlugins = (
     }
 
     return removePlugins
-  }, [editMode, form, formState])
+  }, [editMode, form])
+}
+
+const MetaLink = styled.a`
+  display: block;
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 16px;
+  color: ${color.primary('dark')};
+`
+
+const ForkInfo = ({ forkName }) => {
+  return (
+    <FieldMeta name={'Fork'}>
+      <MetaLink target="_blank" href={`https://github.com/${forkName}`}>
+        {forkName}
+      </MetaLink>
+    </FieldMeta>
+  )
 }
