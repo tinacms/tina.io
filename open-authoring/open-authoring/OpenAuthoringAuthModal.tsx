@@ -35,7 +35,7 @@ const OpenAuthoringAuthModal = ({
           name: 'Continue to GitHub',
           action: async () => {
             await authenticate()
-            onUpdateAuthState()
+            await onUpdateAuthState()
           },
           primary: true,
         },
@@ -55,7 +55,7 @@ const OpenAuthoringAuthModal = ({
           action: async () => {
             const { full_name } = await cms.api.github.createFork()
             setForkName(full_name)
-            onUpdateAuthState()
+            await onUpdateAuthState()
           },
           primary: true,
         },
