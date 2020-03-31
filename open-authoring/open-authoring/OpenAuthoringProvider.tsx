@@ -5,7 +5,6 @@ import OpenAuthoringErrorModal from '../github-error/OpenAuthoringErrorModal'
 import OpenAuthoringAuthModal from './OpenAuthoringAuthModal'
 
 export interface OpenAuthoringContext {
-  authenticate: () => Promise<void>
   enterEditMode: () => void
   exitEditMode: () => void
   setError: (err) => void
@@ -39,9 +38,9 @@ interface AuthState {
 
 export const OpenAuthoringProvider = ({
   children,
-  authenticate,
   enterEditMode,
   exitEditMode,
+  authenticate,
 }: ProviderProps) => {
   const [error, setError] = useState(null)
   const cms = useCMS()
@@ -67,7 +66,6 @@ export const OpenAuthoringProvider = ({
   return (
     <OpenAuthoringContext.Provider
       value={{
-        authenticate,
         enterEditMode: tryEnterEditMode,
         exitEditMode,
         setError,
@@ -81,6 +79,7 @@ export const OpenAuthoringProvider = ({
           close={() => {
             setAuthorizingState(null)
           }}
+          authenticate={authenticate}
         />
       )}
       {children}

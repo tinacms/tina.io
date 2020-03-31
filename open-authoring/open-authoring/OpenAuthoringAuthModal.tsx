@@ -8,13 +8,16 @@ import {
   ModalBody,
   ModalActions,
 } from 'tinacms'
-import { useOpenAuthoring } from './OpenAuthoringProvider'
 import { TinaReset, Button as TinaButton } from '@tinacms/styles'
 
-const OpenAuthoringAuthModal = ({ onUpdateAuthState, close, authState }) => {
+const OpenAuthoringAuthModal = ({
+  onUpdateAuthState,
+  close,
+  authState,
+  authenticate,
+}) => {
   let modalProps
 
-  const openAuthoring = useOpenAuthoring()
   const cms = useCMS()
 
   if (!authState.authenticated) {
@@ -30,7 +33,7 @@ const OpenAuthoringAuthModal = ({ onUpdateAuthState, close, authState }) => {
         {
           name: 'Continue to GitHub',
           action: async () => {
-            await openAuthoring.authenticate()
+            await authenticate()
             onUpdateAuthState()
           },
           primary: true,
