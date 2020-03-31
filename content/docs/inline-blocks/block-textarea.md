@@ -15,7 +15,7 @@ Inline `BlockTextarea` represents a multiline text input. It should be used for 
 
 ## Definition
 
-Below is an example of how `BlockTextarea` may be used in a [Block Component](/docs/inline-blocks#block-component) definition.
+Below is an example of how `BlockTextarea` may be used in a [Block Component](https://tinacms.org/docs/inline-blocks#block-component) definition.
 
 ```jsx
 import styled from 'styled-components'
@@ -33,6 +33,8 @@ export function SupportCopy({ index }) {
 }
 ```
 
+> **Note**: Block Field [styles can be extended](https://tinacms.org/docs/inline-blocks#extending-block-field-styles) or overridden via _Styled Components_.
+
 ## Options
 
 | Key    | Description                                      |
@@ -45,27 +47,4 @@ export function SupportCopy({ index }) {
 export interface BlockTextProps {
   name: string
 }
-```
-
-## Examples
-
-> **Note:** Styles can be overwritten or extended via [Styled Components](https://styled-components.com/) as in the example below.
-
-```js
-// 'SupportCopy' Block with extended styles
-export function SupportCopy({ index }) {
-  return (
-    <BlocksControls index={index}>
-      <h3>
-        <StyledBlockTextarea name="support_copy" />
-      </h3>
-    </BlocksControls>
-  )
-}
-
-// Extended BlockTextarea styles
-const StyledBlockText = styled(BlockTextarea)`
-  text-align: center;
-  margin: 1rem 0;
-`
 ```

@@ -33,6 +33,8 @@ export function Tagline(props) {
 }
 ```
 
+> **Note**: Block Field [styles can be extended](https://tinacms.org/docs/inline-blocks#extending-block-field-styles) or overridden via _Styled Components_.
+
 ## Options
 
 | Key    | Description                                      |
@@ -45,26 +47,4 @@ export function Tagline(props) {
 export interface BlockTextProps {
   name: string
 }
-```
-
-## Examples
-
-> **Note:** Styles can be overwritten or extended via [Styled Components](https://styled-components.com/) as in the example below.
-
-```js
-// 'Tagline' Block with Extended Styles
-export function Tagline(props) {
-  return (
-    <BlocksControls index={props.index}>
-      <h2>
-        <StyledBlockText name="tagline" />
-      </h2>
-    </BlocksControls>
-  )
-}
-
-// Extended BlockText styled component
-const StyledBlockText = styled(BlockText)`
-  color: green;
-`
 ```
