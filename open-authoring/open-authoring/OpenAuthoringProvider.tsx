@@ -12,9 +12,6 @@ import {
 } from 'tinacms'
 
 export interface OpenAuthoringContext {
-  forkValid: boolean
-  authenticated: boolean
-  updateAuthChecks: () => void
   authenticate: () => Promise<void>
   enterEditMode: () => void
   exitEditMode: () => void
@@ -42,57 +39,41 @@ interface ProviderProps {
   exitEditMode: () => void
 }
 
+interface AuthState {
+  authenticated: true
+  forkValid: true
+}
+
 export const OpenAuthoringProvider = ({
   children,
   authenticate,
   enterEditMode,
   exitEditMode,
 }: ProviderProps) => {
-  const [forkValid, setForkValid] = useState(false)
-  const [authenticated, setAuthenticated] = useState(false)
   const [error, setError] = useState(null)
-
   const cms = useCMS()
-
-  const [authorizing, setAuthorizing] = useState(false)
-
-  const updateAuthChecks = async () => {
-    setAuthenticated(!!(await cms.api.github.getUser()))
-    setForkValid(await cms.api.github.getBranch(getForkName(), getHeadBranch()))
-  }
+  const [authorizingState, setAuthorizingState] = useState<AuthState>(null)
 
   const tryEnterEditMode = async () => {
+    const authenticated =
+      authorizingState?.authenticated || (await cms.api.github.getUser())
+    const forkValid =
+      authorizingState?.forkValid ||
+      (await cms.api.github.getBranch(getForkName(), getHeadBranch()))
+
     if (authenticated && forkValid) {
       enterEditMode()
     } else {
-      setAuthorizing(true)
+      setAuthorizingState({
+        authenticated,
+        forkValid,
+      })
     }
   }
-
-  const onUpdateAuthState = async () => {
-    //TODO replace this with a hook that updates when cookies change?
-    await updateAuthChecks()
-  }
-
-  useEffect(() => {
-    if (authorizing && forkValid && authenticated) {
-      enterEditMode()
-    }
-  }, [authorizing, forkValid, authenticated])
-
-  // Hook to update root openAuthoring state when form fails.
-  // We need to perform to check before an action is clicked (e.g start auth flow)
-  // Because if it is perform on-the-fly, the window may be blocked.
-  useEffect(() => {
-    updateAuthChecks()
-  }, [error])
 
   return (
     <OpenAuthoringContext.Provider
       value={{
-        forkValid,
-        authenticated,
-        updateAuthChecks,
         authenticate,
         enterEditMode: tryEnterEditMode,
         exitEditMode,
@@ -100,11 +81,12 @@ export const OpenAuthoringProvider = ({
       }}
     >
       {error && <OpenAuthoringErrorModal error={error} />}
-      {authorizing && (
+      {authorizingState && (
         <OpenAuthoringAuthModal
-          onUpdateAuthState={onUpdateAuthState}
+          onUpdateAuthState={tryEnterEditMode}
+          authState={authorizingState}
           close={() => {
-            setAuthorizing(false)
+            setAuthorizingState(null)
           }}
         />
       )}
@@ -113,13 +95,13 @@ export const OpenAuthoringProvider = ({
   )
 }
 
-const OpenAuthoringAuthModal = ({ onUpdateAuthState, close }) => {
+const OpenAuthoringAuthModal = ({ onUpdateAuthState, close, authState }) => {
   let modalProps
 
   const openAuthoring = useOpenAuthoring()
   const cms = useCMS()
 
-  if (!openAuthoring.authenticated) {
+  if (!authState.authenticated) {
     modalProps = {
       title: 'GitHub Authorization',
       message:
@@ -139,7 +121,7 @@ const OpenAuthoringAuthModal = ({ onUpdateAuthState, close }) => {
         },
       ],
     }
-  } else if (!openAuthoring.forkValid) {
+  } else if (!authState.forkValid) {
     modalProps = {
       title: 'GitHub Authorization',
       message: 'A fork of this website is required to save changes.',
