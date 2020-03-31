@@ -35,7 +35,11 @@ const OpenAuthoringErrorModal = (props: Props) => {
     })()
   }, [props.error, openAuthoring.enterEditMode])
 
-  return errorModalProps ? <ActionableModal {...errorModalProps} /> : <></>
+  if (!errorModalProps) {
+    return null
+  }
+
+  return <ActionableModal {...errorModalProps} />
 }
 
 export default OpenAuthoringErrorModal
