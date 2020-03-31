@@ -6,7 +6,6 @@ export const getCachedFormData = (id: string) => {
 }
 
 export const setCachedFormData = (id: string, data: { sha: string }) => {
-  console.log(data)
   if (typeof localStorage === 'undefined') {
     return
   }
