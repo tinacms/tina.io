@@ -1,5 +1,5 @@
 import { getGithubDataFromPreviewProps } from '../github/sourceProviderConnection'
-import getJsonData from '../github/getJsonData'
+import { getJsonData } from '../github/getJsonData'
 import { getMarkdownData } from '../getMarkdownData'
 
 export async function getDocProps({ preview, previewData }: any, slug: string) {

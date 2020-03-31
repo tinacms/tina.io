@@ -11,11 +11,7 @@ import {
   RichTextWrapper,
   MarkdownContent,
 } from '../components/layout'
-import {
-  InlineWysiwyg,
-  InlineTextareaField,
-  InlineTextField,
-} from '../components/ui/inline'
+import { InlineWysiwyg, InlineTextareaField } from '../components/ui/inline'
 import { Button, ButtonGroup } from '../components/ui'
 import { EmailForm } from '../components/forms'
 import TwitterIconSvg from '../public/svg/twitter-icon.svg'
@@ -23,7 +19,7 @@ import GithubIconSvg from '../public/svg/github-icon.svg'
 import SlackIconSvg from '../public/svg/slack-icon.svg'
 import ForumIconSvg from '../public/svg/forum-icon.svg'
 import { NextSeo } from 'next-seo'
-import getJsonData from '../utils/github/getJsonData'
+import { getJsonData } from '../utils/getJsonData'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 import { useGithubJsonForm } from '../utils/github/useGithubJsonForm'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'

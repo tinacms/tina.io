@@ -25,7 +25,7 @@ import {
 } from '../components/ui/inline'
 
 import { useGithubJsonForm } from '../utils/github/useGithubJsonForm'
-import getJsonData from '../utils/github/getJsonData'
+import { getJsonData } from '../utils/getJsonData'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
 import OpenAuthoringError from '../open-authoring/OpenAuthoringError'
