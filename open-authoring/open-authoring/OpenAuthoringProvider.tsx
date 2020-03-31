@@ -58,6 +58,7 @@ export const OpenAuthoringProvider = ({
 
     if (authenticated && forkValid) {
       enterEditMode()
+      setAuthorizingStatus(null) //done authorizing
     } else {
       setAuthorizingStatus({
         authenticated,

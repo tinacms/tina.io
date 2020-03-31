@@ -9,6 +9,7 @@ import {
   ModalActions,
 } from 'tinacms'
 import { TinaReset, Button as TinaButton } from '@tinacms/styles'
+import { LoadingDots } from '@tinacms/react-forms'
 
 const OpenAuthoringAuthModal = ({
   onUpdateAuthState,
@@ -34,7 +35,7 @@ const OpenAuthoringAuthModal = ({
           name: 'Continue to GitHub',
           action: async () => {
             await authenticate()
-            onUpdateAuthState()
+            await onUpdateAuthState()
           },
           primary: true,
         },
@@ -54,7 +55,7 @@ const OpenAuthoringAuthModal = ({
           action: async () => {
             const { full_name } = await cms.api.github.createFork()
             setForkName(full_name)
-            onUpdateAuthState()
+            await onUpdateAuthState()
           },
           primary: true,
         },
@@ -98,8 +99,14 @@ const AsyncButton = ({ name, primary, action }: ButtonProps) => {
   }, [action, setSubmitting])
 
   return (
-    <TinaButton primary={primary} onClick={onClick} busy={submitting}>
-      {name}
+    <TinaButton
+      primary={primary}
+      onClick={onClick}
+      busy={submitting}
+      disabled={submitting}
+    >
+      {submitting && <LoadingDots />}
+      {!submitting && name}
     </TinaButton>
   )
 }
