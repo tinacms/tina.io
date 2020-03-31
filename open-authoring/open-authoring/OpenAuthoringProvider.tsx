@@ -44,19 +44,19 @@ export const OpenAuthoringProvider = ({
 }: ProviderProps) => {
   const [error, setError] = useState(null)
   const cms = useCMS()
-  const [authorizingState, setAuthorizingState] = useState<AuthState>(null)
+  const [authorizingStatus, setAuthorizingStatus] = useState<AuthState>(null)
 
   const tryEnterEditMode = async () => {
     const authenticated =
-      authorizingState?.authenticated || (await cms.api.github.getUser())
+      authorizingStatus?.authenticated || (await cms.api.github.getUser())
     const forkValid =
-      authorizingState?.forkValid ||
+      authorizingStatus?.forkValid ||
       (await cms.api.github.getBranch(getForkName(), getHeadBranch()))
 
     if (authenticated && forkValid) {
       enterEditMode()
     } else {
-      setAuthorizingState({
+      setAuthorizingStatus({
         authenticated,
         forkValid,
       })
@@ -72,12 +72,12 @@ export const OpenAuthoringProvider = ({
       }}
     >
       {error && <OpenAuthoringErrorModal error={error} />}
-      {authorizingState && (
+      {authorizingStatus && (
         <OpenAuthoringAuthModal
           onUpdateAuthState={tryEnterEditMode}
-          authState={authorizingState}
+          authState={authorizingStatus}
           close={() => {
-            setAuthorizingState(null)
+            setAuthorizingStatus(null)
           }}
           authenticate={authenticate}
         />
