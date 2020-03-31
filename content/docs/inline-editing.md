@@ -1,7 +1,7 @@
 ---
 title: Inline Editing
 prev: /docs/media
-next: /docs/contributing/guidelines
+next: /docs/inline-blocks
 consumes:
   - file: /packages/react-tinacms-inline/src/inline-form.tsx
     description: InlineForm
