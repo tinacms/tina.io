@@ -49,8 +49,6 @@ const MainLayout = ({ Component, pageProps }) => {
     })
   }
 
-  const PageComponent = withOpenAuthoringErrorHandler(Component)
-
   return (
     <Tina cms={cms} {...tinaConfig.sidebar}>
       <ModalProvider>
@@ -60,6 +58,7 @@ const MainLayout = ({ Component, pageProps }) => {
           authenticate={() => authenticate('/api/create-github-access-token')}
           enterEditMode={enterEditMode}
           exitEditMode={exitEditMode}
+          error={pageProps.previewError}
         >
           <DefaultSeo
             title={data.seoDefaultTitle}
@@ -90,7 +89,7 @@ const MainLayout = ({ Component, pageProps }) => {
             <meta name="theme-color" content="#E6FAF8" />
           </Head>
           <GlobalStyle />
-          <PageComponent {...pageProps} />
+          <Component {...pageProps} />
         </OpenAuthoringProvider>
       </ModalProvider>
     </Tina>

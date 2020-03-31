@@ -3,6 +3,7 @@ import { getForkName, getHeadBranch } from './repository'
 import { useCMS } from 'tinacms'
 import OpenAuthoringErrorModal from '../github-error/OpenAuthoringErrorModal'
 import OpenAuthoringAuthModal from './OpenAuthoringAuthModal'
+import { withOpenAuthoringErrorHandler } from '../errors/withOpenAuthoringErrorHandler'
 
 export interface OpenAuthoringContext {
   enterEditMode: () => void
@@ -29,6 +30,7 @@ interface ProviderProps {
   authenticate: () => Promise<void>
   enterEditMode: () => void
   exitEditMode: () => void
+  error?: any
 }
 
 interface AuthState {
@@ -41,6 +43,7 @@ export const OpenAuthoringProvider = ({
   enterEditMode,
   exitEditMode,
   authenticate,
+  error: previewError,
 }: ProviderProps) => {
   const [error, setError] = useState(null)
   const cms = useCMS()
@@ -82,7 +85,11 @@ export const OpenAuthoringProvider = ({
           authenticate={authenticate}
         />
       )}
-      {children}
+      <PreviewErrorBoundary previewError={previewError}>
+        {children}
+      </PreviewErrorBoundary>
     </OpenAuthoringContext.Provider>
   )
 }
+
+const PreviewErrorBoundary: any = withOpenAuthoringErrorHandler(p => p.children)
