@@ -25,6 +25,8 @@
   "dependencies": {
     "@tinacms/api-git": "^0.7.0-alpha.0",
     "@tinacms/git-client": "^0.6.0-alpha.0",
+    "@tinacms/react-forms": "^0.1.0",
+    "@tinacms/react-modals": "^0.1.0",
     "@tinacms/styles": "^0.3.0-alpha.0",
     "@types/react-instantsearch-dom": "^5.2.6",
     "@types/styled-components": "^4.4.2",
