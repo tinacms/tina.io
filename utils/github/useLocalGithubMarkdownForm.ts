@@ -1,6 +1,5 @@
 import { FormOptions, useLocalForm, usePlugins, Field, useCMS } from 'tinacms'
-import { getCachedFormData, setCachedFormData } from '../formCache'
-import { useGithubForm, GithubOptions, GitFile } from './useGithubForm'
+import { useGitFileSha, GithubOptions, GitFile } from './useGitFileSha'
 import { toMarkdownString } from 'next-tinacms-markdown'
 import { FORM_ERROR } from 'final-form'
 import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
@@ -19,7 +18,7 @@ const useGithubMarkdownForm = <T = any>(
   githubOptions: GithubOptions
 ) => {
   const cms = useCMS()
-  useGithubForm(markdownFile)
+  const [getSha, setSha] = useGitFileSha(markdownFile)
 
   const [formData, form] = useLocalForm({
     id: markdownFile.fileRelativePath, // needs to be unique
@@ -33,7 +32,7 @@ const useGithubMarkdownForm = <T = any>(
           githubOptions.forkFullName,
           githubOptions.branch,
           markdownFile.fileRelativePath,
-          getCachedFormData(markdownFile.fileRelativePath).sha,
+          getSha(),
           toMarkdownString(formData),
           'Update from TinaCMS'
         )
@@ -41,9 +40,7 @@ const useGithubMarkdownForm = <T = any>(
           cms.alerts.success(
             `Saved Successfully: Changes committed to ${getForkName()}`
           )
-          setCachedFormData(markdownFile.fileRelativePath, {
-            sha: response.content.sha,
-          })
+          setSha(response.content.sha)
         })
         .catch(e => {
           return { [FORM_ERROR]: new OpenAuthoringError(e.message, e.status) }
