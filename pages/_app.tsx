@@ -6,11 +6,13 @@ import { DefaultSeo } from 'next-seo'
 import data from '../content/siteConfig.json'
 import TagManager from 'react-gtm-module'
 import { GlobalStyle } from '../components/styles/GlobalStyle'
-import { OpenAuthoring } from '../components/layout/OpenAuthoring'
+import { OpenAuthoringProvider } from '../open-authoring/open-authoring/OpenAuthoringProvider'
 import { Toolbar } from '../components/cms/Toolbar'
-import { BrowserStorageApi } from '../utils/plugins/BrowserStorageApi'
+import { BrowserStorageApi } from '../utils/plugins/browser-storage-api/BrowserStorageApi'
 import { Alerts } from '../components/layout/Alerts'
 import { GithubApi } from '../utils/plugins/github-api/GithubApi'
+import { authenticate } from '../open-authoring/github-auth/authenticate'
+import { withOpenAuthoringErrorHandler } from '../open-authoring/errors/withOpenAuthoringErrorHandler'
 
 const MainLayout = ({ Component, pageProps }) => {
   /*
@@ -36,12 +38,28 @@ const MainLayout = ({ Component, pageProps }) => {
 
   const cms = React.useMemo(() => new TinaCMS(tinaConfig), [])
 
+  const enterEditMode = () =>
+    fetch(`/api/preview`).then(() => {
+      window.location.href = window.location.pathname
+    })
+
+  const exitEditMode = () => {
+    fetch(`/api/reset-preview`).then(() => {
+      window.location.reload()
+    })
+  }
+
   return (
     <Tina cms={cms} {...tinaConfig.sidebar}>
       <ModalProvider>
         <Toolbar />
         <Alerts />
-        <OpenAuthoring>
+        <OpenAuthoringProvider
+          authenticate={() => authenticate('/api/create-github-access-token')}
+          enterEditMode={enterEditMode}
+          exitEditMode={exitEditMode}
+          error={pageProps.previewError}
+        >
           <DefaultSeo
             title={data.seoDefaultTitle}
             titleTemplate={'%s | ' + data.title}
@@ -72,7 +90,7 @@ const MainLayout = ({ Component, pageProps }) => {
           </Head>
           <GlobalStyle />
           <Component {...pageProps} />
-        </OpenAuthoring>
+        </OpenAuthoringProvider>
       </ModalProvider>
     </Tina>
   )

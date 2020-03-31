@@ -1,15 +1,18 @@
-import { useOpenAuthoring } from '../components/layout/OpenAuthoring'
+import { useOpenAuthoring } from '../../open-authoring/open-authoring/OpenAuthoringProvider'
 import { useState } from 'react'
-import { enterEditMode } from './authFlow'
-import { ActionableModal } from '../components/ui'
+import { ActionableModal } from '../ui'
+
+interface Props {
+  autoAuthKey?: string // query param key which kicks off auth flow
+}
 
 // This component checks for the autoAuth query parameter, and
 // conditionally renders the modal to kick off the auth flow
-const AutoAuthModal = () => {
+const AutoAuthModal = ({ autoAuthKey = 'autoAuth' }: Props) => {
   const openAuthoring = useOpenAuthoring()
 
   const [showAuthModal, setShowAuthModal] = useState(
-    typeof window !== 'undefined' && window.location.href.includes('autoAuth')
+    typeof window !== 'undefined' && window.location.href.includes(autoAuthKey)
   )
   const cancelAuth = () => {
     window.history.replaceState(
@@ -31,11 +34,7 @@ const AutoAuthModal = () => {
       actions={[
         {
           name: 'Continue',
-          action: () =>
-            enterEditMode(
-              openAuthoring.githubAuthenticated,
-              openAuthoring.forkValid
-            ),
+          action: openAuthoring.enterEditMode,
         },
         {
           name: 'Cancel',

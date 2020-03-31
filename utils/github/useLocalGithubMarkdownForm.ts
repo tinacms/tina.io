@@ -4,6 +4,7 @@ import { useGithubForm, GithubOptions, GitFile } from './useGithubForm'
 import { toMarkdownString } from 'next-tinacms-markdown'
 import { FORM_ERROR } from 'final-form'
 import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
+import { getForkName } from '../../open-authoring/open-authoring/repository'
 
 export interface Options {
   id?: string
@@ -37,7 +38,9 @@ const useGithubMarkdownForm = <T = any>(
           'Update from TinaCMS'
         )
         .then(response => {
-          console.log(response)
+          cms.alerts.success(
+            `Saved Successfully: Changes committed to ${getForkName()}`
+          )
           setCachedFormData(markdownFile.fileRelativePath, {
             sha: response.content.sha,
           })
