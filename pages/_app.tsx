@@ -1,7 +1,7 @@
 import React from 'react'
 import App from 'next/app'
 import Head from 'next/head'
-import { TinaCMS, Tina, ModalProvider } from 'tinacms'
+import { TinaCMS, TinaProvider, ModalProvider } from 'tinacms'
 import { DefaultSeo } from 'next-seo'
 import data from '../content/siteConfig.json'
 import TagManager from 'react-gtm-module'
@@ -37,7 +37,7 @@ const MainLayout = ({ Component, pageProps }) => {
   const cms = React.useMemo(() => new TinaCMS(tinaConfig), [])
 
   return (
-    <Tina cms={cms} {...tinaConfig.sidebar}>
+    <TinaProvider cms={cms} {...tinaConfig.sidebar}>
       <ModalProvider>
         <Toolbar />
         <Alerts />
@@ -74,7 +74,7 @@ const MainLayout = ({ Component, pageProps }) => {
           <Component {...pageProps} />
         </OpenAuthoring>
       </ModalProvider>
-    </Tina>
+    </TinaProvider>
   )
 }
 
