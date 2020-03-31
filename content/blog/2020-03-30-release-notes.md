@@ -3,7 +3,7 @@ title: 2020-03-30 Release Notes..!
 date: '2020-03-30T10:32:43-03:00'
 author: Nolan Phillips
 ---
-Another week gone and another week closer to Open Authoring for everyone! Refactoring on tinacms.org is going well and a good API is becoming visible. To keep in touch with where Tina is headed in the near term take a look at our two ongoing GitHub projects:!!!
+Another week gone and another week closer to Open Authoring for everyone! Refactoring on tinacms.org is going well and a good API is becoming visible. To keep in touch with where Tina is headed in the near term take a look at our two ongoing GitHub projects:!!gregre!
 
 * [Open Authoring with GitHub + Next.js](https://github.com/orgs/tinacms/projects/1 "Open Authoring with GitHub + Next.js")
 * [Markdown Wysiwym](https://github.com/tinacms/tinacms/projects/5 "Markdown Wysiwym")
