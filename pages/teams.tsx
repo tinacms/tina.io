@@ -9,7 +9,7 @@ import { Layout, Wrapper, RichTextWrapper } from '../components/layout'
 import { ArrowList } from '../components/ui'
 import { TeamsForm } from '../components/forms'
 import { InlineTextareaField, BlockTextArea } from '../components/ui/inline'
-import { getJsonData } from '../utils/getJsonData'
+import { getJsonFile } from '../utils/getJsonFile'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
 import { InlineBlocks } from 'react-tinacms-inline'
@@ -124,7 +124,7 @@ export const getStaticProps: GetStaticProps = async function({
   let previewError: OpenAuthoringError = null
   let teamsData = {}
   try {
-    teamsData = await getJsonData(
+    teamsData = await getJsonFile(
       'content/pages/teams.json',
       sourceProviderConnection,
       accessToken

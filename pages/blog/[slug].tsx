@@ -12,7 +12,7 @@ import {
 } from '../../components/layout'
 import { InlineWysiwyg, InlineTextareaField } from '../../components/ui/inline'
 import { getGithubDataFromPreviewProps } from '../../utils/github/sourceProviderConnection'
-import { getMarkdownData } from '../../utils/getMarkdownData'
+import { getMarkdownFile } from '../../utils/getMarkdownFile'
 import { useGithubMarkdownForm } from '../../utils/github/useGithubMarkdownForm'
 import { fileToUrl } from '../../utils/urls'
 import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
@@ -123,7 +123,7 @@ export const getStaticProps: GetStaticProps = async function({
   let previewError: OpenAuthoringError = null
   let file = {}
   try {
-    file = await getMarkdownData(
+    file = await getMarkdownFile(
       `content/blog/${slug}.md`,
       sourceProviderConnection,
       accessToken

@@ -1,15 +1,15 @@
 import { SourceProviderConnection } from './github/sourceProviderConnection'
 import { readFile } from './readFile'
 import path from 'path'
-import { getDecodedJsonData } from './github/getJsonData'
+import { getJsonFile as getGithubJsonFile } from './github/getJsonFile'
 
-export const getJsonData = async (
+export const getJsonFile = async (
   filePath: string,
   sourceProviderConnection: SourceProviderConnection,
   accessToken: string
 ) => {
   if (sourceProviderConnection) {
-    return getDecodedJsonData(filePath, sourceProviderConnection, accessToken)
+    return getGithubJsonFile(filePath, sourceProviderConnection, accessToken)
   } else {
     return readJsonFile(filePath)
   }

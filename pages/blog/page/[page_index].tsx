@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import getFiles from '../../../utils/github/getFiles'
 import { orderPosts, formatExcerpt, formatDate } from '../../../utils'
 import {
   Layout,
@@ -13,10 +12,11 @@ import {
 } from '../../../components/layout'
 import { DynamicLink, BlogPagination } from '../../../components/ui'
 import { getGithubDataFromPreviewProps } from '../../../utils/github/sourceProviderConnection'
-import { getMarkdownData } from '../../../utils/getMarkdownData'
+import { getMarkdownFile } from '../../../utils/getMarkdownFile'
 import { useCMS } from 'tinacms'
 import OpenAuthoringSiteForm from '../../../components/layout/OpenAuthoringSiteForm'
 import { useForm } from 'tinacms'
+import { getFiles } from '../../../utils/getFiles'
 const Index = props => {
   const { currentPage, numPages } = props
 
@@ -118,7 +118,7 @@ export const getStaticProps: GetStaticProps = async function({
       // TODO - potentially making a lot of requests here
       files.map(async file => {
         const post = (
-          await getMarkdownData(file, sourceProviderConnection, accessToken)
+          await getMarkdownFile(file, sourceProviderConnection, accessToken)
         ).data
 
         // create slug from filename

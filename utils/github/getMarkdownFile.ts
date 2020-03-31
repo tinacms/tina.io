@@ -2,7 +2,7 @@ import { SourceProviderConnection } from './sourceProviderConnection'
 import matter from 'gray-matter'
 import getDecodedData from './getDecodedData'
 
-export const getDecodedMarkdown = async (
+export const getMarkdownFile = async (
   filePath: string,
   sourceProviderConnection: SourceProviderConnection,
   accessToken: string

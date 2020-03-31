@@ -1,36 +1,43 @@
 import { getGithubDataFromPreviewProps } from '../github/sourceProviderConnection'
-import { getJsonData } from '../github/getJsonData'
-import { getMarkdownData } from '../getMarkdownData'
+import { getMarkdownFile } from '../getMarkdownFile'
+import { getJsonFile } from '../getJsonFile'
 
 export async function getDocProps({ preview, previewData }: any, slug: string) {
   const {
     sourceProviderConnection,
     accessToken,
   } = getGithubDataFromPreviewProps(previewData)
-  const file = await getMarkdownData(
+  const file = await getMarkdownFile(
     `content/docs/${slug}.md`,
     sourceProviderConnection,
     accessToken
   )
 
-  const getJson = async (filePath: string) => {
-    return (await getJsonData(filePath, sourceProviderConnection, accessToken))
-      .data
-  }
-
-  const getMarkdown = async (filePath: string) => {
-    return (
-      await getMarkdownData(filePath, sourceProviderConnection, accessToken)
-    ).data
-  }
-
-  const docsNavData = await getJson('content/toc-doc.json')
+  const docsNavData = (
+    await getJsonFile(
+      'content/toc-doc.json',
+      sourceProviderConnection,
+      accessToken
+    )
+  ).data
   const nextDocPage =
     file.data.frontmatter.next &&
-    (await getMarkdown(`content${file.data.frontmatter.next}.md`)).frontmatter
+    (
+      await getMarkdownFile(
+        `content${file.data.frontmatter.next}.md`,
+        sourceProviderConnection,
+        accessToken
+      )
+    ).data.frontmatter
   const prevDocPage =
     file.data.frontmatter.prev &&
-    (await getMarkdown(`content${file.data.frontmatter.prev}.md`)).frontmatter
+    (
+      await getMarkdownFile(
+        `content${file.data.frontmatter.prev}.md`,
+        sourceProviderConnection,
+        accessToken
+      )
+    ).data.frontmatter
 
   return {
     props: {

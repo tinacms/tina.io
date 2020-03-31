@@ -3,7 +3,7 @@ import matter from 'gray-matter'
 import { readFile } from './readFile'
 import { formatExcerpt } from '.'
 import { SourceProviderConnection } from './github/sourceProviderConnection'
-import { getDecodedMarkdown } from './github/getDecodedMarkdown'
+import { getMarkdownFile as getGithubMarkdownFile } from './github/getMarkdownFile'
 
 const readMarkdownFile = async (filePath: string) => {
   const doc = matter(await readFile(path.resolve(`${filePath}`)))
@@ -17,13 +17,17 @@ const readMarkdownFile = async (filePath: string) => {
   }
 }
 
-export const getMarkdownData = (
+export const getMarkdownFile = (
   filePath: string,
   sourceProviderConnection: SourceProviderConnection,
   accessToken: string
 ) => {
   if (sourceProviderConnection) {
-    return getDecodedMarkdown(filePath, sourceProviderConnection, accessToken)
+    return getGithubMarkdownFile(
+      filePath,
+      sourceProviderConnection,
+      accessToken
+    )
   } else {
     return readMarkdownFile(filePath)
   }

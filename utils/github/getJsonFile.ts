@@ -1,7 +1,7 @@
 import { SourceProviderConnection } from './sourceProviderConnection'
 import getDecodedData from './getDecodedData'
 
-export const getDecodedJsonData = async (
+export const getJsonFile = async (
   filePath: string,
   sourceProviderConnection: SourceProviderConnection,
   accessToken: string

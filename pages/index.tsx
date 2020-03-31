@@ -25,7 +25,7 @@ import {
 } from '../components/ui/inline'
 
 import { useGithubJsonForm } from '../utils/github/useGithubJsonForm'
-import { getJsonData } from '../utils/getJsonData'
+import { getJsonFile } from '../utils/getJsonFile'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
 import OpenAuthoringError from '../open-authoring/OpenAuthoringError'
@@ -220,7 +220,7 @@ export const getStaticProps: GetStaticProps = async function({
   let previewError: OpenAuthoringError = null
   let homeData = {}
   try {
-    homeData = await getJsonData(
+    homeData = await getJsonFile(
       'content/pages/home.json',
       sourceProviderConnection,
       accessToken
