@@ -1,10 +1,7 @@
-import { FormOptions, useLocalForm, usePlugins, Field, useCMS } from 'tinacms'
-import { useGitFileSha, GithubOptions, GitFile } from './useGitFileSha'
+import { FormOptions, usePlugins, Field } from 'tinacms'
+import { GithubOptions, GitFile } from './useGitFileSha'
 import { toMarkdownString } from 'next-tinacms-markdown'
-import { FORM_ERROR } from 'final-form'
-import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
-import { getForkName } from '../../open-authoring/open-authoring/repository'
-
+import { useGithubFileForm } from './useGithubFileForm'
 export interface Options {
   id?: string
   label?: string
@@ -12,43 +9,17 @@ export interface Options {
   actions?: FormOptions<any>['actions']
 }
 
-const useGithubMarkdownForm = <T = any>(
-  markdownFile: GitFile<T>,
+const useGithubMarkdownForm = (
+  markdownFile: GitFile<any>,
   formOptions: Options,
   githubOptions: GithubOptions
 ) => {
-  const cms = useCMS()
-  const [getSha, setSha] = useGitFileSha(markdownFile)
-
-  const [formData, form] = useLocalForm({
-    id: markdownFile.fileRelativePath, // needs to be unique
-    label: formOptions.label || markdownFile.fileRelativePath,
-    initialValues: markdownFile.data,
-    fields: formOptions.fields || [],
-    // save & commit the file when the "save" button is pressed
-    onSubmit(formData, form) {
-      return cms.api.github
-        .save(
-          githubOptions.forkFullName,
-          githubOptions.branch,
-          markdownFile.fileRelativePath,
-          getSha(),
-          toMarkdownString(formData),
-          'Update from TinaCMS'
-        )
-        .then(response => {
-          cms.alerts.success(
-            `Saved Successfully: Changes committed to ${getForkName()}`
-          )
-          setSha(response.content.sha)
-        })
-        .catch(e => {
-          return { [FORM_ERROR]: new OpenAuthoringError(e.message, e.status) }
-        })
-    },
-  })
-
-  return [formData || markdownFile.data, form]
+  return useGithubFileForm(
+    markdownFile,
+    formOptions,
+    githubOptions,
+    toMarkdownString
+  )
 }
 
 export function useLocalGithubMarkdownForm(
