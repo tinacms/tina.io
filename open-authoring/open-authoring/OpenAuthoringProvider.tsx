@@ -1,15 +1,8 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import { getForkName, getHeadBranch, setForkName } from './repository'
+import React, { useState } from 'react'
+import { getForkName, getHeadBranch } from './repository'
 import { useCMS } from 'tinacms'
 import OpenAuthoringErrorModal from '../github-error/OpenAuthoringErrorModal'
-import { TinaReset, Button as TinaButton } from '@tinacms/styles'
-import {
-  Modal,
-  ModalPopup,
-  ModalBody,
-  ModalActions,
-  ModalHeader,
-} from 'tinacms'
+import OpenAuthoringAuthModal from './OenAuthoringAuthModal'
 
 export interface OpenAuthoringContext {
   authenticate: () => Promise<void>
@@ -92,95 +85,5 @@ export const OpenAuthoringProvider = ({
       )}
       {children}
     </OpenAuthoringContext.Provider>
-  )
-}
-
-const OpenAuthoringAuthModal = ({ onUpdateAuthState, close, authState }) => {
-  let modalProps
-
-  const openAuthoring = useOpenAuthoring()
-  const cms = useCMS()
-
-  if (!authState.authenticated) {
-    modalProps = {
-      title: 'GitHub Authorization',
-      message:
-        'To save edits, Tina requires GitHub authorization. On save, changes will get commited to GitHub using your account.',
-      actions: [
-        {
-          name: 'Cancel',
-          action: close,
-        },
-        {
-          name: 'Continue to GitHub',
-          action: async () => {
-            await openAuthoring.authenticate()
-            onUpdateAuthState()
-          },
-          primary: true,
-        },
-      ],
-    }
-  } else if (!authState.forkValid) {
-    modalProps = {
-      title: 'GitHub Authorization',
-      message: 'A fork of this website is required to save changes.',
-      actions: [
-        {
-          name: 'Cancel',
-          action: close,
-        },
-        {
-          name: 'Create Fork',
-          action: async () => {
-            const { full_name } = await cms.api.github.createFork()
-            setForkName(full_name)
-            onUpdateAuthState()
-          },
-          primary: true,
-        },
-      ],
-    }
-  } else {
-    return null
-  }
-
-  return (
-    <TinaReset>
-      <Modal>
-        <ModalPopup>
-          <ModalHeader close={close}>{modalProps.title}</ModalHeader>
-          <ModalBody padded>
-            <p>{modalProps.message}</p>
-          </ModalBody>
-          <ModalActions>
-            {modalProps.actions.map(action => (
-              <AsyncButton {...action} />
-            ))}
-          </ModalActions>
-        </ModalPopup>
-      </Modal>
-    </TinaReset>
-  )
-}
-
-interface ButtonProps {
-  name: string
-  action(): Promise<void>
-  primary: boolean
-}
-const AsyncButton = ({ name, primary, action }: ButtonProps) => {
-  const [submitting, setSubmitting] = useState(false)
-
-  const onClick = useCallback(async () => {
-    setSubmitting(true)
-    await action()
-    setSubmitting(false)
-  }, [action, setSubmitting])
-
-  return (
-    <TinaButton primary={primary} onClick={onClick} busy={submitting}>
-      {name}
-    </TinaButton>
   )
 }
