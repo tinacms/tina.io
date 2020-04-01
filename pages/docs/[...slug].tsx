@@ -21,7 +21,7 @@ import { TinaIcon } from '../../components/logo'
 import { useGithubMarkdownForm } from '../../utils/github/useGithubMarkdownForm'
 import { getDocProps } from '../../utils/docs/getDocProps'
 import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
-import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
+import { GithubError } from '../../utils/github/GithubError'
 
 function DocTemplate(props) {
   // Registers Tina Form
@@ -105,7 +105,7 @@ export const getStaticProps: GetStaticProps = async function(props) {
   try {
     return getDocProps(props, slug)
   } catch (e) {
-    if (e instanceof OpenAuthoringError) {
+    if (e instanceof GithubError) {
       return {
         props: {
           previewError: { ...e }, //workaround since we cant return error as JSON

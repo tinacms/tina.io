@@ -3,7 +3,7 @@ import { Options } from 'next-tinacms-markdown'
 import { useCMS, useLocalForm } from 'tinacms'
 import { getForkName } from '../../open-authoring/open-authoring/repository'
 import { FORM_ERROR } from 'final-form'
-import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
+import { GithubError } from './GithubError'
 
 export const useGithubFileForm = <T = any>(
   file: GitFile<T>,
@@ -37,7 +37,7 @@ export const useGithubFileForm = <T = any>(
           setSha(response.content.sha)
         })
         .catch(e => {
-          return { [FORM_ERROR]: new OpenAuthoringError(e.message, e.status) }
+          return { [FORM_ERROR]: e }
         })
     },
   })

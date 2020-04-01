@@ -1,13 +1,13 @@
 import DocTemplate from './[...slug]'
 import { getDocProps } from '../../utils/docs/getDocProps'
 import { GetStaticProps } from 'next'
-import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
+import { GithubError } from '../../utils/github/GithubError'
 
 export const getStaticProps: GetStaticProps = async function(props) {
   try {
     return await getDocProps(props, 'index')
   } catch (e) {
-    if (e instanceof OpenAuthoringError) {
+    if (e instanceof GithubError) {
       return {
         props: {
           previewError: { ...e }, //workaround since we cant return error as JSON

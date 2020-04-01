@@ -1,5 +1,5 @@
 import { getContent } from './getContent'
-import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
+import { GithubError } from './GithubError'
 const atob = require('atob')
 
 const b64DecodeUnicode = str => {
@@ -23,7 +23,7 @@ const getDecodedData = async (repoFullName, headBranch, path, accessToken) => {
     ;({ data } = await getContent(repoFullName, headBranch, path, accessToken))
   } catch (e) {
     const errorStatus = e.response?.status || 500
-    throw new OpenAuthoringError('Failed to get data.', errorStatus)
+    throw new GithubError('Failed to get data.', errorStatus)
   }
 
   return { ...data, content: b64DecodeUnicode(data.content) }

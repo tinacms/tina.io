@@ -14,7 +14,7 @@ import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderCon
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
 import { InlineBlocks } from 'react-tinacms-inline'
 import { useGithubJsonForm } from '../utils/github/useGithubJsonForm'
-import OpenAuthoringError from '../open-authoring/OpenAuthoringError'
+import { GithubError } from '../utils/github/GithubError'
 
 const formOptions = {
   label: 'Teams',
@@ -121,7 +121,7 @@ export const getStaticProps: GetStaticProps = async function({
     accessToken,
   } = getGithubDataFromPreviewProps(previewData)
 
-  let previewError: OpenAuthoringError = null
+  let previewError: GithubError = null
   let teamsData = {}
   try {
     teamsData = await getJsonFile(
@@ -130,7 +130,7 @@ export const getStaticProps: GetStaticProps = async function({
       accessToken
     )
   } catch (e) {
-    if (e instanceof OpenAuthoringError) {
+    if (e instanceof GithubError) {
       previewError = { ...e } //workaround since we cant return error as JSON
     } else {
       throw e

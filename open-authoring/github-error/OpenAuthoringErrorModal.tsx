@@ -1,9 +1,13 @@
 import { ActionableModalOptions, ActionableModal } from '../../components/ui'
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState } from 'react'
 import { useCMS } from 'tinacms'
-import OpenAuthoringError from '../OpenAuthoringError'
 import { useOpenAuthoring } from '../open-authoring/OpenAuthoringProvider'
 import { getModalProps } from './github-interpeter'
+
+interface OpenAuthoringError extends Error {
+  status: number
+  message: string
+}
 
 interface Props {
   error: OpenAuthoringError

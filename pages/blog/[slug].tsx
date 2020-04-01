@@ -19,8 +19,8 @@ import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm
 const fg = require('fast-glob')
 import { useOpenAuthoring } from '../../open-authoring/open-authoring/OpenAuthoringProvider'
 import { Button } from '../../components/ui/Button'
-import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
 import Error from 'next/error'
+import { GithubError } from '../../utils/github/GithubError'
 
 function BlogTemplate({
   markdownFile,
@@ -120,7 +120,7 @@ export const getStaticProps: GetStaticProps = async function({
     accessToken,
   } = getGithubDataFromPreviewProps(previewData)
 
-  let previewError: OpenAuthoringError = null
+  let previewError: GithubError = null
   let file = {}
   try {
     file = await getMarkdownFile(
@@ -129,9 +129,9 @@ export const getStaticProps: GetStaticProps = async function({
       accessToken
     )
   } catch (e) {
-    if (e instanceof OpenAuthoringError) {
+    if (e instanceof GithubError) {
       previewError = { ...e } //workaround since we cant return error as JSON
-    } else if (e.code === 'ENOENT') {
+    } else if (e.status === 'ENOENT') {
       return { props: {} } // will render the 404 error
     } else {
       throw e
