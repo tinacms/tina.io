@@ -211,7 +211,7 @@ There may be times when a _Block_ **needs more field inputs** than a single inli
 
 ### 1. Define Fields in the Block Template
 
-Field definitions added to the `fields` property will render in the _Settings Modal_. These fields are defined exactly the same as regular [sidebar fields](https://tinacms.org/docs/fields).
+Field definitions added to the `fields` property will render in the _Settings Modal_. These fields are defined exactly the same as regular [sidebar fields](/docs/fields).
 
 ```js
 const image_template = {
