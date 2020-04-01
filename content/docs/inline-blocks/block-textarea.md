@@ -15,7 +15,7 @@ Inline `BlockTextarea` represents a multiline text input. It should be used for 
 
 ## Definition
 
-Below is an example of how `BlockTextarea` may be used in a [Block Component](https://tinacms.org/docs/inline-blocks#block-component) definition.
+Below is an example of how `BlockTextarea` may be used in a [Block Component](/docs/inline-blocks#block-component) definition.
 
 ```jsx
 import styled from 'styled-components'
