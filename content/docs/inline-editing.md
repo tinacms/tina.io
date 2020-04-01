@@ -101,7 +101,7 @@ There are a few fundamental editing actions needed to handle the state of _Inlin
 
 ![TinaCMS: Inline Controls](/img/inline-blocks/inline-controls.png)
 
-> This configuration **may differ based on the project**. With the introduction of [Open Authoring](https://tinacms.org/blog/introducing-visual-open-authoring), these editing states are handled through a _Global Toolbar_. The below **implementations may change** as new features are added to the Inline Editing API.
+> This configuration **may differ based on the project**. With the introduction of [Open Authoring](/blog/introducing-visual-open-authoring), these editing states are handled through a _Global Toolbar_. The below **implementations may change** as new features are added to the Inline Editing API.
 
 ### Activating Edit Mode for Inline Forms
 
