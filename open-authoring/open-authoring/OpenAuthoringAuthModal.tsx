@@ -8,8 +8,8 @@ import {
   ModalBody,
   ModalActions,
 } from 'tinacms'
-import { TinaReset, Button as TinaButton } from '@tinacms/styles'
-import { LoadingDots } from '@tinacms/react-forms'
+import { TinaReset } from '@tinacms/styles'
+import { AsyncButton } from './AsyncButton'
 
 const OpenAuthoringAuthModal = ({
   onUpdateAuthState,
@@ -81,33 +81,6 @@ const OpenAuthoringAuthModal = ({
         </ModalPopup>
       </Modal>
     </TinaReset>
-  )
-}
-
-interface ButtonProps {
-  name: string
-  action(): Promise<void>
-  primary: boolean
-}
-const AsyncButton = ({ name, primary, action }: ButtonProps) => {
-  const [submitting, setSubmitting] = useState(false)
-
-  const onClick = useCallback(async () => {
-    setSubmitting(true)
-    await action()
-    setSubmitting(false)
-  }, [action, setSubmitting])
-
-  return (
-    <TinaButton
-      primary={primary}
-      onClick={onClick}
-      busy={submitting}
-      disabled={submitting}
-    >
-      {submitting && <LoadingDots />}
-      {!submitting && name}
-    </TinaButton>
   )
 }
 
