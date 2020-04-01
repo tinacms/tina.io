@@ -23,7 +23,7 @@ import { getJsonFile } from '../utils/getJsonFile'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 import { useGithubJsonForm } from '../utils/github/useGithubJsonForm'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
-import OpenAuthoringError from '../open-authoring/OpenAuthoringError'
+import { GithubError } from '../utils/github/GithubError'
 
 function CommunityPage({
   community,
@@ -168,7 +168,7 @@ export const getStaticProps: GetStaticProps = async function({
   } = getGithubDataFromPreviewProps(previewData)
   const { default: metadata } = await import('../content/siteConfig.json')
 
-  let previewError: OpenAuthoringError = null
+  let previewError: GithubError = null
   let communityData = {}
   try {
     communityData = await getJsonFile(
@@ -177,7 +177,7 @@ export const getStaticProps: GetStaticProps = async function({
       accessToken
     )
   } catch (e) {
-    if (e instanceof OpenAuthoringError) {
+    if (e instanceof GithubError) {
       previewError = { ...e } //workaround since we cant return error as JSON
     } else {
       throw e

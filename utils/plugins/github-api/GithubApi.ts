@@ -1,5 +1,4 @@
 import { b64EncodeUnicode } from './base64'
-import GithubError from './GithubError'
 
 export class GithubApi {
   proxy: string
@@ -126,5 +125,14 @@ export class GithubApi {
       method: 'POST',
       body: JSON.stringify(data),
     })
+  }
+}
+
+class GithubError extends Error {
+  status: number
+  constructor(message, status) {
+    super(message)
+    this.message = message
+    this.status = status
   }
 }

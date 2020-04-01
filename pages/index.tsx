@@ -28,7 +28,7 @@ import { useGithubJsonForm } from '../utils/github/useGithubJsonForm'
 import { getJsonFile } from '../utils/getJsonFile'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
-import OpenAuthoringError from '../open-authoring/OpenAuthoringError'
+import { GithubError } from '../utils/github/GithubError'
 
 const HomePage = (props: any) => {
   const [formData, form] = useGithubJsonForm(
@@ -217,7 +217,7 @@ export const getStaticProps: GetStaticProps = async function({
     sourceProviderConnection,
     accessToken,
   } = getGithubDataFromPreviewProps(previewData)
-  let previewError: OpenAuthoringError = null
+  let previewError: GithubError = null
   let homeData = {}
   try {
     homeData = await getJsonFile(
@@ -226,7 +226,7 @@ export const getStaticProps: GetStaticProps = async function({
       accessToken
     )
   } catch (e) {
-    if (e instanceof OpenAuthoringError) {
+    if (e instanceof GithubError) {
       previewError = { ...e } //workaround since we cant return error as JSON
     } else {
       throw e

@@ -1,5 +1,5 @@
 import { getContent } from './getContent'
-import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
+import { GithubError } from './GithubError'
 const atob = require('atob')
 
 const b64DecodeUnicode = str => {
@@ -17,16 +17,13 @@ const b64DecodeUnicode = str => {
 // TODO - this name kinda sucks,
 // Throw a formatted error on 404, and decode github data properly
 const getDecodedData = async (repoFullName, headBranch, path, accessToken) => {
-  const { data, ...response } = await getContent(
-    repoFullName,
-    headBranch,
-    path,
-    accessToken
-  )
+  let data = null
 
-  const errorStatus = response?.response?.status || 200
-  if (errorStatus < 200 || errorStatus > 299) {
-    throw new OpenAuthoringError('Failed to get data.', errorStatus)
+  try {
+    ;({ data } = await getContent(repoFullName, headBranch, path, accessToken))
+  } catch (e) {
+    const errorStatus = e.response?.status || 500
+    throw new GithubError('Failed to get data.', errorStatus)
   }
 
   return { ...data, content: b64DecodeUnicode(data.content) }

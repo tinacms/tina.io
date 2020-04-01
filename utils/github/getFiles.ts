@@ -1,19 +1,25 @@
 import { getContent } from './getContent'
 import { SourceProviderConnection } from './sourceProviderConnection'
+import { GithubError } from './GithubError'
 
 export const getFiles = async (
   filePath: string,
   sourceProviderConnection: SourceProviderConnection,
   accessToken: string
 ) => {
-  const response = await getContent(
-    sourceProviderConnection.forkFullName,
-    sourceProviderConnection.headBranch || 'master',
-    filePath,
-    accessToken
-  )
+  let data
 
-  return response.data
-    .filter(file => file.type === 'file')
-    .map(file => file.path)
+  try {
+    ;({ data } = await getContent(
+      sourceProviderConnection.forkFullName,
+      sourceProviderConnection.headBranch || 'master',
+      filePath,
+      accessToken
+    ))
+  } catch (e) {
+    const errorStatus = e.response?.status || 500
+    throw new GithubError('Failed to get data.', errorStatus)
+  }
+
+  return data.filter(file => file.type === 'file').map(file => file.path)
 }
