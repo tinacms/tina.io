@@ -100,7 +100,7 @@ The initial steps to configuring _Inline Blocks_ involve setting up an [_Inline 
 ### The Steps:
 
 1. Wrap your component with `InlineForm`, pass the `form` object.
-2. Set up [Inline Controls](https://tinacms.org/docs/inline-editing#inline-form-controls).
+2. Set up [Inline Controls](/docs/inline-editing#inline-form-controls).
 3. Configure `InlineBlocks`, pass the `name` and `blocks` values.
 
 ```jsx
