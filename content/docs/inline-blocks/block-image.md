@@ -59,7 +59,7 @@ export interface InlineImageProps {
 }
 ```
 
-## Examples
+## Example
 
 Below is an example of how you could **pass children** to `BlockImage` to work with _Gatsby Image_. Read more on [proper image paths](/docs/fields/image#proper-image-paths-in-gatsby) in Gatsby to get context on the `parse` & `uploadDir` configuration.
 
