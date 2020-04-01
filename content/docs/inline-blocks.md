@@ -64,9 +64,9 @@ The image above shows the _Textarea Block_ field in use.
 
 **Available Block Fields**:
 
-- [Text Block](https://tinacms.org/docs/inline-blocks/block-text)
-- [Textarea Block](https://tinacms.org/docs/inline-blocks/block-textarea)
-- [Image Block](https://tinacms.org/docs/inline-blocks/block-image)
+- [Text Block](/docs/inline-blocks/block-text)
+- [Textarea Block](/docs/inline-blocks/block-textarea)
+- [Image Block](/docs/inline-blocks/block-image)
 
 ### Part 2: Block Template
 
