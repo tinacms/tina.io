@@ -15,7 +15,7 @@ consumes:
     description: Uses ModalProvider for Block Settings
 ---
 
-Inline Blocks combine the content modelling flexibility of regular [Blocks](https://tinacms.org/blog/what-are-blocks) with the improved editing experience of [Inline Editing](https://tinacms.org/docs/inline-editing).
+Inline Blocks combine the content modelling flexibility of regular [Blocks](/blog/what-are-blocks) with the improved editing experience of [Inline Editing](/docs/inline-editing).
 
 > **Please note:** This is considered an unstable API. Any breaking changes will be shared in the weekly [Release Notes](/blog). That said, we will do our best to keep this document up-to-date.
 
