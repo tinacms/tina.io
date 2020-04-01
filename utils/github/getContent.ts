@@ -1,5 +1,4 @@
 const axios = require('axios')
-const qs = require('qs')
 
 export const getContent = async (
   repoFullName,
@@ -14,10 +13,4 @@ export const getContent = async (
       Authorization: 'token ' + accessToken,
     },
   })
-    .then(resp => {
-      return resp
-    })
-    .catch(err => {
-      return err // TODO - this should be caught outside of this scope
-    })
 }
