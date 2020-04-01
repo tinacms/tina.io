@@ -95,7 +95,7 @@ The _Inline Block Template_ **configures the block** with the CMS. It has a simi
 
 ## Configuring Inline Blocks with Inline Form
 
-The initial steps to configuring _Inline Blocks_ involve setting up an [_Inline Form_](https://tinacms.org/docs/inline-editing#inlineform-and-inlinefield) on the page or component where the blocks should render. Then, you should [add controls](https://tinacms.org/docs/inline-editing#inline-form-controls) to handle editing state. Finally, you can use a component called `InlineBlocks` that **renders blocks in order** based on the source data.
+The initial steps to configuring _Inline Blocks_ involve setting up an [_Inline Form_](/docs/inline-editing#inlineform-and-inlinefield) on the page or component where the blocks should render. Then, you should [add controls](/docs/inline-editing#inline-form-controls) to handle editing state. Finally, you can use a component called `InlineBlocks` that **renders blocks in order** based on the source data.
 
 ### The Steps:
 
