@@ -1,7 +1,7 @@
 ---
 title: Inline Editing
 prev: /docs/media
-next: /docs/contributing/guidelines
+next: /docs/inline-blocks
 consumes:
   - file: /packages/react-tinacms-inline/src/inline-form.tsx
     description: InlineForm
@@ -95,26 +95,94 @@ export function Page(props) {
 
 > Note that we switched the call to `useLocalForm` with a call to `useForm`. This will prevent the form from showing in the Tina sidebar. If you want the form to also be available in the sidebar, `useForm` can be replaced with `useLocalForm`.
 
-## Activating Edit Mode for Inline Forms
+## Inline Form Controls
+
+There are a few fundamental editing actions needed to handle the state of _Inline Form_: Activating and deactivating 'edit mode', along with saving and discarding changes. Below are some examples of how to manually add these control buttons within an _Inline Form_.
+
+![TinaCMS: Inline Controls](/img/inline-blocks/inline-controls.png)
+
+> This configuration **may differ based on the project**. With the introduction of [Open Authoring](/blog/introducing-visual-open-authoring), these editing states are handled through a _Global Toolbar_. The below **implementations may change** as new features are added to the Inline Editing API.
+
+### Activating Edit Mode for Inline Forms
 
 In order to use the editing UI in an inline form, editing mode must be activated by the user. One way to do this is to create a button to toggle edit mode on and off, and insert it somewhere in your inline form:
 
 ```jsx
 import { useInlineForm } from 'react-tinacms-inline'
+import { Button as TinaButton } from '@tinacms/styles'
 
 export function EditToggle() {
+  // Access 'edit mode' controls via `useInlineForm` hook
   const { status, deactivate, activate } = useInlineForm()
 
   return (
-    <button
+    <TinaButton
+      primary
       onClick={() => {
         status === 'active' ? deactivate() : activate()
       }}
     >
       {status === 'active' ? 'Preview' : 'Edit'}
-    </button>
+    </TinaButton>
   )
 }
 ```
 
 After creating this component, you can insert the `<EditToggle />` component anywhere inside of an `InlineForm` to allow the user to turn edit mode on and off.
+
+> The above example imports button styles from `@tinacms/styles`, but this component could be a plain `button` element with its own styles.
+
+### Discarding Changes
+
+Creating a `DiscardChanges` button works similarly by calling `useInlineForm`. This button directly resets the state of `InlineForm`, reverting any updates to the source data to the previous commit.
+
+```js
+import { useInlineForm } from 'react-tinacms-inline'
+import { Button as TinaButton } from '@tinacms/styles'
+
+export function DiscardButton() {
+  const { form } = useInlineForm()
+
+  /*
+   ** If there are no changes
+   ** to discard, return early
+   */
+  if (form.finalForm.getState().pristine) {
+    return null
+  }
+
+  return (
+    <TinaButton
+      color="primary"
+      onClick={() => {
+        form.finalForm.reset()
+      }}
+    >
+      Discard Changes
+    </TinaButton>
+  )
+}
+```
+
+### Saving Changes
+
+A save button will submit the form registered to `InlineForm`. The submit action will commit any changes to the source file connected with the
+
+```js
+import { useInlineForm } from 'react-tinacms-inline'
+import { Button as TinaButton } from '@tinacms/styles'
+
+export function SaveButton() {
+  const { form } = useInlineForm()
+
+  /*
+   ** If there are no changes
+   ** to save, return early
+   */
+  if (form.finalForm.getState().pristine) {
+    return null
+  }
+
+  return <TinaButton onClick={form.submit}>Save</TinaButton>
+}
+```
