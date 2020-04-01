@@ -70,6 +70,12 @@ This is how they're defined in the `@tinacms/styles` package:
   --tina-timing-short: 85ms;
   --tina-timing-medium: 150ms;
   --tina-timing-long: 250ms;
+
+  --tina-z-index-0: 500;
+  --tina-z-index-1: 1000;
+  --tina-z-index-2: 1500;
+  --tina-z-index-3: 2000;
+  --tina-z-index-4: 2500;
 }
 ```
 
