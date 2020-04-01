@@ -83,7 +83,7 @@ export const heading_template = {
 }
 ```
 
-The _Inline Block Template_ **configures the block** with the CMS. It has a similar shape to a Regular [Block Template](https://tinacms.org/docs/fields/blocks#block-template-options) definition.
+The _Inline Block Template_ **configures the block** with the CMS. It has a similar shape to a Regular [Block Template](/docs/fields/blocks#block-template-options) definition.
 
 | Key            |           Type            |                                                                                              Purpose |
 | -------------- | :-----------------------: | ---------------------------------------------------------------------------------------------------: |
