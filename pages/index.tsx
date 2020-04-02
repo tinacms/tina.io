@@ -27,7 +27,7 @@ import {
 import { useGithubJsonForm } from '../utils/github/useGithubJsonForm'
 import { getJsonFile } from '../utils/getJsonFile'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
-import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
+import { OpenAuthoringSiteForm } from '../components/layout/OpenAuthoringSiteForm'
 import { GithubError } from '../utils/github/GithubError'
 
 const HomePage = (props: any) => {

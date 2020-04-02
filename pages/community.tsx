@@ -22,7 +22,7 @@ import { NextSeo } from 'next-seo'
 import { getJsonFile } from '../utils/getJsonFile'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 import { useGithubJsonForm } from '../utils/github/useGithubJsonForm'
-import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
+import { OpenAuthoringSiteForm } from '../components/layout/OpenAuthoringSiteForm'
 import { GithubError } from '../utils/github/GithubError'
 
 function CommunityPage({

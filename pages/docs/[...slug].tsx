@@ -20,7 +20,7 @@ import { InlineWysiwyg, InlineTextareaField } from '../../components/ui/inline'
 import { TinaIcon } from '../../components/logo'
 import { useGithubMarkdownForm } from '../../utils/github/useGithubMarkdownForm'
 import { getDocProps } from '../../utils/docs/getDocProps'
-import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
+import { OpenAuthoringSiteForm } from '../../components/layout/OpenAuthoringSiteForm'
 import { GithubError } from '../../utils/github/GithubError'
 
 function DocTemplate(props) {

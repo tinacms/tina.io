@@ -14,7 +14,7 @@ import { DynamicLink, BlogPagination } from '../../../components/ui'
 import { getGithubDataFromPreviewProps } from '../../../utils/github/sourceProviderConnection'
 import { getMarkdownFile } from '../../../utils/getMarkdownFile'
 import { useCMS } from 'tinacms'
-import OpenAuthoringSiteForm from '../../../components/layout/OpenAuthoringSiteForm'
+import { OpenAuthoringSiteForm } from '../../../components/layout/OpenAuthoringSiteForm'
 import { useForm } from 'tinacms'
 import { getFiles } from '../../../utils/getFiles'
 const Index = props => {

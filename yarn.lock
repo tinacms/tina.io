@@ -8583,6 +8583,11 @@ react-textarea-autosize@^7.1.2:
     "@babel/runtime" "^7.1.2"
     prop-types "^15.6.0"
 
+react-tinacms-github@0.0.1-canary3:
+  version "0.0.1-canary3"
+  resolved "https://registry.yarnpkg.com/react-tinacms-github/-/react-tinacms-github-0.0.1-canary3.tgz#eb9b28319ac9a3e53c56e056cd37b0705fd5cc31"
+  integrity sha512-WB7jZn+BStp+jwXJJzDnM4VGZZEDdsRvBn1OVHj8ZjF+bQHsRDqKsmeLFBFPzsUk6lk1FBhpbG4Qf0mqMmgogA==
+
 react-tinacms-inline@^0.2.1-alpha.0:
   version "0.2.1-alpha.0"
   resolved "https://registry.yarnpkg.com/react-tinacms-inline/-/react-tinacms-inline-0.2.1-alpha.0.tgz#3de66f7c0857c6efeff6d9c61dfb8d27b71e73fd"

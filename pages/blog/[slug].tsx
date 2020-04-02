@@ -15,7 +15,7 @@ import { getGithubDataFromPreviewProps } from '../../utils/github/sourceProvider
 import { getMarkdownFile } from '../../utils/getMarkdownFile'
 import { useGithubMarkdownForm } from '../../utils/github/useGithubMarkdownForm'
 import { fileToUrl } from '../../utils/urls'
-import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
+import { OpenAuthoringSiteForm } from '../../components/layout/OpenAuthoringSiteForm'
 const fg = require('fast-glob')
 import { useOpenAuthoring } from 'react-tinacms-github'
 import { Button } from '../../components/ui/Button'
