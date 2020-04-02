@@ -6,13 +6,12 @@ import { DefaultSeo } from 'next-seo'
 import data from '../content/siteConfig.json'
 import TagManager from 'react-gtm-module'
 import { GlobalStyle } from '../components/styles/GlobalStyle'
-import { OpenAuthoringProvider } from '../open-authoring/open-authoring/OpenAuthoringProvider'
+import { OpenAuthoringProvider } from 'react-tinacms-github'
 import { Toolbar } from '../components/cms/Toolbar'
 import { BrowserStorageApi } from '../utils/plugins/browser-storage-api/BrowserStorageApi'
 import { Alerts } from '../components/layout/Alerts'
 import { GithubApi } from '../utils/plugins/github-api/GithubApi'
-import { authenticate } from '../open-authoring/github-auth/authenticate'
-import { withOpenAuthoringErrorHandler } from '../open-authoring/errors/withOpenAuthoringErrorHandler'
+import { authenticate } from 'react-tinacms-github'
 
 const MainLayout = ({ Component, pageProps }) => {
   /*

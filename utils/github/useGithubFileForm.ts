@@ -1,7 +1,7 @@
 import { GitFile, GithubOptions, useGitFileSha } from './useGitFileSha'
 import { Options } from 'next-tinacms-markdown'
 import { useCMS, useLocalForm } from 'tinacms'
-import { getForkName } from '../../open-authoring/open-authoring/repository'
+import { getForkName } from 'react-tinacms-github'
 import { FORM_ERROR } from 'final-form'
 import { GithubError } from './GithubError'
 

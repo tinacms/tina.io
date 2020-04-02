@@ -5,7 +5,7 @@ import {
   ModalActions,
   ModalHeader,
 } from 'tinacms'
-import useGithubAuthRedirect from '../../open-authoring/github-auth/useGithubAuthRedirect'
+import useGithubAuthRedirect from 'react-tinacms-github'
 import { TinaReset } from '@tinacms/styles'
 
 export default function Authorizing() {

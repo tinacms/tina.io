@@ -1,4 +1,4 @@
-import { useOpenAuthoring } from '../../open-authoring/open-authoring/OpenAuthoringProvider'
+import { useOpenAuthoring } from 'react-tinacms-github'
 import { useState } from 'react'
 import { ActionableModal } from '../ui'
 

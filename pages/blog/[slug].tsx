@@ -17,7 +17,7 @@ import { useGithubMarkdownForm } from '../../utils/github/useGithubMarkdownForm'
 import { fileToUrl } from '../../utils/urls'
 import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
 const fg = require('fast-glob')
-import { useOpenAuthoring } from '../../open-authoring/open-authoring/OpenAuthoringProvider'
+import { useOpenAuthoring } from 'react-tinacms-github'
 import { Button } from '../../components/ui/Button'
 import Error from 'next/error'
 import { GithubError } from '../../utils/github/GithubError'
