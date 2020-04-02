@@ -9,7 +9,24 @@ consumes:
     description: InlineField
 ---
 
-**Inline Editing** in Tina refers to editing values directly in the area they appear on the page, instead of in the Tina sidebar.
+**Inline Editing** in Tina refers to editing values directly in the area they appear on the page, instead of in the Tina sidebar. These are the general steps to setting up Inlined Editing.
+
+1. Register a form with the CMS
+2. Configure `InlineForm`
+3. Add Inline Fields
+4. Set up Inline Form Controls
+
+## 1. Register a form with the CMS
+
+- `useJsonForm` or `useMarkdownForm`...not the HOC. use the 'local' one if you still want access to the sidebar.
+
+## 2. Configure _InlineForm_
+
+## 3. Add Inline Fields
+
+## 4. Set up Inline Form Controls
+
+## Adding Inline Editing with _InlineForm_
 
 ## _InlineForm_ and _InlineField_
 
@@ -95,7 +112,7 @@ export function Page(props) {
 
 > Note that we switched the call to `useLocalForm` with a call to `useForm`. This will prevent the form from showing in the Tina sidebar. If you want the form to also be available in the sidebar, `useForm` can be replaced with `useLocalForm`.
 
-## Inline Form Controls
+## Set up Inline Form Controls
 
 There are a few fundamental editing actions needed to handle the state of _Inline Form_: Activating and deactivating 'edit mode', along with saving and discarding changes. Below are some examples of how to manually add these control buttons within an _Inline Form_.
 
