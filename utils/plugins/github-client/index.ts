@@ -1,6 +1,6 @@
 import { b64EncodeUnicode } from './base64'
 
-export class GithubApi {
+export class GithubClient {
   proxy: string
   baseRepoFullName: string
   constructor(proxy: string, baseRepoFullName: string) {

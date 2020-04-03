@@ -10,7 +10,7 @@ import { OpenAuthoringProvider } from 'react-tinacms-github'
 import { Toolbar } from '../components/cms/Toolbar'
 import { BrowserStorageApi } from '../utils/plugins/browser-storage-api/BrowserStorageApi'
 import { Alerts } from '../components/layout/Alerts'
-import { GithubApi } from '../utils/plugins/github-api/GithubApi'
+import { GithubClient } from '../utils/plugins/github-client'
 import { authenticate } from 'react-tinacms-github'
 
 const MainLayout = ({ Component, pageProps }) => {
@@ -21,7 +21,7 @@ const MainLayout = ({ Component, pageProps }) => {
    */
   const tinaConfig = {
     apis: {
-      github: new GithubApi('/api/proxy-github', process.env.REPO_FULL_NAME),
+      github: new GithubClient('/api/proxy-github', process.env.REPO_FULL_NAME),
       storage:
         typeof window !== 'undefined'
           ? new BrowserStorageApi(window.localStorage)
