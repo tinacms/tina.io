@@ -10,8 +10,7 @@ import { OpenAuthoringProvider } from 'react-tinacms-github'
 import { Toolbar } from '../components/cms/Toolbar'
 import { BrowserStorageApi } from '../utils/plugins/browser-storage-api/BrowserStorageApi'
 import { Alerts } from '../components/layout/Alerts'
-import { GithubClient } from '../utils/plugins/github-client'
-import { authenticate } from 'react-tinacms-github'
+import { authenticate, GithubClient } from 'react-tinacms-github'
 
 const MainLayout = ({ Component, pageProps }) => {
   /*
