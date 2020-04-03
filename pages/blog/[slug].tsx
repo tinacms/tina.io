@@ -13,7 +13,7 @@ import {
 import { InlineWysiwyg, InlineTextareaField } from '../../components/ui/inline'
 import { getGithubDataFromPreviewProps } from '../../utils/github/sourceProviderConnection'
 import { getMarkdownFile } from '../../utils/getMarkdownFile'
-import { useGithubMarkdownForm } from '../../utils/github/useGithubMarkdownForm'
+import { useGithubMarkdownForm } from 'react-tinacms-github'
 import { fileToUrl } from '../../utils/urls'
 import { OpenAuthoringSiteForm } from '../../components/layout/OpenAuthoringSiteForm'
 const fg = require('fast-glob')

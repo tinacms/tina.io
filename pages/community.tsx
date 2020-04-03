@@ -21,7 +21,7 @@ import ForumIconSvg from '../public/svg/forum-icon.svg'
 import { NextSeo } from 'next-seo'
 import { getJsonFile } from '../utils/getJsonFile'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
-import { useGithubJsonForm } from '../utils/github/useGithubJsonForm'
+import { useGithubJsonForm } from 'react-tinacms-github'
 import { OpenAuthoringSiteForm } from '../components/layout/OpenAuthoringSiteForm'
 import { GithubError } from '../utils/github/GithubError'
 

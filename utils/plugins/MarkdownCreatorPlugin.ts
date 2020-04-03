@@ -1,6 +1,6 @@
 import { toMarkdownString } from 'next-tinacms-markdown'
 import { CMS, Field, AddContentPlugin } from 'tinacms'
-import { GithubOptions } from '../github/useGitFileSha'
+import { GithubOptions } from 'react-tinacms-github'
 import { FORM_ERROR } from 'final-form'
 import { getCachedFormData, setCachedFormData } from '../formCache'
 

@@ -24,7 +24,7 @@ import {
   BlocksControls,
 } from '../components/ui/inline'
 
-import { useGithubJsonForm } from '../utils/github/useGithubJsonForm'
+import { useGithubJsonForm } from 'react-tinacms-github'
 import { getJsonFile } from '../utils/getJsonFile'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 import { OpenAuthoringSiteForm } from '../components/layout/OpenAuthoringSiteForm'

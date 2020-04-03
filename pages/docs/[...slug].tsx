@@ -18,7 +18,7 @@ import {
 } from '../../components/ui'
 import { InlineWysiwyg, InlineTextareaField } from '../../components/ui/inline'
 import { TinaIcon } from '../../components/logo'
-import { useGithubMarkdownForm } from '../../utils/github/useGithubMarkdownForm'
+import { useGithubMarkdownForm } from 'react-tinacms-github'
 import { getDocProps } from '../../utils/docs/getDocProps'
 import { OpenAuthoringSiteForm } from '../../components/layout/OpenAuthoringSiteForm'
 import { GithubError } from '../../utils/github/GithubError'

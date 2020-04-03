@@ -13,7 +13,7 @@ import { getJsonFile } from '../utils/getJsonFile'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 import { OpenAuthoringSiteForm } from '../components/layout/OpenAuthoringSiteForm'
 import { InlineBlocks } from 'react-tinacms-inline'
-import { useGithubJsonForm } from '../utils/github/useGithubJsonForm'
+import { useGithubJsonForm } from 'react-tinacms-github'
 import { GithubError } from '../utils/github/GithubError'
 
 const formOptions = {
