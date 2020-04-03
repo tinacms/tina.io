@@ -4,8 +4,7 @@ date: '2019-12-23T10:00:00.000Z'
 draft: false
 author: James O'Halloran
 ---
-
-TinaCMS allows you to build live-editing functionality directly into your site. Tina differs from other headless CMS's (e.g [Forestry.io](https://Forestry.io), [NetlifyCMS](https://NetlifyCMS.org), [Contentful](https://contentful.com)) which simply allow you to edit your site's content and are relatively detached from your site's code. Having Tina sit in between your content and your site's template gives editors an amazing real-time editing experience where they can navigate to any area of the site, start making changes, and immediately see these changes reflected within the site.
+TinaCMS allows you to build live-editing functionality directly into your site. Tina differs from other headless CMS's (e.g [Forestry.io](https://Forestry.io), [NetlifyCMS](https://NetlifyCMS.org), [Contentful](https://contentful.com)) which simply allow you to edit your site's content and are relatively deed from your site's code. Having Tina sit in between your content and your site's template gives editors an amazing real-time editing experience where they can navigate to any area of the site, start making changes, and immediately see these changes reflected within the site.
 
 ![tina-diagram](/img/how_tina_works_asset.png)
 
