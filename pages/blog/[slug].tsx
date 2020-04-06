@@ -11,7 +11,6 @@ import {
   RichTextWrapper,
 } from '../../components/layout'
 import { InlineWysiwyg, InlineTextareaField } from '../../components/ui/inline'
-import { getGithubDataFromPreviewProps } from 'github-tinacms-content'
 import { getMarkdownFile } from '../../utils/getMarkdownFile'
 import { useGithubMarkdownForm } from '../../utils/github/useGithubMarkdownForm'
 import { fileToUrl } from '../../utils/urls'
@@ -21,6 +20,7 @@ import { useOpenAuthoring } from '../../open-authoring/open-authoring/OpenAuthor
 import { Button } from '../../components/ui/Button'
 import Error from 'next/error'
 import { GithubError } from 'github-tinacms-content'
+import { getGithubDataFromPreviewProps } from '../../utils/getGithubDataFromPreviewProps'
 
 function BlogTemplate({
   markdownFile,

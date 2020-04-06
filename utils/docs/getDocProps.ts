@@ -1,6 +1,6 @@
-import { getGithubDataFromPreviewProps } from 'github-tinacms-content'
 import { getMarkdownFile } from '../getMarkdownFile'
 import { getJsonFile } from '../getJsonFile'
+import { getGithubDataFromPreviewProps } from '../getGithubDataFromPreviewProps'
 
 export async function getDocProps({ preview, previewData }: any, slug: string) {
   const {
