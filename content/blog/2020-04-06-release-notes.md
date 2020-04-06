@@ -5,7 +5,7 @@ author: Nolan Phillips
 ---
 The TinaCMS core team continues to work towards making [Open Authoring with GitHub + Next.js](https://github.com/orgs/tinacms/projects/1) a viable solution for all open source projects!
 
-Last week the team finished the bulk of the refactoring needed to make this possible. The main `tinacms` package has been decoupled from the Sidebar UI, the changes from RFC 0005 have been implemented, and a draft PR has been created to [add the Toolbar package](https://github.com/tinacms/tinacms/pull/973).
+Last week the team finished the bulk of the refactoring needed to make this possible. The main `tinacms` package has been decoupled from the Sidebar UI, the changes from [RFC 0005](https://github.com/tinacms/rfcs/blob/master/0005-toolbar-widget.md) have been implemented, and a draft PR has been created to [add the Toolbar package](https://github.com/tinacms/tinacms/pull/973).
 
 A [pull request has also been opened to add a new `react-tinacms-github` package](https://github.com/tinacms/tinacms/pull/960) to the repository. This package provides all the front-end code needed to use TinaCMS to authenticate and edit content via the GitHub API. We'll be testing the pre-release of this package this week on this very site!
 
