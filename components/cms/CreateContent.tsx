@@ -33,7 +33,7 @@ import { Form } from '@tinacms/forms'
 import { AddIcon } from '@tinacms/icons'
 import { Button } from '@tinacms/styles'
 import { Dismissible } from 'react-dismissible'
-import { DesktopLabel } from '../ui/DesktopLabel'
+import { DesktopLabel } from '../ui'
 
 export const CreateContentMenu = () => {
   const cms = useCMS()

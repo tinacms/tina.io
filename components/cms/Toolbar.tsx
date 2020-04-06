@@ -1,24 +1,61 @@
-import React from 'react'
-import { useCMS, useSubscribable } from 'tinacms'
+import React, { useState, useEffect } from 'react'
+import { useCMS, useSubscribable, Form, FieldMeta, Plugin } from 'tinacms'
 import { Button } from '@tinacms/styles'
 import { CreateContentMenu } from './CreateContent'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+import { ToolbarButton, DesktopLabel, LoadingDots } from '../ui'
+import UndoIconSvg from '../../public/svg/undo-icon.svg'
+
+const SaveButton = styled(ToolbarButton)`
+  padding: 0 2rem;
+`
+
+const useFormState = (form: Form | null, subscription: any): any => {
+  const [state, setState] = useState<any>()
+  useEffect(() => {
+    if (!form) return
+    return form.subscribe(setState, subscription)
+  }, [form])
+
+  return state
+}
+
+interface ToolbarWidgetPlugin<Props = any> extends Plugin {
+  weight: number
+  props?: Props
+  component(): React.ReactElement
+}
 
 export const Toolbar = styled(({ ...styleProps }) => {
   const cms = useCMS()
-  const status = cms.plugins.getType('toolbar:status')
-  const git = cms.plugins.getType('toolbar:git')
-  const actions = cms.plugins.getType('toolbar:form-actions')
+  const widgets = cms.plugins.getType<ToolbarWidgetPlugin>('toolbar:widget')
 
-  useSubscribable(status)
-  useSubscribable(git)
-  useSubscribable(actions)
+  const forms = cms.forms
+  const form = cms.forms.all().length ? cms.forms.all()[0] : null
+  // TODO: This doesn't return the correct value initially
+  const formState = useFormState(form, {
+    pristine: true,
+    submitting: true,
+  })
 
-  const hasToolbarStuff =
-    git.all().length + status.all().length + actions.all().length > 0
-  if (!hasToolbarStuff) {
+  useSubscribable(forms)
+  useSubscribable(widgets)
+
+  // TODO: Find a more accurate solution then this.
+  const inEditMode = widgets.all().length
+
+  if (!inEditMode) {
     return null
   }
+  // TODO: Form#reset should always exist
+  const reset = form && (form.reset || (() => form.finalForm.reset()))
+  const submit = form && form.submit
+  const disabled = !form
+
+  // TODO: There's got to be a better way to get formState
+  const pristine = disabled ? true : formState && formState.pristine
+  const submitting = disabled ? false : !!(formState && formState.submitting)
+
   return (
     <>
       <ToolbarPlaceholder />
@@ -26,23 +63,35 @@ export const Toolbar = styled(({ ...styleProps }) => {
         <Create>
           <CreateContentMenu />
         </Create>
-        <Github>
-          {git.all().length > 0 &&
-            git.all().map((git: any) => <git.component key={git.name} />)}
-        </Github>
+        <WidgetsContainer>
+          {widgets
+            .all()
+            .sort((a, b) => a.weight - b.weight)
+            .map(widget => (
+              <widget.component key={widget.name} {...widget.props} />
+            ))}
+        </WidgetsContainer>
         <Status>
-          {status.all().length > 0 &&
-            status
-              .all()
-              .map((status: any) => (
-                <status.component key={status.name} {...status.props} />
-              ))}
+          <FormStatus dirty={!pristine} />
         </Status>
         <Actions>
-          {actions.all().length > 0 &&
-            actions
-              .all()
-              .map((action: any) => <action.component key={action.name} />)}
+          <ToolbarButton disabled={disabled || pristine} onClick={reset}>
+            <UndoIconSvg />
+            <DesktopLabel> Discard</DesktopLabel>
+          </ToolbarButton>
+          <SaveButton
+            primary
+            onClick={submit}
+            busy={submitting}
+            disabled={disabled || pristine}
+          >
+            {submitting && <LoadingDots />}
+            {!submitting && (
+              <>
+                Save <DesktopLabel>&nbsp;Page</DesktopLabel>
+              </>
+            )}
+          </SaveButton>
         </Actions>
       </div>
     </>
@@ -70,7 +119,7 @@ export const Toolbar = styled(({ ...styleProps }) => {
   }
 `
 
-const Github = styled.div`
+const WidgetsContainer = styled.div`
   display: flex;
   align-items: center;
   justify-self: end;
@@ -144,4 +193,52 @@ const ToolbarPlaceholder = styled.div`
   display: block;
   width: 100%;
   height: 62px;
+`
+
+const FormStatus = ({ dirty }) => {
+  return (
+    <FieldMeta name={'Form Status'}>
+      {dirty ? (
+        <StatusMessage>
+          <StatusLight warning /> <DesktopLabel>Unsaved changes</DesktopLabel>
+        </StatusMessage>
+      ) : (
+        <StatusMessage>
+          <StatusLight /> <DesktopLabel>No changes</DesktopLabel>
+        </StatusMessage>
+      )}
+    </FieldMeta>
+  )
+}
+
+interface StatusLightProps {
+  warning?: boolean
+}
+
+const StatusLight = styled.span<StatusLightProps>`
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  margin-top: -1px;
+  background-color: #3cad3a;
+  border: 1px solid #249a21;
+  margin-right: 5px;
+  opacity: 0.5;
+
+  ${p =>
+    p.warning &&
+    css`
+      background-color: #e9d050;
+      border: 1px solid #d3ba38;
+      opacity: 1;
+    `};
+`
+
+const StatusMessage = styled.p`
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  color: var(--tina-color-grey-6);
+  padding-right: 4px;
 `

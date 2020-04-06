@@ -13,12 +13,11 @@ import {
   BlockTextarea,
   BlocksControls,
 } from 'react-tinacms-inline'
-import getJsonData from '../utils/github/getJsonData'
+import { getJsonFile } from '../utils/getJsonFile'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
-import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
-import OpenAuthoringError from '../open-authoring/OpenAuthoringError'
-import { withOpenAuthoringErrorHandler } from '../open-authoring/withOpenAuthoringErrorHandler'
+import { useGithubJsonForm } from '../utils/github/useGithubJsonForm'
+import { GithubError } from '../utils/github/GithubError'
 
 const formOptions = {
   label: 'Teams',
@@ -55,7 +54,7 @@ const formOptions = {
 
 function TeamsPage(props) {
   // Adds Tina Form
-  const [data, form] = useLocalGithubJsonForm(
+  const [data, form] = useGithubJsonForm(
     props.teams,
     formOptions,
     props.sourceProviderConnection
@@ -110,7 +109,7 @@ function TeamsPage(props) {
   )
 }
 
-export default withOpenAuthoringErrorHandler(TeamsPage)
+export default TeamsPage
 
 /*
  ** DATA FETCHING --------------------------------------------------
@@ -125,16 +124,16 @@ export const getStaticProps: GetStaticProps = async function({
     accessToken,
   } = getGithubDataFromPreviewProps(previewData)
 
-  let previewError: OpenAuthoringError = null
+  let previewError: GithubError = null
   let teamsData = {}
   try {
-    teamsData = await getJsonData(
+    teamsData = await getJsonFile(
       'content/pages/teams.json',
       sourceProviderConnection,
       accessToken
     )
   } catch (e) {
-    if (e instanceof OpenAuthoringError) {
+    if (e instanceof GithubError) {
       previewError = { ...e } //workaround since we cant return error as JSON
     } else {
       throw e

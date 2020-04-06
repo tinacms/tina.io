@@ -2,11 +2,11 @@ import { Form, useCMS, FieldMeta } from 'tinacms'
 import { useEffect, useState } from 'react'
 import { ToolbarButton } from '../components/ui/ToolbarButton'
 import { DesktopLabel } from '../components/ui/DesktopLabel'
-import { PRPlugin } from './PRPlugin'
+import PRPlugin from './toolbar-plugins/pull-request'
 import styled, { css } from 'styled-components'
 import UndoIconSvg from '../public/svg/undo-icon.svg'
 import { LoadingDots } from '../components/ui/LoadingDots'
-import { getForkName } from './utils/repository'
+import { getForkName } from './open-authoring/repository'
 
 const useFormState = (form, subscription) => {
   const [state, setState] = useState(form.finalForm.getState())

@@ -19,12 +19,11 @@ import GithubIconSvg from '../public/svg/github-icon.svg'
 import SlackIconSvg from '../public/svg/slack-icon.svg'
 import ForumIconSvg from '../public/svg/forum-icon.svg'
 import { NextSeo } from 'next-seo'
-import getJsonData from '../utils/github/getJsonData'
+import { getJsonFile } from '../utils/getJsonFile'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
-import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
+import { useGithubJsonForm } from '../utils/github/useGithubJsonForm'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
-import OpenAuthoringError from '../open-authoring/OpenAuthoringError'
-import { withOpenAuthoringErrorHandler } from '../open-authoring/withOpenAuthoringErrorHandler'
+import { GithubError } from '../utils/github/GithubError'
 
 function CommunityPage({
   community,
@@ -34,7 +33,7 @@ function CommunityPage({
   previewError,
 }) {
   // Registers Tina Form
-  const [data, form] = useLocalGithubJsonForm(
+  const [data, form] = useGithubJsonForm(
     community,
     formOptions,
     sourceProviderConnection
@@ -153,7 +152,7 @@ function CommunityPage({
   )
 }
 
-export default withOpenAuthoringErrorHandler(CommunityPage)
+export default CommunityPage
 
 /*
  ** DATA FETCHING -----------------------------------------------
@@ -169,16 +168,16 @@ export const getStaticProps: GetStaticProps = async function({
   } = getGithubDataFromPreviewProps(previewData)
   const { default: metadata } = await import('../content/siteConfig.json')
 
-  let previewError: OpenAuthoringError = null
+  let previewError: GithubError = null
   let communityData = {}
   try {
-    communityData = await getJsonData(
+    communityData = await getJsonFile(
       'content/pages/community.json',
       sourceProviderConnection,
       accessToken
     )
   } catch (e) {
-    if (e instanceof OpenAuthoringError) {
+    if (e instanceof GithubError) {
       previewError = { ...e } //workaround since we cant return error as JSON
     } else {
       throw e

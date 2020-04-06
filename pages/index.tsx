@@ -23,15 +23,14 @@ import {
 } from '../components/layout'
 
 import { Button, Video, ArrowList } from '../components/ui'
-import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
-import getJsonData from '../utils/github/getJsonData'
+import { useGithubJsonForm } from '../utils/github/useGithubJsonForm'
+import { getJsonFile } from '../utils/getJsonFile'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
-import OpenAuthoringError from '../open-authoring/OpenAuthoringError'
-import { withOpenAuthoringErrorHandler } from '../open-authoring/withOpenAuthoringErrorHandler'
+import { GithubError } from '../utils/github/GithubError'
 
 const HomePage = (props: any) => {
-  const [formData, form] = useLocalGithubJsonForm(
+  const [formData, form] = useGithubJsonForm(
     props.home,
     {
       label: 'Home Page',
@@ -207,7 +206,7 @@ export <b>WithTina</b>( <b>Component</b> );
   )
 }
 
-export default withOpenAuthoringErrorHandler(HomePage)
+export default HomePage
 
 export const getStaticProps: GetStaticProps = async function({
   preview,
@@ -217,16 +216,16 @@ export const getStaticProps: GetStaticProps = async function({
     sourceProviderConnection,
     accessToken,
   } = getGithubDataFromPreviewProps(previewData)
-  let previewError: OpenAuthoringError = null
+  let previewError: GithubError = null
   let homeData = {}
   try {
-    homeData = await getJsonData(
+    homeData = await getJsonFile(
       'content/pages/home.json',
       sourceProviderConnection,
       accessToken
     )
   } catch (e) {
-    if (e instanceof OpenAuthoringError) {
+    if (e instanceof GithubError) {
       previewError = { ...e } //workaround since we cant return error as JSON
     } else {
       throw e

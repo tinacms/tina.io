@@ -12,17 +12,15 @@ import {
 } from '../../components/layout'
 import { InlineWysiwyg, InlineTextareaField } from 'react-tinacms-inline'
 import { getGithubDataFromPreviewProps } from '../../utils/github/sourceProviderConnection'
-import getMarkdownData from '../../utils/github/getMarkdownData'
-import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'
+import { getMarkdownFile } from '../../utils/getMarkdownFile'
+import { useGithubMarkdownForm } from '../../utils/github/useGithubMarkdownForm'
 import { fileToUrl } from '../../utils/urls'
 import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
 const fg = require('fast-glob')
-import { enterEditMode, exitEditMode } from '../../open-authoring/authFlow'
-import { useOpenAuthoring } from '../../components/layout/OpenAuthoring'
+import { useOpenAuthoring } from '../../open-authoring/open-authoring/OpenAuthoringProvider'
 import { Button } from '../../components/ui/Button'
-import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
-import { withOpenAuthoringErrorHandler } from '../../open-authoring/withOpenAuthoringErrorHandler'
 import Error from 'next/error'
+import { GithubError } from '../../utils/github/GithubError'
 
 function BlogTemplate({
   markdownFile,
@@ -37,7 +35,7 @@ function BlogTemplate({
   }
 
   // Registers Tina Form
-  const [data, form] = useLocalGithubMarkdownForm(
+  const [data, form] = useGithubMarkdownForm(
     markdownFile,
     formOptions,
     sourceProviderConnection
@@ -104,7 +102,7 @@ function BlogTemplate({
   )
 }
 
-export default withOpenAuthoringErrorHandler(BlogTemplate)
+export default BlogTemplate
 
 /*
  ** DATA FETCHING --------------------------------------------------
@@ -122,18 +120,18 @@ export const getStaticProps: GetStaticProps = async function({
     accessToken,
   } = getGithubDataFromPreviewProps(previewData)
 
-  let previewError: OpenAuthoringError = null
+  let previewError: GithubError = null
   let file = {}
   try {
-    file = await getMarkdownData(
+    file = await getMarkdownFile(
       `content/blog/${slug}.md`,
       sourceProviderConnection,
       accessToken
     )
   } catch (e) {
-    if (e instanceof OpenAuthoringError) {
+    if (e instanceof GithubError) {
       previewError = { ...e } //workaround since we cant return error as JSON
-    } else if (e.code === 'ENOENT') {
+    } else if (e.status === 'ENOENT') {
       return { props: {} } // will render the 404 error
     } else {
       throw e
@@ -295,13 +293,7 @@ const EditLink = ({ isEditMode }) => {
     <EditButton
       id="OpenAuthoringBlogEditButton"
       onClick={
-        isEditMode
-          ? exitEditMode
-          : () =>
-              enterEditMode(
-                openAuthoring.githubAuthenticated,
-                openAuthoring.forkValid
-              )
+        isEditMode ? openAuthoring.exitEditMode : openAuthoring.enterEditMode
       }
     >
       {isEditMode ? <CloseIcon /> : <EditIcon />}

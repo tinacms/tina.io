@@ -20,7 +20,7 @@ TINA=../path/to/tinacms yarn develop
 You can also specify which packages you want to watch:
 
 ```
-TINA=../path/to/tinacms TINA_USE=@tinacms/forms,react-tinacms-inline
+TINA=../path/to/tinacms TINA_WATCH=@tinacms/forms,react-tinacms-inline
 ```
 
 ## Shortcodes

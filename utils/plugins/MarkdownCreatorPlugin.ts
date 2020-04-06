@@ -1,9 +1,8 @@
 import { toMarkdownString } from 'next-tinacms-markdown'
 import { CMS, Field, AddContentPlugin } from 'tinacms'
-import { getCachedFormData, setCachedFormData } from '../formCache'
-import { GithubOptions } from '../github/useGithubForm'
+import { GithubOptions } from '../github/useGitFileSha'
 import { FORM_ERROR } from 'final-form'
-import OpenAuthoringError from '../../open-authoring/OpenAuthoringError'
+import { getCachedFormData, setCachedFormData } from '../formCache'
 
 type MaybePromise<T> = Promise<T> | T
 
@@ -102,7 +101,7 @@ export class MarkdownCreatorPlugin<FormShape = any, FrontmatterShape = any>
         }
       })
       .catch(e => {
-        return { [FORM_ERROR]: new OpenAuthoringError(e.message, e.status) }
+        return { [FORM_ERROR]: e }
       })
   }
 }
