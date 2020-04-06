@@ -11,7 +11,6 @@ import { BrowserStorageApi } from '../utils/plugins/browser-storage-api/BrowserS
 import { Alerts } from '../components/layout/Alerts'
 import { GithubApi } from '../utils/plugins/github-api/GithubApi'
 import { authenticate } from '../open-authoring/github-auth/authenticate'
-import { withOpenAuthoringErrorHandler } from '../open-authoring/errors/withOpenAuthoringErrorHandler'
 
 const MainLayout = ({ Component, pageProps }) => {
   const tinaConfig = {
@@ -23,7 +22,6 @@ const MainLayout = ({ Component, pageProps }) => {
           : {},
     },
     sidebar: {
-      // editMode initially set here
       hidden: true,
       position: 'displace' as any,
     },
