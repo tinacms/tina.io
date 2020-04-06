@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { BlocksControls } from '../components/ui/inline'
 import { BlockTemplate } from 'tinacms'
 import { NextSeo } from 'next-seo'
 import { GetStaticProps } from 'next'
@@ -8,11 +7,15 @@ import { GetStaticProps } from 'next'
 import { Layout, Wrapper, RichTextWrapper } from '../components/layout'
 import { ArrowList } from '../components/ui'
 import { TeamsForm } from '../components/forms'
-import { InlineTextareaField, BlockTextArea } from '../components/ui/inline'
+import {
+  InlineTextareaField,
+  InlineBlocks,
+  BlockTextarea,
+  BlocksControls,
+} from 'react-tinacms-inline'
 import { getJsonFile } from '../utils/getJsonFile'
 import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
-import { InlineBlocks } from 'react-tinacms-inline'
 import { useGithubJsonForm } from '../utils/github/useGithubJsonForm'
 import { GithubError } from '../utils/github/GithubError'
 
@@ -159,7 +162,7 @@ function SupportingPoint({ data, index }) {
   return (
     <BlocksControls index={index}>
       <li key={`supporting-point-${index}`}>
-        <BlockTextArea name="point" />
+        <BlockTextarea name="point" />
       </li>
     </BlocksControls>
   )
