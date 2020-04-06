@@ -9,12 +9,12 @@ import { Layout, Wrapper, RichTextWrapper } from '../components/layout'
 import { ArrowList } from '../components/ui'
 import { TeamsForm } from '../components/forms'
 import { InlineTextareaField, BlockTextArea } from '../components/ui/inline'
-import { getJsonFile } from '../utils/getJsonFile'
-import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
+import { getGithubDataFromPreviewProps } from 'github-tinacms-content'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
 import { InlineBlocks } from 'react-tinacms-inline'
 import { useGithubJsonForm } from '../utils/github/useGithubJsonForm'
-import { GithubError } from '../utils/github/GithubError'
+import { GithubError } from 'github-tinacms-content'
+import { getJsonFile } from '../utils/getJsonFile'
 
 const formOptions = {
   label: 'Teams',

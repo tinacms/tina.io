@@ -25,10 +25,10 @@ import {
 } from '../components/ui/inline'
 
 import { useGithubJsonForm } from '../utils/github/useGithubJsonForm'
-import { getJsonFile } from '../utils/getJsonFile'
-import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
+import { getGithubDataFromPreviewProps } from 'github-tinacms-content'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
-import { GithubError } from '../utils/github/GithubError'
+import { GithubError } from 'github-tinacms-content'
+import { getJsonFile } from '../utils/getJsonFile'
 
 const HomePage = (props: any) => {
   const [formData, form] = useGithubJsonForm(

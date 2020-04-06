@@ -1,4 +1,4 @@
-import { getGithubDataFromPreviewProps } from '../github/sourceProviderConnection'
+import { getGithubDataFromPreviewProps } from 'github-tinacms-content'
 import { getMarkdownFile } from '../getMarkdownFile'
 import { getJsonFile } from '../getJsonFile'
 

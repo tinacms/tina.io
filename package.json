@@ -43,6 +43,7 @@
     "final-form-submit-listener": "^1.0.0",
     "fs": "^0.0.1-security",
     "github-slugger": "^1.2.1",
+    "github-tinacms-content": "^0.0.1-canary1",
     "gray-matter": "^4.0.2",
     "html-parser": "^0.11.0",
     "isomorphic-unfetch": "^3.0.0",

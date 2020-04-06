@@ -4780,6 +4780,11 @@ github-slugger@^1.2.1:
   dependencies:
     emoji-regex ">=6.0.0 <=6.1.1"
 
+github-tinacms-content@^0.0.1-canary1:
+  version "0.0.1-canary1"
+  resolved "https://registry.yarnpkg.com/github-tinacms-content/-/github-tinacms-content-0.0.1-canary1.tgz#78537beea71d9bc0218ce380d733c61fb981389a"
+  integrity sha512-4uev5LPE0FqBMqsiXulcFGtOUmMorElLgSxWsTIccpwbAl/sewUs4QmvFS0plrxQWe4nxVlFJhdGl5acp66VGA==
+
 glob-parent@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-3.1.0.tgz#9e6af6299d8d3bd2bd40430832bd113df906c5ae"
