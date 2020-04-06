@@ -4,7 +4,6 @@ import { ToolbarButton } from '../components/ui/ToolbarButton'
 import { DesktopLabel } from '../components/ui/DesktopLabel'
 import { PRPlugin } from './PRPlugin'
 import styled, { css } from 'styled-components'
-import { color } from '@tinacms/styles'
 import UndoIconSvg from '../public/svg/undo-icon.svg'
 import { LoadingDots } from '../components/ui/LoadingDots'
 import { getForkName } from './utils/repository'
@@ -119,7 +118,7 @@ const MetaLink = styled.a`
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 16px;
-  color: ${color.primary('dark')};
+  color: var(--tina-color-primary-dark);
 `
 
 const SaveButton = styled(ToolbarButton)`
@@ -149,7 +148,7 @@ const StatusMessage = styled.p`
   font-size: 16px;
   display: flex;
   align-items: center;
-  color: ${color.grey(6)};
+  color: var(--tina-color-grey-6);
   padding-right: 4px;
 `
 
