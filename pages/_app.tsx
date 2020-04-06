@@ -28,11 +28,13 @@ const MainLayout = ({ Component, pageProps }) => {
           ? new BrowserStorageApi(window.localStorage)
           : {},
     },
-
     sidebar: {
       // editMode initially set here
       hidden: true,
       position: 'displace' as any,
+    },
+    toolbar: {
+      hidden: false,
     },
   }
 
@@ -50,9 +52,8 @@ const MainLayout = ({ Component, pageProps }) => {
   }
 
   return (
-    <TinaProvider cms={cms} {...tinaConfig.sidebar}>
+    <TinaProvider cms={cms}>
       <ModalProvider>
-        <Toolbar />
         <Alerts />
         <OpenAuthoringProvider
           authenticate={() => authenticate('/api/create-github-access-token')}
