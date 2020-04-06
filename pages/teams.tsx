@@ -7,11 +7,10 @@ import { GetStaticProps } from 'next'
 import { Layout, Wrapper, RichTextWrapper } from '../components/layout'
 import { ArrowList } from '../components/ui'
 import { TeamsForm } from '../components/forms'
-// TODO: change BlockTextArea --> BlockTextarea on next release
 import {
   InlineTextareaField,
   InlineBlocks,
-  BlockTextArea,
+  BlockTextarea,
   BlocksControls,
 } from 'react-tinacms-inline'
 import getJsonData from '../utils/github/getJsonData'
@@ -164,7 +163,7 @@ function SupportingPoint({ data, index }) {
   return (
     <BlocksControls index={index}>
       <li key={`supporting-point-${index}`}>
-        <BlockTextArea name="point" />
+        <BlockTextarea name="point" />
       </li>
     </BlocksControls>
   )

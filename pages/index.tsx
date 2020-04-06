@@ -7,7 +7,7 @@ import {
   InlineBlocks,
   InlineField,
   InlineTextareaField,
-  BlockTextArea,
+  BlockTextarea,
   BlocksControls,
 } from 'react-tinacms-inline'
 import { EditLink } from '../components/layout/EditLink'
@@ -256,11 +256,11 @@ function SellingPoint({ data, index }) {
       <div key={`selling-point-${index}`}>
         <h3>
           <em>
-            <BlockTextArea name="main" />
+            <BlockTextarea name="main" />
           </em>
         </h3>
         <p>
-          <BlockTextArea name="supporting" />
+          <BlockTextarea name="supporting" />
         </p>
       </div>
     </BlocksControls>
@@ -291,7 +291,7 @@ function SetupPoint({ data, index }) {
   return (
     <BlocksControls index={index}>
       <li key={`setup-point-${index}`}>
-        <BlockTextArea name="step" />
+        <BlockTextarea name="step" />
       </li>
     </BlocksControls>
   )
