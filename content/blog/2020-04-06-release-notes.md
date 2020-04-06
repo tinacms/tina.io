@@ -9,7 +9,7 @@ Last week the team finished the bulk of the refactoring needed to make this poss
 
 A [pull request has also been opened to add a new `react-tinacms-github` package](https://github.com/tinacms/tinacms/pull/960) to the repository. This package provides all the front-end code needed to use TinaCMS to authenticate and edit content via the GitHub API. We'll be testing the pre-release of this package this week on this very site!
 
-Another draft PR has started for `next-tinacms-github`, a package of helpers for setting up your Next.js to work with `react-tinacms-github`. This package will helps you setup the new [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode) introduced in Next 9.3
+Another draft PR has started for `next-tinacms-github`, a package of helpers for setting up your Next.js website to work with `react-tinacms-github`. This package will help you setup the new [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode) introduced in Next 9.3
 
 Those PRs are still in progress so here are some highlights from the changes we released this week!
 
