@@ -15,11 +15,6 @@ import { authenticate } from '../open-authoring/github-auth/authenticate'
 import { withOpenAuthoringErrorHandler } from '../open-authoring/errors/withOpenAuthoringErrorHandler'
 
 const MainLayout = ({ Component, pageProps }) => {
-  /*
-   ** TODO: If and when 'preview' state becomes accessible
-   ** at the _app level, we should move the sidebar / editMode
-   ** logic to be handled here
-   */
   const tinaConfig = {
     apis: {
       github: new GithubApi('/api/proxy-github', process.env.REPO_FULL_NAME),
@@ -34,7 +29,7 @@ const MainLayout = ({ Component, pageProps }) => {
       position: 'displace' as any,
     },
     toolbar: {
-      hidden: false,
+      hidden: !pageProps.editMode,
     },
   }
 
