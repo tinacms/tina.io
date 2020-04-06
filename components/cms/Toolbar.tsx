@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useCMS, useSubscribable, Form, FieldMeta, Plugin } from 'tinacms'
-import { Button, color } from '@tinacms/styles'
+import { Button } from '@tinacms/styles'
 import { CreateContentMenu } from './CreateContent'
 import styled, { css } from 'styled-components'
-import { ToolbarButton } from '../ui/inline/ToolbarButton'
+import { ToolbarButton, DesktopLabel, LoadingDots } from '../ui'
 import UndoIconSvg from '../../public/svg/undo-icon.svg'
-import { DesktopLabel } from '../ui/inline/DesktopLabel'
-import { LoadingDots } from '../ui/LoadingDots'
 
 const SaveButton = styled(ToolbarButton)`
   padding: 0 2rem;
@@ -241,6 +239,6 @@ const StatusMessage = styled.p`
   font-size: 16px;
   display: flex;
   align-items: center;
-  color: ${color.grey(6)};
+  color: var(--tina-color-grey-6);
   padding-right: 4px;
 `

@@ -1,6 +1,5 @@
 import { FieldMeta } from 'tinacms'
 import styled from 'styled-components'
-import { color } from '@tinacms/styles'
 
 export const ForkNamePlugin = (forkName: string) => ({
   __type: 'toolbar:widget',
@@ -16,7 +15,7 @@ const MetaLink = styled.a`
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 16px;
-  color: ${color.primary('dark')};
+  color: var(--tina-color-primary-dark);
 `
 
 const ForkInfo = ({ forkName }) => {
