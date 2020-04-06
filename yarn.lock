@@ -6911,6 +6911,11 @@ next-tick@~1.0.0:
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
+next-tinacms-github@^0.0.2-canary4:
+  version "0.0.2-canary4"
+  resolved "https://registry.yarnpkg.com/next-tinacms-github/-/next-tinacms-github-0.0.2-canary4.tgz#727cdd6e8058b4d51f3e1ef4832c19902ce98604"
+  integrity sha512-eqnzb4Mg5bkM/pKxxcD6X7WCFT4FthUAxxt7D0sCFnz2uSkrSTGPghS9DEMo2Oslch4mBX9U52dKE+yrD2w8lA==
+
 next-tinacms-json@^0.3.5-alpha.0:
   version "0.3.5-alpha.0"
   resolved "https://registry.yarnpkg.com/next-tinacms-json/-/next-tinacms-json-0.3.5-alpha.0.tgz#52a3f75c889c771601243827c243b0daf619937a"
