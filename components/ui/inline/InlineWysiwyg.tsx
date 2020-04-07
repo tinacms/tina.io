@@ -11,7 +11,7 @@ export function InlineWysiwyg({ name, children }: InlineWysiwygFieldProps) {
     <InlineField name={name}>
       {({ input, status }) => {
         if (status === 'active') {
-          return <Wysiwyg sticky={'72px'} input={input} />
+          return <Wysiwyg sticky={true} input={input} />
         }
         return <>{children}</>
       }}

@@ -17,7 +17,7 @@ import { useGithubMarkdownForm } from 'react-tinacms-github'
 import { fileToUrl } from '../../utils/urls'
 import { OpenAuthoringSiteForm } from '../../components/layout/OpenAuthoringSiteForm'
 const fg = require('fast-glob')
-import { useOpenAuthoring } from 'react-tinacms-github'
+import { useGithubEditing } from 'react-tinacms-github'
 import { Button } from '../../components/ui/Button'
 import Error from 'next/error'
 import { GithubError } from '../../utils/github/GithubError'
@@ -287,7 +287,7 @@ const MetaBit = styled.p`
  */
 
 const EditLink = ({ isEditMode }) => {
-  const openAuthoring = useOpenAuthoring()
+  const openAuthoring = useGithubEditing()
 
   return (
     <EditButton

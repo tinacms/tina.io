@@ -6,7 +6,7 @@ import { DefaultSeo } from 'next-seo'
 import data from '../content/siteConfig.json'
 import TagManager from 'react-gtm-module'
 import { GlobalStyle } from '../components/styles/GlobalStyle'
-import { OpenAuthoringProvider } from 'react-tinacms-github'
+import { TinacmsGithubProvider } from 'react-tinacms-github'
 import { Toolbar } from '../components/cms/Toolbar'
 import { BrowserStorageApi } from '../utils/plugins/browser-storage-api/BrowserStorageApi'
 import { Alerts } from '../components/layout/Alerts'
@@ -52,7 +52,7 @@ const MainLayout = ({ Component, pageProps }) => {
       <ModalProvider>
         <Toolbar />
         <Alerts />
-        <OpenAuthoringProvider
+        <TinacmsGithubProvider
           authenticate={() => authenticate('/api/create-github-access-token')}
           enterEditMode={enterEditMode}
           exitEditMode={exitEditMode}
@@ -88,7 +88,7 @@ const MainLayout = ({ Component, pageProps }) => {
           </Head>
           <GlobalStyle />
           <Component {...pageProps} />
-        </OpenAuthoringProvider>
+        </TinacmsGithubProvider>
       </ModalProvider>
     </Tina>
   )
