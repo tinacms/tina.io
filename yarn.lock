@@ -2373,7 +2373,7 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.9.1.tgz#7e33d8f7d449b3f673cd72deb9abdc552dbe528e"
   integrity sha512-wMHVg2EOHaMRxbzgFJ9gtjOOCrI80OHLG14rxi28XwOW8ux6IiEbRCGGGqCtdAIg4FQCbW20k9RsT4y3gJlFug==
 
-axios@^0.19.2:
+axios@0.19.2, axios@^0.19.2:
   version "0.19.2"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
   integrity sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
@@ -4780,11 +4780,6 @@ github-slugger@^1.2.1:
   dependencies:
     emoji-regex ">=6.0.0 <=6.1.1"
 
-github-tinacms-content@^0.0.1-canary1:
-  version "0.0.1-canary1"
-  resolved "https://registry.yarnpkg.com/github-tinacms-content/-/github-tinacms-content-0.0.1-canary1.tgz#78537beea71d9bc0218ce380d733c61fb981389a"
-  integrity sha512-4uev5LPE0FqBMqsiXulcFGtOUmMorElLgSxWsTIccpwbAl/sewUs4QmvFS0plrxQWe4nxVlFJhdGl5acp66VGA==
-
 glob-parent@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-3.1.0.tgz#9e6af6299d8d3bd2bd40430832bd113df906c5ae"
@@ -4853,7 +4848,7 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.2.3
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.3.tgz#4a12ff1b60376ef09862c2093edd908328be8423"
   integrity sha512-a30VEBm4PEdx1dRB7MFK7BejejvCvBronbLjht+sHuGYj8PHs7M/5Z+rt5lw551vZ7yfTCj4Vuyy3mSJytDWRQ==
 
-gray-matter@^4.0.2:
+gray-matter@4.0.2, gray-matter@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/gray-matter/-/gray-matter-4.0.2.tgz#9aa379e3acaf421193fce7d2a28cebd4518ac454"
   integrity sha512-7hB/+LxrOjq/dd8APlK0r24uL/67w7SkYnfwhNFwg/VDIGWGmduTDYf3WNstLW2fbbmRwrDGCVSJ2isuf2+4Hw==
@@ -6916,10 +6911,16 @@ next-tick@~1.0.0:
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
-next-tinacms-github@^0.0.2-canary4:
-  version "0.0.2-canary4"
-  resolved "https://registry.yarnpkg.com/next-tinacms-github/-/next-tinacms-github-0.0.2-canary4.tgz#727cdd6e8058b4d51f3e1ef4832c19902ce98604"
-  integrity sha512-eqnzb4Mg5bkM/pKxxcD6X7WCFT4FthUAxxt7D0sCFnz2uSkrSTGPghS9DEMo2Oslch4mBX9U52dKE+yrD2w8lA==
+next-tinacms-github@^0.0.2-canary4.0:
+  version "0.0.2-canary4.0"
+  resolved "https://registry.yarnpkg.com/next-tinacms-github/-/next-tinacms-github-0.0.2-canary4.0.tgz#2e7f162cb07c459ec1dc08c74c12ff650946b261"
+  integrity sha512-oyS/jUC2NMrVrQkSIhuYlqoHey/7j9pO8grChJlVWnomAhkN6qqkh78D34dOx/xY4hyXA+IM1OmNHfAHOUIc/A==
+  dependencies:
+    atob "2.1.2"
+    axios "0.19.2"
+    cookie "0.4.0"
+    gray-matter "4.0.2"
+    qs "6.9.3"
 
 next-tinacms-json@^0.3.5-alpha.0:
   version "0.3.5-alpha.0"
@@ -8311,6 +8312,11 @@ qs@6.7.0:
   version "6.7.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
   integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
+
+qs@6.9.3:
+  version "6.9.3"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.9.3.tgz#bfadcd296c2d549f1dffa560619132c977f5008e"
+  integrity sha512-EbZYNarm6138UKKq46tdx08Yo/q9ZhFoAXAI1meAFd2GtbRDhbZY2WQSICskT0c5q99aFzLG1D4nvTk9tqfXIw==
 
 qs@^6.9.1:
   version "6.9.1"

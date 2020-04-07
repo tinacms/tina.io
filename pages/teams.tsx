@@ -12,7 +12,7 @@ import { InlineTextareaField, BlockTextArea } from '../components/ui/inline'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
 import { InlineBlocks } from 'react-tinacms-inline'
 import { useGithubJsonForm } from '../utils/github/useGithubJsonForm'
-import { GithubError } from 'github-tinacms-content'
+import { GithubError } from 'next-tinacms-github'
 import { getJsonFile } from '../utils/getJsonFile'
 import { getGithubDataFromPreviewProps } from '../utils/getGithubDataFromPreviewProps'
 

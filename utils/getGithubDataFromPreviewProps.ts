@@ -1,4 +1,4 @@
-import { SourceProviderConnection } from 'github-tinacms-content'
+import { SourceProviderConnection } from 'next-tinacms-github'
 
 interface Response {
   accessToken: string | null

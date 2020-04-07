@@ -19,7 +19,7 @@ const fg = require('fast-glob')
 import { useOpenAuthoring } from '../../open-authoring/open-authoring/OpenAuthoringProvider'
 import { Button } from '../../components/ui/Button'
 import Error from 'next/error'
-import { GithubError } from 'github-tinacms-content'
+import { GithubError } from 'next-tinacms-github'
 import { getGithubDataFromPreviewProps } from '../../utils/getGithubDataFromPreviewProps'
 
 function BlogTemplate({

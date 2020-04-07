@@ -3,7 +3,7 @@ import path from 'path'
 import {
   getJsonFile as getGithubJsonFile,
   SourceProviderConnection,
-} from 'github-tinacms-content'
+} from 'next-tinacms-github'
 
 export const getJsonFile = async (
   filePath: string,

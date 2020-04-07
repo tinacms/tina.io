@@ -26,7 +26,7 @@ import {
 
 import { useGithubJsonForm } from '../utils/github/useGithubJsonForm'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
-import { GithubError } from 'github-tinacms-content'
+import { GithubError } from 'next-tinacms-github'
 import { getJsonFile } from '../utils/getJsonFile'
 import { getGithubDataFromPreviewProps } from '../utils/getGithubDataFromPreviewProps'
 

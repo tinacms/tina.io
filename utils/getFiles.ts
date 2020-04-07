@@ -1,7 +1,7 @@
 import {
   getFiles as getGithubFiles,
   SourceProviderConnection,
-} from 'github-tinacms-content'
+} from 'next-tinacms-github'
 import path from 'path'
 
 const getLocalFiles = async (filePath: string) => {
