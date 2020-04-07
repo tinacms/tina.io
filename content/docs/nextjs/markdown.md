@@ -2,7 +2,7 @@
 title: Markdown in Next.js
 id: /docs/nextjs/markdown
 prev: /docs/nextjs/creating-forms
-next: /docs/nextjs/inline-editing
+next:
 consumes:
   - file: packages/next-tinacms-markdown/src/use-local-markdown-form.ts
     details: Shows use of useLocalMarkdownForm

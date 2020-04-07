@@ -2,7 +2,7 @@
 title: Custom Fields
 id: /docs/gatsby/custom-fields
 prev: /docs/gatsby/configure-git-plugin
-next: /docs/gatsby/inline-editing
+next:
 consumes:
   - file: /packages/@tinacms/form-builder/src/field-plugin.tsx
     details: Depends on Field Plugin props

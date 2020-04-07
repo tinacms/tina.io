@@ -206,11 +206,6 @@
         "id": "/docs/nextjs/markdown",
         "slug": "/docs/nextjs/markdown",
         "title": "Using Markdown Files"
-      },
-      {
-        "id": "/docs/nextjs/inline-editing",
-        "slug": "/docs/nextjs/inline-editing",
-        "title": "Inline Editing"
       }
     ]
   },
@@ -252,11 +247,6 @@
         "id": "/docs/gatsby/custom-fields",
         "slug": "/docs/gatsby/custom-fields",
         "title": "Custom Fields"
-      },
-      {
-        "id": "/docs/gatsby/inline-editing",
-        "slug": "/docs/gatsby/inline-editing",
-        "title": "Inline Editing"
       }
     ]
   },
