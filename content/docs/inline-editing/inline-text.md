@@ -1,5 +1,5 @@
 ---
-title: Inline Text
+title: Inline Text Field
 prev: /docs/inline-editing
 next: /docs/inline-editing/inline-textarea
 consumes:

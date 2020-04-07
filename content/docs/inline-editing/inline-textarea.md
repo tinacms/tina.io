@@ -1,5 +1,5 @@
 ---
-title: Inline Textarea
+title: Inline Textarea Field
 prev: /docs/inline-editing/inline-text
 next: /docs/inline-editing/inline-wysiwyg
 consumes:
