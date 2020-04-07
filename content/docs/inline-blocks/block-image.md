@@ -33,7 +33,7 @@ export function Image({ index }) {
 }
 ```
 
-There are two ways to use `BlockImage`, with and without children. If no children are passed, `BlockImage` will render a default `img` element. However, you may want more control over the image behavior, in which case you can [**pass children**](/docs/inline-blocks/block-image#examples) to `Block Image`.
+There are two ways to use `BlockImage`, with and without children. If no children are passed, `BlockImage` will render a default `img` element. However, you may want more control over the image behavior, in which case you can [**pass children**](/docs/inline-blocks/block-image#example) to `Block Image`.
 
 > **Tip**: Reference [this example](/docs/inline-blocks#using-the-settings-modal) to see how **alt text metadata** could be configured via the _Settings Modal_.
 

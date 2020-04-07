@@ -18,7 +18,6 @@ Inline `BlockText` represents a **single line text input**. It should be used fo
 Below is an example of how `BlockText` may be used in a [Block Component](/docs/inline-blocks#block-component) definition.
 
 ```jsx
-import styled from 'styled-components'
 import { BlocksControls, BlockTextArea } from 'react-tinacms-inline'
 
 // Example 'Tagline' Block
