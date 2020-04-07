@@ -7,19 +7,12 @@ import data from '../content/siteConfig.json'
 import TagManager from 'react-gtm-module'
 import { GlobalStyle } from '../components/styles/GlobalStyle'
 import { OpenAuthoringProvider } from '../open-authoring/open-authoring/OpenAuthoringProvider'
-import { Toolbar } from '../components/cms/Toolbar'
 import { BrowserStorageApi } from '../utils/plugins/browser-storage-api/BrowserStorageApi'
 import { Alerts } from '../components/layout/Alerts'
 import { GithubApi } from '../utils/plugins/github-api/GithubApi'
 import { authenticate } from '../open-authoring/github-auth/authenticate'
-import { withOpenAuthoringErrorHandler } from '../open-authoring/errors/withOpenAuthoringErrorHandler'
 
 const MainLayout = ({ Component, pageProps }) => {
-  /*
-   ** TODO: If and when 'preview' state becomes accessible
-   ** at the _app level, we should move the sidebar / editMode
-   ** logic to be handled here
-   */
   const tinaConfig = {
     apis: {
       github: new GithubApi('/api/proxy-github', process.env.REPO_FULL_NAME),
@@ -28,11 +21,12 @@ const MainLayout = ({ Component, pageProps }) => {
           ? new BrowserStorageApi(window.localStorage)
           : {},
     },
-
     sidebar: {
-      // editMode initially set here
       hidden: true,
       position: 'displace' as any,
+    },
+    toolbar: {
+      hidden: !pageProps.editMode,
     },
   }
 
@@ -50,9 +44,8 @@ const MainLayout = ({ Component, pageProps }) => {
   }
 
   return (
-    <TinaProvider cms={cms} {...tinaConfig.sidebar}>
+    <TinaProvider cms={cms}>
       <ModalProvider>
-        <Toolbar />
         <Alerts />
         <OpenAuthoringProvider
           authenticate={() => authenticate('/api/create-github-access-token')}
