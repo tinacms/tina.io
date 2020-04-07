@@ -11,12 +11,12 @@ import {
   RichTextWrapper,
 } from '../../../components/layout'
 import { DynamicLink, BlogPagination } from '../../../components/ui'
-import { getGithubDataFromPreviewProps } from '../../../utils/github/sourceProviderConnection'
 import { getMarkdownFile } from '../../../utils/getMarkdownFile'
 import { useCMS } from 'tinacms'
 import OpenAuthoringSiteForm from '../../../components/layout/OpenAuthoringSiteForm'
 import { useForm } from 'tinacms'
 import { getFiles } from '../../../utils/getFiles'
+import { getGithubDataFromPreviewProps } from '../../../utils/getGithubDataFromPreviewProps'
 const Index = props => {
   const { currentPage, numPages } = props
 

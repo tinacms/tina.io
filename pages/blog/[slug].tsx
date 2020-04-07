@@ -11,7 +11,6 @@ import {
   RichTextWrapper,
 } from '../../components/layout'
 import { InlineWysiwyg, InlineTextareaField } from 'react-tinacms-inline'
-import { getGithubDataFromPreviewProps } from '../../utils/github/sourceProviderConnection'
 import { getMarkdownFile } from '../../utils/getMarkdownFile'
 import { useGithubMarkdownForm } from '../../utils/github/useGithubMarkdownForm'
 import { fileToUrl } from '../../utils/urls'
@@ -20,7 +19,8 @@ const fg = require('fast-glob')
 import { useOpenAuthoring } from '../../open-authoring/open-authoring/OpenAuthoringProvider'
 import { Button } from '../../components/ui/Button'
 import Error from 'next/error'
-import { GithubError } from '../../utils/github/GithubError'
+import { GithubError } from 'next-tinacms-github'
+import { getGithubDataFromPreviewProps } from '../../utils/getGithubDataFromPreviewProps'
 
 function BlogTemplate({
   markdownFile,

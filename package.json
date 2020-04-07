@@ -50,6 +50,7 @@
     "next": "9.3.3",
     "next-seo": "^4.1.0",
     "next-svgr": "0.0.2",
+    "next-tinacms-github": "^0.0.2-canary4.0",
     "next-tinacms-json": "^0.3.10",
     "next-tinacms-markdown": "^0.2.10",
     "node-fetch": "^2.6.0",

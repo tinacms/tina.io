@@ -1,7 +1,7 @@
 import DocTemplate from './[...slug]'
 import { getDocProps } from '../../utils/docs/getDocProps'
 import { GetStaticProps } from 'next'
-import { GithubError } from '../../utils/github/GithubError'
+import { GithubError } from 'next-tinacms-github'
 
 export const getStaticProps: GetStaticProps = async function(props) {
   try {

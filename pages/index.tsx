@@ -24,10 +24,10 @@ import {
 
 import { Button, Video, ArrowList } from '../components/ui'
 import { useGithubJsonForm } from '../utils/github/useGithubJsonForm'
-import { getJsonFile } from '../utils/getJsonFile'
-import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
-import { GithubError } from '../utils/github/GithubError'
+import { GithubError } from 'next-tinacms-github'
+import { getJsonFile } from '../utils/getJsonFile'
+import { getGithubDataFromPreviewProps } from '../utils/getGithubDataFromPreviewProps'
 
 const HomePage = (props: any) => {
   const [formData, form] = useGithubJsonForm(
