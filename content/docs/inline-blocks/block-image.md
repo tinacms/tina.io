@@ -1,7 +1,7 @@
 ---
 title: Inline Image Block
 prev: /docs/inline-blocks/block-textarea
-next: /docs/nextjs/overview
+next:
 consumes:
   - file: /packages/react-tinacms-inline/src/blocks/inline-block-field-controls.tsx
     description: Uses BlocksControls
