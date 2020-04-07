@@ -19,11 +19,11 @@ import GithubIconSvg from '../public/svg/github-icon.svg'
 import SlackIconSvg from '../public/svg/slack-icon.svg'
 import ForumIconSvg from '../public/svg/forum-icon.svg'
 import { NextSeo } from 'next-seo'
-import { getJsonFile } from '../utils/getJsonFile'
-import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 import { useGithubJsonForm } from '../utils/github/useGithubJsonForm'
 import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
-import { GithubError } from '../utils/github/GithubError'
+import { GithubError } from 'github-tinacms-content'
+import { getJsonFile } from '../utils/getJsonFile'
+import { getGithubDataFromPreviewProps } from '../utils/getGithubDataFromPreviewProps'
 
 function CommunityPage({
   community,

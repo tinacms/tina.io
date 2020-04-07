@@ -21,7 +21,7 @@ import { TinaIcon } from '../../components/logo'
 import { useGithubMarkdownForm } from '../../utils/github/useGithubMarkdownForm'
 import { getDocProps } from '../../utils/docs/getDocProps'
 import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
-import { GithubError } from '../../utils/github/GithubError'
+import { GithubError } from 'github-tinacms-content'
 
 function DocTemplate(props) {
   // Registers Tina Form

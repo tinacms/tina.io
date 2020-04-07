@@ -1,7 +1,9 @@
-import { SourceProviderConnection } from './github/sourceProviderConnection'
 import { readFile } from './readFile'
 import path from 'path'
-import { getJsonFile as getGithubJsonFile } from './github/getJsonFile'
+import {
+  getJsonFile as getGithubJsonFile,
+  SourceProviderConnection,
+} from 'github-tinacms-content'
 
 export const getJsonFile = async (
   filePath: string,

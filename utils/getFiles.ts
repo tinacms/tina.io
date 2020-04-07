@@ -1,5 +1,7 @@
-import { SourceProviderConnection } from './github/sourceProviderConnection'
-import { getFiles as getGithubFiles } from './github/getFiles'
+import {
+  getFiles as getGithubFiles,
+  SourceProviderConnection,
+} from 'github-tinacms-content'
 import path from 'path'
 
 const getLocalFiles = async (filePath: string) => {

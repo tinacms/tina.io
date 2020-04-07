@@ -1,15 +1,11 @@
-export interface SourceProviderConnection {
-  forkFullName: string
-  headBranch: string
-  baseRepoFullName: string
+import { SourceProviderConnection } from 'github-tinacms-content'
+
+interface Response {
+  accessToken: string | null
+  sourceProviderConnection: SourceProviderConnection | null
 }
 
-export interface Response {
-  accessToken: string
-  sourceProviderConnection: SourceProviderConnection
-}
-
-export interface PreviewData {
+interface PreviewData {
   fork_full_name: string
   head_branch: string
   github_access_token: string
@@ -18,7 +14,6 @@ export interface PreviewData {
 export const getGithubDataFromPreviewProps = (
   previewData?: PreviewData
 ): Response => {
-
   if (!previewData) {
     return {
       sourceProviderConnection: null,
@@ -31,7 +26,6 @@ export const getGithubDataFromPreviewProps = (
     sourceProviderConnection: {
       forkFullName: previewData.fork_full_name,
       headBranch: previewData.head_branch || 'master',
-      baseRepoFullName: process.env.REPO_FULL_NAME,
     },
   }
 }
