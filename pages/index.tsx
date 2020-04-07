@@ -3,11 +3,16 @@ import styled from 'styled-components'
 
 import { GetStaticProps } from 'next'
 
-import { InlineBlocks } from 'react-tinacms-inline'
+import {
+  InlineBlocks,
+  InlineField,
+  InlineTextareaField,
+  BlockTextarea,
+  BlocksControls,
+} from 'react-tinacms-inline'
 import { EditLink } from '../components/layout/EditLink'
 import { DefaultSeo } from 'next-seo'
 import { BlockTemplate } from 'tinacms'
-import { InlineField } from 'react-tinacms-inline'
 import { DynamicLink } from '../components/ui/DynamicLink'
 import {
   Layout,
@@ -18,17 +23,11 @@ import {
 } from '../components/layout'
 
 import { Button, Video, ArrowList } from '../components/ui'
-import {
-  InlineTextareaField,
-  BlockTextArea,
-  BlocksControls,
-} from '../components/ui/inline'
-
-import { useGithubJsonForm } from 'react-tinacms-github'
-import { getJsonFile } from '../utils/getJsonFile'
-import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
 import { OpenAuthoringSiteForm } from '../components/layout/OpenAuthoringSiteForm'
-import { GithubError } from '../utils/github/GithubError'
+import { GithubError } from 'next-tinacms-github'
+import { getJsonFile } from '../utils/getJsonFile'
+import { getGithubDataFromPreviewProps } from '../utils/getGithubDataFromPreviewProps'
+import { useGithubJsonForm } from 'react-tinacms-github'
 
 const HomePage = (props: any) => {
   const [formData, form] = useGithubJsonForm(
@@ -256,11 +255,11 @@ function SellingPoint({ data, index }) {
       <div key={`selling-point-${index}`}>
         <h3>
           <em>
-            <BlockTextArea name="main" />
+            <BlockTextarea name="main" />
           </em>
         </h3>
         <p>
-          <BlockTextArea name="supporting" />
+          <BlockTextarea name="supporting" />
         </p>
       </div>
     </BlocksControls>
@@ -291,7 +290,7 @@ function SetupPoint({ data, index }) {
   return (
     <BlocksControls index={index}>
       <li key={`setup-point-${index}`}>
-        <BlockTextArea name="step" />
+        <BlockTextarea name="step" />
       </li>
     </BlocksControls>
   )

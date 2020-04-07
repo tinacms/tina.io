@@ -1,3 +1,6 @@
-import createAccessToken from '../../github/api/req/create-access-token'
+import { createCreateAccessTokenFn } from 'next-tinacms-github'
 
-export default createAccessToken
+export default createCreateAccessTokenFn(
+  process.env.GITHUB_CLIENT_ID,
+  process.env.GITHUB_CLIENT_SECRET
+)

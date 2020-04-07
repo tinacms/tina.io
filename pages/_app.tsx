@@ -1,23 +1,20 @@
 import React from 'react'
 import App from 'next/app'
 import Head from 'next/head'
-import { TinaCMS, Tina, ModalProvider } from 'tinacms'
+import { TinaCMS, TinaProvider, ModalProvider } from 'tinacms'
 import { DefaultSeo } from 'next-seo'
 import data from '../content/siteConfig.json'
 import TagManager from 'react-gtm-module'
 import { GlobalStyle } from '../components/styles/GlobalStyle'
-import { TinacmsGithubProvider } from 'react-tinacms-github'
-import { Toolbar } from '../components/cms/Toolbar'
 import { BrowserStorageApi } from '../utils/plugins/browser-storage-api/BrowserStorageApi'
 import { Alerts } from '../components/layout/Alerts'
-import { authenticate, GithubClient } from 'react-tinacms-github'
+import {
+  GithubClient,
+  TinacmsGithubProvider,
+  authenticate,
+} from 'react-tinacms-github'
 
 const MainLayout = ({ Component, pageProps }) => {
-  /*
-   ** TODO: If and when 'preview' state becomes accessible
-   ** at the _app level, we should move the sidebar / editMode
-   ** logic to be handled here
-   */
   const tinaConfig = {
     apis: {
       github: new GithubClient('/api/proxy-github', process.env.REPO_FULL_NAME),
@@ -26,11 +23,12 @@ const MainLayout = ({ Component, pageProps }) => {
           ? new BrowserStorageApi(window.localStorage)
           : {},
     },
-
     sidebar: {
-      // editMode initially set here
       hidden: true,
       position: 'displace' as any,
+    },
+    toolbar: {
+      hidden: !pageProps.editMode,
     },
   }
 
@@ -48,9 +46,8 @@ const MainLayout = ({ Component, pageProps }) => {
   }
 
   return (
-    <Tina cms={cms} {...tinaConfig.sidebar}>
+    <TinaProvider cms={cms}>
       <ModalProvider>
-        <Toolbar />
         <Alerts />
         <TinacmsGithubProvider
           authenticate={() => authenticate('/api/create-github-access-token')}
@@ -90,7 +87,7 @@ const MainLayout = ({ Component, pageProps }) => {
           <Component {...pageProps} />
         </TinacmsGithubProvider>
       </ModalProvider>
-    </Tina>
+    </TinaProvider>
   )
 }
 

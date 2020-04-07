@@ -10,8 +10,7 @@ import {
   MarkdownContent,
   RichTextWrapper,
 } from '../../components/layout'
-import { InlineWysiwyg, InlineTextareaField } from '../../components/ui/inline'
-import { getGithubDataFromPreviewProps } from '../../utils/github/sourceProviderConnection'
+import { InlineWysiwyg, InlineTextareaField } from 'react-tinacms-inline'
 import { getMarkdownFile } from '../../utils/getMarkdownFile'
 import { useGithubMarkdownForm } from 'react-tinacms-github'
 import { fileToUrl } from '../../utils/urls'
@@ -20,7 +19,8 @@ const fg = require('fast-glob')
 import { useGithubEditing } from 'react-tinacms-github'
 import { Button } from '../../components/ui/Button'
 import Error from 'next/error'
-import { GithubError } from '../../utils/github/GithubError'
+import { GithubError } from 'next-tinacms-github'
+import { getGithubDataFromPreviewProps } from '../../utils/getGithubDataFromPreviewProps'
 
 function BlogTemplate({
   markdownFile,

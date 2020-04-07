@@ -11,7 +11,7 @@ import {
   RichTextWrapper,
   MarkdownContent,
 } from '../components/layout'
-import { InlineWysiwyg, InlineTextareaField } from '../components/ui/inline'
+import { InlineWysiwyg, InlineTextareaField } from 'react-tinacms-inline'
 import { Button, ButtonGroup } from '../components/ui'
 import { EmailForm } from '../components/forms'
 import TwitterIconSvg from '../public/svg/twitter-icon.svg'
@@ -19,11 +19,11 @@ import GithubIconSvg from '../public/svg/github-icon.svg'
 import SlackIconSvg from '../public/svg/slack-icon.svg'
 import ForumIconSvg from '../public/svg/forum-icon.svg'
 import { NextSeo } from 'next-seo'
-import { getJsonFile } from '../utils/getJsonFile'
-import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
-import { useGithubJsonForm } from 'react-tinacms-github'
 import { OpenAuthoringSiteForm } from '../components/layout/OpenAuthoringSiteForm'
-import { GithubError } from '../utils/github/GithubError'
+import { GithubError } from 'next-tinacms-github'
+import { getJsonFile } from '../utils/getJsonFile'
+import { getGithubDataFromPreviewProps } from '../utils/getGithubDataFromPreviewProps'
+import { useGithubJsonForm } from 'react-tinacms-github'
 
 function CommunityPage({
   community,

@@ -2,8 +2,10 @@ import path from 'path'
 import matter from 'gray-matter'
 import { readFile } from './readFile'
 import { formatExcerpt } from '.'
-import { SourceProviderConnection } from './github/sourceProviderConnection'
-import { getMarkdownFile as getGithubMarkdownFile } from './github/getMarkdownFile'
+import {
+  getMarkdownFile as getGithubMarkdownFile,
+  SourceProviderConnection,
+} from 'next-tinacms-github'
 
 const readMarkdownFile = async (filePath: string) => {
   const doc = matter(await readFile(path.resolve(`${filePath}`)))
