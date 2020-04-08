@@ -147,8 +147,8 @@ export function Page(props) {
 
 The Inline Fields are meant to have minimal styles. But there may be situations where you'll want to override the base styles. This is made possible via [Styled Components](https://styled-components.com/docs/basics#extending-styles).
 
-```js
-// An example `InlineText` Field with Extended Styles
+```jsx
+// An example `InlineTextField` with Extended Styles
 export function Page(props) {
   const [, form] = useForm(props.data)
 
@@ -161,11 +161,13 @@ export function Page(props) {
   )
 }
 
-// Extended InlineText styled component
-const StyledText = styled(InlineText)`
+// Extended InlineTextField styled component
+const StyledText = styled(InlineTextField)`
   color: green;
 `
 ```
+
+Notice how the new component, `StyledText` is just a _styled_ version of `InlineTextField`.
 
 ## Set up Inline Form Controls
 

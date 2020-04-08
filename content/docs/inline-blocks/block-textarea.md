@@ -32,7 +32,7 @@ export function SupportCopy({ index }) {
 }
 ```
 
-> **Note**: Block Field [styles can be extended](/docs/inline-blocks#extending-block-field-styles) or overridden via _Styled Components_.
+> **Note**: Block Field [styles can be extended](/docs/inline-editing#extending-inline-field-styles) or overridden via _Styled Components_.
 
 ## Options
 
