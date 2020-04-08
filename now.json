@@ -31,6 +31,14 @@
     { "source": "/docs/concepts/forms", "destination": "/docs/forms" },
     { "source": "/docs/concepts/fields", "destination": "/docs/fields" },
     { "source": "/docs/concepts/backends", "destination": "/docs/cms#apis" },
-    { "source": "/docs/concepts/plugins", "destination": "/docs/cms#plugins" }
+    { "source": "/docs/concepts/plugins", "destination": "/docs/cms#plugins" },
+    {
+      "source": "/docs/nextjs/inline-editing",
+      "destination": "/docs/inline-editing"
+    },
+    {
+      "source": "/docs/gatsby/inline-editing",
+      "destination": "/docs/inline-editing"
+    }
   ]
 }
