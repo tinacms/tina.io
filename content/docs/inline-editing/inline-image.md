@@ -80,14 +80,11 @@ export function Hero({ data }) {
     <InlineForm form={form}>
       <InlineImageField
         name="rawFrontmatter.thumbnail"
-        // Generate the frontmatter value based on the filename
         parse={filename => (filename ? `./${filename}` : null)}
-        // Decide the file upload directory for the post
         uploadDir={blogPost => {
           const postPathParts = blogPost.initialValues.fileRelativePath.split(
             '/'
           )
-
           const postDirectory = postPathParts
             .splice(0, postPathParts.length - 1)
             .join('/')

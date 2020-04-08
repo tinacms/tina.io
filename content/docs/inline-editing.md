@@ -9,7 +9,7 @@ consumes:
     description: InlineField
 ---
 
-_Inline Editing_ in Tina refers to editing values directly in the area they appear on the page, instead of in the Tina sidebar. These are the **general steps**:
+_Inline Editing_ in Tina refers to editing values directly in the area they appear on the page, instead of in the Tina sidebar. These are the **general steps** to set up inline editing:
 
 1. [Configure _InlineForm_](/docs/inline-editing#adding-inline-editing-with-inlineform)
 2. [Add Inline Fields](/docs/inline-editing#using-preconfigured-inline-fields)
@@ -17,9 +17,11 @@ _Inline Editing_ in Tina refers to editing values directly in the area they appe
 
 ## Adding Inline Editing with _InlineForm_
 
-The `InlineForm` and `InlineField` components can be used to set up inline editing in your layout. `InlineForm` receives the form object created via one of the [form hooks](/docs/forms) in order to provide it to the inline editing context. Depending on the tools you are using, the helper function for registering a form may look different: `useJsonForm`, `useLocalForm`, `useRemarkForm` etc. But it is important to use a hook instead of the [HOC helpers]().
+The `InlineForm` and `InlineField` components can be used to set up inline editing in your layout. `InlineForm` receives the form object created via one of the [form hooks](/docs/forms) in order to provide it to the inline editing context.
 
-`InlineForm` should wrap the page or component where you want to add Inline Editing, turning the _page into the form itself_. You can then nest multiple `InlineField` components, a render props-based component that allows you to conditionally display an editing interface (when in edit mode) or the page as it will appear in production.
+> Note that it is important to **use a hook to register a form** instead of an HOC or Render Props component. Depending on the Tina packages you are using, the hook names may differ than those seen in the examples.
+
+`InlineForm` should wrap the page or component where you want to add inline editing, turning the _page into the form itself_. You can then nest multiple `InlineField` components, a render props-based component that allows you to conditionally display an editing interface (when in edit mode) or the page as it will appear in production.
 
 The **rough idea** is like this:
 
@@ -69,47 +71,38 @@ import { InlineForm, InlineField } from 'react-tinacms-inline'
 
 export function Page(props) {
   /*
-  ** The `modifiedValues` aren't
-  ** called directly, so we only
-  ** need the form object
-  */
+   ** The `modifiedValues` aren't
+   ** called directly, so we only
+   ** need the form object
+   */
   const [, form] = useForm(props.data)
 
   return (
     <InlineForm form={form}>
       <main>
-        {`/*
-        **** InlineField connects to
-        **** source data via `name`
-        */`}
         <InlineField name="title">
-        {
-          ({input, status}) => {
+          {({ input, status }) => {
             if (status === 'active') {
-              return <input type='text' {...input} />
+              return <input type="text" {...input} />
             }
             return <h1>{input.value}</h1>
-          }
-        }
+          }}
         </InlineField>
         <InlineField name="markdownContent">
-        {
-          ({input, status}) => {
+          {({ input, status }) => {
             if (status === 'active') {
               return <Wysiwyg input={input} />
             }
             return <ReactMarkdown source={input.value} />
-          }
-        }
+          }}
         </InlineField>
       </main>
     </InlineForm>
   )
 }
-
 ```
 
-> Note that we switched the call to `useLocalForm` with a call to `useForm`. This will prevent the form from showing in the Tina sidebar. If you want the form to also be available in the sidebar, `useForm` can be replaced with `useLocalForm`, or any other _helper hook_ that registers a form with the sidebar: `useLocalJsonForm`, `useLocalRemarkForm` etc.
+> Note that we switched the call to `useLocalForm` with a call to `useForm`. This will prevent the form from showing in the Tina sidebar. If you want the form to **also be available in the sidebar**, `useForm` can be replaced with `useLocalForm`, or any other _helper hook_ that registers a form with the sidebar: [`useLocalJsonForm`](/docs/nextjs/creating-forms#adding-a-form-for-json-with-uselocaljsonform), [`useLocalRemarkForm`](https://tinacms.org/docs/gatsby/markdown/#1-the-hook-uselocalremarkform) etc.
 
 ## Using pre-configured Inline Fields
 
@@ -122,7 +115,7 @@ However, Tina provides a set of pre-configured Inline Fields that should **work 
 - [Inline Wysiwyg](/docs/inline-editing/inline-wysiwyg)
 - [Inline Image](/docs/inline-editing/inline-image)
 
-**Refactoring the above example** with Inline Fields.
+**Refactoring the above example** with Inline Fields:
 
 ```tsx
 import * as React from React
@@ -180,7 +173,7 @@ There are a few fundamental editing actions needed to handle the state of _Inlin
 
 ![TinaCMS: Inline Controls](/img/inline-blocks/inline-controls.png)
 
-> This configuration **may differ based on the project**. With the introduction of [Open Authoring](/blog/introducing-visual-open-authoring), these editing states are handled through a _Global Toolbar_. The below **implementations may change** as new features are added to the Inline Editing API.
+> This configuration **may differ based on the project**. With the introduction of [Open Authoring](/blog/introducing-visual-open-authoring), these editing states are handled through a _Global Toolbar_. The below **implementations may change** as new features are added to the _Inline Editing_ API.
 
 ### Activating Edit Mode for Inline Forms
 
