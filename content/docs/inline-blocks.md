@@ -289,27 +289,3 @@ export default function IndexBlocks({ jsonFile }) {
   )
 }
 ```
-
-## Extending Block Field Styles
-
-The Block Fields are meant to have minimal styles. But there may be situations where you'll want to override the base styles. This is made possible via [Styled Components](https://styled-components.com/docs/basics#extending-styles).
-
-```js
-// An example Block with Extended Styles
-export function Tagline(props) {
-  return (
-    <BlocksControls index={props.index}>
-      <h2>
-        <StyledBlockText name="tagline" />
-      </h2>
-    </BlocksControls>
-  )
-}
-
-// Extended BlockText styled component
-const StyledBlockText = styled(BlockText)`
-  color: green;
-`
-```
-
-Notice how the new component, `StyledBlockText` is just a _styled_ version of `BlockText`.

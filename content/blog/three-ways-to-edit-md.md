@@ -55,9 +55,7 @@ Given all the options for creating components and sourcing data in Gatsby, we ha
 First, Let’s dive into how to hook up TinaCMS with a Page Query.
 The `remarkForm` Component in TinaCMS is a [Higher Order Component](https://reactjs.org/docs/higher-order-components.html), a HOC in short. This means that it is a function that takes in another component and will return a new component that has added functionality to it.
 
-> 
-If you’re not familiar with HOC's, I suggest you read about them in the <a href="https://reactjs.org/docs/higher-order-components.html"><b>React official docs</b></a>. They are considered “advanced usage” in the React world.
-
+> If you’re not familiar with HOC's, I suggest you read about them in the <a href="https://reactjs.org/docs/higher-order-components.html"><b>React official docs</b></a>. They are considered “advanced usage” in the React world.
 
 The `remarkForm` component wants another component as an argument and is intended for Page Queries. A Page Query injects the data as a prop to the component and we access the data from this prop. With a `useStaticQuery` hook, the data is collected in a variable, that you choose, inside the component itself. That means if you're using the `useStaticQuery` hook in Gatsby you won’t have a component to give the `remarkForm` HOC. Bummer!😞 That’s why you can only use the `remarkForm` component with Page Queries.
 
@@ -224,7 +222,7 @@ In this post, we learned about how to _set up Tina with both Static Queries and 
 
 This is just the basics to get you started. If you like Tina and want to learn more you should check out the [official docs](https://tinacms.org/docs/). There’s a lot more stuff to read there and some interesting use cases.
 
-For example, you can learn how to apply [inline editing](https://tinacms.org/docs/gatsby/inline-editing) and also how to [customize the form fields](https://tinacms.org/docs/gatsby/markdown#customizing-remark-forms) in the Tina sidebar.
+For example, you can learn how to apply [inline editing](https://tinacms.org/docs/inline-editing) and also how to [customize the form fields](https://tinacms.org/docs/gatsby/markdown#customizing-remark-forms) in the Tina sidebar.
 
 Tina is a great addition to the React ecosystem and static site generators like Gatsby. It gives your site a pleasant and easy way to edit and interact with your content.
 I’m thrilled to see how big TinaCMS will be and what it can do as it evolves!

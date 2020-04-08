@@ -132,7 +132,29 @@
   {
     "title": "Inline Editing",
     "id": "inline-editing",
-    "slug": "/docs/inline-editing"
+    "slug": "/docs/inline-editing",
+    "items": [
+      {
+        "id": "/docs/inline-editing/inline-text",
+        "title": "Inline Text",
+        "slug": "/docs/inline-editing/inline-text"
+      },
+      {
+        "id": "/docs/inline-editing/inline-textarea",
+        "title": "Inline Textarea",
+        "slug": "/docs/inline-editing/inline-textarea"
+      },
+      {
+        "id": "/docs/inline-editing/inline-wysiwyg",
+        "title": "Inline Wysiwyg",
+        "slug": "/docs/inline-editing/inline-wysiwyg"
+      },
+      {
+        "id": "/docs/inline-editing/inline-image",
+        "title": "Inline Image",
+        "slug": "/docs/inline-editing/inline-image"
+      }
+    ]
   },
   {
     "title": "Inline Blocks",
@@ -140,17 +162,17 @@
     "slug": "/docs/inline-blocks",
     "items": [
       {
-        "id": "/docs/block-text",
+        "id": "/docs/inline-blocks/block-text",
         "title": "Text Block",
         "slug": "/docs/inline-blocks/block-text"
       },
       {
-        "id": "/docs/block-textarea",
+        "id": "/docs/inline-blocks/block-textarea",
         "title": "Textarea Block",
         "slug": "/docs/inline-blocks/block-textarea"
       },
       {
-        "id": "/docs/block-image",
+        "id": "/docs/inline-blocks/block-image",
         "title": "Image Block",
         "slug": "/docs/inline-blocks/block-image"
       }
@@ -184,11 +206,6 @@
         "id": "/docs/nextjs/markdown",
         "slug": "/docs/nextjs/markdown",
         "title": "Using Markdown Files"
-      },
-      {
-        "id": "/docs/nextjs/inline-editing",
-        "slug": "/docs/nextjs/inline-editing",
-        "title": "Inline Editing"
       }
     ]
   },
@@ -230,11 +247,6 @@
         "id": "/docs/gatsby/custom-fields",
         "slug": "/docs/gatsby/custom-fields",
         "title": "Custom Fields"
-      },
-      {
-        "id": "/docs/gatsby/inline-editing",
-        "slug": "/docs/gatsby/inline-editing",
-        "title": "Inline Editing"
       }
     ]
   },

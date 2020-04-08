@@ -7,3 +7,5 @@
 /docs/concepts/fields        /docs/fields
 /docs/concepts/backends      /docs/cms#apis
 /docs/concepts/plugins       /docs/cms#plugins
+/docs/nextjs/inline-editing  /docs/inline-editing
+/docs/gatsby/inline-editing  /docs/inline-editing
