@@ -6,16 +6,18 @@ import { DefaultSeo } from 'next-seo'
 import data from '../content/siteConfig.json'
 import TagManager from 'react-gtm-module'
 import { GlobalStyle } from '../components/styles/GlobalStyle'
-import { OpenAuthoringProvider } from '../open-authoring/open-authoring/OpenAuthoringProvider'
 import { BrowserStorageApi } from '../utils/plugins/browser-storage-api/BrowserStorageApi'
 import { Alerts } from '../components/layout/Alerts'
-import { GithubApi } from '../utils/plugins/github-api/GithubApi'
-import { authenticate } from '../open-authoring/github-auth/authenticate'
+import {
+  GithubClient,
+  TinacmsGithubProvider,
+  authenticate,
+} from 'react-tinacms-github'
 
 const MainLayout = ({ Component, pageProps }) => {
   const tinaConfig = {
     apis: {
-      github: new GithubApi('/api/proxy-github', process.env.REPO_FULL_NAME),
+      github: new GithubClient('/api/proxy-github', process.env.REPO_FULL_NAME),
       storage:
         typeof window !== 'undefined'
           ? new BrowserStorageApi(window.localStorage)
@@ -47,7 +49,7 @@ const MainLayout = ({ Component, pageProps }) => {
     <TinaProvider cms={cms}>
       <ModalProvider>
         <Alerts />
-        <OpenAuthoringProvider
+        <TinacmsGithubProvider
           authenticate={() => authenticate('/api/create-github-access-token')}
           enterEditMode={enterEditMode}
           exitEditMode={exitEditMode}
@@ -83,7 +85,7 @@ const MainLayout = ({ Component, pageProps }) => {
           </Head>
           <GlobalStyle />
           <Component {...pageProps} />
-        </OpenAuthoringProvider>
+        </TinacmsGithubProvider>
       </ModalProvider>
     </TinaProvider>
   )

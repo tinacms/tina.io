@@ -1,7 +1,10 @@
+import React from 'react'
 import { InlineForm, InlineFormProps } from 'react-tinacms-inline'
-import { useOpenAuthoringToolbarPlugins } from '../../open-authoring/toolbar-plugins/useOpenAuthoringToolbarPlugins'
+import {
+  useGithubToolbarPlugins,
+  useGithubErrorListener,
+} from 'react-tinacms-github'
 import { useLocalStorageCache } from '../../utils/plugins/browser-storage-api/useLocalStorageCache'
-import useOpenAuthoringErrorListener from '../../open-authoring/errors/useOpenAuthoringErrorListener'
 import AutoAuthModal from '../open-authoring/AutoAuthModal'
 
 interface Props extends InlineFormProps {
@@ -10,14 +13,19 @@ interface Props extends InlineFormProps {
   path: string
 }
 
-const OpenAuthoringSiteForm = ({ form, editMode, path, children }: Props) => {
+export const OpenAuthoringSiteForm = ({
+  form,
+  editMode,
+  path,
+  children,
+}: Props) => {
   // Toolbar Plugins
-  useOpenAuthoringToolbarPlugins(form, editMode)
+  useGithubToolbarPlugins(form, editMode)
 
   // Persist pending changes to localStorage
   useLocalStorageCache(path, form, editMode)
 
-  useOpenAuthoringErrorListener(form)
+  useGithubErrorListener(form)
 
   return (
     <>
@@ -33,5 +41,3 @@ const OpenAuthoringSiteForm = ({ form, editMode, path, children }: Props) => {
     </>
   )
 }
-
-export default OpenAuthoringSiteForm

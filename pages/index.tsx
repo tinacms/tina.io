@@ -23,11 +23,11 @@ import {
 } from '../components/layout'
 
 import { Button, Video, ArrowList } from '../components/ui'
-import { useGithubJsonForm } from '../utils/github/useGithubJsonForm'
-import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
+import { OpenAuthoringSiteForm } from '../components/layout/OpenAuthoringSiteForm'
 import { GithubError } from 'next-tinacms-github'
 import { getJsonFile } from '../utils/getJsonFile'
 import { getGithubDataFromPreviewProps } from '../utils/getGithubDataFromPreviewProps'
+import { useGithubJsonForm } from 'react-tinacms-github'
 
 const HomePage = (props: any) => {
   const [formData, form] = useGithubJsonForm(

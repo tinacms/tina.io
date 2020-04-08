@@ -6,10 +6,10 @@ interface EditLinkProps {
   color?: 'white' | 'primary' | 'secondary' | 'seafoam' | 'variable'
   editMode: boolean
 }
-import { useOpenAuthoring } from '../../open-authoring/open-authoring/OpenAuthoringProvider'
+import { useGithubEditing } from 'react-tinacms-github'
 
 export const EditLink = ({ color, editMode }: EditLinkProps) => {
-  const openAuthoring = useOpenAuthoring()
+  const openAuthoring = useGithubEditing()
   return (
     <EditToggleButton
       id="OpenAuthoringEditButton"

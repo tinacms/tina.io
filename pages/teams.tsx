@@ -14,10 +14,10 @@ import {
   BlocksControls,
 } from 'react-tinacms-inline'
 import { getJsonFile } from '../utils/getJsonFile'
-import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
-import { useGithubJsonForm } from '../utils/github/useGithubJsonForm'
+import { OpenAuthoringSiteForm } from '../components/layout/OpenAuthoringSiteForm'
 import { GithubError } from 'next-tinacms-github'
 import { getGithubDataFromPreviewProps } from '../utils/getGithubDataFromPreviewProps'
+import { useGithubJsonForm } from 'react-tinacms-github'
 
 const formOptions = {
   label: 'Teams',

@@ -12,11 +12,11 @@ import {
 } from '../../components/layout'
 import { InlineWysiwyg, InlineTextareaField } from 'react-tinacms-inline'
 import { getMarkdownFile } from '../../utils/getMarkdownFile'
-import { useGithubMarkdownForm } from '../../utils/github/useGithubMarkdownForm'
+import { useGithubMarkdownForm } from 'react-tinacms-github'
 import { fileToUrl } from '../../utils/urls'
-import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
+import { OpenAuthoringSiteForm } from '../../components/layout/OpenAuthoringSiteForm'
 const fg = require('fast-glob')
-import { useOpenAuthoring } from '../../open-authoring/open-authoring/OpenAuthoringProvider'
+import { useGithubEditing } from 'react-tinacms-github'
 import { Button } from '../../components/ui/Button'
 import Error from 'next/error'
 import { GithubError } from 'next-tinacms-github'
@@ -287,7 +287,7 @@ const MetaBit = styled.p`
  */
 
 const EditLink = ({ isEditMode }) => {
-  const openAuthoring = useOpenAuthoring()
+  const openAuthoring = useGithubEditing()
 
   return (
     <EditButton
