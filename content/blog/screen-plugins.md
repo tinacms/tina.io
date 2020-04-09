@@ -55,19 +55,18 @@ Lately, a trend has developed to take [jovial selfies](https://www.nationalgeogr
 
 Let's make a quokka selfie screen plugin for the tourists. We'll set this up in three steps:
 
-1. Import the `usePlugin` hook from `tinacms`
+1. Import the `useScreenPlugin` hook from `tinacms`
 2. Create our `SelfiePlugin`
 3. Use that plugin in our App
 
 ```jsx
-// 1. Import `usePlugin`
-import { usePlugin } from 'tinacms'
+// 1. Import `useScreenPlugin`
+import { useScreenPlugin } from 'tinacms'
 import { Quokka } from './cute-marsupials'
 
 // 2. Define the screen plugin
 const SelfiePlugin = {
-  __type: 'screen',
-  name: 'Selfie',
+  name: 'Quokka Selfie',
   Icon: () => <span>🐨</span>,
   layout: 'popup',
   Component() {
@@ -77,7 +76,7 @@ const SelfiePlugin = {
 
 export default function Island({ smiles }) {
   // 3. Use the plugin
-  usePlugin(SelfiePlugin)
+  useScreenPlugin(SelfiePlugin)
 
   return <Quokka>{smiles}</Quokka>
 }
