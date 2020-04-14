@@ -254,9 +254,14 @@ function SellingPoint({ data, index }) {
     <BlocksControls index={index}>
       <div key={`selling-point-${index}`}>
         <h3>
-          <em>
+          {data.color !== 'Dark Blue (Secondary)' && (
+            <em>
+              <BlockTextarea name="main" />
+            </em>
+          )}
+          {data.color === 'Dark Blue (Secondary)' && (
             <BlockTextarea name="main" />
-          </em>
+          )}
         </h3>
         <p>
           <BlockTextarea name="supporting" />
@@ -273,10 +278,19 @@ const selling_point_template: BlockTemplate = {
     main: 'Tina is dope 🤙',
     supporting:
       'It’s pretty much my favorite animal. It’s like a lion and a tiger mixed… bred for its skills in magic.',
+    color: 'Orange (Primary)',
   },
   // TODO: figure out what to do with keys
   key: undefined,
-  fields: [],
+  fields: [
+    {
+      label: 'Title Color',
+      name: 'color',
+      component: 'select',
+      // @ts-ignore
+      options: ['Orange (Primary)', 'Dark Blue (Secondary)'],
+    },
+  ],
 }
 
 const SELLING_POINTS_BLOCKS = {
