@@ -6,7 +6,17 @@ import {
 } from 'react-tinacms-github'
 import { useLocalStorageCache } from '../../utils/plugins/browser-storage-api/useLocalStorageCache'
 import AutoAuthModal from '../open-authoring/AutoAuthModal'
-import { Form, Plugin, useCMS, Input } from 'tinacms'
+import {
+  Form,
+  Plugin,
+  useCMS,
+  Input,
+  Modal,
+  ModalPopup,
+  ModalHeader,
+  ModalBody,
+  ModalActions,
+} from 'tinacms'
 import { ChevronDownIcon, AddIcon } from '@tinacms/icons'
 import { Button } from '@tinacms/styles'
 import styled, { css } from 'styled-components'
@@ -77,7 +87,56 @@ export const BranchSwitcherPlugin = () => ({
 })
 
 const BranchSwitcher = ({ forkName }: { forkName: string }) => {
-  const [open, setOpen] = React.useState(true)
+  const [open, setOpen] = React.useState(false)
+  const [filterValue, setFilterValue] = React.useState('')
+
+  const testBranches = [
+    {
+      name: 'master',
+      active: false,
+      locked: true,
+    },
+    {
+      name: 'branch-switcher',
+      active: true,
+      locked: false,
+    },
+    {
+      name: 'new-blog-post',
+      active: false,
+      locked: false,
+    },
+    {
+      name: 'some-branch-name-that-is-out-of-control',
+      active: false,
+      locked: false,
+    },
+    {
+      name: 'refactor/tinacms-github-next-package',
+      active: false,
+      locked: false,
+    },
+    {
+      name: 'editor_refactor',
+      active: false,
+      locked: false,
+    },
+    {
+      name: 'toolbar-bug-fixes',
+      active: false,
+      locked: false,
+    },
+    {
+      name: 'docs-updates',
+      active: false,
+      locked: false,
+    },
+    {
+      name: 'get-github-static-props',
+      active: false,
+      locked: false,
+    },
+  ]
 
   return (
     <SelectWrapper>
@@ -97,19 +156,21 @@ const BranchSwitcher = ({ forkName }: { forkName: string }) => {
         >
           <SelectList>
             <SmallPadding>
-              <SelectFilter placeholder="Filter" />
-            </SmallPadding>{' '}
-            <SelectOption locked>
-              <LockedIcon /> master
-            </SelectOption>
-            <SelectOption current>branch-switcher</SelectOption>
-            <SelectOption>new-blog-post</SelectOption>
-            <SelectOption>some-branch-name-that-is-out-of-control</SelectOption>
-            <SelectOption>refactor/tinacms-github-next-package</SelectOption>
-            <SelectOption>editor_refactor</SelectOption>
-            <SelectOption>toolbar-bug-fixes</SelectOption>
-            <SelectOption>docs-updates</SelectOption>
-            <SelectOption>get-github-static-props</SelectOption>
+              <SelectFilter
+                placeholder="Filter"
+                onChange={event => setFilterValue(event.target.value)}
+                value={filterValue}
+              />
+            </SmallPadding>
+            {testBranches
+              .filter(option => {
+                return option.name.includes(filterValue)
+              })
+              .map(option => (
+                <SelectOption active={option.active}>
+                  {option.locked && <LockedIcon />} {option.name}
+                </SelectOption>
+              ))}
           </SelectList>
           <DropdownActions>
             <CreateButton>
@@ -119,6 +180,33 @@ const BranchSwitcher = ({ forkName }: { forkName: string }) => {
         </Dismissible>
       </SelectDropdown>
     </SelectWrapper>
+  )
+}
+
+const CreateBranchModal = ({ close }: any) => {
+  const cms = useCMS()
+
+  const handleSubmit = () => {
+    return null
+  }
+
+  return (
+    <Modal>
+      <ModalPopup>
+        <ModalHeader close={close}>Create Branch</ModalHeader>
+        <ModalBody
+          onKeyPress={e => (e.charCode === 13 ? (handleSubmit() as any) : null)}
+        >
+          <h1>here be form</h1>
+        </ModalBody>
+        <ModalActions>
+          <Button onClick={close}>Cancel</Button>
+          <Button onClick={handleSubmit} primary>
+            Create
+          </Button>
+        </ModalActions>
+      </ModalPopup>
+    </Modal>
   )
 }
 
@@ -173,8 +261,7 @@ const DropdownActions = styled.div`
 `
 
 export interface SelectOptionProps {
-  current?: boolean
-  locked?: boolean
+  active?: boolean
 }
 
 const SelectOption = styled.button<SelectOptionProps>`
@@ -217,24 +304,17 @@ const SelectOption = styled.button<SelectOptionProps>`
   }
 
   ${p =>
-    p.current &&
+    p.active &&
     css`
       font-weight: bold;
       color: var(--tina-color-primary);
       background-color: var(--tina-color-grey-1);
     `};
-
-  ${p =>
-    p.locked &&
-    css`
-      color: var(--tina-color-grey-4);
-      pointer-events: none;
-    `};
 `
 
 const SelectList = styled.div`
   min-width: 200px;
-  max-height: 160px;
+  max-height: 200px;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
@@ -263,7 +343,7 @@ const SelectDropdown = styled.div<SelectDropdownProps>`
   pointer-events: none;
   transition: all 150ms ease-out;
   opacity: 0;
-  max-width: 350px;
+  width: 350px;
 
   &:before {
     content: '';
@@ -310,7 +390,7 @@ const SelectBox = styled.button<SelectBoxProps>`
   border-radius: var(--tina-radius-small);
   border: 1px solid var(--tina-color-grey-2);
   background-color: white;
-  padding: 4px 42px 5px var(--tina-padding-small);
+  padding: 5px 42px 6px var(--tina-padding-small);
   position: relative;
   outline: none;
   cursor: pointer;
@@ -337,6 +417,7 @@ const SelectBox = styled.button<SelectBoxProps>`
     p.open &&
     css`
       background-color: var(--tina-color-grey-1);
+      box-shadow: inset 0px 2px 3px rgba(0, 0, 0, 0.06);
 
       ${SelectLabel} {
         color: var(--tina-color-primary);
