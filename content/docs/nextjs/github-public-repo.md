@@ -5,21 +5,37 @@ prev: /docs/nextjs/markdown
 next:
 ---
 
-# react-tinacms-github
+Using Next.js's preview-mode ([announced in Next.js 9.3](https://nextjs.org/blog/next-9-3)), we can load a separate set of data depending on if we are in "edit-mode" or "production-mode". This pairs well with the Github API, where we can provide an "Open Authoring" experience where anyone can fork your site, make changes, and create a pull request, all through the TinaCMS UI!
 
-This package provides helpers for setting up TinaCMS to use the Github API, with Github authentication.
+## Requirements:
+
+- You must be using Next.js v.9.3 or later.
+- If your site is static, is must be hosted on a service that supports Next.js preview-mode (E.g Zeit's Now)
+- Your editable content must be stored in Github
+- Your repository containing your content must be public
 
 ## Installation
 
+We'll need to add a few Tina-Github packages to our site:
+
 ```
-npm install --save react-tinacms-github
+npm install --save react-tinacms-github next-tinacms-github
 ```
 
 or
 
 ```
-yarn add react-tinacms-github
+yarn add react-tinacms-github next-tinacms-github
 ```
+
+### react-tinacms-github
+
+This package provides helpers for setting up TinaCMS to use the Github API, with Github authentication.
+
+### next-tinacms-github
+
+This package provides helpers for managing the github auth token for requests, as well as
+providing helpers for loading content from the Github API.
 
 ## Getting Started
 
