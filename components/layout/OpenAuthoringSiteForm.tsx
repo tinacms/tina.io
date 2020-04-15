@@ -167,7 +167,7 @@ const BranchSwitcher = ({ forkName }: { forkName: string }) => {
                 return option.name.includes(filterValue)
               })
               .map(option => (
-                <SelectOption active={option.active}>
+                <SelectOption key={option.name} active={option.active}>
                   {option.locked && <LockedIcon />} {option.name}
                 </SelectOption>
               ))}
