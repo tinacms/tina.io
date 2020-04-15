@@ -96,6 +96,9 @@ const BranchSwitcher = ({ forkName }: { forkName: string }) => {
           }}
         >
           <SelectList>
+            <SmallPadding>
+              <SelectFilter placeholder="Filter" />
+            </SmallPadding>{' '}
             <SelectOption locked>
               <LockedIcon /> master
             </SelectOption>
@@ -109,13 +112,9 @@ const BranchSwitcher = ({ forkName }: { forkName: string }) => {
             <SelectOption>get-github-static-props</SelectOption>
           </SelectList>
           <DropdownActions>
-            <ActionableLabel>Branch from master</ActionableLabel>
-            <ActionableInput>
-              <CreateInput placeholder="Branch Name" />
-              <CreateButton primary>
-                <AddIcon /> Create
-              </CreateButton>
-            </ActionableInput>
+            <CreateButton>
+              <AddIcon /> New Branch
+            </CreateButton>
           </DropdownActions>
         </Dismissible>
       </SelectDropdown>
@@ -123,11 +122,13 @@ const BranchSwitcher = ({ forkName }: { forkName: string }) => {
   )
 }
 
-const CreateInput = styled(Input)`
+const SmallPadding = styled.div`
+  padding: var(--tina-padding-small);
+`
+
+const SelectFilter = styled(Input)`
   height: 36px;
-  width: 180px;
-  margin-right: var(--tina-padding-small);
-  flex: 1 0 auto;
+  flex: 0 1 auto;
 
   ::placeholder {
     color: var(--tina-color-grey-3);
@@ -325,7 +326,9 @@ const SelectBox = styled.button<SelectBoxProps>`
     position: absolute;
     top: 50%;
     right: 8px;
+    transform-origin: 50% 50%;
     transform: translate3d(0, -50%, 0);
+    transition: all 150ms ease-out;
     width: 24px;
     height: auto;
   }
@@ -337,6 +340,11 @@ const SelectBox = styled.button<SelectBoxProps>`
 
       ${SelectLabel} {
         color: var(--tina-color-primary);
+      }
+
+      svg {
+        transform: translate3d(0, -50%, 0) rotate(180deg);
+        fill: var(--tina-color-grey-4);
       }
     `};
 `
