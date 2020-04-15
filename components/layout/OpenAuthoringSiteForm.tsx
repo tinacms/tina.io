@@ -6,8 +6,9 @@ import {
 } from 'react-tinacms-github'
 import { useLocalStorageCache } from '../../utils/plugins/browser-storage-api/useLocalStorageCache'
 import AutoAuthModal from '../open-authoring/AutoAuthModal'
-import { Form, Plugin, useCMS } from 'tinacms'
-import { ChevronDownIcon } from '@tinacms/icons'
+import { Form, Plugin, useCMS, Input } from 'tinacms'
+import { ChevronDownIcon, AddIcon } from '@tinacms/icons'
+import { Button } from '@tinacms/styles'
 import styled, { css } from 'styled-components'
 import { Dismissible } from 'react-dismissible'
 
@@ -76,7 +77,7 @@ export const BranchSwitcherPlugin = () => ({
 })
 
 const BranchSwitcher = ({ forkName }: { forkName: string }) => {
-  const [open, setOpen] = React.useState(true)
+  const [open, setOpen] = React.useState(false)
 
   return (
     <SelectWrapper>
@@ -106,7 +107,13 @@ const BranchSwitcher = ({ forkName }: { forkName: string }) => {
             <SelectOption>get-github-static-props</SelectOption>
           </SelectList>
           <DropdownActions>
-            <ActionableInput></ActionableInput>
+            <ActionableLabel>Branch from master</ActionableLabel>
+            <ActionableInput>
+              <CreateInput placeholder="Branch Name" />
+              <CreateButton primary>
+                <AddIcon /> Create
+              </CreateButton>
+            </ActionableInput>
           </DropdownActions>
         </Dismissible>
       </SelectDropdown>
@@ -114,7 +121,46 @@ const BranchSwitcher = ({ forkName }: { forkName: string }) => {
   )
 }
 
-const ActionableInput = styled.div``
+const CreateInput = styled(Input)`
+  height: 36px;
+  width: 180px;
+  margin-right: var(--tina-padding-small);
+
+  ::placeholder {
+    color: var(--tina-color-grey-3);
+  }
+`
+
+const CreateButton = styled(Button)`
+  display: flex;
+  align-items: center;
+  height: 36px;
+
+  svg {
+    width: 24px;
+    margin-right: 4px;
+    opacity: 0.7;
+  }
+`
+
+const ActionableLabel = styled.label`
+  display: block;
+  font-size: var(--tina-font-size-1);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.35;
+  color: var(--tina-color-grey-8);
+  padding-bottom: 4px;
+  text-overflow: ellipsis;
+  width: 100%;
+  overflow: hidden;
+`
+
+const ActionableInput = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
 
 const DropdownActions = styled.div`
   background-color: var(--tina-color-grey-1);
@@ -261,6 +307,10 @@ const SelectBox = styled.button<SelectBoxProps>`
     p.open &&
     css`
       background-color: var(--tina-color-grey-1);
+
+      ${SelectLabel} {
+        color: var(--tina-color-primary);
+      }
     `};
 `
 
@@ -272,6 +322,7 @@ const SelectLabel = styled.span`
   font-size: var(--tina-font-size-1);
   font-weight: 600;
   text-align: left;
+  transition: all 150ms ease-out;
 `
 
 const SelectCurrent = styled.span`
