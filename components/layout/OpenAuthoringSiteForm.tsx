@@ -77,7 +77,7 @@ export const BranchSwitcherPlugin = () => ({
 })
 
 const BranchSwitcher = ({ forkName }: { forkName: string }) => {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(true)
 
   return (
     <SelectWrapper>
@@ -99,8 +99,8 @@ const BranchSwitcher = ({ forkName }: { forkName: string }) => {
             <SelectOption>master</SelectOption>
             <SelectOption current>style-fixes</SelectOption>
             <SelectOption>new-blog-post</SelectOption>
-            <SelectOption>some-branch</SelectOption>
-            <SelectOption>my-changes</SelectOption>
+            <SelectOption>some-branch-name-that-is-out-of-control</SelectOption>
+            <SelectOption>refactor/tinacms-github-next-package</SelectOption>
             <SelectOption>editor_refactor</SelectOption>
             <SelectOption>toolbar-bug-fixes</SelectOption>
             <SelectOption>docs-updates</SelectOption>
@@ -125,6 +125,7 @@ const CreateInput = styled(Input)`
   height: 36px;
   width: 180px;
   margin-right: var(--tina-padding-small);
+  flex: 1 0 auto;
 
   ::placeholder {
     color: var(--tina-color-grey-3);
@@ -185,6 +186,10 @@ const SelectOption = styled.button<SelectOptionProps>`
   width: 100%;
   cursor: pointer;
   transition: all 150ms ease-out;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  overflow: hidden;
+  flex: 0 0 auto;
 
   :first-child {
     padding-top: 8px;
@@ -209,10 +214,13 @@ const SelectOption = styled.button<SelectOptionProps>`
 `
 
 const SelectList = styled.div`
-  max-width: 350px;
   min-width: 200px;
   max-height: 160px;
   overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
 `
 
 const SelectWrapper = styled.div`
@@ -236,6 +244,7 @@ const SelectDropdown = styled.div<SelectDropdownProps>`
   pointer-events: none;
   transition: all 150ms ease-out;
   opacity: 0;
+  max-width: 350px;
 
   &:before {
     content: '';
