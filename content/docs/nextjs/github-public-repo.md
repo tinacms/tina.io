@@ -209,52 +209,37 @@ or
 yarn add next-tinacms-github
 ```
 
-## Getting Started
+## Setup API functions
 
-Any functions in the `pages/api` directory are are mapped to `/api/*` endpoints.
+We will need a few API functions to handle Github authentication, and Next.js's preview-mode:
+With Next.js, any functions in the `pages/api` directory are are mapped to `/api/*` endpoints.
 
-### `createCreateAccessTokenFn`
+We've created a script to make generating these files easier:
+
+From the console, run:
+
+```
+$ npx hygen-add https://github.com/dwalkr/hygen-next-tinacms-github
+$ npx hygen next-tinacms-github bootstrap --format ts
+```
+
+You'll see that a few API functions have been setup for us.
+
+### `preview.ts`
+
+Contains API function to enter preview-mode, and set the preview-data with content stored in the cookies.
+
+### `proxy-github.ts`
+
+Contains API function to attach the user's auth token, and proxy requests to the Github API.
+
+### `create-github-auth-token.ts`
 
 Helper for creating a `createCreateAccessToken` server function.
 
-```
-// pages/api/create-github-access-token.ts
+> _Note: You may need to configure the `process.env.GITHUB_CLIENT_ID` and `process.env.GITHUB_CLIENT_SECRET` environment variables within this file._ _See [Next's documentation](https://nextjs.org/docs/api-reference/next.config.js/environment-variables) for adding environment variables_
 
-import { createAuthHandler } from 'next-tinacms-github'
-
-export default createAuthHandler(
-  process.env.GITHUB_CLIENT_ID,
-  process.env.GITHUB_CLIENT_SECRET
-)
-```
-
-_See [Next's documentation](https://nextjs.org/docs/api-reference/next.config.js/environment-variables) for adding environment variables_
-
-[See below](#github-oauth-app) for instructions on creating a Github OAuth App to generate these **Client ID** & **Client Secret** variables.
-
-### `apiProxy`
-
-Proxies requests to GitHub, attaching the GitHub access token in the process
-
-```
-// pages/api/proxy-github.ts
-
-import { apiProxy } from 'next-tinacms-github'
-
-export default apiProxy
-```
-
-### `previewHandler`
-
-Handles setting the the Nextjs [preview data](https://nextjs.org/docs/advanced-features/preview-mode) from your cookie data.
-
-```
-// pages/api/preview.ts
-
-import { previewHandler } from 'next-tinacms-github'
-
-export default previewHandler
-```
+> [See below](#github-oauth-app) for instructions on creating a Github OAuth App to generate these **Client ID** & **Client Secret** variables.
 
 ### Loading content from Github
 
