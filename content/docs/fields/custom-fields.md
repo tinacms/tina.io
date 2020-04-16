@@ -93,10 +93,10 @@ cms.fields.add({
   Component({ input, meta, field }) {
     return (
       <div>
-        <label htmFor={input.name}>{field.label || field.name}</label>
+        <label htmlFor={input.name}>{field.label || field.name}</label>
         <div>{field.description}</div>
         <input type="email" {...input} />
-        <div class="field-error">{meta.error}</div>
+        <div className="field-error">{meta.error}</div>
       </div>
     )
   },
