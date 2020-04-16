@@ -35,6 +35,58 @@ export const useBranchToolbarPlugins = (form: Form<any>, editMode: boolean) => {
   }, [editMode, form])
 }
 
+const testBranches = [
+  {
+    name: 'master',
+    locked: true,
+  },
+  {
+    name: 'branch-switcher',
+    locked: false,
+  },
+  {
+    name: 'new-blog-post',
+    locked: false,
+  },
+  {
+    name: 'some-branch-name-that-is-out-of-control',
+    locked: false,
+  },
+  {
+    name: 'refactor/tinacms-github-next-package',
+    locked: false,
+  },
+  {
+    name: 'editor_refactor',
+    locked: false,
+  },
+  {
+    name: 'toolbar-bug-fixes',
+    locked: false,
+  },
+  {
+    name: 'docs-updates',
+    locked: false,
+  },
+  {
+    name: 'get-github-static-props',
+    locked: false,
+  },
+  ,
+  {
+    name: 'open-authoring-blog',
+    locked: false,
+  },
+  {
+    name: 'refactoring-docs',
+    locked: false,
+  },
+  {
+    name: 'another-blog-post',
+    locked: false,
+  },
+]
+
 export const BranchSwitcherPlugin = () => ({
   __type: 'toolbar:widget',
   name: 'branch-switcher',
@@ -48,58 +100,16 @@ const BranchSwitcher = ({ forkName }: { forkName: string }) => {
   const [open, setOpen] = React.useState(false)
   const [currentBranch, setCurrentBranch] = React.useState('branch-switcher')
   const [filterValue, setFilterValue] = React.useState('')
+  const selectListRef = React.useRef(null)
+  const data = testBranches
 
-  const testBranches = [
-    {
-      name: 'master',
-      locked: true,
-    },
-    {
-      name: 'branch-switcher',
-      locked: false,
-    },
-    {
-      name: 'new-blog-post',
-      locked: false,
-    },
-    {
-      name: 'some-branch-name-that-is-out-of-control',
-      locked: false,
-    },
-    {
-      name: 'refactor/tinacms-github-next-package',
-      locked: false,
-    },
-    {
-      name: 'editor_refactor',
-      locked: false,
-    },
-    {
-      name: 'toolbar-bug-fixes',
-      locked: false,
-    },
-    {
-      name: 'docs-updates',
-      locked: false,
-    },
-    {
-      name: 'get-github-static-props',
-      locked: false,
-    },
-    ,
-    {
-      name: 'open-authoring-blog',
-      locked: false,
-    },
-    {
-      name: 'refactoring-docs',
-      locked: false,
-    },
-    {
-      name: 'another-blog-post',
-      locked: false,
-    },
-  ]
+  const closeDropdown = () => {
+    setOpen(false)
+    setFilterValue('')
+    if (selectListRef.current) {
+      selectListRef.current.scrollTop = 0
+    }
+  }
 
   return (
     <SelectWrapper>
@@ -109,14 +119,7 @@ const BranchSwitcher = ({ forkName }: { forkName: string }) => {
         <ChevronDownIcon />
       </SelectBox>
       <SelectDropdown open={open}>
-        <Dismissible
-          click
-          escape
-          disabled={!open}
-          onDismiss={() => {
-            setOpen(false)
-          }}
-        >
+        <Dismissible click escape disabled={!open} onDismiss={closeDropdown}>
           <DropdownHeader>
             <SelectFilter
               placeholder="Filter"
@@ -124,8 +127,8 @@ const BranchSwitcher = ({ forkName }: { forkName: string }) => {
               value={filterValue}
             />
           </DropdownHeader>
-          <SelectList>
-            {testBranches
+          <SelectList ref={selectListRef}>
+            {data
               .filter(option => {
                 return option.name.includes(filterValue)
               })
@@ -136,13 +139,13 @@ const BranchSwitcher = ({ forkName }: { forkName: string }) => {
                   onClick={() => {
                     cms.alerts.info('Switched to branch ' + option.name)
                     setCurrentBranch(option.name)
-                    setOpen(false)
+                    closeDropdown()
                   }}
                 >
                   {option.locked && <LockedIcon />} {option.name}
                 </SelectOption>
               ))}
-            {testBranches.filter(option => {
+            {data.filter(option => {
               return option.name.includes(filterValue)
             }).length === 0 && (
               <SelectEmptyState>No branches to display.</SelectEmptyState>
