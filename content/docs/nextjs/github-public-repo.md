@@ -221,58 +221,38 @@ Don't forget to add the **Client ID** and **Client Secret** to your environment 
 Now that we have access to the user's auth token, we can load content from Github within `getStaticProps`.
 
 ```ts
-//Blog template [slug].ts
+//About template about.tsx
 
-import { getMarkdownFile as getGithubMarkdownFile } from 'next-tinacms-github'
+import { getGithubPreviewProps, GithubPreviewProps } from 'next-tinacms-github'
 
 // ...
 
 export const getStaticProps: GetStaticProps = async function({
   preview,
   previewData,
-  ...ctx
 }) {
-  const { slug } = ctx.params
-
-  let file = {}
-  const filePath = `content/blog/${slug}.md`
-
-  const sourceProviderConnection = {
-    forkFullName: previewData.fork_full_name,
-    headBranch: previewData.head_branch || 'master',
-  }
-
-  let error = null
+  const filePath = `content/about.md`
 
   if (preview) {
-    try {
-      file = await getGithubMarkdownFile(
-        filePath,
-        sourceProviderConnection,
-        previewData.accessToken
-      )
-    } catch (e) {
-      // If there is an error initially loading the content from Github, we want to display an actionable error
-      // to the user. They may need to re-authenticate or create a new fork.
-      if (e instanceof GithubError) {
-        error = { ...e } //workaround since we cant return error as JSON
-      } else {
-        throw e
-      }
-    }
+    return getGithubPreviewProps({
+      ...previewData,
+      fileRelativePath: filePath,
+      format: 'markdown',
+    })
   } else {
     // Get your production content here
-    // when you are not in edit-mode
-    file = await readLocalMarkdownFile(filePath)
-  }
+    // when you are not in edit-mode.
+    // This should make format of GithubPreviewData
+    const file = await readLocalMarkdownFile(filePath)
 
-  return {
-    props: {
-      sourceProviderConnection,
-      editMode: !!preview,
-      file,
-      error,
-    },
+    return {
+      props: {
+        sourceProviderConnection: null,
+        editMode: false,
+        file,
+        error: null,
+      },
+    }
   }
 }
 ```
@@ -283,20 +263,22 @@ Any forms that we have on our site can be created with the `useGithubJsonForm` o
 
 ```tsx
 function BlogTemplate({
-  jsonFile, // content for this page
+  file, // content for this page
   sourceProviderConnection, // repository details
 }) {
   const formOptions = {
-    label: 'Blog Post',
-    fields: [],
+    label: 'About',
+    fields: [
+      //...
+    ],
   }
 
   // Registers a JSON Tina Form
-  const [data, form] = useGithubJsonForm(
-    jsonFile,
-    formOptions,
-    sourceProviderConnection
-  )
+  const [data, form] = useGithubJsonForm(file, formOptions, {
+    branch: sourceProvider?.headBranch || '',
+    forkFullName: sourceProvider?.forkFullName || '',
+    baseRepoFullName: process.env.baseRepoFullName || '',
+  })
 
   // ...
 }
