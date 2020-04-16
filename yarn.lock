@@ -7129,7 +7129,7 @@ next-tick@~1.0.0:
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
-next-tinacms-github@^0.0.2-canary4.2:
+next-tinacms-github@^0.0.2-canary4.0:
   version "0.0.2-canary4.2"
   resolved "https://registry.yarnpkg.com/next-tinacms-github/-/next-tinacms-github-0.0.2-canary4.2.tgz#08e4f22e4adc7b63619e0b3bcf9ed16ddd422f7a"
   integrity sha512-6KGOo1Nrn13EjgJ1KzrZ5Sk1jTd69Wmdcl8jlqVon6t4t8y1+3f5GsDLnLaQ1pjKg/XA9EKWXvDVfVCwFv4/lw==
@@ -8897,7 +8897,7 @@ react-tinacms-editor@^0.4.1-alpha.1:
     prosemirror-view "^1.11.3"
     react-dismissible "^1.1.5"
 
-react-tinacms-github@^0.0.1-canary3.2:
+react-tinacms-github@^0.0.1-canary3.0:
   version "0.0.1-canary3.2"
   resolved "https://registry.yarnpkg.com/react-tinacms-github/-/react-tinacms-github-0.0.1-canary3.2.tgz#9b0def97fc5516acc44c110c469cdeac44423015"
   integrity sha512-4VviOjAL+FXe1CUxi7d9jt3asDKbxanMhCft7oLtPlQkfWpZPVw70o8B/37BNcdKDLoK73+a13SfUU87Ft5noQ==
