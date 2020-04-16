@@ -9,6 +9,10 @@ import {
   ModalHeader,
   ModalBody,
   ModalActions,
+  SelectField,
+  TextField,
+  FormBuilder,
+  FieldsBuilder,
 } from 'tinacms'
 import { AddIcon, ChevronDownIcon } from '@tinacms/icons'
 import { Button } from '@tinacms/styles'
@@ -180,26 +184,61 @@ const BranchSwitcher = ({ forkName }: { forkName: string }) => {
 const CreateBranchModal = ({ close }: any) => {
   const cms = useCMS()
 
+  const branchOptions = testBranches.map(function(branch) {
+    return branch.name
+  })
+
   const handleSubmit = () => {
     return null
   }
 
+  const form: Form = React.useMemo(
+    () =>
+      new Form({
+        label: 'create-branch',
+        id: 'create-branch-id',
+        actions: [],
+        fields: [
+          {
+            label: 'Base Branch',
+            name: 'base',
+            component: 'select',
+            //@ts-ignore
+            options: branchOptions,
+          },
+          { label: 'Name', name: 'name', component: 'text' },
+        ],
+        onSubmit(values) {
+          handleSubmit()
+        },
+      }),
+    [cms]
+  )
+
   return (
     <Modal>
-      <ModalPopup>
-        <ModalHeader close={close}>Create Branch</ModalHeader>
-        <ModalBody
-          onKeyPress={e => (e.charCode === 13 ? (handleSubmit() as any) : null)}
-        >
-          <h1>here be form</h1>
-        </ModalBody>
-        <ModalActions>
-          <Button onClick={close}>Cancel</Button>
-          <Button onClick={handleSubmit} primary>
-            Create
-          </Button>
-        </ModalActions>
-      </ModalPopup>
+      <FormBuilder form={form}>
+        {({ handleSubmit }) => {
+          return (
+            <ModalPopup>
+              <ModalHeader close={close}>Create Branch</ModalHeader>
+              <ModalBody
+                onKeyPress={e =>
+                  e.charCode === 13 ? (handleSubmit() as any) : null
+                }
+              >
+                <FieldsBuilder form={form} fields={form.fields} />
+              </ModalBody>
+              <ModalActions>
+                <Button onClick={close}>Cancel</Button>
+                <Button onClick={handleSubmit} primary>
+                  Create
+                </Button>
+              </ModalActions>
+            </ModalPopup>
+          )
+        }}
+      </FormBuilder>
     </Modal>
   )
 }
