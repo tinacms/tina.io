@@ -9,6 +9,10 @@ import {
   ModalHeader,
   ModalBody,
   ModalActions,
+  SelectField,
+  TextField,
+  FormBuilder,
+  FieldsBuilder,
 } from 'tinacms'
 import { AddIcon, ChevronDownIcon } from '@tinacms/icons'
 import { Button } from '@tinacms/styles'
@@ -35,6 +39,58 @@ export const useBranchToolbarPlugins = (form: Form<any>, editMode: boolean) => {
   }, [editMode, form])
 }
 
+const testBranches = [
+  {
+    name: 'master',
+    locked: true,
+  },
+  {
+    name: 'branch-switcher',
+    locked: false,
+  },
+  {
+    name: 'new-blog-post',
+    locked: false,
+  },
+  {
+    name: 'some-branch-name-that-is-out-of-control',
+    locked: false,
+  },
+  {
+    name: 'refactor/tinacms-github-next-package',
+    locked: false,
+  },
+  {
+    name: 'editor_refactor',
+    locked: false,
+  },
+  {
+    name: 'toolbar-bug-fixes',
+    locked: false,
+  },
+  {
+    name: 'docs-updates',
+    locked: false,
+  },
+  {
+    name: 'get-github-static-props',
+    locked: false,
+  },
+  ,
+  {
+    name: 'open-authoring-blog',
+    locked: false,
+  },
+  {
+    name: 'refactoring-docs',
+    locked: false,
+  },
+  {
+    name: 'another-blog-post',
+    locked: false,
+  },
+]
+
 export const BranchSwitcherPlugin = () => ({
   __type: 'toolbar:widget',
   name: 'branch-switcher',
@@ -46,142 +102,143 @@ export const BranchSwitcherPlugin = () => ({
 const BranchSwitcher = ({ forkName }: { forkName: string }) => {
   const cms = useCMS()
   const [open, setOpen] = React.useState(false)
+  const [createBranchOpen, setCreateBranchOpen] = React.useState(false)
   const [currentBranch, setCurrentBranch] = React.useState('branch-switcher')
   const [filterValue, setFilterValue] = React.useState('')
+  const selectListRef = React.useRef(null)
+  const data = testBranches
 
-  const testBranches = [
-    {
-      name: 'master',
-      locked: true,
-    },
-    {
-      name: 'branch-switcher',
-      locked: false,
-    },
-    {
-      name: 'new-blog-post',
-      locked: false,
-    },
-    {
-      name: 'some-branch-name-that-is-out-of-control',
-      locked: false,
-    },
-    {
-      name: 'refactor/tinacms-github-next-package',
-      locked: false,
-    },
-    {
-      name: 'editor_refactor',
-      locked: false,
-    },
-    {
-      name: 'toolbar-bug-fixes',
-      locked: false,
-    },
-    {
-      name: 'docs-updates',
-      locked: false,
-    },
-    {
-      name: 'get-github-static-props',
-      locked: false,
-    },
-    ,
-    {
-      name: 'open-authoring-blog',
-      locked: false,
-    },
-    {
-      name: 'refactoring-docs',
-      locked: false,
-    },
-    {
-      name: 'another-blog-post',
-      locked: false,
-    },
-  ]
+  const closeDropdown = () => {
+    setOpen(false)
+    setFilterValue('')
+    if (selectListRef.current) {
+      selectListRef.current.scrollTop = 0
+    }
+  }
+
+  const openCreateBranchModal = () => {
+    closeDropdown()
+    setCreateBranchOpen(true)
+  }
 
   return (
-    <SelectWrapper>
-      <SelectBox onClick={() => setOpen(!open)} open={open}>
-        <SelectLabel>Branch</SelectLabel>
-        <SelectCurrent>{currentBranch}</SelectCurrent>
-        <ChevronDownIcon />
-      </SelectBox>
-      <SelectDropdown open={open}>
-        <Dismissible
-          click
-          escape
-          disabled={!open}
-          onDismiss={() => {
-            setOpen(false)
-          }}
-        >
-          <DropdownHeader>
-            <SelectFilter
-              placeholder="Filter"
-              onChange={event => setFilterValue(event.target.value)}
-              value={filterValue}
-            />
-          </DropdownHeader>
-          <SelectList>
-            {testBranches
-              .filter(option => {
+    <>
+      <SelectWrapper>
+        <SelectBox onClick={() => setOpen(!open)} open={open}>
+          <SelectLabel>Branch</SelectLabel>
+          <SelectCurrent>{currentBranch}</SelectCurrent>
+          <ChevronDownIcon />
+        </SelectBox>
+        <SelectDropdown open={open}>
+          <Dismissible click escape disabled={!open} onDismiss={closeDropdown}>
+            <DropdownHeader>
+              <SelectFilter
+                placeholder="Filter"
+                onChange={event => setFilterValue(event.target.value)}
+                value={filterValue}
+              />
+            </DropdownHeader>
+            <SelectList ref={selectListRef}>
+              {data
+                .filter(option => {
+                  return option.name.includes(filterValue)
+                })
+                .map(option => (
+                  <SelectOption
+                    key={option.name}
+                    active={option.name === currentBranch}
+                    onClick={() => {
+                      cms.alerts.info('Switched to branch ' + option.name)
+                      setCurrentBranch(option.name)
+                      closeDropdown()
+                    }}
+                  >
+                    {option.locked && <LockedIcon />} {option.name}
+                  </SelectOption>
+                ))}
+              {data.filter(option => {
                 return option.name.includes(filterValue)
-              })
-              .map(option => (
-                <SelectOption
-                  key={option.name}
-                  active={option.name === currentBranch}
-                  onClick={() => {
-                    cms.alerts.info('Switched to branch ' + option.name)
-                    setCurrentBranch(option.name)
-                    setOpen(false)
-                  }}
-                >
-                  {option.locked && <LockedIcon />} {option.name}
-                </SelectOption>
-              ))}
-            {testBranches.filter(option => {
-              return option.name.includes(filterValue)
-            }).length === 0 && (
-              <SelectEmptyState>No branches to display.</SelectEmptyState>
-            )}
-          </SelectList>
-          <DropdownActions>
-            <CreateButton>
-              <AddIcon /> New Branch
-            </CreateButton>
-          </DropdownActions>
-        </Dismissible>
-      </SelectDropdown>
-    </SelectWrapper>
+              }).length === 0 && (
+                <SelectEmptyState>No branches to display.</SelectEmptyState>
+              )}
+            </SelectList>
+            <DropdownActions>
+              <CreateButton onClick={openCreateBranchModal}>
+                <AddIcon /> New Branch
+              </CreateButton>
+            </DropdownActions>
+          </Dismissible>
+        </SelectDropdown>
+      </SelectWrapper>
+      {createBranchOpen && (
+        <CreateBranchModal
+          close={() => {
+            setCreateBranchOpen(false)
+          }}
+        />
+      )}
+    </>
   )
 }
 
 const CreateBranchModal = ({ close }: any) => {
   const cms = useCMS()
 
+  const branchOptions = testBranches.map(function(branch) {
+    return branch.name
+  })
+
   const handleSubmit = () => {
     return null
   }
 
+  const form: Form = React.useMemo(
+    () =>
+      new Form({
+        label: 'create-branch',
+        id: 'create-branch-id',
+        actions: [],
+        fields: [
+          {
+            label: 'Base Branch',
+            name: 'base-branch',
+            component: 'select',
+            //@ts-ignore
+            options: branchOptions,
+          },
+          { label: 'Branch Name', name: 'branch-name', component: 'text' },
+        ],
+        onSubmit(values) {
+          handleSubmit()
+        },
+      }),
+    [cms]
+  )
+
   return (
     <Modal>
-      <ModalPopup>
-        <ModalHeader close={close}>Create Branch</ModalHeader>
-        <ModalBody
-          onKeyPress={e => (e.charCode === 13 ? (handleSubmit() as any) : null)}
-        >
-          <h1>here be form</h1>
-        </ModalBody>
-        <ModalActions>
-          <Button onClick={close}>Cancel</Button>
-          <Button onClick={handleSubmit} primary>
-            Create
-          </Button>
-        </ModalActions>
-      </ModalPopup>
+      <FormBuilder form={form}>
+        {({ handleSubmit }) => {
+          return (
+            <ModalPopup>
+              <ModalHeader close={close}>Create Branch</ModalHeader>
+              <ModalBody
+                onKeyPress={e =>
+                  e.charCode === 13 ? (handleSubmit() as any) : null
+                }
+              >
+                <FieldsBuilder form={form} fields={form.fields} />
+              </ModalBody>
+              <ModalActions>
+                <Button onClick={close}>Cancel</Button>
+                <Button onClick={handleSubmit} primary>
+                  Create
+                </Button>
+              </ModalActions>
+            </ModalPopup>
+          )
+        }}
+      </FormBuilder>
     </Modal>
   )
 }
@@ -382,7 +439,7 @@ const SelectBox = styled.button<SelectBoxProps>`
   border-radius: var(--tina-radius-small);
   border: 1px solid var(--tina-color-grey-2);
   background-color: white;
-  padding: 5px 42px 6px var(--tina-padding-small);
+  padding: 5px 42px 5px var(--tina-padding-small);
   position: relative;
   outline: none;
   cursor: pointer;
@@ -426,7 +483,7 @@ const SelectLabel = styled.span`
   color: var(--tina-color-grey-8);
   display: block;
   letter-spacing: 0.01em;
-  line-height: 1.35;
+  line-height: 1;
   font-size: var(--tina-font-size-1);
   font-weight: 600;
   text-align: left;
@@ -437,7 +494,7 @@ const SelectCurrent = styled.span`
   color: var(--tina-color-grey-6);
   display: block;
   text-align: left;
-  line-height: 17px;
+  line-height: 20px;
   text-overflow: ellipsis;
   max-width: 250px;
   white-space: nowrap;
