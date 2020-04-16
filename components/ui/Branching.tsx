@@ -46,68 +46,57 @@ export const BranchSwitcherPlugin = () => ({
 const BranchSwitcher = ({ forkName }: { forkName: string }) => {
   const cms = useCMS()
   const [open, setOpen] = React.useState(false)
+  const [currentBranch, setCurrentBranch] = React.useState('branch-switcher')
   const [filterValue, setFilterValue] = React.useState('')
 
   const testBranches = [
     {
       name: 'master',
-      active: false,
       locked: true,
     },
     {
       name: 'branch-switcher',
-      active: true,
       locked: false,
     },
     {
       name: 'new-blog-post',
-      active: false,
       locked: false,
     },
     {
       name: 'some-branch-name-that-is-out-of-control',
-      active: false,
       locked: false,
     },
     {
       name: 'refactor/tinacms-github-next-package',
-      active: false,
       locked: false,
     },
     {
       name: 'editor_refactor',
-      active: false,
       locked: false,
     },
     {
       name: 'toolbar-bug-fixes',
-      active: false,
       locked: false,
     },
     {
       name: 'docs-updates',
-      active: false,
       locked: false,
     },
     {
       name: 'get-github-static-props',
-      active: false,
       locked: false,
     },
     ,
     {
       name: 'open-authoring-blog',
-      active: false,
       locked: false,
     },
     {
       name: 'refactoring-docs',
-      active: false,
       locked: false,
     },
     {
       name: 'another-blog-post',
-      active: false,
       locked: false,
     },
   ]
@@ -116,7 +105,7 @@ const BranchSwitcher = ({ forkName }: { forkName: string }) => {
     <SelectWrapper>
       <SelectBox onClick={() => setOpen(!open)} open={open}>
         <SelectLabel>Branch</SelectLabel>
-        <SelectCurrent>branch-switcher</SelectCurrent>
+        <SelectCurrent>{currentBranch}</SelectCurrent>
         <ChevronDownIcon />
       </SelectBox>
       <SelectDropdown open={open}>
@@ -143,9 +132,10 @@ const BranchSwitcher = ({ forkName }: { forkName: string }) => {
               .map(option => (
                 <SelectOption
                   key={option.name}
-                  active={option.active}
+                  active={option.name === currentBranch}
                   onClick={() => {
                     cms.alerts.info('Switched to branch ' + option.name)
+                    setCurrentBranch(option.name)
                     setOpen(false)
                   }}
                 >
@@ -448,6 +438,10 @@ const SelectCurrent = styled.span`
   display: block;
   text-align: left;
   line-height: 17px;
+  text-overflow: ellipsis;
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
 `
 
 export const LockedIcon = () => (
