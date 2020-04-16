@@ -28,16 +28,30 @@ or
 yarn add react-tinacms-github next-tinacms-github
 ```
 
-### react-tinacms-github
+#### `react-tinacms-github`
 
 This package provides helpers for setting up TinaCMS to use the Github API, with Github authentication.
 
-### next-tinacms-github
+#### `next-tinacms-github`
 
 This package provides helpers for managing the github auth token for requests, as well as
 providing helpers for loading content from the Github API.
 
 ## Getting Started
+
+### Environment Variables
+
+Throughout this guide, some environment variables will be used:
+
+```
+# .env
+GITHUB_CLIENT_ID= # We will generate this later when we create a Github app.
+GITHUB_CLIENT_SECRET= # We will generate this later when we create a Github app.
+REPO_FULL_NAME=tinacms/tinacms.org # This is your github repository's owner / repo-name.
+BASE_BRANCH=master
+```
+
+For help setting up environment variables with Next, see the [Next docs](https://nextjs.org/docs/api-reference/next.config.js/environment-variables)
 
 ### Register the GithubClient
 
@@ -77,15 +91,15 @@ $ npx hygen next-tinacms-github bootstrap --format ts
 
 You'll see that a few API functions have been setup for us.
 
-### `preview.ts`
+#### `preview.ts`
 
 Contains API function to enter preview-mode, and set the preview-data with content stored in the cookies.
 
-### `proxy-github.ts`
+#### `proxy-github.ts`
 
 Contains API function to attach the user's auth token, and proxy requests to the Github API.
 
-### `create-github-auth-token.ts`
+#### `create-github-auth-token.ts`
 
 Helper for creating a `createCreateAccessToken` server function.
 
@@ -93,7 +107,7 @@ Helper for creating a `createCreateAccessToken` server function.
 
 > [See below](#github-oauth-app) for instructions on creating a Github OAuth App to generate these **Client ID** & **Client Secret** variables.
 
-### Managing "edit-mode" state
+## Managing "edit-mode" state
 
 Next, we'll add the root `TinacmsGithubProvider` component to our main layout. This is responible for validating that the user has access to the repository, and managing entering/exiting edit-mode.
 When we enter/exit edit-mode, we will hit our `/api` server functions that we created in the previous step.
@@ -129,7 +143,7 @@ const YourLayout = ({ error, children }) => {
 }
 ```
 
-### Entering / Exiting "edit-mode"
+## Entering / Exiting "edit-mode"
 
 Next, we will need a way to enter/exit mode from our site. Let's create an "Edit Link" button. Ours will take `isEditing` as a parameter.
 
@@ -154,7 +168,7 @@ export const EditLink = ({ isEditing }: EditLinkProps) => {
 }
 ```
 
-### Auth Redirects
+## Auth Redirects
 
 We will also a page to redirect the user to while authenticating with Github.
 
@@ -170,7 +184,7 @@ export default function Authorizing() {
 }
 ```
 
-### Github Oauth App:
+## Github Oauth App
 
 In GitHub, within your account Settings, click [Oauth Apps](https://github.com/settings/developers) under Developer Settings.
 
@@ -179,9 +193,9 @@ click "New Oauth App".
 For the **Authorization callback URL**, enter the url for the "authorizing" page that you created above (e.g https://your-url/github/authorizing). Fill out the other fields with your custom values.
 _Note: If you are testing your app locally, you may need a separate development Github app (with a localhost redirect), and a production Github app._
 
-The **Client Secret** will be used by your backend.
+Don't forget to add the **Client ID** and **Client Secret** to your environment variables.
 
-### Using Github Forms
+## Using Github Forms
 
 Any forms that we have on our site can be created with the `useGithubJsonForm` or `useGithubMarkdownForm` helpers
 
@@ -208,7 +222,7 @@ function BlogTemplate({
 
 `useGithubJsonForm` will use the `GithubClient` api that we [registered earlier](#register-the-githubclient).
 
-### Loading content from Github
+## Loading content from Github
 
 The `preview` data, which gets set by calling your [preview function](#previewhandler), will be accesible through `getStaticProps` throughout your app.
 
@@ -269,9 +283,9 @@ export const getStaticProps: GetStaticProps = async function({
 }
 ```
 
-### Error Handling
+## Error Handling
 
-Add error handling to our forms which prompt Github-specific action when errors occur (e.g a fork no longer exists).
+We'll also need to add error handling to our forms, which prompts Github-specific action when errors occur (e.g a fork no longer exists).
 
 ```tsx
 // YourSiteForm.ts
