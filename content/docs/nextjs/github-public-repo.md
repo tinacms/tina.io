@@ -95,8 +95,8 @@ Helper for creating a `createCreateAccessToken` server function.
 
 ### Managing "edit-mode" state
 
-Next, we'll add the root `TinacmsGithubProvider` component to our main layout. This is responible for making validating that the user has access to the repository, and manages entering/exiting edit-mode.
-When we enter/exit edit-mode, we will hit our `/api` server functions that we created above.
+Next, we'll add the root `TinacmsGithubProvider` component to our main layout. This is responible for validating that the user has access to the repository, and managing entering/exiting edit-mode.
+When we enter/exit edit-mode, we will hit our `/api` server functions that we created in the previous step.
 
 ```tsx
 // YourLayout.ts
@@ -129,41 +129,11 @@ const YourLayout = ({ error, children }) => {
 }
 ```
 
-### Error Handling
-
-Add error handling to our forms which prompt Github-specific action when errors occur (e.g a fork no longer exists).
-
-```tsx
-// YourSiteForm.ts
-import { useGithubErrorListener } from 'react-tinacms-github'
-
-const YourSiteForm = ({ form, children }) => {
-  useGithubErrorListener(form)
-  return <FormLayout>{children}</FormLayout>
-}
-```
-
-### Auth Redirects
-
-We will also need a few Github Specific pages to redirect the user to while authenticating with Github
-
-```tsx
-//pages/github/authorizing.tsx
-// Our Github app redirects back to this page with auth code
-import { useGithubAuthRedirect } from 'react-tinacms-github'
-
-export default function Authorizing() {
-  // Let the main app know, that we receieved an auth code from the Github redirect
-  useGithubAuthRedirect()
-  return <h2>Authorizing with Github, Please wait...</h2>
-}
-```
-
 ### Entering / Exiting "edit-mode"
 
-We will need a way to enter/exit mode from our site. Let's create an "Edit Link" button. Ours will take `isEditing` as a parameter.
+Next, we will need a way to enter/exit mode from our site. Let's create an "Edit Link" button. Ours will take `isEditing` as a parameter.
 
-_If you are using Next.js's [preview-mode](https://nextjs.org/docs/advanced-features/preview-mode) for the editing environment, this `isEditing` value might get sent from your getStaticProps function._
+_We'll be using Next.js's [preview-mode](https://nextjs.org/docs/advanced-features/preview-mode) to set this `isEditing` value. We'll set that up later_
 
 ```tsx
 //...EditLink.tsx
@@ -184,17 +154,32 @@ export const EditLink = ({ isEditing }: EditLinkProps) => {
 }
 ```
 
+### Auth Redirects
+
+We will also a page to redirect the user to while authenticating with Github.
+
+```tsx
+//pages/github/authorizing.tsx
+// Our Github app redirects back to this page with auth code
+import { useGithubAuthRedirect } from 'react-tinacms-github'
+
+export default function Authorizing() {
+  // Let the main app know, that we receieved an auth code from the Github redirect
+  useGithubAuthRedirect()
+  return <h2>Authorizing with Github, Please wait...</h2>
+}
+```
+
 ### Github Oauth App:
 
 In GitHub, within your account Settings, click [Oauth Apps](https://github.com/settings/developers) under Developer Settings.
 
 click "New Oauth App".
 
-For the **Authorization callback URL**, enter the url for the "authorizing" page that [you created above](#auth-redirects) (e.g https://your-url/github/authorizing). Fill out the other fields with your custom values.
+For the **Authorization callback URL**, enter the url for the "authorizing" page that you created above (e.g https://your-url/github/authorizing). Fill out the other fields with your custom values.
+_Note: If you are testing your app locally, you may need a separate development Github app (with a localhost redirect), and a production Github app._
 
-The generated **Client ID** will be used in your site (remember, we passed this value into the Github `authenticate` method earlier).
-
-The **Client Secret** will likely be used by your backend.
+The **Client Secret** will be used by your backend.
 
 ### Using Github Forms
 
@@ -284,13 +269,16 @@ export const getStaticProps: GetStaticProps = async function({
 }
 ```
 
-### Github Oauth App:
+### Error Handling
 
-In GitHub, within your account Settings, click [Oauth Apps](https://github.com/settings/developers) under Developer Settings.
+Add error handling to our forms which prompt Github-specific action when errors occur (e.g a fork no longer exists).
 
-click "New Oauth App".
+```tsx
+// YourSiteForm.ts
+import { useGithubErrorListener } from 'react-tinacms-github'
 
-For the **Authorization callback URL**, enter the url for the "authorizing" page that you created above (e.g https://your-url/github/authorizing). Fill out the other fields with your custom values.
-_Note: If you are testing your app locally, you may need a separate development Github app (with a localhost redirect), and a production Github app._
-
-The generated **Client ID** & **Client Secret** will be consumed by the `createCreateAccessTokenFn` [defined above](#createcreateaccesstokenfn).
+const YourSiteForm = ({ form, children }) => {
+  useGithubErrorListener(form)
+  return <FormLayout>{children}</FormLayout>
+}
+```
