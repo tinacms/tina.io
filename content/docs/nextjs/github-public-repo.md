@@ -197,36 +197,9 @@ _Note: If you are testing your app locally, you may need a separate development 
 
 Don't forget to add the **Client ID** and **Client Secret** to your environment variables.
 
-## Using Github Forms
-
-Any forms that we have on our site can be created with the `useGithubJsonForm` or `useGithubMarkdownForm` helpers
-
-```tsx
-function BlogTemplate({
-  jsonFile, // content for this page
-  sourceProviderConnection, // repository details
-}) {
-  const formOptions = {
-    label: 'Blog Post',
-    fields: [],
-  }
-
-  // Registers a JSON Tina Form
-  const [data, form] = useGithubJsonForm(
-    jsonFile,
-    formOptions,
-    sourceProviderConnection
-  )
-
-  // ...
-}
-```
-
-`useGithubJsonForm` will use the `GithubClient` api that we [registered earlier](#register-the-githubclient).
-
 ## Loading content from Github
 
-The `preview` data, which gets set by calling your [preview function](#previewhandler), will be accesible through `getStaticProps` throughout your app.
+Now that we have access to the user's auth token, we can load content from Github within `getStaticProps`.
 
 ```ts
 //Blog template [slug].ts
@@ -284,6 +257,33 @@ export const getStaticProps: GetStaticProps = async function({
   }
 }
 ```
+
+## Using Github Forms
+
+Any forms that we have on our site can be created with the `useGithubJsonForm` or `useGithubMarkdownForm` helpers
+
+```tsx
+function BlogTemplate({
+  jsonFile, // content for this page
+  sourceProviderConnection, // repository details
+}) {
+  const formOptions = {
+    label: 'Blog Post',
+    fields: [],
+  }
+
+  // Registers a JSON Tina Form
+  const [data, form] = useGithubJsonForm(
+    jsonFile,
+    formOptions,
+    sourceProviderConnection
+  )
+
+  // ...
+}
+```
+
+`useGithubJsonForm` will use the `GithubClient` api that we [registered earlier](#register-the-githubclient).
 
 ## Error Handling
 
