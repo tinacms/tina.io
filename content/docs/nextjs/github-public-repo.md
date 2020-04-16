@@ -37,11 +37,11 @@ This package provides helpers for setting up TinaCMS to use the Github API, with
 This package provides helpers for managing the github auth token for requests, as well as
 providing helpers for loading content from the Github API.
 
-## Getting Started
-
 ### Environment Variables
 
 Throughout this guide, some environment variables will be used:
+
+You may want a `.env` file in your project root i.e
 
 ```
 # .env
@@ -51,7 +51,26 @@ REPO_FULL_NAME=tinacms/tinacms.org # This is your github repository's owner / re
 BASE_BRANCH=master
 ```
 
+To load these .env values in the front-end, your `next.config` will need to be configured. We will also use the `dotenv` package to load our `.env` file:
+
+`npm install --save dotenv`
+
+```
+require("dotenv").config();
+
+module.exports = {
+  env: {
+    GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
+    REPO_FULL_NAME: process.env.REPO_FULL_NAME,
+    BASE_BRANCH: process.env.BASE_BRANCH,
+  },
+  // ...
+}
+```
+
 For help setting up environment variables with Next, see the [Next docs](https://nextjs.org/docs/api-reference/next.config.js/environment-variables)
+
+## Setup
 
 ### Register the GithubClient
 
