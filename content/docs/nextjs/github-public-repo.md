@@ -19,13 +19,13 @@ Using Next.js's preview-mode ([announced in Next.js 9.3](https://nextjs.org/blog
 We'll need to add a few Tina-Github packages to our site:
 
 ```
-npm install --save react-tinacms-github next-tinacms-github
+npm install --save react-tinacms-github next-tinacms-github final-form-submit-listener
 ```
 
 or
 
 ```
-yarn add react-tinacms-github next-tinacms-github
+yarn add react-tinacms-github next-tinacms-github final-form-submit-listener
 ```
 
 #### `react-tinacms-github`
@@ -61,7 +61,7 @@ We will want to use the GithubClient to load/save our content using the Github A
 import { TinaCMS } from 'tinacms'
 import { GithubClient } from 'react-tinacms-github'
 
-const REPO_FULL_NAME = process.env.REPO_FULL_NAME // e.g: tinacms/tinacms.org
+const REPO_FULL_NAME = process.env.REPO_FULL_NAME as string // e.g: tinacms/tinacms.org
 
 const cms = new TinaCMS({
   apis: {
@@ -128,14 +128,14 @@ const exitEditMode = () => {
   })
 }
 
-const YourLayout = ({ error, children }) => {
+const YourLayout = ({ error, pageProps, children }) => {
   return (
     <TinacmsGithubProvider
-      clientId={process.env.GITHUB_CLIENT_ID}
+      clientId={process.env.GITHUB_CLIENT_ID || ''}
       authCallbackRoute="/api/create-github-access-token"
       enterEditMode={enterEditMode}
       exitEditMode={exitEditMode}
-      error={error}
+      error={pageProps.error}
     >
       {children}
     </TinacmsGithubProvider>
@@ -151,6 +151,7 @@ _We'll be using Next.js's [preview-mode](https://nextjs.org/docs/advanced-featur
 
 ```tsx
 //...EditLink.tsx
+import React from 'react'
 import { useGithubEditing } from 'react-tinacms-github'
 
 export interface EditLinkProps {
@@ -175,6 +176,7 @@ We will also a page to redirect the user to while authenticating with Github.
 ```tsx
 //pages/github/authorizing.tsx
 // Our Github app redirects back to this page with auth code
+import React from 'react'
 import { useGithubAuthRedirect } from 'react-tinacms-github'
 
 export default function Authorizing() {
