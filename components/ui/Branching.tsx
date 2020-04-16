@@ -44,6 +44,7 @@ export const BranchSwitcherPlugin = () => ({
 })
 
 const BranchSwitcher = ({ forkName }: { forkName: string }) => {
+  const cms = useCMS()
   const [open, setOpen] = React.useState(false)
   const [filterValue, setFilterValue] = React.useState('')
 
@@ -93,6 +94,22 @@ const BranchSwitcher = ({ forkName }: { forkName: string }) => {
       active: false,
       locked: false,
     },
+    ,
+    {
+      name: 'open-authoring-blog',
+      active: false,
+      locked: false,
+    },
+    {
+      name: 'refactoring-docs',
+      active: false,
+      locked: false,
+    },
+    {
+      name: 'another-blog-post',
+      active: false,
+      locked: false,
+    },
   ]
 
   return (
@@ -124,7 +141,14 @@ const BranchSwitcher = ({ forkName }: { forkName: string }) => {
                 return option.name.includes(filterValue)
               })
               .map(option => (
-                <SelectOption key={option.name} active={option.active}>
+                <SelectOption
+                  key={option.name}
+                  active={option.active}
+                  onClick={() => {
+                    cms.alerts.info('Switched to branch ' + option.name)
+                    setOpen(false)
+                  }}
+                >
                   {option.locked && <LockedIcon />} {option.name}
                 </SelectOption>
               ))}
