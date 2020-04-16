@@ -201,12 +201,12 @@ const CreateBranchModal = ({ close }: any) => {
         fields: [
           {
             label: 'Base Branch',
-            name: 'base',
+            name: 'base-branch',
             component: 'select',
             //@ts-ignore
             options: branchOptions,
           },
-          { label: 'Name', name: 'name', component: 'text' },
+          { label: 'Branch Name', name: 'branch-name', component: 'text' },
         ],
         onSubmit(values) {
           handleSubmit()
