@@ -7130,9 +7130,9 @@ next-tick@~1.0.0:
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
 next-tinacms-github@^0.0.2-canary4.0:
-  version "0.0.2-canary4.2"
-  resolved "https://registry.yarnpkg.com/next-tinacms-github/-/next-tinacms-github-0.0.2-canary4.2.tgz#08e4f22e4adc7b63619e0b3bcf9ed16ddd422f7a"
-  integrity sha512-6KGOo1Nrn13EjgJ1KzrZ5Sk1jTd69Wmdcl8jlqVon6t4t8y1+3f5GsDLnLaQ1pjKg/XA9EKWXvDVfVCwFv4/lw==
+  version "0.0.2-canary4.0"
+  resolved "https://registry.yarnpkg.com/next-tinacms-github/-/next-tinacms-github-0.0.2-canary4.0.tgz#2e7f162cb07c459ec1dc08c74c12ff650946b261"
+  integrity sha512-oyS/jUC2NMrVrQkSIhuYlqoHey/7j9pO8grChJlVWnomAhkN6qqkh78D34dOx/xY4hyXA+IM1OmNHfAHOUIc/A==
   dependencies:
     atob "2.1.2"
     axios "0.19.2"
@@ -7153,10 +7153,10 @@ next-tinacms-markdown@^0.2.10:
     gray-matter "^4.0.2"
     js-yaml "^3.13.1"
 
-next-tinacms-markdown@^0.2.12-alpha.2:
-  version "0.2.12-alpha.2"
-  resolved "https://registry.yarnpkg.com/next-tinacms-markdown/-/next-tinacms-markdown-0.2.12-alpha.2.tgz#b4cabf3fb4d4bcf9c48654d19495f084f26a9d54"
-  integrity sha512-CYC3PoJoxNL/in3fmAPI3TFw5YCy4yTWQFN8cRkHQfbKRSsY41OKK/RP1beXM+c4BrzX3rI8QVBzfTmOSPLyiQ==
+next-tinacms-markdown@^0.2.12-alpha.1:
+  version "0.2.12-alpha.1"
+  resolved "https://registry.yarnpkg.com/next-tinacms-markdown/-/next-tinacms-markdown-0.2.12-alpha.1.tgz#ab722f2e16df23cb89d0c1ebe87316f284af2fe2"
+  integrity sha512-9zYg3wM1/VB/PjN95wBfi6NIZWxBQMJCn6Ef/6ZcrldyIH6AEVKGAAZteAkfttDUx1b8rHVzVFajL/geunozaA==
   dependencies:
     gray-matter "^4.0.2"
     js-yaml "^3.13.1"
@@ -8898,14 +8898,13 @@ react-tinacms-editor@^0.4.1-alpha.1:
     react-dismissible "^1.1.5"
 
 react-tinacms-github@^0.0.1-canary3.0:
-  version "0.0.1-canary3.2"
-  resolved "https://registry.yarnpkg.com/react-tinacms-github/-/react-tinacms-github-0.0.1-canary3.2.tgz#9b0def97fc5516acc44c110c469cdeac44423015"
-  integrity sha512-4VviOjAL+FXe1CUxi7d9jt3asDKbxanMhCft7oLtPlQkfWpZPVw70o8B/37BNcdKDLoK73+a13SfUU87Ft5noQ==
+  version "0.0.1-canary3.0"
+  resolved "https://registry.yarnpkg.com/react-tinacms-github/-/react-tinacms-github-0.0.1-canary3.0.tgz#1029d1ac34530f57d83ebd0cd626dbffa65cde13"
+  integrity sha512-1AlI1Xt8Ka/FNIq1+8BUpbnoM/sre4X17bHF65LAqlm5AmgMqCblR+GILQ4Am3w/6fD4+oA93DSbBd7XFLgHrA==
   dependencies:
     btoa "^1.2.1"
-    final-form-submit-listener "^1.0.0"
     js-cookie "^2.2.1"
-    next-tinacms-markdown "^0.2.12-alpha.2"
+    next-tinacms-markdown "^0.2.12-alpha.1"
 
 react-tinacms-inline@^0.4.3:
   version "0.4.4"
