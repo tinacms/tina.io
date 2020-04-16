@@ -57,10 +57,46 @@ const cms = new TinaCMS({
 })
 ```
 
+You'll notice that the GithubClient takes in a string ('/api/proxy-github' in our case). All requests using the GithubClient gets passed through a custom proxy, so that we can attach the authentication tokens on the backend.
+
+Let's setup up some of these backend API functions.
+
+## API functions
+
+We will need a few API functions to handle Github authentication, and Next.js's preview-mode:
+With Next.js, any functions in the `pages/api` directory are are mapped to `/api/*` endpoints.
+
+We've created a script to make generating these files easier:
+
+From the console, run:
+
+```
+$ npx hygen-add https://github.com/dwalkr/hygen-next-tinacms-github
+$ npx hygen next-tinacms-github bootstrap --format ts
+```
+
+You'll see that a few API functions have been setup for us.
+
+### `preview.ts`
+
+Contains API function to enter preview-mode, and set the preview-data with content stored in the cookies.
+
+### `proxy-github.ts`
+
+Contains API function to attach the user's auth token, and proxy requests to the Github API.
+
+### `create-github-auth-token.ts`
+
+Helper for creating a `createCreateAccessToken` server function.
+
+> _Note: You may need to configure the `process.env.GITHUB_CLIENT_ID` and `process.env.GITHUB_CLIENT_SECRET` environment variables within this file._ _See [Next's documentation](https://nextjs.org/docs/api-reference/next.config.js/environment-variables) for adding environment variables_
+
+> [See below](#github-oauth-app) for instructions on creating a Github OAuth App to generate these **Client ID** & **Client Secret** variables.
+
 ### Managing "edit-mode" state
 
-Add the root `TinacmsGithubProvider` component to our main layout. We will supply it with handlers for authenticating and entering/exiting edit-mode.
-In this case, we will hit our `/api` server functions.
+Next, we'll add the root `TinacmsGithubProvider` component to our main layout. This is responible for making validating that the user has access to the repository, and manages entering/exiting edit-mode.
+When we enter/exit edit-mode, we will hit our `/api` server functions that we created above.
 
 ```tsx
 // YourLayout.ts
@@ -186,60 +222,6 @@ function BlogTemplate({
 ```
 
 `useGithubJsonForm` will use the `GithubClient` api that we [registered earlier](#register-the-githubclient).
-
-## Next steps
-
-Now that we have configured our front-end to use Github, we will need to setup some backend functions to handle authentication.
-If you are using Nextjs, you may want to use the [next-tinacms-github](https://github.com/tinacms/tinacms/tree/master/packages/next-tinacms-github) package.
-
-# next-tinacms-github
-
-This package provides helpers for managing the github auth token for requests, as well as
-providing helpers for loading content from the Github API.
-
-## Installation
-
-```
-npm install --save next-tinacms-github
-```
-
-or
-
-```
-yarn add next-tinacms-github
-```
-
-## Setup API functions
-
-We will need a few API functions to handle Github authentication, and Next.js's preview-mode:
-With Next.js, any functions in the `pages/api` directory are are mapped to `/api/*` endpoints.
-
-We've created a script to make generating these files easier:
-
-From the console, run:
-
-```
-$ npx hygen-add https://github.com/dwalkr/hygen-next-tinacms-github
-$ npx hygen next-tinacms-github bootstrap --format ts
-```
-
-You'll see that a few API functions have been setup for us.
-
-### `preview.ts`
-
-Contains API function to enter preview-mode, and set the preview-data with content stored in the cookies.
-
-### `proxy-github.ts`
-
-Contains API function to attach the user's auth token, and proxy requests to the Github API.
-
-### `create-github-auth-token.ts`
-
-Helper for creating a `createCreateAccessToken` server function.
-
-> _Note: You may need to configure the `process.env.GITHUB_CLIENT_ID` and `process.env.GITHUB_CLIENT_SECRET` environment variables within this file._ _See [Next's documentation](https://nextjs.org/docs/api-reference/next.config.js/environment-variables) for adding environment variables_
-
-> [See below](#github-oauth-app) for instructions on creating a Github OAuth App to generate these **Client ID** & **Client Secret** variables.
 
 ### Loading content from Github
 
