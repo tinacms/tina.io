@@ -439,7 +439,7 @@ const SelectBox = styled.button<SelectBoxProps>`
   border-radius: var(--tina-radius-small);
   border: 1px solid var(--tina-color-grey-2);
   background-color: white;
-  padding: 5px 42px 6px var(--tina-padding-small);
+  padding: 5px 42px 5px var(--tina-padding-small);
   position: relative;
   outline: none;
   cursor: pointer;
@@ -483,7 +483,7 @@ const SelectLabel = styled.span`
   color: var(--tina-color-grey-8);
   display: block;
   letter-spacing: 0.01em;
-  line-height: 1.35;
+  line-height: 1;
   font-size: var(--tina-font-size-1);
   font-weight: 600;
   text-align: left;
@@ -494,7 +494,7 @@ const SelectCurrent = styled.span`
   color: var(--tina-color-grey-6);
   display: block;
   text-align: left;
-  line-height: 17px;
+  line-height: 20px;
   text-overflow: ellipsis;
   max-width: 250px;
   white-space: nowrap;
