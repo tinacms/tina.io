@@ -98,6 +98,7 @@ export const BranchSwitcherPlugin = () => ({
 const BranchSwitcher = ({ forkName }: { forkName: string }) => {
   const cms = useCMS()
   const [open, setOpen] = React.useState(false)
+  const [createBranchOpen, setCreateBranchOpen] = React.useState(false)
   const [currentBranch, setCurrentBranch] = React.useState('branch-switcher')
   const [filterValue, setFilterValue] = React.useState('')
   const selectListRef = React.useRef(null)
@@ -111,54 +112,68 @@ const BranchSwitcher = ({ forkName }: { forkName: string }) => {
     }
   }
 
+  const openCreateBranchModal = () => {
+    closeDropdown()
+    setCreateBranchOpen(true)
+  }
+
   return (
-    <SelectWrapper>
-      <SelectBox onClick={() => setOpen(!open)} open={open}>
-        <SelectLabel>Branch</SelectLabel>
-        <SelectCurrent>{currentBranch}</SelectCurrent>
-        <ChevronDownIcon />
-      </SelectBox>
-      <SelectDropdown open={open}>
-        <Dismissible click escape disabled={!open} onDismiss={closeDropdown}>
-          <DropdownHeader>
-            <SelectFilter
-              placeholder="Filter"
-              onChange={event => setFilterValue(event.target.value)}
-              value={filterValue}
-            />
-          </DropdownHeader>
-          <SelectList ref={selectListRef}>
-            {data
-              .filter(option => {
+    <>
+      <SelectWrapper>
+        <SelectBox onClick={() => setOpen(!open)} open={open}>
+          <SelectLabel>Branch</SelectLabel>
+          <SelectCurrent>{currentBranch}</SelectCurrent>
+          <ChevronDownIcon />
+        </SelectBox>
+        <SelectDropdown open={open}>
+          <Dismissible click escape disabled={!open} onDismiss={closeDropdown}>
+            <DropdownHeader>
+              <SelectFilter
+                placeholder="Filter"
+                onChange={event => setFilterValue(event.target.value)}
+                value={filterValue}
+              />
+            </DropdownHeader>
+            <SelectList ref={selectListRef}>
+              {data
+                .filter(option => {
+                  return option.name.includes(filterValue)
+                })
+                .map(option => (
+                  <SelectOption
+                    key={option.name}
+                    active={option.name === currentBranch}
+                    onClick={() => {
+                      cms.alerts.info('Switched to branch ' + option.name)
+                      setCurrentBranch(option.name)
+                      closeDropdown()
+                    }}
+                  >
+                    {option.locked && <LockedIcon />} {option.name}
+                  </SelectOption>
+                ))}
+              {data.filter(option => {
                 return option.name.includes(filterValue)
-              })
-              .map(option => (
-                <SelectOption
-                  key={option.name}
-                  active={option.name === currentBranch}
-                  onClick={() => {
-                    cms.alerts.info('Switched to branch ' + option.name)
-                    setCurrentBranch(option.name)
-                    closeDropdown()
-                  }}
-                >
-                  {option.locked && <LockedIcon />} {option.name}
-                </SelectOption>
-              ))}
-            {data.filter(option => {
-              return option.name.includes(filterValue)
-            }).length === 0 && (
-              <SelectEmptyState>No branches to display.</SelectEmptyState>
-            )}
-          </SelectList>
-          <DropdownActions>
-            <CreateButton>
-              <AddIcon /> New Branch
-            </CreateButton>
-          </DropdownActions>
-        </Dismissible>
-      </SelectDropdown>
-    </SelectWrapper>
+              }).length === 0 && (
+                <SelectEmptyState>No branches to display.</SelectEmptyState>
+              )}
+            </SelectList>
+            <DropdownActions>
+              <CreateButton onClick={openCreateBranchModal}>
+                <AddIcon /> New Branch
+              </CreateButton>
+            </DropdownActions>
+          </Dismissible>
+        </SelectDropdown>
+      </SelectWrapper>
+      {createBranchOpen && (
+        <CreateBranchModal
+          close={() => {
+            setCreateBranchOpen(false)
+          }}
+        />
+      )}
+    </>
   )
 }
 
