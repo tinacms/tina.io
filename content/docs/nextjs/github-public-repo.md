@@ -1,22 +1,22 @@
 ---
-title: Open Authoring with Github
+title: Open Authoring with GitHub
 id: /docs/nextjs/github-public-repo
 prev: /docs/nextjs/markdown
 next:
 ---
 
-Using Next.js's preview-mode ([announced in Next.js 9.3](https://nextjs.org/blog/next-9-3)), we can load a separate set of data depending on if we are in "edit-mode" or "production-mode". This pairs well with the Github API, where we can provide an "Open Authoring" experience where anyone can fork your site, make changes, and create a pull request, all through the TinaCMS UI!
+Using Next.js's preview-mode ([announced in Next.js 9.3](https://nextjs.org/blog/next-9-3)), we can load a separate set of data depending on if we are in "edit-mode" or "production-mode". This pairs well with the GitHub API, where we can provide an "Open Authoring" experience where anyone can fork your site, make changes, and create a pull request, all through the TinaCMS UI!
 
 ## Requirements:
 
 - You must be using Next.js v.9.3 or later.
 - If your site is static, is must be hosted on a service that supports Next.js preview-mode (E.g Zeit's Now)
-- Your editable content must be stored in Github
+- Your editable content must be stored in GitHub
 - Your repository containing your content must be public
 
 ## Installation
 
-We'll need to add a few Tina-Github packages to our site:
+We'll need to add a few Tina-GitHub packages to our site:
 
 ```
 npm install --save react-tinacms-github next-tinacms-github final-form-submit-listener
@@ -30,12 +30,12 @@ yarn add react-tinacms-github next-tinacms-github final-form-submit-listener
 
 #### `react-tinacms-github`
 
-This package provides helpers for setting up TinaCMS to use the Github API, with Github authentication.
+This package provides helpers for setting up TinaCMS to use the GitHub API, with GitHub authentication.
 
 #### `next-tinacms-github`
 
 This package provides helpers for managing the github auth token for requests, as well as
-providing helpers for loading content from the Github API.
+providing helpers for loading content from the GitHub API.
 
 ### Environment Variables
 
@@ -45,8 +45,8 @@ You may want a `.env` file in your project root i.e
 
 ```
 # .env
-GITHUB_CLIENT_ID= # We will generate this later when we create a Github app.
-GITHUB_CLIENT_SECRET= # We will generate this later when we create a Github app.
+GITHUB_CLIENT_ID= # We will generate this later when we create a GitHub app.
+GITHUB_CLIENT_SECRET= # We will generate this later when we create a GitHub app.
 REPO_FULL_NAME=tinacms/tinacms.org # This is your github repository's owner / repo-name.
 BASE_BRANCH=master
 ```
@@ -72,31 +72,31 @@ For help setting up environment variables with Next, see the [Next docs](https:/
 
 ## Setup
 
-### Register the GithubClient
+### Register the GitHubClient
 
-We will want to use the GithubClient to load/save our content using the Github API. Let's add it as an API plugin.
+We will want to use the GitHubClient to load/save our content using the GitHub API. Let's add it as an API plugin.
 
 ```ts
 import { TinaCMS } from 'tinacms'
-import { GithubClient } from 'react-tinacms-github'
+import { GitHubClient } from 'react-tinacms-github'
 
 const REPO_FULL_NAME = process.env.REPO_FULL_NAME as string // e.g: tinacms/tinacms.org
 
 const cms = new TinaCMS({
   apis: {
-    github: new GithubClient('/api/proxy-github', REPO_FULL_NAME),
+    github: new GitHubClient('/api/proxy-github', REPO_FULL_NAME),
   },
   // ... any other tina config
 })
 ```
 
-You'll notice that the GithubClient takes in a string ('/api/proxy-github' in our case). All requests using the GithubClient gets passed through a custom proxy, so that we can attach the authentication tokens on the backend.
+You'll notice that the GitHubClient takes in a string ('/api/proxy-github' in our case). All requests using the GitHubClient gets passed through a custom proxy, so that we can attach the authentication tokens on the backend.
 
 Let's setup up some of these backend API functions.
 
 ## API functions
 
-We will need a few API functions to handle Github authentication, and Next.js's preview-mode:
+We will need a few API functions to handle GitHub authentication, and Next.js's preview-mode:
 With Next.js, any functions in the `pages/api` directory are are mapped to `/api/*` endpoints.
 
 We've created a script to make generating these files easier:
@@ -116,7 +116,7 @@ Contains API function to enter preview-mode, and set the preview-data with conte
 
 #### `proxy-github.ts`
 
-Contains API function to attach the user's auth token, and proxy requests to the Github API.
+Contains API function to attach the user's auth token, and proxy requests to the GitHub API.
 
 #### `create-github-auth-token.ts`
 
@@ -124,16 +124,16 @@ Helper for creating a `createCreateAccessToken` server function.
 
 > _Note: You may need to configure the `process.env.GITHUB_CLIENT_ID` and `process.env.GITHUB_CLIENT_SECRET` environment variables within this file._ _See [Next's documentation](https://nextjs.org/docs/api-reference/next.config.js/environment-variables) for adding environment variables_
 
-> [See below](#github-oauth-app) for instructions on creating a Github OAuth App to generate these **Client ID** & **Client Secret** variables.
+> [See below](#github-oauth-app) for instructions on creating a GitHub OAuth App to generate these **Client ID** & **Client Secret** variables.
 
 ## Managing "edit-mode" state
 
-Next, we'll add the root `TinacmsGithubProvider` component to our main layout. This is responible for validating that the user has access to the repository, and managing entering/exiting edit-mode.
+Next, we'll add the root `TinacmsGitHubProvider` component to our main layout. This is responible for validating that the user has access to the repository, and managing entering/exiting edit-mode.
 When we enter/exit edit-mode, we will hit our `/api` server functions that we created in the previous step.
 
 ```tsx
 // YourLayout.ts
-import { TinacmsGithubProvider } from 'react-tinacms-github'
+import { TinacmsGitHubProvider } from 'react-tinacms-github'
 
 const enterEditMode = () => {
   return fetch(`/api/preview`).then(() => {
@@ -149,7 +149,7 @@ const exitEditMode = () => {
 
 const YourLayout = ({ error, pageProps, children }) => {
   return (
-    <TinacmsGithubProvider
+    <TinacmsGitHubProvider
       clientId={process.env.GITHUB_CLIENT_ID || ''}
       authCallbackRoute="/api/create-github-access-token"
       enterEditMode={enterEditMode}
@@ -157,7 +157,7 @@ const YourLayout = ({ error, pageProps, children }) => {
       error={pageProps.error}
     >
       {children}
-    </TinacmsGithubProvider>
+    </TinacmsGitHubProvider>
   )
 }
 ```
@@ -171,14 +171,14 @@ _We'll be using Next.js's [preview-mode](https://nextjs.org/docs/advanced-featur
 ```tsx
 //...EditLink.tsx
 import React from 'react'
-import { useGithubEditing } from 'react-tinacms-github'
+import { useGitHubEditing } from 'react-tinacms-github'
 
 export interface EditLinkProps {
   isEditing: boolean
 }
 
 export const EditLink = ({ isEditing }: EditLinkProps) => {
-  const github = useGithubEditing()
+  const github = useGitHubEditing()
 
   return (
     <button onClick={isEditing ? github.exitEditMode : github.enterEditMode}>
@@ -190,40 +190,40 @@ export const EditLink = ({ isEditing }: EditLinkProps) => {
 
 ## Auth Redirects
 
-We will also a page to redirect the user to while authenticating with Github.
+We will also a page to redirect the user to while authenticating with GitHub.
 
 ```tsx
 //pages/github/authorizing.tsx
-// Our Github app redirects back to this page with auth code
+// Our GitHub app redirects back to this page with auth code
 import React from 'react'
-import { useGithubAuthRedirect } from 'react-tinacms-github'
+import { useGitHubAuthRedirect } from 'react-tinacms-github'
 
 export default function Authorizing() {
-  // Let the main app know, that we receieved an auth code from the Github redirect
-  useGithubAuthRedirect()
-  return <h2>Authorizing with Github, Please wait...</h2>
+  // Let the main app know, that we receieved an auth code from the GitHub redirect
+  useGitHubAuthRedirect()
+  return <h2>Authorizing with GitHub, Please wait...</h2>
 }
 ```
 
-## Github Oauth App
+## GitHub Oauth App
 
 In GitHub, within your account Settings, click [Oauth Apps](https://github.com/settings/developers) under Developer Settings.
 
 click "New Oauth App".
 
 For the **Authorization callback URL**, enter the url for the "authorizing" page that you created above (e.g https://your-url/github/authorizing). Fill out the other fields with your custom values.
-_Note: If you are testing your app locally, you may need a separate development Github app (with a localhost redirect), and a production Github app._
+_Note: If you are testing your app locally, you may need a separate development GitHub app (with a localhost redirect), and a production GitHub app._
 
 Don't forget to add the **Client ID** and **Client Secret** to your environment variables.
 
-## Loading content from Github
+## Loading content from GitHub
 
-Now that we have access to the user's auth token, we can load content from Github within `getStaticProps`.
+Now that we have access to the user's auth token, we can load content from GitHub within `getStaticProps`.
 
 ```ts
 //About template about.tsx
 
-import { getGithubPreviewProps, GithubPreviewProps } from 'next-tinacms-github'
+import { getGitHubPreviewProps, GitHubPreviewProps } from 'next-tinacms-github'
 
 // ...
 
@@ -234,7 +234,7 @@ export const getStaticProps: GetStaticProps = async function({
   const filePath = `content/about.md`
 
   if (preview) {
-    return getGithubPreviewProps({
+    return getGitHubPreviewProps({
       ...previewData,
       fileRelativePath: filePath,
       format: 'markdown',
@@ -242,7 +242,7 @@ export const getStaticProps: GetStaticProps = async function({
   } else {
     // Get your production content here
     // when you are not in edit-mode.
-    // This should make format of GithubPreviewData
+    // This should make format of GitHubPreviewData
     const file = await readLocalMarkdownFile(filePath)
 
     return {
@@ -257,9 +257,9 @@ export const getStaticProps: GetStaticProps = async function({
 }
 ```
 
-## Using Github Forms
+## Using GitHub Forms
 
-Any forms that we have on our site can be created with the `useGithubJsonForm` or `useGithubMarkdownForm` helpers
+Any forms that we have on our site can be created with the `useGitHubJsonForm` or `useGitHubMarkdownForm` helpers
 
 ```tsx
 function BlogTemplate({
@@ -274,7 +274,7 @@ function BlogTemplate({
   }
 
   // Registers a JSON Tina Form
-  const [data, form] = useGithubJsonForm(file, formOptions, {
+  const [data, form] = useGitHubJsonForm(file, formOptions, {
     branch: sourceProvider?.headBranch || '',
     forkFullName: sourceProvider?.forkFullName || '',
     baseRepoFullName: process.env.baseRepoFullName || '',
@@ -284,18 +284,18 @@ function BlogTemplate({
 }
 ```
 
-`useGithubJsonForm` will use the `GithubClient` api that we [registered earlier](#register-the-githubclient).
+`useGitHubJsonForm` will use the `GitHubClient` api that we [registered earlier](#register-the-githubclient).
 
 ## Error Handling
 
-We'll also need to add error handling to our forms, which prompts Github-specific action when errors occur (e.g a fork no longer exists).
+We'll also need to add error handling to our forms, which prompts GitHub-specific action when errors occur (e.g a fork no longer exists).
 
 ```tsx
 // YourSiteForm.ts
-import { useGithubErrorListener } from 'react-tinacms-github'
+import { useGitHubErrorListener } from 'react-tinacms-github'
 
 const YourSiteForm = ({ form, children }) => {
-  useGithubErrorListener(form)
+  useGitHubErrorListener(form)
   return <FormLayout>{children}</FormLayout>
 }
 ```
