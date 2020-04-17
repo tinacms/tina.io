@@ -56,6 +56,7 @@ To load these .env values in the front-end, your `next.config` will need to be c
 `npm install --save dotenv`
 
 ```
+// next.config.js
 require("dotenv").config();
 
 module.exports = {
@@ -77,6 +78,7 @@ For help setting up environment variables with Next, see the [Next docs](https:/
 We will want to use the GitHubClient to load/save our content using the GitHub API. Let's add it as an API plugin.
 
 ```ts
+// pages/_app.js
 import { TinaCMS } from 'tinacms'
 import { GitHubClient } from 'react-tinacms-github'
 
