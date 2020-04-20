@@ -270,23 +270,14 @@ export const getStaticProps: GetStaticProps = async function({
 Any forms that we have on our site can be created with the `useGitHubJsonForm` or `useGitHubMarkdownForm` helpers
 
 ```tsx
-function BlogTemplate({
-  file, // content for this page
-  sourceProviderConnection, // repository details
-}) {
+function BlogTemplate({ jsonFile }) {
   const formOptions = {
-    label: 'About',
-    fields: [
-      //...
-    ],
+    label: 'Blog Post',
+    fields: [],
   }
 
   // Registers a JSON Tina Form
-  const [data, form] = useGitHubJsonForm(file, formOptions, {
-    branch: sourceProvider?.headBranch || '',
-    forkFullName: sourceProvider?.forkFullName || '',
-    baseRepoFullName: process.env.baseRepoFullName || '',
-  })
+  const [data, form] = useGithubJsonForm(jsonFile, formOptions)
 
   // ...
 }
