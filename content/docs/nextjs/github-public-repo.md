@@ -9,10 +9,10 @@ Using Next.js's [Preview Mode](https://nextjs.org/docs/advanced-features/preview
 
 ## Requirements:
 
-- You must be using **Next.js v.9.3** or later.
-- If your site is static, is must be hosted on a service that supports Next.js preview-mode (E.g [Zeit's Now](https://zeit.co/home))
-- Your editable content must be stored in GitHub
-- Your repository containing your content **must be public**
+- You must be using [Next.js v.9.3](https://nextjs.org/blog/next-9-3) or later.
+- If your site is static, is must be hosted on a service that supports Next.js [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode) (E.g [Zeit's Now](https://zeit.co/home)).
+- Your editable content must be stored in GitHub.
+- Your repository containing your content **must be public**.
 
 ## Overall Steps:
 
