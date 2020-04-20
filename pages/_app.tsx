@@ -50,9 +50,11 @@ const MainLayout = ({ Component, pageProps }) => {
       <ModalProvider>
         <Alerts />
         <TinacmsGithubProvider
-          authenticate={() => authenticate('/api/create-github-access-token')}
+          clientId={process.env.GITHUB_CLIENT_ID}
+          authCallbackRoute="/api/create-github-access-token"
           enterEditMode={enterEditMode}
           exitEditMode={exitEditMode}
+          editMode={pageProps.editMode}
           error={pageProps.previewError}
         >
           <DefaultSeo
