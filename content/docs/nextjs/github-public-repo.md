@@ -14,9 +14,16 @@ Using Next.js's preview-mode ([announced in Next.js 9.3](https://nextjs.org/blog
 - Your editable content must be stored in GitHub
 - Your repository containing your content **must be public**
 
-## Installation
+## Overall Steps:
 
-We'll need to add a few Tina-GitHub packages to our site:
+1. [Install the required packages](/docs/nextjs/github-public-repo#installation)
+2. [Set environment variables](/docs/nextjs/github-public-repo#environment-variables)
+3. [Configure the custom _\_app_ file](/docs/nextjs/github-public-repo#configure-the-custom-app-file)
+4. [Setup API functions using hygen scripts](/docs/nextjs/github-public-repo#api-functions)
+5. [Add an Auth Redirect page component](/docs/nextjs/github-public-repo#auth-redirects)
+6. [Create the GitHub OAuth app](/docs/nextjs/github-public-repo#github-oauth-app)
+7. [Load content from GitHub](/docs/nextjs/github-public-repo#loading-content-from-github) — using `getStaticProps` and [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode)
+8. [Create a Tina Form that sources from GitHub](/docs/nextjs/github-public-repo#using-github-forms)
 
 ```
 npm install --save react-tinacms-github next-tinacms-github
