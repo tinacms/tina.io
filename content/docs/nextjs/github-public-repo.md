@@ -69,7 +69,7 @@ module.exports = {
 }
 ```
 
-For more help setting up environment variables with Next, see the [Next docs](https://nextjs.org/docs/api-reference/next.config.js/environment-variables)
+For more help setting up environment variables with Next, see the [Next docs](https://nextjs.org/docs/api-reference/next.config.js/environment-variables).
 
 > Note that we did not add `GITHUB_CLIENT_SECRET`. This is the a secert key that should only be used from the server and should not be accessible through the browser.
 
