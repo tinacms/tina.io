@@ -19,7 +19,7 @@ Using Next.js's preview-mode ([announced in Next.js 9.3](https://nextjs.org/blog
 We'll need to add a few Tina-GitHub packages to our site:
 
 ```
-npm install --save react-tinacms-github next-tinacms-github final-form-submit-listener
+npm install --save react-tinacms-github next-tinacms-github
 ```
 
 or
