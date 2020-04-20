@@ -75,7 +75,7 @@ For more help setting up environment variables with Next, see the [Next docs](ht
 
 ## Setup
 
-### Configure the _\_app.tsx_
+### Configure the [custom app](https://nextjs.org/docs/advanced-features/custom-app) file
 
 A few steps must be followed in order to edit your GitHub content using TinaCMS.
 
