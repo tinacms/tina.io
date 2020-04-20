@@ -134,14 +134,14 @@ Helper for creating a `createCreateAccessToken` server function.
 
 > [See below](#github-oauth-app) for instructions on creating a GitHub OAuth App to generate these **Client ID** & **Client Secret** variables.
 
-## Managing "edit-mode" state
+### Managing "edit-mode" state
 
-Next, we'll add the root `TinacmsGitHubProvider` component to our main layout. This is responible for validating that the user has access to the repository, and managing entering/exiting edit-mode.
-When we enter/exit edit-mode, we will hit our `/api` server functions that we created in the previous step.
+Add the root `TinacmsGithubProvider` component to our main layout. We will supply it with handlers for authenticating and entering/exiting edit-mode.
+In this case, we will hit our `/api` server functions.
 
 ```tsx
 // YourLayout.ts
-import { TinacmsGitHubProvider } from 'react-tinacms-github'
+import { TinacmsGithubProvider } from 'react-tinacms-github';
 
 const enterEditMode = () => {
   return fetch(`/api/preview`).then(() => {
@@ -155,20 +155,19 @@ const exitEditMode = () => {
   })
 }
 
-const YourLayout = ({ error, pageProps, children }) => {
+const YourLayout = ({ editMode, error, children }) => {
   return (
-    <TinacmsGitHubProvider
-      clientId={process.env.GITHUB_CLIENT_ID || ''}
-      authCallbackRoute="/api/create-github-access-token"
+    <TinacmsGithubProvider
+      clientId={process.env.GITHUB_CLIENT_ID}
+      authCallbackRoute='/api/create-github-access-token'
+      editMode={editMode}
       enterEditMode={enterEditMode}
       exitEditMode={exitEditMode}
-      error={pageProps.error}
-    >
+      error={error}>
       {children}
-    </TinacmsGitHubProvider>
+    </TinacmsGithubProvider>
   )
 }
-```
 
 ## Entering / Exiting "edit-mode"
 
