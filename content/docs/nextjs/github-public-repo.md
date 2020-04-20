@@ -69,7 +69,7 @@ module.exports = {
 }
 ```
 
-For help setting up environment variables with Next, see the [Next docs](https://nextjs.org/docs/api-reference/next.config.js/environment-variables)
+For more help setting up environment variables with Next, see the [Next docs](https://nextjs.org/docs/api-reference/next.config.js/environment-variables)
 
 ## Setup
 
@@ -79,14 +79,27 @@ We will want to use the GitHubClient to load/save our content using the GitHub A
 
 ```ts
 // pages/_app.js
+import App from 'next/app';
 import { TinaCMS, TinaProvider } from 'tinacms';
 import {
+  useGithubEditing,
   GithubClient,
   TinacmsGithubProvider,
 } from 'react-tinacms-github';
-import App from 'next/app';
 
 const REPO_FULL_NAME = process.env.REPO_FULL_NAME as string; // e.g: tinacms/tinacms.org
+
+const enterEditMode = () => {
+  return fetch(`/api/preview`).then(() => {
+    window.location.href = window.location.pathname;
+  });
+};
+
+const exitEditMode = () => {
+  return fetch(`/api/reset-preview`).then(() => {
+    window.location.reload();
+  });
+};
 
 export default class Site extends App {
   cms: TinaCMS;
@@ -100,18 +113,42 @@ export default class Site extends App {
       sidebar: {
         hidden: !props.pageProps.preview,
       },
-      // ... any other tina config
     });
   }
   render() {
     const { Component, pageProps } = this.props;
     return (
       <TinaProvider cms={this.cms}>
-        <Component {...pageProps} />
+        <TinacmsGithubProvider
+          clientId={process.env.GITHUB_CLIENT_ID}
+          authCallbackRoute='/api/create-github-access-token'
+          editMode={pageProps.preview}
+          enterEditMode={enterEditMode}
+          exitEditMode={exitEditMode}
+          error={pageProps.error}
+        >
+          <EditLink editMode={pageProps.preview} />
+          <Component {...pageProps} />
+        </TinacmsGithubProvider>
       </TinaProvider>
     );
   }
 }
+
+export interface EditLinkProps {
+  editMode: boolean;
+}
+
+export const EditLink = ({ editMode }: EditLinkProps) => {
+  const github = useGithubEditing();
+
+  return (
+    <button onClick={editMode ? github.exitEditMode : github.enterEditMode}>
+      {editMode ? 'Exit Edit Mode' : 'Edit This Site'}
+    </button>
+  );
+};
+
 ```
 
 You'll notice that the GitHubClient takes in a string ('/api/proxy-github' in our case). All requests using the GitHubClient gets passed through a custom proxy, so that we can attach the authentication tokens on the backend.
