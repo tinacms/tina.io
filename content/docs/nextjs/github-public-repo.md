@@ -152,9 +152,6 @@ Contains API function to attach the user's auth token, and proxy requests to the
 
 Helper for creating a `createCreateAccessToken` server function.
 
-> _Note: You may need to configure the `process.env.GITHUB_CLIENT_ID` and `process.env.GITHUB_CLIENT_SECRET` environment variables within this file._ _See [Next's documentation](https://nextjs.org/docs/api-reference/next.config.js/environment-variables) for adding environment variables_
-
-> [See below](#github-oauth-app) for instructions on creating a GitHub OAuth App to generate these **Client ID** & **Client Secret** variables.
 
 ### Managing "edit-mode" state
 
@@ -201,14 +198,14 @@ _We'll be using Next.js's [preview-mode](https://nextjs.org/docs/advanced-featur
 ```tsx
 //...EditLink.tsx
 import React from 'react'
-import { useGitHubEditing } from 'react-tinacms-github'
+import { useGithubEditing } from 'react-tinacms-github'
 
 export interface EditLinkProps {
   isEditing: boolean
 }
 
 export const EditLink = ({ isEditing }: EditLinkProps) => {
-  const github = useGitHubEditing()
+  const github = useGithubEditing()
 
   return (
     <button onClick={isEditing ? github.exitEditMode : github.enterEditMode}>
@@ -225,24 +222,24 @@ We will also a page to redirect the user to while authenticating with GitHub.
 ```tsx
 //pages/github/authorizing.tsx
 // Our GitHub app redirects back to this page with auth code
-import React from 'react'
-import { useGitHubAuthRedirect } from 'react-tinacms-github'
+import { useGithubAuthRedirect } from 'react-tinacms-github'
 
 export default function Authorizing() {
   // Let the main app know, that we receieved an auth code from the GitHub redirect
-  useGitHubAuthRedirect()
+  useGithubAuthRedirect()
   return <h2>Authorizing with GitHub, Please wait...</h2>
 }
 ```
 
 ## GitHub Oauth App
 
-In GitHub, within your account Settings, click [Oauth Apps](https://github.com/settings/developers) under Developer Settings.
+In GitHub, within your account Settings, click <a href="https://github.com/settings/developers" target="_blank">Oauth Apps</a> under Developer Settings.
 
 click "New Oauth App".
 
 For the **Authorization callback URL**, enter the url for the "authorizing" page that you created above (e.g https://your-url/github/authorizing). Fill out the other fields with your custom values.
-_Note: If you are testing your app locally, you may need a separate development GitHub app (with a localhost redirect), and a production GitHub app._
+> ### Authorizing in Development
+> If you are testing your app locally, you may need a separate development GitHub app (with a localhost redirect), and a production GitHub app.
 
 Don't forget to add the **Client ID** and **Client Secret** to your environment variables.
 
@@ -250,10 +247,11 @@ Don't forget to add the **Client ID** and **Client Secret** to your environment 
 
 Now that we have access to the user's auth token, we can load content from GitHub within `getStaticProps`.
 
-```ts
+```tsx
 //About template about.tsx
 
-import { getGitHubPreviewProps, GitHubPreviewProps } from 'next-tinacms-github'
+import { getGithubPreviewProps, parseMarkdown } from 'next-tinacms-github'
+import { GetStaticProps } from 'next'
 
 // ...
 
@@ -261,29 +259,24 @@ export const getStaticProps: GetStaticProps = async function({
   preview,
   previewData,
 }) {
-  const filePath = `content/about.md`
-
   if (preview) {
-    return getGitHubPreviewProps({
+    return getGithubPreviewProps({
       ...previewData,
-      fileRelativePath: filePath,
-      format: 'markdown',
-    })
-  } else {
-    // Get your production content here
-    // when you are not in edit-mode.
-    // This should make format of GitHubPreviewData
-    const file = await readLocalMarkdownFile(filePath)
-
-    return {
-      props: {
-        sourceProviderConnection: null,
-        editMode: false,
-        file,
-        error: null,
-      },
-    }
+      fileRelativePath: 'src/content/home.json',
+      parse: parseMarkdown
+    });
   }
+  return {
+    props: {
+      sourceProvider: null,
+      error: null,
+      preview: false,
+      file: {
+        fileRelativePath: 'src/content/home.json',
+        data: (await import('../content/home.json')).default,
+      },
+    },
+  };
 }
 ```
 
