@@ -87,6 +87,7 @@ A few steps must be followed in order to edit your GitHub content using TinaCMS.
 
 
 ```tsx
+// pages/_app.tsx
 import App from 'next/app'
 import { TinaCMS, TinaProvider } from 'tinacms'
 import {
