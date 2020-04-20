@@ -18,6 +18,7 @@ import {
   DocsContent,
   DocsHeaderNav,
 } from '../../../docs/[...slug]'
+import { useRouter } from 'next/router'
 
 export default function GuideTemplate(props) {
   let data = props.markdownFile.data
@@ -37,6 +38,27 @@ export default function GuideTemplate(props) {
       },
     },
   ]
+
+  const router = useRouter()
+  const currentPath = router.asPath
+
+  const { prev, next } = React.useMemo(() => {
+    let prev = null,
+      next = null
+    const allSteps = props.guideMeta.steps
+    const currentItemIndex = allSteps.findIndex(
+      step => step.slug == currentPath
+    )
+    if (currentItemIndex >= 0) {
+      prev = allSteps[currentItemIndex - 1]
+
+      if (currentItemIndex < allSteps.length - 1) {
+        next = allSteps[currentItemIndex + 1]
+      }
+    }
+
+    return { prev, next }
+  }, [props.guideMeta, currentPath])
 
   return (
     <DocsLayout isEditing={props.editMode}>
@@ -75,10 +97,7 @@ export default function GuideTemplate(props) {
             {/* <InlineWysiwyg name="markdownBody"> */}
             <MarkdownContent escapeHtml={false} content={markdownBody} />
             {/* </InlineWysiwyg> */}
-            <DocsPagination
-              prevPage={props.prevPage}
-              nextPage={props.nextPage}
-            />
+            <DocsPagination prevPage={prev} nextPage={next} />
           </Wrapper>
         </RichTextWrapper>
         <Footer light editMode={props.editMode} />
