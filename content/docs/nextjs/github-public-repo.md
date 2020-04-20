@@ -178,6 +178,8 @@ export const EditLink = ({ editMode }: EditLinkProps) => {
 }
 ```
 
+> _Note:_ For brevity, the example above configures many steps in a single file, but **a few components can be configured in different places**. For example you could put the `EditLink` in a Layout component, or setup the Github Provider only on certain pages.
+
 Now that **\_app.tsx** is ready. Let's setup up the backend API.
 
 ## API functions
