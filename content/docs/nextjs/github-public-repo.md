@@ -25,24 +25,17 @@ Using Next.js's preview-mode ([announced in Next.js 9.3](https://nextjs.org/blog
 7. [Load content from GitHub](/docs/nextjs/github-public-repo#loading-content-from-github) — using `getStaticProps` and [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode)
 8. [Create a Tina Form that sources from GitHub](/docs/nextjs/github-public-repo#using-github-forms)
 
-```
-npm install --save react-tinacms-github next-tinacms-github
-```
+## Installation
 
-or
+We'll need to add a few Tina-GitHub packages to our site:
 
-```
-yarn add react-tinacms-github next-tinacms-github
+```bash
+$ npm install --save react-tinacms-github next-tinacms-github
 ```
 
-#### `react-tinacms-github`
+The `react-tinacms-github` package provides helpers for setting up TinaCMS to use the GitHub API, with GitHub authentication. And the `next-tinacms-github` package provides helpers for managing the GitHub auth token and loading content from the GitHub API.
 
-This package provides helpers for setting up TinaCMS to use the GitHub API, with GitHub authentication.
-
-#### `next-tinacms-github`
-
-This package provides helpers for managing the github auth token for requests, as well as
-providing helpers for loading content from the GitHub API.
+> _Note:_ If required peer dependencies aren't already installed, please add `tinacms` & `styled-components` — along with others listed in your terminal.
 
 ### Environment Variables
 
