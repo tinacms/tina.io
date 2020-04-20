@@ -39,9 +39,9 @@ The `react-tinacms-github` package provides helpers for setting up TinaCMS to us
 
 ### Environment Variables
 
-Throughout this guide, some environment variables will be used:
+This guide will reference [environment variables](https://nextjs.org/docs/api-reference/next.config.js/environment-variables) — these are sensitive values specific to your project. The Tina helpers will use these value to talk to your repository, enabling auth and data fetching via GitHub.
 
-You may want a `.env` file in your project root i.e
+To set these variables, create a `.env` file in your project root:
 
 ```
 # .env
@@ -51,13 +51,17 @@ REPO_FULL_NAME=tinacms/tinacms.org # This is your github repository's owner / re
 BASE_BRANCH=master
 ```
 
-To load these .env values in the front-end, your [`next.config`](https://nextjs.org/docs/api-reference/next.config.js/introduction) file will need to be configured. We will also use the `dotenv` package to load our `.env` file:
+You can use the `dotenv` package to load the `.env` file:
 
-`npm install --save dotenv`
+```bash
+$ npm install --save dotenv
+```
+
+Now, to load these `.env` values in the front-end, your [next.config](https://nextjs.org/docs/api-reference/next.config.js/introduction) file will need to be configured.
 
 ```js
 // next.config.js
-require("dotenv").config();
+require('dotenv').config()
 
 module.exports = {
   env: {
@@ -69,9 +73,7 @@ module.exports = {
 }
 ```
 
-For more help setting up environment variables with Next, see the [Next docs](https://nextjs.org/docs/api-reference/next.config.js/environment-variables).
-
-> Note that we did not add `GITHUB_CLIENT_SECRET`. This is the a secert key that should only be used from the server and should not be accessible through the browser.
+> Note that we did not add `GITHUB_CLIENT_SECRET` to the config exports. This is the a secret key that should only be used from the server and should not be accessible through the browser.
 
 ## Setup
 
