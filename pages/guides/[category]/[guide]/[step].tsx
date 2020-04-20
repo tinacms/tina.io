@@ -25,6 +25,18 @@ export default function GuideTemplate(props) {
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
   const excerpt = props.markdownFile.data.excerpt
+  const navData = [
+    {
+      title: props.guideMeta.title,
+      id: props.guideMeta.title,
+      collapsible: false,
+      items: props.guideMeta.steps,
+      returnLink: {
+        url: '/docs',
+        label: '‹ Back to Docs',
+      },
+    },
+  ]
 
   return (
     <DocsLayout isEditing={props.editMode}>
@@ -50,13 +62,12 @@ export default function GuideTemplate(props) {
       />
       <DocsNavToggle open={open} onClick={() => setOpen(!open)} />
       <DocsMobileTinaIcon />
-      <DocsNav open={open} navItems={props.guideMeta.steps} />
+      <DocsNav open={open} navItems={navData} />
       <DocsContent>
         <DocsHeaderNav color={'light'} open={open} />
         <RichTextWrapper>
           <Wrapper narrow>
             <h1>
-              {' '}
               {frontmatter.title}
               {/* <InlineTextareaField name="frontmatter.title" /> */}
             </h1>
