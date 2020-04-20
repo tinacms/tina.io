@@ -184,37 +184,26 @@ Now that **\_app.tsx** is ready. Let's setup up the backend API.
 
 ## API functions
 
-We will need a few API functions to handle GitHub authentication, and Next.js's [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode):
-With Next.js, any functions in the `pages/api` directory are are mapped to `/api/*` endpoints.
+We will need a few API functions to handle GitHub authentication and [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode). With Next.js, any functions in the `pages/api` directory are are mapped to `/api/*` endpoints.
 
-We've created a script to make generating these files easier:
-
-From the console, run:
+We've created a few [scripts](https://github.com/dwalkr/hygen-next-tinacms-github) to **help generate the required files**. From the console, run:
 
 ```bash
 $ npx hygen-add https://github.com/dwalkr/hygen-next-tinacms-github
 $ npx hygen next-tinacms-github bootstrap --format ts
 ```
 
-> _Note:_ if your **/pages** directory in not in the root, you will need to supply a `--dir [subDir]` option.
+_Note:_ if your **pages directory is not in the root**, you will need to supply a `--dir [subDir]` option for this last script:
 
 ```bash
 $ npx hygen next-tinacms-github bootstrap --format ts --dir src
 ```
 
-You'll see that a few API functions have been setup for us.
+You should see a few API functions have been setup in your project:
 
-#### `preview.ts`
-
-Contains API function to enter [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode), and set the preview-data with content stored in the cookies.
-
-#### `proxy-github.ts`
-
-Contains API function to attach the user's auth token, and proxy requests to the GitHub API.
-
-#### `create-github-auth-token.ts`
-
-Helper for creating a `createCreateAccessToken` server function.
+- `preview.ts`: Contains API function to enter [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode), and set the preview-data with content stored in the cookies.
+- `proxy-github.ts`: Contains API function to attach the user's auth token, and proxy requests to the GitHub API.
+- `create-github-auth-token.ts`: Helper for creating a `createCreateAccessToken` server function.
 
 ## Auth Redirects
 
