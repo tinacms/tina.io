@@ -2,4 +2,20 @@
 title: Overview
 ---
 
-This guide will show you how to add Tina to a NextJS site
+This guide will show you how to set up Tina in a NextJS environment. Since NextJS is a relatively open-ended framework and there are many different ways to build with it, these docs will attempt merely to give you an overview of what is required to get Tina working in a NextJS environment and provide some suggestions. The ultimate implementation will depend on your content strategy.
+
+## Project Setup Recommendations
+
+Tina aims to work with a variety of project setups and content strategies, but we suggest following a few principles to ensure success when working with Tina.
+
+### Client-side Capable Transformation
+
+Tina is best suited to content that can be transformed via JavaScript running on the client side. What we mean by this is that if your source content requires a transformation step, such as Markdown, that it is capable of being performed on the client side. This enables Tina to provide real-time previewing without requiring a call to server-side code every time a small update is made.
+
+This doesn't mean that you can _only_ perform content transformation on the client side; in fact, best practices dictate that you should generate the HTML of your content server-side or during a build step. Fortunately, NextJS' hybrid approach makes this relatively easy.
+
+The kinds of projects that will struggle to work well with Tina are those which perform content transformation exclusively at build time, such as through a Webpack plugin.
+
+### Next 9.3 Data Fetching Methods
+
+NextJS 9.3 introduces next-gen data fetching methods _getStaticProps_, _getStaticPaths_, and _getServerSideProps_. Our NextJS documentation will center around workflows using these methods.

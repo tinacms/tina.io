@@ -8,10 +8,22 @@
       "data": "./overview.md"
     },
     {
-      "title": "Installing the Stuff",
-      "id": "/guides/nextjs/adding-tina/installation",
-      "slug": "/guides/nextjs/adding-tina/installation",
-      "data": "./installation.md"
+      "title": "Adding the Tina Provider",
+      "id": "/guides/nextjs/adding-tina/adding-tina-provider",
+      "slug": "/guides/nextjs/adding-tina/adding-tina-provider",
+      "data": "./adding-tina-provider.md"
+    },
+    {
+      "title": "Creating Forms",
+      "id": "/guides/nextjs/adding-tina/creating-forms",
+      "slug": "/guides/nextjs/adding-tina/creating-forms",
+      "data": "./creating-forms.md"
+    },
+    {
+      "title": "Next Steps",
+      "id": "/guides/nextjs/adding-tina/next-steps",
+      "slug": "/guides/nextjs/adding-tina/next-steps",
+      "data": "./next-steps.md"
     }
   ]
 }
