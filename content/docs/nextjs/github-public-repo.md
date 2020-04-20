@@ -61,6 +61,7 @@ Now, to load these `.env` values in the front-end, your [next.config](https://ne
 
 ```js
 // next.config.js
+
 require('dotenv').config()
 
 module.exports = {
@@ -89,6 +90,7 @@ A few steps must be followed in order to edit your GitHub content using TinaCMS.
 
 ```tsx
 // pages/_app.tsx
+
 import App from 'next/app'
 import { TinaCMS, TinaProvider } from 'tinacms'
 import {
@@ -205,15 +207,16 @@ Helper for creating a `createCreateAccessToken` server function.
 
 We will also a page to redirect the user to while authenticating with GitHub.
 
-**pages/github/authorizing.tsx**
-
 ```tsx
-// Our GitHub app redirects back to this page with auth code
+// pages/github/authorizing.tsx
+
 import { useGithubAuthRedirect } from 'react-tinacms-github'
 
+// Our GitHub app redirects back to this page with auth code
 export default function Authorizing() {
   // Let the main app know, that we receieved an auth code from the GitHub redirect
   useGithubAuthRedirect()
+
   return <h2>Authorizing with GitHub, Please wait...</h2>
 }
 ```
@@ -236,9 +239,9 @@ Don't forget to add the **Client ID** and **Client Secret** to your environment 
 
 Now that we have access to the user's auth token, we can load content from GitHub within `getStaticProps`.
 
-**pages/index.tsx**
-
 ```tsx
+// pages/index.tsx
+
 import { getGithubPreviewProps, parseJson } from 'next-tinacms-github'
 import { GetStaticProps } from 'next'
 
@@ -273,9 +276,9 @@ export const getStaticProps: GetStaticProps = async function({
 
 Any forms that we have on our site can be created with the `useGithubJsonForm` or `useGithubMarkdownForm` helpers
 
-**pages/index.tsx**
-
 ```tsx
+// pages/index.tsx
+
 function BlogTemplate({ jsonFile }) {
   const formOptions = {
     label: 'Blog Post',
@@ -290,3 +293,5 @@ function BlogTemplate({ jsonFile }) {
 ```
 
 `useGithubJsonForm` will use the `GithubClient` api that we [registered earlier](#register-the-githubclient).
+
+<!-- TODO: prompt folks to set up inline editing or take those next editing steps>
