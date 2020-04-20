@@ -87,7 +87,6 @@ A few steps must be followed in order to edit your GitHub content using TinaCMS.
 1. **Wrap the Page with `TinacmsGithubProvider`:** This component lets us authenticate with GitHub. It is given config and callbacks that hit our `/api` server functions to enable Preview/Edit Mode after authentication is complete.
 1. **Add a button for entering Preview/Edit Mode:** We must provide a means of triggering authentication. This a simple example of how to dow so.
 
-
 ```tsx
 // pages/_app.tsx
 import App from 'next/app'
@@ -182,7 +181,7 @@ $ npx hygen-add https://github.com/dwalkr/hygen-next-tinacms-github
 $ npx hygen next-tinacms-github bootstrap --format ts
 ```
 
-_Note: if your **/pages** directory in not in the root, you will need to supply a `--dir [subDir]` option._
+> _Note:_ if your **/pages** directory in not in the root, you will need to supply a `--dir [subDir]` option.
 
 ```
 $ npx hygen next-tinacms-github bootstrap --format ts --dir src
