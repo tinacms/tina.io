@@ -75,12 +75,19 @@ For more help setting up environment variables with Next, see the [Next docs](ht
 
 ## Setup
 
-### Register the GitHubClient
+### Configure the _\_app.tsx_
 
-We will want to use the GitHubClient to load/save our content using the GitHub API. Let's add it as an API plugin.
+A few steps must be followed in order to edit your GitHub content using TinaCMS.
 
-```ts
-// pages/_app.js
+1. **Create the TinaCMS**
+1. **Register the GithubClient:** The client accepts a string ('/api/proxy-github' in our case). All requests using the `GithubClient` gets passed through a proxy on our site. This allows us to securely attach the authentication tokens on the backend.
+1. Make sure the Sidebar is hidden unless we're in Next's [Preview/Edit mode](https://nextjs.org/docs/advanced-features/preview-mode).
+1. **Wrap the Page with `TinacmsGithubProvider`:** This component lets us authenticate with GitHub. It is given config and callbacks that hit our `/api` server functions to enable Preview/Edit Mode after authentication is complete.
+1. **Add a button for entering Preview/Edit Mode:** We must provide a means of triggering authentication. This a simple example of how to dow so.
+
+**pages/\_app.tsx**
+
+```tsx
 import App from 'next/app'
 import { TinaCMS, TinaProvider } from 'tinacms'
 import {
@@ -91,28 +98,19 @@ import {
 
 const REPO_FULL_NAME = process.env.REPO_FULL_NAME as string // e.g: tinacms/tinacms.org
 
-const enterEditMode = () => {
-  return fetch(`/api/preview`).then(() => {
-    window.location.href = window.location.pathname
-  })
-}
-
-const exitEditMode = () => {
-  return fetch(`/api/reset-preview`).then(() => {
-    window.location.reload()
-  })
-}
-
 export default class Site extends App {
   cms: TinaCMS
 
   constructor(props) {
     super(props)
+    // 1. Create the TinaCMS
     this.cms = new TinaCMS({
       apis: {
+        // 2. Register the GithubClient
         github: new GithubClient('/api/proxy-github', REPO_FULL_NAME),
       },
       sidebar: {
+        // 3. Make sure the Sidebar is hidden unless we're in Preview/Edit Mode
         hidden: !props.pageProps.preview,
       },
     })
@@ -120,6 +118,8 @@ export default class Site extends App {
   render() {
     const { Component, pageProps } = this.props
     return (
+      // 4. Wrap the page Component with the Tina and Github providers; and
+      // 5. Add a button for entering Preview/Edit Mode
       <TinaProvider cms={this.cms}>
         <TinacmsGithubProvider
           clientId={process.env.GITHUB_CLIENT_ID}
@@ -137,6 +137,18 @@ export default class Site extends App {
   }
 }
 
+const enterEditMode = () => {
+  return fetch(`/api/preview`).then(() => {
+    window.location.href = window.location.pathname
+  })
+}
+
+const exitEditMode = () => {
+  return fetch(`/api/reset-preview`).then(() => {
+    window.location.reload()
+  })
+}
+
 export interface EditLinkProps {
   editMode: boolean
 }
@@ -152,9 +164,7 @@ export const EditLink = ({ editMode }: EditLinkProps) => {
 }
 ```
 
-You'll notice that the GitHubClient takes in a string ('/api/proxy-github' in our case). All requests using the GitHubClient gets passed through a custom proxy, so that we can attach the authentication tokens on the backend.
-
-Let's setup up some of these backend API functions.
+Now that **\_app.tsx** is ready. Let's setup up the backend API.
 
 ## API functions
 
@@ -189,69 +199,6 @@ Contains API function to attach the user's auth token, and proxy requests to the
 #### `create-github-auth-token.ts`
 
 Helper for creating a `createCreateAccessToken` server function.
-
-### Managing "edit-mode" state
-
-Add the root `TinacmsGithubProvider` component to our main layout. We will supply it with handlers for authenticating and entering/exiting edit-mode.
-In this case, we will hit our `/api` server functions.
-
-```tsx
-// YourLayout.ts
-import { TinacmsGithubProvider } from 'react-tinacms-github'
-
-const enterEditMode = () => {
-  return fetch(`/api/preview`).then(() => {
-    window.location.href = window.location.pathname
-  })
-}
-
-const exitEditMode = () => {
-  return fetch(`/api/reset-preview`).then(() => {
-    window.location.reload()
-  })
-}
-
-const YourLayout = ({ editMode, error, children }) => {
-  return (
-    <TinacmsGithubProvider
-      clientId={process.env.GITHUB_CLIENT_ID}
-      authCallbackRoute="/api/create-github-access-token"
-      editMode={editMode}
-      enterEditMode={enterEditMode}
-      exitEditMode={exitEditMode}
-      error={error}
-    >
-      {children}
-    </TinacmsGithubProvider>
-  )
-}
-```
-
-## Entering / Exiting "edit-mode"
-
-Next, we will need a way to enter/exit mode from our site. Let's create an "Edit Link" button. Ours will take `isEditing` as a parameter.
-
-_We'll be using Next.js's [preview-mode](https://nextjs.org/docs/advanced-features/preview-mode) to set this `isEditing` value. We'll set that up later_
-
-```tsx
-//...EditLink.tsx
-import React from 'react'
-import { useGithubEditing } from 'react-tinacms-github'
-
-export interface EditLinkProps {
-  isEditing: boolean
-}
-
-export const EditLink = ({ isEditing }: EditLinkProps) => {
-  const github = useGithubEditing()
-
-  return (
-    <button onClick={isEditing ? github.exitEditMode : github.enterEditMode}>
-      {isEditing ? 'Exit Edit Mode' : 'Edit This Site'}
-    </button>
-  )
-}
-```
 
 ## Auth Redirects
 
