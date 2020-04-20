@@ -71,6 +71,8 @@ module.exports = {
 
 For more help setting up environment variables with Next, see the [Next docs](https://nextjs.org/docs/api-reference/next.config.js/environment-variables)
 
+> Note that we did not add `GITHUB_CLIENT_SECRET`. This is the a secert key that should only be used from the server and should not be accessible through the browser.
+
 ## Setup
 
 ### Register the GitHubClient
@@ -79,33 +81,33 @@ We will want to use the GitHubClient to load/save our content using the GitHub A
 
 ```ts
 // pages/_app.js
-import App from 'next/app';
-import { TinaCMS, TinaProvider } from 'tinacms';
+import App from 'next/app'
+import { TinaCMS, TinaProvider } from 'tinacms'
 import {
   useGithubEditing,
   GithubClient,
   TinacmsGithubProvider,
-} from 'react-tinacms-github';
+} from 'react-tinacms-github'
 
-const REPO_FULL_NAME = process.env.REPO_FULL_NAME as string; // e.g: tinacms/tinacms.org
+const REPO_FULL_NAME = process.env.REPO_FULL_NAME as string // e.g: tinacms/tinacms.org
 
 const enterEditMode = () => {
   return fetch(`/api/preview`).then(() => {
-    window.location.href = window.location.pathname;
-  });
-};
+    window.location.href = window.location.pathname
+  })
+}
 
 const exitEditMode = () => {
   return fetch(`/api/reset-preview`).then(() => {
-    window.location.reload();
-  });
-};
+    window.location.reload()
+  })
+}
 
 export default class Site extends App {
-  cms: TinaCMS;
+  cms: TinaCMS
 
   constructor(props) {
-    super(props);
+    super(props)
     this.cms = new TinaCMS({
       apis: {
         github: new GithubClient('/api/proxy-github', REPO_FULL_NAME),
@@ -113,15 +115,15 @@ export default class Site extends App {
       sidebar: {
         hidden: !props.pageProps.preview,
       },
-    });
+    })
   }
   render() {
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps } = this.props
     return (
       <TinaProvider cms={this.cms}>
         <TinacmsGithubProvider
           clientId={process.env.GITHUB_CLIENT_ID}
-          authCallbackRoute='/api/create-github-access-token'
+          authCallbackRoute="/api/create-github-access-token"
           editMode={pageProps.preview}
           enterEditMode={enterEditMode}
           exitEditMode={exitEditMode}
@@ -131,24 +133,23 @@ export default class Site extends App {
           <Component {...pageProps} />
         </TinacmsGithubProvider>
       </TinaProvider>
-    );
+    )
   }
 }
 
 export interface EditLinkProps {
-  editMode: boolean;
+  editMode: boolean
 }
 
 export const EditLink = ({ editMode }: EditLinkProps) => {
-  const github = useGithubEditing();
+  const github = useGithubEditing()
 
   return (
     <button onClick={editMode ? github.exitEditMode : github.enterEditMode}>
       {editMode ? 'Exit Edit Mode' : 'Edit This Site'}
     </button>
-  );
-};
-
+  )
+}
 ```
 
 You'll notice that the GitHubClient takes in a string ('/api/proxy-github' in our case). All requests using the GitHubClient gets passed through a custom proxy, so that we can attach the authentication tokens on the backend.
@@ -189,7 +190,6 @@ Contains API function to attach the user's auth token, and proxy requests to the
 
 Helper for creating a `createCreateAccessToken` server function.
 
-
 ### Managing "edit-mode" state
 
 Add the root `TinacmsGithubProvider` component to our main layout. We will supply it with handlers for authenticating and entering/exiting edit-mode.
@@ -197,7 +197,7 @@ In this case, we will hit our `/api` server functions.
 
 ```tsx
 // YourLayout.ts
-import { TinacmsGithubProvider } from 'react-tinacms-github';
+import { TinacmsGithubProvider } from 'react-tinacms-github'
 
 const enterEditMode = () => {
   return fetch(`/api/preview`).then(() => {
@@ -215,11 +215,12 @@ const YourLayout = ({ editMode, error, children }) => {
   return (
     <TinacmsGithubProvider
       clientId={process.env.GITHUB_CLIENT_ID}
-      authCallbackRoute='/api/create-github-access-token'
+      authCallbackRoute="/api/create-github-access-token"
       editMode={editMode}
       enterEditMode={enterEditMode}
       exitEditMode={exitEditMode}
-      error={error}>
+      error={error}
+    >
       {children}
     </TinacmsGithubProvider>
   )
@@ -275,7 +276,9 @@ In GitHub, within your account Settings, click <a href="https://github.com/setti
 click "New Oauth App".
 
 For the **Authorization callback URL**, enter the url for the "authorizing" page that you created above (e.g https://your-url/github/authorizing). Fill out the other fields with your custom values.
+
 > ### Authorizing in Development
+>
 > If you are testing your app locally, you may need a separate development GitHub app (with a localhost redirect), and a production GitHub app.
 
 Don't forget to add the **Client ID** and **Client Secret** to your environment variables.
@@ -300,8 +303,8 @@ export const getStaticProps: GetStaticProps = async function({
     return getGithubPreviewProps({
       ...previewData,
       fileRelativePath: 'src/content/home.json',
-      parse: parseMarkdown
-    });
+      parse: parseMarkdown,
+    })
   }
   return {
     props: {
@@ -313,7 +316,7 @@ export const getStaticProps: GetStaticProps = async function({
         data: (await import('../content/home.json')).default,
       },
     },
-  };
+  }
 }
 ```
 
