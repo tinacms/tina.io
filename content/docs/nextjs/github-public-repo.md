@@ -110,6 +110,12 @@ $ npx hygen-add https://github.com/dwalkr/hygen-next-tinacms-github
 $ npx hygen next-tinacms-github bootstrap --format ts
 ```
 
+_Note: if your **/pages** directory in not in the root, you will need to supply a `--dir [subDir]` option._
+
+```
+$ npx hygen next-tinacms-github bootstrap --format ts --dir src
+```
+
 You'll see that a few API functions have been setup for us.
 
 #### `preview.ts`
