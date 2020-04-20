@@ -106,23 +106,31 @@ export default class Site extends App {
 
   constructor(props) {
     super(props)
-    // 1. Create the TinaCMS
+    /*
+     ** 1. Create the TinaCMS instance
+     */
     this.cms = new TinaCMS({
       apis: {
-        // 2. Register the GithubClient
+        /*
+         ** 2. Register the GithubClient
+         */
         github: new GithubClient('/api/proxy-github', REPO_FULL_NAME),
       },
       sidebar: {
-        // 3. Make sure the Sidebar is hidden unless we're in Preview/Edit Mode
+        /*
+         ** 3. Make sure the Sidebar is hidden unless we're in Preview/Edit Mode
+         */
         hidden: !props.pageProps.preview,
       },
     })
   }
+
   render() {
     const { Component, pageProps } = this.props
     return (
-      // 4. Wrap the page Component with the Tina and Github providers; and
-      // 5. Add a button for entering Preview/Edit Mode
+      /*
+       ** 4. Wrap the page Component with the Tina and Github providers
+       */
       <TinaProvider cms={this.cms}>
         <TinacmsGithubProvider
           clientId={process.env.GITHUB_CLIENT_ID}
@@ -132,6 +140,9 @@ export default class Site extends App {
           exitEditMode={exitEditMode}
           error={pageProps.error}
         >
+          {/*
+           ** 5. Add a button for entering Preview/Edit Mode
+           */}
           <EditLink editMode={pageProps.preview} />
           <Component {...pageProps} />
         </TinacmsGithubProvider>
