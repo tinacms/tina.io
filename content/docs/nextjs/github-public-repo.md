@@ -51,7 +51,7 @@ REPO_FULL_NAME=tinacms/tinacms.org # This is your github repository's owner / re
 BASE_BRANCH=master
 ```
 
-To load these .env values in the front-end, your `next.config` will need to be configured. We will also use the `dotenv` package to load our `.env` file:
+To load these .env values in the front-end, your [`next.config`](https://nextjs.org/docs/api-reference/next.config.js/introduction) file will need to be configured. We will also use the `dotenv` package to load our `.env` file:
 
 `npm install --save dotenv`
 
