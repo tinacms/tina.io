@@ -79,7 +79,7 @@ For more help setting up environment variables with Next, see the [Next docs](ht
 
 A few steps must be followed in order to edit your GitHub content using TinaCMS. These changes will be made in `_app.tsx`. If you haven't [already created this file](/docs/nextjs/bootstrapping#adding-the-tina-provider), please do so in the `pages` directory.
 
-1. **Create the TinaCMS**
+1. **Create the TinaCMS instance**
 1. **Register the GithubClient:** The client accepts a string ('/api/proxy-github' in our case). All requests using the `GithubClient` gets passed through a proxy on our site. This allows us to securely attach the authentication tokens on the backend.
 1. Make sure the Sidebar is hidden unless we're in Next's [Preview/Edit mode](https://nextjs.org/docs/advanced-features/preview-mode).
 1. **Wrap the Page with `TinacmsGithubProvider`:** This component lets us authenticate with GitHub. It is given config and callbacks that hit our `/api` server functions to enable Preview/Edit Mode after authentication is complete.
