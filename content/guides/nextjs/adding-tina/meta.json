@@ -1,0 +1,17 @@
+{
+  "title": "Adding Tina to a NextJS Site",
+  "steps": [
+    {
+      "title": "Overview",
+      "id": "/guides/nextjs/adding-tina/overview",
+      "slug": "/guides/nextjs/adding-tina/overview",
+      "data": "./overview.md"
+    },
+    {
+      "title": "Installing the Stuff",
+      "id": "/guides/nextjs/adding-tina/installation",
+      "slug": "/guides/nextjs/adding-tina/installation",
+      "data": "./installation.md"
+    }
+  ]
+}
