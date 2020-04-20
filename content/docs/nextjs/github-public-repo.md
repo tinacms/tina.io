@@ -176,14 +176,14 @@ We've created a script to make generating these files easier:
 
 From the console, run:
 
-```
+```bash
 $ npx hygen-add https://github.com/dwalkr/hygen-next-tinacms-github
 $ npx hygen next-tinacms-github bootstrap --format ts
 ```
 
 > _Note:_ if your **/pages** directory in not in the root, you will need to supply a `--dir [subDir]` option.
 
-```
+```bash
 $ npx hygen next-tinacms-github bootstrap --format ts --dir src
 ```
 
