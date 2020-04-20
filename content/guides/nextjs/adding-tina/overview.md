@@ -18,4 +18,8 @@ The kinds of projects that will struggle to work well with Tina are those which 
 
 ### Next 9.3 Data Fetching Methods
 
-NextJS 9.3 introduces next-gen data fetching methods _getStaticProps_, _getStaticPaths_, and _getServerSideProps_. Our NextJS documentation will center around workflows using these methods.
+NextJS 9.3 introduces [next-gen data fetching methods](https://nextjs.org/blog/next-9-3#next-gen-static-site-generation-ssg-support) _getStaticProps_, _getStaticPaths_, and _getServerSideProps_. Our NextJS documentation will center around workflows using these methods.
+
+## More Info
+
+- [NextJS.org: Next-gen SSG Support](https://nextjs.org/blog/next-9-3#next-gen-static-site-generation-ssg-support)
