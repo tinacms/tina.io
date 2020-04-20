@@ -79,17 +79,39 @@ We will want to use the GitHubClient to load/save our content using the GitHub A
 
 ```ts
 // pages/_app.js
-import { TinaCMS } from 'tinacms'
-import { GitHubClient } from 'react-tinacms-github'
+import { TinaCMS, TinaProvider } from 'tinacms';
+import {
+  GithubClient,
+  TinacmsGithubProvider,
+} from 'react-tinacms-github';
+import App from 'next/app';
 
-const REPO_FULL_NAME = process.env.REPO_FULL_NAME as string // e.g: tinacms/tinacms.org
+const REPO_FULL_NAME = process.env.REPO_FULL_NAME as string; // e.g: tinacms/tinacms.org
 
-const cms = new TinaCMS({
-  apis: {
-    github: new GitHubClient('/api/proxy-github', REPO_FULL_NAME),
-  },
-  // ... any other tina config
-})
+export default class Site extends App {
+  cms: TinaCMS;
+
+  constructor(props) {
+    super(props);
+    this.cms = new TinaCMS({
+      apis: {
+        github: new GithubClient('/api/proxy-github', REPO_FULL_NAME),
+      },
+      sidebar: {
+        hidden: !props.pageProps.preview,
+      },
+      // ... any other tina config
+    });
+  }
+  render() {
+    const { Component, pageProps } = this.props;
+    return (
+      <TinaProvider cms={this.cms}>
+        <Component {...pageProps} />
+      </TinaProvider>
+    );
+  }
+}
 ```
 
 You'll notice that the GitHubClient takes in a string ('/api/proxy-github' in our case). All requests using the GitHubClient gets passed through a custom proxy, so that we can attach the authentication tokens on the backend.
