@@ -55,7 +55,7 @@ To load these .env values in the front-end, your `next.config` will need to be c
 
 `npm install --save dotenv`
 
-```
+```js
 // next.config.js
 require("dotenv").config();
 
