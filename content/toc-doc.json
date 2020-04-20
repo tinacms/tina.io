@@ -206,6 +206,11 @@
         "id": "/docs/nextjs/markdown",
         "slug": "/docs/nextjs/markdown",
         "title": "Using Markdown Files"
+      },
+      {
+        "id": "/docs/nextjs/github-public-repo",
+        "slug": "/docs/nextjs/github-public-repo",
+        "title": "Open Authoring with Github"
       }
     ]
   },
