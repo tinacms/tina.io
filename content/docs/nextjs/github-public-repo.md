@@ -168,6 +168,7 @@ const YourLayout = ({ editMode, error, children }) => {
     </TinacmsGithubProvider>
   )
 }
+```
 
 ## Entering / Exiting "edit-mode"
 
