@@ -12,6 +12,7 @@ interface NavSection {
   slug: string
   title: string
   items: NavSection[]
+  collapsible?: boolean
 }
 
 export const NavSection = (section: NavSection) => {
@@ -22,18 +23,23 @@ export const NavSection = (section: NavSection) => {
       return true
     }
   }, [section.slug, currentPath])
-  const [expanded, setExpanded] = useState(menuIsActive(section, currentPath))
+
+  const collapsible = section.collapsible !== false
+  const [expanded, setExpanded] = useState(
+    menuIsActive(section, currentPath) || collapsible
+  )
 
   useEffect(() => {
+    if (!collapsible) return
     setExpanded(menuIsActive(section, currentPath))
-  }, [currentPath])
+  }, [currentPath, collapsible])
 
   const hasChildren = section.items && section.items.length > 0
   const highlighted = isCurrentPage || (hasChildren && expanded)
 
   return (
     <NavItem key={section.slug} open={expanded}>
-      <NavItemHeader onClick={() => setExpanded(!expanded)}>
+      <NavItemHeader onClick={() => collapsible && setExpanded(!expanded)}>
         {section.slug && !hasChildren ? (
           <DynamicLink href={section.slug} passHref>
             <NavSectionTitle as="a" highlighted={highlighted}>
@@ -45,7 +51,7 @@ export const NavSection = (section: NavSection) => {
             {section.title}
           </NavSectionTitle>
         )}
-        {hasChildren && <RightArrowSvg />}
+        {hasChildren && collapsible && <RightArrowSvg />}
       </NavItemHeader>
       {hasChildren && (
         <SubNav>
