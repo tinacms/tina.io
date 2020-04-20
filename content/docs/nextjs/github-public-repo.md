@@ -204,8 +204,9 @@ Helper for creating a `createCreateAccessToken` server function.
 
 We will also a page to redirect the user to while authenticating with GitHub.
 
+**pages/github/authorizing.tsx**
+
 ```tsx
-//pages/github/authorizing.tsx
 // Our GitHub app redirects back to this page with auth code
 import { useGithubAuthRedirect } from 'react-tinacms-github'
 
@@ -234,10 +235,10 @@ Don't forget to add the **Client ID** and **Client Secret** to your environment 
 
 Now that we have access to the user's auth token, we can load content from GitHub within `getStaticProps`.
 
-```tsx
-//About template about.tsx
+**pages/index.tsx**
 
-import { getGithubPreviewProps, parseMarkdown } from 'next-tinacms-github'
+```tsx
+import { getGithubPreviewProps, parseJson } from 'next-tinacms-github'
 import { GetStaticProps } from 'next'
 
 // ...
@@ -249,8 +250,8 @@ export const getStaticProps: GetStaticProps = async function({
   if (preview) {
     return getGithubPreviewProps({
       ...previewData,
-      fileRelativePath: 'src/content/home.json',
-      parse: parseMarkdown,
+      fileRelativePath: 'content/home.json',
+      parse: parseJson,
     })
   }
   return {
@@ -259,7 +260,7 @@ export const getStaticProps: GetStaticProps = async function({
       error: null,
       preview: false,
       file: {
-        fileRelativePath: 'src/content/home.json',
+        fileRelativePath: 'content/home.json',
         data: (await import('../content/home.json')).default,
       },
     },
@@ -269,7 +270,9 @@ export const getStaticProps: GetStaticProps = async function({
 
 ## Using GitHub Forms
 
-Any forms that we have on our site can be created with the `useGitHubJsonForm` or `useGitHubMarkdownForm` helpers
+Any forms that we have on our site can be created with the `useGithubJsonForm` or `useGithubMarkdownForm` helpers
+
+**pages/index.tsx**
 
 ```tsx
 function BlogTemplate({ jsonFile }) {
@@ -285,4 +288,4 @@ function BlogTemplate({ jsonFile }) {
 }
 ```
 
-`useGitHubJsonForm` will use the `GitHubClient` api that we [registered earlier](#register-the-githubclient).
+`useGithubJsonForm` will use the `GithubClient` api that we [registered earlier](#register-the-githubclient).
