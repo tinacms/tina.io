@@ -35,11 +35,7 @@ function BlogTemplate({
   }
 
   // Registers Tina Form
-  const [data, form] = useGithubMarkdownForm(
-    markdownFile,
-    formOptions,
-    sourceProviderConnection
-  )
+  const [data, form] = useGithubMarkdownForm(markdownFile, formOptions)
 
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody

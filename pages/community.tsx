@@ -33,11 +33,7 @@ function CommunityPage({
   previewError,
 }) {
   // Registers Tina Form
-  const [data, form] = useGithubJsonForm(
-    community,
-    formOptions,
-    sourceProviderConnection
-  )
+  const [data, form] = useGithubJsonForm(community, formOptions)
 
   return (
     <OpenAuthoringSiteForm

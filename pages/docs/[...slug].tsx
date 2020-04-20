@@ -25,11 +25,7 @@ import { GithubError } from 'next-tinacms-github'
 
 function DocTemplate(props) {
   // Registers Tina Form
-  const [data, form] = useGithubMarkdownForm(
-    props.markdownFile,
-    formOptions,
-    props.sourceProviderConnection
-  )
+  const [data, form] = useGithubMarkdownForm(props.markdownFile, formOptions)
   const [open, setOpen] = useState(false)
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody

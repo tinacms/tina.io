@@ -54,11 +54,7 @@ const formOptions = {
 
 function TeamsPage(props) {
   // Adds Tina Form
-  const [data, form] = useGithubJsonForm(
-    props.teams,
-    formOptions,
-    props.sourceProviderConnection
-  )
+  const [data, form] = useGithubJsonForm(props.teams, formOptions)
 
   return (
     <OpenAuthoringSiteForm
