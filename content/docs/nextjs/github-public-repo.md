@@ -25,7 +25,7 @@ npm install --save react-tinacms-github next-tinacms-github
 or
 
 ```
-yarn add react-tinacms-github next-tinacms-github final-form-submit-listener
+yarn add react-tinacms-github next-tinacms-github
 ```
 
 #### `react-tinacms-github`
