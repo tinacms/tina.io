@@ -284,17 +284,3 @@ function BlogTemplate({ jsonFile }) {
 ```
 
 `useGitHubJsonForm` will use the `GitHubClient` api that we [registered earlier](#register-the-githubclient).
-
-## Error Handling
-
-We'll also need to add error handling to our forms, which prompts GitHub-specific action when errors occur (e.g a fork no longer exists).
-
-```tsx
-// YourSiteForm.ts
-import { useGitHubErrorListener } from 'react-tinacms-github'
-
-const YourSiteForm = ({ form, children }) => {
-  useGitHubErrorListener(form)
-  return <FormLayout>{children}</FormLayout>
-}
-```
