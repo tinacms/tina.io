@@ -5,7 +5,7 @@ prev: /docs/nextjs/markdown
 next:
 ---
 
-Using Next.js's preview-mode ([announced in Next.js 9.3](https://nextjs.org/blog/next-9-3)), we can load a separate set of data depending on if we are in "edit-mode" or "production-mode". This pairs well with the GitHub API, where we can provide an "Open Authoring" experience where anyone can fork your site, make changes, and create a pull request, all through the TinaCMS UI!
+Using Next.js's [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode), we can load a separate set of data depending on if we are in "edit-mode" or "production-mode". This pairs well with the GitHub API, where we can provide an "Open Authoring" experience where anyone can fork your site, make changes, and create a pull request, all through the TinaCMS UI!
 
 ## Requirements:
 
@@ -171,7 +171,7 @@ Now that **\_app.tsx** is ready. Let's setup up the backend API.
 
 ## API functions
 
-We will need a few API functions to handle GitHub authentication, and Next.js's preview-mode:
+We will need a few API functions to handle GitHub authentication, and Next.js's [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode):
 With Next.js, any functions in the `pages/api` directory are are mapped to `/api/*` endpoints.
 
 We've created a script to make generating these files easier:
@@ -193,7 +193,7 @@ You'll see that a few API functions have been setup for us.
 
 #### `preview.ts`
 
-Contains API function to enter preview-mode, and set the preview-data with content stored in the cookies.
+Contains API function to enter [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode), and set the preview-data with content stored in the cookies.
 
 #### `proxy-github.ts`
 
