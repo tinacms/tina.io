@@ -24,11 +24,9 @@ import {
 
 import { Button, Video, ArrowList } from '../../components/ui'
 import { OpenAuthoringSiteForm } from '../../components/layout/OpenAuthoringSiteForm'
-import { GithubError } from 'next-tinacms-github'
-import { getJsonFile } from '../../utils/getJsonFile'
-import { getGithubDataFromPreviewProps } from '../../utils/getGithubDataFromPreviewProps'
 import { useGithubJsonForm } from 'react-tinacms-github'
 import { useBranchToolbarPlugins } from '../../components/ui/Branching'
+import { getJsonPreviewProps } from '../../utils/getJsonPreviewProps'
 
 const BranchPage = (props: any) => {
   const [formData, form] = useGithubJsonForm(props.home, {
@@ -105,7 +103,7 @@ const BranchPage = (props: any) => {
     ],
   })
 
-  useBranchToolbarPlugins(form, props.editMode)
+  useBranchToolbarPlugins(form, props.preview)
 
   React.useEffect(() => {
     if (window && window.location.host == 'tinacms.org') {
@@ -117,11 +115,11 @@ const BranchPage = (props: any) => {
     <OpenAuthoringSiteForm
       form={form}
       path={props.home.fileRelativePath}
-      editMode={props.editMode}
+      preview={props.preview}
     >
       <Layout
         sourceProviderConnection={props.sourceProviderConnection}
-        editMode={props.editMode}
+        preview={props.preview}
       >
         <DefaultSeo titleTemplate={formData.title + ' | %s'} />
         <Hero overlap narrow>
@@ -143,7 +141,7 @@ const BranchPage = (props: any) => {
                   </em>
                 </h2>
                 <CtaBar>
-                  <EditLink color="primary" editMode={props.editMode} />
+                  <EditLink color="primary" preview={props.preview} />
                   <DynamicLink
                     href={'/docs/getting-started/introduction/'}
                     passHref
@@ -217,34 +215,7 @@ export const getStaticProps: GetStaticProps = async function({
   preview,
   previewData,
 }) {
-  const {
-    sourceProviderConnection,
-    accessToken,
-  } = getGithubDataFromPreviewProps(previewData)
-  let previewError: GithubError = null
-  let homeData = {}
-  try {
-    homeData = await getJsonFile(
-      'content/pages/home.json',
-      sourceProviderConnection,
-      accessToken
-    )
-  } catch (e) {
-    if (e instanceof GithubError) {
-      previewError = { ...e } //workaround since we cant return error as JSON
-    } else {
-      throw e
-    }
-  }
-
-  return {
-    props: {
-      home: homeData,
-      previewError: previewError,
-      sourceProviderConnection,
-      editMode: !!preview,
-    },
-  }
+  return getJsonPreviewProps('content/pages/home.json', preview, previewData)
 }
 
 /*

@@ -12,7 +12,7 @@ interface LayoutProps {
   children: any[]
   color?: 'white' | 'secondary' | 'seafoam'
   sourceProviderConnection: any
-  editMode: boolean
+  preview: boolean
 }
 
 export const Layout = styled(
@@ -20,7 +20,7 @@ export const Layout = styled(
     children,
     color,
     sourceProviderConnection,
-    editMode,
+    preview,
     ...styleProps
   }: LayoutProps) => {
     const router = useRouter()
@@ -55,7 +55,7 @@ export const Layout = styled(
             },
           ],
           githubOptions: sourceProviderConnection,
-          isEditMode: editMode,
+          isEditMode: preview,
           frontmatter: postInfo => ({
             title: postInfo.title,
             date: moment(postInfo.date ? postInfo.date : new Date()).format(),
@@ -71,7 +71,7 @@ export const Layout = styled(
             window.location.href = `/blog/${url}`
           },
         }),
-      [editMode, sourceProviderConnection]
+      [preview, sourceProviderConnection]
     )
 
     usePlugin(CreateBlogPlugin)
@@ -85,7 +85,7 @@ export const Layout = styled(
         />
         <Header color={color} />
         {children}
-        <Footer editMode={editMode} />
+        <Footer preview={preview} />
       </div>
     )
   }

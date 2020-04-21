@@ -28,7 +28,7 @@ const MainLayout = ({ Component, pageProps }) => {
       position: 'displace' as any,
     },
     toolbar: {
-      hidden: !pageProps.editMode,
+      hidden: !pageProps.preview,
     },
   }
 
@@ -54,7 +54,7 @@ const MainLayout = ({ Component, pageProps }) => {
           authCallbackRoute="/api/create-github-access-token"
           enterEditMode={enterEditMode}
           exitEditMode={exitEditMode}
-          editMode={pageProps.editMode}
+          editMode={pageProps.preview}
           error={pageProps.previewError}
         >
           <DefaultSeo

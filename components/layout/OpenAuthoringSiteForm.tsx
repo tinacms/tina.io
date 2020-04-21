@@ -5,14 +5,14 @@ import { useLocalStorageCache } from '../../utils/plugins/browser-storage-api/us
 import AutoAuthModal from '../open-authoring/AutoAuthModal'
 
 interface Props extends InlineFormProps {
-  editMode: boolean
+  preview: boolean
   children: any
   path: string
 }
 
 export const OpenAuthoringSiteForm = ({
   form,
-  editMode,
+  preview,
   path,
   children,
 }: Props) => {
@@ -20,14 +20,14 @@ export const OpenAuthoringSiteForm = ({
   useGithubToolbarPlugins()
 
   // Persist pending changes to localStorage
-  useLocalStorageCache(path, form, editMode)
+  useLocalStorageCache(path, form, preview)
 
   return (
     <>
       <InlineForm
         form={form}
         initialStatus={
-          typeof document !== 'undefined' && editMode ? 'active' : 'inactive'
+          typeof document !== 'undefined' && preview ? 'active' : 'inactive'
         }
       >
         {children}

@@ -11,12 +11,12 @@ import {
   RichTextWrapper,
 } from '../../../components/layout'
 import { DynamicLink, BlogPagination } from '../../../components/ui'
-import { getMarkdownFile } from '../../../utils/getMarkdownFile'
 import { useCMS } from 'tinacms'
 import { OpenAuthoringSiteForm } from '../../../components/layout/OpenAuthoringSiteForm'
 import { useForm } from 'tinacms'
 import { getFiles } from '../../../utils/getFiles'
 import { getGithubDataFromPreviewProps } from '../../../utils/getGithubDataFromPreviewProps'
+import { getMarkdownPreviewProps } from '../../../utils/getMarkdownFile'
 const Index = props => {
   const { currentPage, numPages } = props
 
@@ -30,10 +30,10 @@ const Index = props => {
   })
 
   return (
-    <OpenAuthoringSiteForm editMode={props.editMode} form={form} path={''}>
+    <OpenAuthoringSiteForm preview={props.preview} form={form} path={''}>
       <Layout
         sourceProviderConnection={props.sourceProviderConnection}
-        editMode={props.editMode}
+        preview={props.preview}
       >
         <NextSeo
           title="Blog"
@@ -117,9 +117,8 @@ export const getStaticProps: GetStaticProps = async function({
     const posts = await Promise.all(
       // TODO - potentially making a lot of requests here
       files.map(async file => {
-        const post = (
-          await getMarkdownFile(file, sourceProviderConnection, accessToken)
-        ).data
+        const post = (await getMarkdownPreviewProps(file, preview, previewData))
+          .props.file
 
         // create slug from filename
         const slug = file
@@ -128,10 +127,10 @@ export const getStaticProps: GetStaticProps = async function({
           .slice(0, -1)
           .join('.')
 
-        const excerpt = await formatExcerpt(post.markdownBody)
+        const excerpt = await formatExcerpt(post.data.markdownBody)
 
         return {
-          data: { ...post.frontmatter, slug },
+          data: { ...post.data.frontmatter, slug },
           content: excerpt,
         }
       })
@@ -150,7 +149,7 @@ export const getStaticProps: GetStaticProps = async function({
         posts: orderedPosts,
         numPages: numPages,
         currentPage: page,
-        editMode: !!preview,
+        preview: !!preview,
         sourceProviderConnection,
       },
     }
