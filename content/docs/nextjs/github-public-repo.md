@@ -58,7 +58,7 @@ npm install --save react-tinacms-github next-tinacms-github tinacms styled-compo
 yarn add react-tinacms-github next-tinacms-github tinacms styled-components
 ```
 
-> _Note:_ If required peer dependencies aren't already installed, please add `tinacms` & `styled-components` — along with others listed in your terminal.
+The `react-tinacms-github` package provides helpers for setting up TinaCMS to use the GitHub API, with GitHub authentication. And the `next-tinacms-github` package provides helpers for managing the GitHub auth token and loading content from the GitHub API.
 
 ## Configure the [custom app](https://nextjs.org/docs/advanced-features/custom-app) file
 
