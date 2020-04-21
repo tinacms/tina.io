@@ -225,21 +225,19 @@ export default function Authorizing() {
 
 ## GitHub Oauth App
 
-In GitHub, within your account Settings, click <a href="https://github.com/settings/developers" target="_blank">Oauth Apps</a> under Developer Settings.
-
-click "New Oauth App".
+In GitHub, within your Account Settings, click <a href="https://github.com/settings/developers" target="_blank">Oauth Apps</a> under Developer Settings. Go ahead and create a "New Oauth App".
 
 For the **Authorization callback URL**, enter the url for the "authorizing" page that you created above (e.g https://your-url/github/authorizing). Fill out the other fields with your custom values.
 
-> ### Authorizing in Development
->
-> If you are testing your app locally, you may need a separate development GitHub app (with a localhost redirect), and a production GitHub app.
+> _Note:_ If you are **testing your app locally**, you may need a separate development GitHub app (with a localhost redirect), and a production GitHub app.
 
 Don't forget to add the **Client ID** and **Client Secret** to your environment variables.
 
+<!-- TODO: add ## Developing Locally section at this point? to explain where the content is sourcing from, etc. -->
+
 ## Loading content from GitHub
 
-Now that we have access to the user's auth token, we can load content from GitHub within `getStaticProps`.
+Now that we have access to the user's auth token, we can load content from GitHub within [_getStaticProps_](https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation).
 
 ```tsx
 // pages/index.tsx
