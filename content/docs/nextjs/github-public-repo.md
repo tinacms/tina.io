@@ -44,13 +44,25 @@ yarn dev
 
 ![fresh-create-next-app-install](/img/github-open-auth-cna/create-next-app.png)
 
-Navigate to http://localhost:3000/ and you should see something like the image above. Now you can commit and push this new `create-next-app` to your new GitHub repository.
+Navigate to http://localhost:3000/ and you should see something like the image above. Now you can commit and push this `create-next-app` to your new GitHub repository.
 
 > _Note:_ This guide assumes you are following along with a fresh _create-next-app_. However, **if you're configuring your own project**, some requirements of setting up GitHub Open Authoring are that you use _Next.js >= 9.3 in a public GitHub repository that is deployed with Vercel_ (a.k.a ZEIT Now) or another platform that can handle Next.js Previews.
 
-## Installing Tina Github packages
+### With Typescript
 
-Now that our _create-next-app_ is set up, we can add a few Tina packages:
+The examples in this guide will use [Typescript](https://www.typescriptlang.org/). To set up your `create-next-app` with Typescript, run this in the terminal:
+
+```bash
+npm install --save-dev typescript @types/node
+# or
+yarn add --dev typescript @types/node
+```
+
+The next time you start the development server, Next.js will automatically create a `tsconfig.json` file and populate it with default options. You may also want to change your `pages/index.js` to `pages/index.tsx`.
+
+## Install Tina-Github packages
+
+Now that our `create-next-app` is set up, we can add a few Tina packages:
 
 ```bash
 npm install --save react-tinacms-github next-tinacms-github tinacms styled-components
