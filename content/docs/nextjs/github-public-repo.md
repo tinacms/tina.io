@@ -12,11 +12,11 @@ The [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode) offer
 
 ## Summary
 
-1. [Setup a fresh _create-next-app_ in a new repository]()
-2. [Install the required packages](/docs/nextjs/github-public-repo#installation)
-3. [Configure the custom _\_app_ file](/docs/nextjs/github-public-repo#configure-the-custom-app-file)
-4. [Setup API functions using hygen scripts](/docs/nextjs/github-public-repo#api-functions)
-5. [Add an Auth Redirect page component](/docs/nextjs/github-public-repo#auth-redirects)
+1. [Setup _create-next-app_ in a new repository](/docs/nextjs/github-public-repo#using-create-next-app)
+2. [Install the required packages](/docs/nextjs/github-public-repo#install-tina-github-packages)
+3. [Configure the custom _\_app_ file](/docs/nextjs/github-public-repo#configure-the-custom-_-file)
+4. [Setup API functions using hygen scripts](/docs/nextjs/github-public-repo#adding-api-functions)
+5. [Add an Auth Redirect page component](/docs/nextjs/github-public-repo#create-an-auth-redirect-page)
 6. [Create the GitHub OAuth app](/docs/nextjs/github-public-repo#setup-the-github-oauth-app)
 7. [Load content from GitHub](/docs/nextjs/github-public-repo#loading-content-from-github) — using `getStaticProps` and [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode)
 8. [Create a Tina Form that sources content from GitHub](/docs/nextjs/github-public-repo#using-github-forms)
