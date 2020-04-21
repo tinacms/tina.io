@@ -6,14 +6,9 @@ next:
 consumes:
 ---
 
-Using Next.js's [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode), we can load a separate set of data depending on if we are in "edit-mode" or "production-mode". This pairs well with the GitHub API, where we can provide an "Open Authoring" experience where anyone can fork your site, make changes, and create a pull request, all through the TinaCMS UI!
+This guide will help you set up [Open Authoring](/blog/introducing-visual-open-authoring#using-nextjs-to-enable-edit-mode) with Github using [_create-next-app_](https://nextjs.org/docs#setup).
 
-## Requirements:
-
-- You must be using [Next.js v.9.3](https://nextjs.org/blog/next-9-3) or later.
-- If your site is static, is must be hosted on a service that supports Next.js [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode) (E.g [Zeit's Now](https://zeit.co/home)).
-- Your editable content must be stored in GitHub.
-- Your repository containing your content **must be public**.
+The [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode) offered by Next.js allows us to load a separate set of data [depending on the "edit" (or "preview") mode](/blog/introducing-visual-open-authoring#using-nextjs-to-enable-edit-mode). With the help of the GitHub API, we can allow anyone to fork your site, make changes, and create a pull request from the Tina UI. Instead of writing locally to the filesystem via Git, the Tina GitHub helpers source data and commit to an "Editing Repository".
 
 ## Summary
 
