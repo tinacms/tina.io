@@ -8,7 +8,7 @@ import {
   Hero,
   Wrapper,
   MarkdownContent,
-  RichTextWrapper,
+  DocsTextWrapper,
 } from '../../components/layout'
 import { InlineWysiwyg, InlineTextareaField } from 'react-tinacms-inline'
 import { useGithubMarkdownForm } from 'react-tinacms-github'
@@ -66,7 +66,7 @@ function BlogTemplate({ file, siteConfig, preview }) {
           <InlineTextareaField name="frontmatter.title" />
         </Hero>
         <BlogWrapper>
-          <RichTextWrapper>
+          <DocsTextWrapper>
             <BlogMeta>
               <MetaWrap>
                 <MetaBit>{formatDate(frontmatter.date)}</MetaBit>
@@ -80,7 +80,7 @@ function BlogTemplate({ file, siteConfig, preview }) {
             <InlineWysiwyg name="markdownBody">
               <MarkdownContent escapeHtml={false} content={markdownBody} />
             </InlineWysiwyg>
-          </RichTextWrapper>
+          </DocsTextWrapper>
         </BlogWrapper>
       </Layout>
     </OpenAuthoringSiteForm>
@@ -177,45 +177,6 @@ const BlogWrapper = styled(Wrapper)`
   padding-top: 4rem;
   padding-bottom: 3rem;
   max-width: 768px;
-
-  h1,
-  .h1,
-  h2,
-  .h2 {
-    color: var(--color-primary);
-    em {
-      color: var(--color-primary);
-      font-style: italic;
-    }
-  }
-
-  h3,
-  .h3,
-  h4,
-  .h4 {
-    color: var(--color-secondary);
-    em {
-      color: var(--color-secondary);
-      font-style: italic;
-    }
-  }
-
-  h1,
-  .h1 {
-    font-size: 2rem;
-    @media (min-width: 800px) {
-      font-size: 3rem;
-    }
-
-    @media (min-width: 1200px) {
-      font-size: 2.5rem;
-    }
-  }
-
-  h2,
-  .h2 {
-    font-size: 1.625rem;
-  }
 `
 
 const BlogMeta = styled.div`
