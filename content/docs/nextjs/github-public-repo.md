@@ -204,9 +204,11 @@ You should see a few API functions have been setup in your project, along with a
 - `proxy-github.ts`: Contains API function to attach the user's auth token, and proxy requests to the GitHub API.
 - `create-github-auth-token.ts`: Helper for creating a `createCreateAccessToken` server function.
 
-## Auth Redirects
+## Create an Auth Redirect page
 
-We will also need a page to redirect the user to while authenticating with GitHub. This component will render as a modal during authentication.
+We also need to create a new page to redirect the user to while authenticating with GitHub. This component **will render as a modal** during authentication.
+
+Create a new directory in `pages`, called `github` and then make a new file, `authorizing.tsx`.
 
 ```tsx
 // pages/github/authorizing.tsx
