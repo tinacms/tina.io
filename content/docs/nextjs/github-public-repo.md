@@ -3,6 +3,7 @@ title: Open Authoring with GitHub
 id: /docs/nextjs/github-public-repo
 prev: /docs/nextjs/markdown
 next:
+consumes:
 ---
 
 Using Next.js's [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode), we can load a separate set of data depending on if we are in "edit-mode" or "production-mode". This pairs well with the GitHub API, where we can provide an "Open Authoring" experience where anyone can fork your site, make changes, and create a pull request, all through the TinaCMS UI!
