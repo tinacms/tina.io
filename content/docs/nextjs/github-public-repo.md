@@ -207,7 +207,7 @@ You should see a few API functions have been setup in your project:
 
 ## Auth Redirects
 
-We will also a page to redirect the user to while authenticating with GitHub.
+We will also need a page to redirect the user to while authenticating with GitHub. This component will render as a modal during authentication.
 
 ```tsx
 // pages/github/authorizing.tsx
@@ -216,7 +216,7 @@ import { useGithubAuthRedirect } from 'react-tinacms-github'
 
 // Our GitHub app redirects back to this page with auth code
 export default function Authorizing() {
-  // Let the main app know, that we receieved an auth code from the GitHub redirect
+  // Let the main app know, that we received an auth code from the GitHub redirect
   useGithubAuthRedirect()
 
   return <h2>Authorizing with GitHub, Please wait...</h2>
