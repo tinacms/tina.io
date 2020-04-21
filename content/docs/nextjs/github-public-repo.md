@@ -23,7 +23,7 @@ Using Next.js's [Preview Mode](https://nextjs.org/docs/advanced-features/preview
 5. [Add an Auth Redirect page component](/docs/nextjs/github-public-repo#auth-redirects)
 6. [Create the GitHub OAuth app](/docs/nextjs/github-public-repo#github-oauth-app)
 7. [Load content from GitHub](/docs/nextjs/github-public-repo#loading-content-from-github) — using `getStaticProps` and [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode)
-8. [Create a Tina Form that sources from GitHub](/docs/nextjs/github-public-repo#using-github-forms)
+8. [Create a Tina Form that sources content from GitHub](/docs/nextjs/github-public-repo#using-github-forms)
 
 ## Installation
 
@@ -274,7 +274,7 @@ export const getStaticProps: GetStaticProps = async function({
 
 ## Using GitHub Forms
 
-Any forms that we have on our site can be created with the `useGithubJsonForm` or `useGithubMarkdownForm` helpers
+Any forms that we have on our site can be created with the `useGithubJsonForm` or `useGithubMarkdownForm` helpers. These helpers will fetch and post data through the GitHub API via the `GithubClient` we registered in `_app.tsx`.
 
 ```tsx
 // pages/index.tsx
@@ -291,7 +291,5 @@ function BlogTemplate({ jsonFile }) {
   // ...
 }
 ```
-
-`useGithubJsonForm` will use the `GithubClient` api that we [registered earlier](#register-the-githubclient).
 
 <!-- TODO: prompt folks to set up inline editing or take those next editing steps>
