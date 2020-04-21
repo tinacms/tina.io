@@ -29,7 +29,7 @@ import { useBranchToolbarPlugins } from '../../components/ui/Branching'
 import { getJsonPreviewProps } from '../../utils/getJsonPreviewProps'
 
 const BranchPage = (props: any) => {
-  const [formData, form] = useGithubJsonForm(props.home, {
+  const [formData, form] = useGithubJsonForm(props.file, {
     label: 'Home Page',
     fields: [
       {
@@ -114,7 +114,7 @@ const BranchPage = (props: any) => {
   return (
     <OpenAuthoringSiteForm
       form={form}
-      path={props.home.fileRelativePath}
+      path={props.file.fileRelativePath}
       preview={props.preview}
     >
       <Layout preview={props.preview}>
