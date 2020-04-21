@@ -80,9 +80,7 @@ export class MarkdownCreatorPlugin<FormShape = any, FrontmatterShape = any>
     const markdownBody = await this.body(form)
 
     cms.api.github
-      .save(
-        this.githubOptions.forkFullName,
-        this.githubOptions.branch,
+      .commit(
         fileRelativePath,
         getCachedFormData(fileRelativePath).sha,
         toMarkdownString({
