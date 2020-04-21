@@ -19,9 +19,6 @@ import { getGithubDataFromPreviewProps } from '../../../utils/getGithubDataFromP
 import { getMarkdownPreviewProps } from '../../../utils/getMarkdownFile'
 const Index = props => {
   const { currentPage, numPages } = props
-
-  const cms = useCMS()
-
   const [, form] = useForm({
     id: 'blog-list',
     label: 'Blog',
@@ -31,10 +28,7 @@ const Index = props => {
 
   return (
     <OpenAuthoringSiteForm preview={props.preview} form={form} path={''}>
-      <Layout
-        sourceProviderConnection={props.sourceProviderConnection}
-        preview={props.preview}
-      >
+      <Layout preview={props.preview}>
         <NextSeo
           title="Blog"
           openGraph={{
@@ -150,7 +144,6 @@ export const getStaticProps: GetStaticProps = async function({
         numPages: numPages,
         currentPage: page,
         preview: !!preview,
-        sourceProviderConnection,
       },
     }
   } catch (e) {

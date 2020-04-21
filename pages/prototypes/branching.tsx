@@ -117,10 +117,7 @@ const BranchPage = (props: any) => {
       path={props.home.fileRelativePath}
       preview={props.preview}
     >
-      <Layout
-        sourceProviderConnection={props.sourceProviderConnection}
-        preview={props.preview}
-      >
+      <Layout preview={props.preview}>
         <DefaultSeo titleTemplate={formData.title + ' | %s'} />
         <Hero overlap narrow>
           <InlineTextareaField name="headline" />

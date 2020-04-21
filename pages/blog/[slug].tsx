@@ -20,7 +20,7 @@ import { Button } from '../../components/ui/Button'
 import Error from 'next/error'
 import { getMarkdownPreviewProps } from '../../utils/getMarkdownFile'
 
-function BlogTemplate({ file, sourceProviderConnection, siteConfig, preview }) {
+function BlogTemplate({ file, siteConfig, preview }) {
   // fallback workaround
   if (!file) {
     return <Error statusCode={404} />
@@ -39,10 +39,7 @@ function BlogTemplate({ file, sourceProviderConnection, siteConfig, preview }) {
       path={file.fileRelativePath}
       preview={preview}
     >
-      <Layout
-        sourceProviderConnection={sourceProviderConnection}
-        preview={preview}
-      >
+      <Layout preview={preview}>
         <NextSeo
           title={frontmatter.title}
           titleTemplate={'%s | ' + siteConfig.title + ' Blog'}

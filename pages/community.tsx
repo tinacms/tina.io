@@ -23,13 +23,7 @@ import { OpenAuthoringSiteForm } from '../components/layout/OpenAuthoringSiteFor
 import { getJsonPreviewProps } from '../utils/getJsonPreviewProps'
 import { useGithubJsonForm } from 'react-tinacms-github'
 
-function CommunityPage({
-  file: community,
-  metadata,
-  sourceProviderConnection,
-  preview,
-  previewError,
-}) {
+function CommunityPage({ file: community, metadata, preview }) {
   // Registers Tina Form
   const [data, form] = useGithubJsonForm(community, formOptions)
 
@@ -39,10 +33,7 @@ function CommunityPage({
       path={community.fileRelativePath}
       preview={preview}
     >
-      <Layout
-        sourceProviderConnection={sourceProviderConnection}
-        preview={preview}
-      >
+      <Layout preview={preview}>
         <NextSeo
           title={data.title}
           description={data.description}
