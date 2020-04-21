@@ -8,11 +8,7 @@ import TagManager from 'react-gtm-module'
 import { GlobalStyle } from '../components/styles/GlobalStyle'
 import { BrowserStorageApi } from '../utils/plugins/browser-storage-api/BrowserStorageApi'
 import { Alerts } from '../components/layout/Alerts'
-import {
-  GithubClient,
-  TinacmsGithubProvider,
-  authenticate,
-} from 'react-tinacms-github'
+import { GithubClient, TinacmsGithubProvider } from 'react-tinacms-github'
 
 const MainLayout = ({ Component, pageProps }) => {
   const tinaConfig = {
