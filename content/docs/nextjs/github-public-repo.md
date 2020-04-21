@@ -236,9 +236,9 @@ After creating the app, you should see a page with information such as **Client 
 
 ### Setting Environment Variables
 
-This guide will reference [environment variables](https://nextjs.org/docs/api-reference/next.config.js/environment-variables) — these are sensitive values specific to your project. The Tina helpers will use these value to talk to your repository, enabling auth and data fetching via GitHub.
+[Environment variables](https://nextjs.org/docs/api-reference/next.config.js/environment-variables) are sensitive values specific to your project. The Tina-GitHub helpers will use these value to talk to your repository, enabling auth and data fetching via GitHub.
 
-To set these variables, create a `.env` file in your project root:
+To set these variables, create a `.env` file in your project root. Add the _secret_ and _id_ values from the OAuth App, and fill in the repo name. _Do not commit this file_; you may need to add `.env` to the `.gitignore` file.
 
 ```
 # .env
@@ -251,10 +251,12 @@ BASE_BRANCH=master
 You can use the `dotenv` package to load the `.env` file:
 
 ```bash
-$ npm install --save dotenv
+npm install --save dotenv
+# or
+yarn add dotenv
 ```
 
-Now, to load these `.env` values in the front-end, your [next.config](https://nextjs.org/docs/api-reference/next.config.js/introduction) file will need to be configured.
+Now, to load these `.env` values in the front-end, create a file called [next.config](https://nextjs.org/docs/api-reference/next.config.js/introduction) in the root of your project. Add the code from this example:
 
 ```js
 // next.config.js
@@ -272,6 +274,8 @@ module.exports = {
 ```
 
 > Note that we did not add `GITHUB_CLIENT_SECRET` to the config exports. This is the a secret key that should only be used from the server and should not be accessible through the browser.
+
+At this point you should be able to authenticate with GitHub! Try clicking the 'Edit This Site' button again and go through the auth flow.
 
 ## Loading content from GitHub
 
