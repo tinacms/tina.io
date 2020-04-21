@@ -14,16 +14,15 @@ Using Next.js's [Preview Mode](https://nextjs.org/docs/advanced-features/preview
 - Your editable content must be stored in GitHub.
 - Your repository containing your content **must be public**.
 
-## Overall Steps:
+## Summary
 
 1. [Install the required packages](/docs/nextjs/github-public-repo#installation)
-2. [Set environment variables](/docs/nextjs/github-public-repo#environment-variables)
-3. [Configure the custom _\_app_ file](/docs/nextjs/github-public-repo#configure-the-custom-app-file)
-4. [Setup API functions using hygen scripts](/docs/nextjs/github-public-repo#api-functions)
-5. [Add an Auth Redirect page component](/docs/nextjs/github-public-repo#auth-redirects)
-6. [Create the GitHub OAuth app](/docs/nextjs/github-public-repo#github-oauth-app)
-7. [Load content from GitHub](/docs/nextjs/github-public-repo#loading-content-from-github) — using `getStaticProps` and [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode)
-8. [Create a Tina Form that sources content from GitHub](/docs/nextjs/github-public-repo#using-github-forms)
+2. [Configure the custom _\_app_ file](/docs/nextjs/github-public-repo#configure-the-custom-app-file)
+3. [Setup API functions using hygen scripts](/docs/nextjs/github-public-repo#api-functions)
+4. [Add an Auth Redirect page component](/docs/nextjs/github-public-repo#auth-redirects)
+5. [Create the GitHub OAuth app](/docs/nextjs/github-public-repo#setup-the-github-oauth-app)
+6. [Load content from GitHub](/docs/nextjs/github-public-repo#loading-content-from-github) — using `getStaticProps` and [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode)
+7. [Create a Tina Form that sources content from GitHub](/docs/nextjs/github-public-repo#using-github-forms)
 
 ## Installation
 
@@ -37,48 +36,7 @@ The `react-tinacms-github` package provides helpers for setting up TinaCMS to us
 
 > _Note:_ If required peer dependencies aren't already installed, please add `tinacms` & `styled-components` — along with others listed in your terminal.
 
-### Environment Variables
-
-This guide will reference [environment variables](https://nextjs.org/docs/api-reference/next.config.js/environment-variables) — these are sensitive values specific to your project. The Tina helpers will use these value to talk to your repository, enabling auth and data fetching via GitHub.
-
-To set these variables, create a `.env` file in your project root:
-
-```
-# .env
-GITHUB_CLIENT_ID= # We will generate this later when we create a GitHub app.
-GITHUB_CLIENT_SECRET= # We will generate this later when we create a GitHub app.
-REPO_FULL_NAME=tinacms/tinacms.org # This is your github repository's owner / repo-name.
-BASE_BRANCH=master
-```
-
-You can use the `dotenv` package to load the `.env` file:
-
-```bash
-$ npm install --save dotenv
-```
-
-Now, to load these `.env` values in the front-end, your [next.config](https://nextjs.org/docs/api-reference/next.config.js/introduction) file will need to be configured.
-
-```js
-// next.config.js
-
-require('dotenv').config()
-
-module.exports = {
-  env: {
-    GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
-    REPO_FULL_NAME: process.env.REPO_FULL_NAME,
-    BASE_BRANCH: process.env.BASE_BRANCH,
-  },
-  // ...
-}
-```
-
-> Note that we did not add `GITHUB_CLIENT_SECRET` to the config exports. This is the a secret key that should only be used from the server and should not be accessible through the browser.
-
-## Setup
-
-### Configure the [custom app](https://nextjs.org/docs/advanced-features/custom-app) file
+## Configure the [custom app](https://nextjs.org/docs/advanced-features/custom-app) file
 
 A few steps must be followed in order to edit your GitHub content using TinaCMS. These changes will be made in `_app.tsx`. If you haven't [already created this file](/docs/nextjs/bootstrapping#adding-the-tina-provider), please do so in the `pages` directory.
 
@@ -223,17 +181,56 @@ export default function Authorizing() {
 }
 ```
 
-## GitHub Oauth App
+## Setup the GitHub OAuth App
 
 In GitHub, within your Account Settings, click <a href="https://github.com/settings/developers" target="_blank">Oauth Apps</a> under Developer Settings. Go ahead and create a "New Oauth App".
 
-For the **Authorization callback URL**, enter the url for the "authorizing" page that you created above (e.g https://your-url/github/authorizing). Fill out the other fields with your custom values.
+For the **Authorization callback URL**, enter the url for the "/github/authorizing" page that you created above (e.g https://your-url/github/authorizing). Fill out the other fields with your custom values.
 
 > _Note:_ If you are **testing your app locally**, you may need a separate development GitHub app (with a localhost redirect), and a production GitHub app.
 
-Don't forget to add the **Client ID** and **Client Secret** to your environment variables.
+Next we will add the **Client ID** and **Client Secret** to your environment variables.
 
 <!-- TODO: add ## Developing Locally section at this point? to explain where the content is sourcing from, etc. -->
+
+### Setting Environment Variables
+
+This guide will reference [environment variables](https://nextjs.org/docs/api-reference/next.config.js/environment-variables) — these are sensitive values specific to your project. The Tina helpers will use these value to talk to your repository, enabling auth and data fetching via GitHub.
+
+To set these variables, create a `.env` file in your project root:
+
+```
+# .env
+GITHUB_CLIENT_ID= # Taken from GitHub
+GITHUB_CLIENT_SECRET= # Taken from Github
+REPO_FULL_NAME=tinacms/tinacms.org # This is your github repository's owner / repo-name.
+BASE_BRANCH=master
+```
+
+You can use the `dotenv` package to load the `.env` file:
+
+```bash
+$ npm install --save dotenv
+```
+
+Now, to load these `.env` values in the front-end, your [next.config](https://nextjs.org/docs/api-reference/next.config.js/introduction) file will need to be configured.
+
+```js
+// next.config.js
+
+require('dotenv').config()
+
+module.exports = {
+  env: {
+    GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
+    REPO_FULL_NAME: process.env.REPO_FULL_NAME,
+    BASE_BRANCH: process.env.BASE_BRANCH,
+  },
+  // ...
+}
+```
+
+> Note that we did not add `GITHUB_CLIENT_SECRET` to the config exports. This is the a secret key that should only be used from the server and should not be accessible through the browser.
 
 ## Loading content from GitHub
 
@@ -279,14 +276,14 @@ Any forms that we have on our site can be created with the `useGithubJsonForm` o
 ```tsx
 // pages/index.tsx
 
-function BlogTemplate({ jsonFile }) {
+function Home({ file }) {
   const formOptions = {
-    label: 'Blog Post',
-    fields: [],
+    label: 'Home Page',
+    fields: [{ name: 'title', component: 'text' }],
   }
 
   // Registers a JSON Tina Form
-  const [data, form] = useGithubJsonForm(jsonFile, formOptions)
+  const [data, form] = useGithubJsonForm(file, formOptions)
 
   // ...
 }
