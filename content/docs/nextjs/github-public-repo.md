@@ -23,7 +23,7 @@ The [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode) offer
 
 ## Using _create-next-app_
 
-Let's set up a [fresh install](https://nextjs.org/docs#setup) of _create-next-app_ and create a [new repository](https://github.com/new) in GitHub. It is important this this repository is _public_, otherwise the GitHub API won't know how to find your content.
+Let's set up a [fresh install](https://nextjs.org/docs#setup) of _create-next-app_ and create a [new repository](https://github.com/new) in GitHub. It is important this this repository is _public_, otherwise the GitHub Helpers won't know how to find your content.
 
 Open up your terminal. Navigate to where you'd like this project to live and run:
 
