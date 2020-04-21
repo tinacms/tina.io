@@ -72,13 +72,13 @@ yarn add react-tinacms-github next-tinacms-github tinacms styled-components
 
 The `react-tinacms-github` package provides helpers for setting up TinaCMS to use the GitHub API, with GitHub authentication. And the `next-tinacms-github` package provides helpers for managing the GitHub auth token and loading content from the GitHub API.
 
-## Configure the [custom app](https://nextjs.org/docs/advanced-features/custom-app) file
+## Configure the custom _\_app_ file
 
-A few steps must be followed in order to edit your GitHub content using TinaCMS. These changes will be made in `_app.tsx`. If you haven't [already created this file](/docs/nextjs/bootstrapping#adding-the-tina-provider), please do so in the `pages` directory.
+Now we need to step up TinaCMS to work with Github. First, create a new file in the `pages` directory called `_app.tsx`. This is a special file in Next.js that allows us to configure a [custom app](https://nextjs.org/docs/advanced-features/custom-app).
 
 1. **Create the TinaCMS instance**
 2. **Register the GithubClient:** The client accepts a string ('/api/proxy-github' in our case). All requests using the `GithubClient` gets passed through a proxy on our site. This allows us to securely attach the authentication tokens on the backend.
-3. Make sure the Sidebar is hidden unless we're in Next's [Preview/Edit mode](https://nextjs.org/docs/advanced-features/preview-mode).
+3. Make sure the Sidebar & Toolbar are hidden unless we're in Next's [Preview/Edit mode](https://nextjs.org/docs/advanced-features/preview-mode).
 4. **Wrap the Page with `TinacmsGithubProvider`:** This component lets us authenticate with GitHub. It is given config and callbacks that hit our `/api` server functions to enable Preview/Edit Mode after authentication is complete.
 5. **Add a button for entering Preview/Edit Mode:** We must provide a means of triggering authentication. This a simple example of how to do so.
 
@@ -110,10 +110,14 @@ export default class Site extends App {
          */
         github: new GithubClient('/api/proxy-github', REPO_FULL_NAME),
       },
+      /*
+       ** 3. Make sure the Sidebar & Toolbar are
+       **    hidden unless we're in Preview/Edit Mode
+       */
       sidebar: {
-        /*
-         ** 3. Make sure the Sidebar is hidden unless we're in Preview/Edit Mode
-         */
+        hidden: !props.pageProps.preview,
+      },
+      toolbar: {
         hidden: !props.pageProps.preview,
       },
     })
@@ -174,7 +178,7 @@ export const EditLink = ({ editMode }: EditLinkProps) => {
 
 > _Note:_ For brevity, the example above configures many steps in a single file, but **a few components can be configured in different places**. For example you could put the `EditLink` in a Layout component, or setup the Github Provider only on certain pages.
 
-Now that **\_app.tsx** is ready. Let's setup up the backend API.
+If you restart the dev server, you should see a **button in the top left-hand corner** that says, "Edit This Site". If you click it, you'll be prompted to authenticate with GitHub, but we still have some steps to get this working. Let's setup up the backend API.
 
 ## API functions
 
