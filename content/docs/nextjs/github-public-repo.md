@@ -12,23 +12,51 @@ The [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode) offer
 
 ## Summary
 
-1. [Install the required packages](/docs/nextjs/github-public-repo#installation)
-2. [Configure the custom _\_app_ file](/docs/nextjs/github-public-repo#configure-the-custom-app-file)
-3. [Setup API functions using hygen scripts](/docs/nextjs/github-public-repo#api-functions)
-4. [Add an Auth Redirect page component](/docs/nextjs/github-public-repo#auth-redirects)
-5. [Create the GitHub OAuth app](/docs/nextjs/github-public-repo#setup-the-github-oauth-app)
-6. [Load content from GitHub](/docs/nextjs/github-public-repo#loading-content-from-github) — using `getStaticProps` and [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode)
-7. [Create a Tina Form that sources content from GitHub](/docs/nextjs/github-public-repo#using-github-forms)
+1. [Setup a fresh _create-next-app_ in a new repository]()
+2. [Install the required packages](/docs/nextjs/github-public-repo#installation)
+3. [Configure the custom _\_app_ file](/docs/nextjs/github-public-repo#configure-the-custom-app-file)
+4. [Setup API functions using hygen scripts](/docs/nextjs/github-public-repo#api-functions)
+5. [Add an Auth Redirect page component](/docs/nextjs/github-public-repo#auth-redirects)
+6. [Create the GitHub OAuth app](/docs/nextjs/github-public-repo#setup-the-github-oauth-app)
+7. [Load content from GitHub](/docs/nextjs/github-public-repo#loading-content-from-github) — using `getStaticProps` and [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode)
+8. [Create a Tina Form that sources content from GitHub](/docs/nextjs/github-public-repo#using-github-forms)
 
-## Installation
+## Using _create-next-app_
 
-We'll need to add a few Tina-GitHub packages to our site:
+Let's set up a [fresh install](https://nextjs.org/docs#setup) of _create-next-app_ and create a [new repository](https://github.com/new) in GitHub. It is important this this repository is _public_, otherwise the GitHub API won't know how to find your content.
+
+Open up your terminal. Navigate to where you'd like this project to live and run:
 
 ```bash
-$ npm install --save react-tinacms-github next-tinacms-github
+npm init next-app
+# or
+yarn create next-app
 ```
 
-The `react-tinacms-github` package provides helpers for setting up TinaCMS to use the GitHub API, with GitHub authentication. And the `next-tinacms-github` package provides helpers for managing the GitHub auth token and loading content from the GitHub API.
+Name your project, then choose the 'Default Starter' from the terminal options. Go ahead and navigate into that project and start the development server.
+
+```bash
+cd your-project-name
+npm run dev
+# or
+yarn dev
+```
+
+![fresh-create-next-app-install](/img/github-open-auth-cna/create-next-app.png)
+
+Navigate to http://localhost:3000/ and you should see something like the image above. Now you can commit and push this new `create-next-app` to your new GitHub repository.
+
+> _Note:_ This guide assumes you are following along with a fresh _create-next-app_. However, **if you're configuring your own project**, some requirements of setting up GitHub Open Authoring are that you use _Next.js >= 9.3 in a public GitHub repository that is deployed with Vercel_ (a.k.a ZEIT Now) or another platform that can handle Next.js Previews.
+
+## Installing Tina Github packages
+
+Now that our _create-next-app_ is set up, we can add a few Tina packages:
+
+```bash
+npm install --save react-tinacms-github next-tinacms-github tinacms styled-components
+# or
+yarn add react-tinacms-github next-tinacms-github tinacms styled-components
+```
 
 > _Note:_ If required peer dependencies aren't already installed, please add `tinacms` & `styled-components` — along with others listed in your terminal.
 
