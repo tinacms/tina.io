@@ -176,7 +176,7 @@ If you restart the dev server, you should see a **button in the top left-hand co
 
 We will need a few API functions to handle GitHub authentication and [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode). With Next.js, any functions in the `pages/api` directory are are mapped to `/api/*` endpoints.
 
-We've created a few [scripts](https://github.com/dwalkr/hygen-next-tinacms-github) to **help generate the required files**. From the terminal, run:
+Using the code generator [Hygen](https://www.hygen.io/), we've created a few [scripts](https://github.com/dwalkr/hygen-next-tinacms-github) to **help generate the required files** for this step. From the terminal, run:
 
 ```bash
 npx hygen-add https://github.com/dwalkr/hygen-next-tinacms-github
