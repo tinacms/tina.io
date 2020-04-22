@@ -8,7 +8,7 @@ consumes:
 
 This guide will help you set up [Open Authoring](/blog/introducing-visual-open-authoring#using-nextjs-to-enable-edit-mode) with Github using [_create-next-app_](https://nextjs.org/docs#setup).
 
-The [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode) offered by Next.js allows us to load a separate set of data [depending on the "edit" (or "preview") mode](/blog/introducing-visual-open-authoring#using-nextjs-to-enable-edit-mode). With the help of the GitHub API, we can allow anyone to fork your site, make changes, and create a pull request from the Tina UI. Instead of writing locally to the filesystem via Git, the Tina GitHub helpers source data and commit to a "Working Repository".
+The [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode) offered by Next.js allows us to load a separate set of data [depending on the "edit" (or "preview") mode](/blog/introducing-visual-open-authoring#using-nextjs-to-enable-edit-mode). With the help of the GitHub API, we can allow anyone to fork your site, make changes, and create a pull request from the Tina UI.
 
 ## Summary
 
@@ -388,8 +388,10 @@ export default function Home({ file }) {
 //...
 ```
 
+> **This is a different approach** than the Git-based Tina form helpers. Instead of writing locally to the filesystem via Git, the Tina-GitHub helpers source data and commit to a _Working GitHub Repository_.
+
 Start up the dev server, enter "Edit Mode" open the sidebar and edit the title! You've set up GitHub editing with Tina. If you "Save", that will commit your master branch.
 
-If you update and save the content changes, when you toggle edit mode you may notice a difference in the content source. When you're not in edit mode, the site will reference _local content_. When you go into edit mode, it will reference content in the _working_ GitHub repository.
+If you update and save the content changes, when you toggle edit mode you may notice a difference in the content source. When you're not in edit mode, the site will reference _local content_. When you go into edit mode, it will reference content in the associated GitHub repository (i.e. _Working Repository_).
 
 <!-- TODO: Toolbar config?? or getting the site on Now? -->
