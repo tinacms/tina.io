@@ -274,11 +274,11 @@ module.exports = {
 
 > Note that we did not add `GITHUB_CLIENT_SECRET` to the config exports. This is the a secret key that should only be used from the server and should not be accessible through the browser.
 
-At this point you should be able to authenticate with GitHub! Try clicking the 'Edit This Site' button again and try to authenticate.
+At this point **you should be able to authenticate with GitHub**! Click the 'Edit This Site' button again and try to authenticate. If auth is successful, you should see another modal prompting you to create a fork, go ahead and do so.
 
-<!-- TODO: add an image here to show auth flow modal steps? -->
+![github-create-fork-step](/img/github-open-auth-cna/create-fork-step.png)
 
-If all is successful, you should see another modal prompting you to create a fork, go ahead and do so. If you weren't the owner of this repository, a fork would be made where someone else could commit edits and create a PR for review. Since you're the owner of this repository, a fork won't be created and edits will just go to the `master` branch.
+If you weren't the owner of this repository, a fork (also known as a _Working Repository_) would be made where someone else could commit edits and create a PR for review. Since you're the owner of this repository, a fork won't be created and edits will just go to the `master` branch.
 
 ## Loading content from GitHub
 
