@@ -297,18 +297,19 @@ Check out `pages/index.tsx`, right now the content for this page is statically w
 
 Back in `pages/index.tsx`, we need to set up data fetching. We will use [_getStaticProps_](https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation) to return different sets of data based on the "Preview" or "Edit Mode".
 
-```tsx
+```diff
 // pages/index.tsx
 
 import Head from 'next/head'
-/*
- ** Import helpers and GetStaticProps type
+/**
+ * Import helpers and GetStaticProps type
  */
-import { getGithubPreviewProps, parseJson } from 'next-tinacms-github'
-import { GetStaticProps } from 'next'
++ import { getGithubPreviewProps, parseJson } from 'next-tinacms-github'
++ import { GetStaticProps } from 'next'
 
-export default function Home(props) {
-  const data = props.file.data
+- export default function Home() {
++ export default function Home({ file }) {
++  const data = file.data
 
   return (
     <div className="container">
@@ -322,19 +323,16 @@ export default function Home(props) {
           {/**
            * Render the title from `home.json`
            */}
-          {data.title}
+-          Welcome to <a href="https://nextjs.org">Next.js!</a>
++          {data.title}
         </h1>
 
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
+        //...
 
-        <div className="grid">{/*...*/}</div>
       </main>
 
-      <footer>{/*...*/}</footer>
+      //...
 
-      <style jsx>{/*...*/}</style>
     </div>
   )
 }
@@ -342,29 +340,29 @@ export default function Home(props) {
 /**
  * Fetch data with getStaticProps based on 'preview' mode
  */
-export const getStaticProps: GetStaticProps = async function({
-  preview,
-  previewData,
-}) {
-  if (preview) {
-    return getGithubPreviewProps({
-      ...previewData,
-      fileRelativePath: 'content/home.json',
-      parse: parseJson,
-    })
-  }
-  return {
-    props: {
-      sourceProvider: null,
-      error: null,
-      preview: false,
-      file: {
-        fileRelativePath: 'content/home.json',
-        data: (await import('../content/home.json')).default,
-      },
-    },
-  }
-}
++ export const getStaticProps: GetStaticProps = async function({
++  preview,
++  previewData,
++ }) {
++  if (preview) {
++    return getGithubPreviewProps({
++      ...previewData,
++      fileRelativePath: 'content/home.json',
++      parse: parseJson,
++    })
++  }
++  return {
++    props: {
++      sourceProvider: null,
++      error: null,
++      preview: false,
++      file: {
++        fileRelativePath: 'content/home.json',
++        data: (await import('../content/home.json')).default,
++      },
++    },
++  }
++ }
 ```
 
 Now your `create-next-app` should look something like the image below.
@@ -382,7 +380,7 @@ Now we need to create a Form for editing this content. Any forms that we have on
 
 +import { useGithubJsonForm } from 'react-tinacms-github'
 
-function Home({ file }) {
+export default function Home({ file }) {
 -  const data = file.data
 +  const formOptions = {
 +    label: 'Home Page',
