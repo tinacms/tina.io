@@ -281,9 +281,13 @@ At this point **you should be able to authenticate with GitHub**! Click the 'Edi
 
 If you weren't the owner of this repository, a fork (also known as a _Working Repository_) would be made where someone else could commit edits and create a PR for review. Since you're the owner of this repository, a fork won't be created and edits will just go to the `master` branch.
 
+After you've authenticated and the _Working Repository_ is established, your `create-next-app` should look something like the image below:
+
+![after-auth-and-fork-success](/img/github-open-auth-cna/after-auth-fork.png)
+
 ## Loading content from GitHub
 
-Now that we have authentication set up, it's time to wire up some content to edit.
+Now that we have authentication and the _Working Repository_ set up, it's time to wire up some content to edit.
 
 Check out `pages/index.tsx`, right now the content for this page is statically written into the component. Let's create a data file to source this content from. Add a new directory in the root of your project called `content` (or `data`, whichever you prefer) and create a new file called `home.json`. We'll start small by just adding editing a title.
 
@@ -373,7 +377,7 @@ Now your `create-next-app` should look something like the image below.
 
 ## Using GitHub Forms
 
-Now we need to create a Form for editing this content. Any forms that we have on our site can be created with the `useGithubJsonForm` or `useGithubMarkdownForm` helpers. These helpers will fetch and post data through the GitHub API via the `GithubClient` we registered in `_app.tsx`.
+You may have noticed that the Tina sidebar is still empty, that's because we need to create a [Form](/docs/forms) to edit the content. Any forms that we have on our site can be created with the `useGithubJsonForm` or `useGithubMarkdownForm` helpers. These helpers will fetch and post data through the GitHub API via the `GithubClient` we registered in `_app.tsx`.
 
 ```diff
 // pages/index.tsx
