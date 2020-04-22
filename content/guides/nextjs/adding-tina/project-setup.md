@@ -17,22 +17,22 @@ yarn dev
 
 ## Additional Setup
 
-NextJS' default blog starter is _almost_ perfectly equipped to start implementing Tina right away. Per our [project setup recommendations](http://localhost:3000/guides/nextjs/adding-tina/overview#project-setup-recommendations), this blog starter nails two out of three:
+Next.js' default blog starter is _almost_ perfectly equipped to start implementing Tina right away. Per our [project setup recommendations](http://localhost:3000/guides/nextjs/adding-tina/overview#project-setup-recommendations), this blog starter nails two out of three:
 
-- ✔️ Uses the new data fetching methods introduced in NextJS 9.3
+- ✔️ Uses the new data fetching methods introduced in Next.js 9.3
 - ✔️ Uses function components instead of class components
 
 However, there is one point we need to address:
 
 - ❌ Does not perform content transformation client-side
 
-This last point, as mentioned before, is a significant obstacle to ensuring a good editing experience with Tina. The NextJS blog starter stores its content in Markdown, and requires a compile step to convert the Markdown into HTML, which it performs at build time.
+This last point, as mentioned before, is a significant obstacle to ensuring a good editing experience with Tina. The Next.js blog starter stores its content in Markdown, and requires a compile step to convert the Markdown into HTML, which it performs at build time.
 
 It's worth noting that you can expect to come across this issue frequently for projects that aren't set up to work with Tina. Unless you are building your site to work specifically with a CMS that runs on the client-side and offers real-time previewing, there's no reason to perform this transformation client-side. Most projects, like this one, will opt to do it server-side or (as is common with JAMstack projects) during a build step.
 
 ## Setting up Client-Side Content Transformation
 
-The good news is that setting up client-side content transformation for the NextJS starter blog doesn't require too many steps.
+The good news is that setting up client-side content transformation for the Next.js starter blog doesn't require too many steps.
 
 > **Transforming content at build-time isn't bad**
 >
@@ -113,7 +113,7 @@ First, add `useState` and `useEffect` to the imports at the top of this file:
 import { useState, useEffect } from 'react'
 ```
 
-**In the body of the Post component**, let's create a State variable to store the transformed HTML. By initializing it with the already-transformed HTML, we will ensure that (1) the blog post will render immediately without having to wait for the initial transformation, and (2) the HTML will still be rendered during NextJS' _Server-Side Rendering_ step.
+**In the body of the Post component**, let's create a State variable to store the transformed HTML. By initializing it with the already-transformed HTML, we will ensure that (1) the blog post will render immediately without having to wait for the initial transformation, and (2) the HTML will still be rendered during Next.js' _Server-Side Rendering_ step.
 
 ```js
 export default function Post({ post, morePosts, preview }) {
