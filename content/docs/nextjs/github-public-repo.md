@@ -12,12 +12,12 @@ The [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode) offer
 
 ## Summary
 
-1. [Setup _create-next-app_ in a new repository](/docs/nextjs/github-public-repo#using-create-next-app)
+1. [Set up _create-next-app_ in a new repository](/docs/nextjs/github-public-repo#using-create-next-app)
 2. [Install the required packages](/docs/nextjs/github-public-repo#install-tina-github-packages)
 3. [Configure the custom _\_app_ file](/docs/nextjs/github-public-repo#configure-the-custom-_-file)
-4. [Setup API functions using hygen scripts](/docs/nextjs/github-public-repo#adding-api-functions)
+4. [Set up API functions using hygen scripts](/docs/nextjs/github-public-repo#adding-api-functions)
 5. [Add an Auth Redirect page component](/docs/nextjs/github-public-repo#create-an-auth-redirect-page)
-6. [Create the GitHub OAuth app](/docs/nextjs/github-public-repo#setup-the-github-oauth-app)
+6. [Create the GitHub OAuth app](/docs/nextjs/github-public-repo#set-up-the-github-oauth-app)
 7. [Load content from GitHub](/docs/nextjs/github-public-repo#loading-content-from-github) — using `getStaticProps` and [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode)
 8. [Create a Tina Form that sources content from GitHub](/docs/nextjs/github-public-repo#using-github-forms)
 
@@ -168,9 +168,9 @@ export const EditLink = ({ editMode }: EditLinkProps) => {
 }
 ```
 
-> _Note:_ For brevity, the example above configures many steps in a single file, but **a few components can be configured in different places**. For example you could put the `EditLink` in a Layout component, or setup the Github Provider only on certain pages.
+> _Note:_ For brevity, the example above configures many steps in a single file, but **a few components can be configured in different places**. For example you could put the `EditLink` in a Layout component, or set up the Github Provider only on certain pages.
 
-If you restart the dev server, you should see a **button in the top left-hand corner** that says, "Edit This Site". If you click it, you'll be prompted to authenticate with GitHub, but we still have some steps to get this working. Let's setup up the backend API.
+If you restart the dev server, you should see a **button in the top left-hand corner** that says, "Edit This Site". If you click it, you'll be prompted to authenticate with GitHub, but we still have some steps to get this working. Let's set up up the backend API.
 
 ## Adding API functions
 
@@ -190,7 +190,7 @@ npx hygen next-tinacms-github bootstrap --format ts
 npx hygen next-tinacms-github bootstrap --format ts --dir src
 ```
 
-You should see a few API functions have been setup in your project, along with a new `_templates` directory.
+You should see a few API functions have been set up in your project, along with a new `_templates` directory.
 
 - `preview.ts`: Contains API function to enter [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode), and set the preview-data with content stored in the cookies.
 - `proxy-github.ts`: Contains API function to attach the user's auth token, and proxy requests to the GitHub API.
@@ -216,9 +216,9 @@ export default function Authorizing() {
 }
 ```
 
-## Setup the GitHub OAuth App
+## Set up the GitHub OAuth App
 
-Now we need to setup an OAuth App in Github to allow for authorization. In GitHub, within your Account Settings, click <a href="https://github.com/settings/developers" target="_blank">Oauth Apps</a> under Developer Settings. Go ahead and create a "New Oauth App".
+Now we need to set up an OAuth App in Github to allow for authorization. In GitHub, within your Account Settings, click <a href="https://github.com/settings/developers" target="_blank">Oauth Apps</a> under Developer Settings. Go ahead and create a "New Oauth App".
 
 Since you are **testing your app locally**, you'll create a _development_ GitHub app that redirects to localhost. Eventually you'll need to create separate OAuth Apps: one for development and a production app whose URLs will connect to the 'live' domain. We'll circle back to the production app once when we cover hosting.
 
