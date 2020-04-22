@@ -8,6 +8,12 @@
       "data": "./overview.md"
     },
     {
+      "title": "Project Setup",
+      "id": "/guides/nextjs/adding-tina/project-setup",
+      "slug": "/guides/nextjs/adding-tina/project-setup",
+      "data": "./project-setup.md"
+    },
+    {
       "title": "Adding the Tina Provider",
       "id": "/guides/nextjs/adding-tina/adding-tina-provider",
       "slug": "/guides/nextjs/adding-tina/adding-tina-provider",
