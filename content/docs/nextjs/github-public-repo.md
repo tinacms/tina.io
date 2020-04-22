@@ -242,6 +242,8 @@ REPO_FULL_NAME=tinacms/tinacms.org # This is your github repository's owner / re
 BASE_BRANCH=master
 ```
 
+> Make sure to **delete the comments** in this file after filling in the correct values! Otherwise the authentication may not work.
+
 You can use the `dotenv` package to load the `.env` file:
 
 ```bash
