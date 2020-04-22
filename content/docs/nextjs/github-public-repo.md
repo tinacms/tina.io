@@ -28,8 +28,6 @@ Let's set up a [fresh install](https://nextjs.org/docs#setup) of _create-next-ap
 Open up your terminal. Navigate to where you'd like this project to live and run:
 
 ```bash
-npm init next-app
-# or
 yarn create next-app
 ```
 
@@ -37,8 +35,6 @@ Name your project, then choose the 'Default Starter' from the terminal options. 
 
 ```bash
 cd your-project-name
-npm run dev
-# or
 yarn dev
 ```
 
@@ -53,8 +49,6 @@ Navigate to http://localhost:3000/ and you should see something like the image a
 The examples in this guide will use [Typescript](https://www.typescriptlang.org/). To set up your `create-next-app` with Typescript, run this in the terminal:
 
 ```bash
-npm install --save-dev typescript @types/node
-# or
 yarn add --dev typescript @types/node
 ```
 
@@ -65,8 +59,6 @@ The next time you start the development server, Next.js will automatically creat
 Now that our `create-next-app` is set up, we can add a few Tina packages:
 
 ```bash
-npm install --save react-tinacms-github next-tinacms-github tinacms styled-components
-# or
 yarn add react-tinacms-github next-tinacms-github tinacms styled-components
 ```
 
@@ -251,8 +243,6 @@ BASE_BRANCH=master
 You can use the `dotenv` package to load the `.env` file:
 
 ```bash
-npm install --save dotenv
-# or
 yarn add dotenv
 ```
 
