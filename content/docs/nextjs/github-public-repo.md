@@ -283,16 +283,65 @@ If all is successful, you should see another modal prompting you to create a for
 
 ## Loading content from GitHub
 
-Now that we have access to the user's auth token, we can load content from GitHub within [_getStaticProps_](https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation).
+Now that we have authentication set up, it's time to wire up some content to edit.
+
+Check out `pages/index.tsx`, right now the content for this page is statically written into the component. Let's create a data file to source this content from. Add a new directory in the root of your project called `content` (or `data`, whichever you prefer) and create a new file called `home.json`. We'll start small by just adding editing a title.
+
+```json
+// content/home.json
+
+{
+  "title": "Give me your tots 🦙"
+}
+```
+
+Back in `pages/index.tsx`, we need to set up data fetching. We will use [_getStaticProps_](https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation) to return different sets of data based on the "Preview" or "Edit Mode".
 
 ```tsx
 // pages/index.tsx
 
+import Head from 'next/head'
+/*
+ ** Import helpers and GetStaticProps type
+ */
 import { getGithubPreviewProps, parseJson } from 'next-tinacms-github'
 import { GetStaticProps } from 'next'
 
-// ...
+export default function Home(props) {
+  const data = props.file.data
 
+  return (
+    <div className="container">
+      <Head>
+        <title>Create Next App</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <main>
+        <h1 className="title">
+          {/*
+           ** Render the title from `home.json`
+           */}
+          {data.title}
+        </h1>
+
+        <p className="description">
+          Get started by editing <code>pages/index.js</code>
+        </p>
+
+        <div className="grid">{/*...*/}</div>
+      </main>
+
+      <footer>{/*...*/}</footer>
+
+      <style jsx>{/*...*/}</style>
+    </div>
+  )
+}
+
+/*
+ ** Fetch data with getStaticProps based on 'preview' mode
+ */
 export const getStaticProps: GetStaticProps = async function({
   preview,
   previewData,
