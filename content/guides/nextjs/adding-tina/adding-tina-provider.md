@@ -28,6 +28,7 @@ Wrapping the main App component in the `withTina` higher-order component will au
 
 ```javascript
 import '../styles/index.css'
+import { withTina } from 'tinacms'
 
 function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />
