@@ -270,6 +270,8 @@ export const getStaticProps: GetStaticProps = async function({
 }
 ```
 
+> We are currently working on making it possible to make commits directly on the base repository. Until then, to test editing on your own site you will need to test with a separate Github account.
+
 ## Using GitHub Forms
 
 Any forms that we have on our site can be created with the `useGithubJsonForm` or `useGithubMarkdownForm` helpers. These helpers will fetch and post data through the GitHub API via the `GithubClient` we registered in `_app.tsx`.
