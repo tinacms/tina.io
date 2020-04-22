@@ -230,7 +230,7 @@ Now we need to setup an OAuth App in Github to allow for authorization. In GitHu
 
 Since you are **testing your app locally**, eventually you'll need to create separate OAuth Apps: one for development, with a localhost redirect, and a production GitHub app whose URLs will connect to the 'live' domain.
 
-For now, fill in http://localhost:3000 for the _Homepage Url_. And with the **Authorization callback URL**, enter the url for the "/github/authorizing" page that you created above (e.g https://localhost:3000/github/authorizing).
+For now, fill in http://localhost:3000 for the _Homepage Url_. And with the **Authorization callback URL**, enter the url for the "/github/authorizing" page that you created above (e.g http://localhost:3000/github/authorizing).
 
 After creating the app, you should see a page with information such as **Client ID** and **Client Secret**. Next, we'll add those as environment variables to the project to connect this App to the Tina-GitHub helpers.
 
@@ -275,7 +275,11 @@ module.exports = {
 
 > Note that we did not add `GITHUB_CLIENT_SECRET` to the config exports. This is the a secret key that should only be used from the server and should not be accessible through the browser.
 
-At this point you should be able to authenticate with GitHub! Try clicking the 'Edit This Site' button again and go through the auth flow.
+At this point you should be able to authenticate with GitHub! Try clicking the 'Edit This Site' button again and try to authenticate.
+
+<!-- TODO: add an image here to show auth flow modal steps? -->
+
+If all is successful, you should see another modal prompting you to create a fork, go ahead and do so. If you weren't the owner of this repository, a fork would be made where someone else could commit edits and create a PR for review. Since you're the owner of this repository, a fork won't be created and edits will just go to the `master` branch.
 
 ## Loading content from GitHub
 
