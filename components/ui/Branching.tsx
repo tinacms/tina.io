@@ -19,7 +19,7 @@ import { Button } from '@tinacms/styles'
 import { Dismissible } from 'react-dismissible'
 import styled, { css } from 'styled-components'
 
-export const useBranchToolbarPlugins = (form: Form<any>, editMode: boolean) => {
+export const useBranchToolbarPlugins = (form: Form<any>, preview: boolean) => {
   const cms = useCMS()
 
   React.useEffect(() => {
@@ -29,14 +29,14 @@ export const useBranchToolbarPlugins = (form: Form<any>, editMode: boolean) => {
       plugins.forEach(plugin => cms.plugins.remove(plugin))
     }
 
-    if (editMode) {
+    if (preview) {
       plugins.forEach(plugin => cms.plugins.add(plugin))
     } else {
       removePlugins()
     }
 
     return removePlugins
-  }, [editMode, form])
+  }, [preview, form])
 }
 
 const testBranches = [

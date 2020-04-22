@@ -13,11 +13,9 @@ import {
   BlockTextarea,
   BlocksControls,
 } from 'react-tinacms-inline'
-import { getJsonFile } from '../utils/getJsonFile'
 import { OpenAuthoringSiteForm } from '../components/layout/OpenAuthoringSiteForm'
-import { GithubError } from 'next-tinacms-github'
-import { getGithubDataFromPreviewProps } from '../utils/getGithubDataFromPreviewProps'
 import { useGithubJsonForm } from 'react-tinacms-github'
+import { getJsonPreviewProps } from '../utils/getJsonPreviewProps'
 
 const formOptions = {
   label: 'Teams',
@@ -54,23 +52,15 @@ const formOptions = {
 
 function TeamsPage(props) {
   // Adds Tina Form
-  const [data, form] = useGithubJsonForm(
-    props.teams,
-    formOptions,
-    props.sourceProviderConnection
-  )
+  const [data, form] = useGithubJsonForm(props.file, formOptions)
 
   return (
     <OpenAuthoringSiteForm
       form={form}
-      path={props.teams.fileRelativePath}
-      editMode={props.editMode}
+      path={props.file.fileRelativePath}
+      preview={props.preview}
     >
-      <TeamsLayout
-        sourceProviderConnection={props.sourceProviderConnection}
-        editMode={props.editMode}
-        color={'secondary'}
-      >
+      <TeamsLayout preview={props.preview} color={'secondary'}>
         <NextSeo
           title={data.title}
           description={data.description}
@@ -119,35 +109,7 @@ export const getStaticProps: GetStaticProps = async function({
   preview,
   previewData,
 }) {
-  const {
-    sourceProviderConnection,
-    accessToken,
-  } = getGithubDataFromPreviewProps(previewData)
-
-  let previewError: GithubError = null
-  let teamsData = {}
-  try {
-    teamsData = await getJsonFile(
-      'content/pages/teams.json',
-      sourceProviderConnection,
-      accessToken
-    )
-  } catch (e) {
-    if (e instanceof GithubError) {
-      previewError = { ...e } //workaround since we cant return error as JSON
-    } else {
-      throw e
-    }
-  }
-
-  return {
-    props: {
-      teams: teamsData,
-      previewError: previewError,
-      sourceProviderConnection,
-      editMode: !!preview,
-    },
-  }
+  return getJsonPreviewProps('content/pages/teams.json', preview, previewData)
 }
 
 /*

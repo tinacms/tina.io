@@ -11,18 +11,11 @@ import moment from 'moment'
 interface LayoutProps {
   children: any[]
   color?: 'white' | 'secondary' | 'seafoam'
-  sourceProviderConnection: any
-  editMode: boolean
+  preview: boolean
 }
 
 export const Layout = styled(
-  ({
-    children,
-    color,
-    sourceProviderConnection,
-    editMode,
-    ...styleProps
-  }: LayoutProps) => {
+  ({ children, color, preview, ...styleProps }: LayoutProps) => {
     const router = useRouter()
 
     const CreateBlogPlugin = useMemo(
@@ -54,8 +47,7 @@ export const Layout = styled(
               component: 'text',
             },
           ],
-          githubOptions: sourceProviderConnection,
-          isEditMode: editMode,
+          isEditMode: preview,
           frontmatter: postInfo => ({
             title: postInfo.title,
             date: moment(postInfo.date ? postInfo.date : new Date()).format(),
@@ -71,7 +63,7 @@ export const Layout = styled(
             window.location.href = `/blog/${url}`
           },
         }),
-      [editMode, sourceProviderConnection]
+      [preview]
     )
 
     usePlugin(CreateBlogPlugin)
@@ -85,7 +77,7 @@ export const Layout = styled(
         />
         <Header color={color} />
         {children}
-        <Footer editMode={editMode} />
+        <Footer preview={preview} />
       </div>
     )
   }

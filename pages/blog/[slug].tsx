@@ -11,7 +11,6 @@ import {
   DocsTextWrapper,
 } from '../../components/layout'
 import { InlineWysiwyg, InlineTextareaField } from 'react-tinacms-inline'
-import { getMarkdownFile } from '../../utils/getMarkdownFile'
 import { useGithubMarkdownForm } from 'react-tinacms-github'
 import { fileToUrl } from '../../utils/urls'
 import { OpenAuthoringSiteForm } from '../../components/layout/OpenAuthoringSiteForm'
@@ -19,27 +18,16 @@ const fg = require('fast-glob')
 import { useGithubEditing } from 'react-tinacms-github'
 import { Button } from '../../components/ui/Button'
 import Error from 'next/error'
-import { GithubError } from 'next-tinacms-github'
-import { getGithubDataFromPreviewProps } from '../../utils/getGithubDataFromPreviewProps'
+import { getMarkdownPreviewProps } from '../../utils/getMarkdownFile'
 
-function BlogTemplate({
-  markdownFile,
-  sourceProviderConnection,
-  siteConfig,
-  editMode,
-  previewError,
-}) {
+function BlogTemplate({ file, siteConfig, preview }) {
   // fallback workaround
-  if (!markdownFile) {
+  if (!file) {
     return <Error statusCode={404} />
   }
 
   // Registers Tina Form
-  const [data, form] = useGithubMarkdownForm(
-    markdownFile,
-    formOptions,
-    sourceProviderConnection
-  )
+  const [data, form] = useGithubMarkdownForm(file, formOptions)
 
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
@@ -48,13 +36,10 @@ function BlogTemplate({
   return (
     <OpenAuthoringSiteForm
       form={form}
-      path={markdownFile.fileRelativePath}
-      editMode={editMode}
+      path={file.fileRelativePath}
+      preview={preview}
     >
-      <Layout
-        sourceProviderConnection={sourceProviderConnection}
-        editMode={editMode}
-      >
+      <Layout preview={preview}>
         <NextSeo
           title={frontmatter.title}
           titleTemplate={'%s | ' + siteConfig.title + ' Blog'}
@@ -90,7 +75,7 @@ function BlogTemplate({
                   <InlineTextareaField name="frontmatter.author" />
                 </MetaBit>
               </MetaWrap>
-              <EditLink isEditMode={editMode} />
+              <EditLink isEditMode={preview} />
             </BlogMeta>
             <InlineWysiwyg name="markdownBody">
               <MarkdownContent escapeHtml={false} content={markdownBody} />
@@ -115,42 +100,21 @@ export const getStaticProps: GetStaticProps = async function({
 }) {
   const { slug } = ctx.params
 
-  const {
-    sourceProviderConnection,
-    accessToken,
-  } = getGithubDataFromPreviewProps(previewData)
-
-  let previewError: GithubError = null
-  let file = {}
-  try {
-    file = await getMarkdownFile(
-      `content/blog/${slug}.md`,
-      sourceProviderConnection,
-      accessToken
-    )
-  } catch (e) {
-    if (e instanceof GithubError) {
-      previewError = { ...e } //workaround since we cant return error as JSON
-    } else if (e.status === 'ENOENT') {
-      return { props: {} } // will render the 404 error
-    } else {
-      throw e
-    }
-  }
-
   //TODO - move to readFile
   const { default: siteConfig } = await import('../../content/siteConfig.json')
 
+  const previewProps = await getMarkdownPreviewProps(
+    `content/blog/${slug}.md`,
+    preview,
+    previewData
+  )
+
+  if ((previewProps.props.error?.status || '') === 'ENOENT') {
+    return { props: {} } // will render the 404 error
+  }
+
   return {
-    props: {
-      sourceProviderConnection,
-      editMode: !!preview,
-      previewError: previewError,
-      siteConfig: {
-        title: siteConfig.title,
-      },
-      markdownFile: file,
-    },
+    props: { ...previewProps.props, siteConfig: { title: siteConfig.title } },
   }
 }
 
