@@ -190,3 +190,9 @@ export default function Post({ post, morePosts, preview }) {
 ```
 
 Passing an empty dependencies array to the `useMemo` call will ensure that `initialContent` isn't updated after the initial component mount.
+
+## So, Why Did We do This?
+
+In a moment, we'll be creating a form with Tina. The values we expose for editing via this form will be sent back through our Post component, causing our layout to re-render with the updated content. This is what makes it possible for updates to be previewed in real-time as the content is being written.
+
+If we didn't transform the Markdown on the client-side, we would need to send the updated content back to the filesystem and re-run the build every time something is changed. This is a significantly slower and more resource-intensive workflow, and is complicated to run in the cloud. Doing the extra work to keep the content feedback loop running exclusively in the browser gives us a lot more flexibility in the long run.
