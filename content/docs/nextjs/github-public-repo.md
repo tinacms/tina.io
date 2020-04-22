@@ -236,13 +236,18 @@ To set these variables, create a `.env` file in your project root. Add the _secr
 
 ```
 # .env
-GITHUB_CLIENT_ID= # Taken from GitHub
-GITHUB_CLIENT_SECRET= # Taken from Github
-REPO_FULL_NAME=tinacms/tinacms.org # This is your github repository's owner / repo-name.
+
+# Taken from GitHub
+GITHUB_CLIENT_ID=
+
+# Taken from Github
+GITHUB_CLIENT_SECRET=
+
+# This is your github repository's owner / repo-name.
+REPO_FULL_NAME=tinacms/tinacms.org
+
 BASE_BRANCH=master
 ```
-
-> Make sure to **delete the comments** in this file after filling in the correct values! Otherwise the authentication may not work.
 
 You can use the `dotenv` package to load the `.env` file:
 
