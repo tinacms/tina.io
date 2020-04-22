@@ -220,9 +220,11 @@ export default function Authorizing() {
 
 Now we need to setup an OAuth App in Github to allow for authorization. In GitHub, within your Account Settings, click <a href="https://github.com/settings/developers" target="_blank">Oauth Apps</a> under Developer Settings. Go ahead and create a "New Oauth App".
 
-Since you are **testing your app locally**, eventually you'll need to create separate OAuth Apps: one for development, with a localhost redirect, and a production GitHub app whose URLs will connect to the 'live' domain.
+Since you are **testing your app locally**, you'll create a _development_ GitHub app that redirects to localhost. Eventually you'll need to create separate OAuth Apps: one for development and a production app whose URLs will connect to the 'live' domain. We'll circle back to the production app once when we cover hosting.
 
-For now, fill in http://localhost:3000 for the _Homepage Url_. And with the **Authorization callback URL**, enter the url for the "/github/authorizing" page that you created above (e.g http://localhost:3000/github/authorizing).
+For now, fill in http://localhost:3000 for the _Homepage Url_. With the **Authorization callback URL**, enter the url for the "/github/authorizing" page that you created above (e.g http://localhost:3000/github/authorizing).
+
+![oauth-app-config-example](/img/github-open-auth-cna/oAuth-app-config.jpg)
 
 After creating the app, you should see a page with information such as **Client ID** and **Client Secret**. Next, we'll add those as environment variables to the project to connect this App to the Tina-GitHub helpers.
 
