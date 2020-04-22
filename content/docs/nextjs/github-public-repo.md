@@ -100,19 +100,19 @@ export default class Site extends App {
 
   constructor(props) {
     super(props)
-    /*
-     ** 1. Create the TinaCMS instance
+    /**
+     * 1. Create the TinaCMS instance
      */
     this.cms = new TinaCMS({
       apis: {
-        /*
-         ** 2. Register the GithubClient
+        /**
+         * 2. Register the GithubClient
          */
         github: new GithubClient('/api/proxy-github', REPO_FULL_NAME),
       },
-      /*
-       ** 3. Make sure the Sidebar & Toolbar are
-       **    hidden unless we're in Preview/Edit Mode
+      /**
+       * 3. Make sure the Sidebar & Toolbar are
+       *    hidden unless we're in Preview/Edit Mode
        */
       sidebar: {
         hidden: !props.pageProps.preview,
@@ -126,8 +126,8 @@ export default class Site extends App {
   render() {
     const { Component, pageProps } = this.props
     return (
-      /*
-       ** 4. Wrap the page Component with the Tina and Github providers
+      /**
+       * 4. Wrap the page Component with the Tina and Github providers
        */
       <TinaProvider cms={this.cms}>
         <TinacmsGithubProvider
@@ -138,8 +138,8 @@ export default class Site extends App {
           exitEditMode={exitEditMode}
           error={pageProps.error}
         >
-          {/*
-           ** 5. Add a button for entering Preview/Edit Mode
+          {/**
+           * 5. Add a button for entering Preview/Edit Mode
            */}
           <EditLink editMode={pageProps.preview} />
           <Component {...pageProps} />
@@ -319,8 +319,8 @@ export default function Home(props) {
 
       <main>
         <h1 className="title">
-          {/*
-           ** Render the title from `home.json`
+          {/**
+           * Render the title from `home.json`
            */}
           {data.title}
         </h1>
@@ -339,8 +339,8 @@ export default function Home(props) {
   )
 }
 
-/*
- ** Fetch data with getStaticProps based on 'preview' mode
+/**
+ * Fetch data with getStaticProps based on 'preview' mode
  */
 export const getStaticProps: GetStaticProps = async function({
   preview,
