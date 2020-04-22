@@ -256,7 +256,7 @@ npm install --save dotenv
 yarn add dotenv
 ```
 
-Now, to load these `.env` values in the front-end, create a file called [next.config](https://nextjs.org/docs/api-reference/next.config.js/introduction) in the root of your project. Add the code from this example:
+Now, to load these `.env` values in the front-end, create a file called [next.config.js](https://nextjs.org/docs/api-reference/next.config.js/introduction) in the root of your project. Add the code from this example:
 
 ```js
 // next.config.js
