@@ -23,7 +23,7 @@ The [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode) offer
 
 ## Using _create-next-app_
 
-Let's set up a [fresh install](https://nextjs.org/docs#setup) of _create-next-app_ and create a [new repository](https://github.com/new) in GitHub. It is important this this repository is _public_, otherwise the GitHub Helpers won't know how to find your content.
+Let's set up a [fresh install](https://nextjs.org/docs#setup) of _create-next-app_ and create a [new repository](https://github.com/new) in GitHub. It is important this repository is _public_, otherwise the GitHub Helpers won't know how to find your content.
 
 Open up your terminal. Navigate to where you'd like this project to live and run:
 
@@ -46,7 +46,7 @@ yarn dev
 
 Navigate to http://localhost:3000/ and you should see something like the image above. Now you can commit and push this `create-next-app` to your new GitHub repository.
 
-> _Note:_ This guide assumes you are following along with a fresh _create-next-app_. However, **if you're configuring your own project**, some requirements of setting up GitHub Open Authoring are that you use _Next.js >= 9.3 in a public GitHub repository that is deployed with Vercel_ (a.k.a ZEIT Now) or another platform that can handle Next.js Previews.
+> _Note:_ This guide assumes you are following along with a fresh _create-next-app_. However, **if you're configuring your own project**, some requirements of setting up GitHub Open Authoring are that you use _Next.js >= 9.3 in a public GitHub repository that is deployed with Vercel_ (formerly ZEIT Now) or another platform that can handle Next.js Previews.
 
 ### With Typescript
 
@@ -236,7 +236,7 @@ After creating the app, you should see a page with information such as **Client 
 
 ### Setting Environment Variables
 
-[Environment variables](https://nextjs.org/docs/api-reference/next.config.js/environment-variables) are sensitive values specific to your project. The Tina-GitHub helpers will use these value to talk to your repository, enabling auth and data fetching via GitHub.
+[Environment variables](https://nextjs.org/docs/api-reference/next.config.js/environment-variables) are sensitive values specific to your project. The Tina-GitHub helpers will use these values to talk to your repository, enabling auth and data fetching via GitHub.
 
 To set these variables, create a `.env` file in your project root. Add the _secret_ and _id_ values from the OAuth App, and fill in the repo name. _Do not commit this file_; you may need to add `.env` to the `.gitignore` file.
 
