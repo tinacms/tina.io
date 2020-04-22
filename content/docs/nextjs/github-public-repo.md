@@ -20,6 +20,7 @@ The [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode) offer
 6. [Create the GitHub OAuth app](/docs/nextjs/github-public-repo#set-up-the-github-oauth-app)
 7. [Load content from GitHub](/docs/nextjs/github-public-repo#loading-content-from-github) — using `getStaticProps` and [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode)
 8. [Create a Tina Form that sources content from GitHub](/docs/nextjs/github-public-repo#using-github-forms)
+9. [Set up Toolbar Plugins](/docs/nextjs/github-public-repo#set-up-toolbar-plugins)
 
 ## Using _create-next-app_
 
@@ -403,4 +404,38 @@ Start up the dev server, enter "Edit Mode" open the sidebar and edit the title! 
 
 If you update and save the content changes, when you toggle edit mode you may notice a difference in the content source. When you're not in edit mode, the site will reference _local content_. When you go into edit mode, it will reference content in the associated GitHub repository (i.e. _Working Repository_).
 
-<!-- TODO: Toolbar config?? or getting the site on Now? -->
+## Set up Toolbar Plugins
+
+Tina provides a few _Toolbar Plugins_ that expose more information and functionality for the Open Authoring workflow. Here's an example of how to use those plugins:
+
+```diff
+ // pages/index.tsx
+
+ // ...
+ import {
+   useGithubJsonForm,
++  useGithubToolbarPlugins,
+ } from 'react-tinacms-github'
+ import { GetStaticProps } from 'next'
+
+ export default function Home({ file, preview }) {
+   const formOptions = {
+     label: 'Home Page',
+     fields: [{ name: 'title', component: 'text' }],
+   }
+
+   const [data, form] = useGithubJsonForm(file, formOptions)
+
++  useGithubToolbarPlugins()
+
+   return (
+     // ...
+   )
+ }
+```
+
+The toolbar in your `create-next-app` should look something like this:
+
+![toolbar-plugins](/img/github-open-auth-cna/toolbar-plugins.png)
+
+The _PR Plugin_ enables someone to open a PR from a fork. And the _Fork Name Plugin_ provides metadata about the _Working Repository_ where the content is being sourced from.
