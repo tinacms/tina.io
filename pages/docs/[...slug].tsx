@@ -25,23 +25,19 @@ import { GithubError } from 'next-tinacms-github'
 
 function DocTemplate(props) {
   // Registers Tina Form
-  const [data, form] = useGithubMarkdownForm(
-    props.markdownFile,
-    formOptions,
-    props.sourceProviderConnection
-  )
+  const [data, form] = useGithubMarkdownForm(props.file, formOptions)
   const [open, setOpen] = useState(false)
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
-  const excerpt = props.markdownFile.data.excerpt
+  const excerpt = props.file.data.excerpt
 
   return (
     <OpenAuthoringSiteForm
       form={form}
-      path={props.markdownFile.fileRelativePath}
-      editMode={props.editMode}
+      path={props.file.fileRelativePath}
+      preview={props.preview}
     >
-      <DocsLayout isEditing={props.editMode}>
+      <DocsLayout isEditing={props.preview}>
         <NextSeo
           title={frontmatter.title}
           titleTemplate={'%s | TinaCMS Docs'}
@@ -82,7 +78,7 @@ function DocTemplate(props) {
               />
             </Wrapper>
           </DocsTextWrapper>
-          <Footer light editMode={props.editMode} />
+          <Footer light preview={props.preview} />
         </DocsContent>
         <Overlay open={open} onClick={() => setOpen(false)} />
       </DocsLayout>

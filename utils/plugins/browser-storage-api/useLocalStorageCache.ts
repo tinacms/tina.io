@@ -7,7 +7,7 @@ import { flattenFormData } from './flatten-form-data'
 export const useLocalStorageCache = (
   path: string,
   form: Form<any>,
-  editMode: boolean
+  preview: boolean
 ) => {
   const cms = useCMS()
 
@@ -23,11 +23,11 @@ export const useLocalStorageCache = (
 
   // load from storage on boot
   useEffect(() => {
-    if (!editMode) return
+    if (!preview) return
 
     const values = cms.api.storage.load(path)
     if (values) {
       form.updateValues(values)
     }
-  }, [form, editMode])
+  }, [form, preview])
 }
