@@ -367,24 +367,41 @@ export const getStaticProps: GetStaticProps = async function({
 }
 ```
 
+Now your `create-next-app` should look something like the image below.
+
+![create-next-app-custom-content](/img/github-open-auth-cna/create-next-app-2.png)
+
+> Make sure to commit your changes so that when you toggle 'Edit Mode', the content file will be in the GitHub repo. If you don't, you'll get a 404 error.
+
 ## Using GitHub Forms
 
-Any forms that we have on our site can be created with the `useGithubJsonForm` or `useGithubMarkdownForm` helpers. These helpers will fetch and post data through the GitHub API via the `GithubClient` we registered in `_app.tsx`.
+Now we need to create a Form for editing this content. Any forms that we have on our site can be created with the `useGithubJsonForm` or `useGithubMarkdownForm` helpers. These helpers will fetch and post data through the GitHub API via the `GithubClient` we registered in `_app.tsx`.
 
-```tsx
+```diff
 // pages/index.tsx
 
++import { useGithubJsonForm } from 'react-tinacms-github'
+
 function Home({ file }) {
-  const formOptions = {
-    label: 'Home Page',
-    fields: [{ name: 'title', component: 'text' }],
-  }
+-  const data = file.data
++  const formOptions = {
++    label: 'Home Page',
++    fields: [{ name: 'title', component: 'text' }],
++  }
 
   // Registers a JSON Tina Form
-  const [data, form] = useGithubJsonForm(file, formOptions)
++  const [data, form] = useGithubJsonForm(file, formOptions)
 
-  // ...
+  return (
+    // ...
+  )
 }
+
+//...
 ```
 
-<!-- TODO: prompt folks to set up inline editing or take those next editing steps>
+Start up the dev server, enter "Edit Mode" open the sidebar and edit the title! You've set up GitHub editing with Tina. If you "Save", that will commit your master branch.
+
+If you update and save the content changes, when you toggle edit mode you may notice a difference in the content source. When you're not in edit mode, the site will reference _local content_. When you go into edit mode, it will reference content in the associated GitHub repository.
+
+<!-- TODO: Toolbar config?? or getting the site on Now? -->
