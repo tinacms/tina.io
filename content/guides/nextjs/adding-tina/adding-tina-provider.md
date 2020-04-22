@@ -19,7 +19,7 @@ export default function MyApp({ Component, pageProps }) {
 From here, install `tinacms`. We also need to install `styled-components`, as it's a peer dependency:
 
 ```bash
-npm install tinacms styled-components
+yarn add tinacms styled-components
 ```
 
 ## Adding the Provider
