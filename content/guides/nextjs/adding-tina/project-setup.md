@@ -5,7 +5,7 @@ title: Project Setup
 We're going to use the Next.js [blog starter](https://github.com/zeit/next.js/tree/canary/examples/blog-starter) as the base for our project. Create a new project by running the following commands in your terminal:
 
 ```bash
-npx create-next-app -e blog-starter my-tina-blog
+yarn create next-app -e blog-starter my-tina-blog
 ```
 
 This will create a new blog starter in the `my-tina-blog` directory. Navigate to the project directory and run `yarn dev` to start the website in dev mode.
