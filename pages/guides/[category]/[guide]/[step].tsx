@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { readFile } from '../../../../utils/readFile'
-import { getMarkdownFile } from '../../../../utils/getMarkdownFile'
+import { readMarkdownFile } from '../../../../utils/getMarkdownFile'
 import {
   DocsLayout,
   RichTextWrapper,
@@ -118,10 +118,8 @@ export const getStaticProps: GetStaticProps = async function(ctx) {
   )
   const guideMetaRaw = await readFile(path.join(pathToGuide, 'meta.json'))
   const guideMeta = JSON.parse(guideMetaRaw)
-  const markdownFile = await getMarkdownFile(
-    path.join(pathToGuide, `${step}.md`),
-    null,
-    null
+  const markdownFile = await readMarkdownFile(
+    path.join(pathToGuide, `${step}.md`)
   )
 
   return {

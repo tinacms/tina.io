@@ -4,7 +4,7 @@ import { readFile } from './readFile'
 import { formatExcerpt } from '.'
 import { getGithubPreviewProps, parseMarkdown } from 'next-tinacms-github'
 
-const readMarkdownFile = async (filePath: string) => {
+export const readMarkdownFile = async (filePath: string) => {
   const doc = matter(await readFile(path.resolve(`${filePath}`)))
   return {
     fileRelativePath: filePath,
