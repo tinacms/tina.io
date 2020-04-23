@@ -281,7 +281,7 @@ At this point **you should be able to authenticate with GitHub**! Click the 'Edi
 
 ![github-create-fork-step](/img/github-open-auth-cna/create-fork-step.png)
 
-If you weren't the owner of this repository, a fork (also known as a _Working Repository_) would be made where someone else could commit edits and create a PR for review. Since you're the owner of this repository, a fork won't be created and edits will just go to the `master` branch.
+Since you're the owner of this repository, your edits will go to the `master` branch. If you weren't the owner of this repository, a fork (also known as a _Working Repository_) would be made where someone else could commit edits and create a PR for review.
 
 After you've authenticated and the _Working Repository_ is established, your `create-next-app` should look something like the image below:
 
