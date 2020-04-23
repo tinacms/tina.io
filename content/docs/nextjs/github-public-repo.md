@@ -21,6 +21,10 @@ The [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode) offer
 7. [Load content from GitHub](/docs/nextjs/github-public-repo#loading-content-from-github) — using `getStaticProps` and [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode)
 8. [Create a Tina Form that sources content from GitHub](/docs/nextjs/github-public-repo#using-github-forms)
 9. [Set up Toolbar Plugins](/docs/nextjs/github-public-repo#set-up-toolbar-plugins)
+10. [Add a Custom Document for Tina UI Styles](/docs/nextjs/github-public-repo#add-custom-document-for-styled-components)
+11. [Hosting with Vercel](/docs/nextjs/github-public-repo#hosting-with-vercel)
+
+> Feel free to reference this [demo repository](https://github.com/kendallstrautman/tina-open-auth). The commits roughly correlate with specific steps outlined in this guide.
 
 ## Using _create-next-app_
 
@@ -443,3 +447,89 @@ The toolbar in your `create-next-app` should look something like this:
 ![toolbar-plugins](/img/github-open-auth-cna/toolbar-plugins.png)
 
 The _PR Plugin_ enables someone to open a PR from a fork. And the _Fork Name Plugin_ provides metadata about the _Working Repository_ where the content is being sourced from.
+
+## Add Custom Document for Styled Components
+
+With Next.js Preview Mode, we will actually be editing the production site. In order for the Tina UI to render properly in production, we need to add a [custom document](https://nextjs.org/docs/advanced-features/custom-document) to [load the Tina UI styles](https://styled-components.com/docs/advanced#server-side-rendering) in Preview Mode.
+
+Create a new file in the `pages` directory called `_document.tsx`, copy this code to that file:
+
+**pages/\_document.tsx**
+
+```tsx
+import Document from 'next/document'
+import { ServerStyleSheet } from 'styled-components'
+
+export default class MyDocument extends Document {
+  static async getInitialProps(ctx) {
+    const sheet = new ServerStyleSheet()
+    const originalRenderPage = ctx.renderPage
+
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: App => props => sheet.collectStyles(<App {...props} />),
+        })
+
+      const initialProps = await Document.getInitialProps(ctx)
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>
+        ),
+      }
+    } finally {
+      sheet.seal()
+    }
+  }
+}
+```
+
+## Hosting with Vercel
+
+Finally, we're ready to get this app in production. Make sure all the latest changes are pushed up to your repository. These are the steps to getting the `create-next-app` up and running on Vercel.
+
+1. **Go to https://vercel.com/ and signup/login.**
+
+2. **On your dashboard click "Import Project".**
+
+   1. Under "From Git Repository" click Continue.
+   2. Connect to GitHub and click "Import Project from Github".
+   3. Select your repository.
+   4. Leave the root directory empty.
+   5. It will auto-detect that your using Next.js. The default build, output, and development commands don't need to be changed.
+   6. Click "Deploy".
+
+3. **Visit your site once the build has finished.**
+
+   1. Your site will be visible from a generated domain — typically _your-site-name.now.sh_
+   2. Clicking the "Edit This Site" button will open the auth modal but you won't be able to authenticate because we haven't configured the environment variables in Vercel.
+   3. Go back to the [Github OAuth page](https://github.com/settings/developers) in your Developer Settings. Create a new OAuth App pointing to your Vercel deployment instead of localhost. This will be the _production app_, we'll connect the client id and client secret from here to Vercel.
+
+   ![oauth-config-with-vercel](/img/github-open-auth-cna/oauth-with-vercel.png)
+   ​
+
+4. **Add the [environment variables](https://vercel.com/docs/v2/build-step?query=environgment%2520variables#environment-variables) to Vercel.** From your Vercel dashboard, head to _Settings_. On the _General_ page, scroll down and you will see the environment variables section. Add all the variables and values outlined in your `.env` file, making sure to **copy the client id and secret from the production GitHub app** you just created.
+
+![vercel-env-variables](/img/github-open-auth-cna/vercel-env-vars.png)
+
+Visit your website, **you should now be able to login and edit content with Tina** on the live site! 🎉
+
+Go ahead, make some edits and commit the changes (note these will commit and push to master if you own the repo). Toggle between edit and non-edit mode to get a feel for how things work on a live site.
+
+### How does this work?
+
+When we deploy with Vercel, we can take full advantage of [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode). This allows us to host a website that is fully **static by default, but switches to a dynamic mode** that runs server code for users that have a special "preview" cookie set.
+
+When someone visits the live site, they will initially land on a _static home page_. If they click the "Edit this Site" button and authenticate with Github, a fork will be created from which they can commit content edits. Depending on the editing context, the **content will render from the static production build or be dynamically sourced** from the _Working GitHub Repository_. You can try this on the [demo repository](https://tina-open-auth.now.sh/).
+
+In our case, since we are the owner of the repository, any content edits we make on the live site will be committed to master. We know this isn't ideal. In fact, _branching is the next feature_ we intend to implement with this workflow.
+
+## Final Thoughts
+
+That's it! There are quite a few steps but this should be a 0-100 guide on getting up and running with GitHub Open Authoring, using Tina, Next.js & Vercel.
+
+There is **still more work to do** in order to improve the Open Authoring workflow for teams. Stay tuned with the latest on the [GitHub project](https://github.com/orgs/tinacms/projects/1) or with our Newsletter.
