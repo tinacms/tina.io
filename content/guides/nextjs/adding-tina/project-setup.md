@@ -137,10 +137,7 @@ export default function Post({ post, morePosts, preview }) {
 
   const [htmlContent, setHtmlContent] = useState(post.content)
   useEffect(() => {
-    ;(async () => {
-      const markdownHtml = await markdownToHtml(post.rawMarkdownBody)
-      setHtmlContent(markdownHtml)
-    })()
+    markdownToHtml(post.rawMarkdownBody).then(setHtmlContent)
   }, [post.rawMarkdownBody])
 
   return (
