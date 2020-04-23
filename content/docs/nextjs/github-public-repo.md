@@ -505,7 +505,7 @@ Finally, we're ready to get this app in production. Make sure all the latest cha
 
    Your site will be visible from a generated domain — typically _your-site-name.now.sh_. Clicking the "Edit This Site" button will open the auth modal. You won't be able to authenticate since we haven't configured the environment variables in Vercel yet.
 
-4) Go back to the [Github OAuth page](https://github.com/settings/developers) in your Developer Settings. **Create a new OAuth App** pointing to your Vercel deployment instead of localhost. This will be the _production app_, we'll connect the client id and client secret from here to Vercel.
+4. Go back to the [Github OAuth page](https://github.com/settings/developers) in your Developer Settings. **Create a new OAuth App** pointing to your Vercel deployment instead of localhost. This will be the _production app_, we'll connect the client id and client secret from here to Vercel.
 
 ![oauth-config-with-vercel](/img/github-open-auth-cna/oauth-with-vercel.png)
 
