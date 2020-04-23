@@ -12,14 +12,19 @@ The [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode) offer
 
 ## Summary
 
-1. [Setup _create-next-app_ in a new repository](/docs/nextjs/github-public-repo#using-create-next-app)
+1. [Set up _create-next-app_ in a new repository](/docs/nextjs/github-public-repo#using-create-next-app)
 2. [Install the required packages](/docs/nextjs/github-public-repo#install-tina-github-packages)
 3. [Configure the custom _\_app_ file](/docs/nextjs/github-public-repo#configure-the-custom-_-file)
-4. [Setup API functions using hygen scripts](/docs/nextjs/github-public-repo#adding-api-functions)
+4. [Set up API functions using hygen scripts](/docs/nextjs/github-public-repo#adding-api-functions)
 5. [Add an Auth Redirect page component](/docs/nextjs/github-public-repo#create-an-auth-redirect-page)
-6. [Create the GitHub OAuth app](/docs/nextjs/github-public-repo#setup-the-github-oauth-app)
+6. [Create the GitHub OAuth app](/docs/nextjs/github-public-repo#set-up-the-github-oauth-app)
 7. [Load content from GitHub](/docs/nextjs/github-public-repo#loading-content-from-github) — using `getStaticProps` and [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode)
 8. [Create a Tina Form that sources content from GitHub](/docs/nextjs/github-public-repo#using-github-forms)
+9. [Set up Toolbar Plugins](/docs/nextjs/github-public-repo#set-up-toolbar-plugins)
+10. [Add a Custom Document for Tina UI Styles](/docs/nextjs/github-public-repo#add-custom-document-for-styled-components)
+11. [Hosting with Vercel](/docs/nextjs/github-public-repo#hosting-with-vercel)
+
+> Feel free to reference this [demo repository](https://github.com/kendallstrautman/tina-open-auth). The commits roughly correlate with specific steps outlined in this guide.
 
 ## Using _create-next-app_
 
@@ -168,9 +173,9 @@ export const EditLink = ({ editMode }: EditLinkProps) => {
 }
 ```
 
-> _Note:_ For brevity, the example above configures many steps in a single file, but **a few components can be configured in different places**. For example you could put the `EditLink` in a Layout component, or setup the Github Provider only on certain pages.
+> _Note:_ For brevity, the example above configures many steps in a single file, but **a few components can be configured in different places**. For example you could put the `EditLink` in a Layout component, or set up the Github Provider only on certain pages.
 
-If you restart the dev server, you should see a **button in the top left-hand corner** that says, "Edit This Site". If you click it, you'll be prompted to authenticate with GitHub, but we still have some steps to get this working. Let's setup up the backend API.
+If you restart the dev server, you should see a **button in the top left-hand corner** that says, "Edit This Site". If you click it, you'll be prompted to authenticate with GitHub, but we still have some steps to get this working. Let's set up up the backend API.
 
 ## Adding API functions
 
@@ -190,7 +195,7 @@ npx hygen next-tinacms-github bootstrap --format ts
 npx hygen next-tinacms-github bootstrap --format ts --dir src
 ```
 
-You should see a few API functions have been setup in your project, along with a new `_templates` directory.
+You should see a few API functions have been set up in your project, along with a new `_templates` directory.
 
 - `preview.ts`: Contains API function to enter [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode), and set the preview-data with content stored in the cookies.
 - `proxy-github.ts`: Contains API function to attach the user's auth token, and proxy requests to the GitHub API.
@@ -216,15 +221,15 @@ export default function Authorizing() {
 }
 ```
 
-## Setup the GitHub OAuth App
+## Set up the GitHub OAuth App
 
-Now we need to setup an OAuth App in Github to allow for authorization. In GitHub, within your Account Settings, click <a href="https://github.com/settings/developers" target="_blank">Oauth Apps</a> under Developer Settings. Go ahead and create a "New Oauth App".
+Now we need to set up an OAuth App in Github to allow for authorization. In GitHub, within your Account Settings, click <a href="https://github.com/settings/developers" target="_blank">Oauth Apps</a> under Developer Settings. Go ahead and create a "New Oauth App".
 
 Since you are **testing your app locally**, you'll create a _development_ GitHub app that redirects to localhost. Eventually you'll need to create separate OAuth Apps: one for development and a production app whose URLs will connect to the 'live' domain. We'll circle back to the production app once when we cover hosting.
 
 For now, fill in http://localhost:3000 for the _Homepage Url_. With the **Authorization callback URL**, enter the url for the "/github/authorizing" page that you created above (e.g http://localhost:3000/github/authorizing).
 
-![oauth-app-config-example](/img/github-open-auth-cna/oAuth-app-config.jpg)
+![oauth-app-config-example](/img/github-open-auth-cna/oAuth-app-config.png)
 
 After creating the app, you should see a page with information such as **Client ID** and **Client Secret**. Next, we'll add those as environment variables to the project to connect this App to the Tina-GitHub helpers.
 
@@ -237,13 +242,15 @@ To set these variables, create a `.env` file in your project root. Add the _secr
 **.env**
 
 ```
-GITHUB_CLIENT_ID= # Taken from GitHub
-GITHUB_CLIENT_SECRET= # Taken from Github
-REPO_FULL_NAME=tinacms/tinacms.org # This is your github repository's owner / repo-name.
-BASE_BRANCH=master
-```
+# Taken from GitHub
+GITHUB_CLIENT_ID=
 
-> Make sure to **delete the comments** in this file after filling in the correct values! Otherwise the authentication may not work.
+# Taken from Github
+GITHUB_CLIENT_SECRET=
+
+# This is your github repository's owner / repo-name.
+REPO_FULL_NAME=tinacms/tinacms.org
+```
 
 You can use the `dotenv` package to load the `.env` file:
 
@@ -270,15 +277,19 @@ module.exports = {
 
 > Note that we did not add `GITHUB_CLIENT_SECRET` to the config exports. This is the a secret key that should only be used from the server and should not be accessible through the browser.
 
-At this point you should be able to authenticate with GitHub! Try clicking the 'Edit This Site' button again and try to authenticate.
+At this point **you should be able to authenticate with GitHub**! Click the 'Edit This Site' button again and try to authenticate. If auth is successful, you should see another modal prompting you to create a fork, go ahead and do so.
 
-<!-- TODO: add an image here to show auth flow modal steps? -->
+![github-create-fork-step](/img/github-open-auth-cna/create-fork-step.png)
 
-If all is successful, you should see another modal prompting you to create a fork, go ahead and do so. If you weren't the owner of this repository, a fork would be made where someone else could commit edits and create a PR for review. Since you're the owner of this repository, a fork won't be created and edits will just go to the `master` branch.
+Since you're the owner of this repository, your edits will go to the `master` branch. If you weren't the owner of this repository, a fork (also known as a _Working Repository_) would be made where someone else could commit edits and create a PR for review.
+
+After you've authenticated and the _Working Repository_ is established, your `create-next-app` should look something like the image below:
+
+![after-auth-and-fork-success](/img/github-open-auth-cna/after-auth-fork.png)
 
 ## Loading content from GitHub
 
-Now that we have authentication set up, it's time to wire up some content to edit.
+Now that we have authentication and the _Working Repository_ set up, it's time to wire up some content to edit.
 
 Check out `pages/index.tsx`, right now the content for this page is statically written into the component. Let's create a data file to source this content from. Add a new directory in the root of your project called `content` (or `data`, whichever you prefer) and create a new file called `home.json`. We'll start small by just adding editing a title.
 
@@ -368,12 +379,12 @@ Now your `create-next-app` should look something like the image below.
 
 ## Using GitHub Forms
 
-Now we need to create a Form for editing this content. Any forms that we have on our site can be created with the `useGithubJsonForm` or `useGithubMarkdownForm` helpers. These helpers will fetch and post data through the GitHub API via the `GithubClient` we registered in `_app.tsx`.
+You may have noticed that the Tina sidebar is still empty, that's because we need to create a [Form](/docs/forms) to edit the content. Any forms that we have on our site can be created with the `useGithubJsonForm` or `useGithubMarkdownForm` helpers. These helpers will fetch and post data through the GitHub API via the `GithubClient` we registered in `_app.tsx`.
 
 **pages/index.tsx**
 
 ```diff
-+import { useGithubJsonForm } from 'react-tinacms-github'
++ import { useGithubJsonForm } from 'react-tinacms-github'
 
 export default function Home({ file }) {
 -  const data = file.data
@@ -399,4 +410,123 @@ Start up the dev server, enter "Edit Mode" open the sidebar and edit the title! 
 
 If you update and save the content changes, when you toggle edit mode you may notice a difference in the content source. When you're not in edit mode, the site will reference _local content_. When you go into edit mode, it will reference content in the associated GitHub repository (i.e. _Working Repository_).
 
-<!-- TODO: Toolbar config?? or getting the site on Now? -->
+## Set up Toolbar Plugins
+
+Tina provides a few _Toolbar Plugins_ that expose more information and functionality for the Open Authoring workflow. Here's an example of how to use those plugins:
+
+**pages/index.tsx**
+
+```diff
+ import Head from 'next/head'
+ import {
+   useGithubJsonForm,
++  useGithubToolbarPlugins,
+ } from 'react-tinacms-github'
+ import { GetStaticProps } from 'next'
+
+ export default function Home({ file, preview }) {
+   const formOptions = {
+     label: 'Home Page',
+     fields: [{ name: 'title', component: 'text' }],
+   }
+
+   const [data, form] = useGithubJsonForm(file, formOptions)
+
++  useGithubToolbarPlugins()
+
+   return (
+     // ...
+   )
+ }
+```
+
+The toolbar in your `create-next-app` should look something like this:
+
+![toolbar-plugins](/img/github-open-auth-cna/toolbar-plugins.png)
+
+The _PR Plugin_ enables someone to open a PR from a fork. And the _Fork Name Plugin_ provides metadata about the _Working Repository_ where the content is being sourced from.
+
+## Add Custom Document for Styled Components
+
+With Next.js Preview Mode, we will actually be editing the production site. In order for the Tina UI to render properly in production, we need to add a [custom document](https://nextjs.org/docs/advanced-features/custom-document) to [load the Tina UI styles](https://styled-components.com/docs/advanced#server-side-rendering) in Preview Mode.
+
+Create a new file in the `pages` directory called `_document.tsx`, copy this code to that file:
+
+**pages/\_document.tsx**
+
+```tsx
+import Document from 'next/document'
+import { ServerStyleSheet } from 'styled-components'
+
+export default class MyDocument extends Document {
+  static async getInitialProps(ctx) {
+    const sheet = new ServerStyleSheet()
+    const originalRenderPage = ctx.renderPage
+
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: App => props => sheet.collectStyles(<App {...props} />),
+        })
+
+      const initialProps = await Document.getInitialProps(ctx)
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>
+        ),
+      }
+    } finally {
+      sheet.seal()
+    }
+  }
+}
+```
+
+## Hosting with Vercel
+
+Finally, we're ready to get this app in production. Make sure all the latest changes are pushed up to your repository. These are the steps to getting the `create-next-app` up and running on Vercel.
+
+1. **Go to https://vercel.com/ and signup/login.**
+
+2. **On your dashboard click "Import Project".**
+
+   1. Under "From Git Repository" click Continue.
+   2. Connect to GitHub and click "Import Project from Github".
+   3. Select your repository.
+   4. Leave the root directory empty.
+   5. It will auto-detect that your using Next.js. The default build, output, and development commands don't need to be changed.
+   6. Click "Deploy".
+
+3. **Visit your site once the build has finished.**
+
+   Your site will be visible from a generated domain — typically _your-site-name.now.sh_. Clicking the "Edit This Site" button will open the auth modal. You won't be able to authenticate since we haven't configured the environment variables in Vercel yet.
+
+4. Go back to the [Github OAuth page](https://github.com/settings/developers) in your Developer Settings. **Create a new OAuth App** pointing to your Vercel deployment instead of localhost. This will be the _production app_, we'll connect the client id and client secret from here to Vercel.
+
+![oauth-config-with-vercel](/img/github-open-auth-cna/oauth-with-vercel.png)
+
+5. **Add the environment variables to Vercel.** From your Vercel dashboard, head to _Settings_. On the _General_ page, scroll down and you will see the [environment variables](https://vercel.com/docs/v2/build-step?query=environgment%2520variables#environment-variables) section. Add all the variables and values outlined in your `.env` file, making sure to **copy the client id and secret from the production GitHub app** you just created.
+
+![vercel-env-variables](/img/github-open-auth-cna/vercel-env-vars.png)
+
+Visit your website, **you should now be able to login and edit content with Tina** on the live site! 🎉
+
+Go ahead, make some edits and commit the changes (note these will commit and push to master if you own the repo). Toggle between edit and non-edit mode to get a feel for how things work on a live site.
+
+### How does this work?
+
+When we deploy with Vercel, we can take full advantage of [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode). This allows us to host a website that is fully **static by default, but switches to a dynamic mode** that runs server code for users that have a special "preview" cookie set.
+
+When someone visits the live site, they will initially land on a _static home page_. If they click the "Edit this Site" button and authenticate with Github, a fork will be created from which they can commit content edits. Depending on the editing context, the **content will render from the static production build or be dynamically sourced** from the _Working GitHub Repository_. You can try this on the [demo repository](https://tina-open-auth.now.sh/).
+
+In our case, since we are the owner of the repository, any content edits we make on the live site will be committed to master. We know this isn't ideal. In fact, _branching is the next feature_ we intend to implement with this workflow.
+
+## Final Notes
+
+That's it! There are quite a few steps but this should be a 0-100 guide on getting up and running with GitHub Open Authoring, using Tina, Next.js & Vercel.
+
+There is **still more work to do** in order to improve the Open Authoring workflow for teams. Stay tuned with the latest on the [GitHub project](https://github.com/orgs/tinacms/projects/1) or with our Newsletter.
