@@ -25,23 +25,19 @@ import { GithubError } from 'next-tinacms-github'
 
 function DocTemplate(props) {
   // Registers Tina Form
-  const [data, form] = useGithubMarkdownForm(
-    props.markdownFile,
-    formOptions,
-    props.sourceProviderConnection
-  )
+  const [data, form] = useGithubMarkdownForm(props.file, formOptions)
   const [open, setOpen] = useState(false)
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
-  const excerpt = props.markdownFile.data.excerpt
+  const excerpt = props.file.data.excerpt
 
   return (
     <OpenAuthoringSiteForm
       form={form}
-      path={props.markdownFile.fileRelativePath}
-      editMode={props.editMode}
+      path={props.file.fileRelativePath}
+      preview={props.preview}
     >
-      <DocsLayout isEditing={props.editMode}>
+      <DocsLayout isEditing={props.preview}>
         <NextSeo
           title={frontmatter.title}
           titleTemplate={'%s | TinaCMS Docs'}
@@ -82,7 +78,7 @@ function DocTemplate(props) {
               />
             </Wrapper>
           </DocsTextWrapper>
-          <Footer light editMode={props.editMode} />
+          <Footer light preview={props.preview} />
         </DocsContent>
         <Overlay open={open} onClick={() => setOpen(false)} />
       </DocsLayout>
@@ -166,7 +162,7 @@ const formOptions = {
  * STYLES --------------------------------------------------------------
  */
 
-const DocsNavToggle = styled(NavToggle)`
+export const DocsNavToggle = styled(NavToggle)`
   position: fixed;
   margin-top: 1.25rem;
   left: 1rem;
@@ -177,7 +173,7 @@ const DocsNavToggle = styled(NavToggle)`
   }
 `
 
-const DocsMobileTinaIcon = styled(TinaIcon)`
+export const DocsMobileTinaIcon = styled(TinaIcon)`
   position: relative;
   display: block;
   padding: 1rem 0;
@@ -194,7 +190,7 @@ const DocsMobileTinaIcon = styled(TinaIcon)`
   }
 `
 
-const DocsHeaderNav = styled(HeaderNav)`
+export const DocsHeaderNav = styled(HeaderNav)`
   justify-content: flex-end;
   padding: 1rem 0;
 
@@ -203,7 +199,7 @@ const DocsHeaderNav = styled(HeaderNav)`
   }
 `
 
-const DocsContent = styled.div`
+export const DocsContent = styled.div`
   grid-area: content;
   overflow-y: auto;
 

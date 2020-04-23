@@ -1,4 +1,3 @@
-import { createProxy } from 'next-tinacms-github'
-import { GITHUB_ACCESS_TOKEN_COOKIE_KEY } from './constants'
+import { apiProxy } from 'next-tinacms-github'
 
-export default createProxy(GITHUB_ACCESS_TOKEN_COOKIE_KEY)
+export default apiProxy

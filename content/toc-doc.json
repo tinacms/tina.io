@@ -285,5 +285,16 @@
         "title": "Style Guide"
       }
     ]
+  },
+  {
+    "id": "guides",
+    "title": "Guides",
+    "items": [
+      {
+        "id": "adding-tina-nextjs",
+        "slug": "/guides/nextjs/adding-tina/overview",
+        "title": "Adding Tina to a NextJS Site"
+      }
+    ]
   }
 ]

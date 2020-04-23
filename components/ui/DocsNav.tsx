@@ -12,6 +12,11 @@ interface NavSection {
   slug: string
   title: string
   items: NavSection[]
+  collapsible?: boolean
+  returnLink?: {
+    url: string
+    label: string
+  }
 }
 
 export const NavSection = (section: NavSection) => {
@@ -22,48 +27,64 @@ export const NavSection = (section: NavSection) => {
       return true
     }
   }, [section.slug, currentPath])
-  const [expanded, setExpanded] = useState(menuIsActive(section, currentPath))
+
+  const collapsible = section.collapsible !== false
+  const [expanded, setExpanded] = useState(
+    menuIsActive(section, currentPath) || collapsible
+  )
 
   useEffect(() => {
+    if (!collapsible) return
     setExpanded(menuIsActive(section, currentPath))
-  }, [currentPath])
+  }, [currentPath, collapsible])
 
   const hasChildren = section.items && section.items.length > 0
   const highlighted = isCurrentPage || (hasChildren && expanded)
 
   return (
-    <NavItem key={section.slug} open={expanded}>
-      <NavItemHeader onClick={() => setExpanded(!expanded)}>
-        {section.slug && !hasChildren ? (
-          <DynamicLink href={section.slug} passHref>
-            <NavSectionTitle as="a" highlighted={highlighted}>
+    <>
+      <NavItem key={section.slug} open={expanded}>
+        <NavItemHeader onClick={() => collapsible && setExpanded(!expanded)}>
+          {section.slug && !hasChildren ? (
+            <DynamicLink href={section.slug} passHref>
+              <NavSectionTitle as="a" highlighted={highlighted}>
+                {section.title}
+              </NavSectionTitle>
+            </DynamicLink>
+          ) : (
+            <NavSectionTitle highlighted={highlighted}>
               {section.title}
             </NavSectionTitle>
-          </DynamicLink>
-        ) : (
-          <NavSectionTitle highlighted={highlighted}>
-            {section.title}
-          </NavSectionTitle>
-        )}
-        {hasChildren && <RightArrowSvg />}
-      </NavItemHeader>
-      {hasChildren && (
-        <SubNav>
-          {section.slug && (
-            <NavSection
-              key={`${section.id}-overview`}
-              id={section.id}
-              slug={section.slug}
-              title="Overview"
-              items={null}
-            />
           )}
-          {(section.items || []).map(item => (
-            <NavSection key={`${section.id}-${item.id}`} {...item} />
-          ))}
-        </SubNav>
+          {hasChildren && collapsible && <RightArrowSvg />}
+        </NavItemHeader>
+        {hasChildren && (
+          <SubNav>
+            {section.slug && (
+              <NavSection
+                key={`${section.id}-overview`}
+                id={section.id}
+                slug={section.slug}
+                title="Overview"
+                items={null}
+              />
+            )}
+            {(section.items || []).map(item => (
+              <NavSection key={`${section.id}-${item.id}`} {...item} />
+            ))}
+          </SubNav>
+        )}
+      </NavItem>
+      {section.returnLink && (
+        <NavSection
+          key={section.returnLink.url}
+          id={section.returnLink.url}
+          slug={section.returnLink.url}
+          title={section.returnLink.label}
+          items={null}
+        />
       )}
-    </NavItem>
+    </>
   )
 }
 
