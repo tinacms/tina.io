@@ -148,8 +148,6 @@ export default function Post({ post, morePosts, preview }) {
 }
 ```
 
-Since `markdownToHtml` is asynchronous, we need to wrap our code in an [Immediately Invoked Function Expression](https://developer.mozilla.org/en-US/docs/Glossary/IIFE).
-
 Once you're done, you should be able to open up the `Post` component in React DevTools and edit the `rawMarkdownBody` to see the transformed HTML automatically updated in your browser.
 
 ### 3. Prevent Unnecessary Transformation
