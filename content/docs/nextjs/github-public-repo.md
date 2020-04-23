@@ -383,6 +383,7 @@ You may have noticed that the Tina sidebar is still empty, that's because we nee
 
 **pages/index.tsx**
 
+```diff
 + import { useGithubJsonForm } from 'react-tinacms-github'
 
 export default function Home({ file }) {
