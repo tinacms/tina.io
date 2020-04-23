@@ -37,6 +37,8 @@ const formConfig = {
 }
 ```
 
+> Note that our `onSubmit` handler is just a stub. How you implement this function will depend on how your content is stored, and will be explored in later guides.
+
 ## Adding the Form to the Post Component
 
 First, we'll need to import `useForm` and `usePlugin` from the `tinacms` package:
