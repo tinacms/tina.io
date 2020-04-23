@@ -527,7 +527,7 @@ When someone visits the live site, they will initially land on a _static home pa
 
 In our case, since we are the owner of the repository, any content edits we make on the live site will be committed to master. We know this isn't ideal. In fact, _branching is the next feature_ we intend to implement with this workflow.
 
-## Final Thoughts
+## Final Notes
 
 That's it! There are quite a few steps but this should be a 0-100 guide on getting up and running with GitHub Open Authoring, using Tina, Next.js & Vercel.
 
