@@ -74,9 +74,9 @@ Now we need to step up TinaCMS to work with Github. First, create a new file in 
 4. **Wrap the Page with `TinacmsGithubProvider`:** This component lets us authenticate with GitHub. It is given config and callbacks that hit our `/api` server functions to enable Preview/Edit Mode after authentication is complete.
 5. **Add a button for entering Preview/Edit Mode:** We must provide a means of triggering authentication. This a simple example of how to do so.
 
-```tsx
-// pages/_app.tsx
+**pages/\_app.tsx**
 
+```tsx
 import App from 'next/app'
 import { TinaCMS, TinaProvider } from 'tinacms'
 import {
@@ -202,9 +202,9 @@ We also need to create a new page to redirect the user to while authenticating w
 
 Create a new directory in `pages`, called `github` and then make a new file, `authorizing.tsx`.
 
-```tsx
-// pages/github/authorizing.tsx
+**pages/github/authorizing.tsx**
 
+```tsx
 import { useGithubAuthRedirect } from 'react-tinacms-github'
 
 // Our GitHub app redirects back to this page with auth code
@@ -234,8 +234,9 @@ After creating the app, you should see a page with information such as **Client 
 
 To set these variables, create a `.env` file in your project root. Add the _secret_ and _id_ values from the OAuth App, and fill in the repo name. _Do not commit this file_; you may need to add `.env` to the `.gitignore` file.
 
+**.env**
+
 ```
-# .env
 GITHUB_CLIENT_ID= # Taken from GitHub
 GITHUB_CLIENT_SECRET= # Taken from Github
 REPO_FULL_NAME=tinacms/tinacms.org # This is your github repository's owner / repo-name.
@@ -252,9 +253,9 @@ yarn add dotenv
 
 Now, to load these `.env` values in the front-end, create a file called [next.config.js](https://nextjs.org/docs/api-reference/next.config.js/introduction) in the root of your project. Add the code from this example:
 
-```js
-// next.config.js
+**next.config.js**
 
+```js
 require('dotenv').config()
 
 module.exports = {
@@ -281,9 +282,9 @@ Now that we have authentication set up, it's time to wire up some content to edi
 
 Check out `pages/index.tsx`, right now the content for this page is statically written into the component. Let's create a data file to source this content from. Add a new directory in the root of your project called `content` (or `data`, whichever you prefer) and create a new file called `home.json`. We'll start small by just adding editing a title.
 
-```json
-// content/home.json
+**content/home.json**
 
+```json
 {
   "title": "Give me your tots 🦙"
 }
@@ -291,9 +292,9 @@ Check out `pages/index.tsx`, right now the content for this page is statically w
 
 Back in `pages/index.tsx`, we need to set up data fetching. We will use [_getStaticProps_](https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation) to return different sets of data based on the "Preview" or "Edit Mode".
 
-```diff
-// pages/index.tsx
+**pages/index.tsx**
 
+```diff
 import Head from 'next/head'
 /**
  * Import helpers and GetStaticProps type
@@ -369,9 +370,9 @@ Now your `create-next-app` should look something like the image below.
 
 Now we need to create a Form for editing this content. Any forms that we have on our site can be created with the `useGithubJsonForm` or `useGithubMarkdownForm` helpers. These helpers will fetch and post data through the GitHub API via the `GithubClient` we registered in `_app.tsx`.
 
-```diff
-// pages/index.tsx
+**pages/index.tsx**
 
+```diff
 +import { useGithubJsonForm } from 'react-tinacms-github'
 
 export default function Home({ file }) {
