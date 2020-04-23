@@ -10,7 +10,7 @@
   "build": {
     "env": {
       "GITHUB_CLIENT_ID": "942232a549642aea2bbf",
-      "REPO_FULL_NAME": "tinacms/tinacms.org",
+      "BASE_REPO_FULL_NAME": "tinacms/tinacms.org",
       "USE_CONTENT_API": "true",
       "BASE_BRANCH": "master",
       "GTM_ID": "@gtm_id",

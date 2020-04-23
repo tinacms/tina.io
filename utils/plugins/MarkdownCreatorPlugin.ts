@@ -16,7 +16,6 @@ interface CreateMarkdownButtonOptions<FormShape, FrontmatterShape> {
   filename(form: FormShape): MaybePromise<string>
   frontmatter?(form: FormShape): MaybePromise<FrontmatterShape>
   body?(form: FormShape): MaybePromise<string>
-  githubOptions: GithubOptions
   isEditMode: boolean
   afterCreate?(response: any): void
 }
@@ -48,8 +47,6 @@ export class MarkdownCreatorPlugin<FormShape = any, FrontmatterShape = any>
   filename: (form: FormShape) => MaybePromise<string>
   frontmatter: (form: FormShape) => MaybePromise<FrontmatterShape>
   body: (form: any) => MaybePromise<string>
-
-  githubOptions: GithubOptions
   isEditMode: boolean
 
   constructor(
@@ -70,7 +67,6 @@ export class MarkdownCreatorPlugin<FormShape = any, FrontmatterShape = any>
     this.filename = options.filename
     this.frontmatter = options.frontmatter || (() => ({} as FrontmatterShape))
     this.body = options.body || (() => '')
-    this.githubOptions = options.githubOptions
     this.afterCreate = options.afterCreate || null
   }
 
@@ -80,9 +76,7 @@ export class MarkdownCreatorPlugin<FormShape = any, FrontmatterShape = any>
     const markdownBody = await this.body(form)
 
     cms.api.github
-      .save(
-        this.githubOptions.forkFullName,
-        this.githubOptions.branch,
+      .commit(
         fileRelativePath,
         getCachedFormData(fileRelativePath).sha,
         toMarkdownString({

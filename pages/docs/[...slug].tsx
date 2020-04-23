@@ -5,7 +5,7 @@ import { GetStaticProps, GetStaticPaths } from 'next'
 import {
   DocsLayout,
   MarkdownContent,
-  RichTextWrapper,
+  DocsTextWrapper,
   Wrapper,
   Footer,
 } from '../../components/layout'
@@ -25,23 +25,19 @@ import { GithubError } from 'next-tinacms-github'
 
 function DocTemplate(props) {
   // Registers Tina Form
-  const [data, form] = useGithubMarkdownForm(
-    props.markdownFile,
-    formOptions,
-    props.sourceProviderConnection
-  )
+  const [data, form] = useGithubMarkdownForm(props.file, formOptions)
   const [open, setOpen] = useState(false)
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
-  const excerpt = props.markdownFile.data.excerpt
+  const excerpt = props.file.data.excerpt
 
   return (
     <OpenAuthoringSiteForm
       form={form}
-      path={props.markdownFile.fileRelativePath}
-      editMode={props.editMode}
+      path={props.file.fileRelativePath}
+      preview={props.preview}
     >
-      <DocsLayout isEditing={props.editMode}>
+      <DocsLayout isEditing={props.preview}>
         <NextSeo
           title={frontmatter.title}
           titleTemplate={'%s | TinaCMS Docs'}
@@ -67,7 +63,7 @@ function DocTemplate(props) {
         <DocsNav open={open} navItems={props.docsNav} />
         <DocsContent>
           <DocsHeaderNav color={'light'} open={open} />
-          <RichTextWrapper>
+          <DocsTextWrapper>
             <Wrapper narrow>
               <h1>
                 <InlineTextareaField name="frontmatter.title" />
@@ -81,8 +77,8 @@ function DocTemplate(props) {
                 nextPage={props.nextPage}
               />
             </Wrapper>
-          </RichTextWrapper>
-          <Footer light editMode={props.editMode} />
+          </DocsTextWrapper>
+          <Footer light preview={props.preview} />
         </DocsContent>
         <Overlay open={open} onClick={() => setOpen(false)} />
       </DocsLayout>
@@ -210,44 +206,5 @@ export const DocsContent = styled.div`
   ${Wrapper} {
     padding-top: 2rem;
     padding-bottom: 3rem;
-  }
-
-  h1,
-  .h1,
-  h2,
-  .h2 {
-    color: var(--color-primary);
-    em {
-      color: var(--color-primary);
-      font-style: italic;
-    }
-  }
-
-  h3,
-  .h3,
-  h4,
-  .h4 {
-    color: var(--color-secondary);
-    em {
-      color: var(--color-secondary);
-      font-style: italic;
-    }
-  }
-
-  h1,
-  .h1 {
-    font-size: 2rem;
-    @media (min-width: 800px) {
-      font-size: 3rem;
-    }
-
-    @media (min-width: 1200px) {
-      font-size: 2.5rem;
-    }
-  }
-
-  h2,
-  .h2 {
-    font-size: 1.625rem;
   }
 `
