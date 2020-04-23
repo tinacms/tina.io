@@ -1,56 +1,51 @@
-import { getMarkdownFile } from '../getMarkdownFile'
-import { getJsonFile } from '../getJsonFile'
-import { getGithubDataFromPreviewProps } from '../getGithubDataFromPreviewProps'
+import { getJsonPreviewProps } from '../getJsonPreviewProps'
+import { getMarkdownPreviewProps } from '../getMarkdownFile'
 
 export async function getDocProps({ preview, previewData }: any, slug: string) {
-  const {
-    sourceProviderConnection,
-    accessToken,
-  } = getGithubDataFromPreviewProps(previewData)
-  const file = await getMarkdownFile(
-    `content/docs/${slug}.md`,
-    sourceProviderConnection,
-    accessToken
-  )
-
-  const docsNavData = (
-    await getJsonFile(
-      'content/toc-doc.json',
-      sourceProviderConnection,
-      accessToken
+  const currentDoc = (
+    await getMarkdownPreviewProps(
+      `content/docs/${slug}.md`,
+      preview,
+      previewData
     )
-  ).data
+  ).props
+
+  const previewProps = await getJsonPreviewProps(
+    'content/toc-doc.json',
+    preview,
+    previewData
+  )
+  const docsNavData = previewProps.props.file.data
+
   const nextDocPage =
-    file.data.frontmatter.next &&
+    currentDoc.file.data.frontmatter.next &&
     (
-      await getMarkdownFile(
-        `content${file.data.frontmatter.next}.md`,
-        sourceProviderConnection,
-        accessToken
+      await getMarkdownPreviewProps(
+        `content${currentDoc.file.data.frontmatter.next}.md`,
+        preview,
+        previewData
       )
-    ).data.frontmatter
+    ).props.file.data.frontmatter
   const prevDocPage =
-    file.data.frontmatter.prev &&
+    currentDoc.file.data.frontmatter.prev &&
     (
-      await getMarkdownFile(
-        `content${file.data.frontmatter.prev}.md`,
-        sourceProviderConnection,
-        accessToken
+      await getMarkdownPreviewProps(
+        `content${currentDoc.file.data.frontmatter.prev}.md`,
+        preview,
+        previewData
       )
-    ).data.frontmatter
+    ).props.file.data.frontmatter
 
   return {
     props: {
-      markdownFile: file,
-      sourceProviderConnection,
-      editMode: !!preview,
+      ...currentDoc,
       docsNav: docsNavData,
       nextPage: {
-        slug: file.data.frontmatter.next || null,
+        slug: currentDoc.file.data.frontmatter.next || null,
         title: (nextDocPage && nextDocPage.title) || null,
       },
       prevPage: {
-        slug: file.data.frontmatter.prev || null,
+        slug: currentDoc.file.data.frontmatter.prev || null,
         title: (prevDocPage && prevDocPage.title) || null,
       },
     },

@@ -171,7 +171,7 @@ const FooterDivider = styled.span`
   }
 `
 
-export const Footer = styled(({ light: boolean, editMode, ...styleProps }) => {
+export const Footer = styled(({ light: boolean, preview, ...styleProps }) => {
   return (
     <div {...styleProps}>
       <FooterTop>
@@ -196,7 +196,7 @@ export const Footer = styled(({ light: boolean, editMode, ...styleProps }) => {
           <EmailForm isFooter />
         </FooterForm>
         <Footnote>
-          <EditLink color={'primary'} editMode={editMode} />
+          <EditLink color={'primary'} preview={preview} />
           <a
             href="https://github.com/tinacms/tinacms/blob/master/LICENSE"
             target="_blank"

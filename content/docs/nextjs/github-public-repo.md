@@ -239,9 +239,9 @@ After creating the app, you should see a page with information such as **Client 
 
 To set these variables, create a `.env` file in your project root. Add the _secret_ and _id_ values from the OAuth App, and fill in the repo name. _Do not commit this file_; you may need to add `.env` to the `.gitignore` file.
 
-```
-# .env
+**.env**
 
+```
 # Taken from GitHub
 GITHUB_CLIENT_ID=
 
@@ -250,8 +250,6 @@ GITHUB_CLIENT_SECRET=
 
 # This is your github repository's owner / repo-name.
 REPO_FULL_NAME=tinacms/tinacms.org
-
-BASE_BRANCH=master
 ```
 
 You can use the `dotenv` package to load the `.env` file:
@@ -385,7 +383,6 @@ You may have noticed that the Tina sidebar is still empty, that's because we nee
 
 **pages/index.tsx**
 
-```diff
 + import { useGithubJsonForm } from 'react-tinacms-github'
 
 export default function Home({ file }) {

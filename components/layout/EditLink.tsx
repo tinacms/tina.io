@@ -4,21 +4,21 @@ import { Button } from '../ui'
 
 interface EditLinkProps {
   color?: 'white' | 'primary' | 'secondary' | 'seafoam' | 'variable'
-  editMode: boolean
+  preview: boolean
 }
 import { useGithubEditing } from 'react-tinacms-github'
 
-export const EditLink = ({ color, editMode }: EditLinkProps) => {
+export const EditLink = ({ color, preview }: EditLinkProps) => {
   const openAuthoring = useGithubEditing()
   return (
     <EditToggleButton
       id="OpenAuthoringEditButton"
       color={color}
       onClick={
-        editMode ? openAuthoring.exitEditMode : openAuthoring.enterEditMode
+        preview ? openAuthoring.exitEditMode : openAuthoring.enterEditMode
       }
     >
-      <EditIcon /> {editMode ? 'Exit Edit Mode' : 'Edit This Site'}
+      <EditIcon /> {preview ? 'Exit Edit Mode' : 'Edit This Site'}
     </EditToggleButton>
   )
 }

@@ -20,35 +20,20 @@ import SlackIconSvg from '../public/svg/slack-icon.svg'
 import ForumIconSvg from '../public/svg/forum-icon.svg'
 import { NextSeo } from 'next-seo'
 import { OpenAuthoringSiteForm } from '../components/layout/OpenAuthoringSiteForm'
-import { GithubError } from 'next-tinacms-github'
-import { getJsonFile } from '../utils/getJsonFile'
-import { getGithubDataFromPreviewProps } from '../utils/getGithubDataFromPreviewProps'
+import { getJsonPreviewProps } from '../utils/getJsonPreviewProps'
 import { useGithubJsonForm } from 'react-tinacms-github'
 
-function CommunityPage({
-  community,
-  metadata,
-  sourceProviderConnection,
-  editMode,
-  previewError,
-}) {
+function CommunityPage({ file: community, metadata, preview }) {
   // Registers Tina Form
-  const [data, form] = useGithubJsonForm(
-    community,
-    formOptions,
-    sourceProviderConnection
-  )
+  const [data, form] = useGithubJsonForm(community, formOptions)
 
   return (
     <OpenAuthoringSiteForm
       form={form}
       path={community.fileRelativePath}
-      editMode={editMode}
+      preview={preview}
     >
-      <Layout
-        sourceProviderConnection={sourceProviderConnection}
-        editMode={editMode}
-      >
+      <Layout preview={preview}>
         <NextSeo
           title={data.title}
           description={data.description}
@@ -162,36 +147,14 @@ export const getStaticProps: GetStaticProps = async function({
   preview,
   previewData,
 }) {
-  const {
-    sourceProviderConnection,
-    accessToken,
-  } = getGithubDataFromPreviewProps(previewData)
   const { default: metadata } = await import('../content/siteConfig.json')
 
-  let previewError: GithubError = null
-  let communityData = {}
-  try {
-    communityData = await getJsonFile(
-      'content/pages/community.json',
-      sourceProviderConnection,
-      accessToken
-    )
-  } catch (e) {
-    if (e instanceof GithubError) {
-      previewError = { ...e } //workaround since we cant return error as JSON
-    } else {
-      throw e
-    }
-  }
-  return {
-    props: {
-      metadata,
-      community: communityData,
-      previewError: previewError,
-      sourceProviderConnection,
-      editMode: !!preview,
-    },
-  }
+  const previewProps = await getJsonPreviewProps(
+    'content/pages/community.json',
+    preview,
+    previewData
+  )
+  return { props: { ...previewProps.props, metadata } }
 }
 
 /**

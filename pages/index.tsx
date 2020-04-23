@@ -24,100 +24,91 @@ import {
 
 import { Button, Video, ArrowList } from '../components/ui'
 import { OpenAuthoringSiteForm } from '../components/layout/OpenAuthoringSiteForm'
-import { GithubError } from 'next-tinacms-github'
-import { getJsonFile } from '../utils/getJsonFile'
-import { getGithubDataFromPreviewProps } from '../utils/getGithubDataFromPreviewProps'
 import { useGithubJsonForm } from 'react-tinacms-github'
+import { getJsonPreviewProps } from '../utils/getJsonPreviewProps'
 
 const HomePage = (props: any) => {
-  const [formData, form] = useGithubJsonForm(
-    props.home,
-    {
-      label: 'Home Page',
-      fields: [
-        {
-          label: 'Headline',
-          name: 'headline',
-          description: 'Enter the main headline here',
-          component: 'text',
-        },
-        {
-          label: 'Description',
-          name: 'description',
-          description: 'Enter supporting main description',
-          component: 'textarea',
-        },
-        {
-          label: 'Selling Points',
-          name: 'three_points',
-          description: 'Edit the points here',
-          component: 'group-list',
-          //@ts-ignore
-          itemProps: item => ({
-            key: item.id,
-            label: `${item.main.slice(0, 15)}...`,
-          }),
-          defaultItem: () => ({
-            main: 'New Point',
-            supporting: '',
-            _template: 'selling_point',
-          }),
-          fields: [
-            {
-              label: 'Main',
-              name: 'main',
-              component: 'textarea',
-            },
-            {
-              label: 'Supporting',
-              name: 'supporting',
-              component: 'textarea',
-            },
-          ],
-        },
-        {
-          label: 'Setup Headline',
-          name: 'setup.headline',
-          description: 'Enter the "setup" headline here',
-          component: 'textarea',
-        },
-        {
-          label: 'Setup Steps',
-          name: 'setup.steps',
-          description: 'Edit the steps here',
-          component: 'group-list',
-          //@ts-ignore
-          itemProps: item => ({
-            key: item.id,
-            label: `${item.step.slice(0, 15)}...`,
-          }),
-          defaultItem: () => ({
-            step: 'New Step',
-            _template: 'setup_point',
-          }),
-          fields: [
-            {
-              label: 'Step',
-              name: 'step',
-              component: 'textarea',
-            },
-          ],
-        },
-      ],
-    },
-    props.sourceProviderConnection
-  )
+  const [formData, form] = useGithubJsonForm(props.file, {
+    label: 'Home Page',
+    fields: [
+      {
+        label: 'Headline',
+        name: 'headline',
+        description: 'Enter the main headline here',
+        component: 'text',
+      },
+      {
+        label: 'Description',
+        name: 'description',
+        description: 'Enter supporting main description',
+        component: 'textarea',
+      },
+      {
+        label: 'Selling Points',
+        name: 'three_points',
+        description: 'Edit the points here',
+        component: 'group-list',
+        //@ts-ignore
+        itemProps: item => ({
+          key: item.id,
+          label: `${item.main.slice(0, 15)}...`,
+        }),
+        defaultItem: () => ({
+          main: 'New Point',
+          supporting: '',
+          _template: 'selling_point',
+        }),
+        fields: [
+          {
+            label: 'Main',
+            name: 'main',
+            component: 'textarea',
+          },
+          {
+            label: 'Supporting',
+            name: 'supporting',
+            component: 'textarea',
+          },
+        ],
+      },
+      {
+        label: 'Setup Headline',
+        name: 'setup.headline',
+        description: 'Enter the "setup" headline here',
+        component: 'textarea',
+      },
+      {
+        label: 'Setup Steps',
+        name: 'setup.steps',
+        description: 'Edit the steps here',
+        component: 'group-list',
+        //@ts-ignore
+        itemProps: item => ({
+          key: item.id,
+          label: `${item.step.slice(0, 15)}...`,
+        }),
+        defaultItem: () => ({
+          step: 'New Step',
+          _template: 'setup_point',
+        }),
+        fields: [
+          {
+            label: 'Step',
+            name: 'step',
+            component: 'textarea',
+          },
+        ],
+      },
+    ],
+  })
 
   return (
     <OpenAuthoringSiteForm
       form={form}
-      path={props.home.fileRelativePath}
-      editMode={props.editMode}
+      path={props.file.fileRelativePath}
+      preview={props.preview}
     >
-      <Layout
-        sourceProviderConnection={props.sourceProviderConnection}
-        editMode={props.editMode}
-      >
+      <Layout preview={props.preview}>
         <DefaultSeo titleTemplate={formData.title + ' | %s'} />
         <Hero overlap narrow>
           <InlineTextareaField name="headline" />
@@ -138,7 +129,7 @@ const HomePage = (props: any) => {
                   </em>
                 </h2>
                 <CtaBar>
-                  <EditLink color="primary" editMode={props.editMode} />
+                  <EditLink color="primary" preview={props.preview} />
                   <DynamicLink
                     href={'/docs/getting-started/introduction/'}
                     passHref
@@ -212,34 +203,7 @@ export const getStaticProps: GetStaticProps = async function({
   preview,
   previewData,
 }) {
-  const {
-    sourceProviderConnection,
-    accessToken,
-  } = getGithubDataFromPreviewProps(previewData)
-  let previewError: GithubError = null
-  let homeData = {}
-  try {
-    homeData = await getJsonFile(
-      'content/pages/home.json',
-      sourceProviderConnection,
-      accessToken
-    )
-  } catch (e) {
-    if (e instanceof GithubError) {
-      previewError = { ...e } //workaround since we cant return error as JSON
-    } else {
-      throw e
-    }
-  }
-
-  return {
-    props: {
-      home: homeData,
-      previewError: previewError,
-      sourceProviderConnection,
-      editMode: !!preview,
-    },
-  }
+  return getJsonPreviewProps('content/pages/home.json', preview, previewData)
 }
 
 /*
