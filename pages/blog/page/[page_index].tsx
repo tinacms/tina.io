@@ -14,8 +14,8 @@ import { DynamicLink, BlogPagination } from '../../../components/ui'
 import { OpenAuthoringSiteForm } from '../../../components/layout/OpenAuthoringSiteForm'
 import { useForm } from 'tinacms'
 import { getFiles } from '../../../utils/getFiles'
-import { getGithubDataFromPreviewProps } from '../../../utils/getGithubDataFromPreviewProps'
 import { getMarkdownPreviewProps } from '../../../utils/getMarkdownFile'
+import { PreviewData } from 'next-tinacms-github'
 const Index = props => {
   const { currentPage, numPages } = props
   const [, form] = useForm({
@@ -92,19 +92,16 @@ export const getStaticProps: GetStaticProps = async function({
   preview,
   previewData,
   ...ctx
-}) {
-  const {
-    sourceProviderConnection,
-    accessToken,
-  } = getGithubDataFromPreviewProps(previewData)
+}: Partial<{ previewData: PreviewData<any>; preview: boolean }>) {
   // @ts-ignore page_index should always be a single string
   const page = parseInt((ctx.params && ctx.params.page_index) || '1')
 
   try {
     const files = await getFiles(
       'content/blog',
-      sourceProviderConnection,
-      accessToken
+      previewData?.working_repo_full_name || '',
+      previewData?.head_branch || '',
+      previewData?.github_access_token || ''
     )
 
     const posts = await Promise.all(

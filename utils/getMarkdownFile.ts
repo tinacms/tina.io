@@ -52,7 +52,6 @@ export const getMarkdownPreviewProps = async (
   const file = await readMarkdownFile(fileRelativePath)
   return {
     props: {
-      sourceProvider: null,
       error: null,
       preview: false,
       file,
