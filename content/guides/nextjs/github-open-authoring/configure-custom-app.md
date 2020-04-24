@@ -36,7 +36,12 @@ export default class Site extends App {
         /**
          * 2. Register the GithubClient
          */
-        github: new GithubClient('/api/proxy-github', REPO_FULL_NAME),
+        github: new GithubClient({
+          proxy: '/api/proxy-github',
+          authCallbackRoute: '/api/create-github-access-token'
+          clientId: process.env.GITHUB_CLIENT_ID,
+          baseRepoFullName: process.env.REPO_FULL_NAME // e.g: tinacms/tinacms.org,
+        })
       },
       /**
        * 3. Make sure the Sidebar & Toolbar are
