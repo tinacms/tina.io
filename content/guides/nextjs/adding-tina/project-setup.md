@@ -84,7 +84,7 @@ All we need to do in order to send the raw Markdown to the frontend is to add th
   }
 ```
 
-Now in the compoent props, `post.content` will continue to refer to the HTML content, but we can access the raw markdown from `post.rawMarkdownBody`.
+Now in the component props, `post.content` will continue to refer to the HTML content, but we can access the raw markdown from `post.rawMarkdownBody`.
 
 ### 2. Create a Side Effect to Transform the Markdown
 
