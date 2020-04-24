@@ -5,9 +5,9 @@ title: Configure the Custom App
 Now we need to step up TinaCMS to work with Github. First, create a new file in the `pages` directory called `_app.tsx`. This is a special file in Next.js that allows us to configure a [custom app](https://nextjs.org/docs/advanced-features/custom-app). Our custom `_app.tsx` will do a few things:
 
 1. **Create the TinaCMS instance**
-2. **Register the GithubClient:** The client accepts a string ('/api/proxy-github' in our case). All requests using the `GithubClient` gets passed through a proxy on our site. This allows us to securely attach the authentication tokens on the backend.
+2. **Register the GithubClient:** The client allows us to authenticate with GitHub. All requests using the `GithubClient` gets passed through a proxy on our site. This allows us to securely attach the authentication tokens on the backend.
 3. Make sure the Sidebar & Toolbar are hidden unless we're in Next's [Preview/Edit mode](https://nextjs.org/docs/advanced-features/preview-mode).
-4. **Wrap the Page with `TinacmsGithubProvider`:** This component lets us authenticate with GitHub. It is given config and callbacks that hit our `/api` server functions to enable Preview/Edit Mode after authentication is complete.
+4. **Wrap the Page with `TinacmsGithubProvider`:** This component is given config and callbacks that hit our `/api` server functions to enable Preview/Edit Mode after authentication is complete.
 5. **Add a button for entering Preview/Edit Mode:** We must provide a means of triggering authentication. This a simple example of how to do so.
 
 **pages/\_app.tsx**
@@ -20,7 +20,6 @@ import {
   GithubClient,
   TinacmsGithubProvider,
 } from 'react-tinacms-github'
-
 
 export default class Site extends App {
   cms: TinaCMS
@@ -39,8 +38,8 @@ export default class Site extends App {
           proxy: '/api/proxy-github',
           authCallbackRoute: '/api/create-github-access-token',
           clientId: process.env.GITHUB_CLIENT_ID,
-          baseRepoFullName: process.env.REPO_FULL_NAME // e.g: tinacms/tinacms.org,
-        })
+          baseRepoFullName: process.env.REPO_FULL_NAME, // e.g: tinacms/tinacms.org,
+        }),
       },
       /**
        * 3. Make sure the Sidebar & Toolbar are
