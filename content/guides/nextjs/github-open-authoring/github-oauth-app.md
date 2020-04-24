@@ -2,7 +2,7 @@
 title: Set up the GitHub OAuth App
 ---
 
-Now we need to set up an OAuth App in Github to allow for authorization. In GitHub, within your Account Settings, click <a href="https://github.com/settings/developers" target="_blank">Oauth Apps</a> under Developer Settings. Go ahead and create a "New Oauth App".
+Now we need to set up an OAuth App in Github to allow for authorization. In GitHub, within your Account Settings, click <a href="https://github.com/settings/developers" target="_blank">OAuth Apps</a> under Developer Settings. Go ahead and create a "New OAuth App".
 
 Since you are **testing your app locally**, you'll create a _development_ GitHub app that redirects to localhost. Eventually you'll need to create separate OAuth Apps: one for development and a production app whose URLs will connect to the 'live' domain. We'll circle back to the production app once when we cover hosting.
 
