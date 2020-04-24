@@ -107,4 +107,4 @@ export const EditLink = ({ editMode }: EditLinkProps) => {
 
 > _Note:_ For brevity, the example above configures many steps in a single file, but **a few components can be configured in different places**. For example you could put the `EditLink` in a Layout component, or set up the Github Provider only on certain pages.
 
-If you restart the dev server, you should see a **button in the top left-hand corner** that says, "Edit This Site". If you click it, you'll be prompted to authenticate with GitHub, but we still have some steps to get this working. Let's set up up the backend API.
+We still have some steps to get this working to test the custom app. Let's start setting up the backend API.
