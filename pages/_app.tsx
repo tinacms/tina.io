@@ -13,7 +13,12 @@ import { GithubClient, TinacmsGithubProvider } from 'react-tinacms-github'
 const MainLayout = ({ Component, pageProps }) => {
   const tinaConfig = {
     apis: {
-      github: new GithubClient('/api/proxy-github', process.env.BASE_REPO_FULL_NAME),
+      github: new GithubClient({
+        proxy: '/api/proxy-github',
+        authCallbackRoute: '/api/create-github-access-token',
+        clientId: process.env.GITHUB_CLIENT_ID,
+        baseRepoFullName: process.env.BASE_REPO_FULL_NAME,
+      }),
       storage:
         typeof window !== 'undefined'
           ? new BrowserStorageApi(window.localStorage)
@@ -46,8 +51,6 @@ const MainLayout = ({ Component, pageProps }) => {
       <ModalProvider>
         <Alerts />
         <TinacmsGithubProvider
-          clientId={process.env.GITHUB_CLIENT_ID}
-          authCallbackRoute="/api/create-github-access-token"
           enterEditMode={enterEditMode}
           exitEditMode={exitEditMode}
           editMode={pageProps.preview}

@@ -7163,10 +7163,10 @@ next-tick@~1.0.0:
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
-next-tinacms-github@0.1.0-canary4.0:
-  version "0.1.0-canary4.0"
-  resolved "https://registry.yarnpkg.com/next-tinacms-github/-/next-tinacms-github-0.1.0-canary4.0.tgz#eff8d895f6ae7dbb777ce11a1444dbbdc357949a"
-  integrity sha512-hDrOBMnb2Zb1cXroy8/7//TnIs3HiYPFSgolas3OM44BZgiqXzird7dpe0/yO3wzxb5gfNK/F5YAhhGGvnk76g==
+next-tinacms-github@0.1.0-canary4.1:
+  version "0.1.0-canary4.1"
+  resolved "https://registry.yarnpkg.com/next-tinacms-github/-/next-tinacms-github-0.1.0-canary4.1.tgz#b427e22a0dbc2f797d47bb47aaa8de611b178839"
+  integrity sha512-T2Zp5XJ0g7bR1eljSxpiM3i/gO1gj1rsoARPrvyV73x62OHwLHUKaCfsPyW9UkfKM7t5D6uHy8aBO9FcXQyf+g==
   dependencies:
     atob "2.1.2"
     axios "0.19.2"
@@ -7187,10 +7187,10 @@ next-tinacms-markdown@^0.2.10:
     gray-matter "^4.0.2"
     js-yaml "^3.13.1"
 
-next-tinacms-markdown@^0.2.12-alpha.3:
-  version "0.2.12-alpha.3"
-  resolved "https://registry.yarnpkg.com/next-tinacms-markdown/-/next-tinacms-markdown-0.2.12-alpha.3.tgz#cf8e316079f70a7db1944fd42b687f9d50f65378"
-  integrity sha512-wnLcGGWwPZJf3xCv6br/Kadg96LzdwSsOJ58/NthSWq+n8LM8wdW+LxylDBQVEGxcBU7AgsBFe43xohfEDiBuQ==
+next-tinacms-markdown@^0.2.12-alpha.4:
+  version "0.2.12-alpha.4"
+  resolved "https://registry.yarnpkg.com/next-tinacms-markdown/-/next-tinacms-markdown-0.2.12-alpha.4.tgz#5aefc942966f7b8e6f9bd209c9003ca50e5a8507"
+  integrity sha512-2RjUYKNXiRQ+GSZ19VuEe0xgJOthskO9aEmpeVqslR/zBy4tqW2IKDGUWIULvLO+bmv0VHKUG679Mp5Ed3uHOQ==
   dependencies:
     gray-matter "^4.0.2"
     js-yaml "^3.13.1"
@@ -8932,15 +8932,15 @@ react-tinacms-editor@^0.5.0-alpha.0:
     prosemirror-view "^1.11.3"
     react-dismissible "^1.1.5"
 
-react-tinacms-github@0.1.0-canary3.1:
-  version "0.1.0-canary3.1"
-  resolved "https://registry.yarnpkg.com/react-tinacms-github/-/react-tinacms-github-0.1.0-canary3.1.tgz#ab60305c0379732a96d510bc0a33b9f88629f5ca"
-  integrity sha512-p09o98tK9GIq4VYSXmrFwI4gFnWGxrIUNt6oa26GWsTjnIv4qhReP/Nn++xBfKfcRft9lYDJxkRdwQhPqm4QLw==
+react-tinacms-github@0.1.0-canary3.2:
+  version "0.1.0-canary3.2"
+  resolved "https://registry.yarnpkg.com/react-tinacms-github/-/react-tinacms-github-0.1.0-canary3.2.tgz#3c07e7e0eca0eb9e10c7d4d1f1f2cc4d43373de6"
+  integrity sha512-7BEVswm9mPrQVqfQrfqVp7RdF4M2r3f7CbKXUuTJKYBNQkp4wfcXFU0h1lJmXSZgmJh5P4j+VtNRjM+JiD6Hzw==
   dependencies:
     btoa "^1.2.1"
     final-form-submit-listener "^1.0.0"
     js-cookie "^2.2.1"
-    next-tinacms-markdown "^0.2.12-alpha.3"
+    next-tinacms-markdown "^0.2.12-alpha.4"
 
 react-tinacms-inline@^0.4.3:
   version "0.4.4"
