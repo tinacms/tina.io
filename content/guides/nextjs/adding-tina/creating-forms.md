@@ -16,7 +16,7 @@ For details on how to configure forms, take a look at our [form configuration do
 
 ```js
 const formConfig = {
-  id: post.slug,          // a unique identifer for this instance of the form
+  id: post.slug,          // a unique identifier for this instance of the form
   label: 'Blog Post',     // name of the form to appear in the sidebar
   initialValues: post,    // populate the form with starting values
   onSubmit: (values) => { // do something with the data when the form is submitted
