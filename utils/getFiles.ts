@@ -1,7 +1,4 @@
-import {
-  getFiles as getGithubFiles,
-  SourceProviderConnection,
-} from 'next-tinacms-github'
+import { getFiles as getGithubFiles } from 'next-tinacms-github'
 import path from 'path'
 
 const getLocalFiles = async (filePath: string) => {
@@ -15,11 +12,12 @@ const getLocalFiles = async (filePath: string) => {
 
 export const getFiles = async (
   filePath: string,
-  sourceProviderConnection: SourceProviderConnection,
-  accessToken: string
+  repoFullName: string,
+  branch: string,
+  accessToken?: string
 ) => {
-  if (sourceProviderConnection) {
-    return getGithubFiles(filePath, sourceProviderConnection, accessToken)
+  if (accessToken) {
+    return getGithubFiles(filePath, repoFullName, branch, accessToken)
   } else {
     return getLocalFiles(filePath)
   }
