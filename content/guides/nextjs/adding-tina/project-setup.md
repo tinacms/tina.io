@@ -170,10 +170,8 @@ export default function Post({ post, morePosts, preview }) {
 + const initialContent = useMemo(() => post.rawMarkdownBody, [])
   useEffect(() => {
 +   if (initialContent == post.rawMarkdownBody) return
-    ;(async () => {
-      const markdownHtml = await markdownToHtml(post.rawMarkdownBody)
-      setHtmlContent(markdownHtml)
-    })()
+    markdownToHtml(post.rawMarkdownBody).then(setHtmlContent);
+  }, [post.rawMarkdownBody]);
   }, [post.rawMarkdownBody])
 
   return (
