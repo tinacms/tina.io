@@ -78,11 +78,10 @@ export default function Post({ post, morePosts, preview }) {
   ;[post, form] = useForm(formConfig)
 
   const [htmlContent, setHtmlContent] = useState(post.content)
+  const initialContent = useMemo(() => post.rawMarkdownBody, [])
   useEffect(() => {
-    ;(async () => {
-      const markdownHtml = await markdownToHtml(post.rawMarkdownBody)
-      setHtmlContent(markdownHtml)
-    })()
+    if (initialContent == post.rawMarkdownBody) return
+    markdownToHtml(post.rawMarkdownBody).then(setHtmlContent)
   }, [post.rawMarkdownBody])
 
   return (
