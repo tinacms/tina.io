@@ -10,28 +10,41 @@ const [modifiedValues, form] = useForm(formConfig)
 
 `modifiedValues` contains the values we provide to the form (inside of `formConfig`) after being modified by the end user. `form` contains the form object created by calling `useForm`, which we'll need in a moment.
 
+To simplify our implementation, we'd like to store `modifiedValues` in the `post` variable so that our layout code can continue to work without modification. Let's rename the incoming `post` variable to `initialPost`, to differentiate it from the `post` values that Tina sends back to us:
+
+```js
+export default function Post({ post: initialPost, morePosts, preview }) {
+  const router = useRouter()
+  if (!router.isFallback && !initialPost?.slug) {
+    return <ErrorPage statusCode={404} />
+  }
+
+  //...
+}
+```
+
 ## Form Configuration
 
 For details on how to configure forms, take a look at our [form configuration docs](/docs/forms#form-configuration). For the purposes of this guide, we will use the following configuration:
 
 ```js
 const formConfig = {
-  id: post.slug,          // a unique identifier for this instance of the form
-  label: 'Blog Post',     // name of the form to appear in the sidebar
-  initialValues: post,    // populate the form with starting values
-  onSubmit: (values) => { // do something with the data when the form is submitted
+  id: initialPost.slug,           // a unique identifier for this instance of the form
+  label: 'Blog Post',             // name of the form to appear in the sidebar
+  initialValues: initialPost,     // populate the form with starting values
+  onSubmit: (values) => {         // do something with the data when the form is submitted
     alert(`Submitting ${values.title}`)
   }
-  fields: [               // define fields to appear in the form
+  fields: [                    // define fields to appear in the form
     {
-      name: 'title',        // field name maps to the corresponding key in initialValues
-      label: 'Post Title',  // label that appears above the field
-      component: 'text',    // the component used to handle UI and input to the field
+      name: 'title',           // field name maps to the corresponding key in initialValues
+      label: 'Post Title',     // label that appears above the field
+      component: 'text',       // the component used to handle UI and input to the field
     },
     {
       name: 'rawMarkdownBody', // remember we want `rawMarkdownBody`, not `content` here
       label: 'Content',
-      component: 'markdown',  // `component` accepts a predefined components or a custom React component
+      component: 'markdown',   // `component` accepts a predefined components or a custom React component
     },
   ]
 }
@@ -54,12 +67,12 @@ export default function Post({ post, morePosts, preview }) {
   //...
 
   const formConfig = {
-    id: post.slug,
+    id: initialPost.slug,
     label: 'Blog Post',
-    initialValues: post,
+    initialValues: initialPost,
     onSubmit: (values) => {
       alert(`Submitting ${values.title}`)
-    }
+    },
     fields: [
       {
         name: 'title',
@@ -71,11 +84,9 @@ export default function Post({ post, morePosts, preview }) {
         label: 'Content',
         component: 'markdown',
       },
-    ]
+    ],
   }
-
-  let form
-  ;[post, form] = useForm(formConfig)
+  const [post, form] = useForm(formConfig)
 
   const [htmlContent, setHtmlContent] = useState(post.content)
   const initialContent = useMemo(() => post.rawMarkdownBody, [])
@@ -90,25 +101,6 @@ export default function Post({ post, morePosts, preview }) {
 }
 ```
 
-> If these two lines look awkward to you:
->
-> ```js
-> let form
-> ;[post, form] = useForm(formConfig)
-> ```
->
-> We're just doing that so we can reassign the modified `post` values back into the original `post` object provided by `getInitialProps`. The only reason we do it here is for the sake of brevity, to avoid having to replace references to `post` in our layout code. If you prefer a "cleaner" approach where you assign the modified values into a new variable, that is perfectly acceptable:
->
-> ```js
-> const [modifiedPost, form] = useForm(formConfig)
-> //...
-> return (
->   //...
->   <title>{modifiedPost.title}</title>
->   //...
-> )
-> ```
-
 ### Adding the Form to the Sidebar
 
 At this point, the form is all wired up with its field configuration, and our `post` object will send updated values back through our layout rendering code. However, if you've followed along this far, you'll see that the form does not appear in the Tina sidebar.
@@ -116,8 +108,7 @@ At this point, the form is all wired up with its field configuration, and our `p
 In order to hook our form into the sidebar, we'll need to call `usePlugin` and pass it our form object:
 
 ```diff
-  let form
-  ;[post, form] = useForm(formConfig)
+  const [post, form] = useForm(formConfig)
 + usePlugin(form)
 ```
 
