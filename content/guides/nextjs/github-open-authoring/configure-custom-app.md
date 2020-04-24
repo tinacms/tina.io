@@ -21,7 +21,6 @@ import {
   TinacmsGithubProvider,
 } from 'react-tinacms-github'
 
-const REPO_FULL_NAME = process.env.REPO_FULL_NAME as string // e.g: tinacms/tinacms.org
 
 export default class Site extends App {
   cms: TinaCMS
