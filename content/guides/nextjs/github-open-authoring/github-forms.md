@@ -27,7 +27,9 @@ export default function Home({ file }) {
 //...
 ```
 
-> **This is a different approach** than the Git-based Tina form helpers. Instead of writing locally to the filesystem via Git, the Tina-GitHub helpers source data and commit to a _Working GitHub Repository_.
+> **How does this compare to the Tina-Git form helpers?**
+> 
+> Tina-GitHub takes a different approach to editing content. Instead of writing locally to the filesystem via Git, the Tina-GitHub helpers source data and commit to a _Working GitHub Repository_.
 
 Start up the dev server, enter "Edit Mode" open the sidebar and edit the title! You've set up GitHub editing with Tina. If you "Save", that will commit your master branch.
 
