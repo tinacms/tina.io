@@ -11,15 +11,15 @@ npx hygen-add https://github.com/dwalkr/hygen-next-tinacms-github
 npx hygen next-tinacms-github bootstrap --format ts
 ```
 
-> _Note:_ if your **pages directory is not in the root**, you will need to supply a `--dir [subDir]` option for this last script.
-
-```bash
-# Example setting sub directory option
-npx hygen next-tinacms-github bootstrap --format ts --dir src
-```
-
 You should see a few API functions have been set up in your project, along with a new `_templates` directory.
 
 - `preview.ts`: Contains API function to enter [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode), and set the preview-data with content stored in the cookies.
 - `proxy-github.ts`: Contains API function to attach the user's auth token, and proxy requests to the GitHub API.
 - `create-github-auth-token.ts`: Helper for creating a `createCreateAccessToken` server function.
+
+> _Note:_ if your **pages directory is not in the root**, you will need to supply a `--dir [subDir]` option for this last script.
+>
+> ```bash
+> # Example setting sub directory option
+> npx hygen next-tinacms-github bootstrap --format ts --dir src
+> ```
