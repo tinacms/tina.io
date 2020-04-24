@@ -56,7 +56,7 @@ module.exports = {
 
 > Note that we did not add `GITHUB_CLIENT_SECRET` to the config exports. This is the a secret key that should only be used from the server and should not be accessible through the browser.
 
-At this point **you should be able to authenticate with GitHub**! Click the 'Edit This Site' button again and try to authenticate. If auth is successful, you should see another modal prompting you to create a fork, go ahead and do so.
+After restarting the dev server **you should be able to authenticate with GitHub**! Click the 'Edit This Site' button again and try to authenticate. If auth is successful, you should see another modal prompting you to create a fork, go ahead and do so.
 
 ![github-create-fork-step](/img/github-open-auth-cna/create-fork-step.png)
 
