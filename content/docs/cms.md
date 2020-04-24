@@ -8,7 +8,12 @@ consumes:
     description: Shows how to use withTina HOC
   - file: /packages/tinacms/src/use-cms.ts
     description: Demonstrates useCMS hook
+  - file: /packages/react-sidebar/sidebar.ts
+    description: Shows sidebar state interface
+  - file: /packages/react-toolbar/toolbar.ts
+    description: Shows Toolbar state interface
 ---
+
 The CMS object in Tina is a container for attaching and accessing Plugins and APIs. On its own, the CMS does very little; however, since it's the central integration point for everything that Tina does, it's extremely important!
 
 ## Setting up the CMS Object
@@ -95,23 +100,36 @@ interface TinaCMSConfig {
   sidebar?: {
     hidden?: boolean
     position?: SidebarPosition
-    theme?: Theme
+    buttons?: {
+      save: string
+      reset: string
+    }
+  }
+  toolbar?: {
+    hidden?: boolean
+    buttons?: {
+      save: string
+      reset: string
+    }
   }
 }
 ```
 
-***
+---
 
-| key | usage |
-| --- | --- |
-| **plugins** | Array of plugins to be added to the CMS object. |
-| **apis** | Object containing APIs to be registered to the CMS |
-| **sidebar** | Configures behavior of the sidebar |
-| **sidebar.hidden** | Removes the sidebar outright |
+| key                  | usage                                                                                                   |
+| -------------------- | ------------------------------------------------------------------------------------------------------- |
+| **plugins**          | Array of plugins to be added to the CMS object.                                                         |
+| **apis**             | Object containing APIs to be registered to the CMS                                                      |
+| **sidebar**          | Configures behavior of the sidebar                                                                      |
+| **sidebar.hidden**   | Removes the sidebar outright                                                                            |
 | **sidebar.position** | 'displace': sidebar pushes content to the side when open; 'overlay': sidebar overlaps content when open |
-| **sidebar.theme** | Override certain sidebar styles |
+| **sidebar.buttons**  | Configures the text on 'Save' and 'Reset' buttons                                                       |
+| **toolbar**          | Configures behavior of the toolbar                                                                      |
+| **toolbar.hidden**   | Hides the toolbar altogether — is hidden by default                                                     |
+| **toolbar.buttons**  | Configures the text on 'Save' and 'Reset' buttons                                                       |
 
-***
+---
 
 ```javascript
 import { TinaCMS } from 'tinacms'
@@ -132,6 +150,9 @@ const cms = new TinaCMS({
   sidebar: {
     hidden: process.env.NODE_ENV === 'production',
     position: 'displace',
+  },
+  toolbar: {
+    hidden: true,
   },
 })
 ```
