@@ -59,8 +59,6 @@ export default class Site extends App {
        */
       <TinaProvider cms={this.cms}>
         <TinacmsGithubProvider
-          clientId={process.env.GITHUB_CLIENT_ID}
-          authCallbackRoute="/api/create-github-access-token"
           editMode={pageProps.preview}
           enterEditMode={enterEditMode}
           exitEditMode={exitEditMode}
