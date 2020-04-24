@@ -3,6 +3,9 @@ import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { orderPosts, formatExcerpt, formatDate } from '../../../utils'
+import { getFiles as getGithubFiles } from 'next-tinacms-github'
+import path from 'path'
+
 import {
   Layout,
   Wrapper,
@@ -13,7 +16,6 @@ import {
 import { DynamicLink, BlogPagination } from '../../../components/ui'
 import { OpenAuthoringSiteForm } from '../../../components/layout/OpenAuthoringSiteForm'
 import { useForm } from 'tinacms'
-import { getFiles } from '../../../utils/getFiles'
 import { getMarkdownPreviewProps } from '../../../utils/getMarkdownFile'
 import { PreviewData } from 'next-tinacms-github'
 const Index = props => {
@@ -97,12 +99,14 @@ export const getStaticProps: GetStaticProps = async function({
   const page = parseInt((ctx.params && ctx.params.page_index) || '1')
 
   try {
-    const files = await getFiles(
-      'content/blog',
-      previewData?.working_repo_full_name || '',
-      previewData?.head_branch || '',
-      previewData?.github_access_token || ''
-    )
+    const files = preview
+      ? await getGithubFiles(
+          'content/blog',
+          previewData.working_repo_full_name,
+          previewData.head_branch,
+          previewData.github_access_token
+        )
+      : await getLocalFiles('content/blog')
 
     const posts = await Promise.all(
       // TODO - potentially making a lot of requests here
@@ -152,6 +156,15 @@ export const getStaticProps: GetStaticProps = async function({
 }
 
 export default Index
+
+const getLocalFiles = async (filePath: string) => {
+  // grab all md files
+  const fg = require('fast-glob')
+  const glob = path.resolve(filePath, '*')
+  const files = await fg(glob)
+
+  return files
+}
 
 /**
  *  STYLES -----------------------------------------------------
