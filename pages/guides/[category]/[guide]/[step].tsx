@@ -4,7 +4,7 @@ import { readFile } from '../../../../utils/readFile'
 import { readMarkdownFile } from '../../../../utils/getMarkdownFile'
 import {
   DocsLayout,
-  RichTextWrapper,
+  DocsTextWrapper,
   Wrapper,
   MarkdownContent,
   Footer,
@@ -87,7 +87,7 @@ export default function GuideTemplate(props) {
       <DocsNav open={open} navItems={navData} />
       <DocsContent>
         <DocsHeaderNav color={'light'} open={open} />
-        <RichTextWrapper>
+        <DocsTextWrapper>
           <Wrapper narrow>
             <h1>
               {frontmatter.title}
@@ -99,7 +99,7 @@ export default function GuideTemplate(props) {
             {/* </InlineWysiwyg> */}
             <DocsPagination prevPage={prev} nextPage={next} />
           </Wrapper>
-        </RichTextWrapper>
+        </DocsTextWrapper>
         <Footer light editMode={props.editMode} />
       </DocsContent>
       <Overlay open={open} onClick={() => setOpen(false)} />
