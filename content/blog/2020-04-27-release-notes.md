@@ -15,7 +15,7 @@ With these packages you will finally be able to use GitHub as a backend and impl
 
 **Next up for Tina + GitHub is Branching.** The UI is designed and now it's a matter of updating `react-tinacms-github` to allow user's to switch the branch on the `GithubClient`. 
 
-**Interested in the core teams roadmap?** Checkout the [Open Authoring with GitHub + Next.js]() project.
+**Interested in the core teams roadmap?** Checkout the [Open Authoring with GitHub + Next.js](https://github.com/orgs/tinacms/projects/1) project.
 
 ## Changes
 
