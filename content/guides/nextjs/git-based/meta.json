@@ -1,0 +1,35 @@
+{
+  "title": "A Git-Based Approach with Next.js",
+  "steps": [
+    {
+      "title": "Getting Started",
+      "id": "/guides/nextjs/git-based/getting-started",
+      "slug": "/guides/nextjs/git-based/getting-started",
+      "data": "./getting-started.md"
+    },
+    {
+      "title": "Adding a Backend",
+      "id": "/guides/nextjs/git-based/adding-backend",
+      "slug": "/guides/nextjs/git-based/adding-backend",
+      "data": "./adding-backend.md"
+    },
+    {
+      "title": "Creating Git Forms",
+      "id": "/guides/nextjs/git-based/creating-git-forms",
+      "slug": "/guides/nextjs/git-based/creating-git-forms",
+      "data": "./creating-git-forms.md"
+    },
+    {
+      "title": "Other JSON Form Helpers",
+      "id": "/guides/nextjs/git-based/other-json-helpers",
+      "slug": "/guides/nextjs/git-based/other-json-helpers",
+      "data": "./other-json-helpers.md"
+    },
+    {
+      "title": "Using Markdown",
+      "id": "/guides/nextjs/git-based/using-markdown",
+      "slug": "/guides/nextjs/git-based/using-markdown",
+      "data": "./using-markdown.md"
+    }
+  ]
+}

@@ -31,14 +31,19 @@
         "slug": "/docs/cms/apis"
       },
       {
-        "id": "/docs/cms/alerts",
-        "title": "Alerts",
-        "slug": "/docs/cms/alerts"
+        "id": "/docs/cms/ui-components",
+        "title": "UI Components",
+        "slug": "/docs/cms/ui-components"
       },
       {
         "id": "/docs/cms/styles",
         "title": "Styles",
         "slug": "/docs/cms/styles"
+      },
+      {
+        "id": "/docs/cms/alerts",
+        "title": "Alerts",
+        "slug": "/docs/cms/alerts"
       }
     ]
   },
@@ -289,6 +294,11 @@
         "id": "adding-tina-nextjs",
         "slug": "/guides/nextjs/adding-tina/overview",
         "title": "Adding Tina to a NextJS Site"
+      },
+      {
+        "id": "git-based-nextjs-approach",
+        "slug": "/guides/nextjs/git-based/getting-started",
+        "title": "A Git-Based Approach with Next.js"
       }
     ]
   }
