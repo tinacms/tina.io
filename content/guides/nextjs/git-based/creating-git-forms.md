@@ -1,12 +1,8 @@
 ---
-title: Creating Forms
+title: Creating Git Forms
 consumes:
   - file: /packages/next-tinacms-json/src/use-json-form.ts
     details: Demonstrates using useJsonForm on a Next.js site
-  - file: /packages/next-tinacms-json/src/use-local-json-form.ts
-    details: Demonstrates using useJsonForm on a Next.js site
-  - file: /packages/next-tinacms-json/src/use-global-json-form.ts
-    details: Demonstrates using useGlobalJsonForm on a Next.js site
 ---
 
 Let's imagine we have a Page component in our NextJS app using the dynamic route of `pages/[slug].js`. This page will get its content from a corresponding JSON file located at `posts/[slug].json`. Thus, when you visit `/posts/hello-world`, it will display the contents of `/posts/hello-world.json`. We can set up a very simple version of this with the following code:
@@ -93,7 +89,7 @@ There are two steps to adding a form with the CMS:
 
 To create the form, we will pass `jsonFile` into `useJsonForm`, and update the `post` variable to the hook's return value. To register the form with the CMS, we'll pass `form` to the `usePlugin` hook.
 
-**/pages/[slug].js**
+**/pages/\[slug].js**
 
 ```diff
  import * as React from 'react'
@@ -134,7 +130,7 @@ To create the form, we will pass `jsonFile` into `useJsonForm`, and update the `
 
 By default, `useJsonForm` creates a text field for each value in `data`. It's possible to [customize](/docs/forms) the form by passing a second argument into `useJsonForm`:
 
-**/pages/[slug].js**
+**/pages/\[slug].js**
 
 ```jsx
 //...
@@ -164,4 +160,65 @@ export default function Page({ jsonFile }) {
 //...
 ```
 
-If you restart the dev server, you should see a form populated with this `title` field in the sidebar. Try updating the title and watch the changes update on the page in real time.
+If you restart the dev server, you should see a form populated with this `title` field in the sidebar. Try updating the title and watch the changes update on the page in real time!
+
+## Using _jsonForm_ HOC
+
+Using a hook is an incredibly flexible and intuitive way to register forms with Tina. Unfortunately hooks only work with function components in React. If you need to register a form with Tina on a class component, or are fond of the [higher-order component](https://reactjs.org/docs/higher-order-components.html) pattern, `jsonForm` is the function to reach for.
+
+`jsonForm` accepts two arguments: _a component and an optional [form configuration object](https://tinacms.org/docs/gatsby/markdown/#customizing-remark-forms)_. The component being passed is expected to receive data as props that matches the `jsonFile` interface outlined below.
+
+```typescript
+// A datastructure representing a JSON file stored in Git
+interface JsonFile<T = any> {
+  fileRelativePath: string
+  data: T
+}
+```
+
+`jsonForm` returns the original component connected with a new JSON form registered with Tina. Below is the same example from `useJsonForm`, but refactored to use the `jsonForm` HOC.
+
+**Example**
+
+```js
+/*
+ ** 1. import jsonForm
+ */
+import { jsonForm } from 'next-tinacms-json'
+import * as React from 'react'
+
+function Page(props) {
+  const post = props.jsonFile
+
+  return (
+    <>
+      <h1>{post.title}</h1>
+    </>
+  )
+}
+
+/*
+ ** 2. Wrap and export the Page component with jsonForm
+ */
+export default jsonForm(Page)
+
+export async function getStaticProps({ ...ctx }) {
+  const { slug } = ctx.params
+  const content = await import(`../../posts/${slug}.json`)
+
+  return {
+    props: {
+      jsonFile: {
+        fileRelativePath: `/posts/${slug}.json`,
+        data: content.default,
+      },
+    },
+  }
+}
+
+//...
+```
+
+<!-- Todo: link to new note on creating global form with useFormScreenPlugin -->
+
+You should have a better understanding of how to create and register Git forms with Next.js + Tina. However, all the previous examples use JSON as a data source, head to the next section to learn about the Markdown-specific helpers.
