@@ -2,11 +2,11 @@
 title: Set up the GitHub OAuth App
 ---
 
-Now we need to set up an OAuth App in Github to allow for authorization. In GitHub, within your Account Settings, click <a href="https://github.com/settings/developers" target="_blank">OAuth Apps</a> under Developer Settings. Go ahead and create a "New OAuth App".
+To get started, we need to set up an OAuth App in Github to allow for authorization. Head to GitHub; within your Account Settings, click <a href="https://github.com/settings/developers" target="_blank">OAuth Apps</a> under Developer Settings. Go ahead and create a "New OAuth App".
 
-Since you are **testing your app locally**, you'll create a _development_ GitHub app that redirects to localhost. Eventually you'll need to create separate OAuth Apps: one for development and a production app whose URLs will connect to the 'live' domain. We'll circle back to the production app once when we cover hosting.
+Since you are **testing your app locally**, you'll create a _development_ GitHub app that redirects to localhost. Eventually you'll need to create separate OAuth Apps: one for development and a production app whose URLs will connect to the 'live' domain. We'll circle back to the production app once when we cover [hosting](/guides/nextjs/github-open-authoring/hosting-vercel).
 
-For now, fill in http://localhost:3000 for the _Homepage Url_. With the **Authorization callback URL**, enter the url for the "/github/authorizing" page that you created above (e.g http://localhost:3000/github/authorizing).
+For now, fill in http://localhost:3000 for the _Homepage Url_. With the **Authorization callback URL**, enter http://localhost:3000/github/authorizing. This is the URL for an authorizing redirect page that we will create a [later step](/guides/nextjs/github-open-authoring/auth-redirect).
 
 ![oauth-app-config-example](/img/github-open-auth-cna/oAuth-app-config.png)
 
@@ -56,12 +56,4 @@ module.exports = {
 
 > Note that we did not add `GITHUB_CLIENT_SECRET` to the config exports. This is the a secret key that should only be used from the server and should not be accessible through the browser.
 
-After restarting the dev server **you should be able to authenticate with GitHub**! Click the 'Edit This Site' button again and try to authenticate. If auth is successful, you should see another modal prompting you to create a fork, go ahead and do so.
-
-![github-create-fork-step](/img/github-open-auth-cna/create-fork-step.png)
-
-Since you're the owner of this repository, your edits will go to the `master` branch. If you weren't the owner of this repository, a fork (also known as a _Working Repository_) would be made where someone else could commit edits and create a PR for review.
-
-After you've authenticated and the _Working Repository_ is established, your `create-next-app` should look something like the image below:
-
-![after-auth-and-fork-success](/img/github-open-auth-cna/after-auth-fork.png)
+Our GitHub App is up and running! Next, we will set up some API functions to help with authentication.

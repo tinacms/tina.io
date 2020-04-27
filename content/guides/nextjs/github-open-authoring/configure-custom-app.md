@@ -1,8 +1,8 @@
 ---
-title: Configure the Custom App
+title: Configure the Custom App File
 ---
 
-Now we need to step up TinaCMS to work with Github. First, create a new file in the `pages` directory called `_app.tsx`. This is a special file in Next.js that allows us to configure a [custom app](https://nextjs.org/docs/advanced-features/custom-app). Our custom `_app.tsx` will do a few things:
+Now we will set up TinaCMS to work with the GitHub App. First, create a new file in the `pages` directory called `_app.tsx`. This is a special file in Next.js that allows us to configure a [custom app](https://nextjs.org/docs/advanced-features/custom-app). Our custom `_app.tsx` will do a few things:
 
 1. **Create the TinaCMS instance**
 2. **Register the GithubClient:** The client allows us to authenticate with GitHub. All requests using the `GithubClient` gets passed through a proxy on our site. This allows us to securely attach the authentication tokens on the backend.
@@ -107,4 +107,12 @@ export const EditLink = ({ editMode }: EditLinkProps) => {
 
 > _Note:_ For brevity, the example above configures many steps in a single file, but **a few components can be configured in different places**. For example you could put the `EditLink` in a Layout component, or set up the Github Provider only on certain pages.
 
-We still have some steps to get this working to test the custom app. Let's start setting up the backend API.
+If you restart the dev server, you should see a **button in the top left-hand corner** that says, "Edit This Site". If you click it, you'll be _prompted to authenticate_ with GitHub. If auth is successful, you should see another modal prompting you to create a fork, go ahead and do so.
+
+![github-create-fork-step](/img/github-open-auth-cna/create-fork-step.png)
+
+Since you're the owner of this repository, your edits will go to the `master` branch. If you weren't the owner of this repository, a fork (also known as a _Working Repository_) would be made where someone else could commit edits and create a PR for review.
+
+After you've authenticated and the _Working Repository_ is established, your `create-next-app` should look something like the image below:
+
+![after-auth-and-fork-success](/img/github-open-auth-cna/after-auth-fork.png)

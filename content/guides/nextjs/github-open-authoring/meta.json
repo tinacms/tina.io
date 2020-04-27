@@ -8,10 +8,10 @@
       "data": "./initial-setup.md"
     },
     {
-      "title": "Configure the Custom App",
-      "id": "/guides/nextjs/github-open-authoring/configure-custom-app",
-      "slug": "/guides/nextjs/github-open-authoring/configure-custom-app",
-      "data": "./configure-custom-app.md"
+      "title": "Set up the GitHub OAuth App",
+      "id": "/guides/nextjs/github-open-authoring/github-oauth-app",
+      "slug": "/guides/nextjs/github-open-authoring/github-oauth-app",
+      "data": "./github-oauth-app.md"
     },
     {
       "title": "Adding API Functions",
@@ -26,10 +26,10 @@
       "data": "./auth-redirect.md"
     },
     {
-      "title": "Set up the GitHub OAuth App",
-      "id": "/guides/nextjs/github-open-authoring/github-oauth-app",
-      "slug": "/guides/nextjs/github-open-authoring/github-oauth-app",
-      "data": "./github-oauth-app.md"
+      "title": "Configure the Custom App File",
+      "id": "/guides/nextjs/github-open-authoring/configure-custom-app",
+      "slug": "/guides/nextjs/github-open-authoring/configure-custom-app",
+      "data": "./configure-custom-app.md"
     },
     {
       "title": "Loading Content from GitHub",
