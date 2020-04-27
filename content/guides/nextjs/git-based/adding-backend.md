@@ -160,4 +160,4 @@ class MyApp extends App {
 export default MyApp
 ```
 
-Now that the CMS and Git backend is wired up, we need to create some forms to edit content!
+If you restart the dev server, you should see an 'edit icon' in the lower left-hand corner. If you open that, you'll see and empty Tina sidebar! Let's create some forms to edit content from the sidebar.

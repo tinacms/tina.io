@@ -2,7 +2,7 @@
 title: Other JSON helpers
 ---
 
-The previous example demonstrated how to create a form with `useJsonForm`, but there are additional hooks and HOC's to work with.
+The previous example demonstrated how to create a form with `useJsonForm`, but there are additional hooks and HOC's to work with when using JSON as a data source.
 
 ### Global Forms
 

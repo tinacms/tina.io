@@ -132,7 +132,7 @@ To create the form, we will pass `jsonFile` into `useJsonForm`, and update the `
  //...
 ```
 
-By default, `useJsonForm` creates a text field for each value in `data`. It's possible to customize the form by passing a second argument into `useJsonForm`:
+By default, `useJsonForm` creates a text field for each value in `data`. It's possible to [customize](/docs/forms) the form by passing a second argument into `useJsonForm`:
 
 **/pages/[slug].js**
 
@@ -164,4 +164,4 @@ export default function Page({ jsonFile }) {
 //...
 ```
 
-[More info: creating custom forms](/docs/forms)
+If you restart the dev server, you should see a form populated with this `title` field in the sidebar. Try updating the title and watch the changes update on the page in real time.
