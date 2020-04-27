@@ -7,7 +7,6 @@ import data from '../content/siteConfig.json'
 import TagManager from 'react-gtm-module'
 import { GlobalStyle } from '../components/styles/GlobalStyle'
 import { BrowserStorageApi } from '../utils/plugins/browser-storage-api/BrowserStorageApi'
-import { Alerts } from '../components/layout/Alerts'
 import { GithubClient, TinacmsGithubProvider } from 'react-tinacms-github'
 
 const MainLayout = ({ Component, pageProps }) => {
@@ -49,7 +48,6 @@ const MainLayout = ({ Component, pageProps }) => {
   return (
     <TinaProvider cms={cms}>
       <ModalProvider>
-        <Alerts />
         <TinacmsGithubProvider
           enterEditMode={enterEditMode}
           exitEditMode={exitEditMode}
