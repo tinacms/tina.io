@@ -206,11 +206,6 @@
         "id": "/docs/nextjs/markdown",
         "slug": "/docs/nextjs/markdown",
         "title": "Using Markdown Files"
-      },
-      {
-        "id": "/docs/nextjs/github-public-repo",
-        "slug": "/docs/nextjs/github-public-repo",
-        "title": "Open Authoring with Github"
       }
     ]
   },
@@ -294,6 +289,11 @@
         "id": "adding-tina-nextjs",
         "slug": "/guides/nextjs/adding-tina/overview",
         "title": "Adding Tina to a NextJS Site"
+      },
+      {
+        "id": "open-authoring-with-github",
+        "slug": "/guides/nextjs/github-open-authoring/initial-setup",
+        "title": "Open Authoring with Github"
       }
     ]
   }
