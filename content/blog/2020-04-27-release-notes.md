@@ -3,7 +3,6 @@ title: 2020-04-27 Release notes
 date: '2020-04-27T11:41:30-03:00'
 author: Nolan Phillips
 ---
-
 **Today we're releasing two new packages!**
 
 * react-tinacms-github
@@ -13,9 +12,9 @@ With these packages you will finally be able to use GitHub as a backend and impl
 
 **Tinacms.org is getting Guides** to help people learn how to use Tina with Gatsby and Next. If you're interested in seeing what that looks like, [check out the pull request.](https://github.com/tinacms/tinacms.org/pull/374)
 
-**Next up for Tina + GitHub is Branching.** The UI is designed and now it's a matter of updating `react-tinacms-github` to allow user's to switch the branch on the `GithubClient`. 
+**Next up for Tina + GitHub is Branching.** The UI is designed and now it's a matter of updating `react-tinacms-github` to allow user's to switch the branch on the `GithubClient`.
 
-**Interested in the core teams roadmap?** Checkout the [Open Authoring with GitHub + Next.js](https://github.com/orgs/tinacms/projects/1) project.
+**Interested in the core team's roadmap?** Check out the [Open Authoring with GitHub + Next.js](https://github.com/orgs/tinacms/projects/1) project.
 
 ## Changes
 
@@ -23,7 +22,7 @@ With these packages you will finally be able to use GitHub as a backend and impl
 
 * **react-tinacms-github:** Use GitHub as the backend for your CMS. Authenticate using a GitHub OAuth App and commit changes back to the GitHub API.
 * **next-tinacms-github:** Provides helpers for setting up GitHub based authoring on a Next.js website!
-* **@tinacms/browser-storage-client:** This package provides a client and helpers for autosaving your form-content into browser storage. This let's you navigate away from the form losing changes. 
+* **@tinacms/browser-storage-client:** This package provides a client and helpers for autosaving your form-content into browser storage. This let's you navigate away from the form losing changes.
 
 ## Contributors
 
