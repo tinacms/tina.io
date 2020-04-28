@@ -39,6 +39,26 @@
     {
       "source": "/docs/gatsby/inline-editing",
       "destination": "/docs/inline-editing"
+    },
+    {
+      "source": "/docs/nextjs/overview",
+      "destination": "/guides/nextjs/git-based/getting-started"
+    },
+    {
+      "source": "/docs/nextjs/bootstrapping",
+      "destination": "/guides/nextjs/git-based/getting-started"
+    },
+    {
+      "source": "/docs/nextjs/adding-backends",
+      "destination": "/guides/nextjs/git-based/adding-backend"
+    },
+    {
+      "source": "/docs/nextjs/creating-forms",
+      "destination": "/guides/nextjs/git-based/creating-git-forms"
+    },
+    {
+      "source": "/docs/nextjs/markdown",
+      "destination": "/guides/nextjs/git-based/using-markdown"
     }
   ]
 }
