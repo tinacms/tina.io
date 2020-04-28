@@ -102,7 +102,7 @@ export function Page(props) {
 }
 ```
 
-> Note that we switched the call to `useLocalForm` with a call to `useForm`. This will prevent the form from showing in the Tina sidebar. If you want the form to **also be available in the sidebar**, `useForm` can be replaced with `useLocalForm`, or any other _helper hook_ that registers a form with the sidebar: [`useLocalJsonForm`](/docs/nextjs/creating-forms#adding-a-form-for-json-with-uselocaljsonform), [`useLocalRemarkForm`](https://tinacms.org/docs/gatsby/markdown/#1-the-hook-uselocalremarkform) etc.
+> Note that we switched the call to `useLocalForm` with a call to `useForm`. This will prevent the form from showing in the Tina sidebar. If you want the form to **also be available in the sidebar**, `useForm` can be replaced with `useLocalForm`, or any other _helper hook_ that registers a form with the sidebar: [`useJsonForm`](/guides/nextjs/git-based/creating-git-forms#adding-a-form-for-json-with-usejsonform), [`useLocalRemarkForm`](https://tinacms.org/docs/gatsby/markdown/#1-the-hook-uselocalremarkform) etc.
 
 ## Using pre-configured Inline Fields
 
