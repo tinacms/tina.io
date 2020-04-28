@@ -289,6 +289,11 @@
         "id": "adding-tina-nextjs",
         "slug": "/guides/nextjs/adding-tina/overview",
         "title": "Adding Tina to a NextJS Site"
+      },
+      {
+        "id": "open-authoring-with-github",
+        "slug": "/guides/nextjs/github-open-authoring/initial-setup",
+        "title": "Open Authoring with Github"
       }
     ]
   }
