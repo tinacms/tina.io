@@ -84,7 +84,7 @@ You’ll see that we have a `Layout` component wrapping a `<section>` with a `Bl
 
 ## Data Handling
 
-Next.js [pre-renders](https://nextjs.org/docs/basic-features/pages#pre-rendering) every page, meaning it generates HTML for pages in advance. As of [Next.js 9.3](https://nextjs.org/blog/next-9-3), there are two ways to pre-render pages: **statical generation or server-side-rendering (SSR)**. Next.js is unique in that you can use either approach depending on the project.
+Next.js [pre-renders](https://nextjs.org/docs/basic-features/pages#pre-rendering) every page, meaning it generates HTML for pages in advance. As of [Next.js 9.3](https://nextjs.org/blog/next-9-3), there are two ways to pre-render pages: **static generation or server-side-rendering (SSR)**. Next.js is unique in that you can use either approach depending on the project.
 
 For this blog, we will implement static generation, this means HTML pages for each route will be generated at build time. Static generation allows pages to be cached by a CDN, improving performance.
 
