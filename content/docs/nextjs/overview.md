@@ -1,7 +1,7 @@
 ---
 id: /docs/nextjs/overview
 title: Using Tina with NextJS
-next: /docs/nextjs/bootstrapping
+next:
 ---
 
 NextJS is a relatively open-ended framework and there are many different ways to build with it. These docs will give you an idea of the packages to work with when implementing Tina functionality on a NextJS project.

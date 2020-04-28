@@ -191,26 +191,6 @@
         "id": "/docs/nextjs/overview",
         "slug": "/docs/nextjs/overview",
         "title": "Overview"
-      },
-      {
-        "id": "/docs/nextjs/bootstrapping",
-        "slug": "/docs/nextjs/bootstrapping",
-        "title": "Bootstrapping Tina"
-      },
-      {
-        "id": "/docs/nextjs/adding-backends",
-        "slug": "/docs/nextjs/adding-backends",
-        "title": "Adding a Backend"
-      },
-      {
-        "id": "/docs/nextjs/creating-forms",
-        "slug": "/docs/nextjs/creating-forms",
-        "title": "Creating Forms"
-      },
-      {
-        "id": "/docs/nextjs/markdown",
-        "slug": "/docs/nextjs/markdown",
-        "title": "Using Markdown Files"
       }
     ]
   },
