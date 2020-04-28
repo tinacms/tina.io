@@ -1,14 +1,12 @@
 ---
 title: Editing UI
-prev: /docs/cms/apis
-next: /docs/cms/styles
+prev: /docs/cms/styles
+next:
 consumes:
-  - file: /packages/tinacms/src/components/Tina.tsx
-    details: Explains setting sidebar position
-  - file: /packages/tinacms/src/components/Tina.tsx
-    details: Explains hiding sidebar in prod
-  - file: /packages/@tinacms/styles/src/Styles.tsx
-    details: Shows the Theme interface and Default Theme values
+  - file: /packages/react-sidebar/src/sidebar.ts
+    details: Shows sidebar interface
+  - file: /packages/react-toolbar/src/toolbar.ts
+    details: Shows toolbar interface
 ---
 
 The editing UI for Tina is comprised of two main parts: the sidebar and the toolbar. The **sidebar** is a shell for default [forms](/docs/forms) and other [plugins](/docs/plugins). The **toolbar** provides an interface for form actions and form state management.
