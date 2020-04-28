@@ -17,8 +17,8 @@ The `<TinaProvider>` component makes it possible to attach [forms](/docs/forms) 
 
 **The Git backend consists of two parts:**
 
-1. The server-side application that handles file manipulation and interaction with the Git protocol, and
-2. The client-side adapter that allows forms registered with Tina to send data to the server-side app.
+1. The _server-side application_ that handles file manipulation and interaction with the Git protocol, and
+2. The _client-side adapter_ that allows forms registered with Tina to send data to the server-side app.
 
 Because backends in Tina are designed as Express-compatible middleware, we need a way to add middleware to our Next.js dev server. To do this, we will need to use Next.js with a [custom development server](https://nextjs.org/docs/advanced-features/custom-server) that will use Express and allow us to attach the Git middleware.
 

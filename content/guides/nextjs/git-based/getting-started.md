@@ -2,7 +2,7 @@
 title: Getting Started
 ---
 
-This guide will show you how to set up a Next.js site with Tina, using **Git-based content**. With a Git-based approach, changes made to content in Tina's editor are immediately saved back to their local Markdown or JSON source files. Updated content files can then by 'saved' via commit and pushed to an origin Git repository.
+This guide will show you how to set up **Git-based content** editing with Tina & Next.js. With a Git-based approach, changes made to content in Tina's editor are immediately written back to their local Markdown or JSON source files. Updated content files can then by 'saved' via commit and pushed to an origin Git repository.
 
 Building off the [_Adding Tina to a Next.js Site_](/guides/nextjs/adding-tina/overview) guide, this guide assumes you have a basic understanding of Tina's fundamental building blocks. Below is a **recap of the initial steps** needed to set Tina up on a Next.js site.
 
@@ -49,4 +49,4 @@ class MyApp extends App {
 export default MyApp
 ```
 
-Next, we'll set up a backend to persist content changes.
+Next, **we'll set up a backend** to persist content changes.
