@@ -41,10 +41,6 @@
       "destination": "/docs/inline-editing"
     },
     {
-      "source": "/docs/nextjs/overview",
-      "destination": "/guides/nextjs/git-based/getting-started"
-    },
-    {
       "source": "/docs/nextjs/bootstrapping",
       "destination": "/guides/nextjs/git-based/getting-started"
     },
