@@ -22,7 +22,7 @@
     }
   ],
   "setup": {
-    "headline": "Make your site editable in five minutes.",
+    "headline": "Make your site editable in 5 minutes.",
     "steps": [
       {
         "_template": "setup_point",
