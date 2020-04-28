@@ -2,7 +2,7 @@
 title: next-tinacms-markdown
 id: /docs/nextjs/next-tinacms-markdown
 next: /docs/nextjs/next-tinacms-json
-prev: / docs/gatsby/quickstart
+prev: /docs/gatsby/quickstart
 consumes:
   - file: packages/next-tinacms-markdown/src/use-markdown-form.ts
     details: Shows use of useMarkdownForm
