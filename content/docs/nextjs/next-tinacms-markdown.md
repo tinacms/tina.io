@@ -1,5 +1,8 @@
 ---
-title: Using Markdown with Git+Next.js
+title: next-tinacms-markdown
+id: /docs/nextjs/next-tinacms-markdown
+next: /docs/nextjs/next-tinacms-json
+prev: / docs/gatsby/quickstart
 consumes:
   - file: packages/next-tinacms-markdown/src/use-markdown-form.ts
     details: Shows use of useMarkdownForm
@@ -7,12 +10,22 @@ consumes:
 
 The `next-tinacms-markdown` package provides a set of methods for editing content sourced from Markdown files.
 
+## Installation
+
+```bash
+yarn add next-tinacms-markdown
+```
+
+## Helpers
+
 - `useMarkdownForm( markdownFile, options? ):[values, form]` - A [React Hook](https://reactjs.org/docs/hooks-intro.html) for registering local forms with [function components](https://reactjs.org/docs/components-and-props.html#function-and-class-components).
 - `markdownForm( Component, options? ): Component` - A [React Higher-Order Component](https://reactjs.org/docs/higher-order-components.html) for registering local forms with class or function components.
+- `useLocalMarkdownForm`(deprecated)
+- `useGlobalMarkdownForm`(deprecated)
 
 **Arguments**
 
-- `markdownFile`: Both hooks expect an object as the first argument that matches the following interface:
+- `markdownFile`: These helper functions expect an object as the first argument that matches the following interface:
 
 ```typescript
 // A datastructure representing a MarkdownFile file stored in Git
@@ -30,9 +43,11 @@ export interface MarkdownFile {
 - `values`: An object containing the current values from `frontmatter` and `markdownBody`. You can use these values to render content.
 - `form`: A reference to the `Form` registered to the CMS. Most of the time you won't need to work directly with the `Form`, so you won't see it used in the example.
 
-### _useMarkdownForm_ Example
+### _useMarkdownForm_ hook
 
 The `useMarkdownForm` hook will connect the return data from `getStaticProps` with Tina, then return the `frontmatter` and `markdownBody` values to be rendered.
+
+**pages/info.js**
 
 ```jsx
 /*
@@ -104,7 +119,7 @@ export async function getStaticProps() {
 
 > You can use [`gray-matter`](https://github.com/jonschlinkert/gray-matter) to parse the YAML frontmatter when importing a raw Markdown file.
 
-## Using _markdownForm_ HOC
+### _markdownForm_ HOC
 
 `markdownForm` accepts two arguments: _a component and an [form configuration object](https://tinacms.org/docs/gatsby/markdown/#customizing-remark-forms)_. The component being passed is expected to receive data as props that matches the `markdownFile` interface outlined below.
 
@@ -117,7 +132,9 @@ export interface MarkdownFile {
 }
 ```
 
-`markdownForm` returns the original component with a local form registered with Tina. Below is the same example from `useMarkdownForm`, but refactored to use the HOC.
+`markdownForm` returns the original component with a Git form registered with Tina. Below is the same example from `useMarkdownForm`, but refactored to use the HOC.
+
+**pages/info.js**
 
 ```js
 /*

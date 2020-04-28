@@ -191,6 +191,21 @@
         "id": "/docs/nextjs/overview",
         "slug": "/docs/nextjs/overview",
         "title": "Overview"
+      },
+      {
+        "id": "/docs/nextjs/next-tinacms-github",
+        "slug": "/docs/nextjs/next-tinacms-github",
+        "title": "next-tinacms-github"
+      },
+      {
+        "id": "/docs/nextjs/next-tinacms-json",
+        "slug": "/docs/nextjs/next-tinacms-json",
+        "title": "next-tinacms-json"
+      },
+      {
+        "id": "/docs/nextjs/next-tinacms-markdown",
+        "slug": "/docs/nextjs/next-tinacms-markdown",
+        "title": "next-tinacms-markdown"
       }
     ]
   },

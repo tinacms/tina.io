@@ -18,12 +18,6 @@
       "id": "/guides/nextjs/git-based/creating-git-forms",
       "slug": "/guides/nextjs/git-based/creating-git-forms",
       "data": "./creating-git-forms.md"
-    },
-    {
-      "title": "Using Markdown",
-      "id": "/guides/nextjs/git-based/using-markdown",
-      "slug": "/guides/nextjs/git-based/using-markdown",
-      "data": "./using-markdown.md"
     }
   ]
 }
