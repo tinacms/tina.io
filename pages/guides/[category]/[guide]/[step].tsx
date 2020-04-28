@@ -19,6 +19,8 @@ import {
   DocsHeaderNav,
 } from '../../../docs/[...slug]'
 import { useRouter } from 'next/router'
+import { getGuideNavProps } from '../../../../utils/guide_helpers'
+import { useEffect, useState } from 'react'
 
 export default function GuideTemplate(props) {
   let data = props.markdownFile.data
@@ -26,26 +28,42 @@ export default function GuideTemplate(props) {
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
   const excerpt = props.markdownFile.data.excerpt
-  const navData = [
-    {
-      title: props.guideMeta.title,
-      id: props.guideMeta.title,
-      collapsible: false,
-      items: props.guideMeta.steps,
-      returnLink: {
-        url: '/docs',
-        label: '‹ Back to Docs',
-      },
-    },
-  ]
+
+  let [navData, setNavData] = useState(props.allGuides)
+
+  useEffect(() => {
+    if (props.currentGuide) {
+      setNavData([
+        {
+          title: props.currentGuide.title,
+          id: props.currentGuide.title,
+          collapsible: false,
+          items: props.currentGuide.steps,
+          returnLink: {
+            url: '/guides',
+            label: '‹ Back to Guides',
+          },
+        },
+      ])
+    } else {
+      setNavData(props.allGuides)
+    }
+  }, [props.currentGuide, props.allGuides])
 
   const router = useRouter()
   const currentPath = router.asPath
 
+  const guideTitle = props.currentGuide
+    ? props.currentGuide.title
+    : 'TinaCMS Guides'
+
   const { prev, next } = React.useMemo(() => {
+    if (!props.currentGuide) {
+      return { prev: null, next: null }
+    }
     let prev = null,
       next = null
-    const allSteps = props.guideMeta.steps
+    const allSteps = props.currentGuide.steps
     const currentItemIndex = allSteps.findIndex(
       step => step.slug == currentPath
     )
@@ -58,7 +76,7 @@ export default function GuideTemplate(props) {
     }
 
     return { prev, next }
-  }, [props.guideMeta, currentPath])
+  }, [props.currentGuide, currentPath])
 
   return (
     <DocsLayout isEditing={props.editMode}>
@@ -73,11 +91,11 @@ export default function GuideTemplate(props) {
             {
               url:
                 'https://res.cloudinary.com/forestry-demo/image/upload/l_text:tuner-regular.ttf_90_center:' +
-                encodeURIComponent(props.guideMeta.title) +
+                encodeURIComponent(guideTitle) +
                 ',g_center,x_0,y_50,w_850,c_fit,co_rgb:EC4815/v1581087220/TinaCMS/tinacms-social-empty-docs.png',
               width: 1200,
               height: 628,
-              alt: props.guideMeta.title + ` | TinaCMS Guides`,
+              alt: guideTitle,
             },
           ],
         }}
@@ -124,8 +142,9 @@ export const getStaticProps: GetStaticProps = async function(ctx) {
 
   return {
     props: {
-      guideMeta,
+      currentGuide: guideMeta,
       markdownFile,
+      allGuides: await getGuideNavProps(),
     },
   }
 }
