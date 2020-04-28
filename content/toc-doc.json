@@ -31,9 +31,9 @@
         "slug": "/docs/cms/apis"
       },
       {
-        "id": "/docs/cms/ui-components",
-        "title": "UI Components",
-        "slug": "/docs/cms/ui-components"
+        "id": "/docs/cms/alerts",
+        "title": "Alerts",
+        "slug": "/docs/cms/alerts"
       },
       {
         "id": "/docs/cms/styles",
@@ -41,9 +41,9 @@
         "slug": "/docs/cms/styles"
       },
       {
-        "id": "/docs/cms/alerts",
-        "title": "Alerts",
-        "slug": "/docs/cms/alerts"
+        "id": "/docs/cms/ui",
+        "title": "Editing UI",
+        "slug": "/docs/cms/ui"
       }
     ]
   },
@@ -299,6 +299,11 @@
         "id": "git-based-nextjs-approach",
         "slug": "/guides/nextjs/git-based/getting-started",
         "title": "A Git-Based Approach with Next.js"
+      },
+      {
+        "id": "open-authoring-with-github",
+        "slug": "/guides/nextjs/github-open-authoring/initial-setup",
+        "title": "Open Authoring with Github"
       }
     ]
   }
