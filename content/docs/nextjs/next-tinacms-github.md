@@ -8,8 +8,8 @@ consumes:
     details:
 ---
 
-This package provides helpers for managing the github auth token for requests, as well as
-providing helpers for loading content from the Github API.
+This package provides helpers for managing the **GitHub auth token** for requests, as well as
+providing helpers for **loading content from the Github API**.
 
 ## Installation
 
@@ -17,9 +17,7 @@ providing helpers for loading content from the Github API.
 yarn add next-tinacms-github
 ```
 
-## Getting Started
-
-Any functions in the `pages/api` directory are are mapped to `/api/*` endpoints.
+Any functions in the `pages/api` directory are are mapped to `/api/*` endpoints. The below helpers tend to be added to the `pages/api` directory in a Next.js project.
 
 ### `createCreateAccessTokenFn`
 
@@ -42,7 +40,7 @@ _See [Next's documentation](https://nextjs.org/docs/api-reference/next.config.js
 
 ### `apiProxy`
 
-Proxies requests to GitHub, attaching the GitHub access token in the process
+Proxies requests to GitHub, attaching the GitHub access token in the process.
 
 **pages/api/proxy-github.ts**
 
@@ -67,6 +65,8 @@ export default previewHandler
 ### Loading content from Github
 
 The `preview` data, which gets set by calling your [preview function](#previewhandler), will be accessible through `getStaticProps` throughout your app.
+
+Below is an example of the conditional data fetching, from the local environment or _Working GitHub Repository_ based on the preview environment:
 
 **/blog/slug.ts**
 
@@ -103,3 +103,37 @@ export const getStaticProps: GetStaticProps = async function({
   };
 }
 ```
+
+### _getGithubPreviewProps_
+
+The `getGithubPreviewProps` function accepts this preview data:
+
+```ts
+interface PreviewData<Data> {
+  github_access_token: string
+  working_repo_full_name: string
+  head_branch: string
+  fileRelativePath: string
+  parse(content: string): Data
+}
+```
+
+It then fetches the content from the _Working GitHub Repository_ and returns a `props` object with this shape:
+
+```js
+return {
+  props: {
+    file,
+    repoFullName: workingRepoFullName,
+    branch: headBranch,
+    preview: true,
+    error,
+  },
+}
+```
+
+### Parsing Data
+
+`next-tinacms-github` provides two content parsing options available, for Markdown — `parseMarkdown` or JSON — `parseJson`. Or you could pass in a custom parser.
+
+<!-- TODO: add media store info >
