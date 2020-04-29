@@ -1,5 +1,5 @@
-import { MarkdownCreatorPlugin } from '../../utils/plugins'
-import { slugify, fileToUrl } from '../../utils'
+import { MarkdownCreatorPlugin } from '../utils/plugins'
+import { slugify, fileToUrl } from '../utils'
 import moment from 'moment'
 
 export const ReleaseNotesCreatorPlugin = new MarkdownCreatorPlugin({
