@@ -3,6 +3,7 @@ import { InlineForm, InlineFormProps } from 'react-tinacms-inline'
 import { useGithubToolbarPlugins } from 'react-tinacms-github'
 import { useLocalStorageCache } from '../../utils/plugins/browser-storage-api/useLocalStorageCache'
 import AutoAuthModal from '../open-authoring/AutoAuthModal'
+import { useCMS } from 'tinacms'
 
 interface Props extends InlineFormProps {
   preview: boolean
@@ -16,11 +17,14 @@ export const OpenAuthoringSiteForm = ({
   path,
   children,
 }: Props) => {
+  const cms = useCMS()
   // Toolbar Plugins
   useGithubToolbarPlugins()
 
+  const github = cms.api.github
+  const cacheId = `${github.workingRepoFullName}/${github.branchName}/${form.id}`
   // Persist pending changes to localStorage
-  useLocalStorageCache(path, form, preview)
+  useLocalStorageCache(cacheId, form, preview)
 
   return (
     <>
