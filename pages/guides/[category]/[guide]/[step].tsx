@@ -20,7 +20,7 @@ import {
 } from '../../../docs/[...slug]'
 import { useRouter } from 'next/router'
 import { getGuideNavProps } from '../../../../utils/guide_helpers'
-import { useEffect, useState } from 'react'
+import { useMemo } from 'react'
 
 export default function GuideTemplate(props) {
   let data = props.markdownFile.data
@@ -29,11 +29,9 @@ export default function GuideTemplate(props) {
   const markdownBody = data.markdownBody
   const excerpt = props.markdownFile.data.excerpt
 
-  let [navData, setNavData] = useState(props.allGuides)
-
-  useEffect(() => {
+  let navData = useMemo(() => {
     if (props.currentGuide) {
-      setNavData([
+      return [
         {
           title: props.currentGuide.title,
           id: props.currentGuide.title,
@@ -44,9 +42,9 @@ export default function GuideTemplate(props) {
             label: '‹ Back to Guides',
           },
         },
-      ])
+      ]
     } else {
-      setNavData(props.allGuides)
+      return props.allGuides
     }
   }, [props.currentGuide, props.allGuides])
 
