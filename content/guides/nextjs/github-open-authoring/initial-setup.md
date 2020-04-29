@@ -36,7 +36,7 @@ Navigate to http://localhost:3000/ and you should see something like the image a
 The examples in this guide will use [Typescript](https://www.typescriptlang.org/). To set up your `create-next-app` with Typescript, run this in the terminal:
 
 ```bash
-yarn add --dev typescript @types/node
+yarn add --dev typescript @types/node @types/react
 ```
 
 The next time you start the development server, Next.js will automatically create a `tsconfig.json` file and populate it with default options. You may also want to change your `pages/index.js` to `pages/index.tsx`.
