@@ -50,7 +50,8 @@
   {
     "title": "Forms",
     "id": "forms",
-    "slug": "/docs/forms"
+    "slug": "/docs/forms",
+    "isTunerFont": "true"
   },
   {
     "title": "Fields",
@@ -132,7 +133,8 @@
   {
     "title": "Media",
     "id": "media",
-    "slug": "/docs/media"
+    "slug": "/docs/media",
+    "isTunerFont": "true"
   },
   {
     "title": "Inline Editing",

@@ -13,6 +13,7 @@ interface NavSection {
   title: string
   items: NavSection[]
   collapsible?: boolean
+  isTunerFont?: boolean
   returnLink?: {
     url: string
     label: string
@@ -47,12 +48,19 @@ export const NavSection = (section: NavSection) => {
         <NavItemHeader onClick={() => collapsible && setExpanded(!expanded)}>
           {section.slug && !hasChildren ? (
             <DynamicLink href={section.slug} passHref>
-              <NavSectionTitle as="a" highlighted={highlighted}>
+              <NavSectionTitle
+                as="a"
+                highlighted={highlighted}
+                isTunerFont={section.isTunerFont}
+              >
                 {section.title}
               </NavSectionTitle>
             </DynamicLink>
           ) : (
-            <NavSectionTitle highlighted={highlighted}>
+            <NavSectionTitle
+              highlighted={highlighted}
+              isTunerFont={section.isTunerFont || true}
+            >
               {section.title}
             </NavSectionTitle>
           )}
@@ -126,7 +134,6 @@ export const DocsNav = styled(({ open, navItems, ...styleProps }) => {
     </div>
   )
 })`
-  font-family: var(--font-tuner);
   list-style-type: none;
   background-color: var(--color-light);
   overflow-x: hidden;
@@ -211,6 +218,7 @@ const NavItemHeader = styled.div`
 
 interface NavSectionTitleProps {
   highlighted: boolean
+  isTunerFont?: boolean
 }
 
 const NavSectionTitle = styled.span<NavSectionTitleProps>`
@@ -224,6 +232,12 @@ const NavSectionTitle = styled.span<NavSectionTitleProps>`
   &:focus {
     color: var(--color-primary);
   }
+
+  ${props =>
+    props.isTunerFont &&
+    css`
+      font-family: var(--font-tuner);
+    `}
 
   ${props =>
     props.highlighted &&
