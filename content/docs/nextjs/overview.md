@@ -10,7 +10,7 @@ NextJS is a relatively open-ended framework and there are many different ways to
 
 For direction on specific use-cases, please refer to these [guides](/guides):
 
-- [Add Tina to a NextJS starter blog without setting up backend](/guides/nextjs/adding-tina/overview)
+- [Add Tina to a NextJS starter blog without a backend](/guides/nextjs/adding-tina/overview)
 - [Set up a Git backend and edit local content](/guides/nextjs/git-based/getting-started)
 - [Implement Open Authoring using GitHub as a content source](/guides/nextjs/github-open-authoring/initial-setup)
 
