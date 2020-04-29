@@ -28,7 +28,6 @@ const GuideTemplate = props => {
   const excerpt = props.markdownFile.data.excerpt
 
   let [navData, setNavData] = useState(props.allGuides)
-  console.log(navData)
 
   useEffect(() => {
     if (props.currentGuide) {
