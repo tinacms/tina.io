@@ -16,7 +16,6 @@ interface CreateMarkdownButtonOptions<FormShape, FrontmatterShape> {
   filename(form: FormShape): MaybePromise<string>
   frontmatter?(form: FormShape): MaybePromise<FrontmatterShape>
   body?(form: FormShape): MaybePromise<string>
-  isEditMode: boolean
   afterCreate?(response: any): void
 }
 
@@ -47,7 +46,6 @@ export class MarkdownCreatorPlugin<FormShape = any, FrontmatterShape = any>
   filename: (form: FormShape) => MaybePromise<string>
   frontmatter: (form: FormShape) => MaybePromise<FrontmatterShape>
   body: (form: any) => MaybePromise<string>
-  isEditMode: boolean
 
   constructor(
     options: CreateMarkdownButtonOptions<FormShape, FrontmatterShape>

@@ -47,7 +47,6 @@ export const Layout = styled(
               component: 'text',
             },
           ],
-          isEditMode: preview,
           frontmatter: postInfo => ({
             title: postInfo.title,
             date: moment(postInfo.date ? postInfo.date : new Date()).format(),
