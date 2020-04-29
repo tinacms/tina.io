@@ -1,6 +1,6 @@
 import { getGuideNavProps } from '../../utils/guide_helpers'
 import { readMarkdownFile } from '../../utils/getMarkdownFile'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { useRouter } from 'next/router'
 import {
   DocsLayout,
@@ -27,11 +27,9 @@ const GuideTemplate = props => {
   const markdownBody = data.markdownBody
   const excerpt = props.markdownFile.data.excerpt
 
-  let [navData, setNavData] = useState(props.allGuides)
-
-  useEffect(() => {
+  let navData = useMemo(() => {
     if (props.currentGuide) {
-      setNavData([
+      return [
         {
           title: props.currentGuide.title,
           id: props.currentGuide.title,
@@ -42,9 +40,9 @@ const GuideTemplate = props => {
             label: '‹ Back to Guides',
           },
         },
-      ])
+      ]
     } else {
-      setNavData(props.allGuides)
+      return props.allGuides
     }
   }, [props.currentGuide, props.allGuides])
 
