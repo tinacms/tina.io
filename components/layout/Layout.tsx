@@ -4,8 +4,8 @@ import { DefaultSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { usePlugin } from 'tinacms'
 import { Header, Footer } from '../layout'
-import { BlogPostCreatorPlugin } from '../../cms/plugins/BlogPostCreator'
-import { ReleaseNotesCreatorPlugin } from '../../cms/plugins/ReleaseNotesCreator'
+import { BlogPostCreatorPlugin } from '../../tinacms/BlogPostCreator'
+import { ReleaseNotesCreatorPlugin } from '../../tinacms/ReleaseNotesCreator'
 
 interface LayoutProps {
   children: any[]
