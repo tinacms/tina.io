@@ -30,7 +30,7 @@ export const NavSection = (section: NavSection) => {
 
   const collapsible = section.collapsible !== false
   const [expanded, setExpanded] = useState(
-    menuIsActive(section, currentPath) || collapsible
+    menuIsActive(section, currentPath) || !collapsible
   )
 
   useEffect(() => {
