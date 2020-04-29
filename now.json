@@ -54,7 +54,7 @@
     },
     {
       "source": "/docs/nextjs/markdown",
-      "destination": "/guides/nextjs/git-based/using-markdown"
+      "destination": "/docs/nextjs/next-tinacms-markdown"
     }
   ]
 }
