@@ -5,7 +5,7 @@ author: Kendall Strautman
 draft: false
 ---
 
-Recently, our founders, Scott Gallant and Jordan Pattern, along with Lead Tina Developer, Nolan Phillips, sat down with the folks from the [Software Engineering Daily Podcast](https://softwareengineeringdaily.com/) to talk about the CMS space.
+Recently, our founders, Scott Gallant and Jordan Patterson, along with Lead Tina Developer, Nolan Phillips, sat down with the folks from the [Software Engineering Daily Podcast](https://softwareengineeringdaily.com/) to talk about the CMS space.
 
 > "With WordPress, you're building your website on top of WordPress. With Tina, **you’re building the CMS into your website**.
 >
