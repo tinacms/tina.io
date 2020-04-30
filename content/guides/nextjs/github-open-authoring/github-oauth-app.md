@@ -6,7 +6,7 @@ To get started, we need to set up an OAuth App in Github to allow for authorizat
 
 Since you are **testing your app locally**, you'll create a _development_ GitHub app that redirects to localhost. Eventually you'll need to create separate OAuth Apps: one for development and a production app whose URLs will connect to the 'live' domain. We'll circle back to the production app once when we cover [hosting](/guides/nextjs/github-open-authoring/hosting-vercel).
 
-For now, fill in http://localhost:3000 for the _Homepage URL_. With the **Authorization callback URL**, enter http://localhost:3000/github/authorizing. This is the URL for an authorizing redirect page that we will create at a [later step](/guides/nextjs/github-open-authoring/auth-redirect).
+For now, fill in `http://localhost:3000` for the _Homepage URL_. With the **Authorization callback URL**, enter `http://localhost:3000/github/authorizing`. This is the URL for an authorizing redirect page that we will create at a [later step](/guides/nextjs/github-open-authoring/auth-redirect).
 
 ![oauth-app-config-example](/img/github-open-auth-cna/oAuth-app-config.png)
 
