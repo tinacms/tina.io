@@ -2,4 +2,8 @@
 title: TinaCMS Guides
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in.
+The guides featured here will show you how to accomplish specific tasks with Tina.
+
+Guides are organized by framework; due to fundamental differences in frameworks, a guide written for one framework may not translate precisely to another.
+
+---
