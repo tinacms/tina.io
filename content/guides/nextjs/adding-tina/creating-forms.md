@@ -2,7 +2,7 @@
 title: Creating Forms
 ---
 
-After wrapping our App component in the Tina Provider, we can create forms by calling the `useForm` hook inside our Post component. `useForm` returns two values in an array, kinda like `React.useState`, which we assign via destructuring:
+After wrapping our App component in the Tina Provider, we can create forms by calling the `useForm` hook inside our Post component. `useForm` returns two values in an array, similar to `React.useState`, which we assign via destructuring:
 
 ```js
 const [modifiedValues, form] = useForm(formConfig)
