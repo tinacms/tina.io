@@ -30,8 +30,10 @@ Tina provides a few _Toolbar Plugins_ that expose more information and functiona
  }
 ```
 
-The toolbar in your `create-next-app` should look something like this:
+The toolbar in your `create-next-app` should now look something like this, notice the additional widgets:
 
 ![toolbar-plugins](/img/github-open-auth-cna/toolbar-plugins.png)
 
 The _PR Plugin_ enables someone to open a PR from a fork. And the _Fork Name Plugin_ provides metadata about the _Working Repository_ where the content is being sourced from.
+
+> Note that if you're the repository owner on the master branch, you won't be able to create a pull request.
