@@ -4,6 +4,10 @@ title: Overview
 
 This guide will show you how to set up Tina in a Next.js environment. Since Next.js is a relatively open-ended framework and there are many different ways to build with it, these docs will attempt merely to give you an overview of what is required to get Tina working in a Next.js environment and provide some suggestions. The ultimate implementation will depend on your content strategy.
 
+> **The Finished Product**
+>
+> The repository at [dwalkr/next-tina-blog-starter](https://github.com/dwalkr/next-tina-blog-starter) contains the end product of this guide. Feel free to fork it and follow along!
+
 ## Project Setup Recommendations
 
 Tina aims to work with a variety of project setups and content strategies, but we suggest following a few principles to ensure success when working with Tina.
