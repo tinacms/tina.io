@@ -10,13 +10,15 @@ For now, fill in `http://localhost:3000` for the _Homepage URL_. With the **Auth
 
 ![oauth-app-config-example](/img/github-open-auth-cna/oAuth-app-config.png)
 
-After creating the app, you should see a page with information such as **Client ID** and **Client Secret**. Next, we'll add those as environment variables to the project to connect this App to the Tina-GitHub helpers.
+Once the details are filled in, Go ahead and click 'Register Application'. After creating the app, you should see a page with information such as **Client ID** and **Client Secret**. Next, we'll add those as environment variables to the project to connect this App to the Tina-GitHub helpers.
 
 ### Setting Environment Variables
 
 [Environment variables](https://nextjs.org/docs/api-reference/next.config.js/environment-variables) are sensitive values specific to your project. The Tina-GitHub helpers will use these values to talk to your repository, enabling auth and data fetching via GitHub.
 
-To set these variables, create a `.env` file in your project root. Add the _secret_ and _id_ values from the OAuth App, and fill in the repo name. _Do not commit this file_; you may need to add `.env` to the `.gitignore` file.
+To set these variables, create a `.env` file in your project root. Add the _secret_ and _id_ values from the OAuth App, and fill in the repo name.
+
+> _Do not commit this file_; you may need to add `.env` to the `.gitignore` file.
 
 **.env**
 
