@@ -2,9 +2,9 @@
 title: Set up the GitHub OAuth App
 ---
 
-To get started, we need to set up an OAuth App in Github to allow for authorization. Head to GitHub; within your Account Settings, click <a href="https://github.com/settings/developers" target="_blank">OAuth Apps</a> under Developer Settings. Go ahead and create a "New OAuth App".
+To get started, we need to set up an OAuth App in Github. Within your GitHub Account Settings, click <a href="https://github.com/settings/developers" target="_blank">OAuth Apps</a> under Developer Settings. Go ahead and create a "New OAuth App".
 
-Since you are **testing your app locally**, you'll create a _development_ GitHub app that redirects to localhost. Eventually you'll need to create separate OAuth Apps: one for development and a production app whose URLs will connect to the 'live' domain. We'll circle back to the production app once when we cover [hosting](/guides/nextjs/github-open-authoring/hosting-vercel).
+Since you are **testing your app locally**, you'll create a _development_ GitHub app that redirects to localhost. Eventually you'll need to create separate OAuth Apps: one for development and a production app whose URLs will connect to the live domain. We'll circle back to the production app once when we cover [hosting](/guides/nextjs/github-open-authoring/hosting-vercel).
 
 For now, fill in `http://localhost:3000` for the _Homepage URL_. With the **Authorization callback URL**, enter `http://localhost:3000/github/authorizing`. This is the URL for an authorizing redirect page that we will create at a [later step](/guides/nextjs/github-open-authoring/auth-redirect).
 
@@ -23,14 +23,12 @@ To set these variables, create a `.env` file in your project root. Add the _secr
 **.env**
 
 ```
-# Taken from GitHub
+# OAuth App Credentials from GitHub
 GITHUB_CLIENT_ID=
-
-# Taken from Github
 GITHUB_CLIENT_SECRET=
 
-# This is your github repository's owner / repo-name.
-REPO_FULL_NAME=tinacms/tinacms.org
+# The path to your repository in GitHub
+REPO_FULL_NAME=my-github-user/my-github-repo
 ```
 
 You can use the `dotenv` package to load the `.env` file:
@@ -56,6 +54,6 @@ module.exports = {
 }
 ```
 
-> Note that we did not add `GITHUB_CLIENT_SECRET` to the config exports. This is the a secret key that should only be used from the server and should not be accessible through the browser.
+> Note that we did not add `GITHUB_CLIENT_SECRET` to the exported configuration. Environment variables we add here are [injected by Webpack at build time](https://nextjs.org/docs/api-reference/next.config.js/environment-variables) and will be present in the JavaScript bundle sent to the client. Since `GITHUB_CLIENT_SECRET` will only be used in our server-side code, and we don't want it exposed to the client, we will avoid adding it here.
 
-Our GitHub App is up and running! Next, we will set up some API functions to help with authentication.
+Our GitHub App is up and running! Next, we will set up some API functions to handle content editing.

@@ -2,7 +2,7 @@
 title: Create an Auth Redirect Page
 ---
 
-Before we add TinaCMS to the project, we need to create a new page to redirect the user to while authenticating with GitHub. This component **will render as a modal** during authentication.
+Before we add TinaCMS to the project, we need to create a new page to redirect the user to while authorizing with GitHub. This component **will render as a modal** during authorization.
 
 Create a new directory in `pages`, called `github` and then make a new file, `authorizing.tsx`.
 

@@ -2,7 +2,7 @@
 title: Adding API functions
 ---
 
-We need a few API functions to handle GitHub authentication and [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode). With Next.js, any functions in the `pages/api` directory are are mapped to `/api/*` endpoints. Files in this directory are treated as [API endpoints](<](https://nextjs.org/docs/api-routes/introduction)>) instead of pages.
+We need a few API functions to handle GitHub authorization and [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode). With Next.js, any functions in the `pages/api` directory are are mapped to `/api/*` endpoints. Files in this directory are treated as [API endpoints](<](https://nextjs.org/docs/api-routes/introduction)>) instead of pages.
 
 > If you see a 'dummy' `hello.js` file in the `pages/api` directory, feel free to delete it.
 
@@ -13,15 +13,18 @@ npx hygen-add https://github.com/dwalkr/hygen-next-tinacms-github
 npx hygen next-tinacms-github bootstrap --format ts
 ```
 
-You should see a new `_templates` directory has been created and a few API files have been set up in `pages/api`:
-
-- `preview.ts`: Contains an API function to enter [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode), and set the preview-data with content stored in the cookies.
-- `proxy-github.ts`: Contains an API function to attach the user's auth token, and proxy requests to the GitHub API.
-- `create-github-auth-token.ts`: A helper for creating a `createCreateAccessToken` server function.
-
 > _Note:_ if your **pages directory is not in the root**, you will need to supply a `--dir [subDir]` option for this last script.
 >
 > ```bash
 > # Example setting sub directory option
 > npx hygen next-tinacms-github bootstrap --format ts --dir src
 > ```
+
+You should see a new `_templates` directory has been created and a few API files have been set up in `pages/api`:
+
+- `preview.ts`: Contains an API function to enter [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode) and set up preview data.
+- `reset-preview.ts`: Contains an API function to exit Preview Mode.
+- `proxy-github.ts`: Proxies requests to the GitHub API, attaching the user's OAuth token to the request.
+- `create-github-access-token.ts`: Creates a function to handle authorization with the GitHub OAuth API.
+
+After these files are created, you can delete the `_templates` folder.

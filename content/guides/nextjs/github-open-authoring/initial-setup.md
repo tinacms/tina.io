@@ -29,7 +29,11 @@ yarn dev
 
 Navigate to http://localhost:3000/ and you should see something like the image above. Now you can commit and push this `create-next-app` to your new GitHub repository.
 
-> _Note:_ This guide assumes you are following along with a fresh _create-next-app_. However, **if you're configuring your own project**, some requirements of setting up GitHub Open Authoring are that you use _Next.js >= 9.3 in a public GitHub repository that is deployed with Vercel_ (formerly ZEIT Now) or another platform that can handle Next.js Previews.
+> _Note:_ This guide assumes you are following along with a fresh _create-next-app_. However, **if you're configuring your own project**, you will want to make sure your project conforms to the following requirements:
+>
+> - Uses Next.js >= 9.3
+> - Is stored in a **public** GitHub repository
+> - Is hosted with [Vercel](https://vercel.com/) or another platform that can handle Preview Mode (in other words, not a static host.)
 
 ### With Typescript
 
