@@ -6,17 +6,19 @@ To get started, we need to set up an OAuth App in Github to allow for authorizat
 
 Since you are **testing your app locally**, you'll create a _development_ GitHub app that redirects to localhost. Eventually you'll need to create separate OAuth Apps: one for development and a production app whose URLs will connect to the 'live' domain. We'll circle back to the production app once when we cover [hosting](/guides/nextjs/github-open-authoring/hosting-vercel).
 
-For now, fill in http://localhost:3000 for the _Homepage URL_. With the **Authorization callback URL**, enter http://localhost:3000/github/authorizing. This is the URL for an authorizing redirect page that we will create at a [later step](/guides/nextjs/github-open-authoring/auth-redirect).
+For now, fill in `http://localhost:3000` for the _Homepage URL_. With the **Authorization callback URL**, enter `http://localhost:3000/github/authorizing`. This is the URL for an authorizing redirect page that we will create at a [later step](/guides/nextjs/github-open-authoring/auth-redirect).
 
 ![oauth-app-config-example](/img/github-open-auth-cna/oAuth-app-config.png)
 
-After creating the app, you should see a page with information such as **Client ID** and **Client Secret**. Next, we'll add those as environment variables to the project to connect this App to the Tina-GitHub helpers.
+Once the details are filled in, Go ahead and click 'Register Application'. After creating the app, you should see a page with information such as **Client ID** and **Client Secret**. Next, we'll add those as environment variables to the project to connect this App to the Tina-GitHub helpers.
 
 ### Setting Environment Variables
 
 [Environment variables](https://nextjs.org/docs/api-reference/next.config.js/environment-variables) are sensitive values specific to your project. The Tina-GitHub helpers will use these values to talk to your repository, enabling auth and data fetching via GitHub.
 
-To set these variables, create a `.env` file in your project root. Add the _secret_ and _id_ values from the OAuth App, and fill in the repo name. _Do not commit this file_; you may need to add `.env` to the `.gitignore` file.
+To set these variables, create a `.env` file in your project root. Add the _secret_ and _id_ values from the OAuth App, and fill in the repo name.
+
+> _Do not commit this file_; you may need to add `.env` to the `.gitignore` file.
 
 **.env**
 

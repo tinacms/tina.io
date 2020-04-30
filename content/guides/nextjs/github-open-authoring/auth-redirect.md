@@ -19,3 +19,5 @@ export default function Authorizing() {
   return <h2>Authorizing with GitHub, please wait...</h2>
 }
 ```
+
+If you restart the dev server and head to http://localhost:3000/github/authorizing, you can see how this page will render. Feel free to swap out the message or add some styles!

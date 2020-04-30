@@ -89,6 +89,7 @@ export const NavSection = (section: NavSection) => {
           id={section.returnLink.url}
           slug={section.returnLink.url}
           title={section.returnLink.label}
+          isTunerFont={true}
           items={null}
         />
       )}

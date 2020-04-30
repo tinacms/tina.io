@@ -291,6 +291,7 @@
   {
     "id": "guides",
     "title": "Guides",
-    "slug": "/guides/"
+    "slug": "/guides/",
+    "isTunerFont": "true"
   }
 ]

@@ -6,9 +6,9 @@ Now we will set up TinaCMS to work with the GitHub App. First, create a new file
 
 1. **Create the TinaCMS instance**
 2. **Register the GithubClient:** The client allows us to authenticate with GitHub. All requests using the `GithubClient` gets passed through a proxy on our site. This allows us to securely attach the authentication tokens on the backend.
-3. Make sure the Sidebar & Toolbar are hidden unless we're in Next's [Preview/Edit mode](https://nextjs.org/docs/advanced-features/preview-mode).
+3. Configure the **[Editing UI](/docs/cms/ui) to be 'hidden'** unless we're in [Preview/Edit mode](https://nextjs.org/docs/advanced-features/preview-mode).
 4. **Wrap the Page with `TinacmsGithubProvider`:** This component is given config and callbacks that hit our `/api` server functions to enable Preview/Edit Mode after authentication is complete.
-5. **Add a button for entering Preview/Edit Mode:** We must provide a means of triggering authentication. This a simple example of how to do so.
+5. **Add a button for entering Preview/Edit Mode:** We must provide a means of triggering authentication to enter/exit edit mode. This a simple example of how to do so.
 
 **pages/\_app.tsx**
 
@@ -42,8 +42,8 @@ export default class Site extends App {
         }),
       },
       /**
-       * 3. Make sure the Sidebar & Toolbar are
-       *    hidden unless we're in Preview/Edit Mode
+       * 3. Hide the Sidebar & Toolbar
+       *    unless we're in Preview/Edit Mode
        */
       sidebar: {
         hidden: !props.pageProps.preview,
@@ -113,6 +113,4 @@ If you restart the dev server, you should see a **button in the top left-hand co
 
 Since you're the owner of this repository, your edits will go to the `master` branch. If you weren't the owner of this repository, a fork (also known as a _Working Repository_) would be made where someone else could commit edits and create a PR for review.
 
-After you've authenticated and the _Working Repository_ is established, your `create-next-app` should look something like the image below:
-
-![after-auth-and-fork-success](/img/github-open-auth-cna/after-auth-fork.png)
+Next we'll need to configure Previews on the index page to enter the editing environment on our _Working Repository_.
