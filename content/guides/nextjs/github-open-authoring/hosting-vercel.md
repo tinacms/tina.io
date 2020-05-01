@@ -21,7 +21,7 @@ Finally, we're ready to get this app in production. Make sure all the latest cha
 
 ![oauth-config-with-vercel](/img/github-open-auth-cna/oauth-with-vercel.png)
 
-4. **Add the environment variables to Vercel.** From your Vercel dashboard, head to _Settings_. On the _General_ page, scroll down and you will see the [environment variables](https://vercel.com/docs/v2/build-step?query=environgment%2520variables#environment-variables) section. Add all the variables and values outlined in your `.env` file, **make sure to copy the client id and client secret** from the GitHub App you just created.
+4. **Add the environment variables to Vercel.** From your Vercel dashboard, head to _Settings_. On the _General_ page, scroll down and you will see the [environment variables](https://vercel.com/docs/v2/build-step?query=environgment%2520variables#environment-variables) section. Add all the variables and values outlined in your `.env` file, making sure to **copy the client id and client secret from the production GitHub App** you just created.
 
 ![vercel-env-variables](/img/github-open-auth-cna/vercel-env-vars.png)
 
