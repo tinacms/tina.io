@@ -162,7 +162,7 @@ const formOptions = {
  * STYLES --------------------------------------------------------------
  */
 
-const DocsNavToggle = styled(NavToggle)`
+export const DocsNavToggle = styled(NavToggle)`
   position: fixed;
   margin-top: 1.25rem;
   left: 1rem;
@@ -173,7 +173,7 @@ const DocsNavToggle = styled(NavToggle)`
   }
 `
 
-const DocsMobileTinaIcon = styled(TinaIcon)`
+export const DocsMobileTinaIcon = styled(TinaIcon)`
   position: relative;
   display: block;
   padding: 1rem 0;
@@ -190,7 +190,7 @@ const DocsMobileTinaIcon = styled(TinaIcon)`
   }
 `
 
-const DocsHeaderNav = styled(HeaderNav)`
+export const DocsHeaderNav = styled(HeaderNav)`
   justify-content: flex-end;
   padding: 1rem 0;
 
@@ -199,7 +199,7 @@ const DocsHeaderNav = styled(HeaderNav)`
   }
 `
 
-const DocsContent = styled.div`
+export const DocsContent = styled.div`
   grid-area: content;
   overflow-y: auto;
 

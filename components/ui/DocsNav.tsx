@@ -12,6 +12,12 @@ interface NavSection {
   slug: string
   title: string
   items: NavSection[]
+  collapsible?: boolean
+  isTunerFont?: boolean
+  returnLink?: {
+    url: string
+    label: string
+  }
 }
 
 export const NavSection = (section: NavSection) => {
@@ -22,48 +28,72 @@ export const NavSection = (section: NavSection) => {
       return true
     }
   }, [section.slug, currentPath])
-  const [expanded, setExpanded] = useState(menuIsActive(section, currentPath))
+
+  const collapsible = section.collapsible !== false
+  const [expanded, setExpanded] = useState(
+    menuIsActive(section, currentPath) || !collapsible
+  )
 
   useEffect(() => {
+    if (!collapsible) return
     setExpanded(menuIsActive(section, currentPath))
-  }, [currentPath])
+  }, [currentPath, collapsible])
 
   const hasChildren = section.items && section.items.length > 0
   const highlighted = isCurrentPage || (hasChildren && expanded)
 
   return (
-    <NavItem key={section.slug} open={expanded}>
-      <NavItemHeader onClick={() => setExpanded(!expanded)}>
-        {section.slug && !hasChildren ? (
-          <DynamicLink href={section.slug} passHref>
-            <NavSectionTitle as="a" highlighted={highlighted}>
+    <>
+      <NavItem key={section.slug} open={expanded}>
+        <NavItemHeader onClick={() => collapsible && setExpanded(!expanded)}>
+          {section.slug && !hasChildren ? (
+            <DynamicLink href={section.slug} passHref>
+              <NavSectionTitle
+                as="a"
+                highlighted={highlighted}
+                isTunerFont={section.isTunerFont}
+              >
+                {section.title}
+              </NavSectionTitle>
+            </DynamicLink>
+          ) : (
+            <NavSectionTitle
+              highlighted={highlighted}
+              isTunerFont={section.isTunerFont || true}
+            >
               {section.title}
             </NavSectionTitle>
-          </DynamicLink>
-        ) : (
-          <NavSectionTitle highlighted={highlighted}>
-            {section.title}
-          </NavSectionTitle>
-        )}
-        {hasChildren && <RightArrowSvg />}
-      </NavItemHeader>
-      {hasChildren && (
-        <SubNav>
-          {section.slug && (
-            <NavSection
-              key={`${section.id}-overview`}
-              id={section.id}
-              slug={section.slug}
-              title="Overview"
-              items={null}
-            />
           )}
-          {(section.items || []).map(item => (
-            <NavSection key={`${section.id}-${item.id}`} {...item} />
-          ))}
-        </SubNav>
+          {hasChildren && collapsible && <RightArrowSvg />}
+        </NavItemHeader>
+        {hasChildren && (
+          <SubNav>
+            {section.slug && (
+              <NavSection
+                key={`${section.id}-overview`}
+                id={section.id}
+                slug={section.slug}
+                title="Overview"
+                items={null}
+              />
+            )}
+            {(section.items || []).map(item => (
+              <NavSection key={`${section.id}-${item.id}`} {...item} />
+            ))}
+          </SubNav>
+        )}
+      </NavItem>
+      {section.returnLink && (
+        <NavSection
+          key={section.returnLink.url}
+          id={section.returnLink.url}
+          slug={section.returnLink.url}
+          title={section.returnLink.label}
+          isTunerFont={true}
+          items={null}
+        />
       )}
-    </NavItem>
+    </>
   )
 }
 
@@ -105,7 +135,6 @@ export const DocsNav = styled(({ open, navItems, ...styleProps }) => {
     </div>
   )
 })`
-  font-family: var(--font-tuner);
   list-style-type: none;
   background-color: var(--color-light);
   overflow-x: hidden;
@@ -190,6 +219,7 @@ const NavItemHeader = styled.div`
 
 interface NavSectionTitleProps {
   highlighted: boolean
+  isTunerFont?: boolean
 }
 
 const NavSectionTitle = styled.span<NavSectionTitleProps>`
@@ -203,6 +233,12 @@ const NavSectionTitle = styled.span<NavSectionTitleProps>`
   &:focus {
     color: var(--color-primary);
   }
+
+  ${props =>
+    props.isTunerFont &&
+    css`
+      font-family: var(--font-tuner);
+    `}
 
   ${props =>
     props.highlighted &&

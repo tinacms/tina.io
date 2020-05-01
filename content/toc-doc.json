@@ -39,13 +39,19 @@
         "id": "/docs/cms/styles",
         "title": "Styles",
         "slug": "/docs/cms/styles"
+      },
+      {
+        "id": "/docs/cms/ui",
+        "title": "Editing UI",
+        "slug": "/docs/cms/ui"
       }
     ]
   },
   {
     "title": "Forms",
     "id": "forms",
-    "slug": "/docs/forms"
+    "slug": "/docs/forms",
+    "isTunerFont": "true"
   },
   {
     "title": "Fields",
@@ -127,7 +133,8 @@
   {
     "title": "Media",
     "id": "media",
-    "slug": "/docs/media"
+    "slug": "/docs/media",
+    "isTunerFont": "true"
   },
   {
     "title": "Inline Editing",
@@ -280,5 +287,11 @@
         "title": "Style Guide"
       }
     ]
+  },
+  {
+    "id": "guides",
+    "title": "Guides",
+    "slug": "/guides/",
+    "isTunerFont": "true"
   }
 ]
