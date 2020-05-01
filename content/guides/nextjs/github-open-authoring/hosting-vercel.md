@@ -12,7 +12,7 @@ Finally, we're ready to get this app in production. Make sure all the latest cha
    2. Connect to GitHub and click "Import Project from Github".
    3. Select your repository.
    4. Leave the root directory empty.
-   5. It will auto-detect that your using Next.js. The default build, output, and development commands don't need to be changed.
+   5. It will auto-detect that you're using Next.js. The default build, output, and development commands don't need to be changed.
    6. Click "Deploy".
 
 > Note this **deploy will fail** since environment variables aren't set for the GitHub Client yet.
