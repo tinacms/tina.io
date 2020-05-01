@@ -18,7 +18,7 @@ Once the details are filled in, Go ahead and click 'Register Application'. After
 
 To set these variables, create a `.env` file in your project root. Add the _secret_ and _id_ values from the OAuth App, and fill in the repo name.
 
-> _Do not commit this file_; you may need to add `.env` to the `.gitignore` file.
+> **Do not commit this file!** You will want to add `.env` to your `.gitignore` file.
 
 **.env**
 
@@ -29,6 +29,9 @@ GITHUB_CLIENT_SECRET=
 
 # The path to your repository in GitHub
 REPO_FULL_NAME=my-github-user/my-github-repo
+
+# The base branch that new changes and forks are created from. Defaults to 'master'.
+BASE_BRANCH=master
 ```
 
 You can use the `dotenv` package to load the `.env` file:
