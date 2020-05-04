@@ -16,7 +16,6 @@ import { Button, ButtonGroup } from '../components/ui'
 import { EmailForm } from '../components/forms'
 import TwitterIconSvg from '../public/svg/twitter-icon.svg'
 import GithubIconSvg from '../public/svg/github-icon.svg'
-import SlackIconSvg from '../public/svg/slack-icon.svg'
 import ForumIconSvg from '../public/svg/forum-icon.svg'
 import { NextSeo } from 'next-seo'
 import { OpenAuthoringSiteForm } from '../components/layout/OpenAuthoringSiteForm'
@@ -65,17 +64,6 @@ function CommunityPage({ file: community, metadata, preview }) {
             >
               <GithubIconSvg />
               <h5>Fork us</h5>
-            </a>
-            <span className="dotted-line" />
-          </SocialItem>
-          <SocialItem>
-            <a
-              href={`${metadata.social.slack}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <SlackIconSvg />
-              <h5>Slack us</h5>
             </a>
             <span className="dotted-line" />
           </SocialItem>
