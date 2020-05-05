@@ -41,7 +41,7 @@ After some deliberation we decided to shutdown our Slack group and put all our e
 
 ### Now for a Cool Down!
 
-Taking a page from Basecamp's book ([literally]()) the TinaCMS core team is spending the next couple weeks in cool-down. We've been focused purely on Open Authoring for the last month or two and now we're taking a couple weeks to step back, take a breather, and enjoy some unplanned days. On the 14th we're going to choose our project for the next couple months.
+Taking a page from Basecamp's book ([literally](https://basecamp.com/shapeup/2.2-chapter-08#cool-down)) the TinaCMS core team is spending the next couple weeks in cool-down. We've been focused purely on Open Authoring for the last month or two and now we're taking a couple weeks to step back, take a breather, and enjoy some unplanned days. On the 14th we're going to choose our project for the next couple months.
 
 Stay tuned!
 
