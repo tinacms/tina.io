@@ -13,7 +13,7 @@ Friday afternoon we finally released our [**Open Authoring with Next.js and GitH
 
 ### **Podcast:** Software Engineering Daily
 
-A few weeks ago Scott, Jordan, and myself were on [Software Engineering Daily](https://tinacms.org/blog/software-engineering-daily-podcast-tinacms) to talk about content management and how it's changing in the JAMstack. 
+A few weeks ago Scott, Jordan, and myself were on [Software Engineering Daily](https://tinacms.org/blog/software-engineering-daily-podcast-tinacms) to talk about content management and how it's changing in the JAMstack.
 
 ### Visit the Forum!
 
@@ -41,7 +41,7 @@ After some deliberation we decided to shutdown our Slack group and put all our e
 
 ### Now for a Cool Down!
 
-Taking a page from Basecamp's book ([literally]()) the TinaCMS core team is spending the next couple weeks in cool-down. We've been focused purely on Open Authoring for the last month or two and now we're taking a couple weeks to step back, take a breather, and enjoy some unplanned days. On the 14th we're going to choose our project for the next couple months. 
+Taking a page from Basecamp's book ([literally]()) the TinaCMS core team is spending the next couple weeks in cool-down. We've been focused purely on Open Authoring for the last month or two and now we're taking a couple weeks to step back, take a breather, and enjoy some unplanned days. On the 14th we're going to choose our project for the next couple months.
 
 Stay tuned!
 
@@ -54,7 +54,7 @@ Thanks to everyone for contributing!
 | 27 | Nolan Phillips |
 | 13 | Scott Byrne |
 | 6 | Kendall Strautman |
-| 4 | Jeol Huggett |
+| 4 | Joel Huggett |
 | 3 | jpuri |
 
 ## GitHub Milestones
