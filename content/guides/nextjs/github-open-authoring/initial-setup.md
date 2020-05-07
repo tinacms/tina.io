@@ -6,6 +6,8 @@ This guide will help you set up [Open Authoring](/blog/introducing-visual-open-a
 
 The [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode) offered by Next.js allows us to load a separate set of data [depending on the "edit" (or "preview") mode](/blog/introducing-visual-open-authoring#using-nextjs-to-enable-edit-mode). With the help of the GitHub API, we can allow anyone to fork your site, make changes, and create a pull request from the Tina UI.
 
+![tinacms visual open authoring gif](/gif/open-auth.gif)
+
 > Feel free to reference this [demo repository](https://github.com/kendallstrautman/tina-open-auth). The commits roughly correlate with specific steps outlined in this guide.
 
 ## Using _create-next-app_
