@@ -81,7 +81,7 @@ Following along with the [Tina documentation:](https://tinacms.org/docs/nextjs/b
 $ yarn add tinacms styled-components moment
 ```
 
-Create a new file in the root of your project called `_app.js` and add this code.
+Create a new file in the pages directory called `_app.js` and add this code.
 
 ```javascript
 import React from 'react'
