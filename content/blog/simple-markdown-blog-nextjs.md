@@ -42,10 +42,9 @@ After you clone the project and start the dev server, navigate to `http://localh
 As you can see, it's pretty simple at the moment. If you look at the project in your code editor, you will see the following directory structure:
 
 ```
-src/
-├── components/
-├── data/
-└── pages/
+components/
+data/
+pages/
 ```
 
 ## Project Structure
@@ -84,7 +83,7 @@ You’ll see that we have a `Layout` component wrapping a `<section>` with a `Bl
 
 ## Data Handling
 
-Next.js [pre-renders](https://nextjs.org/docs/basic-features/pages#pre-rendering) every page, meaning it generates HTML for pages in advance. As of [Next.js 9.3](https://nextjs.org/blog/next-9-3), there are two ways to pre-render pages: **statical generation or server-side-rendering (SSR)**. Next.js is unique in that you can use either approach depending on the project.
+Next.js [pre-renders](https://nextjs.org/docs/basic-features/pages#pre-rendering) every page, meaning it generates HTML for pages in advance. As of [Next.js 9.3](https://nextjs.org/blog/next-9-3), there are two ways to pre-render pages: **static generation or server-side-rendering (SSR)**. Next.js is unique in that you can use either approach depending on the project.
 
 For this blog, we will implement static generation, this means HTML pages for each route will be generated at build time. Static generation allows pages to be cached by a CDN, improving performance.
 
@@ -96,7 +95,7 @@ In the initial example`index.js`, notice the use of [`getStaticProps`](https://n
 
 **Note:** this method only works for components defined in the `pages/` directory, i.e., `page` components. You cannot use this method on child components, but you can pass down the data received to these child components, as you see being done with `Layout` in the example above.
 
-`Layout` is being passed props such as the site title and description. If you look at the data in `src/data/config.json`, you’ll see the values these props are referencing. Go ahead and change the site title to your project name, then watch it update in the header.
+`Layout` is being passed props such as the site title and description. If you look at the data in `data/config.json`, you’ll see the values these props are referencing. Go ahead and change the site title to your project name, then watch it update in the header.
 
 ## Layout & Styling 🦋
 
@@ -114,7 +113,7 @@ Note again that global styles and fonts are handled in the `Meta` component via 
 
 Now that we’re familiar with the structure of the project and Next.js fundamentals, let’s start adding the pieces and parts to get the Markdown blog up and running.
 
-First, add a new folder called `posts` under the `src` directory. You can add all your Markdown blog posts here. If you don’t already have content ready, just add a few dummy blog posts. I like to use [Unsplash](https://unsplash.com/) for sample photos and [Cupcake](http://www.cupcakeipsum.com), [Hipsum](https://hipsum.co/), or [Sagan Ipsum](http://saganipsum.com/) are my preferred text generators — keeps things interesting 🧁.
+First, add a new folder in the root of your project called `posts`. You can add all your Markdown blog posts here. If you don’t already have content ready, just add a few dummy blog posts. I like to use [Unsplash](https://unsplash.com/) for sample photos and [Cupcake](http://www.cupcakeipsum.com), [Hipsum](https://hipsum.co/), or [Sagan Ipsum](http://saganipsum.com/) are my preferred text generators — keeps things interesting 🧁.
 
 Here’s an example filler blog post with some commonly used frontmatter values.
 
@@ -128,7 +127,7 @@ hero_image: ../static/bali-15.jpg
 Brain is the seed of intelligence something incredible is waiting to be known.
 ```
 
-Also, create a `static` folder within `src`. This is where you will keep images.
+Also, create a `public` folder in the root. This is where you will keep images.
 
 > **Note:** The _static_ folder [has been deprecated](https://github.com/zeit/next.js/blob/master/errors/static-dir-deprecated.md) in favor of _public_. To make the switch without changing file paths, create a `public` directory and move `static` into it.
 
@@ -161,13 +160,13 @@ module.exports = {
 
 ### Pages & Dynamic Routing
 
-So we’re set up to use Markdown files in our project. Let’s start coding a blog template page that will render the content from these Markdown files in `src/posts`.
+So we’re set up to use Markdown files in our project. Let’s start coding a blog template page that will render the content from these Markdown files in `posts`.
 
 For some background knowledge, the `pages` directory is special in Next.js. Each `.js` file in this directory will respond to a matching HTTP request. For example, when the home page ('/') is requested, the component exported from `pages/index.js` will be rendered. If you wanted your site to have a page at `/about`, simply create a file named `pages/about.js`.
 
 This is awesome for static pages, but we'd like to have a single template from which all blog posts will be built, sourcing the different data from each Markdown file. This means we need some sort of dynamic routing, such that unique blog posts utilizing the same template have ‘pretty’ urls and their own individual pages.
 
-[Dynamic routes](https://nextjs.org/docs#dynamic-routing) in Next.js are identified by **square brackets** `[]` in the filename. Within these brackets we can pass a query parameter to the page component. For example, let’s create a new folder within `src/pages` called `blog`, then add a new file within that blog folder `[slug].js`, we can use whatever is passed as this `slug` parameter to dynamically access data. So if we visit `http://localhost:3000/blog/julius-caesar`, whatever is returned from the `[slug].js` page component will render, and will have access to that ‘slug’ query parameter, i.e. ‘julius-caesar’.
+[Dynamic routes](https://nextjs.org/docs#dynamic-routing) in Next.js are identified by **square brackets** `[]` in the filename. Within these brackets we can pass a query parameter to the page component. For example, let’s create a new folder within `pages` called `blog`, then add a new file within that blog folder `[slug].js`, we can use whatever is passed as this `slug` parameter to dynamically access data. So if we visit `http://localhost:3000/blog/julius-caesar`, whatever is returned from the `[slug].js` page component will render, and will have access to that ‘slug’ query parameter, i.e. ‘julius-caesar’.
 
 ### Get Markdown Data For the Blog Template
 
@@ -209,12 +208,12 @@ export async function getStaticProps({ ...ctx }) {
 
 export async function getStaticPaths() {
   //get all .md files in the posts dir
-  const blogs = glob.sync('src/posts/**/*.md')
+  const blogs = glob.sync('posts/**/*.md')
 
   //remove path and extension to leave filename only
   const blogSlugs = blogs.map(file =>
     file
-      .split('/')[2]
+      .split('/')[1]
       .replace(/ /g, '-')
       .slice(0, -3)
       .trim()
@@ -238,20 +237,20 @@ export async function getStaticPaths() {
 
 At this point, you may be more familiar with `getStaticProps`, but this function should look new — `getStaticPaths`. Since this template uses dynamic routes, we need to define a list of paths for each blog, so all the pages will be rendered statically at build time.
 
-In the return object from `getStaticPath`, **two keys are required**: `paths` and `fallback`. `paths` should return an array of pathnames and any `params` used in the page name. For example the 'param' used in `/blog/[slug].js` is 'slug'. You should only need to use `getStaticPaths` for dynamic routing.
+In the return object from `getStaticPaths`, **two keys are required**: `paths` and `fallback`. `paths` should return an array of pathnames and any `params` used in the page name. For example the 'param' used in `/blog/[slug].js` is 'slug'. You should only need to use `getStaticPaths` for dynamic routing.
 
 The [`fallback` property](https://nextjs.org/docs/basic-features/data-fetching#the-fallback-key-required) allows you to control the behavior if a path is not returned from `getStaticPaths`. We set this to `false` so that unreturned paths will show a 404 page.
 
 > Before the release of Next.js 9.3, this path generation for static export could be handled via [`exportPathMap`](https://nextjs.org/docs/api-reference/next.config.js/exportPathMap).
 
-Checkout the [\[slug\].js file](https://github.com/kendallstrautman/brevifolia-nextjs/blob/master/src/pages/blog/%5Bslug%5D.js) in the final version of my starter blog to get another idea of how that blog data could be rendered and styles applied.
+Checkout the [\[slug\].js file](https://github.com/kendallstrautman/brevifolia-nextjs/blob/master/pages/blog/%5Bslug%5D.js) in the final version of my starter blog to get another idea of how that blog data could be rendered and styles applied.
 
 ### Get Data For the Blog Index
 
 Let’s finish this simple blog off by adding in the proper data to the `BlogList` component for the `Index` page. Since we can only use `getStaticProps` on page components, we will get a hold of all the blog data in the `Index` component and then pass it down as a prop for `BlogList` to render.
 
 ```javascript
-// src/pages/index.js
+// pages/index.js
 export async function getStaticProps() {
   const siteConfig = await import(`../data/config.json`)
   //get posts & context from folder
@@ -320,7 +319,7 @@ const Index = props => {
 export default Index
 ```
 
-Then you are free to loop through the blogs and render the list within your `BlogList` component as you need. Feel free to check out the [BlogList component](https://github.com/kendallstrautman/brevifolia-nextjs/blob/master/src/components/BlogList.js) in my starter to see how that data could be handled.
+Then you are free to loop through the blogs and render the list within your `BlogList` component as you need. Feel free to check out the [BlogList component](https://github.com/kendallstrautman/brevifolia-nextjs/blob/master/components/BlogList.js) in my starter to see how that data could be handled.
 
 ## Next Steps
 
