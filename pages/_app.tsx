@@ -52,7 +52,7 @@ const MainLayout = ({ Component, pageProps }) => {
           enterEditMode={enterEditMode}
           exitEditMode={exitEditMode}
           editMode={pageProps.preview}
-          error={pageProps.previewError}
+          error={pageProps.error}
         >
           <DefaultSeo
             title={data.seoDefaultTitle}
