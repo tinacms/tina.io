@@ -3,10 +3,8 @@ title: Salut la France
 date: '2020-05-09T21:45:12+02:00'
 author: Marie-Aline
 ---
-
-
 * What is the core team's current objectives?
-* What was accomplished in the last week?
+* What was accomplished in the **last** week?
 * What's next for the core team?
 * Link to any relevant projects
 
@@ -26,10 +24,10 @@ Thanks to everyone for contributing!
 
 | # Commits | Name |
 | --- | --- |
-| | |
-| | |
-| | |
-| | |
+|  |  |
+|  |  |
+|  |  |
+|  |  |
 
 ## GitHub Milestones
 
