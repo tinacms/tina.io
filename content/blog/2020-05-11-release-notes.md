@@ -3,9 +3,9 @@ title: '2020-05-11 Release Notes: Tidying Up'
 date: '2020-05-11T10:19:38-03:00'
 author: Nolan Phillips
 ---
-Today marks the second week of the TinaCMS core team's 2 week cooldown. 
+Today marks the second week of the TinaCMS core team's 2 week cool down. 
 
-During this cooldown we're taking a step back totidy up some loose ends and get some persepective on the project. On Thursday we will be getting together to decide what's next. 
+During this cooldown we're taking a step back today up some loose ends and get some perspective on the project. On Thursday we will be getting together to decide what's next. 
 
 Until then, here's some of the additions and fixes we put together last week. 
 
@@ -19,7 +19,7 @@ Until then, here's some of the additions and fixes we put together last week.
 
 **react-tinacms-github**
 
-* The `GithubClient` constructor accepts an optiona `scope`. This defaults to `public_repo` but can be set to `repo` if you need to support private repositories.
+* The `GithubClient` constructor accepts an optional `scope`. This defaults to `public_repo` but can be set to `repo` if you need to support private repositories.
 
 ### Bug Fixes
 
@@ -35,7 +35,7 @@ Until then, here's some of the additions and fixes we put together last week.
 
 **react-tinacms-github:**
 
-* Fixed a callstack error when accessing `githubClient.branchName` durring SSR
+* Fixed a call-stack error when accessing `githubClient.branchName` during SSR
 * Actions can be set on `useGithubForm`
 * The `options` argument of `useGithubForm` is now optional
 * Display a modal to handle errors thrown while creating Pull Requests or Branches
@@ -48,8 +48,8 @@ Thanks to everyone for contributing!
 | --- | --- |
 | 50 | Nolan Phillips |
 | 7 | jpuri |
-| 2 | Brandon Shackelford |
-| 1 | Scott Byrne |
+| 2 | 🎉 Brandon Shackelford 🎉 |
+| 1  | Scott Byrne |
 
 ## GitHub Milestones
 
