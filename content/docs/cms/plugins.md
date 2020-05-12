@@ -10,7 +10,6 @@ consumes:
   - file: /packages/@tinacms/core/src/cms.ts
     description: Demonstrates adding plugins to CMS obj
 ---
-
 **Plugins** are objects used to extend and modify the behavior of the CMS. Plugins are identified by their _type_, and different types of plugins will be used by Tina in different ways.
 
 All plugins must conform to the **Plugin** interface:
@@ -42,7 +41,7 @@ cms.plugins.add({
 })
 ```
 
-Alternatively, you can call the `usePlugins` hook from inside a function component.
+Alternatively, you can call the `usePlugins` hook from inside a function component. 
 
 ```jsx
 import * as React from 'react'
