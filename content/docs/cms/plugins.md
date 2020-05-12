@@ -55,7 +55,7 @@ When adding plugins from inside a React component, the plugin is added when the 
 
 ### Adding Plugins Dynamically
 
-In some cases, you may not want plugins to be included in the initial javascript file/bundle of your website, as some plugins can be quite large. In these scenarios, you can import the plugins dynamically, and the plugins will only be downloaded when they are needed.
+In some cases, you may not want plugins to be included in the initial JavaScript file/bundle of your website, as some plugins can be quite large. In these scenarios, you can import the plugins dynamically, and the plugins will only be downloaded when they are needed.
 
     import { TinaCMS } from 'tinacms'
     import { HtmlFieldPlugin, MarkdownFieldPlugin } from 'react-tinacms-editor'
