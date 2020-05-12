@@ -3,6 +3,7 @@ require('dotenv').config()
 import algoliasearch from 'algoliasearch'
 import fetchDocs from '../data-api/fetchDocs'
 import fetchBlogs from '../data-api/fetchBlogs'
+import fetchGuides from '../data-api/fetchGuides'
 
 const MAX_BODY_LENGTH = 3000
 
@@ -33,6 +34,9 @@ const createIndices = async () => {
 
   const blogs = await fetchBlogs()
   await saveIndex(client, 'Tina-Blogs-Next', blogs.map(mapContentToIndex))
+
+  const guides = await fetchGuides()
+  await saveIndex(client, 'Tina-Guides-Next', guides.map(mapContentToIndex))
 }
 
 createIndices()

@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { DynamicLink } from '../components/ui/DynamicLink'
+import { GetStaticProps } from 'next'
 
 import {
   Layout,
@@ -10,50 +11,28 @@ import {
   RichTextWrapper,
   MarkdownContent,
 } from '../components/layout'
-import {
-  InlineWysiwyg,
-  InlineTextareaField,
-  InlineTextField,
-} from '../components/ui/inline'
+import { InlineWysiwyg, InlineTextareaField } from 'react-tinacms-inline'
 import { Button, ButtonGroup } from '../components/ui'
 import { EmailForm } from '../components/forms'
 import TwitterIconSvg from '../public/svg/twitter-icon.svg'
 import GithubIconSvg from '../public/svg/github-icon.svg'
-import SlackIconSvg from '../public/svg/slack-icon.svg'
 import ForumIconSvg from '../public/svg/forum-icon.svg'
 import { NextSeo } from 'next-seo'
-import getJsonData from '../utils/github/getJsonData'
-import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
-import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
-import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
-import ContentNotFoundError from '../utils/github/ContentNotFoundError'
+import { OpenAuthoringSiteForm } from '../components/layout/OpenAuthoringSiteForm'
+import { getJsonPreviewProps } from '../utils/getJsonPreviewProps'
+import { useGithubJsonForm } from 'react-tinacms-github'
 
-export default function CommunityPage({
-  community,
-  metadata,
-  sourceProviderConnection,
-  editMode,
-  previewError,
-}) {
+function CommunityPage({ file: community, metadata, preview }) {
   // Registers Tina Form
-  const [data, form] = useLocalGithubJsonForm(
-    community,
-    formOptions,
-    sourceProviderConnection,
-    editMode
-  )
+  const [data, form] = useGithubJsonForm(community, formOptions)
 
   return (
     <OpenAuthoringSiteForm
       form={form}
       path={community.fileRelativePath}
-      editMode={editMode}
-      previewError={previewError}
+      preview={preview}
     >
-      <Layout
-        sourceProviderConnection={sourceProviderConnection}
-        editMode={editMode}
-      >
+      <Layout preview={preview}>
         <NextSeo
           title={data.title}
           description={data.description}
@@ -85,17 +64,6 @@ export default function CommunityPage({
             >
               <GithubIconSvg />
               <h5>Fork us</h5>
-            </a>
-            <span className="dotted-line" />
-          </SocialItem>
-          <SocialItem>
-            <a
-              href={`${metadata.social.slack}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <SlackIconSvg />
-              <h5>Slack us</h5>
             </a>
             <span className="dotted-line" />
           </SocialItem>
@@ -157,41 +125,24 @@ export default function CommunityPage({
   )
 }
 
+export default CommunityPage
+
 /*
  ** DATA FETCHING -----------------------------------------------
  */
 
-export async function unstable_getStaticProps({ preview, previewData }) {
-  const {
-    sourceProviderConnection,
-    accessToken,
-  } = getGithubDataFromPreviewProps(previewData)
-  const siteMetadata = await import('../content/siteConfig.json')
+export const getStaticProps: GetStaticProps = async function({
+  preview,
+  previewData,
+}) {
+  const { default: metadata } = await import('../content/siteConfig.json')
 
-  let previewError: string
-  let communityData = {}
-  try {
-    communityData = await getJsonData(
-      'content/pages/community.json',
-      sourceProviderConnection,
-      accessToken
-    )
-  } catch (e) {
-    if (e instanceof ContentNotFoundError) {
-      previewError = e.message
-    } else {
-      throw e
-    }
-  }
-  return {
-    props: {
-      metadata: siteMetadata,
-      community: communityData,
-      previewError: previewError,
-      sourceProviderConnection,
-      editMode: !!preview,
-    },
-  }
+  const previewProps = await getJsonPreviewProps(
+    'content/pages/community.json',
+    preview,
+    previewData
+  )
+  return { props: { ...previewProps.props, metadata } }
 }
 
 /**

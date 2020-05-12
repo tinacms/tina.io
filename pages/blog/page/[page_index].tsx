@@ -1,8 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
-import getFiles from '../../../utils/github/getFiles'
+import { GetStaticProps, GetStaticPaths } from 'next'
 import { orderPosts, formatExcerpt, formatDate } from '../../../utils'
+import { getFiles as getGithubFiles } from 'next-tinacms-github'
+import path from 'path'
+
 import {
   Layout,
   Wrapper,
@@ -11,21 +14,12 @@ import {
   RichTextWrapper,
 } from '../../../components/layout'
 import { DynamicLink, BlogPagination } from '../../../components/ui'
-import { getGithubDataFromPreviewProps } from '../../../utils/github/sourceProviderConnection'
-import getMarkdownData from '../../../utils/github/getMarkdownData'
-import { useCMS } from 'tinacms'
-import OpenAuthoringSiteForm from '../../../components/layout/OpenAuthoringSiteForm'
+import { OpenAuthoringSiteForm } from '../../../components/layout/OpenAuthoringSiteForm'
 import { useForm } from 'tinacms'
+import { getMarkdownPreviewProps } from '../../../utils/getMarkdownFile'
+import { PreviewData } from 'next-tinacms-github'
 const Index = props => {
   const { currentPage, numPages } = props
-
-  const cms = useCMS()
-
-  //workaround for fallback being not implemented
-  if (!props.posts) {
-    return <div></div>
-  }
-
   const [, form] = useForm({
     id: 'blog-list',
     label: 'Blog',
@@ -34,11 +28,8 @@ const Index = props => {
   })
 
   return (
-    <OpenAuthoringSiteForm editMode={props.editMode} form={form} path={''}>
-      <Layout
-        sourceProviderConnection={props.sourceProviderConnection}
-        editMode={props.editMode}
-      >
+    <OpenAuthoringSiteForm preview={props.preview} form={form} path={''}>
+      <Layout preview={props.preview}>
         <NextSeo
           title="Blog"
           openGraph={{
@@ -82,7 +73,7 @@ const Index = props => {
 
 const POSTS_PER_PAGE = 8
 
-export async function unstable_getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async function() {
   const fg = require('fast-glob')
   const contentDir = './content/blog/'
   const posts = await fg(`${contentDir}**/*.md`)
@@ -96,69 +87,84 @@ export async function unstable_getStaticPaths() {
     })
   }
 
-  return { paths: pages }
+  return { paths: pages, fallback: false }
 }
 
-export async function unstable_getStaticProps({
+export const getStaticProps: GetStaticProps = async function({
   preview,
   previewData,
   ...ctx
-}) {
-  const {
-    sourceProviderConnection,
-    accessToken,
-  } = getGithubDataFromPreviewProps(previewData)
-  let page = (ctx.params && ctx.params.page_index) || '1'
+}: Partial<{ previewData: PreviewData<any>; preview: boolean }>) {
+  // @ts-ignore page_index should always be a single string
+  const page = parseInt((ctx.params && ctx.params.page_index) || '1')
 
-  const files = await getFiles(
-    'content/blog',
-    sourceProviderConnection,
-    accessToken
-  )
+  try {
+    const files = preview
+      ? await getGithubFiles(
+          'content/blog',
+          previewData.working_repo_full_name,
+          previewData.head_branch,
+          previewData.github_access_token
+        )
+      : await getLocalFiles('content/blog')
 
-  const posts = await Promise.all(
-    // TODO - potentially making a lot of requests here
-    files.map(async file => {
-      const post = (
-        await getMarkdownData(file, sourceProviderConnection, accessToken)
-      ).data
+    const posts = await Promise.all(
+      // TODO - potentially making a lot of requests here
+      files.map(async file => {
+        const post = (await getMarkdownPreviewProps(file, preview, previewData))
+          .props.file
 
-      // create slug from filename
-      const slug = file
-        .replace(/^.*[\\\/]/, '')
-        .split('.')
-        .slice(0, -1)
-        .join('.')
+        // create slug from filename
+        const slug = file
+          .replace(/^.*[\\\/]/, '')
+          .split('.')
+          .slice(0, -1)
+          .join('.')
 
-      const excerpt = formatExcerpt(post.markdownBody)
+        const excerpt = await formatExcerpt(post.data.markdownBody)
 
-      return {
-        data: { ...post.frontmatter, slug },
-        content: excerpt,
-      }
-    })
-  )
+        return {
+          data: { ...post.data.frontmatter, slug },
+          content: excerpt,
+        }
+      })
+    )
 
-  // for pagination and ordering
-  const numPages = Math.ceil(posts.length / POSTS_PER_PAGE)
-  const pageIndex = page - 1
-  const orderedPosts = orderPosts(posts).slice(
-    pageIndex * POSTS_PER_PAGE,
-    (pageIndex + 1) * POSTS_PER_PAGE
-  )
+    // for pagination and ordering
+    const numPages = Math.ceil(posts.length / POSTS_PER_PAGE)
+    const pageIndex = page - 1
+    const orderedPosts = orderPosts(posts).slice(
+      pageIndex * POSTS_PER_PAGE,
+      (pageIndex + 1) * POSTS_PER_PAGE
+    )
 
-  return {
-    props: {
-      posts: orderedPosts,
-      numPages: numPages,
-      currentPage: parseInt(page),
-      editMode: !!preview,
-      sourceProviderConnection,
-    },
+    return {
+      props: {
+        posts: orderedPosts,
+        numPages: numPages,
+        currentPage: page,
+        preview: !!preview,
+      },
+    }
+  } catch (e) {
+    return {
+      props: {
+        previewError: { ...e }, //workaround since we cant return error as JSON
+      },
+    }
   }
 }
 
 export default Index
+
+const getLocalFiles = async (filePath: string) => {
+  // grab all md files
+  const fg = require('fast-glob')
+  const glob = path.resolve(filePath, '*')
+  const files = await fg(glob)
+
+  return files
+}
 
 /**
  *  STYLES -----------------------------------------------------

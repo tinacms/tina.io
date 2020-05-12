@@ -18,12 +18,40 @@
   {
     "title": "The CMS",
     "id": "the-cms",
-    "slug": "/docs/cms"
+    "slug": "/docs/cms",
+    "items": [
+      {
+        "id": "/docs/cms/plugins",
+        "title": "Plugins",
+        "slug": "/docs/cms/plugins"
+      },
+      {
+        "id": "/docs/cms/apis",
+        "title": "APIs",
+        "slug": "/docs/cms/apis"
+      },
+      {
+        "id": "/docs/cms/alerts",
+        "title": "Alerts",
+        "slug": "/docs/cms/alerts"
+      },
+      {
+        "id": "/docs/cms/styles",
+        "title": "Styles",
+        "slug": "/docs/cms/styles"
+      },
+      {
+        "id": "/docs/cms/ui",
+        "title": "Editing UI",
+        "slug": "/docs/cms/ui"
+      }
+    ]
   },
   {
     "title": "Forms",
     "id": "forms",
-    "slug": "/docs/forms"
+    "slug": "/docs/forms",
+    "isTunerFont": "true"
   },
   {
     "title": "Fields",
@@ -105,12 +133,88 @@
   {
     "title": "Media",
     "id": "media",
-    "slug": "/docs/media"
+    "slug": "/docs/media",
+    "isTunerFont": "true"
   },
   {
     "title": "Inline Editing",
     "id": "inline-editing",
-    "slug": "/docs/inline-editing"
+    "slug": "/docs/inline-editing",
+    "items": [
+      {
+        "id": "/docs/inline-editing/inline-text",
+        "title": "Inline Text",
+        "slug": "/docs/inline-editing/inline-text"
+      },
+      {
+        "id": "/docs/inline-editing/inline-textarea",
+        "title": "Inline Textarea",
+        "slug": "/docs/inline-editing/inline-textarea"
+      },
+      {
+        "id": "/docs/inline-editing/inline-wysiwyg",
+        "title": "Inline Wysiwyg",
+        "slug": "/docs/inline-editing/inline-wysiwyg"
+      },
+      {
+        "id": "/docs/inline-editing/inline-image",
+        "title": "Inline Image",
+        "slug": "/docs/inline-editing/inline-image"
+      }
+    ]
+  },
+  {
+    "title": "Inline Blocks",
+    "id": "inline-blocks",
+    "slug": "/docs/inline-blocks",
+    "items": [
+      {
+        "id": "/docs/inline-blocks/block-text",
+        "title": "Text Block",
+        "slug": "/docs/inline-blocks/block-text"
+      },
+      {
+        "id": "/docs/inline-blocks/block-textarea",
+        "title": "Textarea Block",
+        "slug": "/docs/inline-blocks/block-textarea"
+      },
+      {
+        "id": "/docs/inline-blocks/block-image",
+        "title": "Image Block",
+        "slug": "/docs/inline-blocks/block-image"
+      }
+    ]
+  },
+  {
+    "title": "Tina + NextJS",
+    "id": "nextjs",
+    "items": [
+      {
+        "id": "/docs/nextjs/overview",
+        "slug": "/docs/nextjs/overview",
+        "title": "Overview"
+      },
+      {
+        "id": "/docs/nextjs/bootstrapping",
+        "slug": "/docs/nextjs/bootstrapping",
+        "title": "Bootstrapping Tina"
+      },
+      {
+        "id": "/docs/nextjs/adding-backends",
+        "slug": "/docs/nextjs/adding-backends",
+        "title": "Adding a Backend"
+      },
+      {
+        "id": "/docs/nextjs/creating-forms",
+        "slug": "/docs/nextjs/creating-forms",
+        "title": "Creating Forms"
+      },
+      {
+        "id": "/docs/nextjs/markdown",
+        "slug": "/docs/nextjs/markdown",
+        "title": "Using Markdown Files"
+      }
+    ]
   },
   {
     "title": "Tina + Gatsby",
@@ -150,47 +254,6 @@
         "id": "/docs/gatsby/custom-fields",
         "slug": "/docs/gatsby/custom-fields",
         "title": "Custom Fields"
-      },
-      {
-        "id": "/docs/gatsby/inline-editing",
-        "slug": "/docs/gatsby/inline-editing",
-        "title": "Inline Editing"
-      }
-    ]
-  },
-  {
-    "title": "Tina + NextJS",
-    "id": "nextjs",
-    "items": [
-      {
-        "id": "/docs/nextjs/overview",
-        "slug": "/docs/nextjs/overview",
-        "title": "Overview"
-      },
-      {
-        "id": "/docs/nextjs/bootstrapping",
-        "slug": "/docs/nextjs/bootstrapping",
-        "title": "Bootstrapping Tina"
-      },
-      {
-        "id": "/docs/nextjs/adding-backends",
-        "slug": "/docs/nextjs/adding-backends",
-        "title": "Adding a Backend"
-      },
-      {
-        "id": "/docs/nextjs/creating-forms",
-        "slug": "/docs/nextjs/creating-forms",
-        "title": "Creating Forms"
-      },
-      {
-        "id": "/docs/nextjs/markdown",
-        "slug": "/docs/nextjs/markdown",
-        "title": "Using Markdown Files"
-      },
-      {
-        "id": "/docs/nextjs/inline-editing",
-        "slug": "/docs/nextjs/inline-editing",
-        "title": "Inline Editing"
       }
     ]
   },
@@ -224,5 +287,11 @@
         "title": "Style Guide"
       }
     ]
+  },
+  {
+    "id": "guides",
+    "title": "Guides",
+    "slug": "/guides/",
+    "isTunerFont": "true"
   }
 ]

@@ -15,7 +15,7 @@ The end result is a system that gives editors immediate feedback as they edit co
 
 ## Git-Backed by Default
 
-Tina started as a side project of Forestry.io and inherits its git-backed approach to persistence by default. Changes made to content in Tina's editor are immediately saved back to their Markdown source files, those are committed and pushed to an origin git remote when the save button is pressed.
+Tina started as a side project of Forestry.io and inherits its git-backed approach to persistence by default. Changes made to content in Tina's editor are immediately saved back to their Markdown source files, those are committed and pushed to an origin Git remote when the save button is pressed.
 
 ## Dig Deeper
 

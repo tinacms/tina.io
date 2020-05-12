@@ -6,6 +6,7 @@ import { Input, Button, Textarea } from '../ui'
 export function TeamsForm(props: any) {
   const [firstName, setFirstName] = useState('')
   const [surname, setSurname] = useState('')
+  const [technology, setTechnology] = useState('')
   const [projectDetails, setProjectDetails] = useState('')
   const [email, setEmail] = useState('')
 
@@ -50,6 +51,10 @@ export function TeamsForm(props: any) {
   ) {
     setProjectDetails(e.target.value)
   }
+  function handleTechnologyChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setTechnology(e.target.value)
+  }
+
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -66,6 +71,10 @@ export function TeamsForm(props: any) {
         {
           name: 'email',
           value: email,
+        },
+        {
+          name: 'technology',
+          value: technology,
         },
         {
           name: 'project_details',
@@ -112,6 +121,17 @@ export function TeamsForm(props: any) {
           required
           value={email}
           onChange={handleEmailChange}
+        />
+      </label>
+      <label>
+        <p>What technology are you currently using?</p>
+        <Input
+          type="text"
+          id="technology"
+          name="technology"
+          placeholder="Frameworks, static site generators..."
+          value={technology}
+          onChange={handleTechnologyChange}
         />
       </label>
       <label>

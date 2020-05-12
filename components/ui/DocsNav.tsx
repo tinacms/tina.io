@@ -12,59 +12,100 @@ interface NavSection {
   slug: string
   title: string
   items: NavSection[]
+  collapsible?: boolean
+  isTunerFont?: boolean
+  returnLink?: {
+    url: string
+    label: string
+  }
 }
 
 export const NavSection = (section: NavSection) => {
   const router = useRouter()
   const currentPath = router.asPath
   const isCurrentPage = useMemo(() => {
-    if (section.slug && currentPath.includes(section.slug)) {
+    if (section.slug && currentPath === section.slug) {
       return true
     }
   }, [section.slug, currentPath])
-  const [expanded, setExpanded] = useState(menuIsActive(section, currentPath))
-  const highlighted = isCurrentPage || expanded
+
+  const collapsible = section.collapsible !== false
+  const [expanded, setExpanded] = useState(
+    menuIsActive(section, currentPath) || !collapsible
+  )
 
   useEffect(() => {
+    if (!collapsible) return
     setExpanded(menuIsActive(section, currentPath))
-  }, [currentPath])
+  }, [currentPath, collapsible])
+
+  const hasChildren = section.items && section.items.length > 0
+  const highlighted = isCurrentPage || (hasChildren && expanded)
 
   return (
-    <NavItem key={section.slug} open={highlighted}>
-      <NavItemHeader>
-        {section.slug ? (
-          <DynamicLink href={section.slug} passHref>
-            <NavSectionTitle as="a" open={highlighted}>
+    <>
+      <NavItem key={section.slug} open={expanded}>
+        <NavItemHeader onClick={() => collapsible && setExpanded(!expanded)}>
+          {section.slug && !hasChildren ? (
+            <DynamicLink href={section.slug} passHref>
+              <NavSectionTitle
+                as="a"
+                highlighted={highlighted}
+                isTunerFont={section.isTunerFont}
+              >
+                {section.title}
+              </NavSectionTitle>
+            </DynamicLink>
+          ) : (
+            <NavSectionTitle
+              highlighted={highlighted}
+              isTunerFont={section.isTunerFont || true}
+            >
               {section.title}
             </NavSectionTitle>
-          </DynamicLink>
-        ) : (
-          <NavSectionTitle
-            open={highlighted}
-            onClick={() => setExpanded(!expanded)}
-          >
-            {section.title}
-          </NavSectionTitle>
+          )}
+          {hasChildren && collapsible && <RightArrowSvg />}
+        </NavItemHeader>
+        {hasChildren && (
+          <SubNav>
+            {section.slug && (
+              <NavSection
+                key={`${section.id}-overview`}
+                id={section.id}
+                slug={section.slug}
+                title="Overview"
+                items={null}
+              />
+            )}
+            {(section.items || []).map(item => (
+              <NavSection key={`${section.id}-${item.id}`} {...item} />
+            ))}
+          </SubNav>
         )}
-        {section.items && section.items.length > 0 && <RightArrowSvg />}
-      </NavItemHeader>
-      {section.items && section.items.length > 0 && (
-        <SubNav>
-          {(section.items || []).map(item => (
-            <NavSection key={section.id} {...item} />
-          ))}
-        </SubNav>
+      </NavItem>
+      {section.returnLink && (
+        <NavSection
+          key={section.returnLink.url}
+          id={section.returnLink.url}
+          slug={section.returnLink.url}
+          title={section.returnLink.label}
+          isTunerFont={true}
+          items={null}
+        />
       )}
-    </NavItem>
+    </>
   )
 }
 
 const menuIsActive = (section: NavSection, currentPath: string) => {
+  if (section.slug && currentPath.includes(section.slug)) {
+    return true
+  }
   return (
     section.items &&
-    section.items.reduce((isActive, section) => {
-      if (section.slug && currentPath.includes(section.slug)) {
-        return true
+    section.items.reduce((isActive, subsection) => {
+      if (subsection.slug && currentPath.includes(subsection.slug)) {
+        return subsection.slug !== section.slug
       }
       return isActive
     }, false)
@@ -94,7 +135,6 @@ export const DocsNav = styled(({ open, navItems, ...styleProps }) => {
     </div>
   )
 })`
-  font-family: var(--font-tuner);
   list-style-type: none;
   background-color: var(--color-light);
   overflow-x: hidden;
@@ -178,7 +218,8 @@ const NavItemHeader = styled.div`
 `
 
 interface NavSectionTitleProps {
-  open: boolean
+  highlighted: boolean
+  isTunerFont?: boolean
 }
 
 const NavSectionTitle = styled.span<NavSectionTitleProps>`
@@ -194,7 +235,13 @@ const NavSectionTitle = styled.span<NavSectionTitleProps>`
   }
 
   ${props =>
-    props.open &&
+    props.isTunerFont &&
+    css`
+      font-family: var(--font-tuner);
+    `}
+
+  ${props =>
+    props.highlighted &&
     css`
       color: var(--color-primary);
     `};

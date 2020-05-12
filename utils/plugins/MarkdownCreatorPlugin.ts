@@ -1,9 +1,8 @@
 import { toMarkdownString } from 'next-tinacms-markdown'
 import { CMS, Field, AddContentPlugin } from 'tinacms'
-import { saveContent } from '../../open-authoring/github/api'
-import { getCachedFormData, setCachedFormData } from '../formCache'
-import { GithubOptions } from '../github/useGithubForm'
+import { GithubOptions } from 'react-tinacms-github'
 import { FORM_ERROR } from 'final-form'
+import { getCachedFormData, setCachedFormData } from '../formCache'
 
 type MaybePromise<T> = Promise<T> | T
 
@@ -17,8 +16,6 @@ interface CreateMarkdownButtonOptions<FormShape, FrontmatterShape> {
   filename(form: FormShape): MaybePromise<string>
   frontmatter?(form: FormShape): MaybePromise<FrontmatterShape>
   body?(form: FormShape): MaybePromise<string>
-  githubOptions: GithubOptions
-  isEditMode: boolean
   afterCreate?(response: any): void
 }
 
@@ -50,9 +47,6 @@ export class MarkdownCreatorPlugin<FormShape = any, FrontmatterShape = any>
   frontmatter: (form: FormShape) => MaybePromise<FrontmatterShape>
   body: (form: any) => MaybePromise<string>
 
-  githubOptions: GithubOptions
-  isEditMode: boolean
-
   constructor(
     options: CreateMarkdownButtonOptions<FormShape, FrontmatterShape>
   ) {
@@ -71,7 +65,6 @@ export class MarkdownCreatorPlugin<FormShape = any, FrontmatterShape = any>
     this.filename = options.filename
     this.frontmatter = options.frontmatter || (() => ({} as FrontmatterShape))
     this.body = options.body || (() => '')
-    this.githubOptions = options.githubOptions
     this.afterCreate = options.afterCreate || null
   }
 
@@ -80,18 +73,17 @@ export class MarkdownCreatorPlugin<FormShape = any, FrontmatterShape = any>
     const frontmatter = await this.frontmatter(form)
     const markdownBody = await this.body(form)
 
-    saveContent(
-      this.githubOptions.forkFullName,
-      this.githubOptions.branch,
-      fileRelativePath,
-      getCachedFormData(fileRelativePath).sha,
-      toMarkdownString({
+    cms.api.github
+      .commit(
         fileRelativePath,
-        frontmatter,
-        markdownBody,
-      }),
-      'Update from TinaCMS'
-    )
+        getCachedFormData(fileRelativePath).sha,
+        toMarkdownString({
+          fileRelativePath,
+          frontmatter,
+          markdownBody,
+        }),
+        'Update from TinaCMS'
+      )
       .then(response => {
         setCachedFormData(fileRelativePath, {
           sha: response.content.sha,
@@ -101,7 +93,7 @@ export class MarkdownCreatorPlugin<FormShape = any, FrontmatterShape = any>
         }
       })
       .catch(e => {
-        return { [FORM_ERROR]: 'Failed to create page.' }
+        return { [FORM_ERROR]: e }
       })
   }
 }

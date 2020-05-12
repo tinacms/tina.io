@@ -35,7 +35,7 @@ export const Video = styled(({ src, autoPlay, ...styleProps }: VideoProps) => {
   img,
   video {
     margin: 0 auto;
-    filter: drop-shadow(rgba(104, 120, 125, 0.3) 0px 14px 16px);
+    box-shadow: 0 14px 28px rgba(104, 120, 125, 0.25);
     border-radius: 10px;
     max-width: 934px;
     width: 100%;

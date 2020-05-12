@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
+import { GetStaticProps, GetStaticPaths } from 'next'
 import { CloseIcon, EditIcon } from '@tinacms/icons'
 import { formatDate } from '../../utils'
 import {
@@ -7,39 +8,26 @@ import {
   Hero,
   Wrapper,
   MarkdownContent,
-  RichTextWrapper,
+  DocsTextWrapper,
 } from '../../components/layout'
-import { InlineWysiwyg, InlineTextareaField } from '../../components/ui/inline'
-import { getGithubDataFromPreviewProps } from '../../utils/github/sourceProviderConnection'
-import getMarkdownData from '../../utils/github/getMarkdownData'
-import { useLocalGithubMarkdownForm } from '../../utils/github/useLocalGithubMarkdownForm'
+import { InlineWysiwyg, InlineTextareaField } from 'react-tinacms-inline'
+import { useGithubMarkdownForm } from 'react-tinacms-github'
 import { fileToUrl } from '../../utils/urls'
-import OpenAuthoringSiteForm from '../../components/layout/OpenAuthoringSiteForm'
-import ContentNotFoundError from '../../utils/github/ContentNotFoundError'
+import { OpenAuthoringSiteForm } from '../../components/layout/OpenAuthoringSiteForm'
 const fg = require('fast-glob')
-import { enterEditMode, exitEditMode } from '../../open-authoring/authFlow'
-import { useOpenAuthoring } from '../../components/layout/OpenAuthoring'
+import { useGithubEditing } from 'react-tinacms-github'
 import { Button } from '../../components/ui/Button'
+import Error from 'next/error'
+import { getMarkdownPreviewProps } from '../../utils/getMarkdownFile'
 
-export default function BlogTemplate({
-  markdownFile,
-  sourceProviderConnection,
-  siteConfig,
-  editMode,
-  previewError,
-}) {
-  //workaround for fallback being not implemented
-  if (!markdownFile) {
-    return <div></div>
+function BlogTemplate({ file, siteConfig, preview }) {
+  // fallback workaround
+  if (!file) {
+    return <Error statusCode={404} />
   }
 
   // Registers Tina Form
-  const [data, form] = useLocalGithubMarkdownForm(
-    markdownFile,
-    formOptions,
-    sourceProviderConnection,
-    editMode
-  )
+  const [data, form] = useGithubMarkdownForm(file, formOptions)
 
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
@@ -48,14 +36,10 @@ export default function BlogTemplate({
   return (
     <OpenAuthoringSiteForm
       form={form}
-      path={markdownFile.fileRelativePath}
-      editMode={editMode}
-      previewError={previewError}
+      path={file.fileRelativePath}
+      preview={preview}
     >
-      <Layout
-        sourceProviderConnection={sourceProviderConnection}
-        editMode={editMode}
-      >
+      <Layout preview={preview}>
         <NextSeo
           title={frontmatter.title}
           titleTemplate={'%s | ' + siteConfig.title + ' Blog'}
@@ -67,9 +51,9 @@ export default function BlogTemplate({
               {
                 url:
                   'https://res.cloudinary.com/forestry-demo/image/upload/l_text:tuner-regular.ttf_70:' +
-                  encodeURI(frontmatter.title) +
+                  encodeURIComponent(frontmatter.title) +
                   ',g_north_west,x_270,y_95,w_840,c_fit,co_rgb:EC4815/l_text:tuner-regular.ttf_35:' +
-                  encodeURI(frontmatter.author) +
+                  encodeURIComponent(frontmatter.author) +
                   ',g_north_west,x_270,y_500,w_840,c_fit,co_rgb:241748/v1581087220/TinaCMS/tinacms-social-empty.png',
                 width: 1200,
                 height: 628,
@@ -82,7 +66,7 @@ export default function BlogTemplate({
           <InlineTextareaField name="frontmatter.title" />
         </Hero>
         <BlogWrapper>
-          <RichTextWrapper>
+          <DocsTextWrapper>
             <BlogMeta>
               <MetaWrap>
                 <MetaBit>{formatDate(frontmatter.date)}</MetaBit>
@@ -91,73 +75,57 @@ export default function BlogTemplate({
                   <InlineTextareaField name="frontmatter.author" />
                 </MetaBit>
               </MetaWrap>
-              <EditLink isEditMode={editMode} />
+              <EditLink isEditMode={preview} />
             </BlogMeta>
             <InlineWysiwyg name="markdownBody">
               <MarkdownContent escapeHtml={false} content={markdownBody} />
             </InlineWysiwyg>
-          </RichTextWrapper>
+          </DocsTextWrapper>
         </BlogWrapper>
       </Layout>
     </OpenAuthoringSiteForm>
   )
 }
 
+export default BlogTemplate
+
 /*
  ** DATA FETCHING --------------------------------------------------
  */
 
-export async function unstable_getStaticProps({
+export const getStaticProps: GetStaticProps = async function({
   preview,
   previewData,
   ...ctx
 }) {
   const { slug } = ctx.params
 
-  const {
-    sourceProviderConnection,
-    accessToken,
-  } = getGithubDataFromPreviewProps(previewData)
+  //TODO - move to readFile
+  const { default: siteConfig } = await import('../../content/siteConfig.json')
 
-  let previewError: string
-  let file = {}
-  try {
-    file = await getMarkdownData(
-      `content/blog/${slug}.md`,
-      sourceProviderConnection,
-      accessToken
-    )
-  } catch (e) {
-    if (e instanceof ContentNotFoundError) {
-      previewError = e.message
-    } else {
-      throw e
-    }
+  const previewProps = await getMarkdownPreviewProps(
+    `content/blog/${slug}.md`,
+    preview,
+    previewData
+  )
+
+  if ((previewProps.props.error?.status || '') === 'ENOENT') {
+    return { props: {} } // will render the 404 error
   }
 
-  //TODO - move to readFile
-  const siteConfig = await import('../../content/siteConfig.json')
-
   return {
-    props: {
-      sourceProviderConnection,
-      editMode: !!preview,
-      previewError: previewError,
-      siteConfig: {
-        title: siteConfig.title,
-      },
-      markdownFile: file,
-    },
+    props: { ...previewProps.props, siteConfig: { title: siteConfig.title } },
   }
 }
 
-export async function unstable_getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async function() {
   const blogs = await fg(`./content/blog/**/*.md`)
   return {
     paths: blogs.map(file => {
       const slug = fileToUrl(file, 'blog')
       return { params: { slug } }
     }),
+    fallback: true,
   }
 }
 
@@ -209,45 +177,6 @@ const BlogWrapper = styled(Wrapper)`
   padding-top: 4rem;
   padding-bottom: 3rem;
   max-width: 768px;
-
-  h1,
-  .h1,
-  h2,
-  .h2 {
-    color: var(--color-primary);
-    em {
-      color: var(--color-primary);
-      font-style: italic;
-    }
-  }
-
-  h3,
-  .h3,
-  h4,
-  .h4 {
-    color: var(--color-secondary);
-    em {
-      color: var(--color-secondary);
-      font-style: italic;
-    }
-  }
-
-  h1,
-  .h1 {
-    font-size: 2rem;
-    @media (min-width: 800px) {
-      font-size: 3rem;
-    }
-
-    @media (min-width: 1200px) {
-      font-size: 2.5rem;
-    }
-  }
-
-  h2,
-  .h2 {
-    font-size: 1.625rem;
-  }
 `
 
 const BlogMeta = styled.div`
@@ -283,19 +212,13 @@ const MetaBit = styled.p`
  */
 
 const EditLink = ({ isEditMode }) => {
-  const openAuthoring = useOpenAuthoring()
+  const openAuthoring = useGithubEditing()
 
   return (
     <EditButton
       id="OpenAuthoringBlogEditButton"
       onClick={
-        isEditMode
-          ? exitEditMode
-          : () =>
-              enterEditMode(
-                openAuthoring.githubAuthenticated,
-                openAuthoring.forkValid
-              )
+        isEditMode ? openAuthoring.exitEditMode : openAuthoring.enterEditMode
       }
     >
       {isEditMode ? <CloseIcon /> : <EditIcon />}

@@ -1,11 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { InlineBlocks } from 'react-tinacms-inline'
+import { GetStaticProps } from 'next'
+
+import {
+  InlineBlocks,
+  InlineField,
+  InlineTextareaField,
+  BlockTextarea,
+  BlocksControls,
+} from 'react-tinacms-inline'
 import { EditLink } from '../components/layout/EditLink'
 import { DefaultSeo } from 'next-seo'
 import { BlockTemplate } from 'tinacms'
-import { InlineField } from 'react-tinacms-inline'
 import { DynamicLink } from '../components/ui/DynamicLink'
 import {
   Layout,
@@ -16,109 +23,92 @@ import {
 } from '../components/layout'
 
 import { Button, Video, ArrowList } from '../components/ui'
-import {
-  InlineTextareaField,
-  BlockTextArea,
-  BlocksControls,
-} from '../components/ui/inline'
-
-import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
-import getJsonData from '../utils/github/getJsonData'
-import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
-import ContentNotFoundError from '../utils/github/ContentNotFoundError'
-import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
+import { OpenAuthoringSiteForm } from '../components/layout/OpenAuthoringSiteForm'
+import { useGithubJsonForm } from 'react-tinacms-github'
+import { getJsonPreviewProps } from '../utils/getJsonPreviewProps'
 
 const HomePage = (props: any) => {
-  const [formData, form] = useLocalGithubJsonForm(
-    props.home,
-    {
-      label: 'Home Page',
-      fields: [
-        {
-          label: 'Headline',
-          name: 'headline',
-          description: 'Enter the main headline here',
-          component: 'text',
-        },
-        {
-          label: 'Description',
-          name: 'description',
-          description: 'Enter supporting main description',
-          component: 'textarea',
-        },
-        {
-          label: 'Selling Points',
-          name: 'three_points',
-          description: 'Edit the points here',
-          component: 'group-list',
-          //@ts-ignore
-          itemProps: item => ({
-            key: item.id,
-            label: `${item.main.slice(0, 15)}...`,
-          }),
-          defaultItem: () => ({
-            main: 'New Point',
-            supporting: '',
-            _template: 'selling_point',
-          }),
-          fields: [
-            {
-              label: 'Main',
-              name: 'main',
-              component: 'textarea',
-            },
-            {
-              label: 'Supporting',
-              name: 'supporting',
-              component: 'textarea',
-            },
-          ],
-        },
-        {
-          label: 'Setup Headline',
-          name: 'setup.headline',
-          description: 'Enter the "setup" headline here',
-          component: 'textarea',
-        },
-        {
-          label: 'Setup Steps',
-          name: 'setup.steps',
-          description: 'Edit the steps here',
-          component: 'group-list',
-          //@ts-ignore
-          itemProps: item => ({
-            key: item.id,
-            label: `${item.step.slice(0, 15)}...`,
-          }),
-          defaultItem: () => ({
-            step: 'New Step',
-            _template: 'setup_point',
-          }),
-          fields: [
-            {
-              label: 'Step',
-              name: 'step',
-              component: 'textarea',
-            },
-          ],
-        },
-      ],
-    },
-    props.sourceProviderConnection,
-    props.editMode
-  )
+  const [formData, form] = useGithubJsonForm(props.file, {
+    label: 'Home Page',
+    fields: [
+      {
+        label: 'Headline',
+        name: 'headline',
+        description: 'Enter the main headline here',
+        component: 'text',
+      },
+      {
+        label: 'Description',
+        name: 'description',
+        description: 'Enter supporting main description',
+        component: 'textarea',
+      },
+      {
+        label: 'Selling Points',
+        name: 'three_points',
+        description: 'Edit the points here',
+        component: 'group-list',
+        //@ts-ignore
+        itemProps: item => ({
+          key: item.id,
+          label: `${item.main.slice(0, 15)}...`,
+        }),
+        defaultItem: () => ({
+          main: 'New Point',
+          supporting: '',
+          _template: 'selling_point',
+        }),
+        fields: [
+          {
+            label: 'Main',
+            name: 'main',
+            component: 'textarea',
+          },
+          {
+            label: 'Supporting',
+            name: 'supporting',
+            component: 'textarea',
+          },
+        ],
+      },
+      {
+        label: 'Setup Headline',
+        name: 'setup.headline',
+        description: 'Enter the "setup" headline here',
+        component: 'textarea',
+      },
+      {
+        label: 'Setup Steps',
+        name: 'setup.steps',
+        description: 'Edit the steps here',
+        component: 'group-list',
+        //@ts-ignore
+        itemProps: item => ({
+          key: item.id,
+          label: `${item.step.slice(0, 15)}...`,
+        }),
+        defaultItem: () => ({
+          step: 'New Step',
+          _template: 'setup_point',
+        }),
+        fields: [
+          {
+            label: 'Step',
+            name: 'step',
+            component: 'textarea',
+          },
+        ],
+      },
+    ],
+  })
 
   return (
     <OpenAuthoringSiteForm
       form={form}
-      path={props.home.fileRelativePath}
-      editMode={props.editMode}
-      previewError={props.previewError}
+      path={props.file.fileRelativePath}
+      preview={props.preview}
     >
-      <Layout
-        sourceProviderConnection={props.sourceProviderConnection}
-        editMode={props.editMode}
-      >
+      <Layout preview={props.preview}>
         <DefaultSeo titleTemplate={formData.title + ' | %s'} />
         <Hero overlap narrow>
           <InlineTextareaField name="headline" />
@@ -139,7 +129,7 @@ const HomePage = (props: any) => {
                   </em>
                 </h2>
                 <CtaBar>
-                  <EditLink color="primary" editMode={props.editMode} />
+                  <EditLink color="primary" preview={props.preview} />
                   <DynamicLink
                     href={'/docs/getting-started/introduction/'}
                     passHref
@@ -209,35 +199,11 @@ export <b>WithTina</b>( <b>Component</b> );
 
 export default HomePage
 
-export async function unstable_getStaticProps({ preview, previewData, query }) {
-  const {
-    sourceProviderConnection,
-    accessToken,
-  } = getGithubDataFromPreviewProps(previewData)
-  let previewError: string
-  let homeData = {}
-  try {
-    homeData = await getJsonData(
-      'content/pages/home.json',
-      sourceProviderConnection,
-      accessToken
-    )
-  } catch (e) {
-    if (e instanceof ContentNotFoundError) {
-      previewError = e.message
-    } else {
-      throw e
-    }
-  }
-
-  return {
-    props: {
-      home: homeData,
-      previewError: previewError,
-      sourceProviderConnection,
-      editMode: !!preview,
-    },
-  }
+export const getStaticProps: GetStaticProps = async function({
+  preview,
+  previewData,
+}) {
+  return getJsonPreviewProps('content/pages/home.json', preview, previewData)
 }
 
 /*
@@ -252,12 +218,17 @@ function SellingPoint({ data, index }) {
     <BlocksControls index={index}>
       <div key={`selling-point-${index}`}>
         <h3>
-          <em>
-            <BlockTextArea name="main" />
-          </em>
+          {data.color !== 'Dark Blue (Secondary)' && (
+            <em>
+              <BlockTextarea name="main" />
+            </em>
+          )}
+          {data.color === 'Dark Blue (Secondary)' && (
+            <BlockTextarea name="main" />
+          )}
         </h3>
         <p>
-          <BlockTextArea name="supporting" />
+          <BlockTextarea name="supporting" />
         </p>
       </div>
     </BlocksControls>
@@ -271,10 +242,19 @@ const selling_point_template: BlockTemplate = {
     main: 'Tina is dope 🤙',
     supporting:
       'It’s pretty much my favorite animal. It’s like a lion and a tiger mixed… bred for its skills in magic.',
+    color: 'Orange (Primary)',
   },
   // TODO: figure out what to do with keys
   key: undefined,
-  fields: [],
+  fields: [
+    {
+      label: 'Title Color',
+      name: 'color',
+      component: 'select',
+      // @ts-ignore
+      options: ['Orange (Primary)', 'Dark Blue (Secondary)'],
+    },
+  ],
 }
 
 const SELLING_POINTS_BLOCKS = {
@@ -288,7 +268,7 @@ function SetupPoint({ data, index }) {
   return (
     <BlocksControls index={index}>
       <li key={`setup-point-${index}`}>
-        <BlockTextArea name="step" />
+        <BlockTextarea name="step" />
       </li>
     </BlocksControls>
   )

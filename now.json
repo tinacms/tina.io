@@ -1,15 +1,22 @@
 {
   "env": {
     "GITHUB_CLIENT_ID": "942232a549642aea2bbf",
-    "GITHUB_CLIENT_SECRET": "@github_client_secret"
+    "GITHUB_CLIENT_SECRET": "@github_client_secret",
+    "GTM_ID": "@gtm_id",
+    "HUBSPOT_TEAMS_FORM_ID": "@hubspot_teams_form_id",
+    "HUBSPOT_PORTAL_ID": "@hubspot_portal_id",
+    "MAILCHIMP_ENDPOINT": "@mailchimp_endpoint"
   },
   "build": {
     "env": {
       "GITHUB_CLIENT_ID": "942232a549642aea2bbf",
-      "GITHUB_CLIENT_SECRET": "@github_client_secret",
-      "REPO_FULL_NAME": "tinacms/tinacms.org",
+      "BASE_REPO_FULL_NAME": "tinacms/tinacms.org",
       "USE_CONTENT_API": "true",
-      "BASE_BRANCH": "master"
+      "BASE_BRANCH": "master",
+      "GTM_ID": "@gtm_id",
+      "HUBSPOT_TEAMS_FORM_ID": "@hubspot_teams_form_id",
+      "HUBSPOT_PORTAL_ID": "@hubspot_portal_id",
+      "MAILCHIMP_ENDPOINT": "@mailchimp_endpoint"
     }
   },
   "redirects": [
@@ -24,6 +31,14 @@
     { "source": "/docs/concepts/forms", "destination": "/docs/forms" },
     { "source": "/docs/concepts/fields", "destination": "/docs/fields" },
     { "source": "/docs/concepts/backends", "destination": "/docs/cms#apis" },
-    { "source": "/docs/concepts/plugins", "destination": "/docs/cms#plugins" }
+    { "source": "/docs/concepts/plugins", "destination": "/docs/cms#plugins" },
+    {
+      "source": "/docs/nextjs/inline-editing",
+      "destination": "/docs/inline-editing"
+    },
+    {
+      "source": "/docs/gatsby/inline-editing",
+      "destination": "/docs/inline-editing"
+    }
   ]
 }

@@ -91,6 +91,7 @@ interface BlocksConfig {
   description?: string
   templates: {
     [key: string]: BlockTemplate
+  }
 }
 
 interface BlockTemplate {

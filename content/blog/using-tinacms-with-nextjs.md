@@ -9,7 +9,7 @@ consumes:
   - file: /packages/@tinacms/api-git/src/router.ts
     details: Uses tina-git-server
   - file: /packages/@tinacms/api-git/src/server.ts
-    details: Sets up git client to consume backend
+    details: Sets up Git client to consume backend
   - file: /packages/tinacms/src/components/Tina.tsx
     details: Shows wrapping Next.js app with Tina component
   - file: /packages/tinacms/src/tina-cms.tsx
@@ -81,7 +81,7 @@ Following along with the [Tina documentation:](https://tinacms.org/docs/nextjs/b
 $ yarn add tinacms styled-components moment
 ```
 
-Create a new file in the root of your project called `_app.js` and add this code.
+Create a new file in the pages directory called `_app.js` and add this code.
 
 ```javascript
 import React from 'react'
@@ -112,10 +112,10 @@ If you restart the dev server, you should now see a pencil icon in the lower lef
 
 ### Setting up a Git Backend 👾
 
-As of now, the sidebar is empty because Tina doesn’t know what content to edit. Before we connect Tina to content, we need to [set up a backend](https://tinacms.org/docs/nextjs/adding-backends) that will talk to git and can keep track of content changes as they are happening.
+As of now, the sidebar is empty because Tina doesn’t know what content to edit. Before we connect Tina to content, we need to [set up a backend](https://tinacms.org/docs/nextjs/adding-backends) that will talk to Git and can keep track of content changes as they are happening.
 
 ```bash
-# Install express, cors & tina git packages
+# Install Express, cors & Tina Git packages
 $ yarn add express cors @tinacms/api-git @tinacms/git-client
 ```
 
@@ -173,13 +173,13 @@ This will have Next use your custom server code instead if its default developme
 
 ### Connecting Back & Front 🖇
 
-Now we need to link this git backend with the instance of the `cms` within our starter blog. Head over to your `_app.js` file and register an instance of `GitClient` with the `cms` as seen in the code below.
+Now we need to link this Git backend with the instance of the `cms` within our starter blog. Head over to your `_app.js` file and register an instance of `GitClient` with the `cms` as seen in the code below.
 
 ```javascript
 import React from 'react'
 import App from 'next/app'
 import { Tina, TinaCMS } from 'tinacms'
-// import the git client
+// import the Git client
 import { GitClient } from '@tinacms/git-client'
 
 class MyApp extends App {
@@ -200,7 +200,7 @@ class MyApp extends App {
 export default MyApp
 ```
 
-That’s all the config for tracking and persisting content changes with git & Tina. To test, run the `develop` script and make sure there are no errors. Things should look the same, but behind the scenes we've added a way to send content changes from the frontend to the backend.
+That’s all the config for tracking and persisting content changes with Git & Tina. To test, run the `develop` script and make sure there are no errors. Things should look the same, but behind the scenes we've added a way to send content changes from the frontend to the backend.
 
 ### Creating Content Forms 📝
 
@@ -325,7 +325,7 @@ export default function BlogTemplate(props) {
 
 ```
 
-Observe that in the `onSubmit` callback function, we access the git API we registered earlier to write file changes to disk and then commit those changes. We're also serializing our data via the `toMarkdownString` function; the git backend is deliberately unopinionated, so we need to take care of preparing our data for writing before sending it back.
+Observe that in the `onSubmit` callback function, we access the Git API we registered earlier to write file changes to disk and then commit those changes. We're also serializing our data via the `toMarkdownString` function; the Git backend is deliberately unopinionated, so we need to take care of preparing our data for writing before sending it back.
 
 #### Update Rendered Data 🎨
 
@@ -409,7 +409,7 @@ If all went well, your blog posts will now be editable by Tina. Let's see it in 
 
 Start up the dev server by running `yarn develop`, and open up a blog post in the browser. Go ahead and make edits, and then check the source file in a text editor. If you keep the browser and code editor open side-by-side, you should be able to watch the changes reflect in real time in both places!
 
-> **Troubleshooting Tip**: If you’re only seeing changes update in the browser, but not immediately writing to the file system, **make sure you are using the correct script** that initiates both the next dev server and the git api via `concurrently`.
+> **Troubleshooting Tip**: If you’re only seeing changes update in the browser, but not immediately writing to the file system, **make sure you are using the correct script** that initiates both the next dev server and the Git API via `concurrently`.
 
 ### Next Steps 🚶‍♀️
 

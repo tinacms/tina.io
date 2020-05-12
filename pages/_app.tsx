@@ -1,78 +1,92 @@
 import React from 'react'
 import App from 'next/app'
 import Head from 'next/head'
-import { TinaCMS, Tina } from 'tinacms'
-import { GitClient } from '@tinacms/git-client'
+import { TinaCMS, TinaProvider, ModalProvider } from 'tinacms'
 import { DefaultSeo } from 'next-seo'
 import data from '../content/siteConfig.json'
 import TagManager from 'react-gtm-module'
 import { GlobalStyle } from '../components/styles/GlobalStyle'
-import { OpenAuthoring } from '../components/layout/OpenAuthoring'
-import { Toolbar } from '../components/cms/Toolbar'
-import { BrowserStorageApi } from '../utils/plugins/BrowserStorageApi'
-import { Alerts } from '../components/layout/Alerts'
+import { BrowserStorageApi } from '../utils/plugins/browser-storage-api/BrowserStorageApi'
+import { GithubClient, TinacmsGithubProvider } from 'react-tinacms-github'
 
 const MainLayout = ({ Component, pageProps }) => {
-  /*
-   ** TODO: If and when 'preview' state becomes accessible
-   ** at the _app level, we should move the sidebar / editMode
-   ** logic to be handled here
-   */
   const tinaConfig = {
     apis: {
-      git: new GitClient('http://localhost:3000/___tina'),
+      github: new GithubClient({
+        proxy: '/api/proxy-github',
+        authCallbackRoute: '/api/create-github-access-token',
+        clientId: process.env.GITHUB_CLIENT_ID,
+        baseRepoFullName: process.env.BASE_REPO_FULL_NAME,
+      }),
       storage:
         typeof window !== 'undefined'
           ? new BrowserStorageApi(window.localStorage)
           : {},
     },
-
     sidebar: {
-      // editMode initially set here
       hidden: true,
       position: 'displace' as any,
+    },
+    toolbar: {
+      hidden: !pageProps.preview,
     },
   }
 
   const cms = React.useMemo(() => new TinaCMS(tinaConfig), [])
 
+  const enterEditMode = () =>
+    fetch(`/api/preview`).then(() => {
+      window.location.href = window.location.pathname
+    })
+
+  const exitEditMode = () => {
+    fetch(`/api/reset-preview`).then(() => {
+      window.location.reload()
+    })
+  }
+
   return (
-    <Tina cms={cms} {...tinaConfig.sidebar}>
-      <Toolbar />
-      <Alerts />
-      <OpenAuthoring>
-        <DefaultSeo
-          title={data.seoDefaultTitle}
-          titleTemplate={'%s | ' + data.title}
-          description={data.description}
-          openGraph={{
-            type: 'website',
-            locale: 'en_CA',
-            url: data.siteUrl,
-            site_name: data.title,
-            images: [
-              {
-                url: 'https://tinacms.org/img/tina-twitter-share.png',
-                width: 1200,
-                height: 628,
-                alt: `TinaCMS`,
-              },
-            ],
-          }}
-          twitter={{
-            handle: data.social.twitterHandle,
-            site: data.social.twitterHandle,
-            cardType: 'summary_large_image',
-          }}
-        />
-        <Head>
-          <link rel="shortcut icon" href="/favicon/favicon.ico" />
-          <meta name="theme-color" content="#E6FAF8" />
-        </Head>
-        <GlobalStyle />
-        <Component {...pageProps} />
-      </OpenAuthoring>
-    </Tina>
+    <TinaProvider cms={cms}>
+      <ModalProvider>
+        <TinacmsGithubProvider
+          enterEditMode={enterEditMode}
+          exitEditMode={exitEditMode}
+          editMode={pageProps.preview}
+          error={pageProps.error}
+        >
+          <DefaultSeo
+            title={data.seoDefaultTitle}
+            titleTemplate={'%s | ' + data.title}
+            description={data.description}
+            openGraph={{
+              type: 'website',
+              locale: 'en_CA',
+              url: data.siteUrl,
+              site_name: data.title,
+              images: [
+                {
+                  url: 'https://tinacms.org/img/tina-twitter-share.png',
+                  width: 1200,
+                  height: 628,
+                  alt: `TinaCMS`,
+                },
+              ],
+            }}
+            twitter={{
+              handle: data.social.twitterHandle,
+              site: data.social.twitterHandle,
+              cardType: 'summary_large_image',
+            }}
+          />
+          <Head>
+            <link rel="shortcut icon" href="/favicon/favicon.ico" />
+            <meta name="theme-color" content="#E6FAF8" />
+          </Head>
+          <GlobalStyle />
+          <Component {...pageProps} />
+        </TinacmsGithubProvider>
+      </ModalProvider>
+    </TinaProvider>
   )
 }
 

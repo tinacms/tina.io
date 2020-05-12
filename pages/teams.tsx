@@ -1,19 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
-import { BlocksControls } from '../components/ui/inline'
 import { BlockTemplate } from 'tinacms'
 import { NextSeo } from 'next-seo'
+import { GetStaticProps } from 'next'
 
 import { Layout, Wrapper, RichTextWrapper } from '../components/layout'
 import { ArrowList } from '../components/ui'
 import { TeamsForm } from '../components/forms'
-import { InlineTextareaField, BlockTextArea } from '../components/ui/inline'
-import getJsonData from '../utils/github/getJsonData'
-import { getGithubDataFromPreviewProps } from '../utils/github/sourceProviderConnection'
-import OpenAuthoringSiteForm from '../components/layout/OpenAuthoringSiteForm'
-import { InlineBlocks } from 'react-tinacms-inline'
-import { useLocalGithubJsonForm } from '../utils/github/useLocalGithubJsonForm'
-import ContentNotFoundError from '../utils/github/ContentNotFoundError'
+import {
+  InlineTextareaField,
+  InlineBlocks,
+  BlockTextarea,
+  BlocksControls,
+} from 'react-tinacms-inline'
+import { OpenAuthoringSiteForm } from '../components/layout/OpenAuthoringSiteForm'
+import { useGithubJsonForm } from 'react-tinacms-github'
+import { getJsonPreviewProps } from '../utils/getJsonPreviewProps'
 
 const formOptions = {
   label: 'Teams',
@@ -48,27 +50,17 @@ const formOptions = {
   ],
 }
 
-export default function TeamsPage(props) {
+function TeamsPage(props) {
   // Adds Tina Form
-  const [data, form] = useLocalGithubJsonForm(
-    props.teams,
-    formOptions,
-    props.sourceProviderConnection,
-    props.editMode
-  )
+  const [data, form] = useGithubJsonForm(props.file, formOptions)
 
   return (
     <OpenAuthoringSiteForm
       form={form}
-      path={props.teams.fileRelativePath}
-      editMode={props.editMode}
-      previewError={props.previewError}
+      path={props.file.fileRelativePath}
+      preview={props.preview}
     >
-      <TeamsLayout
-        sourceProviderConnection={props.sourceProviderConnection}
-        editMode={props.editMode}
-        color={'secondary'}
-      >
+      <TeamsLayout preview={props.preview} color={'secondary'}>
         <NextSeo
           title={data.title}
           description={data.description}
@@ -107,40 +99,17 @@ export default function TeamsPage(props) {
   )
 }
 
+export default TeamsPage
+
 /*
  ** DATA FETCHING --------------------------------------------------
  */
 
-export async function unstable_getStaticProps({ preview, previewData }) {
-  const {
-    sourceProviderConnection,
-    accessToken,
-  } = getGithubDataFromPreviewProps(previewData)
-
-  let previewError: string
-  let teamsData = {}
-  try {
-    teamsData = await getJsonData(
-      'content/pages/teams.json',
-      sourceProviderConnection,
-      accessToken
-    )
-  } catch (e) {
-    if (e instanceof ContentNotFoundError) {
-      previewError = e.message
-    } else {
-      throw e
-    }
-  }
-
-  return {
-    props: {
-      teams: teamsData,
-      previewError: previewError,
-      sourceProviderConnection,
-      editMode: !!preview,
-    },
-  }
+export const getStaticProps: GetStaticProps = async function({
+  preview,
+  previewData,
+}) {
+  return getJsonPreviewProps('content/pages/teams.json', preview, previewData)
 }
 
 /*
@@ -155,7 +124,7 @@ function SupportingPoint({ data, index }) {
   return (
     <BlocksControls index={index}>
       <li key={`supporting-point-${index}`}>
-        <BlockTextArea name="point" />
+        <BlockTextarea name="point" />
       </li>
     </BlocksControls>
   )
