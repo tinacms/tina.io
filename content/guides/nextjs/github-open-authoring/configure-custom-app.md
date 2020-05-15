@@ -119,7 +119,7 @@ Those first two, **\_\_next\_preview\_data** and **\_\_prerender\_bypass**, are 
 
 The **working\_repo\_full\_name** points to the repository you'll be editing (i.e. the _Working Repo_). In this case, it should point to your repo, the original repo, because you have access to it, which we also call the _Base Repo_. Therefore your edits will go to the `master` branch.
 
-If you didn't have access, then you would be requested to create a fork of the _Base Repo_, that fork would then be your _Working Repo_. You would commit edits on that fork and create a PR for review.
+If you didn't have access, then you would be requested to create a fork of the _Base Repo_ as seen in the image below. The newly created fork would then be your _Working Repo_. You would commit edits on that fork and create a PR for review.
 
 ![github-create-fork-step](/img/github-open-auth-cna/create-fork-step.png)
 
