@@ -111,7 +111,7 @@ If you restart the dev server, you should see a **button in the top left-hand co
 
 If auth is successful, you should see a refresh and then it will look the same as before, just like this:
 
-![github-create-fork-step](/img/github-open-auth-cna/edit-this-site.png)
+![create-next-app with tina edit button](/img/github-open-auth-cna/edit-this-site.png)
 
 To make sure it did work, check your cookies. You should now see these four cookies: **\_\_next\_preview\_data**, **\_\_prerender\_bypass**, **working\_repo\_full\_name**, and **github\_access\_token**. 
 
