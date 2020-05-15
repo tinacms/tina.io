@@ -121,6 +121,8 @@ The **working\_repo\_full\_name** points to the repository you'll be editing (i.
 
 If you didn't have access, then you would be requested to create a fork of the _Base Repo_, that fork would then be your _Working Repo_. You would commit edits on that fork and create a PR for review.
 
+![github-create-fork-step](/img/github-open-auth-cna/create-fork-step.png)
+
 The final cookie, **github\_access\_token**, proves that the authentication worked, since you now have an access token for the Github APIs. 
 
 
