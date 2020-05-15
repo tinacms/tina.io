@@ -107,10 +107,23 @@ export const EditLink = ({ editMode }: EditLinkProps) => {
 
 > _Note:_ For brevity, the example above configures many steps in a single file, but **a few components can be configured in different places**. For example you could put the `EditLink` in a Layout component, or set up the Github Provider only on certain pages.
 
-If you restart the dev server, you should see a **button in the top left-hand corner** that says, "Edit This Site". If you click it, you'll be _prompted to authenticate_ with GitHub. If auth is successful, you should see another modal prompting you to create a fork, go ahead and do so.
+If you restart the dev server, you should see a **button in the top left-hand corner** that says, "Edit This Site". If you click it, you'll be _prompted to authenticate_ with GitHub. 
+
+If auth is successful, you should see a refresh and then it will look the same as before, just like this:
+
+![create-next-app with tina edit button](/img/github-open-auth-cna/edit-this-site.png)
+
+To make sure it did work, check your cookies. You should now see these four cookies: **\_\_next\_preview\_data**, **\_\_prerender\_bypass**, **working\_repo\_full\_name**, and **github\_access\_token**. 
+
+Those first two, **\_\_next\_preview\_data** and **\_\_prerender\_bypass**, are for using preview mode.
+
+The **working\_repo\_full\_name** points to the repository you'll be editing (i.e. the _Working Repo_). In this case, it should point to your repo, the original repo, because you have access to it, which we also call the _Base Repo_. Therefore your edits will go to the `master` branch.
+
+If you didn't have access, then you would be requested to create a fork of the _Base Repo_ as seen in the image below. The newly created fork would then be your _Working Repo_. You would commit edits on that fork and create a PR for review.
 
 ![github-create-fork-step](/img/github-open-auth-cna/create-fork-step.png)
 
-Since you're the owner of this repository, your edits will go to the `master` branch. If you weren't the owner of this repository, a fork (also known as a _Working Repository_) would be made where someone else could commit edits and create a PR for review.
+The final cookie, **github\_access\_token**, proves that the authentication worked, since you now have an access token for the Github APIs. 
+
 
 Next we'll need to configure Previews on the index page to enter the editing environment on our _Working Repository_.
