@@ -8,7 +8,6 @@ consumes:
   - file: /packages/react-tinacms-inline/src/inline-field.tsx
     description: Depends on InlineField
 ---
-
 The `InlineImageField` field represents an image input. This field supports drag and drop upload, or via clicking on the image to select media from the local filesystem.
 
 ## Definition
@@ -18,7 +17,7 @@ Below is a simple example of how `InlineImageField` could be implemented in in a
 ```jsx
 import ReactMarkdown from 'react-markdown'
 import { useLocalForm } from 'tinacms'
-import { InlineForm, InlineImagefield } from 'react-tinacms-inline'
+import { InlineForm, InlineImageField } from 'react-tinacms-inline'
 
 // Example 'Page' Component
 export function Page(props) {
@@ -39,14 +38,14 @@ There are two ways to use `InlineImageField`, with and without children. If no c
 
 ## Options
 
-| Key         | Description                                                                                                                                                                                                 |
-| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`      | The path to some value in the data being edited.                                                                                                                                                            |
-| `parse`     | Defines how the actual front matter or data value gets populated. The name of the file gets passed as an argument, and one can set the path this image as defined by the uploadDir property.                |
+| Key | Description |
+| --- | --- |
+| `name` | The path to some value in the data being edited. |
+| `parse` | Defines how the actual front matter or data value gets populated. The name of the file gets passed as an argument, and one can set the path this image as defined by the uploadDir property. |
 | `uploadDir` | Defines the upload directory for the image. All of the post data is passed in, `fileRelativePath` is most useful in defining the upload directory, but you can also statically define the upload directory. |
-| `children`  | Any child elements.                                                                                                                                                                                         |
+| `children` | Any child elements. |
 
----
+***
 
 ## Interface
 
