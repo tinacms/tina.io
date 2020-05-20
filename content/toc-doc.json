@@ -109,6 +109,11 @@
         "title": "Select"
       },
       {
+        "id": "/docs/fields/tags",
+        "slug": "/docs/fields/tags",
+        "title": "Tags"
+      },
+      {
         "id": "/docs/fields/group",
         "slug": "/docs/fields/group",
         "title": "Group"
