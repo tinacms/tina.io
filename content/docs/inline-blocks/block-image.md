@@ -39,12 +39,13 @@ There are two ways to use `BlockImage`, with and without children. If no childre
 
 ## Options
 
-| Key         | Description                                                                                                                                                                                                 |
-| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`      | The path to some value in the data being edited.                                                                                                                                                            |
-| `parse`     | Defines how the actual front matter or data value gets populated. The name of the file gets passed as an argument, and one can set the path this image as defined by the uploadDir property.                |
-| `uploadDir` | Defines the upload directory for the image. All of the post data is passed in, `fileRelativePath` is most useful in defining the upload directory, but you can also statically define the upload directory. |
-| `children`  | Any child elements.                                                                                                                                                                                         |
+| Key          | Description                                                                                                                                                                                                 |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`       | The path to some value in the data being edited.                                                                                                                                                            |
+| `parse`      | Defines how the actual front matter or data value gets populated. The name of the file gets passed as an argument, and one can set the path this image as defined by the uploadDir property.                |
+| `uploadDir`  | Defines the upload directory for the image. All of the post data is passed in, `fileRelativePath` is most useful in defining the upload directory, but you can also statically define the upload directory. |
+| `previewSrc` | Defines the path for the src attribute on the image preview. If using gatsby-image, the path to the `childImageSharp.fluid.src` needs to be provided.                                                       |
+| `children`   | Any child elements.                                                                                                                                                                                         |
 
 ---
 
@@ -55,13 +56,14 @@ export interface InlineImageProps {
   name: string
   parse(filename: string): string
   uploadDir(form: Form): string
+  previewSrc(formValues: any): string
   children?: any
 }
 ```
 
 ## Example
 
-Below is an example of how you could **pass children** to `BlockImage` to work with _Gatsby Image_. Read more on [proper image paths](/docs/fields/image#proper-image-paths-in-gatsby) in Gatsby to get context on the `parse` & `uploadDir` configuration.
+Below is an example of how you could **pass children** to `BlockImage` to work with _Gatsby Image_. Notice how _children_ **need to be passed via [render props](https://reactjs.org/docs/render-props.html)**. Read more on [proper image paths](/docs/fields/image#proper-image-paths-in-gatsby) in Gatsby to get context on the `parse` & `uploadDir` configuration.
 
 ```jsx
 import { BlocksControls, BlockImage } from 'react-tinacms-inline'
@@ -85,8 +87,17 @@ export function Image({ data, index }) {
 
           return postDirectory
         }}
+        previewSrc={formValues => {
+          return formValues.blocks[index].src
+        }}
       >
-        <Img fluid={data.thumbnail.childImageSharp.fluid} alt={data.alt} />
+        {props => (
+          <Img
+            fluid={data.thumbnail.childImageSharp.fluid}
+            alt={data.alt}
+            {...props}
+          />
+        )}
       </BlockImage>
     </BlocksControls>
   )
