@@ -14,7 +14,6 @@ consumes:
   - file: /packages/react-modals/src/ModalProvider.tsx
     description: Uses ModalProvider for Block Settings
 ---
-
 Inline Blocks combine the content modelling flexibility of regular [Blocks](/blog/what-are-blocks) with the improved editing experience of [Inline Editing](/docs/inline-editing).
 
 > **Please note:** This is considered an unstable API. Any breaking changes will be shared in the weekly [Release Notes](/blog). That said, we will do our best to keep this document up-to-date.
@@ -64,9 +63,9 @@ The image above shows the _Textarea Block_ field in use.
 
 **Available Block Fields**:
 
-- [Text Block](/docs/inline-blocks/block-text)
-- [Textarea Block](/docs/inline-blocks/block-textarea)
-- [Image Block](/docs/inline-blocks/block-image)
+* [Text Block](/docs/inline-blocks/block-text)
+* [Textarea Block](/docs/inline-blocks/block-textarea)
+* [Image Block](/docs/inline-blocks/block-image)
 
 ### Part 2: Block Template
 
@@ -75,7 +74,6 @@ export const heading_template = {
   type: 'heading',
   label: 'Heading',
   defaultItem: {
-    _template: 'heading',
     text: 'At vero eos et accusamus',
   },
   key: 'heading-block',
@@ -85,17 +83,17 @@ export const heading_template = {
 
 The _Inline Block Template_ **configures the block** with the CMS. It has a similar shape to a Regular [Block Template](/docs/fields/blocks#block-template-options) definition.
 
-| Key            |           Type            |                                                                                              Purpose |
-| -------------- | :-----------------------: | ---------------------------------------------------------------------------------------------------: |
-| `type`         |         `string`          |                                             This value connects source block data with the template. |
-| `label`        |         `string`          |                                                                              A human readable label. |
-| `defaultItem?` | `object | (() => object)` |                                                              Populates new blocks with default data. |
-| `key`          |         `string`          | A unique value to optimize the [rendering of the list](https://reactjs.org/docs/lists-and-keys.html) |
-| `fields`       |          `Array`          |                                    Populates fields in the [Settings Modal](link to settings modal). |
+| Key | Type | Purpose |
+| --- | :---: | ---: |
+| `type` | `string` | This value connects source block data with the template. |
+| `label` | `string` | A human readable label. |
+| `defaultItem?` | `object \| (() => object)` | Populates new blocks with default data. |
+| `key` | `string` | A unique value to optimize the [rendering of the list](https://reactjs.org/docs/lists-and-keys.html) |
+| `fields` | `Array` | Populates fields in the [Settings Modal](link to settings modal). |
 
 ## Configuring Inline Blocks with Inline Form
 
-The initial steps to configuring _Inline Blocks_ involve setting up an [_Inline Form_](/docs/inline-editing#inlineform-and-inlinefield) on the page or component where the blocks should render. Then, you should [add controls](/docs/inline-editing#inline-form-controls) to handle editing state. Finally, you can use a component called `InlineBlocks` that **renders blocks in order** based on the source data.
+The initial steps to configuring _Inline Blocks_ involve setting up an _[Inline Form](/docs/inline-editing#inlineform-and-inlinefield)_ on the page or component where the blocks should render. Then, you should [add controls](/docs/inline-editing#inline-form-controls) to handle editing state. Finally, you can use a component called `InlineBlocks` that **renders blocks in order** based on the source data.
 
 ### The Steps:
 
@@ -169,9 +167,9 @@ interface InlineBlocksProps {
 }
 ```
 
-| Key      |   Type   |                                                                                         Purpose |
-| -------- | :------: | ----------------------------------------------------------------------------------------------: |
-| `name`   | `string` |                                                 The path to the **source data** for the blocks. |
+| Key | Type | Purpose |
+| --- | :---: | ---: |
+| `name` | `string` | The path to the **source data** for the blocks. |
 | `blocks` | `object` | An object composed of individual [Blocks](/docs/inline-editing/inline-blocks#creating-a-block). |
 
 ### Blocks Source Data
@@ -218,7 +216,6 @@ const image_template = {
   type: 'image',
   label: 'Image',
   defaultItem: {
-    _template: 'image',
     src: '/img/bali-1.jpg',
     alt: '',
   },
