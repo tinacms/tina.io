@@ -3,11 +3,11 @@ title: '2020-05-11 Release Notes: Tidying Up'
 date: '2020-05-11T10:19:38-03:00'
 author: Nolan Phillips
 ---
-Today marks the second week of the TinaCMS core team's 2 week cool down. 
+Today marks the second week of the TinaCMS core team's 2 week cool down.
 
-During this cooldown we're taking a step back today up some loose ends and get some perspective on the project. On Thursday we will be getting together to decide what's next. 
+During this cooldown we're taking a step back to tie up some loose ends and get some perspective on the project. On Thursday we will be getting together to decide what's next.
 
-Until then, here's some of the additions and fixes we put together last week. 
+Until then, here's some of the additions and fixes we put together last week.
 
 ## Changes
 
@@ -23,11 +23,11 @@ Until then, here's some of the additions and fixes we put together last week.
 
 ### Bug Fixes
 
-**gatsby-tinacms-plugins:** 
+**gatsby-tinacms-plugins:**
 
 * Fixed the `@types` dependencies for the gatsby packages
 
-**react-tinacms-editor:** 
+**react-tinacms-editor:**
 
 * Disable the link button if no text is selected.
 * Fixed issue that required multiple clicks to trigger table-menu items.
@@ -49,7 +49,7 @@ Thanks to everyone for contributing!
 | 50 | Nolan Phillips |
 | 7 | jpuri |
 | 2 | 🎉 Brandon Shackelford 🎉 |
-| 1  | Scott Byrne |
+| 1 | Scott Byrne |
 
 ## GitHub Milestones
 
