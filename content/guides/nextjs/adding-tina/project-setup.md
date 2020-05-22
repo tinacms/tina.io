@@ -17,7 +17,7 @@ yarn dev
 
 ## Additional Setup
 
-Next.js' default blog starter is _almost_ perfectly equipped to start implementing Tina right away. Per our [project setup recommendations](http://localhost:3000/guides/nextjs/adding-tina/overview#project-setup-recommendations), this blog starter nails two out of three:
+Next.js' default blog starter is _almost_ perfectly equipped to start implementing Tina right away. Per our [project setup recommendations](https://tinacms.org/guides/nextjs/adding-tina/overview#project-setup-recommendations), this blog starter nails two out of three:
 
 - ✔️ Uses the new data fetching methods introduced in Next.js 9.3
 - ✔️ Uses function components instead of class components
