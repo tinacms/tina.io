@@ -10,7 +10,7 @@ import {
   MarkdownContent,
   DocsTextWrapper,
 } from '../../components/layout'
-import { InlineWysiwyg, InlineTextareaField } from 'react-tinacms-inline'
+import { InlineTextareaField } from 'react-tinacms-inline'
 import { useGithubMarkdownForm } from 'react-tinacms-github'
 import { fileToUrl } from '../../utils/urls'
 import { OpenAuthoringSiteForm } from '../../components/layout/OpenAuthoringSiteForm'
@@ -19,6 +19,7 @@ import { useGithubEditing } from 'react-tinacms-github'
 import { Button } from '../../components/ui/Button'
 import Error from 'next/error'
 import { getMarkdownPreviewProps } from '../../utils/getMarkdownFile'
+import { InlineWysiwyg } from '../../components/inline-wysiwyg'
 
 function BlogTemplate({ file, siteConfig, preview }) {
   // fallback workaround

@@ -11,7 +11,6 @@ import {
 } from '../../../../components/layout'
 import { NextSeo } from 'next-seo'
 import { DocsNav, DocsPagination, Overlay } from '../../../../components/ui'
-import { InlineTextareaField, InlineWysiwyg } from 'react-tinacms-inline'
 import {
   DocsNavToggle,
   DocsMobileTinaIcon,
