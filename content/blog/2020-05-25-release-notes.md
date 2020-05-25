@@ -3,13 +3,6 @@ title: 2020-05-25 Release Notes
 date: '2020-05-25T09:53:43-03:00'
 author: Nolan Phillips
 ---
-Todo...
-
-* What is the core team's current objectives?
-* What was accomplished in the last week?
-* What's next for the core team?
-* Link to any relevant projects
-
 ## Changes
 
 ### Deprecations
