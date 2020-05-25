@@ -11,7 +11,7 @@ import {
   RichTextWrapper,
   MarkdownContent,
 } from '../components/layout'
-import { InlineWysiwyg, InlineTextareaField } from 'react-tinacms-inline'
+import { InlineTextareaField } from 'react-tinacms-inline'
 import { Button, ButtonGroup } from '../components/ui'
 import { EmailForm } from '../components/forms'
 import TwitterIconSvg from '../public/svg/twitter-icon.svg'
@@ -21,6 +21,7 @@ import { NextSeo } from 'next-seo'
 import { OpenAuthoringSiteForm } from '../components/layout/OpenAuthoringSiteForm'
 import { getJsonPreviewProps } from '../utils/getJsonPreviewProps'
 import { useGithubJsonForm } from 'react-tinacms-github'
+import { InlineWysiwyg } from '../components/inline-wysiwyg'
 
 function CommunityPage({ file: community, metadata, preview }) {
   // Registers Tina Form

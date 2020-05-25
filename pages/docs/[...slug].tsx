@@ -16,12 +16,13 @@ import {
   Overlay,
   DocsPagination,
 } from '../../components/ui'
-import { InlineWysiwyg, InlineTextareaField } from 'react-tinacms-inline'
+import { InlineTextareaField, useInlineForm } from 'react-tinacms-inline'
 import { TinaIcon } from '../../components/logo'
 import { useGithubMarkdownForm } from 'react-tinacms-github'
 import { getDocProps } from '../../utils/docs/getDocProps'
 import { OpenAuthoringSiteForm } from '../../components/layout/OpenAuthoringSiteForm'
 import { GithubError } from 'next-tinacms-github'
+import { InlineWysiwyg } from '../../components/inline-wysiwyg'
 
 function DocTemplate(props) {
   // Registers Tina Form
