@@ -27,7 +27,7 @@ import { InlineForm, InlineWysiwyg } from 'react-tinacms-inline'
 
 // Example 'Page' Component
 export function Page(props) {
-  const [data, form] = useLocalForm(props.data)
+  const [data, form] = useForm(props.data)
   usePlugin(form)
   return (
     <InlineForm form={form}>
