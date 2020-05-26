@@ -8,7 +8,6 @@ consumes:
   - file: /packages/react-tinacms-inline/src/inline-field.tsx
     description: Depends on InlineField
 ---
-
 The `InlineTextareaField` component represents a **multi-line text input**. It should be used for content values that are long strings: for example, a page description.
 
 ## Definition
@@ -16,12 +15,13 @@ The `InlineTextareaField` component represents a **multi-line text input**. It s
 Below is an example of how `InlineTextareaField` may be used in an [Inline Form](/docs/inline-editing).
 
 ```jsx
-import { useLocalForm } from 'tinacms'
+import { useForm, usePlugin } from 'tinacms'
 import { InlineForm, InlineTextareaField } from 'react-tinacms-inline'
 
 // Example 'Page' Component
 export function Page(props) {
-  const [, form] = useLocalForm(props.data)
+  const [, form] = useForm(props.data)
+  usePlugin(form)
   return (
     <InlineForm form={form}>
       <h3>
@@ -36,8 +36,8 @@ export function Page(props) {
 
 ## Options
 
-| Key    | Description                                      |
-| ------ | ------------------------------------------------ |
+| Key | Description |
+| --- | --- |
 | `name` | The path to some value in the data being edited. |
 
 ## Interface
