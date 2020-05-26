@@ -8,7 +8,6 @@ consumes:
   - file: /packages/react-tinacms-inline/src/inline-field.tsx
     description: Depends on InlineField
 ---
-
 The `InlineTextField` component represents a **single line text input**. It should be used for content values that are short strings, for example, a page title.
 
 ## Definition
@@ -16,12 +15,15 @@ The `InlineTextField` component represents a **single line text input**. It shou
 Below is an example of how `InlineTextField` may be used in an [Inline Form](/docs/inline-editing).
 
 ```jsx
-import { useLocalForm } from 'tinacms'
+import { useForm, usePlugin } from 'tinacms'
 import { InlineForm, InlineTextField } from 'react-tinacms-inline'
 
 // Example 'Page' Component
 export function Page(props) {
-  const [, form] = useLocalForm(props.data)
+  const [, form] = useForm(props.data)
+  
+  usePlugin(form)
+  
   return (
     <InlineForm form={form}>
       <h1>
@@ -36,8 +38,8 @@ export function Page(props) {
 
 ## Options
 
-| Key    | Description                                      |
-| ------ | ------------------------------------------------ |
+| Key | Description |
+| --- | --- |
 | `name` | The path to some value in the data being edited. |
 
 ## Interface
