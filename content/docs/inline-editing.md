@@ -8,10 +8,9 @@ consumes:
   - file: /packages/react-tinacms-inline/src/inline-field.tsx
     description: InlineField
 ---
-
 _Inline Editing_ in Tina refers to editing values directly in the area they appear on the page, instead of in the Tina sidebar. These are the **general steps** to set up inline editing:
 
-1. [Configure _InlineForm_](/docs/inline-editing#adding-inline-editing-with-inlineform)
+1. [Configure ](/docs/inline-editing#adding-inline-editing-with-inlineform)_[InlineForm](/docs/inline-editing#adding-inline-editing-with-inlineform)_
 2. [Add Inline Fields](/docs/inline-editing#using-preconfigured-inline-fields)
 3. [Set up Inline Controls](/docs/inline-editing#set-up-inline-form-controls)
 
@@ -46,10 +45,13 @@ Let's take a modified version of the simplistic example from the [form documenta
 ```jsx
 import * as React from React
 import ReactMarkdown from 'react-markdown'
-import { useLocalForm } from 'tinacms'
+import { useForm, usePlugin } from 'tinacms'
 
 export function Page(props) {
-  const [modifiedValues, form] = useLocalForm(props.data)
+  const [modifiedValues, form] = useForm(props.data)
+  
+  usePlugin(form)
+  
   return (
     <main>
       <h1>{modifiedValues.title}</h1>
@@ -57,7 +59,6 @@ export function Page(props) {
     </main>
   )
 }
-
 ```
 
 Using `InlineForm` and `InlineField` from `react-tinacms-inline`, we would rewrite the Page component as follows:
@@ -102,18 +103,16 @@ export function Page(props) {
 }
 ```
 
-> Note that we switched the call to `useLocalForm` with a call to `useForm`. This will prevent the form from showing in the Tina sidebar. If you want the form to **also be available in the sidebar**, `useForm` can be replaced with `useLocalForm`, or any other _helper hook_ that registers a form with the sidebar: [`useLocalJsonForm`](/docs/nextjs/creating-forms#adding-a-form-for-json-with-uselocaljsonform), [`useLocalRemarkForm`](https://tinacms.org/docs/gatsby/markdown/#1-the-hook-uselocalremarkform) etc.
-
 ## Using pre-configured Inline Fields
 
 When using `InlineField`, you can create a custom _Inline Field_. This is helpful when you need precise control over rendering or input functionality.
 
 However, Tina provides a set of pre-configured Inline Fields that should **work for many use cases**. These fields provide basic input elements and handle the rendering logic between edit and preview mode.
 
-- [Inline Text](/docs/inline-editing/inline-text)
-- [Inline Textarea](/docs/inline-editing/inline-textarea)
-- [Inline Wysiwyg](/docs/inline-editing/inline-wysiwyg)
-- [Inline Image](/docs/inline-editing/inline-image)
+* [Inline Text](/docs/inline-editing/inline-text)
+* [Inline Textarea](/docs/inline-editing/inline-textarea)
+* [Inline Wysiwyg](/docs/inline-editing/inline-wysiwyg)
+* [Inline Image](/docs/inline-editing/inline-image)
 
 **Refactoring the above example** with Inline Fields:
 
