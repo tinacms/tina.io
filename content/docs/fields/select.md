@@ -1,7 +1,7 @@
 ---
 title: Select Field
 prev: /docs/fields/toggle
-next: /docs/fields/group
+next: /docs/fields/tags
 consumes:
   - file: /packages/@tinacms/fields/src/Select.tsx
     details: Shows select field and Option interfaces
@@ -15,7 +15,7 @@ The `select` field represents a select element.
 
 ## Definition
 
-Below is an example of how a `select` field could be defined in a [form](http://localhost:3000/docs/forms). Read more on passing in [form field options](/docs/gatsby/markdown#customizing-remark-forms)) for Gatsby.
+Below is an example of how a `select` field could be defined in a [form](/docs/forms). Read more on passing in [form field options](/docs/gatsby/markdown#customizing-remark-forms)) for Gatsby.
 
 ```javascript
 const BlogPostForm = {
