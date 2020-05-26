@@ -11,6 +11,24 @@ The `markdown` field represents a chunk of Markdown content. This field is typic
 
 ![tinacms-markdown-field](/img/fields/markdown.png)
 
+## Adding the Plugin
+
+The `markdown` field plugin is not a default plugin. In order to use it in your site you must install the `react-tinacms-editor` package:
+
+```
+yarn add react-tinacms-editor
+```
+
+You can then add it to your cms:
+
+```ts
+import { MarkdownFieldPlugin } from 'react-tinacms-editor'
+
+cms.plugins.add(MarkdownFieldPlugin)
+```
+
+> Visit the [plugins](/docs/cms/plugins) doc to learn how to reduce your initial bundle size by dynamically loading & registering the plugins.
+
 ## Definition
 
 Below is an example of how a `markdown` field could be defined in a Gatsby remark form. [Read more on passing in form field options](/docs/gatsby/markdown#customizing-remark-forms).
