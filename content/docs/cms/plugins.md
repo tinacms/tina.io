@@ -77,7 +77,6 @@ If you're using React this can be done inside of a component:
 ```tsx
 import * as React from 'react'
 import { usePlugins } from 'tinacms'
-import { HtmlFieldPlugin, MarkdownFieldPlugin } from 'react-tinacms-editor'
 
 export function SomeComponent({ children }) {
   React.useEffect(() => {
