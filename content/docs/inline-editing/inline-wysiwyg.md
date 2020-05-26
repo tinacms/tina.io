@@ -14,7 +14,6 @@ consumes:
   - file: /packages/react-tinacms-editor/src/types.ts
     description: Depends on `ImageProps`
 ---
-
 The `InlineWysiwyg` field represents a chunk of Markdown or HTML content.
 
 ## Definition
@@ -23,12 +22,13 @@ Below is an example of how an `InlineWysiwyg` field could be defined in an [Inli
 
 ```jsx
 import ReactMarkdown from 'react-markdown'
-import { useLocalForm } from 'tinacms'
+import { useForm, usePlugin } from 'tinacms'
 import { InlineForm, InlineWysiwyg } from 'react-tinacms-inline'
 
 // Example 'Page' Component
 export function Page(props) {
   const [data, form] = useLocalForm(props.data)
+  usePlugin(form)
   return (
     <InlineForm form={form}>
       <InlineWysiwyg name="markdownBody" format="markdown">
@@ -41,13 +41,13 @@ export function Page(props) {
 
 ## Options
 
-| Key           | Description                                                                                  |
-| ------------- | -------------------------------------------------------------------------------------------- |
-| `name`        | The path to some value in the data being edited.                                             |
-| `children`    | Child components to render.                                                                  |
-| `sticky?`     | A boolean determining whether the Wysiwyg Toolbar 'sticks' to the top of the page on scroll. |
-| `format?`     | This value denotes whether Markdown or HTML will be rendered.                                |
-| `imageProps?` | Configures how images in the Wysiwyg are uploaded and rendered.                              |
+| Key | Description |
+| --- | --- |
+| `name` | The path to some value in the data being edited. |
+| `children` | Child components to render. |
+| `sticky?` | A boolean determining whether the Wysiwyg Toolbar 'sticks' to the top of the page on scroll. |
+| `format?` | This value denotes whether Markdown or HTML will be rendered. |
+| `imageProps?` | Configures how images in the Wysiwyg are uploaded and rendered. |
 
 ## Interface
 
