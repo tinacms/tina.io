@@ -67,8 +67,7 @@ The image above shows the _InlineTextarea_ field in use with Blocks Controls.
 - [Text](/docs/inline-editing/inline-text)
 - [Textarea](/docs/inline-editing/inline-textarea)
 - [Image](/docs/inline-editing/inline-image)
-
-<!-- TODO: add inline group to this -->
+- [Group](/docs/inline-editing/inline-group)
 
 ### Part 2: Block Template
 
@@ -290,3 +289,5 @@ export default function IndexBlocks({ jsonFile }) {
   )
 }
 ```
+
+<!--  TODO: add info on nested blocks, or write a guide?-->
