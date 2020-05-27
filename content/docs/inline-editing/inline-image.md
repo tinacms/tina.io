@@ -1,5 +1,5 @@
 ---
-title: Inline Image Field
+title: Inline Image
 prev: /docs/inline-editing/inline-wysiwyg
 next: /docs/inline-editing/inline-group
 consumes:
