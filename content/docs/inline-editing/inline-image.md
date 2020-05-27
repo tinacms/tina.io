@@ -46,6 +46,7 @@ There are two ways to use `InlineImage`, with and without children. If no childr
 | `parse`      | Defines how the actual front matter or data value gets populated. The name of the file gets passed as an argument, and one can set the path this image as defined by the uploadDir property.                |
 | `uploadDir`  | Defines the upload directory for the image. All of the post data is passed in, `fileRelativePath` is most useful in defining the upload directory, but you can also statically define the upload directory. |
 | `previewSrc` | Defines the path for the src attribute on the image preview. If using gatsby-image, the path to the `childImageSharp.fluid.src` needs to be provided.                                                       |
+| `focusRing`  | Controls whether to display a focus outline                                                                                                                                                                 |
 | `children`   | Any child elements.                                                                                                                                                                                         |
 
 ---
@@ -53,11 +54,12 @@ There are two ways to use `InlineImage`, with and without children. If no childr
 ## Interface
 
 ```typescript
-export interface InlineImageProps {
+interface InlineImageProps {
   name: string
   parse(filename: string): string
   uploadDir(form: Form): string
   previewSrc(formValues: any): string
+  focusRing?: boolean
   children?: any
 }
 ```

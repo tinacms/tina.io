@@ -37,14 +37,16 @@ export function Page(props) {
 
 ## Options
 
-| Key    | Description                                      |
-| ------ | ------------------------------------------------ |
-| `name` | The path to some value in the data being edited. |
+| Key         | Description                                      |
+| ----------- | ------------------------------------------------ |
+| `name`      | The path to some value in the data being edited. |
+| `focusRing` | Controls whether to display a focus outline      |
 
 ## Interface
 
 ```typescript
-export interface InlineTextareaProps {
+interface InlineTextareaProps {
   name: string
+  focusRing?: boolean
 }
 ```
