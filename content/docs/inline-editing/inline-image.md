@@ -1,7 +1,7 @@
 ---
 title: Inline Image Field
 prev: /docs/inline-editing/inline-wysiwyg
-next: /docs/inline-blocks
+next: /docs/inline-editing/inline-group
 consumes:
   - file: /packages/react-tinacms-inline/src/inline-field-image.tsx
     description: Shows InlineImage
