@@ -13,7 +13,7 @@ The aim of TinaCMS is to let developers create amazing editing experiences. A la
 
 ### Project 2: Cross-platform GitHub Workflow
 
-Our current workflow for using TinaCMS with GitHub requires developers to use Next.js, and involves running a lot of server-side code. In order to expand the range of possible use-cases, we will be spending some to figure out how to create a vendor-agnostic workflow for GitHub; the eventual goal is to support a GitHub-based workflow for people building sites with Create React App, Gatsby, or any other SSG.
+Our current workflow for using TinaCMS with GitHub requires developers to use Next.js, and involves running a lot of server-side code. In order to expand the range of possible use-cases, we will be spending some time to figure out how to create a vendor-agnostic workflow for GitHub; the eventual goal is to support a GitHub-based workflow for people building sites with Create React App, Gatsby, or any other SSG.
 
 ## Deprecation
 
