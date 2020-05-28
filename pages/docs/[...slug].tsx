@@ -23,6 +23,7 @@ import { getDocProps } from '../../utils/docs/getDocProps'
 import { OpenAuthoringSiteForm } from '../../components/layout/OpenAuthoringSiteForm'
 import { GithubError } from 'next-tinacms-github'
 import { InlineWysiwyg } from '../../components/inline-wysiwyg'
+import { usePlugin } from 'tinacms'
 
 function DocTemplate(props) {
   // Registers Tina Form
@@ -31,6 +32,8 @@ function DocTemplate(props) {
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
   const excerpt = props.file.data.excerpt
+
+  usePlugin(form)
 
   return (
     <OpenAuthoringSiteForm

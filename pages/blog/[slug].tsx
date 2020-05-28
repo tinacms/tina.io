@@ -20,6 +20,7 @@ import { Button } from '../../components/ui/Button'
 import Error from 'next/error'
 import { getMarkdownPreviewProps } from '../../utils/getMarkdownFile'
 import { InlineWysiwyg } from '../../components/inline-wysiwyg'
+import { usePlugin } from 'tinacms'
 
 function BlogTemplate({ file, siteConfig, preview }) {
   // fallback workaround
@@ -29,6 +30,8 @@ function BlogTemplate({ file, siteConfig, preview }) {
 
   // Registers Tina Form
   const [data, form] = useGithubMarkdownForm(file, formOptions)
+
+  usePlugin(form)
 
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
