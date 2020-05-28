@@ -4,7 +4,7 @@ id: introduction
 prev: null
 next: /docs/getting-started/how-tina-works
 ---
-Tina is a **lightweight but powerful toolkit** for creating a content editing interface with JavaScript components. Tina surfaces superpowers for developers to create an intuitive UI for real-time content editing, built directly into their website.
+Tina is a **lightweight but powerful toolkit** for creating a content editing interface with JavaScript components. TinaCMS surfaces superpowers for developers to create an intuitive UI for real-time content editing, built directly into their website.
 
 ## The Next Generation of Content Management
 
