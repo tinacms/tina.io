@@ -23,7 +23,8 @@ Below is an example of how an `InlineWysiwyg` field could be defined in an [Inli
 ```jsx
 import ReactMarkdown from 'react-markdown'
 import { useForm, usePlugin } from 'tinacms'
-import { InlineForm, InlineWysiwyg } from 'react-tinacms-inline'
+import { InlineForm } from 'react-tinacms-inline'
+import { InlineWysiwyg }from 'react-tinacms-editor'
 
 // Example 'Page' Component
 export function Page(props) {
