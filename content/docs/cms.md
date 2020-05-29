@@ -32,8 +32,9 @@ The `TinaCMS` constructor receives an object that can be used to configure CMS b
 
 The `<TinaProvider>` component should wrap your entire site. It provides the following:
 
-1. The user interface for interacting with Tina, and
-2. A [Context](https://reactjs.org/docs/context.html) for accessing the CMS object via the [useCMS](#accessing-the-cms-object) hook.
+1. The user interface for interacting with Tina.
+2. A custom [theme](/docs/cms/styles) to style the interface, and
+3. A [Context](https://reactjs.org/docs/context.html) for accessing the CMS object via the [useCMS](#accessing-the-cms-object) hook.
 
 After instantiating the CMS object, pass it to the `<TinaProvider>` component via its `cms` prop.
 
@@ -51,6 +52,8 @@ export default function App() {
   )
 }
 ```
+
+> Learn more about [conditionally loading Tina Styles](/docs/cms/styles#dynamically-loading-tina-styles).
 
 Alternatively, you can use the `withTina` higher-order component to wrap your site with the `<TinaProvider>` component. `withTina` will automatically instantiate the CMS object.
 
