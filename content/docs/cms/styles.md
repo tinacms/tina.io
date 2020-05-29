@@ -150,6 +150,8 @@ In this example, the Tina `Theme` won't render in production. This means the CSS
 
 ### Example: Only load _GlobalStyles_
 
+**pages/\_app.js**
+
 ```js
 import React from 'react'
 import App from 'next/app'
@@ -173,4 +175,4 @@ export default class Site extends App {
 }
 ```
 
-In this example, the `GlobalStyles`(as `TinaStyles`) are manually imported and rendered and the 'Inter' font will not load.
+In this example, only the `GlobalStyles`(as `TinaStyles`) are manually imported and rendered, while the **'Inter' font will not load**.
