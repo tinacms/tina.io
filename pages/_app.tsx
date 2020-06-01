@@ -11,6 +11,7 @@ import { GithubClient, TinacmsGithubProvider } from 'react-tinacms-github'
 
 const MainLayout = ({ Component, pageProps }) => {
   const tinaConfig = {
+    enabled: pageProps.preview,
     apis: {
       github: new GithubClient({
         proxy: '/api/proxy-github',
