@@ -7,8 +7,8 @@ next: /docs/forms
 The `@tinacms/styles` package serves as the foundation for all Tina UI components. It contains a number of related elements:
 
 - Definitions for a range of CSS custom properties that define color, spacing, sizing & timing of Tina components.
-- `GlobalStyles`, which applies the custom properties alongside an import for [Inter](https://rsms.me/inter/).
-- `TinaReset`, a wrapper component that applies `TinaResetStyles`.
+- `Theme` — this contains `GlobalStyles` (for Tina CSS custom properties) and a `FontLoader` for [Inter](https://rsms.me/inter/).
+- `ResetStyles`— a wrapper component that applies `TinaResetStyles` CSS.
 - The `Button` & `IconButton` components which are used throughout Tina.
 
 ## CSS Custom Properties
@@ -114,3 +114,65 @@ export const MyComponent = () => {
   }
 )
 ```
+
+## Dynamically loading Tina styles
+
+By default, the `TinaProvider` component will add the `Theme` to your project. You can use the `styled` prop to conditionally render the theme. By default, the `TinaProvider` will load the `Theme` if the CMS is enabled and no `styled` prop has been passed.
+
+### Example: Load styles based on environment variable
+
+**pages/\_app.js**
+
+```js
+import App from 'next/app'
+import { TinaProvider, TinaCMS } from 'tinacms'
+
+export default class Site extends App {
+  constructor() {
+    //...
+  }
+
+  render() {
+    const { Component, pageProps } = this.props
+    return (
+      <TinaProvider
+        cms={this.cms}
+        styled={process.env.NODE_ENV === 'production'}
+      >
+        <Component {...pageProps} />
+      </TinaProvider>
+    )
+  }
+}
+```
+
+In this example, the Tina `Theme` won't render in production. This means the CSS custom properties won't register and the custom 'Inter' font won't load.
+
+### Example: Only load _GlobalStyles_
+
+**pages/\_app.js**
+
+```js
+import React from 'react'
+import App from 'next/app'
+import { TinaProvider, TinaCMS } from 'tinacms'
+import { GlobalStyles as TinaStyles } from '@tinacms/styles'
+
+export default class Site extends App {
+  constructor() {
+    //...
+  }
+
+  render() {
+    const { Component, pageProps } = this.props
+    return (
+      <TinaProvider cms={this.cms} styled={false}>
+        <TinaStyles />
+        <Component {...pageProps} />
+      </TinaProvider>
+    )
+  }
+}
+```
+
+In this example, only the `GlobalStyles`(as `TinaStyles`) are manually imported and rendered, while the **'Inter' font will not load**.

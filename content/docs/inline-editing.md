@@ -114,6 +114,11 @@ However, Tina provides a set of pre-configured Inline Fields that should **work 
 - [Inline Textarea](/docs/inline-editing/inline-textarea)
 - [Inline Wysiwyg](/docs/inline-editing/inline-wysiwyg)
 - [Inline Image](/docs/inline-editing/inline-image)
+<<<<<<< HEAD
+=======
+- [Inline Group](/docs/inline-editing/inline-group)
+- [Inline Blocks](/docs/inline-editing/inline-blocks)
+>>>>>>> master
 
 **Refactoring the above example** with Inline Fields:
 

@@ -1,7 +1,7 @@
 ---
 title: Inline Blocks
-prev: /docs/inline-editing
-next: /docs/inline-blocks/block-text
+prev: /docs/inline-editing/inline-group
+next:
 consumes:
   - file: /packages/react-tinacms-inline/src/inline-form.tsx
     description: InlineForm & useInlineForm
@@ -14,6 +14,7 @@ consumes:
   - file: /packages/react-modals/src/ModalProvider.tsx
     description: Uses ModalProvider for Block Settings
 ---
+
 Inline Blocks combine the content modelling flexibility of regular [Blocks](/blog/what-are-blocks) with the improved editing experience of [Inline Editing](/docs/inline-editing).
 
 > **Please note:** This is considered an unstable API. Any breaking changes will be shared in the weekly [Release Notes](/blog). That said, we will do our best to keep this document up-to-date.
@@ -34,13 +35,13 @@ interface Block {
 ### Part 1: Block Component
 
 ```jsx
-import { BlocksControls, BlockTextArea } from 'react-tinacms-inline'
+import { BlocksControls, InlineTextarea } from 'react-tinacms-inline'
 
 // Example 'Heading' Block
 export function Heading(props) {
   return (
     <BlocksControls index={props.index}>
-      <BlockTextarea name="text" />
+      <InlineTextarea name="text" />
     </BlocksControls>
   )
 }
@@ -55,17 +56,18 @@ interface BlockComponentProps {
 }
 ```
 
-Since it **renders in 'edit mode,'** this component should display `BlocksControls` and at least one _Block Field_. `BlocksControls` is the UI for editing, deleting, or moving blocks. A _Block Field_ is, at its most basic, an inline input field stripped of styling to blend in with the site.
+Since it **renders in 'edit mode,'** this component should display `BlocksControls` and at least one _Inline Field_. `BlocksControls` is the UI for editing, deleting, or moving blocks. An _Inline Field_ is, at its most basic, an input field stripped of styling to blend in with the site.
 
 ![TinaCMS: Inline Block Controls](/img/inline-blocks/block-controls.png)
 
-The image above shows the _Textarea Block_ field in use.
+The image above shows the _InlineTextarea_ field in use with Blocks Controls.
 
-**Available Block Fields**:
+**Additional Available Inline Fields**:
 
-* [Text Block](/docs/inline-blocks/block-text)
-* [Textarea Block](/docs/inline-blocks/block-textarea)
-* [Image Block](/docs/inline-blocks/block-image)
+- [Text](/docs/inline-editing/inline-text)
+- [Textarea](/docs/inline-editing/inline-textarea)
+- [Image](/docs/inline-editing/inline-image)
+- [Group](/docs/inline-editing/inline-group)
 
 ### Part 2: Block Template
 
@@ -83,13 +85,13 @@ export const heading_template = {
 
 The _Inline Block Template_ **configures the block** with the CMS. It has a similar shape to a Regular [Block Template](/docs/fields/blocks#block-template-options) definition.
 
-| Key | Type | Purpose |
-| --- | :---: | ---: |
-| `type` | `string` | This value connects source block data with the template. |
-| `label` | `string` | A human readable label. |
-| `defaultItem?` | `object \| (() => object)` | Populates new blocks with default data. |
-| `key` | `string` | A unique value to optimize the [rendering of the list](https://reactjs.org/docs/lists-and-keys.html) |
-| `fields` | `Array` | Populates fields in the [Settings Modal](link to settings modal). |
+| Key            |            Type            |                                                                                              Purpose |
+| -------------- | :------------------------: | ---------------------------------------------------------------------------------------------------: |
+| `type`         |          `string`          |                                             This value connects source block data with the template. |
+| `label`        |          `string`          |                                                                              A human readable label. |
+| `defaultItem?` | `object \| (() => object)` |                                                              Populates new blocks with default data. |
+| `key`          |          `string`          | A unique value to optimize the [rendering of the list](https://reactjs.org/docs/lists-and-keys.html) |
+| `fields`       |          `Array`           |                                    Populates fields in the [Settings Modal](link to settings modal). |
 
 ## Configuring Inline Blocks with Inline Form
 
@@ -167,9 +169,9 @@ interface InlineBlocksProps {
 }
 ```
 
-| Key | Type | Purpose |
-| --- | :---: | ---: |
-| `name` | `string` | The path to the **source data** for the blocks. |
+| Key      |   Type   |                                                                                         Purpose |
+| -------- | :------: | ----------------------------------------------------------------------------------------------: |
+| `name`   | `string` |                                                 The path to the **source data** for the blocks. |
 | `blocks` | `object` | An object composed of individual [Blocks](/docs/inline-editing/inline-blocks#creating-a-block). |
 
 ### Blocks Source Data
@@ -244,8 +246,9 @@ export function Image({ data, index }) {
     <>
       <div>
         <BlocksControls index={index}>
-          <BlockImage
+          <InlineImage
             name="src"
+            previewSrc={formValues => formValues.blocks[index].src}
             parse={filename => `/img/${filename}`}
             uploadDir={() => '/public/img/'}
           >
@@ -254,7 +257,7 @@ export function Image({ data, index }) {
              ** 'settings' is consumed
              */}
             <img src={data.src} alt={data.alt} />
-          </BlockImage>
+          </InlineImage>
         </BlocksControls>
       </div>
     </>
@@ -286,3 +289,5 @@ export default function IndexBlocks({ jsonFile }) {
   )
 }
 ```
+
+<!--  TODO: add info on nested blocks, or write a guide?-->
