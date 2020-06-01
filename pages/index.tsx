@@ -244,8 +244,6 @@ const selling_point_template: BlockTemplate = {
       'It’s pretty much my favorite animal. It’s like a lion and a tiger mixed… bred for its skills in magic.',
     color: 'Orange (Primary)',
   },
-  // TODO: figure out what to do with keys
-  key: undefined,
   fields: [
     {
       label: 'Title Color',
@@ -280,7 +278,6 @@ const setup_point_template: BlockTemplate = {
   defaultItem: {
     step: 'Make yourself a dang quesadilla',
   },
-  key: undefined,
   fields: [],
 }
 
