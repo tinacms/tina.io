@@ -200,24 +200,19 @@
         "title": "Overview"
       },
       {
-        "id": "/docs/nextjs/bootstrapping",
-        "slug": "/docs/nextjs/bootstrapping",
-        "title": "Bootstrapping Tina"
+        "id": "/docs/nextjs/next-tinacms-github",
+        "slug": "/docs/nextjs/next-tinacms-github",
+        "title": "next-tinacms-github"
       },
       {
-        "id": "/docs/nextjs/adding-backends",
-        "slug": "/docs/nextjs/adding-backends",
-        "title": "Adding a Backend"
+        "id": "/docs/nextjs/next-tinacms-json",
+        "slug": "/docs/nextjs/next-tinacms-json",
+        "title": "next-tinacms-json"
       },
       {
-        "id": "/docs/nextjs/creating-forms",
-        "slug": "/docs/nextjs/creating-forms",
-        "title": "Creating Forms"
-      },
-      {
-        "id": "/docs/nextjs/markdown",
-        "slug": "/docs/nextjs/markdown",
-        "title": "Using Markdown Files"
+        "id": "/docs/nextjs/next-tinacms-markdown",
+        "slug": "/docs/nextjs/next-tinacms-markdown",
+        "title": "next-tinacms-markdown"
       }
     ]
   },

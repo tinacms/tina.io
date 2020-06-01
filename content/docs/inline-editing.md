@@ -8,6 +8,7 @@ consumes:
   - file: /packages/react-tinacms-inline/src/inline-field.tsx
     description: InlineField
 ---
+
 _Inline Editing_ in Tina refers to editing values directly in the area they appear on the page, instead of in the Tina sidebar. These are the **general steps** to set up inline editing:
 
 1. [Configure ](/docs/inline-editing#adding-inline-editing-with-inlineform)_[InlineForm](/docs/inline-editing#adding-inline-editing-with-inlineform)_
@@ -49,9 +50,9 @@ import { useForm, usePlugin } from 'tinacms'
 
 export function Page(props) {
   const [modifiedValues, form] = useForm(props.data)
-  
+
   usePlugin(form)
-  
+
   return (
     <main>
       <h1>{modifiedValues.title}</h1>
@@ -109,10 +110,10 @@ When using `InlineField`, you can create a custom _Inline Field_. This is helpfu
 
 However, Tina provides a set of pre-configured Inline Fields that should **work for many use cases**. These fields provide basic input elements and handle the rendering logic between edit and preview mode.
 
-* [Inline Text](/docs/inline-editing/inline-text)
-* [Inline Textarea](/docs/inline-editing/inline-textarea)
-* [Inline Wysiwyg](/docs/inline-editing/inline-wysiwyg)
-* [Inline Image](/docs/inline-editing/inline-image)
+- [Inline Text](/docs/inline-editing/inline-text)
+- [Inline Textarea](/docs/inline-editing/inline-textarea)
+- [Inline Wysiwyg](/docs/inline-editing/inline-wysiwyg)
+- [Inline Image](/docs/inline-editing/inline-image)
 
 **Refactoring the above example** with Inline Fields:
 

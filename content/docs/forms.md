@@ -23,8 +23,8 @@ consumes:
 >
 > - [Editing Markdown Files with Gatsby](/docs/gatsby/markdown)
 > - [Editing JSON Files with Gatsby](/docs/gatsby/json)
-> - [Editing Markdown Files with Next.js](/docs/nextjs/markdown)
-> - [Editing JSON Files with Next.js](/docs/nextjs/creating-forms)
+> - [Editing local Markdown Files via Git with Next.js](/guides/nextjs/git-based/using-markdown)
+> - [Editing local JSON Files via Git with Next.js](/guides/nextjs/git-based/creating-git-forms)
 
 The recommended way to create forms with Tina is to use the form hooks. These are explained in detail later on in this document, but let's start with a high-level overview of how form hooks are used.
 
@@ -203,7 +203,7 @@ interface WatchableFormValue {
 
 ### Form Helpers
 
-The three hooks described thus far are the basic interface for creating forms, and they aim to support a broad set of use cases. For specific use cases, we've created some simplified interfaces for quickly setting up forms. Take a look at our [Next.js form docs](/docs/nextjs/creating-forms) and [Gatsby docs](/docs/gatsby/markdown) to learn how to use these.
+The three hooks described thus far are the basic interface for creating forms, and they aim to support a broad set of use cases. For specific use cases, we've created some simplified interfaces for quickly setting up forms. Take a look at our [Next.js form docs](/guides/nextjs/git-based/creating-git-forms) and [Gatsby docs](/docs/gatsby/markdown) to learn how to use these.
 
 ## Inline Forms
 

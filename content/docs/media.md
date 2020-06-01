@@ -43,5 +43,5 @@ cms.media.store = new MyMediaStore()
 
 > #### Supported Media Stores
 >
-> - [`GitMediaStore`](/docs/nextjs/adding-backends): Saves media to your Git repository by writing to the local system and commiting directly.
+> - [`GitMediaStore`](/guides/nextjs/git-based/adding-backend): Saves media to your Git repository by writing to the local system and commiting directly.
 > - `GithubMediaStore`: **Coming Soon.** Saves media to to your Git repository through the Github API.
