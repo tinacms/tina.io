@@ -5,9 +5,10 @@ import { TinaCMS, TinaProvider, ModalProvider } from 'tinacms'
 import { DefaultSeo } from 'next-seo'
 import data from '../content/siteConfig.json'
 import TagManager from 'react-gtm-module'
-import { GlobalStyle } from '../components/styles/GlobalStyle'
+import { GlobalStyles, FontLoader } from '@tinacms/styles'
 import { BrowserStorageApi } from '../utils/plugins/browser-storage-api/BrowserStorageApi'
 import { GithubClient, TinacmsGithubProvider } from 'react-tinacms-github'
+import { GlobalStyle } from '../components/styles/GlobalStyle'
 
 const MainLayout = ({ Component, pageProps }) => {
   const tinaConfig = {
@@ -46,8 +47,12 @@ const MainLayout = ({ Component, pageProps }) => {
     })
   }
 
+  const loadFonts = useShouldLoadFont(cms)
+
   return (
-    <TinaProvider cms={cms}>
+    <TinaProvider cms={cms} styled={false}>
+      <GlobalStyles />
+      {loadFonts && <FontLoader />}
       <ModalProvider>
         <TinacmsGithubProvider
           enterEditMode={enterEditMode}
@@ -89,6 +94,19 @@ const MainLayout = ({ Component, pageProps }) => {
       </ModalProvider>
     </TinaProvider>
   )
+}
+
+function useShouldLoadFont(cms: TinaCMS) {
+  const [enabled, setEnabled] = React.useState(cms.enabled)
+
+  React.useEffect(() => {
+    if (cms.enabled) return
+    return cms.events.subscribe('cms:enable', () => {
+      setEnabled(true)
+    })
+  }, [])
+
+  return enabled
 }
 
 class Site extends App {
