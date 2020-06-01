@@ -8766,10 +8766,10 @@ react-textarea-autosize@>=7.1, react-textarea-autosize@^7.1.2:
     "@babel/runtime" "^7.1.2"
     prop-types "^15.6.0"
 
-react-tinacms-editor@^0.7.1:
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/react-tinacms-editor/-/react-tinacms-editor-0.7.1.tgz#4352fd5d4e3c54af590cc4e841bffcf700e678bb"
-  integrity sha512-6/S2JuobAWWBkc9ggZvTE16YPwwoJOQ5eEW4oCG4VOhVICrhjR1ixWsJNMBH9Y+3NopuWq2qK7qgopwuBgs7mg==
+react-tinacms-editor@^0.7.2:
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/react-tinacms-editor/-/react-tinacms-editor-0.7.2.tgz#4e5ef8ad3d696526bab48fca76c65bfe4e2fe796"
+  integrity sha512-URxGXWx8di0r735mkyjvwuvUs4v+LLFuFI6u+hyMQB3O7ALDTkr5abMYoD5lmcjgcjrcg+l7ZhRncD60FdVWiQ==
   dependencies:
     codemirror "^5.42.2"
     lodash.debounce "^4.0.8"
