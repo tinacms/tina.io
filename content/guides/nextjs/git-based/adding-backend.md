@@ -1,8 +1,5 @@
 ---
 title: Adding a Backend
-id: /docs/nextjs/adding-backends
-prev: /docs/nextjs/bootstrapping
-next: /docs/nextjs/creating-forms
 consumes:
   - file: /packages/@tinacms/api-git/src/server.ts
     details: Demonstrates using Express server
@@ -15,12 +12,13 @@ consumes:
   - file: /packages/tinacms/src/tina-cms.tsx
     details: Creates cms instance with TinaCMS
 ---
-The `<TinaProvider>` component makes it possible to attach [forms](/docs/forms) to the Tina sidebar, but we need to wire up a backend in order for content changes to be persisted anywhere. Let's set up the default Git backend.
 
-The Git backend consists of two parts:
+The `TinaProvider` component makes it possible to attach [forms](/docs/forms) to the Tina sidebar, but we need to wire up a backend in order for content changes to be persisted anywhere. Let's set up the default Git backend.
 
-1. The server-side application that handles file manipulation and interaction with the Git protocol, and
-2. The client-side adapter that allows forms registered with Tina to send data to the server-side app.
+**The Git backend consists of two parts:**
+
+1. The _server-side application_ that handles file manipulation and interaction with the Git protocol, and
+2. The _client-side adapter_ that allows forms registered with Tina to send data to the server-side app.
 
 Because backends in Tina are designed as Express-compatible middleware, we need a way to add middleware to our Next.js dev server. To do this, we will need to use Next.js with a [custom development server](https://nextjs.org/docs/advanced-features/custom-server) that will use Express and allow us to attach the Git middleware.
 
@@ -28,7 +26,9 @@ Because backends in Tina are designed as Express-compatible middleware, we need 
 
 Run the following installation command:
 
-    npm install express cors @tinacms/api-git @tinacms/git-client
+```bash
+yarn add express cors @tinacms/api-git @tinacms/git-client
+```
 
 ## Adding the Server-side Middleware
 
@@ -63,17 +63,18 @@ app.prepare().then(() => {
 
 In order to run this server instead of the default Next.js dev server, you will need to set up a script in your `package.json` file to run this file:
 
-```json
-  "scripts": {
-    "dev": "node server.js",
-    "build": "next build",
-    "start": "cross-env NODE_ENV=production node server.js"
-  }
+```diff
+   "scripts": {
+-    "dev": "next",
++    "dev": "node server.js",
+     "build": "next build",
+     "start": "cross-env NODE_ENV=production node server.js"
+   }
 ```
 
 ### Add Backend Middleware to the Dev Server
 
-As mentioned previously, backends in Tina are written as middleware that can be attached to any Express server. Now that we have our custom dev server running Express and handling requests, all that's left to do is attach the necessary middleware:
+As mentioned previously, backends in Tina are written as middleware that can be attached to any Express server. Now that we have our custom dev server running Express and handling requests, all that's left to do is attach the necessary middleware in `server.js`:
 
 ```diff
   const express = require('express')
@@ -108,9 +109,7 @@ As mentioned previously, backends in Tina are written as middleware that can be 
 
 ## Hooking up the Frontend
 
-All that's left is to configure the CMS to consume the Git API that now runs on the backend. We can do this easily with the `GitClient` class from the `@tinacms/git-client` package. To get started, install the package:
-
-    npm install @tinacms/git-client
+Now we need to configure the CMS to consume the Git API now running on the backend. We can do this easily with the `GitClient` class from the `@tinacms/git-client` package.
 
 When creating an instance of `GitClient`, we need to pass it the URL where the API endpoints can be reached. Since we're running the server locally on port 3000, the full URL to our Git backend is `http://localhost:3000/___tina`. We could then instantiate the Git client as follows:
 
@@ -118,9 +117,9 @@ When creating an instance of `GitClient`, we need to pass it the URL where the A
 const client = new GitClient('http://localhost:3000/___tina')
 ```
 
-We'll need to amend our `_app.js` application wrapper to register this with the CMS. We can attach APIs to our CMS using the `registerApi` method. We will also want to set [`cms.media.store`](/docs/media) so we can upload images for our site.
+We'll need to amend our `_app.js` application wrapper to register this with the CMS. We can pass [APIs](/docs/cms/apis), [Media](/docs/media), and [UI](/docs/cms/ui-components) settings in a config object to `TinaCMS`.
 
-The `_app.js` file should now look something like this:
+The `pages/_app.js` file should now look something like this:
 
 ```javascript
 import React from 'react'
@@ -131,10 +130,21 @@ import { GitClient, GitMediaStore } from '@tinacms/git-client'
 class MyApp extends App {
   constructor() {
     super()
-    this.cms = new TinaCMS()
+
     const client = new GitClient('http://localhost:3000/___tina')
-    this.cms.registerApi('git', client)
-    this.cms.media.store = new GitMediaStore(client)
+
+    this.cms = new TinaCMS({
+      apis: {
+        git: client,
+      },
+      media: {
+        store: new GitMediaStore(client),
+      },
+      sidebar: {
+        position: 'overlay',
+        hidden: false,
+      },
+    })
   }
 
   render() {
@@ -149,3 +159,5 @@ class MyApp extends App {
 
 export default MyApp
 ```
+
+If you restart the dev server, you should see an 'edit icon' in the lower left-hand corner. If you open that, you'll see and empty Tina sidebar! Let's create some forms to edit content from the sidebar.

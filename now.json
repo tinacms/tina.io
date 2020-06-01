@@ -55,6 +55,22 @@
     {
       "source": "/docs/inline-blocks/block-image",
       "destination": "/docs/inline-editing/inline-image"
+    },
+    {
+      "source": "/docs/nextjs/bootstrapping",
+      "destination": "/guides/nextjs/git-based/getting-started"
+    },
+    {
+      "source": "/docs/nextjs/adding-backends",
+      "destination": "/guides/nextjs/git-based/adding-backend"
+    },
+    {
+      "source": "/docs/nextjs/creating-forms",
+      "destination": "/guides/nextjs/git-based/creating-git-forms"
+    },
+    {
+      "source": "/docs/nextjs/markdown",
+      "destination": "/docs/nextjs/next-tinacms-markdown"
     }
   ]
 }
