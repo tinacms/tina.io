@@ -39,6 +39,22 @@
     {
       "source": "/docs/gatsby/inline-editing",
       "destination": "/docs/inline-editing"
+    },
+    {
+      "source": "/docs/inline-blocks",
+      "destination": "/docs/inline-editing/inline-blocks"
+    },
+    {
+      "source": "/docs/inline-blocks/block-text",
+      "destination": "/docs/inline-editing/inline-text"
+    },
+    {
+      "source": "/docs/inline-blocks/block-textarea",
+      "destination": "/docs/inline-editing/inline-textarea"
+    },
+    {
+      "source": "/docs/inline-blocks/block-image",
+      "destination": "/docs/inline-editing/inline-image"
     }
   ]
 }

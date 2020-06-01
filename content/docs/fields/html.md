@@ -9,8 +9,6 @@ consumes:
 
 The `html` field represents a chunk of HTML content.
 
-<!-- TODO: Check if this widget still works -->
-
 ![tinacms-markdown-field](/img/fields/markdown.png)
 
 ## Adding the Plugin
