@@ -1,28 +1,29 @@
 ---
-title: Adding gatsby-plugin-tinacms
+title: Project Setup
 ---
 
-Learn how to set up Tina on an existing Gatsby site.
+We're going to use the [Gatsby Starter Blog](https://www.gatsbyjs.org/starters/gatsbyjs/gatsby-starter-blog/) as the base for our project. Create a new project by running the following commands in your terminal:
 
-After this guide, you will have installed and added the TinaCMS sidebar to your project. However, this won't make your content editable. Go to the [next guide](/docs/gatsby/markdown) to learn how to make content editable.
-
-Assumptions: This guide assumes you have the Gatsby CLI installed, Node & a package manager.
-
-Note: Don't have a site yet? Refer to the [quickstart page](/docs/gatsby/quickstart).
-
-## Installation
-
-```
-npm install --save gatsby-plugin-tinacms styled-components
+```bash
+gatsby new gatsby-starter-blog https://github.com/gatsbyjs/gatsby-starter-blog
 ```
 
-or
+This will create a new blog starter in the `gatsby-starter-blog` directory. Navigate to the project directory and run `yarn dev` to start the website in dev mode.
+
+```bash
+cd gatsby-starter-blog
+gatsby develop
+```
+
+You will now be able to visit your site at https://localhost:8000
+
+## Installing
 
 ```
 yarn add gatsby-plugin-tinacms styled-components
 ```
 
-## Adding the Plugin
+## Add the Plugin
 
 Open your `gatsby-config.js` file and add `'gatsby-plugin-tinacms'` to the list of plugins:
 
@@ -35,12 +36,10 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-tinacms',
       options: {
-        sidebar: {
-          hidden: process.env.NODE_ENV === 'production',
-          position: 'displace',
-        },
+        // The CMS will be disabled on your production site
+        enabled: process.env.NODE_ENV !== 'production',
         plugins: [
-          // We'll add some Tinacms plugins in the next step.
+          // We'll add some gatsby-tinacms plugins later
         ],
       },
     },
@@ -51,7 +50,7 @@ module.exports = {
 
 ## Accessing the CMS
 
-1. **Start the Gatsby development server**
+1. **Restart the Gatsby development server**
 
    ```
    gatsby develop
