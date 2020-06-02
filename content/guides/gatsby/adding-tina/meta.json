@@ -14,12 +14,6 @@
       "data": "./project-setup.md"
     },
     {
-      "title": "Adding the Tina Provider",
-      "id": "/guides/gatsby/adding-tina/adding-tina-provider",
-      "slug": "/guides/gatsby/adding-tina/adding-tina-provider",
-      "data": "./adding-tina-provider.md"
-    },
-    {
       "title": "Creating Forms",
       "id": "/guides/gatsby/adding-tina/creating-forms",
       "slug": "/guides/gatsby/adding-tina/creating-forms",
