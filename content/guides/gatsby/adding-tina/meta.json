@@ -1,0 +1,11 @@
+{
+  "title": "Adding Tina to a Gatsby Site",
+  "steps": [
+    {
+      "title": "Add gatsby-plugin-tinacms",
+      "id": "/guides/gatsby/adding-tina/add-gatsby-plugin-tinacms",
+      "slug": "/guides/gatsby/adding-tina/add-gatsby-plugin-tinacms",
+      "data": "./add-gatsby-plugin-tinacms.md"
+    }
+  ]
+}
