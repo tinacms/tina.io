@@ -13,14 +13,10 @@ This guide is intended as a jumping off point to get you started with Tina, but 
 
 Our simplified example only exposes the title and post body to the Tina form. Take a look at our [fields](/docs/fields) documentation and try adding fields for the rest of the post data in the blog demo.
 
-> **Image Fields**
->
-> Support for image fields in Tina is still a work-in-progress. Handling images requires setting up a [media store](/docs/media) that integrates with your strategy for saving content. Expect more information on this front soon!
-
 ## Inline Editing
 
 Consider creating an **inline editing** experience for your blog, where content is edited directly where it appears on the site instead of in the sidebar. Take a look at our [inline editing docs](/docs/inline-editing) for more information, and expect a guide on this in the near future!
 
 ## Saving Content
 
-Editing content isn't much use if you can't save it! Our `onSubmit` handler doesn't really do anything right now. You can look at using the `gatsby-tinacms-git` to edit content Markdown and JSON sourced from your repository.
+Editing content isn't much use if you can't save it! Our `onSubmit` handler doesn't really do anything right now. You can look at using the [`gatsby-tinacms-git`](/docs/gatsby/markdown) to edit content Markdown and JSON sourced from your repository.
