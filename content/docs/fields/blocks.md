@@ -6,7 +6,6 @@ consumes:
   - file: /packages/tinacms/src/plugins/fields/BlocksFieldPlugin.tsx
     details: Shows blocks interface
 ---
-
 The **Blocks** field represents a list of items, similar to the [Group List](/docs/fields/group-list) field, but allows each entity in the list to have a unique shape.
 
 > For an in-depth explanation of the Blocks field, read our ["What are Blocks?"](/blog/what-are-blocks/) blog post. To see a real-world example of Blocks in use, check out the [Tina Grande Starter](https://github.com/tinacms/tina-starter-grande).
@@ -24,9 +23,9 @@ const PageForm = {
       name: 'rawJson.blocks',
       component: 'blocks',
       templates: {
-        TitleBlock,
-        ImageBlock,
-        ContentBlock,
+        'title-block': TitleBlock,
+        'image-block': ImageBlock,
+        'content-block': ContentBlock,
       },
     },
   ],
@@ -55,7 +54,11 @@ The source data for the `ContentBlock` might look like the example below. When n
 {
   "blocks": [
     {
-      "content": "**Billions upon billions** are creatures of the cosmos Orion's sword cosmic fugue at the edge of forever science?"
+      "content": "**Billions upon billions** are creatures of the cosmos Orion's sword cosmic fugue at the edge of forever science?",
+```
+
+```json
+      "_template": "content-block"
     }
   ]
 }
@@ -63,21 +66,21 @@ The source data for the `ContentBlock` might look like the example below. When n
 
 ## Blocks Field Options
 
-- `name`: The path to the blocks value in the data being edited.
-- `component`: The name of the React component that should be used to edit this field. Available field component types are [defined here](/docs/fields).
-- `label`: A human readable label for the field. This label displays in the sidebar and is optional. If no label is provided, the sidebar will default to the name.
-- `description`: An optional description of the field.
-- `templates`: A list of **Block templates** that define the fields used in the Blocks.
+* `name`: The path to the blocks value in the data being edited.
+* `component`: The name of the React component that should be used to edit this field. Available field component types are [defined here](/docs/fields).
+* `label`: A human readable label for the field. This label displays in the sidebar and is optional. If no label is provided, the sidebar will default to the name.
+* `description`: An optional description of the field.
+* `templates`: A list of **Block templates** that define the fields used in the Blocks.
 
 ## Block Template Options
 
-- `label`: A human readable label for the Block.
-- `key`: Should be unique to optimize the [rendering of the list](https://reactjs.org/docs/lists-and-keys.html).
-- `fields`: An array of fields that will render as a sub-menu for each block. The fields should map to editable content.
-- `defaultItem`: An optional function to provide the block with default data upon being created.
-- `itemProps`: An optional function that generates `props` for each group item.
-  - `key`: This property is used to optimize the rendering of lists. If rendering is causing problems, use `defaultItem` to generate a new key, as is seen in [this example](http://tinacms.org/docs/fields/group-list#definition). Feel free to reference the [React documentation](https://reactjs.org/docs/lists-and-keys.html) for more on keys and lists.
-  - `label`: A readable label for the new Block.
+* `label`: A human readable label for the Block.
+* `key`: Should be unique to optimize the [rendering of the list](https://reactjs.org/docs/lists-and-keys.html).
+* `fields`: An array of fields that will render as a sub-menu for each block. The fields should map to editable content.
+* `defaultItem`: An optional function to provide the block with default data upon being created.
+* `itemProps`: An optional function that generates `props` for each group item.
+  * `key`: This property is used to optimize the rendering of lists. If rendering is causing problems, use `defaultItem` to generate a new key, as is seen in [this example](http://tinacms.org/docs/fields/group-list#definition). Feel free to reference the [React documentation](https://reactjs.org/docs/lists-and-keys.html) for more on keys and lists.
+  * `label`: A readable label for the new Block.
 
 ## Interfaces
 
