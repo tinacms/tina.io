@@ -5,13 +5,13 @@ author: Nolan Phillips
 ---
 We missed release notes for the June 1st release so this week's notes are packed!
 
-There's been a lot of work on the Inline Editing experience in the past couple weeks. The most notable changes are
+There's been a lot of work on the Inline Editing experience in the past couple of weeks. The most notable changes are:
 
 * Simplified API for nesting groups and blocks
-* Improved focus ring and blocks UI
-* Improved focus setting behaviour for groups and blocks
+* An improved focus ring and blocks UI
+* Improved focus setting behavior for groups and blocks
 
-Besides these, many other small improvements and bug fixes have been released
+Besides these, many other small improvements and bug fixes have been released.
 
 ## Changes
 
@@ -38,12 +38,12 @@ Besides these, many other small improvements and bug fixes have been released
   </InlineGroup> 
   ```
 * **Improved Block Controls:** The controls for editing, moving, and removing blocks has been [restyled](https://github.com/tinacms/tinacms/pull/1203) to match the Editor's menu, and [the location of the controls can now be configured.](https://github.com/tinacms/tinacms/pull/1210)
-* **Cancel Block/Group Settings Changes:** It is now possible to cancel (and thus undo) any changes made to a group or block from within it's [Settings modal](https://github.com/tinacms/tinacms/pull/1204).
-* **Image Upload Errors:** When an [error](https://github.com/tinacms/tinacms/pull/1173) occurs during image image upload, an alert will now be displayed.
+* **Cancel Block/Group Settings Changes:** It is now possible to cancel (and thus undo) any changes made to a group or block from within its [Settings modal](https://github.com/tinacms/tinacms/pull/1204).
+* **Image Upload Errors:** When an [error](https://github.com/tinacms/tinacms/pull/1173) occurs during image upload, an alert will now be displayed.
 
 **react-tinacms-editor**
 
-* **Edit Raw Markdown:** You can now switch to [a plain textarea](https://github.com/tinacms/tinacms/issues/626) if you need to edit the raw markdown.
+* **Edit Raw Markdown:** You can now switch to [a plain textarea](https://github.com/tinacms/tinacms/issues/626) if you need to edit the raw Markdown.
 
 **react-tinacms-github**
 
@@ -63,7 +63,7 @@ Besides these, many other small improvements and bug fixes have been released
 **tinacms**
 
 * **useForm:** The `loadInitialValues` prop will only be executed if the cms is enabled.
-* **TinaProvider:** a check has been added to assert that the object being passed as `cms` is in-fact an instance of `TinaCMS`.
+* **TinaProvider:** a check has been added to assert that the object being passed as `cms` is in fact an instance of `TinaCMS`.
 * **Time Formatting:** fixed the [time formatting](https://github.com/tinacms/tinacms/pull/1150) of the DateFieldPlugin.
 
 **react-tinacms-inline**
@@ -86,9 +86,9 @@ Thanks to everyone for contributing!
 | 12 | Brent Mitton |
 | 3 | Logan Anderson |
 | 3 | Sean MacKay |
-| 2 | jpuri |
-| 1 | DJ |
+| 2 | Jyoti Puri |
+| 1 | DJ Walker |
 
 ## GitHub Milestones
 
-Checkout the [GitHub Milestone](https://github.com/tinacms/tinacms/milestone/26?closed=1) for all the details on this weeks release!
+Check out the [GitHub Milestone](https://github.com/tinacms/tinacms/milestone/26?closed=1) for all the details on this week's release!
