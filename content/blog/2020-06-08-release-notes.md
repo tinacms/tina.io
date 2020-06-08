@@ -11,12 +11,15 @@ What is the core team's current objectives?
 
 ## Changes
 
-### New Packages
+### Enhancements
 
-### Features
+**tinacms**
+
+* **cms.enabled:** This new `enabled` flag has been added to the CMS class. 
 
 **react-tinacms-inline**
 
+* **InlineGroup:** Added a new `InlineGroup` component.
 * **Improved Focus Ring Control:** You can now customize the border radius and offset of the focus ring around Inline Blocks and Groups. 
 
   ```tsx
@@ -32,6 +35,7 @@ What is the core team's current objectives?
   ```
 * **Improved Block Controls:** The controls for editing, moving, and removing blocks has been [restyled](https://github.com/tinacms/tinacms/pull/1203) to match the Editor's menu, and [the location of the controls can now be configured.](https://github.com/tinacms/tinacms/pull/1210)
 * **Cancel Block/Group Settings Changes:** It is now possible to cancel (and thus undo) any changes made to a group or block from within it's [Settings modal](https://github.com/tinacms/tinacms/pull/1204).
+* **Image Upload Errors:** When an [error](https://github.com/tinacms/tinacms/pull/1173) occurs during image image upload, an alert will now be displayed.
 
 **react-tinacms-editor**
 
@@ -46,12 +50,17 @@ What is the core team's current objectives?
 
 * **onChange:** Added a new `onChange` method to the options for creating a form. 
 
+**gatsby-tinacms-markdown**
+
+* **Register Markdown Field:** This field now [dynamically imports](https://github.com/tinacms/tinacms/pull/1175) the `MarkdownFieldPlugin` from `react-tinacms-editor` and registers it with the `cms`.
+
 ### Bug Fixes
 
 **tinacms**
 
 * **useForm:** The `loadInitialValues` prop will only be executed if the cms is enabled. 
 * **TinaProvider:** a check has been added to assert that the object being passed as `cms` is in-fact an instance of `TinaCMS`.
+* **Time Formatting:** fixed the [time formatting](https://github.com/tinacms/tinacms/pull/1150) of the DateFieldPlugin.
 
 **react-tinacms-inline**
 
