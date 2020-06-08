@@ -38,7 +38,7 @@ Besides these, many other small improvements and bug fixes have been released
   </InlineGroup> 
   ```
 * **Improved Block Controls:** The controls for editing, moving, and removing blocks has been [restyled](https://github.com/tinacms/tinacms/pull/1203) to match the Editor's menu, and [the location of the controls can now be configured.](https://github.com/tinacms/tinacms/pull/1210)
-* **Cancel Block/Group Settings Changes:** It is now possible to cancel (and thus undo) any changes made to a group or block from within it's [Settings modal](https://github.com/tinacms/tinacms/pull/1204).
+* **Cancel Block/Group Settings Changes:** It is now possible to cancel (and thus undo) any changes made to a group or block from within its [Settings modal](https://github.com/tinacms/tinacms/pull/1204).
 * **Image Upload Errors:** When an [error](https://github.com/tinacms/tinacms/pull/1173) occurs during image image upload, an alert will now be displayed.
 
 **react-tinacms-editor**
