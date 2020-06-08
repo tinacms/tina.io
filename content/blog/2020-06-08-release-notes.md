@@ -3,11 +3,15 @@ title: 2020-06-08 Release Notes
 date: '2020-06-08T10:15:41-03:00'
 author: Nolan Phillips
 ---
-What is the core team's current objectives?
+We missed release notes for the June 1st release so this week's notes are packed!
 
-* What was accomplished in the last week?
-* What's next for the core team?
-* Link to any relevant projects
+There's been a lot of work on the Inline Editing experience in the past couple weeks. The most notable changes are 
+
+* Simplified API for nesting groups and blocks 
+* Improved focus ring and blocks UI
+* Improved focus setting behaviour for groups and blocks
+
+Besides these, many other small improvements and bug fixes have been released
 
 ## Changes
 
@@ -76,11 +80,15 @@ Thanks to everyone for contributing!
 
 | # Commits | Name |
 | --- | --- |
-|  |  |
-|  |  |
-|  |  |
-|  |  |
+| 79 | Nolan Phillips |
+| 70 | Kendall Strautman  |
+| 30 | Scott Byrne |
+| 12 | Brent Mitton |
+| 3 | Logan Anderson |
+| 3 | Sean MacKay |
+| 2 | jpuri |
+| 1 | DJ |
 
 ## GitHub Milestones
 
-Checkout the [GitHub Milestone](https://github.com/tinacms/tinacms/milestone/1?closed=1) for all the details on this weeks release!
+Checkout the [GitHub Milestone](https://github.com/tinacms/tinacms/milestone/26?closed=1) for all the details on this weeks release!
