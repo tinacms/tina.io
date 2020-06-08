@@ -45,7 +45,6 @@ export function Hero(props) {
             colors: ['#404040', '#ff0000', #1B1E25],
           },
         ]}
-        offset={5}
         >
           <HeroCopy typography={data.hero.typography}>
             <InlineText focusRing={false} name="heroCopy" />
@@ -72,12 +71,10 @@ This example assumes your data looks something like this:
 
 ## Options
 
-| Key            | Description                                                                                                                            |
-| -------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`         | The path to some value in the data being edited. If no value is provided, the child fields will reference the root of the source file. |
-| `fields`       | An array of [Tina Fields](/docs/fields) to display in a settings modal form.                                                           |
-| `offset`       | Value in pixels — Controls the offset style for the focus ring and group controls.                                                     |
-| `borderRadius` | Value in pixels — Controls the border radius style on the focus ring.                                                                  |
+| Key      | Description                                                                                                                            |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`   | The path to some value in the data being edited. If no value is provided, the child fields will reference the root of the source file. |
+| `fields` | An array of [Tina Fields](/docs/fields) to display in a settings modal form.                                                           |
 
 ## Interface
 
@@ -85,7 +82,5 @@ This example assumes your data looks something like this:
 interface InlineGroupProps {
   name: string
   fields: TinaField[]
-  offset?: number
-  borderRadius?: number
 }
 ```
