@@ -8,6 +8,7 @@ You may have noticed that the Tina sidebar is still empty, that's because we nee
 
 ```diff
 //...
++ import { usePlugin } from 'tinacms'
 + import { useGithubJsonForm } from 'react-tinacms-github'
 
 export default function Home({ file }) {
@@ -19,6 +20,7 @@ export default function Home({ file }) {
 
   // Registers a JSON Tina Form
 +  const [data, form] = useGithubJsonForm(file, formOptions)
++  usePlugin(form)
 
   return (
     // ...
