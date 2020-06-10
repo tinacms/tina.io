@@ -92,12 +92,33 @@ export default function SomeComponent() {
 }
 ```
 
+## Disabling / Enabling the CMS
+
+The CMS can be enabled or disabled via methods or configuration on the CMS object.
+
+```js
+import * as React from 'react'
+import { useCMS } from 'tinacms'
+
+// <ExitButton /> is assumed to be nested inside of a <Tina> component
+export default function ExitButton() {
+  const cms = useCMS()
+
+  return (
+    <button onClick={cms.enabled ? cms.disable() : cms.enable()}>
+      {cms.enabled ? `Exit Tina` : `Edit with Tina`}
+    </button>
+  )
+}
+```
+
 ## CMS Configuration
 
 When instantiating the `TinaCMS` object, you can pass in a configuration object. This allows you to configure some options for the sidebar, and also allows you to configure [Plugins](/docs/cms/plugins) and [APIs](/docs/cms/apis) declaratively.
 
 ```typescript
 interface TinaCMSConfig {
+  enabled?: boolean
   plugins?: Plugin[]
   apis?: { [key: string]: any }
   sidebar?: {
@@ -115,6 +136,9 @@ interface TinaCMSConfig {
       reset: string
     }
   }
+  media?: {
+    store: MediaStore
+  }
 }
 ```
 
@@ -122,6 +146,7 @@ interface TinaCMSConfig {
 
 | key                  | usage                                                                                                   |
 | -------------------- | ------------------------------------------------------------------------------------------------------- |
+| **enabled**          | Controls whether the CMS is enabled or disabled.                                                        |
 | **plugins**          | Array of plugins to be added to the CMS object.                                                         |
 | **apis**             | Object containing APIs to be registered to the CMS                                                      |
 | **sidebar**          | Configures behavior of the sidebar                                                                      |
@@ -131,6 +156,7 @@ interface TinaCMSConfig {
 | **toolbar**          | Configures behavior of the toolbar                                                                      |
 | **toolbar.hidden**   | Hides the toolbar altogether — is hidden by default                                                     |
 | **toolbar.buttons**  | Configures the text on 'Save' and 'Reset' buttons                                                       |
+| **media.store**      | Configures the [media store](/docs/media).                                                              |
 
 ---
 
@@ -138,6 +164,7 @@ interface TinaCMSConfig {
 import { TinaCMS } from 'tinacms'
 
 const cms = new TinaCMS({
+  enabled: process.env.NODE_ENV !== 'production',
   plugins: [
     {
       __type: 'hello',
