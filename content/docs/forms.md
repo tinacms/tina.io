@@ -4,9 +4,7 @@ prev: /docs/cms
 next: /docs/fields
 consumes:
   - file: /packages/@tinacms/react-core/src/use-form.ts
-    description: useForm and useLocalForm hooks
-  - file: /packages/tinacms/src/react-tinacms/use-form.ts
-    description: useGlobalForm
+    description: Describes the useForm hooks
   - file: /packages/@tinacms/forms/src/form.ts
     description: Form configuration
 ---
@@ -44,15 +42,16 @@ export function Page(props) {
 }
 ```
 
-Here's how we might call `useLocalForm` to create a form that will be used to edit this content:
+Here's how we might call `useForm` to create a form that will be used to edit this content:
 
 ```javascript
 import * as React from React
 import ReactMarkdown from 'react-markdown'
-import { useLocalForm } from 'tinacms'
+import { useForm, usePlugin } from 'tinacms'
 
 export function Page(props) {
-    const [modifiedValues] = useLocalForm(formConfig) // formConfig omitted for brevity; we'll get to this later
+    const [modifiedValues, form] = useForm(formConfig) // formConfig omitted for brevity; we'll get to this later
+    usePlugin(form)
     return (
         <main>
             <h1>{modifiedValues.title}</h1>
@@ -63,37 +62,15 @@ export function Page(props) {
 
 ```
 
-`useLocalForm` returns an object containing all of the form's values that will change as the content is updated in the form. By switching out our original `props` in the rendering code for this new object, our page will re-render as the content is changed, giving us a real-time preview of the content!
+`useForm` returns an object containing all of the form's values that will change as the content is updated in the form. By switching out our original `props` in the rendering code for this new object, our page will re-render as the content is changed, giving us a real-time preview of the content!
 
-## Form Hooks
+## Creating Forms in React
 
-Tina includes three hooks for creating forms: `useForm`, `useLocalForm`, and `useGlobalForm`. The API of each of these hooks is exactly the same, and the behavior is mostly similar; the only difference is where the form appears in Tina's sidebar interface.
-
-### _useLocalForm_
-
-`useLocalForm` will create a form and add it to the main area of the sidebar, where its content can be accessed and edited by users. We refer to these as _local forms_ because forms in this part of the sidebar are meant to be contextual to the page you're on. Forms are connected to the sidebar with Tina's [Dynamic Plugin System](/blog/dynamic-plugin-system)
-
-Typically, when using local forms, you would call the `useLocalForm` hook inside the component that renders a specific page (this would be the page component in Gatsby or Next.js). In this case, the form would be added to the sidebar when the user is on that page, and removed once they navigate away.
-
-### _useGlobalForm_
-
-`useGlobalForm` will create a form and add it to the _global menu_ region of the sidebar. This area of the sidebar is intended for forms that persist across all pages on a site.
-
-Note that calling `useGlobalForm` in a non-global context will still cause the form to be added or removed like a local form.
-
-### _useForm_
-
-`useForm` will create a form, but will not add it to the sidebar UI at all. You might use this for content that will be [edited inline](/docs/inline-editing), if you don't want the form to also appear in the sidebar.
-
-## Calling Form Hooks
-
-The signature of a form hook looks something like this:
+The `useForm` hook let's you create a form, but it does not register it with the CMS. Here is how that hook works:
 
 ```javascript
 const [modifiedValues, form] = useForm(formConfig, watchedVars)
 ```
-
-All three basic form hooks follow this same structure.
 
 ### Hook Return Values
 
@@ -101,13 +78,11 @@ Like other React hooks, the form hooks enclose their return data in an array, ex
 
 The first piece of data returned (`modifiedValues` in the above example) is an object containing all the data that is made editable by the form. As users edit data in the form, the values in this object change.
 
-The second piece of data (`form` in the above example) is an object representing the form.
-
-<!-- TODO expand upon form object and demonstrate a use case where you might need it -->
+The second piece of data (`form` in the above example) is an form object that the hook created.
 
 ### Form Configuration
 
-The first argument that a form hook receives (`formConfig` in the above example) is an object used to configure the form. Forms in Tina are built upon the [Final Form](https://final-form.org/) library, and inherit all of Final Form's configuration options.
+The first argument that `useForm` receives (`formConfig` in the above example) is the object used to configure the form. Forms in Tina are built upon the [Final Form](https://final-form.org/) library, and inherit all of Final Form's configuration options.
 
 You can see the all of Final Form's form config options in the [Form Config Documentation](https://final-form.org/docs/final-form/types/Config), but the following options will most commonly be used when creating a form:
 
@@ -125,6 +100,7 @@ interface FormOptions<S> {
   fields: Field[]
   loadInitialValues?: () => Promise<S>
   reset?(): void
+  onChange?(state): void
   actions?: any[]
   __type?: string
 }
@@ -138,6 +114,7 @@ interface FormOptions<S> {
 | `loadInitialValues` | _Optional:_ A function to load the initial form state asynchronously. Return a promise that passes an object of form values when it resolves. |
 | `reset`             | _Optional:_ A function that runs when the form state is reset by the user.                                                                    |
 | `actions`           | _Optional:_ An array of custom actions that will be added to the form.                                                                        |
+| `onChange`          | _Optional:_ A function that runs when the form values are changed.                                                                            |
 | `__type`            | _Optional:_ Sets the Form's plugin type. Automatically set based on which form hook is used.                                                  |
 
 Now that we know how to configure a form, let's revisit the simplified example from the beginning of this document to demonstrate how we might configure this form:
@@ -145,10 +122,10 @@ Now that we know how to configure a form, let's revisit the simplified example f
 ```javascript
 import * as React from React
 import ReactMarkdown from 'react-markdown'
-import { useLocalForm } from 'tinacms'
+import { useForm, usePlugin } from 'tinacms'
 
 export function Page(props) {
-  const [modifiedValues] = useLocalForm({
+  const [modifiedValues] = useForm({
     id: props.fileRelativePath,
     label: 'Edit Post',
     fields: [
@@ -171,6 +148,9 @@ export function Page(props) {
       // save the new form data
     },
   })
+
+  usePlugin(form)
+
   return (
     <main>
       <h1>{modifiedValues.title}</h1>
