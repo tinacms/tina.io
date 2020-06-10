@@ -94,7 +94,7 @@ This hook connects the `markdownRemark` data with Tina to be made editable. It i
  ** example component --> src/components/Title.js
  */
 
-// 1. import useRemarkForm
+// 1. import useRemarkForm and usePlugin
 import { useRemarkForm } from 'gatsby-tinacms-remark'
 import { usePlugin } from 'tinacms'
 import { useStaticQuery } from 'gatsby'
