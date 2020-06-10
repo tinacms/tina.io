@@ -146,7 +146,7 @@ interface TinaCMSConfig {
 
 | key                  | usage                                                                                                   |
 | -------------------- | ------------------------------------------------------------------------------------------------------- |
-| **enabled**          | Controls whether the CMS is enabled or disabled.                                                        |
+| **enabled**          | Controls whether the CMS is enabled or disabled. _Defaults to true_                                     |
 | **plugins**          | Array of plugins to be added to the CMS object.                                                         |
 | **apis**             | Object containing APIs to be registered to the CMS                                                      |
 | **sidebar**          | Configures behavior of the sidebar                                                                      |
