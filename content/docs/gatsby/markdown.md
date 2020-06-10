@@ -62,7 +62,7 @@ module.exports = {
 
 There are three ways to register remark forms with the CMS, depending on the component:
 
-- [`useLocalRemarkForm`](https://tinacms.org/docs/gatsby/markdown/#1-the-hook-uselocalremarkform) - A [React Hook](https://reactjs.org/docs/hooks-intro.html) — useful for any function component. You can use this with components that source data from a [static query](https://www.gatsbyjs.org/docs/static-query/#how-staticquery-differs-from-page-query) using Gatsby's `useStaticQuery` hook.
+- [`useRemarkForm`](https://tinacms.org/docs/gatsby/markdown/#1-the-hook-useremarkform) - A [React Hook](https://reactjs.org/docs/hooks-intro.html) — useful for any function component. You can use this with components that source data from a [static query](https://www.gatsbyjs.org/docs/static-query/#how-staticquery-differs-from-page-query) using Gatsby's `useStaticQuery` hook.
 - [`RemarkForm`](https://tinacms.org/docs/gatsby/markdown/#2-the-render-props-component-remarkform) — A [Render Props](https://reactjs.org/docs/render-props.html#use-render-props-for-cross-cutting-concerns) component — useful for any class component. Can be used with components sourcing data from a [static query](https://www.gatsbyjs.org/docs/static-query/#how-staticquery-differs-from-page-query) using Gatsby's [`StaticQuery`](https://www.gatsbyjs.org/docs/static-query/) render props component.
 - [`remarkForm`](https://tinacms.org/docs/gatsby/markdown/#3-the-higher-order-component-remarkform) — A [Higher-Order Component](https://reactjs.org/docs/higher-order-components.html) — useful for [page components](https://www.gatsbyjs.org/docs/recipes/#creating-pages-automatically) (function or class), that source data from a [page query](https://www.gatsbyjs.org/docs/page-query/).
 
@@ -70,13 +70,13 @@ All of these options can only take data (transformed by `gatsby-transformer-rema
 
 > If you're adding Tina to a page component in Gatsby, skip to [`remarkForm`](http://tinacms.org/docs/gatsby/markdown#3-the-higher-order-component-remarkform).
 
-### 1. The Hook: useLocalRemarkForm
+### 1. The Hook: useRemarkForm
 
 This hook connects the `markdownRemark` data with Tina to be made editable. It is useful in situations where you need to edit on non-page components, or just prefer working with hooks or static queries. You can also use this hook with functional page components.
 
 #### Usage:
 
-`useLocalRemarkForm(remark, options): [values, form]`
+`useRemarkForm(remark, options): [values, form]`
 
 #### Arguments:
 
@@ -94,8 +94,9 @@ This hook connects the `markdownRemark` data with Tina to be made editable. It i
  ** example component --> src/components/Title.js
  */
 
-// 1. import useLocalRemarkForm
-import { useLocalRemarkForm } from 'gatsby-tinacms-remark'
+// 1. import useRemarkForm
+import { useRemarkForm } from 'gatsby-tinacms-remark'
+import { usePlugin } from 'tinacms'
 import { useStaticQuery } from 'gatsby'
 
 const Title = data => {
@@ -112,7 +113,10 @@ const Title = data => {
   `)
 
   // 3. Call the hook and pass in the data
-  const [markdownRemark] = useLocalRemarkForm(data.markdownRemark)
+  const [markdownRemark, form] = useRemarkForm(data.markdownRemark)
+
+  // 4. Register the form plugin
+  usePlugin(form)
 
   return <h1>{markdownRemark.frontmatter.title}</h1>
 }
@@ -126,7 +130,7 @@ The form will populate with default text fields. To customize it, you can pass i
 
 ### 2. The Render Props Component: RemarkForm
 
-`RemarkForm` is a thin wrapper around `useLocalRemarkForm`. Since React [Hooks](https://reactjs.org/docs/hooks-intro.html) are only available within [function components](https://reactjs.org/docs/components-and-props.html) you may need to use `RemarkForm` instead of calling `useLocalRemarkForm` directly when working with a [class component](https://reactjs.org/docs/components-and-props.html).
+`RemarkForm` is a thin wrapper around `useRemarkForm` and `usePlugin`. Since React [Hooks](https://reactjs.org/docs/hooks-intro.html) are only available within [function components](https://reactjs.org/docs/components-and-props.html) you will need to use `RemarkForm` instead of calling those hooks directly working with a [class component](https://reactjs.org/docs/components-and-props.html).
 
 #### Props:
 
@@ -326,7 +330,7 @@ You can pass additional configuration options to customize the form. The followi
 
 ### `remarkForm` HOC Example
 
-The `remarkForm` HOC and `useLocalRemarkForm` hook both accept an optional `config` object as the second argument.
+The `remarkForm` HOC and `useRemarkForm` hook both accept an optional `config` object as the second argument.
 
 ```jsx
 /*
@@ -367,10 +371,10 @@ const BlogPostForm = {
 export default remarkForm(BlogPostTemplate, BlogPostForm)
 ```
 
-### `useLocalRemarkForm` Hook Example
+### `useRemarkForm` Hook Example
 
 ```js
-import { useLocalRemarkForm } from 'gatsby-tinacms-remark'
+import { useRemarkForm } from 'gatsby-tinacms-remark'
 
 function BlogPostTemplate(props) {
   // 1. Define the form
@@ -393,10 +397,14 @@ function BlogPostTemplate(props) {
   }
 
   // 2. Pass the form as the second argument
-  const [markdownRemark] = useLocalRemarkForm(
+  const [markdownRemark, form] = useRemarkForm(
     props.markdownRemark,
     BlogPostForm
   )
+
+  // 3. Register the form as a plugin
+  usePlugin(form)
+
   return (
     <>
       <h1>{markdownRemark.frontmatter.title}</h1>
