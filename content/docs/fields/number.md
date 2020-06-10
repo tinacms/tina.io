@@ -33,13 +33,13 @@ interface NumberConfig extends FieldConfig {
 | `description` | Description that expands on the purpose of the field or prompts a specific action. _(Optional)_ |
 | `step`        | The interval used when using the up and down arrows to adjust the value. _(Optional)_           |
 
-> This interfaces only shows the keys unique to the text field.
+> This interfaces only shows the keys unique to the number field.
 >
 > Visit the [Field Config](/docs/fields) docs for a complete list of options.
 
 ## Example: A Sorting Weight
 
-Below is an example of how a text field could be used to edit a `weight` value used for sorting blog posts.
+Below is an example of how a `number` field could be used to edit a `weight` value used for sorting blog posts.
 
 ```javascript
 const BlogPostForm = {
