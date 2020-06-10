@@ -31,7 +31,7 @@ interface TextareaConfig {
 | `label`       | A human readable label for the field. Defaults to the name. _(Optional)_                        |
 | `description` | Description that expands on the purpose of the field or prompts a specific action. _(Optional)_ |
 
-> This interfaces only shows the keys unique to the text field.
+> This interfaces only shows the keys unique to the textarea field.
 >
 > Visit the [Field Config](/docs/fields) docs for a complete list of options.
 
