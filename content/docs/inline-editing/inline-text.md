@@ -39,16 +39,18 @@ export function Page(props) {
 
 ## Options
 
-| Key         | Description                                      |
-| ----------- | ------------------------------------------------ |
-| `name`      | The path to some value in the data being edited. |
-| `focusRing` | Controls whether to display a focus outline      |
+| Key         | Description                                                                                                                |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `name`      | The path to some value in the data being edited.                                                                           |
+| `className` | To set styles directly on the input or extend via [styled components](/docs/inline-editing#extending-inline-field-styles). |
+| `focusRing` | Controls whether to display a focus outline.                                                                               |
 
 ## Interface
 
 ```typescript
 interface InlineTextProps {
   name: string
+  className?: string
   focusRing?: boolean
 }
 ```
