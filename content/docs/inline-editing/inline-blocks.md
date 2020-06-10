@@ -58,6 +58,32 @@ interface BlockComponentProps {
 
 Since it **renders in 'edit mode,'** this component should display `BlocksControls` and at least one _Inline Field_. `BlocksControls` is the UI for editing, deleting, or moving blocks. An _Inline Field_ is, at its most basic, an input field stripped of styling to blend in with the site.
 
+#### Blocks Controls Options
+
+| Key             | Description                                                                                                                                                                                                                                                                                                                        |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`          | The path to some value in the data being edited. If no value is provided, the child fields will reference the root of the source file.                                                                                                                                                                                             |
+| `index`         | The index of the block associated with these controls.                                                                                                                                                                                                                                                                             |
+| `insetControls` | A boolean to denote whether the group controls display within or outside the group.                                                                                                                                                                                                                                                |
+| `focusRing`     | Either an object to style the focus ring or `false`, which hides the focus ring entirely. For styles, `offset` (in pixels) controls the distance from the ring to the edge of the group; `borderRadius`(in pixels) controls the [rounding](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius) edge of the focus ring. |
+| `children`      | Any child components, typically inline field(s).                                                                                                                                                                                                                                                                                   |
+
+```ts
+interface BlocksControlsProps {
+  index: number
+  insetControls?: boolean
+  focusRing?: false | FocusRingProps
+  children: any
+}
+
+interface FocusRingProps {
+  offset?: number | { x: number; y: number }
+  borderRadius?: number
+}
+```
+
+<!-- TODO: update image -->
+
 ![TinaCMS: Inline Block Controls](/img/inline-blocks/block-controls.png)
 
 The image above shows the _InlineTextarea_ field in use with Blocks Controls.
