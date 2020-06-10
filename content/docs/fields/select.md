@@ -5,7 +5,7 @@ next: /docs/fields/tags
 consumes:
   - file: /packages/@tinacms/fields/src/Select.tsx
     details: Shows select field and Option interfaces
-  - file: /packages/tinacms/src/plugins/fields/SelectFieldPlugin.tsx
+  - file: /packages/@tinacms/fields/src/plugins/SelectFieldPlugin.tsx
     details: Shows select field and Option interfaces
 ---
 
@@ -13,16 +13,45 @@ The `select` field represents a select element.
 
 ![TinaCMS Select Field](/img/fields/select-field.png)
 
-## Definition
+## Options
 
-Below is an example of how a `select` field could be defined in a [form](/docs/forms). Read more on passing in [form field options](/docs/gatsby/markdown#customizing-remark-forms)) for Gatsby.
+| Option        | Description                                                                                     |
+| ------------- | ----------------------------------------------------------------------------------------------- |
+| `component`   | The name of the plugin component. Always 'select'.                                              |
+| `name`        | The path to some value in the data being edited.                                                |
+| `options`     | An array of strings or Options to select from.                                                  |
+| `label`       | A human readable label for the field. Defaults to the name. _(Optional)_                        |
+| `description` | Description that expands on the purpose of the field or prompts a specific action. _(Optional)_ |
+
+```typescript
+interface SelectField {
+  name: string
+  component: 'select'
+  label?: string
+  description?: string
+  options: (Option | string)[]
+}
+
+type Option = {
+  value: string
+  label: string
+}
+```
+
+> This interfaces only shows the keys unique to the select field.
+>
+> Visit the [Field Config](/docs/fields) docs for a complete list of options.
+
+## Example #1: Select an Author
+
+Below is an example of how a select field could be used to select the author of a blog post
 
 ```javascript
 const BlogPostForm = {
   fields: [
     {
-      name: 'frontmatter.authors',
       component: 'select',
+      name: 'frontmatter.authors',
       label: 'Author',
       description: 'Select an author for this post',
       options: ['Arundhati Roy', 'Ruth Ozeki', 'Zadie Smith'],
@@ -32,22 +61,30 @@ const BlogPostForm = {
 }
 ```
 
-## Options
+## Example #2: Select a Heading Color
 
-- `name`: The path to some value in the data being edited.
-- `component`: The name of the React component that should be used to edit this field. Available field component types are [defined here](/docs/fields)
-- `label`: A human readable label for the field. This label displays in the sidebar and is optional. If no label is provided, the sidebar will default to the name.
-- `description`: An optional description that expands on the purpose of the field or prompts a specific action.
-- `options`: An array of strings.
+Below is an example of how a text field could be used to set the heading color for a blog post.
 
-## Interface
-
-```typescript
-interface SelectField {
-  name: string
-  component: 'select'
-  label?: string
-  description?: string
-  options: string[]
+```javascript
+const BlogPostForm = {
+  fields: [
+    {
+      component: 'color',
+      name: 'heading_color',
+      label: 'Heading Color',
+      description: 'Select the color for the heading',
+      options: [
+        {
+          value: '#ff0000',
+          label: 'Red',
+        },
+        {
+          value: '#000000',
+          label: 'Black',
+        },
+      ],
+    },
+    // ...
+  ],
 }
 ```
