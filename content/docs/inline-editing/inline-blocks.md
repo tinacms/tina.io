@@ -192,13 +192,17 @@ interface InlineBlocksProps {
   blocks: {
     [key: string]: Block
   }
+  className?: string
+  direction?: 'column' | 'row'
 }
 ```
 
-| Key      |   Type   |                                                                                         Purpose |
-| -------- | :------: | ----------------------------------------------------------------------------------------------: |
-| `name`   | `string` |                                                 The path to the **source data** for the blocks. |
-| `blocks` | `object` | An object composed of individual [Blocks](/docs/inline-editing/inline-blocks#creating-a-block). |
+| Key         |                                                            Type                                                            |                                                                                         Purpose |
+| ----------- | :------------------------------------------------------------------------------------------------------------------------: | ----------------------------------------------------------------------------------------------: |
+| `name`      |                                                          `string`                                                          |                                                 The path to the **source data** for the blocks. |
+| `blocks`    |                                                          `object`                                                          | An object composed of individual [Blocks](/docs/inline-editing/inline-blocks#creating-a-block). |
+| `className` | To set styles directly on the input or extend via [styled components](/docs/inline-editing#extending-inline-field-styles). |
+| `direction` |                         Set the orientation of the where the `AddBlock` buttons and menu display.                          |
 
 ### Blocks Source Data
 
