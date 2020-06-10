@@ -3,9 +3,9 @@ title: Text Area Field
 prev: /docs/fields/text
 next: /docs/fields/markdown
 consumes:
-  - file: /packages/tinacms/src/plugins/fields/TextareaFieldPlugin.tsx
+  - file: /packages/@tinacms/fields/src/plugins/TextareaFieldPlugin.tsx
     details: Shows textarea field interface and config options
-  - file: /packages/@tinacms/fields/src/TextArea.ts
+  - file: /packages/@tinacms/fields/src/components/TextArea.ts
     details: Shows textarea field interface and config options
 ---
 
@@ -13,32 +13,7 @@ The `textarea` field represents a multi-line text input. It should be used for c
 
 ![tinacms-textarea-field](/img/fields/textarea.png)
 
-## Definition
-
-Below is an example of how a `textarea` field could be defined in a Gatsby remark form. [Read more on passing in form field options](/docs/gatsby/markdown#customizing-remark-forms).
-
-```javascript
-const BlogPostForm = {
-  fields: [
-    {
-      name: 'rawFrontmatter.description',
-      component: 'textarea',
-      label: 'Description',
-      description: 'Enter the post description here',
-    },
-    // ...
-  ],
-}
-```
-
 ## Options
-
-- `name`: The path to some value in the data being edited.
-- `component`: The name of the React component that should be used to edit this field. Available field component types are [defined here](/docs/fields)
-- `label`: A human readable label for the field. This label displays in the sidebar and is optional. If no label is provided, the sidebar will default to the name.
-- `description`: An optional description that expands on the purpose of the field or prompts a specific action.
-
-## Interface
 
 ```typescript
 interface TextareaConfig {
@@ -46,5 +21,33 @@ interface TextareaConfig {
   component: 'textarea'
   label?: string
   description?: string
+}
+```
+
+| Option        | Description                                                                                     |
+| ------------- | ----------------------------------------------------------------------------------------------- |
+| `component`   | The name of the plugin component. Always 'textarea'.                                            |
+| `name`        | The path to some value in the data being edited.                                                |
+| `label`       | A human readable label for the field. Defaults to the name. _(Optional)_                        |
+| `description` | Description that expands on the purpose of the field or prompts a specific action. _(Optional)_ |
+
+> This interfaces only shows the keys unique to the textarea field.
+>
+> Visit the [Field Config](/docs/fields) docs for a complete list of options.
+
+## Example: A Blog Post Description
+
+Below is an example of how a `textarea` field could be used to edit the description of a blog post.
+
+```javascript
+const BlogPostForm = {
+  fields: [
+    {
+      name: 'description',
+      component: 'textarea',
+      label: 'Description',
+      description: 'Enter the post description here',
+    },
+  ],
 }
 ```
