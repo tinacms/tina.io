@@ -42,7 +42,7 @@ export function Hero(props) {
             description: 'Select a color for the hero copy',
             component: 'color'
             widget: 'block'
-            colors: ['#404040', '#ff0000', #1B1E25],
+            colors: ['#404040', '#ff0000', '#1B1E25'],
           },
         ]}
         >
@@ -71,10 +71,12 @@ This example assumes your data looks something like this:
 
 ## Options
 
-| Key      | Description                                                                                                                            |
-| -------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`   | The path to some value in the data being edited. If no value is provided, the child fields will reference the root of the source file. |
-| `fields` | An array of [Tina Fields](/docs/fields) to display in a settings modal form.                                                           |
+| Key             | Description                                                                                                                                                                                                                                                                                                                        |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`          | The path to some value in the data being edited. If no value is provided, the child fields will reference the root of the source file.                                                                                                                                                                                             |
+| `fields`        | An array of [Tina Fields](/docs/fields) to display in a settings modal form.                                                                                                                                                                                                                                                       |
+| `insetControls` | A boolean to denote whether the group controls display within or outside the group.                                                                                                                                                                                                                                                |
+| `focusRing`     | Either an object to style the focus ring or `false`, which hides the focus ring entirely. For styles, `offset` (in pixels) controls the distance from the ring to the edge of the group; `borderRadius`(in pixels) controls the [rounding](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius) edge of the focus ring. |
 
 ## Interface
 
@@ -82,5 +84,12 @@ This example assumes your data looks something like this:
 interface InlineGroupProps {
   name: string
   fields: TinaField[]
+  insetControls?: boolean
+  focusRing?: false | FocusRingProps
+}
+
+interface FocusRingProps {
+  offset?: number | { x: number; y: number }
+  borderRadius?: number
 }
 ```
