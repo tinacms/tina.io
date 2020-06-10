@@ -236,7 +236,7 @@ import { useJsonForm } from 'gatsby-tinacms-json'
 function Page(props) {
   const [page, form] = useJsonForm(props.data.page, FormOptions)
 
-  usePligin(form)
+  usePlugin(form)
 
   return (
     <section>
