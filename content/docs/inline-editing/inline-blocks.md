@@ -4,7 +4,7 @@ prev: /docs/inline-editing/inline-group
 next:
 consumes:
   - file: /packages/react-tinacms-inline/src/inline-form.tsx
-    description: InlineForm & useInlineForm
+    description: InlineForm
   - file: /packages/react-tinacms-inline/src/blocks/block.ts
     description: Shows Block interface
   - file: /packages/@tinacms/fields/src/plugins/BlocksFieldPlugin.tsx
