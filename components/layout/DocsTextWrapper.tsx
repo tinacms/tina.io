@@ -7,4 +7,5 @@ import DocsRichText from '../styles/DocsRichText'
 
 export const DocsTextWrapper = React.memo(styled.div`
   ${DocsRichText}
+  min-height: 68vh;
 `)

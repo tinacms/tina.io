@@ -8,7 +8,12 @@ consumes:
     description: Shows how to use withTina HOC
   - file: /packages/tinacms/src/use-cms.ts
     description: Demonstrates useCMS hook
+  - file: /packages/react-sidebar/sidebar.ts
+    description: Shows sidebar state interface
+  - file: /packages/react-toolbar/toolbar.ts
+    description: Shows Toolbar state interface
 ---
+
 The CMS object in Tina is a container for attaching and accessing Plugins and APIs. On its own, the CMS does very little; however, since it's the central integration point for everything that Tina does, it's extremely important!
 
 ## Setting up the CMS Object
@@ -27,8 +32,9 @@ The `TinaCMS` constructor receives an object that can be used to configure CMS b
 
 The `<TinaProvider>` component should wrap your entire site. It provides the following:
 
-1. The user interface for interacting with Tina, and
-2. A [Context](https://reactjs.org/docs/context.html) for accessing the CMS object via the [useCMS](#accessing-the-cms-object) hook.
+1. The user interface for interacting with Tina.
+2. A custom [theme](/docs/cms/styles) to style the interface, and
+3. A [Context](https://reactjs.org/docs/context.html) for accessing the CMS object via the [useCMS](#accessing-the-cms-object) hook.
 
 After instantiating the CMS object, pass it to the `<TinaProvider>` component via its `cms` prop.
 
@@ -46,6 +52,8 @@ export default function App() {
   )
 }
 ```
+
+> Learn more about [conditionally loading Tina Styles](/docs/cms/styles#dynamically-loading-tina-styles).
 
 Alternatively, you can use the `withTina` higher-order component to wrap your site with the `<TinaProvider>` component. `withTina` will automatically instantiate the CMS object.
 
@@ -97,23 +105,38 @@ interface TinaCMSConfig {
     position?: SidebarPosition
     theme?: Theme
     placeholder?: React.FC
+    buttons?: {
+      save: string
+      reset: string
+    }
+  }
+  toolbar?: {
+    hidden?: boolean
+    buttons?: {
+      save: string
+      reset: string
+    }
   }
 }
 ```
 
-***
+---
 
-| key | usage |
-| --- | --- |
-| **plugins** | Array of plugins to be added to the CMS object. |
-| **apis** | Object containing APIs to be registered to the CMS |
-| **sidebar** | Configures behavior of the sidebar |
-| **sidebar.hidden** | Removes the sidebar outright |
+| key                  | usage                                                                                                   |
+| -------------------- | ------------------------------------------------------------------------------------------------------- |
+| **plugins**          | Array of plugins to be added to the CMS object.                                                         |
+| **apis**             | Object containing APIs to be registered to the CMS                                                      |
+| **sidebar**          | Configures behavior of the sidebar                                                                      |
+| **sidebar.hidden**   | Removes the sidebar outright                                                                            |
 | **sidebar.position** | 'displace': sidebar pushes content to the side when open; 'overlay': sidebar overlaps content when open |
 | **sidebar.theme** | Override certain sidebar styles |
 | **sidebar.placeholder** | Override default placeholder when there are no registered forms |
+| **sidebar.buttons**  | Configures the text on 'Save' and 'Reset' buttons                                                       |
+| **toolbar**          | Configures behavior of the toolbar                                                                      |
+| **toolbar.hidden**   | Hides the toolbar altogether — is hidden by default                                                     |
+| **toolbar.buttons**  | Configures the text on 'Save' and 'Reset' buttons                                                       |
 
-***
+---
 
 ```javascript
 import { TinaCMS } from 'tinacms'
@@ -134,6 +157,9 @@ const cms = new TinaCMS({
   sidebar: {
     hidden: process.env.NODE_ENV === 'production',
     position: 'displace',
+  },
+  toolbar: {
+    hidden: true,
   },
 })
 ```

@@ -17,7 +17,6 @@ export const getJsonPreviewProps = async (
   const data = await readJsonFile(fileRelativePath)
   return {
     props: {
-      sourceProvider: null,
       error: null,
       preview: false,
       file: {

@@ -13,9 +13,15 @@ All field plugins share a common config:
 ```typescript
 interface FieldConfig {
   name: string
-  parse?: (value: any, name: string, field: Field) => any
-  format?: (value: any, name: string, field: Field) => any
   component: string | ReactComponent
+  parse?(value: any, name: string, field: Field): any
+  format?(value: any, name: string, field: Field): any
+  validate?(
+    value: any,
+    allValues: any,
+    meta: any,
+    field: Field
+  ): string | object | undefined
 }
 ```
 
@@ -25,3 +31,4 @@ interface FieldConfig {
 | `component` | Either a string denoting a field already registered with the CMS, or a custom field component. |
 | `parse`     | _Optional:_ Prepare the data for usage in the field component.                                 |
 | `format`    | _Optional:_ Prepare the data for saving.                                                       |
+| `validate`  | _Optional:_ Return undefined when valid. Return a string or an object when there are errors.   |

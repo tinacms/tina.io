@@ -74,14 +74,14 @@ Now that the development server is running, navigate to http://localhost:3000/ t
 
 With Next.js, there is an [`App` class component](https://nextjs.org/docs#custom-app) that initializes pages. We need to override this component to wrap every page in a `Tina` component that will provide access to the `cms` instance.
 
-Following along with the [Tina documentation:](https://tinacms.org/docs/nextjs/bootstrapping)
+Following along with the [Tina documentation:](https://tinacms.org/guides/nextjs/git-based/getting-started)
 
 ```bash
 # Install `tinacms` and other peer dependencies
 $ yarn add tinacms styled-components moment
 ```
 
-Create a new file in the root of your project called `_app.js` and add this code.
+Create a new file in the pages directory called `_app.js` and add this code.
 
 ```javascript
 import React from 'react'
@@ -112,7 +112,7 @@ If you restart the dev server, you should now see a pencil icon in the lower lef
 
 ### Setting up a Git Backend 👾
 
-As of now, the sidebar is empty because Tina doesn’t know what content to edit. Before we connect Tina to content, we need to [set up a backend](https://tinacms.org/docs/nextjs/adding-backends) that will talk to Git and can keep track of content changes as they are happening.
+As of now, the sidebar is empty because Tina doesn’t know what content to edit. Before we connect Tina to content, we need to [set up a backend](https://tinacms.org/guides/nextjs/git-based/adding-backend) that will talk to Git and can keep track of content changes as they are happening.
 
 ```bash
 # Install Express, cors & Tina Git packages
@@ -131,7 +131,6 @@ const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({
   dev,
-  dir: './src',
 })
 const handle = app.getRequestHandler()
 
@@ -167,9 +166,7 @@ Then in your package.json file, add this script:
   }
 ```
 
-This will have Next use your custom server code instead if its default development server. Take a look at the [Next.js custom server docs](https://nextjs.org/docs#custom-server-and-routing) and [Tina's Next.js docs](/docs/nextjs/adding-backends) for more information.
-
-> In the [example repo](https://github.com/kendallstrautman/brevifolia-nextjs), the pages and site components live in a `src` directory. If, in your project, these files live in the root, the code to retrieve the Next.js application would look something like this: `const app = next({ dev })`
+This will have Next use your custom server code instead if its default development server. Take a look at the [Next.js custom server docs](https://nextjs.org/docs#custom-server-and-routing) and [Tina's Next.js docs](/guides/nextjs/git-based/adding-backend) for more information.
 
 ### Connecting Back & Front 🖇
 
@@ -204,9 +201,9 @@ That’s all the config for tracking and persisting content changes with Git & T
 
 ### Creating Content Forms 📝
 
-Alright, now the fun starts — let’s dig into [editing content](https://tinacms.org/docs/nextjs/creating-forms). We access Tina’s editing powers by registering forms to the `cms`. When creating these [forms](https://tinacms.org/docs/forms), we define [fields](https://tinacms.org/docs/fields) that connect to bits and pieces of the content you want to make editable.
+Alright, now the fun starts — let’s dig into [editing content](https://tinacms.org/guides/nextjs/git-based/creating-git-forms). We access Tina’s editing powers by registering forms to the `cms`. When creating these [forms](https://tinacms.org/docs/forms), we define [fields](https://tinacms.org/docs/fields) that connect to bits and pieces of the content you want to make editable.
 
-Since our site is mainly comprised of blog data, let’s configure Tina to edit blog posts. Open up the [blog template](https://github.com/kendallstrautman/brevifolia-nextjs/blob/master/src/pages/blog/%5Bslug%5D.js) file (`src/pages/blog/[slug].js`).
+Since our site is mainly comprised of blog data, let’s configure Tina to edit blog posts. Open up the [blog template](https://github.com/kendallstrautman/brevifolia-nextjs/blob/master/pages/blog/%5Bslug%5D.js) file (`pages/blog/[slug].js`).
 
 As a recap from [Part I](https://tinacms.org/blog/simple-markdown-blog-nextjs/), we’re using the `getInitialProps` method to grab markdown data that will be passed as props to the `BlogTemplate` component.
 
@@ -222,7 +219,7 @@ BlogTemplate.getInitialProps = async function(ctx) {
   const data = matter(content.default)
 
   return {
-    fileRelativePath: `src/posts/${slug}.md`,
+    fileRelativePath: `posts/${slug}.md`,
     title: config.title,
     ...data,
   }
@@ -273,7 +270,7 @@ export default function BlogTemplate(props) {
        // Generate the frontmatter value based on the filename
        parse: filename => `../static/${filename}`,
         // Decide the file upload directory for the post
-       uploadDir: () => "/src/static/",
+       uploadDir: () => "/static/",
         // Generate the src attribute for the preview image.
        previewSrc: data => `/static/${data.frontmatter.hero_image}`,
      },
@@ -377,7 +374,7 @@ This is amazing! We wired up Tina to make edits and commit changes. One thing yo
 
 If you want your changes writing to disk in real time, we’ll need to use another hook, `useWatchFormValues`. This hook allows you to execute a function any time the form state changes. `useWatchFormValues` takes the form object created by the `useLocalForm` hook, and a callback function to invoke when the form changes.
 
-Add this example code below to your template component just before the `return` statement. Feel free to reference the final file [here](https://github.com/kendallstrautman/brevifolia-next-tinacms/blob/master/src/pages/blog/%5Bslug%5D.js).
+Add this example code below to your template component just before the `return` statement. Feel free to reference the final file [here](https://github.com/kendallstrautman/brevifolia-next-tinacms/blob/master/pages/blog/%5Bslug%5D.js).
 
 ```jsx
 // add useWatchFormValues to import

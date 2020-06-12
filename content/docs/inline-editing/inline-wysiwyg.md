@@ -1,5 +1,5 @@
 ---
-title: Inline Wysiwyg Field
+title: Inline Wysiwyg
 prev: /docs/inline-editing/inline-textarea
 next: /docs/inline-editing/inline-image
 consumes:
@@ -17,18 +17,28 @@ consumes:
 
 The `InlineWysiwyg` field represents a chunk of Markdown or HTML content.
 
+## Install _react-tinacms-editor_
+
+The `InlineWysiwyg` field is not a default field within `react-tinacms-inline`. In order to use it in your site you must install the `react-tinacms-editor` package:
+
+```bash
+yarn add react-tinacms-editor
+```
+
 ## Definition
 
 Below is an example of how an `InlineWysiwyg` field could be defined in an [Inline Form](/docs/inline-editing).
 
 ```jsx
 import ReactMarkdown from 'react-markdown'
-import { useLocalForm } from 'tinacms'
-import { InlineForm, InlineWysiwyg } from 'react-tinacms-inline'
+import { useForm, usePlugin } from 'tinacms'
+import { InlineForm } from 'react-tinacms-inline'
+import { InlineWysiwyg } from 'react-tinacms-editor'
 
 // Example 'Page' Component
 export function Page(props) {
-  const [data, form] = useLocalForm(props.data)
+  const [data, form] = useForm(props.data)
+  usePlugin(form)
   return (
     <InlineForm form={form}>
       <InlineWysiwyg name="markdownBody" format="markdown">

@@ -5,15 +5,21 @@ import { TinaCMS, TinaProvider, ModalProvider } from 'tinacms'
 import { DefaultSeo } from 'next-seo'
 import data from '../content/siteConfig.json'
 import TagManager from 'react-gtm-module'
-import { GlobalStyle } from '../components/styles/GlobalStyle'
+import { GlobalStyles, FontLoader } from '@tinacms/styles'
 import { BrowserStorageApi } from '../utils/plugins/browser-storage-api/BrowserStorageApi'
-import { Alerts } from '../components/layout/Alerts'
 import { GithubClient, TinacmsGithubProvider } from 'react-tinacms-github'
+import { GlobalStyle } from '../components/styles/GlobalStyle'
 
 const MainLayout = ({ Component, pageProps }) => {
   const tinaConfig = {
+    enabled: pageProps.preview,
     apis: {
-      github: new GithubClient('/api/proxy-github', process.env.BASE_REPO_FULL_NAME),
+      github: new GithubClient({
+        proxy: '/api/proxy-github',
+        authCallbackRoute: '/api/create-github-access-token',
+        clientId: process.env.GITHUB_CLIENT_ID,
+        baseRepoFullName: process.env.BASE_REPO_FULL_NAME,
+      }),
       storage:
         typeof window !== 'undefined'
           ? new BrowserStorageApi(window.localStorage)
@@ -41,17 +47,18 @@ const MainLayout = ({ Component, pageProps }) => {
     })
   }
 
+  const loadFonts = useShouldLoadFont(cms)
+
   return (
-    <TinaProvider cms={cms}>
+    <TinaProvider cms={cms} styled={false}>
+      <GlobalStyles />
+      {loadFonts && <FontLoader />}
       <ModalProvider>
-        <Alerts />
         <TinacmsGithubProvider
-          clientId={process.env.GITHUB_CLIENT_ID}
-          authCallbackRoute="/api/create-github-access-token"
           enterEditMode={enterEditMode}
           exitEditMode={exitEditMode}
           editMode={pageProps.preview}
-          error={pageProps.previewError}
+          error={pageProps.error}
         >
           <DefaultSeo
             title={data.seoDefaultTitle}
@@ -87,6 +94,19 @@ const MainLayout = ({ Component, pageProps }) => {
       </ModalProvider>
     </TinaProvider>
   )
+}
+
+function useShouldLoadFont(cms: TinaCMS) {
+  const [enabled, setEnabled] = React.useState(cms.enabled)
+
+  React.useEffect(() => {
+    if (cms.enabled) return
+    return cms.events.subscribe('cms:enable', () => {
+      setEnabled(true)
+    })
+  }, [])
+
+  return enabled
 }
 
 class Site extends App {

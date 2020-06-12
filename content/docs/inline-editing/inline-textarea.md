@@ -1,31 +1,32 @@
 ---
-title: Inline Textarea Field
+title: Inline Textarea
 prev: /docs/inline-editing/inline-text
 next: /docs/inline-editing/inline-wysiwyg
 consumes:
   - file: /packages/react-tinacms-inline/src/inline-field-textarea.tsx
-    description: Shows InlineTextareaField
+    description: Shows InlineTextarea
   - file: /packages/react-tinacms-inline/src/inline-field.tsx
     description: Depends on InlineField
 ---
 
-The `InlineTextareaField` component represents a **multi-line text input**. It should be used for content values that are long strings: for example, a page description.
+The `InlineTextarea` component represents a **multi-line text input**. It should be used for content values that are long strings: for example, a page description.
 
 ## Definition
 
-Below is an example of how `InlineTextareaField` may be used in an [Inline Form](/docs/inline-editing).
+Below is an example of how `InlineTextarea` may be used in an [Inline Form](/docs/inline-editing).
 
 ```jsx
-import { useLocalForm } from 'tinacms'
-import { InlineForm, InlineTextareaField } from 'react-tinacms-inline'
+import { useForm, usePlugin } from 'tinacms'
+import { InlineForm, InlineTextarea } from 'react-tinacms-inline'
 
 // Example 'Page' Component
 export function Page(props) {
-  const [, form] = useLocalForm(props.data)
+  const [, form] = useForm(props.data)
+  usePlugin(form)
   return (
     <InlineForm form={form}>
       <h3>
-        <InlineTextareaField name="title" />
+        <InlineTextarea name="title" />
       </h3>
     </InlineForm>
   )
@@ -36,14 +37,16 @@ export function Page(props) {
 
 ## Options
 
-| Key    | Description                                      |
-| ------ | ------------------------------------------------ |
-| `name` | The path to some value in the data being edited. |
+| Key         | Description                                      |
+| ----------- | ------------------------------------------------ |
+| `name`      | The path to some value in the data being edited. |
+| `focusRing` | Controls whether to display a focus outline      |
 
 ## Interface
 
 ```typescript
-export interface InlineTextareaFieldProps {
+interface InlineTextareaProps {
   name: string
+  focusRing?: boolean
 }
 ```

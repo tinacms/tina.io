@@ -3,7 +3,6 @@ title: Alerts
 prev: /docs/cms/apis
 next: /docs/cms/styles
 ---
-
 The CMS' **alerts** feature allows you to display short, ephemeral messages to users.
 
 Display an alert by calling one of the **alert level methods** on the CMS object, and passing in your message.
@@ -38,12 +37,12 @@ cms.alerts.info('This alert will hang around a little longer', 5000)
 The below example demonstrates how you might use alerts with a custom save handler:
 
 ```jsx
-import { useCMS } from 'tinacms'
+import { useCMS, useForm } from 'tinacms'
 import { saveFormData } from './my-custom-save-handler'
 
 export function Page() {
   const cms = useCMS()
-  const [modifiedData] = useLocalForm({
+  const [modifiedData] = useForm({
     // ...
     onSubmit: async formData => {
       try {

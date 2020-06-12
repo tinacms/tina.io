@@ -16,12 +16,14 @@ import {
   Overlay,
   DocsPagination,
 } from '../../components/ui'
-import { InlineWysiwyg, InlineTextareaField } from 'react-tinacms-inline'
+import { InlineTextareaField, useInlineForm } from 'react-tinacms-inline'
 import { TinaIcon } from '../../components/logo'
 import { useGithubMarkdownForm } from 'react-tinacms-github'
 import { getDocProps } from '../../utils/docs/getDocProps'
 import { OpenAuthoringSiteForm } from '../../components/layout/OpenAuthoringSiteForm'
 import { GithubError } from 'next-tinacms-github'
+import { InlineWysiwyg } from '../../components/inline-wysiwyg'
+import { usePlugin } from 'tinacms'
 
 function DocTemplate(props) {
   // Registers Tina Form
@@ -30,6 +32,8 @@ function DocTemplate(props) {
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
   const excerpt = props.file.data.excerpt
+
+  usePlugin(form)
 
   return (
     <OpenAuthoringSiteForm
@@ -162,7 +166,7 @@ const formOptions = {
  * STYLES --------------------------------------------------------------
  */
 
-const DocsNavToggle = styled(NavToggle)`
+export const DocsNavToggle = styled(NavToggle)`
   position: fixed;
   margin-top: 1.25rem;
   left: 1rem;
@@ -173,7 +177,7 @@ const DocsNavToggle = styled(NavToggle)`
   }
 `
 
-const DocsMobileTinaIcon = styled(TinaIcon)`
+export const DocsMobileTinaIcon = styled(TinaIcon)`
   position: relative;
   display: block;
   padding: 1rem 0;
@@ -190,7 +194,7 @@ const DocsMobileTinaIcon = styled(TinaIcon)`
   }
 `
 
-const DocsHeaderNav = styled(HeaderNav)`
+export const DocsHeaderNav = styled(HeaderNav)`
   justify-content: flex-end;
   padding: 1rem 0;
 
@@ -199,7 +203,7 @@ const DocsHeaderNav = styled(HeaderNav)`
   }
 `
 
-const DocsContent = styled.div`
+export const DocsContent = styled.div`
   grid-area: content;
   overflow-y: auto;
 
