@@ -107,6 +107,7 @@ interface TinaCMSConfig {
       save: string
       reset: string
     }
+    placeholder?: React.FC
   }
   toolbar?: {
     hidden?: boolean
@@ -131,6 +132,7 @@ interface TinaCMSConfig {
 | **toolbar**          | Configures behavior of the toolbar                                                                      |
 | **toolbar.hidden**   | Hides the toolbar altogether — is hidden by default                                                     |
 | **toolbar.buttons**  | Configures the text on 'Save' and 'Reset' buttons                                                       |
+| **placeholder**      | Accepts a component to render in the sidebar when no forms are registered                               |
 
 ---
 
