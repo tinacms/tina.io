@@ -23,7 +23,7 @@ const cms = new TinaCMS()
 
 The `TinaCMS` constructor receives an object that can be used to configure CMS behavior. See [CMS Configuration](#cms-configuration) for details.
 
-### The &lt;TinaProvider&gt; Component
+### The <TinaProvider> Component
 
 The `<TinaProvider>` component should wrap your entire site. It provides the following:
 
@@ -96,6 +96,10 @@ interface TinaCMSConfig {
     hidden?: boolean
     position?: SidebarPosition
     theme?: Theme
+```
+
+```typescript
+    placeholder?: React.FC
   }
 }
 ```
@@ -110,6 +114,7 @@ interface TinaCMSConfig {
 | **sidebar.hidden** | Removes the sidebar outright |
 | **sidebar.position** | 'displace': sidebar pushes content to the side when open; 'overlay': sidebar overlaps content when open |
 | **sidebar.theme** | Override certain sidebar styles |
+| **sidebar.placeholder** | Override default placeholder when there are no registered forms |
 
 ***
 
