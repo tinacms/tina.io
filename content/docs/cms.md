@@ -96,9 +96,6 @@ interface TinaCMSConfig {
     hidden?: boolean
     position?: SidebarPosition
     theme?: Theme
-```
-
-```typescript
     placeholder?: React.FC
   }
 }
