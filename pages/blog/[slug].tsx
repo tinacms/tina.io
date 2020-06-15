@@ -81,7 +81,7 @@ function BlogTemplate({ file, siteConfig, preview }) {
               </MetaWrap>
               <EditLink isEditMode={preview} />
             </BlogMeta>
-            <InlineWysiwyg name="markdownBody">
+            <InlineWysiwyg name="markdownBody" sticky={'72px'}>
               <MarkdownContent escapeHtml={false} content={markdownBody} />
             </InlineWysiwyg>
           </DocsTextWrapper>
