@@ -130,7 +130,7 @@ interface TinaCMSConfig {
 | **sidebar.hidden**   | Removes the sidebar outright                                                                            |
 | **sidebar.position** | 'displace': sidebar pushes content to the side when open; 'overlay': sidebar overlaps content when open |
 | **sidebar.theme** | Override certain sidebar styles |
-| **sidebar.placeholder** | Override default placeholder when there are no registered forms |
+| **sidebar.placeholder** | Provides a placeholder component to render in the sidebar when there are no registered forms |
 | **sidebar.buttons**  | Configures the text on 'Save' and 'Reset' buttons                                                       |
 | **toolbar**          | Configures behavior of the toolbar                                                                      |
 | **toolbar.hidden**   | Hides the toolbar altogether — is hidden by default                                                     |
