@@ -131,7 +131,6 @@ function SupportingPoint({ data, index }) {
 }
 
 const point_template: BlockTemplate = {
-  type: 'point',
   label: 'Teams Point',
   defaultItem: { point: 'Something dope about TinaTeams 🤙' },
   fields: [],
