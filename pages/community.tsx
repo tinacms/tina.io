@@ -89,7 +89,7 @@ function CommunityPage({ file: community, metadata, preview }) {
                       <InlineTextareaField name="supporting_headline" />
                     </h2>
                     <hr />
-                    <InlineWysiwyg name="supporting_body">
+                    <InlineWysiwyg name="supporting_body" sticky={'72px'}>
                       <MarkdownContent content={data.supporting_body} />
                     </InlineWysiwyg>
                   </InfoText>
