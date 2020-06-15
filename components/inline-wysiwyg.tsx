@@ -1,15 +1,15 @@
-import { useInlineForm } from 'react-tinacms-inline'
 import React from 'react'
+import { useCMS } from 'tinacms'
 
 export function InlineWysiwyg(props: any) {
-  const { status } = useInlineForm()
+  const cms = useCMS()
   const [{ InlineWysiwyg }, setEditor] = React.useState<any>({})
 
   React.useEffect(() => {
-    if (!InlineWysiwyg && status === 'active') {
+    if (!InlineWysiwyg && cms.enabled) {
       import('react-tinacms-editor').then(setEditor)
     }
-  }, [status])
+  }, [cms.enabled])
 
   if (InlineWysiwyg) {
     return <InlineWysiwyg {...props} />

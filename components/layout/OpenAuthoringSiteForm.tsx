@@ -24,14 +24,7 @@ export const OpenAuthoringSiteForm = ({
 
   return (
     <>
-      <InlineForm
-        form={form}
-        initialStatus={
-          typeof document !== 'undefined' && preview ? 'active' : 'inactive'
-        }
-      >
-        {children}
-      </InlineForm>
+      <InlineForm form={form}>{children}</InlineForm>
       <AutoAuthModal />
     </>
   )
