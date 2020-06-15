@@ -12,7 +12,7 @@ import {
 } from 'react-tinacms-inline'
 import { EditLink } from '../components/layout/EditLink'
 import { DefaultSeo } from 'next-seo'
-import { BlockTemplate } from 'tinacms'
+import { useCMS, BlockTemplate } from 'tinacms'
 import { DynamicLink } from '../components/ui/DynamicLink'
 import {
   Layout,
@@ -28,6 +28,7 @@ import { useGithubJsonForm } from 'react-tinacms-github'
 import { getJsonPreviewProps } from '../utils/getJsonPreviewProps'
 
 const HomePage = (props: any) => {
+  const cms = useCMS()
   const [formData, form] = useGithubJsonForm(props.file, {
     label: 'Home Page',
     fields: [
@@ -114,8 +115,8 @@ const HomePage = (props: any) => {
           <InlineTextareaField name="headline" />
         </Hero>
         <InlineField name="hero_video">
-          {({ status, input }) => {
-            return <Video src={input.value} autoPlay={status !== 'active'} />
+          {({ input }) => {
+            return <Video src={input.value} autoPlay={cms.disabled} />
           }}
         </InlineField>
 
@@ -138,12 +139,11 @@ const HomePage = (props: any) => {
                   </DynamicLink>
                 </CtaBar>
               </CtaLayout>
-              <InfoLayout>
-                <InlineBlocks
-                  name="three_points"
-                  blocks={SELLING_POINTS_BLOCKS}
-                />
-              </InfoLayout>
+              <InfoBlocks
+                name="three_points"
+                blocks={SELLING_POINTS_BLOCKS}
+                direction="row"
+              />
             </RichTextWrapper>
           </Wrapper>
         </Section>
@@ -236,7 +236,6 @@ function SellingPoint({ data, index }) {
 }
 
 const selling_point_template: BlockTemplate = {
-  type: 'selling_point',
   label: 'Selling Point',
   defaultItem: {
     main: 'Tina is dope 🤙',
@@ -273,7 +272,6 @@ function SetupPoint({ data, index }) {
 }
 
 const setup_point_template: BlockTemplate = {
-  type: 'setup_point',
   label: 'Setup Point',
   defaultItem: {
     step: 'Make yourself a dang quesadilla',
@@ -324,7 +322,7 @@ const CodeExample = styled.code`
   }
 `
 
-const InfoLayout = styled.div`
+const InfoBlocks = styled(InlineBlocks)`
   display: grid;
   grid-gap: 2rem;
 

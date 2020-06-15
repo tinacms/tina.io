@@ -23,6 +23,8 @@
     "deploy": "yarn build && yarn export"
   },
   "dependencies": {
+    "@tinacms/api-git": "^0.7.0",
+    "@tinacms/git-client": "^0.6.7",
     "@types/react-instantsearch-dom": "^5.2.6",
     "@types/styled-components": "^4.4.2",
     "algoliasearch": "^3.35.1",
@@ -67,16 +69,16 @@
     "react-markdown": "^4.3.1",
     "react-syntax-highlighter": "^12.2.1",
     "react-textarea-autosize": "^7.1.2",
-    "react-tinacms-editor": "^0.7.2",
+    "react-tinacms-editor": "^0.8.1",
     "react-tinacms-github": "^0.4.1",
-    "react-tinacms-inline": "^0.6.0",
+    "react-tinacms-inline": "^0.8.0",
     "remark": "^11.0.2",
     "remark-parse": "^8.0.0",
     "remark-shortcodes": "^0.3.1",
     "serve": "11.2.0",
     "strip-markdown": "^3.1.1",
     "styled-components": "^4.4.1",
-    "tinacms": "^0.21.0",
+    "tinacms": "^0.21.2",
     "webpack": "^4.41.5"
   },
   "devDependencies": {
