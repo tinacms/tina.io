@@ -28,13 +28,12 @@ const cms = new TinaCMS()
 
 The `TinaCMS` constructor receives an object that can be used to configure CMS behavior. See [CMS Configuration](#cms-configuration) for details.
 
-### The &lt;TinaProvider&gt; Component
+### The <TinaProvider> Component
 
 The `<TinaProvider>` component should wrap your entire site. It provides the following:
 
 1. The user interface for interacting with Tina.
-2. A custom [theme](/docs/cms/styles) to style the interface, and
-3. A [Context](https://reactjs.org/docs/context.html) for accessing the CMS object via the [useCMS](#accessing-the-cms-object) hook.
+2. A [Context](https://reactjs.org/docs/context.html) for accessing the CMS object via the [useCMS](#accessing-the-cms-object) hook.
 
 After instantiating the CMS object, pass it to the `<TinaProvider>` component via its `cms` prop.
 
@@ -124,6 +123,7 @@ interface TinaCMSConfig {
   sidebar?: {
     hidden?: boolean
     position?: SidebarPosition
+    placeholder?: React.FC
     buttons?: {
       save: string
       reset: string
@@ -152,6 +152,7 @@ interface TinaCMSConfig {
 | **sidebar**          | Configures behavior of the sidebar                                                                      |
 | **sidebar.hidden**   | Removes the sidebar outright                                                                            |
 | **sidebar.position** | 'displace': sidebar pushes content to the side when open; 'overlay': sidebar overlaps content when open |
+| **sidebar.placeholder** | Provides a placeholder component to render in the sidebar when there are no registered forms |
 | **sidebar.buttons**  | Configures the text on 'Save' and 'Reset' buttons                                                       |
 | **toolbar**          | Configures behavior of the toolbar                                                                      |
 | **toolbar.hidden**   | Hides the toolbar altogether — is hidden by default                                                     |
