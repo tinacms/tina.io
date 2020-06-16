@@ -12,7 +12,12 @@ export function InlineWysiwyg(props: any) {
   }, [cms.enabled])
 
   if (InlineWysiwyg) {
-    return <InlineWysiwyg {...props} />
+    return (
+      <InlineWysiwyg
+        {...props}
+        sticky={'calc(var(--tina-toolbar-height) + var(--tina-padding-small))'}
+      />
+    )
   }
 
   return props.children
