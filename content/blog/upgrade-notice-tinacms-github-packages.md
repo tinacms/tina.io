@@ -37,7 +37,7 @@ import { createAuthHandler } from 'next-tinacms-github'
 export default createAuthHandler(
   process.env.GITHUB_CLIENT_ID || "",
   process.env.GITHUB_CLIENT_SECRET || "",
-  + process.env.SIGNING_KEY || ""
++ process.env.SIGNING_KEY || ""
 )
 ```
 
@@ -63,16 +63,16 @@ import { previewHandler } from 'next-tinacms-github'
 
 ```diff
 const enterEditMode = () => {
-  + const token = localStorage.getItem('token') || null
++ const token = localStorage.getItem('token') || null
 
-  + const headers = new Headers()
++ const headers = new Headers()
 
-  + if (token) {
-  +  headers.append('Authorization', 'Bearer ' + token)
-  + }
++ if (token) {
++  headers.append('Authorization', 'Bearer ' + token)
++ }
 
-  - return fetch(`/api/preview`).then(() => {
-  + return fetch(`/api/preview`, { headers: headers }).then(() => {
+- return fetch(`/api/preview`).then(() => {
++ return fetch(`/api/preview`, { headers: headers }).then(() => {
     window.location.href = window.location.pathname
   })
 }
