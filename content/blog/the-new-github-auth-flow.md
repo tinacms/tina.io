@@ -23,7 +23,7 @@ Nothing needs to be changed. This package can handle both the old flow and the n
 
 The _Signing Key_ should be a random 256-bit key, used server-side to encrypt and decrypt authentication tokens sent to the client.
 
-One way to generate a recommended size key, is to run `openssl rand -base64 32` in your terminal and use the output as your _Signing Key_.
+You can generate a key by running `openssl rand -base64 32` in your terminal, using the output as your _Signing Key_.
 
 `createAuthHandler`, `apiProxy`, and `previewHandler` now  **require** the _Signing Key_ to be passed as a parameter.
 
