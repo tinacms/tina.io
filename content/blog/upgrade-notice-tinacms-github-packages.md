@@ -9,7 +9,7 @@ A common approach to mitigating this problem is to implement the [Token Synchron
 
 **Stateless Token Synchronization** works by storing a CSRF token as an httpOnly cookie and sending an encrypted (signed by the server's secret _Signing Key_) token that is the amalgamation of the CSRF token and the authentication token provided by Github. This amalgamated token is then stored client-side in local storage and sent to the proxy in a bearer authentication header. Then, server-side, the amalgamated token is decrypted and the CSRF tokens are compared to make sure they match. If all is well, the authentication token is extracted and the call is completed.
 
-This new pattern help mitigate CSRF attacks and provides the authentication token in an encrypted format, all done statelessly.
+This new pattern helps mitigate CSRF attacks and provides the authentication token in an encrypted format, all done statelessly.
 
 ## Upgrading to the new flow
 
