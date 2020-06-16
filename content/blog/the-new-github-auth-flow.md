@@ -11,10 +11,49 @@ It works by storing a CSRF token as an httpOnly cookie and sending an encrypted 
 
 This new pattern help mitigate CSRF attacks and provides the authentication token in an encrypted format, all done statelessly.
 
-## Upgrading to the new flow
+# Upgrading to the new flow
 
 ### **react-tinacms-github**
 
-Nothing needs to be changed. This package can handle both the old flow and the new one
+Nothing needs to be changed. This package can handle both the old flow and the new one on its own without further configuration.
 
 ### **next-tinacms-github**
+
+**next-tinacms-github** api routes now require a secret _Signing Key_.
+
+The _Signing Key_ is just a random passphrase of your choice, a randomized 256-bit key is recommended. This key is only used server-side to encrypt and decrypt authentication tokens sent to the client.
+
+One way to generate a recommended size key, is to run `openssl rand -base64 32` in your terminal and use the output as your _Signing Key_.
+
+`createAuthHandler`, `apiProxy`, and `previewHandler` now  **require** the _Signing Key_ to be passed as a parameter.
+
+E.g., the proxy-github route:
+
+```TSX
+import { apiProxy } from 'next-tinacms-github'
+
+export default apiProxy(
+    process.env.SIGNING_KEY
+)
+```
+
+**Also**, `enterEditMode` needs to pass the new token that is in local storage as an authorization header to the `/api/preview` route, like this:
+
+```TSX
+const enterEditMode = () => {
+  const token = localStorage.getItem('token') || null
+
+  const headers = new Headers()
+
+  if (token) {
+    headers.append('Authorization', 'Bearer ' + token)
+  }
+
+
+  return fetch(`/api/preview`, { headers: headers }).then(() => {
+    window.location.href = window.location.pathname
+  })
+}
+```
+
+# Questions?
