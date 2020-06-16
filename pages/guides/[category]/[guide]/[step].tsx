@@ -21,10 +21,11 @@ import { useRouter } from 'next/router'
 import { getGuideNavProps } from '../../../../utils/guide_helpers'
 import { useMemo } from 'react'
 import { OpenAuthoringSiteForm } from '../../../../components/layout/OpenAuthoringSiteForm'
-import { usePlugin } from 'tinacms'
+import { usePlugin, useFormScreenPlugin } from 'tinacms'
 import { InlineTextareaField } from 'react-tinacms-inline'
-import { useGithubMarkdownForm } from 'react-tinacms-github'
+import { useGithubMarkdownForm, useGithubJsonForm } from 'react-tinacms-github'
 import { InlineWysiwyg } from '../../../../components/inline-wysiwyg'
+import { getJsonPreviewProps } from '../../../../utils/getJsonPreviewProps'
 
 export default function GuideTemplate(props) {
   let data = props.markdownFile.data
@@ -80,13 +81,34 @@ export default function GuideTemplate(props) {
     return { prev, next }
   }, [props.currentGuide, currentPath])
 
-  const [, form] = useGithubMarkdownForm(props.markdownFile)
+  const [, guideStepForm] = useGithubMarkdownForm(props.markdownFile)
+  const [, guideMetaForm] = useGithubJsonForm(props.guideMeta, {
+    label: 'Guide Metadata',
+    fields: [
+      { component: 'text', name: 'title', label: 'Title' },
+      {
+        name: 'steps',
+        component: 'group-list',
+        // @ts-ignore
+        itemProps: step => ({
+          label: step.title,
+        }),
+        fields: [
+          { component: 'text', name: 'title' },
+          { component: 'text', name: 'id' },
+          { component: 'text', name: 'slug' },
+          { component: 'text', name: 'data' },
+        ],
+      },
+    ],
+  })
 
-  usePlugin(form)
+  usePlugin(guideStepForm)
+  useFormScreenPlugin(guideMetaForm)
 
   return (
     <OpenAuthoringSiteForm
-      form={form}
+      form={guideStepForm}
       path={props.markdownFile.fileRelativePath}
       preview={props.preview}
     >
@@ -145,10 +167,15 @@ export const getStaticProps: GetStaticProps = async function(ctx) {
     category,
     guide
   )
-  const guideMetaRaw = await readFile(path.join(pathToGuide, 'meta.json'))
-  const guideMeta = JSON.parse(guideMetaRaw)
+  const {
+    props: { file: guideMeta },
+  } = await getJsonPreviewProps(
+    `content/guides/${category}/${guide}/meta.json`,
+    ctx.preview,
+    ctx.previewData
+  )
 
-  let {
+  const {
     props: { preview, file: markdownFile },
   } = await getMarkdownPreviewProps(
     `content/guides/${category}/${guide}/${step}.md`,
@@ -159,7 +186,8 @@ export const getStaticProps: GetStaticProps = async function(ctx) {
   return {
     props: {
       preview,
-      currentGuide: guideMeta,
+      currentGuide: guideMeta.data,
+      guideMeta,
       markdownFile,
       allGuides: await getGuideNavProps(),
     },
