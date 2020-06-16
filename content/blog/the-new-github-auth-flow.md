@@ -1,5 +1,5 @@
 ---
-title: The New GitHub Auth Flow
+title: 'Upgrade Notice: TinaCMS + GitHub Packages'
 date: '2020-06-16T13:47:03-03:00'
 author: Joel Huggett
 ---
