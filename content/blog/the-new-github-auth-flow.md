@@ -11,7 +11,7 @@ A common approach to mitigating this problem is to implement the [Token Synchron
 
 This new pattern help mitigate CSRF attacks and provides the authentication token in an encrypted format, all done statelessly.
 
-# Upgrading to the new flow
+## Upgrading to the new flow
 
 ### **react-tinacms-github**
 
