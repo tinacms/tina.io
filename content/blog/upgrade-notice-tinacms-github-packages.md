@@ -29,7 +29,7 @@ You can generate a key by running `openssl rand -base64 32` in your terminal, us
 
 E.g., the proxy-github route:
 
-```TSX
+```typescript
 import { apiProxy } from 'next-tinacms-github'
 
 export default apiProxy(
@@ -39,7 +39,7 @@ export default apiProxy(
 
 **Also**, `enterEditMode` needs to pass the new token that is in local storage as an authorization header to the `/api/preview` route, like this:
 
-```TSX
+```typescript
 const enterEditMode = () => {
   const token = localStorage.getItem('token') || null
 
