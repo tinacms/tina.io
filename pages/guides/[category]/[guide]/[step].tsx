@@ -29,14 +29,14 @@ import { getJsonPreviewProps } from '../../../../utils/getJsonPreviewProps'
 
 export default function GuideTemplate(props) {
   const [open, setOpen] = React.useState(false)
-  const frontmatter = data.frontmatter
-  const markdownBody = data.markdownBody
-  const excerpt = props.markdownFile.data.excerpt
 
   const router = useRouter()
   const currentPath = router.asPath
 
-  const [, stepForm] = useGithubMarkdownForm(props.markdownFile)
+  const [{ frontmatter, markdownBody }, stepForm] = useGithubMarkdownForm(
+    props.markdownFile
+  )
+
   const [guide, guideForm] = useGithubJsonForm(props.guideMeta, {
     label: 'Guide Metadata',
     fields: [
@@ -62,46 +62,9 @@ export default function GuideTemplate(props) {
   useFormScreenPlugin(guideForm)
 
   const guideTitle = guide?.title || 'TinaCMS Guides'
-
-  let navData = useMemo(() => {
-    if (guide) {
-      return [
-        {
-          title: guide.title,
-          id: guide.title,
-          collapsible: false,
-          items: guide.steps,
-          returnLink: {
-            url: '/guides',
-            label: '‹ Back to Guides',
-          },
-        },
-      ]
-    } else {
-      return props.allGuides
-    }
-  }, [guide, props.allGuides])
-
-  const { prev, next } = React.useMemo(() => {
-    if (!guide) {
-      return { prev: null, next: null }
-    }
-    let prev = null,
-      next = null
-    const allSteps = guide.steps
-    const currentItemIndex = allSteps.findIndex(
-      step => step.slug == currentPath
-    )
-    if (currentItemIndex >= 0) {
-      prev = allSteps[currentItemIndex - 1]
-
-      if (currentItemIndex < allSteps.length - 1) {
-        next = allSteps[currentItemIndex + 1]
-      }
-    }
-
-    return { prev, next }
-  }, [guide, currentPath])
+  const guideNav = useGuideNav(guide, props.allGuides)
+  const { prev, next } = usePrevNextSteps(guide, currentPath)
+  const excerpt = props.markdownFile.data.excerpt
 
   return (
     <OpenAuthoringSiteForm
@@ -132,7 +95,7 @@ export default function GuideTemplate(props) {
         />
         <DocsNavToggle open={open} onClick={() => setOpen(!open)} />
         <DocsMobileTinaIcon />
-        <DocsNav open={open} navItems={navData} />
+        <DocsNav open={open} navItems={guideNav} />
         <DocsContent>
           <DocsHeaderNav color={'light'} open={open} />
           <DocsTextWrapper>
@@ -206,4 +169,48 @@ export const getStaticPaths: GetStaticPaths = async function() {
     }),
     fallback: false,
   }
+}
+
+function useGuideNav(guide: any, allGuides: any) {
+  return useMemo(() => {
+    if (guide) {
+      return [
+        {
+          title: guide.title,
+          id: guide.title,
+          collapsible: false,
+          items: guide.steps,
+          returnLink: {
+            url: '/guides',
+            label: '‹ Back to Guides',
+          },
+        },
+      ]
+    } else {
+      return allGuides
+    }
+  }, [guide, allGuides])
+}
+
+function usePrevNextSteps(guide: any, currentPath: string) {
+  return React.useMemo(() => {
+    if (!guide) {
+      return { prev: null, next: null }
+    }
+    let prev = null,
+      next = null
+    const allSteps = guide.steps
+    const currentItemIndex = allSteps.findIndex(
+      step => step.slug == currentPath
+    )
+    if (currentItemIndex >= 0) {
+      prev = allSteps[currentItemIndex - 1]
+
+      if (currentItemIndex < allSteps.length - 1) {
+        next = allSteps[currentItemIndex + 1]
+      }
+    }
+
+    return { prev, next }
+  }, [guide, currentPath])
 }
