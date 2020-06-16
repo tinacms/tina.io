@@ -2,6 +2,8 @@
 title: Override Inline Blocks Styles
 ---
 
+## Step 17 — Style _FeaturesList_
+
 Our _Features List_ is functional but doesn't look great. This component would be a nice fit for a [grid layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout). This way, we could define a set of columns and rows and new `Feature` blocks will populate automatically according to the layout.
 
 If you open up the [Page Inspector](https://developer.mozilla.org/en-US/docs/Tools/Page_Inspector) in your dev tools, you'll see that `InlineBlocks` actually adds a div to the DOM that wraps all the child blocks. In order to style the child blocks in a grid, we need to directly style that `InlineBlocks` div.
@@ -36,6 +38,8 @@ export function FeaturesList({ index }) {
 ```
 
 This class and its grid styles have already been set up in `styles/features.css`, so if you refresh you should see the new grid layout.
+
+![photo of features list with grid?]()
 
 You also may have noticed the new `direction` prop being passed. This controls whether the add block buttons render on the top / bottom or left / right. It also sets a direction for the [drag context](https://github.com/atlassian/react-beautiful-dnd#api-%EF%B8%8F).
 
@@ -77,3 +81,5 @@ const StyledInlineBlocks = styled(InlineBlocks)`
 
 //...
 ```
+
+<!-- TODO: add outro >
