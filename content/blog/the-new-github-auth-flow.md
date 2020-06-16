@@ -21,7 +21,7 @@ Nothing needs to be changed. This package can handle both the old flow and the n
 
 **next-tinacms-github** api routes now require a secret _Signing Key_.
 
-The _Signing Key_ is just a random passphrase of your choice, a randomized 256-bit key is recommended. This key is only used server-side to encrypt and decrypt authentication tokens sent to the client.
+The _Signing Key_ should be a random 256-bit key, used server-side to encrypt and decrypt authentication tokens sent to the client.
 
 One way to generate a recommended size key, is to run `openssl rand -base64 32` in your terminal and use the output as your _Signing Key_.
 
