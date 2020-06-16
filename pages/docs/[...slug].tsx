@@ -73,7 +73,7 @@ function DocTemplate(props) {
                 <InlineTextareaField name="frontmatter.title" />
               </h1>
               <hr />
-              <InlineWysiwyg name="markdownBody" sticky={'72px'}>
+              <InlineWysiwyg name="markdownBody">
                 <MarkdownContent escapeHtml={false} content={markdownBody} />
               </InlineWysiwyg>
               <DocsPagination
