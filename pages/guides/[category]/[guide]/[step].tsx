@@ -41,27 +41,6 @@ export default function GuideTemplate(props) {
     ? props.currentGuide.title
     : 'TinaCMS Guides'
 
-  const { prev, next } = React.useMemo(() => {
-    if (!props.currentGuide) {
-      return { prev: null, next: null }
-    }
-    let prev = null,
-      next = null
-    const allSteps = props.currentGuide.steps
-    const currentItemIndex = allSteps.findIndex(
-      step => step.slug == currentPath
-    )
-    if (currentItemIndex >= 0) {
-      prev = allSteps[currentItemIndex - 1]
-
-      if (currentItemIndex < allSteps.length - 1) {
-        next = allSteps[currentItemIndex + 1]
-      }
-    }
-
-    return { prev, next }
-  }, [props.currentGuide, currentPath])
-
   const [, guideStepForm] = useGithubMarkdownForm(props.markdownFile)
   const [currentGuide, guideMetaForm] = useGithubJsonForm(props.guideMeta, {
     label: 'Guide Metadata',
@@ -105,6 +84,27 @@ export default function GuideTemplate(props) {
       return props.allGuides
     }
   }, [currentGuide, props.allGuides])
+
+  const { prev, next } = React.useMemo(() => {
+    if (!currentGuide) {
+      return { prev: null, next: null }
+    }
+    let prev = null,
+      next = null
+    const allSteps = currentGuide.steps
+    const currentItemIndex = allSteps.findIndex(
+      step => step.slug == currentPath
+    )
+    if (currentItemIndex >= 0) {
+      prev = allSteps[currentItemIndex - 1]
+
+      if (currentItemIndex < allSteps.length - 1) {
+        next = allSteps[currentItemIndex + 1]
+      }
+    }
+
+    return { prev, next }
+  }, [currentGuide, currentPath])
 
   return (
     <OpenAuthoringSiteForm
