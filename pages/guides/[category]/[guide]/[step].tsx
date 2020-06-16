@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { readFile } from '../../../../utils/readFile'
-import { readMarkdownFile } from '../../../../utils/getMarkdownFile'
+import { getMarkdownPreviewProps } from '../../../../utils/getMarkdownFile'
 import {
   DocsLayout,
   DocsTextWrapper,
@@ -20,6 +20,11 @@ import {
 import { useRouter } from 'next/router'
 import { getGuideNavProps } from '../../../../utils/guide_helpers'
 import { useMemo } from 'react'
+import { OpenAuthoringSiteForm } from '../../../../components/layout/OpenAuthoringSiteForm'
+import { usePlugin } from 'tinacms'
+import { InlineTextareaField } from 'react-tinacms-inline'
+import { useGithubMarkdownForm } from 'react-tinacms-github'
+import { InlineWysiwyg } from '../../../../components/inline-wysiwyg'
 
 export default function GuideTemplate(props) {
   let data = props.markdownFile.data
@@ -75,50 +80,59 @@ export default function GuideTemplate(props) {
     return { prev, next }
   }, [props.currentGuide, currentPath])
 
+  const [, form] = useGithubMarkdownForm(props.markdownFile)
+
+  usePlugin(form)
+
   return (
-    <DocsLayout isEditing={props.editMode}>
-      <NextSeo
-        title={frontmatter.title}
-        titleTemplate={'%s | TinaCMS Docs'}
-        description={excerpt}
-        openGraph={{
-          title: frontmatter.title,
-          description: excerpt,
-          images: [
-            {
-              url:
-                'https://res.cloudinary.com/forestry-demo/image/upload/l_text:tuner-regular.ttf_90_center:' +
-                encodeURIComponent(guideTitle) +
-                ',g_center,x_0,y_50,w_850,c_fit,co_rgb:EC4815/v1581087220/TinaCMS/tinacms-social-empty-docs.png',
-              width: 1200,
-              height: 628,
-              alt: guideTitle,
-            },
-          ],
-        }}
-      />
-      <DocsNavToggle open={open} onClick={() => setOpen(!open)} />
-      <DocsMobileTinaIcon />
-      <DocsNav open={open} navItems={navData} />
-      <DocsContent>
-        <DocsHeaderNav color={'light'} open={open} />
-        <DocsTextWrapper>
-          <Wrapper narrow>
-            <h1>
-              {frontmatter.title}
-              {/* <InlineTextareaField name="frontmatter.title" /> */}
-            </h1>
-            <hr />
-            {/* <InlineWysiwyg name="markdownBody"> */}
-            <MarkdownContent escapeHtml={false} content={markdownBody} />
-            {/* </InlineWysiwyg> */}
-            <DocsPagination prevPage={prev} nextPage={next} />
-          </Wrapper>
-        </DocsTextWrapper>
-        <Footer light editMode={props.editMode} />
-      </DocsContent>
-      <Overlay open={open} onClick={() => setOpen(false)} />
-    </DocsLayout>
+    <OpenAuthoringSiteForm
+      form={form}
+      path={props.markdownFile.fileRelativePath}
+      preview={props.preview}
+    >
+      <DocsLayout isEditing={props.editMode}>
+        <NextSeo
+          title={frontmatter.title}
+          titleTemplate={'%s | TinaCMS Docs'}
+          description={excerpt}
+          openGraph={{
+            title: frontmatter.title,
+            description: excerpt,
+            images: [
+              {
+                url:
+                  'https://res.cloudinary.com/forestry-demo/image/upload/l_text:tuner-regular.ttf_90_center:' +
+                  encodeURIComponent(guideTitle) +
+                  ',g_center,x_0,y_50,w_850,c_fit,co_rgb:EC4815/v1581087220/TinaCMS/tinacms-social-empty-docs.png',
+                width: 1200,
+                height: 628,
+                alt: guideTitle,
+              },
+            ],
+          }}
+        />
+        <DocsNavToggle open={open} onClick={() => setOpen(!open)} />
+        <DocsMobileTinaIcon />
+        <DocsNav open={open} navItems={navData} />
+        <DocsContent>
+          <DocsHeaderNav color={'light'} open={open} />
+          <DocsTextWrapper>
+            <Wrapper narrow>
+              <h1>
+                <InlineTextareaField name="frontmatter.title" />
+              </h1>
+              <hr />
+              <InlineWysiwyg name="markdownBody">
+                <MarkdownContent escapeHtml={false} content={markdownBody} />
+              </InlineWysiwyg>
+              <DocsPagination prevPage={prev} nextPage={next} />
+            </Wrapper>
+          </DocsTextWrapper>
+          <Footer light editMode={props.editMode} />
+        </DocsContent>
+        <Overlay open={open} onClick={() => setOpen(false)} />
+      </DocsLayout>
+    </OpenAuthoringSiteForm>
   )
 }
 
@@ -133,12 +147,18 @@ export const getStaticProps: GetStaticProps = async function(ctx) {
   )
   const guideMetaRaw = await readFile(path.join(pathToGuide, 'meta.json'))
   const guideMeta = JSON.parse(guideMetaRaw)
-  const markdownFile = await readMarkdownFile(
-    path.join(pathToGuide, `${step}.md`)
+
+  let {
+    props: { preview, file: markdownFile },
+  } = await getMarkdownPreviewProps(
+    `content/guides/${category}/${guide}/${step}.md`,
+    ctx.preview,
+    ctx.previewData
   )
 
   return {
     props: {
+      preview,
       currentGuide: guideMeta,
       markdownFile,
       allGuides: await getGuideNavProps(),
