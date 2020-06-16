@@ -34,25 +34,6 @@ export default function GuideTemplate(props) {
   const markdownBody = data.markdownBody
   const excerpt = props.markdownFile.data.excerpt
 
-  let navData = useMemo(() => {
-    if (props.currentGuide) {
-      return [
-        {
-          title: props.currentGuide.title,
-          id: props.currentGuide.title,
-          collapsible: false,
-          items: props.currentGuide.steps,
-          returnLink: {
-            url: '/guides',
-            label: '‹ Back to Guides',
-          },
-        },
-      ]
-    } else {
-      return props.allGuides
-    }
-  }, [props.currentGuide, props.allGuides])
-
   const router = useRouter()
   const currentPath = router.asPath
 
@@ -82,7 +63,7 @@ export default function GuideTemplate(props) {
   }, [props.currentGuide, currentPath])
 
   const [, guideStepForm] = useGithubMarkdownForm(props.markdownFile)
-  const [, guideMetaForm] = useGithubJsonForm(props.guideMeta, {
+  const [currentGuide, guideMetaForm] = useGithubJsonForm(props.guideMeta, {
     label: 'Guide Metadata',
     fields: [
       { component: 'text', name: 'title', label: 'Title' },
@@ -105,6 +86,25 @@ export default function GuideTemplate(props) {
 
   usePlugin(guideStepForm)
   useFormScreenPlugin(guideMetaForm)
+
+  let navData = useMemo(() => {
+    if (currentGuide) {
+      return [
+        {
+          title: currentGuide.title,
+          id: currentGuide.title,
+          collapsible: false,
+          items: currentGuide.steps,
+          returnLink: {
+            url: '/guides',
+            label: '‹ Back to Guides',
+          },
+        },
+      ]
+    } else {
+      return props.allGuides
+    }
+  }, [currentGuide, props.allGuides])
 
   return (
     <OpenAuthoringSiteForm
