@@ -2,9 +2,9 @@
 title: Converting Hero to a Block
 ---
 
-## Step 5 - create component and template
+## Step 5 - Make a Component
 
-This simple inline editing configuration is a great start, but the end goal of this demo is to create a Home page built with [_Inline_ \*Blocks](<*[https://tinacms.org/docs/inline-editing/inline-blocks](https://tinacms.org/docs/inline-editing/inline-blocks)*>),\* so let's convert our Hero into a block.
+This simple inline editing configuration is a great start, but the end goal of this demo is to create a Home page built with [_Inline Blocks_](https://tinacms.org/docs/inline-editing/inline-blocks), so let's convert our Hero into a block.
 
 [Blocks](https://tinacms.org/docs/inline-editing/inline-blocks#creating-a-block) are made up of **a component** to render while editing and **a template** to configure defaults, add fields, and other required data. Let's make the _Hero Block Component_ first.
 
@@ -14,10 +14,9 @@ This simple inline editing configuration is a great start, but the end goal of t
 import React from 'react';
 import {
   InlineTextarea,
-  InlineText,
 +  BlocksControls,
 } from 'react-tinacms-inline';
-import '../styles/Hero.css';
+import '../styles/hero.css';
 
 -export function Hero() {
 + export function Hero({index}) {
@@ -25,8 +24,8 @@ import '../styles/Hero.css';
 +   <BlocksControls index={index}>
       <div className="hero">
         <h1>
--          <InlineText name="hero.headline" />
-+          <InlineText name="headline" />
+-          <InlineTextarea name="hero.headline" />
++          <InlineTextarea name="headline" />
         </h1>
         <p>
 -          <InlineTextarea name="hero.subtext" />
@@ -38,9 +37,11 @@ import '../styles/Hero.css';
 }
 ```
 
-Here we're wrapping the Hero in _Block Controls_ to provide access to edit additional fields, reorder, delete, and add new blocks. Notice the `index` being passed as props, we'll need to configure a parent `InlineBlocks` component for this to actually work. _More on that in a moment._
+Here we're wrapping the Hero in _Block Controls_ to provide a UI for reordering, deleting, and adding new blocks. Notice the `index` being passed as props — this helps to keep track of the block order. We'll need to configure a parent `InlineBlocks` component for this to actually work, but _more on that in a moment._
 
-Let's make the _Hero Block Template_ next. This template allows us to create the `hero` block type and provide default values for newly created blocks. The `fields` array is empty for now, but this is where we can add additional metadata that can't be edited inline.
+## Step 6 — Make a Template
+
+Let's make the _Hero Block Template_ next. This template allows us to create the `hero` block type and provide default values for newly created blocks. The `fields` array is empty for now, but this is where we can add additional metadata to edit in a [_Settings Modal_](/guides/general/inline-blocks/settings-modal).
 
 **components/hero.js**
 
@@ -60,7 +61,7 @@ export const hero_template = {
 }
 ```
 
-## Step 6 - adjust source data and register InlineBlocks
+## Step 7 - Add _InlineBlocks_
 
 We need to add an `InlineBlocks` field that will accept the Hero block and handle the block order.
 
@@ -84,7 +85,9 @@ export default function Home() {
     onSubmit() {},
   };
 
-  const [, form] = useForm(formConfig);
+// We don't need to access pageData directly anymore
+- const [pageData, form] = useForm(formConfig)
++ const [, form] = useForm(formConfig);
 
   return (
     <div className="home">
@@ -104,6 +107,8 @@ export default function Home() {
 };
 ```
 
+## Step 8 — Adjust Source Data
+
 Notice how we swapped out the `InitialValues` in the form config. We need to update our source data with the `blocks` data.
 
 **data/data.json**
@@ -120,7 +125,10 @@ Notice how we swapped out the `InitialValues` in the form config. We need to upd
 }
 ```
 
+![Image with multiple hero blocks here]()
+
 Restart the dev server and click on the hero block. You should be able to add numerous hero blocks by hitting the 'plus' icon. Notice how the controls bleed off the page? Let's fix that next.
 
-- Note margin collapse bug?
-- **Tip:** You can control the orientation of the 'Add Block' icons by setting `direction: 'column' | 'row'` as a prop on `InlineBlocks`
+> **Tip:** You can control the orientation of the 'Add Block' icons by setting `direction: 'column' | 'row'` as a prop on `InlineBlocks`
+
+<!-- - Note margin collapse bug? -->

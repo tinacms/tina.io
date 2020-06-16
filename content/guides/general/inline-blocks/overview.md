@@ -2,7 +2,7 @@
 title: 'Overview'
 ---
 
-This guide will show you how to set up inline editing and inline blocks based on a simple create-react-app demo. The steps will be associated with tagged commits on this [demo repo]() for reference. The demo isn't meant to be a 'starter'; it is for educational purposes to help you get familiar with the recently refined inline editing API.
+This guide will show you how to set up inline editing and inline blocks based on a simple [create-react-app](https://reactjs.org/docs/create-a-new-react-app.html) demo. The steps will be associated with tagged commits on this [demo repo](https://github.com/tinacms/inline-blocks-demo) for reference. Note that the demo isn't meant to be a 'starter'; it is for educational purposes to help you get familiar with the recently refined inline editing API.
 
 ![Inline Editing Sample Video]()
 
@@ -14,7 +14,9 @@ This guide will show you how to set up inline editing and inline blocks based on
 
 <!-- Add tagged commit -->
 
-To get started, you'll need to clone [the repo](), install the dependencies & checkout the [\*\*step 1 tag]().\*\* At this point, the demo is set up with a TinaCMS instance and renders a simple`Hero` component with hard-coded data.
+To get started, you'll need to clone [the repo](), install the dependencies & checkout the [**step 1 tag**](). At this point, the demo is set up with a TinaCMS instance and renders a simple `Hero` component with hard-coded data.
+
+<!-- TODO: fill these in -->
 
 ```bash
 git clone ....

@@ -2,9 +2,9 @@
 title: Add more Blocks
 ---
 
-### Step 9
+## Step 11 — Add an _Images_ Block
 
-At this point, we've got a taste of the many different aspects to configuring blocks, but our page is lacking and we can only add one type of block. In this step we will add a few more block types: Image Diptych, Paragraph. Feel free to copy and paste these examples directly into the project.
+At this point, we've got a taste of the many different aspects to configuring blocks, but our page is lacking and we can only add one type of block. In this step we will add a few more block types: Image Diptych & Paragraph. Feel free to copy and paste these examples directly into the project.
 
 **components/Images.js**
 
@@ -92,6 +92,10 @@ Notice in the `Images` file, that these are being directly imported as per the [
 
 Furthermore, this project isn't set up with a [media store](https://tinacms.org/docs/media) yet, so uploading new images won't work. The type of media store you use depends on your back-end, and that is beyond the scope of this guide. So for our learning purposes, the same images will always render in the `Images` block.
 
+## Step 12 — Add a _Paragraph_ Block
+
+<!-- Is this needed?  -->
+
 **components/Paragraph.js**
 
 ```jsx
@@ -125,7 +129,7 @@ export const paragraph_template = {
 }
 ```
 
-Now we need to update the source data.
+## Step 13 — Update the source data
 
 **data/data.json**
 
@@ -134,8 +138,7 @@ Now we need to update the source data.
   "blocks": [
     {
       "_template": "hero",
-      "background_color": "rgb(5, 30, 38)",
-      "text_color": "#fffaf4",
+      "background_color": "aliceblue",
       "headline": "Suspended in a Sunbeam",
       "subtext": "Dispassionate extraterrestrial observer are creatures of the cosmos courage of our questions inconspicuous motes of rock and gas a mote of dust suspended in a sunbeam great turbulent clouds.",
       "align": "center"
@@ -158,6 +161,8 @@ Now we need to update the source data.
   ]
 }
 ```
+
+## Step 14 — Add new blocks to `Home`
 
 And let's pass these blocks to our `InlineBlocks` component.
 
@@ -191,5 +196,3 @@ const HOME_BLOCKS = {
 + },
 };
 ```
-
-- Reference **this tag** to see the completed step.

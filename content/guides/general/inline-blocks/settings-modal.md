@@ -2,9 +2,11 @@
 title: Add fields to settings modal
 ---
 
-### Step 8
+## Step 10 — Configure meta fields for style
 
-Our Hero block is coming along nicely, but let's say we wanted to control the background color of the component. Or if we wanted to provide the option to 'align' the block contents. We would need to add a color or select field to edit these values. With Inline Blocks, you can pass in an array of`Fields` that will render in a _Settings Modal_ to edit data like this. Let's add that to our block template.
+Our Hero block is coming along nicely, but it's pretty bare bones. Let's say we wanted to **control the background color** of the component. Or if we wanted to provide the option to 'align' the block contents. We would need to add a color or select field to edit these values.
+
+With Inline Blocks, you can pass in an array of`Fields` that will render in a _Settings Modal_ to edit data like this. Let's add that to our block template.
 
 **components/hero.js**
 
@@ -12,7 +14,6 @@ Our Hero block is coming along nicely, but let's say we wanted to control the ba
 import React from 'react';
 import {
   InlineTextarea,
-  InlineText,
   BlocksControls,
 } from 'react-tinacms-inline';
 import '../styles/Hero.css';
@@ -32,7 +33,7 @@ import '../styles/Hero.css';
 +       alignItems: `${data.align === 'left' ? 'start' : data.align}`,
       >
         <h1>
-          <InlineText name="headline" focusRing={false} />
+          <InlineTextarea name="headline" focusRing={false} />
         </h1>
         <p>
           <InlineTextarea name="subtext" focusRing={false} />
@@ -69,7 +70,7 @@ export const hero_template = {
 };
 ```
 
-And we can update the data file with some basic values for these fields.
+And we can **update the data file** with some basic values for these fields.
 
 **data/data.json**
 
@@ -87,6 +88,6 @@ And we can update the data file with some basic values for these fields.
 }
 ```
 
-In the example above, we were just setting the dynamic styles inline, but you could also use a _css-in-js_ library to manipulate styles with these custom values. Or you could toggle class names based on the values. There's lots of different ways to approach this type of custom styling.
+In this example, we are setting the dynamic _styles inline_, but you could also use a _css-in-js_ library to manipulate styles with these custom values. Or you could toggle class names based on the values. There's lots of different ways to approach this type of custom styling — it depends on the needs of your project!
 
 <!-- *Note:* the color field is pretty janky with the settings modal. We either need to fix it or use another example. -->

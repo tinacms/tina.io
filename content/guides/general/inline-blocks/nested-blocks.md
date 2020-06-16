@@ -2,9 +2,11 @@
 title: Creating Nested Blocks
 ---
 
-### Step 8
+## Step 15 — Make a _FeaturesList_ Block
 
 The last block we are going to add is a Features List. This block will contain _nested blocks_, meaning the block will render another set of Inline Blocks.
+
+![gif of feature blocks?]()
 
 **components/Features.js**
 
@@ -78,20 +80,23 @@ Now let's adjust our source file.
 }
 ```
 
+## Step 16 — Make a _Feature_ Block
+
 Now let's create a feature block component & template and pass that to `FeaturesList`.
 
 **components/Features.js**
 
-```diff
-import React from 'react';
-import styled from 'styled-components';
+```jsx
+import React from 'react'
+import styled from 'styled-components'
+// Import new InlineText & InlineTextarea fields
 import {
   BlocksControls,
   InlineBlocks,
-+ InlineText,
-+ InlineTextarea,
-} from 'react-tinacms-inline';
-import '../styles/features.css';
+  InlineText,
+  InlineTextarea,
+} from 'react-tinacms-inline'
+import '../styles/features.css'
 
 export function FeaturesList({ index }) {
   return (
@@ -100,72 +105,73 @@ export function FeaturesList({ index }) {
       focusRing={{ offset: 0 }}
       insetControls={true}
     >
-      <InlineBlocks
-        name="features"
--       blocks={}
-+       blocks={FEATURE_BLOCKS}
-      />
+      {/* Pass FEATURE_BLOCKS to blocks */}
+      <InlineBlocks name="features" blocks={FEATURE_BLOCKS} />
     </BlocksControls>
-  );
+  )
 }
 
+// Fill in default 'Feature' block values
 export const features_list_template = {
   label: 'Feature List',
   defaultItem: {
     _template: 'features',
     features: [
-+     {
-+       _template: 'feature',
-+       heading: 'heading 1',
-+       supporting_copy: 'supporting copy',
-+     },
-+     {
-+       _template: 'feature',
-+       heading: 'heading 2',
-+       supporting_copy: 'supporting copy',
-+     },
-+     {
-+       _template: 'feature',
-+       heading: 'heading 3',
-+       supporting_copy: 'supporting copy',
-+     },
+      {
+        _template: 'feature',
+        heading: 'heading 1',
+        supporting_copy: 'supporting copy',
+      },
+      {
+        _template: 'feature',
+        heading: 'heading 2',
+        supporting_copy: 'supporting copy',
+      },
+      {
+        _template: 'feature',
+        heading: 'heading 3',
+        supporting_copy: 'supporting copy',
+      },
     ],
   },
   fields: [],
-};
+}
 
-+function Feature({ index }) {
-+ return (
-+   <BlocksControls index={index} focusRing={{ offset: 0 }}>
-+     <div className="feature">
-+       <h3>
-+         <InlineText name="heading" focusRing={false} />
-+       </h3>
-+       <p>
-+         <InlineTextarea name="supporting_copy" focusRing={false} />
-+       </p>
-+     </div>
-+   </BlocksControls>
-+ );
-+}
+// Create the Feature Block Component
+function Feature({ index }) {
+  return (
+    <BlocksControls index={index} focusRing={{ offset: 0 }}>
+      <div className="feature">
+        <h3>
+          <InlineText name="heading" focusRing={false} />
+        </h3>
+        <p>
+          <InlineTextarea name="supporting_copy" focusRing={false} />
+        </p>
+      </div>
+    </BlocksControls>
+  )
+}
 
-+const feature_template = {
-+ label: 'Feature',
-+ defaultItem: {
-+   _template: 'feature',
-+   heading: 'Marie Skłodowska Curie',
-+   supporting_copy:
-+     'Rich in mystery muse about vastness is bearable only through love Ut enim ad minima veniam at the edge of forever are creatures of the cosmos. ',
-+ },
-+ fields: [],
-+};
+// Create the Feature Block Template
+const feature_template = {
+  label: 'Feature',
+  defaultItem: {
+    _template: 'feature',
+    heading: 'Marie Skłodowska Curie',
+    supporting_copy:
+      'Rich in mystery muse about vastness is bearable only through love Ut enim ad minima veniam at the edge of forever are creatures of the cosmos. ',
+  },
+  fields: [],
+}
 
-+const FEATURE_BLOCKS = {
-+ feature: {
-+   Component: Feature,
-+   template: feature_template,
-+ },
-+};
+// Define the 'block', with component and template
+const FEATURE_BLOCKS = {
+  feature: {
+    Component: Feature,
+    template: feature_template,
+  },
+}
 ```
 
 Once again let's update the source file.
@@ -175,7 +181,7 @@ Once again let's update the source file.
 ```json
 {
   "blocks": [
-    //...
+    // Other blocks...
     {
       "_template": "features",
       "features": [
@@ -200,4 +206,6 @@ Once again let's update the source file.
 }
 ```
 
-So our nested blocks are wired up! The `FeaturesList` block renders another set of `Feature` blocks. There's no limit to the amount of nesting you can do. Although, we recommend keeping it < 3 levels deep to minimize confusion in the UX.
+So our nested blocks are wired up! The `FeaturesList` block renders another set of `Feature` blocks. There's no limit to the amount of nesting you can do. Although, we recommend keeping it less than three levels deep to minimize confusion in the UX.
+
+Although it works, we need to add styles to make this fit with the rest of our demo — let's do that next.

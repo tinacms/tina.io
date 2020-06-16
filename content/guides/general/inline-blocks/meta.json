@@ -1,5 +1,5 @@
 {
-  "title": "Setting up Inline Blocks",
+  "title": "Working with Inline Blocks",
   "steps": [
     {
       "title": "Overview",
@@ -44,7 +44,7 @@
       "data": "./nested-blocks.md"
     },
     {
-      "title": "Override Inline Blocks Styles",
+      "title": "Overriding Styles",
       "id": "/guides/general/inline-blocks/override-styles",
       "slug": "/guides/general/inline-blocks/override-styles",
       "data": "./override-styles.md"

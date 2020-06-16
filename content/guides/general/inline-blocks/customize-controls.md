@@ -2,9 +2,11 @@
 title: Customize controls
 ---
 
-## Step 7 - Adjust focus ring & controls inset
+## Step 9 - Adjust focus ring & inset
 
 The blocks controls accept extra config so you can precisely control how the controls render and behave. `insetControls` and `focusRing` are the two we will configure.
+
+![image before controls are configured]()
 
 ```tsx
 interface BlocksControlsProps {
@@ -20,7 +22,9 @@ interface BlocksControlsProps {
 }
 ```
 
-Right now the focus ring is bleeding off the page. First, we'll adjust the offset or the amount of distance between the edge of the block element and where the 'ring' displays. And since this component is 'page-width', let's _inset_ the controls to render within the block area. This way if the block renders at the very top of the page, the controls don't get cut off.
+> **Tip**: The offset values render in _pixels_.
+
+Right now the focus ring is bleeding off the page. First, we'll adjust the offset; this is the amount of distance between the edge of the block element and where the 'ring' displays. Since this component is 'page-width', we'll also _inset_ the controls to render within the block area. This way if the block renders at the very top of the page, the controls don't get cut off.
 
 **components/Hero.js**
 
@@ -47,6 +51,8 @@ export function Hero({index) {
 }
 ```
 
+![image after controls are configured]()
+
 Notice how we added `focusRing={false}` to the Inline Fields. This is totally up to your preference whether you want the child fields to render their focus ring. For this demo, we chose to hide them for a cleaner aesthetic.
 
-- **Tip:** If you wanted to have even more control over the focus ring `offset`, you could pass in specific x & y offset values — `focusRing={{ offset: { 'x': 10, 'y': 16 } }}`
+> **Tip:** If you wanted to have even more control over the focus ring `offset`, you could pass in specific x & y values — `focusRing={{ offset: { 'x': 10, 'y': 16 } }}`
