@@ -44,19 +44,19 @@ export default createAuthHandler(
 `preview.ts`:
 
 ```diff
-import { apiProxy } from 'next-tinacms-github'
+import { previewHandler } from 'next-tinacms-github'
 
-- export default apiProxy
-+ export default apiProxy(process.env.SIGNING_KEY)
+- export default previewHandler
++ export default previewHandler(process.env.SIGNING_KEY)
 ```
 
 `proxy-github.ts`:
 
 ```diff
-import { previewHandler } from 'next-tinacms-github'
+import { apiProxy } from 'next-tinacms-github'
 
-- export default previewHandler
-+ export default previewHandler(process.env.SIGNING_KEY)
+- export default apiProxy
++ export default apiProxy(process.env.SIGNING_KEY)
 ```
 
 **Also**, `enterEditMode` needs to pass the new token that is in local storage as an authorization header to the `/api/preview` route, like this:
