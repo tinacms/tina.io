@@ -26,6 +26,8 @@ import { InlineTextareaField } from 'react-tinacms-inline'
 import { useGithubMarkdownForm, useGithubJsonForm } from 'react-tinacms-github'
 import { InlineWysiwyg } from '../../../../components/inline-wysiwyg'
 import { getJsonPreviewProps } from '../../../../utils/getJsonPreviewProps'
+import { MarkdownCreatorPlugin } from '../../../../utils/plugins'
+import { fileToUrl } from '../../../../utils'
 
 export default function GuideTemplate(props) {
   const [open, setOpen] = React.useState(false)
@@ -58,6 +60,45 @@ export default function GuideTemplate(props) {
     ],
   })
 
+  usePlugin(
+    useMemo(
+      () =>
+        new MarkdownCreatorPlugin({
+          label: 'Step',
+          fields: [
+            { name: 'title', label: 'Title', component: 'text' },
+            { name: 'slug', label: 'Slug', component: 'text' },
+          ],
+          filename({ slug }) {
+            return `content/guides/nextjs/github-open-authoring/${slug}.md`
+          },
+          frontmatter({ title }) {
+            return { title }
+          },
+          body() {
+            return 'A step in the right direction.'
+          },
+          async afterCreate(response) {
+            let url = fileToUrl(
+              response.content.path.split('content')[1],
+              'guides'
+            )
+
+            guideForm.mutators.push('steps', {
+              title: url,
+              id: `/guides/${url}`,
+              slug: `/guides/${url}`,
+              data: `./${url.split('/').slice(-1)[0]}.md`,
+            })
+
+            await guideForm.submit()
+
+            window.location.href = `/guides/${url}`
+          },
+        }),
+      []
+    )
+  )
   usePlugin(stepForm)
   useFormScreenPlugin(guideForm)
 
