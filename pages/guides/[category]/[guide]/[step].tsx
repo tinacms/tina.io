@@ -28,7 +28,6 @@ import { InlineWysiwyg } from '../../../../components/inline-wysiwyg'
 import { getJsonPreviewProps } from '../../../../utils/getJsonPreviewProps'
 
 export default function GuideTemplate(props) {
-  let data = props.markdownFile.data
   const [open, setOpen] = React.useState(false)
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
@@ -37,12 +36,8 @@ export default function GuideTemplate(props) {
   const router = useRouter()
   const currentPath = router.asPath
 
-  const guideTitle = props.currentGuide
-    ? props.currentGuide.title
-    : 'TinaCMS Guides'
-
-  const [, guideStepForm] = useGithubMarkdownForm(props.markdownFile)
-  const [currentGuide, guideMetaForm] = useGithubJsonForm(props.guideMeta, {
+  const [, stepForm] = useGithubMarkdownForm(props.markdownFile)
+  const [guide, guideForm] = useGithubJsonForm(props.guideMeta, {
     label: 'Guide Metadata',
     fields: [
       { component: 'text', name: 'title', label: 'Title' },
@@ -63,17 +58,19 @@ export default function GuideTemplate(props) {
     ],
   })
 
-  usePlugin(guideStepForm)
-  useFormScreenPlugin(guideMetaForm)
+  usePlugin(stepForm)
+  useFormScreenPlugin(guideForm)
+
+  const guideTitle = guide?.title || 'TinaCMS Guides'
 
   let navData = useMemo(() => {
-    if (currentGuide) {
+    if (guide) {
       return [
         {
-          title: currentGuide.title,
-          id: currentGuide.title,
+          title: guide.title,
+          id: guide.title,
           collapsible: false,
-          items: currentGuide.steps,
+          items: guide.steps,
           returnLink: {
             url: '/guides',
             label: '‹ Back to Guides',
@@ -83,15 +80,15 @@ export default function GuideTemplate(props) {
     } else {
       return props.allGuides
     }
-  }, [currentGuide, props.allGuides])
+  }, [guide, props.allGuides])
 
   const { prev, next } = React.useMemo(() => {
-    if (!currentGuide) {
+    if (!guide) {
       return { prev: null, next: null }
     }
     let prev = null,
       next = null
-    const allSteps = currentGuide.steps
+    const allSteps = guide.steps
     const currentItemIndex = allSteps.findIndex(
       step => step.slug == currentPath
     )
@@ -104,11 +101,11 @@ export default function GuideTemplate(props) {
     }
 
     return { prev, next }
-  }, [currentGuide, currentPath])
+  }, [guide, currentPath])
 
   return (
     <OpenAuthoringSiteForm
-      form={guideStepForm}
+      form={stepForm}
       path={props.markdownFile.fileRelativePath}
       preview={props.preview}
     >
