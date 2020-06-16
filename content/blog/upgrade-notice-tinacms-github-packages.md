@@ -27,13 +27,36 @@ You can generate a key by running `openssl rand -base64 32` in your terminal, us
 
 `createAuthHandler`, `apiProxy`, and `previewHandler` now  **require** the _Signing Key_ to be passed as a parameter.
 
-E.g., the proxy-github route:
+### **Required Changes:**
+
+`create-github-access-token.ts`:
+
+```diff
+import { createAuthHandler } from 'next-tinacms-github'
+
+export default createAuthHandler(
+  process.env.GITHUB_CLIENT_ID || "",
+  process.env.GITHUB_CLIENT_SECRET || "",
+  + process.env.SIGNING_KEY || ""
+)
+```
+
+`preview.ts`:
 
 ```diff
 import { apiProxy } from 'next-tinacms-github'
 
 - export default apiProxy
 + export default apiProxy(process.env.SIGNING_KEY)
+```
+
+`proxy-github.ts`:
+
+```diff
+import { previewHandler } from 'next-tinacms-github'
+
+- export default previewHandler
++ export default previewHandler(process.env.SIGNING_KEY)
 ```
 
 **Also**, `enterEditMode` needs to pass the new token that is in local storage as an authorization header to the `/api/preview` route, like this:
@@ -48,10 +71,10 @@ const enterEditMode = () => {
   +  headers.append('Authorization', 'Bearer ' + token)
   + }
 
-
+  - return fetch(`/api/preview`).then(() => {
   + return fetch(`/api/preview`, { headers: headers }).then(() => {
-  +  window.location.href = window.location.pathname
-  + })
+    window.location.href = window.location.pathname
+  })
 }
 ```
 
