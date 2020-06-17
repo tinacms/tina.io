@@ -82,7 +82,7 @@ export function Hero({ index }) {
   return (
     <BlocksControls
       index={index}
-      focusRing={{ offset: { x: -10, y: -18 }, borderRadius: 0 }}
+      focusRing={{ offset: { x: -5, y: -20 }, borderRadius: 0 }}
       insetControls={true}
     >
       {/*...*/}
