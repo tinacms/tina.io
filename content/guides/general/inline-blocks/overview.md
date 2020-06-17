@@ -25,13 +25,13 @@ To get started, you'll need to clone [the repo](), install the dependencies & ch
 <!-- TODO: fill these in -->
 
 ```bash
-git clone ....
+git clone git@github.com:tinacms/inline-blocks-demo.git
 cd inline-editing-demo
 git checkout --some-tag...
 yarn install
 yarn start # Navigate to localhost:3000
 ```
 
-![Inline Editing demo screenshot at step 1]()
+![Inline Editing demo at install](/img/inline-editing-guide/step1-install.png)
 
 Note that the _demo isn't meant to be a 'starter'_. It is for educational purposes to help you get familiar with the inline editing API.
