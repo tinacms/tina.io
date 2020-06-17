@@ -102,12 +102,15 @@ export const getGuideNavProps = async (): Promise<any> => {
         title: categoryMeta.title,
         collapsible: false,
         items: guides
-          .filter(guide => guide.category === category)
+          .filter(
+            guide =>
+              guide && guide.steps.length > 0 && guide.category === category
+          )
           .map(guide => {
             return {
               id: guide.key,
               title: guide.title,
-              slug: guide.steps[0].slug,
+              slug: guide.steps[0].slug || '',
             }
           }),
       }
