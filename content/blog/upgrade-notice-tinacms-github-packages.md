@@ -1,8 +1,10 @@
 ---
-title: 'Upgrade Notice: TinaCMS + GitHub Packages'
+title: 'Upgrade Notice: Improved Github Security'
 date: '2020-06-16T13:47:03-03:00'
 author: Joel Huggett
 ---
+We've improved the overall security of our GitHub authentication. Below is an explanation of the changes and further down are the steps required to upgrade to the new authentication flow. 
+
 TinaCMS communicates with GitHub using a proxy, so the authentication token provided by GitHub is stored as an httpOnly cookie. This stops the client from accessing the token, and that's all very good. However, this strategy is still vulnerable to [Cross-Site Request Forgery (CSRF)](https://owasp.org/www-community/attacks/csrf) attacks. This means that any calls to the proxy, so long as that cookie is still there, will succeed, and that's not very good.
 
 A common approach to mitigating this problem is to implement the [Token Synchronization Pattern](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html#synchronizer-token-pattern). The issue is that this pattern require some form of server-side session storage. That doesn't jive well with the stateless approach of static sites. So, we've introduced a variation that we call the Stateless Token Synchronization Pattern.
