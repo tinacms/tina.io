@@ -82,4 +82,4 @@ const enterEditMode = () => {
 
 ## Questions?
 
-Discuss it in the [forums]().
+Discuss it in the [forums](https://community.tinacms.org/).
