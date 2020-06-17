@@ -22,21 +22,23 @@ export function Images({ index }) {
       focusRing={{ offset: 0 }}
       insetControls={true}
     >
-      <div className="image-diptych">
-        <InlineImage
-          name="left.src"
-          parse={filename => `/assets/${filename}`}
-          uploadDir={() => '/assets/'}
-          previewSrc={() => imageLeft}
-          focusRing={false}
-        />
-        <InlineImage
-          name="right.src"
-          parse={filename => `/assets/${filename}`}
-          uploadDir={() => '/assets/'}
-          previewSrc={() => imageRight}
-          focusRing={false}
-        />
+      <div className="wrapper">
+        <div className="image-diptych">
+          <InlineImage
+            name="left.src"
+            parse={filename => `/assets/${filename}`}
+            uploadDir={() => '/assets/'}
+            previewSrc={() => imageLeft}
+            focusRing={false}
+          />
+          <InlineImage
+            name="right.src"
+            parse={filename => `/assets/${filename}`}
+            uploadDir={() => '/assets/'}
+            previewSrc={() => imageRight}
+            focusRing={false}
+          />
+        </div>
       </div>
     </BlocksControls>
   )
@@ -110,10 +112,12 @@ export function Paragraph({ index }) {
       focusRing={{ offset: 0 }}
       insetControls={true}
     >
-      <div className="paragraph">
-        <h3>
-          <InlineTextarea name="text" focusRing={false} />
-        </h3>
+      <div className="paragraph__background">
+        <div className="wrapper wrapper--narrow">
+          <p className="paragraph__text">
+            <InlineTextarea name="text" focusRing={false} />
+          </p>
+        </div>
       </div>
     </BlocksControls>
   )

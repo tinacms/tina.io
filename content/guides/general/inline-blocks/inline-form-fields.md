@@ -113,14 +113,16 @@ import '../styles/hero.css'
   // 2. Replace `data` with Inline Fields
   return (
     <div className="hero">
--     <h1>{data.headline}</h1>
-+     <h1>
-+       <InlineTextarea name="hero.headline" />
-+     </h1>
--     <p>{data.subtext}</p>
-+     <p>
-+       <InlineTextarea name="hero.subtext" />
-+     </p>
+      <div className="wrapper wrapper--narrow">
+-       <h1>{data.headline}</h1>
++       <h1>
++        <InlineTextarea name="hero.headline" />
++       </h1>
+-       <p>{data.subtext}</p>
++       <p>
++         <InlineTextarea name="hero.subtext" />
++       </p>
+      </div>
     </div>
   )
 }

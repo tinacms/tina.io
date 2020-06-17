@@ -30,14 +30,16 @@ import '../styles/Hero.css';
         className="hero"
 +       style={{ backgroundColor: `${data.background_color}` }}
 +       textAlign: `${data.align}`,
-+       alignItems: `${data.align === 'left' ? 'start' : data.align}`,
++       justifyContent: `${data.align === 'left' ? 'start' : data.align}`,
       >
-        <h1>
-          <InlineTextarea name="headline" focusRing={false} />
-        </h1>
-        <p>
-          <InlineTextarea name="subtext" focusRing={false} />
-        </p>
+        <div className="wrapper wrapper--narrow">
+          <h1>
+            <InlineTextarea name="headline" focusRing={false} />
+          </h1>
+          <p>
+            <InlineTextarea name="subtext" focusRing={false} />
+          </p>
+        </div>
       </div>
     </BlocksControls>
   );

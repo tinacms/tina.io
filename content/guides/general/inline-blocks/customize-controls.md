@@ -37,14 +37,16 @@ export function Hero({index) {
 +     insetControls={true}
     >
       <div className="hero">
-        <h1>
--         <InlineText name="headline" />
-+         <InlineText name="headline" focusRing={false} />
-        </h1>
-        <p>
--	  <InlineTextarea name="subtext" />
-+         <InlineTextarea name="subtext" focusRing={false} />
-        </p>
+        <div className="wrapper wrapper--narrow">
+          <h1>
+-           <InlineTextarea name="headline" />
++           <InlineTextarea name="headline" focusRing={false} />
+          </h1>
+          <p>
+-	          <InlineTextarea name="subtext" />
++           <InlineTextarea name="subtext" focusRing={false} />
+          </p>
+        </div>
       </div>
     </BlocksControls>
   );

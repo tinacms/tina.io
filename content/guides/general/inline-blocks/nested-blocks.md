@@ -106,7 +106,9 @@ export function FeaturesList({ index }) {
       insetControls={true}
     >
       {/* Pass FEATURE_BLOCKS to blocks */}
-      <InlineBlocks name="features" blocks={FEATURE_BLOCKS} />
+      <div className="wrapper">
+        <InlineBlocks name="features" blocks={FEATURE_BLOCKS} />
+      </div>
     </BlocksControls>
   )
 }
@@ -140,10 +142,10 @@ export const features_list_template = {
 // Create the Feature Block Component
 function Feature({ index }) {
   return (
-    <BlocksControls index={index} focusRing={{ offset: 0 }}>
+    <BlocksControls index={index}>
       <div className="feature">
         <h3>
-          <InlineText name="heading" focusRing={false} />
+          <InlineTextarea name="heading" focusRing={false} />
         </h3>
         <p>
           <InlineTextarea name="supporting_copy" focusRing={false} />

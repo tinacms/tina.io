@@ -68,7 +68,6 @@ export function FeaturesList({ index }) {
 
 // Define a new 'styled' version of InlineBlocks
 const StyledInlineBlocks = styled(InlineBlocks)`
-  padding: 4rem 2rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 2rem;
