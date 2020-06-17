@@ -1,5 +1,5 @@
 ---
-title: 'Upgrade Notice: Improved Github Security'
+title: 'Upgrade Notice: Improved GitHub Security'
 date: '2020-06-16T13:47:03-03:00'
 author: Joel Huggett
 ---
