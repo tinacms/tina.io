@@ -2,15 +2,13 @@
 title: Add an Inline Form & Fields
 ---
 
-## Step 2 - Register a generic form
+## Register a generic form
 
 <!-- Add tagged commit -->
 
-The first thing we are going to do is create an _Inline Form_ with [`useForm`](<[https://tinacms.org/docs/forms#creating-forms-in-react](https://tinacms.org/docs/forms#creating-forms-in-react)>). Note that since we don't have a backend set up, the data changes won't persist and the toolbar won't save / track form status as expected. Please refer to [other guides](<[https://tinacms.org/guides/](https://tinacms.org/guides/)>) to learn more on setting up a backend.
+The first thing we are going to do is [create a form](https://tinacms.org/docs/inline-editing) with the [`useForm`](https://tinacms.org/docs/forms#creating-forms-in-react) hook. Note that since we don't have a backend set up, the data changes won't persist and the toolbar won't save / track form status as expected. Please refer to [other guides](https://tinacms.org/guides/) to learn more on setting up a backend.
 
-Head to `Home.js`; this component imports `data` from a local JSON file and renders the `Hero` component, passing the data as props.
-
-To create an `InlineForm`, first we need to create a form with the CMS. We will use the `useForm` hook to do this.
+Head to `Home.js`. This component imports `data` from a local JSON file and renders the `Hero` component, passing the data as props.
 
 **Home.js**
 
@@ -18,7 +16,7 @@ To create an `InlineForm`, first we need to create a form with the CMS. We will 
 import React from 'react'
 // 1. Import `useForm`
 import { useForm } from 'tinacms'
-import Hero from './components/Hero'
+import { Hero } from './components/Hero'
 import data from './data/data.json'
 
 export default function Home() {
@@ -43,7 +41,9 @@ export default function Home() {
 }
 ```
 
-## Step 3 - Create an _Inline Form_
+First, import `useForm` from 'tinacms'. Then create a formConfig object where you set the `id` and `initialValues` to connect the form with the hero data. Then, call the `useForm` hook and pass the config object. The return values will be the data and the form itself. We will use the `form` next for `InlineForm`.
+
+## Create an _Inline Form_
 
 <!-- Add tagged commit -->
 
@@ -91,7 +91,7 @@ If you restart the dev server, things won't look different. But changes have hap
 
 At this point, we've turned the entire home page into a form. So any _Inline Fields_ we add to this on-page form will be editable directly on the page.
 
-## Step 4 - Add _Inline Fields_
+## Add _Inline Fields_
 
 <!-- Add tagged commit -->
 
@@ -128,10 +128,12 @@ import '../styles/hero.css'
 }
 ```
 
-Notice how we don't need to access `data` directly anymore. The `name` value on the Inline Field provides the path to the content in the source file based on the form passed to `InlineForm`.
+Notice how we don't need to access `data` directly anymore. The `name` value on the Inline Field provides the path to the content in the source file based on the `initialValues` passed to `InlineForm`. Since the `initialValues` in the form config object were set with `hero` data, inline fields inside the inline form can directly reference those `hero` value paths `name`.
+
+![Hero component with inline fields configured](/img/inline-editing-guide/step4-inline-fields.png)
 
 You should now be able to edit those fields inline. Try selecting a field and updating the content.
 
 > **Tip:** Remember that if you refresh the page, those data changes won't persist without a back-end set up.
 
-![Hero component with inline fields configured]()
+### [ 👋 Checkout Step 2]()
