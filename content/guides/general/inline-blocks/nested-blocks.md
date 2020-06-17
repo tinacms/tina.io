@@ -2,7 +2,9 @@
 title: Creating Nested Blocks
 ---
 
-## Step 15 — Make a _FeaturesList_ Block
+<!-- Again, more explanation here about whats going on, its too succinct -->
+
+## Make a _FeaturesList_ Block
 
 The last block we are going to add is a Features List. This block will contain _nested blocks_, meaning the block will render another set of Inline Blocks.
 
@@ -12,7 +14,6 @@ The last block we are going to add is a Features List. This block will contain _
 
 ```jsx
 import React from 'react'
-import styled from 'styled-components'
 import { BlocksControls, InlineBlocks } from 'react-tinacms-inline'
 import '../styles/features.css'
 
@@ -23,7 +24,9 @@ export function FeaturesList({ index }) {
       focusRing={{ offset: 0 }}
       insetControls={true}
     >
-      <InlineBlocks name="features" blocks={} />
+      <div className="wrapper">
+        <InlineBlocks name="features" blocks={} />
+      </div>
     </BlocksControls>
   )
 }
@@ -80,20 +83,18 @@ Now let's adjust our source file.
 }
 ```
 
-## Step 16 — Make a _Feature_ Block
+## Make a _Feature_ Block
 
 Now let's create a feature block component & template and pass that to `FeaturesList`.
 
 **components/Features.js**
 
 ```jsx
+// 1. Import new `InlineTextarea` field
 import React from 'react'
-import styled from 'styled-components'
-// Import new InlineText & InlineTextarea fields
 import {
   BlocksControls,
   InlineBlocks,
-  InlineText,
   InlineTextarea,
 } from 'react-tinacms-inline'
 import '../styles/features.css'
@@ -105,15 +106,20 @@ export function FeaturesList({ index }) {
       focusRing={{ offset: 0 }}
       insetControls={true}
     >
-      {/* Pass FEATURE_BLOCKS to blocks */}
       <div className="wrapper">
-        <InlineBlocks name="features" blocks={FEATURE_BLOCKS} />
+        {/* 2. Pass FEATURE_BLOCKS to blocks, defined further down */}
+        <InlineBlocks
+          name="features"
+          blocks={FEATURE_BLOCKS}
+          direction="row"
+          className="feature-list"
+        />
       </div>
     </BlocksControls>
   )
 }
 
-// Fill in default 'Feature' block values
+// 3. Fill in default 'Feature' block values
 export const features_list_template = {
   label: 'Feature List',
   defaultItem: {
@@ -139,7 +145,7 @@ export const features_list_template = {
   fields: [],
 }
 
-// Create the Feature Block Component
+// 4. Create the Feature Block Component
 function Feature({ index }) {
   return (
     <BlocksControls index={index}>
@@ -155,7 +161,7 @@ function Feature({ index }) {
   )
 }
 
-// Create the Feature Block Template
+// 5. Create the Feature Block Template
 const feature_template = {
   label: 'Feature',
   defaultItem: {
@@ -167,7 +173,7 @@ const feature_template = {
   fields: [],
 }
 
-// Define the 'block', with component and template
+// 6. Define the 'block', with component and template
 const FEATURE_BLOCKS = {
   feature: {
     Component: Feature,
@@ -208,6 +214,41 @@ Once again let's update the source file.
 }
 ```
 
+## Add _FeatureList_ to Home page blocks
+
+Finally, we'll add the `FeaturesList` block to the Home page block options.
+
+Head to `Home.js` and add this code:
+
+```diff
+// Other imports...
++ import { FeaturesList, features_list_template } from './components/Features';
+
+export default function Home() {
+  //...
+}
+
+const HOME_BLOCKS = {
+  hero: {
+    Component: Hero,
+    template: hero_template,
+  },
+  images: {
+    Component: Images,
+    template: images_template,
+  },
+  paragraph: {
+    Component: Paragraph,
+    template: paragraph_template,
+  },
++ features: {
++   Component: FeaturesList,
++   template: features_list_template,
++ },
+};
+
+```
+
 So our nested blocks are wired up! The `FeaturesList` block renders another set of `Feature` blocks. There's no limit to the amount of nesting you can do. Although, we recommend keeping it less than three levels deep to minimize confusion in the UX.
 
-Although it works, we need to add styles to make this fit with the rest of our demo — let's do that next.
+[👋 Checkout Step 7]()
