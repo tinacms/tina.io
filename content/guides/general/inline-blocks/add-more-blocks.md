@@ -2,17 +2,23 @@
 title: Add more Blocks
 ---
 
-## Step 11 — Add an _Images_ Block
+<!-- Add more explanation here about the fields, settings, and ideas -->
 
-At this point, we've got a taste of the many different aspects to configuring blocks, but our page is lacking and we can only add one type of block. In this step we will add a few more block types: Image Diptych & Paragraph. Feel free to copy and paste these examples directly into the project.
+![gif with new blocks added]()
+
+## Add an _Images_ Block
+
+At this point, we've got a taste of the many different aspects to configuring blocks, but our page is lacking — **we can only add one type of block**.
+
+In this step we will add a few more block types: Image Diptych & Paragraph. Feel free to copy and paste these examples directly into the project.
+
+Create a new file, `components/Images.js` and add this code:
 
 **components/Images.js**
 
 ```jsx
 import React from 'react'
 import { BlocksControls, InlineImage } from 'react-tinacms-inline'
-import imageLeft from '../assets/ivan-bandura-unsplash.jpg'
-import imageRight from '../assets/martin-sanchez-unsplash.jpg'
 import '../styles/images.css'
 
 export function Images({ index }) {
@@ -26,16 +32,16 @@ export function Images({ index }) {
         <div className="image-diptych">
           <InlineImage
             name="left.src"
-            parse={filename => `/assets/${filename}`}
-            uploadDir={() => '/assets/'}
-            previewSrc={() => imageLeft}
+            parse={filename => `${filename}`}
+            uploadDir={() => '/'}
+            previewSrc={formValues => `${formValues.blocks[index].left.src}`}
             focusRing={false}
           />
           <InlineImage
             name="right.src"
-            parse={filename => `/assets/${filename}`}
-            uploadDir={() => '/assets/'}
-            previewSrc={() => imageRight}
+            parse={filename => `/${filename}`}
+            uploadDir={() => '/'}
+            previewSrc={formValues => `${formValues.blocks[index].right.src}`}
             focusRing={false}
           />
         </div>
@@ -49,11 +55,11 @@ export const images_template = {
   defaultItem: {
     _template: 'images',
     left: {
-      src: '../assets/ivan-bandura-unsplash.jpg',
+      src: '/ivan-bandura-unsplash-square.jpg',
       alt: 'Some alt text',
     },
     right: {
-      src: '../assets/martin-sanchez-unsplash.jpg',
+      src: '/martin-sanchez-unsplash-square.jpg',
       alt: 'Some alt text',
     },
   },
@@ -62,9 +68,9 @@ export const images_template = {
       name: 'left.src',
       label: 'Left-Hand Image',
       component: 'image',
-      parse: filename => `/assets/${filename}`,
-      uploadDir: () => '/assets/',
-      previewSrc: () => imageLeft,
+      parse: filename => `/${filename}`,
+      uploadDir: () => '/',
+      previewSrc: () => '/ivan-bandura-unsplash-square.jpg',
       focusRing: false,
     },
     {
@@ -76,9 +82,9 @@ export const images_template = {
       name: 'right.src',
       label: 'Right-Hand Image',
       component: 'image',
-      parse: filename => `/assets/${filename}`,
-      uploadDir: () => '/assets/',
-      previewSrc: () => imageRight,
+      parse: filename => `/${filename}`,
+      uploadDir: () => '/',
+      previewSrc: () => '/martin-sanchez-unsplash-square.jpg',
       focusRing: false,
     },
     {
@@ -90,11 +96,13 @@ export const images_template = {
 }
 ```
 
-Notice in the `Images` file, that these are being directly imported as per the [CRA docs](https://create-react-app.dev/docs/adding-images-fonts-and-files/). But this configuration wouldn't work on a real project. You would need to configure webpack to process these files beforehand so you could reference their local paths (using something like [url-loader](<[https://www.npmjs.com/package/url-loader](https://www.npmjs.com/package/url-loader)>) and [file-loader](<[https://www.npmjs.com/package/file-loader](https://www.npmjs.com/package/file-loader)>)).
+<!-- Add note on accessing index from input for template previewSrc? -->
 
-Furthermore, this project isn't set up with a [media store](https://tinacms.org/docs/media) yet, so uploading new images won't work. The type of media store you use depends on your back-end, and that is beyond the scope of this guide. So for our learning purposes, the same images will always render in the `Images` block.
+Since this project isn't set up with a [media store](https://tinacms.org/docs/media), uploading new images won't work. The type of media store you use depends on your back-end, and that is beyond the scope of this guide. So for our learning purposes, the same images will always render in the `Images` block.
 
-## Step 12 — Add a _Paragraph_ Block
+## Add a _Paragraph_ Block
+
+Create a new file, `components/Paragraph.js` and add this code:
 
 <!-- Is this needed?  -->
 
@@ -133,7 +141,7 @@ export const paragraph_template = {
 }
 ```
 
-## Step 13 — Update the source data
+## Update the source data
 
 **data/data.json**
 
@@ -142,7 +150,8 @@ export const paragraph_template = {
   "blocks": [
     {
       "_template": "hero",
-      "background_color": "aliceblue",
+      "background_color": "rgb(5, 30, 38)",
+      "text_color": "#fffaf4",
       "headline": "Suspended in a Sunbeam",
       "subtext": "Dispassionate extraterrestrial observer are creatures of the cosmos courage of our questions inconspicuous motes of rock and gas a mote of dust suspended in a sunbeam great turbulent clouds.",
       "align": "center"
@@ -150,11 +159,11 @@ export const paragraph_template = {
     {
       "_template": "images",
       "left": {
-        "src": "../assets/ivan-bandura-unsplash.jpg",
+        "src": "/ivan-bandura-unsplash-square.jpg",
         "alt": "Some alt text"
       },
       "right": {
-        "src": "../assets/martin-sanchez-unsplash.jpg",
+        "src": "/martin-sanchez-unsplash-square.jpg",
         "alt": "Some alt text"
       }
     },
@@ -166,7 +175,7 @@ export const paragraph_template = {
 }
 ```
 
-## Step 14 — Add new blocks to `Home`
+## Add new blocks to `Home`
 
 And let's pass these blocks to our `InlineBlocks` component.
 
@@ -200,3 +209,5 @@ const HOME_BLOCKS = {
 + },
 };
 ```
+
+[👋 Checkout Step 6]()
