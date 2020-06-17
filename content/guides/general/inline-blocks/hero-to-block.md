@@ -23,14 +23,16 @@ import '../styles/hero.css';
   return (
 +   <BlocksControls index={index}>
       <div className="hero">
-        <h1>
--          <InlineTextarea name="hero.headline" />
-+          <InlineTextarea name="headline" />
-        </h1>
-        <p>
--          <InlineTextarea name="hero.subtext" />
-+          <InlineTextarea name="subtext" />
-        </p>
+        <div className="wrapper wrapper--narrow">
+          <h1>
+-           <InlineTextarea name="hero.headline" />
++           <InlineTextarea name="headline" />
+          </h1>
+          <p>
+-           <InlineTextarea name="hero.subtext" />
++           <InlineTextarea name="subtext" />
+          </p>
+        </div>
       </div>
 +   </BlocksControls>
   );
