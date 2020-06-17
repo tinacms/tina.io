@@ -3,7 +3,7 @@ title: 'Upgrade Notice: Improved GitHub Security'
 date: '2020-06-16T13:47:03-03:00'
 author: Joel Huggett
 ---
-We've improved the overall security of our GitHub authentication. Below is an explanation of the changes and further down are the steps required to upgrade to the new authentication flow. 
+We've improved the overall security of our GitHub authentication. Below is an explanation of the changes and further down are the steps required to upgrade to the new authentication flow.
 
 TinaCMS communicates with GitHub using a proxy, so the authentication token provided by GitHub is stored as an httpOnly cookie. This stops the client from accessing the token, and that's all very good. However, this strategy is still vulnerable to [Cross-Site Request Forgery (CSRF)](https://owasp.org/www-community/attacks/csrf) attacks. This means that any calls to the proxy, so long as that cookie is still there, will succeed, and that's not very good.
 
@@ -65,7 +65,7 @@ import { apiProxy } from 'next-tinacms-github'
 
 ```diff
 const enterEditMode = () => {
-+ const token = localStorage.getItem('token') || null
++ const token = localStorage.getItem('tinacms-github-token') || null
 
 + const headers = new Headers()
 
