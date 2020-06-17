@@ -14,10 +14,6 @@ The video above gives some reference as to what inline blocks look like in Tina.
 
 ## Set-up the demo repo
 
-### [Step 1]()
-
-> **Tip**: The 'Steps' will link to tagged commits where the _step is complete_. If at any point you are working through a step and get tripped up, feel free to checkout the tagged commit to get some direction / reference.
-
 <!-- Add tagged commit on the h3?-->
 
 To get started, you'll need to clone [the repo](), install the dependencies & checkout the [**step 1 tag**](). At this point, the demo is set up with a TinaCMS instance and renders a simple `Hero` component with hard-coded data.
@@ -35,3 +31,7 @@ yarn start # Navigate to localhost:3000
 ![Inline Editing demo at install](/img/inline-editing-guide/step1-install.png)
 
 Note that the _demo isn't meant to be a 'starter'_. It is for educational purposes to help you get familiar with the inline editing API.
+
+### [‍👋 Checkout Step 1]()
+
+> **Tip**: At the bottom of each page in this guide, there will be a 'Step' that links to a tagged commit where the _step is complete_. If at any point you are working through a step and get tripped up, feel free to checkout the tagged commit to get some direction / reference.

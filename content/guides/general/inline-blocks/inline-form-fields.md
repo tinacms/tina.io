@@ -4,8 +4,6 @@ title: Add an Inline Form & Fields
 
 ## Register a generic form
 
-### [Step 2]()
-
 <!-- Add tagged commit -->
 
 The first thing we are going to do is [create a form](https://tinacms.org/docs/inline-editing) with the [`useForm`](https://tinacms.org/docs/forms#creating-forms-in-react) hook. Note that since we don't have a backend set up, the data changes won't persist and the toolbar won't save / track form status as expected. Please refer to [other guides](https://tinacms.org/guides/) to learn more on setting up a backend.
@@ -43,11 +41,9 @@ export default function Home() {
 }
 ```
 
-First, import `useForm` from 'tinacms'. Then create a formConfig object where you set the `id` and `initialValues` to connect the form with the hero data. Then, call the `useForm` hook and pass the config object. The return values will be the data and the form itself. We will use the `form` in the next step.
+First, import `useForm` from 'tinacms'. Then create a formConfig object where you set the `id` and `initialValues` to connect the form with the hero data. Then, call the `useForm` hook and pass the config object. The return values will be the data and the form itself. We will use the `form` next for `InlineForm`.
 
 ## Create an _Inline Form_
-
-### [Step 3]()
 
 <!-- Add tagged commit -->
 
@@ -97,8 +93,6 @@ At this point, we've turned the entire home page into a form. So any _Inline Fie
 
 ## Add _Inline Fields_
 
-### [Step 4]()
-
 <!-- Add tagged commit -->
 
 Now that we have the _Inline Form_ set up, we can add fields to it. _Inline Fields_ are essentially various types of inputs, with stripped-down styles so they blend in with the page. You can [create your own manually](https://tinacms.org/docs/inline-editing#adding-inline-editing-with-inlineform), or use the [pre-configured fields](https://tinacms.org/docs/inline-editing#using-pre-configured-inline-fields) provided by `react-tinacms-inline`. For the demo, we will only be using the pre-configured fields.
@@ -134,10 +128,12 @@ import '../styles/hero.css'
 }
 ```
 
-Notice how we don't need to access `data` directly anymore. The `name` value on the Inline Field provides the path to the content in the source file based on the `initialValues` passed to `InlineForm`. Since the `initialValues` in the form config object were set with `hero` data (at step 1), inline fields inside the inline form can directly reference those `hero` value paths `name`.
+Notice how we don't need to access `data` directly anymore. The `name` value on the Inline Field provides the path to the content in the source file based on the `initialValues` passed to `InlineForm`. Since the `initialValues` in the form config object were set with `hero` data, inline fields inside the inline form can directly reference those `hero` value paths `name`.
 
 ![Hero component with inline fields configured](/img/inline-editing-guide/step4-inline-fields.png)
 
 You should now be able to edit those fields inline. Try selecting a field and updating the content.
 
 > **Tip:** Remember that if you refresh the page, those data changes won't persist without a back-end set up.
+
+### [ 👋 Checkout Step 2]()

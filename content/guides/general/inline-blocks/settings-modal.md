@@ -2,7 +2,7 @@
 title: Add fields to settings modal
 ---
 
-## Step 10 — Configure meta fields for style
+## Configure meta fields for style
 
 Our Hero block is coming along nicely, but it's pretty bare bones. Let's say we wanted to **control the background color** of the component. Or if we wanted to provide the option to 'align' the block contents. We would need to add a color or select field to edit these values.
 
@@ -93,3 +93,5 @@ And we can **update the data file** with some basic values for these fields.
 In this example, we are setting the dynamic _styles inline_, but you could also use a _css-in-js_ library to manipulate styles with these custom values. Or you could toggle class names based on the values. There's lots of different ways to approach this type of custom styling — it depends on the needs of your project!
 
 <!-- *Note:* the color field is pretty janky with the settings modal. We either need to fix it or use another example. -->
+
+[👋 Checkout Step 5]()
