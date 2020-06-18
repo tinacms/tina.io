@@ -93,4 +93,26 @@ export function Hero({ index }) {
 
 ![controling x/y offset and border radius](/img/inline-editing-guide/border-radius-x-y.png)
 
-We will leave the zero border-radius setting out of the demo, but it's a great examples of all the control at your disposal over the focus ring. Tinker with the styles to get the controls to your liking!
+We will leave the zero border-radius setting out of the demo, but it's a great examples of all the control at your disposal over the focus ring.
+
+## Add Block direction
+
+You can control the orientation of the 'Add Block' icons by setting the `direction` prop on `InlineBlocks`. It is `vertical` by default.
+
+```ts
+direction: 'vertical' | 'horizontal'
+```
+
+![Tina horizontal add block controls](/img/inline-editing-guide/kanban-horizontal.png)
+
+This controls whether the add block buttons render on the top / bottom or left / right. It also sets a direction for the [drag context](https://github.com/atlassian/react-beautiful-dnd#api-%EF%B8%8F). Below is an example of this prop in use.
+
+```jsx
+<InlineBlocks
+  name="kanban_board"
+  blocks={KANBAN_BLOCKS}
+  direction="horizontal"
+/>
+```
+
+Go ahead and **tinker with the styles** to get the controls to your liking!

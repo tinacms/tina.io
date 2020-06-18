@@ -10,13 +10,9 @@ By the end of this guide, you should have a good understanding of how to set-up 
 
 The video above gives some reference as to what inline blocks look like in Tina. The demo we are going to set up will be more simple than what is shown in the video, but it should give you some inspiration around what's possible!
 
-<!-- _Give a gist on what inline editing is and link to the formal API docs. Also link to the what is blocks blog._ -->
-
 ## Set-up the demo repo
 
-<!-- Add tagged commit on the h3?-->
-
-To get started, you'll need to clone [the repo](), install the dependencies & checkout the [**step 1 tag**](). At this point, the demo is set up with a TinaCMS instance and renders a simple `Hero` component with hard-coded data.
+To get started, you'll need to clone [the repo](https://github.com/tinacms/inline-blocks-demo), install the dependencies & checkout the [**step 1 tag**](). At this point, the demo is set up with a TinaCMS instance and renders a simple `Hero` component with hard-coded data.
 
 <!-- TODO: fill these in -->
 
@@ -31,6 +27,8 @@ yarn start # Navigate to localhost:3000
 ![Inline Editing demo at install](/img/inline-editing-guide/step1-install.png)
 
 Note that the _demo isn't meant to be a 'starter'_. It is for educational purposes to help you get familiar with the inline editing API.
+
+// _FOR REVIEWERS_: for now, just branch off of master in the [demo](https://github.com/tinacms/inline-blocks-demo) until we have it properly configured. The `runthrhough-1` (messed up the spelling lol) branch has the final state if you need to reference.
 
 ### [‍👋 Checkout Step 1]()
 
