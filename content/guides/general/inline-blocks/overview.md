@@ -2,7 +2,7 @@
 title: 'Overview'
 ---
 
-This guide will show you how to set up inline editing and inline blocks based on a simple [create-react-app](https://reactjs.org/docs/create-a-new-react-app.html) demo. The steps will be associated with tagged commits on this [demo repo](https://github.com/tinacms/inline-blocks-demo) for reference.
+This guide will show you how to set up inline editing and inline blocks based on a simple [create-react-app](https://reactjs.org/docs/create-a-new-react-app.html) demo. The steps will be roughly aligned with commits on this [demo repo](https://github.com/tinacms/inline-blocks-demo) for reference.
 
 By the end of this guide, you should have a good understanding of how to set-up and work with inline editing and inline blocks. While this guide doesn't cover every single field or potential usecase, it should give you enough of a base to create Inline Editing experiences in your own projects.
 
@@ -12,14 +12,13 @@ The video above gives some reference as to what inline blocks look like in Tina.
 
 ## Set-up the demo repo
 
-To get started, you'll need to clone [the repo](https://github.com/tinacms/inline-blocks-demo), install the dependencies & checkout the [**step 1 tag**](). At this point, the demo is set up with a TinaCMS instance and renders a simple `Hero` component with hard-coded data.
+To get started, you'll need to clone [the repo](https://github.com/tinacms/inline-blocks-demo), install the dependencies. The `master` branch is set-up to be your _initial starting point_.
 
-<!-- TODO: fill these in -->
+At this point, it is set up with a TinaCMS instance and renders a simple `Hero` component with hard-coded data. All of the styles and images are configured as well, so when you add blocks they'll look nice 💅.
 
 ```bash
 git clone git@github.com:tinacms/inline-blocks-demo.git
 cd inline-editing-demo
-git checkout --some-tag...
 yarn install
 yarn start # Navigate to localhost:3000
 ```
@@ -28,8 +27,4 @@ yarn start # Navigate to localhost:3000
 
 Note that the _demo isn't meant to be a 'starter'_. It is for educational purposes to help you get familiar with the inline editing API.
 
-// _FOR REVIEWERS_: for now, just branch off of master in the [demo](https://github.com/tinacms/inline-blocks-demo) until we have it properly configured. The `runthrhough-1` (messed up the spelling lol) branch has the final state if you need to reference.
-
-### [‍👋 Checkout Step 1]()
-
-> This [commit]() is your starting place for working through this demo. Skip to the [final version of the repo]() if you get stuck or need a reference at any point.
+> There is a [`final-state` branch](https://github.com/tinacms/inline-blocks-demo/tree/final-state) that you can checkout if you get stuck or need a reference at any point.
