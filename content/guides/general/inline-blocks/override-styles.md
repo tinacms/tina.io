@@ -12,7 +12,7 @@ Let's look at the simple approach first:
 
 ## Override styles via className
 
-**components/Features.js**
+**components/FeatureList.js**
 
 ```diff
 //...
@@ -42,8 +42,6 @@ export function FeatureList({ index }) {
 This class and its grid styles have already been set up in `styles/features.css`, so if you refresh you should see the new grid layout.
 
 ![photo of features list with grid?]()
-
-You also may have noticed the new `direction` prop being passed. This controls whether the add block buttons render on the top / bottom or left / right. It also sets a direction for the [drag context](https://github.com/atlassian/react-beautiful-dnd#api-%EF%B8%8F).
 
 ## Same solve, but with styled-components
 
