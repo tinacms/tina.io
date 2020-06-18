@@ -2,11 +2,15 @@
 title: Creating Nested Blocks
 ---
 
-<!-- Again, more explanation here about whats going on, its too succinct -->
+_Nested Blocks_ are blocks that render more blocks 🤯. This can be helpful if you're creating a _page builder_ experience. You may have layout level blocks, and then within a single layout block you will have more blocks for editors to add / manage.
+
+One example could be a gallery block. The gallery may be a part of a top-level group of blocks that render other parts of the page, but this gallery block also renders a group of image blocks.
+
+The ability to configure nested blocks is incredibly flexible. But it's also important to keep control of the user experience and limit complexity.
 
 ## Make a _FeaturesList_ Block
 
-The last block we are going to add is a Features List. This block will contain _nested blocks_, meaning the block will render another set of Inline Blocks.
+The last block we are going to add is a Features List. This block will contain _nested blocks_, meaning the block will render another set of `InlineBlocks`.
 
 ![gif of feature blocks?]()
 
@@ -17,6 +21,7 @@ import React from 'react'
 import { BlocksControls, InlineBlocks } from 'react-tinacms-inline'
 import '../styles/features.css'
 
+// 1. Define the component
 export function FeaturesList({ index }) {
   return (
     <BlocksControls
@@ -25,12 +30,14 @@ export function FeaturesList({ index }) {
       insetControls={true}
     >
       <div className="wrapper">
+        {/** The 'nested blocks' */}
         <InlineBlocks name="features" blocks={} />
       </div>
     </BlocksControls>
   )
 }
 
+// 2. Define the template
 export const features_list_template = {
   label: 'Feature List',
   defaultItem: {
@@ -43,7 +50,7 @@ export const features_list_template = {
 }
 ```
 
-Now let's adjust our source file.
+Now let's adjust our source file:
 
 **data/data.json**
 
@@ -85,7 +92,7 @@ Now let's adjust our source file.
 
 ## Make a _Feature_ Block
 
-Now let's create a feature block component & template and pass that to `FeaturesList`.
+Next, we'll create a feature block component & template and pass that to the `InlineBlocks` in `FeaturesList`.
 
 **components/Features.js**
 
@@ -244,8 +251,8 @@ const HOME_BLOCKS = {
 
 ```
 
-So our nested blocks are wired up! The `FeaturesList` block renders another set of `Feature` blocks. There's no limit to the amount of nesting you can do. Although, we recommend keeping it less than three levels deep to minimize confusion in the UX.
+So our nested blocks are wired up! The `FeaturesList` block renders another set of `Feature` blocks. To take this further, you could add another block option for `FeaturesList`.
+
+There's **no limit to the amount of nesting** you can do. That said, we recommend keeping it _less than three levels deep_ to minimize confusion.
 
 Although it works, the layout styles for this block could be improved — let's do that next.
-
-[👋 Checkout Step 7]()

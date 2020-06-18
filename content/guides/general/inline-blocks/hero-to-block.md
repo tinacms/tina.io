@@ -145,8 +145,6 @@ Restart the dev server and click on the hero block. You should be able to add nu
 
 Even though we got this working, there's a few things to adjust. See how the controls bleed off the page? Let's fix that next.
 
-> **Tip:** You can control the orientation of the 'Add Block' icons by setting `direction: 'column' | 'row'` as a prop on `InlineBlocks`
+> **Tip:** You can control the orientation of the 'Add Block' icons by setting `direction: 'vertical' | 'horizontal'` as a prop on `InlineBlocks`
 
 <!-- - Note margin collapse bug? -->
-
-[👋 Checkout Step 3]()

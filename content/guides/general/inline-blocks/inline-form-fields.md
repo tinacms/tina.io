@@ -135,5 +135,3 @@ Notice how we don't need to access `data` directly anymore. The `name` value on 
 You should now be able to edit those fields inline. Try selecting a field and updating the content.
 
 > **Tip:** Remember that if you refresh the page, those data changes won't persist without a back-end set up.
-
-### [ 👋 Checkout Step 2]()

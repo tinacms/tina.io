@@ -34,4 +34,4 @@ Note that the _demo isn't meant to be a 'starter'_. It is for educational purpos
 
 ### [‍👋 Checkout Step 1]()
 
-> **Tip**: At the bottom of each page in this guide, there will be a 'Step' that links to a tagged commit where the _step is complete_. If at any point you are working through a step and get tripped up, feel free to checkout the tagged commit to get some direction / reference.
+> This [commit]() is your starting place for working through this demo. Skip to the [final version of the repo]() if you get stuck or need a reference at any point.

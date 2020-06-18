@@ -89,7 +89,11 @@ export const hero_template = {
 }
 ```
 
-And we can **update the data file** with some basic values for these fields. Copy this into `data/data.json`:
+In this example, we are setting the dynamic _styles inline_, but you could also use a _css-in-js_ library to manipulate styles with these custom values. Or you could toggle class names based on the values. There's lots of different ways to approach this type of custom styling — it depends on the needs of your project!
+
+## Update the source data
+
+Now we can **update the data file** with some basic values for these fields. Copy this into `data/data.json`:
 
 **data/data.json**
 
@@ -112,8 +116,6 @@ If you restart the dev server, you should see a new 'pencil' icon in the _Blocks
 
 ![inline-settings](/img/inline-editing-guide/settings-modal.png)
 
-In this example, we are setting the dynamic _styles inline_, but you could also use a _css-in-js_ library to manipulate styles with these custom values. Or you could toggle class names based on the values. There's lots of different ways to approach this type of custom styling — it depends on the needs of your project!
+You can add any [Tina fields](https://tinacms.org/docs/fields) to the _Settings Modal_, just like you can in a regular sidebar form. This additional interface should allow you to cover your bases to edit page and block metadata.
 
 <!-- *Note:* the color field is pretty janky with the settings modal. We either need to fix it or use another example. -->
-
-[👋 Checkout Step 5]()

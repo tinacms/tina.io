@@ -2,11 +2,13 @@
 title: Override Inline Blocks Styles
 ---
 
-Our _Features List_ is functional but it could benefit from better layout styles. This component is a great example to use a [grid layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) with. With _CSS Grid_, we can define a set of columns and rows and new `Feature` blocks will populate automatically according to the layout.
+Our _Features List_ is functional but it could benefit from better layout styles. This component is a great example for a [grid layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout). With _CSS Grid_, we can define a set of columns / rows and new `Feature` blocks will populate automatically according to the layout.
 
 If you open up the [Page Inspector](https://developer.mozilla.org/en-US/docs/Tools/Page_Inspector) in your dev tools, you'll see that `InlineBlocks` actually adds a div to the DOM that wraps all the child blocks. In order to style the child blocks in a grid, we need to directly style that `InlineBlocks` div.
 
-Luckily, Tina provides a way to override this components styles. We can do this by passing a custom class name, or by [defining a new styled-component](https://tinacms.org/docs/inline-editing#extending-inline-field-styles) that _styles_ `InlineBlocks`. Let's look at the simple approach first:
+Luckily, Tina provides a way to override this components styles. We can do this by passing a custom class name, or by [defining a new styled-component](https://tinacms.org/docs/inline-editing#extending-inline-field-styles) that _styles_ `InlineBlocks`.
+
+Let's look at the simple approach first:
 
 ## Override styles via className
 
@@ -26,7 +28,7 @@ export function FeaturesList({ index }) {
         <InlineBlocks
           name="features"
           blocks={FEATURE_BLOCKS}
-+         direction="row"
++         direction="horizontal"
 +         className="feature-list"
         />
       </div>
@@ -83,6 +85,20 @@ const StyledInlineBlocks = styled(InlineBlocks)`
 //...
 ```
 
-[👋 Checkout Step 8]()
+## Wrap up
 
-<!-- TODO: add outro >
+> Checkout the [final version of the demo](https://github.com/tinacms/inline-blocks-demo) created in this guide.
+
+That's it! We have successfully set up Inline Editing and a nice set of Inline Blocks. By now you should be feeling more comfortable working with the Inline Editing API and creating blocks of your own.
+
+Please reference [the documentation](https://tinacms.org/docs/inline-editing) to dive deeper into these APIs. To get some more inspiration, here are some examples of blocks in use:
+
+<!-- TODO add these links -->
+
+- [Our Test Repo?]()
+- [Quercus Blocks]()
+- what else?? grande?
+
+If you run into issues, post your questions on the [Tina Forum](https://community.tinacms.org/). If you have ideas on features to add or ways to improve Inline Editing, [open an issue](https://github.com/tinacms/tinacms/issues) in GitHub.
+
+We'd love to see what you make, **tweet us your block creations** [@tina_cms](https://twitter.com/tina_cms) 🦙!
