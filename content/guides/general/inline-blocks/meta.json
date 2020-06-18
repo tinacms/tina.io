@@ -44,10 +44,10 @@
       "data": "./nested-blocks.md"
     },
     {
-      "title": "Override Styles",
-      "id": "/guides/general/inline-blocks/override-styles",
-      "slug": "/guides/general/inline-blocks/override-styles",
-      "data": "./override-styles.md"
+      "title": "Extend Styles",
+      "id": "/guides/general/inline-blocks/extend-styles",
+      "slug": "/guides/general/inline-blocks/extend-styles",
+      "data": "./extend-styles.md"
     },
     {
       "title": "Wrap Up",
