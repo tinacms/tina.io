@@ -306,5 +306,3 @@ Tada 🥳 Now we have multiple blocks to choose from on the Home page. By now yo
 4. Pass the block definitions to `InlineBlocks`
 
 Next, we'll take things a step further with _Nested Blocks_.
-
-[👋 Checkout Step 6]()

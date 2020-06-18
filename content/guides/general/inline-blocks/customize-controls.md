@@ -94,5 +94,3 @@ export function Hero({ index }) {
 ![controling x/y offset and border radius](/img/inline-editing-guide/border-radius-x-y.png)
 
 We will leave the zero border-radius setting out of the demo, but it's a great examples of all the control at your disposal over the focus ring. Tinker with the styles to get the controls to your liking!
-
-[👋 Checkout Step 4]()

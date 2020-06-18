@@ -119,5 +119,3 @@ If you restart the dev server, you should see a new 'pencil' icon in the _Blocks
 You can add any [Tina fields](https://tinacms.org/docs/fields) to the _Settings Modal_, just like you can in a regular sidebar form. This additional interface should allow you to cover your bases to edit page and block metadata.
 
 <!-- *Note:* the color field is pretty janky with the settings modal. We either need to fix it or use another example. -->
-
-[👋 Checkout Step 5]()

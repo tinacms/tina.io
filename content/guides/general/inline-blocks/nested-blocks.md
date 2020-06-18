@@ -247,5 +247,3 @@ const HOME_BLOCKS = {
 So our nested blocks are wired up! The `FeaturesList` block renders another set of `Feature` blocks. There's no limit to the amount of nesting you can do. Although, we recommend keeping it less than three levels deep to minimize confusion in the UX.
 
 Although it works, the layout styles for this block could be improved — let's do that next.
-
-[👋 Checkout Step 7]()

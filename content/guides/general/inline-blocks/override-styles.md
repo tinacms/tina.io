@@ -83,6 +83,4 @@ const StyledInlineBlocks = styled(InlineBlocks)`
 //...
 ```
 
-[👋 Checkout Step 8]()
-
-<!-- TODO: add outro >
+<!-- TODO: add outro and final version of the repo link>

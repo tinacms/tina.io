@@ -148,5 +148,3 @@ Even though we got this working, there's a few things to adjust. See how the con
 > **Tip:** You can control the orientation of the 'Add Block' icons by setting `direction: 'column' | 'row'` as a prop on `InlineBlocks`
 
 <!-- - Note margin collapse bug? -->
-
-[👋 Checkout Step 3]()
