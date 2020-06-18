@@ -48,6 +48,12 @@
       "id": "/guides/general/inline-blocks/override-styles",
       "slug": "/guides/general/inline-blocks/override-styles",
       "data": "./override-styles.md"
+    },
+    {
+      "title": "Wrap Up",
+      "id": "/guides/general/inline-blocks/wrap-up",
+      "slug": "/guides/general/inline-blocks/wrap-up",
+      "data": "./wrap-up.md"
     }
   ]
 }
