@@ -286,13 +286,13 @@ Make the following changes in `Home.js`:
 **Home.js**
 
 ```diff
-import React from 'react';
-import { useForm } from 'tinacms';
-import { InlineForm, InlineBlocks } from 'react-tinacms-inline';
-import { Hero, hero_template } from './components/Hero';
-+ import { Images, images_template } from './components/Images';
-+ import { Paragraph, paragraph_template } from './components/Paragraph';
-import data from './data/data.json';
+import React from 'react'
+import { useForm } from 'tinacms'
+import { InlineForm, InlineBlocks } from 'react-tinacms-inline'
+import { Hero, hero_template } from './components/Hero'
++ import { Images, images_template } from './components/Images'
++ import { Paragraph, paragraph_template } from './components/Paragraph'
+import data from './data/data.json'
 
 export default function Home() {
   //...
@@ -311,7 +311,7 @@ const HOME_BLOCKS = {
 +   Component: Paragraph,
 +   template: paragraph_template,
 + },
-};
+}
 ```
 
 Tada 🥳 Now we have multiple blocks to choose from on the Home page. By now you might notice a pattern for making blocks:

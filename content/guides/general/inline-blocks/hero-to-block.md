@@ -10,15 +10,15 @@ This simple inline editing configuration is a great start, but the end goal of t
 
 > If you're wanting to get a better feel for the 'Blocks' concept, there is a great blog that dives deeper into [_what blocks are_](/blog/what-are-blocks).
 
-**components/hero.js**
+**components/Hero.js**
 
 ```diff
-import React from 'react';
+import React from 'react'
 import {
   InlineTextarea,
 +  BlocksControls,
-} from 'react-tinacms-inline';
-import '../styles/hero.css';
+} from 'react-tinacms-inline'
+import '../styles/hero.css'
 
 -export function Hero() {
 + export function Hero({index}) {

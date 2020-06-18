@@ -35,7 +35,7 @@ export default function Home() {
   // 4. Use the return data now connected with a TinaCMS form
   return (
     <div className="home">
-      <Hero data={pageData.hero} />;
+      <Hero data={pageData.hero} />
     </div>
   )
 }

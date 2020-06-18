@@ -224,7 +224,7 @@ Head to `Home.js` and add this code:
 
 ```diff
 // Other imports...
-+ import { FeaturesList, features_list_template } from './components/Features';
++ import { FeaturesList, features_list_template } from './components/Features'
 
 export default function Home() {
   //...
@@ -247,7 +247,7 @@ const HOME_BLOCKS = {
 +   Component: FeaturesList,
 +   template: features_list_template,
 + },
-};
+}
 
 ```
 
