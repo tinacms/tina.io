@@ -125,14 +125,18 @@ export const feature_template = {
 }
 ```
 
-Now let's update the source file.
+## Update the source data
+
+Now let's update the source file. Take care to not delete the previously defined block data. It's removed from this example for brevity. Copy and paste the `features` block object and **add it below the other blocks**.
 
 **data/data.json**
 
 ```json
 {
   "blocks": [
-    // Other blocks...
+    /**
+     * Additional Block Data...
+     */
     {
       "_template": "features",
       "features": [
