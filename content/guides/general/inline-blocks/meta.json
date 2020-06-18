@@ -8,13 +8,13 @@
       "data": "./overview.md"
     },
     {
-      "title": "Adding Inline Form & Fields",
+      "title": "Inline Form & Fields",
       "id": "/guides/general/inline-blocks/inline-form-fields",
       "slug": "/guides/general/inline-blocks/inline-form-fields",
       "data": "./inline-form-fields.md"
     },
     {
-      "title": "Converting Hero to a Block",
+      "title": "Convert Hero to a Block",
       "id": "/guides/general/inline-blocks/hero-to-block",
       "slug": "/guides/general/inline-blocks/hero-to-block",
       "data": "./hero-to-block.md"
@@ -26,7 +26,7 @@
       "data": "./customize-controls.md"
     },
     {
-      "title": "Add Settings Fields",
+      "title": "Settings Modal Fields",
       "id": "/guides/general/inline-blocks/settings-modal",
       "slug": "/guides/general/inline-blocks/settings-modal",
       "data": "./settings-modal.md"
@@ -44,7 +44,7 @@
       "data": "./nested-blocks.md"
     },
     {
-      "title": "Overriding Styles",
+      "title": "Override Styles",
       "id": "/guides/general/inline-blocks/override-styles",
       "slug": "/guides/general/inline-blocks/override-styles",
       "data": "./override-styles.md"

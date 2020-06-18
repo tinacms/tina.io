@@ -1,5 +1,5 @@
 ---
-title: Converting Hero to a Block
+title: Convert Hero to a Block
 ---
 
 This simple inline editing configuration is a great start, but the end goal of this demo is to create a Home page built with [_Inline Blocks_](https://tinacms.org/docs/inline-editing/inline-blocks). In this step we will add `InlineBlocks` to the homepage and convert our `Hero` into a block.

@@ -1,5 +1,5 @@
 ---
-title: Add fields to settings modal
+title: Settings Modal Fields
 ---
 
 ## Configure meta fields for style
