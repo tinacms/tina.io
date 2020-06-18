@@ -4,9 +4,11 @@ title: Converting Hero to a Block
 
 This simple inline editing configuration is a great start, but the end goal of this demo is to create a Home page built with [_Inline Blocks_](https://tinacms.org/docs/inline-editing/inline-blocks). In this step we will add `InlineBlocks` to the homepage and convert our `Hero` into a block.
 
+> If you're wanting to get a better feel for the 'Blocks' concept, there is a great blog that dives deeper into [_what blocks are_](/blog/what-are-blocks).
+
 ## Add _InlineBlocks_
 
-First we will add the `InlineBlocks` field to the home page. `InlineBlocks` accepts an array of block options (`blocks`) and a path to the block data (`name`). It handles block order, among other things. Anytime you want to make blocks inline, you will need this parent component to _house_ the blocks.
+First we will add the `InlineBlocks` field to the home page. `InlineBlocks` accepts an array of block options — `blocks` — and a path to the block data — `name`. It handles block order, among other things. Anytime you want to make blocks inline, you will need this parent component to _house_ the blocks.
 
 Head to `Home.js` and make these changes:
 
@@ -16,7 +18,7 @@ Head to `Home.js` and make these changes:
 import React from 'react'
 import { useForm } from 'tinacms'
 
-// 1. Import `InlineBlocks` and hero template
+// 1. Import `InlineBlocks` and `hero_template`
 import { InlineForm, InlineBlocks } from 'react-tinacms-inline'
 import { Hero, hero_template } from './components/Hero'
 import data from './data/data.json'
@@ -60,7 +62,7 @@ Right now it has a single `hero` block defined. [Inline Blocks](https://tinacms.
 
 ## Adjust Source Data
 
-Notice how we swapped out the `initialValues` in the form config from `hero` to `blocks`? We need to update our source data with the `blocks` data that the `initialValues` point to.
+Notice how we swapped out the `initialValues` in the form config from `hero` to `blocks`? We need to update our source file with the `blocks` data that the `initialValues` point to.
 
 Replace the entire contents of `data/data.json` with this:
 
@@ -80,9 +82,9 @@ Replace the entire contents of `data/data.json` with this:
 
 ## Make a Component
 
-Now that our data is ready and `InlineBlocks` are set up on the home page, we need to create the two parts of the `hero` block: a component and a template. Let's make the _Hero Block Component_ first.
+Now that our data is ready and `InlineBlocks` are set up on the home page, we need to make both parts of the hero block: a component and a template.
 
-> If you're wanting to get a better feel for the 'Blocks' concept, there is a great blog that dives deeper into [_what blocks are_](/blog/what-are-blocks).
+Let's make the _Hero Block Component_ first.
 
 **components/Hero.js**
 
@@ -121,7 +123,7 @@ You may have also seen that the `name` values were updated for our inline fields
 
 ## Make a Template
 
-Our Hero block still needs a template to be complete. This template allows us to create the `hero` block type and provide default values for newly created blocks. The `fields` array is empty for now, but this is where we can add additional metadata to edit in a [_Settings Modal_](/guides/general/inline-blocks/settings-modal).
+Our Hero block still needs a template to be complete. This template allows us to create the `hero` block type and provide default values for newly created blocks.
 
 Add this code below the `Hero` component definition:
 
@@ -143,12 +145,12 @@ export const hero_template = {
 }
 ```
 
-Restart the dev server and click on the hero block. You should be able to add numerous hero blocks by hitting the 'plus' icon.
+The `fields` array is empty for now, but this is where we can add additional metadata to edit in a [_Settings Modal_](/guides/general/inline-blocks/settings-modal). We will cover this in a few steps.
+
+Restart the dev server and click on the hero block. You should see some new _Blocks Controls_ UI. Try to add new hero blocks by hitting the 'plus' icon!
 
 ![hero block](/img/inline-editing-guide/step8-hero-block.png)
 
-Even though we got this working, there's a few things to adjust. See how the controls bleed off the page? Let's fix that next.
-
-> **Tip:** You can control the orientation of the 'Add Block' icons by setting `direction: 'vertical' | 'horizontal'` as a prop on `InlineBlocks`
+Even though we got this working, there's a few things to adjust. See how the **controls bleed off the page**? Let's fix that next.
 
 <!-- - Note margin collapse bug? -->
