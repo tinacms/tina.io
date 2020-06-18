@@ -19,6 +19,9 @@ import React from 'react'
 import { BlocksControls, InlineImage } from 'react-tinacms-inline'
 import '../styles/images.css'
 
+/**
+ * 1. Define the block component
+ */
 export function Images({ index }) {
   return (
     <BlocksControls
@@ -48,17 +51,20 @@ export function Images({ index }) {
   )
 }
 
+/**
+ * 2. Define the block template
+ */
 export const images_template = {
   label: 'Image Diptych',
   defaultItem: {
     _template: 'images',
     left: {
       src: '/ivan-bandura-unsplash-square.jpg',
-      alt: 'Some alt text',
+      alt: 'ocean',
     },
     right: {
       src: '/martin-sanchez-unsplash-square.jpg',
-      alt: 'Some alt text',
+      alt: 'dunes',
     },
   },
   fields: [
@@ -96,25 +102,35 @@ export const images_template = {
 
 This block provides two [Inline Image](https://tinacms.org/docs/inline-editing/inline-image) fields in a [diptych](https://en.wikipedia.org/wiki/Diptych) style. With Inline Image fields, you can drag and drop new images onto the area, or click the image to be met with a file selector.
 
-> Since this project isn't set up with a [media store](https://tinacms.org/docs/media), **uploading new images won't work**. The type of media store you use depends on your back-end, and that is beyond the scope of this guide. So for our learning purposes, the same images will always render in the `Images` block.
+> Since this project isn't set up with a [media store](https://tinacms.org/docs/media), **uploading new images won't work**. The type of media store you use depends on your back-end, and that is beyond the scope of this guide. For our learning purposes, the same images will always render in the `Images` block.
 
 ### Configuring image fields
 
-Configuring image fields _can be trickier_ than other fields. The `parse` function handles how the path gets written in the source data when a _new image_ is uploaded. `parse` is passed the filename of the newly uploaded image — `some-image.jpg`. A simple return value could look something like this:
+Configuring image fields _can be trickier_ than other fields. The `parse` function handles how the path gets written in the source data when a _new image_ is uploaded. `parse` is passed the filename of the newly uploaded image — `image.jpg`. A simple return value could look something like this:
 
 ```js
-parse: filename => `/some-img-dir/${filename}`
+parse: filename => `/example-dir/${filename}`
 ```
 
 The path **depends on where images live** in your project structure. `uploadDir` sets where those new images should live:
 
 ```js
-uploadDir: () => `/some-img-dir`
+uploadDir: () => `/example-dir`
 ```
 
 The `previewSrc` provides a path for the image **when inline editing is active** (a.k.a when the [CMS is enabled](https://tinacms.org/docs/cms#disabling--enabling-the-cms)). When inline editing is not active (`cms.enabled === false`), the image will reference the path in the source data.
 
 `previewSrc` is passed **current form values** as its first argument. We can use these values, along with our block `index` to target the proper image source from the data.
+
+```js
+/**
+ * `index` is passed as props to the block component
+ * that renders the inline image
+ */
+previewSrc: formValues => `${formValues.blocks[props.index].imageSrc}`
+```
+
+The return value should be the entire path to the image from the source data — e.g. `/example-dir/image.jpg`.
 
 ### Accessing index in the template fields
 
