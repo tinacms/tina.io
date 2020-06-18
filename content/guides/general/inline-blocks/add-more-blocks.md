@@ -178,6 +178,8 @@ const images_template = {
 
 ## Add a _Paragraph_ Block
 
+Next we'll add a simple `Paragraph` block. This is a very common component to websites and will be a nice complement to the hero and image diptych.
+
 Create a new file, `components/Paragraph.js` and add this code:
 
 <!-- Is this needed?  -->
@@ -189,6 +191,9 @@ import React from 'react'
 import { BlocksControls, InlineTextarea } from 'react-tinacms-inline'
 import '../styles/paragraph.css'
 
+/**
+ * 1. Create the component
+ */
 export function Paragraph({ index }) {
   return (
     <BlocksControls
@@ -207,6 +212,9 @@ export function Paragraph({ index }) {
   )
 }
 
+/**
+ * 2. Create the template
+ */
 export const paragraph_template = {
   label: 'Paragraph',
   defaultItem: {
@@ -218,6 +226,8 @@ export const paragraph_template = {
 ```
 
 ## Update the source data
+
+Let's update the source data to ensure these blocks display on our home page.
 
 **data/data.json**
 
@@ -236,11 +246,11 @@ export const paragraph_template = {
       "_template": "images",
       "left": {
         "src": "/ivan-bandura-unsplash-square.jpg",
-        "alt": "Some alt text"
+        "alt": "ocean"
       },
       "right": {
         "src": "/martin-sanchez-unsplash-square.jpg",
-        "alt": "Some alt text"
+        "alt": "dunes"
       }
     },
     {
@@ -251,9 +261,11 @@ export const paragraph_template = {
 }
 ```
 
-## Add new blocks to `Home`
+## Add new blocks to the home page
 
-And let's pass these blocks to our `InlineBlocks` component.
+Finally, we'll add these blocks to the `HOME_BLOCKS` object. This gets passed to `InlineBlocks` as the available blocks to add / render.
+
+Make the following changes in `Home.js`:
 
 **Home.js**
 
@@ -285,5 +297,14 @@ const HOME_BLOCKS = {
 + },
 };
 ```
+
+Tada 🥳 Now we have multiple blocks to choose from on the Home page. By now you might notice a pattern for making blocks:
+
+1. Create the block component
+2. Create the block template
+3. Update the source data, if necessary
+4. Pass the block definitions to `InlineBlocks`
+
+Next, we'll take things a step further with _Nested Blocks_.
 
 [👋 Checkout Step 6]()
