@@ -8,6 +8,8 @@ Our Hero block is coming along nicely, but it's pretty bare bones. Let's say we 
 
 This type of metadata is difficult to edit directly inline. To provide a way to edit this data in a more _traditional_ form, you can pass in an array of `Fields` in the block template that will render in a _Settings Modal_.
 
+![inline-settings](/img/inline-editing-guide/settings-modal.png)
+
 Head to `components/Hero.js` and make these changes:
 
 **components/Hero.js**
@@ -113,8 +115,6 @@ Now we can **update the data file** with some basic values for these fields. Cop
 ```
 
 If you restart the dev server, you should see a new 'pencil' icon in the _Blocks Controls_. If you click on that it will open the _Settings Modal_ where the fields we defined will render.
-
-![inline-settings](/img/inline-editing-guide/settings-modal.png)
 
 You can add any [Tina fields](https://tinacms.org/docs/fields) to the _Settings Modal_, just like you can in a regular sidebar form. This additional interface should allow you to cover your bases to edit page and block metadata.
 
