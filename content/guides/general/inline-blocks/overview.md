@@ -2,7 +2,7 @@
 title: 'Overview'
 ---
 
-This guide will show you how to set up inline editing and inline blocks based on a simple [create-react-app](https://reactjs.org/docs/create-a-new-react-app.html) demo. The steps will be roughly aligned with commits on this [demo repo](https://github.com/tinacms/inline-blocks-demo) for reference.
+This guide will show you how to set up inline editing and inline blocks based on a simple [create-react-app](https://reactjs.org/docs/create-a-new-react-app.html) demo.
 
 By the end of this guide, you should have a good understanding of how to set-up and work with inline editing and inline blocks. While this guide doesn't cover every single field or potential usecase, it should give you enough of a base to create Inline Editing experiences in your own projects.
 
