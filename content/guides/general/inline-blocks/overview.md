@@ -27,4 +27,4 @@ yarn start # Navigate to localhost:3000
 
 Note that the _demo isn't meant to be a 'starter'_. It is for educational purposes to help you get familiar with the inline editing API.
 
-> There is a [`final-state` branch](https://github.com/tinacms/inline-blocks-demo/tree/final-state) that you can checkout if you get stuck or need a reference at any point.
+> There is a [final-state branch](https://github.com/tinacms/inline-blocks-demo/tree/final-state) that you can checkout if you get stuck or need a reference at any point.
