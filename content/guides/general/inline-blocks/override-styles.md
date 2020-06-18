@@ -17,7 +17,7 @@ Let's look at the simple approach first:
 ```diff
 //...
 
-export function FeaturesList({ index }) {
+export function FeatureList({ index }) {
   return (
     <BlocksControls
       index={index}
@@ -49,14 +49,14 @@ You also may have noticed the new `direction` prop being passed. This controls w
 
 Here's what it would look like if you wanted to use [styled components](https://styled-components.com/) to implement this:
 
-**components/FeaturesList.js**
+**components/FeatureList.js**
 
 ```js
 //...
 
 import styled from 'styled-components'
 
-export function FeaturesList({ index }) {
+export function FeatureList({ index }) {
   return (
     <BlocksControls
       index={index}

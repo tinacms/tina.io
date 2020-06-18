@@ -10,6 +10,8 @@ Please reference [the documentation](https://tinacms.org/docs/inline-editing) to
 
 <!-- TODO add these links -->
 
+// TODO: add these links, or remove them?
+
 - [Our Test Repo?]()
 - [Quercus Blocks]()
 - what else?? grande?

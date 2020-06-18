@@ -1,5 +1,5 @@
 ---
-title: Creating Nested Blocks
+title: Nested Blocks
 ---
 
 _Nested Blocks_ are blocks that render more blocks 🤯. This can be helpful if you're creating a _page builder_ experience. You may have layout level blocks, and then within a single layout block you will have more blocks for editors to add / manage.
@@ -8,21 +8,24 @@ One example could be a gallery block. The gallery may be a part of a top-level g
 
 The ability to configure nested blocks is incredibly flexible. But it's also important to keep control of the user experience and limit complexity.
 
-## Make a _FeaturesList_ Block
+## Make a _FeatureList_ Block
 
-The last block we are going to add is a Features List. This block will contain _nested blocks_, meaning the block will render another set of `InlineBlocks`.
+The last block we are going to add is a Features List. The `FeatureList` block will render another set of `InlineBlocks` — _nested blocks_.
 
 ![gif of feature blocks?]()
 
-**components/Features.js**
+**components/FeatureList.js**
 
 ```jsx
 import React from 'react'
 import { BlocksControls, InlineBlocks } from 'react-tinacms-inline'
 import '../styles/features.css'
+import { Feature, feature_template } from './Feature'
 
-// 1. Define the component
-export function FeaturesList({ index }) {
+/**
+ * 1. Define the block component
+ */
+export function FeatureList({ index }) {
   return (
     <BlocksControls
       index={index}
@@ -30,99 +33,22 @@ export function FeaturesList({ index }) {
       insetControls={true}
     >
       <div className="wrapper">
-        {/** The 'nested blocks' */}
-        <InlineBlocks name="features" blocks={} />
+        {/* The 'nested blocks'*/}
+        <InlineBlocks
+          name="features"
+          blocks={FEATURE_BLOCKS}
+          direction="row"
+          className="feature-list"
+        />
       </div>
     </BlocksControls>
   )
 }
 
-// 2. Define the template
-export const features_list_template = {
-  label: 'Feature List',
-  defaultItem: {
-    _template: 'features',
-    features: [
-      //.. Default feature blocks will go here
-    ],
-  },
-  fields: [],
-}
-```
-
-Now let's adjust our source file:
-
-**data/data.json**
-
-```json
-{
-  "blocks": [
-    {
-      "_template": "hero",
-      "background_color": "rgb(5, 30, 38)",
-      "text_color": "#fffaf4",
-      "headline": "Suspended in a Sunbeam",
-      "subtext": "Dispassionate extraterrestrial observer are creatures of the cosmos courage of our questions inconspicuous motes of rock and gas a mote of dust suspended in a sunbeam great turbulent clouds.",
-      "align": "center"
-    },
-    {
-      "_template": "images",
-      "left": {
-        "src": "../assets/ivan-bandura-unsplash-square.jpg",
-        "alt": "Some alt text"
-      },
-      "right": {
-        "src": "../assets/martin-sanchez-unsplash-square.jpg",
-        "alt": "Some alt text"
-      }
-    },
-    {
-      "_template": "paragraph",
-      "text": "Take root and flourish quis nostrum exercitationem ullam corporis suscipit laboriosam culture Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur descended from astronomers encyclopaedia galactica? Nisi ut aliquid ex ea commodi consequatur something incredible is waiting to be known sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem "
-    },
-    {
-      "_template": "features",
-      "features": [
-        //.. Feature blocks will go here
-      ]
-    }
-  ]
-}
-```
-
-## Make a _Feature_ Block
-
-Next, we'll create a feature block component & template and pass that to the `InlineBlocks` in `FeaturesList`.
-
-**components/Features.js**
-
-```jsx
-// 1. Import new `InlineTextarea` field
-import React from 'react'
-import {
-  BlocksControls,
-  InlineBlocks,
-  InlineTextarea,
-} from 'react-tinacms-inline'
-import '../styles/features.css'
-
-export function FeaturesList({ index }) {
-  return (
-    <BlocksControls
-      index={index}
-      focusRing={{ offset: 0 }}
-      insetControls={true}
-    >
-      <div className="wrapper">
-        {/* 2. Pass FEATURE_BLOCKS to blocks, defined further down */}
-        <InlineBlocks name="features" blocks={FEATURE_BLOCKS} />
-      </div>
-    </BlocksControls>
-  )
-}
-
-// 3. Fill in default 'Feature' block values
-export const features_list_template = {
+/**
+ * 2. Define the block template
+ */
+export const feature_list_template = {
   label: 'Feature List',
   defaultItem: {
     _template: 'features',
@@ -147,8 +73,32 @@ export const features_list_template = {
   fields: [],
 }
 
-// 4. Create the Feature Block Component
-function Feature({ index }) {
+/**
+ *  3. Define the 'blocks', we will make the `Feature`
+ *  component and template next
+ */
+const FEATURE_BLOCKS = {
+  feature: {
+    Component: Feature,
+    template: feature_template,
+  },
+}
+```
+
+## Make a _Feature_ Block
+
+Next, we'll create the Feature block component & template.
+
+Both of these are already defined in the `FEATURE_BLOCKS` object, which is passed to `InlineBlocks` in `FeatureList`.
+
+**components/Feature.js**
+
+```jsx
+import React from 'react'
+import { BlocksControls, InlineTextarea } from 'react-tinacms-inline'
+import '../styles/features.css'
+
+export function Feature({ index }) {
   return (
     <BlocksControls index={index}>
       <div className="feature">
@@ -163,8 +113,7 @@ function Feature({ index }) {
   )
 }
 
-// 5. Create the Feature Block Template
-const feature_template = {
+export const feature_template = {
   label: 'Feature',
   defaultItem: {
     _template: 'feature',
@@ -174,17 +123,9 @@ const feature_template = {
   },
   fields: [],
 }
-
-// 6. Define the 'block', with component and template
-const FEATURE_BLOCKS = {
-  feature: {
-    Component: Feature,
-    template: feature_template,
-  },
-}
 ```
 
-Once again let's update the source file.
+Now let's update the source file.
 
 **data/data.json**
 
@@ -218,13 +159,13 @@ Once again let's update the source file.
 
 ## Add _FeatureList_ to Home page blocks
 
-Finally, we'll add the `FeaturesList` block to the Home page block options.
+Finally, we'll add the `FeatureList` block to the Home page block options.
 
 Head to `Home.js` and add this code:
 
 ```diff
 // Other imports...
-+ import { FeaturesList, features_list_template } from './components/Features'
++ import { FeatureList, feature_list_template } from './components/FeatureList'
 
 export default function Home() {
   //...
@@ -244,14 +185,14 @@ const HOME_BLOCKS = {
     template: paragraph_template,
   },
 + features: {
-+   Component: FeaturesList,
-+   template: features_list_template,
++   Component: FeatureList,
++   template: feature_list_template,
 + },
 }
 
 ```
 
-So our nested blocks are wired up! The `FeaturesList` block renders another set of `Feature` blocks. To take this further, you could add another block option for `FeaturesList`.
+So our nested blocks are wired up! The `FeatureList` block renders another set of `Feature` blocks. To take this further, you could add another block option for `FeatureList`.
 
 There's **no limit to the amount of nesting** you can do. That said, we recommend keeping it _less than three levels deep_ to minimize confusion.
 

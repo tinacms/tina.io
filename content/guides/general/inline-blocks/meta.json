@@ -38,7 +38,7 @@
       "data": "./add-more-blocks.md"
     },
     {
-      "title": "Making Nested Blocks",
+      "title": "Nested Blocks",
       "id": "/guides/general/inline-blocks/nested-blocks",
       "slug": "/guides/general/inline-blocks/nested-blocks",
       "data": "./nested-blocks.md"
