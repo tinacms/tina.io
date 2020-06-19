@@ -20,12 +20,11 @@ The last block we are going to add is a Features List. The `FeatureList` block w
 import React from 'react'
 import { BlocksControls, InlineBlocks } from 'react-tinacms-inline'
 import '../styles/features.css'
-import { Feature, feature_template } from './Feature'
 
 /**
- * 1. Define the block component
+ * 1. Define the Block Component
  */
-export function FeatureList({ index }) {
+function FeatureList({ index }) {
   return (
     <BlocksControls
       index={index}
@@ -33,7 +32,6 @@ export function FeatureList({ index }) {
       insetControls={true}
     >
       <div className="wrapper">
-        {/* The 'nested blocks'*/}
         <InlineBlocks name="features" blocks={FEATURE_BLOCKS} />
       </div>
     </BlocksControls>
@@ -41,7 +39,7 @@ export function FeatureList({ index }) {
 }
 
 /**
- * 2. Define the block template
+ * 2. Define the FeatureList Block
  */
 export const featureListBlock = {
   Component: FeatureList,
@@ -72,19 +70,16 @@ export const featureListBlock = {
 }
 
 /**
- *  3. Define the 'blocks', we will make the `Feature`
- *  component and template next
+ * 3. Define the block options
+ * for FeatureList to render, we will add
+ * a block to this next
  */
-const FEATURE_BLOCKS = {
-  feature: featureBlock,
-}
+const FEATURE_BLOCKS = {}
 ```
 
 ## Make a _Feature_ Block
 
 Next, we'll create the Feature block component & template.
-
-Both of these are already defined in the `FEATURE_BLOCKS` object, which is passed to `InlineBlocks` in `FeatureList`.
 
 **components/Feature.js**
 
@@ -93,7 +88,7 @@ import React from 'react'
 import { BlocksControls, InlineTextarea } from 'react-tinacms-inline'
 import '../styles/features.css'
 
-export function Feature({ index }) {
+function Feature({ index }) {
   return (
     <BlocksControls index={index}>
       <div className="feature">
@@ -108,7 +103,7 @@ export function Feature({ index }) {
   )
 }
 
-export const featureBlock = {
+export const FeatureBlock = {
   Component: Feature,
   template: {
     label: 'Feature',
@@ -123,40 +118,28 @@ export const featureBlock = {
 }
 ```
 
-## Update the source data
+## Add the _Feature_ to _FeatureList_
 
-Now let's update the source file. Take care to not delete the previously defined block data. It's removed from this example for brevity. Copy and paste the `features` block object and **add it below the other blocks**.
+Now that we make our `Feature` block, we need to add that to the `FEATURE_BLOCKS` options in `FeatureList`.
 
-**data/data.json**
+```diff
+import React from 'react';
+import { BlocksControls, InlineBlocks } from 'react-tinacms-inline';
+import '../styles/features.css';
++import { FeatureBlock } from './Feature';
 
-```json
-{
-  "blocks": [
-    /**
-     * Additional Block Data...
-     */
-    {
-      "_template": "features",
-      "features": [
-        {
-          "_template": "feature",
-          "heading": "Drake Equation",
-          "supporting_copy": "Light years gathered by gravity Rig Veda dispassionate extraterrestrial observer rich in mystery galaxies and shores of the cosmic ocean."
-        },
-        {
-          "_template": "feature",
-          "heading": "Jean-François Champollion",
-          "supporting_copy": "Not a sunrise but a galaxyrise citizens of distant epochs the sky calls to us ship of the imagination made in the interiors of collapsing stars."
-        },
-        {
-          "_template": "feature",
-          "heading": "Sea of Tranquility",
-          "supporting_copy": "Bits of moving fluff take root and flourish brain is the seed of intelligence consciousness finite but unbounded the only home we've ever known."
-        }
-      ]
-    }
-  ]
+function FeatureList({ index }) {
+  //...
 }
+
+export const featureListBlock = {
+  //...
+}
+
+-const FEATURE_BLOCKS = {}
++const FEATURE_BLOCKS = {
++  feature: FeatureBlock,
++}
 ```
 
 ## Add _FeatureList_ to Home page blocks

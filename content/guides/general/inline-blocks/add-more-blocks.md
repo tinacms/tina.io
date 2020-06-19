@@ -20,9 +20,9 @@ import { BlocksControls, InlineImage } from 'react-tinacms-inline'
 import '../styles/images.css'
 
 /**
- * 1. Define the block component
+ * 1. Define the Block Component
  */
-export function Images({ index }) {
+function Images({ index }) {
   return (
     <BlocksControls
       index={index}
@@ -52,7 +52,8 @@ export function Images({ index }) {
 }
 
 /**
- * 2. Define the block template
+ * 2. Define the Block with
+ *  the Template and Component
  */
 export const imagesBlock = {
   Component: Images,
@@ -146,8 +147,8 @@ See the example below for a variation on getting the block index:
 **components/Images.js**
 
 ```jsx
-const imagesBlock = {
-  Component: Images
+export const imagesBlock = {
+  Component: Images,
   template: {
     //... Other block template config
     fields: [
@@ -167,7 +168,8 @@ const imagesBlock = {
            * Use that index to target the correct
            * block in `formValues`
            */
-          return formValues.blocks[index].left.src
+          const currentBlockImage = formValues.blocks[index].left.src
+          return currentBlockImage
         },
         focusRing: false,
       },
@@ -184,7 +186,8 @@ const imagesBlock = {
         uploadDir: () => '/',
         previewSrc: (formValues, input) => {
           const index = input.field.name.split('.')[1]
-          return formValues.blocks[index].right.src
+          const currentBlockImage = formValues.blocks[index].right.src
+          return currentBlockImage
         },
         focusRing: false,
       },
@@ -214,9 +217,9 @@ import { BlocksControls, InlineTextarea } from 'react-tinacms-inline'
 import '../styles/paragraph.css'
 
 /**
- * 1. Create the component
+ * 1. Define the Block Component
  */
-export function Paragraph({ index }) {
+function Paragraph({ index }) {
   return (
     <BlocksControls
       index={index}
@@ -235,7 +238,7 @@ export function Paragraph({ index }) {
 }
 
 /**
- * 2. Create the Block
+ * 2. Define the Block
  */
 export const paragraphBlock = {
   Component: Paragraph,
@@ -247,42 +250,6 @@ export const paragraphBlock = {
     },
     fields: [],
   },
-}
-```
-
-## Update the source data
-
-Let's update the source data to ensure these blocks display on our home page.
-
-**data/data.json**
-
-```json
-{
-  "blocks": [
-    {
-      "_template": "hero",
-      "background_color": "rgb(5, 30, 38)",
-      "text_color": "#fffaf4",
-      "headline": "Suspended in a Sunbeam",
-      "subtext": "Dispassionate extraterrestrial observer are creatures of the cosmos courage of our questions inconspicuous motes of rock and gas a mote of dust suspended in a sunbeam great turbulent clouds.",
-      "align": "center"
-    },
-    {
-      "_template": "images",
-      "left": {
-        "src": "/ivan-bandura-unsplash-square.jpg",
-        "alt": "ocean"
-      },
-      "right": {
-        "src": "/martin-sanchez-unsplash-square.jpg",
-        "alt": "dunes"
-      }
-    },
-    {
-      "_template": "paragraph",
-      "text": "Take root and flourish quis nostrum exercitationem ullam corporis suscipit laboriosam culture Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur descended from astronomers encyclopaedia galactica? Nisi ut aliquid ex ea commodi consequatur something incredible is waiting to be known sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem "
-    }
-  ]
 }
 ```
 
@@ -318,7 +285,7 @@ Tada 🥳 Now we have multiple blocks to choose from on the Home page. By now yo
 
 1. Create the block component
 2. Create the block template
-3. Update the source data, if necessary
+3. Update the source data, if necessary (in our case the source data is already populated)
 4. Pass the block definitions to `InlineBlocks`
 
 Next, we'll take things a step further with _Nested Blocks_.

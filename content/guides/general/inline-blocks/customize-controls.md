@@ -29,28 +29,42 @@ Since this component is 'page-width', we'll also _inset_ the controls to render 
 **components/Hero.js**
 
 ```diff
-export function Hero({index) {
+export function Hero({ data }) {
   return (
+    <div className="hero">
+      <div className="wrapper wrapper--narrow">
+        <h1>
+-         <InlineTextarea name="headline" />
++         <InlineTextarea name="headline" focusRing={false} />
+        </h1>
+        <p>
+-	        <InlineTextarea name="subtext" />
++         <InlineTextarea name="subtext" focusRing={false} />
+        </p>
+      </div>
+    </div>
+  );
+}
+
+export const heroBlock = {
+  Component: ({ index }) => (
     <BlocksControls
       index={index}
 +     focusRing={{ offset: 0 }}
 +     insetControls={true}
     >
-      <div className="hero">
-        <div className="wrapper wrapper--narrow">
-          <h1>
--           <InlineTextarea name="headline" />
-+           <InlineTextarea name="headline" focusRing={false} />
-          </h1>
-          <p>
--	          <InlineTextarea name="subtext" />
-+           <InlineTextarea name="subtext" focusRing={false} />
-          </p>
-        </div>
-      </div>
+      <Hero />
     </BlocksControls>
-  );
-}
+  ),
+  template: {
+    label: 'Hero',
+    defaultItem: {
+      headline: 'Suspended in a Sunbeam',
+      subtext: 'Dispassionate extraterrestrial observer',
+    },
+    fields: [],
+  },
+};
 ```
 
 Notice how we added `focusRing={false}` to the Inline Fields. This is totally up to your preference whether you want the child fields to render their focus ring. For this demo, we chose to hide them for a cleaner aesthetic.
@@ -62,57 +76,41 @@ Notice how we added `focusRing={false}` to the Inline Fields. This is totally up
 If you wanted to have even more control over the focus ring `offset`, you could pass in **specific x & y values**.
 
 ```jsx
-export function Hero({ index }) {
-  return (
+export const heroBlock = {
+  Component: ({ index }) => (
     <BlocksControls
       index={index}
       focusRing={{ offset: { x: -10, y: -18 } }}
       insetControls={true}
     >
-      {/*...*/}
+      <Hero />
     </BlocksControls>
-  )
+  ),
+  template: {
+    //...
+  },
 }
 ```
 
 You can also **adjust the border radius** or the amount of curve at the border intersections. In this example it is set to 0, making the focus ring border have square corners.
 
 ```jsx
-export function Hero({ index }) {
-  return (
+export const heroBlock = {
+  Component: ({ index }) => (
     <BlocksControls
       index={index}
       focusRing={{ offset: { x: -5, y: -20 }, borderRadius: 0 }}
       insetControls={true}
     >
-      {/*...*/}
+      <Hero />
     </BlocksControls>
-  )
+  ),
+  template: {
+    //...
+  },
 }
 ```
 
 ![controling x/y offset and border radius](/img/inline-editing-guide/border-radius-x-y.png)
 
-We will leave the zero border-radius setting out of the demo, but it's a great examples of all the control at your disposal over the focus ring.
-
-## Add Block direction
-
-You can control the orientation of the 'Add Block' icons by setting the `direction` prop on `InlineBlocks`. It is `vertical` by default.
-
-```ts
-direction: 'vertical' | 'horizontal'
-```
-
-![Tina horizontal add block controls](/img/inline-editing-guide/kanban-horizontal.png)
-
-This controls whether the add block buttons render on the top / bottom or left / right. It also sets a direction for the [drag context](https://github.com/atlassian/react-beautiful-dnd#api-%EF%B8%8F). Below is an example of this prop in use.
-
-```jsx
-<InlineBlocks
-  name="kanban_board"
-  blocks={KANBAN_BLOCKS}
-  direction="horizontal"
-/>
-```
-
-Go ahead and **tinker with the styles** to get the controls to your liking!
+We will leave the zero border-radius setting out of the demo, but it's a great examples of all the control at your disposal over the focus ring. Go ahead and **tinker with the styles** to get the controls to your liking!

@@ -8,6 +8,13 @@ The first thing we are going to do is [create a form](https://tinacms.org/docs/i
 
 > Note that since we don't have a backend set up, the **data changes won't persist** and the toolbar won't save / track form status as expected. Please refer to [other guides](https://tinacms.org/guides/) to learn more on setting up a backend.
 
+### The steps
+
+1. Import `useForm` and `usePlugin`
+2. Create a form config object
+3. Create and register the form
+4. Use the return data now connected with a TinaCMS form
+
 **Home.js**
 
 ```jsx
@@ -22,7 +29,7 @@ export default function Home() {
   const formConfig = {
     id: './data/data.json',
     initialValues: {
-      hero: data.hero,
+      data,
     },
     onSubmit() {
       alert('Saved!')
@@ -36,13 +43,13 @@ export default function Home() {
   // 4. Use the return data now connected with a TinaCMS form
   return (
     <div className="home">
-      <Hero data={pageData.hero} />
+      <Hero data={pageData.data} />
     </div>
   )
 }
 ```
 
-First, import `useForm` from 'tinacms'. Then create a formConfig object where you set the `id` and `initialValues` to connect the form with the hero data.
+First, import `useForm` from 'tinacms'. Then create a formConfig object where you set the `id` and `initialValues` to connect the form with the data.
 
 Call the `useForm` hook and pass the config object. The return values will be the data and the form itself. We will use the `form` next for `InlineForm`.
 
@@ -70,7 +77,7 @@ export default function Home() {
   const formConfig = {
     id: './data/data.json',
     initialValues: {
-      hero: data.hero,
+      data,
     },
     onSubmit() {
       alert('Saved!')
@@ -84,7 +91,7 @@ export default function Home() {
   return (
     <div className="home">
       <InlineForm form={form}>
-        <Hero data={pageData.hero} />
+        <Hero data={pageData.data} />
       </InlineForm>
     </div>
   )
@@ -120,11 +127,11 @@ import '../styles/hero.css'
       <div className="wrapper wrapper--narrow">
 -       <h1>{data.headline}</h1>
 +       <h1>
-+        <InlineTextarea name="hero.headline" />
++        <InlineTextarea name="headline" />
 +       </h1>
 -       <p>{data.subtext}</p>
 +       <p>
-+         <InlineTextarea name="hero.subtext" />
++         <InlineTextarea name="subtext" />
 +       </p>
       </div>
     </div>
@@ -134,7 +141,7 @@ import '../styles/hero.css'
 
 Notice how we don't need to access `data` directly anymore. The `name` value on the Inline Field provides the path to the content in the source file based on the `initialValues` passed to `InlineForm`.
 
-Since the `initialValues` in the form config object were set with `hero` data, inline fields inside the inline form can directly reference those `hero` value paths via `name`.
+Since the `initialValues` in the form config object were set with all the data from the source file, inline fields inside the inline form can directly reference the `data` value paths via `name`.
 
 ![Hero component with inline fields configured](/img/inline-editing-guide/step4-inline-fields.png)
 

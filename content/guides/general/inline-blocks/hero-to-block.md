@@ -8,118 +8,78 @@ This simple inline editing configuration is a great start, but the end goal of t
 
 ## Add _InlineBlocks_
 
-First we will add the `InlineBlocks` field to the home page. `InlineBlocks` accepts an array of block options — `blocks` — and a path to the block data — `name`. It handles block order, among other things. Anytime you want to make blocks inline, you will need this parent component to _house_ the blocks.
+First we will add the `InlineBlocks` field to the home page. `InlineBlocks` accepts block options — `blocks` — and a path to the block data — `name`. It handles block order, among other things. Anytime you want to make blocks inline, you will need this parent component to _house_ the blocks.
 
 Head to `Home.js` and make these changes:
 
 **Home.js**
 
-```jsx
+```diff
 import React from 'react'
 import { useForm, usePlugin } from 'tinacms'
-
-// 1. Import `InlineBlocks` and `hero` block.
-import { InlineForm, InlineBlocks } from 'react-tinacms-inline'
-import { heroBlock } from './components/Hero'
+-import { InlineForm } from 'react-tinacms-inline'
++import { InlineForm, InlineBlocks } from 'react-tinacms-inline'
 import data from './data/data.json'
 
 export default function Home() {
-  // 2. Update initial values with 'blocks' data
   const formConfig = {
     id: './data/data.json',
     initialValues: {
-      blocks: data.blocks,
+      data,
     },
     onSubmit() {
       alert('Saved!')
     },
   }
 
-  const [, form] = useForm(formConfig)
+  const [pageData, form] = useForm(formConfig)
   usePlugin(form)
 
   return (
     <div className="home">
       <InlineForm form={form} initialStatus="active">
-        {/**
-         * 3. Replace `Hero` with `InlineBlocks`
-         */}
-        <InlineBlocks name="blocks" blocks={HOME_BLOCKS} />
+        <Hero data={pageData.data} />
++       <InlineBlocks name="data.blocks" blocks={HOME_BLOCKS} />
       </InlineForm>
     </div>
   )
 }
 
-// 4. Define the blocks that get passed to `InlineBlocks`
-const HOME_BLOCKS = {
-  hero: heroBlock,
-}
++ const HOME_BLOCKS = {/** We will define blocks here later */}
 ```
 
-Take notice of the `HOME_BLOCKS` object. This object is _fed_ to `InlineBlocks`, letting it know what block options are available to add.
-
-Right now it has a single `hero` block defined. [Inline Blocks](https://tinacms.org/docs/inline-editing/inline-blocks#creating-a-block) are made up of **a component** to render while editing and **a template** to configure defaults, add fields, and other required data. These don't exist yet, we will _create these soon_.
-
-## Adjust Source Data
-
-Notice how we swapped out the `initialValues` in the form config from `hero` to `blocks`? We need to update our source file with the `blocks` data that the `initialValues` point to.
-
-Replace the entire contents of `data/data.json` with this:
-
-**data/data.json**
-
-```json
-{
-  "blocks": [
-    {
-      "_template": "hero",
-      "headline": "Suspended in a Sunbeam",
-      "subtext": "Dispassionate extraterrestrial observer are creatures of the cosmos courage of our questions inconspicuous motes of rock and gas a mote of dust suspended in a sunbeam great turbulent clouds."
-    }
-  ]
-}
-```
+Take notice of the `HOME_BLOCKS` object. This object is _fed_ to `InlineBlocks`, letting it know what block options are available to add. Let's go make a block to add to these options.
 
 ## Make a Component
 
-Now that our data is ready and `InlineBlocks` are set up on the home page, we need to make both parts of the hero block: a component and a template.
+[Inline Blocks](https://tinacms.org/docs/inline-editing/inline-blocks#creating-a-block) are made up of **a component** to render while editing and **a template** to configure defaults, add fields, and other required data.
 
-Let's make the _Hero Block Component_ first.
+Let's make the _Block Component_ first:
 
 **components/Hero.js**
 
-```diff
+```jsx
 import React from 'react'
-import {
-  InlineTextarea,
-+  BlocksControls,
-} from 'react-tinacms-inline'
+// 1. Import 'BlocksControls'
+import { InlineTextarea, BlocksControls } from 'react-tinacms-inline'
 import '../styles/hero.css'
 
--export function Hero() {
-+ export function Hero({index}) {
-  return (
-+   <BlocksControls index={index}>
-      <div className="hero">
-        <div className="wrapper wrapper--narrow">
-          <h1>
--           <InlineTextarea name="hero.headline" />
-+           <InlineTextarea name="headline" />
-          </h1>
-          <p>
--           <InlineTextarea name="hero.subtext" />
-+           <InlineTextarea name="subtext" />
-          </p>
-        </div>
-      </div>
-+   </BlocksControls>
-  );
+export function Hero() {
+  //...
+}
+
+// 2. Define the block component with Hero
+export const heroBlock = {
+  Component: ({ index }) => (
+    <BlocksControls index={index}>
+      <Hero />
+    </BlocksControls>
+  ),
+  template: {},
 }
 ```
 
 Here we're wrapping `Hero` in _Block Controls_ to provide a UI for reordering, deleting, and adding new blocks. Notice the `index` being passed as props to `BlockControls` — this helps to keep track of the block order.
-
-You may have also seen that the `name` values were updated for our inline fields. The path for a block's source data references from the parent `InlineBlocks`. So the `name` value passed to the parent (`InlineBlocks`) will be the starting reference point for all children block paths. `InlineBlocks` uses the block index to know which object to write to / reference.
 
 ## Make a Template
 
@@ -130,18 +90,25 @@ Add this code below the `Hero` component definition:
 **components/Hero.js**
 
 ```jsx
-export function Hero({ index }) {
+import React from 'react'
+import { InlineTextarea, BlocksControls } from 'react-tinacms-inline'
+import '../styles/hero.css'
+
+export function Hero() {
   //...
 }
 
 export const heroBlock = {
-  Component: Hero,
+  Component: ({ index }) => (
+    <BlocksControls index={index}>
+      <Hero />
+    </BlocksControls>
+  ),
   template: {
     label: 'Hero',
     defaultItem: {
       headline: 'Suspended in a Sunbeam',
-      subtext:
-        'Dispassionate extraterrestrial observer are creatures of the cosmos courage of our questions.',
+      subtext: 'Dispassionate extraterrestrial observer',
     },
     fields: [],
   },

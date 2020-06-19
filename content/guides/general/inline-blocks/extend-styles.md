@@ -43,6 +43,14 @@ This class and its grid styles have already been set up in `styles/features.css`
 
 ![photo of features list with grid?]()
 
+### Add Block direction
+
+You may have noticed the new `direction` prop passed to `InlineBlocks` in the above examples. This controls whether the add block buttons render on the top / bottom or left / right. It also sets a direction for the [drag context](https://github.com/atlassian/react-beautiful-dnd#api-%EF%B8%8F). It is `vertical` by default.
+
+```ts
+direction: 'vertical' | 'horizontal'
+```
+
 ## Same solve, but with styled-components
 
 Here's what it would look like if you wanted to use [styled components](https://styled-components.com/) to implement this:
@@ -65,7 +73,7 @@ export function FeatureList({ index }) {
         <StyledInlineBlocks
           name="features"
           blocks={FEATURE_BLOCKS}
-          direction="row"
+          direction="horizontal"
         />
       </div>
     </BlocksControls>

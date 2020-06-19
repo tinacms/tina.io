@@ -12,6 +12,11 @@ This type of metadata is difficult to edit directly inline. To provide a way to 
 
 Head to `components/Hero.js` and make these changes:
 
+1. Define `data` in `Hero` to use in the styles
+2. Add dynamic inline styles
+3. In the template, update block defaults
+4. Add fields to render in the modal
+
 **components/Hero.js**
 
 ```jsx
@@ -19,98 +24,82 @@ import React from 'react'
 import { InlineTextarea, BlocksControls } from 'react-tinacms-inline'
 import '../styles/hero.css'
 
-// 1. Define `data` to use in the styles
-export function Hero({ data, index }) {
+/**
+ * 1. Define data to access style values
+ */
+export function Hero({ data }) {
+  /**
+   * 2. Add dynamic inline styles on the 'hero' div
+   */
   return (
-    <BlocksControls
-      index={index}
-      focusRing={{ offset: { x: -5, y: -20 }, borderRadius: 8 }}
-      insetControls={true}
+    <div
+      className="hero"
+      style={{
+        color: `${data.text_color || '#000'}`,
+        backgroundColor: `${data.background_color || 'aliceblue'}`,
+        textAlign: `${data.align}`,
+        justifyContent: `${data.align === 'left' ? 'start' : data.align}`,
+      }}
     >
-      {/** 2. Add dynamic inline styles */}
-      <div
-        className="hero"
-        style={{
-          color: `${data.text_color || '#000'}`,
-          backgroundColor: `${data.background_color || 'aliceblue'}`,
-          textAlign: `${data.align}`,
-          justifyContent: `${data.align === 'left' ? 'start' : data.align}`,
-        }}
-      >
-        <div className="wrapper wrapper--narrow">
-          <h1>
-            <InlineTextarea name="headline" focusRing={false} />
-          </h1>
-          <p>
-            <InlineTextarea name="subtext" focusRing={false} />
-          </p>
-        </div>
+      <div className="wrapper wrapper--narrow">
+        <h1>
+          <InlineTextarea name="headline" focusRing={false} />
+        </h1>
+        <p>
+          <InlineTextarea name="subtext" focusRing={false} />
+        </p>
       </div>
-    </BlocksControls>
+    </div>
   )
 }
 
-// 3. Update defaults and add fields
-export const hero_template = {
-  label: 'Hero',
-  defaultItem: {
-    headline: 'Suspended in a Sunbeam',
-    subtext: 'Dispassionate extraterrestrial observer',
-    background_color: 'rgb(5, 30, 38)',
-    text_color: '#fffaf4',
-    align: 'center',
+export const heroBlock = {
+  Component: ({ index, data }) => (
+    <BlocksControls
+      index={index}
+      focusRing={{ offset: 0 }}
+      insetControls={true}
+    >
+      <Hero data={data} />
+    </BlocksControls>
+  ),
+  template: {
+    label: 'Hero',
+    defaultItem: {
+      headline: 'Suspended in a Sunbeam',
+      subtext: 'Dispassionate extraterrestrial observer',
+      /**
+       * 3. Update defaults with style values
+       */
+      background_color: '#051e26',
+      text_color: '#fffaf4',
+      align: 'center',
+    },
+    fields: [
+      /**
+       * 4. Add fields to edit styles in modal
+       */
+      {
+        name: 'text_color',
+        label: 'Text Color',
+        component: 'select',
+        options: ['white', 'black'],
+      },
+      {
+        name: 'align',
+        label: 'Alignment',
+        component: 'select',
+        options: ['center', 'left'],
+      },
+      {
+        name: 'background_color',
+        label: 'Background Color',
+        component: 'color',
+        widget: 'block',
+        colors: ['#051e26', '#f2dfc6', '#cfdcc8', '#ebbbbb', '#8a1414'],
+      },
+    ],
   },
-  fields: [
-    {
-      name: 'background_color',
-      label: 'Background Color',
-      component: 'color',
-      widget: 'block',
-      colors: [
-        'rgb(5, 30, 38)',
-        'aliceblue',
-        'antiquewhite',
-        'aqua',
-        'azure',
-        'darkslategray',
-      ],
-    },
-    {
-      name: 'text_color',
-      label: 'Text Color',
-      component: 'select',
-      options: ['white', 'black'],
-    },
-    {
-      name: 'align',
-      label: 'Alignment',
-      component: 'select',
-      options: ['center', 'left'],
-    },
-  ],
-}
-```
-
-In this example, we are setting the dynamic _styles inline_, but you could also use a _css-in-js_ library to manipulate styles with these custom values. Or you could toggle class names based on the values. There's lots of different ways to approach this type of custom styling — it depends on the needs of your project!
-
-## Update the source data
-
-Now we can **update the data file** with some basic values for these fields. Copy this into `data/data.json`:
-
-**data/data.json**
-
-```json
-{
-  "blocks": [
-    {
-      "_template": "hero",
-      "background_color": "rgb(5, 30, 38)",
-      "text_color": "#fffaf4",
-      "headline": "Suspended in a Sunbeam",
-      "subtext": "Dispassionate extraterrestrial observer are creatures of the cosmos courage of our questions inconspicuous motes of rock and gas a mote of dust suspended in a sunbeam great turbulent clouds.",
-      "align": "center"
-    }
-  ]
 }
 ```
 
@@ -118,4 +107,8 @@ If you restart the dev server, you should see a new 'pencil' icon in the _Blocks
 
 You can add any [Tina fields](https://tinacms.org/docs/fields) to the _Settings Modal_, just like you can in a regular sidebar form. This additional interface should allow you to cover your bases to edit page and block metadata.
 
-<!-- *Note:* the color field is pretty janky with the settings modal. We either need to fix it or use another example. -->
+### Dynamic style approaches
+
+In this example, we are setting the dynamic _styles inline_, but you could also use a _css-in-js_ library to manipulate styles with these custom values. Or you could toggle class names based on the values.
+
+There are many ways to approach this type of custom styling — it depends on the needs of your project!
