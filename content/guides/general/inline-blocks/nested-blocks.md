@@ -43,29 +43,32 @@ export function FeatureList({ index }) {
 /**
  * 2. Define the block template
  */
-export const feature_list_template = {
-  label: 'Feature List',
-  defaultItem: {
-    _template: 'features',
-    features: [
-      {
-        _template: 'feature',
-        heading: 'heading 1',
-        supporting_copy: 'supporting copy',
-      },
-      {
-        _template: 'feature',
-        heading: 'heading 2',
-        supporting_copy: 'supporting copy',
-      },
-      {
-        _template: 'feature',
-        heading: 'heading 3',
-        supporting_copy: 'supporting copy',
-      },
-    ],
+export const featureListBlock = {
+  Component: FeatureList,
+  template: {
+    label: 'Feature List',
+    defaultItem: {
+      _template: 'features',
+      features: [
+        {
+          _template: 'feature',
+          heading: 'heading 1',
+          supporting_copy: 'supporting copy',
+        },
+        {
+          _template: 'feature',
+          heading: 'heading 2',
+          supporting_copy: 'supporting copy',
+        },
+        {
+          _template: 'feature',
+          heading: 'heading 3',
+          supporting_copy: 'supporting copy',
+        },
+      ],
+    },
+    fields: [],
   },
-  fields: [],
 }
 
 /**
@@ -73,10 +76,7 @@ export const feature_list_template = {
  *  component and template next
  */
 const FEATURE_BLOCKS = {
-  feature: {
-    Component: Feature,
-    template: feature_template,
-  },
+  feature: featureBlock,
 }
 ```
 
@@ -108,15 +108,18 @@ export function Feature({ index }) {
   )
 }
 
-export const feature_template = {
-  label: 'Feature',
-  defaultItem: {
-    _template: 'feature',
-    heading: 'Marie Skłodowska Curie',
-    supporting_copy:
-      'Rich in mystery muse about vastness is bearable only through love Ut enim ad minima veniam at the edge of forever are creatures of the cosmos. ',
+export const featureBlock = {
+  Component: Feature,
+  template: {
+    label: 'Feature',
+    defaultItem: {
+      _template: 'feature',
+      heading: 'Marie Skłodowska Curie',
+      supporting_copy:
+        'Rich in mystery muse about vastness is bearable only through love Ut enim ad minima veniam at the edge of forever are creatures of the cosmos. ',
+    },
+    fields: [],
   },
-  fields: [],
 }
 ```
 
@@ -164,29 +167,17 @@ Head to `Home.js` and add this code:
 
 ```diff
 // Other imports...
-+ import { FeatureList, feature_list_template } from './components/FeatureList'
++ import { featureListBlock } from './components/FeatureList'
 
 export default function Home() {
   //...
 }
 
 const HOME_BLOCKS = {
-  hero: {
-    Component: Hero,
-    template: hero_template,
-  },
-  images: {
-    Component: Images,
-    template: images_template,
-  },
-  paragraph: {
-    Component: Paragraph,
-    template: paragraph_template,
-  },
-+ features: {
-+   Component: FeatureList,
-+   template: feature_list_template,
-+ },
+  hero: heroBlock
+  images: imagesBlock,
+  paragraph: paragraphBlock,
++ features: featureListBlock,
 }
 
 ```

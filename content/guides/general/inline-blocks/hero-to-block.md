@@ -18,9 +18,9 @@ Head to `Home.js` and make these changes:
 import React from 'react'
 import { useForm, usePlugin } from 'tinacms'
 
-// 1. Import `InlineBlocks` and `hero_template`
+// 1. Import `InlineBlocks` and `hero` block.
 import { InlineForm, InlineBlocks } from 'react-tinacms-inline'
-import { Hero, hero_template } from './components/Hero'
+import { heroBlock } from './components/Hero'
 import data from './data/data.json'
 
 export default function Home() {
@@ -52,10 +52,7 @@ export default function Home() {
 
 // 4. Define the blocks that get passed to `InlineBlocks`
 const HOME_BLOCKS = {
-  hero: {
-    Component: Hero,
-    template: hero_template,
-  },
+  hero: heroBlock,
 }
 ```
 
@@ -137,14 +134,17 @@ export function Hero({ index }) {
   //...
 }
 
-export const hero_template = {
-  label: 'Hero',
-  defaultItem: {
-    headline: 'Suspended in a Sunbeam',
-    subtext:
-      'Dispassionate extraterrestrial observer are creatures of the cosmos courage of our questions.',
+export const heroBlock = {
+  Component: Hero,
+  template: {
+    label: 'Hero',
+    defaultItem: {
+      headline: 'Suspended in a Sunbeam',
+      subtext:
+        'Dispassionate extraterrestrial observer are creatures of the cosmos courage of our questions.',
+    },
+    fields: [],
   },
-  fields: [],
 }
 ```
 
