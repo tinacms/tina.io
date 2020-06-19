@@ -11,12 +11,12 @@ interface BlocksControlsProps {
   children: any
   index: number
   insetControls?: boolean
-  focusRing?:
-    | false
-    | {
-        offset?: number | { x: number; y: number }
-        borderRadius?: number
-      }
+  focusRing?: false | FocusRingStyles
+}
+
+interface FocusRingStyles {
+  offset?: number | { x: number; y: number }
+  borderRadius?: number
 }
 ```
 
