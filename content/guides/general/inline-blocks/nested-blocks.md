@@ -34,12 +34,7 @@ export function FeatureList({ index }) {
     >
       <div className="wrapper">
         {/* The 'nested blocks'*/}
-        <InlineBlocks
-          name="features"
-          blocks={FEATURE_BLOCKS}
-          direction="horizontal"
-          className="feature-list"
-        />
+        <InlineBlocks name="features" blocks={FEATURE_BLOCKS} />
       </div>
     </BlocksControls>
   )
