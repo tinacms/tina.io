@@ -287,7 +287,7 @@ Make the following changes in `Home.js`:
 
 ```diff
 import React from 'react'
-import { useForm } from 'tinacms'
+import { useForm, usePlugin } from 'tinacms'
 import { InlineForm, InlineBlocks } from 'react-tinacms-inline'
 import { Hero, hero_template } from './components/Hero'
 + import { Images, images_template } from './components/Images'

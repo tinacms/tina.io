@@ -12,8 +12,8 @@ The first thing we are going to do is [create a form](https://tinacms.org/docs/i
 
 ```jsx
 import React from 'react'
-// 1. Import `useForm`
-import { useForm } from 'tinacms'
+// 1. Import `useForm` and `usePlugin`
+import { useForm, usePlugin } from 'tinacms'
 import { Hero } from './components/Hero'
 import data from './data/data.json'
 
@@ -24,11 +24,14 @@ export default function Home() {
     initialValues: {
       hero: data.hero,
     },
-    onSubmit() {},
+    onSubmit() {
+      alert('Saved!')
+    },
   }
 
-  // 3. Call `useForm` with the config object.
+  // 3. Create and register the form.
   const [pageData, form] = useForm(formConfig)
+  usePlugin(form)
 
   // 4. Use the return data now connected with a TinaCMS form
   return (
@@ -57,7 +60,7 @@ Wrap `InlineForm` around the `Hero` component, and pass the `form`.
 
 ```jsx
 import React from 'react'
-import { useForm } from 'tinacms'
+import { useForm, usePlugin } from 'tinacms'
 // 1. Import `InlineForm`
 import { InlineForm } from 'react-tinacms-inline'
 import { Hero } from './components/Hero'
@@ -69,10 +72,13 @@ export default function Home() {
     initialValues: {
       hero: data.hero,
     },
-    onSubmit() {},
+    onSubmit() {
+      alert('Saved!')
+    },
   }
 
   const [pageData, form] = useForm(formConfig)
+  usePlugin(form)
 
   // 2. Wrap `InlineForm` around `Hero`, pass the form
   return (

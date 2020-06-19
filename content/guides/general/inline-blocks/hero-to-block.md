@@ -16,7 +16,7 @@ Head to `Home.js` and make these changes:
 
 ```jsx
 import React from 'react'
-import { useForm } from 'tinacms'
+import { useForm, usePlugin } from 'tinacms'
 
 // 1. Import `InlineBlocks` and `hero_template`
 import { InlineForm, InlineBlocks } from 'react-tinacms-inline'
@@ -30,10 +30,13 @@ export default function Home() {
     initialValues: {
       blocks: data.blocks,
     },
-    onSubmit() {},
+    onSubmit() {
+      alert('Saved!')
+    },
   }
 
   const [, form] = useForm(formConfig)
+  usePlugin(form)
 
   return (
     <div className="home">
