@@ -135,7 +135,7 @@ import '../styles/hero.css'
 }
 ```
 
-Notice how we don't need to access `data` directly anymore. The `name` value on the Inline Field provides the path to the content in the source file based on the `initialValues` passed to `InlineForm`.
+Notice how we don't need to access `data` directly anymore. The `name` value on the Inline Fields provides the path to the content in the source file based on the `initialValues` passed to `InlineForm`.
 
 Since the `initialValues` in the form config object were set with all the data from the source file, inline fields inside the inline form can directly reference the `data` value paths via `name`.
 
