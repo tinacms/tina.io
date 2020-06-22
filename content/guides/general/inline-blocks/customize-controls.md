@@ -51,7 +51,7 @@ export const heroBlock = {
     <BlocksControls
       index={index}
 +     focusRing={{ offset: 0 }}
-+     insetControls={true}
++     insetControls
     >
       <Hero />
     </BlocksControls>
@@ -81,7 +81,7 @@ export const heroBlock = {
     <BlocksControls
       index={index}
       focusRing={{ offset: { x: -10, y: -18 } }}
-      insetControls={true}
+      insetControls
     >
       <Hero />
     </BlocksControls>
@@ -100,7 +100,7 @@ export const heroBlock = {
     <BlocksControls
       index={index}
       focusRing={{ offset: { x: -5, y: -20 }, borderRadius: 0 }}
-      insetControls={true}
+      insetControls
     >
       <Hero />
     </BlocksControls>

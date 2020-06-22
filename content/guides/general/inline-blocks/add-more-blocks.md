@@ -26,11 +26,7 @@ import '../styles/paragraph.css'
  */
 function Paragraph({ index }) {
   return (
-    <BlocksControls
-      index={index}
-      focusRing={{ offset: 0 }}
-      insetControls={true}
-    >
+    <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
       <div className="paragraph__background">
         <div className="wrapper wrapper--narrow">
           <p className="paragraph__text">
@@ -76,11 +72,7 @@ import '../styles/images.css'
  */
 function Images({ index }) {
   return (
-    <BlocksControls
-      index={index}
-      focusRing={{ offset: 0 }}
-      insetControls={true}
-    >
+    <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
       <div className="wrapper">
         <div className="image-diptych">
           <InlineImage

@@ -22,7 +22,7 @@ export function FeatureList({ index }) {
     <BlocksControls
       index={index}
       focusRing={{ offset: 0 }}
-      insetControls={true}
+      insetControls
     >
       <div className="wrapper">
         <InlineBlocks
@@ -64,11 +64,7 @@ import styled from 'styled-components'
 
 export function FeatureList({ index }) {
   return (
-    <BlocksControls
-      index={index}
-      focusRing={{ offset: 0 }}
-      insetControls={true}
-    >
+    <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
       <div className="wrapper">
         <StyledInlineBlocks
           name="features"

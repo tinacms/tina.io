@@ -59,11 +59,7 @@ export const heroBlock = {
    * 3. Pass the block's data to the Hero
    */
   Component: ({ index, data }) => (
-    <BlocksControls
-      index={index}
-      focusRing={{ offset: 0 }}
-      insetControls={true}
-    >
+    <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
       <Hero {...data} />
     </BlocksControls>
   ),
