@@ -2,11 +2,63 @@
 title: Add more Blocks
 ---
 
-## Add an _Images_ Block
+## Add a _Paragraph_ Block
 
 At this point, we've got a taste of the many different aspects to configuring blocks, but our page is lacking — **we can only add one type of block**.
 
 In this step, we will add a few more block types: Image Diptych & Paragraph. Feel free to copy and paste these examples directly into the project.
+
+Next we'll add a simple `Paragraph` block. This is a very common component to websites and will be a nice complement to the hero and image diptych.
+
+![paragraph-block](/img/inline-editing-guide/paragraph-block.png)
+
+Create a new file, `components/Paragraph.js` and add this code:
+
+**components/Paragraph.js**
+
+```jsx
+import React from 'react'
+import { BlocksControls, InlineTextarea } from 'react-tinacms-inline'
+import '../styles/paragraph.css'
+
+/**
+ * 1. Define the Block Component
+ */
+function Paragraph({ index }) {
+  return (
+    <BlocksControls
+      index={index}
+      focusRing={{ offset: 0 }}
+      insetControls={true}
+    >
+      <div className="paragraph__background">
+        <div className="wrapper wrapper--narrow">
+          <p className="paragraph__text">
+            <InlineTextarea name="text" focusRing={false} />
+          </p>
+        </div>
+      </div>
+    </BlocksControls>
+  )
+}
+
+/**
+ * 2. Define the Block
+ */
+export const paragraphBlock = {
+  Component: Paragraph,
+  template: {
+    label: 'Paragraph',
+    defaultItem: {
+      text:
+        'Take root and flourish quis nostrum exercitationem ullam corporis suscipit laboriosam culture Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur descended from astronomers encyclopaedia galactica? Nisi ut aliquid ex ea commodi consequatur something incredible is waiting to be known sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem ',
+    },
+    fields: [],
+  },
+}
+```
+
+## Add an _Images_ Block
 
 ![images-block](/img/inline-editing-guide/images-block.jpg)
 
@@ -197,58 +249,6 @@ export const imagesBlock = {
         component: 'text',
       },
     ],
-  },
-}
-```
-
-## Add a _Paragraph_ Block
-
-Next we'll add a simple `Paragraph` block. This is a very common component to websites and will be a nice complement to the hero and image diptych.
-
-![paragraph-block](/img/inline-editing-guide/paragraph-block.png)
-
-Create a new file, `components/Paragraph.js` and add this code:
-
-**components/Paragraph.js**
-
-```jsx
-import React from 'react'
-import { BlocksControls, InlineTextarea } from 'react-tinacms-inline'
-import '../styles/paragraph.css'
-
-/**
- * 1. Define the Block Component
- */
-function Paragraph({ index }) {
-  return (
-    <BlocksControls
-      index={index}
-      focusRing={{ offset: 0 }}
-      insetControls={true}
-    >
-      <div className="paragraph__background">
-        <div className="wrapper wrapper--narrow">
-          <p className="paragraph__text">
-            <InlineTextarea name="text" focusRing={false} />
-          </p>
-        </div>
-      </div>
-    </BlocksControls>
-  )
-}
-
-/**
- * 2. Define the Block
- */
-export const paragraphBlock = {
-  Component: Paragraph,
-  template: {
-    label: 'Paragraph',
-    defaultItem: {
-      text:
-        'Take root and flourish quis nostrum exercitationem ullam corporis suscipit laboriosam culture Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur descended from astronomers encyclopaedia galactica? Nisi ut aliquid ex ea commodi consequatur something incredible is waiting to be known sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem ',
-    },
-    fields: [],
   },
 }
 ```
