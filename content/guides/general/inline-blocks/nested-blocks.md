@@ -120,6 +120,8 @@ export const FeatureBlock = {
 
 Now that we make our `Feature` block, we need to add that to the `FEATURE_BLOCKS` options in `FeatureList`.
 
+**components/FeatureList.js**
+
 ```diff
 import React from 'react';
 import { BlocksControls, InlineBlocks } from 'react-tinacms-inline';
@@ -145,6 +147,8 @@ export const featureListBlock = {
 Finally, we'll add the `FeatureList` block to the Home page block options.
 
 Head to `Home.js` and add this code:
+
+**Home.js**
 
 ```diff
 // Other imports...
