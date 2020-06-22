@@ -170,7 +170,9 @@ This block provides two [Inline Image](https://tinacms.org/docs/inline-editing/i
 
 ### Configuring image fields
 
-Configuring image fields _can be trickier_ than other fields, refer to the [inline image docs](/docs/inline-editing/inline-image) to get more clarity. In short: the `parse` function handles how the path gets written in the source data when a _new image_ is uploaded. `uploadDir` sets where those new images should live. And `previewSrc` provides a path for the image **when inline editing is active** (a.k.a when the [CMS is enabled](https://tinacms.org/docs/cms#disabling--enabling-the-cms)). When inline editing is not active (`cms.enabled === false`), the image will reference the path in the source data.
+Configuring image fields _can be trickier_ than other fields, refer to the [inline image docs](/docs/inline-editing/inline-image) to get more clarity.
+
+In short: the `parse` function handles how the path gets written in the source data when a _new image_ is uploaded. `uploadDir` sets where those new images should live. And `previewSrc` provides a path for the image **when inline editing is active** (a.k.a when the [CMS is enabled](https://tinacms.org/docs/cms#disabling--enabling-the-cms)). When inline editing is not active (`cms.enabled === false`), the image will reference the path in the source data.
 
 ## Add new blocks to the home page
 
