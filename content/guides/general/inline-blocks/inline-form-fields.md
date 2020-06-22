@@ -20,17 +20,19 @@ The first thing we are going to do is [create a form](https://tinacms.org/docs/i
 ```jsx
 import React from 'react'
 // 1. Import `useForm` and `usePlugin`
-import { useForm, usePlugin } from 'tinacms'
+import { useForm, usePlugin, useCMS } from 'tinacms'
 import { Hero } from './components/Hero'
 import data from './data/data.json'
 
 export default function Home() {
+  const cms = useCMS()
+
   // 2. Create a config object
   const formConfig = {
     id: './data/data.json',
     initialValues: data,
     onSubmit() {
-      alert('Saved!')
+      cms.alerts.success('Saved!')
     },
   }
 
@@ -65,18 +67,19 @@ Wrap `InlineForm` around the `Hero` component, and pass the `form`.
 
 ```jsx
 import React from 'react'
-import { useForm, usePlugin } from 'tinacms'
+import { useForm, usePlugin, useCMS } from 'tinacms'
 // 1. Import `InlineForm`
 import { InlineForm } from 'react-tinacms-inline'
 import { Hero } from './components/Hero'
 import data from './data/data.json'
 
 export default function Home() {
+  const cms = useCMS()
   const formConfig = {
     id: './data/data.json',
     initialValues: data,
     onSubmit() {
-      alert('Saved!')
+      cms.alerts.success('Saved!')
     },
   }
 

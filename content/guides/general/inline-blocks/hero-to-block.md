@@ -2,7 +2,7 @@
 title: Convert Hero to a Block
 ---
 
-This simple inline editing configuration is a great start, but the end goal of this demo is to create a Home page built with [_Inline Blocks_](https://tinacms.org/docs/inline-editing/inline-blocks). In this step we will add `InlineBlocks` to the homepage and convert our `Hero` into a block.
+This simple inline editing configuration is a great start, but the end goal of this demo is to create a Home page built with [_Inline Blocks_](https://tinacms.org/docs/inline-editing/inline-blocks). In this step, we will add `InlineBlocks` to the homepage and convert our `Hero` into a block.
 
 > If you're wanting to get a better feel for the 'Blocks' concept, there is a great blog that dives deeper into [_what blocks are_](/blog/what-are-blocks).
 
@@ -165,6 +165,6 @@ Since `heroBlock` renders the hero component, we can remove the `Hero` right bef
 
 Restart the dev server and click on the hero block. You should see some new _Blocks Controls_ UI. Try to add new hero blocks by hitting the 'plus' icon!
 
-![hero block](/img/inline-editing-guide/step8-hero-block.png)
+![hero block](/img/inline-editing-guide/hero-to-block.png)
 
 Even though we got this working, there's a few things to adjust. See how the **controls bleed off the page**? Let's fix that next.

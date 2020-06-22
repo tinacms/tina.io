@@ -12,6 +12,8 @@ The ability to configure nested blocks is incredibly flexible. But it's also imp
 
 The last block we are going to add is a Features List. The `FeatureList` block will render another set of `InlineBlocks` — _nested blocks_.
 
+Create a new file, `components/FeatureList.js`, add the following code:
+
 **components/FeatureList.js**
 
 ```jsx
@@ -73,7 +75,7 @@ const FEATURE_BLOCKS = {}
 
 ## Make a _Feature_ Block
 
-Next, we'll create the Feature block component & template.
+Next, we'll create the Feature block component & template. Create a new file, `components/Feature.js`, and add the following code:
 
 **components/Feature.js**
 

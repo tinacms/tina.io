@@ -29,7 +29,7 @@ Since this component is 'page-width', we'll also _inset_ the controls to render 
 **components/Hero.js**
 
 ```diff
-export function Hero({ }) {
+export function Hero() {
   return (
     <div className="hero">
       <div className="wrapper wrapper--narrow">

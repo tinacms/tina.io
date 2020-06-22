@@ -80,6 +80,13 @@ export const heroBlock = {
        * 5. Add fields to edit styles in modal
        */
       {
+        name: 'background_color',
+        label: 'Background Color',
+        component: 'color',
+        widget: 'block',
+        colors: ['#051e26', '#f2dfc6', '#cfdcc8', '#ebbbbb', '#8a1414'],
+      },
+      {
         name: 'text_color',
         label: 'Text Color',
         component: 'select',
@@ -90,13 +97,6 @@ export const heroBlock = {
         label: 'Alignment',
         component: 'select',
         options: ['center', 'left'],
-      },
-      {
-        name: 'background_color',
-        label: 'Background Color',
-        component: 'color',
-        widget: 'block',
-        colors: ['#051e26', '#f2dfc6', '#cfdcc8', '#ebbbbb', '#8a1414'],
       },
     ],
   },
