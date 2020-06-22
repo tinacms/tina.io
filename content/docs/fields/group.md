@@ -32,6 +32,12 @@ interface GroupConfig {
 | `description` | An optional description of the field.                                                                                                                    |
 | `fields`      | An array of group values that will render as a sub-menu.                                                                                                 |
 
+> ### FieldConfig
+>
+> This interfaces only shows the keys unique to the group field.
+>
+> Visit the [Field Config](/docs/fields) docs for a complete list of options.
+
 ## Definition
 
 Below is an example of how a `group` field could be defined in a Gatsby JSON form. Read more on passing in JSON form field options [here](/docs/gatsby/json#customizing-json-forms).
