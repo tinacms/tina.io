@@ -46,7 +46,6 @@ In the Next.js example images are hosted locally and the `coverImage` field is a
 
 @TODO: Can I write a helper to resolve these images better?
 
-We need to make a change in just a few places to get this working.
 
 **pages/index.js**
 
@@ -102,6 +101,135 @@ name={author.name}
 />
 ```
 
-If everything has gone well, you should be able to reload your blog and see the posts that you created in Strapi.
+## Adjusting Strapi permissions
+By default you won't be able to access any data from Strapi without authentication. For our purposes, let's make give unauthenticated users read access to our two content types. 
+
+Head back to Strapi and click on **Roles & Permissions** in the sidebar. Click into the **Public** role. On this page you should see that we can adjust our permissions for the Author and Blog-post types. Give the public access to **count**, **find**, and **findone** then click the **Save** button.
+
+![Public permission configuration](/img/strapi-guide/public_permissions.png)
+
+Now, if everything has gone well, you should be able to refresh the index page and see the blog posts you created in Strapi!
 
 ![New index page with data from Strapi](/img/strapi-guide/updated_index.png)
+
+
+If you try to navigate to any of the blog posts, you'll be met with a 404. Head over to `pages/posts/[slug].js` and we'll get the blog post pages working.
+
+First let's deal with `getStaticProps` to fetch the data about the blog post we're trying to view. 
+
+```js
+import { fetchGraphql } from "react-tinacms-strapi-bm-test";
+// ...
+export async function getStaticProps({ params }) {
+  const postResults = await fetchGraphql(
+    process.env.STRAPI_URL,
+    `
+    query{
+      blogPosts(where: {slug: "${params.slug}"}){
+        id
+        title
+        date
+        slug
+        content
+        author {
+          name
+          picture { 
+            url
+          }
+        }
+        coverImage {
+          url
+        }
+      }
+    }
+  `
+  );
+  const post = postResults.data.blogPosts[0];
+  const content = await markdownToHtml(post.content || "");
+
+  return {
+    props: {
+      post: {
+        ...post,
+        content,
+      },
+    },
+  };
+}
+```
+
+It's less than ideal that we can't get a blog post directly by it's slug and instead need to get a list of blog posts with a search. This is a problem we can fix a bit later by writing a quick bit of code for our Strapi server. For now, we'll just leave it like this.
+
+Let's go ahead and fix that issue with image urls for this page.
+
+**pages/posts/\[slug\].js**
+```diff
+  <Head>
+    <title>
+      {post.title} | Next.js Blog Example with {CMS_NAME}
+    </title>
+-    <meta property="og:image" content={post.ogImage.url} />
++    <meta property="og:image" content={process.env.STRAPI_URL + post.coverImage.url} />
+  </Head>
+  <PostHeader
+    title={post.title}
+-    coverImage={post.coverImage}
++    coverImage={process.env.STRAPI_URL + post.coverImage.url}
+    date={post.date}
+    author={post.author}
+  />
+```
+
+**components/post-header.js**
+```diff
+  <div className="hidden md:block md:mb-12">
+-    <Avatar name={author.name} picture={author.picture} />
++    <Avatar name={author.name} picture={process.env.STRAPI_URL + author.picture.url} />
+  </div>
+  <div className="mb-8 md:mb-16 -mx-5 sm:mx-0">
+    <CoverImage title={title} src={coverImage} />
+  </div>
+  <div className="max-w-2xl mx-auto">
+    <div className="block md:hidden mb-6">
+-    <Avatar name={author.name} picture={author.picture} />
++    <Avatar name={author.name} picture={process.env.STRAPI_URL + author.picture.url} /    </div>
+    <div className="mb-6 text-lg">
+      <DateFormater dateString={date} />
+    </div>
+  </div>
+```
+
+We're on the home stretch now. Our blog post pages _should_ work but we still can't navigate to them. But, after some quick changes to `getStaticPaths` in our `[slug].js` file we'll have a fully working blog.
+
+```js
+export async function getStaticPaths() {
+  const postResults = await fetchGraphql(
+    process.env.STRAPI_URL,
+    `
+    query{
+      blogPosts{
+        slug
+      }
+    }
+  `
+  );
+
+  return {
+    paths: postResults.data.blogPosts.map((post) => {
+      return {
+        params: {
+          slug: post.slug,
+        },
+      };
+    }),
+    fallback: false,
+  };
+}
+
+```
+
+That's it! We should now be able to load our Strapi blog posts based on their `slug`. Give your site a refresh and try it out.
+
+![A working blog post page](/img/strapi-guide/working_blog_post.jpg)
+
+Next we'll be adding Tina's *slick* editing experience to our blog posts.
