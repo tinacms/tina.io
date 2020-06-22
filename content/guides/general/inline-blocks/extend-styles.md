@@ -41,7 +41,7 @@ export function FeatureList({ index }) {
 
 This class and its grid styles have already been set up in `styles/features.css`, so if you refresh you should see the new grid layout.
 
-![photo of features list with grid?]()
+![feature-list-block](/img/inline-editing-guide/feature-list.png)
 
 ### Add Block direction
 

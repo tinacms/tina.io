@@ -12,8 +12,6 @@ The ability to configure nested blocks is incredibly flexible. But it's also imp
 
 The last block we are going to add is a Features List. The `FeatureList` block will render another set of `InlineBlocks` — _nested blocks_.
 
-![gif of feature blocks?]()
-
 **components/FeatureList.js**
 
 ```jsx
