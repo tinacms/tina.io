@@ -24,13 +24,13 @@ interface GroupConfig {
 }
 ```
 
-| Option        | Description                                                                                                                                              |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`        | The path to some value in the data being edited.                                                                                                         |
-| `component`   | The name of the React component that should be used to edit this field. Available field component types a[defined here](/docs/fields)                    |
-| `label`       | A human readable label for the field. This label displays in the sidebar and is optional. If no label is provided, the sidebar will default to the name. |
-| `description` | An optional description of the field.                                                                                                                    |
-| `fields`      | An array of group values that will render as a sub-menu.                                                                                                 |
+| Option        | Description                                                                                    |
+| ------------- | ---------------------------------------------------------------------------------------------- |
+| `component`   | The name of the plugin component. Always `'group'`                                             |
+| `name`        | The path to some value in the data being edited.                                               |
+| `fields`      | An array of [`Field`](/docs/fields) values that will render as a sub-menu.                     |
+| `label`       | A human readable label for the field. Defaults to the `name` _(Optional)_                      |
+| `description` | Description that expands on the purpose of the field or prompts a specific action _(Optional)_ |
 
 > ### FieldConfig
 >
