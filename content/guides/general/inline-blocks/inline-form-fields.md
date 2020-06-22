@@ -6,7 +6,7 @@ title: Add an Inline Form & Fields
 
 The first thing we are going to do is [create a form](https://tinacms.org/docs/inline-editing) with the [`useForm`](https://tinacms.org/docs/forms#creating-forms-in-react) hook. Head to `Home.js`. This component imports `data` from a local JSON file and renders the `Hero` component, passing the data as props.
 
-> Note that since we don't have a backend set up, the **data changes won't persist** and the toolbar won't save / track form status as expected. Please refer to [other guides](https://tinacms.org/guides/) to learn more on setting up a backend.
+> Note that since we don't have a backend set up when you click Save the **data changes won't persist**. Please refer to [other guides](https://tinacms.org/guides/) to learn more on setting up a backend.
 
 ### The steps
 
