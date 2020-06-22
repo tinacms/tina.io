@@ -2,13 +2,13 @@
 title: Add more Blocks
 ---
 
-![gif with new blocks added]()
-
 ## Add an _Images_ Block
 
 At this point, we've got a taste of the many different aspects to configuring blocks, but our page is lacking — **we can only add one type of block**.
 
 In this step, we will add a few more block types: Image Diptych & Paragraph. Feel free to copy and paste these examples directly into the project.
+
+![images-block](/img/inline-editing-guide/images-block.jpg)
 
 Create a new file, `components/Images.js` and add this code:
 
@@ -205,9 +205,9 @@ export const imagesBlock = {
 
 Next we'll add a simple `Paragraph` block. This is a very common component to websites and will be a nice complement to the hero and image diptych.
 
-Create a new file, `components/Paragraph.js` and add this code:
+![paragraph-block](/img/inline-editing-guide/paragraph-block.png)
 
-<!-- Is this needed?  -->
+Create a new file, `components/Paragraph.js` and add this code:
 
 **components/Paragraph.js**
 
