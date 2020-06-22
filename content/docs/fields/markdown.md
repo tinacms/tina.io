@@ -15,19 +15,19 @@ The `markdown` field represents a chunk of Markdown content. This field is typic
 
 ```typescript
 interface MarkdownConfig {
-  name: string
   component: 'markdown'
+  name: string
   label?: string
   description?: string
 }
 ```
 
-| Option        | Description                                                                                                                                              |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`        | The path to some value in the data being edited.                                                                                                         |
-| `component`   | The name of the React component that should be used to edit this field. Available field component types are [defined here](/docs/fields)                 |
-| `label`       | A human readable label for the field. This label displays in the sidebar and is optional. If no label is provided, the sidebar will default to the name. |
-| `description` | An optional description that expands on the purpose of the field or prompts a specific action.                                                           |
+| Option        | Description                                                                                     |
+| ------------- | ----------------------------------------------------------------------------------------------- |
+| `component`   | The name of the plugin component. Always `'markdown'`.                                          |
+| `name`        | The path to some value in the data being edited.                                                |
+| `label`       | A human readable label for the field. Defaults to the `name`. _(Optional)_                      |
+| `description` | Description that expands on the purpose of the field or prompts a specific action. _(Optional)_ |
 
 > ### FieldConfig
 >

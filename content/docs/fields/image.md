@@ -17,6 +17,7 @@ The `image` field is used for content values that point to an image used on the 
 
 ```typescript
 interface ImageConfig {
+  component: 'image'
   name: string
   label?: string
   description?: string
@@ -30,14 +31,19 @@ interface ImageConfig {
 
 | Key           | Description                                                                                                                                                                                                 |
 | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `component`   | The name of the plugin component. Always `'image'`.                                                                                                                                                         |
 | `name`        | The path to some value in the data being edited.                                                                                                                                                            |
-| `label`       | A human readable label for the field. This label displays in the sidebar and is optional. If no label is provided, the sidebar will default to the name.                                                    |
-| `description` | An optional description that expands on the purpose of the field or prompts a specific action.                                                                                                              |
+| `label`       | A human readable label for the field. Defaults to the `name`. _(Optional)_                                                                                                                                  |
+| `description` | Description that expands on the purpose of the field or prompts a specific action. _(Optional)_                                                                                                             |
 | `parse`       | Defines how the actual front matter or data value gets populated. The name of the file gets passed as an argument, and one can set the path this image as defined by the uploadDir property.                |
 | `previewSrc`  | Defines the path for the src attribute on the image preview. If using gatsby-image, the path to the `childImageSharp.fluid.src` needs to be provided.                                                       |
 | `uploadDir`   | Defines the upload directory for the image. All of the post data is passed in, `fileRelativePath` is most useful in defining the upload directory, but you can also statically define the upload directory. |
 
 ---
+
+> This interfaces only shows the keys unique to the image field.
+>
+> Visit the [Field Config](/docs/fields) docs for a complete list of options.
 
 ## Examples
 
