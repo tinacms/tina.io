@@ -18,7 +18,7 @@ At this point, it is set up with a TinaCMS instance and renders a simple `Hero` 
 
 ```bash
 git clone git@github.com:tinacms/inline-blocks-demo.git
-cd inline-editing-demo
+cd inline-blocks-demo
 yarn install
 yarn start # Navigate to localhost:3000
 ```
