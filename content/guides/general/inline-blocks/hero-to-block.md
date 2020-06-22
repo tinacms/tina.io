@@ -24,9 +24,7 @@ import data from './data/data.json'
 export default function Home() {
   const formConfig = {
     id: './data/data.json',
-    initialValues: {
-      data,
-    },
+    initialValues: data,
     onSubmit() {
       alert('Saved!')
     },
@@ -38,8 +36,8 @@ export default function Home() {
   return (
     <div className="home">
       <InlineForm form={form} initialStatus="active">
-        <Hero data={pageData.data} />
-+       <InlineBlocks name="data.blocks" blocks={HOME_BLOCKS} />
+        <Hero {...pageData} />
++       <InlineBlocks name="blocks" blocks={HOME_BLOCKS} />
       </InlineForm>
     </div>
   )

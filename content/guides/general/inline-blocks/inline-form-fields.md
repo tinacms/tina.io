@@ -28,9 +28,7 @@ export default function Home() {
   // 2. Create a config object
   const formConfig = {
     id: './data/data.json',
-    initialValues: {
-      data,
-    },
+    initialValues: data,
     onSubmit() {
       alert('Saved!')
     },
@@ -43,7 +41,7 @@ export default function Home() {
   // 4. Use the return data now connected with a TinaCMS form
   return (
     <div className="home">
-      <Hero data={pageData.data} />
+      <Hero {...pageData} />
     </div>
   )
 }
@@ -76,9 +74,7 @@ import data from './data/data.json'
 export default function Home() {
   const formConfig = {
     id: './data/data.json',
-    initialValues: {
-      data,
-    },
+    initialValues: data,
     onSubmit() {
       alert('Saved!')
     },
@@ -91,7 +87,7 @@ export default function Home() {
   return (
     <div className="home">
       <InlineForm form={form}>
-        <Hero data={pageData.data} />
+        <Hero {...pageData} />
       </InlineForm>
     </div>
   )
@@ -118,18 +114,18 @@ import React from 'react'
 + import { InlineTextarea } from 'react-tinacms-inline'
 import '../styles/hero.css'
 
-- export function Hero({data}) {
+- export function Hero({ headline, subtext }) {
 + export function Hero() {
 
   // 2. Replace `data` with Inline Fields
   return (
     <div className="hero">
       <div className="wrapper wrapper--narrow">
--       <h1>{data.headline}</h1>
+-       <h1>{headline}</h1>
 +       <h1>
 +        <InlineTextarea name="headline" />
 +       </h1>
--       <p>{data.subtext}</p>
+-       <p>{subtext}</p>
 +       <p>
 +         <InlineTextarea name="subtext" />
 +       </p>

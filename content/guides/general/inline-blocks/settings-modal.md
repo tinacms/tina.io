@@ -12,10 +12,11 @@ This type of metadata is difficult to edit directly inline. To provide a way to 
 
 Head to `components/Hero.js` and make these changes:
 
-1. Define `data` in `Hero` to use in the styles
+1. Define the style props in `Hero`
 2. Add dynamic inline styles
-3. In the template, update block defaults
-4. Add fields to render in the modal
+3. Pass the block's data to the Hero
+4. In the template, update block defaults
+5. Add fields to render in the modal
 
 **components/Hero.js**
 
@@ -25,9 +26,9 @@ import { InlineTextarea, BlocksControls } from 'react-tinacms-inline'
 import '../styles/hero.css'
 
 /**
- * 1. Define data to access style values
+ * 1. Define the style props
  */
-export function Hero({ data }) {
+export function Hero({ text_color, background_color, align }) {
   /**
    * 2. Add dynamic inline styles on the 'hero' div
    */
@@ -35,10 +36,10 @@ export function Hero({ data }) {
     <div
       className="hero"
       style={{
-        color: `${data.text_color || '#000'}`,
-        backgroundColor: `${data.background_color || 'aliceblue'}`,
-        textAlign: `${data.align}`,
-        justifyContent: `${data.align === 'left' ? 'start' : data.align}`,
+        color: text_color || '#000',
+        backgroundColor: background_color || 'aliceblue',
+        textAlign: align,
+        justifyContent: align === 'left' ? 'start' : align,
       }}
     >
       <div className="wrapper wrapper--narrow">
@@ -54,13 +55,16 @@ export function Hero({ data }) {
 }
 
 export const heroBlock = {
+  /**
+   * 3. Pass the block's data to the Hero
+   */
   Component: ({ index, data }) => (
     <BlocksControls
       index={index}
       focusRing={{ offset: 0 }}
       insetControls={true}
     >
-      <Hero data={data} />
+      <Hero {...data} />
     </BlocksControls>
   ),
   template: {
@@ -69,7 +73,7 @@ export const heroBlock = {
       headline: 'Suspended in a Sunbeam',
       subtext: 'Dispassionate extraterrestrial observer',
       /**
-       * 3. Update defaults with style values
+       * 4. Update defaults with style values
        */
       background_color: '#051e26',
       text_color: '#fffaf4',
@@ -77,7 +81,7 @@ export const heroBlock = {
     },
     fields: [
       /**
-       * 4. Add fields to edit styles in modal
+       * 5. Add fields to edit styles in modal
        */
       {
         name: 'text_color',
