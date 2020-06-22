@@ -97,7 +97,7 @@ function Feature({ index }) {
   )
 }
 
-export const FeatureBlock = {
+export const featureBlock = {
   Component: Feature,
   template: {
     label: 'Feature',
@@ -122,7 +122,7 @@ Now that we make our `Feature` block, we need to add that to the `FEATURE_BLOCKS
 import React from 'react';
 import { BlocksControls, InlineBlocks } from 'react-tinacms-inline';
 import '../styles/features.css';
-+import { FeatureBlock } from './Feature';
++import { featureBlock } from './Feature';
 
 function FeatureList({ index }) {
   //...
@@ -134,7 +134,7 @@ export const featureListBlock = {
 
 -const FEATURE_BLOCKS = {}
 +const FEATURE_BLOCKS = {
-+  feature: FeatureBlock,
++  feature: featureBlock,
 +}
 ```
 
