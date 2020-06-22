@@ -11,6 +11,30 @@ The `markdown` field represents a chunk of Markdown content. This field is typic
 
 ![tinacms-markdown-field](/img/fields/markdown.png)
 
+## Options
+
+```typescript
+interface MarkdownConfig {
+  name: string
+  component: 'markdown'
+  label?: string
+  description?: string
+}
+```
+
+| Option        | Description                                                                                                                                              |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`        | The path to some value in the data being edited.                                                                                                         |
+| `component`   | The name of the React component that should be used to edit this field. Available field component types are [defined here](/docs/fields)                 |
+| `label`       | A human readable label for the field. This label displays in the sidebar and is optional. If no label is provided, the sidebar will default to the name. |
+| `description` | An optional description that expands on the purpose of the field or prompts a specific action.                                                           |
+
+> ### FieldConfig
+>
+> This interfaces only shows the keys unique to the markdown field.
+>
+> Visit the [Field Config](/docs/fields) docs for a complete list of options.
+
 ## Adding the Plugin
 
 The `markdown` field plugin is not a default plugin. In order to use it in your site you must install the `react-tinacms-editor` package:
@@ -44,23 +68,5 @@ const BlogPostForm = {
     },
     // ...
   ],
-}
-```
-
-## Options
-
-- `name`: The path to some value in the data being edited.
-- `component`: The name of the React component that should be used to edit this field. Available field component types are [defined here](/docs/fields)
-- `label`: A human readable label for the field. This label displays in the sidebar and is optional. If no label is provided, the sidebar will default to the name.
-- `description`: An optional description that expands on the purpose of the field or prompts a specific action.
-
-## Interface
-
-```typescript
-interface MarkdownConfig {
-  name: string
-  component: 'markdown'
-  label?: string
-  description?: string
 }
 ```

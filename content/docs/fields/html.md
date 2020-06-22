@@ -48,12 +48,6 @@ const BlogPostForm = {
 
 ## Options
 
-- `name`: The path to some value in the data being edited.
-- `label`: A human readable label for the field. This label displays in the sidebar and is optional. If no label is provided, the sidebar will default to the name.
-- `description`: An optional description that expands on the purpose of the field or prompts a specific action.
-
-## Interface
-
 ```typescript
 interface HtmlConfig {
   name: string
@@ -62,3 +56,9 @@ interface HtmlConfig {
   description?: string
 }
 ```
+
+| Option        | Description                                                                                                                                              |     |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
+| `name`        | The path to some value in the data being edited.                                                                                                         |
+| `label`       | A human readable label for the field. This label displays in the sidebar and is optional. If no label is provided, the sidebar will default to the name. |
+| `description` | An optional description that expands on the purpose of the field or prompts a specific action.                                                           |
