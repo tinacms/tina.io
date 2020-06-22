@@ -46,7 +46,9 @@ export default function Home() {
 + const HOME_BLOCKS = {/** We will define blocks here later */}
 ```
 
-Take notice of the `HOME_BLOCKS` object. This object is _fed_ to `InlineBlocks`, letting it know what block options are available to add. Let's go make a block to add to these options.
+Take notice of the `HOME_BLOCKS` object. This object is _fed_ to `InlineBlocks`, letting it know what block options are available to add.
+
+Even though we added `InlineBlocks` to the page, nothing will render since there are no block options yet. Let's go make a block to add to these options.
 
 ## Make a Component
 
@@ -115,10 +117,54 @@ export const heroBlock = {
 
 The `fields` array is empty for now, but this is where we can add additional metadata to edit in a [_Settings Modal_](/guides/general/inline-blocks/settings-modal). We will cover this in a few steps.
 
+## Add _heroBlock_ to Home
+
+Finally, we will add the `heroBlock` to the `HOME_BLOCKS` mapping defined in `Home.js`. This defines a `hero` type block for the `InlineBlocks` to render.
+
+**Home.js**
+
+```diff
+import React from 'react';
+import { useForm, usePlugin, useCMS } from 'tinacms';
+import { InlineForm, InlineBlocks } from 'react-tinacms-inline';
++import { heroBlock } from './components/Hero';
+import data from './data/data.json';
+
+export default function Home() {
+  const cms = useCMS();
+  const formConfig = {
+    id: './data/data.json',
+    initialValues: data,
+    onSubmit() {
+      cms.alerts.success('Saved!');
+    },
+  };
+
+  const [, form] = useForm(formConfig);
+
+  usePlugin(form);
+
+  return (
+    <div className='home'>
+      <InlineForm form={form} initialStatus='active'>
+-       <Hero {...pageData} />
+        <InlineBlocks name='blocks' blocks={HOME_BLOCKS} />
+      </InlineForm>
+    </div>
+  );
+}
+
+-const HOME_BLOCKS = {/** We will define blocks here later */}
++const HOME_BLOCKS = {
++  hero: heroBlock,
++};
+
+```
+
+Since `heroBlock` renders the hero component, we can remove the `Hero` right before `InlineBlocks.`
+
 Restart the dev server and click on the hero block. You should see some new _Blocks Controls_ UI. Try to add new hero blocks by hitting the 'plus' icon!
 
 ![hero block](/img/inline-editing-guide/step8-hero-block.png)
 
 Even though we got this working, there's a few things to adjust. See how the **controls bleed off the page**? Let's fix that next.
-
-<!-- - Note margin collapse bug? -->
