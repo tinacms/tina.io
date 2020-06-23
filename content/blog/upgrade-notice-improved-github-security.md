@@ -82,4 +82,4 @@ const enterEditMode = () => {
 
 ## Questions?
 
-Discuss it in the [forums](https://community.tinacms.org/).
+Discuss it in the [forums](https://community.tinacms.org/t/upgrade-notice-improved-github-security/226).
