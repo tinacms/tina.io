@@ -53,3 +53,5 @@ const BlogPostForm = {
   ],
 }
 ```
+
+{{ FieldExample component="text" name="title" label="Title" description="Enter the title of the post here" placeholder="..." }}

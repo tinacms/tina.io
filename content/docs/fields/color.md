@@ -67,3 +67,5 @@ const BlogPostForm = {
   ],
 }
 ```
+
+{{ ColorFieldExample }}

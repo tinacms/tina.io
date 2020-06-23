@@ -65,3 +65,5 @@ const BlogPostForm = {
   ],
 }
 ```
+
+{{ FieldExample name="date" component="date" }}
