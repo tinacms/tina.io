@@ -160,6 +160,24 @@ export default function PostBody({ content }) {
 }
 ```
 
-@TODO Image upload
+### Inline Image Field
+
+```diff
+ <div className="-mx-5 sm:mx-0">
+-   <CoverImage title={title} src={coverImage} />
++   <InlineImage
++     name="coverImage.url"
++     previewSrc={(formValues) => {
++       process.env.STRAPI_URL + getFilePath(formValues.coverImage.url)
++     }}
++     uploadDir={() => "/uploads"}
++     parse={(filename) => {
++       return `/uploads/${filename}`;
++     }}
++   >
++     {() => <img src={coverImage} alt={`Cover Image for ${title}`} />}
++   </InlineImage>
+ </div>
+```
 
 Reload the page and you should see that all of these fields are now editable in some form, with roughly the same styling that they had before. Now let's work on being able to save any changes we make back to Strapi.
