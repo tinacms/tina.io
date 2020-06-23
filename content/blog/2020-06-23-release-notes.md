@@ -3,17 +3,21 @@ title: 2020-06-23 Release Notes
 date: '2020-06-23T10:55:49-03:00'
 author: Nolan Phillips
 ---
-This week is a bit lighter on changes. 
+This week is a bit lighter on changes. The TinaCMS team is wrapping up a couple projects and working on some new guides.
 
-The TinaCMS team is wrapping up a couple projects and working on some new guides.
+[**🚨 SECURITY UPDATE 🚨**](/blog/upgrade-notice-improved-github-security)
+
+This week we're releasing an update to `next-tinacms-github` which improves the security around GitHub authentication and requests.
+
+[**Please see this blog post for more details**](/blog/upgrade-notice-improved-github-security)
 
 ## Changes
 
-### tinacms
+### next-tinacms-github
 
-#### Fixes
+#### Security Update
 
-* **useCMS:** Triggers an update when the `cms.enabled` state is changed.
+* The authentication flow has been updated to better protect against CSRF attacks. 
 
 ### react-tinacms-github
 
@@ -32,7 +36,7 @@ The TinaCMS team is wrapping up a couple projects and working on some new guides
 
 * **InlineBlocks Direction:**  Renamed acceptable values to match `react-beautiful-dnd`.
   * `"row"` => `"horizontal"`
-  * `"column"` => `"vertical"` 
+  * `"column"` => `"vertical"`
 
 ### react-tinacms-editor
 
@@ -44,6 +48,12 @@ The TinaCMS team is wrapping up a couple projects and working on some new guides
 Fixes
 
 * **Table Menu Item** is disabled when inside Code Blocks
+
+### tinacms
+
+#### Fixes
+
+* **useCMS:** Triggers an update when the `cms.enabled` state is changed.
 
 ## Contributors
 
