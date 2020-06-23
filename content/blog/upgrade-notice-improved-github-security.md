@@ -17,7 +17,7 @@ This new pattern helps mitigate CSRF attacks and provides the authentication tok
 
 ### **react-tinacms-github**
 
-Nothing needs to be changed. This package can handle both the old flow and the new one on its own without further configuration.
+Nothing needs to be changed. This package can handle both the old flow and the new one on its own without further configuration, just make sure you're using the **latest version**.
 
 ### **next-tinacms-github**
 
