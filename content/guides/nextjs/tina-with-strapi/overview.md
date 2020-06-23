@@ -2,17 +2,19 @@
 title: 'Overview'
 ---
 
-This guide will show you how to setup Tina using [Strapi](https://strapi.io/) as a headless CMS. The goal here is to demonstrate how Tina can be used with "more traditional" CMS platforms where you have seperately hosted content APIs. This opens the doors to having your data be exposed to multiple services, hiding your data behind roles and permissions, and a whole host of other ideas that are more natural to think about server-side.
+This guide will show you how to set up Tina using [Strapi](https://strapi.io) as a headless CMS. The goal is to demonstrate how Tina can be used with "more traditional" CMS platforms where your content is exposed via APIs that are hosted separately from your frontend.
 
-This guide will **not** get you fully production-ready. Choosing how you want to host a service is as much an art as it is a science. But hopefully after running through this guide you'll understand better how Tina slots into the picture.
+This guide will **not** get you fully production-ready. But after running through this guide, you should understand better how you could use Tina in conjunction with Strapi or any other services that expose similar APIs.
 
-> Here's where I'll put a link to the finished repo.
+> **The Finished Product**
+>
+> The repository REPO contains the finished Tina portion of this guide. Feel free to take a look as you follow along.
 
-## About the project we'll create
+## What we'll be making
 
-As is tradition, we'll be putting together a simple blogging app. It will have two components:
+We'll be putting together a simple blogging app. It will have two components:
 
 1. a Strapi server,
 2. a Next.js front-end using Tina.
 
-We'll start out with getting the Strapi server running locally, defining our content types, and making some sample data. Then we'll move on to hooking up our front-end. We'll bounce back to additonal Strapi configuration whenever it feels natural and we need Strapi to give us a little bit more functionality.
+We'll start out with getting the Strapi server running locally, defining our content types, and then creating some sample data. We'll move on to hooking up our front-end. Whenever necessary, we'll head back to Strapi and make additional configuration changes.

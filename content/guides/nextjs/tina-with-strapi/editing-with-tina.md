@@ -2,17 +2,17 @@
 title: 'Editing with Tina '
 ---
 
-We have a blog set up and pulling data from Strapi now 🎉! You _could_ stop here and edit your blog through the Strapi management console, but since you're on our website you're probably interested in using Tina's slick editing experience.
+At this point, we have a blog that is pulling all its data from Strapi! You _could_ stop here and edit your blog through the Strapi management console, but this guide is about editing with Tina!.
 
-From this point on this guide is going to share a lot of similarities with our other guide on [Adding Tina to a Next.js Site](/guides/nextjs/adding-tina/overview). If I leave out some context on one of the steps here, you can always head over there and see if that guide fills in any gaps.
+From this point on, this guide will share a lot of similarities with our other guide on [Adding Tina to a Next.js Site](/guides/nextjs/adding-tina/overview). If I leave out some context on one of the steps here, you can always head over there and see if that guide fills in any gaps.
 
 ## Prepare our page
 
-Almost all of the work we'll be doing will be in our `pages/posts/[slug].js` file. Our goal is to be able to make changes to a blog post without needing to navigate away from the front-end experience.
+Almost all of the work we'll be doing will be in `pages/posts/[slug].js`. Our goal is to be able to make changes to a blog post's content, title, and coverImage without having to log in to Strapi.
 
 ### Transform Markdown on the Frontend
 
-Right now markdown is being parsed in `getStaticProps`, which is to say markdown is being parsed when our page is generated, not while our page is being displayed. We want markdown to be parsed while our page is being displayed so we can see formatting in real-time. To faciliate this the first thing we need to do is send the raw markdown from `getStaticProps`.
+Currently, markdown is being parsed in `getStaticProps`, which is to say markdown is being parsed when our page is generated, not while our page is being displayed. We want markdown to be parsed while our page is displayed so we can see formatting in real-time. To facilitate this, we need to send the raw markdown from `getStaticProps`.
 
 ```diff
   return {
@@ -27,7 +27,7 @@ Right now markdown is being parsed in `getStaticProps`, which is to say markdown
 }
 ```
 
-Let's create a state variable to store the parsed markdown and tell the page to use this new state variable.
+Let's create a state variable to store the parsed markdown and tell the page to use this new variable.
 
 ```js
 import { useState } from 'react'
@@ -43,7 +43,7 @@ export default function Post({ post, morePosts, preview }) {
 }
 ```
 
-Everything should be working as it did before. But now we have ability to watch for state changes and parse them from markdown on the fly. Let's add a side effect that does this.
+Everything should be working as it did before. But now we can watch for state changes and parse them from markdown on the fly. Let's add a side effect that does this.
 
 ```js
 import { useState, useEffect, useMemo } from 'react'
@@ -66,21 +66,20 @@ export default function Post({ post, morePosts, preview }) {
 }
 ```
 
-Now, any time `post.rawMarkdownBody` changes we'll transform it into HTML and set it in the `htmlContent` state variable. Neat. Now we're ready to give the user a way to actually edit this data.
+Now, any time `post.rawMarkdownBody` changes, we'll transform it into HTML and set it in the `htmlContent` state variable. We're ready to give the user a way to edit this data.
 
 > For a better explanation of that steps we took, take a look at [our other guide](/guides/nextjs/adding-tina/project-setup#1-send-the-raw-markdown-from-the-backend).
 
 ### Adding a form
 
-To make our lives a little bit easier, the first thing we're going to do is rename intial post that we hand to our `Post` component to `initialPost`. This will allow us to easily swap to a variable called `post` that Tina will be working with.
+To make things a bit easier, we're going to rename the initial post that we hand to our `Post` component to `initialPost`. This will allow us to use the name `post` to hold the values that Tina will pass us, and we won't need to make changes to the page's content.
 
 ```diff
 - export default function Post({ post, morePosts, preview }) {
 + export default function Post({ post: initialPost, morePosts, preview }) {
 ```
 
-@TODO: Rejigger
-Checkout our [form docs](/docs/forms) to get more information about how to configure forms. In this guide we're going to set up a simple inline form that let's you change the title, body, and image associated with a blog post. Add the following into the `Post` component to set up and initialize the form.
+Now we set up a form and the fields that we'll be editing. Check out our [form docs](/docs/forms) to get more information about how to configure forms. .
 
 ```js
 import { useForm, usePlugin } from 'tinacms'
@@ -109,14 +108,15 @@ const formConfig = {
   ],
 }
 const [post, form] = useForm(formConfig)
-// usePlugin(form);
+usePlugin(form)
 ```
 
-I've left `onSubmit` empty for right now, since it's probably worth talking about seperately. @TODO The image stuff will probably need a bit of explaining too.
+I've left `onSubmit` empty for now. The next page in the guide will show you how to save changes to Strapi.
 
 @TODO: Install react-tinacms-inline
+@TODO: react-markdown, react-tinacms-editor
 
-Now we need to do some work to wrap our input with the inline form/fields components.
+We'll wrap the portion of the page that we want to be editable with an `InlineForm`..
 
 **pages/posts/\[slug\].js**
 
@@ -132,6 +132,9 @@ Now we need to do some work to wrap our input with the inline form/fields compon
 +  </InlineForm>
 ```
 
+Then we will use the appropriate inline fields on each of the fields that we want to be editable.
+
+TODO: Expound
 **components/post-header.js**
 
 ```diff
@@ -140,8 +143,6 @@ Now we need to do some work to wrap our input with the inline form/fields compon
 +       <InlineText name="title" />
       </PostTitle>
 ```
-
-@TODO: react-markdown, react-tinacms-editor
 
 **components/post-body.js**
 
@@ -159,6 +160,8 @@ export default function PostBody({ content }) {
   )
 }
 ```
+
+@TODO: Explain why I did this here instead of inside CoverImage
 
 ### Inline Image Field
 
@@ -180,4 +183,4 @@ export default function PostBody({ content }) {
  </div>
 ```
 
-Reload the page and you should see that all of these fields are now editable in some form, with roughly the same styling that they had before. Now let's work on being able to save any changes we make back to Strapi.
+Reload the page, enter edit mode, and you should see that all of these fields are now editable in some form. They should look roughly the same as they do outside of edit mode. Now let's work on being able to save any changes we make back to Strapi.
