@@ -2,7 +2,7 @@
 title: 'Querying Strapi'
 ---
 
-Now we're ready to bridge the gap between our front-end and Strapi. Scroll all the way down to the bottom of `pages/index.js` and take a look at `getStaticProps`. This is where our index page is getting the list of blog posts from the filesystem. With a quick bit of surgery we can make this instead pull the data from Strapi.
+Now we're ready to bridge the gap between our front-end and Strapi. Scroll all the way down to the bottom of `pages/index.js` and take a look at `getStaticProps`. This is where our index page is getting the list of blog posts from the filesystem. With a quick bit of surgery, we can make this instead pull the data from Strapi..
 
 ```js
 import { fetchGraphql } from 'react-tinacms-strapi-bm-test'
@@ -10,7 +10,7 @@ import { fetchGraphql } from 'react-tinacms-strapi-bm-test'
 //...
 
 export async function getStaticProps() {
-  // TODO: MOVE THIS URL TO THE CLIENT
+  // TODO: fetchGraphql can pull this from env variable instead
   const postResults = await fetchGraphql(
     process.env.STRAPI_URL,
     `
@@ -40,12 +40,11 @@ export async function getStaticProps() {
 }
 ```
 
-Take a moment to marvel at GraphQL. Each of the items that I'm querying are used to preview a blog post on the homepage. This _almost_ works exactly how we want it to, but there is one exception in how we need to deal with images.
+Take a moment to marvel at GraphQL. Each of the items that I'm querying is used to preview a blog post on the homepage. This _almost_ works how we want it to, but there is one exception in how we need to deal with images..
 
-In the Next.js example images are hosted locally and the `coverImage` field is a string that points to the relative location of the image. In our Strapi example, `coverImage` is an object with a `url` property. Additionally the API only returns a relative location, so we need to add on the URL of our Strapi server to be able to fully resolve our images.
+In the Next.js example, images are hosted locally, and the `coverImage` field is a _string_ that points to the relative location of the picture. In our Strapi example, `coverImage` is an _object_ with a `url` property. Additionally, the API only returns a relative location, so we need to add on the URL of our Strapi server to fully resolve our images.
 
-@TODO: Can I write a helper to resolve these images better?
-
+@TODO: Create an image resolver so that I can stop typing process.env.STRAPI_URL
 
 **pages/index.js**
 
@@ -102,23 +101,25 @@ name={author.name}
 ```
 
 ## Adjusting Strapi permissions
-By default you won't be able to access any data from Strapi without authentication. For our purposes, let's make give unauthenticated users read access to our two content types. 
 
-Head back to Strapi and click on **Roles & Permissions** in the sidebar. Click into the **Public** role. On this page you should see that we can adjust our permissions for the Author and Blog-post types. Give the public access to **count**, **find**, and **findone** then click the **Save** button.
+By default, you won't be able to access any data from Strapi without authentication. For our purposes, let's give unauthenticated users read access to our two content types.
+
+Head back to Strapi and click on **Roles & Permissions** in the sidebar. Click into the **Public** role. On this page, we can adjust our permissions for the Author and Blog-post types. Give the public access to **count**, **find**, and **findone** then click the **Save** button..
 
 ![Public permission configuration](/img/strapi-guide/public_permissions.png)
 
-Now, if everything has gone well, you should be able to refresh the index page and see the blog posts you created in Strapi!
+Refresh the index page and see the blog posts you created in Strapi!
 
 ![New index page with data from Strapi](/img/strapi-guide/updated_index.png)
 
+If you try to navigate to any blog post, you'll be met with a 404. Head over to `pages/posts/[slug].js` and we'll get the blog post pages working..
 
-If you try to navigate to any of the blog posts, you'll be met with a 404. Head over to `pages/posts/[slug].js` and we'll get the blog post pages working.
+## Pull blog posts from Strapi
 
-First let's deal with `getStaticProps` to fetch the data about the blog post we're trying to view. 
+First let's change `getStaticProps` to fetch the data from the blog post we're trying to view.
 
 ```js
-import { fetchGraphql } from "react-tinacms-strapi-bm-test";
+import { fetchGraphql } from 'react-tinacms-strapi-bm-test'
 // ...
 export async function getStaticProps({ params }) {
   const postResults = await fetchGraphql(
@@ -143,9 +144,9 @@ export async function getStaticProps({ params }) {
       }
     }
   `
-  );
-  const post = postResults.data.blogPosts[0];
-  const content = await markdownToHtml(post.content || "");
+  )
+  const post = postResults.data.blogPosts[0]
+  const content = await markdownToHtml(post.content || '')
 
   return {
     props: {
@@ -154,15 +155,16 @@ export async function getStaticProps({ params }) {
         content,
       },
     },
-  };
+  }
 }
 ```
 
-It's less than ideal that we can't get a blog post directly by it's slug and instead need to get a list of blog posts with a search. This is a problem we can fix a bit later by writing a quick bit of code for our Strapi server. For now, we'll just leave it like this.
+Right now, we can't get a blog post directly using its slug and instead need to get a list of blog posts with a search. This is a problem we can fix a bit later by writing a quick bit of code for our Strapi server. For now, we'll just leave it like this.
 
-Let's go ahead and fix that issue with image urls for this page.
+We need to correct some image paths here as well.
 
 **pages/posts/\[slug\].js**
+
 ```diff
   <Head>
     <title>
@@ -181,6 +183,7 @@ Let's go ahead and fix that issue with image urls for this page.
 ```
 
 **components/post-header.js**
+
 ```diff
   <div className="hidden md:block md:mb-12">
 -    <Avatar name={author.name} picture={author.picture} />
@@ -199,7 +202,7 @@ Let's go ahead and fix that issue with image urls for this page.
   </div>
 ```
 
-We're on the home stretch now. Our blog post pages _should_ work but we still can't navigate to them. But, after some quick changes to `getStaticPaths` in our `[slug].js` file we'll have a fully working blog.
+Our blog post pages _should_ work, but we still can't navigate to them. After some quick changes to `getStaticPaths` in our `[slug].js` file, we'll have a fully functional blog.
 
 ```js
 export async function getStaticPaths() {
@@ -212,24 +215,22 @@ export async function getStaticPaths() {
       }
     }
   `
-  );
+  )
 
   return {
-    paths: postResults.data.blogPosts.map((post) => {
+    paths: postResults.data.blogPosts.map(post => {
       return {
         params: {
           slug: post.slug,
         },
-      };
+      }
     }),
     fallback: false,
-  };
+  }
 }
-
 ```
 
-That's it! We should now be able to load our Strapi blog posts based on their `slug`. Give your site a refresh and try it out.
-
+We should now be able to load our Strapi blog posts based on their `slug`. Give your site a refresh and try it out!
 ![A working blog post page](/img/strapi-guide/working_blog_post.jpg)
 
-Next we'll be adding Tina's *slick* editing experience to our blog posts.
+Next, we'll be adding Tina's _slick_ editing experience to our blog posts.
