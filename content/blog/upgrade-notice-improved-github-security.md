@@ -17,7 +17,7 @@ This new pattern helps mitigate CSRF attacks and provides the authentication tok
 
 ### **react-tinacms-github**
 
-Nothing needs to be changed. This package can handle both the old flow and the new one on its own without further configuration.
+Nothing needs to be changed. This package can handle both the old flow and the new one on its own without further configuration, just make sure you're using the **latest version**.
 
 ### **next-tinacms-github**
 
@@ -26,6 +26,8 @@ Nothing needs to be changed. This package can handle both the old flow and the n
 The _Signing Key_ should be a random 256-bit key, used server-side to encrypt and decrypt authentication tokens sent to the client.
 
 You can generate a key by running `openssl rand -base64 32` in your terminal, using the output as your _Signing Key_.
+
+The key should be stored in an environment variable; don't forget to add it to your hosted environment configurations.
 
 `createAuthHandler`, `apiProxy`, and `previewHandler` now  **require** the _Signing Key_ to be passed as a parameter.
 
