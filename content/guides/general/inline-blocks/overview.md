@@ -6,6 +6,8 @@ This guide will show you how to set up inline editing and inline blocks based on
 
 By the end of this guide, you should have a good understanding of how to set-up and work with inline editing and inline blocks. While this guide doesn't cover every single field or potential usecase, it should give you enough of a base to create Inline Editing experiences in your own projects.
 
+> Play around in the [**hosted final state**.](https://logan-anderson.github.io/cra-hosted-demo/)
+
 <iframe width="100%" height="398" src="https://www.youtube.com/embed/4qGz0cP_DSA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 The video above gives some reference as to what inline blocks look like in Tina. The demo we are going to set up will be more simple than what is shown in the video, but it should give you some inspiration around what's possible!
