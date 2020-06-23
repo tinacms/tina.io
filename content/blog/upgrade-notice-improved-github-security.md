@@ -1,6 +1,6 @@
 ---
 title: 'Upgrade Notice: Improved GitHub Security'
-date: '2020-06-16T13:47:03-03:00'
+date: '2020-06-23T13:47:03-03:00'
 author: Joel Huggett
 ---
 We've improved the overall security of our GitHub authentication. Below is an explanation of the changes and further down are the steps required to upgrade to the new authentication flow.
