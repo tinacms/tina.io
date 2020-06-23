@@ -2,6 +2,8 @@
 title: 'Authenticating with Strapi'
 ---
 
+@TODO: imports
+
 Before we can implement an editing experience, we need to set up an authentication experience. To do this, we'll be running through setting up credentials through Strapi. Alternatively, Strapi allows you to log in using third-party auth providers, and they're pretty simple to get running.
 
 ## Using Next.js Preview Mode
