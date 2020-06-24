@@ -142,7 +142,7 @@ const HomePage = (props: any) => {
               <InfoBlocks
                 name="three_points"
                 blocks={SELLING_POINTS_BLOCKS}
-                direction="row"
+                direction="horizontal"
               />
             </RichTextWrapper>
           </Wrapper>

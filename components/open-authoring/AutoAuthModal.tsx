@@ -1,5 +1,5 @@
-import { useGithubEditing } from 'react-tinacms-github'
 import { useState } from 'react'
+import { useCMS } from 'tinacms'
 import { ActionableModal } from '../ui'
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 // This component checks for the autoAuth query parameter, and
 // conditionally renders the modal to kick off the auth flow
 const AutoAuthModal = ({ autoAuthKey = 'autoAuth' }: Props) => {
-  const openAuthoring = useGithubEditing()
+  const cms = useCMS()
 
   const [showAuthModal, setShowAuthModal] = useState(
     typeof window !== 'undefined' && window.location.href.includes(autoAuthKey)
@@ -34,7 +34,7 @@ const AutoAuthModal = ({ autoAuthKey = 'autoAuth' }: Props) => {
       actions={[
         {
           name: 'Continue',
-          action: openAuthoring.enterEditMode,
+          action: () => cms.enable(),
         },
         {
           name: 'Cancel',

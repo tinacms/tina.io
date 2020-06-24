@@ -1,7 +1,7 @@
 import React from 'react'
 import App from 'next/app'
 import Head from 'next/head'
-import { TinaCMS, TinaProvider, ModalProvider } from 'tinacms'
+import { TinaCMS, TinaCMSConfig, TinaProvider, ModalProvider } from 'tinacms'
 import { DefaultSeo } from 'next-seo'
 import data from '../content/siteConfig.json'
 import TagManager from 'react-gtm-module'
@@ -11,8 +11,9 @@ import { GithubClient, TinacmsGithubProvider } from 'react-tinacms-github'
 import { GlobalStyle } from '../components/styles/GlobalStyle'
 
 const MainLayout = ({ Component, pageProps }) => {
-  const tinaConfig = {
+  const tinaConfig: TinaCMSConfig = {
     enabled: pageProps.preview,
+    toolbar: true,
     apis: {
       github: new GithubClient({
         proxy: '/api/proxy-github',
@@ -25,23 +26,16 @@ const MainLayout = ({ Component, pageProps }) => {
           ? new BrowserStorageApi(window.localStorage)
           : {},
     },
-    sidebar: {
-      hidden: true,
-      position: 'displace' as any,
-    },
-    toolbar: {
-      hidden: !pageProps.preview,
-    },
   }
 
   const cms = React.useMemo(() => new TinaCMS(tinaConfig), [])
 
-  const enterEditMode = () =>
+  const enterPreviewMode = () =>
     fetch(`/api/preview`).then(() => {
       window.location.href = window.location.pathname
     })
 
-  const exitEditMode = () => {
+  const exitPreviewMode = () => {
     fetch(`/api/reset-preview`).then(() => {
       window.location.reload()
     })
@@ -55,9 +49,8 @@ const MainLayout = ({ Component, pageProps }) => {
       {loadFonts && <FontLoader />}
       <ModalProvider>
         <TinacmsGithubProvider
-          enterEditMode={enterEditMode}
-          exitEditMode={exitEditMode}
-          editMode={pageProps.preview}
+          onLogin={enterPreviewMode}
+          onLogout={exitPreviewMode}
           error={pageProps.error}
         >
           <DefaultSeo
