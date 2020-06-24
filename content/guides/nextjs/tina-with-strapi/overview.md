@@ -17,4 +17,6 @@ We'll be putting together a simple blogging app. It will have two components:
 1. a Strapi server,
 2. a Next.js front-end using Tina.
 
+Our Strapi server will live in the directory `./tina-strapi-server` and our front-end code will live in a directory next to that called `./tina-strapi-blog`.
+
 We'll start out with getting the Strapi server running locally, defining our content types, and then creating some sample data. We'll move on to hooking up our front-end. Whenever necessary, we'll head back to Strapi and make additional configuration changes.

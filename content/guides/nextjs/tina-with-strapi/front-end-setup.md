@@ -4,7 +4,7 @@ title: 'Front-end Setup'
 
 We're going to be using the Next.js blog starter as the base of our project. By default, it pulls all its data from the filesystem, but we'll want to make some changes to have it pull data from Strapi's GraphQL API.
 
-We want to keep Strapi running throughout this entire process. So, open a new terminal and create a new project alongside Strapi using the following command:
+We want to _keep Strapi running_ throughout this entire process. So, open a new terminal and create a new project alongside Strapi using the following command:
 
 ```bash
 yarn create next-app -e blog-starter tina-strapi-blog
@@ -17,17 +17,29 @@ cd tina-strapi-blog
 yarn dev
 ```
 
-Now you can navigate to `http://localhost:3000` and see what we'll be working with. Our goal will be to replace the index page and blog post pages with ones that pull all their data from Strapi.
+Navigate to [http://localhost:3000](http://localhost:3000) and see what we'll be working with.
+
+The blog is made up of two main pieces: an index page, and the blog post pages. Our goal will be to have the data on both of these pages come from Strapi, instead of from the filesystem.
 
 ## Setup Environment Variable
 
-Let's quickly set up an environment variable so that our front-end application knows our Strapi server's location. In the root of the project create a file called `.env` and put in the Strapi URL.
+Our front-end has to know how to reach Strapi, so we'll set up an environment variable that will allow us to configure this. First, install `dotenv`
+
+```bash
+yarn add dotenv
+```
+
+Then in the root of the project create a file called `.env` and fill in the Strapi URL.
+
+**.env**
 
 ```.env
 STRAPI_URL=http://localhost:1337
 ```
 
-Then, also at the root of the project create a new file called `next.config.js` and populate it with
+Also at the root of the project create a new file called `next.config.js` and populate it with
+
+**next.config.js**
 
 ```js
 require('dotenv').config()
@@ -39,7 +51,7 @@ module.exports = {
 }
 ```
 
-Now, whenever we start our front-end project, we will have access to this `STRAPI_URL`. And we'll easily be able to have different environments point to different Strapi servers..
+Whenver we start up our front-end project, this URL will be loaded into our environment and we'll have access to Strapi's location wherever we end up needing it.
 
 ## Add Tina
 
