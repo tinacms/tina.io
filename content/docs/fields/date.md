@@ -8,14 +8,31 @@ consumes:
   - file: /packages/tinacms/src/plugins/fields/dateFormat.ts
     details: References date formatting specifics
 ---
-
 The `date` field represents a date and time picker. It can be used for data values that are valid date strings.
 
 ![tinacms-date-field](/img/fields/date.jpg)
 
+## Installation
+
+The Date Field plugin is provided by the `react-tinacms-date` package.
+
+```bash
+yarn add react-tinacms-date
+```
+
+### Registering the _DateFieldPlugin_
+
+```ts
+import { DateFieldPlugin } from "react-tinacms-date"
+
+cms.plugins.add(DateFieldPlugin)
+```
+
+> Visit the [Plugins Docs](/docs/cms/plugins#adding-plugins) for more information on how to efficiently load and register plugins for TinaCMS.
+
 ## Options
 
-This field plugin uses [`react-datettime`](https://www.npmjs.com/package/react-datetime) under the hood.
+This field plugin uses [`react-datetime`](https://www.npmjs.com/package/react-datetime) under the hood.
 
 ```typescript
 interface DateConfig extends FieldConfig, DatetimepickerProps {
@@ -28,14 +45,14 @@ interface DateConfig extends FieldConfig, DatetimepickerProps {
 }
 ```
 
-| Option        | Description                                                                                                                                                                                                                                                                                                                                                                                                               |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `component`   | The name of the plugin component. Always `'date'`.                                                                                                                                                                                                                                                                                                                                                                        |
-| `name`        | The path to some value in the data being edited.                                                                                                                                                                                                                                                                                                                                                                          |
-| `label`       | A human readable label for the field. Defaults to the `name`. _(Optional)_                                                                                                                                                                                                                                                                                                                                                |
-| `description` | Description that expands on the purpose of the field or prompts a specific action. _(Optional)_                                                                                                                                                                                                                                                                                                                           |
-| `dateFormat`  | Defines the format for the date. It accepts any [Moment.js date format](https://momentjs.com/docs/#/displaying/format/) (not in localized format). If true the date will be displayed using the defaults for the current locale. See [react-datetime docs](https://github.com/YouCanBookMe/react-datetime) for more details. _(Optional)_                                                                                 |
-| `timeFormat`  | Defines the format for the time. It accepts any [Moment.js time format](https://momentjs.com/docs/#/displaying/format/) (not in localized format). If true the time will be displayed using the defaults for the current locale. If false the timepicker is disabled and the component can be used as datepicker. See [react-datetime docs](https://github.com/YouCanBookMe/react-datetime) for more details._(Optional)_ |
+| Option | Description |
+| --- | --- |
+| `component` | The name of the plugin component. Always `'date'`. |
+| `name` | The path to some value in the data being edited. |
+| `label` | A human readable label for the field. Defaults to the `name`. _(Optional)_ |
+| `description` | Description that expands on the purpose of the field or prompts a specific action. _(Optional)_ |
+| `dateFormat` | Defines the format for the date. It accepts any [Moment.js date format](https://momentjs.com/docs/#/displaying/format/) (not in localized format). If true the date will be displayed using the defaults for the current locale. See [react-datetime docs](https://github.com/YouCanBookMe/react-datetime) for more details. _(Optional)_ |
+| `timeFormat` | Defines the format for the time. It accepts any [Moment.js time format](https://momentjs.com/docs/#/displaying/format/) (not in localized format). If true the time will be displayed using the defaults for the current locale. If false the timepicker is disabled and the component can be used as datepicker. See [react-datetime docs](https://github.com/YouCanBookMe/react-datetime) for more details._(Optional)_ |
 
 > ### FieldConfig
 >
