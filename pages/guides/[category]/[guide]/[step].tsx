@@ -113,7 +113,7 @@ export default function GuideTemplate(props) {
       path={props.markdownFile.fileRelativePath}
       preview={props.preview}
     >
-      <DocsLayout isEditing={props.editMode}>
+      <DocsLayout>
         <NextSeo
           title={frontmatter.title}
           titleTemplate={'%s | TinaCMS Docs'}

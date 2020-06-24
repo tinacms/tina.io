@@ -54,7 +54,7 @@ const GuideTemplate = props => {
     : 'TinaCMS Guides'
 
   return (
-    <DocsLayout isEditing={props.editMode}>
+    <DocsLayout>
       <NextSeo
         title={frontmatter.title}
         titleTemplate={'%s | TinaCMS Docs'}

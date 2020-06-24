@@ -41,7 +41,7 @@ function DocTemplate(props) {
       path={props.file.fileRelativePath}
       preview={props.preview}
     >
-      <DocsLayout isEditing={props.preview}>
+      <DocsLayout>
         <NextSeo
           title={frontmatter.title}
           titleTemplate={'%s | TinaCMS Docs'}
