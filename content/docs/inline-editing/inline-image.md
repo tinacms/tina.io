@@ -64,7 +64,116 @@ interface InlineImageProps {
 }
 ```
 
-## Example
+The `parse` function handles how the path gets written in the source data when a _new image_ is uploaded. `parse` is passed the filename of the newly uploaded image — `image.jpg`. A simple return value could look something like this:
+
+```js
+parse: filename => `/example-dir/${filename}`
+```
+
+The path **depends on where images live** in your project structure. `uploadDir` sets where those new images should live:
+
+```js
+uploadDir: () => `/example-dir`
+```
+
+The `previewSrc` provides a path for the image **when inline editing is active** (a.k.a when the [CMS is enabled](https://tinacms.org/docs/cms#disabling--enabling-the-cms)). When inline editing is not active (`cms.enabled === false`), the image will reference the path in the source data. `previewSrc` is passed **current form values** as its first argument.
+
+## Examples
+
+### _previewSrc_ with blocks
+
+If using `InlineImage` as a block, use these values, along with the block `index` to target the proper image source from the data.
+
+```js
+/**
+ * `index` is passed as props to the block component
+ * that renders the inline image
+ */
+function ImageBlock({ index }) {
+  return (
+    <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
+      <div className="image-block">
+        <InlineImage
+          name="src"
+          parse={filename => `/assets/${filename}`}
+          uploadDir={() => '/public/assets'}
+          previewSrc={formValues => `${formValues.blocks[index].left.src}`}
+          focusRing={false}
+        />
+      </div>
+    </BlocksControls>
+  )
+}
+```
+
+The return value should be the entire path to the image from the source data — e.g. `/example-dir/image.jpg`.
+
+### Accessing block index in the template fields
+
+Using the `index` in the `previewSrc` to target the correct block is very helpful. While `index` is passed to the _Block Component_, it is not directly available in the _Block Template_.
+
+One way to work around this is to access the second argument, `input`. Manipulate the form input data to get the index of the current field.
+
+See the example below for a variation on getting the block index:
+
+**components/Images.js**
+
+```jsx
+export const imagesBlock = {
+  Component: Images,
+  template: {
+    //... Other block template config
+    fields: [
+      {
+        name: 'left.src',
+        label: 'Left-Hand Image',
+        component: 'image',
+        parse: filename => `/${filename}`,
+        uploadDir: () => '/',
+        previewSrc: (formValues, input) => {
+          /**
+           * Get index from field input. Assumes the block
+           * is only one level deep
+           */
+          const index = input.field.name.split('.')[1]
+          /**
+           * Use that index to target the correct
+           * block in `formValues`
+           */
+          const currentBlockImage = formValues.blocks[index].left.src
+          return currentBlockImage
+        },
+        focusRing: false,
+      },
+      {
+        name: 'left.alt',
+        label: 'Left-Hand Image Alt Text',
+        component: 'text',
+      },
+      {
+        name: 'right.src',
+        label: 'Right-Hand Image',
+        component: 'image',
+        parse: filename => `/${filename}`,
+        uploadDir: () => '/',
+        previewSrc: (formValues, input) => {
+          const index = input.field.name.split('.')[1]
+          const currentBlockImage = formValues.blocks[index].right.src
+          return currentBlockImage
+        },
+        focusRing: false,
+      },
+      {
+        name: 'right.alt',
+        label: 'Right-Hand Image Alt Text',
+        component: 'text',
+      },
+    ],
+  },
+}
+```
+
+### Passing children with Gatsby Image
 
 Below is an example of how you could **pass children** as a to `InlineImage` to work with _Gatsby Image_. Notice how _children_ **need to be passed via** [**render props**](https://reactjs.org/docs/render-props.html). Read more on [proper image paths](/docs/fields/image#proper-image-paths-in-gatsby) in Gatsby to get context on the `parse` & `uploadDir` configuration.
 
