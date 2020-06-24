@@ -14,7 +14,6 @@ consumes:
   - file: /packages/react-modals/src/ModalProvider.tsx
     description: Uses ModalProvider for Block Settings
 ---
-
 Inline Blocks combine the content modelling flexibility of regular [Blocks](/blog/what-are-blocks) with the improved editing experience of [Inline Editing](/docs/inline-editing).
 
 > **Please note:** This is considered an unstable API. Any breaking changes will be shared in the weekly [Release Notes](/blog). That said, we will do our best to keep this document up-to-date.
@@ -60,12 +59,12 @@ Since it **renders in 'edit mode,'** this component should display `BlocksContro
 
 #### Blocks Controls Options
 
-| Key             | Description                                                                                                                                                                                                                                                                                                                        |
-| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `index`         | The index of the block associated with these controls.                                                                                                                                                                                                                                                                             |
-| `insetControls` | A boolean to denote whether the group controls display within or outside the group.                                                                                                                                                                                                                                                |
-| `focusRing`     | Either an object to style the focus ring or `false`, which hides the focus ring entirely. For styles, `offset` (in pixels) controls the distance from the ring to the edge of the group; `borderRadius`(in pixels) controls the [rounding](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius) edge of the focus ring. |
-| `children`      | Any child components, typically inline field(s).                                                                                                                                                                                                                                                                                   |
+| Key | Description |
+| --- | --- |
+| `index` | The index of the block associated with these controls. |
+| `insetControls` | A boolean to denote whether the group controls display within or outside the group. |
+| `focusRing` | Either an object to style the focus ring or `false`, which hides the focus ring entirely. For styles, `offset` (in pixels) controls the distance from the ring to the edge of the group; `borderRadius`(in pixels) controls the [rounding](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius) edge of the focus ring. |
+| `children` | Any child components, typically inline field(s). |
 
 ```ts
 interface BlocksControlsProps {
@@ -89,10 +88,10 @@ The image above shows the _InlineTextarea_ field in use with Blocks Controls.
 
 **Additional Available Inline Fields**:
 
-- [Text](/docs/inline-editing/inline-text)
-- [Textarea](/docs/inline-editing/inline-textarea)
-- [Image](/docs/inline-editing/inline-image)
-- [Group](/docs/inline-editing/inline-group)
+* [Text](/docs/inline-editing/inline-text)
+* [Textarea](/docs/inline-editing/inline-textarea)
+* [Image](/docs/inline-editing/inline-image)
+* [Group](/docs/inline-editing/inline-group)
 
 ### Part 2: Block Template
 
@@ -110,13 +109,13 @@ export const heading_template = {
 
 The _Inline Block Template_ **configures the block** with the CMS. It has a similar shape to a Regular [Block Template](/docs/fields/blocks#block-template-options) definition.
 
-| Key            |            Type             |                                                                                              Purpose |
-| -------------- | :-------------------------: | ---------------------------------------------------------------------------------------------------: |
-| `type`         |          `string`           |                                             This value connects source block data with the template. |
-| `label`        |          `string`           |                                                                              A human readable label. |
-| `defaultItem?` | `object \\| (() => object)` |                                                              Populates new blocks with default data. |
-| `key`          |          `string`           | A unique value to optimize the [rendering of the list](https://reactjs.org/docs/lists-and-keys.html) |
-| `fields`       |           `Array`           |                                    Populates fields in the [Settings Modal](link to settings modal). |
+| Key | Type | Purpose |
+| --- | :---: | ---: |
+| `type` | `string` | This value connects source block data with the template. |
+| `label` | `string` | A human readable label. |
+| `defaultItem?` | `object \\\| (() => object)` | Populates new blocks with default data. |
+| `key` | `string` | A unique value to optimize the [rendering of the list](https://reactjs.org/docs/lists-and-keys.html) |
+| `fields` | `Array` | Populates fields in the [Settings Modal](link to settings modal). |
 
 ## Configuring Inline Blocks with Inline Form
 
@@ -196,16 +195,21 @@ interface InlineBlocksProps {
   itemProps?: {
     [key: string]: any
   }
+  limits?: {
+  	min?: number
+    max?: number
+  }
 }
 ```
 
-| Key         |                                                                                                                    Purpose |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------: |
-| `name`      |                                                                            The path to the **source data** for the blocks. |
-| `blocks`    |                            An object composed of individual [Blocks](/docs/inline-editing/inline-blocks#creating-a-block). |
+| Key | Purpose |
+| --- | ---: |
+| `name` | The path to the **source data** for the blocks. |
+| `blocks` | An object composed of individual [Blocks](/docs/inline-editing/inline-blocks#creating-a-block). |
 | `className` | To set styles directly on the input or extend via [styled components](/docs/inline-editing#extending-inline-field-styles). |
-| `direction` |                                                 Sets the orientation of the drag direction and `AddBlock` button position. |
-| `itemProps` |                                                       An object that passes additional props to every block child element. |
+| `direction` | Sets the orientation of the drag direction and `AddBlock` button position. |
+| `itemProps` | An object that passes additional props to every block child element. |
+| `limits` | Controls how many blocks can be added / removed. |
 
 ### Blocks Source Data
 
