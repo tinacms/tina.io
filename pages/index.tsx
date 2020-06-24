@@ -109,7 +109,7 @@ const HomePage = (props: any) => {
       path={props.file.fileRelativePath}
       preview={props.preview}
     >
-      <Layout preview={props.preview}>
+      <Layout>
         <DefaultSeo titleTemplate={formData.title + ' | %s'} />
         <Hero overlap narrow>
           <InlineTextareaField name="headline" />
@@ -130,7 +130,7 @@ const HomePage = (props: any) => {
                   </em>
                 </h2>
                 <CtaBar>
-                  <EditLink color="primary" preview={props.preview} />
+                  <EditLink color="primary" />
                   <DynamicLink
                     href={'/docs/getting-started/introduction/'}
                     passHref

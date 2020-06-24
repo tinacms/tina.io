@@ -42,7 +42,7 @@ function BlogTemplate({ file, siteConfig, preview }) {
       path={file.fileRelativePath}
       preview={preview}
     >
-      <Layout preview={preview}>
+      <Layout>
         <NextSeo
           title={frontmatter.title}
           titleTemplate={'%s | ' + siteConfig.title + ' Blog'}
@@ -78,7 +78,7 @@ function BlogTemplate({ file, siteConfig, preview }) {
                   <InlineTextareaField name="frontmatter.author" />
                 </MetaBit>
               </MetaWrap>
-              <EditLink isEditMode={preview} />
+              <EditLink />
             </BlogMeta>
             <InlineWysiwyg name="markdownBody">
               <MarkdownContent escapeHtml={false} content={markdownBody} />
