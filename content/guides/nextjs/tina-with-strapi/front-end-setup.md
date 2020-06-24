@@ -55,70 +55,61 @@ Whenver we start up our front-end project, this URL will be loaded into our envi
 
 ## Add Tina
 
-Let's start getting Tina in place to let us use our editing experience a bit down the road. First, install Tina and the `styled-component` peer dependency.
+Let's start getting Tina in place to let us use our editing experience a bit down the road. We'll install Tina, its `styled-components`, and a library that will help us work with Strapi.
 
 ```bash
-yarn add tinacms styled-components
+yarn add tinacms styled-components react-tinacms-strapi
 ```
 
 ### Add the Provider
 
-Go into `pages/_app.js`, we're going to wrap what's currently being returned here with our Tina and Strapi providers.
+In `pages/_app.js`, we're going to configure our site to have access to Tina and Strapi functionality on every page.
 
-Delete what the `MyApp` function is returning and setup up the CMS object to use Strapi.
+**pages/\_app.js**
 
 ```js
 import "../styles/index.css";
 
 import {
   StrapiMediaStore,
+  StrapiProvider
   TinaStrapiClient,
-} from "react-tinacms-strapi-bm-test"; // @TODO
+} from "react-tinacms-strapi";
 import { TinaCMS } from "tinacms";
+import { useMemo } from "react";
+
 
 export default function MyApp({ Component, pageProps }) {
-  const cms = new TinaCMS({
+  const cms = useMemo(() => new TinaCMS({
     sidebar: { hidden: true },
+    toolbar: { hidden: false },
     apis: {
-      strapi: new TinaStrapiClient(process.env.STRAPI_URL),
+      strapi: new TinaStrapiClient(),
     },
     media: {
-      store: new StrapiMediaStore(process.env.STRAPI_URL),
+      store: new StrapiMediaStore(),
     },
-  });
+  }));
   return (
-    /* We'll fill this out soon */
+    <TinaProvider cms={cms}>
+     <StrapiProvider
+        onLogin={() => {
+          /* we'll come back to this */
+        }}
+        onLogout={() => {
+          /* we'll come back to this */
+        }}}
+      >
+        <Component {...pageProps} />
+      </StrapiProvider>
+    </TinaProvider>
   );
+);
 }
 ```
 
-We're instantiating the CMS object, giving it access to a Strapi client, and also giving it access to a Strapi media store. This will let us communicate with Strapi's APIS and help Tina know how to upload media to the Strapi server.
+If you refresh [your site](http://localhost:3000), you shouldn't see any changes. But we've made good progress under the hood.
 
-We want to return the page content, wrapped in providers so that every page has access to the CMS and Strapi client..
+First off, we instantiated the CMS object, which is the heart-and-soul of Tina. We've configured it to show only the [toolbar](https://tinacms.org/docs/cms/ui#toolbar-configuration) and hide the sidebar. We've also passed it a `TinaStrapiClient` that is responsible for communicating with our Strapi server. Additionally, we've added a `StrapiMediaStore`, which will allow us to upload images to Strapi.
 
-```js
-import {
-  StrapiMediaStore,
-  StrapiProvider,
-  TinaStrapiClient,
-} from 'react-tinacms-strapi-bm-test' @TODO
-import { TinaCMS, TinaProvider } from 'tinacms'
-
-// ...
-
-return (
-  <TinaProvider cms={cms}>
-    <StrapiProvider
-      editMode={false}
-      enterEditMode={() => {}}
-      exitEditMode={() => {}}
-    >
-      <Component {...pageProps} />
-    </StrapiProvider>
-  </TinaProvider>
-)
-```
-
-We're fudging some values for `editMode`, `enterEditMode`, and `exitEditMode` so we can focus on pulling data from Strapi. We'll come back to this when we're ready to get editing working.
-
-After doing this, you should be able to refresh the browser and notice that _nothing_ has changed! But under-the-hood, we've gotten Tina set up and are ready to start using it.
+We're wrapping our pages with a `TinaProvider` and a `StrapiProvider` so that all of our pages can interact with Tina and Strapi respectively. We'll figure out what we want to happen `onLogin` and `onLogout` in just a little bit..
