@@ -1,30 +1,21 @@
 import styled from 'styled-components'
 import { EditIcon } from '@tinacms/icons'
+import { useCMS } from 'tinacms'
 import { Button } from '../ui'
 
 interface EditLinkProps {
   color?: 'white' | 'primary' | 'secondary' | 'seafoam' | 'variable'
-  preview: boolean
 }
-import { useGithubEditing } from 'react-tinacms-github'
 
-export const EditLink = ({ color, preview }: EditLinkProps) => {
-  const openAuthoring = useGithubEditing()
+export const EditLink = ({ color }: EditLinkProps) => {
+  const cms = useCMS()
   return (
-    <EditToggleButton
+    <Button
       id="OpenAuthoringEditButton"
       color={color}
-      onClick={
-        preview ? openAuthoring.exitEditMode : openAuthoring.enterEditMode
-      }
+      onClick={() => (cms.disabled ? cms.enable() : cms.disable())}
     >
-      <EditIcon /> {preview ? 'Exit Edit Mode' : 'Edit This Site'}
-    </EditToggleButton>
+      <EditIcon /> {cms.enabled ? 'Exit Edit Mode' : 'Edit This Site'}
+    </Button>
   )
 }
-
-interface EditToggleButtonProps {
-  isEditMode: boolean
-}
-
-const EditToggleButton = styled(Button)``

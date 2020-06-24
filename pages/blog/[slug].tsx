@@ -15,12 +15,11 @@ import { useGithubMarkdownForm } from 'react-tinacms-github'
 import { fileToUrl } from '../../utils/urls'
 import { OpenAuthoringSiteForm } from '../../components/layout/OpenAuthoringSiteForm'
 const fg = require('fast-glob')
-import { useGithubEditing } from 'react-tinacms-github'
 import { Button } from '../../components/ui/Button'
 import Error from 'next/error'
 import { getMarkdownPreviewProps } from '../../utils/getMarkdownFile'
 import { InlineWysiwyg } from '../../components/inline-wysiwyg'
-import { usePlugin } from 'tinacms'
+import { usePlugin, useCMS } from 'tinacms'
 
 function BlogTemplate({ file, siteConfig, preview }) {
   // fallback workaround
@@ -215,18 +214,16 @@ const MetaBit = styled.p`
  ** Edit Button ------------------------------------------------------
  */
 
-const EditLink = ({ isEditMode }) => {
-  const openAuthoring = useGithubEditing()
+const EditLink = () => {
+  const cms = useCMS()
 
   return (
     <EditButton
       id="OpenAuthoringBlogEditButton"
-      onClick={
-        isEditMode ? openAuthoring.exitEditMode : openAuthoring.enterEditMode
-      }
+      onClick={() => (cms.enabled ? cms.disable() : cms.enable())}
     >
-      {isEditMode ? <CloseIcon /> : <EditIcon />}
-      {isEditMode ? 'Exit Edit Mode' : 'Edit This Post'}
+      {cms.disabled ? <CloseIcon /> : <EditIcon />}
+      {cms.disabled ? 'Exit Edit Mode' : 'Edit This Post'}
     </EditButton>
   )
 }
