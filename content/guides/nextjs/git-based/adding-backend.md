@@ -142,7 +142,6 @@ class MyApp extends App {
       },
       sidebar: {
         position: 'overlay',
-        hidden: false,
       },
     })
   }
