@@ -1,7 +1,6 @@
 ---
 title: Project Setup
 ---
-
 We're going to use the [Gatsby Starter Blog](https://www.gatsbyjs.org/starters/gatsbyjs/gatsby-starter-blog/) as the base for our project. Create a new project by running the following commands in your terminal:
 
 ```bash
@@ -19,9 +18,7 @@ You will now be able to visit your site at https://localhost:8000
 
 ## Installing
 
-```
-yarn add gatsby-plugin-tinacms styled-components
-```
+    yarn add gatsby-plugin-tinacms styled-components
 
 ## Add the Plugin
 
@@ -38,6 +35,7 @@ module.exports = {
       options: {
         // The CMS will be disabled on your production site
         enabled: process.env.NODE_ENV !== 'production',
+        sidebar: true,
         plugins: [
           // We'll add some gatsby-tinacms plugins later
         ],
@@ -52,15 +50,11 @@ module.exports = {
 
 1. **Restart the Gatsby development server**
 
-   ```
-   gatsby develop
-   ```
-
-1. **Visit your Website**
+       gatsby develop
+2. **Visit your Website**
 
    Go to https://localhost:8000 to access your website.
-
-1. **Open the CMS**
+3. **Open the CMS**
 
    You will notice there's a pencil icon, this is the way you can toggle the Tina sidebar.
 
