@@ -14,7 +14,7 @@ interface LayoutProps {
 }
 
 export const Layout = styled(
-  ({ children, color, preview, ...styleProps }: LayoutProps) => {
+  ({ children, color, ...styleProps }: LayoutProps) => {
     const router = useRouter()
 
     usePlugin(BlogPostCreatorPlugin)
@@ -29,7 +29,7 @@ export const Layout = styled(
         />
         <Header color={color} />
         {children}
-        <Footer preview={preview} />
+        <Footer />
       </div>
     )
   }

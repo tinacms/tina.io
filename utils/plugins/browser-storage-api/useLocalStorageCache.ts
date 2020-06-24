@@ -4,11 +4,7 @@ import { flattenFormData } from './flatten-form-data'
 
 // persist pending changes to localStorage,
 // and load from localstorage on boot
-export const useLocalStorageCache = (
-  path: string,
-  form: Form<any>,
-  preview: boolean
-) => {
+export const useLocalStorageCache = (path: string, form: Form<any>) => {
   const cms = useCMS()
 
   const saveToStorage = useCallback(
@@ -23,11 +19,11 @@ export const useLocalStorageCache = (
 
   // load from storage on boot
   useEffect(() => {
-    if (!preview) return
+    if (!cms.enabled) return
 
     const values = cms.api.storage.load(path)
     if (values) {
       form.updateValues(values)
     }
-  }, [form, preview])
+  }, [form, cms.enabled])
 }

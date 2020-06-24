@@ -23,17 +23,13 @@ import { getJsonPreviewProps } from '../utils/getJsonPreviewProps'
 import { useGithubJsonForm } from 'react-tinacms-github'
 import { InlineWysiwyg } from '../components/inline-wysiwyg'
 
-function CommunityPage({ file: community, metadata, preview }) {
+function CommunityPage({ file: community, metadata }) {
   // Registers Tina Form
   const [data, form] = useGithubJsonForm(community, formOptions)
 
   return (
-    <OpenAuthoringSiteForm
-      form={form}
-      path={community.fileRelativePath}
-      preview={preview}
-    >
-      <Layout preview={preview}>
+    <OpenAuthoringSiteForm form={form} path={community.fileRelativePath}>
+      <Layout>
         <NextSeo
           title={data.title}
           description={data.description}

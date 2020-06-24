@@ -3,27 +3,26 @@ import styled, { css } from 'styled-components'
 import { DefaultSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { Overlay } from '../ui'
+import { useCMS } from 'tinacms'
 
 interface DocsLayoutProps {
-  isEditing: boolean
   children: any
 }
 
-export const DocsLayout = React.memo(
-  ({ isEditing, children }: DocsLayoutProps) => {
-    const router = useRouter()
-    return (
-      <>
-        <DefaultSeo
-          openGraph={{
-            url: 'https://tinacms.org' + router.asPath,
-          }}
-        />
-        <DocsLayoutDiv isEditing={isEditing}>{children}</DocsLayoutDiv>
-      </>
-    )
-  }
-)
+export const DocsLayout = React.memo(({ children }: DocsLayoutProps) => {
+  const cms = useCMS()
+  const router = useRouter()
+  return (
+    <>
+      <DefaultSeo
+        openGraph={{
+          url: 'https://tinacms.org' + router.asPath,
+        }}
+      />
+      <DocsLayoutDiv isEditing={cms.enabled}>{children}</DocsLayoutDiv>
+    </>
+  )
+})
 
 interface DocsLayoutDivProps {
   isEditing: boolean

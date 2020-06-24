@@ -36,12 +36,8 @@ function DocTemplate(props) {
   usePlugin(form)
 
   return (
-    <OpenAuthoringSiteForm
-      form={form}
-      path={props.file.fileRelativePath}
-      preview={props.preview}
-    >
-      <DocsLayout isEditing={props.preview}>
+    <OpenAuthoringSiteForm form={form} path={props.file.fileRelativePath}>
+      <DocsLayout>
         <NextSeo
           title={frontmatter.title}
           titleTemplate={'%s | TinaCMS Docs'}
@@ -82,7 +78,7 @@ function DocTemplate(props) {
               />
             </Wrapper>
           </DocsTextWrapper>
-          <Footer light preview={props.preview} />
+          <Footer light />
         </DocsContent>
         <Overlay open={open} onClick={() => setOpen(false)} />
       </DocsLayout>

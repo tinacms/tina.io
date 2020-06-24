@@ -28,8 +28,8 @@ const Index = props => {
   })
 
   return (
-    <OpenAuthoringSiteForm preview={props.preview} form={form} path={''}>
-      <Layout preview={props.preview}>
+    <OpenAuthoringSiteForm form={form} path={''}>
+      <Layout>
         <NextSeo
           title="Blog"
           openGraph={{

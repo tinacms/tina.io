@@ -37,12 +37,8 @@ function BlogTemplate({ file, siteConfig, preview }) {
   const excerpt = data.excerpt
 
   return (
-    <OpenAuthoringSiteForm
-      form={form}
-      path={file.fileRelativePath}
-      preview={preview}
-    >
-      <Layout preview={preview}>
+    <OpenAuthoringSiteForm form={form} path={file.fileRelativePath}>
+      <Layout>
         <NextSeo
           title={frontmatter.title}
           titleTemplate={'%s | ' + siteConfig.title + ' Blog'}
@@ -78,7 +74,7 @@ function BlogTemplate({ file, siteConfig, preview }) {
                   <InlineTextareaField name="frontmatter.author" />
                 </MetaBit>
               </MetaWrap>
-              <EditLink isEditMode={preview} />
+              <EditLink />
             </BlogMeta>
             <InlineWysiwyg name="markdownBody">
               <MarkdownContent escapeHtml={false} content={markdownBody} />
