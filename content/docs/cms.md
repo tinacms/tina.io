@@ -13,6 +13,7 @@ consumes:
   - file: /packages/react-toolbar/toolbar.ts
     description: Shows Toolbar state interface
 ---
+
 The CMS object in Tina is a container for attaching and accessing Plugins and APIs. On its own, the CMS does very little; however, since it's the central integration point for everything that Tina does, it's extremely important!
 
 ## Setting up the CMS Object
@@ -69,9 +70,8 @@ import { withTina } from 'tinacms'
 import MyApp from './my-app'
 
 export default withTina(MyApp, {
-  sidebar: {
-    hidden: process.env.NODE_ENV === 'production',
-  },
+  enabled: process.env.NODE_ENV !== 'production',
+  sidebar: true,
 })
 ```
 
@@ -143,22 +143,22 @@ interface ToolbarConfig {
 }
 ```
 
-***
+---
 
-| key | usage |
-| --- | --- |
-| **enabled** | Controls whether the CMS is enabled or disabled. _Defaults to true_ |
-| **plugins** | Array of plugins to be added to the CMS object. |
-| **apis** | Object containing APIs to be registered to the CMS |
-| **sidebar** | Enables and configures behavior of the sidebar |
-| **sidebar.position** | 'displace': sidebar pushes content to the side when open; 'overlay': sidebar overlaps content when open |
-| **sidebar.placeholder** | Provides a placeholder component to render in the sidebar when there are no registered forms |
-| **sidebar.buttons** | Enables and configures the text on 'Save' and 'Reset' buttons |
-| **toolbar** | Configures behavior of the toolbar |
-| **toolbar.buttons** | Configures the text on 'Save' and 'Reset' buttons |
-| **media.store** | Configures the [media store](/docs/media). |
+| key                     | usage                                                                                                   |
+| ----------------------- | ------------------------------------------------------------------------------------------------------- |
+| **enabled**             | Controls whether the CMS is enabled or disabled. _Defaults to true_                                     |
+| **plugins**             | Array of plugins to be added to the CMS object.                                                         |
+| **apis**                | Object containing APIs to be registered to the CMS                                                      |
+| **sidebar**             | Enables and configures behavior of the sidebar                                                          |
+| **sidebar.position**    | 'displace': sidebar pushes content to the side when open; 'overlay': sidebar overlaps content when open |
+| **sidebar.placeholder** | Provides a placeholder component to render in the sidebar when there are no registered forms            |
+| **sidebar.buttons**     | Enables and configures the text on 'Save' and 'Reset' buttons                                           |
+| **toolbar**             | Configures behavior of the toolbar                                                                      |
+| **toolbar.buttons**     | Configures the text on 'Save' and 'Reset' buttons                                                       |
+| **media.store**         | Configures the [media store](/docs/media).                                                              |
 
-***
+---
 
 ```javascript
 import { TinaCMS } from 'tinacms'
@@ -180,6 +180,6 @@ const cms = new TinaCMS({
   sidebar: {
     position: 'displace',
   },
-  toolbar: false
+  toolbar: false,
 })
 ```
