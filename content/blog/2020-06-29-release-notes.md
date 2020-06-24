@@ -10,7 +10,7 @@ author: Nolan Phillips
 
 ## Changes
 
-### react-tinacms-dates 💥
+### _react-tinacms-dates_ 💥
 
 The date field plugin is no longer one of the default fields provided by `tinacms`.
 
@@ -28,7 +28,7 @@ cms.plugins.add(DateFieldPlugin)
 
 For more information on how you can reduce the size of your bundle by dynamically loading the `DateFieldPlugin` checkout the[ Pull Request](https://github.com/tinacms/tinacms/pull/1281) or visit [the docs](/docs/plugins).
 
-### react-tinacms-github 💥
+### _react-tinacms-github_ 💥
 
 Since this package was made back in the days before we had `cms.events` or `cms.enabled` there is a bit of an awkward interaction between it and the CMS. This week we [released a change](https://github.com/tinacms/tinacms/pull/1287) that addressed those issues.
 
@@ -37,7 +37,7 @@ Since this package was made back in the days before we had `cms.events` or `cms.
 First we need to change the `TinaGithubProvider` props to:
 
 1. Remove `editMode`
-2. Rename `enterEditMode` to `onLogin` 
+2. Rename `enterEditMode` to `onLogin`
 3. Rename `exitEditMode` to `onLogout`
 
 ```diff
@@ -74,6 +74,10 @@ export const EditLink = () => {
   )
 }
 ```
+
+### _tinacms_
+
+TODO
 
 ## Contributors
 
