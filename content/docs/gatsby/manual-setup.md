@@ -9,7 +9,6 @@ consumes:
   - file: /packages/gatsby-plugin-tinacms/gatsby-ssr.tsx
     details: Depends on Tina component wrapping the root element
 ---
-
 Learn how to set up Tina on an existing Gatsby site.
 
 After this guide, you will have installed and added the TinaCMS sidebar to your project. However, this won't make your content editable. Go to the [next guide](/docs/gatsby/markdown) to learn how to make content editable.
@@ -20,15 +19,11 @@ Note: Don't have a site yet? Refer to the [quickstart page](/docs/gatsby/quickst
 
 ## Installation
 
-```
-npm install --save gatsby-plugin-tinacms styled-components
-```
+    npm install --save gatsby-plugin-tinacms styled-components
 
 or
 
-```
-yarn add gatsby-plugin-tinacms styled-components
-```
+    yarn add gatsby-plugin-tinacms styled-components
 
 ## Adding the Plugin
 
@@ -43,8 +38,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-tinacms',
       options: {
+        enabled: process.env.NODE_ENV !== "production",
         sidebar: {
-          hidden: process.env.NODE_ENV === "production",
           position: "displace",
         },
         plugins: [
@@ -61,15 +56,11 @@ module.exports = {
 
 1. **Start the Gatsby development server**
 
-   ```
-   gatsby develop
-   ```
-
-1. **Visit your Website**
+       gatsby develop
+2. **Visit your Website**
 
    Go to https://localhost:8000 to access your website.
-
-1. **Open the CMS**
+3. **Open the CMS**
 
    You will notice there's a pencil icon, this is the way you can toggle the Tina sidebar.
 
