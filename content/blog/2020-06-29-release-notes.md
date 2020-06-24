@@ -88,4 +88,4 @@ Thanks to everyone for contributing!
 
 ## GitHub Milestones
 
-Checkout the [GitHub Milestone](https://github.com/tinacms/tinacms/milestone/1?closed=1) for all the details on this weeks release!
+Checkout the [GitHub Milestone](https://github.com/tinacms/tinacms/milestone/30?closed=1) for all the details on this weeks release!
