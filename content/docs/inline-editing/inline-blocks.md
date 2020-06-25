@@ -207,8 +207,8 @@ interface InlineBlocksProps {
 | `className` | To set styles directly on the input or extend via [styled components](/docs/inline-editing#extending-inline-field-styles). |
 | `direction` | Sets the orientation of the drag direction and `AddBlock` button position. |
 | `itemProps` | An object that passes additional props to every block child element. |
-| `min` | Controls the minimum number of blocks. Once reached, blocks won't be able to be removed. |
-| `max` | Controls the maximum number of blocks allowed. Once reached, blocks won't be able to be added. |
+| `min` | Controls the minimum number of blocks. Once reached, blocks won't be able to be removed. _(Optional)_ |
+| `max` | Controls the maximum number of blocks allowed. Once reached, blocks won't be able to be added. _(Optional)_ |
 
 ### Blocks Source Data
 
