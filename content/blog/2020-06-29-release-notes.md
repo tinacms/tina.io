@@ -28,6 +28,8 @@ cms.plugins.add(DateFieldPlugin)
 
 For more information on how you can reduce the size of your bundle by dynamically loading the `DateFieldPlugin` checkout the[ Pull Request](https://github.com/tinacms/tinacms/pull/1281) or visit [the docs](/docs/plugins).
 
+***
+
 ### _react-tinacms-github_ 💥
 
 Since this package was made back in the days before we had `cms.events` or `cms.enabled` there is a bit of an awkward interaction between it and the CMS. This week we [released a change](https://github.com/tinacms/tinacms/pull/1287) that addressed those issues.
@@ -85,11 +87,11 @@ export const EditLink = () => {
 * Passing `true` is enough; no need for a full config object.
 * The `hidden` property is removed from both the Sidebar and the Toolbar. This is instead controlled via `cms.enabled` .
 
-Checkout the docs to learn more. 
+[Checkout the docs to learn more.](/docs/cms/ui)
 
 ***
 
-###  _react-tinacms-inline_
+### _react-tinacms-inline_
 
 **Maximum and Minimum Block Count**
 
@@ -105,6 +107,8 @@ The `InlineBlocks` field now accepts two more props: `max` and `min` . These opt
 ```
 
 For more information on how blocks work, check out the [docs]() or read [the new guide](/guides/general/inline-blocks/overview)
+
+***
 
 #### _react-tinacms-editor_
 
