@@ -33,42 +33,10 @@ In `[slug].js` we'll fill in our form's `onSubmit` with
           id: values.id,
           title: values.title,
           content: values.rawMarkdownBody,
-          coverImageId: getFileId(values.coverImage.url),
+          coverImageId: cms.media.store.getFileId(values.coverImage.url),
         }
       );
     },
-```
-
-We also need a way to be able tell the form to submit the changes. So we'll create a simple Save button
-
-Place the following component at the bottom of `[slug].js` and then put the component at the bottom of your `InlineForm`.
-
-```js
-export function SaveButton() {
-  const { form } = useInlineForm()
-  /*
-   ** If there are no changes
-   ** to save, return early
-   */
-  if (form.finalForm.getState().pristine) {
-    return null
-  }
-
-  return <TinaButton onClick={form.submit}>Save</TinaButton>
-}
-```
-
-```diff
-    <InlineForm form={form} initialStatus={"active"}>
-    <PostHeader
-        title={post.title}
-        coverImage={process.env.STRAPI_URL + post.coverImage.url}
-        date={post.date}
-        author={post.author}
-    />
-    <PostBody content={post.rawMarkdownBody} />
-+   <SaveButton />
-    </InlineForm>
 ```
 
 Now, whenever you make a change the button will appear. Clicking it will make a mutation request to Strapi's GraphQL endpoint and save your changes.
