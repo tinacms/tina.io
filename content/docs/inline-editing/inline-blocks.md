@@ -208,6 +208,7 @@ interface InlineBlocksProps {
 | `direction` | Sets the orientation of the drag direction and `AddBlock` button position. |
 | `itemProps` | An object that passes additional props to every block child element. |
 | `min` | Controls the minimum number of blocks. Once reached, blocks won't be able to be removed. |
+| `max` | Controls the maximum number of blocks allowed. Once reached, blocks won't be able to be added. |
 
 ### Blocks Source Data
 
