@@ -61,21 +61,25 @@ Head into `pages/_app.js`. We're going to add a button to our pages that will po
 
 First we'll enable or disable Tina based on whether we're in preview mode.
 
+**pages/\_app.js**
+
 ```diff
-  const cms = new TinaCMS({
+  const cms = useMemo(() => new TinaCMS({
++   enabled: pageProps.preview
     sidebar: { hidden: true },
+    toolbar: { hidden: false },
     apis: {
       strapi: new TinaStrapiClient(),
     },
     media: {
       store: new StrapiMediaStore(),
     },
-  });
-
-+ pageProps.preview ? cms.enable() : cms.disable();
+  }));;
 ```
 
-Next, we need to create functions that let our Strapi provider know what we want to do when authenticating/unauthenticating. Add the following two methods to the bottom of `_app.js`..
+Next, we need to create functions that let our Strapi provider know what we want to do when authenticating/unauthenticating. Add the following two methods to the bottom of `_app.js`.
+
+**pages/\_app.js**
 
 ```js
 const enterEditMode = () => {
@@ -93,14 +97,18 @@ const exitEditMode = () => {
 
 Pass these two functions into the Strapi provider, and give Strapi knowledge of whether or not we're in preview mode.
 
+**pages/\_app.js**
+
 ```diff
       <StrapiProvider
--       editMode={false}
-+       editMode={pageProps.preview}
--       enterEditMode={() => {}}
-+       enterEditMode={enterEditMode}
--       exitEditMode={() => {}}
-+       exitEditMode={exitEditMode}
+-       onLogin={() => {
+-         /* we'll come back to this */
+-       }}
+-       onLogout={() => {
+-         /* we'll come back to this */
+-       }}}
++       onLogin={enterEditMode}
++       onLogout={exitEditMode}
       >
         <Component {...pageProps} />
       </StrapiProvider>
@@ -110,12 +118,18 @@ Now the Strapi provider knows to call our two API functions whenever authenticat
 
 Finally, we'll go ahead and actually create a button that will let us enter/exit editing mode. Create a new component:
 
+**pages/\_app.js**
+
 ```js
-export const EditButton = ({ editMode }) => {
-  const strapi = useStrapiEditing()
+import { useCMS } from '@tinacms/react-core'
+
+// ...
+
+export const EditButton = () => {
+  const cms = useCMS()
   return (
-    <button onClick={editMode ? strapi.exitEditMode : strapi.enterEditMode}>
-      {editMode ? 'Stop Editing' : 'Edit This Site'}
+    <button onClick={() => (cms.enabled ? cms.disable() : cms.enable())}>
+      {cms.enabled ? `Stop Editing ` : `Edit this Site `}
     </button>
   )
 }
@@ -123,15 +137,16 @@ export const EditButton = ({ editMode }) => {
 
 For simplicity, we'll just have that button be displayed at the top of every page.
 
+**pages/\_app.js**
+
 ```diff
   return (
     <TinaProvider cms={cms}>
       <StrapiProvider
-        editMode={pageProps.preview}
-        enterEditMode={enterEditMode}
-        exitEditMode={exitEditMode}
+        onLogin={enterEditMode}
+        onLogout={exitEditMode}
       >
-+       <EditButton editMode={pageProps.preview} />
++       <EditButton />
         <Component {...pageProps} />
       </StrapiProvider>
     </TinaProvider>
@@ -139,6 +154,8 @@ For simplicity, we'll just have that button be displayed at the top of every pag
 ```
 
 Now go into our index page and make a quick change to `getStaticProps`. Change the signature so that it accepts a `preview` flag and so that we'll have access to `previewData`..
+
+**pages/index.js**
 
 ```diff
 - export async function getStaticProps() {
@@ -157,11 +174,11 @@ Now go into our index page and make a quick change to `getStaticProps`. Change t
   };
 ```
 
-@TODO: The Modal is extremely janky.
+Now refresh the index page and should see a link that says "Edit This Site". Clicking on it will bring up a login screen. Log in with the credentials you created earlier. You should see it switch to say "Stop Editing".
 
-You can now refresh your index page and should see a link that says "Edit This Site". Clicking on it will bring up a login screen. Log in with the credentials you created earlier. You should see it switch to say "Stop Editing". .
+We also need our blog post pages to use `preview` and `previewData`. So exactly as we did for the index, go into `[slug].js` and add in the following
 
-We also need our blog post pages to use `preview` and `previewData`. So exactly as we did for the index, go into `[slug].js` and add in the followingg
+**pages/posts/\[slug.js\]**
 
 ```diff
 - export async function getStaticProps({ params }) {
@@ -173,8 +190,7 @@ We also need our blog post pages to use `preview` and `previewData`. So exactly 
 +     props: {
 +       post: {
 +         ...post,
-+         content,
-+         rawMarkdownBody: post.content,
++         content
 +       },
 +       preview,
 +       ...previewData,
@@ -187,7 +203,6 @@ We also need our blog post pages to use `preview` and `previewData`. So exactly 
       post: {
         ...post,
         content,
-        rawMarkdownBody: post.content,
       },
     },
   };
