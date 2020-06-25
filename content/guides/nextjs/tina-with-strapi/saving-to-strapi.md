@@ -13,7 +13,7 @@ In `[slug].js` we'll fill in our form's `onSubmit` with
         $id: ID!
         $title: String
         $content: String
-        $coverImageId: ID!
+        $coverImageId: ID
       ) {
         updateBlogPost(
           input: {
