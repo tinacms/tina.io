@@ -195,7 +195,6 @@ interface InlineBlocksProps {
   itemProps?: {
     [key: string]: any
   }
-  limits?: {
   	min?: number
     max?: number
   }
