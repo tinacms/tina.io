@@ -37,7 +37,19 @@ cms.events.dispatch({
 
 ### Subscribing to Events
 
-#### Log All Events
+The `cms.events.subscribe` function can be used to start listening for certain events.
+
+```ts
+cms.events.subscribe(EVENT_NAME, event => {
+  // ...
+})
+```
+
+The `EVENT_NAME` is a string that matches a pattern for the event name.
+
+[Checkout the tests for specific examples of how the matching happens.](https://github.com/tinacms/tinacms/blob/master/packages/@tinacms/core/src/events.test.ts)
+
+#### Log all Events
 
 ```ts
 cms.events.subscribe('*', event => {
@@ -45,29 +57,31 @@ cms.events.subscribe('*', event => {
 })
 ```
 
-#### Log all Plugin Events
+### Log when a Form Plugin is added
 
 ```ts
-cms.events.subscribe('plugins', ({ plugin }) => {
-  console.log(`Something happened to the plugins`)
-})
-```
-
-#### Log when a Form Plugin is added
-
-```ts
-cms.events.subscribe("plugins:add:form", ({ plugin }) => {
-  console.log(`Added form "${plugin.__type}" called "${plugin.name}"`
+cms.events.subscribe("plugins:add:form", (event) => {
+  console.log(`Added a Form called "${event.plugin.name}"`
 })
 ```
 
 #### Log all Form Events
 
 ```ts
-cms.events.subscribe("plugins:*:form", ({ plugin }) => {
-  console.log(`Added form "${plugin.__type}" called "${plugin.name}"`
+cms.events.subscribe('plugins:*:form', event => {
+  console.log(`Something happened to the form plugins`)
 })
 ```
+
+#### Log all Plugin Events
+
+```ts
+cms.events.subscribe('plugins', event => {
+  console.log(`Something happened to the plugins`)
+})
+```
+
+Note that the string `plugins`is equivalent to `plugins:*` or `plugins:*:*`.
 
 ## Existing Events
 
