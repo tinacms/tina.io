@@ -197,7 +197,6 @@ interface InlineBlocksProps {
   }
   min?: number
     max?: number
-  }
 }
 ```
 
