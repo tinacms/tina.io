@@ -62,7 +62,7 @@ We're going to structure our Blog Post type to match the following:
 | `excerpt`    | Text (long)            |                       |
 | `coverImage` | Media (single)         | Allowed Media: Images |
 | `slug`       | UID                    | required, unique      |
-| `date`       | Date (date)            |                       |
+| `date`       | Date (date)            | required              |
 | `authors`    | Relation (many-to-one) |                       |
 
 Click the **Content-type Builder** and **Create a new collection type**. We'll name this type **Blog Post**.
@@ -73,7 +73,7 @@ Let's set up all the fields:
 2. Create two long-text fields called `content` and `excerpt`.
 3. Create a new single-media field called `coverImage`. It should only accept image files.
 4. Create a new **UID** field and call it `slug`. Under **Attached field** choose `title`. Make this field required and unique. This field will automatically be populated from the post's `title`.
-5. Create a new **Date** field and name it `date`. Let's keep things simple by making it a date-only type.
+5. Create a new **Date** field and name it `date`. We'll make this a date only type and make it required.
 6. Create a new **Relation** type and choose the relation that says "Author has many Blog Posts." This will add a field to both content types, which could be useful in the future if we want to add the ability to see all the posts an author has written.
 
 ![Linking author to blog post](/img/strapi-guide/blog_post_author.png)
