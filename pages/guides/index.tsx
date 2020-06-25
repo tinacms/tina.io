@@ -42,7 +42,7 @@ const GuideTemplate = props => {
         },
       ]
     } else {
-      return props.allGuides.sort((a, b) => a.sortID > b.sortID)
+      return props.allGuides.sort((a, b) => a.weight > b.weight)
     }
   }, [props.currentGuide, props.allGuides])
 

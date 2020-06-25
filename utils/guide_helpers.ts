@@ -22,7 +22,7 @@ export interface GuideMeta {
 export interface GuideCategoryMeta {
   key: string
   title: string
-  sortID?: string
+  weight?: number
 }
 
 export interface GuideNavProps {
@@ -98,7 +98,7 @@ export const getGuideNavProps = async (): Promise<any> => {
         path.resolve(`./content/guides/${category}/meta.json`)
       )
       return {
-        sortID: categoryMeta.sortID,
+        weight: Number(categoryMeta.weight),
         id: categoryMeta.key,
         title: categoryMeta.title,
         collapsible: false,
