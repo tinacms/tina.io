@@ -75,9 +75,43 @@ export const EditLink = () => {
 }
 ```
 
-### _tinacms_
+***
 
-TODO
+### _tinacms 💥_
+
+**The third breaking change of this release is updates to the Sidebar and Toolbar** APIs. Due to an awkward transition period, those APIs were inconsistent and awkward to work with. This [pull request]() tries to address that.
+
+* Both the Sidebar and Toolbar are opt-in now
+* Passing `true` is enough; no need for a full config object.
+* The `hidden` property is removed from both the Sidebar and the Toolbar. This is instead controlled via `cms.enabled` .
+
+Checkout the docs to learn more. 
+
+***
+
+###  _react-tinacms-inline_
+
+**Maximum and Minimum Block Count**
+
+The `InlineBlocks` field now accepts two more props: `max` and `min` . These optional fields can be used to limit how many blocks the user can add and remove from the field.
+
+```tsx
+<InlineBlocks 
+  name="feature-list"
+  blocks={FEATURE_BLOCKS}
+  min={1}
+  max={3}
+/>
+```
+
+For more information on how blocks work, check out the [docs]() or read [the new guide](/guides/general/inline-blocks/overview)
+
+#### _react-tinacms-editor_
+
+**Bug Fixes**
+
+* Fixed an issue where creating a table added an extra paragraph to the document.
+* When a Code Block is copied the language setting is now preserved.
 
 ## Contributors
 
