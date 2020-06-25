@@ -22,6 +22,7 @@ export interface GuideMeta {
 export interface GuideCategoryMeta {
   key: string
   title: string
+  sortID?: string
 }
 
 export interface GuideNavProps {
@@ -85,7 +86,6 @@ export const getGuideCategoryMeta = async (
 }
 
 export const getGuideNavProps = async (): Promise<any> => {
-  let props = {}
   const guides = await getAllGuides()
 
   const categories: string[] = Array.from(
@@ -98,6 +98,7 @@ export const getGuideNavProps = async (): Promise<any> => {
         path.resolve(`./content/guides/${category}/meta.json`)
       )
       return {
+        sortID: categoryMeta.sortID,
         id: categoryMeta.key,
         title: categoryMeta.title,
         collapsible: false,
