@@ -4,7 +4,7 @@ title: 'Authenticating with Strapi'
 
 @TODO: imports
 
-Before we can implement an editing experience, we need to set up an authentication experience. To do this, we'll be running through setting up credentials through Strapi. Alternatively, Strapi allows you to log in using third-party auth providers, and they're pretty simple to get running.
+Before we can implement an editing experience, we need to set up an authentication experience. To do this, we'll be running through setting up credentials through Strapi.
 
 ## Using Next.js Preview Mode
 
@@ -13,6 +13,8 @@ If we're authenticated, we're going to display the pages to the user using [Next
 First, we're going to create two API's: one to set `previewData` when we're authenticated, and one to clear `previewData` when we want to unauthenticate..
 
 Create a file called `pages/api/preview.js` and give it the following content.
+
+**pages/api/preview.js**
 
 ```js
 import { STRAPI_JWT } from 'react-tinacms-strapi-bm-test'
@@ -28,9 +30,11 @@ const previewHandler = (req, res) => {
 export default previewHandler
 ```
 
-Upon authenticating, Strapi will pass us a JWT. This API stores a JWT in `previewData` from where we will pull it anytime we want to call a Strapi API.
+Upon authenticating, Strapi will pass us a JWT. We store this JWT in `previewData` from where we will pull it anytime we want to call a Strapi API.
 
 Create another file called `pages/api/reset-preview.ts` and give it the following content.
+
+**pages/api/reset-preview.js**
 
 ```js
 export default (_req, res) => {
@@ -43,15 +47,13 @@ Whenever we call this API, we will clear the preview data, and the user will bec
 
 ## Modify Strapi's Authenticated Role
 
-Previously you gave read access to Public users. Similarly, you must now tell Strapi what permissions to provide Authenticated users. Head to Strapi and go to **Roles & Permissions->Authenticated**..
+In the previous step you gave **Public** users read-access. Now we want to give edit access to **Authenticated** users. Head back to [Roles & Permissions](http://localhost:1337/admin/plugins/users-permissions/roles) in Strapi and click on the **Authenticated** role.
 
-We'll give authenticated users full permissions on blog posts and authors. So click **Select All** on both of those types and then click **Save**.
+To keep things simple, we'll give **Authenticated** users full permissions on **Authors** and **Blog Posts**. Click **Select All** on both of these types and click **Save**.
 
-Additionally, click on the **UPLOAD** section of this page and give the role the **upload** permission. This will allow us to upload new cover images for our blog posts from the front-end.
+Additionally we want these users to be able to upload images to use as a `coverImage`. Click on the **UPLOAD** header on this page and give the role the **upload** permission. Again, click **Save**.
 
-Now is also an excellent time to set up a user you'll be able to log in and change content with. In the left nav click **Users** and then click **Add New user**.
-
-Give them a **Username**, **Email**, **Password**, and set the **Confirmed** toggle to "ON", then click save. In the future, you'll use this account to make content changes from the front-end.
+While we're here, let's also set up a user with the **Authenticated** role. Head over to [Users->Add New User](http://localhost:1337/admin/plugins/content-manager/collectionType/plugins::users-permissions.user/create?redirectUrl=/plugins/content-manager/collectionType/plugins::users-permissions.user). Give them a **Username**, **Email**, **Password**, and set the **Confirmed** toggle to "ON". Give them the **Authenticated** role and then hit the **Save** button.
 
 ## Setup a Simple Authentication Interface
 
