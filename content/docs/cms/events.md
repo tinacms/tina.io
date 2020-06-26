@@ -11,7 +11,7 @@ The **Events** feature allows decoupled parts of the CMS to notify the rest of t
 ```ts
 interface Events {
   dispatch(event: Event): void
-  subscribe(event: string, listener: Listener): Unsubscribe
+  subscribe(eventType: string, listener: Listener): Unsubscribe
 }
 
 interface Event {
