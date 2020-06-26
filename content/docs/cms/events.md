@@ -4,7 +4,10 @@ prev: /docs/cms/apis
 next: /docs/cms/alerts
 ---
 
-The **Events** feature allows decoupled parts of the CMS to notify the rest of the system about certain events which have happened.
+The **Events** feature allows decoupled parts of the CMS to:
+
+  1. Notify the rest of the system that something has happened, and
+  2. React to things that happen elsewhere in the system.
 
 ## Interface
 
