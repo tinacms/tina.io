@@ -12,13 +12,17 @@ We chose to specifically focus on [Inline Blocks](https://tinacms.org/docs/inlin
 
 ## Aesthetics
 
-![comparison of controls and focus ring]()
-
 ### Focus Ring
 
 With inline editing, focus behavior greatly impacts the editing experience. It should **fluidly shift from active to quiet** based on user input, communicating editing state and fostering a sense of control. The feedback loop needs to be tight, without being overbearing. The UI needs to be clear and yet subtle; it should not _eclipse the content_.
 
 With this understanding, we chose to make the visual focus indication more nuanced — taking the stroke to 1px and incorporating a subtle drop shadow. This design helps differentiate an active block from the background while minimizing distraction from the content.
+
+![block controls before](/img/inline-blocks/block-controls.png)
+_Before_
+
+![block controls after](/img/inline-blocks/blocks-controls-redo.png)
+_After_
 
 ### Controls UI
 
@@ -36,7 +40,7 @@ When building blocks-based layouts, we noticed that page-width blocks might caus
 
 We surfaced the ability to precisely control the amount of this offset by passing 'x' and 'y' values to the focus ring configuration. And we provided an `insetControls` prop that will tuck the group or block controls _within_ the upper corner of the element.
 
-![inset controls and focus ring]()
+![inset controls and focus ring](/img/inline-blocks/focus-ring-controls.jpg)
 
 Developers can also control the border radius of the ring — to allow for focus rings that are fully flush with the content or even for circular blocks.
 
@@ -79,6 +83,8 @@ Inline Groups are also a great way to organize numerous inline fields into cohes
 One glaring UX issue we noticed was the Settings Modal action UX. Initially, there was only a cancel and 'exit' button, which effectively did the same thing — closed the modal.
 
 We introduced a _confirm_ button and adjusted the functionality of the cancel button so it actually resets form changes. This clarity for editors to better control and implement changes to the settings form.
+
+![settings-modal](/img/inline-blocks/settings-modal-blog.jpg)
 
 ### Enabling edit mode through the CMS
 
