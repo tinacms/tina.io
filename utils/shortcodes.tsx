@@ -52,7 +52,6 @@ export const FieldExample = styled(({ className, ...field }) => {
         return (
           <>
             <div className={className}>
-              <h3>Example</h3>
               <FieldsBuilder form={form} fields={form.fields} />
             </div>
           </>
@@ -61,9 +60,10 @@ export const FieldExample = styled(({ className, ...field }) => {
     </FormBuilder>
   )
 })`
-  border: 5px solid pink;
-  background: limegreen;
-  margin: 3.1415rem;
+  background-color: rgb(250, 250, 250);
+  border: 1px solid rgb(237, 238, 238);
+  margin: 1.5rem auto;
+  border-radius: 5px;
 `
 
 export const DateFieldExample = () => {
