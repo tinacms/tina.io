@@ -16,9 +16,7 @@ consumes:
 ---
 Inline Blocks combine the content modelling flexibility of regular [Blocks](/blog/what-are-blocks) with the improved editing experience of [Inline Editing](/docs/inline-editing).
 
-> **Please note:** This is considered an unstable API. Any breaking changes will be shared in the weekly [Release Notes](/blog). That said, we will do our best to keep this document up-to-date.
-
-![TinaCMS: Inline Blocks Gif](/gif/inline-blocks.gif)
+> Learn about Inline Blocks in a [step-by-step guide](/guides/general/inline-blocks/overview)!
 
 ## Creating a Block
 
@@ -82,7 +80,7 @@ interface FocusRingProps {
 
 <!-- TODO: update image -->
 
-![TinaCMS: Inline Block Controls](/img/inline-blocks/block-controls.png)
+![TinaCMS: Inline Block Controls](/img/inline-blocks/blocks-controls-redo.png)
 
 The image above shows the _InlineTextarea_ field in use with Blocks Controls.
 
