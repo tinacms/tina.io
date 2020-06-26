@@ -30,6 +30,7 @@ export function FeatureList({ index }) {
           blocks={FEATURE_BLOCKS}
 +         direction="horizontal"
 +         className="feature-list"
++         max={3}
         />
       </div>
     </BlocksControls>
@@ -48,7 +49,18 @@ This class and its grid styles have already been set up in `styles/features.css`
 You may have noticed the new `direction` prop passed to `InlineBlocks` in the above examples. This controls whether the add block buttons render on the top / bottom or left / right. It also sets a direction for the [drag context](https://github.com/atlassian/react-beautiful-dnd#api-%EF%B8%8F). It is `vertical` by default.
 
 ```ts
-direction: 'vertical' | 'horizontal'
+direction?: 'vertical' | 'horizontal'
+```
+
+### Add Block limits
+
+Another addition was the `max` prop being set. You can control block limits with `min` / `max` to ensure the blocks jive with your design.
+
+When the block number reaches the `max` value, additional blocks cannot be added. And likewise when the minimum is reached, additional blocks cannot be deleted. For this layout, the design works best when there are no more than 3 feature blocks, so we set `max={3}`.
+
+```ts
+min?: number
+max?: number
 ```
 
 ## Same solve, but with styled-components
