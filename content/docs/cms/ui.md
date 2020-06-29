@@ -1,26 +1,45 @@
 ---
 title: Editing UI
 prev: /docs/cms/styles
-next:
+next: null
 consumes:
   - file: /packages/react-sidebar/src/sidebar.ts
     details: Shows sidebar interface
   - file: /packages/react-toolbar/src/toolbar.ts
     details: Shows toolbar interface
 ---
+The `tinacms` package provides two possible user interfaces: the sidebar and the toolbar.
 
-The editing UI for Tina is comprised of two main parts: the sidebar and the toolbar. The **sidebar** is a shell for default [forms](/docs/forms) and other [plugins](/docs/plugins). The **toolbar** provides an interface for form actions and form state management.
+The main difference between the two UIs is aesthetics. Both provide access to [Screen Plugins](/blog/screen-plugins) and buttons for _saving_ and _resetting_ [Forms](). The main difference is in how they expect the Form's content to be edited: Form's are rendered within the sidebar, while the toolbar is designed to work with [Inline Editing](/docs/inline-editing). Also, widgets can be added to the toolbar as plugins, as in the case of the Branch Switcher provided by `react-tinacms-github` .
 
-These two components can be used independently of one another, or in tandem. However there are some common patterns of use. For example, if you're project implements GitHub Open Authoring, you'll need the toolbar for the plugins applicable to that workflow, the PR plugin or branch switcher etc. Or if you've set up Inline Editing, you may want to incorporate the toolbar so content editors can easily save their changes without needing to open the sidebar. It is also common for developers to only use the sidebar as the editing interface.
+## Enabling the User Interface
 
-The editing UI configuration is flexible and dependent on the needs of your project.
+By default neither UI is enabled. You can enable one (or both) by setting their flags to true in the `TinaCMS` configuration:
 
-## Sidebar Configuration
+```ts
+new TinaCMS({
+  sidebar: true,
+  toolbar: true,
+})
+```
+
+This will enable the UIs with their default configuration. If you need to configure either UI further, you can pass that object instead:
+
+```ts
+new TinaCMS({
+  sidebar: {
+    position: 'displace'
+  }
+})
+```
+
+Let's take a look at the configuration options for each UI.
+
+### Sidebar Configuration
 
 ```ts
 interface SidebarOptions {
   position?: 'displace' | 'overlay'
-  hidden?: boolean
   buttons?: {
     save: string
     reset: string
@@ -28,11 +47,10 @@ interface SidebarOptions {
 }
 ```
 
-| key          | usage                                                                                                                                                        |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| key | usage |
+| --- | --- |
 | **position** | Determines sidebar **position in relation to the website**. 'displace' (default) moves the whole site over; 'overlay' slides the sidebar on top of the site. |
-| **hidden**   | Controls whether the sidebar is hidden from view.                                                                                                            |
-| **buttons**  | Customizes the string displayed on either the 'save' or 'reset' buttons.                                                                                     |
+| **buttons** | Customizes the string displayed on either the 'save' or 'reset' buttons. |
 
 A site configured to use Tina will display a **blue edit button in the lower-left corner**. Clicking this button will open the sidebar.
 
@@ -42,11 +60,10 @@ Sidebar contents are **contextual**. For example, when using Tina with Markdown 
 
 <!-- TODO: add toolbar photo here -->
 
-## Toolbar Configuration
+### Toolbar Configuration
 
 ```ts
 interface ToolbarOptions {
-  hidden?: boolean
   buttons?: {
     save: string
     reset: string
@@ -54,12 +71,9 @@ interface ToolbarOptions {
 }
 ```
 
-| key         | usage                                                                    |
-| ----------- | ------------------------------------------------------------------------ |
-| **hidden**  | Controls whether the toolbar is hidden from view — defaults to `true`.   |
+| key | usage |
+| --- | --- |
 | **buttons** | Customizes the string displayed on either the 'save' or 'reset' buttons. |
-
-The toolbar ui component is **hidden by default**; if you don't specify the toolbar options in the CMS config, it will not render.
 
 On its own, the toolbar will display the 'save' and 'reset' buttons, along with a form status indicator to show whether there are unsaved changes. [Custom Widgets](/guides/nextjs/github-open-authoring/toolbar-plugins) can also be added to extend functionality for the particular workflow.
 
@@ -75,8 +89,8 @@ You'll want to pass in this option to wherever the plugin is registered in the `
 {
   resolve: "gatsby-plugin-tinacms",
   options: {
+    enabled: process.env.NODE_ENV !== "production",
     sidebar: {
-      hidden: process.env.NODE_ENV === "production",
       position: 'displace'
     },
   }
@@ -87,7 +101,7 @@ You'll want to pass in this option to wherever the plugin is registered in the `
 
 If you followed the implementation in our Next.js docs, you'll want to go to the `_app.js` file where the CMS is registered. Again, depending on your setup with Next + Tina, this config may look slightly different. Note this is also where you might specify the sidebar [display options](https://tinacms.org/docs/concepts/sidebar#sidebar-style).
 
-**pages/\_app.js**
+**pages/_app.js**
 
 ```javascript
 class MyApp extends App {
@@ -95,12 +109,8 @@ class MyApp extends App {
     super()
 
     this.cms = new TinaCMS({
-      sidebar: {
-        hidden: false,
-        position: 'overlay',
-      },
+      sidebar: true,
       toolbar: {
-        hidden: false,
         buttons: {
           save: 'Commit',
         },

@@ -70,9 +70,8 @@ import { withTina } from 'tinacms'
 import MyApp from './my-app'
 
 export default withTina(MyApp, {
-  sidebar: {
-    hidden: process.env.NODE_ENV === 'production',
-  },
+  enabled: process.env.NODE_ENV !== 'production',
+  sidebar: true,
 })
 ```
 
@@ -104,7 +103,7 @@ export default function ExitButton() {
   const cms = useCMS()
 
   return (
-    <button onClick={cms.enabled ? cms.disable() : cms.enable()}>
+    <button onClick={() => cms.toggle()}>
       {cms.enabled ? `Exit Tina` : `Edit with Tina`}
     </button>
   )
@@ -120,44 +119,44 @@ interface TinaCMSConfig {
   enabled?: boolean
   plugins?: Plugin[]
   apis?: { [key: string]: any }
-  sidebar?: {
-    hidden?: boolean
-    position?: SidebarPosition
-    placeholder?: React.FC
-    buttons?: {
-      save: string
-      reset: string
-    }
-  }
-  toolbar?: {
-    hidden?: boolean
-    buttons?: {
-      save: string
-      reset: string
-    }
-  }
+  sidebar?: SidebarConfig | boolean
+  toolbar?: ToolbarConfig | boolean
   media?: {
     store: MediaStore
+  }
+}
+
+interface SidebarConfig {
+  position?: SidebarPosition
+  placeholder?: React.FC
+  buttons?: {
+    save: string
+    reset: string
+  }
+}
+
+interface ToolbarConfig {
+  buttons?: {
+    save: string
+    reset: string
   }
 }
 ```
 
 ---
 
-| key                  | usage                                                                                                   |
-| -------------------- | ------------------------------------------------------------------------------------------------------- |
-| **enabled**          | Controls whether the CMS is enabled or disabled. _Defaults to true_                                     |
-| **plugins**          | Array of plugins to be added to the CMS object.                                                         |
-| **apis**             | Object containing APIs to be registered to the CMS                                                      |
-| **sidebar**          | Configures behavior of the sidebar                                                                      |
-| **sidebar.hidden**   | Removes the sidebar outright                                                                            |
-| **sidebar.position** | 'displace': sidebar pushes content to the side when open; 'overlay': sidebar overlaps content when open |
-| **sidebar.placeholder** | Provides a placeholder component to render in the sidebar when there are no registered forms |
-| **sidebar.buttons**  | Configures the text on 'Save' and 'Reset' buttons                                                       |
-| **toolbar**          | Configures behavior of the toolbar                                                                      |
-| **toolbar.hidden**   | Hides the toolbar altogether — is hidden by default                                                     |
-| **toolbar.buttons**  | Configures the text on 'Save' and 'Reset' buttons                                                       |
-| **media.store**      | Configures the [media store](/docs/media).                                                              |
+| key                     | usage                                                                                                   |
+| ----------------------- | ------------------------------------------------------------------------------------------------------- |
+| **enabled**             | Controls whether the CMS is enabled or disabled. _Defaults to true_                                     |
+| **plugins**             | Array of plugins to be added to the CMS object.                                                         |
+| **apis**                | Object containing APIs to be registered to the CMS                                                      |
+| **sidebar**             | Enables and configures behavior of the sidebar                                                          |
+| **sidebar.position**    | 'displace': sidebar pushes content to the side when open; 'overlay': sidebar overlaps content when open |
+| **sidebar.placeholder** | Provides a placeholder component to render in the sidebar when there are no registered forms            |
+| **sidebar.buttons**     | Enables and configures the text on 'Save' and 'Reset' buttons                                           |
+| **toolbar**             | Configures behavior of the toolbar                                                                      |
+| **toolbar.buttons**     | Configures the text on 'Save' and 'Reset' buttons                                                       |
+| **media.store**         | Configures the [media store](/docs/media).                                                              |
 
 ---
 
@@ -179,11 +178,8 @@ const cms = new TinaCMS({
     },
   },
   sidebar: {
-    hidden: process.env.NODE_ENV === 'production',
     position: 'displace',
   },
-  toolbar: {
-    hidden: true,
-  },
+  toolbar: false,
 })
 ```
