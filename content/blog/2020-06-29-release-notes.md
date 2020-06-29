@@ -5,9 +5,9 @@ author: Nolan Phillips
 ---
 This week we have a few breaking changes, a couple small features, and some bug fixes to share with you!
 
-Last week the TinaCMS team finished up it's first 6-week project on improving  inline editing with blocks. To learn more about inline editing checkout our new guide: [Working with Inline Blocks](https://tinacms.org/guides/general/inline-blocks/overview). We are no taking 2 weeks to cool down, reorient, and pick our next round of projects. 
+Last week the TinaCMS team finished up it's first 6-week project on improving  inline editing with blocks. To learn more about inline editing checkout our new guide: [Working with Inline Blocks](https://tinacms.org/guides/general/inline-blocks/overview). We are no taking 2 weeks to cool down, reorient, and pick our next round of projects.
 
-Have any questions about the release or opinions on what we should focus on next? Head over to the the Forum Topic for this week's release and leave a comment!
+Have any questions about the release or opinions on what we should focus on next? Head over to the [the Forum Topic](https://community.tinacms.org/t/release-notes-june-29-2020/233) for this week's release and leave a comment!
 
 ## Breaking Changes
 
