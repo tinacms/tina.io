@@ -3,14 +3,15 @@ title: 2020-06-29 Release Notes
 date: '2020-06-28T21:00:00-03:00'
 author: Nolan Phillips
 ---
-* What is the core team's current objectives?
-* What was accomplished in the last week?
-* What's next for the core team?
-* Link to any relevant projects
+This week we have a few breaking changes, a couple small features, and some bug fixes to share with you!
 
-## Changes
+Last week the TinaCMS team finished up it's first 6-week project on improving  inline editing with blocks. To learn more about inline editing checkout our new guide: [Working with Inline Blocks](https://tinacms.org/guides/general/inline-blocks/overview). We are no taking 2 weeks to cool down, reorient, and pick our next round of projects. 
 
-### _react-tinacms-dates_ 💥
+Have any questions about the release or opinions on what we should focus on next? Head over to the the Forum Topic for this week's release and leave a comment!
+
+## Breaking Changes
+
+### _react-tinacms-date_ 💥
 
 The date field plugin is no longer one of the default fields provided by `tinacms`.
 
@@ -89,7 +90,7 @@ export const EditLink = () => {
 
 [Checkout the docs to learn more.](/docs/cms/ui)
 
-***
+## Other Changes
 
 ### _react-tinacms-inline_
 
@@ -123,10 +124,12 @@ Thanks to everyone for contributing!
 
 | # Commits | Name |
 | --- | --- |
-|  |  |
-|  |  |
-|  |  |
-|  |  |
+| 29 | Nolan Phillips |
+| 8 | Kendall Strautman |
+| 7 | Scott Byrne |
+| 2 | Logan Anderson |
+| 2 | jpuri |
+| 1 | Jeff See |
 
 ## GitHub Milestones
 
