@@ -1,6 +1,6 @@
 ---
 title: Inline Editing Revamped
-date: 2020-06-29T11:00:00-03:00
+date: '2020-06-29T11:28:19-03:00'
 author: Kendall Strautman
 ---
 
