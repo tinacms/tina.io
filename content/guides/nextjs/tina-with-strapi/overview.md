@@ -8,7 +8,7 @@ This guide will **not** get you fully production-ready. But after running throug
 
 > **The Finished Product**
 >
-> The repository REPO contains the finished Tina portion of this guide. Feel free to take a look as you follow along.
+> The repository [https://github.com/mittonface/tina-strapi-blog](https://github.com/mittonface/tina-strapi-blog) contains the finished Tina portion of this guide. Feel free to take a look as you follow along.
 
 ## What we'll be making
 
