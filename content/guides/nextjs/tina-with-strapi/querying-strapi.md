@@ -52,10 +52,10 @@ export async function getStaticProps() {
 }
 ```
 
-@ TODO add in a step to remove the unused import
+We're no longer using the `getAllPosts` function that the starter provided for us. So we can remove the import.
 
 ```diff
--
+- import { getAllPosts } from '../lib/api'
 ```
 
 Each of the items that I'm querying is used to preview a blog post on the homepage. This _almost_ works how we want it to, but there is one exception in how we need to deal with images.
@@ -169,7 +169,6 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
   const postResults = await fetchGraphql(
-    process.env.STRAPI_URL,
     `
     query{
       blogPosts{
@@ -192,8 +191,10 @@ export async function getStaticPaths() {
 }
 ```
 
+Again, remove the unneeded functions that the starter gave us.
+
 ```diff
-- that bad api import
+- import { getAllPosts, getPostBySlug } from "../../lib/api";
 ```
 
 There are a few more image paths we'll need to update if we expect things to work after making this change.

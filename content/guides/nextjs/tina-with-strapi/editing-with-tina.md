@@ -47,6 +47,8 @@ If you refresh a blog post now, there's a good chance things will look slightly 
 
 To make things a bit easier, we're going to rename the initial post that we hand to our `Post` component to `initialPost`. This will allow us to use the name `post` to hold the values that Tina will pass us, and we won't need to make changes to the page's content.
 
+**pages/posts/\[slug\].js**
+
 ```diff
 - export default function Post({ post, morePosts, preview }) {
 + export default function Post({ post: initialPost, morePosts, preview }) {
@@ -54,20 +56,27 @@ To make things a bit easier, we're going to rename the initial post that we hand
 
 Now we set up a form and the fields that we'll be editing. Check out our [form docs](/docs/forms) to get more information about how to configure forms.
 
+**pages/posts/\[slug\].js**
+
 ```js
 import { useForm, usePlugin } from 'tinacms'
 // ...
-const formConfig = {
-  id: initialPost.id,
-  label: 'Blog Post',
-  initialValues: initialPost,
-  onSubmit: () => {
-    alert('Saving!')
-  },
-  fields: [],
-}
-const [post, form] = useForm(formConfig)
-usePlugin(form)
+
+export default function Post({ post: initialPost, morePosts, preview }) {
+
+  const formConfig = {
+    id: initialPost.id,
+    label: 'Blog Post',
+    initialValues: initialPost,
+    onSubmit: () => {
+      alert('Saving!')
+    },
+    fields: [],
+  }
+  const [post, form] = useForm(formConfig)
+  usePlugin(form)
+
+  //...
 ```
 
 I've left `onSubmit` empty for now. The next page in the guide will show you how to save changes to Strapi.
@@ -78,11 +87,15 @@ We need to install a few more dependencies to give ourselves access to inline an
 yarn add react-tinacms-inline react-markdown react-tinacms-editor
 ```
 
-We'll wrap the portion of the page that we want to be editable with an `InlineForm`..
+We're going to make a few changes to wrap the fields on this page with inline-editable versions. Let's take this piece by piece and explain as we go.
+
+First we'll wrap the entirety of the blog post page with an inline form.
 
 **pages/posts/\[slug\].js**
 
 ```diff
++ import { InlineForm } from "react-tinacms-inline";
+   // ...
 +  <InlineForm form={form} initialStatus={"active"}>
       <PostHeader
       title={post.title}
@@ -94,17 +107,50 @@ We'll wrap the portion of the page that we want to be editable with an `InlineFo
 +  </InlineForm>
 ```
 
-Then we will use the appropriate inline fields on each of the fields that we want to be editable.
+Next we need to go into the components used on this page, and wrap the content with the appropriate inline-fields. The `title` is just a simple `InlineText` field.
 
 **components/post-header.js**
 
 ```diff
 +  import { InlineText } from 'react-tinacms-inline'
+
+   // ...
    <PostTitle>
 -    {title}
 +    <InlineText name="title" />
    </PostTitle>
 ```
+
+A little more complicated is the `InlineImage` field that we'll need to include. This field needs a bit of additional contex because it needs to know how to upload and display the image that lives in the Strapi server.
+
+**components/post-header.js**
+
+```diff
++ import { useCMS } from "tinacms";
+  export default function PostHeader({ title, coverImage, date, author }) {
++   const cms = useCMS();
+    // ...
+
+  <div className="mb-8 md:mb-16 -mx-5 sm:mx-0">
+-    <CoverImage title={title} src={coverImage} />
++    <InlineImage
++      name="coverImage.url"
++      previewSrc={(formValues) => {
++        process.env.STRAPI_URL + cms.media.store.getFilePath(formValues.coverImage.url)
++      }}
++      uploadDir={() => "/uploads"}
++      parse={(filename) => {
++        return `/uploads/${filename}`;
++      }}
++    >
++      {() => <img src={coverImage} alt={`Cover Image for ${title}`} />}
++    </InlineImage>
+   </div>
+```
+
+Here we used the `useCMS` hook to get access to our CMS object. In `_app.js` we've attached a Strapi media store to this object, and we need access to that here to help us resolve image urls.
+
+Now let's head over to `post-body.js` and wrap the content of our blog post with a WYSIWYG markdown editor. This will take care of the markdown parsing that we removed earlier.
 
 **components/post-body.js**
 
@@ -123,26 +169,4 @@ export default function PostBody({ content }) {
 }
 ```
 
-**components/post-header.js**
-
-```diff
- <div className="-mx-5 sm:mx-0">
--   <CoverImage title={title} src={coverImage} />
-+   <InlineImage
-+     name="coverImage.url"
-+     previewSrc={(formValues) => {
-+       process.env.STRAPI_URL + getFilePath(formValues.coverImage.url)
-+     }}
-+     uploadDir={() => "/uploads"}
-+     parse={(filename) => {
-+       return `/uploads/${filename}`;
-+     }}
-+   >
-+     {() => <img src={coverImage} alt={`Cover Image for ${title}`} />}
-+   </InlineImage>
- </div>
-```
-
-> It may look weird that we're not adding the `InlineImage` field to **post-header.js** instead of **cover-image.js**, but we're doing this because **CoverImage** is also used on the index page, where we don't want to add an editing experience.
-
-Now reload one of your blog posts, if you previously noticed that formatting was missing you should notice that it's back. Click on the button to **Edit this Site** and you should see that you can now change the fields on this page.
+Now reload one of your blog posts, if you previously noticed that formatting was missing you should notice that it's back. Click on the button to **Edit this Site** and you should see that you can now change the fields on this page. Clicking the save button won't quite work yet. That's our next and final step!

@@ -2,22 +2,20 @@
 title: 'Authenticating with Strapi'
 ---
 
-@TODO: imports
-
 Before we can implement an editing experience, we need to set up an authentication experience. To do this, we'll be running through setting up credentials through Strapi.
 
 ## Using Next.js Preview Mode
 
 If we're authenticated, we're going to display the pages to the user using [Next.js' Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode) and display an editing interface to the user.
 
-First, we're going to create two API's: one to set `previewData` when we're authenticated, and one to clear `previewData` when we want to unauthenticate..
+First, we're going to create two API's: one to set `previewData` when we're authenticated, and one to clear `previewData` when we want to unauthenticate.
 
 Create a file called `pages/api/preview.js` and give it the following content.
 
 **pages/api/preview.js**
 
 ```js
-import { STRAPI_JWT } from 'react-tinacms-strapi-bm-test'
+import { STRAPI_JWT } from 'react-tinacms-strapi'
 const previewHandler = (req, res) => {
   const previewData = {
     strapi_jwt: req.cookies[STRAPI_JWT],
@@ -65,9 +63,10 @@ First we'll enable or disable Tina based on whether we're in preview mode.
 
 ```diff
   const cms = useMemo(() => new TinaCMS({
+    sidebar: false,
+-   toolbar: false,
++   toolbar: pageProps.preview,
 +   enabled: pageProps.preview
-    sidebar: { hidden: true },
-    toolbar: { hidden: false },
     apis: {
       strapi: new TinaStrapiClient(),
     },
@@ -153,7 +152,7 @@ For simplicity, we'll just have that button be displayed at the top of every pag
   );
 ```
 
-Now go into our index page and make a quick change to `getStaticProps`. Change the signature so that it accepts a `preview` flag and so that we'll have access to `previewData`..
+Now go into our index page and make a quick change to `getStaticProps`. Change the signature so that it accepts a `preview` flag and so that we'll have access to `previewData`.
 
 **pages/index.js**
 
@@ -170,11 +169,12 @@ Now go into our index page and make a quick change to `getStaticProps`. Change t
 + }
 
   return {
-    props: { allPosts: postResults.data.blogPosts },
+-    props: { allPosts: postResults.data.blogPosts },
++    props: { allPosts: postResults.data.blogPosts, preview: false },
   };
 ```
 
-Now refresh the index page and should see a link that says "Edit This Site". Clicking on it will bring up a login screen. Log in with the credentials you created earlier. You should see it switch to say "Stop Editing".
+Now refresh the index page and should see a link that says "Edit This Site". Clicking on it will bring up a login screen. Log in with the credentials you created earlier. You should see the Tina toolbar appear and the link should change to "Stop Editing".
 
 We also need our blog post pages to use `preview` and `previewData`. So exactly as we did for the index, go into `[slug].js` and add in the following
 
@@ -204,6 +204,7 @@ We also need our blog post pages to use `preview` and `previewData`. So exactly 
         ...post,
         content,
       },
++     preview: false,
     },
   };
 ```
