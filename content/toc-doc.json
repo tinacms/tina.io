@@ -31,6 +31,11 @@
         "slug": "/docs/cms/apis"
       },
       {
+        "id": "/docs/cms/events",
+        "title": "Events",
+        "slug": "/docs/cms/events"
+      },
+      {
         "id": "/docs/cms/alerts",
         "title": "Alerts",
         "slug": "/docs/cms/alerts"

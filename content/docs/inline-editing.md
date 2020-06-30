@@ -15,6 +15,8 @@ _Inline Editing_ in Tina refers to editing values directly in the area they appe
 2. [Add Inline Fields](/docs/inline-editing#using-preconfigured-inline-fields)
 3. [Set up Inline Controls](/docs/inline-editing#set-up-inline-form-controls)
 
+> Play around with this [simple demo](https://logan-anderson.github.io/cra-hosted-demo/) to get a feel for Inline Editing. Get familiar with the Inline Editing API in this [step-by-step guide](/guides/general/inline-blocks/overview).
+
 ## Adding Inline Editing with _InlineForm_
 
 The `InlineForm` and `InlineField` components can be used to set up inline editing in your layout. `InlineForm` receives the form object created via one of the [form hooks](/docs/forms) in order to provide it to the inline editing context.

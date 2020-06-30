@@ -127,7 +127,7 @@ export const DocsNav = styled(({ open, navItems, ...styleProps }) => {
             src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
             frameBorder="0"
             scrolling="0"
-            width="145px"
+            width="150px"
             height="30px"
           ></iframe>
         </li>

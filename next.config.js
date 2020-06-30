@@ -1,12 +1,18 @@
 const { aliasTinaDev } = require('@tinacms/webpack-helpers')
 
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin')
 const withSvgr = require('next-svgr')
+
 require('dotenv').config()
+
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
 
 const dummyMailchimpEndpoint =
   'https://theDomainHere.us18.list-manage.com/subscribe/post?u=1512315231251&amp;id=0asd21t12e1'
 
-module.exports = withSvgr({
+const config = {
   env: {
     MAILCHIMP_ENDPOINT:
       process.env.NODE_ENV === 'production'
@@ -31,14 +37,20 @@ module.exports = withSvgr({
       }
       aliasTinaDev(config, process.env.TINA, watch)
     }
+
     config.module.rules.push({
       test: /\.md$/,
       use: 'raw-loader',
     })
+
     config.node = {
       fs: 'empty',
     }
 
+    config.plugins.push(new MomentLocalesPlugin())
+
     return config
   },
-})
+}
+
+module.exports = withBundleAnalyzer(withSvgr(config))

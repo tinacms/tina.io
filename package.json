@@ -23,6 +23,7 @@
     "deploy": "yarn build && yarn export"
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^9.4.4",
     "@tinacms/api-git": "^0.7.0",
     "@tinacms/git-client": "^0.6.7",
     "@types/react-instantsearch-dom": "^5.2.6",
@@ -47,6 +48,7 @@
     "jsonp": "^0.2.1",
     "matter": "^0.2.0",
     "moment": "^2.24.0",
+    "moment-locales-webpack-plugin": "^1.2.0",
     "next": "9.3.3",
     "next-seo": "^4.1.0",
     "next-svgr": "0.0.2",

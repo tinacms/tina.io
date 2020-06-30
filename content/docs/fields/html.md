@@ -11,6 +11,28 @@ The `html` field represents a chunk of HTML content.
 
 ![tinacms-markdown-field](/img/fields/markdown.png)
 
+## Options
+
+```typescript
+interface HtmlConfig {
+  component: 'html'
+  name: string
+  label?: string
+  description?: string
+}
+```
+
+| Option        | Description                                                                                     |
+| ------------- | ----------------------------------------------------------------------------------------------- |
+| `component`   | The name of the plugin component. Always `'html'`.                                              |
+| `name`        | The path to some value in the data being edited.                                                |
+| `label`       | A human readable label for the field. Defaults to the `name`. _(Optional)_                      |
+| `description` | Description that expands on the purpose of the field or prompts a specific action. _(Optional)_ |
+
+> This interfaces only shows the keys unique to the html field.
+>
+> Visit the [Field Config](/docs/fields) docs for a complete list of options.
+
 ## Adding the Plugin
 
 The `html` field plugin is not a default plugin. In order to use it in your site you must install the `react-tinacms-editor` package:
@@ -43,22 +65,5 @@ const BlogPostForm = {
     },
     // ...
   ],
-}
-```
-
-## Options
-
-- `name`: The path to some value in the data being edited.
-- `label`: A human readable label for the field. This label displays in the sidebar and is optional. If no label is provided, the sidebar will default to the name.
-- `description`: An optional description that expands on the purpose of the field or prompts a specific action.
-
-## Interface
-
-```typescript
-interface HtmlConfig {
-  name: string
-  component: 'html'
-  label?: string
-  description?: string
 }
 ```
