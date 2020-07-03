@@ -4,6 +4,17 @@ title: 'Setting up Strapi'
 
 We've chosen to work with Strapi for this example because it's open-source and pretty easy to use and customize. I would expect that much of what we cover will apply to other CMS's. Feel free to take a look at [Strapi's documentation](https://strapi.io/documentation/v3.x/getting-started/quick-start.html) to help you along.
 
+## Requirements
+
+In order to run Strapi locally you need the following:
+
+| Software | Minimum Version |
+| -------- | --------------- |
+| Node.js  | 12.X            |
+| npm      | 6.X             |
+
+Addtionally we'll be using `yarn` throughout this guide. You can install it by following this [getting started guide](https://classic.yarnpkg.com/en/docs/getting-started).
+
 ## Install Strapi Locally
 
 Installing Strapi is simple, just run the following command.
@@ -55,15 +66,15 @@ Next, we'll click on **Add another field** and select the **Media** type. We're 
 
 We're going to structure our Blog Post type to match the following:
 
-| Field Name   | Type                   | Advanced Settings     |
-| ------------ | ---------------------- | --------------------- |
-| `title`      | Text (short)           | required, unique      |
-| `content`    | Text (long)            |                       |
-| `excerpt`    | Text (long)            |                       |
-| `coverImage` | Media (single)         | Allowed Media: Images |
-| `slug`       | UID                    | required, unique      |
-| `date`       | Date (date)            | required              |
-| `authors`    | Relation (many-to-one) |                       |
+| Field Name   | Type                    | Advanced Settings     |
+| ------------ | ----------------------- | --------------------- |
+| `title`      | Text (short)            | required, unique      |
+| `content`    | Text (long)             |                       |
+| `excerpt`    | Text (long)             |                       |
+| `coverImage` | Media (single)          | Allowed Media: Images |
+| `slug`       | UID (linked to `title`) | required, unique      |
+| `date`       | Date (date)             | required              |
+| `authors`    | Relation (many-to-one)  |                       |
 
 Click the **Content-type Builder** and **Create a new collection type**. We'll name this type **Blog Post**.
 
