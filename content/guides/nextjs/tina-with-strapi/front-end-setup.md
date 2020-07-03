@@ -91,7 +91,8 @@ export default function MyApp({ Component, pageProps }) {
         media: {
           store: new StrapiMediaStore(),
         },
-      })
+      }),
+    []
   )
   return (
     <TinaProvider cms={cms}>

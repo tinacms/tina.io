@@ -73,7 +73,7 @@ First we'll enable or disable Tina based on whether we're in preview mode.
     media: {
       store: new StrapiMediaStore(),
     },
-  }));;
+  }), []);
 ```
 
 Next, we need to create functions that let our Strapi provider know what we want to do when authenticating/unauthenticating. Add the following two methods to the bottom of `_app.js`.
