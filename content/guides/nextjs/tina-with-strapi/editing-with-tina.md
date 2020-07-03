@@ -6,7 +6,7 @@ At this point, we have a blog that is pulling all its data from Strapi! You _cou
 
 ## Prepare our page
 
-Almost all of the work we'll be doing will be in `pages/posts/[slug].js`. Our goal is to be able to make changes to a blog post's `content`, `title`, and `coverImage` without having to log in to Strapi.
+Almost all of the work we'll be doing will be in `pages/posts/[slug].js`. Our goal is to be able to make changes to a blog post's `content`, `title`, and `coverImage` without logging in to the Strapi admin interface.
 
 ### Transform Markdown on the Frontend
 
@@ -127,6 +127,8 @@ A little more complicated is the `InlineImage` field that we'll need to include.
 
 ```diff
 + import { useCMS } from "tinacms";
++ import { InlineImage } from 'react-tinacms-inline'
+
   export default function PostHeader({ title, coverImage, date, author }) {
 +   const cms = useCMS();
     // ...

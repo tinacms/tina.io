@@ -63,8 +63,8 @@ First we'll enable or disable Tina based on whether we're in preview mode.
 
 ```diff
   const cms = useMemo(() => new TinaCMS({
-    sidebar: false,
--   toolbar: false,
+-   toolbar: true,
+-   enabled: true,
 +   toolbar: pageProps.preview,
 +   enabled: pageProps.preview
     apis: {

@@ -8,7 +8,7 @@ We're ready to start pulling the data from Strapi instead of the filesystem. To 
 
 By default, you won't be able to access any data from Strapi without authentication. For our purposes, let's give unauthenticated users read access to our two content types.
 
-Head back to Strapi and click on [**Roles & Permissions**](http://localhost:1337/admin/plugins/users-permissions/roles) in the sidebar. Click into the **Public** role. On this page, we can adjust our permissions for the Author and Blog-post types. Give the public access to **count**, **find**, and **findone** then click the **Save** button..
+Head back to Strapi and click on [**Roles & Permissions**](http://localhost:1337/admin/plugins/users-permissions/roles) in the sidebar. Click into the **Public** role. On this page, we can adjust our permissions for the **Author** and **Blog Post** types. Give the public access to **count**, **find**, and **findone** then click the **Save** button..
 
 ![Public permission configuration](/img/strapi-guide/public_permissions.png)
 

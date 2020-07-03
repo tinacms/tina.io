@@ -68,23 +68,23 @@ In `pages/_app.js`, we're going to configure our site to have access to Tina and
 **pages/\_app.js**
 
 ```js
-import "../styles/index.css";
+import '../styles/index.css'
 
 import {
   StrapiMediaStore,
   StrapiProvider,
   TinaStrapiClient,
-} from "react-tinacms-strapi-bm-test";
-import { TinaCMS, TinaProvider } from "tinacms";
+} from 'react-tinacms-strapi'
+import { TinaCMS, TinaProvider } from 'tinacms'
 
-import { useMemo } from "react";'
+import { useMemo } from 'react'
 
 export default function MyApp({ Component, pageProps }) {
   const cms = useMemo(
     () =>
       new TinaCMS({
-        sidebar: false,
-        toolbar: false,
+        toolbar: true,
+        enabled: true,
         apis: {
           strapi: new TinaStrapiClient(),
         },
