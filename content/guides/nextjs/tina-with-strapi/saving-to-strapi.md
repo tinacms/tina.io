@@ -49,6 +49,11 @@ Now we'll replace the dummy `onSubmit` that we created earlier with a function t
           coverImageId: cms.media.store.getFileId(values.coverImage.url),
         }
       );
+      if (response.data) {
+        cms.alerts.success("Changes Saved");
+      } else {
+        cms.alerts.error("Error saving changes");
+      }
     },
 ```
 
