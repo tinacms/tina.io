@@ -1,6 +1,6 @@
 ---
-title: My Post
+title: My post
 date: '2020-07-05T15:28:48+08:00'
-author: Andrei
+author: Person
 ---
-New post, who dis?
+Hello!
