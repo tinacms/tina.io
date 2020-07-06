@@ -10,7 +10,6 @@ const blogPattern = new RegExp('(.)?/blog/(.)+')
 const guidePattern = RegExp('(.)?/guides/(.)+')
 
 export function getDynamicPath(url: string) {
-  console.log(url)
   if (docsPattern.test(url)) {
     return '/docs/[...slug]'
   }
