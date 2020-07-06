@@ -63,22 +63,22 @@ import { apiProxy } from 'next-tinacms-github'
 + export default apiProxy(process.env.SIGNING_KEY)
 ```
 
-**Also**, `enterEditMode` needs to pass the new token that is in local storage as an authorization header to the `/api/preview` route, like this:
+**Also**, `onLogin` needs to pass the new token that is in local storage as an authorization header to the `/api/preview` route, it should be changed to this:
 
 ```diff
-const enterEditMode = () => {
-+ const token = localStorage.getItem('tinacms-github-token') || null
+const onLogin = async () => {
+  const token = localStorage.getItem('tinacms-github-token') || null
+  const headers = new Headers()
 
-+ const headers = new Headers()
+  if (token) {
+    headers.append('Authorization', 'Bearer ' + token)
+  }
 
-+ if (token) {
-+  headers.append('Authorization', 'Bearer ' + token)
-+ }
+  const resp = await fetch(`/api/preview`, { headers: headers })
+  const data = await resp.json()
 
-- return fetch(`/api/preview`).then(() => {
-+ return fetch(`/api/preview`, { headers: headers }).then(() => {
-    window.location.href = window.location.pathname
-  })
+  if (resp.status == 200) window.location.href = window.location.pathname
+  else throw new Error(data.message)
 }
 ```
 
