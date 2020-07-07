@@ -21,6 +21,7 @@ Tina provides a few _Toolbar Plugins_ that expose more information and functiona
    }
 
    const [data, form] = useGithubJsonForm(file, formOptions)
+   usePlugin(form)
 
 +  useGithubToolbarPlugins()
 
