@@ -62,7 +62,7 @@ export default class Site extends App {
     this.cms = new TinaCMS({
       enabled: process.env.NODE_ENV !== 'production',
       apis: {
-        git: new GitClient('http://localhost:3000/___tina'),
+        git: new GitClient('/___tina'),
       },
       sidebar: {
         position: 'overlay',

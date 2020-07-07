@@ -150,7 +150,7 @@ app.prepare().then(() => {
     return handle(req, res)
   })
 
-  server.listen(port, err => {
+  server.listen(port, (err) => {
     if (err) throw err
     console.log(`> Ready on http://localhost:${port}`)
   })
@@ -184,7 +184,7 @@ class MyApp extends App {
     super()
     this.cms = new TinaCMS()
     // create the client
-    const client = new GitClient('http://localhost:3000/___tina')
+    const client = new GitClient('/___tina')
     // register client with the cms
     this.cms.registerApi('git', client)
   }
@@ -212,7 +212,7 @@ As a recap from [Part I](https://tinacms.org/blog/simple-markdown-blog-nextjs/),
 First, we need to add an additional property to the return object from `getInitialProps` called `fileRelativePath`. Tina needs this path in order to know what file to update. Here’s an example of how you could add `fileRelativePath`:
 
 ```javascript
-BlogTemplate.getInitialProps = async function(ctx) {
+BlogTemplate.getInitialProps = async function (ctx) {
   const { slug } = ctx.query
   const content = await import(`../../posts/${slug}.md`)
   const config = await import(`../../data/config.json`)

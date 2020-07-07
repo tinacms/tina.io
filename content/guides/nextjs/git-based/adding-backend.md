@@ -54,7 +54,7 @@ app.prepare().then(() => {
     return handle(req, res)
   })
 
-  server.listen(port, err => {
+  server.listen(port, (err) => {
     if (err) throw err
     console.log(`> Ready on http://localhost:${port}`)
   })
@@ -114,7 +114,7 @@ Now we need to configure the CMS to consume the Git API now running on the backe
 When creating an instance of `GitClient`, we need to pass it the URL where the API endpoints can be reached. Since we're running the server locally on port 3000, the full URL to our Git backend is `http://localhost:3000/___tina`. We could then instantiate the Git client as follows:
 
 ```javascript
-const client = new GitClient('http://localhost:3000/___tina')
+const client = new GitClient('/___tina')
 ```
 
 We'll need to amend our `_app.js` application wrapper to register this with the CMS. We can pass [APIs](/docs/cms/apis), [Media](/docs/media), and [UI](/docs/cms/ui-components) settings in a config object to `TinaCMS`.
@@ -131,7 +131,7 @@ class MyApp extends App {
   constructor() {
     super()
 
-    const client = new GitClient('http://localhost:3000/___tina')
+    const client = new GitClient('/___tina')
 
     this.cms = new TinaCMS({
       apis: {
