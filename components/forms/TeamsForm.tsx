@@ -9,6 +9,7 @@ export function TeamsForm(props: any) {
   const [technology, setTechnology] = useState('')
   const [projectDetails, setProjectDetails] = useState('')
   const [email, setEmail] = useState('')
+  const [company, setCompany] = useState('')
 
   async function postForm(data: any) {
     const hubspotFormID = process.env.HUBSPOT_TEAMS_FORM_ID
@@ -54,6 +55,9 @@ export function TeamsForm(props: any) {
   function handleTechnologyChange(e: React.ChangeEvent<HTMLInputElement>) {
     setTechnology(e.target.value)
   }
+  function handleCompanyChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setCompany(e.target.value)
+  }
 
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -80,6 +84,10 @@ export function TeamsForm(props: any) {
           name: 'project_details',
           value: projectDetails,
         },
+        {
+          name: 'company',
+          value: company,
+        },
       ],
     }
     if (process.env.NODE_ENV === 'production') {
@@ -91,7 +99,7 @@ export function TeamsForm(props: any) {
 
   return (
     <StyledForm onSubmit={handleSubmit}>
-      <h3>Teams Early Access</h3>
+      <h3>Enterprise Early Access</h3>
       <label>
         <p>First Name</p>
         <Input
@@ -121,6 +129,16 @@ export function TeamsForm(props: any) {
           required
           value={email}
           onChange={handleEmailChange}
+        />
+      </label>
+      <label>
+        <p>Company?</p>
+        <Input
+          type="text"
+          id="company"
+          name="company"
+          value={company}
+          onChange={handleCompanyChange}
         />
       </label>
       <label>

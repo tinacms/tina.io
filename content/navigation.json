@@ -24,9 +24,9 @@
     "external": false
   },
   {
-    "id": "teams",
-    "label": "Teams",
-    "href": "/teams",
+    "id": "enterprise",
+    "label": "Enterprise",
+    "href": "/enterprise",
     "external": false
   }
 ]

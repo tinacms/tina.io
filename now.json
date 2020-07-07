@@ -71,6 +71,10 @@
     {
       "source": "/docs/nextjs/markdown",
       "destination": "/docs/nextjs/next-tinacms-markdown"
+    },
+    {
+      "source": "/teams",
+      "destination": "/enterprise"
     }
   ]
 }
