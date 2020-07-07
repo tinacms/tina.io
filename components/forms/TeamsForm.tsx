@@ -132,7 +132,7 @@ export function TeamsForm(props: any) {
         />
       </label>
       <label>
-        <p>Company?</p>
+        <p>Company</p>
         <Input
           type="text"
           id="company"
