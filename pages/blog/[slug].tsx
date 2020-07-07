@@ -15,7 +15,6 @@ import { useGithubMarkdownForm } from 'react-tinacms-github'
 import { fileToUrl } from '../../utils/urls'
 import { OpenAuthoringSiteForm } from '../../components/layout/OpenAuthoringSiteForm'
 const fg = require('fast-glob')
-import { useGithubEditing } from 'react-tinacms-github'
 import { Button } from '../../components/ui/Button'
 import Error from 'next/error'
 import { getMarkdownPreviewProps } from '../../utils/getMarkdownFile'
@@ -216,17 +215,12 @@ const MetaBit = styled.p`
  */
 
 const EditLink = ({ isEditMode }) => {
-  const openAuthoring = useGithubEditing()
+  const cms = useCMS()
 
   return (
-    <EditButton
-      id="OpenAuthoringBlogEditButton"
-      onClick={
-        isEditMode ? openAuthoring.exitEditMode : openAuthoring.enterEditMode
-      }
-    >
-      {isEditMode ? <CloseIcon /> : <EditIcon />}
-      {isEditMode ? 'Exit Edit Mode' : 'Edit This Post'}
+    <EditButton id="OpenAuthoringBlogEditButton" onClick={cms.toggle}>
+      {cms.enabled ? <CloseIcon /> : <EditIcon />}
+      {cms.enabled ? 'Exit Edit Mode' : 'Edit This Post'}
     </EditButton>
   )
 }
