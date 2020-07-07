@@ -19,7 +19,7 @@ import { Button } from '../../components/ui/Button'
 import Error from 'next/error'
 import { getMarkdownPreviewProps } from '../../utils/getMarkdownFile'
 import { InlineWysiwyg } from '../../components/inline-wysiwyg'
-import { usePlugin } from 'tinacms'
+import { usePlugin, useCMS } from 'tinacms'
 
 function BlogTemplate({ file, siteConfig, preview }) {
   // fallback workaround
@@ -214,7 +214,7 @@ const MetaBit = styled.p`
  ** Edit Button ------------------------------------------------------
  */
 
-const EditLink = ({ isEditMode }) => {
+const EditLink = () => {
   const cms = useCMS()
 
   return (
