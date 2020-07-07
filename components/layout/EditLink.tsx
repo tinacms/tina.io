@@ -4,9 +4,7 @@ import { Button } from '../ui'
 
 interface EditLinkProps {
   color?: 'white' | 'primary' | 'secondary' | 'seafoam' | 'variable'
-  preview: boolean
 }
-import { useGithubEditing } from 'react-tinacms-github'
 
 export const EditLink = ({ color, preview }: EditLinkProps) => {
   const openAuthoring = useGithubEditing()
