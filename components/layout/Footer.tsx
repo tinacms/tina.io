@@ -196,7 +196,7 @@ export const Footer = styled(({ light: boolean, preview, ...styleProps }) => {
           <EmailForm isFooter />
         </FooterForm>
         <Footnote>
-          <EditLink color={'primary'} preview={preview} />
+          <EditLink color={'primary'} />
           <a
             href="https://github.com/tinacms/tinacms/blob/master/LICENSE"
             target="_blank"

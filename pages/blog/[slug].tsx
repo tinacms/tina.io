@@ -79,7 +79,7 @@ function BlogTemplate({ file, siteConfig, preview }) {
                   <InlineTextareaField name="frontmatter.author" />
                 </MetaBit>
               </MetaWrap>
-              <EditLink isEditMode={preview} />
+              <EditLink />
             </BlogMeta>
             <InlineWysiwyg name="markdownBody">
               <MarkdownContent escapeHtml={false} content={markdownBody} />
