@@ -13,6 +13,7 @@ import { GlobalStyle } from '../components/styles/GlobalStyle'
 const MainLayout = ({ Component, pageProps }) => {
   const tinaConfig = {
     enabled: pageProps.preview,
+    toolbar: pageProps.preview,
     apis: {
       github: new GithubClient({
         proxy: '/api/proxy-github',
@@ -25,21 +26,27 @@ const MainLayout = ({ Component, pageProps }) => {
           ? new BrowserStorageApi(window.localStorage)
           : {},
     },
-    sidebar: {
-      hidden: true,
-      position: 'displace' as any,
-    },
-    toolbar: {
-      hidden: !pageProps.preview,
-    },
   }
 
   const cms = React.useMemo(() => new TinaCMS(tinaConfig), [])
 
-  const enterEditMode = () =>
-    fetch(`/api/preview`).then(() => {
-      window.location.href = window.location.pathname
-    })
+  const enterEditMode = async () => {
+    const token = localStorage.getItem('tinacms-github-token') || null
+    const headers = new Headers()
+
+    if (token) {
+      headers.append('Authorization', 'Bearer ' + token)
+    }
+
+    const response = await fetch(`/api/preview`, { headers })
+    const data = await response.json()
+
+    if (response.status === 200) {
+      window.location.reload()
+    } else {
+      throw new Error(data.message)
+    }
+  }
 
   const exitEditMode = () => {
     fetch(`/api/reset-preview`).then(() => {
@@ -55,9 +62,8 @@ const MainLayout = ({ Component, pageProps }) => {
       {loadFonts && <FontLoader />}
       <ModalProvider>
         <TinacmsGithubProvider
-          enterEditMode={enterEditMode}
-          exitEditMode={exitEditMode}
-          editMode={pageProps.preview}
+          onLogin={enterEditMode}
+          onLogout={exitEditMode}
           error={pageProps.error}
         >
           <DefaultSeo
