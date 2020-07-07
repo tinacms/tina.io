@@ -68,7 +68,7 @@ export const EditLink = () => {
     <button
       onClick={
 -       github.editMode ? github.exitEditMode : github.enterEditMode
-+       cms.enabled ? cms.disable() : cms.enable()
++       () => cms.toggle()
       }
     >
 -     {isEditing ? 'Exit Edit Mode' : 'Edit This Site'}
