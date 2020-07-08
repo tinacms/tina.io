@@ -9,7 +9,7 @@ The **List Field** represents an array of [primitive](https://developer.mozilla.
 
 Use this field when you want to support _multiple entities_ that all output a single value. Each entity will appear in a list where you can edit, add and delete them. Fields that can be used to edit the array of primitive values in the list are: text, textarea, number & select.
 
-![tinacms-group-list-gif](/img/fields/list-field.png)
+![tinacms-list-field](/img/fields/list-field.png)
 
 ## Options
 
