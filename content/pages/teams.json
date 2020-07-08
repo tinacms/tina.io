@@ -1,19 +1,19 @@
 {
   "title": "Enterprise",
-  "description": "The power of Tina for the entire team.",
-  "headline": "The power of Tina for the entire team",
+  "description": "The power of Tina for the enterprise.",
+  "headline": "The power of Tina for the enterprise",
   "supporting_points": [
     {
       "_template": "point",
-      "point": "Manage a custom cloud editing environment for you and your team"
+      "point": "Content API"
     },
     {
       "_template": "point",
-      "point": "Authentication and role-based access controls"
+      "point": "Authentication, SSO and role-based access controls"
     },
     {
       "_template": "point",
-      "point": "Git-backed (other data sources coming soon)"
+      "point": "Dashboard to manage sites and users"
     }
   ],
   "default": {
