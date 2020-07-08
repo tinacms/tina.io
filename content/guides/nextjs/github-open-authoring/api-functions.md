@@ -2,7 +2,7 @@
 title: Adding API functions
 ---
 
-We need a few API functions to handle GitHub authorization and [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode). With Next.js, any functions in the `pages/api` directory are are mapped to `/api/*` endpoints. Files in this directory are treated as [API endpoints](<](https://nextjs.org/docs/api-routes/introduction)>) instead of pages.
+We need a few API functions to handle GitHub authorization and [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode). With Next.js, any functions in the `pages/api` directory are mapped to `/api/*` endpoints. Files in this directory are treated as [API endpoints](<](https://nextjs.org/docs/api-routes/introduction)>) instead of pages.
 
 > If you see a 'dummy' `hello.js` file in the `pages/api` directory, feel free to delete it.
 

@@ -17,7 +17,7 @@ providing helpers for **loading content from the Github API**.
 yarn add next-tinacms-github
 ```
 
-Any functions in the `pages/api` directory are are mapped to `/api/*` endpoints. The below helpers tend to be added to the `pages/api` directory in a Next.js project.
+Any functions in the `pages/api` directory are mapped to `/api/*` endpoints. The below helpers tend to be added to the `pages/api` directory in a Next.js project.
 
 ### `createCreateAccessTokenFn`
 
