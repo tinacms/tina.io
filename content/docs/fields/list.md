@@ -49,9 +49,11 @@ interface ListFieldDefinititon extends Field {
 
 Below are some examples of how a `list` field could be defined in a form.
 
-### _text_ field
+### With the _text_ field
 
 For example, if we had a list of lunch options in the frontmatter of a Markdown file:
+
+**example data**
 
 ```yaml
 ---
@@ -84,9 +86,11 @@ const formOptions = {
 
 _Note:_ The above configuration would look the same for the `textarea` field.
 
-### _number_ field
+### With the _number_ field
 
-Below is an example using the `number` field.
+Below is an example using the `number` field if we had an array of 'Pinball Scores' to manage.
+
+**example data**
 
 ```json
 { "pinball_scores": [554700, 522400, 281890, 161140] }
@@ -110,9 +114,11 @@ const formOptions = {
 }
 ```
 
-### _select_ field
+### With the _select_ field
 
-Below is an example using the `select` field.
+Below is an example using the `select` field if we wanted to rank the best Beatles Albums.
+
+**example data**
 
 ```json
 {
