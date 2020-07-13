@@ -99,6 +99,7 @@ interface FormOptions<S> {
   label: string
   fields: Field[]
   loadInitialValues?: () => Promise<S>
+  onSubmit?: () => Promise<any>
   reset?(): void
   onChange?(state): void
   actions?: any[]
@@ -112,7 +113,8 @@ interface FormOptions<S> {
 | `label`             | A label for the form that will appear in the sidebar.                                                                                         |
 | `fields`            | An array of fields that will define the shape of the form and how content is edited.                                                          |
 | `loadInitialValues` | _Optional:_ A function to load the initial form state asynchronously. Return a promise that passes an object of form values when it resolves. |
-| `reset`             | _Optional:_ A function that runs when the form state is reset by the user.                                                                    |
+| `onSubmit`          | _Optional:_ An asynchronous function to invoke when the form is saved, i.e. when the 'Save' button is pressed.                                |
+| `reset`             | _Optional:_ A function that runs when the form state is reset by the user via the 'Reset' button.                                             |
 | `actions`           | _Optional:_ An array of custom actions that will be added to the form.                                                                        |
 | `onChange`          | _Optional:_ A function that runs when the form values are changed.                                                                            |
 | `__type`            | _Optional:_ Sets the Form's plugin type. Automatically set based on which form hook is used.                                                  |
@@ -144,7 +146,7 @@ export function Page(props) {
       title: props.title,
       markdownContent: props.markdownContent
     },
-    onSubmit: (formData) => {
+    onSubmit: async (formData) => {
       // save the new form data
     },
   })
