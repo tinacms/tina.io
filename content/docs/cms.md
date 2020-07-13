@@ -112,7 +112,7 @@ export default function ExitButton() {
 
 ## CMS Configuration
 
-When instantiating the `TinaCMS` object, you can pass in a configuration object. This allows you to configure some options for the sidebar, and also allows you to configure [Plugins](/docs/cms/plugins) and [APIs](/docs/cms/apis) declaratively.
+When instantiating the `TinaCMS` object, you can pass in a configuration object. This allows you to configure some options for the sidebar, toolbar, and also allows you to configure [Plugins](/docs/cms/plugins) and [APIs](/docs/cms/apis) declaratively.
 
 ```typescript
 interface TinaCMSConfig {
@@ -145,18 +145,18 @@ interface ToolbarConfig {
 
 ---
 
-| key                     | usage                                                                                                   |
-| ----------------------- | ------------------------------------------------------------------------------------------------------- |
-| **enabled**             | Controls whether the CMS is enabled or disabled. _Defaults to true_                                     |
-| **plugins**             | Array of plugins to be added to the CMS object.                                                         |
-| **apis**                | Object containing APIs to be registered to the CMS                                                      |
-| **sidebar**             | Enables and configures behavior of the sidebar                                                          |
-| **sidebar.position**    | 'displace': sidebar pushes content to the side when open; 'overlay': sidebar overlaps content when open |
-| **sidebar.placeholder** | Provides a placeholder component to render in the sidebar when there are no registered forms            |
-| **sidebar.buttons**     | Enables and configures the text on 'Save' and 'Reset' buttons                                           |
-| **toolbar**             | Configures behavior of the toolbar                                                                      |
-| **toolbar.buttons**     | Configures the text on 'Save' and 'Reset' buttons                                                       |
-| **media.store**         | Configures the [media store](/docs/media).                                                              |
+| key                     | usage                                                                                                                           |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| **enabled**             | Controls whether the CMS is enabled or disabled. _Defaults to true_                                                             |
+| **plugins**             | Array of plugins to be added to the CMS object.                                                                                 |
+| **apis**                | Object containing APIs to be registered to the CMS                                                                              |
+| **sidebar**             | Enables and configures behavior of the sidebar                                                                                  |
+| **sidebar.position**    | 'displace': sidebar pushes content to the side when open; 'overlay': sidebar overlaps content when open                         |
+| **sidebar.placeholder** | Provides a placeholder component to render in the sidebar when there are no registered forms                                    |
+| **sidebar.buttons**     | _Deprecated — [Configure on the form](/docs/forms#customizing-form-buttons)_: Configures the text on 'Save' and 'Reset' buttons |
+| **toolbar**             | Configures behavior of the toolbar                                                                                              |
+| **toolbar.buttons**     | _Deprecated — [Configure on the form](/docs/forms#customizing-form-buttons)_: Configures the text on 'Save' and 'Reset' buttons |
+| **media.store**         | Configures the [media store](/docs/media).                                                                                      |
 
 ---
 
@@ -183,3 +183,7 @@ const cms = new TinaCMS({
   toolbar: false,
 })
 ```
+
+### Customize 'Save' & 'Reset' button text
+
+It is now recommended to configure button text on the form intead of in the CMS object. Please read further on [configuring custom buttons](/docs/forms#customizing-form-buttons) in the form documentation.
