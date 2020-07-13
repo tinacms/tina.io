@@ -103,6 +103,10 @@ interface FormOptions<S> {
   reset?(): void
   onChange?(state): void
   actions?: any[]
+  buttons?: {
+    save: string
+    reset: string
+  }
   __type?: string
 }
 ```
@@ -116,6 +120,7 @@ interface FormOptions<S> {
 | `onSubmit`          | _Optional:_ An asynchronous function to invoke when the form is saved, i.e. when the 'Save' button is pressed.                                |
 | `reset`             | _Optional:_ A function that runs when the form state is reset by the user via the 'Reset' button.                                             |
 | `actions`           | _Optional:_ An array of custom actions that will be added to the form.                                                                        |
+| `buttons`           | _Optional:_ An object to customize the 'Save' and 'Reset' button text for the form.                                                           |
 | `onChange`          | _Optional:_ A function that runs when the form values are changed.                                                                            |
 | `__type`            | _Optional:_ Sets the Form's plugin type. Automatically set based on which form hook is used.                                                  |
 
@@ -186,6 +191,41 @@ interface WatchableFormValue {
 ### Form Helpers
 
 The three hooks described thus far are the basic interface for creating forms, and they aim to support a broad set of use cases. For specific use cases, we've created some simplified interfaces for quickly setting up forms. Take a look at our [Next.js form docs](/guides/nextjs/git-based/creating-git-forms) and [Gatsby docs](/docs/gatsby/markdown) to learn how to use these.
+
+### Customizing Form Buttons
+
+> _Note:_ The 'Save' and 'Reset' button text can also be configured on the sidebar or toolbar when defining the [CMS options](/docs/cms#cms-configuration). If `buttons` are configured on the CMS through the `sidebar` or `toolbar` options, those values will take precedent over button values passed to a form. **It is now recommended to configure button text on the form** intead of the CMS.
+
+'Save' & 'Reset' buttons accompany all forms. They may render at the bottom of the sidebar, in a modal, or on the toolbar. When clicked, these buttons should generally invoke the `onSubmit`(For 'Save') & `reset`(For 'Reset') functions associated with the form.
+
+There may be times when you want to change the button text to improve UX or provide a **better description of the action** for an editor. For example, you may want the 'Save' button to say 'Commit' and the 'Reset' button to say 'Discard Changes'.
+
+Below is an example of a form options object with these custom button options passed in:
+
+```js
+const [author, authorForm] = useJsonForm(data.dataJson, {
+  label: 'Author',
+  fields: [
+    {
+      name: 'author',
+      label: 'Author',
+      component: 'select',
+      options: [
+        'Herbert Huncke',
+        'Allen Ginsberg',
+        'Jack Kerouac',
+        'William S. Burroughs',
+      ],
+    },
+  ],
+  buttons: {
+    save: 'Commit',
+    reset: 'Discard Changes',
+  },
+})
+```
+
+#### Reuse with a composition
 
 ## Inline Forms
 
