@@ -47,7 +47,9 @@ interface ListFieldDefinititon extends Field {
 
 ## Definition
 
-Below is an example of how a `list` field could be defined in a form.
+Below are some examples of how a `list` field could be defined in a form.
+
+### _text_ field
 
 For example, if we had a list of lunch options in the frontmatter of a Markdown file:
 
@@ -74,6 +76,80 @@ const formOptions = {
       defaultItem: 'Turkey & Swiss',
       field: {
         component: 'text',
+      },
+    },
+  ],
+}
+```
+
+_Note:_ The above configuration would look the same for the `textarea` field.
+
+### _number_ field
+
+Below is an example using the `number` field.
+
+```json
+{ "pinball_scores": [554700, 522400, 281890, 161140] }
+```
+
+The `list` field config could look like this:
+
+```javascript
+const formOptions = {
+  fields: [
+    {
+      label: 'Pinball High Scores',
+      name: 'pinball_scores',
+      component: 'list',
+      defaultItem: 0,
+      field: {
+        component: 'number',
+      },
+    },
+  ],
+}
+```
+
+### _select_ field
+
+Below is an example using the `select` field.
+
+```json
+{
+  "beatles_albums": [
+    "The Beatles(White Album)",
+    "Let It Be",
+    "Abbey Road",
+    "Sgt. Pepper's Lonely Hearts Club Band"
+  ]
+}
+```
+
+The `list` field config could look like this:
+
+```javascript
+const formOptions = {
+  fields: [
+    {
+      label: 'Top 5 Beatles Albums',
+      name: 'beatles_albums',
+      component: 'list',
+      defaultItem: 'Abbey Road',
+      field: {
+        component: 'select',
+        options: [
+          'Let It Be',
+          'Abbey Road',
+          'Yellow Submarine',
+          'The Beatles(White Album)',
+          'Magical Mystery Tour',
+          "Sgt. Pepper's Lonely Hearts Club Band",
+          'Revolver',
+          'Yesterday...and Today',
+          'Rubber Soul',
+          'Help!',
+          "A Hard Day's Night",
+        ],
       },
     },
   ],
