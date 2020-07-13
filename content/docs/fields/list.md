@@ -41,7 +41,7 @@ interface ListFieldDefinititon extends Field {
 | `defaultItem` | Provides the `list` items with default data upon being created. Returns an empty string if no value is provided. _(Optional)_                                                                                                                                                                                                                                                                                                                                                                             |
 | `itemProps`   | A function that generates `props` for each list item. It takes the item as an argument. _(Optional)_ <br><br> It returns an object containing, `key`: This property is used to optimize the rendering of lists. If rendering is causing problems, use `defaultItem` to generate a new key, as is seen in [this example](http://tinacms.org/docs/fields/group-list#definition). Feel free to reference the [React documentation](https://reactjs.org/docs/lists-and-keys.html) for more on keys and lists. |
 
-> This interfaces only shows the keys unique to the list field.
+> This interface only shows the keys unique to the list field.
 >
 > Visit the [Field Config](/docs/fields) docs for a complete list of options.
 
