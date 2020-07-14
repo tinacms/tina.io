@@ -29,7 +29,7 @@ Learning how to build a CMS is no small feat! Luckily this website has tons of h
 * [Docs]() describe the main Tina concepts and how to use them to build your CMS.
 * [Guides](/guides "Tina Guides") take you through the steps involved in addressing key problems and specific use-cases.
 * [Blog and Release Notes](/blog "Tina Blog")
-* Packages _(Coming Soon)_
+* Visit the Packages Lookup _(Coming Soon)_ to find more tools and make building your CMS even easier.
 
 ## Constructing The User Interface
 
@@ -42,11 +42,11 @@ Tina gives you the power to choose the user interface that best fits your workfl
 
 ## Tools for Managing Content
 
-Tina gives you the tools you need to manage content from the sata source of your choosing. Read these docs to learn how to edit content the exact way you want.
+Tina gives you the tools you need to manage content from the data source of your choosing. Read these docs to learn how to edit content the exact way you want.
 
 * **Editing Content:** [Creating Forms](/docs/forms), [Fields](/docs/fields),[ Custom Fields](/docs/fields/custom-fields), [Inline Editing](/docs/inline-editing), [Working with Inline Blocks](/guides//general/inline-blocks/overview)
 * **Creating Content:** Using Content Creators _(Coming Soon)_
-* **Deleting Content:** _(Coming Soon)_
+* **Deleting Content:** Using Form Actions. _(Coming Soon)_
 * **Media Management:** [Media Stores](/docs/media "Tina Media Store"), [Image Fields](/docs/fields/image "Image Field Plugin"), [Inline Images](/docs/inline-editing/inline-image "Inline Images")
 
 ## Integrating with React Frameworks
