@@ -8,12 +8,10 @@ consumes:
   - file: /packages/react-tinacms-inline/src/inline-field.tsx
     description: InlineField
 ---
-
 _Inline Editing_ in Tina refers to editing values directly in the area they appear on the page, instead of in the Tina sidebar. These are the **general steps** to set up inline editing:
 
 1. [Configure ](/docs/inline-editing#adding-inline-editing-with-inlineform)_[InlineForm](/docs/inline-editing#adding-inline-editing-with-inlineform)_
 2. [Add Inline Fields](/docs/inline-editing#using-preconfigured-inline-fields)
-3. [Set up Inline Controls](/docs/inline-editing#set-up-inline-form-controls)
 
 > Play around with this [simple demo](https://logan-anderson.github.io/cra-hosted-demo/) to get a feel for Inline Editing. Get familiar with the Inline Editing API in this [step-by-step guide](/guides/general/inline-blocks/overview).
 
@@ -112,12 +110,12 @@ When using `InlineField`, you can create a custom _Inline Field_. This is helpfu
 
 However, Tina provides a set of pre-configured Inline Fields that should **work for many use cases**. These fields provide basic input elements and handle the rendering logic between edit and preview mode.
 
-- [Inline Text](/docs/inline-editing/inline-text)
-- [Inline Textarea](/docs/inline-editing/inline-textarea)
-- [Inline Wysiwyg](/docs/inline-editing/inline-wysiwyg)
-- [Inline Image](/docs/inline-editing/inline-image)
-- [Inline Group](/docs/inline-editing/inline-group)
-- [Inline Blocks](/docs/inline-editing/inline-blocks)
+* [Inline Text](/docs/inline-editing/inline-text)
+* [Inline Textarea](/docs/inline-editing/inline-textarea)
+* [Inline Wysiwyg](/docs/inline-editing/inline-wysiwyg)
+* [Inline Image](/docs/inline-editing/inline-image)
+* [Inline Group](/docs/inline-editing/inline-group)
+* [Inline Blocks](/docs/inline-editing/inline-blocks)
 
 **Refactoring the above example** with Inline Fields:
 
@@ -172,70 +170,3 @@ const StyledText = styled(InlineTextField)`
 ```
 
 Notice how the new component, `StyledText` is just a _styled_ version of `InlineTextField`.
-
-## Set up Inline Form Controls
-
-> **Note:** As of `react-tinacms-inline: 0.7.1`, it is recommended to use the [Toolbar](/docs/cms/ui#toolbar-configuration) to handle these Inline Form controls. Learn how to add the Toolbar UI to your CMS in the [CMS configuration](http://localhost:3000/docs/cms#cms-configuration) docs.
-
-There are a few fundamental editing actions needed to handle the state of _Inline Form_: Activating and deactivating 'edit mode', along with saving and discarding changes. Below are some examples of how to **manually add these control buttons** within an _Inline Form_.
-
-### Activating Edit Mode for Inline Forms
-
-The Inline Editing UI displays whenever the CMS is `enabled`. Please read further on how to [enable or disable the CMS](/docs/cms#disabling--enabling-the-cms) by creating a custom button component.
-
-> **Tip:** As of `react-tinacms-inline: 0.7.1`, status, activate, & deactivate are no longer available via `useInlineForm`. Please manage your editing state via `cms.enabled` instead.
-
-### Discarding Changes
-
-Creating a `DiscardChanges` button works similarly by calling `useInlineForm`. This button directly resets the state of `InlineForm`, reverting any updates to the source data to the previous commit.
-
-```js
-import { useInlineForm } from 'react-tinacms-inline'
-import { Button as TinaButton } from '@tinacms/styles'
-
-export function DiscardButton() {
-  const { form } = useInlineForm()
-
-  /*
-   ** If there are no changes
-   ** to discard, return early
-   */
-  if (form.finalForm.getState().pristine) {
-    return null
-  }
-
-  return (
-    <TinaButton
-      color="primary"
-      onClick={() => {
-        form.finalForm.reset()
-      }}
-    >
-      Discard Changes
-    </TinaButton>
-  )
-}
-```
-
-### Saving Changes
-
-A save button will submit the form registered to `InlineForm`. The submit action will commit any changes to the source file connected with the
-
-```js
-import { useInlineForm } from 'react-tinacms-inline'
-import { Button as TinaButton } from '@tinacms/styles'
-
-export function SaveButton() {
-  const { form } = useInlineForm()
-
-  /*
-   ** If there are no changes
-   ** to save, return early
-   */
-  if (form.finalForm.getState().pristine) {
-    return null
-  }
-
-  return <TinaButton onClick={form.submit}>Save</TinaButton>
-}
-```
