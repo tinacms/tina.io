@@ -242,8 +242,8 @@ export const useForm = (options: FormOptions, watch?: WatchableFormValues) =>
   baseUseForm(
     {
       buttons: {
-        save: 'Banana',
-        reset: 'Peeling',
+        save: 'Save Changes',
+        reset: 'Reset Form',
       },
       ...options,
     },
