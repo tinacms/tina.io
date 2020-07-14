@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import App from 'next/app'
 import Head from 'next/head'
 import { TinaCMS, TinaProvider, ModalProvider } from 'tinacms'
@@ -29,6 +29,12 @@ const MainLayout = ({ Component, pageProps }) => {
   }
 
   const cms = React.useMemo(() => new TinaCMS(tinaConfig), [])
+
+  useEffect(() => {
+    import('react-tinacms-date').then(({ DateFieldPlugin }) => {
+      cms.plugins.add(DateFieldPlugin)
+    })
+  }, [pageProps.preview])
 
   const enterEditMode = async () => {
     const token = localStorage.getItem('tinacms-github-token') || null
