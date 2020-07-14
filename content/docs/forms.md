@@ -132,7 +132,7 @@ import ReactMarkdown from 'react-markdown'
 import { useForm, usePlugin } from 'tinacms'
 
 export function Page(props) {
-  const [modifiedValues] = useForm({
+  const formConfig = {
     id: props.fileRelativePath,
     label: 'Edit Post',
     fields: [
@@ -154,7 +154,8 @@ export function Page(props) {
     onSubmit: async (formData) => {
       // save the new form data
     },
-  })
+  }
+  const [modifiedValues] = useForm(formConfig)
 
   usePlugin(form)
 
@@ -226,6 +227,46 @@ const [author, authorForm] = useJsonForm(data.dataJson, {
 ```
 
 #### Reuse with a composition
+
+When using the same button configuraiton for every form, it can be repetitive to continually define the button options. You can use a composition for this. Below is an example if you created a `cms` directory with a `useForm` composition to add the custom button values on every form.
+
+**src/cms/use-form.ts**
+
+```ts
+import {
+  useForm as baseUseForm,
+  FormOptions,
+  WatchableFormValues,
+} from 'tinacms'
+export const useForm = (options: FormOptions, watch?: WatchableFormValues) =>
+  baseUseForm(
+    {
+      buttons: {
+        save: 'Banana',
+        reset: 'Peeling',
+      },
+      ...options,
+    },
+    watch
+  )
+```
+
+This is how that `useForm` composition could be used, setting up a baseline configuration for the general `useForm` hook from Tina.
+
+**src/pages/index.js**
+
+```ts
+import { useForm } from '../cms/use-form'
+
+export default function Home(props) {
+  const formOptions = {
+    //...
+  }
+  useForm(formOptions)
+}
+```
+
+The `formOptions` defined in this example would be the [config object](/docs/cms#cms-configuration) referenced above.
 
 ## Inline Forms
 
