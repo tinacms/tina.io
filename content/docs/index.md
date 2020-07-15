@@ -33,9 +33,9 @@ Learning how to build a CMS is no small feat! We've compiled a variety of resour
 
 ## Constructing The User Interface
 
-Tina lets you choose the user interface that best fits your workflow. You can use one of it's default interfaces or construct your own. You can even build editing capabilities directly into your page.
+Tina lets you choose the user interface that best fits your workflow. You can use one of its default interfaces or construct your own. You can even build editing capabilities directly into your page!
 
-* Learn about the [Toolbar](/docs/cms/ui#toolbar-configuration "Tina Toolbar") or [Sidebar](/docs/cms/ui#sidebar-configuration "Tina Sidebar") UIs to decide which one fits your needs.
+* Learn about the [Toolbar](/docs/cms/ui#toolbar-configuration "Tina Toolbar") and [Sidebar](/docs/cms/ui#sidebar-configuration "Tina Sidebar") UI components.
 * Take control of the appearance of your CMS using [Custom Styling](/docs/cms/styles "Styles")
 * Add features to your CMS using [Screen Plugins](/blog/screen-plugins "Screen Plugins")  and Toolbar Widgets _(docs coming soon)_.
 * Wander off the beaten trail and create a totally custom UI _(Coming Soon)_
