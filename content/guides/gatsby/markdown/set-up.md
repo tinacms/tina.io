@@ -4,7 +4,7 @@ title: Set-Up
 
 This guide will show you how to use helpers from the `gatsby-tinacms-remark` package to make editing Markdown content easier.
 
-### Prerequisites
+## Prerequisites
 
 - A Gatsby site with [Tina Configured](/guides/gatsby/adding-tina/project-setup)
 - A [Git backend](/guides/gatsby/using-git/installation) set up

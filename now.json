@@ -98,7 +98,7 @@
     },
     {
       "source": "/docs/gatsby/configure-git-plugin",
-      "destination": "guides/gatsby/using-git/installation"
+      "destination": "/guides/gatsby/using-git/installation"
     },
     {
       "source": "/docs/gatsby/custom-field",
