@@ -24,7 +24,7 @@ Have questions on how to use Tina to build your CMS?
 
 ## How This Site Is Organized
 
-Learning how to build a CMS is no small feat! Luckily this website has tons of helpful information to help make the process a delight.
+Learning how to build a CMS is no small feat! We've compiled a variety of resources to help you along.
 
 * [Docs]() describe the main Tina concepts and how to use them to build your CMS.
 * [Guides](/guides "Tina Guides") take you through the steps involved in addressing key problems and specific use-cases.
