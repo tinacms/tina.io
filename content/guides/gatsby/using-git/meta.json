@@ -1,0 +1,17 @@
+{
+  "title": "Using a Git Backend with Gatsby",
+  "steps": [
+    {
+      "title": "Installation",
+      "id": "/guides/gatsby/using-git/installation",
+      "slug": "/guides/gatsby/using-git/installation",
+      "data": "./installation.md"
+    },
+    {
+      "title": "Configuration",
+      "id": "/guides/gatsby/using-git/configure-git-plugin",
+      "slug": "/guides/gatsby/using-git/configure-git-plugin",
+      "data": "./configure-git-plugin.md"
+    }
+  ]
+}
