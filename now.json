@@ -75,6 +75,34 @@
     {
       "source": "/teams",
       "destination": "/enterprise"
+    },
+    {
+      "source": "/docs/gatsby/quickstart",
+      "destination": "/guides/gatsby/adding-tina/project-setup"
+    },
+    {
+      "source": "/docs/gatsby/manual-setup",
+      "destination": "/guides/gatsby/adding-tina/project-setup"
+    },
+    {
+      "source": "/docs/gatsby/markdown",
+      "destination": "/guides/gatsby/markdown/set-up"
+    },
+    {
+      "source": "/docs/gatsby/json",
+      "destination": "/guides/gatsby/gatsby-json/create-json-form"
+    },
+    {
+      "source": "/docs/gatsby/creating-new-files",
+      "destination": "/guides/gatsby/creating-new-files/add-content-creator"
+    },
+    {
+      "source": "/docs/gatsby/configure-git-plugin",
+      "destination": "guides/gatsby/using-git/installation"
+    },
+    {
+      "source": "/docs/gatsby/custom-field",
+      "destination": "/guides/gatsby/custom-email-field/register-field"
     }
   ]
 }

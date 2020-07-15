@@ -210,47 +210,6 @@
     ]
   },
   {
-    "title": "Tina + Gatsby",
-    "id": "gasby",
-    "items": [
-      {
-        "id": "/docs/gatsby/quickstart",
-        "slug": "/docs/gatsby/quickstart",
-        "title": "Quickstart"
-      },
-      {
-        "id": "/docs/gatsby/manual-setup",
-        "slug": "/docs/gatsby/manual-setup",
-        "title": "Manual Setup"
-      },
-      {
-        "id": "/docs/gatsby/markdown",
-        "slug": "/docs/gatsby/markdown",
-        "title": "Using Markdown Files"
-      },
-      {
-        "id": "/docs/gatsby/json",
-        "slug": "/docs/gatsby/json",
-        "title": "Using JSON Files"
-      },
-      {
-        "id": "/docs/gatsby/creating-new-files",
-        "slug": "/docs/gatsby/creating-new-files",
-        "title": "Creating New Files"
-      },
-      {
-        "id": "/docs/gatsby/configure-git-plugin",
-        "slug": "/docs/gatsby/configure-git-plugin",
-        "title": "Configure Git plugin"
-      },
-      {
-        "id": "/docs/gatsby/custom-fields",
-        "slug": "/docs/gatsby/custom-fields",
-        "title": "Custom Fields"
-      }
-    ]
-  },
-  {
     "title": "Contributing",
     "id": "contributing",
     "items": [
