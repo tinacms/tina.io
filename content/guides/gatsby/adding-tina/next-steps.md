@@ -5,7 +5,7 @@ title: Next Steps
 At this point, we've bootstrapped Tina into the Gatsby blog starter. We were able to do so by making a few small modifications:
 
 1. Added [gatsby-plugin-tinacms](/guides/gatsby/adding-tina/project-setup) to our blog starter.
-2. [Created a form](http://localhost:3000/guides/gatsby/adding-tina/creating-forms) to edit some values in the `Post` template.
+2. [Created a form](/guides/gatsby/adding-tina/creating-forms) to edit some values in the `Post` template.
 
 This guide is intended as a jumping off point to get you started with Tina, but to make a fully-functional CMS there is a little more work to do.
 
