@@ -20,8 +20,8 @@ import Error from 'next/error'
 import { getMarkdownPreviewProps } from '../../utils/getMarkdownFile'
 import { InlineWysiwyg } from '../../components/inline-wysiwyg'
 import { usePlugin, useCMS } from 'tinacms'
-
-function BlogTemplate({ file, siteConfig, preview }) {
+import Toc from '../../components/toc'
+function BlogTemplate({ file, siteConfig, preview, tocItems }) {
   // fallback workaround
   if (!file) {
     return <Error statusCode={404} />
@@ -80,6 +80,7 @@ function BlogTemplate({ file, siteConfig, preview }) {
               </MetaWrap>
               <EditLink />
             </BlogMeta>
+            <Toc tocItems={tocItems} />
             <InlineWysiwyg name="markdownBody">
               <MarkdownContent escapeHtml={false} content={markdownBody} />
             </InlineWysiwyg>
@@ -117,7 +118,10 @@ export const getStaticProps: GetStaticProps = async function({
   }
 
   return {
-    props: { ...previewProps.props, siteConfig: { title: siteConfig.title } },
+    props: {
+      ...previewProps.props,
+      siteConfig: { title: siteConfig.title },
+    },
   }
 }
 

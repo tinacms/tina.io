@@ -3,7 +3,7 @@ import matter from 'gray-matter'
 import { readFile } from './readFile'
 import { formatExcerpt } from '.'
 import { getGithubPreviewProps, parseMarkdown } from 'next-tinacms-github'
-
+import toc from 'markdown-toc'
 export const readMarkdownFile = async (filePath: string) => {
   const doc = matter(await readFile(path.resolve(`${filePath}`)))
   return {
@@ -47,7 +47,10 @@ export const getMarkdownPreviewProps = async (
         previewProps.props.file.data.markdownBody
       )
     }
-    return previewProps
+    return {
+      ...previewProps,
+      tocItems: toc(previewProps.props.file.data.markdownBody).content,
+    }
   }
   const file = await readMarkdownFile(fileRelativePath)
   return {
@@ -55,6 +58,7 @@ export const getMarkdownPreviewProps = async (
       error: null,
       preview: false,
       file,
+      tocItems: toc(file.data.markdownBody).content,
     },
   }
 }
