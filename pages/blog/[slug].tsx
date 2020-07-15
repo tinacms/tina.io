@@ -70,6 +70,7 @@ function BlogTemplate({ file, siteConfig, preview, tocItems }) {
         </Hero>
         <BlogWrapper>
           <DocsTextWrapper>
+            <Toc tocItems={tocItems} />
             <BlogMeta>
               <MetaWrap>
                 <MetaBit>{formatDate(frontmatter.date)}</MetaBit>
@@ -80,7 +81,6 @@ function BlogTemplate({ file, siteConfig, preview, tocItems }) {
               </MetaWrap>
               <EditLink />
             </BlogMeta>
-            <Toc tocItems={tocItems} />
             <InlineWysiwyg name="markdownBody">
               <MarkdownContent escapeHtml={false} content={markdownBody} />
             </InlineWysiwyg>

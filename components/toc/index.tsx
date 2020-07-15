@@ -22,11 +22,11 @@ const Toc = ({ tocItems }: { tocItems: string }) => {
 
   return (
     <TocWrapper>
-      <TocButtom onClick={() => setIsOpen(!isOpen)}>
+      {/* <TocButtom onClick={() => setIsOpen(!isOpen)}>
         Jump to Section
         <ArrowDown />
-      </TocButtom>
-      <TocContent isActive={isOpen}>
+      </TocButtom> */}
+      <TocContent isActive={true}>
         <ReactMarkdown source={tocItems} />
       </TocContent>
     </TocWrapper>
@@ -37,7 +37,8 @@ export default Toc
 const TocWrapper = styled.div`
   position: relative;
   max-width: 176px;
-  margin: 24px 0;
+  margin-left: auto;
+  margin-right: 176px;
 `
 const TocButtom = styled.button`
   font-size: 16px;
@@ -60,14 +61,16 @@ const TocButtom = styled.button`
 `
 
 const TocContent = styled.div<{ isActive: boolean }>`
+  margin-right: 10%;
   position: absolute;
   margin-top: 1px;
+  margin-left: 30vw;
   display: ${({ isActive }) => (isActive ? 'block' : 'none')};
   padding: 17px 15px;
   border-radius: 2px;
   backdrop-filter: blur(27px);
   box-shadow: 4px 6px 8px 0 rgba(0, 0, 0, 0.05);
-  /* border: solid 1px ${({ theme }) => theme.colors.highlightBorder}; */
+  border: solid 1px grey;
   background-color: #ffffff;
   width: max-content;
   z-index: 100;
@@ -87,7 +90,7 @@ const TocContent = styled.div<{ isActive: boolean }>`
 
         &:hover,
         &:focus {
-          /* color: ${({ theme }) => theme.colors.primary}; */
+          color: grey;
         }
       }
     }
