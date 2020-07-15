@@ -206,6 +206,11 @@
         "id": "/docs/nextjs/next-tinacms-markdown",
         "slug": "/docs/nextjs/next-tinacms-markdown",
         "title": "next-tinacms-markdown"
+      },
+      {
+        "id": "/docs/nextjs/create-github-delete-action",
+        "slug": "/docs/nextjs/create-github-delete-action",
+        "title": "create-delete-action"
       }
     ]
   },
