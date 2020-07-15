@@ -6,7 +6,7 @@ const Toc = ({ tocItems }: { tocItems: string }) => {
   const [isOpen, setIsOpen] = useState(false)
 
   if (!tocItems) {
-    return
+    return null
   }
 
   useEffect(() => {
