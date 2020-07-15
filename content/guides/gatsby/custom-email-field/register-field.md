@@ -1,18 +1,8 @@
 ---
-title: Custom Fields
-id: /docs/gatsby/custom-fields
-prev: /docs/gatsby/configure-git-plugin
-next:
-consumes:
-  - file: /packages/@tinacms/form-builder/src/field-plugin.tsx
-    details: Depends on Field Plugin props
-  - file: /packages/@tinacms/forms/src/form.ts
-    details: Depends on Field props
-  - file: /packages/@tinacms/core/src/plugins.ts
-    details: Depends on plugin manager methods
+title: Creating Custom Fields
 ---
 
-This doc explains how to add custom field plugins to a Gatsby site.
+This guide explains how to add custom field plugins to a Gatsby site.
 
 ## 1. Registering an Email Field
 
@@ -70,37 +60,4 @@ useRemarkForm(remark, {
     },
   ],
 })
-```
-
-## 2. Validating the Email Field
-
-An optional `validate` function can also be added to your Field Plugin.
-
-**Arguments**
-
-- `value`: The field's current value
-- `allValues`: The current state of the entire form
-- `meta`: The form metadata for this field
-- `field`: The field's configuration
-
-**Return: string | null | undefined**
-
-If the value is invalid, then return the error message to be displayed.
-
-**gatsby-browser.js**
-
-```javascript
-import { EmailField } from './src/components/EmailField'
-
-export const onClientEntry = () => {
-  window.tinacms.fields.add({
-    name: 'email',
-    Component: EmailField,
-    validate(value, allValues, meta, field) {
-      let isValidEmail = /.*@.*\..+/.test(value)
-
-      if (!isValidEmail) return 'Invalid email address'
-    },
-  })
-}
 ```
