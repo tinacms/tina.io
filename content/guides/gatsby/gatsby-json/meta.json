@@ -1,0 +1,17 @@
+{
+  "title": "JSON in Gatsby",
+  "steps": [
+    {
+      "title": "Create JSON Forms",
+      "id": "/guides/gatsby/gatsby-json/create-json-form",
+      "slug": "/guides/gatsby/gatsby-json/create-json-form",
+      "data": "./create-json-form.md"
+    },
+    {
+      "title": "Customize the Form",
+      "id": "/guides/gatsby/gatsby-json/customize-form",
+      "slug": "/guides/gatsby/gatsby-json/customize-form",
+      "data": "./customize-form.md"
+    }
+  ]
+}
