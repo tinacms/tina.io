@@ -1,6 +1,6 @@
 import { getGuideNavProps } from '../../utils/guide_helpers'
 import { readMarkdownFile } from '../../utils/getMarkdownFile'
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { useRouter } from 'next/router'
 import {
   DocsLayout,
@@ -121,7 +121,7 @@ const GuideSection = (section: NavSection) => {
           {(section.items || []).map(item => (
             <DynamicLink href={item.slug} passHref>
               <Card>
-                <h3>{item.title}</h3>
+                <p style={{ margin: '0' }}>{item.title}</p>
                 <RightArrowSvg />
               </Card>
             </DynamicLink>
