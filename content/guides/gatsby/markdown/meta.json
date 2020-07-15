@@ -21,9 +21,9 @@
     },
     {
       "title": "Avoid Empty Fields Error",
-      "id": "/guides/gatsby/markdown/empty-fields-error",
-      "slug": "/guides/gatsby/markdown/empty-fields-error",
-      "data": "./empty-fields-error.md"
+      "id": "/guides/gatsby/markdown/empty-field-errors",
+      "slug": "/guides/gatsby/markdown/empty-field-errors",
+      "data": "./empty-field-errors.md"
     }
   ]
 }

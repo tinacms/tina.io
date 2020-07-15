@@ -23,16 +23,17 @@ Tina currently supports React-based frameworks, including:
 
 To use Tina, you should have a good working knowledge of your JavaScript framework & JAMstack tools of choice.
 
-If you want to get started with some code right away, checkout the [Gatsby Quickstart](/docs/gatsby/quickstart) or [Next.js Overview](/docs/nextjs/overview).
+If you want to get started with some code right away, checkout the [Gatsby Quickstart](/guides/gatsby/adding-tina/project-setup) or [Next.js Overview](/docs/nextjs/overview).
 
 If you want to dive deep, start by learning more about [how Tina works](/docs/getting-started/how-tina-works) and get familiar with some core concepts.
 
 ## For Gatsby
 
-- [Quickstart](/docs/gatsby/quickstart) with a Tina Starter to hit the ground running.
-- [Manual Setup](/docs/gatsby/manual-setup) for adding Tina to an existing Gatsby site.
+- [Quickstart](/guides/gatsby/adding-tina/project-setup) with a Tina Starter to hit the ground running.
+- [Manual Setup](/guides/gatsby/adding-tina/project-setup) for adding Tina to an existing Gatsby site.
 
 **Gatsby Starters**
+
 - [Gatsby Blog Starter](https://github.com/tinacms/gatsby-starter-tinacms) with Tina — The classic Gatsby starter, but Tinified.
 - [Tina Grande](https://github.com/tinacms/tina-starter-grande) — A more advanced starter to showcase the power of Tina.
 - [Tina Brevifolia](https://github.com/kendallstrautman/brevifolia-gatsby-tinacms) — A markdown-based blog with minimalist design and Tina for editing.

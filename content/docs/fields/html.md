@@ -53,7 +53,7 @@ cms.plugins.add(HtmlFieldPlugin)
 
 ## Definition
 
-Below is an example of how a `html` field could be defined. [Read more on passing in form field options](/docs/gatsby/markdown#customizing-remark-forms).
+Below is an example of how a `html` field could be defined. [Read more on passing in form field options](/guides/gatsby/markdown/editing-remark-content#customizing-remark-forms).
 
 ```javascript
 const BlogPostForm = {

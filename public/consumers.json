@@ -185,7 +185,7 @@
       "details": "Explains form options interface"
     }
   ],
-  "/content/docs/gatsby/manual-setup.md": [
+  "/content/guides/gatsby/adding-tina/project-setup.md": [
     {
       "file": "/packages/gatsby-plugin-tinacms/gatsby-browser.tsx",
       "details": "Depends on Tina component wrapping the root element"

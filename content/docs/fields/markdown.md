@@ -55,7 +55,7 @@ cms.plugins.add(MarkdownFieldPlugin)
 
 ## Definition
 
-Below is an example of how a `markdown` field could be defined in a Gatsby remark form. [Read more on passing in form field options](/docs/gatsby/markdown#customizing-remark-forms).
+Below is an example of how a `markdown` field could be defined in a Gatsby remark form. [Read more on passing in form field options](/guides/gatsby/markdown/editing-remark-content#customizing-remark-forms).
 
 ```javascript
 const BlogPostForm = {

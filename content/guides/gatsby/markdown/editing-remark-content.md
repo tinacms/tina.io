@@ -10,7 +10,7 @@ This allows any `gatsby-remark-*` plugins to properly transform the data in to a
 
 ## Customizing Remark Forms
 
-Tina's [remark hook or components](http://tinacms.org/docs/gatsby/markdown#creating-remark-forms) create the form based on the shape of the data. This is convenient for getting started but you will want to customize the form eventually to make it more user friendly.
+Tina's [remark hook or components](/guides/gatsby/markdown/create-remark-form) create the form based on the shape of the data. This is convenient for getting started but you will want to customize the form eventually to make it more user friendly.
 
 **Why customize the form?**
 
@@ -23,7 +23,7 @@ Tina's [remark hook or components](http://tinacms.org/docs/gatsby/markdown#creat
 You can pass additional configuration options to customize the form. The following properties are accepted:
 
 - `label`: A label for the form that will render in a list if there are multiple forms. This will default to the name of the component.
-- `actions`: A list of form actions, such as [`DeleteAction`](https://tinacms.org/docs/gatsby/creating-new-files#deleting-files).
+- `actions`: A list of form actions, such as [`DeleteAction`](/guides/gatsby/creating-new-files/deleting-files).
 - `fields`: A list of field definitions
   - `name`: The path to some value in the data being edited. (e.g. `frontmatter.title`)
   - `component`: The name of the React component that should be used to edit this field.

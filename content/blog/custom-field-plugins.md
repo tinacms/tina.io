@@ -82,7 +82,7 @@ export default class Site extends App {
 
 You’ll want to import the custom field component and then register the plugin with the CMS directly. Notice how we import the `RangeInput` component created in the [previous post](https://tinacms.org/blog/custom-field-components). This is the custom _field component_ that we're now attaching to a _field plugin_.
 
-> If you’re working with Gatsby, this [looks slightly different](https://tinacms.org/docs/gatsby/custom-fields/). _Hint_: you’ll head to the **gatsby-browser.js** file to access the CMS instance.
+> If you’re working with Gatsby, this [looks slightly different](/guides/gatsby/custom-email-field/register-field). _Hint_: you’ll head to the **gatsby-browser.js** file to access the CMS instance.
 
 #### Field Plugin Interface
 
@@ -109,7 +109,7 @@ At a minimum, field plugins **require a name and a component.** The `name` is us
 
 You can see that there are additional configuration functions and options. _Note that the properties with a question mark are optional._ These options are incredibly useful for creating fields that require _[validation](https://tinacms.org/docs/fields/custom-fields#validate-optional), parsing, or formatting_.
 
-> To see a more **complex example**, checkout the documentation on creating an [email field](https://tinacms.org/docs/gatsby/custom-fields/).
+> To see a more **complex example**, checkout the documentation on creating an [email field](/guides/gatsby/custom-email-field/register-field).
 
 ### 2. Use the custom field in a form
 

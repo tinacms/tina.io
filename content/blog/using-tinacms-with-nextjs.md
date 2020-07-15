@@ -50,7 +50,7 @@ This tutorial will show you how to install and **configure Tina for editing cont
 
 It’s important to note that due to the open-ended nature of Next.js, there are numerous ways you could incorporate Tina into Next.js sites or apps. This tutorial will showcase just one approach with straightforward examples.
 
-It's also worth noting that unlike Gatsby, Next.js does not currently have a plugin system. If you've previously looked at Tina's [Gatsby setup guide](/docs/gatsby/manual-setup), you'll see that we're utilizing a few different plugins to set up Tina. With Next.js, we'll need to write that boostrapping code directly into our project.
+It's also worth noting that unlike Gatsby, Next.js does not currently have a plugin system. If you've previously looked at Tina's [Gatsby setup guide](/guides/gatsby/adding-tina/project-setup), you'll see that we're utilizing a few different plugins to set up Tina. With Next.js, we'll need to write that boostrapping code directly into our project.
 
 ### Set up Locally 🏡
 
@@ -150,7 +150,7 @@ app.prepare().then(() => {
     return handle(req, res)
   })
 
-  server.listen(port, (err) => {
+  server.listen(port, err => {
     if (err) throw err
     console.log(`> Ready on http://localhost:${port}`)
   })
@@ -212,7 +212,7 @@ As a recap from [Part I](https://tinacms.org/blog/simple-markdown-blog-nextjs/),
 First, we need to add an additional property to the return object from `getInitialProps` called `fileRelativePath`. Tina needs this path in order to know what file to update. Here’s an example of how you could add `fileRelativePath`:
 
 ```javascript
-BlogTemplate.getInitialProps = async function (ctx) {
+BlogTemplate.getInitialProps = async function(ctx) {
   const { slug } = ctx.query
   const content = await import(`../../posts/${slug}.md`)
   const config = await import(`../../data/config.json`)

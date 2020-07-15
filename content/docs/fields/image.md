@@ -47,7 +47,7 @@ interface ImageConfig {
 
 ## Examples
 
-Below is an example of how a `image` field could be defined in a Gatsby Remark form. Read more on passing in form field options in the [Gatsby Markdown Docs](/docs/gatsby/markdown#customizing-remark-forms).
+Below is an example of how a `image` field could be defined in a Gatsby Remark form. Read more on passing in form field options in the [Gatsby Markdown Docs](/guides/gatsby/markdown/editing-remark-content#customizing-remark-forms).
 
 ```javascript
 import get from 'lodash.get'
