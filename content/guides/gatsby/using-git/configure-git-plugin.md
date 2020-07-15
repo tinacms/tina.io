@@ -69,4 +69,4 @@ module.exports = {
 
 ## Next Steps
 
-Add [additional forms](/guides/gatsby/adding-tina/creating-forms), fields, or set up inline editing.
+Add [additional forms](/guides/gatsby/adding-tina/creating-forms), [fields](/docs/fields), or set up [inline editing](/docs/inline-editing).
