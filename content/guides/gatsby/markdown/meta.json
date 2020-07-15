@@ -1,0 +1,29 @@
+{
+  "title": "Markdown in Gatsby",
+  "steps": [
+    {
+      "title": "Set-up",
+      "id": "/guides/gatsby/markdown/set-up",
+      "slug": "/guides/gatsby/markdown/set-up",
+      "data": "./set-up.md"
+    },
+    {
+      "title": "Creating Forms",
+      "id": "/guides/gatsby/markdown/create-remark-form",
+      "slug": "/guides/gatsby/markdown/create-remark-form",
+      "data": "./create-remark-form.md"
+    },
+    {
+      "title": "Editing Content",
+      "id": "/guides/gatsby/markdown/editing-remark-content",
+      "slug": "/guides/gatsby/markdown/editing-remark-content",
+      "data": "./editing-remark-content.md"
+    },
+    {
+      "title": "Avoid Empty Fields Error",
+      "id": "/guides/gatsby/markdown/empty-fields-error",
+      "slug": "/guides/gatsby/markdown/empty-fields-error",
+      "data": "./empty-fields-error.md"
+    }
+  ]
+}
