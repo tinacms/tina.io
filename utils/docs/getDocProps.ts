@@ -1,6 +1,16 @@
 import { getJsonPreviewProps } from '../getJsonPreviewProps'
 import { getMarkdownPreviewProps } from '../getMarkdownFile'
 
+export async function getDocsNav(preview: boolean, previewData: any) {
+  const previewProps = await getJsonPreviewProps(
+    'content/toc-doc.json',
+    preview,
+    previewData
+  )
+
+  return previewProps.props.file.data
+}
+
 export async function getDocProps({ preview, previewData }: any, slug: string) {
   const currentDoc = (
     await getMarkdownPreviewProps(
@@ -10,12 +20,7 @@ export async function getDocProps({ preview, previewData }: any, slug: string) {
     )
   ).props
 
-  const previewProps = await getJsonPreviewProps(
-    'content/toc-doc.json',
-    preview,
-    previewData
-  )
-  const docsNavData = previewProps.props.file.data
+  const docsNav = await getDocsNav(preview, previewData)
 
   const nextDocPage =
     currentDoc.file.data.frontmatter.next &&
@@ -26,6 +31,7 @@ export async function getDocProps({ preview, previewData }: any, slug: string) {
         previewData
       )
     ).props.file.data.frontmatter
+
   const prevDocPage =
     currentDoc.file.data.frontmatter.prev &&
     (
@@ -39,7 +45,7 @@ export async function getDocProps({ preview, previewData }: any, slug: string) {
   return {
     props: {
       ...currentDoc,
-      docsNav: docsNavData,
+      docsNav,
       nextPage: {
         slug: currentDoc.file.data.frontmatter.next || null,
         title: (nextDocPage && nextDocPage.title) || null,
