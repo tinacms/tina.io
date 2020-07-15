@@ -42,7 +42,7 @@ Tina lets you choose the user interface that best fits your workflow. You can us
 
 ## Tools for Managing Content
 
-Tina gives you the tools you need to manage content from the data source of your choosing. Read these docs to learn how to edit content the exact way you want.
+Tina gives you the tools you need to manage content from the data source of your choosing. These docs will show you how to craft your ideal content editing experience.
 
 * **Editing Content:** [Creating Forms](/docs/forms), [Fields](/docs/fields),[ Custom Fields](/docs/fields/custom-fields), [Inline Editing](/docs/inline-editing), [Working with Inline Blocks](/guides//general/inline-blocks/overview)
 * **Creating Content:** Using Content Creators _(Coming Soon)_
