@@ -51,7 +51,7 @@ Tina gives you the tools you need to manage content from the data source of your
 
 ## Integrating with React Frameworks
 
-Tina is designed to work with just about any React framework. These guides will help you learn the specifics of building CMSs using Next.js and Gatsby.
+Tina is designed to work with just about any React framework. These guides will help you learn the specifics of building a CMS using Next.js or Gatsby.
 
 * **Next.js:** [Available Packages](/docs/nextjs/overview "Next.js Packages"), [Adding Tina to a Next.js Site](/guides/nextjs/adding-tina/overview "Adding Tina to a Next.js Site"), [Storing Content using the GitHub API](/guides/nextjs/github-open-authoring/initial-setup "Using Tina with Next and GitHub")
 * **Gatsby:**  [Adding Tina to a Gatsby Site](/guides/gatsby/adding-tina/overview), [Storing Content Using the Git Filesystem](/docs/gatsby/manual-setup "Using Tina with Gatsby and Git")
