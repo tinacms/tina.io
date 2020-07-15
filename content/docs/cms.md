@@ -145,20 +145,22 @@ interface ToolbarConfig {
 
 ---
 
-| key                     | usage                                                                                                                           |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| **enabled**             | Controls whether the CMS is enabled or disabled. _Defaults to true_                                                             |
-| **plugins**             | Array of plugins to be added to the CMS object.                                                                                 |
-| **apis**                | Object containing APIs to be registered to the CMS                                                                              |
-| **sidebar**             | Enables and configures behavior of the sidebar                                                                                  |
-| **sidebar.position**    | 'displace': sidebar pushes content to the side when open; 'overlay': sidebar overlaps content when open                         |
-| **sidebar.placeholder** | Provides a placeholder component to render in the sidebar when there are no registered forms                                    |
-| **sidebar.buttons**     | _Deprecated — [Configure on the form](/docs/forms#customizing-form-buttons)_: Configures the text on 'Save' and 'Reset' buttons |
-| **toolbar**             | Configures behavior of the toolbar                                                                                              |
-| **toolbar.buttons**     | _Deprecated — [Configure on the form](/docs/forms#customizing-form-buttons)_: Configures the text on 'Save' and 'Reset' buttons |
-| **media.store**         | Configures the [media store](/docs/media).                                                                                      |
+| key                     | usage                                                                                                                                   |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| **enabled**             | Controls whether the CMS is enabled or disabled. _Defaults to true_                                                                     |
+| **plugins**             | Array of plugins to be added to the CMS object.                                                                                         |
+| **apis**                | Object containing APIs to be registered to the CMS                                                                                      |
+| **sidebar**             | Enables and configures behavior of the sidebar                                                                                          |
+| **sidebar.position**    | 'displace' _(Default)_: sidebar pushes content to the side when open; 'overlay': sidebar overlaps content when open                     |
+| **sidebar.placeholder** | Provides a placeholder component to render in the sidebar when there are no registered forms                                            |
+| **sidebar.buttons**     | _Deprecated — [Configure on the form instead](/docs/forms#customizing-form-buttons)_: Configures the text on 'Save' and 'Reset' buttons |
+| **toolbar**             | Configures behavior of the toolbar                                                                                                      |
+| **toolbar.buttons**     | _Deprecated — [Configure on the form instead](/docs/forms#customizing-form-buttons)_: Configures the text on 'Save' and 'Reset' buttons |
+| **media.store**         | Configures the [media store](/docs/media).                                                                                              |
 
 ---
+
+> Learn more about [sidebar & toolbar options](/docs/cms/ui).
 
 ```javascript
 import { TinaCMS } from 'tinacms'
