@@ -21,7 +21,7 @@ Currently, Tina provides `content-creator` plugins for both Markdown and JSON fi
 - A Gatsby site [configured with Tina](/guides/gatsby/adding-tina/project-setup)
 - Content editing with [Markdown](/guides/gatsby/markdown/set-up) or [JSON](/guides/gatsby/gatsby-json/create-json-form) set up
 
-## 1. Add Content-Creator Plugin
+## Add Content-Creator Plugin
 
 There are two `content-creator` plugins to use with Gatsby.
 
