@@ -18,9 +18,9 @@ yarn add next-tinacms-github
 
 Any functions in the `pages/api` directory are mapped to `/api/*` endpoints. The below helpers tend to be added to the `pages/api` directory in a Next.js project.
 
-### `createCreateAccessTokenFn`
+### `authHandler`
 
-Helper for creating a `createCreateAccessToken` server function.
+Helper for creating a `authHandler` server function.
 
 **pages/api/create-github-access-token.ts**
 
@@ -36,7 +36,7 @@ export default createAuthHandler(
 
 _See [Next's documentation](https://nextjs.org/docs/api-reference/next.config.js/environment-variables) for adding environment variables_
 
-[See here](https://tinacms.org/guides/nextjs/github-open-authoring/github-oauth-app) for instructions on creating a Github OAuth App to generate these **Client ID** & **Client Secret** variables and set up the **Signing Key**.
+[See here](https://tinacms.org/guides/nextjs/github-open-authoring/github-oauth-app) for instructions on creating a Github OAuth App to generate these **Client ID** & **Client Secret** variables and setting up the **Signing Key**.
 
 ### `apiProxy`
 
