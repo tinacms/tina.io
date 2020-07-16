@@ -4,7 +4,7 @@ title: Creating Custom Fields
 
 This guide explains how to add custom field plugins to a Gatsby site.
 
-## 1. Registering an Email Field
+## Registering an Email Field
 
 In this example we'll create a simple email field for our Gatsby site. Besides the required `name`, we also want the email field definition to accept a `label` and a `description`.
 
