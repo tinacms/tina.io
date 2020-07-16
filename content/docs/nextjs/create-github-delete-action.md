@@ -8,9 +8,14 @@ consumes:
     details:
 ---
 
-This is a delete action for [the github client](<LINK TO GITHUB CLIENT DOCS?>).
+<!-- this link will not work for the time being -->
+<!-- TODO: fix this link -->
 
-![]()
+This is a delete action for [the github client](/docs/packages/github-client).
+
+It will **delete the entire form file**. So the primary use case would be dynamic pages like blog pages or docs pages. (Commonly used with markdown files but could be any file format)
+
+![](/img/delete-action-github.png)
 
 ## Options
 
