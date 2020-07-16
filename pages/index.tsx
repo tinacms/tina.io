@@ -9,6 +9,7 @@ import {
   InlineTextareaField,
   BlockTextarea,
   BlocksControls,
+  InlineForm,
 } from 'react-tinacms-inline'
 import { EditLink } from '../components/layout/EditLink'
 import { DefaultSeo } from 'next-seo'
@@ -104,11 +105,7 @@ const HomePage = (props: any) => {
   })
 
   return (
-    <OpenAuthoringSiteForm
-      form={form}
-      path={props.file.fileRelativePath}
-      preview={props.preview}
-    >
+    <InlineForm form={form}>
       <Layout preview={props.preview}>
         <DefaultSeo titleTemplate={formData.title + ' | %s'} />
         <Hero overlap narrow>
@@ -187,7 +184,7 @@ export <b>WithTina</b>( <b>Component</b> );
           </Wrapper>
         </Section>
       </Layout>
-    </OpenAuthoringSiteForm>
+    </InlineForm>
   )
 }
 
@@ -197,7 +194,18 @@ export const getStaticProps: GetStaticProps = async function({
   preview,
   previewData,
 }) {
-  return getJsonPreviewProps('content/pages/home.json', preview, previewData)
+  const staticProps = await getJsonPreviewProps(
+    'content/pages/home.json',
+    preview,
+    previewData
+  )
+  return {
+    ...staticProps,
+    props: {
+      ...staticProps.props,
+      demo: true,
+    },
+  }
 }
 
 /*

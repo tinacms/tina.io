@@ -11,24 +11,26 @@ import { GithubClient, TinacmsGithubProvider } from 'react-tinacms-github'
 import { GlobalStyle } from '../components/styles/GlobalStyle'
 
 const MainLayout = ({ Component, pageProps }) => {
-  const tinaConfig = {
-    enabled: pageProps.preview,
-    toolbar: pageProps.preview,
-    apis: {
-      github: new GithubClient({
-        proxy: '/api/proxy-github',
-        authCallbackRoute: '/api/create-github-access-token',
-        clientId: process.env.GITHUB_CLIENT_ID,
-        baseRepoFullName: process.env.BASE_REPO_FULL_NAME,
+  const cms = React.useMemo(
+    () =>
+      new TinaCMS({
+        enabled: !!(pageProps.preview || pageProps.demo),
+        toolbar: !!(pageProps.preview || pageProps.demo),
+        apis: {
+          github: new GithubClient({
+            proxy: '/api/proxy-github',
+            authCallbackRoute: '/api/create-github-access-token',
+            clientId: process.env.GITHUB_CLIENT_ID,
+            baseRepoFullName: process.env.BASE_REPO_FULL_NAME,
+          }),
+          storage:
+            typeof window !== 'undefined'
+              ? new BrowserStorageApi(window.localStorage)
+              : {},
+        },
       }),
-      storage:
-        typeof window !== 'undefined'
-          ? new BrowserStorageApi(window.localStorage)
-          : {},
-    },
-  }
-
-  const cms = React.useMemo(() => new TinaCMS(tinaConfig), [])
+    [pageProps.preview, pageProps.demo]
+  )
 
   const enterEditMode = async () => {
     const token = localStorage.getItem('tinacms-github-token') || null
