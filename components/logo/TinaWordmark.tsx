@@ -16,8 +16,6 @@ export const TinaWordmark = styled(({ ...styleProps }) => {
   h1 {
     margin: 0;
     font-size: 1rem;
-    display: flex;
-    align-items: center;
   }
 
   svg {
