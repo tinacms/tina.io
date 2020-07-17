@@ -1,6 +1,6 @@
 ---
 title: Editing UI
-prev: /docs/cms/styles
+prev: /docs/ui/styles
 next: null
 consumes:
   - file: /packages/react-sidebar/src/sidebar.ts
@@ -8,6 +8,7 @@ consumes:
   - file: /packages/react-toolbar/src/toolbar.ts
     details: Shows toolbar interface
 ---
+
 The `tinacms` package provides two possible user interfaces: the sidebar and the toolbar.
 
 The main difference between the two UIs is aesthetics. Both provide access to [Screen Plugins](/blog/screen-plugins) and buttons for _saving_ and _resetting_ [Forms](). The main difference is in how they expect the Form's content to be edited: Form's are rendered within the sidebar, while the toolbar is designed to work with [Inline Editing](/docs/inline-editing). Also, widgets can be added to the toolbar as plugins, as in the case of the Branch Switcher provided by `react-tinacms-github` .
@@ -28,8 +29,8 @@ This will enable the UIs with their default configuration. If you need to config
 ```ts
 new TinaCMS({
   sidebar: {
-    position: 'displace'
-  }
+    position: 'displace',
+  },
 })
 ```
 
@@ -47,10 +48,10 @@ interface SidebarOptions {
 }
 ```
 
-| key | usage |
-| --- | --- |
+| key          | usage                                                                                                                                                        |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **position** | Determines sidebar **position in relation to the website**. 'displace' (default) moves the whole site over; 'overlay' slides the sidebar on top of the site. |
-| **buttons** | Customizes the string displayed on either the 'save' or 'reset' buttons. |
+| **buttons**  | Customizes the string displayed on either the 'save' or 'reset' buttons.                                                                                     |
 
 A site configured to use Tina will display a **blue edit button in the lower-left corner**. Clicking this button will open the sidebar.
 
@@ -71,8 +72,8 @@ interface ToolbarOptions {
 }
 ```
 
-| key | usage |
-| --- | --- |
+| key         | usage                                                                    |
+| ----------- | ------------------------------------------------------------------------ |
 | **buttons** | Customizes the string displayed on either the 'save' or 'reset' buttons. |
 
 On its own, the toolbar will display the 'save' and 'reset' buttons, along with a form status indicator to show whether there are unsaved changes. [Custom Widgets](/guides/nextjs/github-open-authoring/toolbar-plugins) can also be added to extend functionality for the particular workflow.
@@ -101,7 +102,7 @@ You'll want to pass in this option to wherever the plugin is registered in the `
 
 If you followed the implementation in our Next.js docs, you'll want to go to the `_app.js` file where the CMS is registered. Again, depending on your setup with Next + Tina, this config may look slightly different. Note this is also where you might specify the sidebar [display options](https://tinacms.org/docs/concepts/sidebar#sidebar-style).
 
-**pages/_app.js**
+**pages/\_app.js**
 
 ```javascript
 class MyApp extends App {

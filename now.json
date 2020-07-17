@@ -35,6 +35,9 @@
       "destination": "/docs/plugins/fields"
     },
     { "source": "/docs/cms/apis", "destination": "/docs/apis" },
+    { "source": "/docs/cms/ui", "destination": "/docs/ui" },
+    { "source": "/docs/cms/alerts", "destination": "/docs/ui/alerts" },
+    { "source": "/docs/cms/styles", "destination": "/docs/ui/styles" },
     { "source": "/docs/cms/events", "destination": "/docs/events" },
     { "source": "/docs/cms/plugins", "destination": "/docs/plugins" },
     { "source": "/docs/fields", "destination": "/docs/plugins/fields" },

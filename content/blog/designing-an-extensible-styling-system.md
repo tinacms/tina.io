@@ -37,7 +37,7 @@ Here's an example where we override the primary color (blue by default) and use 
 
 Reducing the complexity of our theme system makes it easier for us to adapt the UI to new features, but also makes it easier for those integrating TinaCMS with their project.
 
-> [Take a look at the docs](https://tinacms.org/docs/cms/styles) for `@tinacms/styles` for a full reference of available properties.
+> [Take a look at the docs](https://tinacms.org/docs/ui/styles) for `@tinacms/styles` for a full reference of available properties.
 
 ## What's the next challenge?
 

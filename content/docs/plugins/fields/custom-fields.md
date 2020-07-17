@@ -110,7 +110,7 @@ cms.fields.add({
 
 ## Using Tina Styles
 
-If you want to style the custom field to fit in with the rest of the Tina sidebar, you'll need to use the [CSS custom properties](/docs/cms/styles) defined in [`@tinacms/styles`](https://github.com/tinacms/tinacms/blob/master/packages/%40tinacms/styles/src/Styles.tsx).
+If you want to style the custom field to fit in with the rest of the Tina sidebar, you'll need to use the [CSS custom properties](/docs/ui/styles) defined in [`@tinacms/styles`](https://github.com/tinacms/tinacms/blob/master/packages/%40tinacms/styles/src/Styles.tsx).
 
 **Example**
 

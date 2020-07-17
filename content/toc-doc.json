@@ -32,9 +32,9 @@
     "id": "user-interface",
     "items": [
       {
-        "id": "/docs/cms/ui",
+        "id": "/docs/ui",
         "title": "Sidebar & Toolbar",
-        "slug": "/docs/cms/ui"
+        "slug": "/docs/ui"
       },
       {
         "title": "Inline Editing",
@@ -74,14 +74,14 @@
         ]
       },
       {
-        "id": "/docs/cms/alerts",
+        "id": "/docs/ui/alerts",
         "title": "Alerts",
-        "slug": "/docs/cms/alerts"
+        "slug": "/docs/ui/alerts"
       },
       {
-        "id": "/docs/cms/styles",
+        "id": "/docs/ui/styles",
         "title": "Custom Styles",
-        "slug": "/docs/cms/styles"
+        "slug": "/docs/ui/styles"
       }
     ]
   },

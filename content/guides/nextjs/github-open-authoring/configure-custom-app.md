@@ -1,23 +1,21 @@
 ---
 title: Configure the Custom App File
 ---
+
 Now we will set up TinaCMS to work with the GitHub App. First, create a new file in the `pages` directory called `_app.tsx`. This is a special file in Next.js that allows us to configure a [custom app](https://nextjs.org/docs/advanced-features/custom-app). Our custom `_app.tsx` will do a few things:
 
 1. **Create the TinaCMS instance**
 2. **Register the GithubClient:** The client allows us to authenticate with GitHub. All requests using the `GithubClient` gets passed through a proxy on our site. This allows us to securely attach the authentication tokens on the backend.
-3. Configure the [**Editing UI**](/docs/cms/ui) **to be 'hidden'** unless we're in [Preview/Edit mode](https://nextjs.org/docs/advanced-features/preview-mode).
+3. Configure the [**Editing UI**](/docs/ui) **to be 'hidden'** unless we're in [Preview/Edit mode](https://nextjs.org/docs/advanced-features/preview-mode).
 4. **Wrap the Page with** `TinacmsGithubProvider`: This component is given config and callbacks that hit our `/api` server functions to enable Preview/Edit Mode after authentication is complete.
 5. **Add a button for entering Preview/Edit Mode:** We must provide a means of triggering authentication to enter/exit edit mode. This a simple example of how to do so.
 
-**pages/_app.tsx**
+**pages/\_app.tsx**
 
 ```tsx
 import App from 'next/app'
 import { TinaCMS, TinaProvider } from 'tinacms'
-import {
-  GithubClient,
-  TinacmsGithubProvider,
-} from 'react-tinacms-github'
+import { GithubClient, TinacmsGithubProvider } from 'react-tinacms-github'
 
 export default class Site extends App {
   cms: TinaCMS
@@ -113,9 +111,9 @@ If auth is successful, you should see a refresh and then it will look the same a
 
 ![create-next-app with tina edit button](/img/github-open-auth-cna/edit-this-site.png)
 
-To make sure it did work, check your cookies. You should now see these four cookies: **__next_preview_data**, **__prerender_bypass**, **working_repo_full_name**, and **github_access_token**.
+To make sure it did work, check your cookies. You should now see these four cookies: **\_\_next_preview_data**, **\_\_prerender_bypass**, **working_repo_full_name**, and **github_access_token**.
 
-Those first two, **__next_preview_data** and **__prerender_bypass**, are for using preview mode.
+Those first two, **\_\_next_preview_data** and **\_\_prerender_bypass**, are for using preview mode.
 
 The **working_repo_full_name** points to the repository you'll be editing (i.e. the _Working Repo_). In this case, it should point to your repo, the original repo, because you have access to it, which we also call the _Base Repo_. Therefore your edits will go to the `master` branch.
 
