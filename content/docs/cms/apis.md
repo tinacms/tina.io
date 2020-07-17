@@ -1,7 +1,7 @@
 ---
 title: APIs
 prev: /docs/plugins
-next: /docs/cms/events
+next: /docs/events
 consumes:
   - file: /packages/@tinacms/core/src/cms.ts
     description: Demonstrates adding APIs to CMS obj
