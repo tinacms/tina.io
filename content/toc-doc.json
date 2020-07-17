@@ -180,17 +180,17 @@
       {
         "title": "Content Creators",
         "id": "content-creator",
-        "slug": "#"
+        "slug": "/docs/plugins/content-creators"
       },
       {
         "title": "Screens",
-        "id": "screen",
-        "slug": "#"
+        "id": "screens",
+        "slug": "/docs/plugins/screens"
       },
       {
         "title": "Toolbar Widgets",
         "id": "toolbar:widget",
-        "slug": "#"
+        "slug": "/docs/plugins/toolbar-widgets"
       }
     ]
   },
