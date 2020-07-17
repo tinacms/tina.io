@@ -1,8 +1,6 @@
 ---
 title: TinaCMS Documentation
 id: introduction
-prev: null
-next: /docs/getting-started/how-tina-works
 ---
 
 Tina is a **toolkit for building content management systems.** By creating a custom CMS with Tina instead of opting for a conventional, "turn-key" solution, developers that use Tina have a lot more control over the editing experience of their users.
@@ -27,7 +25,7 @@ Have questions on how to use Tina to build your CMS?
 
 Learning how to build a CMS is no small feat! We've compiled a variety of resources to help you along.
 
-- [Docs]() describe the main Tina concepts and how to use them to build your CMS.
+- Docs describe the main Tina concepts and how to use them to build your CMS.
 - [Guides](/guides 'Tina Guides') take you through the steps involved in addressing key problems and specific use-cases.
 - The [Blog](/blog 'Tina Blog') is where release notes, tips, and other announcements are posted.
 - Visit the Packages Lookup _(Coming Soon)_ to find more tools and make building your CMS even easier.
@@ -38,7 +36,7 @@ Tina lets you choose the user interface that best fits your workflow. You can us
 
 - Learn about the [Toolbar](/docs/ui#toolbar-configuration 'Tina Toolbar') and [Sidebar](/docs/ui#sidebar-configuration 'Tina Sidebar') UI components.
 - Take control of the appearance of your CMS using [Custom Styling](/docs/ui/styles 'Styles')
-- Add features to your CMS using [Screen Plugins](/blog/screen-plugins 'Screen Plugins') and Toolbar Widgets _(docs coming soon)_.
+- Add features to your CMS using [Screen Plugins](/docs/plugins/screen-plugins 'Screen Plugins') and [Toolbar Widgets](/docs/plugins/toolbar-widgets).
 - Wander off the beaten trail and create a totally custom UI _(Coming Soon)_
 
 ## Tools for Managing Content
@@ -46,7 +44,7 @@ Tina lets you choose the user interface that best fits your workflow. You can us
 Tina gives you the tools you need to manage content from the data source of your choosing. These docs will show you how to craft your ideal content editing experience.
 
 - **Editing Content:** [Creating Forms](/docs/plugins/forms), [Fields](/docs/plugins/fields),[ Custom Fields](/docs/plugins/fields/custom-fields), [Inline Editing](/docs/ui/inline-editing), [Working with Inline Blocks](/guides//general/inline-blocks/overview)
-- **Creating Content:** Using Content Creators _(Coming Soon)_
+- **Creating Content:** Using [Content Creators](/docs/plugins/content-creators)
 - **Deleting Content:** Using Form Actions. _(Coming Soon)_
 - **Media Management:** [Media Stores](/docs/media 'Tina Media Store'), [Image Fields](/docs/plugins/fields/image 'Image Field Plugin'), [Inline Images](/docs/ui/inline-editing/inline-image 'Inline Images')
 
