@@ -29,7 +29,7 @@ import { DateFieldPlugin } from 'react-tinacms-date'
 cms.plugins.add(DateFieldPlugin)
 ```
 
-> Visit the [plugins](/docs/cms/plugins) doc to learn how to reduce your initial bundle size by dynamically loading & registering the plugins.
+> Visit the [plugins](/docs/plugins) doc to learn how to reduce your initial bundle size by dynamically loading & registering the plugins.
 
 ## Options
 
