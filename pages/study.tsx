@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
-import { Layout, Wrapper, RichTextWrapper } from '../components/layout'
+import { Layout, Wrapper, RichTextWrapper, Hero } from '../components/layout'
 import { OpenAuthoringSiteForm } from '../components/layout/OpenAuthoringSiteForm'
 import { useGithubJsonForm } from 'react-tinacms-github'
 
@@ -10,7 +10,7 @@ function StudySignupPage(props) {
   const description = 'Page Description'
 
   return (
-    <StudyLayout preview={props.preview} color={'secondary'}>
+    <StudyLayout preview={props.preview}>
       <NextSeo
         title={title}
         description={description}
@@ -19,6 +19,7 @@ function StudySignupPage(props) {
           description: description,
         }}
       />
+      <Hero mini></Hero>
       <StudySection>
         <Wrapper>
           <StudyRichTextWrapper>
@@ -45,7 +46,6 @@ const StudyRichTextWrapper = styled(RichTextWrapper)`
 
 const StudyLayout = styled(Layout)`
   min-height: 100vh;
-  background-color: var(--color-secondary-dark);
   color: white;
 `
 
@@ -77,7 +77,7 @@ const StudyGrid = styled.div`
 
 const StudyFormWrapper = styled.div`
   padding: 2rem;
-  background-color: var(--color-secondary);
+  background-color: var(--color-seafoam);
   border-radius: 3rem;
 
   @media (min-width: 800px) {
@@ -91,11 +91,11 @@ const StudyContent = styled.div`
     max-width: 30rem;
   }
 
-  h2 {
+  /* h2 {
     color: var(--color-seafoam-dark) !important;
   }
 
   hr {
     border-color: var(--color-seafoam-dark) !important;
-  }
+  } */
 `
