@@ -1,6 +1,6 @@
 ---
 title: The CMS
-next: /docs/plugins
+next: /docs/ui
 consumes:
   - file: /packages/tinacms/src/tina-cms.ts
     description: Creates TinaCMS instance and describes config

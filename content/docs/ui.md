@@ -1,7 +1,7 @@
 ---
-title: Editing UI
-prev: /docs/ui/styles
-next: null
+title: Configure the User Interface
+prev:
+next: /docs/ui/inline-editing
 consumes:
   - file: /packages/react-sidebar/src/sidebar.ts
     details: Shows sidebar interface
