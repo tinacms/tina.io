@@ -34,6 +34,7 @@
       "source": "/docs/concepts/fields",
       "destination": "/docs/plugins/fields"
     },
+    { "source": "/docs/cms/events", "destination": "/docs/events" },
     { "source": "/docs/cms/plugins", "destination": "/docs/plugins" },
     { "source": "/docs/fields", "destination": "/docs/plugins/fields" },
     { "source": "/docs/concepts/backends", "destination": "/docs/cms#apis" },

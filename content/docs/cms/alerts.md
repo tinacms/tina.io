@@ -1,6 +1,6 @@
 ---
 title: Alerts
-prev: /docs/cms/events
+prev: /docs/events
 next: /docs/cms/styles
 ---
 
