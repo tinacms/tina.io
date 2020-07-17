@@ -1,7 +1,7 @@
 ---
 title: Inline Group
-prev: /docs/inline-editing/inline-image
-next: /docs/inline-editing/inline-blocks
+prev: /docs/ui/inline-editing/inline-image
+next: /docs/ui/inline-editing/inline-blocks
 consumes:
 ---
 
@@ -9,7 +9,7 @@ The `InlineGroup` represents a collection of inline fields. It serves as a wrapp
 
 ## Definition
 
-Below is an example of how `InlineGroup` may be used in an [Inline Form](/docs/inline-editing).
+Below is an example of how `InlineGroup` may be used in an [Inline Form](/docs/ui/inline-editing).
 
 ```jsx
 import { useForm, usePlugin } from 'tinacms'

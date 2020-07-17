@@ -4,7 +4,7 @@ title: Add an Inline Form & Fields
 
 ## Register a generic form
 
-The first thing we are going to do is [create a form](https://tinacms.org/docs/inline-editing) with the [`useForm`](https://tinacms.org/docs/plugins/forms#creating-forms-in-react) hook. Head to `Home.js`. This component imports `data` from a local JSON file and renders the `Hero` component, passing the data as props.
+The first thing we are going to do is [create a form](https://tinacms.org/docs/ui/inline-editing) with the [`useForm`](https://tinacms.org/docs/plugins/forms#creating-forms-in-react) hook. Head to `Home.js`. This component imports `data` from a local JSON file and renders the `Hero` component, passing the data as props.
 
 > Note that since we don't have a backend set up, when you click Save the **data changes won't persist**. Please refer to [other guides](https://tinacms.org/guides/) to learn more on setting up a backend.
 
@@ -55,7 +55,7 @@ Call the `useForm` hook and pass the config object. The return values will be th
 
 ## Create an _Inline Form_
 
-Now let's add an [_Inline Form_](https://tinacms.org/docs/inline-editing) to the home page. First, install the `react-tinacms-inline` package.
+Now let's add an [_Inline Form_](https://tinacms.org/docs/ui/inline-editing) to the home page. First, install the `react-tinacms-inline` package.
 
 ```bash
 yarn add react-tinacms-inline
@@ -105,7 +105,7 @@ At this point, we've **turned the entire home page into a form**. So any _Inline
 
 Now that we have the _Inline Form_ set up, we can add fields to it.
 
-_Inline Fields_ are essentially various types of inputs, with stripped-down styles so they blend in with the page. You can [create your own manually](https://tinacms.org/docs/inline-editing#adding-inline-editing-with-inlineform), or use the [pre-configured fields](https://tinacms.org/docs/inline-editing#using-pre-configured-inline-fields) provided by `react-tinacms-inline`. For the demo, we will only be using the pre-configured fields.
+_Inline Fields_ are essentially various types of inputs, with stripped-down styles so they blend in with the page. You can [create your own manually](https://tinacms.org/docs/ui/inline-editing#adding-inline-editing-with-inlineform), or use the [pre-configured fields](https://tinacms.org/docs/ui/inline-editing#using-pre-configured-inline-fields) provided by `react-tinacms-inline`. For the demo, we will only be using the pre-configured fields.
 
 Head to the `Hero` component. Let's turn the headline and subtext into _Inline Textareas_:
 

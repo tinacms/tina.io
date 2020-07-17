@@ -1,7 +1,7 @@
 ---
 title: Inline Textarea
-prev: /docs/inline-editing/inline-text
-next: /docs/inline-editing/inline-wysiwyg
+prev: /docs/ui/inline-editing/inline-text
+next: /docs/ui/inline-editing/inline-wysiwyg
 consumes:
   - file: /packages/react-tinacms-inline/src/inline-field-textarea.tsx
     description: Shows InlineTextarea
@@ -13,7 +13,7 @@ The `InlineTextarea` component represents a **multi-line text input**. It should
 
 ## Definition
 
-Below is an example of how `InlineTextarea` may be used in an [Inline Form](/docs/inline-editing).
+Below is an example of how `InlineTextarea` may be used in an [Inline Form](/docs/ui/inline-editing).
 
 ```jsx
 import { useForm, usePlugin } from 'tinacms'
@@ -33,15 +33,15 @@ export function Page(props) {
 }
 ```
 
-> **Note**: Some Inline Field [styles can be extended](/docs/inline-editing#extending-inline-field-styles) or overridden via _Styled Components_.
+> **Note**: Some Inline Field [styles can be extended](/docs/ui/inline-editing#extending-inline-field-styles) or overridden via _Styled Components_.
 
 ## Options
 
-| Key         | Description                                                                                                                |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `name`      | The path to some value in the data being edited.                                                                           |
-| `className` | To set styles directly on the input or extend via [styled components](/docs/inline-editing#extending-inline-field-styles). |
-| `focusRing` | Controls whether to display a focus outline.                                                                               |
+| Key         | Description                                                                                                                   |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `name`      | The path to some value in the data being edited.                                                                              |
+| `className` | To set styles directly on the input or extend via [styled components](/docs/ui/inline-editing#extending-inline-field-styles). |
+| `focusRing` | Controls whether to display a focus outline.                                                                                  |
 
 ## Interface
 

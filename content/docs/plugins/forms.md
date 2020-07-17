@@ -187,4 +187,4 @@ The three hooks described thus far are the basic interface for creating forms, a
 
 ## Inline Forms
 
-Refer to the [Inline Editing](/docs/inline-editing) docs.
+Refer to the [Inline Editing](/docs/ui/inline-editing) docs.

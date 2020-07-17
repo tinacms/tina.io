@@ -44,28 +44,32 @@
     { "source": "/docs/concepts/backends", "destination": "/docs/cms#apis" },
     { "source": "/docs/concepts/plugins", "destination": "/docs/cms#plugins" },
     {
+      "source": "/docs/inline-editing",
+      "destination": "/docs/ui/inline-editing"
+    },
+    {
       "source": "/docs/nextjs/inline-editing",
-      "destination": "/docs/inline-editing"
+      "destination": "/docs/ui/inline-editing"
     },
     {
       "source": "/docs/gatsby/inline-editing",
-      "destination": "/docs/inline-editing"
+      "destination": "/docs/ui/inline-editing"
     },
     {
       "source": "/docs/inline-blocks",
-      "destination": "/docs/inline-editing/inline-blocks"
+      "destination": "/docs/ui/inline-editing/inline-blocks"
     },
     {
       "source": "/docs/inline-blocks/block-text",
-      "destination": "/docs/inline-editing/inline-text"
+      "destination": "/docs/ui/inline-editing/inline-text"
     },
     {
       "source": "/docs/inline-blocks/block-textarea",
-      "destination": "/docs/inline-editing/inline-textarea"
+      "destination": "/docs/ui/inline-editing/inline-textarea"
     },
     {
       "source": "/docs/inline-blocks/block-image",
-      "destination": "/docs/inline-editing/inline-image"
+      "destination": "/docs/ui/inline-editing/inline-image"
     },
     {
       "source": "/docs/nextjs/bootstrapping",

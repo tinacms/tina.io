@@ -5,6 +5,7 @@ author: Scott Gallant
 draft: false
 consumes: null
 ---
+
 We're focused on improving the independent web as a whole. We want to craft tools that help people build better sites and create better content.
 
 In line with this mission, we sought to create something we call **Visual Open Authoring** ✍️. The [open authoring concept](https://css-tricks.com/netlify-cms-open-authoring/#article-header-id-0) was originally pioneered by [Netlify CMS](https://www.netlifycms.org/) this past summer and involves opening up your website's CMS to accept content-related contributions from anyone. Using Tina, we were able to take this a step further, establishing the editing context **on the page itself**.
@@ -35,7 +36,7 @@ The ability for a website to run statically by default, and then "wake up" into 
 
 ## Crowdsourcing your content
 
-**Visual Open Authoring** is a unique, low-friction approach to website editing. Thanks to the clever Next.js preview mode, Tina's content flexibility, and the seamless [Inline Editing](https://tinacms.org/docs/inline-editing) experience, we're ready for a digital content revolution.
+**Visual Open Authoring** is a unique, low-friction approach to website editing. Thanks to the clever Next.js preview mode, Tina's content flexibility, and the seamless [Inline Editing](https://tinacms.org/docs/ui/inline-editing) experience, we're ready for a digital content revolution.
 
 What if it were effortless to fix a spelling error on the New York Times? Imagine contributing to the ReactJS documentation in an instant.
 

@@ -116,7 +116,7 @@ That's it!
 
 > **Why do we need to call usePlugin?**
 >
-> There are a few different ways to use forms: in the sidebar, in the global utility menu, and [inline](/docs/inline-editing). How you plan to use the form will determine how you should set it up in the CMS.
+> There are a few different ways to use forms: in the sidebar, in the global utility menu, and [inline](/docs/ui/inline-editing). How you plan to use the form will determine how you should set it up in the CMS.
 
 ## More Info
 

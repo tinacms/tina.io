@@ -164,13 +164,13 @@ export const imagesBlock = {
 }
 ```
 
-This block provides two [Inline Image](https://tinacms.org/docs/inline-editing/inline-image) fields in a [diptych](https://en.wikipedia.org/wiki/Diptych) style. With Inline Image fields, you can drag and drop new images onto the area, or click the image to be met with a file selector.
+This block provides two [Inline Image](https://tinacms.org/docs/ui/inline-editing/inline-image) fields in a [diptych](https://en.wikipedia.org/wiki/Diptych) style. With Inline Image fields, you can drag and drop new images onto the area, or click the image to be met with a file selector.
 
 > Since this project isn't set up with a [media store](https://tinacms.org/docs/media), **uploading new images won't work**. The type of media store you use depends on your back-end, and that is beyond the scope of this guide. For our learning purposes, the same images will always render in the `Images` block.
 
 ### Configuring image fields
 
-Configuring image fields _can be trickier_ than other fields, refer to the [inline image docs](/docs/inline-editing/inline-image) to get more clarity.
+Configuring image fields _can be trickier_ than other fields, refer to the [inline image docs](/docs/ui/inline-editing/inline-image) to get more clarity.
 
 In short: the `parse` function handles how the path gets written in the source data when a _new image_ is uploaded. `uploadDir` sets where those new images should live. And `previewSrc` provides a path for the image **when inline editing is active** (a.k.a when the [CMS is enabled](https://tinacms.org/docs/cms#disabling--enabling-the-cms)). When inline editing is not active (`cms.enabled === false`), the image will reference the path in the source data.
 

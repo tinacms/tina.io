@@ -1,7 +1,7 @@
 ---
 title: Inline Image
-prev: /docs/inline-editing/inline-wysiwyg
-next: /docs/inline-editing/inline-group
+prev: /docs/ui/inline-editing/inline-wysiwyg
+next: /docs/ui/inline-editing/inline-group
 consumes:
   - file: /packages/react-tinacms-inline/src/inline-field-image.tsx
     description: Shows InlineImage
@@ -13,7 +13,7 @@ The `InlineImage` field represents an image input. This field supports drag and 
 
 ## Definition
 
-Below is a simple example of how `InlineImage` could be implemented in in an [Inline Form](/docs/inline-editing).
+Below is a simple example of how `InlineImage` could be implemented in in an [Inline Form](/docs/ui/inline-editing).
 
 ```jsx
 import ReactMarkdown from 'react-markdown'
@@ -36,7 +36,7 @@ export function Page(props) {
 }
 ```
 
-There are two ways to use `InlineImage`, with and without children. If no children are passed, `InlineImage` will render a default `img` element. However, you may want more control over the image behavior, in which case you can [**pass children**](/docs/inline-editing/inline-image#example) to `InlineImage`.
+There are two ways to use `InlineImage`, with and without children. If no children are passed, `InlineImage` will render a default `img` element. However, you may want more control over the image behavior, in which case you can [**pass children**](/docs/ui/inline-editing/inline-image#example) to `InlineImage`.
 
 ## Options
 

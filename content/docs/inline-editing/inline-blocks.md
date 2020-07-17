@@ -1,6 +1,6 @@
 ---
 title: Inline Blocks
-prev: /docs/inline-editing/inline-group
+prev: /docs/ui/inline-editing/inline-group
 next: null
 consumes:
   - file: /packages/react-tinacms-inline/src/inline-form.tsx
@@ -15,7 +15,7 @@ consumes:
     description: Uses ModalProvider for Block Settings
 ---
 
-Inline Blocks combine the content modelling flexibility of regular [Blocks](/blog/what-are-blocks) with the improved editing experience of [Inline Editing](/docs/inline-editing).
+Inline Blocks combine the content modelling flexibility of regular [Blocks](/blog/what-are-blocks) with the improved editing experience of [Inline Editing](/docs/ui/inline-editing).
 
 > Learn about Inline Blocks in a [step-by-step guide](/guides/general/inline-blocks/overview)!
 
@@ -87,10 +87,10 @@ The image above shows the _InlineTextarea_ field in use with Blocks Controls.
 
 **Additional Available Inline Fields**:
 
-- [Text](/docs/inline-editing/inline-text)
-- [Textarea](/docs/inline-editing/inline-textarea)
-- [Image](/docs/inline-editing/inline-image)
-- [Group](/docs/inline-editing/inline-group)
+- [Text](/docs/ui/inline-editing/inline-text)
+- [Textarea](/docs/ui/inline-editing/inline-textarea)
+- [Image](/docs/ui/inline-editing/inline-image)
+- [Group](/docs/ui/inline-editing/inline-group)
 
 ### Part 2: Block Template
 
@@ -118,12 +118,12 @@ The _Inline Block Template_ **configures the block** with the CMS. It has a simi
 
 ## Configuring Inline Blocks with Inline Form
 
-The initial steps to configuring _Inline Blocks_ involve setting up an _[Inline Form](/docs/inline-editing#inlineform-and-inlinefield)_ on the page or component where the blocks should render. Then, you should [add controls](/docs/inline-editing#inline-form-controls) to handle editing state. Finally, you can use a component called `InlineBlocks` that **renders blocks in order** based on the source data.
+The initial steps to configuring _Inline Blocks_ involve setting up an _[Inline Form](/docs/ui/inline-editing#inlineform-and-inlinefield)_ on the page or component where the blocks should render. Then, you should [add controls](/docs/ui/inline-editing#inline-form-controls) to handle editing state. Finally, you can use a component called `InlineBlocks` that **renders blocks in order** based on the source data.
 
 ### The Steps:
 
 1. Wrap your component with `InlineForm`, pass the `form` object.
-2. Set up [Inline Controls](/docs/inline-editing#inline-form-controls).
+2. Set up [Inline Controls](/docs/ui/inline-editing#inline-form-controls).
 3. Configure `InlineBlocks`, pass the `name` and `blocks` values.
 
 ```jsx
@@ -199,15 +199,15 @@ interface InlineBlocksProps {
 }
 ```
 
-| Key         |                                                                                                                    Purpose |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------: |
-| `name`      |                                                                            The path to the **source data** for the blocks. |
-| `blocks`    |                            An object composed of individual [Blocks](/docs/inline-editing/inline-blocks#creating-a-block). |
-| `className` | To set styles directly on the input or extend via [styled components](/docs/inline-editing#extending-inline-field-styles). |
-| `direction` |                                                 Sets the orientation of the drag direction and `AddBlock` button position. |
-| `itemProps` |                                                       An object that passes additional props to every block child element. |
-| `min`       |                      Controls the minimum number of blocks. Once reached, blocks won't be able to be removed. _(Optional)_ |
-| `max`       |                Controls the maximum number of blocks allowed. Once reached, blocks won't be able to be added. _(Optional)_ |
+| Key         |                                                                                                                       Purpose |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------: |
+| `name`      |                                                                               The path to the **source data** for the blocks. |
+| `blocks`    |                            An object composed of individual [Blocks](/docs/ui/inline-editing/inline-blocks#creating-a-block). |
+| `className` | To set styles directly on the input or extend via [styled components](/docs/ui/inline-editing#extending-inline-field-styles). |
+| `direction` |                                                    Sets the orientation of the drag direction and `AddBlock` button position. |
+| `itemProps` |                                                          An object that passes additional props to every block child element. |
+| `min`       |                         Controls the minimum number of blocks. Once reached, blocks won't be able to be removed. _(Optional)_ |
+| `max`       |                   Controls the maximum number of blocks allowed. Once reached, blocks won't be able to be added. _(Optional)_ |
 
 ### Blocks Source Data
 

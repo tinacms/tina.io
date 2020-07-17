@@ -1,7 +1,7 @@
 ---
 title: Inline Wysiwyg
-prev: /docs/inline-editing/inline-textarea
-next: /docs/inline-editing/inline-image
+prev: /docs/ui/inline-editing/inline-textarea
+next: /docs/ui/inline-editing/inline-image
 consumes:
   - file: /packages/react-tinacms-inline/src/inline-wysiwyg.tsx
     description: Shows InlineWysiwyg
@@ -27,7 +27,7 @@ yarn add react-tinacms-editor
 
 ## Definition
 
-Below is an example of how an `InlineWysiwyg` field could be defined in an [Inline Form](/docs/inline-editing).
+Below is an example of how an `InlineWysiwyg` field could be defined in an [Inline Form](/docs/ui/inline-editing).
 
 ```jsx
 import ReactMarkdown from 'react-markdown'
