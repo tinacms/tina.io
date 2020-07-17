@@ -51,7 +51,7 @@ import { MarkdownFieldPlugin } from 'react-tinacms-editor'
 cms.plugins.add(MarkdownFieldPlugin)
 ```
 
-> Visit the [plugins](/docs/cms/plugins) doc to learn how to reduce your initial bundle size by dynamically loading & registering the plugins.
+> Visit the [plugins](/docs/plugins) doc to learn how to reduce your initial bundle size by dynamically loading & registering the plugins.
 
 ## Definition
 

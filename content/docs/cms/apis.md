@@ -1,6 +1,6 @@
 ---
 title: APIs
-prev: /docs/cms/plugins
+prev: /docs/plugins
 next: /docs/cms/events
 consumes:
   - file: /packages/@tinacms/core/src/cms.ts

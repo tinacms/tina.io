@@ -1,6 +1,6 @@
 ---
 title: The CMS
-next: /docs/cms/plugins
+next: /docs/plugins
 consumes:
   - file: /packages/tinacms/src/tina-cms.ts
     description: Creates TinaCMS instance and describes config
@@ -112,7 +112,7 @@ export default function ExitButton() {
 
 ## CMS Configuration
 
-When instantiating the `TinaCMS` object, you can pass in a configuration object. This allows you to configure some options for the sidebar, and also allows you to configure [Plugins](/docs/cms/plugins) and [APIs](/docs/cms/apis) declaratively.
+When instantiating the `TinaCMS` object, you can pass in a configuration object. This allows you to configure some options for the sidebar, and also allows you to configure [Plugins](/docs/plugins) and [APIs](/docs/cms/apis) declaratively.
 
 ```typescript
 interface TinaCMSConfig {

@@ -86,9 +86,9 @@
     ]
   },
   {
-    "id": "/docs/cms/plugins",
+    "id": "/docs/plugins",
     "title": "Plugins",
-    "slug": "/docs/cms/plugins",
+    "slug": "/docs/plugins",
     "items": [
       {
         "title": "Forms",

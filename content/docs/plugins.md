@@ -1,7 +1,7 @@
 ---
 title: Plugins
 prev: /docs/cms
-next: /docs/cms/apis
+next: /docs/plugins/forms
 consumes:
   - file: /packages/@tinacms/core/src/plugins.ts
     description: Describes Plugin interface
