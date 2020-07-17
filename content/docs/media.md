@@ -1,7 +1,7 @@
 ---
 title: Media
 prev: /docs/plugins/fields
-next: /docs/inline-editing
+next: /docs/ui/inline-editing
 ---
 
 **Media** in Tina refers to a set of APIs to allow packages to interact with a central store of files.

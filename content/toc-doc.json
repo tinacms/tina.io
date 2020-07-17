@@ -39,37 +39,37 @@
       {
         "title": "Inline Editing",
         "id": "inline-editing",
-        "slug": "/docs/inline-editing",
+        "slug": "/docs/ui/inline-editing",
         "items": [
           {
-            "id": "/docs/inline-editing/inline-text",
+            "id": "/docs/ui/inline-editing/inline-text",
             "title": "Inline Text",
-            "slug": "/docs/inline-editing/inline-text"
+            "slug": "/docs/ui/inline-editing/inline-text"
           },
           {
-            "id": "/docs/inline-editing/inline-textarea",
+            "id": "/docs/ui/inline-editing/inline-textarea",
             "title": "Inline Textarea",
-            "slug": "/docs/inline-editing/inline-textarea"
+            "slug": "/docs/ui/inline-editing/inline-textarea"
           },
           {
-            "id": "/docs/inline-editing/inline-wysiwyg",
+            "id": "/docs/ui/inline-editing/inline-wysiwyg",
             "title": "Inline Wysiwyg",
-            "slug": "/docs/inline-editing/inline-wysiwyg"
+            "slug": "/docs/ui/inline-editing/inline-wysiwyg"
           },
           {
-            "id": "/docs/inline-editing/inline-image",
+            "id": "/docs/ui/inline-editing/inline-image",
             "title": "Inline Image",
-            "slug": "/docs/inline-editing/inline-image"
+            "slug": "/docs/ui/inline-editing/inline-image"
           },
           {
-            "id": "/docs/inline-editing/inline-group",
+            "id": "/docs/ui/inline-editing/inline-group",
             "title": "Inline Group",
-            "slug": "/docs/inline-editing/inline-group"
+            "slug": "/docs/ui/inline-editing/inline-group"
           },
           {
-            "id": "/docs/inline-editing/inline-blocks",
+            "id": "/docs/ui/inline-editing/inline-blocks",
             "title": "Inline Blocks",
-            "slug": "/docs/inline-editing/inline-blocks"
+            "slug": "/docs/ui/inline-editing/inline-blocks"
           }
         ]
       },

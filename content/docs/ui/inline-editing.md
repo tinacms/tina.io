@@ -1,7 +1,7 @@
 ---
 title: Inline Editing
 prev: /docs/media
-next: /docs/inline-editing/inline-text
+next: /docs/ui/inline-editing/inline-text
 consumes:
   - file: /packages/react-tinacms-inline/src/inline-form.tsx
     description: InlineForm
@@ -11,8 +11,8 @@ consumes:
 
 _Inline Editing_ in Tina refers to editing values directly in the area they appear on the page, instead of in the Tina sidebar. These are the **general steps** to set up inline editing:
 
-1. [Configure ](/docs/inline-editing#adding-inline-editing-with-inlineform)_[InlineForm](/docs/inline-editing#adding-inline-editing-with-inlineform)_
-2. [Add Inline Fields](/docs/inline-editing#using-preconfigured-inline-fields)
+1. [Configure ](/docs/ui/inline-editing#adding-inline-editing-with-inlineform)_[InlineForm](/docs/ui/inline-editing#adding-inline-editing-with-inlineform)_
+2. [Add Inline Fields](/docs/ui/inline-editing#using-preconfigured-inline-fields)
 
 > Play around with this [simple demo](https://logan-anderson.github.io/cra-hosted-demo/) to get a feel for Inline Editing. Get familiar with the Inline Editing API in this [step-by-step guide](/guides/general/inline-blocks/overview).
 
@@ -111,12 +111,12 @@ When using `InlineField`, you can create a custom _Inline Field_. This is helpfu
 
 However, Tina provides a set of pre-configured Inline Fields that should **work for many use cases**. These fields provide basic input elements and handle the rendering logic between edit and preview mode.
 
-- [Inline Text](/docs/inline-editing/inline-text)
-- [Inline Textarea](/docs/inline-editing/inline-textarea)
-- [Inline Wysiwyg](/docs/inline-editing/inline-wysiwyg)
-- [Inline Image](/docs/inline-editing/inline-image)
-- [Inline Group](/docs/inline-editing/inline-group)
-- [Inline Blocks](/docs/inline-editing/inline-blocks)
+- [Inline Text](/docs/ui/inline-editing/inline-text)
+- [Inline Textarea](/docs/ui/inline-editing/inline-textarea)
+- [Inline Wysiwyg](/docs/ui/inline-editing/inline-wysiwyg)
+- [Inline Image](/docs/ui/inline-editing/inline-image)
+- [Inline Group](/docs/ui/inline-editing/inline-group)
+- [Inline Blocks](/docs/ui/inline-editing/inline-blocks)
 
 **Refactoring the above example** with Inline Fields:
 
