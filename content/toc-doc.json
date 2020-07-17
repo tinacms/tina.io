@@ -1,5 +1,11 @@
 [
   {
+    "title": "Docs",
+    "id": "index",
+    "slug": "/docs",
+    "isTunerFont": "true"
+  },
+  {
     "title": "Getting Started",
     "id": "getting-started",
     "items": [
@@ -16,24 +22,56 @@
     ]
   },
   {
-    "title": "The CMS",
+    "title": "CMS",
     "id": "the-cms",
     "slug": "/docs/cms",
+    "isTunerFont": "true"
+  },
+  {
+    "title": "User Interface",
+    "id": "user-interface",
     "items": [
       {
-        "id": "/docs/cms/plugins",
-        "title": "Plugins",
-        "slug": "/docs/cms/plugins"
+        "id": "/docs/cms/ui",
+        "title": "Sidebar & Toolbar",
+        "slug": "/docs/cms/ui"
       },
       {
-        "id": "/docs/cms/apis",
-        "title": "APIs",
-        "slug": "/docs/cms/apis"
-      },
-      {
-        "id": "/docs/cms/events",
-        "title": "Events",
-        "slug": "/docs/cms/events"
+        "title": "Inline Editing",
+        "id": "inline-editing",
+        "slug": "/docs/inline-editing",
+        "items": [
+          {
+            "id": "/docs/inline-editing/inline-text",
+            "title": "Inline Text",
+            "slug": "/docs/inline-editing/inline-text"
+          },
+          {
+            "id": "/docs/inline-editing/inline-textarea",
+            "title": "Inline Textarea",
+            "slug": "/docs/inline-editing/inline-textarea"
+          },
+          {
+            "id": "/docs/inline-editing/inline-wysiwyg",
+            "title": "Inline Wysiwyg",
+            "slug": "/docs/inline-editing/inline-wysiwyg"
+          },
+          {
+            "id": "/docs/inline-editing/inline-image",
+            "title": "Inline Image",
+            "slug": "/docs/inline-editing/inline-image"
+          },
+          {
+            "id": "/docs/inline-editing/inline-group",
+            "title": "Inline Group",
+            "slug": "/docs/inline-editing/inline-group"
+          },
+          {
+            "id": "/docs/inline-editing/inline-blocks",
+            "title": "Inline Blocks",
+            "slug": "/docs/inline-editing/inline-blocks"
+          }
+        ]
       },
       {
         "id": "/docs/cms/alerts",
@@ -42,103 +80,125 @@
       },
       {
         "id": "/docs/cms/styles",
-        "title": "Styles",
+        "title": "Custom Styles",
         "slug": "/docs/cms/styles"
-      },
-      {
-        "id": "/docs/cms/ui",
-        "title": "Editing UI",
-        "slug": "/docs/cms/ui"
       }
     ]
   },
   {
-    "title": "Forms",
-    "id": "forms",
-    "slug": "/docs/forms",
-    "isTunerFont": "true"
-  },
-  {
-    "title": "Fields",
-    "id": "fields",
-    "slug": "/docs/fields",
+    "id": "/docs/cms/plugins",
+    "title": "Plugins",
+    "slug": "/docs/cms/plugins",
     "items": [
       {
-        "id": "/docs/fields/text",
-        "slug": "/docs/fields/text",
-        "title": "Text"
+        "title": "Forms",
+        "id": "forms",
+        "slug": "/docs/forms"
       },
       {
-        "id": "/docs/fields/textarea",
-        "slug": "/docs/fields/textarea",
-        "title": "Text Area"
+        "title": "Fields",
+        "id": "fields",
+        "slug": "/docs/fields",
+        "items": [
+          {
+            "id": "/docs/fields/text",
+            "slug": "/docs/fields/text",
+            "title": "Text"
+          },
+          {
+            "id": "/docs/fields/textarea",
+            "slug": "/docs/fields/textarea",
+            "title": "Text Area"
+          },
+          {
+            "id": "/docs/fields/markdown",
+            "slug": "/docs/fields/markdown",
+            "title": "Markdown"
+          },
+          {
+            "id": "/docs/fields/html",
+            "slug": "/docs/fields/html",
+            "title": "HTML"
+          },
+          {
+            "id": "/docs/fields/number",
+            "slug": "/docs/fields/number",
+            "title": "Number"
+          },
+          {
+            "id": "/docs/fields/date",
+            "slug": "/docs/fields/date",
+            "title": "Date & Time"
+          },
+          {
+            "id": "/docs/fields/image",
+            "slug": "/docs/fields/image",
+            "title": "Image"
+          },
+          {
+            "id": "/docs/fields/color",
+            "slug": "/docs/fields/color",
+            "title": "Color"
+          },
+          {
+            "id": "/docs/fields/toggle",
+            "slug": "/docs/fields/toggle",
+            "title": "Toggle"
+          },
+          {
+            "id": "/docs/fields/select",
+            "slug": "/docs/fields/select",
+            "title": "Select"
+          },
+          {
+            "id": "/docs/fields/tags",
+            "slug": "/docs/fields/tags",
+            "title": "Tags"
+          },
+          {
+            "id": "/docs/fields/group",
+            "slug": "/docs/fields/group",
+            "title": "Group"
+          },
+          {
+            "id": "/docs/fields/group-list",
+            "slug": "/docs/fields/group-list",
+            "title": "Group List"
+          },
+          {
+            "id": "/docs/fields/blocks",
+            "slug": "/docs/fields/blocks",
+            "title": "Blocks"
+          },
+          {
+            "id": "/docs/fields/custom-fields",
+            "slug": "/docs/fields/custom-fields",
+            "title": "Custom Fields"
+          }
+        ]
       },
       {
-        "id": "/docs/fields/markdown",
-        "slug": "/docs/fields/markdown",
-        "title": "Markdown"
+        "title": "Content Creators",
+        "id": "content-creator",
+        "slug": "#"
       },
       {
-        "id": "/docs/fields/html",
-        "slug": "/docs/fields/html",
-        "title": "HTML"
+        "title": "Screens",
+        "id": "screen",
+        "slug": "#"
       },
       {
-        "id": "/docs/fields/number",
-        "slug": "/docs/fields/number",
-        "title": "Number"
-      },
-      {
-        "id": "/docs/fields/date",
-        "slug": "/docs/fields/date",
-        "title": "Date & Time"
-      },
-      {
-        "id": "/docs/fields/image",
-        "slug": "/docs/fields/image",
-        "title": "Image"
-      },
-      {
-        "id": "/docs/fields/color",
-        "slug": "/docs/fields/color",
-        "title": "Color"
-      },
-      {
-        "id": "/docs/fields/toggle",
-        "slug": "/docs/fields/toggle",
-        "title": "Toggle"
-      },
-      {
-        "id": "/docs/fields/select",
-        "slug": "/docs/fields/select",
-        "title": "Select"
-      },
-      {
-        "id": "/docs/fields/tags",
-        "slug": "/docs/fields/tags",
-        "title": "Tags"
-      },
-      {
-        "id": "/docs/fields/group",
-        "slug": "/docs/fields/group",
-        "title": "Group"
-      },
-      {
-        "id": "/docs/fields/group-list",
-        "slug": "/docs/fields/group-list",
-        "title": "Group List"
-      },
-      {
-        "id": "/docs/fields/blocks",
-        "slug": "/docs/fields/blocks",
-        "title": "Blocks"
-      },
-      {
-        "id": "/docs/fields/custom-fields",
-        "slug": "/docs/fields/custom-fields",
-        "title": "Custom Fields"
+        "title": "Toolbar Widgets",
+        "id": "toolbar:widget",
+        "slug": "#"
       }
     ]
+  },
+  {
+    "id": "/docs/cms/events",
+    "title": "Events",
+    "slug": "/docs/cms/events",
+    "isTunerFont": "true"
   },
   {
     "title": "Media",
@@ -147,51 +207,15 @@
     "isTunerFont": "true"
   },
   {
-    "title": "Inline Editing",
-    "id": "inline-editing",
-    "slug": "/docs/inline-editing",
-    "items": [
-      {
-        "id": "/docs/inline-editing/inline-text",
-        "title": "Inline Text",
-        "slug": "/docs/inline-editing/inline-text"
-      },
-      {
-        "id": "/docs/inline-editing/inline-textarea",
-        "title": "Inline Textarea",
-        "slug": "/docs/inline-editing/inline-textarea"
-      },
-      {
-        "id": "/docs/inline-editing/inline-wysiwyg",
-        "title": "Inline Wysiwyg",
-        "slug": "/docs/inline-editing/inline-wysiwyg"
-      },
-      {
-        "id": "/docs/inline-editing/inline-image",
-        "title": "Inline Image",
-        "slug": "/docs/inline-editing/inline-image"
-      },
-      {
-        "id": "/docs/inline-editing/inline-group",
-        "title": "Inline Group",
-        "slug": "/docs/inline-editing/inline-group"
-      },
-      {
-        "id": "/docs/inline-editing/inline-blocks",
-        "title": "Inline Blocks",
-        "slug": "/docs/inline-editing/inline-blocks"
-      }
-    ]
+    "id": "/docs/cms/apis",
+    "title": "External APIs",
+    "slug": "/docs/cms/apis",
+    "isTunerFont": "true"
   },
   {
-    "title": "Tina + NextJS",
-    "id": "nextjs",
+    "title": "Packages",
+    "id": "packages",
     "items": [
-      {
-        "id": "/docs/nextjs/overview",
-        "slug": "/docs/nextjs/overview",
-        "title": "Overview"
-      },
       {
         "id": "/docs/nextjs/next-tinacms-github",
         "slug": "/docs/nextjs/next-tinacms-github",
@@ -210,74 +234,18 @@
     ]
   },
   {
-    "title": "Tina + Gatsby",
-    "id": "gasby",
+    "title": "Integrations",
+    "id": "nextjs",
     "items": [
       {
-        "id": "/docs/gatsby/quickstart",
-        "slug": "/docs/gatsby/quickstart",
-        "title": "Quickstart"
+        "id": "/docs/nextjs/overview",
+        "slug": "/docs/nextjs/overview",
+        "title": "Next.js"
       },
       {
-        "id": "/docs/gatsby/manual-setup",
-        "slug": "/docs/gatsby/manual-setup",
-        "title": "Manual Setup"
-      },
-      {
-        "id": "/docs/gatsby/markdown",
-        "slug": "/docs/gatsby/markdown",
-        "title": "Using Markdown Files"
-      },
-      {
-        "id": "/docs/gatsby/json",
-        "slug": "/docs/gatsby/json",
-        "title": "Using JSON Files"
-      },
-      {
-        "id": "/docs/gatsby/creating-new-files",
-        "slug": "/docs/gatsby/creating-new-files",
-        "title": "Creating New Files"
-      },
-      {
-        "id": "/docs/gatsby/configure-git-plugin",
-        "slug": "/docs/gatsby/configure-git-plugin",
-        "title": "Configure Git plugin"
-      },
-      {
-        "id": "/docs/gatsby/custom-fields",
-        "slug": "/docs/gatsby/custom-fields",
-        "title": "Custom Fields"
-      }
-    ]
-  },
-  {
-    "title": "Contributing",
-    "id": "contributing",
-    "items": [
-      {
-        "id": "/docs/contributing/guidelines",
-        "slug": "/docs/contributing/guidelines",
-        "title": "Guidelines"
-      },
-      {
-        "id": "/docs/contributing/setting-up",
-        "slug": "/docs/contributing/setting-up",
-        "title": "Setting Up"
-      },
-      {
-        "id": "/docs/contributing/releasing",
-        "slug": "/docs/contributing/releasing",
-        "title": "Releasing"
-      },
-      {
-        "id": "/docs/contributing/troubleshooting",
-        "slug": "/docs/contributing/troubleshooting",
-        "title": "Troubleshooting"
-      },
-      {
-        "id": "/docs/contributing/style-guide",
-        "slug": "/docs/contributing/style-guide",
-        "title": "Style Guide"
+        "id": "/docs/gatsby",
+        "slug": "/docs/gatsby",
+        "title": "Gatsby"
       }
     ]
   },
