@@ -1,7 +1,7 @@
 ---
 title: Markdown Field
-prev: /docs/fields/textarea
-next: /docs/fields/html
+prev: /docs/plugins/fields/textarea
+next: /docs/plugins/fields/html
 consumes:
   - file: /packages/tinacms/src/plugins/fields/MarkdownFieldPlugin.tsx
     details: Shows markdown interface and config options
@@ -33,7 +33,7 @@ interface MarkdownConfig {
 >
 > This interfaces only shows the keys unique to the markdown field.
 >
-> Visit the [Field Config](/docs/fields) docs for a complete list of options.
+> Visit the [Field Config](/docs/plugins/fields) docs for a complete list of options.
 
 ## Adding the Plugin
 

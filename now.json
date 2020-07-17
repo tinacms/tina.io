@@ -30,7 +30,11 @@
     { "source": "/docs/concepts/sidebar", "destination": "/docs/cms" },
     { "source": "/docs/concepts/forms", "destination": "/docs/plugins/forms" },
     { "source": "/docs/forms", "destination": "/docs/plugins/forms" },
-    { "source": "/docs/concepts/fields", "destination": "/docs/fields" },
+    {
+      "source": "/docs/concepts/fields",
+      "destination": "/docs/plugins/fields"
+    },
+    { "source": "/docs/fields", "destination": "/docs/plugins/fields" },
     { "source": "/docs/concepts/backends", "destination": "/docs/cms#apis" },
     { "source": "/docs/concepts/plugins", "destination": "/docs/cms#plugins" },
     {

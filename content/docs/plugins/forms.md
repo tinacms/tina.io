@@ -1,7 +1,7 @@
 ---
 title: Forms
 prev: /docs/cms
-next: /docs/fields
+next: /docs/plugins/fields
 consumes:
   - file: /packages/@tinacms/react-core/src/use-form.ts
     description: Describes the useForm hooks

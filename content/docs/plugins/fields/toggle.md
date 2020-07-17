@@ -1,13 +1,14 @@
 ---
 title: Toggle Field
-prev: /docs/fields/color
-next: /docs/fields/select
+prev: /docs/plugins/fields/color
+next: /docs/plugins/fields/select
 consumes:
   - file: /packages/tinacms/src/plugins/fields/ToggleFieldPlugin.tsx
     details: Shows toggle field interface and config options
   - file: /packages/@tinacms/fields/src/Toggle.ts
     details: Shows toggle field interface and config options
 ---
+
 The `toggle` field represents a true/false toggle. This field is typically used for boolean content values. You could use this to toggle a certain feature on the page on or off.
 
 ![tinacms-toggle-field](/img/fields/toggle.png)
@@ -15,7 +16,7 @@ The `toggle` field represents a true/false toggle. This field is typically used 
 ## Options
 
 ```typescript
-interface ToggleConfig extends FieldConfig{
+interface ToggleConfig extends FieldConfig {
   component: 'Toggle'
   name: string
   label?: string
@@ -23,16 +24,16 @@ interface ToggleConfig extends FieldConfig{
 }
 ```
 
-| Option | Description |
-| --- | --- |
-| `component` | The name of the plugin component. Always `'toggle'` |
-| `name` | The path to some value in the data being edited. |
-| `label` | A human readable label for the field. Defaults to the `name`. _(Optional)_ |
-| `description`  | Description that expands on the purpose of the field or prompts a specific action. _(Optional)_ |
+| Option        | Description                                                                                     |
+| ------------- | ----------------------------------------------------------------------------------------------- |
+| `component`   | The name of the plugin component. Always `'toggle'`                                             |
+| `name`        | The path to some value in the data being edited.                                                |
+| `label`       | A human readable label for the field. Defaults to the `name`. _(Optional)_                      |
+| `description` | Description that expands on the purpose of the field or prompts a specific action. _(Optional)_ |
 
 > This interfaces only shows the keys unique to the date field.
 >
-> Visit the [Field Config](/docs/fields) docs for a complete list of options.
+> Visit the [Field Config](/docs/plugins/fields) docs for a complete list of options.
 
 ## Example: Published Flag
 
@@ -52,4 +53,4 @@ const BlogPostForm = {
 }
 ```
 
-## 
+##

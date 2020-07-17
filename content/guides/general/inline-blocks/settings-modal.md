@@ -105,7 +105,7 @@ export const heroBlock = {
 
 If you restart the dev server, you should see a new 'pencil' icon in the _Blocks Controls_. If you click on that it will open the _Settings Modal_ where the fields we defined will render.
 
-You can add any [Tina fields](https://tinacms.org/docs/fields) to the _Settings Modal_, just like you can in a regular sidebar form. This additional interface should allow you to cover your bases to edit page and block metadata.
+You can add any [Tina fields](https://tinacms.org/docs/plugins/fields) to the _Settings Modal_, just like you can in a regular sidebar form. This additional interface should allow you to cover your bases to edit page and block metadata.
 
 ### Dynamic style approaches
 

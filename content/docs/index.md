@@ -45,10 +45,10 @@ Tina lets you choose the user interface that best fits your workflow. You can us
 
 Tina gives you the tools you need to manage content from the data source of your choosing. These docs will show you how to craft your ideal content editing experience.
 
-- **Editing Content:** [Creating Forms](/docs/plugins/forms), [Fields](/docs/fields),[ Custom Fields](/docs/fields/custom-fields), [Inline Editing](/docs/inline-editing), [Working with Inline Blocks](/guides//general/inline-blocks/overview)
+- **Editing Content:** [Creating Forms](/docs/plugins/forms), [Fields](/docs/plugins/fields),[ Custom Fields](/docs/plugins/fields/custom-fields), [Inline Editing](/docs/inline-editing), [Working with Inline Blocks](/guides//general/inline-blocks/overview)
 - **Creating Content:** Using Content Creators _(Coming Soon)_
 - **Deleting Content:** Using Form Actions. _(Coming Soon)_
-- **Media Management:** [Media Stores](/docs/media 'Tina Media Store'), [Image Fields](/docs/fields/image 'Image Field Plugin'), [Inline Images](/docs/inline-editing/inline-image 'Inline Images')
+- **Media Management:** [Media Stores](/docs/media 'Tina Media Store'), [Image Fields](/docs/plugins/fields/image 'Image Field Plugin'), [Inline Images](/docs/inline-editing/inline-image 'Inline Images')
 
 ## Integrating with React Frameworks
 

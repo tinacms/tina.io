@@ -23,4 +23,4 @@ To gain a better understanding of how Tina works, start by digging into some cor
 
 - [The CMS](https://tinacms.org/docs/cms).
 - [Forms](https://tinacms.org/docs/plugins/forms) — these expose editable content to Tina.
-- [Fields](https://tinacms.org/docs/fields) — an individual component that makes up the forms.
+- [Fields](https://tinacms.org/docs/plugins/fields) — an individual component that makes up the forms.

@@ -8,6 +8,7 @@ consumes:
   - file: /packages/react-tinacms-inline/src/inline-field.tsx
     description: Depends on InlineField
 ---
+
 The `InlineImage` field represents an image input. This field supports drag and drop upload, or via clicking on the image to select media from the local filesystem.
 
 ## Definition
@@ -39,16 +40,16 @@ There are two ways to use `InlineImage`, with and without children. If no childr
 
 ## Options
 
-| Key | Description |
-| --- | --- |
-| `name` | The path to some value in the data being edited. |
-| `parse` | Defines how the actual front matter or data value gets populated. The name of the file gets passed as an argument, and one can set the path this image as defined by the uploadDir property. |
-| `uploadDir` | Defines the upload directory for the image. All of the post data is passed in, `fileRelativePath` is most useful in defining the upload directory, but you can also statically define the upload directory. |
-| `previewSrc` | Defines the path for the src attribute on the image preview. If using gatsby-image, the path to the `childImageSharp.fluid.src` needs to be provided. |
-| `focusRing` | Controls whether to display a focus outline. |
-| `children` | Children need to be passed through the [Render Props](https://reactjs.org/docs/render-props.html) pattern to access `previewSrc`. |
+| Key          | Description                                                                                                                                                                                                 |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`       | The path to some value in the data being edited.                                                                                                                                                            |
+| `parse`      | Defines how the actual front matter or data value gets populated. The name of the file gets passed as an argument, and one can set the path this image as defined by the uploadDir property.                |
+| `uploadDir`  | Defines the upload directory for the image. All of the post data is passed in, `fileRelativePath` is most useful in defining the upload directory, but you can also statically define the upload directory. |
+| `previewSrc` | Defines the path for the src attribute on the image preview. If using gatsby-image, the path to the `childImageSharp.fluid.src` needs to be provided.                                                       |
+| `focusRing`  | Controls whether to display a focus outline.                                                                                                                                                                |
+| `children`   | Children need to be passed through the [Render Props](https://reactjs.org/docs/render-props.html) pattern to access `previewSrc`.                                                                           |
 
-***
+---
 
 ## Interface
 
@@ -174,11 +175,11 @@ export const imagesBlock = {
 
 ### Passing children with Gatsby Image
 
-Below is an example of how you could **pass children** as a to `InlineImage` to work with _Gatsby Image_. Notice how _children_ **need to be passed via** [**render props**](https://reactjs.org/docs/render-props.html). 
+Below is an example of how you could **pass children** as a to `InlineImage` to work with _Gatsby Image_. Notice how _children_ **need to be passed via** [**render props**](https://reactjs.org/docs/render-props.html).
 
 The return value from the `previewSrc` function is passed as a prop. You can use this as the Img src when the CMS is enabled. This allows it so when new images are uploaded, the correct `previewSrc` should render. A fallback `src` should be provided based on the form data — this will be the `src` when the CMS is disabled.
 
-Read more on [proper image paths](/docs/fields/image#proper-image-paths-in-gatsby) in Gatsby to get context on the `parse` & `uploadDir` configuration.
+Read more on [proper image paths](/docs/plugins/fields/image#proper-image-paths-in-gatsby) in Gatsby to get context on the `parse` & `uploadDir` configuration.
 
 ```jsx
 import {
@@ -220,7 +221,10 @@ export function Hero({ data }) {
       >
         {props => (
           <Img
-            fluid={props?.previewSrc || post.frontmatter.thumbnail.childImageSharp.fluid}
+            fluid={
+              props?.previewSrc ||
+              post.frontmatter.thumbnail.childImageSharp.fluid
+            }
             alt="Gatsby can't find me"
             {...props}
           />

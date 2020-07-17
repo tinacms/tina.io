@@ -1,6 +1,6 @@
 ---
 title: Media
-prev: /docs/fields
+prev: /docs/plugins/fields
 next: /docs/inline-editing
 ---
 

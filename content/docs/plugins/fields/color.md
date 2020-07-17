@@ -1,7 +1,7 @@
 ---
 title: Color Field
-prev: /docs/fields/image
-next: /docs/fields/toggle
+prev: /docs/plugins/fields/image
+next: /docs/plugins/fields/toggle
 consumes:
   - file: /packages/tinacms/src/plugins/fields/ColorFieldPlugin.tsx
     details: Documents color field plugin
@@ -45,7 +45,7 @@ interface ColorConfig {
 
 > This interfaces only shows the keys unique to the color field.
 >
-> Visit the [Field Config](/docs/fields) docs for a complete list of options.
+> Visit the [Field Config](/docs/plugins/fields) docs for a complete list of options.
 
 ## Definition
 

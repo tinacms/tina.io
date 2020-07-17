@@ -11,7 +11,7 @@ This guide is intended as a jumping off point to get you started with Tina, but 
 
 ## Add More Fields
 
-Our simplified example only exposes the title and post body to the Tina form. Take a look at our [fields](/docs/fields) documentation and try adding fields for the rest of the post data in the blog demo.
+Our simplified example only exposes the title and post body to the Tina form. Take a look at our [fields](/docs/plugins/fields) documentation and try adding fields for the rest of the post data in the blog demo.
 
 ## Inline Editing
 
