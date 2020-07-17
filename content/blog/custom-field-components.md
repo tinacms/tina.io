@@ -18,7 +18,7 @@ Form fields are the bread and butter of any CMS. While Tina provides a solid col
 
 **Prerequisites 👩‍🏫**
 
-Throughout the post, I'll refer to a few core TinaCMS concepts such as [forms](https://tinacms.org/docs/forms), the sidebar, and [fields](https://tinacms.org/docs/fields). It will be helpful to have some basic working knowledge of [**how TinaCMS works**](https://tinacms.org/docs/getting-started/how-tina-works) before reading. Feel free to refer to the [documentation](https://tinacms.org/docs/getting-started/introduction) or read a post on using Tina with [Gatsby](https://www.gatsbyjs.org/blog/2019-12-20-integrate-tinacms-with-your-gatsby-website/) or [Next.js](https://tinacms.org/blog/using-tinacms-with-nextjs/) to get familiar.
+Throughout the post, I'll refer to a few core TinaCMS concepts such as [forms](https://tinacms.org/docs/plugins/forms), the sidebar, and [fields](https://tinacms.org/docs/fields). It will be helpful to have some basic working knowledge of [**how TinaCMS works**](https://tinacms.org/docs/getting-started/how-tina-works) before reading. Feel free to refer to the [documentation](https://tinacms.org/docs/getting-started/introduction) or read a post on using Tina with [Gatsby](https://www.gatsbyjs.org/blog/2019-12-20-integrate-tinacms-with-your-gatsby-website/) or [Next.js](https://tinacms.org/blog/using-tinacms-with-nextjs/) to get familiar.
 
 ## Why would you create a custom field?
 
@@ -38,7 +38,7 @@ There are some advantages to creating a plugin versus an inline field — the ma
 
 ## Creating a custom inline field
 
-Say we have a [Tina Form](https://tinacms.org/docs/forms) set up for an _About Me_ page:
+Say we have a [Tina Form](https://tinacms.org/docs/plugins/forms) set up for an _About Me_ page:
 
 > _Note:_ The examples below will be referencing a Next.js setup, but this approach can be applied to Gatsby as well.
 

@@ -1,6 +1,6 @@
 ---
 title: Fields
-prev: /docs/forms
+prev: /docs/plugins/forms
 next: /docs/media
 ---
 

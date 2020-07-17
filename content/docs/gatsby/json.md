@@ -117,7 +117,7 @@ Additionally, any fields that are **not** queried will be deleted when saving co
 This is a [React Hook](https://reactjs.org/docs/hooks-intro.html) for creating Json Forms.
 This is the recommended approach if your template is a Function Component.
 
-In order to use a form you must register it with the CMS. There are two main approaches to register forms in Tina: page forms and screen plugins. Please refer to the [form concepts](/docs/forms) doc to get clarity on the differences.
+In order to use a form you must register it with the CMS. There are two main approaches to register forms in Tina: page forms and screen plugins. Please refer to the [form concepts](/docs/plugins/forms) doc to get clarity on the differences.
 
 **Interface**
 
@@ -133,7 +133,7 @@ useJsonForm(data): [values, form]
 
 - `[values, form]`
   - `values`: The current values to be displayed. This has the same shape as the `data` argument.
-  - `form`: A reference to the [CMS Form](/docs/forms) object. The `form` is rarely needed in the template.
+  - `form`: A reference to the [CMS Form](/docs/plugins/forms) object. The `form` is rarely needed in the template.
 
 #### Example 1: Page Forms
 
@@ -174,7 +174,7 @@ function Layout(props) {
 ### JsonForm
 
 `JsonForm` is a [Render Props](https://reactjs.org/docs/render-props.html#use-render-props-for-cross-cutting-concerns)
-based component for accessing [CMS Forms](/docs/forms).
+based component for accessing [CMS Forms](/docs/plugins/forms).
 
 This Component is a thin wrapper of `useJsonForm` and `usePlugin`. Since [React Hooks](https://reactjs.org/docs/hooks-intro.html) are
 only available within Function Components you will need to use `JsonForm` if your template is Class Component.
@@ -184,7 +184,7 @@ only available within Function Components you will need to use `JsonForm` if you
 - `data`: The data returned from a Gatsby `dataJson` query.
 - `render({ data, form }): JSX.Element`: A function that returns JSX elements
   - `data`: The current values to be displayed. This has the same shape as the data in the `Json` prop.
-  - `form`: A reference to the [CMS Form](/docs/forms) object. The `form` is rarely needed in the template.
+  - `form`: A reference to the [CMS Form](/docs/plugins/forms) object. The `form` is rarely needed in the template.
 
 **src/templates/blog-post.js**
 

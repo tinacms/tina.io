@@ -150,7 +150,7 @@ app.prepare().then(() => {
     return handle(req, res)
   })
 
-  server.listen(port, (err) => {
+  server.listen(port, err => {
     if (err) throw err
     console.log(`> Ready on http://localhost:${port}`)
   })
@@ -201,7 +201,7 @@ That’s all the config for tracking and persisting content changes with Git & T
 
 ### Creating Content Forms 📝
 
-Alright, now the fun starts — let’s dig into [editing content](https://tinacms.org/guides/nextjs/git-based/creating-git-forms). We access Tina’s editing powers by registering forms to the `cms`. When creating these [forms](https://tinacms.org/docs/forms), we define [fields](https://tinacms.org/docs/fields) that connect to bits and pieces of the content you want to make editable.
+Alright, now the fun starts — let’s dig into [editing content](https://tinacms.org/guides/nextjs/git-based/creating-git-forms). We access Tina’s editing powers by registering forms to the `cms`. When creating these [forms](https://tinacms.org/docs/plugins/forms), we define [fields](https://tinacms.org/docs/fields) that connect to bits and pieces of the content you want to make editable.
 
 Since our site is mainly comprised of blog data, let’s configure Tina to edit blog posts. Open up the [blog template](https://github.com/kendallstrautman/brevifolia-nextjs/blob/master/pages/blog/%5Bslug%5D.js) file (`pages/blog/[slug].js`).
 
@@ -212,7 +212,7 @@ As a recap from [Part I](https://tinacms.org/blog/simple-markdown-blog-nextjs/),
 First, we need to add an additional property to the return object from `getInitialProps` called `fileRelativePath`. Tina needs this path in order to know what file to update. Here’s an example of how you could add `fileRelativePath`:
 
 ```javascript
-BlogTemplate.getInitialProps = async function (ctx) {
+BlogTemplate.getInitialProps = async function(ctx) {
   const { slug } = ctx.query
   const content = await import(`../../posts/${slug}.md`)
   const config = await import(`../../data/config.json`)

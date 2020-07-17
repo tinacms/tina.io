@@ -8,6 +8,7 @@ consumes:
   - file: /packages/react-tinacms-inline/src/inline-field.tsx
     description: InlineField
 ---
+
 _Inline Editing_ in Tina refers to editing values directly in the area they appear on the page, instead of in the Tina sidebar. These are the **general steps** to set up inline editing:
 
 1. [Configure ](/docs/inline-editing#adding-inline-editing-with-inlineform)_[InlineForm](/docs/inline-editing#adding-inline-editing-with-inlineform)_
@@ -17,7 +18,7 @@ _Inline Editing_ in Tina refers to editing values directly in the area they appe
 
 ## Adding Inline Editing with _InlineForm_
 
-The `InlineForm` and `InlineField` components can be used to set up inline editing in your layout. `InlineForm` receives the form object created via one of the [form hooks](/docs/forms) in order to provide it to the inline editing context.
+The `InlineForm` and `InlineField` components can be used to set up inline editing in your layout. `InlineForm` receives the form object created via one of the [form hooks](/docs/plugins/forms) in order to provide it to the inline editing context.
 
 > Note that it is important to **use a hook to register a form** instead of an HOC or Render Props component. Depending on the Tina packages you are using, the hook names may differ than those seen in the examples.
 
@@ -41,7 +42,7 @@ The **rough idea** is like this:
 
 ### Example
 
-Let's take a modified version of the simplistic example from the [form documentation](/docs/forms):
+Let's take a modified version of the simplistic example from the [form documentation](/docs/plugins/forms):
 
 ```jsx
 import * as React from React
@@ -110,12 +111,12 @@ When using `InlineField`, you can create a custom _Inline Field_. This is helpfu
 
 However, Tina provides a set of pre-configured Inline Fields that should **work for many use cases**. These fields provide basic input elements and handle the rendering logic between edit and preview mode.
 
-* [Inline Text](/docs/inline-editing/inline-text)
-* [Inline Textarea](/docs/inline-editing/inline-textarea)
-* [Inline Wysiwyg](/docs/inline-editing/inline-wysiwyg)
-* [Inline Image](/docs/inline-editing/inline-image)
-* [Inline Group](/docs/inline-editing/inline-group)
-* [Inline Blocks](/docs/inline-editing/inline-blocks)
+- [Inline Text](/docs/inline-editing/inline-text)
+- [Inline Textarea](/docs/inline-editing/inline-textarea)
+- [Inline Wysiwyg](/docs/inline-editing/inline-wysiwyg)
+- [Inline Image](/docs/inline-editing/inline-image)
+- [Inline Group](/docs/inline-editing/inline-group)
+- [Inline Blocks](/docs/inline-editing/inline-blocks)
 
 **Refactoring the above example** with Inline Fields:
 

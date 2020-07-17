@@ -22,7 +22,7 @@ interface Plugin {
 }
 ```
 
-Beyond that, a plugin's properties will depend on what it's used for. Most of Tina's features, including [Forms](/docs/forms) and [Fields](/docs/fields), are implemented as Plugins!
+Beyond that, a plugin's properties will depend on what it's used for. Most of Tina's features, including [Forms](/docs/plugins/forms) and [Fields](/docs/fields), are implemented as Plugins!
 
 ## Adding Plugins
 

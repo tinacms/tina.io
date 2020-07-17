@@ -25,7 +25,7 @@ export default function Post({ post: initialPost, morePosts, preview }) {
 
 ## Form Configuration
 
-For details on how to configure forms, take a look at our [form configuration docs](/docs/forms#form-configuration). For the purposes of this guide, we will use the following configuration:
+For details on how to configure forms, take a look at our [form configuration docs](/docs/plugins/forms#form-configuration). For the purposes of this guide, we will use the following configuration:
 
 ```js
 const formConfig = {
@@ -120,4 +120,4 @@ That's it!
 
 ## More Info
 
-- [Tina Docs: Forms](/docs/forms)
+- [Tina Docs: Forms](/docs/plugins/forms)

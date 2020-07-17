@@ -1,7 +1,7 @@
 ---
 title: Styles
 prev: /docs/cms/alerts
-next: /docs/forms
+next: /docs/plugins/forms
 ---
 
 The `@tinacms/styles` package serves as the foundation for all Tina UI components. It contains a number of related elements:

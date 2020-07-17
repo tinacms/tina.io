@@ -302,7 +302,7 @@
       "details": "Shows the Theme interface"
     }
   ],
-  "/content/docs/forms.md": [
+  "/content/docs/plugins/forms.md": [
     {
       "file": "/packages/@tinacms/core/src/cms-forms/form.ts",
       "details": "Shows Form Options interface"
