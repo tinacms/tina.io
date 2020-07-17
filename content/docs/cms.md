@@ -112,7 +112,7 @@ export default function ExitButton() {
 
 ## CMS Configuration
 
-When instantiating the `TinaCMS` object, you can pass in a configuration object. This allows you to configure some options for the sidebar, and also allows you to configure [Plugins](/docs/plugins) and [APIs](/docs/cms/apis) declaratively.
+When instantiating the `TinaCMS` object, you can pass in a configuration object. This allows you to configure some options for the sidebar, and also allows you to configure [Plugins](/docs/plugins) and [APIs](/docs/apis) declaratively.
 
 ```typescript
 interface TinaCMSConfig {

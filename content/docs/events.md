@@ -1,8 +1,9 @@
 ---
 title: Events
-prev: /docs/cms/apis
+prev: /docs/apis
 next: /docs/cms/alerts
 ---
+
 The **Events** feature allows decoupled parts of the CMS to:
 
 1. Notify the rest of the system that something has happened, and
@@ -89,19 +90,19 @@ Note that the string `plugins`is equivalent to `plugins:*` or `plugins:*:*`.
 
 ### _tinacms_
 
-| Type | Description |
-| --- | --- |
-| `cms:enabled` | The CMS has been enabled. |
-| `cms:disabled` | The CMS has been disabled |
-| `sidebar:opened` | The Sidebar has been opened |
-| `sidebar:closed` | The Sidebar has been closed. |
-| `plugin:add:{__type}` | A Plugin of a given `__type` has been added. |
+| Type                     | Description                                    |
+| ------------------------ | ---------------------------------------------- |
+| `cms:enabled`            | The CMS has been enabled.                      |
+| `cms:disabled`           | The CMS has been disabled                      |
+| `sidebar:opened`         | The Sidebar has been opened                    |
+| `sidebar:closed`         | The Sidebar has been closed.                   |
+| `plugin:add:{__type}`    | A Plugin of a given `__type` has been added.   |
 | `plugin:remove:{__type}` | A Plugin of a given `__type` has been removed. |
 
 ### _react-tinacms-github_
 
-| Event Name | Decription |
-| --- | --- |
-| `github:error` | An error has occurred when making requests to the GitHub API. |
-| `github:branch:checkout` | The current branch has been switched. |
-| `github:branch:create` | A new branch has been created. |
+| Event Name               | Decription                                                    |
+| ------------------------ | ------------------------------------------------------------- |
+| `github:error`           | An error has occurred when making requests to the GitHub API. |
+| `github:branch:checkout` | The current branch has been switched.                         |
+| `github:branch:create`   | A new branch has been created.                                |
