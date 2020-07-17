@@ -117,7 +117,7 @@ When creating an instance of `GitClient`, we need to pass it the URL where the A
 const client = new GitClient('/___tina')
 ```
 
-We'll need to amend our `_app.js` application wrapper to register this with the CMS. We can pass [APIs](/docs/cms/apis), [Media](/docs/media), and [UI](/docs/cms/ui-components) settings in a config object to `TinaCMS`.
+We'll need to amend our `_app.js` application wrapper to register this with the CMS. We can pass [APIs](/docs/apis), [Media](/docs/media), and [UI](/docs/cms/ui-components) settings in a config object to `TinaCMS`.
 
 The `pages/_app.js` file should now look something like this:
 
