@@ -25,7 +25,21 @@ function StudySignupPage(props) {
           <StudyRichTextWrapper>
             <StudyGrid>
               <StudyContent>
-                <h2>Here be copy</h2>
+                <h2>
+                  We are looking for passionate Gatsby and Next.js developers to
+                  give feedback for TinaCMS.
+                </h2>
+                <p>
+                  You will be exploring a few guides and starters the team has
+                  created, and perhaps even build yourself a website while you
+                  are at it! . If you are interested in exploring the awesome
+                  world of editable websites with Tina and give us valuable
+                  feedback.
+                </p>
+                <p>
+                  We will be compensating each user with a 75 dollar Visa
+                  giftcard.
+                </p>
               </StudyContent>
               <StudyFormWrapper>
                 <p>Here be form</p>
