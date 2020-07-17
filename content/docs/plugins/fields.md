@@ -1,7 +1,7 @@
 ---
-title: Fields
+title: Field Plugins
 prev: /docs/plugins/forms
-next: /docs/media
+next: /docs/plugins/content-creators
 ---
 
 Fields are added to forms via the `fields` array and create the editing interface of a form.
