@@ -1,7 +1,7 @@
 ---
 title: Events
 prev: /docs/apis
-next: /docs/cms/alerts
+next: /docs/ui/alerts
 ---
 
 The **Events** feature allows decoupled parts of the CMS to:

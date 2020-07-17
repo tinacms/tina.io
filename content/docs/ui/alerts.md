@@ -1,7 +1,7 @@
 ---
 title: Alerts
 prev: /docs/events
-next: /docs/cms/styles
+next: /docs/ui/styles
 ---
 
 The CMS' **alerts** feature allows you to display short, ephemeral messages to users.

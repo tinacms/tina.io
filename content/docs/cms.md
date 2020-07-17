@@ -52,7 +52,7 @@ export default function App() {
 }
 ```
 
-> Learn more about [conditionally loading Tina Styles](/docs/cms/styles#dynamically-loading-tina-styles).
+> Learn more about [conditionally loading Tina Styles](/docs/ui/styles#dynamically-loading-tina-styles).
 
 Alternatively, you can use the `withTina` higher-order component to wrap your site with the `<TinaProvider>` component. `withTina` will automatically instantiate the CMS object.
 

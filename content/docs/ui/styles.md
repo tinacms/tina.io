@@ -1,6 +1,6 @@
 ---
 title: Styles
-prev: /docs/cms/alerts
+prev: /docs/ui/alerts
 next: /docs/plugins/forms
 ---
 
