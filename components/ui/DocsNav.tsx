@@ -13,7 +13,6 @@ interface NavSection {
   title: string
   items: NavSection[]
   collapsible?: boolean
-  isTunerFont?: boolean
   returnLink?: {
     url: string
     label: string
@@ -40,7 +39,7 @@ export const NavSection = (section: NavSection) => {
   }, [currentPath, collapsible])
 
   const hasChildren = section.items && section.items.length > 0
-  const highlighted = isCurrentPage || (hasChildren && expanded)
+  const currentPage = isCurrentPage
 
   return (
     <>
@@ -48,19 +47,12 @@ export const NavSection = (section: NavSection) => {
         <NavItemHeader onClick={() => collapsible && setExpanded(!expanded)}>
           {section.slug && !hasChildren ? (
             <DynamicLink href={section.slug} passHref>
-              <NavSectionTitle
-                as="a"
-                highlighted={highlighted}
-                isTunerFont={section.isTunerFont}
-              >
+              <NavSectionTitle as="a" currentPage={currentPage}>
                 {section.title}
               </NavSectionTitle>
             </DynamicLink>
           ) : (
-            <NavSectionTitle
-              highlighted={highlighted}
-              isTunerFont={section.isTunerFont || true}
-            >
+            <NavSectionTitle currentPage={currentPage}>
               {section.title}
             </NavSectionTitle>
           )}
@@ -89,7 +81,6 @@ export const NavSection = (section: NavSection) => {
           id={section.returnLink.url}
           slug={section.returnLink.url}
           title={section.returnLink.label}
-          isTunerFont={true}
           items={null}
         />
       )}
@@ -136,11 +127,9 @@ export const DocsNav = styled(({ open, navItems, ...styleProps }) => {
   )
 })`
   list-style-type: none;
-  background-color: var(--color-light);
   overflow-x: hidden;
   overflow-y: auto;
   line-height: 1.25;
-  box-shadow: inset -1px 0 0 var(--color-light-dark);
   padding: 6rem 0 1rem 0;
   position: fixed;
   z-index: 250;
@@ -154,15 +143,12 @@ export const DocsNav = styled(({ open, navItems, ...styleProps }) => {
   padding: 0 0 1rem 0;
 
   ${props =>
-    props.open &&
-    css`
-      transition: all 240ms ease-out;
-      transform: translate3d(0, 0, 0);
-    `};
-
-  ::-webkit-scrollbar {
-    display: none;
-  }
+    props.open
+      ? css`
+          transition: all 240ms ease-out;
+          transform: translate3d(0, 0, 0);
+        `
+      : ``};
 
   iframe {
     margin: 1.5rem 3.5rem 0.5rem 1.5rem;
@@ -218,8 +204,8 @@ const NavItemHeader = styled.div`
 `
 
 interface NavSectionTitleProps {
-  highlighted: boolean
-  isTunerFont?: boolean
+  open?: boolean
+  currentPage: boolean
 }
 
 const NavSectionTitle = styled.span<NavSectionTitleProps>`
@@ -228,6 +214,7 @@ const NavSectionTitle = styled.span<NavSectionTitleProps>`
   color: var(--color-secondary);
   text-decoration: none;
   transition: all 180ms ease-out;
+  font-family: var(--font-tuner);
 
   &:hover,
   &:focus {
@@ -235,15 +222,10 @@ const NavSectionTitle = styled.span<NavSectionTitleProps>`
   }
 
   ${props =>
-    props.isTunerFont &&
-    css`
-      font-family: var(--font-tuner);
-    `}
-
-  ${props =>
-    props.highlighted &&
+    props.currentPage &&
     css`
       color: var(--color-primary);
+      font-weight: bold;
     `};
 `
 
@@ -254,22 +236,21 @@ const SubNav = styled.ul`
   padding: 0;
   overflow: hidden;
   transition: all 180ms ease-out;
-  box-shadow: inset 0 1px 0 var(--color-light-dark),
-    inset 0 -1px 0 var(--color-light-dark);
 
   ${NavSectionTitle} {
     font-size: 0.9375rem;
-    padding: 0.375rem 1.5rem 0.375rem 2rem;
+    padding: 0.25rem 1.5rem 0.25rem 2rem;
+    font-family: var(--font-primary);
   }
 
   li:first-child {
     ${NavSectionTitle} {
-      padding-top: 1rem;
+      padding-top: 0.75rem;
     }
   }
 
   li:last-child {
-    padding-bottom: 1rem;
+    padding-bottom: 0.75rem;
   }
 `
 
@@ -283,6 +264,7 @@ const NavItem = styled.li<NavItemProps>`
   user-select: none;
 
   svg {
+    display: none;
     position: absolute;
     right: 1.25rem;
     top: 50%;
@@ -290,11 +272,30 @@ const NavItem = styled.li<NavItemProps>`
     width: 1.25rem;
     height: auto;
     fill: var(--color-grey);
-    transition: all 180ms ease-out;
+    transition: opacity 180ms ease-out, transform 180ms ease-out;
+    opacity: 0.5;
   }
 
   ${SubNav} {
     max-height: 0;
+
+    svg {
+      display: inline-block;
+    }
+
+    ${SubNav} {
+      padding-left: 0.5rem;
+
+      li:first-child {
+        ${NavSectionTitle} {
+          padding-top: 0.375rem;
+        }
+      }
+
+      li:last-child {
+        padding-bottom: 0.375rem;
+      }
+    }
   }
 
   ${props =>
@@ -307,6 +308,7 @@ const NavItem = styled.li<NavItemProps>`
 
       svg {
         transform: translate3d(0, -50%, 0) rotate(90deg);
+        opacity: 1;
       }
     `};
 `
