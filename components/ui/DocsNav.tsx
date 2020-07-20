@@ -218,11 +218,6 @@ const NavSectionTitle = styled.span<NavSectionTitleProps>`
   transition: all 180ms ease-out;
   font-family: var(--font-tuner);
 
-  &:hover,
-  &:focus {
-    color: var(--color-primary);
-  }
-
   ${props =>
     props.currentPage &&
     css`
@@ -243,6 +238,12 @@ const SubNav = styled.ul`
     font-size: 0.9375rem;
     padding: 0.25rem 1.5rem 0.25rem 2rem;
     font-family: var(--font-primary);
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      color: var(--color-primary);
+    }
   }
 
   li:first-child {
@@ -262,7 +263,6 @@ interface NavItemProps {
 
 const NavItem = styled.li<NavItemProps>`
   position: relative;
-  cursor: pointer;
   user-select: none;
 
   svg {
