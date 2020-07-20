@@ -1,11 +1,5 @@
 [
   {
-    "title": "Docs",
-    "id": "index",
-    "slug": "/docs",
-    "isTunerFont": "true"
-  },
-  {
     "title": "Getting Started",
     "id": "getting-started",
     "items": [
@@ -24,8 +18,7 @@
   {
     "title": "CMS",
     "id": "the-cms",
-    "slug": "/docs/cms",
-    "isTunerFont": "true"
+    "items": [{ "id": "/docs/cms", "slug": "/docs/cms", "title": "Overview" }]
   },
   {
     "title": "User Interface",
@@ -86,10 +79,14 @@
     ]
   },
   {
-    "id": "/docs/plugins",
+    "id": "plugins",
     "title": "Plugins",
-    "slug": "/docs/plugins",
     "items": [
+      {
+        "title": "About Plugins",
+        "id": "forms",
+        "slug": "/docs/plugins"
+      },
       {
         "title": "Forms",
         "id": "forms",
@@ -195,22 +192,32 @@
     ]
   },
   {
-    "id": "/docs/events",
+    "id": "events",
     "title": "Events",
-    "slug": "/docs/events",
-    "isTunerFont": "true"
+    "items": [
+      {
+        "id": "/docs/events",
+        "slug": "/docs/events",
+        "title": "Working with Events"
+      }
+    ]
   },
   {
     "title": "Media",
     "id": "media",
-    "slug": "/docs/media",
-    "isTunerFont": "true"
+    "items": [
+      {
+        "id": "/docs/media",
+        "slug": "/docs/media",
+        "title": "Configuring Media"
+      }
+    ]
   },
   {
     "id": "/docs/apis",
     "title": "External APIs",
     "slug": "/docs/apis",
-    "isTunerFont": "true"
+    "items": [{ "id": "", "slug": "", "title": "" }]
   },
   {
     "title": "Packages",
