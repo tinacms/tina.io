@@ -214,10 +214,15 @@
     ]
   },
   {
-    "id": "/docs/apis",
+    "id": "apis",
     "title": "External APIs",
-    "slug": "/docs/apis",
-    "items": [{ "id": "", "slug": "", "title": "" }]
+    "items": [
+      {
+        "id": "/docs/api",
+        "slug": "/docs/apis",
+        "title": "Overview"
+      }
+    ]
   },
   {
     "title": "Packages",
