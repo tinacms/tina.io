@@ -112,7 +112,9 @@ export const DocsNav = styled(({ open, navItems, ...styleProps }) => {
           <LinkNav />
         </MobileMainNav>
         {navItems &&
-          navItems.map(section => <NavSection key={section.id} {...section} />)}
+          navItems.map(section => (
+            <NavSection key={section.id} {...section} collapsible={false} />
+          ))}
         <li>
           <iframe
             src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
