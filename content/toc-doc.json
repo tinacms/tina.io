@@ -198,7 +198,7 @@
       {
         "id": "/docs/events",
         "slug": "/docs/events",
-        "title": "Working with Events"
+        "title": "About Events"
       }
     ]
   },
@@ -209,7 +209,7 @@
       {
         "id": "/docs/media",
         "slug": "/docs/media",
-        "title": "Configuring Media"
+        "title": "About Media"
       }
     ]
   },
@@ -220,7 +220,7 @@
       {
         "id": "/docs/api",
         "slug": "/docs/apis",
-        "title": "Overview"
+        "title": "About APIs"
       }
     ]
   },
