@@ -106,7 +106,7 @@ const menuIsActive = (section: NavSection, currentPath: string) => {
 export const DocsNav = styled(({ open, navItems, ...styleProps }) => {
   return (
     <div {...styleProps}>
-      <DocsDesktopTinaIcon />
+      <DocsDesktopTinaIcon docs />
       <ul>
         <MobileMainNav>
           <LinkNav />
@@ -132,6 +132,7 @@ export const DocsNav = styled(({ open, navItems, ...styleProps }) => {
   overflow-x: hidden;
   overflow-y: auto;
   line-height: 1.25;
+  background: white;
   padding: 6rem 0 1rem 0;
   position: fixed;
   z-index: 250;
@@ -168,7 +169,7 @@ export const DocsNav = styled(({ open, navItems, ...styleProps }) => {
 const DocsDesktopTinaIcon = styled(TinaIcon)`
   position: relative;
   display: none;
-  padding: 1.25rem 2rem 2.25rem 2rem;
+  padding: 1.25rem 2rem 2.25rem 1.5rem;
 
   @media (min-width: 1000px) {
     display: block;
