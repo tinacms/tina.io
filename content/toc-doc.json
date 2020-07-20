@@ -255,11 +255,5 @@
         "title": "Gatsby"
       }
     ]
-  },
-  {
-    "id": "guides",
-    "title": "Guides",
-    "slug": "/guides/",
-    "isTunerFont": "true"
   }
 ]
