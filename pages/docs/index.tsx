@@ -1,5 +1,5 @@
 import DocTemplate from './[...slug]'
-import { getDocProps } from '../../utils/docs/getDocProps'
+import { getDocProps } from 'utils/docs/getDocProps'
 import { GetStaticProps } from 'next'
 import { GithubError } from 'next-tinacms-github'
 

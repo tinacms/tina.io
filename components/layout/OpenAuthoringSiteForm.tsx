@@ -1,7 +1,7 @@
 import React from 'react'
 import { InlineForm, InlineFormProps } from 'react-tinacms-inline'
 import { useGithubToolbarPlugins } from 'react-tinacms-github'
-import { useLocalStorageCache } from '../../utils/plugins/browser-storage-api/useLocalStorageCache'
+import { useLocalStorageCache } from 'utils/plugins/browser-storage-api/useLocalStorageCache'
 import AutoAuthModal from '../open-authoring/AutoAuthModal'
 
 interface Props extends InlineFormProps {
