@@ -22,11 +22,11 @@ const Toc = ({ tocItems }: { tocItems: string }) => {
 
   return (
     <TocWrapper>
-      {/* <TocButtom onClick={() => setIsOpen(!isOpen)}>
+      <TocButtom onClick={() => setIsOpen(!isOpen)}>
         Jump to Section
         <ArrowDown />
-      </TocButtom> */}
-      <TocContent isActive={true}>
+      </TocButtom>
+      <TocContent isOpen={isOpen}>
         <ReactMarkdown source={tocItems} />
       </TocContent>
     </TocWrapper>
@@ -60,12 +60,12 @@ const TocButtom = styled.button`
   }
 `
 
-const TocContent = styled.div<{ isActive: boolean }>`
+const TocContent = styled.div<{ isOpen: boolean }>`
   margin-right: 10%;
   position: absolute;
   margin-top: 1px;
   margin-left: 30vw;
-  display: ${({ isActive }) => (isActive ? 'block' : 'none')};
+  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
   padding: 17px 15px;
   border-radius: 2px;
   backdrop-filter: blur(27px);

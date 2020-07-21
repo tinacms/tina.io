@@ -21,7 +21,7 @@ import { getMarkdownPreviewProps } from '../../utils/getMarkdownFile'
 import { InlineWysiwyg } from '../../components/inline-wysiwyg'
 import { usePlugin, useCMS } from 'tinacms'
 import Toc from '../../components/toc'
-function BlogTemplate({ file, siteConfig, preview, tocItems }) {
+function BlogTemplate({ file, siteConfig, preview }) {
   // fallback workaround
   if (!file) {
     return <Error statusCode={404} />
@@ -70,7 +70,6 @@ function BlogTemplate({ file, siteConfig, preview, tocItems }) {
         </Hero>
         <BlogWrapper>
           <DocsTextWrapper>
-            <Toc tocItems={tocItems} />
             <BlogMeta>
               <MetaWrap>
                 <MetaBit>{formatDate(frontmatter.date)}</MetaBit>

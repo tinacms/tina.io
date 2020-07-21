@@ -24,6 +24,7 @@ import { OpenAuthoringSiteForm } from '../../components/layout/OpenAuthoringSite
 import { GithubError } from 'next-tinacms-github'
 import { InlineWysiwyg } from '../../components/inline-wysiwyg'
 import { usePlugin } from 'tinacms'
+import Toc from '../../components/toc'
 
 function DocTemplate(props) {
   // Registers Tina Form
@@ -32,6 +33,7 @@ function DocTemplate(props) {
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
   const excerpt = props.file.data.excerpt
+  const tocItems = props.tocItems
 
   usePlugin(form)
 
@@ -69,6 +71,7 @@ function DocTemplate(props) {
           <DocsHeaderNav color={'light'} open={open} />
           <DocsTextWrapper>
             <Wrapper narrow>
+              <Toc tocItems={tocItems} />
               <h1>
                 <InlineTextareaField name="frontmatter.title" />
               </h1>
