@@ -63,6 +63,20 @@ export function SomeComponent({ children }) {
 
 When adding plugins from inside a React component, the plugin is added when the component mounts, and removed when the component unmounts. This is both expected and encouraged, as Tina has a [Dynamic Plugin System](/blog/dynamic-plugin-system).
 
+> #### Adding Plugins in Gatsby
+>
+> Another way to add TinaCMS plugins when using Gatsby is via `onClientEntry` function in `gatsby-browser.js`. The package `gatsby-plugin-tinacms` attaches the cms to the window it can be accessed from this function.
+>
+> **gatsby-browser.js**
+>
+> ```js
+> import { MyPlugin } from './src/cms/MyPlugin'
+>
+> export const onClientEntry = () => {
+>   window.tinacms.plugins.add(MyPlugin)
+> }
+> ```
+
 ### Adding Plugins Dynamically
 
 In some cases, you may not want plugins to be included in the initial JavaScript file/bundle of your website, as some plugins can be quite large. In these scenarios, you can import the plugins dynamically, and the plugins will only be downloaded when they are needed.

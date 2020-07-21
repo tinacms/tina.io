@@ -117,7 +117,7 @@
     },
     {
       "source": "/docs/gatsby/custom-field",
-      "destination": "/guides/gatsby/custom-email-field/register-field"
+      "destination": "/docs/plugins#adding-plugins-in-gatsby"
     }
   ]
 }
