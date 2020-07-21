@@ -219,6 +219,8 @@ const DocsRichText = css`
     border-style: solid;
     border-color: rgb(237, 238, 238);
     border-image: initial;
+    max-width: 100%;
+    overflow-x: auto;
   }
 
   table {

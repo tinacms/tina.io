@@ -39,6 +39,11 @@ export default Toc
 
 const TocWrapper = styled.div`
   margin-bottom: -0.375rem;
+
+  @media (min-width: 1500px) {
+    position: sticky;
+    top: 0;
+  }
 `
 
 const TocButtom = styled.button<{ isOpen: boolean }>`
@@ -89,6 +94,10 @@ const TocButtom = styled.button<{ isOpen: boolean }>`
           }
         `
       : ``};
+
+  @media (min-width: 1500px) {
+    display: none;
+  }
 `
 
 const TocContent = styled.div<{ isOpen: boolean }>`
@@ -108,7 +117,8 @@ const TocContent = styled.div<{ isOpen: boolean }>`
         `
       : ``};
 
-  @media (min-width: 1000px) {
+  @media (min-width: 1500px) {
+    max-height: none;
   }
 
   /* Top Level Styles */
@@ -123,7 +133,7 @@ const TocContent = styled.div<{ isOpen: boolean }>`
   }
 
   > ul {
-    padding: 0.5rem 0;
+    padding-top: 1rem;
   }
 
   li {

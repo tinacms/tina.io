@@ -70,20 +70,26 @@ function DocTemplate(props) {
         <DocsContent>
           <DocsHeaderNav color={'light'} open={open} />
           <DocsTextWrapper>
-            <Wrapper narrow>
-              <h1>
-                <InlineTextareaField name="frontmatter.title" />
-              </h1>
-              <Toc tocItems={tocItems} />
-              <hr />
-              <InlineWysiwyg name="markdownBody">
-                <MarkdownContent escapeHtml={false} content={markdownBody} />
-              </InlineWysiwyg>
-              <DocsPagination
-                prevPage={props.prevPage}
-                nextPage={props.nextPage}
-              />
-            </Wrapper>
+            <DocsGrid>
+              <DocGridHeader>
+                <DocsPageTitle>
+                  <InlineTextareaField name="frontmatter.title" />
+                </DocsPageTitle>
+              </DocGridHeader>
+              <DocGridToc>
+                <Toc tocItems={tocItems} />
+              </DocGridToc>
+              <DocGridContent>
+                <hr />
+                <InlineWysiwyg name="markdownBody">
+                  <MarkdownContent escapeHtml={false} content={markdownBody} />
+                </InlineWysiwyg>
+                <DocsPagination
+                  prevPage={props.prevPage}
+                  nextPage={props.nextPage}
+                />
+              </DocGridContent>
+            </DocsGrid>
           </DocsTextWrapper>
           <Footer light preview={props.preview} />
         </DocsContent>
@@ -169,6 +175,54 @@ const formOptions = {
  * STYLES --------------------------------------------------------------
  */
 
+export const DocsGrid = styled.div`
+  display: grid;
+  width: 100%;
+  position: relative;
+  grid-auto-columns: 2rem auto 2rem;
+  grid-template-areas:
+    '. header .'
+    '. toc .'
+    '. content .';
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+
+  @media (min-width: 1500px) {
+    grid-template-areas:
+      '. header header .'
+      '. content toc .';
+    grid-auto-columns: auto 768px 20rem auto;
+    grid-column-gap: 2rem;
+  }
+`
+
+export const DocGridHeader = styled.div`
+  grid-area: header;
+`
+
+export const DocGridToc = styled.div`
+  grid-area: toc;
+`
+
+export const DocGridContent = styled.div`
+  grid-area: content;
+  justify-self: center;
+`
+
+export const DocsPageTitle = styled.h1`
+  font-size: 2rem;
+  line-height: 1.3;
+  letter-spacing: 0.1px;
+  color: var(--color-primary);
+  position: relative;
+  font-family: var(--font-tuner);
+  font-style: normal;
+
+  @media (max-width: 1499px) {
+    margin: 0 0 1.25rem 0 !important;
+  }
+`
+
 export const DocsNavToggle = styled(NavToggle)`
   position: fixed;
   margin-top: 1.25rem;
@@ -200,9 +254,4 @@ export const DocsMobileTinaIcon = styled(TinaIcon)`
 export const DocsContent = styled.div`
   grid-area: content;
   overflow-y: auto;
-
-  ${Wrapper} {
-    padding-top: 2rem;
-    padding-bottom: 3rem;
-  }
 `
