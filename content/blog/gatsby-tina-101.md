@@ -486,7 +486,7 @@ To finish of our editing experience, all we really need is the ability to add ne
 
 ## Authoring New Posts
 
-Tina has a type of plugin to create content, aptly named [content creator plugins](https://tinacms.org/docs/gatsby/creating-new-files#1-add-content-creator-plugin). Content creators are like factories that create file objects, except they are "plugged in" to your React site.
+Tina has a type of plugin to create content, aptly named [content creator plugins](/docs/plugins/content-creators). Content creators are like factories that create file objects, except they are "plugged in" to your React site.
 
 Let's make a _content creator plugin_ to author new blog posts. We'll add it in a new directory called "plugins" — `src/blog/plugins/postCreator.js`:
 

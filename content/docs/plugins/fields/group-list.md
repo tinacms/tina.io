@@ -49,7 +49,7 @@ interface GroupListConfig {
 
 ## Definition
 
-Below is an example of how a `group-list` field could be defined in a JSON form. Read more on passing in JSON form field config options [here](/docs/gatsby/json#customizing-json-forms).
+Below is an example of how a `group-list` field could be defined in a JSON form.
 
 For example, if we had a list of authors in a JSON file:
 
