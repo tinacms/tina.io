@@ -9,6 +9,10 @@ At this point, we've bootstrapped Tina into the Gatsby blog starter. We were abl
 
 This guide is intended as a jumping off point to get you started with Tina, but to make a fully-functional CMS there is a little more work to do.
 
+## Set up a backend to persist content changes
+
+Checkout the [Using a Git Backend](/guides/gatsby/using-git) guide to learn more.
+
 ## Add More Fields
 
 Our simplified example only exposes the title and post body to the Tina form. Take a look at our [fields](/docs/plugins/fields) documentation and try adding fields for the rest of the post data in the blog demo.
