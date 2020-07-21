@@ -5,7 +5,7 @@ author: DJ Walker
 draft: false
 ---
 
-We've changed our recommended approach for using Tina's Git Backend with Next.js websites. Check out [Tina's Next.js documentation](/guides/nextjs/git-based/adding-backend) for details.
+We've changed our recommended approach for using Tina's Git Backend with Next.js websites. Check out [Tina's Next.js documentation](/guides/nextjs/git/adding-backend) for details.
 
 To make it easy to use Tina's backend plugins, they are designed as Express middleware. These can be easily attached to Gatsby's dev server by implementing Gatsby's `onCreateDevServer` method and adding a few lines of connecting code. We reasoned that we could attach the same middleware to the dev server in other frameworks, allowing us to run the same backend code without having to rewrite it for each framework we intend to support.
 

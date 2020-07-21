@@ -2,7 +2,7 @@
 title: next-tinacms-markdown
 id: /docs/nextjs/next-tinacms-markdown
 next: /docs/nextjs/next-tinacms-json
-prev: /docs/gatsby/quickstart
+prev: /guides/gatsby/adding-tina/project-setup
 consumes:
   - file: packages/next-tinacms-markdown/src/use-markdown-form.ts
     details: Shows use of useMarkdownForm
@@ -36,7 +36,7 @@ export interface MarkdownFile {
 }
 ```
 
-- `options`: The second argument is an _optional configuration object_ that can include [options](https://tinacms.org/docs/gatsby/markdown/#customizing-remark-forms) to customize the form.
+- `options`: The second argument is an _optional configuration object_ that can include [options](/guides/gatsby/git/customize-form) to customize the form.
 
 **Return Values**
 
@@ -121,7 +121,7 @@ export async function getStaticProps() {
 
 ### _markdownForm_ HOC
 
-`markdownForm` accepts two arguments: _a component and an [form configuration object](https://tinacms.org/docs/gatsby/markdown/#customizing-remark-forms)_. The component being passed is expected to receive data as props that matches the `markdownFile` interface outlined below.
+`markdownForm` accepts two arguments: _a component and an [form configuration object](/guides/gatsby/git/customize-form)_. The component being passed is expected to receive data as props that matches the `markdownFile` interface outlined below.
 
 ```typescript
 // A datastructure representing a MarkdownFile file stored in Git

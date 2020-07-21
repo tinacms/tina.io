@@ -16,7 +16,7 @@ consumes:
 
 In this post, I will explore _the three different methods_ Tina offers to edit Markdown on your Gatsby site. You’ll learn how to set up Tina with both Page Queries and Static Queries.
 
-_This post will not cover the basics of using Tina with Gatsby. Please reference the [documentation](https://tinacms.org/docs/gatsby/manual-setup) on how to initially set up Tina with Gatsby._
+_This post will not cover the basics of using Tina with Gatsby. Please reference the [documentation](https://tinacms.org/guides/gatsby/adding-tina/project-setup) on how to initially set up Tina with Gatsby._
 
 ## What’s the deal with Page Queries and Static Queries?
 
@@ -44,7 +44,7 @@ For getting data, we can use Gatsby's query options. For structuring our compone
 
 ## Three ways to edit Markdown with Tina
 
-Given all the options for creating components and sourcing data in Gatsby, we have to choose the most suitable approach for the project. Tina can work with all of these options, providing [**three different approaches**](https://tinacms.org/docs/gatsby/markdown#creating-remark-forms) for editing Markdown with Gatsby as described below.
+Given all the options for creating components and sourcing data in Gatsby, we have to choose the most suitable approach for the project. Tina can work with all of these options, providing [**three different approaches**](https://tinacms.org/guides/gatsby/git/create-remark-form) for editing Markdown with Gatsby as described below.
 
 - **remarkForm** - A [Higher Order Component](https://reactjs.org/docs/higher-order-components.html) used when you source data from a Page Query in Gatsby. This component can be utilized with both functional and class components. Please note the subtle difference here! The only difference in naming from the render props component is the lowercase “r”.
 - **useLocalRemarkForm** - A [React Hook](https://reactjs.org/docs/hooks-overview.html) that is intended for functional components sourcing data from either a Static or a Page Query. If the component is sourcing static data, Gatsby's `useStaticQuery` hook would be called.
@@ -161,7 +161,7 @@ It is an example of [ES6 destructuring](https://developer.mozilla.org/en-US/docs
 
 ### RemarkForm - The Render Prop Component
 
-You can’t use React Hooks on class components. That’s why Tina provides a [`RemarkForm`](https://tinacms.org/docs/gatsby/markdown/#2-the-render-props-component-remarkform) component that uses the [Render Props](https://reactjs.org/docs/render-props.html) pattern.
+You can’t use React Hooks on class components. That’s why Tina provides a [`RemarkForm`](https://tinacms.org/guides/gatsby/git/create-remark-form#2-the-render-props-component-remarkform-the-render-props-component-remarkform) component that uses the [Render Props](https://reactjs.org/docs/render-props.html) pattern.
 
 This component works with both Page and Static Queries. I will show how to use it with a Page Query below.
 

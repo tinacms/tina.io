@@ -131,4 +131,4 @@ const Label = styled.h3`
 
 ## Further Reading
 
-- [Registering Fields in Gatsby](/docs/gatsby/custom-fields)
+- [Registering Fields in Gatsby](/guides/gatsby/custom-email-field/register-field)

@@ -4,6 +4,7 @@ date: '2020-01-13T00:00:00.000Z'
 draft: false
 author: Mitch MacKenzie
 ---
+
 Say hello to the [WordPress to Gatsby Markdown Exporter](https://github.com/tinacms/wp-gatsby-markdown-exporter)! It's a WordPress plugin to export posts, pages, and other content from WordPress to Markdown.
 
 A modern static site generator like [GatsbyJS](https://www.gatsbyjs.org/) can be a great alternative to power a website that was previously built with WordPress. Add TinaCMS into the mix for real-time editing and we get a modern website that developers and content creators will enjoy.
@@ -44,9 +45,9 @@ The plugin also provides a command to be run on the CLI using [WP-CLI](https://w
 
 To get our exported WordPress content in place:
 
-1. Unzip the exported Markdown files into the "content/blog" directory of the starter.
-2. Place the "uploads" directory from the WordPress export in the "content" directory of the starter.
-3. Add the following under the plugins section of gatsby-config.js so that any images and uploads exported from WordPress can be found by Gatsby:
+1.  Unzip the exported Markdown files into the "content/blog" directory of the starter.
+2.  Place the "uploads" directory from the WordPress export in the "content" directory of the starter.
+3.  Add the following under the plugins section of gatsby-config.js so that any images and uploads exported from WordPress can be found by Gatsby:
 
         {
           resolve: `gatsby-source-filesystem`,
@@ -58,7 +59,7 @@ To get our exported WordPress content in place:
 
 Then running `gatsby develop` or `gatsby build` will show the newly exported content in Gatsby.
 
-If we're building a more complex site though, Tina Grande may be the next starter to try. 
+If we're building a more complex site though, Tina Grande may be the next starter to try.
 
 ## Getting exported content into Tina Grande
 
@@ -85,4 +86,4 @@ A content export and conversion will rarely be perfect the first time it's run! 
 
 Reach out on [WordPress.org](https://wordpress.org/support/plugin/wp-gatsby-markdown-exporter/) or [GitHub](https://github.com/tinacms/wp-gatsby-markdown-exporter/issues) if you have any questions, feature enhancements, or bug reports for the exporter plugin.
 
-And don't forget to consult the [docs](/docs/gatsby/quickstart) to learn more about how TinaCMS can work with Gatsby.
+And don't forget to consult the [docs](/guides/gatsby/adding-tina/project-setup) to learn more about how TinaCMS can work with Gatsby.

@@ -1,21 +1,5 @@
 ---
 title: Creating New Files
-id: /docs/gatsby/creating-new-files
-prev: /docs/gatsby/json
-next: /docs/gatsby/configure-git-plugin
-consumes:
-  - file: /packages/gatsby-tinacms-remark/src/remark-creator-plugin.ts
-    details: Demonstrates use of RemarkCreatorPlugin
-  - file: /packages/gatsby-tinacms-json/src/create-json-plugin.ts
-    details: Demonstrates use of jsonCreatorPlugin
-  - file: /packages/@tinacms/react-core/src/use-plugin.tsx
-    details: HOC depends on usePlugin to add plugin to cms.
-  - file: /packages/@tinacms/react-core/src/with-plugin.tsx
-    details: Shows use of withPlugin HOC.
-  - file: /packages/gatsby-tinacms-remark/src/form-actions/delete-action.tsx
-    details: Shows how to add delete action
-  - file: /packages/tinacms/src/components/CreateContent.tsx
-    details: Has image of what the create form looks like
 ---
 
 An integral aspect of content management is the ability to create new content. To create new content files with Tina, you will need to configure and register `content-creator` plugins with the CMS.
@@ -34,10 +18,10 @@ Currently, Tina provides `content-creator` plugins for both Markdown and JSON fi
 
 ### Prerequisites
 
-- A Gatsby site [configured with Tina](/docs/gatsby/manual-setup)
-- Content editing with [Markdown](/docs/gatsby/markdown) or [JSON](/docs/gatsby/json) set up
+- A Gatsby site [configured with Tina](/guides/gatsby/adding-tina/project-setup)
+- Content editing with [Markdown](/guides/gatsby/git/installation) or [JSON](/guides/gatsby/git/create-json-form) set up
 
-## 1. Add Content-Creator Plugin
+## Add Content-Creator Plugin
 
 There are two `content-creator` plugins to use with Gatsby.
 
@@ -68,7 +52,7 @@ These classes need to be instantiated with at least these three things:
 
 - `label`: A simple action label displayed when users interact with the + button in the sidebar.
 - `filename`: A function whose return value should be the path to the new file.
-- `fields`: An array of field objects. [Read more on field definitions](/docs/plugins/fields).
+- `fields`: An array of field objects. [Read more on field definitions](/docs/fields).
 
 **Markdown Example**
 
@@ -146,8 +130,6 @@ These are some places you may want to add the plugin:
 - The Root component: it will always be available
 - A Layout component: it will always available when that Layout is used.
 - A Blog Index component: it will only be available when looking at the list of blog posts.
-
-## 2. Register Plugin to Sidebar
 
 Now that we've created the `content-creator` plugin, we need to add it to the sidebar so we can access it. When we register the plugin to the sidebar, a create-icon will show up in the sidebar menu. Keep in mind this icon will only show up when the component that registers it is rendered.
 
@@ -233,134 +215,3 @@ export default withPlugin(BlogIndex, CreatePostPlugin)
 With the plugin in place, **open TinaCMS and click the menu button** in the top-left corner. The menu panel will slide into view with the button at the top.
 
 Click the "Create Post" button and a modal will pop up. Enter the path to a new file relative to your repository root (e.g. `content/blog/my-new-post.md`) and then click "create". A moment later the new post will be added to your Blog Index.
-
-## 3. Customizing the Create Form
-
-`RemarkCreatorPlugin` accepts a `fields` option, similar to [Remark Form](/docs/gatsby/markdown#creating-remark-forms). When using a custom create form, all callback functions will receive an object containing all form data.
-
-**Example: Create Posts in Subdirectories**
-
-```javascript
-const CreatePostPlugin = new RemarkCreatorPlugin({
-  label: 'Create Post',
-  fields: [
-    { name: 'section', label: 'Section', component: 'text', required: true },
-    { name: 'title', label: 'Title', component: 'text', required: true },
-  ],
-  filename: form => {
-    return `content/blog/${form.section}/${form.title}/index.md`
-  },
-})
-```
-
-## 4. Formatting the filename & path
-
-The `RemarkCreatorPlugin` must be given a `filename` function that calculates the path of the new file from the form data.
-
-**Example 1: Hardcoded Content Directory**
-
-```javascript
-const CreatePostPlugin = new RemarkCreatorPlugin({
-  label: 'Create Post',
-  fields: [
-    { name: 'title', label: 'Title', component: 'text', required: true },
-  ],
-  filename: form => `content/blog/${form.title}.md`,
-})
-```
-
-**Example 2: Content as index files**
-
-```javascript
-const CreatePostPlugin = new RemarkCreatorPlugin({
-  label: 'Create Post',
-  fields: [
-    { name: 'title', label: 'Title', component: 'text', required: true },
-  ],
-  filename: form => `content/blog/${form.title}/index.md`,
-})
-```
-
-**Example 3: Slugify Name**
-
-> The [`slugify`](https://www.npmjs.com/package/slugify) package is also great for this usecase.
-
-```javascript
-const CreatePostPlugin = new RemarkCreatorPlugin({
-  label: 'Create Post',
-  fields: [
-    { name: 'title', label: 'Title', component: 'text', required: true },
-  ],
-  filename: form => {
-    let slug = form.title.replace(/\s+/, '-').toLowerCase()
-
-    return `content/blog/${slug}/index.md`
-  },
-})
-```
-
-## 5. Providing Default Front Matter
-
-The `RemarkCreatorPlugin` function can be given a `frontmatter` function that returns the default front matter. Like the `filename` function, `frontmatter` receives the state of the form.
-
-**Example: Title + Date**
-
-```javascript
-const CreatePostPlugin = new RemarkCreatorPlugin({
-  label: 'Create Post',
-  fields: [
-    { name: 'title', label: 'Title', component: 'text', required: true },
-  ],
-  filename: form => {
-    let slug = form.title.replace(/\s+/, '-').toLowerCase()
-
-    return `content/blog/${slug}/index.md`
-  },
-  frontmatter: form => ({
-    title: form.title,
-    date: new Date(),
-  }),
-})
-```
-
-## 6. Providing a Default Body
-
-The `RemarkCreatorPlugin` function can be given a `body` function that returns the default Markdown body. Like the previous two functions, `body` receives the state of the form.
-
-**Example: Title + Date**
-
-```javascript
-const CreatePostPlugin = new RemarkCreatorPlugin({
-  label: 'Create Post',
-  fields: [
-    { name: 'title', label: 'Title', component: 'text', required: true },
-  ],
-  filename: form => {
-    let slug = form.title.replace(/\s+/, '-').toLowerCase()
-
-    return `content/blog/${slug}/index.md`
-  },
-  body: form => `This is a new blog post. Please write some content.`,
-})
-```
-
-# Deleting Files
-
-When you need to provide the option of deleting files in a Gatsby site, the config is much simpler. Instead of adding a `creator` plugin to the sidebar, all we need to do is pass a `delete action` to the form options object and the 'action' will be added to the sidebar.
-
-Head to the template file where you may have a Tina form setup. Read more on setting up forms for content editing with [remark](https://tinacms.org/docs/gatsby/markdown) or [JSON](https://tinacms.org/docs/gatsby/json). First, you'll need to import the `DeleteAction` from `gatsby-tinacms-remark`. Then, in your form options object just before the field definitions, add the action.
-
-```javascript
-import { remarkForm, DeleteAction } from 'gatsby-tinacms-remark'
-
-const BlogTemplateOptions = {
-  actions: [DeleteAction],
-  fields: [
-    //...
-  ],
-}
-```
-
-These form options then get passed to the `RemarkForm` higher-order component, as seen in this [example](https://tinacms.org/docs/gatsby/markdown#example-srctemplatesblog-postjs). With the `DeleteAction` now passed to the form, you'll be able to access it via the three-dot icon in the lower right-hand corner of the sidebar.
-
-![tinacms-delete-action-example](/img/delete-action-ex.png)
