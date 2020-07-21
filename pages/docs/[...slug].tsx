@@ -74,8 +74,8 @@ function DocTemplate(props) {
               <h1>
                 <InlineTextareaField name="frontmatter.title" />
               </h1>
-              <hr />
               <Toc tocItems={tocItems} />
+              <hr />
               <InlineWysiwyg name="markdownBody">
                 <MarkdownContent escapeHtml={false} content={markdownBody} />
               </InlineWysiwyg>

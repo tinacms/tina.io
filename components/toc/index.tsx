@@ -3,7 +3,7 @@ import ReactMarkdown from 'react-markdown'
 import styled, { css } from 'styled-components'
 
 const Toc = ({ tocItems }: { tocItems: string }) => {
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
 
   if (!tocItems) {
     return null
@@ -21,29 +21,62 @@ const Toc = ({ tocItems }: { tocItems: string }) => {
   }, [])
 
   return (
-    <TocWrapper>
-      <TocButtom onClick={() => setIsOpen(!isOpen)}>
-        {isOpen ? 'Hide' : 'Show'} Table of Contents
-      </TocButtom>
-      <TocContent isOpen={isOpen}>
-        <ReactMarkdown source={tocItems} />
-      </TocContent>
-    </TocWrapper>
+    <>
+      <TocWrapper>
+        <TocButtom isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? 'Hide' : 'Show'} Table of Contents
+        </TocButtom>
+        <TocContent isOpen={isOpen}>
+          <ReactMarkdown source={tocItems} />
+        </TocContent>
+      </TocWrapper>
+    </>
   )
 }
 export default Toc
 
-const TocWrapper = styled.div``
-const TocButtom = styled.button``
+const TocWrapper = styled.div`
+  margin-bottom: -0.375rem;
+`
 
-const TocContent = styled.div<{ isOpen: boolean }>`
-  display: none;
-  line-height: 1.25;
+const TocButtom = styled.button<{ isOpen: boolean }>`
+  display: block;
+  padding: 0;
+  outline: none;
+  border: none;
+  color: var(--color-secondary);
+  opacity: 0.65;
+  background: transparent;
+  cursor: pointer;
+  transition: opacity 185ms ease-out;
+
+  :hover,
+  :focus {
+    opacity: 1;
+  }
 
   ${props =>
     props.isOpen
       ? css`
-          display: block;
+          color: var(--color-primary);
+        `
+      : ``};
+`
+
+const TocContent = styled.div<{ isOpen: boolean }>`
+  display: block;
+  width: 100%;
+  line-height: 1.25;
+  height: auto;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 750ms ease-out;
+
+  ${props =>
+    props.isOpen
+      ? css`
+          transition: all 750ms ease-in;
+          max-height: 1500px;
         `
       : ``};
 
@@ -51,6 +84,7 @@ const TocContent = styled.div<{ isOpen: boolean }>`
   }
 
   /* Top Level Styles */
+
   ul {
     list-style-type: none;
     padding: 0;
@@ -60,19 +94,17 @@ const TocContent = styled.div<{ isOpen: boolean }>`
     align-items: stretch;
   }
 
+  > ul {
+    padding: 0.5rem 0;
+  }
+
   li {
     display: block;
     margin: 0;
-    padding: 0;
-
-    &:last-child {
-      padding-bottom: 0.125rem;
-    }
+    padding: 0.375rem 3.5rem 0.375rem 0;
   }
 
   a {
-    display: block;
-    padding: 0.5rem 3.5rem 0.5rem 0;
     color: var(--color-secondary);
     font-family: var(--font-tuner);
   }
@@ -89,11 +121,18 @@ const TocContent = styled.div<{ isOpen: boolean }>`
   /* Nested Styles */
   ul {
     ul {
-      padding-left: 0.75rem;
+      padding: 0.125rem 0 0.125rem 0.75rem;
+
+      li {
+        padding: 0.25rem 1.5rem 0.25rem 0;
+
+        &:last-child {
+          padding-bottom: 0rem;
+        }
+      }
 
       a {
         font-size: 0.9375rem;
-        padding: 0.25rem 1.5rem 0.25rem 0;
         font-family: var(--font-primary);
       }
     }
