@@ -22,7 +22,7 @@ First create the React component that accepts three props:
 
 - `input`: The data and callbacks necessary to make an input.
 - `meta`: Metadata about the field in the form. (e.g. `dirty`, `valid`)
-- `field`: The [field definition](https://tinacms.org/docs/fields) for the current field.
+- `field`: The [field definition](https://tinacms.org/docs/plugins/fields) for the current field.
 
 **src/components/EmailField.js**
 

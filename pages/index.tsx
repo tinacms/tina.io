@@ -131,10 +131,7 @@ const HomePage = (props: any) => {
                 </h2>
                 <CtaBar>
                   <EditLink color="primary" />
-                  <DynamicLink
-                    href={'/docs/getting-started/introduction/'}
-                    passHref
-                  >
+                  <DynamicLink href="/docs/" passHref>
                     <Button as="a">Get Started</Button>
                   </DynamicLink>
                 </CtaBar>
@@ -162,10 +159,7 @@ const HomePage = (props: any) => {
                     blocks={SETUP_POINT_BLOCKS}
                   />
                 </ArrowList>
-                <DynamicLink
-                  href={'/docs/getting-started/introduction/'}
-                  passHref
-                >
+                <DynamicLink href="/docs" passHref>
                   <Button as="a" color="primary">
                     Get Started
                   </Button>

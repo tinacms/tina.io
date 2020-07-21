@@ -16,20 +16,6 @@ export const readMarkdownFile = async (filePath: string) => {
   }
 }
 
-// TODO - consider maybe parse function async so we can format except here
-// export async function parseMarkdownWithExcerpt<Frontmatter>(
-//   content: string
-// ): Promise<MarkdownData<Frontmatter> & {excerpt: string}> {
-//   const { content: markdownBody, data: frontmatter } = matter(content)
-
-//   const excerpt = await formatExcerpt(markdownBody)
-//   return {
-//     markdownBody,
-//     frontmatter: frontmatter as Frontmatter,
-//     excerpt
-//   }
-// }
-
 export const getMarkdownPreviewProps = async (
   fileRelativePath: string,
   preview: boolean,

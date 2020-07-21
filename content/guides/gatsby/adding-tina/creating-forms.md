@@ -12,7 +12,7 @@ const [modifiedValues, form] = useForm(formConfig)
 
 ## Form Configuration
 
-For details on how to configure forms, take a look at our [form configuration docs](/docs/forms#form-configuration). For the purposes of this guide, we will use the following configuration:
+For details on how to configure forms, take a look at our [form configuration docs](/docs/plugins/forms#form-configuration). For the purposes of this guide, we will use the following configuration:
 
 ```js
 const formConfig = {
@@ -101,8 +101,8 @@ That's it!
 
 > **Why do we need to call usePlugin?**
 >
-> There are a few different ways to use forms: in the sidebar, in the global utility menu, and [inline](/docs/inline-editing). How you plan to use the form will determine how you should set it up in the CMS.
+> There are a few different ways to use forms: in the sidebar, in the global utility menu, and [inline](/docs/ui/inline-editing). How you plan to use the form will determine how you should set it up in the CMS.
 
 ## More Info
 
-- [Tina Docs: Forms](/docs/forms)
+- [Tina Docs: Forms](/docs/plugins/forms)

@@ -2,7 +2,7 @@
 title: Using GitHub Forms
 ---
 
-You may have noticed that the Tina sidebar is still empty, that's because we need to create a [Form](/docs/forms) to edit the content. Any forms that we have on our site can be created with the `useGithubJsonForm` or `useGithubMarkdownForm` helpers. These helpers will fetch and post data through the GitHub API via the `GithubClient` we registered in `_app.tsx`.
+You may have noticed that the Tina sidebar is still empty, that's because we need to create a [Form](/docs/plugins/forms) to edit the content. Any forms that we have on our site can be created with the `useGithubJsonForm` or `useGithubMarkdownForm` helpers. These helpers will fetch and post data through the GitHub API via the `GithubClient` we registered in `_app.tsx`.
 
 **pages/index.tsx**
 
