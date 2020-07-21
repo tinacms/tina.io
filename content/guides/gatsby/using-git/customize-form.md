@@ -1,16 +1,16 @@
 ---
-title: Editing Markdown Content
+title: Customizing Forms
 ---
 
-With the Remark Form created, you can now edit your Markdown file in the Tina sidebar. The `markdown` component is [CommonMark](https://commonmark.org/help/) compatible. Content changes are written to the Markdown files in real time. Hitting `Save` will commit those changes to your repository.
+With the Form created, you can now edit your data files in the Tina sidebar. The `markdown` component is [CommonMark](https://commonmark.org/help/) compatible. Content changes are written to the files in real time. Hitting `Save` will commit those changes to your repository.
 
 **Why write to disk "on change"?**
 
 This allows any `gatsby-remark-*` plugins to properly transform the data in to a remark node and provide a true-fidelity preview of the changes.
 
-## Customizing Remark Forms
+## Customizing Remark or JSON Forms
 
-Tina's [remark hook or components](/guides/gatsby/markdown/create-remark-form) create the form based on the shape of the data. This is convenient for getting started but you will want to customize the form eventually to make it more user friendly.
+Tina's form [hooks or components](/guides/gatsby/using-git/create-remark-form) create the form based on the shape of the data. This is convenient for getting started but you will want to customize the form eventually to make it more user friendly.
 
 **Why customize the form?**
 
@@ -30,6 +30,8 @@ You can pass additional configuration options to customize the form. The followi
     The default options are: `"text"`, `"textarea"`, `"color"`.
   - `label`: A human readable label for the field.
   - `description`: An optional description that expands on the purpose of the field or prompts a specific action.
+
+> _Note:_ there may be additional properties specific to each field, but the above are the rudimentary properties of every field. Check the **Fields** section of the docs for particulars on the properties for each field.
 
 ### `remarkForm` HOC Example
 
@@ -161,3 +163,48 @@ class BlogPostTemplate extends React.Component {
 
 export default BlogPostTemplate
 ```
+
+### `useJsonForm` Hook Example
+
+```js
+import { usePlugin } from 'tinacms'
+import { useJsonForm } from 'gatsby-tinacms-json'
+
+function Page(props) {
+  // Create the form
+  const [page, form] = useJsonForm(props.data.page, FormOptions)
+
+  // Register the form with the CMS
+  usePlugin(form)
+
+  return (
+    <section>
+      <Wrapper>
+        <h2>{page.hero_copy}</h2>
+        <p>{page.supporting_copy}</p>
+      </Wrapper>
+    </section>
+  )
+}
+
+const FormOptions = {
+  fields: [
+    {
+      label: 'Hero Copy',
+      name: 'rawJson.hero_copy',
+      description: 'Hero copy for the main block',
+      component: 'text',
+    },
+    {
+      label: 'Supporting Copy',
+      name: 'rawJson.supporting_copy',
+      description: 'Choose your supporting copy for the hero',
+      component: 'textarea',
+    },
+  ],
+}
+
+export default Page
+```
+
+> _Important:_ You may need to implement default values or dummy files to avoid a GraphQL error when a field is empty. Next, we'll look at how to avoid these empty field errors.

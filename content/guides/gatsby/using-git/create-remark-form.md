@@ -4,9 +4,9 @@ title: Creating Remark Forms
 
 There are three ways to register remark forms with the CMS, depending on the component:
 
-- [`useRemarkForm`](/guides/gatsby/markdown/create-remark-form#1-the-hook-useremarkform) - A [React Hook](https://reactjs.org/docs/hooks-intro.html) — useful for any function component. You can use this with components that source data from a [static query](https://www.gatsbyjs.org/docs/static-query/#how-staticquery-differs-from-page-query) using Gatsby's `useStaticQuery` hook.
-- [`RemarkForm`](/guides/gatsby/markdown/create-remark-form#2-the-render-props-component-remarkform) — A [Render Props](https://reactjs.org/docs/render-props.html#use-render-props-for-cross-cutting-concerns) component — useful for any class component. Can be used with components sourcing data from a [static query](https://www.gatsbyjs.org/docs/static-query/#how-staticquery-differs-from-page-query) using Gatsby's [`StaticQuery`](https://www.gatsbyjs.org/docs/static-query/) render props component.
-- [`remarkForm`](/guides/gatsby/markdown/create-remark-form#3-the-higher-order-component-remarkform) — A [Higher-Order Component](https://reactjs.org/docs/higher-order-components.html) — useful for [page components](https://www.gatsbyjs.org/docs/recipes/#creating-pages-automatically) (function or class), that source data from a [page query](https://www.gatsbyjs.org/docs/page-query/).
+- [`useRemarkForm`](/guides/gatsby/using-git/create-remark-form#1-the-hook-useremarkform) - A [React Hook](https://reactjs.org/docs/hooks-intro.html) — useful for any function component. You can use this with components that source data from a [static query](https://www.gatsbyjs.org/docs/static-query/#how-staticquery-differs-from-page-query) using Gatsby's `useStaticQuery` hook.
+- [`RemarkForm`](/guides/gatsby/using-git/create-remark-form#2-the-render-props-component-remarkform) — A [Render Props](https://reactjs.org/docs/render-props.html#use-render-props-for-cross-cutting-concerns) component — useful for any class component. Can be used with components sourcing data from a [static query](https://www.gatsbyjs.org/docs/static-query/#how-staticquery-differs-from-page-query) using Gatsby's [`StaticQuery`](https://www.gatsbyjs.org/docs/static-query/) render props component.
+- [`remarkForm`](/guides/gatsby/using-git/create-remark-form#3-the-higher-order-component-remarkform) — A [Higher-Order Component](https://reactjs.org/docs/higher-order-components.html) — useful for [page components](https://www.gatsbyjs.org/docs/recipes/#creating-pages-automatically) (function or class), that source data from a [page query](https://www.gatsbyjs.org/docs/page-query/).
 
 All of these options can only take data (transformed by `gatsby-transformer-remark`) from a `markdownRemark` query. If you need more information on using Markdown in Gatsby, refer to [this documentation](https://www.gatsbyjs.org/docs/adding-markdown-pages/).
 
@@ -21,7 +21,7 @@ This hook connects the `markdownRemark` data with Tina to be made editable. It i
 #### Arguments:
 
 - `remark`: The data returned from a Gatsby `markdownRemark` query.
-- `options`: A configuration object that can include [form options](https://tinacms.org/guides/gatsby/markdown/editing-remark-content#customizing-remark-forms) or form actions (such as the [`DeleteAction`](https://tinacms.org/guides/gatsby/creating-new-files#deleting-files))— optional.
+- `options`: A configuration object that can include [form options](https://tinacms.org/guides/gatsby/using-git/customize-form) or form actions (such as the [`DeleteAction`](https://tinacms.org/guides/gatsby/creating-new-files#deleting-files))— optional.
 
 #### Return:
 
@@ -66,7 +66,7 @@ export default Title
 
 To use this hook, you'll first need to import it from `gatsby-tinacms-remark`. Then you'll need to add the GraphQL fragment `...TinaRemark` to your query. The fragment adds these parameters: `id`, `fileRelativePath`, `rawFrontmatter`, and `rawMarkdownBody`. Finally you'll call the hook and pass in the `markdownRemark` data.
 
-The form will populate with default text fields. To customize it, you can pass in a config options object as the second parameter. Jump ahead to learn more on [customizing the form](http://tinacms.org/guides/gatsby/markdown/editing-remark-content#customizing-remark-forms).
+The form will populate with default text fields. To customize it, you can pass in a config options object as the second parameter. Jump ahead to learn more on [customizing the form](http://tinacms.org/guides/gatsby/using-git/customize-form).
 
 ### 2. The Render Props Component: RemarkForm
 
@@ -169,7 +169,7 @@ export const pageQuery = graphql`
 `
 ```
 
-Learn how to customize the fields displayed in the form [below](/guides/gatsby/markdown/editing-remark-content#customizing-remark-forms).
+Learn how to customize the fields displayed in the form [below](/guides/gatsby/using-git/customize-form).
 
 ### 3. The Higher-Order Component: remarkForm
 

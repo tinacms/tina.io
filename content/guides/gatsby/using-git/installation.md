@@ -2,15 +2,21 @@
 title: Install & Set-up
 ---
 
-This guide will show you how to set up a Git-based backend on your Gatsby site.
+This guide will show you how to set up a Git-based backend on your Gatsby site. It will also cover creating forms to edit Markdown and / or JSON data files with changes tracked in Git.
 
-## Install the Git Package
+## Prerequisites
 
-    yarn add gatsby-tinacms-remark gatsby-tinacms-git
+- A Gatsby site with [Tina Configured](/guides/gatsby/adding-tina/project-setup)
 
-## Adding the Git Plugin
+## Install the Packages
 
-Open the `gatsby-config.js` file and add the package to the `plugins` array for `gatsby-plugin-tinacms`:
+    yarn add gatsby-tinacms-git gatsby-tinacms-remark gatsby-tinacms-json
+
+> This guide assumes your Gatsby site is already setup to use either Markdown or JSON. Check out the [Gatsby Docs](https://www.gatsbyjs.org/docs/adding-markdown-pages/) to learn how to use Markdown in your site.
+
+## Adding the Plugins
+
+Open the `gatsby-config.js` file and add the packages to the `plugins` array for `gatsby-plugin-tinacms`:
 
 ```JavaScript
 module.exports = {
@@ -21,7 +27,8 @@ module.exports = {
       options: {
         plugins: [
           "gatsby-tinacms-git",
-
+          "gatsby-tinacms-remark",
+          "gatsby-tinacms-json"
         ],
       },
     },
@@ -30,4 +37,4 @@ module.exports = {
 }
 ```
 
-Now the Git plugin is set up, your forms should be able to persist and save changes to the associated repository. Next, we'll look into various configuration options.
+Now the Git, Markdown, & JSON plugins are set up, your forms should be able to persist and save changes to the associated repository. Next, we'll create a form to edit content.

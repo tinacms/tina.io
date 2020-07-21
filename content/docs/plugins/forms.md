@@ -19,8 +19,8 @@ consumes:
 >
 > This document explains how to set up forms in any React project. If you're using Gatsby or Next.js, we have helper packages that streamline this process for specific workflows:
 >
-> - [Editing Markdown Files with Gatsby](/guides/gatsby/markdown/set-up)
-> - [Editing JSON Files with Gatsby](/guides/gatsby/gatsby-json/create-json-form)
+> - [Editing Markdown Files with Gatsby](/guides/gatsby/using-git/installation)
+> - [Editing JSON Files with Gatsby](/guides/gatsby/using-git/create-json-form)
 > - [Editing local Markdown Files via Git with Next.js](/guides/nextjs/git-based/using-markdown)
 > - [Editing local JSON Files via Git with Next.js](/guides/nextjs/git-based/creating-git-forms)
 
@@ -191,7 +191,7 @@ interface WatchableFormValue {
 
 ### Form Helpers
 
-The three hooks described thus far are the basic interface for creating forms, and they aim to support a broad set of use cases. For specific use cases, we've created some simplified interfaces for quickly setting up forms. Take a look at our [Next.js form docs](/guides/nextjs/git-based/creating-git-forms) and [Gatsby docs](/guides/gatsby/markdown/set-up) to learn how to use these.
+The three hooks described thus far are the basic interface for creating forms, and they aim to support a broad set of use cases. For specific use cases, we've created some simplified interfaces for quickly setting up forms. Take a look at our [Next.js form docs](/guides/nextjs/git-based/creating-git-forms) and [Gatsby docs](/guides/gatsby/using-git/installation) to learn how to use these.
 
 ### Customizing Form Buttons
 

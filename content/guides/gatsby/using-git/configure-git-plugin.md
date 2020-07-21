@@ -1,5 +1,5 @@
 ---
-title: Configuration
+title: Configurating the Git Plugin
 ---
 
 The Git plugin also provides some options that can be adjusted depending on the needs of your project.

@@ -4,7 +4,7 @@ title: Configure How Content Is Created
 
 ## Customizing the Create Form
 
-`RemarkCreatorPlugin` accepts a `fields` option, similar to [Remark Form](/guides/gatsby/markdown/create-remark-form). When using a custom create form, all callback functions will receive an object containing all form data.
+`RemarkCreatorPlugin` accepts a `fields` option, similar to [Remark Form](/guides/gatsby/using-git/create-remark-form). When using a custom create form, all callback functions will receive an object containing all form data.
 
 **Example: Create Posts in Subdirectories**
 

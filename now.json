@@ -101,11 +101,11 @@
     },
     {
       "source": "/docs/gatsby/markdown",
-      "destination": "/guides/gatsby/markdown/set-up"
+      "destination": "/guides/gatsby/using-git/installation"
     },
     {
       "source": "/docs/gatsby/json",
-      "destination": "/guides/gatsby/gatsby-json/create-json-form"
+      "destination": "/guides/gatsby/using-git/create-json-form"
     },
     {
       "source": "/docs/gatsby/creating-new-files",

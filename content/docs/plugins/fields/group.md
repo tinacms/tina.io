@@ -40,7 +40,7 @@ interface GroupConfig {
 
 ## Definition
 
-Below is an example of how a `group` field could be defined in a Gatsby JSON form. Read more on passing in JSON form field options [here](/guides/gatsby/gatsby-json/customize-form).
+Below is an example of how a `group` field could be defined in a Gatsby JSON form. Read more on passing in JSON form field options [here](/guides/gatsby/using-git/customize-form).
 
 If the source JSON for the example contact info looked like this:
 

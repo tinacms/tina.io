@@ -19,4 +19,4 @@ Consider creating an **inline editing** experience for your blog, where content 
 
 ## Saving Content
 
-Editing content isn't much use if you can't save it! Our `onSubmit` handler doesn't really do anything right now. You can look at using the [`gatsby-tinacms-git`](/guides/gatsby/using-git/installation) to edit content [Markdown](/guides/gatsby/markdown/set-up) and [JSON](/guides/gatsby/gatsby-json/create-json-form) sourced from your repository.
+Editing content isn't much use if you can't save it! Our `onSubmit` handler doesn't really do anything right now. You can look at using the [`gatsby-tinacms-git`](/guides/gatsby/using-git/installation) to edit content [Markdown](/guides/gatsby/using-git/installation) and [JSON](/guides/gatsby/using-git/create-json-form) sourced from your repository.
