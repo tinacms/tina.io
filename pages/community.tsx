@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { DynamicLink } from '../components/ui/DynamicLink'
+import { DynamicLink } from 'components/ui/DynamicLink'
 import { GetStaticProps } from 'next'
 
 import {
@@ -10,18 +10,18 @@ import {
   Section,
   RichTextWrapper,
   MarkdownContent,
-} from '../components/layout'
+} from 'components/layout'
 import { InlineTextareaField } from 'react-tinacms-inline'
-import { Button, ButtonGroup } from '../components/ui'
-import { EmailForm } from '../components/forms'
+import { Button, ButtonGroup } from 'components/ui'
+import { EmailForm } from 'components/forms'
 import TwitterIconSvg from '../public/svg/twitter-icon.svg'
 import GithubIconSvg from '../public/svg/github-icon.svg'
 import ForumIconSvg from '../public/svg/forum-icon.svg'
 import { NextSeo } from 'next-seo'
-import { OpenAuthoringSiteForm } from '../components/layout/OpenAuthoringSiteForm'
+import { OpenAuthoringSiteForm } from 'components/layout/OpenAuthoringSiteForm'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
 import { useGithubJsonForm } from 'react-tinacms-github'
-import { InlineWysiwyg } from '../components/inline-wysiwyg'
+import { InlineWysiwyg } from 'components/inline-wysiwyg'
 
 function CommunityPage({ file: community, metadata, preview }) {
   // Registers Tina Form
