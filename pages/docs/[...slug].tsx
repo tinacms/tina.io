@@ -19,7 +19,7 @@ import {
 import { InlineTextareaField, useInlineForm } from 'react-tinacms-inline'
 import { TinaIcon } from '../../components/logo'
 import { useGithubMarkdownForm } from 'react-tinacms-github'
-import { getDocProps } from '../../utils/docs/getDocProps'
+import { getDocProps } from 'utils/docs/getDocProps'
 import { OpenAuthoringSiteForm } from '../../components/layout/OpenAuthoringSiteForm'
 import { GithubError } from 'next-tinacms-github'
 import { InlineWysiwyg } from '../../components/inline-wysiwyg'

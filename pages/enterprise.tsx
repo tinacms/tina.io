@@ -15,7 +15,7 @@ import {
 } from 'react-tinacms-inline'
 import { OpenAuthoringSiteForm } from '../components/layout/OpenAuthoringSiteForm'
 import { useGithubJsonForm } from 'react-tinacms-github'
-import { getJsonPreviewProps } from '../utils/getJsonPreviewProps'
+import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
 
 const formOptions = {
   label: 'Teams',

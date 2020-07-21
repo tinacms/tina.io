@@ -25,7 +25,7 @@ import {
 import { Button, Video, ArrowList } from '../components/ui'
 import { OpenAuthoringSiteForm } from '../components/layout/OpenAuthoringSiteForm'
 import { useGithubJsonForm } from 'react-tinacms-github'
-import { getJsonPreviewProps } from '../utils/getJsonPreviewProps'
+import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
 
 const HomePage = (props: any) => {
   const cms = useCMS()
