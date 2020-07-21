@@ -107,7 +107,7 @@ interface FieldPlugin {
 
 At a minimum, field plugins **require a name and a component.** The `name` is used to reference the custom field in form definitions ([more on this later](https://tinacms.org/blog/custom-field-plugins#2-use-the-custom-field-in-a-form)). The `Component` is what is actually rendered in the sidebar.
 
-You can see that there are additional configuration functions and options. _Note that the properties with a question mark are optional._ These options are incredibly useful for creating fields that require _[validation](https://tinacms.org/docs/fields/custom-fields#validate-optional), parsing, or formatting_.
+You can see that there are additional configuration functions and options. _Note that the properties with a question mark are optional._ These options are incredibly useful for creating fields that require _[validation](https://tinacms.org/docs/plugins/fields/custom-fields#validate-optional), parsing, or formatting_.
 
 > To see a more **complex example**, checkout the documentation on creating an [email field](/guides/gatsby/custom-email-field/register-field).
 
@@ -151,4 +151,4 @@ Index.getInitialProps = async function() {
 
 ## Short and sweet, as promised 🍰
 
-This post, combined with the former, should give you all the building blocks to start making your own field plugins. Feel free to _dive into the documentation_ on [fields](https://tinacms.org/docs/fields/custom-fields/) or [plugins](https://tinacms.org/docs/cms#plugins). Make sure to **share your groovy custom fields with us [@tina_cms](https://twitter.com/tina_cms)** 🖖. Or, if you feel there is a fundamental field missing from Tina, [open up a PR](https://github.com/tinacms/tinacms/) to contribute your custom field!
+This post, combined with the former, should give you all the building blocks to start making your own field plugins. Feel free to _dive into the documentation_ on [fields](https://tinacms.org/docs/plugins/fields/custom-fields/) or [plugins](https://tinacms.org/docs/cms#plugins). Make sure to **share your groovy custom fields with us [@tina_cms](https://twitter.com/tina_cms)** 🖖. Or, if you feel there is a fundamental field missing from Tina, [open up a PR](https://github.com/tinacms/tinacms/) to contribute your custom field!

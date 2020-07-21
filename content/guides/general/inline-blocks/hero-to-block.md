@@ -2,7 +2,7 @@
 title: Convert Hero to a Block
 ---
 
-This simple inline editing configuration is a great start, but the end goal of this demo is to create a Home page built with [_Inline Blocks_](https://tinacms.org/docs/inline-editing/inline-blocks). In this step, we will add `InlineBlocks` to the homepage and convert our `Hero` into a block.
+This simple inline editing configuration is a great start, but the end goal of this demo is to create a Home page built with [_Inline Blocks_](https://tinacms.org/docs/ui/inline-editing/inline-blocks). In this step, we will add `InlineBlocks` to the homepage and convert our `Hero` into a block.
 
 > If you're wanting to get a better feel for the 'Blocks' concept, there is a great blog that dives deeper into [_what blocks are_](/blog/what-are-blocks).
 
@@ -52,7 +52,7 @@ Even though we added `InlineBlocks` to the page, nothing will render since there
 
 ## Make a Component
 
-[Inline Blocks](https://tinacms.org/docs/inline-editing/inline-blocks#creating-a-block) are made up of **a component** to render while editing and **a template** to configure defaults, add fields, and other required data.
+[Inline Blocks](https://tinacms.org/docs/ui/inline-editing/inline-blocks#creating-a-block) are made up of **a component** to render while editing and **a template** to configure defaults, add fields, and other required data.
 
 Let's make the _Block Component_ first:
 

@@ -6,7 +6,7 @@ Our _Features List_ is functional but it could benefit from better layout styles
 
 If you open up the [Page Inspector](https://developer.mozilla.org/en-US/docs/Tools/Page_Inspector) in your dev tools, you'll see that `InlineBlocks` actually adds a div to the DOM that wraps all the child blocks. In order to style the child blocks in a grid, we need to directly style that `InlineBlocks` div.
 
-Luckily, Tina provides a way to extend this components styles. We can do this by passing a custom class name, or by [defining a new styled-component](https://tinacms.org/docs/inline-editing#extending-inline-field-styles) that _styles_ `InlineBlocks`.
+Luckily, Tina provides a way to extend this components styles. We can do this by passing a custom class name, or by [defining a new styled-component](https://tinacms.org/docs/ui/inline-editing#extending-inline-field-styles) that _styles_ `InlineBlocks`.
 
 Let's look at the simple approach first:
 

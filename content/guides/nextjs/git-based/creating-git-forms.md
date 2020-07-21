@@ -128,7 +128,7 @@ To create the form, we will pass `jsonFile` into `useJsonForm`, and update the `
  //...
 ```
 
-By default, `useJsonForm` creates a text field for each value in `data`. It's possible to [customize](/docs/forms) the form by passing a second argument into `useJsonForm`:
+By default, `useJsonForm` creates a text field for each value in `data`. It's possible to [customize](/docs/plugins/forms) the form by passing a second argument into `useJsonForm`:
 
 **/pages/\[slug].js**
 

@@ -21,7 +21,7 @@ This hook connects the `markdownRemark` data with Tina to be made editable. It i
 #### Arguments:
 
 - `remark`: The data returned from a Gatsby `markdownRemark` query.
-- `options`: A configuration object that can include [form options](https://tinacms.org/guides/gatsby/markdown/editing-remark-content#customizing-remark-forms) or form actions (such as the [`DeleteAction`](https://tinacms.org/docs/gatsby/creating-new-files#deleting-files))— optional.
+- `options`: A configuration object that can include [form options](https://tinacms.org/guides/gatsby/markdown/editing-remark-content#customizing-remark-forms) or form actions (such as the [`DeleteAction`](https://tinacms.org/guides/gatsby/creating-new-files#deleting-files))— optional.
 
 #### Return:
 

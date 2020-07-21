@@ -201,7 +201,7 @@ That’s all the config for tracking and persisting content changes with Git & T
 
 ### Creating Content Forms 📝
 
-Alright, now the fun starts — let’s dig into [editing content](https://tinacms.org/guides/nextjs/git-based/creating-git-forms). We access Tina’s editing powers by registering forms to the `cms`. When creating these [forms](https://tinacms.org/docs/forms), we define [fields](https://tinacms.org/docs/fields) that connect to bits and pieces of the content you want to make editable.
+Alright, now the fun starts — let’s dig into [editing content](https://tinacms.org/guides/nextjs/git-based/creating-git-forms). We access Tina’s editing powers by registering forms to the `cms`. When creating these [forms](https://tinacms.org/docs/plugins/forms), we define [fields](https://tinacms.org/docs/plugins/fields) that connect to bits and pieces of the content you want to make editable.
 
 Since our site is mainly comprised of blog data, let’s configure Tina to edit blog posts. Open up the [blog template](https://github.com/kendallstrautman/brevifolia-nextjs/blob/master/pages/blog/%5Bslug%5D.js) file (`pages/blog/[slug].js`).
 
@@ -226,7 +226,7 @@ BlogTemplate.getInitialProps = async function(ctx) {
 }
 ```
 
-Next, we will create and register a form with the `useLocalForm` hook. When registering a form, it needs to know four things: a unique `id`, what `initialValues` it can edit, the shape of the content via [`field`](https://tinacms.org/docs/fields) definitions, and what to do `onSubmit`.
+Next, we will create and register a form with the `useLocalForm` hook. When registering a form, it needs to know four things: a unique `id`, what `initialValues` it can edit, the shape of the content via [`field`](https://tinacms.org/docs/plugins/fields) definitions, and what to do `onSubmit`.
 
 Check out the code below to see an example of invoking `useLocalForm`:
 

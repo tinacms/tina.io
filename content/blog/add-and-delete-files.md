@@ -22,7 +22,7 @@ consumes:
 
 When you install Tina, you immediately get access to a **sidebar**. This sidebar is the main interface for editing and managing content with Tina
 
-To make content editable on your site, you need to register a [form](https://tinacms.org/docs/forms) to Tina. Forms appear in the sidebar, displaying [fields](https://tinacms.org/docs/fields) where you can edit content on the page.
+To make content editable on your site, you need to register a [form](https://tinacms.org/docs/plugins/forms) to Tina. Forms appear in the sidebar, displaying [fields](https://tinacms.org/docs/plugins/fields) where you can edit content on the page.
 
 [Plugins](https://tinacms.org/docs/cms#plugins) extend the functionality of the core CMS. Behind the scenes, plugins do some big work with Tina. They register forms, create new screen views, and allow us to add new content. If you're interested to learn more, read this post on Tina's [dynamic plugin system](https://tinacms.org/blog/dynamic-plugin-system/).
 
@@ -219,7 +219,7 @@ const CreatePostPlugin = new RemarkCreatorPlugin({
 
 Notice the use of a `required` property on the `title` field. Use this to ensure you get all the required data necessary for creating the new file.
 
-Learn about the default [fields](https://tinacms.org/docs/fields).
+Learn about the default [fields](https://tinacms.org/docs/plugins/fields).
 
 ## 4. Configure Defaults
 

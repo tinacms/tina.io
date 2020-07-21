@@ -4,10 +4,9 @@ id: /docs/nextjs/next-tinacms-github
 next: /docs/nextjs/overview
 prev: /docs/nextjs/next-tinacms-json
 consumes:
-  - file:
-    details:
+  - file: null
+    details: null
 ---
-
 This package provides helpers for managing the **GitHub auth token** for requests, as well as
 providing helpers for **loading content from the Github API**.
 
@@ -19,9 +18,9 @@ yarn add next-tinacms-github
 
 Any functions in the `pages/api` directory are mapped to `/api/*` endpoints. The below helpers tend to be added to the `pages/api` directory in a Next.js project.
 
-### `createCreateAccessTokenFn`
+### `authHandler`
 
-Helper for creating a `createCreateAccessToken` server function.
+Helper for creating a `authHandler` server function.
 
 **pages/api/create-github-access-token.ts**
 
@@ -30,13 +29,14 @@ import { createAuthHandler } from 'next-tinacms-github'
 
 export default createAuthHandler(
   process.env.GITHUB_CLIENT_ID,
-  process.env.GITHUB_CLIENT_SECRET
+  process.env.GITHUB_CLIENT_SECRET,
+  process.env.SIGNING_KEY
 )
 ```
 
 _See [Next's documentation](https://nextjs.org/docs/api-reference/next.config.js/environment-variables) for adding environment variables_
 
-[See below](#github-oauth-app) for instructions on creating a Github OAuth App to generate these **Client ID** & **Client Secret** variables.
+[See here](https://tinacms.org/guides/nextjs/github-open-authoring/github-oauth-app) for instructions on creating a Github OAuth App to generate these **Client ID** & **Client Secret** variables and setting up the **Signing Key**.
 
 ### `apiProxy`
 
@@ -47,7 +47,7 @@ Proxies requests to GitHub, attaching the GitHub access token in the process.
 ```ts
 import { apiProxy } from 'next-tinacms-github'
 
-export default apiProxy
+export default apiProxy(process.env.SIGNING_KEY)
 ```
 
 ### `previewHandler`
@@ -59,7 +59,7 @@ Handles setting the the Nextjs [preview data](https://nextjs.org/docs/advanced-f
 ```ts
 import { previewHandler } from 'next-tinacms-github'
 
-export default previewHandler
+export default previewHandler(process.env.SIGNING_KEY)
 ```
 
 ### Loading content from Github
