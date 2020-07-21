@@ -322,13 +322,13 @@
       "details": "Shows blocks interface"
     }
   ],
-  "/content/docs/fields/group-list.md": [
+  "/content/docs/plugins/fields/group-list.md": [
     {
       "file": "/packages/tinacms/src/plugins/fields/GroupListFieldPlugin.tsx",
       "details": "Shows group list interface"
     }
   ],
-  "/content/docs/fields/group.md": [
+  "/content/docs/plugins/fields/group.md": [
     {
       "file": "/packages/tinacms/src/plugins/fields/GroupFieldPlugin.tsx",
       "details": "Shows group field interface and how to use"
