@@ -23,13 +23,13 @@ Tina currently supports React-based frameworks, including:
 
 To use Tina, you should have a good working knowledge of your JavaScript framework & JAMstack tools of choice.
 
-If you want to get started with some code right away, check out the [Next.js Overview](/docs/nextjs/overview) or [Gatsby Quickstart](/guides/gatsby/adding-tina/project-setup).
+If you want to get started with some code right away, check out the [Next.js Overview](/docs/integrations/nextjs) or [Gatsby Quickstart](/guides/gatsby/adding-tina/project-setup).
 
 If you want to dive deep, start by learning more about [how Tina works](/docs/getting-started/how-tina-works) and get familiar with some core concepts.
 
 ## For Next.js
 
-- [Next.js + Tina Overview](/docs/nextjs/overview) — Get started with the documentation
+- [Next.js + Tina Overview](/docs/integrations/nextjs) — Get started with the documentation
 - Read an in-depth tutorial on [Using TinaCMS with Next.js](/blog/using-tinacms-with-nextjs/)
 
 **Next.js Starters**

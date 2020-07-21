@@ -118,6 +118,10 @@
     {
       "source": "/docs/gatsby/custom-field",
       "destination": "/docs/plugins#adding-plugins-in-gatsby"
+    },
+    {
+      "source": "/docs/nextjs/overview",
+      "destination": "/docs/integrations/nextjs"
     }
   ]
 }

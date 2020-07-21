@@ -255,13 +255,13 @@
     "id": "nextjs",
     "items": [
       {
-        "id": "/docs/nextjs/overview",
-        "slug": "/docs/nextjs/overview",
+        "id": "/docs/integrations/nextjs",
+        "slug": "/docs/integrations/nextjs",
         "title": "Next.js"
       },
       {
-        "id": "/docs/gatsby",
-        "slug": "/docs/gatsby/manual-setup",
+        "id": "/docs/integrations/gatsby",
+        "slug": "/docs/integrations/gatsby",
         "title": "Gatsby"
       }
     ]

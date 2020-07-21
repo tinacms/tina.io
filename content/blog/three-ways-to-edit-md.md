@@ -220,9 +220,9 @@ Ok, yet again, let’s see what’s happening here:
 
 In this post, we learned about how to _set up Tina with both Static Queries and Page Queries in Gatsby_. We also learned about three different ways to edit Markdown with Tina depending on your type of React component.
 
-This is just the basics to get you started. If you like Tina and want to learn more you should check out the [official docs](https://tinacms.org/docs/). There’s a lot more stuff to read there and some interesting use cases.
+This is just the basics to get you started. If you like Tina and want to learn more you should check out the [official docs](/docs/). There’s a lot more stuff to read there and some interesting use cases.
 
-For example, you can learn how to apply [inline editing](https://tinacms.org/docs/ui/inline-editing) and also how to [customize the form fields](https://tinacms.org/docs/gatsby/markdown#customizing-remark-forms) in the Tina sidebar.
+For example, you can learn how to apply [inline editing](/docs/ui/inline-editing) and also how to [customize the form fields](/docs/plugins/fields) in the Tina sidebar.
 
 Tina is a great addition to the React ecosystem and static site generators like Gatsby. It gives your site a pleasant and easy way to edit and interact with your content.
 I’m thrilled to see how big TinaCMS will be and what it can do as it evolves!
