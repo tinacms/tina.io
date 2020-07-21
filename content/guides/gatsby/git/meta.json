@@ -8,12 +8,6 @@
       "data": "./installation.md"
     },
     {
-      "title": "Configure Git Plugin",
-      "id": "/guides/gatsby/git/configure-git-plugin",
-      "slug": "/guides/gatsby/git/configure-git-plugin",
-      "data": "./configure-git-plugin.md"
-    },
-    {
       "title": "Creating Remark Forms",
       "id": "/guides/gatsby/git/create-remark-form",
       "slug": "/guides/gatsby/git/create-remark-form",
