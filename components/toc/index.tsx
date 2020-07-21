@@ -23,8 +23,7 @@ const Toc = ({ tocItems }: { tocItems: string }) => {
   return (
     <TocWrapper>
       <TocButtom onClick={() => setIsOpen(!isOpen)}>
-        Jump to Section
-        <ArrowDown />
+        {isOpen ? 'Hide' : 'Show'} Table of Contents
       </TocButtom>
       <TocContent isOpen={isOpen}>
         <ReactMarkdown source={tocItems} />
@@ -34,73 +33,9 @@ const Toc = ({ tocItems }: { tocItems: string }) => {
 }
 export default Toc
 
-const TocWrapper = styled.div`
-  position: relative;
-  max-width: 176px;
-  margin-left: auto;
-  margin-right: 176px;
-`
-const TocButtom = styled.button`
-  font-size: 16px;
-  line-height: 24px;
-  border-radius: 2px;
-  /* border: solid 1px ${({ theme }) => theme.colors.highlightBorder}; */
-  background-color: #eff6fe;
-  text-align: left;
-  padding: 10px 12px;
-  width: 100%;
-  text-align: center;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-
-  &:focus {
-    outline: none;
-  }
-`
+const TocWrapper = styled.div``
+const TocButtom = styled.button``
 
 const TocContent = styled.div<{ isOpen: boolean }>`
-  margin-right: 10%;
-  position: absolute;
-  margin-top: 1px;
-  margin-left: 30vw;
   display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
-  padding: 17px 15px;
-  border-radius: 2px;
-  backdrop-filter: blur(27px);
-  box-shadow: 4px 6px 8px 0 rgba(0, 0, 0, 0.05);
-  border: solid 1px grey;
-  background-color: #ffffff;
-  width: max-content;
-  z-index: 100;
-
-  & > ul {
-    padding-left: 24px;
-  }
-
-  ul {
-    li {
-      text-align: left;
-      margin: 12px 0;
-      a {
-        font-size: 16px;
-        text-decoration: none;
-        color: #333;
-
-        &:hover,
-        &:focus {
-          color: grey;
-        }
-      }
-    }
-  }
-`
-const ArrowDown = styled.div`
-  width: 0px;
-  height: 0px;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  /* border-top: 5px solid ${({ theme }) => theme.colors.primary}; */
-  position: relative;
 `
