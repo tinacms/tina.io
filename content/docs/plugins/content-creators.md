@@ -23,7 +23,7 @@ interface ContentCreatorPlugin<FormShape> {
 | ---------- | ------------------------------------------------------------------------------------ |
 | `__type`   | The name of the plugin. Always `'content-creator'`.                                  |
 | `name`     | The text to be displayed in the "Add Content" menu.                                  |
-| `fields`   | An array of fields that will define the shape of the form and how content is edited. |
+| `fields`   | An array of fields that populate a modal form. Field values can populate new file data. |
 | `onSubmit` | A function that creates content. Called once the form is submitted.                  |
 
 ## Examples
