@@ -146,16 +146,15 @@ const formOptions = {
 const InfoLayout = styled.div`
   display: grid;
   grid-template-rows: repeat(2, auto);
-  grid-template-columns: auto;
+  grid-template-columns: 1fr;
   grid-gap: 2rem;
-  margin-bottom: 2rem;
   grid-template-areas: 'image' 'content';
 
   @media (min-width: 1200px) {
     margin-bottom: 4rem;
   }
 
-  @media (min-width: 800px) {
+  @media (min-width: 1200px) {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
     align-items: center;
@@ -169,32 +168,19 @@ const InfoContent = styled.div`
 
 const InfoText = styled.div`
   margin-bottom: 1.5rem;
+  flex: 1 1 auto;
+
   h1,
   h2,
   h3,
   .h1,
   .h2,
   .h3 {
-    text-align: center;
+    text-align: left;
   }
   hr {
-    margin-left: auto;
-    margin-right: auto;
-  }
-  @media (min-width: 800px) {
-    h1,
-    h2,
-    h3,
-    .h1,
-    .h2,
-    .h3 {
-      text-align: left;
-    }
-    hr {
-      margin-left: 0;
-      margin-right: 0;
-    }
-    flex: 1 0 auto;
+    margin-left: 0;
+    margin-right: 0;
   }
 `
 
@@ -207,8 +193,7 @@ const InfoImage = styled(({ src, ...styleProps }) => {
 })`
   display: block;
   grid-area: image;
-  max-width: 65vw;
-  margin: 0 auto;
+  max-width: 640px;
   border-radius: 2rem;
   overflow: hidden;
 
@@ -227,16 +212,19 @@ const StudyLayout = styled(Layout)`
 `
 
 const StudyRichTextWrapper = styled(RichTextWrapper)`
-  flex: 1 0 auto;
-  display: flex;
-  align-items: center;
+  @media (min-width: 1200px) {
+    flex: 1 0 auto;
+    display: flex;
+    align-items: center;
+  }
 `
 
 const StudySection = styled.section`
   flex: 1 0 auto;
-  padding: 8rem 0 5rem 0;
+  padding: 8rem 0 2rem 0;
   display: flex;
   flex-direction: column;
+
   ${Wrapper} {
     display: flex;
     flex: 1 0 auto;
