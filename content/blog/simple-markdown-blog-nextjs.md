@@ -325,4 +325,4 @@ Then you are free to loop through the blogs and render the list within your `Blo
 
 > Checkout the [final repo](https://github.com/kendallstrautman/brevifolia-nextjs)! 🥳
 
-After setting up your blog or portfolio site, you’ll most likely need a content management system to make editing and updating your posts or data easier. Stay tuned for my next blog on setting up this starter with TinaCMS. In the meantime, you can check out our [documentation on using Next.js with TinaCMS](https://tinacms.org/docs/nextjs/overview), or [fork the finished Next+Tina blog](https://github.com/kendallstrautman/brevifolia-next-tinacms) to start playing with TinaCMS right away.
+After setting up your blog or portfolio site, you’ll most likely need a content management system to make editing and updating your posts or data easier. Stay tuned for my next blog on setting up this starter with TinaCMS. In the meantime, you can check out our [documentation on using Next.js with TinaCMS](/docs/integrations/nextjs), or [fork the finished Next+Tina blog](https://github.com/kendallstrautman/brevifolia-next-tinacms) to start playing with TinaCMS right away.

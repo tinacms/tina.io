@@ -30,7 +30,7 @@ This blog is a part of a series exploring the use of Next.js + Tina. In [Part I]
 
 ### Next.js Recap ▲
 
-[Next.js](https://nextjs.org/) is **a React “metaframework”** (a framework built on a framework) for developing web applications, built by the team at [ZEIT](https://zeit.co/). Read [Part I](https://tinacms.org/blog/simple-markdown-blog-nextjs/) to get familiar with Next.js basics.
+[Next.js](https://nextjs.org/) is **a React “metaframework”** (a framework built on a framework) for developing web applications, built by the team at [ZEIT](https://zeit.co/). Read [Part I](/blog/simple-markdown-blog-nextjs/) to get familiar with Next.js basics.
 
 ### Tina Overview 🦙
 
@@ -42,9 +42,9 @@ The best way to get a feel for how Tina works is to use it. We hope that by the 
 
 ![tinacms editing gif](/gif/tina-nextjs.gif)
 
-This tutorial will show you how to install and **configure Tina for editing content on a simple markdown-based blog** that was created in last week’s post. If you want to dig into how the base blog was made, read [Part I](https://tinacms.org/blog/simple-markdown-blog-nextjs/) of this series.
+This tutorial will show you how to install and **configure Tina for editing content on a simple markdown-based blog** that was created in last week’s post. If you want to dig into how the base blog was made, read [Part I](/blog/simple-markdown-blog-nextjs/) of this series.
 
-> Jump ahead to see the [final repo here](https://github.com/kendallstrautman/brevifolia-next-tinacms). Or check out the [Tina + Next.js documentation](https://tinacms.org/docs/nextjs/overview) here
+> Jump ahead to see the [final repo here](https://github.com/kendallstrautman/brevifolia-next-tinacms). Or check out the [Tina + Next.js documentation](/docs/integrations/nextjs) here
 
 ### Some Background 🏜
 

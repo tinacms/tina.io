@@ -47,10 +47,11 @@ Tina gives you the tools you need to manage content from the data source of your
 - **Creating Content:** Using [Content Creators](/docs/plugins/content-creators)
 - **Deleting Content:** Using Form Actions. _(Coming Soon)_
 - **Media Management:** [Media Stores](/docs/media 'Tina Media Store'), [Image Fields](/docs/plugins/fields/image 'Image Field Plugin'), [Inline Images](/docs/ui/inline-editing/inline-image 'Inline Images')
+- **Custom Fields:** [How to Make a Custom Field Component](/blog/custom-field-components)
 
 ## Integrating with React Frameworks
 
-Tina is designed to work with just about any React framework. These guides will help you learn the specifics of building a CMS using Next.js or Gatsby.
+Tina is designed to work with just about any React framework. Once you're comfortable with the basics of TinaCMS, these guides will help you learn the specifics of building a CMS with Next.js or Gatsby.
 
-- **Next.js:** [Available Packages](/docs/nextjs/overview 'Next.js Packages'), [Adding Tina to a Next.js Site](/guides/nextjs/adding-tina/overview 'Adding Tina to a Next.js Site'), [Storing Content using the GitHub API](/guides/nextjs/github-open-authoring/initial-setup 'Using Tina with Next and GitHub')
-- **Gatsby:** [Adding Tina to a Gatsby Site](/guides/gatsby/adding-tina/overview), [Storing Content Using the Git Filesystem](/docs/gatsby/manual-setup 'Using Tina with Gatsby and Git')
+- [Next.js](/docs/integrations/nextjs)
+- [Gatsby](/docs/integrations/gatsby)

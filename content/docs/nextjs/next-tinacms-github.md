@@ -1,12 +1,13 @@
 ---
 title: next-tinacms-github
 id: /docs/nextjs/next-tinacms-github
-next: /docs/nextjs/overview
+next:
 prev: /docs/nextjs/next-tinacms-json
 consumes:
   - file: null
     details: null
 ---
+
 This package provides helpers for managing the **GitHub auth token** for requests, as well as
 providing helpers for **loading content from the Github API**.
 
