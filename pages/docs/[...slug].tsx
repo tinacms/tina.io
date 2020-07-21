@@ -202,6 +202,10 @@ export const DocGridHeader = styled.div`
 
 export const DocGridToc = styled.div`
   grid-area: toc;
+
+  @media (min-width: 1500px) {
+    padding-top: 2.5rem;
+  }
 `
 
 export const DocGridContent = styled.div`
