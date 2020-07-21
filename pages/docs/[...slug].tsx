@@ -71,11 +71,11 @@ function DocTemplate(props) {
           <DocsHeaderNav color={'light'} open={open} />
           <DocsTextWrapper>
             <Wrapper narrow>
-              <Toc tocItems={tocItems} />
               <h1>
                 <InlineTextareaField name="frontmatter.title" />
               </h1>
               <hr />
+              <Toc tocItems={tocItems} />
               <InlineWysiwyg name="markdownBody">
                 <MarkdownContent escapeHtml={false} content={markdownBody} />
               </InlineWysiwyg>
