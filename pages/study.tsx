@@ -57,7 +57,7 @@ function StudySignupPage({ file: study, metadata, preview }) {
                     </DynamicLink>
                   </ButtonGroup>
                 </InfoContent>
-                <InfoImage src="/img/rico-replacement.jpg" />
+                <InfoImage src="/img/dx-study.jpg" />
               </InfoLayout>
             </Wrapper>
           </StudySection>
