@@ -19,7 +19,7 @@ import GithubIconSvg from '../public/svg/github-icon.svg'
 import ForumIconSvg from '../public/svg/forum-icon.svg'
 import { NextSeo } from 'next-seo'
 import { OpenAuthoringSiteForm } from '../components/layout/OpenAuthoringSiteForm'
-import { getJsonPreviewProps } from '../utils/getJsonPreviewProps'
+import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
 import { useGithubJsonForm } from 'react-tinacms-github'
 import { InlineWysiwyg } from '../components/inline-wysiwyg'
 

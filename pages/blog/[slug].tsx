@@ -12,12 +12,12 @@ import {
 } from '../../components/layout'
 import { InlineTextareaField } from 'react-tinacms-inline'
 import { useGithubMarkdownForm } from 'react-tinacms-github'
-import { fileToUrl } from '../../utils/urls'
+import { fileToUrl } from 'utils/urls'
 import { OpenAuthoringSiteForm } from '../../components/layout/OpenAuthoringSiteForm'
 const fg = require('fast-glob')
 import { Button } from '../../components/ui/Button'
 import Error from 'next/error'
-import { getMarkdownPreviewProps } from '../../utils/getMarkdownFile'
+import { getMarkdownPreviewProps } from 'utils/getMarkdownFile'
 import { InlineWysiwyg } from '../../components/inline-wysiwyg'
 import { usePlugin, useCMS } from 'tinacms'
 
