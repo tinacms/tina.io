@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components'
 
 import RightArrowSvg from '../../public/svg/right-arrow.svg'
 import { DynamicLink } from './DynamicLink'
-import { LinkNav } from './LinkNav'
+import { DocsLinkNav } from './DocsLinkNav'
 import { TinaIcon } from '../logo/TinaIcon'
 
 interface NavSection {
@@ -109,7 +109,7 @@ export const DocsNav = styled(({ open, navItems, ...styleProps }) => {
       <DocsDesktopTinaIcon docs />
       <ul>
         <MobileMainNav>
-          <LinkNav />
+          <DocsLinkNav />
         </MobileMainNav>
         {navItems &&
           navItems.map(section => (

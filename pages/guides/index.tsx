@@ -14,9 +14,13 @@ import {
   DocsNavToggle,
   DocsMobileTinaIcon,
   DocsContent,
-  DocsHeaderNav,
 } from '../docs/[...slug]'
-import { DocsNav, Overlay, DynamicLink } from '../../components/ui'
+import {
+  DocsNav,
+  Overlay,
+  DynamicLink,
+  DocsHeaderNav,
+} from '../../components/ui'
 import { CardGrid, Card } from '../../components/ui/Cards'
 import RightArrowSvg from '../../public/svg/right-arrow.svg'
 

@@ -12,7 +12,7 @@ import {
 import {
   DocsNav,
   NavToggle,
-  HeaderNav,
+  DocsHeaderNav,
   Overlay,
   DocsPagination,
 } from '../../components/ui'
@@ -190,15 +190,6 @@ export const DocsMobileTinaIcon = styled(TinaIcon)`
   }
 
   @media (min-width: 1000px) {
-    display: none;
-  }
-`
-
-export const DocsHeaderNav = styled(HeaderNav)`
-  justify-content: flex-end;
-  padding: 1rem 0;
-
-  @media (max-width: 999px) {
     display: none;
   }
 `
