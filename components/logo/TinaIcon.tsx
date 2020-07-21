@@ -4,12 +4,20 @@ import Link from 'next/link'
 
 import TinaIconSvg from '../../public/svg/tina-icon.svg'
 
-export const TinaIcon = styled(({ ...styleProps }, props) => {
+interface TinaIconProps {
+  docs?: boolean
+  styleProps?: any
+}
+
+export const TinaIcon = styled(({ docs, ...styleProps }: TinaIconProps) => {
+  const link = docs ? '/docs' : '/'
+
   return (
-    <Link href="/">
+    <Link href={link}>
       <a {...styleProps}>
         <h1>
           <TinaIconSvg />
+          {docs && <span>Docs</span>}
         </h1>
       </a>
     </Link>
@@ -20,7 +28,15 @@ export const TinaIcon = styled(({ ...styleProps }, props) => {
 
   h1 {
     margin: 0;
-    font-size: 2rem;
+    font-size: 1.75rem;
+    display: flex;
+    align-items: center;
+  }
+
+  span {
+    margin-left: 1rem;
+    font-family: var(--font-tuner);
+    color: var(--color-primary);
   }
 
   svg {

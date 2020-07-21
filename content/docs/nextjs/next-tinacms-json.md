@@ -39,7 +39,7 @@ interface JsonFile<T = any> {
 }
 ```
 
-As with other Tina form helpers, this hook also accepts a second, optional argument — a [form configuration](/docs/forms#form-configuration) object.
+As with other Tina form helpers, this hook also accepts a second, optional argument — a [form configuration](/docs/plugins/forms#form-configuration) object.
 
 **/pages/index.js**
 
@@ -74,7 +74,7 @@ export async function getStaticProps() {
 
 ### _jsonForm_ HOC
 
-`jsonForm` accepts two arguments: _a component and an optional [form configuration object](/docs/forms#form-configuration)_. The component being passed is expected to receive data as props that matches the `jsonFile` interface outlined below.
+`jsonForm` accepts two arguments: _a component and an optional [form configuration object](/docs/plugins/forms#form-configuration)_. The component being passed is expected to receive data as props that matches the `jsonFile` interface outlined below.
 
 ```typescript
 // A datastructure representing a JSON file stored in Git

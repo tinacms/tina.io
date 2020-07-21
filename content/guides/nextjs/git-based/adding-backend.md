@@ -13,7 +13,7 @@ consumes:
     details: Creates cms instance with TinaCMS
 ---
 
-The `TinaProvider` component makes it possible to attach [forms](/docs/forms) to the Tina sidebar, but we need to wire up a backend in order for content changes to be persisted anywhere. Let's set up the default Git backend.
+The `TinaProvider` component makes it possible to attach [forms](/docs/plugins/forms) to the Tina sidebar, but we need to wire up a backend in order for content changes to be persisted anywhere. Let's set up the default Git backend.
 
 **The Git backend consists of two parts:**
 
@@ -54,7 +54,7 @@ app.prepare().then(() => {
     return handle(req, res)
   })
 
-  server.listen(port, (err) => {
+  server.listen(port, err => {
     if (err) throw err
     console.log(`> Ready on http://localhost:${port}`)
   })
@@ -117,7 +117,7 @@ When creating an instance of `GitClient`, we need to pass it the URL where the A
 const client = new GitClient('/___tina')
 ```
 
-We'll need to amend our `_app.js` application wrapper to register this with the CMS. We can pass [APIs](/docs/cms/apis), [Media](/docs/media), and [UI](/docs/cms/ui-components) settings in a config object to `TinaCMS`.
+We'll need to amend our `_app.js` application wrapper to register this with the CMS. We can pass [APIs](/docs/apis), [Media](/docs/media), and [UI](/docs/ui-components) settings in a config object to `TinaCMS`.
 
 The `pages/_app.js` file should now look something like this:
 

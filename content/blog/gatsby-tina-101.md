@@ -296,7 +296,7 @@ const FormConfig = {
 export default inlineRemarkForm(Post, FormConfig)
 ```
 
-In the `FormConfig`, we're using `text`, `markdown`, `date`, and even `image` fields to make the post authoring experience nicer. Tina has [a bunch](https://tinacms.org/docs/fields/) of built-in fields, and even allows you to [add your own](https://tinacms.org/docs/fields/custom-fields).
+In the `FormConfig`, we're using `text`, `markdown`, `date`, and even `image` fields to make the post authoring experience nicer. Tina has [a bunch](https://tinacms.org/docs/plugins/fields/) of built-in fields, and even allows you to [add your own](https://tinacms.org/docs/plugins/fields/custom-fields).
 
 The `image` field can be tricky to configure. For the _post image_, we need Tina to handle image uploads, as well as update previews. To configure uploads, you declare the upload directory and parse out a preview thumbnail from the uploaded image.
 
@@ -616,9 +616,9 @@ That's all it takes to create a basic blog CMS with Tina! 🎉 We've allowed con
 
 This only scratches the surface of what you can build using Tina. If you want to go further, there's several more advanced features you can use to expand your Gatsby site!
 
-- Creating [custom form fields](https://tinacms.org/docs/fields/custom-fields) for new data types,
+- Creating [custom form fields](https://tinacms.org/docs/plugins/fields/custom-fields) for new data types,
 - Using [global forms](https://tinacms.org/docs/concepts/forms#local--global-forms) to allow custom site themes,
-- Or adding [block-level editing](https://tinacms.org/docs/fields/blocks) to allow for completely custom pages!
+- Or adding [block-level editing](https://tinacms.org/docs/plugins/fields/blocks) to allow for completely custom pages!
 
 The Tina project is also [active on Github](https://github.com/tinacms/tinacms), with a [guide to contribution](https://tinacms.org/docs/contributing/guidelines) if you want to hack on the code!
 

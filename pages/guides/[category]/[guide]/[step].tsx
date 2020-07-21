@@ -10,12 +10,16 @@ import {
   Footer,
 } from '../../../../components/layout'
 import { NextSeo } from 'next-seo'
-import { DocsNav, DocsPagination, Overlay } from '../../../../components/ui'
+import {
+  DocsNav,
+  DocsPagination,
+  Overlay,
+  DocsHeaderNav,
+} from '../../../../components/ui'
 import {
   DocsNavToggle,
   DocsMobileTinaIcon,
   DocsContent,
-  DocsHeaderNav,
 } from '../../../docs/[...slug]'
 import { useRouter } from 'next/router'
 import { getGuideNavProps } from '../../../../utils/guide_helpers'
@@ -135,7 +139,7 @@ export default function GuideTemplate(props) {
           }}
         />
         <DocsNavToggle open={open} onClick={() => setOpen(!open)} />
-        <DocsMobileTinaIcon />
+        <DocsMobileTinaIcon docs />
         <DocsNav open={open} navItems={guideNav} />
         <DocsContent>
           <DocsHeaderNav color={'light'} open={open} />

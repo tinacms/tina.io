@@ -68,7 +68,7 @@ These classes need to be instantiated with at least these three things:
 
 - `label`: A simple action label displayed when users interact with the + button in the sidebar.
 - `filename`: A function whose return value should be the path to the new file.
-- `fields`: An array of field objects. [Read more on field definitions](/docs/fields).
+- `fields`: An array of field objects. [Read more on field definitions](/docs/plugins/fields).
 
 **Markdown Example**
 
