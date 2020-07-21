@@ -12,11 +12,11 @@ import {
   Hero,
   MarkdownContent,
   RichTextWrapper,
-} from '../../../components/layout'
-import { DynamicLink, BlogPagination } from '../../../components/ui'
-import { OpenAuthoringSiteForm } from '../../../components/layout/OpenAuthoringSiteForm'
+} from 'components/layout'
+import { DynamicLink, BlogPagination } from 'components/ui'
+import { OpenAuthoringSiteForm } from 'components/layout/OpenAuthoringSiteForm'
 import { useForm } from 'tinacms'
-import { getMarkdownPreviewProps } from '../../../utils/getMarkdownFile'
+import { getMarkdownPreviewProps } from 'utils/getMarkdownFile'
 import { PreviewData } from 'next-tinacms-github'
 const Index = props => {
   const { currentPage, numPages } = props

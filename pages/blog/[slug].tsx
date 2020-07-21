@@ -9,16 +9,16 @@ import {
   Wrapper,
   MarkdownContent,
   DocsTextWrapper,
-} from '../../components/layout'
+} from 'components/layout'
 import { InlineTextareaField } from 'react-tinacms-inline'
 import { useGithubMarkdownForm } from 'react-tinacms-github'
-import { fileToUrl } from '../../utils/urls'
-import { OpenAuthoringSiteForm } from '../../components/layout/OpenAuthoringSiteForm'
+import { fileToUrl } from 'utils/urls'
+import { OpenAuthoringSiteForm } from 'components/layout/OpenAuthoringSiteForm'
 const fg = require('fast-glob')
-import { Button } from '../../components/ui/Button'
+import { Button } from 'components/ui/Button'
 import Error from 'next/error'
-import { getMarkdownPreviewProps } from '../../utils/getMarkdownFile'
-import { InlineWysiwyg } from '../../components/inline-wysiwyg'
+import { getMarkdownPreviewProps } from 'utils/getMarkdownFile'
+import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { usePlugin, useCMS } from 'tinacms'
 
 function BlogTemplate({ file, siteConfig, preview }) {
