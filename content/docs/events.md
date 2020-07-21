@@ -106,3 +106,23 @@ Note that the string `plugins`is equivalent to `plugins:*` or `plugins:*:*`.
 | `github:error`           | An error has occurred when making requests to the GitHub API. |
 | `github:branch:checkout` | The current branch has been switched.                         |
 | `github:branch:create`   | A new branch has been created.                                |
+
+### _@tinacms/git-client_
+
+| Event Name   | Decription                   |
+| ------------ | ---------------------------- |
+| `git:commit` | A commit has been attempted. |
+
+Below is an example of how you might subscribe to the `git:commit` event in your App. The event passed to the callback function is a [Fetch Response](https://developer.mozilla.org/en-US/docs/Web/API/Response 'Fetch Response'); you can parse the status of the commit from this to trigger various alerts or functions.
+
+**Example**
+
+    React.useEffect(() => {
+      cms.events.subscribe("git:commit", function handleCommitAlerts(event) {
+        if (!event.response.ok) {
+          cms.alerts.error("Something went wrong! Changes weren't saved")
+        } else {
+          cms.alerts.info("Content saved successfully!")
+        }
+       })
+    }, [])

@@ -41,6 +41,7 @@ Let's take a look at the configuration options for each UI.
 ```ts
 interface SidebarOptions {
   position?: 'displace' | 'overlay'
+  placeholder?: React.FC
   buttons?: {
     save: string
     reset: string
@@ -48,10 +49,11 @@ interface SidebarOptions {
 }
 ```
 
-| key          | usage                                                                                                                                                        |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **position** | Determines sidebar **position in relation to the website**. 'displace' (default) moves the whole site over; 'overlay' slides the sidebar on top of the site. |
-| **buttons**  | Customizes the string displayed on either the 'save' or 'reset' buttons.                                                                                     |
+| key             | usage                                                                                                                                                          |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **position**    | Determines sidebar **position in relation to the website**. 'displace' (default) moves the whole site over; 'overlay' slides the sidebar on top of the site.   |
+| **placeholder** | Provides a placeholder component to render in the sidebar when there are no registered forms.                                                                  |
+| **buttons**     | _Deprecated — [Configure on the form instead](/docs/forms#customizing-form-buttons)_: Customizes the string displayed on either the 'save' or 'reset' buttons. |
 
 A site configured to use Tina will display a **blue edit button in the lower-left corner**. Clicking this button will open the sidebar.
 
@@ -72,11 +74,13 @@ interface ToolbarOptions {
 }
 ```
 
-| key         | usage                                                                    |
-| ----------- | ------------------------------------------------------------------------ |
-| **buttons** | Customizes the string displayed on either the 'save' or 'reset' buttons. |
+| key         | usage                                                                                                                                                          |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **buttons** | _Deprecated — [Configure on the form instead](/docs/forms#customizing-form-buttons)_: Customizes the string displayed on either the 'save' or 'reset' buttons. |
 
-On its own, the toolbar will display the 'save' and 'reset' buttons, along with a form status indicator to show whether there are unsaved changes. [Custom Widgets](/guides/nextjs/github-open-authoring/toolbar-plugins) can also be added to extend functionality for the particular workflow.
+On its own, the toolbar will display the 'Save' and 'Reset' buttons, along with a form status indicator to show whether there are unsaved changes. [Custom Widgets](/guides/nextjs/github-open-authoring/toolbar-plugins) can also be added to extend functionality for the particular workflow.
+
+> _Note:_ **It is now recommended to configure the 'Save' & 'Reset' button text [on the form](/docs/forms#customizing-form-buttons)** intead of in the UI options. Please note that if `buttons` are configured on the CMS through the `sidebar` or `toolbar` options (as in the examples below), those values will take precedent over custom button values passed to a form.
 
 ## Examples
 
@@ -86,13 +90,23 @@ You'll want to pass in this option to wherever the plugin is registered in the `
 
 **gatsby-config.js**
 
-```javascript
+```js
 {
   resolve: "gatsby-plugin-tinacms",
   options: {
     enabled: process.env.NODE_ENV !== "production",
     sidebar: {
-      position: 'displace'
+      position: 'displace',
+      placeholder: () => (
+        <>
+          <h3>
+            Welcome to your site!
+          </h3>
+          <p>
+           There are no forms registered on this page.
+          </p>
+        </>
+      )
     },
   }
 }
@@ -110,12 +124,7 @@ class MyApp extends App {
     super()
 
     this.cms = new TinaCMS({
-      sidebar: true,
-      toolbar: {
-        buttons: {
-          save: 'Commit',
-        },
-      },
+      toolbar: true,
     })
   }
 

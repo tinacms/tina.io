@@ -153,6 +153,11 @@
             "title": "Tags"
           },
           {
+            "id": "/docs/plugins/fields/list",
+            "slug": "/docs/plugins/fields/list",
+            "title": "List"
+          },
+          {
             "id": "/docs/plugins/fields/group",
             "slug": "/docs/plugins/fields/group",
             "title": "Group"
