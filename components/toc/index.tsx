@@ -38,6 +38,7 @@ const TocButtom = styled.button``
 
 const TocContent = styled.div<{ isOpen: boolean }>`
   display: none;
+  line-height: 1.25;
 
   ${props =>
     props.isOpen
@@ -54,6 +55,9 @@ const TocContent = styled.div<{ isOpen: boolean }>`
     list-style-type: none;
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
   }
 
   li {
@@ -62,7 +66,7 @@ const TocContent = styled.div<{ isOpen: boolean }>`
     padding: 0;
 
     &:last-child {
-      padding-bottom: 0.25rem;
+      padding-bottom: 0.125rem;
     }
   }
 
