@@ -1,6 +1,6 @@
 ---
 title: The CMS
-next: /docs/cms/plugins
+next: /docs/ui
 consumes:
   - file: /packages/tinacms/src/tina-cms.ts
     description: Creates TinaCMS instance and describes config
@@ -14,7 +14,7 @@ consumes:
     description: Shows Toolbar state interface
 ---
 
-The CMS object in Tina is a container for attaching and accessing Plugins and APIs. On its own, the CMS does very little; however, since it's the central integration point for everything that Tina does, it's extremely important!
+The CMS object in Tina is a container for attaching and accessing [Plugins](/docs/plugins), [APIs](/docs/apis), and the [Event Bus](/docs/events). On its own, the CMS does very little; however, since it's the central integration point for everything that Tina does, it's extremely important!
 
 ## Setting up the CMS Object
 
@@ -52,7 +52,7 @@ export default function App() {
 }
 ```
 
-> Learn more about [conditionally loading Tina Styles](/docs/cms/styles#dynamically-loading-tina-styles).
+> Learn more about [conditionally loading Tina Styles](/docs/ui/styles#dynamically-loading-tina-styles).
 
 Alternatively, you can use the `withTina` higher-order component to wrap your site with the `<TinaProvider>` component. `withTina` will automatically instantiate the CMS object.
 
@@ -112,7 +112,7 @@ export default function ExitButton() {
 
 ## CMS Configuration
 
-When instantiating the `TinaCMS` object, you can pass in a configuration object. This allows you to configure some options for the sidebar, toolbar, and also allows you to configure [Plugins](/docs/cms/plugins) and [APIs](/docs/cms/apis) declaratively.
+When instantiating the `TinaCMS` object, you can pass in a configuration object. This allows you to configure some options for the sidebar, toolbar, and also allows you to configure [Plugins](/docs/plugins) and [APIs](/docs/apis) declaratively.
 
 ```typescript
 interface TinaCMSConfig {
