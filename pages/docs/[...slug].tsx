@@ -191,7 +191,7 @@ export const DocsGrid = styled.div`
     grid-template-areas:
       '. header header .'
       '. content toc .';
-    grid-auto-columns: auto 768px 20rem auto;
+    grid-auto-columns: auto 768px 24rem auto;
     grid-column-gap: 2rem;
   }
 `
@@ -253,5 +253,4 @@ export const DocsMobileTinaIcon = styled(TinaIcon)`
 
 export const DocsContent = styled.div`
   grid-area: content;
-  overflow-y: auto;
 `
