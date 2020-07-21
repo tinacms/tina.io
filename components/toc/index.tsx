@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import ReactMarkdown from 'react-markdown'
 import styled, { css } from 'styled-components'
+import RightArrowSvg from '../../public/svg/right-arrow.svg'
 
 const Toc = ({ tocItems }: { tocItems: string }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -24,7 +25,8 @@ const Toc = ({ tocItems }: { tocItems: string }) => {
     <>
       <TocWrapper>
         <TocButtom isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? 'Hide' : 'Show'} Table of Contents
+          <span>{isOpen ? 'Hide' : 'Show'} Table of Contents</span>{' '}
+          <RightArrowSvg />
         </TocButtom>
         <TocContent isOpen={isOpen}>
           <ReactMarkdown source={tocItems} />
@@ -49,16 +51,42 @@ const TocButtom = styled.button<{ isOpen: boolean }>`
   background: transparent;
   cursor: pointer;
   transition: opacity 185ms ease-out;
+  display: flex;
+  align-items: center;
+  line-height: 1;
+
+  span {
+    margin-right: 0.5rem;
+  }
+
+  svg {
+    position: relative;
+    width: 1.25rem;
+    height: auto;
+    fill: var(--color-grey);
+    transform-origin: 50% 50%;
+    transition: opacity 180ms ease-out, transform 180ms ease-out;
+    opacity: 0.5;
+  }
 
   :hover,
   :focus {
     opacity: 1;
+
+    svg {
+      opacity: 1;
+    }
   }
 
   ${props =>
     props.isOpen
       ? css`
           color: var(--color-primary);
+
+          svg {
+            transform: rotate(90deg);
+            opacity: 1;
+          }
         `
       : ``};
 `
@@ -70,7 +98,7 @@ const TocContent = styled.div<{ isOpen: boolean }>`
   height: auto;
   max-height: 0;
   overflow: hidden;
-  transition: all 750ms ease-out;
+  transition: all 500ms ease-out;
 
   ${props =>
     props.isOpen
