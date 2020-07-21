@@ -37,4 +37,4 @@ module.exports = {
 }
 ```
 
-Now the Git, Markdown, & JSON plugins are set up, your forms should be able to persist and save changes to the associated repository. Next, we'll create a form to edit content.
+Now the Git, Markdown, & JSON plugins are set up, your forms should be able to persist and save changes to the associated repository. Next, we need to configure the Git Plugin for it to work properly.
