@@ -10,20 +10,20 @@ import {
   BlockTextarea,
   BlocksControls,
 } from 'react-tinacms-inline'
-import { EditLink } from '../components/layout/EditLink'
+import { EditLink } from 'components/layout/EditLink'
 import { DefaultSeo } from 'next-seo'
 import { useCMS, BlockTemplate } from 'tinacms'
-import { DynamicLink } from '../components/ui/DynamicLink'
+import { DynamicLink } from 'components/ui/DynamicLink'
 import {
   Layout,
   Hero,
   Wrapper,
   Section,
   RichTextWrapper,
-} from '../components/layout'
+} from 'components/layout'
 
-import { Button, Video, ArrowList } from '../components/ui'
-import { OpenAuthoringSiteForm } from '../components/layout/OpenAuthoringSiteForm'
+import { Button, Video, ArrowList } from 'components/ui'
+import { OpenAuthoringSiteForm } from 'components/layout/OpenAuthoringSiteForm'
 import { useGithubJsonForm } from 'react-tinacms-github'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
 

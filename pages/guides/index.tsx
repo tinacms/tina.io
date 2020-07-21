@@ -8,20 +8,15 @@ import {
   Wrapper,
   MarkdownContent,
   Footer,
-} from '../../components/layout'
+} from 'components/layout'
 import { NextSeo } from 'next-seo'
 import {
   DocsNavToggle,
   DocsMobileTinaIcon,
   DocsContent,
 } from '../docs/[...slug]'
-import {
-  DocsNav,
-  Overlay,
-  DynamicLink,
-  DocsHeaderNav,
-} from '../../components/ui'
-import { CardGrid, Card } from '../../components/ui/Cards'
+import { DocsNav, Overlay, DynamicLink, DocsHeaderNav } from 'components/ui'
+import { CardGrid, Card } from 'components/ui/Cards'
 import RightArrowSvg from '../../public/svg/right-arrow.svg'
 
 const GuideTemplate = props => {

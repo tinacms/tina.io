@@ -8,7 +8,7 @@ import TagManager from 'react-gtm-module'
 import { GlobalStyles, FontLoader } from '@tinacms/styles'
 import { BrowserStorageApi } from 'utils/plugins/browser-storage-api/BrowserStorageApi'
 import { GithubClient, TinacmsGithubProvider } from 'react-tinacms-github'
-import { GlobalStyle } from '../components/styles/GlobalStyle'
+import { GlobalStyle } from 'components/styles/GlobalStyle'
 
 const MainLayout = ({ Component, pageProps }) => {
   const tinaConfig = {
