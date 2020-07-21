@@ -11,7 +11,7 @@ consumes:
     description: Demonstrates adding plugins to CMS obj
 ---
 
-**Plugins** are objects used to extend and modify the behavior of the CMS. Plugins are identified by their _type_, and different types of plugins will be used by Tina in different ways.
+**Plugins** are objects used to extend and modify the behavior of the CMS.
 
 All plugins must conform to the **Plugin** interface:
 
@@ -22,7 +22,16 @@ interface Plugin {
 }
 ```
 
-Beyond that, a plugin's properties will depend on what it's used for. Most of Tina's features, including [Forms](/docs/plugins/forms) and [Fields](/docs/plugins/fields), are implemented as Plugins!
+Beyond these properties, a plugin may contain other properties depend on it's `__type`. Here are some of the types of plugins
+currently availble:
+
+| Plugin Type                                         | Description                                                                |
+| --------------------------------------------------- | -------------------------------------------------------------------------- |
+| [`form`](/docs/plugins/forms)                       | Connect a form to the sidebar & toolbar UIs                                |
+| [`field`](/docs/plugins/fields)                     | Simplify the form creation process.                                        |
+| [`content-creator`](/docs/plugins/content-creators) | Add options to the "Add Content" menu.                                     |
+| [`screen`](/docs/plugins/screens)                   | Components that are rendered in overlays and modals. Accessible from menu. |
+| [`toolbar:widget`](/docs/plugins/toolbar-widgets)   | Components that are rendered in the toolbar.                               |
 
 ## Adding Plugins
 
@@ -92,9 +101,9 @@ export function SomeComponent({ children }) {
 }
 ```
 
-## Using a Plugin
+## Accessing Plugins
 
-Retrieve all plugins of a given type via `cms.plugins.all`.
+You can access all plugins of a given type by calling `cms.plugins.all(type)`
 
 ```jsx
 import * as React from 'react'
@@ -112,3 +121,5 @@ export function Hello() {
   return <button onClick={sayHello}>Say Hello</button>
 }
 ```
+
+<!-- Question: How can I create my own plugin types? -->
