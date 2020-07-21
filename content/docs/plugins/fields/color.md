@@ -49,7 +49,7 @@ interface ColorConfig {
 
 ## Definition
 
-Below is an example of how a `color` field could be defined in a Gatsby remark form. Read more on passing in form field options [here](/guides/gatsby/using-git/customize-form).
+Below is an example of how a `color` field could be defined in a Gatsby remark form. Read more on passing in form field options [here](/guides/gatsby/git/customize-form).
 
 ```javascript
 const BlogPostForm = {

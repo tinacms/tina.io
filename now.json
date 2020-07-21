@@ -73,15 +73,15 @@
     },
     {
       "source": "/docs/nextjs/bootstrapping",
-      "destination": "/guides/nextjs/git-based/getting-started"
+      "destination": "/guides/nextjs/git/getting-started"
     },
     {
       "source": "/docs/nextjs/adding-backends",
-      "destination": "/guides/nextjs/git-based/adding-backend"
+      "destination": "/guides/nextjs/git/adding-backend"
     },
     {
       "source": "/docs/nextjs/creating-forms",
-      "destination": "/guides/nextjs/git-based/creating-git-forms"
+      "destination": "/guides/nextjs/git/creating-git-forms"
     },
     {
       "source": "/docs/nextjs/markdown",
@@ -101,11 +101,11 @@
     },
     {
       "source": "/docs/gatsby/markdown",
-      "destination": "/guides/gatsby/using-git/installation"
+      "destination": "/guides/gatsby/git/installation"
     },
     {
       "source": "/docs/gatsby/json",
-      "destination": "/guides/gatsby/using-git/create-json-form"
+      "destination": "/guides/gatsby/git/create-json-form"
     },
     {
       "source": "/docs/gatsby/creating-new-files",
@@ -113,7 +113,7 @@
     },
     {
       "source": "/docs/gatsby/configure-git-plugin",
-      "destination": "/guides/gatsby/using-git/installation"
+      "destination": "/guides/gatsby/git/installation"
     },
     {
       "source": "/docs/gatsby/custom-field",

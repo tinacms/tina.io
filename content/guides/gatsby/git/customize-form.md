@@ -10,7 +10,7 @@ This allows any `gatsby-remark-*` plugins to properly transform the data in to a
 
 ## Customizing Remark or JSON Forms
 
-Tina's form [hooks or components](/guides/gatsby/using-git/create-remark-form) create the form based on the shape of the data. This is convenient for getting started but you will want to customize the form eventually to make it more user friendly.
+Tina's form [hooks or components](/guides/gatsby/git/create-remark-form) create the form based on the shape of the data. This is convenient for getting started but you will want to customize the form eventually to make it more user friendly.
 
 **Why customize the form?**
 

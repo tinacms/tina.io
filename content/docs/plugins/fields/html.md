@@ -53,7 +53,7 @@ cms.plugins.add(HtmlFieldPlugin)
 
 ## Definition
 
-Below is an example of how a `html` field could be defined. [Read more on passing in form field options](/guides/gatsby/using-git/customize-form).
+Below is an example of how a `html` field could be defined. [Read more on passing in form field options](/guides/gatsby/git/customize-form).
 
 ```javascript
 const BlogPostForm = {

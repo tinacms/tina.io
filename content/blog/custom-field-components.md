@@ -264,7 +264,7 @@ So now we have a source value that can be connected to the custom input field. T
 
 How about we wire up this custom field to Tina? 🎊
 
-In this step, we need to create the custom field definition and pass in the `RangeInput` component inline. We'll go back to our _About Me_ page [form options](/guides/gatsby/using-git/customize-form):
+In this step, we need to create the custom field definition and pass in the `RangeInput` component inline. We'll go back to our _About Me_ page [form options](/guides/gatsby/git/customize-form):
 
 ```jsx
 const formOptions = {

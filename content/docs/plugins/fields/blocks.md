@@ -33,7 +33,7 @@ const PageForm = {
 }
 ```
 
-Each of the `templates` in this configuration represent a configuration object that looks more or less like a [top-level form configuration object](/guides/gatsby/using-git/create-remark-form).
+Each of the `templates` in this configuration represent a configuration object that looks more or less like a [top-level form configuration object](/guides/gatsby/git/create-remark-form).
 
 ```jsx
 /*

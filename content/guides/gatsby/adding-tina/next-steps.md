@@ -11,7 +11,7 @@ This guide is intended as a jumping off point to get you started with Tina, but 
 
 ## Set up a backend to persist content changes
 
-Checkout the [Using a Git Backend](/guides/gatsby/using-git) guide to learn more.
+Checkout the [Using a Git Backend](/guides/gatsby/git) guide to learn more.
 
 ## Add More Fields
 
@@ -23,4 +23,4 @@ Consider creating an **inline editing** experience for your blog, where content 
 
 ## Saving Content
 
-Editing content isn't much use if you can't save it! Our `onSubmit` handler doesn't really do anything right now. You can look at using the [`gatsby-tinacms-git`](/guides/gatsby/using-git/installation) to edit content [Markdown](/guides/gatsby/using-git/installation) and [JSON](/guides/gatsby/using-git/create-json-form) sourced from your repository.
+Editing content isn't much use if you can't save it! Our `onSubmit` handler doesn't really do anything right now. You can look at using the [`gatsby-tinacms-git`](/guides/gatsby/git/installation) to edit content [Markdown](/guides/gatsby/git/installation) and [JSON](/guides/gatsby/git/create-json-form) sourced from your repository.

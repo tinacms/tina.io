@@ -3,38 +3,38 @@
   "steps": [
     {
       "title": "Installation",
-      "id": "/guides/gatsby/using-git/installation",
-      "slug": "/guides/gatsby/using-git/installation",
+      "id": "/guides/gatsby/git/installation",
+      "slug": "/guides/gatsby/git/installation",
       "data": "./installation.md"
     },
     {
       "title": "Configure Git Plugin",
-      "id": "/guides/gatsby/using-git/configure-git-plugin",
-      "slug": "/guides/gatsby/using-git/configure-git-plugin",
+      "id": "/guides/gatsby/git/configure-git-plugin",
+      "slug": "/guides/gatsby/git/configure-git-plugin",
       "data": "./configure-git-plugin.md"
     },
     {
       "title": "Creating Remark Forms",
-      "id": "/guides/gatsby/using-git/create-remark-form",
-      "slug": "/guides/gatsby/using-git/create-remark-form",
+      "id": "/guides/gatsby/git/create-remark-form",
+      "slug": "/guides/gatsby/git/create-remark-form",
       "data": "./create-remark-form.md"
     },
     {
       "title": "Creating JSON Forms",
-      "id": "/guides/gatsby/using-git/create-json-form",
-      "slug": "/guides/gatsby/using-git/create-json-form",
+      "id": "/guides/gatsby/git/create-json-form",
+      "slug": "/guides/gatsby/git/create-json-form",
       "data": "./create-json-form.md"
     },
     {
       "title": "Customize the Form",
-      "id": "/guides/gatsby/using-git/customize-form",
-      "slug": "/guides/gatsby/using-git/customize-form",
+      "id": "/guides/gatsby/git/customize-form",
+      "slug": "/guides/gatsby/git/customize-form",
       "data": "./customize-form.md"
     },
     {
       "title": "Avoid Empty Fields Error",
-      "id": "/guides/gatsby/using-git/empty-field-errors",
-      "slug": "/guides/gatsby/using-git/empty-field-errors",
+      "id": "/guides/gatsby/git/empty-field-errors",
+      "slug": "/guides/gatsby/git/empty-field-errors",
       "data": "./empty-field-errors.md"
     },
     {
