@@ -38,7 +38,7 @@ function DocTemplate(props) {
   const tocItems = props.tocItems
   const [activeIds, setActiveIds] = useState([])
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     if (!isBrowser || !contentRef.current) {
       return
     }
@@ -60,7 +60,8 @@ function DocTemplate(props) {
       })
     })
 
-    const throttledScroll = scrollPos => {
+    const throttledScroll = () => {
+      let scrollPos = window.scrollY
       let newActiveIds = []
       let activeHeadingCandidates = headings.filter(heading => {
         return heading.offset - scrollPos < baseOffset
@@ -97,10 +98,9 @@ function DocTemplate(props) {
     }
 
     function onScroll() {
-      lastScrollPosition = window.scrollY
       if (!tick) {
         setTimeout(function() {
-          throttledScroll(lastScrollPosition)
+          throttledScroll()
           tick = false
         }, throttleInterval)
       }
