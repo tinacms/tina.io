@@ -39,7 +39,7 @@ const HomePage = (props: any) => {
   })
 
   React.useEffect(() => {
-    const intervalTime = 3000
+    const intervalTime = 5000
     const interval = setInterval(() => {
       const randomData = randElem(dataOptions)
       const randomFramework = randElem(frameworkOptions)
@@ -302,7 +302,15 @@ const HomePage = (props: any) => {
 }
 
 const Framework = ({ activeStack }) => {
-  return activeStack.framework
+  const activeFramework =
+    activeStack.framework === 'gatsby' ? (
+      <GatsbyLogo />
+    ) : activeStack.framework === 'next' ? (
+      <NextLogo />
+    ) : activeStack.framework === 'react' ? (
+      <ReactLogo />
+    ) : null
+  return activeFramework
 }
 
 export default HomePage
