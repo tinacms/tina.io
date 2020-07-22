@@ -247,7 +247,7 @@ function Layout(props) {
 
 ## Form Helpers
 
-The three hooks described thus far are the basic interface for creating forms, and they aim to support a broad set of use cases. For specific use cases, we've created some simplified interfaces for quickly setting up forms. Take a look at our [Next.js form docs](/guides/nextjs/git/creating-git-forms) and [Gatsby docs](/guides/gatsby/git/installation) to learn how to use these.
+The three hooks described thus far are the basic interface for creating forms, and they aim to support a broad set of use cases. For specific use cases, we've created some simplified interfaces for quickly setting up forms depending on the backend. Take a look at the integration packages for [Next.js](/docs/integrations/nextjs#packages) and [Gatsby](/docs/integrations/gatsby#packages) to learn more.
 
 ## Customizing Form Buttons
 

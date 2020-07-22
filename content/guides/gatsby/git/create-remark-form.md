@@ -2,7 +2,9 @@
 title: Creating Remark Forms
 ---
 
-To use Markdown in your Gatsby site, you'll need to set up the `gatsby-transformer-remark` plugin. This plugin uses [_Remark_](https://remark.js.org/) to process Markdown. You'll be seeing the hooks and documentation refer to _Remark_ and that is referencing the processed Markdown data.
+To use Markdown in your Gatsby site, you should already have the `gatsby-transformer-remark` plugin set up. This plugin uses [_Remark_](https://remark.js.org/) to process Markdown.
+
+You'll be seeing the hooks and documentation refer to _Remark_ to reference the processed Markdown data.
 
 ## Create & Register the form
 
