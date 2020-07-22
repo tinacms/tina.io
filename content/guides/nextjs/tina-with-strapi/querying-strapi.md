@@ -25,6 +25,7 @@ import { fetchGraphql } from 'react-tinacms-strapi'
 
 export async function getStaticProps() {
   const postResults = await fetchGraphql(
+    process.env.STRAPI_URL,
     `
     query{
       blogPosts {
@@ -133,6 +134,7 @@ import { fetchGraphql } from 'react-tinacms-strapi'
 // ...
 export async function getStaticProps({ params }) {
   const postResults = await fetchGraphql(
+    process.env.STRAPI_URL,
     `
     query{
       blogPosts(where: {slug: "${params.slug}"}){
@@ -169,6 +171,7 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
   const postResults = await fetchGraphql(
+    process.env.STRAPI_URL,
     `
     query{
       blogPosts{
