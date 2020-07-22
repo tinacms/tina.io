@@ -4,11 +4,13 @@ title: Creating Remark Forms
 
 To use Markdown in your Gatsby site, you'll need to set up the `gatsby-transformer-remark` plugin. This plugin uses [_Remark_](https://remark.js.org/) to process Markdown. You'll be seeing the hooks and documentation refer to _Remark_ and that is referencing the processed Markdown data.
 
-## Register the form
+## Create & Register the form
 
-There are [a few helpers](https://github.com/tinacms/tinacms/tree/master/packages/gatsby-tinacms-remark) for creating Remark forms with the CMS. In this guide, we will cover the `useRemarkForm` hook. This hook work for components that source data from a [static query](https://www.gatsbyjs.org/docs/static-query/#how-staticquery-differs-from-page-query) using Gatsby's `useStaticQuery` hook.
+There are [a few helpers](https://github.com/tinacms/tinacms/tree/master/packages/gatsby-tinacms-remark) for creating Remark forms. In this guide, we will cover the `useRemarkForm` hook. This hook works for functional components that source data from a [static query](https://www.gatsbyjs.org/docs/static-query/#how-staticquery-differs-from-page-query) using Gatsby's `useStaticQuery` hook. It also works with functional page components, using a [page query](https://www.gatsbyjs.org/docs/page-query/).
 
-This hook connects the `markdownRemark` data with Tina to be made editable. It is useful in situations where you need to edit on non-page components, or just prefer working with hooks or static queries. You can also use this hook with functional page components.
+This hook connects the data returned from a `markdownRemark` query with Tina to be made editable.
+
+> If you're using a class component, refer to [the documentation](https://github.com/tinacms/tinacms/tree/master/packages/gatsby-tinacms-remark) for other helpers.
 
 ### _useRemarkForm_ Hook
 
@@ -16,7 +18,7 @@ This hook connects the `markdownRemark` data with Tina to be made editable. It i
 
 The hook returns _Remark_ data to render in the template and the current [`form`](/docs/plugins/forms).
 
-> `useRemarkForm` only creates the form, in order to _register_ it with the CMS, you'll use another hook — `usePlugin`.
+> `useRemarkForm` only creates the form. In order to interact with a form you must _register_ it with the CMS. There are two main approaches to register forms in Tina: page forms and screen plugins. Please refer to the [form concepts](/docs/plugins/forms#registering-forms) doc to get clarity on the differences. In the examples below, we will only use the `usePlugin` hook to register the form.
 
 #### Example
 
@@ -27,40 +29,44 @@ How to use this hook in your component:
 3. Call the hook and pass in the `markdownRemark` data returned from your query.
 4. Register the newly created form with `usePlugin`.
 
-**src/components/Title.js**
+**src/templates/blog-post.js**
 
 ```javascript
-// 1. import useRemarkForm and usePlugin
+// 1. Import `useRemarkForm` & `usePlugin`
 import { useRemarkForm } from 'gatsby-tinacms-remark'
 import { usePlugin } from 'tinacms'
-import { useStaticQuery } from 'gatsby'
+import { graphql } from 'gatsby'
 
-const Title = data => {
-  // 2. Add required GraphQL fragment
-  const data = useStaticQuery(graphql`
-    query TitleQuery {
-      markdownRemark(fields: { slug: { eq: "song-of-myself" } }) {
-        ...TinaRemark
-        frontmatter {
-          title
-        }
-      }
-    }
-  `)
+export default function BlogPostTemplate(props) {
+  // 2. Create the Form
+  const [markdownRemark, form] = useRemarkForm(props.markdownRemark)
 
-  // 3. Call the hook and pass in the data
-  const [markdownRemark, form] = useRemarkForm(data.markdownRemark)
-
-  // 4. Register the form plugin
+  // 3. Register the form as a plugin
   usePlugin(form)
 
-  return <h1>{markdownRemark.frontmatter.title}</h1>
+  return (
+    <>
+      <h1>{markdownRemark.frontmatter.title}</h1>
+      <p>{markdownRemark.frontmatter.description}</p>
+    </>
+  )
 }
 
-export default Title
+// 4. Add ...TinaRemark fragment to query
+export const blogPostQuery = graphql`
+  query BlogPostQuery {
+    markdownRemark(fields: { slug: { eq: "song-of-myself" } }) {
+      ...TinaRemark
+      frontmatter {
+        title
+        description
+      }
+    }
+  }
+`
 ```
 
-Now you can restart the dev server, and you should see a form populated with default text fields in the sidebar. Try editing one of the values and watch it live update on your site.
+After creating and registering the form in your component, restart the dev server and you should see a form in the sidebar populated with default text fields in the sidebar. Try editing one of the values and watch it live update on your site.
 
 > _Note:_ You will only see the associated form in the sidebar if the component is currently rendered on the page.
 
