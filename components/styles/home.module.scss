@@ -16,19 +16,12 @@
   display: block;
   position: relative;
   overflow: visible;
-  mask-image: radial-gradient(
-    ellipse,
+  mask-image: linear-gradient(
+    rgba(0, 0, 0, 0) 0%,
     rgba(0, 0, 0, 1) 50%,
-    rgba(0, 0, 0, 0) 93%
+    rgba(0, 0, 0, 0) 100%
   );
-
-  @media screen and (min-width: 2000px) {
-    mask-image: radial-gradient(
-      ellipse,
-      rgba(0, 0, 0, 1) 40%,
-      rgba(0, 0, 0, 0) 83%
-    );
-  }
+  margin-top: -10%;
 
   --animation-length: 500ms;
 }
@@ -37,7 +30,7 @@
   text-align: center;
   display: block;
   padding: 6rem 4rem 0 4rem;
-  margin: 0 0 -6rem 0;
+  margin: 0;
 }
 
 .heroTitle {
@@ -81,6 +74,9 @@
 }
 
 .grid {
+  /* Isometric: rotateX(60deg) rotateY(0deg) rotateZ(-45deg) */
+  --rotationTransform: rotateX(55deg) rotateY(0deg) rotateZ(-35deg);
+
   position: absolute;
   top: 0;
   left: 0;
@@ -94,7 +90,7 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   grid-gap: 1rem;
-  transform: rotateX(60deg) rotateY(0deg) rotateZ(-35deg);
+  transform: var(--rotationTransform);
   backface-visibility: hidden;
   transform-style: preserve-3d;
   overflow: visible;
@@ -102,14 +98,12 @@
 }
 
 .gridLeft {
-  transform: rotateX(60deg) rotateY(0deg) rotateZ(-35deg)
-    translate3d(calc(-100% - 1rem), 0, 0);
+  transform: var(--rotationTransform) translate3d(calc(-100% - 1rem), 0, 0);
   z-index: 15;
 }
 
 .gridRight {
-  transform: rotateX(60deg) rotateY(0deg) rotateZ(-35deg)
-    translate3d(calc(100% + 1rem), 0, 0);
+  transform: var(--rotationTransform) translate3d(calc(100% + 1rem), 0, 0);
   z-index: 5;
 }
 
