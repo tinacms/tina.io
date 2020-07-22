@@ -12,7 +12,7 @@ For direction on specific use-cases, please refer to these [guides](/guides):
 
 - [Add Tina to a NextJS starter blog without a backend](/guides/nextjs/adding-tina/overview)
 - [Set up a Git backend and edit local content](/guides/nextjs/git/getting-started)
-- [Implement Open Authoring using GitHub as a content source](/guides/nextjs/github-open-authoring/initial-setup)
+- [Using GitHub as a content source](/guides/nextjs/github/initial-setup)
 
 ## Blogs
 

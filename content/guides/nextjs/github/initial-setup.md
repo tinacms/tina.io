@@ -2,9 +2,11 @@
 title: Initial Setup
 ---
 
-This guide will help you set up [Open Authoring](/blog/introducing-visual-open-authoring#using-nextjs-to-enable-edit-mode) with Github using [_create-next-app_](https://nextjs.org/docs#setup).
+This guide will help you set up a Github backend with Tina using [_create-next-app_](https://nextjs.org/docs#setup).
 
-The [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode) offered by Next.js allows us to load a separate set of data [depending on the "edit" (or "preview") mode](/blog/introducing-visual-open-authoring#using-nextjs-to-enable-edit-mode). With the help of the GitHub API, we can allow anyone to fork your site, make changes, and create a pull request from the Tina UI.
+The [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode) offered by Next.js allows us to load a separate set of data [depending on the "edit" (or "preview") mode](/blog/introducing-visual-open-authoring#using-nextjs-to-enable-edit-mode). With the help of the GitHub API, editors can fork or branch off the repository, make changes, and create a pull request from the Tina UI.
+
+This type of backend can support [Open Authoring](/blog/introducing-visual-open-authoring#using-nextjs-to-enable-edit-mode) workflows for public repositories, where anyone (with a GitHub account) can submit content changes for review. This guide will show you how to implement open authoring, but you can also set up the GitHub backend for a [private repository](/guides/nextjs/github/configure-custom-app#private-repositories).
 
 ![tinacms visual open authoring gif](/gif/open-auth.gif)
 
