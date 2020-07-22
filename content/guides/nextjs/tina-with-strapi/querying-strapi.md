@@ -127,7 +127,7 @@ If you try to navigate to any blog post, you'll be met with a 404. Head over to 
 
 We'll be making changes to `getStaticProps` to load the contents of the blog post that we're trying to view. We'll also make changes to `getStaticPaths` so that when we click on a blog post we are able to resolve it based on the `slug`.
 
-**pages/\[slug\].js**
+**pages/posts/\[slug\].js**
 
 ```js
 import { fetchGraphql } from 'react-tinacms-strapi'
