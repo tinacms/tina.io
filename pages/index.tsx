@@ -79,6 +79,7 @@ const HomePage = (props: any) => {
                 >
                   <GithubLogo />
                   <span></span>
+                  <span></span>
                 </div>
                 <div
                   className={`${styles.gridItem} ${styles.gridItem5} ${
@@ -88,6 +89,7 @@ const HomePage = (props: any) => {
                   }`}
                 >
                   <ReactLogo />
+                  <span></span>
                   <span></span>
                 </div>
                 <div
@@ -99,6 +101,7 @@ const HomePage = (props: any) => {
                 >
                   <NextLogo />
                   <span></span>
+                  <span></span>
                 </div>
                 <div
                   className={`${styles.gridItem} ${styles.gridItem7} ${
@@ -109,6 +112,7 @@ const HomePage = (props: any) => {
                 >
                   <ContentfulLogo />
                   <span></span>
+                  <span></span>
                 </div>
                 <div
                   className={`${styles.gridItem} ${styles.gridItem2} ${
@@ -117,6 +121,7 @@ const HomePage = (props: any) => {
                 >
                   <StrapiLogo />
                   <span></span>
+                  <span></span>
                 </div>
                 <div
                   className={`${styles.gridItem} ${styles.gridItem1} ${
@@ -124,6 +129,7 @@ const HomePage = (props: any) => {
                   }`}
                 >
                   <BootstrapLogo />
+                  <span></span>
                   <span></span>
                 </div>
                 <div
@@ -134,6 +140,7 @@ const HomePage = (props: any) => {
                   }`}
                 >
                   <GatsbyLogo />
+                  <span></span>
                   <span></span>
                 </div>
               </div>
@@ -146,6 +153,7 @@ const HomePage = (props: any) => {
                 >
                   <GithubLogo />
                   <span></span>
+                  <span></span>
                 </div>
                 <div
                   className={`${styles.gridItem} ${styles.gridItem2} ${
@@ -155,6 +163,7 @@ const HomePage = (props: any) => {
                   }`}
                 >
                   <ReactLogo />
+                  <span></span>
                   <span></span>
                 </div>
                 <div
@@ -166,6 +175,7 @@ const HomePage = (props: any) => {
                 >
                   <NextLogo />
                   <span></span>
+                  <span></span>
                 </div>
                 <div
                   className={`${styles.gridItem} ${styles.gridItem4} ${
@@ -176,6 +186,7 @@ const HomePage = (props: any) => {
                 >
                   <ContentfulLogo />
                   <span></span>
+                  <span></span>
                 </div>
                 <div
                   className={`${styles.gridItem} ${styles.gridItem5} ${
@@ -184,6 +195,7 @@ const HomePage = (props: any) => {
                 >
                   <StrapiLogo />
                   <span></span>
+                  <span></span>
                 </div>
                 <div
                   className={`${styles.gridItem} ${styles.gridItem6} ${
@@ -191,6 +203,7 @@ const HomePage = (props: any) => {
                   }`}
                 >
                   <BootstrapLogo />
+                  <span></span>
                   <span></span>
                 </div>
                 <div
@@ -201,6 +214,7 @@ const HomePage = (props: any) => {
                   }`}
                 >
                   <GatsbyLogo />
+                  <span></span>
                   <span></span>
                 </div>
               </div>
@@ -213,6 +227,7 @@ const HomePage = (props: any) => {
                 >
                   <GithubLogo />
                   <span></span>
+                  <span></span>
                 </div>
                 <div
                   className={`${styles.gridItem} ${styles.gridItem7} ${
@@ -222,6 +237,7 @@ const HomePage = (props: any) => {
                   }`}
                 >
                   <ReactLogo />
+                  <span></span>
                   <span></span>
                 </div>
                 <div
@@ -233,6 +249,7 @@ const HomePage = (props: any) => {
                 >
                   <NextLogo />
                   <span></span>
+                  <span></span>
                 </div>
                 <div
                   className={`${styles.gridItem} ${styles.gridItem1} ${
@@ -243,6 +260,7 @@ const HomePage = (props: any) => {
                 >
                   <ContentfulLogo />
                   <span></span>
+                  <span></span>
                 </div>
                 <div
                   className={`${styles.gridItem} ${styles.gridItem5} ${
@@ -251,6 +269,7 @@ const HomePage = (props: any) => {
                 >
                   <StrapiLogo />
                   <span></span>
+                  <span></span>
                 </div>
                 <div
                   className={`${styles.gridItem} ${styles.gridItem6} ${
@@ -258,6 +277,7 @@ const HomePage = (props: any) => {
                   }`}
                 >
                   <BootstrapLogo />
+                  <span></span>
                   <span></span>
                 </div>
                 <div
@@ -268,6 +288,7 @@ const HomePage = (props: any) => {
                   }`}
                 >
                   <GatsbyLogo />
+                  <span></span>
                   <span></span>
                 </div>
               </div>
