@@ -1,10 +1,14 @@
 ---
-title: Configure How Content Is Created
+title: Configure Content Creation
 ---
+
+When creating new files, you may want to populate those files with default data, or have the user input data to help configure how that file is created.
 
 ## Customizing the Create Form
 
-`RemarkCreatorPlugin` accepts a `fields` option, similar to [Remark Form](/guides/gatsby/git/create-remark-form). When using a custom create form, all callback functions will receive an object containing all form data.
+`RemarkCreatorPlugin` & `JsonCreatorPlugin` accept a `fields` option. When using a custom create form, all callback functions will receive an object containing all form data.
+
+One example of how to use this option could be that every new blog post needs a title, date & author to be created. So you could make fields to capture those values. The example below shows how you can capture data to format the path of where the new file is created in the content directory.
 
 **Example: Create Posts in Subdirectories**
 
@@ -23,7 +27,7 @@ const CreatePostPlugin = new RemarkCreatorPlugin({
 
 ## Formatting the filename & path
 
-The `RemarkCreatorPlugin` must be given a `filename` function that calculates the path of the new file from the form data.
+`RemarkCreatorPlugin` & `JsonCreatorPlugin` must be given a `filename` function that calculates the path of the new file from the form data.
 
 **Example 1: Hardcoded Content Directory**
 
@@ -69,7 +73,7 @@ const CreatePostPlugin = new RemarkCreatorPlugin({
 
 ## Providing Default Front Matter
 
-The `RemarkCreatorPlugin` function can be given a `frontmatter` function that returns the default front matter. Like the `filename` function, `frontmatter` receives the state of the form.
+The `RemarkCreatorPlugin` & `JsonCreatorFunction` functions can be given a `frontmatter` function that returns the default front matter. Like the `filename` function, `frontmatter` receives the state of the form.
 
 **Example: Title + Date**
 
@@ -93,7 +97,7 @@ const CreatePostPlugin = new RemarkCreatorPlugin({
 
 ## Providing a Default Body
 
-The `RemarkCreatorPlugin` function can be given a `body` function that returns the default Markdown body. Like the previous two functions, `body` receives the state of the form.
+The `RemarkCreatorPlugin` & `JsonCreatorPlugin` functions can be given a `body` function that returns the default Markdown body. Like the previous two functions, `body` receives the state of the form.
 
 **Example: Title + Date**
 

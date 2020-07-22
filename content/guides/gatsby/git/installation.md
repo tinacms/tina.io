@@ -84,4 +84,6 @@ module.exports = {
 }
 ```
 
-Now the Git, Markdown, & JSON plugins are set up, you can create forms that can persist and commit changes to the associated repository. If you restart the dev server, you should see the sidebar toggler in the lower left-hand corner. Since we don't have any forms registered, the sidebar is empty. Next let's create a form to edit content.
+Now the Git, Markdown, & JSON plugins are set up, you can create forms that can persist and commit changes to the associated repository.
+
+If you restart the dev server, you should see the sidebar toggle in the lower left-hand corner. Since we don't have any forms registered, the sidebar is empty. Next, we'll create a form to edit content.

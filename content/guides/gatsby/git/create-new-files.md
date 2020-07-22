@@ -4,7 +4,7 @@ title: Creating New Files
 
 An integral aspect of content management is the ability to create new content. To create new content files with Tina, you will need to configure and register [`content-creator` plugins](/docs/plugins/content-creators) with the CMS.
 
-Currently, Tina provides `content-creator` plugins for both Markdown and JSON files in **Gatsby projects**. Once registered, actions from these `content-creator` plugins are accessible from the sidebar menu. If you have an idea for a new `content-creator` plugin, [consider contributing!](/docs/contributing/guidelines)
+Currently, Tina provides `content-creator` plugins for both Markdown and JSON files in **Gatsby projects**. Once registered, actions from these `content-creator` plugins are accessible from the sidebar menu.
 
 ![content-creator-plugin-tinacms](/img/content-creator-ex.jpg)
 
@@ -20,30 +20,7 @@ Currently, Tina provides `content-creator` plugins for both Markdown and JSON fi
 
 ## Add Content-Creator Plugin
 
-There are two `content-creator` plugins to use with Gatsby:
-
-- `RemarkCreatorPlugin`: Constructs a `content-creator` plugin for Markdown files.
-
-```javascript
-interface RemarkCreatorPlugin{
-     label: string
-     fields: Field[]
-     filename(form: any): Promise<string>
-     frontmatter?(form: any): Promise<any>
-     body?(form: any): Promise<string>
-}
-```
-
-- `JsonCreatorPlugin`: contstructs a `content-creator` plugin for JSON files.
-
-```typescript
-interface JsonCreatorPlugin {
-  label: string
-  fields: Field[]
-  filename(form: any): Promise<string>
-  data?(form: any): Promise<any>
-}
-```
+There are two `content-creator` plugins to use with Gatsby: [`RemarkCreatorPlugin`](https://github.com/tinacms/tinacms/tree/master/packages/gatsby-tinacms-remark#content-creators) for Markdown & [`JsonCreatorPlugin`](https://github.com/tinacms/tinacms/tree/master/packages/gatsby-tinacms-json#content-creator) for JSON files.
 
 These classes need to be instantiated with at least these three things:
 

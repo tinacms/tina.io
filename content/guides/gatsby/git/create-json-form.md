@@ -48,7 +48,7 @@ Below is an example of how to use this hook:
 3. Register the page form with the CMS by calling `useForm` and passing the `form` returned from `useJsonForm`.
 4. Add `rawJson` and `fileRelativePath` to the `dataJson` query.
 
-**src/templates/blog-post.js**
+**src/pages/page.js**
 
 ```jsx
 // 1. import `usePlugin` & `useJsonForm`
