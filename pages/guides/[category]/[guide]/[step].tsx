@@ -274,7 +274,7 @@ export const getStaticProps: GetStaticProps = async function(ctx) {
   )
 
   const {
-    props: { preview, file: markdownFile },
+    props: { preview, file: markdownFile, tocItems },
   } = await getMarkdownPreviewProps(
     `content/guides/${category}/${guide}/${step}.md`,
     ctx.preview,
@@ -288,6 +288,7 @@ export const getStaticProps: GetStaticProps = async function(ctx) {
       guideMeta,
       markdownFile,
       allGuides: await getGuideNavProps(),
+      tocItems,
     },
   }
 }

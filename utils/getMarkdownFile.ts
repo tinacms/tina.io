@@ -35,7 +35,9 @@ export const getMarkdownPreviewProps = async (
     }
     return {
       ...previewProps,
-      tocItems: toc(previewProps.props.file.data.markdownBody).content,
+      props: {
+        tocItems: toc(previewProps.props.file.data.markdownBody).content,
+      },
     }
   }
   const file = await readMarkdownFile(fileRelativePath)
