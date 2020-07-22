@@ -97,16 +97,10 @@ You'll want to pass in this option to wherever the plugin is registered in the `
     enabled: process.env.NODE_ENV !== "production",
     sidebar: {
       position: 'displace',
-      placeholder: () => (
-        <>
-          <h3>
-            Welcome to your site!
-          </h3>
-          <p>
-           There are no forms registered on this page.
-          </p>
-        </>
-      )
+      buttons: {
+        save: "Commit",
+        reset: "Reset",
+      }
     },
   }
 }
