@@ -29,10 +29,10 @@ const Toc = ({ tocItems, activeIds }: TocProps) => {
   return (
     <>
       <TocWrapper>
-        <TocButtom isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
+        <TocButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
           <span>{isOpen ? 'Hide' : 'Show'} Table of Contents</span>{' '}
           <RightArrowSvg />
-        </TocButtom>
+        </TocButton>
         <TocContent activeIds={activeIds} isOpen={isOpen}>
           <TocDesktopHeader>Table of Contents</TocDesktopHeader>
           <ReactMarkdown source={tocItems} />
@@ -66,7 +66,7 @@ const TocWrapper = styled.div`
   }
 `
 
-const TocButtom = styled.button<{ isOpen: boolean }>`
+const TocButton = styled.button<{ isOpen: boolean }>`
   display: block;
   padding: 0;
   outline: none;
