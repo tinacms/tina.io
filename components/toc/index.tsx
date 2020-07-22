@@ -178,7 +178,7 @@ const TocContent = styled.div<TocContentProps>`
 
   a {
     color: var(--color-secondary);
-    font-family: var(--font-tuner);
+    /* font-family: var(--font-tuner); */
   }
 
   /* Hide underline on top level links except on hover or focus */

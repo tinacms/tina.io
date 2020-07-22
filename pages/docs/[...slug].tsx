@@ -296,7 +296,7 @@ export const DocGridToc = styled.div`
   max-width: 768px;
 
   @media (min-width: 1500px) {
-    padding-top: 1.75rem;
+    padding-top: 4.5rem;
   }
 `
 

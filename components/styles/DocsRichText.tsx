@@ -14,7 +14,8 @@ const DocsRichText = css`
   h4,
   h5,
   h6 {
-    margin: 2rem 0 1.5rem 0;
+    padding-top: 1rem;
+    margin: 1rem 0 1.5rem 0;
     &:first-child {
       margin-top: 0;
     }
