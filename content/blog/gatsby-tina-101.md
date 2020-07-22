@@ -70,7 +70,7 @@ module.exports = {
 }
 ```
 
-_Tyra_ uses Markdown for content, but TinaCMS also supports JSON files via [gatsby-tinacms-json](https://tinacms.org/docs/gatsby/json/). I find that JSON is great for page content and [blocks](https://tinacms.org/blog/what-are-blocks/). But for simple blog posts, Markdown works great.
+_Tyra_ uses Markdown for content, but TinaCMS also supports JSON files via [gatsby-tinacms-json](/guides/gatsby/git/create-json-form). I find that JSON is great for page content and [blocks](https://tinacms.org/blog/what-are-blocks/). But for simple blog posts, Markdown works great.
 
 Since the content _Tyra_ is Git-based, all edits need to be committed back into the repository. `gatsby-tinacms-git` tracks content changes and handles the creation of new commits with content. By default, changes are pushed to a remote branch, but the plugin is configurable.
 
@@ -219,7 +219,7 @@ Right now our sidebar forms for editing are 'okay,' but there's room for improve
 
 There are also fields _Tyra_ uses that should be "private" and not available to edit in the sidebar. For example, the `type` frontmatter value to identify posts.
 
-We can configure the sidebar form by passing in a `FormConfig` object to Tina. [Customizing forms with Tina](https://tinacms.org/docs/gatsby/markdown/#customizing-remark-forms) is straightforward. We need to define a JavaScript object to declare the desired form fields for Tina to render.
+We can configure the sidebar form by passing in a `FormConfig` object to Tina. [Customizing forms with Tina](/guides/gatsby/git/customize-form) is straightforward. We need to define a JavaScript object to declare the desired form fields for Tina to render.
 
 Back in `src/blog/post.js`, we can add this configuration object:
 
@@ -486,7 +486,7 @@ To finish of our editing experience, all we really need is the ability to add ne
 
 ## Authoring New Posts
 
-Tina has a type of plugin to create content, aptly named [content creator plugins](https://tinacms.org/docs/gatsby/creating-new-files#1-add-content-creator-plugin). Content creators are like factories that create file objects, except they are "plugged in" to your React site.
+Tina has a type of plugin to create content, aptly named [content creator plugins](/docs/plugins/content-creators). Content creators are like factories that create file objects, except they are "plugged in" to your React site.
 
 Let's make a _content creator plugin_ to author new blog posts. We'll add it in a new directory called "plugins" — `src/blog/plugins/postCreator.js`:
 

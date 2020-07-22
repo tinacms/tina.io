@@ -6,10 +6,10 @@ import { DefaultSeo } from 'next-seo'
 import data from '../content/siteConfig.json'
 import TagManager from 'react-gtm-module'
 import { GlobalStyles, FontLoader } from '@tinacms/styles'
-import { BrowserStorageApi } from '../utils/plugins/browser-storage-api/BrowserStorageApi'
+import { BrowserStorageApi } from 'utils/plugins/browser-storage-api/BrowserStorageApi'
 import { GithubClient, TinacmsGithubProvider } from 'react-tinacms-github'
-import { GlobalStyle } from '../components/styles/GlobalStyle'
-import '../components/styles/fontImports.css'
+import { GlobalStyle } from 'components/styles/GlobalStyle'
+import 'components/styles/fontImports.css'
 
 const MainLayout = ({ Component, pageProps }) => {
   const tinaConfig = {

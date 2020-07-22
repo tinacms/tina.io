@@ -1,21 +1,16 @@
 import * as React from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { readFile } from '../../../../utils/readFile'
-import { getMarkdownPreviewProps } from '../../../../utils/getMarkdownFile'
+import { readFile } from 'utils/readFile'
+import { getMarkdownPreviewProps } from 'utils/getMarkdownFile'
 import {
   DocsLayout,
   DocsTextWrapper,
   Wrapper,
   MarkdownContent,
   Footer,
-} from '../../../../components/layout'
+} from 'components/layout'
 import { NextSeo } from 'next-seo'
-import {
-  DocsNav,
-  DocsPagination,
-  Overlay,
-  DocsHeaderNav,
-} from '../../../../components/ui'
+import { DocsNav, DocsPagination, Overlay, DocsHeaderNav } from 'components/ui'
 import {
   DocsNavToggle,
   DocsMobileTinaIcon,
@@ -27,15 +22,15 @@ import {
   DocGridContent,
 } from '../../../docs/[...slug]'
 import { useRouter } from 'next/router'
-import { getGuideNavProps } from '../../../../utils/guide_helpers'
+import { getGuideNavProps } from 'utils/guide_helpers'
 import { useMemo } from 'react'
-import { OpenAuthoringSiteForm } from '../../../../components/layout/OpenAuthoringSiteForm'
+import { OpenAuthoringSiteForm } from 'components/layout/OpenAuthoringSiteForm'
 import { usePlugin, useFormScreenPlugin } from 'tinacms'
 import { InlineTextareaField } from 'react-tinacms-inline'
 import { useGithubMarkdownForm, useGithubJsonForm } from 'react-tinacms-github'
-import { InlineWysiwyg } from '../../../../components/inline-wysiwyg'
-import { getJsonPreviewProps } from '../../../../utils/getJsonPreviewProps'
-import { MarkdownCreatorPlugin } from '../../../../utils/plugins'
+import { InlineWysiwyg } from 'components/inline-wysiwyg'
+import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
+import { MarkdownCreatorPlugin } from 'utils/plugins'
 import { fileToUrl } from '../../../../utils'
 import Toc from '../../../../components/toc'
 

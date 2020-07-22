@@ -2,12 +2,6 @@
   "title": "Adding Tina to a Gatsby Site",
   "steps": [
     {
-      "title": "Overview",
-      "id": "/guides/gatsby/adding-tina/overview",
-      "slug": "/guides/gatsby/adding-tina/overview",
-      "data": "./overview.md"
-    },
-    {
       "title": "Project Setup",
       "id": "/guides/gatsby/adding-tina/project-setup",
       "slug": "/guides/gatsby/adding-tina/project-setup",

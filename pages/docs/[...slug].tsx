@@ -8,21 +8,21 @@ import {
   DocsTextWrapper,
   Wrapper,
   Footer,
-} from '../../components/layout'
+} from 'components/layout'
 import {
   DocsNav,
   NavToggle,
   DocsHeaderNav,
   Overlay,
   DocsPagination,
-} from '../../components/ui'
+} from 'components/ui'
 import { InlineTextareaField, useInlineForm } from 'react-tinacms-inline'
-import { TinaIcon } from '../../components/logo'
+import { TinaIcon } from 'components/logo'
 import { useGithubMarkdownForm } from 'react-tinacms-github'
-import { getDocProps } from '../../utils/docs/getDocProps'
-import { OpenAuthoringSiteForm } from '../../components/layout/OpenAuthoringSiteForm'
+import { getDocProps } from 'utils/docs/getDocProps'
+import { OpenAuthoringSiteForm } from 'components/layout/OpenAuthoringSiteForm'
 import { GithubError } from 'next-tinacms-github'
-import { InlineWysiwyg } from '../../components/inline-wysiwyg'
+import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { usePlugin } from 'tinacms'
 import Toc from '../../components/toc'
 

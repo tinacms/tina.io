@@ -5,9 +5,13 @@ title: Next Steps
 At this point, we've bootstrapped Tina into the Gatsby blog starter. We were able to do so by making a few small modifications:
 
 1. Added [gatsby-plugin-tinacms](/guides/gatsby/adding-tina/project-setup) to our blog starter.
-2. [Created a form](http://localhost:3000/guides/gatsby/adding-tina/creating-forms) to edit some values in the `Post` template.
+2. [Created a form](/guides/gatsby/adding-tina/creating-forms) to edit some values in the `Post` template.
 
 This guide is intended as a jumping off point to get you started with Tina, but to make a fully-functional CMS there is a little more work to do.
+
+## Set up a backend to persist content changes
+
+Checkout the [Using a Git Backend](/guides/gatsby/git) guide to learn more.
 
 ## Add More Fields
 
@@ -19,4 +23,4 @@ Consider creating an **inline editing** experience for your blog, where content 
 
 ## Saving Content
 
-Editing content isn't much use if you can't save it! Our `onSubmit` handler doesn't really do anything right now. You can look at using the [`gatsby-tinacms-git`](/docs/gatsby/markdown) to edit content Markdown and JSON sourced from your repository.
+Editing content isn't much use if you can't save it! Our `onSubmit` handler doesn't really do anything right now. You can look at using the [`gatsby-tinacms-git`](/guides/gatsby/git/installation) to edit content [Markdown](/guides/gatsby/git/installation) and [JSON](/guides/gatsby/git/create-json-form) sourced from your repository.

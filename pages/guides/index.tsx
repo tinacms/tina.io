@@ -1,5 +1,5 @@
-import { getGuideNavProps } from '../../utils/guide_helpers'
-import { readMarkdownFile } from '../../utils/getMarkdownFile'
+import { getGuideNavProps } from 'utils/guide_helpers'
+import { readMarkdownFile } from 'utils/getMarkdownFile'
 import React, { useState, useEffect, useMemo } from 'react'
 import { useRouter } from 'next/router'
 import {
@@ -8,20 +8,15 @@ import {
   Wrapper,
   MarkdownContent,
   Footer,
-} from '../../components/layout'
+} from 'components/layout'
 import { NextSeo } from 'next-seo'
 import {
   DocsNavToggle,
   DocsMobileTinaIcon,
   DocsContent,
 } from '../docs/[...slug]'
-import {
-  DocsNav,
-  Overlay,
-  DynamicLink,
-  DocsHeaderNav,
-} from '../../components/ui'
-import { CardGrid, Card } from '../../components/ui/Cards'
+import { DocsNav, Overlay, DynamicLink, DocsHeaderNav } from 'components/ui'
+import { CardGrid, Card } from 'components/ui/Cards'
 import RightArrowSvg from '../../public/svg/right-arrow.svg'
 import styled from 'styled-components'
 
@@ -126,7 +121,7 @@ const GuideSection = (section: NavSection) => {
           {(section.items || []).map(item => (
             <DynamicLink href={item.slug} passHref>
               <Card>
-                <h3>{item.title}</h3>
+                <p style={{ margin: '0' }}>{item.title}</p>
                 <RightArrowSvg />
               </Card>
             </DynamicLink>
