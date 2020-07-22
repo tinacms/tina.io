@@ -18,6 +18,7 @@ const DocsRichText = css`
     margin: 1rem 0 1.5rem 0;
     &:first-child {
       margin-top: 0;
+      padding-top: 0;
     }
     &:last-child {
       margin-bottom: 0;
