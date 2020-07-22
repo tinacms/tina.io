@@ -351,22 +351,3 @@ export const DocsMobileTinaIcon = styled(TinaIcon)`
 export const DocsContent = styled.div`
   grid-area: content;
 `
-
-function throttle(fn, ms) {
-  let timeout
-  function exec() {
-    fn.apply()
-  }
-  function clear() {
-    timeout == undefined ? null : clearTimeout(timeout)
-  }
-  if (fn !== undefined && ms !== undefined) {
-    timeout = setTimeout(exec, ms)
-  } else {
-    console.error('callback function and the timeout must be supplied')
-  }
-  // API to clear the timeout
-  timeout.clearTimeout = function() {
-    clear()
-  }
-}
