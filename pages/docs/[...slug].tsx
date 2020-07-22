@@ -110,7 +110,7 @@ function DocTemplate(props) {
     window.addEventListener('scroll', onScroll)
 
     return () => window.removeEventListener('scroll', throttledScroll)
-  }, [contentRef])
+  }, [contentRef, data])
 
   usePlugin(form)
 
