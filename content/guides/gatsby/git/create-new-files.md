@@ -2,11 +2,13 @@
 title: Creating New Files
 ---
 
-An integral aspect of content management is the ability to create new content. To create new content files with Tina, you will need to configure and register `content-creator` plugins with the CMS.
+An integral aspect of content management is the ability to create new content. To create new content files with Tina, you will need to configure and register [`content-creator` plugins](/docs/plugins/content-creators) with the CMS.
 
 Currently, Tina provides `content-creator` plugins for both Markdown and JSON files in **Gatsby projects**. Once registered, actions from these `content-creator` plugins are accessible from the sidebar menu. If you have an idea for a new `content-creator` plugin, [consider contributing!](/docs/contributing/guidelines)
 
 ![content-creator-plugin-tinacms](/img/content-creator-ex.jpg)
+
+> _Tip:_ Reference this blog for another [detailed tutorial](https://tinacms.org/blog/add-and-delete-files) on adding & deleting files in Gatsby.
 
 ### General steps
 
@@ -16,14 +18,9 @@ Currently, Tina provides `content-creator` plugins for both Markdown and JSON fi
    - Formatting the filename and path
    - Providing default data (front matter, Markdown, or JSON)
 
-### Prerequisites
-
-- A Gatsby site [configured with Tina](/guides/gatsby/adding-tina/project-setup)
-- Content editing with [Markdown](/guides/gatsby/git/installation) or [JSON](/guides/gatsby/git/create-json-form) set up
-
 ## Add Content-Creator Plugin
 
-There are two `content-creator` plugins to use with Gatsby.
+There are two `content-creator` plugins to use with Gatsby:
 
 - `RemarkCreatorPlugin`: Constructs a `content-creator` plugin for Markdown files.
 
@@ -77,27 +74,6 @@ const CreatePostPlugin = new RemarkCreatorPlugin({
 })
 ```
 
-> The `createRemarkButton` function is deprecated as of `gatsby-tinacms-remark: 0.4.0`.
-> This is a function that served the same purpose as the `RemarkCreatorPlugin` class. Below is an example of `createRemarkButton` in use.
-
-```javascript
-import { createRemarkButton } from 'gatsby-tinacms-remark'
-
-/*
- ** Deprecated — gatsby-tinacms-remark: 0.4.0
- ** in favor of RemarkCreatorPlugin class
- */
-const CreatePostPlugin = createRemarkButton({
-  label: 'Create Post',
-  filename: form => {
-    return form.filename
-  },
-  fields: [
-    //...
-  ],
-})
-```
-
 **JSON Example**
 
 ```javascript
@@ -135,7 +111,7 @@ Now that we've created the `content-creator` plugin, we need to add it to the si
 
 ![content-creator-icon](/img/content-creator.png)
 
-### Adding the Button to the Blog Index
+### Adding the Button to a Blog Index
 
 In this example, we will add the button to the Tina sidebar when visiting the blog index page. There are 3 steps involved:
 
@@ -144,12 +120,6 @@ In this example, we will add the button to the Tina sidebar when visiting the bl
 3. Create the `content-creator` plugin
 4. Add the plugin to the component
 
-First, if you haven't already, install the `tinacms` package.
-
-```bash
-$ yarn add tinacms || npm install --save tinacms
-```
-
 **Example: src/pages/index.js**
 
 ```jsx
@@ -157,7 +127,6 @@ $ yarn add tinacms || npm install --save tinacms
 import { withPlugin } from 'tinacms'
 import { RemarkCreatorPlugin } from 'gatsby-tinacms-remark'
 
-// Note: this is just an example index component.
 function BlogIndex(props) {
   const { data } = props
   const posts = data.allMarkdownRemark.edges
@@ -212,6 +181,6 @@ export default withPlugin(BlogIndex, CreatePostPlugin)
 
 ### Creating Content
 
-With the plugin in place, **open TinaCMS and click the menu button** in the top-left corner. The menu panel will slide into view with the button at the top.
+With the plugin in place, navigate to the page where you added the `content-creator` plugin, **open TinaCMS and click the menu button** in the top-left corner. The menu panel will slide into view with the button at the top.
 
-Click the "Create Post" button and a modal will pop up. Enter the path to a new file relative to your repository root (e.g. `content/blog/my-new-post.md`) and then click "create". A moment later the new post will be added to your Blog Index.
+Click the "Create Post" button and a modal will pop up. Enter the path to a new file relative to your repository root (e.g. `content/blog/my-new-post.md`) and then click "create". A moment later the new post will be added where you specified in the `content-creator` definition.
