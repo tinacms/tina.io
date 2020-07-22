@@ -62,7 +62,7 @@ const TocWrapper = styled.div`
 
   @media (min-width: 1500px) {
     position: sticky;
-    top: 1rem;
+    top: 1.5rem;
   }
 `
 
