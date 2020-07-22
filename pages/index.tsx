@@ -60,6 +60,14 @@ const HomePage = (props: any) => {
       preview={props.preview}
     >
       <div className={styles.pageWrapper}>
+        <div className={styles.heroContent}>
+          <h1 className={styles.heroTitle}>
+            Bring Editing to Your <Framework activeStack={activeStack} />{' '}
+            Project
+          </h1>
+          <p className={styles.heroText}>Made for developers and editors</p>
+          <button className={styles.heroButton}>Start Learning</button>
+        </div>
         <div className={styles.hero}>
           <div className={styles.wrapper}>
             <div className={styles.aspectRatio}>
@@ -70,6 +78,7 @@ const HomePage = (props: any) => {
                   }`}
                 >
                   <GithubLogo />
+                  <span></span>
                 </div>
                 <div
                   className={`${styles.gridItem} ${styles.gridItem5} ${
@@ -79,6 +88,7 @@ const HomePage = (props: any) => {
                   }`}
                 >
                   <ReactLogo />
+                  <span></span>
                 </div>
                 <div
                   className={`${styles.gridItem} ${styles.gridItem6} ${
@@ -88,6 +98,7 @@ const HomePage = (props: any) => {
                   } ${styles.bigLogo}`}
                 >
                   <NextLogo />
+                  <span></span>
                 </div>
                 <div
                   className={`${styles.gridItem} ${styles.gridItem7} ${
@@ -97,6 +108,7 @@ const HomePage = (props: any) => {
                   }`}
                 >
                   <ContentfulLogo />
+                  <span></span>
                 </div>
                 <div
                   className={`${styles.gridItem} ${styles.gridItem2} ${
@@ -104,6 +116,7 @@ const HomePage = (props: any) => {
                   }`}
                 >
                   <StrapiLogo />
+                  <span></span>
                 </div>
                 <div
                   className={`${styles.gridItem} ${styles.gridItem1} ${
@@ -111,6 +124,7 @@ const HomePage = (props: any) => {
                   }`}
                 >
                   <BootstrapLogo />
+                  <span></span>
                 </div>
                 <div
                   className={`${styles.gridItem} ${styles.gridItem3} ${
@@ -120,6 +134,7 @@ const HomePage = (props: any) => {
                   }`}
                 >
                   <GatsbyLogo />
+                  <span></span>
                 </div>
               </div>
               {/* End First Grid */}
@@ -130,6 +145,7 @@ const HomePage = (props: any) => {
                   }`}
                 >
                   <GithubLogo />
+                  <span></span>
                 </div>
                 <div
                   className={`${styles.gridItem} ${styles.gridItem2} ${
@@ -139,6 +155,7 @@ const HomePage = (props: any) => {
                   }`}
                 >
                   <ReactLogo />
+                  <span></span>
                 </div>
                 <div
                   className={`${styles.gridItem} ${styles.gridItem3} ${
@@ -148,6 +165,7 @@ const HomePage = (props: any) => {
                   } ${styles.bigLogo}`}
                 >
                   <NextLogo />
+                  <span></span>
                 </div>
                 <div
                   className={`${styles.gridItem} ${styles.gridItem4} ${
@@ -157,6 +175,7 @@ const HomePage = (props: any) => {
                   }`}
                 >
                   <ContentfulLogo />
+                  <span></span>
                 </div>
                 <div
                   className={`${styles.gridItem} ${styles.gridItem5} ${
@@ -164,6 +183,7 @@ const HomePage = (props: any) => {
                   }`}
                 >
                   <StrapiLogo />
+                  <span></span>
                 </div>
                 <div
                   className={`${styles.gridItem} ${styles.gridItem6} ${
@@ -171,6 +191,7 @@ const HomePage = (props: any) => {
                   }`}
                 >
                   <BootstrapLogo />
+                  <span></span>
                 </div>
                 <div
                   className={`${styles.gridItem} ${styles.gridItem7} ${
@@ -180,6 +201,7 @@ const HomePage = (props: any) => {
                   }`}
                 >
                   <GatsbyLogo />
+                  <span></span>
                 </div>
               </div>
               {/* End Second Grid */}
@@ -190,6 +212,7 @@ const HomePage = (props: any) => {
                   }`}
                 >
                   <GithubLogo />
+                  <span></span>
                 </div>
                 <div
                   className={`${styles.gridItem} ${styles.gridItem7} ${
@@ -199,6 +222,7 @@ const HomePage = (props: any) => {
                   }`}
                 >
                   <ReactLogo />
+                  <span></span>
                 </div>
                 <div
                   className={`${styles.gridItem} ${styles.gridItem3} ${
@@ -208,6 +232,7 @@ const HomePage = (props: any) => {
                   } ${styles.bigLogo}`}
                 >
                   <NextLogo />
+                  <span></span>
                 </div>
                 <div
                   className={`${styles.gridItem} ${styles.gridItem1} ${
@@ -217,6 +242,7 @@ const HomePage = (props: any) => {
                   }`}
                 >
                   <ContentfulLogo />
+                  <span></span>
                 </div>
                 <div
                   className={`${styles.gridItem} ${styles.gridItem5} ${
@@ -224,6 +250,7 @@ const HomePage = (props: any) => {
                   }`}
                 >
                   <StrapiLogo />
+                  <span></span>
                 </div>
                 <div
                   className={`${styles.gridItem} ${styles.gridItem6} ${
@@ -231,6 +258,7 @@ const HomePage = (props: any) => {
                   }`}
                 >
                   <BootstrapLogo />
+                  <span></span>
                 </div>
                 <div
                   className={`${styles.gridItem} ${styles.gridItem4} ${
@@ -240,6 +268,7 @@ const HomePage = (props: any) => {
                   }`}
                 >
                   <GatsbyLogo />
+                  <span></span>
                 </div>
               </div>
               {/* End Third Grid */}
@@ -249,6 +278,10 @@ const HomePage = (props: any) => {
       </div>
     </OpenAuthoringSiteForm>
   )
+}
+
+const Framework = ({ activeStack }) => {
+  return activeStack.framework
 }
 
 export default HomePage
