@@ -139,16 +139,26 @@ export const GlobalStyle = React.memo(createGlobalStyle`
     }
 
     /* Color */
+    --color-black: #252121;
+    --color-white: #f8f1f1;
     --color-primary: #EC4815;
     --color-primary-dark: #CE411D;
     --color-secondary: #302454;
     --color-secondary-dark: #241748;
     --color-seafoam: #E6FAF8;
     --color-seafoam-dark: #B4F4E0;
+    --color-shadow: #d0e7e0;
     --color-light: #FAFAFA;
     --color-light-dark: #E9E9EC;
     --color-grey: #595959;
     --color-grey-dark: #404040;
+
+    --border-radius: 0.3rem;
+    --line-height: 1.5;
+    --container-width: 70rem;
+    --container-narrow-width: 45rem;
+    --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+    --quick-animation: 150ms;
 
     /* Layout */
     --breakpoint-small: 400px;

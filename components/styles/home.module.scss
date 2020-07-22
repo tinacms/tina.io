@@ -1,0 +1,246 @@
+.pageWrapper {
+  background: linear-gradient(
+    170deg,
+    var(--color-seafoam-dark) 0rem,
+    var(--color-seafoam) 15rem,
+    white 30rem
+  );
+  background-repeat: repeat-x;
+  margin: 0;
+  min-height: 100vh;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+.hero {
+  display: block;
+  position: relative;
+  overflow: visible;
+  mask-image: radial-gradient(
+    ellipse,
+    rgba(0, 0, 0, 1) 50%,
+    rgba(0, 0, 0, 0) 93%
+  );
+
+  @media screen and (min-width: 2000px) {
+    mask-image: radial-gradient(
+      ellipse,
+      rgba(0, 0, 0, 1) 40%,
+      rgba(0, 0, 0, 0) 83%
+    );
+  }
+
+  --animation-length: 500ms;
+}
+
+.grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-areas:
+    'a c c g'
+    'b d d g'
+    'b e f f';
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+  transform: rotateX(60deg) rotateY(0deg) rotateZ(-35deg);
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  overflow: visible;
+  z-index: 10;
+}
+
+.gridLeft {
+  transform: rotateX(60deg) rotateY(0deg) rotateZ(-35deg)
+    translate3d(calc(-100% - 1rem), 0, 0);
+  z-index: 15;
+}
+
+.gridRight {
+  transform: rotateX(60deg) rotateY(0deg) rotateZ(-35deg)
+    translate3d(calc(100% + 1rem), 0, 0);
+  z-index: 5;
+}
+
+.gridItem {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2rem;
+  border: 2px solid rgba(0, 0, 0, 0.05);
+  background-color: white;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  transform: translate3d(0, 0, 0);
+  transition: transform var(--animation-length) var(--ease-out),
+    opacity var(--animation-length) var(--ease-out);
+  z-index: 1;
+  opacity: 1;
+  cursor: pointer;
+  overflow: visible;
+
+  svg {
+    width: 5em;
+    height: auto;
+    opacity: 0.4;
+    transition: transform var(--animation-length) var(--ease-out),
+      opacity var(--animation-length) var(--ease-out);
+
+    @media screen and (max-width: 900px) {
+      width: 9vw;
+    }
+  }
+
+  &:hover {
+    transform: translate3d(0, 0, 25px);
+    transform-origin: center bottom;
+    opacity: 1;
+
+    &:after {
+      transform: translate3d(0, 0, -25px);
+    }
+
+    &:before {
+      transform: translate3d(0, 0, -27px) scale3d(1, 1, 1);
+      opacity: 0.3;
+    }
+
+    svg {
+      opacity: 1;
+    }
+  }
+
+  /* Drop Shadow */
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 25px;
+    top: 25px;
+    width: calc(100% - 50px);
+    height: calc(100% - 50px);
+    border-radius: 2rem;
+    transform: translate3d(0, 0, -1px);
+    background-color: var(--color-shadow);
+    box-shadow: 0 0 30px 30px var(--color-shadow);
+    z-index: -1;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    transition: transform var(--animation-length) var(--ease-out),
+      opacity var(--animation-length) var(--ease-out);
+    opacity: 0;
+  }
+
+  /* Cutout */
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 2rem;
+    transform: translate3d(0, 0, -0.1px);
+    box-shadow: 0 0 0 2px var(--color-shadow),
+      inset -10px 10px 10px var(--color-shadow);
+    z-index: -1;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    transition: transform var(--animation-length) var(--ease-out),
+      opacity var(--animation-length) var(--ease-out);
+    opacity: 0.5;
+    z-index: -1;
+  }
+}
+
+.gridItemActive {
+  transform: translate3d(0, 0, 30px);
+  transform-origin: center bottom;
+  opacity: 1;
+
+  &:after {
+    transform: translate3d(0, 0, -30px);
+  }
+
+  &:before {
+    transform: translate3d(0, 0, -32px);
+    opacity: 0.25;
+  }
+
+  svg {
+    opacity: 1;
+  }
+}
+
+.bigLogo {
+  svg {
+    width: 7.5em;
+    @media screen and (max-width: 900px) {
+      width: 12vw;
+    }
+  }
+}
+
+.gridItem1 {
+  grid-area: a;
+}
+
+.gridItem2 {
+  grid-area: b;
+}
+
+.gridItem3 {
+  grid-area: c;
+}
+
+.gridItem4 {
+  grid-area: d;
+}
+
+.gridItem5 {
+  grid-area: e;
+}
+
+.gridItem6 {
+  grid-area: f;
+}
+
+.gridItem7 {
+  grid-area: g;
+}
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  // max-width: 1232px;
+  max-width: 950px;
+  margin: 0px auto;
+  padding: 0px 2rem;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: visible;
+
+  @media screen and (min-width: 2000px) {
+    max-width: 1150px;
+  }
+}
+
+.aspectRatio {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 0;
+  padding-top: 70%;
+  overflow: visible;
+}
