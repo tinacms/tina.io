@@ -34,6 +34,7 @@ const Toc = ({ tocItems, activeIds }: TocProps) => {
           <RightArrowSvg />
         </TocButtom>
         <TocContent activeIds={activeIds} isOpen={isOpen}>
+          <TocDesktopHeader>Table of Contents</TocDesktopHeader>
           <ReactMarkdown source={tocItems} />
         </TocContent>
       </TocWrapper>
@@ -42,12 +43,26 @@ const Toc = ({ tocItems, activeIds }: TocProps) => {
 }
 export default Toc
 
+const TocDesktopHeader = styled.span`
+  display: none;
+  font-size: 1rem;
+  color: var(--color-secondary);
+  opacity: 0.5;
+  background: transparent;
+  line-height: 1;
+  margin-bottom: 1.125rem;
+
+  @media (min-width: 1500px) {
+    display: block;
+  }
+`
+
 const TocWrapper = styled.div`
   margin-bottom: -0.375rem;
 
   @media (min-width: 1500px) {
     position: sticky;
-    top: 0;
+    top: 1rem;
   }
 `
 
@@ -64,6 +79,7 @@ const TocButtom = styled.button<{ isOpen: boolean }>`
   display: flex;
   align-items: center;
   line-height: 1;
+  margin-bottom: 1.125rem;
 
   span {
     margin-right: 0.5rem;
@@ -152,10 +168,6 @@ const TocContent = styled.div<TocContentProps>`
     display: flex;
     flex-direction: column;
     align-items: stretch;
-  }
-
-  > ul {
-    padding-top: 1rem;
   }
 
   li {
