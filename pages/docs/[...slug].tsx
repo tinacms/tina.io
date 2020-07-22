@@ -269,16 +269,26 @@ export const DocsGrid = styled.div`
       '. header header .'
       '. content toc .';
     grid-auto-columns: auto 768px 24rem auto;
-    grid-column-gap: 2rem;
+    grid-column-gap: 3rem;
   }
 `
 
 export const DocGridHeader = styled.div`
   grid-area: header;
+  width: 100%;
+  justify-self: center;
+  max-width: 768px;
+
+  @media (min-width: 1500px) {
+    max-width: none;
+  }
 `
 
 export const DocGridToc = styled.div`
   grid-area: toc;
+  width: 100%;
+  justify-self: center;
+  max-width: 768px;
 
   @media (min-width: 1500px) {
     padding-top: 2.5rem;
@@ -291,7 +301,9 @@ interface ContentProps {
 
 export const DocGridContent = styled.div<ContentProps>`
   grid-area: content;
+  width: 100%;
   justify-self: center;
+  max-width: 768px;
 `
 
 export const DocsPageTitle = styled.h1`
