@@ -268,6 +268,11 @@ export const DocsGrid = styled.div`
     grid-template-areas:
       '. header header .'
       '. content toc .';
+    grid-auto-columns: auto 768px 23rem auto;
+    grid-column-gap: 2rem;
+  }
+
+  @media (min-width: 1700px) {
     grid-auto-columns: auto 768px 24rem auto;
     grid-column-gap: 3rem;
   }

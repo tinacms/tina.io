@@ -173,7 +173,7 @@ const TocContent = styled.div<TocContentProps>`
   li {
     display: block;
     margin: 0;
-    padding: 0.375rem 3.5rem 0.375rem 0;
+    padding: 0.375rem 0 0.375rem 0;
   }
 
   a {
