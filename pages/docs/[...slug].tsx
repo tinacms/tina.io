@@ -38,13 +38,14 @@ function DocTemplate(props) {
   const tocItems = props.tocItems
   const [activeIds, setActiveIds] = useState([])
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     if (!isBrowser || !contentRef.current) {
       return
     }
 
     let lastScrollPosition = 0
     let tick = false
+    let throttleInterval = 100
     let headings = []
     let baseOffset = 16
     let htmlElements = contentRef.current.querySelectorAll(
@@ -101,7 +102,7 @@ function DocTemplate(props) {
         setTimeout(function() {
           throttledScroll(lastScrollPosition)
           tick = false
-        }, 16)
+        }, throttleInterval)
       }
       tick = true
     }
