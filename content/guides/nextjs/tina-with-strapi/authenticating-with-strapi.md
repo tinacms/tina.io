@@ -68,10 +68,10 @@ First we'll enable or disable Tina based on whether we're in preview mode.
 +   toolbar: pageProps.preview,
 +   enabled: pageProps.preview
     apis: {
-      strapi: new TinaStrapiClient(),
+      strapi: new StrapiClient(process.env.STRAPI_URL),
     },
     media: {
-      store: new StrapiMediaStore(),
+      store: new StrapiMediaStore(process.env.STRAPI_URL),
     },
   }), []);
 ```

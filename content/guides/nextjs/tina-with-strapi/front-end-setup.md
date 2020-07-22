@@ -73,7 +73,7 @@ import '../styles/index.css'
 import {
   StrapiMediaStore,
   StrapiProvider,
-  TinaStrapiClient,
+  StrapiClient,
 } from 'react-tinacms-strapi'
 import { TinaCMS, TinaProvider } from 'tinacms'
 
@@ -86,10 +86,10 @@ export default function MyApp({ Component, pageProps }) {
         toolbar: true,
         enabled: true,
         apis: {
-          strapi: new TinaStrapiClient(),
+          strapi: new StrapiClient(process.env.STRAPI_URL),
         },
         media: {
-          store: new StrapiMediaStore(),
+          store: new StrapiMediaStore(process.env.STRAPI_URL),
         },
       }),
     []
@@ -113,6 +113,6 @@ export default function MyApp({ Component, pageProps }) {
 
 If you refresh [your site](http://localhost:3000), you shouldn't see any changes. But we've made good progress under the hood.
 
-First off, we instantiated the CMS object, which is the heart-and-soul of Tina. We've configured it to show only the [toolbar](https://tinacms.org/docs/cms/ui#toolbar-configuration) and hide the sidebar. We've also passed it a `TinaStrapiClient` that is responsible for communicating with our Strapi server. Additionally, we've added a `StrapiMediaStore`, which will allow us to upload images to Strapi.
+First off, we instantiated the CMS object, which is the heart-and-soul of Tina. We've configured it to show only the [toolbar](https://tinacms.org/docs/cms/ui#toolbar-configuration) and hide the sidebar. We've also passed it a `StrapiClient` that is responsible for communicating with our Strapi server. Additionally, we've added a `StrapiMediaStore`, which will allow us to upload images to Strapi.
 
 We're wrapping our pages with a `TinaProvider` and a `StrapiProvider` so that all of our pages can interact with Tina and Strapi respectively. We'll figure out what we want to happen `onLogin` and `onLogout` in just a little bit.
