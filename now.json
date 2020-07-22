@@ -108,8 +108,8 @@
       "destination": "/guides/gatsby/git/create-json-form"
     },
     {
-      "source": "/docs/gatsby/creating-new-files",
-      "destination": "/guides/gatsby/creating-new-files/create-new-files"
+      "source": "/docs/git",
+      "destination": "/guides/git/create-new-files"
     },
     {
       "source": "/docs/gatsby/configure-git-plugin",

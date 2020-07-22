@@ -53,7 +53,7 @@ If you always want to be able to create new blogs, you'll register the plugin on
 
 Okay, let’s get into it. In this step we are going to create a `content-creator` plugin 👩‍🎨.
 
-There are different plugins for creating new markdown or JSON files. In this tutorial, we'll use `RemarkCreatorPlugin` for markdown files. Feel free to read about the `JsonCreatorPlugin` in the [documentation](https://tinacms.org/guides/gatsby/creating-new-files/add-content-creator).
+There are different plugins for creating new markdown or JSON files. In this tutorial, we'll use `RemarkCreatorPlugin` for markdown files. Feel free to read about the `JsonCreatorPlugin` in the [documentation](https://tinacms.org/guides/gatsby/git/create-new-files).
 
 Head to the component file where you want to add this plugin. This example will use the `Layout` component. This way, **the ability to create new posts is always available to the editor.**
 
@@ -124,7 +124,7 @@ const CreatePostPlugin = new RemarkCreatorPlugin({
 
 Notice how data submitted by the `create-form` is being used. When a new file is created, you can have the editor enter a title, and then all the **`create-form` data is passed to the `filename` function**.
 
-You can use the data from `create-form` to creatively generate new file paths or populate default data (more on that later). Overall, formatting the `filename` depends on the structure of your project. Pick a simple solution that makes sense to you or checkout more examples [here](/guides/gatsby/creating-new-files/configuration#formatting-the-filename--path).
+You can use the data from `create-form` to creatively generate new file paths or populate default data (more on that later). Overall, formatting the `filename` depends on the structure of your project. Pick a simple solution that makes sense to you or checkout more examples [here](/guides/git/configuration#formatting-the-filename--path).
 
 ## 2. Register the plugin with the sidebar
 
