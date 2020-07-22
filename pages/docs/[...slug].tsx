@@ -30,10 +30,86 @@ function DocTemplate(props) {
   // Registers Tina Form
   const [data, form] = useGithubMarkdownForm(props.file, formOptions)
   const [open, setOpen] = useState(false)
+  const isBrowser = typeof window !== `undefined`
+  const contentRef = React.useRef<HTMLDivElement>(null)
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
   const excerpt = props.file.data.excerpt
   const tocItems = props.tocItems
+  const [activeIds, setActiveIds] = useState([])
+
+  React.useEffect(() => {
+    if (!isBrowser || !contentRef.current) {
+      return
+    }
+
+    let lastScrollPosition = 0
+    let tick = false
+    let headings = []
+    let baseOffset = 16
+    let htmlElements = contentRef.current.querySelectorAll(
+      'h1, h2, h3, h4, h5, h6'
+    )
+
+    htmlElements.forEach(function(heading: any) {
+      headings.push({
+        id: heading.id,
+        offset: heading.offsetTop,
+        level: heading.tagName,
+      })
+    })
+
+    const throttledScroll = scrollPos => {
+      let newActiveIds = []
+      let activeHeadingCandidates = headings.filter(heading => {
+        return heading.offset - scrollPos < baseOffset
+      })
+      let activeHeading =
+        activeHeadingCandidates.length > 0
+          ? activeHeadingCandidates.reduce((prev, current) =>
+              prev.offset > current.offset ? prev : current
+            )
+          : {}
+
+      newActiveIds.push(activeHeading.id)
+
+      if (activeHeading.level != 'H2') {
+        let activeHeadingParentCandidates =
+          activeHeadingCandidates.length > 0
+            ? activeHeadingCandidates.filter(heading => {
+                return heading.level == 'H2'
+              })
+            : []
+        let activeHeadingParent =
+          activeHeadingParentCandidates.length > 0
+            ? activeHeadingParentCandidates.reduce((prev, current) =>
+                prev.offset > current.offset ? prev : current
+              )
+            : {}
+
+        if (activeHeadingParent.id) {
+          newActiveIds.push(activeHeadingParent.id)
+        }
+      }
+
+      setActiveIds(newActiveIds)
+    }
+
+    function onScroll() {
+      lastScrollPosition = window.scrollY
+      if (!tick) {
+        setTimeout(function() {
+          throttledScroll(lastScrollPosition)
+          tick = false
+        }, 16)
+      }
+      tick = true
+    }
+
+    window.addEventListener('scroll', onScroll)
+
+    return () => window.removeEventListener('scroll', throttledScroll)
+  }, [contentRef])
 
   usePlugin(form)
 
@@ -77,12 +153,9 @@ function DocTemplate(props) {
                 </DocsPageTitle>
               </DocGridHeader>
               <DocGridToc>
-                <Toc
-                  tocItems={tocItems}
-                  activeIds={['subscribing-to-events', 'usage']}
-                />
+                <Toc tocItems={tocItems} activeIds={activeIds} />
               </DocGridToc>
-              <DocGridContent>
+              <DocGridContent ref={contentRef}>
                 <hr />
                 <InlineWysiwyg name="markdownBody">
                   <MarkdownContent escapeHtml={false} content={markdownBody} />
@@ -211,7 +284,11 @@ export const DocGridToc = styled.div`
   }
 `
 
-export const DocGridContent = styled.div`
+interface ContentProps {
+  ref: any
+}
+
+export const DocGridContent = styled.div<ContentProps>`
   grid-area: content;
   justify-self: center;
 `
@@ -261,3 +338,22 @@ export const DocsMobileTinaIcon = styled(TinaIcon)`
 export const DocsContent = styled.div`
   grid-area: content;
 `
+
+function throttle(fn, ms) {
+  let timeout
+  function exec() {
+    fn.apply()
+  }
+  function clear() {
+    timeout == undefined ? null : clearTimeout(timeout)
+  }
+  if (fn !== undefined && ms !== undefined) {
+    timeout = setTimeout(exec, ms)
+  } else {
+    console.error('callback function and the timeout must be supplied')
+  }
+  // API to clear the timeout
+  timeout.clearTimeout = function() {
+    clear()
+  }
+}
