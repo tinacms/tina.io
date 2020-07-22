@@ -59,7 +59,7 @@ const HomePage = (props: any) => {
       path={props.file.fileRelativePath}
       preview={props.preview}
     >
-      <div className={styles.pageWrapper}>
+      <div className={styles.heroWrapper}>
         <div className={styles.heroContent}>
           <h1 className={styles.heroTitle}>
             Bring Editing to Your <Framework activeStack={activeStack} />{' '}
