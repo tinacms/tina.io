@@ -123,4 +123,18 @@ If you didn't have access, then you would be requested to create a fork of the _
 
 The final cookie, **github_access_token**, proves that the authentication worked, since you now have an access token for the Github APIs.
 
+## Private Repositories
+
+If you prefer to keep the repository private, and not implement Open Authoring, you need to add an additional parameter to the `GithubClient` configuration object.
+
+```diff
+github: new GithubClient({
+  proxy: '/api/proxy-github',
+  authCallbackRoute: '/api/create-github-access-token',
+  clientId: process.env.GITHUB_CLIENT_ID,
+  baseRepoFullName: process.env.REPO_FULL_NAME, // e.g: tinacms/tinacms.org,
++ authScope: 'repo' // normally defaults to 'public_repo'
+}),
+```
+
 Next we'll need to configure Previews on the index page to enter the editing environment on our _Working Repository_.

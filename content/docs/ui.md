@@ -78,7 +78,7 @@ interface ToolbarOptions {
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **buttons** | _Deprecated — [Configure on the form instead](/docs/forms#customizing-form-buttons)_: Customizes the string displayed on either the 'save' or 'reset' buttons. |
 
-On its own, the toolbar will display the 'Save' and 'Reset' buttons, along with a form status indicator to show whether there are unsaved changes. [Custom Widgets](/guides/nextjs/github-open-authoring/toolbar-plugins) can also be added to extend functionality for the particular workflow.
+On its own, the toolbar will display the 'Save' and 'Reset' buttons, along with a form status indicator to show whether there are unsaved changes. [Custom Widgets](/guides/nextjs/github/toolbar-plugins) can also be added to extend functionality for the particular workflow.
 
 > _Note:_ **It is now recommended to configure the 'Save' & 'Reset' button text [on the form](/docs/forms#customizing-form-buttons)** intead of in the UI options. Please note that if `buttons` are configured on the CMS through the `sidebar` or `toolbar` options (as in the examples below), those values will take precedent over custom button values passed to a form.
 

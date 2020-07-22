@@ -69,7 +69,7 @@ export default function GuideTemplate(props) {
             { name: 'slug', label: 'Slug', component: 'text' },
           ],
           filename({ slug }) {
-            return `content/guides/nextjs/github-open-authoring/${slug}.md`
+            return `content/guides/nextjs/github/${slug}.md`
           },
           frontmatter({ title }) {
             return { title }

@@ -37,7 +37,7 @@ export default createAuthHandler(
 
 _See [Next's documentation](https://nextjs.org/docs/api-reference/next.config.js/environment-variables) for adding environment variables_
 
-[See here](https://tinacms.org/guides/nextjs/github-open-authoring/github-oauth-app) for instructions on creating a Github OAuth App to generate these **Client ID** & **Client Secret** variables and setting up the **Signing Key**.
+[See here](https://tinacms.org/guides/nextjs/github/github-oauth-app) for instructions on creating a Github OAuth App to generate these **Client ID** & **Client Secret** variables and setting up the **Signing Key**.
 
 ### `apiProxy`
 
