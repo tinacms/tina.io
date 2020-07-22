@@ -3,7 +3,12 @@ import ReactMarkdown from 'react-markdown'
 import styled, { css } from 'styled-components'
 import RightArrowSvg from '../../public/svg/right-arrow.svg'
 
-const Toc = ({ tocItems }: { tocItems: string }) => {
+interface TocProps {
+  tocItems: string
+  activeIds: string[]
+}
+
+const Toc = ({ tocItems, activeIds }: TocProps) => {
   const [isOpen, setIsOpen] = useState(false)
 
   if (!tocItems) {
@@ -28,7 +33,7 @@ const Toc = ({ tocItems }: { tocItems: string }) => {
           <span>{isOpen ? 'Hide' : 'Show'} Table of Contents</span>{' '}
           <RightArrowSvg />
         </TocButtom>
-        <TocContent isOpen={isOpen}>
+        <TocContent activeIds={activeIds} isOpen={isOpen}>
           <ReactMarkdown source={tocItems} />
         </TocContent>
       </TocWrapper>
@@ -100,7 +105,12 @@ const TocButtom = styled.button<{ isOpen: boolean }>`
   }
 `
 
-const TocContent = styled.div<{ isOpen: boolean }>`
+interface TocContentProps {
+  isOpen: boolean
+  activeIds: string[]
+}
+
+const TocContent = styled.div<TocContentProps>`
   display: block;
   width: 100%;
   line-height: 1.25;
@@ -108,6 +118,18 @@ const TocContent = styled.div<{ isOpen: boolean }>`
   max-height: 0;
   overflow: hidden;
   transition: all 500ms ease-out;
+
+  ${props =>
+    props.activeIds &&
+    props.activeIds.map(
+      id =>
+        css`
+      a[href="#${id}"] {
+        color: var(--color-primary);
+        text-decoration: none;
+      }
+    `
+    )}
 
   ${props =>
     props.isOpen

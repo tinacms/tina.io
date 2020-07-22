@@ -77,7 +77,10 @@ function DocTemplate(props) {
                 </DocsPageTitle>
               </DocGridHeader>
               <DocGridToc>
-                <Toc tocItems={tocItems} />
+                <Toc
+                  tocItems={tocItems}
+                  activeIds={['subscribing-to-events', 'usage']}
+                />
               </DocGridToc>
               <DocGridContent>
                 <hr />
