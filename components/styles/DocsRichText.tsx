@@ -221,6 +221,19 @@ const DocsRichText = css`
     border-image: initial;
     max-width: 100%;
     overflow-x: auto;
+    /* fix wrapping issues breaking layout */
+    white-space: pre-wrap !important;
+    white-space: -moz-pre-wrap !important;
+    white-space: -pre-wrap !important;
+    white-space: -o-pre-wrap !important;
+    word-wrap: break-word !important;
+    code {
+      white-space: pre-wrap !important;
+      white-space: -moz-pre-wrap !important;
+      white-space: -pre-wrap !important;
+      white-space: -o-pre-wrap !important;
+      word-wrap: break-word !important;
+    }
   }
 
   table {
