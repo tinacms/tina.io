@@ -40,7 +40,7 @@ Now we'll replace the dummy `onSubmit` that we created earlier with a function t
           }
         }
       }`;
-      const response = await fetchGraphql(
+      const response = await cms.api.strapi.fetchGraphql(
         saveMutation,
         {
           id: values.id,
