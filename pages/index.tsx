@@ -16,6 +16,7 @@ import {
   ReactFullLogo,
   StrapiLogo,
 } from 'components/logos'
+import TinaLogomarkSvg from '../public/svg/tina-logomark.svg'
 
 interface ActiveStack {
   data: 'github' | 'contentful' | 'strapi'
@@ -61,6 +62,20 @@ const HomePage = (props: any) => {
       path={props.file.fileRelativePath}
       preview={props.preview}
     >
+      <div className={styles.header}>
+        <a href="/">
+          <h1>
+            <TinaLogomarkSvg />
+          </h1>
+        </a>
+        <iframe
+          src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
+          frameBorder="0"
+          scrolling="0"
+          width="150px"
+          height="30px"
+        ></iframe>
+      </div>
       <div className={styles.heroWrapper}>
         <div className={styles.heroContent}>
           <h1 className={styles.heroTitle}>
@@ -297,9 +312,38 @@ const HomePage = (props: any) => {
               </div>
               {/* End Third Grid */}
             </div>
+            {/* End Aspect Ratio */}
+          </div>
+          {/* End End Wrapper */}
+        </div>
+        {/* End Hero*/}
+        <div className={styles.heroFeatures}>
+          <div className={styles.heroFeaturesContainer}>
+            <div className={styles.heroFeatureCard}>
+              <h2>Data Sources</h2>
+              <p>
+                Tina can fetch data anywhere your data lives, from traditional
+                headless CMSes to Airtable and Google Sheets
+              </p>
+            </div>
+            <div className={styles.heroFeatureCard}>
+              <h2>Frontend Frameworks</h2>
+              <p>
+                Tina plays well with any React-based framework. Whether your
+                site is powered by Gatsby or Next.js, Tina has your back.
+              </p>
+            </div>
+            <div className={styles.heroFeatureCard}>
+              <h2>Component Libraries</h2>
+              <p>
+                Supercharge your website by converting your components into
+                editable blocks.
+              </p>
+            </div>
           </div>
         </div>
       </div>
+      {/* End Hero Wrapper*/}
     </OpenAuthoringSiteForm>
   )
 }

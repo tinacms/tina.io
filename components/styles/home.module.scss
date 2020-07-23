@@ -24,6 +24,26 @@
   }
 }
 
+.header {
+  position: absolute;
+  z-index: 50;
+  padding: 2rem 3rem 2rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  h1 {
+    display: block;
+    margin: 0;
+  }
+
+  svg {
+    height: 3.5em;
+    width: auto;
+  }
+}
+
 .heroWrapper {
   position: relative;
   background: linear-gradient(
@@ -71,7 +91,8 @@
   position: relative;
   overflow: visible;
   z-index: 1;
-  margin-top: -2em;
+  margin-top: -3.5em;
+  margin-bottom: -5em;
 
   --animation-length: 500ms;
 }
@@ -80,7 +101,7 @@
   position: relative;
   text-align: center;
   display: block;
-  padding: 8em 4em 0 4em;
+  padding: 9em 4em 0 4em;
   margin: 0;
   z-index: 20;
 }
@@ -133,7 +154,6 @@
     transition: transform var(--animation-length) var(--ease-out),
       opacity var(--animation-length) var(--ease-out);
     transform-style: preserve-3d;
-    // animation: heroTitleSpin 1 2s cubic-bezier(0, 0.435, 0, 1.135) both;
   }
 
   svg {
@@ -194,7 +214,6 @@
 }
 
 .grid {
-  /* Isometric: rotateX(60deg) rotateY(0deg) rotateZ(-45deg) */
   --rotationTransform: rotateX(60deg) rotateY(0deg) rotateZ(-35deg);
 
   position: absolute;
@@ -247,6 +266,7 @@
   cursor: pointer;
   overflow: visible;
 
+  /* Logo */
   svg {
     position: relative;
     width: 4.5em;
@@ -445,4 +465,62 @@
   height: 0;
   padding-top: 70%;
   overflow: visible;
+}
+
+.heroFeatures {
+  position: relative;
+  display: block;
+  width: 100%;
+  z-index: 20;
+}
+
+.heroFeaturesContainer {
+  width: 100%;
+  max-width: 2000px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 2rem;
+}
+
+.heroFeatureCard {
+  padding: 1.5em 2em;
+  background: white;
+  border: 1px solid white;
+  border-radius: 1em;
+  transform-style: preserve-3d;
+  transform: translate3d(0, 0, 0) rotateX(0deg);
+  transition: transform var(--animation-length) var(--ease-out),
+    opacity var(--animation-length) var(--ease-out);
+  transform-style: preserve-3d;
+  border: 2px solid rgba(0, 0, 0, 0.07);
+  box-shadow: 0 10px 30px 30px rgba(132, 181, 178, 0.05);
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transform: translate3d(0, 0, 0px) scale3d(1, 1, 1);
+    transition: opacity var(--animation-length) var(--ease-out);
+    background-color: transparent;
+    border-radius: 1em;
+    z-index: 1;
+  }
+
+  h2 {
+    font-family: var(--font-tuner);
+    color: var(--color-primary);
+    font-size: 1.5em;
+    line-height: 1.4;
+    margin-bottom: 0.75em;
+  }
+
+  p {
+  }
 }
