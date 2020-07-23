@@ -10,27 +10,16 @@ const atob = require('atob')
 const b64DecodeUnicode = (str: string) => {
     // Going backwards: from bytestream, to percent-encoding, to original string.
     return decodeURIComponent(
-      atob(str)
+    atob(str)
         .split('')
         .map(function(c: string) {
-          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
         })
         .join('')
     )
-  }
+}
 
 export async function getPackageProps({ preview, previewData }: any, slug: string) {
-
-    console.log("GETTING PACKAGE PROPS");
-    
-
-//   const currentDoc = (
-//     await getMarkdownPreviewProps(
-//       `content/docs/${slug}.md`,
-//       preview,
-//       previewData
-//     )
-//   ).props
 
     const filePath = path.join(process.cwd(), 'content/packages.json')
     const file = JSON.parse(fs.readFileSync(filePath, 'utf8'))
@@ -52,35 +41,28 @@ export async function getPackageProps({ preview, previewData }: any, slug: strin
     });
 
     const currentDoc = await axios.get(currentPackage.link)
-
-
-    //console.log(currentDoc);
-    
-
     const content = b64DecodeUnicode(currentDoc.data.content)
 
-    console.log(content);
     
+    const previewProps = await getJsonPreviewProps(
+        'content/toc-doc.json',
+        preview,
+        previewData
+    )
+    const docsNavData = previewProps.props.file.data
 
-  const previewProps = await getJsonPreviewProps(
-    'content/toc-doc.json',
-    preview,
-    previewData
-  )
-  const docsNavData = previewProps.props.file.data
-
-  return {
-    props: {
-      content,
-      docsNav: docsNavData,
-      nextPage: {
-        slug: nextPackage?.name || null,
-        title: nextPackage?.name|| null,
-      },
-      prevPage: {
-        slug: previousPackage?.name || null,
-        title: previousPackage?.name || null,
-      },
-    },
-  }
+    return {
+        props: {
+        content,
+        docsNav: docsNavData,
+        nextPage: {
+            slug: nextPackage?.name || null,
+            title: nextPackage?.name|| null,
+        },
+        prevPage: {
+            slug: previousPackage?.name || null,
+            title: previousPackage?.name || null,
+        },
+        },
+    }
 }

@@ -22,17 +22,11 @@ import fs from 'fs'
 import { getPackageProps } from '../../utils/docs/getPackageProps'
 
   
-  interface Package {
-    name: string
-  }
-  
-  const packages: Package[] = [{ name: 'react-tinacms-github' }]
-  
   export default function Packages(props) {
     const frontmatter = {
       title: 'packages',
     }
-    const excerpt = 'alsdf'
+    const excerpt = 'A package for Tinacms.'
   
     const [open, setOpen] = useState(false)
     return (
@@ -76,15 +70,10 @@ import { getPackageProps } from '../../utils/docs/getPackageProps'
 
   export const getStaticProps: GetStaticProps = async function(props) {
 
-    const slug = props.params.slug
-
-
-    console.log("slugs: " + slug);
+    const { slug } = props.params
     
-
     try {
       return await getPackageProps(props, `${slug}`)
-      //return await getDocProps(props, slug)
     } catch (e) {
       if (e instanceof GithubError) {
         return {
@@ -98,33 +87,12 @@ import { getPackageProps } from '../../utils/docs/getPackageProps'
     }
   }
   
- 
   export const getStaticPaths: GetStaticPaths = async function() {
     const filePath = path.join(process.cwd(), 'content/packages.json')
     const file = await JSON.parse(fs.readFileSync(filePath, 'utf8'))
 
-    console.log("Getting Static Paths");
-    
-    //file.packages.map( p => { params: { slug: p.name } })
-
-    var paths = []
-
-    file.packages.forEach(element => {
-      console.log("PAckage: " + element.name);
-
-      paths.push(
-        {
-          params: {
-            slug: element.name
-          }
-        }
-      )
-      
-    });
-
-
     return {
-      paths: paths,
+      paths: file.packages.map( (p: { name: any }) => ({ params: { slug: p.name } }) ),
       fallback: false
     }
   }
