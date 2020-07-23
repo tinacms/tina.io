@@ -1,9 +1,4 @@
-import { getJsonPreviewProps } from '../getJsonPreviewProps'
-import { readMarkdownFile } from '../getMarkdownFile'
-import path from 'path';
-import { getGithubPreviewProps, parseMarkdown } from 'next-tinacms-github';
-import { formatExcerpt } from '..';
-import fs from "fs"
+import { getJsonPreviewProps, readJsonFile } from '../getJsonPreviewProps'
 import axios from "axios"
 const atob = require('atob')
 
@@ -21,8 +16,7 @@ const b64DecodeUnicode = (str: string) => {
 
 export async function getPackageProps({ preview, previewData }: any, slug: string) {
 
-    const filePath = path.join(process.cwd(), 'content/packages.json')
-    const file = JSON.parse(fs.readFileSync(filePath, 'utf8'))
+    const file = await readJsonFile('content/packages.json')
 
     interface GithubPackage {
         name: string
