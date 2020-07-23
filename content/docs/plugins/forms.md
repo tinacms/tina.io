@@ -224,7 +224,7 @@ function BlogPostTemplate(props) {
 
 ### Example 2: Forms as Screens
 
-Screens are additional UI modals accessible from the CMS menu. The `useFormScreenPlugin` let's us create and register new Screen Plugin based on a form. This is a great place to put forms for content that doesn't belong on any particular page.
+[Screens](/docs/plugins/screens) are additional UI modals accessible from the CMS menu. The `useFormScreenPlugin` let's us create and register new Screen Plugin based on a form. This is a great place to put forms for content that doesn't belong on any particular page.
 
 > Tip: Previously, this was known as a _Global Form_.
 
