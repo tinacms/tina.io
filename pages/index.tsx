@@ -17,6 +17,7 @@ import {
   StrapiLogo,
 } from 'components/logos'
 import TinaLogomarkSvg from '../public/svg/tina-logomark.svg'
+import WhyTinaBackground from '../public/svg/why-tina-background.svg'
 
 interface ActiveStack {
   data: 'github' | 'contentful' | 'strapi'
@@ -351,6 +352,14 @@ const HomePage = (props: any) => {
           </div>
         </div>
         {/* End Hero Wrapper*/}
+        <div className={styles.whySection}>
+          <div className={styles.whySectionContainer}>
+            <h2 className={styles.whySectionTitle}>Why Tina?</h2>
+          </div>
+          <div className={styles.whySectionBackground}>
+            <WhyTinaBackground />
+          </div>
+        </div>
       </div>
       {/* End Page Wrapper*/}
     </OpenAuthoringSiteForm>

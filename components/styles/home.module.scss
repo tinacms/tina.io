@@ -36,13 +36,13 @@
   width: 100%;
   background: linear-gradient(
     160deg,
-    var(--color-seafoam-dark) -50em,
-    var(--color-seafoam) 60em,
-    white 100em
+    var(--color-seafoam-dark) -100em,
+    var(--color-seafoam) 50em,
+    white 70em
   );
   background-repeat: repeat-x;
   margin: 0;
-  overflow-x: hidden;
+  overflow: hidden;
 
   @include fluid-type(400px, 2000px, 14px, 20px);
 }
@@ -584,5 +584,51 @@
   p {
     margin-bottom: 0.25em;
     font-size: 1.25rem;
+  }
+}
+
+.whySection {
+  position: relative;
+  display: block;
+  width: 100%;
+  z-index: 30;
+  margin-top: -4em;
+  padding-top: 10em;
+}
+
+.whySectionContainer {
+  width: 100%;
+  max-width: 2000px;
+  margin: 0 auto 10em auto;
+  padding: 0 2rem;
+}
+
+.whySectionTitle {
+  position: relative;
+  display: block;
+  font-family: var(--font-tuner);
+  color: var(--color-secondary);
+  font-size: 1.75em;
+  text-align: center;
+  line-height: 1.4;
+  margin-bottom: 0.75em;
+  transform-origin: 100% 0;
+}
+
+.whySectionBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  z-index: -1;
+
+  svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
   }
 }
