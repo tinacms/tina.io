@@ -4,6 +4,8 @@ import path from 'path';
 import { getGithubPreviewProps, parseMarkdown } from 'next-tinacms-github';
 import { formatExcerpt } from '..';
 import fs from "fs"
+import axios from "axios"
+const atob = require('atob')
 
 const b64DecodeUnicode = (str: string) => {
     // Going backwards: from bytestream, to percent-encoding, to original string.
@@ -49,15 +51,13 @@ export async function getPackageProps({ preview, previewData }: any, slug: strin
         }
     });
 
-    const currentDoc = (
-        await (await fetch(currentPackage.link)).json()
-    )
+    const currentDoc = await axios.get(currentPackage.link)
 
 
-    console.log(currentDoc);
+    //console.log(currentDoc);
     
 
-    const content = b64DecodeUnicode(currentDoc.content)
+    const content = b64DecodeUnicode(currentDoc.data.content)
 
     console.log(content);
     
@@ -74,12 +74,12 @@ export async function getPackageProps({ preview, previewData }: any, slug: strin
       content,
       docsNav: docsNavData,
       nextPage: {
-        slug: nextPackage.name || null,
-        title: nextPackage.name|| null,
+        slug: nextPackage?.name || null,
+        title: nextPackage?.name|| null,
       },
       prevPage: {
-        slug: previousPackage.name || null,
-        title: previousPackage.name || null,
+        slug: previousPackage?.name || null,
+        title: previousPackage?.name || null,
       },
     },
   }

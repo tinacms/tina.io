@@ -76,7 +76,7 @@ import { getPackageProps } from '../../utils/docs/getPackageProps'
 
   export const getStaticProps: GetStaticProps = async function(props) {
 
-    const slug = props.params.id
+    const slug = props.params.slug
 
 
     console.log("slugs: " + slug);
@@ -101,15 +101,30 @@ import { getPackageProps } from '../../utils/docs/getPackageProps'
  
   export const getStaticPaths: GetStaticPaths = async function() {
     const filePath = path.join(process.cwd(), 'content/packages.json')
-    const file = JSON.parse(fs.readFileSync(filePath, 'utf8'))
+    const file = await JSON.parse(fs.readFileSync(filePath, 'utf8'))
 
     console.log("Getting Static Paths");
     
-    
+    //file.packages.map( p => { params: { slug: p.name } })
+
+    var paths = []
+
+    file.packages.forEach(element => {
+      console.log("PAckage: " + element.name);
+
+      paths.push(
+        {
+          params: {
+            slug: element.name
+          }
+        }
+      )
+      
+    });
 
 
     return {
-      paths: file.packages.map( p => { params: { slug: p.name } }),
+      paths: paths,
       fallback: false
     }
   }
