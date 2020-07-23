@@ -106,7 +106,7 @@ export default function Page() {
 
 `useFormScreenPlugin` creates and registers a new Screen Plugin that renders a form in a `popup` modal. This is a great place to put forms for content that doesn't belong on any particular page, for example with site metadata.
 
-> Tip: Previously, this was known as a _Global Form_.
+> Tip: This hook creates what was previously called a _Global Form_.
 
 **Example**
 
