@@ -24,33 +24,16 @@
   }
 }
 
-.header {
-  position: absolute;
-  z-index: 50;
-  padding: 2rem 3rem 2rem 2.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-
-  h1 {
-    display: block;
-    margin: 0;
-  }
-
-  svg {
-    height: 3.5em;
-    width: auto;
-  }
-}
-
-.heroWrapper {
+.pageWrapper {
   --rotationTransform: rotateX(60deg) rotateY(0deg) rotateZ(-35deg);
   --elevation: 2.5em;
   --animation-length: 500ms;
   --animation-length-short: 240ms;
 
   position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
   background: linear-gradient(
     160deg,
     var(--color-seafoam-dark) -50em,
@@ -59,10 +42,16 @@
   );
   background-repeat: repeat-x;
   margin: 0;
-  min-height: 100vh;
   overflow-x: hidden;
-  width: 100vw;
+
   @include fluid-type(400px, 2000px, 14px, 20px);
+}
+
+.heroWrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 100vh;
 
   /* Transparency */
   &:before {
@@ -91,6 +80,27 @@
   }
 }
 
+.header {
+  position: absolute;
+  z-index: 50;
+  padding: 2rem 3rem 2rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  top: 0;
+
+  h1 {
+    display: block;
+    margin: 0;
+  }
+
+  svg {
+    height: 3.5em;
+    width: auto;
+  }
+}
+
 .hero {
   display: block;
   position: relative;
@@ -114,7 +124,7 @@
   font-size: 3em;
   line-height: 1.4;
   color: var(--color-primary);
-  margin: 0 0 0.5em 0;
+  margin: 0 0 0.75em 0;
 }
 
 @keyframes heroTitleSpin {
@@ -200,7 +210,7 @@
 .heroText {
   font-size: 1.5em;
   font-family: var(--font-regular);
-  margin: 0 0 1.75em 0;
+  margin: 0 0 1.5em 0;
 }
 
 .heroButton {
@@ -510,11 +520,16 @@
 .heroFeaturesContainer {
   width: 100%;
   max-width: 2000px;
-  margin: 0 auto;
+  margin: 0 auto 10em auto;
   padding: 0 2rem;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   grid-gap: 2rem;
+
+  @media screen and (min-width: 1000px) {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+  }
 }
 
 .heroFeatureCard {
