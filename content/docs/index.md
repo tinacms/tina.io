@@ -36,7 +36,7 @@ Tina lets you choose the user interface that best fits your workflow. You can us
 
 - Learn about the [Toolbar](/docs/ui#toolbar-configuration 'Tina Toolbar') and [Sidebar](/docs/ui#sidebar-configuration 'Tina Sidebar') UI components.
 - Take control of the appearance of your CMS using [Custom Styling](/docs/ui/styles 'Styles')
-- Add features to your CMS using [Screen Plugins](/docs/plugins/screen-plugins 'Screen Plugins') and [Toolbar Widgets](/docs/plugins/toolbar-widgets).
+- Add features to your CMS using [Screen Plugins](/docs/plugins/screens 'Screen Plugins') and [Toolbar Widgets](/docs/plugins/toolbar-widgets).
 - Wander off the beaten trail and create a totally custom UI _(Coming Soon)_
 
 ## Tools for Managing Content
