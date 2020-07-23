@@ -22,7 +22,7 @@ consumes:
 
 When you install Tina, you immediately get access to a **sidebar**. This sidebar is the main interface for editing and managing content with Tina
 
-To make content editable on your site, you need to register a [form](https://tinacms.org/docs/forms) to Tina. Forms appear in the sidebar, displaying [fields](https://tinacms.org/docs/fields) where you can edit content on the page.
+To make content editable on your site, you need to register a [form](https://tinacms.org/docs/plugins/forms) to Tina. Forms appear in the sidebar, displaying [fields](https://tinacms.org/docs/plugins/fields) where you can edit content on the page.
 
 [Plugins](https://tinacms.org/docs/cms#plugins) extend the functionality of the core CMS. Behind the scenes, plugins do some big work with Tina. They register forms, create new screen views, and allow us to add new content. If you're interested to learn more, read this post on Tina's [dynamic plugin system](https://tinacms.org/blog/dynamic-plugin-system/).
 
@@ -30,7 +30,7 @@ To make content editable on your site, you need to register a [form](https://tin
 
 ### The Steps 🚶‍♀️
 
-These steps will be our journey-map for setting up content-creation functionality in a [Gatsby](https://www.gatsbyjs.org/) website. They follow along with the [documentation](https://tinacms.org/docs/gatsby/creating-new-files) closely.
+These steps will be our journey-map for setting up content-creation functionality in a [Gatsby](https://www.gatsbyjs.org/) website.
 
 1. [Set-up a `content-creator` plugin](https://tinacms.org/blog/add-and-delete-files#step-1-set-up-a-content-creator-plugin)
 2. [Register the plugin with Tina](https://tinacms.org/blog/add-and-delete-files#2-register-the-plugin-with-the-sidebar)
@@ -53,7 +53,7 @@ If you always want to be able to create new blogs, you'll register the plugin on
 
 Okay, let’s get into it. In this step we are going to create a `content-creator` plugin 👩‍🎨.
 
-There are different plugins for creating new markdown or JSON files. In this tutorial, we'll use `RemarkCreatorPlugin` for markdown files. Feel free to read about the `JsonCreatorPlugin` in the [documentation](https://tinacms.org/docs/gatsby/creating-new-files#1-add-content-creator-plugin).
+There are different plugins for creating new markdown or JSON files. In this tutorial, we'll use `RemarkCreatorPlugin` for markdown files. Feel free to read about the `JsonCreatorPlugin` in the [documentation](https://tinacms.org/guides/gatsby/git/create-new-files).
 
 Head to the component file where you want to add this plugin. This example will use the `Layout` component. This way, **the ability to create new posts is always available to the editor.**
 
@@ -124,7 +124,7 @@ const CreatePostPlugin = new RemarkCreatorPlugin({
 
 Notice how data submitted by the `create-form` is being used. When a new file is created, you can have the editor enter a title, and then all the **`create-form` data is passed to the `filename` function**.
 
-You can use the data from `create-form` to creatively generate new file paths or populate default data (more on that later). Overall, formatting the `filename` depends on the structure of your project. Pick a simple solution that makes sense to you or checkout more examples [here](https://tinacms.org/docs/gatsby/creating-new-files#4-formatting-the-filename--path).
+You can use the data from `create-form` to creatively generate new file paths or populate default data (more on that later). Overall, formatting the `filename` depends on the structure of your project. Pick a simple solution that makes sense to you or checkout more examples [here](/guides/git/configuration#formatting-the-filename--path).
 
 ## 2. Register the plugin with the sidebar
 
@@ -219,7 +219,7 @@ const CreatePostPlugin = new RemarkCreatorPlugin({
 
 Notice the use of a `required` property on the `title` field. Use this to ensure you get all the required data necessary for creating the new file.
 
-Learn about the default [fields](https://tinacms.org/docs/fields).
+Learn about the default [fields](https://tinacms.org/docs/plugins/fields).
 
 ## 4. Configure Defaults
 
@@ -277,7 +277,7 @@ Both the frontmatter and body functions receive the data captured by fields in t
 With the power to create, comes the power to delete 🧙‍♀️. I promise you this step is much simpler.
 
 Instead of adding a ‘delete’ plugin, we simply need to pass a `delete-action` to the main form options.
-Head to a file where you have a Tina form configured in your project. This will typically be a template file that generates multiple posts, casestudies, etc. If you don’t have a Tina form configured in your project, learn more about creating forms with Gatsby+Tina [here](https://tinacms.org/docs/gatsby/manual-setup).
+Head to a file where you have a Tina form configured in your project. This will typically be a template file that generates multiple posts, casestudies, etc. If you don’t have a Tina form configured in your project, learn more about creating forms with Gatsby+Tina [here](https://tinacms.org/guides/gatsby/adding-tina/project-setup).
 
 You don't want to give the editors the power to delete files that they shouldn't. So think about where you want this action to be available. For something like a blog, it makes sense to add the `delete-action` to a blog template form. But it might not make sense to add the `delete-action` to a form that edits global site configuration, for example.
 

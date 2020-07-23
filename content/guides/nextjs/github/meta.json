@@ -1,0 +1,65 @@
+{
+  "title": "Using GitHub with Next.js",
+  "steps": [
+    {
+      "title": "Initial setup",
+      "id": "/guides/nextjs/github/initial-setup",
+      "slug": "/guides/nextjs/github/initial-setup",
+      "data": "./initial-setup.md"
+    },
+    {
+      "title": "Set up the GitHub OAuth App",
+      "id": "/guides/nextjs/github/github-oauth-app",
+      "slug": "/guides/nextjs/github/github-oauth-app",
+      "data": "./github-oauth-app.md"
+    },
+    {
+      "title": "Adding API Functions",
+      "id": "/guides/nextjs/github/api-functions",
+      "slug": "/guides/nextjs/github/api-functions",
+      "data": "./api-functions.md"
+    },
+    {
+      "title": "Create an Auth Redirect Page",
+      "id": "/guides/nextjs/github/auth-redirect",
+      "slug": "/guides/nextjs/github/auth-redirect",
+      "data": "./auth-redirect.md"
+    },
+    {
+      "title": "Configure the Custom App File",
+      "id": "/guides/nextjs/github/configure-custom-app",
+      "slug": "/guides/nextjs/github/configure-custom-app",
+      "data": "./configure-custom-app.md"
+    },
+    {
+      "title": "Loading Content from GitHub",
+      "id": "/guides/nextjs/github/loading-github-content",
+      "slug": "/guides/nextjs/github/loading-github-content",
+      "data": "./loading-github-content.md"
+    },
+    {
+      "title": "Using GitHub Forms",
+      "id": "/guides/nextjs/github/github-forms",
+      "slug": "/guides/nextjs/github/github-forms",
+      "data": "./github-forms.md"
+    },
+    {
+      "title": "Set Up Toolbar Plugins",
+      "id": "/guides/nextjs/github/toolbar-plugins",
+      "slug": "/guides/nextjs/github/toolbar-plugins",
+      "data": "./toolbar-plugins.md"
+    },
+    {
+      "title": "Add a Custom Document for Styles",
+      "id": "/guides/nextjs/github/custom-doc-styled-components",
+      "slug": "/guides/nextjs/github/custom-doc-styled-components",
+      "data": "./custom-doc-styled-components.md"
+    },
+    {
+      "title": "Hosting with Vercel",
+      "id": "/guides/nextjs/github/hosting-vercel",
+      "slug": "/guides/nextjs/github/hosting-vercel",
+      "data": "./hosting-vercel.md"
+    }
+  ]
+}

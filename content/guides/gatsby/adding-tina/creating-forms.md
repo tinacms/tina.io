@@ -2,7 +2,11 @@
 title: Creating Forms
 ---
 
-After adding `gatsby-plugin-tinacms` to our site we can create forms by calling the `useForm` hook inside our `BlogPostTemplate` component. The `useForm` hook returns two values in an array, similar to `React.useState`, which we assign via destructuring:
+After adding `gatsby-plugin-tinacms` to our site we can create forms by calling the `useForm` hook inside our `BlogPostTemplate` component.
+
+While there are a few helpers for creating forms depending on your data and framework, the the first hook you should get familiar with is `useForm`, as it's not Gatsby-specific and is the most generic way to register any form with the CMS.
+
+The `useForm` hook returns two values in an array, similar to `React.useState`, which we assign via destructuring:
 
 ```js
 const [modifiedValues, form] = useForm(formConfig)
@@ -12,7 +16,7 @@ const [modifiedValues, form] = useForm(formConfig)
 
 ## Form Configuration
 
-For details on how to configure forms, take a look at our [form configuration docs](/docs/forms#form-configuration). For the purposes of this guide, we will use the following configuration:
+For details on how to configure forms, take a look at our [form configuration docs](/docs/plugins/forms#form-configuration). For the purposes of this guide, we will use the following configuration:
 
 ```js
 const formConfig = {
@@ -41,7 +45,7 @@ const formConfig = {
 
 ## Adding the Form to the Post Component
 
-First, we'll need to import `useForm` and `usePlugin` from the `tinacms` package:
+First, we'll need to import `useForm` and `usePlugin` from the `tinacms` package. `useForm` creates the form, and `usePlugin` registers the form (as a plugin) with the CMS:
 
 **src/templates/blog-post.js**
 
@@ -75,6 +79,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
       },
     ],
   }
+  // Create the form
   const [post, form] = useForm(formConfig)
 
   const siteTitle = data.site.siteMetadata.title
@@ -90,19 +95,21 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
 
 At this point, the form is all wired up with its field configuration, and our `post` object will send updated values back through our layout rendering code. However, **if you've followed along this far, you'll see that the form does not appear in the Tina sidebar.**
 
-In order to hook our form into the sidebar, we'll need to call `usePlugin` and pass it our form object:
+In order to hook our form into the CMS, we'll need to call `usePlugin` and pass it our form object:
 
 ```diff
+  // Create the form
   const [post, form] = useForm(formConfig)
+  // Register it with the CMS
 + usePlugin(form)
 ```
 
-That's it!
+That's it — You should be able to edit the title and description of this page in the sidebar!
 
 > **Why do we need to call usePlugin?**
 >
-> There are a few different ways to use forms: in the sidebar, in the global utility menu, and [inline](/docs/inline-editing). How you plan to use the form will determine how you should set it up in the CMS.
+> There are a few different ways to use forms: in the sidebar, in the global utility menu, and [inline](/docs/ui/inline-editing). How you plan to use the form will determine how you should set it up in the CMS.
 
 ## More Info
 
-- [Tina Docs: Forms](/docs/forms)
+- [Tina Docs: Forms](/docs/plugins/forms)

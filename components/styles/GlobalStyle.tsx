@@ -75,46 +75,6 @@ const CssReset = css`
 export const GlobalStyle = React.memo(createGlobalStyle`
   ${CssReset}
 
-  /* Tuner Regular */
-  @font-face {
-    font-family: 'tuner-regular';
-    font-style: normal;
-    font-weight: regular;
-    font-display: fallback;
-    src: url("/fonts/tunerweb-regular.eot") format("eot"),
-        url("/fonts/tunerweb-regular.woff") format("woff");
-  }
-
-  /* Inter Regular */
-  @font-face {
-    font-family: 'Inter';
-    font-style:  normal;
-    font-weight: 400;
-    font-display: fallback;
-    src: url("/fonts/Inter-Regular.woff2") format("woff2"),
-        url("/fonts/Inter-Regular.woff") format("woff");
-  }
-
-  /* Inter Italic */
-  @font-face {
-    font-family: 'Inter';
-    font-style:  italic;
-    font-weight: 400;
-    font-display: fallback;
-    src: url("/fonts/Inter-Italic.woff2") format("woff2"),
-        url("/fonts/Inter-Italic.woff") format("woff");
-  }
-
-  /* Inter Bold */
-  @font-face {
-    font-family: 'Inter';
-    font-style:  normal;
-    font-weight: 700;
-    font-display: fallback;
-    src: url("/fonts/Inter-Bold.woff2") format("woff2"),
-        url("/fonts/Inter-Bold.woff") format("woff");
-  }
-
   html {
     font-size: 81.25%;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
@@ -168,13 +128,15 @@ export const GlobalStyle = React.memo(createGlobalStyle`
       font-size: 100%;
       font-weight: normal;
       scrollbar-width: thin;
-      scrollbar-color: #E1DDEC transparent;
+      scrollbar-color: #E1DDEC var(--color-light);
+      
       &::-webkit-scrollbar {
-        width: 8px;
+        width: 9px;
       }
       ::-webkit-scrollbar-track {
         background: transparent;
         border-left: 1px solid var(--color-light-dark);
+        border-right: 1px solid var(--color-light-dark);
       }
       &::-webkit-scrollbar-thumb {
         background-color: #E1DDEC;

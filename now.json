@@ -28,45 +28,60 @@
     { "source": "/jamstack-conf  ", "destination": "/teams" },
     { "source": "/smashing-conf", "destination": "/teams" },
     { "source": "/docs/concepts/sidebar", "destination": "/docs/cms" },
-    { "source": "/docs/concepts/forms", "destination": "/docs/forms" },
-    { "source": "/docs/concepts/fields", "destination": "/docs/fields" },
+    { "source": "/docs/concepts/forms", "destination": "/docs/plugins/forms" },
+    { "source": "/docs/forms", "destination": "/docs/plugins/forms" },
+    {
+      "source": "/docs/concepts/fields",
+      "destination": "/docs/plugins/fields"
+    },
+    { "source": "/docs/cms/apis", "destination": "/docs/apis" },
+    { "source": "/docs/cms/ui", "destination": "/docs/ui" },
+    { "source": "/docs/cms/alerts", "destination": "/docs/ui/alerts" },
+    { "source": "/docs/cms/styles", "destination": "/docs/ui/styles" },
+    { "source": "/docs/cms/events", "destination": "/docs/events" },
+    { "source": "/docs/cms/plugins", "destination": "/docs/plugins" },
+    { "source": "/docs/fields", "destination": "/docs/plugins/fields" },
     { "source": "/docs/concepts/backends", "destination": "/docs/cms#apis" },
     { "source": "/docs/concepts/plugins", "destination": "/docs/cms#plugins" },
     {
+      "source": "/docs/inline-editing",
+      "destination": "/docs/ui/inline-editing"
+    },
+    {
       "source": "/docs/nextjs/inline-editing",
-      "destination": "/docs/inline-editing"
+      "destination": "/docs/ui/inline-editing"
     },
     {
       "source": "/docs/gatsby/inline-editing",
-      "destination": "/docs/inline-editing"
+      "destination": "/docs/ui/inline-editing"
     },
     {
       "source": "/docs/inline-blocks",
-      "destination": "/docs/inline-editing/inline-blocks"
+      "destination": "/docs/ui/inline-editing/inline-blocks"
     },
     {
       "source": "/docs/inline-blocks/block-text",
-      "destination": "/docs/inline-editing/inline-text"
+      "destination": "/docs/ui/inline-editing/inline-text"
     },
     {
       "source": "/docs/inline-blocks/block-textarea",
-      "destination": "/docs/inline-editing/inline-textarea"
+      "destination": "/docs/ui/inline-editing/inline-textarea"
     },
     {
       "source": "/docs/inline-blocks/block-image",
-      "destination": "/docs/inline-editing/inline-image"
+      "destination": "/docs/ui/inline-editing/inline-image"
     },
     {
       "source": "/docs/nextjs/bootstrapping",
-      "destination": "/guides/nextjs/git-based/getting-started"
+      "destination": "/guides/nextjs/git/getting-started"
     },
     {
       "source": "/docs/nextjs/adding-backends",
-      "destination": "/guides/nextjs/git-based/adding-backend"
+      "destination": "/guides/nextjs/git/adding-backend"
     },
     {
       "source": "/docs/nextjs/creating-forms",
-      "destination": "/guides/nextjs/git-based/creating-git-forms"
+      "destination": "/guides/nextjs/git/creating-git-forms"
     },
     {
       "source": "/docs/nextjs/markdown",
@@ -75,6 +90,38 @@
     {
       "source": "/teams",
       "destination": "/enterprise"
+    },
+    {
+      "source": "/docs/gatsby/quickstart",
+      "destination": "/guides/gatsby/adding-tina/project-setup"
+    },
+    {
+      "source": "/docs/gatsby/manual-setup",
+      "destination": "/guides/gatsby/adding-tina/project-setup"
+    },
+    {
+      "source": "/docs/gatsby/markdown",
+      "destination": "/guides/gatsby/git/installation"
+    },
+    {
+      "source": "/docs/gatsby/json",
+      "destination": "/guides/gatsby/git/create-json-form"
+    },
+    {
+      "source": "/docs/git",
+      "destination": "/guides/git/create-new-files"
+    },
+    {
+      "source": "/docs/gatsby/configure-git-plugin",
+      "destination": "/guides/gatsby/git/installation"
+    },
+    {
+      "source": "/docs/gatsby/custom-field",
+      "destination": "/docs/plugins#adding-plugins-in-gatsby"
+    },
+    {
+      "source": "/docs/nextjs/overview",
+      "destination": "/docs/integrations/nextjs"
     }
   ]
 }

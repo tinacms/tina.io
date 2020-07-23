@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { useCMS } from 'tinacms'
-import { Button } from '../components/ui'
+import { Button } from 'components/ui'
 
 const DemoButtonWrapper = styled.div`
   display: block;

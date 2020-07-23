@@ -70,7 +70,7 @@ module.exports = {
 }
 ```
 
-_Tyra_ uses Markdown for content, but TinaCMS also supports JSON files via [gatsby-tinacms-json](https://tinacms.org/docs/gatsby/json/). I find that JSON is great for page content and [blocks](https://tinacms.org/blog/what-are-blocks/). But for simple blog posts, Markdown works great.
+_Tyra_ uses Markdown for content, but TinaCMS also supports JSON files via [gatsby-tinacms-json](/guides/gatsby/git/create-json-form). I find that JSON is great for page content and [blocks](https://tinacms.org/blog/what-are-blocks/). But for simple blog posts, Markdown works great.
 
 Since the content _Tyra_ is Git-based, all edits need to be committed back into the repository. `gatsby-tinacms-git` tracks content changes and handles the creation of new commits with content. By default, changes are pushed to a remote branch, but the plugin is configurable.
 
@@ -219,7 +219,7 @@ Right now our sidebar forms for editing are 'okay,' but there's room for improve
 
 There are also fields _Tyra_ uses that should be "private" and not available to edit in the sidebar. For example, the `type` frontmatter value to identify posts.
 
-We can configure the sidebar form by passing in a `FormConfig` object to Tina. [Customizing forms with Tina](https://tinacms.org/docs/gatsby/markdown/#customizing-remark-forms) is straightforward. We need to define a JavaScript object to declare the desired form fields for Tina to render.
+We can configure the sidebar form by passing in a `FormConfig` object to Tina. [Customizing forms with Tina](/guides/gatsby/git/customize-form) is straightforward. We need to define a JavaScript object to declare the desired form fields for Tina to render.
 
 Back in `src/blog/post.js`, we can add this configuration object:
 
@@ -296,7 +296,7 @@ const FormConfig = {
 export default inlineRemarkForm(Post, FormConfig)
 ```
 
-In the `FormConfig`, we're using `text`, `markdown`, `date`, and even `image` fields to make the post authoring experience nicer. Tina has [a bunch](https://tinacms.org/docs/fields/) of built-in fields, and even allows you to [add your own](https://tinacms.org/docs/fields/custom-fields).
+In the `FormConfig`, we're using `text`, `markdown`, `date`, and even `image` fields to make the post authoring experience nicer. Tina has [a bunch](https://tinacms.org/docs/plugins/fields/) of built-in fields, and even allows you to [add your own](https://tinacms.org/docs/plugins/fields/custom-fields).
 
 The `image` field can be tricky to configure. For the _post image_, we need Tina to handle image uploads, as well as update previews. To configure uploads, you declare the upload directory and parse out a preview thumbnail from the uploaded image.
 
@@ -486,7 +486,7 @@ To finish of our editing experience, all we really need is the ability to add ne
 
 ## Authoring New Posts
 
-Tina has a type of plugin to create content, aptly named [content creator plugins](https://tinacms.org/docs/gatsby/creating-new-files#1-add-content-creator-plugin). Content creators are like factories that create file objects, except they are "plugged in" to your React site.
+Tina has a type of plugin to create content, aptly named [content creator plugins](/docs/plugins/content-creators). Content creators are like factories that create file objects, except they are "plugged in" to your React site.
 
 Let's make a _content creator plugin_ to author new blog posts. We'll add it in a new directory called "plugins" — `src/blog/plugins/postCreator.js`:
 
@@ -616,9 +616,8 @@ That's all it takes to create a basic blog CMS with Tina! 🎉 We've allowed con
 
 This only scratches the surface of what you can build using Tina. If you want to go further, there's several more advanced features you can use to expand your Gatsby site!
 
-- Creating [custom form fields](https://tinacms.org/docs/fields/custom-fields) for new data types,
-- Using [global forms](https://tinacms.org/docs/concepts/forms#local--global-forms) to allow custom site themes,
-- Or adding [block-level editing](https://tinacms.org/docs/fields/blocks) to allow for completely custom pages!
+- Creating [custom form fields](https://tinacms.org/docs/plugins/fields/custom-fields) for new data types,
+- Or adding [block-level editing](https://tinacms.org/docs/plugins/fields/blocks) to allow for completely custom pages!
 
 The Tina project is also [active on Github](https://github.com/tinacms/tinacms), with a [guide to contribution](https://tinacms.org/docs/contributing/guidelines) if you want to hack on the code!
 

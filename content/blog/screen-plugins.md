@@ -12,9 +12,9 @@ Plugins are a powerful concept. In general plugins are used to extend core funct
 
 If you’ve worked with Tina, you may have already used a few plugins without realizing it. The most common plugin used in `tinacms` is the `FormPlugin` which adds forms for editing content to the [sidebar](https://tinacms.org/docs/concepts/sidebar).
 
-Another plugin worth noting is the [`ContentCreatorPlugin`](https://tinacms.org/docs/gatsby/creating-new-files/#1-add-content-creator-plugin) and it's subclasses `RemarkCreatorPlugin` and `JsonCreatorPlugin`. This plugin provides the foundation for creating new data source files.
+Another plugin worth noting is the [`ContentCreatorPlugin`](/docs/plugins/content-creators). This plugin provides the foundation for creating new data source files.
 
-One of the more recent additions has been the [`GlobalFormPlugin`](https://tinacms.org/docs/concepts/forms#local--global-forms), which allows you to register _global forms_ to handle broad site data. When accessing a global form, **editors interact with a different ‘screen’.** This experience is made possible because the `GlobalFormPlugin` is subclass of todays topic: the `ScreenPlugin`.
+One of the more recent additions has been the [`ScreenPlugin`](/docs/plugins/screens), which is the topic of this blog. Screens allow you to render modal UI and handle various content editing needs. For example, one might use a _Screen Plugin_ to register a form to edit 'global site data'.
 
 ## What's that?
 

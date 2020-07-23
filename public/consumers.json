@@ -185,7 +185,7 @@
       "details": "Explains form options interface"
     }
   ],
-  "/content/docs/gatsby/manual-setup.md": [
+  "/content/guides/gatsby/adding-tina/project-setup.md": [
     {
       "file": "/packages/gatsby-plugin-tinacms/gatsby-browser.tsx",
       "details": "Depends on Tina component wrapping the root element"
@@ -302,7 +302,7 @@
       "details": "Shows the Theme interface"
     }
   ],
-  "/content/docs/forms.md": [
+  "/content/docs/plugins/forms.md": [
     {
       "file": "/packages/@tinacms/core/src/cms-forms/form.ts",
       "details": "Shows Form Options interface"
@@ -322,13 +322,13 @@
       "details": "Shows blocks interface"
     }
   ],
-  "/content/docs/fields/group-list.md": [
+  "/content/docs/plugins/fields/group-list.md": [
     {
       "file": "/packages/tinacms/src/plugins/fields/GroupListFieldPlugin.tsx",
       "details": "Shows group list interface"
     }
   ],
-  "/content/docs/fields/group.md": [
+  "/content/docs/plugins/fields/group.md": [
     {
       "file": "/packages/tinacms/src/plugins/fields/GroupFieldPlugin.tsx",
       "details": "Shows group field interface and how to use"

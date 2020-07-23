@@ -1,6 +1,6 @@
 ---
 title: The CMS
-next: /docs/cms/plugins
+next: /docs/ui
 consumes:
   - file: /packages/tinacms/src/tina-cms.ts
     description: Creates TinaCMS instance and describes config
@@ -14,7 +14,7 @@ consumes:
     description: Shows Toolbar state interface
 ---
 
-The CMS object in Tina is a container for attaching and accessing Plugins and APIs. On its own, the CMS does very little; however, since it's the central integration point for everything that Tina does, it's extremely important!
+The CMS object in Tina is a container for attaching and accessing [Plugins](/docs/plugins), [APIs](/docs/apis), and the [Event Bus](/docs/events). On its own, the CMS does very little; however, since it's the central integration point for everything that Tina does, it's extremely important!
 
 ## Setting up the CMS Object
 
@@ -52,7 +52,7 @@ export default function App() {
 }
 ```
 
-> Learn more about [conditionally loading Tina Styles](/docs/cms/styles#dynamically-loading-tina-styles).
+> Learn more about [conditionally loading Tina Styles](/docs/ui/styles#dynamically-loading-tina-styles).
 
 Alternatively, you can use the `withTina` higher-order component to wrap your site with the `<TinaProvider>` component. `withTina` will automatically instantiate the CMS object.
 
@@ -112,7 +112,7 @@ export default function ExitButton() {
 
 ## CMS Configuration
 
-When instantiating the `TinaCMS` object, you can pass in a configuration object. This allows you to configure some options for the sidebar, and also allows you to configure [Plugins](/docs/cms/plugins) and [APIs](/docs/cms/apis) declaratively.
+When instantiating the `TinaCMS` object, you can pass in a configuration object. This allows you to configure some options for the sidebar, toolbar, and also allows you to configure [Plugins](/docs/plugins) and [APIs](/docs/apis) declaratively.
 
 ```typescript
 interface TinaCMSConfig {
@@ -145,20 +145,22 @@ interface ToolbarConfig {
 
 ---
 
-| key                     | usage                                                                                                   |
-| ----------------------- | ------------------------------------------------------------------------------------------------------- |
-| **enabled**             | Controls whether the CMS is enabled or disabled. _Defaults to true_                                     |
-| **plugins**             | Array of plugins to be added to the CMS object.                                                         |
-| **apis**                | Object containing APIs to be registered to the CMS                                                      |
-| **sidebar**             | Enables and configures behavior of the sidebar                                                          |
-| **sidebar.position**    | 'displace': sidebar pushes content to the side when open; 'overlay': sidebar overlaps content when open |
-| **sidebar.placeholder** | Provides a placeholder component to render in the sidebar when there are no registered forms            |
-| **sidebar.buttons**     | Enables and configures the text on 'Save' and 'Reset' buttons                                           |
-| **toolbar**             | Configures behavior of the toolbar                                                                      |
-| **toolbar.buttons**     | Configures the text on 'Save' and 'Reset' buttons                                                       |
-| **media.store**         | Configures the [media store](/docs/media).                                                              |
+| key                     | usage                                                                                                                                   |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| **enabled**             | Controls whether the CMS is enabled or disabled. _Defaults to true_                                                                     |
+| **plugins**             | Array of plugins to be added to the CMS object.                                                                                         |
+| **apis**                | Object containing APIs to be registered to the CMS                                                                                      |
+| **sidebar**             | Enables and configures behavior of the sidebar                                                                                          |
+| **sidebar.position**    | 'displace' _(Default)_: sidebar pushes content to the side when open; 'overlay': sidebar overlaps content when open                     |
+| **sidebar.placeholder** | Provides a placeholder component to render in the sidebar when there are no registered forms                                            |
+| **sidebar.buttons**     | _Deprecated — [Configure on the form instead](/docs/forms#customizing-form-buttons)_: Configures the text on 'Save' and 'Reset' buttons |
+| **toolbar**             | Configures behavior of the toolbar                                                                                                      |
+| **toolbar.buttons**     | _Deprecated — [Configure on the form instead](/docs/forms#customizing-form-buttons)_: Configures the text on 'Save' and 'Reset' buttons |
+| **media.store**         | Configures the [media store](/docs/media).                                                                                              |
 
 ---
+
+> Learn more about [sidebar & toolbar options](/docs/cms/ui).
 
 ```javascript
 import { TinaCMS } from 'tinacms'
@@ -183,3 +185,7 @@ const cms = new TinaCMS({
   toolbar: false,
 })
 ```
+
+### Customize 'Save' & 'Reset' button text
+
+It is now recommended to configure button text on the form intead of in the CMS object. Please read further on [configuring custom buttons](/docs/forms#customizing-form-buttons) in the form documentation.

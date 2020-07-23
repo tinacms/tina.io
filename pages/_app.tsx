@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import App from 'next/app'
 import Head from 'next/head'
 import { TinaCMS, TinaProvider, ModalProvider } from 'tinacms'
@@ -6,9 +6,10 @@ import { DefaultSeo } from 'next-seo'
 import data from '../content/siteConfig.json'
 import TagManager from 'react-gtm-module'
 import { GlobalStyles, FontLoader } from '@tinacms/styles'
-import { BrowserStorageApi } from '../utils/plugins/browser-storage-api/BrowserStorageApi'
+import { BrowserStorageApi } from 'utils/plugins/browser-storage-api/BrowserStorageApi'
 import { GithubClient, TinacmsGithubProvider } from 'react-tinacms-github'
-import { GlobalStyle } from '../components/styles/GlobalStyle'
+import { GlobalStyle } from 'components/styles/GlobalStyle'
+import 'components/styles/fontImports.css'
 
 const MainLayout = ({ Component, pageProps }) => {
   const tinaConfig = {
@@ -29,6 +30,12 @@ const MainLayout = ({ Component, pageProps }) => {
   }
 
   const cms = React.useMemo(() => new TinaCMS(tinaConfig), [])
+
+  useEffect(() => {
+    import('react-tinacms-date').then(({ DateFieldPlugin }) => {
+      cms.plugins.add(DateFieldPlugin)
+    })
+  }, [pageProps.preview])
 
   const enterEditMode = async () => {
     const token = localStorage.getItem('tinacms-github-token') || null

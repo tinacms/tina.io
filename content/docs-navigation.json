@@ -1,0 +1,38 @@
+[
+  {
+    "id": "home",
+    "label": "Home",
+    "href": "/",
+    "external": false
+  },
+  {
+    "id": "docs",
+    "label": "Docs",
+    "href": "/docs",
+    "external": false
+  },
+  {
+    "id": "guides",
+    "label": "Guides",
+    "href": "/guides",
+    "external": false
+  },
+  {
+    "id": "blog",
+    "label": "Blog",
+    "href": "/blog",
+    "external": false
+  },
+  {
+    "id": "community",
+    "label": "Community",
+    "href": "/community",
+    "external": false
+  },
+  {
+    "id": "enterprise",
+    "label": "Enterprise",
+    "href": "/enterprise",
+    "external": false
+  }
+]

@@ -4,18 +4,18 @@ import { BlockTemplate } from 'tinacms'
 import { NextSeo } from 'next-seo'
 import { GetStaticProps } from 'next'
 
-import { Layout, Wrapper, RichTextWrapper } from '../components/layout'
-import { ArrowList } from '../components/ui'
-import { TeamsForm } from '../components/forms'
+import { Layout, Wrapper, RichTextWrapper } from 'components/layout'
+import { ArrowList } from 'components/ui'
+import { TeamsForm } from 'components/forms'
 import {
   InlineTextareaField,
   InlineBlocks,
   BlockTextarea,
   BlocksControls,
 } from 'react-tinacms-inline'
-import { OpenAuthoringSiteForm } from '../components/layout/OpenAuthoringSiteForm'
+import { OpenAuthoringSiteForm } from 'components/layout/OpenAuthoringSiteForm'
 import { useGithubJsonForm } from 'react-tinacms-github'
-import { getJsonPreviewProps } from '../utils/getJsonPreviewProps'
+import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
 
 const formOptions = {
   label: 'Teams',

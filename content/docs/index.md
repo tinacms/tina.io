@@ -1,52 +1,57 @@
 ---
-title: Tina is Not a CMS
+title: TinaCMS Documentation
 id: introduction
-prev: null
-next: /docs/getting-started/how-tina-works
 ---
 
-Tina is a **lightweight but powerful toolkit** for creating a content editing interface with JavaScript components. Tina surfaces superpowers for developers to create an intuitive UI for real-time content editing, built directly into their website.
+Tina is a **toolkit for building content management systems.** By creating a custom CMS with Tina instead of opting for a conventional, "turn-key" solution, developers that use Tina have a lot more control over the editing experience of their users.
 
-## The Next Generation of Content Management
+## First Steps
 
-![tina-gif](https://res.cloudinary.com/forestry-demo/video/upload/du_16,w_700,e_loop/v1571159974/tina-hero-demo.gif)
+Are you new to using Tina to build content management systems? Start with these resources to build your understanding of Tina and what's possible.
 
-Tina is optimized for next-gen JAMstack tools. It is written in JavaScript and easily adapted to multiple different frameworks.
+- Visit the [Getting Started Guide](/docs/getting-started/introduction 'Getting Started') to learn the basics of using Tina to build superb content editing experiences.
+- Click **Edit this Site** at the bottom of the page to fork the [tinacms.org repository](https://github.com/tinacms/tinacms.org 'Tinacms.org Repository'), make changes, and then open a Pull Request!
+- Checkout [this video of a page builder](https://youtu.be/4qGz0cP_DSA 'Inline Editing Demo Video') created with TinaCMS.
 
-Tina currently supports React-based frameworks, including:
+## Getting Help
 
-- Create-React-App
-- Gatsby
-- NextJS
+Have questions on how to use Tina to build your CMS?
 
-## Get Started
+- Visit the [Tina Forum](https://community.tinacms.org 'Tina Forum') to engage with the core team and community.
+- Report bugs using [GitHub Issues](https://github.com/tinacms/tinacms/issues 'Tina Github Issues')
+- FAQ _(Coming Soon)_
 
-To use Tina, you should have a good working knowledge of your JavaScript framework & JAMstack tools of choice.
+## How This Site Is Organized
 
-If you want to get started with some code right away, checkout the [Gatsby Quickstart](/docs/gatsby/quickstart) or [Next.js Overview](/docs/nextjs/overview).
+Learning how to build a CMS is no small feat! We've compiled a variety of resources to help you along.
 
-If you want to dive deep, start by learning more about [how Tina works](/docs/getting-started/how-tina-works) and get familiar with some core concepts.
+- Docs describe the main Tina concepts and how to use them to build your CMS.
+- [Guides](/guides 'Tina Guides') take you through the steps involved in addressing key problems and specific use-cases.
+- The [Blog](/blog 'Tina Blog') is where release notes, tips, and other announcements are posted.
+- Visit the Packages Lookup _(Coming Soon)_ to find more tools and make building your CMS even easier.
 
-## For Gatsby
+## Constructing The User Interface
 
-- [Quickstart](/docs/gatsby/quickstart) with a Tina Starter to hit the ground running.
-- [Manual Setup](/docs/gatsby/manual-setup) for adding Tina to an existing Gatsby site.
+Tina lets you choose the user interface that best fits your workflow. You can use one of its default interfaces or construct your own. You can even build editing capabilities directly into your page!
 
-**Gatsby Starters**
-- [Gatsby Blog Starter](https://github.com/tinacms/gatsby-starter-tinacms) with Tina — The classic Gatsby starter, but Tinified.
-- [Tina Grande](https://github.com/tinacms/tina-starter-grande) — A more advanced starter to showcase the power of Tina.
-- [Tina Brevifolia](https://github.com/kendallstrautman/brevifolia-gatsby-tinacms) — A markdown-based blog with minimalist design and Tina for editing.
+- Learn about the [Toolbar](/docs/ui#toolbar-configuration 'Tina Toolbar') and [Sidebar](/docs/ui#sidebar-configuration 'Tina Sidebar') UI components.
+- Take control of the appearance of your CMS using [Custom Styling](/docs/ui/styles 'Styles')
+- Add features to your CMS using [Screen Plugins](/docs/plugins/screen-plugins 'Screen Plugins') and [Toolbar Widgets](/docs/plugins/toolbar-widgets).
+- Wander off the beaten trail and create a totally custom UI _(Coming Soon)_
 
-Want to add your starter? Make a [PR](/docs/contributing/guidelines) to add your Tina site to this list.
+## Tools for Managing Content
 
-## For Next.js
+Tina gives you the tools you need to manage content from the data source of your choosing. These docs will show you how to craft your ideal content editing experience.
 
-- [Next.js + Tina Overview](/docs/nextjs/overview) — Get started with the documentation
-- Read an in-depth tutorial on [Using TinaCMS with Next.js](/blog/using-tinacms-with-nextjs/)
-- Checkout this sample [Next.js Markdown Blog](https://github.com/kendallstrautman/brevifolia-next-tinacms) with Tina configured for reference.
+- **Editing Content:** [Creating Forms](/docs/plugins/forms), [Fields](/docs/plugins/fields),[ Custom Fields](/docs/plugins/fields/custom-fields), [Inline Editing](/docs/ui/inline-editing), [Working with Inline Blocks](/guides//general/inline-blocks/overview)
+- **Creating Content:** Using [Content Creators](/docs/plugins/content-creators)
+- **Deleting Content:** Using Form Actions. _(Coming Soon)_
+- **Media Management:** [Media Stores](/docs/media 'Tina Media Store'), [Image Fields](/docs/plugins/fields/image 'Image Field Plugin'), [Inline Images](/docs/ui/inline-editing/inline-image 'Inline Images')
+- **Custom Fields:** [How to Make a Custom Field Component](/blog/custom-field-components)
 
-## Get Involved
+## Integrating with React Frameworks
 
-Want to help out with Tina's development? Please visit our [Contributing](/docs/contributing/guidelines) section in our docs to learn more.
+Tina is designed to work with just about any React framework. Once you're comfortable with the basics of TinaCMS, these guides will help you learn the specifics of building a CMS with Next.js or Gatsby.
 
-Looking for help with Tina, or want to stay on top of the latest developments? Checkout the [Tina Community Forum](https://community.tinacms.org/) to get answers, help, and llama-humor.
+- [Next.js](/docs/integrations/nextjs)
+- [Gatsby](/docs/integrations/gatsby)

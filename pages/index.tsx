@@ -10,22 +10,22 @@ import {
   BlockTextarea,
   BlocksControls,
 } from 'react-tinacms-inline'
-import { EditLink } from '../components/layout/EditLink'
+import { EditLink } from 'components/layout/EditLink'
 import { DefaultSeo } from 'next-seo'
 import { useCMS, BlockTemplate } from 'tinacms'
-import { DynamicLink } from '../components/ui/DynamicLink'
+import { DynamicLink } from 'components/ui/DynamicLink'
 import {
   Layout,
   Hero,
   Wrapper,
   Section,
   RichTextWrapper,
-} from '../components/layout'
+} from 'components/layout'
 
-import { Button, Video, ArrowList } from '../components/ui'
-import { OpenAuthoringSiteForm } from '../components/layout/OpenAuthoringSiteForm'
+import { Button, Video, ArrowList } from 'components/ui'
+import { OpenAuthoringSiteForm } from 'components/layout/OpenAuthoringSiteForm'
 import { useGithubJsonForm } from 'react-tinacms-github'
-import { getJsonPreviewProps } from '../utils/getJsonPreviewProps'
+import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
 
 const HomePage = (props: any) => {
   const cms = useCMS()
@@ -131,10 +131,7 @@ const HomePage = (props: any) => {
                 </h2>
                 <CtaBar>
                   <EditLink color="primary" />
-                  <DynamicLink
-                    href={'/docs/getting-started/introduction/'}
-                    passHref
-                  >
+                  <DynamicLink href="/docs/" passHref>
                     <Button as="a">Get Started</Button>
                   </DynamicLink>
                 </CtaBar>
@@ -162,10 +159,7 @@ const HomePage = (props: any) => {
                     blocks={SETUP_POINT_BLOCKS}
                   />
                 </ArrowList>
-                <DynamicLink
-                  href={'/docs/getting-started/introduction/'}
-                  passHref
-                >
+                <DynamicLink href="/docs" passHref>
                   <Button as="a" color="primary">
                     Get Started
                   </Button>

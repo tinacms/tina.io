@@ -6,7 +6,7 @@ import CodeStyle from '../styles/Code'
 import LinkSvg from '../../public/svg/link.svg'
 import styled from 'styled-components'
 
-import * as shortcodeRenderers from '../../utils/shortcodes'
+import * as shortcodeRenderers from 'utils/shortcodes'
 
 var GithubSlugger = require('github-slugger')
 const shortcodes = require('remark-shortcodes')

@@ -1,36 +1,46 @@
 import * as React from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { readFile } from '../../../../utils/readFile'
-import { getMarkdownPreviewProps } from '../../../../utils/getMarkdownFile'
+import { readFile } from 'utils/readFile'
+import { getMarkdownPreviewProps } from 'utils/getMarkdownFile'
 import {
   DocsLayout,
   DocsTextWrapper,
   Wrapper,
   MarkdownContent,
   Footer,
-} from '../../../../components/layout'
+} from 'components/layout'
 import { NextSeo } from 'next-seo'
-import { DocsNav, DocsPagination, Overlay } from '../../../../components/ui'
+import { DocsNav, DocsPagination, Overlay, DocsHeaderNav } from 'components/ui'
 import {
   DocsNavToggle,
   DocsMobileTinaIcon,
   DocsContent,
-  DocsHeaderNav,
+  DocsGrid,
+  DocGridHeader,
+  DocsPageTitle,
+  DocGridToc,
+  DocGridContent,
 } from '../../../docs/[...slug]'
 import { useRouter } from 'next/router'
-import { getGuideNavProps } from '../../../../utils/guide_helpers'
+import { getGuideNavProps } from 'utils/guide_helpers'
 import { useMemo } from 'react'
-import { OpenAuthoringSiteForm } from '../../../../components/layout/OpenAuthoringSiteForm'
+import { OpenAuthoringSiteForm } from 'components/layout/OpenAuthoringSiteForm'
 import { usePlugin, useFormScreenPlugin } from 'tinacms'
 import { InlineTextareaField } from 'react-tinacms-inline'
 import { useGithubMarkdownForm, useGithubJsonForm } from 'react-tinacms-github'
-import { InlineWysiwyg } from '../../../../components/inline-wysiwyg'
-import { getJsonPreviewProps } from '../../../../utils/getJsonPreviewProps'
-import { MarkdownCreatorPlugin } from '../../../../utils/plugins'
+import { InlineWysiwyg } from 'components/inline-wysiwyg'
+import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
+import { MarkdownCreatorPlugin } from 'utils/plugins'
 import { fileToUrl } from '../../../../utils'
+import Toc from '../../../../components/toc'
 
 export default function GuideTemplate(props) {
   const [open, setOpen] = React.useState(false)
+  const isBrowser = typeof window !== `undefined`
+  const contentRef = React.useRef<HTMLDivElement>(null)
+  const tocItems = props.tocItems
+  console.log(tocItems)
+  const [activeIds, setActiveIds] = React.useState([])
 
   const router = useRouter()
   const currentPath = router.asPath
@@ -70,7 +80,7 @@ export default function GuideTemplate(props) {
             { name: 'slug', label: 'Slug', component: 'text' },
           ],
           filename({ slug }) {
-            return `content/guides/nextjs/github-open-authoring/${slug}.md`
+            return `content/guides/nextjs/github/${slug}.md`
           },
           frontmatter({ title }) {
             return { title }
@@ -99,6 +109,81 @@ export default function GuideTemplate(props) {
       []
     )
   )
+
+  React.useEffect(() => {
+    if (!isBrowser || !contentRef.current) {
+      return
+    }
+
+    let lastScrollPosition = 0
+    let tick = false
+    let throttleInterval = 100
+    let headings = []
+    let baseOffset = 16
+    let htmlElements = contentRef.current.querySelectorAll(
+      'h1, h2, h3, h4, h5, h6'
+    )
+
+    htmlElements.forEach(function(heading: any) {
+      headings.push({
+        id: heading.id,
+        offset: heading.offsetTop,
+        level: heading.tagName,
+      })
+    })
+
+    const throttledScroll = () => {
+      let scrollPos = window.scrollY
+      let newActiveIds = []
+      let activeHeadingCandidates = headings.filter(heading => {
+        return heading.offset - scrollPos < baseOffset
+      })
+      let activeHeading =
+        activeHeadingCandidates.length > 0
+          ? activeHeadingCandidates.reduce((prev, current) =>
+              prev.offset > current.offset ? prev : current
+            )
+          : {}
+
+      newActiveIds.push(activeHeading.id)
+
+      if (activeHeading.level != 'H2') {
+        let activeHeadingParentCandidates =
+          activeHeadingCandidates.length > 0
+            ? activeHeadingCandidates.filter(heading => {
+                return heading.level == 'H2'
+              })
+            : []
+        let activeHeadingParent =
+          activeHeadingParentCandidates.length > 0
+            ? activeHeadingParentCandidates.reduce((prev, current) =>
+                prev.offset > current.offset ? prev : current
+              )
+            : {}
+
+        if (activeHeadingParent.id) {
+          newActiveIds.push(activeHeadingParent.id)
+        }
+      }
+
+      setActiveIds(newActiveIds)
+    }
+
+    function onScroll() {
+      if (!tick) {
+        setTimeout(function() {
+          throttledScroll()
+          tick = false
+        }, throttleInterval)
+      }
+      tick = true
+    }
+
+    window.addEventListener('scroll', onScroll)
+
+    return () => window.removeEventListener('scroll', throttledScroll)
+  }, [contentRef])
+
   usePlugin(stepForm)
   useFormScreenPlugin(guideForm)
 
@@ -135,21 +220,28 @@ export default function GuideTemplate(props) {
           }}
         />
         <DocsNavToggle open={open} onClick={() => setOpen(!open)} />
-        <DocsMobileTinaIcon />
+        <DocsMobileTinaIcon docs />
         <DocsNav open={open} navItems={guideNav} />
         <DocsContent>
           <DocsHeaderNav color={'light'} open={open} />
           <DocsTextWrapper>
-            <Wrapper narrow>
-              <h1>
-                <InlineTextareaField name="frontmatter.title" />
-              </h1>
-              <hr />
-              <InlineWysiwyg name="markdownBody">
-                <MarkdownContent escapeHtml={false} content={markdownBody} />
-              </InlineWysiwyg>
-              <DocsPagination prevPage={prev} nextPage={next} />
-            </Wrapper>
+            <DocsGrid>
+              <DocGridHeader>
+                <DocsPageTitle>
+                  <InlineTextareaField name="frontmatter.title" />
+                </DocsPageTitle>
+              </DocGridHeader>
+              <DocGridToc>
+                <Toc tocItems={tocItems} activeIds={activeIds} />
+              </DocGridToc>
+              <DocGridContent ref={contentRef}>
+                <hr />
+                <InlineWysiwyg name="markdownBody">
+                  <MarkdownContent escapeHtml={false} content={markdownBody} />
+                </InlineWysiwyg>
+                <DocsPagination prevPage={prev} nextPage={next} />
+              </DocGridContent>
+            </DocsGrid>
           </DocsTextWrapper>
           <Footer light editMode={props.editMode} />
         </DocsContent>
@@ -177,7 +269,7 @@ export const getStaticProps: GetStaticProps = async function(ctx) {
   )
 
   const {
-    props: { preview, file: markdownFile },
+    props: { preview, file: markdownFile, tocItems },
   } = await getMarkdownPreviewProps(
     `content/guides/${category}/${guide}/${step}.md`,
     ctx.preview,
@@ -191,6 +283,7 @@ export const getStaticProps: GetStaticProps = async function(ctx) {
       guideMeta,
       markdownFile,
       allGuides: await getGuideNavProps(),
+      tocItems,
     },
   }
 }

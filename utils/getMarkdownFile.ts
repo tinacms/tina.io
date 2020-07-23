@@ -3,7 +3,7 @@ import matter from 'gray-matter'
 import { readFile } from './readFile'
 import { formatExcerpt } from '.'
 import { getGithubPreviewProps, parseMarkdown } from 'next-tinacms-github'
-
+import toc from 'markdown-toc'
 export const readMarkdownFile = async (filePath: string) => {
   const doc = matter(await readFile(path.resolve(`${filePath}`)))
   return {
@@ -15,20 +15,6 @@ export const readMarkdownFile = async (filePath: string) => {
     },
   }
 }
-
-// TODO - consider maybe parse function async so we can format except here
-// export async function parseMarkdownWithExcerpt<Frontmatter>(
-//   content: string
-// ): Promise<MarkdownData<Frontmatter> & {excerpt: string}> {
-//   const { content: markdownBody, data: frontmatter } = matter(content)
-
-//   const excerpt = await formatExcerpt(markdownBody)
-//   return {
-//     markdownBody,
-//     frontmatter: frontmatter as Frontmatter,
-//     excerpt
-//   }
-// }
 
 export const getMarkdownPreviewProps = async (
   fileRelativePath: string,
@@ -47,7 +33,12 @@ export const getMarkdownPreviewProps = async (
         previewProps.props.file.data.markdownBody
       )
     }
-    return previewProps
+    return {
+      props: {
+        ...previewProps.props,
+        tocItems: toc(previewProps.props.file.data.markdownBody).content,
+      },
+    }
   }
   const file = await readMarkdownFile(fileRelativePath)
   return {
@@ -55,6 +46,7 @@ export const getMarkdownPreviewProps = async (
       error: null,
       preview: false,
       file,
+      tocItems: toc(file.data.markdownBody).content,
     },
   }
 }

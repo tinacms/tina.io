@@ -14,9 +14,11 @@ const DocsRichText = css`
   h4,
   h5,
   h6 {
-    margin: 2rem 0 1.5rem 0;
+    padding-top: 1rem;
+    margin: 1rem 0 1.5rem 0;
     &:first-child {
       margin-top: 0;
+      padding-top: 0;
     }
     &:last-child {
       margin-bottom: 0;
@@ -219,6 +221,21 @@ const DocsRichText = css`
     border-style: solid;
     border-color: rgb(237, 238, 238);
     border-image: initial;
+    max-width: 100%;
+    overflow-x: auto;
+    /* fix wrapping issues breaking layout */
+    white-space: pre-wrap !important;
+    white-space: -moz-pre-wrap !important;
+    white-space: -pre-wrap !important;
+    white-space: -o-pre-wrap !important;
+    word-wrap: break-word !important;
+    code {
+      white-space: pre-wrap !important;
+      white-space: -moz-pre-wrap !important;
+      white-space: -pre-wrap !important;
+      white-space: -o-pre-wrap !important;
+      word-wrap: break-word !important;
+    }
   }
 
   table {
