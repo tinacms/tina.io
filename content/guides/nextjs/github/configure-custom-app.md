@@ -26,7 +26,10 @@ export default class Site extends App {
      * 1. Create the TinaCMS instance
      */
     this.cms = new TinaCMS({
-      enabled: props.pageProps.preview,
+      enabled:
+        typeof props.pageProps.preview === 'undefined'
+          ? false
+          : props.pageProps.preview,
       apis: {
         /**
          * 2. Register the GithubClient
@@ -105,11 +108,15 @@ export const EditLink = ({ cms }: EditLinkProps) => {
 
 > _Note:_ For brevity, the example above configures many steps in a single file, but **a few components can be configured in different places**. For example you could put the `EditLink` in a Layout component, or set up the Github Provider only on certain pages.
 
-If you restart the dev server, you should see a **button in the top left-hand corner** that says, "Edit This Site". If you click it, you'll be _prompted to authenticate_ with GitHub.
+If you restart the dev server, you should see a **button in the top left-hand corner** that says, "Edit This Site". If you click it, you should be _prompted to authenticate_ with GitHub.
 
 If auth is successful, you should see a refresh and then it will look the same as before, just like this:
 
 ![create-next-app with tina edit button](/img/github-open-auth-cna/edit-this-site.png)
+
+It might look like nothing happened, but if all went well, a few cookies will have been created.
+
+### Check for Cookies
 
 To make sure it did work, check your cookies. You should now see these four cookies: **\_\_next_preview_data**, **\_\_prerender_bypass**, **working_repo_full_name**, and **github_access_token**.
 
