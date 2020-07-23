@@ -76,20 +76,15 @@ import { getPackageProps } from '../../utils/docs/getPackageProps'
 
   export const getStaticProps: GetStaticProps = async function(props) {
 
-    let { name: names } = props.params
+    const slug = props.params.id
 
 
-    console.log("names: " + names);
+    console.log("slugs: " + slug);
     
 
-    // @ts-ignore This should maybe always be a string[]?
-    const name = names.join('/')
-
     try {
-
-
-        return await getPackageProps(props, name)
-      //return await getDocProps(props, name)
+      return await getPackageProps(props, `${slug}`)
+      //return await getDocProps(props, slug)
     } catch (e) {
       if (e instanceof GithubError) {
         return {
@@ -114,7 +109,7 @@ import { getPackageProps } from '../../utils/docs/getPackageProps'
 
 
     return {
-      paths: file.packages.map( p => { params: { name: p.name } }),
+      paths: file.packages.map( p => { params: { slug: p.name } }),
       fallback: false
     }
   }
