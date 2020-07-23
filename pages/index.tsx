@@ -73,7 +73,7 @@ const HomePage = (props: any) => {
           frameBorder="0"
           scrolling="0"
           width="150px"
-          height="30px"
+          height="40px"
         ></iframe>
       </div>
       <div className={styles.heroWrapper}>
