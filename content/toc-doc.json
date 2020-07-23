@@ -282,6 +282,22 @@
     ]
   },
   {
+    "title": "Packages",
+    "id": "packages",
+    "items": [
+      {
+        "id": "/packages/next-tinacms-github",
+        "slug": "/packages/next-tinacms-github",
+        "title": "next-tinacms-github"
+      },
+      {
+        "id": "/packages/react-tinacms-github",
+        "slug": "/packages/react-tinacms-github",
+        "title": "react-tinacms-github"
+      }
+    ]
+  },
+  {
     "id": "guides",
     "title": "Guides",
     "slug": "/guides/",
