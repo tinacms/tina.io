@@ -73,7 +73,7 @@ const CreatePostPlugin = new RemarkCreatorPlugin({
 
 ## Providing Default Front Matter
 
-The `RemarkCreatorPlugin` & `JsonCreatorFunction` functions can be given a `frontmatter` function that returns the default front matter. Like the `filename` function, `frontmatter` receives the state of the form.
+`RemarkCreatorPlugin` can be given a `frontmatter` function that returns the default front matter. Like the `filename` function, `frontmatter` receives the state of the form.
 
 **Example: Title + Date**
 
@@ -97,7 +97,7 @@ const CreatePostPlugin = new RemarkCreatorPlugin({
 
 ## Providing a Default Body
 
-The `RemarkCreatorPlugin` can be given a `body` function that returns the default Markdown body. Like the previous two functions, `body` receives the state of the form.
+`RemarkCreatorPlugin` can also be given a `body` function that returns the default Markdown body. Like the previous two functions, `body` receives the state of the form.
 
 **Example: Title + Date**
 
@@ -113,5 +113,26 @@ const CreatePostPlugin = new RemarkCreatorPlugin({
     return `content/blog/${slug}/index.md`
   },
   body: form => `This is a new blog post. Please write some content.`,
+})
+```
+
+## Providing Default JSON Data
+
+Similarly to `RemarkCreatorPlugin`, the `JsonCreatorPlugin` accepts a `data` function that returns default data for a new file. The `data` function also receives the state of the form.
+
+**Example**
+
+```js
+const CreatePagePlugin = new JsonCreatorPlugin({
+  label: 'Create Page',
+  fields: [
+    { name: 'title', label: 'Title', component: 'text', required: true },
+  ],
+  filename: form => {
+    let slug = form.title.replace(/\s+/, '-').toLowerCase()
+
+    return `content/${slug}.json`
+  },
+  data: form => { "title": `${form.title}` },
 })
 ```
