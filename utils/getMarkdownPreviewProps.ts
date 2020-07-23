@@ -50,10 +50,8 @@ export async function getMarkdownFile(
 ): Promise<GithubFile<any>> {
   if (preview) {
     return getGithubFile<any>({
+      ...previewData,
       fileRelativePath,
-      repoFullName: previewData.working_repo_full_name,
-      branch: previewData.head_branch,
-      accessToken: previewData.github_access_token,
       parse: parseMarkdown,
     })
   }
