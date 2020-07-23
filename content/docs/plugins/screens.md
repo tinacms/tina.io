@@ -29,6 +29,14 @@ export interface ScreenComponentProps {
 }
 ```
 
+| Option      | Description                                                                             |
+| ----------- | --------------------------------------------------------------------------------------- |
+| `__type`    | The name of the plugin. Always `'screen'`.                                              |
+| `name`      | The text to be displayed in the form menu and at the top of the screen modal.           |
+| `Component` | An array of fields that populate a modal form. Field values can populate new file data. |
+| `Icon`      | A component to render in the form menu, next to the `name`.                             |
+| `layout`    | Determines the modal layout. Defaults to `popup`.                                       |
+
 ### Name, Icon, & Component
 
 The **`ScreenPlugin` has three main pieces**: a name, an icon, and a React Component. The name and icon can be used to list the screen plugin in a menu.
