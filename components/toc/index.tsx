@@ -133,7 +133,7 @@ const TocContent = styled.div<TocContentProps>`
   height: auto;
   max-height: 0;
   overflow: hidden;
-  transition: all 500ms ease-out;
+  transition: all 400ms ease-out;
 
   ${props =>
     props.activeIds &&
@@ -181,8 +181,8 @@ const TocContent = styled.div<TocContentProps>`
     /* font-family: var(--font-tuner); */
   }
 
-  /* Hide underline on top level links except on hover or focus */
-  > ul > li > a {
+  /* Hide underline except on hover or focus */
+  a {
     :not(:focus) {
       :not(:hover) {
         text-decoration-color: transparent !important;
