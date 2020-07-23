@@ -1,21 +1,26 @@
-import {
-    DocsLayout,
-    Wrapper,
-    DocsTextWrapper,
-    Footer,
-    MarkdownContent,
-  } from '../../components/layout'
-  import React, { useState } from 'react'
-  import { NextSeo } from 'next-seo'
-  import {
-    DocsNav,
-    DocsHeaderNav,
-    Overlay,
-  } from 'components/ui'
+import React, { useState } from 'react'
+import { NextSeo } from 'next-seo'
+import { InlineTextareaField } from 'react-tinacms-inline'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { GithubError } from 'next-tinacms-github'
 import path from 'path'
 import fs from 'fs'
+
+import {
+  DocsLayout,
+  Wrapper,
+  DocsTextWrapper,
+  Footer,
+  MarkdownContent,
+} from 'components/layout'
+import {
+  DocsNav,
+  DocsHeaderNav,
+  Overlay,
+  DocsPagination,
+  Toc,
+} from 'components/ui'
+import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { getPackageProps } from '../../utils/docs/getPackageProps'
 import { DocsNavToggle, DocsMobileTinaIcon, DocsContent } from 'pages/docs/[...slug]'
 

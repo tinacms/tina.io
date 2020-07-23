@@ -8,7 +8,7 @@ interface TocProps {
   activeIds: string[]
 }
 
-const Toc = ({ tocItems, activeIds }: TocProps) => {
+export const Toc = ({ tocItems, activeIds }: TocProps) => {
   const [isOpen, setIsOpen] = useState(false)
 
   if (!tocItems) {
@@ -41,7 +41,6 @@ const Toc = ({ tocItems, activeIds }: TocProps) => {
     </>
   )
 }
-export default Toc
 
 const TocDesktopHeader = styled.span`
   display: none;
