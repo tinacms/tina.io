@@ -9,7 +9,7 @@ Widgets can be added to the `cms.toolbar` to give users easy access to certain f
 ## Interface
 
 ```tsx
-interface ToolbarWidgetPlugin<Props = any> extends Plugin {
+interface ToolbarWidgetPlugin<Props = any> {
   __type: 'toolbar:widget'
   name: string
   weight: number
