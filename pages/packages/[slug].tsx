@@ -8,18 +8,16 @@ import {
   import React, { useState } from 'react'
   import { NextSeo } from 'next-seo'
   import {
-    DocsNavToggle,
-    DocsMobileTinaIcon,
-    DocsContent,
+    DocsNav,
     DocsHeaderNav,
-  } from '../docs/[...slug]'
-  import { DocsNav, Overlay } from '../../components/ui'
+    Overlay,
+  } from 'components/ui'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { getDocProps } from '../../utils/docs/getDocProps'
 import { GithubError } from 'next-tinacms-github'
 import path from 'path'
 import fs from 'fs'
 import { getPackageProps } from '../../utils/docs/getPackageProps'
+import { DocsNavToggle, DocsMobileTinaIcon, DocsContent } from 'pages/docs/[...slug]'
 
   
   export default function Packages(props) {
