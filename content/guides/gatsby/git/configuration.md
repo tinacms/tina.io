@@ -97,7 +97,7 @@ const CreatePostPlugin = new RemarkCreatorPlugin({
 
 ## Providing a Default Body
 
-The `RemarkCreatorPlugin` & `JsonCreatorPlugin` functions can be given a `body` function that returns the default Markdown body. Like the previous two functions, `body` receives the state of the form.
+The `RemarkCreatorPlugin` can be given a `body` function that returns the default Markdown body. Like the previous two functions, `body` receives the state of the form.
 
 **Example: Title + Date**
 
