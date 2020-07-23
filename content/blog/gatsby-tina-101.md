@@ -617,7 +617,6 @@ That's all it takes to create a basic blog CMS with Tina! 🎉 We've allowed con
 This only scratches the surface of what you can build using Tina. If you want to go further, there's several more advanced features you can use to expand your Gatsby site!
 
 - Creating [custom form fields](https://tinacms.org/docs/plugins/fields/custom-fields) for new data types,
-- Using [global forms](https://tinacms.org/docs/concepts/forms#local--global-forms) to allow custom site themes,
 - Or adding [block-level editing](https://tinacms.org/docs/plugins/fields/blocks) to allow for completely custom pages!
 
 The Tina project is also [active on Github](https://github.com/tinacms/tinacms), with a [guide to contribution](https://tinacms.org/docs/contributing/guidelines) if you want to hack on the code!
