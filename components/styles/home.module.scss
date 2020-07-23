@@ -82,14 +82,65 @@
   font-size: 3.5rem;
   color: var(--color-primary);
   margin: 0 0 2rem 0;
+}
 
-  /* Temp */
+@keyframes heroTitleSpin {
+  0% {
+    transform: translate3d(0, 0, 0) rotateX(-1080deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotateX(0deg);
+  }
+}
+
+@keyframes heroTitleSpinOut {
+  0% {
+    transform: translate3d(0, 0, 0) rotateX(0deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotateX(360deg);
+  }
+}
+
+.heroTitleFramework {
+  display: inline-block;
+  width: auto;
+  vertical-align: middle;
+  margin: 0 1.5rem;
+  perspective: 300px;
+  background-color: rgba(132, 181, 178, 0.15);
+  box-shadow: 0 0 30px 30px rgba(132, 181, 178, 0.15);
+
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 1.5rem;
+    background: white;
+    border: 1px solid white;
+    border-radius: 1rem;
+    transform-style: preserve-3d;
+    transform: translate3d(0, 0, 0) rotateX(0deg);
+    transition: transform var(--animation-length) var(--ease-out),
+      opacity var(--animation-length) var(--ease-out);
+    transform-style: preserve-3d;
+    // animation: heroTitleSpin 1 2s cubic-bezier(0, 0.435, 0, 1.135) both;
+  }
+
   svg {
     height: 1em;
     width: auto;
     display: inline-block;
     margin: 0;
   }
+}
+
+.heroTitleAnimate {
+  animation: heroTitleSpin 1 1500ms cubic-bezier(0, 0.435, 0.285, 1.135) both;
+}
+
+.heroTitleAnimateOut {
+  animation: heroTitleSpinOut 1 500ms cubic-bezier(0.905, 0.005, 1, 0.51) both;
 }
 
 .heroText {
@@ -104,7 +155,7 @@
   background: transparent;
   border: none;
   padding: 1rem 2rem;
-  color: var(--color-white);
+  color: white;
   z-index: 10;
   cursor: pointer;
   font-size: 1.25rem;

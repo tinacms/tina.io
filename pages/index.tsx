@@ -10,8 +10,10 @@ import {
   BootstrapLogo,
   ContentfulLogo,
   GatsbyLogo,
+  GatsbyFullLogo,
   NextLogo,
   ReactLogo,
+  ReactFullLogo,
   StrapiLogo,
 } from 'components/logos'
 
@@ -62,7 +64,8 @@ const HomePage = (props: any) => {
       <div className={styles.heroWrapper}>
         <div className={styles.heroContent}>
           <h1 className={styles.heroTitle}>
-            Bring Editing to Your <Framework activeStack={activeStack} />{' '}
+            Bring Editing to Your
+            <Framework activeStack={activeStack} />
             Project
           </h1>
           <p className={styles.heroText}>Made for developers and editors</p>
@@ -302,15 +305,38 @@ const HomePage = (props: any) => {
 }
 
 const Framework = ({ activeStack }) => {
-  const activeFramework =
-    activeStack.framework === 'gatsby' ? (
-      <GatsbyLogo />
-    ) : activeStack.framework === 'next' ? (
-      <NextLogo />
-    ) : activeStack.framework === 'react' ? (
-      <ReactLogo />
-    ) : null
-  return activeFramework
+  const [animationState, setAnimationState] = React.useState(null)
+  const [activeFramework, setActiveFramework] = React.useState(
+    activeStack.framework ? activeStack.framework : null
+  )
+
+  React.useEffect(() => {
+    let animateInTime = 1500
+    let animateOutTime = 500
+
+    if (activeStack.framework === activeFramework) return
+
+    setAnimationState(styles.heroTitleAnimateOut)
+
+    setTimeout(() => {
+      setActiveFramework(activeStack.framework)
+      setAnimationState(styles.heroTitleAnimate)
+    }, animateOutTime)
+  }, [activeStack])
+
+  return (
+    <span className={styles.heroTitleFramework}>
+      <span className={animationState}>
+        {activeFramework === 'gatsby' ? (
+          <GatsbyFullLogo />
+        ) : activeFramework === 'next' ? (
+          <NextLogo />
+        ) : activeFramework === 'react' ? (
+          <ReactFullLogo />
+        ) : null}
+      </span>
+    </span>
+  )
 }
 
 export default HomePage
