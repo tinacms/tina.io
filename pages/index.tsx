@@ -355,6 +355,39 @@ const HomePage = (props: any) => {
         <div className={styles.whySection}>
           <div className={styles.whySectionContainer}>
             <h2 className={styles.whySectionTitle}>Why Tina?</h2>
+            <div className={styles.whyGrid}>
+              <div className={styles.whyGridContent}>
+                <h3>Working with 3rd Party APIs</h3>
+                <p>
+                  Quisque nisl arcu, volutpat malesuada sapien in, ullamcorper
+                  pharetra leo. Quisque velit augue, sagittis non hendrerit eu,
+                  semper tincidunt ex. Ut dapibus, sapien sed congue dignissim,
+                  odio massa rutrum risus, vel lacinia arcu sapien non libero.{' '}
+                </p>
+              </div>
+              <div className={styles.whyGridCode}>test</div>
+              <div className={styles.whyGridCode}>test</div>
+              <div className={styles.whyGridContent}>
+                <h3>Wrap your components</h3>
+                <p>
+                  Quisque nisl arcu, volutpat malesuada sapien in, ullamcorper
+                  pharetra leo. Quisque velit augue, sagittis non hendrerit eu,
+                  semper tincidunt ex. Ut dapibus, sapien sed congue dignissim,
+                  odio massa rutrum risus, vel lacinia arcu sapien non libero.{' '}
+                </p>
+              </div>
+
+              <div className={styles.whyGridContent}>
+                <h3>Block Based Editing</h3>
+                <p>
+                  Quisque nisl arcu, volutpat malesuada sapien in, ullamcorper
+                  pharetra leo. Quisque velit augue, sagittis non hendrerit eu,
+                  semper tincidunt ex. Ut dapibus, sapien sed congue dignissim,
+                  odio massa rutrum risus, vel lacinia arcu sapien non libero.{' '}
+                </p>
+              </div>
+              <div className={styles.whyGridCode}>test</div>
+            </div>
           </div>
           <div className={styles.whySectionBackground}>
             <WhyTinaBackground />

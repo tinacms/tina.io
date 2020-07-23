@@ -600,7 +600,7 @@
   width: 100%;
   max-width: 2000px;
   margin: 0 auto 10em auto;
-  padding: 0 2rem;
+  padding: 0 8rem;
 }
 
 .whySectionTitle {
@@ -631,4 +631,33 @@
     width: 100%;
     height: auto;
   }
+}
+
+.whyGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10em 10em;
+  padding: 6em 0;
+  grid-auto-flow: row;
+}
+
+.whyGridContent {
+  h3 {
+    position: relative;
+    display: block;
+    font-family: var(--font-tuner);
+    color: var(--color-primary);
+    font-size: 1.5em;
+    line-height: 1.4;
+    margin-bottom: 1em;
+    transform-origin: 100% 0;
+  }
+
+  p {
+    margin-bottom: 0.25em;
+    font-size: 1.25rem;
+  }
+}
+
+.whyGridCode {
 }
