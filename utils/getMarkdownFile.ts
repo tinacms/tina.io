@@ -34,8 +34,8 @@ export const getMarkdownPreviewProps = async (
       )
     }
     return {
-      ...previewProps,
       props: {
+        ...previewProps.props,
         tocItems: toc(previewProps.props.file.data.markdownBody).content,
       },
     }
