@@ -3,6 +3,7 @@ title: Toolbar Widgets
 prev: /docs/plugins/screens
 next: null
 ---
+
 Widgets can be added to the `cms.toolbar` to give users easy access to certain features. The
 
 ## Interface
@@ -15,26 +16,25 @@ interface ToolbarWidgetPlugin<Props = any> extends Plugin {
   component(): React.ReactElement
   props?: Props
 }
-
 ```
 
-| Option | Description |
-| --- | --- |
-| `__type` | The type of the plugin. Always `toolbar:widget` . |
-| `name` | The name of this particular widget. |
-| `weight` | Used to order the toolbar widgets. |
-| `component` | The React component to render in the toolbar. |
-| `props` | Extra props to pass to the component. _(Optional)_ |
+| Option      | Description                                        |
+| ----------- | -------------------------------------------------- |
+| `__type`    | The type of the plugin. Always `toolbar:widget` .  |
+| `name`      | The name of this particular widget.                |
+| `weight`    | Used to order the toolbar widgets.                 |
+| `component` | The React component to render in the toolbar.      |
+| `props`     | Extra props to pass to the component. _(Optional)_ |
 
 ## Available Toolbar Widgets
 
 ### react-tinacms-github
 
-| Name | Description |
-| --- | --- |
-| [Pull Request]() | Allows editors to open a pull request |
-| Repository Information | Displays the name of the current repository along with a link. |
-| Branch Select | Allows editors to create and switch branches. |
+| Name                                                                                                                                          | Description                                                    |
+| --------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| [Repository Information](https://github.com/tinacms/tinacms/blob/master/packages/react-tinacms-github/src/toolbar-plugins/RepoInfoPlugin.tsx) | Displays the name of the current repository along with a link. |
+| [Branch Select](https://github.com/tinacms/tinacms/blob/master/packages/react-tinacms-github/src/toolbar-plugins/BranchSwitcherPlugin.tsx)    | Allows editors to create and switch branches.                  |
+| [Pull Request](https://github.com/tinacms/tinacms/blob/master/packages/react-tinacms-github/src/toolbar-plugins/pull-request/PRPlugin.tsx)    | Allows editors to open a pull request                          |
 
 ## Making Your Own Toolbar Widgets
 
@@ -42,11 +42,7 @@ interface ToolbarWidgetPlugin<Props = any> extends Plugin {
 
 ```tsx
 function HowdyButton() {
-  return (
-    <button onClick={() => alert("Good day to ya")}>
-      Howdy
-    </button>
-  )
+  return <button onClick={() => alert('Good day to ya')}>Howdy</button>
 }
 
 export const HowdyWidget = {
