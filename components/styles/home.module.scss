@@ -486,7 +486,7 @@
 }
 
 .heroFeatureCard {
-  padding: 1.5em 2em;
+  padding: 2em 2.5em;
   border-radius: 1em;
   transform-style: preserve-3d;
   transform: translate3d(0, 0, 0) rotateX(0deg);
@@ -527,7 +527,7 @@
     display: block;
     font-family: var(--font-tuner);
     color: var(--color-primary);
-    font-size: 1.5em;
+    font-size: 1.75em;
     line-height: 1.4;
     margin-bottom: 0.75em;
     transform-origin: 100% 0;
@@ -535,5 +535,6 @@
 
   p {
     margin-bottom: 0.25em;
+    font-size: 1.25rem;
   }
 }
