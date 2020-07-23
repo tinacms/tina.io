@@ -25,6 +25,7 @@ import {
 } from 'pages/docs/[...slug]'
 
 export default function Packages(props) {
+  // TODO: have this actually source from the .md frontmatter
   const frontmatter = {
     title: 'packages',
   }
@@ -32,7 +33,6 @@ export default function Packages(props) {
 
   const [open, setOpen] = useState(false)
   const contentRef = React.useRef<HTMLDivElement>(null)
-  console.log({ props })
 
   return (
     <DocsLayout isEditing={false}>
