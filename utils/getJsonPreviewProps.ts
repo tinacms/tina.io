@@ -27,7 +27,7 @@ export const getJsonPreviewProps = async (
   }
 }
 
-const readJsonFile = async (filePath: string) => {
+export const readJsonFile = async (filePath: string) => {
   const data = await readFile(path.resolve(`${filePath}`))
   return JSON.parse(data)
 }
