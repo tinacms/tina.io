@@ -96,7 +96,7 @@
   }
 
   svg {
-    height: 3.5em;
+    height: 2.75em;
     width: auto;
   }
 }
@@ -129,7 +129,7 @@
 
 @keyframes heroTitleSpin {
   0% {
-    transform: translate3d(-50%, -50%, 0) rotateX(-720deg);
+    transform: translate3d(-50%, -50%, 0) rotateX(-630deg);
   }
   100% {
     transform: translate3d(-50%, -50%, 0) rotateX(0deg);
@@ -141,7 +141,7 @@
     transform: translate3d(-50%, -50%, 0) rotateX(0deg);
   }
   100% {
-    transform: translate3d(-50%, -50%, 0) rotateX(360deg);
+    transform: translate3d(-50%, -50%, 0) rotateX(270deg);
   }
 }
 
