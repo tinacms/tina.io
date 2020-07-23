@@ -353,8 +353,12 @@ const Framework = ({ activeStack }) => {
   const [activeFramework, setActiveFramework] = React.useState(
     activeStack.framework ? activeStack.framework : null
   )
+  const [frameworkWidth, setFrameworkWidth] = React.useState(200)
+  const frameworkSpanRef = React.useRef(null)
 
   React.useEffect(() => {
+    if (!frameworkSpanRef.current) return
+
     let animateInTime = 1500
     let animateOutTime = 500
 
@@ -366,11 +370,20 @@ const Framework = ({ activeStack }) => {
       setActiveFramework(activeStack.framework)
       setAnimationState(styles.heroTitleAnimate)
     }, animateOutTime)
-  }, [activeStack])
+  }, [frameworkSpanRef.current, activeStack])
+
+  React.useEffect(() => {
+    if (!frameworkSpanRef.current) return
+
+    setFrameworkWidth(frameworkSpanRef.current.getBoundingClientRect().width)
+  }, [frameworkSpanRef.current, activeFramework])
 
   return (
-    <span className={styles.heroTitleFramework}>
-      <span className={animationState}>
+    <span
+      className={`${styles.heroTitleFramework} ${styles.heroTitleFrameworkHide2}`}
+      style={{ width: `${frameworkWidth}px` }}
+    >
+      <span className={animationState} ref={frameworkSpanRef}>
         {activeFramework === 'gatsby' ? (
           <GatsbyFullLogo />
         ) : activeFramework === 'next' ? (

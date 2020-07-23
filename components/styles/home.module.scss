@@ -119,19 +119,28 @@
 
 @keyframes heroTitleSpin {
   0% {
-    transform: translate3d(0, 0, 0) rotateX(-720deg);
+    transform: translate3d(-50%, -50%, 0) rotateX(-720deg);
   }
   100% {
-    transform: translate3d(0, 0, 0) rotateX(0deg);
+    transform: translate3d(-50%, -50%, 0) rotateX(0deg);
   }
 }
 
 @keyframes heroTitleSpinOut {
   0% {
-    transform: translate3d(0, 0, 0) rotateX(0deg);
+    transform: translate3d(-50%, -50%, 0) rotateX(0deg);
   }
   100% {
-    transform: translate3d(0, 0, 0) rotateX(360deg);
+    transform: translate3d(-50%, -50%, 0) rotateX(360deg);
+  }
+}
+
+@keyframes heroTitleSpinOutSideways {
+  0% {
+    transform: translate3d(-50%, -50%, 0) rotateY(0deg);
+  }
+  100% {
+    transform: translate3d(-50%, -50%, 0) rotateY(450deg);
   }
 }
 
@@ -139,12 +148,18 @@
   display: inline-block;
   width: auto;
   vertical-align: middle;
-  margin: 0 0.5em;
+  margin: 0 0.375em;
   perspective: 300px;
   background-color: rgba(132, 181, 178, 0.1);
   box-shadow: 0 0 30px 30px rgba(132, 181, 178, 0.1);
+  cursor: pointer;
+  transition: margin 500ms 500ms ease-in-out;
+  transition: width var(--animation-length) var(--ease-out);
 
   span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -153,7 +168,7 @@
     border: 1px solid white;
     border-radius: 1rem;
     transform-style: preserve-3d;
-    transform: translate3d(0, 0, 0) rotateX(0deg);
+    transform: translate3d(-50%, -50%, 0) rotateX(0deg);
     transition: transform var(--animation-length) var(--ease-out),
       opacity var(--animation-length) var(--ease-out);
     transform-style: preserve-3d;
@@ -164,6 +179,13 @@
     width: auto;
     display: inline-block;
     margin: 0;
+  }
+}
+
+.heroTitleFrameworkHide {
+  margin: 0 0.25em;
+  span {
+    animation: heroTitleSpinOutSideways 1 800ms 400ms ease-in both;
   }
 }
 
