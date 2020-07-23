@@ -45,6 +45,11 @@
 }
 
 .heroWrapper {
+  --rotationTransform: rotateX(60deg) rotateY(0deg) rotateZ(-35deg);
+  --elevation: 2.5em;
+  --animation-length: 500ms;
+  --animation-length-short: 240ms;
+
   position: relative;
   background: linear-gradient(
     160deg,
@@ -93,8 +98,6 @@
   z-index: 1;
   margin-top: -3.5em;
   margin-bottom: -5em;
-
-  --animation-length: 500ms;
 }
 
 .heroContent {
@@ -183,11 +186,12 @@
   display: inline-block;
   background: transparent;
   border: none;
-  padding: 0.75em 1.5em;
+  padding: 0.625em 1.375em;
   color: white;
   z-index: 10;
   cursor: pointer;
-  font-size: 1.25em;
+  font-size: 1.125em;
+  border-radius: 2em;
 
   &:hover,
   &:focus {
@@ -210,12 +214,11 @@
     z-index: -1;
     transition: transform var(--ease-out) 300ms;
     transform: translate3d(0, 0, 0px) scale3d(1, 1, 1);
+    box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.05);
   }
 }
 
 .grid {
-  --rotationTransform: rotateX(60deg) rotateY(0deg) rotateZ(-35deg);
-
   position: absolute;
   top: 0;
   left: 0;
@@ -376,8 +379,6 @@
 }
 
 .gridItemActive {
-  --elevation: 2.5em;
-
   transform: translate3d(0, 0, var(--elevation));
   transform-origin: center bottom;
   opacity: 1;
@@ -486,16 +487,23 @@
 
 .heroFeatureCard {
   padding: 1.5em 2em;
-  background: white;
-  border: 1px solid white;
   border-radius: 1em;
   transform-style: preserve-3d;
   transform: translate3d(0, 0, 0) rotateX(0deg);
-  transition: transform var(--animation-length) var(--ease-out),
-    opacity var(--animation-length) var(--ease-out);
   transform-style: preserve-3d;
-  border: 2px solid rgba(0, 0, 0, 0.07);
-  box-shadow: 0 10px 30px 30px rgba(132, 181, 178, 0.05);
+  background: var(--color-seafoam);
+  box-shadow: inset -2px -2px 0 4px rgba(0, 0, 0, 0.05),
+    0 15px 30px 30px rgba(132, 181, 178, 0.07);
+  cursor: pointer;
+  transition: transform var(--animation-length-short) var(--ease-out);
+
+  &:hover {
+    transform: translate3d(0, -1rem, 0);
+
+    &:after {
+      opacity: 1;
+    }
+  }
 
   &:after {
     content: '';
@@ -507,20 +515,25 @@
     height: 100%;
     opacity: 0;
     transform: translate3d(0, 0, 0px) scale3d(1, 1, 1);
-    transition: opacity var(--animation-length) var(--ease-out);
+    transition: opacity var(--animation-length-short) var(--ease-out);
     background-color: transparent;
     border-radius: 1em;
     z-index: 1;
+    box-shadow: inset -2px -2px 0 4px var(--color-primary);
   }
 
   h2 {
+    position: relative;
+    display: block;
     font-family: var(--font-tuner);
     color: var(--color-primary);
     font-size: 1.5em;
     line-height: 1.4;
     margin-bottom: 0.75em;
+    transform-origin: 100% 0;
   }
 
   p {
+    margin-bottom: 0.25em;
   }
 }
