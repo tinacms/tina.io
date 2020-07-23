@@ -24,7 +24,7 @@ import { DocsNavToggle, DocsMobileTinaIcon, DocsContent } from 'pages/docs/[...s
     const frontmatter = {
       title: 'packages',
     }
-    const excerpt = 'A package for Tinacms.'
+    const excerpt = 'A package for TinaCMS.'
   
     const [open, setOpen] = useState(false)
     return (
