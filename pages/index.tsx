@@ -393,7 +393,7 @@ const Framework = ({ activeStack }) => {
   React.useEffect(() => {
     if (!frameworkSpanRef.current) return
 
-    setFrameworkWidth(frameworkSpanRef.current.getBoundingClientRect().width)
+    setFrameworkWidth(frameworkSpanRef.current.offsetWidth)
   }, [frameworkSpanRef.current, activeFramework])
 
   return (
