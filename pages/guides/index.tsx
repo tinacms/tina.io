@@ -1,5 +1,5 @@
 import { getGuideNavProps } from 'utils/guide_helpers'
-import { readMarkdownFile } from 'utils/getMarkdownFile'
+import { readMarkdownFile } from 'utils/getMarkdownPreviewProps'
 import React, { useState, useEffect, useMemo } from 'react'
 import { useRouter } from 'next/router'
 import {

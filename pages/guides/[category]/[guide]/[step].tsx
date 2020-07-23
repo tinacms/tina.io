@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { readFile } from 'utils/readFile'
-import { getMarkdownPreviewProps } from 'utils/getMarkdownFile'
+import { getMarkdownPreviewProps } from 'utils/getMarkdownPreviewProps'
 import {
   DocsLayout,
   DocsTextWrapper,

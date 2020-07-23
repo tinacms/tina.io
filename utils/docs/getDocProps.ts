@@ -1,5 +1,5 @@
 import { getJsonPreviewProps } from '../getJsonPreviewProps'
-import { getMarkdownPreviewProps } from '../getMarkdownFile'
+import { getMarkdownPreviewProps } from '../getMarkdownPreviewProps'
 
 export async function getDocsNav(preview: boolean, previewData: any) {
   const previewProps = await getJsonPreviewProps(
