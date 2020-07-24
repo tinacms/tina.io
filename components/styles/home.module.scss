@@ -622,14 +622,22 @@
   width: 100%;
   z-index: 30;
   margin-top: -4em;
-  padding-top: 10em;
+  padding-top: 8em;
+
+  @media screen and (min-width: 1800px) {
+    padding-top: 10em;
+  }
 }
 
 .whySectionContainer {
   width: 100%;
-  max-width: 2000px;
+  max-width: 1800px;
   margin: 0 auto 10em auto;
-  padding: 0 8rem;
+  padding: 0 2rem;
+
+  @media screen and (min-width: 700px) {
+    padding: 0 8rem;
+  }
 }
 
 .whySectionTitle {
@@ -664,10 +672,21 @@
 
 .whyGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 7em 10em;
-  padding: 6em 0;
+
+  grid-gap: 3em 4em;
+  padding: 3em 0;
   grid-auto-flow: row;
+
+  @media screen and (min-width: 1300px) {
+    padding: 5em 0;
+    grid-gap: 7em;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (min-width: 1800px) {
+    grid-gap: 7em 10em;
+    padding: 6em 0;
+  }
 }
 
 .whyGridContent {
