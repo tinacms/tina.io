@@ -123,6 +123,8 @@ const HomePage = (props: any) => {
   const [userOverride, setUserOverride] = React.useState(false)
 
   const randomizeLibraries = () => {
+    if (userOverride) return
+
     const randomData = randElem(
       libraries.filter(library => {
         return library.type === 'data'
@@ -171,10 +173,9 @@ const HomePage = (props: any) => {
   }
 
   React.useEffect(() => {
+    if (userOverride) return
     const intervalTime = 5000
     const interval = setInterval(() => {
-      if (userOverride) return
-      console.log(userOverride)
       randomizeLibraries()
     }, intervalTime)
     return () => clearInterval(interval)
@@ -433,6 +434,9 @@ const Framework = ({ activeLibraries }) => {
   React.useEffect(() => {
     if (
       !frameworkSpanRef.current ||
+      !activeLibraries.filter(library => {
+        return library.type === 'framework'
+      })[0] ||
       activeLibraries.filter(library => {
         return library.type === 'framework'
       })[0] === activeLibrary
