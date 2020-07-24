@@ -409,11 +409,10 @@ const HomePage = (props: any) => {
                   {codeString}
                 </SyntaxHighlighter>
               </div>
-              <div className={styles.whyGridCode}>
-                <SyntaxHighlighter language="javascript" style={codeTheme}>
-                  {codeString}
-                </SyntaxHighlighter>
-              </div>
+            </div>
+            <div
+              className={`${styles.whyGrid} ${styles.whyGridReverseDesktop}`}
+            >
               <div className={styles.whyGridContent}>
                 <WrapComponentsIcon />
                 <h3>Wrap your components</h3>
@@ -424,7 +423,13 @@ const HomePage = (props: any) => {
                   odio massa rutrum risus, vel lacinia arcu sapien non libero.{' '}
                 </p>
               </div>
-
+              <div className={styles.whyGridCode}>
+                <SyntaxHighlighter language="javascript" style={codeTheme}>
+                  {codeString}
+                </SyntaxHighlighter>
+              </div>
+            </div>
+            <div className={styles.whyGrid}>
               <div className={styles.whyGridContent}>
                 <BlockBasedEditingIcon />
                 <h3>Block Based Editing</h3>
