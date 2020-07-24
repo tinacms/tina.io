@@ -53,7 +53,7 @@ export const addToMailchimp = function addToMailchimp(email) {
   }
 
   // eslint-disable-next-line no-undef
-  let endpoint = process.env.MAILCHIMP_ENDPOINT
+  let endpoint = process.env.MAILCHIMP_ADDRESS
 
   // Generates MC endpoint for our jsonp request. We have to
   // change `/post` to `/post-json` otherwise, MC returns an error

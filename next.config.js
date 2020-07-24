@@ -14,8 +14,7 @@ const dummyMailchimpEndpoint =
 
 const config = {
   env: {
-    MAILCHIMP_ENDPOINT:
-      process.env.MAILCHIMP_ENDPOINT || dummyMailchimpEndpoint,
+    MAILCHIMP_ADDRESS: process.env.MAILCHIMP_ADDRESS || dummyMailchimpEndpoint,
     HUBSPOT_TEAMS_FORM_ID: process.env.HUBSPOT_TEAMS_FORM_ID,
     HUBSPOT_PORTAL_ID: process.env.HUBSPOT_PORTAL_ID,
     GTM_ID: process.env.GTM_ID,
