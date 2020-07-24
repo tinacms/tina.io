@@ -325,7 +325,7 @@
     display: block;
     width: 100%;
     height: 100%;
-    opacity: 0.2;
+    opacity: 0.25;
     transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
     transition: opacity var(--animation-length) var(--ease-out);
     background-color: var(--color-seafoam-light);
@@ -423,37 +423,67 @@
     opacity: 0;
     z-index: -1;
   }
+
+  $delay: 30ms;
+
+  .gridLeft & {
+    @for $i from 1 through 7 {
+      &:nth-child(#{$i}) {
+        --transition-delay: #{$i * $delay};
+      }
+    }
+  }
+
+  @for $i from 1 through 7 {
+    &:nth-child(#{$i}) {
+      --transition-delay: #{7 * $delay + $i * $delay};
+    }
+  }
+
+  .gridRight & {
+    @for $i from 1 through 7 {
+      &:nth-child(#{$i}) {
+        --transition-delay: #{14 * $delay + $i * $delay};
+      }
+    }
+  }
 }
 
 .gridItemActive {
+  transition-delay: var(--transition-delay);
   transform: translate3d(0, 0, var(--elevation));
   transform-origin: center bottom;
   opacity: 1;
 
   /* Ice Cube Tray */
   &:after {
+    transition-delay: var(--transition-delay);
     transform: translate3d(0, 0, calc(var(--elevation) * -1));
     opacity: 0.65;
   }
 
   /* Drop Shadow */
   &:before {
+    transition-delay: var(--transition-delay);
     transform: translate3d(0, 0, calc(var(--elevation) * -1 + 1px));
     opacity: 0.2;
   }
 
   /* Logo */
   svg {
+    transition-delay: var(--transition-delay);
     opacity: 1;
   }
 
   /* Hide faded seafoam overlay */
   span:nth-of-type(1) {
+    transition-delay: var(--transition-delay);
     opacity: 0;
   }
 
   /* Show border */
   span:nth-of-type(2) {
+    transition-delay: var(--transition-delay);
     opacity: 1;
   }
 }
