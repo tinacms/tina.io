@@ -40,9 +40,7 @@ export default function GuideTemplate(props) {
   const isBrowser = typeof window !== `undefined`
   const contentRef = React.useRef<HTMLDivElement>(null)
   const tocItems = props.tocItems
-  console.log(tocItems)
   const [activeIds, setActiveIds] = React.useState([])
-
   const router = useRouter()
   const currentPath = router.asPath
 
