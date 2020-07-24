@@ -78,7 +78,7 @@
 .header {
   position: absolute;
   z-index: 50;
-  padding: 2rem 3rem 2rem 2.5rem;
+  padding: 2em;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -86,13 +86,16 @@
   top: 0;
 
   h1 {
-    display: block;
     margin: 0;
+    font-size: 1em;
+    line-height: 1;
   }
 
   svg {
     height: 2.75em;
     width: auto;
+    display: block;
+    margin: -0.75em 0 0 0;
   }
 }
 
