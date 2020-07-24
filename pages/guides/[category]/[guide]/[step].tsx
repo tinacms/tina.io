@@ -31,8 +31,7 @@ import { useGithubMarkdownForm, useGithubJsonForm } from 'react-tinacms-github'
 import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
 import { MarkdownCreatorPlugin } from 'utils/plugins'
-import { fileToUrl } from '../../../../utils'
-import { createTocListener } from 'utils'
+import { fileToUrl, createTocListener } from 'utils'
 import Toc from '../../../../components/toc'
 
 export default function GuideTemplate(props) {
