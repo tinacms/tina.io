@@ -234,6 +234,31 @@
     "id": "packages",
     "items": [
       {
+        "id": "/packages/react-tinacms-date",
+        "slug": "/packages/react-tinacms-date",
+        "title": "react-tinacms-date"
+      },
+      {
+        "id": "/packages/react-tinacms-editor",
+        "slug": "/packages/react-tinacms-editor",
+        "title": "react-tinacms-editor"
+      },
+      {
+        "id": "/packages/react-tinacms-github",
+        "slug": "/packages/react-tinacms-github",
+        "title": "react-tinacms-github"
+      },
+      {
+        "id": "/packages/react-tinacms-inline",
+        "slug": "/packages/react-tinacms-inline",
+        "title": "react-tinacms-inline"
+      },
+      {
+        "id": "/packages/react-tinacms-strapi",
+        "slug": "/packages/react-tinacms-strapi",
+        "title": "react-tinacms-strapi"
+      },
+      {
         "id": "/packages/next-tinacms-github",
         "slug": "/packages/next-tinacms-github",
         "title": "next-tinacms-github"
@@ -247,6 +272,26 @@
         "id": "/packages/next-tinacms-markdown",
         "slug": "/packages/next-tinacms-markdown",
         "title": "next-tinacms-markdown"
+      },
+      {
+        "id": "/packages/gatsby-plugin-tinacms",
+        "slug": "/packages/gatsby-plugin-tinacms",
+        "title": "gatsby-plugin-tinacms"
+      },
+      {
+        "id": "/packages/gatsby-tinacms-git",
+        "slug": "/packages/gatsby-tinacms-git",
+        "title": "gatsby-tinacms-git"
+      },
+      {
+        "id": "/packages/gatsby-tinacms-json",
+        "slug": "/packages/gatsby-tinacms-json",
+        "title": "gatsby-tinacms-json"
+      },
+      {
+        "id": "/packages/gatsby-tinacms-remark",
+        "slug": "/packages/gatsby-tinacms-remark",
+        "title": "gatsby-tinacms-remark"
       }
     ]
   },
