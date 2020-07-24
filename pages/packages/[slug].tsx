@@ -27,7 +27,7 @@ import {
 export default function Packages(props) {
   // TODO: have this actually source from the .md frontmatter
   const frontmatter = {
-    title: 'packages',
+    title: 'Packages',
   }
   const excerpt = 'A package for Tinacms.'
 
