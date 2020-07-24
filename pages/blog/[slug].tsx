@@ -20,7 +20,7 @@ import Error from 'next/error'
 import { getMarkdownPreviewProps } from 'utils/getMarkdownFile'
 import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { usePlugin, useCMS } from 'tinacms'
-import Toc from '../../components/toc'
+
 function BlogTemplate({ file, siteConfig, preview }) {
   // fallback workaround
   if (!file) {
