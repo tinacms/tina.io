@@ -49,6 +49,8 @@ export async function getPackageProps(
 
   return {
     props: {
+      name: currentPackage.name,
+      link: currentPackage.link,
       content,
       docsNav: docsNavData,
       nextPage: {
