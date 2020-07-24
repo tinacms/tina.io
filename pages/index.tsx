@@ -398,10 +398,9 @@ const HomePage = (props: any) => {
                 <ThirdPartyIcon />
                 <h3>Working with 3rd Party APIs</h3>
                 <p>
-                  Quisque nisl arcu, volutpat malesuada sapien in, ullamcorper
-                  pharetra leo. Quisque velit augue, sagittis non hendrerit eu,
-                  semper tincidunt ex. Ut dapibus, sapien sed congue dignissim,
-                  odio massa rutrum risus, vel lacinia arcu sapien non libero.{' '}
+                  Tina simplifies and speeds up your JAMstack development by
+                  integrating with 3rd party data providers. Store your data
+                  wherever you see best fit.
                 </p>
               </div>
               <div className={styles.whyGridCode}>
@@ -417,10 +416,8 @@ const HomePage = (props: any) => {
                 <WrapComponentsIcon />
                 <h3>Wrap your components</h3>
                 <p>
-                  Quisque nisl arcu, volutpat malesuada sapien in, ullamcorper
-                  pharetra leo. Quisque velit augue, sagittis non hendrerit eu,
-                  semper tincidunt ex. Ut dapibus, sapien sed congue dignissim,
-                  odio massa rutrum risus, vel lacinia arcu sapien non libero.{' '}
+                  Supercharge your existing React component libraries by making
+                  them editable by content creators.
                 </p>
               </div>
               <div className={styles.whyGridCode}>
@@ -434,10 +431,9 @@ const HomePage = (props: any) => {
                 <BlockBasedEditingIcon />
                 <h3>Block Based Editing</h3>
                 <p>
-                  Quisque nisl arcu, volutpat malesuada sapien in, ullamcorper
-                  pharetra leo. Quisque velit augue, sagittis non hendrerit eu,
-                  semper tincidunt ex. Ut dapibus, sapien sed congue dignissim,
-                  odio massa rutrum risus, vel lacinia arcu sapien non libero.{' '}
+                  Tina turns your website into a visual composer that empowers
+                  editors and designers to intuitively create brand-compliant
+                  pages without the need to call a developer.
                 </p>
               </div>
               <div className={styles.whyGridCode}>

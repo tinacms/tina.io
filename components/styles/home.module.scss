@@ -713,10 +713,40 @@
 .whyGridCode {
 }
 
+@keyframes thirdPartyIconBounce {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  3% {
+    transform: translate3d(0, -1em, 0);
+  }
+  6% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes thirdPartyIconBounceTwo {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  3% {
+    transform: translate3d(0, -1em, 0);
+  }
+  6% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 .thirdPartyIcon {
   position: relative;
   display: block;
   margin-bottom: 1.75em;
+
+  &:hover {
+    span {
+      animation-name: thirdPartyIconBounceTwo;
+    }
+  }
 
   span {
     position: relative;
@@ -727,17 +757,24 @@
     border-radius: 2em;
     background-color: var(--color-primary-dark);
     opacity: 0.15;
+    transform: translate3d(0, 0, 0);
+    transform-style: preserve-3d;
+    transition: transform var(--animation-length-short) var(--ease-out);
+    animation: thirdPartyIconBounce infinite 5000ms
+      cubic-bezier(0.115, -0.08, 0.14, -0.005) both;
 
     &:nth-child(2) {
       opacity: 0.5;
       background-color: var(--color-primary);
       z-index: 5;
+      animation-delay: 200ms;
     }
 
     &:nth-child(3) {
       opacity: 0.85;
       background-color: var(--color-primary);
       z-index: 10;
+      animation-delay: 400ms;
     }
   }
 }
