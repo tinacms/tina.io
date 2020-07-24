@@ -106,8 +106,8 @@
   position: relative;
   overflow: visible;
   z-index: 1;
-  margin-top: -3.5em;
-  margin-bottom: -5em;
+  margin-top: -4em;
+  margin-bottom: -7em;
 }
 
 .heroContent {
@@ -305,12 +305,14 @@
   /* Logo */
   svg {
     position: relative;
-    width: 4.5em;
-    height: auto;
+    height: 4.5em;
+    width: auto;
     opacity: 0.3;
     transition: transform var(--animation-length) var(--ease-out),
       opacity var(--animation-length) var(--ease-out);
     transform: translate3d(0, 0, 1px) scale3d(1, 1, 1);
+    max-height: 50%;
+    max-width: 50%;
   }
 
   /* Faded seafoam overlay when not active */
@@ -456,10 +458,8 @@
 
 .bigLogo {
   svg {
-    width: 7.5em;
-    @media screen and (max-width: 900px) {
-      width: 12vw;
-    }
+    height: 6em;
+    width: auto;
   }
 }
 

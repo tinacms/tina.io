@@ -16,8 +16,60 @@ import {
   ReactFullLogo,
   StrapiLogo,
 } from 'components/logos'
-import TinaLogomarkSvg from '../public/svg/tina-logomark.svg'
-import WhyTinaBackground from '../public/svg/why-tina-background.svg'
+import TinaLogomarkSvg from 'public/svg/tina-logomark.svg'
+import WhyTinaBackground from 'public/svg/why-tina-background.svg'
+
+const libraries = {
+  next: {
+    id: 'next',
+    label: 'Next.js',
+    type: 'framework',
+    component: NextLogo,
+    componentSmall: NextLogo,
+  },
+  gatsby: {
+    id: 'gatsby',
+    label: 'Gatsby.js',
+    type: 'framework',
+    component: GatsbyLogo,
+    componentSmall: GatsbyFullLogo,
+  },
+  react: {
+    id: 'react',
+    label: 'React',
+    type: 'framework',
+    component: ReactLogo,
+    componentSmall: ReactFullLogo,
+  },
+  github: {
+    id: 'github',
+    label: 'Github',
+    type: 'data',
+    component: GithubLogo,
+    componentSmall: GithubLogo,
+  },
+  contentful: {
+    id: 'contentful',
+    label: 'Contentful',
+    type: 'data',
+    component: ContentfulLogo,
+    componentSmall: ContentfulLogo,
+  },
+  strapi: {
+    id: 'strapi',
+    label: 'Strapi',
+    type: 'data',
+    component: StrapiLogo,
+    componentSmall: StrapiLogo,
+  },
+  bootstrap: {
+    id: 'bootstrap',
+    label: 'Bootstrap',
+    type: 'ui',
+    component: BootstrapLogo,
+    componentSmall: BootstrapLogo,
+  },
+}
 
 interface ActiveStack {
   data: 'github' | 'contentful' | 'strapi'
@@ -92,231 +144,117 @@ const HomePage = (props: any) => {
             <div className={styles.wrapper}>
               <div className={styles.aspectRatio}>
                 <div className={`${styles.grid} ${styles.gridLeft}`}>
-                  <div
-                    className={`${styles.gridItem} ${styles.gridItem4} ${
-                      activeStack.data === 'github' ? styles.gridItemActive : ''
-                    }`}
-                  >
-                    <GithubLogo />
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <div
-                    className={`${styles.gridItem} ${styles.gridItem5} ${
-                      activeStack.framework === 'react'
-                        ? styles.gridItemActive
-                        : ''
-                    }`}
-                  >
-                    <ReactLogo />
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <div
-                    className={`${styles.gridItem} ${styles.gridItem6} ${
-                      activeStack.framework === 'next'
-                        ? styles.gridItemActive
-                        : ''
-                    } ${styles.bigLogo}`}
-                  >
-                    <NextLogo />
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <div
-                    className={`${styles.gridItem} ${styles.gridItem7} ${
-                      activeStack.data === 'contentful'
-                        ? styles.gridItemActive
-                        : ''
-                    }`}
-                  >
-                    <ContentfulLogo />
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <div
-                    className={`${styles.gridItem} ${styles.gridItem2} ${
-                      activeStack.data === 'strapi' ? styles.gridItemActive : ''
-                    }`}
-                  >
-                    <StrapiLogo />
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <div
-                    className={`${styles.gridItem} ${styles.gridItem1} ${
-                      activeStack.ui === 'bootstrap'
-                        ? styles.gridItemActive
-                        : ''
-                    }`}
-                  >
-                    <BootstrapLogo />
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <div
-                    className={`${styles.gridItem} ${styles.gridItem3} ${
-                      activeStack.framework === 'gatsby'
-                        ? styles.gridItemActive
-                        : ''
-                    }`}
-                  >
-                    <GatsbyLogo />
-                    <span></span>
-                    <span></span>
-                  </div>
+                  <GridItem
+                    activeStack={activeStack}
+                    number={1}
+                    item={libraries.bootstrap}
+                  />
+                  <GridItem
+                    activeStack={activeStack}
+                    number={2}
+                    item={libraries.strapi}
+                  />
+                  <GridItem
+                    activeStack={activeStack}
+                    number={3}
+                    item={libraries.gatsby}
+                  />
+                  <GridItem
+                    activeStack={activeStack}
+                    number={4}
+                    item={libraries.github}
+                  />
+                  <GridItem
+                    activeStack={activeStack}
+                    number={5}
+                    item={libraries.react}
+                  />
+                  <GridItem
+                    activeStack={activeStack}
+                    number={6}
+                    item={libraries.next}
+                  />
+                  <GridItem
+                    activeStack={activeStack}
+                    number={7}
+                    item={libraries.contentful}
+                  />
                 </div>
                 {/* End First Grid */}
                 <div className={styles.grid}>
-                  <div
-                    className={`${styles.gridItem} ${styles.gridItem1} ${
-                      activeStack.data === 'github' ? styles.gridItemActive : ''
-                    }`}
-                  >
-                    <GithubLogo />
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <div
-                    className={`${styles.gridItem} ${styles.gridItem2} ${
-                      activeStack.framework === 'react'
-                        ? styles.gridItemActive
-                        : ''
-                    }`}
-                  >
-                    <ReactLogo />
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <div
-                    className={`${styles.gridItem} ${styles.gridItem3} ${
-                      activeStack.framework === 'next'
-                        ? styles.gridItemActive
-                        : ''
-                    } ${styles.bigLogo}`}
-                  >
-                    <NextLogo />
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <div
-                    className={`${styles.gridItem} ${styles.gridItem4} ${
-                      activeStack.data === 'contentful'
-                        ? styles.gridItemActive
-                        : ''
-                    }`}
-                  >
-                    <ContentfulLogo />
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <div
-                    className={`${styles.gridItem} ${styles.gridItem5} ${
-                      activeStack.data === 'strapi' ? styles.gridItemActive : ''
-                    }`}
-                  >
-                    <StrapiLogo />
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <div
-                    className={`${styles.gridItem} ${styles.gridItem6} ${
-                      activeStack.ui === 'bootstrap'
-                        ? styles.gridItemActive
-                        : ''
-                    }`}
-                  >
-                    <BootstrapLogo />
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <div
-                    className={`${styles.gridItem} ${styles.gridItem7} ${
-                      activeStack.framework === 'gatsby'
-                        ? styles.gridItemActive
-                        : ''
-                    }`}
-                  >
-                    <GatsbyLogo />
-                    <span></span>
-                    <span></span>
-                  </div>
+                  <GridItem
+                    activeStack={activeStack}
+                    number={1}
+                    item={libraries.github}
+                  />
+                  <GridItem
+                    activeStack={activeStack}
+                    number={2}
+                    item={libraries.react}
+                  />
+                  <GridItem
+                    activeStack={activeStack}
+                    number={3}
+                    item={libraries.next}
+                  />
+                  <GridItem
+                    activeStack={activeStack}
+                    number={4}
+                    item={libraries.contentful}
+                  />
+                  <GridItem
+                    activeStack={activeStack}
+                    number={5}
+                    item={libraries.strapi}
+                  />
+                  <GridItem
+                    activeStack={activeStack}
+                    number={6}
+                    item={libraries.bootstrap}
+                  />
+                  <GridItem
+                    activeStack={activeStack}
+                    number={7}
+                    item={libraries.gatsby}
+                  />
                 </div>
                 {/* End Second Grid */}
                 <div className={`${styles.grid} ${styles.gridRight}`}>
-                  <div
-                    className={`${styles.gridItem} ${styles.gridItem2} ${
-                      activeStack.data === 'github' ? styles.gridItemActive : ''
-                    }`}
-                  >
-                    <GithubLogo />
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <div
-                    className={`${styles.gridItem} ${styles.gridItem7} ${
-                      activeStack.framework === 'react'
-                        ? styles.gridItemActive
-                        : ''
-                    }`}
-                  >
-                    <ReactLogo />
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <div
-                    className={`${styles.gridItem} ${styles.gridItem3} ${
-                      activeStack.framework === 'next'
-                        ? styles.gridItemActive
-                        : ''
-                    } ${styles.bigLogo}`}
-                  >
-                    <NextLogo />
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <div
-                    className={`${styles.gridItem} ${styles.gridItem1} ${
-                      activeStack.data === 'contentful'
-                        ? styles.gridItemActive
-                        : ''
-                    }`}
-                  >
-                    <ContentfulLogo />
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <div
-                    className={`${styles.gridItem} ${styles.gridItem5} ${
-                      activeStack.data === 'strapi' ? styles.gridItemActive : ''
-                    }`}
-                  >
-                    <StrapiLogo />
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <div
-                    className={`${styles.gridItem} ${styles.gridItem6} ${
-                      activeStack.ui === 'bootstrap'
-                        ? styles.gridItemActive
-                        : ''
-                    }`}
-                  >
-                    <BootstrapLogo />
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <div
-                    className={`${styles.gridItem} ${styles.gridItem4} ${
-                      activeStack.framework === 'gatsby'
-                        ? styles.gridItemActive
-                        : ''
-                    }`}
-                  >
-                    <GatsbyLogo />
-                    <span></span>
-                    <span></span>
-                  </div>
+                  <GridItem
+                    activeStack={activeStack}
+                    number={1}
+                    item={libraries.react}
+                  />
+                  <GridItem
+                    activeStack={activeStack}
+                    number={2}
+                    item={libraries.github}
+                  />
+                  <GridItem
+                    activeStack={activeStack}
+                    number={3}
+                    item={libraries.next}
+                  />
+                  <GridItem
+                    activeStack={activeStack}
+                    number={4}
+                    item={libraries.gatsby}
+                  />
+                  <GridItem
+                    activeStack={activeStack}
+                    number={5}
+                    item={libraries.strapi}
+                  />
+                  <GridItem
+                    activeStack={activeStack}
+                    number={6}
+                    item={libraries.bootstrap}
+                  />
+                  <GridItem
+                    activeStack={activeStack}
+                    number={7}
+                    item={libraries.contentful}
+                  />
                 </div>
                 {/* End Third Grid */}
               </div>
@@ -444,6 +382,22 @@ const Framework = ({ activeStack }) => {
         ) : null}
       </span>
     </span>
+  )
+}
+
+const GridItem = ({ activeStack, number, item }) => {
+  const GridItemComponent = item.component
+
+  return (
+    <div
+      className={`${styles.gridItem} ${styles['gridItem' + number]} ${
+        activeStack.data === item.id ? styles.gridItemActive : ''
+      } ${item.id === 'next' ? styles.bigLogo : ''}`}
+    >
+      <GridItemComponent />
+      <span></span>
+      <span></span>
+    </div>
   )
 }
 
