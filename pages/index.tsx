@@ -19,6 +19,7 @@ import {
 import TinaLogomarkSvg from 'public/svg/tina-logomark.svg'
 import WhyTinaBackground from 'public/svg/why-tina-background.svg'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import codeTheme from 'components/styles/CodeHome'
 
 interface Library {
   id: string
@@ -404,12 +405,12 @@ const HomePage = (props: any) => {
                 </p>
               </div>
               <div className={styles.whyGridCode}>
-                <SyntaxHighlighter language="javascript">
+                <SyntaxHighlighter language="javascript" style={codeTheme}>
                   {codeString}
                 </SyntaxHighlighter>
               </div>
               <div className={styles.whyGridCode}>
-                <SyntaxHighlighter language="javascript">
+                <SyntaxHighlighter language="javascript" style={codeTheme}>
                   {codeString}
                 </SyntaxHighlighter>
               </div>
@@ -435,7 +436,7 @@ const HomePage = (props: any) => {
                 </p>
               </div>
               <div className={styles.whyGridCode}>
-                <SyntaxHighlighter language="javascript">
+                <SyntaxHighlighter language="javascript" style={codeTheme}>
                   {codeString}
                 </SyntaxHighlighter>
               </div>

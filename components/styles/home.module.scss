@@ -665,12 +665,13 @@
 .whyGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 10em 10em;
+  grid-gap: 7em 10em;
   padding: 6em 0;
   grid-auto-flow: row;
 }
 
 .whyGridContent {
+  padding-top: 3em;
   h3 {
     position: relative;
     display: block;
