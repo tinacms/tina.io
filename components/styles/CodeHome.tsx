@@ -21,9 +21,9 @@ export default {
   'pre[class*="language-"]': {
     color: '#2F3031',
     background: '#EBFDFB',
-    textShadow: '0 1px white',
     fontFamily: "Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace",
     textAlign: 'left',
+    textShadow: 'none',
     whiteSpace: 'pre',
     wordSpacing: 'normal',
     wordBreak: 'normal',
@@ -136,25 +136,20 @@ export default {
     color: '#58A41D',
   },
   operator: {
-    color: '#BB7A3E',
-    background: 'hsla(0, 0%, 100%, .5)',
+    color: '#5B9B9B',
   },
   entity: {
-    color: '#BB7A3E',
-    background: 'hsla(0, 0%, 100%, .5)',
+    color: '#5B9B9B',
     cursor: 'help',
   },
   url: {
-    color: '#BB7A3E',
-    background: 'hsla(0, 0%, 100%, .5)',
+    color: '#5B9B9B',
   },
   '.language-css .token.string': {
-    color: '#BB7A3E',
-    background: 'hsla(0, 0%, 100%, .5)',
+    color: '#5B9B9B',
   },
   '.style .token.string': {
-    color: '#BB7A3E',
-    background: 'hsla(0, 0%, 100%, .5)',
+    color: '#5B9B9B',
   },
   atrule: {
     color: '#4096FF',
