@@ -234,18 +234,18 @@
     "id": "packages",
     "items": [
       {
-        "id": "/docs/nextjs/next-tinacms-github",
-        "slug": "/docs/nextjs/next-tinacms-github",
+        "id": "/packages/next-tinacms-github",
+        "slug": "/packages/next-tinacms-github",
         "title": "next-tinacms-github"
       },
       {
-        "id": "/docs/nextjs/next-tinacms-json",
-        "slug": "/docs/nextjs/next-tinacms-json",
+        "id": "/packages/next-tinacms-json",
+        "slug": "/packages/next-tinacms-json",
         "title": "next-tinacms-json"
       },
       {
-        "id": "/docs/nextjs/next-tinacms-markdown",
-        "slug": "/docs/nextjs/next-tinacms-markdown",
+        "id": "/packages/next-tinacms-markdown",
+        "slug": "/packages/next-tinacms-markdown",
         "title": "next-tinacms-markdown"
       }
     ]

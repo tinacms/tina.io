@@ -1,0 +1,16 @@
+{
+    "packages": [
+        {
+            "name": "next-tinacms-github",
+            "link": "https://api.github.com/repos/tinacms/tinacms/contents/packages/next-tinacms-github/README.md"
+        },
+        {
+            "name": "next-tinacms-json",
+            "link": "https://api.github.com/repos/tinacms/tinacms/contents/packages/next-tinacms-json/README.md"
+        },
+        {
+            "name": "next-tinacms-markdown",
+            "link": "https://api.github.com/repos/tinacms/tinacms/contents/packages/next-tinacms-markdown/README.md"
+        }
+    ]
+}
