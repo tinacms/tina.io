@@ -39,19 +39,16 @@ function DocTemplate(props) {
   const tocItems = props.tocItems
   const [activeIds, setActiveIds] = useState([])
 
-  const handleActiveToc = () => {
+  React.useEffect(() => {
     if (!isBrowser || !contentRef.current) {
       return
     }
-
     const activeTocListener = createTocListener(contentRef, setActiveIds)
 
     window.addEventListener('scroll', activeTocListener)
 
     return () => window.removeEventListener('scroll', activeTocListener)
-  }
-
-  React.useEffect(handleActiveToc, [contentRef, data])
+  }, [contentRef, data])
 
   usePlugin(form)
 
