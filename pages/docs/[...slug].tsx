@@ -44,7 +44,6 @@ function DocTemplate(props) {
       return
     }
     const activeTocListener = createTocListener(contentRef, setActiveIds)
-
     window.addEventListener('scroll', activeTocListener)
 
     return () => window.removeEventListener('scroll', activeTocListener)
