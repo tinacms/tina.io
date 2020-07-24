@@ -59,11 +59,7 @@ export default function Packages(props) {
         <DocsHeaderNav color={'light'} open={open} />
         <DocsTextWrapper>
           <DocsGrid>
-            <DocGridHeader>
-              <DocsPageTitle>{props.name}</DocsPageTitle>
-            </DocGridHeader>
             <DocGridContent ref={contentRef}>
-              <hr />
               <MarkdownContent escapeHtml={false} content={props.content} />
               <DocsPagination
                 prevPage={props.prevPage}
