@@ -1,19 +1,5 @@
 import React, { useState } from 'react'
 import { NextSeo } from 'next-seo'
-// import {
-//     DocsLayout,
-//     Wrapper,
-//     DocsTextWrapper,
-//     Footer,
-//     MarkdownContent,
-//   } from '../../components/layout'
-// import React, { useState } from 'react'
-// import { NextSeo } from 'next-seo'
-// import {
-//   DocsNav,
-//   DocsHeaderNav,
-//   Overlay,
-// } from 'components/ui'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { GithubError } from 'next-tinacms-github'
 import path from 'path'
