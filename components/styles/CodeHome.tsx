@@ -154,13 +154,13 @@ export default {
     color: '#5B9B9B',
   },
   atrule: {
-    color: '#4096FF',
+    color: '#54A4EE',
   },
   'attr-value': {
-    color: '#4096FF',
+    color: '#54A4EE',
   },
   keyword: {
-    color: '#4096FF',
+    color: '#54A4EE',
   },
   function: {
     color: '#DD4A68',
