@@ -2,12 +2,21 @@
 title: Creating JSON Forms
 ---
 
-There are two approaches to registering JSON forms with Tina. The approach you choose depends on whether the React template is a class or function.
+There are [two approaches](https://github.com/tinacms/tinacms/tree/master/packages/gatsby-tinacms-json) to registering JSON forms with Tina. In the example below, we will cover how to work with the `useJsonForm` hook.
 
-1. [`useJsonForm`](#useJsonForm): A [Hook](https://reactjs.org/docs/hooks-intro.html) used when the template is a function.
-2. [`JsonForm`](#JsonForm): A [Render Props](https://reactjs.org/docs/render-props.html#use-render-props-for-cross-cutting-concerns) component to use when the template is a class component.
+## Create & Register the Form
 
-#### Note: required query data
+`useJsonForm` is a [React Hook](https://reactjs.org/docs/hooks-intro.html) for creating JSON Forms. This hook works for functional components that source data from a [static query](https://www.gatsbyjs.org/docs/static-query/#how-staticquery-differs-from-page-query) using Gatsby's `useStaticQuery` hook. It also works with functional page components, using a [page query](https://www.gatsbyjs.org/docs/page-query/).
+
+> `useJsonForm` only creates a form. In order to interact with the form, you must _register_ it with the CMS. There are two main approaches to register forms in Tina: page forms and screen plugins. Please refer to the [form concepts](/docs/plugins/forms#registering-forms) doc to get clarity on the differences. In the examples below, we will only use the `usePlugin` hook to register the form.
+
+### _useJsonForm_
+
+As it's first argument, `useJsonForm` accepts the data returned from a Gatsby `dataJson` query. The second argument is a `formConfig` object; we will cover that in the next step.
+
+Similar to other form helpers, this hook returns the data to be rendered in the component and the [`form`](/docs/plugins/forms) connected with those editable values.
+
+### Required Query Data
 
 In order for the JSON forms to work, you must include the following fields in your `dataJson` graphql query:
 
@@ -16,112 +25,69 @@ In order for the JSON forms to work, you must include the following fields in yo
 
 An example `dataQuery` in your template might look like this:
 
-    query DataQuery($slug: String!) {
-      dataJson(fields: { slug: { eq: $slug } }) {
-        id
-        firstName
-        lastName
-
-        rawJson
-        fileRelativePath
-      }
-    }
-
-Additionally, any fields that are **not** queried will be deleted when saving content via the CMS.
-
-### useJsonForm
-
-This is a [React Hook](https://reactjs.org/docs/hooks-intro.html) for creating Json Forms.
-This is the recommended approach if your template is a Function Component.
-
-In order to use a form you must register it with the CMS. There are two main approaches to register forms in Tina: page forms and screen plugins. Please refer to the [form concepts](/docs/forms) doc to get clarity on the differences.
-
-**Interface**
-
-```typescript
-useJsonForm(data): [values, form]
-```
-
-**Arguments**
-
-- `data`: The data returned from a Gatsby `dataJson` query.
-
-**Return**
-
-- `[values, form]`
-  - `values`: The current values to be displayed. This has the same shape as the `data` argument.
-  - `form`: A reference to the [CMS Form](/docs/forms) object. The `form` is rarely needed in the template.
-
-#### Example 1: Page Forms
-
-**src/templates/blog-post.js**
-
-```jsx
-import { usePlugin } from 'tinacms'
-import { useJsonForm } from 'gatsby-tinacms-json'
-
-function BlogPostTemplate(props) {
-  // Create the form
-  const [data, form] = useJsonForm(props.data.dataJson)
-
-  // Register it with the CMS
-  usePlugin(form)
-
-  return <h1>{data.firstName}</h1>
-}
-```
-
-#### Example 2: Forms as Screens
-
-Screens are additional UI modals accessible from the CMS menu. The `useFormScreenPlugin` let's us create and register new Screen Plugin based on a form. This is a great place to put forms for content that doesn't belong on any particular page.
-
-> Tip: In previous versions of Tina, this was known as a Global Form.
-
-**src/components/layout.js**
-
-```jsx
-import { useFormScreenPlugin } from 'tinacms'
-import { useJsonForm } from 'gatsby-tinacms-json'
-
-function Layout(props) {
-  const [data, form] = useJsonForm(props.data.dataJson)
-
-  useFormScreenPlugin(form)
-
-  return <h1>{data.firstName}</h1>
-}
-```
-
-### JsonForm
-
-`JsonForm` is a [Render Props](https://reactjs.org/docs/render-props.html#use-render-props-for-cross-cutting-concerns)
-based component for accessing [CMS Forms](/docs/forms).
-
-This Component is a thin wrapper of `useJsonForm` and `usePlugin`. Since [React Hooks](https://reactjs.org/docs/hooks-intro.html) are
-only available within Function Components you will need to use `JsonForm` if your template is Class Component.
-
-**Props**
-
-- `data`: The data returned from a Gatsby `dataJson` query.
-- `render({ data, form }): JSX.Element`: A function that returns JSX elements
-  - `data`: The current values to be displayed. This has the same shape as the data in the `Json` prop.
-  - `form`: A reference to the [CMS Form](/docs/forms) object. The `form` is rarely needed in the template.
-
-**src/templates/blog-post.js**
-
-```jsx
-import { JsonForm } from 'gatsby-tinacms-json'
-
-class DataTemplate extends React.Component {
-  render() {
-    return (
-      <JsonForm
-        data={this.props.data.dataJson}
-        render={({ data }) => {
-          return <h1>{data.firstName}</h1>
-        }}
-      />
-    )
+```diff
+query DataQuery($slug: String!) {
+  dataJson(fields: { slug: { eq: $slug } }) {
+    id
+    firstName
+    lastName
++   rawJson
++   fileRelativePath
   }
 }
 ```
+
+> Any fields that are **not** queried will be deleted when saving content via the CMS.
+
+### Example
+
+Below is an example of how to use this hook:
+
+1. Import the `usePlugin` & `useJsonForm` hooks.
+2. Create the form by calling `useJsonForm` with the return data from the `dataJson` query.
+3. Register the page form with the CMS by calling `useForm` and passing the `form` returned from `useJsonForm`.
+4. Add `rawJson` and `fileRelativePath` to the `dataJson` query.
+
+**src/pages/page.js**
+
+```jsx
+// 1. import `usePlugin` & `useJsonForm`
+import { usePlugin } from 'tinacms'
+import { useJsonForm } from 'gatsby-tinacms-json'
+import { graphql } from 'gatsby'
+
+export default function Page(props) {
+  // 2. Create the form
+  const [data, form] = useJsonForm(props.data.dataJson, FormOptions)
+
+  // 3. Register the form with the CMS
+  usePlugin(form)
+
+  return (
+    <section>
+      <Wrapper>
+        <h2>{data.hero_copy}</h2>
+        <p>{data.supporting_copy}</p>
+      </Wrapper>
+    </section>
+  )
+}
+
+// 4. Add the required query parameters
+export const pageQuery = graphql`
+  dataJson(fields: { slug: { eq: $slug } }) {
+    id
+    hero_copy
+    supporting_copy
+    rawJson
+    fileRelativePath
+  }
+}
+`
+```
+
+After creating and registering the form in your component, restart the dev server and you should see a form in the sidebar populated with default text fields in the sidebar. Try editing one of the values and watch it live update on your site.
+
+> _Note:_ You will only see the associated form in the sidebar if the component is currently rendered on the page.
+
+To customize the form with different [fields](/docs/plugins/fields), you can pass in a config options object as the second parameter. Let's do that next.

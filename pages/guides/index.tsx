@@ -18,6 +18,7 @@ import {
 import { DocsNav, Overlay, DynamicLink, DocsHeaderNav } from 'components/ui'
 import { CardGrid, Card } from 'components/ui/Cards'
 import RightArrowSvg from '../../public/svg/right-arrow.svg'
+import styled from 'styled-components'
 
 const GuideTemplate = props => {
   let data = props.markdownFile.data
@@ -80,7 +81,7 @@ const GuideTemplate = props => {
       <DocsContent>
         <DocsHeaderNav color={'light'} open={open} />
         <DocsTextWrapper>
-          <Wrapper narrow>
+          <GuideWrapper narrow>
             <h1>{frontmatter.title}</h1>
             <hr />
             <MarkdownContent escapeHtml={false} content={markdownBody} />
@@ -88,7 +89,7 @@ const GuideTemplate = props => {
               navData.map(section => (
                 <GuideSection key={section.id} {...section} />
               ))}
-          </Wrapper>
+          </GuideWrapper>
         </DocsTextWrapper>
         <Footer light editMode={props.editMode} />
       </DocsContent>
@@ -130,6 +131,10 @@ const GuideSection = (section: NavSection) => {
     </>
   )
 }
+
+const GuideWrapper = styled(Wrapper)`
+  padding-bottom: 3rem;
+`
 
 export default GuideTemplate
 

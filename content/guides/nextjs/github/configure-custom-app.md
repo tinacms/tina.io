@@ -26,7 +26,7 @@ export default class Site extends App {
      * 1. Create the TinaCMS instance
      */
     this.cms = new TinaCMS({
-      enabled: props.pageProps.preview,
+      enabled: !!props.pageProps.preview
       apis: {
         /**
          * 2. Register the GithubClient
@@ -105,11 +105,15 @@ export const EditLink = ({ cms }: EditLinkProps) => {
 
 > _Note:_ For brevity, the example above configures many steps in a single file, but **a few components can be configured in different places**. For example you could put the `EditLink` in a Layout component, or set up the Github Provider only on certain pages.
 
-If you restart the dev server, you should see a **button in the top left-hand corner** that says, "Edit This Site". If you click it, you'll be _prompted to authenticate_ with GitHub.
+If you restart the dev server, you should see a **button in the top left-hand corner** that says, "Edit This Site". If you click it, you should be _prompted to authenticate_ with GitHub.
 
 If auth is successful, you should see a refresh and then it will look the same as before, just like this:
 
 ![create-next-app with tina edit button](/img/github-open-auth-cna/edit-this-site.png)
+
+It might look like nothing happened, but if all went well, a few cookies will have been created.
+
+### Check for Cookies
 
 To make sure it did work, check your cookies. You should now see these four cookies: **\_\_next_preview_data**, **\_\_prerender_bypass**, **working_repo_full_name**, and **github_access_token**.
 
@@ -122,5 +126,19 @@ If you didn't have access, then you would be requested to create a fork of the _
 ![github-create-fork-step](/img/github-open-auth-cna/create-fork-step.png)
 
 The final cookie, **github_access_token**, proves that the authentication worked, since you now have an access token for the Github APIs.
+
+## Private Repositories
+
+If you prefer to keep the repository private, and not implement Open Authoring, you need to add an additional parameter to the `GithubClient` configuration object.
+
+```diff
+github: new GithubClient({
+  proxy: '/api/proxy-github',
+  authCallbackRoute: '/api/create-github-access-token',
+  clientId: process.env.GITHUB_CLIENT_ID,
+  baseRepoFullName: process.env.REPO_FULL_NAME, // e.g: tinacms/tinacms.org,
++ authScope: 'repo' // normally defaults to 'public_repo'
+}),
+```
 
 Next we'll need to configure Previews on the index page to enter the editing environment on our _Working Repository_.

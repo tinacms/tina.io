@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { Overlay } from '../ui'
 
 interface DocsLayoutProps {
-  isEditing: boolean
+  isEditing?: boolean
   children: any
 }
 

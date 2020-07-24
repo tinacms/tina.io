@@ -117,7 +117,10 @@ export const getStaticProps: GetStaticProps = async function({
   }
 
   return {
-    props: { ...previewProps.props, siteConfig: { title: siteConfig.title } },
+    props: {
+      ...previewProps.props,
+      siteConfig: { title: siteConfig.title },
+    },
   }
 }
 

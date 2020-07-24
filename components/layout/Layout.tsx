@@ -10,7 +10,7 @@ import { ReleaseNotesCreatorPlugin } from '../../tinacms/ReleaseNotesCreator'
 interface LayoutProps {
   children: any[]
   color?: 'white' | 'secondary' | 'seafoam'
-  preview: boolean
+  preview?: boolean
 }
 
 export const Layout = styled(

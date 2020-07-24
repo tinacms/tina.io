@@ -10,14 +10,11 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 
 const dummyMailchimpEndpoint =
-  'https://theDomainHere.us18.list-manage.com/subscribe/post?u=1512315231251&amp;id=0asd21t12e1'
+  'https://theDomainHere.us18.list-manage.com/subscribe/post?u=1512315231252&amp;id=0asd21t12e1'
 
 const config = {
   env: {
-    MAILCHIMP_ENDPOINT:
-      process.env.NODE_ENV === 'production'
-        ? process.env.MAILCHIMP_ENDPOINT
-        : dummyMailchimpEndpoint,
+    MAILCHIMP_ADDRESS: process.env.MAILCHIMP_ADDRESS || dummyMailchimpEndpoint,
     HUBSPOT_TEAMS_FORM_ID: process.env.HUBSPOT_TEAMS_FORM_ID,
     HUBSPOT_PORTAL_ID: process.env.HUBSPOT_PORTAL_ID,
     GTM_ID: process.env.GTM_ID,

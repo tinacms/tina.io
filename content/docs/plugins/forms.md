@@ -19,7 +19,7 @@ consumes:
 >
 > This document explains how to set up forms in any React project. If you're using Gatsby or Next.js, we have helper packages that streamline this process for specific workflows:
 >
-> - [Editing Markdown Files with Gatsby](/guides/gatsby/git/installation)
+> - [Editing Markdown Files with Gatsby](/guides/gatsby/git/create-remark-form)
 > - [Editing JSON Files with Gatsby](/guides/gatsby/git/create-json-form)
 > - [Editing local Markdown Files via Git with Next.js](/guides/nextjs/git/using-markdown)
 > - [Editing local JSON Files via Git with Next.js](/guides/nextjs/git/creating-git-forms)
@@ -33,12 +33,12 @@ import * as React from React
 import ReactMarkdown from 'react-markdown'
 
 export function Page(props) {
-    return (
-        <main>
-            <h1>{props.title}</h1>
-            <ReactMarkdown source={props.markdownContent}>
-        </main>
-    )
+  return (
+    <main>
+        <h1>{props.title}</h1>
+        <ReactMarkdown source={props.markdownContent}>
+    </main>
+  )
 }
 ```
 
@@ -50,23 +50,29 @@ import ReactMarkdown from 'react-markdown'
 import { useForm, usePlugin } from 'tinacms'
 
 export function Page(props) {
-    const [modifiedValues, form] = useForm(formConfig) // formConfig omitted for brevity; we'll get to this later
-    usePlugin(form)
-    return (
-        <main>
-            <h1>{modifiedValues.title}</h1>
-            <ReactMarkdown source={modifiedValues.markdownContent}>
-        </main>
-    )
+  // 1. Create the form
+  const [modifiedValues, form] = useForm(formConfig) // formConfig object omitted for brevity; we'll get to this later
+
+  // 2. Register it with the CMS
+  usePlugin(form)
+
+  return (
+    <main>
+      <h1>{modifiedValues.title}</h1>
+      <ReactMarkdown source={modifiedValues.markdownContent}>
+    </main>
+  )
 }
 
 ```
 
 `useForm` returns an object containing all of the form's values that will change as the content is updated in the form. By switching out our original `props` in the rendering code for this new object, our page will re-render as the content is changed, giving us a real-time preview of the content!
 
-## Creating Forms in React
+## Creating Forms
 
-The `useForm` hook let's you create a form, but it does not register it with the CMS. Here is how that hook works:
+The `useForm` hook let's you create a form, but it does not [register it](/docs/plugins/forms#registering-forms) with the CMS.
+
+Here is how that hook works:
 
 ```javascript
 const [modifiedValues, form] = useForm(formConfig, watchedVars)
@@ -189,11 +195,42 @@ interface WatchableFormValue {
 | `fields` | By watching the form's fields, they can be added/removed dynamically.                                                                                                           |
 | `label`  | When the form's label is derived from a dynamic value, this will ensure it is updated correctly.                                                                                |
 
-### Form Helpers
+## Registering Forms
 
-The three hooks described thus far are the basic interface for creating forms, and they aim to support a broad set of use cases. For specific use cases, we've created some simplified interfaces for quickly setting up forms. Take a look at our [Next.js form docs](/guides/nextjs/git/creating-git-forms) and [Gatsby docs](/guides/gatsby/git/installation) to learn how to use these.
+In order to use a form you must register it with the CMS. There are two main approaches to register forms in Tina: page forms and screen plugins.
 
-### Customizing Form Buttons
+### Example 1: Page Forms
+
+For general page forms, use the `usePlugin` hook.
+
+> Tip: At one point these were known as _Local Forms_
+
+**src/templates/blog-post.js**
+
+```jsx
+import { usePlugin } from 'tinacms'
+import { useJsonForm } from 'gatsby-tinacms-json'
+
+function BlogPostTemplate(props) {
+  // Create the form
+  const [data, form] = useJsonForm(props.data.dataJson)
+
+  // Register it with the CMS
+  usePlugin(form)
+
+  return <h1>{data.firstName}</h1>
+}
+```
+
+### Example 2: Forms as Screens
+
+[Screens](/docs/plugins/screens) are additional UI modals accessible from the CMS menu. Reference the [`useFormScreenPlugin` hook](/docs/plugins/screens#useformscreenplugin) to see an example of registering a form as a screen.
+
+## Form Helpers
+
+The three hooks described thus far are the basic interface for creating forms, and they aim to support a broad set of use cases. For specific use cases, we've created some simplified interfaces for quickly setting up forms depending on the backend. Take a look at the integration packages for [Next.js](/docs/integrations/nextjs#packages) and [Gatsby](/docs/integrations/gatsby#packages) to learn more.
+
+## Customizing Form Buttons
 
 > _Note:_ The 'Save' and 'Reset' button text can also be configured on the sidebar or toolbar when defining the [CMS options](/docs/cms#cms-configuration). If `buttons` are configured on the CMS through the `sidebar` or `toolbar` options, those values will take precedent over button values passed to a form. **It is now recommended to configure button text on the form** intead of the CMS.
 
@@ -226,7 +263,7 @@ const [author, authorForm] = useJsonForm(data.dataJson, {
 })
 ```
 
-#### Reuse with a composition
+### Reuse with a composition
 
 When using the same button configuraiton for every form, it can be repetitive to continually define the button options. You can use a composition for this. Below is an example if you created a `cms` directory with a `useForm` composition to add the custom button values on every form.
 

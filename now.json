@@ -41,6 +41,7 @@
     { "source": "/docs/cms/events", "destination": "/docs/events" },
     { "source": "/docs/cms/plugins", "destination": "/docs/plugins" },
     { "source": "/docs/fields", "destination": "/docs/plugins/fields" },
+    { "source": "/docs/fields/", "destination": "/docs/plugins/fields" },
     { "source": "/docs/concepts/backends", "destination": "/docs/cms#apis" },
     { "source": "/docs/concepts/plugins", "destination": "/docs/cms#plugins" },
     {
@@ -108,8 +109,8 @@
       "destination": "/guides/gatsby/git/create-json-form"
     },
     {
-      "source": "/docs/gatsby/creating-new-files",
-      "destination": "/guides/gatsby/creating-new-files/add-content-creator"
+      "source": "/docs/git",
+      "destination": "/guides/git/create-new-files"
     },
     {
       "source": "/docs/gatsby/configure-git-plugin",

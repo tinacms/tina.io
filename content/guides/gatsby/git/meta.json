@@ -8,12 +8,6 @@
       "data": "./installation.md"
     },
     {
-      "title": "Configure Git Plugin",
-      "id": "/guides/gatsby/git/configure-git-plugin",
-      "slug": "/guides/gatsby/git/configure-git-plugin",
-      "data": "./configure-git-plugin.md"
-    },
-    {
       "title": "Creating Remark Forms",
       "id": "/guides/gatsby/git/create-remark-form",
       "slug": "/guides/gatsby/git/create-remark-form",
@@ -39,21 +33,27 @@
     },
     {
       "title": "Creating New Files",
-      "id": "/guides/gatsby/creating-new-files/add-content-creator",
-      "slug": "/guides/gatsby/creating-new-files/add-content-creator",
-      "data": "./add-content-creator.md"
+      "id": "/guides/gatsby/git/create-new-files",
+      "slug": "/guides/gatsby/git/create-new-files",
+      "data": "./create-new-files.md"
     },
     {
       "title": "New File Configuration",
-      "id": "/guides/gatsby/creating-new-files/configuration",
-      "slug": "/guides/gatsby/creating-new-files/configuration",
+      "id": "/guides/gatsby/git/configuration",
+      "slug": "/guides/gatsby/git/configuration",
       "data": "./configuration.md"
     },
     {
       "title": "Deleting Files",
-      "id": "/guides/gatsby/creating-new-files/deleting-files",
-      "slug": "/guides/gatsby/creating-new-files/deleting-files",
+      "id": "/guides/gatsby/git/deleting-files",
+      "slug": "/guides/gatsby/git/deleting-files",
       "data": "./deleting-files.md"
+    },
+    {
+      "title": "Next Steps",
+      "id": "/guides/gatsby/git/next-steps",
+      "slug": "/guides/gatsby/git/next-steps",
+      "data": "./next-steps.md"
     }
   ]
 }
