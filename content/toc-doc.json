@@ -230,6 +230,22 @@
     ]
   },
   {
+    "title": "Integrations",
+    "id": "nextjs",
+    "items": [
+      {
+        "id": "/docs/integrations/nextjs",
+        "slug": "/docs/integrations/nextjs",
+        "title": "Next.js"
+      },
+      {
+        "id": "/docs/integrations/gatsby",
+        "slug": "/docs/integrations/gatsby",
+        "title": "Gatsby"
+      }
+    ]
+  },
+  {
     "title": "Packages",
     "id": "packages",
     "items": [
@@ -292,22 +308,6 @@
         "id": "/packages/gatsby-tinacms-remark",
         "slug": "/packages/gatsby-tinacms-remark",
         "title": "gatsby-tinacms-remark"
-      }
-    ]
-  },
-  {
-    "title": "Integrations",
-    "id": "nextjs",
-    "items": [
-      {
-        "id": "/docs/integrations/nextjs",
-        "slug": "/docs/integrations/nextjs",
-        "title": "Next.js"
-      },
-      {
-        "id": "/docs/integrations/gatsby",
-        "slug": "/docs/integrations/gatsby",
-        "title": "Gatsby"
       }
     ]
   }
