@@ -681,7 +681,7 @@
     color: var(--color-primary);
     font-size: 1.5em;
     line-height: 1.4;
-    margin-bottom: 1em;
+    margin-bottom: 1.25em;
     transform-origin: 100% 0;
   }
 
@@ -697,7 +697,7 @@
 .thirdPartyIcon {
   position: relative;
   display: block;
-  margin-bottom: 1.5em;
+  margin-bottom: 1.75em;
 
   span {
     position: relative;
@@ -726,7 +726,7 @@
 .wrapComponentsIcon {
   position: relative;
   display: block;
-  margin-bottom: 1.5em;
+  margin-bottom: 1.75em;
 
   span {
     position: relative;
@@ -752,7 +752,7 @@
 .blockBasedEditingIcon {
   position: relative;
   display: block;
-  margin-bottom: 1.5em;
+  margin-bottom: 1.75em;
 
   span {
     position: relative;
@@ -767,6 +767,8 @@
       position: absolute;
       top: 0.75em;
       left: 0.75em;
+      width: 2.375em;
+      height: 2.375em;
       border-radius: 2em;
       background: rgba(255, 255, 255, 0.9);
       z-index: 10;
