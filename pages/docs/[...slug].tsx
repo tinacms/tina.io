@@ -25,6 +25,7 @@ import { GithubError } from 'next-tinacms-github'
 import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { usePlugin } from 'tinacms'
 import Toc from '../../components/toc'
+import { createTocListener } from 'utils'
 
 function DocTemplate(props) {
   // Registers Tina Form
@@ -38,79 +39,19 @@ function DocTemplate(props) {
   const tocItems = props.tocItems
   const [activeIds, setActiveIds] = useState([])
 
-  React.useEffect(() => {
+  const handleActiveToc = () => {
     if (!isBrowser || !contentRef.current) {
       return
     }
 
-    let lastScrollPosition = 0
-    let tick = false
-    let throttleInterval = 100
-    let headings = []
-    let baseOffset = 16
-    let htmlElements = contentRef.current.querySelectorAll(
-      'h1, h2, h3, h4, h5, h6'
-    )
+    const activeTocListener = createTocListener(contentRef, setActiveIds)
 
-    htmlElements.forEach(function(heading: any) {
-      headings.push({
-        id: heading.id,
-        offset: heading.offsetTop,
-        level: heading.tagName,
-      })
-    })
+    window.addEventListener('scroll', activeTocListener)
 
-    const throttledScroll = () => {
-      let scrollPos = window.scrollY
-      let newActiveIds = []
-      let activeHeadingCandidates = headings.filter(heading => {
-        return heading.offset - scrollPos < baseOffset
-      })
-      let activeHeading =
-        activeHeadingCandidates.length > 0
-          ? activeHeadingCandidates.reduce((prev, current) =>
-              prev.offset > current.offset ? prev : current
-            )
-          : {}
+    return () => window.removeEventListener('scroll', activeTocListener)
+  }
 
-      newActiveIds.push(activeHeading.id)
-
-      if (activeHeading.level != 'H2') {
-        let activeHeadingParentCandidates =
-          activeHeadingCandidates.length > 0
-            ? activeHeadingCandidates.filter(heading => {
-                return heading.level == 'H2'
-              })
-            : []
-        let activeHeadingParent =
-          activeHeadingParentCandidates.length > 0
-            ? activeHeadingParentCandidates.reduce((prev, current) =>
-                prev.offset > current.offset ? prev : current
-              )
-            : {}
-
-        if (activeHeadingParent.id) {
-          newActiveIds.push(activeHeadingParent.id)
-        }
-      }
-
-      setActiveIds(newActiveIds)
-    }
-
-    function onScroll() {
-      if (!tick) {
-        setTimeout(function() {
-          throttledScroll()
-          tick = false
-        }, throttleInterval)
-      }
-      tick = true
-    }
-
-    window.addEventListener('scroll', onScroll)
-
-    return () => window.removeEventListener('scroll', throttledScroll)
-  }, [contentRef, data])
+  React.useEffect(handleActiveToc, [contentRef, data])
 
   usePlugin(form)
 
