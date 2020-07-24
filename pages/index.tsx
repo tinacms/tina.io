@@ -233,7 +233,7 @@ const HomePage = (props: any) => {
                   <GridItem
                     activeStack={activeStack}
                     number={3}
-                    item={libraries.next}
+                    item={libraries.bootstrap}
                   />
                   <GridItem
                     activeStack={activeStack}
@@ -248,7 +248,7 @@ const HomePage = (props: any) => {
                   <GridItem
                     activeStack={activeStack}
                     number={6}
-                    item={libraries.bootstrap}
+                    item={libraries.next}
                   />
                   <GridItem
                     activeStack={activeStack}
