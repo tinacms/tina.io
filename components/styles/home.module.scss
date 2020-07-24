@@ -822,6 +822,7 @@
     margin-bottom: 0.75em;
     transform: translate3d(0, 0, 0) rotateZ(90deg);
     animation: wrapComponentsIconKeyframes infinite 7000ms ease-in both;
+    animation-delay: 2000ms;
 
     &:nth-child(2) {
       position: absolute;
@@ -832,7 +833,66 @@
       z-index: 5;
       transform: translate3d(0, 0, 0) rotateZ(90deg);
       animation: wrapComponentsIconKeyframesTwo infinite 7000ms ease-in both;
+      animation-delay: 2000ms;
     }
+  }
+}
+
+@keyframes blockBasedEditingAnimation {
+  0% {
+    transform: translate3d(0, 0, 0); /* Default */
+    z-index: 0;
+  }
+  47% {
+    transform: translate3d(0, 0, 0); /* Default */
+    z-index: 0;
+  }
+  50% {
+    transform: translate3d(0.25em, -1.5em, 0); /* Apex */
+    z-index: 0;
+  }
+  53% {
+    transform: translate3d(0.75em, 0.75em, 0) rotateZ(90deg); /* Rear Position */
+    z-index: 10;
+  }
+  94% {
+    transform: translate3d(0.75em, 0.75em, 0) rotateZ(90deg); /* Rear Position */
+    z-index: 10;
+  }
+  97% {
+    transform: translate3d(0.375em, 2.5em, 0) rotateZ(90deg); /* Lower Apex */
+    z-index: 10;
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotateZ(180deg); /* Default */
+    z-index: 0;
+  }
+}
+
+@keyframes blockBasedEditingAnimationTwo {
+  0% {
+    transform: translate3d(0, 0, 0); /* Default */
+    z-index: 0;
+  }
+  47% {
+    transform: translate3d(0, 0, 0); /* Default */
+    z-index: 0;
+  }
+  50% {
+    transform: translate3d(-0.375em, 0.5em, 0); /* Apex */
+    z-index: 0;
+  }
+  53% {
+    transform: translate3d(-0.75em, -0.75em, 0); /* Rear Position */
+    z-index: 0;
+  }
+  94% {
+    transform: translate3d(-0.75em, -0.75em, 0); /* Rear Position */
+    z-index: 0;
+  }
+  97% {
+    transform: translate3d(-0.375em, -2em, 0); /* Lower Apex */
+    z-index: 0;
   }
 }
 
@@ -849,6 +909,9 @@
     opacity: 0.85;
     background-color: var(--color-primary);
     margin-bottom: 0.75em;
+    transform: translate3d(0, 0, 0) rotateZ(90deg);
+    animation: blockBasedEditingAnimation infinite 7000ms ease-in both;
+    animation-delay: 4000ms;
 
     &:nth-child(2) {
       position: absolute;
@@ -859,6 +922,8 @@
       border-radius: 2em;
       background: rgba(255, 255, 255, 0.9);
       z-index: 10;
+      animation: blockBasedEditingAnimationTwo infinite 7000ms ease-in both;
+      animation-delay: 4000ms;
 
       &:before {
         content: '';
