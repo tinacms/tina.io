@@ -111,13 +111,15 @@ const libraries: Library[] = [
   Foo,
 ]
 
+const DefaultLibraries = [Next, Github]
+
 const HomePage = (props: any) => {
   const cms = useCMS()
   const [formData, form] = useGithubJsonForm(props.file, {
     label: 'Home Page',
     fields: [],
   })
-  const [activeLibraries, setActiveLibraries] = React.useState([Next])
+  const [activeLibraries, setActiveLibraries] = React.useState(DefaultLibraries)
 
   const randomizeLibraries = () => {
     const randomData = randElem(
@@ -376,13 +378,23 @@ const HomePage = (props: any) => {
 
 const Framework = ({ activeLibraries }) => {
   const [animationState, setAnimationState] = React.useState(null)
-  const [activeLibrary, setActiveLibrary] = React.useState(null)
+  const [activeLibrary, setActiveLibrary] = React.useState(
+    DefaultLibraries.filter(library => {
+      return library.type === 'framework'
+    })[0]
+  )
   const [frameworkWidth, setFrameworkWidth] = React.useState(200)
   const frameworkSpanRef = React.useRef(null)
 
   React.useEffect(() => {
-    if (!frameworkSpanRef.current) return
-    if (activeLibraries === activeLibrary) return
+    if (
+      !frameworkSpanRef.current ||
+      activeLibraries.filter(library => {
+        return library.type === 'framework'
+      })[0] === activeLibrary
+    ) {
+      return
+    }
 
     setAnimationState(styles.heroTitleAnimateOut)
 
@@ -423,7 +435,6 @@ interface GridItemProps {
 }
 
 const GridItem = ({ activeLibraries, number, library }: GridItemProps) => {
-  //activeLibraries.includes(library.id)
   const [activeStyles, setActiveStyles] = React.useState('')
 
   React.useEffect(() => {
