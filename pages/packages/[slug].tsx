@@ -21,14 +21,30 @@ import {
   DocsGrid,
   DocGridHeader,
   DocsPageTitle,
+  DocGridToc,
   DocGridContent,
 } from 'pages/docs/[...slug]'
+import { createTocListener } from 'utils'
+import Toc from 'components/toc'
 
 export default function Packages(props) {
   const excerpt = 'A package for Tinacms.'
 
   const [open, setOpen] = useState(false)
   const contentRef = React.useRef<HTMLDivElement>(null)
+  const isBrowser = typeof window !== `undefined`
+  const tocItems = props.tocItems
+  const [activeIds, setActiveIds] = useState([])
+
+  React.useEffect(() => {
+    if (!isBrowser || !contentRef.current) {
+      return
+    }
+    const activeTocListener = createTocListener(contentRef, setActiveIds)
+    window.addEventListener('scroll', activeTocListener)
+
+    return () => window.removeEventListener('scroll', activeTocListener)
+  }, [contentRef])
 
   return (
     <DocsLayout isEditing={false}>
@@ -59,6 +75,9 @@ export default function Packages(props) {
         <DocsHeaderNav color={'light'} open={open} />
         <DocsTextWrapper>
           <DocsGrid>
+            <DocGridToc>
+              <Toc tocItems={tocItems} activeIds={activeIds} />
+            </DocGridToc>
             <DocGridContent ref={contentRef}>
               <MarkdownContent escapeHtml={false} content={props.content} />
               <DocsPagination

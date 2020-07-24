@@ -1,5 +1,6 @@
 import { getJsonPreviewProps, readJsonFile } from '../getJsonPreviewProps'
 import axios from 'axios'
+import toc from 'markdown-toc'
 const atob = require('atob')
 
 const b64DecodeUnicode = (str: string) => {
@@ -53,6 +54,7 @@ export async function getPackageProps(
       link: currentPackage.link,
       content,
       docsNav: docsNavData,
+      tocItems: toc(content).content,
       nextPage: {
         slug: nextPackage?.name || null,
         title: nextPackage?.name || null,
