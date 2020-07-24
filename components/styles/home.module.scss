@@ -569,7 +569,7 @@
   transform: translate3d(0, 0, 0) rotateX(0deg);
   transform-style: preserve-3d;
   background: white;
-  box-shadow: inset -2px -2px 0 4px rgba(0, 0, 0, 0.05),
+  box-shadow: inset -2px -2px 0 6px var(--color-seafoam-light),
     0 15px 30px 30px rgba(132, 181, 178, 0.07);
   cursor: pointer;
   transition: transform var(--animation-length-short) var(--ease-out);
