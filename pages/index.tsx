@@ -19,63 +19,97 @@ import {
 import TinaLogomarkSvg from 'public/svg/tina-logomark.svg'
 import WhyTinaBackground from 'public/svg/why-tina-background.svg'
 
-const libraries = {
-  next: {
-    id: 'next',
-    label: 'Next.js',
-    type: 'framework',
-    component: NextLogo,
-    componentSmall: NextLogo,
-  },
-  gatsby: {
-    id: 'gatsby',
-    label: 'Gatsby.js',
-    type: 'framework',
-    component: GatsbyLogo,
-    componentSmall: GatsbyFullLogo,
-  },
-  react: {
-    id: 'react',
-    label: 'React',
-    type: 'framework',
-    component: ReactLogo,
-    componentSmall: ReactFullLogo,
-  },
-  github: {
-    id: 'github',
-    label: 'Github',
-    type: 'data',
-    component: GithubLogo,
-    componentSmall: GithubLogo,
-  },
-  contentful: {
-    id: 'contentful',
-    label: 'Contentful',
-    type: 'data',
-    component: ContentfulLogo,
-    componentSmall: ContentfulLogo,
-  },
-  strapi: {
-    id: 'strapi',
-    label: 'Strapi',
-    type: 'data',
-    component: StrapiLogo,
-    componentSmall: StrapiLogo,
-  },
-  bootstrap: {
-    id: 'bootstrap',
-    label: 'Bootstrap',
-    type: 'ui',
-    component: BootstrapLogo,
-    componentSmall: BootstrapLogo,
-  },
+interface Library {
+  id: string
+  label: string
+  type: 'framework' | 'ui' | 'data'
+  component: React.FC | null
+  componentSmall: React.FC | null
 }
 
-interface ActiveStack {
-  data: 'github' | 'contentful' | 'strapi'
-  framework: 'gatsby' | 'next' | 'react'
-  ui: 'bootstrap' | '' | ''
+const Next: Library = {
+  id: 'next',
+  label: 'Next.js',
+  type: 'framework',
+  component: NextLogo,
+  componentSmall: NextLogo,
 }
+
+const Gatsby: Library = {
+  id: 'gatsby',
+  label: 'Gatsby.js',
+  type: 'framework',
+  component: GatsbyFullLogo,
+  componentSmall: GatsbyLogo,
+}
+
+const ReactLib: Library = {
+  id: 'react',
+  label: 'React',
+  type: 'framework',
+  component: ReactFullLogo,
+  componentSmall: ReactLogo,
+}
+
+const Github: Library = {
+  id: 'github',
+  label: 'Github',
+  type: 'data',
+  component: GithubLogo,
+  componentSmall: GithubLogo,
+}
+
+const Contentful: Library = {
+  id: 'contentful',
+  label: 'Contentful',
+  type: 'data',
+  component: ContentfulLogo,
+  componentSmall: ContentfulLogo,
+}
+
+const Strapi: Library = {
+  id: 'strapi',
+  label: 'Strapi',
+  type: 'data',
+  component: StrapiLogo,
+  componentSmall: StrapiLogo,
+}
+
+const Bootstrap: Library = {
+  id: 'bootstrap',
+  label: 'Bootstrap',
+  type: 'ui',
+  component: BootstrapLogo,
+  componentSmall: BootstrapLogo,
+}
+
+const Material: Library = {
+  id: 'material',
+  label: 'Material',
+  type: 'ui',
+  component: null,
+  componentSmall: null,
+}
+
+const Foo: Library = {
+  id: 'foo',
+  label: 'Foo',
+  type: 'ui',
+  component: null,
+  componentSmall: null,
+}
+
+const libraries: Library[] = [
+  Next,
+  Gatsby,
+  ReactLib,
+  Github,
+  Contentful,
+  Strapi,
+  Bootstrap,
+  Material,
+  Foo,
+]
 
 const HomePage = (props: any) => {
   const cms = useCMS()
@@ -83,28 +117,31 @@ const HomePage = (props: any) => {
     label: 'Home Page',
     fields: [],
   })
+  const [activeLibraries, setActiveLibraries] = React.useState([Next])
 
-  const dataOptions = ['github', 'contentful', 'strapi']
-  const frameworkOptions = ['gatsby', 'next', 'react']
-  const uiOptions = ['bootstrap', '', '']
-
-  const [activeStack, setActiveStack] = React.useState<ActiveStack>({
-    data: 'github',
-    framework: 'next',
-    ui: '',
-  })
+  const randomizeLibraries = () => {
+    const randomData = randElem(
+      libraries.filter(library => {
+        return library.type === 'data'
+      })
+    )
+    const randomFramework = randElem(
+      libraries.filter(library => {
+        return library.type === 'framework'
+      })
+    )
+    const randomUi = randElem(
+      libraries.filter(library => {
+        return library.type === 'ui'
+      })
+    )
+    setActiveLibraries([randomData, randomFramework, randomUi])
+  }
 
   React.useEffect(() => {
     const intervalTime = 5000
     const interval = setInterval(() => {
-      const randomData = randElem(dataOptions)
-      const randomFramework = randElem(frameworkOptions)
-      const randomUI = randElem(uiOptions)
-      setActiveStack({
-        data: randomData,
-        framework: randomFramework,
-        ui: randomUI,
-      })
+      randomizeLibraries()
     }, intervalTime)
     return () => clearInterval(interval)
   }, [])
@@ -134,7 +171,7 @@ const HomePage = (props: any) => {
           <div className={styles.heroContent}>
             <h1 className={styles.heroTitle}>
               Bring Editing to Your
-              <Framework activeStack={activeStack} />
+              <Framework activeLibraries={activeLibraries} />
               Project
             </h1>
             <p className={styles.heroText}>Made for developers and editors</p>
@@ -145,115 +182,115 @@ const HomePage = (props: any) => {
               <div className={styles.aspectRatio}>
                 <div className={`${styles.grid} ${styles.gridLeft}`}>
                   <GridItem
-                    activeStack={activeStack}
+                    activeLibraries={activeLibraries}
                     number={1}
-                    item={libraries.bootstrap}
+                    library={Bootstrap}
                   />
                   <GridItem
-                    activeStack={activeStack}
+                    activeLibraries={activeLibraries}
                     number={2}
-                    item={libraries.strapi}
+                    library={Strapi}
                   />
                   <GridItem
-                    activeStack={activeStack}
+                    activeLibraries={activeLibraries}
                     number={3}
-                    item={libraries.gatsby}
+                    library={Gatsby}
                   />
                   <GridItem
-                    activeStack={activeStack}
+                    activeLibraries={activeLibraries}
                     number={4}
-                    item={libraries.github}
+                    library={Github}
                   />
                   <GridItem
-                    activeStack={activeStack}
+                    activeLibraries={activeLibraries}
                     number={5}
-                    item={libraries.react}
+                    library={ReactLib}
                   />
                   <GridItem
-                    activeStack={activeStack}
+                    activeLibraries={activeLibraries}
                     number={6}
-                    item={libraries.next}
+                    library={Next}
                   />
                   <GridItem
-                    activeStack={activeStack}
+                    activeLibraries={activeLibraries}
                     number={7}
-                    item={libraries.contentful}
+                    library={Contentful}
                   />
                 </div>
                 {/* End First Grid */}
                 <div className={styles.grid}>
                   <GridItem
-                    activeStack={activeStack}
+                    activeLibraries={activeLibraries}
                     number={1}
-                    item={libraries.github}
+                    library={Github}
                   />
                   <GridItem
-                    activeStack={activeStack}
+                    activeLibraries={activeLibraries}
                     number={2}
-                    item={libraries.react}
+                    library={ReactLib}
                   />
                   <GridItem
-                    activeStack={activeStack}
+                    activeLibraries={activeLibraries}
                     number={3}
-                    item={libraries.next}
+                    library={Next}
                   />
                   <GridItem
-                    activeStack={activeStack}
+                    activeLibraries={activeLibraries}
                     number={4}
-                    item={libraries.contentful}
+                    library={Contentful}
                   />
                   <GridItem
-                    activeStack={activeStack}
+                    activeLibraries={activeLibraries}
                     number={5}
-                    item={libraries.strapi}
+                    library={Strapi}
                   />
                   <GridItem
-                    activeStack={activeStack}
+                    activeLibraries={activeLibraries}
                     number={6}
-                    item={libraries.bootstrap}
+                    library={Bootstrap}
                   />
                   <GridItem
-                    activeStack={activeStack}
+                    activeLibraries={activeLibraries}
                     number={7}
-                    item={libraries.gatsby}
+                    library={Gatsby}
                   />
                 </div>
                 {/* End Second Grid */}
                 <div className={`${styles.grid} ${styles.gridRight}`}>
                   <GridItem
-                    activeStack={activeStack}
+                    activeLibraries={activeLibraries}
                     number={1}
-                    item={libraries.react}
+                    library={ReactLib}
                   />
                   <GridItem
-                    activeStack={activeStack}
+                    activeLibraries={activeLibraries}
                     number={2}
-                    item={libraries.github}
+                    library={Github}
                   />
                   <GridItem
-                    activeStack={activeStack}
+                    activeLibraries={activeLibraries}
                     number={3}
-                    item={libraries.bootstrap}
+                    library={Bootstrap}
                   />
                   <GridItem
-                    activeStack={activeStack}
+                    activeLibraries={activeLibraries}
                     number={4}
-                    item={libraries.gatsby}
+                    library={Gatsby}
                   />
                   <GridItem
-                    activeStack={activeStack}
+                    activeLibraries={activeLibraries}
                     number={5}
-                    item={libraries.strapi}
+                    library={Strapi}
                   />
                   <GridItem
-                    activeStack={activeStack}
+                    activeLibraries={activeLibraries}
                     number={6}
-                    item={libraries.next}
+                    library={Next}
                   />
                   <GridItem
-                    activeStack={activeStack}
+                    activeLibraries={activeLibraries}
                     number={7}
-                    item={libraries.contentful}
+                    library={Contentful}
                   />
                 </div>
                 {/* End Third Grid */}
@@ -337,35 +374,35 @@ const HomePage = (props: any) => {
   )
 }
 
-const Framework = ({ activeStack }) => {
+const Framework = ({ activeLibraries }) => {
   const [animationState, setAnimationState] = React.useState(null)
-  const [activeFramework, setActiveFramework] = React.useState(
-    activeStack.framework ? activeStack.framework : null
-  )
+  const [activeLibrary, setActiveLibrary] = React.useState(null)
   const [frameworkWidth, setFrameworkWidth] = React.useState(200)
   const frameworkSpanRef = React.useRef(null)
 
   React.useEffect(() => {
     if (!frameworkSpanRef.current) return
-
-    let animateInTime = 1500
-    let animateOutTime = 500
-
-    if (activeStack.framework === activeFramework) return
+    if (activeLibraries === activeLibrary) return
 
     setAnimationState(styles.heroTitleAnimateOut)
 
+    let animateOutTime = 500
+
     setTimeout(() => {
-      setActiveFramework(activeStack.framework)
+      setActiveLibrary(
+        activeLibraries.filter(library => {
+          return library.type === 'framework'
+        })[0]
+      )
       setAnimationState(styles.heroTitleAnimate)
     }, animateOutTime)
-  }, [frameworkSpanRef.current, activeStack])
+  }, [frameworkSpanRef.current, activeLibraries])
 
   React.useEffect(() => {
     if (!frameworkSpanRef.current) return
 
     setFrameworkWidth(frameworkSpanRef.current.offsetWidth)
-  }, [frameworkSpanRef.current, activeFramework])
+  }, [frameworkSpanRef.current, activeLibrary])
 
   return (
     <span
@@ -373,28 +410,41 @@ const Framework = ({ activeStack }) => {
       style={{ width: `${frameworkWidth}px` }}
     >
       <span className={animationState} ref={frameworkSpanRef}>
-        {activeFramework === 'gatsby' ? (
-          <GatsbyFullLogo />
-        ) : activeFramework === 'next' ? (
-          <NextLogo />
-        ) : activeFramework === 'react' ? (
-          <ReactFullLogo />
-        ) : null}
+        {activeLibrary && <activeLibrary.component />}
       </span>
     </span>
   )
 }
 
-const GridItem = ({ activeStack, number, item }) => {
-  const GridItemComponent = item.component
+interface GridItemProps {
+  activeLibraries: Library[] | null
+  number: number
+  library: Library
+}
+
+const GridItem = ({ activeLibraries, number, library }: GridItemProps) => {
+  //activeLibraries.includes(library.id)
+  const [activeStyles, setActiveStyles] = React.useState('')
+
+  React.useEffect(() => {
+    if (
+      activeLibraries.filter(testLibrary => {
+        return testLibrary.id === library.id
+      }).length > 0
+    ) {
+      setActiveStyles(styles.gridItemActive)
+    } else {
+      setActiveStyles('')
+    }
+  }, [activeLibraries])
 
   return (
     <div
-      className={`${styles.gridItem} ${styles['gridItem' + number]} ${
-        activeStack.data === item.id ? styles.gridItemActive : ''
-      } ${item.id === 'next' ? styles.bigLogo : ''}`}
+      className={`${styles.gridItem} ${
+        styles['gridItem' + number]
+      } ${activeStyles} ${library.id === 'next' ? styles.bigLogo : ''}`}
     >
-      <GridItemComponent />
+      {library.componentSmall && <library.componentSmall />}
       <span></span>
       <span></span>
     </div>
