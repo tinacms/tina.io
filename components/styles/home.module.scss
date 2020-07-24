@@ -925,7 +925,7 @@
     background-color: var(--color-primary);
     margin-bottom: 0.75em;
     transform: translate3d(0, 0, 0) rotateZ(90deg);
-    animation: blockBasedEditingAnimation infinite 7000ms ease-in-out both;
+    animation: blockBasedEditingAnimation infinite 9000ms ease-in-out both;
     animation-delay: 4000ms;
 
     &:nth-child(2) {
@@ -937,7 +937,7 @@
       border-radius: 2em;
       background: rgba(255, 255, 255, 0.9);
       z-index: 10;
-      animation: blockBasedEditingAnimationTwo infinite 7000ms ease-in-out both;
+      animation: blockBasedEditingAnimationTwo infinite 9000ms ease-in-out both;
       animation-delay: 4000ms;
 
       &:before {
