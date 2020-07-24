@@ -18,6 +18,7 @@ import {
 } from 'components/logos'
 import TinaLogomarkSvg from 'public/svg/tina-logomark.svg'
 import WhyTinaBackground from 'public/svg/why-tina-background.svg'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 
 interface Library {
   id: string
@@ -112,6 +113,20 @@ const libraries: Library[] = [
 ]
 
 const DefaultLibraries = [Next, Github]
+
+const codeString = `import { Tina, TinaCMS } from 'tinacms';
+const cms = new TinaCMS();
+return (
+    <Tina cms={cms}>
+        <MyApp />
+    </Tina>
+    <Tina cms={cms}>
+        <MyApp />
+    </Tina>
+    <Tina cms={cms}>
+        <MyApp />
+    </Tina>
+);`
 
 const HomePage = (props: any) => {
   const cms = useCMS()
@@ -388,8 +403,16 @@ const HomePage = (props: any) => {
                   odio massa rutrum risus, vel lacinia arcu sapien non libero.{' '}
                 </p>
               </div>
-              <div className={styles.whyGridCode}>test</div>
-              <div className={styles.whyGridCode}>test</div>
+              <div className={styles.whyGridCode}>
+                <SyntaxHighlighter language="javascript">
+                  {codeString}
+                </SyntaxHighlighter>
+              </div>
+              <div className={styles.whyGridCode}>
+                <SyntaxHighlighter language="javascript">
+                  {codeString}
+                </SyntaxHighlighter>
+              </div>
               <div className={styles.whyGridContent}>
                 <WrapComponentsIcon />
                 <h3>Wrap your components</h3>
@@ -411,7 +434,11 @@ const HomePage = (props: any) => {
                   odio massa rutrum risus, vel lacinia arcu sapien non libero.{' '}
                 </p>
               </div>
-              <div className={styles.whyGridCode}>test</div>
+              <div className={styles.whyGridCode}>
+                <SyntaxHighlighter language="javascript">
+                  {codeString}
+                </SyntaxHighlighter>
+              </div>
             </div>
           </div>
           <div className={styles.whySectionBackground}>
