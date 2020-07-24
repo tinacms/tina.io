@@ -1,16 +1,52 @@
 {
-    "packages": [
-        {
-            "name": "next-tinacms-github",
-            "link": "https://api.github.com/repos/tinacms/tinacms/contents/packages/next-tinacms-github/README.md"
-        },
-        {
-            "name": "next-tinacms-json",
-            "link": "https://api.github.com/repos/tinacms/tinacms/contents/packages/next-tinacms-json/README.md"
-        },
-        {
-            "name": "next-tinacms-markdown",
-            "link": "https://api.github.com/repos/tinacms/tinacms/contents/packages/next-tinacms-markdown/README.md"
-        }
-    ]
+  "packages": [
+    {
+      "link": "https://api.github.com/repos/tinacms/tinacms/contents/packages/react-tinacms-date/README.md",
+      "name": "react-tinacms-date"
+    },
+    {
+      "link": "https://api.github.com/repos/tinacms/tinacms/contents/packages/react-tinacms-editor/README.md",
+      "name": "react-tinacms-editor"
+    },
+    {
+      "link": "https://api.github.com/repos/tinacms/tinacms/contents/packages/react-tinacms-github/README.md",
+      "name": "react-tinacms-github"
+    },
+    {
+      "link": "https://api.github.com/repos/tinacms/tinacms/contents/packages/react-tinacms-inline/README.md",
+      "name": "react-tinacms-inline"
+    },
+    {
+      "link": "https://api.github.com/repos/tinacms/tinacms/contents/packages/react-tinacms-strapi/README.md",
+      "name": "react-tinacms-strapi"
+    },
+    {
+      "name": "next-tinacms-github",
+      "link": "https://api.github.com/repos/tinacms/tinacms/contents/packages/next-tinacms-github/README.md"
+    },
+    {
+      "name": "next-tinacms-json",
+      "link": "https://api.github.com/repos/tinacms/tinacms/contents/packages/next-tinacms-json/README.md"
+    },
+    {
+      "name": "next-tinacms-markdown",
+      "link": "https://api.github.com/repos/tinacms/tinacms/contents/packages/next-tinacms-markdown/README.md"
+    },
+    {
+      "link": "https://api.github.com/repos/tinacms/tinacms/contents/packages/gatsby-plugin-tinacms/README.md",
+      "name": "gatsby-plugin-tinacms"
+    },
+    {
+      "link": "https://api.github.com/repos/tinacms/tinacms/contents/packages/gatsby-tinacms-git/README.md",
+      "name": "gatsby-tinacms-git"
+    },
+    {
+      "link": "https://api.github.com/repos/tinacms/tinacms/contents/packages/gatsby-tinacms-json/README.md",
+      "name": "gatsby-tinacms-json"
+    },
+    {
+      "link": "https://api.github.com/repos/tinacms/tinacms/contents/packages/gatsby-tinacms-remark/README.md",
+      "name": "gatsby-tinacms-remark"
+    }
+  ]
 }
