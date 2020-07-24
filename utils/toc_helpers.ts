@@ -1,10 +1,18 @@
-function createHeadings(contentRef) {
+interface Heading {
+  id?: string
+  offset?: number
+  level?: string
+}
+
+function createHeadings(
+  contentRef: React.RefObject<HTMLDivElement>
+): Heading[] {
   let headings = []
   const htmlElements = contentRef.current.querySelectorAll(
     'h1, h2, h3, h4, h5, h6'
   )
 
-  htmlElements.forEach(function(heading: any) {
+  htmlElements.forEach(function(heading: HTMLHeadingElement) {
     headings.push({
       id: heading.id,
       offset: heading.offsetTop,
@@ -14,7 +22,10 @@ function createHeadings(contentRef) {
   return headings
 }
 
-export function createTocListener(contentRef, setActiveIds) {
+export function createTocListener(
+  contentRef: React.RefObject<HTMLDivElement>,
+  setActiveIds: (activeIds: string[]) => void
+): () => void {
   let tick = false
   const BASE_OFFSET = 16
   const THROTTLE_INTERVAL = 100
@@ -26,6 +37,7 @@ export function createTocListener(contentRef, setActiveIds) {
     let activeHeadingCandidates = headings.filter(heading => {
       return heading.offset - scrollPos < BASE_OFFSET
     })
+
     let activeHeading =
       activeHeadingCandidates.length > 0
         ? activeHeadingCandidates.reduce((prev, current) =>
@@ -57,7 +69,7 @@ export function createTocListener(contentRef, setActiveIds) {
     setActiveIds(newActiveIds)
   }
 
-  return function onScroll() {
+  return function onScroll(): void {
     if (!tick) {
       setTimeout(function() {
         throttledScroll()
