@@ -693,3 +693,97 @@
 
 .whyGridCode {
 }
+
+.thirdPartyIcon {
+  position: relative;
+  display: block;
+  margin-bottom: 1.5em;
+
+  span {
+    position: relative;
+    display: inline-block;
+    width: 2.25em;
+    height: 2.25em;
+    margin-right: -0.75em;
+    border-radius: 2em;
+    background-color: var(--color-primary-dark);
+    opacity: 0.15;
+
+    &:nth-child(2) {
+      opacity: 0.5;
+      background-color: var(--color-primary);
+      z-index: 5;
+    }
+
+    &:nth-child(3) {
+      opacity: 0.85;
+      background-color: var(--color-primary);
+      z-index: 10;
+    }
+  }
+}
+
+.wrapComponentsIcon {
+  position: relative;
+  display: block;
+  margin-bottom: 1.5em;
+
+  span {
+    position: relative;
+    display: inline-block;
+    width: 2.25em;
+    height: 2.25em;
+    opacity: 0.85;
+    background-color: var(--color-primary);
+    z-index: 10;
+    margin-bottom: 0.75em;
+
+    &:nth-child(2) {
+      position: absolute;
+      top: 0.75em;
+      left: 0.75em;
+      opacity: 0.5;
+      background-color: var(--color-primary);
+      z-index: 5;
+    }
+  }
+}
+
+.blockBasedEditingIcon {
+  position: relative;
+  display: block;
+  margin-bottom: 1.5em;
+
+  span {
+    position: relative;
+    display: inline-block;
+    width: 2.25em;
+    height: 2.25em;
+    opacity: 0.85;
+    background-color: var(--color-primary);
+    margin-bottom: 0.75em;
+
+    &:nth-child(2) {
+      position: absolute;
+      top: 0.75em;
+      left: 0.75em;
+      border-radius: 2em;
+      background: rgba(255, 255, 255, 0.9);
+      z-index: 10;
+
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 2em;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background-color: var(--color-primary);
+        opacity: 0.4;
+      }
+    }
+  }
+}

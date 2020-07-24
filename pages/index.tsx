@@ -379,6 +379,7 @@ const HomePage = (props: any) => {
             <h2 className={styles.whySectionTitle}>Why Tina?</h2>
             <div className={styles.whyGrid}>
               <div className={styles.whyGridContent}>
+                <ThirdPartyIcon />
                 <h3>Working with 3rd Party APIs</h3>
                 <p>
                   Quisque nisl arcu, volutpat malesuada sapien in, ullamcorper
@@ -390,6 +391,7 @@ const HomePage = (props: any) => {
               <div className={styles.whyGridCode}>test</div>
               <div className={styles.whyGridCode}>test</div>
               <div className={styles.whyGridContent}>
+                <WrapComponentsIcon />
                 <h3>Wrap your components</h3>
                 <p>
                   Quisque nisl arcu, volutpat malesuada sapien in, ullamcorper
@@ -400,6 +402,7 @@ const HomePage = (props: any) => {
               </div>
 
               <div className={styles.whyGridContent}>
+                <BlockBasedEditingIcon />
                 <h3>Block Based Editing</h3>
                 <p>
                   Quisque nisl arcu, volutpat malesuada sapien in, ullamcorper
@@ -507,6 +510,34 @@ const GridItem = ({ activeLibraries, number, library }: GridItemProps) => {
       <span></span>
       <span></span>
     </div>
+  )
+}
+
+const ThirdPartyIcon = () => {
+  return (
+    <span className={styles.thirdPartyIcon}>
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+  )
+}
+
+const WrapComponentsIcon = () => {
+  return (
+    <span className={styles.wrapComponentsIcon}>
+      <span></span>
+      <span></span>
+    </span>
+  )
+}
+
+const BlockBasedEditingIcon = () => {
+  return (
+    <span className={styles.blockBasedEditingIcon}>
+      <span></span>
+      <span></span>
+    </span>
   )
 }
 

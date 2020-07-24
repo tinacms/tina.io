@@ -141,6 +141,7 @@ export const GlobalStyle = React.memo(createGlobalStyle`
     /* Color */
     --color-black: #252121;
     --color-white: #f8f1f1;
+    --color-primary-light: #EE663C;
     --color-primary: #EC4815;
     --color-primary-dark: #CE411D;
     --color-secondary: #302454;
