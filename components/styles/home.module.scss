@@ -728,31 +728,10 @@
   }
 }
 
-@keyframes thirdPartyIconBounceTwo {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  3% {
-    transform: translate3d(0, -0.75em, 0);
-  }
-  6% {
-    transform: translate3d(0, 0.5em, 0);
-  }
-  9% {
-    transform: translate3d(0, 0, 0);
-  }
-}
-
 .thirdPartyIcon {
   position: relative;
   display: block;
   margin-bottom: 1.75em;
-
-  &:hover {
-    span {
-      animation-name: thirdPartyIconBounceTwo;
-    }
-  }
 
   span {
     position: relative;
@@ -785,6 +764,48 @@
   }
 }
 
+@keyframes wrapComponentsIconKeyframes {
+  0% {
+    transform: translate3d(0, 0, 0) rotateZ(0deg);
+  }
+  3% {
+    transform: translate3d(0.375em, 0.375em, 0) rotateZ(0deg);
+  }
+  6% {
+    transform: translate3d(0.375em, 0.375em, 0) rotateZ(0deg);
+  }
+  13% {
+    transform: translate3d(0.375em, 0.375em, 0) rotateZ(90deg);
+  }
+  16% {
+    transform: translate3d(0.375em, 0.375em, 0) rotateZ(90deg);
+  }
+  22% {
+    transform: translate3d(0, 0, 0) rotateZ(90deg);
+  }
+}
+
+@keyframes wrapComponentsIconKeyframesTwo {
+  0% {
+    transform: translate3d(0, 0, 0) rotateZ(0deg);
+  }
+  3% {
+    transform: translate3d(-0.375em, -0.375em, 0) rotateZ(0deg);
+  }
+  6% {
+    transform: translate3d(-0.375em, -0.375em, 0) rotateZ(0deg);
+  }
+  13% {
+    transform: translate3d(-0.375em, -0.375em, 0) rotateZ(90deg);
+  }
+  16% {
+    transform: translate3d(-0.375em, -0.375em, 0) rotateZ(90deg);
+  }
+  22% {
+    transform: translate3d(0, 0, 0) rotateZ(90deg);
+  }
+}
+
 .wrapComponentsIcon {
   position: relative;
   display: block;
@@ -799,6 +820,8 @@
     background-color: var(--color-primary);
     z-index: 10;
     margin-bottom: 0.75em;
+    transform: translate3d(0, 0, 0) rotateZ(90deg);
+    animation: wrapComponentsIconKeyframes infinite 7000ms ease-in both;
 
     &:nth-child(2) {
       position: absolute;
@@ -807,6 +830,8 @@
       opacity: 0.5;
       background-color: var(--color-primary);
       z-index: 5;
+      transform: translate3d(0, 0, 0) rotateZ(90deg);
+      animation: wrapComponentsIconKeyframesTwo infinite 7000ms ease-in both;
     }
   }
 }
