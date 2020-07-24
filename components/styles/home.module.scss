@@ -303,7 +303,6 @@
     opacity var(--animation-length) var(--ease-out);
   z-index: 1;
   opacity: 1;
-  cursor: pointer;
   overflow: visible;
   transform-origin: 50% 100%;
 
@@ -352,19 +351,19 @@
   }
 
   &:hover {
-    transform: translate3d(0, 0, var(--elevation));
+    transform: translate3d(0, 0, calc(var(--elevation) * 0.5));
     transform-origin: center bottom;
     opacity: 1;
 
     /* Ice Cube Tray */
     &:after {
-      transform: translate3d(0, 0, calc(var(--elevation) * -1));
+      transform: translate3d(0, 0, calc(var(--elevation) * -0.5));
       opacity: 0.65;
     }
 
     /* Drop Shadow */
     &:before {
-      transform: translate3d(0, 0, calc(var(--elevation) * -1 + 1px));
+      transform: translate3d(0, 0, calc(var(--elevation) * -0.5 + 1px));
       opacity: 0.2;
     }
 

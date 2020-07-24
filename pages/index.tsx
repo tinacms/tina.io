@@ -120,6 +120,7 @@ const HomePage = (props: any) => {
     fields: [],
   })
   const [activeLibraries, setActiveLibraries] = React.useState(DefaultLibraries)
+  const [userOverride, setUserOverride] = React.useState(false)
 
   const randomizeLibraries = () => {
     const randomData = randElem(
@@ -140,13 +141,44 @@ const HomePage = (props: any) => {
     setActiveLibraries([randomData, randomFramework, randomUi])
   }
 
+  const setDataLibraries = () => {
+    setUserOverride(true)
+    const dataLibraries = libraries.filter(library => {
+      return library.type === 'data'
+    })
+    setActiveLibraries(dataLibraries)
+  }
+
+  const setFrameworkLibraries = () => {
+    setUserOverride(true)
+    const frameworkLibraries = libraries.filter(library => {
+      return library.type === 'framework'
+    })
+    setActiveLibraries(frameworkLibraries)
+  }
+
+  const setUiLibraries = () => {
+    setUserOverride(true)
+    const uiLibraries = libraries.filter(library => {
+      return library.type === 'ui'
+    })
+    setActiveLibraries(uiLibraries)
+  }
+
+  const resetLibraries = () => {
+    setActiveLibraries([])
+    setUserOverride(false)
+  }
+
   React.useEffect(() => {
     const intervalTime = 5000
     const interval = setInterval(() => {
+      if (userOverride) return
+      console.log(userOverride)
       randomizeLibraries()
     }, intervalTime)
     return () => clearInterval(interval)
-  }, [])
+  }, [userOverride])
 
   return (
     <OpenAuthoringSiteForm
@@ -304,21 +336,33 @@ const HomePage = (props: any) => {
           {/* End Hero*/}
           <div className={styles.heroFeatures}>
             <div className={styles.heroFeaturesContainer}>
-              <div className={styles.heroFeatureCard}>
+              <div
+                className={styles.heroFeatureCard}
+                onMouseEnter={setDataLibraries}
+                onMouseLeave={resetLibraries}
+              >
                 <h2>Data Sources</h2>
                 <p>
                   Tina can fetch data anywhere your data lives, from traditional
                   headless CMSes to Airtable and Google Sheets
                 </p>
               </div>
-              <div className={styles.heroFeatureCard}>
+              <div
+                className={styles.heroFeatureCard}
+                onMouseEnter={setFrameworkLibraries}
+                onMouseLeave={resetLibraries}
+              >
                 <h2>Frontend Frameworks</h2>
                 <p>
                   Tina plays well with any React-based framework. Whether your
                   site is powered by Gatsby or Next.js, Tina has your back.
                 </p>
               </div>
-              <div className={styles.heroFeatureCard}>
+              <div
+                className={styles.heroFeatureCard}
+                onMouseEnter={setUiLibraries}
+                onMouseLeave={resetLibraries}
+              >
                 <h2>Component Libraries</h2>
                 <p>
                   Supercharge your website by converting your components into
