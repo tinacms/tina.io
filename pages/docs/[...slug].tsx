@@ -15,7 +15,6 @@ import {
   DocsHeaderNav,
   Overlay,
   DocsPagination,
-  Toc,
 } from 'components/ui'
 import { InlineTextareaField, useInlineForm } from 'react-tinacms-inline'
 import { TinaIcon } from 'components/logo'
@@ -25,6 +24,7 @@ import { OpenAuthoringSiteForm } from 'components/layout/OpenAuthoringSiteForm'
 import { GithubError } from 'next-tinacms-github'
 import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { usePlugin } from 'tinacms'
+import Toc from '../../components/toc'
 
 function DocTemplate(props) {
   // Registers Tina Form

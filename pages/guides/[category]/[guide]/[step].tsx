@@ -10,13 +10,7 @@ import {
   Footer,
 } from 'components/layout'
 import { NextSeo } from 'next-seo'
-import {
-  DocsNav,
-  DocsPagination,
-  Overlay,
-  DocsHeaderNav,
-  Toc,
-} from 'components/ui'
+import { DocsNav, DocsPagination, Overlay, DocsHeaderNav } from 'components/ui'
 import {
   DocsNavToggle,
   DocsMobileTinaIcon,
@@ -38,6 +32,7 @@ import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
 import { MarkdownCreatorPlugin } from 'utils/plugins'
 import { fileToUrl } from '../../../../utils'
+import Toc from '../../../../components/toc'
 
 export default function GuideTemplate(props) {
   const [open, setOpen] = React.useState(false)
