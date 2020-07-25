@@ -712,6 +712,7 @@
 
 .whyGridCode {
   pre {
+    position: relative;
     /* fix wrapping issues breaking layout */
     white-space: pre-wrap !important;
     white-space: -moz-pre-wrap !important;
@@ -762,6 +763,7 @@
     transition: transform var(--animation-length-short) var(--ease-out);
     animation: thirdPartyIconBounce infinite 7000ms
       cubic-bezier(0.115, -0.08, 0.14, -0.005) both;
+    backdrop-filter: blur(2px);
 
     &:nth-child(2) {
       opacity: 0.5;
@@ -838,6 +840,7 @@
     transform: translate3d(0, 0, 0) rotateZ(90deg);
     animation: wrapComponentsIconKeyframes infinite 7000ms ease-in both;
     animation-delay: 2000ms;
+    backdrop-filter: blur(2px);
 
     &:nth-child(2) {
       position: absolute;
@@ -927,6 +930,7 @@
     transform: translate3d(0, 0, 0) rotateZ(90deg);
     animation: blockBasedEditingAnimation infinite 9000ms ease-in-out both;
     animation-delay: 4000ms;
+    backdrop-filter: blur(2px);
 
     &:nth-child(2) {
       position: absolute;
@@ -952,6 +956,7 @@
         z-index: -1;
         background-color: var(--color-primary);
         opacity: 0.4;
+        backdrop-filter: blur(2px);
       }
     }
   }

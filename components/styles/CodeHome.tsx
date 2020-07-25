@@ -1,6 +1,6 @@
 export default {
   'code[class*="language-"]': {
-    color: '#2F3031',
+    color: '#465059',
     background: 'none',
     textShadow: '0 1px white',
     fontFamily: "Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace",
@@ -19,7 +19,7 @@ export default {
     hyphens: 'none',
   },
   'pre[class*="language-"]': {
-    color: '#2F3031',
+    color: '#465059',
     background: '#EBFDFB',
     fontFamily: "Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace",
     boxShadow: 'inset -2px -2px 0 6px var(--color-seafoam)',
@@ -120,53 +120,53 @@ export default {
     color: '#C61075',
   },
   selector: {
-    color: '#58A41D',
+    color: '#EB5729',
   },
   'attr-name': {
-    color: '#58A41D',
+    color: '#EB5729',
   },
   string: {
-    color: '#58A41D',
+    color: '#EB5729',
   },
   char: {
-    color: '#58A41D',
+    color: '#EB5729',
   },
   builtin: {
-    color: '#58A41D',
+    color: '#EB5729',
   },
   inserted: {
-    color: '#58A41D',
+    color: '#EB5729',
   },
   operator: {
-    color: '#5B9B9B',
+    color: '#74BECE',
   },
   entity: {
-    color: '#5B9B9B',
+    color: '#74BECE',
     cursor: 'help',
   },
   url: {
-    color: '#5B9B9B',
+    color: '#74BECE',
   },
   '.language-css .token.string': {
-    color: '#5B9B9B',
+    color: '#74BECE',
   },
   '.style .token.string': {
-    color: '#5B9B9B',
+    color: '#74BECE',
   },
   atrule: {
     color: '#54A4EE',
   },
   'attr-value': {
-    color: '#54A4EE',
+    color: '#6584F0',
   },
   keyword: {
-    color: '#54A4EE',
+    color: '#6584F0',
   },
   function: {
-    color: '#DD4A68',
+    color: '#24CBBA',
   },
   'class-name': {
-    color: '#DD4A68',
+    color: '#24CBBA',
   },
   regex: {
     color: '#e90',
