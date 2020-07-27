@@ -1,6 +1,7 @@
 import { getJsonPreviewProps, readJsonFile } from '../getJsonPreviewProps'
 import axios from 'axios'
 import toc from 'markdown-toc'
+
 const atob = require('atob')
 
 const b64DecodeUnicode = (str: string) => {
@@ -49,6 +50,7 @@ export async function getPackageProps(
   const docsNavData = previewProps.props.file.data
 
   return {
+    revalidate: 24 * HOURS,
     props: {
       name: currentPackage.name,
       link: currentPackage.link,
@@ -66,3 +68,6 @@ export async function getPackageProps(
     },
   }
 }
+
+const MINUTES = 60 // seconds
+const HOURS = 60 * MINUTES
