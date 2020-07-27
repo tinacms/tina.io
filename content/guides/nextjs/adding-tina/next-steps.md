@@ -25,6 +25,6 @@ Consider creating an **inline editing** experience for your blog, where content 
 
 The [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode) offered by Next.js allows us to load a separate set of data [depending on the "edit" (or "preview") mode](https://tinacms.org/blog/introducing-visual-open-authoring#using-nextjs-to-enable-edit-mode). With the help of the GitHub API, editors can fork or branch off the repository, make changes, and create a pull request from the Tina UI.
 
-This type of backend can support [Open Authoring](https://tinacms.org/blog/introducing-visual-open-authoring#using-nextjs-to-enable-edit-mode) workflows for public repositories, where anyone (with a GitHub account) can submit content changes for review. 
+This type of backend can support [Open Authoring](https://tinacms.org/blog/introducing-visual-open-authoring#using-nextjs-to-enable-edit-mode) workflows for public repositories, where anyone (with a GitHub account) can submit content changes for review.
 
-[https://tinacms.org/guides/nextjs/github/initial-setup](https://tinacms.org/guides/nextjs/github/initial-setup "https://tinacms.org/guides/nextjs/github/initial-setup")
+👉 Follow the [**Using Github with Next.js Tutorial**](https://tinacms.org/guides/nextjs/github/initial-setup)
