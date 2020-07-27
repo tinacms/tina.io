@@ -1,5 +1,5 @@
 import toc from 'markdown-toc'
-const captureEmphasis = /(.*)_([^\\]+)_(.*)/
+const captureEmphasis = /(.*)(?<!\\)_(.*)(?<!\\)_(.*)/
 
 export const slugifyTocHeading = heading => {
   const captured = captureEmphasis.exec(heading)
