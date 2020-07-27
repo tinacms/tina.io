@@ -1,5 +1,5 @@
 ---
-title: 2020-07-27 Release Notes
+title: v0.25.0 Release Notes
 date: '2020-07-27T11:54:54-03:00'
 author: Nolan Phillips
 ---
