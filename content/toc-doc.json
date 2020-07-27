@@ -107,26 +107,13 @@
             "slug": "/docs/plugins/fields/textarea",
             "title": "Text Area"
           },
-          {
-            "id": "/docs/plugins/fields/markdown",
-            "slug": "/docs/plugins/fields/markdown",
-            "title": "Markdown"
-          },
-          {
-            "id": "/docs/plugins/fields/html",
-            "slug": "/docs/plugins/fields/html",
-            "title": "HTML"
-          },
+
           {
             "id": "/docs/plugins/fields/number",
             "slug": "/docs/plugins/fields/number",
             "title": "Number"
           },
-          {
-            "id": "/docs/plugins/fields/date",
-            "slug": "/docs/plugins/fields/date",
-            "title": "Date & Time"
-          },
+
           {
             "id": "/docs/plugins/fields/image",
             "slug": "/docs/plugins/fields/image",
@@ -171,6 +158,21 @@
             "id": "/docs/plugins/fields/blocks",
             "slug": "/docs/plugins/fields/blocks",
             "title": "Blocks"
+          },
+          {
+            "id": "/docs/plugins/fields/date",
+            "slug": "/docs/plugins/fields/date",
+            "title": "Date & Time"
+          },
+          {
+            "id": "/docs/plugins/fields/markdown",
+            "slug": "/docs/plugins/fields/markdown",
+            "title": "Markdown"
+          },
+          {
+            "id": "/docs/plugins/fields/html",
+            "slug": "/docs/plugins/fields/html",
+            "title": "HTML"
           },
           {
             "id": "/docs/plugins/fields/custom-fields",
