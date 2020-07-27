@@ -2,6 +2,7 @@ import { getJsonPreviewProps, readJsonFile } from '../getJsonPreviewProps'
 import axios from 'axios'
 import toc from 'markdown-toc'
 const atob = require('atob')
+import { slugifyTocHeading } from './slugifyToc'
 
 const b64DecodeUnicode = (str: string) => {
   // Going backwards: from bytestream, to percent-encoding, to original string.
@@ -54,7 +55,9 @@ export async function getPackageProps(
       link: currentPackage.link,
       content,
       docsNav: docsNavData,
-      tocItems: toc(content).content,
+      tocItems: toc(content, {
+        slugify: slugifyTocHeading,
+      }).content,
       nextPage: {
         slug: nextPackage?.name || null,
         title: nextPackage?.name || null,

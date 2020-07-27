@@ -4,6 +4,8 @@ import { readFile } from './readFile'
 import { formatExcerpt } from '.'
 import { getGithubPreviewProps, parseMarkdown } from 'next-tinacms-github'
 import toc from 'markdown-toc'
+import { slugifyTocHeading } from './docs/slugifyToc'
+
 export const readMarkdownFile = async (filePath: string) => {
   const doc = matter(await readFile(path.resolve(`${filePath}`)))
   return {
@@ -46,7 +48,8 @@ export const getMarkdownPreviewProps = async (
       error: null,
       preview: false,
       file,
-      tocItems: toc(file.data.markdownBody).content,
+      tocItems: toc(file.data.markdownBody, { slugify: slugifyTocHeading })
+        .content,
     },
   }
 }
