@@ -31,3 +31,8 @@ Depending on your project, these are the **NextJS-specific Tina packages** to wo
 - [gatsby-tinacms-git](https://github.com/tinacms/tinacms/tree/master/packages/gatsby-tinacms-git): This package provides helpers for building a git-backed CMS.
 - [gatsby-tinacms-json](https://github.com/tinacms/tinacms/tree/master/packages/gatsby-tinacms-json): This package provides Git form helpers for editing content stored in JSON files in the local filesystem.
 - [gatsby-tinacms-remark](https://github.com/tinacms/tinacms/tree/master/packages/gatsby-tinacms-remark): This package provides Git form helpers for editing content stored in Markdown files in the local filesystem.
+
+## Starters
+
+- [Tina Brevifolia](https://github.com/kendallstrautman/brevifolia-gatsby-tinacms) — A Markdown-based blog with minimalist design and Tina for editing.
+- [Tina Grande](https://github.com/tinacms/tina-starter-grande) — A more advanced starter to showcase the power of Tina.
