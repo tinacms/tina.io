@@ -9,6 +9,6 @@ consumes:
 
 The `html` field represents a chunk of HTML content.
 
-> **The `HtmlFieldPlugin` is NOT a default plugin.** See the [react-tinacms-editor](/packages/react-tinacms-editor) docs for instructions on how to use the `html` field in your website.
+> **The `HtmlFieldPlugin` is not a default plugin.** See the [react-tinacms-editor](/packages/react-tinacms-editor) docs for instructions on how to use the `html` field in your website.
 
 ![tinacms-markdown-field](/img/fields/markdown.png)
