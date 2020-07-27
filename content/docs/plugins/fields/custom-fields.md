@@ -1,6 +1,6 @@
 ---
 title: Creating Custom Fields
-prev: /docs/plugins/fields/blocks
+prev: /docs/plugins/fields/html
 next: null
 consumes:
   - file: /packages/@tinacms/core/src/plugins.ts

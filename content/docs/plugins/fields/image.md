@@ -1,6 +1,6 @@
 ---
 title: Image Field
-prev: /docs/plugins/fields/date
+prev: /docs/plugins/fields/number
 next: /docs/plugins/fields/color
 consumes:
   - file: /packages/tinacms/src/plugins/fields/ImageFieldPlugin.tsx
