@@ -7,6 +7,21 @@
         "id": "/docs/getting-started/introduction",
         "slug": "/docs/getting-started/introduction",
         "title": "Introduction"
+      },
+      {
+        "id": "/docs/getting-started/cms-set-up",
+        "slug": "/docs/getting-started/cms-set-up",
+        "title": "Set Up the CMS"
+      },
+      {
+        "id": "/docs/getting-started/edit-content",
+        "slug": "/docs/getting-started/edit-content",
+        "title": "Edit Content"
+      },
+      {
+        "id": "/docs/getting-started/backends",
+        "slug": "/docs/getting-started/backends",
+        "title": "Backends"
       }
     ]
   },
