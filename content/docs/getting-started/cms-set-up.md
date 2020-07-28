@@ -1,5 +1,7 @@
 ---
 title: Set-up the CMS
+prev: /docs/getting-started/introduction
+next: /docs/getting-started/edit-content
 ---
 
 In this step, we will install `tinacms`, wrap our app in the `TinaProvider`, create a CMS instance and configure the CMS object.

@@ -1,5 +1,7 @@
 ---
 title: Editing Content
+prev: /docs/getting-started/cms-set-up
+next: /docs/getting-started/backends
 ---
 
 You'll notice that the sidebar is empty. We need to create a form to edit the data on this page — once registered with the CMS, this form will render in the sidebar and you could edit content from there.
