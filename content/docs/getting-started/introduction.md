@@ -1,29 +1,40 @@
 ---
-title: Tina is Not a CMS
+title: Tutorial Introduction
 id: introduction
 prev: null
 next: /docs/cms
 ---
 
-Tina is a toolkit for building content management systems.
+Tina is a toolkit for building content management systems. This tutorial will walk you through Tina's fundamental building blocks. To get the most from Tina, you should have a good working knowledge of JavaScript and React.
 
-Tina surfaces superpowers for developers to create intuitive interfaces for real-time content editing directly into their website.
+This tutorial will show you how to set-up editing on a _very simple_ `create-react-app` demo.
 
-![tina-gif](https://res.cloudinary.com/forestry-demo/video/upload/du_16,w_700,e_loop/v1571159974/tina-hero-demo.gif)
+## Why _create-react-app_?
 
-## Get Started
+Tina's UI is built with React. Using Tina in a _plain_ React App is the simplest way to get familiar Tina, without helper packages or meta-frameworks. Understanding the core concepts and APIs introduced in this tutorial will set you up for success if you do end up using Tina with a meta-framework, such as Gatsby or Next.js.
 
-To get the most from Tina, you should have a good working knowledge of JavaScript and React.
-
-If you want to get started with some code right away, check out the [Next.js Tutorial](/guides/nextjs/adding-tina/overview) or [Gatsby Quickstart](/guides/gatsby/adding-tina/project-setup).
-
-Tina's modular design means it can work with most frameworks. Whether you're site is static, dynamic, or somewhere in between, Tina gives you the tools you need. For more information on how to use TinaCMS with a React framework, checkout the following these pages:
+Tina's modular design means it can work with most frameworks. Whether you're site is static, dynamic, or somewhere in between, Tina gives you the tools you need. If you'd like to dive right into using Tina with a React meta-framework, checkout the following these pages:
 
 - [Next.js Integration](/docs/integrations/nextjs)
 - [Gatsby Integration](/docs/integrations/gatsby)
 
-## Get Involved
+But it's your first time working with Tina, we suggest going through this short tutorial.
 
-Want to help out with Tina's development? Please visit our [Contributing](/docs/contributing/guidelines) section in our docs to learn more.
+## Get Started
 
-Looking for help with Tina, or want to stay on top of the latest developments? Checkout the [Tina Community Forum](https://community.tinacms.org/) to get answers, help, and llama-humor.
+To get started, clone the demo and install the dependencies.
+
+```
+git clone //... my-tina-app
+cd my-tina-app
+yarn install
+```
+
+These are the general steps we will cover in this tutorial.
+
+1. Install `tinacms`
+2. Add the `TinaProvider` and create a CMS instance
+3. Configure the CMS object
+4. Enabling the CMS
+
+> Looking for help with Tina, or want to stay on top of the latest developments? Checkout the [Tina Community Forum](https://community.tinacms.org/) to get answers, help, and llama-humor.
