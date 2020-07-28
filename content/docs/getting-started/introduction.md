@@ -36,5 +36,8 @@ These are the general steps we will cover in this tutorial.
 2. Add the `TinaProvider` and create a CMS instance
 3. Configure the CMS object
 4. Enabling the CMS
+5. Creating a form
+6. Loading content from an external API
+7. Saving content changes
 
 > Looking for help with Tina, or want to stay on top of the latest developments? Checkout the [Tina Community Forum](https://community.tinacms.org/) to get answers, help, and llama-humor.
