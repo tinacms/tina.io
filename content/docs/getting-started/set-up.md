@@ -49,14 +49,23 @@ export default App;
 
 When creating an instance of the CMS, you can pass an options object to configure how the CMS works. This object allows us to attach and access Plugins, APIs, Media Stores, Events, and Editing UI on the CMS.
 
-For our use case, we will add two options: `enabled` and `sidebar`. Read further on [additional options](/docs/cms#cms-configuration) that can be passed.
+For our use case, we will add two options: `enabled` and `sidebar`. Update your CMS instance with these options:
+
+**src/App.js**
 
 ```js
-const cms = new TinaCMS({
-  enabled: false,
-  sidebar: true,
-})
+function App() {
+  const cms = new TinaCMS({
+    enabled: false,
+    sidebar: true,
+  })
+  return (
+      //...
+  )
+}
 ```
+
+These options are a key part of constructing your custom CMS. Read further on [additional options](/docs/cms#cms-configuration) that can be passed.
 
 ## Enabling the CMS
 
@@ -99,5 +108,7 @@ If you restart the dev server and click the 'Edit This Site' button, you should 
 This is the _Sidebar_ editing interface. There is also a _Toolbar_ interface, we won't work with that UI in this tutorial but feel free to read more on the [User Interface options](/docs/ui).
 
 The example above uses a helpful method, `cms.toggle`, to switch between enabled/disabled states. Reference the documentation to see all the [CMS methods](/docs/cms) available.
+
+<!-- TODO: create CMS methods documentation and update this link -->
 
 Next, let's look into creating forms for editing content.
