@@ -98,7 +98,7 @@ function DocTemplate(props) {
               <DocGridContent ref={contentRef}>
                 <hr />
                 <InlineWysiwyg name="markdownBody">
-                  {props.lastModified ? `Last Modified: ${props.lastModified}` : ""}
+                  {props.lastModified && `Last Modified: ${props.lastModified}`}
                   <MarkdownContent escapeHtml={false} content={markdownBody} />
                 </InlineWysiwyg>
                 <DocsPagination
