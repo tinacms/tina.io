@@ -31,8 +31,9 @@ import { useGithubMarkdownForm, useGithubJsonForm } from 'react-tinacms-github'
 import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
 import { MarkdownCreatorPlugin } from 'utils/plugins'
-import { fileToUrl, createTocListener } from 'utils'
+import { fileToUrl, createTocListener, formatDate } from 'utils'
 import Toc from '../../../../components/toc'
+import fs from 'fs'
 
 export default function GuideTemplate(props) {
   const [open, setOpen] = React.useState(false)
@@ -172,6 +173,7 @@ export default function GuideTemplate(props) {
               <DocGridContent ref={contentRef}>
                 <hr />
                 <InlineWysiwyg name="markdownBody">
+                  Last Modified: {props.lastModified}
                   <MarkdownContent escapeHtml={false} content={markdownBody} />
                 </InlineWysiwyg>
                 <DocsPagination prevPage={prev} nextPage={next} />
@@ -211,16 +213,27 @@ export const getStaticProps: GetStaticProps = async function(ctx) {
     ctx.previewData
   )
 
-  return {
-    props: {
-      preview,
-      currentGuide: guideMeta.data,
-      guideMeta,
-      markdownFile,
-      allGuides: await getGuideNavProps(),
-      tocItems,
-    },
+  try {
+    const stats = fs.statSync(`${pathToGuide}/${step}.md`)
+    const lastModified = formatDate(stats.mtime)
+
+    
+    return {
+      props: {
+        lastModified,
+        preview,
+        currentGuide: guideMeta.data,
+        guideMeta,
+        markdownFile,
+        allGuides: await getGuideNavProps(),
+        tocItems,
+      },
+    }
+  } catch (error) {
+    throw error
   }
+
+  
 }
 
 export const getStaticPaths: GetStaticPaths = async function() {

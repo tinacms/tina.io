@@ -25,7 +25,9 @@ import { GithubError } from 'next-tinacms-github'
 import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { usePlugin } from 'tinacms'
 import Toc from '../../components/toc'
-import { createTocListener } from 'utils'
+import { createTocListener, slugify, formatDate } from 'utils'
+import fs from 'fs'
+import path from 'path'
 
 function DocTemplate(props) {
   // Registers Tina Form
@@ -96,6 +98,7 @@ function DocTemplate(props) {
               <DocGridContent ref={contentRef}>
                 <hr />
                 <InlineWysiwyg name="markdownBody">
+                  Last Modified: {props.lastModified}
                   <MarkdownContent escapeHtml={false} content={markdownBody} />
                 </InlineWysiwyg>
                 <DocsPagination
@@ -125,8 +128,17 @@ export const getStaticProps: GetStaticProps = async function(props) {
   // @ts-ignore This should maybe always be a string[]?
   const slug = slugs.join('/')
 
+
   try {
-    return getDocProps(props, slug)
+    const stats = fs.statSync(path.resolve(`./content/docs/${slug}.md`))
+    const lastModified = formatDate(stats.mtime)
+
+    return {
+      props: {
+        lastModified,
+        ...(await getDocProps(props, slug)).props
+      }
+    }
   } catch (e) {
     if (e instanceof GithubError) {
       return {
