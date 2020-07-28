@@ -212,28 +212,21 @@ export const getStaticProps: GetStaticProps = async function(ctx) {
     ctx.preview,
     ctx.previewData
   )
-
-  try {
-    const stats = fs.statSync(`${pathToGuide}/${step}.md`)
-    const lastModified = formatDate(stats.mtime)
-
-    
-    return {
-      props: {
-        lastModified,
-        preview,
-        currentGuide: guideMeta.data,
-        guideMeta,
-        markdownFile,
-        allGuides: await getGuideNavProps(),
-        tocItems,
-      },
-    }
-  } catch (error) {
-    throw error
-  }
-
   
+  const stats = fs.statSync(`${pathToGuide}/${step}.md`)
+  const lastModified = formatDate(stats.mtime)
+  
+  return {
+    props: {
+      lastModified,
+      preview,
+      currentGuide: guideMeta.data,
+      guideMeta,
+      markdownFile,
+      allGuides: await getGuideNavProps(),
+      tocItems,
+    },
+  }
 }
 
 export const getStaticPaths: GetStaticPaths = async function() {
