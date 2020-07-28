@@ -6,8 +6,8 @@
   "main": "n/a",
   "scripts": {
     "dev-next": "next",
-    "dev": "node server.js",
-    "develop": "yarn dev",
+    "dev": "yarn dev-next",
+    "develop": "yarn dev-next",
     "build": "next build",
     "preexport": "npm run build",
     "export": "next export",
