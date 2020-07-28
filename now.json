@@ -123,6 +123,70 @@
     {
       "source": "/docs/nextjs/overview",
       "destination": "/docs/integrations/nextjs"
+    },
+    {
+      "source": "/blog/2020-03-09-release-notes.md",
+      "destination": "/docs/releases/2020-03-09.md"
+    },
+    {
+      "source": "/blog/2020-03-16-release-notes.md",
+      "destination": "/docs/releases/2020-03-16.md"
+    },
+    {
+      "source": "/blog/2020-03-23-release-notes.md",
+      "destination": "/docs/releases/2020-03-23.md"
+    },
+    {
+      "source": "/blog/2020-03-30-release-notes.md",
+      "destination": "/docs/releases/2020-03-30.md"
+    },
+    {
+      "source": "/blog/2020-04-06-release-notes.md",
+      "destination": "/docs/releases/2020-04-06.md"
+    },
+    {
+      "source": "/blog/2020-04-27-release-notes.md",
+      "destination": "/docs/releases/2020-04-27.md"
+    },
+    {
+      "source": "/blog/2020-05-04-release-notes.md",
+      "destination": "/docs/releases/2020-05-04.md"
+    },
+    {
+      "source": "/blog/2020-05-11-release-notes.md",
+      "destination": "/docs/releases/2020-05-11.md"
+    },
+    {
+      "source": "/blog/2020-05-19-release-notes.md",
+      "destination": "/docs/releases/2020-05-19.md"
+    },
+    {
+      "source": "/blog/2020-05-25-release-notes.md",
+      "destination": "/docs/releases/2020-05-25.md"
+    },
+    {
+      "source": "/blog/2020-06-07-release-notes.md",
+      "destination": "/docs/releases/2020-07-07.md"
+    },
+    {
+      "source": "/blog/2020-06-08-release-notes.md",
+      "destination": "/docs/releases/2020-06-08.md"
+    },
+    {
+      "source": "/blog/2020-06-15-release-notes.md",
+      "destination": "/docs/releases/2020-06-15.md"
+    },
+    {
+      "source": "/blog/2020-06-23-release-notes.md",
+      "destination": "/docs/releases/2020-06-23.md"
+    },
+    {
+      "source": "/blog/2020-06-29-release-notes.md",
+      "destination": "/docs/releases/2020-06-29.md"
+    },
+    {
+      "source": "/blog/2020-07-27-release-notes.md",
+      "destination": "/docs/releases/2020-07-27.md"
     }
   ]
 }
