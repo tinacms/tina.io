@@ -25,7 +25,7 @@ import { useRouter } from 'next/router'
 import { getGuideNavProps } from 'utils/guide_helpers'
 import { useMemo } from 'react'
 import { OpenAuthoringSiteForm } from 'components/layout/OpenAuthoringSiteForm'
-import { usePlugin, useFormScreenPlugin } from 'tinacms'
+import { usePlugin, useFormScreenPlugin, useCMS } from 'tinacms'
 import { InlineTextareaField } from 'react-tinacms-inline'
 import { useGithubMarkdownForm, useGithubJsonForm } from 'react-tinacms-github'
 import { InlineWysiwyg } from 'components/inline-wysiwyg'
@@ -33,7 +33,7 @@ import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
 import { MarkdownCreatorPlugin } from 'utils/plugins'
 import { fileToUrl, createTocListener, formatDate } from 'utils'
 import Toc from '../../../../components/toc'
-import fs from 'fs'
+import createDecorator from 'final-form-calculate'
 
 export default function GuideTemplate(props) {
   const [open, setOpen] = React.useState(false)
@@ -128,6 +128,21 @@ export default function GuideTemplate(props) {
   const { prev, next } = usePrevNextSteps(guide, currentPath)
   const excerpt = props.markdownFile.data.excerpt
 
+  const cms = useCMS()
+
+  React.useEffect(() => {
+    if (cms.disabled) { return }
+    const decorator = createDecorator(
+      {
+        field: /.*/,
+        updates: {
+          'frontmatter.last_edited': () => formatDate(Date.now())
+        }
+      }
+    )
+    return decorator(stepForm.finalForm)
+  }, [stepForm.id])
+
   return (
     <OpenAuthoringSiteForm
       form={stepForm}
@@ -175,6 +190,7 @@ export default function GuideTemplate(props) {
                 <InlineWysiwyg name="markdownBody">
                   <MarkdownContent escapeHtml={false} content={markdownBody} />
                 </InlineWysiwyg>
+                {frontmatter.last_edited && `Last Edited: ${frontmatter.last_edited}`}
                 <DocsPagination prevPage={prev} nextPage={next} />
               </DocGridContent>
             </DocsGrid>
