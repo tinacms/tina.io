@@ -59,16 +59,22 @@ function DocTemplate(props) {
 
   usePlugin(form)
 
-  const decorator = createDecorator(
-    {
-      field: "",
-      updates: {
-        'frontmatter.last_edited': () => Date.now()
-      }
-    }
-  )
   
-  decorator(form.finalForm)
+
+  useEffect(() => {
+    const decorator = createDecorator(
+      {
+        field: /.*/,
+        updates: {
+          'frontmatter.last_edited': () => Date.now()
+        }
+      }
+    )
+
+    return decorator(form.finalForm)
+  }, [form.id])
+  
+  
 
   return (
     <OpenAuthoringSiteForm
