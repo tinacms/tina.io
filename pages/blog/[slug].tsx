@@ -118,8 +118,6 @@ export const getStaticProps: GetStaticProps = async function({
     return { props: {} } // will render the 404 error
   }
 
-  const stats = fs.statSync(path.resolve(`./content/blog/${slug}.md`))
-
   return {
     props: {
       ...previewProps.props,

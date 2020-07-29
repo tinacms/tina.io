@@ -212,8 +212,6 @@ export const getStaticProps: GetStaticProps = async function(ctx) {
     ctx.previewData
   )
 
-  const stats = fs.statSync(`${pathToGuide}/${step}.md`)
-
   return {
     props: {
       preview,
