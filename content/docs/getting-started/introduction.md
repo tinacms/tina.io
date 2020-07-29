@@ -5,7 +5,7 @@ prev: null
 next: /docs/getting-started/cms-set-up
 ---
 
-Tina is a toolkit for building content management systems. This tutorial will **walk you through Tina's fundamental building blocks** by setting-up editing on a _very simple_ `create-react-app` demo.
+Tina is a toolkit for building content management systems. This tutorial will **walk you through Tina's fundamental building blocks** by setting-up editing on a _very simple_ `create-react-app` [demo](https://github.com/tinacms/tina-intro-tutorial).
 
 > _Note:_ To get the most from Tina, you should have a good **working knowledge of JavaScript and React**.
 
@@ -32,9 +32,9 @@ These are the general steps we will cover in this tutorial.
 6. [Loading content from an external API](/docs/getting-started/backends#loading-content-from-an-external-api)
 7. [Saving content changes](/docs/getting-started/backends#saving-content)
 
-## Get Started
+## Clone the demo
 
-To get started, clone the demo and install its dependencies.
+To get started, clone the [demo](https://github.com/tinacms/tina-intro-tutorial) and install its dependencies.
 
 ```bash
 git clone git@github.com:tinacms/tina-intro-tutorial.git my-tina-app
@@ -42,4 +42,4 @@ cd my-tina-app
 yarn install
 ```
 
-If at any point _you feel lost or confused_ during this tutorial, checkout the [Tina Community Forum](https://community.tinacms.org/) to get answers, help, and llama-humor.
+> If at any point _you feel lost or confused_ during this tutorial, checkout the [Tina Community Forum](https://community.tinacms.org/) to get answers, help, and llama-humor.
