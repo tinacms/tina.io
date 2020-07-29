@@ -14,6 +14,7 @@ All field plugins share a common config:
 interface FieldConfig {
   name: string
   component: string | ReactComponent
+  label?: string
   parse?(value: any, name: string, field: Field): any
   format?(value: any, name: string, field: Field): any
   validate?(
@@ -29,6 +30,7 @@ interface FieldConfig {
 | ----------- | ---------------------------------------------------------------------------------------------- |
 | `name`      | Equivalent of an input's `name` attribute.                                                     |
 | `component` | Either a string denoting a field already registered with the CMS, or a custom field component. |
+| `label`     | _Optional:_ A label to render above the field input.                                           |
 | `parse`     | _Optional:_ Prepare the data for usage in the field component.                                 |
 | `format`    | _Optional:_ Prepare the data for saving.                                                       |
 | `validate`  | _Optional:_ Return undefined when valid. Return a string or an object when there are errors.   |
