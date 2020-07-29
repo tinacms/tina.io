@@ -98,7 +98,6 @@ function DocTemplate(props) {
               <DocGridContent ref={contentRef}>
                 <hr />
                 <InlineWysiwyg name="markdownBody">
-                  {props.lastModified && `Last Modified: ${props.lastModified}`}
                   <MarkdownContent escapeHtml={false} content={markdownBody} />
                 </InlineWysiwyg>
                 <DocsPagination
@@ -128,16 +127,13 @@ export const getStaticProps: GetStaticProps = async function(props) {
   // @ts-ignore This should maybe always be a string[]?
   const slug = slugs.join('/')
 
-
   try {
     const stats = fs.statSync(path.resolve(`./content/docs/${slug}.md`))
-    const lastModified = formatDate(stats.mtime)
 
     return {
       props: {
-        lastModified,
-        ...(await getDocProps(props, slug)).props
-      }
+        ...(await getDocProps(props, slug)).props,
+      },
     }
   } catch (e) {
     if (e instanceof GithubError) {
