@@ -23,7 +23,7 @@ import { usePlugin, useCMS } from 'tinacms'
 import Toc from '../../components/toc'
 import fs from 'fs'
 import path from 'path'
-function BlogTemplate({ lastModified, file, siteConfig, preview }) {
+function BlogTemplate({ file, siteConfig, preview }) {
   // fallback workaround
   if (!file) {
     return <Error statusCode={404} />
@@ -83,7 +83,6 @@ function BlogTemplate({ lastModified, file, siteConfig, preview }) {
               <EditLink />
             </BlogMeta>
             <InlineWysiwyg name="markdownBody">
-              Last Modified: {lastModified}
               <MarkdownContent escapeHtml={false} content={markdownBody} />
             </InlineWysiwyg>
           </DocsTextWrapper>
@@ -119,13 +118,10 @@ export const getStaticProps: GetStaticProps = async function({
     return { props: {} } // will render the 404 error
   }
 
-  
   const stats = fs.statSync(path.resolve(`./content/blog/${slug}.md`))
-  const lastModified = formatDate(stats.mtime)
 
   return {
     props: {
-      lastModified,
       ...previewProps.props,
       siteConfig: { title: siteConfig.title },
     },
