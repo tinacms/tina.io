@@ -23,7 +23,7 @@ import { getDocProps } from 'utils/docs/getDocProps'
 import { OpenAuthoringSiteForm } from 'components/layout/OpenAuthoringSiteForm'
 import { GithubError } from 'next-tinacms-github'
 import { InlineWysiwyg } from 'components/inline-wysiwyg'
-import { usePlugin } from 'tinacms'
+import { usePlugin, useCMS } from 'tinacms'
 import Toc from '../../components/toc'
 import { createTocListener, slugify, formatDate } from 'utils'
 import createDecorator from "final-form-calculate"
@@ -34,9 +34,6 @@ function DocTemplate(props) {
 
   const [data, form] = useGithubMarkdownForm(props.file, formOptions)
 
-  
-
-
   const [open, setOpen] = useState(false)
   const isBrowser = typeof window !== `undefined`
   const contentRef = React.useRef<HTMLDivElement>(null)
@@ -46,6 +43,7 @@ function DocTemplate(props) {
   const tocItems = props.tocItems
   const [activeIds, setActiveIds] = useState([])
 
+  const cms = useCMS()
   
   React.useEffect(() => {
     if (!isBrowser || !contentRef.current) {
@@ -59,14 +57,14 @@ function DocTemplate(props) {
 
   usePlugin(form)
 
-  
 
   useEffect(() => {
+    if (cms.disabled) { return }
     const decorator = createDecorator(
       {
         field: /.*/,
         updates: {
-          'frontmatter.last_edited': () => Date.now()
+          'frontmatter.last_edited': () => formatDate(Date.now())
         }
       }
     )
