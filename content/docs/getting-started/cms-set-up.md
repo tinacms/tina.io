@@ -14,9 +14,17 @@ Install the `tinacms` package. This is the core package that you will need anyti
 yarn add tinacms styled-components
 ```
 
-## Add `TinaProvider`, create a CMS instance
+## Add _TinaProvider_, create a CMS instance
 
-Head to `App.js` and wrap the `TinaProvider` around the contents of the App. Then, instantiate the CMS and pass it to the `TinaProvider`. The provider creates a context from which we can access the CMS within the app.
+The first steps to setting up Tina is to create an [instance of `TinaCMS`](/docs/cms) and then wrap your site in the `TinaProvider`. This [provider](https://github.com/tinacms/tinacms/blob/master/packages/tinacms/src/components/TinaProvider.tsx) sets up the editing UI, and provides a [context](https://reactjs.org/docs/context.html) from which we can access the CMS througout the app.
+
+Head to `App.js` and follow these steps:
+
+### The Steps
+
+1. Import `TinaProvider` & `TinaCMS`
+2. Create an instance of `TinaCMS`
+3. Wrap `TinaProvider` around the contents of `App`, pass the `cms`.
 
 **src/App.js**
 
@@ -49,9 +57,9 @@ export default App;
 
 ## Configure the CMS object
 
-When creating an instance of the CMS, you can pass an options object to configure how the CMS works. This object allows us to attach and access Plugins, APIs, Media Stores, Events, and Editing UI on the CMS.
+When instantiating the CMS, you can pass an [options object](/docs/cms#cms-configuration) to configure how the CMS works. This object allows us to attach and access [Plugins](/docs/plugins), [APIs](/docs/apis), [Media Stores](/docs/media), [Events](/docs/events), [Editing UI](/docs/ui) and other key aspects of the CMS.
 
-For our use case, we will add two options: `enabled` and `sidebar`. Update your CMS instance with these options:
+Update your CMS instance with these options:
 
 **src/App.js**
 
@@ -67,13 +75,21 @@ function App() {
 }
 ```
 
-These options are a key part of constructing your custom CMS. Read further on [additional options](/docs/cms#cms-configuration) that can be passed.
+### Options
+
+For our simple use case, we added two options: `enabled` and `sidebar`.
+
+The `enabled` property _enables or disables_ the CMS, meaning that content is editable when this values is true. The CMS is _enabled by default_. We set this property to `false` so the editor can manually enable the CMS (we'll configure this at the next step).
+
+The `sidebar` property controls the _Sidebar UI_. Reference [the documentation](/docs/ui#sidebar-configuration) to see how you can configure this further.
+
+The config options are a **key part of constructing your custom CMS**. Read further on [additional options](/docs/cms#cms-configuration) that can be passed.
 
 ## Enabling the CMS
 
-Now the CMS is configured, but it is not enabled. Let's wire up the 'Edit This Site' button to toggle between enabled / disabled CMS states.
+Now the CMS is configured, but it is not enabled, so we can't see the sidebar UI. Let's wire up the 'Edit This Site' button to toggle between [enabled / disabled](/docs/cms#disabling--enabling-the-cms) CMS states.
 
-We'll use the `useCMS` hook to _tap into_ the CMS and enable it. This hook can be very useful throughout your App when needing to access or update the CMS object.
+We'll use the `useCMS` hook to get the CMS object from the context provided by `TinaProvider`. This hook can be very useful throughout your App when needing to [access or update](/docs/cms#accessing-the-cms-object) the CMS.
 
 ### The Steps
 
@@ -105,12 +121,10 @@ function EditButton() {
 //...
 ```
 
-If you restart the dev server and click the 'Edit This Site' button, you should see an 'Edit Icon' in the lower right-hand corner.
+If you restart the dev server and click the 'Edit This Site' button, you should see an 'Edit Icon' in the lower right-hand corner. Click on the icon to open the [_Sidebar_](/docs/ui#toolbar-configuration).
 
-This is the _Sidebar_ editing interface. There is also a _Toolbar_ interface, we won't work with that UI in this tutorial but feel free to read more on the [User Interface options](/docs/ui).
+> There is also a _Toolbar_ interface, we won't work with that UI in this tutorial but feel free to [read more](/docs/ui).
 
-The example above uses a helpful method, `cms.toggle`, to switch between enabled/disabled states. Reference the documentation to see all the [CMS methods](/docs/cms) available.
-
-<!-- TODO: create CMS methods documentation and update this link -->
+The example above uses a helpful method, `cms.toggle`, to switch between enabled/disabled states. Reference the documentation to see all of the [CMS methods](/docs/cms#reference) available.
 
 Next, let's look into creating forms for editing content.
