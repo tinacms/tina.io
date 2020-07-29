@@ -128,8 +128,6 @@ export const getStaticProps: GetStaticProps = async function(props) {
   const slug = slugs.join('/')
 
   try {
-    const stats = fs.statSync(path.resolve(`./content/docs/${slug}.md`))
-
     return {
       props: {
         ...(await getDocProps(props, slug)).props,
