@@ -39,12 +39,7 @@ function App() {
   return (
 +   <TinaProvider cms={cms}>
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1>{data.title}</h1>
-          <p>{data.body}</p>
-          <EditButton />
-        </header>
+        <PageContent />
       </div>
 +   </TinaProvider>
   );
@@ -96,6 +91,8 @@ We'll use the `useCMS` hook to get the CMS object from the context provided by `
 1. Import the `useCMS` hook.
 2. In the `EditButton` component: toggle the `cms` state on click and render different button text depending on the enabled state.
 
+**src/App.js**
+
 ```diff
 import React from 'react';
 -import { TinaProvider, TinaCMS } from 'tinacms';
@@ -103,9 +100,7 @@ import React from 'react';
 import logo from './Icon.svg';
 import './App.css';
 
-function App() {
-  //...
-}
+//...
 
 function EditButton() {
 + const cms = useCMS();
@@ -117,8 +112,6 @@ function EditButton() {
     </button>
   );
 }
-
-//...
 ```
 
 If you restart the dev server and click the 'Edit This Site' button, you should see an 'Edit Icon' in the lower right-hand corner. Click on the icon to open the [_Sidebar_](/docs/ui#toolbar-configuration).
@@ -127,4 +120,4 @@ If you restart the dev server and click the 'Edit This Site' button, you should 
 
 The example above uses a helpful method, `cms.toggle`, to switch between enabled/disabled states. Reference the documentation to see all of the [CMS methods](/docs/cms#reference) available.
 
-Next, let's look into creating forms for editing content.
+You'll notice that the sidebar is empty, that is because there are no forms registered to edit the content — let's do that next.

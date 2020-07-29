@@ -18,7 +18,7 @@ For this example, we will use a [fake API](https://jsonplaceholder.typicode.com/
 //..
 
 function PageContent() {
-  const [editableData, form] = useForm({
+  const formConfig = {
     id: 'tina-tutorial-index',
     label: 'Edit Page',
     fields: [
@@ -44,20 +44,14 @@ function PageContent() {
     onSubmit: async () => {
       window.alert('Saved!');
     },
-  });
+  }
+
+  const [editableData, form] = useForm(formConfig);
 
   usePlugin(form);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>{data.title}</h1>
-        <h1>{editableData.title}</h1>
-        <p>{editableData.body}</p>
-        <ExitButton />
-      </header>
-    </div>
+    //...
   );
 }
 
@@ -72,11 +66,20 @@ Next we'll adjust the `onSubmit` function to send the updated data back to this 
 
 ```js
 function PageContent() {
-  const [editableData, form] = useForm({
+  const formConfig = {
     id: 'tina-tutorial-index',
     label: 'Edit Page',
     fields: [
-      //...
+      {
+        name: 'title',
+        label: 'Title',
+        component: 'text',
+      },
+      {
+        name: 'body',
+        label: 'Body',
+        component: 'textarea',
+      },
     ],
     loadInitialValues() {
       return fetch(
@@ -100,9 +103,15 @@ function PageContent() {
         .then(response => response.json())
         .then(json => console.log(json))
     },
-  })
+  }
 
-  //...
+  const [editableData, form] = useForm(formConfig)
+
+  usePlugin(form)
+
+  return (
+    //...
+  )
 }
 ```
 

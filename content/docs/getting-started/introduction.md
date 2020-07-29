@@ -28,7 +28,7 @@ These are the general steps we will cover in this tutorial.
 2. [Add the `TinaProvider` and create a CMS instance](/docs/getting-started/cms-set-up#add-tinaprovider-create-a-cms-instance)
 3. [Configure the CMS object](/docs/getting-started/cms-set-up#configure-the-cms-object)
 4. [Enabling the CMS](/docs/getting-started/cms-set-up#enabling-the-cms)
-5. [Creating a form](/docs/getting-started/edit-content#create-a-form)
+5. [Creating and registering a form](/docs/getting-started/edit-content#create--register-a-form)
 6. [Loading content from an external API](/docs/getting-started/backends#loading-content-from-an-external-api)
 7. [Saving content changes](/docs/getting-started/backends#saving-content)
 

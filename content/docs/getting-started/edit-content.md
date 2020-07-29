@@ -4,75 +4,25 @@ prev: /docs/getting-started/cms-set-up
 next: /docs/getting-started/backends
 ---
 
-You'll notice that the sidebar is empty. We need to create a form to edit the data on this page — once registered with the CMS, this form will render in the sidebar and you could edit content from there.
+Creating a CMS is all about providing ways for editors to change content — [forms](/docs/plugins/forms) connect the editing interface to the content. In this step, we will **create and register a form to edit data** rendered on this page.
 
-Forms are a type of plugin in Tina, arguably the most important plugin. Creating a CMS is all about providing ways for editors to change content — forms connect the editing interface to the content.
+> _Fun-Fact:_ Forms are a type of [plugin](/docs/plugins) in Tina.
 
-## Create a Form
+## Create & Register a Form
 
-We will use the `useForm` hook to create the form, and the `usePlugin` hook to register it with the CMS. First, We'll refactor the `App` a bit to do this.
+We will use the `useForm` hook to [create the form](/docs/plugins/forms#creating-forms), and the `usePlugin` hook to [register it](/docs/plugins/forms#registering-forms) with the CMS.
 
-In the example blow, you can see that we extracted out `PageContent` into its own component. Typically, you'll register forms in page and template components that are separate from the base `App`, so this makes things bit easier to see what's going on. For learning purposes, we'll keep all these components on one page, but feel free to create separate files if you prefer.
+### The Steps
 
-Go ahead and copy / paste the code below to refactor the `App` to render `PageContent`:
-
-**src/App.js**
-
-```js
-import React from 'react'
-import { TinaProvider, TinaCMS, useCMS } from 'tinacms'
-import logo from './Icon.svg'
-import './App.css'
-
-function App() {
-  const cms = new TinaCMS({
-    enabled: false,
-    sidebar: true,
-  })
-
-  return (
-    <TinaProvider cms={cms}>
-      <PageContent />
-    </TinaProvider>
-  )
-}
-
-export default App
-
-function ExitButton() {
-  const cms = useCMS()
-  return (
-    <button onClick={() => cms.toggle()}>
-      {cms.enabled ? 'Exit Edit Mode' : 'Edit This Site'}
-    </button>
-  )
-}
-
-const data = {
-  title: 'Tina is not a CMS',
-  body: 'It is a toolkit for creating a custom CMS.',
-}
-
-function PageContent() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>{editableData.title}</h1>
-        <p>{editableData.body}</p>
-        <ExitButton />
-      </header>
-    </div>
-  )
-}
-```
-
-Now let's create the form within `PageContent`:
+1. Import the `useForm` and `usePlugin` hooks
+2. Define the [form configuration](/docs/plugins/forms#form-configuration) options
+3. Create a form with `useForm`, pass the form config object
+4. Register the form using `usePlugin`
 
 **src/App.js**
 
 ```js
-// Import `useForm` and `usePlugin`
+// 1. Import `useForm` and `usePlugin`
 import { TinaProvider, TinaCMS, useCMS, useForm, usePlugin } from 'tinacms'
 
 //...
@@ -83,8 +33,8 @@ const data = {
 }
 
 function PageContent() {
-  // Create the form
-  const [editableData, form] = useForm({
+  // 2. Define the form configuration object
+  const formConfig = {
     id: 'tina-tutorial-index',
     label: 'Edit Page',
     fields: [
@@ -105,31 +55,38 @@ function PageContent() {
     onSubmit: async () => {
       window.alert('Saved!')
     },
-  })
+  }
 
-  // Register it with the CMS
+  // 3. Create the form
+  const [editableData, form] = useForm(formConfig)
+
+  // 4. Register it with the CMS
   usePlugin(form)
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>{editableData.title}</h1>
-        <p>{editableData.body}</p>
-        <ExitButton />
-      </header>
-    </div>
+    <section className="App-header">
+      <img src={logo} className="App-logo" alt="logo" />
+      <h1>{editableData.title}</h1>
+      <p>{editableData.body}</p>
+      <ExitButton />
+    </section>
   )
 }
+
+//...
 ```
 
-In the example above, we used the `useForm` hook to create the form. `useForm` needs a [form configuration object](/docs/plugins/forms#form-configuration) with properties that determine how the form behaves on load and save, what fields to render and their associated content, along with other metadata.
+## Form Configuration
+
+`useForm` needs a [form configuration object](/docs/plugins/forms#form-configuration) with properties that determine how the form behaves on load and save, what fields to render and their associated content, along with other metadata.
 
 The most important properties to look at in the example above are `fields`, `initialValues`, and `onSubmit`. We'll look closely at each of these now.
 
 ### Fields
 
-Fields are another type of plugin — integral inputs for editing content. Tina provides numerous [default field plugins](/docs/plugins/fields), along with some more complex fields such as an [HTML](/docs/plugins/fields/html) & [Markdown](/docs/plugins/fields/markdown) wysiwyg, and [date picker](/docs/plugins/fields/date).
+[Fields](/docs/plugins/fields) are integral inputs for editing content. The `fields` array in the form config is comprised of Field objects that define at least two properties: a `name` or path to the editable data and a `component` to edit that data from. All fields share a common [base configuration](docs/plugins/fields#field-config), but some fields will have different properties beyond these base field options.
+
+Our example above uses two default fields: [`text`](/docs/plugins/fields/text) & [`textarea`](/docs/plugins/fields/textarea). Tina provides many other default field plugins, along with some more complex fields such as an [HTML](/docs/plugins/fields/html) / [Markdown](/docs/plugins/fields/markdown) wysiwygs, and [date picker](/docs/plugins/fields/date).
 
 You will be working with fields a lot in Tina. You can even create your own [custom fields](/docs/plugins/fields/custom-fields). To get more familiar, try to adjust the `label` property or add a new field to the array. Reference [the documentation](/docs/plugins/fields) for a full list of default field options.
 
