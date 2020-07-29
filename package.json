@@ -6,8 +6,8 @@
   "main": "n/a",
   "scripts": {
     "dev-next": "next",
-    "dev": "node server.js",
-    "develop": "yarn dev",
+    "dev": "yarn dev-next",
+    "develop": "yarn dev-next",
     "build": "next build",
     "preexport": "npm run build",
     "export": "next export",
@@ -51,7 +51,7 @@
     "matter": "^0.2.0",
     "moment": "^2.24.0",
     "moment-locales-webpack-plugin": "^1.2.0",
-    "next": "9.3.3",
+    "next": "^9.5.0",
     "next-seo": "^4.1.0",
     "next-svgr": "0.0.2",
     "next-tinacms-github": "^0.2.1",
@@ -87,6 +87,7 @@
     "webpack": "^4.41.5"
   },
   "devDependencies": {
+    "@babel/plugin-syntax-jsx": "^7.10.4",
     "@tinacms/webpack-helpers": "^0.1.0-alpha.0",
     "@types/cookie": "^0.3.3",
     "@types/glob": "^7.1.1",

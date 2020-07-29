@@ -2,6 +2,12 @@ name: Node CI
 
 on: [push]
 
+env:
+  GITHUB_CLIENT_ID: 'fake'
+  GITHUB_CLIENT_SECRET: 'also-fake'
+  SIGNING_KEY: 'very-fake'
+  BASE_REPO_FULL_NAME: tinacms/tinacms.org
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,7 +25,7 @@ jobs:
       - name: yarn install, build, and test
         run: |
           yarn install
-          yarn build --if-present
+          yarn build
           yarn lint
           yarn test
         env:

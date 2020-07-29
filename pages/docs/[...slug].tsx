@@ -57,7 +57,6 @@ function DocTemplate(props) {
 
   usePlugin(form)
 
-
   useEffect(() => {
     if (cms.disabled) { return }
     const decorator = createDecorator(
@@ -68,12 +67,10 @@ function DocTemplate(props) {
         }
       }
     )
-
     return decorator(form.finalForm)
   }, [form.id])
   
   
-
   return (
     <OpenAuthoringSiteForm
       form={form}
@@ -149,11 +146,8 @@ export const getStaticProps: GetStaticProps = async function(props) {
   // @ts-ignore This should maybe always be a string[]?
   const slug = slugs.join('/')
 
-
   try {
-    
     return getDocProps(props, slug)
-    
   } catch (e) {
     if (e instanceof GithubError) {
       return {

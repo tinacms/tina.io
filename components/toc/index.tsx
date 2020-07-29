@@ -11,20 +11,22 @@ interface TocProps {
 const Toc = ({ tocItems, activeIds }: TocProps) => {
   const [isOpen, setIsOpen] = useState(false)
 
+  useEffect(() => {
+    const close = () => setIsOpen(false)
+    const allLinks = document.querySelectorAll('a')
+    if (allLinks.length > 0) {
+      allLinks.forEach(a => a.addEventListener('click', close))
+    }
+    return () => {
+      if (allLinks.length > 0) {
+        allLinks.forEach(a => a.removeEventListener('click', close))
+      }
+    }
+  }, [])
+
   if (!tocItems) {
     return null
   }
-
-  useEffect(() => {
-    const allLinks = document.querySelectorAll('a')
-    if (allLinks.length > 0) {
-      allLinks.forEach(a =>
-        a.addEventListener('click', () => {
-          setIsOpen(false)
-        })
-      )
-    }
-  }, [])
 
   return (
     <>

@@ -173,7 +173,6 @@ export default function GuideTemplate(props) {
               <DocGridContent ref={contentRef}>
                 <hr />
                 <InlineWysiwyg name="markdownBody">
-                  Last Modified: {props.lastModified}
                   <MarkdownContent escapeHtml={false} content={markdownBody} />
                 </InlineWysiwyg>
                 <DocsPagination prevPage={prev} nextPage={next} />
@@ -212,13 +211,9 @@ export const getStaticProps: GetStaticProps = async function(ctx) {
     ctx.preview,
     ctx.previewData
   )
-  
-  const stats = fs.statSync(`${pathToGuide}/${step}.md`)
-  const lastModified = formatDate(stats.mtime)
-  
+
   return {
     props: {
-      lastModified,
       preview,
       currentGuide: guideMeta.data,
       guideMeta,
