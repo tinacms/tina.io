@@ -194,14 +194,27 @@ It is now recommended to configure button text on the form intead of in the CMS 
 
 There are a number of [core properties](https://github.com/tinacms/tinacms/blob/master/packages/%40tinacms/core/src/cms.ts) that can be helpful in working with the CMS.
 
-| property                                      | usage                                                            |
-| --------------------------------------------- | ---------------------------------------------------------------- |
-| `enabled: boolean`                            | When `true`, the CMS is _enabled_ and content can be edited.     |
-| `disabled: boolean`                           | When `true`, the CMS is _disabled_ and content cannot be edited. |
-| `registerApi( name: string, api: any ): void` | Registers a new external API with the CMS.                       |
-| `enable(): void`                              | Enable the CMS so content can be edited.                         |
-| `disable(): void`                             | Disable the CMS so content can no longer be edited.              |
-| `toggle(): void`                              | Toggles the enabled/disabled state of the CMS .                  |
+### Interface
+
+```ts
+interface TinaCMS {
+  enabled: boolean
+  disabled: boolean
+  registerApi(name: string, api: any): void
+  enable(): void
+  disable(): void
+  toggle(): void
+}
+```
+
+| property      | description                                                                                  |
+| ------------- | -------------------------------------------------------------------------------------------- |
+| `enabled`     | Returns the enabled state. When `true`, the CMS is _enabled_ and content can be edited.      |
+| `disabled`    | Returns the disabled state. When `true`, the CMS is _disabled_ and content cannot be edited. |
+| `registerApi` | A function to register a new external API with the CMS.                                      |
+| `enable`      | A function to enable the CMS so content can be edited.                                       |
+| `disable`     | A function to disable the CMS so content can no longer be edited.                            |
+| `toggle`      | A function to toggle the enabled/disabled state of the CMS .                                 |
 
 > Use the `useCMS` hook to [access the CMS](/docs/cms#accessing-the-cms-object) and execute these methods as needed.
 
