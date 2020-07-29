@@ -194,7 +194,7 @@ It is now recommended to configure button text on the form intead of in the CMS 
 
 There are a number of [core properties](https://github.com/tinacms/tinacms/blob/master/packages/%40tinacms/core/src/cms.ts) that can be helpful in working with the CMS.
 
-### Interface
+### TinaCMS Interface
 
 ```ts
 interface TinaCMS {
