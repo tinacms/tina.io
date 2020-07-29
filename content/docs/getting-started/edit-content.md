@@ -6,11 +6,11 @@ next: /docs/getting-started/backends
 
 Creating a CMS is all about providing ways for editors to change content — [forms](/docs/plugins/forms) connect the editing interface to the content. In this step, we will **create and register a form to edit data** rendered on this page.
 
-> _Fun-Fact:_ Forms are a type of [plugin](/docs/plugins) in Tina.
-
 ## Create & Register a Form
 
 We will use the `useForm` hook to [create the form](/docs/plugins/forms#creating-forms), and the `usePlugin` hook to [register it](/docs/plugins/forms#registering-forms) with the CMS.
+
+> _Fun-Fact:_ Forms are a type of [plugin](/docs/plugins) in Tina.
 
 ### The Steps
 
@@ -82,22 +82,28 @@ function PageContent() {
 
 The most important properties to look at in the example above are `fields`, `initialValues`, and `onSubmit`. We'll look closely at each of these now.
 
-### Fields
+### _fields_
 
-[Fields](/docs/plugins/fields) are integral inputs for editing content. The `fields` array in the form config is comprised of Field objects that define at least two properties: a `name` or path to the editable data and a `component` to edit that data from. All fields share a common [base configuration](docs/plugins/fields#field-config), but some fields will have different properties beyond these base field options.
+[Fields](/docs/plugins/fields) are integral inputs for editing content. The `fields` array in the form config is comprised of Field objects.
 
-Our example above uses two default fields: [`text`](/docs/plugins/fields/text) & [`textarea`](/docs/plugins/fields/textarea). Tina provides many other default field plugins, along with some more complex fields such as an [HTML](/docs/plugins/fields/html) / [Markdown](/docs/plugins/fields/markdown) wysiwygs, and [date picker](/docs/plugins/fields/date).
+All fields share a common [base configuration](docs/plugins/fields#field-config), but some fields will have different properties beyond these base field options. At their most basic, fields need at least two properties: a `name` or path to the editable data and a `component` to edit that data from.
 
-You will be working with fields a lot in Tina. You can even create your own [custom fields](/docs/plugins/fields/custom-fields). To get more familiar, try to adjust the `label` property or add a new field to the array. Reference [the documentation](/docs/plugins/fields) for a full list of default field options.
+Notice how the value for `name` in our first field is 'title', that matches the property name in the `data` object. If that property were named 'headline', we'd have to update the `name` in the field object to connect that field with the proper data value.
+
+Our example above uses two _default fields_: [`text`](/docs/plugins/fields/text) & [`textarea`](/docs/plugins/fields/textarea). Tina provides many other default [field plugins](/docs/plugins/fields), along with some more complex fields such as an [HTML](/docs/plugins/fields/html) / [Markdown](/docs/plugins/fields/markdown) wysiwygs, and [date picker](/docs/plugins/fields/date). You can even create your own [custom fields](/docs/plugins/fields/custom-fields).
+
+You will be working with fields a lot in Tina. To get more familiar, try to adjust the `label` property or add a new field to the array. Reference [the documentation](/docs/plugins/fields) for a full list of default field options.
 
 ### _initialValues_
 
-//...TODO
+`initialValues` are an object of values to initially populate the form. This option, along with `onSubmit` are inherited by the [Final Form library field configuration](https://final-form.org/docs/final-form/types/Config), that Tina uses for all forms. You can use this option when you don't need to load data asynchronously.
 
 ### _onSubmit_
 
-//...TODO
+This is a function that runs when the form is saved. Right now it just gives an alert message, but we will use this function later to post changes to a backend API.
+
+## Edit the data
 
 Restart the dev server, enable the CMS, open the sidebar and try to update the content. You should now be able to edit the title and body copy on the demo through the form we just created!
 
-> Note: mention the form helpers depending on the framework or backend
+> Note: There are other form creation helpers associated with various meta-framework integrations and backend configurations. Refer to the [guides](/guides) or packages documentation to find more information.
