@@ -4,6 +4,7 @@ import toc from 'markdown-toc'
 
 const atob = require('atob')
 import { slugifyTocHeading } from './slugifyToc'
+import path from 'path'
 
 const b64DecodeUnicode = (str: string) => {
   // Going backwards: from bytestream, to percent-encoding, to original string.
@@ -21,7 +22,9 @@ export async function getPackageProps(
   { preview, previewData }: any,
   slug: string
 ) {
-  const file = await readJsonFile('content/packages.json')
+  const file = await readJsonFile(
+    path.resolve(process.cwd(), './content/packages.json')
+  )
 
   interface GithubPackage {
     name: string
