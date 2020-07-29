@@ -145,7 +145,7 @@ export const getStaticProps = async () => {
       slug: '/guides',
       currentGuide: null,
       markdownFile: await readMarkdownFile(
-        path.resolve('./content/guides/index.md')
+        path.resolve(process.cwd(), './content/guides/index.md')
       ),
       allGuides: await getGuideNavProps(),
     },
