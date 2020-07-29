@@ -207,17 +207,13 @@ interface TinaCMS {
 }
 ```
 
-| property      | description                                                                                  |
-| ------------- | -------------------------------------------------------------------------------------------- |
-| `enabled`     | Returns the enabled state. When `true`, the CMS is _enabled_ and content can be edited.      |
-| `disabled`    | Returns the disabled state. When `true`, the CMS is _disabled_ and content cannot be edited. |
-| `registerApi` | A function to register a new external API with the CMS.                                      |
-| `enable`      | A function to enable the CMS so content can be edited.                                       |
-| `disable`     | A function to disable the CMS so content can no longer be edited.                            |
-| `toggle`      | A function to toggle the enabled/disabled state of the CMS .                                 |
+| property      | description                                                                                   |
+| ------------- | --------------------------------------------------------------------------------------------- |
+| `enabled`     | Returns the enabled state. When `true`, content _can_ be edited.                              |
+| `disabled`    | Returns the disabled state. When `true`, content _cannot_ be edited.                          |
+| `registerApi` | Registers a new [external API](/docs/apis#adding-an-api) with the CMS.                        |
+| `enable`      | [Enables](/docs/cms#disabling--enabling-the-cms) the CMS so content can be edited.            |
+| `disable`     | [Disables](/docs/cms#disabling--enabling-the-cms) the CMS so content can no longer be edited. |
+| `toggle`      | [Toggles](/docs/cms#disabling--enabling-the-cms) the enabled/disabled state of the CMS .      |
 
 > Use the `useCMS` hook to [access the CMS](/docs/cms#accessing-the-cms-object) and execute these methods as needed.
-
-**Examples**
-
-Reference the enabling / disabling the cms [example](/docs/cms#disabling--enabling-the-cms) above to see use of `cms.enabled` & `cms.toggle()`, or checkout the [API documentation](/docs/apis#adding-an-api) for an example using `cms.registerApi`.
