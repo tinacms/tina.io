@@ -131,7 +131,7 @@ The `name` property should be updated to reflect the different path:
 
 ### _component_
 
-The `component` field property can either be a string or the name of a field plugin, or a React Component.
+The `component` field property can either be the name of a field plugin (a string), or a React Component.
 
 All of the previous examples show the `component` being set with a string:
 
