@@ -56,9 +56,9 @@ These are the default field plugins available through the CMS:
 
 These are plugins that must be installed through separate packages:
 
-- Date & Time
-- Markdown
-- HTML
+- [Date & Time](/docs/plugins/fields/date)
+- [Markdown](/docs/plugins/fields/markdown)
+- [HTML](/docs/plugins/fields/html))
 
 ## Field Definition
 
