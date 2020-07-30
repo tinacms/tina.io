@@ -31,6 +31,7 @@ These are the general steps we will cover.
 5. [Creating and registering a form](/docs/getting-started/edit-content#create--register-a-form)
 6. [Loading content from an external API](/docs/getting-started/backends#loading-content-from-an-external-api)
 7. [Saving content changes](/docs/getting-started/backends#saving-content)
+8. [Adding alerts](/docs/getting-started/backends#adding-alerts)
 
 ## Clone the demo
 

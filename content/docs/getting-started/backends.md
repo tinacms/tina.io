@@ -77,6 +77,7 @@ function PageContent() {
 +     })
 +       .then(response => response.json())
 +       .then(json => console.log(json))
++       .catch(e => console.error(e))
     },
   }
 
@@ -84,19 +85,65 @@ function PageContent() {
 }
 ```
 
-<!--TODO: add alerts! -->
-
 Note that this function won't actually save those new values on the server — it is a fake API after all. But the response will act as if it did. This example just puts the response in the console to show what was returned.
+
+## Adding Alerts
+
+While our form is functional in terms of retrieving and saving content, the editing experience could be improved by additional feedback. What if the form failed to save? Currently, the editor would need to check the console to see that there was an error. Let's add a few [alerts](/docs/ui/alerts) to improve this.
+
+**src/App.js**
+
+```diff
+//...
+
+function PageContent() {
++ const cms = useCMS();
+  const formConfig = {
+    id: 'tina-tutorial-index',
+    label: 'Edit Page',
+    fields: [
+      //...
+    ],
+    loadInitialValues() {
+      //...
+    },
+    onSubmit(formData) {
+      fetch('https://jsonplaceholder.typicode.com/posts/1', {
+        //...
+      })
+        .then((response) => response.json())
+-       .then(json => console.log(json))
++       .then((json) => {
++         cms.alerts.success('Saved Content!');
++         console.log(json);
++       })
+-       .catch(e => console.error(e))
++       .catch((e) => {
++         cms.alerts.error('Error Saving Content');
++         console.error(e);
++       });
+    },
+  };
+
+  //...
+}
+
+//...
+```
+
+[Alerts](/docs/ui/alerts) are useful for displaying quick, short feedback to the editor. While the example above only uses `success` and `error`, there is also the alert types: `info` & `warn`.
+
+Dispatching alerts can be powerful in combination with [CMS Events](/docs/events). You can subscribe to various events and trigger alerts, or other functionality to provide solid feedback loops for editors and build a robust CMS.
 
 ## Other backends
 
-Tina is fairly un-opinionated about how it receives data to edit, or where that data is stored. The backend you choose depends on your project and the React meta-framework you may be using. Currently there are numerous packages to support Git & GitHub workflows, but Tina is designed to potentially work with any data source. We have also made working prototypes to source data from [Strapi](/guides/nextjs/tina-with-strapi/overview) and Contentful (not yet documented).
+Tina is fairly un-opinionated about how it receives data to edit, or where that data is stored. The backend you choose depends on your project and the React meta-framework you may be using. Currently, there are numerous packages to support Git & GitHub workflows, but Tina is designed to potentially work with any data source. We have also made working prototypes to source data from [Strapi](/guides/nextjs/tina-with-strapi/overview) and Contentful (not yet documented).
 
 Please refer to the [guides](/guides) for in-depth information on setting up various backends. Also, refer to [the forum](https://community.tinacms.org/) to read about other developers' unique configurations. As always, reach out to the Tina Team on [the forum](https://community.tinacms.org/) if you have an integration or backend idea and would like guidance or feedback on how to get started.
 
 ## Final Notes
 
-Tina is a toolkit to build your own custom CMS. It’s not a one-size-fits-all approach like a conventional CMS. We think of the main aspects to consider when building a CMS as: constructing the editing interface, storing and managing data, and then integrating with various frameworks.
+Tina is a toolkit to build your own custom CMS. It’s not a one-size-fits-all approach like a conventional CMS. We think the main aspects to consider when building a CMS are: constructing the editing interface, storing and managing data, and then integrating with various frameworks.
 
 We’d like to provide developers with control and flexibility in all these aspects related to building a custom CMS. Right now, we’re building from the ground up, trying to make a solid foundation with React and Git-oriented workflows, but that’s not the end of the story in terms of what’s possible with Tina.
 
