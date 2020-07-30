@@ -74,27 +74,27 @@ function DocTemplate(props) {
       path={props.file.fileRelativePath}
       preview={props.preview}
     >
+      <NextSeo
+        title={frontmatter.title}
+        titleTemplate={'%s | TinaCMS Docs'}
+        description={excerpt}
+        openGraph={{
+          title: frontmatter.title,
+          description: excerpt,
+          images: [
+            {
+              url:
+                'https://res.cloudinary.com/forestry-demo/image/upload/l_text:tuner-regular.ttf_90_center:' +
+                encodeURIComponent(frontmatter.title) +
+                ',g_center,x_0,y_50,w_850,c_fit,co_rgb:EC4815/v1581087220/TinaCMS/tinacms-social-empty-docs.png',
+              width: 1200,
+              height: 628,
+              alt: frontmatter.title + ` | TinaCMS Docs`,
+            },
+          ],
+        }}
+      />
       <DocsLayout isEditing={props.preview}>
-        <NextSeo
-          title={frontmatter.title}
-          titleTemplate={'%s | TinaCMS Docs'}
-          description={excerpt}
-          openGraph={{
-            title: frontmatter.title,
-            description: excerpt,
-            images: [
-              {
-                url:
-                  'https://res.cloudinary.com/forestry-demo/image/upload/l_text:tuner-regular.ttf_90_center:' +
-                  encodeURIComponent(frontmatter.title) +
-                  ',g_center,x_0,y_50,w_850,c_fit,co_rgb:EC4815/v1581087220/TinaCMS/tinacms-social-empty-docs.png',
-                width: 1200,
-                height: 628,
-                alt: frontmatter.title + ` | TinaCMS Docs`,
-              },
-            ],
-          }}
-        />
         <DocsContent>
           <DocumentationNavigation navItems={props.docsNav} />
           <DocsTextWrapper>

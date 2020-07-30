@@ -61,7 +61,7 @@ const MobileNavLogo = styled(TinaIcon)`
   }
 `
 
-export const DocsDesktopTinaIcon = styled(TinaIcon)`
+const DocsDesktopTinaIcon = styled(TinaIcon)`
   position: relative;
   display: none;
   padding: 1.25rem 2rem 2.25rem 1.5rem;

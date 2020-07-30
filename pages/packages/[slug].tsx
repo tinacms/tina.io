@@ -47,7 +47,7 @@ export default function Packages(props) {
   }, [contentRef])
 
   return (
-    <DocsLayout isEditing={false}>
+    <>
       <NextSeo
         title={props.name}
         titleTemplate={'%s | TinaCMS Docs'}
@@ -68,26 +68,27 @@ export default function Packages(props) {
           ],
         }}
       />
-
-      <DocsContent>
-        <DocumentationNavigation navItems={props.docsNav} />
-        <DocsTextWrapper>
-          <DocsGrid>
-            <DocGridToc>
-              <Toc tocItems={tocItems} activeIds={activeIds} />
-            </DocGridToc>
-            <DocGridContent ref={contentRef}>
-              <MarkdownContent escapeHtml={false} content={props.content} />
-              <DocsPagination
-                prevPage={props.prevPage}
-                nextPage={props.nextPage}
-              />
-            </DocGridContent>
-          </DocsGrid>
-        </DocsTextWrapper>
-        <Footer light preview={false} />
-      </DocsContent>
-    </DocsLayout>
+      <DocsLayout isEditing={false}>
+        <DocsContent>
+          <DocumentationNavigation navItems={props.docsNav} />
+          <DocsTextWrapper>
+            <DocsGrid>
+              <DocGridToc>
+                <Toc tocItems={tocItems} activeIds={activeIds} />
+              </DocGridToc>
+              <DocGridContent ref={contentRef}>
+                <MarkdownContent escapeHtml={false} content={props.content} />
+                <DocsPagination
+                  prevPage={props.prevPage}
+                  nextPage={props.nextPage}
+                />
+              </DocGridContent>
+            </DocsGrid>
+          </DocsTextWrapper>
+          <Footer light preview={false} />
+        </DocsContent>
+      </DocsLayout>
+    </>
   )
 }
 
