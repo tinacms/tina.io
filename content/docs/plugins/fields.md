@@ -58,7 +58,7 @@ These are plugins that must be installed through separate packages:
 
 - [Date & Time](/docs/plugins/fields/date)
 - [Markdown](/docs/plugins/fields/markdown)
-- [HTML](/docs/plugins/fields/html))
+- [HTML](/docs/plugins/fields/html)
 
 ## Field Definition
 
