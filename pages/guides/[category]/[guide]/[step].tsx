@@ -37,7 +37,6 @@ import createDecorator from 'final-form-calculate'
 import { DocumentationNavigation } from 'components/DocumentationNavigation'
 
 export default function GuideTemplate(props) {
-  const [open, setOpen] = React.useState(false)
   const isBrowser = typeof window !== `undefined`
   const contentRef = React.useRef<HTMLDivElement>(null)
   const tocItems = props.tocItems
@@ -173,11 +172,7 @@ export default function GuideTemplate(props) {
         />
 
         <DocsContent>
-          <DocumentationNavigation
-            open={open}
-            setOpen={setOpen}
-            navItems={guideNav}
-          />
+          <DocumentationNavigation navItems={guideNav} />
           <DocsTextWrapper>
             <DocsGrid>
               <DocGridHeader>

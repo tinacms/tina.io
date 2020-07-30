@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Overlay } from './ui/Overlay'
 import { DocsNav } from './ui/DocsNav'
 import { DocsMobileTinaIcon } from 'pages/docs/[...slug]'
@@ -6,18 +7,12 @@ import styled from 'styled-components'
 import { DocsHeaderNav } from './ui/DocsHeaderNav'
 
 interface Props {
-  docs?: boolean
-  open?: boolean
-  setOpen(open: boolean): void
   navItems: any
+  docs?: boolean
 }
 
-export function DocumentationNavigation({
-  docs,
-  open,
-  setOpen,
-  navItems,
-}: Props) {
+export function DocumentationNavigation({ docs, navItems }: Props) {
+  const [open, setOpen] = useState(false)
   return (
     <>
       <DocsNavToggle open={open} onClick={() => setOpen(!open)} />

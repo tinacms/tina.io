@@ -31,7 +31,6 @@ import { DocumentationNavigation } from 'components/DocumentationNavigation'
 export default function Packages(props) {
   const excerpt = 'A package for Tinacms.'
 
-  const [open, setOpen] = useState(false)
   const contentRef = React.useRef<HTMLDivElement>(null)
   const isBrowser = typeof window !== `undefined`
   const tocItems = props.tocItems
@@ -71,11 +70,7 @@ export default function Packages(props) {
       />
 
       <DocsContent>
-        <DocumentationNavigation
-          open={open}
-          setOpen={setOpen}
-          navItems={props.docsNav}
-        />
+        <DocumentationNavigation navItems={props.docsNav} />
         <DocsTextWrapper>
           <DocsGrid>
             <DocGridToc>

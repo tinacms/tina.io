@@ -33,7 +33,6 @@ function DocTemplate(props) {
 
   const [data, form] = useGithubMarkdownForm(props.file, formOptions)
 
-  const [open, setOpen] = useState(false)
   const isBrowser = typeof window !== `undefined`
   const contentRef = React.useRef<HTMLDivElement>(null)
   const frontmatter = data.frontmatter
@@ -97,12 +96,7 @@ function DocTemplate(props) {
           }}
         />
         <DocsContent>
-          <DocumentationNavigation
-            open={open}
-            setOpen={setOpen}
-            navItems={props.docsNav}
-            docs
-          />
+          <DocumentationNavigation navItems={props.docsNav} docs />
           <DocsTextWrapper>
             <DocsGrid>
               <DocGridHeader>
