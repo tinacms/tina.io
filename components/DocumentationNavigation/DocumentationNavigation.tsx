@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Overlay } from '../ui/Overlay'
-import { DocsNav } from './DocsNav'
+import { DocsLeftSidebar, DocsNavigationList } from './DocsNav'
 import { NavToggle } from '../ui/NavToggle'
 import styled from 'styled-components'
 import { DocsHeaderNav } from './DocsHeaderNav'
@@ -19,7 +19,10 @@ export function DocumentationNavigation({ navItems }: Props) {
         onClick={() => setMobileNavIsOpen(!mobileNavIsOpen)}
       />
       <MobileNavLogo />
-      <DocsNav open={mobileNavIsOpen} navItems={navItems} />
+      <DocsLeftSidebar open={mobileNavIsOpen}>
+        <DocsDesktopTinaIcon docs />
+        <DocsNavigationList navItems={navItems} />
+      </DocsLeftSidebar>
       <Overlay
         open={mobileNavIsOpen}
         onClick={() => setMobileNavIsOpen(false)}
@@ -54,5 +57,15 @@ const MobileNavLogo = styled(TinaIcon)`
 
   @media (min-width: 1000px) {
     display: none;
+  }
+`
+
+export const DocsDesktopTinaIcon = styled(TinaIcon)`
+  position: relative;
+  display: none;
+  padding: 1.25rem 2rem 2.25rem 1.5rem;
+
+  @media (min-width: 1000px) {
+    display: block;
   }
 `

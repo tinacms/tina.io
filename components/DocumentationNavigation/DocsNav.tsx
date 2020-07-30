@@ -1,34 +1,32 @@
 import styled, { css } from 'styled-components'
 
 import { DocsLinkNav } from '../ui/DocsLinkNav'
-import { TinaIcon } from '../logo/TinaIcon'
 import { NavSection } from './NavSection'
 
-export const DocsNav = styled(({ open, navItems, ...styleProps }) => {
+export const DocsNavigationList = ({ navItems }) => {
   return (
-    <div {...styleProps}>
-      <DocsDesktopTinaIcon docs />
-      <ul>
-        <MobileMainNav>
-          <DocsLinkNav />
-        </MobileMainNav>
-        {navItems &&
-          navItems.map(section => (
-            <NavSection key={section.id} {...section} collapsible={false} />
-          ))}
-        <li>
-          <iframe
-            src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
-            frameBorder="0"
-            scrolling="0"
-            width="150px"
-            height="30px"
-          ></iframe>
-        </li>
-      </ul>
-    </div>
+    <ul>
+      <MobileMainNav>
+        <DocsLinkNav />
+      </MobileMainNav>
+      {navItems &&
+        navItems.map(section => (
+          <NavSection key={section.id} {...section} collapsible={false} />
+        ))}
+      <li>
+        <iframe
+          src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
+          frameBorder="0"
+          scrolling="0"
+          width="150px"
+          height="30px"
+        ></iframe>
+      </li>
+    </ul>
   )
-})`
+}
+
+export const DocsLeftSidebar = styled.div<{ open: boolean }>`
   list-style-type: none;
   overflow-x: hidden;
   overflow-y: auto;
@@ -64,16 +62,6 @@ export const DocsNav = styled(({ open, navItems, ...styleProps }) => {
     top: auto;
     width: 16rem;
     transform: translate3d(0, 0, 0);
-  }
-`
-
-const DocsDesktopTinaIcon = styled(TinaIcon)`
-  position: relative;
-  display: none;
-  padding: 1.25rem 2rem 2.25rem 1.5rem;
-
-  @media (min-width: 1000px) {
-    display: block;
   }
 `
 
