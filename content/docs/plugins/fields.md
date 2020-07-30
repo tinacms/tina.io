@@ -146,7 +146,7 @@ All of the previous examples show the `component` being set with a string:
 }
 ```
 
-`color` is referring to the `name` of the Color [Field Plugin](/docs/plugins/fields/custom-fields#2-creating-field-plugins) that is hooked up to the CMS by default.
+`'color'` is referring to the `name` of the Color [Field Plugin](/docs/plugins/fields/custom-fields#2-creating-field-plugins) that is hooked up to the CMS by default.
 
 You can also define components inline to render in place of a default field:
 
