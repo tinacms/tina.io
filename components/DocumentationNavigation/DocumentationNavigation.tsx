@@ -18,7 +18,7 @@ export function DocumentationNavigation({ navItems }: Props) {
         open={mobileNavIsOpen}
         onClick={() => setMobileNavIsOpen(!mobileNavIsOpen)}
       />
-      <DocsMobileTinaIcon docs />
+      <MobileNavLogo />
       <DocsNav open={mobileNavIsOpen} navItems={navItems} />
       <Overlay
         open={mobileNavIsOpen}
@@ -40,7 +40,7 @@ const MobileNavToggle = styled(NavToggle)`
   }
 `
 
-const DocsMobileTinaIcon = styled(TinaIcon)`
+const MobileNavLogo = styled(TinaIcon)`
   position: relative;
   display: block;
   padding: 1rem 0;
