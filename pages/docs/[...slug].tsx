@@ -2,21 +2,9 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import {
-  DocsLayout,
-  MarkdownContent,
-  DocsTextWrapper,
-  Wrapper,
-  Footer,
-} from 'components/layout'
-import {
-  DocsNav,
-  NavToggle,
-  DocsHeaderNav,
-  DocsPagination,
-} from 'components/ui'
-import { InlineTextareaField, useInlineForm } from 'react-tinacms-inline'
-import { TinaIcon } from 'components/logo'
+import { DocsLayout, MarkdownContent } from 'components/layout'
+import { NavToggle, DocsPagination } from 'components/ui'
+import { InlineTextareaField } from 'react-tinacms-inline'
 import { useGithubMarkdownForm } from 'react-tinacms-github'
 import { getDocProps } from 'utils/docs/getDocProps'
 import { OpenAuthoringSiteForm } from 'components/layout/OpenAuthoringSiteForm'
@@ -24,9 +12,8 @@ import { GithubError } from 'next-tinacms-github'
 import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { usePlugin, useCMS } from 'tinacms'
 import Toc from '../../components/toc'
-import { createTocListener, slugify, formatDate } from 'utils'
+import { createTocListener, formatDate } from 'utils'
 import createDecorator from 'final-form-calculate'
-import { DocumentationNavigation } from 'components/DocumentationNavigation'
 
 function DocTemplate(props) {
   // Registers Tina Form

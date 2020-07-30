@@ -5,28 +5,12 @@ import { GithubError } from 'next-tinacms-github'
 import path from 'path'
 import fs from 'fs'
 
-import {
-  DocsLayout,
-  Wrapper,
-  DocsTextWrapper,
-  Footer,
-  MarkdownContent,
-} from 'components/layout'
-import { DocsNav, DocsHeaderNav, Overlay, DocsPagination } from 'components/ui'
+import { DocsLayout, MarkdownContent } from 'components/layout'
+import { DocsPagination } from 'components/ui'
 import { getPackageProps } from '../../utils/docs/getPackageProps'
-import {
-  DocsNavToggle,
-  DocsMobileTinaIcon,
-  DocsContent,
-  DocsGrid,
-  DocGridHeader,
-  DocsPageTitle,
-  DocGridToc,
-  DocGridContent,
-} from 'pages/docs/[...slug]'
+import { DocsGrid, DocGridToc, DocGridContent } from 'pages/docs/[...slug]'
 import { createTocListener } from 'utils'
 import Toc from 'components/toc'
-import { DocumentationNavigation } from 'components/DocumentationNavigation'
 
 export default function Packages(props) {
   const excerpt = 'A package for Tinacms.'

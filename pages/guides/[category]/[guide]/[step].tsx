@@ -1,19 +1,11 @@
 import * as React from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { readFile } from 'utils/readFile'
+
 import { getMarkdownPreviewProps } from 'utils/getMarkdownFile'
-import {
-  DocsLayout,
-  DocsTextWrapper,
-  Wrapper,
-  MarkdownContent,
-  Footer,
-} from 'components/layout'
+import { DocsLayout, MarkdownContent } from 'components/layout'
 import { NextSeo } from 'next-seo'
-import { DocsPagination, Overlay, DocsHeaderNav } from 'components/ui'
+import { DocsPagination } from 'components/ui'
 import {
-  DocsNavToggle,
-  DocsMobileTinaIcon,
   DocsGrid,
   DocGridHeader,
   DocsPageTitle,
@@ -33,7 +25,6 @@ import { MarkdownCreatorPlugin } from 'utils/plugins'
 import { fileToUrl, createTocListener, formatDate } from 'utils'
 import Toc from '../../../../components/toc'
 import createDecorator from 'final-form-calculate'
-import { DocumentationNavigation } from 'components/DocumentationNavigation'
 
 export default function GuideTemplate(props) {
   const isBrowser = typeof window !== `undefined`
