@@ -13,7 +13,6 @@ import {
   DocsNav,
   NavToggle,
   DocsHeaderNav,
-  Overlay,
   DocsPagination,
 } from 'components/ui'
 import { InlineTextareaField, useInlineForm } from 'react-tinacms-inline'
@@ -26,11 +25,11 @@ import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { usePlugin, useCMS } from 'tinacms'
 import Toc from '../../components/toc'
 import { createTocListener, slugify, formatDate } from 'utils'
-import createDecorator from "final-form-calculate"
+import createDecorator from 'final-form-calculate'
+import { DocumentationNavigation } from 'components/DocumentationNavigation'
 
 function DocTemplate(props) {
   // Registers Tina Form
-
 
   const [data, form] = useGithubMarkdownForm(props.file, formOptions)
 
@@ -44,7 +43,7 @@ function DocTemplate(props) {
   const [activeIds, setActiveIds] = useState([])
 
   const cms = useCMS()
-  
+
   React.useEffect(() => {
     if (!isBrowser || !contentRef.current) {
       return
@@ -58,19 +57,18 @@ function DocTemplate(props) {
   usePlugin(form)
 
   useEffect(() => {
-    if (cms.disabled) { return }
-    const decorator = createDecorator(
-      {
-        field: /.*/,
-        updates: {
-          'frontmatter.last_edited': () => formatDate(Date.now())
-        }
-      }
-    )
+    if (cms.disabled) {
+      return
+    }
+    const decorator = createDecorator({
+      field: /.*/,
+      updates: {
+        'frontmatter.last_edited': () => formatDate(Date.now()),
+      },
+    })
     return decorator(form.finalForm)
   }, [form.id])
-  
-  
+
   return (
     <OpenAuthoringSiteForm
       form={form}
@@ -101,6 +99,7 @@ function DocTemplate(props) {
         <DocsNavToggle open={open} onClick={() => setOpen(!open)} />
         <DocsMobileTinaIcon docs />
         <DocsNav open={open} navItems={props.docsNav} />
+        <DocumentationNavigation open={open} setOpen={setOpen} />
         <DocsContent>
           <DocsHeaderNav color={'light'} open={open} />
           <DocsTextWrapper>
@@ -118,7 +117,8 @@ function DocTemplate(props) {
                 <InlineWysiwyg name="markdownBody">
                   <MarkdownContent escapeHtml={false} content={markdownBody} />
                 </InlineWysiwyg>
-                {frontmatter.last_edited && `Last Edited: ${frontmatter.last_edited}`}
+                {frontmatter.last_edited &&
+                  `Last Edited: ${frontmatter.last_edited}`}
                 <DocsPagination
                   prevPage={props.prevPage}
                   nextPage={props.nextPage}
@@ -128,7 +128,6 @@ function DocTemplate(props) {
           </DocsTextWrapper>
           <Footer light preview={props.preview} />
         </DocsContent>
-        <Overlay open={open} onClick={() => setOpen(false)} />
       </DocsLayout>
     </OpenAuthoringSiteForm>
   )

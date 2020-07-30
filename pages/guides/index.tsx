@@ -19,6 +19,7 @@ import { DocsNav, Overlay, DynamicLink, DocsHeaderNav } from 'components/ui'
 import { CardGrid, Card } from 'components/ui/Cards'
 import RightArrowSvg from '../../public/svg/right-arrow.svg'
 import styled from 'styled-components'
+import { DocumentationNavigation } from 'components/DocumentationNavigation'
 
 const GuideTemplate = props => {
   let data = props.markdownFile.data
@@ -78,6 +79,7 @@ const GuideTemplate = props => {
       <DocsNavToggle open={open} onClick={() => setOpen(!open)} />
       <DocsMobileTinaIcon docs />
       <DocsNav open={open} navItems={navData} />
+      <DocumentationNavigation open={open} setOpen={setOpen} />
       <DocsContent>
         <DocsHeaderNav color={'light'} open={open} />
         <DocsTextWrapper>
@@ -93,7 +95,6 @@ const GuideTemplate = props => {
         </DocsTextWrapper>
         <Footer light editMode={props.editMode} />
       </DocsContent>
-      <Overlay open={open} onClick={() => setOpen(false)} />
     </DocsLayout>
   )
 }

@@ -34,6 +34,7 @@ import { MarkdownCreatorPlugin } from 'utils/plugins'
 import { fileToUrl, createTocListener, formatDate } from 'utils'
 import Toc from '../../../../components/toc'
 import createDecorator from 'final-form-calculate'
+import { DocumentationNavigation } from 'components/DocumentationNavigation'
 
 export default function GuideTemplate(props) {
   const [open, setOpen] = React.useState(false)
@@ -131,15 +132,15 @@ export default function GuideTemplate(props) {
   const cms = useCMS()
 
   React.useEffect(() => {
-    if (cms.disabled) { return }
-    const decorator = createDecorator(
-      {
-        field: /.*/,
-        updates: {
-          'frontmatter.last_edited': () => formatDate(Date.now())
-        }
-      }
-    )
+    if (cms.disabled) {
+      return
+    }
+    const decorator = createDecorator({
+      field: /.*/,
+      updates: {
+        'frontmatter.last_edited': () => formatDate(Date.now()),
+      },
+    })
     return decorator(stepForm.finalForm)
   }, [stepForm.id])
 
@@ -173,6 +174,7 @@ export default function GuideTemplate(props) {
         <DocsNavToggle open={open} onClick={() => setOpen(!open)} />
         <DocsMobileTinaIcon docs />
         <DocsNav open={open} navItems={guideNav} />
+        <DocumentationNavigation open={open} setOpen={setOpen} />
         <DocsContent>
           <DocsHeaderNav color={'light'} open={open} />
           <DocsTextWrapper>
@@ -190,14 +192,14 @@ export default function GuideTemplate(props) {
                 <InlineWysiwyg name="markdownBody">
                   <MarkdownContent escapeHtml={false} content={markdownBody} />
                 </InlineWysiwyg>
-                {frontmatter.last_edited && `Last Edited: ${frontmatter.last_edited}`}
+                {frontmatter.last_edited &&
+                  `Last Edited: ${frontmatter.last_edited}`}
                 <DocsPagination prevPage={prev} nextPage={next} />
               </DocGridContent>
             </DocsGrid>
           </DocsTextWrapper>
           <Footer light editMode={props.editMode} />
         </DocsContent>
-        <Overlay open={open} onClick={() => setOpen(false)} />
       </DocsLayout>
     </OpenAuthoringSiteForm>
   )

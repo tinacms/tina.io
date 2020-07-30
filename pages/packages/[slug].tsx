@@ -26,6 +26,7 @@ import {
 } from 'pages/docs/[...slug]'
 import { createTocListener } from 'utils'
 import Toc from 'components/toc'
+import { DocumentationNavigation } from 'components/DocumentationNavigation'
 
 export default function Packages(props) {
   const excerpt = 'A package for Tinacms.'
@@ -71,6 +72,7 @@ export default function Packages(props) {
       <DocsNavToggle open={open} onClick={() => setOpen(!open)} />
       <DocsMobileTinaIcon />
       <DocsNav open={open} navItems={props.docsNav} />
+      <DocumentationNavigation open={open} setOpen={setOpen} />
       <DocsContent>
         <DocsHeaderNav color={'light'} open={open} />
         <DocsTextWrapper>
@@ -89,8 +91,6 @@ export default function Packages(props) {
         </DocsTextWrapper>
         <Footer light preview={false} />
       </DocsContent>
-
-      <Overlay open={open} onClick={() => setOpen(false)} />
     </DocsLayout>
   )
 }
