@@ -152,6 +152,8 @@ A little more complicated is the `InlineImage` field that we'll need to include.
 
 Here we used the `useCMS` hook to get access to our CMS object. In `_app.js` we've attached a Strapi media store to this object, and we need access to that here to help us resolve image urls.
 
+🤚In order to be able to upload images you'll want to head over to Strapi's **Roles & Permissions**, then select all **uploads** and save.  
+
 Now let's head over to `post-body.js` and wrap the content of our blog post with a WYSIWYG markdown editor. This will take care of the markdown parsing that we removed earlier.
 
 **components/post-body.js**
