@@ -105,7 +105,7 @@ export function Page(props) {
 }
 ```
 
-## Using Psre-configured Inline Fields
+## Using Pre-configured Inline Fields
 
 When using `InlineField`, you can create a custom _Inline Field_. This is helpful when you need precise control over rendering or input functionality.
 
