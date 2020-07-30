@@ -68,7 +68,7 @@ export default function Packages(props) {
           ],
         }}
       />
-      <DocsLayout isEditing={false} navItems={props.docsNav}>
+      <DocsLayout navItems={props.docsNav}>
         <DocsTextWrapper>
           <DocsGrid>
             <DocGridToc>
