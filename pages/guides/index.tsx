@@ -76,8 +76,7 @@ const GuideTemplate = props => {
           ],
         }}
       />
-      <DocsLayout isEditing={props.editMode}>
-        <DocumentationNavigation navItems={navData} />
+      <DocsLayout isEditing={props.editMode} navItems={navData}>
         <DocsTextWrapper>
           <GuideWrapper narrow>
             <h1>{frontmatter.title}</h1>

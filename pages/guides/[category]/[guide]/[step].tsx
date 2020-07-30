@@ -168,8 +168,7 @@ export default function GuideTemplate(props) {
           ],
         }}
       />
-      <DocsLayout isEditing={props.editMode}>
-        <DocumentationNavigation navItems={guideNav} />
+      <DocsLayout isEditing={props.editMode} navItems={guideNav}>
         <DocsTextWrapper>
           <DocsGrid>
             <DocGridHeader>

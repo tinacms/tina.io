@@ -94,8 +94,7 @@ function DocTemplate(props) {
           ],
         }}
       />
-      <DocsLayout isEditing={props.preview}>
-        <DocumentationNavigation navItems={props.docsNav} />
+      <DocsLayout isEditing={props.preview} navItems={props.docsNav}>
         <DocsTextWrapper>
           <DocsGrid>
             <DocGridHeader>

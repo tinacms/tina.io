@@ -1,16 +1,18 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { DefaultSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { Overlay } from '../ui'
+import { DocumentationNavigation } from 'components/DocumentationNavigation'
 
 interface DocsLayoutProps {
+  navItems: any
   isEditing?: boolean
   children: any
 }
 
 export const DocsLayout = React.memo(
-  ({ isEditing, children }: DocsLayoutProps) => {
+  ({ isEditing, children, navItems }: DocsLayoutProps) => {
     const router = useRouter()
     return (
       <>
@@ -19,7 +21,10 @@ export const DocsLayout = React.memo(
             url: 'https://tinacms.org' + router.asPath,
           }}
         />
-        <DocsLayoutDiv isEditing={isEditing}>{children}</DocsLayoutDiv>
+        <DocsLayoutDiv isEditing={isEditing}>
+          <DocumentationNavigation navItems={navItems} />
+          {children}
+        </DocsLayoutDiv>
       </>
     )
   }
