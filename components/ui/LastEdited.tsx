@@ -15,11 +15,10 @@ export const LastEdited = styled(({
     </p>
   )
 })`
-  
-  font-size: 10.5rem;
-  color: blue;
-  
-
+  margin-top: 2rem !important;
+  font-size: 1rem !important;
+  color: inherit;
+  opacity: 0.5;
 `
 
 
