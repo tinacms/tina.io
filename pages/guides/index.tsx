@@ -88,7 +88,7 @@ const GuideTemplate = props => {
               ))}
           </GuideWrapper>
         </DocsTextWrapper>
-        <Footer light editMode={props.editMode} />
+        <Footer light />
       </DocsLayout>
     </>
   )
