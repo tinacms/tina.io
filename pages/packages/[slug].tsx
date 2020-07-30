@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import { NextSeo } from 'next-seo'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { GithubError } from 'next-tinacms-github'
-import path from 'path'
 import fs from 'fs'
+
+// @ts-ignore
+const path = __non_webpack_require__('path')
 
 import {
   DocsLayout,

@@ -4,7 +4,9 @@ import toc from 'markdown-toc'
 
 const atob = require('atob')
 import { slugifyTocHeading } from './slugifyToc'
-import path from 'path'
+
+// @ts-ignore
+const path = __non_webpack_require__('path')
 
 const b64DecodeUnicode = (str: string) => {
   // Going backwards: from bytestream, to percent-encoding, to original string.
