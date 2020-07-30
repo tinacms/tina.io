@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
 import { GetStaticProps, GetStaticPaths } from 'next'
@@ -23,15 +23,17 @@ import { getDocProps } from 'utils/docs/getDocProps'
 import { OpenAuthoringSiteForm } from 'components/layout/OpenAuthoringSiteForm'
 import { GithubError } from 'next-tinacms-github'
 import { InlineWysiwyg } from 'components/inline-wysiwyg'
-import { usePlugin } from 'tinacms'
+import { usePlugin, useCMS } from 'tinacms'
 import Toc from '../../components/toc'
 import { createTocListener, slugify, formatDate } from 'utils'
-import fs from 'fs'
-import path from 'path'
+import createDecorator from "final-form-calculate"
 
 function DocTemplate(props) {
   // Registers Tina Form
+
+
   const [data, form] = useGithubMarkdownForm(props.file, formOptions)
+
   const [open, setOpen] = useState(false)
   const isBrowser = typeof window !== `undefined`
   const contentRef = React.useRef<HTMLDivElement>(null)
@@ -41,6 +43,8 @@ function DocTemplate(props) {
   const tocItems = props.tocItems
   const [activeIds, setActiveIds] = useState([])
 
+  const cms = useCMS()
+  
   React.useEffect(() => {
     if (!isBrowser || !contentRef.current) {
       return
@@ -53,6 +57,20 @@ function DocTemplate(props) {
 
   usePlugin(form)
 
+  useEffect(() => {
+    if (cms.disabled) { return }
+    const decorator = createDecorator(
+      {
+        field: /.*/,
+        updates: {
+          'frontmatter.last_edited': () => formatDate(Date.now())
+        }
+      }
+    )
+    return decorator(form.finalForm)
+  }, [form.id])
+  
+  
   return (
     <OpenAuthoringSiteForm
       form={form}
@@ -100,6 +118,7 @@ function DocTemplate(props) {
                 <InlineWysiwyg name="markdownBody">
                   <MarkdownContent escapeHtml={false} content={markdownBody} />
                 </InlineWysiwyg>
+                {frontmatter.last_edited && `Last Edited: ${frontmatter.last_edited}`}
                 <DocsPagination
                   prevPage={props.prevPage}
                   nextPage={props.nextPage}
@@ -128,11 +147,7 @@ export const getStaticProps: GetStaticProps = async function(props) {
   const slug = slugs.join('/')
 
   try {
-    return {
-      props: {
-        ...(await getDocProps(props, slug)).props,
-      },
-    }
+    return getDocProps(props, slug)
   } catch (e) {
     if (e instanceof GithubError) {
       return {

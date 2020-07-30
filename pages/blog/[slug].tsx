@@ -21,8 +21,8 @@ import { getMarkdownPreviewProps } from 'utils/getMarkdownFile'
 import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { usePlugin, useCMS } from 'tinacms'
 import Toc from '../../components/toc'
-import fs from 'fs'
-import path from 'path'
+import { useEffect } from 'react'
+import createDecorator from 'final-form-calculate'
 function BlogTemplate({ file, siteConfig, preview }) {
   // fallback workaround
   if (!file) {
@@ -37,6 +37,22 @@ function BlogTemplate({ file, siteConfig, preview }) {
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
   const excerpt = data.excerpt
+
+  const cms = useCMS()
+
+  useEffect(() => {
+    if (cms.disabled) { return }
+    const decorator = createDecorator(
+      {
+        field: /.*/,
+        updates: {
+          'frontmatter.last_edited': () => formatDate(Date.now())
+        }
+      }
+    )
+    return decorator(form.finalForm)
+  }, [form.id])
+  
 
   return (
     <OpenAuthoringSiteForm
@@ -85,6 +101,7 @@ function BlogTemplate({ file, siteConfig, preview }) {
             <InlineWysiwyg name="markdownBody">
               <MarkdownContent escapeHtml={false} content={markdownBody} />
             </InlineWysiwyg>
+            {frontmatter.last_edited && `Last Edited: ${frontmatter.last_edited}`}
           </DocsTextWrapper>
         </BlogWrapper>
       </Layout>
