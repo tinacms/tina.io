@@ -1,6 +1,10 @@
 import { getJsonPreviewProps, readJsonFile } from '../getJsonPreviewProps'
 import axios from 'axios'
+import toc from 'markdown-toc'
+
 const atob = require('atob')
+import { slugifyTocHeading } from './slugifyToc'
+import path from 'path'
 
 const b64DecodeUnicode = (str: string) => {
   // Going backwards: from bytestream, to percent-encoding, to original string.
@@ -18,7 +22,9 @@ export async function getPackageProps(
   { preview, previewData }: any,
   slug: string
 ) {
-  const file = await readJsonFile('content/packages.json')
+  const file = await readJsonFile(
+    path.resolve(process.cwd(), './content/packages.json')
+  )
 
   interface GithubPackage {
     name: string
@@ -48,11 +54,15 @@ export async function getPackageProps(
   const docsNavData = previewProps.props.file.data
 
   return {
+    revalidate: 24 * HOURS,
     props: {
       name: currentPackage.name,
       link: currentPackage.link,
       content,
       docsNav: docsNavData,
+      tocItems: toc(content, {
+        slugify: slugifyTocHeading,
+      }).content,
       nextPage: {
         slug: nextPackage?.name || null,
         title: nextPackage?.name || null,
@@ -64,3 +74,6 @@ export async function getPackageProps(
     },
   }
 }
+
+const MINUTES = 60 // seconds
+const HOURS = 60 * MINUTES

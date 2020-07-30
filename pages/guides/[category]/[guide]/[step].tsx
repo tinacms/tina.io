@@ -10,13 +10,7 @@ import {
   Footer,
 } from 'components/layout'
 import { NextSeo } from 'next-seo'
-import {
-  DocsNav,
-  DocsPagination,
-  Overlay,
-  DocsHeaderNav,
-  Toc,
-} from 'components/ui'
+import { DocsNav, DocsPagination, Overlay, DocsHeaderNav } from 'components/ui'
 import {
   DocsNavToggle,
   DocsMobileTinaIcon,
@@ -37,16 +31,16 @@ import { useGithubMarkdownForm, useGithubJsonForm } from 'react-tinacms-github'
 import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
 import { MarkdownCreatorPlugin } from 'utils/plugins'
-import { fileToUrl } from '../../../../utils'
+import { fileToUrl, createTocListener, formatDate } from 'utils'
+import Toc from '../../../../components/toc'
+import fs from 'fs'
 
 export default function GuideTemplate(props) {
   const [open, setOpen] = React.useState(false)
   const isBrowser = typeof window !== `undefined`
   const contentRef = React.useRef<HTMLDivElement>(null)
   const tocItems = props.tocItems
-  console.log(tocItems)
   const [activeIds, setActiveIds] = React.useState([])
-
   const router = useRouter()
   const currentPath = router.asPath
 
@@ -120,73 +114,10 @@ export default function GuideTemplate(props) {
       return
     }
 
-    let lastScrollPosition = 0
-    let tick = false
-    let throttleInterval = 100
-    let headings = []
-    let baseOffset = 16
-    let htmlElements = contentRef.current.querySelectorAll(
-      'h1, h2, h3, h4, h5, h6'
-    )
+    const activeTocListener = createTocListener(contentRef, setActiveIds)
+    window.addEventListener('scroll', activeTocListener)
 
-    htmlElements.forEach(function(heading: any) {
-      headings.push({
-        id: heading.id,
-        offset: heading.offsetTop,
-        level: heading.tagName,
-      })
-    })
-
-    const throttledScroll = () => {
-      let scrollPos = window.scrollY
-      let newActiveIds = []
-      let activeHeadingCandidates = headings.filter(heading => {
-        return heading.offset - scrollPos < baseOffset
-      })
-      let activeHeading =
-        activeHeadingCandidates.length > 0
-          ? activeHeadingCandidates.reduce((prev, current) =>
-              prev.offset > current.offset ? prev : current
-            )
-          : {}
-
-      newActiveIds.push(activeHeading.id)
-
-      if (activeHeading.level != 'H2') {
-        let activeHeadingParentCandidates =
-          activeHeadingCandidates.length > 0
-            ? activeHeadingCandidates.filter(heading => {
-                return heading.level == 'H2'
-              })
-            : []
-        let activeHeadingParent =
-          activeHeadingParentCandidates.length > 0
-            ? activeHeadingParentCandidates.reduce((prev, current) =>
-                prev.offset > current.offset ? prev : current
-              )
-            : {}
-
-        if (activeHeadingParent.id) {
-          newActiveIds.push(activeHeadingParent.id)
-        }
-      }
-
-      setActiveIds(newActiveIds)
-    }
-
-    function onScroll() {
-      if (!tick) {
-        setTimeout(function() {
-          throttledScroll()
-          tick = false
-        }, throttleInterval)
-      }
-      tick = true
-    }
-
-    window.addEventListener('scroll', onScroll)
-
-    return () => window.removeEventListener('scroll', throttledScroll)
+    return () => window.removeEventListener('scroll', activeTocListener)
   }, [contentRef])
 
   usePlugin(stepForm)

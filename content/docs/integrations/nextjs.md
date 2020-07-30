@@ -26,3 +26,7 @@ Depending on your project, these are the **NextJS-specific Tina packages** to wo
 - [_next-tinacms-github_](https://github.com/tinacms/tinacms/tree/master/packages/next-tinacms-github): This package provides helpers for managing the github auth token for requests, as well as providing helpers for loading content from the Github API.
 - [_next-tinacms-json_](https://github.com/tinacms/tinacms/tree/master/packages/next-tinacms-json): This package provides Git form helpers for editing content stored in JSON files in the local filesystem.
 - [_next-tinacms-markdown_](https://github.com/tinacms/tinacms/tree/master/packages/next-tinacms-markdown): This package provides Git form helpers for editing content stored in Markdown files in the local filesystem.
+
+## Starters
+
+- [Next.js Markdown Blog](https://github.com/kendallstrautman/brevifolia-next-tinacms) configured for Tina.

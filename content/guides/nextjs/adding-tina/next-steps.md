@@ -1,7 +1,6 @@
 ---
 title: Next Steps
 ---
-
 At this point, we've bootstrapped Tina into the Next.js blog starter. We were able to do so by making a few small modifications:
 
 1. Added [client-side content transformation](/guides/nextjs/adding-tina/project-setup) to the `Post` component
@@ -20,8 +19,14 @@ Our simplified example only exposes the title and post body to the Tina form. Ta
 
 ## Inline Editing
 
-Consider creating an **inline editing** experience for your blog, where content is edited directly where it appears on the site instead of in the sidebar. Take a look at our [inline editing docs](/docs/ui/inline-editing) for more information, and expect a guide on this in the near future!
+Consider creating an **inline editing** experience for your blog, where content is edited directly where it appears on the site instead of in the sidebar. Take a look at our [inline editing docs](/docs/ui/inline-editing) for more information.
+
+👉 Follow the [**Working with Inline Blocks**](https://tinacms.org/guides/general/inline-blocks/overview)
 
 ## Saving Content
 
-Editing content isn't much use if you can't save it! Our `onSubmit` handler doesn't really do anything right now. We are currently working on a comprehensive solution for using the GitHub API with Tina and Next.js; keep an eye out for that!
+The [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode) offered by Next.js allows us to load a separate set of data [depending on the "edit" (or "preview") mode](https://tinacms.org/blog/introducing-visual-open-authoring#using-nextjs-to-enable-edit-mode). With the help of the GitHub API, editors can fork or branch off the repository, make changes, and create a pull request from the Tina UI.
+
+This type of backend can support [Open Authoring](https://tinacms.org/blog/introducing-visual-open-authoring#using-nextjs-to-enable-edit-mode) workflows for public repositories, where anyone (with a GitHub account) can submit content changes for review.
+
+👉 Follow the [**Using Github with Next.js Tutorial**](https://tinacms.org/guides/nextjs/github/initial-setup)

@@ -15,7 +15,6 @@ import {
   DocsHeaderNav,
   Overlay,
   DocsPagination,
-  Toc,
 } from 'components/ui'
 import { InlineTextareaField, useInlineForm } from 'react-tinacms-inline'
 import { TinaIcon } from 'components/logo'
@@ -25,6 +24,10 @@ import { OpenAuthoringSiteForm } from 'components/layout/OpenAuthoringSiteForm'
 import { GithubError } from 'next-tinacms-github'
 import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { usePlugin } from 'tinacms'
+import Toc from '../../components/toc'
+import { createTocListener, slugify, formatDate } from 'utils'
+import fs from 'fs'
+import path from 'path'
 
 function DocTemplate(props) {
   // Registers Tina Form
@@ -42,74 +45,10 @@ function DocTemplate(props) {
     if (!isBrowser || !contentRef.current) {
       return
     }
+    const activeTocListener = createTocListener(contentRef, setActiveIds)
+    window.addEventListener('scroll', activeTocListener)
 
-    let lastScrollPosition = 0
-    let tick = false
-    let throttleInterval = 100
-    let headings = []
-    let baseOffset = 16
-    let htmlElements = contentRef.current.querySelectorAll(
-      'h1, h2, h3, h4, h5, h6'
-    )
-
-    htmlElements.forEach(function(heading: any) {
-      headings.push({
-        id: heading.id,
-        offset: heading.offsetTop,
-        level: heading.tagName,
-      })
-    })
-
-    const throttledScroll = () => {
-      let scrollPos = window.scrollY
-      let newActiveIds = []
-      let activeHeadingCandidates = headings.filter(heading => {
-        return heading.offset - scrollPos < baseOffset
-      })
-      let activeHeading =
-        activeHeadingCandidates.length > 0
-          ? activeHeadingCandidates.reduce((prev, current) =>
-              prev.offset > current.offset ? prev : current
-            )
-          : {}
-
-      newActiveIds.push(activeHeading.id)
-
-      if (activeHeading.level != 'H2') {
-        let activeHeadingParentCandidates =
-          activeHeadingCandidates.length > 0
-            ? activeHeadingCandidates.filter(heading => {
-                return heading.level == 'H2'
-              })
-            : []
-        let activeHeadingParent =
-          activeHeadingParentCandidates.length > 0
-            ? activeHeadingParentCandidates.reduce((prev, current) =>
-                prev.offset > current.offset ? prev : current
-              )
-            : {}
-
-        if (activeHeadingParent.id) {
-          newActiveIds.push(activeHeadingParent.id)
-        }
-      }
-
-      setActiveIds(newActiveIds)
-    }
-
-    function onScroll() {
-      if (!tick) {
-        setTimeout(function() {
-          throttledScroll()
-          tick = false
-        }, throttleInterval)
-      }
-      tick = true
-    }
-
-    window.addEventListener('scroll', onScroll)
-
-    return () => window.removeEventListener('scroll', throttledScroll)
+    return () => window.removeEventListener('scroll', activeTocListener)
   }, [contentRef, data])
 
   usePlugin(form)
@@ -189,7 +128,11 @@ export const getStaticProps: GetStaticProps = async function(props) {
   const slug = slugs.join('/')
 
   try {
-    return getDocProps(props, slug)
+    return {
+      props: {
+        ...(await getDocProps(props, slug)).props,
+      },
+    }
   } catch (e) {
     if (e instanceof GithubError) {
       return {
