@@ -83,7 +83,6 @@ export default function Packages(props) {
             </DocGridContent>
           </DocsGrid>
         </DocsTextWrapper>
-        <Footer light />
       </DocsLayout>
     </>
   )

@@ -88,7 +88,6 @@ const GuideTemplate = props => {
               ))}
           </GuideWrapper>
         </DocsTextWrapper>
-        <Footer light />
       </DocsLayout>
     </>
   )

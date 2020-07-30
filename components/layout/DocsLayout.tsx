@@ -23,6 +23,7 @@ export const DocsLayout = React.memo(
         <DocsLayoutDiv>
           <DocumentationNavigation navItems={navItems} />
           {children}
+          <Footer light />
         </DocsLayoutDiv>
       </>
     )

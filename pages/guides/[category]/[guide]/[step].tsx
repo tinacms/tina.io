@@ -190,7 +190,6 @@ export default function GuideTemplate(props) {
             </DocGridContent>
           </DocsGrid>
         </DocsTextWrapper>
-        <Footer light />
       </DocsLayout>
     </OpenAuthoringSiteForm>
   )

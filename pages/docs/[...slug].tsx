@@ -119,7 +119,6 @@ function DocTemplate(props) {
             </DocGridContent>
           </DocsGrid>
         </DocsTextWrapper>
-        <Footer light />
       </DocsLayout>
     </OpenAuthoringSiteForm>
   )
