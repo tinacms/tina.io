@@ -78,8 +78,11 @@ const GuideTemplate = props => {
       />
       <DocsNavToggle open={open} onClick={() => setOpen(!open)} />
       <DocsMobileTinaIcon docs />
-      <DocsNav open={open} navItems={navData} />
-      <DocumentationNavigation open={open} setOpen={setOpen} />
+      <DocumentationNavigation
+        open={open}
+        setOpen={setOpen}
+        navItems={navData}
+      />
       <DocsContent>
         <DocsHeaderNav color={'light'} open={open} />
         <DocsTextWrapper>

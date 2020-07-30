@@ -98,8 +98,11 @@ function DocTemplate(props) {
         />
         <DocsNavToggle open={open} onClick={() => setOpen(!open)} />
         <DocsMobileTinaIcon docs />
-        <DocsNav open={open} navItems={props.docsNav} />
-        <DocumentationNavigation open={open} setOpen={setOpen} />
+        <DocumentationNavigation
+          open={open}
+          setOpen={setOpen}
+          navItems={props.docsNav}
+        />
         <DocsContent>
           <DocsHeaderNav color={'light'} open={open} />
           <DocsTextWrapper>
