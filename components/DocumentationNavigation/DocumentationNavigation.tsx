@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Overlay } from '../ui/Overlay'
-import { DocsLeftSidebar, DocsNavigationList } from './DocsNav'
+import { DocsLeftSidebar } from './DocsLeftSidebar'
+import { DocsNavigationList } from './DocsNavigationList'
 import { NavToggle } from '../ui/NavToggle'
 import styled from 'styled-components'
 import { DocsHeaderNav } from './DocsHeaderNav'
