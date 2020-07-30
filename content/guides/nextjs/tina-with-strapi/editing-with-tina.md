@@ -127,7 +127,10 @@ A little more complicated is the `InlineImage` field that we'll need to include.
 
 ```diff
 + import { useCMS } from "tinacms";
-+ import { InlineImage } from 'react-tinacms-inline'
+- import { InlineText } from 'react-tinacms-inline'
++ import { InlineImage, InlineText } from 'react-tinacms-inline'
+  // ...
+- import CoverImage from '../components/cover-image'
 
   export default function PostHeader({ title, coverImage, date, author }) {
 +   const cms = useCMS();
