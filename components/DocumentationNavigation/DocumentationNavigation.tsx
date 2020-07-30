@@ -4,7 +4,7 @@ import { DocsNav } from '../ui/DocsNav'
 import { DocsMobileTinaIcon } from 'pages/docs/[...slug]'
 import { NavToggle } from '../ui/NavToggle'
 import styled from 'styled-components'
-import { DocsHeaderNav } from '../ui/DocsHeaderNav'
+import { DocsHeaderNav } from './DocsHeaderNav'
 
 interface Props {
   navItems: any
