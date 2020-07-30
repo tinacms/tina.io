@@ -69,20 +69,18 @@ export default function Packages(props) {
         }}
       />
       <DocsLayout navItems={props.docsNav}>
-        <DocsTextWrapper>
-          <DocsGrid>
-            <DocGridToc>
-              <Toc tocItems={tocItems} activeIds={activeIds} />
-            </DocGridToc>
-            <DocGridContent ref={contentRef}>
-              <MarkdownContent escapeHtml={false} content={props.content} />
-              <DocsPagination
-                prevPage={props.prevPage}
-                nextPage={props.nextPage}
-              />
-            </DocGridContent>
-          </DocsGrid>
-        </DocsTextWrapper>
+        <DocsGrid>
+          <DocGridToc>
+            <Toc tocItems={tocItems} activeIds={activeIds} />
+          </DocGridToc>
+          <DocGridContent ref={contentRef}>
+            <MarkdownContent escapeHtml={false} content={props.content} />
+            <DocsPagination
+              prevPage={props.prevPage}
+              nextPage={props.nextPage}
+            />
+          </DocGridContent>
+        </DocsGrid>
       </DocsLayout>
     </>
   )

@@ -77,17 +77,15 @@ const GuideTemplate = props => {
         }}
       />
       <DocsLayout navItems={navData}>
-        <DocsTextWrapper>
-          <GuideWrapper narrow>
-            <h1>{frontmatter.title}</h1>
-            <hr />
-            <MarkdownContent escapeHtml={false} content={markdownBody} />
-            {navData &&
-              navData.map(section => (
-                <GuideSection key={section.id} {...section} />
-              ))}
-          </GuideWrapper>
-        </DocsTextWrapper>
+        <GuideWrapper narrow>
+          <h1>{frontmatter.title}</h1>
+          <hr />
+          <MarkdownContent escapeHtml={false} content={markdownBody} />
+          {navData &&
+            navData.map(section => (
+              <GuideSection key={section.id} {...section} />
+            ))}
+        </GuideWrapper>
       </DocsLayout>
     </>
   )

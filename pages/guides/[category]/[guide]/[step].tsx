@@ -169,27 +169,25 @@ export default function GuideTemplate(props) {
         }}
       />
       <DocsLayout navItems={guideNav}>
-        <DocsTextWrapper>
-          <DocsGrid>
-            <DocGridHeader>
-              <DocsPageTitle>
-                <InlineTextareaField name="frontmatter.title" />
-              </DocsPageTitle>
-            </DocGridHeader>
-            <DocGridToc>
-              <Toc tocItems={tocItems} activeIds={activeIds} />
-            </DocGridToc>
-            <DocGridContent ref={contentRef}>
-              <hr />
-              <InlineWysiwyg name="markdownBody">
-                <MarkdownContent escapeHtml={false} content={markdownBody} />
-              </InlineWysiwyg>
-              {frontmatter.last_edited &&
-                `Last Edited: ${frontmatter.last_edited}`}
-              <DocsPagination prevPage={prev} nextPage={next} />
-            </DocGridContent>
-          </DocsGrid>
-        </DocsTextWrapper>
+        <DocsGrid>
+          <DocGridHeader>
+            <DocsPageTitle>
+              <InlineTextareaField name="frontmatter.title" />
+            </DocsPageTitle>
+          </DocGridHeader>
+          <DocGridToc>
+            <Toc tocItems={tocItems} activeIds={activeIds} />
+          </DocGridToc>
+          <DocGridContent ref={contentRef}>
+            <hr />
+            <InlineWysiwyg name="markdownBody">
+              <MarkdownContent escapeHtml={false} content={markdownBody} />
+            </InlineWysiwyg>
+            {frontmatter.last_edited &&
+              `Last Edited: ${frontmatter.last_edited}`}
+            <DocsPagination prevPage={prev} nextPage={next} />
+          </DocGridContent>
+        </DocsGrid>
       </DocsLayout>
     </OpenAuthoringSiteForm>
   )

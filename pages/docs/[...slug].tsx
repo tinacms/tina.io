@@ -95,30 +95,28 @@ function DocTemplate(props) {
         }}
       />
       <DocsLayout navItems={props.docsNav}>
-        <DocsTextWrapper>
-          <DocsGrid>
-            <DocGridHeader>
-              <DocsPageTitle>
-                <InlineTextareaField name="frontmatter.title" />
-              </DocsPageTitle>
-            </DocGridHeader>
-            <DocGridToc>
-              <Toc tocItems={tocItems} activeIds={activeIds} />
-            </DocGridToc>
-            <DocGridContent ref={contentRef}>
-              <hr />
-              <InlineWysiwyg name="markdownBody">
-                <MarkdownContent escapeHtml={false} content={markdownBody} />
-              </InlineWysiwyg>
-              {frontmatter.last_edited &&
-                `Last Edited: ${frontmatter.last_edited}`}
-              <DocsPagination
-                prevPage={props.prevPage}
-                nextPage={props.nextPage}
-              />
-            </DocGridContent>
-          </DocsGrid>
-        </DocsTextWrapper>
+        <DocsGrid>
+          <DocGridHeader>
+            <DocsPageTitle>
+              <InlineTextareaField name="frontmatter.title" />
+            </DocsPageTitle>
+          </DocGridHeader>
+          <DocGridToc>
+            <Toc tocItems={tocItems} activeIds={activeIds} />
+          </DocGridToc>
+          <DocGridContent ref={contentRef}>
+            <hr />
+            <InlineWysiwyg name="markdownBody">
+              <MarkdownContent escapeHtml={false} content={markdownBody} />
+            </InlineWysiwyg>
+            {frontmatter.last_edited &&
+              `Last Edited: ${frontmatter.last_edited}`}
+            <DocsPagination
+              prevPage={props.prevPage}
+              nextPage={props.nextPage}
+            />
+          </DocGridContent>
+        </DocsGrid>
       </DocsLayout>
     </OpenAuthoringSiteForm>
   )

@@ -4,6 +4,8 @@ import { DefaultSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { Overlay } from '../ui'
 import { DocumentationNavigation } from 'components/DocumentationNavigation'
+import { Footer } from './Footer'
+import { DocsTextWrapper } from './DocsTextWrapper'
 
 interface DocsLayoutProps {
   navItems: any
@@ -22,7 +24,7 @@ export const DocsLayout = React.memo(
         />
         <DocsLayoutDiv>
           <DocumentationNavigation navItems={navItems} />
-          {children}
+          <DocsTextWrapper>{children}</DocsTextWrapper>
           <Footer light />
         </DocsLayoutDiv>
       </>
