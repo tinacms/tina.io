@@ -78,7 +78,7 @@ const GuideTemplate = props => {
       />
 
       <DocsContent>
-        <DocumentationNavigation navItems={navData} docs />
+        <DocumentationNavigation navItems={navData} />
         <DocsTextWrapper>
           <GuideWrapper narrow>
             <h1>{frontmatter.title}</h1>

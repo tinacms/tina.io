@@ -96,7 +96,7 @@ function DocTemplate(props) {
           }}
         />
         <DocsContent>
-          <DocumentationNavigation navItems={props.docsNav} docs />
+          <DocumentationNavigation navItems={props.docsNav} />
           <DocsTextWrapper>
             <DocsGrid>
               <DocGridHeader>
@@ -284,23 +284,6 @@ export const DocsNavToggle = styled(NavToggle)`
   z-index: 500;
 
   @media (min-width: 999px) {
-    display: none;
-  }
-`
-
-export const DocsMobileTinaIcon = styled(TinaIcon)`
-  position: relative;
-  display: block;
-  padding: 1rem 0;
-
-  h1 {
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  @media (min-width: 1000px) {
     display: none;
   }
 `
