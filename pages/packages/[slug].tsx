@@ -69,7 +69,6 @@ export default function Packages(props) {
           ],
         }}
       />
-      <DocsNavToggle open={open} onClick={() => setOpen(!open)} />
       <DocumentationNavigation
         open={open}
         setOpen={setOpen}

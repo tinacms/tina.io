@@ -171,7 +171,6 @@ export default function GuideTemplate(props) {
             ],
           }}
         />
-        <DocsNavToggle open={open} onClick={() => setOpen(!open)} />
         <DocumentationNavigation
           open={open}
           setOpen={setOpen}
