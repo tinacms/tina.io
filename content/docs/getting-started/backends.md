@@ -4,7 +4,7 @@ prev: /docs/getting-started/edit-content
 next: null
 ---
 
-You may have noticed that content changes don't persist on refresh. Every time the page loads, the `data` populates with the form's initial values defined in the config object. With a real CMS, you'll need to track and persist those data changes with some sort of backend.
+You may have noticed that content changes don't persist on refresh. Every time the page loads, the `data` populates with the form's initial values. In order for the CMS to be useful, it needs to track and persist data changes with some sort of backend.
 
 ## Loading Content from an external API
 
@@ -22,9 +22,7 @@ function PageContent() {
     fields: [
       //...
     ],
--   initialValues: {
--     ...data,
--   },
+-   initialValues: pageData,
 +   loadInitialValues() {
 +     return fetch(
 +       'https://jsonplaceholder.typicode.com/posts/1'
@@ -41,9 +39,13 @@ function PageContent() {
 //...
 ```
 
+Notice how we removed `initialValues` in lieu of `loadInitialValues`, which fetches data asynchronously on form creation.
+
+You can use `initialValues` when your data has already been fetched or defined. For example with Next.js, you can load data via `getStaticProps` and it is passed to the page component as props.
+
 ## Saving Content
 
-Next we'll adjust the `onSubmit` function to send the updated data back to this API:
+Next we'll adjust the `onSubmit` function. When the editor clicks the 'Save' button in the sidebar, `onSubmit` will be called, sending the updated data back to the API:
 
 **src/App.js**
 
@@ -62,6 +64,7 @@ function PageContent() {
     },
 -   onSubmit: async () => {
 -     window.alert('Saved!');
+-   },
 +   onSubmit(formData) {
 +    fetch('https://jsonplaceholder.typicode.com/posts/1', {
 +       method: 'PUT',
@@ -78,18 +81,25 @@ function PageContent() {
 +       .then(response => response.json())
 +       .then(json => console.log(json))
 +       .catch(e => console.error(e))
-    },
++   },
   }
 
   //...
 }
 ```
 
-Note that this function won't actually save those new values on the server — it is a fake API after all. But the response will act as if it did. This example just puts the response in the console to show what was returned.
+Note that this `onSubmit` function won't actually save those new values on the server — it is a fake API after all. But the response will act as if it did. This example just puts the response in the console to show what was returned.
 
 ## Adding Alerts
 
-While our form is functional in terms of retrieving and saving content, the editing experience could be improved by additional feedback. What if the form failed to save? Currently, the editor would need to check the console to see that there was an error. Let's add a few [alerts](/docs/ui/alerts) to improve this.
+While our form is functional in terms of retrieving and saving content, the editing experience could be improved by additional feedback. What if the form failed to save? Currently, the editor would need to check the console to see that there was an error.
+
+[CMS Alerts](/docs/ui/alerts) are useful for displaying quick, short feedback to the editor. Let's add a few to improve the feedback for saving content.
+
+### The Steps
+
+1. Access the CMS object through the `useCMS` hook.
+2. Use the `info`,`success`, & `error` methods to trigger alerts with a custom messages.
 
 **src/App.js**
 
@@ -108,6 +118,7 @@ function PageContent() {
       //...
     },
     onSubmit(formData) {
++     cms.alerts.info('Saving Content...')
       fetch('https://jsonplaceholder.typicode.com/posts/1', {
         //...
       })
@@ -131,9 +142,7 @@ function PageContent() {
 //...
 ```
 
-[Alerts](/docs/ui/alerts) are useful for displaying quick, short feedback to the editor. While the example above only uses `success` and `error`, there is also the alert types: `info` & `warn`.
-
-Dispatching alerts can be powerful in combination with [CMS Events](/docs/events). You can subscribe to various events and trigger alerts, or other functionality to provide solid feedback loops for editors and build a robust CMS.
+> _Tip:_ Dispatching alerts can be powerful in combination with [CMS Events](/docs/events).
 
 ## Other backends
 
@@ -149,12 +158,15 @@ We’d like to provide developers with control and flexibility in all these aspe
 
 **Avenues to keep learning:**
 
+- Gain clarity with our [FAQ](_Coming soon_)
 - Set up [Inline Editing](/guides/general/inline-blocks/overview), or editing content directly on the page
 - Configure more complex fields, such as [Blocks](/docs/plugins/fields/blocks) or the [Markdown Wysiwyg](docs/plugins/fields/markdown)
 - Create new data files with [Content Creator Plugins](/docs/plugins/content-creators)
 - Add Tina to a [Next.js Site](/guides/nextjs/adding-tina/overview)
 - Adding Tina to a [Gatsby Site](guides/gatsby/adding-tina/project-setup)
 
-Follow [Tina on Twitter](https://twitter.com/tina_cms) 🦙! Stay up to date with the latest developments via [Release Notes](TODO: what url?). If you're stoked on this project, please give us a 🌟 on the [GitHub repository](https://github.com/tinacms/tinacms). Interested in contributing? Get started via the [project README](https://github.com/tinacms/tinacms).
+Follow [Tina on Twitter](https://twitter.com/tina_cms) 🦙! If you're stoked on this project, please give us a 🌟 on the [GitHub repository](https://github.com/tinacms/tinacms).
 
-<!--TODO: add more additional reading sections on the pages? for the common questions. Would be great to link to a faq -->
+Stay up to date with the latest developments via [Release Notes](/blog) or reach out on [the forum](https://community.tinacms.org/) with ideas or questions. Interested in contributing? Get started via the [project README](https://github.com/tinacms/tinacms).
+
+<!--TODO: add more additional reading sections on the pages? for the common questions. Would be great to link to a FAQ LINK -->

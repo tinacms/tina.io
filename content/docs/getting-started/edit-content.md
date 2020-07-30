@@ -4,20 +4,24 @@ prev: /docs/getting-started/cms-set-up
 next: /docs/getting-started/backends
 ---
 
-Creating a CMS is all about providing ways for editors to change content — [forms](/docs/plugins/forms) connect the editing interface to the content. In this step, we will **create and register a form to edit data** rendered on this page.
+The purpose of a CMS is to allow editors to change content. [Forms](/docs/plugins/forms) are a fundamental part of this — providing the editing interface to edit data. In this step, we will **create and register a form to edit data** rendered on this page.
 
 ## Create & Register a Form
 
-We will use the `useForm` hook to [create the form](/docs/plugins/forms#creating-forms), and the `usePlugin` hook to [register it](/docs/plugins/forms#registering-forms) with the CMS.
+We will use the `useForm` hook to [create the form](/docs/plugins/forms#creating-forms).
+
+Simply creating the form doesn't make it render in the sidebar, we also need to register it with the CMS. With the `usePlugin` hook, we'll [register the form](/docs/plugins/forms#registering-forms) so it renders in the sidebar.
+
+<!-- Todo provide explanation of why these are two steps -->
 
 > _Fun-Fact:_ Forms are a type of [plugin](/docs/plugins) in Tina.
 
 ### The Steps
 
 1. Import the `useForm` and `usePlugin` hooks
-2. Define the [form configuration](/docs/plugins/forms#form-configuration) options
-3. Create a form with `useForm`, pass the form config object
-4. Register the form using `usePlugin`
+2. Define the [form configuration](/docs/plugins/forms#form-configuration)
+3. Create a form with `useForm` and the config object
+4. Register the form with `usePlugin`
 5. Render the data returned from `useForm`
 
 **src/App.js**
@@ -28,7 +32,7 @@ import { TinaProvider, TinaCMS, useCMS, useForm, usePlugin } from 'tinacms'
 
 //...
 
-const data = {
+const pageData = {
   title: 'Tina is not a CMS',
   body: 'It is a toolkit for creating a custom CMS.',
 }
@@ -50,9 +54,7 @@ function PageContent() {
         component: 'textarea',
       },
     ],
-    initialValues: {
-      ...data,
-    },
+    initialValues: pageData,
     onSubmit: async () => {
       window.alert('Saved!')
     },
@@ -82,25 +84,23 @@ function PageContent() {
 
 ## Form Configuration
 
-`useForm` needs a [form configuration object](/docs/plugins/forms#form-configuration) with properties that determine how the form behaves on load and save, what fields to render and their associated content, along with other metadata.
+`useForm` needs a [form configuration object](/docs/plugins/forms#form-configuration) with properties that determine how the form behaves on load and save, what fields are available, and other metadata.
 
-While there are other form config properties, the key ones to examine in the example above are `fields`, `initialValues`, and `onSubmit`. We'll look closely at each of these now.
+While there are other form config properties, the key ones to examine in the example above are `id`, `fields`, `initialValues`, and `onSubmit`. We'll look closely at each of these now.
+
+### _id_
+
+The `id` is unique identifier for the form. Since our example is the only instance of this form, the `id` is hard-coded. But if this form were in a template component, we would generate the `id` from the content to distinguish it from other form instances.
 
 ### _fields_
 
-[Fields](/docs/plugins/fields) are integral inputs for editing content. The `fields` array in the form config is comprised of Field objects.
+The `fields` array is comprised of field definitions. All fields share a common [base configuration](docs/plugins/fields#field-config). Field definitions need at least two properties: a `name` or the path to the data and a `component` to edit that data from.
 
-All fields share a common [base configuration](docs/plugins/fields#field-config), but some fields will have different properties beyond these base field options. At their most basic, fields need at least two properties: a `name` or path to the editable data and a `component` to edit that data from.
-
-Notice how the value for `name` in our first field is 'title', that matches the property name in the original `data` object. If that property were named `headline` (instead of `title`), we'd have to update the `name` in the field object to connect that field with the proper data value.
-
-Our example above uses two _default fields_: [`text`](/docs/plugins/fields/text) & [`textarea`](/docs/plugins/fields/textarea). Tina provides many other default [field plugins](/docs/plugins/fields), along with some more complex fields such as an [HTML](/docs/plugins/fields/html) / [Markdown](/docs/plugins/fields/markdown) wysiwygs, and [date picker](/docs/plugins/fields/date). You can even create your own [custom fields](/docs/plugins/fields/custom-fields).
-
-You will be working with fields a lot in Tina. To get more familiar, try to adjust the `label` property or add a new field to the array. Reference [the documentation](/docs/plugins/fields) for a full list of default field options.
+You will be working with fields a lot in Tina. To get more familiar, try to adjust the `label` property or add a new field to the array. Reference [the documentation](/docs/plugins/fields) for a full list of default field plugins.
 
 ### _initialValues_
 
-`initialValues` are an object of values to initially populate the form. This option, along with `onSubmit` are inherited by the [Final Form library field configuration](https://final-form.org/docs/final-form/types/Config) that Tina uses for all forms. You can use this option when you don't need to load data asynchronously. If you do need to load data asynchronously on form creation, you'd use a function called `loadInitialValues` (we'll get to that soon).
+`initialValues` contains the data used to populate the form. If you do need to load data asynchronously on form creation, you'd use a function called `loadInitialValues` (we'll get to that soon).
 
 ### _onSubmit_
 
@@ -108,6 +108,18 @@ This is a function that runs when the form is saved. Right now it just gives an 
 
 ## Edit the data
 
-Restart the dev server, enable the CMS, open the sidebar and try to update the content. You should now be able to edit the title and body copy on the demo through the form we just created!
+Head back to http://localhost:3000, enable the CMS, open the sidebar and try to update the content. You should now be able to edit the title and body copy on the demo!
 
-> Note: There are other form creation helpers associated with various meta-framework integrations and backend configurations. Refer to the [guides](/guides) or packages documentation to find more information.
+Next, we'll look at setting up a simple backend to retrieve and save data from a 3rd-party API.
+
+## Additional Reading
+
+- Gain a deeper understanding of how the [`name` property](TODO) in the field definition works.
+
+<!-- TODO - add this to forms examples -- Notice how the value for `name` in our first field is 'title', that matches the property name in the original `data` object. If that property were named `headline` (instead of `title`), we'd have to update the `name` in the field object to connect that field with the proper data value. -->
+
+- The field examples above uses two _default field components_: [`text`](/docs/plugins/fields/text) & [`textarea`](/docs/plugins/fields/textarea). Tina provides many other default [field plugins](/docs/plugins/fields). You can even create your own [custom fields](/docs/plugins/fields/custom-fields).
+
+- There are other form creation helpers associated with various meta-framework integrations and backend configurations. Refer to the [guides](/guides) or packages documentation to find more information.
+
+- Tina uses the [Final Form library](https://final-form.org/) for all base form configuration.

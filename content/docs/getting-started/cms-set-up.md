@@ -4,7 +4,7 @@ prev: /docs/getting-started/introduction
 next: /docs/getting-started/edit-content
 ---
 
-In this step, we will install `tinacms`, wrap our app in the `TinaProvider`, create a CMS instance and configure the CMS object.
+In this step, we will install `tinacms`, create a CMS instance, wrap our app in the `TinaProvider`, and configure the CMS options.
 
 ## Install _tinacms_
 
@@ -14,9 +14,11 @@ Install the `tinacms` package. This is the core package that you will need anyti
 yarn add tinacms styled-components
 ```
 
-## Add _TinaProvider_, create a CMS instance
+## Create a CMS instance, add _TinaProvider_
 
-The first steps to setting up Tina is to create an [instance of `TinaCMS`](/docs/cms) and then wrap your site in the `TinaProvider`. This [provider](https://github.com/tinacms/tinacms/blob/master/packages/tinacms/src/components/TinaProvider.tsx) sets up the editing UI, and provides a [context](https://reactjs.org/docs/context.html) from which we can access the CMS througout the app.
+The first step to setting up Tina is to create an [instance of `TinaCMS`](/docs/cms). Once created, this [CMS object](/docs/cms#setting-up-the-cms-object) allows us to manage [Plugins](/docs/plugins), [APIs](/docs/apis), [Media Stores](/docs/media), [Events](/docs/events), [Editing UI](/docs/ui) and other key aspects of content management.
+
+Next, wrap your site in the `TinaProvider`. This [provider](https://github.com/tinacms/tinacms/blob/master/packages/tinacms/src/components/TinaProvider.tsx) sets up the editing UI, and provides a [context](https://reactjs.org/docs/context.html) from which we can access the CMS throughout the app.
 
 Head to `App.js` and follow these steps:
 
@@ -52,9 +54,9 @@ export default App;
 
 ## Configure the CMS object
 
-When instantiating the CMS, you can pass an [options object](/docs/cms#cms-configuration) to configure how the CMS works. This object allows us to attach and access [Plugins](/docs/plugins), [APIs](/docs/apis), [Media Stores](/docs/media), [Events](/docs/events), [Editing UI](/docs/ui) and other key aspects of the CMS.
+When instantiating the CMS, you can pass a [CMS options](/docs/cms#cms-configuration) to configure how the CMS object works.
 
-Update your CMS instance by passing this options object:
+Update your CMS instance by passing these options:
 
 **src/App.js**
 
@@ -76,15 +78,15 @@ For our simple use case, we added two options: `enabled` and `sidebar`.
 
 The `enabled` property _enables or disables_ the CMS, meaning that content is editable when this values is true. The CMS is _enabled by default_. We set this property to `false` so the editor can manually enable the CMS (we'll configure that at the next step).
 
-The `sidebar` property controls the _Sidebar UI_. The sidebar can render forms, menus, and UI that connect with content editing actions. It will not render unless the CMS is enabled. Reference [the documentation](/docs/ui#sidebar-configuration) to see how you can configure this further.
+The `sidebar` property controls the _Sidebar UI_. The sidebar can render forms, menus, and other UI that connect with content editing actions. It will not render unless the CMS is enabled. Reference [the documentation](/docs/ui#sidebar-configuration) to see how you can configure this further.
 
-The config options are a **key part of constructing your custom CMS**. Read further on [additional CMS options](/docs/cms#cms-configuration) that can be passed.
+The CMS options are a **key part of constructing the CMS**. Read further on [additional CMS options](/docs/cms#cms-configuration) that can be passed.
 
 ## Enabling the CMS
 
-Now the CMS is configured, but it is not enabled. Let's wire up the 'Edit This Site' button to toggle between [enabled / disabled](/docs/cms#disabling--enabling-the-cms) CMS states.
+Now the CMS is configured, but it is not enabled. Let's wire up the 'Edit This Site' button to [enable and disable](/docs/cms#disabling--enabling-the-cms) the CMS.
 
-We'll use the `useCMS` hook to get the CMS object from the context provided by `TinaProvider`. This hook can be very useful throughout your App when needing to [access or update](/docs/cms#accessing-the-cms-object) the CMS.
+We'll use the `useCMS` hook to get the CMS object from the `TinaProvider`. This hook can be useful throughout your App when needing to [access or update](/docs/cms#accessing-the-cms-object) the CMS.
 
 ### The Steps
 
@@ -114,10 +116,13 @@ function EditButton() {
 }
 ```
 
-If you restart the dev server and click the 'Edit This Site' button, you should see an 'Edit Icon' in the lower right-hand corner. Click on the icon to open the [_Sidebar_](/docs/ui#toolbar-configuration).
+Head back to http://localhost:3000, refresh the page and click the 'Edit This Site' button. You should see an 'Edit Icon' in the lower right-hand corner. Click on the icon to open the [_Sidebar_](/docs/ui#toolbar-configuration).
 
-> There is also a _Toolbar_ interface, we won't work with that UI in this tutorial but feel free to [read more](/docs/ui).
-
-The example above uses a helpful method, `cms.toggle`, to switch between enabled/disabled states. Reference the documentation to see all of the [CMS methods](/docs/cms#reference) available.
+--> TODO: add image
 
 You'll notice that the sidebar is empty, that is because there are no forms registered to edit content — let's do that next.
+
+## Additional Reading
+
+- Another important editing UI is the _Toolbar_, we won't work with that UI in this tutorial but feel free to [read more](/docs/ui) about editing UI in general.
+- The `EditButton` example above uses a helpful method —`cms.toggle` — to switch between enabled/disabled states. Checkout all of the [CMS methods](/docs/cms#reference) available.
