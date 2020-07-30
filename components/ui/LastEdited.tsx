@@ -1,17 +1,25 @@
 import { formatDate } from '../../utils/blog_helpers'
+import styled from 'styled-components'
 
-export const LastEdited = ({
-    date
+export const LastEdited = styled(({
+    date,
+    ...styleProps
 }) => {
-    if (!date) return (<></>)
+    if (!date) return <></>
 
     const formattedDate = formatDate(new Date(date)) 
 
     return (
-        <>
+        <p {...styleProps}>
             Last Edited: {formattedDate}
-        </>
+        </p>
     )
-}
+})`
+    p {
+        font-size: 10.5rem;
+        color: blue;
+    }
+
+`
 
 
