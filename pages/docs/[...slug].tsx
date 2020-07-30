@@ -56,11 +56,7 @@ function DocTemplate(props) {
   }, [form.id])
 
   return (
-    <OpenAuthoringSiteForm
-      form={form}
-      path={props.file.fileRelativePath}
-      preview={props.preview}
-    >
+    <OpenAuthoringSiteForm form={form}>
       <NextSeo
         title={frontmatter.title}
         titleTemplate={'%s | TinaCMS Docs'}

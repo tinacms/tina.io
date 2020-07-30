@@ -28,11 +28,7 @@ function CommunityPage({ file: community, metadata, preview }) {
   const [data, form] = useGithubJsonForm(community, formOptions)
 
   return (
-    <OpenAuthoringSiteForm
-      form={form}
-      path={community.fileRelativePath}
-      preview={preview}
-    >
+    <OpenAuthoringSiteForm form={form}>
       <Layout>
         <NextSeo
           title={data.title}

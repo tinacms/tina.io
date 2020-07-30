@@ -134,11 +134,7 @@ export default function GuideTemplate(props) {
   }, [stepForm.id])
 
   return (
-    <OpenAuthoringSiteForm
-      form={stepForm}
-      path={props.markdownFile.fileRelativePath}
-      preview={props.preview}
-    >
+    <OpenAuthoringSiteForm form={stepForm}>
       <NextSeo
         title={frontmatter.title}
         titleTemplate={'%s | TinaCMS Docs'}

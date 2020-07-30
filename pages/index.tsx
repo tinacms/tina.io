@@ -104,11 +104,7 @@ const HomePage = (props: any) => {
   })
 
   return (
-    <OpenAuthoringSiteForm
-      form={form}
-      path={props.file.fileRelativePath}
-      preview={props.preview}
-    >
+    <OpenAuthoringSiteForm form={form}>
       <Layout>
         <DefaultSeo titleTemplate={formData.title + ' | %s'} />
         <Hero overlap narrow>

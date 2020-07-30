@@ -55,11 +55,7 @@ function TeamsPage(props) {
   const [data, form] = useGithubJsonForm(props.file, formOptions)
 
   return (
-    <OpenAuthoringSiteForm
-      form={form}
-      path={props.file.fileRelativePath}
-      preview={props.preview}
-    >
+    <OpenAuthoringSiteForm form={form}>
       <TeamsLayout color={'secondary'}>
         <NextSeo
           title={data.title}

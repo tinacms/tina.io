@@ -54,11 +54,7 @@ function BlogTemplate({ file, siteConfig, preview }) {
   }, [form.id])
 
   return (
-    <OpenAuthoringSiteForm
-      form={form}
-      path={file.fileRelativePath}
-      preview={preview}
-    >
+    <OpenAuthoringSiteForm form={form}>
       <Layout>
         <NextSeo
           title={frontmatter.title}

@@ -22,11 +22,7 @@ function StudySignupPage({ file: study, metadata, preview }) {
   const [data, form] = useGithubJsonForm(study, formOptions)
 
   return (
-    <OpenAuthoringSiteForm
-      form={form}
-      path={study.fileRelativePath}
-      preview={preview}
-    >
+    <OpenAuthoringSiteForm form={form}>
       <StudyLayout>
         <NextSeo
           title={data.meta.title}
