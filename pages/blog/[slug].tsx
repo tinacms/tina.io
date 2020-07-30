@@ -13,7 +13,7 @@ import {
 import { InlineTextareaField } from 'react-tinacms-inline'
 import { useGithubMarkdownForm } from 'react-tinacms-github'
 import { fileToUrl } from 'utils/urls'
-import { OpenAuthoringSiteForm } from 'components/layout/OpenAuthoringSiteForm'
+import { InlineGithubForm } from 'components/layout/InlineGithubForm'
 const fg = require('fast-glob')
 import { Button } from 'components/ui/Button'
 import Error from 'next/error'
@@ -54,7 +54,7 @@ function BlogTemplate({ file, siteConfig, preview }) {
   }, [form.id])
 
   return (
-    <OpenAuthoringSiteForm form={form}>
+    <InlineGithubForm form={form}>
       <Layout>
         <NextSeo
           title={frontmatter.title}
@@ -101,7 +101,7 @@ function BlogTemplate({ file, siteConfig, preview }) {
           </DocsTextWrapper>
         </BlogWrapper>
       </Layout>
-    </OpenAuthoringSiteForm>
+    </InlineGithubForm>
   )
 }
 

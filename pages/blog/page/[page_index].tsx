@@ -14,7 +14,7 @@ import {
   RichTextWrapper,
 } from 'components/layout'
 import { DynamicLink, BlogPagination } from 'components/ui'
-import { OpenAuthoringSiteForm } from 'components/layout/OpenAuthoringSiteForm'
+import { InlineGithubForm } from 'components/layout/InlineGithubForm'
 import { useForm } from 'tinacms'
 import { getMarkdownPreviewProps } from 'utils/getMarkdownFile'
 import { PreviewData } from 'next-tinacms-github'

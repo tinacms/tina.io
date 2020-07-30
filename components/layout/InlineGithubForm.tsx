@@ -9,7 +9,7 @@ interface Props extends InlineFormProps {
   children: any
 }
 
-export const OpenAuthoringSiteForm = ({ form, children }: Props) => {
+export const InlineGithubForm = ({ form, children }: Props) => {
   const cms = useCMS()
   // Toolbar Plugins
   useGithubToolbarPlugins()

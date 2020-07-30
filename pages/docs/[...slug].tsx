@@ -7,7 +7,7 @@ import { NavToggle, DocsPagination } from 'components/ui'
 import { InlineTextareaField } from 'react-tinacms-inline'
 import { useGithubMarkdownForm } from 'react-tinacms-github'
 import { getDocProps } from 'utils/docs/getDocProps'
-import { OpenAuthoringSiteForm } from 'components/layout/OpenAuthoringSiteForm'
+import { InlineGithubForm } from 'components/layout/InlineGithubForm'
 import { GithubError } from 'next-tinacms-github'
 import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { usePlugin, useCMS } from 'tinacms'
@@ -56,7 +56,7 @@ function DocTemplate(props) {
   }, [form.id])
 
   return (
-    <OpenAuthoringSiteForm form={form}>
+    <InlineGithubForm form={form}>
       <NextSeo
         title={frontmatter.title}
         titleTemplate={'%s | TinaCMS Docs'}
@@ -101,7 +101,7 @@ function DocTemplate(props) {
           </DocGridContent>
         </DocsGrid>
       </DocsLayout>
-    </OpenAuthoringSiteForm>
+    </InlineGithubForm>
   )
 }
 

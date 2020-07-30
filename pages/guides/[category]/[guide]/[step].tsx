@@ -15,7 +15,7 @@ import {
 import { useRouter } from 'next/router'
 import { getGuideNavProps } from 'utils/guide_helpers'
 import { useMemo } from 'react'
-import { OpenAuthoringSiteForm } from 'components/layout/OpenAuthoringSiteForm'
+import { InlineGithubForm } from 'components/layout/InlineGithubForm'
 import { usePlugin, useFormScreenPlugin, useCMS } from 'tinacms'
 import { InlineTextareaField } from 'react-tinacms-inline'
 import { useGithubMarkdownForm, useGithubJsonForm } from 'react-tinacms-github'
@@ -134,7 +134,7 @@ export default function GuideTemplate(props) {
   }, [stepForm.id])
 
   return (
-    <OpenAuthoringSiteForm form={stepForm}>
+    <InlineGithubForm form={stepForm}>
       <NextSeo
         title={frontmatter.title}
         titleTemplate={'%s | TinaCMS Docs'}
@@ -176,7 +176,7 @@ export default function GuideTemplate(props) {
           </DocGridContent>
         </DocsGrid>
       </DocsLayout>
-    </OpenAuthoringSiteForm>
+    </InlineGithubForm>
   )
 }
 

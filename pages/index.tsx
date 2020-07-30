@@ -23,7 +23,7 @@ import {
 } from 'components/layout'
 
 import { Button, Video, ArrowList } from 'components/ui'
-import { OpenAuthoringSiteForm } from 'components/layout/OpenAuthoringSiteForm'
+import { InlineGithubForm } from 'components/layout/InlineGithubForm'
 import { useGithubJsonForm } from 'react-tinacms-github'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
 
@@ -104,7 +104,7 @@ const HomePage = (props: any) => {
   })
 
   return (
-    <OpenAuthoringSiteForm form={form}>
+    <InlineGithubForm form={form}>
       <Layout>
         <DefaultSeo titleTemplate={formData.title + ' | %s'} />
         <Hero overlap narrow>
@@ -183,7 +183,7 @@ export <b>WithTina</b>( <b>Component</b> );
           </Wrapper>
         </Section>
       </Layout>
-    </OpenAuthoringSiteForm>
+    </InlineGithubForm>
   )
 }
 
