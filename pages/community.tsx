@@ -33,7 +33,7 @@ function CommunityPage({ file: community, metadata, preview }) {
       path={community.fileRelativePath}
       preview={preview}
     >
-      <Layout preview={preview}>
+      <Layout>
         <NextSeo
           title={data.title}
           description={data.description}

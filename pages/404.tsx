@@ -10,11 +10,10 @@ import {
 import { NextSeo } from 'next-seo'
 import { Button, ButtonGroup } from 'components/ui'
 import { DynamicLink } from 'components/ui/DynamicLink'
-import { OpenAuthoringSiteForm } from 'components/layout/OpenAuthoringSiteForm'
 
 function Page404() {
   return (
-    <Layout preview={false}>
+    <Layout>
       <NextSeo title={'404'} description={'404'} />
       <Hero>404 </Hero>
       <RichTextWrapper>

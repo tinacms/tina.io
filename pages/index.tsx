@@ -109,7 +109,7 @@ const HomePage = (props: any) => {
       path={props.file.fileRelativePath}
       preview={props.preview}
     >
-      <Layout preview={props.preview}>
+      <Layout>
         <DefaultSeo titleTemplate={formData.title + ' | %s'} />
         <Hero overlap narrow>
           <InlineTextareaField name="headline" />

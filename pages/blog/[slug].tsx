@@ -59,7 +59,7 @@ function BlogTemplate({ file, siteConfig, preview }) {
       path={file.fileRelativePath}
       preview={preview}
     >
-      <Layout preview={preview}>
+      <Layout>
         <NextSeo
           title={frontmatter.title}
           titleTemplate={'%s | ' + siteConfig.title + ' Blog'}
