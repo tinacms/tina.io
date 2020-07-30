@@ -116,7 +116,7 @@ export const getStaticProps: GetStaticProps = async function(props) {
 }
 
 export const getStaticPaths: GetStaticPaths = async function() {
-  const filePath = path.join(process.cwd(), 'content/packages.json')
+  const filePath = path.resolve(process.cwd(), './content/packages.json')
   const file = await JSON.parse(fs.readFileSync(filePath, 'utf8'))
 
   return {
