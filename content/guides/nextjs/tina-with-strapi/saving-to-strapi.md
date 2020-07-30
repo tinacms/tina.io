@@ -6,7 +6,7 @@ Our next goal is to be able to save the edits we've made back to Strapi. We'll b
 
 First, since we're dealing with image uploading we'll need access to the CMS object again so that the Strapi media store can help us out.
 
-**pages/posts/[slug].js**
+**pages/posts/\[slug\].js**
 ```diff
 - import { useForm, usePlugin } from "tinacms";
 + import { useCMS, useForm, usePlugin } from "tinacms";
