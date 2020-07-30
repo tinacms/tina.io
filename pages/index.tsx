@@ -115,19 +115,73 @@ const libraries: Library[] = [
 
 const DefaultLibraries = [Next, Github]
 
-const codeString = `import { Tina, TinaCMS } from 'tinacms';
-const cms = new TinaCMS();
-return (
-    <Tina cms={cms}>
-        <MyApp />
-    </Tina>
-    <Tina cms={cms}>
-        <MyApp />
-    </Tina>
-    <Tina cms={cms}>
-        <MyApp />
-    </Tina>
-);`
+const codeString1 = `import { TinaProvider, TinaCMS } from 'tinacms';
+import { GithubClient } from 'react-tinacms-github';
+export function MyApp() {
+  const cms = useMemo(() => new TinaCMS());
+  useEffect(() => {
+    cms.apis.add("github", new GithubClient());
+  }, []);
+  return (
+    <TinaProvider cms={cms}>
+      <h1>Hello world!</h1>
+      <p>This my cool Tina site.</p>
+    </TinaProvider>
+  );
+});`
+
+const codeString2 = `import { useForm} from 'tinacms';
+import { InlineForm, InlineText, InlineTextarea } from 'react-tinacms-inline';
+export function MyComponent(props) {
+  const [,form] = useForm(props);
+  return (
+    <InlineForm form={form}>
+      <h1>
+        <InlineText name="title">
+      </h1>
+      <p>
+        <InlineTextarea name="body">
+      <p>
+    </InlineForm>
+  );
+}`
+
+const codeString3 = `import { useForm} from 'tinacms';
+import { InlineForm, InlineBlocks, BlocksControls, InlineText, InlineTextarea } from 'react-tinacms-inline';
+const MyComponentBlocks = {
+  paragraph: {
+    component: ({index, data}) => (
+      <BlocksControls index={index}>
+        <p align={props.align}>{props.body}</p>
+      </BlocksControls>
+    ),
+    template: {
+      type: "paragraph",
+      key: "paragraph",
+      defaultEntry: {,
+        body: "Try editing me!",
+        align: "left"
+      },
+      fields: [
+        {
+         component: "text",
+         name: "align",
+         label: "Alignment",
+         description: "Left, center, or right",
+         placeholder: "Try typing something...",
+        }
+      ]
+    }
+  }
+}
+export function MyBlockComponent(props) {
+  const [,form] = useForm(props);
+  return (
+    <Inlineform form={form}>
+      <InlineBlocks name="blocks" block={MyComponentBlocks} />
+    </InlineForm>
+  );
+}`
 
 const HomePage = (props: any) => {
   const cms = useCMS()
@@ -405,7 +459,7 @@ const HomePage = (props: any) => {
               </div>
               <div className={styles.whyGridCode}>
                 <SyntaxHighlighter language="javascript" style={codeTheme}>
-                  {codeString}
+                  {codeString1}
                 </SyntaxHighlighter>
               </div>
             </div>
@@ -422,7 +476,7 @@ const HomePage = (props: any) => {
               </div>
               <div className={styles.whyGridCode}>
                 <SyntaxHighlighter language="javascript" style={codeTheme}>
-                  {codeString}
+                  {codeString2}
                 </SyntaxHighlighter>
               </div>
             </div>
@@ -438,7 +492,7 @@ const HomePage = (props: any) => {
               </div>
               <div className={styles.whyGridCode}>
                 <SyntaxHighlighter language="javascript" style={codeTheme}>
-                  {codeString}
+                  {codeString3}
                 </SyntaxHighlighter>
               </div>
             </div>
