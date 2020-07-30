@@ -94,7 +94,7 @@ The `id` is unique identifier for the form. Since our example is the only instan
 
 ### _fields_
 
-The `fields` array is comprised of field definitions. All fields share a common [base configuration](docs/plugins/fields#field-config). Field definitions need at least two properties: a `name` or the path to the data and a `component` to edit that data from.
+The `fields` array is comprised of [field definitions](/docs/plugins/fields#field-definition). All fields share a common [base configuration](docs/plugins/fields#field-config). Field definitions need at least two properties: a `name` or the path to the data and a `component` to edit that data from.
 
 You will be working with fields a lot in Tina. To get more familiar, try to adjust the `label` property or add a new field to the array. Reference [the documentation](/docs/plugins/fields) for a full list of default field plugins.
 
@@ -114,9 +114,7 @@ Next, we'll look at setting up a simple backend to retrieve and save data from a
 
 ## Additional Reading
 
-- Gain a deeper understanding of how the [`name` property](TODO) in the field definition works.
-
-<!-- TODO - add this to forms examples -- Notice how the value for `name` in our first field is 'title', that matches the property name in the original `data` object. If that property were named `headline` (instead of `title`), we'd have to update the `name` in the field object to connect that field with the proper data value. -->
+- Gain a deeper understanding of how the [`name` property](/docs/plugins/fields#name) in the field definition works.
 
 - The field examples above uses two _default field components_: [`text`](/docs/plugins/fields/text) & [`textarea`](/docs/plugins/fields/textarea). Tina provides many other default [field plugins](/docs/plugins/fields). You can even create your own [custom fields](/docs/plugins/fields/custom-fields).
 
