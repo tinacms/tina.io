@@ -11,19 +11,25 @@ interface Props {
 }
 
 export function DocumentationNavigation({ navItems }: Props) {
-  const [open, setOpen] = useState(false)
+  const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false)
   return (
     <>
-      <DocsNavToggle open={open} onClick={() => setOpen(!open)} />
+      <MobileNavToggle
+        open={mobileNavIsOpen}
+        onClick={() => setMobileNavIsOpen(!mobileNavIsOpen)}
+      />
       <DocsMobileTinaIcon docs />
-      <DocsNav open={open} navItems={navItems} />
-      <Overlay open={open} onClick={() => setOpen(false)} />
-      <DocsHeaderNav color={'light'} open={open} />
+      <DocsNav open={mobileNavIsOpen} navItems={navItems} />
+      <Overlay
+        open={mobileNavIsOpen}
+        onClick={() => setMobileNavIsOpen(false)}
+      />
+      <DocsHeaderNav color={'light'} open={mobileNavIsOpen} />
     </>
   )
 }
 
-const DocsNavToggle = styled(NavToggle)`
+const MobileNavToggle = styled(NavToggle)`
   position: fixed;
   margin-top: 1.25rem;
   left: 1rem;
