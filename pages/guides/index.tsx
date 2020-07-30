@@ -1,25 +1,13 @@
 import { getGuideNavProps } from 'utils/guide_helpers'
 import { readMarkdownFile } from 'utils/getMarkdownFile'
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { useRouter } from 'next/router'
-import {
-  DocsLayout,
-  DocsTextWrapper,
-  Wrapper,
-  MarkdownContent,
-  Footer,
-} from 'components/layout'
+import { DocsLayout, Wrapper, MarkdownContent } from 'components/layout'
 import { NextSeo } from 'next-seo'
-import {
-  DocsNavToggle,
-  DocsMobileTinaIcon,
-  DocsContent,
-} from '../docs/[...slug]'
-import { DocsNav, Overlay, DynamicLink, DocsHeaderNav } from 'components/ui'
+import { DynamicLink } from 'components/ui'
 import { CardGrid, Card } from 'components/ui/Cards'
 import RightArrowSvg from '../../public/svg/right-arrow.svg'
 import styled from 'styled-components'
-import { DocumentationNavigation } from 'components/DocumentationNavigation'
 
 const GuideTemplate = props => {
   let data = props.markdownFile.data

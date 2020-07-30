@@ -27,7 +27,7 @@ function StudySignupPage({ file: study, metadata, preview }) {
       path={study.fileRelativePath}
       preview={preview}
     >
-      <StudyLayout preview={preview}>
+      <StudyLayout>
         <NextSeo
           title={data.meta.title}
           description={data.meta.description}

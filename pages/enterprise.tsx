@@ -60,7 +60,7 @@ function TeamsPage(props) {
       path={props.file.fileRelativePath}
       preview={props.preview}
     >
-      <TeamsLayout preview={props.preview} color={'secondary'}>
+      <TeamsLayout color={'secondary'}>
         <NextSeo
           title={data.title}
           description={data.description}
