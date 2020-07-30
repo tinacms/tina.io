@@ -51,7 +51,7 @@ To make things a bit easier, we're going to rename the initial post that we hand
 
 ```diff
 - export default function Post({ post, morePosts, preview }) {
-+ export default function Post({ post: initialPost, morePosts, preview }) {
++ export default function Post({ post: initialPost, preview }) {
 ```
 
 Now we set up a form and the fields that we'll be editing. Check out our [form docs](/docs/forms) to get more information about how to configure forms.
@@ -62,7 +62,7 @@ Now we set up a form and the fields that we'll be editing. Check out our [form d
 import { useForm, usePlugin } from 'tinacms'
 // ...
 
-export default function Post({ post: initialPost, morePosts, preview }) {
+export default function Post({ post: initialPost, preview }) {
 
   const formConfig = {
     id: initialPost.id,
