@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import { Overlay } from './ui/Overlay'
-import { DocsNav } from './ui/DocsNav'
+import { Overlay } from '../ui/Overlay'
+import { DocsNav } from '../ui/DocsNav'
 import { DocsMobileTinaIcon } from 'pages/docs/[...slug]'
-import { NavToggle } from './ui/NavToggle'
+import { NavToggle } from '../ui/NavToggle'
 import styled from 'styled-components'
-import { DocsHeaderNav } from './ui/DocsHeaderNav'
+import { DocsHeaderNav } from '../ui/DocsHeaderNav'
 
 interface Props {
   navItems: any
