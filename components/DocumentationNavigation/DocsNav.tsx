@@ -3,8 +3,8 @@ import { useRouter } from 'next/router'
 import styled, { css } from 'styled-components'
 
 import RightArrowSvg from '../../public/svg/right-arrow.svg'
-import { DynamicLink } from './DynamicLink'
-import { DocsLinkNav } from './DocsLinkNav'
+import { DynamicLink } from '../ui/DynamicLink'
+import { DocsLinkNav } from '../ui/DocsLinkNav'
 import { TinaIcon } from '../logo/TinaIcon'
 
 interface NavSection {

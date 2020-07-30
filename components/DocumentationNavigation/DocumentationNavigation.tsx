@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Overlay } from '../ui/Overlay'
-import { DocsNav } from '../ui/DocsNav'
+import { DocsNav } from './DocsNav'
 import { NavToggle } from '../ui/NavToggle'
 import styled from 'styled-components'
 import { DocsHeaderNav } from './DocsHeaderNav'
