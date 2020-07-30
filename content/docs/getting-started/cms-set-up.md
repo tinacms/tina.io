@@ -54,7 +54,7 @@ export default App;
 
 When instantiating the CMS, you can pass an [options object](/docs/cms#cms-configuration) to configure how the CMS works. This object allows us to attach and access [Plugins](/docs/plugins), [APIs](/docs/apis), [Media Stores](/docs/media), [Events](/docs/events), [Editing UI](/docs/ui) and other key aspects of the CMS.
 
-Update your CMS instance with these options:
+Update your CMS instance by passing this options object:
 
 **src/App.js**
 
@@ -74,15 +74,15 @@ function App() {
 
 For our simple use case, we added two options: `enabled` and `sidebar`.
 
-The `enabled` property _enables or disables_ the CMS, meaning that content is editable when this values is true. The CMS is _enabled by default_. We set this property to `false` so the editor can manually enable the CMS (we'll configure this at the next step).
+The `enabled` property _enables or disables_ the CMS, meaning that content is editable when this values is true. The CMS is _enabled by default_. We set this property to `false` so the editor can manually enable the CMS (we'll configure that at the next step).
 
-The `sidebar` property controls the _Sidebar UI_. Reference [the documentation](/docs/ui#sidebar-configuration) to see how you can configure this further.
+The `sidebar` property controls the _Sidebar UI_. The sidebar can render forms, menus, and UI that connect with content editing actions. It will not render unless the CMS is enabled. Reference [the documentation](/docs/ui#sidebar-configuration) to see how you can configure this further.
 
-The config options are a **key part of constructing your custom CMS**. Read further on [additional options](/docs/cms#cms-configuration) that can be passed.
+The config options are a **key part of constructing your custom CMS**. Read further on [additional CMS options](/docs/cms#cms-configuration) that can be passed.
 
 ## Enabling the CMS
 
-Now the CMS is configured, but it is not enabled, so we can't see the sidebar UI. Let's wire up the 'Edit This Site' button to toggle between [enabled / disabled](/docs/cms#disabling--enabling-the-cms) CMS states.
+Now the CMS is configured, but it is not enabled. Let's wire up the 'Edit This Site' button to toggle between [enabled / disabled](/docs/cms#disabling--enabling-the-cms) CMS states.
 
 We'll use the `useCMS` hook to get the CMS object from the context provided by `TinaProvider`. This hook can be very useful throughout your App when needing to [access or update](/docs/cms#accessing-the-cms-object) the CMS.
 
@@ -120,4 +120,4 @@ If you restart the dev server and click the 'Edit This Site' button, you should 
 
 The example above uses a helpful method, `cms.toggle`, to switch between enabled/disabled states. Reference the documentation to see all of the [CMS methods](/docs/cms#reference) available.
 
-You'll notice that the sidebar is empty, that is because there are no forms registered to edit the content — let's do that next.
+You'll notice that the sidebar is empty, that is because there are no forms registered to edit content — let's do that next.

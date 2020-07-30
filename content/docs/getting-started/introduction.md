@@ -22,7 +22,7 @@ But **if it's your first time working with Tina**, we suggest going through this
 
 ## Overview
 
-These are the general steps we will cover in this tutorial.
+These are the general steps we will cover.
 
 1. [Install `tinacms`](/docs/getting-started/cms-set-up#install-tinacms)
 2. [Add the `TinaProvider` and create a CMS instance](/docs/getting-started/cms-set-up#add-tinaprovider-create-a-cms-instance)

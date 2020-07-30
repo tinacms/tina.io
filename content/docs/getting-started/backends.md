@@ -4,7 +4,7 @@ prev: /docs/getting-started/edit-content
 next: null
 ---
 
-You may have noticed that content changes don't persist on refresh. Every time the page loads, the `data` populates the form's initial values. With a real CMS, you'll need to track and persist those data changes with some sort of backend.
+You may have noticed that content changes don't persist on refresh. Every time the page loads, the `data` populates with the form's initial values defined in the config object. With a real CMS, you'll need to track and persist those data changes with some sort of backend.
 
 ## Loading Content from an external API
 
@@ -47,7 +47,7 @@ Next we'll adjust the `onSubmit` function to send the updated data back to this 
 
 **src/App.js**
 
-```js
+```diff
 function PageContent() {
   const formConfig = {
     id: 'tina-tutorial-index',
@@ -60,22 +60,23 @@ function PageContent() {
         'https://jsonplaceholder.typicode.com/posts/1'
       ).then(response => response.json())
     },
-    // Send the updated form data to the fake API
-    onSubmit(formData) {
-      fetch('https://jsonplaceholder.typicode.com/posts/1', {
-        method: 'PUT',
-        body: JSON.stringify({
-          id: 1,
-          title: formData.title,
-          body: formData.body,
-          userId: 1,
-        }),
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-        },
-      })
-        .then(response => response.json())
-        .then(json => console.log(json))
+-   onSubmit: async () => {
+-     window.alert('Saved!');
++   onSubmit(formData) {
++    fetch('https://jsonplaceholder.typicode.com/posts/1', {
++       method: 'PUT',
++       body: JSON.stringify({
++         id: 1,
++         title: formData.title,
++         body: formData.body,
++         userId: 1,
++       }),
++       headers: {
++         'Content-type': 'application/json; charset=UTF-8',
++       },
++     })
++       .then(response => response.json())
++       .then(json => console.log(json))
     },
   }
 
@@ -108,3 +109,5 @@ We’d like to provide developers with control and flexibility in all these aspe
 - Adding Tina to a [Gatsby Site](guides/gatsby/adding-tina/project-setup)
 
 Follow [Tina on Twitter](https://twitter.com/tina_cms) 🦙! Stay up to date with the latest developments via [Release Notes](TODO: what url?). If you're stoked on this project, please give us a 🌟 on the [GitHub repository](https://github.com/tinacms/tinacms). Interested in contributing? Get started via the [project README](https://github.com/tinacms/tinacms).
+
+<!--TODO: add more additional reading sections on the pages? for the common questions. Would be great to link to a faq -->
