@@ -3,6 +3,7 @@ import { DocsNav } from './ui/DocsNav'
 import { DocsMobileTinaIcon } from 'pages/docs/[...slug]'
 import { NavToggle } from './ui/NavToggle'
 import styled from 'styled-components'
+import { DocsHeaderNav } from './ui/DocsHeaderNav'
 
 interface Props {
   docs?: boolean
@@ -23,6 +24,7 @@ export function DocumentationNavigation({
       <DocsMobileTinaIcon docs={docs} />
       <DocsNav open={open} navItems={navItems} />
       <Overlay open={open} onClick={() => setOpen(false)} />
+      <DocsHeaderNav color={'light'} open={open} />
     </>
   )
 }

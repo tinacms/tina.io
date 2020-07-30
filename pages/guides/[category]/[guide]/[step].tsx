@@ -178,7 +178,6 @@ export default function GuideTemplate(props) {
             setOpen={setOpen}
             navItems={guideNav}
           />
-          <DocsHeaderNav color={'light'} open={open} />
           <DocsTextWrapper>
             <DocsGrid>
               <DocGridHeader>

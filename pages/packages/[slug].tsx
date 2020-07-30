@@ -76,7 +76,6 @@ export default function Packages(props) {
           setOpen={setOpen}
           navItems={props.docsNav}
         />
-        <DocsHeaderNav color={'light'} open={open} />
         <DocsTextWrapper>
           <DocsGrid>
             <DocGridToc>

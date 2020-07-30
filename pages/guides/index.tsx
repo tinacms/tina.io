@@ -84,7 +84,6 @@ const GuideTemplate = props => {
           navItems={navData}
           docs
         />
-        <DocsHeaderNav color={'light'} open={open} />
         <DocsTextWrapper>
           <GuideWrapper narrow>
             <h1>{frontmatter.title}</h1>

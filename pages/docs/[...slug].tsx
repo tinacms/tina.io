@@ -103,7 +103,6 @@ function DocTemplate(props) {
             navItems={props.docsNav}
             docs
           />
-          <DocsHeaderNav color={'light'} open={open} />
           <DocsTextWrapper>
             <DocsGrid>
               <DocGridHeader>
