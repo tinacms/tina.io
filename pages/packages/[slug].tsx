@@ -69,12 +69,13 @@ export default function Packages(props) {
           ],
         }}
       />
-      <DocumentationNavigation
-        open={open}
-        setOpen={setOpen}
-        navItems={props.docsNav}
-      />
+
       <DocsContent>
+        <DocumentationNavigation
+          open={open}
+          setOpen={setOpen}
+          navItems={props.docsNav}
+        />
         <DocsHeaderNav color={'light'} open={open} />
         <DocsTextWrapper>
           <DocsGrid>

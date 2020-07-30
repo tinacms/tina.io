@@ -96,13 +96,13 @@ function DocTemplate(props) {
             ],
           }}
         />
-        <DocumentationNavigation
-          open={open}
-          setOpen={setOpen}
-          navItems={props.docsNav}
-          docs
-        />
         <DocsContent>
+          <DocumentationNavigation
+            open={open}
+            setOpen={setOpen}
+            navItems={props.docsNav}
+            docs
+          />
           <DocsHeaderNav color={'light'} open={open} />
           <DocsTextWrapper>
             <DocsGrid>

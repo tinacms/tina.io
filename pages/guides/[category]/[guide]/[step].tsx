@@ -171,12 +171,13 @@ export default function GuideTemplate(props) {
             ],
           }}
         />
-        <DocumentationNavigation
-          open={open}
-          setOpen={setOpen}
-          navItems={guideNav}
-        />
+
         <DocsContent>
+          <DocumentationNavigation
+            open={open}
+            setOpen={setOpen}
+            navItems={guideNav}
+          />
           <DocsHeaderNav color={'light'} open={open} />
           <DocsTextWrapper>
             <DocsGrid>
