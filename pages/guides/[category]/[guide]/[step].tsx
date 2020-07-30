@@ -172,7 +172,6 @@ export default function GuideTemplate(props) {
           }}
         />
         <DocsNavToggle open={open} onClick={() => setOpen(!open)} />
-        <DocsMobileTinaIcon docs />
         <DocumentationNavigation
           open={open}
           setOpen={setOpen}
