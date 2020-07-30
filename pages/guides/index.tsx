@@ -77,21 +77,19 @@ const GuideTemplate = props => {
         }}
       />
       <DocsLayout isEditing={props.editMode}>
-        <DocsContent>
-          <DocumentationNavigation navItems={navData} />
-          <DocsTextWrapper>
-            <GuideWrapper narrow>
-              <h1>{frontmatter.title}</h1>
-              <hr />
-              <MarkdownContent escapeHtml={false} content={markdownBody} />
-              {navData &&
-                navData.map(section => (
-                  <GuideSection key={section.id} {...section} />
-                ))}
-            </GuideWrapper>
-          </DocsTextWrapper>
-          <Footer light editMode={props.editMode} />
-        </DocsContent>
+        <DocumentationNavigation navItems={navData} />
+        <DocsTextWrapper>
+          <GuideWrapper narrow>
+            <h1>{frontmatter.title}</h1>
+            <hr />
+            <MarkdownContent escapeHtml={false} content={markdownBody} />
+            {navData &&
+              navData.map(section => (
+                <GuideSection key={section.id} {...section} />
+              ))}
+          </GuideWrapper>
+        </DocsTextWrapper>
+        <Footer light editMode={props.editMode} />
       </DocsLayout>
     </>
   )

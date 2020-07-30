@@ -25,6 +25,10 @@ export const DocsLayout = React.memo(
   }
 )
 
+const DocsContent = styled.div`
+  grid-area: content;
+`
+
 interface DocsLayoutDivProps {
   isEditing: boolean
 }

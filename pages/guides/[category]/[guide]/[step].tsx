@@ -10,11 +10,10 @@ import {
   Footer,
 } from 'components/layout'
 import { NextSeo } from 'next-seo'
-import { DocsNav, DocsPagination, Overlay, DocsHeaderNav } from 'components/ui'
+import { DocsPagination, Overlay, DocsHeaderNav } from 'components/ui'
 import {
   DocsNavToggle,
   DocsMobileTinaIcon,
-  DocsContent,
   DocsGrid,
   DocGridHeader,
   DocsPageTitle,
@@ -170,31 +169,29 @@ export default function GuideTemplate(props) {
         }}
       />
       <DocsLayout isEditing={props.editMode}>
-        <DocsContent>
-          <DocumentationNavigation navItems={guideNav} />
-          <DocsTextWrapper>
-            <DocsGrid>
-              <DocGridHeader>
-                <DocsPageTitle>
-                  <InlineTextareaField name="frontmatter.title" />
-                </DocsPageTitle>
-              </DocGridHeader>
-              <DocGridToc>
-                <Toc tocItems={tocItems} activeIds={activeIds} />
-              </DocGridToc>
-              <DocGridContent ref={contentRef}>
-                <hr />
-                <InlineWysiwyg name="markdownBody">
-                  <MarkdownContent escapeHtml={false} content={markdownBody} />
-                </InlineWysiwyg>
-                {frontmatter.last_edited &&
-                  `Last Edited: ${frontmatter.last_edited}`}
-                <DocsPagination prevPage={prev} nextPage={next} />
-              </DocGridContent>
-            </DocsGrid>
-          </DocsTextWrapper>
-          <Footer light editMode={props.editMode} />
-        </DocsContent>
+        <DocumentationNavigation navItems={guideNav} />
+        <DocsTextWrapper>
+          <DocsGrid>
+            <DocGridHeader>
+              <DocsPageTitle>
+                <InlineTextareaField name="frontmatter.title" />
+              </DocsPageTitle>
+            </DocGridHeader>
+            <DocGridToc>
+              <Toc tocItems={tocItems} activeIds={activeIds} />
+            </DocGridToc>
+            <DocGridContent ref={contentRef}>
+              <hr />
+              <InlineWysiwyg name="markdownBody">
+                <MarkdownContent escapeHtml={false} content={markdownBody} />
+              </InlineWysiwyg>
+              {frontmatter.last_edited &&
+                `Last Edited: ${frontmatter.last_edited}`}
+              <DocsPagination prevPage={prev} nextPage={next} />
+            </DocGridContent>
+          </DocsGrid>
+        </DocsTextWrapper>
+        <Footer light editMode={props.editMode} />
       </DocsLayout>
     </OpenAuthoringSiteForm>
   )

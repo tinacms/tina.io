@@ -95,34 +95,32 @@ function DocTemplate(props) {
         }}
       />
       <DocsLayout isEditing={props.preview}>
-        <DocsContent>
-          <DocumentationNavigation navItems={props.docsNav} />
-          <DocsTextWrapper>
-            <DocsGrid>
-              <DocGridHeader>
-                <DocsPageTitle>
-                  <InlineTextareaField name="frontmatter.title" />
-                </DocsPageTitle>
-              </DocGridHeader>
-              <DocGridToc>
-                <Toc tocItems={tocItems} activeIds={activeIds} />
-              </DocGridToc>
-              <DocGridContent ref={contentRef}>
-                <hr />
-                <InlineWysiwyg name="markdownBody">
-                  <MarkdownContent escapeHtml={false} content={markdownBody} />
-                </InlineWysiwyg>
-                {frontmatter.last_edited &&
-                  `Last Edited: ${frontmatter.last_edited}`}
-                <DocsPagination
-                  prevPage={props.prevPage}
-                  nextPage={props.nextPage}
-                />
-              </DocGridContent>
-            </DocsGrid>
-          </DocsTextWrapper>
-          <Footer light preview={props.preview} />
-        </DocsContent>
+        <DocumentationNavigation navItems={props.docsNav} />
+        <DocsTextWrapper>
+          <DocsGrid>
+            <DocGridHeader>
+              <DocsPageTitle>
+                <InlineTextareaField name="frontmatter.title" />
+              </DocsPageTitle>
+            </DocGridHeader>
+            <DocGridToc>
+              <Toc tocItems={tocItems} activeIds={activeIds} />
+            </DocGridToc>
+            <DocGridContent ref={contentRef}>
+              <hr />
+              <InlineWysiwyg name="markdownBody">
+                <MarkdownContent escapeHtml={false} content={markdownBody} />
+              </InlineWysiwyg>
+              {frontmatter.last_edited &&
+                `Last Edited: ${frontmatter.last_edited}`}
+              <DocsPagination
+                prevPage={props.prevPage}
+                nextPage={props.nextPage}
+              />
+            </DocGridContent>
+          </DocsGrid>
+        </DocsTextWrapper>
+        <Footer light preview={props.preview} />
       </DocsLayout>
     </OpenAuthoringSiteForm>
   )
@@ -286,8 +284,4 @@ export const DocsNavToggle = styled(NavToggle)`
   @media (min-width: 999px) {
     display: none;
   }
-`
-
-export const DocsContent = styled.div`
-  grid-area: content;
 `
