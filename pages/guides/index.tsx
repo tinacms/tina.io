@@ -120,7 +120,8 @@ const GuideWrapper = styled(Wrapper)`
 export default GuideTemplate
 
 export const getStaticProps = async () => {
-  const path = require('path')
+  // @ts-ignore
+  const path = __non_webpack_require__('path')
   return {
     props: {
       slug: '/guides',

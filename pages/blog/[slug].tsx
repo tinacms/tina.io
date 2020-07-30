@@ -21,7 +21,8 @@ import { getMarkdownPreviewProps } from 'utils/getMarkdownFile'
 import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { usePlugin, useCMS } from 'tinacms'
 import { useEffect } from 'react'
-import createDecorator from 'final-form-calculate'
+import { useLastEdited } from 'utils/useLastEdited'
+import { LastEdited } from 'components/ui'
 
 function BlogTemplate({ file, siteConfig, preview }) {
   // fallback workaround
@@ -33,25 +34,11 @@ function BlogTemplate({ file, siteConfig, preview }) {
   const [data, form] = useGithubMarkdownForm(file, formOptions)
 
   usePlugin(form)
+  useLastEdited(form)
 
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
   const excerpt = data.excerpt
-
-  const cms = useCMS()
-
-  useEffect(() => {
-    if (cms.disabled) {
-      return
-    }
-    const decorator = createDecorator({
-      field: /.*/,
-      updates: {
-        'frontmatter.last_edited': () => formatDate(Date.now()),
-      },
-    })
-    return decorator(form.finalForm)
-  }, [form.id])
 
   return (
     <InlineGithubForm form={form}>
@@ -96,8 +83,7 @@ function BlogTemplate({ file, siteConfig, preview }) {
             <InlineWysiwyg name="markdownBody">
               <MarkdownContent escapeHtml={false} content={markdownBody} />
             </InlineWysiwyg>
-            {frontmatter.last_edited &&
-              `Last Edited: ${frontmatter.last_edited}`}
+            <LastEdited date={frontmatter.last_edited} />
           </DocsTextWrapper>
         </BlogWrapper>
       </Layout>

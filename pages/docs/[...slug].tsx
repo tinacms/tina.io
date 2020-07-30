@@ -10,10 +10,10 @@ import { getDocProps } from 'utils/docs/getDocProps'
 import { InlineGithubForm } from 'components/layout/InlineGithubForm'
 import { GithubError } from 'next-tinacms-github'
 import { InlineWysiwyg } from 'components/inline-wysiwyg'
-import { usePlugin, useCMS } from 'tinacms'
+import { usePlugin } from 'tinacms'
 import Toc from '../../components/toc'
-import { createTocListener, formatDate } from 'utils'
-import createDecorator from 'final-form-calculate'
+import { createTocListener } from 'utils'
+import { useLastEdited } from 'utils/useLastEdited'
 
 function DocTemplate(props) {
   // Registers Tina Form
@@ -28,8 +28,6 @@ function DocTemplate(props) {
   const tocItems = props.tocItems
   const [activeIds, setActiveIds] = useState([])
 
-  const cms = useCMS()
-
   React.useEffect(() => {
     if (!isBrowser || !contentRef.current) {
       return
@@ -41,19 +39,7 @@ function DocTemplate(props) {
   }, [contentRef, data])
 
   usePlugin(form)
-
-  useEffect(() => {
-    if (cms.disabled) {
-      return
-    }
-    const decorator = createDecorator({
-      field: /.*/,
-      updates: {
-        'frontmatter.last_edited': () => formatDate(Date.now()),
-      },
-    })
-    return decorator(form.finalForm)
-  }, [form.id])
+  useLastEdited(form)
 
   return (
     <InlineGithubForm form={form}>
@@ -92,8 +78,7 @@ function DocTemplate(props) {
             <InlineWysiwyg name="markdownBody">
               <MarkdownContent escapeHtml={false} content={markdownBody} />
             </InlineWysiwyg>
-            {frontmatter.last_edited &&
-              `Last Edited: ${frontmatter.last_edited}`}
+            <LastEdited date={frontmatter.last_edited} />
             <DocsPagination
               prevPage={props.prevPage}
               nextPage={props.nextPage}

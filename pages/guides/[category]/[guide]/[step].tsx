@@ -1,10 +1,9 @@
 import * as React from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
-
 import { getMarkdownPreviewProps } from 'utils/getMarkdownFile'
 import { DocsLayout, MarkdownContent } from 'components/layout'
 import { NextSeo } from 'next-seo'
-import { DocsPagination } from 'components/ui'
+import { DocsPagination, LastEdited } from 'components/ui'
 import {
   DocsGrid,
   DocGridHeader,
@@ -15,16 +14,16 @@ import {
 import { useRouter } from 'next/router'
 import { getGuideNavProps } from 'utils/guide_helpers'
 import { useMemo } from 'react'
-import { InlineGithubForm } from 'components/layout/InlineGithubForm'
-import { usePlugin, useFormScreenPlugin, useCMS } from 'tinacms'
+import { usePlugin, useFormScreenPlugin } from 'tinacms'
 import { InlineTextareaField } from 'react-tinacms-inline'
 import { useGithubMarkdownForm, useGithubJsonForm } from 'react-tinacms-github'
 import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
 import { MarkdownCreatorPlugin } from 'utils/plugins'
-import { fileToUrl, createTocListener, formatDate } from 'utils'
+import { fileToUrl, createTocListener } from 'utils'
 import Toc from '../../../../components/toc'
-import createDecorator from 'final-form-calculate'
+import { useLastEdited } from 'utils/useLastEdited'
+import { InlineGithubForm } from 'components/layout/InlineGithubForm'
 
 export default function GuideTemplate(props) {
   const isBrowser = typeof window !== `undefined`
@@ -112,26 +111,12 @@ export default function GuideTemplate(props) {
 
   usePlugin(stepForm)
   useFormScreenPlugin(guideForm)
+  useLastEdited(stepForm)
 
   const guideTitle = guide?.title || 'TinaCMS Guides'
   const guideNav = useGuideNav(guide, props.allGuides)
   const { prev, next } = usePrevNextSteps(guide, currentPath)
   const excerpt = props.markdownFile.data.excerpt
-
-  const cms = useCMS()
-
-  React.useEffect(() => {
-    if (cms.disabled) {
-      return
-    }
-    const decorator = createDecorator({
-      field: /.*/,
-      updates: {
-        'frontmatter.last_edited': () => formatDate(Date.now()),
-      },
-    })
-    return decorator(stepForm.finalForm)
-  }, [stepForm.id])
 
   return (
     <InlineGithubForm form={stepForm}>
@@ -170,8 +155,7 @@ export default function GuideTemplate(props) {
             <InlineWysiwyg name="markdownBody">
               <MarkdownContent escapeHtml={false} content={markdownBody} />
             </InlineWysiwyg>
-            {frontmatter.last_edited &&
-              `Last Edited: ${frontmatter.last_edited}`}
+            <LastEdited date={frontmatter.last_edited} />
             <DocsPagination prevPage={prev} nextPage={next} />
           </DocGridContent>
         </DocsGrid>
