@@ -148,7 +148,7 @@ All of the previous examples show the `component` being set with a string:
 
 `'color'` is referring to the `name` of the Color [Field Plugin](/docs/plugins/fields/custom-fields#2-creating-field-plugins) that is hooked up to the CMS by default.
 
-You can also define components inline to render in place of a default field:
+You can also define components to render in place of a default field:
 
 **Example**
 
@@ -175,7 +175,7 @@ const formOptions = {
 }
 ```
 
-In the example above, the custom inline field component isn't being used to edit data, but rather as a method of customizing the sidebar organization.
+In the example above, the custom field component isn't being used to edit data, but rather as a method of customizing the sidebar organization.
 
 ## Additional Reading
 
