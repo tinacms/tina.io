@@ -39,4 +39,4 @@ yarn start
 
 --> TODO: image here
 
-> If at any point _you feel lost or confused_ during this tutorial, checkout the [Tina Community Forum](https://community.tinacms.org/) to get answers, help, and llama-humor.
+> If at any point you feel lost or confused during this tutorial, checkout the [Tina Community Forum](https://community.tinacms.org/) to get answers, help, and llama-humor.
