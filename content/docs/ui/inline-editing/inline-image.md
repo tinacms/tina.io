@@ -40,14 +40,14 @@ There are two ways to use `InlineImage`, with and without children. If no childr
 
 ## Options
 
-| Key          | Description                                                                                                                                                                                                 |
-| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`       | The path to some value in the data being edited.                                                                                                                                                            |
-| `parse`      | Defines how the actual front matter or data value gets populated. The name of the file gets passed as an argument, and one can set the path this image as defined by the uploadDir property.                |
-| `uploadDir`  | Defines the upload directory for the image. All of the post data is passed in, `fileRelativePath` is most useful in defining the upload directory, but you can also statically define the upload directory. |
-| `previewSrc` | Defines the path for the src attribute on the image preview. If using gatsby-image, the path to the `childImageSharp.fluid.src` needs to be provided.                                                       |
-| `focusRing`  | Controls whether to display a focus outline.                                                                                                                                                                |
-| `children`   | Children need to be passed through the [Render Props](https://reactjs.org/docs/render-props.html) pattern to access `previewSrc`.                                                                           |
+| Key          | Description                                                                                                                                                                                                                                                                                                                        |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`       | The path to some value in the data being edited.                                                                                                                                                                                                                                                                                   |
+| `parse`      | Defines how the actual front matter or data value gets populated. The name of the file gets passed as an argument, and one can set the path this image as defined by the uploadDir property.                                                                                                                                       |
+| `uploadDir`  | Defines the upload directory for the image. All of the post data is passed in, `fileRelativePath` is most useful in defining the upload directory, but you can also statically define the upload directory.                                                                                                                        |
+| `previewSrc` | Defines the path for the src attribute on the image preview. If using gatsby-image, the path to the `childImageSharp.fluid.src` needs to be provided.                                                                                                                                                                              |
+| `focusRing`  | Either an object to style the focus ring or `false`, which hides the focus ring entirely. For styles, `offset` (in pixels) controls the distance from the ring to the edge of the group; `borderRadius`(in pixels) controls the [rounding](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius) edge of the focus ring. |
+| `children`   | Children need to be passed through the [Render Props](https://reactjs.org/docs/render-props.html) pattern to access `previewSrc`.                                                                                                                                                                                                  |
 
 ---
 
@@ -59,8 +59,13 @@ interface InlineImageProps {
   parse(filename: string): string
   uploadDir(form: Form): string
   previewSrc(formValues: any): string
-  focusRing?: boolean
+  focusRing?: boolean | FocusRingProps
   children?: any
+}
+
+interface FocusRingProps {
+  offset?: number | { x: number; y: number }
+  borderRadius?: number
 }
 ```
 

@@ -86,7 +86,7 @@ interface InlineGroupProps {
   name: string
   fields: TinaField[]
   insetControls?: boolean
-  focusRing?: false | FocusRingProps
+  focusRing?: boolean | FocusRingProps
   children?: any
 }
 
