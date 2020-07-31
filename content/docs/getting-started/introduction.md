@@ -5,13 +5,13 @@ prev: null
 next: /docs/getting-started/cms-set-up
 ---
 
-Tina is a toolkit for building content management systems. This tutorial will **walk you through Tina's fundamental building blocks** by setting-up editing on a _very simple_ `create-react-app` [demo](https://github.com/tinacms/tina-intro-tutorial). To get the most from Tina, you should have a good **working knowledge of JavaScript and React**.
+Tina is a toolkit for building content management systems. This tutorial will walk you through Tina's fundamental building blocks by setting up editing on a basic `create-react-app` [demo](https://github.com/tinacms/tina-intro-tutorial). **To get the most from Tina, you should have a good working knowledge of JavaScript and React**.
 
 ## Why _create-react-app_?
 
-Tina's UI is built with React. Using Tina in a _plain_ React App is the simplest way to get familiar Tina, without helper packages or meta-frameworks. **Understanding the core concepts** introduced in this tutorial will set you up for success later down the line.
+Tina's UI is built with React. Using Tina in a plain React App is the simplest way to get familiar with Tina, without relying on helper packages or meta-frameworks. Understanding the core concepts introduced in this tutorial will set you up for success later down the line.
 
-But **if it's your first time working with Tina**, we suggest going through this short tutorial.
+**If this is your first time working with Tina**, we suggest going through this short tutorial.
 
 ## Overview
 
@@ -39,4 +39,4 @@ yarn start
 
 --> TODO: image here
 
-> If at any point _you feel lost or confused_ during this tutorial, checkout the [Tina Community Forum](https://community.tinacms.org/) to get answers, help, and llama-humor.
+> If at any point you feel lost or confused during this tutorial, checkout the [Tina Community Forum](https://community.tinacms.org/) to get answers, help, and llama-humor.
