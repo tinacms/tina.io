@@ -9,7 +9,7 @@ Tina is a **toolkit for building content management systems.** By creating a cus
 
 Are you new to using Tina to build content management systems? Start with these resources to build your understanding of Tina and what's possible.
 
-- Go through the [**Getting Started Guide**](/docs/getting-started/introduction 'Getting Started'): [Installing _tinacms_](/docs/getting-started/cms-set-up#install-tinacms) |
+- Go through the [**Getting Started Tutorial**](/docs/getting-started/introduction 'Getting Started'): [Installing _tinacms_](/docs/getting-started/cms-set-up#install-tinacms) |
   | [Creating a CMS instance and adding the _TinaProvider_](/docs/getting-started/cms-set-up#create-a-cms-instance-add-tinaprovider)
   | [Configuring the CMS object](/docs/getting-started/cms-set-up#configure-the-cms-object)
   | [Enabling the CMS](/docs/getting-started/cms-set-up#enabling-the-cms)
