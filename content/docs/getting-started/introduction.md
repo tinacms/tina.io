@@ -5,7 +5,7 @@ prev: null
 next: /docs/getting-started/cms-set-up
 ---
 
-Tina is a toolkit for building content management systems. This tutorial will **walk you through Tina's fundamental building blocks** by setting-up editing on a _very simple_ `create-react-app` [demo](https://github.com/tinacms/tina-intro-tutorial). To get the most from Tina, you should have a good **working knowledge of JavaScript and React**.
+Tina is a toolkit for building content management systems. This tutorial will walk you through Tina's fundamental building blocks by setting up editing on a basic `create-react-app` [demo](https://github.com/tinacms/tina-intro-tutorial). **To get the most from Tina, you should have a good working knowledge of JavaScript and React**.
 
 ## Why _create-react-app_?
 
