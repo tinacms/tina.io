@@ -243,6 +243,17 @@
     ]
   },
   {
+    "title": "Release Notes",
+    "id": "releases",
+    "items": [
+      {
+        "id": "/docs/releases",
+        "href": "/docs/releases",
+        "title": "All Releases"
+      }
+    ]
+  },
+  {
     "title": "Packages",
     "id": "packages",
     "items": [

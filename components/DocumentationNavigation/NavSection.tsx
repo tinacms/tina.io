@@ -4,10 +4,12 @@ import styled, { css } from 'styled-components'
 
 import RightArrowSvg from '../../public/svg/right-arrow.svg'
 import { DynamicLink } from '../ui/DynamicLink'
+import Link from 'next/link'
 
 interface NavSection {
   id: string
-  slug: string
+  slug?: string
+  href?: string
   title: string
   items: NavSection[]
   collapsible?: boolean
@@ -43,12 +45,8 @@ export const NavSection = (section: NavSection) => {
     <>
       <NavItem key={section.slug} open={expanded}>
         <NavItemHeader onClick={() => collapsible && setExpanded(!expanded)}>
-          {section.slug && !hasChildren ? (
-            <DynamicLink href={section.slug} passHref>
-              <NavSectionTitle as="a" currentPage={currentPage}>
-                {section.title}
-              </NavSectionTitle>
-            </DynamicLink>
+          {(section.slug || section.href) && !hasChildren ? (
+            <NavLink section={section} currentPage={currentPage} />
           ) : (
             <NavSectionTitle currentPage={currentPage}>
               {section.title}
@@ -84,6 +82,26 @@ export const NavSection = (section: NavSection) => {
       )}
     </>
   )
+}
+
+const NavLink = ({ section, currentPage }) => {
+  if (section.slug) {
+    return (
+      <DynamicLink href={section.slug} passHref>
+        <NavSectionTitle as="a" currentPage={currentPage}>
+          {section.title}
+        </NavSectionTitle>
+      </DynamicLink>
+    )
+  } else {
+    return (
+      <Link href={section.href} passHref>
+        <NavSectionTitle as="a" currentPage={currentPage}>
+          {section.title}
+        </NavSectionTitle>
+      </Link>
+    )
+  }
 }
 
 const menuIsActive = (section: NavSection, currentPath: string) => {
