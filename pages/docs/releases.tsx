@@ -48,7 +48,6 @@ function DocTemplate(props) {
                   return new Date(b.date) - new Date(a.date)
                 })
                 .map(release => {
-                  console.log(release)
                   return (
                     <li>
                       <Link href="/docs/[...slug]" as={release.slug}>
