@@ -51,7 +51,7 @@ To make things a bit easier, we're going to rename the initial post that we hand
 
 ```diff
 - export default function Post({ post, morePosts, preview }) {
-+ export default function Post({ post: initialPost, morePosts, preview }) {
++ export default function Post({ post: initialPost, preview }) {
 ```
 
 Now we set up a form and the fields that we'll be editing. Check out our [form docs](/docs/forms) to get more information about how to configure forms.
@@ -62,7 +62,7 @@ Now we set up a form and the fields that we'll be editing. Check out our [form d
 import { useForm, usePlugin } from 'tinacms'
 // ...
 
-export default function Post({ post: initialPost, morePosts, preview }) {
+export default function Post({ post: initialPost, preview }) {
 
   const formConfig = {
     id: initialPost.id,
@@ -127,7 +127,10 @@ A little more complicated is the `InlineImage` field that we'll need to include.
 
 ```diff
 + import { useCMS } from "tinacms";
-+ import { InlineImage } from 'react-tinacms-inline'
+- import { InlineText } from 'react-tinacms-inline'
++ import { InlineImage, InlineText } from 'react-tinacms-inline'
+  // ...
+- import CoverImage from '../components/cover-image'
 
   export default function PostHeader({ title, coverImage, date, author }) {
 +   const cms = useCMS();
@@ -151,6 +154,8 @@ A little more complicated is the `InlineImage` field that we'll need to include.
 ```
 
 Here we used the `useCMS` hook to get access to our CMS object. In `_app.js` we've attached a Strapi media store to this object, and we need access to that here to help us resolve image urls.
+
+🤚In order to be able to upload images you'll want to head over to Strapi's **Roles & Permissions**, then select all **uploads** and save.  
 
 Now let's head over to `post-body.js` and wrap the content of our blog post with a WYSIWYG markdown editor. This will take care of the markdown parsing that we removed earlier.
 

@@ -13,7 +13,7 @@ import {
   BlockTextarea,
   BlocksControls,
 } from 'react-tinacms-inline'
-import { OpenAuthoringSiteForm } from 'components/layout/OpenAuthoringSiteForm'
+import { InlineGithubForm } from 'components/layout/InlineGithubForm'
 import { useGithubJsonForm } from 'react-tinacms-github'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
 
@@ -55,12 +55,8 @@ function TeamsPage(props) {
   const [data, form] = useGithubJsonForm(props.file, formOptions)
 
   return (
-    <OpenAuthoringSiteForm
-      form={form}
-      path={props.file.fileRelativePath}
-      preview={props.preview}
-    >
-      <TeamsLayout preview={props.preview} color={'secondary'}>
+    <InlineGithubForm form={form}>
+      <TeamsLayout color={'secondary'}>
         <NextSeo
           title={data.title}
           description={data.description}
@@ -95,7 +91,7 @@ function TeamsPage(props) {
           </Wrapper>
         </TeamsSection>
       </TeamsLayout>
-    </OpenAuthoringSiteForm>
+    </InlineGithubForm>
   )
 }
 

@@ -10,7 +10,7 @@ import {
   Section,
 } from '../components/layout'
 import { DynamicLink, ButtonGroup } from '../components/ui'
-import { OpenAuthoringSiteForm } from '../components/layout/OpenAuthoringSiteForm'
+import { InlineGithubForm } from '../components/layout/InlineGithubForm'
 import { Button } from '../components/ui'
 import { useGithubJsonForm } from 'react-tinacms-github'
 import { InlineTextareaField } from 'react-tinacms-inline'
@@ -22,12 +22,8 @@ function StudySignupPage({ file: study, metadata, preview }) {
   const [data, form] = useGithubJsonForm(study, formOptions)
 
   return (
-    <OpenAuthoringSiteForm
-      form={form}
-      path={study.fileRelativePath}
-      preview={preview}
-    >
-      <StudyLayout preview={preview}>
+    <InlineGithubForm form={form}>
+      <StudyLayout>
         <NextSeo
           title={data.meta.title}
           description={data.meta.description}
@@ -63,7 +59,7 @@ function StudySignupPage({ file: study, metadata, preview }) {
           </StudySection>
         </StudyRichTextWrapper>
       </StudyLayout>
-    </OpenAuthoringSiteForm>
+    </InlineGithubForm>
   )
 }
 

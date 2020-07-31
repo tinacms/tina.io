@@ -189,3 +189,31 @@ const cms = new TinaCMS({
 ### Customize 'Save' & 'Reset' button text
 
 It is now recommended to configure button text on the form intead of in the CMS object. Please read further on [configuring custom buttons](/docs/forms#customizing-form-buttons) in the form documentation.
+
+## Reference
+
+There are a number of [core properties](https://github.com/tinacms/tinacms/blob/master/packages/%40tinacms/core/src/cms.ts) that can be helpful in working with the CMS.
+
+### TinaCMS Interface
+
+```ts
+interface TinaCMS {
+  enabled: boolean
+  disabled: boolean
+  registerApi(name: string, api: any): void
+  enable(): void
+  disable(): void
+  toggle(): void
+}
+```
+
+| property      | description                                                                                   |
+| ------------- | --------------------------------------------------------------------------------------------- |
+| `enabled`     | Returns the enabled state. When `true`, content _can_ be edited.                              |
+| `disabled`    | Returns the disabled state. When `true`, content _cannot_ be edited.                          |
+| `registerApi` | Registers a new [external API](/docs/apis#adding-an-api) with the CMS.                        |
+| `enable`      | [Enables](/docs/cms#disabling--enabling-the-cms) the CMS so content can be edited.            |
+| `disable`     | [Disables](/docs/cms#disabling--enabling-the-cms) the CMS so content can no longer be edited. |
+| `toggle`      | [Toggles](/docs/cms#disabling--enabling-the-cms) the enabled/disabled state of the CMS .      |
+
+> Use the `useCMS` hook to [access the CMS](/docs/cms#accessing-the-cms-object) and execute these methods as needed.
