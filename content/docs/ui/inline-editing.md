@@ -185,3 +185,8 @@ const StyledText = styled(InlineTextField)`
 ```
 
 Notice how the new component, `StyledText` is just a _styled_ version of `InlineTextField`.
+
+## Additional Reading
+
+- A guide — [Working With Inline Blocks](/guides/general/inline-blocks/overview)
+- `react-tinacms-inline` package [documentation](/packages/react-tinacms-inline)
