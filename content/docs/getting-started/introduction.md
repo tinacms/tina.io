@@ -9,7 +9,7 @@ Tina is a toolkit for building content management systems. This tutorial will wa
 
 ## Why _create-react-app_?
 
-Tina's UI is built with React. Using Tina in a _plain_ React App is the simplest way to get familiar Tina, without helper packages or meta-frameworks. **Understanding the core concepts** introduced in this tutorial will set you up for success later down the line.
+Tina's UI is built with React. Using Tina in a plain React App is the simplest way to get familiar with Tina, without relying on helper packages or meta-frameworks. Understanding the core concepts introduced in this tutorial will set you up for success later down the line.
 
 But **if it's your first time working with Tina**, we suggest going through this short tutorial.
 
