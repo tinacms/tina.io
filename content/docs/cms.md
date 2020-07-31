@@ -14,6 +14,7 @@ consumes:
     description: Shows Toolbar state interface
 last_edited: '2020-07-31T16:18:02.673Z'
 ---
+
 The CMS object in Tina is a container for attaching and accessing [Plugins](/docs/plugins), [APIs](/docs/apis), and the [Event Bus](/docs/events). On its own, the CMS does very little; however, since it's the central integration point for everything that Tina does, it's extremely important!
 
 ## Setting up the CMS Object
@@ -23,7 +24,7 @@ A project that uses Tina will start by setting up an instance of the CMS.
 ```javascript
 import { TinaCMS } from 'tinacms'
 
-const cms = new TinaCMS()
+const cms = new TinaCMS({ enabled: true })
 ```
 
 The `TinaCMS` constructor receives an object that can be used to configure CMS behavior. See [CMS Configuration](#cms-configuration) for details.
@@ -43,7 +44,7 @@ import { TinaProvider, TinaCMS } from 'tinacms'
 import MyApp from './my-app'
 
 export default function App() {
-  const cms = React.useMemo(() => new TinaCMS())
+  const cms = React.useMemo(() => new TinaCMS({ enabled: true }))
   return (
     <TinaProvider cms={cms}>
       <MyApp />
@@ -143,22 +144,22 @@ interface ToolbarConfig {
 }
 ```
 
-***
+---
 
-| key | usage |
-| --- | --- |
-| **enabled** | Controls whether the CMS is enabled or disabled. _Defaults to_ `false`  |
-| **plugins** | Array of plugins to be added to the CMS object. |
-| **apis** | Object containing APIs to be registered to the CMS |
-| **sidebar** | Enables and configures behavior of the sidebar |
-| **sidebar.position** | 'displace' _(Default)_: sidebar pushes content to the side when open; 'overlay': sidebar overlaps content when open |
-| **sidebar.placeholder** | Provides a placeholder component to render in the sidebar when there are no registered forms |
-| **sidebar.buttons** | _Deprecated — [Configure on the form instead](/docs/forms#customizing-form-buttons)_: Configures the text on 'Save' and 'Reset' buttons |
-| **toolbar** | Configures behavior of the toolbar |
-| **toolbar.buttons** | _Deprecated — [Configure on the form instead](/docs/forms#customizing-form-buttons)_: Configures the text on 'Save' and 'Reset' buttons |
-| **media.store** | Configures the [media store](/docs/media). |
+| key                     | usage                                                                                                                                   |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| **enabled**             | Controls whether the CMS is enabled or disabled. _Defaults to_ `false`                                                                  |
+| **plugins**             | Array of plugins to be added to the CMS object.                                                                                         |
+| **apis**                | Object containing APIs to be registered to the CMS                                                                                      |
+| **sidebar**             | Enables and configures behavior of the sidebar                                                                                          |
+| **sidebar.position**    | 'displace' _(Default)_: sidebar pushes content to the side when open; 'overlay': sidebar overlaps content when open                     |
+| **sidebar.placeholder** | Provides a placeholder component to render in the sidebar when there are no registered forms                                            |
+| **sidebar.buttons**     | _Deprecated — [Configure on the form instead](/docs/forms#customizing-form-buttons)_: Configures the text on 'Save' and 'Reset' buttons |
+| **toolbar**             | Configures behavior of the toolbar                                                                                                      |
+| **toolbar.buttons**     | _Deprecated — [Configure on the form instead](/docs/forms#customizing-form-buttons)_: Configures the text on 'Save' and 'Reset' buttons |
+| **media.store**         | Configures the [media store](/docs/media).                                                                                              |
 
-***
+---
 
 > Learn more about [sidebar & toolbar options](/docs/cms/ui).
 
@@ -207,13 +208,13 @@ interface TinaCMS {
 }
 ```
 
-| property | description |
-| --- | --- |
-| `enabled` | Returns the enabled state. When `true`, content _can_ be edited. |
-| `disabled` | Returns the disabled state. When `true`, content _cannot_ be edited. |
-| `registerApi` | Registers a new [external API](/docs/apis#adding-an-api) with the CMS. |
-| `enable` | [Enables](/docs/cms#disabling--enabling-the-cms) the CMS so content can be edited. |
-| `disable` | [Disables](/docs/cms#disabling--enabling-the-cms) the CMS so content can no longer be edited. |
-| `toggle` | [Toggles](/docs/cms#disabling--enabling-the-cms) the enabled/disabled state of the CMS . |
+| property      | description                                                                                   |
+| ------------- | --------------------------------------------------------------------------------------------- |
+| `enabled`     | Returns the enabled state. When `true`, content _can_ be edited.                              |
+| `disabled`    | Returns the disabled state. When `true`, content _cannot_ be edited.                          |
+| `registerApi` | Registers a new [external API](/docs/apis#adding-an-api) with the CMS.                        |
+| `enable`      | [Enables](/docs/cms#disabling--enabling-the-cms) the CMS so content can be edited.            |
+| `disable`     | [Disables](/docs/cms#disabling--enabling-the-cms) the CMS so content can no longer be edited. |
+| `toggle`      | [Toggles](/docs/cms#disabling--enabling-the-cms) the enabled/disabled state of the CMS .      |
 
 > Use the `useCMS` hook to [access the CMS](/docs/cms#accessing-the-cms-object) and execute these methods as needed.

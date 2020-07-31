@@ -41,7 +41,7 @@ Call `cms.plugins.add` and pass in the plugin.
 import { TinaCMS } from 'tinacms'
 import { HtmlFieldPlugin, MarkdownFieldPlugin } from 'react-tinacms-editor'
 
-const cms = new TinaCMS()
+const cms = new TinaCMS({ enabled: true })
 
 cms.plugins.add(HtmlFieldPlugin)
 cms.plugins.add(MarkdownFieldPlugin)
@@ -85,7 +85,7 @@ In some cases, you may not want plugins to be included in the initial JavaScript
 import { TinaCMS } from 'tinacms'
 import { HtmlFieldPlugin, MarkdownFieldPlugin } from 'react-tinacms-editor'
 
-const cms = new TinaCMS()
+const cms = new TinaCMS({ enabled: true })
 
 import('react-tinacms-editor').then(
   ({ HtmlFieldPlugin, MarkdownFieldPlugin }) => {

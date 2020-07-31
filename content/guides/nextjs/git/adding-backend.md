@@ -134,6 +134,7 @@ class MyApp extends App {
     const client = new GitClient('/___tina')
 
     this.cms = new TinaCMS({
+      enabled: true,
       apis: {
         git: client,
       },
