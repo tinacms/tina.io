@@ -39,24 +39,29 @@ function DocTemplate(props) {
         <DocsGrid>
           <DocGridHeader>
             <DocsPageTitle>Release Notes</DocsPageTitle>
+            <hr />
           </DocGridHeader>
           <DocGridContent>
-            <ul>
-              {props.releases
-                .sort((a, b) => {
-                  // @ts-ignore You CAN substract dates for sorting
-                  return new Date(b.date) - new Date(a.date)
-                })
-                .map(release => {
-                  return (
-                    <li>
-                      <Link href="/docs/[...slug]" as={release.slug}>
-                        {release.title}
-                      </Link>
-                    </li>
-                  )
-                })}
-            </ul>
+            <ReleaseList>
+              <ul>
+                {props.releases
+                  .sort((a, b) => {
+                    // @ts-ignore You CAN substract dates for sorting
+                    return new Date(b.date) - new Date(a.date)
+                  })
+                  .map(release => {
+                    return (
+                      <li>
+                        <Link href="/docs/[...slug]" as={release.slug}>
+                          <a>
+                            <h4>{release.title}</h4>
+                          </a>
+                        </Link>
+                      </li>
+                    )
+                  })}
+              </ul>
+            </ReleaseList>
           </DocGridContent>
         </DocsGrid>
       </DocsLayout>
@@ -109,6 +114,27 @@ export const getStaticProps: GetStaticProps = async function({
 /*
  * STYLES --------------------------------------------------------------
  */
+
+const ReleaseList = styled.div`
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  li {
+    margin: 0 0 1rem 0;
+  }
+
+  a {
+    &:hover {
+      color: var(--color-primary);
+    }
+  }
+
+  h4 {
+    color: inherit;
+  }
+`
 
 const DocsGrid = styled.div`
   display: grid;
