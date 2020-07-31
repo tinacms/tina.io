@@ -92,7 +92,9 @@ class MyApp extends App {
   constructor() {
     super()
     // initialize the cms
-    this.cms = new TinaCMS()
+    this.cms = new TinaCMS({
+      enabled: true,
+    })
   }
   render() {
     const { Component, pageProps } = this.props
@@ -182,7 +184,9 @@ import { GitClient } from '@tinacms/git-client'
 class MyApp extends App {
   constructor() {
     super()
-    this.cms = new TinaCMS()
+    this.cms = new TinaCMS({
+      enabled: true,
+    })
     // create the client
     const client = new GitClient('/___tina')
     // register client with the cms
