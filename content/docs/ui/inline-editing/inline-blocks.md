@@ -69,7 +69,7 @@ Since it **renders in 'edit mode,'** this component should display `BlocksContro
 interface BlocksControlsProps {
   index: number
   insetControls?: boolean
-  focusRing?: false | FocusRingProps
+  focusRing?: boolean | FocusRingProps
   children: any
 }
 
