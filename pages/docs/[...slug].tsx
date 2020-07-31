@@ -1,27 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import {
-  DocsLayout,
-  MarkdownContent,
-  DocsTextWrapper,
-  Wrapper,
-  Footer,
-} from 'components/layout'
-import {
-  DocsNav,
-  NavToggle,
-  DocsHeaderNav,
-  Overlay,
-  DocsPagination,
-  LastEdited,
-} from 'components/ui'
-import { InlineTextareaField, useInlineForm } from 'react-tinacms-inline'
-import { TinaIcon } from 'components/logo'
+import { DocsLayout, MarkdownContent } from 'components/layout'
+import { NavToggle, DocsPagination, LastEdited } from 'components/ui'
+import { InlineTextareaField } from 'react-tinacms-inline'
 import { useGithubMarkdownForm } from 'react-tinacms-github'
 import { getDocProps } from 'utils/docs/getDocProps'
-import { OpenAuthoringSiteForm } from 'components/layout/OpenAuthoringSiteForm'
+import { InlineGithubForm } from 'components/layout/InlineGithubForm'
 import { GithubError } from 'next-tinacms-github'
 import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { usePlugin } from 'tinacms'
@@ -29,14 +15,11 @@ import Toc from '../../components/toc'
 import { createTocListener } from 'utils'
 import { useLastEdited } from 'utils/useLastEdited'
 
-
 function DocTemplate(props) {
   // Registers Tina Form
 
-
   const [data, form] = useGithubMarkdownForm(props.file, formOptions)
 
-  const [open, setOpen] = useState(false)
   const isBrowser = typeof window !== `undefined`
   const contentRef = React.useRef<HTMLDivElement>(null)
   const frontmatter = data.frontmatter
@@ -45,7 +28,6 @@ function DocTemplate(props) {
   const tocItems = props.tocItems
   const [activeIds, setActiveIds] = useState([])
 
-  
   React.useEffect(() => {
     if (!isBrowser || !contentRef.current) {
       return
@@ -57,69 +39,54 @@ function DocTemplate(props) {
   }, [contentRef, data])
 
   usePlugin(form)
-
   useLastEdited(form)
-  
+
   return (
-    <OpenAuthoringSiteForm
-      form={form}
-      path={props.file.fileRelativePath}
-      preview={props.preview}
-    >
-      <DocsLayout isEditing={props.preview}>
-        <NextSeo
-          title={frontmatter.title}
-          titleTemplate={'%s | TinaCMS Docs'}
-          description={excerpt}
-          openGraph={{
-            title: frontmatter.title,
-            description: excerpt,
-            images: [
-              {
-                url:
-                  'https://res.cloudinary.com/forestry-demo/image/upload/l_text:tuner-regular.ttf_90_center:' +
-                  encodeURIComponent(frontmatter.title) +
-                  ',g_center,x_0,y_50,w_850,c_fit,co_rgb:EC4815/v1581087220/TinaCMS/tinacms-social-empty-docs.png',
-                width: 1200,
-                height: 628,
-                alt: frontmatter.title + ` | TinaCMS Docs`,
-              },
-            ],
-          }}
-        />
-        <DocsNavToggle open={open} onClick={() => setOpen(!open)} />
-        <DocsMobileTinaIcon docs />
-        <DocsNav open={open} navItems={props.docsNav} />
-        <DocsContent>
-          <DocsHeaderNav color={'light'} open={open} />
-          <DocsTextWrapper>
-            <DocsGrid>
-              <DocGridHeader>
-                <DocsPageTitle>
-                  <InlineTextareaField name="frontmatter.title" />
-                </DocsPageTitle>
-              </DocGridHeader>
-              <DocGridToc>
-                <Toc tocItems={tocItems} activeIds={activeIds} />
-              </DocGridToc>
-              <DocGridContent ref={contentRef}>
-                <hr />
-                <InlineWysiwyg name="markdownBody">
-                  <MarkdownContent escapeHtml={false} content={markdownBody} />
-                </InlineWysiwyg>
-                <LastEdited date={frontmatter.last_edited} />
-                <DocsPagination
-                  prevPage={props.prevPage}
-                  nextPage={props.nextPage}
-                />
-              </DocGridContent>
-            </DocsGrid>
-          </DocsTextWrapper>
-          <Footer light preview={props.preview} />
-        </DocsContent>
-        <Overlay open={open} onClick={() => setOpen(false)} />
+    <InlineGithubForm form={form}>
+      <NextSeo
+        title={frontmatter.title}
+        titleTemplate={'%s | TinaCMS Docs'}
+        description={excerpt}
+        openGraph={{
+          title: frontmatter.title,
+          description: excerpt,
+          images: [
+            {
+              url:
+                'https://res.cloudinary.com/forestry-demo/image/upload/l_text:tuner-regular.ttf_90_center:' +
+                encodeURIComponent(frontmatter.title) +
+                ',g_center,x_0,y_50,w_850,c_fit,co_rgb:EC4815/v1581087220/TinaCMS/tinacms-social-empty-docs.png',
+              width: 1200,
+              height: 628,
+              alt: frontmatter.title + ` | TinaCMS Docs`,
+            },
+          ],
+        }}
+      />
+      <DocsLayout navItems={props.docsNav}>
+        <DocsGrid>
+          <DocGridHeader>
+            <DocsPageTitle>
+              <InlineTextareaField name="frontmatter.title" />
+            </DocsPageTitle>
+          </DocGridHeader>
+          <DocGridToc>
+            <Toc tocItems={tocItems} activeIds={activeIds} />
+          </DocGridToc>
+          <DocGridContent ref={contentRef}>
+            <hr />
+            <InlineWysiwyg name="markdownBody">
+              <MarkdownContent escapeHtml={false} content={markdownBody} />
+            </InlineWysiwyg>
+            <LastEdited date={frontmatter.last_edited} />
+            <DocsPagination
+              prevPage={props.prevPage}
+              nextPage={props.nextPage}
+            />
+          </DocGridContent>
+        </DocsGrid>
       </DocsLayout>
-    </OpenAuthoringSiteForm>
+    </InlineGithubForm>
   )
 }
 
@@ -281,25 +248,4 @@ export const DocsNavToggle = styled(NavToggle)`
   @media (min-width: 999px) {
     display: none;
   }
-`
-
-export const DocsMobileTinaIcon = styled(TinaIcon)`
-  position: relative;
-  display: block;
-  padding: 1rem 0;
-
-  h1 {
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  @media (min-width: 1000px) {
-    display: none;
-  }
-`
-
-export const DocsContent = styled.div`
-  grid-area: content;
 `

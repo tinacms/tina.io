@@ -13,16 +13,17 @@ import {
 import { InlineTextareaField } from 'react-tinacms-inline'
 import { useGithubMarkdownForm } from 'react-tinacms-github'
 import { fileToUrl } from 'utils/urls'
-import { OpenAuthoringSiteForm } from 'components/layout/OpenAuthoringSiteForm'
+import { InlineGithubForm } from 'components/layout/InlineGithubForm'
 const fg = require('fast-glob')
 import { Button } from 'components/ui/Button'
 import Error from 'next/error'
 import { getMarkdownPreviewProps } from 'utils/getMarkdownFile'
 import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { usePlugin, useCMS } from 'tinacms'
-import Toc from '../../components/toc'
+import { useEffect } from 'react'
 import { useLastEdited } from 'utils/useLastEdited'
 import { LastEdited } from 'components/ui'
+
 function BlogTemplate({ file, siteConfig, preview }) {
   // fallback workaround
   if (!file) {
@@ -33,20 +34,15 @@ function BlogTemplate({ file, siteConfig, preview }) {
   const [data, form] = useGithubMarkdownForm(file, formOptions)
 
   usePlugin(form)
+  useLastEdited(form)
 
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
   const excerpt = data.excerpt
 
-  useLastEdited(form)
-
   return (
-    <OpenAuthoringSiteForm
-      form={form}
-      path={file.fileRelativePath}
-      preview={preview}
-    >
-      <Layout preview={preview}>
+    <InlineGithubForm form={form}>
+      <Layout>
         <NextSeo
           title={frontmatter.title}
           titleTemplate={'%s | ' + siteConfig.title + ' Blog'}
@@ -91,7 +87,7 @@ function BlogTemplate({ file, siteConfig, preview }) {
           </DocsTextWrapper>
         </BlogWrapper>
       </Layout>
-    </OpenAuthoringSiteForm>
+    </InlineGithubForm>
   )
 }
 

@@ -4,35 +4,19 @@ import { GetStaticProps, GetStaticPaths } from 'next'
 import { GithubError } from 'next-tinacms-github'
 import fs from 'fs'
 
+import { DocsLayout, MarkdownContent } from 'components/layout'
+import { DocsPagination } from 'components/ui'
 // @ts-ignore
 const path = __non_webpack_require__('path')
 
-import {
-  DocsLayout,
-  Wrapper,
-  DocsTextWrapper,
-  Footer,
-  MarkdownContent,
-} from 'components/layout'
-import { DocsNav, DocsHeaderNav, Overlay, DocsPagination } from 'components/ui'
 import { getPackageProps } from '../../utils/docs/getPackageProps'
-import {
-  DocsNavToggle,
-  DocsMobileTinaIcon,
-  DocsContent,
-  DocsGrid,
-  DocGridHeader,
-  DocsPageTitle,
-  DocGridToc,
-  DocGridContent,
-} from 'pages/docs/[...slug]'
+import { DocsGrid, DocGridToc, DocGridContent } from 'pages/docs/[...slug]'
 import { createTocListener } from 'utils'
 import Toc from 'components/toc'
 
 export default function Packages(props) {
   const excerpt = 'A package for Tinacms.'
 
-  const [open, setOpen] = useState(false)
   const contentRef = React.useRef<HTMLDivElement>(null)
   const isBrowser = typeof window !== `undefined`
   const tocItems = props.tocItems
@@ -49,7 +33,7 @@ export default function Packages(props) {
   }, [contentRef])
 
   return (
-    <DocsLayout isEditing={false}>
+    <>
       <NextSeo
         title={props.name}
         titleTemplate={'%s | TinaCMS Docs'}
@@ -70,30 +54,21 @@ export default function Packages(props) {
           ],
         }}
       />
-      <DocsNavToggle open={open} onClick={() => setOpen(!open)} />
-      <DocsMobileTinaIcon />
-      <DocsNav open={open} navItems={props.docsNav} />
-      <DocsContent>
-        <DocsHeaderNav color={'light'} open={open} />
-        <DocsTextWrapper>
-          <DocsGrid>
-            <DocGridToc>
-              <Toc tocItems={tocItems} activeIds={activeIds} />
-            </DocGridToc>
-            <DocGridContent ref={contentRef}>
-              <MarkdownContent escapeHtml={false} content={props.content} />
-              <DocsPagination
-                prevPage={props.prevPage}
-                nextPage={props.nextPage}
-              />
-            </DocGridContent>
-          </DocsGrid>
-        </DocsTextWrapper>
-        <Footer light preview={false} />
-      </DocsContent>
-
-      <Overlay open={open} onClick={() => setOpen(false)} />
-    </DocsLayout>
+      <DocsLayout navItems={props.docsNav}>
+        <DocsGrid>
+          <DocGridToc>
+            <Toc tocItems={tocItems} activeIds={activeIds} />
+          </DocGridToc>
+          <DocGridContent ref={contentRef}>
+            <MarkdownContent escapeHtml={false} content={props.content} />
+            <DocsPagination
+              prevPage={props.prevPage}
+              nextPage={props.nextPage}
+            />
+          </DocGridContent>
+        </DocsGrid>
+      </DocsLayout>
+    </>
   )
 }
 

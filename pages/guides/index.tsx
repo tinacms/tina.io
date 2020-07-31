@@ -1,21 +1,10 @@
 import { getGuideNavProps } from 'utils/guide_helpers'
 import { readMarkdownFile } from 'utils/getMarkdownFile'
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { useRouter } from 'next/router'
-import {
-  DocsLayout,
-  DocsTextWrapper,
-  Wrapper,
-  MarkdownContent,
-  Footer,
-} from 'components/layout'
+import { DocsLayout, Wrapper, MarkdownContent } from 'components/layout'
 import { NextSeo } from 'next-seo'
-import {
-  DocsNavToggle,
-  DocsMobileTinaIcon,
-  DocsContent,
-} from '../docs/[...slug]'
-import { DocsNav, Overlay, DynamicLink, DocsHeaderNav } from 'components/ui'
+import { DynamicLink } from 'components/ui'
 import { CardGrid, Card } from 'components/ui/Cards'
 import RightArrowSvg from '../../public/svg/right-arrow.svg'
 import styled from 'styled-components'
@@ -54,7 +43,7 @@ const GuideTemplate = props => {
     : 'TinaCMS Guides'
 
   return (
-    <DocsLayout isEditing={props.editMode}>
+    <>
       <NextSeo
         title={frontmatter.title}
         titleTemplate={'%s | TinaCMS Docs'}
@@ -75,26 +64,18 @@ const GuideTemplate = props => {
           ],
         }}
       />
-      <DocsNavToggle open={open} onClick={() => setOpen(!open)} />
-      <DocsMobileTinaIcon docs />
-      <DocsNav open={open} navItems={navData} />
-      <DocsContent>
-        <DocsHeaderNav color={'light'} open={open} />
-        <DocsTextWrapper>
-          <GuideWrapper narrow>
-            <h1>{frontmatter.title}</h1>
-            <hr />
-            <MarkdownContent escapeHtml={false} content={markdownBody} />
-            {navData &&
-              navData.map(section => (
-                <GuideSection key={section.id} {...section} />
-              ))}
-          </GuideWrapper>
-        </DocsTextWrapper>
-        <Footer light editMode={props.editMode} />
-      </DocsContent>
-      <Overlay open={open} onClick={() => setOpen(false)} />
-    </DocsLayout>
+      <DocsLayout navItems={navData}>
+        <GuideWrapper narrow>
+          <h1>{frontmatter.title}</h1>
+          <hr />
+          <MarkdownContent escapeHtml={false} content={markdownBody} />
+          {navData &&
+            navData.map(section => (
+              <GuideSection key={section.id} {...section} />
+            ))}
+        </GuideWrapper>
+      </DocsLayout>
+    </>
   )
 }
 

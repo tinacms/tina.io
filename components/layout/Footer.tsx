@@ -171,7 +171,7 @@ const FooterDivider = styled.span`
   }
 `
 
-export const Footer = styled(({ light: boolean, preview, ...styleProps }) => {
+export const Footer = styled(({ light, ...styleProps }) => {
   return (
     <div {...styleProps}>
       <FooterTop>
