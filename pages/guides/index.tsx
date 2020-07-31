@@ -122,6 +122,8 @@ export default GuideTemplate
 export const getStaticProps = async () => {
   // @ts-ignore
   const path = __non_webpack_require__('path')
+  // the following line will cause all content files to be available in a serverless context
+  path.resolve(process.cwd(), './content/')
   return {
     props: {
       slug: '/guides',
