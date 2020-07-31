@@ -105,7 +105,7 @@ export function Page(props) {
 }
 ```
 
-## Using pre-configured Inline Fields
+## Using Pre-configured Inline Fields
 
 When using `InlineField`, you can create a custom _Inline Field_. This is helpful when you need precise control over rendering or input functionality.
 
@@ -146,7 +146,58 @@ export function Page(props) {
 }
 ```
 
-### Extending Inline Field Styles
+## Creating Custom Inline Fields
+
+There may be cases where you want to create your own Inline Fields. Below is an example of the `Page` component used above, but refactored to define its own custom Inline Fields.
+
+```js
+import * as React from React
+import ReactMarkdown from 'react-markdown'
+// import `useCMS`
+import { useForm, useCMS } from 'tinacms'
+import { Wysiwyg } from 'react-tinacms-editor'
+import { InlineForm, InlineField } from 'react-tinacms-inline'
+
+export function Page(props) {
+  // Access the CMS object
+  const cms = useCMS()
+  const [, form] = useForm(props.data)
+
+  return (
+    <InlineForm form={form}>
+      <main>
+      {/**
+      * Use `InlineField` and the render props
+      * pattern to create custom field inputs
+      * that render when the cms is enabled
+      */}
+        <InlineField name="title">
+          {({ input, status }) => {
+            if (cms.enabled) {
+              return <input type="text" {...input} />
+            }
+            return <h1>{input.value}</h1>
+          }}
+        </InlineField>
+        <InlineField name="markdownContent">
+          {({ input, status }) => {
+            if (cms.enabled) {
+              return <Wysiwyg input={input} />
+            }
+            return <ReactMarkdown source={input.value} />
+          }}
+        </InlineField>
+      </main>
+    </InlineForm>
+  )
+}
+```
+
+`InlineField` uses [render props](https://reactjs.org/docs/render-props.html) to pass the form state and other props to its children. Based on `cms.enabled`, you can conditionally render editing inputs or the original element / value.
+
+> If you have an idea for an Inline Field plugin, consider contributing! [Make an issue](https://github.com/tinacms/tinacms/issues) with your suggestion or reach out on [the forum](https://community.tinacms.org/) for support.
+
+## Extending Inline Field Styles
 
 The Inline Fields are meant to have minimal styles. But there may be situations where you'll want to override the base styles. This is made possible via [Styled Components](https://styled-components.com/docs/basics#extending-styles).
 

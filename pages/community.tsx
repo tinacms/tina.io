@@ -18,7 +18,7 @@ import TwitterIconSvg from '../public/svg/twitter-icon.svg'
 import GithubIconSvg from '../public/svg/github-icon.svg'
 import ForumIconSvg from '../public/svg/forum-icon.svg'
 import { NextSeo } from 'next-seo'
-import { OpenAuthoringSiteForm } from 'components/layout/OpenAuthoringSiteForm'
+import { InlineGithubForm } from 'components/layout/InlineGithubForm'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
 import { useGithubJsonForm } from 'react-tinacms-github'
 import { InlineWysiwyg } from 'components/inline-wysiwyg'
@@ -28,12 +28,8 @@ function CommunityPage({ file: community, metadata, preview }) {
   const [data, form] = useGithubJsonForm(community, formOptions)
 
   return (
-    <OpenAuthoringSiteForm
-      form={form}
-      path={community.fileRelativePath}
-      preview={preview}
-    >
-      <Layout preview={preview}>
+    <InlineGithubForm form={form}>
+      <Layout>
         <NextSeo
           title={data.title}
           description={data.description}
@@ -122,7 +118,7 @@ function CommunityPage({ file: community, metadata, preview }) {
           </FormSection>
         </RichTextWrapper>
       </Layout>
-    </OpenAuthoringSiteForm>
+    </InlineGithubForm>
   )
 }
 

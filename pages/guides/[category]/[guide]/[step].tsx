@@ -1,20 +1,10 @@
 import * as React from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { readFile } from 'utils/readFile'
 import { getMarkdownPreviewProps } from 'utils/getMarkdownFile'
-import {
-  DocsLayout,
-  DocsTextWrapper,
-  Wrapper,
-  MarkdownContent,
-  Footer,
-} from 'components/layout'
+import { DocsLayout, MarkdownContent } from 'components/layout'
 import { NextSeo } from 'next-seo'
-import { DocsNav, DocsPagination, Overlay, DocsHeaderNav } from 'components/ui'
+import { DocsPagination, LastEdited } from 'components/ui'
 import {
-  DocsNavToggle,
-  DocsMobileTinaIcon,
-  DocsContent,
   DocsGrid,
   DocGridHeader,
   DocsPageTitle,
@@ -24,19 +14,18 @@ import {
 import { useRouter } from 'next/router'
 import { getGuideNavProps } from 'utils/guide_helpers'
 import { useMemo } from 'react'
-import { OpenAuthoringSiteForm } from 'components/layout/OpenAuthoringSiteForm'
 import { usePlugin, useFormScreenPlugin } from 'tinacms'
 import { InlineTextareaField } from 'react-tinacms-inline'
 import { useGithubMarkdownForm, useGithubJsonForm } from 'react-tinacms-github'
 import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
 import { MarkdownCreatorPlugin } from 'utils/plugins'
-import { fileToUrl, createTocListener, formatDate } from 'utils'
+import { fileToUrl, createTocListener } from 'utils'
 import Toc from '../../../../components/toc'
-import fs from 'fs'
+import { useLastEdited } from 'utils/useLastEdited'
+import { InlineGithubForm } from 'components/layout/InlineGithubForm'
 
 export default function GuideTemplate(props) {
-  const [open, setOpen] = React.useState(false)
   const isBrowser = typeof window !== `undefined`
   const contentRef = React.useRef<HTMLDivElement>(null)
   const tocItems = props.tocItems
@@ -122,6 +111,7 @@ export default function GuideTemplate(props) {
 
   usePlugin(stepForm)
   useFormScreenPlugin(guideForm)
+  useLastEdited(stepForm)
 
   const guideTitle = guide?.title || 'TinaCMS Guides'
   const guideNav = useGuideNav(guide, props.allGuides)
@@ -129,62 +119,48 @@ export default function GuideTemplate(props) {
   const excerpt = props.markdownFile.data.excerpt
 
   return (
-    <OpenAuthoringSiteForm
-      form={stepForm}
-      path={props.markdownFile.fileRelativePath}
-      preview={props.preview}
-    >
-      <DocsLayout isEditing={props.editMode}>
-        <NextSeo
-          title={frontmatter.title}
-          titleTemplate={'%s | TinaCMS Docs'}
-          description={excerpt}
-          openGraph={{
-            title: frontmatter.title,
-            description: excerpt,
-            images: [
-              {
-                url:
-                  'https://res.cloudinary.com/forestry-demo/image/upload/l_text:tuner-regular.ttf_90_center:' +
-                  encodeURIComponent(guideTitle) +
-                  ',g_center,x_0,y_50,w_850,c_fit,co_rgb:EC4815/v1581087220/TinaCMS/tinacms-social-empty-docs.png',
-                width: 1200,
-                height: 628,
-                alt: guideTitle,
-              },
-            ],
-          }}
-        />
-        <DocsNavToggle open={open} onClick={() => setOpen(!open)} />
-        <DocsMobileTinaIcon docs />
-        <DocsNav open={open} navItems={guideNav} />
-        <DocsContent>
-          <DocsHeaderNav color={'light'} open={open} />
-          <DocsTextWrapper>
-            <DocsGrid>
-              <DocGridHeader>
-                <DocsPageTitle>
-                  <InlineTextareaField name="frontmatter.title" />
-                </DocsPageTitle>
-              </DocGridHeader>
-              <DocGridToc>
-                <Toc tocItems={tocItems} activeIds={activeIds} />
-              </DocGridToc>
-              <DocGridContent ref={contentRef}>
-                <hr />
-                <InlineWysiwyg name="markdownBody">
-                  Last Modified: {props.lastModified}
-                  <MarkdownContent escapeHtml={false} content={markdownBody} />
-                </InlineWysiwyg>
-                <DocsPagination prevPage={prev} nextPage={next} />
-              </DocGridContent>
-            </DocsGrid>
-          </DocsTextWrapper>
-          <Footer light editMode={props.editMode} />
-        </DocsContent>
-        <Overlay open={open} onClick={() => setOpen(false)} />
+    <InlineGithubForm form={stepForm}>
+      <NextSeo
+        title={frontmatter.title}
+        titleTemplate={'%s | TinaCMS Docs'}
+        description={excerpt}
+        openGraph={{
+          title: frontmatter.title,
+          description: excerpt,
+          images: [
+            {
+              url:
+                'https://res.cloudinary.com/forestry-demo/image/upload/l_text:tuner-regular.ttf_90_center:' +
+                encodeURIComponent(guideTitle) +
+                ',g_center,x_0,y_50,w_850,c_fit,co_rgb:EC4815/v1581087220/TinaCMS/tinacms-social-empty-docs.png',
+              width: 1200,
+              height: 628,
+              alt: guideTitle,
+            },
+          ],
+        }}
+      />
+      <DocsLayout navItems={guideNav}>
+        <DocsGrid>
+          <DocGridHeader>
+            <DocsPageTitle>
+              <InlineTextareaField name="frontmatter.title" />
+            </DocsPageTitle>
+          </DocGridHeader>
+          <DocGridToc>
+            <Toc tocItems={tocItems} activeIds={activeIds} />
+          </DocGridToc>
+          <DocGridContent ref={contentRef}>
+            <hr />
+            <InlineWysiwyg name="markdownBody">
+              <MarkdownContent escapeHtml={false} content={markdownBody} />
+            </InlineWysiwyg>
+            <LastEdited date={frontmatter.last_edited} />
+            <DocsPagination prevPage={prev} nextPage={next} />
+          </DocGridContent>
+        </DocsGrid>
       </DocsLayout>
-    </OpenAuthoringSiteForm>
+    </InlineGithubForm>
   )
 }
 
@@ -212,13 +188,9 @@ export const getStaticProps: GetStaticProps = async function(ctx) {
     ctx.preview,
     ctx.previewData
   )
-  
-  const stats = fs.statSync(`${pathToGuide}/${step}.md`)
-  const lastModified = formatDate(stats.mtime)
-  
+
   return {
     props: {
-      lastModified,
       preview,
       currentGuide: guideMeta.data,
       guideMeta,

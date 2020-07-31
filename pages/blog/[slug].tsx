@@ -13,17 +13,18 @@ import {
 import { InlineTextareaField } from 'react-tinacms-inline'
 import { useGithubMarkdownForm } from 'react-tinacms-github'
 import { fileToUrl } from 'utils/urls'
-import { OpenAuthoringSiteForm } from 'components/layout/OpenAuthoringSiteForm'
+import { InlineGithubForm } from 'components/layout/InlineGithubForm'
 const fg = require('fast-glob')
 import { Button } from 'components/ui/Button'
 import Error from 'next/error'
 import { getMarkdownPreviewProps } from 'utils/getMarkdownFile'
 import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { usePlugin, useCMS } from 'tinacms'
-import Toc from '../../components/toc'
-import fs from 'fs'
-import path from 'path'
-function BlogTemplate({ lastModified, file, siteConfig, preview }) {
+import { useEffect } from 'react'
+import { useLastEdited } from 'utils/useLastEdited'
+import { LastEdited } from 'components/ui'
+
+function BlogTemplate({ file, siteConfig, preview }) {
   // fallback workaround
   if (!file) {
     return <Error statusCode={404} />
@@ -33,18 +34,15 @@ function BlogTemplate({ lastModified, file, siteConfig, preview }) {
   const [data, form] = useGithubMarkdownForm(file, formOptions)
 
   usePlugin(form)
+  useLastEdited(form)
 
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
   const excerpt = data.excerpt
 
   return (
-    <OpenAuthoringSiteForm
-      form={form}
-      path={file.fileRelativePath}
-      preview={preview}
-    >
-      <Layout preview={preview}>
+    <InlineGithubForm form={form}>
+      <Layout>
         <NextSeo
           title={frontmatter.title}
           titleTemplate={'%s | ' + siteConfig.title + ' Blog'}
@@ -83,13 +81,13 @@ function BlogTemplate({ lastModified, file, siteConfig, preview }) {
               <EditLink />
             </BlogMeta>
             <InlineWysiwyg name="markdownBody">
-              Last Modified: {lastModified}
               <MarkdownContent escapeHtml={false} content={markdownBody} />
             </InlineWysiwyg>
+            <LastEdited date={frontmatter.last_edited} />
           </DocsTextWrapper>
         </BlogWrapper>
       </Layout>
-    </OpenAuthoringSiteForm>
+    </InlineGithubForm>
   )
 }
 
@@ -119,13 +117,8 @@ export const getStaticProps: GetStaticProps = async function({
     return { props: {} } // will render the 404 error
   }
 
-  
-  const stats = fs.statSync(path.resolve(`./content/blog/${slug}.md`))
-  const lastModified = formatDate(stats.mtime)
-
   return {
     props: {
-      lastModified,
       ...previewProps.props,
       siteConfig: { title: siteConfig.title },
     },

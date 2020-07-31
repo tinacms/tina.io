@@ -14,56 +14,48 @@ import {
   RichTextWrapper,
 } from 'components/layout'
 import { DynamicLink, BlogPagination } from 'components/ui'
-import { OpenAuthoringSiteForm } from 'components/layout/OpenAuthoringSiteForm'
+import { InlineGithubForm } from 'components/layout/InlineGithubForm'
 import { useForm } from 'tinacms'
 import { getMarkdownPreviewProps } from 'utils/getMarkdownFile'
 import { PreviewData } from 'next-tinacms-github'
 const Index = props => {
   const { currentPage, numPages } = props
-  const [, form] = useForm({
-    id: 'blog-list',
-    label: 'Blog',
-    fields: [],
-    onSubmit: () => {},
-  })
 
   return (
-    <OpenAuthoringSiteForm preview={props.preview} form={form} path={''}>
-      <Layout preview={props.preview}>
-        <NextSeo
-          title="Blog"
-          openGraph={{
-            title: 'Blog',
-          }}
-        />
-        <Hero mini></Hero>
-        <BlogWrapper>
-          {props.posts.map(post => (
-            <DynamicLink
-              key={post.data.slug}
-              href={`/blog/${post.data.slug}`}
-              passHref
-            >
-              <BlogExcerpt>
-                <BlogTitle>{post.data.title}</BlogTitle>
-                <RichTextWrapper>
-                  <BlogMeta>
-                    <MetaBit>
-                      <span>By</span> {post.data.author}
-                    </MetaBit>
-                    <MetaBit>{formatDate(post.data.date)}</MetaBit>
-                  </BlogMeta>
-                  <MarkdownContent skipHtml={true} content={post.content} />
-                  <hr />
-                </RichTextWrapper>
-                <br />
-              </BlogExcerpt>
-            </DynamicLink>
-          ))}
-          <BlogPagination currentPage={currentPage} numPages={numPages} />
-        </BlogWrapper>
-      </Layout>
-    </OpenAuthoringSiteForm>
+    <Layout>
+      <NextSeo
+        title="Blog"
+        openGraph={{
+          title: 'Blog',
+        }}
+      />
+      <Hero mini></Hero>
+      <BlogWrapper>
+        {props.posts.map(post => (
+          <DynamicLink
+            key={post.data.slug}
+            href={`/blog/${post.data.slug}`}
+            passHref
+          >
+            <BlogExcerpt>
+              <BlogTitle>{post.data.title}</BlogTitle>
+              <RichTextWrapper>
+                <BlogMeta>
+                  <MetaBit>
+                    <span>By</span> {post.data.author}
+                  </MetaBit>
+                  <MetaBit>{formatDate(post.data.date)}</MetaBit>
+                </BlogMeta>
+                <MarkdownContent skipHtml={true} content={post.content} />
+                <hr />
+              </RichTextWrapper>
+              <br />
+            </BlogExcerpt>
+          </DynamicLink>
+        ))}
+        <BlogPagination currentPage={currentPage} numPages={numPages} />
+      </BlogWrapper>
+    </Layout>
   )
 }
 
