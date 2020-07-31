@@ -50,9 +50,11 @@ function DocTemplate(props) {
                 .map(release => {
                   console.log(release)
                   return (
-                    <Link href="/docs/[...slug]" as={release.slug}>
-                      <li>{release.title}</li>
-                    </Link>
+                    <li>
+                      <Link href="/docs/[...slug]" as={release.slug}>
+                        {release.title}
+                      </Link>
+                    </li>
                   )
                 })}
             </ul>
