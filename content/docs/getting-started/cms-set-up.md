@@ -1,5 +1,5 @@
 ---
-title: Set-up the CMS
+title: Set Up the CMS
 prev: /docs/getting-started/introduction
 next: /docs/getting-started/edit-content
 ---
