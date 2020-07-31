@@ -79,10 +79,13 @@ function DocTemplate(props) {
               <MarkdownContent escapeHtml={false} content={markdownBody} />
             </InlineWysiwyg>
             <LastEdited date={frontmatter.last_edited} />
-            <DocsPagination
-              prevPage={props.prevPage}
-              nextPage={props.nextPage}
-            />
+            {(props.prevPage?.slug !== null ||
+              props.nextPage?.slug !== null) && (
+              <DocsPagination
+                prevPage={props.prevPage}
+                nextPage={props.nextPage}
+              />
+            )}
           </DocGridContent>
         </DocsGrid>
       </DocsLayout>
