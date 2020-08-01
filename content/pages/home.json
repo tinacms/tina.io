@@ -38,7 +38,7 @@
       },
       {
         "_template": "setup_point",
-        "step": "Open the sidebar 🤩, edit your site and watch the content updating in real-time"
+        "step": "Edit your site inline 🤩 Click on an area, then start typing!"
       }
     ],
     "code_ex": "/img/terminal.png"
