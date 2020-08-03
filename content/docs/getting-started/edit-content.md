@@ -4,7 +4,7 @@ prev: /docs/getting-started/cms-set-up
 next: /docs/getting-started/backends
 ---
 
-The purpose of a CMS is to allow editors to change content. [Forms](/docs/plugins/forms) are a fundamental part of this — providing the editing interface to edit data. In this step, we will **create and register a form to edit data** rendered on this page.
+The purpose of a CMS is to allow editors to change content. [Forms](/docs/plugins/forms) are a fundamental part of this as they define the editing interface for your content. In this step, we will **create and register a form to edit data** rendered on this page.
 
 ## Create & Register a Form
 
