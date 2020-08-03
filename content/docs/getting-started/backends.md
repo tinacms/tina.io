@@ -163,7 +163,7 @@ We’d like to provide developers with control and flexibility in all these aspe
 - Configure more complex fields, such as [Blocks](/docs/plugins/fields/blocks) or the [Markdown Wysiwyg](docs/plugins/fields/markdown)
 - Create new data files with [Content Creator Plugins](/docs/plugins/content-creators)
 - Add Tina to a [Next.js Site](/guides/nextjs/adding-tina/overview)
-- Adding Tina to a [Gatsby Site](guides/gatsby/adding-tina/project-setup)
+- Add Tina to a [Gatsby Site](guides/gatsby/adding-tina/project-setup)
 
 Follow [Tina on Twitter](https://twitter.com/tina_cms) 🦙! If you're stoked on this project, please give us a 🌟 on the [GitHub repository](https://github.com/tinacms/tinacms).
 
