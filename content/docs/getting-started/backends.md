@@ -154,7 +154,7 @@ Please refer to the [guides](/guides) for in-depth information on setting up var
 
 Tina is a toolkit to build your own custom CMS. It’s not a one-size-fits-all approach like a conventional CMS. We think the main aspects to consider when building a CMS are: constructing the editing interface, storing and managing data, and then integrating with various frameworks.
 
-We’d like to provide developers with control and flexibility in all these aspects related to building a custom CMS. Right now, we’re building from the ground up, trying to make a solid foundation with React and Git-oriented workflows, but that’s not the end of the story in terms of what’s possible with Tina.
+We’d like to provide developers with control and flexibility in all these aspects related to building a custom CMS. Right now, we’re building from the ground up, trying to make a solid foundation with React and Git-oriented workflows, but that’s not the end of the story for Tina.
 
 **Avenues to keep learning:**
 
