@@ -53,11 +53,13 @@ Let's add some Inline Fields using the previous example:
 
 ```diff
 import * as React from React
-import { useForm } from 'tinacms'
+import { useForm, usePlugin } from 'tinacms'
 +import { InlineForm, InlineTextField } from 'react-tinacms-inline'
 
 export function Page(props) {
   const [modifiedValues, form] = useForm(props.data)
+
+  usePlugin(form)
 
   return (
     <InlineForm form={form}>
@@ -112,13 +114,14 @@ Below is an example of the `Page` component used in previous examples, but refac
 ```js
 import * as React from React
 // import `useCMS`
-import { useForm, useCMS } from 'tinacms'
+import { useForm, useCMS, usePlugin } from 'tinacms'
 import { InlineForm, InlineField } from 'react-tinacms-inline'
 
 export function Page(props) {
   // Access the CMS object
   const cms = useCMS()
   const [, form] = useForm(props.data)
+  usePlugin(form)
 
   return (
     <InlineForm form={form}>
