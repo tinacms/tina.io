@@ -71,13 +71,13 @@ This example assumes your data looks something like this:
 
 ## Options
 
-| Key             | Description                                                                                                                                                                                                                                                                                                                        |
-| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`          | The path to some value in the data being edited. If no value is provided, the child fields will reference the root of the source file.                                                                                                                                                                                             |
-| `fields`        | An array of [Tina Fields](/docs/plugins/fields) to display in a settings modal form.                                                                                                                                                                                                                                               |
-| `insetControls` | A boolean to denote whether the group controls display within or outside the group.                                                                                                                                                                                                                                                |
-| `focusRing`     | Either an object to style the focus ring or `false`, which hides the focus ring entirely. For styles, `offset` (in pixels) controls the distance from the ring to the edge of the group; `borderRadius`(in pixels) controls the [rounding](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius) edge of the focus ring. |
-| `children`      | Any child elements.                                                                                                                                                                                                                                                                                                                |
+| Key             | Description                                                                                                                                                                                                                                                                                                                                                                                                     |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`          | The path to some value in the data being edited. If no value is provided, the child fields will reference the root of the source file.                                                                                                                                                                                                                                                                          |
+| `fields`        | An array of [Tina Fields](/docs/plugins/fields) to display in a settings modal form.                                                                                                                                                                                                                                                                                                                            |
+| `insetControls` | A boolean to denote whether the group controls display within or outside the group.                                                                                                                                                                                                                                                                                                                             |
+| `focusRing`     | Either an object to style the focus ring or a boolean to show/hide the focus ring. Defaults to `true` which displays the focus ring with default styles. For style options, `offset` (in pixels) sets the distance from the ring to the edge of the component, and `borderRadius` (in pixels) controls the [rounded corners](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius) of the focus ring. |
+| `children`      | Any child elements.                                                                                                                                                                                                                                                                                                                                                                                             |
 
 ## Interface
 
@@ -86,7 +86,7 @@ interface InlineGroupProps {
   name: string
   fields: TinaField[]
   insetControls?: boolean
-  focusRing?: false | FocusRingProps
+  focusRing?: boolean | FocusRingProps
   children?: any
 }
 

@@ -83,8 +83,8 @@ export default function MyApp({ Component, pageProps }) {
   const cms = useMemo(
     () =>
       new TinaCMS({
-        toolbar: true,
         enabled: true,
+        toolbar: true,
         apis: {
           strapi: new StrapiClient(process.env.STRAPI_URL),
         },

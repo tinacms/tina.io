@@ -51,13 +51,14 @@ export function Page(props) {
 
 ## Options
 
-| Key           | Description                                                                                  |
-| ------------- | -------------------------------------------------------------------------------------------- |
-| `name`        | The path to some value in the data being edited.                                             |
-| `children`    | Child components to render.                                                                  |
-| `sticky?`     | A boolean determining whether the Wysiwyg Toolbar 'sticks' to the top of the page on scroll. |
-| `format?`     | This value denotes whether Markdown or HTML will be rendered.                                |
-| `imageProps?` | Configures how images in the Wysiwyg are uploaded and rendered.                              |
+| Key           | Description                                                                                                                                                                                                                                                                                                                                                                                                     |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`        | The path to some value in the data being edited.                                                                                                                                                                                                                                                                                                                                                                |
+| `children`    | Child components to render.                                                                                                                                                                                                                                                                                                                                                                                     |
+| `sticky?`     | A boolean determining whether the Wysiwyg Toolbar 'sticks' to the top of the page on scroll.                                                                                                                                                                                                                                                                                                                    |
+| `format?`     | This value denotes whether Markdown or HTML will be rendered.                                                                                                                                                                                                                                                                                                                                                   |
+| `imageProps?` | Configures how images in the Wysiwyg are uploaded and rendered.                                                                                                                                                                                                                                                                                                                                                 |
+| `focusRing`   | Either an object to style the focus ring or a boolean to show/hide the focus ring. Defaults to `true` which displays the focus ring with default styles. For style options, `offset` (in pixels) sets the distance from the ring to the edge of the component, and `borderRadius` (in pixels) controls the [rounded corners](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius) of the focus ring. |
 
 ## Interface
 
@@ -68,11 +69,17 @@ interface InlineWysiwygConfig {
   sticky?: boolean
   format?: 'markdown' | 'html'
   imageProps?: WysiwysImageProps
+  focusRing?: boolean | FocusRingProps
 }
 
 interface WysiwygImageProps {
   upload?: (files: File[]) => Promise<string[]>
   previewUrl?: (url: string) => string
+}
+
+interface FocusRingProps {
+  offset?: number | { x: number; y: number }
+  borderRadius?: number
 }
 ```
 
