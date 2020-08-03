@@ -167,6 +167,6 @@ We’d like to provide developers with control and flexibility in all these aspe
 
 Follow [Tina on Twitter](https://twitter.com/tina_cms) 🦙! If you're stoked on this project, please give us a 🌟 on the [GitHub repository](https://github.com/tinacms/tinacms).
 
-Stay up to date with the latest developments via [Release Notes](/blog) or reach out on [the forum](https://community.tinacms.org/) with ideas or questions. Interested in contributing? Get started via the [project README](https://github.com/tinacms/tinacms).
+Stay up to date with the latest developments via [Release Notes](/docs/releases) or reach out on [the forum](https://community.tinacms.org/) with ideas or questions. Interested in contributing? Get started via the [project README](https://github.com/tinacms/tinacms).
 
 <!--TODO: add more additional reading sections on the pages? for the common questions. Would be great to link to a FAQ LINK -->
