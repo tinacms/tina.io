@@ -120,7 +120,9 @@ import { InlineForm, InlineField } from 'react-tinacms-inline'
 export function Page(props) {
   // Access the CMS object
   const cms = useCMS()
+
   const [, form] = useForm(props.data)
+
   usePlugin(form)
 
   return (
@@ -157,6 +159,8 @@ The Inline Fields are meant to have minimal styles. But there may be situations 
 // An example `InlineTextField` with Extended Styles
 export function Page(props) {
   const [, form] = useForm(props.data)
+
+  usePlugin(form)
 
   return (
     <InlineForm form={form}>
