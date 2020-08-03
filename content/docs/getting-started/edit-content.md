@@ -86,6 +86,8 @@ function PageContent() {
 
 Head back to http://localhost:3000, enable the CMS, open the sidebar and try to update the content. You should now be able to edit the title and body copy on the demo!
 
+![tina-tutorial-edit-data](/img/getting-started/edit-data.png)
+
 ## Form Configuration
 
 To gain a little clarity into how this is working, let's look closer at the `formConfig`.

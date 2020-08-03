@@ -115,7 +115,7 @@ function EditButton() {
 
 Head back to http://localhost:3000, refresh the page and click the 'Edit This Site' button. You should see an 'Edit Icon' in the lower right-hand corner. Click on the icon to open the [_Sidebar_](/docs/ui#toolbar-configuration).
 
---> TODO: add image
+![tinacms-tutorial-cms-setup-step](/img/getting-started/cms-setup-step.png)
 
 You'll notice that the sidebar is empty, that is because there are no forms registered to edit content — let's do that next.
 

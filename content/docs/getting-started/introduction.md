@@ -37,6 +37,6 @@ yarn install
 yarn start
 ```
 
---> TODO: image here
+![tina-cra-tutorial-start](/img/getting-started/tina-tutorial-step1.png)
 
 > If at any point you feel lost or confused during this tutorial, checkout the [Tina Community Forum](https://community.tinacms.org/) to get answers, help, and llama-humor.
