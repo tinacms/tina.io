@@ -4,7 +4,7 @@ prev: /docs/getting-started/introduction
 next: /docs/getting-started/edit-content
 ---
 
-In this step, we will install `tinacms`, create a CMS instance, wrap our app in the `TinaProvider`, and configure the CMS options.
+In this step we will install `tinacms`, create a CMS instance, wrap our app in the `TinaProvider`, and configure the CMS options.
 
 ## Install _tinacms_
 
