@@ -8,7 +8,7 @@ In this step we will install `tinacms`, create a CMS instance, wrap our app in t
 
 ## Install _tinacms_
 
-Install the `tinacms` package. This is the core package that you will need anytime you're using Tina. You'll also need to install `styled-components` to render the editing UI properly.
+Install the `tinacms` package. This is the main package that you will use to create your CMS. You'll also need to install `styled-components` to render the editing UI properly.
 
 ```bash
 yarn add tinacms styled-components
@@ -51,6 +51,8 @@ export default App;
 
 //...
 ```
+
+> _Note:_ After this step, the CMS will still not be accessible. We will enable the CMS in a few steps.
 
 ## Configure the CMS object
 

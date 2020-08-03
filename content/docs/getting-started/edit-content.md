@@ -82,7 +82,13 @@ function PageContent() {
 //...
 ```
 
+## Edit the data
+
+Head back to http://localhost:3000, enable the CMS, open the sidebar and try to update the content. You should now be able to edit the title and body copy on the demo!
+
 ## Form Configuration
+
+To gain a little clarity into how this is working, let's look closer at the `formConfig`.
 
 `useForm` needs a [form configuration object](/docs/plugins/forms#form-configuration) with properties that determine how the form behaves on load and save, what fields are available, and other metadata.
 
@@ -106,9 +112,7 @@ You will be working with fields a lot in Tina. To get more familiar, try to adju
 
 This is a function that runs when the form is saved. Right now it just gives an alert message, but we will use this function later to post changes to a backend.
 
-## Edit the data
-
-Head back to http://localhost:3000, enable the CMS, open the sidebar and try to update the content. You should now be able to edit the title and body copy on the demo!
+---
 
 Next, we'll look at setting up a simple backend to retrieve and save data from a 3rd-party API.
 
