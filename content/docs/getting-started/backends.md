@@ -79,7 +79,7 @@ function PageContent() {
 +       },
 +     })
 +       .then(response => response.json())
-+       .then(json => console.log(json))
++       .then(data => console.log(data))
 +       .catch(e => console.error(e))
 +   },
   }
