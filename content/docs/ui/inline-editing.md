@@ -20,12 +20,11 @@ _Inline Editing_ in Tina refers to editing values directly in the area they appe
 
 The `InlineForm` and `InlineField` components can be used to set up inline editing in your layout. `InlineForm` receives the form object created via one of the [form hooks](/docs/plugins/forms) in order to provide it to the inline editing context.
 
-`InlineForm` should wrap the page or component where you want to add inline editing, turning the _page into the form itself_. Let's add an `InlineForm` to an example from the [form documentation](/docs/plugins/forms):
+`InlineForm` should wrap the page or component where you want to add inline editing, turning the _page into the form itself_. Below is an example of adding `InlineForm` to a page component:
 
 ```diff
 
 import * as React from React
-import ReactMarkdown from 'react-markdown'
 import { useForm, usePlugin } from 'tinacms'
 +import { InlineForm } from 'react-tinacms-inline'
 
@@ -38,7 +37,6 @@ export function Page(props) {
 +   <InlineForm form={form}>
       <main>
         <h1>{modifiedValues.title}</h1>
-        <ReactMarkdown source={modifiedValues.markdownContent}>
       </main>
 +   </InlineForm>
   )
@@ -55,10 +53,8 @@ Let's add some Inline Fields using the previous example:
 
 ```diff
 import * as React from React
-import ReactMarkdown from 'react-markdown'
 import { useForm } from 'tinacms'
 +import { InlineForm, InlineTextField } from 'react-tinacms-inline'
-+import { InlineWysiwyg } from 'react-tinacms-editor'
 
 export function Page(props) {
   const [modifiedValues, form] = useForm(props.data)
@@ -66,10 +62,10 @@ export function Page(props) {
   return (
     <InlineForm form={form}>
       <main>
-+       <InlineTextField name="title" />
-+       <InlineWysiwyg name="markdownContent">
-          <ReactMarkdown source={modifiedValues.markdownContent} />
-+       </InlineWysiwyg>
+-       <h1>{modifiedValues.title}</h1>
++       <h1>
++         <InlineTextField name="title" />
++       </h1>
       </main>
     </InlineForm>
   )
@@ -100,8 +96,8 @@ The **rough idea** is like this:
 ```jsx
 <InlineForm form={formObject}>
   <InlineField name="path-to-data">
-    {({ input, status }) => {
-      if (status === 'active') {
+    {({ input }) => {
+      if (cms.enabled) {
         // we're in editing mode, show an editable interface
       } else {
         // we're not in editing mode, show the production layout
@@ -115,10 +111,8 @@ Below is an example of the `Page` component used in previous examples, but refac
 
 ```js
 import * as React from React
-import ReactMarkdown from 'react-markdown'
 // import `useCMS`
 import { useForm, useCMS } from 'tinacms'
-import { Wysiwyg } from 'react-tinacms-editor'
 import { InlineForm, InlineField } from 'react-tinacms-inline'
 
 export function Page(props) {
@@ -135,19 +129,11 @@ export function Page(props) {
       * that render when the cms is enabled
       */}
         <InlineField name="title">
-          {({ input, status }) => {
+          {({ input }) => {
             if (cms.enabled) {
               return <input type="text" {...input} />
             }
             return <h1>{input.value}</h1>
-          }}
-        </InlineField>
-        <InlineField name="markdownContent">
-          {({ input, status }) => {
-            if (cms.enabled) {
-              return <Wysiwyg input={input} />
-            }
-            return <ReactMarkdown source={input.value} />
           }}
         </InlineField>
       </main>
