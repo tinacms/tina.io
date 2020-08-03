@@ -7,6 +7,11 @@
         "id": "/docs/getting-started/introduction",
         "slug": "/docs/getting-started/introduction",
         "title": "Introduction"
+      },
+      {
+        "id": "/docs/getting-started/faq",
+        "slug": "/docs/getting-started/faq",
+        "title": "FAQ"
       }
     ]
   },
