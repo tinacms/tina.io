@@ -1,8 +1,7 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
-import { useCMS } from 'tinacms'
+import { useCMS, usePlugin } from 'tinacms'
 import { OpenAuthoringSiteForm } from 'components/layout/OpenAuthoringSiteForm'
-import { useGithubJsonForm } from 'react-tinacms-github'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
 import styles from 'components/styles/home.module.scss'
 import {
@@ -20,6 +19,15 @@ import TinaLogomarkSvg from 'public/svg/tina-logomark.svg'
 import WhyTinaBackground from 'public/svg/why-tina-background.svg'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import codeTheme from 'components/styles/CodeHome'
+import {
+  InlineTextareaField,
+  InlineBlocks,
+  InlineForm,
+  BlocksControls,
+  InlineTextarea,
+} from 'react-tinacms-inline'
+import { useGithubJsonForm } from 'react-tinacms-github'
+import { InlineWysiwyg } from 'components/inline-wysiwyg'
 
 interface Library {
   id: string
@@ -185,10 +193,8 @@ export function MyBlockComponent(props) {
 
 const HomePage = (props: any) => {
   const cms = useCMS()
-  const [formData, form] = useGithubJsonForm(props.file, {
-    label: 'Home Page',
-    fields: [],
-  })
+  const [formData, form] = useGithubJsonForm(props.file, formOptions)
+  usePlugin(form)
   const [activeLibraries, setActiveLibraries] = React.useState(DefaultLibraries)
   const [userOverride, setUserOverride] = React.useState(false)
 
@@ -252,11 +258,7 @@ const HomePage = (props: any) => {
   }, [userOverride])
 
   return (
-    <OpenAuthoringSiteForm
-      form={form}
-      path={props.file.fileRelativePath}
-      preview={props.preview}
-    >
+    <InlineForm form={form}>
       <div className={styles.pageWrapper}>
         <div className={styles.header}>
           <a href="/">
@@ -447,55 +449,7 @@ const HomePage = (props: any) => {
         <div className={styles.whySection}>
           <div className={styles.whySectionContainer}>
             <h2 className={styles.whySectionTitle}>Why Tina?</h2>
-            <div className={styles.whyGrid}>
-              <div className={styles.whyGridContent}>
-                <ThirdPartyIcon />
-                <h3>Working with 3rd Party APIs</h3>
-                <p>
-                  Tina simplifies and speeds up your JAMstack development by
-                  integrating with 3rd party data providers. Store your data
-                  wherever you see best fit.
-                </p>
-              </div>
-              <div className={styles.whyGridCode}>
-                <SyntaxHighlighter language="javascript" style={codeTheme}>
-                  {codeString1}
-                </SyntaxHighlighter>
-              </div>
-            </div>
-            <div
-              className={`${styles.whyGrid} ${styles.whyGridReverseDesktop}`}
-            >
-              <div className={styles.whyGridContent}>
-                <WrapComponentsIcon />
-                <h3>Wrap your components</h3>
-                <p>
-                  Supercharge your existing React component libraries by making
-                  them editable by content creators.
-                </p>
-              </div>
-              <div className={styles.whyGridCode}>
-                <SyntaxHighlighter language="javascript" style={codeTheme}>
-                  {codeString2}
-                </SyntaxHighlighter>
-              </div>
-            </div>
-            <div className={styles.whyGrid}>
-              <div className={styles.whyGridContent}>
-                <BlockBasedEditingIcon />
-                <h3>Block Based Editing</h3>
-                <p>
-                  Tina turns your website into a visual composer that empowers
-                  editors and designers to intuitively create brand-compliant
-                  pages without the need to call a developer.
-                </p>
-              </div>
-              <div className={styles.whyGridCode}>
-                <SyntaxHighlighter language="javascript" style={codeTheme}>
-                  {codeString3}
-                </SyntaxHighlighter>
-              </div>
-            </div>
+            <InlineBlocks name="whyblocks" blocks={WHY_BLOCKS} />
           </div>
           <div className={styles.whySectionBackground}>
             <WhyTinaBackground />
@@ -503,8 +457,102 @@ const HomePage = (props: any) => {
         </div>
       </div>
       {/* End Page Wrapper*/}
-    </OpenAuthoringSiteForm>
+    </InlineForm>
   )
+}
+
+const WhyBlockComponent = ({ data, index }) => {
+  const reverse = Math.abs(index % 2) == 1 ? styles.whyGridReverseDesktop : ``
+
+  return (
+    <BlocksControls index={index}>
+      <div className={`${styles.whyGrid} ${reverse}`}>
+        <div className={styles.whyGridContent}>
+          {index === 0 && <ThirdPartyIcon />}
+          {index === 1 && <WrapComponentsIcon />}
+          {index === 2 && <BlockBasedEditingIcon />}
+          {index > 2 && <WrapComponentsIcon />}
+          <h3>
+            <InlineTextarea name="headline" />
+          </h3>
+          <p>
+            <InlineTextarea name="text" />
+          </p>
+        </div>
+        <div className={styles.whyGridCode}>
+          <SyntaxHighlighter language="javascript" style={codeTheme}>
+            <InlineTextarea name="code" />
+          </SyntaxHighlighter>
+        </div>
+      </div>
+    </BlocksControls>
+  )
+}
+
+const why_block = {
+  type: 'why',
+  label: 'Why Block',
+  defaultItem: {
+    headline: 'Working with 3rd Party APIs',
+    text:
+      'Tina simplifies and speeds up your JAMstack development by integrating with 3rd party data providers. Store your data wherever you see best fit.',
+    code: '',
+  },
+  key: 'why-block',
+  fields: [
+    {
+      label: 'Headline',
+      name: 'headline',
+      component: 'textarea',
+    },
+    {
+      label: 'Text',
+      name: 'text',
+      component: 'textarea',
+    },
+    {
+      label: 'Code',
+      name: 'code',
+      component: 'textarea',
+    },
+  ],
+}
+
+const WhyBlock = {
+  Component: WhyBlockComponent,
+  template: why_block,
+}
+
+const WHY_BLOCKS = {
+  why_block: WhyBlock,
+}
+
+const formOptions = {
+  label: 'Community Page',
+  fields: [
+    {
+      label: 'Why Tina?',
+      name: 'whyblocks',
+      component: 'blocks',
+      fields: [
+        {
+          label: 'Headline',
+          name: 'headline',
+          component: 'textarea',
+        },
+        {
+          label: 'Text',
+          name: 'text',
+          component: 'textarea',
+        },
+        {
+          label: 'Code',
+          name: 'code',
+          component: 'textarea',
+        },
+      ],
+    },
+  ],
 }
 
 const Framework = ({ activeLibraries }) => {

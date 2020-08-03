@@ -1,46 +1,22 @@
 {
-  "title": "Home",
-  "headline": "Build real-time editing into your site.",
-  "description": "Tina is an open-source site editing toolkit for React-based sites like Gatsby & Next.js",
-  "hero_video": "v1571425758/tina-hero-demo-v2",
-  "hero_alt": "TinaCMS_video",
-  "three_points": [
+  "whyblocks": [
     {
-      "_template": "selling_point",
-      "main": "Choose your tools",
-      "supporting": "Use Tina with your favorite modern JavaScript frameworks. While currently compatible with most React-based workflows — specifically Gatsby, Next.js and React SPA’s — plan on adding Tina to your Vue, Gridsome or Nuxt projects very soon."
+      "_template": "why_block",
+      "headline": "Working with 3rd Party APIs",
+      "text": "Tina simplifies and speeds up your JAMstack development by integrating with 3rd party data providers. Store your data wherever you see best fit.",
+      "code": ""
     },
     {
-      "_template": "selling_point",
-      "main": "Edit from your site",
-      "supporting": "Manage content on your own site, not another platform. Import Tina directly into your components to expose an editing interface for controlling and updating layers of your content mesh. You define the content model and editing powers specific to your site."
+      "_template": "why_block",
+      "headline": "Wrap your components",
+      "text": "Supercharge your existing React component libraries by making them editable by content creators.",
+      "code": ""
     },
     {
-      "_template": "selling_point",
-      "main": "Extend & contribute",
-      "supporting": "This is not one-size-fits-all CMS. Tina is a grassroots open source JavaScript toolkit with a plugin-rich ecosystem. You can customize and extend the toolkit to suit your needs. Get and give help with a robust community of contributors."
+      "_template": "why_block",
+      "headline": "Block Based Editing",
+      "text": "Tina turns your website into a visual composer that empowers editors and designers to intuitively create brand-compliant pages without the need to call a developer.",
+      "code": ""
     }
-  ],
-  "setup": {
-    "headline": "Make your site editable in five minutes.",
-    "steps": [
-      {
-        "_template": "setup_point",
-        "step": "Install and configure Tina plugins"
-      },
-      {
-        "_template": "setup_point",
-        "step": "Wrap and export your templates with Tina components specific to your data"
-      },
-      {
-        "_template": "setup_point",
-        "step": "Customize and define the content fields by passing an options argument"
-      },
-      {
-        "_template": "setup_point",
-        "step": "Open the sidebar 🤩, edit your site and watch the content updating in real-time"
-      }
-    ],
-    "code_ex": "/img/terminal.png"
-  }
+  ]
 }
