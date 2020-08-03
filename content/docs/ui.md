@@ -19,6 +19,7 @@ By default neither UI is enabled. You can enable one (or both) by setting their 
 
 ```ts
 new TinaCMS({
+  enabled: true,
   sidebar: true,
   toolbar: true,
 })
@@ -28,6 +29,7 @@ This will enable the UIs with their default configuration. If you need to config
 
 ```ts
 new TinaCMS({
+  enabled: true,
   sidebar: {
     position: 'displace',
   },

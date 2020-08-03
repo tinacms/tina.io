@@ -64,7 +64,7 @@ Since it **renders in 'edit mode,'** this component should display `BlocksContro
 interface BlocksControlsProps {
   index: number
   insetControls?: boolean
-  focusRing?: false | FocusRingProps
+  focusRing?: boolean | FocusRingProps
   children: React.ReactNode
 }
 
@@ -78,7 +78,7 @@ interface FocusRingProps {
 | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `index`         | The index of the block associated with these controls.                                                                                                                                                                                                                                                                             |
 | `insetControls` | A boolean to denote whether the group controls display within or outside the group.                                                                                                                                                                                                                                                |
-| `focusRing`     | Either an object to style the focus ring or `false`, which hides the focus ring entirely. For styles, `offset` (in pixels) controls the distance from the ring to the edge of the group; `borderRadius`(in pixels) controls the [rounding](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius) edge of the focus ring. |
+| `focusRing`     |  Either an object to style the focus ring or a boolean to show/hide the focus ring. Defaults to `true` which displays the focus ring with default styles. For style options, `offset` (in pixels) sets the distance from the ring to the edge of the component, and `borderRadius` (in pixels) controls the [rounded corners](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius) of the focus ring.|
 | `children`      | Any child components, typically inline field(s).                                                                                                                                                                                                                                                                                   |
 
 <!-- TODO: update image -->

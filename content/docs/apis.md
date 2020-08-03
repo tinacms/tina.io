@@ -24,7 +24,7 @@ class HelloApi {
   }
 }
 
-const cms = new TinaCMS()
+const cms = new TinaCMS({ enabled: true })
 cms.registerApi('hello', new HelloApi())
 ```
 
