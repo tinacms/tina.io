@@ -90,7 +90,7 @@ While there are other form config properties, the key ones to examine in the exa
 
 ### _id_
 
-The `id` is unique identifier for the form. Since our example is the only instance of this form, the `id` is hard-coded. But if this form were in a template component, we would generate the `id` from the content to distinguish it from other form instances.
+The `id` is unique identifier for the form. For this simple example the `id` is hard-coded, however it is good practice to set `id` to as a unique identifier from the content being edited.
 
 ### _fields_
 
