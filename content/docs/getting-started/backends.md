@@ -39,7 +39,7 @@ function PageContent() {
 //...
 ```
 
-Notice how we removed `initialValues` in lieu of `loadInitialValues`, which fetches data asynchronously on form creation.
+Notice how we removed `initialValues` in favor of `loadInitialValues`, which fetches data asynchronously on form creation.
 
 You can use `initialValues` when your data has already been fetched or defined. For example frameworks like Next.js will load the data for you and pass it to the page component as props.
 
