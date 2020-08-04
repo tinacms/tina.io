@@ -66,7 +66,7 @@ function PageContent() {
 -     window.alert('Saved!');
 -   },
 +   onSubmit(formData) {
-+    fetch('https://jsonplaceholder.typicode.com/posts/1', {
++    return fetch('https://jsonplaceholder.typicode.com/posts/1', {
 +       method: 'PUT',
 +       body: JSON.stringify({
 +         id: 1,
