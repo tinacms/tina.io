@@ -21,11 +21,10 @@ import Error from 'next/error'
 import { getMarkdownPreviewProps } from 'utils/getMarkdownFile'
 import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { usePlugin, useCMS } from 'tinacms'
-import { useEffect } from 'react'
 import { useLastEdited } from 'utils/useLastEdited'
 import { LastEdited, DocsPagination } from 'components/ui'
 
-function BlogTemplate({ file, siteConfig, preview, prevPage, nextPage }) {
+function BlogTemplate({ file, siteConfig, prevPage, nextPage }) {
   // fallback workaround
   if (!file) {
     return <Error statusCode={404} />
