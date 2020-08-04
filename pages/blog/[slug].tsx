@@ -13,6 +13,7 @@ import {
 import { InlineTextareaField } from 'react-tinacms-inline'
 import { useGithubMarkdownForm } from 'react-tinacms-github'
 import { fileToUrl } from 'utils/urls'
+import { getPageRef } from 'utils/docs/getDocProps'
 import { InlineGithubForm } from 'components/layout/InlineGithubForm'
 const fg = require('fast-glob')
 import { Button } from 'components/ui/Button'
@@ -22,9 +23,9 @@ import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { usePlugin, useCMS } from 'tinacms'
 import { useEffect } from 'react'
 import { useLastEdited } from 'utils/useLastEdited'
-import { LastEdited } from 'components/ui'
+import { LastEdited, DocsPagination } from 'components/ui'
 
-function BlogTemplate({ file, siteConfig, preview }) {
+function BlogTemplate({ file, siteConfig, preview, prevPage, nextPage }) {
   // fallback workaround
   if (!file) {
     return <Error statusCode={404} />
@@ -84,6 +85,9 @@ function BlogTemplate({ file, siteConfig, preview }) {
               <MarkdownContent escapeHtml={false} content={markdownBody} />
             </InlineWysiwyg>
             <LastEdited date={frontmatter.last_edited} />
+            {(prevPage?.slug !== null || nextPage?.slug !== null) && (
+              <DocsPagination prevPage={prevPage} nextPage={nextPage} />
+            )}
           </DocsTextWrapper>
         </BlogWrapper>
       </Layout>
@@ -107,19 +111,29 @@ export const getStaticProps: GetStaticProps = async function({
   //TODO - move to readFile
   const { default: siteConfig } = await import('../../content/siteConfig.json')
 
-  const previewProps = await getMarkdownPreviewProps(
+  const currentBlog = await getMarkdownPreviewProps(
     `content/blog/${slug}.md`,
     preview,
     previewData
   )
 
-  if ((previewProps.props.error?.status || '') === 'ENOENT') {
+  if ((currentBlog.props.error?.status || '') === 'ENOENT') {
     return { props: {} } // will render the 404 error
   }
 
   return {
     props: {
-      ...previewProps.props,
+      ...currentBlog.props,
+      nextPage: await getPageRef(
+        currentBlog.props.file.data.frontmatter.next,
+        preview,
+        previewData
+      ),
+      prevPage: await getPageRef(
+        currentBlog.props.file.data.frontmatter.prev,
+        preview,
+        previewData
+      ),
       siteConfig: { title: siteConfig.title },
     },
   }
