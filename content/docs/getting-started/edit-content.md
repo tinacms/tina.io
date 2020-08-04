@@ -99,7 +99,7 @@ While there are other form config properties, the key ones to examine in the exa
 
 ### _id_
 
-The `id` is unique identifier for the form. For this simple example the `id` is hard-coded, however it is good practice to set `id` to as a unique identifier from the content being edited.
+The `id` is a **unique identifier** for the form. The `id` is hard-coded in our example, which is OK because the `PageContent` component is only used to render the home page. When you create a form inside of a component that is used on multiple pages, you will want to take care to ensure the form's `id` uniquely identifies the content currently being edited. Typically, you would use the content's filename, or a unique key returned from a content API.
 
 ### _fields_
 
