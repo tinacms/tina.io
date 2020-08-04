@@ -126,7 +126,7 @@ function PageContent() {
 -       .then(json => console.log(json))
 +       .then((data) => {
 +         cms.alerts.success('Saved Content!');
-+         console.log(json);
++         console.log(data);
 +       })
 -       .catch(e => console.error(e))
 +       .catch((e) => {
