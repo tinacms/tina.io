@@ -20,7 +20,7 @@ The first step to setting up Tina is to create an [instance of `TinaCMS`](/docs/
 
 Next, wrap your site in the `TinaProvider`. This [provider](https://github.com/tinacms/tinacms/blob/master/packages/tinacms/src/components/TinaProvider.tsx) sets up the editing UI, and provides a [context](https://reactjs.org/docs/context.html) from which we can access the CMS throughout the app.
 
-Head to `App.js` and follow these steps:
+Open up `src/App.js` and follow these steps:
 
 ### The Steps
 
