@@ -14,7 +14,7 @@ Simply creating the form doesn't make it render in the sidebar, we also need to 
 
 <!-- Todo provide explanation of why these are two steps -->
 
-> _Fun-Fact:_ Forms are a type of [plugin](/docs/plugins) in Tina.
+> _Fun Fact:_ Forms are a type of [plugin](/docs/plugins) in Tina.
 
 ### The Steps
 
