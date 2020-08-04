@@ -31,13 +31,25 @@ const createIndices = async () => {
     process.env.ALGOLIA_ADMIN_KEY
   )
   const docs = await fetchDocs()
-  await saveIndex(client, 'Tina-Docs-Next', docs.map(mapContentToIndex))
+  await saveIndex(
+    client,
+    'Tina-Docs-Next',
+    Promise.all(docs.map(mapContentToIndex))
+  )
 
   const blogs = await fetchBlogs()
-  await saveIndex(client, 'Tina-Blogs-Next', blogs.map(mapContentToIndex))
+  await saveIndex(
+    client,
+    'Tina-Blogs-Next',
+    Promise.all(blogs.map(mapContentToIndex))
+  )
 
   const guides = await fetchGuides()
-  await saveIndex(client, 'Tina-Guides-Next', guides.map(mapContentToIndex))
+  await saveIndex(
+    client,
+    'Tina-Guides-Next',
+    Promise.all(guides.map(mapContentToIndex))
+  )
 }
 
 createIndices()
