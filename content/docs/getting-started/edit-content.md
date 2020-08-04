@@ -112,7 +112,7 @@ You will be working with fields a lot in Tina. To get more familiar, try to adju
 
 ### _initialValues_
 
-`initialValues` contains the data used to populate the form. If you do need to load data asynchronously on form creation, you'd use a function called `loadInitialValues` (we'll get to that soon).
+`initialValues` contains the data used to populate the form. If you need to load data asynchronously on form creation, you can instead use a function called `loadInitialValues` (we'll get to that soon).
 
 ### _onSubmit_
 
