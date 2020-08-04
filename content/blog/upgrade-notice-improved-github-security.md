@@ -3,7 +3,10 @@ title: 'Upgrade Notice: Improved GitHub Security'
 date: '2020-06-23T13:47:03-03:00'
 author: Joel Huggett
 last_edited: 'July 30, 2020'
+prev: /blog/inline-editing-project
+next: /blog/software-engineering-daily-podcast-tinacms
 ---
+
 We've improved the overall security of our GitHub authentication. Below is an explanation of the changes and further down are the steps required to upgrade to the new authentication flow.
 
 TinaCMS communicates with GitHub using a proxy, so the authentication token provided by GitHub is stored as an httpOnly cookie. This stops the client from accessing the token, and that's all very good. However, this strategy is still vulnerable to [Cross-Site Request Forgery (CSRF)](https://owasp.org/www-community/attacks/csrf) attacks. This means that any calls to the proxy, so long as that cookie is still there, will succeed, and that's not very good.
@@ -30,7 +33,7 @@ You can generate a key by running `openssl rand -base64 32` in your terminal, us
 
 The key should be stored in an environment variable; don't forget to add it to your hosted environment configurations.
 
-`createAuthHandler`, `apiProxy`, and `previewHandler` now  **require** the _Signing Key_ to be passed as a parameter.
+`createAuthHandler`, `apiProxy`, and `previewHandler` now **require** the _Signing Key_ to be passed as a parameter.
 
 ### **Required Changes:**
 
