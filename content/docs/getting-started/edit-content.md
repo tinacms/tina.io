@@ -103,7 +103,10 @@ The `id` is a **unique identifier** for the form. The `id` is hard-coded in our 
 
 ### _fields_
 
-The `fields` array is comprised of [field definitions](/docs/plugins/fields#field-definition). All fields share a common [base configuration](docs/plugins/fields#field-config). Field definitions need at least two properties: a `name` or the path to the data and a `component` to edit that data from.
+The `fields` array is comprised of [field definitions](/docs/plugins/fields#field-definition). All fields share a common [base configuration](docs/plugins/fields#field-config). Field definitions need at least two properties: 
+
+ - a `name`, indicating the path to access the data from the values object, and
+ - a `component` that displays the interface for editing the data.
 
 You will be working with fields a lot in Tina. To get more familiar, try to adjust the `label` property or add a new field to the array. Reference [the documentation](/docs/plugins/fields) for a full list of default field plugins.
 
