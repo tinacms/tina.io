@@ -1,5 +1,5 @@
 import React from 'react'
-import { Highlight, Snippet } from 'react-instantsearch-dom'
+import { Highlight } from 'react-instantsearch-dom'
 import { Hit } from 'react-instantsearch-core'
 import path from 'path'
 import { DynamicLink } from '../ui/DynamicLink'
@@ -11,7 +11,7 @@ const DocHit = (clickHandler: any) => ({ hit }: { hit: Hit }) => (
       <h4>
         <Highlight attribute="title" hit={hit} tagName="mark" />
       </h4>
-      <Snippet attribute="excerpt" hit={hit} tagName="mark" />
+      <Highlight attribute="excerpt" hit={hit} tagName="mark" />
     </div>
   </DynamicLink>
 )
@@ -25,7 +25,7 @@ const BlogHit = (clickHandler: any) => ({ hit }: { hit: Hit }) => {
         <h4>
           <Highlight attribute="title" hit={hit} tagName="mark" />
         </h4>
-        <Snippet attribute="excerpt" hit={hit} />
+        <Highlight attribute="excerpt" hit={hit} tagName="mark" />
         <div>{formatDate(hit.date)}</div>
       </div>
     </DynamicLink>
