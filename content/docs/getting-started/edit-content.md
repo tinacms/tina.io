@@ -10,7 +10,9 @@ The purpose of a CMS is to allow editors to change content. [Forms](/docs/plugin
 
 We will use the `useForm` hook to [create the form](/docs/plugins/forms#creating-forms).
 
-Simply creating the form doesn't make it render in the sidebar, we also need to [register it](/docs/plugins/forms#registering-forms) with the CMS. With the `usePlugin` hook, we'll register the form so it will be rendered in the sidebar.
+Calling `useForm` won't automatically make our form appear in the sidebar. There are multiple ways to use forms with Tina, and the sidebar is merely one option.
+
+Although it doesn't automatically appear in the sidebar, the form returned by `useForm` is pre-configured to work as a sidebar plugin. To add this form to the sidebar, all we have to do is pass it into the `usePlugin` hook.
 
 <!-- Todo provide explanation of why these are two steps -->
 
