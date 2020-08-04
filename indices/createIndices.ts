@@ -20,9 +20,13 @@ const mapContentToIndex = async ({
 }
 
 const saveIndex = async (client: any, indexName: string, data: any) => {
-  const index = client.initIndex(indexName)
-  const result = await index.saveObjects(data)
-  console.log(`updated ${indexName}: ${result.objectIDs}`)
+  try {
+    const index = client.initIndex(indexName)
+    const result = await index.saveObjects(data)
+    console.log(`updated ${indexName}: ${result.objectIDs}`)
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 const createIndices = async () => {
@@ -34,21 +38,21 @@ const createIndices = async () => {
   await saveIndex(
     client,
     'Tina-Docs-Next',
-    Promise.all(docs.map(mapContentToIndex))
+    await Promise.all(docs.map(mapContentToIndex))
   )
 
   const blogs = await fetchBlogs()
   await saveIndex(
     client,
     'Tina-Blogs-Next',
-    Promise.all(blogs.map(mapContentToIndex))
+    await Promise.all(blogs.map(mapContentToIndex))
   )
 
   const guides = await fetchGuides()
   await saveIndex(
     client,
     'Tina-Guides-Next',
-    Promise.all(guides.map(mapContentToIndex))
+    await Promise.all(guides.map(mapContentToIndex))
   )
 }
 
