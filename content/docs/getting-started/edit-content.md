@@ -74,7 +74,7 @@ function PageContent() {
        */}
       <h1>{editableData.title}</h1>
       <p>{editableData.body}</p>
-      <ExitButton />
+      <EditButton />
     </section>
   )
 }
