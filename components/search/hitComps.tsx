@@ -11,7 +11,9 @@ const DocHit = (clickHandler: any) => ({ hit }: { hit: Hit }) => (
       <h4>
         <Highlight attribute="title" hit={hit} tagName="mark" />
       </h4>
-      <Highlight attribute="excerpt" hit={hit} tagName="mark" />
+      {hit['_highlightResult'].excerpt.matchLevel !== 'none' && (
+        <Highlight attribute="excerpt" hit={hit} tagName="mark" />
+      )}
     </div>
   </DynamicLink>
 )
@@ -25,7 +27,9 @@ const BlogHit = (clickHandler: any) => ({ hit }: { hit: Hit }) => {
         <h4>
           <Highlight attribute="title" hit={hit} tagName="mark" />
         </h4>
-        <Highlight attribute="excerpt" hit={hit} tagName="mark" />
+        {hit['_highlightResult'].excerpt.matchLevel !== 'none' && (
+          <Highlight attribute="excerpt" hit={hit} tagName="mark" />
+        )}
         <div>{formatDate(hit.date)}</div>
       </div>
     </DynamicLink>
