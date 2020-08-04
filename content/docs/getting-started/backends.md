@@ -15,6 +15,11 @@ For this example, we will use a [fake API](https://jsonplaceholder.typicode.com/
 ```diff
 //..
 
+-const pageData = {
+- title: 'Tina is not a CMS',
+- body: 'It is a toolkit for creating a custom CMS.',
+-}
+
 function PageContent() {
   const formConfig = {
     id: 'tina-tutorial-index',
