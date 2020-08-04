@@ -1,19 +1,20 @@
 require('dotenv').config()
 
 import algoliasearch from 'algoliasearch'
+import { stripMarkdown } from '../utils/blog_helpers'
 import fetchDocs from '../data-api/fetchDocs'
 import fetchBlogs from '../data-api/fetchBlogs'
 import fetchGuides from '../data-api/fetchGuides'
 
-const MAX_BODY_LENGTH = 3000
+const MAX_BODY_LENGTH = 200
 
-const mapContentToIndex = ({
+const mapContentToIndex = async ({
   content,
   ...obj
 }: Partial<{ data: { slug: string }; content: string }>) => {
   return {
     ...obj.data,
-    excerpt: (content || '').substring(0, MAX_BODY_LENGTH),
+    excerpt: await stripMarkdown((content || '').substring(0, MAX_BODY_LENGTH)),
     objectID: obj.data.slug,
   }
 }
