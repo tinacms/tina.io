@@ -56,7 +56,7 @@ export default App;
 
 ## Configure the CMS object
 
-When instantiating the CMS, you can pass a [CMS options](/docs/cms#cms-configuration) to configure how the CMS object works.
+When instantiating the CMS, you can pass [options](/docs/cms#cms-configuration) to configure how the CMS object works.
 
 Update your CMS instance with the `sidebar` option:
 
