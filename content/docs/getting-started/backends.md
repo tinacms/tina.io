@@ -147,6 +147,8 @@ function PageContent() {
 //...
 ```
 
+![tinacms-success-alert](/img/getting-started/alert.png)
+
 > _Tip:_ Dispatching alerts can be powerful in combination with [CMS Events](/docs/events).
 
 ## Other backends
