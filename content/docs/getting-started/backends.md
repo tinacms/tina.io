@@ -41,7 +41,7 @@ function PageContent() {
 
 Notice how we removed `initialValues` in favor of `loadInitialValues`, which fetches data asynchronously on form creation.
 
-You can use `initialValues` when your data has already been fetched or defined. For example frameworks like Next.js will load the data for you and pass it to the page component as props.
+> You can use `initialValues` when your data has already been fetched or defined before your components mount. Typically you would use this if you prefer to fetch your initial data server-side, as we do in our [Next.js + GitHub example](https://tinacms.org/guides/nextjs/github/initial-setup)
 
 ## Saving Content
 
