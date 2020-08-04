@@ -14,7 +14,6 @@ Calling `useForm` won't automatically make our form appear in the sidebar. There
 
 Although it doesn't automatically appear in the sidebar, the form returned by `useForm` is pre-configured to work as a sidebar plugin. To add this form to the sidebar, all we have to do is pass it into the `usePlugin` hook.
 
-<!-- Todo provide explanation of why these are two steps -->
 
 > _Fun Fact:_ Forms are a type of [plugin](/docs/plugins) in Tina.
 
