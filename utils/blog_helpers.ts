@@ -7,7 +7,7 @@ export function orderPosts(posts) {
   return posts.slice().sort(sortByDate)
 }
 
-async function stripMarkdown(content): Promise<string> {
+export async function stripMarkdown(content): Promise<string> {
   const remark = require('remark')
   const strip = require('strip-markdown')
   return new Promise((resolve, reject) => {
