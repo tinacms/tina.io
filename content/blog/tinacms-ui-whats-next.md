@@ -2,6 +2,8 @@
 title: "TinaCMS UI: What's next?"
 date: '2020-03-13T00:00:00.000Z'
 author: Nolan Phillips
+next: /blog/designing-an-extensible-styling-system
+prev: /blog/introducing-visual-open-authoring
 ---
 
 This week we deployed [Visual Open Authoring](https://tinacms.org/blog/introducing-visual-open-authoring 'Introducing Visual Open Authoring') on the TinaCMS website to make the editing experience for ourselves and all the community members totally amazing!
