@@ -19,7 +19,6 @@ const DocHit = (clickHandler: any) => ({ hit }: { hit: Hit }) => (
 )
 
 const BlogHit = (clickHandler: any) => ({ hit }: { hit: Hit }) => {
-  console.log(hit)
 
   return (
     <DynamicLink href={path.join('/blog', (hit as any).slug)}>
