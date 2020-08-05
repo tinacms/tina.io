@@ -8,6 +8,7 @@ import { DynamicLink } from 'components/ui'
 import { CardGrid, Card } from 'components/ui/Cards'
 import RightArrowSvg from '../../public/svg/right-arrow.svg'
 import styled from 'styled-components'
+import { openGraphImage } from 'utils/open-graph-image'
 
 const GuideTemplate = props => {
   let data = props.markdownFile.data
@@ -51,17 +52,7 @@ const GuideTemplate = props => {
         openGraph={{
           title: frontmatter.title,
           description: excerpt,
-          images: [
-            {
-              url:
-                'https://res.cloudinary.com/forestry-demo/image/upload/l_text:tuner-regular.ttf_90_center:' +
-                encodeURIComponent(guideTitle) +
-                ',g_center,x_0,y_50,w_850,c_fit,co_rgb:EC4815/v1581087220/TinaCMS/tinacms-social-empty-docs.png',
-              width: 1200,
-              height: 628,
-              alt: guideTitle,
-            },
-          ],
+          images: [openGraphImage(guideTitle)],
         }}
       />
       <DocsLayout navItems={navData}>

@@ -14,6 +14,7 @@ import { usePlugin } from 'tinacms'
 import Toc from '../../components/toc'
 import { createTocListener } from 'utils'
 import { useLastEdited } from 'utils/useLastEdited'
+import { openGraphImage } from 'utils/open-graph-image'
 
 function DocTemplate(props) {
   // Registers Tina Form
@@ -50,17 +51,7 @@ function DocTemplate(props) {
         openGraph={{
           title: frontmatter.title,
           description: excerpt,
-          images: [
-            {
-              url:
-                'https://res.cloudinary.com/forestry-demo/image/upload/l_text:tuner-regular.ttf_90_center:' +
-                encodeURIComponent(frontmatter.title) +
-                ',g_center,x_0,y_50,w_850,c_fit,co_rgb:EC4815/v1581087220/TinaCMS/tinacms-social-empty-docs.png',
-              width: 1200,
-              height: 628,
-              alt: frontmatter.title + ` | TinaCMS Docs`,
-            },
-          ],
+          images: [openGraphImage(frontmatter.title, '| TinaCMS Docs')],
         }}
       />
       <DocsLayout navItems={props.docsNav}>
