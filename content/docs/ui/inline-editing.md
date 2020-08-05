@@ -76,7 +76,7 @@ export function Page(props) {
 
 All Inline Fields expect a `name` prop, as with regular [Tina Fields](/docs/plugins/fields#name), the value should be the path to the data being edited by that field. Refer to individual inline field docs to see their specific properties.
 
-> Checkout [the final-form docs]() for a more detailed look at how the `name` field works.
+> Check out [the final-form docs](https://final-form.org/docs/final-form/field-names) for a more detailed look at how the `name` field works.
 
 ### All Inline Fields
 
