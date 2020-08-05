@@ -13,15 +13,18 @@ import {
 import { InlineTextareaField } from 'react-tinacms-inline'
 import { useGithubMarkdownForm } from 'react-tinacms-github'
 import { fileToUrl } from 'utils/urls'
-import { OpenAuthoringSiteForm } from 'components/layout/OpenAuthoringSiteForm'
+import { getPageRef } from 'utils/docs/getDocProps'
+import { InlineGithubForm } from 'components/layout/InlineGithubForm'
 const fg = require('fast-glob')
 import { Button } from 'components/ui/Button'
 import Error from 'next/error'
 import { getMarkdownPreviewProps } from 'utils/getMarkdownPreviewProps'
 import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { usePlugin, useCMS } from 'tinacms'
-import Toc from '../../components/toc'
-function BlogTemplate({ file, siteConfig, preview }) {
+import { useLastEdited } from 'utils/useLastEdited'
+import { LastEdited, DocsPagination } from 'components/ui'
+
+function BlogTemplate({ file, siteConfig, prevPage, nextPage }) {
   // fallback workaround
   if (!file) {
     return <Error statusCode={404} />
@@ -31,18 +34,15 @@ function BlogTemplate({ file, siteConfig, preview }) {
   const [data, form] = useGithubMarkdownForm(file, formOptions)
 
   usePlugin(form)
+  useLastEdited(form)
 
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
   const excerpt = data.excerpt
 
   return (
-    <OpenAuthoringSiteForm
-      form={form}
-      path={file.fileRelativePath}
-      preview={preview}
-    >
-      <Layout preview={preview}>
+    <InlineGithubForm form={form}>
+      <Layout>
         <NextSeo
           title={frontmatter.title}
           titleTemplate={'%s | ' + siteConfig.title + ' Blog'}
@@ -83,10 +83,14 @@ function BlogTemplate({ file, siteConfig, preview }) {
             <InlineWysiwyg name="markdownBody">
               <MarkdownContent escapeHtml={false} content={markdownBody} />
             </InlineWysiwyg>
+            <LastEdited date={frontmatter.last_edited} />
+            {(prevPage?.slug !== null || nextPage?.slug !== null) && (
+              <DocsPagination prevPage={prevPage} nextPage={nextPage} />
+            )}
           </DocsTextWrapper>
         </BlogWrapper>
       </Layout>
-    </OpenAuthoringSiteForm>
+    </InlineGithubForm>
   )
 }
 
@@ -106,19 +110,29 @@ export const getStaticProps: GetStaticProps = async function({
   //TODO - move to readFile
   const { default: siteConfig } = await import('../../content/siteConfig.json')
 
-  const previewProps = await getMarkdownPreviewProps(
+  const currentBlog = await getMarkdownPreviewProps(
     `content/blog/${slug}.md`,
     preview,
     previewData
   )
 
-  if ((previewProps.props.error?.status || '') === 'ENOENT') {
+  if ((currentBlog.props.error?.status || '') === 'ENOENT') {
     return { props: {} } // will render the 404 error
   }
 
   return {
     props: {
-      ...previewProps.props,
+      ...currentBlog.props,
+      nextPage: await getPageRef(
+        currentBlog.props.file.data.frontmatter.next,
+        preview,
+        previewData
+      ),
+      prevPage: await getPageRef(
+        currentBlog.props.file.data.frontmatter.prev,
+        preview,
+        previewData
+      ),
       siteConfig: { title: siteConfig.title },
     },
   }

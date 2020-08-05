@@ -12,13 +12,15 @@ consumes:
     details: Depends on the Field interface
   - file: /packages/@tinacms/form-builder/src/field-plugin.tsx
     details: Depends on the FieldPlugin interface
+next: /blog/custom-field-plugins
+prev: /blog/exporting-wordpress-content-to-gatsby
 ---
 
 Form fields are the bread and butter of any CMS. While Tina provides a solid collection of fields 'out-of-the-box', you can also create your own. This post will show you the basic concepts of how to create custom field components and use them in the Tina sidebar.
 
 **Prerequisites 👩‍🏫**
 
-Throughout the post, I'll refer to a few core TinaCMS concepts such as [forms](https://tinacms.org/docs/plugins/forms), the sidebar, and [fields](https://tinacms.org/docs/plugins/fields). It will be helpful to have some basic working knowledge of [**how TinaCMS works**](https://tinacms.org/docs/getting-started/how-tina-works) before reading. Feel free to refer to the [documentation](https://tinacms.org/docs/getting-started/introduction) or read a post on using Tina with [Gatsby](https://www.gatsbyjs.org/blog/2019-12-20-integrate-tinacms-with-your-gatsby-website/) or [Next.js](https://tinacms.org/blog/using-tinacms-with-nextjs/) to get familiar.
+Throughout the post, I'll refer to a few core TinaCMS concepts such as [forms](https://tinacms.org/docs/plugins/forms), the sidebar, and [fields](https://tinacms.org/docs/plugins/fields). It will be helpful to have some basic working knowledge of [**how TinaCMS works**](https://tinacms.org/docs/getting-started/introduction) before reading. Feel free to refer to the [documentation](https://tinacms.org/docs) or read a post on using Tina with [Gatsby](https://www.gatsbyjs.org/blog/2019-12-20-integrate-tinacms-with-your-gatsby-website/) or [Next.js](https://tinacms.org/blog/using-tinacms-with-nextjs/) to get familiar.
 
 ## Why would you create a custom field?
 

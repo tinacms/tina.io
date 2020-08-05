@@ -2,12 +2,16 @@
 title: 'Upgrade Notice: Improved GitHub Security'
 date: '2020-06-23T13:47:03-03:00'
 author: Joel Huggett
+last_edited: 'July 30, 2020'
+next: /blog/inline-editing-project
+prev: /blog/software-engineering-daily-podcast-tinacms
 ---
+
 We've improved the overall security of our GitHub authentication. Below is an explanation of the changes and further down are the steps required to upgrade to the new authentication flow.
 
 TinaCMS communicates with GitHub using a proxy, so the authentication token provided by GitHub is stored as an httpOnly cookie. This stops the client from accessing the token, and that's all very good. However, this strategy is still vulnerable to [Cross-Site Request Forgery (CSRF)](https://owasp.org/www-community/attacks/csrf) attacks. This means that any calls to the proxy, so long as that cookie is still there, will succeed, and that's not very good.
 
-A common approach to mitigating this problem is to implement the [Token Synchronization Pattern](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html#synchronizer-token-pattern). The issue is that this pattern require some form of server-side session storage. That doesn't jive well with the stateless approach of static sites. So, we've introduced a variation that we call the Stateless Token Synchronization Pattern.
+A common approach to mitigating this problem is to implement the [Token Synchronization Pattern](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html#synchronizer-token-pattern). The issue is that this pattern requires some form of server-side session storage. That doesn't jive well with the stateless approach of static sites. So, we've introduced a variation that we call the Stateless Token Synchronization Pattern.
 
 **Stateless Token Synchronization** works by storing a CSRF token as an httpOnly cookie and sending an encrypted (signed by the server's secret _Signing Key_) token that is the amalgamation of the CSRF token and the authentication token provided by Github. This amalgamated token is then stored client-side in local storage and sent to the proxy in a bearer authentication header. Then, server-side, the amalgamated token is decrypted and the CSRF tokens are compared to make sure they match. If all is well, the authentication token is extracted and the call is completed.
 
@@ -29,7 +33,7 @@ You can generate a key by running `openssl rand -base64 32` in your terminal, us
 
 The key should be stored in an environment variable; don't forget to add it to your hosted environment configurations.
 
-`createAuthHandler`, `apiProxy`, and `previewHandler` now  **require** the _Signing Key_ to be passed as a parameter.
+`createAuthHandler`, `apiProxy`, and `previewHandler` now **require** the _Signing Key_ to be passed as a parameter.
 
 ### **Required Changes:**
 

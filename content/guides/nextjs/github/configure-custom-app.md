@@ -1,7 +1,7 @@
 ---
 title: Configure the Custom App File
+last_edited: '2020-08-04T22:42:00.334Z'
 ---
-
 Now we will set up TinaCMS to work with the GitHub App. First, create a new file in the `pages` directory called `_app.tsx`. This is a special file in Next.js that allows us to configure a [custom app](https://nextjs.org/docs/advanced-features/custom-app). Our custom `_app.tsx` will do a few things:
 
 1. **Create the TinaCMS instance**
@@ -10,7 +10,7 @@ Now we will set up TinaCMS to work with the GitHub App. First, create a new file
 4. **Wrap the Page with** `TinacmsGithubProvider`: This component is given config and callbacks that hit our `/api` server functions to enable Preview/Edit Mode after authentication is complete.
 5. **Add a button for entering Preview/Edit Mode:** We must provide a means of triggering authentication to enter/exit edit mode. This a simple example of how to do so.
 
-**pages/\_app.tsx**
+**pages/_app.tsx**
 
 ```tsx
 import App from 'next/app'
@@ -26,7 +26,7 @@ export default class Site extends App {
      * 1. Create the TinaCMS instance
      */
     this.cms = new TinaCMS({
-      enabled: props.pageProps.preview,
+      enabled: !!props.pageProps.preview,
       apis: {
         /**
          * 2. Register the GithubClient
@@ -105,15 +105,19 @@ export const EditLink = ({ cms }: EditLinkProps) => {
 
 > _Note:_ For brevity, the example above configures many steps in a single file, but **a few components can be configured in different places**. For example you could put the `EditLink` in a Layout component, or set up the Github Provider only on certain pages.
 
-If you restart the dev server, you should see a **button in the top left-hand corner** that says, "Edit This Site". If you click it, you'll be _prompted to authenticate_ with GitHub.
+If you restart the dev server, you should see a **button in the top left-hand corner** that says, "Edit This Site". If you click it, you should be _prompted to authenticate_ with GitHub.
 
 If auth is successful, you should see a refresh and then it will look the same as before, just like this:
 
 ![create-next-app with tina edit button](/img/github-open-auth-cna/edit-this-site.png)
 
-To make sure it did work, check your cookies. You should now see these four cookies: **\_\_next_preview_data**, **\_\_prerender_bypass**, **working_repo_full_name**, and **github_access_token**.
+It might look like nothing happened, but if all went well, a few cookies will have been created.
 
-Those first two, **\_\_next_preview_data** and **\_\_prerender_bypass**, are for using preview mode.
+### Check for Cookies
+
+To make sure it did work, check your cookies. You should now see these four cookies: **__next_preview_data**, **__prerender_bypass**, **working_repo_full_name**, and **github_access_token**.
+
+Those first two, **__next_preview_data** and **__prerender_bypass**, are for using preview mode.
 
 The **working_repo_full_name** points to the repository you'll be editing (i.e. the _Working Repo_). In this case, it should point to your repo, the original repo, because you have access to it, which we also call the _Base Repo_. Therefore your edits will go to the `master` branch.
 

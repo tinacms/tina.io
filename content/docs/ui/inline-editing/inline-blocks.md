@@ -58,19 +58,14 @@ Since it **renders in 'edit mode,'** this component should display `BlocksContro
 
 #### Blocks Controls Options
 
-| Key             | Description                                                                                                                                                                                                                                                                                                                        |
-| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `index`         | The index of the block associated with these controls.                                                                                                                                                                                                                                                                             |
-| `insetControls` | A boolean to denote whether the group controls display within or outside the group.                                                                                                                                                                                                                                                |
-| `focusRing`     | Either an object to style the focus ring or `false`, which hides the focus ring entirely. For styles, `offset` (in pixels) controls the distance from the ring to the edge of the group; `borderRadius`(in pixels) controls the [rounding](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius) edge of the focus ring. |
-| `children`      | Any child components, typically inline field(s).                                                                                                                                                                                                                                                                                   |
+**Interface**
 
 ```ts
 interface BlocksControlsProps {
   index: number
   insetControls?: boolean
-  focusRing?: false | FocusRingProps
-  children: any
+  focusRing?: boolean | FocusRingProps
+  children: React.ReactNode
 }
 
 interface FocusRingProps {
@@ -78,6 +73,13 @@ interface FocusRingProps {
   borderRadius?: number
 }
 ```
+
+| Key             | Description                                                                                                                                                                                                                                                                                                                        |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `index`         | The index of the block associated with these controls.                                                                                                                                                                                                                                                                             |
+| `insetControls` | A boolean to denote whether the group controls display within or outside the group.                                                                                                                                                                                                                                                |
+| `focusRing`     |  Either an object to style the focus ring or a boolean to show/hide the focus ring. Defaults to `true` which displays the focus ring with default styles. For style options, `offset` (in pixels) sets the distance from the ring to the edge of the component, and `borderRadius` (in pixels) controls the [rounded corners](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius) of the focus ring.|
+| `children`      | Any child components, typically inline field(s).                                                                                                                                                                                                                                                                                   |
 
 <!-- TODO: update image -->
 
@@ -96,25 +98,31 @@ The image above shows the _InlineTextarea_ field in use with Blocks Controls.
 
 ```jsx
 export const heading_template = {
-  type: 'heading',
   label: 'Heading',
   defaultItem: {
     text: 'At vero eos et accusamus',
   },
-  key: 'heading-block',
   fields: [],
 }
 ```
 
 The _Inline Block Template_ **configures the block** with the CMS. It has a similar shape to a Regular [Block Template](/docs/plugins/fields/blocks#block-template-options) definition.
 
-| Key            |             Type             |                                                                                              Purpose |
-| -------------- | :--------------------------: | ---------------------------------------------------------------------------------------------------: |
-| `type`         |           `string`           |                                             This value connects source block data with the template. |
-| `label`        |           `string`           |                                                                              A human readable label. |
-| `defaultItem?` | `object \\\| (() => object)` |                                                              Populates new blocks with default data. |
-| `key`          |           `string`           | A unique value to optimize the [rendering of the list](https://reactjs.org/docs/lists-and-keys.html) |
-| `fields`       |           `Array`            |                                    Populates fields in the [Settings Modal](link to settings modal). |
+**Interface**
+
+```ts
+interface BlockTemplate {
+  label: string
+  defaultItem?: object | (() => object)
+  fields?: Field[]
+}
+```
+
+| Key           |                                                                                                                Purpose |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------: |
+| `label`       |                                                                                                A human readable label. |
+| `defaultItem` |                                                                   _Optional_ — Populates new blocks with default data. |
+| `fields`      | _Optional_ — Populates fields in the [Settings Modal](/docs/ui/inline-editing/inline-blocks#using-the-settings-modal). |
 
 ## Configuring Inline Blocks with Inline Form
 
@@ -123,8 +131,7 @@ The initial steps to configuring _Inline Blocks_ involve setting up an _[Inline 
 ### The Steps:
 
 1. Wrap your component with `InlineForm`, pass the `form` object.
-2. Set up [Inline Controls](/docs/ui/inline-editing#inline-form-controls).
-3. Configure `InlineBlocks`, pass the `name` and `blocks` values.
+2. Configure `InlineBlocks`, pass the `name` and `blocks` values.
 
 ```jsx
 import { useJsonForm } from 'next-tinacms-json'
@@ -137,7 +144,6 @@ import {
   Image,
   image_template,
 } from './blocks'
-import { EditToggle, DiscardButton, SaveButton } from './inline-ui'
 
 /*
  ** Example 'PageBlocks' Component
@@ -149,9 +155,6 @@ export default function PageBlocks({ jsonFile }) {
 
   return (
     <InlineForm form={form}>
-      <EditToggle />
-      <SaveButton />
-      <DiscardButton />
       <InlineBlocks name="blocks" blocks={PAGE_BLOCKS} />
     </InlineForm>
   )
@@ -199,15 +202,15 @@ interface InlineBlocksProps {
 }
 ```
 
-| Key         |                                                                                                                       Purpose |
-| ----------- | ----------------------------------------------------------------------------------------------------------------------------: |
-| `name`      |                                                                               The path to the **source data** for the blocks. |
-| `blocks`    |                            An object composed of individual [Blocks](/docs/ui/inline-editing/inline-blocks#creating-a-block). |
-| `className` | To set styles directly on the input or extend via [styled components](/docs/ui/inline-editing#extending-inline-field-styles). |
-| `direction` |                                                    Sets the orientation of the drag direction and `AddBlock` button position. |
-| `itemProps` |                                                          An object that passes additional props to every block child element. |
-| `min`       |                         Controls the minimum number of blocks. Once reached, blocks won't be able to be removed. _(Optional)_ |
-| `max`       |                   Controls the maximum number of blocks allowed. Once reached, blocks won't be able to be added. _(Optional)_ |
+| Key         |                                                                                                                                    Purpose |
+| ----------- | -----------------------------------------------------------------------------------------------------------------------------------------: |
+| `name`      |                                                                                            The path to the **source data** for the blocks. |
+| `blocks`    |                                         An object composed of individual [Blocks](/docs/ui/inline-editing/inline-blocks#creating-a-block). |
+| `className` | _Optional_ — To set styles directly on the input or extend via [styled components](/docs/ui/inline-editing#extending-inline-field-styles). |
+| `direction` |                                                    _Optional_ — Sets the orientation of the drag direction and `AddBlock` button position. |
+| `itemProps` |                                                          _Optional_ — An object that passes additional props to every block child element. |
+| `min`       |                         _Optional_ — Controls the minimum number of blocks. Once reached, blocks won't be able to be removed. _(Optional)_ |
+| `max`       |                   _Optional_ — Controls the maximum number of blocks allowed. Once reached, blocks won't be able to be added. _(Optional)_ |
 
 ### Blocks Source Data
 
@@ -236,7 +239,30 @@ The source data for the blocks in the example above could look something like th
 
 The key ("blocks" in this example) for the array of individual blocks must match the `name` value passed to `InlineBlocks`.
 
-Each individual _block_ object must have a `_template` value to connect its data with a block template. This value should match the `type` value defined in the associated block template.
+Each individual _block_ object must have a `_template` value to connect its data with a block template. This value should match the name of the block when defined.
+
+**Example**
+
+```js
+const PAGE_BLOCKS = {
+  /**
+   * The `_template` value in the source
+   * data should be 'heading'
+   */
+  heading: {
+    Component: Heading,
+    template: heading_template,
+  },
+  /**
+   * The `_template` value in the source
+   * data should be 'body_copy'
+   */
+  body_copy: {
+    Component: BodyCopy,
+    template: body_copy_template,
+  },
+}
+```
 
 ## Using the Settings Modal
 
@@ -250,13 +276,11 @@ Field definitions added to the `fields` property will render in the _Settings Mo
 
 ```js
 const image_template = {
-  type: 'image',
   label: 'Image',
   defaultItem: {
     src: '/img/bali-1.jpg',
     alt: '',
   },
-  key: 'image-block',
   /*
    ** Define fields to render
    ** in a Settings Modal form
@@ -325,4 +349,9 @@ export default function IndexBlocks({ jsonFile }) {
 }
 ```
 
-<!--  TODO: add info on nested blocks, or write a guide?-->
+## Additional Reading
+
+- A blog — [What are Blocks](/blog/what-are-blocks)
+- A guide — [Working With Inline Blocks](/guides/general/inline-blocks/overview)
+- Interested in [Nested Blocks](/guides/general/inline-blocks/nested-blocks)?
+- Recap on general [Inline Editing](/docs/ui/inline-editing) and [Inline Fields](/docs/ui/inline-editing#all-inline-fields)

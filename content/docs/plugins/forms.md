@@ -224,26 +224,7 @@ function BlogPostTemplate(props) {
 
 ### Example 2: Forms as Screens
 
-[Screens](/docs/plugins/screens) are additional UI modals accessible from the CMS menu. The `useFormScreenPlugin` let's us create and register new Screen Plugin based on a form. This is a great place to put forms for content that doesn't belong on any particular page.
-
-> Tip: Previously, this was known as a _Global Form_.
-
-**src/components/layout.js**
-
-```jsx
-import { useFormScreenPlugin } from 'tinacms'
-import { useJsonForm } from 'gatsby-tinacms-json'
-
-function Layout(props) {
-  // Create the form
-  const [data, form] = useJsonForm(props.data.dataJson)
-
-  // Register it with the CMS
-  useFormScreenPlugin(form)
-
-  return <h1>{data.firstName}</h1>
-}
-```
+[Screens](/docs/plugins/screens) are additional UI modals accessible from the CMS menu. Reference the [`useFormScreenPlugin` hook](/docs/plugins/screens#useformscreenplugin) to see an example of registering a form as a screen.
 
 ## Form Helpers
 

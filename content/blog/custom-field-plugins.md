@@ -10,6 +10,8 @@ consumes:
     details: Example shows useLocalJsonForm in use
   - file: /packages/@tinacms/form-builder/src/field-plugin.tsx
     details: Depends on the FieldPlugin interface
+next: /blog/gatsby-tina-101
+prev: /blog/custom-field-components
 ---
 
 In the [previous post](https://tinacms.org/blog/custom-field-components), we learned how to create a custom field component and register it to the sidebar. With that baseline, let's go full circle on the topic of custom fields in TinaCMS. In this short but sweet post 🧁, we’ll cover how to _turn a field component into a field plugin._

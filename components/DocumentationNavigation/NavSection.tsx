@@ -3,13 +3,13 @@ import { useRouter } from 'next/router'
 import styled, { css } from 'styled-components'
 
 import RightArrowSvg from '../../public/svg/right-arrow.svg'
-import { DynamicLink } from './DynamicLink'
-import { DocsLinkNav } from './DocsLinkNav'
-import { TinaIcon } from '../logo/TinaIcon'
+import { DynamicLink } from '../ui/DynamicLink'
+import Link from 'next/link'
 
 interface NavSection {
   id: string
-  slug: string
+  slug?: string
+  href?: string
   title: string
   items: NavSection[]
   collapsible?: boolean
@@ -45,12 +45,8 @@ export const NavSection = (section: NavSection) => {
     <>
       <NavItem key={section.slug} open={expanded}>
         <NavItemHeader onClick={() => collapsible && setExpanded(!expanded)}>
-          {section.slug && !hasChildren ? (
-            <DynamicLink href={section.slug} passHref>
-              <NavSectionTitle as="a" currentPage={currentPage}>
-                {section.title}
-              </NavSectionTitle>
-            </DynamicLink>
+          {(section.slug || section.href) && !hasChildren ? (
+            <NavLink section={section} currentPage={currentPage} />
           ) : (
             <NavSectionTitle currentPage={currentPage}>
               {section.title}
@@ -88,6 +84,26 @@ export const NavSection = (section: NavSection) => {
   )
 }
 
+const NavLink = ({ section, currentPage }) => {
+  if (section.slug) {
+    return (
+      <DynamicLink href={section.slug} passHref>
+        <NavSectionTitle as="a" currentPage={currentPage}>
+          {section.title}
+        </NavSectionTitle>
+      </DynamicLink>
+    )
+  } else {
+    return (
+      <Link href={section.href} passHref>
+        <NavSectionTitle as="a" currentPage={currentPage}>
+          {section.title}
+        </NavSectionTitle>
+      </Link>
+    )
+  }
+}
+
 const menuIsActive = (section: NavSection, currentPath: string) => {
   if (section.slug && currentPath.includes(section.slug)) {
     return true
@@ -102,105 +118,6 @@ const menuIsActive = (section: NavSection, currentPath: string) => {
     }, false)
   )
 }
-
-export const DocsNav = styled(({ open, navItems, ...styleProps }) => {
-  return (
-    <div {...styleProps}>
-      <DocsDesktopTinaIcon docs />
-      <ul>
-        <MobileMainNav>
-          <DocsLinkNav />
-        </MobileMainNav>
-        {navItems &&
-          navItems.map(section => (
-            <NavSection key={section.id} {...section} collapsible={false} />
-          ))}
-        <li>
-          <iframe
-            src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
-            frameBorder="0"
-            scrolling="0"
-            width="150px"
-            height="30px"
-          ></iframe>
-        </li>
-      </ul>
-    </div>
-  )
-})`
-  list-style-type: none;
-  overflow-x: hidden;
-  overflow-y: auto;
-  line-height: 1.25;
-  background: white;
-  padding: 6rem 0 1rem 0;
-  position: fixed;
-  z-index: 250;
-  left: 0;
-  top: 0;
-  width: calc(50% + 2.25rem);
-  height: 100%;
-  z-index: 250;
-  transform: translate3d(-100%, 0, 0);
-  transition: all 140ms ease-in;
-  padding: 0 0 1rem 0;
-
-  ${props =>
-    props.open
-      ? css`
-          transition: all 240ms ease-out;
-          transform: translate3d(0, 0, 0);
-        `
-      : ``};
-
-  iframe {
-    margin: 1.5rem 3.5rem 0.5rem 1.5rem;
-    display: block;
-  }
-
-  @media (min-width: 1000px) {
-    left: 0;
-    top: auto;
-    width: 16rem;
-    transform: translate3d(0, 0, 0);
-  }
-`
-
-const DocsDesktopTinaIcon = styled(TinaIcon)`
-  position: relative;
-  display: none;
-  padding: 1.25rem 2rem 2.25rem 1.5rem;
-
-  @media (min-width: 1000px) {
-    display: block;
-  }
-`
-
-const MobileMainNav = styled.li`
-  padding-top: 5rem;
-  margin-bottom: 1rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--color-light-dark);
-  background-color: white;
-
-  ul {
-  }
-
-  li {
-    margin: 0;
-  }
-
-  a {
-    display: block;
-    padding: 0.5rem 3.5rem 0.5rem 1.5rem;
-    color: var(--color-primary);
-    margin: 0;
-  }
-
-  @media (min-width: 1000px) {
-    display: none;
-  }
-`
 
 const NavItemHeader = styled.div`
   position: relative;

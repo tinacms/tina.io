@@ -12,6 +12,8 @@ consumes:
     details: Shows how to add delete action
   - file: /packages/tinacms/src/components/CreateContent.tsx
     details: Has image of what the create form looks like
+next: /blog/jamstack-denver-talk
+prev: /blog/dynamic-plugin-system
 ---
 
 [Creating](https://tinacms.org/blog/add-and-delete-files/#creating-new-files) and [deleting](https://tinacms.org/blog/add-and-delete-files/#deleting-files) content — two fundamental sides of the CMS coin. This article will cover how to set up this functionality with TinaCMS on a [Gatsby](https://www.gatsbyjs.org/) site. But first, some overview.

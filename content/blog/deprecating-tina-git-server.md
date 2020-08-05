@@ -3,6 +3,8 @@ title: Updated Next.js Docs + Deprecating tina-git-server
 date: '2019-12-06T07:00:00.000Z'
 author: DJ Walker
 draft: false
+next: /blog/dynamic-plugin-system
+prev: /blog/using-tinacms-with-nextjs
 ---
 
 We've changed our recommended approach for using Tina's Git Backend with Next.js websites. Check out [Tina's Next.js documentation](/guides/nextjs/git/adding-backend) for details.

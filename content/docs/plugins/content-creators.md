@@ -19,12 +19,12 @@ interface ContentCreatorPlugin<FormShape> {
 }
 ```
 
-| Option     | Description                                                                          |
-| ---------- | ------------------------------------------------------------------------------------ |
-| `__type`   | The name of the plugin. Always `'content-creator'`.                                  |
-| `name`     | The text to be displayed in the "Add Content" menu.                                  |
+| Option     | Description                                                                             |
+| ---------- | --------------------------------------------------------------------------------------- |
+| `__type`   | The name of the plugin. Always `'content-creator'`.                                     |
+| `name`     | The text to be displayed in the "Add Content" menu.                                     |
 | `fields`   | An array of fields that populate a modal form. Field values can populate new file data. |
-| `onSubmit` | A function that creates content. Called once the form is submitted.                  |
+| `onSubmit` | A function that creates content. Called once the form is submitted.                     |
 
 ## Examples
 
@@ -70,7 +70,6 @@ cms.plugins.add(BlogPostCreator)
 
 ## Further Reading
 
+- Read more on [creating new files](/guides/gatsby/git/create-new-files) in the **Gatsby-Git workflow** guide
 - Learn how to [register plugins](/docs/plugins#adding-plugins) with the CMS
 - Visit the [Field Plugins](/docs/plugins/fields) docs to learn about how you can customize your form.
-
-<!-- TODO: Add links to the packages which provide helpers e.g. RemarkCreatorPlugin and whatnot. -->

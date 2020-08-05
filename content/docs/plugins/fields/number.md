@@ -1,7 +1,7 @@
 ---
 title: Number Field
-prev: /docs/plugins/fields/html
-next: /docs/plugins/fields/date
+prev: /docs/plugins/fields/textarea
+next: /docs/plugins/fields/image
 consumes:
   - file: /packages/@tinacms/fields/src/plugins/NumberFieldPlugin.tsx
     details: Shows text field interface and config options

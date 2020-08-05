@@ -7,8 +7,8 @@ consumes:
     description: InlineForm
   - file: /packages/react-tinacms-inline/src/inline-field.tsx
     description: InlineField
+last_edited: '2020-08-05T15:34:30.468Z'
 ---
-
 _Inline Editing_ in Tina refers to editing values directly in the area they appear on the page, instead of in the Tina sidebar. These are the **general steps** to set up inline editing:
 
 1. [Configure ](/docs/ui/inline-editing#adding-inline-editing-with-inlineform)_[InlineForm](/docs/ui/inline-editing#adding-inline-editing-with-inlineform)_
@@ -20,17 +20,88 @@ _Inline Editing_ in Tina refers to editing values directly in the area they appe
 
 The `InlineForm` and `InlineField` components can be used to set up inline editing in your layout. `InlineForm` receives the form object created via one of the [form hooks](/docs/plugins/forms) in order to provide it to the inline editing context.
 
-> Note that it is important to **use a hook to register a form** instead of an HOC or Render Props component. Depending on the Tina packages you are using, the hook names may differ than those seen in the examples.
+`InlineForm` should wrap the page or component where you want to add inline editing, turning the _page into the form itself_. Below is an example of adding `InlineForm` to a page component:
 
-`InlineForm` should wrap the page or component where you want to add inline editing, turning the _page into the form itself_. You can then nest multiple `InlineField` components, a render props-based component that allows you to conditionally display an editing interface (when in edit mode) or the page as it will appear in production.
+```diff
+
+import * as React from React
+import { useForm, usePlugin } from 'tinacms'
++import { InlineForm } from 'react-tinacms-inline'
+
+export function Page(props) {
+  const [modifiedValues, form] = useForm(props.data)
+
+  usePlugin(form)
+
+  return (
++   <InlineForm form={form}>
+      <main>
+        <h1>{modifiedValues.title}</h1>
+      </main>
++   </InlineForm>
+  )
+}
+```
+
+The Inline Form alone won't change any behavior. To edit on the page, you'll need to add [Inline Fields](/docs/ui/inline-editing#all-inline-fields).
+
+## Using Pre-configured Inline Fields
+
+The `react-tinacms-inline` package provides a set of pre-configured Inline Fields that should **work for many use cases**. These fields provide basic input elements and handle the rendering logic between edit and preview mode.
+
+Let's add some Inline Fields using the previous example:
+
+```diff
+import * as React from React
+import { useForm, usePlugin } from 'tinacms'
++import { InlineForm, InlineTextField } from 'react-tinacms-inline'
+
+export function Page(props) {
+  const [modifiedValues, form] = useForm(props.data)
+
+  usePlugin(form)
+
+  return (
+    <InlineForm form={form}>
+      <main>
+-       <h1>{modifiedValues.title}</h1>
++       <h1>
++         <InlineTextField name="title" />
++       </h1>
+      </main>
+    </InlineForm>
+  )
+}
+```
+
+All Inline Fields expect a `name` prop, as with regular [Tina Fields](/docs/plugins/fields#name), the value should be the path to the data being edited by that field. Refer to individual inline field docs to see their specific properties.
+
+> Check out [the final-form docs](https://final-form.org/docs/final-form/field-names) for a more detailed look at how the `name` field works.
+
+### All Inline Fields
+
+Currently, these supported Inline Fields available:
+
+* [Inline Text](/docs/ui/inline-editing/inline-text)
+* [Inline Textarea](/docs/ui/inline-editing/inline-textarea)
+* [Inline Wysiwyg](/docs/ui/inline-editing/inline-wysiwyg)
+* [Inline Image](/docs/ui/inline-editing/inline-image)
+* [Inline Group](/docs/ui/inline-editing/inline-group)
+* [Inline Blocks](/docs/ui/inline-editing/inline-blocks)
+
+## Creating Custom Inline Fields
+
+There may be cases where you want to create your own Inline Fields. The `InlineField` component allows you to create a custom _Inline Field_. This is helpful when you need precise control over rendering or input functionality.
+
+First, make sure your component is wrapped in an `InlineForm`. You can then add `InlineField` components, a render props-based component that allows you to conditionally display an editing interface (when in edit mode) or the page as it will appear in production.
 
 The **rough idea** is like this:
 
 ```jsx
 <InlineForm form={formObject}>
-  <InlineField name="name-of-the-field">
-    {({ input, status }) => {
-      if (status === 'active') {
+  <InlineField name="path-to-data">
+    {({ input }) => {
+      if (cms.enabled) {
         // we're in editing mode, show an editable interface
       } else {
         // we're not in editing mode, show the production layout
@@ -40,113 +111,49 @@ The **rough idea** is like this:
 </InlineForm>
 ```
 
-### Example
+Below is an example of the `Page` component used in previous examples, but refactored to define its own custom Inline Fields:
 
-Let's take a modified version of the simplistic example from the [form documentation](/docs/plugins/forms):
-
-```jsx
+```js
 import * as React from React
-import ReactMarkdown from 'react-markdown'
-import { useForm, usePlugin } from 'tinacms'
+// import `useCMS`
+import { useForm, useCMS, usePlugin } from 'tinacms'
+import { InlineForm, InlineField } from 'react-tinacms-inline'
 
 export function Page(props) {
-  const [modifiedValues, form] = useForm(props.data)
+  // Access the CMS object
+  const cms = useCMS()
+
+  const [, form] = useForm(props.data)
 
   usePlugin(form)
 
   return (
-    <main>
-      <h1>{modifiedValues.title}</h1>
-      <ReactMarkdown source={modifiedValues.markdownContent}>
-    </main>
-  )
-}
-```
-
-Using `InlineForm` and `InlineField` from `react-tinacms-inline`, we would rewrite the Page component as follows:
-
-```tsx
-import * as React from React
-import ReactMarkdown from 'react-markdown'
-import { useForm } from 'tinacms'
-import { Wysiwyg } from 'react-tinacms-editor'
-import { InlineForm, InlineField } from 'react-tinacms-inline'
-
-export function Page(props) {
-  /*
-   ** The `modifiedValues` aren't
-   ** called directly, so we only
-   ** need the form object
-   */
-  const [, form] = useForm(props.data)
-
-  return (
     <InlineForm form={form}>
       <main>
+      {/**
+      * Use `InlineField` and the render props
+      * pattern to create custom field inputs
+      * that render when the cms is enabled
+      */}
         <InlineField name="title">
-          {({ input, status }) => {
-            if (status === 'active') {
+          {({ input }) => {
+            if (cms.enabled) {
               return <input type="text" {...input} />
             }
             return <h1>{input.value}</h1>
           }}
         </InlineField>
-        <InlineField name="markdownContent">
-          {({ input, status }) => {
-            if (status === 'active') {
-              return <Wysiwyg input={input} />
-            }
-            return <ReactMarkdown source={input.value} />
-          }}
-        </InlineField>
       </main>
     </InlineForm>
   )
 }
 ```
 
-## Using pre-configured Inline Fields
+`InlineField` uses [render props](https://reactjs.org/docs/render-props.html) to pass the form state and other props to its children. Based on `cms.enabled`, you can conditionally render editing inputs or the original element / value.
 
-When using `InlineField`, you can create a custom _Inline Field_. This is helpful when you need precise control over rendering or input functionality.
+> If you have an idea for an Inline Field plugin, consider contributing! [Make an issue](https://github.com/tinacms/tinacms/issues) with your suggestion or reach out on [the forum](https://community.tinacms.org/) for support.
 
-However, Tina provides a set of pre-configured Inline Fields that should **work for many use cases**. These fields provide basic input elements and handle the rendering logic between edit and preview mode.
-
-- [Inline Text](/docs/ui/inline-editing/inline-text)
-- [Inline Textarea](/docs/ui/inline-editing/inline-textarea)
-- [Inline Wysiwyg](/docs/ui/inline-editing/inline-wysiwyg)
-- [Inline Image](/docs/ui/inline-editing/inline-image)
-- [Inline Group](/docs/ui/inline-editing/inline-group)
-- [Inline Blocks](/docs/ui/inline-editing/inline-blocks)
-
-**Refactoring the above example** with Inline Fields:
-
-```tsx
-import * as React from React
-import ReactMarkdown from 'react-markdown'
-import { useForm } from 'tinacms'
-import {
-  InlineForm,
-  InlineTextField,
-  InlineWysiwyg,
-} from 'react-tinacms-inline'
-
-export function Page(props) {
-  const [modifiedValues, form] = useForm(props.data)
-
-  return (
-    <InlineForm form={form}>
-      <main>
-        <InlineTextField name="title" />
-        <InlineWysiwyg name="markdownContent">
-          <ReactMarkdown source={modifiedValues.markdownContent} />
-        </InlineWysiwyg>
-      </main>
-    </InlineForm>
-  )
-}
-```
-
-### Extending Inline Field Styles
+## Extending Inline Field Styles
 
 The Inline Fields are meant to have minimal styles. But there may be situations where you'll want to override the base styles. This is made possible via [Styled Components](https://styled-components.com/docs/basics#extending-styles).
 
@@ -154,6 +161,8 @@ The Inline Fields are meant to have minimal styles. But there may be situations 
 // An example `InlineTextField` with Extended Styles
 export function Page(props) {
   const [, form] = useForm(props.data)
+
+  usePlugin(form)
 
   return (
     <InlineForm form={form}>
@@ -171,3 +180,8 @@ const StyledText = styled(InlineTextField)`
 ```
 
 Notice how the new component, `StyledText` is just a _styled_ version of `InlineTextField`.
+
+## Additional Reading
+
+* A guide — [Working With Inline Blocks](/guides/general/inline-blocks/overview)
+* `react-tinacms-inline` package [documentation](/packages/react-tinacms-inline)

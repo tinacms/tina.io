@@ -11,7 +11,7 @@ interface BlocksControlsProps {
   children: any
   index: number
   insetControls?: boolean
-  focusRing?: false | FocusRingStyles
+  focusRing?: boolean | FocusRingStyles
 }
 
 interface FocusRingStyles {

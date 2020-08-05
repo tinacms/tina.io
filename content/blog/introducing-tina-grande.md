@@ -3,6 +3,8 @@ title: "Introducing Tina Grande \U0001F389"
 date: '2019-11-21T14:58:24.451Z'
 draft: false
 author: Scott Byrne
+next: /blog/using-tinacms-with-nextjs
+prev: /blog/simple-markdown-blog-nextjs
 ---
 
 [Tina Grande](https://github.com/tinacms/tina-starter-grande 'Tina Grande Repo') is a Gatsby starter with built-in TinaCMS integration. _Grande_ was built to provide a reference implementation of Tina that covers a variety of use cases. Even for those that don’t need a starter, we hope that Grande will prove to be a useful reference for both designers and developers looking to use TinaCMS.

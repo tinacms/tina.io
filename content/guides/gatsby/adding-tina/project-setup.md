@@ -8,7 +8,7 @@ The purpose of this is to get you familiar with the rudimentary steps of setting
 
 ---
 
-#### Prerequisites
+## Prerequisites
 
 To run all the tools required you need at least the following installed:
 

@@ -9,7 +9,14 @@ Tina is a **toolkit for building content management systems.** By creating a cus
 
 Are you new to using Tina to build content management systems? Start with these resources to build your understanding of Tina and what's possible.
 
-- Visit the [Getting Started Guide](/docs/getting-started/introduction 'Getting Started') to learn the basics of using Tina to build superb content editing experiences.
+- Go through the [**Getting Started Tutorial**](/docs/getting-started/introduction 'Getting Started'): [Installing _tinacms_](/docs/getting-started/cms-set-up#install-tinacms) |
+  | [Creating a CMS instance and adding the _TinaProvider_](/docs/getting-started/cms-set-up#create-a-cms-instance-add-tinaprovider)
+  | [Configuring the CMS object](/docs/getting-started/cms-set-up#configure-the-cms-object)
+  | [Enabling the CMS](/docs/getting-started/cms-set-up#enabling-the-cms)
+  | [Creating and registering a form plugin](/docs/getting-started/edit-content#create--register-a-form)
+  | [Loading content from an external API](/docs/getting-started/backends#loading-content-from-an-external-api)
+  | [Saving content changes](/docs/getting-started/backends#saving-content)
+  | [Adding alerts](/docs/getting-started/backends#adding-alerts)
 - Click **Edit this Site** at the bottom of the page to fork the [tinacms.org repository](https://github.com/tinacms/tinacms.org 'Tinacms.org Repository'), make changes, and then open a Pull Request!
 - Checkout [this video of a page builder](https://youtu.be/4qGz0cP_DSA 'Inline Editing Demo Video') created with TinaCMS.
 
@@ -36,7 +43,7 @@ Tina lets you choose the user interface that best fits your workflow. You can us
 
 - Learn about the [Toolbar](/docs/ui#toolbar-configuration 'Tina Toolbar') and [Sidebar](/docs/ui#sidebar-configuration 'Tina Sidebar') UI components.
 - Take control of the appearance of your CMS using [Custom Styling](/docs/ui/styles 'Styles')
-- Add features to your CMS using [Screen Plugins](/docs/plugins/screen-plugins 'Screen Plugins') and [Toolbar Widgets](/docs/plugins/toolbar-widgets).
+- Add features to your CMS using [Screen Plugins](/docs/plugins/screens 'Screen Plugins') and [Toolbar Widgets](/docs/plugins/toolbar-widgets).
 - Wander off the beaten trail and create a totally custom UI _(Coming Soon)_
 
 ## Tools for Managing Content

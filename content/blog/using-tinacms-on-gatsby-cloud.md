@@ -8,6 +8,8 @@ consumes:
     details: Explains configuring git-specific environment variables to manually set author and ssh-key
   - file: /packages/@tinacms/gatsby-tinacms-git/index.ts
     details: Explains configuring git-specific environment variables to manually set author and ssh-key
+next: /blog/three-ways-to-edit-md
+prev: /blog/editing-on-the-cloud
 ---
 
 We've [recently written](/blog/editing-on-the-cloud/ 'TinaCMS on the cloud') about how TinaCMS will work on the cloud. Gatsby Cloud offers a great way for editors to edit TinaCMS sites, without having to run a local development environment.
@@ -22,9 +24,7 @@ Deploying a preview with Gatsby Cloud can be done in just a few clicks. Once we'
 
 And tada! ✨ Our site's preview should be live! Any commits we make to the repo going forward will automatically trigger a rebuild of our Gatsby preview.
 
->
-Note: This preview will act as our "Cloud Editing Environment" and not our production site. Your production site should be built and deployed separately.
-
+> Note: This preview will act as our "Cloud Editing Environment" and not our production site. Your production site should be built and deployed separately.
 
 Now that our **preview is live**, there's some extra configuration that we'll want to do to have Tina work smoothly on the cloud.
 
@@ -34,9 +34,7 @@ We don't want just any stranger making commits from our cloud editing environmen
 
 ## Configuring Git for Cloud Commits ✔️
 
->
-If you are using the gatsby-tinacms-git plugin, make sure to use version: 0.2.16-canary.0 or later!
-
+> If you are using the gatsby-tinacms-git plugin, make sure to use version: 0.2.16-canary.0 or later!
 
 To set up for canary, run `yarn add gatsby-tinacms-git@canary` until this version reaches a full release.
 
@@ -56,7 +54,7 @@ If you want the author to be based off of the logged-in user instead of a static
 
 ### `TINA_CEE`
 
-This needs to be set to ensure that Tina knows that it is being run in a *Cloud Editing Environment*. Set it to `true`.
+This needs to be set to ensure that Tina knows that it is being run in a _Cloud Editing Environment_. Set it to `true`.
 
 ### `SSH_KEY` 🔑
 
@@ -117,9 +115,7 @@ plugins: [
 
 Now after you trigger a rebuild, it should be able to commit to your repository!
 
->
-Note that Base64 encoding the key DOES NOT make it safe to make public!! **Do not commit this value to your repository.** We are Base64 encoding the key only to avoid formatting issues when using it as an environment variable.
-
+> Note that Base64 encoding the key DOES NOT make it safe to make public!! **Do not commit this value to your repository.** We are Base64 encoding the key only to avoid formatting issues when using it as an environment variable.
 
 ## Site Configuration 🔨
 

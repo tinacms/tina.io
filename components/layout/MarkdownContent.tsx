@@ -49,7 +49,7 @@ const HeadingLink = styled.a`
   display: flex;
   align-items: center;
   position: absolute;
-  top: 0;
+  top: 1rem;
   left: -0.25rem;
   height: 1.3em;
   transform: translate3d(-100%, 0, 0);

@@ -9,12 +9,11 @@ import {
   MarkdownContent,
   Footer,
 } from 'components/layout'
+import { getMarkdownPreviewProps } from 'utils/getMarkdownFile'
+import { DocsLayout, MarkdownContent } from 'components/layout'
 import { NextSeo } from 'next-seo'
-import { DocsNav, DocsPagination, Overlay, DocsHeaderNav } from 'components/ui'
+import { DocsPagination, LastEdited } from 'components/ui'
 import {
-  DocsNavToggle,
-  DocsMobileTinaIcon,
-  DocsContent,
   DocsGrid,
   DocGridHeader,
   DocsPageTitle,
@@ -24,24 +23,22 @@ import {
 import { useRouter } from 'next/router'
 import { getGuideNavProps } from 'utils/guide_helpers'
 import { useMemo } from 'react'
-import { OpenAuthoringSiteForm } from 'components/layout/OpenAuthoringSiteForm'
 import { usePlugin, useFormScreenPlugin } from 'tinacms'
 import { InlineTextareaField } from 'react-tinacms-inline'
 import { useGithubMarkdownForm, useGithubJsonForm } from 'react-tinacms-github'
 import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
 import { MarkdownCreatorPlugin } from 'utils/plugins'
-import { fileToUrl } from '../../../../utils'
+import { fileToUrl, createTocListener } from 'utils'
 import Toc from '../../../../components/toc'
+import { useLastEdited } from 'utils/useLastEdited'
+import { InlineGithubForm } from 'components/layout/InlineGithubForm'
 
 export default function GuideTemplate(props) {
-  const [open, setOpen] = React.useState(false)
   const isBrowser = typeof window !== `undefined`
   const contentRef = React.useRef<HTMLDivElement>(null)
   const tocItems = props.tocItems
-  console.log(tocItems)
   const [activeIds, setActiveIds] = React.useState([])
-
   const router = useRouter()
   const currentPath = router.asPath
 
@@ -115,77 +112,15 @@ export default function GuideTemplate(props) {
       return
     }
 
-    let lastScrollPosition = 0
-    let tick = false
-    let throttleInterval = 100
-    let headings = []
-    let baseOffset = 16
-    let htmlElements = contentRef.current.querySelectorAll(
-      'h1, h2, h3, h4, h5, h6'
-    )
+    const activeTocListener = createTocListener(contentRef, setActiveIds)
+    window.addEventListener('scroll', activeTocListener)
 
-    htmlElements.forEach(function(heading: any) {
-      headings.push({
-        id: heading.id,
-        offset: heading.offsetTop,
-        level: heading.tagName,
-      })
-    })
-
-    const throttledScroll = () => {
-      let scrollPos = window.scrollY
-      let newActiveIds = []
-      let activeHeadingCandidates = headings.filter(heading => {
-        return heading.offset - scrollPos < baseOffset
-      })
-      let activeHeading =
-        activeHeadingCandidates.length > 0
-          ? activeHeadingCandidates.reduce((prev, current) =>
-              prev.offset > current.offset ? prev : current
-            )
-          : {}
-
-      newActiveIds.push(activeHeading.id)
-
-      if (activeHeading.level != 'H2') {
-        let activeHeadingParentCandidates =
-          activeHeadingCandidates.length > 0
-            ? activeHeadingCandidates.filter(heading => {
-                return heading.level == 'H2'
-              })
-            : []
-        let activeHeadingParent =
-          activeHeadingParentCandidates.length > 0
-            ? activeHeadingParentCandidates.reduce((prev, current) =>
-                prev.offset > current.offset ? prev : current
-              )
-            : {}
-
-        if (activeHeadingParent.id) {
-          newActiveIds.push(activeHeadingParent.id)
-        }
-      }
-
-      setActiveIds(newActiveIds)
-    }
-
-    function onScroll() {
-      if (!tick) {
-        setTimeout(function() {
-          throttledScroll()
-          tick = false
-        }, throttleInterval)
-      }
-      tick = true
-    }
-
-    window.addEventListener('scroll', onScroll)
-
-    return () => window.removeEventListener('scroll', throttledScroll)
+    return () => window.removeEventListener('scroll', activeTocListener)
   }, [contentRef])
 
   usePlugin(stepForm)
   useFormScreenPlugin(guideForm)
+  useLastEdited(stepForm)
 
   const guideTitle = guide?.title || 'TinaCMS Guides'
   const guideNav = useGuideNav(guide, props.allGuides)
@@ -193,61 +128,48 @@ export default function GuideTemplate(props) {
   const excerpt = props.markdownFile.data.excerpt
 
   return (
-    <OpenAuthoringSiteForm
-      form={stepForm}
-      path={props.markdownFile.fileRelativePath}
-      preview={props.preview}
-    >
-      <DocsLayout isEditing={props.editMode}>
-        <NextSeo
-          title={frontmatter.title}
-          titleTemplate={'%s | TinaCMS Docs'}
-          description={excerpt}
-          openGraph={{
-            title: frontmatter.title,
-            description: excerpt,
-            images: [
-              {
-                url:
-                  'https://res.cloudinary.com/forestry-demo/image/upload/l_text:tuner-regular.ttf_90_center:' +
-                  encodeURIComponent(guideTitle) +
-                  ',g_center,x_0,y_50,w_850,c_fit,co_rgb:EC4815/v1581087220/TinaCMS/tinacms-social-empty-docs.png',
-                width: 1200,
-                height: 628,
-                alt: guideTitle,
-              },
-            ],
-          }}
-        />
-        <DocsNavToggle open={open} onClick={() => setOpen(!open)} />
-        <DocsMobileTinaIcon docs />
-        <DocsNav open={open} navItems={guideNav} />
-        <DocsContent>
-          <DocsHeaderNav color={'light'} open={open} />
-          <DocsTextWrapper>
-            <DocsGrid>
-              <DocGridHeader>
-                <DocsPageTitle>
-                  <InlineTextareaField name="frontmatter.title" />
-                </DocsPageTitle>
-              </DocGridHeader>
-              <DocGridToc>
-                <Toc tocItems={tocItems} activeIds={activeIds} />
-              </DocGridToc>
-              <DocGridContent ref={contentRef}>
-                <hr />
-                <InlineWysiwyg name="markdownBody">
-                  <MarkdownContent escapeHtml={false} content={markdownBody} />
-                </InlineWysiwyg>
-                <DocsPagination prevPage={prev} nextPage={next} />
-              </DocGridContent>
-            </DocsGrid>
-          </DocsTextWrapper>
-          <Footer light editMode={props.editMode} />
-        </DocsContent>
-        <Overlay open={open} onClick={() => setOpen(false)} />
+    <InlineGithubForm form={stepForm}>
+      <NextSeo
+        title={frontmatter.title}
+        titleTemplate={'%s | TinaCMS Docs'}
+        description={excerpt}
+        openGraph={{
+          title: frontmatter.title,
+          description: excerpt,
+          images: [
+            {
+              url:
+                'https://res.cloudinary.com/forestry-demo/image/upload/l_text:tuner-regular.ttf_90_center:' +
+                encodeURIComponent(guideTitle) +
+                ',g_center,x_0,y_50,w_850,c_fit,co_rgb:EC4815/v1581087220/TinaCMS/tinacms-social-empty-docs.png',
+              width: 1200,
+              height: 628,
+              alt: guideTitle,
+            },
+          ],
+        }}
+      />
+      <DocsLayout navItems={guideNav}>
+        <DocsGrid>
+          <DocGridHeader>
+            <DocsPageTitle>
+              <InlineTextareaField name="frontmatter.title" />
+            </DocsPageTitle>
+          </DocGridHeader>
+          <DocGridToc>
+            <Toc tocItems={tocItems} activeIds={activeIds} />
+          </DocGridToc>
+          <DocGridContent ref={contentRef}>
+            <hr />
+            <InlineWysiwyg name="markdownBody">
+              <MarkdownContent escapeHtml={false} content={markdownBody} />
+            </InlineWysiwyg>
+            <LastEdited date={frontmatter.last_edited} />
+            <DocsPagination prevPage={prev} nextPage={next} />
+          </DocGridContent>
+        </DocsGrid>
       </DocsLayout>
-    </OpenAuthoringSiteForm>
+    </InlineGithubForm>
   )
 }
 

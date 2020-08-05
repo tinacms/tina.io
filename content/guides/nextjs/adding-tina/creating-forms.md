@@ -1,7 +1,7 @@
 ---
 title: Creating Forms
+last_edited: '2020-08-03T13:05:25.363Z'
 ---
-
 After wrapping our App component in the Tina Provider, we can create forms by calling the `useForm` hook inside our Post component. `useForm` returns two values in an array, similar to `React.useState`, which we assign via destructuring:
 
 ```js
@@ -34,7 +34,7 @@ const formConfig = {
   initialValues: initialPost,     // populate the form with starting values
   onSubmit: (values) => {         // do something with the data when the form is submitted
     alert(`Submitting ${values.title}`)
-  }
+  },
   fields: [                    // define fields to appear in the form
     {
       name: 'title',           // field name maps to the corresponding key in initialValues
@@ -120,4 +120,4 @@ That's it!
 
 ## More Info
 
-- [Tina Docs: Forms](/docs/plugins/forms)
+* [Tina Docs: Forms](/docs/plugins/forms)

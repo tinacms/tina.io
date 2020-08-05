@@ -11,7 +11,7 @@ This guide is intended as a jumping off point to get you started with Tina, but 
 
 ## Set up a backend to persist content changes
 
-Checkout the [Using a Git Backend](/guides/gatsby/git) guide to learn more.
+Checkout the [Using a Git Backend](/guides/gatsby/git/installation) guide to learn more.
 
 ## Add More Fields
 

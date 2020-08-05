@@ -1,56 +1,42 @@
 ---
-title: Tina is Not a CMS
+title: Introductory Tutorial
 id: introduction
 prev: null
-next: /docs/getting-started/how-tina-works
+next: /docs/getting-started/cms-set-up
 ---
 
-Tina is a **lightweight but powerful toolkit** for creating a content editing interface with JavaScript components. Tina surfaces superpowers for developers to create an intuitive UI for real-time content editing, built directly into their website.
+Tina is a toolkit for building content management systems. This tutorial will walk you through Tina's fundamental building blocks by setting up editing on a basic `create-react-app` [demo](https://github.com/tinacms/tina-intro-tutorial). **To get the most from Tina, you should have a good working knowledge of JavaScript and React**.
 
-## The Next Generation of Content Management
+## Why _create-react-app_?
 
-![tina-gif](https://res.cloudinary.com/forestry-demo/video/upload/du_16,w_700,e_loop/v1571159974/tina-hero-demo.gif)
+Tina's UI is built with React. Using Tina in a plain React App is the simplest way to get familiar with Tina without relying on helper packages or meta-frameworks. Understanding the core concepts introduced in this tutorial will set you up for success later down the line.
 
-Tina is optimized for next-gen JAMstack tools. It is written in JavaScript and easily adapted to multiple different frameworks.
+**If this is your first time working with Tina**, we suggest going through this short tutorial.
 
-Tina currently supports React-based frameworks, including:
+## Overview
 
-- NextJS
-- Gatsby
-- Create-React-App
+These are the general steps we will cover.
 
-## Get Started
+1. [Installing `tinacms`](/docs/getting-started/cms-set-up#install-tinacms)
+2. [Creating a CMS instance and adding the `TinaProvider`](/docs/getting-started/cms-set-up#create-a-cms-instance-add-tinaprovider)
+3. [Configuring the CMS object](/docs/getting-started/cms-set-up#configure-the-cms-object)
+4. [Enabling the CMS](/docs/getting-started/cms-set-up#enabling-the-cms)
+5. [Creating and registering a form plugin](/docs/getting-started/edit-content#create--register-a-form)
+6. [Loading content from an external API](/docs/getting-started/backends#loading-content-from-an-external-api)
+7. [Saving content changes](/docs/getting-started/backends#saving-content)
+8. [Adding alerts](/docs/getting-started/backends#adding-alerts)
 
-To use Tina, you should have a good working knowledge of your JavaScript framework & JAMstack tools of choice.
+## Clone the demo
 
-If you want to get started with some code right away, check out the [Next.js Overview](/docs/integrations/nextjs) or [Gatsby Quickstart](/guides/gatsby/adding-tina/project-setup).
+To get started, clone the [demo](https://github.com/tinacms/tina-intro-tutorial), install its dependencies, and start the dev server.
 
-If you want to dive deep, start by learning more about [how Tina works](/docs/getting-started/how-tina-works) and get familiar with some core concepts.
+```bash
+git clone git@github.com:tinacms/tina-intro-tutorial.git my-tina-app
+cd my-tina-app
+yarn install
+yarn start
+```
 
-## For Next.js
+![tina-cra-tutorial-start](/img/getting-started/tina-tutorial-step1.png)
 
-- [Next.js + Tina Overview](/docs/integrations/nextjs) — Get started with the documentation
-- Read an in-depth tutorial on [Using TinaCMS with Next.js](/blog/using-tinacms-with-nextjs/)
-
-**Next.js Starters**
-
-- [Next.js Markdown Blog](https://github.com/kendallstrautman/brevifolia-next-tinacms) configured for Tina.
-
-## For Gatsby
-
-- [Quickstart](/guides/gatsby/adding-tina/project-setup) with a Tina Starter to hit the ground running.
-- [Manual Setup](/guides/gatsby/adding-tina/project-setup) for adding Tina to an existing Gatsby site.
-
-**Gatsby Starters**
-
-- [Gatsby Blog Starter](https://github.com/tinacms/gatsby-starter-tinacms) with Tina — The classic Gatsby starter, but Tina-friendly.
-- [Tina Grande](https://github.com/tinacms/tina-starter-grande) — A more advanced starter to showcase the power of Tina.
-- [Tina Brevifolia](https://github.com/kendallstrautman/brevifolia-gatsby-tinacms) — A Markdown-based blog with minimalist design and Tina for editing.
-
-Want to add your starter? Make a [PR](/docs/contributing/guidelines) to add your Tina site to this list.
-
-## Get Involved
-
-Want to help out with Tina's development? Please visit our [Contributing](/docs/contributing/guidelines) section in our docs to learn more.
-
-Looking for help with Tina, or want to stay on top of the latest developments? Checkout the [Tina Community Forum](https://community.tinacms.org/) to get answers, help, and llama-humor.
+> If at any point you feel lost or confused during this tutorial, checkout the [Tina Community Forum](https://community.tinacms.org/) to get answers, help, and llama-humor.

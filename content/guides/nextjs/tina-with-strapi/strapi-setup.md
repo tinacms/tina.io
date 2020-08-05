@@ -13,7 +13,7 @@ In order to run Strapi locally you need the following:
 | Node.js  | 12.X            |
 | npm      | 6.X             |
 
-Addtionally we'll be using `yarn` throughout this guide. You can install it by following this [getting started guide](https://classic.yarnpkg.com/en/docs/getting-started).
+Additionally we'll be using `yarn` throughout this guide. You can install it by following this [getting started guide](https://classic.yarnpkg.com/en/docs/getting-started).
 
 ## Install Strapi Locally
 
