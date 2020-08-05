@@ -1,5 +1,4 @@
 import { NextSeo } from 'next-seo'
-import styled from 'styled-components'
 import React from 'react'
 
 import { getGuideNavProps } from 'utils/guide_helpers'
@@ -72,11 +71,6 @@ const GuideTemplate = ({ markdownFile, navItems, tocItems }) => {
     </>
   )
 }
-
-const GuideWrapper = styled(Wrapper)`
-  padding-top: 2rem;
-  padding-bottom: 3rem;
-`
 
 export default GuideTemplate
 
