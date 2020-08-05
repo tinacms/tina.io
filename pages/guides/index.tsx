@@ -4,14 +4,10 @@ import React, { useMemo } from 'react'
 import { useRouter } from 'next/router'
 import { DocsLayout, Wrapper, MarkdownContent } from 'components/layout'
 import { NextSeo } from 'next-seo'
-import { DynamicLink } from 'components/ui'
-import { CardGrid, Card } from 'components/ui/Cards'
-import RightArrowSvg from '../../public/svg/right-arrow.svg'
 import styled from 'styled-components'
 
 const GuideTemplate = props => {
-  let data = props.markdownFile.data
-  const [open, setOpen] = React.useState(false)
+  const data = props.markdownFile.data
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
   const excerpt = props.markdownFile.data.excerpt
@@ -36,7 +32,6 @@ const GuideTemplate = props => {
   }, [props.currentGuide, props.allGuides])
 
   const router = useRouter()
-  const currentPath = router.asPath
 
   const guideTitle = props.currentGuide
     ? props.currentGuide.title
@@ -69,10 +64,6 @@ const GuideTemplate = props => {
           <h1>{frontmatter.title}</h1>
           <hr />
           <MarkdownContent escapeHtml={false} content={markdownBody} />
-          {navData &&
-            navData.map(section => (
-              <GuideSection key={section.id} {...section} />
-            ))}
         </GuideWrapper>
       </DocsLayout>
     </>
@@ -89,28 +80,6 @@ interface NavSection {
     url: string
     label: string
   }
-}
-
-const GuideSection = (section: NavSection) => {
-  const hasChildren = section.items && section.items.length > 0
-
-  return (
-    <>
-      <h2>{section.title}</h2>
-      {hasChildren && (
-        <CardGrid>
-          {(section.items || []).map(item => (
-            <DynamicLink href={item.slug} passHref>
-              <Card>
-                <p style={{ margin: '0' }}>{item.title}</p>
-                <RightArrowSvg />
-              </Card>
-            </DynamicLink>
-          ))}
-        </CardGrid>
-      )}
-    </>
-  )
 }
 
 const GuideWrapper = styled(Wrapper)`
