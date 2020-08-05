@@ -7,8 +7,8 @@ consumes:
     description: InlineForm
   - file: /packages/react-tinacms-inline/src/inline-field.tsx
     description: InlineField
+last_edited: '2020-08-05T15:34:30.468Z'
 ---
-
 _Inline Editing_ in Tina refers to editing values directly in the area they appear on the page, instead of in the Tina sidebar. These are the **general steps** to set up inline editing:
 
 1. [Configure ](/docs/ui/inline-editing#adding-inline-editing-with-inlineform)_[InlineForm](/docs/ui/inline-editing#adding-inline-editing-with-inlineform)_
@@ -76,16 +76,18 @@ export function Page(props) {
 
 All Inline Fields expect a `name` prop, as with regular [Tina Fields](/docs/plugins/fields#name), the value should be the path to the data being edited by that field. Refer to individual inline field docs to see their specific properties.
 
+> Check out [the final-form docs](https://final-form.org/docs/final-form/field-names) for a more detailed look at how the `name` field works.
+
 ### All Inline Fields
 
 Currently, these supported Inline Fields available:
 
-- [Inline Text](/docs/ui/inline-editing/inline-text)
-- [Inline Textarea](/docs/ui/inline-editing/inline-textarea)
-- [Inline Wysiwyg](/docs/ui/inline-editing/inline-wysiwyg)
-- [Inline Image](/docs/ui/inline-editing/inline-image)
-- [Inline Group](/docs/ui/inline-editing/inline-group)
-- [Inline Blocks](/docs/ui/inline-editing/inline-blocks)
+* [Inline Text](/docs/ui/inline-editing/inline-text)
+* [Inline Textarea](/docs/ui/inline-editing/inline-textarea)
+* [Inline Wysiwyg](/docs/ui/inline-editing/inline-wysiwyg)
+* [Inline Image](/docs/ui/inline-editing/inline-image)
+* [Inline Group](/docs/ui/inline-editing/inline-group)
+* [Inline Blocks](/docs/ui/inline-editing/inline-blocks)
 
 ## Creating Custom Inline Fields
 
@@ -181,5 +183,5 @@ Notice how the new component, `StyledText` is just a _styled_ version of `Inline
 
 ## Additional Reading
 
-- A guide — [Working With Inline Blocks](/guides/general/inline-blocks/overview)
-- `react-tinacms-inline` package [documentation](/packages/react-tinacms-inline)
+* A guide — [Working With Inline Blocks](/guides/general/inline-blocks/overview)
+* `react-tinacms-inline` package [documentation](/packages/react-tinacms-inline)
