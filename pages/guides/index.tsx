@@ -83,6 +83,7 @@ interface NavSection {
 }
 
 const GuideWrapper = styled(Wrapper)`
+  padding-top: 2rem;
   padding-bottom: 3rem;
 `
 
