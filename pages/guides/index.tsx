@@ -55,7 +55,6 @@ const GuideTemplate = ({ markdownFile, navItems, tocItems }) => {
           ],
         }}
       />
-      {/**TODO: force nav scroll to guides */}
       <DocsLayout navItems={navItems}>
         <DocsGrid>
           <DocGridHeader>
