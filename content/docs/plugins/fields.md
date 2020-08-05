@@ -129,7 +129,7 @@ The `name` property should be updated to reflect the different path:
 }
 ```
 
-> Checkout [the final-form docs]() for a more detailed look at how the `name` field works.
+> Check out [the final-form docs](https://final-form.org/docs/final-form/field-names) for a more detailed look at how the `name` field works.
 
 ### _component_
 
