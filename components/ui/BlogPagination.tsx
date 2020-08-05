@@ -24,12 +24,12 @@ export const BlogPagination = styled(
         <PaginationLinks>
           {!isFirst && (
             <DynamicLink href={prevPage} passHref>
-              <a>← Newer</a>
+              <a onClick={() => setSelectValue(selectValue - 1)}>← Newer</a>
             </DynamicLink>
           )}
           {!isLast && (
             <DynamicLink href={nextPage} passHref>
-              <a>Older →</a>
+              <a onClick={() => setSelectValue(selectValue + 1)}>Older →</a>
             </DynamicLink>
           )}
         </PaginationLinks>
