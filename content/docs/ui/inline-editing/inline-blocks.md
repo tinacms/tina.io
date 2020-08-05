@@ -65,7 +65,7 @@ interface BlocksControlsProps {
   index: number
   insetControls?: boolean
   focusRing?: boolean | FocusRingProps
-  children: any
+  children: React.ReactNode
 }
 
 interface FocusRingProps {
