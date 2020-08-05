@@ -243,6 +243,73 @@
     ]
   },
   {
+    "title": "Guides",
+    "id": "guides",
+    "items": [
+      {
+        "id": "/guides",
+        "href": "/guides",
+        "title": "Overview"
+      },
+      {
+        "id": "/guides#general",
+        "href": "/guides#general",
+        "title": "General",
+        "items": [
+          {
+            "id": "/guides/general/inline-blocks/overview",
+            "href": "/guides/general/inline-blocks/overview",
+            "title": "Inline Blocks"
+          }
+        ]
+      },
+      {
+        "id": "/guides#nextjs",
+        "href": "/guides#nextjs",
+        "title": "Next.js",
+        "items": [
+          {
+            "id": "/guides/nextjs/adding-tina/overview",
+            "href": "/guides/nextjs/adding-tina/overview",
+            "title": "Adding Tina"
+          },
+          {
+            "id": "/guides/nextjs/git/getting-started",
+            "href": "/guides/nextjs/git/getting-started",
+            "title": "Git Backend"
+          },
+          {
+            "id": "/guides/nextjs/github/initial-setup",
+            "href": "/guides/nextjs/github/initial-setup",
+            "title": "GitHub Backend"
+          },
+          {
+            "id": "/guides/nextjs/tina-with-strapi/overview",
+            "href": "/guides/nextjs/tina-with-strapi/overview",
+            "title": "Strapi Backend"
+          }
+        ]
+      },
+      {
+        "id": "/guides#gatsby",
+        "href": "/guides#gatsby",
+        "title": "Gatsby",
+        "items": [
+          {
+            "id": "/guides/gatsby/adding-tina/project-setup",
+            "href": "/guides/gatsby/adding-tina/project-setup",
+            "title": "Adding Tina"
+          },
+          {
+            "id": "/guides/gatsby/git/installation",
+            "href": "/guides/gatsby/git/installation",
+            "title": "Git Backend"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "title": "Release Notes",
     "id": "releases",
     "items": [
