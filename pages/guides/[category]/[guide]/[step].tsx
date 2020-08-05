@@ -24,6 +24,7 @@ import { fileToUrl, createTocListener } from 'utils'
 import Toc from '../../../../components/toc'
 import { useLastEdited } from 'utils/useLastEdited'
 import { InlineGithubForm } from 'components/layout/InlineGithubForm'
+import { openGraphImage } from 'utils/open-graph-image'
 
 export default function GuideTemplate(props) {
   const isBrowser = typeof window !== `undefined`
@@ -127,17 +128,7 @@ export default function GuideTemplate(props) {
         openGraph={{
           title: frontmatter.title,
           description: excerpt,
-          images: [
-            {
-              url:
-                'https://res.cloudinary.com/forestry-demo/image/upload/l_text:tuner-regular.ttf_90_center:' +
-                encodeURIComponent(guideTitle) +
-                ',g_center,x_0,y_50,w_850,c_fit,co_rgb:EC4815/v1581087220/TinaCMS/tinacms-social-empty-docs.png',
-              width: 1200,
-              height: 628,
-              alt: guideTitle,
-            },
-          ],
+          images: [openGraphImage(guideTitle)],
         }}
       />
       <DocsLayout navItems={guideNav}>
