@@ -3,6 +3,8 @@ title: Creating Markdown Drafts with Gatsby
 date: '2019-10-28T22:17:53.124Z'
 author: Nolan Phillips & Kendall Strautman
 draft: false
+next: /blog/simple-markdown-blog-nextjs
+prev: /blog/announcing-tinacms
 ---
 
 One of the core features of an editorial workflow is to provide writers & editors a safe space for creating and iterating on content without these in-process posts publishing to production — **draft-mode**.

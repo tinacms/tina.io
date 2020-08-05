@@ -3,6 +3,8 @@ title: Export WordPress Content to Markdown and Gatsby
 date: '2020-01-13T00:00:00.000Z'
 draft: false
 author: Mitch MacKenzie
+next: /blog/custom-field-components
+prev: /blog/three-ways-to-edit-md
 ---
 
 Say hello to the [WordPress to Gatsby Markdown Exporter](https://github.com/tinacms/wp-gatsby-markdown-exporter)! It's a WordPress plugin to export posts, pages, and other content from WordPress to Markdown.

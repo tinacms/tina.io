@@ -3,8 +3,8 @@ title: 'Upgrade Notice: Improved GitHub Security'
 date: '2020-06-23T13:47:03-03:00'
 author: Joel Huggett
 last_edited: 'July 30, 2020'
-prev: /blog/inline-editing-project
-next: /blog/software-engineering-daily-podcast-tinacms
+next: /blog/inline-editing-project
+prev: /blog/software-engineering-daily-podcast-tinacms
 ---
 
 We've improved the overall security of our GitHub authentication. Below is an explanation of the changes and further down are the steps required to upgrade to the new authentication flow.
