@@ -1,13 +1,37 @@
-import { getGuideNavProps } from 'utils/guide_helpers'
-import { readMarkdownFile } from 'utils/getMarkdownFile'
-import { getDocsNav } from 'utils/docs/getDocProps'
-import React from 'react'
-import { DocsLayout, Wrapper, MarkdownContent } from 'components/layout'
 import { NextSeo } from 'next-seo'
 import styled from 'styled-components'
+import React from 'react'
 
-const GuideTemplate = ({ markdownFile, navItems }) => {
+import { getGuideNavProps } from 'utils/guide_helpers'
+import { getMarkdownPreviewProps } from 'utils/getMarkdownFile'
+import { getDocsNav } from 'utils/docs/getDocProps'
+import { createTocListener } from 'utils'
+import { DocsLayout, Wrapper, MarkdownContent } from 'components/layout'
+import {
+  DocGridToc,
+  DocGridContent,
+  DocsGrid,
+  DocGridHeader,
+  DocsPageTitle,
+} from '../docs/[...slug]'
+import Toc from 'components/toc'
+
+const GuideTemplate = ({ markdownFile, navItems, tocItems }) => {
   const { frontmatter, markdownBody, excerpt } = markdownFile.data
+  const [activeIds, setActiveIds] = React.useState([])
+  const isBrowser = typeof window !== `undefined`
+  const contentRef = React.useRef<HTMLDivElement>(null)
+
+  React.useEffect(() => {
+    if (!isBrowser || !contentRef.current) {
+      return
+    }
+
+    const activeTocListener = createTocListener(contentRef, setActiveIds)
+    window.addEventListener('scroll', activeTocListener)
+
+    return () => window.removeEventListener('scroll', activeTocListener)
+  }, [contentRef])
 
   return (
     <>
@@ -33,11 +57,18 @@ const GuideTemplate = ({ markdownFile, navItems }) => {
       />
       {/**TODO: force nav scroll to guides */}
       <DocsLayout navItems={navItems}>
-        <GuideWrapper narrow>
-          <h1>{frontmatter.title}</h1>
-          <hr />
-          <MarkdownContent escapeHtml={false} content={markdownBody} />
-        </GuideWrapper>
+        <DocsGrid>
+          <DocGridHeader>
+            <DocsPageTitle>{frontmatter.title}</DocsPageTitle>
+          </DocGridHeader>
+          <DocGridToc>
+            <Toc tocItems={tocItems} activeIds={activeIds} />
+          </DocGridToc>
+          <DocGridContent ref={contentRef}>
+            <hr />
+            <MarkdownContent escapeHtml={false} content={markdownBody} />
+          </DocGridContent>
+        </DocsGrid>
       </DocsLayout>
     </>
   )
@@ -50,17 +81,20 @@ const GuideWrapper = styled(Wrapper)`
 
 export default GuideTemplate
 
-export const getStaticProps = async ({ preview }) => {
-  // @ts-ignore
-  const path = __non_webpack_require__('path')
-  // the following line will cause all content files to be available in a serverless context
-  path.resolve(process.cwd(), './content/')
+export const getStaticProps = async ctx => {
+  const {
+    props: { preview, file: markdownFile, tocItems },
+  } = await getMarkdownPreviewProps(
+    `content/guides/index.md`,
+    ctx.preview,
+    ctx.previewData
+  )
+
   return {
     props: {
       slug: '/guides',
-      markdownFile: await readMarkdownFile(
-        path.resolve(process.cwd(), './content/guides/index.md')
-      ),
+      markdownFile,
+      tocItems,
       allGuides: await getGuideNavProps(),
       navItems: await getDocsNav(preview, {}),
     },
