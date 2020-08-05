@@ -26,6 +26,8 @@ A field `Component` is React component that accepts three props:
 
 Checkout the [react-final-form](https://github.com/final-form/react-final-form#fieldrenderprops) docs for a more detailed description of the `input` and `meta` props.
 
+> Checkout [this blog](/blog/custom-field-components) for a step-by-step guide on creating a custom field component.
+
 ## 2. Creating Field Plugins
 
 A field plugin is a JavaScript object with three properties:
@@ -53,6 +55,8 @@ interface FieldPlugin {
   defaultValue?: any
 }
 ```
+
+> Checkout [this blog](/blog/custom-field-plugins) for a more in-depth look at creating custom field plugins.
 
 ### Validate (optional)
 
@@ -128,7 +132,3 @@ const Label = styled.h3`
   padding: var(--tina-padding-small);
 `
 ```
-
-## Further Reading
-
-- [Registering Fields in Gatsby](/guides/gatsby/custom-email-field/register-field)

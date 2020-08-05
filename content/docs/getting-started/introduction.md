@@ -1,29 +1,42 @@
 ---
-title: Tina is Not a CMS
+title: Introductory Tutorial
 id: introduction
 prev: null
-next: /docs/cms
+next: /docs/getting-started/cms-set-up
 ---
 
-Tina is a toolkit for building content management systems.
+Tina is a toolkit for building content management systems. This tutorial will walk you through Tina's fundamental building blocks by setting up editing on a basic `create-react-app` [demo](https://github.com/tinacms/tina-intro-tutorial). **To get the most from Tina, you should have a good working knowledge of JavaScript and React**.
 
-Tina surfaces superpowers for developers to create intuitive interfaces for real-time content editing directly into their website.
+## Why _create-react-app_?
 
-![tina-gif](https://res.cloudinary.com/forestry-demo/video/upload/du_16,w_700,e_loop/v1571159974/tina-hero-demo.gif)
+Tina's UI is built with React. Using Tina in a plain React App is the simplest way to get familiar with Tina without relying on helper packages or meta-frameworks. Understanding the core concepts introduced in this tutorial will set you up for success later down the line.
 
-## Get Started
+**If this is your first time working with Tina**, we suggest going through this short tutorial.
 
-To get the most from Tina, you should have a good working knowledge of JavaScript and React.
+## Overview
 
-If you want to get started with some code right away, check out the [Next.js Tutorial](/guides/nextjs/adding-tina/overview) or [Gatsby Quickstart](/guides/gatsby/adding-tina/project-setup).
+These are the general steps we will cover.
 
-Tina's modular design means it can work with most frameworks. Whether you're site is static, dynamic, or somewhere in between, Tina gives you the tools you need. For more information on how to use TinaCMS with a React framework, checkout the following these pages:
+1. [Installing `tinacms`](/docs/getting-started/cms-set-up#install-tinacms)
+2. [Creating a CMS instance and adding the `TinaProvider`](/docs/getting-started/cms-set-up#create-a-cms-instance-add-tinaprovider)
+3. [Configuring the CMS object](/docs/getting-started/cms-set-up#configure-the-cms-object)
+4. [Enabling the CMS](/docs/getting-started/cms-set-up#enabling-the-cms)
+5. [Creating and registering a form plugin](/docs/getting-started/edit-content#create--register-a-form)
+6. [Loading content from an external API](/docs/getting-started/backends#loading-content-from-an-external-api)
+7. [Saving content changes](/docs/getting-started/backends#saving-content)
+8. [Adding alerts](/docs/getting-started/backends#adding-alerts)
 
-- [Next.js Integration](/docs/integrations/nextjs)
-- [Gatsby Integration](/docs/integrations/gatsby)
+## Clone the demo
 
-## Get Involved
+To get started, clone the [demo](https://github.com/tinacms/tina-intro-tutorial), install its dependencies, and start the dev server.
 
-Want to help out with Tina's development? Please visit our [Contributing](/docs/contributing/guidelines) section in our docs to learn more.
+```bash
+git clone git@github.com:tinacms/tina-intro-tutorial.git my-tina-app
+cd my-tina-app
+yarn install
+yarn start
+```
 
-Looking for help with Tina, or want to stay on top of the latest developments? Checkout the [Tina Community Forum](https://community.tinacms.org/) to get answers, help, and llama-humor.
+![tina-cra-tutorial-start](/img/getting-started/tina-tutorial-step1.png)
+
+> If at any point you feel lost or confused during this tutorial, checkout the [Tina Community Forum](https://community.tinacms.org/) to get answers, help, and llama-humor.
