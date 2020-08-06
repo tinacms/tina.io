@@ -29,6 +29,7 @@ This document should be used as a guideline when writing documentation and blog 
   - "Code" in this case can include source code, terminal commands, variable names, and package names.
   - The above is not meant to be an exhaustive list, but use your best judgement.
   - Avoid `code tags` when discussing interface elements (such as navigation menus and in-app actions). Opt for **bold** text instead.
+  - Code blocks should be made [copy-able](https://github.com/tinacms/tinacms.org/blob/master/README.md#copy-able-code-block) unless they show more context then should be copied (i.e. `diffs`)
 - Important concepts should be formatted in **bold (strong emphasis)**.
 - Other points of emphasis can be formatted in _italics (normal emphasis)_, or **bold (strong emphasis)** as appropriate.
 - When _an emphasized phrase_ appears near a **highlighted concept**, opt for _italics_ over **bold** for the former.
