@@ -2,7 +2,7 @@ import { NextSeo } from 'next-seo'
 import React from 'react'
 
 import { getGuideNavProps } from 'utils/guide_helpers'
-import { getMarkdownPreviewProps } from 'utils/getMarkdownFile'
+import { getMarkdownPreviewProps } from 'utils/getMarkdownPreviewProps'
 import { getDocsNav } from 'utils/docs/getDocProps'
 import { createTocListener } from 'utils'
 import { DocsLayout, Wrapper, MarkdownContent } from 'components/layout'
