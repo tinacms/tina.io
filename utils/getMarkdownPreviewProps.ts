@@ -2,7 +2,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import { readFile } from './readFile'
 import { formatExcerpt } from '.'
-import { getGithubPreviewProps, parseMarkdown } from 'next-tinacms-github'
+import { parseMarkdown, getGithubFile, GithubFile } from 'next-tinacms-github'
 import toc from 'markdown-toc'
 import { slugifyTocHeading } from './docs/slugifyToc'
 
@@ -23,33 +23,43 @@ export const getMarkdownPreviewProps = async (
   preview: boolean,
   previewData: any
 ) => {
-  if (preview) {
-    let previewProps = await getGithubPreviewProps({
-      ...previewData,
-      fileRelativePath: fileRelativePath,
-      parse: parseMarkdown,
-    })
-    if (!previewProps.props.error) {
-      //TODO - make parse async so we can use parseMarkdownWithExcerpt function above
-      previewProps.props.file.data.excerpt = await formatExcerpt(
-        previewProps.props.file.data.markdownBody
-      )
-    }
-    return {
-      props: {
-        ...previewProps.props,
-        tocItems: toc(previewProps.props.file.data.markdownBody).content,
-      },
-    }
+  let file = null
+  let error = null
+  let tocItems = null
+
+  try {
+    file = await getMarkdownFile(fileRelativePath, preview, previewData)
+    file.data.excerpt = await formatExcerpt(file.data.markdownBody)
+    tocItems = toc(file.data.markdownBody).content
+  } catch (e) {
+    error = e
   }
-  const file = await readMarkdownFile(fileRelativePath)
+
   return {
     props: {
       error: null,
-      preview: false,
+      preview: !!preview,
       file,
       tocItems: toc(file.data.markdownBody, { slugify: slugifyTocHeading })
         .content,
     },
   }
+}
+
+export async function getMarkdownFile(
+  fileRelativePath: string,
+  preview: boolean,
+  previewData: any
+): Promise<GithubFile<any>> {
+  if (preview) {
+    return getGithubFile<any>({
+      ...previewData,
+      fileRelativePath,
+      parse: parseMarkdown,
+    })
+  }
+
+  const file = await readMarkdownFile(fileRelativePath)
+
+  return { sha: '', ...file }
 }

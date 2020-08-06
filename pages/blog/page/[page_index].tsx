@@ -16,7 +16,7 @@ import {
 import { DynamicLink, BlogPagination } from 'components/ui'
 import { InlineGithubForm } from 'components/layout/InlineGithubForm'
 import { useForm } from 'tinacms'
-import { getMarkdownPreviewProps } from 'utils/getMarkdownFile'
+import { getMarkdownPreviewProps } from 'utils/getMarkdownPreviewProps'
 import { PreviewData } from 'next-tinacms-github'
 const Index = props => {
   const { currentPage, numPages } = props
