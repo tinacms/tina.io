@@ -44,7 +44,7 @@ const cleanupIndex = async (index: SearchIndex, currentData: any) => {
   })
   await index.browseObjects({
     batch: hits => {
-      hits.forEach(async hit => {
+      hits.forEach(hit => {
         if (!currentObjects.has(hit.objectID)) {
           objectsToDelete.add(hit.objectID)
         }
