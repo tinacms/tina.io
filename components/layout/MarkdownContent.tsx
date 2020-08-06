@@ -26,14 +26,11 @@ function WithCodeStyles({ language: tags = '', value }) {
       <SyntaxHighlighter language={language} style={CodeStyle}>
         {value}
       </SyntaxHighlighter>
-      {copy ? (
-        <CopyCodeButton onClick={() => copyToClipboard(value)}>
-          Copy
-        </CopyCodeButton>
-      ) : null}
+      {copy ? <CopyCodeButton value={value} /> : null}
     </>
   )
 }
+
 const copyToClipboard = (text: string) => {
   const el = document.createElement('textarea')
   el.value = text
@@ -42,7 +39,18 @@ const copyToClipboard = (text: string) => {
   document.execCommand('copy')
   document.body.removeChild(el)
 }
-const CopyCodeButton = styled.button``
+
+interface copyButtonProps {
+  value?: string
+}
+
+const CopyCodeButton = ({ value }: copyButtonProps) => {
+  const clickEvent = () => {
+    copyToClipboard(value)
+  }
+
+  return <button onClick={clickEvent}>Copy</button>
+}
 
 function WithHeadings({ children, level }) {
   const HeadingTag = `h${level}` as any
