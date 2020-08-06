@@ -24,12 +24,6 @@
     "external": false
   },
   {
-    "id": "community",
-    "label": "Community",
-    "href": "/community",
-    "external": false
-  },
-  {
     "id": "enterprise",
     "label": "Enterprise",
     "href": "/enterprise",
