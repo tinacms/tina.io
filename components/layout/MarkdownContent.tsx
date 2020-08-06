@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import ReactMarkdown from 'react-markdown/with-html'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import CodeStyle from '../styles/Code'
@@ -17,13 +17,31 @@ interface MarkdownContentProps {
   skipHtml?: boolean
 }
 
-function WithCodeStyles({ language, value }) {
+function WithCodeStyles({ language: tags, value }) {
+  const [language, ...other] = tags.split(',')
+  const copy = other.includes('copy')
   return (
-    <SyntaxHighlighter language={language} style={CodeStyle}>
-      {value}
-    </SyntaxHighlighter>
+    <>
+      <SyntaxHighlighter language={language} style={CodeStyle}>
+        {value}
+      </SyntaxHighlighter>
+      {copy ? (
+        <CopyCodeButton onClick={() => copyToClipboard(value)}>
+          Copy
+        </CopyCodeButton>
+      ) : null}
+    </>
   )
 }
+const copyToClipboard = (text: string) => {
+  const el = document.createElement('textarea')
+  el.value = text
+  document.body.appendChild(el)
+  el.select()
+  document.execCommand('copy')
+  document.body.removeChild(el)
+}
+const CopyCodeButton = styled.button``
 
 function WithHeadings({ children, level }) {
   const HeadingTag = `h${level}` as any
