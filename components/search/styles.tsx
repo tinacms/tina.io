@@ -27,7 +27,7 @@ export const IconWrapper = styled.div`
 
 interface InputProps {
   focus?: boolean
-  collapse?: boolean
+  expanded?: boolean
 }
 
 export const Input = styled.input<InputProps>`
@@ -50,6 +50,14 @@ export const Input = styled.input<InputProps>`
     p.focus &&
     css`
       width: 12rem;
+      opacity: 1;
+      cursor: text;
+    `};
+
+  ${p =>
+    p.expanded &&
+    css`
+      width: 100%;
       opacity: 1;
       cursor: text;
     `};
