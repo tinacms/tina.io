@@ -1,47 +1,36 @@
-import { getGuideNavProps } from 'utils/guide_helpers'
-import { readMarkdownFile } from 'utils/getMarkdownPreviewProps'
-import React, { useMemo } from 'react'
-import { useRouter } from 'next/router'
-import { DocsLayout, Wrapper, MarkdownContent } from 'components/layout'
 import { NextSeo } from 'next-seo'
-import { DynamicLink } from 'components/ui'
-import { CardGrid, Card } from 'components/ui/Cards'
-import RightArrowSvg from '../../public/svg/right-arrow.svg'
-import styled from 'styled-components'
+import React from 'react'
+
+import { getMarkdownPreviewProps } from 'utils/getMarkdownPreviewProps'
+import { getDocsNav } from 'utils/docs/getDocProps'
+import { createTocListener } from 'utils'
+import { DocsLayout, MarkdownContent } from 'components/layout'
+import {
+  DocGridToc,
+  DocGridContent,
+  DocsGrid,
+  DocGridHeader,
+  DocsPageTitle,
+} from '../docs/[...slug]'
+import Toc from 'components/toc'
 import { openGraphImage } from 'utils/open-graph-image'
 
-const GuideTemplate = props => {
-  let data = props.markdownFile.data
-  const [open, setOpen] = React.useState(false)
-  const frontmatter = data.frontmatter
-  const markdownBody = data.markdownBody
-  const excerpt = props.markdownFile.data.excerpt
+const GuideTemplate = ({ markdownFile, navItems, tocItems }) => {
+  const { frontmatter, markdownBody, excerpt } = markdownFile.data
+  const [activeIds, setActiveIds] = React.useState([])
+  const isBrowser = typeof window !== `undefined`
+  const contentRef = React.useRef<HTMLDivElement>(null)
 
-  let navData = useMemo(() => {
-    if (props.currentGuide) {
-      return [
-        {
-          title: props.currentGuide.title,
-          id: props.currentGuide.title,
-          collapsible: false,
-          items: props.currentGuide.steps,
-          returnLink: {
-            url: '/guides',
-            label: '‹ Back to Guides',
-          },
-        },
-      ]
-    } else {
-      return props.allGuides.sort((a, b) => a.weight > b.weight)
+  React.useEffect(() => {
+    if (!isBrowser || !contentRef.current) {
+      return
     }
-  }, [props.currentGuide, props.allGuides])
 
-  const router = useRouter()
-  const currentPath = router.asPath
+    const activeTocListener = createTocListener(contentRef, setActiveIds)
+    window.addEventListener('scroll', activeTocListener)
 
-  const guideTitle = props.currentGuide
-    ? props.currentGuide.title
-    : 'TinaCMS Guides'
+    return () => window.removeEventListener('scroll', activeTocListener)
+  }, [contentRef])
 
   return (
     <>
@@ -52,77 +41,45 @@ const GuideTemplate = props => {
         openGraph={{
           title: frontmatter.title,
           description: excerpt,
-          images: [openGraphImage(guideTitle)],
+          images: [openGraphImage('TinaCMS Guides')],
         }}
       />
-      <DocsLayout navItems={navData}>
-        <GuideWrapper narrow>
-          <h1>{frontmatter.title}</h1>
-          <hr />
-          <MarkdownContent escapeHtml={false} content={markdownBody} />
-          {navData &&
-            navData.map(section => (
-              <GuideSection key={section.id} {...section} />
-            ))}
-        </GuideWrapper>
+      <DocsLayout navItems={navItems}>
+        <DocsGrid>
+          <DocGridHeader>
+            <DocsPageTitle>{frontmatter.title}</DocsPageTitle>
+          </DocGridHeader>
+          <DocGridToc>
+            <Toc tocItems={tocItems} activeIds={activeIds} />
+          </DocGridToc>
+          <DocGridContent ref={contentRef}>
+            <hr />
+            <MarkdownContent escapeHtml={false} content={markdownBody} />
+          </DocGridContent>
+        </DocsGrid>
       </DocsLayout>
     </>
   )
 }
 
-interface NavSection {
-  id: string
-  slug: string
-  title: string
-  items: NavSection[]
-  collapsible?: boolean
-  returnLink?: {
-    url: string
-    label: string
-  }
-}
-
-const GuideSection = (section: NavSection) => {
-  const hasChildren = section.items && section.items.length > 0
-
-  return (
-    <>
-      <h2>{section.title}</h2>
-      {hasChildren && (
-        <CardGrid>
-          {(section.items || []).map(item => (
-            <DynamicLink href={item.slug} passHref>
-              <Card>
-                <p style={{ margin: '0' }}>{item.title}</p>
-                <RightArrowSvg />
-              </Card>
-            </DynamicLink>
-          ))}
-        </CardGrid>
-      )}
-    </>
-  )
-}
-
-const GuideWrapper = styled(Wrapper)`
-  padding-bottom: 3rem;
-`
-
 export default GuideTemplate
 
-export const getStaticProps = async () => {
-  // @ts-ignore
-  const path = __non_webpack_require__('path')
-  // the following line will cause all content files to be available in a serverless context
-  path.resolve(process.cwd(), './content/')
+export const getStaticProps = async ctx => {
+  const {
+    props: { preview, file: markdownFile, tocItems },
+  } = await getMarkdownPreviewProps(
+    `content/guides/index.md`,
+    ctx.preview,
+    ctx.previewData
+  )
+  const navItems = await getDocsNav(preview, {})
+
   return {
     props: {
       slug: '/guides',
-      currentGuide: null,
-      markdownFile: await readMarkdownFile(
-        path.resolve(process.cwd(), './content/guides/index.md')
-      ),
-      allGuides: await getGuideNavProps(),
+      markdownFile,
+      tocItems,
+      navItems: navItems.data,
     },
   }
 }
