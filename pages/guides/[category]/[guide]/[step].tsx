@@ -168,12 +168,6 @@ export default function GuideTemplate(props) {
 export const getStaticProps: GetStaticProps = async function(ctx) {
   const path = require('path')
   const { category, guide, step } = ctx.params
-  const pathToGuide = path.join(
-    process.cwd(),
-    './content/guides',
-    category,
-    guide
-  )
   const {
     props: { file: guideMeta },
   } = await getJsonPreviewProps(
@@ -190,16 +184,14 @@ export const getStaticProps: GetStaticProps = async function(ctx) {
     ctx.previewData
   )
 
-  const breadcrumb = {
-    category,
-    step,
-  }
-
   return {
     props: {
       preview,
       currentGuide: guideMeta.data,
-      breadcrumb,
+      breadcrumb: {
+        category,
+        step,
+      },
       guideMeta,
       markdownFile,
       allGuides: await getGuideNavProps(),
