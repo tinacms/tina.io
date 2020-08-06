@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { getMarkdownPreviewProps } from 'utils/getMarkdownFile'
+import { getMarkdownPreviewProps } from 'utils/getMarkdownPreviewProps'
 import { DocsLayout, MarkdownContent } from 'components/layout'
 import { NextSeo } from 'next-seo'
 import { DocsPagination, LastEdited } from 'components/ui'

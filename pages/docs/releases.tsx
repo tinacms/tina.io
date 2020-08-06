@@ -81,7 +81,6 @@ export const getStaticProps: GetStaticProps = async function({
   for (const filePath of releaseFiles) {
     const slug = filePath.substring(contentDir.length, filePath.length - 3)
     const absPath = path.resolve(`${filePath}`)
-    console.log(absPath)
     const doc = matter(fs.readFileSync(absPath, 'utf8'))
 
     releases.push({
@@ -96,7 +95,7 @@ export const getStaticProps: GetStaticProps = async function({
   return {
     props: {
       preview: false,
-      docsNav,
+      docsNav: docsNav.data,
       releases,
     },
   }
