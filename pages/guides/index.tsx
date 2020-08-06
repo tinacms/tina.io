@@ -42,7 +42,7 @@ const GuideTemplate = ({ markdownFile, navItems, tocItems }) => {
         openGraph={{
           title: frontmatter.title,
           description: excerpt,
-          images: [openGraphImage(guideTitle)],
+          images: [openGraphImage('TinaCMS Guides')],
         }}
       />
       <DocsLayout navItems={navItems}>
