@@ -1,17 +1,17 @@
 ---
-title: Introductory Tutorial
+title: Introduction
 id: introduction
 prev: null
 next: /docs/getting-started/cms-set-up
+last_edited: '2020-08-06T15:55:12.934Z'
 ---
+Howdy, Welcome to Tina! We are so happy you landed on this piece of heaven on the internet. The goal of this tutorial is to guide you through setting up and deploying your first site with TinaCMS using a `create-react-app`  starter template. This tutorial will walk you through Tina's fundamental building blocks by setting up editing on a basic `create-react-app` [demo](https://github.com/tinacms/tina-intro-tutorial). 
 
-Tina is a toolkit for building content management systems. This tutorial will walk you through Tina's fundamental building blocks by setting up editing on a basic `create-react-app` [demo](https://github.com/tinacms/tina-intro-tutorial). **To get the most from Tina, you should have a good working knowledge of JavaScript and React**.
+> **If this is your first time working with Tina**, we suggest going through this short tutorial.
 
-## Why _create-react-app_?
+## What is TinaCMS?
 
-Tina's UI is built with React. Using Tina in a plain React App is the simplest way to get familiar with Tina without relying on helper packages or meta-frameworks. Understanding the core concepts introduced in this tutorial will set you up for success later down the line.
-
-**If this is your first time working with Tina**, we suggest going through this short tutorial.
+TinaCMS a versatile, React-based toolkit empowering developers to build immersive, visual editing experience for their websites. 
 
 ## Overview
 
@@ -25,18 +25,5 @@ These are the general steps we will cover.
 6. [Loading content from an external API](/docs/getting-started/backends#loading-content-from-an-external-api)
 7. [Saving content changes](/docs/getting-started/backends#saving-content)
 8. [Adding alerts](/docs/getting-started/backends#adding-alerts)
-
-## Clone the demo
-
-To get started, clone the [demo](https://github.com/tinacms/tina-intro-tutorial), install its dependencies, and start the dev server.
-
-```bash
-git clone git@github.com:tinacms/tina-intro-tutorial.git my-tina-app
-cd my-tina-app
-yarn install
-yarn start
-```
-
-![tina-cra-tutorial-start](/img/getting-started/tina-tutorial-step1.png)
 
 > If at any point you feel lost or confused during this tutorial, checkout the [Tina Community Forum](https://community.tinacms.org/) to get answers, help, and llama-humor.
