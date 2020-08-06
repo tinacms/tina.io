@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
+import Link from 'next/link'
 import { getMarkdownPreviewProps } from 'utils/getMarkdownPreviewProps'
 import { DocsLayout, MarkdownContent } from 'components/layout'
 import { NextSeo } from 'next-seo'
@@ -30,6 +31,7 @@ export default function GuideTemplate(props) {
   const isBrowser = typeof window !== `undefined`
   const contentRef = React.useRef<HTMLDivElement>(null)
   const tocItems = props.tocItems
+  const breadcrumb = props.breadcrumb
   const [activeIds, setActiveIds] = React.useState([])
   const router = useRouter()
   const currentPath = router.asPath
@@ -134,6 +136,14 @@ export default function GuideTemplate(props) {
       <DocsLayout navItems={guideNav}>
         <DocsGrid>
           <DocGridHeader>
+            <div>
+              <Link href="/guides">guides</Link> &nbsp; / &nbsp;
+              <Link href={`/guides#${breadcrumb.category}`}>
+                {breadcrumb.category}
+              </Link>
+              &nbsp; / &nbsp;
+              <Link href={`/guides#${breadcrumb.step}`}>{breadcrumb.step}</Link>
+            </div>
             <DocsPageTitle>
               <InlineTextareaField name="frontmatter.title" />
             </DocsPageTitle>
@@ -180,10 +190,16 @@ export const getStaticProps: GetStaticProps = async function(ctx) {
     ctx.previewData
   )
 
+  const breadcrumb = {
+    category,
+    step,
+  }
+
   return {
     props: {
       preview,
       currentGuide: guideMeta.data,
+      breadcrumb,
       guideMeta,
       markdownFile,
       allGuides: await getGuideNavProps(),
