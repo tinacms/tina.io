@@ -42,7 +42,7 @@ export default function Packages(props) {
         openGraph={{
           title: props.name,
           description: excerpt,
-          images: [openGraphImage(props.name, '| TinaCMS Docs')],
+          images: [openGraphImage(props.name, ' | TinaCMS Docs')],
         }}
       />
       <DocsLayout navItems={props.docsNav}>
