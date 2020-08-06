@@ -54,7 +54,7 @@ function BlogTemplate({ file, siteConfig, prevPage, nextPage }) {
             images: [
               openGraphImage(
                 frontmatter.title,
-                '| TinaCMS Blog',
+                ' | TinaCMS Blog',
                 frontmatter.author
               ),
             ],
