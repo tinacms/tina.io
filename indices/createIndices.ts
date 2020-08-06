@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-import algoliasearch from 'algoliasearch'
+import algoliasearch, { SearchIndex } from 'algoliasearch'
 import { stripMarkdown } from '../utils/blog_helpers'
 import fetchDocs from '../data-api/fetchDocs'
 import fetchBlogs from '../data-api/fetchBlogs'
@@ -23,10 +23,41 @@ const saveIndex = async (client: any, indexName: string, data: any) => {
   try {
     const index = client.initIndex(indexName)
     const result = await index.saveObjects(data)
-    console.log(`updated ${indexName}: ${result.objectIDs}`)
+    console.log(
+      `${indexName}: added/updated ${result.objectIDs.length} entries`
+    )
+    const numRemoved = await cleanupIndex(index, data)
+    if (numRemoved > 0) {
+      console.log(`${indexName}: removed ${numRemoved} entries`)
+    }
   } catch (error) {
     console.log(error)
   }
+}
+
+const cleanupIndex = async (index: SearchIndex, currentData: any) => {
+  let currentObjects: Set<string> = new Set()
+  let objectsToDelete: Set<string> = new Set()
+  let numRemoved = 0
+  currentData.map(item => {
+    currentObjects.add(item.objectID)
+  })
+  await index.browseObjects({
+    batch: hits => {
+      hits.forEach(hit => {
+        if (!currentObjects.has(hit.objectID)) {
+          objectsToDelete.add(hit.objectID)
+        }
+      })
+    },
+  })
+  await Promise.all(
+    Array.from(objectsToDelete).map(async objectID => {
+      await index.deleteObject(objectID)
+      numRemoved++
+    })
+  )
+  return numRemoved
 }
 
 const createIndices = async () => {
