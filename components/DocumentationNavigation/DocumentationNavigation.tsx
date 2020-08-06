@@ -21,7 +21,9 @@ export function DocumentationNavigation({ navItems }: Props) {
       />
       <MobileNavLogo />
       <DocsLeftSidebar open={mobileNavIsOpen}>
-        <DocsDesktopTinaIcon docs />
+        <DocsSidebarHeader>
+          <DocsDesktopTinaIcon docs />
+        </DocsSidebarHeader>
         <DocsNavigationList navItems={navItems} />
       </DocsLeftSidebar>
       <Overlay
@@ -64,9 +66,18 @@ const MobileNavLogo = styled(TinaIcon)`
 const DocsDesktopTinaIcon = styled(TinaIcon)`
   position: relative;
   display: none;
-  padding: 1.25rem 2rem 2.25rem 1.5rem;
+  padding: 1.25rem 2rem 1.5rem 1.5rem;
 
   @media (min-width: 1000px) {
     display: block;
   }
+`
+
+const DocsSidebarHeader = styled.div`
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 500;
+  border-bottom: 1px solid var(--tina-color-grey-2);
+  margin-bottom: 1rem;
 `
