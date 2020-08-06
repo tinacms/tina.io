@@ -3,15 +3,15 @@ title: Introduction
 id: introduction
 prev: null
 next: /docs/getting-started/cms-set-up
-last_edited: '2020-08-06T15:55:12.934Z'
+last_edited: '2020-08-06T16:09:22.451Z'
 ---
-Howdy, Welcome to Tina! We are so happy you landed on this piece of heaven on the internet. The goal of this tutorial is to guide you through setting up and deploying your first site with TinaCMS using a `create-react-app`  starter template. This tutorial will walk you through Tina's fundamental building blocks by setting up editing on a basic `create-react-app` [demo](https://github.com/tinacms/tina-intro-tutorial). 
+Howdy, Welcome to Tina! We are so happy you landed on this piece of heaven on the internet. The goal of this tutorial is to guide you through setting up and deploying your first site with TinaCMS using a `create-react-app`  starter template. This tutorial will walk you through Tina's fundamental building blocks by setting up editing on a basic `create-react-app` [demo](https://github.com/tinacms/tina-intro-tutorial).
 
 > **If this is your first time working with Tina**, we suggest going through this short tutorial.
 
 ## What is TinaCMS?
 
-TinaCMS a versatile, React-based toolkit empowering developers to build immersive, visual editing experience for their websites. 
+TinaCMS a versatile, React-based toolkit empowering developers to build immersive, visual editing experience for their websites.
 
 ## Overview
 
