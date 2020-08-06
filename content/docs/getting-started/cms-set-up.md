@@ -2,7 +2,7 @@
 title: Set Up the CMS
 prev: /docs/getting-started/introduction
 next: /docs/getting-started/edit-content
-last_edited: '2020-08-06T16:11:17.306Z'
+last_edited: '2020-08-06T18:39:07.578Z'
 ---
 ## Clone the demo
 
@@ -25,9 +25,11 @@ yarn add tinacms styled-components
 
 ## Create a CMS instance, add _TinaProvider_
 
-The first step to setting up Tina is to create an [instance of `TinaCMS`](/docs/cms). Once created, this [CMS object](/docs/cms#setting-up-the-cms-object) allows us to manage [Plugins](/docs/plugins), [APIs](/docs/apis), [Media Stores](/docs/media), [Events](/docs/events), [Editing UI](/docs/ui) and other key aspects of content management.
+The first step to setting up Tina is to create an instance of `TinaCMS` and wrapping your site in the `TinaProvider`. 
 
-Next, wrap your site in the `TinaProvider`. This [provider](https://github.com/tinacms/tinacms/blob/master/packages/tinacms/src/components/TinaProvider.tsx) sets up the editing UI, and provides a [context](https://reactjs.org/docs/context.html) from which we can access the CMS throughout the app.
+> The [**CMS object**](/docs/cms#setting-up-the-cms-object) allows us to manage [Plugins](/docs/plugins), [APIs](/docs/apis), [Media Stores](/docs/media), [Events](/docs/events), [Editing UI](/docs/ui) and other key aspects of content management.
+>
+> The **TinaProvider component** sets up the editing UI, and provides a [context](https://reactjs.org/docs/context.html) from which we can access the CMS throughout the app.
 
 Open up `src/App.js` and follow these steps:
 
