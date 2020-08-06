@@ -1,11 +1,10 @@
 import { NextSeo } from 'next-seo'
 import React from 'react'
 
-import { getGuideNavProps } from 'utils/guide_helpers'
 import { getMarkdownPreviewProps } from 'utils/getMarkdownPreviewProps'
 import { getDocsNav } from 'utils/docs/getDocProps'
 import { createTocListener } from 'utils'
-import { DocsLayout, Wrapper, MarkdownContent } from 'components/layout'
+import { DocsLayout, MarkdownContent } from 'components/layout'
 import {
   DocGridToc,
   DocGridContent,
@@ -73,14 +72,14 @@ export const getStaticProps = async ctx => {
     ctx.preview,
     ctx.previewData
   )
+  const navItems = await getDocsNav(preview, {})
 
   return {
     props: {
       slug: '/guides',
       markdownFile,
       tocItems,
-      allGuides: await getGuideNavProps(),
-      navItems: await getDocsNav(preview, {}),
+      navItems: navItems.data,
     },
   }
 }
