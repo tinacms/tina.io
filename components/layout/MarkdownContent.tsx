@@ -19,7 +19,7 @@ interface MarkdownContentProps {
 
 function WithCodeStyles({ language: tags, value }) {
   const [language, ...other] = tags.split(',')
-  const copy = other.includes('copy')
+  const copy = other.includes('copy') || language === 'copy'
   return (
     <>
       <SyntaxHighlighter language={language} style={CodeStyle}>
