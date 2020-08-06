@@ -81,11 +81,9 @@ const DocsDesktopTinaIcon = styled(TinaIcon)`
 `
 
 const DocsSidebarHeader = styled.div`
-  position: sticky;
-  top: 0;
+  flex: 0 0 auto;
   background-color: white;
   z-index: 500;
   padding: 1.25rem 2rem 1.25rem 1.5rem;
   border-bottom: 1px solid var(--tina-color-grey-2);
-  margin-bottom: 1rem;
 `
