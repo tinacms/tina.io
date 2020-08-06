@@ -13,6 +13,7 @@ import { getPackageProps } from '../../utils/docs/getPackageProps'
 import { DocsGrid, DocGridToc, DocGridContent } from 'pages/docs/[...slug]'
 import { createTocListener } from 'utils'
 import Toc from 'components/toc'
+import { openGraphImage } from 'utils/open-graph-image'
 
 export default function Packages(props) {
   const excerpt = 'A package for Tinacms.'
@@ -41,17 +42,7 @@ export default function Packages(props) {
         openGraph={{
           title: props.name,
           description: excerpt,
-          images: [
-            {
-              url:
-                'https://res.cloudinary.com/forestry-demo/image/upload/l_text:tuner-regular.ttf_90_center:' +
-                encodeURIComponent(props.name) +
-                ',g_center,x_0,y_50,w_850,c_fit,co_rgb:EC4815/v1581087220/TinaCMS/tinacms-social-empty-docs.png',
-              width: 1200,
-              height: 628,
-              alt: props.name + ` | TinaCMS Docs`,
-            },
-          ],
+          images: [openGraphImage(props.name, ' | TinaCMS Docs')],
         }}
       />
       <DocsLayout navItems={props.docsNav}>

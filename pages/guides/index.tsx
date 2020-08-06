@@ -14,6 +14,7 @@ import {
   DocsPageTitle,
 } from '../docs/[...slug]'
 import Toc from 'components/toc'
+import { openGraphImage } from 'utils/open-graph-image'
 
 const GuideTemplate = ({ markdownFile, navItems, tocItems }) => {
   const { frontmatter, markdownBody, excerpt } = markdownFile.data
@@ -41,17 +42,7 @@ const GuideTemplate = ({ markdownFile, navItems, tocItems }) => {
         openGraph={{
           title: frontmatter.title,
           description: excerpt,
-          images: [
-            {
-              url:
-                'https://res.cloudinary.com/forestry-demo/image/upload/l_text:tuner-regular.ttf_90_center:' +
-                encodeURIComponent('TinaCMS Guides') +
-                ',g_center,x_0,y_50,w_850,c_fit,co_rgb:EC4815/v1581087220/TinaCMS/tinacms-social-empty-docs.png',
-              width: 1200,
-              height: 628,
-              alt: 'TinaCMS Guides',
-            },
-          ],
+          images: [openGraphImage(guideTitle)],
         }}
       />
       <DocsLayout navItems={navItems}>
