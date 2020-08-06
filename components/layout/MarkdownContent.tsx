@@ -17,10 +17,9 @@ interface MarkdownContentProps {
   skipHtml?: boolean
 }
 
-function WithCodeStyles({ language: tags = '', value }) {
-  const [language, ...other] = tags.split(',')
+function WithCodeStyles({ language: tags, value }) {
+  const [language, ...other] = tags?.split(',') || []
   const copy = other.includes('copy') || language === 'copy'
-  console.log(value)
   return (
     <CodeWrapper>
       <SyntaxHighlighter language={language} style={CodeStyle}>
