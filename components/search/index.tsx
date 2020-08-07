@@ -89,7 +89,7 @@ export default function Search({ indices, expanded = false }: any) {
             setFocus(false)
           }}
         >
-          {query.length > 0 && (
+          {query?.length > 0 && (
             <HitsWrapper show={true}>
               <HitsResults>
                 <AllIndicesResults />
