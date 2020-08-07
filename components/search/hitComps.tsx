@@ -26,7 +26,7 @@ const GuideHit = (clickHandler: any) => ({ hit }: { hit: Hit }) => (
         <Highlight attribute="title" hit={hit} tagName="mark" />
       </h4>
       <GuideTitle>
-        <Highlight attribute="guideTitle" hit={hit} tagName="mark" />{' '}
+        <Highlight attribute="guideTitle" hit={hit} tagName="mark" />
       </GuideTitle>
       {hit['_highlightResult'].excerpt.matchLevel !== 'none' && (
         <Highlight attribute="excerpt" hit={hit} tagName="mark" />
