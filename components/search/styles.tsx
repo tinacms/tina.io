@@ -63,7 +63,11 @@ export const Input = styled.input<InputProps>`
     `};
 `
 
-export const SearchContainer = styled.div`
+interface SearchContainerProps {
+  expanded?: boolean
+}
+
+export const SearchContainer = styled.div<SearchContainerProps>`
   position: relative;
   font-size: 0.8rem;
   padding: 0.625rem 0;
@@ -80,6 +84,12 @@ export const SearchContainer = styled.div`
     text-decoration: none;
     transition: filter 250ms ease;
   }
+
+  ${p =>
+    p.expanded &&
+    css`
+      border: 1px solid var(--color-light-dark);
+    `};
 
   @media (max-width: 684px) {
     /* Begin temp fix */

@@ -84,6 +84,7 @@ const DocsSidebarHeader = styled.div`
   flex: 0 0 auto;
   background-color: white;
   z-index: 500;
-  padding: 1.25rem 2rem 1.25rem 1.5rem;
+  padding: 1.25rem 1.25rem;
   border-bottom: 1px solid var(--tina-color-grey-2);
+  border-right: 1px solid var(--tina-color-grey-2);
 `
