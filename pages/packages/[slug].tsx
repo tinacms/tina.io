@@ -86,9 +86,7 @@ export const getStaticPaths: GetStaticPaths = async function() {
   const file = await JSON.parse(fs.readFileSync(filePath, 'utf8'))
 
   return {
-    paths: file.packages.map((p: { name: any }) => ({
-      params: { slug: p.name },
-    })),
+    paths: [],
     fallback: false,
   }
 }
