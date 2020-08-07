@@ -23,11 +23,13 @@ const GuideHit = (clickHandler: any) => ({ hit }: { hit: Hit }) => (
   <DynamicLink href={path.join('/guides', (hit as any).slug)}>
     <div onClick={clickHandler}>
       <h4>
+        {hit.guideTitle && (
+          <GuideTitle>
+            <Highlight attribute="guideTitle" hit={hit} tagName="mark" />
+          </GuideTitle>
+        )}
         <Highlight attribute="title" hit={hit} tagName="mark" />
       </h4>
-      <GuideTitle>
-        <Highlight attribute="guideTitle" hit={hit} tagName="mark" />
-      </GuideTitle>
       {hit['_highlightResult'].excerpt.matchLevel !== 'none' && (
         <Highlight attribute="excerpt" hit={hit} tagName="mark" />
       )}
@@ -36,14 +38,11 @@ const GuideHit = (clickHandler: any) => ({ hit }: { hit: Hit }) => (
 )
 
 const GuideTitle = styled.div`
-  margin-top: -0.5rem;
-  + * {
-    margin-top: 1rem;
-    display: block;
-  }
-  [class*='Highlight'] {
-    font-size: 0.8rem;
-    font-style: italic;
+  display: inline;
+  &:after {
+    content: ' - ';
+    display: inline-block;
+    margin: 0 0.25rem;
   }
 `
 
