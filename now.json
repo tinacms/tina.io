@@ -53,11 +53,19 @@
       "destination": "/docs/ui/inline-editing"
     },
     {
+      "source": "/guides/nextjs/github-open-authoring/initial-setup",
+      "destination": "/guides/nextjs/github/initial-setup/"
+    },
+    {
       "source": "/docs/gatsby/inline-editing",
       "destination": "/docs/ui/inline-editing"
     },
     {
       "source": "/docs/inline-blocks",
+      "destination": "/docs/ui/inline-editing/inline-blocks"
+    },
+    {
+      "source": "/docs/inline-editing/inline-blocks",
       "destination": "/docs/ui/inline-editing/inline-blocks"
     },
     {
