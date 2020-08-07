@@ -29,7 +29,7 @@ export function DocumentationNavigation({ navItems }: Props) {
       <DocsLeftSidebar open={mobileNavIsOpen}>
         <DocsSidebarHeader>
           <DocsDesktopTinaIcon docs />
-          <Search expanded={true} indices={searchIndices} />
+          <Search collapse expanded={true} indices={searchIndices} />
         </DocsSidebarHeader>
         <DocsNavigationList navItems={navItems} />
       </DocsLeftSidebar>

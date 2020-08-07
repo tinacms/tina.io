@@ -58,7 +58,7 @@ const ClientSideDismissible = (props: DismissibleProps & { children: any }) => {
   return props.children
 }
 
-export default function Search({ indices, expanded = false }: any) {
+export default function Search({ indices, collapse, expanded = false }: any) {
   const ref = createRef()
   const [query, setQuery] = useState(``)
   const [focus, setFocus] = useState(false)
@@ -79,7 +79,7 @@ export default function Search({ indices, expanded = false }: any) {
       <Input
         onMouseUp={() => setTimeout(() => setFocus(true), 0)} //workaround, otherwise click to open search also closes
         expanded={expanded}
-        {...{ focus }}
+        {...{ collapse, focus }}
       />
       {focus && (
         <ClientSideDismissible
