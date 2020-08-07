@@ -69,7 +69,7 @@ interface SearchContainerProps {
 
 export const SearchContainer = styled.div<SearchContainerProps>`
   position: relative;
-  font-size: 0.8rem;
+  font-size: 1rem;
   padding: 0.625rem 0;
   font-family: var(--font-tuner);
   background-color: var(--color-background);
@@ -86,22 +86,19 @@ export const SearchContainer = styled.div<SearchContainerProps>`
   }
 
   ${p =>
-    p.expanded &&
-    css`
-      border: 1px solid var(--color-light-dark);
-    `};
-
-  @media (max-width: 684px) {
-    /* Begin temp fix */
-    display: none;
-    /* End temp fix */
-    margin: 1rem;
-    border: 1px solid var(--color-light-dark);
-  }
-
-  @media (min-width: 800px) {
-    font-size: 1rem;
-  }
+    p.expanded
+      ? css`
+          border: 1px solid var(--color-light-dark);
+        `
+      : css`
+          @media (max-width: 684px) {
+            /* Begin temp fix */
+            display: none;
+            /* End temp fix */
+            margin: 1rem;
+            border: 1px solid var(--color-light-dark);
+          }
+        `};
 `
 
 interface HitsWrapperProps {
