@@ -2,9 +2,9 @@
 title: Working with Backends
 prev: /docs/getting-started/edit-content
 next: null
+last_edited: '2020-08-07T18:31:20.137Z'
 ---
-
-You may have noticed that content changes don't persist on refresh. Every time the page loads, the `data` populates with the form's initial values. In order for the CMS to be useful, it needs to track and persist data changes with some sort of backend.
+If you try refreshing the page on the demo we have built so far, you can see that the `data` populates with the form's initial values, not persisting your changes. A Backend can track and save data changes, making sure all of your hard work is saved. 
 
 ## Loading Content from an external API
 
@@ -95,11 +95,13 @@ function PageContent() {
 
 Note that this `onSubmit` function won't actually save those new values on the server — it is a fake API after all. But the response will act as if it did. This example just puts the response in the console to show what was returned.
 
-## Adding Alerts
+## Adding Alerts 🚨
 
-While our form is functional in terms of retrieving and saving content, the editing experience could be improved by additional feedback. What if the form failed to save? Currently, the editor would need to check the console to see that there was an error.
+Now, we have a form that can retrieve and save content 🎉
 
-[CMS Alerts](/docs/ui/alerts) are useful for displaying quick, short feedback to the editor. Let's add a few to improve the feedback for saving content.
+However, if an editor wanted to double check if their edits were saved, they would need to check the console to see that there was an error. 
+
+[**CMS Alerts**](/docs/ui/alerts) are useful for displaying quick, short feedback to the editor. Let's add a few to improve the feedback for saving content.
 
 ### The Steps
 
@@ -149,13 +151,15 @@ function PageContent() {
 
 ![tinacms-success-alert](/img/getting-started/alert.png)
 
-> _Tip:_ Dispatching alerts can be powerful in combination with [CMS Events](/docs/events).
+> 🦙 _Tip:_ Dispatching alerts can be powerful in combination with [CMS Events](/docs/events).
 
 ## Other backends
 
 Tina is fairly unopinionated about how it receives data to edit, or where that data is stored. The backend you choose depends on your project and the React meta-framework you may be using. Currently, there are numerous packages to support Git & GitHub workflows, but Tina is designed to potentially work with any data source. We have also made working prototypes to source data from [Strapi](/guides/nextjs/tina-with-strapi/overview) and Contentful (not yet documented).
 
-Please refer to the [guides](/guides) for in-depth information on setting up various backends. Also, refer to [the forum](https://community.tinacms.org/) to read about other developers' unique configurations. As always, reach out to the Tina Team on [the forum](https://community.tinacms.org/) if you have an integration or backend idea and would like guidance or feedback on how to get started.
+Please refer to the [guides](/guides) for in-depth information on setting up various backends. Also, refer to [the forum](https://community.tinacms.org/) to read about other developers' unique configurations. 
+
+> Reach out to the Tina Team on [the forum](https://community.tinacms.org/) if you have an integration or backend idea and would like guidance or feedback on how to get started.
 
 ## Final Notes
 
@@ -165,12 +169,12 @@ We’d like to provide developers with control and flexibility in all these aspe
 
 **Avenues to keep learning:**
 
-- Gain clarity with our [FAQ](_Coming soon_)
-- Set up [Inline Editing](/guides/general/inline-blocks/overview), or editing content directly on the page
-- Configure more complex fields, such as [Blocks](/docs/plugins/fields/blocks) or the [Markdown Wysiwyg](docs/plugins/fields/markdown)
-- Create new data files with [Content Creator Plugins](/docs/plugins/content-creators)
-- Add Tina to a [Next.js Site](/guides/nextjs/adding-tina/overview)
-- Add Tina to a [Gatsby Site](guides/gatsby/adding-tina/project-setup)
+* Gain clarity with our [FAQ](_Coming soon_)
+* Set up [Inline Editing](/guides/general/inline-blocks/overview), or editing content directly on the page
+* Configure more complex fields, such as [Blocks](/docs/plugins/fields/blocks) or the [Markdown Wysiwyg](docs/plugins/fields/markdown)
+* Create new data files with [Content Creator Plugins](/docs/plugins/content-creators)
+* Add Tina to a [Next.js Site](/guides/nextjs/adding-tina/overview)
+* Add Tina to a [Gatsby Site](guides/gatsby/adding-tina/project-setup)
 
 Follow [Tina on Twitter](https://twitter.com/tina_cms) 🦙! If you're stoked on this project, please give us a 🌟 on the [GitHub repository](https://github.com/tinacms/tinacms).
 
