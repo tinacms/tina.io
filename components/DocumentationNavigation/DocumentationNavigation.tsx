@@ -7,6 +7,7 @@ import styled from 'styled-components'
 import { DocsHeaderNav } from './DocsHeaderNav'
 import { TinaIcon } from 'components/logo/TinaIcon'
 import Search from '../search'
+import { HitsWrapper } from 'components/search/styles'
 
 const searchIndices = [
   { name: `Tina-Docs-Next`, title: `Docs`, hitComp: `DocHit` },
@@ -84,9 +85,16 @@ const DocsSidebarHeader = styled.div`
   flex: 0 0 auto;
   background-color: white;
   z-index: 500;
-  padding: 1.25rem 1.25rem;
+  padding: 1.25rem;
   border-bottom: 1px solid var(--tina-color-grey-2);
   border-right: 1px solid var(--tina-color-grey-2);
+  position: relative;
+
+  ${HitsWrapper} {
+    right: auto;
+    left: 1.25rem;
+    margin-top: -1.625rem;
+  }
 
   @media (max-width: 684px) {
     padding-left: 4.5rem;

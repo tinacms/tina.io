@@ -101,10 +101,6 @@ export const SearchContainer = styled.div<SearchContainerProps>`
         `};
 `
 
-interface HitsWrapperProps {
-  show: boolean
-}
-
 export const IndexContainer = styled.div`
   flex: 1 0 auto;
   overflow-y: auto;
@@ -118,6 +114,10 @@ export const HitsResults = styled.div`
   overflow-x: hidden;
   overflow-y: scroll;
 `
+
+interface HitsWrapperProps {
+  show: boolean
+}
 
 export const HitsWrapper = styled.div<HitsWrapperProps>`
   display: ${props => (props.show ? `grid` : `none`)};
@@ -133,7 +133,7 @@ export const HitsWrapper = styled.div<HitsWrapperProps>`
   width: 80vw;
   max-width: 35rem;
   border-radius: 24px;
-  filter: drop-shadow(1px 2px 18px rgb(0, 0, 0, 12%));
+  filter: drop-shadow(0 13px 26px rgb(0, 0, 0, 0.15));
   color: var(--color-secondary);
   padding: 0;
   background: white;
