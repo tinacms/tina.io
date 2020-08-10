@@ -65,13 +65,13 @@ const Breadcrumbs = styled.li`
   padding: 0 1.5rem 0.25rem 1.5rem;
 
   a {
-    color: var(--tina-color-primary-dark);
-    text-decoration-color: rgba(0, 132, 255, 0.5);
+    color: var(--tina-color-grey-5);
+    text-decoration-color: rgba(0, 0, 0, 0.3);
     font-size: 1rem;
 
     &:hover {
-      color: var(--tina-color-primary);
-      text-decoration-color: var(--tina-color-primary);
+      color: var(--tina-color-grey-6);
+      text-decoration-color: var(--tina-color-grey-6);
     }
   }
 
