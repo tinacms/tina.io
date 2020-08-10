@@ -7,12 +7,12 @@ import RightArrowSvg from '../../public/svg/right-arrow.svg'
 import { DynamicLink } from '../ui/DynamicLink'
 import Link from 'next/link'
 
-interface NavSection {
+export interface NavSectionProps {
   id: string
   slug?: string
   href?: string
   title: string
-  items: NavSection[]
+  items: NavSectionProps[]
   collapsible?: boolean
   returnLink?: {
     url: string
@@ -20,7 +20,7 @@ interface NavSection {
   }
 }
 
-export const NavSection = (section: NavSection) => {
+export const NavSection = (section: NavSectionProps) => {
   const router = useRouter()
   const currentPath = router.asPath
   const isCurrentPage = useMemo(() => {
@@ -126,7 +126,7 @@ const NavLink = ({ section, currentPage, router }) => {
   }
 }
 
-const menuIsActive = (section: NavSection, currentPath: string) => {
+const menuIsActive = (section: NavSectionProps, currentPath: string) => {
   if (section.slug && currentPath.includes(section.slug)) {
     return true
   }
@@ -153,11 +153,12 @@ interface NavSectionTitleProps {
 
 const NavSectionTitle = styled.span<NavSectionTitleProps>`
   display: block;
-  padding: 0.5rem 3.5rem 0.5rem 1.5rem;
+  padding: 0.5rem 1.5rem 0.5rem 1.5rem;
   color: var(--color-secondary);
   text-decoration: none;
   transition: all 180ms ease-out;
   font-family: var(--font-tuner);
+  font-size: 1.125rem;
 
   ${props =>
     props.currentPage &&

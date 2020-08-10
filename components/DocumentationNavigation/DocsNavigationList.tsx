@@ -1,14 +1,22 @@
 import styled from 'styled-components'
+import Link from 'next/link'
 
 import { DocsLinkNav } from '../ui/DocsLinkNav'
+import { DocsNavProps } from './DocumentationNavigation'
 import { NavSection } from './NavSection'
 
-export const DocsNavigationList = ({ navItems }) => {
+export const DocsNavigationList = ({ navItems, guide }: DocsNavProps) => {
   return (
     <ul>
       <MobileMainNav>
         <DocsLinkNav />
       </MobileMainNav>
+      {guide && (
+        <Breadcrumbs>
+          <Link href="/guides">guides</Link>
+          <Link href={`/guides#${guide.category}`}>{guide.category}</Link>
+        </Breadcrumbs>
+      )}
       {navItems &&
         navItems.map(section => (
           <NavSection key={section.id} {...section} collapsible={false} />
@@ -49,5 +57,28 @@ const MobileMainNav = styled.li`
 
   @media (min-width: 1000px) {
     display: none;
+  }
+`
+
+const Breadcrumbs = styled.li`
+  display: block;
+  padding: 0 1.5rem 0.5rem 1.5rem;
+
+  a {
+    color: var(--tina-color-grey-5);
+    text-decoration-color: rgba(0, 0, 0, 0.3);
+    font-size: 1rem;
+
+    &:hover {
+      color: var(--tina-color-grey-6);
+      text-decoration-color: var(--tina-color-grey-6);
+    }
+  }
+
+  a:not(:last-child):after {
+    content: '/';
+    display: inline-block;
+    margin: 0 0.25rem;
+    color: var(--tina-color-grey-4);
   }
 `
