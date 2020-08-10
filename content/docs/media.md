@@ -2,8 +2,8 @@
 title: Media
 prev: /docs/events
 next: /docs/apis
+last_edited: '2020-08-10T17:15:19.482Z'
 ---
-
 **Media** in Tina refers to a set of APIs to allow packages to interact with a central store of files.
 
 ## Media Store
@@ -43,5 +43,5 @@ cms.media.store = new MyMediaStore()
 
 > #### Supported Media Stores
 >
-> - [`GitMediaStore`](/guides/nextjs/git/adding-backend): Saves media to your Git repository by writing to the local system and commiting directly.
-> - `GithubMediaStore`: **Coming Soon.** Saves media to to your Git repository through the Github API.
+> * [`GitMediaStore`](/guides/nextjs/git/adding-backend): Saves media to your Git repository by writing to the local system and commiting directly.
+> * [`GithubMediaStore`](/packages/react-tinacms-github): Saves media to to your Git repository through the Github API.
