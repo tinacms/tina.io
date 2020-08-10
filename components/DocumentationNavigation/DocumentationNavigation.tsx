@@ -6,6 +6,8 @@ import { NavToggle } from '../ui/NavToggle'
 import styled from 'styled-components'
 import { DocsHeaderNav } from './DocsHeaderNav'
 import { TinaIcon } from 'components/logo/TinaIcon'
+import { useRouter } from 'next/router'
+import { FallbackPlaceholder } from 'components/fallback-placeholder'
 
 interface Props {
   navItems: any
@@ -16,6 +18,7 @@ export const NavContext = createContext({ current: null })
 export function DocumentationNavigation({ navItems }: Props) {
   const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false)
   const navRef = useRef<HTMLDivElement>(null)
+  const router = useRouter()
 
   return (
     <NavContext.Provider value={navRef}>
@@ -26,7 +29,11 @@ export function DocumentationNavigation({ navItems }: Props) {
       <MobileNavLogo />
       <DocsLeftSidebar open={mobileNavIsOpen} ref={navRef}>
         <DocsDesktopTinaIcon docs />
-        <DocsNavigationList navItems={navItems} />
+        {router.isFallback ? (
+          <FallbackPlaceholder />
+        ) : (
+          <DocsNavigationList navItems={navItems} />
+        )}
       </DocsLeftSidebar>
       <Overlay
         open={mobileNavIsOpen}
