@@ -153,11 +153,12 @@ interface NavSectionTitleProps {
 
 const NavSectionTitle = styled.span<NavSectionTitleProps>`
   display: block;
-  padding: 0.5rem 3.5rem 0.5rem 1.5rem;
+  padding: 0.5rem 1.5rem 0.5rem 1.5rem;
   color: var(--color-secondary);
   text-decoration: none;
   transition: all 180ms ease-out;
   font-family: var(--font-tuner);
+  font-size: 1.125rem;
 
   ${props =>
     props.currentPage &&
