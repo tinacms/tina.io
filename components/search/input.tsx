@@ -5,7 +5,7 @@ import { IconWrapper, Input, SearchContainer } from './styles'
 import { SearchIcon } from './SearchIcon'
 
 /* Copied from SearchBoxProvided in react-instantsearch-dom */
-interface searchBoxProps {
+interface SearchBoxProps {
   refine: (...args: any[]) => any
   currentRefinement: string
   isSearchStalled: boolean
@@ -13,7 +13,7 @@ interface searchBoxProps {
 }
 
 export default connectSearchBox(
-  ({ refine, expanded, ...rest }: searchBoxProps) => {
+  ({ refine, expanded, ...rest }: SearchBoxProps) => {
     const debouncedSearch = debounce((e: any) => refine(e.target.value), 250)
     const onChange = (e: any) => {
       e.persist()
