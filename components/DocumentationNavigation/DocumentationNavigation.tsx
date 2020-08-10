@@ -8,14 +8,22 @@ import { DocsHeaderNav } from './DocsHeaderNav'
 import { TinaIcon } from 'components/logo/TinaIcon'
 import { useRouter } from 'next/router'
 import { FallbackPlaceholder } from 'components/fallback-placeholder'
+import Search from '../search'
+import { HitsWrapper } from 'components/search/styles'
 
-interface Props {
+const searchIndices = [
+  { name: `Tina-Docs-Next`, title: `Docs`, hitComp: `DocHit` },
+  { name: `Tina-Blogs-Next`, title: `Blog`, hitComp: `BlogHit` },
+]
+
+export interface DocsNavProps {
   navItems: any
+  guide: false | { category: string }
 }
 
 export const NavContext = createContext({ current: null })
 
-export function DocumentationNavigation({ navItems }: Props) {
+export function DocumentationNavigation({ navItems, guide }: DocsNavProps) {
   const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false)
   const navRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
@@ -28,11 +36,14 @@ export function DocumentationNavigation({ navItems }: Props) {
       />
       <MobileNavLogo />
       <DocsLeftSidebar open={mobileNavIsOpen} ref={navRef}>
-        <DocsDesktopTinaIcon docs />
+        <DocsSidebarHeader>
+          <DocsDesktopTinaIcon docs />
+          <Search collapse expanded={true} indices={searchIndices} />
+        </DocsSidebarHeader>
         {router.isFallback ? (
           <FallbackPlaceholder />
         ) : (
-          <DocsNavigationList navItems={navItems} />
+          <DocsNavigationList navItems={navItems} guide={guide} />
         )}
       </DocsLeftSidebar>
       <Overlay
@@ -75,9 +86,29 @@ const MobileNavLogo = styled(TinaIcon)`
 const DocsDesktopTinaIcon = styled(TinaIcon)`
   position: relative;
   display: none;
-  padding: 1.25rem 2rem 2.25rem 1.5rem;
+  margin-bottom: 1rem;
 
   @media (min-width: 1000px) {
     display: block;
+  }
+`
+
+const DocsSidebarHeader = styled.div`
+  flex: 0 0 auto;
+  background-color: white;
+  z-index: 500;
+  padding: 1.25rem;
+  border-bottom: 1px solid var(--tina-color-grey-2);
+  border-right: 1px solid var(--tina-color-grey-2);
+  position: relative;
+
+  ${HitsWrapper} {
+    right: auto;
+    left: 1.25rem;
+    margin-top: -1.625rem;
+  }
+
+  @media (max-width: 684px) {
+    padding-left: 4.5rem;
   }
 `
