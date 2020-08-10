@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import Link from 'next/link'
 import { getMarkdownPreviewProps } from 'utils/getMarkdownPreviewProps'
 import { DocsLayout, MarkdownContent } from 'components/layout'
 import { NextSeo } from 'next-seo'
@@ -27,20 +26,37 @@ import { useLastEdited } from 'utils/useLastEdited'
 import { InlineGithubForm } from 'components/layout/InlineGithubForm'
 import { openGraphImage } from 'utils/open-graph-image'
 
-export default function GuideTemplate(props) {
+export default function GuideTemplate({
+  tocItems,
+  breadcrumb,
+  guideMeta,
+  markdownFile,
+  allGuides,
+}) {
   const isBrowser = typeof window !== `undefined`
   const contentRef = React.useRef<HTMLDivElement>(null)
-  const tocItems = props.tocItems
-  const breadcrumb = props.breadcrumb
   const [activeIds, setActiveIds] = React.useState([])
   const router = useRouter()
   const currentPath = router.asPath
+  const excerpt = markdownFile.data.excerpt
+
+  /** Handles active TOC */
+  React.useEffect(() => {
+    if (!isBrowser || !contentRef.current) {
+      return
+    }
+
+    const activeTocListener = createTocListener(contentRef, setActiveIds)
+    window.addEventListener('scroll', activeTocListener)
+
+    return () => window.removeEventListener('scroll', activeTocListener)
+  }, [contentRef])
 
   const [{ frontmatter, markdownBody }, stepForm] = useGithubMarkdownForm(
-    props.markdownFile
+    markdownFile
   )
 
-  const [guide, guideForm] = useGithubJsonForm(props.guideMeta, {
+  const [guide, guideForm] = useGithubJsonForm(guideMeta, {
     label: 'Guide Metadata',
     fields: [
       { component: 'text', name: 'title', label: 'Title' },
@@ -60,6 +76,10 @@ export default function GuideTemplate(props) {
       },
     ],
   })
+
+  const guideTitle = guide?.title || 'TinaCMS Guides'
+  const guideNav = useGuideNav(guide, allGuides)
+  const { prev, next } = usePrevNextSteps(guide, currentPath)
 
   usePlugin(
     useMemo(
@@ -100,26 +120,9 @@ export default function GuideTemplate(props) {
       []
     )
   )
-
-  React.useEffect(() => {
-    if (!isBrowser || !contentRef.current) {
-      return
-    }
-
-    const activeTocListener = createTocListener(contentRef, setActiveIds)
-    window.addEventListener('scroll', activeTocListener)
-
-    return () => window.removeEventListener('scroll', activeTocListener)
-  }, [contentRef])
-
   usePlugin(stepForm)
   useFormScreenPlugin(guideForm)
   useLastEdited(stepForm)
-
-  const guideTitle = guide?.title || 'TinaCMS Guides'
-  const guideNav = useGuideNav(guide, props.allGuides)
-  const { prev, next } = usePrevNextSteps(guide, currentPath)
-  const excerpt = props.markdownFile.data.excerpt
 
   return (
     <InlineGithubForm form={stepForm}>
