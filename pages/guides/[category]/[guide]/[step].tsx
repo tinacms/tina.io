@@ -32,7 +32,7 @@ interface GuideTemplateProps {
   breadcrumb: { category: string }
   guideMeta: GitFile
   markdownFile: GitFile
-  allGuides: GuideNavItem[]
+  allGuides: NavSectionProps[]
 }
 
 type GitFile = {
@@ -40,8 +40,6 @@ type GitFile = {
   sha: string
   data: any
 }
-
-type GuideNavItem = Omit<NavSectionProps, 'returnLink'>
 
 export default function GuideTemplate({
   tocItems,
