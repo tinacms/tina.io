@@ -14,13 +14,14 @@ const searchIndices = [
   { name: `Tina-Blogs-Next`, title: `Blog`, hitComp: `BlogHit` },
 ]
 
-interface Props {
+export interface DocsNavProps {
   navItems: any
+  guide: false | { category: string }
 }
 
 export const NavContext = createContext({ current: null })
 
-export function DocumentationNavigation({ navItems }: Props) {
+export function DocumentationNavigation({ navItems, guide }: DocsNavProps) {
   const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false)
   const navRef = useRef<HTMLDivElement>(null)
 
@@ -36,7 +37,7 @@ export function DocumentationNavigation({ navItems }: Props) {
           <DocsDesktopTinaIcon docs />
           <Search collapse expanded={true} indices={searchIndices} />
         </DocsSidebarHeader>
-        <DocsNavigationList navItems={navItems} />
+        <DocsNavigationList navItems={navItems} guide={guide} />
       </DocsLeftSidebar>
       <Overlay
         open={mobileNavIsOpen}
