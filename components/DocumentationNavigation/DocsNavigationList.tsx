@@ -7,32 +7,30 @@ import { NavSection } from './NavSection'
 
 export const DocsNavigationList = ({ navItems, guide }: DocsNavProps) => {
   return (
-    <>
+    <ul>
+      <MobileMainNav>
+        <DocsLinkNav />
+      </MobileMainNav>
       {guide && (
-        <div>
-          <Link href="/guides">guides</Link> &nbsp; / &nbsp;
+        <Breadcrumbs>
+          <Link href="/guides">guides</Link>
           <Link href={`/guides#${guide.category}`}>{guide.category}</Link>
-        </div>
+        </Breadcrumbs>
       )}
-      <ul>
-        <MobileMainNav>
-          <DocsLinkNav />
-        </MobileMainNav>
-        {navItems &&
-          navItems.map(section => (
-            <NavSection key={section.id} {...section} collapsible={false} />
-          ))}
-        <li>
-          <iframe
-            src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
-            frameBorder="0"
-            scrolling="0"
-            width="150px"
-            height="30px"
-          ></iframe>
-        </li>
-      </ul>
-    </>
+      {navItems &&
+        navItems.map(section => (
+          <NavSection key={section.id} {...section} collapsible={false} />
+        ))}
+      <li>
+        <iframe
+          src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
+          frameBorder="0"
+          scrolling="0"
+          width="150px"
+          height="30px"
+        ></iframe>
+      </li>
+    </ul>
   )
 }
 
@@ -59,5 +57,28 @@ const MobileMainNav = styled.li`
 
   @media (min-width: 1000px) {
     display: none;
+  }
+`
+
+const Breadcrumbs = styled.li`
+  display: block;
+  padding: 0 1.5rem 0.25rem 1.5rem;
+
+  a {
+    color: var(--tina-color-primary-dark);
+    text-decoration-color: rgba(0, 132, 255, 0.5);
+    font-size: 1rem;
+
+    &:hover {
+      color: var(--tina-color-primary);
+      text-decoration-color: var(--tina-color-primary);
+    }
+  }
+
+  a:not(:last-child):after {
+    content: '/';
+    display: inline-block;
+    margin: 0 0.25rem;
+    color: var(--tina-color-grey-4);
   }
 `
