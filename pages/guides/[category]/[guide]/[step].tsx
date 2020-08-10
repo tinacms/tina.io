@@ -133,17 +133,9 @@ export default function GuideTemplate(props) {
           images: [openGraphImage(guideTitle)],
         }}
       />
-      <DocsLayout navItems={guideNav}>
+      <DocsLayout navItems={guideNav} guide={breadcrumb}>
         <DocsGrid>
           <DocGridHeader>
-            <div>
-              <Link href="/guides">guides</Link> &nbsp; / &nbsp;
-              <Link href={`/guides#${breadcrumb.category}`}>
-                {breadcrumb.category}
-              </Link>
-              &nbsp; / &nbsp;
-              <Link href={`/guides#${breadcrumb.step}`}>{breadcrumb.step}</Link>
-            </div>
             <DocsPageTitle>
               <InlineTextareaField name="frontmatter.title" />
             </DocsPageTitle>
@@ -189,7 +181,6 @@ export const getStaticProps: GetStaticProps = async function(ctx) {
       currentGuide: guideMeta.data,
       breadcrumb: {
         category,
-        step,
       },
       guideMeta,
       markdownFile,
