@@ -6,6 +6,13 @@ import { NavToggle } from '../ui/NavToggle'
 import styled from 'styled-components'
 import { DocsHeaderNav } from './DocsHeaderNav'
 import { TinaIcon } from 'components/logo/TinaIcon'
+import Search from '../search'
+import { HitsWrapper } from 'components/search/styles'
+
+const searchIndices = [
+  { name: `Tina-Docs-Next`, title: `Docs`, hitComp: `DocHit` },
+  { name: `Tina-Blogs-Next`, title: `Blog`, hitComp: `BlogHit` },
+]
 
 interface Props {
   navItems: any
@@ -25,7 +32,10 @@ export function DocumentationNavigation({ navItems }: Props) {
       />
       <MobileNavLogo />
       <DocsLeftSidebar open={mobileNavIsOpen} ref={navRef}>
-        <DocsDesktopTinaIcon docs />
+        <DocsSidebarHeader>
+          <DocsDesktopTinaIcon docs />
+          <Search collapse expanded={true} indices={searchIndices} />
+        </DocsSidebarHeader>
         <DocsNavigationList navItems={navItems} />
       </DocsLeftSidebar>
       <Overlay
@@ -68,9 +78,29 @@ const MobileNavLogo = styled(TinaIcon)`
 const DocsDesktopTinaIcon = styled(TinaIcon)`
   position: relative;
   display: none;
-  padding: 1.25rem 2rem 2.25rem 1.5rem;
+  margin-bottom: 1rem;
 
   @media (min-width: 1000px) {
     display: block;
+  }
+`
+
+const DocsSidebarHeader = styled.div`
+  flex: 0 0 auto;
+  background-color: white;
+  z-index: 500;
+  padding: 1.25rem;
+  border-bottom: 1px solid var(--tina-color-grey-2);
+  border-right: 1px solid var(--tina-color-grey-2);
+  position: relative;
+
+  ${HitsWrapper} {
+    right: auto;
+    left: 1.25rem;
+    margin-top: -1.625rem;
+  }
+
+  @media (max-width: 684px) {
+    padding-left: 4.5rem;
   }
 `
