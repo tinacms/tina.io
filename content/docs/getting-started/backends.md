@@ -2,9 +2,9 @@
 title: Working with Backends
 prev: /docs/getting-started/edit-content
 next: null
-last_edited: '2020-08-07T18:31:20.137Z'
+last_edited: '2020-08-10T15:38:04.955Z'
 ---
-If you try refreshing the page on the demo we have built so far, you can see that the `data` populates with the form's initial values, not persisting your changes. A Backend can track and save data changes, making sure all of your hard work is saved. 
+If you try refreshing the page on the demo we have built so far, you can see that the `data` populates with the form's initial values, not persisting your changes. A Backend can track and save data changes, making sure all of your hard work is saved.
 
 ## Loading Content from an external API
 
@@ -99,7 +99,7 @@ Note that this `onSubmit` function won't actually save those new values on the s
 
 Now, we have a form that can retrieve and save content 🎉
 
-However, if an editor wanted to double check if their edits were saved, they would need to check the console to see that there was an error. 
+However, if an editor wanted to double check if their edits were saved, they would need to check the console to see that there was an error.
 
 [**CMS Alerts**](/docs/ui/alerts) are useful for displaying quick, short feedback to the editor. Let's add a few to improve the feedback for saving content.
 
@@ -155,9 +155,17 @@ function PageContent() {
 
 ## Other backends
 
-Tina is fairly unopinionated about how it receives data to edit, or where that data is stored. The backend you choose depends on your project and the React meta-framework you may be using. Currently, there are numerous packages to support Git & GitHub workflows, but Tina is designed to potentially work with any data source. We have also made working prototypes to source data from [Strapi](/guides/nextjs/tina-with-strapi/overview) and Contentful (not yet documented).
+Tina backend agnostic, meaning you can choose the data source where Tina stores and receives data to edit. We currently have guides to implement Git Filesystem, Github, and Strapi backends, but Tina is designed to potentially work with any data source.
 
-Please refer to the [guides](/guides) for in-depth information on setting up various backends. Also, refer to [the forum](https://community.tinacms.org/) to read about other developers' unique configurations. 
+👉 Follow the [**Using Tina with Git-based Filesystem **](https://tinacms.org/guides/nextjs/git/getting-started)tutorial 
+
+👉 Follow the [**Using Tina with Github **](https://tinacms.org/guides/nextjs/github/initial-setup)tutorial 
+
+👉 Follow the [**Using Tina with Strapi **](https://tinacms.org/guides/nextjs/tina-with-strapi/overview)tutorial 
+
+_We plan on adding more guides supporting different backends in the future._
+
+Also, refer to [the forum](https://community.tinacms.org/) to read about other developers' unique configurations.
 
 > Reach out to the Tina Team on [the forum](https://community.tinacms.org/) if you have an integration or backend idea and would like guidance or feedback on how to get started.
 
