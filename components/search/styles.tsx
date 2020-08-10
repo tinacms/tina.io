@@ -60,6 +60,7 @@ export const Input = styled.input<InputProps>`
       width: 100%;
       opacity: 1;
       cursor: text;
+      padding: 0 2.25rem 0 1rem;
     `};
 `
 
