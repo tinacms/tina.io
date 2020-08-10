@@ -24,7 +24,24 @@ import { fileToUrl, createTocListener } from 'utils'
 import Toc from '../../../../components/toc'
 import { useLastEdited } from 'utils/useLastEdited'
 import { InlineGithubForm } from 'components/layout/InlineGithubForm'
+import { NavSectionProps } from 'components/DocumentationNavigation'
 import { openGraphImage } from 'utils/open-graph-image'
+
+interface GuideTemplateProps {
+  tocItems: string
+  breadcrumb: { category: string }
+  guideMeta: GitFile
+  markdownFile: GitFile
+  allGuides: GuideNavItem[]
+}
+
+type GitFile = {
+  fileRelativePath: string
+  sha: string
+  data: any
+}
+
+type GuideNavItem = Omit<NavSectionProps, 'returnLink'>
 
 export default function GuideTemplate({
   tocItems,
@@ -32,7 +49,7 @@ export default function GuideTemplate({
   guideMeta,
   markdownFile,
   allGuides,
-}) {
+}: GuideTemplateProps) {
   const isBrowser = typeof window !== `undefined`
   const contentRef = React.useRef<HTMLDivElement>(null)
   const [activeIds, setActiveIds] = React.useState([])
