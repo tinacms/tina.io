@@ -3,7 +3,12 @@ import styled from 'styled-components'
 import { DocsLinkNav } from '../ui/DocsLinkNav'
 import { NavSection } from './NavSection'
 
-export const DocsNavigationList = ({ navItems }) => {
+interface DocsNavListProps {
+  navItems: any
+  guide?: any
+}
+
+export const DocsNavigationList = ({ navItems }: DocsNavListProps) => {
   return (
     <ul>
       <MobileMainNav>
