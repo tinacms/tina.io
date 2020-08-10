@@ -166,7 +166,6 @@ export default function GuideTemplate(props) {
 }
 
 export const getStaticProps: GetStaticProps = async function(ctx) {
-  const path = require('path')
   const { category, guide, step } = ctx.params
   const {
     props: { file: guideMeta },
