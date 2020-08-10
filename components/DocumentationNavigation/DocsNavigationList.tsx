@@ -27,7 +27,7 @@ export const DocsNavigationList = ({ navItems }) => {
 }
 
 const MobileMainNav = styled.li`
-  padding-top: 5rem;
+  padding-top: 0rem;
   margin-bottom: 1rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--color-light-dark);

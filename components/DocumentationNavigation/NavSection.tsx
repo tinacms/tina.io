@@ -170,7 +170,6 @@ const NavSectionTitle = styled.span<NavSectionTitleProps>`
 const SubNav = styled.ul`
   list-style-type: none;
   margin: 0px;
-  background: white;
   padding: 0;
   overflow: hidden;
   transition: all 180ms ease-out;
