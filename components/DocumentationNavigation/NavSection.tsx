@@ -1,6 +1,7 @@
-import { useState, useMemo, useEffect } from 'react'
+import { useContext, useState, useMemo, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 import styled, { css } from 'styled-components'
+import { NavContext } from 'components/DocumentationNavigation'
 
 import RightArrowSvg from '../../public/svg/right-arrow.svg'
 import { DynamicLink } from '../ui/DynamicLink'
@@ -46,7 +47,11 @@ export const NavSection = (section: NavSection) => {
       <NavItem key={section.slug} open={expanded}>
         <NavItemHeader onClick={() => collapsible && setExpanded(!expanded)}>
           {(section.slug || section.href) && !hasChildren ? (
-            <NavLink section={section} currentPage={currentPage} />
+            <NavLink
+              router={router}
+              section={section}
+              currentPage={currentPage}
+            />
           ) : (
             <NavSectionTitle currentPage={currentPage}>
               {section.title}
@@ -84,11 +89,28 @@ export const NavSection = (section: NavSection) => {
   )
 }
 
-const NavLink = ({ section, currentPage }) => {
+const NavLink = ({ section, currentPage, router }) => {
+  const guidesTitleRef = useRef<HTMLElement>(null)
+  const sidebarNav = useContext(NavContext)
+
+  function scrollToGuides() {
+    if (router.pathname !== '/guides' || !guidesTitleRef.current) return
+
+    const distanceFromTop = guidesTitleRef.current.getBoundingClientRect().y
+
+    return sidebarNav.current?.scrollTo(0, distanceFromTop)
+  }
+
+  useEffect(scrollToGuides, [])
+
   if (section.slug) {
     return (
       <DynamicLink href={section.slug} passHref>
-        <NavSectionTitle as="a" currentPage={currentPage}>
+        <NavSectionTitle
+          as="a"
+          currentPage={currentPage}
+          ref={section.slug === '/guides' && guidesTitleRef}
+        >
           {section.title}
         </NavSectionTitle>
       </DynamicLink>
@@ -126,6 +148,7 @@ const NavItemHeader = styled.div`
 interface NavSectionTitleProps {
   open?: boolean
   currentPage: boolean
+  ref?: any
 }
 
 const NavSectionTitle = styled.span<NavSectionTitleProps>`

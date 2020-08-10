@@ -10,7 +10,7 @@ In this step we will install `tinacms`, create a CMS instance, wrap our app in t
 
 Install the `tinacms` package. This is the main package that you will use to create your CMS. You'll also need to install `styled-components` to render the editing UI properly.
 
-```bash
+```bash,copy
 yarn add tinacms styled-components
 ```
 
@@ -62,7 +62,7 @@ Update your CMS instance with the `sidebar` option:
 
 **src/App.js**
 
-```js
+```js,copy
 function App() {
   const cms = new TinaCMS({
     sidebar: true,

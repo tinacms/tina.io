@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, createContext } from 'react'
 import { Overlay } from '../ui/Overlay'
 import { DocsLeftSidebar } from './DocsLeftSidebar'
 import { DocsNavigationList } from './DocsNavigationList'
@@ -18,16 +18,20 @@ interface Props {
   navItems: any
 }
 
+export const NavContext = createContext({ current: null })
+
 export function DocumentationNavigation({ navItems }: Props) {
   const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false)
+  const navRef = useRef<HTMLDivElement>(null)
+
   return (
-    <>
+    <NavContext.Provider value={navRef}>
       <MobileNavToggle
         open={mobileNavIsOpen}
         onClick={() => setMobileNavIsOpen(!mobileNavIsOpen)}
       />
       <MobileNavLogo />
-      <DocsLeftSidebar open={mobileNavIsOpen}>
+      <DocsLeftSidebar open={mobileNavIsOpen} ref={navRef}>
         <DocsSidebarHeader>
           <DocsDesktopTinaIcon docs />
           <Search collapse expanded={true} indices={searchIndices} />
@@ -39,7 +43,7 @@ export function DocumentationNavigation({ navItems }: Props) {
         onClick={() => setMobileNavIsOpen(false)}
       />
       <DocsHeaderNav color={'light'} open={mobileNavIsOpen} />
-    </>
+    </NavContext.Provider>
   )
 }
 

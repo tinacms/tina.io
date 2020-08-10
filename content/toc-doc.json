@@ -268,7 +268,7 @@
       },
       {
         "id": "/guides#general",
-        "slug": "/guides#general",
+        "href": "/guides#general",
         "title": "General",
         "items": [
           {
@@ -280,7 +280,7 @@
       },
       {
         "id": "/guides#nextjs",
-        "slug": "/guides#nextjs",
+        "href": "/guides#nextjs",
         "title": "Next.js",
         "items": [
           {
@@ -307,7 +307,7 @@
       },
       {
         "id": "/guides#gatsby",
-        "slug": "/guides#gatsby",
+        "href": "/guides#gatsby",
         "title": "Gatsby",
         "items": [
           {

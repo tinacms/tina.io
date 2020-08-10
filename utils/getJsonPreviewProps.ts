@@ -1,29 +1,47 @@
 import { readFile } from './readFile'
 import path from 'path'
-import { getGithubPreviewProps, parseJson } from 'next-tinacms-github'
+import { parseJson, getGithubFile, GithubFile } from 'next-tinacms-github'
 
 export const getJsonPreviewProps = async (
   fileRelativePath: string,
   preview: boolean,
   previewData: any
 ) => {
+  let file = null
+  let error = null
+
+  try {
+    file = await getJsonFile(fileRelativePath, preview, previewData)
+  } catch (e) {
+    error = e
+  }
+
+  return {
+    props: {
+      error,
+      preview: !!preview,
+      file,
+    },
+  }
+}
+
+export async function getJsonFile<T = any>(
+  fileRelativePath: string,
+  preview: boolean,
+  previewData: any
+): Promise<GithubFile<T>> {
   if (preview) {
-    return getGithubPreviewProps({
+    return getGithubFile<T>({
       ...previewData,
-      fileRelativePath: fileRelativePath,
+      fileRelativePath,
       parse: parseJson,
     })
   }
-  const data = await readJsonFile(fileRelativePath)
+
   return {
-    props: {
-      error: null,
-      preview: false,
-      file: {
-        fileRelativePath: fileRelativePath,
-        data,
-      },
-    },
+    sha: '',
+    fileRelativePath,
+    data: await readJsonFile(fileRelativePath),
   }
 }
 
