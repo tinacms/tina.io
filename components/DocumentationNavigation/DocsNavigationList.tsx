@@ -62,7 +62,7 @@ const MobileMainNav = styled.li`
 
 const Breadcrumbs = styled.li`
   display: block;
-  padding: 0 1.5rem 0.25rem 1.5rem;
+  padding: 0 1.5rem 0.5rem 1.5rem;
 
   a {
     color: var(--tina-color-grey-5);
