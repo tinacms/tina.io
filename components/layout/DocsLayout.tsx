@@ -9,11 +9,12 @@ import { DocsTextWrapper } from './DocsTextWrapper'
 
 interface DocsLayoutProps {
   navItems: any
+  guide?: false | { category: string }
   children: any
 }
 
 export const DocsLayout = React.memo(
-  ({ children, navItems }: DocsLayoutProps) => {
+  ({ children, navItems, guide = false }: DocsLayoutProps) => {
     const router = useRouter()
     return (
       <>
@@ -23,7 +24,7 @@ export const DocsLayout = React.memo(
           }}
         />
         <DocsLayoutDiv>
-          <DocumentationNavigation navItems={navItems} />
+          <DocumentationNavigation navItems={navItems} guide={guide} />
           <DocsTextWrapper>{children}</DocsTextWrapper>
           <Footer light />
         </DocsLayoutDiv>
