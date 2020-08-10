@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { NextSeo } from 'next-seo'
 import { GetStaticProps, GetStaticPaths } from 'next'
+import Error from 'next/error'
+import { useRouter } from 'next/router'
 import { GithubError } from 'next-tinacms-github'
 import fs from 'fs'
 
@@ -16,6 +18,13 @@ import Toc from 'components/toc'
 import { openGraphImage } from 'utils/open-graph-image'
 
 export default function Packages(props) {
+  const router = useRouter()
+
+  if (props.hasError === true) {
+    const code = props.errorCode ? props.errorCode : 404
+    return <Error statusCode={code} />
+  }
+
   const excerpt = 'A package for Tinacms.'
 
   const contentRef = React.useRef<HTMLDivElement>(null)
@@ -47,9 +56,11 @@ export default function Packages(props) {
       />
       <DocsLayout navItems={props.docsNav}>
         <DocsGrid>
-          <DocGridToc>
-            <Toc tocItems={tocItems} activeIds={activeIds} />
-          </DocGridToc>
+          {!router.isFallback && (
+            <DocGridToc>
+              <Toc tocItems={tocItems} activeIds={activeIds} />
+            </DocGridToc>
+          )}
           <DocGridContent ref={contentRef}>
             <MarkdownContent escapeHtml={false} content={props.content} />
             <DocsPagination
@@ -87,6 +98,6 @@ export const getStaticPaths: GetStaticPaths = async function() {
 
   return {
     paths: [],
-    fallback: false,
+    fallback: true,
   }
 }
