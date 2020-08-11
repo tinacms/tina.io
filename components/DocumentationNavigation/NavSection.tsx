@@ -92,7 +92,7 @@ const NavLink = ({ section, currentPage, router }) => {
   const linkTitleRef = useRef<HTMLElement>(null)
   const sidebarNav = useContext(NavListContext)
 
-  function scrollToGuides() {
+  function scrollToCurrentLink() {
     if (!currentPage || !sidebarNav.current || !linkTitleRef.current) return
 
     const sidebarNavRect = sidebarNav.current.getBoundingClientRect()
@@ -110,7 +110,7 @@ const NavLink = ({ section, currentPage, router }) => {
     })
   }
 
-  useEffect(scrollToGuides, [linkTitleRef.current, sidebarNav.current])
+  useEffect(scrollToCurrentLink, [linkTitleRef.current, sidebarNav.current])
 
   if (section.slug) {
     return (
