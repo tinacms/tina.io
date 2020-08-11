@@ -8,11 +8,12 @@ NextJS is a relatively open-ended framework and there are many different ways to
 
 ## Guides
 
-For direction on specific use-cases, please refer to these [guides](/guides):
+For direction on specific use-cases, please refer to these [guides](/guides#nextjs):
 
 - [Add Tina to a NextJS starter blog without a backend](/guides/nextjs/adding-tina/overview)
-- [Set up a Git backend and edit local content](/guides/nextjs/git/getting-started)
+- [Set up a Git backend and edit local content through the filesystem](/guides/nextjs/git/getting-started)
 - [Using GitHub as a content source](/guides/nextjs/github/initial-setup)
+- [Using Tina with NextJS and Strapi](/guides/nextjs/tina-with-strapi/overview)
 
 ## Blogs
 
