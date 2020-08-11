@@ -79,7 +79,7 @@ export const getStaticProps: GetStaticProps = async function(props) {
 
     const packagePages = file.packages.map( p => ({
       name: p.name,
-      link: p.readme ? `https://tinacms.org/packages/${p.name}` : p.link
+      link: p.readme ? `/packages/${p.name}` : p.link
     }))
 
     return {
