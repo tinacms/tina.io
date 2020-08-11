@@ -8,7 +8,7 @@ import { NavSection } from './NavSection'
 export const NavListContext = createContext({ current: null })
 
 export const DocsNavigationList = ({ navItems, guide }: DocsNavProps) => {
-  const navListRef = useRef<HTMLDivElement>(null)
+  const navListRef = useRef<HTMLUListElement>(null)
 
   return (
     <NavListContext.Provider value={navListRef}>
