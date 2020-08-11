@@ -127,6 +127,7 @@ const updateSearchIndex = async ({ name, content }) => {
 
   const newObject = {
     objectID: name,
+    package: name,
     lastUpdated: Date.now(),
     excerpt: (await stripMarkdown(strippedContent)).substring(
       0,
