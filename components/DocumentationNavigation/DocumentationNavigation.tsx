@@ -6,6 +6,8 @@ import { NavToggle } from '../ui/NavToggle'
 import styled from 'styled-components'
 import { DocsHeaderNav } from './DocsHeaderNav'
 import { TinaIcon } from 'components/logo/TinaIcon'
+import { useRouter } from 'next/router'
+import { FallbackPlaceholder } from 'components/fallback-placeholder'
 import Search from '../search'
 import { HitsWrapper } from 'components/search/styles'
 
@@ -24,6 +26,7 @@ export const NavContext = createContext({ current: null })
 export function DocumentationNavigation({ navItems, guide }: DocsNavProps) {
   const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false)
   const navRef = useRef<HTMLDivElement>(null)
+  const router = useRouter()
 
   return (
     <NavContext.Provider value={navRef}>
@@ -37,7 +40,11 @@ export function DocumentationNavigation({ navItems, guide }: DocsNavProps) {
           <DocsDesktopTinaIcon docs />
           <Search collapse expanded={true} indices={searchIndices} />
         </DocsSidebarHeader>
-        <DocsNavigationList navItems={navItems} guide={guide} />
+        {router.isFallback ? (
+          <FallbackPlaceholder />
+        ) : (
+          <DocsNavigationList navItems={navItems} guide={guide} />
+        )}
       </DocsLeftSidebar>
       <Overlay
         open={mobileNavIsOpen}
