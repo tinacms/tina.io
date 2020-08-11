@@ -18,7 +18,7 @@ At any point along the way, get support in the [community forum](https://communi
 
 ## Categories
 
-Guides are organized by various categories. Guides in the _General_ category use plain React (or `create-react-app`); the information can generally be applied to any React framework (although the implementation may look different). Guides in the _Next.js_ and _Gatsby_ categories contain information specific to each framework.
+Guides are organized by various categories. Guides in the _General_ category use plain React (or `create-react-app`); the information can generally be applied to any React framework (although the implementation may look different). Guides in the _Next.js_ and _Gatsby_ categories contain information specific to each framework's integration.
 
 ### General
 
@@ -27,11 +27,17 @@ Guides are organized by various categories. Guides in the _General_ category use
 ### Next.js
 
 - [**Adding Tina**](/guides/nextjs/adding-tina/overview): Set up Tina without a backend in a [Next.js blog starter](https://github.com/vercel/next.js/tree/canary/examples/blog-starter). [Overview](/guides/nextjs/adding-tina/overview) | [Project Setup](/guides/nextjs/adding-tina/project-setup) | [Adding the Tina Provider](/guides/nextjs/adding-tina/adding-tina-provider) | [Creating Forms](/guides/nextjs/adding-tina/creating-forms) | [Next Steps](/guides/nextjs/adding-tina/next-steps)
+  <br><br>
 - [**Using a Git Backend**](/guides/nextjs/git/getting-started): Set up filesystem-based content management with Git & Next.js. [Getting Started](/guides/nextjs/git/getting-started) | [Adding a Backend](/guides/nextjs/git/adding-backend) | [Creating Git Forms](/guides/nextjs/git/creating-git-forms)
-- [**Using a GitHub Backend**](/guides/nextjs/github/initial-setup): Learn how to manage content in a Next.js site via the GitHub API with [`create-next-app`](https://nextjs.org/docs#setup). Can be used with public or private repositories. This guide can also be used to implement [_Open Authoring_](/blog/introducing-visual-open-authoring). [Initial Setup](/guides/nextjs/github/initial-setup) | [Setup the GitHub OAuth App](/guides/nextjs/github/github-oauth-app) | [Adding API Functions](/guides/nextjs/github/api-functions) | [Create an Auth Redirect Page](/guides/nextjs/github/auth-redirect) | [Configure the Custom App File](/guides/nextjs/github/configure-custom-app) | [Loading Content From GitHub](/guides/nextjs/github/loading-github-content) | [Using GitHub Forms](/guides/nextjs/github/github-forms) | [Setup Toolbar Plugins](/guides/nextjs/github/toolbar-plugins) | [Add a Custom Document for Styles](/guides/nextjs/github/custom-doc-styled-components) | 10. [Hosting With Vercel](/guides/nextjs/github/hosting-vercel)
-- [**Using a Strapi Backend**](/guides/nextjs/tina-with-strapi/overview):
+  <br><br>
+- [**Using a GitHub Backend**](/guides/nextjs/github/initial-setup): Learn how to manage content in a Next.js site via the GitHub API with [`create-next-app`](https://nextjs.org/docs#setup). This guide is appropriate for public or private repositories and can also be used to implement [Open Authoring](/blog/introducing-visual-open-authoring). [Initial Setup](/guides/nextjs/github/initial-setup) | [Setup the GitHub OAuth App](/guides/nextjs/github/github-oauth-app) | [Adding API Functions](/guides/nextjs/github/api-functions) | [Create an Auth Redirect Page](/guides/nextjs/github/auth-redirect) | [Configure the Custom App File](/guides/nextjs/github/configure-custom-app) | [Loading Content From GitHub](/guides/nextjs/github/loading-github-content) | [Using GitHub Forms](/guides/nextjs/github/github-forms) | [Setup Toolbar Plugins](/guides/nextjs/github/toolbar-plugins) | [Add a Custom Document for Styles](/guides/nextjs/github/custom-doc-styled-components) | [Hosting With Vercel](/guides/nextjs/github/hosting-vercel)
+  <br><br>
+- [**Using a Strapi Backend**](/guides/nextjs/tina-with-strapi/overview): Set up Tina on a Next.js site using [Strapi](https://strapi.io/) as a backend and headless CMS. [Overview](/guides/nextjs/tina-with-strapi/overview) | [Setting up Strapi](/guides/nextjs/tina-with-strapi/strapi-setup) | [Front end Setup](/guides/nextjs/tina-with-strapi/front-end-setup) | [Querying Strapi](/guides/nextjs/tina-with-strapi/querying-strapi) | [Authenticating with Strapi](/guides/nextjs/tina-with-strapi/authenticating-with-strapi) | [Editing with Tina](/guides/nextjs/tina-with-strapi/editing-with-tina) | [Saving to Strapi](/guides/nextjs/tina-with-strapi/saving-to-strapi)
 
 ### Gatsby
 
-- [Adding Tina to a Gatsby Site](/guides/gatsby/adding-tina/project-setup)
-- [Using a Git Backend with Gatsby](/guides/gatsby/git/installation)
+- [**Adding Tina**](/guides/gatsby/adding-tina/project-setup): Set up Tina without a backend on the [`gatsby-starter-blog`](https://www.gatsbyjs.org/starters/gatsbyjs/gatsby-starter-blog/). [Project Setup](/guides/gatsby/adding-tina/project-setup) | [Creating Forms](/guides/gatsby/adding-tina/creating-forms) | [Next Steps](/guides/gatsby/adding-tina/next-steps)
+  <br><br>
+- [**Using a Git Backend**](/guides/gatsby/git/installation): Set up filesystem-based content management with Git & Gatsby. [Installation](/guides/gatsby/git/installation) | [Creating Remark Forms](/guides/gatsby/git/create-remark-form) | [Creating JSON Forms](/guides/gatsby/git/create-json-form) | [Customizing Forms](/guides/gatsby/git/customize-form) | [Avoid Empty Fields Errors](/guides/gatsby/git/empty-field-errors) | [Creating New Files](/guides/gatsby/git/create-new-files) | [New File Configuration](/guides/gatsby/git/configuration) | [Deleting Files](/guides/gatsby/git/deleting-files) | [Next Steps](/guides/gatsby/git/next-steps)
+
+> Reference the [Next.js](/docs/integrations/nextjs) or [Gatsby](/docs/integrations/gatsby) Integration pages to see all of the blogs, packages, and guides specific to each framework.
