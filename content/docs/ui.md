@@ -63,8 +63,6 @@ A site configured to use Tina will display a **blue edit button in the lower-lef
 
 Sidebar contents are **contextual**. For example, when using Tina with Markdown files, a conventional implementation will display a form for the current page's markdown file. In the event a page is composed of multiple files, it is possible to add multiple forms to the sidebar for that page's context. All forms available in the current context will then be displayed.
 
-<!-- TODO: add toolbar photo here -->
-
 ### Toolbar Configuration
 
 ```ts
@@ -79,6 +77,8 @@ interface ToolbarOptions {
 | key         | usage                                                                                                                                                          |
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **buttons** | _Deprecated — [Configure on the form instead](/docs/forms#customizing-form-buttons)_: Customizes the string displayed on either the 'save' or 'reset' buttons. |
+
+![tina toolbar ui](/img/toolbar-ex.jpg)
 
 On its own, the toolbar will display the 'Save' and 'Reset' buttons, along with a form status indicator to show whether there are unsaved changes. [Custom Widgets](/guides/nextjs/github/toolbar-plugins) can also be added to extend functionality for the particular workflow.
 
