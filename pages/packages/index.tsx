@@ -15,7 +15,6 @@ export default function PackageIndex(props) {
 
   const name = "Packages"
 
-  const contentRef = React.useRef<HTMLDivElement>(null)
 
   return (
     <>
