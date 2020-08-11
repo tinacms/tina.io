@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { NextSeo } from 'next-seo'
 import { GetStaticProps, GetStaticPaths } from 'next'
+import Error from 'next/error'
+import { useRouter } from 'next/router'
 import { GithubError } from 'next-tinacms-github'
 import fs from 'fs'
 
@@ -16,6 +18,13 @@ import Toc from 'components/toc'
 import { openGraphImage } from 'utils/open-graph-image'
 
 export default function Packages(props) {
+  const router = useRouter()
+
+  if (props.hasError === true) {
+    const code = props.errorCode ? props.errorCode : 404
+    return <Error statusCode={code} />
+  }
+
   const excerpt = 'A package for Tinacms.'
 
   const contentRef = React.useRef<HTMLDivElement>(null)
@@ -47,9 +56,11 @@ export default function Packages(props) {
       />
       <DocsLayout navItems={props.docsNav}>
         <DocsGrid>
-          <DocGridToc>
-            <Toc tocItems={tocItems} activeIds={activeIds} />
-          </DocGridToc>
+          {!router.isFallback && (
+            <DocGridToc>
+              <Toc tocItems={tocItems} activeIds={activeIds} />
+            </DocGridToc>
+          )}
           <DocGridContent ref={contentRef}>
             <hr/>
             <a href={props.link}>See this package on GitHub</a>
@@ -89,9 +100,12 @@ export const getStaticPaths: GetStaticPaths = async function() {
   const file = await JSON.parse(fs.readFileSync(filePath, 'utf8'))
 
   return {
-    paths: file.packages.filter( (p: { readme?: any }) => p.readme ).map((p: { name: any }) => ({
-      params: { slug: p.name }
-    })),
-    fallback: false,
+    paths: [],
+    fallback: true,
   }
 }
+
+// paths: file.packages.filter( (p: { readme?: any }) => p.readme ).map((p: { name: any }) => ({
+//   params: { slug: p.name }
+// })),
+// fallback: false,

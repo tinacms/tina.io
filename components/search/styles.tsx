@@ -27,7 +27,7 @@ export const IconWrapper = styled.div`
 
 interface InputProps {
   focus?: boolean
-  collapse?: boolean
+  expanded?: boolean
 }
 
 export const Input = styled.input<InputProps>`
@@ -53,11 +53,24 @@ export const Input = styled.input<InputProps>`
       opacity: 1;
       cursor: text;
     `};
+
+  ${p =>
+    p.expanded &&
+    css`
+      width: 100%;
+      opacity: 1;
+      cursor: text;
+      padding: 0 2.25rem 0 1rem;
+    `};
 `
 
-export const SearchContainer = styled.div`
+interface SearchContainerProps {
+  expanded?: boolean
+}
+
+export const SearchContainer = styled.div<SearchContainerProps>`
   position: relative;
-  font-size: 0.8rem;
+  font-size: 1rem;
   padding: 0.625rem 0;
   font-family: var(--font-tuner);
   background-color: var(--color-background);
@@ -73,22 +86,21 @@ export const SearchContainer = styled.div`
     transition: filter 250ms ease;
   }
 
-  @media (max-width: 684px) {
-    /* Begin temp fix */
-    display: none;
-    /* End temp fix */
-    margin: 1rem;
-    border: 1px solid var(--color-light-dark);
-  }
-
-  @media (min-width: 800px) {
-    font-size: 1rem;
-  }
+  ${p =>
+    p.expanded
+      ? css`
+          border: 1px solid var(--color-light-dark);
+        `
+      : css`
+          @media (max-width: 684px) {
+            /* Begin temp fix */
+            display: none;
+            /* End temp fix */
+            margin: 1rem;
+            border: 1px solid var(--color-light-dark);
+          }
+        `};
 `
-
-interface HitsWrapperProps {
-  show: boolean
-}
 
 export const IndexContainer = styled.div`
   flex: 1 0 auto;
@@ -104,6 +116,10 @@ export const HitsResults = styled.div`
   overflow-y: scroll;
 `
 
+interface HitsWrapperProps {
+  show: boolean
+}
+
 export const HitsWrapper = styled.div<HitsWrapperProps>`
   display: ${props => (props.show ? `grid` : `none`)};
   max-height: calc(80vh - 4rem);
@@ -118,7 +134,7 @@ export const HitsWrapper = styled.div<HitsWrapperProps>`
   width: 80vw;
   max-width: 35rem;
   border-radius: 24px;
-  filter: drop-shadow(1px 2px 18px rgb(0, 0, 0, 12%));
+  filter: drop-shadow(0 13px 26px rgb(0, 0, 0, 0.15));
   color: var(--color-secondary);
   padding: 0;
   background: white;
