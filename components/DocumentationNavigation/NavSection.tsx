@@ -101,9 +101,13 @@ const NavLink = ({ section, currentPage, router }) => {
     const distanceFromTop = linkTitleRect.y - sidebarNavRect.y
     const sidebarNavHeight = sidebarNavRect.height
 
-    if (distanceFromTop < sidebarNavHeight * 0.8) return
+    if (distanceFromTop < sidebarNavHeight * 0.5) return
 
-    return sidebarNav.current.scrollTo(0, distanceFromTop)
+    return sidebarNav.current.scrollTo({
+      top: distanceFromTop - 48,
+      left: 0,
+      behavior: 'auto',
+    })
   }
 
   useEffect(scrollToGuides, [linkTitleRef.current, sidebarNav.current])
