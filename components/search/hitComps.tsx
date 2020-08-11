@@ -62,8 +62,24 @@ const BlogHit = (clickHandler: any) => ({ hit }: { hit: Hit }) => {
   )
 }
 
+const PackageHit = (clickHandler: any) => ({ hit }: { hit: Hit }) => {
+  return (
+    <DynamicLink href={path.join('/packages', `/${hit.package}`)}>
+      <div onClick={clickHandler}>
+        <h4>
+          <Highlight attribute="package" hit={hit} tagName="mark" />
+        </h4>
+        {hit['_highlightResult'].excerpt.matchLevel !== 'none' && (
+          <Highlight attribute="excerpt" hit={hit} tagName="mark" />
+        )}
+      </div>
+    </DynamicLink>
+  )
+}
+
 export const hitComponents = {
   ['DocHit']: DocHit,
   ['GuideHit']: GuideHit,
   ['BlogHit']: BlogHit,
+  ['PackageHit']: PackageHit,
 }

@@ -10,11 +10,7 @@ import { useRouter } from 'next/router'
 import { FallbackPlaceholder } from 'components/fallback-placeholder'
 import Search from '../search'
 import { HitsWrapper } from 'components/search/styles'
-
-const searchIndices = [
-  { name: `Tina-Docs-Next`, title: `Docs`, hitComp: `DocHit` },
-  { name: `Tina-Blogs-Next`, title: `Blog`, hitComp: `BlogHit` },
-]
+import { searchIndices } from 'components/search/indices'
 
 export interface DocsNavProps {
   navItems: any
