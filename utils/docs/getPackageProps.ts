@@ -24,6 +24,17 @@ export async function getPackageProps(
   { preview, previewData }: any,
   slug: string
 ) {
+  const navPreviewProps = await getJsonPreviewProps(
+    'content/toc-doc.json',
+    preview,
+    previewData
+  )
+  const docsNavData = navPreviewProps.props.file.data
+
+  let defaultProps = {
+    docsNav: docsNavData,
+  }
+
   const file = await readJsonFile(
     path.resolve(process.cwd(), './content/packages.json')
   )
@@ -42,26 +53,30 @@ export async function getPackageProps(
       previousPackage = index > 0 ? file.packages[index - 1] : null
       nextPackage =
         index < file.packages.length - 1 ? file.packages[index + 1] : null
+      return
     }
   })
+
+  if (!currentPackage) {
+    return {
+      props: {
+        ...defaultProps,
+        hasError: true,
+        errorCode: 404,
+      },
+    }
+  }
 
   const currentDoc = await axios.get(currentPackage.link)
   const content = b64DecodeUnicode(currentDoc.data.content)
 
-  const previewProps = await getJsonPreviewProps(
-    'content/toc-doc.json',
-    preview,
-    previewData
-  )
-  const docsNavData = previewProps.props.file.data
-
   return {
     revalidate: 24 * HOURS,
     props: {
+      ...defaultProps,
       name: currentPackage.name,
       link: currentPackage.link,
       content,
-      docsNav: docsNavData,
       tocItems: toc(content, {
         slugify: slugifyTocHeading,
       }).content,

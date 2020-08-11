@@ -5,11 +5,7 @@ import { DynamicLink } from './DynamicLink'
 import data from '../../content/navigation.json'
 import { SearchContainer } from '../search/styles'
 import Search from '../search'
-
-const searchIndices = [
-  { name: `Tina-Docs-Next`, title: `Docs`, hitComp: `DocHit` },
-  { name: `Tina-Blogs-Next`, title: `Blog`, hitComp: `BlogHit` },
-]
+import { searchIndices } from '../search/indices'
 
 interface NavProps {
   color?: 'white' | 'secondary' | 'seafoam' | 'light'

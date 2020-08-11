@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import Link from 'next/link'
 import { getMarkdownPreviewProps } from 'utils/getMarkdownPreviewProps'
 import { DocsLayout, MarkdownContent } from 'components/layout'
 import { NextSeo } from 'next-seo'
@@ -25,22 +24,54 @@ import { fileToUrl, createTocListener } from 'utils'
 import Toc from '../../../../components/toc'
 import { useLastEdited } from 'utils/useLastEdited'
 import { InlineGithubForm } from 'components/layout/InlineGithubForm'
+import { NavSectionProps } from 'components/DocumentationNavigation'
 import { openGraphImage } from 'utils/open-graph-image'
 
-export default function GuideTemplate(props) {
+interface GuideTemplateProps {
+  tocItems: string
+  breadcrumb: { category: string }
+  guideMeta: GitFile
+  markdownFile: GitFile
+  allGuides: NavSectionProps[]
+}
+
+type GitFile = {
+  fileRelativePath: string
+  sha: string
+  data: any
+}
+
+export default function GuideTemplate({
+  tocItems,
+  breadcrumb,
+  guideMeta,
+  markdownFile,
+  allGuides,
+}: GuideTemplateProps) {
   const isBrowser = typeof window !== `undefined`
   const contentRef = React.useRef<HTMLDivElement>(null)
-  const tocItems = props.tocItems
-  const breadcrumb = props.breadcrumb
   const [activeIds, setActiveIds] = React.useState([])
   const router = useRouter()
   const currentPath = router.asPath
+  const excerpt = markdownFile.data.excerpt
+
+  /** Handles active TOC */
+  React.useEffect(() => {
+    if (!isBrowser || !contentRef.current) {
+      return
+    }
+
+    const activeTocListener = createTocListener(contentRef, setActiveIds)
+    window.addEventListener('scroll', activeTocListener)
+
+    return () => window.removeEventListener('scroll', activeTocListener)
+  }, [contentRef])
 
   const [{ frontmatter, markdownBody }, stepForm] = useGithubMarkdownForm(
-    props.markdownFile
+    markdownFile
   )
 
-  const [guide, guideForm] = useGithubJsonForm(props.guideMeta, {
+  const [guide, guideForm] = useGithubJsonForm(guideMeta, {
     label: 'Guide Metadata',
     fields: [
       { component: 'text', name: 'title', label: 'Title' },
@@ -60,6 +91,10 @@ export default function GuideTemplate(props) {
       },
     ],
   })
+
+  const guideTitle = guide?.title || 'TinaCMS Guides'
+  const guideNav = useGuideNav(guide, allGuides)
+  const { prev, next } = usePrevNextSteps(guide, currentPath)
 
   usePlugin(
     useMemo(
@@ -100,26 +135,9 @@ export default function GuideTemplate(props) {
       []
     )
   )
-
-  React.useEffect(() => {
-    if (!isBrowser || !contentRef.current) {
-      return
-    }
-
-    const activeTocListener = createTocListener(contentRef, setActiveIds)
-    window.addEventListener('scroll', activeTocListener)
-
-    return () => window.removeEventListener('scroll', activeTocListener)
-  }, [contentRef])
-
   usePlugin(stepForm)
   useFormScreenPlugin(guideForm)
   useLastEdited(stepForm)
-
-  const guideTitle = guide?.title || 'TinaCMS Guides'
-  const guideNav = useGuideNav(guide, props.allGuides)
-  const { prev, next } = usePrevNextSteps(guide, currentPath)
-  const excerpt = props.markdownFile.data.excerpt
 
   return (
     <InlineGithubForm form={stepForm}>
@@ -133,17 +151,9 @@ export default function GuideTemplate(props) {
           images: [openGraphImage(guideTitle)],
         }}
       />
-      <DocsLayout navItems={guideNav}>
+      <DocsLayout navItems={guideNav} guide={breadcrumb}>
         <DocsGrid>
           <DocGridHeader>
-            <div>
-              <Link href="/guides">guides</Link> &nbsp; / &nbsp;
-              <Link href={`/guides#${breadcrumb.category}`}>
-                {breadcrumb.category}
-              </Link>
-              &nbsp; / &nbsp;
-              <Link href={`/guides#${breadcrumb.step}`}>{breadcrumb.step}</Link>
-            </div>
             <DocsPageTitle>
               <InlineTextareaField name="frontmatter.title" />
             </DocsPageTitle>
@@ -166,7 +176,6 @@ export default function GuideTemplate(props) {
 }
 
 export const getStaticProps: GetStaticProps = async function(ctx) {
-  const path = require('path')
   const { category, guide, step } = ctx.params
   const {
     props: { file: guideMeta },
@@ -190,7 +199,6 @@ export const getStaticProps: GetStaticProps = async function(ctx) {
       currentGuide: guideMeta.data,
       breadcrumb: {
         category,
-        step,
       },
       guideMeta,
       markdownFile,

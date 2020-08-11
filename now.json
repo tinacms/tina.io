@@ -53,11 +53,19 @@
       "destination": "/docs/ui/inline-editing"
     },
     {
+      "source": "/guides/nextjs/github-open-authoring/initial-setup",
+      "destination": "/guides/nextjs/github/initial-setup/"
+    },
+    {
       "source": "/docs/gatsby/inline-editing",
       "destination": "/docs/ui/inline-editing"
     },
     {
       "source": "/docs/inline-blocks",
+      "destination": "/docs/ui/inline-editing/inline-blocks"
+    },
+    {
+      "source": "/docs/inline-editing/inline-blocks",
       "destination": "/docs/ui/inline-editing/inline-blocks"
     },
     {
@@ -125,68 +133,68 @@
       "destination": "/docs/integrations/nextjs"
     },
     {
-      "source": "/blog/2020-03-09-release-notes.md",
-      "destination": "/docs/releases/2020-03-09.md"
+      "source": "/blog/2020-03-09-release-notes",
+      "destination": "/docs/releases/2020-03-09"
     },
     {
-      "source": "/blog/2020-03-16-release-notes.md",
-      "destination": "/docs/releases/2020-03-16.md"
+      "source": "/blog/2020-03-16-release-notes",
+      "destination": "/docs/releases/2020-03-16"
     },
     {
-      "source": "/blog/2020-03-23-release-notes.md",
-      "destination": "/docs/releases/2020-03-23.md"
+      "source": "/blog/2020-03-23-release-notes",
+      "destination": "/docs/releases/2020-03-23"
     },
     {
-      "source": "/blog/2020-03-30-release-notes.md",
-      "destination": "/docs/releases/2020-03-30.md"
+      "source": "/blog/2020-03-30-release-notes",
+      "destination": "/docs/releases/2020-03-30"
     },
     {
-      "source": "/blog/2020-04-06-release-notes.md",
-      "destination": "/docs/releases/2020-04-06.md"
+      "source": "/blog/2020-04-06-release-notes",
+      "destination": "/docs/releases/2020-04-06"
     },
     {
-      "source": "/blog/2020-04-27-release-notes.md",
-      "destination": "/docs/releases/2020-04-27.md"
+      "source": "/blog/2020-04-27-release-notes",
+      "destination": "/docs/releases/2020-04-27"
     },
     {
-      "source": "/blog/2020-05-04-release-notes.md",
-      "destination": "/docs/releases/2020-05-04.md"
+      "source": "/blog/2020-05-04-release-notes",
+      "destination": "/docs/releases/2020-05-04"
     },
     {
-      "source": "/blog/2020-05-11-release-notes.md",
-      "destination": "/docs/releases/2020-05-11.md"
+      "source": "/blog/2020-05-11-release-notes",
+      "destination": "/docs/releases/2020-05-11"
     },
     {
-      "source": "/blog/2020-05-19-release-notes.md",
-      "destination": "/docs/releases/2020-05-19.md"
+      "source": "/blog/2020-05-19-release-notes",
+      "destination": "/docs/releases/2020-05-19"
     },
     {
-      "source": "/blog/2020-05-25-release-notes.md",
-      "destination": "/docs/releases/2020-05-25.md"
+      "source": "/blog/2020-05-25-release-notes",
+      "destination": "/docs/releases/2020-05-25"
     },
     {
-      "source": "/blog/2020-06-07-release-notes.md",
-      "destination": "/docs/releases/2020-07-07.md"
+      "source": "/blog/2020-06-07-release-notes",
+      "destination": "/docs/releases/2020-07-07"
     },
     {
-      "source": "/blog/2020-06-08-release-notes.md",
-      "destination": "/docs/releases/2020-06-08.md"
+      "source": "/blog/2020-06-08-release-notes",
+      "destination": "/docs/releases/2020-06-08"
     },
     {
-      "source": "/blog/2020-06-15-release-notes.md",
-      "destination": "/docs/releases/2020-06-15.md"
+      "source": "/blog/2020-06-15-release-notes",
+      "destination": "/docs/releases/2020-06-15"
     },
     {
-      "source": "/blog/2020-06-23-release-notes.md",
-      "destination": "/docs/releases/2020-06-23.md"
+      "source": "/blog/2020-06-23-release-notes",
+      "destination": "/docs/releases/2020-06-23"
     },
     {
-      "source": "/blog/2020-06-29-release-notes.md",
-      "destination": "/docs/releases/2020-06-29.md"
+      "source": "/blog/2020-06-29-release-notes",
+      "destination": "/docs/releases/2020-06-29"
     },
     {
-      "source": "/blog/2020-07-27-release-notes.md",
-      "destination": "/docs/releases/2020-07-27.md"
+      "source": "/blog/2020-07-27-release-notes",
+      "destination": "/docs/releases/2020-07-27"
     }
   ]
 }

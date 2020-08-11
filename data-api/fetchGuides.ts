@@ -8,6 +8,7 @@ export default async function fetchDocs() {
   const files = await fg(directory + '/**/*.md')
 
   return files.map(fileName => {
+    const isIndex = fileName.endsWith('/index.md')
     const fullPath = path.resolve(directory, fileName)
 
     const slug = fullPath
@@ -18,8 +19,15 @@ export default async function fetchDocs() {
 
     const file = fs.readFileSync(fullPath)
     const doc = matter(file)
+    let guideTitle = null
+    if (!isIndex) {
+      const guideMeta = JSON.parse(
+        fs.readFileSync(`${path.dirname(fullPath)}/meta.json`)
+      )
+      guideTitle = guideMeta.title
+    }
     return {
-      data: { ...doc.data, slug },
+      data: { ...doc.data, slug, guideTitle },
       content: doc.content,
     }
   })

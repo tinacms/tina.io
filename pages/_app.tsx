@@ -7,7 +7,11 @@ import data from '../content/siteConfig.json'
 import TagManager from 'react-gtm-module'
 import { GlobalStyles, FontLoader } from '@tinacms/styles'
 import { BrowserStorageApi } from 'utils/plugins/browser-storage-api/BrowserStorageApi'
-import { GithubClient, TinacmsGithubProvider } from 'react-tinacms-github'
+import {
+  GithubClient,
+  GithubMediaStore,
+  TinacmsGithubProvider,
+} from 'react-tinacms-github'
 import { GlobalStyle } from 'components/styles/GlobalStyle'
 import 'components/styles/fontImports.css'
 import path from 'path'
@@ -15,21 +19,26 @@ import path from 'path'
 // the following line will cause all content files to be available in a serverless context
 path.resolve('./content/')
 
+const github = new GithubClient({
+  proxy: '/api/proxy-github',
+  authCallbackRoute: '/api/create-github-access-token',
+  clientId: process.env.GITHUB_CLIENT_ID,
+  baseRepoFullName: process.env.BASE_REPO_FULL_NAME,
+})
+
 const MainLayout = ({ Component, pageProps }) => {
   const tinaConfig = {
     enabled: pageProps.preview,
     toolbar: pageProps.preview,
     apis: {
-      github: new GithubClient({
-        proxy: '/api/proxy-github',
-        authCallbackRoute: '/api/create-github-access-token',
-        clientId: process.env.GITHUB_CLIENT_ID,
-        baseRepoFullName: process.env.BASE_REPO_FULL_NAME,
-      }),
+      github,
       storage:
         typeof window !== 'undefined'
           ? new BrowserStorageApi(window.localStorage)
           : {},
+    },
+    media: {
+      store: new GithubMediaStore(github),
     },
   }
 

@@ -3,13 +3,6 @@ import styled, { css } from 'styled-components'
 import { Button } from '../ui'
 import { DynamicLink } from '../ui/DynamicLink'
 import data from '../../content/docs-navigation.json'
-import { SearchContainer } from '../search/styles'
-import Search from '../search'
-
-const searchIndices = [
-  { name: `Tina-Docs-Next`, title: `Docs`, hitComp: `DocHit` },
-  { name: `Tina-Blogs-Next`, title: `Blog`, hitComp: `BlogHit` },
-]
 
 interface NavProps {
   color?: 'white' | 'secondary' | 'seafoam' | 'light'
@@ -32,9 +25,6 @@ export const DocsHeaderNav = styled(
               </li>
             )
           })}
-        <li key="nav-search">
-          <Search collapse indices={searchIndices} />
-        </li>
         <li>
           <iframe
             src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
@@ -98,7 +88,7 @@ export const DocsHeaderNav = styled(
       --color-background: var(--color-light);
       --color-foreground: var(--color-primary);
 
-      ${Button}, ${SearchContainer} {
+      ${Button} {
         border: 1px solid var(--color-light-dark);
       }
     `};
