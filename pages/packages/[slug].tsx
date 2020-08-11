@@ -105,8 +105,3 @@ export const getStaticPaths: GetStaticPaths = async function() {
     fallback: true,
   }
 }
-
-// paths: file.packages.filter( (p: { readme?: any }) => p.readme ).map((p: { name: any }) => ({
-//   params: { slug: p.name }
-// })),
-// fallback: false,

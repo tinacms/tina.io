@@ -1,10 +1,10 @@
 import { DocsGrid, DocGridContent } from '../docs/[...slug]'
 import { GetStaticProps } from 'next'
 import { GithubError } from 'next-tinacms-github'
-import React, { useState } from 'react'
+import React from 'react'
 import { NextSeo } from 'next-seo'
 import { openGraphImage } from 'utils/open-graph-image'
-import { DocsLayout, MarkdownContent } from 'components/layout'
+import { DocsLayout } from 'components/layout'
 import { getJsonPreviewProps, readJsonFile } from 'utils/getJsonPreviewProps'
 import path from 'path'
 
@@ -13,7 +13,6 @@ export default function PackageIndex(props) {
   const excerpt = 'Packages for TinaCMS.'
 
   const name = "Packages"
-
 
   return (
     <>
@@ -29,7 +28,7 @@ export default function PackageIndex(props) {
       />
       <DocsLayout navItems={props.docsNav}>
         <DocsGrid>
-          <DocGridContent>
+          <DocGridContent ref={null}>
             <h1>TinaCMS Packages</h1>
             <hr />
             <ul>
