@@ -1,8 +1,7 @@
 import { useContext, useState, useMemo, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 import styled, { css } from 'styled-components'
-import { NavContext } from 'components/DocumentationNavigation'
-
+import { NavListContext } from './DocsNavigationList'
 import RightArrowSvg from '../../public/svg/right-arrow.svg'
 import { DynamicLink } from '../ui/DynamicLink'
 import Link from 'next/link'
@@ -90,27 +89,29 @@ export const NavSection = (section: NavSectionProps) => {
 }
 
 const NavLink = ({ section, currentPage, router }) => {
-  const guidesTitleRef = useRef<HTMLElement>(null)
-  const sidebarNav = useContext(NavContext)
+  const linkTitleRef = useRef<HTMLElement>(null)
+  const sidebarNav = useContext(NavListContext)
 
   function scrollToGuides() {
-    if (router.pathname !== '/guides' || !guidesTitleRef.current) return
+    if (!currentPage || !sidebarNav.current || !linkTitleRef.current) return
 
-    const distanceFromTop = guidesTitleRef.current.getBoundingClientRect().y
+    const sidebarNavRect = sidebarNav.current.getBoundingClientRect()
+    const linkTitleRect = linkTitleRef.current.getBoundingClientRect()
 
-    return sidebarNav.current?.scrollTo(0, distanceFromTop)
+    const distanceFromTop = linkTitleRect.y - sidebarNavRect.y
+    const sidebarNavHeight = sidebarNavRect.height
+
+    if (distanceFromTop < sidebarNavHeight * 0.8) return
+
+    return sidebarNav.current.scrollTo(0, distanceFromTop)
   }
 
-  useEffect(scrollToGuides, [])
+  useEffect(scrollToGuides, [linkTitleRef.current, sidebarNav.current])
 
   if (section.slug) {
     return (
       <DynamicLink href={section.slug} passHref>
-        <NavSectionTitle
-          as="a"
-          currentPage={currentPage}
-          ref={section.slug === '/guides' && guidesTitleRef}
-        >
+        <NavSectionTitle as="a" currentPage={currentPage} ref={linkTitleRef}>
           {section.title}
         </NavSectionTitle>
       </DynamicLink>
