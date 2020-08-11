@@ -1,20 +1,11 @@
-import DocTemplate, { DocsGrid, DocGridHeader, DocsPageTitle, DocGridToc, DocGridContent } from '../docs/[...slug]'
-import { getDocProps } from '../../utils/docs/getDocProps'
+import { DocsGrid, DocGridContent } from '../docs/[...slug]'
 import { GetStaticProps } from 'next'
 import { GithubError } from 'next-tinacms-github'
-import { useGithubMarkdownForm } from 'react-tinacms-github'
 import React, { useState } from 'react'
 import { createTocListener } from 'utils'
-import { usePlugin } from 'tinacms'
-import { useLastEdited } from 'utils/useLastEdited'
-import { InlineGithubForm } from 'components/layout/InlineGithubForm'
 import { NextSeo } from 'next-seo'
 import { openGraphImage } from 'utils/open-graph-image'
 import { DocsLayout, MarkdownContent } from 'components/layout'
-import { InlineTextareaField } from 'react-tinacms-inline'
-import Toc from 'components/toc'
-import { InlineWysiwyg } from 'react-tinacms-editor'
-import { LastEdited, DocsPagination } from 'components/ui'
 import { getJsonPreviewProps, readJsonFile } from 'utils/getJsonPreviewProps'
 import path from 'path'
 
@@ -53,6 +44,8 @@ export default function PackageIndex(props) {
       <DocsLayout navItems={props.docsNav}>
         <DocsGrid>
           <DocGridContent ref={contentRef}>
+            <h1>TinaCMS Packages</h1>
+            <hr />
             <ul>
               {props.packages.map( p => {
                 return (
@@ -70,7 +63,6 @@ export default function PackageIndex(props) {
 
 export const getStaticProps: GetStaticProps = async function(props) {
   try {
-
     const { preview, previewData }: any = props
 
     const previewProps = await getJsonPreviewProps(
@@ -84,19 +76,11 @@ export const getStaticProps: GetStaticProps = async function(props) {
     const file = await readJsonFile(
       path.resolve(process.cwd(), './content/packages.json')
     )
-    const packagePages = file.packages.map( p => {
-      if (p.readme) {
-        return {
-          name: p.name,
-          link: `https://tinacms.org/packages/${p.name}`
-        }
-      } else {
-        return {
-          name: p.name,
-          link: p.link
-        }
-      }
-    })
+
+    const packagePages = file.packages.map( p => ({
+      name: p.name,
+      link: p.readme ? `https://tinacms.org/packages/${p.name}` : p.link
+    }))
 
     return {
       props: {
