@@ -2,7 +2,7 @@
 title: Adding the Tina Provider
 last_edited: '2020-08-11T13:02:36.046Z'
 ---
-We need to wrap every page in the `<TinaProvider>` component. This component will provide the CMS to all of our pages, allowing us to create an editor for our content. We can do this in Next.js by [creating a custom ](https://nextjs.org/docs#custom-app)_[App](https://nextjs.org/docs#custom-app)_[ component](https://nextjs.org/docs#custom-app). Next will then use our custom app component to render the page.
+We need to wrap every page in the `<TinaProvider>` component. This component will provide the CMS to all of our pages, allowing us to create an editor for our content. We can do this in Next.js by [creating a custom _App_ component](https://nextjs.org/docs#custom-app). Next will then use our custom app component to render the page.
 
 Our blog starter already has this file created. Open up `pages/_app.js` and you should see something like this:
 
