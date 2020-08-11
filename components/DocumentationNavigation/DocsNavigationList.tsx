@@ -1,36 +1,42 @@
+import { useRef, createContext } from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
-
 import { DocsLinkNav } from '../ui/DocsLinkNav'
 import { DocsNavProps } from './DocumentationNavigation'
 import { NavSection } from './NavSection'
 
+export const NavListContext = createContext({ current: null })
+
 export const DocsNavigationList = ({ navItems, guide }: DocsNavProps) => {
+  const navListRef = useRef<HTMLUListElement>(null)
+
   return (
-    <ul>
-      <MobileMainNav>
-        <DocsLinkNav />
-      </MobileMainNav>
-      {guide && (
-        <Breadcrumbs>
-          <Link href="/guides">guides</Link>
-          <Link href={`/guides#${guide.category}`}>{guide.category}</Link>
-        </Breadcrumbs>
-      )}
-      {navItems &&
-        navItems.map(section => (
-          <NavSection key={section.id} {...section} collapsible={false} />
-        ))}
-      <li>
-        <iframe
-          src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
-          frameBorder="0"
-          scrolling="0"
-          width="150px"
-          height="30px"
-        ></iframe>
-      </li>
-    </ul>
+    <NavListContext.Provider value={navListRef}>
+      <ul ref={navListRef}>
+        <MobileMainNav>
+          <DocsLinkNav />
+        </MobileMainNav>
+        {guide && (
+          <Breadcrumbs>
+            <Link href="/guides">guides</Link>
+            <Link href={`/guides#${guide.category}`}>{guide.category}</Link>
+          </Breadcrumbs>
+        )}
+        {navItems &&
+          navItems.map(section => (
+            <NavSection key={section.id} {...section} collapsible={false} />
+          ))}
+        <li>
+          <iframe
+            src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
+            frameBorder="0"
+            scrolling="0"
+            width="150px"
+            height="30px"
+          ></iframe>
+        </li>
+      </ul>
+    </NavListContext.Provider>
   )
 }
 
