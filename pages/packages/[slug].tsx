@@ -51,6 +51,9 @@ export default function Packages(props) {
             <Toc tocItems={tocItems} activeIds={activeIds} />
           </DocGridToc>
           <DocGridContent ref={contentRef}>
+            <hr/>
+            <a href={props.link}>See this package on GitHub</a>
+            <hr/>
             <MarkdownContent escapeHtml={false} content={props.content} />
             <DocsPagination
               prevPage={props.prevPage}
@@ -86,8 +89,8 @@ export const getStaticPaths: GetStaticPaths = async function() {
   const file = await JSON.parse(fs.readFileSync(filePath, 'utf8'))
 
   return {
-    paths: file.packages.map((p: { name: any }) => ({
-      params: { slug: p.name },
+    paths: file.packages.filter( (p: { readme?: any }) => p.readme ).map((p: { name: any }) => ({
+      params: { slug: p.name }
     })),
     fallback: false,
   }
