@@ -16,18 +16,6 @@ export default function PackageIndex(props) {
   const name = "Packages"
 
   const contentRef = React.useRef<HTMLDivElement>(null)
-  const isBrowser = typeof window !== `undefined`
-  const [activeIds, setActiveIds] = useState([])
-
-  React.useEffect(() => {
-    if (!isBrowser || !contentRef.current) {
-      return
-    }
-    const activeTocListener = createTocListener(contentRef, setActiveIds)
-    window.addEventListener('scroll', activeTocListener)
-
-    return () => window.removeEventListener('scroll', activeTocListener)
-  }, [contentRef])
 
   return (
     <>
