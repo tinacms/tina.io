@@ -30,7 +30,7 @@ export default function PackageIndex(props) {
       />
       <DocsLayout navItems={props.docsNav}>
         <DocsGrid>
-          <DocGridContent ref={contentRef}>
+          <DocGridContent>
             <h1>TinaCMS Packages</h1>
             <hr />
             <ul>
