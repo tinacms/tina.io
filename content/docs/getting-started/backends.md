@@ -128,7 +128,7 @@ function PageContent() {
         //...
       })
         .then((response) => response.json())
--       .then(json => console.log(json))
+-       .then(data => console.log(data))
 +       .then((data) => {
 +         cms.alerts.success('Saved Content!');
 +         console.log(data);
