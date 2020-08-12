@@ -9,7 +9,7 @@ Gatsby is a popular framework for building static websites using React. This pag
 
 ## Guides
 
-For direction on specific use-cases, please refer to these [guides](/guides):
+For direction on specific use-cases, please refer to these [guides](/guides#gastby):
 
 - [Add Tina to Gatsby Site](/guides/gatsby/adding-tina/project-setup)
 - [Using a Git Backend with Gatsby](/guides/gatsby/git/installation)

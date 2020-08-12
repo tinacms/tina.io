@@ -181,6 +181,20 @@ const DocsRichText = css`
     padding: 1em;
   }
 
+  li blockquote {
+    display: block;
+    border: none;
+    border-radius: 0;
+    background: none;
+    padding: 0 0 0 1rem;
+    border-left: 1px solid var(--color-seafoam-dark);
+    margin: -1rem 0 1.5rem 0 !important;
+
+    a {
+      font-size: 1rem;
+    }
+  }
+
   hr {
     border: none;
     border-bottom: 3px dotted var(--color-primary);
