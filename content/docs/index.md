@@ -26,7 +26,7 @@ Have questions on how to use Tina to build your CMS?
 
 - Visit the [Tina Forum](https://community.tinacms.org 'Tina Forum') to engage with the core team and community.
 - Report bugs using [GitHub Issues](https://github.com/tinacms/tinacms/issues 'Tina Github Issues')
-- FAQ _(Coming Soon)_
+- [FAQ](docs/getting-started/faq)
 
 ## How This Site Is Organized
 
