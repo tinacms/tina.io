@@ -12,7 +12,7 @@ const blogPostsRssXml = async blogPosts => {
   let rssItemsXml = ''
   for (let post of blogPosts) {
     const postDate = Date.parse(post.data.date)
-    const excerpt = await formatExcerpt(post.content, 1000)
+    const excerpt = await formatExcerpt(post.content, 1000, '…')
     if (!latestPostDate || postDate > Date.parse(latestPostDate)) {
       latestPostDate = post.createdAt
     }
