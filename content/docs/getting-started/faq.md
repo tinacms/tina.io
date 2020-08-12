@@ -36,7 +36,7 @@ We can identify a few different ways to approach Vue support:
 
 - One way would be to create an adaptor that allows you to set up the React editing UI within your Vue site. This isn't ideal for many reasons, but it is an option.
 - Another would be to completely rewrite the editing UI with Vue components.
-- A third option would be to convert the editing UI to [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components), so they can be independent of a UI framework.
+- A third option would be to convert the editing UI to [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) (with [something like Stencil](https://github.com/tinacms/tinacms/pull/601)), so they can be independent of a UI framework.
 
 The Core Tina Team is focused on creating a solid foundation with React first, before considering Vue. However, if someone in the community wants to [spearhead this effort](https://github.com/tinacms/tinacms/issues/1258), we will certainly offer support and guidance.
 
