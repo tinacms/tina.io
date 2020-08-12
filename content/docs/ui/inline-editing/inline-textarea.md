@@ -7,8 +7,8 @@ consumes:
     description: Shows InlineTextarea
   - file: /packages/react-tinacms-inline/src/inline-field.tsx
     description: Depends on InlineField
+last_edited: '2020-08-12T18:55:13.980Z'
 ---
-
 The `InlineTextarea` component represents a **multi-line text input**. It should be used for content values that are long strings: for example, a page description.
 
 ## Definition
@@ -37,11 +37,13 @@ export function Page(props) {
 
 ## Options
 
-| Key         | Description                                                                                                                                                                                                                                                                                                                                                                                                     |
-| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`      | The path to some value in the data being edited.                                                                                                                                                                                                                                                                                                                                                                |
-| `className` | To set styles directly on the input or extend via [styled components](/docs/ui/inline-editing#extending-inline-field-styles).                                                                                                                                                                                                                                                                                   |
+| Key | Description |
+| --- | --- |
+| `name` | The path to some value in the data being edited. |
+| `className` | To set styles directly on the input or extend via [styled components](/docs/ui/inline-editing#extending-inline-field-styles). |
 | `focusRing` | Either an object to style the focus ring or a boolean to show/hide the focus ring. Defaults to `true` which displays the focus ring with default styles. For style options, `offset` (in pixels) sets the distance from the ring to the edge of the component, and `borderRadius` (in pixels) controls the [rounded corners](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius) of the focus ring. |
+| `placeholder` | The placeholder text to show when the field is empty and `cms.enabled` . This value is not visible when `cms.disabled` . |
+| `children` | Content to show when `cms.disabled`. Defaults to the current value of the field. |
 
 ## Interface
 
@@ -50,6 +52,8 @@ interface InlineTextareaProps {
   name: string
   className?: string
   focusRing?: boolean | FocusRingProps
+  placeholder?: string
+  children?: ReactChild
 }
 
 interface FocusRingProps {
