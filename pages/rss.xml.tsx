@@ -4,7 +4,7 @@ import { formatExcerpt, orderPosts } from '../utils'
 import fetchBlogs from '../data-api/fetchBlogs'
 
 export default function FeedPage() {
-  // xml is passed to the browser and written via getServerSideProps
+  // xml is passed to the browser and written via getInitialProps
 }
 
 const blogPostsRssXml = async blogPosts => {
