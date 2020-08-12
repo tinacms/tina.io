@@ -22,6 +22,11 @@
         "id": "/docs/getting-started/backends",
         "slug": "/docs/getting-started/backends",
         "title": "Backends"
+      },
+      {
+        "id": "/docs/getting-started/faq",
+        "slug": "/docs/getting-started/faq",
+        "title": "FAQ"
       }
     ]
   },
