@@ -29,14 +29,9 @@ Although it doesn't automatically appear in the sidebar, the form returned by `u
 
 ```js
 // 1. Import `useForm` and `usePlugin`
-import { TinaProvider, TinaCMS, useCMS, useForm, usePlugin } from 'tinacms'
+import { TinaProvider, TinaCMS, useCMS, useForm, usePlugin } from 'tinacms';
 
 //...
-
-const pageData = {
-  title: 'Tina is not a CMS',
-  body: 'It is a toolkit for creating a custom CMS.',
-}
 
 function PageContent() {
   // 2. Define the form configuration object
@@ -77,7 +72,7 @@ function PageContent() {
       <p>{editableData.body}</p>
       <EditButton />
     </section>
-  )
+  );
 }
 
 //...
