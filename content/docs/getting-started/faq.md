@@ -44,7 +44,7 @@ The Core Tina Team is focused on creating a solid foundation with React first, b
 
 From a **development perspective**, folks who are comfortable with React and Javascript.
 
-From a **content editing perspective**, the UX has been created with developers-first in mind. For example, the [GitHub editing workflow](https://tinacms.org/guides/nextjs/github/initial-setup) and interface assumes the content editor is comfortable with Git terminology such as forking, branching, pull requests etc. We chose to focus on developers editing sites before adding abstractions to smooth out the experience for non-technical editors.
+From a **content editing perspective**, the current UX has been created with developers-first in mind. For example, the [GitHub editing workflow](https://tinacms.org/guides/nextjs/github/initial-setup) and interface assumes the content editor is comfortable with Git terminology such as forking, branching, pull requests etc. We chose to focus on developers editing sites before adding abstractions to smooth out the experience for non-technical editors. This strategy has allowed us to quickly expand Tina's core capabilities and improve it's stability.
 
 ## What is the editing environment? How does Tina work in production?
 
