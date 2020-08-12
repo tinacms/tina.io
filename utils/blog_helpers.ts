@@ -39,9 +39,9 @@ function truncateAtWordBoundary(content: string, length: Number): string {
 
 const whitespace = /\s+/gm
 
-export async function formatExcerpt(content) {
+export async function formatExcerpt(content, length = 200) {
   const plain = await (await stripMarkdown(content)).replace(whitespace, ' ')
-  const plainTextExcerpt = truncateAtWordBoundary(plain, 200)
+  const plainTextExcerpt = truncateAtWordBoundary(plain, length)
 
   if (plain.length > plainTextExcerpt.length) {
     return removeEndingPunctuation(plainTextExcerpt) + '&hellip;'
