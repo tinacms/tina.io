@@ -165,7 +165,7 @@ We’d like to provide developers with control and flexibility in all these aspe
 
 **Avenues to keep learning:**
 
-- Gain clarity with our [FAQ](_Coming soon_)
+- Gain clarity with our [FAQ](/docs/getting-started/faq)
 - Set up [Inline Editing](/guides/general/inline-blocks/overview), or editing content directly on the page
 - Configure more complex fields, such as [Blocks](/docs/plugins/fields/blocks) or the [Markdown Wysiwyg](docs/plugins/fields/markdown)
 - Create new data files with [Content Creator Plugins](/docs/plugins/content-creators)
@@ -175,5 +175,3 @@ We’d like to provide developers with control and flexibility in all these aspe
 Follow [Tina on Twitter](https://twitter.com/tina_cms) 🦙! If you're stoked on this project, please give us a 🌟 on the [GitHub repository](https://github.com/tinacms/tinacms).
 
 Stay up to date with the latest developments via [Release Notes](/docs/releases) or reach out on [the forum](https://community.tinacms.org/) with ideas or questions. Interested in contributing? Get started via the [project README](https://github.com/tinacms/tinacms).
-
-<!--TODO: add more additional reading sections on the pages? for the common questions. Would be great to link to a FAQ LINK -->
