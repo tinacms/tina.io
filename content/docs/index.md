@@ -35,7 +35,7 @@ Learning how to build a CMS is no small feat! We've compiled a variety of resour
 - Docs describe the main Tina concepts and how to use them to build your CMS.
 - [Guides](/guides 'Tina Guides') take you through the steps involved in addressing key problems and specific use-cases.
 - The [Blog](/blog 'Tina Blog') is where release notes, tips, and other announcements are posted.
-- Visit the Packages Lookup _(Coming Soon)_ to find more tools and make building your CMS even easier.
+- Visit the [Packages Reference](/docs/packages) to find more tools and make building your CMS even easier.
 
 ## Constructing The User Interface
 
