@@ -62,11 +62,15 @@ export default function Packages(props) {
             </DocGridToc>
           )}
           <DocGridContent ref={contentRef}>
+            
             <MarkdownContent escapeHtml={false} content={props.content} />
+            <hr/>
+            <a href={props.link}>View on GitHub -></a>
             <DocsPagination
               prevPage={props.prevPage}
               nextPage={props.nextPage}
             />
+            
           </DocGridContent>
         </DocsGrid>
       </DocsLayout>

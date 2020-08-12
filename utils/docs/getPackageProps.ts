@@ -45,19 +45,21 @@ export async function getPackageProps(
 
   interface GithubPackage {
     name: string
+    readme: string
     link: string
   }
 
   var currentPackage: GithubPackage
   var previousPackage, nextPackage: GithubPackage | null
 
-  file.packages.forEach((element, index) => {
+  const packagePages = file.packages.filter( (p: { readme?: any }) => p.readme )
+
+  packagePages.forEach((element, index: number) => {
     if (element.name === slug) {
       currentPackage = element
-      previousPackage = index > 0 ? file.packages[index - 1] : null
+      previousPackage = index > 0 ? packagePages[index - 1] : null
       nextPackage =
-        index < file.packages.length - 1 ? file.packages[index + 1] : null
-      return
+        index < packagePages.length - 1 ? packagePages[index + 1] : null
     }
   })
 
@@ -71,7 +73,8 @@ export async function getPackageProps(
     }
   }
 
-  const currentDoc = await axios.get(currentPackage.link)
+  const currentDoc = await axios.get(currentPackage.readme)
+
   const content = b64DecodeUnicode(currentDoc.data.content)
 
   if (process.env.VERCEL_GITHUB_COMMIT_REF === 'master' && !preview) {
@@ -90,6 +93,7 @@ export async function getPackageProps(
     props: {
       ...defaultProps,
       name: currentPackage.name,
+      readme: currentPackage.readme,
       link: currentPackage.link,
       content,
       tocItems: toc(content, {

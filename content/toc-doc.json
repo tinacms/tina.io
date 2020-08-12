@@ -340,6 +340,11 @@
     "id": "packages",
     "items": [
       {
+        "id": "/packages",
+        "slug": "/packages",
+        "title": "All Packages"
+      },
+      {
         "id": "/packages/react-tinacms-date",
         "slug": "/packages/react-tinacms-date",
         "title": "react-tinacms-date"
