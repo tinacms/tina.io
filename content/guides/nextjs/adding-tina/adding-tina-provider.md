@@ -35,7 +35,7 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default withTina(MyApp, {
-  enabled: process.env.NODE_ENV !== 'production',
+  enabled: true,
   sidebar: true,
 })
 ```
