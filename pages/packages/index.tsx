@@ -8,11 +8,10 @@ import { DocsLayout } from 'components/layout'
 import { getJsonPreviewProps, readJsonFile } from 'utils/getJsonPreviewProps'
 import path from 'path'
 
-
 export default function PackageIndex(props) {
   const excerpt = 'Packages for TinaCMS.'
 
-  const name = "Packages"
+  const name = 'Packages'
 
   return (
     <>
@@ -32,12 +31,13 @@ export default function PackageIndex(props) {
             <h1>TinaCMS Packages</h1>
             <hr />
             <ul>
-              {props.packages.map( p => {
+              {props.packages.map(p => {
                 return (
-                  <li><a href={p.link}>{p.name}</a></li>
+                  <li>
+                    <a href={p.link}>{p.name}</a>
+                  </li>
                 )
-              }
-            )}
+              })}
             </ul>
           </DocGridContent>
         </DocsGrid>
@@ -62,22 +62,22 @@ export const getStaticProps: GetStaticProps = async function(props) {
       path.resolve(process.cwd(), './content/packages.json')
     )
 
-    const packagePages = file.packages.map( p => ({
+    const packagePages = file.packages.map(p => ({
       name: p.name,
-      link: p.readme ? `/packages/${p.name}` : p.link
+      link: p.readme ? `/packages/${p.name}` : p.link,
     }))
 
     return {
       props: {
         packages: packagePages,
-        docsNav: docsNavData
-      }
+        docsNav: docsNavData,
+      },
     }
   } catch (e) {
     if (e instanceof GithubError) {
       return {
         props: {
-          previewError: { ...e }, //workaround since we cant return error as JSON
+          error: { ...e }, //workaround since we cant return error as JSON
         },
       }
     } else {

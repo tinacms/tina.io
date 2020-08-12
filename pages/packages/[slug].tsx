@@ -62,15 +62,13 @@ export default function Packages(props) {
             </DocGridToc>
           )}
           <DocGridContent ref={contentRef}>
-            
             <MarkdownContent escapeHtml={false} content={props.content} />
-            <hr/>
+            <hr />
             <a href={props.link}>View on GitHub -></a>
             <DocsPagination
               prevPage={props.prevPage}
               nextPage={props.nextPage}
             />
-            
           </DocGridContent>
         </DocsGrid>
       </DocsLayout>
@@ -87,7 +85,7 @@ export const getStaticProps: GetStaticProps = async function(props) {
     if (e instanceof GithubError) {
       return {
         props: {
-          previewError: { ...e }, //workaround since we cant return error as JSON
+          error: { ...e }, //workaround since we cant return error as JSON
         },
       }
     } else {

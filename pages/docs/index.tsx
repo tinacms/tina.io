@@ -10,7 +10,7 @@ export const getStaticProps: GetStaticProps = async function(props) {
     if (e instanceof GithubError) {
       return {
         props: {
-          previewError: { ...e }, //workaround since we cant return error as JSON
+          error: { ...e }, //workaround since we cant return error as JSON
         },
       }
     } else {
