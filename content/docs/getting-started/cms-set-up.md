@@ -62,11 +62,12 @@ Update your CMS instance with the `sidebar` option:
 
 **src/App.js**
 
-```js,copy
+```diff
 function App() {
-  const cms = new TinaCMS({
-    sidebar: true,
-  })
+-  const cms = new TinaCMS();
++  const cms = new TinaCMS({
++    sidebar: true,
++  });
   return (
       //...
   )
