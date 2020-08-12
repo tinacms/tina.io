@@ -7,8 +7,8 @@ consumes:
     description: Shows InlineText
   - file: /packages/react-tinacms-inline/src/inline-field.tsx
     description: Depends on InlineField
+last_edited: '2020-08-12T18:55:53.443Z'
 ---
-
 The `InlineText` component represents a **single line text input**. It should be used for content values that are short strings, for example, a page title.
 
 ## Definition
@@ -39,12 +39,13 @@ export function Page(props) {
 
 ## Options
 
-| Key           | Description                                                                                                                                                                                                                                                                                                                                                                                                     |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`        | The path to some value in the data being edited.                                                                                                                                                                                                                                                                                                                                                                |
-| `className`   | To set styles directly on the input or extend via [styled components](/docs/ui/inline-editing#extending-inline-field-styles).                                                                                                                                                                                                                                                                                   |
-| `focusRing`   | Either an object to style the focus ring or a boolean to show/hide the focus ring. Defaults to `true` which displays the focus ring with default styles. For style options, `offset` (in pixels) sets the distance from the ring to the edge of the component, and `borderRadius` (in pixels) controls the [rounded corners](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius) of the focus ring. |
-| `placeholder` | Text that is used when the field has no value set. This value will be displayed whether or not the CMS is enabled.                                                                                                                                                                                                                                                                                              |
+| Key | Description |
+| --- | --- |
+| `name` | The path to some value in the data being edited. |
+| `className` | To set styles directly on the input or extend via [styled components](/docs/ui/inline-editing#extending-inline-field-styles). |
+| `focusRing` | Either an object to style the focus ring or a boolean to show/hide the focus ring. Defaults to `true` which displays the focus ring with default styles. For style options, `offset` (in pixels) sets the distance from the ring to the edge of the component, and `borderRadius` (in pixels) controls the [rounded corners](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius) of the focus ring. |
+| `placeholder` | Text that is used when the field has no value set. This value will be displayed whether or not the CMS is enabled. |
+| `children` |  |
 
 ## Interface
 
@@ -53,6 +54,8 @@ interface InlineTextProps {
   name: string
   className?: string
   focusRing?: boolean | FocusRingProps
+  placeholder?: string
+  children?: ReactChild
 }
 
 interface FocusRingProps {
