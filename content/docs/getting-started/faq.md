@@ -20,7 +20,7 @@ Tina is not an application on its own that you login to, however you could build
 
 ## Is Tina stable?
 
-Currently, Tina is pre Version-1. While much of the core architecture is fairly-well settled, many of the higher-level APIs are still being built and shaped. Breaking changes in non-core packages are introduced regularly (but communicated in Release Notes) as we push limits and hone the developer experience.
+Currently, Tina is pre Version-1. While much of the core architecture is fairly-well settled, many of the higher-level APIs are still being built and shaped. Breaking changes in non-core packages are introduced regularly (but communicated in [Release Notes](/docs/releases)) as we push limits and hone the developer experience.
 
 ## What framework do you best support?
 
