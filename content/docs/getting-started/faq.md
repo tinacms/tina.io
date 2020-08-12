@@ -38,7 +38,7 @@ We can identify a few different ways to approach Vue support:
 - Another would be to completely rewrite the editing UI with Vue components.
 - A third option would be to convert the editing UI to [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components), so they can be independent of a UI framework.
 
-The Core Tina Team is focused on creating a solid foundation with React first, before considering Vue. However, if someone in the community wants to spearhead this effort, we will certainly offer support and guidance.
+The Core Tina Team is focused on creating a solid foundation with React first, before considering Vue. However, if someone in the community wants to [spearhead this effort](https://github.com/tinacms/tinacms/issues/1258), we will certainly offer support and guidance.
 
 ## Who should use Tina?
 
