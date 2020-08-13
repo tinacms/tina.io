@@ -1,5 +1,7 @@
 ---
 title: Frequently Asked Questions
+prev: /docs/getting-started/backends
+next: null
 ---
 
 We hope these answers give you an honest insight into the project — its current state, the possibilities, and supported usecases etc. Please share additional questions on the [community forum](https://community.tinacms.org/)!
