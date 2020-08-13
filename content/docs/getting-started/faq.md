@@ -6,7 +6,7 @@ We hope these answers give you an honest insight into the project — its curren
 
 ## Why do you say "Tina is not a CMS?"
 
-Tina introduces an entirely new paradigm to the content management space, which can make it difficult to grasp. In short, Tina is a toolkit for making your website it's own CMS. It's a suite of packages that enables developers to build a customized content management system into the website itself.
+Tina introduces an entirely new paradigm to the content management space, which can make it difficult to grasp. In short, Tina is a toolkit for making your website its own CMS. It's a suite of packages that enables developers to build a customized content management system into the website itself.
 
 Tina allows you to expose content editing directly within your website's components. You can use Tina to build your own custom CMS and have precise control over how editors interact with those editing capabilities.
 
