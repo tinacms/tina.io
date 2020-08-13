@@ -26,7 +26,7 @@ Currently, Tina is pre Version-1. While much of the core architecture is fairly-
 
 Tina's editing UI is built entirely in React. Right now, you can only use Tina in React-based environments, such as [CRA](https://reactjs.org/docs/create-a-new-react-app.html), [Next.js](https://nextjs.org/), or [Gatsby](https://www.gatsbyjs.com/).
 
-As of now, we'd recommend using CRA or Next.js if you're wanting to use [Tina in production](/docs/getting-started/faq#what-is-the-editing-environment-how-does-tina-work-in-production) due to a few constraints in the way Gatsby works.
+As of now, we'd recommend using Create React App (CRA) or Next.js if you're wanting to use [Tina in production](/docs/getting-started/faq#what-is-the-editing-environment-how-does-tina-work-in-production) due to a few constraints in the way Gatsby works.
 
 ## What about Vue?
 
