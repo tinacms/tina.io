@@ -14,7 +14,7 @@ Here's an overview of the current CMS landscape:
 
 - **Traditional Paradigm:** A CMS is an application you use to build a website (i.e. Wordpress, Drupal, etc.). A conventional CMS provides a fully-realized editing interface, coupled with a backend for managing data, requiring you to create and edit content within its bounds. You build your website on top of the CMS.
 - **Headless Paradigm:** A CMS is an application that let's you edit your content. It lives independent of your website. Your website's build process loads data from the CMS to create the web pages. Your website and the content management are completely independent.
-- **The Tina Paradigm:** Your website is it's own CMS. You use Tina to build content editing capabilities directly into your website interface. You can set up a custom or pre-configured backend to handle how and where content is stored.
+- **The Tina Paradigm:** Your website is its own CMS. You use Tina to build content editing capabilities directly into your website interface. You can set up a custom or pre-configured backend to handle how and where content is stored.
 
 Tina is not an application on its own that you login to, however you could build that authenticated editing application into your site with Tina. It is not a one-size-fits all solution. It is incredibly flexible, providing precise control over an entire content editing infrastructure — from the database to the user experience.
 
