@@ -148,7 +148,9 @@ export default function GuideTemplate({
         openGraph={{
           title: frontmatter.title,
           description: excerpt,
-          images: [openGraphImage(guideTitle)],
+          images: [
+            openGraphImage(guideTitle, ' | TinaCMS Docs', frontmatter.title),
+          ],
         }}
       />
       <DocsLayout navItems={guideNav} guide={breadcrumb}>
