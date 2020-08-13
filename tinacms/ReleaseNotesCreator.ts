@@ -5,9 +5,8 @@ import moment from 'moment'
 export const ReleaseNotesCreatorPlugin = new MarkdownCreatorPlugin({
   label: 'New Release Notes',
   filename: form => {
-    console.log(form.date)
     const slug = slugify(form.title)
-    return `content/blog/${slug}.md`
+    return `content/docs/releases/${slug}.md`
   },
   fields: [
     {
@@ -38,9 +37,9 @@ export const ReleaseNotesCreatorPlugin = new MarkdownCreatorPlugin({
   }),
   body: () => DEFAULT_RELEASE_NOTES_BODY,
   afterCreate: response => {
-    let url = fileToUrl(response.content.path.split('content')[1], 'blog')
+    let url = fileToUrl(response.content.path.split('content')[1], 'docs/releases')
 
-    window.location.href = `/blog/${url}`
+    window.location.href = `/docs/releases/${url}`
   },
 })
 const DEFAULT_RELEASE_NOTES_BODY = `
