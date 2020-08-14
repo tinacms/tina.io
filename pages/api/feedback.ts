@@ -2,7 +2,7 @@ import Airtable from 'airtable'
 
 interface FeedbackRecord {
   Date: string
-  Comment: string
+  Comment?: string
   Review: 'Good' | 'Bad'
   Email?: string
   slug: string
@@ -11,13 +11,7 @@ interface FeedbackRecord {
 export default function feedback(req, res) {
   const base = Airtable.base('appmrIEGfi6XWeXaY')
 
-  const fields: FeedbackRecord = {
-    Date: new Date().toDateString(),
-    Comment: 'What a wonderful world.',
-    Review: 'Good',
-    Email: 'test@example.com',
-    slug: 'cresting',
-  }
+  const fields: FeedbackRecord = req.body
 
   base('Site Feedback').create([{ fields }], function(err, records) {
     if (err) {
