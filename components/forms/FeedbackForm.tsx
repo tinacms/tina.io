@@ -6,8 +6,10 @@ import { Button } from 'components/ui'
 
 export function FeedbackForm() {
   const router = useRouter()
-  const [formStatus, setFormStatus] = React.useState(null)
-  const [formOpen, setFormOpen] = React.useState(false)
+  const [formStatus, setFormStatus] = React.useState<
+    'submitting' | 'success' | 'error'
+  >(null)
+  const [formOpen, setFormOpen] = React.useState<boolean>(false)
 
   const openForm = () => {
     setFormOpen(true)
@@ -18,13 +20,14 @@ export function FeedbackForm() {
   }
 
   function handleSubmitForm(values) {
+    setFormStatus('submitting')
     const formData = {
       Date: new Date().toDateString(),
       slug: router.asPath,
       ...values,
     }
 
-    fetch('/api/feedback', {
+    return fetch('/api/feedback', {
       method: 'POST',
       mode: 'cors',
       cache: 'no-cache',
@@ -35,13 +38,15 @@ export function FeedbackForm() {
       referrerPolicy: 'no-referrer',
       body: JSON.stringify(formData),
     }).then(response => {
-      if (response.ok) {
-        setFormStatus('Success')
+      if (!response.ok) {
+        setFormStatus('error')
+        console.error(`Form not submitted: ${response.status} error`)
       } else {
-        setFormStatus('Error')
+        setFormStatus('success')
       }
     })
   }
+
   return (
     <>
       <FormWidget>
