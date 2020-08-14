@@ -5,6 +5,7 @@ interface FeedbackRecord {
   Comment: string
   Review: 'Good' | 'Bad'
   Email?: string
+  Slug: string
 }
 
 export default function feedback(req, res) {
@@ -15,6 +16,7 @@ export default function feedback(req, res) {
     Comment: 'What a wonderful world.',
     Review: 'Good',
     Email: 'test@example.com',
+    Slug: 'testing',
   }
 
   base('Site Feedback').create([{ fields }], function(err, records) {
