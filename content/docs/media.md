@@ -33,6 +33,30 @@ interface Media {
 }
 ```
 
+**Media Store**
+
+| Key          | Description                                                                                                                                                           |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `accept`     | The [input accept string](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#accept) that describes what kind of files the Media Store will accept. |
+| `persist`    | Uploads a set of files to the Media Store and returns a Promise containing the Media objects for those files.                                                         |
+| `previewSrc` | Given a `src` string it returns a url for previewing that content. This is helpful in cases where the file may not be available in production yet.                    |
+
+**Media**
+
+This represents an individual file in the `MediaStore`.
+
+| Key         | Description                             |
+| ----------- | --------------------------------------- |
+| `directory` | The directory where the file is stored. |
+| `filename`  | The name of the file.                   |
+
+**Media Upload Options**
+
+| Key         | Description                                                                       |
+| ----------- | --------------------------------------------------------------------------------- |
+| `directory` | The directory where the file should be uploaded.                                  |
+| `file`      | The [File](https://developer.mozilla.org/en-US/docs/Web/API/File) to be uploaded. |
+
 ### Adding a Media Store
 
 Add the media store by assigning it to `cms.media.store` in a context where you have access to the CMS object.
