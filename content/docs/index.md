@@ -1,5 +1,5 @@
 ---
-title: Tina is Not a CMS
+title: TinaCMS Documentation
 id: introduction
 last_edited: '2020-08-17T20:43:06.481Z'
 ---
