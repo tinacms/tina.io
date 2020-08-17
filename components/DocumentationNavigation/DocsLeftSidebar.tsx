@@ -41,11 +41,6 @@ export const DocsLeftSidebar = styled.div<{ open: boolean }>`
         `
       : ``};
 
-  iframe {
-    margin: 1.5rem 3.5rem 0.5rem 1.5rem;
-    display: block;
-  }
-
   @media (min-width: 1000px) {
     left: 0;
     top: auto;
