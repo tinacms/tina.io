@@ -8,7 +8,7 @@ Create a new directory in `pages`, called `github` and then make a new file, `au
 
 **pages/github/authorizing.tsx**
 
-```tsx
+```tsx,copy
 import { useGithubAuthRedirect } from 'react-tinacms-github'
 
 // Our GitHub app redirects back to this page with auth code
