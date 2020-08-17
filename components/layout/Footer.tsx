@@ -178,6 +178,13 @@ export const Footer = styled(({ light, ...styleProps }) => {
         <TinaWordmark />
         <LinkNav />
         <FooterSocial>
+          <iframe
+            src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
+            frameBorder="0"
+            scrolling="0"
+            width="150px"
+            height="30px"
+          ></iframe>
           <a href="https://twitter.com/tina_cms" target="_blank">
             <TwitterIconSvg />
           </a>
