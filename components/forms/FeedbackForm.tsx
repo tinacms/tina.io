@@ -343,7 +343,7 @@ const HoneyPot = styled.input`
   opacity: 0;
 `
 
-const FeedbackButton = styled<{ formStatus: string }>(Button)`
+const FeedbackButton = styled<any>(Button)`
   ${props =>
     props.formStatus === 'submitting'
       ? css`
