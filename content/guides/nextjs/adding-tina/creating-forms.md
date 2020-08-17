@@ -2,6 +2,7 @@
 title: Creating Forms
 last_edited: '2020-08-03T13:05:25.363Z'
 ---
+
 After wrapping our App component in the Tina Provider, we can create forms by calling the `useForm` hook inside our Post component. `useForm` returns two values in an array, similar to `React.useState`, which we assign via destructuring:
 
 ```js
@@ -29,24 +30,26 @@ For details on how to configure forms, take a look at our [form configuration do
 
 ```js
 const formConfig = {
-  id: initialPost.slug,           // a unique identifier for this instance of the form
-  label: 'Blog Post',             // name of the form to appear in the sidebar
-  initialValues: initialPost,     // populate the form with starting values
-  onSubmit: (values) => {         // do something with the data when the form is submitted
+  id: initialPost.slug, // a unique identifier for this instance of the form
+  label: 'Blog Post', // name of the form to appear in the sidebar
+  initialValues: initialPost, // populate the form with starting values
+  onSubmit: values => {
+    // do something with the data when the form is submitted
     alert(`Submitting ${values.title}`)
   },
-  fields: [                    // define fields to appear in the form
+  fields: [
+    // define fields to appear in the form
     {
-      name: 'title',           // field name maps to the corresponding key in initialValues
-      label: 'Post Title',     // label that appears above the field
-      component: 'text',       // the component used to handle UI and input to the field
+      name: 'title', // field name maps to the corresponding key in initialValues
+      label: 'Post Title', // label that appears above the field
+      component: 'text', // the component used to handle UI and input to the field
     },
     {
       name: 'rawMarkdownBody', // remember we want `rawMarkdownBody`, not `content` here
       label: 'Content',
-      component: 'markdown',   // `component` accepts a predefined components or a custom React component
+      component: 'markdown', // `component` accepts a predefined components or a custom React component
     },
-  ]
+  ],
 }
 ```
 
@@ -88,13 +91,6 @@ export default function Post({ post, morePosts, preview }) {
   }
   const [post, form] = useForm(formConfig)
 
-  const [htmlContent, setHtmlContent] = useState(post.content)
-  const initialContent = useMemo(() => post.rawMarkdownBody, [])
-  useEffect(() => {
-    if (initialContent == post.rawMarkdownBody) return
-    markdownToHtml(post.rawMarkdownBody).then(setHtmlContent)
-  }, [post.rawMarkdownBody])
-
   return (
     //...
   )
@@ -120,4 +116,4 @@ That's it!
 
 ## More Info
 
-* [Tina Docs: Forms](/docs/plugins/forms)
+- [Tina Docs: Forms](/docs/plugins/forms)
