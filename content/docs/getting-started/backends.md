@@ -2,7 +2,7 @@
 title: Working with Backends
 prev: /docs/getting-started/edit-content
 next: null
-last_edited: '2020-08-17T21:05:48.235Z'
+last_edited: '2020-08-17T21:11:10.940Z'
 ---
 Whenever you refresh the page, you may have noticed that your changes are not saved. Every time the page loads, the `data` populates with the form's initial values.
 
@@ -101,7 +101,9 @@ Note that this `onSubmit` function won't actually save those new values on the s
 
 While our form is functional in terms of retrieving and saving content, the editing experience could be improved by additional feedback. What if the form failed to save? Currently, the editor would need to check the console to see that there was an error.
 
-[CMS Alerts](/docs/ui/alerts) are useful for displaying quick, short feedback to the editor. Let's add a few to improve the feedback for saving content.
+> [**CMS Alerts **](/docs/ui/alerts)are useful for displaying quick, short feedback to the editor.
+
+Let's add a few to improve the feedback for saving content.
 
 ### The Steps
 
@@ -161,7 +163,7 @@ Currently, there are numerous packages to support Git & GitHub workflows, as wel
 
 * [Tutorial to Use Strapi as DataSource](/guides/nextjs/tina-with-strapi/overview)
 * Tutorial to Use GitHub as DataSource
-* Tutorial to Use Git FileSystem as Data Source
+* Tutorial to Use Git FileSystem as Data Sourc
 
 Please refer to the [guides](/guides) for in-depth information on setting up various backends. Also, refer to [the forum](https://community.tinacms.org/) to read about other developers' unique configurations. As always, reach out to the Tina Team on [the forum](https://community.tinacms.org/) if you have an integration or backend idea and would like guidance or feedback on how to get started.
 
