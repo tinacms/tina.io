@@ -40,7 +40,7 @@ export const DocsLeftSidebar = styled.div<{ open: boolean }>`
         `
       : ``};
 
-  @media (min-width: 1000px) {
+  @media (min-width: 1200px) {
     left: 0;
     top: auto;
     width: 16rem;

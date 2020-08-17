@@ -40,7 +40,7 @@ export const DocsHeaderNav = styled(
     margin: 0 0.5rem;
   }
 
-  @media (max-width: 999px) {
+  @media (max-width: 829px) {
     display: none;
   }
 

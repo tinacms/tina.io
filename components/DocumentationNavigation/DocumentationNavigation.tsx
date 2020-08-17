@@ -54,7 +54,7 @@ const MobileNavToggle = styled(NavToggle)`
   left: 1rem;
   z-index: 500;
 
-  @media (min-width: 999px) {
+  @media (min-width: 1199px) {
     display: none;
   }
 `
@@ -71,7 +71,7 @@ const MobileNavLogo = styled(TinaIcon)`
     justify-content: center;
   }
 
-  @media (min-width: 1000px) {
+  @media (min-width: 830px) {
     display: none;
   }
 `
@@ -81,7 +81,7 @@ const DocsDesktopTinaIcon = styled(TinaIcon)`
   display: none;
   margin-bottom: 1rem;
 
-  @media (min-width: 1000px) {
+  @media (min-width: 1200px) {
     display: block;
   }
 `
@@ -100,7 +100,7 @@ const DocsSidebarHeader = styled.div`
     margin-top: -1.625rem;
   }
 
-  @media (max-width: 684px) {
+  @media (max-width: 1199px) {
     padding-left: 4.5rem;
   }
 `

@@ -86,7 +86,7 @@ const FooterBottom = styled.div`
   padding: 1.25rem 2rem;
   background-color: var(--color-background);
 
-  @media (min-width: 1000px) {
+  @media (min-width: 1200px) {
     flex-direction: row;
     align-items: center;
     flex-wrap: wrap;

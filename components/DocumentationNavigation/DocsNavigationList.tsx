@@ -52,7 +52,7 @@ const MobileMainNav = styled.li`
     margin: 0;
   }
 
-  @media (min-width: 1000px) {
+  @media (min-width: 1200px) {
     display: none;
   }
 `
