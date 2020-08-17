@@ -21,8 +21,7 @@ export const DocsLeftSidebar = styled.div<{ open: boolean }>`
 
   > ul {
     flex: 1 1 auto;
-    padding-top: 1rem;
-    padding-right: 1px;
+    padding: 1rem 1px 1rem 0;
     background: linear-gradient(to bottom, white, transparent 1rem),
       linear-gradient(to bottom, var(--tina-color-grey-1), white 1rem);
     background-attachment: local, scroll;
