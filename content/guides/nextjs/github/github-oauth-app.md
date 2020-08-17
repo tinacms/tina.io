@@ -26,22 +26,24 @@ To set these variables, create a `.env` file in your project root. Add the _secr
 
 **.env**
 
-    # OAuth App Credentials from GitHub
-    GITHUB_CLIENT_ID=
-    GITHUB_CLIENT_SECRET=
+```copy
+# OAuth App Credentials from GitHub
+GITHUB_CLIENT_ID=
+GITHUB_CLIENT_SECRET=
 
-    # The path to your repository in GitHub
-    REPO_FULL_NAME=my-github-user/my-github-repo
+# The path to your repository in GitHub
+REPO_FULL_NAME=my-github-user/my-github-repo
 
-    # The base branch that new changes and forks are created from. Defaults to 'master'.
-    BASE_BRANCH=master
+# The base branch that new changes and forks are created from. Defaults to 'master'.
+BASE_BRANCH=master
 
-    # The signing key used for token encryption
-    SIGNING_KEY=
+# The signing key used for token encryption
+SIGNING_KEY=
+```
 
 You can use the `dotenv` package to load the `.env` file:
 
-```bash
+```bash,copy
 yarn add dotenv
 ```
 
@@ -49,7 +51,7 @@ Now, to load these `.env` values in the front-end, create a file called [next.co
 
 **next.config.js**
 
-```js
+```js,copy
 require('dotenv').config()
 
 module.exports = {

@@ -18,13 +18,13 @@ Let's set up a [fresh install](https://nextjs.org/docs#setup) of _create-next-ap
 
 Open up your terminal. Navigate to where you'd like this project to live and run:
 
-```bash
+```bash,copy
 yarn create next-app
 ```
 
 Name your project, then choose the 'Default Starter' from the terminal options. Go ahead and navigate into that project and start the development server.
 
-```bash
+```bash,copy
 cd your-project-name
 yarn dev
 ```
@@ -43,7 +43,7 @@ Navigate to http://localhost:3000/ and you should see something like the image a
 
 The examples in this guide will use [Typescript](https://www.typescriptlang.org/). To set up your `create-next-app` with Typescript, run this in the terminal:
 
-```bash
+```bash,copy
 yarn add --dev typescript @types/node @types/react
 ```
 
@@ -53,7 +53,7 @@ The next time you start the development server, Next.js will automatically creat
 
 Now that our `create-next-app` is set up, we can add a few Tina packages:
 
-```bash
+```bash,copy
 yarn add react-tinacms-github next-tinacms-github tinacms styled-components
 ```
 

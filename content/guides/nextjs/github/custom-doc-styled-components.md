@@ -8,7 +8,7 @@ Create a new file in the `pages` directory called `_document.tsx`, copy this cod
 
 **pages/\_document.tsx**
 
-```tsx
+```tsx,copy
 import Document from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
 
