@@ -16,7 +16,7 @@ Create a new file, `components/Paragraph.js` and add this code:
 
 **components/Paragraph.js**
 
-```jsx
+```jsx,copy
 import React from 'react'
 import { BlocksControls, InlineTextarea } from 'react-tinacms-inline'
 import '../styles/paragraph.css'
@@ -62,7 +62,7 @@ Create a new file, `components/Images.js` and add this code:
 
 **components/Images.js**
 
-```jsx
+```jsx,copy
 import React from 'react'
 import { BlocksControls, InlineImage } from 'react-tinacms-inline'
 import '../styles/images.css'
