@@ -143,7 +143,17 @@ const AllIndicesResults = connectStateResults(
       <>
         {children}
         {!hasResults && (
-          <NoResultsLabel>No results found for '{state.query}'</NoResultsLabel>
+          <NoResultsLabel>
+            No results found for '{state.query}'. Check the &nbsp;
+            <a href="https://community.tinacms.org" target="_blank">
+              Forum
+            </a>
+            &nbsp; or &nbsp;
+            <a href="https://github.com/tinacms/tinacms/issues" target="_blank">
+              GitHub issues
+            </a>
+            .
+          </NoResultsLabel>
         )}
       </>
     )
