@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components'
 export const DocsLeftSidebar = styled.div<{ open: boolean }>`
   line-height: 1.25;
   background-color: white;
+  border-right: 1px solid var(--tina-color-grey-2);
   padding: 6rem 0 1rem 0;
   position: fixed;
   z-index: 250;
@@ -21,6 +22,7 @@ export const DocsLeftSidebar = styled.div<{ open: boolean }>`
   > ul {
     flex: 1 1 auto;
     padding-top: 1rem;
+    padding-right: 1px;
     background: linear-gradient(to bottom, white, transparent 1rem),
       linear-gradient(to bottom, var(--tina-color-grey-1), white 1rem);
     background-attachment: local, scroll;
@@ -28,6 +30,7 @@ export const DocsLeftSidebar = styled.div<{ open: boolean }>`
     background-size: 100% 1rem, 100% 1rem;
     overflow-x: hidden;
     overflow-y: auto;
+    margin-right: -1px;
   }
 
   ${props =>

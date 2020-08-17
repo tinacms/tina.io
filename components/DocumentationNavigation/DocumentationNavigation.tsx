@@ -92,7 +92,6 @@ const DocsSidebarHeader = styled.div`
   z-index: 500;
   padding: 1.25rem;
   border-bottom: 1px solid var(--tina-color-grey-2);
-  border-right: 1px solid var(--tina-color-grey-2);
   position: relative;
 
   ${HitsWrapper} {
