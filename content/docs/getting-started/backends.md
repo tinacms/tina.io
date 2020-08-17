@@ -2,9 +2,11 @@
 title: Working with Backends
 prev: /docs/getting-started/edit-content
 next: null
+last_edited: '2020-08-17T20:46:02.528Z'
 ---
+Whenever you refresh the page, you may have noticed that your changes are not saved. Every time the page loads, the `data` populates with the form's initial values.
 
-You may have noticed that content changes don't persist on refresh. Every time the page loads, the `data` populates with the form's initial values. In order for the CMS to be useful, it needs to track and persist data changes with some sort of backend.
+In this step, we will connect Tina's frontend editing framework to a backend to track and persist data changes.
 
 ## Loading Content from an external API
 
@@ -165,12 +167,12 @@ We’d like to provide developers with control and flexibility in all these aspe
 
 **Avenues to keep learning:**
 
-- Gain clarity with our [FAQ](_Coming soon_)
-- Set up [Inline Editing](/guides/general/inline-blocks/overview), or editing content directly on the page
-- Configure more complex fields, such as [Blocks](/docs/plugins/fields/blocks) or the [Markdown Wysiwyg](docs/plugins/fields/markdown)
-- Create new data files with [Content Creator Plugins](/docs/plugins/content-creators)
-- Add Tina to a [Next.js Site](/guides/nextjs/adding-tina/overview)
-- Add Tina to a [Gatsby Site](guides/gatsby/adding-tina/project-setup)
+* Gain clarity with our [FAQ](_Coming soon_)
+* Set up [Inline Editing](/guides/general/inline-blocks/overview), or editing content directly on the page
+* Configure more complex fields, such as [Blocks](/docs/plugins/fields/blocks) or the [Markdown Wysiwyg](docs/plugins/fields/markdown)
+* Create new data files with [Content Creator Plugins](/docs/plugins/content-creators)
+* Add Tina to a [Next.js Site](/guides/nextjs/adding-tina/overview)
+* Add Tina to a [Gatsby Site](guides/gatsby/adding-tina/project-setup)
 
 Follow [Tina on Twitter](https://twitter.com/tina_cms) 🦙! If you're stoked on this project, please give us a 🌟 on the [GitHub repository](https://github.com/tinacms/tinacms).
 
