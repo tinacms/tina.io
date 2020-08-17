@@ -11,14 +11,6 @@ export function FeedbackForm() {
   >(null)
   const [formOpen, setFormOpen] = React.useState<boolean>(false)
 
-  const openForm = () => {
-    setFormOpen(true)
-  }
-
-  const closeForm = () => {
-    setFormOpen(false)
-  }
-
   function handleSubmitForm(values) {
     setFormStatus('submitting')
     const formData = {
@@ -49,8 +41,14 @@ export function FeedbackForm() {
 
   return (
     <>
-      <FormWidget>
-        <FormTitle onClick={openForm}>Was this helpful?</FormTitle>
+      <FormWidget open={formOpen}>
+        <FormTitle
+          onClick={() => {
+            setFormOpen(!formOpen)
+          }}
+        >
+          Was this helpful?
+        </FormTitle>
         <FormWrapper open={formOpen}>
           <Form onSubmit={handleSubmitForm}>
             {props => (
@@ -86,7 +84,9 @@ export function FeedbackForm() {
                   ></Field>
                 </InputGroup>
                 <InputGroup>
-                  <label htmlFor="email">Your Email (optional)</label>
+                  <label htmlFor="email">
+                    Your Email <em>(optional)</em>
+                  </label>
                   <Field
                     component="input"
                     type="email"
@@ -94,31 +94,53 @@ export function FeedbackForm() {
                     name="Email"
                   ></Field>
                 </InputGroup>
-                <InputGroup>
+                <ButtonGroup>
                   <Button color="primary" type="submit">
                     Submit Feedback
                   </Button>
-                </InputGroup>
+                </ButtonGroup>
               </form>
             )}
           </Form>
         </FormWrapper>
       </FormWidget>
-      <Overlay open={formOpen} onClick={closeForm}></Overlay>
+      <Overlay
+        open={formOpen}
+        onClick={() => {
+          setFormOpen(!formOpen)
+        }}
+      ></Overlay>
     </>
   )
 }
 
-const FormWidget = styled.div`
+export interface FormWidgetProps {
+  open: boolean
+}
+
+const FormWidget = styled.div<FormWidgetProps>`
   position: fixed;
   bottom: 2rem;
   right: 2rem;
   background: var(--color-light);
   z-index: 550;
-  padding: 1rem;
+  padding: 0.75rem 1rem;
   border-radius: 5px;
   border: 1px solid var(--color-light-dark);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  max-height: calc(100vh - 4rem);
+
+  @media (max-width: 999px) {
+    display: none;
+  }
+
+  ${props =>
+    props.open
+      ? css`
+          overflow-y: auto;
+        `
+      : ``};
 `
 
 const FormTitle = styled.button`
@@ -127,9 +149,20 @@ const FormTitle = styled.button`
   border: none;
   padding: 0;
   display: block;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   color: var(--color-primary);
   font-family: var(--font-tuner);
+
+  &:active,
+  &:hover,
+  &:focus {
+    border: none;
+    outline: none;
+  }
+`
+
+const ButtonGroup = styled.div`
+  padding: 1rem 0 0.5rem 0;
 `
 
 const InputGroup = styled.div`
@@ -137,13 +170,12 @@ const InputGroup = styled.div`
 
   label {
     display: block;
-  }
-  textarea {
-    min-height: 5rem;
+    margin-bottom: 0.25rem;
+    color: var(--color-secondary);
   }
   input,
   textarea {
-    width: 100%;
+    width: 20rem;
     box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08),
       0px 2px 3px rgba(0, 0, 0, 0.12);
     border: 0;
@@ -155,10 +187,8 @@ const InputGroup = styled.div`
     text-decoration: none;
     cursor: text;
     height: 40px;
-    width: 100%;
-    padding: 0 16px;
+    padding: 0 12px;
     transition: all 85ms ease-out;
-    font-family: var(--font-tuner);
     font-size: 16px;
     ::placeholder {
       opacity: 1;
@@ -183,6 +213,11 @@ const InputGroup = styled.div`
       }
     }
   }
+  textarea {
+    min-height: 6rem;
+    padding: 12px;
+    white-space: pre-wrap;
+  }
 `
 
 export interface OverlayProps {
@@ -198,7 +233,7 @@ const Overlay = styled.div<OverlayProps>`
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   opacity: 0;
-  transition: opacity 250ms ease-out;
+  transition: opacity 400ms ease-out;
   z-index: 500;
   pointer-events: none;
 
@@ -219,9 +254,8 @@ const FormWrapper = styled.div<FormWrapperProps>`
   display: block;
   max-height: 0;
   max-width: 0;
-  overflow: hidden;
   pointer-events: none;
-  transition: all 250ms ease-out;
+  transition: all 400ms ease-out;
   opacity: 0;
 
   input {
@@ -233,14 +267,15 @@ const FormWrapper = styled.div<FormWrapperProps>`
       ? css`
           opacity: 1;
           pointer-events: all;
-          max-width: 30rem;
-          max-height: 30rem;
+          max-width: 22rem;
+          max-height: 28rem;
         `
       : ``};
 `
 
 const Reaction = styled.div`
   display: block;
+  padding: 0.5rem 0;
 
   label {
     font-size: 3.5rem;
@@ -249,10 +284,18 @@ const Reaction = styled.div`
     cursor: pointer;
     transform: scale3d(1, 1, 1);
     transform-origin: 50% 50%;
+    line-height: 1;
 
     &:hover {
       span {
         transform: scale3d(1.1, 1.1, 1);
+        opacity: 1;
+      }
+    }
+
+    &:active {
+      span {
+        transform: scale3d(1.15, 1.15, 1);
         opacity: 1;
       }
     }
