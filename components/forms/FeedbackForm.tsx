@@ -19,6 +19,8 @@ export function FeedbackForm() {
   }
 
   function handleSubmitForm(values) {
+    if (values.human) return
+
     setFormStatus('submitting')
     const formData = {
       Date: new Date().toDateString(),
@@ -41,7 +43,10 @@ export function FeedbackForm() {
         setFormStatus('error')
         console.error(`Form not submitted: ${response.status} error`)
       } else {
-        setFormStatus('success')
+        setTimeout(() => {
+          setFormOpen(false)
+          setFormStatus('success')
+        }, 750)
       }
     })
   }
@@ -54,6 +59,13 @@ export function FeedbackForm() {
           <Form onSubmit={handleSubmitForm}>
             {props => (
               <form onSubmit={props.handleSubmit}>
+                <Field
+                  component={({ input }) => {
+                    return <HoneyPot {...input} />
+                  }}
+                  type="text"
+                  name="human"
+                />
                 <Reaction>
                   <label>
                     <Field
@@ -95,10 +107,21 @@ export function FeedbackForm() {
                     name="Email"
                   ></Field>
                 </InputGroup>
+                {formStatus === 'error' ? (
+                  <ErrorMessage>Uh oh, Something went wrong.</ErrorMessage>
+                ) : (
+                  ''
+                )}
                 <ButtonGroup>
-                  <Button color="primary" type="submit">
-                    Submit Feedback
-                  </Button>
+                  <FeedbackButton
+                    color="primary"
+                    type="submit"
+                    formStatus={formStatus}
+                  >
+                    {formStatus === 'submitting'
+                      ? 'Submitting...'
+                      : 'Submit Feedback'}
+                  </FeedbackButton>
                 </ButtonGroup>
               </form>
             )}
@@ -312,4 +335,26 @@ const Reaction = styled.div`
     transition: opacity 250ms ease-out,
       transform 150ms cubic-bezier(0, 0.375, 0.255, 1.275);
   }
+`
+
+const HoneyPot = styled.input`
+  display: none !important;
+  visibility: hidden;
+  opacity: 0;
+`
+
+const FeedbackButton = styled<{ formStatus: string }>(Button)`
+  ${props =>
+    props.formStatus === 'submitting'
+      ? css`
+          pointer-events: none;
+          cursor: wait;
+        `
+      : ``};
+`
+
+const ErrorMessage = styled.p`
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: var(--color-primary);
 `
