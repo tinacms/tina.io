@@ -42,9 +42,9 @@ The good news is that setting up client-side content transformation for the Next
 
 ### 1. Send the Raw Markdown From the Backend
 
-The first thing we need to do is send the raw Markdown to the frontend. Open up `pages/posts/[slug].js` and take a look at the `getStaticProps` function. This function runs at build time to generate an object of props that are sent to the Post component:
+The first thing we need to do is send the raw Markdown to the frontend. Open up `pages/posts/[slug].js` and take a look at the `getStaticProps` function. This function runs at build time to generate an object of props that are sent to the Post component. Remove the call to `markdownToHtml`
 
-```js
+```diff
 export async function getStaticProps({ params }) {
   const post = getPostBySlug(params.slug, [
     'title',
@@ -55,133 +55,44 @@ export async function getStaticProps({ params }) {
     'ogImage',
     'coverImage',
   ])
-  const content = await markdownToHtml(post.content || '')
+- const content = await markdownToHtml(post.content || '')
 
   return {
     props: {
-      post: {
-        ...post,
-        content,
-      },
+-     post: {
+-       ...post,
+-       content,
+-     },
++     post,
     },
   }
 }
 ```
 
-This function calls `markdownToHtml` to transform the markdown content, in `post.content`, into HTML. This HTML is then sent to the Post component instead of the raw Markdown.
+Now in the component props, `post.content` will refer to the raw markdown.
 
-All we need to do in order to send the raw Markdown to the frontend is to add the original `post.content` to the return statement:
+### 2. Parse the Markdown Client Side using _react-markdown_
 
-```diff
-  return {
-    props: {
-      post: {
-        ...post,
-        content,
-+       rawMarkdownBody: post.content,
-      },
-    },
-  }
+```bash,copy
+yarn add react-markdown
 ```
 
-Now in the component props, `post.content` will continue to refer to the HTML content, but we can access the raw markdown from `post.rawMarkdownBody`.
+Open `components/page-body.js` and replace it's contents with:
 
-### 2. Create a Side Effect to Transform the Markdown
+```js,copy
+import ReactMarkdown from 'react-markdown'
+import markdownStyles from './markdown-styles.module.css'
 
-Now that we have access to the raw Markdown in our Post component, we can create a side effect to transform and update it when it changes. If you look at the `Post` component in `pages/posts/[slug].js`, you should see something like this (simplified for brevity):
-
-```jsx
-export default function Post({ post, morePosts, preview }) {
-  const router = useRouter()
-  if (!router.isFallback && !post?.slug) {
-    return <ErrorPage statusCode={404} />
-  }
-
+export default function PostBody({ content }) {
   return (
-    //...
-    <PostBody content={post.content} />
-    //...
+    <div className="max-w-2xl mx-auto">
+      <div className={markdownStyles['markdown']}>
+        <ReactMarkdown>{content}</ReactMarkdown>
+      </div>
+    </div>
   )
 }
 ```
-
-The component accesses the HTML content of the post in `post.content`. We just saw how `getStaticProps` provides this content to the `Post` component. So, what we need to do here is add some code to transform the Markdown in `post.rawMarkdownBody` and send this to the `PostBody` component instead.
-
-First, add `useState` and `useEffect` to the imports at the top of this file:
-
-```js
-import { useState, useEffect } from 'react'
-```
-
-**In the body of the Post component**, let's create a State variable to store the transformed HTML. By initializing it with the already-transformed HTML, we will ensure that (1) the blog post will render immediately without having to wait for the initial transformation, and (2) the HTML will still be rendered during Next.js' _Server-Side Rendering_ step.
-
-```js
-export default function Post({ post, morePosts, preview }) {
-  //...
-
-  const [htmlContent, setHtmlContent] = useState(post.content)
-
-  return (
-    //...
-    <PostBody content={htmlContent} />
-    //...
-  )
-}
-```
-
-At this point, things should work identical to how they did before. Now, though, we can add our side effect to transform the raw Markdown and store it in our State variable:
-
-```jsx
-export default function Post({ post, morePosts, preview }) {
-  //...
-
-  const [htmlContent, setHtmlContent] = useState(post.content)
-  useEffect(() => {
-    markdownToHtml(post.rawMarkdownBody).then(setHtmlContent)
-  }, [post.rawMarkdownBody])
-
-  return (
-    //...
-    <PostBody content={htmlContent} />
-    //...
-  )
-}
-```
-
-Once you're done, you should be able to open up the `Post` component in React DevTools and edit the `rawMarkdownBody` to see the transformed HTML automatically updated in your browser.
-
-### 3. Prevent Unnecessary Transformation
-
-One minor downside of this is that, even though the Markdown is also transformed at build time, the client-side `markdownToHtml` call is always executed at least once. This may not seem like _that_ big of a deal, but since we're doing this exclusively to facilitate content editing, we should do everything possible to minimize the impact of Tina on visitors to your site.
-
-One way to improve this is to skip the client-side transformation step when the Post component is first mounted with the HTML generated at build time. To do this, let's add `useMemo` to our react imports at the top of the file:
-
-```js
-import { useState, useEffect, useMemo } from 'react'
-```
-
-We'll use `useMemo` to memoize the initial raw Markdown we receive from `getStaticProps`, and bail out of our `useEffect` if the current value of `rawMarkdownBody` hasn't changed from this initial value.
-
-```diff
-export default function Post({ post, morePosts, preview }) {
-  //...
-
-  const [htmlContent, setHtmlContent] = useState(post.content)
-+ const initialContent = useMemo(() => post.rawMarkdownBody, [])
-  useEffect(() => {
-+   if (initialContent == post.rawMarkdownBody) return
-    markdownToHtml(post.rawMarkdownBody).then(setHtmlContent)
-  }, [post.rawMarkdownBody])
-
-  return (
-    //...
-    <PostBody content={htmlContent} />
-    //...
-  )
-}
-```
-
-Passing an empty dependencies array to the `useMemo` call will ensure that `initialContent` isn't updated after the initial component mount.
 
 ## So, Why Did We do This?
 
