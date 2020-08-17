@@ -77,7 +77,7 @@ Now in the component props, `post.content` will refer to the raw markdown.
 yarn add react-markdown
 ```
 
-Open `components/page-body.js` and replace it's contents with:
+Open `components/page-body.js` and replace its contents with:
 
 ```js,copy
 import ReactMarkdown from 'react-markdown'
