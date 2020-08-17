@@ -72,7 +72,7 @@ export const getStaticProps = async ctx => {
     ctx.preview,
     ctx.previewData
   )
-  const navItems = await getDocsNav(preview, {})
+  const navItems = await getDocsNav(preview, ctx.previewData)
 
   return {
     props: {
