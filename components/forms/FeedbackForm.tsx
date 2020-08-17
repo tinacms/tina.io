@@ -10,6 +10,13 @@ export function FeedbackForm() {
     'submitting' | 'success' | 'error'
   >(null)
   const [formOpen, setFormOpen] = React.useState<boolean>(false)
+  const widgetRef = React.useRef<HTMLDivElement>(null)
+
+  const toggleOpen = () => {
+    setFormOpen(!formOpen)
+    if (!widgetRef.current) return
+    widgetRef.current.scrollTop = 0
+  }
 
   function handleSubmitForm(values) {
     setFormStatus('submitting')
@@ -41,14 +48,8 @@ export function FeedbackForm() {
 
   return (
     <>
-      <FormWidget open={formOpen}>
-        <FormTitle
-          onClick={() => {
-            setFormOpen(!formOpen)
-          }}
-        >
-          Was this helpful?
-        </FormTitle>
+      <FormWidget open={formOpen} ref={widgetRef}>
+        <FormTitle onClick={toggleOpen}>Was this helpful?</FormTitle>
         <FormWrapper open={formOpen}>
           <Form onSubmit={handleSubmitForm}>
             {props => (
@@ -104,12 +105,7 @@ export function FeedbackForm() {
           </Form>
         </FormWrapper>
       </FormWidget>
-      <Overlay
-        open={formOpen}
-        onClick={() => {
-          setFormOpen(!formOpen)
-        }}
-      ></Overlay>
+      <Overlay open={formOpen} onClick={toggleOpen}></Overlay>
     </>
   )
 }
