@@ -26,15 +26,6 @@ export const DocsNavigationList = ({ navItems, guide }: DocsNavProps) => {
           navItems.map(section => (
             <NavSection key={section.id} {...section} collapsible={false} />
           ))}
-        <li>
-          <iframe
-            src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
-            frameBorder="0"
-            scrolling="0"
-            width="150px"
-            height="30px"
-          ></iframe>
-        </li>
       </ul>
     </NavListContext.Provider>
   )
