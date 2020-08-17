@@ -16,7 +16,7 @@ Create a new file, `components/FeatureList.js`, add the following code:
 
 **components/FeatureList.js**
 
-```jsx
+```jsx,copy
 import React from 'react'
 import { BlocksControls, InlineBlocks } from 'react-tinacms-inline'
 import '../styles/features.css'
@@ -79,7 +79,7 @@ Next, we'll create the Feature block component & template. Create a new file, `c
 
 **components/Feature.js**
 
-```jsx
+```jsx,copy
 import React from 'react'
 import { BlocksControls, InlineTextarea } from 'react-tinacms-inline'
 import '../styles/features.css'
