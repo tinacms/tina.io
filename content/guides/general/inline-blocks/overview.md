@@ -1,5 +1,6 @@
 ---
-title: 'Overview'
+title: Overview
+last_edited: '2020-08-17T18:49:25.796Z'
 ---
 
 This guide will show you how to set up inline editing and inline blocks based on a simple [create-react-app](https://reactjs.org/docs/create-a-new-react-app.html) demo.
@@ -18,7 +19,7 @@ To get started, you'll need to clone [the repo](https://github.com/tinacms/inlin
 
 At this point, it is set up with a TinaCMS instance and renders a simple `Hero` component with hard-coded data. All of the styles and images are configured as well, so when you add blocks they'll look nice 💅.
 
-```bash
+```bash,copy
 git clone git@github.com:tinacms/inline-blocks-demo.git
 cd inline-blocks-demo
 yarn install
