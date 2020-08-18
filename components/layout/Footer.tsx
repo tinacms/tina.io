@@ -9,9 +9,14 @@ import { EditLink } from './EditLink'
 
 const FooterSocial = styled.div`
   display: flex;
-  justify-content: flex-end;
   align-items: center;
   color: inherit;
+  margin-bottom: 1rem;
+
+  @media (min-width: 600px) {
+    justify-content: flex-end;
+    margin-bottom: 0;
+  }
 
   a {
     display: flex;
@@ -57,7 +62,11 @@ const FooterTop = styled.div`
   padding: 2rem 2rem;
   background-color: var(--color-background);
   align-items: start;
-  grid-template-areas: 'logo social' 'nav nav';
+  grid-template-areas: 'logo' 'social' 'nav';
+
+  @media (min-width: 600px) {
+    grid-template-areas: 'logo social' 'nav nav';
+  }
 
   @media (min-width: 800px) {
     grid-template-columns: 1fr 3fr 1fr;
