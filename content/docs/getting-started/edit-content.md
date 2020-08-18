@@ -2,17 +2,13 @@
 title: Editing Content
 prev: /docs/getting-started/cms-set-up
 next: /docs/getting-started/backends
-last_edited: '2020-08-18T07:55:27.933Z'
+last_edited: '2020-08-18T08:01:42.877Z'
 ---
 The purpose of a CMS is to allow editors to change content. [Forms](/docs/plugins/forms) are a fundamental part of this as they define the editing interface for your content. In this step, we will **create and register a form to edit data** rendered on this page.
 
 > _Fun Fact:_ Forms are a type of [plugin](/docs/plugins) in Tina. There are multiple ways to use forms with Tina, and the sidebar is merely one option.
 
 ## Import the `useForm` and `usePlugin` hooks
-
-The first step to implementing this is to use the `useForm` hook to [create the form](/docs/plugins/forms#creating-forms).
-
-> `useForm` needs a [form configuration object](/docs/plugins/forms#form-configuration) with properties that determine how the form behaves on load and save, what fields are available, and other metadata.
 
 **src/App.js**
 
@@ -31,10 +27,10 @@ const pageData = {
 
 `useForm` needs a [form configuration object](https://tinacms.org/docs/plugins/forms#form-configuration) with properties that determine how the form behaves on load and save, what fields are available, and other metadata.
 
-1. Add the **id**
+1. Add the `id`
 
    The `id` is a **unique identifier** for the form. The `id` is hard-coded in our example, which is OK because the `PageContent` component is only used to render the home page. When you create a form inside of a component that is used on multiple pages, you will want to take care to ensure the form's `id` uniquely identifies the content currently being edited. Typically, you would use the content's filename, or a unique key returned from a content API.
-2. Add Fields  
+2. Add `fields`  
    The `fields` array is comprised of [field definitions](/docs/plugins/fields#field-definition). All fields share a common [base configuration](docs/plugins/fields#field-config). Field definitions need at least two properties:
    * a `name`, indicating the path to access the data from the values object, and
    * a `component` that displays the interface for editing the data.
@@ -47,34 +43,35 @@ const pageData = {
 
     //...
     function PageContent() {
-      const formConfig = {
-    +    id: 'tina-tutorial-index',
-    +    label: 'Edit Page',
-    +    fields: [
-    +      {
-    +        name: 'title',
-    +        label: 'Title',
-    +       component: 'text',
-    +      },
-    +     {
-    +      name: 'body',
-    +        label: 'Body',
-    +        component: 'textarea',
-    +      },
-    +    ],
-    +    initialValues: pageData,
-    +    onSubmit: async () => {
-    +      window.alert('Saved!')
-        },
-      }
+    const formConfig = {
+    id: 'tina-tutorial-index',
+    label: 'Edit Page',
+    fields: [
+     {
+       name: 'title',
+       label: 'Title',
+      component: 'text',
+     },
     
+    {
+       name: 'body',
+       label: 'Body',
+       component: 'textarea',
+     },
+    ],
+    initialValues: pageData,
+    onSubmit: async () => {
+    
+     window.alert('Saved!')
+    },
+    }
     //...
 
 ## Create a form with `useForm` and the config object
 
-> Calling `useForm` won't automatically make our form appear in the sidebar. 
+The first step to implementing this is to use the `useForm` hook to [create the form](/docs/plugins/forms#creating-forms).
 
-Although it doesn't automatically appear in the sidebar, the form returned by `useForm` is pre-configured to work as a sidebar plugin. To add this form to the sidebar, all we have to do is pass it into the `usePlugin` hook.
+> `useForm` needs a [form configuration object](/docs/plugins/forms#form-configuration) with properties that determine how the form behaves on load and save, what fields are available, and other metadata.
 
 **src/App.js**
 
@@ -108,12 +105,16 @@ Although it doesn't automatically appear in the sidebar, the form returned by `u
 
 ## Register the form with `usePlugin`
 
+> Calling `useForm` won't automatically make our form appear in the sidebar.
+
+Although it doesn't automatically appear in the sidebar, the form returned by `useForm` is pre-configured to work as a sidebar plugin. To add this form to the sidebar, all we have to do is pass it into the `usePlugin` hook.
+
 ## Render the data returned from `useForm`
 
 **src/App.js**
 
 ```js
- //,,,
+ //...
   return (
     <section className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
