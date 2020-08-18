@@ -180,6 +180,7 @@ const FormWidget = styled.div<FormWidgetProps>`
       ? css`
           overflow-y: auto;
           transform: translate3d(-2rem, 1.5rem, 0);
+          z-index: 1500;
 
           &:hover {
             transform: translate3d(-2rem, 1.5rem, 0);
@@ -325,6 +326,7 @@ const Overlay = styled.div<OverlayProps>`
       ? css`
           opacity: 1;
           pointer-events: all;
+          z-index: 1250;
         `
       : ``};
 `

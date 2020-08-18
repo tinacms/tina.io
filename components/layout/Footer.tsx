@@ -232,6 +232,8 @@ export const Footer = styled(({ light, ...styleProps }) => {
   color: white;
   --color-background: var(--color-primary);
   --color-background-dark: var(--color-primary-dark);
+  position: relative;
+  z-index: 1000;
 
   ${TinaWordmark} {
     fill: var(--color-secondary);

@@ -11,7 +11,7 @@ export const DocsLeftSidebar = styled.div<{ open: boolean }>`
   top: 0;
   width: calc(50% + 2.25rem);
   height: 100%;
-  z-index: 250;
+  z-index: 1250;
   transform: translate3d(-100%, 0, 0);
   transition: all 140ms ease-in;
   padding: 00;
