@@ -74,6 +74,7 @@ export function FeedbackForm() {
                       type="radio"
                       name="Review"
                       value="Good"
+                      required
                     />
                     <span>👍</span>
                   </label>
