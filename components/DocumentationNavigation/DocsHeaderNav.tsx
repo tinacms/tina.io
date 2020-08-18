@@ -33,7 +33,7 @@ export const DocsHeaderNav = styled(
   list-style-type: none;
   display: flex;
   justify-content: flex-end;
-  padding: 1rem 0;
+  padding: 1rem 0.5rem;
 
   li {
     position: relative;
