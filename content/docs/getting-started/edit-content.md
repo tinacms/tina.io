@@ -2,7 +2,7 @@
 title: Editing Content
 prev: /docs/getting-started/cms-set-up
 next: /docs/getting-started/backends
-last_edited: '2020-08-18T08:04:54.797Z'
+last_edited: '2020-08-18T08:08:14.301Z'
 ---
 The purpose of a CMS is to allow editors to change content. [Forms](/docs/plugins/forms) are a fundamental part of this as they define the editing interface for your content. In this step, we will **create and register a form to edit data** rendered on this page.
 
@@ -111,20 +111,51 @@ The first step to implementing this is to use the `useForm` hook to [create the 
 
 Although it doesn't automatically appear in the sidebar, the form returned by `useForm` is pre-configured to work as a sidebar plugin. To add this form to the sidebar, all we have to do is pass it into the `usePlugin` hook.
 
+    //...
+    function PageContent() {
+      const formConfig = {
+        id: 'tina-tutorial-index',
+        label: 'Edit Page',
+        fields: [
+          {
+            name: 'title',
+            label: 'Title',
+            component: 'text',
+          },
+          {
+            name: 'body',
+            label: 'Body',
+            component: 'textarea',
+          },
+        ],
+        initialValues: pageData,
+        onSubmit: async () => {
+          window.alert('Saved!')
+        },
+      }
+       const [editableData, form] = useForm(formConfig)
+    +  usePlugin(form)
+    }
+    //...
+
 ## Render the data returned from `useForm`
 
 **src/App.js**
 
 ```js
  //...
-  return (
-    <section className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <h1>{editableData.title}</h1>
-      <p>{editableData.body}</p>
-      <EditButton />
-    </section>
-  )
+ function PageContent() {
+  //...
+  const [editableData, form] = useForm(formConfig)
+  usePlugin(form)
++  return (
++    <section className="App-header">
++      <img src={logo} className="App-logo" alt="logo" />
++      <h1>{editableData.title}</h1>
++      <p>{editableData.body}</p>
++      <EditButton />
++    </section>
++  )
 }
 
 //...
