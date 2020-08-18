@@ -139,25 +139,36 @@ export interface FormWidgetProps {
 
 const FormWidget = styled.div<FormWidgetProps>`
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+  bottom: 3.5rem;
+  right: 0;
   background: var(--color-light);
   z-index: 550;
   padding: 0.75rem 1rem;
   border-radius: 5px;
   border: 1px solid var(--color-light-dark);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
   overflow: hidden;
   max-height: calc(100vh - 4rem);
+  transition: transform 300ms ease-out;
+  transform: translate3d(4rem, 100%, 0);
 
   @media (max-width: 829px) {
     display: none;
+  }
+
+  &:hover {
+    transform: translate3d(3.75rem, calc(100% - 0.25rem), 0);
   }
 
   ${props =>
     props.open
       ? css`
           overflow-y: auto;
+          transform: translate3d(-2rem, 1.5rem, 0);
+
+          &:hover {
+            transform: translate3d(-2rem, 1.5rem, 0);
+          }
         `
       : ``};
 `
@@ -271,11 +282,10 @@ export interface FormWrapperProps {
 
 const FormWrapper = styled.div<FormWrapperProps>`
   display: block;
-  max-height: 0;
-  max-width: 0;
   pointer-events: none;
   transition: all 400ms ease-out;
   opacity: 0;
+  width: 20rem;
 
   input {
     display: block;
@@ -286,8 +296,6 @@ const FormWrapper = styled.div<FormWrapperProps>`
       ? css`
           opacity: 1;
           pointer-events: all;
-          max-width: 22rem;
-          max-height: 28rem;
         `
       : ``};
 `
