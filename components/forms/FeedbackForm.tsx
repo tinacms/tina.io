@@ -150,7 +150,7 @@ const FormWidget = styled.div<FormWidgetProps>`
   overflow: hidden;
   max-height: calc(100vh - 4rem);
 
-  @media (min-width: 829px) {
+  @media (max-width: 829px) {
     display: none;
   }
 
