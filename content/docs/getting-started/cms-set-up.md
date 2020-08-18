@@ -2,7 +2,7 @@
 title: Set Up the CMS
 prev: /docs/getting-started/introduction
 next: /docs/getting-started/edit-content
-last_edited: '2020-08-06T18:39:07.578Z'
+last_edited: '2020-08-18T07:20:50.604Z'
 ---
 ## Clone the demo
 
@@ -25,11 +25,11 @@ yarn add tinacms styled-components
 
 ## Create a CMS instance, add _TinaProvider_
 
-The first step to setting up Tina is to create an instance of `TinaCMS` and wrapping your site in the `TinaProvider`. 
+The first step to setting up Tina is to create an instance of `TinaCMS` and wrapping your site in the `TinaProvider`.
 
 > The [**CMS object**](/docs/cms#setting-up-the-cms-object) allows us to manage [Plugins](/docs/plugins), [APIs](/docs/apis), [Media Stores](/docs/media), [Events](/docs/events), [Editing UI](/docs/ui) and other key aspects of content management.
 >
-> The **TinaProvider component** sets up the editing UI, and provides a [context](https://reactjs.org/docs/context.html) from which we can access the CMS throughout the app.
+> The [**TinaProvider component** ](/docs/cms/#the-tinaprovider-component)sets up the editing UI, and provides a [context](https://reactjs.org/docs/context.html) from which we can access the CMS throughout the app.
 
 Open up `src/App.js` and follow these steps:
 
@@ -37,20 +37,20 @@ Open up `src/App.js` and follow these steps:
 
 1. Import `TinaProvider` & `TinaCMS`
 2. Create an instance of `TinaCMS`
-3. Wrap `TinaProvider` around the contents of `App`, pass the `cms`.
+3. Wrap `TinaProvider` around the contents of `App` and pass in the `cms` variable
 
 **src/App.js**
 
 ```diff
 import React from 'react';
-+import { TinaProvider, TinaCMS } from 'tinacms';
++import { TinaProvider, TinaCMS } from 'tinacms'; //Step 1
 import logo from './Icon.svg';
 import './App.css';
 
 function App() {
-+ const cms = new TinaCMS();
++ const cms = new TinaCMS(); //Step 2
   return (
-+   <TinaProvider cms={cms}>
++   <TinaProvider cms={cms}> //Step 3
       <div className="App">
         <PageContent />
       </div>
@@ -67,9 +67,15 @@ export default App;
 
 ## Configure the CMS object
 
-When instantiating the CMS, you can pass [options](/docs/cms#cms-configuration) to configure how the CMS object works.
+When instantiating the `TinaCMS` object, you can pass in [CMS options](/docs/cms#cms-configuration) to the CMS to configure the sidebar, toolbar, plugins, and/or APIs declaratively.
 
-Update your CMS instance with the `sidebar` option:
+> The [CMS options](/docs/cms#cms-configuration) are a **key part of constructing the CMS**. The `sidebar` property controls the _Sidebar UI_ — which renders forms, menus, and other UI that connect with content editing actions. It will not render unless the CMS is enabled.
+
+For this project, we are going to add the sidebar. 
+
+### The Steps
+
+1. Update your CMS instance with the `sidebar` option:
 
 **src/App.js**
 
@@ -83,10 +89,6 @@ function App() {
   )
 }
 ```
-
-### Sidebar
-
-The [CMS options](/docs/cms#cms-configuration) are a **key part of constructing the CMS**. The `sidebar` property controls the _Sidebar UI_ — which renders forms, menus, and other UI that connect with content editing actions. It will not render unless the CMS is enabled.
 
 ## Enabling the CMS
 
