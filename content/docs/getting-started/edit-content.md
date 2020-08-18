@@ -2,7 +2,7 @@
 title: Editing Content
 prev: /docs/getting-started/cms-set-up
 next: /docs/getting-started/backends
-last_edited: '2020-08-18T08:01:42.877Z'
+last_edited: '2020-08-18T08:04:54.797Z'
 ---
 The purpose of a CMS is to allow editors to change content. [Forms](/docs/plugins/forms) are a fundamental part of this as they define the editing interface for your content. In this step, we will **create and register a form to edit data** rendered on this page.
 
@@ -25,7 +25,9 @@ const pageData = {
 
 ## Define the [form configuration](/docs/plugins/forms#form-configuration)
 
-`useForm` needs a [form configuration object](https://tinacms.org/docs/plugins/forms#form-configuration) with properties that determine how the form behaves on load and save, what fields are available, and other metadata.
+> `useForm` needs a [form configuration object](https://tinacms.org/docs/plugins/forms#form-configuration) with properties that determine how the form behaves on load and save, what fields are available, and other metadata.
+
+In this step, we are going to define the form configuration object to contain id, label, fields, initialValues, and onSubmit. 
 
 1. Add the `id`
 
@@ -71,7 +73,7 @@ const pageData = {
 
 The first step to implementing this is to use the `useForm` hook to [create the form](/docs/plugins/forms#creating-forms).
 
-> `useForm` needs a [form configuration object](/docs/plugins/forms#form-configuration) with properties that determine how the form behaves on load and save, what fields are available, and other metadata.
+> `useForm` returns an object containing all of the form's values that will change as the content is updated in the form. 
 
 **src/App.js**
 
