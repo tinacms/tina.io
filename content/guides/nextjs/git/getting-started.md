@@ -1,5 +1,6 @@
 ---
 title: Getting Started
+last_edited: '2020-08-18T18:00:32.970Z'
 ---
 
 This guide will show you how to set up **Git-based content** editing with Tina & Next.js. With a Git-based approach, changes made to content in Tina's editor are immediately written back to their local Markdown or JSON source files. Updated content files can then by 'saved' via commit and pushed to an origin Git repository.
@@ -16,7 +17,9 @@ yarn add tinacms styled-components
 
 <!-- TODO: test if we still need to add moment as a peerdep at this step? -->
 
-### 2. Configure a [custom ](https://nextjs.org/docs/advanced-features/custom-app)_[\_app](https://nextjs.org/docs/advanced-features/custom-app)_ file.
+### 2. Configure a custom \_app file.
+
+See [here](https://nextjs.org/docs/advanced-features/custom-app) for information about custom \_apps.
 
 Feel free to reference the [example](/guides/nextjs/adding-tina/adding-tina-provider) in the previous guide using the `withTina` HOC. Or checkout the example below where the `cms` & `TinaProvider` are manually added.
 
