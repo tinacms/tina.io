@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components'
 export const DocsLeftSidebar = styled.div<{ open: boolean }>`
   line-height: 1.25;
   background-color: white;
+  border-right: 1px solid var(--tina-color-grey-2);
   padding: 6rem 0 1rem 0;
   position: fixed;
   z-index: 250;
@@ -10,17 +11,18 @@ export const DocsLeftSidebar = styled.div<{ open: boolean }>`
   top: 0;
   width: calc(50% + 2.25rem);
   height: 100%;
-  z-index: 250;
+  z-index: 1250;
   transform: translate3d(-100%, 0, 0);
   transition: all 140ms ease-in;
   padding: 00;
   display: flex;
   flex-direction: column;
   align-content: space-between;
+  overflow: hidden;
 
   > ul {
     flex: 1 1 auto;
-    padding-top: 1rem;
+    padding: 1rem 1px 1rem 0;
     background: linear-gradient(to bottom, white, transparent 1rem),
       linear-gradient(to bottom, var(--tina-color-grey-1), white 1rem);
     background-attachment: local, scroll;
@@ -28,6 +30,7 @@ export const DocsLeftSidebar = styled.div<{ open: boolean }>`
     background-size: 100% 1rem, 100% 1rem;
     overflow-x: hidden;
     overflow-y: auto;
+    margin-right: -1px;
   }
 
   ${props =>
@@ -38,12 +41,7 @@ export const DocsLeftSidebar = styled.div<{ open: boolean }>`
         `
       : ``};
 
-  iframe {
-    margin: 1.5rem 3.5rem 0.5rem 1.5rem;
-    display: block;
-  }
-
-  @media (min-width: 1000px) {
+  @media (min-width: 1200px) {
     left: 0;
     top: auto;
     width: 16rem;

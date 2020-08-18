@@ -25,15 +25,6 @@ export const DocsHeaderNav = styled(
               </li>
             )
           })}
-        <li>
-          <iframe
-            src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
-            frameBorder="0"
-            scrolling="0"
-            width="145px"
-            height="30px"
-          ></iframe>
-        </li>
       </ul>
     )
   })
@@ -42,23 +33,14 @@ export const DocsHeaderNav = styled(
   list-style-type: none;
   display: flex;
   justify-content: flex-end;
-  padding: 1rem 0;
+  padding: 1rem 0.5rem;
 
   li {
     position: relative;
     margin: 0 0.5rem;
   }
 
-  iframe {
-    margin: 1.5rem 3.5rem 0.5rem 1.25rem;
-    display: block;
-
-    @media (min-width: 685px) {
-      display: none;
-    }
-  }
-
-  @media (max-width: 999px) {
+  @media (max-width: 829px) {
     display: none;
   }
 

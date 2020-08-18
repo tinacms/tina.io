@@ -23,9 +23,9 @@ export const NavToggle = styled(({ open, ...styleProps }) => {
   user-select: none;
 
   span {
-    width: 1.75rem;
-    height: 3px;
-    margin-top: -1.5px;
+    width: 20px;
+    height: 2px;
+    margin-top: -1px;
     border-radius: 3px;
     display: block;
     position: absolute;
@@ -33,14 +33,14 @@ export const NavToggle = styled(({ open, ...styleProps }) => {
     top: 50%;
     left: 50%;
     transition: all 180ms ease-out;
-    transform: translate3d(-50%, -8px, 0);
+    transform: translate3d(-50%, -6px, 0);
 
     &:nth-child(2) {
       transform: translate3d(-50%, 0, 0);
     }
 
     &:last-child {
-      transform: translate3d(-50%, 8px, 0);
+      transform: translate3d(-50%, 6px, 0);
     }
   }
 

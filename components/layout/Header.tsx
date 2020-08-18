@@ -64,7 +64,7 @@ const StyledHeader = styled.header<StyledHeaderProps>`
     position: fixed;
     margin-top: 1.25rem;
     left: 1rem;
-    z-index: 500;
+    z-index: 1300;
 
     @media (min-width: 685px) {
       display: none;
@@ -85,7 +85,7 @@ const StyledHeader = styled.header<StyledHeaderProps>`
 
     @media (max-width: 684px) {
       position: fixed;
-      z-index: 250;
+      z-index: 1250;
       width: calc(50% + 2.25rem);
       left: 0;
       top: 0;
