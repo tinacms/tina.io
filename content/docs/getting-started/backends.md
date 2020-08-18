@@ -2,7 +2,7 @@
 title: Working with Backends
 prev: /docs/getting-started/edit-content
 next: null
-last_edited: '2020-08-17T21:11:10.940Z'
+last_edited: '2020-08-18T08:18:56.842Z'
 ---
 Whenever you refresh the page, you may have noticed that your changes are not saved. Every time the page loads, the `data` populates with the form's initial values.
 
@@ -101,7 +101,7 @@ Note that this `onSubmit` function won't actually save those new values on the s
 
 While our form is functional in terms of retrieving and saving content, the editing experience could be improved by additional feedback. What if the form failed to save? Currently, the editor would need to check the console to see that there was an error.
 
-> [**CMS Alerts **](/docs/ui/alerts)are useful for displaying quick, short feedback to the editor.
+> [CMS Alerts](/docs/ui/alerts) are useful for displaying quick, short feedback to the editor.
 
 Let's add a few to improve the feedback for saving content.
 
