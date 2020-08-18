@@ -142,13 +142,13 @@ export interface FormWidgetProps {
 
 const FormWidget = styled.div<FormWidgetProps>`
   position: fixed;
-  bottom: 4.75rem;
+  bottom: 5rem;
   right: 0;
   z-index: 550;
   padding: 1rem 1.25rem;
   max-height: calc(100vh - 4rem);
   transition: transform 300ms ease-out;
-  transform: translate3d(6rem, 100%, 0);
+  transform: translate3d(5.5rem, 100%, 0);
 
   &:after {
     content: '';
@@ -172,18 +172,18 @@ const FormWidget = styled.div<FormWidgetProps>`
   }
 
   &:hover {
-    transform: translate3d(5.75rem, calc(100% - 0.25rem), 0);
+    transform: translate3d(5.25rem, calc(100% - 0.25rem), 0);
   }
 
   ${props =>
     props.open
       ? css`
           overflow-y: auto;
-          transform: translate3d(-2rem, 1.5rem, 0);
+          transform: translate3d(-2rem, 3rem, 0);
           z-index: 1500;
 
           &:hover {
-            transform: translate3d(-2rem, 1.5rem, 0);
+            transform: translate3d(-2rem, 3rem, 0);
           }
 
           &:after {
