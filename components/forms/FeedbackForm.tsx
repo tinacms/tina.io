@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { Field, Form } from 'react-final-form'
 import styled, { css } from 'styled-components'
 import { Button } from 'components/ui'
+import { InfoIcon } from '@tinacms/icons'
 
 export function FeedbackForm() {
   const router = useRouter()
@@ -55,7 +56,7 @@ export function FeedbackForm() {
     <>
       <FormWidget open={formOpen} ref={widgetRef}>
         <FormTitle open={formOpen} onClick={toggleOpen}>
-          Was this helpful?
+          <InfoIcon /> Was this helpful?
         </FormTitle>
         <FormWrapper open={formOpen}>
           <Form onSubmit={handleSubmitForm}>
@@ -145,7 +146,6 @@ const FormWidget = styled.div<FormWidgetProps>`
   right: 0;
   z-index: 550;
   padding: 1rem 1.25rem;
-  overflow: hidden;
   max-height: calc(100vh - 4rem);
   transition: transform 300ms ease-out;
   transform: translate3d(6rem, 100%, 0);
@@ -213,6 +213,15 @@ const FormTitle = styled.button<FormTitleProps>`
   position: relative;
   display: inline-block;
 
+  svg {
+    display: inline;
+    width: 1.25em;
+    height: 1.25em;
+    fill: var(--color-primary);
+    margin: -0.25em 0 -0.25em -0.25em;
+    opacity: 0.9;
+  }
+
   &:after {
     content: '';
     display: block;
@@ -222,8 +231,9 @@ const FormTitle = styled.button<FormTitleProps>`
     width: 100%;
     height: 100%;
     border-radius: 2rem;
-    background: var(--color-light);
-    border: 1px solid var(--color-light-dark);
+    background: var(--color-seafoam);
+    border: 1px solid var(--color-seafoam-dark);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     transition: transform 300ms ease-out;
     z-index: -1;
   }
@@ -318,7 +328,7 @@ const Overlay = styled.div<OverlayProps>`
   background: rgba(0, 0, 0, 0.5);
   opacity: 0;
   transition: opacity 400ms ease-out;
-  z-index: 500;
+  z-index: 1250;
   pointer-events: none;
 
   ${props =>
@@ -326,7 +336,6 @@ const Overlay = styled.div<OverlayProps>`
       ? css`
           opacity: 1;
           pointer-events: all;
-          z-index: 1250;
         `
       : ``};
 `
