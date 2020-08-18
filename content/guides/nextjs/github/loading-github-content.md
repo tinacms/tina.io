@@ -8,7 +8,7 @@ Check out `pages/index.tsx`, right now the content for this page is statically w
 
 **content/home.json**
 
-```json
+```json,copy
 {
   "title": "Give me your tots 🦙"
 }

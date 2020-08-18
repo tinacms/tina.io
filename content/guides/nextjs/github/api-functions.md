@@ -8,7 +8,7 @@ We need a few API functions to handle GitHub authorization and [Preview Mode](ht
 
 We'll add some files in this directory to connect the API helpers to our project. Using the code generator [Hygen](https://www.hygen.io/), we've created a few [scripts](https://github.com/dwalkr/hygen-next-tinacms-github) to **help generate the required files** for this step. From the terminal, run:
 
-```bash
+```bash,copy
 npx hygen-add https://github.com/dwalkr/hygen-next-tinacms-github
 npx hygen next-tinacms-github bootstrap --format ts
 ```
