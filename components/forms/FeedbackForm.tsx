@@ -54,7 +54,9 @@ export function FeedbackForm() {
   return (
     <>
       <FormWidget open={formOpen} ref={widgetRef}>
-        <FormTitle onClick={toggleOpen}>Was this helpful?</FormTitle>
+        <FormTitle open={formOpen} onClick={toggleOpen}>
+          Was this helpful?
+        </FormTitle>
         <FormWrapper open={formOpen}>
           <Form onSubmit={handleSubmitForm}>
             {props => (
@@ -139,25 +141,38 @@ export interface FormWidgetProps {
 
 const FormWidget = styled.div<FormWidgetProps>`
   position: fixed;
-  bottom: 3.5rem;
+  bottom: 4.75rem;
   right: 0;
-  background: var(--color-light);
   z-index: 550;
-  padding: 0.75rem 1rem;
-  border-radius: 5px;
-  border: 1px solid var(--color-light-dark);
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+  padding: 1rem 1.25rem;
   overflow: hidden;
   max-height: calc(100vh - 4rem);
   transition: transform 300ms ease-out;
-  transform: translate3d(4rem, 100%, 0);
+  transform: translate3d(6rem, 100%, 0);
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-light);
+    border-radius: 5px;
+    border: 1px solid var(--color-light-dark);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+    z-index: -1;
+    transition: transform 300ms ease-out;
+    opacity: 0;
+  }
 
   @media (max-width: 829px) {
     display: none;
   }
 
   &:hover {
-    transform: translate3d(3.75rem, calc(100% - 0.25rem), 0);
+    transform: translate3d(5.75rem, calc(100% - 0.25rem), 0);
   }
 
   ${props =>
@@ -169,19 +184,48 @@ const FormWidget = styled.div<FormWidgetProps>`
           &:hover {
             transform: translate3d(-2rem, 1.5rem, 0);
           }
+
+          &:after {
+            opacity: 1;
+          }
         `
       : ``};
 `
 
-const FormTitle = styled.button`
+export interface FormTitleProps {
+  open: boolean
+}
+
+const FormTitle = styled.button<FormTitleProps>`
   cursor: pointer;
   background: transparent;
   border: none;
-  padding: 0;
+  padding: 0 1.25rem;
+  margin-top: -0.25rem;
+  margin-left: -1.25rem;
+  height: 45px;
+  line-height: 1;
   display: block;
   font-size: 1.25rem;
   color: var(--color-primary);
   font-family: var(--font-tuner);
+  position: relative;
+  display: inline-block;
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 2rem;
+    background: var(--color-light);
+    border: 1px solid var(--color-light-dark);
+    transition: transform 300ms ease-out;
+    z-index: -1;
+  }
 
   &:active,
   &:hover,
@@ -189,6 +233,15 @@ const FormTitle = styled.button`
     border: none;
     outline: none;
   }
+
+  ${props =>
+    props.open
+      ? css`
+          &:after {
+            opacity: 0;
+          }
+        `
+      : ``};
 `
 
 const ButtonGroup = styled.div`
