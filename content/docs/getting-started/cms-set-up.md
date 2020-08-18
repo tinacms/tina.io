@@ -2,7 +2,7 @@
 title: Set Up the CMS
 prev: /docs/getting-started/introduction
 next: /docs/getting-started/edit-content
-last_edited: '2020-08-18T07:24:49.284Z'
+last_edited: '2020-08-18T07:29:00.490Z'
 ---
 ## Clone the demo
 
@@ -71,7 +71,7 @@ When instantiating the `TinaCMS` object, you can pass in [CMS options](/docs/
 
 > The [CMS options](/docs/cms#cms-configuration) are a **key part of constructing the CMS**. The `sidebar` property controls the _Sidebar UI_ — which renders forms, menus, and other UI that connect with content editing actions. It will not render unless the CMS is enabled.
 
-For this project, we are going to add the sidebar. 
+For this project, we are going to add the sidebar.
 
 ### The Steps
 
@@ -96,12 +96,12 @@ Our demo contains an **"Edit this Site"** button, but you may have noticed that 
 
 > The CMS is _disabled by default_. We need to enable the CMS to edit content.
 
-There are two main approaches to enable the CMS. 
+There are two main approaches to enable the CMS.
 
-* Set the `enabled` option in the [CMS configuration](/docs/cms#cms-configuration). 
+* Set the `enabled` option in the [CMS configuration](/docs/cms#cms-configuration).
 * Use a `toggle` method to [enable / disable](/docs/cms#disabling--enabling-the-cms) the CMS.
 
-We are going to pick the latter. 
+We are going to pick the latter.
 
 We'll use the `useCMS` hook to get the CMS object from the `TinaProvider`. This hook can be useful throughout your App when needing to [access or update](/docs/cms#accessing-the-cms-object) the CMS. Once we can access the `cms`, we can toggle the enabled state.
 
@@ -135,9 +135,11 @@ function EditButton() {
 
 Head back to http://localhost:3000, refresh the page and click the 'Edit This Site' button. You should see an 'Edit Icon' in the lower right-hand corner. Click on the icon to open the _[Sidebar](/docs/ui#toolbar-configuration)_.
 
+**🎉 Congratulations! You have successfully installed Tina into a React App!**
+
 ![tinacms-tutorial-cms-setup-step](/img/getting-started/cms-setup-step.png)
 
-You'll notice that the sidebar is empty, that is because there are no forms registered to edit content — let's do that next.
+However, you'll notice that the sidebar is empty, that is because there are no forms registered to edit content — let's do that next.
 
 ## Additional Reading
 
