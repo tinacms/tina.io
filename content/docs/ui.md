@@ -17,7 +17,7 @@ While these UI elements are fundamental to editing with Tina, there are other co
 
 - [Screen Plugins](/docs/plugins/screens): can render modal UI and handle various content editing needs.
 - [Toolbar Widgets](/docs/plugins/toolbar-widgets): can be added to the toolbar as plugins, as in the case of the Branch Switcher provided by `react-tinacms-github`.
-- [Inline Forms & Fields](/docs/ui/inline-editing): transforms the site itself into the editing interface.
+- [Inline Forms & Fields](/docs/ui/inline-editing): transform the site itself into the editing interface.
 
 ## Enabling the User Interface
 
