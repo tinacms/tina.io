@@ -18,6 +18,7 @@ export const DocsLeftSidebar = styled.div<{ open: boolean }>`
   display: flex;
   flex-direction: column;
   align-content: space-between;
+  overflow: hidden;
 
   > ul {
     flex: 1 1 auto;
