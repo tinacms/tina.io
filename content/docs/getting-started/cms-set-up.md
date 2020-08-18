@@ -2,7 +2,7 @@
 title: Set Up the CMS
 prev: /docs/getting-started/introduction
 next: /docs/getting-started/edit-content
-last_edited: '2020-08-18T07:20:50.604Z'
+last_edited: '2020-08-18T07:24:49.284Z'
 ---
 ## Clone the demo
 
@@ -43,14 +43,14 @@ Open up `src/App.js` and follow these steps:
 
 ```diff
 import React from 'react';
-+import { TinaProvider, TinaCMS } from 'tinacms'; //Step 1
++import { TinaProvider, TinaCMS } from 'tinacms';
 import logo from './Icon.svg';
 import './App.css';
 
 function App() {
-+ const cms = new TinaCMS(); //Step 2
++ const cms = new TinaCMS(); 
   return (
-+   <TinaProvider cms={cms}> //Step 3
++   <TinaProvider cms={cms}> 
       <div className="App">
         <PageContent />
       </div>
@@ -92,11 +92,16 @@ function App() {
 
 ## Enabling the CMS
 
-The CMS is _disabled by default_. We need to enable the CMS to edit content.
-
-There are various approaches to enable the CMS. One way is to set the `enabled` option in the [CMS configuration](/docs/cms#cms-configuration). Another is to use a `toggle` method to [enable / disable](/docs/cms#disabling--enabling-the-cms) the CMS.
-
 Our demo contains an **"Edit this Site"** button, but you may have noticed that it doesn't do anything right now. Let's wire up this button to enable Tina using the CMS' `toggle` method.
+
+> The CMS is _disabled by default_. We need to enable the CMS to edit content.
+
+There are two main approaches to enable the CMS. 
+
+* Set the `enabled` option in the [CMS configuration](/docs/cms#cms-configuration). 
+* Use a `toggle` method to [enable / disable](/docs/cms#disabling--enabling-the-cms) the CMS.
+
+We are going to pick the latter. 
 
 We'll use the `useCMS` hook to get the CMS object from the `TinaProvider`. This hook can be useful throughout your App when needing to [access or update](/docs/cms#accessing-the-cms-object) the CMS. Once we can access the `cms`, we can toggle the enabled state.
 
