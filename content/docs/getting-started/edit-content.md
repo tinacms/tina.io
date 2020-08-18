@@ -2,7 +2,7 @@
 title: Editing Content
 prev: /docs/getting-started/cms-set-up
 next: /docs/getting-started/backends
-last_edited: '2020-08-18T07:46:18.436Z'
+last_edited: '2020-08-18T07:46:35.672Z'
 ---
 The purpose of a CMS is to allow editors to change content. [Forms](/docs/plugins/forms) are a fundamental part of this as they define the editing interface for your content. In this step, we will **create and register a form to edit data** rendered on this page.
 
@@ -73,7 +73,7 @@ Although it doesn't automatically appear in the sidebar, the form returned by `u
           window.alert('Saved!')
         },
       }
-    +    const [editableData, form] = useForm(formConfig)
+    +   const [editableData, form] = useForm(formConfig)
     }
     
     //...
