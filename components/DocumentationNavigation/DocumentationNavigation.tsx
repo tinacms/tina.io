@@ -97,9 +97,13 @@ const DocsSidebarHeader = styled.div`
   flex: 0 0 auto;
   background-color: white;
   z-index: 500;
-  padding: 1.25rem;
+  padding: 1.25rem 1rem;
   border-bottom: 1px solid var(--tina-color-grey-2);
   position: relative;
+
+  ${DocsDesktopTinaIcon} {
+    margin-left: 0.25rem;
+  }
 
   ${HitsWrapper} {
     right: auto;
