@@ -2,28 +2,42 @@
 title: Editing Content
 prev: /docs/getting-started/cms-set-up
 next: /docs/getting-started/backends
+last_edited: '2020-08-18T07:39:26.445Z'
 ---
-
 The purpose of a CMS is to allow editors to change content. [Forms](/docs/plugins/forms) are a fundamental part of this as they define the editing interface for your content. In this step, we will **create and register a form to edit data** rendered on this page.
 
-## Create & Register a Form
+> _Fun Fact:_ Forms are a type of [plugin](/docs/plugins) in Tina.
 
-We will use the `useForm` hook to [create the form](/docs/plugins/forms#creating-forms).
+## Import the `useForm` and `usePlugin` hooks
+
+The first step to implementing this is to use the `useForm` hook to [create the form](/docs/plugins/forms#creating-forms).
 
 Calling `useForm` won't automatically make our form appear in the sidebar. There are multiple ways to use forms with Tina, and the sidebar is merely one option.
 
 Although it doesn't automatically appear in the sidebar, the form returned by `useForm` is pre-configured to work as a sidebar plugin. To add this form to the sidebar, all we have to do is pass it into the `usePlugin` hook.
 
+> `useForm` needs a [form configuration object](/docs/plugins/forms#form-configuration) with properties that determine how the form behaves on load and save, what fields are available, and other metadata.
 
-> _Fun Fact:_ Forms are a type of [plugin](/docs/plugins) in Tina.
+**src/App.js**
 
-### The Steps
+```js
+import { TinaProvider, TinaCMS, useCMS, useForm, usePlugin } from 'tinacms'
 
-1. Import the `useForm` and `usePlugin` hooks
-2. Define the [form configuration](/docs/plugins/forms#form-configuration)
-3. Create a form with `useForm` and the config object
-4. Register the form with `usePlugin`
-5. Render the data returned from `useForm`
+//...
+
+const pageData = {
+  title: 'Tina is not a CMS',
+  body: 'It is a toolkit for creating a custom CMS.',
+}
+```
+
+## Define the [form configuration](/docs/plugins/forms#form-configuration)
+
+## Create a form with `useForm` and the config object
+
+## Register the form with `usePlugin`
+
+## Render the data returned from `useForm`
 
 **src/App.js**
 
@@ -103,10 +117,10 @@ The `id` is a **unique identifier** for the form. The `id` is hard-coded in our 
 
 ### _fields_
 
-The `fields` array is comprised of [field definitions](/docs/plugins/fields#field-definition). All fields share a common [base configuration](docs/plugins/fields#field-config). Field definitions need at least two properties: 
+The `fields` array is comprised of [field definitions](/docs/plugins/fields#field-definition). All fields share a common [base configuration](docs/plugins/fields#field-config). Field definitions need at least two properties:
 
- - a `name`, indicating the path to access the data from the values object, and
- - a `component` that displays the interface for editing the data.
+* a `name`, indicating the path to access the data from the values object, and
+* a `component` that displays the interface for editing the data.
 
 You will be working with fields a lot in Tina. To get more familiar, try to adjust the `label` property or add a new field to the array. Reference [the documentation](/docs/plugins/fields) for a full list of default field plugins.
 
@@ -118,16 +132,13 @@ You will be working with fields a lot in Tina. To get more familiar, try to adju
 
 This is a function that runs when the form is saved. Right now it just gives an alert message, but we will use this function later to post changes to a backend.
 
----
+***
 
 Next, we'll look at setting up a simple backend to retrieve and save data from a 3rd-party API.
 
 ## Additional Reading
 
-- Gain a deeper understanding of how the [`name` property](/docs/plugins/fields#name) in the field definition works.
-
-- The field examples above uses two _default field components_: [`text`](/docs/plugins/fields/text) & [`textarea`](/docs/plugins/fields/textarea). Tina provides many other default [field plugins](/docs/plugins/fields). You can even create your own [custom fields](/docs/plugins/fields/custom-fields).
-
-- There are other form creation helpers associated with various meta-framework integrations and backend configurations. Refer to the [guides](/guides) or packages documentation to find more information.
-
-- Tina uses the [Final Form library](https://final-form.org/) for all base form configuration.
+* Gain a deeper understanding of how the [`name` property](/docs/plugins/fields#name) in the field definition works.
+* The field examples above uses two _default field components_: [`text`](/docs/plugins/fields/text) & [`textarea`](/docs/plugins/fields/textarea). Tina provides many other default [field plugins](/docs/plugins/fields). You can even create your own [custom fields](/docs/plugins/fields/custom-fields).
+* There are other form creation helpers associated with various meta-framework integrations and backend configurations. Refer to the [guides](/guides) or packages documentation to find more information.
+* Tina uses the [Final Form library](https://final-form.org/) for all base form configuration.
