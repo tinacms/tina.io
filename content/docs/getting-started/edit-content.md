@@ -2,7 +2,7 @@
 title: Editing Content
 prev: /docs/getting-started/cms-set-up
 next: /docs/getting-started/backends
-last_edited: '2020-08-18T08:08:14.301Z'
+last_edited: '2020-08-18T08:11:16.007Z'
 ---
 The purpose of a CMS is to allow editors to change content. [Forms](/docs/plugins/forms) are a fundamental part of this as they define the editing interface for your content. In this step, we will **create and register a form to edit data** rendered on this page.
 
@@ -107,9 +107,9 @@ The first step to implementing this is to use the `useForm` hook to [create the 
 
 ## Register the form with `usePlugin`
 
-> Calling `useForm` won't automatically make our form appear in the sidebar.
-
 Although it doesn't automatically appear in the sidebar, the form returned by `useForm` is pre-configured to work as a sidebar plugin. To add this form to the sidebar, all we have to do is pass it into the `usePlugin` hook.
+
+> Calling `useForm` won't automatically make our form appear in the sidebar.
 
     //...
     function PageContent() {
@@ -139,6 +139,10 @@ Although it doesn't automatically appear in the sidebar, the form returned by `u
     //...
 
 ## Render the data returned from `useForm`
+
+In this step, we will be switching out our original `props` in the rendering code for this new object, our page will re-render as the content is changed, giving us a real-time preview of the content!
+
+> `useForm` returns an object containing all of the form's values that will change as the content is updated in the form. 
 
 **src/App.js**
 
