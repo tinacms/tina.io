@@ -2,7 +2,7 @@
 title: Set Up the CMS
 prev: /docs/getting-started/introduction
 next: /docs/getting-started/edit-content
-last_edited: '2020-08-18T07:29:00.490Z'
+last_edited: '2020-08-18T07:32:54.314Z'
 ---
 ## Clone the demo
 
@@ -67,7 +67,9 @@ export default App;
 
 ## Configure the CMS object
 
-When instantiating the `TinaCMS` object, you can pass in [CMS options](/docs/cms#cms-configuration) to the CMS to configure the sidebar, toolbar, plugins, and/or APIs declaratively.
+The `tinacms` package provides two possible user interfaces: the sidebar and the toolbar.
+
+When instantiating the `TinaCMS` object, you can pass in [CMS options](/docs/cms#cms-configuration) to the CMS to configure the user interface (sidebar or toolbar), plugins, and APIs declaratively.
 
 > The [CMS options](/docs/cms#cms-configuration) are a **key part of constructing the CMS**. The `sidebar` property controls the _Sidebar UI_ — which renders forms, menus, and other UI that connect with content editing actions. It will not render unless the CMS is enabled.
 
