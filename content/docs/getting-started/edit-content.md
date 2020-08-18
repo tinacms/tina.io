@@ -2,19 +2,15 @@
 title: Editing Content
 prev: /docs/getting-started/cms-set-up
 next: /docs/getting-started/backends
-last_edited: '2020-08-18T07:39:26.445Z'
+last_edited: '2020-08-18T07:46:18.436Z'
 ---
 The purpose of a CMS is to allow editors to change content. [Forms](/docs/plugins/forms) are a fundamental part of this as they define the editing interface for your content. In this step, we will **create and register a form to edit data** rendered on this page.
 
-> _Fun Fact:_ Forms are a type of [plugin](/docs/plugins) in Tina.
+> _Fun Fact:_ Forms are a type of [plugin](/docs/plugins) in Tina. There are multiple ways to use forms with Tina, and the sidebar is merely one option.
 
 ## Import the `useForm` and `usePlugin` hooks
 
 The first step to implementing this is to use the `useForm` hook to [create the form](/docs/plugins/forms#creating-forms).
-
-Calling `useForm` won't automatically make our form appear in the sidebar. There are multiple ways to use forms with Tina, and the sidebar is merely one option.
-
-Although it doesn't automatically appear in the sidebar, the form returned by `useForm` is pre-configured to work as a sidebar plugin. To add this form to the sidebar, all we have to do is pass it into the `usePlugin` hook.
 
 > `useForm` needs a [form configuration object](/docs/plugins/forms#form-configuration) with properties that determine how the form behaves on load and save, what fields are available, and other metadata.
 
@@ -33,7 +29,54 @@ const pageData = {
 
 ## Define the [form configuration](/docs/plugins/forms#form-configuration)
 
+`useForm` needs a [form configuration object](https://tinacms.org/docs/plugins/forms#form-configuration) with properties that determine how the form behaves on load and save, what fields are available, and other metadata.
+
+While there are other form config properties, the key ones to examine in the example above are `id`, `fields`, `initialValues`, and `onSubmit`. 
+
+### The Steps
+
+1. Add the **id** 
+2. Add Fields
+3. Add InitialValues
+4. Add onSubmit
+
+__
+
 ## Create a form with `useForm` and the config object
+
+> Calling `useForm` won't automatically make our form appear in the sidebar. 
+
+Although it doesn't automatically appear in the sidebar, the form returned by `useForm` is pre-configured to work as a sidebar plugin. To add this form to the sidebar, all we have to do is pass it into the `usePlugin` hook.
+
+**src/App.js**
+
+    //...
+    
+    function PageContent() {
+      const formConfig = {
+        id: 'tina-tutorial-index',
+        label: 'Edit Page',
+        fields: [
+          {
+            name: 'title',
+            label: 'Title',
+            component: 'text',
+          },
+          {
+            name: 'body',
+            label: 'Body',
+            component: 'textarea',
+          },
+        ],
+        initialValues: pageData,
+        onSubmit: async () => {
+          window.alert('Saved!')
+        },
+      }
+    +    const [editableData, form] = useForm(formConfig)
+    }
+    
+    //...
 
 ## Register the form with `usePlugin`
 
