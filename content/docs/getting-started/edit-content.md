@@ -2,13 +2,15 @@
 title: Editing Content
 prev: /docs/getting-started/cms-set-up
 next: /docs/getting-started/backends
-last_edited: '2020-08-18T08:11:16.007Z'
+last_edited: '2020-08-18T08:13:26.090Z'
 ---
 The purpose of a CMS is to allow editors to change content. [Forms](/docs/plugins/forms) are a fundamental part of this as they define the editing interface for your content. In this step, we will **create and register a form to edit data** rendered on this page.
 
 > _Fun Fact:_ Forms are a type of [plugin](/docs/plugins) in Tina. There are multiple ways to use forms with Tina, and the sidebar is merely one option.
 
 ## Import the `useForm` and `usePlugin` hooks
+
+We are going to start by importing the useForm and usePlugin packages from `tinacms`
 
 **src/App.js**
 
