@@ -328,7 +328,7 @@ const Overlay = styled.div<OverlayProps>`
   background: rgba(0, 0, 0, 0.5);
   opacity: 0;
   transition: opacity 400ms ease-out;
-  z-index: 1250;
+  z-index: 1350;
   pointer-events: none;
 
   ${props =>
