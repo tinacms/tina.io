@@ -21,7 +21,7 @@ last_edited: '2020-08-17T20:58:43.343Z'
 >
 > * [Editing Markdown Files with Gatsby](/guides/gatsby/git/create-remark-form)
 > * [Editing JSON Files with Gatsby](/guides/gatsby/git/create-json-form)
-> * [Editing local Markdown Files via Git with Next.js](https://tinacms.org/packages/next-tinacms-markdown)
+> * [Editing local Markdown Files via Git with Next.js](/packages/next-tinacms-markdown)
 > * [Editing local JSON Files via Git with Next.js](/guides/nextjs/git/creating-git-forms)
 
 The recommended way to create forms with Tina is to use the form hooks. These are explained in detail later on in this document, but let's start with a high-level overview of how form hooks are used.
