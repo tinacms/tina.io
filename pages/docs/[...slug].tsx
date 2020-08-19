@@ -15,10 +15,15 @@ import Toc from '../../components/toc'
 import { createTocListener } from 'utils'
 import { useLastEdited } from 'utils/useLastEdited'
 import { openGraphImage } from 'utils/open-graph-image'
+import Error from 'next/error'
 
 function DocTemplate(props) {
-  // Registers Tina Form
+  // fallback workaround
+  if (props.notFound) {
+    return <Error statusCode={404} />
+  }
 
+  // Registers Tina Form
   const [data, form] = useGithubMarkdownForm(props.file, formOptions)
 
   const isBrowser = typeof window !== `undefined`
@@ -106,7 +111,11 @@ export const getStaticProps: GetStaticProps = async function(props) {
         },
       }
     } else {
-      throw e
+      return {
+        props: {
+          notFound: true,
+        },
+      }
     }
   }
 }
@@ -116,7 +125,7 @@ export const getStaticPaths: GetStaticPaths = async function() {
   const contentDir = './content/docs/'
   const files = await fg(`${contentDir}**/*.md`)
   return {
-    fallback: false,
+    fallback: true,
     paths: files
       .filter(file => !file.endsWith('index.md'))
       .map(file => {
