@@ -95,7 +95,7 @@ export default function SomeComponent() {
 
 ## Disabling / Enabling the CMS
 
-The CMS can be enabled or disabled via methods or configuration on the CMS object. Disabling the CMS prevents editing UI from rendering and forms from registering.
+The CMS can be enabled or disabled via methods or configuration on the CMS object. Disabling the CMS prevents the editing UI from rendering and forms from registering.
 
 ```js
 import * as React from 'react'
