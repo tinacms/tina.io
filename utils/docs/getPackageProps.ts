@@ -97,7 +97,7 @@ export async function getPackageProps(
       content,
       tocItems: getTocContent(content, {
         slugify: slugifyTocHeading,
-      }).content,
+      }),
       nextPage: {
         slug: nextPackage?.name || null,
         title: nextPackage?.name || null,
