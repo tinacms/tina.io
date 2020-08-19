@@ -42,14 +42,10 @@ const MainLayout = ({ Component, pageProps }) => {
     media: {
       store: new GithubMediaStore(github),
     },
+    plugins: [BlogPostCreatorPlugin, ReleaseNotesCreatorPlugin],
   }
 
-  const cms = React.useMemo(() => {
-    const cms = new TinaCMS(tinaConfig)
-    cms.plugins.add(BlogPostCreatorPlugin)
-    cms.plugins.add(ReleaseNotesCreatorPlugin)
-    return cms
-  }, [])
+  const cms = React.useMemo(() => new TinaCMS(tinaConfig), [])
 
   useEffect(() => {
     import('react-tinacms-date').then(({ DateFieldPlugin }) => {
