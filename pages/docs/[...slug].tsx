@@ -164,7 +164,8 @@ export const DocsGrid = styled.div`
   display: grid;
   width: 100%;
   position: relative;
-  grid-auto-columns: 2rem auto 2rem;
+  grid-auto-columns: minmax(1.5rem, 4rem) minmax(280px, 768px)
+    minmax(1.5rem, 4rem);
   grid-template-areas:
     '. header .'
     '. toc .'
