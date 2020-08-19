@@ -16,6 +16,7 @@ import { createTocListener } from 'utils'
 import { useLastEdited } from 'utils/useLastEdited'
 import { openGraphImage } from 'utils/open-graph-image'
 import Error from 'next/error'
+import { NotFoundError } from 'utils/error/NotFoundError'
 
 function DocTemplate(props) {
   // fallback workaround
@@ -102,7 +103,7 @@ export const getStaticProps: GetStaticProps = async function(props) {
   const slug = slugs.join('/')
 
   try {
-    return getDocProps(props, slug)
+    return await getDocProps(props, slug)
   } catch (e) {
     if (e instanceof GithubError) {
       return {
@@ -110,7 +111,7 @@ export const getStaticProps: GetStaticProps = async function(props) {
           error: { ...e }, //workaround since we cant return error as JSON
         },
       }
-    } else {
+    } else if (e instanceof NotFoundError) {
       return {
         props: {
           notFound: true,
