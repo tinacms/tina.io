@@ -50,11 +50,18 @@ export function DocumentationNavigation({ navItems, guide }: DocsNavProps) {
 
 const MobileNavToggle = styled(NavToggle)`
   position: fixed;
+  background: var(--color-light);
+  border: 1px solid var(--color-light-dark);
   margin-top: 1.25rem;
-  left: 1rem;
-  z-index: 500;
+  padding: 0 0 0 1rem;
+  border-radius: 0 2rem 2rem 0;
+  width: 3.5rem;
+  z-index: 1300;
 
-  @media (min-width: 999px) {
+  svg {
+  }
+
+  @media (min-width: 1199px) {
     display: none;
   }
 `
@@ -71,7 +78,7 @@ const MobileNavLogo = styled(TinaIcon)`
     justify-content: center;
   }
 
-  @media (min-width: 1000px) {
+  @media (min-width: 830px) {
     display: none;
   }
 `
@@ -81,7 +88,7 @@ const DocsDesktopTinaIcon = styled(TinaIcon)`
   display: none;
   margin-bottom: 1rem;
 
-  @media (min-width: 1000px) {
+  @media (min-width: 1200px) {
     display: block;
   }
 `
@@ -90,10 +97,13 @@ const DocsSidebarHeader = styled.div`
   flex: 0 0 auto;
   background-color: white;
   z-index: 500;
-  padding: 1.25rem;
+  padding: 1.25rem 1rem;
   border-bottom: 1px solid var(--tina-color-grey-2);
-  border-right: 1px solid var(--tina-color-grey-2);
   position: relative;
+
+  ${DocsDesktopTinaIcon} {
+    margin-left: 0.25rem;
+  }
 
   ${HitsWrapper} {
     right: auto;
@@ -101,7 +111,7 @@ const DocsSidebarHeader = styled.div`
     margin-top: -1.625rem;
   }
 
-  @media (max-width: 684px) {
+  @media (max-width: 1199px) {
     padding-left: 4.5rem;
   }
 `

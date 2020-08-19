@@ -172,12 +172,24 @@ export const DocsGrid = styled.div`
   padding-top: 2rem;
   padding-bottom: 3rem;
 
-  @media (min-width: 1500px) {
+  @media (min-width: 830px) {
     grid-template-areas:
       '. header header .'
       '. content toc .';
-    grid-auto-columns: auto 768px 23rem auto;
+    grid-auto-columns: auto 450px 250px auto;
     grid-column-gap: 2rem;
+  }
+
+  @media (min-width: 1000px) {
+    grid-auto-columns: auto 600px 300px auto;
+  }
+
+  @media (min-width: 1200px) {
+    grid-auto-columns: auto 550px 250px auto;
+  }
+
+  @media (min-width: 1400px) {
+    grid-auto-columns: auto 768px 300px auto;
   }
 
   @media (min-width: 1700px) {
@@ -192,7 +204,7 @@ export const DocGridHeader = styled.div`
   justify-self: center;
   max-width: 768px;
 
-  @media (min-width: 1500px) {
+  @media (min-width: 830px) {
     max-width: none;
   }
 `
@@ -203,7 +215,7 @@ export const DocGridToc = styled.div`
   justify-self: center;
   max-width: 768px;
 
-  @media (min-width: 1500px) {
+  @media (min-width: 830px) {
     padding-top: 4.5rem;
   }
 `
@@ -228,7 +240,7 @@ export const DocsPageTitle = styled.h1`
   font-family: var(--font-tuner);
   font-style: normal;
 
-  @media (max-width: 1499px) {
+  @media (max-width: 1199px) {
     margin: 0 0 1.25rem 0 !important;
   }
 `

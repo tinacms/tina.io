@@ -9,9 +9,14 @@ import { EditLink } from './EditLink'
 
 const FooterSocial = styled.div`
   display: flex;
-  justify-content: flex-end;
   align-items: center;
   color: inherit;
+  margin-bottom: 1rem;
+
+  @media (min-width: 600px) {
+    justify-content: flex-end;
+    margin-bottom: 0;
+  }
 
   a {
     display: flex;
@@ -57,7 +62,11 @@ const FooterTop = styled.div`
   padding: 2rem 2rem;
   background-color: var(--color-background);
   align-items: start;
-  grid-template-areas: 'logo social' 'nav nav';
+  grid-template-areas: 'logo' 'social' 'nav';
+
+  @media (min-width: 600px) {
+    grid-template-areas: 'logo social' 'nav nav';
+  }
 
   @media (min-width: 800px) {
     grid-template-columns: 1fr 3fr 1fr;
@@ -86,7 +95,7 @@ const FooterBottom = styled.div`
   padding: 1.25rem 2rem;
   background-color: var(--color-background);
 
-  @media (min-width: 1000px) {
+  @media (min-width: 1200px) {
     flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
@@ -178,6 +187,13 @@ export const Footer = styled(({ light, ...styleProps }) => {
         <TinaWordmark />
         <LinkNav />
         <FooterSocial>
+          <iframe
+            src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
+            frameBorder="0"
+            scrolling="0"
+            width="150px"
+            height="30px"
+          ></iframe>
           <a href="https://twitter.com/tina_cms" target="_blank">
             <TwitterIconSvg />
           </a>
@@ -216,6 +232,8 @@ export const Footer = styled(({ light, ...styleProps }) => {
   color: white;
   --color-background: var(--color-primary);
   --color-background-dark: var(--color-primary-dark);
+  position: relative;
+  z-index: 1000;
 
   ${TinaWordmark} {
     fill: var(--color-secondary);

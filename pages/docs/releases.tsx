@@ -138,7 +138,7 @@ const DocsGrid = styled.div`
   padding-top: 2rem;
   padding-bottom: 3rem;
 
-  @media (min-width: 1500px) {
+  @media (min-width: 830px) {
     grid-template-areas:
       '. header header .'
       '. content toc .';
@@ -158,7 +158,7 @@ const DocGridHeader = styled.div`
   justify-self: center;
   max-width: 768px;
 
-  @media (min-width: 1500px) {
+  @media (min-width: 830px) {
     max-width: none;
   }
 `
@@ -179,7 +179,7 @@ const DocsPageTitle = styled.h1`
   font-family: var(--font-tuner);
   font-style: normal;
 
-  @media (max-width: 1499px) {
+  @media (max-width: 1199px) {
     margin: 0 0 1.25rem 0 !important;
   }
 `
