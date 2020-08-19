@@ -156,5 +156,4 @@ const shouldUpdate = (oldObject, newObject) => {
   if (!oldObject) return true
   if (oldObject.content != newObject.content) return true
   if (oldObject.excerpt != newObject.excerpt) return true
-  if (Date.now() - oldObject.lastUpdated > 72 * HOURS) return true
 }
