@@ -3,8 +3,8 @@ import matter from 'gray-matter'
 import { readFile } from './readFile'
 import { formatExcerpt } from '.'
 import { parseMarkdown, getGithubFile, GithubFile } from 'next-tinacms-github'
-import toc from 'markdown-toc'
 import { slugifyTocHeading as slugify } from './docs/slugifyToc'
+import getTocContent from './getTocContent'
 
 export const readMarkdownFile = async (filePath: string) => {
   const doc = matter(await readFile(path.resolve(`${filePath}`)))
@@ -18,6 +18,8 @@ export const readMarkdownFile = async (filePath: string) => {
   }
 }
 
+
+
 export const getMarkdownPreviewProps = async (
   fileRelativePath: string,
   preview: boolean,
@@ -30,7 +32,7 @@ export const getMarkdownPreviewProps = async (
   try {
     file = await getMarkdownFile(fileRelativePath, preview, previewData)
     file.data.excerpt = await formatExcerpt(file.data.markdownBody)
-    tocItems = toc(file.data.markdownBody, { slugify }).content
+    tocItems = getTocContent(file.data.markdownBody, { slugify })
   } catch (e) {
     error = e
   }
