@@ -176,24 +176,14 @@ export const DocsGrid = styled.div`
     grid-template-areas:
       '. header header .'
       '. content toc .';
-    grid-auto-columns: auto 450px 250px auto;
+    margin: 0 auto;
+    grid-auto-columns: minmax(2rem, auto) fit-content(768px) 240px
+      minmax(0, auto);
     grid-column-gap: 2rem;
   }
 
-  @media (min-width: 1000px) {
-    grid-auto-columns: auto 600px 300px auto;
-  }
-
-  @media (min-width: 1200px) {
-    grid-auto-columns: auto 550px 250px auto;
-  }
-
-  @media (min-width: 1400px) {
-    grid-auto-columns: auto 768px 300px auto;
-  }
-
-  @media (min-width: 1700px) {
-    grid-auto-columns: auto 768px 24rem auto;
+  @media (min-width: 1600px) {
+    grid-auto-columns: auto 768px 330px auto;
     grid-column-gap: 3rem;
   }
 `
@@ -201,8 +191,6 @@ export const DocsGrid = styled.div`
 export const DocGridHeader = styled.div`
   grid-area: header;
   width: 100%;
-  justify-self: center;
-  max-width: 768px;
 
   @media (min-width: 830px) {
     max-width: none;
@@ -212,8 +200,6 @@ export const DocGridHeader = styled.div`
 export const DocGridToc = styled.div`
   grid-area: toc;
   width: 100%;
-  justify-self: center;
-  max-width: 768px;
 
   @media (min-width: 830px) {
     padding-top: 4.5rem;
@@ -227,8 +213,6 @@ interface ContentProps {
 export const DocGridContent = styled.div<ContentProps>`
   grid-area: content;
   width: 100%;
-  justify-self: center;
-  max-width: 768px;
 `
 
 export const DocsPageTitle = styled.h1`
