@@ -15,6 +15,8 @@ import {
 import { GlobalStyle } from 'components/styles/GlobalStyle'
 import 'components/styles/fontImports.css'
 import path from 'path'
+import { BlogPostCreatorPlugin } from '../tinacms/BlogPostCreator'
+import { ReleaseNotesCreatorPlugin } from '../tinacms/ReleaseNotesCreator'
 
 // the following line will cause all content files to be available in a serverless context
 path.resolve('./content/')
@@ -42,7 +44,12 @@ const MainLayout = ({ Component, pageProps }) => {
     },
   }
 
-  const cms = React.useMemo(() => new TinaCMS(tinaConfig), [])
+  const cms = React.useMemo(() => {
+    const cms = new TinaCMS(tinaConfig)
+    cms.plugins.add(BlogPostCreatorPlugin)
+    cms.plugins.add(ReleaseNotesCreatorPlugin)
+    return cms
+  }, [])
 
   useEffect(() => {
     import('react-tinacms-date').then(({ DateFieldPlugin }) => {
