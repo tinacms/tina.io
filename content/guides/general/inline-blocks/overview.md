@@ -19,7 +19,7 @@ To get started, you'll need to clone [the repo](https://github.com/tinacms/inlin
 
 At this point, it is set up with a TinaCMS instance and renders a simple `Hero` component with hard-coded data. All of the styles and images are configured as well, so when you add blocks they'll look nice 💅.
 
-```bash,copy
+```bash
 git clone git@github.com:tinacms/inline-blocks-demo.git
 cd inline-blocks-demo
 yarn install
