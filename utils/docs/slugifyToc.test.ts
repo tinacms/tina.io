@@ -13,7 +13,7 @@ test('string with underscore', () => {
 })
 
 test('string with underscore and escaped underscore', () => {
-  expect(slugifyTocHeading('_test or _test')).toEqual('test-or-test')
+  expect(slugifyTocHeading('_test or \\_test')).toEqual('_test-or-_test')
 })
 
 test('emphasized string with escaped underscore', () => {
