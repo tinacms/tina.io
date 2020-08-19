@@ -27,3 +27,9 @@ test('emphasized string with other escaped syntax', () => {
     'unstable#revalidate'
   )
 })
+
+test('two separate emphasized strings', () => {
+  expect(slugifyTocHeading('_GithubFile_ and _useGithubFile_')).toEqual(
+    'githubfile-and-usegithubfile'
+  )
+})
