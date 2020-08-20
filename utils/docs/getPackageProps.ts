@@ -1,11 +1,10 @@
 import { getJsonPreviewProps, readJsonFile } from '../getJsonPreviewProps'
 import axios from 'axios'
-import toc from 'markdown-toc'
-
 const atob = require('atob')
 import { slugifyTocHeading } from './slugifyToc'
 import algoliasearch from 'algoliasearch'
 import { stripMarkdown } from '../../utils/blog_helpers'
+import getTocContent from 'utils/getTocContent'
 
 const MAX_BODY_LENGTH = 200
 
@@ -96,9 +95,9 @@ export async function getPackageProps(
       readme: currentPackage.readme,
       link: currentPackage.link,
       content,
-      tocItems: toc(content, {
+      tocItems: getTocContent(content, {
         slugify: slugifyTocHeading,
-      }).content,
+      }),
       nextPage: {
         slug: nextPackage?.name || null,
         title: nextPackage?.name || null,
