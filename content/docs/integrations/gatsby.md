@@ -25,7 +25,7 @@ For direction on specific use-cases, please refer to these [guides](/guides#gast
 
 ## Packages
 
-Depending on your project, these are the **NextJS-specific Tina packages** to work with:
+Depending on your project, these are the **Gatsby-specific Tina packages** to work with:
 
 - [gatsby-plugin-tinacms](https://github.com/tinacms/tinacms/tree/master/packages/gatsby-plugin-tinacms): This package takes care of creating the CMS and adding the Tina UI to your Gatsby site.
 - [gatsby-tinacms-git](https://github.com/tinacms/tinacms/tree/master/packages/gatsby-tinacms-git): This package provides helpers for building a git-backed CMS.
