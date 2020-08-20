@@ -55,9 +55,6 @@ export function FeedbackForm() {
   return (
     <>
       <FormWidget open={formOpen} ref={widgetRef}>
-        <FormTitle open={formOpen} onClick={toggleOpen}>
-          <InfoIcon /> Was this helpful?
-        </FormTitle>
         <FormWrapper open={formOpen}>
           <Form onSubmit={handleSubmitForm}>
             {props => (
@@ -69,64 +66,73 @@ export function FeedbackForm() {
                   type="text"
                   name="human"
                 />
-                <Reaction>
-                  <label>
-                    <Field
-                      component="input"
-                      id="reaction-good"
-                      type="radio"
-                      name="Review"
-                      value="Good"
-                      required
-                    />
-                    <span>👍</span>
-                  </label>
-                  <label>
-                    <Field
-                      component="input"
-                      id="reaction-bad"
-                      type="radio"
-                      name="Review"
-                      value="Bad"
-                    />
-                    <span>👎</span>
-                  </label>
-                </Reaction>
                 <InputGroup>
-                  <label htmlFor="comment">Tell us your thoughts</label>
-                  <Field
-                    component="textarea"
-                    id="comment"
-                    name="Comment"
-                  ></Field>
-                </InputGroup>
-                <InputGroup>
-                  <label htmlFor="email">
-                    Your Email <em>(optional)</em>
-                  </label>
-                  <Field
-                    component="input"
-                    type="email"
-                    id="email"
-                    name="Email"
-                  ></Field>
-                </InputGroup>
-                {formStatus === 'error' ? (
-                  <ErrorMessage>Uh oh, Something went wrong.</ErrorMessage>
-                ) : (
-                  ''
-                )}
-                <ButtonGroup>
-                  <FeedbackButton
-                    color="primary"
-                    type="submit"
-                    formStatus={formStatus}
+                  <label>Was this helpful?</label>
+
+                  <Reaction
+                    onClick={() => {
+                      setFormOpen(true)
+                    }}
                   >
-                    {formStatus === 'submitting'
-                      ? 'Submitting...'
-                      : 'Submit Feedback'}
-                  </FeedbackButton>
-                </ButtonGroup>
+                    <label>
+                      <Field
+                        component="input"
+                        id="reaction-good"
+                        type="radio"
+                        name="Review"
+                        value="Good"
+                      />
+                      <span>👍</span>
+                    </label>
+                    <label>
+                      <Field
+                        component="input"
+                        id="reaction-bad"
+                        type="radio"
+                        name="Review"
+                        value="Bad"
+                      />
+                      <span>👎</span>
+                    </label>
+                  </Reaction>
+                </InputGroup>
+                <HiddenFormWrapper>
+                  <InputGroup>
+                    <label htmlFor="comment">Tell us your thoughts</label>
+                    <Field
+                      component="textarea"
+                      id="comment"
+                      name="Comment"
+                    ></Field>
+                  </InputGroup>
+                  <InputGroup>
+                    <label htmlFor="email">
+                      Your Email <em>(optional)</em>
+                    </label>
+                    <Field
+                      component="input"
+                      type="email"
+                      id="email"
+                      name="Email"
+                    ></Field>
+                  </InputGroup>
+                  {formStatus === 'error' ? (
+                    <ErrorMessage>Uh oh, Something went wrong.</ErrorMessage>
+                  ) : (
+                    ''
+                  )}
+                  <ButtonGroup>
+                    <FeedbackButton
+                      color="primary"
+                      type="submit"
+                      formStatus={formStatus}
+                    >
+                      {formStatus === 'submitting'
+                        ? 'Submitting...'
+                        : 'Submit Feedback'}
+                    </FeedbackButton>
+                  </ButtonGroup>
+                </HiddenFormWrapper>
               </form>
             )}
           </Form>
@@ -137,125 +143,6 @@ export function FeedbackForm() {
   )
 }
 
-export interface FormWidgetProps {
-  open: boolean
-}
-
-const FormWidget = styled.div<FormWidgetProps>`
-  position: fixed;
-  bottom: 5rem;
-  right: 0;
-  z-index: 550;
-  padding: 1rem 1.25rem;
-  max-height: calc(100vh - 4rem);
-  transition: transform 300ms ease-out;
-  transform: translate3d(5.5rem, 100%, 0);
-
-  &:after {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--color-light);
-    border-radius: 5px;
-    border: 1px solid var(--color-light-dark);
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
-    z-index: -1;
-    transition: transform 300ms ease-out;
-    opacity: 0;
-  }
-
-  @media (max-width: 829px) {
-    display: none;
-  }
-
-  &:hover {
-    transform: translate3d(5.25rem, calc(100% - 0.25rem), 0);
-  }
-
-  ${props =>
-    props.open
-      ? css`
-          overflow-y: auto;
-          transform: translate3d(-2rem, 3rem, 0);
-          z-index: 1500;
-
-          &:hover {
-            transform: translate3d(-2rem, 3rem, 0);
-          }
-
-          &:after {
-            opacity: 1;
-          }
-        `
-      : ``};
-`
-
-export interface FormTitleProps {
-  open: boolean
-}
-
-const FormTitle = styled.button<FormTitleProps>`
-  cursor: pointer;
-  background: transparent;
-  border: none;
-  padding: 0 1.25rem;
-  margin-top: -0.25rem;
-  margin-left: -1.25rem;
-  height: 45px;
-  line-height: 1;
-  display: block;
-  font-size: 1.25rem;
-  color: var(--color-primary);
-  font-family: var(--font-tuner);
-  position: relative;
-  display: inline-block;
-
-  svg {
-    display: inline;
-    width: 1.25em;
-    height: 1.25em;
-    fill: var(--color-primary);
-    margin: -0.25em 0 -0.25em -0.25em;
-    opacity: 0.9;
-  }
-
-  &:after {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 2rem;
-    background: var(--color-seafoam);
-    border: 1px solid var(--color-seafoam-dark);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    transition: transform 300ms ease-out;
-    z-index: -1;
-  }
-
-  &:active,
-  &:hover,
-  &:focus {
-    border: none;
-    outline: none;
-  }
-
-  ${props =>
-    props.open
-      ? css`
-          &:after {
-            opacity: 0;
-          }
-        `
-      : ``};
-`
-
 const ButtonGroup = styled.div`
   padding: 1rem 0 0.5rem 0;
 `
@@ -264,6 +151,8 @@ const InputGroup = styled.div`
   padding: 0.5rem 0;
 
   label {
+    opacity: 0.7;
+    transition: opacity 300ms ease-out;
     display: block;
     margin-bottom: 0.25rem;
     color: var(--color-secondary);
@@ -347,9 +236,9 @@ export interface FormWrapperProps {
 
 const FormWrapper = styled.div<FormWrapperProps>`
   display: block;
-  pointer-events: none;
+  /* pointer-events: none; */
   transition: all 400ms ease-out;
-  opacity: 0;
+  opacity: 1;
   width: 20rem;
 
   input {
@@ -367,10 +256,10 @@ const FormWrapper = styled.div<FormWrapperProps>`
 
 const Reaction = styled.div`
   display: block;
-  padding: 0.5rem 0;
+  padding: 0.5rem 0 0 0;
 
   label {
-    font-size: 3.5rem;
+    font-size: 3rem;
     margin-right: 1rem;
     display: inline-block;
     cursor: pointer;
@@ -430,4 +319,72 @@ const ErrorMessage = styled.p`
   font-size: 1.125rem;
   font-weight: bold;
   color: var(--color-primary);
+`
+
+const HiddenFormWrapper = styled.div``
+
+export interface FormWidgetProps {
+  open: boolean
+}
+
+const FormWidget = styled.div<FormWidgetProps>`
+  transform: translate3d(12.5rem, 100%, 0);
+  z-index: 550;
+  padding: 1rem 1.25rem;
+  position: fixed;
+  bottom: 8rem;
+  right: 0;
+  /* margin: 0 -3rem 5rem -1.25rem; */
+  transition: transform 300ms ease-out;
+  width: 23rem;
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-light);
+    border-radius: 5px;
+    border: 1px solid var(--color-light-dark);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+    z-index: -1;
+    transition: transform 300ms ease-out;
+    opacity: 0;
+  }
+
+  @media (max-width: 829px) {
+    display: none;
+  }
+
+  ${HiddenFormWrapper} {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 300ms ease-out;
+  }
+
+  ${props =>
+    props.open
+      ? css`
+          overflow-y: auto;
+          transform: translate3d(-2rem, 6rem, 0);
+          z-index: 1500;
+
+          &:after {
+            opacity: 1;
+          }
+
+          ${HiddenFormWrapper} {
+            opacity: 1;
+            pointer-events: all;
+          }
+          ${InputGroup} {
+            label {
+              opacity: 1;
+            }
+          }
+        `
+      : ``};
 `
