@@ -55,7 +55,7 @@ const MobileNavToggle = styled(NavToggle)`
   margin-top: 1.25rem;
   padding: 0 0 0 1rem;
   border-radius: 0 2rem 2rem 0;
-  width: 3.5rem;
+  width: 3.25rem;
   z-index: 1300;
 
   svg {

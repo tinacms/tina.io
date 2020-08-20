@@ -1,5 +1,6 @@
 ---
-title: 'Overview'
+title: Overview
+last_edited: '2020-08-17T18:49:25.796Z'
 ---
 
 This guide will show you how to set up inline editing and inline blocks based on a simple [create-react-app](https://reactjs.org/docs/create-a-new-react-app.html) demo.

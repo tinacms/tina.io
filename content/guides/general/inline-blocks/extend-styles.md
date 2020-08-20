@@ -69,9 +69,7 @@ Here's what it would look like if you wanted to use [styled components](https://
 
 **components/FeatureList.js**
 
-```js
-//...
-
+```js,copy
 import styled from 'styled-components'
 
 export function FeatureList({ index }) {
@@ -95,6 +93,4 @@ const StyledInlineBlocks = styled(InlineBlocks)`
   grid-gap: 3rem;
   grid-template-rows: auto;
 `
-
-//...
 ```

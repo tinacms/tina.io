@@ -51,7 +51,7 @@ export async function getPackageProps(
   var currentPackage: GithubPackage
   var previousPackage, nextPackage: GithubPackage | null
 
-  const packagePages = file.packages.filter( (p: { readme?: any }) => p.readme )
+  const packagePages = file.packages.filter((p: { readme?: any }) => p.readme)
 
   packagePages.forEach((element, index: number) => {
     if (element.name === slug) {
@@ -88,7 +88,7 @@ export async function getPackageProps(
   }
 
   return {
-    revalidate: 24 * HOURS,
+    revalidate: 1 * HOURS,
     props: {
       ...defaultProps,
       name: currentPackage.name,
@@ -155,5 +155,4 @@ const shouldUpdate = (oldObject, newObject) => {
   if (!oldObject) return true
   if (oldObject.content != newObject.content) return true
   if (oldObject.excerpt != newObject.excerpt) return true
-  if (Date.now() - oldObject.lastUpdated > 72 * HOURS) return true
 }
