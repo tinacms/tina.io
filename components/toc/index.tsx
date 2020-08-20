@@ -29,18 +29,16 @@ const Toc = ({ tocItems, activeIds }: TocProps) => {
   }
 
   return (
-    <>
-      <TocWrapper>
-        <TocButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
-          <span>{isOpen ? 'Hide' : 'Show'} Table of Contents</span>{' '}
-          <RightArrowSvg />
-        </TocButton>
-        <TocContent activeIds={activeIds} isOpen={isOpen}>
-          <TocDesktopHeader>Table of Contents</TocDesktopHeader>
-          <ReactMarkdown source={tocItems} />
-        </TocContent>
-      </TocWrapper>
-    </>
+    <TocWrapper>
+      <TocButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
+        <span>{isOpen ? 'Hide' : 'Show'} Table of Contents</span>{' '}
+        <RightArrowSvg />
+      </TocButton>
+      <TocContent activeIds={activeIds} isOpen={isOpen}>
+        <TocDesktopHeader>Table of Contents</TocDesktopHeader>
+        <ReactMarkdown source={tocItems} />
+      </TocContent>
+    </TocWrapper>
   )
 }
 export default Toc
@@ -61,6 +59,7 @@ const TocDesktopHeader = styled.span`
 
 const TocWrapper = styled.div`
   margin-bottom: -0.375rem;
+  flex: 0 0 auto;
 
   @media (min-width: 830px) {
     position: sticky;
