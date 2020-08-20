@@ -49,7 +49,6 @@
     "js-cookie": "^2.2.1",
     "jsonp": "^0.2.1",
     "markdown-toc": "^1.2.0",
-    "match-all": "^1.2.6",
     "matter": "^0.2.0",
     "moment": "^2.24.0",
     "moment-locales-webpack-plugin": "^1.2.0",
