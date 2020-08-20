@@ -3,6 +3,7 @@ import {
   getMarkdownPreviewProps,
   getMarkdownFile,
 } from '../getMarkdownPreviewProps'
+import { NotFoundError } from 'utils/error/NotFoundError'
 
 export async function getDocsNav(preview: boolean, previewData: any) {
   return getJsonFile('content/toc-doc.json', preview, previewData)
@@ -18,6 +19,11 @@ export async function getDocProps({ preview, previewData }: any, slug: string) {
   ).props
 
   const docsNav = await getDocsNav(preview, previewData)
+
+  if (!currentDoc || currentDoc.error || !docsNav) {
+    throw new NotFoundError('Document not found')
+  }
+
   return {
     props: {
       ...currentDoc,

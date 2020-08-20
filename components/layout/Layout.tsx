@@ -4,8 +4,6 @@ import { DefaultSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { usePlugin } from 'tinacms'
 import { Header, Footer } from '../layout'
-import { BlogPostCreatorPlugin } from '../../tinacms/BlogPostCreator'
-import { ReleaseNotesCreatorPlugin } from '../../tinacms/ReleaseNotesCreator'
 
 interface LayoutProps {
   children: any[]
@@ -15,9 +13,6 @@ interface LayoutProps {
 export const Layout = styled(
   ({ children, color, ...styleProps }: LayoutProps) => {
     const router = useRouter()
-
-    usePlugin(BlogPostCreatorPlugin)
-    usePlugin(ReleaseNotesCreatorPlugin)
 
     return (
       <div {...styleProps}>

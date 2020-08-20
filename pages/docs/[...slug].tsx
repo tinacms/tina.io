@@ -15,10 +15,16 @@ import Toc from '../../components/toc'
 import { createTocListener } from 'utils'
 import { useLastEdited } from 'utils/useLastEdited'
 import { openGraphImage } from 'utils/open-graph-image'
+import Error from 'next/error'
+import { NotFoundError } from 'utils/error/NotFoundError'
 
 function DocTemplate(props) {
-  // Registers Tina Form
+  // fallback workaround
+  if (props.notFound) {
+    return <Error statusCode={404} />
+  }
 
+  // Registers Tina Form
   const [data, form] = useGithubMarkdownForm(props.file, formOptions)
 
   const isBrowser = typeof window !== `undefined`
@@ -97,7 +103,7 @@ export const getStaticProps: GetStaticProps = async function(props) {
   const slug = slugs.join('/')
 
   try {
-    return getDocProps(props, slug)
+    return await getDocProps(props, slug)
   } catch (e) {
     if (e instanceof GithubError) {
       return {
@@ -105,8 +111,12 @@ export const getStaticProps: GetStaticProps = async function(props) {
           error: { ...e }, //workaround since we cant return error as JSON
         },
       }
-    } else {
-      throw e
+    } else if (e instanceof NotFoundError) {
+      return {
+        props: {
+          notFound: true,
+        },
+      }
     }
   }
 }
@@ -116,7 +126,7 @@ export const getStaticPaths: GetStaticPaths = async function() {
   const contentDir = './content/docs/'
   const files = await fg(`${contentDir}**/*.md`)
   return {
-    fallback: false,
+    fallback: 'unstable_blocking',
     paths: files
       .filter(file => !file.endsWith('index.md'))
       .map(file => {
