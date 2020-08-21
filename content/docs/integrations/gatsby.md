@@ -3,7 +3,7 @@ id: /docs/integrations/gatsby
 title: Gatsby Integration
 ---
 
-> **Note:** Building a CMS with Gatsby requires that you run a development server for content-editing. You can use a service like [Gatsby Cloud](blog/using-tinacms-on-gatsby-cloud) or you can [run your own server](https://levelup.gitconnected.com/provision-setup-and-secure-a-tinacms-cloud-editor-on-aws-e96b0e060e7c)
+> **Note:** Building a CMS with Gatsby requires that you run a development server for content-editing. You can use a service like [Gatsby Cloud](/blog/using-tinacms-on-gatsby-cloud) or you can [run your own server](https://levelup.gitconnected.com/provision-setup-and-secure-a-tinacms-cloud-editor-on-aws-e96b0e060e7c)
 
 Gatsby is a popular framework for building static websites using React. This page provides lots of links to different guides, blogs, and packages, that you might find useful when using Tina to build a CMS with Gatsby.
 
@@ -25,7 +25,7 @@ For direction on specific use-cases, please refer to these [guides](/guides#gast
 
 ## Packages
 
-Depending on your project, these are the **NextJS-specific Tina packages** to work with:
+Depending on your project, these are the **Gatsby-specific Tina packages** to work with:
 
 - [gatsby-plugin-tinacms](https://github.com/tinacms/tinacms/tree/master/packages/gatsby-plugin-tinacms): This package takes care of creating the CMS and adding the Tina UI to your Gatsby site.
 - [gatsby-tinacms-git](https://github.com/tinacms/tinacms/tree/master/packages/gatsby-tinacms-git): This package provides helpers for building a git-backed CMS.
