@@ -9,9 +9,15 @@ consumes:
     details: Shows toolbar interface
 ---
 
-The `tinacms` package provides two possible user interfaces: the sidebar and the toolbar.
+There are two main UI components that support the content editing interface: the sidebar and the toolbar.
 
-The main difference between the two UIs is aesthetics. Both provide access to [Screen Plugins](/blog/screen-plugins) and buttons for _saving_ and _resetting_ [Forms](). The main difference is in how they expect the Form's content to be edited: Form's are rendered within the sidebar, while the toolbar is designed to work with [Inline Editing](/docs/ui/inline-editing). Also, widgets can be added to the toolbar as plugins, as in the case of the Branch Switcher provided by `react-tinacms-github` .
+The main difference between the two UIs is aesthetics. Both provide access to [Screen Plugins](/blog/screen-plugins) and buttons for _saving_ and _resetting_ [Forms](/docs/plugins/forms). The main difference is in how they expect the Form's content to be edited: Form's are rendered within the sidebar, while the toolbar is designed to work with [Inline Editing](/docs/ui/inline-editing).
+
+While the sidebar and toolbar are fundamental to Tina's editing interface, there are other components or plugins that can extend the UI:
+
+- [Screen Plugins](/docs/plugins/screens): can render modal UI and handle various content editing needs.
+- [Toolbar Widgets](/docs/plugins/toolbar-widgets): can be added to the toolbar as plugins, as in the case of the Branch Switcher provided by `react-tinacms-github`.
+- [Inline Forms & Fields](/docs/ui/inline-editing): transform the site itself into the editing interface.
 
 ## Enabling the User Interface
 
