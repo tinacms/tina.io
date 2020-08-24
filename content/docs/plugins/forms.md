@@ -102,7 +102,7 @@ In addition to Final Form's options, Tina's form hooks accept the following addi
 interface FormOptions<S> {
   id: any
   label: string
-  fields?: Field[]
+  fields: Field[]
   loadInitialValues?: () => Promise<S>
   onSubmit?: () => Promise<any>
   reset?(): void
