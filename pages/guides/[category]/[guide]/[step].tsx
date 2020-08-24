@@ -52,7 +52,7 @@ export default function GuideTemplate({
   const contentRef = React.useRef<HTMLDivElement>(null)
   const [activeIds, setActiveIds] = React.useState([])
   const router = useRouter()
-  const currentPath = router.asPath
+  const currentPath = router.asPath.replace(/\/$/, '')
   const excerpt = markdownFile.data.excerpt
 
   /** Handles active TOC */
