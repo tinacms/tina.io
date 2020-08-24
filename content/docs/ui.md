@@ -9,7 +9,7 @@ consumes:
     details: Shows toolbar interface
 ---
 
-There are two main pieces of UI that can construct or supplement the content editing interface: the sidebar and the toolbar.
+There are two main UI components that support the content editing interface: the sidebar and the toolbar.
 
 The main difference between the two UIs is aesthetics. Both provide access to [Screen Plugins](/blog/screen-plugins) and buttons for _saving_ and _resetting_ [Forms](/docs/plugins/forms). The main difference is in how they expect the Form's content to be edited: Form's are rendered within the sidebar, while the toolbar is designed to work with [Inline Editing](/docs/ui/inline-editing).
 
