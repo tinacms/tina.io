@@ -52,7 +52,7 @@ export default function GuideTemplate({
   const contentRef = React.useRef<HTMLDivElement>(null)
   const [activeIds, setActiveIds] = React.useState([])
   const router = useRouter()
-  const currentPath = router.asPath.replace(/\/$/, '')
+  const currentPath = router.asPath
   const excerpt = markdownFile.data.excerpt
 
   /** Handles active TOC */
@@ -255,9 +255,10 @@ function usePrevNextSteps(guide: any, currentPath: string) {
     }
     let prev = null,
       next = null
+    const currentPathStripped = currentPath.replace(/\/$/, '')
     const allSteps = guide.steps
     const currentItemIndex = allSteps.findIndex(
-      step => step.slug == currentPath
+      step => step.slug.replace(/\/$/, '') == currentPathStripped
     )
     if (currentItemIndex >= 0) {
       prev = allSteps[currentItemIndex - 1]
