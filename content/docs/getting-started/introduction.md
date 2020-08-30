@@ -1,8 +1,9 @@
 ---
-title: Introductory Tutorial
+title: Test Tutorial
 id: introduction
 prev: null
 next: /docs/getting-started/cms-set-up
+last_edited: '2020-08-30T04:54:27.223Z'
 ---
 
 Tina is a toolkit for building content management systems. This tutorial will walk you through Tina's fundamental building blocks by setting up editing on a basic `create-react-app` [demo](https://github.com/tinacms/tina-intro-tutorial). **To get the most from Tina, you should have a good working knowledge of JavaScript and React**.
