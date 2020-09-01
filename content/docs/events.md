@@ -92,8 +92,8 @@ Note that the string `plugins`is equivalent to `plugins:*` or `plugins:*:*`.
 
 | Type                     | Description                                    |
 | ------------------------ | ---------------------------------------------- |
-| `cms:enabled`            | The CMS has been enabled.                      |
-| `cms:disabled`           | The CMS has been disabled                      |
+| `cms:enable`             | The CMS has been enabled.                      |
+| `cms:disable`            | The CMS has been disabled                      |
 | `sidebar:opened`         | The Sidebar has been opened                    |
 | `sidebar:closed`         | The Sidebar has been closed.                   |
 | `plugin:add:{__type}`    | A Plugin of a given `__type` has been added.   |
