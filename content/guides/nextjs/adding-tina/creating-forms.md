@@ -2,6 +2,7 @@
 title: Creating Forms
 last_edited: '2020-09-03T15:03:02.058Z'
 ---
+
 After wrapping our App component in the Tina Provider, we can create forms by calling the `useForm` hook inside our Post component. `useForm` returns two values in an array, similar to `React.useState`, which we assign via destructuring:
 
 ```js
@@ -129,21 +130,22 @@ For the sake of simplicity, we won't worry about dynamically importing the WYSIW
 
 In our `_app.js` file, we can register `MarkdownFieldPlugin` when we instantiate the CMS:
 
-     import '../styles/index.css'
-     import { withTina } from 'tinacms'
-    + import { MarkdownFieldPlugin } from 'react-tinacms-editor'
-    
-     function MyApp({ Component, pageProps }) {
-       return <Component {...pageProps} />
-     }
-    
-     export default withTina(MyApp, {
-       enabled: true,
-       sidebar: true,
-    +  plugins: [MarkdownFieldPlugin],
-     })
-    
+```diff
+ import '../styles/index.css'
+ import { withTina } from 'tinacms'
++import { MarkdownFieldPlugin } from 'react-tinacms-editor'
+
+ function MyApp({ Component, pageProps }) {
+   return <Component {...pageProps} />
+ }
+
+ export default withTina(MyApp, {
+   enabled: true,
+   sidebar: true,
++  plugins: [MarkdownFieldPlugin],
+ })
+```
 
 ## More Info
 
-* [Tina Docs: Forms](/docs/plugins/forms)
+- [Tina Docs: Forms](/docs/plugins/forms)
