@@ -115,7 +115,7 @@ In order to hook our form into the sidebar, we'll need to call `usePlugin` and p
 
 We're almost done! If you've made it this far, the form in your sidebar will look something like this:
 
-![](img/image.png)
+![](/img/image.png)
 
 As you can see, the Markdown field is not displaying. This field creates a WYSIWYG editor that displays content as rich text but stores as Markdown. Because the WYSIWYG editor contains a lot of code and this can significantly increase page weight, it is contained in a separate package. This gives you the option of [dynamically importing the library](/packages/react-tinacms-editor/#dynamic-imports) so that visitors to your site who aren't interested in doing any editing don't have to download the extra code.
 
