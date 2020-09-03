@@ -62,7 +62,7 @@ First, we'll need to import `useForm` and `usePlugin` from the `tinacms` package
 import { useForm, usePlugin } from 'tinacms'
 ```
 
-Then, just add the form to the `Post` component with the configuration we laid out previously:
+Then, add the form to the `Post` component with the configuration we laid out previously:
 
 ```js
 export default function Post({ post, morePosts, preview }) {
