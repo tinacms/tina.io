@@ -1,6 +1,6 @@
 ---
 title: Creating Forms
-last_edited: '2020-08-03T13:05:25.363Z'
+last_edited: '2020-09-03T15:03:02.058Z'
 ---
 
 After wrapping our App component in the Tina Provider, we can create forms by calling the `useForm` hook inside our Post component. `useForm` returns two values in an array, similar to `React.useState`, which we assign via destructuring:
@@ -63,7 +63,7 @@ First, we'll need to import `useForm` and `usePlugin` from the `tinacms` package
 import { useForm, usePlugin } from 'tinacms'
 ```
 
-Now, just add the form to the `Post` component with the configuration we laid out previously:
+Then, add the form to the `Post` component with the configuration we laid out previously:
 
 ```js
 export default function Post({ post, morePosts, preview }) {
@@ -108,11 +108,43 @@ In order to hook our form into the sidebar, we'll need to call `usePlugin` and p
 + usePlugin(form)
 ```
 
-That's it!
-
 > **Why do we need to call usePlugin?**
 >
 > There are a few different ways to use forms: in the sidebar, in the global utility menu, and [inline](/docs/ui/inline-editing). How you plan to use the form will determine how you should set it up in the CMS.
+
+## Installing the WYSIWYG Plugin
+
+We're almost done! If you've made it this far, the form in your sidebar will look something like this:
+
+![](/img/image.png)
+
+As you can see, the Markdown field is not displaying. This field creates a WYSIWYG editor that displays content as rich text but stores as Markdown. Because the WYSIWYG editor contains a lot of code and this can significantly increase page weight, it is contained in a separate package. This gives you the option of [dynamically importing the library](/packages/react-tinacms-editor/#dynamic-imports) so that visitors to your site who aren't interested in doing any editing don't have to download the extra code.
+
+For the sake of simplicity, we won't worry about dynamically importing the WYSIWYG and will just import it directly.
+
+### Install the WYSIWYG
+
+    yarn add react-tinacms-editor react-tinacms-inline
+
+### Add _MarkdownFieldPlugin_
+
+In our `_app.js` file, we can register `MarkdownFieldPlugin` when we instantiate the CMS:
+
+```diff
+  import '../styles/index.css'
+  import { withTina } from 'tinacms'
++ import { MarkdownFieldPlugin } from 'react-tinacms-editor'
+
+  function MyApp({ Component, pageProps }) {
+    return <Component {...pageProps} />
+  }
+
+  export default withTina(MyApp, {
+    enabled: true,
+    sidebar: true,
++   plugins: [MarkdownFieldPlugin],
+  })
+```
 
 ## More Info
 
