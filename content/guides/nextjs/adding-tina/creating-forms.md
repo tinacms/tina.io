@@ -131,19 +131,19 @@ For the sake of simplicity, we won't worry about dynamically importing the WYSIW
 In our `_app.js` file, we can register `MarkdownFieldPlugin` when we instantiate the CMS:
 
 ```diff
- import '../styles/index.css'
- import { withTina } from 'tinacms'
-+import { MarkdownFieldPlugin } from 'react-tinacms-editor'
+  import '../styles/index.css'
+  import { withTina } from 'tinacms'
++ import { MarkdownFieldPlugin } from 'react-tinacms-editor'
 
- function MyApp({ Component, pageProps }) {
-   return <Component {...pageProps} />
- }
+  function MyApp({ Component, pageProps }) {
+    return <Component {...pageProps} />
+  }
 
- export default withTina(MyApp, {
-   enabled: true,
-   sidebar: true,
-+  plugins: [MarkdownFieldPlugin],
- })
+  export default withTina(MyApp, {
+    enabled: true,
+    sidebar: true,
++   plugins: [MarkdownFieldPlugin],
+  })
 ```
 
 ## More Info
