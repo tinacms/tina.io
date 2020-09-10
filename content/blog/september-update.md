@@ -2,7 +2,7 @@
 title: September Update
 date: '2020-09-10T10:20:39-04:00'
 author: DJ
-last_edited: '2020-09-10T15:01:31.500Z'
+last_edited: '2020-09-10T15:10:14.859Z'
 ---
 👋 Hey all you cool cats and kittens! It's been a while since our last update, so we wanted to let you know what we've been up to.
 
@@ -16,7 +16,7 @@ Additionally, in an effort to continuously improve our documentation, we've adde
 
 We've decided to begin implementing a Media Manager as described in our [Media API RFC](). Currently, logic for handling uploads is contained within individual image fields, and there's no way to insert a previously-uploaded image into a piece of content. Centralizing media management promises to solve this problem, and likely fix some other quality-of-life issues we've encountered along the way.
 
-If you want to keep tabs on our progress, take a look at the Media Manager project in GitHub.
+If you want to keep tabs on our progress, take a look at the [Media Manager project](https://github.com/tinacms/tinacms/projects/8) in GitHub.
 
 ## TinaCMS Office Hours
 
