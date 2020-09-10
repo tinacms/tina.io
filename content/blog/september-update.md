@@ -2,7 +2,7 @@
 title: September Update
 date: '2020-09-10T10:20:39-04:00'
 author: DJ
-last_edited: '2020-09-10T14:33:19.910Z'
+last_edited: '2020-09-10T14:50:54.716Z'
 ---
 Hullo folks
 
@@ -14,8 +14,14 @@ Additionally, in an effort to continuously improve our documentation, we've adde
 
 ## Up Next: Media Management
 
-We're currently working on...
+We've decided to begin implementing a Media Manager as described in our [Media API RFC](). Currently, logic for handling uploads is contained within individual image fields, and there's no way to insert a previously-uploaded image into a piece of content. Centralizing media management promises to solve this problem, and likely fix some other quality-of-life issues we've encountered along the way.
+
+If you want to keep tabs on our progress, take a look at the Media Manager project in GitHub.
 
 ## TinaCMS Office Hours
 
-join us
+**Come hang out with us!**
+
+The Tina Open Source Team will be conducting bi-weekly office hours. Anyone interested in Tina is welcome to drop in with questions or feedback.
+
+Our first office hours session will be on September 11th from 10AM-11AM EDT (7AM-8AM PDT). We plan to alternate between morning and afternoon time slots to accommodate as many timezones as we can.
