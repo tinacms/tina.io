@@ -26,6 +26,8 @@ The Tina Open Source Team will be conducting bi-weekly office hours. Anyone inte
 
 Our first office hours session will be on September 11th from 10AM-11AM EDT (7AM-8AM PDT). We plan to alternate between morning and afternoon time slots to accommodate as many timezones as we can.
 
+Keep an eye out on [Twitter](https://twitter.com/tina_cms) or [our community forum](https://community.tinacms.org/) for the meeting link.
+
 ## In Closing
 
 Please enjoy this llama ASCII art.
