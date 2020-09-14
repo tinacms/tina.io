@@ -7,7 +7,7 @@ consumes:
     description: Describes the useForm hooks
   - file: /packages/@tinacms/forms/src/form.ts
     description: Form configuration
-last_edited: '2020-08-17T20:58:43.343Z'
+last_edited: '2020-09-10T18:49:43.520Z'
 ---
 **Forms** in Tina are the main building blocks of your CMS. You will use Forms to:
 
@@ -116,11 +116,11 @@ interface FormOptions<S> {
 }
 ```
 
-| key                 | description                                                                                                                                   |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`                | A unique identifier for the form. This should be derived from the content to distinguish it from other instances of the form.                 |
-| `label`             | A label for the form that will appear in the sidebar.                                                                                         |
-| `fields`            | An array of fields that will define the shape of the form and how content is edited.                                              |
+| key | description |
+| --- | --- |
+| `id` | A unique identifier for the form. This should be derived from the content to distinguish it from other instances of the form. |
+| `label` | A label for the form that will appear in the sidebar. |
+| `fields` | An array of fields that will define the shape of the form and how content is edited. |
 | `loadInitialValues` | _Optional:_ A function to load the initial form state asynchronously. Return a promise that passes an object of form values when it resolves. |
 | `onSubmit` | _Optional:_ An asynchronous function to invoke when the form is saved, i.e. when the 'Save' button is pressed. |
 | `reset` | _Optional:_ A function that runs when the form state is reset by the user via the 'Reset' button. |
@@ -160,7 +160,7 @@ export function Page(props) {
       // save the new form data
     },
   }
-  const [modifiedValues] = useForm(formConfig)
+  const [modifiedValues, form] = useForm(formConfig)
 
   usePlugin(form)
 
