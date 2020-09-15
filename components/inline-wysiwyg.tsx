@@ -20,7 +20,7 @@ export function InlineWysiwyg(props: any) {
           directory: 'public/img/',
           parse: filename => 'img/' + filename,
           previewSrc(src: string) {
-            return cms.api.github.getDownloadUrl('public/' + src)
+            return cms.api.github.getDownloadUrl('/public/' + src)
           },
         }}
       />
