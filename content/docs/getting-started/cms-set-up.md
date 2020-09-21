@@ -2,8 +2,8 @@
 title: Set Up the CMS
 prev: /docs/getting-started/introduction
 next: /docs/getting-started/edit-content
+last_edited: '2020-09-21T04:40:53.240Z'
 ---
-
 In this step we will install `tinacms`, create a CMS instance, wrap our app in the `TinaProvider`, and configure the CMS options.
 
 ## Install _tinacms_
@@ -116,7 +116,7 @@ function EditButton() {
 }
 ```
 
-Head back to http://localhost:3000, refresh the page and click the 'Edit This Site' button. You should see an 'Edit Icon' in the lower right-hand corner. Click on the icon to open the [_Sidebar_](/docs/ui#toolbar-configuration).
+Head back to http://localhost:3000, refresh the page and click the 'Edit This Site' button. You should see an 'Edit Icon' in the lower right-hand corner. Click on the icon to open the _[Sidebar](/docs/ui#toolbar-configuration)_.
 
 ![tinacms-tutorial-cms-setup-step](/img/getting-started/cms-setup-step.png)
 
@@ -124,6 +124,6 @@ You'll notice that the sidebar is empty, that is because there are no forms regi
 
 ## Additional Reading
 
-- Explore additional options for configuring the [Sidebar UI](/docs/ui#sidebar-configuration).
-- The example above uses `cms.toggle` to switch between enabled/disabled states. Checkout all of the [CMS methods](/docs/cms#reference) available.
-- Another important editing UI is the [_Toolbar_](/docs/ui) — it is useful with [Inline Editing](/docs/ui/inline-editing).
+* Explore additional options for configuring the [Sidebar UI](/docs/ui#sidebar-configuration).
+* The example above uses `cms.toggle` to switch between enabled/disabled states. Checkout all of the [CMS methods](/docs/cms#reference) available.
+* Another important editing UI is the _[Toolbar](/docs/ui)_ — it is useful with [Inline Editing](/docs/ui/inline-editing).
