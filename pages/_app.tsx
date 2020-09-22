@@ -7,16 +7,13 @@ import data from '../content/siteConfig.json'
 import TagManager from 'react-gtm-module'
 import { GlobalStyles, FontLoader } from '@tinacms/styles'
 import { BrowserStorageApi } from 'utils/plugins/browser-storage-api/BrowserStorageApi'
-import {
-  GithubClient,
-  GithubMediaStore,
-  TinacmsGithubProvider,
-} from 'react-tinacms-github'
+import { GithubClient, TinacmsGithubProvider } from 'react-tinacms-github'
 import { GlobalStyle } from 'components/styles/GlobalStyle'
 import 'components/styles/fontImports.css'
 import path from 'path'
 import { BlogPostCreatorPlugin } from '../tinacms/BlogPostCreator'
 import { ReleaseNotesCreatorPlugin } from '../tinacms/ReleaseNotesCreator'
+import { NextGithubMediaStore } from '../utils/plugins/NextGithubMediaStore'
 
 // the following line will cause all content files to be available in a serverless context
 path.resolve('./content/')
@@ -40,7 +37,7 @@ const MainLayout = ({ Component, pageProps }) => {
           ? new BrowserStorageApi(window.localStorage)
           : {},
     },
-    media: new GithubMediaStore(github),
+    media: new NextGithubMediaStore(github),
     plugins: [BlogPostCreatorPlugin, ReleaseNotesCreatorPlugin],
   }
 
