@@ -22,10 +22,67 @@ import { InlineGithubForm } from 'components/layout/InlineGithubForm'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
 import { useGithubJsonForm } from 'react-tinacms-github'
 import { InlineWysiwyg } from 'components/inline-wysiwyg'
+import { usePlugin, useCMS } from 'tinacms'
 
 function CommunityPage({ file: community, metadata, preview }) {
+  const cms = useCMS()
+
   // Registers Tina Form
-  const [data, form] = useGithubJsonForm(community, formOptions)
+  const [data, form] = useGithubJsonForm(community, {
+    label: 'Community Page',
+    fields: [
+      {
+        label: 'Headline',
+        name: 'headline',
+        description: 'Enter the main headline here',
+        component: 'text',
+      },
+      {
+        label: 'Community Image',
+        name: 'img',
+        component: 'group',
+        fields: [
+          {
+            label: 'Image',
+            name: 'src',
+            component: 'image',
+            parse: media => {
+              if (!media) return ''
+              return media.id.replace('public', '')
+            },
+            uploadDir: () => '/public/img/',
+            previewSrc: fieldValue =>
+              cms.media.previewSrc(`public${fieldValue}`, '', {}),
+          },
+          { label: 'Alt Text', name: 'alt', component: 'text' },
+        ],
+      },
+      {
+        label: 'Secondary Headline',
+        name: 'supporting_headline',
+        description: 'Enter the secondary headline here',
+        component: 'textarea',
+      },
+      {
+        label: 'Secondary Body Copy',
+        name: 'supporting_body',
+        description: 'Enter the body copy here',
+        component: 'markdown',
+      },
+      {
+        label: 'Newsletter Header',
+        name: 'newsletter_header',
+        component: 'text',
+      },
+      {
+        label: 'Newsletter CTA',
+        name: 'newsletter_cta',
+        component: 'text',
+      },
+    ],
+  })
+
+  usePlugin(form)
 
   return (
     <InlineGithubForm form={form}>
@@ -101,7 +158,7 @@ function CommunityPage({ file: community, metadata, preview }) {
                     </DynamicLink>
                   </ButtonGroup>
                 </InfoContent>
-                <InfoImage src="/img/rico-replacement.jpg" />
+                <InfoImage src={data.img.src} alt={data.img.alt} />
               </InfoLayout>
             </Wrapper>
           </Section>
@@ -140,59 +197,6 @@ export const getStaticProps: GetStaticProps = async function({
     previewData
   )
   return { props: { ...previewProps.props, metadata } }
-}
-
-/**
- *  TINA FORM CONFIG --------------------------------------------
- */
-const formOptions = {
-  label: 'Community Page',
-  fields: [
-    {
-      label: 'Headline',
-      name: 'headline',
-      description: 'Enter the main headline here',
-      component: 'text',
-    },
-    {
-      label: 'Community Image',
-      name: 'img',
-      component: 'group',
-      fields: [
-        {
-          label: 'Image',
-          name: 'src',
-          component: 'image',
-          parse: filename => `../public/img/${filename}`,
-          uploadDir: () => '/public/img/',
-          previewSrc: data => `${data.img.src}`,
-        },
-        { label: 'Alt Text', name: 'alt', component: 'text' },
-      ],
-    },
-    {
-      label: 'Secondary Headline',
-      name: 'supporting_headline',
-      description: 'Enter the secondary headline here',
-      component: 'textarea',
-    },
-    {
-      label: 'Secondary Body Copy',
-      name: 'supporting_body',
-      description: 'Enter the body copy here',
-      component: 'markdown',
-    },
-    {
-      label: 'Newsletter Header',
-      name: 'newsletter_header',
-      component: 'text',
-    },
-    {
-      label: 'Newsletter CTA',
-      name: 'newsletter_cta',
-      component: 'text',
-    },
-  ],
 }
 /*
  ** STYLES ------------------------------------------------------

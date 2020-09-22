@@ -32,6 +32,7 @@ const MainLayout = ({ Component, pageProps }) => {
   const tinaConfig = {
     enabled: pageProps.preview,
     toolbar: pageProps.preview,
+    sidebar: pageProps.preview,
     apis: {
       github,
       storage:
@@ -39,9 +40,7 @@ const MainLayout = ({ Component, pageProps }) => {
           ? new BrowserStorageApi(window.localStorage)
           : {},
     },
-    media: {
-      store: new GithubMediaStore(github),
-    },
+    media: new GithubMediaStore(github),
     plugins: [BlogPostCreatorPlugin, ReleaseNotesCreatorPlugin],
   }
 
