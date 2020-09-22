@@ -2,7 +2,7 @@
 title: Media
 prev: /docs/events
 next: /docs/apis
-last_edited: '2020-09-22T15:50:45.615Z'
+last_edited: '2020-09-22T15:51:09.116Z'
 ---
 **Media** in Tina refers to a set of APIs to allow packages to interact with a central store of files.
 
@@ -103,12 +103,12 @@ This represents a paginated query to the `MediaStore` and its results.
 
 ### Adding a Media Store
 
-Add the media store by assigning it to `cms.media.store` in a context where you have access to the CMS object.
+Add the media store by assigning it to `cms.media` in a context where you have access to the CMS object.
 
 ```javascript
 import { MyMediaStore } from './my-media-store'
 
-cms.media.store = new MyMediaStore()
+cms.media = new MyMediaStore()
 ```
 
 > #### Supported Media Stores
