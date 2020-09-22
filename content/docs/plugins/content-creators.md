@@ -39,7 +39,7 @@ const BlogPostCreatorPlugin = {
       name: 'title',
       component: 'text',
       validation(title) {
-        if (!title) return "Required.
+        if (!title) return "Required."
       }
     },
     {
