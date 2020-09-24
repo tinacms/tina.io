@@ -7,8 +7,8 @@ consumes:
     description: Shows InlineImage
   - file: /packages/react-tinacms-inline/src/inline-field.tsx
     description: Depends on InlineField
+last_edited: '2020-09-24T18:11:37.665Z'
 ---
-
 The `InlineImage` field represents an image input. This field supports drag and drop upload, or via clicking on the image to select media from the local filesystem.
 
 ## Definition
@@ -17,19 +17,21 @@ Below is a simple example of how `InlineImage` could be implemented in in an [In
 
 ```jsx
 import ReactMarkdown from 'react-markdown'
-import { useLocalForm } from 'tinacms'
+import { useForm, usePlugin } from 'tinacms'
 import { InlineForm, InlineImage } from 'react-tinacms-inline'
 
 // Example 'Page' Component
 export function Page(props) {
-  const [data, form] = useLocalForm(props.data)
+  const [data, form] = useForm(props.data)
+  usePlugin(form)
   return (
     <InlineForm form={form}>
       <InlineImage
         name="hero_image"
-        parse={filename => `/images/${filename}`}
+        parse={media => media.id.replace('/public', '')}
         uploadDir={() => '/public/images/'}
-        previewSrc={formValues => {}}
+        previewSrc={fieldValue => `/public${fieldValue}`}
+        alt="hero-image"
       />
     </InlineForm>
   )
@@ -40,28 +42,43 @@ There are two ways to use `InlineImage`, with and without children. If no childr
 
 ## Options
 
-| Key          | Description                                                                                                                                                                                                                                                                                                                                                                                                     |
-| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`       | The path to some value in the data being edited.                                                                                                                                                                                                                                                                                                                                                                |
-| `parse`      | Defines how the actual front matter or data value gets populated. The name of the file gets passed as an argument, and one can set the path this image as defined by the uploadDir property.                                                                                                                                                                                                                    |
-| `uploadDir`  | Defines the upload directory for the image. All of the post data is passed in, `fileRelativePath` is most useful in defining the upload directory, but you can also statically define the upload directory.                                                                                                                                                                                                     |
-| `previewSrc` | Defines the path for the src attribute on the image preview. If using gatsby-image, the path to the `childImageSharp.fluid.src` needs to be provided.                                                                                                                                                                                                                                                           |
-| `focusRing`  | Either an object to style the focus ring or a boolean to show/hide the focus ring. Defaults to `true` which displays the focus ring with default styles. For style options, `offset` (in pixels) sets the distance from the ring to the edge of the component, and `borderRadius` (in pixels) controls the [rounded corners](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius) of the focus ring. |
-| `children`   | Children need to be passed through the [Render Props](https://reactjs.org/docs/render-props.html) pattern to access `previewSrc`.                                                                                                                                                                                                                                                                               |
+| Key | Description |
+| --- | --- |
+| `name` | The path to some value in the data being edited. |
+| `parse` | Defines how the actual front matter or data value gets populated. The name of the file gets passed as an argument, and one can set the path this image as defined by the uploadDir property. |
+| `uploadDir` | Defines the upload directory for the image. All of the post data is passed in, `fileRelativePath` is most useful in defining the upload directory, but you can also statically define the upload directory. |
+| `previewSrc` | Defines the path for the src attribute on the image preview. If using gatsby-image, the path to the `childImageSharp.fluid.src` needs to be provided. |
+| `focusRing` | Either an object to style the focus ring or a boolean to show/hide the focus ring. Defaults to `true` which displays the focus ring with default styles. For style options, `offset` (in pixels) sets the distance from the ring to the edge of the component, and `borderRadius` (in pixels) controls the [rounded corners](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius) of the focus ring. |
+| `children` | Children need to be passed through the [Render Props](https://reactjs.org/docs/render-props.html) pattern to access `previewSrc`. |
 
----
+***
 
 ## Interface
 
 ```typescript
 interface InlineImageProps {
   name: string
-  parse(filename: string): string
-  uploadDir(form: Form): string
-  previewSrc(formValues: any): string
-  focusRing?: boolean | FocusRingProps
-  children?: any
+  parse(media: Media): string
+  uploadDir?(form: Form): string
+  previewSrc?(
+    src: string,
+    fieldPath?: string,
+    formValues?: any
+  ): Promise<string> | string
+  focusRing?: boolean | FocusRingOptions
+  className?: string
+  alt?: string
+  children?: ImageRenderChildren
 }
+
+interface ImageRenderChildrenProps {
+  src?: string
+}
+
+type ImageRenderChildren = (
+  props: ImageRenderChildrenProps
+) => React.ReactNode
+
 
 interface FocusRingProps {
   offset?: number | { x: number; y: number }
@@ -69,10 +86,10 @@ interface FocusRingProps {
 }
 ```
 
-The `parse` function handles how the path gets written in the source data when a _new image_ is uploaded. `parse` is passed the filename of the newly uploaded image — `image.jpg`. A simple return value could look something like this:
+The `parse` function handles how the path gets written in the source data when a _new image_ is uploaded. `parse` is passed the [media object]() for the newly uploaded image. A simple return value could look something like this:
 
 ```js
-parse: filename => `/example-dir/${filename}`
+parse: media => media.id
 ```
 
 The path **depends on where images live** in your project structure. `uploadDir` sets where those new images should live:
@@ -81,7 +98,7 @@ The path **depends on where images live** in your project structure. `uploadDir`
 uploadDir: () => `/example-dir`
 ```
 
-The `previewSrc` provides a path for the image **when inline editing is active** (a.k.a when the [CMS is enabled](https://tinacms.org/docs/cms#disabling--enabling-the-cms)). When inline editing is not active (`cms.enabled === false`), the image will reference the path in the source data. `previewSrc` is passed **current form values** as its first argument.
+The `previewSrc` provides a path for the image **when inline editing is active** (a.k.a when the [CMS is enabled](https://tinacms.org/docs/cms#disabling--enabling-the-cms)). When inline editing is not active (`cms.enabled === false`), the image will reference the path in the source data. `previewSrc` is passed the current field value, the field path, and current form values.
 
 ## Examples
 
