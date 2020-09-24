@@ -7,7 +7,7 @@ consumes:
     description: InlineForm
   - file: /packages/react-tinacms-inline/src/inline-field.tsx
     description: InlineField
-last_edited: '2020-09-24T16:59:18.560Z'
+last_edited: '2020-09-24T17:02:21.117Z'
 ---
 _Inline Editing_ in Tina refers to editing values directly in the area they appear on the page, instead of in the Tina sidebar. These are the **general steps** to set up inline editing:
 
@@ -196,7 +196,14 @@ You can also extend styles by assigning a `className` to the Inline Field.
       background-color: pink;
     }
 
+### Fields Available to Extend Styles
+
+* [Inline Text](/docs/ui/inline-editing/inline-text)
+* [Inline Textarea]()
+* [Inline Blocks](/docs/ui/inline-editing/inline-blocks)
+* [Inline Image](/docs/ui/inline-editing/inline-image)
+
 ## Additional Reading
 
 * A guide — [Working With Inline Blocks](/guides/general/inline-blocks/overview)
-* `react-tinacms-inline` package [documentation](/packages/react-tinacms-inline)
+* `react-tinacms-inline` package [documentation](/docs/ui/inline-editing/inline-textarea)
