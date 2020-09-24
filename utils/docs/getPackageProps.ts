@@ -72,7 +72,12 @@ export async function getPackageProps(
     }
   }
 
-  const currentDoc = await axios.get(currentPackage.readme)
+  const latestTag = await axios
+    .get('https://api.github.com/repos/tinacms/tinacms/releases/latest')
+    .then((res: any) => res.data.tag_name)
+  const currentDoc = await axios.get(
+    `${currentPackage.readme}?ref=${latestTag}`
+  )
 
   const content = b64DecodeUnicode(currentDoc.data.content)
 
