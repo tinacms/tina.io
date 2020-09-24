@@ -7,7 +7,7 @@ consumes:
     description: InlineForm
   - file: /packages/react-tinacms-inline/src/inline-field.tsx
     description: InlineField
-last_edited: '2020-08-05T15:34:30.468Z'
+last_edited: '2020-09-24T16:59:18.560Z'
 ---
 _Inline Editing_ in Tina refers to editing values directly in the area they appear on the page, instead of in the Tina sidebar. These are the **general steps** to set up inline editing:
 
@@ -180,6 +180,21 @@ const StyledText = styled(InlineTextField)`
 ```
 
 Notice how the new component, `StyledText` is just a _styled_ version of `InlineTextField`.
+
+You can also extend styles by assigning a `className` to the Inline Field.
+
+    // In an Inline Form
+    <InlineImage
+      name="frontmatter.image"
+      uploadDir={() => '/public/images/'}
+      parse={media => media.id}
+      className="inline-img"
+    />
+    
+    // Style via className in css
+    .inline-img {
+      background-color: pink;
+    }
 
 ## Additional Reading
 
