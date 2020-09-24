@@ -7,7 +7,7 @@ consumes:
     description: InlineForm
   - file: /packages/react-tinacms-inline/src/inline-field.tsx
     description: InlineField
-last_edited: '2020-08-05T15:34:30.468Z'
+last_edited: '2020-09-24T17:03:21.138Z'
 ---
 _Inline Editing_ in Tina refers to editing values directly in the area they appear on the page, instead of in the Tina sidebar. These are the **general steps** to set up inline editing:
 
@@ -155,6 +155,8 @@ export function Page(props) {
 
 ## Extending Inline Field Styles
 
+**Via Styled-Components**
+
 The Inline Fields are meant to have minimal styles. But there may be situations where you'll want to override the base styles. This is made possible via [Styled Components](https://styled-components.com/docs/basics#extending-styles).
 
 ```jsx
@@ -181,7 +183,31 @@ const StyledText = styled(InlineTextField)`
 
 Notice how the new component, `StyledText` is just a _styled_ version of `InlineTextField`.
 
+**Via Class Name**
+
+You can also extend styles by assigning a `className` to the Inline Field.
+
+    // In an Inline Form
+    <InlineImage
+      name="frontmatter.image"
+      uploadDir={() => '/public/images/'}
+      parse={media => media.id}
+      className="inline-img"
+    />
+    
+    // Style via className in css
+    .inline-img {
+      background-color: pink;
+    }
+
+### Fields Available to Extend Styles
+
+* [Inline Text](/docs/ui/inline-editing/inline-text)
+* [Inline Textarea]()
+* [Inline Blocks](/docs/ui/inline-editing/inline-blocks)
+* [Inline Image](/docs/ui/inline-editing/inline-image)
+
 ## Additional Reading
 
 * A guide — [Working With Inline Blocks](/guides/general/inline-blocks/overview)
-* `react-tinacms-inline` package [documentation](/packages/react-tinacms-inline)
+* `react-tinacms-inline` package [documentation](/docs/ui/inline-editing/inline-textarea)
