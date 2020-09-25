@@ -77,16 +77,16 @@ function Images({ index }) {
         <div className="image-diptych">
           <InlineImage
             name="left.src"
-            parse={filename => `${filename}`}
-            uploadDir={() => '/'}
-            previewSrc={formValues => `${formValues.blocks[index].left.src}`}
+            parse={media => `/${media.filename}`}
+            uploadDir={() => '/public'}
+            previewSrc={fieldValue => fieldValue}
             focusRing={false}
           />
           <InlineImage
             name="right.src"
-            parse={filename => `/${filename}`}
-            uploadDir={() => '/'}
-            previewSrc={formValues => `${formValues.blocks[index].right.src}`}
+            parse={media => `/${media.filename}`}
+            uploadDir={() => '/public'}
+            previewSrc={fieldValue => fieldValue}
             focusRing={false}
           />
         </div>
