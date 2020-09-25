@@ -19,7 +19,11 @@ You can create your own media store by implementing the `MediaStore` interface:
 interface MediaStore {
   accept: string
   persist(files: MediaUploadOptions[]): Promise<Media[]>
-  previewSrc(src: string): Promise<string>
+  previewSrc(
+    src: string,
+    fieldPath?: string,
+    formValues?: any
+  ): Promise<string> | string
   list(options?: MediaListOptions): Promise<MediaList>
   delete(media: Media): Promise<void>
 }
@@ -58,8 +62,8 @@ interface MediaListOptions {
 | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `accept`     | The [input accept string](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#accept) that describes what kind of files the Media Store will accept. |
 | `persist`    | Uploads a set of files to the Media Store and returns a Promise containing the Media objects for those files.                                                         |
-| `previewSrc` | Given a `src` string it returns a url for previewing that content. This is helpful in cases where the file may not be available in production yet.                    |
-| `list`       | Lists all media in a specific directory.                                                                                                                              |
+| `previewSrc` | Given a `src` string, it returns a url for previewing that content. This is helpful in cases where the file may not be available in production yet.                   |
+| `list`       | Lists all media in a specific directory. Used in the media manager.                                                                                                   |
 | `delete`     | Deletes a media object from the store.                                                                                                                                |
 
 **Media**
@@ -111,8 +115,38 @@ import { MyMediaStore } from './my-media-store'
 cms.media.store = new MyMediaStore()
 ```
 
+Or you can define it in the [CMS config](/docs/getting-started/cms-set-up/#configure-the-cms-object) object:
+
+```js
+const github = new GithubClient({
+  proxy: '/api/proxy-github',
+  authCallbackRoute: '/api/create-github-access-token',
+  clientId: process.env.GITHUB_CLIENT_ID,
+  baseRepoFullName: process.env.BASE_REPO_FULL_NAME,
+})
+
+const tinaConfig = {
+  enabled: pageProps.preview,
+  toolbar: pageProps.preview,
+  apis: {
+    github,
+  },
+  media: new GithubMediaStore(github),
+  plugins: [BlogPostCreatorPlugin, ReleaseNotesCreatorPlugin],
+}
+
+const cms = React.useMemo(() => new TinaCMS(tinaConfig), [])
+```
+
 > #### Supported Media Stores
 >
 > - [`GitMediaStore`](/guides/nextjs/git/adding-backend): Saves media to your Git repository by writing to the local system and commiting directly.
 > - [`GithubMediaStore`](/packages/react-tinacms-github): Saves media to to your Git repository through the GitHub API.
 > - [`StrapiMediaStore`](https://tinacms.org/packages/react-tinacms-strapi/): Handles media stored in a Strapi instance.
+
+<!-- TODO....
+
+## Media Manager
+
+....explain how it works, upload a photo, how it can be accessed and customized etc.
+-->
