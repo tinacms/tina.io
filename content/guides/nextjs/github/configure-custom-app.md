@@ -7,9 +7,10 @@ Now we will set up TinaCMS to work with the GitHub App. First, create a new file
 
 1. **Create the TinaCMS instance**
 2. **Register the GithubClient:** The client allows us to authenticate with GitHub. All requests using the `GithubClient` gets passed through a proxy on our site. This allows us to securely attach the authentication tokens on the backend.
-3. Configure the [**Editing UI**](/docs/ui) **to be 'hidden'** unless we're in [Preview/Edit mode](https://nextjs.org/docs/advanced-features/preview-mode).
-4. **Wrap the Page with** `TinacmsGithubProvider`: This component is given config and callbacks that hit our `/api` server functions to enable Preview/Edit Mode after authentication is complete.
-5. **Add a button for entering Preview/Edit Mode:** We must provide a means of triggering authentication to enter/exit edit mode. This a simple example of how to do so.
+3. **Register the GithubMediaStore:** The [media store](/docs/media) allows us to upload and manage media through the media manager and image fields.
+4. Configure the [**Editing UI**](/docs/ui) **to be 'hidden'** unless we're in [Preview/Edit mode](https://nextjs.org/docs/advanced-features/preview-mode).
+5. **Wrap the Page with** `TinacmsGithubProvider`: This component is given config and callbacks that hit our `/api` server functions to enable Preview/Edit Mode after authentication is complete.
+6. **Add a button for entering Preview/Edit Mode:** We must provide a means of triggering authentication to enter/exit edit mode. This a simple example of how to do so.
 
 **pages/\_app.tsx**
 
@@ -23,6 +24,14 @@ export default class Site extends App {
 
   constructor(props) {
     super(props)
+
+    const github = new GithubClient({
+      proxy: '/api/proxy-github',
+      authCallbackRoute: '/api/create-github-access-token',
+      clientId: process.env.GITHUB_CLIENT_ID,
+      baseRepoFullName: process.env.REPO_FULL_NAME, // e.g: tinacms/tinacms.org,
+    })
+
     /**
      * 1. Create the TinaCMS instance
      */
@@ -32,15 +41,14 @@ export default class Site extends App {
         /**
          * 2. Register the GithubClient
          */
-        github: new GithubClient({
-          proxy: '/api/proxy-github',
-          authCallbackRoute: '/api/create-github-access-token',
-          clientId: process.env.GITHUB_CLIENT_ID,
-          baseRepoFullName: process.env.REPO_FULL_NAME, // e.g: tinacms/tinacms.org,
-        }),
+        github,
       },
       /**
-       * 3. Use the Sidebar and Toolbar
+       * 3. Register the Media Store
+       */
+      media: new GithubMediaStore(github),
+      /**
+       * 4. Use the Sidebar and Toolbar
        */
       sidebar: props.pageProps.preview,
       toolbar: props.pageProps.preview,
@@ -51,7 +59,7 @@ export default class Site extends App {
     const { Component, pageProps } = this.props
     return (
       /**
-       * 4. Wrap the page Component with the Tina and Github providers
+       * 5. Wrap the page Component with the Tina and Github providers
        */
       <TinaProvider cms={this.cms}>
         <TinacmsGithubProvider
@@ -60,7 +68,7 @@ export default class Site extends App {
           error={pageProps.error}
         >
           {/**
-           * 5. Add a button for entering Preview/Edit Mode
+           * 6. Add a button for entering Preview/Edit Mode
            */}
           <EditLink cms={this.cms} />
           <Component {...pageProps} />
