@@ -138,9 +138,7 @@ class MyApp extends App {
       apis: {
         git: client,
       },
-      media: {
-        store: new GitMediaStore(client),
-      },
+      media: new GitMediaStore(client),
       sidebar: {
         position: 'overlay',
       },
