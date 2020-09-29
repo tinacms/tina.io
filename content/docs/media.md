@@ -2,18 +2,25 @@
 title: Media
 prev: /docs/events
 next: /docs/apis
-last_edited: '2020-09-22T15:53:15.812Z'
+last_edited: '2020-09-29T15:53:15.812Z'
 ---
 
 **Media** in Tina refers to a set of APIs to allow packages to interact with a central store of files.
 
 ## Media Store
 
-A **Media Store** is how the CMS handles saving and loading media files.
+A **Media Store** handles media files for the CMS. Media Stores provide a set of functions to specify how media should be sourced, deleted, and saved, among other things.
+
+> ### Supported Media Stores
+>
+> - [`GithubMediaStore`](/packages/react-tinacms-github): Saves and sources media to/from your Git repository through the GitHub API.
+> - [`NextGithubMediaStore`](/packages/next-tinacms-github#nextgithubmediastore): Configures media sourced from GitHub specifically for Next.js projects.
+> - [`StrapiMediaStore`](/packages/react-tinacms-strapi/): Handles media stored in a Strapi instance.
+> - [`GitMediaStore`](/guides/nextjs/git/adding-backend): Saves media to your Git repository by writing to the local system and commiting directly.
 
 ### Creating a Media Store
 
-You can create your own media store by implementing the `MediaStore` interface:
+While there are a few media stores provided by Tina packages, you can create your own media store by implementing the `MediaStore` interface:
 
 ```typescript
 interface MediaStore {
@@ -76,19 +83,19 @@ This represents an individual file in the `MediaStore`.
 | `id`         | A unique identifier for the media item.                        |
 | `directory`  | The path to the file in the store. e.g. `public/images`        |
 | `filename`   | The name of the file. e.g.`boat.jpg`                           |
-| `previewSrc` | A url that provides an image preview of the file.              |
+| `previewSrc` | _Optional:_ A url that provides an image preview of the file.  |
 
 **Media List**
 
 This represents a paginated query to the `MediaStore` and its results.
 
-| Key          | Description                                                     |
-| ------------ | --------------------------------------------------------------- |
-| `items`      | An array of `Media` objects.                                    |
-| `limit`      | The number of records returned by the current query.            |
-| `offset`     | A number representing the beginning of the current record set.  |
-| `nextOffset` | A number representing the beginning of the next set of records. |
-| `totalCount` | The total number of records available.                          |
+| Key          | Description                                                                 |
+| ------------ | --------------------------------------------------------------------------- |
+| `items`      | An array of `Media` objects.                                                |
+| `limit`      | The number of records returned by the current query.                        |
+| `offset`     | A number representing the beginning of the current record set.              |
+| `nextOffset` | _Optional:_ A number representing the beginning of the next set of records. |
+| `totalCount` | The total number of records available.                                      |
 
 **Media Upload Options**
 
@@ -99,11 +106,11 @@ This represents a paginated query to the `MediaStore` and its results.
 
 **Media List Options**
 
-| Key         | Description                                                                                |
-| ----------- | ------------------------------------------------------------------------------------------ |
-| `directory` | The current directory to list media from.                                                  |
-| `limit`     | The number of records that should be returned.                                             |
-| `offset`    | A number representing how far into the list the store should begin returning records from. |
+| Key         | Description                                                                                            |
+| ----------- | ------------------------------------------------------------------------------------------------------ |
+| `directory` | _Optional:_ The current directory to list media from.                                                  |
+| `limit`     | _Optional:_ The number of records that should be returned.                                             |
+| `offset`    | _Optional:_ A number representing how far into the list the store should begin returning records from. |
 
 ### Adding a Media Store
 
@@ -138,15 +145,46 @@ const tinaConfig = {
 const cms = React.useMemo(() => new TinaCMS(tinaConfig), [])
 ```
 
-> #### Supported Media Stores
->
-> - [`GitMediaStore`](/guides/nextjs/git/adding-backend): Saves media to your Git repository by writing to the local system and commiting directly.
-> - [`GithubMediaStore`](/packages/react-tinacms-github): Saves media to to your Git repository through the GitHub API.
-> - [`StrapiMediaStore`](https://tinacms.org/packages/react-tinacms-strapi/): Handles media stored in a Strapi instance.
+### Extending a Media Store
 
-<!-- TODO....
+There may be times when you want to adjust or customize the functionality of a particular media store. For example, with `GitMediaStore`, you may want to override the `previewSrc` function to specify exactly how the image previews in the media manager list should be sourced.
+
+**Override a method on an extended media store**
+
+```js
+import { GitMediaStore } from '@tinacms/git-client'
+
+export class MyGitMediaStore extends GitMediaStore {
+  previewSrc(src) {
+    return /jpg|png$/.test(src) ? src.replace('/public', '') : null
+  }
+}
+```
+
+**Add the new media store to your app**
+
+```js
+const client = new GitClient('http://localhost:3000/___tina')
+
+this.cms = new TinaCMS({
+  enabled: process.env.NODE_ENV !== 'production',
+  toolbar: true,
+  sidebar: {
+    position: 'overlay',
+  },
+  apis: {
+    git: client,
+  },
+  media: new MyGitMediaStore(client),
+})
+```
+
+This is exactly how the [`NextGithubMediaStore`](https://github.com/tinacms/tinacms/blob/master/packages/next-tinacms-github/src/next-github-media-store.ts) works — it extends `GithubMediaStore` to customize the functions specifically for Next.js project configuration.
 
 ## Media Manager
 
-....explain how it works, upload a photo, how it can be accessed and customized etc.
--->
+The media manager is an interface for interacting with the Media Store. The media manager can be accessed by clicking on image fields, or through the [global form menu](/docs/plugins/screens/#name-icon--component).
+
+![tinacms-media-manager](/img/media-manager-ui.png)
+
+The manager lists all the available files and directories in the store. When entering the media manager from an image field, editors can select or upload an image to _insert_ into the field. When entering from the global menu, editors can delete media files.
