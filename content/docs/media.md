@@ -63,7 +63,7 @@ interface MediaListOptions {
 }
 ```
 
-**Media Store**
+#### Media Store
 
 | Key          | Description                                                                                                                                                           |
 | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -73,7 +73,7 @@ interface MediaListOptions {
 | `list`       | Lists all media in a specific directory. Used in the media manager.                                                                                                   |
 | `delete`     | Deletes a media object from the store.                                                                                                                                |
 
-**Media**
+#### Media
 
 This represents an individual file in the `MediaStore`.
 
@@ -85,7 +85,7 @@ This represents an individual file in the `MediaStore`.
 | `filename`   | The name of the file. e.g.`boat.jpg`                           |
 | `previewSrc` | _Optional:_ A url that provides an image preview of the file.  |
 
-**Media List**
+#### Media List
 
 This represents a paginated query to the `MediaStore` and its results.
 
@@ -97,14 +97,14 @@ This represents a paginated query to the `MediaStore` and its results.
 | `nextOffset` | _Optional:_ A number representing the beginning of the next set of records. |
 | `totalCount` | The total number of records available.                                      |
 
-**Media Upload Options**
+#### Media Upload Options
 
 | Key         | Description                                                                       |
 | ----------- | --------------------------------------------------------------------------------- |
 | `directory` | The directory where the file should be uploaded.                                  |
 | `file`      | The [File](https://developer.mozilla.org/en-US/docs/Web/API/File) to be uploaded. |
 
-**Media List Options**
+#### Media List Options
 
 | Key         | Description                                                                                            |
 | ----------- | ------------------------------------------------------------------------------------------------------ |
