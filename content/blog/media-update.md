@@ -49,7 +49,7 @@ new TinaCMS({
 
 ### Media Store
 
-3 new attributes were added to the [Media Store](/docs/media/#media-store) interface.
+Two new attributes were added to the [Media Store](/docs/media/#media-store) interface.
 
 - `list`: This function provides a list of available items for the media manager to render.
 - `delete`: This function deletes media files.
