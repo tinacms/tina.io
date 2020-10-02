@@ -11,7 +11,7 @@ Up until now, media changes were handled solely through image fields. By clickin
 
 ![media-manager-image](/img/media-manager-ui.png)
 
-In this cycle, the Tina Team focused on creating a media manager UI for media stores. The media manager allows editors to upload, delete, and browse media files and directories. File upload can occur via drag and drop directly onto the manager UI or by clicking the 'Upload' button. (add this to the docs)
+In [this cycle](https://github.com/tinacms/tinacms/blob/master/ROADMAP.md#process), the Tina Team focused on creating a media manager UI for media stores. The media manager allows editors to upload, delete, and browse media files and directories. File upload can occur via drag and drop directly onto the manager UI or by clicking the 'Upload' button. (add this to the docs)
 
 Along the way, we've made some significant changes to the media and image field APIs to improve the overall experience of working with media. This post outlines all of the features and breaking changes that were released (TODO insert date and release #).
 
