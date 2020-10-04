@@ -14,16 +14,16 @@
       "data": "./project-setup.md"
     },
     {
-      "title": "Creating Forms",
-      "id": "/guides/nextjs/adding-tina/creating-forms",
-      "slug": "/guides/nextjs/adding-tina/creating-forms",
-      "data": "./creating-forms.md"
-    },
-    {
       "title": "Adding the Tina Provider",
       "id": "/guides/nextjs/adding-tina/adding-tina-provider",
       "slug": "/guides/nextjs/adding-tina/adding-tina-provider",
       "data": "./adding-tina-provider.md"
+    },
+    {
+      "title": "Creating Forms",
+      "id": "/guides/nextjs/adding-tina/creating-forms",
+      "slug": "/guides/nextjs/adding-tina/creating-forms",
+      "data": "./creating-forms.md"
     },
     {
       "title": "Next Steps",
