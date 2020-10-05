@@ -21,23 +21,23 @@ interface ImageConfig {
   name: string
   label?: string
   description?: string
-  parse(filename: string): string
-  previewSrc(formValues: any): string
-  uploadDir(formValues: any): string
+  parse(media: Media): string
+  previewSrc(formValues: any)?: string
+  uploadDir(formValues: any)?: string
 }
 ```
 
 ---
 
-| Key           | Description                                                                                                                                                                                                 |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `component`   | The name of the plugin component. Always `'image'`.                                                                                                                                                         |
-| `name`        | The path to some value in the data being edited.                                                                                                                                                            |
-| `label`       | A human readable label for the field. Defaults to the `name`. _(Optional)_                                                                                                                                  |
-| `description` | Description that expands on the purpose of the field or prompts a specific action. _(Optional)_                                                                                                             |
-| `parse`       | Defines how the actual front matter or data value gets populated. The name of the file gets passed as an argument, and one can set the path this image as defined by the uploadDir property.                |
-| `previewSrc`  | Defines the path for the src attribute on the image preview. If using gatsby-image, the path to the `childImageSharp.fluid.src` needs to be provided.                                                       |
-| `uploadDir`   | Defines the upload directory for the image. All of the post data is passed in, `fileRelativePath` is most useful in defining the upload directory, but you can also statically define the upload directory. |
+| Key           | Description                                                                                                                                                                                                              |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `component`   | The name of the plugin component. Always `'image'`.                                                                                                                                                                      |
+| `name`        | The path to some value in the data being edited.                                                                                                                                                                         |
+| `label`       | A human readable label for the field. Defaults to the `name`. _(Optional)_                                                                                                                                               |
+| `description` | Description that expands on the purpose of the field or prompts a specific action. _(Optional)_                                                                                                                          |
+| `parse`       | Defines how the actual front matter or data value gets populated. The [media object](/docs/media#media) gets passed as an argument, and one can set the path this image as defined by the uploadDir property.            |
+| `previewSrc`  | Defines the path for the src attribute on the image preview. If using gatsby-image, the path to the `childImageSharp.fluid.src` needs to be provided. \_(Optional)                                                       |
+| `uploadDir`   | Defines the upload directory for the image. All of the form data is passed in, `fileRelativePath` is most useful in defining the upload directory, but you can also statically define the upload directory. \_(Optional) |
 
 ---
 
@@ -47,31 +47,53 @@ interface ImageConfig {
 
 ## Examples
 
+**Next.js**
+
+Below is an example of an `image` field defined in a Next.js project.
+
+```jsx
+const formOptions = {
+  fields: [
+    {
+      label: 'Hero Image',
+      name: 'frontmatter.hero_image',
+      component: 'image',
+      // Generate the frontmatter value based on the filename
+      parse: media => `/static/${media.filename}`,
+
+      // Decide the file upload directory for the post
+      uploadDir: () => '/public/static/',
+
+      // Generate the src attribute for the preview image.
+      previewSrc: fullSrc => fullSrc.replace('/public', ''),
+    },
+  ],
+  //...
+}
+```
+
+**Gatsby**
+
 Below is an example of how a `image` field could be defined in a Gatsby Remark form. Read more on passing in form field options in the [Gatsby Markdown Docs](/guides/gatsby/git/customize-form).
 
 ```javascript
-import get from 'lodash.get'
-
 const BlogPostForm = {
   fields: [
     {
-      name: 'rawFrontmatter.thumbnail',
-      label: 'Thumbnail',
+      label: 'Hero Image',
+      name: 'rawFrontmatter.hero.image',
       component: 'image',
-
-      previewSrc: (formValues, { input }) => {
-        const path = input.name.replace('rawFrontmatter', 'frontmatter')
-        const gatsbyImageNode = get(formValues, path)
-        if (!gatsbyImageNode) return ''
-        //specific to gatsby-image
-        return gatsbyImageNode.childImageSharp.fluid.src
+      parse: media => {
+        if (!media) return ''
+        return `../images/${media.filename}`
       },
+      uploadDir: () => `/content/images/`,
+      previewSrc: (src, path, formValues) => {
+        if (!formValues.frontmatter.hero || !formValues.frontmatter.hero.image)
+          return ''
 
-      uploadDir: () => {
-        return '/content/images/'
+        return formValues.frontmatter.hero.image.childImageSharp.fluid.src
       },
-
-      parse: filename => `../images/${filename}`,
     },
     // ...
   ],
@@ -80,7 +102,7 @@ const BlogPostForm = {
 
 ### Proper Image Paths in Gatsby
 
-In order for image paths to be properly sourced into GraphQL, it's best if a _relative path_ to the image is saved to the content file's front matter. Constructing this relative path will depend on where the image is uploaded to as well as the location of the content file. The following example uses a colocation strategy, where a blog post is stored in `content/blog/$slug/index.md` and its images will be uploaded to `content/blog/$slug/$image.png`:
+In order for image paths to be properly sourced into GraphQL, it's best if a _relative path_ to the image is saved to the content file's front matter. Constructing this relative path will depend on where the image is uploaded to as well as the location of the content file. The following example uses a co-location strategy, where a blog post is stored in `content/blog/$slug/index.md` and its images will be uploaded to `content/blog/$slug/$image.png`:
 
 ```javascript
 import get from 'lodash.get'
@@ -92,16 +114,14 @@ const BlogPostForm = {
       name: 'rawFrontmatter.thumbnail',
       label: 'Thumbnail',
       component: 'image',
-      previewSrc: (formValues, { input }) => {
-        const path = input.name.replace('rawFrontmatter', 'frontmatter')
-        const gatsbyImageNode = get(formValues, path)
-        if (!gatsbyImageNode) return ''
-        //specific to gatsby-image
-        return gatsbyImageNode.childImageSharp.fluid.src
+      previewSrc: (src, path, formValues) => {
+        if (!formValues.frontmatter.thumbnail) return ''
+
+        return formValues.frontmatter.thumbnail.childImageSharp.fluid.src
       },
 
       // upload images to same directory as content file
-      uploadDir: blogPost => path.dirname(blogPost.fileRelativePath),
+      uploadDir: formValues => path.dirname(formValues.fileRelativePath),
 
       // image file is sibling of content file
       parse: filename => `./${filename}`,
