@@ -2,7 +2,7 @@
 title: Adding a Media Manager to Tina
 date: '2020-10-02T10:20:39-04:00'
 author: Kendall
-last_edited: '2020-10-05T01:23:08.161Z'
+last_edited: '2020-10-05T01:23:41.347Z'
 ---
 Websites today contain more dog GIFs and landscape hero photos than ever. Content editors need a way to work with that media when creating and updating web pages, blogs, or articles.
 
@@ -221,7 +221,7 @@ With this new API, the render child is always passed a `src`, and the field hand
 
 ### Wysiwyg Images
 
-For the rest of the cycle, we will focus on improving the previously mentioned changes and refactoring the Wysiwyg to connect with the media manager. Expect some additional breaking changes to align the Wysiwyg image implementation with the Media Store and other image fields.
+For the rest of the cycle, we will focus on improving the previously mentioned changes and refactoring the WYSIWYG to connect with the media manager. Expect some additional breaking changes to align the WYSIWYG image implementation with the Media Store and other image fields.
 
 ### Extending Media Stores
 
