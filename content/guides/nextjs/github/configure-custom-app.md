@@ -12,6 +12,8 @@ Now we will set up TinaCMS to work with the GitHub App. First, create a new file
 5. **Wrap the Page with** `TinacmsGithubProvider`: This component is given config and callbacks that hit our `/api` server functions to enable Preview/Edit Mode after authentication is complete.
 6. **Add a button for entering Preview/Edit Mode:** We must provide a means of triggering authentication to enter/exit edit mode. This a simple example of how to do so.
 
+> _Tip_: Another media store worth looking into is the [`NextGithubMediaStore`](/packages/next-tinacms-github/#nextgithubmediastore). It is an extension of `GithubMediaStore`, with adjustments to the methods to account for how Next.js handles media files.
+
 **pages/\_app.tsx**
 
 ```tsx,copy
