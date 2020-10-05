@@ -191,7 +191,7 @@ When using the [render props pattern](https://reactjs.org/docs/render-props.html
 
 With this new API, the render child is always passed a `src`, and the field handles whether `src` should be the return value from the `previewSrc` function (when the CMS is enabled), or the value in the data source.
 
-> Note that if you're using [gatsby-image](\[https://www.gatsbyjs.com/plugins/gatsby-image/\](https://www.gatsbyjs.com/plugins/gatsby-image/)), you'll still need to provide a backup `src` value as the path to the image is _transformed_ and does not reflect the value in the data source.
+> Note that if you're using [gatsby-image](https://www.gatsbyjs.com/plugins/gatsby-image/), you'll still need to provide a backup `src` value as the path to the image is _transformed_ and does not reflect the value in the data source.
 
 **Before**
 
