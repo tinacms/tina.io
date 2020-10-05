@@ -32,7 +32,7 @@ new TinaCMS({
 })
 ```
 
-After
+**After**
 
 ```tsx
 new TinaCMS({
