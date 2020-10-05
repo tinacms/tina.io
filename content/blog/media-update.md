@@ -1,5 +1,5 @@
 ---
-title: Adding a Media Manager to Tina
+title: Introducing the TinaCMS Media Manager
 date: '2020-10-02T10:20:39-04:00'
 author: Kendall Strautman
 last_edited: '2020-10-05T01:23:41.347Z'
