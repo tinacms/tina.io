@@ -2,9 +2,8 @@
 title: Adding a Media Manager to Tina
 date: '2020-10-02T10:20:39-04:00'
 author: Kendall
-last_edited: '2020-10-02T15:10:14.859Z'
+last_edited: '2020-10-05T01:14:51.446Z'
 ---
-
 Websites today contain more dog GIFs and landscape hero photos than ever. Content editors need a way to work with that media when creating and updating web pages, blogs, or articles.
 
 Up until now, media changes with Tina have been handled through image fields. By clicking on the field, editors could upload new images from their local filesystem. Developers would register a [Media Store](/docs/media/#media-store) to the CMS that would handle uploading files. However, there was no way to view images that had already been uploaded to use them in a piece of content.
@@ -21,7 +20,7 @@ Along the way, we've made some significant changes to the media and image field 
 
 ### Adding a media store
 
-We [graduated media](https://github.com/tinacms/tinacms/issues/1459) to a core CMS concept. You can now define the store directly as `media` when you instantiate a media store in the CMS constructor.
+Now that the interface for using media with the CMS is better understood, we've decided to streamline the API for adding a media store to the CMS. Where media stores were previously registered to `cms.media.store` in the CMS config, they should now just be registered to `cms.media`.
 
 Before
 
@@ -45,33 +44,33 @@ new TinaCMS({
 
 3 new attributes were added to the individual [`Media` object interface](/docs/media/#media).
 
-- `type` : Denotes whether the media item is a [file or a directory](https://github.com/tinacms/tinacms/issues/1452).
-- `id`: A unique identifier for this file, typically the full path to the file.
-- `previewSrc`: A URL to source a preview image.
+* `type` : Denotes whether the media item is a [file or a directory](https://github.com/tinacms/tinacms/issues/1452).
+* `id`: A unique identifier for this file, typically the full path to the file.
+* `previewSrc`: A URL to source a preview image.
 
 ### Media Store
 
 Two new attributes were added to the [Media Store](/docs/media/#media-store) interface.
 
-- `list`: This function provides a list of available items for the media manager to render.
-- `delete`: This function deletes media files.
+* `list`: This function provides a list of available items for the media manager to render.
+* `delete`: This function deletes media files.
 
 ### Events
 
 We added many [new events](https://github.com/tinacms/tinacms/pull/1474) to mark the asynchronous methods used for media management. Use these media events to track media changes or states within your CMS and trigger feedback to the user. Read the [documentation](/docs/events) to learn how to subscribe to and interact with events.
 
-- `media:upload:start`
-- `media:upload:success`
-- `media:upload:failure`
-- `media:list:start`
-- `media:list:success`
-- `media:list:failure`
-- `media:delete:start`
-- `media:delete:success`
-- `media:delete:failure`
-- `media:previewSrc:start`
-- `media:previewSrc:success`
-- `media:previewSrc:failure`
+* `media:upload:start`
+* `media:upload:success`
+* `media:upload:failure`
+* `media:list:start`
+* `media:list:success`
+* `media:list:failure`
+* `media:delete:start`
+* `media:delete:success`
+* `media:delete:failure`
+* `media:previewSrc:start`
+* `media:previewSrc:success`
+* `media:previewSrc:failure`
 
 ### Image Fields
 
@@ -129,7 +128,7 @@ The breaking changes are mostly related to both inline and regular image field c
 
 ### _previewSrc_
 
-The `previewSrc` function provides a URL for the image source when the CMS is enabled. This function is implemented by the [media store default](<[https://github.com/tinacms/tinacms/pull/1386](https://github.com/tinacms/tinacms/pull/1386)>) or can be overridden on a field-by-field basis.
+The `previewSrc` function provides a URL for the image source when the CMS is enabled. This function is implemented by the [media store default](\[https://github.com/tinacms/tinacms/pull/1386\](https://github.com/tinacms/tinacms/pull/1386)) or can be overridden on a field-by-field basis.
 
 We unified the `previewSrc` interface between [`MediaStore`](/docs/media#media-store), [`InlineImage`](/docs/ui/inline-editing/inline-image/), and the regular [image field](/docs/plugins/fields/images).
 
@@ -186,11 +185,11 @@ parse: media => `/images/${media.filename}`
 
 ### _InlineImage_ render child props
 
-When using the [render props pattern](<[https://reactjs.org/docs/render-props.html](https://reactjs.org/docs/render-props.html)>) to configure an inline image field, there was some inconsistency with the props the render child received depending on whether the CMS was enabled. This forced developers to provide a backup source and account for whether props were being passed at all.
+When using the [render props pattern](\[https://reactjs.org/docs/render-props.html\](https://reactjs.org/docs/render-props.html)) to configure an inline image field, there was some inconsistency with the props the render child received depending on whether the CMS was enabled. This forced developers to provide a backup source and account for whether props were being passed at all.
 
 With this new API, the render child is always passed a `src`, and the field handles whether `src` should be the return value from the `previewSrc` function (when the CMS is enabled), or the value in the data source.
 
-> Note that if you're using [gatsby-image](<[https://www.gatsbyjs.com/plugins/gatsby-image/](https://www.gatsbyjs.com/plugins/gatsby-image/)>), you'll still need to provide a backup `src` value as the path to the image is _transformed_ and does not reflect the value in the data source.
+> Note that if you're using [gatsby-image](\[https://www.gatsbyjs.com/plugins/gatsby-image/\](https://www.gatsbyjs.com/plugins/gatsby-image/)), you'll still need to provide a backup `src` value as the path to the image is _transformed_ and does not reflect the value in the data source.
 
 **Before**
 
