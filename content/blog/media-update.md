@@ -1,25 +1,26 @@
 ---
-title: Media Management
+title: Adding a Media Manager to Tina
 date: '2020-10-02T10:20:39-04:00'
 author: Kendall
-last_edited: '2020-10-02T15:10:14.859Z'
+last_edited: '2020-10-05T01:23:41.347Z'
 ---
+Websites today contain more dog GIFs and landscape hero photos than ever. Content editors need a way to work with that media when creating and updating web pages, blogs, or articles.
 
-Media management is a fundamental feature of a CMS. Websites today contain more dog GIFs and landscape hero photos than ever. Content editors need a way to work with that media when creating and updating web pages, blogs, or articles.
+Up until now, media changes with Tina have been handled through image fields. By clicking on the field, editors could upload new images from their local filesystem. Developers would register a [Media Store](/docs/media/#media-store) to the CMS that would handle uploading files. However, there was no way to view images that had already been uploaded to use them in a piece of content.
 
-Up until now, media changes were handled solely through image fields. By clicking on the field, the editors could upload new images from their local filesystem. There was a 'store' uploading and handling previously added images under the hood, but editors had no way of interacting with that store.
+Our latest release has addressed this limitation, and added a **Media Management Interface!**
 
 ![media-manager-image](/img/media-manager-ui.png)
 
-In [this cycle](https://github.com/tinacms/tinacms/blob/master/ROADMAP.md#process), the Tina Team focused on creating a media manager UI for media stores. The media manager allows editors to upload, delete, and browse media files and directories. File upload can occur via drag and drop directly onto the manager UI or by clicking the 'Upload' button. (add this to the docs)
+Over [the last several weeks](https://github.com/tinacms/tinacms/blob/master/ROADMAP.md#process), the Tina team has been focused on improving media management. This media manager allows editors to upload, delete, and browse media files and directories. File upload can occur via drag and drop directly onto the media list or by clicking the **Upload** button.
 
-Along the way, we've made some significant changes to the media and image field APIs to improve the overall experience of working with media. This post outlines all of the features and breaking changes that were released (TODO insert date and release #).
+Along the way, we've made some significant changes to the media and image field APIs to improve the overall experience of working with media. This post outlines all of the new features and breaking changes.
 
 ## Features & Improvements
 
 ### Adding a media store
 
-We [graduated media](https://github.com/tinacms/tinacms/issues/1459) to a core CMS concept. You can now define the store directly as `media` when you instantiate a media store in the CMS constructor.
+Now that the interface for using media with the CMS is better understood, we've decided to streamline the API for adding a media store to the CMS. Where media stores were previously registered to `cms.media.store` in the CMS config, they should now just be registered to `cms.media`.
 
 Before
 
@@ -43,33 +44,35 @@ new TinaCMS({
 
 3 new attributes were added to the individual [`Media` object interface](/docs/media/#media).
 
-- `type` : Denotes whether the media item is a [file or a directory](https://github.com/tinacms/tinacms/issues/1452).
-- `id`: A unique identifier for this file, typically the full path to the file.
-- `previewSrc`: A URL to source a preview image.
+* `type` : Denotes whether the media item is a [file or a directory](https://github.com/tinacms/tinacms/issues/1452).
+* `id`: A unique identifier for this file, typically the full path to the file.
+* `previewSrc`: A URL to source a preview image. This attribute is optional, but should be included in the return values of a media store's `list` function in order to display preview images in the media listing.
 
 ### Media Store
 
-Two new attributes were added to the [Media Store](/docs/media/#media-store) interface.
+Two new methods were added to the [Media Store](/docs/media/#media-store) interface.
 
-- `list`: This function provides a list of available items for the media manager to render.
-- `delete`: This function deletes media files.
+* `list`: This function provides a paginated list of available items for the media manager to render.
+* `delete`: This function deletes a media file.
+
+These methods are **required** in order to satisfy the `MediaStore` interface. All media stores available in `tinacms` have been updated to support these methods, but if you have created a custom store, you will need to implement these yourself when updating.
 
 ### Events
 
 We added many [new events](https://github.com/tinacms/tinacms/pull/1474) to mark the asynchronous methods used for media management. Use these media events to track media changes or states within your CMS and trigger feedback to the user. Read the [documentation](/docs/events) to learn how to subscribe to and interact with events.
 
-- `media:upload:start`
-- `media:upload:success`
-- `media:upload:failure`
-- `media:list:start`
-- `media:list:success`
-- `media:list:failure`
-- `media:delete:start`
-- `media:delete:success`
-- `media:delete:failure`
-- `media:previewSrc:start`
-- `media:previewSrc:success`
-- `media:previewSrc:failure`
+* `media:upload:start`
+* `media:upload:success`
+* `media:upload:failure`
+* `media:list:start`
+* `media:list:success`
+* `media:list:failure`
+* `media:delete:start`
+* `media:delete:success`
+* `media:delete:failure`
+* `media:previewSrc:start`
+* `media:previewSrc:success`
+* `media:previewSrc:failure`
 
 ### Image Fields
 
@@ -121,13 +124,13 @@ const StyledInlineImage = styled(InlineImage)`
 
 ## Breaking Changes
 
-We don't take the introduction of breaking changes lightly. We believe many of these changes are obvious API improvements. The end result of providing media management for content editors is worth the cost of upgrading.
+We don't take the introduction of breaking changes lightly. We believe many of these changes are obvious API improvements, and that the new media management UI is worth the cost of upgrading.
 
-The breaking changes are mostly related to both inline and regular image field configuration. Use the below notes as a migration guide to upgrade your projects to the latest release **TODO: insert release#**.
+The breaking changes are mostly related to both inline and regular image field configuration. Use the below notes as a migration guide to upgrade your projects to the latest release:
 
 ### _previewSrc_
 
-The `previewSrc` function provides a URL for the image source when the CMS is enabled. This function is implemented by the [media store default](<[https://github.com/tinacms/tinacms/pull/1386](https://github.com/tinacms/tinacms/pull/1386)>) or can be overridden on a field-by-field basis.
+The `previewSrc` function provides a URL for the image source when the CMS is enabled. This function is implemented by the [media store default](\[https://github.com/tinacms/tinacms/pull/1386\](https://github.com/tinacms/tinacms/pull/1386)) or can be overridden on a field-by-field basis.
 
 We unified the `previewSrc` interface between [`MediaStore`](/docs/media#media-store), [`InlineImage`](/docs/ui/inline-editing/inline-image/), and the regular [image field](/docs/plugins/fields/images).
 
@@ -162,7 +165,7 @@ The breaking change is that the additional arguments are now passed to `previewS
 
 <!-- This example could be more instructive...-->
 
-Since the media store's implementation of `previewSrc` is called by default, you can remove the `previewSrc` option from your image field configs entirely. Reference the particular media store's implementation of `previewSrc` to see if it suits your needs.
+Media stores can implement a catch-all `previewSrc` method that will be run if a field does not define its own `previewSrc`. If you're using a media store provided by a Tina package, or using one that otherwise defines a `previewSrc`, you can probably remove your field's custom `previewSrc` method entirely.
 
 ### _parse_
 
@@ -184,11 +187,11 @@ parse: media => `/images/${media.filename}`
 
 ### _InlineImage_ render child props
 
-When using the [render props pattern](<[https://reactjs.org/docs/render-props.html](https://reactjs.org/docs/render-props.html)>) to configure an inline image field, there was some inconsistency with the props the render child received depending on whether the CMS was enabled. This forced developers to provide a backup source and account for whether props were being passed at all.
+When using the [render props pattern](\[https://reactjs.org/docs/render-props.html\](https://reactjs.org/docs/render-props.html)) to configure an inline image field, there was some inconsistency with the props the render child received depending on whether the CMS was enabled. This forced developers to provide a backup source and account for whether props were being passed at all.
 
 With this new API, the render child is always passed a `src`, and the field handles whether `src` should be the return value from the `previewSrc` function (when the CMS is enabled), or the value in the data source.
 
-> Note that if you're using [gatsby-image](<[https://www.gatsbyjs.com/plugins/gatsby-image/](https://www.gatsbyjs.com/plugins/gatsby-image/)>), you'll still need to provide a backup `src` value as the path to the image is _transformed_ and does not reflect the value in the data source.
+> Note that if you're using [gatsby-image](\[https://www.gatsbyjs.com/plugins/gatsby-image/\](https://www.gatsbyjs.com/plugins/gatsby-image/)), you'll still need to provide a backup `src` value as the path to the image is _transformed_ and does not reflect the value in the data source.
 
 **Before**
 
@@ -218,7 +221,7 @@ With this new API, the render child is always passed a `src`, and the field hand
 
 ### Wysiwyg Images
 
-For the rest of the cycle, we will focus on improving the previously mentioned changes and refactoring the Wysiwyg to connect with the media manager. Expect some additional breaking changes to align the Wysiwyg image implementation with the Media Store and other image fields.
+For the rest of the cycle, we will focus on improving the previously mentioned changes and refactoring the WYSIWYG to connect with the media manager. Expect some additional breaking changes to align the WYSIWYG image implementation with the Media Store and other image fields.
 
 ### Extending Media Stores
 
