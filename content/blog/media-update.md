@@ -2,7 +2,7 @@
 title: Adding a Media Manager to Tina
 date: '2020-10-02T10:20:39-04:00'
 author: Kendall
-last_edited: '2020-10-05T01:14:51.446Z'
+last_edited: '2020-10-05T01:18:15.503Z'
 ---
 Websites today contain more dog GIFs and landscape hero photos than ever. Content editors need a way to work with that media when creating and updating web pages, blogs, or articles.
 
@@ -46,14 +46,16 @@ new TinaCMS({
 
 * `type` : Denotes whether the media item is a [file or a directory](https://github.com/tinacms/tinacms/issues/1452).
 * `id`: A unique identifier for this file, typically the full path to the file.
-* `previewSrc`: A URL to source a preview image.
+* `previewSrc`: A URL to source a preview image. This attribute is optional, but should be included in the return values of a media store's `list` function in order to display preview images in the media listing.
 
 ### Media Store
 
-Two new attributes were added to the [Media Store](/docs/media/#media-store) interface.
+Two new methods were added to the [Media Store](/docs/media/#media-store) interface.
 
-* `list`: This function provides a list of available items for the media manager to render.
-* `delete`: This function deletes media files.
+* `list`: This function provides a paginated list of available items for the media manager to render.
+* `delete`: This function deletes a media file.
+
+These methods are **required** in order to satisfy the `MediaStore` interface. All media stores available in `tinacms` have been updated to support these methods, but if you have created a custom store, you will need to implement these yourself when updating.
 
 ### Events
 
