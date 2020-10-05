@@ -185,8 +185,43 @@ This is exactly how the [`NextGithubMediaStore`](https://github.com/tinacms/tina
 
 ## Media Manager
 
-The media manager is an interface for interacting with the Media Store. The media manager can be accessed by clicking on image fields, or through the [global form menu](/docs/plugins/screens/#name-icon--component).
-
 ![tinacms-media-manager](/img/media-manager-ui.png)
 
-The manager lists all the available files and directories in the store. When entering the media manager from an image field, editors can select or upload an image to _insert_ into the field. When entering from the global menu, editors can delete media files.
+The media manager is an interface for interacting with a media store. It lists all the available files and directories in the store.
+
+### Using the Media Manager
+
+The media manager is opened when a user clicks on an image field. It is also registered as a [screen plugin](/docs/plugins/screens/#name-icon--component) and can be accessed via the global menu. When entering the media manager from an image field, editors can select or upload an image to _insert_ into the field. When entering from the global menu, editors can delete media files.
+
+### Programmatic Access
+
+If needed, you can open the media manager by calling `cms.media.open`:
+
+```ts
+import { useCMS } from 'tinacms'
+
+const OpenMediaManagerButton = () => {
+  const cms = useCMS()
+  return (
+    <button
+      type="button"
+      onClick={() => {
+        cms.media.open()
+      }}
+    >
+      Open Media Manager
+    </button>
+  )
+}
+```
+
+You can optionally specify a `directory` that the media manager will open to, as well as an `onSelect` function that can do something with a media object when the user clicks the **Insert** button (an **Insert** button will not appear next to eligible media items when an `onSelect` function is not specified.)
+
+```ts
+cms.media.open({
+  directory: '/uploads',
+  onSelect: media => {
+    console.log(`Selected ${media.id}`)
+  },
+})
+```
