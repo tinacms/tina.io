@@ -2,7 +2,7 @@
 title: Adding a Media Manager to Tina
 date: '2020-10-02T10:20:39-04:00'
 author: Kendall
-last_edited: '2020-10-05T01:18:15.503Z'
+last_edited: '2020-10-05T01:23:08.161Z'
 ---
 Websites today contain more dog GIFs and landscape hero photos than ever. Content editors need a way to work with that media when creating and updating web pages, blogs, or articles.
 
@@ -124,9 +124,9 @@ const StyledInlineImage = styled(InlineImage)`
 
 ## Breaking Changes
 
-We don't take the introduction of breaking changes lightly. We believe many of these changes are obvious API improvements. The end result of providing media management for content editors is worth the cost of upgrading.
+We don't take the introduction of breaking changes lightly. We believe many of these changes are obvious API improvements, and that the new media management UI is worth the cost of upgrading.
 
-The breaking changes are mostly related to both inline and regular image field configuration. Use the below notes as a migration guide to upgrade your projects to the latest release **TODO: insert release#**.
+The breaking changes are mostly related to both inline and regular image field configuration. Use the below notes as a migration guide to upgrade your projects to the latest release:
 
 ### _previewSrc_
 
@@ -165,7 +165,7 @@ The breaking change is that the additional arguments are now passed to `previewS
 
 <!-- This example could be more instructive...-->
 
-Since the media store's implementation of `previewSrc` is called by default, you can remove the `previewSrc` option from your image field configs entirely. Reference the particular media store's implementation of `previewSrc` to see if it suits your needs.
+Media stores can implement a catch-all `previewSrc` method that will be run if a field does not define its own `previewSrc`. If you're using a media store provided by a Tina package, or using one that otherwise defines a `previewSrc`, you can probably remove your field's custom `previewSrc` method entirely.
 
 ### _parse_
 
