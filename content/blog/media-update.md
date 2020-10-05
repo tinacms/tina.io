@@ -98,8 +98,8 @@ Another improvement is the ability to [extend styles](/docs/ui/inline-editing/#e
   name="frontmatter.image.src"
   uploadDir={() => '/public/images/'}
   parse={media => media.id}
-  className="inline-img"
   alt={data.frontmatter.image.alt}
+  className="inline-img" 
 />
 
 // Example CSS
