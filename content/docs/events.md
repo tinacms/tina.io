@@ -90,14 +90,26 @@ Note that the string `plugins`is equivalent to `plugins:*` or `plugins:*:*`.
 
 ### _tinacms_
 
-| Type                     | Description                                    |
-| ------------------------ | ---------------------------------------------- |
-| `cms:enable`             | The CMS has been enabled.                      |
-| `cms:disable`            | The CMS has been disabled                      |
-| `sidebar:opened`         | The Sidebar has been opened                    |
-| `sidebar:closed`         | The Sidebar has been closed.                   |
-| `plugin:add:{__type}`    | A Plugin of a given `__type` has been added.   |
-| `plugin:remove:{__type}` | A Plugin of a given `__type` has been removed. |
+| Type                       | Description                                           |
+| -------------------------- | ----------------------------------------------------- |
+| `cms:enable`               | The CMS has been enabled.                             |
+| `cms:disable`              | The CMS has been disabled                             |
+| `sidebar:opened`           | The Sidebar has been opened                           |
+| `sidebar:closed`           | The Sidebar has been closed.                          |
+| `plugin:add:{__type}`      | A Plugin of a given `__type` has been added.          |
+| `plugin:remove:{__type}`   | A Plugin of a given `__type` has been removed.        |
+| `media:upload:start`       | A media file upload has begun.                        |
+| `media:upload:success`     | A media file was successfully uploaded.               |
+| `media:upload:failure`     | A media file upload failed.                           |
+| `media:list:start`         | A call to list available media items has been made.   |
+| `media:list:success`       | The call to list media items was successful.          |
+| `media:list:failure`       | The call to list media items failed.                  |
+| `media:delete:start`       | A media file is attempting to be deleted.             |
+| `media:delete:success`     | A media file was successfully deleted.                |
+| `media:delete:failure`     | The attempt to delete a media file failed.            |
+| `media:previewSrc:start`   | A `previewSrc` is being generated for a media file.   |
+| `media:previewSrc:success` | The call to `previewSrc` successfully returned a url. |
+| `media:previewSrc:failure` | A `previewSrc` failed to be generated.                |
 
 ### _react-tinacms-github_
 
@@ -117,12 +129,14 @@ Below is an example of how you might subscribe to the `git:commit` event in your
 
 **Example**
 
-    React.useEffect(() => {
-      cms.events.subscribe("git:commit", function handleCommitAlerts(event) {
-        if (!event.response.ok) {
-          cms.alerts.error("Something went wrong! Changes weren't saved")
-        } else {
-          cms.alerts.info("Content saved successfully!")
-        }
-       })
-    }, [])
+```jsx
+React.useEffect(() => {
+  cms.events.subscribe('git:commit', function handleCommitAlerts(event) {
+    if (!event.response.ok) {
+      cms.alerts.error("Something went wrong! Changes weren't saved")
+    } else {
+      cms.alerts.info('Content saved successfully!')
+    }
+  })
+}, [])
+```

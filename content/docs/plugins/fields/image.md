@@ -21,23 +21,23 @@ interface ImageConfig {
   name: string
   label?: string
   description?: string
-  parse(filename: string): string
-  previewSrc(formValues: any): string
-  uploadDir(formValues: any): string
+  parse(media: Media): string
+  previewSrc(formValues: any)?: string
+  uploadDir(formValues: any)?: string
 }
 ```
 
 ---
 
-| Key           | Description                                                                                                                                                                                                 |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `component`   | The name of the plugin component. Always `'image'`.                                                                                                                                                         |
-| `name`        | The path to some value in the data being edited.                                                                                                                                                            |
-| `label`       | A human readable label for the field. Defaults to the `name`. _(Optional)_                                                                                                                                  |
-| `description` | Description that expands on the purpose of the field or prompts a specific action. _(Optional)_                                                                                                             |
-| `parse`       | Defines how the actual front matter or data value gets populated. The name of the file gets passed as an argument, and one can set the path this image as defined by the uploadDir property.                |
-| `previewSrc`  | Defines the path for the src attribute on the image preview. If using gatsby-image, the path to the `childImageSharp.fluid.src` needs to be provided.                                                       |
-| `uploadDir`   | Defines the upload directory for the image. All of the post data is passed in, `fileRelativePath` is most useful in defining the upload directory, but you can also statically define the upload directory. |
+| Key           | Description                                                                                                                                                                                                              |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `component`   | The name of the plugin component. Always `'image'`.                                                                                                                                                                      |
+| `name`        | The path to some value in the data being edited.                                                                                                                                                                         |
+| `label`       | A human readable label for the field. Defaults to the `name`. _(Optional)_                                                                                                                                               |
+| `description` | Description that expands on the purpose of the field or prompts a specific action. _(Optional)_                                                                                                                          |
+| `parse`       | Defines how the actual front matter or data value gets populated. The [media object](/docs/media#media) gets passed as an argument, and one can set the path this image as defined by the uploadDir property.            |
+| `previewSrc`  | Defines the path for the src attribute on the image preview. If using gatsby-image, the path to the `childImageSharp.fluid.src` needs to be provided. \_(Optional)                                                       |
+| `uploadDir`   | Defines the upload directory for the image. All of the post data is passed in, `fileRelativePath` is most useful in defining the upload directory, but you can also statically define the upload directory. \_(Optional) |
 
 ---
 

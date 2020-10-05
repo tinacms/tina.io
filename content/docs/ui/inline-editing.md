@@ -9,6 +9,7 @@ consumes:
     description: InlineField
 last_edited: '2020-09-24T17:03:21.138Z'
 ---
+
 _Inline Editing_ in Tina refers to editing values directly in the area they appear on the page, instead of in the Tina sidebar. These are the **general steps** to set up inline editing:
 
 1. [Configure ](/docs/ui/inline-editing#adding-inline-editing-with-inlineform)_[InlineForm](/docs/ui/inline-editing#adding-inline-editing-with-inlineform)_
@@ -82,12 +83,12 @@ All Inline Fields expect a `name` prop, as with regular [Tina Fields](/docs/plug
 
 Currently, these supported Inline Fields available:
 
-* [Inline Text](/docs/ui/inline-editing/inline-text)
-* [Inline Textarea](/docs/ui/inline-editing/inline-textarea)
-* [Inline Wysiwyg](/docs/ui/inline-editing/inline-wysiwyg)
-* [Inline Image](/docs/ui/inline-editing/inline-image)
-* [Inline Group](/docs/ui/inline-editing/inline-group)
-* [Inline Blocks](/docs/ui/inline-editing/inline-blocks)
+- [Inline Text](/docs/ui/inline-editing/inline-text)
+- [Inline Textarea](/docs/ui/inline-editing/inline-textarea)
+- [Inline Wysiwyg](/docs/ui/inline-editing/inline-wysiwyg)
+- [Inline Image](/docs/ui/inline-editing/inline-image)
+- [Inline Group](/docs/ui/inline-editing/inline-group)
+- [Inline Blocks](/docs/ui/inline-editing/inline-blocks)
 
 ## Creating Custom Inline Fields
 
@@ -187,6 +188,7 @@ Notice how the new component, `StyledText` is just a _styled_ version of `Inline
 
 You can also extend styles by assigning a `className` to the Inline Field.
 
+```jsx
     // In an Inline Form
     <InlineImage
       name="frontmatter.image"
@@ -194,20 +196,21 @@ You can also extend styles by assigning a `className` to the Inline Field.
       parse={media => media.id}
       className="inline-img"
     />
-    
+
     // Style via className in css
     .inline-img {
       background-color: pink;
     }
+```
 
 ### Fields Available to Extend Styles
 
-* [Inline Text](/docs/ui/inline-editing/inline-text)
-* [Inline Textarea]()
-* [Inline Blocks](/docs/ui/inline-editing/inline-blocks)
-* [Inline Image](/docs/ui/inline-editing/inline-image)
+- [Inline Text](/docs/ui/inline-editing/inline-text)
+- [Inline Textarea]()
+- [Inline Blocks](/docs/ui/inline-editing/inline-blocks)
+- [Inline Image](/docs/ui/inline-editing/inline-image)
 
 ## Additional Reading
 
-* A guide — [Working With Inline Blocks](/guides/general/inline-blocks/overview)
-* `react-tinacms-inline` package [documentation](/docs/ui/inline-editing/inline-textarea)
+- A guide — [Working With Inline Blocks](/guides/general/inline-blocks/overview)
+- `react-tinacms-inline` package [documentation](/docs/ui/inline-editing/inline-textarea)
