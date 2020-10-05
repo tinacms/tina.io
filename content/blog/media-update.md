@@ -1,19 +1,21 @@
 ---
-title: Media Management
+title: Adding a Media Manager to Tina
 date: '2020-10-02T10:20:39-04:00'
 author: Kendall
 last_edited: '2020-10-02T15:10:14.859Z'
 ---
 
-Media management is a fundamental feature of a CMS. Websites today contain more dog GIFs and landscape hero photos than ever. Content editors need a way to work with that media when creating and updating web pages, blogs, or articles.
+Websites today contain more dog GIFs and landscape hero photos than ever. Content editors need a way to work with that media when creating and updating web pages, blogs, or articles.
 
-Up until now, media changes were handled solely through image fields. By clicking on the field, the editors could upload new images from their local filesystem. There was a 'store' uploading and handling previously added images under the hood, but editors had no way of interacting with that store.
+Up until now, media changes with Tina have been handled through image fields. By clicking on the field, editors could upload new images from their local filesystem. Developers would register a [Media Store](/docs/media/#media-store) to the CMS that would handle uploading files. However, there was no way to view images that had already been uploaded to use them in a piece of content.
+
+Our latest release has addressed this limitation, and added a **Media Management Interface!**
 
 ![media-manager-image](/img/media-manager-ui.png)
 
-In [this cycle](https://github.com/tinacms/tinacms/blob/master/ROADMAP.md#process), the Tina Team focused on creating a media manager UI for media stores. The media manager allows editors to upload, delete, and browse media files and directories. File upload can occur via drag and drop directly onto the manager UI or by clicking the 'Upload' button. (add this to the docs)
+Over [the last several weeks](https://github.com/tinacms/tinacms/blob/master/ROADMAP.md#process), the Tina team has been focused on improving media management. This media manager allows editors to upload, delete, and browse media files and directories. File upload can occur via drag and drop directly onto the media list or by clicking the **Upload** button.
 
-Along the way, we've made some significant changes to the media and image field APIs to improve the overall experience of working with media. This post outlines all of the features and breaking changes that were released (TODO insert date and release #).
+Along the way, we've made some significant changes to the media and image field APIs to improve the overall experience of working with media. This post outlines all of the new features and breaking changes.
 
 ## Features & Improvements
 
