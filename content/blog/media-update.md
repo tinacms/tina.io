@@ -130,7 +130,7 @@ The breaking changes are mostly related to both inline and regular image field c
 
 ### _previewSrc_
 
-The `previewSrc` function provides a URL for the image source when the CMS is enabled. This function is implemented by the [media store default](\[https://github.com/tinacms/tinacms/pull/1386\](https://github.com/tinacms/tinacms/pull/1386)) or can be overridden on a field-by-field basis.
+The `previewSrc` function provides a URL for the image source when the CMS is enabled. This function is implemented by the [media store default](https://github.com/tinacms/tinacms/pull/1386) or can be overridden on a field-by-field basis.
 
 We unified the `previewSrc` interface between [`MediaStore`](/docs/media#media-store), [`InlineImage`](/docs/ui/inline-editing/inline-image/), and the regular [image field](/docs/plugins/fields/images).
 
