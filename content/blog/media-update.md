@@ -22,7 +22,7 @@ Along the way, we've made some significant changes to the media and image field 
 
 Now that the interface for using media with the CMS is better understood, we've decided to streamline the API for adding a media store to the CMS. Where media stores were previously registered to `cms.media.store` in the CMS config, they should now just be registered to `cms.media`.
 
-Before
+**Before**
 
 ```tsx
 new TinaCMS({
