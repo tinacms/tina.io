@@ -187,7 +187,7 @@ parse: media => `/images/${media.filename}`
 
 ### _InlineImage_ render child props
 
-When using the [render props pattern](\[https://reactjs.org/docs/render-props.html\](https://reactjs.org/docs/render-props.html)) to configure an inline image field, there was some inconsistency with the props the render child received depending on whether the CMS was enabled. This forced developers to provide a backup source and account for whether props were being passed at all.
+When using the [render props pattern](https://reactjs.org/docs/render-props.html) to configure an inline image field, there was some inconsistency with the props the render child received depending on whether the CMS was enabled. This forced developers to provide a backup source and account for whether props were being passed at all.
 
 With this new API, the render child is always passed a `src`, and the field handles whether `src` should be the return value from the `previewSrc` function (when the CMS is enabled), or the value in the data source.
 
