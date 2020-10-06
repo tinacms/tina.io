@@ -5,15 +5,15 @@ draft: false
 author: DJ Walker
 next: /blog/editing-on-the-cloud
 prev: /blog/jamstack-denver-talk
+last_edited: '2020-10-06T03:49:13.488Z'
 ---
-
 > "There are only two hard things in Computer Science: cache invalidation and naming things."
 
 This axiom, [attributed to Phil Karlton](http://www.tbray.org/ongoing/When/200x/2005/12/23/UPI), resonates with anyone who has spent any amount of time working with software. The post you're currently reading is, in some ways, about the latter problem.
 
 One concept that we were eager to introduce to Tina is something we refer to as **Blocks fields**. We first [introduced this concept in Forestry](https://forestry.io/blog/sawmill-layout-composer-for-hugo-and-forestry/) some time ago, and we think it’s a powerful idea. The challenge with Blocks is that it’s kind of an abstract idea, and thus was tagged with a similarly abstract name.
 
-**What are Blocks?** To put it succinctly, Blocks refers to a data structure that consists of an _array of unlike objects_. If you didn’t quite grok that, read on and I’ll do my best to explain why we introduced the Blocks concept to Tina and how it relates to other kinds of fields.
+e Blocks concept to Tina and how it relates to other kinds of fields.
 
 ## Simple Fields and Compound Fields
 
@@ -74,9 +74,9 @@ Let’s say, instead of a single name, we’re storing a list of names like this
 We could use a **Group List** here. All entities in the Group List have the same **shape**; in other words, each object in the array will have the same keys. This makes the Group List analogous to a two-dimensional data structure, like a spreadsheet or database table:
 
 | **first** | **last** |
-| --------- | -------- |
-| DJ        | Walker   |
-| Nolan     | Phillips |
+| --- | --- |
+| DJ | Walker |
+| Nolan | Phillips |
 
 ## Blocks: Like a Group List, But Different
 
