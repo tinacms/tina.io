@@ -23,7 +23,7 @@ See [here](https://nextjs.org/docs/advanced-features/custom-app) for information
 
 Feel free to reference the [example](/guides/nextjs/adding-tina/adding-tina-provider) in the previous guide using the `withTina` HOC. Or checkout the example below where the `cms` & `TinaProvider` are manually added.
 
-**pages/app.js**
+**pages/_app.js**
 
 ```js
 import React from 'react'
