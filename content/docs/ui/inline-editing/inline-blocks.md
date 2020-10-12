@@ -45,10 +45,11 @@ export function Heading(props) {
 }
 ```
 
-The _Block Component_ is passed `index`, its position in the block order, and `data`, the source data.
+The _Block Component_ is passed `name`, a unique identifier and path in the source data, `index`, its position in the block order, and `data`, the source data.
 
 ```ts
 interface BlockComponentProps {
+  name: string
   index: number
   data: any
 }
