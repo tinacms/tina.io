@@ -4,8 +4,8 @@
   font-style: normal;
   font-weight: regular;
   font-display: fallback;
-  src: url('/fonts/tunerweb-regular.eot') format('eot'),
-    url('/fonts/tunerweb-regular.woff') format('woff');
+  src: url('../../public/fonts/tunerweb-regular.eot') format('eot'),
+    url('../../public/fonts/tunerweb-regular.woff') format('woff');
 }
 
 /* Inter Regular */
@@ -14,8 +14,8 @@
   font-style: normal;
   font-weight: 400;
   font-display: fallback;
-  src: url('/fonts/Inter-Regular.woff2') format('woff2'),
-    url('/fonts/Inter-Regular.woff') format('woff');
+  src: url('../../public/fonts/Inter-Regular.woff2') format('woff2'),
+    url('../../public/fonts/Inter-Regular.woff') format('woff');
 }
 
 /* Inter Italic */
@@ -24,8 +24,8 @@
   font-style: italic;
   font-weight: 400;
   font-display: fallback;
-  src: url('/fonts/Inter-Italic.woff2') format('woff2'),
-    url('/fonts/Inter-Italic.woff') format('woff');
+  src: url('../../public/fonts/Inter-Italic.woff2') format('woff2'),
+    url('../../public/fonts/Inter-Italic.woff') format('woff');
 }
 
 /* Inter Bold */
@@ -34,6 +34,6 @@
   font-style: normal;
   font-weight: 700;
   font-display: fallback;
-  src: url('/fonts/Inter-Bold.woff2') format('woff2'),
-    url('/fonts/Inter-Bold.woff') format('woff');
+  src: url('../../public/fonts/Inter-Bold.woff2') format('woff2'),
+    url('../../public/fonts/Inter-Bold.woff') format('woff');
 }
