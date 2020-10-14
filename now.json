@@ -53,8 +53,12 @@
       "destination": "/docs/ui/inline-editing"
     },
     {
-      "source": "/guides/nextjs/github-open-authoring/initial-setup",
-      "destination": "/guides/nextjs/github/initial-setup/"
+      "source": "/guides/nextjs/github-open-authoring/",
+      "destination": "/guides/nextjs/github/"
+    },
+    {
+      "source": "/guides/nextjs/github-open-authoring/:slug*",
+      "destination": "/guides/nextjs/github/:slug*"
     },
     {
       "source": "/docs/gatsby/inline-editing",
