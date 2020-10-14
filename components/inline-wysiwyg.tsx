@@ -17,11 +17,14 @@ export function InlineWysiwyg(props: any) {
         {...props}
         sticky={'calc(var(--tina-toolbar-height) + var(--tina-padding-small))'}
         imageProps={{
-          directory: 'public/img/',
-          parse: filename => 'img/' + filename,
-          previewSrc(src: string) {
-            return cms.api.github.getDownloadUrl('/public/' + src)
-          },
+          /** uploadDir is path from 'public'
+           * as NextGithubMediaStore prepends public
+           * to the paths. `imageProps` can be overridden
+           * on the component, see blog/[slug].
+           */
+          uploadDir: () => 'img/',
+          parse: media => 'img/' + media.filename,
+          ...props.imageProps,
         }}
       />
     )
