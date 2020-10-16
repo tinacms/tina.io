@@ -1,7 +1,7 @@
 ---
 title: Creating Forms
+last_edited: '2020-10-16T18:55:27.398Z'
 ---
-
 After adding `gatsby-plugin-tinacms` to our site we can create forms by calling the `useForm` hook inside our `BlogPostTemplate` component.
 
 While there are a few helpers for creating forms depending on your data and framework, the the first hook you should get familiar with is `useForm`, as it's not Gatsby-specific and is the most generic way to register any form with the CMS.
@@ -25,7 +25,7 @@ const formConfig = {
   initialValues: data,            // populate the form with starting values
   onSubmit: (values) => {         // do something with the data when the form is submitted
     alert(`Submitting ${values.frontmatter.title}`)
-  }
+  },
   fields: [                    // define fields to appear in the form
     {
       name: 'frontmatter.title',  // field name maps to the corresponding key in initialValues
@@ -112,4 +112,4 @@ That's it — You should be able to edit the title and description of this page 
 
 ## More Info
 
-- [Tina Docs: Forms](/docs/plugins/forms)
+* [Tina Docs: Forms](/docs/plugins/forms)
