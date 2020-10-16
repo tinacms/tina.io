@@ -23,7 +23,9 @@ export function InlineWysiwyg(props: any) {
            * on the component, see blog/[slug].
            */
           uploadDir: () => 'img/',
-          parse: media => 'img/' + media.filename,
+          parse: media => {
+            return '/img/' + media.filename
+          },
           ...props.imageProps,
         }}
       />
