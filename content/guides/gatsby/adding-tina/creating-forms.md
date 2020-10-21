@@ -20,9 +20,9 @@ For details on how to configure forms, take a look at our [form configuration do
 
 ```js
 const formConfig = {
-  id: data.markdownRemark.slug,   // a unique identifier for this instance of the form
+  id: data.markdownRemark.id,   // a unique identifier for this instance of the form
   label: 'Blog Post',             // name of the form to appear in the sidebar
-  initialValues: data,            // populate the form with starting values
+  initialValues: data.markdownRemark, // populate the form with starting values
   onSubmit: (values) => {         // do something with the data when the form is submitted
     alert(`Submitting ${values.frontmatter.title}`)
   },
