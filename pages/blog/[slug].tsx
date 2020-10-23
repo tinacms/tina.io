@@ -75,7 +75,13 @@ function BlogTemplate({ file, siteConfig, prevPage, nextPage }) {
               </MetaWrap>
               <EditLink />
             </BlogMeta>
-            <InlineWysiwyg name="markdownBody">
+            <InlineWysiwyg
+              name="markdownBody"
+              imageProps={{
+                uploadDir: () => '/img/blog',
+                parse: media => `/img/blog/${media.filename}`,
+              }}
+            >
               <MarkdownContent escapeHtml={false} content={markdownBody} />
             </InlineWysiwyg>
             <LastEdited date={frontmatter.last_edited} />
