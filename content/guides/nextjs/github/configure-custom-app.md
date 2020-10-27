@@ -1,8 +1,7 @@
 ---
 title: Configure the Custom App File
-last_edited: '2020-08-04T22:42:00.334Z'
+last_edited: '2020-10-26T20:26:56.091Z'
 ---
-
 Now we will set up TinaCMS to work with the GitHub App. First, create a new file in the `pages` directory called `_app.tsx`. This is a special file in Next.js that allows us to configure a [custom app](https://nextjs.org/docs/advanced-features/custom-app). Our custom `_app.tsx` will do a few things:
 
 1. **Create the TinaCMS instance**
@@ -14,7 +13,7 @@ Now we will set up TinaCMS to work with the GitHub App. First, create a new file
 
 > _Tip_: Another media store worth looking into is the [`NextGithubMediaStore`](/packages/next-tinacms-github/#nextgithubmediastore). It is an extension of `GithubMediaStore`, with adjustments to the methods to account for how Next.js handles media files.
 
-**pages/\_app.tsx**
+**pages/_app.tsx**
 
 ```tsx,copy
 import App from 'next/app'
@@ -32,6 +31,7 @@ export default class Site extends App {
       authCallbackRoute: '/api/create-github-access-token',
       clientId: process.env.GITHUB_CLIENT_ID,
       baseRepoFullName: process.env.REPO_FULL_NAME, // e.g: tinacms/tinacms.org,
+      baseBranch: process.env.BASE_BRANCH, // e.g. 'master' or 'main' on newer repos
     })
 
     /**
@@ -126,9 +126,9 @@ It might look like nothing happened, but if all went well, a few cookies will ha
 
 ### Check for Cookies
 
-To make sure it did work, check your cookies. You should now see these four cookies: **\_\_next_preview_data**, **\_\_prerender_bypass**, **working_repo_full_name**, and **github_access_token**.
+To make sure it did work, check your cookies. You should now see these four cookies: **__next_preview_data**, **__prerender_bypass**, **working_repo_full_name**, and **github_access_token**.
 
-Those first two, **\_\_next_preview_data** and **\_\_prerender_bypass**, are for using preview mode.
+Those first two, **__next_preview_data** and **__prerender_bypass**, are for using preview mode.
 
 The **working_repo_full_name** points to the repository you'll be editing (i.e. the _Working Repo_). In this case, it should point to your repo, the original repo, because you have access to it, which we also call the _Base Repo_. Therefore your edits will go to the `master` branch.
 
