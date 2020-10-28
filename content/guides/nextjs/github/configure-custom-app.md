@@ -1,6 +1,6 @@
 ---
 title: Configure the Custom App File
-last_edited: '2020-10-28T13:37:27.384Z'
+last_edited: '2020-10-28T14:14:39.576Z'
 ---
 Now we will set up TinaCMS to work with the GitHub App. First, create a new file in the `pages` directory called `_app.tsx`. This is a special file in Next.js that allows us to configure a [custom app](https://nextjs.org/docs/advanced-features/custom-app). Our custom `_app.tsx` will do a few things:
 
@@ -126,7 +126,7 @@ It might look like nothing happened, but if all went well, a few cookies will ha
 
 ### Check for Cookies
 
-To make sure it did work, check your cookies. You should now see these four cookies: **__next_preview_data**, **__prerender_bypass**, **working_repo_full_name**, and **github_access_token**.
+To make sure it did work, check your cookies. You should now see these four cookies: **__next_preview_data**, **__prerender_bypass**, **working_repo_full_name**, and **csrf_token**.
 
 Those first two, **__next_preview_data** and **__prerender_bypass**, are for using preview mode.
 
@@ -136,7 +136,7 @@ If you didn't have access, then you would be requested to create a fork of the _
 
 ![github-create-fork-step](/img/github-open-auth-cna/create-fork-step.png)
 
-The final cookie, **github_access_token**, proves that the authentication worked, since you now have an access token for the Github APIs.
+The final cookie, **csrf_token**, proves that the authentication worked, since you now have a CSRF token that works with the access token for the Github APIs.
 
 ## Private Repositories
 
