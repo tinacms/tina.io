@@ -18,7 +18,7 @@ Now we will set up TinaCMS to work with the GitHub App. First, create a new file
 ```tsx,copy
 import App from 'next/app'
 import { TinaCMS, TinaProvider } from 'tinacms'
-import { GithubClient, TinacmsGithubProvider } from 'react-tinacms-github'
+import { GithubClient, GithubMediaStore, TinacmsGithubProvider } from 'react-tinacms-github'
 
 export default class Site extends App {
   cms: TinaCMS
