@@ -42,8 +42,8 @@ function DocTemplate(props) {
                   })
                   .map(release => {
                     return (
-                      <li>
-                        <Link href="/docs/[...slug]" as={release.slug}>
+                      <li key={release.slug}>
+                        <Link href={release.slug}>
                           <a>
                             <h4>{release.title}</h4>
                           </a>
