@@ -7071,10 +7071,10 @@ next-tick@~1.0.0:
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
-next-tinacms-github@^0.32.0:
-  version "0.32.0"
-  resolved "https://registry.yarnpkg.com/next-tinacms-github/-/next-tinacms-github-0.32.0.tgz#4c5ec4d3efc0fcf9e162d69e4e855827eee9e51b"
-  integrity sha512-j3Le45nxJoHGcshKi893HN658aNHCke7hDIKQnUCHU+qvlDb+twxACgPnSQjGVHNKUa+YbW8xPEkhjdpKWmpUQ==
+next-tinacms-github@^0.32.1:
+  version "0.32.1"
+  resolved "https://registry.yarnpkg.com/next-tinacms-github/-/next-tinacms-github-0.32.1.tgz#65d3ba8be18cd736d708a09cc6cbb9d436a46a30"
+  integrity sha512-+2mpWYNLv62AMqON9CdhzNdOoK2vWZ831ru8HRN8vXu/09Lz/ioyHPHVc/UbvtRznzsLkHT75iK8uldLGssfrg==
   dependencies:
     "@tinacms/core" "^0.32.0"
     atob "2.1.2"
@@ -7086,10 +7086,10 @@ next-tinacms-github@^0.32.0:
     react-tinacms-github "^0.32.0"
     uuid "^8.1.0"
 
-next-tinacms-json@^0.32.0:
-  version "0.32.0"
-  resolved "https://registry.yarnpkg.com/next-tinacms-json/-/next-tinacms-json-0.32.0.tgz#114cb5eb19fd8be7b4c362107a2c6841677971a8"
-  integrity sha512-7FY3KU2U82ldvinRcGHmsBPZK4YH7W7Jm03KoY6e+7uWkcKor5ZMv8/C/ZQMqzsH/6hJUcI15452YkP5c28Niw==
+next-tinacms-json@^0.32.1:
+  version "0.32.1"
+  resolved "https://registry.yarnpkg.com/next-tinacms-json/-/next-tinacms-json-0.32.1.tgz#8bc5592187bde43be153ab27b365e491b2c68b52"
+  integrity sha512-NimMDoG4RoCmbnpdNJ3unnCzskQavpVC0clf3h7mbmw8lNFVrdM2srLpV8Lp5dML0RUHg60eT/fbKDUTUbYCMQ==
 
 next-tinacms-markdown@^0.32.0:
   version "0.32.0"
@@ -8360,10 +8360,10 @@ react-tinacms-date@^0.32.0:
     moment ">=2 <=3"
     react-datetime "^2.16.3"
 
-react-tinacms-editor@^0.32.0:
-  version "0.32.0"
-  resolved "https://registry.yarnpkg.com/react-tinacms-editor/-/react-tinacms-editor-0.32.0.tgz#5f647c2f6e42913318cd5ddb2a6f82d5999e141c"
-  integrity sha512-awpOXwfLbdJj0WO+9p8NG3lscVcC4FhnWwSgj2iSoKRqtHiIlhET+9EKML6iDES+JeMO6XtGUC24ZsaIxtPgZw==
+react-tinacms-editor@^0.32.1:
+  version "0.32.1"
+  resolved "https://registry.yarnpkg.com/react-tinacms-editor/-/react-tinacms-editor-0.32.1.tgz#2d11e0feb89cec52d1b3686b3e94811c02d529ea"
+  integrity sha512-oq0WXFFOKg2pSz7J0DlGePblzMq7dh60zOre494SvWI4dm7rlpmrNJGq2MyKjq0slIstUQaVvTwPcenXsR+24Q==
   dependencies:
     codemirror "^5.42.2"
     lodash.debounce "^4.0.8"
