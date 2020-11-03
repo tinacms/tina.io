@@ -21,15 +21,17 @@ interface ToggleConfig extends FieldConfig {
   name: string
   label?: string
   description?: string
+  toggleLabels?: boolean | { true: string; false: string }
 }
 ```
 
-| Option        | Description                                                                                     |
-| ------------- | ----------------------------------------------------------------------------------------------- |
-| `component`   | The name of the plugin component. Always `'toggle'`                                             |
-| `name`        | The path to some value in the data being edited.                                                |
-| `label`       | A human readable label for the field. Defaults to the `name`. _(Optional)_                      |
-| `description` | Description that expands on the purpose of the field or prompts a specific action. _(Optional)_ |
+| Option         | Description                                                                                                                                                                                                                                                                  |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `component`    | The name of the plugin component. Always `'toggle'`                                                                                                                                                                                                                          |
+| `name`         | The path to some value in the data being edited.                                                                                                                                                                                                                             |
+| `label`        | A human readable label for the field. Defaults to the `name`. _(Optional)_                                                                                                                                                                                                   |
+| `description`  | Description that expands on the purpose of the field or prompts a specific action. _(Optional)_                                                                                                                                                                              |
+| `toggleLabels` | Customize 'labels' next to the true / false states of the toggle. When `true`, the labels default to 'Yes' and 'No'. Alternatively, you can pass an object with the properties `true` and `false` with custom strings to render as labels. _(Optional: Defaults to `false`)_ |
 
 > This interfaces only shows the keys unique to the date field.
 >
@@ -47,6 +49,10 @@ const BlogPostForm = {
       component: 'toggle',
       label: 'Published',
       description: 'Check to mark this to publish the post.',
+      toggleLabels: {
+        true: 'On',
+        false: 'Off',
+      },
     },
     // ...
   ],
