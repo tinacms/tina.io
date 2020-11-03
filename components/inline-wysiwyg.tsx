@@ -15,7 +15,7 @@ export function InlineWysiwyg(props: any) {
     return (
       <InlineWysiwyg
         {...props}
-        sticky={'calc(var(--tina-toolbar-height) + var(--tina-padding-small))'}
+        sticky='62px'
         imageProps={{
           /** uploadDir is path from 'public'
            * as NextGithubMediaStore prepends public
