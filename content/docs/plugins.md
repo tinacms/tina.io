@@ -9,7 +9,7 @@ consumes:
     descrition: Demonstrates usePlugin
   - file: /packages/@tinacms/core/src/cms.ts
     description: Demonstrates adding plugins to CMS obj
-last_edited: '2020-08-11T11:36:31.710Z'
+last_edited: '2020-11-04T21:45:43.714Z'
 ---
 **Plugins** are objects used to extend and modify the behavior of the CMS.
 
@@ -22,8 +22,7 @@ interface Plugin {
 }
 ```
 
-Beyond these properties, a plugin may contain other properties depend on it's `__type`. Here are some of the types of plugins
-currently availble:
+Beyond these properties, a plugin may contain other properties depend on it's `__type`. Here are some of the types of plugins currently available:
 
 | Plugin Type | Description |
 | --- | --- |
