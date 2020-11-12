@@ -12,7 +12,7 @@ import {
 } from 'react-tinacms-inline'
 import { EditLink } from 'components/layout/EditLink'
 import { DefaultSeo } from 'next-seo'
-import { useCMS, BlockTemplate } from 'tinacms'
+import { useCMS, BlockTemplate, usePlugin } from 'tinacms'
 import { DynamicLink } from 'components/ui/DynamicLink'
 import {
   Layout,
@@ -102,6 +102,8 @@ const HomePage = (props: any) => {
       },
     ],
   })
+
+  usePlugin(form)
 
   return (
     <InlineGithubForm form={form}>

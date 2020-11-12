@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { BlockTemplate } from 'tinacms'
 import { NextSeo } from 'next-seo'
 import { GetStaticProps } from 'next'
+import { usePlugin } from 'tinacms'
 
 import { Layout, Wrapper, RichTextWrapper } from 'components/layout'
 import { ArrowList } from 'components/ui'
@@ -53,6 +54,7 @@ const formOptions = {
 function TeamsPage(props) {
   // Adds Tina Form
   const [data, form] = useGithubJsonForm(props.file, formOptions)
+  usePlugin(form)
 
   return (
     <InlineGithubForm form={form}>
