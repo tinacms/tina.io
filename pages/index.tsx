@@ -164,18 +164,18 @@ const HomePage = (props: any) => {
               <CodeWrapper>
                 <CodeExample
                   dangerouslySetInnerHTML={{
-                    __html: `yarn add <b>gatsby-plugin-tinacms</b>
+                    __html: `yarn add <b>tinacms</b>
 
-module.exports = {
-  <span>// ...</span>
-  plugins: [
-    '<b>gatsby-plugin-tinacms</b>',
-    <span>// ...</span>
-  ],
-};
+import { <b>withTina</b> } from 'tinacms'
 
-export <b>WithTina</b>( <b>Component</b> );
-                  `,
+function MyApp({ Component, pageProps }) {
+  return <Component {...pageProps} />
+}
+
+export default <b>withTina</b>(MyApp, {
+  <b>enabled: true</b>,
+  <b>sidebar: true</b>,
+})`,
                   }}
                 ></CodeExample>
               </CodeWrapper>
@@ -288,6 +288,7 @@ const CodeWrapper = styled.div`
 
 const CodeExample = styled.code`
   display: block;
+  overflow: hidden;
   padding: 3rem;
   color: #241748;
   font-size: 1.125rem;
