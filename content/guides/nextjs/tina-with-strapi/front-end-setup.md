@@ -88,9 +88,7 @@ export default function MyApp({ Component, pageProps }) {
         apis: {
           strapi: new StrapiClient(process.env.STRAPI_URL),
         },
-        media: {
-          store: new StrapiMediaStore(process.env.STRAPI_URL),
-        },
+        media: new StrapiMediaStore(process.env.STRAPI_URL),
       }),
     []
   )
