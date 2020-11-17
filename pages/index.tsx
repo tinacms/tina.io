@@ -288,7 +288,6 @@ const CodeWrapper = styled.div`
 
 const CodeExample = styled.code`
   display: block;
-  overflow: hidden;
   padding: 3rem;
   color: #241748;
   font-size: 1.125rem;
@@ -306,10 +305,6 @@ const CodeExample = styled.code`
 
   span {
     opacity: 0.3;
-  }
-
-  @media (min-width: 1200px) {
-    font-size: 1.3725rem;
   }
 `
 
