@@ -169,7 +169,7 @@ const HomePage = (props: any) => {
 import { <b>withTina</b> } from 'tinacms'
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return &lt;Component {...pageProps} /&gt;
 }
 
 export default <b>withTina</b>(MyApp, {
@@ -292,7 +292,7 @@ const CodeExample = styled.code`
   padding: 3rem;
   color: #241748;
   font-size: 1.125rem;
-  line-height: 1.2;
+  line-height: 1.5;
   font-family: Monaco, 'Courier New', Courier, monospace;
   white-space: pre;
   filter: drop-shadow(rgba(104, 120, 125, 0.2) 0px 7px 8px);
