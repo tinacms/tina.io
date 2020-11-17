@@ -166,18 +166,18 @@ const HomePage = (props: any) => {
               <CodeWrapper>
                 <CodeExample
                   dangerouslySetInnerHTML={{
-                    __html: `yarn add <b>gatsby-plugin-tinacms</b>
+                    __html: `yarn add <b>tinacms</b>
 
-module.exports = {
-  <span>// ...</span>
-  plugins: [
-    '<b>gatsby-plugin-tinacms</b>',
-    <span>// ...</span>
-  ],
-};
+import { <b>withTina</b> } from 'tinacms'
 
-export <b>WithTina</b>( <b>Component</b> );
-                  `,
+function MyApp({ Component, pageProps }) {
+  return &lt;Component {...pageProps} /&gt;
+}
+
+export default <b>withTina</b>(MyApp, {
+  <b>enabled: true</b>,
+  <b>sidebar: true</b>,
+})`,
                   }}
                 ></CodeExample>
               </CodeWrapper>
@@ -293,7 +293,7 @@ const CodeExample = styled.code`
   padding: 3rem;
   color: #241748;
   font-size: 1.125rem;
-  line-height: 1.2;
+  line-height: 1.5;
   font-family: Monaco, 'Courier New', Courier, monospace;
   white-space: pre;
   filter: drop-shadow(rgba(104, 120, 125, 0.2) 0px 7px 8px);
@@ -307,10 +307,6 @@ const CodeExample = styled.code`
 
   span {
     opacity: 0.3;
-  }
-
-  @media (min-width: 1200px) {
-    font-size: 1.3725rem;
   }
 `
 
