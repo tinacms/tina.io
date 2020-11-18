@@ -44,7 +44,7 @@ function PageContent() {
 //...
 ```
 
-Notice how we removed `initialValues` in favor of `loadInitialValues`, which fetches data asynchronously on form creation.
+Notice how we removed `initialValues` in favor of `loadInitialValues`, which fetches data asynchronously on form creation. Learn more about handling [loading states](/docs/plugins/forms/#handling-loading-state) when `loadInitialValues` is resolving.
 
 > You can use `initialValues` when your data has already been fetched or defined before your components mount. Typically you would use this if you prefer to fetch your initial data server-side, as we do in our [Next.js + GitHub example](https://tinacms.org/guides/nextjs/github/initial-setup)
 
