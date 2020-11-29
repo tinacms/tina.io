@@ -44,7 +44,7 @@ function PageContent() {
 //...
 ```
 
-Notice how we removed `initialValues` in favor of `loadInitialValues`, which fetches data asynchronously on form creation.
+Notice how we removed `initialValues` in favor of `loadInitialValues`, which fetches data asynchronously on form creation. Learn more about handling [loading states](/docs/plugins/forms/#handling-loading-state) when `loadInitialValues` is resolving.
 
 > You can use `initialValues` when your data has already been fetched or defined before your components mount. Typically you would use this if you prefer to fetch your initial data server-side, as we do in our [Next.js + GitHub example](https://tinacms.org/guides/nextjs/github/initial-setup)
 
@@ -167,7 +167,7 @@ We’d like to provide developers with control and flexibility in all these aspe
 
 - Gain clarity with our [FAQ](/docs/getting-started/faq)
 - Set up [Inline Editing](/guides/general/inline-blocks/overview), or editing content directly on the page
-- Configure more complex fields, such as [Blocks](/docs/plugins/fields/blocks) or the [Markdown Wysiwyg](docs/plugins/fields/markdown)
+- Configure more complex fields, such as [Blocks](/docs/plugins/fields/blocks) or the [Markdown Wysiwyg](/docs/plugins/fields/markdown)
 - Create new data files with [Content Creator Plugins](/docs/plugins/content-creators)
 - Add Tina to a [Next.js Site](/guides/nextjs/adding-tina/overview)
 - Add Tina to a [Gatsby Site](guides/gatsby/adding-tina/project-setup)

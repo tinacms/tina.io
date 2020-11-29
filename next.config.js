@@ -22,7 +22,7 @@ const config = {
     BASE_REPO_FULL_NAME: process.env.BASE_REPO_FULL_NAME,
     BASE_BRANCH: process.env.BASE_BRANCH,
   },
-  exportTrailingSlash: true,
+  trailingSlash: true,
   exportPathMap: async function() {
     return {}
   },

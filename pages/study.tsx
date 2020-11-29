@@ -32,7 +32,7 @@ function StudySignupPage({ file: study, metadata, preview }) {
             description: data.meta.description,
           }}
         />
-        <Hero mini></Hero>
+        <Hero mini="true"></Hero>
         <StudyRichTextWrapper>
           <StudySection>
             <Wrapper>

@@ -70,9 +70,7 @@ First we'll enable or disable Tina based on whether we're in preview mode.
     apis: {
       strapi: new StrapiClient(process.env.STRAPI_URL),
     },
-    media: {
-      store: new StrapiMediaStore(process.env.STRAPI_URL),
-    },
+    media: new StrapiMediaStore(process.env.STRAPI_URL),
   }), []);
 ```
 

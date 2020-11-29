@@ -45,10 +45,11 @@ export function Heading(props) {
 }
 ```
 
-The _Block Component_ is passed `index`, its position in the block order, and `data`, the source data.
+The _Block Component_ is passed `name`, a unique identifier and path in the source data, `index`, its position in the block order, and `data`, the source data.
 
 ```ts
 interface BlockComponentProps {
+  name: string
   index: number
   data: any
 }
@@ -74,12 +75,12 @@ interface FocusRingProps {
 }
 ```
 
-| Key             | Description                                                                                                                                                                                                                                                                                                                        |
-| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `index`         | The index of the block associated with these controls.                                                                                                                                                                                                                                                                             |
-| `insetControls` | A boolean to denote whether the group controls display within or outside the group.                                                                                                                                                                                                                                                |
-| `focusRing`     |  Either an object to style the focus ring or a boolean to show/hide the focus ring. Defaults to `true` which displays the focus ring with default styles. For style options, `offset` (in pixels) sets the distance from the ring to the edge of the component, and `borderRadius` (in pixels) controls the [rounded corners](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius) of the focus ring.|
-| `children`      | Any child components, typically inline field(s).                                                                                                                                                                                                                                                                                   |
+| Key             | Description                                                                                                                                                                                                                                                                                                                                                                                                     |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `index`         | The index of the block associated with these controls.                                                                                                                                                                                                                                                                                                                                                          |
+| `insetControls` | A boolean to denote whether the group controls display within or outside the group.                                                                                                                                                                                                                                                                                                                             |
+| `focusRing`     | Either an object to style the focus ring or a boolean to show/hide the focus ring. Defaults to `true` which displays the focus ring with default styles. For style options, `offset` (in pixels) sets the distance from the ring to the edge of the component, and `borderRadius` (in pixels) controls the [rounded corners](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius) of the focus ring. |
+| `children`      | Any child components, typically inline field(s).                                                                                                                                                                                                                                                                                                                                                                |
 
 <!-- TODO: update image -->
 
@@ -307,16 +308,11 @@ export function Image({ data, index }) {
         <BlocksControls index={index}>
           <InlineImage
             name="src"
-            previewSrc={formValues => formValues.blocks[index].src}
-            parse={filename => `/img/${filename}`}
+            previewSrc={fieldValue => `public${fieldValue}`}
+            parse={media => `/img/${media.filename}`}
             uploadDir={() => '/public/img/'}
-          >
-            {/*
-             ** The 'alt' data from the
-             ** 'settings' is consumed
-             */}
-            <img src={data.src} alt={data.alt} />
-          </InlineImage>
+            alt={data.alt}
+          />
         </BlocksControls>
       </div>
     </>

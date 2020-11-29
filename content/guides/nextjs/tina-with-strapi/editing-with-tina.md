@@ -1,7 +1,7 @@
 ---
 title: 'Editing with Tina '
+last_edited: '2020-09-22T15:18:19.789Z'
 ---
-
 At this point, we have a blog that is pulling all its data from Strapi! You _could_ stop here and edit your blog through the Strapi management console, but this guide is about editing with Tina!
 
 ## Prepare our page
@@ -121,7 +121,7 @@ Next we need to go into the components used on this page, and wrap the content w
    </PostTitle>
 ```
 
-A little more complicated is the `InlineImage` field that we'll need to include. This field needs a bit of additional contex because it needs to know how to upload and display the image that lives in the Strapi server.
+A little more complicated is the `InlineImage` field that we'll need to include. This field needs a bit of additional context because it needs to know how to upload and display the image that lives in the Strapi server.
 
 **components/post-header.js**
 
@@ -139,14 +139,9 @@ A little more complicated is the `InlineImage` field that we'll need to include.
   <div className="mb-8 md:mb-16 -mx-5 sm:mx-0">
 -    <CoverImage title={title} src={coverImage} />
 +    <InlineImage
-+      name="coverImage.url"
-+      previewSrc={(formValues) => {
-+        process.env.STRAPI_URL + cms.media.store.getFilePath(formValues.coverImage.url)
-+      }}
-+      uploadDir={() => "/uploads"}
-+      parse={(filename) => {
-+        return `/uploads/${filename}`;
-+      }}
++      name="coverImage.id"
++      uploadDir={() => "/"}
++      parse={(media) => media.id}
 +    >
 +      {() => <img src={coverImage} alt={`Cover Image for ${title}`} />}
 +    </InlineImage>
@@ -155,7 +150,7 @@ A little more complicated is the `InlineImage` field that we'll need to include.
 
 Here we used the `useCMS` hook to get access to our CMS object. In `_app.js` we've attached a Strapi media store to this object, and we need access to that here to help us resolve image urls.
 
-🤚In order to be able to upload images you'll want to head over to Strapi's **Roles & Permissions**, then select all **uploads** and save.  
+🤚In order to be able to upload images you'll want to head over to Strapi's **Roles & Permissions**, then select all **uploads** and save.
 
 Now let's head over to `post-body.js` and wrap the content of our blog post with a WYSIWYG markdown editor. This will take care of the markdown parsing that we removed earlier.
 

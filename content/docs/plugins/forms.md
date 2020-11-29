@@ -7,22 +7,23 @@ consumes:
     description: Describes the useForm hooks
   - file: /packages/@tinacms/forms/src/form.ts
     description: Form configuration
-last_edited: '2020-08-17T20:58:43.343Z'
+last_edited: '2020-09-10T18:49:43.520Z'
 ---
+
 **Forms** in Tina are the main building blocks of your CMS. You will use Forms to:
 
-* Arrange the editing interface for your content
-* Expose your content to mutation through user edits
-* Process and persist the changes to your content
+- Arrange the editing interface for your content
+- Expose your content to mutation through user edits
+- Process and persist the changes to your content
 
 > **Use Form Helpers to Get Started Faster**
 >
 > This document explains how to set up forms in any React project. If you're using Gatsby or Next.js, we have helper packages that streamline this process for specific workflows:
 >
-> * [Editing Markdown Files with Gatsby](/guides/gatsby/git/create-remark-form)
-> * [Editing JSON Files with Gatsby](/guides/gatsby/git/create-json-form)
-> * [Editing local Markdown Files via Git with Next.js](/packages/next-tinacms-markdown)
-> * [Editing local JSON Files via Git with Next.js](/guides/nextjs/git/creating-git-forms)
+> - [Editing Markdown Files with Gatsby](/guides/gatsby/git/create-remark-form)
+> - [Editing JSON Files with Gatsby](/guides/gatsby/git/create-json-form)
+> - [Editing local Markdown Files via Git with Next.js](/packages/next-tinacms-markdown)
+> - [Editing local JSON Files via Git with Next.js](/guides/nextjs/git/creating-git-forms)
 
 The recommended way to create forms with Tina is to use the form hooks. These are explained in detail later on in this document, but let's start with a high-level overview of how form hooks are used.
 
@@ -74,7 +75,7 @@ The `useForm` hook let's you create a form, but it does not [register it](/docs/
 Here is how that hook works:
 
 ```javascript
-const [modifiedValues, form] = useForm(formConfig, watchedVars)
+const [modifiedValues, form, loadingState] = useForm(formConfig, watchedVars)
 ```
 
 ### Hook Return Values
@@ -85,16 +86,18 @@ The first piece of data returned (`modifiedValues` in the above example) is an o
 
 The second piece of data (`form` in the above example) is an form object that the hook created.
 
+The third return value is a boolean to denote [loading state](/docs/plugins/forms/#handling-loading-state) of the form.
+
 ### Form Configuration
 
 The first argument that `useForm` receives (`formConfig` in the above example) is the object used to configure the form. Forms in Tina are built upon the [Final Form](https://final-form.org/) library, and inherit all of Final Form's configuration options.
 
 You can see the all of Final Form's form config options in the [Form Config Documentation](https://final-form.org/docs/final-form/types/Config), but the following options will most commonly be used when creating a form:
 
-| key | description |
-| --- | --- |
+| key             | description                                         |
+| --------------- | --------------------------------------------------- |
 | `initialValues` | An object containing the initial state of the form. |
-| `onSubmit` | A function that runs when the form is saved. |
+| `onSubmit`      | A function that runs when the form is saved.        |
 
 In addition to Final Form's options, Tina's form hooks accept the following additional configuration options:
 
@@ -120,14 +123,14 @@ interface FormOptions<S> {
 | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | `id`                | A unique identifier for the form. This should be derived from the content to distinguish it from other instances of the form.                 |
 | `label`             | A label for the form that will appear in the sidebar.                                                                                         |
-| `fields`            | An array of fields that will define the shape of the form and how content is edited.                                              |
+| `fields`            | An array of fields that will define the shape of the form and how content is edited.                                                          |
 | `loadInitialValues` | _Optional:_ A function to load the initial form state asynchronously. Return a promise that passes an object of form values when it resolves. |
-| `onSubmit` | _Optional:_ An asynchronous function to invoke when the form is saved, i.e. when the 'Save' button is pressed. |
-| `reset` | _Optional:_ A function that runs when the form state is reset by the user via the 'Reset' button. |
-| `actions` | _Optional:_ An array of custom actions that will be added to the form. |
-| `buttons` | _Optional:_ An object to customize the 'Save' and 'Reset' button text for the form. |
-| `onChange` | _Optional:_ A function that runs when the form values are changed. |
-| `__type` | _Optional:_ Sets the Form's plugin type. Automatically set based on which form hook is used. |
+| `onSubmit`          | _Optional:_ An asynchronous function to invoke when the form is saved, i.e. when the 'Save' button is pressed.                                |
+| `reset`             | _Optional:_ A function that runs when the form state is reset by the user via the 'Reset' button.                                             |
+| `actions`           | _Optional:_ An array of custom actions that will be added to the form.                                                                        |
+| `buttons`           | _Optional:_ An object to customize the 'Save' and 'Reset' button text for the form.                                                           |
+| `onChange`          | _Optional:_ A function that runs when the form values are changed.                                                                            |
+| `__type`            | _Optional:_ Sets the Form's plugin type. Automatically set based on which form hook is used.                                                  |
 
 Now that we know how to configure a form, let's revisit the simplified example from the beginning of this document to demonstrate how we might configure this form:
 
@@ -160,7 +163,7 @@ export function Page(props) {
       // save the new form data
     },
   }
-  const [modifiedValues] = useForm(formConfig)
+  const [modifiedValues, form] = useForm(formConfig)
 
   usePlugin(form)
 
@@ -187,11 +190,11 @@ interface WatchableFormValue {
 }
 ```
 
-| key | description |
-| --- | --- |
+| key      | description                                                                                                                                                                     |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `values` | Form will update its values when this data changes, but will avoid updating a field if it has UI focus. This is useful for keeping values in sync with a remote content source. |
-| `fields` | By watching the form's fields, they can be added/removed dynamically. |
-| `label` | When the form's label is derived from a dynamic value, this will ensure it is updated correctly. |
+| `fields` | By watching the form's fields, they can be added/removed dynamically.                                                                                                           |
+| `label`  | When the form's label is derived from a dynamic value, this will ensure it is updated correctly.                                                                                |
 
 ## Registering Forms
 
@@ -302,6 +305,50 @@ export default function Home(props) {
 ```
 
 The `formOptions` defined in this example would be the [config object](/docs/cms#cms-configuration) referenced above.
+
+## Handling Loading State
+
+There are times when you may need to fetch form data asynchronously via `loadInitialValues`. When this function is called, the form's loading state is set to `true` until the promise resolves with the returned data.
+
+The loading state can be used to conditionally render a 'loading' component until the form data is available to render.
+
+```js
+import {useForm, usePlugin} from 'tinacms'
+
+export default function Page() {
+  const [data, form, loading] = useForm({
+    id: props.fileRelativePath,
+    label: 'Edit Post',
+    fields: [
+      {
+        name: 'title',
+        label: 'Title',
+        component: 'text',
+      },
+      {
+        name: 'date',
+        label: 'Date',
+        component: 'date',
+      }
+    ],
+    loadInitialValues() {
+      return fetch(exampleRequest).then(res => res.json())
+    },
+    onSubmit(formData) => {
+      // post saved form data
+    },
+  })
+
+  return (
+    {loading} ?<h1>Loading...</h1>: (
+    <section>
+      <h1>{data.title}</h1>
+      <div>{data.date}</div>
+    </section>
+    )
+  )
+}
+```
 
 ## Inline Forms
 

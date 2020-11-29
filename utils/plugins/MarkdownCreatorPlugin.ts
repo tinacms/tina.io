@@ -1,6 +1,5 @@
 import { toMarkdownString } from 'next-tinacms-markdown'
-import { CMS, Field, AddContentPlugin } from 'tinacms'
-import { GithubOptions } from 'react-tinacms-github'
+import { TinaCMS, Field, AddContentPlugin } from 'tinacms'
 import { FORM_ERROR } from 'final-form'
 import { getCachedFormData, setCachedFormData } from '../formCache'
 
@@ -68,7 +67,7 @@ export class MarkdownCreatorPlugin<FormShape = any, FrontmatterShape = any>
     this.afterCreate = options.afterCreate || null
   }
 
-  async onSubmit(form: FormShape, cms: CMS) {
+  async onSubmit(form: FormShape, cms: TinaCMS) {
     const fileRelativePath = await this.filename(form)
     const frontmatter = await this.frontmatter(form)
     const markdownBody = await this.body(form)

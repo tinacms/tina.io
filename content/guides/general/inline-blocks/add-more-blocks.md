@@ -70,24 +70,26 @@ import '../styles/images.css'
 /**
  * 1. Define the Block Component
  */
-function Images({ index }) {
+function Images({ data, index }) {
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
       <div className="wrapper">
         <div className="image-diptych">
           <InlineImage
             name="left.src"
-            parse={filename => `${filename}`}
-            uploadDir={() => '/'}
-            previewSrc={formValues => `${formValues.blocks[index].left.src}`}
+            parse={media => `/${media.filename}`}
+            uploadDir={() => '/public'}
+            previewSrc={(src) => src}
             focusRing={false}
+            alt={data.left.alt}
           />
           <InlineImage
             name="right.src"
-            parse={filename => `/${filename}`}
-            uploadDir={() => '/'}
-            previewSrc={formValues => `${formValues.blocks[index].right.src}`}
+            parse={media => `/${media.filename}`}
+            uploadDir={() => '/public'}
+            previewSrc={(src) => src}
             focusRing={false}
+            alt={data.left.alt}
           />
         </div>
       </div>
@@ -119,21 +121,9 @@ export const imagesBlock = {
         name: 'left.src',
         label: 'Left-Hand Image',
         component: 'image',
-        parse: filename => `/${filename}`,
-        uploadDir: () => '/',
-        previewSrc: (formValues, input) => {
-          /**
-           * Get index from field input. Assumes the block
-           * is only one level deep
-           */
-          const index = input.field.name.split('.')[1]
-          /**
-           * Use that index to target the correct
-           * block in `formValues`
-           */
-          const currentBlockImage = formValues.blocks[index].left.src
-          return currentBlockImage
-        },
+        parse: media => `/${media.filename}`,
+        uploadDir: () => '/public',
+        previewSrc(src) => src,
         focusRing: false,
       },
       {
@@ -145,13 +135,9 @@ export const imagesBlock = {
         name: 'right.src',
         label: 'Right-Hand Image',
         component: 'image',
-        parse: filename => `/${filename}`,
-        uploadDir: () => '/',
-        previewSrc: (formValues, input) => {
-          const index = input.field.name.split('.')[1]
-          const currentBlockImage = formValues.blocks[index].right.src
-          return currentBlockImage
-        },
+        parse: media => `/${media.filename}`,
+        uploadDir: () => '/public',
+        previewSrc(src) => src,
         focusRing: false,
       },
       {
