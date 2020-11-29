@@ -30,11 +30,19 @@
       },
       {
         "_template": "setup_point",
+        "step": "Make yourself a dang quesadilla"
+      },
+      {
+        "_template": "setup_point",
         "step": "Wrap and export your templates with Tina components specific to your data"
       },
       {
         "_template": "setup_point",
         "step": "Customize and define the content fields by passing an options argument"
+      },
+      {
+        "_template": "setup_point",
+        "step": "Make yourself a dang quesadilla"
       },
       {
         "_template": "setup_point",
