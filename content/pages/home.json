@@ -8,7 +8,8 @@
     {
       "_template": "selling_point",
       "main": "Choose your tools",
-      "supporting": "Use Tina with your favorite modern JavaScript frameworks. While currently compatible with most React-based workflows — specifically Gatsby, Next.js and React SPA’s — plan on adding Tina to your Vue, Gridsome or Nuxt projects very soon."
+      "supporting": "Use Tina with your favorite modern JavaScript frameworks. While currently compatible with most Rjghjgeact-based workflows — specifically Gatsby, Next.js and React SPA’s — plan on adding Tina to your Vue, Gridsome or Nuxt projects very soon.",
+      "color": "Dark Blue (Secondary)"
     },
     {
       "_template": "selling_point",
@@ -35,6 +36,18 @@
       {
         "_template": "setup_point",
         "step": "Customize and define the content fields by passing an options argument"
+      },
+      {
+        "_template": "setup_point",
+        "step": "Make yourself a dang quesadilla"
+      },
+      {
+        "_template": "setup_point",
+        "step": "Make yourself a dang quesadilla"
+      },
+      {
+        "_template": "setup_point",
+        "step": "Make yourself a dang quesadilla"
       },
       {
         "_template": "setup_point",
