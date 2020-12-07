@@ -82,7 +82,7 @@ const MainLayout = ({ Component, pageProps }) => {
       {loadFonts && <FontLoader />}
       <ModalProvider>
         <TinacmsGithubProvider
-          onLogin={refreshGitData}
+          onLogin={() => {}}
           onLogout={exitEditMode}
           error={pageProps.error}
         >
