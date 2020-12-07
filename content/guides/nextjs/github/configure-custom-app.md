@@ -2,6 +2,7 @@
 title: Configure the Custom App File
 last_edited: '2020-10-28T14:14:39.576Z'
 ---
+
 Now we will set up TinaCMS to work with the GitHub App. First, create a new file in the `pages` directory called `_app.tsx`. This is a special file in Next.js that allows us to configure a [custom app](https://nextjs.org/docs/advanced-features/custom-app). Our custom `_app.tsx` will do a few things:
 
 1. **Create the TinaCMS instance**
@@ -13,12 +14,16 @@ Now we will set up TinaCMS to work with the GitHub App. First, create a new file
 
 > _Tip_: Another media store worth looking into is the [`NextGithubMediaStore`](/packages/next-tinacms-github/#nextgithubmediastore). It is an extension of `GithubMediaStore`, with adjustments to the methods to account for how Next.js handles media files.
 
-**pages/_app.tsx**
+**pages/\_app.tsx**
 
 ```tsx,copy
 import App from 'next/app'
 import { TinaCMS, TinaProvider } from 'tinacms'
-import { GithubClient, TinacmsGithubProvider, GithubMediaStore } from 'react-tinacms-github'
+import {
+  GithubClient,
+  TinacmsGithubProvider,
+  GithubMediaStore,
+} from 'react-tinacms-github'
 
 export default class Site extends App {
   cms: TinaCMS
@@ -55,6 +60,12 @@ export default class Site extends App {
       sidebar: props.pageProps.preview,
       toolbar: props.pageProps.preview,
     })
+
+    /**
+     * 5. Subscribe to the github:checkout event
+     *    so we can fetch new data from GitHub
+     */
+    this.cms.subscribe('github:checkout', refreshGithubData)
   }
 
   render() {
@@ -65,8 +76,8 @@ export default class Site extends App {
        */
       <TinaProvider cms={this.cms}>
         <TinacmsGithubProvider
-          onLogin={onLogin}
-          onLogout={onLogout}
+          onLogin={() => {}}
+          onLogout={destroyPreviewSession}
           error={pageProps.error}
         >
           {/**
@@ -80,7 +91,7 @@ export default class Site extends App {
   }
 }
 
-const onLogin = async () => {
+const refreshGithubData = async () => {
   const token = localStorage.getItem('tinacms-github-token') || null
   const headers = new Headers()
 
@@ -95,7 +106,7 @@ const onLogin = async () => {
   else throw new Error(data.message)
 }
 
-const onLogout = () => {
+const destroyPreviewSession = () => {
   return fetch(`/api/reset-preview`).then(() => {
     window.location.reload()
   })
@@ -126,9 +137,9 @@ It might look like nothing happened, but if all went well, a few cookies will ha
 
 ### Check for Cookies
 
-To make sure it did work, check your cookies. You should now see these four cookies: **__next_preview_data**, **__prerender_bypass**, **working_repo_full_name**, and **csrf_token**.
+To make sure it did work, check your cookies. You should now see these four cookies: **\_\_next_preview_data**, **\_\_prerender_bypass**, **working_repo_full_name**, and **csrf_token**.
 
-Those first two, **__next_preview_data** and **__prerender_bypass**, are for using preview mode.
+Those first two, **\_\_next_preview_data** and **\_\_prerender_bypass**, are for using preview mode.
 
 The **working_repo_full_name** points to the repository you'll be editing (i.e. the _Working Repo_). In this case, it should point to your repo, the original repo, because you have access to it, which we also call the _Base Repo_. Therefore your edits will go to the `master` branch.
 
