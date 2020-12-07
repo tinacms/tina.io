@@ -55,7 +55,7 @@ Let's add some Inline Fields using the previous example:
 ```diff
 import * as React from React
 import { useForm, usePlugin } from 'tinacms'
-+import { InlineForm, InlineTextField } from 'react-tinacms-inline'
++import { InlineForm, InlineText } from 'react-tinacms-inline'
 
 export function Page(props) {
   const [modifiedValues, form] = useForm(props.data)
@@ -67,7 +67,7 @@ export function Page(props) {
       <main>
 -       <h1>{modifiedValues.title}</h1>
 +       <h1>
-+         <InlineTextField name="title" />
++         <InlineText name="title" />
 +       </h1>
       </main>
     </InlineForm>
@@ -161,7 +161,7 @@ export function Page(props) {
 The Inline Fields are meant to have minimal styles. But there may be situations where you'll want to override the base styles. This is made possible via [Styled Components](https://styled-components.com/docs/basics#extending-styles).
 
 ```jsx
-// An example `InlineTextField` with Extended Styles
+// An example `InlineText` with Extended Styles
 export function Page(props) {
   const [, form] = useForm(props.data)
 
@@ -176,13 +176,13 @@ export function Page(props) {
   )
 }
 
-// Extended InlineTextField styled component
-const StyledText = styled(InlineTextField)`
+// Extended InlineText styled component
+const StyledText = styled(InlineText)`
   color: green;
 `
 ```
 
-Notice how the new component, `StyledText` is just a _styled_ version of `InlineTextField`.
+Notice how the new component, `StyledText` is just a _styled_ version of `InlineText`.
 
 **Via Class Name**
 
