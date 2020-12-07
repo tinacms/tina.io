@@ -48,7 +48,7 @@ const MainLayout = ({ Component, pageProps }) => {
     })
   }, [pageProps.preview])
 
-  const enterEditMode = async () => {
+  const refreshGitData = async () => {
     const token = localStorage.getItem('tinacms-github-token') || null
     const headers = new Headers()
 
@@ -74,13 +74,15 @@ const MainLayout = ({ Component, pageProps }) => {
 
   const loadFonts = useShouldLoadFont(cms)
 
+  cms.events.subscribe('github:checkout', refreshGitData)
+
   return (
     <TinaProvider cms={cms} styled={false}>
       <GlobalStyles />
       {loadFonts && <FontLoader />}
       <ModalProvider>
         <TinacmsGithubProvider
-          onLogin={enterEditMode}
+          onLogin={refreshGitData}
           onLogout={exitEditMode}
           error={pageProps.error}
         >
