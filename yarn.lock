@@ -8569,10 +8569,10 @@ react-tinacms-date@^0.34.0-alpha.1:
     moment ">=2 <=3"
     react-datetime "^2.16.3"
 
-react-tinacms-editor@^0.35.0-alpha.2:
-  version "0.35.0-alpha.2"
-  resolved "https://registry.yarnpkg.com/react-tinacms-editor/-/react-tinacms-editor-0.35.0-alpha.2.tgz#e0ac7b452ebb57d716239543aec2cd465b14deb2"
-  integrity sha512-B7ytQgGKIXTrBdAlMErYAua0ih5o4UnX9ntL4OK5KcvG/4L3zhFxHtWUlVm9jwN13hpDfFzXr1GzS1BQkiYRGg==
+react-tinacms-editor@^0.35.0-alpha.3:
+  version "0.35.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/react-tinacms-editor/-/react-tinacms-editor-0.35.0-alpha.3.tgz#8945215f7e3d5fdc6a949b209a56ac3cbe07932e"
+  integrity sha512-HyCcvlJZsi+b/cKUWFoe4x6B5KFsU/L6G2mGqc5EqYcYfq28PwHieLoRew6HarUk8miz7h8BVtrzK0La2qngyA==
   dependencies:
     codemirror "^5.42.2"
     lodash.debounce "^4.0.8"
@@ -8602,19 +8602,19 @@ react-tinacms-github@^0.33.0:
     js-cookie "^2.2.1"
     next-tinacms-markdown "^0.33.0"
 
-react-tinacms-github@^0.35.0-alpha.2:
-  version "0.35.0-alpha.2"
-  resolved "https://registry.yarnpkg.com/react-tinacms-github/-/react-tinacms-github-0.35.0-alpha.2.tgz#e24276d7c38c25b99533edf8e17d492274a9be01"
-  integrity sha512-GsHaPDBszvgehvFImXx9ggY2RlALun0YbIynsYF2sPlcmCdbUzKeN7Hnvo0rV4gUB5IUG7eaFzQlmlLe0zOVvw==
+react-tinacms-github@^0.35.0-alpha.3:
+  version "0.35.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/react-tinacms-github/-/react-tinacms-github-0.35.0-alpha.3.tgz#e23662496dd71e6ff583692d9759d28c4745886a"
+  integrity sha512-db3AT9pknnAfueNhR7ea532N8RQPPwxMRNdR3w918h+hvpp/Iw1oSEGK/rcGS7m9t8EIKIRMOXbad8EeMGajTA==
   dependencies:
     btoa "^1.2.1"
     js-cookie "^2.2.1"
     next-tinacms-markdown "^0.34.0"
 
-react-tinacms-inline@^0.35.0-alpha.2:
-  version "0.35.0-alpha.2"
-  resolved "https://registry.yarnpkg.com/react-tinacms-inline/-/react-tinacms-inline-0.35.0-alpha.2.tgz#e180685f07260f02caa0b397edcd3f4af067b094"
-  integrity sha512-ylyU/Rjjg7mmGprz/gZn9MOgmR2FNr3NdiFweLeeuUpCOAIkMRBbyuUh2Gf/2HJaREp05lWXeL94wk42ezVF5g==
+react-tinacms-inline@^0.35.0-alpha.3:
+  version "0.35.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/react-tinacms-inline/-/react-tinacms-inline-0.35.0-alpha.3.tgz#a4dcb507ebd62ca06c19e1ea3d79ab9ed8d3eddb"
+  integrity sha512-tKnscu8BCxBl5zbPrMwktHMLIPmEZaPCdM/Bm5j+i+iqoUJr5b0a5OHbu+n/4qd8pv5k5327VL/Bm5jLCUKaEg==
   dependencies:
     react-dismissible "^1.3.0"
     react-textarea-autosize ">=7.1"
