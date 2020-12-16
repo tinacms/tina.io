@@ -17,7 +17,7 @@ The `toggle` field represents a true/false toggle. This field is typically used 
 
 ```typescript
 interface ToggleConfig extends FieldConfig {
-  component: 'Toggle'
+  component: 'toggle'
   name: string
   label?: string
   description?: string
