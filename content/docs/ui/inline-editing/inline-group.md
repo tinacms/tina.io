@@ -2,9 +2,9 @@
 title: Inline Group
 prev: /docs/ui/inline-editing/inline-image
 next: /docs/ui/inline-editing/inline-blocks
-consumes:
+consumes: null
+last_edited: '2021-01-02T11:00:23.574Z'
 ---
-
 The `InlineGroup` represents a collection of inline fields. It serves as a wrapper for providing additional UI for inline elements outside of blocks. This group provides its own _simple controls_ — exposing the ability to display a **modal with additional form fields**.
 
 ## Definition
@@ -40,8 +40,8 @@ export function Hero(props) {
             name: 'typography.color',
             label: 'Type Color',
             description: 'Select a color for the hero copy',
-            component: 'color'
-            widget: 'block'
+            component: 'color',
+            widget: 'block',
             colors: ['#404040', '#ff0000', '#1B1E25'],
           },
         ]}
@@ -71,13 +71,13 @@ This example assumes your data looks something like this:
 
 ## Options
 
-| Key             | Description                                                                                                                                                                                                                                                                                                                                                                                                     |
-| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`          | The path to some value in the data being edited. If no value is provided, the child fields will reference the root of the source file.                                                                                                                                                                                                                                                                          |
-| `fields`        | An array of [Tina Fields](/docs/plugins/fields) to display in a settings modal form.                                                                                                                                                                                                                                                                                                                            |
-| `insetControls` | A boolean to denote whether the group controls display within or outside the group.                                                                                                                                                                                                                                                                                                                             |
-| `focusRing`     | Either an object to style the focus ring or a boolean to show/hide the focus ring. Defaults to `true` which displays the focus ring with default styles. For style options, `offset` (in pixels) sets the distance from the ring to the edge of the component, and `borderRadius` (in pixels) controls the [rounded corners](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius) of the focus ring. |
-| `children`      | Any child elements.                                                                                                                                                                                                                                                                                                                                                                                             |
+| Key | Description |
+| --- | --- |
+| `name` | The path to some value in the data being edited. If no value is provided, the child fields will reference the root of the source file. |
+| `fields` | An array of [Tina Fields](/docs/plugins/fields) to display in a settings modal form. |
+| `insetControls` | A boolean to denote whether the group controls display within or outside the group. |
+| `focusRing` | Either an object to style the focus ring or a boolean to show/hide the focus ring. Defaults to `true` which displays the focus ring with default styles. For style options, `offset` (in pixels) sets the distance from the ring to the edge of the component, and `borderRadius` (in pixels) controls the [rounded corners](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius) of the focus ring. |
+| `children` | Any child elements. |
 
 ## Interface
 
