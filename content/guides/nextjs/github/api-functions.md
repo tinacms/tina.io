@@ -28,3 +28,5 @@ You should see a new `_templates` directory has been created and a few API files
 - `create-github-access-token.ts`: Creates a function to handle authorization with the GitHub OAuth API.
 
 After these files are created, you can delete the `_templates` folder.
+
+> If you prefer to **manually add these files**, feel free to reference the final output from [`pages/api`](https://github.com/tinacms/tinacms.org/tree/master/pages/api) in the tina.io repository.
