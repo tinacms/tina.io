@@ -161,3 +161,7 @@ export default function Page({ jsonFile }) {
 ```
 
 If you restart the dev server, you should see a form populated with this `title` field in the sidebar. Try updating the title and watch the changes update on the page in real time! You should now be more familiar with setting up a Git-based workflow with Tina & Next.js.
+
+> If you hit save, that will create a commit with the changes tracked in the local data files and push that commit up to the current branch. You can configure this behavior by [passing options to the Git router](https://github.com/tinacms/tinacms/tree/master/packages/%40tinacms/api-git#example-2-configuring-the-git-api) in `server.js`. See the default [Git Router config](https://github.com/tinacms/tinacms/blob/master/packages/%40tinacms/api-git/src/router.ts#L37-L42) in the source code.
+>
+> With a Git backend, the pull-request workflow would still be handled in GitHub. Read the [GitHub Backend](/guides/nextjs/github/initial-setup/) guide for information on how to set-up a more unified GitHub workflow via the Tina UI.
