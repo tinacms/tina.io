@@ -44,6 +44,8 @@ The good news is that setting up client-side content transformation for the Next
 
 The first thing we need to do is send the raw Markdown to the frontend. Open up `pages/posts/[slug].js` and take a look at the `getStaticProps` function. This function runs at build time to generate an object of props that are sent to the Post component. Remove the call to `markdownToHtml`
 
+**pages/posts/[slug].js**
+
 ```diff
 export async function getStaticProps({ params }) {
   const post = getPostBySlug(params.slug, [
