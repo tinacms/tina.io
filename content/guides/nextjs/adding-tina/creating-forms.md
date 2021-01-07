@@ -2,6 +2,7 @@
 title: Creating Forms
 last_edited: '2020-10-04T11:09:29.348Z'
 ---
+
 After wrapping our App component in the Tina Provider, we can create forms by calling the `useForm` hook inside our Post component. `useForm` returns two values in an array, similar to `React.useState`, which we assign via destructuring:
 
 ```js
@@ -11,6 +12,8 @@ const [modifiedValues, form] = useForm(formConfig)
 `modifiedValues` contains the values we provide to the form (inside of `formConfig`) after being modified by the end user. `form` contains the form object created by calling `useForm`, which we'll need in a moment.
 
 To simplify our implementation, we'd like to store `modifiedValues` in the `post` variable so that our layout code can continue to work without modification. Let's rename the incoming `post` variable to `initialPost`, to differentiate it from the `post` values that Tina sends back to us:
+
+**pages/posts/[slug].js**
 
 ```js
 export default function Post({ post: initialPost, morePosts, preview }) {
@@ -26,6 +29,8 @@ export default function Post({ post: initialPost, morePosts, preview }) {
 ## Form Configuration
 
 For details on how to configure forms, take a look at our [form configuration docs](/docs/plugins/forms#form-configuration). For the purposes of this guide, we will use the following configuration:
+
+**pages/posts/[slug].js**
 
 ```js
 const formConfig = {
@@ -63,6 +68,8 @@ import { useForm, usePlugin } from 'tinacms'
 ```
 
 Then, add the form to the `Post` component with the configuration we laid out previously:
+
+**pages/posts/[slug].js**
 
 ```js
 export default function Post({ post: initialPost, morePosts, preview }) {
@@ -129,6 +136,8 @@ For the sake of simplicity, we won't worry about dynamically importing the WYSIW
 
 In our `_app.js` file, we can register `MarkdownFieldPlugin` when we instantiate the CMS:
 
+**pages/\_app.js**
+
 ```diff
   import '../styles/index.css'
   import { withTina } from 'tinacms'
@@ -147,4 +156,4 @@ In our `_app.js` file, we can register `MarkdownFieldPlugin` when we instantiate
 
 ## More Info
 
-* [Tina Docs: Forms](/docs/plugins/forms)
+- [Tina Docs: Forms](/docs/plugins/forms)

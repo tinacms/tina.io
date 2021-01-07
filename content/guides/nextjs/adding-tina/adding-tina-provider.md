@@ -27,6 +27,8 @@ yarn add tinacms styled-components
 
 Wrapping the main App component in the `withTina` higher-order component will automatically instantiate the CMS and set up the provider. We also need to pass `enabled` and `sidebar` options to enable CMS editing and sidebar for editing the page.
 
+**pages/\_app.js**
+
 ```jsx,copy
 import '../styles/index.css'
 import { withTina } from 'tinacms'
