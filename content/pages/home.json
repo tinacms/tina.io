@@ -1,6 +1,5 @@
 {
   "title": "Home",
-  "headline": "Build real-time editing into your site.",
   "description": "asfsdfsd",
   "hero_video": "v1571425758/tina-hero-demo-v2",
   "hero_alt": "TinaCMS_video",
@@ -42,5 +41,6 @@
       }
     ],
     "code_ex": "/img/terminal.png"
-  }
+  },
+  "headline": "BLA"
 }
