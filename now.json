@@ -45,6 +45,10 @@
     { "source": "/docs/concepts/backends", "destination": "/docs/cms#apis" },
     { "source": "/docs/concepts/plugins", "destination": "/docs/cms#plugins" },
     {
+      "source": "/docs/getting-started/overview",
+      "destination": "/docs/getting-started/introduction"
+    },
+    {
       "source": "/docs/inline-editing",
       "destination": "/docs/ui/inline-editing"
     },
@@ -209,4 +213,4 @@
       "destination": "/packages/next-tinacms-markdown"
     }
   ]
-}
+}∏
