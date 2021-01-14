@@ -12,7 +12,7 @@ Sometimes the guides will be accompanied with a demo repository — these aren't
 
 Get support in the [community forum](https://community.tinacms.org/) at any point. If you see typos or outdated information, feel free to click the 'Edit This Site' button in the footer and open a PR to correct it.
 
-> Before you start any guide, it is assumed that you have worked through the [Introductory Tutorial](/docs/getting-started/overview) to get familiar with Tina Basics.
+> Before you start any guide, it is assumed that you have worked through the [Introductory Tutorial](/docs/getting-started/introduction) to get familiar with Tina Basics.
 
 ## Categories
 
