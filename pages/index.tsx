@@ -34,6 +34,8 @@ const TinaIcon = () => {
 }
 
 const HomePage = (props: any) => {
+  let src = 'v1571425758/tina-hero-demo-v2'
+
   return (
     <>
       <div className="pageWrapper">
@@ -85,10 +87,41 @@ const HomePage = (props: any) => {
           </div>
         </div>
         <div className="feature black">
-          <div className="container"></div>
+          <div className="container featureContainer">
+            <h2 className="featureTitle">Edit Your Content, Visually</h2>
+            <p className="featureText">
+              Tina is a Headless CMS designed to power visual editing
+              experiences. Customizable to your content.
+            </p>
+            <div className="featureActions">
+              <a href="#" className="button buttonOrange">
+                Get Access
+              </a>
+              <a href="#" className="button buttonGhost">
+                Try Tina
+              </a>
+            </div>
+          </div>
         </div>
         <div className="video">
-          <div className="container"></div>
+          <div className="container videoContainer">
+            <video
+              autoPlay={true}
+              loop
+              muted
+              playsInline
+              poster={`https://res.cloudinary.com/forestry-demo/video/upload/so_0/${src}.jpg`}
+            >
+              <source
+                src={`https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/${src}.webm`}
+                type="video/webm"
+              />
+              <source
+                src={`https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/${src}.mp4`}
+                type="video/mp4"
+              />
+            </video>
+          </div>
         </div>
         <div className="feature white">
           <div className="container"></div>
@@ -186,6 +219,10 @@ const HomePage = (props: any) => {
           transition: opacity 150ms ease-out;
           text-decoration: none;
           font-size: 1.125rem;
+
+          :hover {
+            opacity: 1;
+          }
         }
 
         .logomark {
@@ -209,6 +246,81 @@ const HomePage = (props: any) => {
         }
 
         .feature {
+          padding: 4rem 0;
+        }
+
+        .featureContainer {
+          max-width: 740px;
+          text-align: center;
+        }
+
+        .featureTitle {
+          font-size: 2.5rem;
+          font-weight: bold;
+          margin-bottom: 1.5rem;
+        }
+
+        .featureText {
+          font-size: 1.5rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .featureActions {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding-top: 0.5rem;
+          margin: 0 -0.5rem;
+
+          :global(a),
+          :global(button) {
+            margin: 0 0.5rem;
+          }
+        }
+
+        .button {
+          text-decoration: none;
+          color: inherit;
+          font-size: 1.375rem;
+          font-weight: bold;
+          padding: 0.75rem 1.5rem;
+          border-radius: 0.25rem;
+        }
+
+        .buttonOrange {
+          background: var(--color-orange);
+          transition: background 150ms ease-out;
+
+          :hover {
+            background: var(--color-orange-light);
+          }
+        }
+
+        .buttonGhost {
+          opacity: 0.7;
+          transition: opacity 150ms ease-out;
+
+          :hover {
+            opacity: 1;
+          }
+        }
+
+        .video {
+          background: linear-gradient(
+            to bottom,
+            var(--color-black) 0%,
+            var(--color-black) 50%,
+            var(--color-white) 50%,
+            var(--color-white) 100%
+          );
+        }
+
+        .videoContainer {
+          max-width: 920px;
+
+          :global(video) {
+            width: 100%;
+          }
         }
 
         .featureGroup {
