@@ -172,7 +172,7 @@ const HomePage = (props: any) => {
             </p>
           </div>
         </div>
-        <div className="demo blue">
+        <div className="demo">
           <div className="container demoContainer">
             <iframe
               src="https://codesandbox.io/embed/vigilant-cohen-73its?fontsize=147hidenavigation=17theme=dark"
@@ -331,13 +331,64 @@ const HomePage = (props: any) => {
           </div>
         </div>
         <div className="feature lightGray">
-          <div className="container"></div>
+          <div className="container featureContainer">
+            <h2 className="featureTitle">
+              Edit content, in the <em>context of your site</em>
+            </h2>
+            <p className="featureText">
+              Just click on the page and type. Contextual toolbars and panels
+              appear at just the right times to create the content you want.
+            </p>
+          </div>
         </div>
         <div className="featureGroup lightGray">
-          <div className="container"></div>
+          <div className="container featureGroupContainer">
+            <div className="summary active">
+              <h3 className="summaryTitle">Page Building</h3>
+              <p className="summaryText">
+                Pick from your custom predefined components to build web
+                experiences, blazing fast
+              </p>
+            </div>
+            <div className="details">
+              <img
+                className="detailsImage"
+                src="img/tina-sidebar-gatsby-london.gif"
+                alt=""
+              />
+            </div>
+            <div className="summary">
+              <h3 className="summaryTitle">Design Systems</h3>
+              <p className="summaryText">
+                Build pages with YOUR design system. Maximize reusability.
+              </p>
+            </div>
+            <div className="summary">
+              <h3 className="summaryTitle">Improve Time-to-Market</h3>
+              <p className="summaryText">
+                Better creative control, don’t rely on developers to make
+                content changes.
+              </p>
+            </div>
+          </div>
         </div>
         <div className="learnTina">
-          <div className="container"></div>
+          <div className="container learnContainer">
+            <div className="learnImageWrapper">
+              <img src="img/flyingTina.png" alt="" />
+            </div>
+            <div className="learnContent">
+              <h3 className="learnTitle">Learn Tina</h3>
+              <p className="learnText">
+                Learn Tina through Interactive & Fun Tutorials.
+              </p>
+              <div className="buttonGroup">
+                <a href="#" className="button buttonOrange">
+                  Get Started <IconRight />
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <style global jsx>{`
@@ -348,6 +399,7 @@ const HomePage = (props: any) => {
           --color-yellow: #f2c94c;
           --color-green: #6fcf97;
           --color-black: #111920;
+          --color-black-light: #091f3e;
           --color-blue: #00255b;
           --color-white: #ffffff;
           --color-gray: #b6b6b6;
@@ -495,11 +547,22 @@ const HomePage = (props: any) => {
           font-weight: bold;
           padding: 0.75rem 1.5rem;
           border-radius: 0.25rem;
+          display: flex;
+          align-items: center;
+          white-space: nowrap;
+
+          :global(svg) {
+            display: inline-block;
+            width: auto;
+            height: 1.125em;
+            margin-left: 0.75rem;
+          }
         }
 
         .buttonOrange {
           background: var(--color-orange);
           transition: background 150ms ease-out;
+          color: white;
 
           :hover {
             background: var(--color-orange-light);
@@ -520,7 +583,7 @@ const HomePage = (props: any) => {
           background: linear-gradient(
             to bottom,
             var(--color-black) 0%,
-            var(--color-black) 50%,
+            var(--color-black-light) 50%,
             var(--color-white) 50%,
             var(--color-white) 100%
           );
@@ -530,6 +593,12 @@ const HomePage = (props: any) => {
           width: 100%;
           display: flex;
           justify-content: center;
+        }
+
+        video {
+          width: 100%;
+          margin: 0;
+          border-radius: 3px;
         }
 
         .featureGroup {
@@ -595,19 +664,17 @@ const HomePage = (props: any) => {
           margin: 0;
         }
 
-        video {
-          width: 100%;
-          margin: 0;
-          max-width: 1000px;
-          border-radius: 3px;
-        }
-
         .demoContainer {
           max-width: 1600px;
         }
 
         .demo {
           margin-top: -4rem;
+          background: linear-gradient(
+            to bottom,
+            var(--color-blue) 0%,
+            var(--color-black-light) 100%
+          );
 
           :global(iframe) {
             width: 100%;
@@ -772,6 +839,58 @@ const HomePage = (props: any) => {
         .cardText {
           font-size: 1.125rem;
           opacity: 0.7;
+        }
+
+        .learnTina {
+          padding: 4rem 0;
+          background-image: url('/img/clouds.jpg');
+          background-position: center top;
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+
+        .learnContainer {
+          display: grid;
+          grid-gap: 2rem;
+          align-content: center;
+          align-items: center;
+          max-width: 820px;
+
+          @media (min-width: 1000px) {
+            grid-gap: 2rem;
+            grid-template-columns: 2fr 3fr;
+            grid-template-rows: auto auto 1fr;
+          }
+        }
+
+        .learnImage {
+        }
+
+        .learnContent {
+        }
+
+        .learnTitle {
+          margin-bottom: 1rem;
+          font-size: 2rem;
+          font-weight: bold;
+        }
+
+        .learnText {
+          display: block;
+          font-size: 1.25rem;
+          margin-bottom: 1.25rem;
+        }
+
+        .buttonGroup {
+          display: flex;
+          align-items: center;
+          padding-top: 0.5rem;
+          margin: 0 -0.5rem;
+
+          :global(a),
+          :global(button) {
+            margin: 0 0.5rem;
+          }
         }
 
         .orange {
