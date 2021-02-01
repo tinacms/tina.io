@@ -211,7 +211,28 @@ const HomePage = (props: any) => {
                 </div>
               </div>
             </div>
-            <div className="divider">
+            <div className="divider dividerMobile">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 1200 150"
+                width="100%"
+                className="dividerSvg"
+              >
+                <line
+                  x1="49.25%"
+                  x2="49.25%"
+                  y1="0"
+                  y2="100%"
+                  stroke="var(--color-orange)"
+                  strokeWidth="6"
+                  strokeDasharray="10 20"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+            <div className="divider dividerDesktop">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -241,6 +262,71 @@ const HomePage = (props: any) => {
                   strokeLinejoin="round"
                 />
               </svg>
+            </div>
+            <div className="cardGroup">
+              <div className="card">
+                <img src="img/headlessCms.png" alt="" className="cardImage" />
+                <h3 className="cardHeading">Headless Cms</h3>
+                <p className="cardText">
+                  Sync your website data to a headless CMS of your choice
+                </p>
+              </div>
+              <div className="divider dividerMobile">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 1200 150"
+                  width="100%"
+                  className="dividerSvg"
+                >
+                  <line
+                    x1="49.25%"
+                    x2="49.25%"
+                    y1="0"
+                    y2="100%"
+                    stroke="var(--color-orange)"
+                    strokeWidth="6"
+                    strokeDasharray="10 20"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+              <div className="card">
+                <img src="img/headlessCms.png" alt="" className="cardImage" />
+                <h3 className="cardHeading">Headless Cms</h3>
+                <p className="cardText">
+                  Sync your website data to a headless CMS of your choice
+                </p>
+              </div>
+              <div className="divider dividerMobile">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 1200 150"
+                  width="100%"
+                  className="dividerSvg"
+                >
+                  <line
+                    x1="49.25%"
+                    x2="49.25%"
+                    y1="0"
+                    y2="100%"
+                    stroke="var(--color-orange)"
+                    strokeWidth="6"
+                    strokeDasharray="10 20"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+              <div className="card">
+                <img src="img/headlessCms.png" alt="" className="cardImage" />
+                <h3 className="cardHeading">Headless Cms</h3>
+                <p className="cardText">
+                  Sync your website data to a headless CMS of your choice
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -615,6 +701,33 @@ const HomePage = (props: any) => {
           display: flex;
           justify-content: center;
           width: 100%;
+
+          :global(svg) {
+            width: 66%;
+            margin: 0 auto;
+            overflow: visible !important;
+
+            :global(line),
+            :global(path) {
+              animation: dash 1s infinite linear;
+            }
+          }
+        }
+
+        .dividerDesktop {
+          @media (max-width: 999px) {
+            display: none;
+          }
+        }
+
+        .dividerMobile {
+          @media (min-width: 1000px) {
+            display: none;
+          }
+
+          :global(svg) {
+            width: 100%;
+          }
         }
 
         @keyframes dash {
@@ -627,15 +740,38 @@ const HomePage = (props: any) => {
           }
         }
 
-        .dividerSvg {
-          width: 66%;
-          margin: 0 auto;
-          overflow: visible !important;
+        .cardGroup {
+          display: grid;
+          grid-template-rows: 1fr;
 
-          :global(line),
-          :global(path) {
-            animation: dash 1s infinite linear;
+          @media (min-width: 1000px) {
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
           }
+        }
+
+        .card {
+          background: var(--color-light-gray);
+          padding: 1.5rem;
+          border-radius: 0.5rem;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.07);
+        }
+
+        .cardImage {
+          display: block;
+          width: auto;
+          margin-bottom: 1.125rem;
+        }
+
+        .cardHeading {
+          font-size: 2rem;
+          line-height: 1.4;
+          margin-bottom: 0.75rem;
+        }
+
+        .cardText {
+          font-size: 1.125rem;
+          opacity: 0.7;
         }
 
         .orange {
