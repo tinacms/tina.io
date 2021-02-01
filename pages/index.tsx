@@ -453,6 +453,7 @@ const HomePage = (props: any) => {
           grid-template-rows: 1fr 1fr;
 
           @media (min-width: 800px) {
+            align-items: center;
             grid-template-columns: auto 1fr auto;
             grid-template-rows: 1fr;
           }
