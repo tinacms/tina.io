@@ -22,11 +22,5 @@
     "label": "Community",
     "href": "/community",
     "external": false
-  },
-  {
-    "id": "enterprise",
-    "label": "Enterprise",
-    "href": "/enterprise",
-    "external": false
   }
 ]

@@ -1,6 +1,7 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
+import { Footer } from 'components/layout'
 
 const IconRight = () => {
   return (
@@ -391,6 +392,7 @@ const HomePage = (props: any) => {
           </div>
         </div>
       </div>
+      <Footer />
       <style global jsx>{`
         :root {
           --color-orange: #ec4815;
