@@ -195,7 +195,7 @@ const HomePage = (props: any) => {
         }
 
         .nav {
-          padding: 2rem 0;
+          padding: 2rem 0 2rem 0;
         }
 
         .navContainer {
@@ -246,7 +246,7 @@ const HomePage = (props: any) => {
         }
 
         .feature {
-          padding: 4rem 0;
+          padding: 6rem 0;
         }
 
         .featureContainer {
@@ -316,10 +316,13 @@ const HomePage = (props: any) => {
         }
 
         .videoContainer {
-          max-width: 920px;
+          width: 100%;
+          display: flex;
+          justify-content: center;
 
           :global(video) {
             width: 100%;
+            max-width: 1000px;
           }
         }
 
