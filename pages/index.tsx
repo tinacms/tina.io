@@ -52,11 +52,11 @@ const HomePage = (props: any) => {
         </div>
         <div className="nav black">
           <div className="container navContainer">
-            <div className="logomark">
+            <div className="logomark navLogo">
               <TinaIcon />
               <h1 className="wordmark">Tina.io</h1>
             </div>
-            <nav className="navWrapper">
+            <nav className="navWrapper navNav">
               <ul className="navUl">
                 <li className="navLi">
                   <a className="navLink" href="#">
@@ -75,7 +75,7 @@ const HomePage = (props: any) => {
                 </li>
               </ul>
             </nav>
-            <div className="githubStar">
+            <div className="githubStar navGithub">
               <iframe
                 className="starButton"
                 src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
@@ -447,9 +447,55 @@ const HomePage = (props: any) => {
         }
 
         .navContainer {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
+          display: grid;
+          grid-gap: 1rem;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: 1fr 1fr;
+
+          @media (min-width: 800px) {
+            grid-template-columns: auto 1fr auto;
+            grid-template-rows: 1fr;
+          }
+        }
+
+        .navLogo {
+          grid-column-start: 1;
+          grid-column-end: 2;
+          grid-row-start: 1;
+          grid-row-end: 2;
+
+          @media (min-width: 800px) {
+            grid-column-start: 1;
+            grid-column-end: 2;
+          }
+        }
+
+        .navNav {
+          grid-column-start: 1;
+          grid-column-end: 3;
+          grid-row-start: 2;
+          grid-row-end: 3;
+          justify-self: center;
+
+          @media (min-width: 800px) {
+            grid-column-start: 2;
+            grid-column-end: 3;
+            grid-row-start: 1;
+            grid-row-end: 2;
+          }
+        }
+
+        .navGithub {
+          grid-column-start: 2;
+          grid-column-end: 3;
+          grid-row-start: 1;
+          grid-row-end: 2;
+          justify-self: end;
+
+          @media (min-width: 800px) {
+            grid-column-start: 3;
+            grid-column-end: 4;
+          }
         }
 
         .navUl {
