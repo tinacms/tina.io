@@ -211,6 +211,37 @@ const HomePage = (props: any) => {
                 </div>
               </div>
             </div>
+            <div className="divider">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 1200 150"
+                width="100%"
+                className="dividerSvg"
+              >
+                <g>
+                  <path
+                    stroke="var(--color-orange)"
+                    strokeWidth="6"
+                    strokeDasharray="10 20"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M591.036 0v70.447m0 0H20c-11.046 0-20 8.955-20 20v51.406m591.036-71.406H1180c11.05 0 20 8.955 20 20V150"
+                  ></path>
+                </g>
+                <line
+                  x1="49.25%"
+                  x2="49.25%"
+                  y1="0"
+                  y2="100%"
+                  stroke="var(--color-orange)"
+                  strokeWidth="6"
+                  strokeDasharray="10 20"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
           </div>
         </div>
         <div className="feature lightGray">
@@ -501,6 +532,8 @@ const HomePage = (props: any) => {
         }
 
         .valueProps {
+          margin-top: -4rem;
+          padding-bottom: 8rem;
         }
 
         .billboard {
@@ -510,7 +543,7 @@ const HomePage = (props: any) => {
             var(--color-orange-light)
           );
           padding: 2rem;
-          border-radius: 0.25rem;
+          border-radius: 0.5rem;
         }
 
         .browser {
@@ -576,6 +609,33 @@ const HomePage = (props: any) => {
           display: block;
           margin: 0;
           filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.07));
+        }
+
+        .divider {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+        }
+
+        @keyframes dash {
+          0% {
+            stroke-dashoffset: 30;
+          }
+
+          100% {
+            stroke-dashoffset: 0;
+          }
+        }
+
+        .dividerSvg {
+          width: 66%;
+          margin: 0 auto;
+          overflow: visible !important;
+
+          :global(line),
+          :global(path) {
+            animation: dash 1s infinite linear;
+          }
         }
 
         .orange {
