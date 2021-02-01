@@ -173,9 +173,9 @@ const HomePage = (props: any) => {
           </div>
         </div>
         <div className="demo blue">
-          <div className="container">
+          <div className="container demoContainer">
             <iframe
-              src="https://codesandbox.io/embed/vigilant-cohen-73its?fontsize=14&amp;hidenavigation=1&amp;theme=dark"
+              src="https://codesandbox.io/embed/vigilant-cohen-73its?fontsize=147hidenavigation=17theme=dark"
               width="800"
               height="800"
               title="CodeSandbox example of TinaCMS with Next.js"
@@ -184,8 +184,34 @@ const HomePage = (props: any) => {
             ></iframe>
           </div>
         </div>
+        <div className="feature white">
+          <div className="container featureContainer">
+            <h2 className="featureTitle">Avoid Vendor Lock-In</h2>
+            <p className="featureText">
+              Add visual editing to your site for logged in users. Write to any
+              API.
+            </p>
+          </div>
+        </div>
         <div className="valueProps white">
-          <div className="container"></div>
+          <div className="container">
+            <div className="billboard">
+              <div className="browser browserGrid">
+                <div className="browserContent">
+                  <span className="contentTitle">Tina comes with editing</span>
+                  <span className="contentText">
+                    Super simple, just click and edit.
+                  </span>
+                  <span className="contentFootnote">
+                    It’s 35 degrees and sunny
+                  </span>
+                </div>
+                <div className="browserImageWrapper">
+                  <img className="browserImage" src="img/tina-wow.png" alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="feature lightGray">
           <div className="container"></div>
@@ -373,6 +399,7 @@ const HomePage = (props: any) => {
         }
 
         .video {
+          margin-top: -3rem;
           background: linear-gradient(
             to bottom,
             var(--color-black) 0%,
@@ -458,13 +485,97 @@ const HomePage = (props: any) => {
           border-radius: 3px;
         }
 
+        .demoContainer {
+          max-width: 1600px;
+        }
+
         .demo {
+          margin-top: -4rem;
+
           :global(iframe) {
             width: 100%;
             border: none !important;
             display: block;
             margin: 0;
           }
+        }
+
+        .valueProps {
+        }
+
+        .billboard {
+          background: linear-gradient(
+            to top,
+            var(--color-orange),
+            var(--color-orange-light)
+          );
+          padding: 2rem;
+          border-radius: 0.25rem;
+        }
+
+        .browser {
+          position: relative;
+          background: var(--color-light-gray);
+          padding: 4rem 3rem 3rem 3rem;
+          border-radius: 1rem;
+          overflow: visible;
+
+          &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 2rem;
+            left: 3rem;
+            transform: translate3d(-0.875rem, 0, 0);
+            width: 0.875rem;
+            height: 0.875rem;
+            border-radius: 1rem;
+            overflow: visible;
+            box-shadow: 0.875rem 0 0 var(--color-orange),
+              2.375rem 0 0 var(--color-yellow), 3.875rem 0 0 var(--color-green);
+          }
+        }
+
+        .browserGrid {
+          display: grid;
+          grid-gap: 2rem;
+
+          @media (min-width: 1000px) {
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+          }
+        }
+
+        .browserContent {
+        }
+
+        .contentTitle {
+          display: block;
+          font-size: 2rem;
+          font-weight: bold;
+          margin-bottom: 1rem;
+        }
+
+        .contentText {
+          display: block;
+          font-size: 1.75rem;
+          margin-bottom: 1rem;
+        }
+
+        .contentFootnote {
+          display: block;
+          font-size: 1.25rem;
+          opacity: 0.6;
+        }
+
+        .browserImageWrapper {
+          margin-top: -1rem;
+        }
+
+        .browserImage {
+          display: block;
+          margin: 0;
+          filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.07));
         }
 
         .orange {
