@@ -72,33 +72,32 @@ const HomePage = (props: any) => {
                     Blog
                   </a>
                 </li>
-                <li className="navLi">
-                  <iframe
-                    className="starButton"
-                    src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
-                    frameBorder="0"
-                    scrolling="0"
-                    width="150px"
-                    height="30px"
-                  ></iframe>
-                </li>
               </ul>
             </nav>
+            <div className="githubStar">
+              <iframe
+                className="starButton"
+                src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
+                frameBorder="0"
+                scrolling="0"
+                width="150px"
+                height="30px"
+              ></iframe>
+            </div>
           </div>
         </div>
         <div className="feature black">
           <div className="container featureContainer">
-            <h2 className="featureTitle">Edit Your Content, Visually</h2>
+            <h2 className="featureTitle">Content editing for modern teams</h2>
             <p className="featureText">
-              Tina is a Headless CMS designed to power visual editing
-              experiences. Customizable to your content.
+              Tina is an open-source CMS admin that talks to any API
             </p>
             <div className="featureActions">
               <a href="#" className="button buttonOrange">
-                Get Access
+                Try Demo
               </a>
               <a href="#" className="button buttonGhost">
-                Try Tina
+                Learn More
               </a>
             </div>
           </div>
@@ -124,7 +123,15 @@ const HomePage = (props: any) => {
           </div>
         </div>
         <div className="feature white">
-          <div className="container"></div>
+          <div className="container featureContainer">
+            <h2 className="featureTitle">
+              Edit content, in the <em>context of your site</em>
+            </h2>
+            <p className="featureText">
+              Just click on the page and type. Contextual toolbars and panels
+              appear at just the right times to create the content you want.
+            </p>
+          </div>
         </div>
         <div className="featureGroup white">
           <div className="container"></div>
@@ -160,6 +167,8 @@ const HomePage = (props: any) => {
           --color-white: #ffffff;
           --color-gray: #b6b6b6;
           --color-light-gray: #f8f8f8;
+
+          --color-emphasis: var(--color-orange);
         }
       `}</style>
       <style jsx>{`
@@ -256,13 +265,29 @@ const HomePage = (props: any) => {
 
         .featureTitle {
           font-size: 2.5rem;
+          line-height: 1.4;
           font-weight: bold;
-          margin-bottom: 1.5rem;
+          margin-bottom: 2rem;
+
+          :global(em) {
+            font-style: inherit;
+            font-weight: inherit;
+            color: var(--color-emphasis);
+
+            @media (min-width: 600px) {
+              white-space: nowrap;
+            }
+          }
         }
 
         .featureText {
-          font-size: 1.5rem;
-          margin-bottom: 1.5rem;
+          display: block;
+          width: 100%;
+          max-width: 600px;
+          margin-left: auto;
+          margin-right: auto;
+          font-size: 1.375rem;
+          margin-bottom: 2rem;
         }
 
         .featureActions {
