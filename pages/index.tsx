@@ -165,10 +165,24 @@ const HomePage = (props: any) => {
           </div>
         </div>
         <div className="feature blue">
-          <div className="container"></div>
+          <div className="container featureContainer">
+            <h2 className="featureTitle">Build with YOUR components</h2>
+            <p className="featureText">
+              Let your team build great layouts with YOUR React components.
+            </p>
+          </div>
         </div>
         <div className="demo blue">
-          <div className="container"></div>
+          <div className="container">
+            <iframe
+              src="https://codesandbox.io/embed/vigilant-cohen-73its?fontsize=14&amp;hidenavigation=1&amp;theme=dark"
+              width="800"
+              height="800"
+              title="CodeSandbox example of TinaCMS with Next.js"
+              allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+              sandbox="allow-forms allow-modals allow-popups allow-same-origin allow-scripts"
+            ></iframe>
+          </div>
         </div>
         <div className="valueProps white">
           <div className="container"></div>
@@ -283,7 +297,7 @@ const HomePage = (props: any) => {
         }
 
         .feature {
-          padding: 6rem 0;
+          padding: 8rem 0;
         }
 
         .featureContainer {
@@ -375,8 +389,8 @@ const HomePage = (props: any) => {
         }
 
         .featureGroup {
-          margin-top: -2rem;
-          padding-bottom: 6rem;
+          margin-top: -4rem;
+          padding-bottom: 8rem;
         }
 
         .featureGroupContainer {
@@ -418,7 +432,8 @@ const HomePage = (props: any) => {
         }
 
         .summaryText {
-          font-size: 1.25rem;
+          font-size: 1.125rem;
+          max-width: 400px;
           margin: 0;
         }
 
@@ -444,6 +459,12 @@ const HomePage = (props: any) => {
         }
 
         .demo {
+          :global(iframe) {
+            width: 100%;
+            border: none !important;
+            display: block;
+            margin: 0;
+          }
         }
 
         .orange {
