@@ -134,7 +134,35 @@ const HomePage = (props: any) => {
           </div>
         </div>
         <div className="featureGroup white">
-          <div className="container"></div>
+          <div className="container featureGroupContainer">
+            <div className="summary active">
+              <h3 className="summaryTitle">Page Building</h3>
+              <p className="summaryText">
+                Pick from your custom predefined components to build web
+                experiences, blazing fast
+              </p>
+            </div>
+            <div className="details">
+              <img
+                className="detailsImage"
+                src="img/tina-sidebar-gatsby-london.gif"
+                alt=""
+              />
+            </div>
+            <div className="summary">
+              <h3 className="summaryTitle">Design Systems</h3>
+              <p className="summaryText">
+                Build pages with YOUR design system. Maximize reusability.
+              </p>
+            </div>
+            <div className="summary">
+              <h3 className="summaryTitle">Improve Time-to-Market</h3>
+              <p className="summaryText">
+                Better creative control, don’t rely on developers to make
+                content changes.
+              </p>
+            </div>
+          </div>
         </div>
         <div className="feature blue">
           <div className="container"></div>
@@ -176,7 +204,7 @@ const HomePage = (props: any) => {
         }
 
         .container {
-          max-width: 1300px;
+          max-width: 1200px;
           margin: 0 auto;
           padding: 0 1.5rem;
         }
@@ -344,17 +372,75 @@ const HomePage = (props: any) => {
           width: 100%;
           display: flex;
           justify-content: center;
-
-          :global(video) {
-            width: 100%;
-            max-width: 1000px;
-          }
         }
 
         .featureGroup {
+          margin-top: -2rem;
+          padding-bottom: 6rem;
         }
 
-        .video {
+        .featureGroupContainer {
+          display: grid;
+          grid-gap: 2rem;
+          align-content: start;
+          align-items: start;
+
+          @media (min-width: 1000px) {
+            grid-gap: 2rem 4rem;
+            grid-template-columns: 2fr 3fr;
+            grid-template-rows: auto auto 1fr;
+          }
+        }
+
+        .summary {
+          grid-column-start: 1;
+          opacity: 0.4;
+          transition: opacity 150ms ease-out;
+          cursor: pointer;
+          user-select: none;
+          color: var(--color-blue);
+        }
+
+        .summary.active {
+          cursor: inherit;
+          color: var(--color-black);
+        }
+
+        .summary.active,
+        .summary:hover {
+          opacity: 1;
+        }
+
+        .summaryTitle {
+          margin-bottom: 1rem;
+          font-size: 1.5rem;
+          font-weight: bold;
+        }
+
+        .summaryText {
+          font-size: 1.25rem;
+          margin: 0;
+        }
+
+        .details {
+          @media (min-width: 1000px) {
+            grid-column-start: 2;
+            grid-row-start: 1;
+            grid-row-end: 4;
+          }
+        }
+
+        .detailsImage {
+          width: 100%;
+          display: block;
+          margin: 0;
+        }
+
+        video {
+          width: 100%;
+          margin: 0;
+          max-width: 1000px;
+          border-radius: 3px;
         }
 
         .demo {
