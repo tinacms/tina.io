@@ -199,7 +199,7 @@ const HomePage = (props: any) => {
           </div>
         </div>
         <div className="valueProps white">
-          <div className="container">
+          <div className="container browserContainer">
             <div className="browser browserGrid">
               <div className="browserContent">
                 <span className="contentTitle">Tina comes with editing.</span>
@@ -405,7 +405,7 @@ const HomePage = (props: any) => {
           --color-black-light: #091f3e;
           --color-blue: #00255b;
           --color-white: #ffffff;
-          --color-gray: #b6b6b6;
+          --color-gray: #f3f3f3;
           --color-light-gray: #fafafa;
 
           --color-emphasis: var(--color-orange);
@@ -551,7 +551,7 @@ const HomePage = (props: any) => {
         }
 
         .wordmark {
-          font-size: 1.75rem;
+          font-size: 1.675rem;
           font-weight: bold;
           font-family: var(--font-tuner);
         }
@@ -706,10 +706,9 @@ const HomePage = (props: any) => {
         }
 
         .summaryTitle {
-          font-family: var(--font-tuner);
+          font-size: 1.675rem;
+          line-height: 1.4;
           margin-bottom: 1rem;
-          font-size: 1.5rem;
-          font-weight: bold;
         }
 
         .summaryText {
@@ -760,12 +759,21 @@ const HomePage = (props: any) => {
         .browser {
           position: relative;
           padding: 4rem 3rem 3rem 3rem;
-          border-radius: 1rem;
+          border-radius: 2rem;
           overflow: visible;
           background: var(--color-card-background);
+          background: linear-gradient(
+            to bottom right,
+            var(--color-light-gray) 30%,
+            var(--color-gray)
+          );
+          transform: rotate3d(1, 0, 0, 2deg);
+          background-position: top left;
           border-radius: 0.5rem;
-          box-shadow: 0 6px 24px rgba(0, 37, 91, 0.05),
-            0 2px 4px rgba(0, 37, 91, 0.03);
+          box-shadow: inset 0 0 0 1px rgba(236, 72, 21, 0.03),
+            0 24px 32px rgba(236, 72, 21, 0.05),
+            0 6px 8px rgba(236, 72, 21, 0.03),
+            0 48px 48px -64px rgba(236, 72, 21, 0.3);
 
           &:after {
             content: '';
@@ -781,6 +789,10 @@ const HomePage = (props: any) => {
             box-shadow: 0.875rem 0 0 var(--color-orange),
               2.375rem 0 0 var(--color-yellow), 3.875rem 0 0 var(--color-green);
           }
+        }
+
+        .browserContainer {
+          perspective: 300px;
         }
 
         .browserGrid {
@@ -884,10 +896,10 @@ const HomePage = (props: any) => {
 
         .card {
           background: var(--color-card-background);
-          padding: 1.5rem;
+          padding: 2rem;
           border-radius: 0.5rem;
-          box-shadow: 0 6px 24px rgba(0, 37, 91, 0.05),
-            0 2px 4px rgba(0, 37, 91, 0.03);
+          box-shadow: inset 0 0 0 1px rgba(236, 72, 21, 0.03),
+            0 6px 24px rgba(0, 37, 91, 0.05), 0 2px 4px rgba(0, 37, 91, 0.03);
         }
 
         .cardImage {
@@ -897,9 +909,9 @@ const HomePage = (props: any) => {
         }
 
         .cardTitle {
-          font-size: 1.75rem;
+          font-size: 1.675rem;
           line-height: 1.4;
-          margin-bottom: 0.75rem;
+          margin-bottom: 1rem;
         }
 
         .cardText {
@@ -938,7 +950,7 @@ const HomePage = (props: any) => {
         .learnTitle {
           font-family: var(--font-tuner);
           margin-bottom: 1rem;
-          font-size: 2rem;
+          font-size: 2.25rem;
           font-weight: bold;
         }
 
