@@ -59,7 +59,7 @@ const FooterForm = styled.div`
 const FooterTop = styled.div`
   display: grid;
   grid-gap: 1rem;
-  padding: 2rem 2rem;
+  padding: 2.5rem 2rem;
   background-color: var(--color-background);
   align-items: start;
   grid-template-areas: 'logo' 'social' 'nav';
@@ -92,7 +92,7 @@ const FooterBottom = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 1.25rem 2rem;
+  padding: 1.5rem 2rem;
   background-color: var(--color-background);
 
   @media (min-width: 1200px) {
