@@ -201,20 +201,18 @@ const HomePage = (props: any) => {
         </div>
         <div className="valueProps white">
           <div className="container">
-            <div className="billboard">
-              <div className="browser browserGrid">
-                <div className="browserContent">
-                  <span className="contentTitle">Tina comes with editing</span>
-                  <span className="contentText">
-                    Super simple, just click and edit.
-                  </span>
-                  <span className="contentFootnote">
-                    It’s 35 degrees and sunny
-                  </span>
-                </div>
-                <div className="browserImageWrapper">
-                  <img className="browserImage" src="img/tina-wow.png" alt="" />
-                </div>
+            <div className="browser browserGrid">
+              <div className="browserContent">
+                <span className="contentTitle">Tina comes with editing.</span>
+                <span className="contentText">
+                  Super simple, just click and edit.
+                </span>
+                <span className="contentFootnote">
+                  It’s 35 degrees and sunny
+                </span>
+              </div>
+              <div className="browserImageWrapper">
+                <img className="browserImage" src="img/tina-wow.png" alt="" />
               </div>
             </div>
             <div className="divider dividerMobile">
@@ -299,7 +297,7 @@ const HomePage = (props: any) => {
               </div>
               <div className="card">
                 <img src="img/headlessCms.png" alt="" className="cardImage" />
-                <h3 className="cardTitle">Headless Cms</h3>
+                <h3 className="cardTitle">3rd Party APIs</h3>
                 <p className="cardText">
                   Sync your website data to a headless CMS of your choice
                 </p>
@@ -327,7 +325,7 @@ const HomePage = (props: any) => {
               </div>
               <div className="card">
                 <img src="img/headlessCms.png" alt="" className="cardImage" />
-                <h3 className="cardTitle">Headless Cms</h3>
+                <h3 className="cardTitle">Git Filesystem</h3>
                 <p className="cardText">
                   Sync your website data to a headless CMS of your choice
                 </p>
@@ -409,9 +407,10 @@ const HomePage = (props: any) => {
           --color-blue: #00255b;
           --color-white: #ffffff;
           --color-gray: #b6b6b6;
-          --color-light-gray: #f8f8f8;
+          --color-light-gray: #fafafa;
 
           --color-emphasis: var(--color-orange);
+          --color-card-background: var(--color-light-gray);
         }
       `}</style>
       <style jsx>{`
@@ -751,22 +750,14 @@ const HomePage = (props: any) => {
           padding-bottom: 8rem;
         }
 
-        .billboard {
-          background: linear-gradient(
-            to top,
-            var(--color-orange),
-            var(--color-orange-light)
-          );
-          padding: 2rem;
-          border-radius: 0.5rem;
-        }
-
         .browser {
           position: relative;
-          background: var(--color-light-gray);
           padding: 4rem 3rem 3rem 3rem;
           border-radius: 1rem;
           overflow: visible;
+          background: var(--color-card-background);
+          border-radius: 0.5rem;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.07);
 
           &:after {
             content: '';
@@ -799,22 +790,23 @@ const HomePage = (props: any) => {
 
         .contentTitle {
           font-family: var(--font-tuner);
+          color: var(--color-orange);
           display: block;
-          font-size: 2rem;
+          font-size: 2.25rem;
           font-weight: bold;
           margin-bottom: 1rem;
         }
 
         .contentText {
           display: block;
-          font-size: 1.75rem;
-          margin-bottom: 1rem;
+          font-size: 1.5rem;
+          margin-bottom: 1.25rem;
         }
 
         .contentFootnote {
           display: block;
-          font-size: 1.25rem;
-          opacity: 0.6;
+          font-size: 1.125rem;
+          opacity: 0.5;
         }
 
         .browserImageWrapper {
@@ -823,6 +815,8 @@ const HomePage = (props: any) => {
 
         .browserImage {
           display: block;
+          width: 100%;
+          height: auto;
           margin: 0;
           filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.07));
         }
@@ -881,7 +875,7 @@ const HomePage = (props: any) => {
         }
 
         .card {
-          background: var(--color-light-gray);
+          background: var(--color-card-background);
           padding: 1.5rem;
           border-radius: 0.5rem;
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.07);
@@ -978,6 +972,8 @@ const HomePage = (props: any) => {
         .lightGray {
           background: var(--color-light-gray);
           color: var(--color-black);
+
+          --color-card-background: var(--color-white);
         }
 
         .white {
