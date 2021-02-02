@@ -383,7 +383,7 @@ const HomePage = (props: any) => {
         <div className="learnTina">
           <div className="container learnContainer">
             <div className="learnImageWrapper">
-              <img src="img/flyingTina.png" alt="" />
+              <img className="learnImage" src="img/flyingTina.png" alt="" />
             </div>
             <div className="learnContent">
               <h3 className="learnTitle">Learn Tina</h3>
@@ -963,8 +963,23 @@ const HomePage = (props: any) => {
           }
         }
 
+        @keyframes learnImage {
+          0% {
+            transform: translate3d(0, -0.5rem, 0);
+          }
+          100% {
+            transform: translate3d(0, 0.75rem, 0);
+          }
+        }
+
         .learnImage {
           margin: 0;
+          position: relative;
+          animation: learnImage 3s ease-in-out infinite alternate;
+
+          @media (prefers-reduced-motion) {
+            animation: none;
+          }
         }
 
         .learnContent {
