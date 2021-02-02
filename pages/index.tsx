@@ -171,9 +171,12 @@ const HomePage = (props: any) => {
         </div>
         <div className="feature blue">
           <div className="container featureContainer">
-            <h2 className="featureTitle">Build with YOUR components</h2>
+            <h2 className="featureTitle">
+              Build with <em>your components</em>
+            </h2>
             <p className="featureText">
-              Let your team build great layouts with YOUR React&nbsp;components.
+              Let your team build great layouts with your own
+              React&nbsp;components.
             </p>
           </div>
         </div>
@@ -340,19 +343,17 @@ const HomePage = (props: any) => {
         </div>
         <div className="feature lightGray">
           <div className="container featureContainer">
-            <h2 className="featureTitle">
-              Edit content, in the <em>context of your site</em>
-            </h2>
+            <h2 className="featureTitle">Explore the Tina ecosystem</h2>
             <p className="featureText">
-              Just click on the page and type. Contextual toolbars and panels
-              appear at just the right times to create the content you want.
+              More than just a headless CMS, Tina has all the tools for building
+              web experiences for interdisciplinary teams.
             </p>
           </div>
         </div>
         <div className="featureGroup lightGray">
           <div className="container featureGroupContainer">
             <div className="summary active">
-              <h3 className="summaryTitle">Page Building</h3>
+              <h3 className="summaryTitle">Data Source Plugins</h3>
               <p className="summaryText">
                 Pick from your custom predefined components to build web
                 experiences, blazing fast
@@ -408,8 +409,7 @@ const HomePage = (props: any) => {
           --color-yellow: #f2c94c;
           --color-green: #6fcf97;
           --color-black: #111920;
-          --color-black-light: #091f3e;
-          --color-blue: #00255b;
+          --color-teal: #0f3b3f;
           --color-white: #ffffff;
           --color-gray: #f3f3f3;
           --color-light-gray: #fafafa;
@@ -657,8 +657,8 @@ const HomePage = (props: any) => {
           background: linear-gradient(
             to bottom,
             var(--color-black) 0%,
-            var(--color-black-light) 50%,
-            var(--color-white) 50%,
+            var(--color-teal) 50%,
+            var(--color-light-gray) 50%,
             var(--color-white) 100%
           );
         }
@@ -701,7 +701,7 @@ const HomePage = (props: any) => {
           transition: opacity 150ms ease-out;
           cursor: pointer;
           user-select: none;
-          color: var(--color-blue);
+          color: var(--color-teal);
         }
 
         .summary.active {
@@ -748,8 +748,8 @@ const HomePage = (props: any) => {
           margin-top: -4rem;
           background: linear-gradient(
             to bottom,
-            var(--color-blue) 0%,
-            var(--color-black-light) 100%
+            var(--color-teal) 0%,
+            var(--color-teal) 100%
           );
 
           :global(iframe) {
@@ -1025,8 +1025,10 @@ const HomePage = (props: any) => {
         }
 
         .blue {
-          background: var(--color-blue);
+          background: var(--color-teal);
           color: var(--color-white);
+
+          --color-emphasis: var(--color-orange-light);
         }
 
         .lightGray {
