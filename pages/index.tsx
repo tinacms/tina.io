@@ -617,8 +617,9 @@ const HomePage = (props: any) => {
           text-decoration: none;
           color: inherit;
           font-size: 1.25rem;
+          line-height: 1;
           font-weight: bold;
-          padding: 0.75rem 1.5rem;
+          padding: 1rem 1.75rem;
           border-radius: 0.25rem;
           display: flex;
           align-items: center;
