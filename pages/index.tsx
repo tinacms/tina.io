@@ -755,7 +755,7 @@ const HomePage = (props: any) => {
           background: linear-gradient(
             to bottom,
             var(--color-blue) 0%,
-            var(--color-blue) 100%
+            var(--color-black) 100%
           );
 
           :global(iframe) {
