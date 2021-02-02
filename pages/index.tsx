@@ -2,6 +2,7 @@ import React from 'react'
 import { GetStaticProps } from 'next'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
 import { Footer } from 'components/layout'
+import Link from 'next/link'
 
 const IconRight = () => {
   return (
@@ -42,15 +43,17 @@ const HomePage = (props: any) => {
       <div className="pageWrapper">
         <div className="banner orange">
           <div className="container">
-            <a className="bannerLink">
-              <span>
-                Sign up for early access{' '}
-                <span className="tinaCloud">
-                  for <em>Tina Cloud</em> ☁️
+            <Link href="/enterprise">
+              <a>
+                <span>
+                  Sign up for early access{' '}
+                  <span className="tinaCloud">
+                    for <em>Tina Cloud</em> ☁️
+                  </span>
                 </span>
-              </span>
-              <IconRight />
-            </a>
+                <IconRight />
+              </a>
+            </Link>
           </div>
         </div>
         <div className="nav black">
@@ -62,19 +65,13 @@ const HomePage = (props: any) => {
             <nav className="navWrapper navNav">
               <ul className="navUl">
                 <li className="navLi">
-                  <a className="navLink" href="#">
-                    Docs
-                  </a>
+                  <Link href="/docs">Docs</Link>
                 </li>
                 <li className="navLi">
-                  <a className="navLink" href="#">
-                    Guides
-                  </a>
+                  <Link href="/guides">Guides</Link>
                 </li>
                 <li className="navLi">
-                  <a className="navLink" href="#">
-                    Blog
-                  </a>
+                  <Link href="/blog">Blog</Link>
                 </li>
               </ul>
             </nav>
@@ -423,16 +420,22 @@ const HomePage = (props: any) => {
           padding: 0 1.5rem;
         }
 
-        .bannner {
-        }
+        .banner {
+          :global(a) {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 0;
+            font-size: 1.25rem;
+            line-height: 1.4;
+            text-decoration: none;
+            color: inherit;
+            transition: opacity 150ms ease-out;
 
-        .bannerLink {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 0.75rem 0;
-          font-size: 1.25rem;
-          line-height: 1.4;
+            &:hover {
+              opacity: 0.8;
+            }
+          }
 
           :global(em) {
             font-style: normal;
@@ -516,17 +519,17 @@ const HomePage = (props: any) => {
 
         .navLi {
           margin: 0 1.5rem;
-        }
 
-        .navLink {
-          color: white;
-          opacity: 0.7;
-          transition: opacity 150ms ease-out;
-          text-decoration: none;
-          font-size: 1.125rem;
+          :global(a) {
+            color: white;
+            opacity: 0.7;
+            transition: opacity 150ms ease-out;
+            text-decoration: none;
+            font-size: 1.125rem;
 
-          :hover {
-            opacity: 1;
+            &:hover {
+              opacity: 1;
+            }
           }
         }
 
@@ -921,6 +924,7 @@ const HomePage = (props: any) => {
         }
 
         .learnImage {
+          margin: 0;
         }
 
         .learnContent {
