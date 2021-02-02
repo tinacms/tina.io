@@ -785,10 +785,9 @@ const HomePage = (props: any) => {
           transform: rotate3d(1, 0, 0, 2deg);
           background-position: top left;
           border-radius: 0.25rem;
-          box-shadow: inset 0 0 0 1px rgba(236, 72, 21, 0.03),
-            0 24px 32px rgba(236, 72, 21, 0.05),
-            0 6px 8px rgba(236, 72, 21, 0.03),
-            0 48px 48px -64px rgba(236, 72, 21, 0.3);
+          box-shadow: inset 0 0 0 1px rgba(36, 23, 72, 0.03),
+            0 24px 32px rgba(36, 23, 72, 0.05), 0 6px 8px rgba(36, 23, 72, 0.03),
+            0 48px 48px -64px rgba(36, 23, 72, 0.3);
 
           &:after {
             content: '';
@@ -927,8 +926,8 @@ const HomePage = (props: any) => {
           background: var(--color-card-background);
           padding: 2rem;
           border-radius: 0.25rem;
-          box-shadow: inset 0 0 0 1px rgba(236, 72, 21, 0.03),
-            0 6px 24px rgba(0, 37, 91, 0.05), 0 2px 4px rgba(0, 37, 91, 0.03);
+          box-shadow: inset 0 0 0 1px rgba(36, 23, 72, 0.03),
+            0 6px 24px rgba(36, 23, 72, 0.05), 0 2px 4px rgba(36, 23, 72, 0.03);
         }
 
         .cardImage {
