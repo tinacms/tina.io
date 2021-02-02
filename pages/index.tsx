@@ -92,7 +92,9 @@ const HomePage = (props: any) => {
         </div>
         <div className="feature black">
           <div className="container featureContainer">
-            <h2 className="featureTitle">Content editing for modern teams</h2>
+            <h2 className="featureTitle">
+              Content editing for modern&nbsp;teams
+            </h2>
             <p className="featureText">
               Tina is an open-source CMS admin that talks to any API
             </p>
@@ -172,7 +174,7 @@ const HomePage = (props: any) => {
           <div className="container featureContainer">
             <h2 className="featureTitle">Build with YOUR components</h2>
             <p className="featureText">
-              Let your team build great layouts with YOUR React components.
+              Let your team build great layouts with YOUR React&nbsp;components.
             </p>
           </div>
         </div>
@@ -192,8 +194,8 @@ const HomePage = (props: any) => {
           <div className="container featureContainer">
             <h2 className="featureTitle">Avoid Vendor Lock-In</h2>
             <p className="featureText">
-              Add visual editing to your site for logged in users. Write to any
-              API.
+              Add visual editing to your site for logged in users. Write&nbsp;to
+              any API.
             </p>
           </div>
         </div>
