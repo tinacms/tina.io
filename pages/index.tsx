@@ -44,7 +44,10 @@ const HomePage = (props: any) => {
           <div className="container">
             <a className="bannerLink">
               <span>
-                Sign up for early access for <em>Tina Cloud</em> ☁️
+                Sign up for early access{' '}
+                <span className="tinaCloud">
+                  for <em>Tina Cloud</em> ☁️
+                </span>
               </span>
               <IconRight />
             </a>
@@ -267,7 +270,7 @@ const HomePage = (props: any) => {
             <div className="cardGroup">
               <div className="card">
                 <img src="img/headlessCms.png" alt="" className="cardImage" />
-                <h3 className="cardHeading">Headless Cms</h3>
+                <h3 className="cardTitle">Headless Cms</h3>
                 <p className="cardText">
                   Sync your website data to a headless CMS of your choice
                 </p>
@@ -295,7 +298,7 @@ const HomePage = (props: any) => {
               </div>
               <div className="card">
                 <img src="img/headlessCms.png" alt="" className="cardImage" />
-                <h3 className="cardHeading">Headless Cms</h3>
+                <h3 className="cardTitle">Headless Cms</h3>
                 <p className="cardText">
                   Sync your website data to a headless CMS of your choice
                 </p>
@@ -323,7 +326,7 @@ const HomePage = (props: any) => {
               </div>
               <div className="card">
                 <img src="img/headlessCms.png" alt="" className="cardImage" />
-                <h3 className="cardHeading">Headless Cms</h3>
+                <h3 className="cardTitle">Headless Cms</h3>
                 <p className="cardText">
                   Sync your website data to a headless CMS of your choice
                 </p>
@@ -429,6 +432,7 @@ const HomePage = (props: any) => {
           justify-content: center;
           padding: 0.75rem 0;
           font-size: 1.25rem;
+          line-height: 1.4;
 
           :global(em) {
             font-style: normal;
@@ -440,6 +444,11 @@ const HomePage = (props: any) => {
             margin-left: 1rem;
             height: 1em;
           }
+        }
+
+        .tinaCloud {
+          display: inline-block;
+          white-space: nowrap;
         }
 
         .nav {
@@ -527,17 +536,17 @@ const HomePage = (props: any) => {
           align-items: center;
 
           :global(svg) {
-            margin-top: -0.375rem;
-            height: 2.5rem;
+            margin-top: -0.5rem;
+            height: 2.75rem;
             width: auto;
-            margin-right: 0.5rem;
+            margin-right: 0.75rem;
           }
         }
 
         .wordmark {
-          font-size: 2rem;
-          font-family: var(--font-tuner);
+          font-size: 1.75rem;
           font-weight: bold;
+          font-family: var(--font-tuner);
         }
 
         .feature {
@@ -550,9 +559,10 @@ const HomePage = (props: any) => {
         }
 
         .featureTitle {
+          font-family: var(--font-tuner);
+          font-weight: bold;
           font-size: 2.5rem;
           line-height: 1.4;
-          font-weight: bold;
           margin-bottom: 2rem;
 
           :global(em) {
@@ -590,9 +600,10 @@ const HomePage = (props: any) => {
         }
 
         .button {
+          font-family: var(--font-tuner);
           text-decoration: none;
           color: inherit;
-          font-size: 1.375rem;
+          font-size: 1.25rem;
           font-weight: bold;
           padding: 0.75rem 1.5rem;
           border-radius: 0.25rem;
@@ -651,7 +662,7 @@ const HomePage = (props: any) => {
         }
 
         .featureGroup {
-          margin-top: -4rem;
+          margin-top: -5rem;
           padding-bottom: 8rem;
         }
 
@@ -688,6 +699,7 @@ const HomePage = (props: any) => {
         }
 
         .summaryTitle {
+          font-family: var(--font-tuner);
           margin-bottom: 1rem;
           font-size: 1.5rem;
           font-weight: bold;
@@ -734,7 +746,7 @@ const HomePage = (props: any) => {
         }
 
         .valueProps {
-          margin-top: -4rem;
+          margin-top: -5rem;
           padding-bottom: 8rem;
         }
 
@@ -773,7 +785,7 @@ const HomePage = (props: any) => {
 
         .browserGrid {
           display: grid;
-          grid-gap: 2rem;
+          grid-gap: 3rem 2rem;
 
           @media (min-width: 1000px) {
             grid-template-columns: 1fr 1fr;
@@ -785,6 +797,7 @@ const HomePage = (props: any) => {
         }
 
         .contentTitle {
+          font-family: var(--font-tuner);
           display: block;
           font-size: 2rem;
           font-weight: bold;
@@ -879,8 +892,8 @@ const HomePage = (props: any) => {
           margin-bottom: 1.125rem;
         }
 
-        .cardHeading {
-          font-size: 2rem;
+        .cardTitle {
+          font-size: 1.75rem;
           line-height: 1.4;
           margin-bottom: 0.75rem;
         }
@@ -891,7 +904,7 @@ const HomePage = (props: any) => {
         }
 
         .learnTina {
-          padding: 4rem 0;
+          padding: 5rem 0;
           background-image: url('/img/clouds.jpg');
           background-position: center top;
           background-repeat: no-repeat;
@@ -908,7 +921,6 @@ const HomePage = (props: any) => {
           @media (min-width: 1000px) {
             grid-gap: 2rem;
             grid-template-columns: 2fr 3fr;
-            grid-template-rows: auto auto 1fr;
           }
         }
 
@@ -919,6 +931,7 @@ const HomePage = (props: any) => {
         }
 
         .learnTitle {
+          font-family: var(--font-tuner);
           margin-bottom: 1rem;
           font-size: 2rem;
           font-weight: bold;

@@ -8,6 +8,16 @@
     url('../../public/fonts/tunerweb-regular.woff') format('woff');
 }
 
+/* Tuner Bold */
+@font-face {
+  font-family: 'tuner-bold';
+  font-style: normal;
+  font-weight: bold;
+  font-display: fallback;
+  src: url('../../public/fonts/tunerweb-bold.eot') format('eot'),
+    url('../../public/fonts/tunerweb-bold.woff') format('woff');
+}
+
 /* Inter Regular */
 @font-face {
   font-family: 'Inter';
