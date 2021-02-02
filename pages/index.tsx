@@ -419,6 +419,10 @@ const HomePage = (props: any) => {
           --color-emphasis: var(--color-orange);
           --color-card-background: var(--color-light-gray);
         }
+
+        html {
+          min-width: 400px;
+        }
       `}</style>
       <style jsx>{`
         .pageWrapper {
@@ -466,6 +470,7 @@ const HomePage = (props: any) => {
 
         .nav {
           padding: 2rem 0 2rem 0;
+          margin-bottom: -1px;
         }
 
         .navContainer {
@@ -536,7 +541,7 @@ const HomePage = (props: any) => {
             opacity: 0.7;
             transition: opacity 150ms ease-out;
             text-decoration: none;
-            font-size: 1.125rem;
+            font-size: 1.25rem;
 
             &:hover {
               opacity: 1;
