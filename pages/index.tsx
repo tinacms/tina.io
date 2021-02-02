@@ -409,7 +409,7 @@ const HomePage = (props: any) => {
           --color-yellow: #f2c94c;
           --color-green: #6fcf97;
           --color-black: #111920;
-          --color-teal: #0f3b3f;
+          --color-blue: #241748;
           --color-white: #ffffff;
           --color-gray: #f3f3f3;
           --color-light-gray: #fafafa;
@@ -657,7 +657,7 @@ const HomePage = (props: any) => {
           background: linear-gradient(
             to bottom,
             var(--color-black) 0%,
-            var(--color-teal) 50%,
+            var(--color-blue) 50%,
             var(--color-light-gray) 50%,
             var(--color-white) 100%
           );
@@ -701,7 +701,7 @@ const HomePage = (props: any) => {
           transition: opacity 150ms ease-out;
           cursor: pointer;
           user-select: none;
-          color: var(--color-teal);
+          color: var(--color-blue);
         }
 
         .summary.active {
@@ -748,8 +748,8 @@ const HomePage = (props: any) => {
           margin-top: -4rem;
           background: linear-gradient(
             to bottom,
-            var(--color-teal) 0%,
-            var(--color-teal) 100%
+            var(--color-blue) 0%,
+            var(--color-blue) 100%
           );
 
           :global(iframe) {
@@ -1025,7 +1025,7 @@ const HomePage = (props: any) => {
         }
 
         .blue {
-          background: var(--color-teal);
+          background: var(--color-blue);
           color: var(--color-white);
 
           --color-emphasis: var(--color-orange-light);
