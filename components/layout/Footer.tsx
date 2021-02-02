@@ -1,11 +1,11 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { LinkNav } from '../ui/LinkNav'
-import { TinaWordmark } from '../logo/TinaWordmark'
 import TwitterIconSvg from '../../public/svg/twitter-icon.svg'
 import GithubIconSvg from '../../public/svg/github-icon.svg'
 import { EmailForm } from '../forms/EmailForm'
 import { EditLink } from './EditLink'
+import { TinaIcon } from 'components/logo'
 
 const FooterSocial = styled.div`
   display: flex;
@@ -73,7 +73,7 @@ const FooterTop = styled.div`
     grid-template-areas: 'logo nav social';
   }
 
-  ${TinaWordmark} {
+  ${TinaIcon} {
     grid-area: logo;
     margin-bottom: 1rem;
   }
@@ -184,7 +184,7 @@ export const Footer = styled(({ light, ...styleProps }) => {
   return (
     <div {...styleProps}>
       <FooterTop>
-        <TinaWordmark />
+        <TinaIcon />
         <LinkNav />
         <FooterSocial>
           <iframe
@@ -235,8 +235,12 @@ export const Footer = styled(({ light, ...styleProps }) => {
   position: relative;
   z-index: 1000;
 
-  ${TinaWordmark} {
-    fill: var(--color-secondary);
+  ${TinaIcon} {
+    fill: var(--color-white);
+
+    svg {
+      height: 3.5rem;
+    }
   }
 
   ${FooterSocial} {

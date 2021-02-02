@@ -61,7 +61,9 @@ const HomePage = (props: any) => {
             <Link href="/">
               <a className="logomark navLogo">
                 <TinaIcon />
-                <h1 className="wordmark">Tina.io</h1>
+                <h1 className="wordmark">
+                  Tina<span>.io</span>
+                </h1>
               </a>
             </Link>
             <nav className="navWrapper navNav">
@@ -408,7 +410,7 @@ const HomePage = (props: any) => {
           --color-orange-dark: #dc4419;
           --color-yellow: #f2c94c;
           --color-green: #6fcf97;
-          --color-black: #111920;
+          --color-black: #1c1b2e;
           --color-blue: #241748;
           --color-white: #ffffff;
           --color-gray: #f3f3f3;
@@ -549,17 +551,21 @@ const HomePage = (props: any) => {
           align-items: center;
 
           :global(svg) {
-            margin-top: -0.5rem;
-            height: 2.75rem;
+            margin-top: -5px;
+            height: 40px;
             width: auto;
-            margin-right: 0.75rem;
+            margin-right: 12px;
           }
         }
 
         .wordmark {
-          font-size: 1.675rem;
+          font-size: 26px;
           font-weight: bold;
           font-family: var(--font-tuner);
+
+          :global(span) {
+            margin-left: 1px;
+          }
         }
 
         .feature {
