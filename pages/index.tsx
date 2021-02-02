@@ -218,19 +218,21 @@ const HomePage = (props: any) => {
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
-                viewBox="0 0 1200 150"
-                className="dividerSvg"
+                viewBox="0 0 600 120"
+                width="100%"
+                preserveAspectRatio="false"
               >
                 <line
-                  x1="49.25%"
-                  x2="49.25%"
+                  x1="50%"
+                  x2="50%"
                   y1="0"
                   y2="100%"
                   stroke="var(--color-orange)"
-                  strokeWidth="6"
+                  strokeWidth="4"
                   strokeDasharray="10 20"
                   strokeLinecap="round"
                   strokeLinejoin="round"
+                  vectorEffect="non-scaling-stroke"
                 />
               </svg>
             </div>
@@ -238,17 +240,18 @@ const HomePage = (props: any) => {
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
+                preserveAspectRatio="none"
                 viewBox="0 0 1200 150"
-                width="100%"
                 className="dividerSvg"
               >
                 <g>
                   <path
                     stroke="var(--color-orange)"
-                    strokeWidth="6"
+                    strokeWidth="4"
                     strokeDasharray="10 20"
                     strokeLinecap="round"
                     strokeLinejoin="round"
+                    vectorEffect="non-scaling-stroke"
                     d="M591.036 0v70.447m0 0H20c-11.046 0-20 8.955-20 20v51.406m591.036-71.406H1180c11.05 0 20 8.955 20 20V150"
                   ></path>
                 </g>
@@ -258,10 +261,11 @@ const HomePage = (props: any) => {
                   y1="0"
                   y2="100%"
                   stroke="var(--color-orange)"
-                  strokeWidth="6"
+                  strokeWidth="4"
                   strokeDasharray="10 20"
                   strokeLinecap="round"
                   strokeLinejoin="round"
+                  vectorEffect="non-scaling-stroke"
                 />
               </svg>
             </div>
@@ -277,20 +281,21 @@ const HomePage = (props: any) => {
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
-                  viewBox="0 0 1200 150"
+                  viewBox="0 0 600 120"
                   width="100%"
-                  className="dividerSvg"
+                  preserveAspectRatio="false"
                 >
                   <line
-                    x1="49.25%"
-                    x2="49.25%"
+                    x1="50%"
+                    x2="50%"
                     y1="0"
                     y2="100%"
                     stroke="var(--color-orange)"
-                    strokeWidth="6"
+                    strokeWidth="4"
                     strokeDasharray="10 20"
                     strokeLinecap="round"
                     strokeLinejoin="round"
+                    vectorEffect="non-scaling-stroke"
                   />
                 </svg>
               </div>
@@ -305,20 +310,21 @@ const HomePage = (props: any) => {
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
-                  viewBox="0 0 1200 150"
+                  viewBox="0 0 600 120"
                   width="100%"
-                  className="dividerSvg"
+                  preserveAspectRatio="false"
                 >
                   <line
-                    x1="49.25%"
-                    x2="49.25%"
+                    x1="50%"
+                    x2="50%"
                     y1="0"
                     y2="100%"
                     stroke="var(--color-orange)"
-                    strokeWidth="6"
+                    strokeWidth="4"
                     strokeDasharray="10 20"
                     strokeLinecap="round"
                     strokeLinejoin="round"
+                    vectorEffect="non-scaling-stroke"
                   />
                 </svg>
               </div>
@@ -847,7 +853,7 @@ const HomePage = (props: any) => {
           width: 100%;
 
           :global(svg) {
-            width: 66%;
+            width: 100%;
             margin: 0 auto;
             overflow: visible !important;
 
@@ -856,15 +862,29 @@ const HomePage = (props: any) => {
               animation: dash 1s infinite linear;
             }
           }
+
+          @media (min-width: 1000px) {
+            :global(svg) {
+              width: 66%;
+            }
+          }
         }
 
         .dividerDesktop {
+          height: 7.5rem;
+
+          :global(svg) {
+            height: 100%;
+          }
+
           @media (max-width: 999px) {
             display: none;
           }
         }
 
         .dividerMobile {
+          height: 4rem;
+
           @media (min-width: 1000px) {
             display: none;
           }
