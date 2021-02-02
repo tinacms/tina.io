@@ -671,7 +671,9 @@ const HomePage = (props: any) => {
         video {
           width: 100%;
           margin: 0;
-          border-radius: 3px;
+          border-radius: 0.25rem;
+          box-shadow: inset 0 0 0 1px rgba(236, 72, 21, 0.03),
+            0 6px 24px rgba(0, 37, 91, 0.05), 0 2px 4px rgba(0, 37, 91, 0.03);
         }
 
         .featureGroup {
@@ -775,7 +777,7 @@ const HomePage = (props: any) => {
           );
           transform: rotate3d(1, 0, 0, 2deg);
           background-position: top left;
-          border-radius: 0.5rem;
+          border-radius: 0.25rem;
           box-shadow: inset 0 0 0 1px rgba(236, 72, 21, 0.03),
             0 24px 32px rgba(236, 72, 21, 0.05),
             0 6px 8px rgba(236, 72, 21, 0.03),
@@ -917,7 +919,7 @@ const HomePage = (props: any) => {
         .card {
           background: var(--color-card-background);
           padding: 2rem;
-          border-radius: 0.5rem;
+          border-radius: 0.25rem;
           box-shadow: inset 0 0 0 1px rgba(236, 72, 21, 0.03),
             0 6px 24px rgba(0, 37, 91, 0.05), 0 2px 4px rgba(0, 37, 91, 0.03);
         }
