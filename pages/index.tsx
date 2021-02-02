@@ -100,7 +100,7 @@ const HomePage = (props: any) => {
             </p>
             <div className="featureActions">
               <a href="#" className="button buttonOrange">
-                Try Demo
+                Try Demo <IconRight />
               </a>
               <a href="#" className="button buttonGhost">
                 Learn More
@@ -457,11 +457,12 @@ const HomePage = (props: any) => {
 
         .navContainer {
           display: grid;
-          grid-gap: 1rem;
+          grid-gap: 2rem 1rem;
           grid-template-columns: 1fr 1fr;
           grid-template-rows: 1fr 1fr;
 
           @media (min-width: 800px) {
+            grid-gap: 1rem;
             align-items: center;
             grid-template-columns: auto 1fr auto;
             grid-template-rows: 1fr;
