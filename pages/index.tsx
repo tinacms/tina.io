@@ -563,7 +563,7 @@ const HomePage = (props: any) => {
         }
 
         .feature {
-          padding: 8rem 0;
+          padding: 9rem 0;
         }
 
         .featureContainer {
@@ -574,7 +574,7 @@ const HomePage = (props: any) => {
         .featureTitle {
           font-family: var(--font-tuner);
           font-weight: bold;
-          font-size: 2.5rem;
+          font-size: 2.75rem;
           line-height: 1.4;
           margin-bottom: 2rem;
 
@@ -676,7 +676,7 @@ const HomePage = (props: any) => {
 
         .featureGroup {
           margin-top: -5rem;
-          padding-bottom: 8rem;
+          padding-bottom: 9rem;
         }
 
         .featureGroupContainer {
@@ -759,7 +759,7 @@ const HomePage = (props: any) => {
 
         .valueProps {
           margin-top: -5rem;
-          padding-bottom: 8rem;
+          padding-bottom: 9rem;
         }
 
         .browser {
