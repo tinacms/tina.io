@@ -612,14 +612,15 @@ const HomePage = (props: any) => {
 
         .featureActions {
           display: flex;
+          flex-wrap: wrap;
           align-items: center;
           justify-content: center;
           padding-top: 0.5rem;
-          margin: 0 -0.5rem;
+          margin: 0 -0.75rem;
 
           :global(a),
           :global(button) {
-            margin: 0 0.5rem;
+            margin: 0 0.75rem;
           }
         }
 
@@ -1010,13 +1011,14 @@ const HomePage = (props: any) => {
 
         .buttonGroup {
           display: flex;
+          flex-wrap: wrap;
           align-items: center;
           padding-top: 0.5rem;
-          margin: 0 -0.5rem;
+          margin: 0 -0.75rem;
 
           :global(a),
           :global(button) {
-            margin: 0 0.5rem;
+            margin: 0 0.75rem;
           }
         }
 
