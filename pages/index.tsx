@@ -58,10 +58,12 @@ const HomePage = (props: any) => {
         </div>
         <div className="nav black">
           <div className="container navContainer">
-            <div className="logomark navLogo">
-              <TinaIcon />
-              <h1 className="wordmark">Tina.io</h1>
-            </div>
+            <Link href="/">
+              <a className="logomark navLogo">
+                <TinaIcon />
+                <h1 className="wordmark">Tina.io</h1>
+              </a>
+            </Link>
             <nav className="navWrapper navNav">
               <ul className="navUl">
                 <li className="navLi">
@@ -477,6 +479,7 @@ const HomePage = (props: any) => {
           grid-column-end: 2;
           grid-row-start: 1;
           grid-row-end: 2;
+          text-decoration: none;
 
           @media (min-width: 800px) {
             grid-column-start: 1;
@@ -761,7 +764,8 @@ const HomePage = (props: any) => {
           overflow: visible;
           background: var(--color-card-background);
           border-radius: 0.5rem;
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.07);
+          box-shadow: 0 6px 24px rgba(0, 37, 91, 0.05),
+            0 2px 4px rgba(0, 37, 91, 0.03);
 
           &:after {
             content: '';
@@ -822,7 +826,7 @@ const HomePage = (props: any) => {
           width: 100%;
           height: auto;
           margin: 0;
-          filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.07));
+          filter: drop-shadow(0 3px 8px rgba(0, 37, 91, 0.07));
         }
 
         .divider {
@@ -882,7 +886,8 @@ const HomePage = (props: any) => {
           background: var(--color-card-background);
           padding: 1.5rem;
           border-radius: 0.5rem;
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.07);
+          box-shadow: 0 6px 24px rgba(0, 37, 91, 0.05),
+            0 2px 4px rgba(0, 37, 91, 0.03);
         }
 
         .cardImage {
