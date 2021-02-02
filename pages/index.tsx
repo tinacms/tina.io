@@ -220,7 +220,6 @@ const HomePage = (props: any) => {
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 1200 150"
-                width="100%"
                 className="dividerSvg"
               >
                 <line
@@ -418,7 +417,7 @@ const HomePage = (props: any) => {
         }
 
         .container {
-          max-width: 1200px;
+          max-width: 1240px;
           margin: 0 auto;
           padding: 0 1.5rem;
         }
