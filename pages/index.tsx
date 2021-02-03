@@ -999,14 +999,20 @@ const HomePage = (props: any) => {
           display: grid;
           grid-template-columns: 1fr;
           grid-gap: calc(var(--spacer-size) * 1.5);
-          padding: calc(var(--spacer-size) * 0.5) 0;
+          padding-top: calc(var(--spacer-size) * 0.5) 0;
+          padding-bottom: calc(var(--spacer-size) * 0.5) 0;
         }
 
         .feature {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          grid-gap: var(--spacer-size);
+          grid-template-columns: 1fr;
+          grid-gap: calc(var(--spacer-size) / 2);
           align-items: center;
+
+          @media (min-width: 900px) {
+            grid-template-columns: 1fr 1fr;
+            grid-gap: var(--spacer-size);
+          }
         }
 
         .featureReverse {
