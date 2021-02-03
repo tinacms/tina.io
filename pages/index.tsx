@@ -40,181 +40,250 @@ const HomePage = (props: any) => {
 
   return (
     <>
-      <div className="pageWrapper">
-        <div className="banner orange">
-          <div className="container">
-            <Link href="/enterprise">
-              <a>
-                <span>
-                  Sign up for early access{' '}
-                  <span className="tinaCloud">
-                    for <em>Tina Cloud</em> ☁️
-                  </span>
+      <div className="banner orange">
+        <div className="container">
+          <Link href="/enterprise">
+            <a>
+              <span>
+                Sign up for early access{' '}
+                <span className="tinaCloud">
+                  for <em>Tina Cloud</em> ☁️
                 </span>
-                <IconRight />
-              </a>
-            </Link>
+              </span>
+              <IconRight />
+            </a>
+          </Link>
+        </div>
+      </div>
+      <div className="navbar black">
+        <div className="container navContainer">
+          <Link href="/">
+            <a className="logomark navLogo">
+              <TinaIcon />
+              <h1 className="wordmark">
+                Tina<span>.io</span>
+              </h1>
+            </a>
+          </Link>
+          <nav className="navWrapper navNav">
+            <ul className="navUl">
+              <li className="navLi">
+                <Link href="/docs">Docs</Link>
+              </li>
+              <li className="navLi">
+                <Link href="/guides">Guides</Link>
+              </li>
+              <li className="navLi">
+                <Link href="/blog">Blog</Link>
+              </li>
+            </ul>
+          </nav>
+          <div className="githubStar navGithub">
+            <iframe
+              className="starButton"
+              src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
+              frameBorder="0"
+              scrolling="0"
+              width="150px"
+              height="30px"
+            ></iframe>
           </div>
         </div>
-        <div className="navbar black">
-          <div className="container navContainer">
-            <Link href="/">
-              <a className="logomark navLogo">
-                <TinaIcon />
-                <h1 className="wordmark">
-                  Tina<span>.io</span>
-                </h1>
-              </a>
-            </Link>
-            <nav className="navWrapper navNav">
-              <ul className="navUl">
-                <li className="navLi">
-                  <Link href="/docs">Docs</Link>
-                </li>
-                <li className="navLi">
-                  <Link href="/guides">Guides</Link>
-                </li>
-                <li className="navLi">
-                  <Link href="/blog">Blog</Link>
-                </li>
-              </ul>
-            </nav>
-            <div className="githubStar navGithub">
-              <iframe
-                className="starButton"
-                src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
-                frameBorder="0"
-                scrolling="0"
-                width="150px"
-                height="30px"
-              ></iframe>
-            </div>
+      </div>
+      <section className="section black">
+        <div className="container containerFeature">
+          <h2 className="headingHuge">Content editing for modern&nbsp;teams</h2>
+          <p className="textHuge">
+            Tina is an open-source CMS admin that talks to any API
+          </p>
+          <div className="buttonGroup buttonGroupCenter">
+            <a href="#" className="button buttonOrange">
+              Try Demo <IconRight />
+            </a>
+            <a href="#" className="button buttonGhost">
+              Learn More
+            </a>
           </div>
         </div>
-        <section className="section black">
-          <div className="container containerFeature">
-            <h2 className="headingFeature">
-              Content editing for modern&nbsp;teams
-            </h2>
-            <p className="textLarge">
-              Tina is an open-source CMS admin that talks to any API
-            </p>
-            <div className="featureActions">
-              <a href="#" className="button buttonOrange">
-                Try Demo <IconRight />
-              </a>
-              <a href="#" className="button buttonGhost">
-                Learn More
-              </a>
-            </div>
+        <div className="splitBackgroundBlackWhite">
+          <div className="container videoContainer">
+            <video
+              autoPlay={true}
+              loop
+              muted
+              playsInline
+              poster={`https://res.cloudinary.com/forestry-demo/video/upload/so_0/${src}.jpg`}
+            >
+              <source
+                src={`https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/${src}.webm`}
+                type="video/webm"
+              />
+              <source
+                src={`https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/${src}.mp4`}
+                type="video/mp4"
+              />
+            </video>
           </div>
-          <div className="splitBackgroundBlackWhite">
-            <div className="container videoContainer">
-              <video
-                autoPlay={true}
-                loop
-                muted
-                playsInline
-                poster={`https://res.cloudinary.com/forestry-demo/video/upload/so_0/${src}.jpg`}
-              >
-                <source
-                  src={`https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/${src}.webm`}
-                  type="video/webm"
-                />
-                <source
-                  src={`https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/${src}.mp4`}
-                  type="video/mp4"
-                />
-              </video>
-            </div>
-          </div>
-        </section>
-        <section className="section white">
-          <div className="container containerFeature">
-            <h2 className="headingFeature">
-              Edit content, in the <em>context of your site</em>
-            </h2>
-            <p className="textLarge">
-              Just click on the page and type. Contextual toolbars and panels
-              appear at just the right times to create the content you want.
-            </p>
-          </div>
-          <div className="spacer"></div>
-          <div className="container featureGroupGrid">
-            <div className="summary active">
-              <h3 className="headingMedium">Page Building</h3>
-              <p className="summaryText">
+        </div>
+      </section>
+      <section className="section white">
+        <div className="container containerFeature">
+          <h2 className="headingHuge">
+            Edit content, in the <em>context of your site</em>
+          </h2>
+          <p className="textHuge">
+            Just click on the page and type. Contextual toolbars and panels
+            appear at just the right times to create the content you want.
+          </p>
+        </div>
+        <div className="spacer"></div>
+        <div className="container  featureGroup">
+          <div className="feature">
+            <div className="featureText">
+              <h3 className="headingLarge">Data Source Plugins</h3>
+              <hr className="dottedBorder" />
+              <p className="textLarge">
                 Pick from your custom predefined components to build web
                 experiences, blazing fast
               </p>
             </div>
-            <div className="details">
-              <img
-                className="detailsImage"
-                src="img/tina-sidebar-gatsby-london.gif"
-                alt=""
-              />
+            <div className="featureImage">
+              <img src="/img/io-placeholder.jpg" alt="" />
             </div>
-            <div className="summary">
-              <h3 className="headingMedium">Design Systems</h3>
-              <p className="summaryText">
+          </div>
+          <div className="feature featureReverse">
+            <div className="featureText">
+              <h3 className="headingLarge">Design Systems</h3>
+              <hr className="dottedBorder" />
+              <p className="textLarge">
                 Build pages with YOUR design system. Maximize reusability.
               </p>
             </div>
-            <div className="summary">
-              <h3 className="headingMedium">Improve Time-to-Market</h3>
-              <p className="summaryText">
+            <div className="featureImage">
+              <img src="/img/io-placeholder.jpg" alt="" />
+            </div>
+          </div>
+          <div className="feature">
+            <div className="featureText">
+              <h3 className="headingLarge">Improve Time-to-Market</h3>
+              <hr className="dottedBorder" />
+              <p className="textLarge">
                 Better creative control, don’t rely on developers to make
                 content changes.
               </p>
             </div>
+            <div className="featureImage">
+              <img src="/img/io-placeholder.jpg" alt="" />
+            </div>
           </div>
-        </section>
-        <section className="section blue">
-          <div className="container containerFeature">
-            <h2 className="headingFeature">
-              Build with <em>your components</em>
-            </h2>
-            <p className="textLarge">
-              Let your team build great layouts with your own
-              React&nbsp;components.
-            </p>
+        </div>
+      </section>
+      <section className="section blue">
+        <div className="container containerFeature">
+          <h2 className="headingHuge">
+            Build with <em>your components</em>
+          </h2>
+          <p className="textHuge">
+            Let your team build great layouts with your own
+            React&nbsp;components.
+          </p>
+        </div>
+        <div className="spacer"></div>
+        <div className="container containerWide demoContainer">
+          <iframe
+            src="https://codesandbox.io/embed/vigilant-cohen-73its?fontsize=147hidenavigation=17theme=dark"
+            width="800"
+            height="800"
+            title="CodeSandbox example of TinaCMS with Next.js"
+            allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+            sandbox="allow-forms allow-modals allow-popups allow-same-origin allow-scripts"
+          ></iframe>
+        </div>
+      </section>
+      <section className="section white">
+        <div className="container containerFeature">
+          <h2 className="headingHuge">Avoid Vendor Lock-In</h2>
+          <p className="textHuge">
+            Add visual editing to your site for logged in users. Write&nbsp;to
+            any API.
+          </p>
+        </div>
+        <div className="spacer"></div>
+        <div className="container browserContainer">
+          <div className="browser browserGrid">
+            <div className="browserContent">
+              <span className="contentTitle">Tina comes with editing.</span>
+              <span className="contentText">
+                Super simple, just click and edit.
+              </span>
+              <span className="contentFootnote">It’s 35 degrees and sunny</span>
+            </div>
+            <div className="browserImageWrapper">
+              <img className="browserImage" src="img/tina-wow.png" alt="" />
+            </div>
           </div>
-          <div className="spacer"></div>
-          <div className="container demoContainer">
-            <iframe
-              src="https://codesandbox.io/embed/vigilant-cohen-73its?fontsize=147hidenavigation=17theme=dark"
-              width="800"
-              height="800"
-              title="CodeSandbox example of TinaCMS with Next.js"
-              allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-              sandbox="allow-forms allow-modals allow-popups allow-same-origin allow-scripts"
-            ></iframe>
+          <div className="divider dividerMobile">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 600 120"
+              width="100%"
+              preserveAspectRatio="false"
+            >
+              <line
+                x1="50%"
+                x2="50%"
+                y1="0"
+                y2="100%"
+                stroke="var(--color-orange)"
+                strokeWidth="4"
+                strokeDasharray="10 20"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                vectorEffect="non-scaling-stroke"
+              />
+            </svg>
           </div>
-        </section>
-        <section className="section white">
-          <div className="container containerFeature">
-            <h2 className="headingFeature">Avoid Vendor Lock-In</h2>
-            <p className="textLarge">
-              Add visual editing to your site for logged in users. Write&nbsp;to
-              any API.
-            </p>
+          <div className="divider dividerDesktop">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              preserveAspectRatio="none"
+              viewBox="0 0 1200 150"
+              className="dividerSvg"
+            >
+              <g>
+                <path
+                  stroke="var(--color-orange)"
+                  strokeWidth="4"
+                  strokeDasharray="10 20"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  vectorEffect="non-scaling-stroke"
+                  d="M591.036 0v70.447m0 0H20c-11.046 0-20 8.955-20 20v51.406m591.036-71.406H1180c11.05 0 20 8.955 20 20V150"
+                ></path>
+              </g>
+              <line
+                x1="49.25%"
+                x2="49.25%"
+                y1="0"
+                y2="100%"
+                stroke="var(--color-orange)"
+                strokeWidth="4"
+                strokeDasharray="10 20"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                vectorEffect="non-scaling-stroke"
+              />
+            </svg>
           </div>
-          <div className="spacer"></div>
-          <div className="container browserContainer">
-            <div className="browser browserGrid">
-              <div className="browserContent">
-                <span className="contentTitle">Tina comes with editing.</span>
-                <span className="contentText">
-                  Super simple, just click and edit.
-                </span>
-                <span className="contentFootnote">
-                  It’s 35 degrees and sunny
-                </span>
-              </div>
-              <div className="browserImageWrapper">
-                <img className="browserImage" src="img/tina-wow.png" alt="" />
-              </div>
+          <div className="cardGroup">
+            <div className="card">
+              <img src="img/headlessCms.png" alt="" className="cardImage" />
+              <h3 className="headingMedium">Headless Cms</h3>
+              <p className="textLarge">
+                Sync your website data to a headless CMS of your choice
+              </p>
             </div>
             <div className="divider dividerMobile">
               <svg
@@ -238,28 +307,24 @@ const HomePage = (props: any) => {
                 />
               </svg>
             </div>
-            <div className="divider dividerDesktop">
+            <div className="card">
+              <img src="img/headlessCms.png" alt="" className="cardImage" />
+              <h3 className="headingMedium">3rd Party APIs</h3>
+              <p className="textLarge">
+                Sync your website data to a headless CMS of your choice
+              </p>
+            </div>
+            <div className="divider dividerMobile">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
-                preserveAspectRatio="none"
-                viewBox="0 0 1200 150"
-                className="dividerSvg"
+                viewBox="0 0 600 120"
+                width="100%"
+                preserveAspectRatio="false"
               >
-                <g>
-                  <path
-                    stroke="var(--color-orange)"
-                    strokeWidth="4"
-                    strokeDasharray="10 20"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    vectorEffect="non-scaling-stroke"
-                    d="M591.036 0v70.447m0 0H20c-11.046 0-20 8.955-20 20v51.406m591.036-71.406H1180c11.05 0 20 8.955 20 20V150"
-                  ></path>
-                </g>
                 <line
-                  x1="49.25%"
-                  x2="49.25%"
+                  x1="50%"
+                  x2="50%"
                   y1="0"
                   y2="100%"
                   stroke="var(--color-orange)"
@@ -271,129 +336,82 @@ const HomePage = (props: any) => {
                 />
               </svg>
             </div>
-            <div className="cardGroup">
-              <div className="card">
-                <img src="img/headlessCms.png" alt="" className="cardImage" />
-                <h3 className="headingMedium">Headless Cms</h3>
-                <p className="cardText">
-                  Sync your website data to a headless CMS of your choice
-                </p>
-              </div>
-              <div className="divider dividerMobile">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 600 120"
-                  width="100%"
-                  preserveAspectRatio="false"
-                >
-                  <line
-                    x1="50%"
-                    x2="50%"
-                    y1="0"
-                    y2="100%"
-                    stroke="var(--color-orange)"
-                    strokeWidth="4"
-                    strokeDasharray="10 20"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    vectorEffect="non-scaling-stroke"
-                  />
-                </svg>
-              </div>
-              <div className="card">
-                <img src="img/headlessCms.png" alt="" className="cardImage" />
-                <h3 className="headingMedium">3rd Party APIs</h3>
-                <p className="cardText">
-                  Sync your website data to a headless CMS of your choice
-                </p>
-              </div>
-              <div className="divider dividerMobile">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 600 120"
-                  width="100%"
-                  preserveAspectRatio="false"
-                >
-                  <line
-                    x1="50%"
-                    x2="50%"
-                    y1="0"
-                    y2="100%"
-                    stroke="var(--color-orange)"
-                    strokeWidth="4"
-                    strokeDasharray="10 20"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    vectorEffect="non-scaling-stroke"
-                  />
-                </svg>
-              </div>
-              <div className="card">
-                <img src="img/headlessCms.png" alt="" className="cardImage" />
-                <h3 className="headingMedium">Git Filesystem</h3>
-                <p className="cardText">
-                  Sync your website data to a headless CMS of your choice
-                </p>
-              </div>
+            <div className="card">
+              <img src="img/headlessCms.png" alt="" className="cardImage" />
+              <h3 className="headingMedium">Git Filesystem</h3>
+              <p className="textLarge">
+                Sync your website data to a headless CMS of your choice
+              </p>
             </div>
           </div>
-        </section>
-        <section className="section lightGray">
-          <div className="container containerFeature">
-            <h2 className="headingFeature">Explore the Tina ecosystem</h2>
-            <p className="textLarge">
-              More than just a headless CMS, Tina has all the tools for building
-              web experiences for interdisciplinary teams.
-            </p>
-          </div>
-          <div className="spacer"></div>
-          <div className="container featureGroupGrid">
-            <div className="summary active">
-              <h3 className="headingMedium">Data Source Plugins</h3>
-              <p className="summaryText">
+        </div>
+      </section>
+      <section className="section lightGray">
+        <div className="container containerFeature">
+          <h2 className="headingHuge">
+            Explore the <em>Tina ecosystem</em>
+          </h2>
+          <p className="textHuge">
+            More than just a headless CMS, Tina has all the tools for building
+            web experiences for interdisciplinary teams.
+          </p>
+        </div>
+        <div className="spacer"></div>
+        <div className="container  featureGroup">
+          <div className="feature">
+            <div className="featureText">
+              <h3 className="headingLarge">Data Source Plugins</h3>
+              <hr className="dottedBorder" />
+              <p className="textLarge">
                 Pick from your custom predefined components to build web
                 experiences, blazing fast
               </p>
             </div>
-            <div className="details">
-              <img
-                className="detailsImage"
-                src="img/tina-sidebar-gatsby-london.gif"
-                alt=""
-              />
+            <div className="featureImage">
+              <img src="/img/io-placeholder.jpg" alt="" />
             </div>
-            <div className="summary">
-              <h3 className="headingMedium">Design Systems</h3>
-              <p className="summaryText">
+          </div>
+          <div className="feature featureReverse">
+            <div className="featureText">
+              <h3 className="headingLarge">Design Systems</h3>
+              <hr className="dottedBorder" />
+              <p className="textLarge">
                 Build pages with YOUR design system. Maximize reusability.
               </p>
             </div>
-            <div className="summary">
-              <h3 className="headingMedium">Improve Time-to-Market</h3>
-              <p className="summaryText">
+            <div className="featureImage">
+              <img src="/img/io-placeholder.jpg" alt="" />
+            </div>
+          </div>
+          <div className="feature">
+            <div className="featureText">
+              <h3 className="headingLarge">Improve Time-to-Market</h3>
+              <hr className="dottedBorder" />
+              <p className="textLarge">
                 Better creative control, don’t rely on developers to make
                 content changes.
               </p>
             </div>
-          </div>
-        </section>
-        <div className="learnTina">
-          <div className="container learnContainer">
-            <div className="learnImageWrapper">
-              <img className="learnImage" src="img/flyingTina.png" alt="" />
+            <div className="featureImage">
+              <img src="/img/io-placeholder.jpg" alt="" />
             </div>
-            <div className="learnContent">
-              <h3 className="headingLarge">Learn Tina</h3>
-              <p className="learnText">
-                Learn Tina through Interactive & Fun Tutorials.
-              </p>
-              <div className="buttonGroup">
-                <a href="#" className="button buttonOrange">
-                  Get Started <IconRight />
-                </a>
-              </div>
+          </div>
+        </div>
+      </section>
+      <div className="learnTina">
+        <div className="container learnContainer">
+          <div className="learnImageWrapper">
+            <img className="learnImage" src="img/flyingTina.png" alt="" />
+          </div>
+          <div className="learnContent">
+            <h3 className="headingLarge">Learn Tina</h3>
+            <p className="textLarge">
+              Learn Tina through Interactive & Fun Tutorials.
+            </p>
+            <div className="buttonGroup">
+              <a href="#" className="button buttonOrange">
+                Get Started <IconRight />
+              </a>
             </div>
           </div>
         </div>
@@ -414,6 +432,9 @@ const HomePage = (props: any) => {
 
           --color-emphasis: var(--color-orange);
           --color-card-background: var(--color-light-gray);
+
+          --spacer-size: 4.5rem;
+          --section-padding: calc(var(--spacer-size) * 2);
         }
 
         html {
@@ -430,6 +451,10 @@ const HomePage = (props: any) => {
           padding: 0 1.5rem;
         }
 
+        .containerWide {
+          max-width: 1500px;
+        }
+
         .containerFeature {
           max-width: 740px;
           text-align: center;
@@ -438,7 +463,20 @@ const HomePage = (props: any) => {
         .spacer {
           display: block;
           width: 100%;
-          height: 4rem;
+          height: var(--spacer-size);
+        }
+
+        .dottedBorder {
+          border-top: none;
+          border-right: none;
+          border-left: none;
+          border-image: initial;
+          border-bottom: 4px dotted var(--color-orange);
+          width: 6rem;
+          max-width: 100%;
+          display: block;
+          height: 0px;
+          margin: 1.5rem 0px;
         }
 
         .banner {
@@ -581,12 +619,10 @@ const HomePage = (props: any) => {
         }
 
         .section {
-          --section-padding: 9rem;
-
           padding: var(--section-padding) 0;
         }
 
-        .headingFeature {
+        .headingHuge {
           font-family: var(--font-tuner);
           font-weight: bold;
           font-size: 2.75rem;
@@ -617,21 +653,32 @@ const HomePage = (props: any) => {
           margin-bottom: 1rem;
         }
 
-        .textLarge {
+        .textHuge {
           display: block;
           width: 100%;
           max-width: 600px;
           margin-left: auto;
           margin-right: auto;
           font-size: 1.375rem;
-          margin-bottom: 2rem;
+
+          &:not(:last-child) {
+            margin-bottom: 2rem;
+          }
         }
 
-        .featureActions {
+        .textLarge {
+          font-size: 1.125rem;
+          opacity: 0.7;
+
+          &:not(:last-child) {
+            margin-bottom: 1.25rem;
+          }
+        }
+
+        .buttonGroup {
           display: flex;
           flex-wrap: wrap;
           align-items: center;
-          justify-content: center;
           padding-top: 0.5rem;
           margin: 0 -0.75rem;
 
@@ -639,6 +686,10 @@ const HomePage = (props: any) => {
           :global(button) {
             margin: 0 0.75rem;
           }
+        }
+
+        .buttonGroupCenter {
+          justify-content: center;
         }
 
         .button {
@@ -685,7 +736,7 @@ const HomePage = (props: any) => {
           width: 100%;
           display: flex;
           justify-content: center;
-          margin-top: 5rem;
+          margin-top: calc(var(--spacer-size) * 1.5);
           margin-bottom: -9rem;
         }
 
@@ -707,60 +758,7 @@ const HomePage = (props: any) => {
             0 6px 24px rgba(0, 37, 91, 0.05), 0 2px 4px rgba(0, 37, 91, 0.03);
         }
 
-        .featureGroupGrid {
-          display: grid;
-          grid-gap: 2rem;
-          align-content: start;
-          align-items: start;
-
-          @media (min-width: 1000px) {
-            grid-gap: 2rem 4rem;
-            grid-template-columns: 2fr 3fr;
-            grid-template-rows: auto auto 1fr;
-          }
-        }
-
-        .summary {
-          grid-column-start: 1;
-          opacity: 0.4;
-          transition: opacity 150ms ease-out;
-          cursor: pointer;
-          user-select: none;
-          color: var(--color-blue);
-        }
-
-        .summary.active {
-          cursor: inherit;
-          color: var(--color-black);
-        }
-
-        .summary.active,
-        .summary:hover {
-          opacity: 1;
-        }
-
-        .summaryText {
-          font-size: 1.125rem;
-          max-width: 400px;
-          margin: 0;
-        }
-
-        .details {
-          @media (min-width: 1000px) {
-            grid-column-start: 2;
-            grid-row-start: 1;
-            grid-row-end: 4;
-          }
-        }
-
-        .detailsImage {
-          width: 100%;
-          display: block;
-          margin: 0;
-        }
-
         .demoContainer {
-          max-width: 1600px;
           margin-bottom: calc(-1 * var(--section-padding));
 
           :global(iframe) {
@@ -936,11 +934,6 @@ const HomePage = (props: any) => {
           margin-bottom: 1.125rem;
         }
 
-        .cardText {
-          font-size: 1.125rem;
-          opacity: 0.7;
-        }
-
         .learnTina {
           padding: 5rem 0;
           background-image: url('/img/clouds.jpg');
@@ -984,22 +977,42 @@ const HomePage = (props: any) => {
         .learnContent {
         }
 
-        .learnText {
-          display: block;
-          font-size: 1.25rem;
-          margin-bottom: 1.25rem;
+        .featureGroup {
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-gap: calc(var(--spacer-size) * 1.5);
+          padding: calc(var(--spacer-size) * 0.5) 0;
         }
 
-        .buttonGroup {
-          display: flex;
-          flex-wrap: wrap;
+        .feature {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          grid-gap: var(--spacer-size);
           align-items: center;
-          padding-top: 0.5rem;
-          margin: 0 -0.75rem;
+        }
 
-          :global(a),
-          :global(button) {
-            margin: 0 0.75rem;
+        .featureReverse {
+          direction: rtl;
+          > * {
+            direction: ltr;
+          }
+        }
+
+        .featureText {
+          :global(p) {
+            max-width: 400px;
+          }
+        }
+
+        .featureImage {
+          :global(img) {
+            display: block;
+            width: 100%;
+            height: auto;
+            margin: 0;
+            border-radius: 0.5rem;
+            box-shadow: inset 0 0 0 1px rgba(236, 72, 21, 0.03),
+              0 6px 24px rgba(0, 37, 91, 0.05), 0 2px 4px rgba(0, 37, 91, 0.03);
           }
         }
 
