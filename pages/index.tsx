@@ -35,6 +35,67 @@ const TinaIcon = () => {
   )
 }
 
+const TripleDividerSvg = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      preserveAspectRatio="none"
+      viewBox="0 0 1200 150"
+      className="dividerSvg"
+    >
+      <g>
+        <path
+          stroke="var(--color-orange)"
+          strokeWidth="4"
+          strokeDasharray="8 14"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          vectorEffect="non-scaling-stroke"
+          d="M591.036 0v70.447m0 0H20c-11.046 0-20 8.955-20 20v51.406m591.036-71.406H1180c11.05 0 20 8.955 20 20V150"
+        ></path>
+      </g>
+      <line
+        x1="49.25%"
+        x2="49.25%"
+        y1="0"
+        y2="100%"
+        stroke="var(--color-orange)"
+        strokeWidth="4"
+        strokeDasharray="8 14"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        vectorEffect="non-scaling-stroke"
+      />
+    </svg>
+  )
+}
+
+const SingleDividerSvg = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 600 120"
+      width="100%"
+      preserveAspectRatio="false"
+    >
+      <line
+        x1="50%"
+        x2="50%"
+        y1="0"
+        y2="100%"
+        stroke="var(--color-orange)"
+        strokeWidth="4"
+        strokeDasharray="8 14"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        vectorEffect="non-scaling-stroke"
+      />
+    </svg>
+  )
+}
+
 const HomePage = (props: any) => {
   let src = 'v1571425758/tina-hero-demo-v2'
 
@@ -223,59 +284,10 @@ const HomePage = (props: any) => {
             </div>
           </div>
           <div className="divider dividerMobile">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 600 120"
-              width="100%"
-              preserveAspectRatio="false"
-            >
-              <line
-                x1="50%"
-                x2="50%"
-                y1="0"
-                y2="100%"
-                stroke="var(--color-orange)"
-                strokeWidth="4"
-                strokeDasharray="8 14"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                vectorEffect="non-scaling-stroke"
-              />
-            </svg>
+            <SingleDividerSvg />
           </div>
           <div className="divider dividerDesktop">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              preserveAspectRatio="none"
-              viewBox="0 0 1200 150"
-              className="dividerSvg"
-            >
-              <g>
-                <path
-                  stroke="var(--color-orange)"
-                  strokeWidth="4"
-                  strokeDasharray="8 14"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  vectorEffect="non-scaling-stroke"
-                  d="M591.036 0v70.447m0 0H20c-11.046 0-20 8.955-20 20v51.406m591.036-71.406H1180c11.05 0 20 8.955 20 20V150"
-                ></path>
-              </g>
-              <line
-                x1="49.25%"
-                x2="49.25%"
-                y1="0"
-                y2="100%"
-                stroke="var(--color-orange)"
-                strokeWidth="4"
-                strokeDasharray="8 14"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                vectorEffect="non-scaling-stroke"
-              />
-            </svg>
+            <TripleDividerSvg />
           </div>
           <div className="cardGroup">
             <div className="card cardLinked">
@@ -294,26 +306,7 @@ const HomePage = (props: any) => {
               </div>
             </div>
             <div className="divider dividerMobile">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 600 120"
-                width="100%"
-                preserveAspectRatio="false"
-              >
-                <line
-                  x1="50%"
-                  x2="50%"
-                  y1="0"
-                  y2="100%"
-                  stroke="var(--color-orange)"
-                  strokeWidth="4"
-                  strokeDasharray="8 14"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  vectorEffect="non-scaling-stroke"
-                />
-              </svg>
+              <SingleDividerSvg />
             </div>
             <div className="card cardLinked">
               <div className="linkedContent">
@@ -331,26 +324,7 @@ const HomePage = (props: any) => {
               </div>
             </div>
             <div className="divider dividerMobile">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 600 120"
-                width="100%"
-                preserveAspectRatio="false"
-              >
-                <line
-                  x1="50%"
-                  x2="50%"
-                  y1="0"
-                  y2="100%"
-                  stroke="var(--color-orange)"
-                  strokeWidth="4"
-                  strokeDasharray="8 14"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  vectorEffect="non-scaling-stroke"
-                />
-              </svg>
+              <SingleDividerSvg />
             </div>
             <div className="card cardLinked">
               <div className="linkedContent">
