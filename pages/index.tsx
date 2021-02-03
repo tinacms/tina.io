@@ -140,7 +140,7 @@ const HomePage = (props: any) => {
         <div className="container  featureGroup">
           <div className="feature">
             <div className="featureText">
-              <h3 className="headingLarge">Data Source Plugins</h3>
+              <h3 className="headingLarge">Page building</h3>
               <hr className="dottedBorder" />
               <p className="textLarge">
                 Pick from your custom predefined components to build web
@@ -363,9 +363,12 @@ const HomePage = (props: any) => {
               <h3 className="headingLarge">Data Source Plugins</h3>
               <hr className="dottedBorder" />
               <p className="textLarge">
-                Pick from your custom predefined components to build web
-                experiences, blazing fast
+                Data Source plugins allow you to extend Tina to connect to
+                different databases and 3rd Party APIs
               </p>
+              <a href="#" className="button buttonLink">
+                Read The Docs <IconRight />
+              </a>
             </div>
             <div className="featureImage">
               <img src="/img/io-placeholder.jpg" alt="" />
@@ -373,11 +376,15 @@ const HomePage = (props: any) => {
           </div>
           <div className="feature featureReverse">
             <div className="featureText">
-              <h3 className="headingLarge">Design Systems</h3>
+              <h3 className="headingLarge">Screen UI Plugins</h3>
               <hr className="dottedBorder" />
               <p className="textLarge">
-                Build pages with YOUR design system. Maximize reusability.
+                Data Source plugins allow you to extend Tina to connect to
+                different databases and 3rd Party APIs
               </p>
+              <a href="#" className="button buttonLink">
+                Read The Docs <IconRight />
+              </a>
             </div>
             <div className="featureImage">
               <img src="/img/io-placeholder.jpg" alt="" />
@@ -385,12 +392,15 @@ const HomePage = (props: any) => {
           </div>
           <div className="feature">
             <div className="featureText">
-              <h3 className="headingLarge">Improve Time-to-Market</h3>
+              <h3 className="headingLarge">Custom Fields</h3>
               <hr className="dottedBorder" />
               <p className="textLarge">
-                Better creative control, don’t rely on developers to make
-                content changes.
+                Extend primary fields with custom field plugins to completely
+                control the editing experience and functionality.
               </p>
+              <a href="#" className="button buttonLink">
+                Read The Docs <IconRight />
+              </a>
             </div>
             <div className="featureImage">
               <img src="/img/io-placeholder.jpg" alt="" />
@@ -429,6 +439,8 @@ const HomePage = (props: any) => {
           --color-white: #ffffff;
           --color-gray: #f3f3f3;
           --color-light-gray: #fafafa;
+          --color-seafoam: #e6faf8;
+          --color-seafoam-dark: #b4f4e0;
 
           --color-emphasis: var(--color-orange);
           --color-card-background: var(--color-light-gray);
@@ -711,6 +723,12 @@ const HomePage = (props: any) => {
             height: 1.125em;
             margin-left: 0.75rem;
           }
+        }
+
+        .buttonLink {
+          font-size: 1rem;
+          color: var(--color-orange);
+          padding: 0;
         }
 
         .buttonOrange {
