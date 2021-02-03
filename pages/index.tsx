@@ -237,7 +237,7 @@ const HomePage = (props: any) => {
                 y2="100%"
                 stroke="var(--color-orange)"
                 strokeWidth="4"
-                strokeDasharray="10 20"
+                strokeDasharray="8 14"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 vectorEffect="non-scaling-stroke"
@@ -256,7 +256,7 @@ const HomePage = (props: any) => {
                 <path
                   stroke="var(--color-orange)"
                   strokeWidth="4"
-                  strokeDasharray="10 20"
+                  strokeDasharray="8 14"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   vectorEffect="non-scaling-stroke"
@@ -270,7 +270,7 @@ const HomePage = (props: any) => {
                 y2="100%"
                 stroke="var(--color-orange)"
                 strokeWidth="4"
-                strokeDasharray="10 20"
+                strokeDasharray="8 14"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 vectorEffect="non-scaling-stroke"
@@ -278,12 +278,20 @@ const HomePage = (props: any) => {
             </svg>
           </div>
           <div className="cardGroup">
-            <div className="card">
-              <img src="img/headlessCms.png" alt="" className="cardImage" />
-              <h3 className="headingMedium">Headless Cms</h3>
-              <p className="textLarge">
-                Sync your website data to a headless CMS of your choice
-              </p>
+            <div className="card cardLinked">
+              <div className="linkedContent">
+                <img src="img/headlessCms.png" alt="" className="cardImage" />
+                <h3 className="headingMedium">Headless Cms</h3>
+                <Link href="/docs">
+                  <a className="cardLink"></a>
+                </Link>
+                <p className="textLarge">
+                  Sync your website data to a headless CMS of your choice
+                </p>
+              </div>
+              <div className="linkedIcon">
+                <IconRight />
+              </div>
             </div>
             <div className="divider dividerMobile">
               <svg
@@ -300,19 +308,27 @@ const HomePage = (props: any) => {
                   y2="100%"
                   stroke="var(--color-orange)"
                   strokeWidth="4"
-                  strokeDasharray="10 20"
+                  strokeDasharray="8 14"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   vectorEffect="non-scaling-stroke"
                 />
               </svg>
             </div>
-            <div className="card">
-              <img src="img/headlessCms.png" alt="" className="cardImage" />
-              <h3 className="headingMedium">3rd Party APIs</h3>
-              <p className="textLarge">
-                Sync your website data to a headless CMS of your choice
-              </p>
+            <div className="card cardLinked">
+              <div className="linkedContent">
+                <img src="img/headlessCms.png" alt="" className="cardImage" />
+                <h3 className="headingMedium">3rd Party APIs</h3>
+                <Link href="/docs">
+                  <a className="cardLink"></a>
+                </Link>
+                <p className="textLarge">
+                  Sync your website data to a headless CMS of your choice
+                </p>
+              </div>
+              <div className="linkedIcon">
+                <IconRight />
+              </div>
             </div>
             <div className="divider dividerMobile">
               <svg
@@ -329,19 +345,27 @@ const HomePage = (props: any) => {
                   y2="100%"
                   stroke="var(--color-orange)"
                   strokeWidth="4"
-                  strokeDasharray="10 20"
+                  strokeDasharray="8 14"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   vectorEffect="non-scaling-stroke"
                 />
               </svg>
             </div>
-            <div className="card">
-              <img src="img/headlessCms.png" alt="" className="cardImage" />
-              <h3 className="headingMedium">Git Filesystem</h3>
-              <p className="textLarge">
-                Sync your website data to a headless CMS of your choice
-              </p>
+            <div className="card cardLinked">
+              <div className="linkedContent">
+                <img src="img/headlessCms.png" alt="" className="cardImage" />
+                <h3 className="headingMedium">Git Filesystem</h3>
+                <Link href="/docs">
+                  <a className="cardLink"></a>
+                </Link>
+                <p className="textLarge">
+                  Sync your website data to a headless CMS of your choice
+                </p>
+              </div>
+              <div className="linkedIcon">
+                <IconRight />
+              </div>
             </div>
           </div>
         </div>
@@ -366,9 +390,11 @@ const HomePage = (props: any) => {
                 Data Source plugins allow you to extend Tina to connect to
                 different databases and 3rd Party APIs
               </p>
-              <a href="#" className="button buttonLink">
-                Read The Docs <IconRight />
-              </a>
+              <div className="buttonGroup">
+                <a href="#" className="button buttonLink">
+                  Read The Docs <IconRight />
+                </a>
+              </div>
             </div>
             <div className="featureImage">
               <img src="/img/io-placeholder.jpg" alt="" />
@@ -382,9 +408,11 @@ const HomePage = (props: any) => {
                 Data Source plugins allow you to extend Tina to connect to
                 different databases and 3rd Party APIs
               </p>
-              <a href="#" className="button buttonLink">
-                Read The Docs <IconRight />
-              </a>
+              <div className="buttonGroup">
+                <a href="#" className="button buttonLink">
+                  Read The Docs <IconRight />
+                </a>
+              </div>
             </div>
             <div className="featureImage">
               <img src="/img/io-placeholder.jpg" alt="" />
@@ -398,9 +426,11 @@ const HomePage = (props: any) => {
                 Extend primary fields with custom field plugins to completely
                 control the editing experience and functionality.
               </p>
-              <a href="#" className="button buttonLink">
-                Read The Docs <IconRight />
-              </a>
+              <div className="buttonGroup">
+                <a href="#" className="button buttonLink">
+                  Read The Docs <IconRight />
+                </a>
+              </div>
             </div>
             <div className="featureImage">
               <img src="/img/io-placeholder.jpg" alt="" />
@@ -705,6 +735,7 @@ const HomePage = (props: any) => {
         }
 
         .button {
+          position: relative;
           font-family: var(--font-tuner);
           text-decoration: none;
           color: inherit;
@@ -716,6 +747,28 @@ const HomePage = (props: any) => {
           display: flex;
           align-items: center;
           white-space: nowrap;
+          outline: none;
+
+          &:after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 150ms ease-out;
+            border-radius: 0.25rem;
+            box-shadow: 0 0 0 4px currentColor;
+          }
+
+          &:focus,
+          &:active {
+            &:after {
+              opacity: 0.3;
+            }
+          }
 
           :global(svg) {
             display: inline-block;
@@ -729,6 +782,13 @@ const HomePage = (props: any) => {
           font-size: 1rem;
           color: var(--color-orange);
           padding: 0;
+
+          &:after {
+            width: calc(100% + 1.5rem);
+            height: calc(100% + 1rem);
+            top: -0.5rem;
+            left: -0.75rem;
+          }
         }
 
         .buttonOrange {
@@ -920,7 +980,8 @@ const HomePage = (props: any) => {
 
         @keyframes dash {
           0% {
-            stroke-dashoffset: 30;
+            /* strokeDasharray="8 14" <- Sum of these numbers */
+            stroke-dashoffset: 22;
           }
 
           100% {
@@ -934,16 +995,86 @@ const HomePage = (props: any) => {
 
           @media (min-width: 1000px) {
             grid-template-columns: 1fr 1fr 1fr;
-            gap: 2rem;
+            gap: calc(var(--spacer-size) * 0.5);
           }
         }
 
         .card {
           background: var(--color-card-background);
-          padding: 2rem;
+          padding: 2.25rem;
           border-radius: 0.25rem;
           box-shadow: inset 0 0 0 1px rgba(36, 23, 72, 0.03),
             0 6px 24px rgba(36, 23, 72, 0.05), 0 2px 4px rgba(36, 23, 72, 0.03);
+        }
+
+        .cardLinked {
+          position: relative;
+          display: grid;
+          grid-template-columns: 1fr auto;
+          grid-gap: 2.25rem;
+
+          &:hover {
+            :global(> * > *) {
+              opacity: 1;
+            }
+
+            :global(svg) {
+              color: var(--color-orange);
+            }
+          }
+        }
+
+        .linkedContent {
+        }
+
+        .linkedIcon {
+          width: 2rem;
+          margin-right: -0.5rem;
+          height: 100%;
+          display: flex;
+          align-items: center;
+
+          :global(svg) {
+            width: 1.5rem;
+            height: auto;
+            opacity: 0.7;
+          }
+        }
+
+        .cardLink {
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: transparent;
+          color: transparent;
+          cursor: pointer;
+          z-index: 10;
+          opacity: 0;
+          transition: opacity 150ms ease-out;
+          border-radius: 0.25rem;
+
+          &:after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 0.25rem;
+            box-shadow: inset 0 0 0 1px rgba(36, 23, 72, 0.03),
+              0 0 0 5px var(--color-orange), 0 24px 32px rgba(36, 23, 72, 0.05),
+              0 6px 8px rgba(36, 23, 72, 0.03),
+              0 48px 48px -64px rgba(36, 23, 72, 0.3);
+          }
+
+          &:focus,
+          &:active {
+            opacity: 1;
+          }
         }
 
         .cardImage {
