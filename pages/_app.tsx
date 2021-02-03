@@ -29,7 +29,7 @@ const MainLayout = ({ Component, pageProps }) => {
   const tinaConfig = {
     enabled: pageProps.preview,
     toolbar: pageProps.preview,
-    sidebar: pageProps.preview,
+    // sidebar: pageProps.preview,
     apis: {
       github,
       storage:

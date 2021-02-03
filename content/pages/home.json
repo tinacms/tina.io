@@ -106,6 +106,6 @@
   "cta": {
     "headline": "Learn Tina",
     "subline": "Learn Tina through Interactive & Fun Tutorials.",
-    "actionItems": [{ "variant": "button", "text": "Get Started", "icon": "iconRight", "url": "#" }, ]
+    "actionItems": [{ "variant": "button", "text": "Get Started", "icon": "iconRight", "url": "#" } ]
   }
 }

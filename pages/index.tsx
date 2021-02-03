@@ -6,7 +6,6 @@ import Link from 'next/link'
 import { usePlugin } from 'tinacms'
 import { useGithubJsonForm } from 'react-tinacms-github'
 import { InlineGithubForm } from '../components/layout/InlineGithubForm'
-import { InlineText } from 'react-tinacms-inline'
 
 const IconRight = () => {
   return (
@@ -209,11 +208,9 @@ const HomePage = (props: any) => {
       </div>
       <section className="section black">
         <Container width="narrow" center>
-          <h2 className="headingHuge">
-            <InlineText name='headline' />
-          </h2>
+          <h2 className="headingHuge">Content editing for modern&nbsp;teams</h2>
           <p className="textHuge">
-            <InlineText name='subtitle' />
+            Tina is an open-source CMS admin that talks to any API
           </p>
           <div className="buttonGroup buttonGroupCenter">
             <a href="#" className="button buttonOrange">
@@ -232,10 +229,10 @@ const HomePage = (props: any) => {
               loop
               muted
               playsInline
-              poster={`https://res.cloudinary.com/forestry-demo/video/upload/so_0/v1571425758/tina-hero-demo-v2.jpg`}
+              poster={`https://res.cloudinary.com/forestry-demo/video/upload/so_0/${src}.jpg`}
             >
               <source
-                src={`https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/v1571425758/tina-hero-demo-v2.webm`}
+                src={`https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/${src}.webm`}
                 type="video/webm"
               />
               <source
