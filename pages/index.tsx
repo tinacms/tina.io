@@ -108,27 +108,27 @@ const HomePage = (props: any) => {
               </a>
             </div>
           </div>
-        </section>
-        <div className="video">
-          <div className="container videoContainer">
-            <video
-              autoPlay={true}
-              loop
-              muted
-              playsInline
-              poster={`https://res.cloudinary.com/forestry-demo/video/upload/so_0/${src}.jpg`}
-            >
-              <source
-                src={`https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/${src}.webm`}
-                type="video/webm"
-              />
-              <source
-                src={`https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/${src}.mp4`}
-                type="video/mp4"
-              />
-            </video>
+          <div className="splitBackgroundBlackWhite">
+            <div className="container videoContainer">
+              <video
+                autoPlay={true}
+                loop
+                muted
+                playsInline
+                poster={`https://res.cloudinary.com/forestry-demo/video/upload/so_0/${src}.jpg`}
+              >
+                <source
+                  src={`https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/${src}.webm`}
+                  type="video/webm"
+                />
+                <source
+                  src={`https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/${src}.mp4`}
+                  type="video/mp4"
+                />
+              </video>
+            </div>
           </div>
-        </div>
+        </section>
         <section className="section white">
           <div className="container containerFeature">
             <h2 className="headingFeature">
@@ -681,8 +681,15 @@ const HomePage = (props: any) => {
           }
         }
 
-        .video {
-          margin-top: -3rem;
+        .videoContainer {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          margin-top: 5rem;
+          margin-bottom: -9rem;
+        }
+
+        .splitBackgroundBlackWhite {
           background: linear-gradient(
             to bottom,
             var(--color-black) 0%,
@@ -692,16 +699,10 @@ const HomePage = (props: any) => {
           );
         }
 
-        .videoContainer {
-          width: 100%;
-          display: flex;
-          justify-content: center;
-        }
-
         video {
           width: 100%;
           margin: 0;
-          border-radius: 0.25rem;
+          border-radius: 0.5rem;
           box-shadow: inset 0 0 0 1px rgba(236, 72, 21, 0.03),
             0 6px 24px rgba(0, 37, 91, 0.05), 0 2px 4px rgba(0, 37, 91, 0.03);
         }
