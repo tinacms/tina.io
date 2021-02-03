@@ -3,9 +3,10 @@ import { GetStaticProps } from 'next'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
 import { Footer } from 'components/layout'
 import Link from 'next/link'
-import { useCMS, useForm, usePlugin } from 'tinacms'
+import { usePlugin } from 'tinacms'
 import { useGithubJsonForm } from 'react-tinacms-github'
 import { InlineGithubForm } from '../components/layout/InlineGithubForm'
+import { InlineText } from 'react-tinacms-inline'
 
 const IconRight = () => {
   return (
@@ -139,15 +140,19 @@ const Container = ({
 
 const HomePage = (props: any) => {
   let src = 'v1571425758/tina-hero-demo-v2'
-
-  const cms = useCMS()
   const [formData, form] = useGithubJsonForm(props.file, {
     label: 'Home Page',
-    fields: [],
+    fields: [
+      {
+        label: 'Headline',
+        name: 'headline',
+        component: 'text'
+      }
+    ],
   })
 
   usePlugin(form)
-
+  console.log(formData)
   return (
     <InlineGithubForm form={form}>
       <div className="banner orange">
@@ -204,9 +209,11 @@ const HomePage = (props: any) => {
       </div>
       <section className="section black">
         <Container width="narrow" center>
-          <h2 className="headingHuge">Content editing for modern&nbsp;teams</h2>
+          <h2 className="headingHuge">
+            <InlineText name='headline' />
+          </h2>
           <p className="textHuge">
-            Tina is an open-source CMS admin that talks to any API
+            <InlineText name='subtitle' />
           </p>
           <div className="buttonGroup buttonGroupCenter">
             <a href="#" className="button buttonOrange">
@@ -225,10 +232,10 @@ const HomePage = (props: any) => {
               loop
               muted
               playsInline
-              poster={`https://res.cloudinary.com/forestry-demo/video/upload/so_0/${src}.jpg`}
+              poster={`https://res.cloudinary.com/forestry-demo/video/upload/so_0/v1571425758/tina-hero-demo-v2.jpg`}
             >
               <source
-                src={`https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/${src}.webm`}
+                src={`https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/v1571425758/tina-hero-demo-v2.webm`}
                 type="video/webm"
               />
               <source
