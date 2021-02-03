@@ -3,6 +3,9 @@ import { GetStaticProps } from 'next'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
 import { Footer } from 'components/layout'
 import Link from 'next/link'
+import { useCMS, useForm, usePlugin } from 'tinacms'
+import { useGithubJsonForm } from 'react-tinacms-github'
+import { InlineGithubForm } from '../components/layout/InlineGithubForm'
 
 const IconRight = () => {
   return (
@@ -141,8 +144,16 @@ const Container = ({
 const HomePage = (props: any) => {
   let src = 'v1571425758/tina-hero-demo-v2'
 
+  const cms = useCMS()
+  const [formData, form] = useGithubJsonForm(props.file, {
+    label: 'Home Page',
+    fields: [],
+  })
+
+  usePlugin(form)
+
   return (
-    <>
+    <InlineGithubForm form={form}>
       <div className="banner orange">
         <Container>
           <Link href="/enterprise">
@@ -1218,7 +1229,7 @@ const HomePage = (props: any) => {
           color: var(--color-black);
         }
       `}</style>
-    </>
+    </InlineGithubForm>
   )
 }
 
