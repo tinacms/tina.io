@@ -96,17 +96,59 @@ const SingleDividerSvg = () => {
   )
 }
 
+interface ContainerProps {
+  children?: any
+  width?: 'medium' | 'narrow' | 'wide'
+  center?: boolean
+}
+
+const Container = ({
+  width = 'medium',
+  center = false,
+  children,
+}: ContainerProps) => {
+  return (
+    <>
+      <div className={['container', width, center ? 'center' : ''].join(' ')}>
+        {children}
+      </div>
+      <style jsx>{`
+        .container {
+          margin: 0 auto;
+          padding: 0 1.5rem;
+        }
+
+        .wide {
+          max-width: 1500px;
+        }
+
+        .medium {
+          max-width: 1240px;
+        }
+
+        .narrow {
+          max-width: 740px;
+        }
+
+        .center {
+          text-align: center;
+        }
+      `}</style>
+    </>
+  )
+}
+
 const HomePage = (props: any) => {
   let src = 'v1571425758/tina-hero-demo-v2'
 
   return (
     <>
       <div className="banner orange">
-        <div className="container">
+        <Container>
           <Link href="/enterprise">
             <a>
               <span>
-                Sign up for early access{' '}
+                Sign up for early access
                 <span className="tinaCloud">
                   for <em>Tina Cloud</em> ☁️
                 </span>
@@ -114,45 +156,47 @@ const HomePage = (props: any) => {
               <IconRight />
             </a>
           </Link>
-        </div>
+        </Container>
       </div>
       <div className="navbar black">
-        <div className="container navContainer">
-          <Link href="/">
-            <a className="logomark navLogo">
-              <TinaIcon />
-              <h1 className="wordmark">
-                Tina<span>.io</span>
-              </h1>
-            </a>
-          </Link>
-          <nav className="navWrapper navNav">
-            <ul className="navUl">
-              <li className="navLi">
-                <Link href="/docs">Docs</Link>
-              </li>
-              <li className="navLi">
-                <Link href="/guides">Guides</Link>
-              </li>
-              <li className="navLi">
-                <Link href="/blog">Blog</Link>
-              </li>
-            </ul>
-          </nav>
-          <div className="githubStar navGithub">
-            <iframe
-              className="starButton"
-              src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
-              frameBorder="0"
-              scrolling="0"
-              width="150px"
-              height="30px"
-            ></iframe>
+        <Container>
+          <div className="navGrid">
+            <Link href="/">
+              <a className="logomark navLogo">
+                <TinaIcon />
+                <h1 className="wordmark">
+                  Tina<span>.io</span>
+                </h1>
+              </a>
+            </Link>
+            <nav className="navWrapper navNav">
+              <ul className="navUl">
+                <li className="navLi">
+                  <Link href="/docs">Docs</Link>
+                </li>
+                <li className="navLi">
+                  <Link href="/guides">Guides</Link>
+                </li>
+                <li className="navLi">
+                  <Link href="/blog">Blog</Link>
+                </li>
+              </ul>
+            </nav>
+            <div className="githubStar navGithub">
+              <iframe
+                className="starButton"
+                src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
+                frameBorder="0"
+                scrolling="0"
+                width="150px"
+                height="30px"
+              ></iframe>
+            </div>
           </div>
-        </div>
+        </Container>
       </div>
       <section className="section black">
-        <div className="container containerFeature">
+        <Container width="narrow" center>
           <h2 className="headingHuge">Content editing for modern&nbsp;teams</h2>
           <p className="textHuge">
             Tina is an open-source CMS admin that talks to any API
@@ -165,10 +209,11 @@ const HomePage = (props: any) => {
               Learn More
             </a>
           </div>
-        </div>
+        </Container>
         <div className="splitBackgroundBlackWhite">
-          <div className="container videoContainer">
+          <Container>
             <video
+              className="video"
               autoPlay={true}
               loop
               muted
@@ -184,11 +229,11 @@ const HomePage = (props: any) => {
                 type="video/mp4"
               />
             </video>
-          </div>
+          </Container>
         </div>
       </section>
       <section className="section white">
-        <div className="container containerFeature">
+        <Container width="narrow" center>
           <h2 className="headingHuge">
             Edit content, in the <em>context of your site</em>
           </h2>
@@ -196,51 +241,53 @@ const HomePage = (props: any) => {
             Just click on the page and type. Contextual toolbars and panels
             appear at just the right times to create the content you want.
           </p>
-        </div>
+        </Container>
         <div className="spacer"></div>
-        <div className="container  featureGroup">
-          <div className="feature">
-            <div className="featureText">
-              <h3 className="headingLarge">Page building</h3>
-              <hr className="dottedBorder" />
-              <p className="textLarge">
-                Pick from your custom predefined components to build web
-                experiences, blazing fast
-              </p>
+        <Container>
+          <div className="featureGrid">
+            <div className="feature">
+              <div className="featureText">
+                <h3 className="headingLarge">Page building</h3>
+                <hr className="dottedBorder" />
+                <p className="textLarge">
+                  Pick from your custom predefined components to build web
+                  experiences, blazing fast
+                </p>
+              </div>
+              <div className="featureImage">
+                <img src="/img/io-placeholder.jpg" alt="" />
+              </div>
             </div>
-            <div className="featureImage">
-              <img src="/img/io-placeholder.jpg" alt="" />
+            <div className="feature featureReverse">
+              <div className="featureText">
+                <h3 className="headingLarge">Design Systems</h3>
+                <hr className="dottedBorder" />
+                <p className="textLarge">
+                  Build pages with YOUR design system. Maximize reusability.
+                </p>
+              </div>
+              <div className="featureImage">
+                <img src="/img/io-placeholder.jpg" alt="" />
+              </div>
+            </div>
+            <div className="feature">
+              <div className="featureText">
+                <h3 className="headingLarge">Improve Time-to-Market</h3>
+                <hr className="dottedBorder" />
+                <p className="textLarge">
+                  Better creative control, don’t rely on developers to make
+                  content changes.
+                </p>
+              </div>
+              <div className="featureImage">
+                <img src="/img/io-placeholder.jpg" alt="" />
+              </div>
             </div>
           </div>
-          <div className="feature featureReverse">
-            <div className="featureText">
-              <h3 className="headingLarge">Design Systems</h3>
-              <hr className="dottedBorder" />
-              <p className="textLarge">
-                Build pages with YOUR design system. Maximize reusability.
-              </p>
-            </div>
-            <div className="featureImage">
-              <img src="/img/io-placeholder.jpg" alt="" />
-            </div>
-          </div>
-          <div className="feature">
-            <div className="featureText">
-              <h3 className="headingLarge">Improve Time-to-Market</h3>
-              <hr className="dottedBorder" />
-              <p className="textLarge">
-                Better creative control, don’t rely on developers to make
-                content changes.
-              </p>
-            </div>
-            <div className="featureImage">
-              <img src="/img/io-placeholder.jpg" alt="" />
-            </div>
-          </div>
-        </div>
+        </Container>
       </section>
       <section className="section blue">
-        <div className="container containerFeature">
+        <Container center width="narrow">
           <h2 className="headingHuge">
             Build with <em>your components</em>
           </h2>
@@ -248,39 +295,45 @@ const HomePage = (props: any) => {
             Let your team build great layouts with your own
             React&nbsp;components.
           </p>
-        </div>
+        </Container>
         <div className="spacer"></div>
-        <div className="container containerWide demoContainer">
-          <iframe
-            src="https://codesandbox.io/embed/vigilant-cohen-73its?fontsize=147hidenavigation=17theme=dark"
-            width="800"
-            height="800"
-            title="CodeSandbox example of TinaCMS with Next.js"
-            allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-            sandbox="allow-forms allow-modals allow-popups allow-same-origin allow-scripts"
-          ></iframe>
-        </div>
+        <Container width="wide">
+          <div className="demoWrapper">
+            <iframe
+              src="https://codesandbox.io/embed/vigilant-cohen-73its?fontsize=147hidenavigation=17theme=dark"
+              width="800"
+              height="800"
+              title="CodeSandbox example of TinaCMS with Next.js"
+              allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+              sandbox="allow-forms allow-modals allow-popups allow-same-origin allow-scripts"
+            ></iframe>
+          </div>
+        </Container>
       </section>
       <section className="section white">
-        <div className="container containerFeature">
+        <Container center width="narrow">
           <h2 className="headingHuge">Avoid Vendor Lock-In</h2>
           <p className="textHuge">
             Add visual editing to your site for logged in users. Write&nbsp;to
             any API.
           </p>
-        </div>
+        </Container>
         <div className="spacer"></div>
-        <div className="container browserContainer">
-          <div className="browser browserGrid">
-            <div className="browserContent">
-              <span className="contentTitle">Tina comes with editing.</span>
-              <span className="contentText">
-                Super simple, just click and edit.
-              </span>
-              <span className="contentFootnote">It’s 35 degrees and sunny</span>
-            </div>
-            <div className="browserImageWrapper">
-              <img className="browserImage" src="img/tina-wow.png" alt="" />
+        <Container>
+          <div className="browserContainer">
+            <div className="browser browserGrid">
+              <div className="browserContent">
+                <span className="contentTitle">Tina comes with editing.</span>
+                <span className="contentText">
+                  Super simple, just click and edit.
+                </span>
+                <span className="contentFootnote">
+                  It’s 35 degrees and sunny
+                </span>
+              </div>
+              <div className="browserImageWrapper">
+                <img className="browserImage" src="img/tina-wow.png" alt="" />
+              </div>
             </div>
           </div>
           <div className="divider dividerMobile">
@@ -342,10 +395,10 @@ const HomePage = (props: any) => {
               </div>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
       <section className="section lightGray">
-        <div className="container containerFeature">
+        <Container width="narrow" center>
           <h2 className="headingHuge">
             Explore the <em>Tina ecosystem</em>
           </h2>
@@ -353,67 +406,69 @@ const HomePage = (props: any) => {
             More than just a headless CMS, Tina has all the tools for building
             web experiences for interdisciplinary teams.
           </p>
-        </div>
+        </Container>
         <div className="spacer"></div>
-        <div className="container  featureGroup">
-          <div className="feature">
-            <div className="featureText">
-              <h3 className="headingLarge">Data Source Plugins</h3>
-              <hr className="dottedBorder" />
-              <p className="textLarge">
-                Data Source plugins allow you to extend Tina to connect to
-                different databases and 3rd Party APIs
-              </p>
-              <div className="buttonGroup">
-                <a href="#" className="button buttonLink">
-                  Read The Docs <IconRight />
-                </a>
+        <Container>
+          <div className="featureGrid">
+            <div className="feature">
+              <div className="featureText">
+                <h3 className="headingLarge">Data Source Plugins</h3>
+                <hr className="dottedBorder" />
+                <p className="textLarge">
+                  Data Source plugins allow you to extend Tina to connect to
+                  different databases and 3rd Party APIs
+                </p>
+                <div className="buttonGroup">
+                  <a href="#" className="button buttonLink">
+                    Read The Docs <IconRight />
+                  </a>
+                </div>
+              </div>
+              <div className="featureImage">
+                <img src="/img/io-placeholder.jpg" alt="" />
               </div>
             </div>
-            <div className="featureImage">
-              <img src="/img/io-placeholder.jpg" alt="" />
-            </div>
-          </div>
-          <div className="feature featureReverse">
-            <div className="featureText">
-              <h3 className="headingLarge">Screen UI Plugins</h3>
-              <hr className="dottedBorder" />
-              <p className="textLarge">
-                Data Source plugins allow you to extend Tina to connect to
-                different databases and 3rd Party APIs
-              </p>
-              <div className="buttonGroup">
-                <a href="#" className="button buttonLink">
-                  Read The Docs <IconRight />
-                </a>
+            <div className="feature featureReverse">
+              <div className="featureText">
+                <h3 className="headingLarge">Screen UI Plugins</h3>
+                <hr className="dottedBorder" />
+                <p className="textLarge">
+                  Data Source plugins allow you to extend Tina to connect to
+                  different databases and 3rd Party APIs
+                </p>
+                <div className="buttonGroup">
+                  <a href="#" className="button buttonLink">
+                    Read The Docs <IconRight />
+                  </a>
+                </div>
+              </div>
+              <div className="featureImage">
+                <img src="/img/io-placeholder.jpg" alt="" />
               </div>
             </div>
-            <div className="featureImage">
-              <img src="/img/io-placeholder.jpg" alt="" />
-            </div>
-          </div>
-          <div className="feature">
-            <div className="featureText">
-              <h3 className="headingLarge">Custom Fields</h3>
-              <hr className="dottedBorder" />
-              <p className="textLarge">
-                Extend primary fields with custom field plugins to completely
-                control the editing experience and functionality.
-              </p>
-              <div className="buttonGroup">
-                <a href="#" className="button buttonLink">
-                  Read The Docs <IconRight />
-                </a>
+            <div className="feature">
+              <div className="featureText">
+                <h3 className="headingLarge">Custom Fields</h3>
+                <hr className="dottedBorder" />
+                <p className="textLarge">
+                  Extend primary fields with custom field plugins to completely
+                  control the editing experience and functionality.
+                </p>
+                <div className="buttonGroup">
+                  <a href="#" className="button buttonLink">
+                    Read The Docs <IconRight />
+                  </a>
+                </div>
+              </div>
+              <div className="featureImage">
+                <img src="/img/io-placeholder.jpg" alt="" />
               </div>
             </div>
-            <div className="featureImage">
-              <img src="/img/io-placeholder.jpg" alt="" />
-            </div>
           </div>
-        </div>
+        </Container>
       </section>
       <div className="learnTina">
-        <div className="container learnContainer">
+        <div className="learnContainer">
           <div className="learnImageWrapper">
             <img className="learnImage" src="img/flyingTina.png" alt="" />
           </div>
@@ -458,24 +513,6 @@ const HomePage = (props: any) => {
         }
       `}</style>
       <style jsx>{`
-        .pageWrapper {
-        }
-
-        .container {
-          max-width: 1240px;
-          margin: 0 auto;
-          padding: 0 1.5rem;
-        }
-
-        .containerWide {
-          max-width: 1500px;
-        }
-
-        .containerFeature {
-          max-width: 740px;
-          text-align: center;
-        }
-
         .spacer {
           display: block;
           width: 100%;
@@ -534,7 +571,8 @@ const HomePage = (props: any) => {
           margin-bottom: -1px;
         }
 
-        .navContainer {
+        .navGrid {
+          width: 100%;
           display: grid;
           grid-gap: 2rem 1rem;
           grid-template-columns: 1fr 1fr;
@@ -784,8 +822,11 @@ const HomePage = (props: any) => {
           }
         }
 
-        .videoContainer {
+        .video {
           width: 100%;
+          border-radius: 0.5rem;
+          box-shadow: inset 0 0 0 1px rgba(236, 72, 21, 0.03),
+            0 6px 24px rgba(0, 37, 91, 0.05), 0 2px 4px rgba(0, 37, 91, 0.03);
           display: flex;
           justify-content: center;
           margin-top: calc(var(--spacer-size) * 1.5);
@@ -802,15 +843,7 @@ const HomePage = (props: any) => {
           );
         }
 
-        video {
-          width: 100%;
-          margin: 0;
-          border-radius: 0.5rem;
-          box-shadow: inset 0 0 0 1px rgba(236, 72, 21, 0.03),
-            0 6px 24px rgba(0, 37, 91, 0.05), 0 2px 4px rgba(0, 37, 91, 0.03);
-        }
-
-        .demoContainer {
+        .demoWrapper {
           margin-bottom: calc(-1 * var(--section-padding));
 
           :global(iframe) {
@@ -1070,6 +1103,7 @@ const HomePage = (props: any) => {
           grid-gap: 2rem;
           align-content: center;
           align-items: center;
+          margin: 0 auto;
           max-width: 820px;
 
           @media (min-width: 1000px) {
@@ -1100,7 +1134,7 @@ const HomePage = (props: any) => {
         .learnContent {
         }
 
-        .featureGroup {
+        .featureGrid {
           display: grid;
           grid-template-columns: 1fr;
           grid-gap: calc(var(--spacer-size) * 1.5);
