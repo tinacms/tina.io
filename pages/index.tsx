@@ -56,7 +56,7 @@ const HomePage = (props: any) => {
             </Link>
           </div>
         </div>
-        <div className="nav black">
+        <div className="navbar black">
           <div className="container navContainer">
             <Link href="/">
               <a className="logomark navLogo">
@@ -91,12 +91,12 @@ const HomePage = (props: any) => {
             </div>
           </div>
         </div>
-        <div className="feature black">
-          <div className="container featureContainer">
-            <h2 className="featureTitle">
+        <section className="section black">
+          <div className="container containerFeature">
+            <h2 className="headingFeature">
               Content editing for modern&nbsp;teams
             </h2>
-            <p className="featureText">
+            <p className="textLarge">
               Tina is an open-source CMS admin that talks to any API
             </p>
             <div className="featureActions">
@@ -108,7 +108,7 @@ const HomePage = (props: any) => {
               </a>
             </div>
           </div>
-        </div>
+        </section>
         <div className="video">
           <div className="container videoContainer">
             <video
@@ -129,21 +129,20 @@ const HomePage = (props: any) => {
             </video>
           </div>
         </div>
-        <div className="feature white">
-          <div className="container featureContainer">
-            <h2 className="featureTitle">
+        <section className="section white">
+          <div className="container containerFeature">
+            <h2 className="headingFeature">
               Edit content, in the <em>context of your site</em>
             </h2>
-            <p className="featureText">
+            <p className="textLarge">
               Just click on the page and type. Contextual toolbars and panels
               appear at just the right times to create the content you want.
             </p>
           </div>
-        </div>
-        <div className="featureGroup white">
-          <div className="container featureGroupContainer">
+          <div className="spacer"></div>
+          <div className="container featureGroupGrid">
             <div className="summary active">
-              <h3 className="summaryTitle">Page Building</h3>
+              <h3 className="headingMedium">Page Building</h3>
               <p className="summaryText">
                 Pick from your custom predefined components to build web
                 experiences, blazing fast
@@ -157,32 +156,31 @@ const HomePage = (props: any) => {
               />
             </div>
             <div className="summary">
-              <h3 className="summaryTitle">Design Systems</h3>
+              <h3 className="headingMedium">Design Systems</h3>
               <p className="summaryText">
                 Build pages with YOUR design system. Maximize reusability.
               </p>
             </div>
             <div className="summary">
-              <h3 className="summaryTitle">Improve Time-to-Market</h3>
+              <h3 className="headingMedium">Improve Time-to-Market</h3>
               <p className="summaryText">
                 Better creative control, don’t rely on developers to make
                 content changes.
               </p>
             </div>
           </div>
-        </div>
-        <div className="feature blue">
-          <div className="container featureContainer">
-            <h2 className="featureTitle">
+        </section>
+        <section className="section blue">
+          <div className="container containerFeature">
+            <h2 className="headingFeature">
               Build with <em>your components</em>
             </h2>
-            <p className="featureText">
+            <p className="textLarge">
               Let your team build great layouts with your own
               React&nbsp;components.
             </p>
           </div>
-        </div>
-        <div className="demo">
+          <div className="spacer"></div>
           <div className="container demoContainer">
             <iframe
               src="https://codesandbox.io/embed/vigilant-cohen-73its?fontsize=147hidenavigation=17theme=dark"
@@ -193,17 +191,16 @@ const HomePage = (props: any) => {
               sandbox="allow-forms allow-modals allow-popups allow-same-origin allow-scripts"
             ></iframe>
           </div>
-        </div>
-        <div className="feature white">
-          <div className="container featureContainer">
-            <h2 className="featureTitle">Avoid Vendor Lock-In</h2>
-            <p className="featureText">
+        </section>
+        <section className="section white">
+          <div className="container containerFeature">
+            <h2 className="headingFeature">Avoid Vendor Lock-In</h2>
+            <p className="textLarge">
               Add visual editing to your site for logged in users. Write&nbsp;to
               any API.
             </p>
           </div>
-        </div>
-        <div className="valueProps white">
+          <div className="spacer"></div>
           <div className="container browserContainer">
             <div className="browser browserGrid">
               <div className="browserContent">
@@ -277,7 +274,7 @@ const HomePage = (props: any) => {
             <div className="cardGroup">
               <div className="card">
                 <img src="img/headlessCms.png" alt="" className="cardImage" />
-                <h3 className="cardTitle">Headless Cms</h3>
+                <h3 className="headingMedium">Headless Cms</h3>
                 <p className="cardText">
                   Sync your website data to a headless CMS of your choice
                 </p>
@@ -306,7 +303,7 @@ const HomePage = (props: any) => {
               </div>
               <div className="card">
                 <img src="img/headlessCms.png" alt="" className="cardImage" />
-                <h3 className="cardTitle">3rd Party APIs</h3>
+                <h3 className="headingMedium">3rd Party APIs</h3>
                 <p className="cardText">
                   Sync your website data to a headless CMS of your choice
                 </p>
@@ -335,27 +332,26 @@ const HomePage = (props: any) => {
               </div>
               <div className="card">
                 <img src="img/headlessCms.png" alt="" className="cardImage" />
-                <h3 className="cardTitle">Git Filesystem</h3>
+                <h3 className="headingMedium">Git Filesystem</h3>
                 <p className="cardText">
                   Sync your website data to a headless CMS of your choice
                 </p>
               </div>
             </div>
           </div>
-        </div>
-        <div className="feature lightGray">
-          <div className="container featureContainer">
-            <h2 className="featureTitle">Explore the Tina ecosystem</h2>
-            <p className="featureText">
+        </section>
+        <section className="section lightGray">
+          <div className="container containerFeature">
+            <h2 className="headingFeature">Explore the Tina ecosystem</h2>
+            <p className="textLarge">
               More than just a headless CMS, Tina has all the tools for building
               web experiences for interdisciplinary teams.
             </p>
           </div>
-        </div>
-        <div className="featureGroup lightGray">
-          <div className="container featureGroupContainer">
+          <div className="spacer"></div>
+          <div className="container featureGroupGrid">
             <div className="summary active">
-              <h3 className="summaryTitle">Data Source Plugins</h3>
+              <h3 className="headingMedium">Data Source Plugins</h3>
               <p className="summaryText">
                 Pick from your custom predefined components to build web
                 experiences, blazing fast
@@ -369,27 +365,27 @@ const HomePage = (props: any) => {
               />
             </div>
             <div className="summary">
-              <h3 className="summaryTitle">Design Systems</h3>
+              <h3 className="headingMedium">Design Systems</h3>
               <p className="summaryText">
                 Build pages with YOUR design system. Maximize reusability.
               </p>
             </div>
             <div className="summary">
-              <h3 className="summaryTitle">Improve Time-to-Market</h3>
+              <h3 className="headingMedium">Improve Time-to-Market</h3>
               <p className="summaryText">
                 Better creative control, don’t rely on developers to make
                 content changes.
               </p>
             </div>
           </div>
-        </div>
+        </section>
         <div className="learnTina">
           <div className="container learnContainer">
             <div className="learnImageWrapper">
               <img className="learnImage" src="img/flyingTina.png" alt="" />
             </div>
             <div className="learnContent">
-              <h3 className="learnTitle">Learn Tina</h3>
+              <h3 className="headingLarge">Learn Tina</h3>
               <p className="learnText">
                 Learn Tina through Interactive & Fun Tutorials.
               </p>
@@ -434,6 +430,17 @@ const HomePage = (props: any) => {
           padding: 0 1.5rem;
         }
 
+        .containerFeature {
+          max-width: 740px;
+          text-align: center;
+        }
+
+        .spacer {
+          display: block;
+          width: 100%;
+          height: 4rem;
+        }
+
         .banner {
           :global(a) {
             display: flex;
@@ -468,7 +475,7 @@ const HomePage = (props: any) => {
           white-space: nowrap;
         }
 
-        .nav {
+        .navbar {
           padding: 2rem 0 2rem 0;
           margin-bottom: -1px;
         }
@@ -573,16 +580,13 @@ const HomePage = (props: any) => {
           }
         }
 
-        .feature {
-          padding: 9rem 0;
+        .section {
+          --section-padding: 9rem;
+
+          padding: var(--section-padding) 0;
         }
 
-        .featureContainer {
-          max-width: 740px;
-          text-align: center;
-        }
-
-        .featureTitle {
+        .headingFeature {
           font-family: var(--font-tuner);
           font-weight: bold;
           font-size: 2.75rem;
@@ -600,7 +604,20 @@ const HomePage = (props: any) => {
           }
         }
 
-        .featureText {
+        .headingLarge {
+          font-family: var(--font-tuner);
+          margin-bottom: 1rem;
+          font-size: 2.25rem;
+          font-weight: bold;
+        }
+
+        .headingMedium {
+          font-size: 1.675rem;
+          line-height: 1.4;
+          margin-bottom: 1rem;
+        }
+
+        .textLarge {
           display: block;
           width: 100%;
           max-width: 600px;
@@ -689,12 +706,7 @@ const HomePage = (props: any) => {
             0 6px 24px rgba(0, 37, 91, 0.05), 0 2px 4px rgba(0, 37, 91, 0.03);
         }
 
-        .featureGroup {
-          margin-top: -5rem;
-          padding-bottom: 9rem;
-        }
-
-        .featureGroupContainer {
+        .featureGroupGrid {
           display: grid;
           grid-gap: 2rem;
           align-content: start;
@@ -726,12 +738,6 @@ const HomePage = (props: any) => {
           opacity: 1;
         }
 
-        .summaryTitle {
-          font-size: 1.675rem;
-          line-height: 1.4;
-          margin-bottom: 1rem;
-        }
-
         .summaryText {
           font-size: 1.125rem;
           max-width: 400px;
@@ -754,15 +760,7 @@ const HomePage = (props: any) => {
 
         .demoContainer {
           max-width: 1600px;
-        }
-
-        .demo {
-          margin-top: -4rem;
-          background: linear-gradient(
-            to bottom,
-            var(--color-blue) 0%,
-            var(--color-black) 100%
-          );
+          margin-bottom: calc(-1 * var(--section-padding));
 
           :global(iframe) {
             width: 100%;
@@ -770,11 +768,6 @@ const HomePage = (props: any) => {
             display: block;
             margin: 0;
           }
-        }
-
-        .valueProps {
-          margin-top: -5rem;
-          padding-bottom: 9rem;
         }
 
         .browser {
@@ -942,12 +935,6 @@ const HomePage = (props: any) => {
           margin-bottom: 1.125rem;
         }
 
-        .cardTitle {
-          font-size: 1.675rem;
-          line-height: 1.4;
-          margin-bottom: 1rem;
-        }
-
         .cardText {
           font-size: 1.125rem;
           opacity: 0.7;
@@ -996,13 +983,6 @@ const HomePage = (props: any) => {
         .learnContent {
         }
 
-        .learnTitle {
-          font-family: var(--font-tuner);
-          margin-bottom: 1rem;
-          font-size: 2.25rem;
-          font-weight: bold;
-        }
-
         .learnText {
           display: block;
           font-size: 1.25rem;
@@ -1038,6 +1018,12 @@ const HomePage = (props: any) => {
 
         .blue {
           background: var(--color-blue);
+          background: linear-gradient(
+            to bottom,
+            var(--color-blue) 30%,
+            var(--color-black) 100%
+          );
+
           color: var(--color-white);
 
           --color-emphasis: var(--color-orange-light);
