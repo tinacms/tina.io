@@ -198,15 +198,16 @@ const HomePageTemplate = {
         {
           label: 'Hero Video',
           name: 'video',
-          component: 'group-list',
+          component: 'group',
           fields: [
             {
               label: 'Video sources',
-              name: 'sources',
+              name: 'videoSources',
               component: 'group-list',
               fields: [
-                { label: 'source', name: 'source', component: 'text'}
-                { label: 'type', name: 'type', component: 'select' options: ['mp4', ]}
+                { label: 'source', name: 'vSrc', component: 'text'},
+                { label: 'type', name: 'vType', component: 'select', options: ['mp4', 'webm']}
+              ]
             },
             {
               label: 'Video Thumbnail',
@@ -305,32 +306,25 @@ const HomePage = (props: any) => {
         </Container>
         <div className="splitBackgroundBlackWhite">
           <Container>
-            {hero.video.map((video) => {
-              const { sources, thumbnail } = video
-              return (
                 <video
                   className="video"
                   autoPlay={true}
                   loop
                   muted
                   playsInline
-                  poster={thumbnail}
+                  poster={hero.video.thumbnail}
                 >
-                  {sources.map((source) => {
-                    const { src, type } = source
-                    <source
-                      src={src}
-                      type={`video/${type}`}
-                    />
-                  }
-                  )}
-                  {/* <source
-                    src={`https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/${src}.mp4`}
-                    type="video/mp4"
-                  /> */}
+                  {hero.video.videoSources?.map((item) => {
+                    const { vSrc, vType } = item
+
+                    return (
+                      <source
+                        src={vSrc}
+                        type={`video/${vType}`}
+                      />
+                    )
+                  })}
                 </video>
-              )
-            })}
           </Container>
         </div>
       </section>

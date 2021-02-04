@@ -8,13 +8,19 @@
       { "variant": "button", "text": "Try Demo", "icon": "arrowRight", "url": "#" }, 
       { "variant": "link", "text": "Learn More", "icon": "", "url": "#" } 
     ],
-    "video": [{ 
-      "sources": [
-        "https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/v1571425758/tina-hero-demo-v2.webm",
-        "https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/v1571425758/tina-hero-demo-v2.mp4"
+    "video": { 
+      "videoSources": [
+        {
+          "vSrc": "https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/v1571425758/tina-hero-demo-v2.webm",
+          "vType": "webm"
+        },
+        {
+          "vSrc": "https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/v1571425758/tina-hero-demo-v2.mp4",
+          "vType": "mp4"
+        }
       ], 
       "thumbnail": "https://res.cloudinary.com/forestry-demo/video/upload/so_0/v1571425758/tina-hero-demo-v2.jpg"
-    }]
+    }
   },
   "valueProps": {
     "headline": "Edit content, in the context of your site",

@@ -11,14 +11,14 @@
         { "variant": "link", "text": "Learn More", "icon": "", "url": "#" } 
       ],
       "video": [{ 
-        "sources": [
+        "videoSources": [
           {
-            "src": "https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/v1571425758/tina-hero-demo-v2.webm",
-            "type": "webm"
+            "vSrc": "https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/v1571425758/tina-hero-demo-v2.webm",
+            "vType": "webm"
           },
           {
-            "src": "https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/v1571425758/tina-hero-demo-v2.mp4",
-            "type": "mp4"
+            "vSrc": "https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/v1571425758/tina-hero-demo-v2.mp4",
+            "vType": "mp4"
           }
         ], 
         "thumbnail": "https://res.cloudinary.com/forestry-demo/video/upload/so_0/v1571425758/tina-hero-demo-v2.jpg"
