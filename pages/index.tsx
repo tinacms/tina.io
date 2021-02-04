@@ -145,82 +145,154 @@ const HomePageTemplate = {
     { name: 'title', label: 'Page Title', component: 'text' },
     { name: 'description', label: 'Page Description', component: 'textarea' },
     {
-      label: 'Page Sections',
-      name: 'blocks',
-      component: 'blocks',
-      templates: {
-        hero: {
-          label: 'Hero',
-          key: 'hero',
+      label: 'Page Hero',
+      name: 'hero',
+      description: 'Update content for the page hero',
+      component: 'group',
+      fields: [
+        {
+          label: 'Headline',
+          name: 'headline',
+          component: 'text'
+        },
+        {
+          label: 'Subline',
+          name: 'subline',
+          component: 'text'
+        },
+        {
+          label: 'Action Items',
+          name: 'actionItems',
+          component: 'group-list',
           fields: [
             {
-              label: 'Headline',
-              name: 'headline',
+              label: 'Action Text',
+              name: 'text',
               component: 'text'
             },
             {
-              label: 'Subline',
-              name: 'subline',
-              component: 'text'
+              label: 'Action Variant',
+              name: 'variant',
+              component: 'select',
+              options: [ 'button', 'link' ]
             },
             {
-              label: 'Action Items',
-              name: 'actionItems',
-              component: 'group-list',
-              fields: [
-                {
-                  label: 'Action Text',
-                  name: 'text',
-                  component: 'text'
-                },
-                {
-                  label: 'Action Variant',
-                  name: 'variant',
-                  component: 'select',
-                  options: [ 'button', 'link' ]
-                },
-                {
-                  label: 'Action URL',
-                  name: 'url',
-                  component: 'text',
-                  validate: (value: string) => {
-                    if (!value?.startsWith('http')) {
-                      return 'Not a valid URL, try again'
-                    }
-                    return undefined
-                  }
-                },
-                {
-                  label: 'Action Icon',
-                  name: 'icon',
-                  component: 'select',
-                  options: ['arrowRight']
+              label: 'Action URL',
+              name: 'url',
+              component: 'text',
+              validate: (value: string) => {
+                if (!value?.startsWith('http')) {
+                  return 'Not a valid URL, try again'
                 }
-              ]
+                return undefined
+              }
             },
             {
-              label: 'Hero Video',
-              name: 'video',
-              component: 'group-list',
-              fields: [
-                {
-                  label: 'Video sources',
-                  name: 'sources',
-                  component: 'list',
-                  field: { component: 'text'}
-                },
-                {
-                  label: 'Video Thumbnail',
-                  name: 'thumbnail',
-                  component: 'text'
-                }
-              ]
-              
+              label: 'Action Icon',
+              name: 'icon',
+              component: 'select',
+              options: ['arrowRight']
             }
-          ],
+          ]
+        },
+        {
+          label: 'Hero Video',
+          name: 'video',
+          component: 'group-list',
+          fields: [
+            {
+              label: 'Video sources',
+              name: 'sources',
+              component: 'list',
+              field: { component: 'text'}
+            },
+            {
+              label: 'Video Thumbnail',
+              name: 'thumbnail',
+              component: 'text'
+            }
+          ]
+          
         }
-      },
-    },
+      ]
+    }
+    // {
+    //   label: 'Page Sections',
+    //   name: 'blocks',
+    //   component: 'blocks',
+    //   templates: {
+    //     hero: {
+    //       label: 'Hero',
+    //       key: 'hero',
+    //       fields: [
+    //         {
+    //           label: 'Headline',
+    //           name: 'headline',
+    //           component: 'text'
+    //         },
+    //         {
+    //           label: 'Subline',
+    //           name: 'subline',
+    //           component: 'text'
+    //         },
+    //         {
+    //           label: 'Action Items',
+    //           name: 'actionItems',
+    //           component: 'group-list',
+    //           fields: [
+    //             {
+    //               label: 'Action Text',
+    //               name: 'text',
+    //               component: 'text'
+    //             },
+    //             {
+    //               label: 'Action Variant',
+    //               name: 'variant',
+    //               component: 'select',
+    //               options: [ 'button', 'link' ]
+    //             },
+    //             {
+    //               label: 'Action URL',
+    //               name: 'url',
+    //               component: 'text',
+    //               validate: (value: string) => {
+    //                 if (!value?.startsWith('http')) {
+    //                   return 'Not a valid URL, try again'
+    //                 }
+    //                 return undefined
+    //               }
+    //             },
+    //             {
+    //               label: 'Action Icon',
+    //               name: 'icon',
+    //               component: 'select',
+    //               options: ['arrowRight']
+    //             }
+    //           ]
+    //         },
+    //         {
+    //           label: 'Hero Video',
+    //           name: 'video',
+    //           component: 'group-list',
+    //           fields: [
+    //             {
+    //               label: 'Video sources',
+    //               name: 'sources',
+    //               component: 'list',
+    //               field: { component: 'text'}
+    //             },
+    //             {
+    //               label: 'Video Thumbnail',
+    //               name: 'thumbnail',
+    //               component: 'text'
+    //             }
+    //           ]
+              
+    //         }
+    //       ],
+    //     }
+    //   },
+    // },
   ],
 }
 
@@ -231,12 +303,12 @@ const HomePage = (props: any) => {
   usePlugin(form)
   console.log(formData)
 
-  const pageData = formData.blocks.reduce((data, block) => {
-    data[block._template] = {...block}
+  // const pageData = formData.blocks.reduce((data, block) => {
+  //   data[block._template] = {...block}
     
-    return data
-  }, {})
-  const { hero, demo, ecosystem, features, valueProps, cta } = pageData
+  //   return data
+  // }, {})
+  const { hero, demo, ecosystem, features, valueProps, cta } = formData
 
   return (
     <InlineGithubForm form={form}>
