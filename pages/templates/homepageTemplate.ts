@@ -263,41 +263,6 @@ export const HomePageTemplate = {
       ]
     },
     {
-      label: "Testing",
-      name: "test",
-      description: "Update the ecosystem features",
-      component: "group",
-      fields: [
-        {
-          label: 'Headline',
-          name: 'headline',
-          component: 'markdown'
-        },
-        {
-          label: 'Subline',
-          name: 'subline',
-          component: 'text'
-        },
-        {
-          label: "Tina Ecosystem Features",
-          name: "valueItems",
-          component: 'group-list',
-          fields: [
-            ...FeaturedItemsFields,
-            {
-              label: 'Link URL',
-              name: 'url',
-              component: 'text'
-            }
-          ],
-          itemProps: (item: any) => ({
-            key: item.name,
-            label: `Ecosystem Prop: ${item.headline || 'New Ecosystem Prop'}`,
-          }),
-        }
-      ]
-    },
-    {
       label: 'Call To Action',
       name: 'cta',
       description: 'Update the call to action',
