@@ -6,6 +6,8 @@ import Link from 'next/link'
 import { usePlugin } from 'tinacms'
 import { useGithubJsonForm } from 'react-tinacms-github'
 import { InlineGithubForm } from '../components/layout/InlineGithubForm'
+import ReactMarkdown from 'react-markdown'
+import { HomePageTemplate } from './templates/homepageTemplate'
 
 const IconRight = () => {
   return (
@@ -137,97 +139,7 @@ const Container = ({
   )
 }
 
-const HomePageTemplate = {
-  label: 'Home Page',
-  defaultItem: {},
-  fields: [
-    // TODO: refacor to SEO atom
-    { name: 'title', label: 'Page Title', component: 'text' },
-    { name: 'description', label: 'Page Description', component: 'textarea' },
-    {
-      label: 'Page Hero',
-      name: 'hero',
-      description: 'Update content for the page hero',
-      component: 'group',
-      fields: [
-        {
-          label: 'Headline',
-          name: 'headline',
-          component: 'text'
-        },
-        {
-          label: 'Subline',
-          name: 'subline',
-          component: 'text'
-        },
-        {
-          label: 'Action Items',
-          name: 'actionItems',
-          component: 'group-list',
-          fields: [
-            {
-              label: 'Action Label',
-              name: 'label',
-              component: 'text'
-            },
-            {
-              label: 'Action Variant',
-              name: 'variant',
-              component: 'select',
-              options: [ 'button', 'link' ]
-            },
-            {
-              label: 'Action URL',
-              name: 'url',
-              component: 'text',
-              //TO DO: Determine why validate blows up application
-              // validate: (value: string) => {
-              //   console.log(typeof value)
-              //   if (!value?.startsWith('http')) {
-              //     return 'Not a valid URL, try again'
-              //   }
-              //   return undefined
-              // }
-            },
-            {
-              label: 'Action Icon',
-              name: 'icon',
-              component: 'select',
-              options: ['', 'arrowRight']
-            }
-          ],
-          itemProps: (item: any) => ({
-            key: item.name,
-            label: `Action: ${item.label || 'New Action'}`,
-          }),
-        },
-        {
-          label: 'Hero Video',
-          name: 'video',
-          component: 'group',
-          fields: [
-            {
-              label: 'Video sources',
-              name: 'videoSources',
-              component: 'group-list',
-              fields: [
-                { label: 'source', name: 'vSrc', component: 'text'},
-                { label: 'type', name: 'vType', component: 'select', options: ['mp4', 'webm']}
-              ]
-            },
-            {
-              label: 'Video Thumbnail',
-              name: 'thumbnail',
-              component: 'text'
-            }
-          ]
-          
-        }
-      ]
-    }
-    
-  ],
-}
+
 
 const HomePage = (props: any) => {
   let src = 'v1571425758/tina-hero-demo-v2'
@@ -236,7 +148,7 @@ const HomePage = (props: any) => {
   usePlugin(form)
 
   const { hero, demo, ecosystem, features, valueProps, cta } = formData
-
+  console.log(valueProps.headline)
   return (
     <InlineGithubForm form={form}>
       <div className="banner orange">
@@ -336,54 +248,34 @@ const HomePage = (props: any) => {
       <section className="section white">
         <Container width="narrow" center>
           <h2 className="headingHuge">
-            Edit content, in the <em>context of your site</em>
+            <ReactMarkdown source={valueProps.headline} />
           </h2>
           <p className="textHuge">
-            Just click on the page and type. Contextual toolbars and panels
-            appear at just the right times to create the content you want.
+            {valueProps.subline}
           </p>
         </Container>
         <div className="spacer"></div>
         <Container>
           <div className="featureGrid">
-            <div className="feature">
-              <div className="featureText">
-                <h3 className="headingLarge">Page building</h3>
-                <hr className="dottedBorder" />
-                <p className="textLarge">
-                  Pick from your custom predefined components to build web
-                  experiences, blazing fast
-                </p>
+            {valueProps.valueItems.map((value, i) => {
+              const { headline, subline, media } = value
+              const isReversed = i % 2 === 1
+
+              return (
+              <div className={`feature ${isReversed ? 'featureReverse' : ''}`}>
+                <div className="featureText">
+                  <h3 className="headingLarge">{headline}</h3>
+                  <hr className="dottedBorder" />
+                  <p className="textLarge">
+                    {subline}
+                  </p>
+                </div>
+                <div className={`featureImage`}>
+                  <img src={media.src} alt="" />
+                </div>
               </div>
-              <div className="featureImage">
-                <img src="/img/io-placeholder.jpg" alt="" />
-              </div>
-            </div>
-            <div className="feature featureReverse">
-              <div className="featureText">
-                <h3 className="headingLarge">Design Systems</h3>
-                <hr className="dottedBorder" />
-                <p className="textLarge">
-                  Build pages with YOUR design system. Maximize reusability.
-                </p>
-              </div>
-              <div className="featureImage">
-                <img src="/img/io-placeholder.jpg" alt="" />
-              </div>
-            </div>
-            <div className="feature">
-              <div className="featureText">
-                <h3 className="headingLarge">Improve Time-to-Market</h3>
-                <hr className="dottedBorder" />
-                <p className="textLarge">
-                  Better creative control, don’t rely on developers to make
-                  content changes.
-                </p>
-              </div>
-              <div className="featureImage">
-                <img src="/img/io-placeholder.jpg" alt="" />
-              </div>
-            </div>
+              )
+            })}
           </div>
         </Container>
       </section>

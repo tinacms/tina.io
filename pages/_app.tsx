@@ -47,6 +47,9 @@ const MainLayout = ({ Component, pageProps }) => {
     import('react-tinacms-date').then(({ DateFieldPlugin }) => {
       cms.plugins.add(DateFieldPlugin)
     })
+    import('react-tinacms-editor').then(({ MarkdownFieldPlugin }) => {
+      cms.plugins.add(MarkdownFieldPlugin)
+    })
   }, [pageProps.preview])
 
   const enterEditMode = async () => {
