@@ -203,8 +203,10 @@ const HomePageTemplate = {
             {
               label: 'Video sources',
               name: 'sources',
-              component: 'list',
-              field: { component: 'text'}
+              component: 'group-list',
+              fields: [
+                { label: 'source', name: 'source', component: 'text'}
+                { label: 'type', name: 'type', component: 'select' options: ['mp4', ]}
             },
             {
               label: 'Video Thumbnail',
@@ -216,83 +218,7 @@ const HomePageTemplate = {
         }
       ]
     }
-    // {
-    //   label: 'Page Sections',
-    //   name: 'blocks',
-    //   component: 'blocks',
-    //   templates: {
-    //     hero: {
-    //       label: 'Hero',
-    //       key: 'hero',
-    //       fields: [
-    //         {
-    //           label: 'Headline',
-    //           name: 'headline',
-    //           component: 'text'
-    //         },
-    //         {
-    //           label: 'Subline',
-    //           name: 'subline',
-    //           component: 'text'
-    //         },
-    //         {
-    //           label: 'Action Items',
-    //           name: 'actionItems',
-    //           component: 'group-list',
-    //           fields: [
-    //             {
-    //               label: 'Action Text',
-    //               name: 'text',
-    //               component: 'text'
-    //             },
-    //             {
-    //               label: 'Action Variant',
-    //               name: 'variant',
-    //               component: 'select',
-    //               options: [ 'button', 'link' ]
-    //             },
-    //             {
-    //               label: 'Action URL',
-    //               name: 'url',
-    //               component: 'text',
-    //               validate: (value: string) => {
-    //                 if (!value?.startsWith('http')) {
-    //                   return 'Not a valid URL, try again'
-    //                 }
-    //                 return undefined
-    //               }
-    //             },
-    //             {
-    //               label: 'Action Icon',
-    //               name: 'icon',
-    //               component: 'select',
-    //               options: ['arrowRight']
-    //             }
-    //           ]
-    //         },
-    //         {
-    //           label: 'Hero Video',
-    //           name: 'video',
-    //           component: 'group-list',
-    //           fields: [
-    //             {
-    //               label: 'Video sources',
-    //               name: 'sources',
-    //               component: 'list',
-    //               field: { component: 'text'}
-    //             },
-    //             {
-    //               label: 'Video Thumbnail',
-    //               name: 'thumbnail',
-    //               component: 'text'
-    //             }
-    //           ]
-              
-    //         }
-    //       ],
-    //     }
-    //   },
-    // },
+    
   ],
 }
 
@@ -303,11 +229,6 @@ const HomePage = (props: any) => {
   usePlugin(form)
   console.log(formData)
 
-  // const pageData = formData.blocks.reduce((data, block) => {
-  //   data[block._template] = {...block}
-    
-  //   return data
-  // }, {})
   const { hero, demo, ecosystem, features, valueProps, cta } = formData
 
   return (
@@ -368,36 +289,48 @@ const HomePage = (props: any) => {
         <Container width="narrow" center>
           <h2 className="headingHuge">{hero.headline}</h2>
           <p className="textHuge">
-            Tina is an open-source CMS admin that talks to any API
+            {hero.subline}
           </p>
+          
           <div className="buttonGroup buttonGroupCenter">
-            <a href="#" className="button buttonOrange">
-              Try Demo <IconRight />
-            </a>
-            <a href="#" className="button buttonGhost">
-              Learn More
-            </a>
+            {hero.actionItems.map((item) => {
+              const { variant, text, icon, url } = item
+              return (
+                <a href={url} className={`button ${variant === 'button' ? "buttonOrange" : 'buttonGhost'}`}>
+                  {text} {icon === 'arrowRight' && <IconRight />}
+                </a>
+              )
+            })}
           </div>
         </Container>
         <div className="splitBackgroundBlackWhite">
           <Container>
-            <video
-              className="video"
-              autoPlay={true}
-              loop
-              muted
-              playsInline
-              poster={`https://res.cloudinary.com/forestry-demo/video/upload/so_0/${src}.jpg`}
-            >
-              <source
-                src={`https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/${src}.webm`}
-                type="video/webm"
-              />
-              <source
-                src={`https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/${src}.mp4`}
-                type="video/mp4"
-              />
-            </video>
+            {hero.video.map((video) => {
+              const { sources, thumbnail } = video
+              return (
+                <video
+                  className="video"
+                  autoPlay={true}
+                  loop
+                  muted
+                  playsInline
+                  poster={thumbnail}
+                >
+                  {sources.map((source) => {
+                    const { src, type } = source
+                    <source
+                      src={src}
+                      type={`video/${type}`}
+                    />
+                  }
+                  )}
+                  {/* <source
+                    src={`https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/${src}.mp4`}
+                    type="video/mp4"
+                  /> */}
+                </video>
+              )
+            })}
           </Container>
         </div>
       </section>
