@@ -377,7 +377,7 @@ const HomePage = (props: any) => {
         <Container>
           <div className="featureGrid">
             {ecosystem.valueItems.map((value, i) => {
-                const { headline, subline, media } = value
+                const { headline, subline, media, url } = value
                 const isReversed = i % 2 === 1
 
                 return (
@@ -388,6 +388,11 @@ const HomePage = (props: any) => {
                     <p className="textLarge">
                       {subline}
                     </p>
+                    <div className="buttonGroup">
+                      <a href={url}className="button buttonLink">
+                        Read The Docs <IconRight />
+                      </a>
+                    </div>
                   </div>
                   <div className={`featureImage`}>
                     <img src={media.src} alt="" />
