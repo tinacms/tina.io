@@ -230,6 +230,14 @@ const HomePage = (props: any) => {
 
   usePlugin(form)
   console.log(formData)
+
+  const pageData = formData.blocks.reduce((data, block) => {
+    data[block._template] = {...block}
+    
+    return data
+  }, {})
+  const { hero, demo, ecosystem, features, valueProps, cta } = pageData
+
   return (
     <InlineGithubForm form={form}>
       <div className="banner orange">
@@ -286,7 +294,7 @@ const HomePage = (props: any) => {
       </div>
       <section className="section black">
         <Container width="narrow" center>
-          <h2 className="headingHuge">Content editing for modern&nbsp;teams</h2>
+          <h2 className="headingHuge">{hero.headline}</h2>
           <p className="textHuge">
             Tina is an open-source CMS admin that talks to any API
           </p>

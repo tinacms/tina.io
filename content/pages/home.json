@@ -5,8 +5,11 @@
     {
       "_template": "hero",
       "headline": "Content editing for modern teams",
-      "subline": "Tina is an open-source CMS admin that talks to any API"
-      
+      "subline": "Tina is an open-source CMS admin that talks to any API",
+      "actionItems": [
+        { "variant": "button", "text": "Try Demo", "icon": "arrowRight", "url": "#" }, 
+        { "variant": "link", "text": "Learn More", "icon": "", "url": "#" } 
+      ]
     },
     {
       "_template": "valueProps",
