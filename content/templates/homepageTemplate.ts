@@ -77,7 +77,7 @@ export const CallToActionFields = [
   },
 ]
 
-export const HomePageTemplate = {
+const HomePageTemplate = {
   label: 'Home Page',
   defaultItem: {},
   fields: [
@@ -271,3 +271,5 @@ export const HomePageTemplate = {
     }
   ],
 }
+
+export default HomePageTemplate

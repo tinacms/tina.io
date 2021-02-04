@@ -7,7 +7,7 @@ import { usePlugin } from 'tinacms'
 import { useGithubJsonForm } from 'react-tinacms-github'
 import { InlineGithubForm } from '../components/layout/InlineGithubForm'
 import ReactMarkdown from 'react-markdown'
-import { HomePageTemplate } from './templates/homepageTemplate'
+import HomePageTemplate from '../content/templates/homepageTemplate'
 
 const IconRight = () => {
   return (
