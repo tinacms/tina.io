@@ -166,8 +166,8 @@ const HomePageTemplate = {
           component: 'group-list',
           fields: [
             {
-              label: 'Action Text',
-              name: 'text',
+              label: 'Action Label',
+              name: 'label',
               component: 'text'
             },
             {
@@ -176,24 +176,28 @@ const HomePageTemplate = {
               component: 'select',
               options: [ 'button', 'link' ]
             },
-            {
-              label: 'Action URL',
-              name: 'url',
-              component: 'text',
-              validate: (value: string) => {
-                if (!value?.startsWith('http')) {
-                  return 'Not a valid URL, try again'
-                }
-                return undefined
-              }
-            },
-            {
-              label: 'Action Icon',
-              name: 'icon',
-              component: 'select',
-              options: ['arrowRight']
-            }
-          ]
+            // {
+            //   label: 'Action URL',
+            //   name: 'url',
+            //   component: 'text',
+            //   validate: (value: string) => {
+            //     if (!value?.startsWith('http')) {
+            //       return 'Not a valid URL, try again'
+            //     }
+            //     return undefined
+            //   }
+            // },
+            // {
+            //   label: 'Action Icon',
+            //   name: 'icon',
+            //   component: 'select',
+            //   options: ['arrowRight']
+            // }
+          ],
+          itemProps: (item: any) => ({
+            key: item.label,
+            label: `Action: ${item.label || 'New Action'}`,
+          }),
         },
         {
           label: 'Hero Video',
