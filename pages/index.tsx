@@ -398,6 +398,29 @@ const HomePage = (props: any) => {
               })}
           </div>
         </Container>
+        <Container>
+          <div className="featureGrid">
+            {test.valueItems.map((value, i) => {
+                const { headline, subline, media } = value
+                const isReversed = i % 2 === 1
+
+                return (
+                <div className={`feature ${isReversed ? 'featureReverse' : ''}`}>
+                  <div className="featureText">
+                    <h3 className="headingLarge">{headline}</h3>
+                    <hr className="dottedBorder" />
+                    <p className="textLarge">
+                      {subline}
+                    </p>
+                  </div>
+                  <div className={`featureImage`}>
+                    <img src={media.src} alt="" />
+                  </div>
+                </div>
+                )
+              })}
+          </div>
+        </Container>
       </section>
       <div className="learnTina">
         <div className="learnContainer">
