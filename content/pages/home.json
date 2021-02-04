@@ -1,111 +1,120 @@
 {
   "title": "Home",
-  "hero": {
-    "headline": "Content editing for modern teams",
-    "subline": "Tina is an open-source CMS admin that talks to any API",
-    "actionItems": [
-      { "variant": "button", "text": "Try Demo", "icon": "arrowRight", "url": "#" }, 
-      { "variant": "link", "text": "Learn More", "icon": "", "url": "#" } 
-    ],
-    "video": { 
-      "sources": [
-        "https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/v1571425758/tina-hero-demo-v2.webm",
-        "https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/v1571425758/tina-hero-demo-v2.mp4"
-      ], 
-      "thumbnail": "https://res.cloudinary.com/forestry-demo/video/upload/so_0/v1571425758/tina-hero-demo-v2.jpg"
+  "description": "Tina is a content management platform, with a content management API and frontend toolkit to rapidly prototype your own CMS.",
+  "blocks": [
+    {
+      "_template": "hero",
+      "headline": "Content editing for modern teams",
+      "subline": "Tina is an open-source CMS admin that talks to any API",
+      "actionItems": [
+        { "variant": "button", "text": "Try Demo", "icon": "arrowRight", "url": "#" }, 
+        { "variant": "link", "text": "Learn More", "icon": "", "url": "#" } 
+      ],
+      "video": { 
+        "sources": [
+          "https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/v1571425758/tina-hero-demo-v2.webm",
+          "https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/v1571425758/tina-hero-demo-v2.mp4"
+        ], 
+        "thumbnail": "https://res.cloudinary.com/forestry-demo/video/upload/so_0/v1571425758/tina-hero-demo-v2.jpg"
+      }
+    },
+    {
+      "_template": "valueProps",
+      "headline": "Edit content, in the context of your site",
+      "subline": "Just click on the page and type. Contextual toolbars and panels appear at just the right times to create the content you want.",
+      "valueItems": [
+        {
+          "headline": "Page building",
+          "subline": "Pick from your custom predefined components to build web experiences, blazing fast",
+          "media": { "src": "/img/io-placeholder.jpg" }
+        },
+        {
+          "headline": "Design Systems",
+          "subline": "Build pages with YOUR design system. Maximize reusability.",
+          "media": { "src": "/img/io-placeholder.jpg" }
+        },
+        {
+          "headline": "Improve Time-to-Market",
+          "subline": "Better creative control, don’t rely on developers to make content changes.",
+          "media": { "src": "/img/io-placeholder.jpg" }
+        }
+      ]
+    },
+    {
+      "_template": "demo",
+      "headline": "Build with your components",
+      "subline": "Let your team build great layouts with your own React components.",
+      "codeSandbox": "https://codesandbox.io/embed/vigilant-cohen-73its?fontsize=147hidenavigation=17theme=dark"
+    },
+    {
+      "_template": "features",
+      "headline": "Avoid Vendor Lock-In",
+      "subline": "Add visual editing to your site for logged in users.",
+      "items": [
+        {
+          "headline": "Tina comes with editing.",
+          "subline": "Super simple, just click and edit.",
+          "text": "it's 35 degrees and sunny",
+          "isFeatured": true,
+          "icon": "",
+          "media": { "src": "img/tina-wow.png"}
+        },
+        {
+          "headline": "Headless Cms",
+          "subline": "Sync your website data to a headless CMS of your choice",
+          "text": "",
+          "isFeatured": false,
+          "icon": "arrowRight",
+          "media": { "src": "img/headlessCms.png"}
+        },
+        {
+          "headline": "Headless Cms",
+          "subline": "Sync your website data to a headless CMS of your choice",
+          "text": "",
+          "isFeatured": false,
+          "icon": "arrowRight",
+          "media": { "src": "img/headlessCms.png"}
+        },
+        {
+          "headline": "Headless Cms",
+          "subline": "Sync your website data to a headless CMS of your choice",
+          "text": "",
+          "isFeatured": false,
+          "icon": "arrowRight",
+          "media": { "src": "img/headlessCms.png"}
+        }
+      ]
+    },
+    {
+      "_template": "ecosystem",
+      "headline": "Explore the Tina ecosystem",
+      "subline": "More than just a headless CMS, Tina has all the tools for building web experiences for interdisciplinary teams.",
+      "valueItems": [
+        {
+          "headline": "Data Source Plugins",
+          "subline": "Data Source plugins allow you to extend Tina to connect to different databases and 3rd Party APIs",
+          "url": "#",
+          "media": { "src": "/img/io-placeholder.jpg" }
+        },
+        {
+          "headline": "Screen UI Plugins",
+          "subline": "Data Source plugins allow you to extend Tina to connect to different databases and 3rd Party AP",
+          "url": "#",
+          "media": { "src": "/img/io-placeholder.jpg" }
+        },
+        {
+          "headline": "Custom Fields",
+          "subline": "Extend primary fields with custom field plugins to completely control the editing experience and functionality.",
+          "url": "#",
+          "media": { "src": "/img/io-placeholder.jpg" }
+        }
+      ]
+    },
+    {
+      "_template": "cta",
+      "headline": "Learn Tina",
+      "subline": "Learn Tina through Interactive & Fun Tutorials.",
+      "actionItems": [{ "variant": "button", "text": "Get Started", "icon": "iconRight", "url": "#" } ]
     }
-  },
-  "valueProps": {
-    "headline": "Edit content, in the context of your site",
-    "subline": "Just click on the page and type. Contextual toolbars and panels appear at just the right times to create the content you want.",
-    "valueItems": [
-      {
-        "headline": "Page building",
-        "subline": "Pick from your custom predefined components to build web experiences, blazing fast",
-        "media": { "src": "/img/io-placeholder.jpg" }
-      },
-      {
-        "headline": "Design Systems",
-        "subline": "Build pages with YOUR design system. Maximize reusability.",
-        "media": { "src": "/img/io-placeholder.jpg" }
-      },
-      {
-        "headline": "Improve Time-to-Market",
-        "subline": "Better creative control, don’t rely on developers to make content changes.",
-        "media": { "src": "/img/io-placeholder.jpg" }
-      }
-    ]
-  },
-  "demo": {
-    "headline": "Build with your components",
-    "subline": "Let your team build great layouts with your own React components.",
-    "codeSandbox": "https://codesandbox.io/embed/vigilant-cohen-73its?fontsize=147hidenavigation=17theme=dark"
-  },
-  "features": {
-    "headline": "Avoid Vendor Lock-In",
-    "subline": "Add visual editing to your site for logged in users.",
-    "items": [
-      {
-        "headline": "Tina comes with editing.",
-        "subline": "Super simple, just click and edit.",
-        "text": "it's 35 degrees and sunny",
-        "isFeatured": true,
-        "icon": "",
-        "media": { "src": "img/tina-wow.png"}
-      },
-      {
-        "headline": "Headless Cms",
-        "subline": "Sync your website data to a headless CMS of your choice",
-        "text": "",
-        "isFeatured": false,
-        "icon": "arrowRight",
-        "media": { "src": "img/headlessCms.png"}
-      },
-      {
-        "headline": "Headless Cms",
-        "subline": "Sync your website data to a headless CMS of your choice",
-        "text": "",
-        "isFeatured": false,
-        "icon": "arrowRight",
-        "media": { "src": "img/headlessCms.png"}
-      },
-      {
-        "headline": "Headless Cms",
-        "subline": "Sync your website data to a headless CMS of your choice",
-        "text": "",
-        "isFeatured": false,
-        "icon": "arrowRight",
-        "media": { "src": "img/headlessCms.png"}
-      }
-    ]
-  },
-  "ecosystem": {
-    "headline": "Explore the Tina ecosystem",
-    "subline": "More than just a headless CMS, Tina has all the tools for building web experiences for interdisciplinary teams.",
-    "valueItems": [
-      {
-        "headline": "Data Source Plugins",
-        "subline": "Data Source plugins allow you to extend Tina to connect to different databases and 3rd Party APIs",
-        "url": "#",
-        "media": { "src": "/img/io-placeholder.jpg" }
-      },
-      {
-        "headline": "Screen UI Plugins",
-        "subline": "Data Source plugins allow you to extend Tina to connect to different databases and 3rd Party AP",
-        "url": "#",
-        "media": { "src": "/img/io-placeholder.jpg" }
-      },
-      {
-        "headline": "Custom Fields",
-        "subline": "Extend primary fields with custom field plugins to completely control the editing experience and functionality.",
-        "url": "#",
-        "media": { "src": "/img/io-placeholder.jpg" }
-      }
-    ]
-  },
-  "cta": {
-    "headline": "Learn Tina",
-    "subline": "Learn Tina through Interactive & Fun Tutorials.",
-    "actionItems": [{ "variant": "button", "text": "Get Started", "icon": "iconRight", "url": "#" } ]
-  }
+  ]
 }

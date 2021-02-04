@@ -137,18 +137,95 @@ const Container = ({
   )
 }
 
+const HomePageTemplate = {
+  label: 'Home Page',
+  defaultItem: {},
+  fields: [
+    // TODO: refacor to SEO atom
+    { name: 'title', label: 'Page Title', component: 'text' },
+    { name: 'description', label: 'Page Description', component: 'textarea' },
+    {
+      label: 'Page Sections',
+      name: 'blocks',
+      component: 'blocks',
+      templates: {
+        hero: {
+          label: 'Hero',
+          fields: [
+            {
+              label: 'Headline',
+              name: 'headline',
+              component: 'text'
+            },
+            {
+              label: 'Subline',
+              name: 'subline',
+              component: 'text'
+            },
+            {
+              label: 'Action Items',
+              name: 'actionItems',
+              component: 'group-list',
+              fields: [
+                {
+                  label: 'Action Text',
+                  name: 'text',
+                  component: 'text'
+                },
+                {
+                  label: 'Action Variant',
+                  name: 'variant',
+                  component: 'select',
+                  options: [ 'button', 'link' ]
+                },
+                {
+                  label: 'Action URL',
+                  name: 'url',
+                  component: 'text',
+                  validate: (value: string) => {
+                    if (!value.startsWith('http')) {
+                      return 'Not a valid URL, try again'
+                    }
+                    return undefined
+                  }
+                },
+                {
+                  label: 'Action Icon',
+                  name: 'icon',
+                  component: 'select',
+                  options: ['arrowRight']
+                }
+              ]
+            },
+            {
+              label: 'Hero Video',
+              name: 'video',
+              component: 'group-list',
+              fields: [
+                {
+                  label: 'Video sources',
+                  name: 'sources',
+                  component: 'list',
+                  field: { component: 'text'}
+                },
+                {
+                  label: 'Video Thumbnail',
+                  name: 'thumbnail',
+                  component: 'text'
+                }
+              ]
+              
+            }
+          ]
+        }
+      },
+    },
+  ],
+}
+
 const HomePage = (props: any) => {
   let src = 'v1571425758/tina-hero-demo-v2'
-  const [formData, form] = useGithubJsonForm(props.file, {
-    label: 'Home Page',
-    fields: [
-      {
-        label: 'Headline',
-        name: 'headline',
-        component: 'text'
-      }
-    ],
-  })
+  const [formData, form] = useGithubJsonForm(props.file, HomePageTemplate)
 
   usePlugin(form)
   console.log(formData)
