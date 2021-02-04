@@ -176,26 +176,28 @@ const HomePageTemplate = {
               component: 'select',
               options: [ 'button', 'link' ]
             },
-            // {
-            //   label: 'Action URL',
-            //   name: 'url',
-            //   component: 'text',
-            //   validate: (value: string) => {
-            //     if (!value?.startsWith('http')) {
-            //       return 'Not a valid URL, try again'
-            //     }
-            //     return undefined
-            //   }
-            // },
-            // {
-            //   label: 'Action Icon',
-            //   name: 'icon',
-            //   component: 'select',
-            //   options: ['arrowRight']
-            // }
+            {
+              label: 'Action URL',
+              name: 'url',
+              component: 'text',
+              //TO DO: Determine why validate blows up application
+              // validate: (value: string) => {
+              //   console.log(typeof value)
+              //   if (!value?.startsWith('http')) {
+              //     return 'Not a valid URL, try again'
+              //   }
+              //   return undefined
+              // }
+            },
+            {
+              label: 'Action Icon',
+              name: 'icon',
+              component: 'select',
+              options: ['', 'arrowRight']
+            }
           ],
           itemProps: (item: any) => ({
-            key: item.label,
+            key: item.name,
             label: `Action: ${item.label || 'New Action'}`,
           }),
         },
@@ -232,7 +234,6 @@ const HomePage = (props: any) => {
   const [formData, form] = useGithubJsonForm(props.file, HomePageTemplate)
 
   usePlugin(form)
-  console.log(formData)
 
   const { hero, demo, ecosystem, features, valueProps, cta } = formData
 
@@ -299,10 +300,10 @@ const HomePage = (props: any) => {
           
           <div className="buttonGroup buttonGroupCenter">
             {hero.actionItems.map((item) => {
-              const { variant, text, icon, url } = item
+              const { variant, label, icon, url } = item
               return (
                 <a href={url} className={`button ${variant === 'button' ? "buttonOrange" : 'buttonGhost'}`}>
-                  {text} {icon === 'arrowRight' && <IconRight />}
+                  {label} {icon === 'arrowRight' && <IconRight />}
                 </a>
               )
             })}
