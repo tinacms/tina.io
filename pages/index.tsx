@@ -142,6 +142,7 @@ const Container = ({
 
 
 const HomePage = (props: any) => {
+  //@ts-ignore
   const [formData, form] = useGithubJsonForm(props.file, HomePageTemplate)
 
   usePlugin(form)
