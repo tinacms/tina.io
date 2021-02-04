@@ -29,6 +29,7 @@ const MainLayout = ({ Component, pageProps }) => {
   const tinaConfig = {
     enabled: pageProps.preview,
     toolbar: pageProps.preview,
+    sidebar: pageProps.preview,
     apis: {
       github,
       storage:
@@ -45,6 +46,9 @@ const MainLayout = ({ Component, pageProps }) => {
   useEffect(() => {
     import('react-tinacms-date').then(({ DateFieldPlugin }) => {
       cms.plugins.add(DateFieldPlugin)
+    })
+    import('react-tinacms-editor').then(({ MarkdownFieldPlugin }) => {
+      cms.plugins.add(MarkdownFieldPlugin)
     })
   }, [pageProps.preview])
 

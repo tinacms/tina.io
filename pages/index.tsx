@@ -3,20 +3,21 @@ import { GetStaticProps } from 'next'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
 import { Footer } from 'components/layout'
 import Link from 'next/link'
-import { useCMS, useForm, usePlugin } from 'tinacms'
+import { usePlugin } from 'tinacms'
 import { useGithubJsonForm } from 'react-tinacms-github'
 import { InlineGithubForm } from '../components/layout/InlineGithubForm'
+import ReactMarkdown from 'react-markdown'
+import HomePageTemplate from '../content/templates/homepageTemplate'
 
 const HomePage = (props: any) => {
-  let src = 'v1571425758/tina-hero-demo-v2'
-
-  const cms = useCMS()
-  const [formData, form] = useGithubJsonForm(props.file, {
-    label: 'Home Page',
-    fields: [],
-  })
+  //@ts-ignore
+  const [formData, form] = useGithubJsonForm(props.file, HomePageTemplate)
 
   usePlugin(form)
+
+  const { hero, demo, ecosystem, features, valueProps, cta } = formData
+  const featuredItem = features.items.find(item => item.isFeatured)
+  const cardItems = features.items.filter(item => !item.isFeatured)
 
   return (
     <InlineGithubForm form={form}>
@@ -74,17 +75,23 @@ const HomePage = (props: any) => {
       </div>
       <section className="section black">
         <Container width="narrow" center>
-          <h2 className="headingHuge">Content editing for modern&nbsp;teams</h2>
-          <p className="textHuge">
-            Tina is an open-source CMS admin that talks to any API
-          </p>
+          <h2 className="headingHuge">{hero.headline}</h2>
+          <p className="textHuge">{hero.subline}</p>
+
           <div className="buttonGroup buttonGroupCenter">
-            <a href="#" className="button buttonOrange">
-              Try Demo <IconRight />
-            </a>
-            <a href="#" className="button buttonGhost">
-              Learn More
-            </a>
+            {hero.actionItems.map(item => {
+              const { variant, label, icon, url } = item
+              return (
+                <a
+                  href={url}
+                  className={`button ${
+                    variant === 'button' ? 'buttonOrange' : 'buttonGhost'
+                  }`}
+                >
+                  {label} {icon === 'arrowRight' && <IconRight />}
+                </a>
+              )
+            })}
           </div>
         </Container>
         <div className="splitBackgroundBlackWhite">
@@ -95,16 +102,13 @@ const HomePage = (props: any) => {
               loop
               muted
               playsInline
-              poster={`https://res.cloudinary.com/forestry-demo/video/upload/so_0/${src}.jpg`}
+              poster={hero.video.thumbnail}
             >
-              <source
-                src={`https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/${src}.webm`}
-                type="video/webm"
-              />
-              <source
-                src={`https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/${src}.mp4`}
-                type="video/mp4"
-              />
+              {hero.video.videoSources?.map(item => {
+                const { vSrc, vType } = item
+
+                return <source src={vSrc} type={`video/${vType}`} />
+              })}
             </video>
           </Container>
         </div>
@@ -112,72 +116,47 @@ const HomePage = (props: any) => {
       <section className="section white">
         <Container width="narrow" center>
           <h2 className="headingHuge">
-            Edit content, in the <em>context of your site</em>
+            <ReactMarkdown source={valueProps.headline} />
           </h2>
-          <p className="textHuge">
-            Just click on the page and type. Contextual toolbars and panels
-            appear at just the right times to create the content you want.
-          </p>
+          <p className="textHuge">{valueProps.subline}</p>
         </Container>
         <div className="spacer"></div>
         <Container>
           <div className="featureGrid">
-            <div className="feature">
-              <div className="featureText">
-                <h3 className="headingLarge">Page building</h3>
-                <hr className="dottedBorder" />
-                <p className="textLarge">
-                  Pick from your custom predefined components to build web
-                  experiences, blazing fast
-                </p>
-              </div>
-              <div className="featureImage">
-                <img src="/img/io-placeholder.jpg" alt="" />
-              </div>
-            </div>
-            <div className="feature featureReverse">
-              <div className="featureText">
-                <h3 className="headingLarge">Design Systems</h3>
-                <hr className="dottedBorder" />
-                <p className="textLarge">
-                  Build pages with YOUR design system. Maximize reusability.
-                </p>
-              </div>
-              <div className="featureImage">
-                <img src="/img/io-placeholder.jpg" alt="" />
-              </div>
-            </div>
-            <div className="feature">
-              <div className="featureText">
-                <h3 className="headingLarge">Improve Time-to-Market</h3>
-                <hr className="dottedBorder" />
-                <p className="textLarge">
-                  Better creative control, don’t rely on developers to make
-                  content changes.
-                </p>
-              </div>
-              <div className="featureImage">
-                <img src="/img/io-placeholder.jpg" alt="" />
-              </div>
-            </div>
+            {valueProps.valueItems.map((value, i) => {
+              const { headline, subline, media } = value
+              const isReversed = i % 2 === 1
+
+              return (
+                <div
+                  className={`feature ${isReversed ? 'featureReverse' : ''}`}
+                >
+                  <div className="featureText">
+                    <h3 className="headingLarge">{headline}</h3>
+                    <hr className="dottedBorder" />
+                    <p className="textLarge">{subline}</p>
+                  </div>
+                  <div className={`featureImage`}>
+                    <img src={media.src} alt="" />
+                  </div>
+                </div>
+              )
+            })}
           </div>
         </Container>
       </section>
       <section className="section blue">
         <Container center width="narrow">
           <h2 className="headingHuge">
-            Build with <em>your components</em>
+            <ReactMarkdown source={demo.headline} />
           </h2>
-          <p className="textHuge">
-            Let your team build great layouts with your own
-            React&nbsp;components.
-          </p>
+          <p className="textHuge">{demo.subline}</p>
         </Container>
         <div className="spacer"></div>
         <Container width="wide">
           <div className="demoWrapper">
             <iframe
-              src="https://codesandbox.io/embed/vigilant-cohen-73its?fontsize=147hidenavigation=17theme=dark"
+              src={demo.codeSandbox}
               width="800"
               height="800"
               title="CodeSandbox example of TinaCMS with Next.js"
@@ -189,27 +168,24 @@ const HomePage = (props: any) => {
       </section>
       <section className="section white">
         <Container center width="narrow">
-          <h2 className="headingHuge">Avoid Vendor Lock-In</h2>
-          <p className="textHuge">
-            Add visual editing to your site for logged in users. Write&nbsp;to
-            any API.
-          </p>
+          <h2 className="headingHuge">{features.headline}</h2>
+          <p className="textHuge">{features.subline}</p>
         </Container>
         <div className="spacer"></div>
         <Container>
           <div className="browserContainer">
             <div className="browser browserGrid">
               <div className="browserContent">
-                <span className="contentTitle">Tina comes with editing.</span>
-                <span className="contentText">
-                  Super simple, just click and edit.
-                </span>
-                <span className="contentFootnote">
-                  It’s 35 degrees and sunny
-                </span>
+                <span className="contentTitle">{featuredItem.headline}</span>
+                <span className="contentText">{featuredItem.subline}</span>
+                <span className="contentFootnote">{featuredItem.text}</span>
               </div>
               <div className="browserImageWrapper">
-                <img className="browserImage" src="img/tina-wow.png" alt="" />
+                <img
+                  className="browserImage"
+                  src={featuredItem.media.src}
+                  alt=""
+                />
               </div>
             </div>
           </div>
@@ -220,127 +196,67 @@ const HomePage = (props: any) => {
             <TripleDividerSvg />
           </div>
           <div className="cardGroup">
-            <div className="card cardLinked">
-              <div className="linkedContent">
-                <img src="img/headlessCms.png" alt="" className="cardImage" />
-                <h3 className="headingMedium">Headless Cms</h3>
-                <Link href="/docs">
-                  <a className="cardLink"></a>
-                </Link>
-                <p className="textLarge">
-                  Sync your website data to a headless CMS of your choice
-                </p>
-              </div>
-              <div className="linkedIcon">
-                <IconRight />
-              </div>
-            </div>
-            <div className="divider dividerMobile">
-              <SingleDividerSvg />
-            </div>
-            <div className="card cardLinked">
-              <div className="linkedContent">
-                <img src="img/headlessCms.png" alt="" className="cardImage" />
-                <h3 className="headingMedium">3rd Party APIs</h3>
-                <Link href="/docs">
-                  <a className="cardLink"></a>
-                </Link>
-                <p className="textLarge">
-                  Sync your website data to a headless CMS of your choice
-                </p>
-              </div>
-              <div className="linkedIcon">
-                <IconRight />
-              </div>
-            </div>
-            <div className="divider dividerMobile">
-              <SingleDividerSvg />
-            </div>
-            <div className="card cardLinked">
-              <div className="linkedContent">
-                <img src="img/headlessCms.png" alt="" className="cardImage" />
-                <h3 className="headingMedium">Git Filesystem</h3>
-                <Link href="/docs">
-                  <a className="cardLink"></a>
-                </Link>
-                <p className="textLarge">
-                  Sync your website data to a headless CMS of your choice
-                </p>
-              </div>
-              <div className="linkedIcon">
-                <IconRight />
-              </div>
-            </div>
+            {cardItems.map(item => {
+              const { headline, subline, icon, media } = item
+
+              return (
+                <>
+                  <div className="card cardLinked">
+                    <div className="linkedContent">
+                      <img src={media.src} alt="" className="cardImage" />
+                      <h3 className="headingMedium">{headline}</h3>
+                      <Link href="/docs">
+                        <a className="cardLink"></a>
+                      </Link>
+                      <p className="textLarge">{subline}</p>
+                    </div>
+                    <div className="linkedIcon">
+                      {icon === 'arrowRight' && <IconRight />}
+                    </div>
+                  </div>
+                  <div className="divider dividerMobile">
+                    <SingleDividerSvg />
+                  </div>
+                </>
+              )
+            })}
           </div>
         </Container>
       </section>
       <section className="section lightGray">
         <Container width="narrow" center>
           <h2 className="headingHuge">
-            Explore the <em>Tina ecosystem</em>
+            <ReactMarkdown source={ecosystem.headline} />
           </h2>
-          <p className="textHuge">
-            More than just a headless CMS, Tina has all the tools for building
-            web experiences for interdisciplinary teams.
-          </p>
+          <p className="textHuge">{ecosystem.subline}</p>
         </Container>
         <div className="spacer"></div>
         <Container>
           <div className="featureGrid">
-            <div className="feature">
-              <div className="featureText">
-                <h3 className="headingLarge">Data Source Plugins</h3>
-                <hr className="dottedBorder" />
-                <p className="textLarge">
-                  Data Source plugins allow you to extend Tina to connect to
-                  different databases and 3rd Party APIs
-                </p>
-                <div className="buttonGroup">
-                  <a href="#" className="button buttonLink">
-                    Read The Docs <IconRight />
-                  </a>
+            {ecosystem.valueItems.map((value, i) => {
+              const { headline, subline, media, url } = value
+              const isReversed = i % 2 === 1
+
+              return (
+                <div
+                  className={`feature ${isReversed ? 'featureReverse' : ''}`}
+                >
+                  <div className="featureText">
+                    <h3 className="headingLarge">{headline}</h3>
+                    <hr className="dottedBorder" />
+                    <p className="textLarge">{subline}</p>
+                    <div className="buttonGroup">
+                      <a href={url} className="button buttonLink">
+                        Read The Docs <IconRight />
+                      </a>
+                    </div>
+                  </div>
+                  <div className={`featureImage`}>
+                    <img src={media.src} alt="" />
+                  </div>
                 </div>
-              </div>
-              <div className="featureImage">
-                <img src="/img/io-placeholder.jpg" alt="" />
-              </div>
-            </div>
-            <div className="feature featureReverse">
-              <div className="featureText">
-                <h3 className="headingLarge">Screen UI Plugins</h3>
-                <hr className="dottedBorder" />
-                <p className="textLarge">
-                  Data Source plugins allow you to extend Tina to connect to
-                  different databases and 3rd Party APIs
-                </p>
-                <div className="buttonGroup">
-                  <a href="#" className="button buttonLink">
-                    Read The Docs <IconRight />
-                  </a>
-                </div>
-              </div>
-              <div className="featureImage">
-                <img src="/img/io-placeholder.jpg" alt="" />
-              </div>
-            </div>
-            <div className="feature">
-              <div className="featureText">
-                <h3 className="headingLarge">Custom Fields</h3>
-                <hr className="dottedBorder" />
-                <p className="textLarge">
-                  Extend primary fields with custom field plugins to completely
-                  control the editing experience and functionality.
-                </p>
-                <div className="buttonGroup">
-                  <a href="#" className="button buttonLink">
-                    Read The Docs <IconRight />
-                  </a>
-                </div>
-              </div>
-              <div className="featureImage">
-                <img src="/img/io-placeholder.jpg" alt="" />
-              </div>
-            </div>
+              )
+            })}
           </div>
         </Container>
       </section>
@@ -350,14 +266,22 @@ const HomePage = (props: any) => {
             <img className="learnImage" src="img/flyingTina.png" alt="" />
           </div>
           <div className="learnContent">
-            <h3 className="headingLarge">Learn Tina</h3>
-            <p className="textLarge">
-              Learn Tina through Interactive & Fun Tutorials.
-            </p>
+            <h3 className="headingLarge">{cta.headline}</h3>
+            <p className="textLarge">{cta.subline}.</p>
             <div className="buttonGroup">
-              <a href="#" className="button buttonOrange">
-                Get Started <IconRight />
-              </a>
+              {cta.actionItems.map(item => {
+                const { variant, label, icon, url } = item
+                return (
+                  <a
+                    href={url}
+                    className={`button ${
+                      variant === 'button' ? 'buttonOrange' : 'buttonGhost'
+                    }`}
+                  >
+                    {label} {icon === 'arrowRight' && <IconRight />}
+                  </a>
+                )
+              })}
             </div>
           </div>
         </div>
@@ -377,14 +301,11 @@ const HomePage = (props: any) => {
           --color-light-gray: #fafafa;
           --color-seafoam: #e6faf8;
           --color-seafoam-dark: #b4f4e0;
-
           --color-emphasis: var(--color-orange);
           --color-card-background: var(--color-light-gray);
-
           --spacer-size: 4.5rem;
           --section-padding: calc(var(--spacer-size) * 2);
         }
-
         html {
           min-width: 400px;
         }
@@ -395,7 +316,6 @@ const HomePage = (props: any) => {
           width: 100%;
           height: var(--spacer-size);
         }
-
         .dottedBorder {
           border-top: none;
           border-right: none;
@@ -408,7 +328,6 @@ const HomePage = (props: any) => {
           height: 0px;
           margin: 1.5rem 0px;
         }
-
         .banner {
           :global(a) {
             display: flex;
@@ -420,41 +339,34 @@ const HomePage = (props: any) => {
             text-decoration: none;
             color: inherit;
             transition: opacity 150ms ease-out;
-
             &:hover {
               opacity: 0.8;
             }
           }
-
           :global(em) {
             font-style: normal;
             font-weight: bold;
             text-decoration: underline;
           }
-
           :global(svg) {
             margin-left: 1rem;
             height: 1em;
           }
         }
-
         .tinaCloud {
           display: inline-block;
           white-space: nowrap;
         }
-
         .navbar {
           padding: 2rem 0 2rem 0;
           margin-bottom: -1px;
         }
-
         .navGrid {
           width: 100%;
           display: grid;
           grid-gap: 2rem 1rem;
           grid-template-columns: 1fr 1fr;
           grid-template-rows: 1fr 1fr;
-
           @media (min-width: 800px) {
             grid-gap: 1rem;
             align-items: center;
@@ -462,27 +374,23 @@ const HomePage = (props: any) => {
             grid-template-rows: 1fr;
           }
         }
-
         .navLogo {
           grid-column-start: 1;
           grid-column-end: 2;
           grid-row-start: 1;
           grid-row-end: 2;
           text-decoration: none;
-
           @media (min-width: 800px) {
             grid-column-start: 1;
             grid-column-end: 2;
           }
         }
-
         .navNav {
           grid-column-start: 1;
           grid-column-end: 3;
           grid-row-start: 2;
           grid-row-end: 3;
           justify-self: center;
-
           @media (min-width: 800px) {
             grid-column-start: 2;
             grid-column-end: 3;
@@ -490,47 +398,39 @@ const HomePage = (props: any) => {
             grid-row-end: 2;
           }
         }
-
         .navGithub {
           grid-column-start: 2;
           grid-column-end: 3;
           grid-row-start: 1;
           grid-row-end: 2;
           justify-self: end;
-
           @media (min-width: 800px) {
             grid-column-start: 3;
             grid-column-end: 4;
           }
         }
-
         .navUl {
           display: flex;
           margin: 0 -1.5rem;
         }
-
         .navLi {
           margin: 0 1.5rem;
-
           :global(a) {
             color: white;
             opacity: 0.7;
             transition: opacity 150ms ease-out;
             text-decoration: none;
             font-size: 1.25rem;
-
             &:hover {
               opacity: 1;
             }
           }
         }
-
         .logomark {
           color: var(--color-orange);
           fill: var(--color-orange);
           display: flex;
           align-items: center;
-
           :global(svg) {
             margin-top: -5px;
             height: 40px;
@@ -538,52 +438,43 @@ const HomePage = (props: any) => {
             margin-right: 12px;
           }
         }
-
         .wordmark {
           font-size: 26px;
           font-weight: bold;
           font-family: var(--font-tuner);
-
           :global(span) {
             margin-left: 1px;
           }
         }
-
         .section {
           padding: var(--section-padding) 0;
         }
-
         .headingHuge {
           font-family: var(--font-tuner);
           font-weight: bold;
           font-size: 2.75rem;
           line-height: 1.4;
           margin-bottom: 2rem;
-
           :global(em) {
             font-style: inherit;
             font-weight: inherit;
             color: var(--color-emphasis);
-
             @media (min-width: 600px) {
               white-space: nowrap;
             }
           }
         }
-
         .headingLarge {
           font-family: var(--font-tuner);
           margin-bottom: 1rem;
           font-size: 2.25rem;
           font-weight: bold;
         }
-
         .headingMedium {
           font-size: 1.675rem;
           line-height: 1.4;
           margin-bottom: 1rem;
         }
-
         .textHuge {
           display: block;
           width: 100%;
@@ -591,38 +482,31 @@ const HomePage = (props: any) => {
           margin-left: auto;
           margin-right: auto;
           font-size: 1.375rem;
-
           &:not(:last-child) {
             margin-bottom: 2rem;
           }
         }
-
         .textLarge {
           font-size: 1.125rem;
           opacity: 0.7;
-
           &:not(:last-child) {
             margin-bottom: 1.25rem;
           }
         }
-
         .buttonGroup {
           display: flex;
           flex-wrap: wrap;
           align-items: center;
           padding-top: 0.5rem;
           margin: 0 -0.75rem;
-
           :global(a),
           :global(button) {
             margin: 0 0.75rem;
           }
         }
-
         .buttonGroupCenter {
           justify-content: center;
         }
-
         .button {
           position: relative;
           font-family: var(--font-tuner);
@@ -637,7 +521,6 @@ const HomePage = (props: any) => {
           align-items: center;
           white-space: nowrap;
           outline: none;
-
           &:after {
             content: '';
             display: block;
@@ -651,14 +534,12 @@ const HomePage = (props: any) => {
             border-radius: 0.25rem;
             box-shadow: 0 0 0 4px currentColor;
           }
-
           &:focus,
           &:active {
             &:after {
               opacity: 0.3;
             }
           }
-
           :global(svg) {
             display: inline-block;
             width: auto;
@@ -666,12 +547,10 @@ const HomePage = (props: any) => {
             margin-left: 0.75rem;
           }
         }
-
         .buttonLink {
           font-size: 1rem;
           color: var(--color-orange);
           padding: 0;
-
           &:after {
             width: calc(100% + 1.5rem);
             height: calc(100% + 1rem);
@@ -679,26 +558,21 @@ const HomePage = (props: any) => {
             left: -0.75rem;
           }
         }
-
         .buttonOrange {
           background: var(--color-orange);
           transition: background 150ms ease-out;
           color: white;
-
           :hover {
             background: var(--color-orange-light);
           }
         }
-
         .buttonGhost {
           opacity: 0.7;
           transition: opacity 150ms ease-out;
-
           :hover {
             opacity: 1;
           }
         }
-
         .video {
           width: 100%;
           border-radius: 0.5rem;
@@ -709,7 +583,6 @@ const HomePage = (props: any) => {
           margin-top: calc(var(--spacer-size) * 1.5);
           margin-bottom: -9rem;
         }
-
         .splitBackgroundBlackWhite {
           background: linear-gradient(
             to bottom,
@@ -719,10 +592,8 @@ const HomePage = (props: any) => {
             var(--color-white) 100%
           );
         }
-
         .demoWrapper {
           margin-bottom: calc(-1 * var(--section-padding));
-
           :global(iframe) {
             width: 100%;
             border: none !important;
@@ -730,7 +601,6 @@ const HomePage = (props: any) => {
             margin: 0;
           }
         }
-
         .browser {
           position: relative;
           padding: 4rem 3rem 3rem 3rem;
@@ -748,7 +618,6 @@ const HomePage = (props: any) => {
           box-shadow: inset 0 0 0 1px rgba(36, 23, 72, 0.03),
             0 24px 32px rgba(36, 23, 72, 0.05), 0 6px 8px rgba(36, 23, 72, 0.03),
             0 48px 48px -64px rgba(36, 23, 72, 0.3);
-
           &:after {
             content: '';
             display: block;
@@ -764,24 +633,19 @@ const HomePage = (props: any) => {
               2.375rem 0 0 var(--color-yellow), 3.875rem 0 0 var(--color-green);
           }
         }
-
         .browserContainer {
           perspective: 300px;
         }
-
         .browserGrid {
           display: grid;
           grid-gap: 3rem 2rem;
-
           @media (min-width: 1000px) {
             grid-template-columns: 1fr 1fr;
             align-items: center;
           }
         }
-
         .browserContent {
         }
-
         .contentTitle {
           font-family: var(--font-tuner);
           color: var(--color-orange);
@@ -790,23 +654,19 @@ const HomePage = (props: any) => {
           font-weight: bold;
           margin-bottom: 1rem;
         }
-
         .contentText {
           display: block;
           font-size: 1.5rem;
           margin-bottom: 1.25rem;
         }
-
         .contentFootnote {
           display: block;
           font-size: 1.125rem;
           opacity: 0.5;
         }
-
         .browserImageWrapper {
           margin-top: -1rem;
         }
-
         .browserImage {
           display: block;
           width: 100%;
@@ -814,75 +674,60 @@ const HomePage = (props: any) => {
           margin: 0;
           filter: drop-shadow(0 3px 8px rgba(0, 37, 91, 0.07));
         }
-
         .divider {
           display: flex;
           justify-content: center;
           width: 100%;
-
           :global(svg) {
             width: 100%;
             margin: 0 auto;
             overflow: visible !important;
-
             :global(line),
             :global(path) {
               animation: dash 1s infinite linear;
             }
           }
-
           @media (min-width: 1000px) {
             :global(svg) {
               width: 66%;
             }
           }
         }
-
         .dividerDesktop {
           height: 7.5rem;
-
           :global(svg) {
             height: 100%;
           }
-
           @media (max-width: 999px) {
             display: none;
           }
         }
-
         .dividerMobile {
           height: 4rem;
-
           @media (min-width: 1000px) {
             display: none;
           }
-
           :global(svg) {
             width: 100%;
           }
         }
-
         @keyframes dash {
           0% {
             /* strokeDasharray="8 14" <- Sum of these numbers */
             stroke-dashoffset: 22;
           }
-
           100% {
             stroke-dashoffset: 0;
           }
         }
-
         .cardGroup {
           display: grid;
           grid-template-rows: 1fr;
-
           @media (min-width: 1000px) {
             grid-template-columns: 1fr 1fr 1fr;
             gap: calc(var(--spacer-size) * 0.5);
           }
         }
-
         .card {
           background: var(--color-card-background);
           padding: 2.25rem;
@@ -890,41 +735,34 @@ const HomePage = (props: any) => {
           box-shadow: inset 0 0 0 1px rgba(36, 23, 72, 0.03),
             0 6px 24px rgba(36, 23, 72, 0.05), 0 2px 4px rgba(36, 23, 72, 0.03);
         }
-
         .cardLinked {
           position: relative;
           display: grid;
           grid-template-columns: 1fr auto;
           grid-gap: 2.25rem;
-
           &:hover {
             :global(> * > *) {
               opacity: 1;
             }
-
             :global(svg) {
               color: var(--color-orange);
             }
           }
         }
-
         .linkedContent {
         }
-
         .linkedIcon {
           width: 2rem;
           margin-right: -0.5rem;
           height: 100%;
           display: flex;
           align-items: center;
-
           :global(svg) {
             width: 1.5rem;
             height: auto;
             opacity: 0.7;
           }
         }
-
         .cardLink {
           display: block;
           position: absolute;
@@ -939,7 +777,6 @@ const HomePage = (props: any) => {
           opacity: 0;
           transition: opacity 150ms ease-out;
           border-radius: 0.25rem;
-
           &:after {
             content: '';
             display: block;
@@ -954,19 +791,16 @@ const HomePage = (props: any) => {
               0 6px 8px rgba(36, 23, 72, 0.03),
               0 48px 48px -64px rgba(36, 23, 72, 0.3);
           }
-
           &:focus,
           &:active {
             opacity: 1;
           }
         }
-
         .cardImage {
           display: block;
           width: auto;
           margin-bottom: 1.125rem;
         }
-
         .learnTina {
           padding: 5rem 0;
           background-image: url('/img/clouds.jpg');
@@ -974,7 +808,6 @@ const HomePage = (props: any) => {
           background-repeat: no-repeat;
           background-size: cover;
         }
-
         .learnContainer {
           display: grid;
           grid-gap: 2rem;
@@ -982,13 +815,11 @@ const HomePage = (props: any) => {
           align-items: center;
           margin: 0 auto;
           max-width: 820px;
-
           @media (min-width: 1000px) {
             grid-gap: 2rem;
             grid-template-columns: 2fr 3fr;
           }
         }
-
         @keyframes learnImage {
           0% {
             transform: translate3d(0, -0.5rem, 0);
@@ -997,20 +828,16 @@ const HomePage = (props: any) => {
             transform: translate3d(0, 0.75rem, 0);
           }
         }
-
         .learnImage {
           margin: 0;
           position: relative;
           animation: learnImage 3s ease-in-out infinite alternate;
-
           @media (prefers-reduced-motion) {
             animation: none;
           }
         }
-
         .learnContent {
         }
-
         .featureGrid {
           display: grid;
           grid-template-columns: 1fr;
@@ -1018,32 +845,27 @@ const HomePage = (props: any) => {
           padding-top: calc(var(--spacer-size) * 0.5) 0;
           padding-bottom: calc(var(--spacer-size) * 0.5) 0;
         }
-
         .feature {
           display: grid;
           grid-template-columns: 1fr;
           grid-gap: calc(var(--spacer-size) / 2);
           align-items: center;
-
           @media (min-width: 900px) {
             grid-template-columns: 1fr 1fr;
             grid-gap: var(--spacer-size);
           }
         }
-
         .featureReverse {
           direction: rtl;
           > * {
             direction: ltr;
           }
         }
-
         .featureText {
           :global(p) {
             max-width: 400px;
           }
         }
-
         .featureImage {
           :global(img) {
             display: block;
@@ -1055,7 +877,6 @@ const HomePage = (props: any) => {
               0 6px 24px rgba(0, 37, 91, 0.05), 0 2px 4px rgba(0, 37, 91, 0.03);
           }
         }
-
         .orange {
           background: linear-gradient(
             to top right,
@@ -1064,12 +885,10 @@ const HomePage = (props: any) => {
           );
           color: var(--color-white);
         }
-
         .black {
           background: var(--color-black);
           color: var(--color-white);
         }
-
         .blue {
           background: var(--color-blue);
           background: linear-gradient(
@@ -1077,19 +896,14 @@ const HomePage = (props: any) => {
             var(--color-blue) 30%,
             var(--color-black) 100%
           );
-
           color: var(--color-white);
-
           --color-emphasis: var(--color-orange-light);
         }
-
         .lightGray {
           background: var(--color-light-gray);
           color: var(--color-black);
-
           --color-card-background: var(--color-white);
         }
-
         .white {
           background: var(--color-white);
           color: var(--color-black);
