@@ -146,7 +146,7 @@ const HomePage = (props: any) => {
 
   usePlugin(form)
 
-  const { hero, demo, ecosystem, features, valueProps, cta, test } = formData
+  const { hero, demo, ecosystem, features, valueProps, cta } = formData
   const featuredItem = features.items.find((item) => item.isFeatured)
   const cardItems = features.items.filter((item) => !item.isFeatured)
 
@@ -398,7 +398,6 @@ const HomePage = (props: any) => {
           </div>
         </Container>
       </section>
-      <section>
       <div className="learnTina">
         <div className="learnContainer">
           <div className="learnImageWrapper">
