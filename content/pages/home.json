@@ -6,17 +6,7 @@
       "_template": "hero",
       "headline": "Content editing for modern teams",
       "subline": "Tina is an open-source CMS admin that talks to any API",
-      "actionItems": [
-        { "variant": "button", "text": "Try Demo", "icon": "arrowRight", "url": "#" }, 
-        { "variant": "link", "text": "Learn More", "icon": "", "url": "#" } 
-      ],
-      "video": { 
-        "sources": [
-          "https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/v1571425758/tina-hero-demo-v2.webm",
-          "https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/v1571425758/tina-hero-demo-v2.mp4"
-        ], 
-        "thumbnail": "https://res.cloudinary.com/forestry-demo/video/upload/so_0/v1571425758/tina-hero-demo-v2.jpg"
-      }
+      
     },
     {
       "_template": "valueProps",

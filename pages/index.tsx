@@ -151,6 +151,7 @@ const HomePageTemplate = {
       templates: {
         hero: {
           label: 'Hero',
+          key: 'hero',
           fields: [
             {
               label: 'Headline',
@@ -182,12 +183,12 @@ const HomePageTemplate = {
                   label: 'Action URL',
                   name: 'url',
                   component: 'text',
-                  validate: (value: string) => {
-                    if (!value.startsWith('http')) {
-                      return 'Not a valid URL, try again'
-                    }
-                    return undefined
-                  }
+                  // validate: (value: string) => {
+                  //   if (!value.startsWith('http')) {
+                  //     return 'Not a valid URL, try again'
+                  //   }
+                  //   return undefined
+                  // }
                 },
                 {
                   label: 'Action Icon',
@@ -216,7 +217,7 @@ const HomePageTemplate = {
               ]
               
             }
-          ]
+          ],
         }
       },
     },
