@@ -148,7 +148,9 @@ const HomePage = (props: any) => {
   usePlugin(form)
 
   const { hero, demo, ecosystem, features, valueProps, cta } = formData
-  console.log(valueProps.headline)
+  const featuredItem = features.items.find((item) => item.isFeatured)
+  const cardItems = features.items.filter((item) => !item.isFeatured)
+
   return (
     <InlineGithubForm form={form}>
       <div className="banner orange">
@@ -282,18 +284,17 @@ const HomePage = (props: any) => {
       <section className="section blue">
         <Container center width="narrow">
           <h2 className="headingHuge">
-            Build with <em>your components</em>
+            <ReactMarkdown source={demo.headline} />
           </h2>
           <p className="textHuge">
-            Let your team build great layouts with your own
-            React&nbsp;components.
+            {demo.subline}
           </p>
         </Container>
         <div className="spacer"></div>
         <Container width="wide">
           <div className="demoWrapper">
             <iframe
-              src="https://codesandbox.io/embed/vigilant-cohen-73its?fontsize=147hidenavigation=17theme=dark"
+              src={demo.codeSandbox}
               width="800"
               height="800"
               title="CodeSandbox example of TinaCMS with Next.js"
@@ -305,10 +306,9 @@ const HomePage = (props: any) => {
       </section>
       <section className="section white">
         <Container center width="narrow">
-          <h2 className="headingHuge">Avoid Vendor Lock-In</h2>
+          <h2 className="headingHuge">{features.headline}</h2>
           <p className="textHuge">
-            Add visual editing to your site for logged in users. Write&nbsp;to
-            any API.
+            {features.subline}
           </p>
         </Container>
         <div className="spacer"></div>
@@ -316,16 +316,16 @@ const HomePage = (props: any) => {
           <div className="browserContainer">
             <div className="browser browserGrid">
               <div className="browserContent">
-                <span className="contentTitle">Tina comes with editing.</span>
+                <span className="contentTitle">{featuredItem.headline}</span>
                 <span className="contentText">
-                  Super simple, just click and edit.
+                  {featuredItem.subline}
                 </span>
                 <span className="contentFootnote">
-                  It’s 35 degrees and sunny
+                  {featuredItem.text}
                 </span>
               </div>
               <div className="browserImageWrapper">
-                <img className="browserImage" src="img/tina-wow.png" alt="" />
+                <img className="browserImage" src={featuredItem.media.src} alt="" />
               </div>
             </div>
           </div>
@@ -336,127 +336,66 @@ const HomePage = (props: any) => {
             <TripleDividerSvg />
           </div>
           <div className="cardGroup">
-            <div className="card cardLinked">
-              <div className="linkedContent">
-                <img src="img/headlessCms.png" alt="" className="cardImage" />
-                <h3 className="headingMedium">Headless Cms</h3>
-                <Link href="/docs">
-                  <a className="cardLink"></a>
-                </Link>
-                <p className="textLarge">
-                  Sync your website data to a headless CMS of your choice
-                </p>
-              </div>
-              <div className="linkedIcon">
-                <IconRight />
-              </div>
-            </div>
-            <div className="divider dividerMobile">
-              <SingleDividerSvg />
-            </div>
-            <div className="card cardLinked">
-              <div className="linkedContent">
-                <img src="img/headlessCms.png" alt="" className="cardImage" />
-                <h3 className="headingMedium">3rd Party APIs</h3>
-                <Link href="/docs">
-                  <a className="cardLink"></a>
-                </Link>
-                <p className="textLarge">
-                  Sync your website data to a headless CMS of your choice
-                </p>
-              </div>
-              <div className="linkedIcon">
-                <IconRight />
-              </div>
-            </div>
-            <div className="divider dividerMobile">
-              <SingleDividerSvg />
-            </div>
-            <div className="card cardLinked">
-              <div className="linkedContent">
-                <img src="img/headlessCms.png" alt="" className="cardImage" />
-                <h3 className="headingMedium">Git Filesystem</h3>
-                <Link href="/docs">
-                  <a className="cardLink"></a>
-                </Link>
-                <p className="textLarge">
-                  Sync your website data to a headless CMS of your choice
-                </p>
-              </div>
-              <div className="linkedIcon">
-                <IconRight />
-              </div>
-            </div>
+            {cardItems.map((item) => {
+              const { headline, subline, icon, media } = item
+
+              return (
+                <>
+                  <div className="card cardLinked">
+                    <div className="linkedContent">
+                      <img src={media.src} alt="" className="cardImage" />
+                      <h3 className="headingMedium">{headline}</h3>
+                      <Link href="/docs">
+                        <a className="cardLink"></a>
+                      </Link>
+                      <p className="textLarge">
+                        {subline}
+                      </p>
+                    </div>
+                    <div className="linkedIcon">
+                      {icon === 'arrowRight' && <IconRight />}
+                    </div>
+                  </div>
+                  <div className="divider dividerMobile">
+                    <SingleDividerSvg />
+                  </div>
+                </>
+              )
+            })}
           </div>
         </Container>
       </section>
       <section className="section lightGray">
         <Container width="narrow" center>
           <h2 className="headingHuge">
-            Explore the <em>Tina ecosystem</em>
+            <ReactMarkdown source={ecosystem.headline} />
           </h2>
           <p className="textHuge">
-            More than just a headless CMS, Tina has all the tools for building
-            web experiences for interdisciplinary teams.
+            {ecosystem.subline}
           </p>
         </Container>
         <div className="spacer"></div>
         <Container>
           <div className="featureGrid">
-            <div className="feature">
-              <div className="featureText">
-                <h3 className="headingLarge">Data Source Plugins</h3>
-                <hr className="dottedBorder" />
-                <p className="textLarge">
-                  Data Source plugins allow you to extend Tina to connect to
-                  different databases and 3rd Party APIs
-                </p>
-                <div className="buttonGroup">
-                  <a href="#" className="button buttonLink">
-                    Read The Docs <IconRight />
-                  </a>
+            {ecosystem.valueItems.map((value, i) => {
+                const { headline, subline, media } = value
+                const isReversed = i % 2 === 1
+
+                return (
+                <div className={`feature ${isReversed ? 'featureReverse' : ''}`}>
+                  <div className="featureText">
+                    <h3 className="headingLarge">{headline}</h3>
+                    <hr className="dottedBorder" />
+                    <p className="textLarge">
+                      {subline}
+                    </p>
+                  </div>
+                  <div className={`featureImage`}>
+                    <img src={media.src} alt="" />
+                  </div>
                 </div>
-              </div>
-              <div className="featureImage">
-                <img src="/img/io-placeholder.jpg" alt="" />
-              </div>
-            </div>
-            <div className="feature featureReverse">
-              <div className="featureText">
-                <h3 className="headingLarge">Screen UI Plugins</h3>
-                <hr className="dottedBorder" />
-                <p className="textLarge">
-                  Data Source plugins allow you to extend Tina to connect to
-                  different databases and 3rd Party APIs
-                </p>
-                <div className="buttonGroup">
-                  <a href="#" className="button buttonLink">
-                    Read The Docs <IconRight />
-                  </a>
-                </div>
-              </div>
-              <div className="featureImage">
-                <img src="/img/io-placeholder.jpg" alt="" />
-              </div>
-            </div>
-            <div className="feature">
-              <div className="featureText">
-                <h3 className="headingLarge">Custom Fields</h3>
-                <hr className="dottedBorder" />
-                <p className="textLarge">
-                  Extend primary fields with custom field plugins to completely
-                  control the editing experience and functionality.
-                </p>
-                <div className="buttonGroup">
-                  <a href="#" className="button buttonLink">
-                    Read The Docs <IconRight />
-                  </a>
-                </div>
-              </div>
-              <div className="featureImage">
-                <img src="/img/io-placeholder.jpg" alt="" />
-              </div>
-            </div>
+                )
+              })}
           </div>
         </Container>
       </section>
@@ -466,14 +405,19 @@ const HomePage = (props: any) => {
             <img className="learnImage" src="img/flyingTina.png" alt="" />
           </div>
           <div className="learnContent">
-            <h3 className="headingLarge">Learn Tina</h3>
+            <h3 className="headingLarge">{cta.headline}</h3>
             <p className="textLarge">
-              Learn Tina through Interactive & Fun Tutorials.
+              {cta.subline}.
             </p>
             <div className="buttonGroup">
-              <a href="#" className="button buttonOrange">
-                Get Started <IconRight />
-              </a>
+              {cta.actionItems.map((item) => {
+                const { variant, label, icon, url } = item
+                return (
+                  <a href={url} className={`button ${variant === 'button' ? "buttonOrange" : 'buttonGhost'}`}>
+                    {label} {icon === 'arrowRight' && <IconRight />}
+                  </a>
+                )
+              })}
             </div>
           </div>
         </div>

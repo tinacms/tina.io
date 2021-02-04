@@ -33,7 +33,7 @@
     }
   },
   "valueProps": {
-    "headline": "Edit content, in the context of your site",
+    "headline": "Edit content, *in the context of your site*",
     "subline": "Just click on the page and type. Contextual toolbars and panels appear at just the right times to create the content you want.",
     "valueItems": [
       {
@@ -54,7 +54,7 @@
     ]
   },
   "demo": {
-    "headline": "Build with your components",
+    "headline": "Build with *your components*",
     "subline": "Let your team build great layouts with your own React components.",
     "codeSandbox": "https://codesandbox.io/embed/vigilant-cohen-73its?fontsize=147hidenavigation=17theme=dark"
   },
@@ -97,7 +97,7 @@
     ]
   },
   "ecosystem": {
-    "headline": "Explore the Tina ecosystem",
+    "headline": "Explore the *Tina ecosystem*",
     "subline": "More than just a headless CMS, Tina has all the tools for building web experiences for interdisciplinary teams.",
     "valueItems": [
       {
@@ -123,6 +123,6 @@
   "cta": {
     "headline": "Learn Tina",
     "subline": "Learn Tina through Interactive & Fun Tutorials.",
-    "actionItems": [{ "variant": "button", "text": "Get Started", "icon": "iconRight", "url": "#" } ]
+    "actionItems": [{ "variant": "button", "label": "Get Started", "icon": "arrowRight", "url": "#" } ]
   }
 }
