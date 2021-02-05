@@ -15,7 +15,7 @@ The `radio-group` field represents a group of radio inputs. There are two varian
 
 The "radio" variant can be rendered in a vertical direction like so.
 
-![TinaCMS Radio Group Field using a "radio" variant in a "vertical" direction](/img/fields/radio-group-field-vertical-radio.png)
+![TinaCMS Radio Group Field using a "radio" variant in a "vertical" direction](/img/fields/radio-group-field-vertical-radio.gif)
 
 This is what the radio group "button" variant will look like.
 
