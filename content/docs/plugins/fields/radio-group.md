@@ -11,7 +11,7 @@ consumes:
 
 The `radio-group` field represents a group of radio inputs. There are two variants that can be used, "radio" and "button", and can rendered in a "horizontal" or "vertical" direction. The "radio" variant in a "horizontal" direction is used by default.
 
-![TinaCMS Radio Group Field using a "radio" variant in a "horizontal" direction](/img/fields/radio-group-field-horizontal-radio.png)
+![TinaCMS Radio Group Field using a "radio" variant in a "horizontal" direction](/img/fields/radio-group-field-horizontal-radio.gif)
 
 The "radio" variant can be rendered in a vertical direction like so.
 
