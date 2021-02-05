@@ -19,7 +19,7 @@ The "radio" variant can be rendered in a vertical direction like so.
 
 This is what the radio group "button" variant will look like.
 
-![TinaCMS Radio Group Field using a "button" variant in a "horizontal" direction](/img/fields/radio-group-field-horizontal-button.png)
+![TinaCMS Radio Group Field using a "button" variant in a "horizontal" direction](/img/fields/radio-group-field-horizontal-button.gif)
 
 The "button" variant" can also have a "vertical" direction as well.
 
