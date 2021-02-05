@@ -54,7 +54,7 @@ type Option = {
 }
 ```
 
-> These interfaces only shows the keys unique to the radio group field.
+> These interfaces only show the keys unique to the radio group field.
 >
 > Visit the [Field Config](/docs/plugins/fields) docs for a complete list of options.
 
