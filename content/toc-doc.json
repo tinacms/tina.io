@@ -145,6 +145,11 @@
             "title": "Toggle"
           },
           {
+            "id": "/docs/plugins/fields/radio-group",
+            "slug": "/docs/plugins/fields/radio-group",
+            "title": "Radio Group"
+          },
+          {
             "id": "/docs/plugins/fields/select",
             "slug": "/docs/plugins/fields/select",
             "title": "Select"
