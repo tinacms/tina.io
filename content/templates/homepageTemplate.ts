@@ -103,20 +103,6 @@ const HomePageTemplate = {
       }),
     },
     {
-      label: 'Page Hero',
-      name: 'hero',
-      description: 'Update content for the page hero',
-      component: 'group',
-      fields: [
-        ...CallToActionFields,
-        {
-          label: 'Video Cloudinary Source',
-          name: 'videoSrc',
-          component: 'text',
-        },
-      ],
-    },
-    {
       label: 'Value Props',
       name: 'valueProps',
       description: 'Update the value props for the page',

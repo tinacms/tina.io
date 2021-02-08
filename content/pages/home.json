@@ -21,25 +21,28 @@
     "text": "Sign up for early access for *Tina Cloud* ☁️",
     "link": "/cloud"
   },
-  "hero": {
-    "headline": "Content editing for modern teams",
-    "subline": "Tina is an open-source CMS admin that talks to any API",
-    "actionItems": [
-      {
-        "variant": "button",
-        "label": "Try Demo",
-        "icon": "arrowRight",
-        "url": "#"
-      },
-      {
-        "variant": "link",
-        "label": "Learn More",
-        "icon": "",
-        "url": "#"
-      }
-    ],
-    "videoSrc": "v1571425758/tina-hero-demo-v2"
-  },
+  "blocks": [
+    {
+      "_template": "hero",
+      "headline": "Content editing for modern teams",
+      "subline": "Tina is an open-source CMS admin that talks to any API",
+      "actionItems": [
+        {
+          "variant": "button",
+          "label": "Try Demo",
+          "icon": "arrowRight",
+          "url": "#"
+        },
+        {
+          "variant": "link",
+          "label": "Learn More",
+          "icon": "",
+          "url": "#"
+        }
+      ],
+      "videoSrc": "v1571425758/tina-hero-demo-v2"
+    }
+  ],
   "valueProps": {
     "headline": "Edit content, *in the context of your site*",
     "subline": "Just click on the page and type. Contextual toolbars and panels appear at just the right times to create the content you want.",

@@ -3,12 +3,16 @@ import { GetStaticProps } from 'next'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
 import { Footer } from 'components/layout'
 import Link from 'next/link'
-import { useCMS, usePlugin } from 'tinacms'
+import { BlockTemplate, useCMS, usePlugin } from 'tinacms'
 import { useGithubJsonForm } from 'react-tinacms-github'
 import { InlineGithubForm } from '../components/layout/InlineGithubForm'
 import ReactMarkdown from 'react-markdown'
-import HomePageTemplate from '../content/templates/homepageTemplate'
+import HomePageTemplate, {
+  CallToActionFields,
+} from '../content/templates/homepageTemplate'
 import { NextSeo } from 'next-seo'
+import { InlineBlocks, InlineTextarea } from 'react-tinacms-inline'
+import { InlineWysiwyg } from 'react-tinacms-editor'
 
 const HomePage = (props: any) => {
   //@ts-ignore
@@ -89,16 +93,7 @@ const HomePage = (props: any) => {
           </div>
         </Container>
       </div>
-      <section className="section black">
-        <Container width="narrow" center>
-          <Feature item={hero} />
-        </Container>
-        <div className="splitBackgroundBlackWhite">
-          <Container>
-            <Video src={hero.videoSrc} />
-          </Container>
-        </div>
-      </section>
+      <InlineBlocks name="blocks" blocks={HOMEPAGE_BLOCKS} />
       <section className="section white">
         <Container width="narrow" center>
           <Feature item={valueProps} />
@@ -245,6 +240,10 @@ const HomePage = (props: any) => {
           min-width: 400px;
         }
 
+        .section {
+          padding: var(--section-padding) 0;
+        }
+
         .headingHuge {
           font-family: var(--font-tuner);
           font-weight: bold;
@@ -252,7 +251,8 @@ const HomePage = (props: any) => {
           line-height: 1.4;
           margin-bottom: 2rem;
 
-          :global(em) {
+          :global(em),
+          :global(b) {
             font-style: inherit;
             font-weight: inherit;
             color: var(--color-emphasis);
@@ -406,6 +406,42 @@ const HomePage = (props: any) => {
           height: 0px;
           margin: 1.5rem 0px;
         }
+
+        .orange {
+          background: linear-gradient(
+            to top right,
+            var(--color-orange),
+            var(--color-orange-light)
+          );
+          color: var(--color-white);
+        }
+
+        .black {
+          background: var(--color-black);
+          color: var(--color-white);
+        }
+
+        .blue {
+          background: var(--color-blue);
+          background: linear-gradient(
+            to bottom,
+            var(--color-blue) 30%,
+            var(--color-black) 100%
+          );
+          color: var(--color-white);
+          --color-emphasis: var(--color-orange-light);
+        }
+
+        .lightGray {
+          background: var(--color-light-gray);
+          color: var(--color-black);
+          --color-card-background: var(--color-white);
+        }
+
+        .white {
+          background: var(--color-white);
+          color: var(--color-black);
+        }
       `}</style>
       <style jsx>{`
         .banner {
@@ -542,10 +578,6 @@ const HomePage = (props: any) => {
           :global(span) {
             margin-left: 1px;
           }
-        }
-
-        .section {
-          padding: var(--section-padding) 0;
         }
 
         .splitBackgroundBlackWhite {
@@ -697,6 +729,7 @@ const HomePage = (props: any) => {
             width: 100%;
           }
         }
+
         @keyframes dash {
           0% {
             /* strokeDasharray="8 14" <- Sum of these numbers */
@@ -739,9 +772,6 @@ const HomePage = (props: any) => {
               color: var(--color-orange);
             }
           }
-        }
-
-        .linkedContent {
         }
 
         .linkedIcon {
@@ -842,48 +872,65 @@ const HomePage = (props: any) => {
 
         .learnContent {
         }
-
-        .orange {
-          background: linear-gradient(
-            to top right,
-            var(--color-orange),
-            var(--color-orange-light)
-          );
-          color: var(--color-white);
-        }
-
-        .black {
-          background: var(--color-black);
-          color: var(--color-white);
-        }
-
-        .blue {
-          background: var(--color-blue);
-          background: linear-gradient(
-            to bottom,
-            var(--color-blue) 30%,
-            var(--color-black) 100%
-          );
-          color: var(--color-white);
-          --color-emphasis: var(--color-orange-light);
-        }
-
-        .lightGray {
-          background: var(--color-light-gray);
-          color: var(--color-black);
-          --color-card-background: var(--color-white);
-        }
-
-        .white {
-          background: var(--color-white);
-          color: var(--color-black);
-        }
       `}</style>
     </InlineGithubForm>
   )
 }
 
 export default HomePage
+
+const hero_template: BlockTemplate = {
+  label: 'Hero',
+  defaultItem: {
+    headline: 'Content editing for modern teams',
+    subline: 'Tina is an open-source CMS admin that talks to any API',
+    actionItems: [
+      {
+        variant: 'button',
+        label: 'Try Demo',
+        icon: 'arrowRight',
+        url: '#',
+      },
+      {
+        variant: 'link',
+        label: 'Learn More',
+        icon: '',
+        url: '#',
+      },
+    ],
+    videoSrc: 'v1571425758/tina-hero-demo-v2',
+  },
+  fields: [
+    ...CallToActionFields,
+    {
+      label: 'Video Cloudinary Source',
+      name: 'videoSrc',
+      component: 'text',
+    },
+  ],
+}
+
+function HeroBlock({ data }) {
+  return (
+    <section className="section black">
+      <Container width="narrow" center>
+        <Feature item={data} />
+      </Container>
+      <div className="splitBackgroundBlackWhite">
+        <Container>
+          <Video src={data.videoSrc} />
+        </Container>
+      </div>
+    </section>
+  )
+}
+
+const HOMEPAGE_BLOCKS = {
+  hero: {
+    Component: HeroBlock,
+    template: hero_template,
+  },
+}
 
 export const getStaticProps: GetStaticProps = async function({
   preview,
@@ -1030,9 +1077,13 @@ const Feature = ({ item }) => {
   return (
     <>
       <h2 className="headingHuge">
-        <ReactMarkdown source={item.headline} />
+        <InlineWysiwyg name="headline">
+          <ReactMarkdown source={item.headline} />
+        </InlineWysiwyg>
       </h2>
-      <p className="textHuge">{item.subline}</p>
+      <p className="textHuge">
+        <InlineTextarea name="subline" />
+      </p>
       {item.actionItems && (
         <div className="buttonGroup buttonGroupCenter">
           {item.actionItems.map(item => {
