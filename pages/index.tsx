@@ -920,7 +920,34 @@ function HeroBlock({ data, index }) {
 
 const features_template: BlockTemplate = {
   label: 'Features',
-  defaultItem: {},
+  defaultItem: {
+    headline: 'Explore the *Tina ecosystem*',
+    subline:
+      'More than just a headless CMS, Tina has all the tools for building web experiences for interdisciplinary teams.',
+    items: [
+      {
+        headline: 'Data Source Plugins',
+        subline:
+          'Data Source plugins allow you to extend Tina to connect to different databases and 3rd Party APIs',
+        url: '#',
+        media: { src: '/img/io-placeholder.jpg' },
+      },
+      {
+        headline: 'Screen UI Plugins',
+        subline:
+          'Data Source plugins allow you to extend Tina to connect to different databases and 3rd Party AP',
+        url: '#',
+        media: { src: '/img/io-placeholder.jpg' },
+      },
+      {
+        headline: 'Custom Fields',
+        subline:
+          'Extend primary fields with custom field plugins to completely control the editing experience and functionality.',
+        url: '#',
+        media: { src: '/img/io-placeholder.jpg' },
+      },
+    ],
+  },
   fields: [
     {
       label: 'Header',
