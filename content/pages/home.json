@@ -41,29 +41,32 @@
         }
       ],
       "videoSrc": "v1571425758/tina-hero-demo-v2"
+    },
+    {
+      "_template": "features",
+      "header": {
+        "headline": "dit content, *in the context of your site*",
+        "subline": "Just click on the page and type. Contextual toolbars and panels appear at just the right times to create the content you want."
+      },
+      "items": [
+        {
+          "headline": "Page building",
+          "subline": "Pick from your custom predefined components to build web experiences, blazing fast",
+          "media": { "src": "/img/io-placeholder.jpg" }
+        },
+        {
+          "headline": "Design Systems",
+          "subline": "Build pages with YOUR design system. Maximize reusability.",
+          "media": { "src": "/img/io-placeholder.jpg" }
+        },
+        {
+          "headline": "Improve Time-to-Market",
+          "subline": "Better creative control, don’t rely on developers to make content changes.",
+          "media": { "src": "/img/io-placeholder.jpg" }
+        }
+      ]
     }
   ],
-  "valueProps": {
-    "headline": "Edit content, *in the context of your site*",
-    "subline": "Just click on the page and type. Contextual toolbars and panels appear at just the right times to create the content you want.",
-    "valueItems": [
-      {
-        "headline": "Page building",
-        "subline": "Pick from your custom predefined components to build web experiences, blazing fast",
-        "media": { "src": "/img/io-placeholder.jpg" }
-      },
-      {
-        "headline": "Design Systems",
-        "subline": "Build pages with YOUR design system. Maximize reusability.",
-        "media": { "src": "/img/io-placeholder.jpg" }
-      },
-      {
-        "headline": "Improve Time-to-Market",
-        "subline": "Better creative control, don’t rely on developers to make content changes.",
-        "media": { "src": "/img/io-placeholder.jpg" }
-      }
-    ]
-  },
   "demo": {
     "headline": "Build with *your components*",
     "subline": "Let your team build great layouts with your own React components.",

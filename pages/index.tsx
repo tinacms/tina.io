@@ -9,6 +9,7 @@ import { InlineGithubForm } from '../components/layout/InlineGithubForm'
 import ReactMarkdown from 'react-markdown'
 import HomePageTemplate, {
   CallToActionFields,
+  FeaturedItemsFields,
 } from '../content/templates/homepageTemplate'
 import { NextSeo } from 'next-seo'
 import { InlineBlocks, InlineTextarea } from 'react-tinacms-inline'
@@ -94,15 +95,6 @@ const HomePage = (props: any) => {
         </Container>
       </div>
       <InlineBlocks name="blocks" blocks={HOMEPAGE_BLOCKS} />
-      <section className="section white">
-        <Container width="narrow" center>
-          <Feature item={valueProps} />
-        </Container>
-        <div className="spacer"></div>
-        <Container>
-          <FeatureGrid items={valueProps.valueItems} />
-        </Container>
-      </section>
       <section className="section blue">
         <Container center width="narrow">
           <Feature item={demo} />
@@ -175,15 +167,6 @@ const HomePage = (props: any) => {
               )
             })}
           </div>
-        </Container>
-      </section>
-      <section className="section lightGray">
-        <Container width="narrow" center>
-          <Feature item={ecosystem} />
-        </Container>
-        <div className="spacer"></div>
-        <Container>
-          <FeatureGrid items={ecosystem.valueItems} />
         </Container>
       </section>
       <div className="learnTina">
@@ -925,10 +908,51 @@ function HeroBlock({ data }) {
   )
 }
 
+const features_template: BlockTemplate = {
+  label: 'Features',
+  defaultItem: {},
+  fields: [
+    {
+      label: 'Header',
+      name: 'header',
+      component: 'group',
+      fields: [...CallToActionFields],
+    },
+    {
+      label: 'Items',
+      name: 'items',
+      component: 'group-list',
+      fields: [...FeaturedItemsFields],
+      itemProps: (item: any) => ({
+        key: item.name,
+        label: item.headline,
+      }),
+    },
+  ],
+}
+
+function FeaturesBlock({ data }) {
+  return (
+    <section className="section lightGray">
+      <Container width="narrow" center>
+        <Feature item={data.header} />
+      </Container>
+      <div className="spacer"></div>
+      <Container>
+        <FeatureGrid items={data.items} />
+      </Container>
+    </section>
+  )
+}
+
 const HOMEPAGE_BLOCKS = {
   hero: {
     Component: HeroBlock,
     template: hero_template,
+  },
+  features: {
+    Component: FeaturesBlock,
+    template: features_template,
   },
 }
 

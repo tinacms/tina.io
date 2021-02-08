@@ -10,6 +10,11 @@ export const FeaturedItemsFields = [
     component: 'text',
   },
   {
+    label: 'Link URL',
+    name: 'url',
+    component: 'text',
+  },
+  {
     label: 'Media',
     name: 'media',
     component: 'group',
@@ -101,34 +106,6 @@ const HomePageTemplate = {
         key: item.link,
         label: item.label,
       }),
-    },
-    {
-      label: 'Value Props',
-      name: 'valueProps',
-      description: 'Update the value props for the page',
-      component: 'group',
-      fields: [
-        {
-          label: 'Headline',
-          name: 'headline',
-          component: 'markdown',
-        },
-        {
-          label: 'Subline',
-          name: 'subline',
-          component: 'text',
-        },
-        {
-          label: 'Tina Value Props',
-          name: 'valueItems',
-          component: 'group-list',
-          fields: [FeaturedItemsFields],
-          itemProps: (item: any) => ({
-            key: item.name,
-            label: `Value Prop: ${item.headline || 'New Value Prop'}`,
-          }),
-        },
-      ],
     },
     {
       label: 'Page Demo',
