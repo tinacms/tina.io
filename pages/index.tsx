@@ -75,24 +75,7 @@ const HomePage = (props: any) => {
       </div>
       <section className="section black">
         <Container width="narrow" center>
-          <h2 className="headingHuge">{hero.headline}</h2>
-          <p className="textHuge">{hero.subline}</p>
-
-          <div className="buttonGroup buttonGroupCenter">
-            {hero.actionItems.map(item => {
-              const { variant, label, icon, url } = item
-              return (
-                <a
-                  href={url}
-                  className={`button ${
-                    variant === 'button' ? 'buttonOrange' : 'buttonGhost'
-                  }`}
-                >
-                  {label} {icon === 'arrowRight' && <IconRight />}
-                </a>
-              )
-            })}
-          </div>
+          <Feature item={hero} />
         </Container>
         <div className="splitBackgroundBlackWhite">
           <Container>
@@ -115,10 +98,7 @@ const HomePage = (props: any) => {
       </section>
       <section className="section white">
         <Container width="narrow" center>
-          <h2 className="headingHuge">
-            <ReactMarkdown source={valueProps.headline} />
-          </h2>
-          <p className="textHuge">{valueProps.subline}</p>
+          <Feature item={valueProps} />
         </Container>
         <div className="spacer"></div>
         <Container>
@@ -127,10 +107,7 @@ const HomePage = (props: any) => {
       </section>
       <section className="section blue">
         <Container center width="narrow">
-          <h2 className="headingHuge">
-            <ReactMarkdown source={demo.headline} />
-          </h2>
-          <p className="textHuge">{demo.subline}</p>
+          <Feature item={demo} />
         </Container>
         <div className="spacer"></div>
         <Container width="wide">
@@ -148,8 +125,7 @@ const HomePage = (props: any) => {
       </section>
       <section className="section white">
         <Container center width="narrow">
-          <h2 className="headingHuge">{features.headline}</h2>
-          <p className="textHuge">{features.subline}</p>
+          <Feature item={features} />
         </Container>
         <div className="spacer"></div>
         <Container>
@@ -205,10 +181,7 @@ const HomePage = (props: any) => {
       </section>
       <section className="section lightGray">
         <Container width="narrow" center>
-          <h2 className="headingHuge">
-            <ReactMarkdown source={ecosystem.headline} />
-          </h2>
-          <p className="textHuge">{ecosystem.subline}</p>
+          <Feature item={ecosystem} />
         </Container>
         <div className="spacer"></div>
         <Container>
@@ -968,6 +941,34 @@ const Container = ({
           text-align: center;
         }
       `}</style>
+    </>
+  )
+}
+
+const Feature = ({ item }) => {
+  return (
+    <>
+      <h2 className="headingHuge">
+        <ReactMarkdown source={item.headline} />
+      </h2>
+      <p className="textHuge">{item.subline}</p>
+      {item.actionItems && (
+        <div className="buttonGroup buttonGroupCenter">
+          {item.actionItems.map(item => {
+            const { variant, label, icon, url } = item
+            return (
+              <a
+                href={url}
+                className={`button ${
+                  variant === 'button' ? 'buttonOrange' : 'buttonGhost'
+                }`}
+              >
+                {label} {icon === 'arrowRight' && <IconRight />}
+              </a>
+            )
+          })}
+        </div>
+      )}
     </>
   )
 }
