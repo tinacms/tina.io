@@ -112,7 +112,7 @@ export default function Page() {
 
 ### _useFormScreenPlugin_
 
-`useFormScreenPlugin` creates and registers a new Screen Plugin that renders a form in a `popup` modal. This is a great place to put forms for content that doesn't belong on any particular page, for example with site metadata.
+`useFormScreenPlugin` creates and registers a new Screen Plugin that renders a form. This is a great place to put forms for content that doesn't belong on any particular page, for example with site metadata.
 
 > Tip: This hook creates what was previously called a _Global Form_.
 
@@ -128,6 +128,27 @@ function Layout(props) {
 
   // Register it as a Screen with the CMS
   useFormScreenPlugin(form)
+
+  return <h1>{data.firstName}</h1>
+}
+```
+
+You can also optionally pass an icon and a layout to `useFormScreenPlugin`. If these are not passed, then a default icon will be used, and the layout will be 'popup'.
+
+**Example** 
+
+```jsx
+import { useFormScreenPlugin } from 'tinacms'
+import { useJsonForm } from 'gatsby-tinacms-json'
+
+function Layout(props) {
+  // Create the form
+  const [data, form] = useJsonForm(props.data.dataJson)
+  const icon = () => <span>🦙</span>
+  const layout = 'fullscreen'
+
+  // Register it as a Screen with the CMS
+  useFormScreenPlugin(form, icon, layout)
 
   return <h1>{data.firstName}</h1>
 }
