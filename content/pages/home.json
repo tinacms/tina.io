@@ -63,13 +63,14 @@
           "media": { "src": "/img/io-placeholder.jpg" }
         }
       ]
+    },
+    {
+      "_template": "demo",
+      "headline": "Build with *your components*",
+      "subline": "Let your team build great layouts with your own React components.",
+      "codeSandbox": "https://codesandbox.io/embed/vigilant-cohen-73its?fontsize=147hidenavigation=17theme=dark"
     }
   ],
-  "demo": {
-    "headline": "Build with *your components*",
-    "subline": "Let your team build great layouts with your own React components.",
-    "codeSandbox": "https://codesandbox.io/embed/vigilant-cohen-73its?fontsize=147hidenavigation=17theme=dark"
-  },
   "features": {
     "headline": "Avoid Vendor Lock-In",
     "subline": "Add visual editing to your site for logged in users.",

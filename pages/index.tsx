@@ -99,24 +99,6 @@ const HomePage = (props: any) => {
         </Container>
       </div>
       <InlineBlocks name="blocks" blocks={HOMEPAGE_BLOCKS} />
-      <section className="section blue">
-        <Container center width="narrow">
-          <Feature item={demo} />
-        </Container>
-        <div className="spacer"></div>
-        <Container width="wide">
-          <div className="demoWrapper">
-            <iframe
-              src={demo.codeSandbox}
-              width="800"
-              height="800"
-              title="CodeSandbox example of TinaCMS with Next.js"
-              allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-              sandbox="allow-forms allow-modals allow-popups allow-same-origin allow-scripts"
-            ></iframe>
-          </div>
-        </Container>
-      </section>
       <section className="section white">
         <Container center width="narrow">
           <Feature item={features} />
@@ -567,27 +549,6 @@ const HomePage = (props: any) => {
           }
         }
 
-        .splitBackgroundBlackWhite {
-          background: linear-gradient(
-            to bottom,
-            var(--color-black) 0%,
-            var(--color-blue) 50%,
-            var(--color-light-gray) 50%,
-            var(--color-white) 100%
-          );
-        }
-
-        .demoWrapper {
-          margin-bottom: calc(-1 * var(--section-padding));
-
-          :global(iframe) {
-            width: 100%;
-            border: none !important;
-            display: block;
-            margin: 0;
-          }
-        }
-
         .browser {
           position: relative;
           padding: 4rem 3rem 3rem 3rem;
@@ -914,6 +875,77 @@ function HeroBlock({ data, index }) {
           </Container>
         </div>
       </section>
+      <style jsx>{`
+        .splitBackgroundBlackWhite {
+          background: linear-gradient(
+            to bottom,
+            var(--color-black) 0%,
+            var(--color-blue) 50%,
+            var(--color-light-gray) 50%,
+            var(--color-white) 100%
+          );
+        }
+      `}</style>
+    </BlocksControls>
+  )
+}
+
+const demo_teamplate: BlockTemplate = {
+  label: 'Demo',
+  defaultItem: {
+    headline: 'Build with *your components*',
+    subline:
+      'Let your team build great layouts with your own React components.',
+    codeSandbox:
+      'https://codesandbox.io/embed/vigilant-cohen-73its?fontsize=147hidenavigation=17theme=dark',
+  },
+  fields: [
+    ...CallToActionFields,
+    {
+      label: 'Codesandbox Link',
+      name: 'codeSandbox',
+      component: 'text',
+    },
+  ],
+}
+
+function DemoBlock({ data, index }) {
+  return (
+    <BlocksControls
+      index={index}
+      insetControls={true}
+      focusRing={{ offset: -16 }}
+    >
+      <section className="section blue">
+        <Container center width="narrow">
+          <Feature item={data} />
+        </Container>
+        <div className="spacer"></div>
+        <Container width="wide">
+          <div className="demoWrapper">
+            <iframe
+              src={data.codeSandbox}
+              width="800"
+              height="800"
+              title="CodeSandbox example of TinaCMS with Next.js"
+              allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+              sandbox="allow-forms allow-modals allow-popups allow-same-origin allow-scripts"
+            ></iframe>
+          </div>
+        </Container>
+      </section>
+      <style jsx>{`
+        .demoWrapper {
+          margin-bottom: calc(-1 * var(--section-padding));
+
+          :global(iframe) {
+            width: 100%;
+            border: none !important;
+            display: block;
+            margin: 0;
+          }
+        }
+      `}</style>
     </BlocksControls>
   )
 }
@@ -924,6 +956,7 @@ const features_template: BlockTemplate = {
     headline: 'Explore the *Tina ecosystem*',
     subline:
       'More than just a headless CMS, Tina has all the tools for building web experiences for interdisciplinary teams.',
+    color: 'white',
     items: [
       {
         headline: 'Data Source Plugins',
@@ -956,6 +989,18 @@ const features_template: BlockTemplate = {
       fields: [...CallToActionFields],
     },
     {
+      label: 'Color',
+      name: 'color',
+      component: 'select',
+      options: [
+        { label: 'White', value: 'white' },
+        { label: 'Light Gray', value: 'lightGray' },
+        { label: 'Orange', value: 'orage' },
+        { label: 'Black', value: 'black' },
+        { label: 'Blue', value: 'blue' },
+      ],
+    },
+    {
       label: 'Items',
       name: 'items',
       component: 'group-list',
@@ -975,7 +1020,7 @@ function FeaturesBlock({ data, index }) {
       insetControls={true}
       focusRing={{ offset: -16 }}
     >
-      <section className="section lightGray">
+      <section className={['section', data.color].join(' ')}>
         <Container width="narrow" center>
           <Feature item={{ headline: data.headline, subline: data.subline }} />
         </Container>
@@ -996,6 +1041,10 @@ const HOMEPAGE_BLOCKS = {
   features: {
     Component: FeaturesBlock,
     template: features_template,
+  },
+  demo: {
+    Component: DemoBlock,
+    template: demo_teamplate,
   },
 }
 
@@ -1187,9 +1236,13 @@ const FeatureGrid = ({ items }) => {
           return (
             <div className={`feature ${isReversed ? 'featureReverse' : ''}`}>
               <div className="featureText">
-                <h3 className="headingLarge">{headline}</h3>
+                <h3 className="headingLarge">
+                  <InlineTextarea name="headline" />
+                </h3>
                 <hr className="dottedBorder" />
-                <p className="textLarge">{subline}</p>
+                <p className="textLarge">
+                  <InlineTextarea name="subline" />
+                </p>
                 {feature.url && (
                   <div className="buttonGroup">
                     <a href={feature.url} className="button buttonLink">
