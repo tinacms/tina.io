@@ -3,7 +3,7 @@ import { GetStaticProps } from 'next'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
 import { Footer } from 'components/layout'
 import Link from 'next/link'
-import { usePlugin } from 'tinacms'
+import { useCMS, usePlugin } from 'tinacms'
 import { useGithubJsonForm } from 'react-tinacms-github'
 import { InlineGithubForm } from '../components/layout/InlineGithubForm'
 import ReactMarkdown from 'react-markdown'
@@ -60,16 +60,7 @@ const HomePage = (props: any) => {
                 </li>
               </ul>
             </nav>
-            <div className="githubStar navGithub">
-              <iframe
-                className="starButton"
-                src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
-                frameBorder="0"
-                scrolling="0"
-                width="150px"
-                height="30px"
-              ></iframe>
-            </div>
+            <div className="githubStar navGithub"></div>
           </div>
         </Container>
       </div>
@@ -79,7 +70,7 @@ const HomePage = (props: any) => {
         </Container>
         <div className="splitBackgroundBlackWhite">
           <Container>
-            <Video src={hero.video.src} />
+            <Video src={hero.videoSrc} />
           </Container>
         </div>
       </section>

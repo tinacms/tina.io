@@ -18,9 +18,7 @@
         "url": "#"
       }
     ],
-    "video": {
-      "src": "v1571425758/tina-hero-demo-v2"
-    }
+    "videoSrc": "v1571425758/tina-hero-demo-v2"
   },
   "valueProps": {
     "headline": "Edit content, *in the context of your site*",

@@ -2,12 +2,12 @@ export const FeaturedItemsFields = [
   {
     label: 'Headline',
     name: 'headline',
-    component: 'text'
+    component: 'text',
   },
   {
     label: 'Subline',
     name: 'subline',
-    component: 'text'
+    component: 'text',
   },
   {
     label: 'Media',
@@ -17,22 +17,22 @@ export const FeaturedItemsFields = [
       {
         label: 'Media Source',
         name: 'src',
-        component: 'text'
-      }
-    ]
-  }
+        component: 'text',
+      },
+    ],
+  },
 ]
 
 export const CallToActionFields = [
   {
     label: 'Headline',
     name: 'headline',
-    component: 'text'
+    component: 'markdown',
   },
   {
     label: 'Subline',
     name: 'subline',
-    component: 'text'
+    component: 'text',
   },
   {
     label: 'Action Items',
@@ -42,13 +42,13 @@ export const CallToActionFields = [
       {
         label: 'Action Label',
         name: 'label',
-        component: 'text'
+        component: 'text',
       },
       {
         label: 'Action Variant',
         name: 'variant',
         component: 'select',
-        options: [ 'button', 'link' ]
+        options: ['button', 'link'],
       },
       {
         label: 'Action URL',
@@ -67,8 +67,8 @@ export const CallToActionFields = [
         label: 'Action Icon',
         name: 'icon',
         component: 'select',
-        options: ['', 'arrowRight']
-      }
+        options: ['', 'arrowRight'],
+      },
     ],
     itemProps: (item: any) => ({
       key: item.name,
@@ -92,78 +92,62 @@ const HomePageTemplate = {
       fields: [
         ...CallToActionFields,
         {
-          label: 'Hero Video',
-          name: 'video',
-          component: 'group',
-          fields: [
-            {
-              label: 'Video sources',
-              name: 'videoSources',
-              component: 'group-list',
-              fields: [
-                { label: 'source', name: 'vSrc', component: 'text'},
-                { label: 'type', name: 'vType', component: 'select', options: ['mp4', 'webm']}
-              ]
-            },
-            {
-              label: 'Video Thumbnail',
-              name: 'thumbnail',
-              component: 'text'
-            }
-          ]
-        }
-      ]
+          label: 'Video Cloudinary Source',
+          name: 'videoSrc',
+          component: 'text',
+        },
+      ],
     },
     {
-      label: "Value Props",
-      name: "valueProps",
-      description: "Update the value props for the page",
-      component: "group",
+      label: 'Value Props',
+      name: 'valueProps',
+      description: 'Update the value props for the page',
+      component: 'group',
       fields: [
         {
           label: 'Headline',
           name: 'headline',
-          component: 'markdown'
+          component: 'markdown',
         },
         {
           label: 'Subline',
           name: 'subline',
-          component: 'text'
+          component: 'text',
         },
         {
-          label: "Tina Value Props",
-          name: "valueItems",
+          label: 'Tina Value Props',
+          name: 'valueItems',
           component: 'group-list',
           fields: [FeaturedItemsFields],
           itemProps: (item: any) => ({
             key: item.name,
             label: `Value Prop: ${item.headline || 'New Value Prop'}`,
           }),
-        }
-      ]
+        },
+      ],
     },
     {
       label: 'Page Demo',
       name: 'demo',
-      description: "Update the Tina Demo",
+      description: 'Update the Tina Demo',
       component: 'group',
       fields: [
         {
           label: 'Headline',
           name: 'headline',
-          component: 'markdown'
+          component: 'markdown',
         },
         {
           label: 'Subline',
           name: 'subline',
-          component: 'text'
+          component: 'text',
         },
         {
           label: 'CodeSandbox URL',
           name: 'codeSandbox',
-          component: 'text'
-        }
-      ]
+          component: 'text',
+        },
+      ],
     },
     {
       label: 'Page Features',
@@ -174,12 +158,12 @@ const HomePageTemplate = {
         {
           label: 'Headline',
           name: 'headline',
-          component: 'markdown'
+          component: 'markdown',
         },
         {
           label: 'Subline',
           name: 'subline',
-          component: 'text'
+          component: 'text',
         },
         {
           label: 'Featured Items',
@@ -189,23 +173,23 @@ const HomePageTemplate = {
             {
               label: 'Headline',
               name: 'headline',
-              component: 'text'
+              component: 'text',
             },
             {
               label: 'Subline',
               name: 'subline',
-              component: 'text'
+              component: 'text',
             },
             {
               label: 'Featured Item',
               name: 'isFeatured',
-              component: 'toggle'
+              component: 'toggle',
             },
             {
               label: 'Item Icon',
               name: 'icon',
               component: 'select',
-              options: ['', 'arrowRight']
+              options: ['', 'arrowRight'],
             },
             {
               label: 'Media',
@@ -215,12 +199,12 @@ const HomePageTemplate = {
                 {
                   label: 'Media Source',
                   name: 'src',
-                  component: 'text'
-                }
-              ]
-            }
-          ]
-        }
+                  component: 'text',
+                },
+              ],
+            },
+          ],
+        },
       ],
       itemProps: (item: any) => ({
         key: item.name,
@@ -228,47 +212,47 @@ const HomePageTemplate = {
       }),
     },
     {
-      label: "Ecosystem",
-      name: "ecosystem",
-      description: "Update the ecosystem features",
-      component: "group",
+      label: 'Ecosystem',
+      name: 'ecosystem',
+      description: 'Update the ecosystem features',
+      component: 'group',
       fields: [
         {
           label: 'Headline',
           name: 'headline',
-          component: 'markdown'
+          component: 'markdown',
         },
         {
           label: 'Subline',
           name: 'subline',
-          component: 'text'
+          component: 'text',
         },
         {
-          label: "Tina Ecosystem Features",
-          name: "valueItems",
+          label: 'Tina Ecosystem Features',
+          name: 'valueItems',
           component: 'group-list',
           fields: [
             ...FeaturedItemsFields,
             {
               label: 'Link URL',
               name: 'url',
-              component: 'text'
-            }
+              component: 'text',
+            },
           ],
           itemProps: (item: any) => ({
             key: item.name,
             label: `Ecosystem Prop: ${item.headline || 'New Ecosystem Prop'}`,
           }),
-        }
-      ]
+        },
+      ],
     },
     {
       label: 'Call To Action',
       name: 'cta',
       description: 'Update the call to action',
       component: 'group',
-      fields: CallToActionFields
-    }
+      fields: CallToActionFields,
+    },
   ],
 }
 
