@@ -82,8 +82,23 @@ const HomePageTemplate = {
   defaultItem: {},
   fields: [
     // TODO: refacor to SEO atom
-    { name: 'title', label: 'Page Title', component: 'text' },
-    { name: 'description', label: 'Page Description', component: 'textarea' },
+    {
+      label: 'Nav',
+      name: 'navItems',
+      component: 'group-list',
+      fields: [
+        {
+          label: 'Label',
+          name: 'label',
+          component: 'text',
+        },
+        {
+          label: 'Link',
+          name: 'link',
+          component: 'text',
+        },
+      ],
+    },
     {
       label: 'Page Hero',
       name: 'hero',
@@ -252,6 +267,19 @@ const HomePageTemplate = {
       description: 'Update the call to action',
       component: 'group',
       fields: CallToActionFields,
+    },
+    {
+      label: 'SEO',
+      name: 'seo',
+      component: 'group',
+      fields: [
+        { name: 'title', label: 'Page Title', component: 'text' },
+        {
+          name: 'description',
+          label: 'Page Description',
+          component: 'textarea',
+        },
+      ],
     },
   ],
 }

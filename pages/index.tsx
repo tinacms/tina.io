@@ -8,6 +8,7 @@ import { useGithubJsonForm } from 'react-tinacms-github'
 import { InlineGithubForm } from '../components/layout/InlineGithubForm'
 import ReactMarkdown from 'react-markdown'
 import HomePageTemplate from '../content/templates/homepageTemplate'
+import { NextSeo } from 'next-seo'
 
 const HomePage = (props: any) => {
   //@ts-ignore
@@ -15,12 +16,29 @@ const HomePage = (props: any) => {
 
   usePlugin(form)
 
-  const { hero, demo, ecosystem, features, valueProps, cta } = formData
+  const {
+    seo,
+    navItems,
+    hero,
+    demo,
+    ecosystem,
+    features,
+    valueProps,
+    cta,
+  } = formData
   const featuredItem = features.items.find(item => item.isFeatured)
   const cardItems = features.items.filter(item => !item.isFeatured)
 
   return (
     <InlineGithubForm form={form}>
+      <NextSeo
+        title={seo.title}
+        description={seo.description}
+        openGraph={{
+          title: seo.title,
+          description: seo.description,
+        }}
+      />
       <div className="banner orange">
         <Container>
           <Link href="/enterprise">
@@ -49,15 +67,15 @@ const HomePage = (props: any) => {
             </Link>
             <nav className="navWrapper navNav">
               <ul className="navUl">
-                <li className="navLi">
-                  <Link href="/docs">Docs</Link>
-                </li>
-                <li className="navLi">
-                  <Link href="/guides">Guides</Link>
-                </li>
-                <li className="navLi">
-                  <Link href="/blog">Blog</Link>
-                </li>
+                {navItems.map(item => {
+                  const { link, label } = item
+
+                  return (
+                    <li className="navLi">
+                      <Link href={link}>{label}</Link>
+                    </li>
+                  )
+                })}
               </ul>
             </nav>
             <div className="githubStar navGithub">
