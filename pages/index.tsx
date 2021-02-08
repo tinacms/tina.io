@@ -60,7 +60,16 @@ const HomePage = (props: any) => {
                 </li>
               </ul>
             </nav>
-            <div className="githubStar navGithub"></div>
+            <div className="githubStar navGithub">
+              <iframe
+                className="starButton"
+                src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
+                frameBorder="0"
+                scrolling="0"
+                width="150px"
+                height="30px"
+              ></iframe>
+            </div>
           </div>
         </Container>
       </div>
@@ -945,8 +954,8 @@ const FeatureGrid = ({ items }) => {
   return (
     <>
       <div className="featureGrid">
-        {items.map((value, i) => {
-          const { headline, subline, media } = value
+        {items.map((feature, i) => {
+          const { headline, subline, media } = feature
           const isReversed = i % 2 === 1
 
           return (
@@ -955,9 +964,9 @@ const FeatureGrid = ({ items }) => {
                 <h3 className="headingLarge">{headline}</h3>
                 <hr className="dottedBorder" />
                 <p className="textLarge">{subline}</p>
-                {value.url && (
+                {feature.url && (
                   <div className="buttonGroup">
-                    <a href={value.url} className="button buttonLink">
+                    <a href={feature.url} className="button buttonLink">
                       Read The Docs <IconRight />
                     </a>
                   </div>
