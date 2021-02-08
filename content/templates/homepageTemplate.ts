@@ -81,7 +81,6 @@ const HomePageTemplate = {
   label: 'Home Page',
   defaultItem: {},
   fields: [
-    // TODO: refacor to SEO atom
     {
       label: 'Nav',
       name: 'navItems',

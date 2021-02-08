@@ -234,20 +234,26 @@ const HomePage = (props: any) => {
           --color-light-gray: #fafafa;
           --color-seafoam: #e6faf8;
           --color-seafoam-dark: #b4f4e0;
+
           --color-emphasis: var(--color-orange);
           --color-card-background: var(--color-light-gray);
+
           --spacer-size: 4.5rem;
           --section-padding: calc(var(--spacer-size) * 2);
+          --container-padding: 1.5rem;
         }
+
         html {
           min-width: 400px;
         }
+
         .headingHuge {
           font-family: var(--font-tuner);
           font-weight: bold;
           font-size: 2.75rem;
           line-height: 1.4;
           margin-bottom: 2rem;
+
           :global(em) {
             font-style: inherit;
             font-weight: inherit;
@@ -257,17 +263,20 @@ const HomePage = (props: any) => {
             }
           }
         }
+
         .headingLarge {
           font-family: var(--font-tuner);
           margin-bottom: 1rem;
           font-size: 2.25rem;
           font-weight: bold;
         }
+
         .headingMedium {
           font-size: 1.675rem;
           line-height: 1.4;
           margin-bottom: 1rem;
         }
+
         .textHuge {
           display: block;
           width: 100%;
@@ -275,31 +284,38 @@ const HomePage = (props: any) => {
           margin-left: auto;
           margin-right: auto;
           font-size: 1.375rem;
+
           &:not(:last-child) {
             margin-bottom: 2rem;
           }
         }
+
         .textLarge {
           font-size: 1.125rem;
           opacity: 0.7;
+
           &:not(:last-child) {
             margin-bottom: 1.25rem;
           }
         }
+
         .buttonGroup {
           display: flex;
           flex-wrap: wrap;
           align-items: center;
           padding-top: 0.5rem;
           margin: 0 -0.75rem;
+
           :global(a),
           :global(button) {
             margin: 0 0.75rem;
           }
         }
+
         .buttonGroupCenter {
           justify-content: center;
         }
+
         .button {
           position: relative;
           font-family: var(--font-tuner);
@@ -314,6 +330,7 @@ const HomePage = (props: any) => {
           align-items: center;
           white-space: nowrap;
           outline: none;
+
           &:after {
             content: '';
             display: block;
@@ -340,10 +357,12 @@ const HomePage = (props: any) => {
             margin-left: 0.75rem;
           }
         }
+
         .buttonLink {
           font-size: 1rem;
           color: var(--color-orange);
           padding: 0;
+
           &:after {
             width: calc(100% + 1.5rem);
             height: calc(100% + 1rem);
@@ -351,26 +370,32 @@ const HomePage = (props: any) => {
             left: -0.75rem;
           }
         }
+
         .buttonOrange {
           background: var(--color-orange);
           transition: background 150ms ease-out;
           color: white;
+
           :hover {
             background: var(--color-orange-light);
           }
         }
+
         .buttonGhost {
           opacity: 0.7;
           transition: opacity 150ms ease-out;
+
           :hover {
             opacity: 1;
           }
         }
+
         .spacer {
           display: block;
           width: 100%;
           height: var(--spacer-size);
         }
+
         .dottedBorder {
           border-top: none;
           border-right: none;
@@ -410,20 +435,24 @@ const HomePage = (props: any) => {
             height: 1em;
           }
         }
+
         .tinaCloud {
           display: inline-block;
           white-space: nowrap;
         }
+
         .navbar {
           padding: 2rem 0 2rem 0;
           margin-bottom: -1px;
         }
+
         .navGrid {
           width: 100%;
           display: grid;
           grid-gap: 2rem 1rem;
           grid-template-columns: 1fr 1fr;
           grid-template-rows: 1fr 1fr;
+
           @media (min-width: 800px) {
             grid-gap: 1rem;
             align-items: center;
@@ -431,23 +460,27 @@ const HomePage = (props: any) => {
             grid-template-rows: 1fr;
           }
         }
+
         .navLogo {
           grid-column-start: 1;
           grid-column-end: 2;
           grid-row-start: 1;
           grid-row-end: 2;
           text-decoration: none;
+
           @media (min-width: 800px) {
             grid-column-start: 1;
             grid-column-end: 2;
           }
         }
+
         .navNav {
           grid-column-start: 1;
           grid-column-end: 3;
           grid-row-start: 2;
           grid-row-end: 3;
           justify-self: center;
+
           @media (min-width: 800px) {
             grid-column-start: 2;
             grid-column-end: 3;
@@ -455,23 +488,28 @@ const HomePage = (props: any) => {
             grid-row-end: 2;
           }
         }
+
         .navGithub {
           grid-column-start: 2;
           grid-column-end: 3;
           grid-row-start: 1;
           grid-row-end: 2;
           justify-self: end;
+
           @media (min-width: 800px) {
             grid-column-start: 3;
             grid-column-end: 4;
           }
         }
+
         .navUl {
           display: flex;
           margin: 0 -1.5rem;
         }
+
         .navLi {
           margin: 0 1.5rem;
+
           :global(a) {
             color: white;
             opacity: 0.7;
@@ -483,11 +521,13 @@ const HomePage = (props: any) => {
             }
           }
         }
+
         .logomark {
           color: var(--color-orange);
           fill: var(--color-orange);
           display: flex;
           align-items: center;
+
           :global(svg) {
             margin-top: -5px;
             height: 40px;
@@ -495,17 +535,21 @@ const HomePage = (props: any) => {
             margin-right: 12px;
           }
         }
+
         .wordmark {
           font-size: 26px;
           font-weight: bold;
           font-family: var(--font-tuner);
+
           :global(span) {
             margin-left: 1px;
           }
         }
+
         .section {
           padding: var(--section-padding) 0;
         }
+
         .splitBackgroundBlackWhite {
           background: linear-gradient(
             to bottom,
@@ -515,8 +559,10 @@ const HomePage = (props: any) => {
             var(--color-white) 100%
           );
         }
+
         .demoWrapper {
           margin-bottom: calc(-1 * var(--section-padding));
+
           :global(iframe) {
             width: 100%;
             border: none !important;
@@ -524,6 +570,7 @@ const HomePage = (props: any) => {
             margin: 0;
           }
         }
+
         .browser {
           position: relative;
           padding: 4rem 3rem 3rem 3rem;
@@ -541,6 +588,7 @@ const HomePage = (props: any) => {
           box-shadow: inset 0 0 0 1px rgba(36, 23, 72, 0.03),
             0 24px 32px rgba(36, 23, 72, 0.05), 0 6px 8px rgba(36, 23, 72, 0.03),
             0 48px 48px -64px rgba(36, 23, 72, 0.3);
+
           &:after {
             content: '';
             display: block;
@@ -556,19 +604,24 @@ const HomePage = (props: any) => {
               2.375rem 0 0 var(--color-yellow), 3.875rem 0 0 var(--color-green);
           }
         }
+
         .browserContainer {
           perspective: 300px;
         }
+
         .browserGrid {
           display: grid;
           grid-gap: 3rem 2rem;
+
           @media (min-width: 1000px) {
             grid-template-columns: 1fr 1fr;
             align-items: center;
           }
         }
+
         .browserContent {
         }
+
         .contentTitle {
           font-family: var(--font-tuner);
           color: var(--color-orange);
@@ -577,19 +630,23 @@ const HomePage = (props: any) => {
           font-weight: bold;
           margin-bottom: 1rem;
         }
+
         .contentText {
           display: block;
           font-size: 1.5rem;
           margin-bottom: 1.25rem;
         }
+
         .contentFootnote {
           display: block;
           font-size: 1.125rem;
           opacity: 0.5;
         }
+
         .browserImageWrapper {
           margin-top: -1rem;
         }
+
         .browserImage {
           display: block;
           width: 100%;
@@ -597,10 +654,12 @@ const HomePage = (props: any) => {
           margin: 0;
           filter: drop-shadow(0 3px 8px rgba(0, 37, 91, 0.07));
         }
+
         .divider {
           display: flex;
           justify-content: center;
           width: 100%;
+
           :global(svg) {
             width: 100%;
             margin: 0 auto;
@@ -610,23 +669,29 @@ const HomePage = (props: any) => {
               animation: dash 1s infinite linear;
             }
           }
+
           @media (min-width: 1000px) {
             :global(svg) {
               width: 66%;
             }
           }
         }
+
         .dividerDesktop {
           height: 7.5rem;
+
           :global(svg) {
             height: 100%;
           }
+
           @media (max-width: 999px) {
             display: none;
           }
         }
+
         .dividerMobile {
           height: 4rem;
+
           @media (min-width: 1000px) {
             display: none;
           }
@@ -643,14 +708,17 @@ const HomePage = (props: any) => {
             stroke-dashoffset: 0;
           }
         }
+
         .cardGroup {
           display: grid;
           grid-template-rows: 1fr;
+
           @media (min-width: 1000px) {
             grid-template-columns: 1fr 1fr 1fr;
             gap: calc(var(--spacer-size) * 0.5);
           }
         }
+
         .card {
           background: var(--color-card-background);
           padding: 2.25rem;
@@ -658,11 +726,13 @@ const HomePage = (props: any) => {
           box-shadow: inset 0 0 0 1px rgba(36, 23, 72, 0.03),
             0 6px 24px rgba(36, 23, 72, 0.05), 0 2px 4px rgba(36, 23, 72, 0.03);
         }
+
         .cardLinked {
           position: relative;
           display: grid;
           grid-template-columns: 1fr auto;
           grid-gap: 2.25rem;
+
           &:hover {
             :global(> * > *) {
               opacity: 1;
@@ -672,20 +742,24 @@ const HomePage = (props: any) => {
             }
           }
         }
+
         .linkedContent {
         }
+
         .linkedIcon {
           width: 2rem;
           margin-right: -0.5rem;
           height: 100%;
           display: flex;
           align-items: center;
+
           :global(svg) {
             width: 1.5rem;
             height: auto;
             opacity: 0.7;
           }
         }
+
         .cardLink {
           display: block;
           position: absolute;
@@ -700,6 +774,7 @@ const HomePage = (props: any) => {
           opacity: 0;
           transition: opacity 150ms ease-out;
           border-radius: 0.25rem;
+
           &:after {
             content: '';
             display: block;
@@ -719,11 +794,13 @@ const HomePage = (props: any) => {
             opacity: 1;
           }
         }
+
         .cardImage {
           display: block;
           width: auto;
           margin-bottom: 1.125rem;
         }
+
         .learnTina {
           padding: 5rem 0;
           background-image: url('/img/clouds.jpg');
@@ -731,13 +808,16 @@ const HomePage = (props: any) => {
           background-repeat: no-repeat;
           background-size: cover;
         }
+
         .learnContainer {
           display: grid;
           grid-gap: 2rem;
+          padding: 0 var(--container-padding);
           align-content: center;
           align-items: center;
           margin: 0 auto;
           max-width: 820px;
+
           @media (min-width: 1000px) {
             grid-gap: 2rem;
             grid-template-columns: 2fr 3fr;
@@ -751,16 +831,20 @@ const HomePage = (props: any) => {
             transform: translate3d(0, 0.75rem, 0);
           }
         }
+
         .learnImage {
           margin: 0;
           position: relative;
           animation: learnImage 3s ease-in-out infinite alternate;
+
           @media (prefers-reduced-motion) {
             animation: none;
           }
         }
+
         .learnContent {
         }
+
         .orange {
           background: linear-gradient(
             to top right,
@@ -769,10 +853,12 @@ const HomePage = (props: any) => {
           );
           color: var(--color-white);
         }
+
         .black {
           background: var(--color-black);
           color: var(--color-white);
         }
+
         .blue {
           background: var(--color-blue);
           background: linear-gradient(
@@ -783,11 +869,13 @@ const HomePage = (props: any) => {
           color: var(--color-white);
           --color-emphasis: var(--color-orange-light);
         }
+
         .lightGray {
           background: var(--color-light-gray);
           color: var(--color-black);
           --color-card-background: var(--color-white);
         }
+
         .white {
           background: var(--color-white);
           color: var(--color-black);
@@ -917,7 +1005,7 @@ const Container = ({
       <style jsx>{`
         .container {
           margin: 0 auto;
-          padding: 0 1.5rem;
+          padding: 0 var(--container-padding);
         }
 
         .wide {
@@ -1005,27 +1093,32 @@ const FeatureGrid = ({ items }) => {
           padding-top: calc(var(--spacer-size) * 0.5) 0;
           padding-bottom: calc(var(--spacer-size) * 0.5) 0;
         }
+
         .feature {
           display: grid;
           grid-template-columns: 1fr;
           grid-gap: calc(var(--spacer-size) / 2);
           align-items: center;
+
           @media (min-width: 900px) {
             grid-template-columns: 1fr 1fr;
             grid-gap: var(--spacer-size);
           }
         }
+
         .featureReverse {
           direction: rtl;
           > * {
             direction: ltr;
           }
         }
+
         .featureText {
           :global(p) {
             max-width: 400px;
           }
         }
+
         .featureImage {
           :global(img) {
             display: block;
