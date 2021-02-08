@@ -1,6 +1,6 @@
 ---
 title: Select Field
-prev: /docs/plugins/fields/toggle
+prev: /docs/plugins/fields/radio-group
 next: /docs/plugins/fields/tags
 consumes:
   - file: /packages/@tinacms/fields/src/Select.tsx
