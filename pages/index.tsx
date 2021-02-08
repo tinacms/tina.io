@@ -18,6 +18,7 @@ const HomePage = (props: any) => {
 
   const {
     seo,
+    banner,
     navItems,
     hero,
     demo,
@@ -41,13 +42,10 @@ const HomePage = (props: any) => {
       />
       <div className="banner orange">
         <Container>
-          <Link href="/enterprise">
+          <Link href={banner.link}>
             <a>
               <span>
-                Sign up for early access
-                <span className="tinaCloud">
-                  for <em>Tina Cloud</em> ☁️
-                </span>
+                <ReactMarkdown source={banner.text} />
               </span>
               <IconRight />
             </a>

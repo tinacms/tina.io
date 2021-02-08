@@ -17,6 +17,10 @@
     "title": "Home",
     "description": "Tina is a content management platform, with a content management API and frontend toolkit to rapidly prototype your own CMS."
   },
+  "banner": {
+    "text": "Sign up for early access for *Tina Cloud* ☁️",
+    "link": "/cloud"
+  },
   "hero": {
     "headline": "Content editing for modern teams",
     "subline": "Tina is an open-source CMS admin that talks to any API",
