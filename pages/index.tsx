@@ -122,27 +122,7 @@ const HomePage = (props: any) => {
         </Container>
         <div className="spacer"></div>
         <Container>
-          <div className="featureGrid">
-            {valueProps.valueItems.map((value, i) => {
-              const { headline, subline, media } = value
-              const isReversed = i % 2 === 1
-
-              return (
-                <div
-                  className={`feature ${isReversed ? 'featureReverse' : ''}`}
-                >
-                  <div className="featureText">
-                    <h3 className="headingLarge">{headline}</h3>
-                    <hr className="dottedBorder" />
-                    <p className="textLarge">{subline}</p>
-                  </div>
-                  <div className={`featureImage`}>
-                    <img src={media.src} alt="" />
-                  </div>
-                </div>
-              )
-            })}
-          </div>
+          <FeatureGrid items={valueProps.valueItems} />
         </Container>
       </section>
       <section className="section blue">
@@ -232,32 +212,7 @@ const HomePage = (props: any) => {
         </Container>
         <div className="spacer"></div>
         <Container>
-          <div className="featureGrid">
-            {ecosystem.valueItems.map((value, i) => {
-              const { headline, subline, media, url } = value
-              const isReversed = i % 2 === 1
-
-              return (
-                <div
-                  className={`feature ${isReversed ? 'featureReverse' : ''}`}
-                >
-                  <div className="featureText">
-                    <h3 className="headingLarge">{headline}</h3>
-                    <hr className="dottedBorder" />
-                    <p className="textLarge">{subline}</p>
-                    <div className="buttonGroup">
-                      <a href={url} className="button buttonLink">
-                        Read The Docs <IconRight />
-                      </a>
-                    </div>
-                  </div>
-                  <div className={`featureImage`}>
-                    <img src={media.src} alt="" />
-                  </div>
-                </div>
-              )
-            })}
-          </div>
+          <FeatureGrid items={ecosystem.valueItems} />
         </Container>
       </section>
       <div className="learnTina">
@@ -308,146 +263,6 @@ const HomePage = (props: any) => {
         }
         html {
           min-width: 400px;
-        }
-      `}</style>
-      <style jsx>{`
-        .spacer {
-          display: block;
-          width: 100%;
-          height: var(--spacer-size);
-        }
-        .dottedBorder {
-          border-top: none;
-          border-right: none;
-          border-left: none;
-          border-image: initial;
-          border-bottom: 4px dotted var(--color-orange);
-          width: 6rem;
-          max-width: 100%;
-          display: block;
-          height: 0px;
-          margin: 1.5rem 0px;
-        }
-        .banner {
-          :global(a) {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.75rem 0;
-            font-size: 1.25rem;
-            line-height: 1.4;
-            text-decoration: none;
-            color: inherit;
-            transition: opacity 150ms ease-out;
-            &:hover {
-              opacity: 0.8;
-            }
-          }
-          :global(em) {
-            font-style: normal;
-            font-weight: bold;
-            text-decoration: underline;
-          }
-          :global(svg) {
-            margin-left: 1rem;
-            height: 1em;
-          }
-        }
-        .tinaCloud {
-          display: inline-block;
-          white-space: nowrap;
-        }
-        .navbar {
-          padding: 2rem 0 2rem 0;
-          margin-bottom: -1px;
-        }
-        .navGrid {
-          width: 100%;
-          display: grid;
-          grid-gap: 2rem 1rem;
-          grid-template-columns: 1fr 1fr;
-          grid-template-rows: 1fr 1fr;
-          @media (min-width: 800px) {
-            grid-gap: 1rem;
-            align-items: center;
-            grid-template-columns: auto 1fr auto;
-            grid-template-rows: 1fr;
-          }
-        }
-        .navLogo {
-          grid-column-start: 1;
-          grid-column-end: 2;
-          grid-row-start: 1;
-          grid-row-end: 2;
-          text-decoration: none;
-          @media (min-width: 800px) {
-            grid-column-start: 1;
-            grid-column-end: 2;
-          }
-        }
-        .navNav {
-          grid-column-start: 1;
-          grid-column-end: 3;
-          grid-row-start: 2;
-          grid-row-end: 3;
-          justify-self: center;
-          @media (min-width: 800px) {
-            grid-column-start: 2;
-            grid-column-end: 3;
-            grid-row-start: 1;
-            grid-row-end: 2;
-          }
-        }
-        .navGithub {
-          grid-column-start: 2;
-          grid-column-end: 3;
-          grid-row-start: 1;
-          grid-row-end: 2;
-          justify-self: end;
-          @media (min-width: 800px) {
-            grid-column-start: 3;
-            grid-column-end: 4;
-          }
-        }
-        .navUl {
-          display: flex;
-          margin: 0 -1.5rem;
-        }
-        .navLi {
-          margin: 0 1.5rem;
-          :global(a) {
-            color: white;
-            opacity: 0.7;
-            transition: opacity 150ms ease-out;
-            text-decoration: none;
-            font-size: 1.25rem;
-            &:hover {
-              opacity: 1;
-            }
-          }
-        }
-        .logomark {
-          color: var(--color-orange);
-          fill: var(--color-orange);
-          display: flex;
-          align-items: center;
-          :global(svg) {
-            margin-top: -5px;
-            height: 40px;
-            width: auto;
-            margin-right: 12px;
-          }
-        }
-        .wordmark {
-          font-size: 26px;
-          font-weight: bold;
-          font-family: var(--font-tuner);
-          :global(span) {
-            margin-left: 1px;
-          }
-        }
-        .section {
-          padding: var(--section-padding) 0;
         }
         .headingHuge {
           font-family: var(--font-tuner);
@@ -572,6 +387,146 @@ const HomePage = (props: any) => {
           :hover {
             opacity: 1;
           }
+        }
+        .spacer {
+          display: block;
+          width: 100%;
+          height: var(--spacer-size);
+        }
+        .dottedBorder {
+          border-top: none;
+          border-right: none;
+          border-left: none;
+          border-image: initial;
+          border-bottom: 4px dotted var(--color-orange);
+          width: 6rem;
+          max-width: 100%;
+          display: block;
+          height: 0px;
+          margin: 1.5rem 0px;
+        }
+      `}</style>
+      <style jsx>{`
+        .banner {
+          :global(a) {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 0;
+            font-size: 1.25rem;
+            line-height: 1.4;
+            text-decoration: none;
+            color: inherit;
+            transition: opacity 150ms ease-out;
+            &:hover {
+              opacity: 0.8;
+            }
+          }
+          :global(em) {
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: underline;
+          }
+          :global(svg) {
+            margin-left: 1rem;
+            height: 1em;
+          }
+        }
+        .tinaCloud {
+          display: inline-block;
+          white-space: nowrap;
+        }
+        .navbar {
+          padding: 2rem 0 2rem 0;
+          margin-bottom: -1px;
+        }
+        .navGrid {
+          width: 100%;
+          display: grid;
+          grid-gap: 2rem 1rem;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: 1fr 1fr;
+          @media (min-width: 800px) {
+            grid-gap: 1rem;
+            align-items: center;
+            grid-template-columns: auto 1fr auto;
+            grid-template-rows: 1fr;
+          }
+        }
+        .navLogo {
+          grid-column-start: 1;
+          grid-column-end: 2;
+          grid-row-start: 1;
+          grid-row-end: 2;
+          text-decoration: none;
+          @media (min-width: 800px) {
+            grid-column-start: 1;
+            grid-column-end: 2;
+          }
+        }
+        .navNav {
+          grid-column-start: 1;
+          grid-column-end: 3;
+          grid-row-start: 2;
+          grid-row-end: 3;
+          justify-self: center;
+          @media (min-width: 800px) {
+            grid-column-start: 2;
+            grid-column-end: 3;
+            grid-row-start: 1;
+            grid-row-end: 2;
+          }
+        }
+        .navGithub {
+          grid-column-start: 2;
+          grid-column-end: 3;
+          grid-row-start: 1;
+          grid-row-end: 2;
+          justify-self: end;
+          @media (min-width: 800px) {
+            grid-column-start: 3;
+            grid-column-end: 4;
+          }
+        }
+        .navUl {
+          display: flex;
+          margin: 0 -1.5rem;
+        }
+        .navLi {
+          margin: 0 1.5rem;
+          :global(a) {
+            color: white;
+            opacity: 0.7;
+            transition: opacity 150ms ease-out;
+            text-decoration: none;
+            font-size: 1.25rem;
+            &:hover {
+              opacity: 1;
+            }
+          }
+        }
+        .logomark {
+          color: var(--color-orange);
+          fill: var(--color-orange);
+          display: flex;
+          align-items: center;
+          :global(svg) {
+            margin-top: -5px;
+            height: 40px;
+            width: auto;
+            margin-right: 12px;
+          }
+        }
+        .wordmark {
+          font-size: 26px;
+          font-weight: bold;
+          font-family: var(--font-tuner);
+          :global(span) {
+            margin-left: 1px;
+          }
+        }
+        .section {
+          padding: var(--section-padding) 0;
         }
         .video {
           width: 100%;
@@ -838,45 +793,6 @@ const HomePage = (props: any) => {
         }
         .learnContent {
         }
-        .featureGrid {
-          display: grid;
-          grid-template-columns: 1fr;
-          grid-gap: calc(var(--spacer-size) * 1.5);
-          padding-top: calc(var(--spacer-size) * 0.5) 0;
-          padding-bottom: calc(var(--spacer-size) * 0.5) 0;
-        }
-        .feature {
-          display: grid;
-          grid-template-columns: 1fr;
-          grid-gap: calc(var(--spacer-size) / 2);
-          align-items: center;
-          @media (min-width: 900px) {
-            grid-template-columns: 1fr 1fr;
-            grid-gap: var(--spacer-size);
-          }
-        }
-        .featureReverse {
-          direction: rtl;
-          > * {
-            direction: ltr;
-          }
-        }
-        .featureText {
-          :global(p) {
-            max-width: 400px;
-          }
-        }
-        .featureImage {
-          :global(img) {
-            display: block;
-            width: 100%;
-            height: auto;
-            margin: 0;
-            border-radius: 0.5rem;
-            box-shadow: inset 0 0 0 1px rgba(236, 72, 21, 0.03),
-              0 6px 24px rgba(0, 37, 91, 0.05), 0 2px 4px rgba(0, 37, 91, 0.03);
-          }
-        }
         .orange {
           background: linear-gradient(
             to top right,
@@ -1050,6 +966,80 @@ const Container = ({
 
         .center {
           text-align: center;
+        }
+      `}</style>
+    </>
+  )
+}
+
+const FeatureGrid = ({ items }) => {
+  return (
+    <>
+      <div className="featureGrid">
+        {items.map((value, i) => {
+          const { headline, subline, media } = value
+          const isReversed = i % 2 === 1
+
+          return (
+            <div className={`feature ${isReversed ? 'featureReverse' : ''}`}>
+              <div className="featureText">
+                <h3 className="headingLarge">{headline}</h3>
+                <hr className="dottedBorder" />
+                <p className="textLarge">{subline}</p>
+                {value.url && (
+                  <div className="buttonGroup">
+                    <a href={value.url} className="button buttonLink">
+                      Read The Docs <IconRight />
+                    </a>
+                  </div>
+                )}
+              </div>
+              <div className={`featureImage`}>
+                <img src={media.src} alt="" />
+              </div>
+            </div>
+          )
+        })}
+      </div>
+      <style jsx>{`
+        .featureGrid {
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-gap: calc(var(--spacer-size) * 1.5);
+          padding-top: calc(var(--spacer-size) * 0.5) 0;
+          padding-bottom: calc(var(--spacer-size) * 0.5) 0;
+        }
+        .feature {
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-gap: calc(var(--spacer-size) / 2);
+          align-items: center;
+          @media (min-width: 900px) {
+            grid-template-columns: 1fr 1fr;
+            grid-gap: var(--spacer-size);
+          }
+        }
+        .featureReverse {
+          direction: rtl;
+          > * {
+            direction: ltr;
+          }
+        }
+        .featureText {
+          :global(p) {
+            max-width: 400px;
+          }
+        }
+        .featureImage {
+          :global(img) {
+            display: block;
+            width: 100%;
+            height: auto;
+            margin: 0;
+            border-radius: 0.5rem;
+            box-shadow: inset 0 0 0 1px rgba(236, 72, 21, 0.03),
+              0 6px 24px rgba(0, 37, 91, 0.05), 0 2px 4px rgba(0, 37, 91, 0.03);
+          }
         }
       `}</style>
     </>
