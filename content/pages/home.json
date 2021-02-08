@@ -5,31 +5,21 @@
     "headline": "Content editing for modern teams",
     "subline": "Tina is an open-source CMS admin that talks to any API",
     "actionItems": [
-      { 
-        "variant": "button", 
-        "label": "Try Demo", 
-        "icon": "arrowRight", 
-        "url": "#" 
-      }, 
-      { 
-        "variant": "link", 
-        "label": "Learn More", 
-        "icon": "", 
-        "url": "#" 
-      } 
+      {
+        "variant": "button",
+        "label": "Try Demo",
+        "icon": "arrowRight",
+        "url": "#"
+      },
+      {
+        "variant": "link",
+        "label": "Learn More",
+        "icon": "",
+        "url": "#"
+      }
     ],
-    "video": { 
-      "videoSources": [
-        {
-          "vSrc": "https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/v1571425758/tina-hero-demo-v2.webm",
-          "vType": "webm"
-        },
-        {
-          "vSrc": "https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/v1571425758/tina-hero-demo-v2.mp4",
-          "vType": "mp4"
-        }
-      ], 
-      "thumbnail": "https://res.cloudinary.com/forestry-demo/video/upload/so_0/v1571425758/tina-hero-demo-v2.jpg"
+    "video": {
+      "src": "v1571425758/tina-hero-demo-v2"
     }
   },
   "valueProps": {
@@ -68,7 +58,7 @@
         "text": "it's 35 degrees and sunny",
         "isFeatured": true,
         "icon": "",
-        "media": { "src": "img/tina-wow.png"}
+        "media": { "src": "img/tina-wow.png" }
       },
       {
         "headline": "Headless Cms",
@@ -76,7 +66,7 @@
         "text": "",
         "isFeatured": false,
         "icon": "arrowRight",
-        "media": { "src": "img/headlessCms.png"}
+        "media": { "src": "img/headlessCms.png" }
       },
       {
         "headline": "Headless Cms",
@@ -84,7 +74,7 @@
         "text": "",
         "isFeatured": false,
         "icon": "arrowRight",
-        "media": { "src": "img/headlessCms.png"}
+        "media": { "src": "img/headlessCms.png" }
       },
       {
         "headline": "Headless Cms",
@@ -92,7 +82,7 @@
         "text": "",
         "isFeatured": false,
         "icon": "arrowRight",
-        "media": { "src": "img/headlessCms.png"}
+        "media": { "src": "img/headlessCms.png" }
       }
     ]
   },
@@ -123,6 +113,13 @@
   "cta": {
     "headline": "Learn Tina",
     "subline": "Learn Tina through Interactive & Fun Tutorials.",
-    "actionItems": [{ "variant": "button", "label": "Get Started", "icon": "arrowRight", "url": "#" } ]
+    "actionItems": [
+      {
+        "variant": "button",
+        "label": "Get Started",
+        "icon": "arrowRight",
+        "url": "#"
+      }
+    ]
   }
 }
