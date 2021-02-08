@@ -97,6 +97,10 @@ const HomePageTemplate = {
           component: 'text',
         },
       ],
+      itemProps: (item: any) => ({
+        key: item.link,
+        label: item.label,
+      }),
     },
     {
       label: 'Page Hero',
