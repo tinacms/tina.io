@@ -12,7 +12,11 @@ import HomePageTemplate, {
   FeaturedItemsFields,
 } from '../content/templates/homepageTemplate'
 import { NextSeo } from 'next-seo'
-import { InlineBlocks, InlineTextarea } from 'react-tinacms-inline'
+import {
+  BlocksControls,
+  InlineBlocks,
+  InlineTextarea,
+} from 'react-tinacms-inline'
 import { InlineWysiwyg } from 'react-tinacms-editor'
 
 const HomePage = (props: any) => {
@@ -893,18 +897,24 @@ const hero_template: BlockTemplate = {
   ],
 }
 
-function HeroBlock({ data }) {
+function HeroBlock({ data, index }) {
   return (
-    <section className="section black">
-      <Container width="narrow" center>
-        <Feature item={data} />
-      </Container>
-      <div className="splitBackgroundBlackWhite">
-        <Container>
-          <Video src={data.videoSrc} />
+    <BlocksControls
+      index={index}
+      insetControls={true}
+      focusRing={{ offset: -16 }}
+    >
+      <section className="section black">
+        <Container width="narrow" center>
+          <Feature item={data} />
         </Container>
-      </div>
-    </section>
+        <div className="splitBackgroundBlackWhite">
+          <Container>
+            <Video src={data.videoSrc} />
+          </Container>
+        </div>
+      </section>
+    </BlocksControls>
   )
 }
 
@@ -931,17 +941,23 @@ const features_template: BlockTemplate = {
   ],
 }
 
-function FeaturesBlock({ data }) {
+function FeaturesBlock({ data, index }) {
   return (
-    <section className="section lightGray">
-      <Container width="narrow" center>
-        <Feature item={data.header} />
-      </Container>
-      <div className="spacer"></div>
-      <Container>
-        <FeatureGrid items={data.items} />
-      </Container>
-    </section>
+    <BlocksControls
+      index={index}
+      insetControls={true}
+      focusRing={{ offset: -16 }}
+    >
+      <section className="section lightGray">
+        <Container width="narrow" center>
+          <Feature item={{ headline: data.headline, subline: data.subline }} />
+        </Container>
+        <div className="spacer"></div>
+        <Container>
+          <FeatureGrid items={data.items} />
+        </Container>
+      </section>
+    </BlocksControls>
   )
 }
 
@@ -1100,14 +1116,18 @@ const Container = ({
 const Feature = ({ item }) => {
   return (
     <>
-      <h2 className="headingHuge">
-        <InlineWysiwyg name="headline">
-          <ReactMarkdown source={item.headline} />
-        </InlineWysiwyg>
-      </h2>
-      <p className="textHuge">
-        <InlineTextarea name="subline" />
-      </p>
+      {item.headline && (
+        <h2 className="headingHuge">
+          <InlineWysiwyg name="headline">
+            <ReactMarkdown source={item.headline} />
+          </InlineWysiwyg>
+        </h2>
+      )}
+      {item.subline && (
+        <p className="textHuge">
+          <InlineTextarea name="subline" />
+        </p>
+      )}
       {item.actionItems && (
         <div className="buttonGroup buttonGroupCenter">
           {item.actionItems.map(item => {

@@ -44,10 +44,8 @@
     },
     {
       "_template": "features",
-      "header": {
-        "headline": "dit content, *in the context of your site*",
-        "subline": "Just click on the page and type. Contextual toolbars and panels appear at just the right times to create the content you want."
-      },
+      "headline": "dit content, *in the context of your site*",
+      "subline": "Just click on the page and type. Contextual toolbars and panels appear at just the right times to create the content you want.",
       "items": [
         {
           "headline": "Page building",
