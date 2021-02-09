@@ -129,11 +129,11 @@ export const Divider = ({ type = 'full' }: DividerProps) => {
 
         @keyframes dash {
           0% {
-            /* strokeDasharray="8 14" <- Sum of these numbers */
-            stroke-dashoffset: 22;
+            stroke-dashoffset: 0;
           }
           100% {
-            stroke-dashoffset: 0;
+            /* strokeDasharray="8 14" <- Sum of these numbers */
+            stroke-dashoffset: 22;
           }
         }
       `}</style>
