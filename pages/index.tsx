@@ -783,8 +783,12 @@ function LearnBlock({ data, index }) {
             <img className="learnImage" src="img/flyingTina.png" alt="" />
           </div>
           <div>
-            <h3 className="headingLarge">{data.headline}</h3>
-            <p className="textLarge">{data.subline}.</p>
+            <h3 className="headingLarge">
+              <InlineTextarea name="headline" />
+            </h3>
+            <p className="textLarge">
+              <InlineTextarea name="subline" />
+            </p>
             <div className="buttonGroup">
               {data.actionItems.map(item => {
                 const { variant, label, icon, url } = item
