@@ -125,9 +125,10 @@ const HomePage = (props: any) => {
 
           :global(em),
           :global(strong) {
-            font-style: inherit;
             font-weight: inherit;
             color: var(--color-emphasis);
+            font-style: inherit;
+
             @media (min-width: 600px) {
               white-space: nowrap;
             }
@@ -528,7 +529,7 @@ function BrowserBlock({ data, index }) {
           <HeroFeature item={{ headline: headline, subline: subline }} />
         </Container>
         <div className="spacer"></div>
-        <Container>
+        <Container width="wide">
           <div className="browserContainer">
             <div className="browser browserGrid">
               <div className="browserContent">
@@ -547,11 +548,12 @@ function BrowserBlock({ data, index }) {
               </div>
             </div>
           </div>
-          <Divider type="full" />
+          <Divider type="desktop" />
           <div className="cardGroup noSpacingMobile">
             {items.map(item => {
               return (
                 <>
+                  <Divider type="mobile" />
                   <div className="card cardLinked">
                     <div className="linkedContent">
                       <img src={item.media.src} alt="" className="cardImage" />
@@ -565,7 +567,6 @@ function BrowserBlock({ data, index }) {
                       {item.icon === 'arrowRight' && <IconRight />}
                     </div>
                   </div>
-                  <Divider type="mobile" />
                 </>
               )
             })}

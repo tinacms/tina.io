@@ -44,7 +44,7 @@
     },
     {
       "_template": "features",
-      "headline": "dit content, *in the context of your site*",
+      "headline": "Edit content, *in the context of your site*",
       "subline": "Just click on the page and type. Contextual toolbars and panels appear at just the right times to create the content you want.",
       "items": [
         {
@@ -75,7 +75,7 @@
     },
     {
       "_template": "browser",
-      "headline": "Avoid Vendor Lock-In",
+      "headline": "*Avoid Vendor Lock-In*",
       "subline": "Add visual editing to your site for logged in users.",
       "browser": {
         "headline": "Tina comes with editing.",

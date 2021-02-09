@@ -60,10 +60,10 @@ export const SingleDividerSvg = () => {
 }
 
 interface DividerProps {
-  type: 'full' | 'mobile'
+  type: 'desktop' | 'mobile'
 }
 
-export const Divider = ({ type = 'full' }: DividerProps) => {
+export const Divider = ({ type = 'desktop' }: DividerProps) => {
   return (
     <>
       {type === 'mobile' && (
@@ -71,15 +71,10 @@ export const Divider = ({ type = 'full' }: DividerProps) => {
           <SingleDividerSvg />
         </div>
       )}
-      {type === 'full' && (
-        <>
-          <div className="divider dividerMobile">
-            <SingleDividerSvg />
-          </div>
-          <div className="divider dividerDesktop">
-            <TripleDividerSvg />
-          </div>
-        </>
+      {type === 'desktop' && (
+        <div className="divider dividerDesktop">
+          <TripleDividerSvg />
+        </div>
       )}
       <style jsx>{`
         .divider {

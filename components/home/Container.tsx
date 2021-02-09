@@ -18,18 +18,47 @@ export const Container = ({
         .container {
           margin: 0 auto;
           padding: 0 var(--container-padding);
+          width: 100%;
+
+          @media (min-width: 800px) {
+            width: 80%;
+          }
         }
 
         .wide {
           max-width: 1500px;
+
+          @media (min-width: 600px) {
+            width: 100%;
+          }
+
+          @media (min-width: 1000px) {
+            width: 92%;
+          }
         }
 
         .medium {
           max-width: 1240px;
+
+          @media (min-width: 600px) {
+            width: 90%;
+          }
+
+          @media (min-width: 1000px) {
+            width: 80%;
+          }
         }
 
         .narrow {
           max-width: 740px;
+
+          @media (min-width: 600px) {
+            width: 54%;
+          }
+
+          @media (min-width: 1000px) {
+            width: 48%;
+          }
         }
 
         .center {
