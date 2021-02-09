@@ -532,9 +532,15 @@ function BrowserBlock({ data, index }) {
           <div className="browserContainer">
             <div className="browser browserGrid">
               <div className="browserContent">
-                <span className="contentTitle">{browser.headline}</span>
-                <span className="contentText">{browser.subline}</span>
-                <span className="contentFootnote">{browser.text}</span>
+                <span className="contentTitle">
+                  <InlineTextarea name="browser.headline" />
+                </span>
+                <span className="contentText">
+                  <InlineTextarea name="browser.subline" />
+                </span>
+                <span className="contentFootnote">
+                  <InlineTextarea name="browser.text" />
+                </span>
               </div>
               <div className="browserImageWrapper">
                 <img className="browserImage" src={browser.media.src} alt="" />
