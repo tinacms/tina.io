@@ -14,6 +14,7 @@ import {
   InlineTextarea,
 } from 'react-tinacms-inline'
 import { InlineWysiwyg } from 'react-tinacms-editor'
+import { Divider } from 'components/home'
 
 const HomePage = (props: any) => {
   //@ts-ignore
@@ -265,6 +266,10 @@ const HomePage = (props: any) => {
           height: var(--spacer-size);
         }
 
+        .spacerBig {
+          height: calc(var(--spacer-size) * 1.5);
+        }
+
         .dottedBorder {
           border-top: none;
           border-right: none;
@@ -457,36 +462,6 @@ const HomePage = (props: any) => {
 
 export default HomePage
 
-const FeaturedItemsFields = [
-  {
-    label: 'Headline',
-    name: 'headline',
-    component: 'text',
-  },
-  {
-    label: 'Subline',
-    name: 'subline',
-    component: 'text',
-  },
-  {
-    label: 'Link URL',
-    name: 'url',
-    component: 'text',
-  },
-  {
-    label: 'Media',
-    name: 'media',
-    component: 'group',
-    fields: [
-      {
-        label: 'Media Source',
-        name: 'src',
-        component: 'text',
-      },
-    ],
-  },
-]
-
 const CallToActionFields = [
   {
     label: 'Headline',
@@ -550,7 +525,7 @@ function BrowserBlock({ data, index }) {
     >
       <section className="section white">
         <Container center width="narrow">
-          <Feature item={{ headline: headline, subline: subline }} />
+          <HeroFeature item={{ headline: headline, subline: subline }} />
         </Container>
         <div className="spacer"></div>
         <Container>
@@ -566,13 +541,8 @@ function BrowserBlock({ data, index }) {
               </div>
             </div>
           </div>
-          <div className="divider dividerMobile">
-            <SingleDividerSvg />
-          </div>
-          <div className="divider dividerDesktop">
-            <TripleDividerSvg />
-          </div>
-          <div className="cardGroup">
+          <Divider type="full" />
+          <div className="cardGroup noSpacingMobile">
             {items.map(item => {
               return (
                 <>
@@ -589,9 +559,7 @@ function BrowserBlock({ data, index }) {
                       {item.icon === 'arrowRight' && <IconRight />}
                     </div>
                   </div>
-                  <div className="divider dividerMobile">
-                    <SingleDividerSvg />
-                  </div>
+                  <Divider type="mobile" />
                 </>
               )
             })}
@@ -680,68 +648,19 @@ function BrowserBlock({ data, index }) {
           filter: drop-shadow(0 3px 8px rgba(0, 37, 91, 0.07));
         }
 
-        .divider {
-          display: flex;
-          justify-content: center;
-          width: 100%;
-
-          :global(svg) {
-            width: 100%;
-            margin: 0 auto;
-            overflow: visible !important;
-            :global(line),
-            :global(path) {
-              animation: dash 1s infinite linear;
-            }
-          }
-
-          @media (min-width: 1000px) {
-            :global(svg) {
-              width: 66%;
-            }
-          }
-        }
-
-        .dividerDesktop {
-          height: 7.5rem;
-
-          :global(svg) {
-            height: 100%;
-          }
-
-          @media (max-width: 999px) {
-            display: none;
-          }
-        }
-
-        .dividerMobile {
-          height: 4rem;
-
-          @media (min-width: 1000px) {
-            display: none;
-          }
-          :global(svg) {
-            width: 100%;
-          }
-        }
-
-        @keyframes dash {
-          0% {
-            /* strokeDasharray="8 14" <- Sum of these numbers */
-            stroke-dashoffset: 22;
-          }
-          100% {
-            stroke-dashoffset: 0;
-          }
-        }
-
         .cardGroup {
           display: grid;
           grid-template-rows: 1fr;
+          gap: calc(var(--spacer-size) * 0.5);
 
           @media (min-width: 1000px) {
             grid-template-columns: 1fr 1fr 1fr;
-            gap: calc(var(--spacer-size) * 0.5);
+          }
+        }
+
+        .noSpacingMobile {
+          @media (max-width: 999px) {
+            gap: 0;
           }
         }
 
@@ -965,7 +884,7 @@ function HeroBlock({ data, index }) {
     >
       <section className="section black">
         <Container width="narrow" center>
-          <Feature item={data} />
+          <HeroFeature item={data} />
         </Container>
         <div className="splitBackgroundBlackWhite">
           <Container>
@@ -1016,7 +935,7 @@ function DemoBlock({ data, index }) {
     >
       <section className="section blue">
         <Container center width="narrow">
-          <Feature item={data} />
+          <HeroFeature item={data} />
         </Container>
         <div className="spacer"></div>
         <Container width="wide">
@@ -1048,6 +967,111 @@ function DemoBlock({ data, index }) {
   )
 }
 
+const feature_template: BlockTemplate = {
+  label: 'Feature',
+  defaultItem: {},
+  fields: [
+    {
+      label: 'Headline',
+      name: 'headline',
+      component: 'text',
+    },
+    {
+      label: 'Subline',
+      name: 'subline',
+      component: 'text',
+    },
+    {
+      label: 'Link URL',
+      name: 'url',
+      component: 'text',
+    },
+    {
+      label: 'Media',
+      name: 'media',
+      component: 'group',
+      fields: [
+        {
+          label: 'Media Source',
+          name: 'src',
+          component: 'text',
+        },
+      ],
+    },
+  ],
+}
+
+function FeatureBlock({ data, index }) {
+  const isReversed = index % 2 === 1
+
+  return (
+    <>
+      {index !== 0 && <div className="spacer spacerBig"></div>}
+      <div className={`feature ${isReversed ? 'featureReverse' : ''}`}>
+        <div className="featureText">
+          <h3 className="headingLarge">
+            <InlineTextarea name="headline" />
+          </h3>
+          <hr className="dottedBorder" />
+          <p className="textLarge">
+            <InlineTextarea name="subline" />
+          </p>
+          {data.url && (
+            <div className="buttonGroup">
+              <a href={data.url} className="button buttonLink">
+                Read The Docs <IconRight />
+              </a>
+            </div>
+          )}
+        </div>
+        <div className={`featureImage`}>
+          <img src={data.media.src} alt="" />
+        </div>
+      </div>
+      <style jsx>{`
+        .feature {
+          position: relative;
+          width: 100%;
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-gap: calc(var(--spacer-size) / 2);
+          align-items: center;
+
+          @media (min-width: 900px) {
+            grid-template-columns: 1fr 1fr;
+            grid-gap: var(--spacer-size);
+          }
+        }
+
+        .featureReverse {
+          direction: rtl;
+          > * {
+            direction: ltr;
+          }
+        }
+
+        .featureText {
+          :global(p) {
+            max-width: 400px;
+          }
+        }
+
+        .featureImage {
+          :global(img) {
+            display: block;
+            width: 100%;
+            height: auto;
+            margin: 0;
+            border-radius: 0.5rem;
+            box-shadow: inset 0 0 0 1px rgba(236, 72, 21, 0.03),
+              0 6px 24px rgba(0, 37, 91, 0.05), 0 2px 4px rgba(0, 37, 91, 0.03);
+          }
+        }
+      `}</style>
+    </>
+  )
+}
+
 const features_template: BlockTemplate = {
   label: 'Features',
   defaultItem: {
@@ -1057,6 +1081,7 @@ const features_template: BlockTemplate = {
     color: 'white',
     items: [
       {
+        _template: 'feature',
         headline: 'Data Source Plugins',
         subline:
           'Data Source plugins allow you to extend Tina to connect to different databases and 3rd Party APIs',
@@ -1064,6 +1089,7 @@ const features_template: BlockTemplate = {
         media: { src: '/img/io-placeholder.jpg' },
       },
       {
+        _template: 'feature',
         headline: 'Screen UI Plugins',
         subline:
           'Data Source plugins allow you to extend Tina to connect to different databases and 3rd Party AP',
@@ -1071,6 +1097,7 @@ const features_template: BlockTemplate = {
         media: { src: '/img/io-placeholder.jpg' },
       },
       {
+        _template: 'feature',
         headline: 'Custom Fields',
         subline:
           'Extend primary fields with custom field plugins to completely control the editing experience and functionality.',
@@ -1090,6 +1117,7 @@ const features_template: BlockTemplate = {
       label: 'Color',
       name: 'color',
       component: 'select',
+      //@ts-ignore
       options: [
         { label: 'White', value: 'white' },
         { label: 'Light Gray', value: 'lightGray' },
@@ -1101,12 +1129,7 @@ const features_template: BlockTemplate = {
     {
       label: 'Items',
       name: 'items',
-      component: 'group-list',
-      fields: [...FeaturedItemsFields],
-      itemProps: (item: any) => ({
-        key: item.name,
-        label: item.headline,
-      }),
+      component: 'blocks',
     },
   ],
 }
@@ -1120,15 +1143,24 @@ function FeaturesBlock({ data, index }) {
     >
       <section className={['section', data.color].join(' ')}>
         <Container width="narrow" center>
-          <Feature item={{ headline: data.headline, subline: data.subline }} />
+          <HeroFeature
+            item={{ headline: data.headline, subline: data.subline }}
+          />
         </Container>
         <div className="spacer"></div>
         <Container>
-          <FeatureGrid items={data.items} />
+          <InlineBlocks name="items" blocks={FEATURE_BLOCKS} />
         </Container>
       </section>
     </BlocksControls>
   )
+}
+
+const FEATURE_BLOCKS = {
+  feature: {
+    Component: FeatureBlock,
+    template: feature_template,
+  },
 }
 
 const HOMEPAGE_BLOCKS = {
@@ -1245,67 +1277,6 @@ const TinaIcon = () => {
   )
 }
 
-const TripleDividerSvg = () => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      preserveAspectRatio="none"
-      viewBox="0 0 1200 150"
-      className="dividerSvg"
-    >
-      <g>
-        <path
-          stroke="var(--color-orange)"
-          strokeWidth="4"
-          strokeDasharray="8 14"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          vectorEffect="non-scaling-stroke"
-          d="M591.036 0v70.447m0 0H20c-11.046 0-20 8.955-20 20v51.406m591.036-71.406H1180c11.05 0 20 8.955 20 20V150"
-        ></path>
-      </g>
-      <line
-        x1="49.25%"
-        x2="49.25%"
-        y1="0"
-        y2="100%"
-        stroke="var(--color-orange)"
-        strokeWidth="4"
-        strokeDasharray="8 14"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        vectorEffect="non-scaling-stroke"
-      />
-    </svg>
-  )
-}
-
-const SingleDividerSvg = () => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 600 120"
-      width="100%"
-      preserveAspectRatio="false"
-    >
-      <line
-        x1="50%"
-        x2="50%"
-        y1="0"
-        y2="100%"
-        stroke="var(--color-orange)"
-        strokeWidth="4"
-        strokeDasharray="8 14"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        vectorEffect="non-scaling-stroke"
-      />
-    </svg>
-  )
-}
-
 interface ContainerProps {
   children?: any
   width?: 'medium' | 'narrow' | 'wide'
@@ -1348,7 +1319,7 @@ const Container = ({
   )
 }
 
-const Feature = ({ item }) => {
+const HeroFeature = ({ item }) => {
   return (
     <>
       {item.headline && (
@@ -1380,89 +1351,6 @@ const Feature = ({ item }) => {
           })}
         </div>
       )}
-    </>
-  )
-}
-
-const FeatureGrid = ({ items }) => {
-  return (
-    <>
-      <div className="featureGrid">
-        {items.map((feature, i) => {
-          const { headline, subline, media } = feature
-          const isReversed = i % 2 === 1
-
-          return (
-            <div className={`feature ${isReversed ? 'featureReverse' : ''}`}>
-              <div className="featureText">
-                <h3 className="headingLarge">
-                  <InlineTextarea name="headline" />
-                </h3>
-                <hr className="dottedBorder" />
-                <p className="textLarge">
-                  <InlineTextarea name="subline" />
-                </p>
-                {feature.url && (
-                  <div className="buttonGroup">
-                    <a href={feature.url} className="button buttonLink">
-                      Read The Docs <IconRight />
-                    </a>
-                  </div>
-                )}
-              </div>
-              <div className={`featureImage`}>
-                <img src={media.src} alt="" />
-              </div>
-            </div>
-          )
-        })}
-      </div>
-      <style jsx>{`
-        .featureGrid {
-          display: grid;
-          grid-template-columns: 1fr;
-          grid-gap: calc(var(--spacer-size) * 1.5);
-          padding-top: calc(var(--spacer-size) * 0.5) 0;
-          padding-bottom: calc(var(--spacer-size) * 0.5) 0;
-        }
-
-        .feature {
-          display: grid;
-          grid-template-columns: 1fr;
-          grid-gap: calc(var(--spacer-size) / 2);
-          align-items: center;
-
-          @media (min-width: 900px) {
-            grid-template-columns: 1fr 1fr;
-            grid-gap: var(--spacer-size);
-          }
-        }
-
-        .featureReverse {
-          direction: rtl;
-          > * {
-            direction: ltr;
-          }
-        }
-
-        .featureText {
-          :global(p) {
-            max-width: 400px;
-          }
-        }
-
-        .featureImage {
-          :global(img) {
-            display: block;
-            width: 100%;
-            height: auto;
-            margin: 0;
-            border-radius: 0.5rem;
-            box-shadow: inset 0 0 0 1px rgba(236, 72, 21, 0.03),
-              0 6px 24px rgba(0, 37, 91, 0.05), 0 2px 4px rgba(0, 37, 91, 0.03);
-          }
-        }
-      `}</style>
     </>
   )
 }

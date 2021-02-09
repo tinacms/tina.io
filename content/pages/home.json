@@ -48,16 +48,19 @@
       "subline": "Just click on the page and type. Contextual toolbars and panels appear at just the right times to create the content you want.",
       "items": [
         {
+          "_template": "feature",
           "headline": "Page building",
           "subline": "Pick from your custom predefined components to build web experiences, blazing fast",
           "media": { "src": "/img/io-placeholder.jpg" }
         },
         {
+          "_template": "feature",
           "headline": "Design Systems",
           "subline": "Build pages with YOUR design system. Maximize reusability.",
           "media": { "src": "/img/io-placeholder.jpg" }
         },
         {
+          "_template": "feature",
           "headline": "Improve Time-to-Market",
           "subline": "Better creative control, don’t rely on developers to make content changes.",
           "media": { "src": "/img/io-placeholder.jpg" }
@@ -105,21 +108,24 @@
       "_template": "features",
       "headline": "Explore the *Tina ecosystem*",
       "subline": "More than just a headless CMS, Tina has all the tools for building web experiences for interdisciplinary teams.",
-      "color": "white",
+      "color": "lightGray",
       "items": [
         {
+          "_template": "feature",
           "headline": "Data Source Plugins",
           "subline": "Data Source plugins allow you to extend Tina to connect to different databases and 3rd Party APIs",
           "url": "#",
           "media": { "src": "/img/io-placeholder.jpg" }
         },
         {
+          "_template": "feature",
           "headline": "Screen UI Plugins",
           "subline": "Data Source plugins allow you to extend Tina to connect to different databases and 3rd Party AP",
           "url": "#",
           "media": { "src": "/img/io-placeholder.jpg" }
         },
         {
+          "_template": "feature",
           "headline": "Custom Fields",
           "subline": "Extend primary fields with custom field plugins to completely control the editing experience and functionality.",
           "url": "#",
