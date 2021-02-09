@@ -71,6 +71,63 @@
       "codeSandbox": "https://codesandbox.io/embed/vigilant-cohen-73its?fontsize=147hidenavigation=17theme=dark"
     },
     {
+      "_template": "browser",
+      "headline": "Avoid Vendor Lock-In",
+      "subline": "Add visual editing to your site for logged in users.",
+      "browser": {
+        "headline": "Tina comes with editing.",
+        "subline": "Super simple, just click and edit.",
+        "text": "it's 35 degrees and sunny",
+        "media": { "src": "img/tina-wow.png" }
+      },
+      "items": [
+        {
+          "headline": "Headless Cms",
+          "subline": "Sync your website data to a headless CMS of your choice",
+          "icon": "arrowRight",
+          "media": { "src": "img/headlessCms.png" }
+        },
+        {
+          "headline": "Headless Cms",
+          "subline": "Sync your website data to a headless CMS of your choice",
+          "icon": "arrowRight",
+          "media": { "src": "img/headlessCms.png" }
+        },
+        {
+          "headline": "Headless Cms",
+          "subline": "Sync your website data to a headless CMS of your choice",
+          "icon": "arrowRight",
+          "media": { "src": "img/headlessCms.png" }
+        }
+      ]
+    },
+    {
+      "_template": "features",
+      "headline": "Explore the *Tina ecosystem*",
+      "subline": "More than just a headless CMS, Tina has all the tools for building web experiences for interdisciplinary teams.",
+      "color": "white",
+      "items": [
+        {
+          "headline": "Data Source Plugins",
+          "subline": "Data Source plugins allow you to extend Tina to connect to different databases and 3rd Party APIs",
+          "url": "#",
+          "media": { "src": "/img/io-placeholder.jpg" }
+        },
+        {
+          "headline": "Screen UI Plugins",
+          "subline": "Data Source plugins allow you to extend Tina to connect to different databases and 3rd Party AP",
+          "url": "#",
+          "media": { "src": "/img/io-placeholder.jpg" }
+        },
+        {
+          "headline": "Custom Fields",
+          "subline": "Extend primary fields with custom field plugins to completely control the editing experience and functionality.",
+          "url": "#",
+          "media": { "src": "/img/io-placeholder.jpg" }
+        }
+      ]
+    },
+    {
       "_template": "learn",
       "headline": "Learn Tina",
       "subline": "Learn Tina through Interactive & Fun Tutorials.",
@@ -83,43 +140,5 @@
         }
       ]
     }
-  ],
-  "features": {
-    "headline": "Avoid Vendor Lock-In",
-    "subline": "Add visual editing to your site for logged in users.",
-    "items": [
-      {
-        "headline": "Tina comes with editing.",
-        "subline": "Super simple, just click and edit.",
-        "text": "it's 35 degrees and sunny",
-        "isFeatured": true,
-        "icon": "",
-        "media": { "src": "img/tina-wow.png" }
-      },
-      {
-        "headline": "Headless Cms",
-        "subline": "Sync your website data to a headless CMS of your choice",
-        "text": "",
-        "isFeatured": false,
-        "icon": "arrowRight",
-        "media": { "src": "img/headlessCms.png" }
-      },
-      {
-        "headline": "Headless Cms",
-        "subline": "Sync your website data to a headless CMS of your choice",
-        "text": "",
-        "isFeatured": false,
-        "icon": "arrowRight",
-        "media": { "src": "img/headlessCms.png" }
-      },
-      {
-        "headline": "Headless Cms",
-        "subline": "Sync your website data to a headless CMS of your choice",
-        "text": "",
-        "isFeatured": false,
-        "icon": "arrowRight",
-        "media": { "src": "img/headlessCms.png" }
-      }
-    ]
-  }
+  ]
 }

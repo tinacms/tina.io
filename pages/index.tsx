@@ -7,10 +7,6 @@ import { BlockTemplate, useCMS, usePlugin } from 'tinacms'
 import { useGithubJsonForm } from 'react-tinacms-github'
 import { InlineGithubForm } from '../components/layout/InlineGithubForm'
 import ReactMarkdown from 'react-markdown'
-import HomePageTemplate, {
-  CallToActionFields,
-  FeaturedItemsFields,
-} from '../content/templates/homepageTemplate'
 import { NextSeo } from 'next-seo'
 import {
   BlocksControls,
@@ -25,19 +21,7 @@ const HomePage = (props: any) => {
 
   usePlugin(form)
 
-  const {
-    seo,
-    banner,
-    navItems,
-    hero,
-    demo,
-    ecosystem,
-    features,
-    valueProps,
-    cta,
-  } = formData
-  const featuredItem = features.items.find(item => item.isFeatured)
-  const cardItems = features.items.filter(item => !item.isFeatured)
+  const { seo, banner, navItems } = formData
 
   return (
     <InlineGithubForm form={form}>
@@ -99,62 +83,6 @@ const HomePage = (props: any) => {
         </Container>
       </div>
       <InlineBlocks name="blocks" blocks={HOMEPAGE_BLOCKS} />
-      <section className="section white">
-        <Container center width="narrow">
-          <Feature item={features} />
-        </Container>
-        <div className="spacer"></div>
-        <Container>
-          <div className="browserContainer">
-            <div className="browser browserGrid">
-              <div className="browserContent">
-                <span className="contentTitle">{featuredItem.headline}</span>
-                <span className="contentText">{featuredItem.subline}</span>
-                <span className="contentFootnote">{featuredItem.text}</span>
-              </div>
-              <div className="browserImageWrapper">
-                <img
-                  className="browserImage"
-                  src={featuredItem.media.src}
-                  alt=""
-                />
-              </div>
-            </div>
-          </div>
-          <div className="divider dividerMobile">
-            <SingleDividerSvg />
-          </div>
-          <div className="divider dividerDesktop">
-            <TripleDividerSvg />
-          </div>
-          <div className="cardGroup">
-            {cardItems.map(item => {
-              const { headline, subline, icon, media } = item
-
-              return (
-                <>
-                  <div className="card cardLinked">
-                    <div className="linkedContent">
-                      <img src={media.src} alt="" className="cardImage" />
-                      <h3 className="headingMedium">{headline}</h3>
-                      <Link href="/docs">
-                        <a className="cardLink"></a>
-                      </Link>
-                      <p className="textLarge">{subline}</p>
-                    </div>
-                    <div className="linkedIcon">
-                      {icon === 'arrowRight' && <IconRight />}
-                    </div>
-                  </div>
-                  <div className="divider dividerMobile">
-                    <SingleDividerSvg />
-                  </div>
-                </>
-              )
-            })}
-          </div>
-        </Container>
-      </section>
       <Footer />
       <style global jsx>{`
         :root {
@@ -522,7 +450,155 @@ const HomePage = (props: any) => {
             margin-left: 1px;
           }
         }
+      `}</style>
+    </InlineGithubForm>
+  )
+}
 
+export default HomePage
+
+const FeaturedItemsFields = [
+  {
+    label: 'Headline',
+    name: 'headline',
+    component: 'text',
+  },
+  {
+    label: 'Subline',
+    name: 'subline',
+    component: 'text',
+  },
+  {
+    label: 'Link URL',
+    name: 'url',
+    component: 'text',
+  },
+  {
+    label: 'Media',
+    name: 'media',
+    component: 'group',
+    fields: [
+      {
+        label: 'Media Source',
+        name: 'src',
+        component: 'text',
+      },
+    ],
+  },
+]
+
+const CallToActionFields = [
+  {
+    label: 'Headline',
+    name: 'headline',
+    component: 'markdown',
+  },
+  {
+    label: 'Subline',
+    name: 'subline',
+    component: 'text',
+  },
+  {
+    label: 'Action Items',
+    name: 'actionItems',
+    component: 'group-list',
+    fields: [
+      {
+        label: 'Action Label',
+        name: 'label',
+        component: 'text',
+      },
+      {
+        label: 'Action Variant',
+        name: 'variant',
+        component: 'select',
+        options: ['button', 'link'],
+      },
+      {
+        label: 'Action URL',
+        name: 'url',
+        component: 'text',
+      },
+      {
+        label: 'Action Icon',
+        name: 'icon',
+        component: 'select',
+        options: ['', 'arrowRight'],
+      },
+    ],
+    itemProps: (item: any) => ({
+      key: item.name,
+      label: `Action: ${item.label || 'New Action'}`,
+    }),
+  },
+]
+
+const browser_template: BlockTemplate = {
+  label: 'Browser',
+  defaultItem: {},
+  fields: [],
+}
+
+function BrowserBlock({ data, index }) {
+  const { browser, headline, subline, items } = data
+
+  return (
+    <BlocksControls
+      index={index}
+      insetControls={true}
+      focusRing={{ offset: -16 }}
+    >
+      <section className="section white">
+        <Container center width="narrow">
+          <Feature item={{ headline: headline, subline: subline }} />
+        </Container>
+        <div className="spacer"></div>
+        <Container>
+          <div className="browserContainer">
+            <div className="browser browserGrid">
+              <div className="browserContent">
+                <span className="contentTitle">{browser.headline}</span>
+                <span className="contentText">{browser.subline}</span>
+                <span className="contentFootnote">{browser.text}</span>
+              </div>
+              <div className="browserImageWrapper">
+                <img className="browserImage" src={browser.media.src} alt="" />
+              </div>
+            </div>
+          </div>
+          <div className="divider dividerMobile">
+            <SingleDividerSvg />
+          </div>
+          <div className="divider dividerDesktop">
+            <TripleDividerSvg />
+          </div>
+          <div className="cardGroup">
+            {items.map(item => {
+              return (
+                <>
+                  <div className="card cardLinked">
+                    <div className="linkedContent">
+                      <img src={item.media.src} alt="" className="cardImage" />
+                      <h3 className="headingMedium">{item.headline}</h3>
+                      <Link href="/docs">
+                        <a className="cardLink"></a>
+                      </Link>
+                      <p className="textLarge">{item.subline}</p>
+                    </div>
+                    <div className="linkedIcon">
+                      {item.icon === 'arrowRight' && <IconRight />}
+                    </div>
+                  </div>
+                  <div className="divider dividerMobile">
+                    <SingleDividerSvg />
+                  </div>
+                </>
+              )
+            })}
+          </div>
+        </Container>
+      </section>
+      <style jsx>{`
         .browser {
           position: relative;
           padding: 4rem 3rem 3rem 3rem;
@@ -569,9 +645,6 @@ const HomePage = (props: any) => {
             grid-template-columns: 1fr 1fr;
             align-items: center;
           }
-        }
-
-        .browserContent {
         }
 
         .contentTitle {
@@ -751,11 +824,9 @@ const HomePage = (props: any) => {
           margin-bottom: 1.125rem;
         }
       `}</style>
-    </InlineGithubForm>
+    </BlocksControls>
   )
 }
-
-export default HomePage
 
 const learn_template: BlockTemplate = {
   label: 'Flying Tina',
@@ -1073,10 +1144,67 @@ const HOMEPAGE_BLOCKS = {
     Component: DemoBlock,
     template: demo_teamplate,
   },
+  browser: {
+    Component: BrowserBlock,
+    template: browser_template,
+  },
   learn: {
     Component: LearnBlock,
     template: learn_template,
   },
+}
+
+const HomePageTemplate = {
+  label: 'Home Page',
+  defaultItem: {},
+  fields: [
+    {
+      label: 'Nav',
+      name: 'navItems',
+      component: 'group-list',
+      fields: [
+        {
+          label: 'Label',
+          name: 'label',
+          component: 'text',
+        },
+        {
+          label: 'Link',
+          name: 'link',
+          component: 'text',
+        },
+      ],
+      itemProps: (item: any) => ({
+        key: item.link,
+        label: item.label,
+      }),
+    },
+    {
+      label: 'Page Sections',
+      name: 'blocks',
+      component: 'blocks',
+      templates: {
+        hero: hero_template,
+        features: features_template,
+        demo: demo_teamplate,
+        browser: browser_template,
+        learn: learn_template,
+      },
+    },
+    {
+      label: 'SEO',
+      name: 'seo',
+      component: 'group',
+      fields: [
+        { name: 'title', label: 'Page Title', component: 'text' },
+        {
+          name: 'description',
+          label: 'Page Description',
+          component: 'textarea',
+        },
+      ],
+    },
+  ],
 }
 
 export const getStaticProps: GetStaticProps = async function({
