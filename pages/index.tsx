@@ -124,7 +124,7 @@ const HomePage = (props: any) => {
           margin-bottom: 2rem;
 
           :global(em),
-          :global(b) {
+          :global(strong) {
             font-style: inherit;
             font-weight: inherit;
             color: var(--color-emphasis);
