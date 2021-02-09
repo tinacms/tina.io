@@ -155,32 +155,6 @@ const HomePage = (props: any) => {
           </div>
         </Container>
       </section>
-      <div className="learnTina">
-        <div className="learnContainer">
-          <div className="learnImageWrapper">
-            <img className="learnImage" src="img/flyingTina.png" alt="" />
-          </div>
-          <div className="learnContent">
-            <h3 className="headingLarge">{cta.headline}</h3>
-            <p className="textLarge">{cta.subline}.</p>
-            <div className="buttonGroup">
-              {cta.actionItems.map(item => {
-                const { variant, label, icon, url } = item
-                return (
-                  <a
-                    href={url}
-                    className={`button ${
-                      variant === 'button' ? 'buttonOrange' : 'buttonGhost'
-                    }`}
-                  >
-                    {label} {icon === 'arrowRight' && <IconRight />}
-                  </a>
-                )
-              })}
-            </div>
-          </div>
-        </div>
-      </div>
       <Footer />
       <style global jsx>{`
         :root {
@@ -776,7 +750,64 @@ const HomePage = (props: any) => {
           width: auto;
           margin-bottom: 1.125rem;
         }
+      `}</style>
+    </InlineGithubForm>
+  )
+}
 
+export default HomePage
+
+const learn_template: BlockTemplate = {
+  label: 'Flying Tina',
+  defaultItem: {
+    headline: 'Learn Tina',
+    subline: 'Learn Tina through Interactive & Fun Tutorials.',
+    actionItems: [
+      {
+        variant: 'button',
+        label: 'Get Started',
+        icon: 'arrowRight',
+        url: '#',
+      },
+    ],
+  },
+  fields: [...CallToActionFields],
+}
+
+function LearnBlock({ data, index }) {
+  return (
+    <BlocksControls
+      index={index}
+      insetControls={true}
+      focusRing={{ offset: -16 }}
+    >
+      <div className="learnTina">
+        <div className="learnContainer">
+          <div className="learnImageWrapper">
+            <img className="learnImage" src="img/flyingTina.png" alt="" />
+          </div>
+          <div>
+            <h3 className="headingLarge">{data.headline}</h3>
+            <p className="textLarge">{data.subline}.</p>
+            <div className="buttonGroup">
+              {data.actionItems.map(item => {
+                const { variant, label, icon, url } = item
+                return (
+                  <a
+                    href={url}
+                    className={`button ${
+                      variant === 'button' ? 'buttonOrange' : 'buttonGhost'
+                    }`}
+                  >
+                    {label} {icon === 'arrowRight' && <IconRight />}
+                  </a>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+      <style jsx>{`
         .learnTina {
           padding: 5rem 0;
           background-image: url('/img/clouds.jpg');
@@ -799,6 +830,7 @@ const HomePage = (props: any) => {
             grid-template-columns: 2fr 3fr;
           }
         }
+
         @keyframes learnImage {
           0% {
             transform: translate3d(0, -0.5rem, 0);
@@ -817,15 +849,10 @@ const HomePage = (props: any) => {
             animation: none;
           }
         }
-
-        .learnContent {
-        }
       `}</style>
-    </InlineGithubForm>
+    </BlocksControls>
   )
 }
-
-export default HomePage
 
 const hero_template: BlockTemplate = {
   label: 'Hero',
@@ -1045,6 +1072,10 @@ const HOMEPAGE_BLOCKS = {
   demo: {
     Component: DemoBlock,
     template: demo_teamplate,
+  },
+  learn: {
+    Component: LearnBlock,
+    template: learn_template,
   },
 }
 

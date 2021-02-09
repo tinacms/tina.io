@@ -69,6 +69,19 @@
       "headline": "Build with *your components*",
       "subline": "Let your team build great layouts with your own React components.",
       "codeSandbox": "https://codesandbox.io/embed/vigilant-cohen-73its?fontsize=147hidenavigation=17theme=dark"
+    },
+    {
+      "_template": "learn",
+      "headline": "Learn Tina",
+      "subline": "Learn Tina through Interactive & Fun Tutorials.",
+      "actionItems": [
+        {
+          "variant": "button",
+          "label": "Get Started",
+          "icon": "arrowRight",
+          "url": "#"
+        }
+      ]
     }
   ],
   "features": {
@@ -106,18 +119,6 @@
         "isFeatured": false,
         "icon": "arrowRight",
         "media": { "src": "img/headlessCms.png" }
-      }
-    ]
-  },
-  "cta": {
-    "headline": "Learn Tina",
-    "subline": "Learn Tina through Interactive & Fun Tutorials.",
-    "actionItems": [
-      {
-        "variant": "button",
-        "label": "Get Started",
-        "icon": "arrowRight",
-        "url": "#"
       }
     ]
   }
