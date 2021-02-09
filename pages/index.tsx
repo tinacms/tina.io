@@ -34,55 +34,6 @@ const HomePage = (props: any) => {
           description: seo.description,
         }}
       />
-      <div className="banner orange">
-        <Container>
-          <Link href={banner.link}>
-            <a>
-              <span>
-                <ReactMarkdown source={banner.text} />
-              </span>
-              <IconRight />
-            </a>
-          </Link>
-        </Container>
-      </div>
-      <div className="navbar black">
-        <Container>
-          <div className="navGrid">
-            <Link href="/">
-              <a className="logomark navLogo">
-                <TinaIcon />
-                <h1 className="wordmark">
-                  Tina<span>.io</span>
-                </h1>
-              </a>
-            </Link>
-            <nav className="navWrapper navNav">
-              <ul className="navUl">
-                {navItems.map(item => {
-                  const { link, label } = item
-
-                  return (
-                    <li className="navLi">
-                      <Link href={link}>{label}</Link>
-                    </li>
-                  )
-                })}
-              </ul>
-            </nav>
-            <div className="githubStar navGithub">
-              <iframe
-                className="starButton"
-                src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
-                frameBorder="0"
-                scrolling="0"
-                width="150px"
-                height="30px"
-              ></iframe>
-            </div>
-          </div>
-        </Container>
-      </div>
       <InlineBlocks name="blocks" blocks={HOMEPAGE_BLOCKS} />
       <Footer />
       <style global jsx>{`
@@ -320,6 +271,169 @@ const HomePage = (props: any) => {
           color: var(--color-black);
         }
       `}</style>
+    </InlineGithubForm>
+  )
+}
+
+export default HomePage
+
+const CallToActionFields = [
+  {
+    label: 'Headline',
+    name: 'headline',
+    component: 'markdown',
+  },
+  {
+    label: 'Subline',
+    name: 'subline',
+    component: 'text',
+  },
+  {
+    label: 'Action Items',
+    name: 'actionItems',
+    component: 'group-list',
+    fields: [
+      {
+        label: 'Action Label',
+        name: 'label',
+        component: 'text',
+      },
+      {
+        label: 'Action Variant',
+        name: 'variant',
+        component: 'select',
+        options: ['button', 'link'],
+      },
+      {
+        label: 'Action URL',
+        name: 'url',
+        component: 'text',
+      },
+      {
+        label: 'Action Icon',
+        name: 'icon',
+        component: 'select',
+        options: ['', 'arrowRight'],
+      },
+    ],
+    itemProps: (item: any) => ({
+      key: item.name,
+      label: `Action: ${item.label || 'New Action'}`,
+    }),
+  },
+]
+
+const navbar_template: BlockTemplate = {
+  label: 'Navbar',
+  defaultItem: {},
+  fields: [
+    {
+      label: 'Banner',
+      name: 'banner',
+      component: 'group',
+      fields: [
+        {
+          label: 'Display Banner',
+          name: 'display',
+          component: 'toggle',
+        },
+        {
+          label: 'Text',
+          name: 'text',
+          component: 'text',
+        },
+        {
+          label: 'Link',
+          name: 'link',
+          component: 'text',
+        },
+      ],
+    },
+    {
+      label: 'Nav Items',
+      name: 'navItems',
+      component: 'group-list',
+      fields: [
+        {
+          label: 'Label',
+          name: 'label',
+          component: 'text',
+        },
+        {
+          label: 'Link',
+          name: 'link',
+          component: 'text',
+        },
+      ],
+      //@ts-ignore
+      itemProps: (item: any) => ({
+        key: item.link,
+        label: item.label,
+      }),
+    },
+  ],
+}
+
+function NavbarBlock({ data, index }) {
+  const { banner, navItems } = data
+
+  return (
+    <BlocksControls
+      index={index}
+      insetControls={true}
+      focusRing={{ offset: -16 }}
+    >
+      {banner.display && (
+        <div className="banner orange">
+          <Container>
+            <Link href={banner.link}>
+              <a>
+                <span>
+                  <ReactMarkdown source={banner.text} />
+                </span>
+                <IconRight />
+              </a>
+            </Link>
+          </Container>
+        </div>
+      )}
+      <div className="navbar black">
+        <Container>
+          <div className="navGrid">
+            <Link href="/">
+              <a className="logomark navLogo">
+                <TinaIcon />
+                <h1 className="wordmark">
+                  Tina<span>.io</span>
+                </h1>
+              </a>
+            </Link>
+            <nav className="navWrapper navNav">
+              <ul className="navUl">
+                {navItems.map(item => {
+                  const { link, label } = item
+
+                  return (
+                    <li className="navLi">
+                      <Link href={link}>{label}</Link>
+                    </li>
+                  )
+                })}
+              </ul>
+            </nav>
+            <div className="githubStar navGithub">
+              <iframe
+                className="starButton"
+                src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
+                frameBorder="0"
+                scrolling="0"
+                width="150px"
+                height="30px"
+              ></iframe>
+            </div>
+          </div>
+        </Container>
+      </div>
       <style jsx>{`
         .banner {
           :global(a) {
@@ -457,57 +571,9 @@ const HomePage = (props: any) => {
           }
         }
       `}</style>
-    </InlineGithubForm>
+    </BlocksControls>
   )
 }
-
-export default HomePage
-
-const CallToActionFields = [
-  {
-    label: 'Headline',
-    name: 'headline',
-    component: 'markdown',
-  },
-  {
-    label: 'Subline',
-    name: 'subline',
-    component: 'text',
-  },
-  {
-    label: 'Action Items',
-    name: 'actionItems',
-    component: 'group-list',
-    fields: [
-      {
-        label: 'Action Label',
-        name: 'label',
-        component: 'text',
-      },
-      {
-        label: 'Action Variant',
-        name: 'variant',
-        component: 'select',
-        options: ['button', 'link'],
-      },
-      {
-        label: 'Action URL',
-        name: 'url',
-        component: 'text',
-      },
-      {
-        label: 'Action Icon',
-        name: 'icon',
-        component: 'select',
-        options: ['', 'arrowRight'],
-      },
-    ],
-    itemProps: (item: any) => ({
-      key: item.name,
-      label: `Action: ${item.label || 'New Action'}`,
-    }),
-  },
-]
 
 const browser_template: BlockTemplate = {
   label: 'Browser',
@@ -1193,6 +1259,10 @@ const FEATURE_BLOCKS = {
 }
 
 const HOMEPAGE_BLOCKS = {
+  navbar: {
+    Component: NavbarBlock,
+    template: navbar_template,
+  },
   hero: {
     Component: HeroBlock,
     template: hero_template,
