@@ -975,7 +975,12 @@ function DemoBlock({ data, index }) {
 
 const feature_template: BlockTemplate = {
   label: 'Feature',
-  defaultItem: {},
+  defaultItem: {
+    headline: 'New Feature',
+    subline:
+      'Pick from your custom predefined components to build web experiences, blazing fast',
+    media: { src: '/img/io-placeholder.jpg' },
+  },
   fields: [
     {
       label: 'Headline',
@@ -1005,6 +1010,9 @@ const feature_template: BlockTemplate = {
       ],
     },
   ],
+  itemProps: (item: any) => ({
+    label: item.headline,
+  }),
 }
 
 function FeatureBlock({ data, index }) {
@@ -1013,27 +1021,29 @@ function FeatureBlock({ data, index }) {
   return (
     <>
       {index !== 0 && <div className="spacer spacerBig"></div>}
-      <div className={`feature ${isReversed ? 'featureReverse' : ''}`}>
-        <div className="featureText">
-          <h3 className="headingLarge">
-            <InlineTextarea name="headline" />
-          </h3>
-          <hr className="dottedBorder" />
-          <p className="textLarge">
-            <InlineTextarea name="subline" />
-          </p>
-          {data.url && (
-            <div className="buttonGroup">
-              <a href={data.url} className="button buttonLink">
-                Read The Docs <IconRight />
-              </a>
-            </div>
-          )}
+      <BlocksControls index={index}>
+        <div className={`feature ${isReversed ? 'featureReverse' : ''}`}>
+          <div className="featureText">
+            <h3 className="headingLarge">
+              <InlineTextarea name="headline" />
+            </h3>
+            <hr className="dottedBorder" />
+            <p className="textLarge">
+              <InlineTextarea name="subline" />
+            </p>
+            {data.url && (
+              <div className="buttonGroup">
+                <a href={data.url} className="button buttonLink">
+                  Read The Docs <IconRight />
+                </a>
+              </div>
+            )}
+          </div>
+          <div className={`featureImage`}>
+            <img src={data.media.src} alt="" />
+          </div>
         </div>
-        <div className={`featureImage`}>
-          <img src={data.media.src} alt="" />
-        </div>
-      </div>
+      </BlocksControls>
       <style jsx>{`
         .feature {
           position: relative;
@@ -1114,10 +1124,14 @@ const features_template: BlockTemplate = {
   },
   fields: [
     {
-      label: 'Header',
-      name: 'header',
-      component: 'group',
-      fields: [...CallToActionFields],
+      label: 'Headline',
+      name: 'headline',
+      component: 'text',
+    },
+    {
+      label: 'Subline',
+      name: 'subline',
+      component: 'text',
     },
     {
       label: 'Color',
@@ -1136,6 +1150,10 @@ const features_template: BlockTemplate = {
       label: 'Items',
       name: 'items',
       component: 'blocks',
+      //@ts-ignore
+      templates: {
+        feature: feature_template,
+      },
     },
   ],
 }
