@@ -53,6 +53,7 @@ export const GlobalStyles = css.global`
 
   .headingLarge {
     font-family: var(--font-tuner);
+    line-height: 1.4;
     margin-bottom: 1rem;
     font-size: 2.25rem;
     font-weight: bold;
@@ -79,7 +80,7 @@ export const GlobalStyles = css.global`
 
   .textLarge {
     font-size: 1.125rem;
-    opacity: 0.7;
+    opacity: 0.85;
 
     &:not(:last-child) {
       margin-bottom: 1.25rem;
@@ -142,6 +143,6 @@ export const GlobalStyles = css.global`
 
   .white {
     background: var(--color-white);
-    color: var(--color-black);
+    color: var(--color-blue);
   }
 `

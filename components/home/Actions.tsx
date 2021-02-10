@@ -40,7 +40,6 @@ export const Actions = ({ items, align = 'left' }) => {
 
         .action {
           position: relative;
-          font-family: var(--font-tuner);
           text-decoration: none;
           color: inherit;
           font-size: 1.25rem;
@@ -81,7 +80,7 @@ export const Actions = ({ items, align = 'left' }) => {
         }
 
         .link {
-          font-size: 1rem;
+          font-size: 1.125rem;
           color: var(--color-orange);
           padding: 0;
 
@@ -90,6 +89,10 @@ export const Actions = ({ items, align = 'left' }) => {
             height: calc(100% + 1rem);
             top: -0.5rem;
             left: -0.75rem;
+          }
+
+          :global(svg) {
+            height: 1rem;
           }
         }
 

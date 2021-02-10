@@ -53,11 +53,11 @@ export const Container = ({
           max-width: 740px;
 
           @media (min-width: 600px) {
-            width: 54%;
+            width: 60%;
           }
 
           @media (min-width: 1000px) {
-            width: 48%;
+            width: 55%;
           }
         }
 

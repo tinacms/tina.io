@@ -149,12 +149,12 @@
           "actions": [
             {
               "variant": "link",
-              "label": "Visit The Docs",
+              "label": "Read the Docs",
               "icon": "arrowRight",
-              "url": "#"
+              "url": "/docs/plugins/fields/custom-fields"
             }
           ],
-          "media": { "src": "/img/io-placeholder.jpg" }
+          "media": { "src": "/gif/blocks.gif" }
         }
       ]
     },

@@ -85,7 +85,11 @@ export const HeroFeature = ({ item }) => {
       {item.headline && (
         <h2 className="headingHuge">
           <InlineWysiwyg name="headline">
-            <ReactMarkdown source={item.headline} />
+            <ReactMarkdown
+              disallowedTypes={['paragraph', 'heading']}
+              unwrapDisallowed
+              source={item.headline}
+            />
           </InlineWysiwyg>
         </h2>
       )}
