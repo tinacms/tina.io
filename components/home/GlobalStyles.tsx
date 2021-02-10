@@ -46,7 +46,10 @@ export const GlobalStyles = css.global`
     font-weight: bold;
     font-size: 2.75rem;
     line-height: 1.4;
-    margin-bottom: 2rem;
+
+    &:not(:last-child) {
+      margin-bottom: 2.5rem;
+    }
 
     :global(em),
     :global(strong) {
@@ -79,7 +82,7 @@ export const GlobalStyles = css.global`
     font-size: 1.375rem;
 
     &:not(:last-child) {
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
     }
   }
 
