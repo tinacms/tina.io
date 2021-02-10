@@ -1290,31 +1290,11 @@ const HomePageTemplate = {
   defaultItem: {},
   fields: [
     {
-      label: 'Nav',
-      name: 'navItems',
-      component: 'group-list',
-      fields: [
-        {
-          label: 'Label',
-          name: 'label',
-          component: 'text',
-        },
-        {
-          label: 'Link',
-          name: 'link',
-          component: 'text',
-        },
-      ],
-      itemProps: (item: any) => ({
-        key: item.link,
-        label: item.label,
-      }),
-    },
-    {
       label: 'Page Sections',
       name: 'blocks',
       component: 'blocks',
       templates: {
+        navbar: navbar_template,
         hero: hero_template,
         features: features_template,
         demo: demo_teamplate,
