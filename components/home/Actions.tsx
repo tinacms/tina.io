@@ -5,23 +5,21 @@ import { IconRight } from './Icons'
 export const Actions = ({ items, align = 'left' }) => {
   return (
     <>
-      <InlineGroup name="actions" fields={ActionFields}>
-        <div
-          className={[
-            'actionGroup',
-            align === 'center' && 'actionGroupCenter',
-          ].join(' ')}
-        >
-          {items.map(item => {
-            const { variant, label, icon, url } = item
-            return (
-              <a href={url} className={`action ${variant}`}>
-                {label} {icon === 'arrowRight' && <IconRight />}
-              </a>
-            )
-          })}
-        </div>
-      </InlineGroup>
+      <div
+        className={[
+          'actionGroup',
+          align === 'center' && 'actionGroupCenter',
+        ].join(' ')}
+      >
+        {items.map(item => {
+          const { variant, label, icon, url } = item
+          return (
+            <a href={url} className={`action ${variant}`}>
+              {label} {icon === 'arrowRight' && <IconRight />}
+            </a>
+          )
+        })}
+      </div>
       <style jsx>{`
         .actionGroup {
           display: flex;
