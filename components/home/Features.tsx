@@ -189,7 +189,7 @@ export const features_template: BlockTemplate = {
       options: [
         { label: 'White', value: 'white' },
         { label: 'Light Gray', value: 'lightGray' },
-        { label: 'Orange', value: 'orage' },
+        { label: 'Orange', value: 'orange' },
         { label: 'Black', value: 'black' },
         { label: 'Blue', value: 'blue' },
       ],
