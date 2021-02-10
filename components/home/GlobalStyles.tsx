@@ -32,6 +32,15 @@ export const GlobalStyles = css.global`
     padding: var(--section-padding) 0;
   }
 
+  h1,
+  h2,
+  h3,
+  h4 {
+    p {
+      font-weight: inherit;
+    }
+  }
+
   .headingHuge {
     font-family: var(--font-tuner);
     font-weight: bold;
@@ -44,19 +53,15 @@ export const GlobalStyles = css.global`
       font-weight: inherit;
       color: var(--color-emphasis);
       font-style: inherit;
-
-      @media (min-width: 600px) {
-        white-space: nowrap;
-      }
     }
   }
 
   .headingLarge {
     font-family: var(--font-tuner);
+    font-weight: bold;
     line-height: 1.4;
     margin-bottom: 1rem;
     font-size: 2.25rem;
-    font-weight: bold;
   }
 
   .headingMedium {

@@ -77,6 +77,7 @@ export const GlobalStyle = React.memo(createGlobalStyle`
 
   html {
     font-size: 81.25%;
+    font-weight: normal;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
       "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
       "Helvetica Neue", sans-serif;
@@ -126,7 +127,7 @@ export const GlobalStyle = React.memo(createGlobalStyle`
       font-family: inherit;
       line-height: inherit;
       font-size: 100%;
-      font-weight: normal;
+      font-weight: inherit;
       scrollbar-width: thin;
       scrollbar-color: #E1DDEC var(--color-light);
       
