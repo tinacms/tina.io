@@ -30,15 +30,15 @@
       "_template": "hero",
       "headline": "Content editing for modern teams",
       "subline": "Tina is an open-source CMS admin that talks to any API",
-      "actionItems": [
+      "actions": [
         {
-          "variant": "button",
+          "variant": "orange",
           "label": "Try Demo",
           "icon": "arrowRight",
           "url": "#"
         },
         {
-          "variant": "link",
+          "variant": "ghost",
           "label": "Learn More",
           "icon": "",
           "url": "#"
@@ -118,32 +118,53 @@
           "_template": "feature",
           "headline": "Data Source Plugins",
           "subline": "Data Source plugins allow you to extend Tina to connect to different databases and 3rd Party APIs",
-          "url": "#",
+          "actions": [
+            {
+              "variant": "link",
+              "label": "Visit The Docs",
+              "icon": "arrowRight",
+              "url": "#"
+            }
+          ],
           "media": { "src": "/img/io-placeholder.jpg" }
         },
         {
           "_template": "feature",
           "headline": "Screen UI Plugins",
           "subline": "Data Source plugins allow you to extend Tina to connect to different databases and 3rd Party AP",
-          "url": "#",
+          "actions": [
+            {
+              "variant": "link",
+              "label": "Visit The Docs",
+              "icon": "arrowRight",
+              "url": "#"
+            }
+          ],
           "media": { "src": "/img/io-placeholder.jpg" }
         },
         {
           "_template": "feature",
           "headline": "Custom Fields",
           "subline": "Extend primary fields with custom field plugins to completely control the editing experience and functionality.",
-          "url": "#",
+          "actions": [
+            {
+              "variant": "link",
+              "label": "Visit The Docs",
+              "icon": "arrowRight",
+              "url": "#"
+            }
+          ],
           "media": { "src": "/img/io-placeholder.jpg" }
         }
       ]
     },
     {
-      "_template": "learn",
+      "_template": "flying",
       "headline": "Learn Tina",
       "subline": "Learn Tina through Interactive & Fun Tutorials.",
-      "actionItems": [
+      "actions": [
         {
-          "variant": "button",
+          "variant": "orange",
           "label": "Get Started",
           "icon": "arrowRight",
           "url": "#"
