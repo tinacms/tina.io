@@ -75,6 +75,7 @@
     "react-textarea-autosize": "^7.1.2",
     "react-tinacms-date": "^0.34.0",
     "react-tinacms-editor": "^0.35.0",
+    "react-tinacms-field-condition": "^0.2.1",
     "react-tinacms-github": "^0.35.0",
     "react-tinacms-inline": "^0.35.0",
     "remark": "^11.0.2",
