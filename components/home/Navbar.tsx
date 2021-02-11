@@ -10,26 +10,32 @@ export const navbar_template: BlockTemplate = {
   defaultItem: {},
   fields: [
     {
-      label: 'Banner',
-      name: 'banner',
-      component: 'group',
-      fields: [
-        {
-          label: 'Display Banner',
-          name: 'display',
-          component: 'toggle',
-        },
-        {
-          label: 'Text',
-          name: 'text',
-          component: 'text',
-        },
-        {
-          label: 'Link',
-          name: 'link',
-          component: 'text',
-        },
-      ],
+      label: 'Display Banner',
+      name: 'banner.display',
+      component: 'toggle',
+    },
+    {
+      name: '',
+      //@ts-ignore
+      condition: value => value.banner.display === true,
+      component: 'conditional',
+      field: {
+        label: 'Banner',
+        name: 'banner',
+        component: 'group',
+        fields: [
+          {
+            label: 'Text',
+            name: 'text',
+            component: 'text',
+          },
+          {
+            label: 'Link',
+            name: 'link',
+            component: 'text',
+          },
+        ],
+      },
     },
     {
       label: 'Nav Items',
