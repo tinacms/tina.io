@@ -8,19 +8,9 @@ import { InlineGithubForm } from '../components/layout/InlineGithubForm'
 import { NextSeo } from 'next-seo'
 import { InlineBlocks } from 'react-tinacms-inline'
 import {
-  BrowserBlock,
-  browser_template,
-  DemoBlock,
-  demo_teamplate,
-  FeaturesBlock,
-  features_template,
-  FlyingBlock,
-  flying_template,
   GlobalStyles,
-  HeroBlock,
-  hero_template,
-  NavbarBlock,
-  navbar_template,
+  HOMEPAGE_BLOCKS,
+  HOMEPAGE_TEMPLATES,
 } from 'components/home'
 
 const HomePage = (props: any) => {
@@ -52,33 +42,6 @@ const HomePage = (props: any) => {
 
 export default HomePage
 
-const HOMEPAGE_BLOCKS = {
-  navbar: {
-    Component: NavbarBlock,
-    template: navbar_template,
-  },
-  hero: {
-    Component: HeroBlock,
-    template: hero_template,
-  },
-  features: {
-    Component: FeaturesBlock,
-    template: features_template,
-  },
-  demo: {
-    Component: DemoBlock,
-    template: demo_teamplate,
-  },
-  browser: {
-    Component: BrowserBlock,
-    template: browser_template,
-  },
-  flying: {
-    Component: FlyingBlock,
-    template: flying_template,
-  },
-}
-
 const HomePageTemplate = {
   label: 'Home Page',
   defaultItem: {},
@@ -87,14 +50,7 @@ const HomePageTemplate = {
       label: 'Page Sections',
       name: 'blocks',
       component: 'blocks',
-      templates: {
-        navbar: navbar_template,
-        hero: hero_template,
-        features: features_template,
-        demo: demo_teamplate,
-        browser: browser_template,
-        flying: flying_template,
-      },
+      templates: HOMEPAGE_TEMPLATES,
     },
     {
       label: 'SEO',
