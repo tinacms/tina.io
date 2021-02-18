@@ -48,7 +48,7 @@ npm run start
 
 ## Run Development Packages 
 
-To contribute to Tina code, after installing the development setup we can run the Demo applications contained in the _packages_ directory, how **demo-cra**, **demo-gatsby** and **demo-next**.
+After installing the development setup you can run demo applications contained in the _packages_ directory **demo-cra**, **demo-gatsby** and **demo-next**.
 
 These projects can be used as a development environment for Tina packages, you can edit any other package contained within Tina packages how **@tinacms** and **react-tinacms-editor**.
 
