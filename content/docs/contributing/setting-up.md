@@ -50,7 +50,7 @@ npm run start
 
 After installing the development setup you can run demo applications contained in the _packages_ directory **demo-cra**, **demo-gatsby** and **demo-next**.
 
-These projects can be used as a development environment for Tina packages, you can edit any other package contained within Tina packages how **@tinacms** and **react-tinacms-editor**.
+These projects can be used as a development environment for Tina packages, you can edit any other package contained within Tina packages.
 
 When editing the packages of tina we can execute the command `npm run dev` to execute  an development build on the repository packages.
 
