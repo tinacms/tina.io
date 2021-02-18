@@ -9,9 +9,9 @@ consumes:
   - file: /lerna.json
     details: Uses the `run` script
   - file: README.md
-    details: Shows commands, how to get started
+    details: 'Shows commands, how to get started'
+last_edited: '2021-02-18T13:05:33.946Z'
 ---
-
 ## Development
 
 To get started:
@@ -28,20 +28,32 @@ cd packages/demo-gatsby
 npm run start
 ```
 
-**Do not run `npm install` from inside the `packages` directory**
+**Do not run** `npm install` from inside the `packages` directory
 
 > **TinaCMS** uses [**Lerna**](https://lerna.js.org/) to manage dependencies when developing locally. This allows the various packages to reference each other via symlinks. Running `npm install` from within a package replaces the symlinks with references to the packages in the npm registry.
 
 ## Commands
 
-| Commands                           | Description                                   |
-| ---------------------------------- | --------------------------------------------- |
-| npm run bootstrap                  | Install dependencies and link local packages. |
-| npm run build                      | Build all packages                            |
-| npm run test                       | Run tests for all packages                    |
-| lerna run build --scope \<package> | Build only \<package>.                        |
-| lerna run watch                    | Watch all packages for rebuilds.              |
+| Commands | Description |
+| --- | --- |
+| npm run bootstrap | Install dependencies and link local packages. |
+| npm run build | Build all packages |
+| npm run test | Run tests for all packages |
+| lerna run build --scope <package> | Build only <package>. |
+| lerna run watch | Watch all packages for rebuilds. |
 
 ## Links
 
-- [Circle CI](https://circleci.com/gh/tinacms/tinacms): Continuous Integration
+* [Circle CI](https://circleci.com/gh/tinacms/tinacms): Continuous Integration
+
+## Run Development Packages 
+
+To contribute to Tina code, after installing the development setup we can run the Demo applications contained in the _packages_ directory, how **demo-cra**, **demo-gatsby** and **demo-next**.
+
+These projects can be used as a development environment for Tina packages, you can edit any other package contained within Tina packages how **@tinacms** and **react-tinacms-editor**.
+
+When editing the packages of tina we can execute the command `npm run dev` to execute  an development build on the repository packages.
+
+This command will build all Tina packages. This will reflect in the references of the tina demo packages, thus updating the demo packages according to the changes made.
+
+This way you can change the tinacms packages and test the changes in the demo packages as a development environment.
