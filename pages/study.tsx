@@ -13,7 +13,7 @@ import { DynamicLink, ButtonGroup } from '../components/ui'
 import { InlineGithubForm } from '../components/layout/InlineGithubForm'
 import { Button } from '../components/ui'
 import { useGithubJsonForm } from 'react-tinacms-github'
-import { InlineTextareaField } from 'react-tinacms-inline'
+import { InlineTextarea } from 'react-tinacms-inline'
 import { InlineWysiwyg } from 'react-tinacms-editor'
 import { GetStaticProps } from 'next'
 import { getJsonPreviewProps } from '../utils/getJsonPreviewProps'
@@ -40,7 +40,7 @@ function StudySignupPage({ file: study, metadata, preview }) {
                 <InfoContent>
                   <InfoText>
                     <h2>
-                      <InlineTextareaField name="headline" />
+                      <InlineTextarea name="headline" />
                     </h2>
                     <hr />
                     <InlineWysiwyg name="body">

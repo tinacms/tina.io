@@ -15,7 +15,7 @@ import { useRouter } from 'next/router'
 import { getGuideNavProps } from 'utils/guide_helpers'
 import { useMemo } from 'react'
 import { usePlugin, useFormScreenPlugin } from 'tinacms'
-import { InlineTextareaField } from 'react-tinacms-inline'
+import { InlineTextarea } from 'react-tinacms-inline'
 import { useGithubMarkdownForm, useGithubJsonForm } from 'react-tinacms-github'
 import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
@@ -157,7 +157,7 @@ export default function GuideTemplate({
         <DocsGrid>
           <DocGridHeader>
             <DocsPageTitle>
-              <InlineTextareaField name="frontmatter.title" />
+              <InlineTextarea name="frontmatter.title" />
             </DocsPageTitle>
           </DocGridHeader>
           <DocGridToc>

@@ -10,7 +10,7 @@ import {
   MarkdownContent,
   DocsTextWrapper,
 } from 'components/layout'
-import { InlineTextareaField } from 'react-tinacms-inline'
+import { InlineTextarea } from 'react-tinacms-inline'
 import { useGithubMarkdownForm } from 'react-tinacms-github'
 import { fileToUrl } from 'utils/urls'
 import { getPageRef } from 'utils/docs/getDocProps'
@@ -61,7 +61,7 @@ function BlogTemplate({ file, siteConfig, prevPage, nextPage }) {
           }}
         />
         <Hero>
-          <InlineTextareaField name="frontmatter.title" />
+          <InlineTextarea name="frontmatter.title" />
         </Hero>
         <BlogWrapper>
           <DocsTextWrapper>
@@ -70,7 +70,7 @@ function BlogTemplate({ file, siteConfig, prevPage, nextPage }) {
                 <MetaBit>{formatDate(frontmatter.date)}</MetaBit>
                 <MetaBit>
                   <span>By</span>{' '}
-                  <InlineTextareaField name="frontmatter.author" />
+                  <InlineTextarea name="frontmatter.author" />
                 </MetaBit>
               </MetaWrap>
               <EditLink />

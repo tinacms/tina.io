@@ -4,7 +4,7 @@ import { NextSeo } from 'next-seo'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { DocsLayout, MarkdownContent } from 'components/layout'
 import { NavToggle, DocsPagination, LastEdited } from 'components/ui'
-import { InlineTextareaField } from 'react-tinacms-inline'
+import { InlineTextarea } from 'react-tinacms-inline'
 import { useGithubMarkdownForm } from 'react-tinacms-github'
 import { getDocProps } from 'utils/docs/getDocProps'
 import { InlineGithubForm } from 'components/layout/InlineGithubForm'
@@ -64,7 +64,7 @@ function DocTemplate(props) {
         <DocsGrid>
           <DocGridHeader>
             <DocsPageTitle>
-              <InlineTextareaField name="frontmatter.title" />
+              <InlineTextarea name="frontmatter.title" />
             </DocsPageTitle>
           </DocGridHeader>
           <DocGridToc>

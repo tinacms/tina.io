@@ -6,8 +6,7 @@ import { GetStaticProps } from 'next'
 import {
   InlineBlocks,
   InlineField,
-  InlineTextareaField,
-  BlockTextarea,
+  InlineTextarea,
   BlocksControls,
 } from 'react-tinacms-inline'
 import { EditLink } from 'components/layout/EditLink'
@@ -110,7 +109,7 @@ const HomePage = (props: any) => {
       <Layout>
         <DefaultSeo titleTemplate={formData.title + ' | %s'} />
         <Hero overlap narrow>
-          <InlineTextareaField name="headline" />
+          <InlineTextarea name="headline" />
         </Hero>
         <InlineField name="hero_video">
           {({ input }) => {
@@ -124,7 +123,7 @@ const HomePage = (props: any) => {
               <CtaLayout>
                 <h2>
                   <em>
-                    <InlineTextareaField name="description" />
+                    <InlineTextarea name="description" />
                   </em>
                 </h2>
                 <CtaBar>
@@ -148,7 +147,7 @@ const HomePage = (props: any) => {
             <SetupLayout>
               <RichTextWrapper>
                 <h2 className="h1">
-                  <InlineTextareaField name="setup.headline" />
+                  <InlineTextarea name="setup.headline" />
                 </h2>
                 <hr />
                 <ArrowList>
@@ -212,15 +211,15 @@ function SellingPoint({ data, index }) {
         <h3>
           {data.color !== 'Dark Blue (Secondary)' && (
             <em>
-              <BlockTextarea name="main" />
+              <InlineTextarea name="main" />
             </em>
           )}
           {data.color === 'Dark Blue (Secondary)' && (
-            <BlockTextarea name="main" />
+            <InlineTextarea name="main" />
           )}
         </h3>
         <p>
-          <BlockTextarea name="supporting" />
+          <InlineTextarea name="supporting" />
         </p>
       </div>
     </BlocksControls>
@@ -257,7 +256,7 @@ function SetupPoint({ data, index }) {
   return (
     <BlocksControls index={index}>
       <li key={`setup-point-${index}`}>
-        <BlockTextarea name="step" />
+        <InlineTextarea name="step" />
       </li>
     </BlocksControls>
   )

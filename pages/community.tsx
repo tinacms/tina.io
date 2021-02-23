@@ -11,7 +11,7 @@ import {
   RichTextWrapper,
   MarkdownContent,
 } from 'components/layout'
-import { InlineTextareaField } from 'react-tinacms-inline'
+import { InlineTextarea } from 'react-tinacms-inline'
 import { Button, ButtonGroup } from 'components/ui'
 import { EmailForm } from 'components/forms'
 import TwitterIconSvg from '../public/svg/twitter-icon.svg'
@@ -97,7 +97,7 @@ function CommunityPage({ file: community, metadata, preview }) {
           }}
         />
         <Hero>
-          <InlineTextareaField name="headline" />
+          <InlineTextarea name="headline" />
         </Hero>
         <SocialBar>
           <SocialItem>
@@ -140,7 +140,7 @@ function CommunityPage({ file: community, metadata, preview }) {
                 <InfoContent>
                   <InfoText>
                     <h2>
-                      <InlineTextareaField name="supporting_headline" />
+                      <InlineTextarea name="supporting_headline" />
                     </h2>
                     <hr />
                     <InlineWysiwyg name="supporting_body">
