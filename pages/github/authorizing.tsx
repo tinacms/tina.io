@@ -1,19 +1,19 @@
-import { Modal, ModalPopup, ModalBody } from 'tinacms'
+import { Modal, PopupModal, ModalBody } from 'tinacms'
 import { useGithubAuthRedirect } from 'react-tinacms-github'
-import { TinaReset } from '@tinacms/styles'
+import { StyleReset } from '@tinacms/styles'
 
 export default function Authorizing() {
   useGithubAuthRedirect()
 
   return (
-    <TinaReset>
+    <StyleReset>
       <Modal>
-        <ModalPopup>
+        <PopupModal>
           <ModalBody padded>
             <p>Authorizing with Github, Please wait...</p>
           </ModalBody>
-        </ModalPopup>
+        </PopupModal>
       </Modal>
-    </TinaReset>
+    </StyleReset>
   )
 }
