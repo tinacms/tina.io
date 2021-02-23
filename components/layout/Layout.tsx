@@ -2,7 +2,6 @@ import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import { DefaultSeo } from 'next-seo'
 import { useRouter } from 'next/router'
-import { usePlugin } from 'tinacms'
 import { Header, Footer } from '../layout'
 
 interface LayoutProps {
@@ -18,7 +17,7 @@ export const Layout = styled(
       <div {...styleProps}>
         <DefaultSeo
           openGraph={{
-            url: 'https://tinacms.org' + router.asPath,
+            url: 'https://tina.io' + router.asPath,
           }}
         />
         <Header color={color} />
