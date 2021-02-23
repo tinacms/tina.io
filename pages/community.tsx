@@ -166,10 +166,10 @@ function CommunityPage({ file: community, metadata, preview }) {
           <FormSection color="seafoam">
             <Wrapper>
               <h2>
-                <InlineTextareaField name="newsletter_header" />
+                <InlineTextarea name="newsletter_header" />
               </h2>
               <p>
-                <InlineTextareaField name="newsletter_cta" />
+                <InlineTextarea name="newsletter_cta" />
               </p>
               <EmailForm />
             </Wrapper>
