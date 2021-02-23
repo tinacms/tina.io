@@ -57,4 +57,4 @@ Packages are scoped to `@tinacms` when they are fundamental pieces of content ma
 
 ## Want to Get Involved?
 
-Check out the [TinaCMS Community Slack](https://join.slack.com/t/tinacms/shared_invite/enQtNzgxNDY1OTA3ODI3LTNkNWEwYjQyYTA2ZDZjZGQ2YmI5Y2ZlOWVmMjlkYmYxMzVmNjM0YTk2MWM2MTIzMmMxMDg3NWIxN2EzOWQ0NDM 'TinaCMS Community Slack') if you have any questions or comments or if you want to get involved with TinaCMS development.
+Join the [TinaCMS Community Forum](https://community.tinacms.org 'TinaCMS Community Forum') if you have any questions or comments or if you want to get involved with TinaCMS development.

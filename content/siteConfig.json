@@ -3,7 +3,7 @@
   "sidebarTitle": "TinaCMS",
   "seoDefaultTitle": "Build real-time editing into your site.",
   "description": "Tina is an open-source site editing toolkit for React-based frameworks — Next.js & Gatsby.",
-  "siteUrl": "https://tinacms.org",
+  "siteUrl": "https://tina.io",
   "roadmapUrl": "https://github.com/tinacms/tinacms/blob/master/ROADMAP.md",
   "licenseUrl": "https://github.com/tinacms/tinacms/blob/master/LICENSE",
   "keywords": "nextjs, react, cms, next",
@@ -11,7 +11,6 @@
     "twitterHandle": "@tina_cms",
     "twitter": "https://twitter.com/tina_cms",
     "github": "https://github.com/tinacms/tinacms",
-    "forum": "https://community.tinacms.org/",
-    "slack": "https://join.slack.com/t/tinacms/shared_invite/enQtNzgxNDY1OTA3ODI3LTNkNWEwYjQyYTA2ZDZjZGQ2YmI5Y2ZlOWVmMjlkYmYxMzVmNjM0YTk2MWM2MTIzMmMxMDg3NWIxN2EzOWQ0NDM"
+    "forum": "https://community.tinacms.org/"
   }
 }
