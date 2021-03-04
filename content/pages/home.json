@@ -29,7 +29,7 @@
     {
       "_template": "hero",
       "headline": "Content editing for modern teams",
-      "subline": "A content editing UI that supports visual editing",
+      "subline": "Tina is an open-source content UI that supports visual editing",
       "actions": [
         {
           "variant": "orange",
@@ -69,7 +69,15 @@
         },
         {
           "_template": "feature",
-          "headline": "Full Developer Control",
+          "headline": "Built for the JAMstack",
+          "subline": "Tina is designed for the JAMstack and currently works for React-based sites",
+          "media": {
+            "src": "/img/io-placeholder.jpg"
+          }
+        },
+        {
+          "_template": "feature",
+          "headline": "WYSIWYG With Full Developer Control",
           "subline": "Control what your team can and cannot do. Customize the editing experience for their level.",
           "media": {
             "src": "/img/io-placeholder.jpg"
@@ -94,21 +102,15 @@
       ]
     },
     {
-      "_template": "demo",
-      "headline": "Build with *your components*",
-      "subline": "Let your team build great layouts with your own React components.",
-      "codeSandbox": "https://codesandbox.io/embed/vigilant-cohen-73its?fontsize=147hidenavigation=17theme=dark"
-    },
-    {
       "_template": "browser",
       "headline": "*Avoid Vendor Lock-In*",
-      "subline": "Tina is open-source and can connect to any data source",
+      "subline": "",
       "browser": {
-        "headline": "An open-source admin that connects to any API",
-        "subline": "Edit content that lives anywhere, no lock-in",
-        "text": "Tina is an open-soure content editing UI",
+        "headline": "Edit with Tina",
+        "subline": "Write to your content/data",
+        "text": "Connect to the single source of truth for you data",
         "media": {
-          "src": "img/tina-wow.png"
+          "src": "/img/blocks.gif"
         }
       },
       "items": [
@@ -121,11 +123,11 @@
           }
         },
         {
-          "headline": "Git Provider",
+          "headline": "Git Repo",
           "subline": "Connect to the GitHub API with the Tina GitHub pluing",
           "icon": "arrowRight",
           "media": {
-            "src": "img/headlessCms.png"
+            "src": "img/git-providers.png"
           }
         },
         {
