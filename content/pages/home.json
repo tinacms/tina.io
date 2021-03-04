@@ -7,9 +7,9 @@
     {
       "_template": "navbar",
       "banner": {
-        "display": true,
-        "text": "Sign up for early access for *Tina Cloud* ☁️",
-        "link": "/cloud"
+        "display": false,
+        "text": "",
+        "link": ""
       },
       "navItems": [
         {
@@ -29,7 +29,7 @@
     {
       "_template": "hero",
       "headline": "Content editing for modern teams",
-      "subline": "Tina is an open-source CMS admin that talks to any API",
+      "subline": "A content editing UI that can talk to any API and supports visual editing",
       "actions": [
         {
           "variant": "orange",
@@ -48,26 +48,56 @@
     },
     {
       "_template": "features",
-      "headline": "Edit content, *in the context of your site*",
-      "subline": "Just click on the page and type. Contextual toolbars and panels appear at just the right times to create the content you want.",
+      "headline": "",
+      "subline": "",
       "items": [
         {
           "_template": "feature",
-          "headline": "Page building",
-          "subline": "Pick from your custom predefined components to build web experiences, blazing fast",
-          "media": { "src": "/img/io-placeholder.jpg" }
+          "headline": "Store Your Content Anywhere",
+          "subline": "Tina can connect to any API that stores content such as GitHub, a headless CMS, 3rd-party APIs, or even the file system.",
+          "media": {
+            "src": "/img/connect-to-api.png"
+          }
+        },
+        {
+          "_template": "feature",
+          "headline": "Visual Editing",
+          "subline": "Most CMSs feel like GUI on a database. Tina gives your team a contextual, intuitive experience.",
+          "media": {
+            "src": "/img/io-placeholder.jpg"
+          }
+        },
+        {
+          "_template": "feature",
+          "headline": "Full Developer Control",
+          "subline": "Give your team the power of WYSIWYG but control what they can and cannot do.",
+          "media": {
+            "src": "/img/io-placeholder.jpg"
+          }
         },
         {
           "_template": "feature",
           "headline": "Design Systems",
           "subline": "Build pages with YOUR design system. Maximize reusability.",
-          "media": { "src": "/img/io-placeholder.jpg" }
+          "media": {
+            "src": "/img/io-placeholder.jpg"
+          }
         },
         {
           "_template": "feature",
-          "headline": "Improve Time-to-Market",
-          "subline": "Better creative control, don’t rely on developers to make content changes.",
-          "media": { "src": "/img/io-placeholder.jpg" }
+          "headline": "Page building",
+          "subline": "Pick from your custom, predefined components to build web experiences, blazing fast",
+          "media": {
+            "src": "/img/io-placeholder.jpg"
+          }
+        },
+        {
+          "_template": "feature",
+          "headline": "Ship Content Faster",
+          "subline": "Reduce your time-to-market and No need to rely on developers to make content changes.",
+          "media": {
+            "src": "/img/io-placeholder.jpg"
+          }
         }
       ]
     },
@@ -82,29 +112,37 @@
       "headline": "*Avoid Vendor Lock-In*",
       "subline": "Add visual editing to your site for logged in users.",
       "browser": {
-        "headline": "Tina comes with editing.",
-        "subline": "Super simple, just click and edit.",
-        "text": "it's 35 degrees and sunny",
-        "media": { "src": "img/tina-wow.png" }
+        "headline": "An open-source admin that connects to any API",
+        "subline": "Edit content that lives anywhere, no lock-in",
+        "text": "Tina is an open-soure content editing UI",
+        "media": {
+          "src": "img/tina-wow.png"
+        }
       },
       "items": [
         {
-          "headline": "Headless Cms",
-          "subline": "Sync your website data to a headless CMS of your choice",
+          "headline": "Headless CMSs",
+          "subline": "Connect to a headless CMS for a better content editing experience",
           "icon": "arrowRight",
-          "media": { "src": "img/headlessCms.png" }
+          "media": {
+            "src": "img/headlessCms.png"
+          }
         },
         {
-          "headline": "Headless Cms",
-          "subline": "Sync your website data to a headless CMS of your choice",
+          "headline": "Git Provider",
+          "subline": "Connect to the GitHub API with the Tina GitHub pluing",
           "icon": "arrowRight",
-          "media": { "src": "img/headlessCms.png" }
+          "media": {
+            "src": "img/headlessCms.png"
+          }
         },
         {
-          "headline": "Headless Cms",
-          "subline": "Sync your website data to a headless CMS of your choice",
+          "headline": "3rd Party API",
+          "subline": "Store your content in Airtable, Google Sheets, or any data source",
           "icon": "arrowRight",
-          "media": { "src": "img/headlessCms.png" }
+          "media": {
+            "src": "img/headlessCms.png"
+          }
         }
       ]
     },
@@ -126,7 +164,9 @@
               "url": "#"
             }
           ],
-          "media": { "src": "/img/io-placeholder.jpg" }
+          "media": {
+            "src": "/img/io-placeholder.jpg"
+          }
         },
         {
           "_template": "feature",
@@ -140,7 +180,9 @@
               "url": "#"
             }
           ],
-          "media": { "src": "/img/io-placeholder.jpg" }
+          "media": {
+            "src": "/img/io-placeholder.jpg"
+          }
         },
         {
           "_template": "feature",
@@ -154,7 +196,9 @@
               "url": "/docs/plugins/fields/custom-fields"
             }
           ],
-          "media": { "src": "/gif/blocks.gif" }
+          "media": {
+            "src": "/gif/blocks.gif"
+          }
         }
       ]
     },
