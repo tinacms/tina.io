@@ -29,7 +29,7 @@
     {
       "_template": "hero",
       "headline": "Content editing for modern teams",
-      "subline": "A content editing UI that can talk to any API and supports visual editing",
+      "subline": "A content editing UI that supports visual editing",
       "actions": [
         {
           "variant": "orange",
@@ -70,7 +70,7 @@
         {
           "_template": "feature",
           "headline": "Full Developer Control",
-          "subline": "Give your team the power of WYSIWYG but control what they can and cannot do.",
+          "subline": "Control what your team can and cannot do. Customize the editing experience for their level.",
           "media": {
             "src": "/img/io-placeholder.jpg"
           }
@@ -78,15 +78,7 @@
         {
           "_template": "feature",
           "headline": "Design Systems",
-          "subline": "Build pages with YOUR design system. Maximize reusability.",
-          "media": {
-            "src": "/img/io-placeholder.jpg"
-          }
-        },
-        {
-          "_template": "feature",
-          "headline": "Page building",
-          "subline": "Pick from your custom, predefined components to build web experiences, blazing fast",
+          "subline": "Allow your team to pick from your custom, predefined components to build pages.",
           "media": {
             "src": "/img/io-placeholder.jpg"
           }
@@ -110,7 +102,7 @@
     {
       "_template": "browser",
       "headline": "*Avoid Vendor Lock-In*",
-      "subline": "Add visual editing to your site for logged in users.",
+      "subline": "Tina is open-source and can connect to any data source",
       "browser": {
         "headline": "An open-source admin that connects to any API",
         "subline": "Edit content that lives anywhere, no lock-in",
