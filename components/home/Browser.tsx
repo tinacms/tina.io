@@ -52,18 +52,28 @@ export function BrowserBlock({ data, index }) {
               return (
                 <>
                   <Divider type="mobile" />
-                  <div className="card cardLinked">
+                  <div
+                    className={[
+                      'card',
+                      'cardLinked',
+                      item.featured ? 'featured' : '',
+                    ].join(' ')}
+                  >
                     <div className="linkedContent">
                       <img src={item.media.src} alt="" className="cardImage" />
                       <h3 className="headingMedium">{item.headline}</h3>
-                      <Link href="/docs">
-                        <a className="cardLink"></a>
-                      </Link>
+                      {item.link && (
+                        <Link href={item.link}>
+                          <a className="cardLink"></a>
+                        </Link>
+                      )}
                       <p className="textLarge">{item.subline}</p>
                     </div>
-                    <div className="linkedIcon">
-                      {item.icon === 'arrowRight' && <IconRight />}
-                    </div>
+                    {item.link && (
+                      <div className="linkedIcon">
+                        {item.icon === 'arrowRight' && <IconRight />}
+                      </div>
+                    )}
                   </div>
                 </>
               )
@@ -175,6 +185,28 @@ export function BrowserBlock({ data, index }) {
           border-radius: 0.25rem;
           box-shadow: inset 0 0 0 1px rgba(36, 23, 72, 0.03),
             0 6px 24px rgba(36, 23, 72, 0.05), 0 2px 4px rgba(36, 23, 72, 0.03);
+        }
+
+        .featured {
+          background: linear-gradient(
+            to bottom,
+            var(--color-orange-light),
+            var(--color-orange-light),
+            var(--color-orange)
+          );
+          box-shadow: inset 0 0 0 1px var(--color-orange-light),
+            0 6px 24px rgba(36, 23, 72, 0.07), 0 2px 4px rgba(36, 23, 72, 0.05);
+          color: white;
+
+          :global(img) {
+            filter: drop-shadow(0 2px 0 white) drop-shadow(2px 0 0 white)
+              drop-shadow(-2px 0 0 white) drop-shadow(0 -2px 0 white);
+          }
+
+          :global(p) {
+            font-weight: bold;
+            opacity: 1;
+          }
         }
 
         .cardLinked {

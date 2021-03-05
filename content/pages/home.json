@@ -118,6 +118,7 @@
           "headline": "Git Repo",
           "subline": "Connect to the GitHub API with the Tina GitHub plugin",
           "icon": "arrowRight",
+          "link": "/docs",
           "media": {
             "src": "img/git-providers.png"
           }
@@ -126,6 +127,7 @@
           "headline": "3rd Party API",
           "subline": "Store your content in Airtable, Google Sheets, or any data source",
           "icon": "arrowRight",
+          "featured": "true",
           "media": {
             "src": "img/headlessCms.png"
           }
