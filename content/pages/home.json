@@ -53,8 +53,8 @@
       "items": [
         {
           "_template": "feature",
-          "headline": "Plugin Into Any Data Source, Edit with Tina",
-          "subline": "Tina can connect to any API that stores content such as GitHub, a headless CMS, 3rd-party APIs, or even the file system.",
+          "headline": "Agnostic and Open-Source",
+          "subline": "Connect to any data source, edit with Tina. ",
           "media": {
             "src": "/img/connect-to-api.png"
           }
@@ -69,18 +69,18 @@
         },
         {
           "_template": "feature",
-          "headline": "Built for the JAMstack",
-          "subline": "Tina is designed for the JAMstack and currently works for React-based sites",
-          "media": {
-            "src": "/img/jamstack.png"
-          }
-        },
-        {
-          "_template": "feature",
           "headline": "Integrate Your Design Systems",
           "subline": "Allow your team to pick from your custom, predefined components to build pages.",
           "media": {
             "src": "/img/design-system.png"
+          }
+        },
+        {
+          "_template": "feature",
+          "headline": "Built for the JAMstack",
+          "subline": "Tina is designed for the JAMstack with a focus on React-based sites",
+          "media": {
+            "src": "/img/jamstack.png"
           }
         }
       ]
@@ -108,7 +108,7 @@
         },
         {
           "headline": "Git Repo",
-          "subline": "Connect to the GitHub API with the Tina GitHub pluing",
+          "subline": "Connect to the GitHub API with the Tina GitHub plugin",
           "icon": "arrowRight",
           "media": {
             "src": "img/git-providers.png"
