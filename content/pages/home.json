@@ -28,8 +28,8 @@
     },
     {
       "_template": "hero",
-      "headline": "Content editing for modern teams",
-      "subline": "Tina is an open-source content UI that supports visual editing",
+      "headline": "Visual editing for the JAMstack",
+      "subline": "An open-source content editing UI with super powers",
       "actions": [
         {
           "variant": "orange",
@@ -39,7 +39,7 @@
         },
         {
           "variant": "ghost",
-          "label": "Learn More",
+          "label": "Read Docs",
           "icon": "",
           "url": "#"
         }
@@ -53,7 +53,7 @@
       "items": [
         {
           "_template": "feature",
-          "headline": "Store Your Content Anywhere",
+          "headline": "Connect to Any Data Source, Edit with Tina",
           "subline": "Tina can connect to any API that stores content such as GitHub, a headless CMS, 3rd-party APIs, or even the file system.",
           "media": {
             "src": "/img/connect-to-api.png"
@@ -72,31 +72,15 @@
           "headline": "Built for the JAMstack",
           "subline": "Tina is designed for the JAMstack and currently works for React-based sites",
           "media": {
-            "src": "/img/io-placeholder.jpg"
+            "src": "/img/jamstack.png"
           }
         },
         {
           "_template": "feature",
-          "headline": "WYSIWYG With Full Developer Control",
-          "subline": "Control what your team can and cannot do. Customize the editing experience for their level.",
-          "media": {
-            "src": "/img/io-placeholder.jpg"
-          }
-        },
-        {
-          "_template": "feature",
-          "headline": "Design Systems",
+          "headline": "Integrate Your Design Systems",
           "subline": "Allow your team to pick from your custom, predefined components to build pages.",
           "media": {
-            "src": "/img/io-placeholder.jpg"
-          }
-        },
-        {
-          "_template": "feature",
-          "headline": "Ship Content Faster",
-          "subline": "Reduce your time-to-market and No need to rely on developers to make content changes.",
-          "media": {
-            "src": "/img/io-placeholder.jpg"
+            "src": "/img/design-system.png"
           }
         }
       ]
@@ -136,62 +120,6 @@
           "icon": "arrowRight",
           "media": {
             "src": "img/headlessCms.png"
-          }
-        }
-      ]
-    },
-    {
-      "_template": "features",
-      "headline": "Explore the *Tina ecosystem*",
-      "subline": "More than just a headless CMS, Tina has all the tools for building web experiences for interdisciplinary teams.",
-      "color": "lightGray",
-      "items": [
-        {
-          "_template": "feature",
-          "headline": "Data Source Plugins",
-          "subline": "Data Source plugins allow you to extend Tina to connect to different databases and 3rd Party APIs",
-          "actions": [
-            {
-              "variant": "link",
-              "label": "Visit The Docs",
-              "icon": "arrowRight",
-              "url": "#"
-            }
-          ],
-          "media": {
-            "src": "/img/io-placeholder.jpg"
-          }
-        },
-        {
-          "_template": "feature",
-          "headline": "Screen UI Plugins",
-          "subline": "Data Source plugins allow you to extend Tina to connect to different databases and 3rd Party AP",
-          "actions": [
-            {
-              "variant": "link",
-              "label": "Visit The Docs",
-              "icon": "arrowRight",
-              "url": "#"
-            }
-          ],
-          "media": {
-            "src": "/img/io-placeholder.jpg"
-          }
-        },
-        {
-          "_template": "feature",
-          "headline": "Custom Fields",
-          "subline": "Extend primary fields with custom field plugins to completely control the editing experience and functionality.",
-          "actions": [
-            {
-              "variant": "link",
-              "label": "Read the Docs",
-              "icon": "arrowRight",
-              "url": "/docs/plugins/fields/custom-fields"
-            }
-          ],
-          "media": {
-            "src": "/gif/blocks.gif"
           }
         }
       ]
