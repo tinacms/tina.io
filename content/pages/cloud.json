@@ -1,0 +1,130 @@
+{
+    "seo": {
+        "title": "Tina Cloud",
+        "description": "Tina is a content management platform, with a content management API and frontend toolkit to rapidly prototype your own CMS."
+    },
+    "blocks": [
+        {
+            "_template": "navbar",
+            "banner": {
+                "display": false,
+                "text": "",
+                "link": ""
+            },
+            "navItems": [
+                {
+                    "link": "/docs",
+                    "label": "Docs"
+                },
+                {
+                    "link": "/guides",
+                    "label": "Guides"
+                },
+                {
+                    "link": "/blog",
+                    "label": "Blog"
+                }
+            ]
+        },
+        {
+            "_template": "hero",
+            "headline": "Ship Great Content, Faster",
+            "subline": "Tina Cloud is a Headless CMS Backed by Git",
+            "actions": [
+                {
+                    "variant": "orange",
+                    "label": "Get Early Access",
+                    "icon": "arrowRight",
+                    "url": "https://tina.io/enterprise"
+                }
+            ],
+            "videoSrc": ""
+        },
+        {
+            "_template": "features",
+            "headline": "",
+            "subline": "",
+            "items": [
+                {
+                    "_template": "feature",
+                    "headline": "Collaborate with the Team",
+                    "subline": "Onboard your team; no GitHub accounts required.  Tina Cloud brings user-management, auth, roles, and a Content API.",
+                    "media": {
+                        "src": "/img/placeholder2.png"
+                    }
+                },
+                {
+                    "_template": "feature",
+                    "headline": "Move Faster With Tina Cloud",
+                    "subline": "Visual editing + Git storage allows you to ship content faster with the safety of version-control",
+                    "media": {
+                        "src": "/img/placeholder2.png"
+                    }
+                },
+                {
+                    "_template": "feature",
+                    "headline": "Git + GraphQL",
+                    "subline": "The Tina Content API provides a GraphQL interface to content that is persisted as files in GitHub repositories. Content is transparently stored in GitHub in open formats like Markdown and JSON, allowing for easy content re-use and migrations to alternative systems.",
+                    "media": {
+                        "src": "/img/graphQL.png"
+                    }
+                },
+                {
+                    "_template": "feature",
+                    "headline": "Content Migrations are a Breeze",
+                    "subline": "Tina promotes a document-oriented approach to content models. This means repeatable or nested structures like blocks can be stored with the page’s complete data, resulting in more straightforward content queries and operations.",
+                    "media": {
+                        "src": "/img/placeholder2.png"
+                    }
+                },
+                {
+                    "_template": "feature",
+                    "headline": "Approve Content Before it Goes Live",
+                    "subline": "Content approval workflows come baked into Tina. Concepts from Git are made intuitive for the whole team.",
+                    "media": {
+                        "src": "/img/github-plugin.png"
+                    }
+                }
+            ]
+        },
+        {
+            "_template": "browser",
+            "headline": "*The Tina Platform*",
+            "subline": "",
+            "browser": {
+                "headline": "Edit with Tina's open-source editor",
+                "subline": "Connect to the Tina Cloud backend without being locked-in",
+                "text": "",
+                "media": {
+                    "src": "/img/blocks.gif"
+                }
+            },
+            "items": [
+                {
+                    "headline": "Headless CMSs",
+                    "subline": "Connect to a headless CMS for a better content editing experience",
+                    "icon": "arrowRight",
+                    "media": {
+                        "src": "img/headlessCms.png"
+                    }
+                },
+                {
+                    "headline": "Git Repo",
+                    "subline": "Connect to the GitHub API with the Tina GitHub plugin",
+                    "icon": "arrowRight",
+                    "media": {
+                        "src": "img/git-providers.png"
+                    }
+                },
+                {
+                    "headline": "Tina Cloud",
+                    "subline": "A content management platform for teams",
+                    "icon": "arrowRight",
+                    "media": {
+                        "src": "img/headlessCms.png"
+                    }
+                }
+            ]
+        }
+    ]
+}
