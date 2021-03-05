@@ -82,6 +82,14 @@
           "media": {
             "src": "/img/jamstack.png"
           }
+        },
+        {
+          "_template": "feature",
+          "headline": "Works with Git",
+          "subline": "Tina supports content stored in Git. Git the benefits of branching and version-control ;)",
+          "media": {
+            "src": "/img/github-plugin.png"
+          }
         }
       ]
     },
@@ -120,6 +128,45 @@
           "icon": "arrowRight",
           "media": {
             "src": "img/headlessCms.png"
+          }
+        }
+      ]
+    },
+    {
+      "_template": "browser",
+      "headline": "",
+      "subline": "Explore the Tina Ecosystem",
+      "browser": {
+        "headline": "",
+        "subline": "",
+        "text": "",
+        "media": {
+          "src": ""
+        }
+      },
+      "items": [
+        {
+          "headline": "Custom Fields",
+          "subline": "Extend primary fields with custom field plugins to completely control the editing experience and functionality.",
+          "icon": "arrowRight",
+          "media": {
+            "src": ""
+          }
+        },
+        {
+          "headline": "Data Source Plugins",
+          "subline": "Data Source plugins allow you to extend Tina to connect to different databases and 3rd Party APIs",
+          "icon": "arrowRight",
+          "media": {
+            "src": ""
+          }
+        },
+        {
+          "headline": "Screen UI Plugins",
+          "subline": "Data Source plugins allow you to extend Tina to connect to different databases and 3rd Party AP",
+          "icon": "arrowRight",
+          "media": {
+            "src": ""
           }
         }
       ]
