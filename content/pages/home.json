@@ -28,8 +28,8 @@
     },
     {
       "_template": "hero",
-      "headline": "Visual editing for the JAMstack",
-      "subline": "An open-source content editing UI with super powers",
+      "headline": "Unlock your content team with next-gen editing",
+      "subline": "Tina is an open-source content editing UI for the JAMstack",
       "actions": [
         {
           "variant": "orange",
@@ -53,7 +53,7 @@
       "items": [
         {
           "_template": "feature",
-          "headline": "Connect to Any Data Source, Edit with Tina",
+          "headline": "Plugin Into Any Data Source, Edit with Tina",
           "subline": "Tina can connect to any API that stores content such as GitHub, a headless CMS, 3rd-party APIs, or even the file system.",
           "media": {
             "src": "/img/connect-to-api.png"
