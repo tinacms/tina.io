@@ -58,11 +58,13 @@ export function HeroBlock({ data, index }) {
         <Container width="narrow" center>
           <HeroFeature item={data} />
         </Container>
-        <div className="splitBackgroundBlackWhite">
-          <Container>
-            <Video src={data.videoSrc} />
-          </Container>
-        </div>
+        {data.videoSrc && (
+          <div className="splitBackgroundBlackWhite">
+            <Container>
+              <Video src={data.videoSrc} />
+            </Container>
+          </div>
+        )}
       </section>
       <style jsx>{`
         .splitBackgroundBlackWhite {
