@@ -47,7 +47,7 @@
             "items": [
                 {
                     "_template": "feature",
-                    "headline": "Collaborate with the Team",
+                    "headline": "Collaborate With the Team",
                     "subline": "Onboard your team; no GitHub accounts required.  Tina Cloud brings user-management, auth, roles, and a Content API.",
                     "media": {
                         "src": "/img/placeholder2.png"
