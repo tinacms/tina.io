@@ -93,7 +93,7 @@
             "subline": "",
             "browser": {
                 "headline": "The Tina Platform",
-                "subline": "Connect Tina's open-source editor to any backend. Tina Cloud strives to be the best solution without locking you in.",
+                "subline": "Tina's open-source editor can talk to any API that stores content, but Tina Cloud strives to be the best-in-class Tina experience without locking you in.",
                 "text": "",
                 "media": {
                     "src": "/img/blocks.gif"
@@ -120,6 +120,7 @@
                     "headline": "Tina Cloud",
                     "subline": "API and that is backed by Git",
                     "icon": "",
+                    "featured": "true",
                     "media": {
                         "src": "img/headlessCms.png"
                     }

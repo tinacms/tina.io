@@ -29,7 +29,7 @@
     {
       "_template": "hero",
       "headline": "Unlock your team with next-gen editing",
-      "subline": "Tina is an open-source content editing UI for the JAMstack",
+      "subline": "Tina is an open-source editing UI for JAMstack sites",
       "actions": [
         {
           "variant": "orange",
@@ -64,7 +64,7 @@
           "headline": "Visual Editing",
           "subline": "Most CMSs feel like GUI on a database. Tina gives your team a contextual, intuitive experience.",
           "media": {
-            "src": "/img/io-placeholder.jpg"
+            "src": "/img/visual-editing.gif"
           }
         },
         {
@@ -127,7 +127,6 @@
           "headline": "3rd Party API",
           "subline": "Store your content in Airtable, Google Sheets, or any data source",
           "icon": "arrowRight",
-          "featured": "true",
           "media": {
             "src": "img/headlessCms.png"
           }
