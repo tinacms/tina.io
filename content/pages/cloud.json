@@ -23,6 +23,10 @@
                 {
                     "link": "/blog",
                     "label": "Blog"
+                },
+                {
+                    "link": "/early-access",
+                    "label": "Tina Cloud"
                 }
             ]
         },
