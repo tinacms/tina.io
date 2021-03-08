@@ -85,7 +85,7 @@ export function NavbarBlock({ data, index }) {
           </Container>
         </div>
       )}
-      <div className="navbar">
+      <div className="navbar blue">
         <Container>
           <div className="navGrid">
             <Link href="/">
@@ -157,11 +157,6 @@ export function NavbarBlock({ data, index }) {
         .navbar {
           padding: 2rem 0 2rem 0;
           margin-bottom: -1px;
-          background: linear-gradient(
-            to bottom,
-            var(--color-black) -30%,
-            var(--color-blue) 100%
-          );
         }
 
         .navGrid {

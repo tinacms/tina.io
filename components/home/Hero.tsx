@@ -71,7 +71,7 @@ export function HeroBlock({ data, index }) {
           background: linear-gradient(
             to bottom,
             var(--color-blue) 0%,
-            var(--color-blue) 50%,
+            var(--color-black) 50%,
             var(--color-light-gray) 50%,
             var(--color-white) 100%
           );
