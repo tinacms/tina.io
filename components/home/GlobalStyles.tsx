@@ -9,7 +9,7 @@ export const GlobalStyles = css.global`
     --color-yellow: #f2c94c;
     --color-green: #6fcf97;
     --color-black: #1c1b2e;
-    --color-blue: #241748;
+    --color-blue: rgb(36, 23, 72);
     --color-white: #ffffff;
     --color-gray: #f3f3f3;
     --color-light-gray: #fafafa;
@@ -134,11 +134,6 @@ export const GlobalStyles = css.global`
 
   .blue {
     background: var(--color-blue);
-    background: linear-gradient(
-      to bottom,
-      var(--color-blue) 30%,
-      var(--color-black) 100%
-    );
     color: var(--color-white);
     --color-emphasis: var(--color-orange-light);
   }

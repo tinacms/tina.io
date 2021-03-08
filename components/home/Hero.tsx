@@ -54,7 +54,7 @@ export function HeroBlock({ data, index }) {
       insetControls={true}
       focusRing={{ offset: -16 }}
     >
-      <section className="section black">
+      <section className="section blue">
         <Container width="narrow" center>
           <HeroFeature item={data} />
         </Container>
@@ -70,7 +70,7 @@ export function HeroBlock({ data, index }) {
         .splitBackgroundBlackWhite {
           background: linear-gradient(
             to bottom,
-            var(--color-black) 0%,
+            var(--color-blue) 0%,
             var(--color-blue) 50%,
             var(--color-light-gray) 50%,
             var(--color-white) 100%
