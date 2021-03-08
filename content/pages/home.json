@@ -1,7 +1,7 @@
 {
   "seo": {
     "title": "Home",
-    "description": "Tina is a content management platform, with a content management API and frontend toolkit to rapidly prototype your own CMS."
+    "description": "Tina is an open-source editing UI for JAMstack sites"
   },
   "blocks": [
     {
@@ -146,7 +146,7 @@
           "variant": "orange",
           "label": "Get Started",
           "icon": "arrowRight",
-          "url": "#"
+          "url": "/docs"
         }
       ]
     }

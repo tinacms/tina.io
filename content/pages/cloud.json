@@ -1,7 +1,7 @@
 {
   "seo": {
     "title": "Tina Cloud",
-    "description": "Tina is a content management platform, with a content management API and frontend toolkit to rapidly prototype your own CMS."
+    "description": "Tina Cloud is a content management platform composed of an open-source editing UI and a backend powered by GraphQL and Git."
   },
   "blocks": [
     {
@@ -39,7 +39,7 @@
           "variant": "orange",
           "label": "Get Early Access",
           "icon": "arrowRight",
-          "url": "https://tina.io/enterprise"
+          "url": "https://tina.io/early-access"
         }
       ],
       "videoSrc": ""
