@@ -18,6 +18,12 @@
     "external": false
   },
   {
+    "id": "early-access",
+    "label": "Tina Cloud",
+    "href": "/early-access",
+    "external": false
+  },
+  {
     "id": "community",
     "label": "Community",
     "href": "/community",
