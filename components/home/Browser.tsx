@@ -22,7 +22,7 @@ export function BrowserBlock({ data, index }) {
       insetControls={true}
       focusRing={{ offset: -16 }}
     >
-      <section className="section white">
+      <section className="section lightGray">
         <Container center width="narrow">
           <HeroFeature item={{ headline: headline, subline: subline }} />
         </Container>
@@ -90,8 +90,8 @@ export function BrowserBlock({ data, index }) {
           background: var(--color-card-background);
           background: linear-gradient(
             to bottom right,
-            var(--color-light-gray) 30%,
-            var(--color-gray)
+            white 30%,
+            var(--color-light-gray)
           );
           transform: rotate3d(1, 0, 0, 2deg);
           background-position: top left;

@@ -13,11 +13,28 @@ export const Actions = ({ items, align = 'left' }) => {
       >
         {items.map(item => {
           const { variant, label, icon, url } = item
-          return (
-            <a href={url} className={`action ${variant}`}>
-              {label} {icon === 'arrowRight' && <IconRight />}
-            </a>
-          )
+          const externalUrlPattern = /^((http|https|ftp):\/\/)/
+          const external = externalUrlPattern.test(url)
+          let link = null
+          if (external) {
+            link = (
+              <a
+                href={url}
+                className={`action ${variant}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {label} {icon === 'arrowRight' && <IconRight />}
+              </a>
+            )
+          } else {
+            link = (
+              <a href={url} className={`action ${variant}`}>
+                {label} {icon === 'arrowRight' && <IconRight />}
+              </a>
+            )
+          }
+          return link
         })}
       </div>
       <style jsx>{`

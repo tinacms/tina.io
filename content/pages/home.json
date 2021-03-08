@@ -39,13 +39,13 @@
           "variant": "orange",
           "label": "Try Demo",
           "icon": "arrowRight",
-          "url": "#"
+          "url": "https://tina-demo-two.vercel.app/"
         },
         {
           "variant": "ghost",
           "label": "Read Docs",
           "icon": "",
-          "url": "#"
+          "url": "/docs"
         }
       ],
       "videoSrc": "v1571425758/tina-hero-demo-v2"
@@ -122,7 +122,7 @@
           "headline": "Git Repo",
           "subline": "Connect to the GitHub API with the Tina GitHub plugin",
           "icon": "arrowRight",
-          "link": "/docs",
+          "link": "/packages/react-tinacms-github/",
           "media": {
             "src": "img/git-providers.png"
           }
