@@ -24,6 +24,7 @@ const HomePage = (props: any) => {
   return (
     <InlineGithubForm form={form}>
       <NextSeo
+        noindex={true}
         title={seo.title}
         description={seo.description}
         openGraph={{
@@ -68,7 +69,7 @@ const HomePageTemplate = {
   ],
 }
 
-export const getStaticProps: GetStaticProps = async function ({
+export const getStaticProps: GetStaticProps = async function({
   preview,
   previewData,
 }) {
