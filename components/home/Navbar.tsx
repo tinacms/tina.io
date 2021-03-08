@@ -92,7 +92,7 @@ export function NavbarBlock({ data, index }) {
               <a className="logomark navLogo">
                 <TinaIcon />
                 <h1 className="wordmark">
-                  Tina<span>.io</span>
+                  Tina
                 </h1>
               </a>
             </Link>
