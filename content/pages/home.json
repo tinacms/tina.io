@@ -32,7 +32,7 @@
     },
     {
       "_template": "hero",
-      "headline": "Unlock your team with next-gen editing",
+      "headline": "Unlock your team with *next-gen editing*",
       "subline": "Tina is an open-source editing UI for JAMstack sites",
       "actions": [
         {
