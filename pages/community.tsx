@@ -154,9 +154,6 @@ function CommunityPage({ file: community, metadata, preview }) {
                     >
                       <Button as="a">Contribute</Button>
                     </DynamicLink>
-                    <DynamicLink href={metadata.roadmapUrl} passHref>
-                      <Button as="a">View Roadmap</Button>
-                    </DynamicLink>
                   </ButtonGroup>
                 </InfoContent>
                 <InfoImage src={src} alt={data.img.alt} />
@@ -186,7 +183,7 @@ export default CommunityPage
  ** DATA FETCHING -----------------------------------------------
  */
 
-export const getStaticProps: GetStaticProps = async function({
+export const getStaticProps: GetStaticProps = async function ({
   preview,
   previewData,
 }) {

@@ -29,6 +29,7 @@ const MainLayout = ({ Component, pageProps }) => {
   const tinaConfig = {
     enabled: pageProps.preview,
     toolbar: pageProps.preview,
+    sidebar: pageProps.preview,
     apis: {
       github,
       storage:
@@ -46,6 +47,15 @@ const MainLayout = ({ Component, pageProps }) => {
     import('react-tinacms-date').then(({ DateFieldPlugin }) => {
       cms.plugins.add(DateFieldPlugin)
     })
+    import('react-tinacms-editor').then(({ MarkdownFieldPlugin }) => {
+      cms.plugins.add(MarkdownFieldPlugin)
+    })
+    import('react-tinacms-field-condition').then(
+      ({ ConditionalFieldPlugin, ConditionalGroupFieldPlugin }) => {
+        cms.plugins.add(ConditionalFieldPlugin)
+        cms.plugins.add(ConditionalGroupFieldPlugin)
+      }
+    )
   }, [pageProps.preview])
 
   const enterEditMode = async () => {

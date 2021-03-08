@@ -57,6 +57,7 @@
     "next-tinacms-json": "^0.33.0",
     "next-tinacms-markdown": "^0.33.0",
     "node-fetch": "^2.6.1",
+    "node-sass": "^5.0.0",
     "polished": "^3.4.4",
     "prop-types": "^15.7.2",
     "qs": "^6.9.1",
@@ -74,6 +75,7 @@
     "react-textarea-autosize": "^7.1.2",
     "react-tinacms-date": "^0.34.0",
     "react-tinacms-editor": "^0.35.0",
+    "react-tinacms-field-condition": "^0.2.1",
     "react-tinacms-github": "^0.35.0",
     "react-tinacms-inline": "^0.35.0",
     "remark": "^11.0.2",
@@ -82,6 +84,7 @@
     "serve": "11.2.0",
     "strip-markdown": "^3.1.1",
     "styled-components": "^4.4.1",
+    "styled-jsx-plugin-sass": "^1.0.0",
     "tinacms": "^0.34.0",
     "webpack": "^4.41.5"
   },

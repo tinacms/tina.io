@@ -1,11 +1,11 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { LinkNav } from '../ui/LinkNav'
-import { TinaWordmark } from '../logo/TinaWordmark'
 import TwitterIconSvg from '../../public/svg/twitter-icon.svg'
 import GithubIconSvg from '../../public/svg/github-icon.svg'
 import { EmailForm } from '../forms/EmailForm'
 import { EditLink } from './EditLink'
+import { TinaIcon } from 'components/logo'
 
 const FooterSocial = styled.div`
   display: flex;
@@ -59,7 +59,7 @@ const FooterForm = styled.div`
 const FooterTop = styled.div`
   display: grid;
   grid-gap: 1rem;
-  padding: 2rem 2rem;
+  padding: 2.5rem 2rem;
   background-color: var(--color-background);
   align-items: start;
   grid-template-areas: 'logo' 'social' 'nav';
@@ -73,7 +73,7 @@ const FooterTop = styled.div`
     grid-template-areas: 'logo nav social';
   }
 
-  ${TinaWordmark} {
+  ${TinaIcon} {
     grid-area: logo;
     margin-bottom: 1rem;
   }
@@ -92,7 +92,7 @@ const FooterBottom = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 1.25rem 2rem;
+  padding: 1.5rem 2rem;
   background-color: var(--color-background);
 
   @media (min-width: 1200px) {
@@ -184,7 +184,7 @@ export const Footer = styled(({ light, ...styleProps }) => {
   return (
     <div {...styleProps}>
       <FooterTop>
-        <TinaWordmark />
+        <TinaIcon />
         <LinkNav />
         <FooterSocial>
           <iframe
@@ -235,8 +235,12 @@ export const Footer = styled(({ light, ...styleProps }) => {
   position: relative;
   z-index: 1000;
 
-  ${TinaWordmark} {
-    fill: var(--color-secondary);
+  ${TinaIcon} {
+    fill: var(--color-white);
+
+    svg {
+      height: 3.5rem;
+    }
   }
 
   ${FooterSocial} {
@@ -255,7 +259,7 @@ export const Footer = styled(({ light, ...styleProps }) => {
       --color-background: var(--color-light);
       --color-background-dark: var(--color-light-dark);
 
-      ${TinaWordmark} {
+      ${TinaIcon} {
         fill: var(--color-primary);
       }
 

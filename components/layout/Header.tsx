@@ -33,7 +33,7 @@ export const Header = ({ color, fixedIcon, ...styleProps }: HeaderProps) => {
 
 interface StyledHeaderProps {
   fixedIcon?: boolean
-  open: boolean
+  open: boolean 
 }
 
 const StyledHeader = styled.header<StyledHeaderProps>`

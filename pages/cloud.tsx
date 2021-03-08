@@ -24,6 +24,7 @@ const HomePage = (props: any) => {
   return (
     <InlineGithubForm form={form}>
       <NextSeo
+        noindex={true}
         title={seo.title}
         description={seo.description}
         openGraph={{
@@ -43,7 +44,7 @@ const HomePage = (props: any) => {
 export default HomePage
 
 const HomePageTemplate = {
-  label: 'Home Page',
+  label: 'Cloud',
   defaultItem: {},
   fields: [
     {
@@ -72,5 +73,5 @@ export const getStaticProps: GetStaticProps = async function({
   preview,
   previewData,
 }) {
-  return getJsonPreviewProps('content/pages/home.json', preview, previewData)
+  return getJsonPreviewProps('content/pages/cloud.json', preview, previewData)
 }
