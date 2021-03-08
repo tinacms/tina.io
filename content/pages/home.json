@@ -146,7 +146,7 @@
           "variant": "orange",
           "label": "Get Started",
           "icon": "arrowRight",
-          "url": "#"
+          "url": "/docs"
         }
       ]
     }
