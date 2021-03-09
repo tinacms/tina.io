@@ -81,8 +81,8 @@
         },
         {
           "_template": "feature",
-          "headline": "Built for the JAMstack",
-          "subline": "Tina is designed for the JAMstack with a focus on React-based sites",
+          "headline": "Built for the Jamstack",
+          "subline": "Tina is designed for the Jamstack with a focus on React-based sites",
           "media": {
             "src": "/img/jamstack.png"
           }
