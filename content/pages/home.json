@@ -144,7 +144,7 @@
       "actions": [
         {
           "variant": "orange",
-          "label": "Get Started",
+          "label": "Docs",
           "icon": "arrowRight",
           "url": "/docs"
         }
