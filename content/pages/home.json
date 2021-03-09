@@ -1,7 +1,7 @@
 {
   "seo": {
-    "title": "Home",
-    "description": "Tina is an open-source editing UI for JAMstack sites"
+    "title": "Develop visual website editing on top of your React components",
+    "description": "Open-Source real time editing user interface for Next.js sites. Write to any backend: GitHub, Tina Cloud, Contentful…"
   },
   "blocks": [
     {
