@@ -1,7 +1,7 @@
 {
   "seo": {
-    "title": "Develop visual website editing on top of your React components",
-    "description": "Open-Source real time editing user interface for Next.js sites. Write to any backend: GitHub, Tina Cloud, Contentful…"
+    "title": "Add real-time editing to your React site",
+    "description": "Open-source editing UI designed for the Jamstack. Write to any backend."
   },
   "blocks": [
     {
