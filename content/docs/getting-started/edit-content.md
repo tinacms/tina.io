@@ -98,7 +98,7 @@ The `id` is a **unique identifier** for the form. The `id` is hard-coded in our 
 
 ### _fields_
 
-The `fields` array is comprised of [field definitions](/docs/plugins/fields#field-definition). All fields share a common [base configuration](docs/plugins/fields#field-config). Field definitions need at least two properties: 
+The `fields` array is comprised of [field definitions](/docs/plugins/fields#field-definition). All fields share a common [base configuration](/docs/plugins/fields#field-config). Field definitions need at least two properties:
 
  - a `name`, indicating the path to access the data from the values object, and
  - a `component` that displays the interface for editing the data.
