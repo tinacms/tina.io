@@ -144,9 +144,9 @@
       "actions": [
         {
           "variant": "orange",
-          "label": "Docs",
+          "label": "Start the tutorial",
           "icon": "arrowRight",
-          "url": "/docs"
+          "url": "/docs/getting-started/introduction/"
         }
       ]
     }
