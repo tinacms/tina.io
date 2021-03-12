@@ -82,7 +82,7 @@
         {
           "_template": "feature",
           "headline": "Built for the Jamstack",
-          "subline": "Tina is designed for the Jamstack with a focus on React-based sites",
+          "subline": "Tina is designed for the Jamstack with a focus on React-based sites.",
           "media": {
             "src": "/img/jamstack.png"
           }
@@ -104,7 +104,7 @@
       "browser": {
         "headline": "Edit with Tina",
         "subline": "Write to your content/data",
-        "text": "Connect to the single source of truth for you data",
+        "text": "Connect to the single source of truth for your data",
         "media": {
           "src": "/img/blocks.gif"
         }

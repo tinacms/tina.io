@@ -60,7 +60,7 @@
         {
           "_template": "feature",
           "headline": "Move Faster With Tina Cloud",
-          "subline": "Visual editing + Git storage allows you to ship content faster with the safety of version-control",
+          "subline": "Visual editing + Git storage allows you to ship content faster with the safety of version-control.",
           "media": {
             "src": "/img/visual-editing.gif"
           }
@@ -122,7 +122,7 @@
         },
         {
           "headline": "Tina Cloud",
-          "subline": "User-management, auth, roles, and a GraphQL API for your content.",
+          "subline": "User-management, auth, roles, and a GraphQL API for your content",
           "icon": "",
           "featured": "true",
           "media": {
