@@ -33,7 +33,7 @@
     {
       "_template": "hero",
       "headline": "Unlock your team with *next-gen editing*",
-      "subline": "Tina is an open-source editor for JAMstack sites",
+      "subline": "Tina is an open-source editor for Jamstack sites",
       "actions": [
         {
           "variant": "orange",
