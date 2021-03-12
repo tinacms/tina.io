@@ -1,6 +1,6 @@
-# TinaCMS.org
+# Tina.io website
 
-Source code for the tinacms.org website.
+Source code for the [tina.io](https://tina.io) website.
 
 ## Development
 
@@ -11,7 +11,7 @@ yarn develop
 
 ### Testing Local TinaCMS Changes
 
-If you have the **tinacms** repository cloned locally you can use it when running **tinacms.org**:
+If you have the **tinacms** repository cloned locally you can use it when running **tina.io**:
 
 ```
 TINA=../path/to/tinacms yarn develop
