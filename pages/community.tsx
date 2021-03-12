@@ -23,7 +23,6 @@ import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
 import { useGithubJsonForm } from 'react-tinacms-github'
 import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { usePlugin, useCMS } from 'tinacms'
-import { usePreviewSrc } from '@tinacms/fields'
 
 function CommunityPage({ file: community, metadata, preview }) {
   const cms = useCMS()
@@ -82,8 +81,6 @@ function CommunityPage({ file: community, metadata, preview }) {
   })
 
   usePlugin(form)
-
-  const [src] = usePreviewSrc(data.img.src, 'img.src', data)
 
   return (
     <InlineGithubForm form={form}>
@@ -156,7 +153,7 @@ function CommunityPage({ file: community, metadata, preview }) {
                     </DynamicLink>
                   </ButtonGroup>
                 </InfoContent>
-                <InfoImage src={src} alt={data.img.alt} />
+                <InfoImage src={data.img.src} alt={data.img.alt} />
               </InfoLayout>
             </Wrapper>
           </Section>
