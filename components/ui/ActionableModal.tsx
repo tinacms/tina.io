@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { TinaReset, Button as TinaButton } from '@tinacms/styles'
+import { StyleReset, Button as TinaButton } from '@tinacms/styles'
 import {
   Modal,
-  ModalPopup,
+  PopupModal,
   ModalBody,
   ModalActions,
   ModalHeader,
@@ -25,23 +25,23 @@ export const ActionableModal = ({
   }
 
   return (
-    <TinaReset>
+    <StyleReset>
       <Modal>
-        <ModalPopup>
+        <PopupModal>
           <ModalHeader close={null}>{title}</ModalHeader>
           <ModalBody padded>
             <p>{message}</p>
           </ModalBody>
           <ModalActions>
-            {actions.map(action => (
-              <TinaButton primary={action.primary} onClick={action.action}>
+            {actions.map((action, index) => (
+              <TinaButton key={index} primary={action.primary} onClick={action.action}>
                 {action.name}
               </TinaButton>
             ))}
           </ModalActions>
-        </ModalPopup>
+        </PopupModal>
       </Modal>
-    </TinaReset>
+    </StyleReset>
   )
 }
 

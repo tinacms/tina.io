@@ -9,9 +9,8 @@ import { Layout, Wrapper, RichTextWrapper } from 'components/layout'
 import { ArrowList } from 'components/ui'
 import { TeamsForm } from 'components/forms'
 import {
-  InlineTextareaField,
+  InlineTextarea,
   InlineBlocks,
-  BlockTextarea,
   BlocksControls,
 } from 'react-tinacms-inline'
 import { InlineGithubForm } from 'components/layout/InlineGithubForm'
@@ -73,7 +72,7 @@ function TeamsPage(props) {
               <TeamsGrid>
                 <TeamsContent>
                   <h2>
-                    <InlineTextareaField name="headline" />
+                    <InlineTextarea name="headline" />
                   </h2>
                   <hr />
                   <ArrowList>
@@ -122,7 +121,7 @@ function SupportingPoint({ data, index }) {
   return (
     <BlocksControls index={index}>
       <li key={`supporting-point-${index}`}>
-        <BlockTextarea name="point" />
+        <InlineTextarea name="point" focusRing={false} />
       </li>
     </BlocksControls>
   )
