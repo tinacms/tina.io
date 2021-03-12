@@ -235,3 +235,60 @@ export function Hero({ data }) {
   )
 }
 ```
+
+### Using next/image
+
+Note that the same principles for _Gatsby Image_ can be applied to the _next/image_ component. This gives you the benefits of automatic image optimisation, but comes with some caveats. You can read more about how this works on [the Next.js docs](https://nextjs.org/docs/basic-features/image-optimization).
+
+Below is an example of how you could **pass children** as a to `InlineImage` to work with _next/image_. Notice how _children_ **need to be passed via** [**render props**](https://reactjs.org/docs/render-props.html). You can read more about the _next/image_ component [on the Next.js API reference docs](https://nextjs.org/docs/api-reference/next/image).
+
+You can optionally pass specific widths to the image element, but the example below shows how you could [use padding to create a container with an aspect ratio](https://css-tricks.com/aspect-ratio-boxes/) (in this case a square).
+
+Don't forget to update your `next.config.js` if you're planning on passing in sources from external websites. 
+
+
+```jsx
+import { InlineForm, InlineImage } from 'react-tinacms-inline'
+import { useGithubJsonForm } from "react-tinacms-github";
+import { usePlugin, useCMS } from 'tinacms'
+import Image from '@next/image'
+
+// Using InlineImage with next/image
+export function Hero({ file, formConfig }) { 
+  const cms = useCMS()
+  
+  // Note for simplicity's sake, the below assumes you're passing file and formConfig props.
+  const [data, form] = useGithubJsonForm(file, formConfig);
+
+  usePlugin(form)
+
+  return (
+    <InlineForm form={form}>
+      <InlineImage
+        name="image"
+        parse={(media: any) => {
+          return `/${media.id}`;
+        }}
+        uploadDir={() => "/images"}
+        alt="Some descriptive alt text here"
+      >
+        {(props) => (
+          <div
+            style={{
+              height: 0,
+              paddingBottom: "100%"
+            }}
+          >
+            <Image
+              src={props.src}
+              alt={props.alt}
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
+        )}
+      </InlineImage>
+    </InlineForm>
+  )
+}
+```
