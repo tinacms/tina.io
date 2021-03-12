@@ -99,7 +99,7 @@ export function TeamsForm(props: any) {
 
   return (
     <StyledForm onSubmit={handleSubmit}>
-      <h3>Enterprise Early Access</h3>
+      <h3>Tina Cloud Early Access</h3>
       <label>
         <p>First Name</p>
         <Input

@@ -1,0 +1,135 @@
+{
+  "seo": {
+    "title": "Tina Cloud",
+    "description": "Tina Cloud is a content management platform composed of an open-source editing UI and a backend powered by GraphQL and Git."
+  },
+  "blocks": [
+    {
+      "_template": "navbar",
+      "banner": {
+        "display": false,
+        "text": "",
+        "link": ""
+      },
+      "navItems": [
+        {
+          "link": "/docs",
+          "label": "Docs"
+        },
+        {
+          "link": "/guides",
+          "label": "Guides"
+        },
+        {
+          "link": "/blog",
+          "label": "Blog"
+        },
+        {
+          "link": "/early-access",
+          "label": "Tina Cloud"
+        }
+      ]
+    },
+    {
+      "_template": "hero",
+      "headline": "Ship Great Content, Faster",
+      "subline": "Tina Cloud is a Headless CMS Backed by Git",
+      "actions": [
+        {
+          "variant": "orange",
+          "label": "Get Early Access",
+          "icon": "arrowRight",
+          "url": "https://tina.io/early-access"
+        }
+      ],
+      "videoSrc": ""
+    },
+    {
+      "_template": "features",
+      "headline": "",
+      "subline": "",
+      "items": [
+        {
+          "_template": "feature",
+          "headline": "Collaborate With the Team",
+          "subline": "Onboard your team; no GitHub accounts required.  Tina Cloud brings user-management, auth, roles, and a GraphQL API for your content.",
+          "media": {
+            "src": "/img/user-management.png"
+          }
+        },
+        {
+          "_template": "feature",
+          "headline": "Move Faster With Tina Cloud",
+          "subline": "Visual editing + Git storage allows you to ship content faster with the safety of version-control.",
+          "media": {
+            "src": "/img/visual-editing.gif"
+          }
+        },
+        {
+          "_template": "feature",
+          "headline": "GraphQL API",
+          "subline": "The Tina Content API provides a GraphQL interface to your repositories files where content is stored in open formats like Markdown and JSON, allowing for easy content re-use and migrations.",
+          "media": {
+            "src": "/img/graphQL.png"
+          }
+        },
+        {
+          "_template": "feature",
+          "headline": "Robust Content Models",
+          "subline": "Tina promotes a document-oriented approach to content models. This means repeatable or nested structures like blocks can be stored with the page’s complete data, resulting in more straightforward content queries and operations.",
+          "media": {
+            "src": "/img/schema.jpg"
+          }
+        },
+        {
+          "_template": "feature",
+          "headline": "Approve Content Before it Goes Live",
+          "subline": "Content approval workflows come baked into Tina. Concepts from Git are made intuitive for the whole team.",
+          "media": {
+            "src": "/img/github-plugin.png"
+          }
+        }
+      ]
+    },
+    {
+      "_template": "browser",
+      "headline": "",
+      "subline": "",
+      "browser": {
+        "headline": "The Tina Platform",
+        "subline": "Tina's open-source editor can talk to any backend API. Tina Cloud provides the best-in-class experience without locking you in.",
+        "text": "",
+        "media": {
+          "src": "/img/blocks.gif"
+        }
+      },
+      "items": [
+        {
+          "headline": "Git Repo",
+          "subline": "Connect to the GitHub API with the Tina GitHub plugin",
+          "icon": "",
+          "media": {
+            "src": "img/git-providers.png"
+          }
+        },
+        {
+          "headline": "3rd-party API",
+          "subline": "Connect to Airtable, Google Sheets, or another headless CMS",
+          "icon": "",
+          "media": {
+            "src": "img/headlessCms.png"
+          }
+        },
+        {
+          "headline": "Tina Cloud",
+          "subline": "User-management, auth, roles, and a GraphQL API for your content",
+          "icon": "",
+          "featured": "true",
+          "media": {
+            "src": "img/headlessCms.png"
+          }
+        }
+      ]
+    }
+  ]
+}

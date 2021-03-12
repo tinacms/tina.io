@@ -1,15 +1,15 @@
 {
-  "title": "Enterprise",
-  "description": "The power of Tina for the enterprise.",
-  "headline": "The power of Tina for the enterprise",
+  "title": "Early Access",
+  "description": "The power of Tina for the whole team",
+  "headline": "The power of Tina for the whole team",
   "supporting_points": [
     {
       "_template": "point",
-      "point": "Content API"
+      "point": "GraphQL API for your content that's backed by Git"
     },
     {
       "_template": "point",
-      "point": "Authentication, SSO and role-based access controls"
+      "point": "Authentication, user-management, SSO, and roles"
     },
     {
       "_template": "point",
