@@ -73,18 +73,10 @@
         },
         {
           "_template": "feature",
-          "headline": "Integrate Your Design Systems",
-          "subline": "Allow your team to pick from your custom, predefined components to build pages.",
+          "headline": "Your Design System & Components",
+          "subline": "Allow your team to pick from your custom, predefined components to build pages.  Maintain a simpler codebase that offers more versatility.",
           "media": {
             "src": "/img/design-system.png"
-          }
-        },
-        {
-          "_template": "feature",
-          "headline": "Build With Your Blocks",
-          "subline": "Let your team build great layouts with YOUR React components. Maintain a simpler codebase that offers more versatility.",
-          "media": {
-            "src": "/img/blocks.png"
           }
         },
         {
