@@ -66,7 +66,7 @@
         {
           "_template": "feature",
           "headline": "Visual Editing",
-          "subline": "Most CMSs feel like GUI on a database. Tina gives your team a contextual, intuitive experience.",
+          "subline": "Most CMSs feel like a GUI on a database. Tina gives your team a contextual, intuitive experience.",
           "media": {
             "src": "/img/visual-editing.gif"
           }
@@ -77,6 +77,14 @@
           "subline": "Allow your team to pick from your custom, predefined components to build pages.",
           "media": {
             "src": "/img/design-system.png"
+          }
+        },
+        {
+          "_template": "feature",
+          "headline": "Build With Your Blocks",
+          "subline": "Let your team build great layouts with YOUR React components. Maintain a simpler codebase that offers more versatility.",
+          "media": {
+            "src": "/img/io-placeholder.jpg"
           }
         },
         {
