@@ -44,6 +44,10 @@
     { "source": "/docs/fields/", "destination": "/docs/plugins/fields" },
     { "source": "/docs/concepts/backends", "destination": "/docs/cms#apis" },
     { "source": "/docs/concepts/plugins", "destination": "/docs/cms#plugins" },
+    { 
+      "source": "/docs/getting-started/how-tina-works/", 
+      "destination": "/docs/getting-started/introduction/" 
+    },
     {
       "source": "/docs/getting-started/overview",
       "destination": "/docs/getting-started/introduction"
