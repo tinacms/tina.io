@@ -1,8 +1,7 @@
 ---
 title: Creating Forms
-last_edited: '2020-10-04T11:09:29.348Z'
+last_edited: '2021-03-20T16:49:09.844Z'
 ---
-
 After wrapping our App component in the Tina Provider, we can create forms by calling the `useForm` hook inside our Post component. `useForm` returns two values in an array, similar to `React.useState`, which we assign via destructuring:
 
 ```js
@@ -13,7 +12,7 @@ const [modifiedValues, form] = useForm(formConfig)
 
 To simplify our implementation, we'd like to store `modifiedValues` in the `post` variable so that our layout code can continue to work without modification. Let's rename the incoming `post` variable to `initialPost`, to differentiate it from the `post` values that Tina sends back to us:
 
-**pages/posts/[slug].js**
+**pages/posts/\[slug\].js**
 
 ```js
 export default function Post({ post: initialPost, morePosts, preview }) {
@@ -30,7 +29,7 @@ export default function Post({ post: initialPost, morePosts, preview }) {
 
 For details on how to configure forms, take a look at our [form configuration docs](/docs/plugins/forms#form-configuration). For the purposes of this guide, we will use the following configuration:
 
-**pages/posts/[slug].js**
+**pages/posts/\[slug\].js**
 
 ```js
 const formConfig = {
@@ -49,7 +48,7 @@ const formConfig = {
       component: 'text', // the component used to handle UI and input to the field
     },
     {
-      name: 'rawMarkdownBody', // remember we want `rawMarkdownBody`, not `content` here
+      name: 'content', // as mentioned in project setup, `post.content` will refer to the raw markdown.
       label: 'Content',
       component: 'markdown', // `component` accepts a predefined components or a custom React component
     },
@@ -69,7 +68,7 @@ import { useForm, usePlugin } from 'tinacms'
 
 Then, add the form to the `Post` component with the configuration we laid out previously:
 
-**pages/posts/[slug].js**
+**pages/posts/\[slug\].js**
 
 ```js
 export default function Post({ post: initialPost, morePosts, preview }) {
@@ -136,7 +135,7 @@ For the sake of simplicity, we won't worry about dynamically importing the WYSIW
 
 In our `_app.js` file, we can register `MarkdownFieldPlugin` when we instantiate the CMS:
 
-**pages/\_app.js**
+**pages/_app.js**
 
 ```diff
   import '../styles/index.css'
@@ -156,4 +155,4 @@ In our `_app.js` file, we can register `MarkdownFieldPlugin` when we instantiate
 
 ## More Info
 
-- [Tina Docs: Forms](/docs/plugins/forms)
+* [Tina Docs: Forms](/docs/plugins/forms)
