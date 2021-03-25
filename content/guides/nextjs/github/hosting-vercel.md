@@ -18,7 +18,7 @@ Visit your website, **you should now be able to login and edit content with Tina
 
 Go ahead, make some edits and commit the changes (note these will commit and push to master if you own the repo). Toggle between edit and non-edit mode to get a feel for how things work on a live site.
 
-### How does this work?
+## How does this work?
 
 When we deploy with Vercel, we can take full advantage of [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode). This allows us to host a website that is fully **static by default but switches to a dynamic mode** that runs server code for users that have a special "preview" cookie set.
 
