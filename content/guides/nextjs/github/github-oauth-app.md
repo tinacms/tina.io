@@ -1,7 +1,7 @@
 ---
 title: Set up the GitHub OAuth App
+last_edited: '2021-03-25T22:14:12.473Z'
 ---
-
 To get started, we need to set up an OAuth App in Github. Within your GitHub Account Settings, click <a href="https://github.com/settings/developers" target="_blank">OAuth Apps</a> under Developer Settings. Go ahead and create a "New OAuth App".
 
 Since you are **testing your app locally**, you'll create a _development_ GitHub app that redirects to localhost. Eventually you'll need to create separate OAuth Apps: one for development and a production app whose URLs will connect to the live domain. We'll circle back to the production app once when we cover [hosting](/guides/nextjs/github/hosting-vercel).
@@ -12,13 +12,13 @@ For now, fill in `http://localhost:3000` for the _Homepage URL_. With the **Auth
 
 Once the details are filled in, Go ahead and click 'Register Application'. After creating the app, you should see a page with information such as **Client ID** and **Client Secret**. Next, we'll add those as environment variables to the project to connect this App to the Tina-GitHub helpers.
 
-### Setting Environment Variables
+## Setting Environment Variables
 
 [Environment variables](https://nextjs.org/docs/api-reference/next.config.js/environment-variables) are sensitive values specific to your project. The Tina-GitHub helpers will use these values to talk to your repository, enabling auth and data fetching via GitHub.
 
-You will need a secret *Signing Key*, which should be a random 256-bit key. This key used server-side to encrypt and decrypt authentication tokens sent to the client.
+You will need a secret _Signing Key_, which should be a random 256-bit key. This key used server-side to encrypt and decrypt authentication tokens sent to the client.
 
-You can generate a key by running `openssl rand -base64 32` in your terminal, using the output as your *Signing Key*.
+You can generate a key by running `openssl rand -base64 32` in your terminal, using the output as your _Signing Key_.
 
 To set these variables, create a `.env` file in your project root. Add the _secret_ and _id_ values from the OAuth App, add your secret _Signing Key_, and fill in the repo name.
 
