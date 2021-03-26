@@ -6,6 +6,7 @@ import GithubIconSvg from '../../public/svg/github-icon.svg'
 import { EmailForm } from '../forms/EmailForm'
 import { EditLink } from './EditLink'
 import { TinaIcon } from 'components/logo'
+import Link from 'next/link'
 
 const FooterSocial = styled.div`
   display: flex;
@@ -213,6 +214,10 @@ export const Footer = styled(({ light, ...styleProps }) => {
         </FooterForm>
         <Footnote>
           <EditLink color={'primary'} />
+          <Link href="/terms-of-service" passHref>
+            <a>Terms of Service</a>
+          </Link>
+          <FooterDivider />
           <a
             href="https://github.com/tinacms/tinacms/blob/master/LICENSE"
             target="_blank"
