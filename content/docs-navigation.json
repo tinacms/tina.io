@@ -24,9 +24,9 @@
     "external": false
   },
   {
-    "id": "enterprise",
-    "label": "Enterprise",
-    "href": "/enterprise",
+    "id": "tinacloud",
+    "label": "Tina Cloud",
+    "href": "/early-access/",
     "external": false
   }
 ]
