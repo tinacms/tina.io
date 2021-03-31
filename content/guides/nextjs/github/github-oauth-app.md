@@ -1,6 +1,6 @@
 ---
 title: Set up the GitHub OAuth App
-last_edited: '2021-03-25T22:14:12.473Z'
+last_edited: '2021-03-31T20:11:53.803Z'
 ---
 To get started, we need to set up an OAuth App in Github. Within your GitHub Account Settings, click <a href="https://github.com/settings/developers" target="_blank">OAuth Apps</a> under Developer Settings. Go ahead and create a "New OAuth App".
 
@@ -34,8 +34,8 @@ GITHUB_CLIENT_SECRET=
 # The path to your repository in GitHub
 REPO_FULL_NAME=my-github-user/my-github-repo
 
-# The base branch that new changes and forks are created from. Defaults to 'master'.
-BASE_BRANCH=master
+# The base branch that new changes and forks are created from. Usually 'master' or 'main' on newer repos.
+BASE_BRANCH=main
 
 # The signing key used for token encryption
 SIGNING_KEY=
