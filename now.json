@@ -106,7 +106,11 @@
     },
     {
       "source": "/teams",
-      "destination": "/enterprise"
+      "destination": "/early-access"
+    },
+    {
+      "source": "/enterprise",
+      "destination": "/early-access"
     },
     {
       "source": "/docs/gatsby/quickstart",
