@@ -212,4 +212,4 @@ You can also extend styles by assigning a `className` to the Inline Field.
 ## Additional Reading
 
 * A guide — [Working With Inline Blocks](/guides/general/inline-blocks/overview)
-* `react-tinacms-inline` package [documentation](/docs/ui/inline-editing/inline-textarea)
+* `react-tinacms-inline` package [documentation](/packages/react-tinacms-inline)
