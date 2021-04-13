@@ -4,6 +4,11 @@
     "description": "The JavaScript toolkit for building content management interfaces",
     "items": [
       {
+        "title": "Overview",
+        "id": "/docs/tinacms",
+        "slug": "/docs/tinacms"
+      },
+      {
         "title": "Getting Started",
         "id": "getting-started",
         "items": [
