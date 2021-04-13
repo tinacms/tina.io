@@ -15,6 +15,8 @@ import { searchIndices } from 'components/search/indices'
 export interface DocsNavProps {
   navItems: any
   guide: false | { category: string }
+  onExit?: () => void
+  category?: string
 }
 
 export function DocumentationNavigation({ navItems, guide }: DocsNavProps) {
