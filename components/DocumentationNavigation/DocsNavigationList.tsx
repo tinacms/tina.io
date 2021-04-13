@@ -96,12 +96,16 @@ const DocsNavigationSection = ({
     <NavListContext.Provider value={navListRef}>
       <ul ref={navListRef}>
         <CategoryAnchor>
-          {category}
           <CategoryDescription>
-            <span role="button" onClick={onExit}>
-              ← Back
+            <span
+              role="button"
+              onClick={onExit}
+              style={{ display: 'block', marginBottom: '0.5em' }}
+            >
+              ← Docs Index
             </span>
           </CategoryDescription>
+          {category}
         </CategoryAnchor>
 
         {navItems &&
