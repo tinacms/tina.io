@@ -2,16 +2,16 @@
 title: Screen Plugins
 prev: /docs/plugins/content-creators
 next: /docs/plugins/toolbar-widgets
+last_edited: '2021-04-13T14:52:33.504Z'
 ---
-
 Screen Plugins allow you to render modal UI and handle various content editing needs. The purpose of these screens is to give a way to display information about the website that is not suited to inline or sidebar editing.
 
 **Example use cases** may include:
 
-- User Management
-- CI build status
-- Website Metadata e.g. SEO
-- Layout Configuration e.g. MenusFor example, one might use a _Screen Plugin_ to register a form to edit 'global site data'.
+* User Management
+* CI build status
+* Website Metadata e.g. SEO
+* Layout Configuration such as Menus. For example, one might use a _Screen Plugin_ to register a form to edit 'global site data'.
 
 ## Interface
 
@@ -29,17 +29,17 @@ export interface ScreenComponentProps {
 }
 ```
 
-| Option      | Description                                                                             |
-| ----------- | --------------------------------------------------------------------------------------- |
-| `__type`    | The name of the plugin. Always `'screen'`.                                              |
-| `name`      | The text to be displayed in the form menu and at the top of the screen modal.           |
+| Option | Description |
+| --- | --- |
+| `__type` | The name of the plugin. Always `'screen'`. |
+| `name` | The text to be displayed in the form menu and at the top of the screen modal. |
 | `Component` | An array of fields that populate a modal form. Field values can populate new file data. |
-| `Icon`      | A component to render in the form menu, next to the `name`.                             |
-| `layout`    | Determines the modal layout. Defaults to `popup`.                                       |
+| `Icon` | A component to render in the form menu, next to the `name`. |
+| `layout` | Determines the modal layout. Defaults to `popup`. |
 
 ### Name, Icon, & Component
 
-The **`ScreenPlugin` has three main pieces**: a name, an icon, and a React Component. The name and icon can be used to list the screen plugin in a menu.
+The `ScreenPlugin` has three main pieces: a name, an icon, and a React Component. The name and icon can be used to list the screen plugin in a menu.
 
 ![global-menu](/img/tina-grande-global-form.jpg)
 
@@ -135,7 +135,7 @@ function Layout(props) {
 
 You can also optionally pass an icon and a layout to `useFormScreenPlugin`. If these are not passed, then a default icon will be used, and the layout will be 'popup'.
 
-**Example** 
+**Example**
 
 ```jsx
 import { useFormScreenPlugin } from 'tinacms'
@@ -154,8 +154,4 @@ function Layout(props) {
 }
 ```
 
-## Further Reading
-
-- Checkout this [step-by-step blog](/blog/screen-plugins) on **how to create your own Screen Plugin**
-- Learn how to [register plugins](/docs/plugins#adding-plugins) with the CMS
-- Visit the [Field Plugins](/docs/plugins/fields) docs to learn about how you can customize your form.
+## Further Readi
