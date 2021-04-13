@@ -113,7 +113,7 @@ const DocsNavigationSection = ({
   )
 }
 
-const MobileMainNav = styled.li`
+const MobileMainNav = styled.div`
   padding-top: 0rem;
   margin-bottom: 1rem;
   padding-bottom: 1rem;
