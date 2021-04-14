@@ -1,7 +1,7 @@
 ---
 date: '2021-04-14T13:59:53+02:00'
 author: Frank Taillandier
-last_edited: '2021-04-14T14:39:02.351Z'
+last_edited: '2021-04-14T17:26:04.906Z'
 title: 2021 Q1 Tina updates
 ---
 We are regularly improving Tina to provide an effective developer experience _and_ a unique visual content editing experience. Latest additions are the result of listening to the feedback of the community as well as scratching our own itch.
@@ -46,8 +46,8 @@ Our homepage makes it very clear that Tina can potentially work with any backend
 
 Our community activities are now tracked in [Orbit](https://orbit.love/) 💜, in order to help us better build better relationships with you. Warm thanks to [Nicolas](https://github.com/phacks/) from the Orbit team for helping out setting things up.
 
-![Member Activity in the Tina Community for 2021 Q1 in Orbit](/img/blog/orbit-members-2021-q1.png)Orbit makes it easy to reflect on the community’s activity, you can easily see when you got on the front page of Hacker News 😊.   
-  
+![Member Activity in the Tina Community for 2021 Q1 in Orbit](/img/blog/orbit-members-2021-q1.png)Orbit makes it easy to reflect on the community’s activity, you can easily see when you got on the front page of Hacker News 😊.
+
 Shout out to our most active community members for 2021 Q1:  [Joe Innes](https://github.com/joeinnes), [Matthew Francis Brunetti](https://github.com/zenflow), [Austin Condiff](https://github.com/austincondiff), [Hirvin Faria](https://github.com/hirvin-faria) and [Chadd Poggenpoel](https://github.com/Chizzah). 👏👏👏👏👏
 
 Our open source project has reached some new milestones:
@@ -61,4 +61,4 @@ Our open source project has reached some new milestones:
 
 In order to enhance the Tina ecosystem, our team is currently working on a new open source tool to ease the way you can do structured content management while keeping control of your content in your Git repository. More on that next week!
 
-Subscribe to our blog or newsletter to be the first to know about all our new and exciting developments.
+[Subscribe to our blog feed](/rss.xml) or [newsletter](https://gmail.us20.list-manage.com/subscribe?u=1fea337bee20e7270d025ea8a&id=c1062536a1) to be the first to know about all our new and exciting developments.
