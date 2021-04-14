@@ -1,7 +1,7 @@
 ---
 date: '2021-04-14T13:59:53+02:00'
 author: Frank Taillandier
-last_edited: '2021-04-14T17:26:04.906Z'
+last_edited: '2021-04-14T18:00:06.135Z'
 title: 2021 Q1 Tina updates
 ---
 We are regularly improving Tina to provide an effective developer experience _and_ a unique visual content editing experience. Latest additions are the result of listening to the feedback of the community as well as scratching our own itch.
@@ -27,6 +27,9 @@ We started reevaluating our approach to how Tina does inline editing. We refacto
 We’ll share our views in an upcoming post on what the future of inline editing will look like in Tina from a developer perspective.
 
 Related to this change, we decided to remove drag-and-drop of inline blocks for now. There were some cases where it was creating issues but we might revisit this feature later when we have better inline editing. Now, you can move blocks around a page with up and down block controls, which shouldn't require too many clicks in most cases.
+
+You'll soon be able to [resize the sidebar](https://github.com/tinacms/tinacms/pull/1795#issue-615395547) as you see fit.   
+This makes the writing experience much more enjoyable when you write long format in the WYSIWYG editor. ↔️
 
 ## Next.js and Tailwind Demo 👀
 
@@ -61,4 +64,4 @@ Our open source project has reached some new milestones:
 
 In order to enhance the Tina ecosystem, our team is currently working on a new open source tool to ease the way you can do structured content management while keeping control of your content in your Git repository. More on that next week!
 
-[Subscribe to our blog feed](/rss.xml) or [newsletter](https://gmail.us20.list-manage.com/subscribe?u=1fea337bee20e7270d025ea8a&id=c1062536a1) to be the first to know about all our new and exciting developments.
+Subscribe to our blog or [newsletter](https://gmail.us20.list-manage.com/subscribe?u=1fea337bee20e7270d025ea8a&id=c1062536a1) to be the first to know about all our new and exciting developments.
