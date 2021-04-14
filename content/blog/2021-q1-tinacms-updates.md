@@ -1,7 +1,7 @@
 ---
 date: '2021-04-14T13:59:53+02:00'
 author: Frank Taillandier
-last_edited: '2021-04-14T18:00:06.135Z'
+last_edited: '2021-04-14T18:00:49.420Z'
 title: 2021 Q1 Tina updates
 ---
 We are regularly improving Tina to provide an effective developer experience _and_ a unique visual content editing experience. Latest additions are the result of listening to the feedback of the community as well as scratching our own itch.
@@ -19,7 +19,7 @@ Editors are now able to pick from a list of options, the [radio group field](/do
 
 A small, yet big, win for inline editing, you can now duplicate a block with a single click.
 
-![When using TIna Inline Block, xlick on the duplicate icon to insert the same block below.](/img/blog/duplicate-block-tinacms.gif)
+![When using TIna Inline Block, click on the duplicate icon to insert the same block below.](/img/blog/duplicate-block-tinacms.gif)
 
 ## Rethinking Inline Editing 🤔
 
@@ -28,7 +28,7 @@ We’ll share our views in an upcoming post on what the future of inline editing
 
 Related to this change, we decided to remove drag-and-drop of inline blocks for now. There were some cases where it was creating issues but we might revisit this feature later when we have better inline editing. Now, you can move blocks around a page with up and down block controls, which shouldn't require too many clicks in most cases.
 
-You'll soon be able to [resize the sidebar](https://github.com/tinacms/tinacms/pull/1795#issue-615395547) as you see fit.   
+You'll soon be able to [resize the sidebar](https://github.com/tinacms/tinacms/pull/1795#issue-615395547) as you see fit.  
 This makes the writing experience much more enjoyable when you write long format in the WYSIWYG editor. ↔️
 
 ## Next.js and Tailwind Demo 👀
