@@ -1,7 +1,7 @@
 ---
 date: '2021-04-14T13:59:53+02:00'
 author: Frank Taillandier
-last_edited: '2021-04-14T14:27:08.045Z'
+last_edited: '2021-04-14T14:39:02.351Z'
 title: 2021 Q1 Tina updates
 ---
 We are regularly improving Tina to provide an effective developer experience _and_ a unique visual content editing experience. Latest additions are the result of listening to the feedback of the community as well as scratching our own itch.
@@ -46,9 +46,9 @@ Our homepage makes it very clear that Tina can potentially work with any backend
 
 Our community activities are now tracked in [Orbit](https://orbit.love/) 💜, in order to help us better build better relationships with you. Warm thanks to [Nicolas](https://github.com/phacks/) from the Orbit team for helping out setting things up.
 
-![Member Activity in the Tina Community for 2021 Q1 in Orbit](/img/blog/orbit-members-2021-q1.png)
-
-Orbit makes it easier to reflect on the community’s activity. Shout out to our most active community members for 2021 Q1:  [Joe Innes](https://github.com/joeinnes), [Matthew Francis Brunetti](https://github.com/zenflow), [Austin Condiff](https://github.com/austincondiff), [Hirvin Faria](https://github.com/hirvin-faria) and [Chadd Poggenpoel](https://github.com/Chizzah). 👏👏👏👏👏
+![Member Activity in the Tina Community for 2021 Q1 in Orbit](/img/blog/orbit-members-2021-q1.png)Orbit makes it easy to reflect on the community’s activity, you can easily see when you got on the front page of Hacker News 😊.   
+  
+Shout out to our most active community members for 2021 Q1:  [Joe Innes](https://github.com/joeinnes), [Matthew Francis Brunetti](https://github.com/zenflow), [Austin Condiff](https://github.com/austincondiff), [Hirvin Faria](https://github.com/hirvin-faria) and [Chadd Poggenpoel](https://github.com/Chizzah). 👏👏👏👏👏
 
 Our open source project has reached some new milestones:
 
