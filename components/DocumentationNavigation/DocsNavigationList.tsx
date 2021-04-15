@@ -6,6 +6,11 @@ import { DocsNavProps } from './DocumentationNavigation'
 import { NavSection } from './NavSection'
 import { useRouter } from 'next/router'
 
+export interface DocsSectionProps extends DocsNavProps {
+  onExit: () => void
+  category: string
+}
+
 export const NavListContext = createContext({ current: null })
 
 const getCategoryMatch = (navItems, currentPath) => {
@@ -88,7 +93,7 @@ const DocsNavigationSection = ({
   guide,
   onExit,
   category,
-}: DocsNavProps) => {
+}: DocsSectionProps) => {
   const navListRef = useRef<HTMLUListElement>(null)
 
   return (
