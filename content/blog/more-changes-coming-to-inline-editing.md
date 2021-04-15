@@ -1,8 +1,8 @@
 ---
-title: More Changes Coming to Inline Editing
+title: Hey
 date: '2021-01-13T10:16:45-05:00'
 author: DJ
-last_edited: '2021-01-13T15:45:05.411Z'
+last_edited: '2021-04-15T20:19:45.549Z'
 ---
 It was around six months ago that we last dug deep into Tina's inline editing experience. At that time, we introduced new features and improved the UI of inline editing. Since then, there have been a few pain points we've run into from time to time.
 
