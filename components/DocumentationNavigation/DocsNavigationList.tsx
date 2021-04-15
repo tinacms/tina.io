@@ -89,7 +89,6 @@ const DocsNavigationSection = ({
   onExit,
   category,
 }: DocsNavProps) => {
-  console.log(JSON.stringify(navItems, null, 2))
   const navListRef = useRef<HTMLUListElement>(null)
 
   return (
