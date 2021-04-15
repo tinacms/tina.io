@@ -1,7 +1,7 @@
 ---
 date: '2021-04-14T13:59:53+02:00'
 author: Frank Taillandier
-last_edited: '2021-04-14T18:02:54.537Z'
+last_edited: '2021-04-15T07:46:05.497Z'
 title: 2021 Q1 Tina updates
 ---
 We are regularly improving Tina to provide an effective developer experience _and_ a unique visual content editing experience. Latest additions are the result of listening to the feedback of the community as well as scratching our own itch.
@@ -14,6 +14,10 @@ Editors are now able to pick from a list of options, the [radio group field](/do
 
 ![Radio Group field in horizontal direction (default)](/img/fields/radio-group-field-horizontal-radio.gif)
 ![Radio Group field Button Variant (horizontal)](/img/fields/radio-group-field-horizontal-button.gif)
+
+## Search and filter blocks 🆕
+
+When your page template offers more than 10 components to pick from, editors can type and [filter from the blocks menu list](https://github.com/tinacms/tinacms/pull/1772). We have plans to make picking blocks a more visual experience.
 
 ## Duplicate blocks 🆕
 
