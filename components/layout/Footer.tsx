@@ -218,6 +218,10 @@ export const Footer = styled(({ light, ...styleProps }) => {
             <a>Terms of Service</a>
           </Link>
           <FooterDivider />
+          <Link href="/privacy-notice" passHref>
+            <a>Privacy Notice</a>
+          </Link>
+          <FooterDivider />
           <a
             href="https://github.com/tinacms/tinacms/blob/master/LICENSE"
             target="_blank"

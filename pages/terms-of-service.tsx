@@ -471,7 +471,7 @@ export default () => (
 )
 
 
-const LastModified = styled.div`
+export const LastModified = styled.div`
   text-align: center;
   margin: 2rem 0;
   font-weight: bold;
