@@ -115,7 +115,7 @@
           "subline": "Connect to a headless CMS for a better content editing experience",
           "icon": "arrowRight",
           "media": {
-            "src": "img/headlessCms.png"
+            "src": "/img/headlessCms.png"
           }
         },
         {
@@ -124,7 +124,7 @@
           "icon": "arrowRight",
           "link": "/packages/react-tinacms-github/",
           "media": {
-            "src": "img/git-providers.png"
+            "src": "/img/git-providers.png"
           }
         },
         {
@@ -132,7 +132,7 @@
           "subline": "Store your content in Airtable, Google Sheets, or any data source",
           "icon": "arrowRight",
           "media": {
-            "src": "img/headlessCms.png"
+            "src": "/img/headlessCms.png"
           }
         }
       ]
