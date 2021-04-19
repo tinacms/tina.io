@@ -25,7 +25,7 @@ yarn global add gatsby-cli
 gatsby new gatsby-starter-blog https://github.com/gatsbyjs/gatsby-starter-blog
 ```
 
-This will create a new blog starter in the `gatsby-starter-blog` directory. Navigate to the project directory and run `gatsby develop` to start the website in dev mode.
+This will create a new blog starter in the `gatsby-starter-blog` directory. Navigate to the project directory and run `yarn develop` to start the website in dev mode.
 
 ```bash
 cd gatsby-starter-blog
