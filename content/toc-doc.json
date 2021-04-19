@@ -382,8 +382,8 @@
         "title": "Client"
       },
       {
-        "id": "/docs/tina-cloud/CLI",
-        "slug": "/docs/tina-cloud/CLI",
+        "id": "/docs/tina-cloud/cli",
+        "slug": "/docs/tina-cloud/cli",
         "title": "Command Line Interface"
       }
     ]
