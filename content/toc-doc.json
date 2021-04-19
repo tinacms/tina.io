@@ -367,14 +367,19 @@
     "description": "Powerful Git-based content management for teams",
     "items": [
       {
+        "id": "/docs/tina-cloud",
+        "slug": "/docs/tina-cloud",
+        "title": "Overview"
+      },
+      {
         "id": "/docs/tina-cloud/dashboard",
         "slug": "/docs/tina-cloud/dashboard",
-        "title": "Using the Dashboard"
+        "title": "Dashboard"
       },
       {
         "id": "/docs/tina-cloud/client",
         "slug": "/docs/tina-cloud/client",
-        "title": "Using the Client"
+        "title": "Client"
       },
       {
         "id": "/docs/tina-cloud/CLI",
