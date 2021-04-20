@@ -79,7 +79,7 @@ export const heroBlock = {
 }
 ```
 
-Here we're wrapping `Hero` in _Block Controls_ to provide a UI for reordering, deleting, and adding new blocks. Notice the `index` being passed as props to `BlockControls` — this helps to keep track of the block order.
+Here we're wrapping `Hero` in _Blocks Controls_ to provide a UI for reordering, deleting, and adding new blocks. Notice the `index` being passed as props to `BlocksControls` — this helps to keep track of the block order.
 
 ## Make a Template
 
@@ -140,7 +140,8 @@ export default function Home() {
     },
   };
 
-  const [, form] = useForm(formConfig);
+- const [pageData, form] = useForm(formConfig);
++ const [, form] = useForm(formConfig);
 
   usePlugin(form);
 
