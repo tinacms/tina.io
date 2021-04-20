@@ -60,28 +60,36 @@ export const DocsNavigationList = ({ navItems, guide }: DocsNavProps) => {
           category={currentCategoryData.category}
         />
       ) : (
-        <DocsCategoryList navItems={navItems} onSelect={setCurrentCategory} />
+        <DocsCategoryList
+          navItems={navItems}
+          onSelect={setCurrentCategory}
+          activeCategory={activeCategory}
+        />
       )}
     </>
   )
 }
 
-const DocsCategoryList = ({ navItems, onSelect }) => {
+const DocsCategoryList = ({ navItems, onSelect, activeCategory }) => {
   return (
     <div style={{ padding: '1rem 0' }}>
       {navItems.map(categoryData => {
         return (
-          <>
+          <Link href={categoryData.slug} passHref>
             <CategoryAnchor
-              role="button"
-              onClick={() => onSelect(categoryData.category)}
+              onClick={e => {
+                if (activeCategory === categoryData.category) {
+                  e.preventDefault()
+                  onSelect(categoryData.category)
+                }
+              }}
             >
               {categoryData.category} →
               <CategoryDescription>
                 {categoryData.description}
               </CategoryDescription>
             </CategoryAnchor>
-          </>
+          </Link>
         )
       })}
     </div>
@@ -170,7 +178,7 @@ const Breadcrumbs = styled.li`
   }
 `
 
-const CategoryAnchor = styled.span`
+const CategoryAnchor = styled.a`
   display: block;
   cursor: pointer;
   padding: 0.5rem 1.5rem 0.5rem 1.5rem;
