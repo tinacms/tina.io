@@ -1,16 +1,18 @@
 ---
 title: |-
   Tina Cloud 
-  A Headless CMS Backed by Git 
+  A Headless CMS backed by Git 
 date: '2021-04-21T14:06:05-03:00'
 author: Scott Gallant
-last_edited: '2021-04-21T18:44:44.838Z'
+last_edited: '2021-04-21T18:45:10.715Z'
 ---
 Teams should be able to collaborate on content stored in Git, but in the context of their sites.
 
 We are adding the final touches to bring this vision to reality. In the coming weeks, we’ll release **an open-source GraphQL API** and a new backend so you can **invite collaborators to visually edit your sites** in your Git repositories.
 
-Just over a year ago, we[ announced TinaCMS](https://www.youtube.com/watch?v=iPDCmbaEF0Y), an _open-source, visual editor for React-based websites._![Real-time editing of a Next.js + TailwindCSS site with Tina’s sidebar.](https://res.cloudinary.com/forestry-demo/image/upload/v1619023278/tina-cms-visual-editing.gif "Real-time editing of a Next.js + TailwindCSS site with Tina’s sidebar.")
+Just over a year ago, we[ announced TinaCMS](https://www.youtube.com/watch?v=iPDCmbaEF0Y), an _open-source, visual editor for React-based websites._![](https://res.cloudinary.com/forestry-demo/image/upload/v1619023278/tina-cms-visual-editing.gif)
+
+_Real-time editing of a Next.js + TailwindCSS site with Tina’s sidebar._
 
 This was just the beginning of our journey, and while[ visual open authoring](https://tina.io/blog/introducing-visual-open-authoring/) is quite handy for websites talking directly to GitHub, many organizations need a more robust solution to collaborate on content stored in their Git repositories.
 
@@ -26,7 +28,7 @@ We designed TinaCMS to separate these concerns and write _structured_ _content_ 
 
 ### With great flexibility comes great friction
 
-We learned that Tina’s storage-agnostic approach adds complexity to the setup process and requires your content editors to authenticate through other means (i.e. GitHub). We wanted to give teams a quicker path to success with richer collaboration features which is why we’re building our own backend, TinaCloud.![](/img/blog/After.png)
+We learned that Tina’s storage-agnostic approach adds complexity to the setup process and requires your content editors to authenticate through other means (i.e. GitHub). We wanted to give teams a quicker path to success with richer collaboration features which is why were building our own backend, TinaCloud.![](/img/blog/After.png)
 
 You can think of TinaCloud as a headless CMS stripped of the editing interface, which is provided by TinaCMS.
 
