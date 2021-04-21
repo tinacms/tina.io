@@ -4,23 +4,27 @@ title: |-
   A Headless CMS backed by Git 
 date: '2021-04-21T14:06:05-03:00'
 author: Scott Gallant
-last_edited: '2021-04-21T20:50:03.398Z'
+last_edited: '2021-04-21T21:09:58.561Z'
 ---
-Teams should be able to collaborate on content stored in Git, but in the context of their sites.
+We're giving teams the ability to edit content stored in Git, but visually, in the context of their site.
 
-We are adding the final touches to bring this vision to reality. In the coming weeks, we’ll release **an open-source GraphQL API** and a new backend so you can **invite collaborators to visually edit your sites** in your Git repositories.
+We are adding the final touches to bring this vision to reality. In the coming weeks, we’ll release **an open-source GraphQL API for your content**  and [Tina Cloud](), our new **headless API that talks to Git**. 
 
 Just over a year ago, we[ announced TinaCMS](https://www.youtube.com/watch?v=iPDCmbaEF0Y), an _open-source, visual editor for React-based websites._![](https://res.cloudinary.com/forestry-demo/image/upload/v1619023278/tina-cms-visual-editing.gif)
 
 _Real-time editing of a Next.js + TailwindCSS site with Tina’s sidebar._
 
-With TinaCMS you can edit in the context of your site and those content changes get synced with _any_ storage solution: a Markdown file in GitHub, an Airtable document, a Google Sheet, or just another headless CMS, etc. This gives your team a user-friendly visual interface, without sacrificing code quality and without locking you in to a specific content storage solution.
+With TinaCMS you can edit in the context of your site and those content changes get synced with _any_ storage solution: a Markdown file in GitHub, an Airtable document, a Google Sheet, or just another headless CMS, etc.
 
 ![](/img/blog/Before.png)
 
+This storage-agnostic approach maintains a separation of code and content, and doesn't lock you in to any specific content storage solution.
+
+However, at the same time, this approach adds complexity to the setup process and requires your content editors to authenticate through other means, like GitHub (not always ideal). We wanted to give teams a quicker path to success and richer collaboration features which is why we're building our own backend, Tina Cloud.
+
 ## Tina Cloud: a best-in-class API on top of Git
 
-We learned that Tina’s storage-agnostic approach adds complexity to the setup process and requires your content editors to authenticate through other means (i.e. GitHub). We wanted to give teams a quicker path to success with richer collaboration features which is why we're building our own backend, Tina Cloud.![](/img/blog/After.png)
+![](/img/blog/After.png)
 
 You can think of Tina Cloud as a headless CMS stripped of the editing interface, which is provided by TinaCMS.
 
