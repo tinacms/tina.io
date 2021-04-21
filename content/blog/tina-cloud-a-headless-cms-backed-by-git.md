@@ -2,15 +2,13 @@
 title: 'Tina Cloud - A Headless CMS Backed by Git '
 date: '2021-04-21T14:06:05-03:00'
 author: Scott Gallant
-last_edited: '2021-04-21T18:42:56.861Z'
+last_edited: '2021-04-21T18:44:10.059Z'
 ---
 Teams should be able to collaborate on content stored in Git, but in the context of their sites.
 
 We are adding the final touches to bring this vision to reality. In the coming weeks, we’ll release **an open-source GraphQL API** and a new backend so you can **invite collaborators to visually edit your sites** in your Git repositories.
 
-Just over a year ago, we[ announced TinaCMS](https://www.youtube.com/watch?v=iPDCmbaEF0Y), an _open-source, visual editor for React-based websites._![](https://res.cloudinary.com/forestry-demo/image/upload/v1619023278/tina-cms-visual-editing.gif)
-
-_Real-time editing of a Next.js + TailwindCSS site with Tina’s sidebar._
+Just over a year ago, we[ announced TinaCMS](https://www.youtube.com/watch?v=iPDCmbaEF0Y), an _open-source, visual editor for React-based websites._![Real-time editing of a Next.js + TailwindCSS site with Tina’s sidebar.](https://res.cloudinary.com/forestry-demo/image/upload/v1619023278/tina-cms-visual-editing.gif "Real-time editing of a Next.js + TailwindCSS site with Tina’s sidebar.")
 
 This was just the beginning of our journey, and while[ visual open authoring](https://tina.io/blog/introducing-visual-open-authoring/) is quite handy for websites talking directly to GitHub, many organizations need a more robust solution to collaborate on content stored in their Git repositories.
 
