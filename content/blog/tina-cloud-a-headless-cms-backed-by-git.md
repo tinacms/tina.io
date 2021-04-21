@@ -1,8 +1,10 @@
 ---
-title: 'Tina Cloud - A Headless CMS Backed by Git '
+title: |-
+  Tina Cloud 
+  A Headless CMS Backed by Git 
 date: '2021-04-21T14:06:05-03:00'
 author: Scott Gallant
-last_edited: '2021-04-21T18:44:10.059Z'
+last_edited: '2021-04-21T18:44:44.838Z'
 ---
 Teams should be able to collaborate on content stored in Git, but in the context of their sites.
 
