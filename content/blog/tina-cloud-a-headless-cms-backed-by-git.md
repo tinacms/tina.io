@@ -4,7 +4,7 @@ title: |-
   A Headless CMS backed by Git 
 date: '2021-04-21T14:06:05-03:00'
 author: Scott Gallant
-last_edited: '2021-04-21T18:45:10.715Z'
+last_edited: '2021-04-21T18:47:09.583Z'
 ---
 Teams should be able to collaborate on content stored in Git, but in the context of their sites.
 
@@ -34,7 +34,7 @@ You can think of TinaCloud as a headless CMS stripped of the editing interface, 
 
 ### A GraphQL API for your content
 
-We are big believers in storing your website’s content in the filesystem backed by Git (Markdown, JSON, YAML, etc.). Not just because Git is a widely adopted and [open standard](https://github.com/git/git), but also because it comes out-of-the-box with great content management features like branching, rollbacks, and pull requests.  Continuous deployment services like Vercel or Netlify rely on Git and content teams should be able to embrace the very same workflow.
+We are big believers in storing your website’s content in the filesystem backed by Git (Markdown, JSON, YAML, etc.). Not just because Git is a widely adopted and [open standard](https://github.com/git/git), but also because it comes out-of-the-box with great content management features like branching, rollbacks, and pull requests. Continuous deployment services like Vercel or Netlify rely on Git and content teams should be able to embrace the very same workflow.
 
 However, Git and the filesystem have limitations when you’re interacting with your content programmatically. That’s why databases exist.
 
@@ -44,7 +44,7 @@ To overcome these limitations, Tina Cloud provides a GraphQL interface to your r
 
 ### Bring visual editing to the whole team with Tina Cloud
 
-The best websites result from collaboration between engineers, designers, writers, and marketers.  These people need the ability to work from a single source of truth and Tina Cloud offers a simple **dashboard** for admins to manage sites and collaborators.
+The best websites result from collaboration between engineers, designers, writers, and marketers. These people need the ability to work from a single source of truth and Tina Cloud offers a simple **dashboard** for admins to manage sites and collaborators.
 
 ![Tina Cloud Dashboard: Apps Tab](/img/blog/tina-cloud-dashboard.png "Tina Cloud Dashboard: Apps Tab")
 
