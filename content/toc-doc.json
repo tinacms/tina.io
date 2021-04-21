@@ -1,6 +1,7 @@
 [
   {
     "category": "TinaCMS",
+    "slug": "/docs/tinacms",
     "description": "The JavaScript toolkit for building content management interfaces",
     "items": [
       {
@@ -364,6 +365,7 @@
   },
   {
     "category": "Tina Cloud",
+    "slug": "/docs/tina-cloud",
     "description": "Powerful Git-based content management for teams",
     "items": [
       {
@@ -390,6 +392,7 @@
   },
   {
     "category": "Guides",
+    "slug": "/guides",
     "description": "Learn to use Tina step-by-step",
     "items": [
       {
