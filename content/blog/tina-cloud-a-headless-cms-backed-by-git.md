@@ -4,7 +4,7 @@ title: |-
   A Headless CMS backed by Git 
 date: '2021-04-21T14:06:05-03:00'
 author: Scott Gallant
-last_edited: '2021-04-21T18:47:09.583Z'
+last_edited: '2021-04-21T20:50:03.398Z'
 ---
 Teams should be able to collaborate on content stored in Git, but in the context of their sites.
 
@@ -14,23 +14,15 @@ Just over a year ago, we[ announced TinaCMS](https://www.youtube.com/watch?v=iPD
 
 _Real-time editing of a Next.js + TailwindCSS site with Tina’s sidebar._
 
-This was just the beginning of our journey, and while[ visual open authoring](https://tina.io/blog/introducing-visual-open-authoring/) is quite handy for websites talking directly to GitHub, many organizations need a more robust solution to collaborate on content stored in their Git repositories.
-
-Let’s take a brief look at what’s coming.
-
-## Tina Cloud: a best-in-class API on top of Git
-
-Most other CMS solutions with visual editing or WYSIWYG  functionality miss something critical:  **the necessary separation between content and code**. These products usually output spaghetti code that no developer can maintain or build upon.
-
-We designed TinaCMS to separate these concerns and write _structured_ _content_ to any backend.  You can edit in the context of your site and those content changes get synced with _any_ storage solution: a Markdown file in GitHub, an Airtable document, a Google Sheet, or just another headless CMS, etc. This gives your team a user-friendly visual interface, without sacrificing code quality and without locking you in to a specific content storage solution.
+With TinaCMS you can edit in the context of your site and those content changes get synced with _any_ storage solution: a Markdown file in GitHub, an Airtable document, a Google Sheet, or just another headless CMS, etc. This gives your team a user-friendly visual interface, without sacrificing code quality and without locking you in to a specific content storage solution.
 
 ![](/img/blog/Before.png)
 
-### With great flexibility comes great friction
+## Tina Cloud: a best-in-class API on top of Git
 
-We learned that Tina’s storage-agnostic approach adds complexity to the setup process and requires your content editors to authenticate through other means (i.e. GitHub). We wanted to give teams a quicker path to success with richer collaboration features which is why were building our own backend, TinaCloud.![](/img/blog/After.png)
+We learned that Tina’s storage-agnostic approach adds complexity to the setup process and requires your content editors to authenticate through other means (i.e. GitHub). We wanted to give teams a quicker path to success with richer collaboration features which is why we're building our own backend, Tina Cloud.![](/img/blog/After.png)
 
-You can think of TinaCloud as a headless CMS stripped of the editing interface, which is provided by TinaCMS.
+You can think of Tina Cloud as a headless CMS stripped of the editing interface, which is provided by TinaCMS.
 
 ### A GraphQL API for your content
 
@@ -40,7 +32,7 @@ However, Git and the filesystem have limitations when you’re interacting with 
 
 > _Because of the file-based nature of content in a Git-based CMS, there really is no way to guarantee [referential integrity](https://en.wikipedia.org/wiki/Referential_integrity) — [Brian Rinaldi](https://www.stackbit.com/blog/git-based-cms-relationships/)_
 
-To overcome these limitations, Tina Cloud provides a GraphQL interface to your repository files where content is stored in open formats like Markdown and JSON. This way you can interact with your repository files like you would a database: define content types, relationships, and query your content with GraphQL.
+To overcome these limitations, Tina Cloud provides a GraphQL interface to your repository files where content is stored in open formats like Markdown and JSON. This way you can interact with your repository files like you would a database: define content types, relationships, and query your content with GaphQL.
 
 ### Bring visual editing to the whole team with Tina Cloud
 
@@ -58,4 +50,4 @@ We believe in portability, which is why our headless CMS stores your content in 
 
 **Private Beta**
 
-> _Tina Cloud is currently open to a limited set of Next.js projects, sign for [early access](https://tina.io/early-access/) to get into the private beta._
+> _Tina Cloud is currently open to a limited set of Next.js projects, sign up for [early access](https://tina.io/early-access/)._
