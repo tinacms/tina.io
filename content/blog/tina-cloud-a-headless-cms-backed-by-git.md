@@ -4,11 +4,11 @@ title: |-
   A Headless CMS backed by Git 
 date: '2021-04-21T14:06:05-03:00'
 author: Scott Gallant
-last_edited: '2021-04-21T21:09:58.561Z'
+last_edited: '2021-04-21T21:12:20.174Z'
 ---
 We're giving teams the ability to edit content stored in Git, but visually, in the context of their site.
 
-We are adding the final touches to bring this vision to reality. In the coming weeks, we’ll release **an open-source GraphQL API for your content**  and [Tina Cloud](), our new **headless API that talks to Git**. 
+We are adding the final touches to bring this vision to reality. In the coming weeks, we’ll release **an open-source GraphQL API for your content**  and [Tina Cloud](), our new **headless API that talks to Git**.
 
 Just over a year ago, we[ announced TinaCMS](https://www.youtube.com/watch?v=iPDCmbaEF0Y), an _open-source, visual editor for React-based websites._![](https://res.cloudinary.com/forestry-demo/image/upload/v1619023278/tina-cms-visual-editing.gif)
 
@@ -46,7 +46,7 @@ The best websites result from collaboration between engineers, designers, writer
 
 Tina Cloud provides user management, authentication, and basic roles for your editing team. Give your team members access, even if they don’t have a GitHub account. **✨**
 
-**Conclusion**
+## Conclusion
 
 In the future, we’ll look back at clunky, conventional CMSs and wonder why we settled for so long. Content management can be so much better and we intend to show the world what’s possible. To get there, we’re leaning into visual editing and Git-backed content.
 
