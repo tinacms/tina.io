@@ -1,10 +1,10 @@
 ---
 title: |-
-  Tina Cloud 
-  A Headless CMS backed by Git 
+  Tina Cloud -
+  A Headless CMS Backed by Git 
 date: '2021-04-21T14:06:05-03:00'
 author: Scott Gallant
-last_edited: '2021-04-21T21:12:20.174Z'
+last_edited: '2021-04-21T21:25:53.769Z'
 ---
 We're giving teams the ability to edit content stored in Git, but visually, in the context of their site.
 
