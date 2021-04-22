@@ -1,28 +1,34 @@
 ---
 title: |-
-  Tina Cloud -
-  A Headless CMS Backed by Git 
+  Tina Cloud 
+  A Headless CMS backed by Git 
 date: '2021-04-21T14:06:05-03:00'
 author: Scott Gallant
-last_edited: '2021-04-21T21:28:06.204Z'
+last_edited: '2021-04-22T13:13:20.573Z'
 ---
-We're giving teams the ability to edit content stored in Git, but visually, in the context of their site.
+Teams should be able to collaborate on content stored in Git, but in the context of their sites.
 
-Just over a year ago, we[ announced TinaCMS](https://www.youtube.com/watch?v=iPDCmbaEF0Y), an open-source, visual editor for React-based websites and now we're adding the final touches to bring our vision to reality. In the coming weeks, we’ll release **an open-source GraphQL API for your content**  and [Tina Cloud](), our new **headless API that talks to Git**.
+We are adding the final touches to bring this vision to reality. In the coming weeks, we’ll release **an open-source GraphQL API** and a new backend so you can **invite collaborators to visually edit your sites** in your Git repositories.
 
-![](https://res.cloudinary.com/forestry-demo/image/upload/v1619023278/tina-cms-visual-editing.gif)
+Just over a year ago, we[ announced TinaCMS](https://www.youtube.com/watch?v=iPDCmbaEF0Y), an _open-source, visual editor for React-based websites._![Real-time editing of a Next.js + Tailwind CSS site with Tina’s sidebar.](https://res.cloudinary.com/forestry-demo/image/upload/v1619023278/tina-cms-visual-editing.gif "Real-time editing of a Next.js + Tailwind CSS site with Tina’s sidebar.")
 
-_Real-time editing of a Next.js + TailwindCSS site with Tina’s sidebar._
+_Real-time editing of a Next.js + Tailwind CSS site with Tina’s sidebar._
 
-With TinaCMS you can edit in the context of your site and those content changes get synced with _any_ storage solution: a Markdown file in GitHub, an Airtable document, a Google Sheet, or just another headless CMS, etc.
+This was just the beginning of our journey, and while[ visual open authoring](/blog/introducing-visual-open-authoring/) is quite handy for websites talking directly to GitHub, many organizations need a more robust solution to collaborate on content stored in their Git repositories.
+
+Let’s take a brief look at what’s coming.
+
+## Tina Cloud: a best-in-class API on top of Git
+
+Most visual page builders solutions miss something critical:  **the necessary separation between content and code**. These products usually output spaghetti code that no developer can maintain or build upon.
+
+We designed TinaCMS to separate these concerns and write _structured_ _content_ to any backend.  You can edit in the context of your site and those content changes get synced with _any_ storage solution: a Markdown file in GitHub, an Airtable document, a Google Sheet, or just another headless CMS, etc. This gives your team a user-friendly visual interface, without sacrificing code quality and without locking you in to a specific content storage solution.
 
 ![](/img/blog/Before.png)
 
-This storage-agnostic approach maintains a separation of code and content, and doesn't lock you in to any specific content storage solution.
+### With great flexibility comes great friction
 
-However, at the same time, this approach adds complexity to the setup process and requires your content editors to authenticate through other means, like GitHub (not always ideal). We wanted to give teams a quicker path to success and richer collaboration features which is why we're building our own backend, Tina Cloud.
-
-## Tina Cloud: a best-in-class API on top of Git
+We learned that Tina’s storage-agnostic approach adds complexity to the setup process and requires your content editors to authenticate through other means (i.e. GitHub). We wanted to give teams a quicker path to success with richer collaboration features which is why were building our own backend, [Tina Cloud](https://tina.io/cloud).
 
 ![](/img/blog/After.png)
 
@@ -46,7 +52,7 @@ The best websites result from collaboration between engineers, designers, writer
 
 Tina Cloud provides user management, authentication, and basic roles for your editing team. Give your team members access, even if they don’t have a GitHub account. **✨**
 
-## Conclusion
+**Conclusion**
 
 In the future, we’ll look back at clunky, conventional CMSs and wonder why we settled for so long. Content management can be so much better and we intend to show the world what’s possible. To get there, we’re leaning into visual editing and Git-backed content.
 
@@ -54,4 +60,4 @@ We believe in portability, which is why our headless CMS stores your content in 
 
 **Private Beta**
 
-> _Tina Cloud is currently open to a limited set of Next.js projects, sign up for [early access](https://tina.io/early-access/)._
+> _Tina Cloud is currently open to a limited set of Next.js projects, sign for [early access](https://tina.io/early-access/) to get into the private beta._
