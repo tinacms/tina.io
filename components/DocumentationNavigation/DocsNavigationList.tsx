@@ -84,7 +84,7 @@ const DocsCategoryList = ({ navItems, onSelect, activeCategory }) => {
                 }
               }}
             >
-              {categoryData.category} →
+              {categoryData.category} <AnchorIcon>→</AnchorIcon>
               <CategoryDescription>
                 {categoryData.description}
               </CategoryDescription>
@@ -107,19 +107,10 @@ const DocsNavigationSection = ({
   return (
     <NavListContext.Provider value={navListRef}>
       <ul ref={navListRef}>
-        <CategoryAnchor>
-          <CategoryDescription>
-            <span
-              role="button"
-              onClick={onExit}
-              style={{ display: 'block', marginBottom: '0.5em' }}
-            >
-              ← Docs Index
-            </span>
-          </CategoryDescription>
-          {category}
-        </CategoryAnchor>
-
+        <NavListHeader>
+          <IndexLink onClick={onExit}>← Docs Index</IndexLink>
+          <CategoryHeader>{category}</CategoryHeader>
+        </NavListHeader>
         {navItems &&
           navItems.map(section => (
             <NavSection key={section.id} {...section} collapsible={false} />
@@ -178,6 +169,24 @@ const Breadcrumbs = styled.li`
   }
 `
 
+const CategoryDescription = styled.p`
+  margin-top: 0.5rem;
+  color: var(--color-secondary-dark);
+  opacity: 0.65;
+  font-size: 0.8em;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  transition: all 150ms ease-out;
+`
+
+const AnchorIcon = styled.span`
+  display: inline-block;
+  position: relative;
+  transform: translate3d(0, 0, 0);
+  transition: all 150ms ease-out;
+`
+
 const CategoryAnchor = styled.a`
   display: block;
   cursor: pointer;
@@ -187,10 +196,49 @@ const CategoryAnchor = styled.a`
   transition: all 180ms ease-out;
   font-family: var(--font-tuner);
   font-size: 1.125rem;
+
+  :hover {
+    ${CategoryDescription} {
+      opacity: 1;
+    }
+
+    ${AnchorIcon} {
+      transform: translate3d(0.25rem, 0, 0);
+    }
+  }
 `
-const CategoryDescription = styled.p`
-  font-size: 0.8em;
+
+const IndexLink = styled.button`
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0;
+  color: var(--color-primary);
+  display: block;
+  margin-bottom: 0.75rem;
+  font-size: 0.8rem;
+  opacity: 0.7;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
     'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+  transition: all 150ms ease-out;
+
+  &:hover {
+    opacity: 1;
+  }
+`
+
+const NavListHeader = styled.li`
+  position: relative;
+  padding: 0.5rem 1.5rem 0.75rem 1.5rem;
+  z-index: 10;
+`
+
+const CategoryHeader = styled.h3`
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: all 180ms ease-out;
+  font-family: var(--font-tuner);
+  font-size: 1.5rem;
 `
