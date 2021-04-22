@@ -217,7 +217,7 @@ const IndexLink = styled.button`
   color: var(--color-primary);
   display: block;
   margin-bottom: 0.75rem;
-  font-size: 0.8rem;
+  font-size: 0.9375rem;
   opacity: 0.7;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
     'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
