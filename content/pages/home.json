@@ -7,7 +7,7 @@
     {
       "_template": "navbar",
       "banner": {
-        "display": false,
+        "display": true,
         "text": "Tina Cloud, our headless backend is coming. Read more ",
         "link": "https://tina.io/blog/tina-cloud-a-headless-cms-backed-by-git/"
       },
