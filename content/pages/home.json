@@ -8,8 +8,8 @@
       "_template": "navbar",
       "banner": {
         "display": false,
-        "text": "",
-        "link": ""
+        "text": "Tina Cloud is in private beta! Get early access",
+        "link": "https://tina.io/early-access"
       },
       "navItems": [
         {
