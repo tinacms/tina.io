@@ -35,7 +35,7 @@ The [Next.js starter](https://github.com/tinacms/tina-cloud-starter) can get you
 ## How can I share an idea or get help using Tina Cloud?
 
 - If you haven't checked yet, the [docs](/docs/) may have the answer you are looking for!
-- Connect with us on Slack. Your Beta invite should contain a link to join our group channel.
+- Connect with us on Discord. Your Beta invite should contain a link to join our group channel.
 - We can help you at [support@tina.io](mailto:support@tina.io). Email us if you would like to schedule a chat!
 - Chat with us from your Tina Cloud dashboard (there's a chat widget at the bottom of the screen on the left side).
 
