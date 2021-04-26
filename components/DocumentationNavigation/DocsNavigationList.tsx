@@ -7,7 +7,7 @@ import { NavSection } from './NavSection'
 import { useRouter } from 'next/router'
 
 export interface DocsSectionProps extends DocsNavProps {
-  onExit: () => void
+  BackLink: () => JSX.Element
   category: string
 }
 
@@ -47,6 +47,24 @@ export const DocsNavigationList = ({ navItems, guide }: DocsNavProps) => {
       categoryData => categoryData.category === currentCategory
     )
   }, [currentCategory])
+
+  const DocsIndexLink = React.useCallback(
+    () => (
+      <Link href="/docs">
+        <IndexLink>← Docs Index</IndexLink>
+      </Link>
+    ),
+    []
+  )
+  const GuidesIndexLink = React.useCallback(
+    () => (
+      <Link href="/guides">
+        <IndexLink>← Guides Index</IndexLink>
+      </Link>
+    ),
+    []
+  )
+
   return (
     <>
       <MobileMainNav>
@@ -56,7 +74,7 @@ export const DocsNavigationList = ({ navItems, guide }: DocsNavProps) => {
         <DocsNavigationSection
           navItems={currentCategoryData.items}
           guide={guide}
-          onExit={() => setCurrentCategory(null)}
+          BackLink={guide ? GuidesIndexLink : DocsIndexLink}
           category={currentCategoryData.category}
         />
       ) : (
@@ -99,7 +117,7 @@ const DocsCategoryList = ({ navItems, onSelect, activeCategory }) => {
 const DocsNavigationSection = ({
   navItems,
   guide,
-  onExit,
+  BackLink,
   category,
 }: DocsSectionProps) => {
   const navListRef = useRef<HTMLUListElement>(null)
@@ -108,7 +126,7 @@ const DocsNavigationSection = ({
     <NavListContext.Provider value={navListRef}>
       <ul ref={navListRef}>
         <NavListHeader>
-          <IndexLink onClick={onExit}>← Docs Index</IndexLink>
+          {BackLink && <BackLink />}
           <CategoryHeader>{category}</CategoryHeader>
         </NavListHeader>
         {navItems &&
