@@ -16,10 +16,12 @@ author: Jeff See
 ---
 
 ---
+
 title: Limitations of using the filesystem for web content and how Tina's GraphQL API solves this
 date: '2021-04-22T10:00:00.000Z'
 draft: true
 author: Jeff See
+
 ---
 
 - The power of Git
@@ -38,7 +40,164 @@ Using the filesystem for website content has been a mainstay of the web developm
 
 On the other hand, the open nature of using files for content can lead to headaches. Content Management Systems (CMS) have always provided confidence in another way - knowing that your content's shape won't change out from underneath you. The scary (and powerful) thing about using the filesystem is that there's no layer between you and the raw data. It's a trade-off that has many valid use-cases and a lot of potential foot guns.
 
-### The shape of your content
+## An example
+
+We're going to use the [Next.js blog starter](https://github.com/vercel/next.js/tree/canary/examples/blog-starter) as an example for this post, if you'd like to follow along you can fork this repo [here]() and start with the branch called `start`. To skip ahead to the final solution check out the `final` branch.
+
+### Our content structure
+
+```
+- _posts
+  - dynamic-routing.md
+  - hello-world.md
+  - preview.md
+- pages
+  - index.md # lists the blog posts
+  - posts
+    - [slug].js # dynamically shows the appropriate blog post
+```
+
+On the home page we get each post from the `_posts` directory and sort them by date before showing them:
+
+```js
+export function getAllPosts(fields = []) {
+  const slugs = getPostSlugs()
+  const posts = slugs
+    .map(slug => getPostBySlug(slug, fields))
+    // sort posts by date in descending order
+    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
+  return posts
+}
+```
+
+And the result:
+
+![](https://res.cloudinary.com/deuzrsg3m/image/upload/v1619558511/tina-blog-post/next-demo-home_kcnyv5.png)
+
+What we have so far is great, since this content is file-based we can ship our site to production with full confidence that if we made a mistake we'll be able to easily roll it back to a previous version. Ok, now let's break it...
+
+Each markdown post consists of the following fields: `title`, `excerpt`, `coverImage`, `date`, `author.name`, `author.picture`, `ogImage.url`, and of course the markdown body which we'll refer to as `body`.
+
+For example, the "Dynamic Routing and Static Generation" blog post looks like this:
+
+```markdown
+---
+title: 'Dynamic Routing and Static Generation'
+excerpt: 'Lorem  ...'
+featured: true
+coverImage: '/assets/blog/dynamic-routing/cover.jpg'
+date: '2020-03-16T05:35:07.322Z'
+author:
+  name: JJ Kasper
+  picture: '/assets/blog/authors/jj.jpeg'
+ogImage:
+  url: '/assets/blog/dynamic-routing/cover.jpg'
+---
+
+Lorem ipsum dolor sit amet ...
+```
+
+Let's say we decide to only show featured posts. To do that we'll add a new value to each post called `featured`, to indicate that it's featured you'll need to set the value to `true`.
+
+```markdown
+---
+title: "Dynamic Routing and Static Generation"
+excerpt: "Lorem  ..."
+featured: true
+coverImage: "/assets/blog/dynamic-routing/cover.jpg"
+date: "2020-03-16T05:35:07.322Z"
+author:
+  name: JJ Kasper
+  picture: "/assets/blog/authors/jj.jpeg"
+ogImage:
+  url: "/assets/blog/dynamic-routing/cover.jpg"
+featured: true
+---
+
+Lorem ipsum dolor sit amet ...
+```
+
+Ok great, now we can control which pages show within our function:
+
+```diff
+export function getAllPosts(fields = []) {
+  const slugs = getPostSlugs();
+  const posts = slugs
+    .map((slug) => getPostBySlug(slug, fields))
+    // sort posts by date in descending order
+    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
+-   return posts
++   return posts.filter((post) => post.featured);
+}
+```
+
+This logic says, grab all of the posts, then filter them so that if `featured: false` we wouldn't show them. Now let's add a new post, this one won't be featured:
+
+```markdown
+---
+title: "Why Tina is Great"
+excerpt: "Lorem  ..."
+featured: true
+coverImage: "/assets/blog/dynamic-routing/cover.jpg"
+date: "2021-04-25T05:35:07.322Z"
+author:
+  name: JJ Kasper
+  picture: "/assets/blog/authors/jj.jpeg"
+ogImage:
+  url: "/assets/blog/dynamic-routing/cover.jpg"
+featured: "false"
+---
+
+Lorem ipsum dolor sit amet ...
+```
+
+Woops, look who's showing up on our home page:
+
+![](https://res.cloudinary.com/deuzrsg3m/image/upload/v1619560025/tina-blog-post/llama-woops_cchyel.png)
+
+Can you spot the issue? We accidentally set `featured` to `"false"` instead of `false`!
+
+This is the kind of issue that wouldn't have been possible with a CMS. And while it may be simple example, as your content grows in complexity, these types of things become difficult spot. We'll fix this with a simple code change from our previous update:
+
+```diff
+export function getAllPosts(fields = []) {
+  const slugs = getPostSlugs();
+  const posts = slugs
+    .map((slug) => getPostBySlug(slug, fields))
+    // sort posts by date in descending order
+    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
+-   return posts.filter((post) => post.featured);
++   return posts.filter((post) => post.featured === true);
+}
+```
+
+And we're good to go. However there's something else you may have notice from our new blog post that doesn't feel quite right. Notice our author:
+
+```
+author:
+  name: JJ Kasper
+  picture: "/assets/blog/authors/jj.jpeg"
+```
+
+This content is the same over in the "Dynamic Routing and Static Generation" post. If JJ wanted to change his `picture` he'll need to update it on every post he's written. Sounds like something a CMS would solve with a content relationship, JJ should ideally be an author who _has many_ posts, and trying to do this within the filesystem is where things get messy.
+
+### Supercharge your filesystem with GraphQL
+
+Headless CMSs are a great way to maintain full control over your frontend code while offloading issues like those mentioned above to a more robust content layer. But when you hand your content over to a CMS you lose the built-in power of Git that you get with file-based content. What this means is that when you make a change to the shape of your content you need to coordinate that with a remote resource, and you need to make sure your content fits the new shape appropriately before deploying those changes to a production website. CMSs have come up with various ways to help with this, separate sandbox environments for developers, preview APIs, and migration SDK scripts -- all of which carry their own set of headaches. But what if we could bring the robust features of a headless CMS to your local filesystem? What might that look like?
+
+## The Tina Content API
+
+Today we're introducing a tool that marries the power of a headless CMS with the convenience and portability of file-based content. The Tina Content API is a GraphQL service that sources content from your local filesystem.
+
+> It'll also soon be available via our Tina Cloud API, which connects to your GitHub repository to offer a similar cloud-based service. [Sign up](https://tina.io/early-access/) for early access.
+
+To get a sense for how this works, let's make some tweaks to the blog demo.
+
+## The Downside
+
+While file-based content works great for developers, this is far from ideal for non-technical authors. We built Forestry.io to solve this and it's been a great way to leverage Git-based content ever since. We're brining that philophy into Tina with Tina Cloud, which is currently in beta.
+
+### Our content structure
 
 Let's say you have a blog. Your typical blog post has a `title`, some information about the `author`, a `published` flag to indicate if it's ready to be shown on your website, and of course, a `body`. You decide to store it in a Markdown file:
 
