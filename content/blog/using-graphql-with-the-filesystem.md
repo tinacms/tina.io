@@ -3,11 +3,11 @@ title: Supercharging file-based content with GraphQL
 date: '2021-04-22T10:00:00.000Z'
 draft: true
 author: Jeff See
-last_edited: '2021-04-28T09:04:26.145Z'
+last_edited: '2021-04-28T13:33:51.951Z'
 ---
 Using the filesystem for website content has been a mainstay of the web development ecosystem for years. The ability to ship your entire website in one fell swoop and roll anything back with thanks to Git has made this a popular and efficient way to get things done with confidence.
 
-On the other hand, the open nature of using files for content can lead to headaches. Content Management Systems (CMS) have always provided confidence in another way - knowing that your content's shape won't change out from underneath you. The scary (and powerful) thing about using the filesystem is that there's no layer to ensure that you're getting the content that you expect. It's a trade-off that has many valid use-cases, but just as many footguns.
+On the other hand, the open nature of using files for content can lead to headaches. Content Management Systems (CMS) have always provided confidence in another way — knowing that your content's shape won't change out from underneath you. The scary (and powerful) thing about using the filesystem is that there's no layer to ensure that you're getting the content that you expect. It's a trade-off that has many valid use-cases, but just as many footguns.
 
 ## Let's get real
 
@@ -127,7 +127,7 @@ Can you spot the issue? We accidentally set `featured` to `"false"` instead of `
 
 > Demo: 👀 [Spot our mistakes](https://github.com/tinacms/next-blog-starter-graphql/compare/start..featured-tag-mistake).
 
-If we had been using a CMS this probably wouldn't have happended. Mosts of them require that the shape of your content is well-defined. While these kinds of issues are painful, there's a lot more that CMSs do for us that we don't get from the filesystem -- you may have noticed something else about the shape of our content that doesn't feel quite right…
+If we had been using a CMS this probably wouldn't have happened. Most of them require that the shape of your content is well-defined. While these kinds of issues are painful, there's a lot more that CMSs do for us that we don't get from the filesystem — you may have noticed something else about the shape of our content that doesn't feel quite right…
 
 ### Relationships: it's complicated
 
@@ -152,7 +152,7 @@ The `author` content is the same over in the "Dynamic Routing and Static Generat
 
     author: _authors/jj.md
 
-But now we have to update our data-fetching logic so that whenever it comes across the `author` field in a post it knows to make an additional request for _that_ data. This is pretty cumbersome, and again - as complexity grows these this type of logic quickly become untenable.
+But now we have to update our data-fetching logic so that whenever it comes across the `author` field in a post it knows to make an additional request for _that_ data. This is pretty cumbersome, and again — as complexity grows these this type of logic quickly become untenable.
 
 > Demo: [Check out the diff](https://github.com/tinacms/next-blog-starter-graphql/compare/featured-tag-mistake..split-author-data) to see how we're awkwardly making use of a separate `author` file.
 
