@@ -5,37 +5,6 @@ draft: true
 author: Jeff See
 ---
 
-- The power of Git
-- The limitations of the Git-based CMS
-  - Relationships: it's complicated.
-- The Power of GraphQL
-- Mixing best of both worlds
-- Example / Demo
-- Conclusion
-
----
-
----
-
-title: Limitations of using the filesystem for web content and how Tina's GraphQL API solves this
-date: '2021-04-22T10:00:00.000Z'
-draft: true
-author: Jeff See
-
----
-
-- The power of Git
-- The limitations of the Git-based CMS
-  - Relationships: it's complicated.
-- The Power of GraphQL
-- Mixing best of both worlds
-- Example / Demo
-- Conclusion
-
----
-
-## The Power of Git and the filesystem
-
 Using the filesystem for website content has been a mainstay of the web development ecosystem for years. Not needing to deal with databases and being able to ship your entire website in one fell swoop and roll anything back with thanks to Git has made this a popular and efficient way to get things done.
 
 On the other hand, the open nature of using files for content can lead to headaches. Content Management Systems (CMS) have always provided confidence in another way - knowing that your content's shape won't change out from underneath you. The scary (and powerful) thing about using the filesystem is that there's no layer between you and the raw data. It's a trade-off that has many valid use-cases and a lot of potential foot guns.
@@ -52,7 +21,7 @@ We're going to use the [Next.js blog starter](https://github.com/vercel/next.js/
   - hello-world.md
   - preview.md
 - pages
-  - index.md # lists the blog posts
+  - index.js # lists the blog posts
   - posts
     - [slug].js # dynamically shows the appropriate blog post
 ```
@@ -74,11 +43,9 @@ And the result:
 
 ![](https://res.cloudinary.com/deuzrsg3m/image/upload/v1619558511/tina-blog-post/next-demo-home_kcnyv5.png)
 
-What we have so far is great, since this content is file-based we can ship our site to production with full confidence that if we made a mistake we'll be able to easily roll it back to a previous version. Ok, now let's break it...
+What we have so far is great, since this content is file-based we can ship our site to production with full confidence that if we made a mistake we'll be able to easily roll it back to a previous version.
 
-Each markdown post consists of the following fields: `title`, `excerpt`, `coverImage`, `date`, `author.name`, `author.picture`, `ogImage.url`, and of course the markdown body which we'll refer to as `body`.
-
-For example, the "Dynamic Routing and Static Generation" blog post looks like this:
+Let's look at how our content is structured. As an example, the "Dynamic Routing and Static Generation" blog post looks like this:
 
 ```markdown
 ---
@@ -97,7 +64,7 @@ ogImage:
 Lorem ipsum dolor sit amet ...
 ```
 
-Let's say we decide to only show featured posts. To do that we'll add a new value to each post called `featured`, to indicate that it's featured you'll need to set the value to `true`.
+We'll expand on this structure by allowing us to filter which blog posts show up on the home page. To do that we'll add a new value to each post called `featured`, to indicate that it's featured you'll need to set the value to `true`.
 
 ```markdown
 ---
@@ -117,7 +84,7 @@ featured: true
 Lorem ipsum dolor sit amet ...
 ```
 
-Ok great, now we can control which pages show within our function:
+Now we can control which pages show on the home page from within our function:
 
 ```diff
 export function getAllPosts(fields = []) {
@@ -131,7 +98,7 @@ export function getAllPosts(fields = []) {
 }
 ```
 
-This logic says, grab all of the posts, then filter them so that if `featured: false` we wouldn't show them. Now let's add a new post, this one won't be featured:
+To test this out we'll add a new post, this one won't be featured:
 
 ```markdown
 ---
@@ -157,21 +124,7 @@ Woops, look who's showing up on our home page:
 
 Can you spot the issue? We accidentally set `featured` to `"false"` instead of `false`!
 
-This is the kind of issue that wouldn't have been possible with a CMS. And while it may be simple example, as your content grows in complexity, these types of things become difficult spot. We'll fix this with a simple code change from our previous update:
-
-```diff
-export function getAllPosts(fields = []) {
-  const slugs = getPostSlugs();
-  const posts = slugs
-    .map((slug) => getPostBySlug(slug, fields))
-    // sort posts by date in descending order
-    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
--   return posts.filter((post) => post.featured);
-+   return posts.filter((post) => post.featured === true);
-}
-```
-
-And we're good to go. However there's something else you may have notice from our new blog post that doesn't feel quite right. Notice our author:
+While this is a simple example, as your content grows in complexity these types of things become difficult spot. Mosts CMSs would never let this happen, they require that you the shape of your content is well-defined. But that's not the only thing they help with - there's something else you may have noticed from our new blog post that doesn't feel quite right. Notice our author:
 
 ```
 author:
@@ -179,110 +132,63 @@ author:
   picture: "/assets/blog/authors/jj.jpeg"
 ```
 
-This content is the same over in the "Dynamic Routing and Static Generation" post. If JJ wanted to change his `picture` he'll need to update it on every post he's written. Sounds like something a CMS would solve with a content relationship, JJ should ideally be an author who _has many_ posts, and trying to do this within the filesystem is where things get messy.
+This content is the same over in the "Dynamic Routing and Static Generation" post. If JJ wanted to change his `picture` he'll need to update it on every post he's written. Sounds like something a CMS would solve with a content relationship, JJ should ideally be an author who _has many_ posts. We could split the author data into its own file and place a reference to that author in the `post` structure:
 
-### Supercharge your filesystem with GraphQL
+```markdown
+---
+title: "Why Tina is Great"
+excerpt: "Lorem  ..."
+featured: true
+coverImage: "/assets/blog/dynamic-routing/cover.jpg"
+date: "2021-04-25T05:35:07.322Z"
+author: _authors/jj.md
+ogImage:
+  url: "/assets/blog/dynamic-routing/cover.jpg"
+featured: "false"
+---
 
-Headless CMSs are a great way to maintain full control over your frontend code while offloading issues like those mentioned above to a more robust content layer. But when you hand your content over to a CMS you lose the built-in power of Git that you get with file-based content. What this means is that when you make a change to the shape of your content you need to coordinate that with a remote resource, and you need to make sure your content fits the new shape appropriately before deploying those changes to a production website. CMSs have come up with various ways to help with this, separate sandbox environments for developers, preview APIs, and migration SDK scripts -- all of which carry their own set of headaches. But what if we could bring the robust features of a headless CMS to your local filesystem? What might that look like?
+Lorem ipsum dolor sit amet ...
+```
+
+But now we have to update our data fetching logic so that when it comes across the `author` field, it knows to make an additional request for that data. This is pretty cumbersome, and again - as complexity grows these things grow untenable.
+
+### Content Management Systems: pretty useful, actually
+
+Headless CMSs are a great way to maintain full control over your frontend code while offloading issues like those mentioned above to a more robust content layer. But when you hand your content over to a CMS you lose the built-in power of Git that you get with file-based content. So when you make a change to the shape of your content you also need to coordinate that with a remote resource, and you need to make sure your content fits the new shape appropriately before deploying those changes to a production website. CMSs have come up with various ways to help with this, separate sandbox environments, preview APIs, and migration SDK scripts -- all of which carry their own set of headaches. But what if we could bring the robust features of a headless CMS to your local filesystem? What might that look like?
 
 ## The Tina Content API
 
-Today we're introducing a tool that marries the power of a headless CMS with the convenience and portability of file-based content. The Tina Content API is a GraphQL service that sources content from your local filesystem.
+Today we're introducing a tool that marries the power of a headless CMS with the convenience and portability of file-based content. The Tina Content API is a GraphQL service that sources content from your local filesystem. It'll also soon be available via our Tina Cloud API, which connects to your GitHub repository to offer a similar cloud-based service.
 
-> It'll also soon be available via our Tina Cloud API, which connects to your GitHub repository to offer a similar cloud-based service. [Sign up](https://tina.io/early-access/) for early access.
+[Sign up](https://tina.io/early-access/) for early access.
 
 To get a sense for how this works, let's make some tweaks to the blog demo.
 
-## The Downside
+First we'll install the tina CLI:
 
-While file-based content works great for developers, this is far from ideal for non-technical authors. We built Forestry.io to solve this and it's been a great way to leverage Git-based content ever since. We're brining that philophy into Tina with Tina Cloud, which is currently in beta.
-
-### Our content structure
-
-Let's say you have a blog. Your typical blog post has a `title`, some information about the `author`, a `published` flag to indicate if it's ready to be shown on your website, and of course, a `body`. You decide to store it in a Markdown file:
-
-```md
----
-title: Vote For Pedro
-published: true
-author:
-  name: Napolean
-  role: Llama Caretaker
----
-
-You should really vote for Pedro
+```sh
+yarn add tina-graphql-gateway-cli
 ```
 
-From your website, you pull down all of the files which are `published` and pass them through your rendering templates. You instruct Napolean to pass in `published: false` when he's working on a new blog post. So he does:
+We'll add a schema so the API knows exactly what kind of shape to build for your content:
 
-```md
----
-title: Tater Tots
-published: 'false'
-author:
-  name: Napolean
-  role: Llama Caretaker
----
-
-Gimme some of your 'tots
+```sh
+mkdir .tina && touch .tina/schema.ts
 ```
-
-Can you spot the issue? `"false"` is a string. Your logic will likely be checking for a "truthy" value on the `published` key. `"false"` will pass that test, meaning you've just published this post by accident!
-
-You're starting to think perhaps using a CMS would have been a safer bet. Most CMSs require you to be explicit about the shape of your content to avoid these issues. But then you think again - "Nah, this site is so simple. CMSs are clunky and hard to set up." So you build in some type checks to make sure this kind of mistake doesn't happen again, and with a revived sense of confidence, you're ready to add new features.
-
-### Relationships: it's complicated
-
-Let's get back to the example. Your site is growing, and Napolean is writing more and more blog posts. Aside from that publishing mistake, things are pretty good! A few months go by, and Napolean is crushing it with the blog posts. Your boss decides it's time to promote him. You'll need to make this new role reflect on all of his blog posts. Unfortunately, the only way to do this right now is to go through them one by one to make the change. Wouldn't it be great if you could update that value in one place and have it populate for every blog Napolean has written?
-
-It's certainly possible with the filesystem, so you build a separate file entirely that houses Napolean's information. Now a blog post looks like this (notice how `author` is pointing to the location of Napolean's file):
-
-```md
----
-title: Vote For Pedro
-published: true
-author: /path/to/authors/napolean.md
----
-
-You should really vote for Pedro
-```
-
-And in `/path/to/authors/napolean.md` we have Napolean with his new role:
-
-```md
----
-name: Napolean
-role: Interpretive Dancer
----
-```
-
-Future updates to the author only need to happen in one place, but we now have a new problem with this change. When you render the webpage, you need to fetch the "Vote for Pedro" blog post, and then you need to grab the path to the author from _that_ data and fetch the author's information. You removed tedious work from the editing experience but added complexity to the developer experience. Still, it seems like a worthwhile trade-off; things are working, and your site is easier to for editors to maintain. You take a well-deserved break.
-
-While you were out, someone came along and deleted the `/path/to/authors/napolean.md` file. They worked on a separate part of the app and didn't know that it was being referenced in the `blog post` section. So when it came time to render the blog post section, we looked up that `author` and attempted to fetch that data... oops, our site broke. Luckily for us, we're using Git, and those changes can be reverted — 1 point to the filesystem.
-
-But wouldn't it have been nice if there was something in place to tell us that we had just broken all of Napolean's blog posts by deleting that one file? Perhaps that whole _relational_ database idea wasn't too bad, after all.
-
-## The Tina Content API
-
-Today we're introducing a tool that marries the power of a headless CMS with the convenience and portability of file-based content. The Tina Content API is a GraphQL-based server that sources content from your local filesystem. It'll also soon be available via our Tina Cloud API, which connects to your GitHub repository to offer a similar cloud-based service. [Sign up](https://tina.io/early-access/) for early access.
-
-### How does it work?
-
-The problems mentioned above can be solved by telling the Tina Content API a little bit about the shape of your content:
 
 ```ts
 // in `.tina/schema.ts`
 import { defineSchema } from 'tina-graphql-gateway-cli'
 
-defineSchema({
+export default defineSchema({
   collections: [
     {
-      label: 'Blog Posts',
+      label: 'Posts',
       name: 'posts',
-      path: 'content/posts', // where to store the 'posts' documents
+      path: '_posts',
       templates: [
         {
-          label: 'Simple Blog Post Template',
+          label: 'Simple',
           name: 'simple_post',
           fields: [
             {
@@ -291,43 +197,54 @@ defineSchema({
               name: 'title',
             },
             {
-              type: 'boolean', // This is a boolean field
-              label: 'Published',
-              name: 'Published',
+              type: 'text',
+              label: 'Excerpt',
+              name: 'excerpt',
             },
             {
-              type: 'reference',
-              label: 'Author',
+              type: 'text',
+              label: 'Cover Image',
+              name: 'coverImage',
+            },
+            {
+              type: 'text',
+              label: 'Date',
+              name: 'date',
+            },
+            {
+              type: 'group',
               name: 'author',
-              collection: 'authors', // a "reference" to a document from the "authors" collection
+              label: 'Author',
+              fields: [
+                {
+                  type: 'text',
+                  label: 'Name',
+                  name: 'name',
+                },
+
+                {
+                  name: 'picture',
+                  label: 'Picture',
+                  type: 'text',
+                },
+              ],
             },
             {
-              type: 'textarea',
-              label: 'Body',
-              name: 'body',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      label: 'Authors',
-      name: 'authors',
-      path: 'content/authors', // where to store the 'authors' documents
-      templates: [
-        {
-          label: 'Author Template',
-          name: 'author',
-          fields: [
-            {
-              label: 'Name',
-              type: 'text',
-              name: 'name',
+              type: 'group',
+              name: 'ogImage',
+              label: 'Open Graph Image',
+              fields: [
+                {
+                  type: 'text',
+                  label: 'URL',
+                  name: 'url',
+                },
+              ],
             },
             {
-              label: 'Role',
-              type: 'text',
-              name: 'role',
+              type: 'toggle',
+              label: 'Featured',
+              name: 'featured',
             },
           ],
         },
@@ -337,54 +254,186 @@ defineSchema({
 })
 ```
 
-This explicit step is key to our understanding of your content structure as a whole. So now when you query through GraphQL, you're guaranteed to get the shape you'd expect. And resolving content across multiple documents is trivial:
+Next we'll replace the `dev` command to start the GraphQL server in tandem with our Next.js app:
+
+```json
+  "scripts": {
+    "dev": "yarn tina-gql server:start -c \"next dev\"",
+    ...
+  },
+```
+
+Run the dev command and you'll see that we now have a local GraphQL server listening on port 4001 along with some information about autogenerated configuration files:
+
+```sh
+Started Filesystem GraphQL server on port: 4001
+Generating Tina config
+Tina config ======> /.tina/__generated__/config
+Typescript types => /.tina/__generated__/types.ts
+GraphQL types ====> /.tina/__generated__/schema.gql
+ready - started server on 0.0.0.0:3000, url: http://localhost:3000
+```
+
+Let's test it out:
+
+> Tip: if you have a GraphQL client like [Altair](https://altair.sirmuel.design/) you can explore the API by pointing it to http://localhost:4001/graphql
 
 ```graphql
-query BlogPost($relativePath: String!) {
-  getPostsDocument(relativePath: $relativePath) {
+# Point your request to http://localhost:4001/graphql
+{
+  getPostsList {
     data {
-      ... on BlogPost_Doc_Data {
+      ... on SimplePost_Doc_Data {
         title
-        published
-        author {
-          data {
-            ... on Author_Doc_Data {
-              name
-              role
-            }
-          }
-        }
-        body
       }
     }
   }
 }
 ```
 
-## FAQ
+And our result:
 
-### How does this relate to the Tina ecosystem?
+```json
+{
+  "errors": [
+    {
+      "message": "Unexpected value of type string for boolean value",
+      "path": ["getPostsList"]
+    }
+  ],
+  ...
+}
+```
 
-A nice side-effect of knowing all about your content schema is that we know exactly how it should be mutated as well. While this post's topic is more about the GraphQL API itself, we fully support autogenerated Tina forms that you can edit locally or via the Tina Cloud API, which of course, has support for `mutations`.
+This error is coming from our old friend `featured: "false"`. After fixing the issue, we get what we expected:
 
-> Tina Cloud is currently open to a limited set of Next.js projects, [sign up](https://tina.io/early-access/) for early access to get into the private beta.
+```json
+{
+  "data": {
+    "getPostsList": [
+      {
+        "data": {
+          "title": "Dynamic Routing and Static Generation"
+        }
+      },
+      ... # truncated
+    ]
+  }
+}
+```
 
-### What frameworks are supported?
+We can use GraphQL to replace all of our bespoke filesystem data-fetching logic and rest-assure that the data we get back will be exactly what we expect it to be.
 
-While we'll support a full "headless" CMS soon, we're still working hard on our cloud-based API - so until then, we only recommend using this API for Next.js projects, which are built statically with `getStaticProps`. This way, all of your content files are built during CI, so there's no need for runtime data fetching.
+Querying for a post now looks like this:
 
-### GraphQL on top of the filesystem? How is this different from Gatsby's filesystem plugin?
+```graphql
+query BlogPostQuery($relativePath: String!) {
+  getPostsDocument(relativePath: $relativePath) {
+    data {
+      ... on SimplePost_Doc_Data {
+        title
+        excerpt
+        date
+        coverImage
+        author {
+          name
+          picture
+        }
+        ogImage {
+          url
+        }
+        featured
+        _body
+      }
+    }
+  }
+}
+```
 
-With Gatsby you query the filesystem through GraphQL, this gives you some pretty powerful features, but it doesn't have the same concept of defining a schema. With Gatsby, you'd continue to have the same problems with data integrity. Tina Cloud is much closer to a CMS like [Forestry](https://forstry.io); it's just like we added a headless CMS on top of it.
+### Fixing the author problem
 
-## Roadmap
+Earlier we pointed out how painful it would be to split the `author` data out into it's own file, with GraphQL it's trivial. We'll update our schema to treat author as a separate record:
 
-**Pagination and Filtering** - Currently, the API has some limitations with regard to supporting the full API we'd like to provide. Specifically, we're working on a rich filtering and pagination API, so the API features have a minimal "list" query until that's finished.
+```ts
+// in `.tina/schema.ts`
+import { defineSchema } from 'tina-graphql-gateway-cli'
 
-**Reverse** **Relationships -** Soon, it'll be possible to query a document _through_ its dependency. So if a `post` belongs to an `author` - you will soon be able to query all of the `author`'s `posts`.
+export default defineSchema({
+  collections: [
+    {
+      label: 'Posts',
+      name: 'posts',
+      path: '_posts',
+      templates: [
+        {
+          label: 'Simple',
+          name: 'simple_post',
+          fields: [
+            ...
+            {
+              type: 'reference',
+              name: 'author',
+              label: 'Author',
+              collection: 'authors'
+            },
+            ...
+          ],
+        },
+      ],
+    },
+    {
+      label: 'Authors',
+      name: 'authors',
+      path: '_authors',
+      templates: [
+        {
+          label: 'Author',
+          name: 'author',
+          fields: [
+            {
+              type: 'text',
+              name: 'name',
+              label: 'Name',
+            },
+            {
+              type: 'text',
+              name: 'picture',
+              label: 'Picture',
+            },
+          ],
+        },
+      ],
+    },
+  ],
+})
+```
 
-**Performance** - If you consume the GraphQL API from Tina Cloud, you may notice it's a little slow. We're working on supporting a Git-based database solution that will performantly let you bounce between branches and treat it the same as you would locally. To that end, we recommend only consuming the Content API in Tina's edit mode.
+And the resulting query:
 
-**Primitive types** - Right now, the `defineSchema` function supports various types which are loosely based on [TinaCMS fields](/docs/plugins/fields/) - we have plans to provide a smaller, but more expressive, API which will be more composable. Please chime into the [RFC](https://github.com/tinacms/rfcs/pull/18) for any input!
-
-## Demo
+```graphql
+query BlogPostQuery($relativePath: String!) {
+  getPostsDocument(relativePath: $relativePath) {
+    data {
+      ... on SimplePost_Doc_Data {
+        title
+        excerpt
+        date
+        coverImage
+        author {
+          data {
+            ... on Author_Doc_Data {
+              name
+              picture
+            }
+          }
+        }
+        ogImage {
+          url
+        }
+        featured
+        _body
+      }
+    }
+  }
+}
+```
