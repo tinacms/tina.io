@@ -7,7 +7,7 @@ author: Jeff See
 
 Using the filesystem for website content has been a mainstay of the web development ecosystem for years. The ability to ship your entire website in one fell swoop and roll anything back with thanks to Git has made this a popular and efficient way to get things done with confidence.
 
-On the other hand, the open nature of using files for content can lead to headaches. Content Management Systems (CMS) have always provided confidence in another way - knowing that your content's shape won't change out from underneath you. The scary (and powerful) thing about using the filesystem is that there's no layer to ensure that you're getting the content that you expect. It's a trade-off that has many valid use-cases, but just as many foot guns.
+On the other hand, the open nature of using files for content can lead to headaches. Content Management Systems (CMS) have always provided confidence in another way - knowing that your content's shape won't change out from underneath you. The scary (and powerful) thing about using the filesystem is that there's no layer to ensure that you're getting the content that you expect. It's a trade-off that has many valid use-cases, but just as many footguns.
 
 ## An example
 
@@ -49,9 +49,9 @@ And the result:
 
 #### File-based content is simple
 
-What we have so far is great, since our changes are stored in Git we know that if we made a mistake we'll be able to easily roll it back to a previous version. But as we increase the complexity of our content things become less straightforward.
+What we have so far is great, since our changes are stored in Git we know that if we made a mistake we'll be able to easily roll it back to a previous version. But as the complexity of our content increases things become less straightforward.
 
-To demonstrate that, let's first look at how our content is structured. As an example, the "Dynamic Routing and Static Generation" blog post looks like this:
+To demonstrate that, let's first look at how our content is structured. The "Dynamic Routing and Static Generation" blog post looks like this:
 
 ```markdown
 ---
@@ -98,9 +98,9 @@ export function getAllPosts(fields = []) {
   const posts = slugs
     .map((slug) => getPostBySlug(slug, fields))
     // sort posts by date in descending order
-    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
--   return posts
-+   return posts.filter((post) => post.featured);
+   .sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
++  .filter((post) => post.featured);
+  return posts
 }
 ```
 
