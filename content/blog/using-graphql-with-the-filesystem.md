@@ -11,9 +11,11 @@ On the other hand, the open nature of using files for content can lead to headac
 
 ## An example
 
-We're going to use the [Next.js blog starter](https://github.com/vercel/next.js/tree/canary/examples/blog-starter) as an example for this post, if you'd like to follow along you can fork this repo [here]() and start with the branch called `start`. To skip ahead to the final solution check out the `final` branch.
+We're going to use the [Next.js blog starter](https://github.com/vercel/next.js/tree/canary/examples/blog-starter) to demonstrate some of the problems with file-based content and how we hope to solve them. If you'd like to follow along you can fork this repo [here]() and start with the branch called `start`. To skip ahead to the final solution check out the `final` branch.
 
 ### Our content structure
+
+This app sources its content from markdown files in a folder called `_posts`:
 
 ```
 - _posts
@@ -26,7 +28,7 @@ We're going to use the [Next.js blog starter](https://github.com/vercel/next.js/
     - [slug].js # dynamically shows the appropriate blog post
 ```
 
-On the home page we get each post from the `_posts` directory and sort them by date before showing them:
+On the home page we get each post from the `_posts` directory and sort them by date before showing them with our `getAllPosts` function:
 
 ```js
 export function getAllPosts(fields = []) {
@@ -43,9 +45,11 @@ And the result:
 
 ![](https://res.cloudinary.com/deuzrsg3m/image/upload/v1619558511/tina-blog-post/next-demo-home_kcnyv5.png)
 
-What we have so far is great, since this content is file-based we can ship our site to production with full confidence that if we made a mistake we'll be able to easily roll it back to a previous version.
+#### File-based content is simple
 
-Let's look at how our content is structured. As an example, the "Dynamic Routing and Static Generation" blog post looks like this:
+What we have so far is great, we can ship our site to production with full confidence that if we made a mistake we'll be able to easily roll it back to a previous version, thanks to the fact that our changes are stored in Git. But as we increase the complexity of our content things become less straightforward.
+
+To demonstrate that, let's look at how our content is structured. As an example, the "Dynamic Routing and Static Generation" blog post looks like this:
 
 ```markdown
 ---
@@ -64,7 +68,7 @@ ogImage:
 Lorem ipsum dolor sit amet ...
 ```
 
-We'll expand on this structure by allowing us to filter which blog posts show up on the home page. To do that we'll add a new value to each post called `featured`, to indicate that it's featured you'll need to set the value to `true`.
+We'll expand on this structure by adding the ability to filter which blog posts show up on the home page. To do that we'll add a new `boolean` value to each post called `featured`.
 
 ```markdown
 ---
@@ -84,7 +88,7 @@ featured: true
 Lorem ipsum dolor sit amet ...
 ```
 
-Now we can control which pages show on the home page from within our function:
+Now we can control which pages show on the home page from within our `getAllPosts` function:
 
 ```diff
 export function getAllPosts(fields = []) {
@@ -134,33 +138,23 @@ author:
 
 This content is the same over in the "Dynamic Routing and Static Generation" post. If JJ wanted to change his `picture` he'll need to update it on every post he's written. Sounds like something a CMS would solve with a content relationship, JJ should ideally be an author who _has many_ posts. We could split the author data into its own file and place a reference to that author in the `post` structure:
 
-```markdown
----
-title: "Why Tina is Great"
-excerpt: "Lorem  ..."
-featured: true
-coverImage: "/assets/blog/dynamic-routing/cover.jpg"
-date: "2021-04-25T05:35:07.322Z"
+```
 author: _authors/jj.md
-ogImage:
-  url: "/assets/blog/dynamic-routing/cover.jpg"
-featured: "false"
----
-
-Lorem ipsum dolor sit amet ...
 ```
 
 But now we have to update our data fetching logic so that when it comes across the `author` field, it knows to make an additional request for that data. This is pretty cumbersome, and again - as complexity grows these things grow untenable.
 
 ### Content Management Systems: pretty useful, actually
 
-Headless CMSs are a great way to maintain full control over your frontend code while offloading issues like those mentioned above to a more robust content layer. But when you hand your content over to a CMS you lose the built-in power of Git that you get with file-based content. So when you make a change to the shape of your content you also need to coordinate that with a remote resource, and you need to make sure your content fits the new shape appropriately before deploying those changes to a production website. CMSs have come up with various ways to help with this, separate sandbox environments, preview APIs, and migration SDK scripts -- all of which carry their own set of headaches. But what if we could bring the robust features of a headless CMS to your local filesystem? What might that look like?
+Headless CMSs are a great way to maintain full control over your frontend code while offloading issues like those mentioned above to a more robust content layer. But when you hand your content over to a CMS you lose the power of Git that comes built-in with file-based content.
+
+With a CMS, when you make a change to the shape of your content you also need to coordinate that with a remote resource, and you need to make sure your content fits the new shape appropriately before deploying those changes to a production website. CMSs have come up with various ways to help with this, separate sandbox environments, preview APIs, and migration SDK scripts -- all of which carry their own set of headaches. But what if we could bring the robust features of a headless CMS to your local filesystem? What might that look like?
 
 ## The Tina Content API
 
 Today we're introducing a tool that marries the power of a headless CMS with the convenience and portability of file-based content. The Tina Content API is a GraphQL service that sources content from your local filesystem. It'll also soon be available via our Tina Cloud API, which connects to your GitHub repository to offer a similar cloud-based service.
 
-[Sign up](https://tina.io/early-access/) for early access.
+> Tina Cloud is currently open to a limited set of Next.js projects, [sign up](https://tina.io/early-access/) for early access. for early access to get into the private beta.
 
 To get a sense for how this works, let's make some tweaks to the blog demo.
 
