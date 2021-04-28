@@ -45,6 +45,8 @@ And the result:
 
 ![](https://res.cloudinary.com/deuzrsg3m/image/upload/v1619558511/tina-blog-post/next-demo-home_kcnyv5.png)
 
+> Demo: [here's]() where thing are at so far
+
 #### File-based content is simple
 
 What we have so far is great, since our changes are stored in Git we know that if we made a mistake we'll be able to easily roll it back to a previous version. But as we increase the complexity of our content things become less straightforward.
@@ -128,6 +130,8 @@ Woops, look who's showing up on our home page:
 
 Can you spot the issue? We accidentally set `featured` to `"false"` instead of `false`!
 
+> Demo: [here's]() where we made our mistakes
+
 While this is a simple example, as your content grows in complexity these types of things become difficult spot. Mosts CMSs would never let this happen, they require that the shape of your content is well-defined. But that's not the only thing they help with, there's something else you may have noticed from our new blog post structure that doesn't feel quite right. Notice our author:
 
 ```
@@ -144,7 +148,7 @@ author: _authors/jj.md
 
 But now we have to update our data fetching logic so that whenever it comes across the `posts`'s `author` field it knows to make an additional request for that data. This is pretty cumbersome, and again - as complexity grows these this type of logic quickly become untenable.
 
-> Check out the diff [here]() to see how we're making use of a separate `author` file
+> Demo: Check out the diff [here]() to see how we're making use of a separate `author` file
 
 ### Content Management Systems: Reliable? Yes. Portable? No.
 
@@ -353,7 +357,7 @@ query BlogPostQuery($relativePath: String!) {
 }
 ```
 
-> Demo: [View the diff]() so far
+> Demo: [View the changes]() we made to add Tina GraphQL
 
 ### Fixing our author problem
 
