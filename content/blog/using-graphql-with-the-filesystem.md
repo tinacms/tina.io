@@ -45,7 +45,7 @@ And the result:
 
 ![](https://res.cloudinary.com/deuzrsg3m/image/upload/v1619558511/tina-blog-post/next-demo-home_kcnyv5.png)
 
-> Demo: [here's]() where thing are at so far
+> Following along in the demo?: Start [here](https://github.com/tinacms/next-blog-starter-graphql/tree/start)
 
 #### File-based content is simple
 
@@ -57,7 +57,6 @@ To demonstrate that, let's first look at how our content is structured. The "Dyn
 ---
 title: 'Dynamic Routing and Static Generation'
 excerpt: 'Lorem  ...'
-featured: true
 coverImage: '/assets/blog/dynamic-routing/cover.jpg'
 date: '2020-03-16T05:35:07.322Z'
 author:
@@ -74,16 +73,15 @@ We'll expand on this structure by adding the ability to filter which blog posts 
 
 ```markdown
 ---
-title: "Dynamic Routing and Static Generation"
-excerpt: "Lorem  ..."
-featured: true
-coverImage: "/assets/blog/dynamic-routing/cover.jpg"
-date: "2020-03-16T05:35:07.322Z"
+title: 'Dynamic Routing and Static Generation'
+excerpt: 'Lorem  ...'
+coverImage: '/assets/blog/dynamic-routing/cover.jpg'
+date: '2020-03-16T05:35:07.322Z'
 author:
   name: JJ Kasper
-  picture: "/assets/blog/authors/jj.jpeg"
+  picture: '/assets/blog/authors/jj.jpeg'
 ogImage:
-  url: "/assets/blog/dynamic-routing/cover.jpg"
+  url: '/assets/blog/dynamic-routing/cover.jpg'
 featured: true
 ---
 
@@ -108,17 +106,16 @@ To test this out we'll add a new post, this one _won't_ be featured:
 
 ```markdown
 ---
-title: "Why Tina is Great"
-excerpt: "Lorem  ..."
-featured: true
-coverImage: "/assets/blog/dynamic-routing/cover.jpg"
-date: "2021-04-25T05:35:07.322Z"
+title: 'Why Tina is Great'
+excerpt: 'Lorem  ...'
+coverImage: '/assets/blog/dynamic-routing/cover.jpg'
+date: '2021-04-25T05:35:07.322Z'
 author:
   name: JJ Kasper
-  picture: "/assets/blog/authors/jj.jpeg"
+  picture: '/assets/blog/authors/jj.jpeg'
 ogImage:
-  url: "/assets/blog/dynamic-routing/cover.jpg"
-featured: "false"
+  url: '/assets/blog/dynamic-routing/cover.jpg'
+featured: 'false'
 ---
 
 Lorem ipsum dolor sit amet ...
@@ -130,7 +127,7 @@ Woops, look who's showing up on our home page:
 
 Can you spot the issue? We accidentally set `featured` to `"false"` instead of `false`!
 
-> Demo: [here's]() where we made our mistakes
+> Demo: [here's](https://github.com/tinacms/next-blog-starter-graphql/compare/start..featured-tag-mistake) where we made our mistakes.
 
 If we had been using a CMS this probably wouldn't have happended. Mosts of them require that the shape of your content is well-defined. While these kinds of issues are painful, there's a lot more that CMSs do for us that we don't get from the filesystem -- you may have noticed something else about the shape of our content that doesn't feel quite right...
 
@@ -142,7 +139,6 @@ Let's look at the data from our new blog post again
 ---
 title: "Why Tina is Great"
 excerpt: "Lorem  ..."
-featured: true
 coverImage: "/assets/blog/dynamic-routing/cover.jpg"
 date: "2021-04-25T05:35:07.322Z"
 author:
@@ -164,19 +160,19 @@ author: _authors/jj.md
 
 But now we have to update our data-fetching logic so that whenever it comes across the `author` field in a post it knows to make an additional request for _that_ data. This is pretty cumbersome, and again - as complexity grows these this type of logic quickly become untenable.
 
-> Demo: Check out the diff [here]() to see how we're awkwardly making use of a separate `author` file
+> Demo: Check out the diff [here](https://github.com/tinacms/next-blog-starter-graphql/compare/featured-tag-mistake..split-author-data) to see how we're awkwardly making use of a separate `author` file
 
 ### Content Management Systems: Reliable? Yes. Portable? No.
 
 Headless CMSs are a great way to maintain full control over your frontend code while offloading issues like those mentioned above to a more robust content layer. But when you hand your content over to a CMS you lose the power of Git that comes built-in with file-based content.
 
-With a CMS, when you make a change to the shape of your content you also need to coordinate that new shape with your code, and you need to make sure that all of your existing content fits the new shape appropriately.
+With a CMS, when you make a change to the shape of your content you also need to _coordinate_ that new shape with your code, and you need to make sure that all of your existing content has been updated accordingly.
 
-Most CMSs have come up with various ways to help with this, separate sandbox environments, preview APIs, and migration SDK scripts -- all of which carry their own set of headaches. None of this is necessary with file-based content - _everything moves and changes together_. So perhaps we can bring the robust features of a headless CMS to your local filesystem? What might that look like?
+Most CMSs have come up with various ways to help with this: separate sandbox environments, preview APIs, and migration SDK scripts -- all of which carry their own set of headaches. None of this is necessary with file-based content, _everything moves and changes together_. So what if we could bring the robust features of a headless CMS to your local filesystem? What might that look like?
 
 ## The Tina Content API
 
-Today we're introducing a tool that marries the power of a headless CMS with the convenience and portability of file-based content. The Tina Content API is a GraphQL service that sources content from your local filesystem. It'll also soon be available via Tina Cloud, which connects to your GitHub repository to offer an identical ,cloud-based headless API.
+Today we're introducing a tool that marries the power of a headless CMS with the convenience and portability of file-based content. The Tina Content API is a GraphQL service that sources content from your local filesystem. It'll also soon be available via Tina Cloud, which connects to your GitHub repository to offer an identical, cloud-based, headless API.
 
 > Tina Cloud is currently open to a limited set of Next.js projects, [sign up](https://tina.io/early-access/) for early access. for early access to get into the private beta.
 
@@ -347,7 +343,13 @@ This error is coming from our old friend `featured: "false"`. This is exactly th
 
 We can use GraphQL to replace all of our bespoke filesystem data-fetching logic and rest assured that the data we get back will be exactly what we expect it to be.
 
-Querying for a post now looks like this:
+Querying for a post went from this:
+
+```
+
+```
+
+To this:
 
 ```graphql
 query BlogPostQuery($relativePath: String!) {
