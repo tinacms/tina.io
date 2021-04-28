@@ -132,7 +132,11 @@ Can you spot the issue? We accidentally set `featured` to `"false"` instead of `
 
 > Demo: [here's]() where we made our mistakes
 
-While this is a simple example, as your content grows in complexity these types of things become difficult spot. Mosts CMSs would never let this happen, they require that the shape of your content is well-defined. But that's not the only thing they help with, there's something else you may have noticed from our new blog post structure that doesn't feel quite right. Notice our author:
+While this is a simple example, as your content grows in complexity these types of things become difficult spot. Mosts CMSs would never let this happen, they require that the shape of your content is well-defined. But that's not the only thing they help with, there's something else you may have noticed from our new blog post structure that doesn't feel quite right...
+
+### Relationships: it's complicated
+
+Notice our author data:
 
 ```
 author:
@@ -146,9 +150,9 @@ This content is the same over in the "Dynamic Routing and Static Generation" pos
 author: _authors/jj.md
 ```
 
-But now we have to update our data fetching logic so that whenever it comes across the `posts`'s `author` field it knows to make an additional request for that data. This is pretty cumbersome, and again - as complexity grows these this type of logic quickly become untenable.
+But now we have to update our data-fetching logic so that whenever it comes across the `author` field in a post it knows to make an additional request for _that_ data. This is pretty cumbersome, and again - as complexity grows these this type of logic quickly become untenable.
 
-> Demo: Check out the diff [here]() to see how we're making use of a separate `author` file
+> Demo: Check out the diff [here]() to see how we're awkwardly making use of a separate `author` file
 
 ### Content Management Systems: Reliable? Yes. Portable? No.
 
@@ -476,3 +480,5 @@ And our result:
 ```
 
 > Demo: See the [full diff]() of changes
+
+## Conclusion
