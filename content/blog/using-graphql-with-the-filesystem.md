@@ -3,30 +3,28 @@ title: Supercharging file-based content with GraphQL
 date: '2021-04-22T10:00:00.000Z'
 draft: true
 author: Jeff See
+last_edited: '2021-04-28T09:04:26.145Z'
 ---
-
 Using the filesystem for website content has been a mainstay of the web development ecosystem for years. The ability to ship your entire website in one fell swoop and roll anything back with thanks to Git has made this a popular and efficient way to get things done with confidence.
 
 On the other hand, the open nature of using files for content can lead to headaches. Content Management Systems (CMS) have always provided confidence in another way - knowing that your content's shape won't change out from underneath you. The scary (and powerful) thing about using the filesystem is that there's no layer to ensure that you're getting the content that you expect. It's a trade-off that has many valid use-cases, but just as many footguns.
 
-## An example
+## Let's get real
 
-We're going to use the [Next.js blog starter](https://github.com/vercel/next.js/tree/canary/examples/blog-starter) to demonstrate some of the problems with file-based content and how we hope to solve them. If you'd like to follow along you can fork this repo [here]() and start with the branch called `start`. To skip ahead to the final solution check out the `final` branch.
+We're going to use the [Next.js blog starter](https://github.com/vercel/next.js/tree/canary/examples/blog-starter) to demonstrate some of the problems with file-based content and how we hope to solve them. If you'd like to follow along you can [fork this repository](https://github.com/tinacms/next-blog-starter-graphql) and start with the branch called `start`. To skip ahead to the final solution check out the `final` branch.
 
 ### Our content structure
 
-This app sources its content from markdown files in a folder called `_posts`:
+This app sources its content from Markdown files in a folder called `_posts`:
 
-```
-- _posts
-  - dynamic-routing.md
-  - hello-world.md
-  - preview.md
-- pages
-  - index.js # lists the blog posts
-  - posts
-    - [slug].js # dynamically shows the appropriate blog post
-```
+    - _posts
+      - dynamic-routing.md
+      - hello-world.md
+      - preview.md
+    - pages
+      - index.js # lists the blog posts
+      - posts
+        - [slug].js # dynamically shows the appropriate blog post
 
 On the home page we get each post from the `_posts` directory and sort them by date before showing them with our `getAllPosts` function:
 
@@ -45,11 +43,11 @@ And the result:
 
 ![](https://res.cloudinary.com/deuzrsg3m/image/upload/v1619558511/tina-blog-post/next-demo-home_kcnyv5.png)
 
-> Following along in the demo?: Start [here](https://github.com/tinacms/next-blog-starter-graphql/tree/start)
+> Demo: ➡️ [Start following along](https://github.com/tinacms/next-blog-starter-graphql/tree/start)
 
 #### File-based content is simple
 
-What we have so far is great, since our changes are stored in Git we know that if we made a mistake we'll be able to easily roll it back to a previous version. But as the complexity of our content increases things become less straightforward.
+What we have so far is great, since our changes are stored in Git we know that if we made a mistake we will be able to easily roll it back to a previous version. But as the complexity of our content increases things become less straightforward.
 
 To demonstrate that, let's first look at how our content is structured. The "Dynamic Routing and Static Generation" blog post looks like this:
 
@@ -69,7 +67,7 @@ ogImage:
 Lorem ipsum dolor sit amet ...
 ```
 
-We'll expand on this structure by adding the ability to filter which blog posts show up on the home page. To do that we'll add a new `boolean` value to each post called `featured`.
+Let's expand on this structure by adding the ability to filter which blog posts show up on the home page. To do that we add a new `boolean` value to each post called `featured`.
 
 ```markdown
 ---
@@ -102,7 +100,7 @@ export function getAllPosts(fields = []) {
 }
 ```
 
-To test this out we'll add a new post, this one _won't_ be featured:
+Let's add a new post to test this out, this one _won't_ be featured:
 
 ```markdown
 ---
@@ -125,42 +123,38 @@ Woops, look who's showing up on our home page:
 
 ![](https://res.cloudinary.com/deuzrsg3m/image/upload/v1619560025/tina-blog-post/llama-woops_cchyel.png)
 
-Can you spot the issue? We accidentally set `featured` to `"false"` instead of `false`!
+Can you spot the issue? We accidentally set `featured` to `"false"` instead of `false`! We made it a `string`, not a `boolean`.
 
-> Demo: [here's](https://github.com/tinacms/next-blog-starter-graphql/compare/start..featured-tag-mistake) where we made our mistakes.
+> Demo: 👀 [Spot our mistakes](https://github.com/tinacms/next-blog-starter-graphql/compare/start..featured-tag-mistake).
 
-If we had been using a CMS this probably wouldn't have happended. Mosts of them require that the shape of your content is well-defined. While these kinds of issues are painful, there's a lot more that CMSs do for us that we don't get from the filesystem -- you may have noticed something else about the shape of our content that doesn't feel quite right...
+If we had been using a CMS this probably wouldn't have happended. Mosts of them require that the shape of your content is well-defined. While these kinds of issues are painful, there's a lot more that CMSs do for us that we don't get from the filesystem -- you may have noticed something else about the shape of our content that doesn't feel quite right…
 
 ### Relationships: it's complicated
 
-Let's look at the data from our new blog post again
+Let's look at the data from our new blog post again:
 
-```
----
-title: "Why Tina is Great"
-excerpt: "Lorem  ..."
-coverImage: "/assets/blog/dynamic-routing/cover.jpg"
-date: "2021-04-25T05:35:07.322Z"
-author:
-  name: JJ Kasper
-  picture: "/assets/blog/authors/jj.jpeg"
-ogImage:
-  url: "/assets/blog/dynamic-routing/cover.jpg"
-featured: "false"
----
-
-Lorem ipsum dolor sit amet ..
-```
+    ---
+    title: "Why Tina is Great"
+    excerpt: "Lorem  ..."
+    coverImage: "/assets/blog/dynamic-routing/cover.jpg"
+    date: "2021-04-25T05:35:07.322Z"
+    author:
+      name: JJ Kasper
+      picture: "/assets/blog/authors/jj.jpeg"
+    ogImage:
+      url: "/assets/blog/dynamic-routing/cover.jpg"
+    featured: "false"
+    ---
+    
+    Lorem ipsum dolor sit amet…
 
 The `author` content is the same over in the "Dynamic Routing and Static Generation" post. If JJ wanted to change his `picture` he'll need to update it on every post he's written. Sounds like something a CMS would solve with a content _relationship_, JJ should ideally be an author who _has many_ posts. To solve this with our file-based content we could split the author data into its own file and place a reference to that author's filename in the `post` structure:
 
-```
-author: _authors/jj.md
-```
+    author: _authors/jj.md
 
 But now we have to update our data-fetching logic so that whenever it comes across the `author` field in a post it knows to make an additional request for _that_ data. This is pretty cumbersome, and again - as complexity grows these this type of logic quickly become untenable.
 
-> Demo: Check out the diff [here](https://github.com/tinacms/next-blog-starter-graphql/compare/featured-tag-mistake..split-author-data) to see how we're awkwardly making use of a separate `author` file
+> Demo: [Check out the diff](https://github.com/tinacms/next-blog-starter-graphql/compare/featured-tag-mistake..split-author-data) to see how we're awkwardly making use of a separate `author` file.
 
 ### Content Management Systems: Reliable? Yes. Portable? No.
 
@@ -168,30 +162,30 @@ Headless CMSs are a great way to maintain full control over your frontend code w
 
 With a CMS, when you make a change to the shape of your content you also need to _coordinate_ that new shape with your code, and you need to make sure that all of your existing content has been updated accordingly.
 
-Most CMSs have come up with various ways to help with this: separate sandbox environments, preview APIs, and migration SDK scripts -- all of which carry their own set of headaches. None of this is necessary with file-based content, _everything moves and changes together_. So what if we could bring the robust features of a headless CMS to your local filesystem? What might that look like?
+Most CMSs have come up with various ways to help with this: separate sandbox environments, preview APIs, and migration SDK scripts — all of which carry their own set of headaches. None of this is necessary with file-based content, _everything moves and changes together_. So what if we could bring the robust features of a headless CMS to your local filesystem? What might that look like?
 
-## The Tina Content API
+## Meet Tina Content API
 
-Today we're introducing a tool that marries the power of a headless CMS with the convenience and portability of file-based content. The Tina Content API is a GraphQL service that sources content from your local filesystem. It'll also soon be available via Tina Cloud, which connects to your GitHub repository to offer an identical, cloud-based, headless API.
+Today we're introducing a tool that marries the power of a headless CMS with the convenience and portability of file-based content. **The Tina Content API is a GraphQL service that sources content from your local filesystem**. It will soon be available via [Tina Cloud](https://tina.io/cloud/), which connects to your GitHub repository to offer an identical, cloud-based, headless API.
 
-> Tina Cloud is currently open to a limited set of Next.js projects, [sign up](https://tina.io/early-access/) for early access. for early access to get into the private beta.
+> Tina Cloud is currently open to a limited set of Next.js projects, [sign up](https://tina.io/early-access/) for early access to get into the private beta.
 
 To get a sense for how this works, let's make some tweaks to the blog demo.
 
-First we'll install the tina CLI:
+First let's install Tina CLI:
 
 ```sh
 yarn add tina-graphql-gateway-cli
 ```
 
-We'll add a schema so the API knows exactly what kind of shape to build for your content:
+Now let's add a schema so the API knows exactly what kind of shape to build for your content:
 
 ```sh
 mkdir .tina && touch .tina/schema.ts
 ```
 
 ```ts
-// in `.tina/schema.ts`
+// `.tina/schema.ts`
 import { defineSchema } from 'tina-graphql-gateway-cli'
 
 export default defineSchema({
@@ -285,7 +279,7 @@ export default defineSchema({
 })
 ```
 
-Notice that we're referncing the `authors` secton from the `post.author` field
+Notice that we're referencing the `authors` section from the `post.author` field
 
 Next we'll replace the `dev` command to start the GraphQL server in tandem with our Next.js app:
 
@@ -298,7 +292,7 @@ Next we'll replace the `dev` command to start the GraphQL server in tandem with 
 
 > Demo: [Here's]() the changes we've made so far. Check out the `add-tina-graphql` branch to pick up from this point.
 
-Run the dev command and you'll see that we now have a local GraphQL server listening on port 4001 along with some information about autogenerated configuration files:
+Run the `dev` command,  you can see that we now have a local GraphQL server listening on port 4001 along with some information about auto-generated configuration files:
 
 ```sh
 Started Filesystem GraphQL server on port: 4001
@@ -311,7 +305,7 @@ ready - started server on 0.0.0.0:3000, url: http://localhost:3000
 
 Let's test it out:
 
-> Tip: if you have a GraphQL client like [Altair](https://altair.sirmuel.design/) you can explore the API by pointing it to http://localhost:4001/graphql
+> 💡Tip: if you have a GraphQL client like [Altair](https://altair.sirmuel.design/) you can explore the API by pointing it to http://localhost:4001/graphql
 
 ```graphql
 # Point your request to http://localhost:4001/graphql
@@ -326,7 +320,7 @@ Let's test it out:
 }
 ```
 
-And our result:
+And here is the result:
 
 ```json
 {
