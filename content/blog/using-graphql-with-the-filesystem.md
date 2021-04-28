@@ -229,22 +229,12 @@ export default defineSchema({
               name: 'date',
             },
             {
-              type: 'group',
+              // We'll indicate the author is a "reference"
+              // to another document
+              type: 'reference',
               name: 'author',
               label: 'Author',
-              fields: [
-                {
-                  type: 'text',
-                  label: 'Name',
-                  name: 'name',
-                },
-
-                {
-                  name: 'picture',
-                  label: 'Picture',
-                  type: 'text',
-                },
-              ],
+              collection: 'author',
             },
             {
               type: 'group',
@@ -267,9 +257,35 @@ export default defineSchema({
         },
       ],
     },
+    {
+      name: 'authors',
+      label: 'Authors',
+      path: '_authors',
+      templates: [
+        {
+          label: 'Author',
+          name: 'author',
+          fields: [
+            {
+              type: 'text',
+              label: 'Name',
+              name: 'name',
+            },
+
+            {
+              name: 'picture',
+              label: 'Picture',
+              type: 'text',
+            },
+          ],
+        },
+      ],
+    },
   ],
 })
 ```
+
+Notice that we're referncing the `authors` secton from the `post.author` field
 
 Next we'll replace the `dev` command to start the GraphQL server in tandem with our Next.js app:
 
@@ -343,100 +359,6 @@ This error is coming from our old friend `featured: "false"`. This is exactly th
 
 We can use GraphQL to replace all of our bespoke filesystem data-fetching logic and rest assured that the data we get back will be exactly what we expect it to be.
 
-Querying for a post went from this:
-
-```
-
-```
-
-To this:
-
-```graphql
-query BlogPostQuery($relativePath: String!) {
-  getPostsDocument(relativePath: $relativePath) {
-    data {
-      ... on SimplePost_Doc_Data {
-        title
-        excerpt
-        date
-        coverImage
-        author {
-          name
-          picture
-        }
-        ogImage {
-          url
-        }
-        featured
-        _body
-      }
-    }
-  }
-}
-```
-
-> Demo: [View the changes]() we made to add Tina GraphQL
-
-### Fixing our author problem
-
-Earlier we pointed out how painful it would be to split the `author` data out into it's own file, with GraphQL it's trivial. We'll update our schema to treat author as a separate record:
-
-```ts
-// in `.tina/schema.ts`
-import { defineSchema } from 'tina-graphql-gateway-cli'
-
-export default defineSchema({
-  collections: [
-    {
-      label: 'Posts',
-      name: 'posts',
-      path: '_posts',
-      templates: [
-        {
-          label: 'Simple',
-          name: 'simple_post',
-          fields: [
-            ...
-            {
-              type: 'reference',
-              name: 'author',
-              label: 'Author',
-              collection: 'authors'
-            },
-            ...
-          ],
-        },
-      ],
-    },
-    {
-      label: 'Authors',
-      name: 'authors',
-      path: '_authors',
-      templates: [
-        {
-          label: 'Author',
-          name: 'author',
-          fields: [
-            {
-              type: 'text',
-              name: 'name',
-              label: 'Name',
-            },
-            {
-              type: 'text',
-              name: 'picture',
-              label: 'Picture',
-            },
-          ],
-        },
-      ],
-    },
-  ],
-})
-```
-
-And the query:
-
 ```graphql
 query BlogPostQuery($relativePath: String!) {
   getPostsDocument(relativePath: $relativePath) {
@@ -465,34 +387,8 @@ query BlogPostQuery($relativePath: String!) {
 }
 ```
 
-And our result:
-
-```json
-{
-  "data": {
-    "getPostsDocument": {
-      "data": {
-        "title": "Dynamic Routing and Static Generation",
-        "excerpt": "Lorem ...",
-        "date": "2020-03-16T05:35:07.322Z",
-        "coverImage": "/assets/blog/dynamic-routing/cover.jpg",
-        "author": {
-          "data": {
-            "name": "JJ Kasper",
-            "picture": "/assets/blog/authors/jj.jpeg"
-          }
-        },
-        "ogImage": {
-          "url": "/assets/blog/dynamic-routing/cover.jpg"
-        },
-        "featured": true,
-        "_body": "Lorem ipsum dolor sit amet, ..."
-      }
-    }
-  }
-}
-```
-
-> Demo: See the [full diff]() of changes
+> Demo: [View the changes](https://github.com/tinacms/next-blog-starter-graphql/compare/split-author-data..add-tina-gql) we made to add Tina GraphQL
 
 ## Conclusion
+
+TODO
