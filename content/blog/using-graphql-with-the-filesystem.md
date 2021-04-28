@@ -316,7 +316,7 @@ This error is coming from our old friend `featured: "false"`. After fixing the i
 }
 ```
 
-We can use GraphQL to replace all of our bespoke filesystem data-fetching logic and rest-assure that the data we get back will be exactly what we expect it to be.
+We can use GraphQL to replace all of our bespoke filesystem data-fetching logic and rest assured that the data we get back will be exactly what we expect it to be.
 
 Querying for a post now looks like this:
 
@@ -344,7 +344,7 @@ query BlogPostQuery($relativePath: String!) {
 }
 ```
 
-### Fixing the author problem
+### Fixing our author problem
 
 Earlier we pointed out how painful it would be to split the `author` data out into it's own file, with GraphQL it's trivial. We'll update our schema to treat author as a separate record:
 
