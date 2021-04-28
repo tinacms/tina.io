@@ -1,5 +1,5 @@
 ---
-title: Limitations of using the filesystem for web content and how Tina's GraphQL API solves this
+title:
 date: '2021-04-22T10:00:00.000Z'
 draft: true
 author: Jeff See
@@ -47,9 +47,9 @@ And the result:
 
 #### File-based content is simple
 
-What we have so far is great, we can ship our site to production with full confidence that if we made a mistake we'll be able to easily roll it back to a previous version, thanks to the fact that our changes are stored in Git. But as we increase the complexity of our content things become less straightforward.
+What we have so far is great, since our changes are stored in Git we can ship our site to production with full confidence that if we made a mistake we'll be able to easily roll it back to a previous version. But as we increase the complexity of our content things become less straightforward.
 
-To demonstrate that, let's look at how our content is structured. As an example, the "Dynamic Routing and Static Generation" blog post looks like this:
+To demonstrate that, let's first look at how our content is structured. As an example, the "Dynamic Routing and Static Generation" blog post looks like this:
 
 ```markdown
 ---
@@ -128,7 +128,7 @@ Woops, look who's showing up on our home page:
 
 Can you spot the issue? We accidentally set `featured` to `"false"` instead of `false`!
 
-While this is a simple example, as your content grows in complexity these types of things become difficult spot. Mosts CMSs would never let this happen, they require that you the shape of your content is well-defined. But that's not the only thing they help with - there's something else you may have noticed from our new blog post that doesn't feel quite right. Notice our author:
+While this is a simple example, as your content grows in complexity these types of things become difficult spot. Mosts CMSs would never let this happen, they require that the shape of your content is well-defined. But that's not the only thing they help with, there's something else you may have noticed from our new blog post structure that doesn't feel quite right. Notice our author:
 
 ```
 author:
@@ -142,7 +142,7 @@ This content is the same over in the "Dynamic Routing and Static Generation" pos
 author: _authors/jj.md
 ```
 
-But now we have to update our data fetching logic so that when it comes across the `author` field, it knows to make an additional request for that data. This is pretty cumbersome, and again - as complexity grows these things grow untenable.
+But now we have to update our data fetching logic so that whenever it comes across the `posts`'s `author` field it knows to make an additional request for that data. This is pretty cumbersome, and again - as complexity grows these this type of logic quickly become untenable.
 
 ### Content Management Systems: pretty useful, actually
 
@@ -426,6 +426,34 @@ query BlogPostQuery($relativePath: String!) {
         }
         featured
         _body
+      }
+    }
+  }
+}
+```
+
+And our result:
+
+```json
+{
+  "data": {
+    "getPostsDocument": {
+      "data": {
+        "title": "Dynamic Routing and Static Generation",
+        "excerpt": "Lorem ...",
+        "date": "2020-03-16T05:35:07.322Z",
+        "coverImage": "/assets/blog/dynamic-routing/cover.jpg",
+        "author": {
+          "data": {
+            "name": "JJ Kasper",
+            "picture": "/assets/blog/authors/jj.jpeg"
+          }
+        },
+        "ogImage": {
+          "url": "/assets/blog/dynamic-routing/cover.jpg"
+        },
+        "featured": true,
+        "_body": "Lorem ipsum dolor sit amet, ..."
       }
     }
   }
