@@ -5,6 +5,7 @@ draft: true
 author: Jeff See
 last_edited: '2021-04-28T13:33:51.951Z'
 ---
+
 Using the filesystem for website content has been a mainstay of the web development ecosystem for years. The ability to ship your entire website in one fell swoop and roll anything back with thanks to Git has made this a popular and efficient way to get things done with confidence.
 
 On the other hand, the open nature of using files for content can lead to headaches. Content Management Systems (CMS) have always provided confidence in another way — knowing that your content's shape won't change out from underneath you. The scary (and powerful) thing about using the filesystem is that there's no layer to ensure that you're getting the content that you expect. It's a trade-off that has many valid use-cases, but just as many footguns.
@@ -145,7 +146,7 @@ Let's look at the data from our new blog post again:
       url: "/assets/blog/dynamic-routing/cover.jpg"
     featured: "false"
     ---
-    
+
     Lorem ipsum dolor sit amet…
 
 The `author` content is the same over in the "Dynamic Routing and Static Generation" post. If JJ wanted to change his `picture` he'll need to update it on every post he's written. Sounds like something a CMS would solve with a content _relationship_, JJ should ideally be an author who _has many_ posts. To solve this with our file-based content we could split the author data into its own file and place a reference to that author's filename in the `post` structure:
@@ -290,9 +291,9 @@ Next we'll replace the `dev` command to start the GraphQL server in tandem with 
   },
 ```
 
-> Demo: [Here's]() the changes we've made so far. Check out the `add-tina-graphql` branch to pick up from this point.
+> Demo: [Here's](https://github.com/tinacms/next-blog-starter-graphql/compare/featured-tag-mistake...add-tina-gql) the changes we've made so far. Check out the [`add-tina-graphql`](https://github.com/tinacms/next-blog-starter-graphql/tree/add-tina-gql) branch to pick up from this point.
 
-Run the `dev` command,  you can see that we now have a local GraphQL server listening on port 4001 along with some information about auto-generated configuration files:
+Run the `dev` command, you can see that we now have a local GraphQL server listening on port 4001 along with some information about auto-generated configuration files:
 
 ```sh
 Started Filesystem GraphQL server on port: 4001
@@ -385,4 +386,4 @@ query BlogPostQuery($relativePath: String!) {
 
 ## Conclusion
 
-TODO
+Our goal is to bring the capabilities of a full-fledged CMS to the filesystem. And while the topic of this post was mostly about working locally with GraphQL, Tina Cloud will offer the same great experience through a hosted headless API. In the coming weeks we'll be sharing more about how the this API will work with TinaCMS to bring visual content management to your website with minimal overhead.
