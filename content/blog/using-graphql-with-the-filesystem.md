@@ -104,7 +104,7 @@ export function getAllPosts(fields = []) {
 }
 ```
 
-To test this out we'll add a new post, this one won't be featured:
+To test this out we'll add a new post, this one _won't_ be featured:
 
 ```markdown
 ---
@@ -132,19 +132,31 @@ Can you spot the issue? We accidentally set `featured` to `"false"` instead of `
 
 > Demo: [here's]() where we made our mistakes
 
-While this is a simple example, as your content grows in complexity these types of things become difficult spot. Mosts CMSs would never let this happen, they require that the shape of your content is well-defined. But that's not the only thing they help with, there's something else you may have noticed from our new blog post structure that doesn't feel quite right...
+If we had been using a CMS this probably wouldn't have happended. Mosts of them require that the shape of your content is well-defined. While these kinds of issues are painful, there's a lot more that CMSs do for us that we don't get from the filesystem -- you may have noticed something else about the shape of our content that doesn't feel quite right...
 
 ### Relationships: it's complicated
 
-Notice our author data:
+Let's look at the data from our new blog post again
 
 ```
+---
+title: "Why Tina is Great"
+excerpt: "Lorem  ..."
+featured: true
+coverImage: "/assets/blog/dynamic-routing/cover.jpg"
+date: "2021-04-25T05:35:07.322Z"
 author:
   name: JJ Kasper
   picture: "/assets/blog/authors/jj.jpeg"
+ogImage:
+  url: "/assets/blog/dynamic-routing/cover.jpg"
+featured: "false"
+---
+
+Lorem ipsum dolor sit amet ..
 ```
 
-This content is the same over in the "Dynamic Routing and Static Generation" post. If JJ wanted to change his `picture` he'll need to update it on every post he's written. Sounds like something a CMS would solve with a content relationship, JJ should ideally be an author who _has many_ posts. We could split the author data into its own file and place a reference to that author in the `post` structure:
+The `author` content is the same over in the "Dynamic Routing and Static Generation" post. If JJ wanted to change his `picture` he'll need to update it on every post he's written. Sounds like something a CMS would solve with a content _relationship_, JJ should ideally be an author who _has many_ posts. To solve this with our file-based content we could split the author data into its own file and place a reference to that author's filename in the `post` structure:
 
 ```
 author: _authors/jj.md
