@@ -1,13 +1,13 @@
 ---
-title:
+title: Supercharging file-based content with GraphQL
 date: '2021-04-22T10:00:00.000Z'
 draft: true
 author: Jeff See
 ---
 
-Using the filesystem for website content has been a mainstay of the web development ecosystem for years. Not needing to deal with databases and being able to ship your entire website in one fell swoop and roll anything back with thanks to Git has made this a popular and efficient way to get things done.
+Using the filesystem for website content has been a mainstay of the web development ecosystem for years. The ability to ship your entire website in one fell swoop and roll anything back with thanks to Git has made this a popular and efficient way to get things done with confidence.
 
-On the other hand, the open nature of using files for content can lead to headaches. Content Management Systems (CMS) have always provided confidence in another way - knowing that your content's shape won't change out from underneath you. The scary (and powerful) thing about using the filesystem is that there's no layer between you and the raw data. It's a trade-off that has many valid use-cases and a lot of potential foot guns.
+On the other hand, the open nature of using files for content can lead to headaches. Content Management Systems (CMS) have always provided confidence in another way - knowing that your content's shape won't change out from underneath you. The scary (and powerful) thing about using the filesystem is that there's no layer to ensure that you're getting the content that you expect. It's a trade-off that has many valid use-cases, but just as many foot guns.
 
 ## An example
 
@@ -47,7 +47,7 @@ And the result:
 
 #### File-based content is simple
 
-What we have so far is great, since our changes are stored in Git we can ship our site to production with full confidence that if we made a mistake we'll be able to easily roll it back to a previous version. But as we increase the complexity of our content things become less straightforward.
+What we have so far is great, since our changes are stored in Git we know that if we made a mistake we'll be able to easily roll it back to a previous version. But as we increase the complexity of our content things become less straightforward.
 
 To demonstrate that, let's first look at how our content is structured. As an example, the "Dynamic Routing and Static Generation" blog post looks like this:
 
@@ -88,7 +88,7 @@ featured: true
 Lorem ipsum dolor sit amet ...
 ```
 
-Now we can control which pages show on the home page from within our `getAllPosts` function:
+Now we can update our `getAllPosts` function accordingly:
 
 ```diff
 export function getAllPosts(fields = []) {
@@ -144,15 +144,17 @@ author: _authors/jj.md
 
 But now we have to update our data fetching logic so that whenever it comes across the `posts`'s `author` field it knows to make an additional request for that data. This is pretty cumbersome, and again - as complexity grows these this type of logic quickly become untenable.
 
+> Check out the diff [here]() to see how we're making use of a separate `author` file
+
 ### Content Management Systems: pretty useful, actually
 
 Headless CMSs are a great way to maintain full control over your frontend code while offloading issues like those mentioned above to a more robust content layer. But when you hand your content over to a CMS you lose the power of Git that comes built-in with file-based content.
 
-With a CMS, when you make a change to the shape of your content you also need to coordinate that with a remote resource, and you need to make sure your content fits the new shape appropriately before deploying those changes to a production website. CMSs have come up with various ways to help with this, separate sandbox environments, preview APIs, and migration SDK scripts -- all of which carry their own set of headaches. But what if we could bring the robust features of a headless CMS to your local filesystem? What might that look like?
+With a CMS, when you make a change to the shape of your content you also need to coordinate the new shape with your code, and you need to make sure that all of your existing content fits the new shape appropriately. Most CMSs have come up with various ways to help with this, separate sandbox environments, preview APIs, and migration SDK scripts -- all of which carry their own set of headaches. None of this is necessary with file-based content - everything moves and changes together. So perhaps we can bring the robust features of a headless CMS to your local filesystem? What might that look like?
 
 ## The Tina Content API
 
-Today we're introducing a tool that marries the power of a headless CMS with the convenience and portability of file-based content. The Tina Content API is a GraphQL service that sources content from your local filesystem. It'll also soon be available via our Tina Cloud API, which connects to your GitHub repository to offer a similar cloud-based service.
+Today we're introducing a tool that marries the power of a headless CMS with the convenience and portability of file-based content. The Tina Content API is a GraphQL service that sources content from your local filesystem. It'll also soon be available via Tina Cloud, which connects to your GitHub repository to offer an identical ,cloud-based headless API.
 
 > Tina Cloud is currently open to a limited set of Next.js projects, [sign up](https://tina.io/early-access/) for early access. for early access to get into the private beta.
 
@@ -179,6 +181,9 @@ export default defineSchema({
     {
       label: 'Posts',
       name: 'posts',
+      /*
+       * Indicates where to save this kind of content (eg. the "_posts" folder)
+       */
       path: '_posts',
       templates: [
         {
@@ -257,6 +262,8 @@ Next we'll replace the `dev` command to start the GraphQL server in tandem with 
   },
 ```
 
+> Demo: [Here's]() the changes we've made so far. Check out the `add-tina-graphql` branch to pick up from this point.
+
 Run the dev command and you'll see that we now have a local GraphQL server listening on port 4001 along with some information about autogenerated configuration files:
 
 ```sh
@@ -299,7 +306,7 @@ And our result:
 }
 ```
 
-This error is coming from our old friend `featured: "false"`. After fixing the issue, we get what we expected:
+This error is coming from our old friend `featured: "false"`. This is exactly the kind of assurance you'd get from a CMS, but without any of the overhead. After fixing the issue, we get what we expected:
 
 ```json
 {
@@ -343,6 +350,8 @@ query BlogPostQuery($relativePath: String!) {
   }
 }
 ```
+
+> Demo: [View the diff]() so far
 
 ### Fixing our author problem
 
@@ -402,7 +411,7 @@ export default defineSchema({
 })
 ```
 
-And the resulting query:
+And the query:
 
 ```graphql
 query BlogPostQuery($relativePath: String!) {
@@ -459,3 +468,5 @@ And our result:
   }
 }
 ```
+
+> Demo: See the [full diff]() of changes
