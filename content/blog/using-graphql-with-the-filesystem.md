@@ -146,11 +146,13 @@ But now we have to update our data fetching logic so that whenever it comes acro
 
 > Check out the diff [here]() to see how we're making use of a separate `author` file
 
-### Content Management Systems: pretty useful, actually
+### Content Management Systems: Reliable? Yes. Portable? No.
 
 Headless CMSs are a great way to maintain full control over your frontend code while offloading issues like those mentioned above to a more robust content layer. But when you hand your content over to a CMS you lose the power of Git that comes built-in with file-based content.
 
-With a CMS, when you make a change to the shape of your content you also need to coordinate the new shape with your code, and you need to make sure that all of your existing content fits the new shape appropriately. Most CMSs have come up with various ways to help with this, separate sandbox environments, preview APIs, and migration SDK scripts -- all of which carry their own set of headaches. None of this is necessary with file-based content - everything moves and changes together. So perhaps we can bring the robust features of a headless CMS to your local filesystem? What might that look like?
+With a CMS, when you make a change to the shape of your content you also need to coordinate that new shape with your code, and you need to make sure that all of your existing content fits the new shape appropriately.
+
+Most CMSs have come up with various ways to help with this, separate sandbox environments, preview APIs, and migration SDK scripts -- all of which carry their own set of headaches. None of this is necessary with file-based content - _everything moves and changes together_. So perhaps we can bring the robust features of a headless CMS to your local filesystem? What might that look like?
 
 ## The Tina Content API
 
