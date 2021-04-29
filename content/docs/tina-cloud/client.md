@@ -2,7 +2,9 @@
 title: Tina Cloud Client
 ---
 
-The Tina Cloud Client is a package which allows you to work with the Tina Content API. For a real-world example of how this is being used checkout the [Tina Cloud Starter](https://github.com/tinacms/tina-cloud-starter).
+> Heads up - if you haven't already done so, read through the [CLI documentation](/docs/tina-cloud/cli/) to make sure you have a GraphQL server running locally.
+
+For a real-world example of how this is being used checkout the [Tina Cloud Starter](https://github.com/tinacms/tina-cloud-starter).
 
 ## Getting started
 
@@ -95,7 +97,7 @@ const MyPage = (props) => {
 }
 ```
 
-If Tina is enabled you'll see a form for the `getPostsDocument` request. If you queried for multiple docuemnts, you'll see multiple forms:
+If Tina is enabled you'll see a form for the `getPostsDocument` request. If you queried for multiple documents, you'll see multiple forms:
 
 ```tsx
 const query = gql => gql`#graphql
