@@ -12,7 +12,7 @@ On the other hand, the open nature of using files for content can lead to headac
 
 ## Let's get real
 
-We're going to use the [Next.js blog starter](https://github.com/vercel/next.js/tree/canary/examples/blog-starter) to demonstrate some of the problems with file-based content and how we hope to solve them. If you'd like to follow along you can [fork this repository](https://github.com/tinacms/next-blog-starter-graphql) and start with the branch called `start`. To skip ahead to the final solution check out the `final` branch.
+We're going to use the [Next.js blog starter](https://github.com/vercel/next.js/tree/canary/examples/blog-starter) to demonstrate some of the problems with file-based content and how we hope to solve them. If you'd like to follow along you can [fork this repository](https://github.com/tinacms/next-blog-starter-graphql) and start with the branch called [`start`](https://github.com/tinacms/next-blog-starter-graphql/tree/start). To skip ahead to the final solution check out the [`add-tina-gql`](https://github.com/tinacms/next-blog-starter-graphql/tree/add-tina-gql) branch.
 
 ### Our content structure
 
@@ -153,7 +153,7 @@ The `author` content is the same over in the "Dynamic Routing and Static Generat
 
     author: _authors/jj.md
 
-But now we have to update our data-fetching logic so that whenever it comes across the `author` field in a post it knows to make an additional request for _that_ data. This is pretty cumbersome, and again — as complexity grows these this type of logic quickly become untenable.
+But now we have to update our data-fetching logic so that whenever it comes across the `author` field in a post it knows to make an additional request for _that_ data. This is pretty cumbersome, and again — as complexity grows these this type of logic quickly becomes untenable. With a CMS SDK or GraphQL API we'd be able to do this sort of thing easily, and we'd have confidence that a document can't be deleted if it's being referenced from another document.
 
 > Demo: [Check out the diff](https://github.com/tinacms/next-blog-starter-graphql/compare/featured-tag-mistake..split-author-data) to see how we're awkwardly making use of a separate `author` file.
 
