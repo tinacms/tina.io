@@ -153,7 +153,7 @@ The `author` content is the same over in the "Dynamic Routing and Static Generat
 
     author: _authors/jj.md
 
-But now we have to update our data-fetching logic so that whenever it comes across the `author` field in a post it knows to make an additional request for _that_ data. This is pretty cumbersome, and again — as complexity grows these this type of logic quickly becomes untenable. With a CMS SDK or GraphQL API we'd be able to do this sort of thing easily, and we'd have confidence that a document can't be deleted if it's being referenced from another document.
+But now we have to update our data-fetching logic so that whenever it comes across the `author` field in a post it knows to make an additional request for _that_ data. This is pretty cumbersome, and again — as complexity grows this type of logic quickly becomes untenable. With a CMS SDK or GraphQL API we'd be able to do this sort of thing easily, and we'd have confidence that a document can't be deleted if it's being referenced from another document.
 
 > Demo: [Check out the diff](https://github.com/tinacms/next-blog-starter-graphql/compare/featured-tag-mistake..split-author-data) to see how we're awkwardly making use of a separate `author` file.
 
