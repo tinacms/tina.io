@@ -2,9 +2,9 @@
 title: Tina Cloud CLI
 ---
 
-The _Tina Cloud CLI_ can be used to set up your project with Tina Cloud configuration, and run a local version of the Tina Cloud content-api (using your file system's content).
+The _Tina Cloud CLI_ can be used to set up your project with Tina Cloud configuration, and run a local version of the Tina Cloud content-api (using your file system's content). For a real-world example of how this is being used checkout the [Tina Cloud Starter](https://github.com/tinacms/tina-cloud-starter).
 
-## Getting started
+## Installation
 
 The CLI can be installed as a dev dependency in your project.
 
@@ -22,73 +22,189 @@ yarn add --dev tina-graphql-gateway-cli
 
 ## Usage
 
-Arguments wrapped in `<>` in the command name are required.
-Arguments wrapped in `[]` in the command name are optional.
+```
+Usage:  command [options]
 
-## Help
+Options:
+  -V, --version           output the version number
+  -h, --help              display help for command
 
-You can get help on any command with `-h` or `--help`.
-
-e.g:
-
-```bash
-yarn tina-gql schema:gen-query --help
+Commands:
+  server:start [options]  Start Filesystem Graphql Server
+  schema:compile          Compile schema into static files for the server
+  schema:types            Generate a GraphQL query for your site's schema, (and
+                          optionally Typescript types)
+  help [command]          display help for command
 ```
 
-This will describe how to use the schema:gen-query command.
+## Getting started
 
-## Commands
+The simplest way to get started is to add a `.tina/schema.ts` file
 
-### tina-gql server:start \[options\]
-
-Start a GraphQL server using your Filesystem's content as the datasource. Your site will need to have a valid .tina configuration to define its schema.
-
-#### Options
-
---port <port> Specify a port to run the server on. (default 4001)
-
-### tina-gql schema:types \[options\]
-
-Generate Typescript types based on your site's schema.
-
-#### Options
-
---schema, -s Dump the graphql SDL
-
-### tina-gql schema:audit \[options\]
-
-Check for **.tina/front_matter/templates** folder for any issues.
-
-#### Options
-
---path <tinaPath> Specify a relative path to the .tina folder (eg. my-site)
-
-### tina-gql schema:dump \[options\]
-
-Dump JSON schema into specified path
-
-#### Options
-
---folder <folder> Dump the schema into the given path
-
-## Development
-
-To run this project locally in another directory, you can create a symlink by running
-
-```bash
-npm link
+```
+mkdir .tina && touch .tina/schema.ts
 ```
 
-Then `tina-gql` can be run in another directory by running:
+Inside this file, we'll define our schema. This is schema will generate a GraphQL API which works specifically for your content.
 
-```bash
-tina-gql <commands>
+```ts
+import { defineSchema } from 'tina-graphql-gateway-cli'
+
+export default defineSchema({
+  collections: [
+    {
+      label: 'Blog Posts',
+      name: 'posts',
+      path: 'content/posts',
+      templates: [
+        {
+          label: 'Article',
+          name: 'article',
+          fields: [
+            {
+              type: 'text',
+              label: 'Title',
+              name: 'title',
+            },
+            {
+              type: 'reference',
+              label: 'Author',
+              name: 'author',
+              collection: 'authors',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      label: 'Authors',
+      name: 'authors',
+      path: 'content/authors',
+      templates: [
+        {
+          label: 'Author',
+          name: 'author',
+          fields: [
+            {
+              type: 'text',
+              label: 'Name',
+              name: 'name',
+            },
+            {
+              type: 'text',
+              label: 'Avatar',
+              name: 'avatar',
+            },
+          ],
+        },
+      ],
+    },
+  ],
+})
 ```
 
-_Alternatively, the CLI can be added to a project instead of being used globally._
+### `defineSchema`
 
-To run the command locally in this project directory, you can run:
+Be sure this is your default export from this file, we'll validate the schema and build out the GraphQL API with it.
 
-```bash
-yarn tina-gql <commands>
+### `collections`
+
+The top-level key in the schema is an array of _collections_, a `collection` informs the API about _where_ to save content. You can see from the example that a `posts` document would be stored in `content/posts`, and it can be the shape of any `template` from the `templates` key.
+
+### `templates`
+
+Templates are responsible for defining the shape of your content, you'll see in the schema for [the starter](https://github.com/tinacms/tina-cloud-starter) that we use `templates` for `sections` as well as `blocks`. One important thing to note is that since a `collection` can have multiple `templates`, each file in your collection must store a `_template` key in it's frontmatter:
+
+```markdown
+---
+title: Vote For Pedro
+author: content/authors/napolean.md
+_template: article
+---
+
+When you use Tina's GraphQL forms, we know about all of the relationships in your content, this allows us to keep your content in-sync with your form state. Try changing the author in the sidebar, notice the author data changes to reflect your new author!
 ```
+
+### `fields`
+
+For the most part, you can think of `fields` as the backend equivalent to [Tina field plugins](https://tina.io/docs/plugins/fields/). You might notice that we're defining a `type` on each field, rather than a `component`. This is because the backend isn't concerned with `component`s, only the shape of your content. By default we use the built-in Tina fields, to customize your `component` read the [field customization]() instructions.
+
+#### `reference` & `reference-list`
+
+In addition to the core Tina fields, we also have `reference` and `reference-list` fields. These are important concepts, when you _reference_ another collection, you're effectively saying: "this document _belongs to_ that document". In the `article` template above, we're saying `posts` with an `article` template belong to `authors`. This is a powerful way to connect your content, and the `tina-graphql-gateway` client knows how to build forms to reflect these relationships.
+
+When you query across multiple documents, you'll see a `select` field for the related content, and by changing those values you'll see your query data updated automatically.
+
+## Run the local GraphQL server
+
+Let's add some content so we can test out the GraphQL server
+
+#### Add an author
+
+```sh
+mkdir content && mkdir content/authors && touch content/authors/napolean.md
+```
+
+Now we'll add some content to the author
+
+```markdown
+---
+name: Napolean
+avatar: https://images.unsplash.com/photo-1606721977440-13e6c3a3505a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=344&q=80
+_template: author
+---
+```
+
+#### Add a post
+
+```sh
+mkdir content/posts && touch content/posts/voteForPedro.md
+```
+
+Now we'll add some content to the post
+
+```markdown
+---
+title: Vote For Pedro
+author: content/authors/napolean.md
+_template: article
+---
+
+When you use Tina's GraphQL forms, we know about all of the relationships in your content, this allows us to keep your content in-sync with your form state. Try changing the author in the sidebar, notice the author data changes to reflect your new author!
+```
+
+#### Start the server
+
+```
+yarn run tina-gql server:start
+```
+
+Under the hood, this will automatically build your schema and compile it into a GraphQL schema. You'll notice a `__generated__` folder in your `.tina` folder. This should be checked into Git, as we'll need use it when working with Tina Cloud.
+
+#### Query the content
+
+With a GraphQL client, make the following request:
+
+> Tip: if you don't have a GraphQL client, download one like Altair [here](https://altair.sirmuel.design/)
+
+```graphql
+getPostsDocument(relativePath: "voteForPedro.md") {
+  data {
+    __typename
+    ... on Article_Doc_Data {
+      title
+      author {
+        data {
+          ... on Author_Doc_Data {
+            name
+            avatar
+          }
+        }
+      }
+      _body
+    }
+  }
+}
+```
+
+> This API is currently somewhat limited. Specifically there's no support for filtering and sorting "list" queries. We have plans to tackle that in upcoming cycles
