@@ -4,6 +4,10 @@ title: Tina Cloud Client
 
 The Tina Cloud Client is a package which allows you to work with the Tina Content API. For a real-world example of how this is being used checkout the [Tina Cloud Starter](https://github.com/tinacms/tina-cloud-starter).
 
+```
+yarn add tina-graphql-client
+```
+
 ## The TinaCMS API Client
 
 This package exports a class which acts as [TinaCMS external API](https://tina.io/docs/apis/) for the Tina Content API. This is a headless GraphQL API that's serverd via Tina Cloud or locally from within the Tina CLI.
