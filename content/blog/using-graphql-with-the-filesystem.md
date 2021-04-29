@@ -3,14 +3,17 @@ title: Supercharging file-based content with GraphQL
 date: '2021-04-22T10:00:00.000Z'
 draft: true
 author: Jeff See
-last_edited: '2021-04-28T13:33:51.951Z'
+last_edited: '2021-04-29T11:33:49.496Z'
 ---
+Today we want to introduce you to the Tina GraphQL gateway that brings reliability to Git-based content management. It's an essential piece to provide a robust structured content, while your content remains fully portable.
+
+## Current limitations
 
 Using the filesystem for website content has been a mainstay of the web development ecosystem for years. The ability to ship your entire website in one fell swoop and roll anything back with thanks to Git has made this a popular and efficient way to get things done with confidence.
 
-On the other hand, the open nature of using files for content can lead to headaches. Content Management Systems (CMS) have always provided confidence in another way — knowing that your content's shape won't change out from underneath you. The scary (and powerful) thing about using the filesystem is that there's no layer to ensure that you're getting the content that you expect. It's a trade-off that has many valid use-cases, but just as many footguns.
+On the other hand, the open nature of using files for content can lead to headaches. Content Management Systems (CMS) have always provided confidence in another way — knowing that your content's shape won't change out from underneath you. The scary (and powerful) thing about using the filesystem is that there's no layer to ensure that you're getting the content that you expect. It's a trade-off that has many valid use-cases, but just as many foot guns.
 
-## Let's get real
+## Let's take an example
 
 We're going to use the [Next.js blog starter](https://github.com/vercel/next.js/tree/canary/examples/blog-starter) to demonstrate some of the problems with file-based content and how we hope to solve them. If you'd like to follow along you can [fork this repository](https://github.com/tinacms/next-blog-starter-graphql) and start with the branch called [`start`](https://github.com/tinacms/next-blog-starter-graphql/tree/start). To skip ahead to the final solution check out the [`add-tina-gql`](https://github.com/tinacms/next-blog-starter-graphql/tree/add-tina-gql) branch.
 
@@ -18,7 +21,7 @@ We're going to use the [Next.js blog starter](https://github.com/vercel/next.js/
 
 This app sources its content from Markdown files in a folder called `_posts`:
 
-    - _posts
+    tio- _posts
       - dynamic-routing.md
       - hello-world.md
       - preview.md
@@ -146,7 +149,7 @@ Let's look at the data from our new blog post again:
       url: "/assets/blog/dynamic-routing/cover.jpg"
     featured: "false"
     ---
-
+    
     Lorem ipsum dolor sit amet…
 
 The `author` content is the same over in the "Dynamic Routing and Static Generation" post. If JJ wanted to change his `picture` he'll need to update it on every post he's written. Sounds like something a CMS would solve with a content _relationship_, JJ should ideally be an author who _has many_ posts. To solve this with our file-based content we could split the author data into its own file and place a reference to that author's filename in the `post` structure:
@@ -384,8 +387,8 @@ query BlogPostQuery($relativePath: String!) {
 
 > Demo: [View the changes](https://github.com/tinacms/next-blog-starter-graphql/compare/split-author-data..add-tina-gql) we made to add Tina GraphQL
 
-## Conclusion
+## To be continued
 
-Our goal is to bring the capabilities of a full-fledged CMS to the filesystem. And while the topic of this post was mostly about working locally with GraphQL, Tina Cloud will offer the same great experience through a hosted headless API. In the coming weeks we'll be sharing more about how the this API will work with TinaCMS to bring visual content management to your website with minimal overhead.
+Being able to work locally with GraphQL is a first step to help us bring the capabilities of a full-fledged CMS to the filesystem. Tina Cloud will offer the same great experience through a hosted headless API. In the coming weeks we'll continue sharing more about how this API works with TinaCMS to bring visual content management to your website with minimal overhead.
 
 > Take a look at the [demo](https://github.com/tinacms/next-blog-starter-graphql/tree/add-tina-gql) we just went through, see if you can expand on it and share your progress with us!
