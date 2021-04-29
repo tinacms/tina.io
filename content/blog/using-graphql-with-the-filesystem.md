@@ -7,7 +7,7 @@ last_edited: '2021-04-29T11:33:49.496Z'
 ---
 Today we want to introduce you to the Tina GraphQL gateway that brings reliability to Git-based content management. It's an essential piece to provide a robust structured content, while your content remains fully portable.
 
-## Current limitations
+## Overcoming the limitations of the filesystem
 
 Using the filesystem for website content has been a mainstay of the web development ecosystem for years. The ability to ship your entire website in one fell swoop and roll anything back with thanks to Git has made this a popular and efficient way to get things done with confidence.
 
@@ -152,7 +152,7 @@ Let's look at the data from our new blog post again:
     
     Lorem ipsum dolor sit amet…
 
-The `author` content is the same over in the "Dynamic Routing and Static Generation" post. If JJ wanted to change his `picture` he'll need to update it on every post he's written. Sounds like something a CMS would solve with a content _relationship_, JJ should ideally be an author who _has many_ posts. To solve this with our file-based content we could split the author data into its own file and place a reference to that author's filename in the `post` structure:
+The `author` content is the same over in the "Dynamic Routing and Static Generation" post. If JJ wanted to change his `picture` he will need to update it on every post he's written. Sounds like something a CMS would solve with a content _relationship_, JJ should ideally be an author who _has many_ posts. To solve this with our file-based content we could split the author data into its own file and place a reference to that author's filename in the `post` structure:
 
     author: _authors/jj.md
 
@@ -227,7 +227,7 @@ export default defineSchema({
               name: 'date',
             },
             {
-              // We'll indicate the author is a "reference"
+              // We indicate the author is a "reference"
               // to another document
               type: 'reference',
               name: 'author',
@@ -285,7 +285,7 @@ export default defineSchema({
 
 Notice that we're referencing the `authors` section from the `post.author` field
 
-Next we'll replace the `dev` command to start the GraphQL server in tandem with our Next.js app:
+Next we replace the `dev` command to start the GraphQL server in tandem with our Next.js app:
 
 ```json
   "scripts": {
