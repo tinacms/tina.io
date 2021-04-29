@@ -387,3 +387,5 @@ query BlogPostQuery($relativePath: String!) {
 ## Conclusion
 
 Our goal is to bring the capabilities of a full-fledged CMS to the filesystem. And while the topic of this post was mostly about working locally with GraphQL, Tina Cloud will offer the same great experience through a hosted headless API. In the coming weeks we'll be sharing more about how the this API will work with TinaCMS to bring visual content management to your website with minimal overhead.
+
+> Take a look at the [demo](https://github.com/tinacms/next-blog-starter-graphql/tree/add-tina-gql) we just went through, see if you can expand on it and share your progress with us!
