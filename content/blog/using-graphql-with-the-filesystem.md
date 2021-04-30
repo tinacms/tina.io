@@ -1,6 +1,6 @@
 ---
 title: Supercharging file-based content with GraphQL
-date: '2021-04-22T10:00:00.000Z'
+date: '2021-04-29T10:00:00.000Z'
 draft: true
 author: Jeff See
 last_edited: '2021-04-29T15:31:22.309Z'
