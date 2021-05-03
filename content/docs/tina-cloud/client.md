@@ -77,7 +77,7 @@ import { useGraphqlForms } from 'tina-graphql-gateway'
 const query = gql => gql`#graphql
   query BlogPostQuery($relativePath: String!) {
     {
-      getPostsDocument(relativePath: "") {
+      getPostsDocument(relativePath: $relativePath) {
         data {
           title
         }
@@ -87,8 +87,7 @@ const query = gql => gql`#graphql
 `
 
 const MyPage = (props) => {
-  const [payload, isLoading] =
-    const [payload, isLoading] = useGraphqlForms<PostQueryResponseType>({
+  const [payload, isLoading] = useGraphqlForms<PostQueryResponseType>({
     query,
     variables: { relativePath: `${props.filename}.md` },
   });
