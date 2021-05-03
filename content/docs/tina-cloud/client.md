@@ -17,7 +17,7 @@ npm install --save-dev tina-graphql-gateway
 Yarn:
 
 ```bash
-yarn add --dev tina-graphql-gateway-gateway
+yarn add --dev tina-graphql-gateway
 ```
 
 ## The TinaCMS API Client
