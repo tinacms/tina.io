@@ -32,7 +32,7 @@ However, Git and the filesystem have limitations when you’re interacting with 
 
 > _Because of the file-based nature of content in a Git-based CMS, there really is no way to guarantee [referential integrity](https://en.wikipedia.org/wiki/Referential_integrity) — [Brian Rinaldi](https://www.stackbit.com/blog/git-based-cms-relationships/)_
 
-To overcome these limitations, Tina Cloud provides a GraphQL interface to your repository files where content is stored in open formats like Markdown and JSON. This way you can interact with your repository files like you would a database: define content types, relationships, and query your content with GaphQL.
+To overcome these limitations, Tina Cloud provides a GraphQL interface to your repository files where content is stored in open formats like Markdown and JSON. This way you can interact with your repository files like you would a database: define content types, relationships, and query your content with GraphQL.
 
 ### Bring visual editing to the whole team with Tina Cloud
 
