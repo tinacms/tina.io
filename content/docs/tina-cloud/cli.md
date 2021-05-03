@@ -113,7 +113,7 @@ The top-level key in the schema is an array of _collections_, a `collection` inf
 
 ### `templates`
 
-Templates are responsible for defining the shape of your content, you'll see in the schema for [the starter](https://github.com/tinacms/tina-cloud-starter) that we use `templates` for `sections` as well as `blocks`. One important thing to note is that since a `collection` can have multiple `templates`, each file in your collection must store a `_template` key in it's frontmatter:
+Templates are responsible for defining the shape of your content, you'll see in the schema for [the starter](https://github.com/tinacms/tina-cloud-starter) that we use `templates` for `collections` as well as `blocks`. One important thing to note is that since a `collection` can have multiple `templates`, each file in your collection must store a `_template` key in it's frontmatter:
 
 ```markdown
 ---
