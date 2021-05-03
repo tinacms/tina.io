@@ -5,6 +5,7 @@ author: Kendall Strautman
 draft: false
 next: /blog/introducing-tina-grande
 prev: /blog/creating-markdown-drafts
+_template: basic
 ---
 
 ## Tina + Next Part I

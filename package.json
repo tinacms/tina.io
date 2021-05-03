@@ -85,6 +85,7 @@
     "strip-markdown": "^3.1.1",
     "styled-components": "^4.4.1",
     "styled-jsx-plugin-sass": "^1.0.0",
+    "tina-graphql-gateway-cli": "^0.2.40",
     "tinacms": "^0.39.0",
     "webpack": "^4.41.5"
   },

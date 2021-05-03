@@ -10,6 +10,7 @@ consumes:
     details: Shows example of RemarkCreatorPlugin in use
 next: /blog/add-and-delete-files
 prev: /blog/deprecating-tina-git-server
+_template: basic
 ---
 
 One of the most important aspects of TinaCMS is its dynamic plugin system.

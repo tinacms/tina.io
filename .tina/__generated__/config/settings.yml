@@ -1,0 +1,11 @@
+---
+sections:
+  - label: Blog
+    name: blog
+    path: content/blog
+    templates:
+      - basic
+    type: directory
+    create: documents
+    match: '**/*.md'
+    new_doc_ext: md

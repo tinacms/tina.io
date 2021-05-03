@@ -4,6 +4,7 @@ date: '2020-03-23T00:00:00.000Z'
 author: Scott Byrne
 next: /blog/screen-plugins
 prev: /blog/tinacms-ui-whats-next
+_template: basic
 ---
 
 ## Writing an adaptable UI is hard.

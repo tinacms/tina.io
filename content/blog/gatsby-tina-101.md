@@ -12,6 +12,7 @@ consumes:
     details: TinaField uses Wysiwyg component for inline editing
 next: /blog/introducing-visual-open-authoring
 prev: /blog/custom-field-plugins
+_template: basic
 ---
 
 Static site generators like [Gatsby](https://www.gatsbyjs.org/) are a massive win for developers. They provide us with automated deployments, faster development cycles, and reduced security burden.

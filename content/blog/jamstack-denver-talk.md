@@ -5,6 +5,7 @@ author: Kendall Strautman
 draft: false
 next: /blog/what-are-blocks
 prev: /blog/add-and-delete-files
+_template: basic
 ---
 
 <iframe width="620" height="348" src="https://www.youtube.com/embed/LhBH9RTEK78?start=234" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

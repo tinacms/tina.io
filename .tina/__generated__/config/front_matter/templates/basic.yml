@@ -1,0 +1,35 @@
+---
+name: basic
+label: Basic
+fields:
+  - name: date
+    type: text
+    label: Date
+  - name: author
+    type: text
+    label: Author
+  - name: last_edited
+    type: text
+    label: Last Edited
+  - name: title
+    type: text
+    label: Title
+  - name: draft
+    type: boolean
+    label: Draft
+  - name: prev
+    type: text
+    label: Prev
+  - name: next
+    type: text
+    label: Next
+  - name: consumes
+    label: Consumes
+    type: field_group_list
+    fields:
+      - type: text
+        label: File
+        name: file
+      - type: text
+        label: Details
+        name: details

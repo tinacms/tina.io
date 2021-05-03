@@ -3,7 +3,9 @@ title: September Update
 date: '2020-09-10T10:20:39-04:00'
 author: DJ
 last_edited: '2020-09-10T15:10:14.859Z'
+_template: basic
 ---
+
 👋 Hey all you cool cats and kittens! It's been a while since our last update, so we wanted to let you know what we've been up to.
 
 ## Documentation Cycle Recap

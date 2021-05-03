@@ -4,7 +4,9 @@ date: '2021-04-29T10:00:00.000Z'
 draft: true
 author: Jeff See
 last_edited: '2021-04-29T15:31:22.309Z'
+_template: basic
 ---
+
 Today we want to introduce you to the Tina GraphQL gateway that brings reliability to Git-based content management. It's an essential piece to provide a robust structured content, while your content remains fully portable.
 
 ## Overcoming the limitations of the filesystem
@@ -149,7 +151,7 @@ Let's look at the data from our new blog post again:
       url: "/assets/blog/dynamic-routing/cover.jpg"
     featured: "false"
     ---
-    
+
     Lorem ipsum dolor sit amet…
 
 The `author` content is the same over in the "Dynamic Routing and Static Generation" post. If JJ wanted to change his `picture` he will need to update it on every post he's written. Sounds like something a CMS would solve with a content _relationship_, JJ should ideally be an author who _has many_ posts. To solve this with our file-based content we could split the author data into its own file and place a reference to that author's filename in the `post` structure:

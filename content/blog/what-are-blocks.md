@@ -5,6 +5,7 @@ draft: false
 author: DJ Walker
 next: /blog/editing-on-the-cloud
 prev: /blog/jamstack-denver-talk
+_template: basic
 ---
 
 > "There are only two hard things in Computer Science: cache invalidation and naming things."

@@ -12,6 +12,7 @@ consumes:
     details: Demonstrates useLocalRemarkForm usage
 next: /blog/exporting-wordpress-content-to-gatsby
 prev: /blog/using-tinacms-on-gatsby-cloud
+_template: basic
 ---
 
 **Supercharge your static site with real-time content editing!** 🚀

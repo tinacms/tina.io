@@ -22,6 +22,7 @@ consumes:
     details: Imports useLocalForm and useWatchFormValues from react-tinacms metapackage
 next: /blog/deprecating-tina-git-server
 prev: /blog/introducing-tina-grande
+_template: basic
 ---
 
 ## Tina + Next: Part II

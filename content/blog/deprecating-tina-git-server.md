@@ -5,6 +5,7 @@ author: DJ Walker
 draft: false
 next: /blog/dynamic-plugin-system
 prev: /blog/using-tinacms-with-nextjs
+_template: basic
 ---
 
 We've changed our recommended approach for using Tina's Git Backend with Next.js websites. Check out [Tina's Next.js documentation](/guides/nextjs/git/adding-backend) for details.

@@ -5,6 +5,7 @@ author: Joel Huggett
 last_edited: 'July 30, 2020'
 next: /blog/inline-editing-project
 prev: /blog/software-engineering-daily-podcast-tinacms
+_template: basic
 ---
 
 We've improved the overall security of our GitHub authentication. Below is an explanation of the changes and further down are the steps required to upgrade to the new authentication flow.
