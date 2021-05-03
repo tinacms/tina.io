@@ -69,10 +69,10 @@ query BlogPostQuery($relativePath: String!) {
 
 ## Tina Form Generation
 
-While GraphQL is a great tool, using it with Tina can be difficult. GraphQL can query across multiple nodes, but since each document would require it's own Tina form it could be difficult to sync the data with your query with all of the forms you'd need to build. The Tina GraphQL server knows all about your content schema so we're actually able to build forms automatically by inspecting your query. To see this in action, pass your query into the `useGraphQLForms` hook:
+While GraphQL is a great tool, using it with Tina can be difficult. GraphQL can query across multiple nodes, but since each document would require it's own Tina form it could be difficult to sync the data with your query with all of the forms you'd need to build. The Tina GraphQL server knows all about your content schema so we're actually able to build forms automatically by inspecting your query. To see this in action, pass your query into the `useGraphqlForms` hook:
 
 ```tsx
-import { useGraphQLForms } from 'tina-graphql-gateway'
+import { useGraphqlForms } from 'tina-graphql-gateway'
 
 const query = gql => gql`#graphql
   query BlogPostQuery($relativePath: String!) {
@@ -128,7 +128,7 @@ const query = gql => gql`#graphql
 If you'd like to control the output of those forms, tap into the `formify` callback:
 
 ```tsx
-import { useGraphQLForms } from 'tina-graphql-gateway'
+import { useGraphqlForms } from 'tina-graphql-gateway'
 import { Form, GlobalFormPlugin, useCMS } from 'tinacms'
 
 const [payload, isLoading] = useGraphqlForms({
