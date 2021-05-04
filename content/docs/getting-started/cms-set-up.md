@@ -116,7 +116,7 @@ function EditButton() {
 }
 ```
 
-Head back to http://localhost:3000, refresh the page and click the 'Edit This Site' button. You should see an 'Edit Icon' in the lower right-hand corner. Click on the icon to open the [_Sidebar_](/docs/ui#toolbar-configuration).
+Head back to http://localhost:3000, refresh the page and click the 'Edit This Site' button. You should see an 'Edit Icon' in the lower left-hand corner. Click on the icon to open the [_Sidebar_](/docs/ui#toolbar-configuration).
 
 ![tinacms-tutorial-cms-setup-step](/img/getting-started/cms-setup-step.png)
 
