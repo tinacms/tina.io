@@ -33,7 +33,7 @@ Another side effect of having inline editing coupled to your components is that 
 
 We could try conditionally adding the inline editing components, but it's clear that the logic needed to include inline editing is now coupled to our page and components. It's now more difficult to maintain, share, or re-use those components.
 
-The usability benefits of inline editing could possibly outweigh these concerns for your use case. But we're searching for solutions with fewer trade-offs.
+The usability benefits of inline editing could outweigh these concerns depending on your use case. But we're searching for solutions with fewer trade-offs.
 
 ## Alternative approaches
 
@@ -56,7 +56,7 @@ We then call `useFieldRef` to acquire the ref that will be attached to our title
 
 ### Editing Routes
 
-We can create editing-specific routes if we are concerned about the performance implications of TinaCMS being bundled with a website. Frameworks like [Next.js](https://nextjs.org) will optimize Javascript bundles so that TinaCMS is not included on routes that don't include it.
+We can create editing-specific routes if we are concerned about the performance implications of TinaCMS being bundled with a website. Frameworks like [Next.js](https://nextjs.org) will optimize Javascript bundles so that TinaCMS is not included on routes that don't need it.
 
 The drawback of this approach is that we will need to duplicate aspects of our website's components between the normal view-only routes and the routes where TinaCMS is included.
 
