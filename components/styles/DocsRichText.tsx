@@ -157,6 +157,14 @@ const DocsRichText = css`
     overflow: hidden;
   }
 
+  iframe.wide {
+    position: relative;
+    min-width: 66vw;
+    max-width: 1400px;
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+  }
+
   a:not([class]) {
     color: inherit;
     opacity: 0.8;
