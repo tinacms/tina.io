@@ -20,14 +20,15 @@ We wrap our page with the TinaCMS `InlineForm` component so that our child compo
      title="tina-inline-editing"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+     class="wide"
    ></iframe>
 
 We gain a lot of control as developers with this approach. The inline editing components live with your layout components and behave pretty much as you would expect them to.
 
 But there are a few trade-offs to this approach that we've [discussed before](/blog/more-changes-coming-to-inline-editing/).
 
-- Components like `InlineText` add markup and behaviour that can interfere with your desired layout and styling. You now have an `input` element and wrapping divs where you'd normally just render text. 
-- Sidebar editing forms are constructed from a single configuration object. Inline editing brings a separate developer experience and set of concepts to understand. 
+- Components like `InlineText` add markup and behaviour that can interfere with your desired layout and styling. You now have an `input` element and wrapping divs where you'd normally just render text.
+- Sidebar editing forms are constructed from a single configuration object. Inline editing brings a separate developer experience and set of concepts to understand.
 
 Another side effect of having inline editing coupled to your components is that you're now bringing TinaCMS with your components, everywhere.
 
