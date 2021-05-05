@@ -53,6 +53,7 @@ We then call `useFieldRef` to acquire the ref that will be attached to our title
      title="tina-inline-editing"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+     class="wide"
    ></iframe>
 
 ### Editing Routes
