@@ -9,6 +9,8 @@ Inline editing removes many usability hurdles that content editors face when the
 
 We're continuing to learn from our development community and looking at better ways of integrating the superpowers that inline editing bestows.
 
+And let's not forget about sidebar editing in this discussion! The attractiveness of inline editing often overshadows the flexible set up and usability wins that we get with sidebar editing. **We recommend starting with [sidebar editing](/docs/getting-started/cms-set-up/#sidebar) to get up and running quickly.**
+
 ## A review of the original approach
 
 Let's take a look at a simple [inline editing](https://tina.io/docs/ui/inline-editing/) scenario where we make the title of a page editable.
@@ -68,4 +70,4 @@ We'll be making it clear in our documentation and guides that the original inlin
 
 Sidebar editing avoids most of the friction of integrating inline editing and provides many of the same usability wins. [Tina Cloud](/early-access/) auto-generates sidebar forms based on your content's schema and represents our current recommended best practices.
 
-Please do [share ideas, constraints or design patterns](https://github.com/tinacms/tinacms/issues) on how to bring a better visual editing experience to the Jamstack without sacrificing the codebase, It's a discussion we need to have with the community.
+Please do [share ideas, constraints or design patterns](https://github.com/tinacms/tinacms/issues) on how to bring a better visual editing experience to the Jamstack without sacrificing the codebase, it's a discussion we need to have with the community.
