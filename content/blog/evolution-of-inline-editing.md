@@ -66,4 +66,4 @@ We'll be making it clear in our documentation and guides that the original inlin
 
 Sidebar editing avoids most of the friction of integrating inline editing and provides many of the same usability wins. [Tina Cloud](/early-access/) auto-generates sidebar forms based on your content's schema and represents our current recommended best practices.
 
-Stay tuned! (Or help out! TinaCMS is open-source and built with many hands. [Share an idea or solution](https://github.com/tinacms/tinacms/issues))
+Please do [share ideas, constraints or design patterns](https://github.com/tinacms/tinacms/issues) on how to bring a better visual editing experience to the Jamstack without sacrificing the codebase,  It's a discussion we need to have with the community.
