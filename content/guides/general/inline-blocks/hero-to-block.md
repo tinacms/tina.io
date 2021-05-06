@@ -35,7 +35,7 @@ export default function Home() {
 
   return (
     <div className="home">
-      <InlineForm form={form} initialStatus="active">
+      <InlineForm form={form}>
         <Hero {...pageData} />
 +       <InlineBlocks name="blocks" blocks={HOME_BLOCKS} />
       </InlineForm>
@@ -147,7 +147,7 @@ export default function Home() {
 
   return (
     <div className='home'>
-      <InlineForm form={form} initialStatus='active'>
+      <InlineForm form={form}>
 -       <Hero {...pageData} />
         <InlineBlocks name='blocks' blocks={HOME_BLOCKS} />
       </InlineForm>
