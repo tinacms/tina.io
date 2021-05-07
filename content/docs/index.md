@@ -7,7 +7,7 @@ last_edited: '2020-11-26T14:37:54.481Z'
 **Tina** contains multiple tools and applications designed to improve collaboration between **content writers** and **developers** who work on web content. Under the umbrella of Tina, there are two main components:
 
 - The **TinaCMS toolkit**, a suite of NPM packages that enable developers to quickly create a custom content management frontend for a website.
-- **Tina Cloud**, a hosted service designed to make git-based content management more powerful and accessible for cross-functional teams.
+- **Tina Cloud**, a hosted service designed to make Git-based content management more powerful and accessible for cross-functional teams.
 
 ## TinaCMS Toolkit
 
