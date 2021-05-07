@@ -100,6 +100,7 @@ export const GlobalStyle = React.memo(createGlobalStyle`
     }
 
     /* Color */
+    --color-white: #FFFFFF;
     --color-primary: #EC4815;
     --color-primary-dark: #CE411D;
     --color-secondary: #302454;
