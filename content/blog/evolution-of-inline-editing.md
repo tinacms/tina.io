@@ -1,8 +1,8 @@
 ---
-title: The Evolution of Inline Editing
+title: Scott's test
 date: '2021-05-05T10:00:00.000Z'
 author: Mitch MacKenzie & DJ Walker
-last_edited: '2021-05-05T10:00:00.000Z'
+last_edited: '2021-05-07T18:27:05.340Z'
 ---
 
 Inline editing removes many usability hurdles that content editors face when working with traditionally decoupled CMS forms. Editors get to see their content changes immediately in the context of their actual website. But developers have been sharing the trade-offs associated with inline editing's current implementation with us.
