@@ -44,7 +44,7 @@ The `Client` does a few things:
 - Manages auth with Tina Cloud
 - Provides a `request` function for working with the GraphQL API
 
-If you're just getting started, initialize the `LocalClient` - which will automatically connect with your locally-running GraphQL server. From there, you can make GraphQL requests as you would with any GraphQL API:
+Start by initializing the `LocalClient` - which automatically connects with your locally-running GraphQL server. From there, you can make GraphQL requests:
 
 ```ts
 const client = new LocalClient()
