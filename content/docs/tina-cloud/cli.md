@@ -161,7 +161,7 @@ _template: author
 mkdir content/posts && touch content/posts/voteForPedro.md
 ```
 
-Now we'll add some content to the post
+Now we add some content to the post
 
 ```markdown
 ---
