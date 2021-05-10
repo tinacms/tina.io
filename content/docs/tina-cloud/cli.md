@@ -207,6 +207,6 @@ getPostsDocument(relativePath: "voteForPedro.md") {
 }
 ```
 
-To learn how to work with this data on a Tina-enabled site, checkout the [client documentation](/docs/tina-cloud/client/)
+To learn how to work with this data on a Tina-enabled site, check out the [client documentation](/docs/tina-cloud/client/)
 
 > This API is currently somewhat limited. Specifically there's no support for filtering and sorting "list" queries. We have plans to tackle that in upcoming cycles
