@@ -57,4 +57,4 @@ If you make a change, and click "Save", this will actually create a commit to yo
 
 ## What's next?
 
-Next we will wire up our page's preview, so that we actually know what we're editing.
+Next we will wire up our page's preview, which will live-update as we're editing.
