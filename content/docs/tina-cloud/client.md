@@ -111,7 +111,7 @@ const query = gql => gql`#graphql
           }
         }
       }
-      # this will generate a separate Tina Form
+      # this generates a separate Tina Form
       getPostsDocument(relativePath: $relativePath) {
         data {
           title
