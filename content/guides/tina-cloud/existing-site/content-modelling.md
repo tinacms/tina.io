@@ -11,7 +11,7 @@ The "Tina Graphql Gateway CLI" provides some tooling to help make this easy.
 
 The CLI can be installed as a dev dependency in your project.
 
-```bash
+```bash,copy
 yarn add --dev tina-graphql-gateway-cli
 ```
 
@@ -19,7 +19,7 @@ yarn add --dev tina-graphql-gateway-cli
 
 The simplest way to get started is to add a `.tina/schema.ts` file
 
-```bash
+```bash,copy
 mkdir .tina && touch .tina/schema.ts
 ```
 
@@ -99,13 +99,13 @@ export default defineSchema({
 
 You will also need to add this field/value to each of markdown file in "\_posts":
 
-`_template: "post`
+`_template: "post"`
 
 Now that we have defined a "post" model, and applied it to each of our posts.
 
 The last step to setting up our content models is to "compile" our schema. Through the terminal, run:
 
-```bash
+```bash,copy
 yarn tina-gql schema:compile
 ```
 

@@ -8,8 +8,10 @@ We've added Tina to our site, and defined our content with a Tina Cloud schema. 
 Let's register a Tina form in our admin page template that we created earlier.
 
 ```jsx,copy
+// pages/admin/posts/[slug].js
+import React from 'react'
 import { useGraphqlForms } from 'tina-graphql-gateway'
-import AboutPage from '../about'
+import { useRouter } from 'next/router'
 
 export default function() {
   const query = gql => gql`
@@ -40,7 +42,7 @@ export default function() {
   const router = useRouter()
   const [payload, isLoading] = useGraphqlForms({
     query,
-    variables: { relativePath: `${router.query.slug}.md },
+    variables: { relativePath: `${router.query.slug}.md` },
   })
 
   return <div>My admin page</div>

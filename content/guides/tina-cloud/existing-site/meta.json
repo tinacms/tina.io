@@ -20,6 +20,12 @@
       "data": "./add-tinacms.md"
     },
     {
+      "title": "Model your content",
+      "id": "/guides/tina-cloud/existing-site/content-modelling",
+      "slug": "/guides/tina-cloud/existing-site/content-modelling",
+      "data": "./content-modelling.md"
+    },
+    {
       "title": "Register form",
       "id": "/guides/tina-cloud/existing-site/register-form",
       "slug": "/guides/tina-cloud/existing-site/register-form",
