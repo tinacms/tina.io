@@ -185,7 +185,7 @@ Under the hood, this will automatically build your schema and compile it into a 
 
 With a GraphQL client, make the following request:
 
-> Tip: if you don't have a GraphQL client, download one like Altair [here](https://altair.sirmuel.design/)
+> Tip: Use a GraphQL client like [Altair](https://altair.sirmuel.design/) when developing locally.
 
 ```graphql
 getPostsDocument(relativePath: "voteForPedro.md") {
