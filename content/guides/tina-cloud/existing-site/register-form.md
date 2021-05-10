@@ -1,0 +1,60 @@
+---
+title: Register form
+last_edited: '2020-08-11T13:02:36.046Z'
+---
+
+We've added Tina to our site, and defined our content with a Tina Cloud schema. We're now ready to connect to the Tina Cloud content API, and make our content editable.
+
+Let's register a Tina form in our admin page template that we created earlier.
+
+```jsx,copy
+import { useGraphqlForms } from 'tina-graphql-gateway'
+import AboutPage from '../about'
+
+export default function() {
+  const query = gql => gql`
+    query BlogPostQuery($relativePath: String!) {
+      getPostsDocument(relativePath: $relativePath) {
+        data {
+          __typename
+          ... on Post_Doc_Data {
+            title
+            excerpt
+            coverImage
+            date
+            author {
+              name: Tim
+              Neutkens
+              picture
+            }
+            ogImage {
+              url
+            }
+            _body
+          }
+        }
+      }
+    }
+  `
+
+  const router = useRouter()
+  const [payload, isLoading] = useGraphqlForms({
+    query,
+    variables: { relativePath: `${router.query.slug}.md },
+  })
+
+  return <div>My admin page</div>
+}
+```
+
+The query object defined above is graphql, and maps to the schema that we defined earlier for our content.
+
+## Make a commit
+
+At this point, you should be able to navigate to a blog post's admin page such as [the hello-world post](http://localhost:3000/posts/hello-world). This time, when you click the pencil, you will notice that the sidebar contains fields for your content.
+
+If you make a change, and click "Save", this will actually create a commit to your repository. Try it out, and checkout GitHub to see your commit.
+
+## What's next?
+
+Next we will wire up our page's preview, so that we actually know what we're editing.

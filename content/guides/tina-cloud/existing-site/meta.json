@@ -11,13 +11,19 @@
       "title": "Create an app in Tina Cloud",
       "id": "/guides/tina-cloud/existing-site/create-app",
       "slug": "/guides/tina-cloud/existing-site/create-app",
-      "data": "./overview.md"
+      "data": "./create-app.md"
     },
     {
       "title": "Add tinacms",
       "id": "/guides/tina-cloud/existing-site/add-tinacms",
       "slug": "/guides/tina-cloud/existing-site/add-tinacms",
-      "data": "./overview.md"
+      "data": "./add-tinacms.md"
+    },
+    {
+      "title": "Register form",
+      "id": "/guides/tina-cloud/existing-site/register-form",
+      "slug": "/guides/tina-cloud/existing-site/register-form",
+      "data": "./register-form.md"
     }
   ]
 }
