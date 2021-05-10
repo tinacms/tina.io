@@ -1,0 +1,11 @@
+{
+  "title": "Adding Tina Cloud to an existing site",
+  "steps": [
+    {
+      "title": "Overview",
+      "id": "/guides/tina-cloud/existing-site/overview",
+      "slug": "/guides/tina-cloud/existing-site/overview",
+      "data": "./overview.md"
+    }
+  ]
+}

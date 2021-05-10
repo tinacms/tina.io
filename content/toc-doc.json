@@ -455,6 +455,18 @@
             "title": "Git Backend"
           }
         ]
+      },
+      {
+        "id": "/guides#tina-cloud",
+        "href": "/guides#tina-cloud",
+        "title": "Tina Cloud",
+        "items": [
+          {
+            "id": "/guides/tina-cloud/existing-site/overview",
+            "slug": "/guides/tina-cloud/existing-site/overview",
+            "title": "Add Tina Cloud to a NextJS site"
+          }
+        ]
       }
     ]
   }
