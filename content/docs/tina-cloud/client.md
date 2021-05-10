@@ -184,7 +184,7 @@ const [payload, isLoading] = useGraphqlForms({
 
 ## Authentication with Tina Cloud
 
-While this package comes with low-level APIs for authentication with Tina Cloud, the easiest way to get started is to use the `TinaCloudAuthWall` component, which will prevent children from rendering until a valid session has been established with Tina Cloud.
+While this package comes with low-level APIs for authentication with Tina Cloud, the easiest way to get started is to use the `TinaCloudAuthWall` component, which prevents children from rendering until a valid session has been established with Tina Cloud.
 
 ```tsx
 import { TinaCloudAuthWall, Client } from "tina-graphql-gateway";
