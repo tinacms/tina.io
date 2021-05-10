@@ -6,6 +6,18 @@
       "id": "/guides/tina-cloud/existing-site/overview",
       "slug": "/guides/tina-cloud/existing-site/overview",
       "data": "./overview.md"
+    },
+    {
+      "title": "Create an app in Tina Cloud",
+      "id": "/guides/tina-cloud/existing-site/create-app",
+      "slug": "/guides/tina-cloud/existing-site/create-app",
+      "data": "./overview.md"
+    },
+    {
+      "title": "Add tinacms",
+      "id": "/guides/tina-cloud/existing-site/add-tinacms",
+      "slug": "/guides/tina-cloud/existing-site/add-tinacms",
+      "data": "./overview.md"
     }
   ]
 }
