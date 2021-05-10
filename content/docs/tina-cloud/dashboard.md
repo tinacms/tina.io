@@ -24,4 +24,4 @@ In order to use the Tina Cloud dashboard, you must first register an organizatio
 
 From an organization level, you can add, edit and delete both apps and users.
 
-> When creating an organization, take note of your `organization-id` as this will be required when implementing your site(s).
+> When creating an organization, take note of your `organization-id` as this is required when implementing your site(s).
