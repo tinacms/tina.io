@@ -28,7 +28,7 @@ We think you'll find success with Tina Cloud if your project includes:
 
 - **[Next.js](https://nextjs.org/)** - The flexibility of this fantastic React framework lowers the bar to build with Tina Cloud.
 - **GitHub** - The first Git provider that Tina Cloud integrates with. Other Git providers may be available in the future.
-- **Static, file based builds** - The Tina Cloud client collects your filesystem content at build time. The ability to fetch content from our cloud API during builds will come soon.
+- **Static, file-based builds** - The Tina Cloud client collects your filesystem content at build time. The ability to fetch content from our cloud API during builds will come soon.
 
 The [Next.js starter](https://github.com/tinacms/tina-cloud-starter) can get you up and running quickly with the above considerations. Give it a try and let us know how we can make developing with Tina easier.
 
