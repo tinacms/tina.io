@@ -214,6 +214,11 @@ export const Footer = styled(({ light, ...styleProps }) => {
         </FooterForm>
         <Footnote>
           <EditLink color={'primary'} />
+          <Link href="/security" passHref>
+            <a>Security</a>
+          </Link>
+          <FooterDivider />
+          <EditLink color={'primary'} />
           <Link href="/terms-of-service" passHref>
             <a>Terms of Service</a>
           </Link>
