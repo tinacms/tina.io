@@ -102,7 +102,7 @@ If Tina is enabled you can see a form for the `getPostsDocument` request. If you
 const query = gql => gql`#graphql
   query BlogPostQuery($relativePath: String!) {
     {
-      # this will generate a Tina Form
+      # this generates a Tina Form
       getSiteNavsDocument(relativePath: "site-nav.md") {
         data {
           items {
