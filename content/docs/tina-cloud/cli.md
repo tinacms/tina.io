@@ -145,7 +145,7 @@ Let's add some content so we can test out the GraphQL server
 mkdir content && mkdir content/authors && touch content/authors/napolean.md
 ```
 
-Now we'll add some content to the author
+Now let's  add some content to the author
 
 ```markdown
 ---
