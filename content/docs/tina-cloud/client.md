@@ -96,7 +96,7 @@ const MyPage = (props) => {
 }
 ```
 
-If Tina is enabled you'll see a form for the `getPostsDocument` request. If you queried for multiple documents, you'll see multiple forms:
+If Tina is enabled you can see a form for the `getPostsDocument` request. If you query for multiple documents, you should see multiple forms:
 
 ```tsx
 const query = gql => gql`#graphql
