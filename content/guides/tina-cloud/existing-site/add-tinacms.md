@@ -33,6 +33,7 @@ const TinaWrapper = ({ children }) => {
         tina: new Client({
           organizationId: 'YOUR_ORGANIZATION_ID',
           clientId: 'YOUR_CLIENT_ID',
+          branch: 'main',
         }),
       },
       sidebar: true,
@@ -46,7 +47,7 @@ const TinaWrapper = ({ children }) => {
 export default TinaWrapper
 ```
 
-Remember in the dashboard seeing an organization-id and client-id? You will need to copy/paste those values into the code snippet above.
+Remember in the dashboard seeing an organization-id and client-id? **You will need to copy/paste those values into the code snippet above.**
 
 ## Use the Tina Wrapper
 

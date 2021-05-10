@@ -25,8 +25,7 @@ export default function() {
             coverImage
             date
             author {
-              name: Tim
-              Neutkens
+              name
               picture
             }
             ogImage {
