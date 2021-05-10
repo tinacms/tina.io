@@ -20,7 +20,7 @@ Once this initial authorization is done, your users will be able to log in direc
 
 An organization connects users (developers, editors, content creators, etc.) and apps through the Tina Cloud dashboard.
 
-In order to use the Tina Cloud dashboard, you must first register an organization. To do so, navigate to the [Tina.io Registration Page](https://auth.tinajs.dev/register). Enter your organization name and your personal login credentials. Once your account is verified, you will be able to access the dashboard.
+In order to use the Tina Cloud dashboard, you must first register an organization. To do so, navigate to the [Tina.io Registration Page](https://auth.tinajs.dev/register). Enter your organization name and your personal login credentials. Once your account is verified, you're able to access the dashboard.
 
 From an organization level, you can add, edit and delete both apps and users.
 
