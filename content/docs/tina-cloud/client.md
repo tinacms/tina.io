@@ -65,7 +65,7 @@ query BlogPostQuery($relativePath: String!) {
 )
 ```
 
-> This API is currently somewhat limited. Specifically there's no support for filtering and sorting "list" queries. We have plans to tackle that in upcoming cycles.
+> This API currently doesn't support filtering and sorting "list" queries. We have plans to tackle that in upcoming cycles.
 
 ## Tina Form Generation
 
