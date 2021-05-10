@@ -17,7 +17,7 @@ The **TinaCMS Toolkit** empowers developers to build a visual editing experience
 
 ## Tina Cloud
 
-**Tina Cloud** is a hosted service purpose built for integration with the TinaCMS Toolkit. Tina Cloud makes it possible for entire content teams to take advantage of a git-based workflow, regardless of whether they write code or have GitHub accounts. Additionally, Tina Cloud exposes a GraphQL API for your site's file-based content, giving developers a more powerful interface for querying data and reconciling relationships.
+**Tina Cloud** is a hosted service purpose built for integration with the TinaCMS Toolkit. Tina Cloud makes it possible for entire content teams to take advantage of a Git-based workflow, regardless of whether they write code or have GitHub accounts. Additionally, Tina Cloud exposes a GraphQL API for your site's file-based content, giving developers a more powerful interface for querying data and reconciling relationships.
 
 [Learn more about Tina Cloud](/docs/tina-cloud)
 
