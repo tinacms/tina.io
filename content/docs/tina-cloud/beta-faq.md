@@ -6,7 +6,7 @@ title: Tina Cloud Beta FAQ
 
 The Tina Cloud Private Beta program gives early adopters the chance to build visual content editing with our Git-backed content API before it's launched!
 
-Tina Cloud brings together the flexibility of Tina's open-source content editing tools with an expressive GraphQL API for your file based content.
+Tina Cloud brings together the flexibility of Tina's open-source content editing tools with an expressive GraphQL API for your file-based content.
 
 ## What do I need to know about working with Tina Cloud during the beta?
 
