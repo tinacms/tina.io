@@ -34,7 +34,7 @@ const [payload, isLoading] = useGraphqlForms({
 
 **Notice how we are doing a big of re-formatting of our data, to match the shape that our production [slug].js page is expecting.**
 
-Now when you navigate to a [blog page](http://localhost:3000/posts/hello-world), as you type you will see a live preview of your changes.
+Now when you navigate to a [blog page](http://localhost:3000/admin/posts/hello-world), as you type you will see a live preview of your changes.
 
 Congrats! You've just added editing to this site.
 
