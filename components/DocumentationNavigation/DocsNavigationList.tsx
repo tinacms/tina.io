@@ -5,6 +5,7 @@ import { DocsLinkNav } from '../ui/DocsLinkNav'
 import { DocsNavProps } from './DocumentationNavigation'
 import { NavSection } from './NavSection'
 import { useRouter } from 'next/router'
+import { removeTrailingSlash } from 'utils'
 
 export interface DocsSectionProps extends DocsNavProps {
   BackLink: () => JSX.Element
@@ -15,6 +16,7 @@ export const NavListContext = createContext({ current: null })
 
 const getCategoryMatch = (navItems, currentPath) => {
   for (let item of navItems) {
+    console.info(item.title)
     if (hasNestedSlug(item.items, currentPath)) {
       return item.category
     }
@@ -24,11 +26,16 @@ const getCategoryMatch = (navItems, currentPath) => {
 
 const hasNestedSlug = (navItems, slug) => {
   for (let item of navItems) {
-    if (item.slug === slug || `${item.slug}/` === slug) {
+    if (
+      item.slug &&
+      removeTrailingSlash(item.slug) === removeTrailingSlash(slug)
+    ) {
       return true
     }
     if (item.items) {
-      return hasNestedSlug(item.items, slug)
+      if (hasNestedSlug(item.items, slug)) {
+        return true
+      }
     }
   }
   return false
