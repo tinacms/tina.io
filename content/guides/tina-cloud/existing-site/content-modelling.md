@@ -109,4 +109,5 @@ The last step to setting up our content models is to "compile" our schema. Throu
 yarn tina-gql schema:compile
 ```
 
-Once that is successful, make sure to **push everything up to your GitHub repo** (This is an important step, as the Tina Cloud content api will read this schema from your repository).
+Once that is successful, **push your changes up to your GitHub repository** 
+This is an mandatory step, as the Tina Cloud content API reads this schema from your GitHub repository.
