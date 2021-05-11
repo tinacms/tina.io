@@ -41,7 +41,7 @@ This full file should now look like:
 import React from 'react'
 import { useGraphqlForms } from 'tina-graphql-gateway'
 import { useRouter } from 'next/router'
-
+import Post from '../../posts/[slug]'
 export default function() {
   const query = gql => gql`
     query BlogPostQuery($relativePath: String!) {
