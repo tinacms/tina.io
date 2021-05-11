@@ -97,7 +97,7 @@ export default defineSchema({
 })
 ```
 
-You will also need to add this field/value to each of markdown file in "\_posts":
+You also need to add this field/value to each of Markdown file in "\_posts":
 
 `_template: "post"`
 
