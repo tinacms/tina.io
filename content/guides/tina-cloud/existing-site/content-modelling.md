@@ -24,7 +24,7 @@ mkdir .tina && touch .tina/schema.ts
 ```
 
 This schema needs to include each of the fields that are in our `\_posts` files.
-In .tina/schema.ts, copy/paste the following:
+In `.tina/schema.ts`, copy/paste the following:
 
 ```jsx,copy
 import { defineSchema } from 'tina-graphql-gateway-cli'
