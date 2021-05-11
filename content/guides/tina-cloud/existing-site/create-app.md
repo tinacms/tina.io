@@ -14,9 +14,9 @@ You can register for Tina Cloud by creating a free organizatiion [here](https://
 
 ## Create an app
 
-Once registered, you can log-in and see the dashboard. We will want to create an app.
+Once registered, you can log in and see the dashboard. We will want to create an app.
 
-After you authorize the Tina Cloud GitHub app, you should see your demo repository in the list of repositories. Click "Choose Reposiitory".
+After you authorize the Tina Cloud GitHub app, you should see your demo repository in the list of repositories. Click "Choose Repository".
 
 ## App configuration
 
@@ -29,4 +29,4 @@ Click save, and your app should be created!
 
 ## Access app's client id
 
-Click on the app from the app's list page, and you will see some new readonly fields: "Client ID" and "Organization ID". We'll use these values soon to reference this Tina Cloud app from our site.
+Click on the app from the app's list page, and you will see some new read-only fields: "Client ID" and "Organization ID". We'll use these values soon to reference this Tina Cloud app from our site.
