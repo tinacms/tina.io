@@ -34,6 +34,54 @@ const [payload, isLoading] = useGraphqlForms({
 
 **Notice how we are doing a big of re-formatting of our data, to match the shape that our production [slug].js page is expecting.**
 
+This full file should now look like:
+
+```jsx,copy
+// pages/admin/posts/[slug].js
+import React from 'react'
+import { useGraphqlForms } from 'tina-graphql-gateway'
+import { useRouter } from 'next/router'
+
+export default function() {
+  const query = gql => gql`
+    query BlogPostQuery($relativePath: String!) {
+      getPostsDocument(relativePath: $relativePath) {
+        data {
+          __typename
+          ... on Post_Doc_Data {
+            title
+            excerpt
+            coverImage
+            date
+            author {
+              name
+              picture
+            }
+            ogImage {
+              url
+            }
+            _body
+          }
+        }
+      }
+    }
+  `
+
+  const router = useRouter()
+  const [payload, isLoading] = useGraphqlForms({
+    query,
+    variables: { relativePath: `${router.query.slug}.md` },
+  })
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  const { _body, ...post } = payload.getPostsDocument.data;
+  const pageData = { post, content: _body };
+  return <Post {...pageData} />
+```
+
 Now when you navigate to a [blog page](http://localhost:3000/admin/posts/hello-world), as you type you will see a live preview of your changes.
 
 Congrats! You've just added editing to this site.
