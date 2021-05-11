@@ -1,0 +1,41 @@
+{
+  "title": "Adding Tina Cloud to an existing site",
+  "steps": [
+    {
+      "title": "Overview",
+      "id": "/guides/tina-cloud/existing-site/overview",
+      "slug": "/guides/tina-cloud/existing-site/overview",
+      "data": "./overview.md"
+    },
+    {
+      "title": "Create an app in Tina Cloud",
+      "id": "/guides/tina-cloud/existing-site/create-app",
+      "slug": "/guides/tina-cloud/existing-site/create-app",
+      "data": "./create-app.md"
+    },
+    {
+      "title": "Add TinaCMS to the site",
+      "id": "/guides/tina-cloud/existing-site/add-tinacms",
+      "slug": "/guides/tina-cloud/existing-site/add-tinacms",
+      "data": "./add-tinacms.md"
+    },
+    {
+      "title": "Model your content",
+      "id": "/guides/tina-cloud/existing-site/content-modelling",
+      "slug": "/guides/tina-cloud/existing-site/content-modelling",
+      "data": "./content-modelling.md"
+    },
+    {
+      "title": "Make your pages editable",
+      "id": "/guides/tina-cloud/existing-site/register-form",
+      "slug": "/guides/tina-cloud/existing-site/register-form",
+      "data": "./register-form.md"
+    },
+    {
+      "title": "Render a page preview",
+      "id": "/guides/tina-cloud/existing-site/page-preview",
+      "slug": "/guides/tina-cloud/existing-site/page-preview",
+      "data": "./page-preview.md"
+    }
+  ]
+}

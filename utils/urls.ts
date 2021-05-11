@@ -7,3 +7,10 @@ export function fileToUrl(filepath: string, base: string = null) {
     .slice(0, -3)
     .trim()
 }
+
+const everythingExceptTheTrailingSlash = /(.*)\/$/
+
+export function removeTrailingSlash(url: string) {
+  if (!url) return url
+  return url.replace(everythingExceptTheTrailingSlash, '$1')
+}
