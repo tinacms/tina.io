@@ -71,6 +71,15 @@ export default function BlogPostEditor() {
   const [payload, isLoading] = useGraphqlForms({
     query,
     variables: { relativePath: `${router.query.slug}.md` },
+    formify: ({ createForm, formConfig }) => {
+      formConfig.fields?.forEach(field => {
+        //use markdown plugin with _body field
+        if (field.name === '_body') {
+          field.component = 'markdown'
+        }
+      })
+      return createForm(formConfig)
+    },
   })
 
   if (isLoading) {
