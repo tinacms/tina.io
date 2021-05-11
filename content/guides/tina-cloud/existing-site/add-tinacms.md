@@ -8,7 +8,7 @@ last_edited: '2020-08-11T13:02:36.046Z'
 From within your site's root directory, we will need to install some tina packages & peer dependencies:
 
 ```bash,copy
-yarn add tinacms tina-graphql-gateway styled-components
+yarn add tinacms tina-graphql-gateway react-tinacms-editor react-tinacms-inline styled-components
 ```
 
 ## Create Tina wrapper.
@@ -25,6 +25,7 @@ Paste the following snippet inside your new **tina-wrapper.js** file
 import React from 'react'
 import { TinaCMS } from 'tinacms'
 import { Client, TinaCloudAuthWall } from 'tina-graphql-gateway'
+import { MarkdownFieldPlugin } from 'react-tinacms-editor'
 
 const TinaWrapper = ({ children }) => {
   const cms = React.useMemo(() => {
@@ -36,6 +37,7 @@ const TinaWrapper = ({ children }) => {
           branch: 'main',
         }),
       },
+      plugins: [MarkdownFieldPlugin],
       sidebar: true,
       enabled: true,
     })

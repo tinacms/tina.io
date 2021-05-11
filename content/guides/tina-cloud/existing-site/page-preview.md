@@ -14,31 +14,45 @@ Let's fix that by replacing our static rendered component with the page componen
 
 ```diff
 + import Post from '../../posts/[slug]'
-
++ import {useState, useEffect} from "react";
++ import markdownToHtml from '../../../lib/markdownToHtml'
 // ...
 
 const [payload, isLoading] = useGraphqlForms({
-  query,
-  variables: { relativePath: `${router.query.slug}.md` },
+  // ...
 })
 
 - return <div>My admin page</div>;
++ const [content, setContent] = useState("");
++ // turn our markdown into html as we type
++ useEffect(() => {
++   const parseMarkdown = async () => {
++   let { _body } = payload?.getPostsDocument.data || "";
++     setContent(await markdownToHtml(_body));
++   };
++
++   parseMarkdown();
++ }, [payload?.getPostsDocument.data._body]);
++
 + if (isLoading) {
 +   return <p>Loading...</p>;
 + }
-
-+ const { _body, ...post } = payload.getPostsDocument.data;
-+ const pageData = { post, content: _body };
-+ return <Post {...pageData} />
++
++ let { _body, ...post } = payload.getPostsDocument.data;
++ post.slug = router.query.slug;
++ post.content = content;
++ return <Post post={post} />;
 ```
 
 **Notice how we are doing a big of re-formatting of our data, to match the shape that our production [slug].js page is expecting.**
+
+We are turning our content into html to make what our production page expects.This implementation may vary depending on each page's expected props.
 
 This full file should now look like:
 
 ```jsx,copy
 // pages/admin/posts/[slug].js
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useGraphqlForms } from 'tina-graphql-gateway'
 import { useRouter } from 'next/router'
 import Post from '../../posts/[slug]'
@@ -71,7 +85,26 @@ export default function BlogPostEditor() {
   const [payload, isLoading] = useGraphqlForms({
     query,
     variables: { relativePath: `${router.query.slug}.md` },
+    formify: ({ createForm, formConfig }) => {
+      formConfig.fields?.forEach(field => {
+        //use markdown plugin with _body field
+        if (field.name === '_body') {
+          field.component = 'markdown'
+        }
+      })
+      return createForm(formConfig)
+    },
   })
+
+  const [content, setContent] = useState('')
+  useEffect(() => {
+    const parseMarkdown = async () => {
+      let { _body } = payload?.getPostsDocument.data || ''
+      setContent(await markdownToHtml(_body))
+    }
+
+    parseMarkdown()
+  }, [payload?.getPostsDocument.data._body])
 
   if (isLoading) {
     return <p>Loading...</p>
@@ -79,7 +112,7 @@ export default function BlogPostEditor() {
 
   let { _body, ...post } = payload.getPostsDocument.data
   post.slug = router.query.slug
-  post.content = _body
+  post.content = content
   return <Post post={post} />
 }
 ```

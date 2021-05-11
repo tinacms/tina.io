@@ -41,7 +41,18 @@ export default function BlogPostEditor() {
   const router = useRouter()
   const [payload, isLoading] = useGraphqlForms({
     query,
-    variables: { relativePath: `${router.query.slug}.md` },
+    variables: {
+      relativePath: `${router.query.slug}.md`,
+    },
+    formify: ({ createForm, formConfig }) => {
+      formConfig.fields?.forEach(field => {
+        //use markdown plugin with _body field
+        if (field.name === '_body') {
+          field.component = 'markdown'
+        }
+      })
+      return createForm(formConfig)
+    },
   })
 
   return <div>My admin page</div>
@@ -49,6 +60,8 @@ export default function BlogPostEditor() {
 ```
 
 The query object defined above is GraphQL, and maps to the schema that we defined earlier for our content.
+
+The "formify" option is being used to use the markdown plugin on the body of our content.
 
 ## Make a commit
 
