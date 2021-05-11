@@ -25,7 +25,7 @@ You can give your app whatever name you like. We will go with "Blog Starter"
 We will be running this demo locally, so for Site URL, you can use:
 `http://localhost:3000`
 
-Click save, and your app should be created!
+Click save, your app should now be created!
 
 ## Access app's client id
 
