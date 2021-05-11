@@ -14,7 +14,7 @@ An app is the connection point between your site and your users, allowing author
 
 ## Create an app
 
-Once registered, you can log in and see the dashboard. We will want to create an app.
+Once registered, you can log in to your organization and access your dashboard. Let's create an app.
 
 After you authorize the Tina Cloud GitHub app, you should see your demo repository in the list of repositories. Click "Choose Repository".
 
