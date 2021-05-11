@@ -61,6 +61,8 @@ export default function BlogPostEditor() {
 
 The query object defined above is GraphQL, and maps to the schema that we defined earlier for our content.
 
+The "formify" option is being used to use the markdown plugin on the body of our content.
+
 ## Make a commit
 
 At this point, you should be able to navigate to a blog post's admin page such as [the hello-world post](http://localhost:3000/posts/hello-world). This time, when you click the pencil, you will notice that the sidebar contains fields for your content.
