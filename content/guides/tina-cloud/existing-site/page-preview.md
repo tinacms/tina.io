@@ -46,7 +46,7 @@ const [payload, isLoading] = useGraphqlForms({
 
 **Notice how we are doing a big of re-formatting of our data, to match the shape that our production [slug].js page is expecting.**
 
-We are turning our content into html to make what our production page expects.This implementation may vary depending on each page's expected props.
+We are turning our content into HTML to make what our production page expects.This implementation may vary depending on each page's expected props.
 
 This full file should now look like:
 
