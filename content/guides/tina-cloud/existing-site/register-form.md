@@ -13,7 +13,7 @@ import React from 'react'
 import { useGraphqlForms } from 'tina-graphql-gateway'
 import { useRouter } from 'next/router'
 
-export default function() {
+export default function BlogPostEditor() {
   const query = gql => gql`
     query BlogPostQuery($relativePath: String!) {
       getPostsDocument(relativePath: $relativePath) {
