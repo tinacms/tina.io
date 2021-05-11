@@ -49,7 +49,7 @@ const TinaWrapper = ({ children }) => {
 export default TinaWrapper
 ```
 
-Remember in the dashboard seeing an organization-id and client-id? **You will need to copy/paste those values into the code snippet above.**
+Remember the `organization-id` and `client-id` on the app settings in the Tina Cloud dashboard? **Time to copy/paste those values into the code snippet above.**
 
 ## Use the Tina Wrapper
 
