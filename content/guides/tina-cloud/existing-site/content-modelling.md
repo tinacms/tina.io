@@ -23,7 +23,7 @@ The simplest way to get started is to add a `.tina/schema.ts` file
 mkdir .tina && touch .tina/schema.ts
 ```
 
-This schema will need to include each of the fields that are in our \_posts files.
+This schema needs to include each of the fields that are in our `\_posts` files.
 In .tina/schema.ts, copy/paste the following:
 
 ```jsx,copy
