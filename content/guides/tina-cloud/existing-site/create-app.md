@@ -10,7 +10,7 @@ An app is the connection point between your site and your users, allowing author
 
 ## Sign up for Tina Cloud
 
-You can register for Tina Cloud by creating a free organizatiion [here](https://auth.tina.io/register).
+[Register for Tina Cloud](https://auth.tina.io/register) and create your organization for free.
 
 ## Create an app
 
