@@ -42,7 +42,7 @@ import React from 'react'
 import { useGraphqlForms } from 'tina-graphql-gateway'
 import { useRouter } from 'next/router'
 import Post from '../../posts/[slug]'
-export default function() {
+export default function BlogPostEditor() {
   const query = gql => gql`
     query BlogPostQuery($relativePath: String!) {
       getPostsDocument(relativePath: $relativePath) {
@@ -74,13 +74,14 @@ export default function() {
   })
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <p>Loading...</p>
   }
 
-  let { _body, ...post } = payload.getPostsDocument.data;
-  post.slug = router.query.slug;
-  post.content = _body;
-  return <Post post={post} />;
+  let { _body, ...post } = payload.getPostsDocument.data
+  post.slug = router.query.slug
+  post.content = _body
+  return <Post post={post} />
+}
 ```
 
 Now when you navigate to a [blog page](http://localhost:3000/admin/posts/hello-world), as you type you will see a live preview of your changes.
