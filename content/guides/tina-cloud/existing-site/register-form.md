@@ -1,5 +1,5 @@
 ---
-title: Register form
+title: Making your changes editable
 last_edited: '2020-08-11T13:02:36.046Z'
 ---
 

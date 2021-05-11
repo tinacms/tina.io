@@ -14,7 +14,7 @@
       "data": "./create-app.md"
     },
     {
-      "title": "Add tinacms",
+      "title": "Add TinaCMS to the site",
       "id": "/guides/tina-cloud/existing-site/add-tinacms",
       "slug": "/guides/tina-cloud/existing-site/add-tinacms",
       "data": "./add-tinacms.md"
@@ -26,10 +26,16 @@
       "data": "./content-modelling.md"
     },
     {
-      "title": "Register form",
+      "title": "Make your pages editable",
       "id": "/guides/tina-cloud/existing-site/register-form",
       "slug": "/guides/tina-cloud/existing-site/register-form",
       "data": "./register-form.md"
+    },
+    {
+      "title": "Render page preview",
+      "id": "/guides/tina-cloud/existing-site/page-preview",
+      "slug": "/guides/tina-cloud/existing-site/page-preview",
+      "data": "./page-preview.md"
     }
   ]
 }

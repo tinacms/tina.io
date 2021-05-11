@@ -1,5 +1,5 @@
 ---
-title: Adding Tincms
+title: Add TinaCMS to the site
 last_edited: '2020-08-11T13:02:36.046Z'
 ---
 
