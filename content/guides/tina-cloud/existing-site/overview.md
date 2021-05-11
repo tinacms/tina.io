@@ -11,4 +11,4 @@ We're going to use the Next.js [blog starter](https://github.com/zeit/next.js/tr
 yarn create next-app -e blog-starter my-tina-blog
 ```
 
-Once you have the site created, **you will have to push it up as a repository to your GitHub account.**
+Once the site is created, **push it up as a repository to your GitHub account.**
