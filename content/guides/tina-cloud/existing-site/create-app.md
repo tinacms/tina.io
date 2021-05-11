@@ -20,7 +20,7 @@ After you authorize the Tina Cloud GitHub app, you should see your demo reposito
 
 ## App configuration
 
-On the last step, we will enter some configuration for our app.
+On the last step, we need to enter some configuration for our app.
 You can give your app whatever name you like. We will go with "Blog Starter"
 We will be running this demo locally, so for Site URL, you can use:
 `http://localhost:3000`
