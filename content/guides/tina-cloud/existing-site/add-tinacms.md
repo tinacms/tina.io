@@ -53,7 +53,7 @@ Remember the `organization-id` and `client-id` on the app settings in the Tina C
 
 ## Use the Tina Wrapper
 
-We will want to show Tina's editing controls whenever a user navigates to our "/admin" pages.
+We want to show Tina's editing controls whenever a user navigates to our "/admin" pages.
 
 Open up `/pages/_app.js` and you should see something like this:
 
