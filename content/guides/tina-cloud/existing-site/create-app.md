@@ -1,5 +1,5 @@
 ---
-title: Create App in Tina Cloud
+title: Create an app in Tina Cloud
 last_edited: '2021-05-10T10:00:00.000Z'
 ---
 

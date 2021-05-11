@@ -1,5 +1,5 @@
 ---
-title: Render page preview
+title: Render a page preview
 last_edited: '2020-08-11T13:02:36.046Z'
 ---
 
