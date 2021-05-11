@@ -89,7 +89,7 @@ export default function MyApp({ Component, pageProps }) {
 }
 ```
 
-If you run your site with `yarn dev`, you should see that your site looks the same. That's because we haven't added any /admin pages yet. Let's create an admin page for us to edit this site's blog posts.
+If you run your site with `yarn dev`, you should see that your site looks the same. That's because we haven't added any `/admin` pages yet. Let's create an admin page for us to edit this site's blog posts.
 
 Create an admin page with:
 
