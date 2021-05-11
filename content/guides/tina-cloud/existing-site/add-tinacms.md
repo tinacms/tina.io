@@ -5,7 +5,7 @@ last_edited: '2020-08-11T13:02:36.046Z'
 
 ## Installation
 
-From within your site's root directory, we will need to install some tina packages & peer dependencies:
+From within your site's root directory, we need to install some tina packages & peer dependencies:
 
 ```bash,copy
 yarn add tinacms tina-graphql-gateway react-tinacms-editor react-tinacms-inline styled-components
