@@ -77,9 +77,10 @@ export default function() {
     return <p>Loading...</p>;
   }
 
-  const { _body, ...post } = payload.getPostsDocument.data;
-  const pageData = { post, content: _body };
-  return <Post {...pageData} />
+  let { _body, ...post } = payload.getPostsDocument.data;
+  post.slug = router.query.slug;
+  post.content = _body;
+  return <Post post={post} />;
 ```
 
 Now when you navigate to a [blog page](http://localhost:3000/admin/posts/hello-world), as you type you will see a live preview of your changes.
