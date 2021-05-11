@@ -7,7 +7,7 @@ last_edited: '2020-08-11T13:02:36.046Z'
 
 From within your site's root directory, we will need to install some tina packages & peer dependencies:
 
-```bash
+```bash,copy
 yarn add tinacms tina-graphql-gateway styled-components
 ```
 
