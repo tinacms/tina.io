@@ -109,4 +109,4 @@ export default function() {
 
 It's a very simple page for now (we'll make this admin page look a bit more impressive in a few steps).
 
-One thing that you will notice is that when you navigate to a [post using this page layout](http://localhost:3000/admin/posts/hello-world), you will be prompted to log in to Tina Cloud (You may be already logged in). Once logged in, you will see a pencil icon in the corner. Open it up and you'll see a blank Tina sidebar!
+One thing that you will notice is that when you navigate to a [post using this page layout](http://localhost:3000/admin/posts/hello-world), you are prompted to log in to Tina Cloud (You may be already logged in). Once logged in, you will see a pencil icon in the corner. Open it up and you'll see a blank Tina sidebar!
