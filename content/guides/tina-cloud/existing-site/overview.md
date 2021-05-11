@@ -7,7 +7,7 @@ In this guide, we will take you through adding Tina + Tina Cloud to a NextJS sit
 
 We're going to use the Next.js [blog starter](https://github.com/zeit/next.js/tree/canary/examples/blog-starter) as the base for our project. Create a new project by running the following commands in your terminal:
 
-```bash
+```bash,copy
 yarn create next-app -e blog-starter my-tina-blog
 ```
 
