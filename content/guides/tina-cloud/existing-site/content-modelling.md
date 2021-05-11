@@ -3,7 +3,7 @@ title: Model your content
 last_edited: '2020-08-11T13:02:36.046Z'
 ---
 
-Now that we have tina set up on our site, we're almost able to start editing some content. Before we can do that, we will need to model our content within Tina Cloud.
+Now that we have Tina set up on our site, we're almost able to start editing some content. Before we can do that, we need to model our content within Tina Cloud.
 
 The "Tina Graphql Gateway CLI" provides some tooling to help make this easy.
 
