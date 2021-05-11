@@ -3,7 +3,7 @@ title: Create App in Tina Cloud
 last_edited: '2021-05-10T10:00:00.000Z'
 ---
 
-In this step, we will be setting up a Tina Cloud account, and creating an "app".
+Now we need to set up a Tina Cloud account, and create an "app".
 
 In Tina Cloud, Apps connect Tina Cloud with a GitHub repository.
 An app is the connection point between your site and your users, allowing authorized users to login, and start making edits to your site's content.
