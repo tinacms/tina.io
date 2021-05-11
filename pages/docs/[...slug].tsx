@@ -17,12 +17,17 @@ import { useLastEdited } from 'utils/useLastEdited'
 import { openGraphImage } from 'utils/open-graph-image'
 import Error from 'next/error'
 import { NotFoundError } from 'utils/error/NotFoundError'
+import { useRouter } from 'next/router'
+import { CloudDisclaimer } from 'components/cloud-beta-disclaimer'
 
 function DocTemplate(props) {
   // fallback workaround
   if (props.notFound) {
     return <Error statusCode={404} />
   }
+
+  const router = useRouter()
+  const isCloudDocs = router.asPath.includes('tina-cloud')
 
   // Registers Tina Form
   const [data, form] = useGithubMarkdownForm(props.file, formOptions)
@@ -72,6 +77,7 @@ function DocTemplate(props) {
           </DocGridToc>
           <DocGridContent ref={contentRef}>
             <hr />
+            {isCloudDocs ? <CloudDisclaimer /> : null}
             <InlineWysiwyg name="markdownBody">
               <MarkdownContent escapeHtml={false} content={markdownBody} />
             </InlineWysiwyg>
