@@ -92,7 +92,7 @@ If you run your site with `yarn dev`, you should see that your site looks the sa
 Create an admin page with:
 
 ```bash,copy
-  mkdir -p pages/admin/posts && touch pages/admin/posts/[slug].js
+  mkdir pages/admin && mkdir pages/admin/posts && touch pages/admin/posts/[slug].js
 ```
 
 Paste the following snippet inside this new file.
