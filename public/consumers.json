@@ -233,11 +233,11 @@
   ],
   "/content/docs/fields/date.md": [
     {
-      "file": "/packages/tinacms/src/plugins/fields/DateFieldPlugin.tsx",
+      "file": "/packages/@tinacms/fields/src/plugins/DateFieldPlugin.tsx",
       "details": "Documents how to use the date field plugin"
     },
     {
-      "file": "/packages/tinacms/src/plugins/fields/dateFormat.ts",
+      "file": "/packages/@tinacms/fields/src/plugins/dateFormat.ts",
       "details": "References date formatting specifics"
     }
   ],

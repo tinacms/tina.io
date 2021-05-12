@@ -50,7 +50,7 @@ export function BrowserBlock({ data, index }) {
           <div className="cardGroup noSpacingMobile">
             {items.map(item => {
               return (
-                <>
+                <React.Fragment key={`item-${item.headline}`}>
                   <Divider type="mobile" />
                   <div
                     className={[
@@ -75,7 +75,7 @@ export function BrowserBlock({ data, index }) {
                       </div>
                     )}
                   </div>
-                </>
+                </React.Fragment>
               )
             })}
           </div>

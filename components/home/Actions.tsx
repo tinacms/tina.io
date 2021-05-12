@@ -19,6 +19,7 @@ export const Actions = ({ items, align = 'left' }) => {
           if (external) {
             link = (
               <a
+                key={`action-${label}`}
                 href={url}
                 className={`action ${variant}`}
                 target="_blank"
@@ -29,7 +30,11 @@ export const Actions = ({ items, align = 'left' }) => {
             )
           } else {
             link = (
-              <a href={url} className={`action ${variant}`}>
+              <a
+                key={`action-${label}`}
+                href={url}
+                className={`action ${variant}`}
+              >
                 {label} {icon === 'arrowRight' && <IconRight />}
               </a>
             )
