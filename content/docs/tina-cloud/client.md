@@ -24,8 +24,6 @@ yarn add --dev tina-graphql-gateway
 
 This package exports a class which acts as [TinaCMS external API](https://tina.io/docs/apis/) for the Tina Content API. This is a headless GraphQL API that's serverd via Tina Cloud or locally from within the Tina CLI.
 
-### Instantiating Tina Cloud Client
-
 ```ts
 import { Client, LocalClient } from 'tina-graphql-gateway'
 const client = new Client({
@@ -45,6 +43,8 @@ The `Client` does a few things:
 - Provides a `request` function for working with the GraphQL API
 
 Start by initializing the `LocalClient` - which automatically connects with your locally-running GraphQL server. From there, you can make GraphQL requests:
+
+### `client.request`
 
 ```ts
 const client = new LocalClient()
@@ -67,7 +67,7 @@ query BlogPostQuery($relativePath: String!) {
 
 > This API currently doesn't support filtering and sorting "list" queries. We have plans to tackle that in upcoming cycles.
 
-## Tina Form Generation
+## `useGraphQLForms`
 
 While GraphQL is a great tool, using it with Tina can be difficult. GraphQL can query across multiple nodes, but since each document would require its own Tina form it could be difficult to sync the data with your query with all of the forms you'd need to build. The Tina GraphQL server knows all about your content schema so we're actually able to build forms automatically by inspecting your query. To see this in action, pass your query into the `useGraphqlForms` hook:
 
@@ -122,9 +122,11 @@ const query = gql => gql`#graphql
 `
 ```
 
-### Form customization
+### Formify
 
 If you'd like to control the output of those forms, tap into the `formify` callback:
+
+##### Form customization:
 
 ```tsx
 import { useGraphqlForms } from 'tina-graphql-gateway'
@@ -159,7 +161,7 @@ const [payload, isLoading] = useGraphqlForms({
 })
 ```
 
-### Field customization
+##### Field customization:
 
 Since your forms are built automatically, `formify` can also be used to customize fields:
 
@@ -182,9 +184,43 @@ const [payload, isLoading] = useGraphqlForms({
 })
 ```
 
+## `useDocumentCreatorPlugin`
+
+This hook allows your editors to safely create new pages. Note that you'll be responsible for redireting the user after a new document has been created. To use this:
+
+```tsx
+import { useDocumentCreatorPlugin } from 'tina-graphql-gateway'
+
+// args is of type:
+// collection: {
+//   slug: string;
+// };
+// relativePath: string;
+// breadcrumbs: string[];
+// path: string;
+useDocumentCreatorPlugin(args => window.location.assings(buildMyRouter(args)))
+```
+
+### Customizing the content creator options
+
+To prevent editors from creating documents from certain collections, provide a filter function:
+
+```tsx
+// options are of type:
+// {
+//   label: string;
+//   value: string;
+// }[]
+useDocumentCreatorPlugin(null, options =>
+  options.filter(option => option.name !== 'post')
+)
+```
+
 ## Authentication with Tina Cloud
 
 While this package comes with low-level APIs for authentication with Tina Cloud, the easiest way to get started is to use the `TinaCloudAuthWall` component, which prevents children from rendering until a valid session has been established with Tina Cloud.
+
+### `TinaCloudAuthWall`
 
 ```tsx
 import { TinaCloudAuthWall, Client } from "tina-graphql-gateway";
@@ -207,7 +243,7 @@ const TinaWrapper = ({ children }) => {
 
 > Note: when using the LocalClient, TinaCloudAuthWall won't display a login screen, there is no authentication for the local GraphQL server.
 
-### Authenticating without `TinaCloudAuthWall`
+### Authenticating without TinaCloudAuthWall
 
 You can also authenticate with the `Client` directly:
 
