@@ -1,0 +1,29 @@
+{
+  "title": "Adding Tina Cloud to an existing site",
+  "steps": [
+    {
+      "title": "Overview",
+      "id": "/guides/tina-cloud/starter/overview",
+      "slug": "/guides/tina-cloud/starter/overview",
+      "data": "./overview.md"
+    },
+    {
+      "title": "Getting up and running locally",
+      "id": "/guides/tina-cloud/starter/local",
+      "slug": "/guides/tina-cloud/starter/local",
+      "data": "./local.md"
+    },
+    {
+      "title": "Connect to Tina Cloud",
+      "id": "/guides/tina-cloud/starter/connect-to-tina-cloud",
+      "slug": "/guides/tina-cloud/starter/connect-to-tina-cloud",
+      "data": "./connect-to-tina-cloud.md"
+    },
+    {
+      "title": "Starter Structure",
+      "id": "/guides/tina-cloud/starter/structure",
+      "slug": "/guides/tina-cloud/starter/structure",
+      "data": "./structure.md"
+    }
+  ]
+}
