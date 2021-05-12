@@ -417,18 +417,7 @@
           }
         ]
       },
-      {
-        "id": "/guides#general",
-        "href": "/guides#general",
-        "title": "General",
-        "items": [
-          {
-            "id": "/guides/general/inline-blocks/overview",
-            "slug": "/guides/general/inline-blocks/overview",
-            "title": "Inline Blocks"
-          }
-        ]
-      },
+
       {
         "id": "/guides#nextjs",
         "href": "/guides#nextjs",
@@ -457,19 +446,14 @@
         ]
       },
       {
-        "id": "/guides#gatsby",
-        "href": "/guides#gatsby",
-        "title": "Gatsby",
+        "id": "/guides#experimental",
+        "href": "/guides#experimental",
+        "title": "Experimental",
         "items": [
           {
-            "id": "/guides/gatsby/adding-tina/project-setup",
-            "slug": "/guides/gatsby/adding-tina/project-setup",
-            "title": "Adding Tina"
-          },
-          {
-            "id": "/guides/gatsby/git/installation",
-            "slug": "/guides/gatsby/git/installation",
-            "title": "Git Backend"
+            "id": "/guides/experimental/inline-blocks/overview",
+            "slug": "/guides/experimental/inline-blocks/overview",
+            "title": "Inline Blocks"
           }
         ]
       }

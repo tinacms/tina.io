@@ -125,6 +125,10 @@
       "destination": "/guides/gatsby/git/installation"
     },
     {
+      "source": "/guides/general/inline-editing",
+      "destination": "/guides/experimental/inline-editing"
+    },
+    {
       "source": "/docs/gatsby/json",
       "destination": "/guides/gatsby/git/create-json-form"
     },
