@@ -12,7 +12,7 @@ Tina Cloud is a Git-backed CMS, Next.js is just what we need to deliver fast sta
 
 Let’s see how Next.js makes a Tina developers' job easier.
 
-# Next.js, more than a static site generator
+## Next.js: More Than a Static Site Generator
 
 Next.js is a popular, open-source meta-framework and is quickly becoming[ the standard for new React projects](https://www.npmtrends.com/next-vs-gatsby-vs-nuxt). Its hybrid nature means that it can be used for both static site generation (SSG) _and_ server-side rendering (SSR).
 
