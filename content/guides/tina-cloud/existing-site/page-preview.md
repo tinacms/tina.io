@@ -53,6 +53,7 @@ This full file should now look like:
 ```jsx,copy
 // pages/admin/posts/[slug].js
 import React, { useState, useEffect } from 'react'
+import markdownToHtml from '../../../lib/markdownToHtml'
 import { useGraphqlForms } from 'tina-graphql-gateway'
 import { useRouter } from 'next/router'
 import Post from '../../posts/[slug]'
