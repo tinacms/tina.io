@@ -47,7 +47,7 @@ mkdir .tina && touch .tina/schema.ts
 
 ### `defineSchema`
 
-`defineSchema` is tells the CMS how to build your content API.
+`defineSchema` tells the CMS how to build your content API.
 
 ```ts
 // .tina/schema.ts
