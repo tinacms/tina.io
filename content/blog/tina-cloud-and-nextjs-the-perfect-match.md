@@ -14,7 +14,7 @@ Let’s see how Next.js makes a Tina developers' job easier.
 
 ## Next.js: More Than a Static Site Generator
 
-Next.js is a popular, open-source meta-framework and is quickly becoming[ the standard for new React projects](https://www.npmtrends.com/next-vs-gatsby-vs-nuxt). Its hybrid nature means that it can be used for both static site generation (SSG) _and_ server-side rendering (SSR).
+Next.js is a popular, open-source meta-framework and is quickly becoming[ the standard for new React projects](https://www.npmtrends.com/next-vs-gatsby). Its hybrid nature means that it can be used for both static site generation (SSG) _and_ server-side rendering (SSR).
 
 Next.js offers a very convenient way to do [static site generation](https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation) with the  `getStaticProps` function: your content is fetched at build time and the output is a good old static HTML file.
  With Next.js static mode, the React code is rendered on a server and then served as HTML. This static HTML file won't change until the next build.
