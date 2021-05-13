@@ -31,7 +31,7 @@ Here we first need to check that you have the proper permission to modify the co
 
 On the other hand, [Tina Cloud](/early-access/), our headless API that talks to GitHub handle the authentication for you, so we are able to fetch our editable content from Github directly from the browser. No need for SSR then, we work with `getStaticProps` only and get a similar editing experience. That’s the approach we take in the **Tina Cloud Starter**. This doesn't mean you are limited to only using `getStaticProps` or you're unable to use preview mode, it just means that we handle the complex authentication for you with Tina Cloud.
 
-# Next.js, a natural fit for Tina Cloud
+## Next.js: a Natural fit for Tina Cloud
 
 Although some parts of TinaCMS are framework-agnostic, about 75% of the core code is built with React. For instance, the TinaCMS user interface does depend on React, but there’s no dependency on Next.js. Next.js as a React framework offers a much better developer experience and elegantly solves some issues for us.
 
