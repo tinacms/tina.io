@@ -2,7 +2,7 @@
 title: 'Tina Cloud and Next.js: the perfect match'
 date: '2021-05-13T14:34:20+02:00'
 author: Logan Anderson
-last_edited: '2021-05-13T13:02:58.602Z'
+last_edited: '2021-05-13T13:09:14.835Z'
 ---
 Next.js is **our default choice** when it comes to managing static content, and it works perfectly with our new headless CMS [Tina Cloud]().
 
@@ -42,7 +42,7 @@ Next.js allows you to serve a static blazing-fast™ website while fetching and 
 >
 > _Gatsby, another popular choice for React static site generators, was also in our minds but we ultimately decided it wasn't a good fit as [**it’s using a build time plugin to parse and transform the Markdown files**.](https://www.gatsbyjs.com/docs/how-to/sourcing-data/sourcing-from-the-filesystem) This means the development server has to be running or the site has to be rebuilt to preview the site — not the user experience we aim at for real-time editing. Gatsby is very opinionated about how files are fetched and forces you to use its [GraphQL data layer](https://www.gatsbyjs.com/docs/how-to/sourcing-data/sourcing-from-the-filesystem#using-gatsby-source-filesystem). We could opt out of this but this would cause friction for existing Gatsby users. We decided it would be better to go for a less opinionated and more flexible approach, à la Next.js._
 
-**Tina Cloud** gives you instant editing previews by fetching the data dynamically in the browser from GitHub, loading and passing it as props to your page components. As the data is wrapped in React state, when you change the data in the content forms, it’s immediately reflected on your site preview. When your site is built for production use, the files are fetched from the file system using our [local GraphQL server.](https://tina.io/blog/using-graphql-with-the-filesystem/)
+[Tina Cloud](/cloud/) gives you instant editing previews by fetching the data dynamically in the browser from GitHub, loading and passing it as props to your page components. As the data is wrapped in React state, when you change the data in the content forms, it’s immediately reflected on your site preview. When your site is built for production use, the files are fetched from the file system using our [local GraphQL server.](https://tina.io/blog/using-graphql-with-the-filesystem/)
 
 ```js
 const Inner = (props) => {
@@ -71,9 +71,9 @@ const Inner = (props) => {
 
 ![Real-time editing with TinaCMS and Tina Cloud](https://lh4.googleusercontent.com/ulRIvu560NGj4Zu57oWnZZxJaIGhte6RC8MioL4s0I6pWHwaz4ic41KhYt-ENb8z_jKlWUphkWopWVkRwRXSyH_ybph1kJjAxNowu2DMcV5SiOvL09mYTEG72B3tITe9enacvy8k "Real-time editing with TinaCMS and Tina Cloud" =624x351)
 
-We needed a solution that was statically generated as fetching all of the data from GitHub on each request would slow down your website. We need to fetch our static data once at build time. Since the site is statically generated, the production site can be static while the editing site can load data dynamically from GitHub, directly or through our Tina Cloud Content API.
+We needed a solution that was **statically generated** as fetching all of the data from GitHub on each request would slow down your website. We need to fetch our static data once at build time. Since the site is statically generated, the production site can be static while the editing site can load data dynamically from GitHub, directly or through our Tina Cloud Content API.
 
-For now, we are recommending using Tina Cloud in your Next.js projects, as it is the quickest way to get up and running. The use of `getStaticProps` allows you to fetch your static files for production builds and fetch dynamic data forms to edit your site with Tina Cloud.
+For now, **we are recommending using Tina Cloud in your Next.js projects**, as it is the quickest way to get up and running. The use of `getStaticProps` allows you to fetch your static files for production builds and fetch dynamic data forms to edit your site with Tina Cloud.
 
 ## Don’t let TinaCMS impact your production website
 
@@ -103,6 +103,6 @@ function InnerApp({ Component, pageProps }) {
   );
 ```
 
-We plan to extend to other frameworks and other static site generators later, but for now we feel good about working with Next.js and tailor a good editing experience for your teammates.
+We plan to extend to other frameworks and other static site generators later, but for now, we feel good about working with Next.js and tailor a good editing experience for your teammates.
 
-Focusing on a single framework helps make development as flawless as possible. Once we feel good about the developer and user experience,  we will be more confident to expand to other tools, whether it’s Vue apps or non-react websites. Tina is not a CMS, it's an open source toolkit to build client-side editing on your website, and can be ported to other use cases.
+Focusing on a single framework helps make development as flawless as possible. Once we feel good about the developer and user experience,  we will be more confident to expand to other tools, whether it’s Vue apps or non-react websites. Tina is not a CMS, it's an open-source toolkit to build client-side editing on your website, and can be ported to other use cases.
