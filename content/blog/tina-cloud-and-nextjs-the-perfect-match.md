@@ -2,7 +2,7 @@
 title: 'Tina Cloud and Next.js: the perfect match'
 date: '2021-05-13T14:34:20+02:00'
 author: Logan Anderson
-last_edited: '2021-05-13T13:09:14.835Z'
+last_edited: '2021-05-13T13:34:33.511Z'
 ---
 Next.js is **our default choice** when it comes to managing static content, and it works perfectly with our new headless CMS [Tina Cloud]().
 
@@ -69,7 +69,7 @@ const Inner = (props) => {
 };
 ```
 
-![Real-time editing with TinaCMS and Tina Cloud](https://lh4.googleusercontent.com/ulRIvu560NGj4Zu57oWnZZxJaIGhte6RC8MioL4s0I6pWHwaz4ic41KhYt-ENb8z_jKlWUphkWopWVkRwRXSyH_ybph1kJjAxNowu2DMcV5SiOvL09mYTEG72B3tITe9enacvy8k "Real-time editing with TinaCMS and Tina Cloud" =624x351)
+![](/img/blog/Edit Demo.gif)
 
 We needed a solution that was **statically generated** as fetching all of the data from GitHub on each request would slow down your website. We need to fetch our static data once at build time. Since the site is statically generated, the production site can be static while the editing site can load data dynamically from GitHub, directly or through our Tina Cloud Content API.
 
