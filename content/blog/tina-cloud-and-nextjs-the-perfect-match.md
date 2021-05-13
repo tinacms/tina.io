@@ -1,7 +1,7 @@
 ---
 title: 'Tina Cloud and Next.js: the perfect match'
 date: '2021-05-13T14:34:20+02:00'
-author: Logan Anderson
+author: Logan Anderson & Frank Taillandier
 last_edited: '2021-05-13T14:33:22.066Z'
 ---
 Next.js is **our default choice** when it comes to managing static content, and it works perfectly with our new headless CMS [Tina Cloud]().
