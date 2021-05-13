@@ -17,7 +17,7 @@ Let’s see how Next.js makes a Tina developers' job easier.
 Next.js is a popular, open-source meta-framework and is quickly becoming[ the standard for new React projects](https://www.npmtrends.com/next-vs-gatsby-vs-nuxt). Its hybrid nature means that it can be used for both static site generation (SSG) _and_ server-side rendering (SSR).
 
 Next.js offers a very convenient way to do [static site generation](https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation) with the  `getStaticProps` function: your content is fetched at build time and the output is a good old static HTML file.
-It’s core to the Jamstack philosophy to render your site before it is served to users from a CDN. With Next.js static mode, the React code is rendered on a server and then served as HTML. This static HTML file is served from a performant CDN, and won't change until the next build.
+ With Next.js static mode, the React code is rendered on a server and then served as HTML. This static HTML file won't change until the next build.
 
 During the build step, we have access to the file system, so we can source our content from Markdown and JSON files, or through a headless CMS like **Tina Cloud**. We only source content at build time and not every time someone visits the site, that’s what makes static sites so fast.
 
