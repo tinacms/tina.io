@@ -74,7 +74,7 @@ We needed a solution that was **statically generated** as fetching all of the da
 
 For now, **we are recommending using Tina Cloud in your Next.js projects**, as it is the quickest way to get up and running. The use of `getStaticProps` allows you to fetch your static files for production builds and fetch dynamic data forms to edit your site with Tina Cloud.
 
-## Don’t let TinaCMS impact your production website
+## Dynamic Imports: Only Load TinaCMS When You Need It
 
 Given it’s all React, it is tempting to load TinaCMS on your Next.js website and call it a day. Please bear in mind that given its client-side nature, TinaCMS comes with some JS bundles and a performance price to pay. As always it depends on your context, it might be perfectly fine for an internal project where you care much more about providing a better editing experience to your teammates than a perfect Lighthouse score. On a public-facing website though, TinaCMS should only load on your site when you're in editing mode so it does not increase your production bundle. Your visitors shouldn’t have to pay any performance fees.
 
