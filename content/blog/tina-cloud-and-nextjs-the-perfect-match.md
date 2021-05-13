@@ -21,19 +21,14 @@ Next.js offers a very convenient way to do [static site generation](https://next
 
 During the build step, we have access to the file system, so we can source our content from Markdown and JSON files, or through a headless CMS like **Tina Cloud**. We only source content at build time and not every time someone visits the site, that’s what makes static sites so fast.
 
-Another powerful feature from Next.s is [server-side rendering](https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering): this time the React component is rendered on the server and then sent to the client. This is roughly the same process as static site generation but it happens _every time the page is requested_. SSR is useful when you have dynamic content that changes often.  For example, the stock count on an e-commerce product page or user-specific data.
+Another powerful feature from Next.s is [server-side rendering](https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering) (SSR): this time the React component is rendered on the server and then sent to the client. This is roughly the same process as static site generation but it happens _every time the page is requested_. SSR is useful when you have dynamic content that changes often.  For example, the stock count on an e-commerce product page or user-specific data.
 
-TinaCMS uses Next.js [preview mode](https://nextjs.org/docs/advanced-features/preview-mode) for our [visual open authoring](/blog/introducing-visual-open-authoring/) backed by GitHub workflow.
 
-You wouldn’t be able to fetch data directly from GitHub in the browser in this flow.
-
-Here we first need to check that you have the proper permission to modify the content stored in the repository, so we have to fetch data from the server, and use SSR.
-
-On the other hand, [Tina Cloud](/early-access/), our headless API that talks to GitHub handle the authentication for you, so we are able to fetch our editable content from Github directly from the browser. No need for SSR then, we work with `getStaticProps` only and get a similar editing experience. That’s the approach we take in the **Tina Cloud Starter**. This doesn't mean you are limited to only using `getStaticProps` or you're unable to use preview mode, it just means that we handle the complex authentication for you with Tina Cloud.
+With [Tina Cloud](/early-access/), our headless API that talks to GitHub handles the authentication for you, editable content is fetched from Github directly from the browser. That’s the approach we take in the [Tina Cloud Starter](https://github.com/tinacms/tina-cloud-starter). This doesn't mean you are limited to only using `getStaticProps` or you're unable to use SSR, just means that we handle the complex authentication for you with Tina Cloud.
 
 ## Next.js: a Natural fit for Tina Cloud
 
-Although some parts of TinaCMS are framework-agnostic, about 75% of the core code is built with React. For instance, the TinaCMS user interface does depend on React, but there’s no dependency on Next.js. Next.js as a React framework offers a much better developer experience and elegantly solves some issues for us.
+Although some parts of TinaCMS are framework-agnostic, about most of the core code is built with React. For instance, the TinaCMS user interface does depend on React, but there’s no dependency on Next.js. Next.js as a React framework offers a much better developer experience and elegantly solves some issues for us.
 
 Next.js allows you to serve a static blazing-fast™ website while fetching and updating remote data from GitHub on edit mode. With Tina Cloud, you get a powerful GraphQL Content API on top of your file system, auto-generated TinaCMS forms, and user authentication.
 
@@ -44,7 +39,7 @@ Next.js allows you to serve a static blazing-fast™ website while fetching and 
 [Tina Cloud](/cloud/) gives you instant editing previews by fetching the data dynamically in the browser from GitHub, loading and passing it as props to your page components. As the data is wrapped in React state, when you change the data in the content forms, it’s immediately reflected on your site preview. When your site is built for production use, the files are fetched from the file system using our [local GraphQL server.](https://tina.io/blog/using-graphql-with-the-filesystem/)
 
 ```js
-const Inner = (props) => {
+const TinaWrapper = (props) => {
 // Fetch dynamic data from Tina cloud
   const [payload, isLoading] = useGraphqlForms({
     query: (gql) => gql(props.query),
