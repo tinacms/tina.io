@@ -1,8 +1,8 @@
 ---
 title: 'Tina Cloud and Next.js: the perfect match'
 date: '2021-05-13T14:34:20+02:00'
-author: Logan Anderson & Frank Taillandier
-last_edited: '2021-05-13T13:34:33.511Z'
+author: Logan Anderson
+last_edited: '2021-05-13T14:33:22.066Z'
 ---
 Next.js is **our default choice** when it comes to managing static content, and it works perfectly with our new headless CMS [Tina Cloud]().
 
@@ -42,6 +42,8 @@ Next.js allows you to serve a static blazing-fast™ website while fetching and 
 >
 > _Gatsby, another popular choice for React static site generators, was also in our minds but we ultimately decided it wasn't a good fit as [**it’s using a build time plugin to parse and transform the Markdown files**.](https://www.gatsbyjs.com/docs/how-to/sourcing-data/sourcing-from-the-filesystem) This means the development server has to be running or the site has to be rebuilt to preview the site — not the user experience we aim at for real-time editing. Gatsby is very opinionated about how files are fetched and forces you to use its [GraphQL data layer](https://www.gatsbyjs.com/docs/how-to/sourcing-data/sourcing-from-the-filesystem#using-gatsby-source-filesystem). We could opt out of this but this would cause friction for existing Gatsby users. We decided it would be better to go for a less opinionated and more flexible approach, à la Next.js._
 
+![Real-time editing with TinaCMS and Tina Cloud](/img/blog/Edit Demo.gif "Real-time editing with TinaCMS and Tina Cloud")
+
 [Tina Cloud](/cloud/) gives you instant editing previews by fetching the data dynamically in the browser from GitHub, loading and passing it as props to your page components. As the data is wrapped in React state, when you change the data in the content forms, it’s immediately reflected on your site preview. When your site is built for production use, the files are fetched from the file system using our [local GraphQL server.](https://tina.io/blog/using-graphql-with-the-filesystem/)
 
 ```js
@@ -68,8 +70,6 @@ const Inner = (props) => {
   );
 };
 ```
-
-![](/img/blog/Edit Demo.gif)
 
 We needed a solution that was **statically generated** as fetching all of the data from GitHub on each request would slow down your website. We need to fetch our static data once at build time. Since the site is statically generated, the production site can be static while the editing site can load data dynamically from GitHub, directly or through our Tina Cloud Content API.
 
