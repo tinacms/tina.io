@@ -52,7 +52,7 @@
         {
           "_template": "feature",
           "headline": "Collaborate as a Team",
-          "subline": "Tina Cloud brings authentication, user management, roles. Onboard your team in no time, no GitHub accounts required.",
+          "subline": "Tina Cloud brings authentication, user management, roles. Onboard your team in no time, no GitHub accounts for editors required.",
           "media": {
             "src": "/img/user-management.png"
           }
