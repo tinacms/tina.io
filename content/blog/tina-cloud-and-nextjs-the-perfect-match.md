@@ -102,6 +102,6 @@ function InnerApp({ Component, pageProps }) {
   );
 ```
 
-We plan to extend to other frameworks and other static site generators later, but for now, we feel good about working with Next.js and tailor a good editing experience for your teammates.
+Working with a single framework helps us iterate quickly and focus on the right problems. We plan to extend to other frameworks and other static site generators later, but for now, we feel good about working with Next.js.
 
 Focusing on a single framework helps make development as flawless as possible. Once we feel good about the developer and user experience,  we will be more confident to expand to other tools, whether it’s Vue apps or non-react websites. Tina is not a CMS, it's an open-source toolkit to build client-side editing on your website, and can be ported to other use cases.
