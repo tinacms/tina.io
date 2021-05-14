@@ -8,9 +8,27 @@ export function fileToUrl(filepath: string, base: string = null) {
     .trim()
 }
 
+const everythingBeforeTheHash = /(.*)#.*$/
+const everythingBeforeTheQuery = /(.*)\?.*$/
 const everythingExceptTheTrailingSlash = /(.*)\/$/
 
-export function removeTrailingSlash(url: string) {
-  if (!url) return url
-  return url.replace(everythingExceptTheTrailingSlash, '$1')
+function createReplacer(expr: RegExp) {
+  return (url: string) => {
+    if (!url) return url
+    return url.replace(expr, '$1')
+  }
+}
+
+const removeHash = createReplacer(everythingBeforeTheHash)
+const removeQuery = createReplacer(everythingBeforeTheQuery)
+const removeTrailingSlash = createReplacer(everythingExceptTheTrailingSlash)
+
+/**
+ * returns true if @url1 and @url2 go to the same place
+ * (after stripping any query, hash, and trailing slash in each)
+ */
+export function matchActualTarget(url1: string, url2: string) {
+  const formattedUrl1 = removeTrailingSlash(removeQuery(removeHash(url1)))
+  const formattedUrl2 = removeTrailingSlash(removeQuery(removeHash(url2)))
+  return formattedUrl1 === formattedUrl2
 }
