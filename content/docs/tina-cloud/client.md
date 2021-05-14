@@ -186,18 +186,20 @@ const [payload, isLoading] = useGraphqlForms({
 
 ## `useDocumentCreatorPlugin`
 
-This hook allows your editors to safely create new pages. Note that you'll be responsible for redireting the user after a new document has been created. To use this:
+This hook allows your editors to safely create new pages. Note that you'll be responsible for redirecting the user after a new document has been created. To use this:
 
 ```tsx
 import { useDocumentCreatorPlugin } from 'tina-graphql-gateway'
 
 // args is of type:
-// collection: {
-//   slug: string;
-// };
-// relativePath: string;
-// breadcrumbs: string[];
-// path: string;
+// {
+//   collection: {
+//     slug: string;
+//   };
+//   relativePath: string;
+//   breadcrumbs: string[];
+//   path: string;
+// }
 useDocumentCreatorPlugin(args => window.location.assign(buildMyRouter(args)))
 ```
 
