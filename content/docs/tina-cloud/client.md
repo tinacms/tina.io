@@ -198,7 +198,7 @@ import { useDocumentCreatorPlugin } from 'tina-graphql-gateway'
 // relativePath: string;
 // breadcrumbs: string[];
 // path: string;
-useDocumentCreatorPlugin(args => window.location.assings(buildMyRouter(args)))
+useDocumentCreatorPlugin(args => window.location.assign(buildMyRouter(args)))
 ```
 
 ### Customizing the content creator options
