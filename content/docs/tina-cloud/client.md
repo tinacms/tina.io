@@ -243,6 +243,30 @@ const TinaWrapper = ({ children }) => {
 };
 ```
 
+Props for TinaCloudAuthWall
+
+| Prop                         | Description                                                                                                                                                                                                                                                                                            |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `cms`                        | An instance of a [CMS](http://localhost:3000/docs/cms/#cms-configuration)                                                                                                                                                                                                                              |
+| `getModalActions` (optional) | A function that returns a list of actions / buttons that will be rendered to the model. Each button has name, action, and can be primary or not. The name is the text that will be displayed. The action is a function that will be run when the button is clicked. See example below for more details |
+
+```tsx
+return (
+    <TinaCloudAuthWall cms={cms} getModalActions={({closeModal})=>{
+      return [{
+         action: async ()=>{
+          //  use your own state to get in and out of edit mode
+           closeModal()
+         },
+         name: 'close',
+         primary: false,
+      }]
+    }}>
+      <Component {...pageProps} />
+    </TinaCloudAuthWall>
+);
+```
+
 > Note: when using the LocalClient, TinaCloudAuthWall won't display a login screen, there is no authentication for the local GraphQL server.
 
 ### Authenticating without TinaCloudAuthWall
