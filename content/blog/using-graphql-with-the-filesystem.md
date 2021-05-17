@@ -173,7 +173,7 @@ Most CMSs have come up with various ways to help with this: separate sandbox env
 
 Today we're introducing a tool that marries the power of a headless CMS with the convenience and portability of file-based content. **The Tina Content API is a GraphQL service that sources content from your local filesystem**. It will soon be available via [Tina Cloud](https://tina.io/cloud/), which connects to your GitHub repository to offer an identical, cloud-based, headless API.
 
-> Tina Cloud is currently open to a limited set of Next.js projects, [sign up](https://tina.io/cloud/) for early access to get into the private beta.
+> Tina Cloud is currently open to a limited set of Next.js projects, [sign up](https://tina.io/cloud/) for early access to get into the private alpha.
 
 To get a sense for how this works, let's make some tweaks to the blog demo.
 

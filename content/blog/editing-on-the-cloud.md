@@ -56,4 +56,4 @@ We've also got some other "down the road" features planned which will make it mu
 
 # ✨
 
-Thanks for reading! If you think Tina Teams might be a fit, you can sign up for our [Tina Teams Beta](http://tinacms.org/teams) to try it out early!
+Thanks for reading! If you think Tina Teams might be a fit, you can sign up for our [Tina Teams Alpha](http://tinacms.org/teams) to try it out early!
