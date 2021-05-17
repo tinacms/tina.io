@@ -25,7 +25,7 @@
           "label": "Blog"
         },
         {
-          "link": "/early-access",
+          "link": "/cloud",
           "label": "Tina Cloud"
         }
       ]
@@ -39,7 +39,7 @@
           "variant": "orange",
           "label": "Get Early Access",
           "icon": "arrowRight",
-          "url": "https://tina.io/early-access"
+          "url": "https://tina.io/cloud"
         }
       ],
       "videoSrc": ""

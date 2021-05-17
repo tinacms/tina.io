@@ -68,7 +68,7 @@ The drawback of this approach is that you need to duplicate aspects of your webs
 
 We are making it clear in our documentation and guides that the **original inline editing approach and Ref-Based inline editing are still experimental**.
 
-Sidebar editing avoids most of the friction of integrating inline editing and provides many of the same usability wins. 
-Moreover [Tina Cloud](/early-access/) auto-generates sidebar forms based on your content's schema and represents our current recommended best practice.
+Sidebar editing avoids most of the friction of integrating inline editing and provides many of the same usability wins.
+Moreover [Tina Cloud](/cloud/) auto-generates sidebar forms based on your content's schema and represents our current recommended best practice.
 
 Please do [share ideas, constraints or design patterns](https://github.com/tinacms/tinacms/issues) on how to bring a better visual editing experience to the Jamstack without sacrificing the codebase, it's a discussion we need to have with the community.

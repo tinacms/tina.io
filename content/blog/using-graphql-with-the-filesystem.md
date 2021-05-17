@@ -5,6 +5,7 @@ draft: true
 author: Jeff See
 last_edited: '2021-04-29T15:31:22.309Z'
 ---
+
 Today we want to introduce you to the Tina GraphQL gateway that brings reliability to Git-based content management. It's an essential piece to provide a robust structured content, while your content remains fully portable.
 
 ## Overcoming the limitations of the filesystem
@@ -149,7 +150,7 @@ Let's look at the data from our new blog post again:
       url: "/assets/blog/dynamic-routing/cover.jpg"
     featured: "false"
     ---
-    
+
     Lorem ipsum dolor sit amet…
 
 The `author` content is the same over in the "Dynamic Routing and Static Generation" post. If JJ wanted to change his `picture` he will need to update it on every post he's written. Sounds like something a CMS would solve with a content _relationship_, JJ should ideally be an author who _has many_ posts. To solve this with our file-based content we could split the author data into its own file and place a reference to that author's filename in the `post` structure:
@@ -172,7 +173,7 @@ Most CMSs have come up with various ways to help with this: separate sandbox env
 
 Today we're introducing a tool that marries the power of a headless CMS with the convenience and portability of file-based content. **The Tina Content API is a GraphQL service that sources content from your local filesystem**. It will soon be available via [Tina Cloud](https://tina.io/cloud/), which connects to your GitHub repository to offer an identical, cloud-based, headless API.
 
-> Tina Cloud is currently open to a limited set of Next.js projects, [sign up](https://tina.io/early-access/) for early access to get into the private beta.
+> Tina Cloud is currently open to a limited set of Next.js projects, [sign up](https://tina.io/cloud/) for early access to get into the private beta.
 
 To get a sense for how this works, let's make some tweaks to the blog demo.
 
