@@ -134,7 +134,7 @@ Within Tina Cloud, you can add users to your organization. This will allow other
 
 ### Experiment with the local graphql-gateway API
 
-Tina Cloud has an amazing local dev-workflow, as you can run a version of Tina Cloud's content API locally using your local filesystem's content. Read the [Tina Graphql Gateway CLI](https://tinacms-site-next-git-tina-cloud-docs-tinacms.vercel.app/docs/tina-cloud/cli/) docs to learn more.
+Tina Cloud has an amazing local dev-workflow, as you can run a version of Tina Cloud's content API locally using your local filesystem's content. Read the [Tina Graphql Gateway CLI](/docs/tina-cloud/cli/) docs to learn more.
 
 ### Use the Tina Cloud API on your production pages
 
