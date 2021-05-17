@@ -45,16 +45,19 @@ The simplest way to get started is to add a `.tina/schema.ts` file
 mkdir .tina && touch .tina/schema.ts
 ```
 
-Inside this file, we'll define our schema. This is schema will generate a GraphQL API which works specifically for your content.
+### `defineSchema`
+
+`defineSchema` tells the CMS how to build your content API.
 
 ```ts
+// .tina/schema.ts
 import { defineSchema } from 'tina-graphql-gateway-cli'
 
 export default defineSchema({
   collections: [
     {
       label: 'Blog Posts',
-      name: 'posts',
+      name: 'post',
       path: 'content/posts',
       templates: [
         {
@@ -78,12 +81,12 @@ export default defineSchema({
     },
     {
       label: 'Authors',
-      name: 'authors',
+      name: 'author',
       path: 'content/authors',
       templates: [
         {
           label: 'Author',
-          name: 'author',
+          name: 'basicAuthor',
           fields: [
             {
               type: 'text',
@@ -103,9 +106,30 @@ export default defineSchema({
 })
 ```
 
-### `defineSchema`
-
 Be sure this is your default export from this file, we'll validate the schema and build out the GraphQL API with it.
+
+Given the example above, we'd end up with the following GraphQL queries available in our GraphQL schema:
+
+```graphql
+# global queries, these will be present regardless of the shape of your schema:
+getDocument
+getCollection
+getCollections
+# global mutations
+addPendingDocument
+updateDocument
+
+# schema-specific queries.
+getPostDocument
+getPostList
+getAuthorDocument
+getAuthorList
+# schema-specific mutations
+updatePostDocument
+updateAuthorDocument
+```
+
+You can find your generated schema at `/.tina/__generated__/schema.gql` for inspection.
 
 ### `collections`
 
@@ -127,7 +151,7 @@ When you use Tina's GraphQL forms, we know about all of the relationships in you
 
 ### `fields`
 
-For the most part, you can think of `fields` as the backend equivalent to [Tina field plugins](https://tina.io/docs/plugins/fields/). You might notice that we're defining a `type` on each field, rather than a `component`. This is because the backend isn't concerned with `component`s, only the shape of your content. By default we use the built-in Tina fields, to customize your `component` read the [field customization]() instructions.
+For the most part, you can think of `fields` as the backend equivalent to [Tina field plugins](https://tina.io/docs/plugins/fields/). You might notice that we're defining a `type` on each field, rather than a `component`. This is because the backend isn't concerned with `component`s, only the shape of your content. By default we use the built-in Tina fields, to customize your `component` read the [field customization](/docs/tina-cloud/client/#field-customization) instructions.
 
 #### `reference` & `reference-list`
 
@@ -145,13 +169,13 @@ Let's add some content so we can test out the GraphQL server
 mkdir content && mkdir content/authors && touch content/authors/napolean.md
 ```
 
-Now let's  add some content to the author
+Now let's add some content to the author
 
 ```markdown
 ---
 name: Napolean
 avatar: https://images.unsplash.com/photo-1606721977440-13e6c3a3505a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=344&q=80
-_template: author
+_template: basicAuthor
 ---
 ```
 
@@ -179,8 +203,6 @@ When you use Tina's GraphQL forms, we know about all of the relationships in you
 yarn run tina-gql server:start
 ```
 
-Under the hood, this will automatically build your schema and compile it into a GraphQL schema. You'll notice a `__generated__` folder in your `.tina` folder. This should be checked into Git, as we'll need use it when working with Tina Cloud.
-
 #### Query the content
 
 With a GraphQL client, make the following request:
@@ -195,7 +217,7 @@ getPostsDocument(relativePath: "voteForPedro.md") {
       title
       author {
         data {
-          ... on Author_Doc_Data {
+          ... on BasicAuthor_Doc_Data {
             name
             avatar
           }
