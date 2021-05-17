@@ -35,7 +35,7 @@ yarn dev
 
 This command starts the GraphQL server and the Next.js application in development mode. It also regenerates your schema types for TypeScript and GraphQL so changes to your `.tina` config are reflected immediately.
 
-One of the most interesting aspects of the Tina Cloud Content API is that it doesn't actually require anything from the Cloud to work locally. Since Tina is by default a Git-backed CMS, everything can be run from your local filesystem via the CLI. :sunglasses:
+One of the most interesting aspects of the Tina Cloud Content API is that it doesn't actually require anything from the Cloud to work locally. Since Tina is by default a Git-backed CMS, everything can be run from your local filesystem via the CLI. 😎 
 
 This is ideal for development workflows and the API is identical to the one used in the cloud, so once you're ready to deploy your application you won't face any challenges there.
 
