@@ -37,9 +37,9 @@
       "actions": [
         {
           "variant": "orange",
-          "label": "Get Early Access",
+          "label": "Preview Tina Cloud",
           "icon": "arrowRight",
-          "url": "https://tina.io/cloud"
+          "url": "https://auth.tina.io/register"
         }
       ],
       "videoSrc": ""
