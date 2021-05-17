@@ -3,6 +3,7 @@ import Link from 'next/link'
 
 export const CloudDisclaimer = () => (
   <blockquote>
-    Tina Cloud is currently in <Link href="/cloud">alpha</Link>
+    Tina Cloud is currently in alpha. Check it out{' '}
+    <Link href="/cloud">here</Link>
   </blockquote>
 )
