@@ -125,6 +125,6 @@ When it's time to get our editors editing a Tina site on a cloud editing environ
 
 Hopefully this gets you started editing **your Gatsby site with Tina on the cloud.**
 
-We'll continue to detail how to host cloud editing environments on a few different services. You can also sign up for our [Tina Teams Beta](http://tinacms.org/teams) to try out some extended team features!
+We'll continue to detail how to host cloud editing environments on a few different services. You can also sign up for our [Tina Teams Alpha](http://tinacms.org/teams) to try out some extended team features!
 
 If you run into trouble or have any questions, head over to the [Tina Forum](https://community.tinacms.org/) for help. Stoked on TinaCMS? Please ⭐️ us on [Github](https://github.com/tinacms/tinacms) or [Tweet us](https://twitter.com/Tina_cms) 🐦 to show-off your Tina projects.
