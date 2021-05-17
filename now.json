@@ -222,7 +222,11 @@
     },
     {
       "source": "/beta-docs",
-      "destination": "https://tinacms-site-next-git-tina-cloud-docs-tinacms.vercel.app/docs/"
+      "destination": "/docs"
+    },
+    {
+      "source": "/docs/tina-cloud/beta-faq",
+      "destination": "/docs/tina-cloud/alpha-faq"
     }
   ]
 }
