@@ -264,22 +264,6 @@
         ]
       },
       {
-        "title": "Integrations",
-        "id": "nextjs",
-        "items": [
-          {
-            "id": "/docs/integrations/nextjs",
-            "slug": "/docs/integrations/nextjs",
-            "title": "Next.js"
-          },
-          {
-            "id": "/docs/integrations/gatsby",
-            "slug": "/docs/integrations/gatsby",
-            "title": "Gatsby"
-          }
-        ]
-      },
-      {
         "title": "Release Notes",
         "id": "releases",
         "items": [
@@ -338,26 +322,6 @@
             "id": "/packages/next-tinacms-markdown",
             "slug": "/packages/next-tinacms-markdown",
             "title": "next-tinacms-markdown"
-          },
-          {
-            "id": "/packages/gatsby-plugin-tinacms",
-            "slug": "/packages/gatsby-plugin-tinacms",
-            "title": "gatsby-plugin-tinacms"
-          },
-          {
-            "id": "/packages/gatsby-tinacms-git",
-            "slug": "/packages/gatsby-tinacms-git",
-            "title": "gatsby-tinacms-git"
-          },
-          {
-            "id": "/packages/gatsby-tinacms-json",
-            "slug": "/packages/gatsby-tinacms-json",
-            "title": "gatsby-tinacms-json"
-          },
-          {
-            "id": "/packages/gatsby-tinacms-remark",
-            "slug": "/packages/gatsby-tinacms-remark",
-            "title": "gatsby-tinacms-remark"
           }
         ]
       }
