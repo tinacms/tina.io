@@ -71,7 +71,7 @@
           "media": {
             "src": "/img/graphQL.png"
           },
-          "subline": "Tina Cloud Content API provides a GraphQL interface to your repositories' files, bringing data integrity and relationships to your filesystem.\nStore your content in open formats like Markdown and JSON to ease content re-use and migrations."
+          "subline": "Tina Cloud Content API provides a GraphQL interface to your repositories' files, bringing data integrity and relationships to your content files.\nStore your content in open formats like Markdown and JSON to ease content re-use and migrations."
         },
         {
           "_template": "feature",
