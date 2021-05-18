@@ -447,17 +447,23 @@
         "title": "Overview"
       },
       {
-        "id": "/guides#general",
-        "href": "/guides#general",
-        "title": "General",
+        "id": "/guides#tina-cloud",
+        "href": "/guides#tina-cloud",
+        "title": "Tina Cloud",
         "items": [
           {
-            "id": "/guides/general/inline-blocks/overview",
-            "slug": "/guides/general/inline-blocks/overview",
-            "title": "Inline Blocks"
+            "id": "/guides/tina-cloud/starter/overview",
+            "slug": "/guides/tina-cloud/starter/overview",
+            "title": "Tina Cloud Starter"
+          },
+          {
+            "id": "/guides/tina-cloud/existing-site/overview",
+            "slug": "/guides/tina-cloud/existing-site/overview",
+            "title": "Add Tina Cloud to a NextJS site"
           }
         ]
       },
+
       {
         "id": "/guides#nextjs",
         "href": "/guides#nextjs",
@@ -486,31 +492,14 @@
         ]
       },
       {
-        "id": "/guides#gatsby",
-        "href": "/guides#gatsby",
-        "title": "Gatsby",
+        "id": "/guides#experimental",
+        "href": "/guides#experimental",
+        "title": "Experimental",
         "items": [
           {
-            "id": "/guides/gatsby/adding-tina/project-setup",
-            "slug": "/guides/gatsby/adding-tina/project-setup",
-            "title": "Adding Tina"
-          },
-          {
-            "id": "/guides/gatsby/git/installation",
-            "slug": "/guides/gatsby/git/installation",
-            "title": "Git Backend"
-          }
-        ]
-      },
-      {
-        "id": "/guides#tina-cloud",
-        "href": "/guides#tina-cloud",
-        "title": "Tina Cloud",
-        "items": [
-          {
-            "id": "/guides/tina-cloud/existing-site/overview",
-            "slug": "/guides/tina-cloud/existing-site/overview",
-            "title": "Add Tina Cloud to a NextJS site"
+            "id": "/guides/experimental/inline-blocks/overview",
+            "slug": "/guides/experimental/inline-blocks/overview",
+            "title": "Inline Blocks"
           }
         ]
       }
