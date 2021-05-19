@@ -81,7 +81,7 @@ export default defineSchema({
     },
     {
       label: 'Authors',
-      name: 'author',
+      name: 'authors',
       path: 'content/authors',
       templates: [
         {
