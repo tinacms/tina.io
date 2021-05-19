@@ -22,93 +22,93 @@
           {
             "title": "Fields",
             "id": "fields",
-            "slug": "/docs/plugins/fields",
+            "slug": "/docs/fields",
             "items": [
               {
-                "id": "/docs/plugins/fields/text",
-                "slug": "/docs/plugins/fields/text",
+                "id": "/docs/fields/text",
+                "slug": "/docs/fields/text",
                 "title": "Text"
               },
               {
-                "id": "/docs/plugins/fields/textarea",
-                "slug": "/docs/plugins/fields/textarea",
+                "id": "/docs/fields/textarea",
+                "slug": "/docs/fields/textarea",
                 "title": "Text Area"
               },
 
               {
-                "id": "/docs/plugins/fields/number",
-                "slug": "/docs/plugins/fields/number",
+                "id": "/docs/fields/number",
+                "slug": "/docs/fields/number",
                 "title": "Number"
               },
 
               {
-                "id": "/docs/plugins/fields/image",
-                "slug": "/docs/plugins/fields/image",
+                "id": "/docs/fields/image",
+                "slug": "/docs/fields/image",
                 "title": "Image"
               },
               {
-                "id": "/docs/plugins/fields/color",
-                "slug": "/docs/plugins/fields/color",
+                "id": "/docs/fields/color",
+                "slug": "/docs/fields/color",
                 "title": "Color"
               },
               {
-                "id": "/docs/plugins/fields/toggle",
-                "slug": "/docs/plugins/fields/toggle",
+                "id": "/docs/fields/toggle",
+                "slug": "/docs/fields/toggle",
                 "title": "Toggle"
               },
               {
-                "id": "/docs/plugins/fields/radio-group",
-                "slug": "/docs/plugins/fields/radio-group",
+                "id": "/docs/fields/radio-group",
+                "slug": "/docs/fields/radio-group",
                 "title": "Radio Group"
               },
               {
-                "id": "/docs/plugins/fields/select",
-                "slug": "/docs/plugins/fields/select",
+                "id": "/docs/fields/select",
+                "slug": "/docs/fields/select",
                 "title": "Select"
               },
               {
-                "id": "/docs/plugins/fields/tags",
-                "slug": "/docs/plugins/fields/tags",
+                "id": "/docs/fields/tags",
+                "slug": "/docs/fields/tags",
                 "title": "Tags"
               },
               {
-                "id": "/docs/plugins/fields/list",
-                "slug": "/docs/plugins/fields/list",
+                "id": "/docs/fields/list",
+                "slug": "/docs/fields/list",
                 "title": "List"
               },
               {
-                "id": "/docs/plugins/fields/group",
-                "slug": "/docs/plugins/fields/group",
+                "id": "/docs/fields/group",
+                "slug": "/docs/fields/group",
                 "title": "Group"
               },
               {
-                "id": "/docs/plugins/fields/group-list",
-                "slug": "/docs/plugins/fields/group-list",
+                "id": "/docs/fields/group-list",
+                "slug": "/docs/fields/group-list",
                 "title": "Group List"
               },
               {
-                "id": "/docs/plugins/fields/blocks",
-                "slug": "/docs/plugins/fields/blocks",
+                "id": "/docs/fields/blocks",
+                "slug": "/docs/fields/blocks",
                 "title": "Blocks"
               },
               {
-                "id": "/docs/plugins/fields/date",
-                "slug": "/docs/plugins/fields/date",
+                "id": "/docs/fields/date",
+                "slug": "/docs/fields/date",
                 "title": "Date & Time"
               },
               {
-                "id": "/docs/plugins/fields/markdown",
-                "slug": "/docs/plugins/fields/markdown",
+                "id": "/docs/fields/markdown",
+                "slug": "/docs/fields/markdown",
                 "title": "Markdown"
               },
               {
-                "id": "/docs/plugins/fields/html",
-                "slug": "/docs/plugins/fields/html",
+                "id": "/docs/fields/html",
+                "slug": "/docs/fields/html",
                 "title": "HTML"
               },
               {
-                "id": "/docs/plugins/fields/custom-fields",
-                "slug": "/docs/plugins/fields/custom-fields",
+                "id": "/docs/fields/custom-fields",
+                "slug": "/docs/fields/custom-fields",
                 "title": "Custom Fields"
               }
             ]

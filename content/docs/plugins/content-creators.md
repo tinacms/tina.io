@@ -1,9 +1,10 @@
 ---
 title: Content Creator Plugins
-prev: /docs/plugins/fields
+prev: /docs/fields
 next: /docs/plugins/screens
 last_edited: '2021-03-16T16:20:35.632Z'
 ---
+
 The ability to create content is one of the key responsibilities of any CMS. The `content-creator` plugin type is one way Tina lets you add this behaviour.
 
 ![content-creator-plugin-tinacms](/img/content-creator-ex.jpg)
@@ -19,12 +20,12 @@ interface ContentCreatorPlugin<FormShape> {
 }
 ```
 
-| Option | Description |
-| --- | --- |
-| `__type` | The name of the plugin. Always `'content-creator'`. |
-| `name` | The text to be displayed in the "Add Content" menu. |
-| `fields` | An array of fields that populate a modal form. Field values can populate new file data. |
-| `onSubmit` | A function that creates content. Called once the form is submitted. |
+| Option     | Description                                                                             |
+| ---------- | --------------------------------------------------------------------------------------- |
+| `__type`   | The name of the plugin. Always `'content-creator'`.                                     |
+| `name`     | The text to be displayed in the "Add Content" menu.                                     |
+| `fields`   | An array of fields that populate a modal form. Field values can populate new file data. |
+| `onSubmit` | A function that creates content. Called once the form is submitted.                     |
 
 ## Examples
 
@@ -39,8 +40,8 @@ const BlogPostCreatorPlugin = {
       name: 'title',
       component: 'text',
       validation(title) {
-        if (!title) return "Required."
-      }
+        if (!title) return 'Required.'
+      },
     },
     {
       label: 'Date',
@@ -70,6 +71,6 @@ cms.plugins.add(BlogPostCreatorPlugin)
 
 ## Further Reading
 
-* Read more on [creating new files](/guides/gatsby/git/create-new-files) in the **Gatsby-Git workflow** guide
-* Learn how to [register plugins](/docs/plugins#adding-plugins) with the CMS
-* Visit the [Field Plugins](/docs/plugins/fields) docs to learn about how you can customize your form.
+- Read more on [creating new files](/guides/gatsby/git/create-new-files) in the **Gatsby-Git workflow** guide
+- Learn how to [register plugins](/docs/plugins#adding-plugins) with the CMS
+- Visit the [Field Plugins](/docs/plugins/fields) docs to learn about how you can customize your form.
