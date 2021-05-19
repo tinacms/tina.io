@@ -10,110 +10,10 @@
         "slug": "/docs/tinacms"
       },
       {
-        "title": "Getting Started",
-        "id": "getting-started",
+        "title": "Content Management",
+        "id": "/docs/content-management",
         "items": [
-          {
-            "id": "/docs/getting-started/introduction",
-            "slug": "/docs/getting-started/introduction",
-            "title": "Introduction"
-          },
-          {
-            "id": "/docs/getting-started/cms-set-up",
-            "slug": "/docs/getting-started/cms-set-up",
-            "title": "Set Up the CMS"
-          },
-          {
-            "id": "/docs/getting-started/edit-content",
-            "slug": "/docs/getting-started/edit-content",
-            "title": "Edit Content"
-          },
-          {
-            "id": "/docs/getting-started/backends",
-            "slug": "/docs/getting-started/backends",
-            "title": "Backends"
-          },
-          {
-            "id": "/docs/getting-started/faq",
-            "slug": "/docs/getting-started/faq",
-            "title": "FAQ"
-          }
-        ]
-      },
-      {
-        "title": "CMS",
-        "id": "the-cms",
-        "items": [
-          { "id": "/docs/cms", "slug": "/docs/cms", "title": "Overview" }
-        ]
-      },
-      {
-        "title": "User Interface",
-        "id": "user-interface",
-        "items": [
-          {
-            "id": "/docs/ui",
-            "title": "Sidebar & Toolbar",
-            "slug": "/docs/ui"
-          },
-          {
-            "title": "Inline Editing",
-            "id": "inline-editing",
-            "slug": "/docs/ui/inline-editing",
-            "items": [
-              {
-                "id": "/docs/ui/inline-editing/inline-text",
-                "title": "Inline Text",
-                "slug": "/docs/ui/inline-editing/inline-text"
-              },
-              {
-                "id": "/docs/ui/inline-editing/inline-textarea",
-                "title": "Inline Textarea",
-                "slug": "/docs/ui/inline-editing/inline-textarea"
-              },
-              {
-                "id": "/docs/ui/inline-editing/inline-wysiwyg",
-                "title": "Inline Wysiwyg",
-                "slug": "/docs/ui/inline-editing/inline-wysiwyg"
-              },
-              {
-                "id": "/docs/ui/inline-editing/inline-image",
-                "title": "Inline Image",
-                "slug": "/docs/ui/inline-editing/inline-image"
-              },
-              {
-                "id": "/docs/ui/inline-editing/inline-group",
-                "title": "Inline Group",
-                "slug": "/docs/ui/inline-editing/inline-group"
-              },
-              {
-                "id": "/docs/ui/inline-editing/inline-blocks",
-                "title": "Inline Blocks",
-                "slug": "/docs/ui/inline-editing/inline-blocks"
-              }
-            ]
-          },
-          {
-            "id": "/docs/ui/alerts",
-            "title": "Alerts",
-            "slug": "/docs/ui/alerts"
-          },
-          {
-            "id": "/docs/ui/styles",
-            "title": "Custom Styles",
-            "slug": "/docs/ui/styles"
-          }
-        ]
-      },
-      {
-        "id": "plugins",
-        "title": "Plugins",
-        "items": [
-          {
-            "title": "About Plugins",
-            "id": "forms",
-            "slug": "/docs/plugins"
-          },
+          { "id": "/docs/cms", "slug": "/docs/cms", "title": "The CMS" },
           {
             "title": "Forms",
             "id": "forms",
@@ -219,6 +119,55 @@
             "slug": "/docs/plugins/content-creators"
           },
           {
+            "id": "/docs/media",
+            "slug": "/docs/media",
+            "title": "Media"
+          },
+          {
+            "id": "/docs/api",
+            "slug": "/docs/apis",
+            "title": "About APIs"
+          }
+        ]
+      },
+
+      {
+        "title": "User Interface",
+        "id": "user-interface",
+        "items": [
+          {
+            "id": "/docs/ui",
+            "title": "Sidebar & Toolbar",
+            "slug": "/docs/ui"
+          },
+
+          {
+            "id": "/docs/ui/alerts",
+            "title": "Alerts",
+            "slug": "/docs/ui/alerts"
+          },
+          {
+            "id": "/docs/ui/styles",
+            "title": "Custom Styles",
+            "slug": "/docs/ui/styles"
+          }
+        ]
+      },
+      {
+        "title": "Extending Tina",
+        "id": "/docs/extending-tina",
+        "items": [
+          {
+            "id": "/docs/events",
+            "slug": "/docs/events",
+            "title": "Events"
+          },
+          {
+            "title": "Plugins",
+            "id": "forms",
+            "slug": "/docs/plugins"
+          },
+          {
             "title": "Screens",
             "id": "screens",
             "slug": "/docs/plugins/screens"
@@ -227,39 +176,6 @@
             "title": "Toolbar Widgets",
             "id": "toolbar:widget",
             "slug": "/docs/plugins/toolbar-widgets"
-          }
-        ]
-      },
-      {
-        "id": "events",
-        "title": "Events",
-        "items": [
-          {
-            "id": "/docs/events",
-            "slug": "/docs/events",
-            "title": "About Events"
-          }
-        ]
-      },
-      {
-        "title": "Media",
-        "id": "media",
-        "items": [
-          {
-            "id": "/docs/media",
-            "slug": "/docs/media",
-            "title": "About Media"
-          }
-        ]
-      },
-      {
-        "id": "apis",
-        "title": "External APIs",
-        "items": [
-          {
-            "id": "/docs/api",
-            "slug": "/docs/apis",
-            "title": "About APIs"
           }
         ]
       },
