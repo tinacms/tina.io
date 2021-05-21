@@ -41,26 +41,6 @@
       "link": "https://github.com/tinacms/tinacms/tree/master/packages/next-tinacms-markdown"
     },
     {
-      "readme": "https://api.github.com/repos/tinacms/tinacms/contents/packages/gatsby-plugin-tinacms/README.md",
-      "name": "gatsby-plugin-tinacms",
-      "link": "https://github.com/tinacms/tinacms/tree/master/packages/gatsby-plugin-tinacms"
-    },
-    {
-      "readme": "https://api.github.com/repos/tinacms/tinacms/contents/packages/gatsby-tinacms-git/README.md",
-      "name": "gatsby-tinacms-git",
-      "link": "https://github.com/tinacms/tinacms/tree/master/packages/gatsby-tinacms-git"
-    },
-    {
-      "readme": "https://api.github.com/repos/tinacms/tinacms/contents/packages/gatsby-tinacms-json/README.md",
-      "name": "gatsby-tinacms-json",
-      "link": "https://github.com/tinacms/tinacms/tree/master/packages/gatsby-tinacms-json"
-    },
-    {
-      "readme": "https://api.github.com/repos/tinacms/tinacms/contents/packages/gatsby-tinacms-remark/README.md",
-      "name": "gatsby-tinacms-remark",
-      "link": "https://github.com/tinacms/tinacms/tree/master/packages/gatsby-tinacms-remark"
-    },
-    {
       "name": "@tinacms/alerts",
       "link": "https://github.com/tinacms/tinacms/tree/master/packages/%40tinacms/alerts"
     }
