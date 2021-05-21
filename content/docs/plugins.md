@@ -1,7 +1,7 @@
 ---
 title: Plugins
-prev: /docs/cms
-next: /docs/plugins/forms
+prev: /docs/events
+next: /docs/plugins/screens
 consumes:
   - file: /packages/@tinacms/core/src/plugins.ts
     description: Describes Plugin interface
@@ -11,6 +11,7 @@ consumes:
     description: Demonstrates adding plugins to CMS obj
 last_edited: '2020-11-04T21:45:43.714Z'
 ---
+
 **Plugins** are objects used to extend and modify the behavior of the CMS.
 
 All plugins must conform to the **Plugin** interface:
@@ -24,13 +25,13 @@ interface Plugin {
 
 Beyond these properties, a plugin may contain other properties depend on it's `__type`. Here are some of the types of plugins currently available:
 
-| Plugin Type | Description |
-| --- | --- |
-| [`form`](/docs/plugins/forms) | Connect a form to the sidebar & toolbar UIs |
-| [`field`](/docs/plugins/fields) | Simplify the form creation process. |
-| [`content-creator`](/docs/plugins/content-creators) | Add options to the "Add Content" menu. |
-| [`screen`](/docs/plugins/screens) | Components that are rendered in overlays and modals. Accessible from menu. |
-| [`toolbar:widget`](/docs/plugins/toolbar-widgets) | Components that are rendered in the toolbar. |
+| Plugin Type                                         | Description                                                                |
+| --------------------------------------------------- | -------------------------------------------------------------------------- |
+| [`form`](/docs/plugins/forms)                       | Connect a form to the sidebar & toolbar UIs                                |
+| [`field`](/docs/plugins/fields)                     | Simplify the form creation process.                                        |
+| [`content-creator`](/docs/plugins/content-creators) | Add options to the "Add Content" menu.                                     |
+| [`screen`](/docs/plugins/screens)                   | Components that are rendered in overlays and modals. Accessible from menu. |
+| [`toolbar:widget`](/docs/plugins/toolbar-widgets)   | Components that are rendered in the toolbar.                               |
 
 ## Adding Plugins
 
@@ -70,7 +71,7 @@ When adding plugins from inside a React component, the plugin is added when the 
 >
 > ```js
 > import { MyPlugin } from './src/cms/MyPlugin'
-> 
+>
 > export const onClientEntry = () => {
 >   window.tinacms.plugins.add(MyPlugin)
 > }
@@ -139,6 +140,6 @@ export function Hello() {
 
 ## Learn More
 
-* [Dynamic Plugins in TinaCMS](https://tinacms.org/blog/dynamic-plugin-system)
-* [Creating Field Plugins](https://tinacms.org/blog/custom-field-plugins)
-* [What are Screen Plugins?](https://tinacms.org/blog/screen-plugins)
+- [Dynamic Plugins in TinaCMS](https://tinacms.org/blog/dynamic-plugin-system)
+- [Creating Field Plugins](https://tinacms.org/blog/custom-field-plugins)
+- [What are Screen Plugins?](https://tinacms.org/blog/screen-plugins)

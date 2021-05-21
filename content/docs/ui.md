@@ -1,7 +1,7 @@
 ---
-title: Configure the User Interface
-prev:
-next: /docs/ui/inline-editing
+title: User Interface
+prev: '/docs/apis'
+next: '/docs/ui/alerts'
 consumes:
   - file: /packages/react-sidebar/src/sidebar.ts
     details: Shows sidebar interface

@@ -1,7 +1,7 @@
 ---
 title: Events
-prev: /docs/plugins
-next: /docs/media
+prev: /docs/ui/styles
+next: /docs/plugins
 ---
 
 The **Events** feature allows decoupled parts of the CMS to:

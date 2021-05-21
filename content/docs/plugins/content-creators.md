@@ -1,7 +1,7 @@
 ---
 title: Content Creator Plugins
 prev: /docs/fields
-next: /docs/plugins/screens
+next: /docs/media
 last_edited: '2021-03-16T16:20:35.632Z'
 ---
 

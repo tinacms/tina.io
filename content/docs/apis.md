@@ -1,7 +1,7 @@
 ---
 title: External APIs
 prev: /docs/media
-next:
+next: /docs/ui
 consumes:
   - file: /packages/@tinacms/core/src/cms.ts
     description: Demonstrates adding APIs to CMS obj
