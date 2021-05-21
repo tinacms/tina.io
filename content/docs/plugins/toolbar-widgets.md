@@ -1,7 +1,7 @@
 ---
 title: Toolbar Widgets
 prev: /docs/plugins/screens
-next: null
+next: /docs/getting-started/faq
 ---
 
 Widgets can be added to the `cms.toolbar` to give users easy access to certain features.

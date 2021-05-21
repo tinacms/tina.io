@@ -183,13 +183,18 @@
         ]
       },
       {
-        "title": "Release Notes",
-        "id": "releases",
+        "title": "Project",
+        "id": "about-the-project",
         "items": [
+          {
+            "id": "/docs/getting-started/faq",
+            "slug": "/docs/getting-started/faq",
+            "title": "FAQ"
+          },
           {
             "id": "/docs/releases",
             "href": "/docs/releases",
-            "title": "All Releases"
+            "title": "Release Notes"
           }
         ]
       },

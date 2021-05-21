@@ -29,6 +29,9 @@ const hasNestedSlug = (navItems, slug) => {
     if (item.slug && matchActualTarget(item.slug, slug)) {
       return true
     }
+    if (item.href && matchActualTarget(item.href, slug)) {
+      return true
+    }
     if (item.items) {
       if (hasNestedSlug(item.items, slug)) {
         return true

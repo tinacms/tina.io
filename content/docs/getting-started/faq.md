@@ -1,6 +1,6 @@
 ---
 title: Frequently Asked Questions
-prev: /docs/getting-started/backends
+prev: /docs/plugins/toolbar-widgets
 next: null
 ---
 
