@@ -52,6 +52,11 @@ The `EVENT_NAME` is a string that matches a pattern for the event name.
 
 [Checkout the tests for specific examples of how the matching happens.](https://github.com/tinacms/tinacms/blob/master/packages/@tinacms/core/src/events.test.ts)
 
+> **Tina can share the event bus!**
+>
+> Custom API handlers registered to Tina can share its event bus.
+> See the [Using External APIs](/docs/apis/#using-tinas-event-bus) documentation to learn more.
+
 #### Log all Events
 
 ```ts

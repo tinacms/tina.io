@@ -43,3 +43,29 @@ export function Hello() {
   return <button onClick={cms.api.hello.sayHello}>Say Hello</button>
 }
 ```
+
+## Using Tina's Event Bus
+
+When you call `cms.registerApi`, Tina will look for an `EventBus` in your custom API. If you have an `EventBus`-compatible interface registered to the `events` property, you can use it to send and receive [Tina events](/docs/events).
+
+```javascript
+import { TinaCMS, EventBus } from 'tinacms'
+
+class HelloApi {
+  events = new EventBus()
+  sayHello() {
+    this.events.dispatch({
+      type: 'helloapi:sayhello'
+      payload: 'Hello, World!'
+    })
+  }
+}
+
+const cms = new TinaCMS({ enabled: true })
+cms.registerApi('hello', new HelloApi())
+
+cms.events.subscribe('helloapi:sayhello', (event) => {
+  alert(event.payload)
+})
+cms.api.hello.sayHello() // triggers helloapi:sayhello
+```
