@@ -1,6 +1,6 @@
 ---
-title: User Interface
-prev: '/docs/apis'
+title: Sidebar & Toolbar
+prev: '/docs/user-interface'
 next: '/docs/ui/alerts'
 consumes:
   - file: /packages/react-sidebar/src/sidebar.ts

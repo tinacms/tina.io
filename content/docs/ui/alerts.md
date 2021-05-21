@@ -1,6 +1,6 @@
 ---
 title: Alerts
-prev: /docs/ui/inline-editing
+prev: /docs/ui
 next: /docs/ui/styles
 ---
 

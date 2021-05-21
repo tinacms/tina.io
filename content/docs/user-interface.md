@@ -1,5 +1,7 @@
 ---
 title: User Interface
+prev: /docs/apis
+next: /docs/ui
 ---
 
 Tina's content management interface can be controlled in multiple ways.

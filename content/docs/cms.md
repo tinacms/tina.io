@@ -1,6 +1,6 @@
 ---
 title: The CMS
-prev: /docs/tinacms
+prev: /docs/content-management
 next: /docs/forms
 consumes:
   - file: /packages/tinacms/src/tina-cms.ts

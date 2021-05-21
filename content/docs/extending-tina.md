@@ -1,5 +1,7 @@
 ---
 title: Extending Tina
+prev: /docs/ui/styles
+next: /docs/events
 ---
 
 ## Events

@@ -1,6 +1,6 @@
 ---
 title: Events
-prev: /docs/ui/styles
+prev: /docs/extending-tina
 next: /docs/plugins
 ---
 

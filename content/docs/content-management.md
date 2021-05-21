@@ -1,5 +1,7 @@
 ---
 title: Content Management With Tina
+prev: /docs/tinacms
+next: /docs/cms
 ---
 
 Tina's content management APIs are designed to give you an easy, flexible way to control how content is **sourced**, **modified**, and **persisted**.

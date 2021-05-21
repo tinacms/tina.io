@@ -1,7 +1,7 @@
 ---
 title: TinaCMS
 id: '/docs/tinacms'
-next: /docs/cms
+next: /docs/content-management
 ---
 
 Tina is a **toolkit for building visual editing** into your site. By creating a custom editing experience with Tina instead of opting for a conventional CMS, developers can give their teams a contextual, intuitive editing experience without sacrificing code quality.
