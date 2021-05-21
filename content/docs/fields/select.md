@@ -1,7 +1,7 @@
 ---
 title: Select Field
-prev: /docs/plugins/fields/radio-group
-next: /docs/plugins/fields/tags
+prev: /docs/fields/radio-group
+next: /docs/fields/tags
 consumes:
   - file: /packages/@tinacms/fields/src/Select.tsx
     details: Shows select field and Option interfaces
@@ -40,7 +40,7 @@ type Option = {
 
 > This interfaces only shows the keys unique to the select field.
 >
-> Visit the [Field Config](/docs/plugins/fields) docs for a complete list of options.
+> Visit the [Field Config](/docs/fields) docs for a complete list of options.
 
 ## Example #1: Select an Author
 

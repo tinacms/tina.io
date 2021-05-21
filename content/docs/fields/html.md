@@ -1,7 +1,7 @@
 ---
 title: HTML Field
-prev: /docs/plugins/fields/markdown
-next: /docs/plugins/fields/number
+prev: /docs/fields/markdown
+next: /docs/fields/number
 consumes:
   - file: /packages/tinacms/src/plugins/fields/HtmlFieldPlugin.tsx
     details: Shows markdown interface and config options
