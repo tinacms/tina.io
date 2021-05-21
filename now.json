@@ -35,7 +35,8 @@
       "destination": "/docs/fields"
     },
     { "source": "/docs/cms/apis", "destination": "/docs/apis" },
-    { "source": "/docs/cms/ui", "destination": "/docs/ui" },
+    { "source": "/docs/ui", "destination": "/docs/sidebar-toolbar" },
+    { "source": "/docs/cms/ui", "destination": "/docs/sidebar-toolbar" },
     { "source": "/docs/cms/alerts", "destination": "/docs/ui/alerts" },
     { "source": "/docs/cms/styles", "destination": "/docs/ui/styles" },
     { "source": "/docs/cms/events", "destination": "/docs/events" },

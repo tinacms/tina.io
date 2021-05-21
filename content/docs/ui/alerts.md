@@ -1,6 +1,6 @@
 ---
 title: Alerts
-prev: /docs/ui
+prev: /docs/sidebar-toolbar
 next: /docs/ui/styles
 ---
 

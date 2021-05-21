@@ -138,9 +138,9 @@
         "slug": "/docs/user-interface",
         "items": [
           {
-            "id": "/docs/ui",
+            "id": "/docs/sidebar-toolbar",
             "title": "Sidebar & Toolbar",
-            "slug": "/docs/ui"
+            "slug": "/docs/sidebar-toolbar"
           },
 
           {
