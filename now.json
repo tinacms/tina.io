@@ -47,11 +47,27 @@
     { "source": "/docs/concepts/plugins", "destination": "/docs/cms#plugins" },
     {
       "source": "/docs/getting-started/how-tina-works/",
-      "destination": "/docs/getting-started/introduction/"
+      "destination": "/guides/tinacms/getting-started/introduction"
     },
     {
       "source": "/docs/getting-started/overview",
       "destination": "/docs/getting-started/introduction"
+    },
+    {
+      "source": "/docs/getting-started/introduction",
+      "destination": "/guides/tinacms/getting-started/introduction"
+    },
+    {
+      "source": "/docs/getting-started/cms-set-up",
+      "destination": "/guides/tinacms/getting-started/cms-set-up"
+    },
+    {
+      "source": "/docs/getting-started/edit-content",
+      "destination": "/guides/tinacms/getting-started/edit-content"
+    },
+    {
+      "source": "/docs/getting-started/backends",
+      "destination": "/guides/tinacms/getting-started/backends"
     },
     {
       "source": "/docs/inline-editing",
