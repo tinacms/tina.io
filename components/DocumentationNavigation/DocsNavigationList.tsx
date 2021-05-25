@@ -16,7 +16,6 @@ export const NavListContext = createContext({ current: null })
 
 const getCategoryMatch = (navItems, currentPath) => {
   for (let item of navItems) {
-    console.info(item.title)
     if (hasNestedSlug(item.items, currentPath)) {
       return item.category
     }
