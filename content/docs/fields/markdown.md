@@ -1,7 +1,7 @@
 ---
 title: Markdown Field
-prev: /docs/plugins/fields/date
-next: /docs/plugins/fields/html
+prev: /docs/fields/date
+next: /docs/fields/html
 ---
 
 The `markdown` field is a WYSIWYG for editing a Markdown content. This field is typically used for the body of Markdown files.

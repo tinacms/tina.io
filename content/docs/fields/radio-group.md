@@ -1,7 +1,7 @@
 ---
 title: Radio Group Field
-prev: /docs/plugins/fields/toggle
-next: /docs/plugins/fields/select
+prev: /docs/fields/toggle
+next: /docs/fields/select
 consumes:
   - file: /packages/@tinacms/fields/src/RadioGroup.tsx
     details: Shows radio group field and Option interfaces
@@ -56,7 +56,7 @@ type Option = {
 
 > These interfaces only show the keys unique to the radio group field.
 >
-> Visit the [Field Config](/docs/plugins/fields) docs for a complete list of options.
+> Visit the [Field Config](/docs/fields) docs for a complete list of options.
 
 ## Example #1: Select an Rating
 

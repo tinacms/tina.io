@@ -1,9 +1,10 @@
 ---
 title: Field Plugins
-prev: /docs/plugins/forms
+prev: /docs/forms
 next: /docs/plugins/content-creators
 last_edited: '2020-08-05T15:33:06.570Z'
 ---
+
 Fields are added to forms via the `fields` array and create the editing interface of a form.
 
 ## Field Config
@@ -26,39 +27,39 @@ interface FieldConfig {
 }
 ```
 
-| key | description |
-| --- | --- |
-| `name` | Equivalent of an input's `name` attribute. |
+| key         | description                                                                                    |
+| ----------- | ---------------------------------------------------------------------------------------------- |
+| `name`      | Equivalent of an input's `name` attribute.                                                     |
 | `component` | Either a string denoting a field already registered with the CMS, or a custom field component. |
-| `label` | _Optional:_ A label to render above the field input. |
-| `parse` | _Optional:_ Prepare the data for usage in the field component. |
-| `format` | _Optional:_ Prepare the data for saving. |
-| `validate` | _Optional:_ Return undefined when valid. Return a string or an object when there are errors. |
+| `label`     | _Optional:_ A label to render above the field input.                                           |
+| `parse`     | _Optional:_ Prepare the data for usage in the field component.                                 |
+| `format`    | _Optional:_ Prepare the data for saving.                                                       |
+| `validate`  | _Optional:_ Return undefined when valid. Return a string or an object when there are errors.   |
 
 ## Default Field Plugins
 
 These are the default field plugins available through the CMS:
 
-* [Text](/docs/plugins/fields/text)
-* [Textarea](/docs/plugins/fields/textarea)
-* [Number](/docs/plugins/fields/number)
-* [Image](/docs/plugins/fields/image)
-* [Color](/docs/plugins/fields/color) _May be external soon_
-* [Toggle](/docs/plugins/fields/toggle)
-* [Select](/docs/plugins/fields/select)
-* [Tags](/docs/plugins/fields/tags)
-* [List](/docs/plugins/fields/list)
-* [Group](/docs/plugins/fields/group)
-* [Group List](/docs/plugins/fields/group-list)
-* [Blocks](/docs/plugins/fields/blocks)
+- [Text](/docs/plugins/fields/text)
+- [Textarea](/docs/plugins/fields/textarea)
+- [Number](/docs/plugins/fields/number)
+- [Image](/docs/plugins/fields/image)
+- [Color](/docs/plugins/fields/color) _May be external soon_
+- [Toggle](/docs/plugins/fields/toggle)
+- [Select](/docs/plugins/fields/select)
+- [Tags](/docs/plugins/fields/tags)
+- [List](/docs/plugins/fields/list)
+- [Group](/docs/plugins/fields/group)
+- [Group List](/docs/plugins/fields/group-list)
+- [Blocks](/docs/plugins/fields/blocks)
 
 ## External Field Plugins
 
 These are plugins that must be installed through separate packages:
 
-* [Date & Time](/docs/plugins/fields/date)
-* [Markdown](/docs/plugins/fields/markdown)
-* [HTML](/docs/plugins/fields/html)
+- [Date & Time](/docs/plugins/fields/date)
+- [Markdown](/docs/plugins/fields/markdown)
+- [HTML](/docs/plugins/fields/html)
 
 ## Field Definition
 
@@ -83,7 +84,7 @@ const formOptions = {
 
 ### _name_
 
-The `name` property connects the field with the source data by providing the path to that content from the root of the source data. 
+The `name` property connects the field with the source data by providing the path to that content from the root of the source data.
 
 For example, say we had a JSON object:
 
@@ -181,5 +182,5 @@ In the example above, the custom field component isn't being used to edit data, 
 
 ## Additional Reading
 
-* Read these blogs on creating custom [field components](/blog/custom-field-components) and [field plugins](/blog/custom-field-plugins)
-* There are also [fields for Inline Editing](/docs/ui/inline-editing#using-pre-configured-inline-fields)
+- Read these blogs on creating custom [field components](/blog/custom-field-components) and [field plugins](/blog/custom-field-plugins)
+- There are also [fields for Inline Editing](/docs/ui/inline-editing#using-pre-configured-inline-fields)
