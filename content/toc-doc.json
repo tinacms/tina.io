@@ -328,7 +328,18 @@
       {
         "id": "/guides",
         "slug": "/guides",
-        "title": "Overview"
+        "title": "About Guides"
+      },
+      {
+        "id": "/guides#tinacms",
+        "title": "TinaCMS",
+        "items": [
+          {
+            "id": "/guides/tinacms/getting-started/introduction",
+            "slug": "/guides/tinacms/getting-started/introduction",
+            "title": "Getting Started With TinaCMS"
+          }
+        ]
       },
       {
         "id": "/guides#tina-cloud",
