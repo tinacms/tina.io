@@ -22,7 +22,7 @@ In my spare time you will find me Powerlifting, or hanging out with my wife and 
 
 ## Why did I join the team?
 
-I had been releasing crash courses for NextJS on a variety of product offerings including TinaCMS. When I started using Tina, I could just see the unlimited possibilities  and the power behind it. The quote from my video was "Tina is really powerful and I am going to show you only the surface of what it can do." --James Perkins... Are self quotes a thing? I truly meant that.
+I had been releasing crash courses for NextJS on a variety of product offerings including TinaCMS. When I started using Tina, I could just see the unlimited possibilities  and the power behind it. The quote from my video was "Tina is really powerful and I am going to show you only the surface of what it can do." --James Perkins... I truly meant that.
 
 After talking to [Frank](https://twitter.com/FrankTldr/) about their upcoming release of Tina Cloud and then with [Scott](https://twitter.com/scottgallant) about the vision for Tina I was invested. The vision was strong and Tina was already backing that vision, I was ready to sign on the dotted line.
 
