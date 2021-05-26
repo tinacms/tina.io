@@ -2,7 +2,7 @@
 title: 'Meet James Perkins, our new developer advocate'
 date: '2021-05-26T08:45:33-04:00'
 author: James Perkins
-last_edited: '2021-05-26T13:34:16.514Z'
+last_edited: '2021-05-26T13:45:13.626Z'
 ---
 Hey there! My names is James Perkins and I have been at Tina for a week now, so I thought it was important that I introduce myself and tell you what to expect from myself and Tina in the coming months.
 
@@ -15,8 +15,6 @@ Now I've told you the industrial things, let's talk more about myself. I have al
 Fast forward to 2020 and I started creating online content via [YouTube](https://youtube.com/c/learntocodewithjames) and blog posts to provide free education to people interested in learning web development through the Jamstack.
 
 In my spare time you will find me Powerlifting, or hanging out with my wife and two dogs. I love to travel in our RV and can't wait to see some mountains and the ocean again this year, is there anything better than fresh ocean or mountain air?
-
-![Mountain Views](/img/blog/Mountain views.jpeg "Mountain Views from my RV")
 
 ## Why did I join the team?
 
