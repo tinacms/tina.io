@@ -6,6 +6,8 @@ last_edited: '2021-05-26T13:52:37.314Z'
 ---
 Hey there! My names is James Perkins and I have been at Tina for a week now, so I thought it was important that I introduce myself and tell you what to expect from myself and Tina in the coming months.
 
+![James Perkins and Tina](/img/blog/me-and-tina.jpg "Tina and I")
+
 ## Who Am I?
 
 I am a developer who has been in the industry for just over twelve years. I started my journey in the tech space creating Java based applications for a small software company. I have worked at fortune 500 companies and also startups including Plaid and now of course Tina.
