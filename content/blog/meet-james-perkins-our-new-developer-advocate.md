@@ -34,7 +34,7 @@ After talking to [Frank](https://twitter.com/FrankTldr/) about their upcoming re
 
 I will be focusing on integrating Tina into the developer and creator community. I will be writing content both in the form of blog posts and guides to help you get up and running with Tina.
 
-Talking about community, I want to highlight community projects with our team and of course all the developers out there! If you have a site, plugin, video, or post featuring Tina please reach out and tag me and the Tina Twitter account so I can share it with our team, they love seeing things be built with our tech.
+Talking about community, I want to highlight community projects with our team and of course all the developers out there! If you have a site, plugin, video, or post featuring Tina please reach out and tag me and the Tina Twitter account so I can share it with our team, they love seeing things being built with our tech.
 
 I will also be relaunching the [Tina YouTube channel](https://www.youtube.com/channel/UCUvqCjr8Xq_IRMDcuJrqIXA) as a way to show off new features, basic setup and integration and of course guides for both beginners and power users of Tina. I have a really great video in the works already and I am excited to share it with everyone!
 
