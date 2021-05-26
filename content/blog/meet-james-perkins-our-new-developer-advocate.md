@@ -2,7 +2,7 @@
 title: 'Meet James Perkins, our new developer advocate'
 date: '2021-05-26T08:45:33-04:00'
 author: James Perkins
-last_edited: '2021-05-26T12:53:16.629Z'
+last_edited: '2021-05-26T13:34:16.514Z'
 ---
 Hey there! My names is James Perkins and I have been at Tina for a week now, so I thought it was important that I introduce myself and tell you what to expect from myself and Tina in the coming months.
 
@@ -12,21 +12,25 @@ I am a developer who has been in the industry for just over twelve years. I star
 
 Now I've told you the industrial things, let's talk more about myself. I have always wanted to be a teacher and had planned years ago to become a college tutor when I retired. I thought this was one of the only ways to educate people who wanted to learn, this of course was before YouTube became a place where people could go for education.
 
-Fast forward to 2020 and I started creating online content via YouTube and blog posts to provide free education to people interested in learning web development through the Jamstack.
+Fast forward to 2020 and I started creating online content via [YouTube](https://youtube.com/c/learntocodewithjames) and blog posts to provide free education to people interested in learning web development through the Jamstack.
 
-In my spare time you will find me Powerlifting, or hanging out with my wife and two dogs. I love to travel in our RV and can't wait to see some mountains and the ocean again this year, is there anything better than fresh ocean air?
+In my spare time you will find me Powerlifting, or hanging out with my wife and two dogs. I love to travel in our RV and can't wait to see some mountains and the ocean again this year, is there anything better than fresh ocean or mountain air?
+
+![Mountain Views](/img/blog/Mountain views.jpeg "Mountain Views from my RV")
 
 ## Why did I join the team?
 
-I had been releasing crash courses for NextJS on a variety of product offerings including TinaCMS. When I started using Tina, I could just see the unlimited possibilities  and the power behind it. The quote from my video was "Tina is really powerful and I am going to show you only the surface of what it can do." and I truly meant that.
+I had been releasing crash courses for NextJS on a variety of product offerings including TinaCMS. When I started using Tina, I could just see the unlimited possibilities  and the power behind it. The quote from my video was "Tina is really powerful and I am going to show you only the surface of what it can do." --James Perkins... Are self quotes a thing? I truly meant that.
 
-After talking to Frank about their upcoming release of Tina Cloud and then with Scott about the vision for Tina I was invested. The vision was strong and Tina was already backing that vision, I was ready to sign on the dotted line.
+After talking to [Frank](https://twitter.com/FrankTldr/) about their upcoming release of Tina Cloud and then with [Scott](https://twitter.com/scottgallant) about the vision for Tina I was invested. The vision was strong and Tina was already backing that vision, I was ready to sign on the dotted line.
 
 ## What does this mean for Tina?
 
-I will be focusing on integrating Tina into the developer and creator community. I will be writing content both in the form of blog posts and guides to help you get up and running with Tina. Highlighting community built projects that show how Tina can be used.
+I will be focusing on integrating Tina into the developer and creator community. I will be writing content both in the form of blog posts and guides to help you get up and running with Tina.
 
-I will also be relaunching the Tina YouTube channel as a way to show off new features, basic setup and integration and of course guides for both beginners and power users of Tina. I have a really great video in the works already and I am excited to show it to everyone.
+Talking about community, I want to highlight community projects with our team and of course all the developers out there! If you have a site, plugin, video, or post featuring Tina please reach out and tag myself and the Tina Twitter account so I can share it with our team, they love seeing things be built with our tech.
+
+I will also be relaunching the [Tina YouTube channel](https://www.youtube.com/channel/UCUvqCjr8Xq_IRMDcuJrqIXA) as a way to show off new features, basic setup and integration and of course guides for both beginners and power users of Tina. I have a really great video in the works already and I am excited to show it to everyone.
 
 ## How can you keep up to date with Tina?
 
