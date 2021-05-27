@@ -1,5 +1,17 @@
 [
   {
+    "category": "Quick Start Guide",
+    "slug": "/guides/tina-cloud/starter/overview",
+    "description": "Get a website running with Tina Cloud in no time!",
+    "items": [
+      {
+        "id": "/guides/tina-cloud/starter/overview",
+        "slug": "/guides/tina-cloud/starter/overview",
+        "title": "Tina Cloud Starter"
+      }
+    ]
+  },
+  {
     "category": "TinaCMS",
     "slug": "/docs/tinacms",
     "description": "The JavaScript toolkit for building content management interfaces",
