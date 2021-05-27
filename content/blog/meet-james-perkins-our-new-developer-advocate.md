@@ -36,8 +36,8 @@ I will be focusing on integrating Tina into the developer and creator community.
 
 Talking about community, I want to highlight community projects with our team and of course all the developers out there! If you have a site, plugin, video, or post featuring Tina please reach out and tag me and the Tina Twitter account so I can share it with our team, they love seeing things being built with our tech.
 
-I will also be relaunching the [Tina YouTube channel](https://www.youtube.com/channel/UCUvqCjr8Xq_IRMDcuJrqIXA) as a way to show off new features, basic setup and integration and of course guides for both beginners and power users of Tina. I have a really great video in the works already and I am excited to share it with everyone!
+I will also be relaunching the [Tina YouTube channel](https://www.youtube.com/c/TinaCMS) as a way to show off new features, basic setup and integration and of course guides for both beginners and power users of Tina. I have a really great video in the works already and I am excited to share it with everyone!
 
 ## How can you keep up to date with Tina?
 
-Make sure you are following our Twitter account: [@tina_cms](https://twitter.com/tina_cms) and my Twitter account [@james_r_perkins](https://twitter.com/james_r_perkins) to keep up with the latest news from Tina and the Jamstack community. You can also subscribe to the [Tina YouTube Channel](https://www.youtube.com/channel/UCUvqCjr8Xq_IRMDcuJrqIXA) if you are interested in learning how to use Tina and our upcoming features in a video format.
+Make sure you are following our Twitter account: [@tina_cms](https://twitter.com/tina_cms) and my Twitter account [@james_r_perkins](https://twitter.com/james_r_perkins) to keep up with the latest news from Tina and the Jamstack community. You can also subscribe to the [Tina YouTube Channel](https://www.youtube.com/c/TinaCMS) if you are interested in learning how to use Tina and our upcoming features in a video format.
