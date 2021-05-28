@@ -2,7 +2,7 @@
 title: 'Announcement : Tina Cloud is officially in Alpha'
 date: '2021-06-01T20:00:00-04:00'
 author: James Perkins
-last_edited: '2021-05-28T18:46:16.920Z'
+last_edited: '2021-05-28T18:51:25.426Z'
 ---
 The team at Tina is pleased to announced that [Tina Cloud](https://tina.io/cloud/) is officially in Alpha. We have been working incredibly hard behind the scenes to get our vision in the hands of developers and content teams.
 
@@ -28,7 +28,7 @@ Tina cloud is missing a some features which we will be adding in the near future
 
 ## How can I get started?
 
-The first thing you will want to do is signup for [Tina Cloud](https://auth.tina.io/register), once you have signed up the Tina team has created a few ways to get started with Tina Cloud and get up and running in minutes.
+The first thing you will want to do is signup for [Tina Cloud](https://auth.tina.io/register), once you have signed up for the Alpha, the Tina team has created a few ways to get started with Tina Cloud and get up and running in minutes.
 
 * [Tina Cloud Starter](): A basic implementation of Tina Cloud that allows you to get up and running in a few minutes.
 * [Add Tina Cloud to an existing site](https://tina.io/guides/tina-cloud/existing-site/overview/) - We provide a guide to show you have to take the NextJS starter and add Tina Cloud.
