@@ -1,10 +1,9 @@
 ---
 title: Install & Set-up
 ---
+{{ WarningCallout text="**Note:** Building with Tina and Gatsby currently requires that you run a development server for content-editing. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction."}}
 
 This guide will show you how to set up a Git-based backend on your Gatsby site. It will also cover creating forms to edit Markdown and/or JSON data files with changes tracked in Git.
-
-> **Note:** Building a CMS with Gatsby requires that you run a development server for content-editing. You can use a service like [Gatsby Cloud](/blog/using-tinacms-on-gatsby-cloud) or you can [run your own server](https://levelup.gitconnected.com/provision-setup-and-secure-a-tinacms-cloud-editor-on-aws-e96b0e060e7c).
 
 ## Prerequisites
 

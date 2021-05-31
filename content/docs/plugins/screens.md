@@ -121,7 +121,7 @@ export default function Page() {
 
 ```jsx
 import { useFormScreenPlugin } from 'tinacms'
-import { useJsonForm } from 'gatsby-tinacms-json'
+import { useJsonForm } from 'next-tinacms-json'
 
 function Layout(props) {
   // Create the form
@@ -140,7 +140,7 @@ You can also optionally pass an icon and a layout to `useFormScreenPlugin`. If t
 
 ```jsx
 import { useFormScreenPlugin } from 'tinacms'
-import { useJsonForm } from 'gatsby-tinacms-json'
+import { useJsonForm } from 'next-tinacms-json'
 
 function Layout(props) {
   // Create the form
@@ -154,5 +154,3 @@ function Layout(props) {
   return <h1>{data.firstName}</h1>
 }
 ```
-
-## Further Readi

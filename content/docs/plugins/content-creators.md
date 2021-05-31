@@ -71,6 +71,5 @@ cms.plugins.add(BlogPostCreatorPlugin)
 
 ## Further Reading
 
-- Read more on [creating new files](/guides/gatsby/git/create-new-files) in the **Gatsby-Git workflow** guide
 - Learn how to [register plugins](/docs/plugins#adding-plugins) with the CMS
 - Visit the [Field Plugins](/docs/plugins/fields) docs to learn about how you can customize your form.

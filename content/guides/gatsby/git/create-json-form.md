@@ -1,6 +1,7 @@
 ---
 title: Creating JSON Forms
 ---
+{{ WarningCallout text="**Note:** Building with Tina and Gatsby currently requires that you run a development server for content-editing. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction."}}
 
 There are [two approaches](https://github.com/tinacms/tinacms/tree/master/packages/gatsby-tinacms-json) to registering JSON forms with Tina. In the example below, we will cover how to work with the `useJsonForm` hook.
 
