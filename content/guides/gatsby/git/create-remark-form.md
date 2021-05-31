@@ -1,6 +1,7 @@
 ---
 title: Creating Remark Forms
 ---
+{{ WarningCallout text="**Note:** Building with Tina and Gatsby currently requires that you run a development server for content-editing. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction."}}
 
 To use Markdown in your Gatsby site, you should already have the `gatsby-transformer-remark` plugin set up. This plugin uses [_Remark_](https://remark.js.org/) to process Markdown.
 
