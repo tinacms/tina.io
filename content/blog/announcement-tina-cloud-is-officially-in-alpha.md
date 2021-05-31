@@ -6,9 +6,13 @@ last_edited: '2021-05-28T18:51:25.426Z'
 ---
 The team at Tina is pleased to announced that [Tina Cloud](https://tina.io/cloud/) is officially in Alpha. We have been working incredibly hard behind the scenes to get our vision in the hands of developers and content teams.
 
-Tina Cloud brings the power of Tina's open-source content editor with a GraphQL API that allows you to interact with your Markdown files stored in your repository.
+Tina Cloud brings the power of Tina's open-source content editor with a GraphQL API that allows you to interact with your Markdown files stored in your repository. Also, with Tina Cloud you can allow any team member to edit content — even if they don’t have a GitHub account.
 
-> Scott should talk a bit about the vision of Tina here (how did we get here from there)
+When we [launched TinaCMS](https://www.youtube.com/watch?v=iPDCmbaEF0Y), it was simply an open-source Javascript UI for editing your site, visually. 
+
+![Real-time editing of a Next.js + Tailwind CSS site with Tina’s sidebar.](https://res.cloudinary.com/forestry-demo/image/upload/v1619023278/tina-cms-visual-editing.gif 'Real-time editing of a Next.js + Tailwind CSS site with Tina’s sidebar.')
+
+At that time, TinaCMS was just a 3-month-old, open-source project and we relied on developers to roll their own solution for user-management, authentication, roles, content storage, and more. But we quickly learned that developers need more out-of-the box to get their teams successful.  With Tina Cloud, we're staying true to our vision of Git-backed content management, but with a batteries-included experience. 
 
 ## What to Expect with the Tina Cloud Alpha?
 
