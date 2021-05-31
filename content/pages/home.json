@@ -68,7 +68,7 @@
           "headline": "Visual Editing",
           "subline": "Most CMSs feel like a GUI on a database. Tina gives your team a contextual, intuitive experience.",
           "media": {
-            "src": "/img/visual-editing.gif"
+            "src": "/img/edit-alongside-content.gif"
           }
         },
         {
@@ -76,7 +76,7 @@
           "headline": "Your Design System & Components",
           "subline": "Allow your team to pick from your custom, predefined components to build pages.  Maintain a simpler codebase that offers more versatility.",
           "media": {
-            "src": "/img/design-system.png"
+            "src": "/img/your-blocks.gif"
           }
         },
         {
