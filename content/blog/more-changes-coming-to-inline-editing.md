@@ -4,6 +4,8 @@ date: '2021-01-13T10:16:45-05:00'
 author: DJ
 last_edited: '2021-01-13T15:45:05.411Z'
 ---
+> **Update:** Inline editing is evolving and the current version is considered experimental, read more about [the evolution of inline editing](/blog/evolution-of-inline-editing/).
+
 It was around six months ago that we last dug deep into Tina's inline editing experience. At that time, we introduced new features and improved the UI of inline editing. Since then, there have been a few pain points we've run into from time to time.
 
 Building is inherently exploratory, and now that we've established some solid idioms for _what_ inline editing should offer, we can step back and be more thoughtful about _how_ we accomplish those things.

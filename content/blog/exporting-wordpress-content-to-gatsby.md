@@ -6,6 +6,7 @@ author: Mitch MacKenzie
 next: /blog/custom-field-components
 prev: /blog/three-ways-to-edit-md
 ---
+> **Update:** The examples in this post reference an outdated Gatsby implementation. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction.
 
 Say hello to the [WordPress to Gatsby Markdown Exporter](https://github.com/tinacms/wp-gatsby-markdown-exporter)! It's a WordPress plugin to export posts, pages, and other content from WordPress to Markdown.
 
