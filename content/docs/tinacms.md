@@ -37,9 +37,9 @@ Tina gives you the tools you need to manage content from the data source of your
 - **Editing Content:** [Creating Forms](/docs/plugins/forms), [Fields](/docs/plugins/fields), [Custom Fields](/docs/plugins/fields/custom-fields)
 - **Creating Content:** Using [Content Creators](/docs/plugins/content-creators)
 - **Deleting Content:** Using Form Actions. _(Coming Soon)_
-- **Media Management:** [Media Stores](/docs/media 'Tina Media Store'), [Image Fields](/docs/plugins/fields/image 'Image Field Plugin'), [Inline Images](/docs/ui/inline-editing/inline-image 'Inline Images')
+- **Media Management:** [Media Stores](/docs/media 'Tina Media Store'), [Image Fields](/docs/plugins/fields/image 'Image Field Plugin')
 - **Custom Fields:** [How to Make a Custom Field Component](/blog/custom-field-components)
-- **Experimental Inline Editing:** [Inline Editing](/docs/ui/inline-editing), [Working with Inline Blocks](/guides//general/inline-blocks/overview)
+- **Experimental Inline Editing:** [Inline Editing](/docs/ui/inline-editing), [Working with Inline Blocks](/guides//general/inline-blocks/overview), [Inline Images](/docs/ui/inline-editing/inline-image 'Inline Images')
 
 
 ## Integrating with React Frameworks

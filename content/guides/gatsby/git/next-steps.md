@@ -1,6 +1,7 @@
 ---
 title: Next Steps
 ---
+> **Note:** Building with Tina and Gatsby currently requires that you run a development server for content-editing. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction.
 
 This guide should give you a basic idea of how to set up Tina with a Git backend on your Gatsby sites. Some next steps to explore could look like:
 
