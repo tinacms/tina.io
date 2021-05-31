@@ -16,15 +16,6 @@ last_edited: '2020-09-10T18:49:43.520Z'
 - Expose your content to mutation through user edits
 - Process and persist the changes to your content
 
-> **Use Form Helpers to Get Started Faster**
->
-> This document explains how to set up forms in any React project. If you're using Gatsby or Next.js, we have helper packages that streamline this process for specific workflows:
->
-> - [Editing Markdown Files with Gatsby](/guides/gatsby/git/create-remark-form)
-> - [Editing JSON Files with Gatsby](/guides/gatsby/git/create-json-form)
-> - [Editing local Markdown Files via Git with Next.js](/packages/next-tinacms-markdown)
-> - [Editing local JSON Files via Git with Next.js](/guides/nextjs/git/creating-git-forms)
-
 The recommended way to create forms with Tina is to use the form hooks. These are explained in detail later on in this document, but let's start with a high-level overview of how form hooks are used.
 
 When using form hooks, they should be called inside a **Page** component; that is, the component that takes your content and renders a page from it. In the following contrived example, we have a Page component that receives its content in the component's props, including a `title` and some `markdownContent`:
@@ -210,7 +201,7 @@ For general page forms, use the `usePlugin` hook.
 
 ```jsx
 import { usePlugin } from 'tinacms'
-import { useJsonForm } from 'gatsby-tinacms-json'
+import { useJsonForm } from 'next-tinacms-json'
 
 function BlogPostTemplate(props) {
   // Create the form
@@ -229,7 +220,7 @@ function BlogPostTemplate(props) {
 
 ## Form Helpers
 
-The three hooks described thus far are the basic interface for creating forms, and they aim to support a broad set of use cases. For specific use cases, we've created some simplified interfaces for quickly setting up forms depending on the backend. Take a look at the integration packages for [Next.js](/docs/integrations/nextjs#packages) and [Gatsby](/docs/integrations/gatsby#packages) to learn more.
+The three hooks described thus far are the basic interface for creating forms, and they aim to support a broad set of use cases. For specific use cases, we've created some simplified interfaces for quickly setting up forms depending on the backend. Take a look at the integration packages for [Next.js](/docs/integrations/nextjs#packages) to learn more.
 
 ## Customizing Form Buttons
 
