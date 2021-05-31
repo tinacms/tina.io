@@ -3,7 +3,7 @@ title: Creating Forms
 last_edited: '2020-10-16T18:55:27.398Z'
 ---
 
-> **Note:** Building with Tina and Gatsby currently requires that you run a development server for content-editing. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction.
+{{ WarningCallout text="**Note:** Building with Tina and Gatsby currently requires that you run a development server for content-editing. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction."}}
 
 After adding `gatsby-plugin-tinacms` to our site we can create forms by calling the `useForm` hook inside our `BlogPostTemplate` component.
 

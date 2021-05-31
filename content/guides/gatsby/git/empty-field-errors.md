@@ -2,7 +2,7 @@
 title: Avoiding Errors Caused by Empty Fields
 ---
 
-> **Note:** Building with Tina and Gatsby currently requires that you run a development server for content-editing. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction.
+{{ WarningCallout text="**Note:** Building with Tina and Gatsby currently requires that you run a development server for content-editing. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction."}}
 
 If a value is empty from a source file, for example an empty string, Tina will delete the entire key-value pair from the file. This will cause Gatsby to throw a GraphQL error, since it's trying to query a field that doesn't exist. If you're editing in Tina and you completely delete the text from a field, you may see this error.
 

@@ -2,7 +2,7 @@
 title: Next Steps
 ---
 
-> **Note:** Building with Tina and Gatsby currently requires that you run a development server for content-editing. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction.
+{{ WarningCallout text="**Note:** Building with Tina and Gatsby currently requires that you run a development server for content-editing. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction."}}
 
 At this point, we've bootstrapped Tina into the Gatsby blog starter. We were able to do so by making a few small modifications:
 

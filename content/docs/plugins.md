@@ -65,7 +65,7 @@ When adding plugins from inside a React component, the plugin is added when the 
 
 > #### Adding Plugins in Gatsby
 >
-> **Note:** Building with Tina and Gatsby currently requires that you run a development server for content-editing. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction.
+> {{ WarningCallout text="**Note:** Building with Tina and Gatsby currently requires that you run a development server for content-editing. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction."}}
 >
 > Another way to add TinaCMS plugins when using Gatsby is via `onClientEntry` function in `gatsby-browser.js`. The package `gatsby-plugin-tinacms` attaches the cms to the window it can be accessed from this function.
 >

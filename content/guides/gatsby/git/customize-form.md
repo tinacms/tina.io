@@ -1,7 +1,7 @@
 ---
 title: Customizing Forms
 ---
-> **Note:** Building with Tina and Gatsby currently requires that you run a development server for content-editing. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction.
+{{ WarningCallout text="**Note:** Building with Tina and Gatsby currently requires that you run a development server for content-editing. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction."}}
 
 With a [Form](/docs/plugins/forms) created, you can now edit your data files in the Tina sidebar. Content changes are written to the files in real time. Hitting `Save` will commit those changes to your repository.
 

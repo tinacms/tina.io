@@ -2,7 +2,7 @@
 title: Configure Content Creation
 ---
 
-> **Note:** Building with Tina and Gatsby currently requires that you run a development server for content-editing. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction.
+{{ WarningCallout text="**Note:** Building with Tina and Gatsby currently requires that you run a development server for content-editing. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction."}}
 
 When creating new files, you may want to populate those files with default data, or have the user input data to help configure how that file is created.
 

@@ -1,7 +1,7 @@
 ---
 title: Creating New Files
 ---
-> **Note:** Building with Tina and Gatsby currently requires that you run a development server for content-editing. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction.
+{{ WarningCallout text="**Note:** Building with Tina and Gatsby currently requires that you run a development server for content-editing. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction."}}
 
 An integral aspect of content management is the ability to create new content. To create new content files with Tina, you will need to configure and register [`content-creator` plugins](/docs/plugins/content-creators) with the CMS.
 

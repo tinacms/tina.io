@@ -1,7 +1,7 @@
 ---
 title: Deleting Files
 ---
-> **Note:** Building with Tina and Gatsby currently requires that you run a development server for content-editing. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction.
+{{ WarningCallout text="**Note:** Building with Tina and Gatsby currently requires that you run a development server for content-editing. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction."}}
 
 When you need to provide the option of deleting files in a Gatsby site, the config is much simpler. Instead of adding a `creator` plugin to the sidebar, all we need to do is pass a _delete action_ to the form options object and the 'action' will be added to the sidebar.
 

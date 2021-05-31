@@ -1,7 +1,7 @@
 ---
 title: Install & Set-up
 ---
-> **Note:** Building with Tina and Gatsby currently requires that you run a development server for content-editing. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction.
+{{ WarningCallout text="**Note:** Building with Tina and Gatsby currently requires that you run a development server for content-editing. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction."}}
 
 This guide will show you how to set up a Git-based backend on your Gatsby site. It will also cover creating forms to edit Markdown and/or JSON data files with changes tracked in Git.
 
