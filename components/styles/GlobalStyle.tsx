@@ -72,6 +72,7 @@ const CssReset = css`
   }
 `
 
+// @ts-ignore
 export const GlobalStyle = React.memo(createGlobalStyle`
   ${CssReset}
 
@@ -111,6 +112,9 @@ export const GlobalStyle = React.memo(createGlobalStyle`
     --color-light-dark: #E9E9EC;
     --color-grey: #595959;
     --color-grey-dark: #404040;
+    --color-warning-light: #FFFBEB;
+    --color-warning: #FEF3C7;
+    --color-warning-dark: #FDE68A;
 
     /* Layout */
     --breakpoint-small: 400px;
