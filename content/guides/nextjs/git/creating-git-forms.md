@@ -5,6 +5,8 @@ consumes:
     details: Demonstrates using useJsonForm on a Next.js site
 ---
 
+> **Note:** This guide is outdated. We recommend following the [Add Tina Cloud to a Next.js site](/guides/tina-cloud/existing-site/overview/) guide or the [GitHub backend](/guides/nextjs/github/initial-setup/) guide instead.
+
 Let's imagine we have a Page component in our NextJS app using the dynamic route of `pages/[slug].js`. This page will get its content from a corresponding JSON file located at `posts/[slug].json`. Thus, when you visit `/posts/hello-world`, it will display the contents of `/posts/hello-world.json`. We can set up a very simple version of this with the following code:
 
 **/pages/\[slug].js**
