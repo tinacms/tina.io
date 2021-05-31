@@ -3,7 +3,7 @@ id: /docs/integrations/gatsby
 title: Gatsby Integration
 ---
 
-> **Note:** Building with Tina and Gatsby currently requires that you run a development server for content-editing. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction.
+{{ WarningCallout text="Building with Tina and Gatsby currently requires that you run a development server for content-editing. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction." }}
 
 Gatsby is a popular framework for building static websites using React. This page provides lots of links to different guides, blogs, and packages, that you might find useful when using Tina to build a CMS with Gatsby.
 
