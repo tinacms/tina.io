@@ -3,6 +3,8 @@ title: Getting Started
 last_edited: '2020-08-18T18:00:32.970Z'
 ---
 
+{{ WarningCallout text="**Note:** This guide is outdated. We recommend following the [Add Tina Cloud to a Next.js site](/guides/tina-cloud/existing-site/overview/) guide or the [GitHub backend](/guides/nextjs/github/initial-setup/) guide instead."}}
+
 This guide will show you how to set up **Git-based content** editing with Tina & Next.js. With a Git-based approach, changes made to content in Tina's editor are immediately written back to their local Markdown or JSON source files. Updated content files can then by 'saved' via commit and pushed to an origin Git repository.
 
 Building off the _[Adding Tina to a Next.js Site](/guides/nextjs/adding-tina/overview)_ guide, this guide assumes you have a basic understanding of Tina's fundamental building blocks. Below is a **recap of the initial steps** needed to set Tina up on a Next.js site.
