@@ -4,7 +4,7 @@ title: Next.js Integration
 next:
 ---
 
-NextJS is a flexible React framework and there are many different ways to build with it.
+Next.js is a flexible React framework and there are many different ways to build with it.
 
 <div class="callout">
 <img className="learnImage" src="../../../img/tina-laptop.png" alt="" />
