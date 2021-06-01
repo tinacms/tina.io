@@ -45,3 +45,12 @@ We have opened a few channels for you to be able to reach out and provide us wit
 * We can help you at [support@tina.io](mailto:support@tina.io). Email us if you would like to schedule a chat!
 * Chat with us from your Tina Cloud dashboard (there's a chat widget at the bottom of the screen on the left side).
 * Lastly you can use the [documentation](https://tina.io/docs/tina-cloud/) that we wrote that covers Tina Cloud implementations.
+
+## What about pricing?
+
+We are still deciding out what we believe will be fair pricing for people who decided to use Tina Cloud. During the Alpha, Tina Cloud will be at no cost for small teams and we will contact you if we believe your use case may eventually fit within our post-beta paid plans.
+
+## Final thoughts 
+The whole team is truely excited to be annoucing that we are in Alpha and we will hope you will check it out and tell us what you think.
+
+ If you want to keep up to date with goings on at Tina make sure to follow us on our Twitter account: [@tina_cms](https://twitter.com/tina_cms) and my Twitter account [@james_r_perkins](https://twitter.com/james_r_perkins). We will be annoucing improvements, new features, community built projects and more during our Alpha! 
