@@ -81,8 +81,8 @@
         },
         {
           "_template": "feature",
-          "headline": "Git for the Whole Team",
-          "subline": "Tina supports content stored in Git. Give the benefits of branching and version-control to the whole team.",
+          "headline": "Content Backed by Git",
+          "subline": "Tina supports content stored in Git. Give the benefits of version-control to the whole team.",
           "media": {
             "src": "/img/github-plugin.png"
           }
