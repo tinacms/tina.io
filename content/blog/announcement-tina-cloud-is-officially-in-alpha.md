@@ -2,7 +2,7 @@
 title: Tina Cloud is in public Alpha
 date: '2021-06-01T20:00:00-04:00'
 author: James Perkins
-last_edited: '2021-06-01T13:09:59.131Z'
+last_edited: '2021-06-01T13:25:35.192Z'
 ---
 The team at Tina is pleased to announce that [Tina Cloud](/cloud/) is officially in public Alpha. Everyone is encouraged to register a free account on our headless GitHub-backed CMS and start committing. We have been working incredibly hard behind the scenes to get our vision in the hands of developers and content teams.
 
@@ -12,13 +12,13 @@ When we [launched TinaCMS](https://www.youtube.com/watch?v=iPDCmbaEF0Y), it was 
 
 ![Real-time editing of a Next.js + Tailwind CSS site with Tina’s sidebar.](https://res.cloudinary.com/forestry-demo/image/upload/v1619023278/tina-cms-visual-editing.gif "Real-time editing of a Next.js + Tailwind CSS site with Tina’s sidebar.")
 
-At that time, TinaCMS was just a 3-month-old, open-source project and we relied on developers to roll their own solution for user management, authentication, roles, content storage, and more. But we quickly learned that developers need more out-of-the-box to get their teams successful.  With Tina Cloud, we're staying true to our vision of Git-backed content management, but with a batteries-included experience.
+At that time, TinaCMS was a 3-month-old, open-source project and we relied on developers to roll their own solution for user management, authentication, roles, content storage, and more. But we quickly learned that developers need more out-of-the-box to get their teams successful.  With Tina Cloud, we're staying true to our vision of **Git-backed content management**, but with a batteries-included experience.
 
 ## What to Expect with the Tina Cloud Alpha?
 
-Tina cloud is still being actively developed, and is in a place we believe you can have a great experience with it. You may run into issues we didn't run into yet or be required to update to the latest version because we have improved our API.
+Tina cloud is still being actively developed, and is in a place we believe you can have a great experience with it. You may run into issues we didn't encounter yet or be required to update to the latest version because we have improved our API.
 
-Tina cloud is missing some features which we will be adding in the near future:
+Tina cloud isn't complete yet, some key features  are currently being shaped up:
 
 * Media Management Solution
 * Multi-branch workflows
@@ -26,29 +26,30 @@ Tina cloud is missing some features which we will be adding in the near future:
 
 ## What tech stack should be used with Tina Cloud
 
-* [**Next**](https://nextjs.org/)**.js**: Next.js is a perfect match for our product and is the default choice for everyone at the company.
-* [**GitHub**](https://github.com):  GitHub is required as it is the only Git provider we support on Tina Cloud currently, in the future we hope to bring on others.
-* **Static, file-based builds**: When you go to build our Tina Cloud product collects your filesystem content, in the future, you will be able to fetch data from our cloud API during build times.
+* **Next.js**: [Next.js is a perfect match for Tina](/blog/tina-cloud-and-nextjs-the-perfect-match/) and is the default choice for our team.
+* **GitHub**:  GitHub is required as it is the only Git provider we support on Tina Cloud currently. Let us know if you want us to support other Git providers.
+* **Static, file-based builds**: When you go to build our Tina Cloud product collects your filesystem content, in the future, you will be able to fetch data from our Cloud API during build times.
 
 ## How can I get started?
 
-The first thing you will want to do is signup for [Tina Cloud](https://auth.tina.io/register), once you have signed up for the Alpha, the Tina team has created a few ways to get started with Tina Cloud and get up and running in minutes.
+The first thing to do is to [signup for Tina Cloud](https://auth.tina.io/register), once you're in, we have a few ways for you to get started and get up and running in minutes.
 
-* [Tina Cloud Starter](): A basic implementation of Tina Cloud that allows you to get up and running in a few minutes.
-* [Add Tina Cloud to an existing site](https://tina.io/guides/tina-cloud/existing-site/overview/) - We provide a guide to show you have to take the Next.js starter and add Tina Cloud.
+* [Tina Cloud Starter](https://github.com/tinacms/tina-cloud-starter): A basic implementation of Tina Cloud aimed at getting your up and running in a few minutes.
+* [Tina Cloud Next.js blog starter](/guides/tina-cloud/existing-site/overview/) - A guide to add Tina Cloud on top of the default Next.js blog starter and work directly through our CMS.
 
 ## Where can I give feedback or get help?
 
-We have opened a few channels for you to be able to reach out and provide us with feedback or get help with any challenges you may have.
+We have a few channels open for you to reach out, provide feedback or get help with any challenges you may have.
 
-* Connect with us on [Discord](https://discord.gg/6RrAXJws).
-* We can help you at [support@tina.io](mailto:support@tina.io). Email us if you would like to schedule a chat!
-* Chat with us from your Tina Cloud dashboard (there's a chat widget at the bottom of the screen on the left side).
-* Dig into the [documentation](https://tina.io/docs/tina-cloud/) that covers Tina Cloud implementations.
+* Dig into the new [Tina Cloud documentation](/docs/tina-cloud/) that covers implementations.
+* [Join our Discord](https://discord.gg/6RrAXJws).
+* [Email us](mailto:support@tina.io) if would like to schedule a call with our team and share more about your context.
+* Get support through your Tina Cloud dashboard (there's a chat widget at the bottom of the screen on the left side).
+
 
 ## What about pricing?
 
-We are still deciding out what we believe will be fair pricing for people who decided to use Tina Cloud. During the Alpha, Tina Cloud will be at no cost for small teams and we will contact you if we believe your use case may eventually fit within our post-beta paid plans.
+We are still deciding out what we believe will be fair pricing for people who decided to use Tina Cloud. During the Alpha, **Tina Cloud is at no cost for small teams** and we will contact you if we believe your use case may eventually fit within our post-beta paid plans.
 
 ## Please reach out
 
