@@ -36,7 +36,11 @@ The first thing to do is to [signup for Tina Cloud](https://auth.tina.io/registe
 
 * [Tina Cloud Starter](https://github.com/tinacms/tina-cloud-starter): A basic implementation of Tina Cloud aimed at getting your up and running in a few minutes.
 * [Tina Cloud Next.js blog starter](/guides/tina-cloud/existing-site/overview/) - A guide to add Tina Cloud on top of the default Next.js blog starter and work directly through our CMS.
-* [Getting Started with Tina Cloud in under 10 Minutes](https://youtu.be/Y-fG7qzoHKw) - A video guide to get started with Tina Cloud using our Cloud starter.
+
+
+You can also check out the video I created on getting started with Tina Cloud in under 10 minutes, if you gives you an overview of our Tina Cloud starter and gives you some tips to get started.
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Y-fG7qzoHKw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Where can I give feedback or get help?
 
