@@ -62,7 +62,7 @@
           "headline": "Move Faster With Tina Cloud",
           "subline": "Visual editing + Git storage allows you to ship content faster with the safety of version-control.",
           "media": {
-            "src": "/img/visual-editing.gif"
+            "src": "/img/edit-alongside-content.gif"
           }
         },
         {
@@ -79,14 +79,6 @@
           "subline": "Tina promotes a document-oriented approach to content models. This means repeatable or nested structures like blocks can be stored with the page’s complete data, resulting in more straightforward content queries and operations.",
           "media": {
             "src": "/img/schema.jpg"
-          }
-        },
-        {
-          "_template": "feature",
-          "headline": "Approve Content Before it Goes Live",
-          "subline": "Content approval workflows come baked into Tina. Concepts from Git are made intuitive for the whole team.",
-          "media": {
-            "src": "/img/github-plugin.png"
           }
         }
       ]
