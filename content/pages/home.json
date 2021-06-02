@@ -66,7 +66,7 @@
         {
           "_template": "feature",
           "headline": "Built for the Jamstack",
-          "subline": "Tina is designed for Next.js sites but we plan to support other frameworks.",
+          "subline": "Tina is extensible by design, and already supports React and Next.js based websites.",
           "media": {
             "src": "/img/jamstack.png"
           }
