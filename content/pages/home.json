@@ -37,15 +37,15 @@
       "actions": [
         {
           "variant": "orange",
-          "label": "Get Started",
+          "label": "Quick Start",
           "icon": "arrowRight",
-          "url": "https://tina.io/guides/tina-cloud/existing-site/overview"
+          "url": "https://tina.io/guides/tina-cloud/starter/overview/"
         },
         {
           "variant": "ghost",
           "label": "Try Demo",
           "icon": "",
-          "url": "https://tina-demo-two.vercel.app/"
+          "url": "https://tina-tailwind-sidebar-demo-git-main-tinacms.vercel.app/"
         }
       ],
       "videoSrc": "v1571425758/tina-hero-demo-v2"
