@@ -1,7 +1,9 @@
 import { DocsLayout } from 'components/layout'
 import { NextSeo } from 'next-seo'
 import Link from 'next/link'
+import { release } from 'os'
 import React from 'react'
+import ReactMarkdown from 'react-markdown'
 import styled from 'styled-components'
 import { getReleases } from 'utils/docs/getReleases'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
@@ -10,6 +12,8 @@ import { openGraphImage } from 'utils/open-graph-image'
 export default function ReleaseIndex({ releases, docsNav }) {
   const title = 'Release Notes'
   const excerpt = 'View the details of the latest TinaCMS release'
+
+  const [latestRelease, ...previousReleases] = releases
 
   return (
     <>
@@ -30,9 +34,19 @@ export default function ReleaseIndex({ releases, docsNav }) {
             <hr />
           </DocGridHeader>
           <DocGridContent>
+            <h2>Latest Release</h2>
+            <blockquote>
+              <ReactMarkdown>{latestRelease.body}</ReactMarkdown>
+              <Link href={latestRelease.slug}>Permalink</Link>
+              <br />
+              <a href={latestRelease.html_url} target="_blank">
+                View on GitHub
+              </a>
+            </blockquote>
+            <h2>Previous Releases</h2>
             <ReleaseList>
               <ul>
-                {releases.map(release => {
+                {previousReleases.map(release => {
                   return (
                     <li key={release.slug}>
                       <Link href={release.slug}>
@@ -69,6 +83,9 @@ export const getStaticProps = async (ctx: any) => {
       releases: allReleases.map(release => ({
         name: release.tag_name,
         slug: `/docs/releases/${release.tag_name}`,
+        html_url: release.html_url,
+        body: release.body,
+        published_at: release.published_at,
       })),
       docsNav: docsNavData,
     },
