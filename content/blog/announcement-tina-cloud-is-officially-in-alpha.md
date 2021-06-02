@@ -39,7 +39,7 @@ The first thing to do is to [signup for Tina Cloud](https://auth.tina.io/registe
 
 You can also check out the video I created on getting started with Tina Cloud in under 10 minutes, if you gives you an overview of our Tina Cloud starter and gives you some tips to get started.
 
-<iframe width="560" height="315" src="[https://www.youtube.com/embed/Y-fG7qzoHKw](https://www.youtube.com/embed/Y-fG7qzoHKw "https://www.youtube.com/embed/Y-fG7qzoHKw")" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Y-fG7qzoHKw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Where can I give feedback or get help?
 
