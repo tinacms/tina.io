@@ -1,8 +1,15 @@
 ---
 title: Overview
-last_edited: '2021-05-10T10:00:00.000Z'
+last_edited: '2021-06-02T14:56:22.352Z'
 ---
+The Tina Cloud Starter is a simple Tina Cloud-enabled Next.js application. Not only can you visually edit your content in real-time, but since this starter is powered by Tina's GraphQL API, TinaCMS forms are automatically generated for you, all you need to do is to define your content schema ✨.
 
-The Tina Cloud Starter is a simple, Tina Cloud-enabled Next.js app. What this means is not only can you edit your content on a live page, but since it's powered by Tina's GraphQL API it also generates TinaCMS forms for you automatically ✨.
+By the end of this guide, your whole team will be able to edit on a deployed version of your site — we recommend using Vercel.
 
-In this guide we'll be doing a few things, at the end of this process you'll be able to edit content on a hosted version of your site, you can share and add collaborators to edit as well via Tina.io's user management capabilities.
+Invited users don't need a GitHub account, users management is entirely handled through Tina Cloud.
+
+## Video Tour
+
+You should be able to get running in less than 10 minutes.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Y-fG7qzoHKw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
