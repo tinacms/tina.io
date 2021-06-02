@@ -40,26 +40,26 @@ interface FieldConfig {
 
 These are the default field plugins available through the CMS:
 
-- [Text](/docs/plugins/fields/text)
-- [Textarea](/docs/plugins/fields/textarea)
-- [Number](/docs/plugins/fields/number)
-- [Image](/docs/plugins/fields/image)
-- [Color](/docs/plugins/fields/color) _May be external soon_
-- [Toggle](/docs/plugins/fields/toggle)
-- [Select](/docs/plugins/fields/select)
-- [Tags](/docs/plugins/fields/tags)
-- [List](/docs/plugins/fields/list)
-- [Group](/docs/plugins/fields/group)
-- [Group List](/docs/plugins/fields/group-list)
-- [Blocks](/docs/plugins/fields/blocks)
+- [Text](/docs/fields/text)
+- [Textarea](/docs/fields/textarea)
+- [Number](/docs/fields/number)
+- [Image](/docs/fields/image)
+- [Color](/docs/fields/color) _May be external soon_
+- [Toggle](/docs/fields/toggle)
+- [Select](/docs/fields/select)
+- [Tags](/docs/fields/tags)
+- [List](/docs/fields/list)
+- [Group](/docs/fields/group)
+- [Group List](/docs/fields/group-list)
+- [Blocks](/docs/fields/blocks)
 
 ## External Field Plugins
 
 These are plugins that must be installed through separate packages:
 
-- [Date & Time](/docs/plugins/fields/date)
-- [Markdown](/docs/plugins/fields/markdown)
-- [HTML](/docs/plugins/fields/html)
+- [Date & Time](/docs/fields/date)
+- [Markdown](/docs/fields/markdown)
+- [HTML](/docs/fields/html)
 
 ## Field Definition
 
@@ -149,7 +149,7 @@ All of the previous examples show the `component` being set with a string:
 }
 ```
 
-`'color'` is referring to the `name` of the Color [Field Plugin](/docs/plugins/fields/custom-fields#2-creating-field-plugins) that is hooked up to the CMS by default.
+`'color'` is referring to the `name` of the Color [Field Plugin](/docs/fields/custom-fields#2-creating-field-plugins) that is hooked up to the CMS by default.
 
 You can also define components to render in place of a default field:
 
