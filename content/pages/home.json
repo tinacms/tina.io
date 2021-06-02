@@ -82,7 +82,7 @@
         {
           "_template": "feature",
           "headline": "Content Backed by Git",
-          "subline": "Tina supports content stored in Git. Give the benefits of version-control to the whole team.",
+          "subline": "Tina supports content stored in Git. Give the benefits of version-control to your whole team.",
           "media": {
             "src": "/img/update-from-tina.jpg"
           }
