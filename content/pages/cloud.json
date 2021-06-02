@@ -37,7 +37,7 @@
       "actions": [
         {
           "variant": "orange",
-          "label": "Preview Tina Cloud",
+          "label": "Sign up",
           "icon": "arrowRight",
           "url": "https://auth.tina.io/register"
         },
