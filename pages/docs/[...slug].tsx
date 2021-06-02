@@ -12,7 +12,7 @@ import { GithubError } from 'next-tinacms-github'
 import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { usePlugin } from 'tinacms'
 import Toc from '../../components/toc'
-import { createTocListener, useTocListener } from 'utils'
+import { useTocListener } from 'utils'
 import { useLastEdited } from 'utils/useLastEdited'
 import { openGraphImage } from 'utils/open-graph-image'
 import Error from 'next/error'
@@ -39,7 +39,7 @@ export function DocTemplate(props) {
   const excerpt = props.file.data.excerpt
   const tocItems = props.tocItems
 
-  const { activeIds, contentRef } = useTocListener()
+  const { activeIds, contentRef } = useTocListener(data)
 
   usePlugin(form)
   useLastEdited(form)

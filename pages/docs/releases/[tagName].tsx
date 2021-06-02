@@ -29,7 +29,7 @@ export default function ReleasePage({ release, notFound, docsNav, tocItems }) {
 
   const title = `Release Notes for ${release.tag_name}`
   const excerpt = ''
-  const { contentRef, activeIds } = useTocListener()
+  const { contentRef, activeIds } = useTocListener(release)
 
   return (
     <>

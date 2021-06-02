@@ -81,7 +81,7 @@ export function createTocListener(
   }
 }
 
-export function useTocListener(subscriptions = []) {
+export function useTocListener(data) {
   const [activeIds, setActiveIds] = React.useState([])
   const contentRef = React.useRef<HTMLDivElement>(null)
 
@@ -94,7 +94,7 @@ export function useTocListener(subscriptions = []) {
     window.addEventListener('scroll', activeTocListener)
 
     return () => window.removeEventListener('scroll', activeTocListener)
-  }, [contentRef, ...subscriptions])
+  }, [contentRef, data])
 
   return { contentRef, activeIds }
 }
