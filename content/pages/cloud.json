@@ -60,7 +60,7 @@
         {
           "_template": "feature",
           "headline": "Move Faster With Tina Cloud",
-          "subline": "Visual editing + Git storage allows you to ship content faster with the safety of version-control.",
+          "subline": "Visual editing and Git storage allows you to ship content faster with the safety of version-control.",
           "media": {
             "src": "/img/edit-alongside-content.gif"
           }
