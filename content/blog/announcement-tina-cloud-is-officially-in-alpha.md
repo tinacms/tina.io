@@ -2,7 +2,7 @@
 title: Tina Cloud is in public Alpha
 date: '2021-06-01T20:00:00-04:00'
 author: James Perkins
-last_edited: '2021-06-01T13:25:35.192Z'
+last_edited: '2021-06-02T15:43:09.795Z'
 ---
 The team at Tina is pleased to announce that [Tina Cloud](/cloud/) is officially in public Alpha. Everyone is encouraged to register a free account on our headless GitHub-backed CMS and start committing. We have been working incredibly hard behind the scenes to get our vision in the hands of developers and content teams.
 
@@ -37,10 +37,9 @@ The first thing to do is to [signup for Tina Cloud](https://auth.tina.io/registe
 * [Tina Cloud Starter](https://github.com/tinacms/tina-cloud-starter): A basic implementation of Tina Cloud aimed at getting your up and running in a few minutes.
 * [Tina Cloud Next.js blog starter](/guides/tina-cloud/existing-site/overview/) - A guide to add Tina Cloud on top of the default Next.js blog starter and work directly through our CMS.
 
-
 You can also check out the video I created on getting started with Tina Cloud in under 10 minutes, if you gives you an overview of our Tina Cloud starter and gives you some tips to get started.
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Y-fG7qzoHKw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Y-fG7qzoHKw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true"></iframe>
 
 ## Where can I give feedback or get help?
 
@@ -50,7 +49,6 @@ We have a few channels open for you to reach out, provide feedback or get help w
 * [Join our Discord](https://discord.gg/6RrAXJws).
 * [Email us](mailto:support@tina.io) if would like to schedule a call with our team and share more about your context.
 * Get support through your Tina Cloud dashboard (there's a chat widget at the bottom of the screen on the left side).
-
 
 ## What about pricing?
 
