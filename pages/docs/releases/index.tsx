@@ -89,7 +89,7 @@ export const getStaticProps = async (ctx: any) => {
       })),
       docsNav: docsNavData,
     },
-    revalidate: 1 * MINUTES,
+    revalidate: 15 * MINUTES,
   }
 }
 
