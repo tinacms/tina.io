@@ -46,7 +46,7 @@ You can also check out the video I created on getting started with Tina Cloud in
 We have a few channels open for you to reach out, provide feedback or get help with any challenges you may have.
 
 * Dig into the new [Tina Cloud documentation](/docs/tina-cloud/) that covers implementations.
-* [Join our Discord](https://discord.gg/6RrAXJws).
+* [Join our Discord](https://discord.gg/zumN63Ybpf).
 * [Email us](mailto:support@tina.io) if would like to schedule a call with our team and share more about your context.
 * Get support through your Tina Cloud dashboard (there's a chat widget at the bottom of the screen on the left side).
 
