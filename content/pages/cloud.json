@@ -40,6 +40,12 @@
           "label": "Preview Tina Cloud",
           "icon": "arrowRight",
           "url": "https://auth.tina.io/register"
+        },
+        {
+          "variant": "ghost",
+          "label": "Get started",
+          "icon": "",
+          "url": "/guides/tina-cloud/starter/overview/"
         }
       ],
       "videoSrc": ""
