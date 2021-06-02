@@ -20,6 +20,14 @@ const getCategoryMatch = (navItems, currentPath) => {
       return item.category
     }
   }
+
+  // if we don't find a match in the category nav, do some "rule-of-thumb" matching
+  return matchHeuristic(currentPath)
+}
+
+const matchHeuristic = currentPath => {
+  if (currentPath.includes('/docs/releases')) return 'TinaCMS'
+
   return null
 }
 

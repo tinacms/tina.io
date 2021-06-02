@@ -1,3 +1,5 @@
+import React from 'react'
+
 interface Heading {
   id?: string
   offset?: number
@@ -77,4 +79,22 @@ export function createTocListener(
     }
     tick = true
   }
+}
+
+export function useTocListener(subscriptions = []) {
+  const [activeIds, setActiveIds] = React.useState([])
+  const contentRef = React.useRef<HTMLDivElement>(null)
+
+  React.useEffect(() => {
+    if (typeof window === `undefined` || !contentRef.current) {
+      return
+    }
+
+    const activeTocListener = createTocListener(contentRef, setActiveIds)
+    window.addEventListener('scroll', activeTocListener)
+
+    return () => window.removeEventListener('scroll', activeTocListener)
+  }, [contentRef, ...subscriptions])
+
+  return { contentRef, activeIds }
 }

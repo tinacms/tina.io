@@ -1,32 +1,29 @@
-import React from 'react'
-import Link from 'next/link'
-import styled from 'styled-components'
-import { NextSeo } from 'next-seo'
-import { GetStaticProps } from 'next'
 import { DocsLayout } from 'components/layout'
-import { getDocsNav } from 'utils/docs/getDocProps'
-import matter from 'gray-matter'
+import { NextSeo } from 'next-seo'
+import Link from 'next/link'
+import React from 'react'
+import styled from 'styled-components'
+import { getReleases } from 'utils/docs/getReleases'
+import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
 import { openGraphImage } from 'utils/open-graph-image'
 
-function DocTemplate(props) {
-  const frontmatter = {
-    title: 'Releases',
-  }
-  const excerpt = 'Release notes for TinaCMS'
+export default function ReleaseIndex({ releases, docsNav }) {
+  const title = 'Release Notes'
+  const excerpt = 'View the details of the latest TinaCMS release'
 
   return (
     <>
       <NextSeo
-        title={frontmatter.title}
+        title={title}
         titleTemplate={'%s | TinaCMS Docs'}
         description={excerpt}
         openGraph={{
-          title: frontmatter.title,
+          title,
           description: excerpt,
-          images: [openGraphImage(frontmatter.title)],
+          images: [openGraphImage(title)],
         }}
       />
-      <DocsLayout navItems={props.docsNav}>
+      <DocsLayout navItems={docsNav}>
         <DocsGrid>
           <DocGridHeader>
             <DocsPageTitle>Release Notes</DocsPageTitle>
@@ -35,22 +32,17 @@ function DocTemplate(props) {
           <DocGridContent>
             <ReleaseList>
               <ul>
-                {props.releases
-                  .sort((a, b) => {
-                    // @ts-ignore You CAN substract dates for sorting
-                    return new Date(b.date) - new Date(a.date)
-                  })
-                  .map(release => {
-                    return (
-                      <li key={release.slug}>
-                        <Link href={release.slug}>
-                          <a>
-                            <h4>{release.title}</h4>
-                          </a>
-                        </Link>
-                      </li>
-                    )
-                  })}
+                {releases.map(release => {
+                  return (
+                    <li key={release.slug}>
+                      <Link href={release.slug}>
+                        <a>
+                          <h4>{release.name}</h4>
+                        </a>
+                      </Link>
+                    </li>
+                  )
+                })}
               </ul>
             </ReleaseList>
           </DocGridContent>
@@ -60,44 +52,27 @@ function DocTemplate(props) {
   )
 }
 
-export default DocTemplate
+const MINUTES = 60 // seconds
 
-/*
- * DATA FETCHING ------------------------------------------------------
- */
+export const getStaticProps = async (ctx: any) => {
+  const allReleases = await getReleases()
 
-export const getStaticProps: GetStaticProps = async function({
-  preview,
-  previewData,
-}) {
-  const fs = require('fs')
-  const fg = require('fast-glob')
-  const path = require('path')
-
-  const contentDir = './content/docs/'
-  const releaseFiles = await fg(`${contentDir}releases/*.md`)
-  const releases = []
-
-  for (const filePath of releaseFiles) {
-    const slug = filePath.substring(contentDir.length, filePath.length - 3)
-    const absPath = path.resolve(`${filePath}`)
-    const doc = matter(fs.readFileSync(absPath, 'utf8'))
-
-    releases.push({
-      slug,
-      title: doc.data.title,
-      date: doc.data.date,
-    })
-  }
-
-  const docsNav = await getDocsNav(preview, previewData)
+  const navPreviewProps = await getJsonPreviewProps(
+    'content/toc-doc.json',
+    false,
+    {}
+  )
+  const docsNavData = navPreviewProps.props.file.data
 
   return {
     props: {
-      preview: false,
-      docsNav: docsNav.data,
-      releases,
+      releases: allReleases.map(release => ({
+        name: release.tag_name,
+        slug: `/docs/releases/${release.tag_name}`,
+      })),
+      docsNav: docsNavData,
     },
+    revalidate: 1 * MINUTES,
   }
 }
 
