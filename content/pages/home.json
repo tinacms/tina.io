@@ -99,14 +99,14 @@
     },
     {
       "_template": "flying",
-      "headline": "Learn Tina",
-      "subline": "Learn Tina through Interactive & Fun Tutorials.",
+      "headline": "Teams",
+      "subline": "Our headless CMS is in public alpha",
       "actions": [
         {
           "variant": "orange",
-          "label": "Start the tutorial",
+          "label": "Get started",
           "icon": "arrowRight",
-          "url": "/docs/getting-started/introduction/"
+          "url": "/guides/tina-cloud/starter/overview/"
         }
       ]
     }
