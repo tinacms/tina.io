@@ -104,7 +104,7 @@
       "actions": [
         {
           "variant": "orange",
-          "label": "Follow our guides"
+          "label": "Follow our guides",
           "icon": "arrowRight",
           "url": "/guides/"
         }
