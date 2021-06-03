@@ -99,14 +99,14 @@
     },
     {
       "_template": "flying",
-      "headline": "Collaborate with your team",
-      "subline": "Our headless CMS is in public alpha",
+      "headline": "New to Tina?",
+      "subline": "Learn the basics of the development workflow",
       "actions": [
         {
           "variant": "orange",
-          "label": "Get started",
+          "label": "Follow our guides"
           "icon": "arrowRight",
-          "url": "/guides/tina-cloud/starter/overview/"
+          "url": "/guides/"
         }
       ]
     }
