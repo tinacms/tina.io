@@ -8,7 +8,6 @@ describe('stripMarkdown', () => {
 
     it('should remove shortcode markup', async () => {
       const stripped = await stripMarkdown(testDocument)
-      console.log(expected, stripped)
       expect(stripped).toEqual(expected)
     })
   })
