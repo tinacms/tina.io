@@ -7,13 +7,19 @@ export function orderPosts(posts) {
   return posts.slice().sort(sortByDate)
 }
 
+const detectShortcodes = /\{\{(.*?)\}\}/gm
+const preStrip = content => {
+  return content.replace(detectShortcodes, '')
+}
+
 export async function stripMarkdown(content): Promise<string> {
   const remark = require('remark')
   const strip = require('strip-markdown')
+  const preprocessedContent = preStrip(content)
   return new Promise((resolve, reject) => {
     remark()
       .use(strip)
-      .process(content, (err, processedContent) => {
+      .process(preprocessedContent, (err, processedContent) => {
         if (err) reject(err)
         resolve(String(processedContent))
       })
