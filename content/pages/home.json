@@ -99,14 +99,14 @@
     },
     {
       "_template": "flying",
-      "headline": "Learn Tina",
-      "subline": "Learn Tina through Interactive & Fun Tutorials.",
+      "headline": "New to Tina?",
+      "subline": "Learn the basics of the development workflow",
       "actions": [
         {
           "variant": "orange",
-          "label": "Start the tutorial",
+          "label": "Follow our guides",
           "icon": "arrowRight",
-          "url": "/docs/getting-started/introduction/"
+          "url": "/guides/"
         }
       ]
     }
