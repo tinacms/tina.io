@@ -203,6 +203,8 @@ When you use Tina's GraphQL forms, we know about all of the relationships in you
 yarn run tina-gql server:start
 ```
 
+This will start the server on  `http://localhost:4001` and can be accessed using a GraphQL client on `http://localhost:4001/graphql`
+
 #### Query the content
 
 With a GraphQL client, make the following request:
@@ -210,7 +212,7 @@ With a GraphQL client, make the following request:
 > Tip: Use a GraphQL client like [Altair](https://altair.sirmuel.design/) when developing locally.
 
 ```graphql
-getPostsDocument(relativePath: "voteForPedro.md") {
+getPostDocument(relativePath: "voteForPedro.md") {
   data {
     __typename
     ... on Article_Doc_Data {
