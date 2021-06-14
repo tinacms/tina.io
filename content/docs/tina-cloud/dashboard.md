@@ -38,6 +38,9 @@ If Tina Cloud is configured on your production site, this value might be somethi
 
 **Only the URL origin is needed, so there is no need to include the path to any specific pages.**
 
+> _Tip:_ If you are using Tina Cloud for both development and production, you can create two separate Tina Cloud apps, each with a unique **Site URL**.
+> Otherwise, you will have to make sure that you switch the **Site URL** from `http://localhost:3000` to `https://<YOUR-SITE-NAME.com>` as you switch to production.
+
 ## Using your app
 
 Once your app is created, you can use its Client ID within your site's Tina implementation. This allows your users to log in to Tina Cloud from within your site, and start editing content. [Learn more about the Tina Cloud client setup](/docs/tina-cloud/client/).
