@@ -26,7 +26,7 @@ This name is shown to your users when they login to the app.
 
 #### Site URL
 
-This field is used for security purposes so that users can only log-in through your site.
+This field is used for security purposes so that users can only log in through your site.
 
 If you are developing locally, this value might be something like:
 
