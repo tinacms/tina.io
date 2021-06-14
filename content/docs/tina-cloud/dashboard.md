@@ -18,7 +18,7 @@ The next step is to choose the repository that houses your site's content. If yo
 
 ### App configuration
 
-On the last step of app creation, you will be prompted to enter a bit of configuration.
+On the last step of app creation, we ask you to enter a bit of configuration.
 
 #### App Name
 
