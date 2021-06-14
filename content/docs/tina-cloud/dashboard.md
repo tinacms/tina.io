@@ -12,7 +12,7 @@ The **Tina Cloud Dashboard** is the interface for managing the administrative as
 
 ### Connecting a GitHub repository
 
-To setup an app withiin the Tina Cloud dashboard, you must first authenticate with GitHub. A window will open asking you to give Tina.io access to your repositories. If you are not already logged in, your provider will prompt you for login credentials first. This authentication allows Tina Cloud to pull and push content to and from your GitHub respositiory.
+To set up an app within the Tina Cloud dashboard, you must first authenticate with GitHub. A modal window asks you to give Tina.io access to your repositories. If you are not already logged in, your provider will prompt you for login credentials first. This authentication allows Tina Cloud to pull and push content to and from your GitHub repository.
 
 The next step is to choose the repository that houses your site's content. If you don't see your repository within the list of repositories on the dashboard, you may have to re-configure your Tina.io permissions within GitHub.
 
