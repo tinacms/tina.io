@@ -40,7 +40,7 @@ If Tina Cloud is configured on your production site, this value might be somethi
 
 ## Using your app
 
-Once your app has been created, you will be able to use its Client ID within your site's Tina implementation. This will allow your users to log in to Tina Cloud from within your site, and start editing content. Learn more about the Tina Cloud client setup [here](http://localhost:3000/docs/tina-cloud/client/).
+Once your app is created, you can use its Client ID within your site's Tina implementation. This allows your users to log in to Tina Cloud from within your site, and start editing content. [Learn more about the Tina Cloud client setup](/docs/tina-cloud/client/).
 
 ## Organizations
 
