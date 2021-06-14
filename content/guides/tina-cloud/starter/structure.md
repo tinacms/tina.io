@@ -1,6 +1,6 @@
 ---
 title: Tina Cloud Starter structure
-last_edited: '2021-05-10T10:00:00.000Z'
+last_edited: '2021-06-14T13:11:25.498Z'
 ---
 
 ## Starter structure
@@ -75,6 +75,8 @@ The top-level key in the schema is an array of _collections_, a `collection` inf
 ### `templates`
 
 Templates are responsible for defining the shape of your content, you'll see in the schema for this starter that we use `templates` for `collections` as well as `blocks`. If you look at the `landingPage` template, you'll notice that it has a set of `blocks`, which are also templates.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/EwewKEHHkd4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Local development workflow tips
 
