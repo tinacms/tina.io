@@ -22,7 +22,7 @@ On the last step of app creation, we ask you to enter a bit of configuration.
 
 #### App Name
 
-This name will be shown to your users when they log in to the app.
+This name is shown to your users when they login to the app.
 
 #### Site URL
 
