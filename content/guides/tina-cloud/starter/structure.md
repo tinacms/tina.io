@@ -1,15 +1,14 @@
 ---
 title: Tina Cloud Starter structure
-last_edited: '2021-06-14T13:11:25.498Z'
+last_edited: '2021-06-15T12:04:50.542Z'
 ---
-
 ## Starter structure
 
 Tina Cloud Starter is a [Next.js](https://nextjs.org) application. The file-based routing happens through the `pages` directory. To edit this site click the "edit this site" button. This will cause you to go into edit mode where Tina is loaded. Tina is only loaded in edit mode so it will not effect the production bundle size.
 
 ### `pages/index.tsx`
 
-This page can be seen at `http://localhost:3000/`, it loads the content from a markdown file which can be found in this repository at `/content/marketing-pages/index.md`. You can edit this page at by clicking the "enter edit mode" button in the top right hand corner
+This page can be seen at `http://localhost:3000/`, it loads the content from a markdown file which can be found in this repository at `/content/marketing-pages/index.md`. You can edit this page at by clicking the "enter edit mode" button in the top right-hand corner
 
 We wrap the site in a small `EditProvider` component, that stores whether or not we are in edit mode in React state and localstorage. When we are in edit mode it triggers authentication when needed, and then one is in edit mode.
 
@@ -25,7 +24,7 @@ Most of the components in this project are very basic and are for demonstration 
 
 ## Content Modeling
 
-With Tina Cloud there's no need to build forms manually like you would with TinaCMS. Instead, you're required to define a schema which acts as the single source of truth for the shape and structure of your content.
+With Tina Cloud there's no need to build forms manually like you would with TinaCMS. Instead, you're required to define a schema that acts as the single source of truth for the shape and structure of your content.
 
 This is set up for you in `./.tina/schema.ts`, let's break down what this function is doing:
 
@@ -64,7 +63,7 @@ export default defineSchema({
 
 ### `defineSchema`
 
-> ℹ️ Read the CLI documentation for for more details about the `defineSchema` API.
+> ℹ️ [Read the CLI documentation](/docs/tina-cloud/cli/#defineschema) for more details about the `defineSchema` API.
 
 Be sure this is your default export from this file, we'll validate the schema and build out the GraphQL API with it.
 
@@ -112,4 +111,4 @@ Tina Cloud generates your GraphQL schema automatically. 🪄
 
 ### Explore the GraphQL API
 
-If you have a GraphQL client like [Altair](https://altair.sirmuel.design/) go to `http://localhost:4001/graphql` to learn more about our GraphQL API.
+If you have a GraphQL client like [Altair](https://altair.sirmuel.design/) go to `http://localhost:4001/graphql` to browse the docs and query our GraphQL API.
