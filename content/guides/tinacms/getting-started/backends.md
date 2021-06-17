@@ -2,8 +2,8 @@
 title: Working With Backends
 prev: /docs/getting-started/edit-content
 next: /docs/getting-started/faq
+last_edited: '2021-06-17T23:25:10.914Z'
 ---
-
 You may have noticed that content changes don't persist on refresh. Every time the page loads, the `data` populates with the form's initial values. In order for the CMS to be useful, it needs to track and persist data changes with some sort of backend.
 
 ## Loading Content from an external API
@@ -44,7 +44,7 @@ function PageContent() {
 //...
 ```
 
-Notice how we removed `initialValues` in favor of `loadInitialValues`, which fetches data asynchronously on form creation. Learn more about handling [loading states](/docs/plugins/forms/#handling-loading-state) when `loadInitialValues` is resolving.
+Notice how we removed `initialValues` in favor of `loadInitialValues`, which fetches data asynchronously on form creation. Learn more about handling [loading states](/docs/forms/#handling-loading-state) when `loadInitialValues` is resolving.
 
 > You can use `initialValues` when your data has already been fetched or defined before your components mount. Typically you would use this if you prefer to fetch your initial data server-side, as we do in our [Next.js + GitHub example](https://tinacms.org/guides/nextjs/github/initial-setup)
 
@@ -165,12 +165,12 @@ We’d like to provide developers with control and flexibility in all these aspe
 
 **Avenues to keep learning:**
 
-- Gain clarity with our [FAQ](/docs/getting-started/faq)
-- Set up [Inline Editing](/guides/general/inline-blocks/overview), or editing content directly on the page
-- Configure more complex fields, such as [Blocks](/docs/plugins/fields/blocks) or the [Markdown Wysiwyg](/docs/plugins/fields/markdown)
-- Create new data files with [Content Creator Plugins](/docs/plugins/content-creators)
-- Add Tina to a [Next.js Site](/guides/nextjs/adding-tina/overview)
-- Add Tina to a [Gatsby Site](/guides/gatsby/adding-tina/project-setup)
+* Gain clarity with our [FAQ](/docs/getting-started/faq)
+* Set up [Inline Editing](/guides/general/inline-blocks/overview), or editing content directly on the page
+* Configure more complex fields, such as [Blocks](/docs/plugins/fields/blocks) or the [Markdown Wysiwyg](/docs/plugins/fields/markdown)
+* Create new data files with [Content Creator Plugins](/docs/plugins/content-creators)
+* Add Tina to a [Next.js Site](/guides/nextjs/adding-tina/overview)
+* Add Tina to a [Gatsby Site](/guides/gatsby/adding-tina/project-setup)
 
 Follow [Tina on Twitter](https://twitter.com/tina_cms) 🦙! If you're stoked on this project, please give us a 🌟 on the [GitHub repository](https://github.com/tinacms/tinacms).
 
