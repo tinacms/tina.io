@@ -91,7 +91,7 @@
     },
     {
       "_template": "browser",
-      "headline": "*Edit Content, Not Code*",
+      "headline": "_Edit Content, Not Code!_",
       "subline": "Make changes in context and see them in real-time. Hit save and let Tina handle the commit for you.",
       "media": {
         "src": "/img/blocks.gif"
