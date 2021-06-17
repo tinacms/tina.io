@@ -2,9 +2,9 @@
 title: Tina Cloud is in public Alpha
 date: '2021-06-01T20:00:00-04:00'
 author: James Perkins
-last_edited: '2021-06-02T15:43:09.795Z'
+last_edited: '2021-06-17T12:45:15.979Z'
 ---
-The team at Tina is pleased to announce that [Tina Cloud](/cloud/) is officially in public Alpha. Everyone is encouraged to register a free account on our headless GitHub-backed CMS and start committing. We have been working incredibly hard behind the scenes to get our vision in the hands of developers and content teams.
+The team at Tina is pleased to announce that [Tina Cloud](/cloud/) is officially in public Alpha. Everyone is encouraged to [register a free account](https://auth.tina.io/register) on our headless GitHub-backed CMS and start committing. We have been working incredibly hard behind the scenes to get our vision in the hands of developers and content teams.
 
 Tina Cloud brings the power of Tina's open-source content editor with [a GraphQL API that allows you to interact with your Markdown files stored in your repository](/blog/using-graphql-with-the-filesystem/). Also, with Tina Cloud, you can allow _any_ team member to edit content — even if they don’t have a GitHub account.
 
