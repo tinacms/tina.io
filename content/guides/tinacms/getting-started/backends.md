@@ -2,7 +2,7 @@
 title: Working With Backends
 prev: /docs/getting-started/edit-content
 next: /docs/getting-started/faq
-last_edited: '2021-06-17T23:25:10.914Z'
+last_edited: '2021-06-17T23:47:34.696Z'
 ---
 You may have noticed that content changes don't persist on refresh. Every time the page loads, the `data` populates with the form's initial values. In order for the CMS to be useful, it needs to track and persist data changes with some sort of backend.
 
@@ -167,7 +167,7 @@ We’d like to provide developers with control and flexibility in all these aspe
 
 * Gain clarity with our [FAQ](/docs/getting-started/faq)
 * Set up [Inline Editing](/guides/general/inline-blocks/overview), or editing content directly on the page
-* Configure more complex fields, such as [Blocks](/docs/plugins/fields/blocks) or the [Markdown Wysiwyg](/docs/plugins/fields/markdown)
+* Configure more complex fields, such as [Blocks](/docs/fields/blocks) or the [Markdown Wysiwyg](/docs/fields/markdown)
 * Create new data files with [Content Creator Plugins](/docs/plugins/content-creators)
 * Add Tina to a [Next.js Site](/guides/nextjs/adding-tina/overview)
 * Add Tina to a [Gatsby Site](/guides/gatsby/adding-tina/project-setup)
