@@ -2,9 +2,8 @@
 title: Media
 prev: /docs/plugins/content-creators
 next: /docs/apis
-last_edited: '2020-10-07T18:15:58.042Z'
+last_edited: '2021-06-22T18:59:17.909Z'
 ---
-
 **Media** in Tina refers to a set of APIs to allow packages to interact with a central store of files.
 
 ## Media Store
@@ -13,10 +12,10 @@ A **Media Store** handles media files for the CMS. Media Stores provide a set of
 
 > ### Supported Media Stores
 >
-> - [`GithubMediaStore`](/packages/react-tinacms-github): Saves and sources media to/from your Git repository through the GitHub API.
-> - [`NextGithubMediaStore`](/packages/next-tinacms-github#nextgithubmediastore): Configures media sourced from GitHub specifically for Next.js projects.
-> - [`StrapiMediaStore`](/packages/react-tinacms-strapi/): Handles media stored in a Strapi instance.
-> - [`GitMediaStore`](/guides/nextjs/git/adding-backend): Saves media to your Git repository by writing to the local system and commiting directly.
+> * [`GithubMediaStore`](/packages/react-tinacms-github): Saves and sources media to/from your Git repository through the GitHub API.
+> * [`NextGithubMediaStore`](/packages/next-tinacms-github#nextgithubmediastore): Configures media sourced from GitHub specifically for Next.js projects.
+> * [`StrapiMediaStore`](/packages/react-tinacms-strapi/): Handles media stored in a Strapi instance.
+> * [`GitMediaStore`](/guides/nextjs/git/adding-backend): Saves media to your Git repository by writing to the local system and commiting directly.
 
 ### Creating a Media Store
 
@@ -45,10 +44,7 @@ interface Media {
 
 interface MediaList {
   items: Media[]
-  limit: number
-  offset: number
-  nextOffset?: number
-  totalCount: number
+  nextOffset?: string | number
 }
 
 interface MediaUploadOptions {
@@ -59,58 +55,55 @@ interface MediaUploadOptions {
 interface MediaListOptions {
   directory?: string
   limit?: number
-  offset?: number
+  offset?: string | number
 }
 ```
 
 #### Media Store
 
-| Key          | Description                                                                                                                                                           |
-| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `accept`     | The [input accept string](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#accept) that describes what kind of files the Media Store will accept. |
-| `persist`    | Uploads a set of files to the Media Store and returns a Promise containing the Media objects for those files.                                                         |
-| `previewSrc` | Given a `src` string, it returns a url for previewing that content. This is helpful in cases where the file may not be available in production yet.                   |
-| `list`       | Lists all media in a specific directory. Used in the media manager.                                                                                                   |
-| `delete`     | Deletes a media object from the store.                                                                                                                                |
+| Key | Description |
+| --- | --- |
+| `accept` | The [input accept string](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#accept) that describes what kind of files the Media Store will accept. |
+| `persist` | Uploads a set of files to the Media Store and returns a Promise containing the Media objects for those files. |
+| `previewSrc` | Given a `src` string, it returns a url for previewing that content. This is helpful in cases where the file may not be available in production yet. |
+| `list` | Returns a list of media objects from the media provider. Used in the media manager. |
+| `delete` | Deletes a media object from the store. |
 
 #### Media
 
 This represents an individual file in the `MediaStore`.
 
-| Key          | Description                                                    |
-| ------------ | -------------------------------------------------------------- |
-| `type`       | Indicates whether the object represents a file or a directory. |
-| `id`         | A unique identifier for the media item.                        |
-| `directory`  | The path to the file in the store. e.g. `public/images`        |
-| `filename`   | The name of the file. e.g.`boat.jpg`                           |
-| `previewSrc` | _Optional:_ A url that provides an image preview of the file.  |
+| Key | Description |
+| --- | --- |
+| `type` | Indicates whether the object represents a file or a directory. |
+| `id` | A unique identifier for the media item. |
+| `directory` | The path to the file in the store. e.g. `public/images` |
+| `filename` | The name of the file. e.g.`boat.jpg` |
+| `previewSrc` | _Optional:_ A url that provides an image preview of the file. |
 
 #### Media List
 
 This represents a paginated query to the `MediaStore` and its results.
 
-| Key          | Description                                                                 |
-| ------------ | --------------------------------------------------------------------------- |
-| `items`      | An array of `Media` objects.                                                |
-| `limit`      | The number of records returned by the current query.                        |
-| `offset`     | A number representing the beginning of the current record set.              |
-| `nextOffset` | _Optional:_ A number representing the beginning of the next set of records. |
-| `totalCount` | The total number of records available.                                      |
+| Key | Description |
+| --- | --- |
+| `items` | An array of `Media` objects. |
+| `nextOffset` | _Optional:_ A key representing the beginning of the next set of records. This will be fed back into your `list` function if the user requests more records from the media library UI. |
 
 #### Media Upload Options
 
-| Key         | Description                                                                       |
-| ----------- | --------------------------------------------------------------------------------- |
-| `directory` | The directory where the file should be uploaded.                                  |
-| `file`      | The [File](https://developer.mozilla.org/en-US/docs/Web/API/File) to be uploaded. |
+| Key | Description |
+| --- | --- |
+| `directory` | The directory where the file should be uploaded. |
+| `file` | The [File](https://developer.mozilla.org/en-US/docs/Web/API/File) to be uploaded. |
 
 #### Media List Options
 
-| Key         | Description                                                                                            |
-| ----------- | ------------------------------------------------------------------------------------------------------ |
-| `directory` | _Optional:_ The current directory to list media from.                                                  |
-| `limit`     | _Optional:_ The number of records that should be returned.                                             |
-| `offset`    | _Optional:_ A number representing how far into the list the store should begin returning records from. |
+| Key | Description |
+| --- | --- |
+| `directory` | _Optional:_ The current directory to list media from. |
+| `limit` | _Optional:_ The number of records that should be returned. |
+| `offset` | _Optional:_ A key representing how far into the list the store should begin returning records from. |
 
 ### Adding a Media Store
 
@@ -166,6 +159,11 @@ this.cms = new TinaCMS({
     git: client,
   },
   media: new MyGitMediaStore(client),
+  mediaOptions: {
+    // Optional. Configure how many records to retrieve at a time.
+    // Passed into a Media Store's *list* function as the *limit*.
+    pageSize: 17
+  }
 })
 ```
 
