@@ -17,15 +17,23 @@ interface ContentCreatorPlugin<FormShape> {
   name: string
   fields: Field[]
   onSubmit(value: FormShape, cms: CMS): Promise<void> | void
+  actions?: FormOptions<any>['actions']
+  buttons?: FormOptions<any>['buttons']
+  reset?: FormOptions<any>['reset']
+  onChange?: FormOptions<any>['onChange']
 }
 ```
 
-| Option     | Description                                                                             |
-| ---------- | --------------------------------------------------------------------------------------- |
-| `__type`   | The name of the plugin. Always `'content-creator'`.                                     |
-| `name`     | The text to be displayed in the "Add Content" menu.                                     |
-| `fields`   | An array of fields that populate a modal form. Field values can populate new file data. |
-| `onSubmit` | A function that creates content. Called once the form is submitted.                     |
+| Option     | Description                                                                                       |
+| ---------- | ------------------------------------------------------------------------------------------------- |
+| `__type`   | The name of the plugin. Always `'content-creator'`.                                               |
+| `name`     | The text to be displayed in the "Add Content" menu.                                               |
+| `fields`   | An array of fields that populate a modal form. Field values can populate new file data.           |
+| `onSubmit` | A function that creates content. Called once the form is submitted.                               |
+| `actions`  | *Optional:* An array of custom actions that will be added to the form.                            |
+| `buttons`  | *Optional:* An object to customize the 'Save' and 'Reset' button text for the form.               |
+| `reset`    | *Optional:* A function that runs when the form state is reset by the user via the 'Reset' button. |
+| `onChange` | *Optional:* A function that runs when the form values are changed.                                |
 
 ## Examples
 
