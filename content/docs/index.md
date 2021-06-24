@@ -1,63 +1,37 @@
 ---
-title: TinaCMS Documentation
+title: Tina Docs
 id: introduction
 last_edited: '2020-11-26T14:37:54.481Z'
 ---
-Tina is a **toolkit for building visual editing** into your site. By creating a custom editing experience with Tina instead of opting for a conventional CMS, developers can give their teams a contextual, intuitive editing experience without sacrificing code quality.
 
-## First Steps
+**Tina** contains multiple tools and applications designed to improve collaboration between **content writers** and **developers** who work on web content. Under the umbrella of Tina, there are two main components:
 
-Are you new to using Tina to build content management systems? Start with these resources to build your understanding of Tina and what's possible.
+- The **TinaCMS toolkit**, a suite of NPM packages that enable developers to quickly create a custom content management frontend for a website.
+- **Tina Cloud**, a hosted service designed to make Git-based content management more powerful and accessible for cross-functional teams.
 
-* Go through the [**Getting Started Tutorial**](/docs/getting-started/introduction "Getting Started"): [Installing ](/docs/getting-started/cms-set-up#install-tinacms)_[tinacms](/docs/getting-started/cms-set-up#install-tinacms)_ | [Creating a CMS instance and adding the ](/docs/getting-started/cms-set-up#create-a-cms-instance-add-tinaprovider)_[TinaProvider](/docs/getting-started/cms-set-up#create-a-cms-instance-add-tinaprovider)_
-  | [Configuring the CMS object](/docs/getting-started/cms-set-up#configure-the-cms-object)
-  | [Enabling the CMS](/docs/getting-started/cms-set-up#enabling-the-cms)
-  | [Creating and registering a form plugin](/docs/getting-started/edit-content#create--register-a-form)
-  | [Loading content from an external API](/docs/getting-started/backends#loading-content-from-an-external-api)
-  | [Saving content changes](/docs/getting-started/backends#saving-content)
-  | [Adding alerts](/docs/getting-started/backends#adding-alerts)
-* Click **Edit this Site** at the bottom of the page to fork the [tinacms.org repository](https://github.com/tinacms/tinacms.org "Tinacms.org Repository"), make changes, and then open a Pull Request!
-* Checkout [this video of a page builder](https://youtu.be/4qGz0cP_DSA "Inline Editing Demo Video") created with TinaCMS.
+<div class="callout">
+<img className="learnImage" src="../img/tina-laptop.png" alt="" />
+  <div>
+  <h3>Ready to get started?</h3>
+  <p>Get a website running with Tina Cloud in no time!</P>
+  <a href="/guides/tina-cloud/starter/overview/" class="calloutButton">Quick Start Guide <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg></a>
+  </div>
+</div>
 
-## Getting Help
+## TinaCMS Toolkit
 
-Have questions on how to use Tina to build your CMS?
+The **TinaCMS Toolkit** empowers developers to build a visual editing experience directly on their sites. By creating a custom editing experience with Tina instead of opting for a conventional CMS, developers can give their teams a contextual, intuitive editing experience without sacrificing code quality.
 
-* Visit the [Tina Forum](https://community.tinacms.org "Tina Forum") to engage with the core team and community.
-* Report bugs using [GitHub Issues](https://github.com/tinacms/tinacms/issues "Tina Github Issues")
-* [FAQ](/docs/getting-started/faq)
+[Learn more about the TinaCMS toolkit](/docs/tinacms)
 
-## How This Site Is Organized
+## Tina Cloud
 
-Learning how to build a CMS is no small feat! We've compiled a variety of resources to help you along.
+**Tina Cloud** is a hosted service purpose built for integration with the TinaCMS Toolkit. Tina Cloud makes it possible for entire content teams to take advantage of a Git-based workflow, regardless of whether they write code or have GitHub accounts. Additionally, Tina Cloud exposes a GraphQL API for your site's file-based content, giving developers a more powerful interface for querying data and reconciling relationships.
 
-* Docs describe the main Tina concepts and how to use them to build your CMS.
-* [Guides](/guides "Tina Guides") take you through the steps involved in addressing key problems and specific use-cases.
-* The [Blog](/blog "Tina Blog") is where release notes, tips, and other announcements are posted.
-* Visit the [Packages Reference](/docs/packages) to find more tools and make building your CMS even easier.
+[Learn more about Tina Cloud](/docs/tina-cloud)
 
-## Constructing The User Interface
+## Guides
 
-Tina lets you choose the user interface that best fits your workflow. You can use one of its default interfaces or construct your own. You can even build editing capabilities directly into your page!
+Our **Guides** section contains various step-by-step guides to show you how to use the TinaCMS toolkit.
 
-* Learn about the [Toolbar](/docs/ui#toolbar-configuration "Tina Toolbar") and [Sidebar](/docs/ui#sidebar-configuration "Tina Sidebar") UI components.
-* Take control of the appearance of your CMS using [Custom Styling](/docs/ui/styles "Styles")
-* Add features to your CMS using [Screen Plugins](/docs/plugins/screens "Screen Plugins") and [Toolbar Widgets](/docs/plugins/toolbar-widgets).
-* Wander off the beaten trail and create a totally custom UI _(Coming Soon)_
-
-## Tools for Managing Content
-
-Tina gives you the tools you need to manage content from the data source of your choosing. These docs will show you how to craft your ideal content editing experience.
-
-* **Editing Content:** [Creating Forms](/docs/plugins/forms), [Fields](/docs/plugins/fields),[ Custom Fields](/docs/plugins/fields/custom-fields), [Inline Editing](/docs/ui/inline-editing), [Working with Inline Blocks](/guides//general/inline-blocks/overview)
-* **Creating Content:** Using [Content Creators](/docs/plugins/content-creators)
-* **Deleting Content:** Using Form Actions. _(Coming Soon)_
-* **Media Management:** [Media Stores](/docs/media "Tina Media Store"), [Image Fields](/docs/plugins/fields/image "Image Field Plugin"), [Inline Images](/docs/ui/inline-editing/inline-image "Inline Images")
-* **Custom Fields:** [How to Make a Custom Field Component](/blog/custom-field-components)
-
-## Integrating with React Frameworks
-
-Tina is designed to work with just about any React framework. Once you're comfortable with the basics of TinaCMS, these guides will help you learn the specifics of building a CMS with Next.js or Gatsby.
-
-* [Next.js](/docs/integrations/nextjs)
-* [Gatsby](/docs/integrations/gatsby)
+[View the Guides](/guides)

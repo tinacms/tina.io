@@ -91,9 +91,7 @@ export function NavbarBlock({ data, index }) {
             <Link href="/">
               <a className="logomark navLogo">
                 <TinaIcon />
-                <h1 className="wordmark">
-                  Tina
-                </h1>
+                <h1 className="wordmark">Tina</h1>
               </a>
             </Link>
             <nav className="navWrapper navNav">
@@ -102,7 +100,7 @@ export function NavbarBlock({ data, index }) {
                   const { link, label } = item
 
                   return (
-                    <li className="navLi">
+                    <li key={`link-${label}`} className="navLi">
                       <Link href={link}>{label}</Link>
                     </li>
                   )

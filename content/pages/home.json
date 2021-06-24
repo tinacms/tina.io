@@ -8,8 +8,8 @@
       "_template": "navbar",
       "banner": {
         "display": true,
-        "text": "Tina Cloud, our headless backend is coming. Read more ",
-        "link": "https://tina.io/blog/tina-cloud-a-headless-cms-backed-by-git/"
+        "text": "Tina Cloud, our headless backend is in public Alpha. Read more",
+        "link": "/blog/announcement-tina-cloud-is-officially-in-alpha/"
       },
       "navItems": [
         {
@@ -25,7 +25,7 @@
           "label": "Blog"
         },
         {
-          "link": "/early-access",
+          "link": "/cloud",
           "label": "Tina Cloud"
         }
       ]
@@ -37,15 +37,15 @@
       "actions": [
         {
           "variant": "orange",
-          "label": "Try Demo",
+          "label": "Quick Start",
           "icon": "arrowRight",
-          "url": "https://tina-demo-two.vercel.app/"
+          "url": "https://tina.io/guides/tina-cloud/starter/overview/"
         },
         {
           "variant": "ghost",
-          "label": "Read Docs",
+          "label": "Try Demo",
           "icon": "",
-          "url": "/docs"
+          "url": "https://tina-tailwind-sidebar-demo-git-main-tinacms.vercel.app/"
         }
       ],
       "videoSrc": "v1571425758/tina-hero-demo-v2"
@@ -57,18 +57,18 @@
       "items": [
         {
           "_template": "feature",
-          "headline": "Agnostic and Open-Source",
-          "subline": "Connect to any data source, edit with Tina. ",
+          "headline": "Visual Editing",
+          "subline": "Most CMSs feel like a GUI on a database. Tina gives your team a contextual, intuitive experience.",
           "media": {
-            "src": "/img/connect-to-api.png"
+            "src": "/img/edit-alongside-content.gif"
           }
         },
         {
           "_template": "feature",
-          "headline": "Visual Editing",
-          "subline": "Most CMSs feel like a GUI on a database. Tina gives your team a contextual, intuitive experience.",
+          "headline": "Built for the Jamstack",
+          "subline": "Tina is extensible by design, and already supports React and Next.js based websites.",
           "media": {
-            "src": "/img/visual-editing.gif"
+            "src": "/img/jamstack.png"
           }
         },
         {
@@ -76,77 +76,37 @@
           "headline": "Your Design System & Components",
           "subline": "Allow your team to pick from your custom, predefined components to build pages.  Maintain a simpler codebase that offers more versatility.",
           "media": {
-            "src": "/img/design-system.png"
+            "src": "/img/your-blocks.gif"
           }
         },
         {
           "_template": "feature",
-          "headline": "Built for the Jamstack",
-          "subline": "Tina is designed for the Jamstack with a focus on React-based sites.",
+          "headline": "Content Backed by Git",
+          "subline": "Tina supports content stored in Git. Give the benefits of version-control to your whole team.",
           "media": {
-            "src": "/img/jamstack.png"
-          }
-        },
-        {
-          "_template": "feature",
-          "headline": "Git for the Whole Team",
-          "subline": "Tina supports content stored in Git. Give the benefits of branching and version-control to the whole team.",
-          "media": {
-            "src": "/img/github-plugin.png"
+            "src": "/img/update-from-tina.jpg"
           }
         }
       ]
     },
     {
       "_template": "browser",
-      "headline": "*Avoid Vendor Lock-In*",
-      "subline": "",
-      "browser": {
-        "headline": "Edit with Tina",
-        "subline": "Write to your content/data",
-        "text": "Connect to the single source of truth for your data",
-        "media": {
-          "src": "/img/blocks.gif"
-        }
-      },
-      "items": [
-        {
-          "headline": "Headless CMSs",
-          "subline": "Connect to a headless CMS for a better content editing experience",
-          "icon": "arrowRight",
-          "media": {
-            "src": "/img/headlessCms.png"
-          }
-        },
-        {
-          "headline": "Git Repo",
-          "subline": "Connect to the GitHub API with the Tina GitHub plugin",
-          "icon": "arrowRight",
-          "link": "/packages/react-tinacms-github/",
-          "media": {
-            "src": "/img/git-providers.png"
-          }
-        },
-        {
-          "headline": "3rd Party API",
-          "subline": "Store your content in Airtable, Google Sheets, or any data source",
-          "icon": "arrowRight",
-          "media": {
-            "src": "/img/headlessCms.png"
-          }
-        }
-      ]
+      "headline": "*Edit Content, Not Code*",
+      "subline": "Make changes in context and see them in real-time. Hit save and Tina handles the commit.",
+      "media": {
+        "src": "/img/blocks.gif"
+      }
     },
     {
       "_template": "flying",
-      "headline": "Learn Tina",
-      "subline": "Learn Tina through Interactive & Fun Tutorials.",
+      "headline": "New to Tina?",
+      "subline": "Learn the basics of the development workflow",
       "actions": [
         {
           "variant": "orange",
-          "label": "Start the tutorial",
+          "label": "Follow our guides",
           "icon": "arrowRight",
-          "url": "/docs/getting-started/introduction/"
+          "url": "/guides/"
         }
       ]
     }

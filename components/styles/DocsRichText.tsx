@@ -157,6 +157,14 @@ const DocsRichText = css`
     overflow: hidden;
   }
 
+  iframe.wide {
+    position: relative;
+    min-width: 66vw;
+    max-width: 1400px;
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+  }
+
   a:not([class]) {
     color: inherit;
     opacity: 0.8;
@@ -282,6 +290,86 @@ const DocsRichText = css`
 
   td {
     border-bottom: 1px solid var(--color-light-dark);
+  }
+
+  .callout {
+    margin: 2rem 0;
+    padding: 1.5rem 2rem;
+    background-image: url(/img/clouds.jpg);
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: grid;
+    grid-gap: 2rem;
+    align-content: center;
+    align-items: center;
+    border-radius: 0.3rem;
+    border: 1px solid var(--color-seafoam);
+    overflow: hidden;
+
+    @media (min-width: 1000px) {
+      grid-gap: 2.5rem;
+      grid-template-columns: 1fr 2fr;
+    }
+
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    h3 {
+      color: var(--color-primary);
+      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    p {
+      font-size: 1rem;
+      margin: 0 0 1.375rem 0;
+    }
+
+    img {
+      position: relative;
+      max-width: 14rem;
+      margin: -1rem 0;
+
+      @media (min-width: 1000px) {
+        margin: -1rem 0 -3rem 0;
+      }
+    }
+  }
+
+  .calloutButton {
+    flex: 0 0 auto;
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+    font-size: 1.125rem;
+    line-height: 1;
+    font-weight: bold;
+    padding: 0.75rem 1.625rem;
+    border-radius: 0.25rem;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    outline: none;
+    background: var(--color-primary);
+    transition: background 150ms ease-out;
+    color: white;
+
+    :hover,
+    ::focus,
+    :active {
+      background: var(--color-primary-light);
+    }
+
+    svg {
+      display: inline-block;
+      width: auto;
+      height: 1.125em;
+      margin-left: 0.75rem;
+    }
   }
 `
 

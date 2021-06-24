@@ -1,293 +1,376 @@
 [
   {
-    "title": "Getting Started",
-    "id": "getting-started",
+    "category": "Quick Start Guide",
+    "slug": "/guides/tina-cloud/starter/overview",
+    "description": "Get a website running with Tina Cloud in no time!",
     "items": [
       {
-        "id": "/docs/getting-started/introduction",
-        "slug": "/docs/getting-started/introduction",
-        "title": "Introduction"
-      },
-      {
-        "id": "/docs/getting-started/cms-set-up",
-        "slug": "/docs/getting-started/cms-set-up",
-        "title": "Set Up the CMS"
-      },
-      {
-        "id": "/docs/getting-started/edit-content",
-        "slug": "/docs/getting-started/edit-content",
-        "title": "Edit Content"
-      },
-      {
-        "id": "/docs/getting-started/backends",
-        "slug": "/docs/getting-started/backends",
-        "title": "Backends"
-      },
-      {
-        "id": "/docs/getting-started/faq",
-        "slug": "/docs/getting-started/faq",
-        "title": "FAQ"
+        "id": "/guides/tina-cloud/starter/overview",
+        "slug": "/guides/tina-cloud/starter/overview",
+        "title": "Tina Cloud Starter"
       }
     ]
   },
   {
-    "title": "CMS",
-    "id": "the-cms",
-    "items": [{ "id": "/docs/cms", "slug": "/docs/cms", "title": "Overview" }]
-  },
-  {
-    "title": "User Interface",
-    "id": "user-interface",
+    "category": "TinaCMS",
+    "slug": "/docs/tinacms",
+    "description": "The JavaScript toolkit for building content management interfaces",
     "items": [
       {
-        "id": "/docs/ui",
-        "title": "Sidebar & Toolbar",
-        "slug": "/docs/ui"
+        "title": "Overview",
+        "id": "/docs/tinacms",
+        "slug": "/docs/tinacms"
       },
       {
-        "title": "Inline Editing",
-        "id": "inline-editing",
-        "slug": "/docs/ui/inline-editing",
+        "title": "Content Management",
+        "id": "/docs/content-management",
+        "slug": "/docs/content-management",
+        "items": [
+          { "id": "/docs/cms", "slug": "/docs/cms", "title": "The CMS" },
+          {
+            "title": "Forms",
+            "id": "forms",
+            "slug": "/docs/forms"
+          },
+          {
+            "title": "Fields",
+            "id": "fields",
+            "slug": "/docs/fields",
+            "items": [
+              {
+                "id": "/docs/fields/text",
+                "slug": "/docs/fields/text",
+                "title": "Text"
+              },
+              {
+                "id": "/docs/fields/textarea",
+                "slug": "/docs/fields/textarea",
+                "title": "Text Area"
+              },
+
+              {
+                "id": "/docs/fields/number",
+                "slug": "/docs/fields/number",
+                "title": "Number"
+              },
+
+              {
+                "id": "/docs/fields/image",
+                "slug": "/docs/fields/image",
+                "title": "Image"
+              },
+              {
+                "id": "/docs/fields/color",
+                "slug": "/docs/fields/color",
+                "title": "Color"
+              },
+              {
+                "id": "/docs/fields/toggle",
+                "slug": "/docs/fields/toggle",
+                "title": "Toggle"
+              },
+              {
+                "id": "/docs/fields/radio-group",
+                "slug": "/docs/fields/radio-group",
+                "title": "Radio Group"
+              },
+              {
+                "id": "/docs/fields/select",
+                "slug": "/docs/fields/select",
+                "title": "Select"
+              },
+              {
+                "id": "/docs/fields/tags",
+                "slug": "/docs/fields/tags",
+                "title": "Tags"
+              },
+              {
+                "id": "/docs/fields/list",
+                "slug": "/docs/fields/list",
+                "title": "List"
+              },
+              {
+                "id": "/docs/fields/group",
+                "slug": "/docs/fields/group",
+                "title": "Group"
+              },
+              {
+                "id": "/docs/fields/group-list",
+                "slug": "/docs/fields/group-list",
+                "title": "Group List"
+              },
+              {
+                "id": "/docs/fields/blocks",
+                "slug": "/docs/fields/blocks",
+                "title": "Blocks"
+              },
+              {
+                "id": "/docs/fields/date",
+                "slug": "/docs/fields/date",
+                "title": "Date & Time"
+              },
+              {
+                "id": "/docs/fields/markdown",
+                "slug": "/docs/fields/markdown",
+                "title": "Markdown"
+              },
+              {
+                "id": "/docs/fields/html",
+                "slug": "/docs/fields/html",
+                "title": "HTML"
+              },
+              {
+                "id": "/docs/fields/custom-fields",
+                "slug": "/docs/fields/custom-fields",
+                "title": "Custom Fields"
+              }
+            ]
+          },
+          {
+            "title": "Content Creators",
+            "id": "content-creator",
+            "slug": "/docs/plugins/content-creators"
+          },
+          {
+            "id": "/docs/media",
+            "slug": "/docs/media",
+            "title": "Media"
+          },
+          {
+            "id": "/docs/api",
+            "slug": "/docs/apis",
+            "title": "Using External APIs"
+          }
+        ]
+      },
+
+      {
+        "title": "User Interface",
+        "id": "user-interface",
+        "slug": "/docs/user-interface",
         "items": [
           {
-            "id": "/docs/ui/inline-editing/inline-text",
-            "title": "Inline Text",
-            "slug": "/docs/ui/inline-editing/inline-text"
+            "id": "/docs/sidebar-toolbar",
+            "title": "Sidebar & Toolbar",
+            "slug": "/docs/sidebar-toolbar"
+          },
+
+          {
+            "id": "/docs/ui/alerts",
+            "title": "Alerts",
+            "slug": "/docs/ui/alerts"
           },
           {
-            "id": "/docs/ui/inline-editing/inline-textarea",
-            "title": "Inline Textarea",
-            "slug": "/docs/ui/inline-editing/inline-textarea"
-          },
-          {
-            "id": "/docs/ui/inline-editing/inline-wysiwyg",
-            "title": "Inline Wysiwyg",
-            "slug": "/docs/ui/inline-editing/inline-wysiwyg"
-          },
-          {
-            "id": "/docs/ui/inline-editing/inline-image",
-            "title": "Inline Image",
-            "slug": "/docs/ui/inline-editing/inline-image"
-          },
-          {
-            "id": "/docs/ui/inline-editing/inline-group",
-            "title": "Inline Group",
-            "slug": "/docs/ui/inline-editing/inline-group"
-          },
-          {
-            "id": "/docs/ui/inline-editing/inline-blocks",
-            "title": "Inline Blocks",
-            "slug": "/docs/ui/inline-editing/inline-blocks"
+            "id": "/docs/ui/styles",
+            "title": "Custom Styles",
+            "slug": "/docs/ui/styles"
           }
         ]
       },
       {
-        "id": "/docs/ui/alerts",
-        "title": "Alerts",
-        "slug": "/docs/ui/alerts"
-      },
-      {
-        "id": "/docs/ui/styles",
-        "title": "Custom Styles",
-        "slug": "/docs/ui/styles"
-      }
-    ]
-  },
-  {
-    "id": "plugins",
-    "title": "Plugins",
-    "items": [
-      {
-        "title": "About Plugins",
-        "id": "forms",
-        "slug": "/docs/plugins"
-      },
-      {
-        "title": "Forms",
-        "id": "forms",
-        "slug": "/docs/plugins/forms"
-      },
-      {
-        "title": "Fields",
-        "id": "fields",
-        "slug": "/docs/plugins/fields",
+        "title": "Extending Tina",
+        "id": "/docs/extending-tina",
+        "slug": "/docs/extending-tina",
         "items": [
           {
-            "id": "/docs/plugins/fields/text",
-            "slug": "/docs/plugins/fields/text",
-            "title": "Text"
+            "id": "/docs/events",
+            "slug": "/docs/events",
+            "title": "Events"
           },
           {
-            "id": "/docs/plugins/fields/textarea",
-            "slug": "/docs/plugins/fields/textarea",
-            "title": "Text Area"
-          },
-
-          {
-            "id": "/docs/plugins/fields/number",
-            "slug": "/docs/plugins/fields/number",
-            "title": "Number"
-          },
-
-          {
-            "id": "/docs/plugins/fields/image",
-            "slug": "/docs/plugins/fields/image",
-            "title": "Image"
+            "title": "Plugins",
+            "id": "forms",
+            "slug": "/docs/plugins"
           },
           {
-            "id": "/docs/plugins/fields/color",
-            "slug": "/docs/plugins/fields/color",
-            "title": "Color"
+            "title": "Screens",
+            "id": "screens",
+            "slug": "/docs/plugins/screens"
           },
           {
-            "id": "/docs/plugins/fields/toggle",
-            "slug": "/docs/plugins/fields/toggle",
-            "title": "Toggle"
-          },
-          {
-            "id": "/docs/plugins/fields/radio-group",
-            "slug": "/docs/plugins/fields/radio-group",
-            "title": "Radio Group"
-          },
-          {
-            "id": "/docs/plugins/fields/select",
-            "slug": "/docs/plugins/fields/select",
-            "title": "Select"
-          },
-          {
-            "id": "/docs/plugins/fields/tags",
-            "slug": "/docs/plugins/fields/tags",
-            "title": "Tags"
-          },
-          {
-            "id": "/docs/plugins/fields/list",
-            "slug": "/docs/plugins/fields/list",
-            "title": "List"
-          },
-          {
-            "id": "/docs/plugins/fields/group",
-            "slug": "/docs/plugins/fields/group",
-            "title": "Group"
-          },
-          {
-            "id": "/docs/plugins/fields/group-list",
-            "slug": "/docs/plugins/fields/group-list",
-            "title": "Group List"
-          },
-          {
-            "id": "/docs/plugins/fields/blocks",
-            "slug": "/docs/plugins/fields/blocks",
-            "title": "Blocks"
-          },
-          {
-            "id": "/docs/plugins/fields/date",
-            "slug": "/docs/plugins/fields/date",
-            "title": "Date & Time"
-          },
-          {
-            "id": "/docs/plugins/fields/markdown",
-            "slug": "/docs/plugins/fields/markdown",
-            "title": "Markdown"
-          },
-          {
-            "id": "/docs/plugins/fields/html",
-            "slug": "/docs/plugins/fields/html",
-            "title": "HTML"
-          },
-          {
-            "id": "/docs/plugins/fields/custom-fields",
-            "slug": "/docs/plugins/fields/custom-fields",
-            "title": "Custom Fields"
+            "title": "Toolbar Widgets",
+            "id": "toolbar:widget",
+            "slug": "/docs/plugins/toolbar-widgets"
           }
         ]
       },
       {
-        "title": "Content Creators",
-        "id": "content-creator",
-        "slug": "/docs/plugins/content-creators"
+        "title": "Project",
+        "id": "about-the-project",
+        "items": [
+          {
+            "id": "/docs/getting-started/faq",
+            "slug": "/docs/getting-started/faq",
+            "title": "FAQ"
+          },
+          {
+            "id": "/docs/releases",
+            "href": "/docs/releases",
+            "title": "Release Notes"
+          }
+        ]
       },
       {
-        "title": "Screens",
-        "id": "screens",
-        "slug": "/docs/plugins/screens"
+        "title": "Packages",
+        "id": "packages",
+        "slug": "/packages",
+        "items": [
+          {
+            "id": "/packages/react-tinacms-date",
+            "slug": "/packages/react-tinacms-date",
+            "title": "react-tinacms-date"
+          },
+          {
+            "id": "/packages/react-tinacms-editor",
+            "slug": "/packages/react-tinacms-editor",
+            "title": "react-tinacms-editor"
+          },
+          {
+            "id": "/packages/react-tinacms-github",
+            "slug": "/packages/react-tinacms-github",
+            "title": "react-tinacms-github"
+          },
+          {
+            "id": "/packages/react-tinacms-inline",
+            "slug": "/packages/react-tinacms-inline",
+            "title": "react-tinacms-inline"
+          },
+          {
+            "id": "/packages/react-tinacms-strapi",
+            "slug": "/packages/react-tinacms-strapi",
+            "title": "react-tinacms-strapi"
+          },
+          {
+            "id": "/packages/next-tinacms-github",
+            "slug": "/packages/next-tinacms-github",
+            "title": "next-tinacms-github"
+          },
+          {
+            "id": "/packages/next-tinacms-json",
+            "slug": "/packages/next-tinacms-json",
+            "title": "next-tinacms-json"
+          },
+          {
+            "id": "/packages/next-tinacms-markdown",
+            "slug": "/packages/next-tinacms-markdown",
+            "title": "next-tinacms-markdown"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Tina Cloud",
+    "slug": "/docs/tina-cloud",
+    "description": "Powerful Git-based content management for teams",
+    "items": [
+      {
+        "id": "/docs/tina-cloud",
+        "slug": "/docs/tina-cloud",
+        "title": "Overview"
       },
       {
-        "title": "Toolbar Widgets",
-        "id": "toolbar:widget",
-        "slug": "/docs/plugins/toolbar-widgets"
-      }
-    ]
-  },
-  {
-    "id": "events",
-    "title": "Events",
-    "items": [
-      {
-        "id": "/docs/events",
-        "slug": "/docs/events",
-        "title": "About Events"
-      }
-    ]
-  },
-  {
-    "title": "Media",
-    "id": "media",
-    "items": [
-      {
-        "id": "/docs/media",
-        "slug": "/docs/media",
-        "title": "About Media"
-      }
-    ]
-  },
-  {
-    "id": "apis",
-    "title": "External APIs",
-    "items": [
-      {
-        "id": "/docs/api",
-        "slug": "/docs/apis",
-        "title": "About APIs"
-      }
-    ]
-  },
-  {
-    "title": "Integrations",
-    "id": "nextjs",
-    "items": [
-      {
-        "id": "/docs/integrations/nextjs",
-        "slug": "/docs/integrations/nextjs",
-        "title": "Next.js"
+        "id": "/docs/tina-cloud/dashboard",
+        "slug": "/docs/tina-cloud/dashboard",
+        "title": "Dashboard"
       },
       {
-        "id": "/docs/integrations/gatsby",
-        "slug": "/docs/integrations/gatsby",
-        "title": "Gatsby"
+        "id": "/docs/tina-cloud/cli",
+        "slug": "/docs/tina-cloud/cli",
+        "title": "Tina Cloud CLI",
+        "items": [
+          {
+            "id": "/docs/tina-cloud/cli/#defineschema",
+            "slug": "/docs/tina-cloud/cli/#defineschema",
+            "title": "Defining a schema",
+            "items": [
+              {
+                "id": "/docs/tina-cloud/cli/#collections",
+                "slug": "/docs/tina-cloud/cli/#collections",
+                "title": "Collections"
+              },
+              {
+                "id": "/docs/tina-cloud/cli/#templates",
+                "slug": "/docs/tina-cloud/cli/#templates",
+                "title": "Templates"
+              },
+              {
+                "id": "/docs/tina-cloud/cli/#fields",
+                "slug": "/docs/tina-cloud/cli/#fields",
+                "title": "Fields"
+              }
+            ]
+          },
+          {
+            "id": "/docs/tina-cloud/cli/#run-the-local-graphql-server",
+            "slug": "/docs/tina-cloud/cli/#run-the-local-graphql-server",
+            "title": "Local server"
+          }
+        ]
+      },
+      {
+        "id": "/docs/tina-cloud/client",
+        "slug": "/docs/tina-cloud/client",
+        "title": "Tina Cloud client",
+        "items": [
+          {
+            "id": "/docs/tina-cloud/client/#usegraphqlforms",
+            "href": "/docs/tina-cloud/client/#usegraphqlforms",
+            "title": "useGraphQLForms"
+          },
+          {
+            "id": "/docs/tina-cloud/client/#usedocumentcreatorplugin",
+            "href": "/docs/tina-cloud/client/#usedocumentcreatorplugin",
+            "title": "useDocumentCreatorPlugin"
+          },
+          {
+            "id": "/docs/tina-cloud/client/#authentication-with-tina-cloud",
+            "href": "/docs/tina-cloud/client/#authentication-with-tina-cloud",
+            "title": "Authentication"
+          }
+        ]
       }
     ]
   },
   {
-    "title": "Guides",
-    "id": "guides",
+    "category": "Guides",
+    "slug": "/guides",
+    "description": "Learn to use Tina step-by-step",
     "items": [
       {
         "id": "/guides",
         "slug": "/guides",
-        "title": "Overview"
+        "title": "About Guides"
       },
       {
-        "id": "/guides#general",
-        "href": "/guides#general",
-        "title": "General",
+        "id": "/guides#tinacms",
+        "title": "TinaCMS",
         "items": [
           {
-            "id": "/guides/general/inline-blocks/overview",
-            "slug": "/guides/general/inline-blocks/overview",
-            "title": "Inline Blocks"
+            "id": "/guides/tinacms/getting-started/introduction",
+            "slug": "/guides/tinacms/getting-started/introduction",
+            "title": "Getting Started With TinaCMS"
           }
         ]
       },
+      {
+        "id": "/guides#tina-cloud",
+        "href": "/guides#tina-cloud",
+        "title": "Tina Cloud",
+        "items": [
+          {
+            "id": "/guides/tina-cloud/starter/overview",
+            "slug": "/guides/tina-cloud/starter/overview",
+            "title": "Tina Cloud Starter"
+          },
+          {
+            "id": "/guides/tina-cloud/existing-site/overview",
+            "slug": "/guides/tina-cloud/existing-site/overview",
+            "title": "Add Tina Cloud to a Next.js site"
+          }
+        ]
+      },
+
       {
         "id": "/guides#nextjs",
         "href": "/guides#nextjs",
@@ -297,11 +380,6 @@
             "id": "/guides/nextjs/adding-tina/overview",
             "slug": "/guides/nextjs/adding-tina/overview",
             "title": "Adding Tina"
-          },
-          {
-            "id": "/guides/nextjs/git/getting-started",
-            "slug": "/guides/nextjs/git/getting-started",
-            "title": "Git Backend"
           },
           {
             "id": "/guides/nextjs/github/initial-setup",
@@ -316,103 +394,16 @@
         ]
       },
       {
-        "id": "/guides#gatsby",
-        "href": "/guides#gatsby",
-        "title": "Gatsby",
+        "id": "/guides#experimental",
+        "href": "/guides#experimental",
+        "title": "Experimental",
         "items": [
           {
-            "id": "/guides/gatsby/adding-tina/project-setup",
-            "slug": "/guides/gatsby/adding-tina/project-setup",
-            "title": "Adding Tina"
-          },
-          {
-            "id": "/guides/gatsby/git/installation",
-            "slug": "/guides/gatsby/git/installation",
-            "title": "Git Backend"
+            "id": "/guides/experimental/inline-blocks/overview",
+            "slug": "/guides/experimental/inline-blocks/overview",
+            "title": "Inline Blocks"
           }
         ]
-      }
-    ]
-  },
-  {
-    "title": "Release Notes",
-    "id": "releases",
-    "items": [
-      {
-        "id": "/docs/releases",
-        "href": "/docs/releases",
-        "title": "All Releases"
-      }
-    ]
-  },
-  {
-    "title": "Packages",
-    "id": "packages",
-    "items": [
-      {
-        "id": "/packages",
-        "slug": "/packages",
-        "title": "All Packages"
-      },
-      {
-        "id": "/packages/react-tinacms-date",
-        "slug": "/packages/react-tinacms-date",
-        "title": "react-tinacms-date"
-      },
-      {
-        "id": "/packages/react-tinacms-editor",
-        "slug": "/packages/react-tinacms-editor",
-        "title": "react-tinacms-editor"
-      },
-      {
-        "id": "/packages/react-tinacms-github",
-        "slug": "/packages/react-tinacms-github",
-        "title": "react-tinacms-github"
-      },
-      {
-        "id": "/packages/react-tinacms-inline",
-        "slug": "/packages/react-tinacms-inline",
-        "title": "react-tinacms-inline"
-      },
-      {
-        "id": "/packages/react-tinacms-strapi",
-        "slug": "/packages/react-tinacms-strapi",
-        "title": "react-tinacms-strapi"
-      },
-      {
-        "id": "/packages/next-tinacms-github",
-        "slug": "/packages/next-tinacms-github",
-        "title": "next-tinacms-github"
-      },
-      {
-        "id": "/packages/next-tinacms-json",
-        "slug": "/packages/next-tinacms-json",
-        "title": "next-tinacms-json"
-      },
-      {
-        "id": "/packages/next-tinacms-markdown",
-        "slug": "/packages/next-tinacms-markdown",
-        "title": "next-tinacms-markdown"
-      },
-      {
-        "id": "/packages/gatsby-plugin-tinacms",
-        "slug": "/packages/gatsby-plugin-tinacms",
-        "title": "gatsby-plugin-tinacms"
-      },
-      {
-        "id": "/packages/gatsby-tinacms-git",
-        "slug": "/packages/gatsby-tinacms-git",
-        "title": "gatsby-tinacms-git"
-      },
-      {
-        "id": "/packages/gatsby-tinacms-json",
-        "slug": "/packages/gatsby-tinacms-json",
-        "title": "gatsby-tinacms-json"
-      },
-      {
-        "id": "/packages/gatsby-tinacms-remark",
-        "slug": "/packages/gatsby-tinacms-remark",
-        "title": "gatsby-tinacms-remark"
       }
     ]
   }

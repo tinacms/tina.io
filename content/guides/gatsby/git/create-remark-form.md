@@ -1,6 +1,7 @@
 ---
 title: Creating Remark Forms
 ---
+{{ WarningCallout text="**Note:** Building with Tina and Gatsby currently requires that you run a development server for content-editing. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction."}}
 
 To use Markdown in your Gatsby site, you should already have the `gatsby-transformer-remark` plugin set up. This plugin uses [_Remark_](https://remark.js.org/) to process Markdown.
 
@@ -27,9 +28,9 @@ The hook returns _Remark_ data to render in the template and the current [`form`
 How to use this hook in your component:
 
 1. Import `useRemarkForm` and `usePlugin`.
-2. Add the GraphQL fragment `...TinaRemark` to your query. The fragment consists of these parameters: `id`, `fileRelativePath`, `rawFrontmatter`, and `rawMarkdownBody`.
-3. Call the hook and pass in the `markdownRemark` data returned from your query.
-4. Register the newly created form with `usePlugin`.
+2. Call the hook and pass in the `markdownRemark` data returned from your query.
+3. Register the newly created form with `usePlugin`.
+4. Add the GraphQL fragment `...TinaRemark` to your query. The fragment consists of these parameters: `id`, `fileRelativePath`, `rawFrontmatter`, and `rawMarkdownBody`.
 
 **src/templates/blog-post.js**
 

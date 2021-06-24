@@ -14,7 +14,7 @@ export const browser_template: BlockTemplate = {
 }
 
 export function BrowserBlock({ data, index }) {
-  const { browser, headline, subline, items } = data
+  const { media, headline, subline } = data
 
   return (
     <BlocksControls
@@ -29,76 +29,40 @@ export function BrowserBlock({ data, index }) {
         <div className="spacer"></div>
         <Container width="wide">
           <div className="browserContainer">
-            <div className="browser browserGrid">
-              <div className="browserContent">
-                <span className="contentTitle">
-                  <InlineTextarea name="browser.headline" />
-                </span>
-                <span className="contentText">
-                  <InlineTextarea name="browser.subline" />
-                </span>
-                <span className="contentFootnote">
-                  <InlineTextarea name="browser.text" />
-                </span>
-              </div>
-              <div className="browserImageWrapper">
-                <img className="browserImage" src={browser.media.src} alt="" />
-              </div>
-            </div>
-          </div>
-          <Divider type="desktop" />
-          <div className="cardGroup noSpacingMobile">
-            {items.map(item => {
-              return (
-                <>
-                  <Divider type="mobile" />
-                  <div
-                    className={[
-                      'card',
-                      'cardLinked',
-                      item.featured ? 'featured' : '',
-                    ].join(' ')}
-                  >
-                    <div className="linkedContent">
-                      <img src={item.media.src} alt="" className="cardImage" />
-                      <h3 className="headingMedium">{item.headline}</h3>
-                      {item.link && (
-                        <Link href={item.link}>
-                          <a className="cardLink"></a>
-                        </Link>
-                      )}
-                      <p className="textLarge">{item.subline}</p>
-                    </div>
-                    {item.link && (
-                      <div className="linkedIcon">
-                        {item.icon === 'arrowRight' && <IconRight />}
-                      </div>
-                    )}
-                  </div>
-                </>
-              )
-            })}
+            <img className="browserImage" src={media.src} alt="" />
           </div>
         </Container>
       </section>
       <style jsx>{`
-        .browser {
+        .browserContainer {
+          perspective: 300px;
+        }
+
+        .browserImageWrapper {
+          margin-top: -1rem;
+        }
+
+        .browserImage {
+          width: 100%;
+          max-width: 640px;
+          height: auto;
           position: relative;
-          padding: 4rem 3rem 3rem 3rem;
+          left: 50%;
           border-radius: 2rem;
-          overflow: visible;
+          overflow: hidden;
           background: var(--color-card-background);
           background: linear-gradient(
             to bottom right,
             white 30%,
             var(--color-light-gray)
           );
-          transform: rotate3d(1, 0, 0, 2deg);
+          transform: rotate3d(1, 0, 0, 2deg) translate3d(-50%, 0, 0);
           background-position: top left;
-          border-radius: 0.25rem;
+          border-radius: 0.5rem;
           box-shadow: inset 0 0 0 1px rgba(36, 23, 72, 0.03),
             0 24px 32px rgba(36, 23, 72, 0.05), 0 6px 8px rgba(36, 23, 72, 0.03),
             0 48px 48px -64px rgba(36, 23, 72, 0.3);
+          border: 1px solid rgba(36, 23, 72, 0.07);
 
           &:after {
             content: '';
@@ -114,53 +78,6 @@ export function BrowserBlock({ data, index }) {
             box-shadow: 0.875rem 0 0 var(--color-orange),
               2.375rem 0 0 var(--color-yellow), 3.875rem 0 0 var(--color-green);
           }
-        }
-
-        .browserContainer {
-          perspective: 300px;
-        }
-
-        .browserGrid {
-          display: grid;
-          grid-gap: 3rem 2rem;
-
-          @media (min-width: 1000px) {
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
-          }
-        }
-
-        .contentTitle {
-          font-family: var(--font-tuner);
-          color: var(--color-orange);
-          display: block;
-          font-size: 2.25rem;
-          font-weight: bold;
-          margin-bottom: 1rem;
-        }
-
-        .contentText {
-          display: block;
-          font-size: 1.5rem;
-          margin-bottom: 1.25rem;
-        }
-
-        .contentFootnote {
-          display: block;
-          font-size: 1.125rem;
-          opacity: 0.5;
-        }
-
-        .browserImageWrapper {
-          margin-top: -1rem;
-        }
-
-        .browserImage {
-          display: block;
-          width: 100%;
-          height: auto;
-          margin: 0;
-          filter: drop-shadow(0 3px 8px rgba(0, 37, 91, 0.07));
         }
 
         .cardGroup {

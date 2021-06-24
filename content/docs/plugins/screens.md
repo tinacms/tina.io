@@ -1,17 +1,18 @@
 ---
 title: Screen Plugins
-prev: /docs/plugins/content-creators
+prev: /docs/plugins
 next: /docs/plugins/toolbar-widgets
 last_edited: '2021-04-13T14:52:33.504Z'
 ---
+
 Screen Plugins allow you to render modal UI and handle various content editing needs. The purpose of these screens is to give a way to display information about the website that is not suited to inline or sidebar editing.
 
 **Example use cases** may include:
 
-* User Management
-* CI build status
-* Website Metadata e.g. SEO
-* Layout Configuration such as Menus. For example, one might use a _Screen Plugin_ to register a form to edit 'global site data'.
+- User Management
+- CI build status
+- Website Metadata e.g. SEO
+- Layout Configuration such as Menus. For example, one might use a _Screen Plugin_ to register a form to edit 'global site data'.
 
 ## Interface
 
@@ -29,13 +30,13 @@ export interface ScreenComponentProps {
 }
 ```
 
-| Option | Description |
-| --- | --- |
-| `__type` | The name of the plugin. Always `'screen'`. |
-| `name` | The text to be displayed in the form menu and at the top of the screen modal. |
+| Option      | Description                                                                             |
+| ----------- | --------------------------------------------------------------------------------------- |
+| `__type`    | The name of the plugin. Always `'screen'`.                                              |
+| `name`      | The text to be displayed in the form menu and at the top of the screen modal.           |
 | `Component` | An array of fields that populate a modal form. Field values can populate new file data. |
-| `Icon` | A component to render in the form menu, next to the `name`. |
-| `layout` | Determines the modal layout. Defaults to `popup`. |
+| `Icon`      | A component to render in the form menu, next to the `name`.                             |
+| `layout`    | Determines the modal layout. Defaults to `popup`.                                       |
 
 ### Name, Icon, & Component
 
@@ -120,7 +121,7 @@ export default function Page() {
 
 ```jsx
 import { useFormScreenPlugin } from 'tinacms'
-import { useJsonForm } from 'gatsby-tinacms-json'
+import { useJsonForm } from 'next-tinacms-json'
 
 function Layout(props) {
   // Create the form
@@ -139,7 +140,7 @@ You can also optionally pass an icon and a layout to `useFormScreenPlugin`. If t
 
 ```jsx
 import { useFormScreenPlugin } from 'tinacms'
-import { useJsonForm } from 'gatsby-tinacms-json'
+import { useJsonForm } from 'next-tinacms-json'
 
 function Layout(props) {
   // Create the form
@@ -153,5 +154,3 @@ function Layout(props) {
   return <h1>{data.firstName}</h1>
 }
 ```
-
-## Further Readi

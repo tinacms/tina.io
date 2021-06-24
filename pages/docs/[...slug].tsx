@@ -12,38 +12,34 @@ import { GithubError } from 'next-tinacms-github'
 import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { usePlugin } from 'tinacms'
 import Toc from '../../components/toc'
-import { createTocListener } from 'utils'
+import { useTocListener } from 'utils'
 import { useLastEdited } from 'utils/useLastEdited'
 import { openGraphImage } from 'utils/open-graph-image'
 import Error from 'next/error'
 import { NotFoundError } from 'utils/error/NotFoundError'
+import { useRouter } from 'next/router'
+import { CloudDisclaimer } from 'components/cloud-beta-disclaimer'
 
-function DocTemplate(props) {
+export function DocTemplate(props) {
   // fallback workaround
   if (props.notFound) {
     return <Error statusCode={404} />
   }
 
+  const router = useRouter()
+  const isCloudDocs = router.asPath.includes('tina-cloud')
+
   // Registers Tina Form
   const [data, form] = useGithubMarkdownForm(props.file, formOptions)
 
   const isBrowser = typeof window !== `undefined`
-  const contentRef = React.useRef<HTMLDivElement>(null)
+
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
   const excerpt = props.file.data.excerpt
   const tocItems = props.tocItems
-  const [activeIds, setActiveIds] = useState([])
 
-  React.useEffect(() => {
-    if (!isBrowser || !contentRef.current) {
-      return
-    }
-    const activeTocListener = createTocListener(contentRef, setActiveIds)
-    window.addEventListener('scroll', activeTocListener)
-
-    return () => window.removeEventListener('scroll', activeTocListener)
-  }, [contentRef, data])
+  const { activeIds, contentRef } = useTocListener(data)
 
   usePlugin(form)
   useLastEdited(form)
@@ -72,6 +68,7 @@ function DocTemplate(props) {
           </DocGridToc>
           <DocGridContent ref={contentRef}>
             <hr />
+            {isCloudDocs ? <CloudDisclaimer /> : null}
             <InlineWysiwyg name="markdownBody">
               <MarkdownContent escapeHtml={false} content={markdownBody} />
             </InlineWysiwyg>

@@ -1,6 +1,9 @@
 ---
 title: Project Setup
+last_edited: '2021-04-17T18:28:58.041Z'
 ---
+
+{{ WarningCallout text="**Note:** Building with Tina and Gatsby currently requires that you run a development server for content-editing. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction."}}
 
 This guide will show you how to set up Tina on a Gatsby site. Since Gatsby lets you pull content in from multiple data sources, these docs will only cover adding to Tina to your site and creating forms for content stored in memory. This guide does not show you how to set up a backend, which would persist content changes.
 
@@ -24,7 +27,7 @@ yarn global add gatsby-cli
 gatsby new gatsby-starter-blog https://github.com/gatsbyjs/gatsby-starter-blog
 ```
 
-This will create a new blog starter in the `gatsby-starter-blog` directory. Navigate to the project directory and run `yarn dev` to start the website in dev mode.
+This will create a new blog starter in the `gatsby-starter-blog` directory. Navigate to the project directory and run `yarn develop` to start the website in dev mode.
 
 ```bash
 cd gatsby-starter-blog

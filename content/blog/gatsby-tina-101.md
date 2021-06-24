@@ -13,6 +13,7 @@ consumes:
 next: /blog/introducing-visual-open-authoring
 prev: /blog/custom-field-plugins
 ---
+{{ WarningCallout text="**Update:** The examples in this post reference an outdated Gatsby implementation. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction."}}
 
 Static site generators like [Gatsby](https://www.gatsbyjs.org/) are a massive win for developers. They provide us with automated deployments, faster development cycles, and reduced security burden.
 

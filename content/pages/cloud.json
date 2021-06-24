@@ -25,7 +25,7 @@
           "label": "Blog"
         },
         {
-          "link": "/early-access",
+          "link": "/cloud",
           "label": "Tina Cloud"
         }
       ]
@@ -37,9 +37,15 @@
       "actions": [
         {
           "variant": "orange",
-          "label": "Get Early Access",
+          "label": "Sign up",
           "icon": "arrowRight",
-          "url": "https://tina.io/early-access"
+          "url": "https://auth.tina.io/register"
+        },
+        {
+          "variant": "ghost",
+          "label": "Get started",
+          "icon": "",
+          "url": "/guides/tina-cloud/starter/overview/"
         }
       ],
       "videoSrc": ""
@@ -59,11 +65,11 @@
         },
         {
           "_template": "feature",
-          "headline": "Ship Content Faster",
+          "headline": "Move Faster With Tina Cloud",
+          "subline": "Visual editing and Git storage allows you to ship content faster with the safety of version-control.",
           "media": {
-            "src": "/img/visual-editing.gif"
-          },
-          "subline": "Visual editing greatly improves the productivity of content teams and makes their job much more enjoyable. Your team can work with full confidence. Powerful Git version control has your back."
+            "src": "/img/edit-alongside-content.gif"
+          }
         },
         {
           "_template": "feature",
@@ -85,43 +91,11 @@
     },
     {
       "_template": "browser",
-      "headline": "",
-      "subline": "",
-      "browser": {
-        "headline": "The Tina Platform",
-        "subline": "Tina's open-source editor can talk to any backend API. Tina Cloud provides the best-in-class experience without locking you in.",
-        "text": "",
-        "media": {
-          "src": "/img/blocks.gif"
-        }
-      },
-      "items": [
-        {
-          "headline": "Git Repo",
-          "subline": "Connect to the GitHub API with the Tina GitHub plugin",
-          "icon": "",
-          "media": {
-            "src": "img/git-providers.png"
-          }
-        },
-        {
-          "headline": "3rd-party API",
-          "subline": "Connect to Airtable, Google Sheets, or another headless CMS",
-          "icon": "",
-          "media": {
-            "src": "img/headlessCms.png"
-          }
-        },
-        {
-          "headline": "Tina Cloud",
-          "subline": "User-management, auth, roles, and a GraphQL API for your content",
-          "icon": "",
-          "featured": "true",
-          "media": {
-            "src": "img/headlessCms.png"
-          }
-        }
-      ]
+      "headline": "*Edit Content, Not Code*",
+      "subline": "Make changes in context and see them in real-time. Hit save and let Tina handle the commit for you.",
+      "media": {
+        "src": "/img/blocks.gif"
+      }
     }
   ]
 }

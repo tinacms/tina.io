@@ -51,10 +51,6 @@ const FooterForm = styled.div`
   @media (min-width: 550px) {
     flex-direction: row;
   }
-
-  @media (min-width: 1200px) {
-    margin-bottom: 0;
-  }
 `
 
 const FooterTop = styled.div`
@@ -93,7 +89,7 @@ const FooterBottom = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 1.5rem 2rem;
+  padding: 1.5rem 2rem 0 2rem;
   background-color: var(--color-background);
 
   @media (min-width: 1200px) {
@@ -109,6 +105,7 @@ const Footnote = styled.span`
   align-items: flex-start;
   color: inherit;
   font-size: 1rem;
+  margin-bottom: 1.5rem;
 
   button {
     height: 40px;
@@ -214,6 +211,10 @@ export const Footer = styled(({ light, ...styleProps }) => {
         </FooterForm>
         <Footnote>
           <EditLink color={'primary'} />
+          <Link href="/security" passHref>
+            <a>Security</a>
+          </Link>
+          <FooterDivider />
           <Link href="/terms-of-service" passHref>
             <a>Terms of Service</a>
           </Link>

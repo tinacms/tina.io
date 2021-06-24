@@ -13,6 +13,8 @@ consumes:
     details: Creates cms instance with TinaCMS
 ---
 
+{{ WarningCallout text="**Note:** This guide is outdated. We recommend following the [Add Tina Cloud to a Next.js site](/guides/tina-cloud/existing-site/overview/) guide or the [GitHub backend](/guides/nextjs/github/initial-setup/) guide instead."}}
+
 The `TinaProvider` component makes it possible to attach [forms](/docs/plugins/forms) to the Tina sidebar, but we need to wire up a backend in order for content changes to be persisted anywhere. Let's set up the default Git backend.
 
 **The Git backend consists of two parts:**
