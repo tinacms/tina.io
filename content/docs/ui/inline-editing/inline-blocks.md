@@ -17,7 +17,7 @@ consumes:
 
 Inline Blocks combine the content modelling flexibility of regular [Blocks](/blog/what-are-blocks) with the improved editing experience of [Inline Editing](/docs/ui/inline-editing).
 
-> Learn about Inline Blocks in a [step-by-step guide](/guides/general/inline-blocks/overview)!
+> Learn about Inline Blocks in a [step-by-step guide](/guides/experimental/inline-blocks/overview)!
 
 ## Creating a Block
 
