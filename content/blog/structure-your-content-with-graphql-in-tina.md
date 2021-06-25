@@ -2,7 +2,7 @@
 title: Structure your content with GraphQL in Tina
 date: '2021-06-25T18:34:12+02:00'
 author: Frank Taillandier
-last_edited: '2021-06-25T18:34:26.668Z'
+last_edited: '2021-06-25T20:42:18.533Z'
 ---
 Tina adopts a developer-centric approach to structure content, which means you can model your content locally in your favourite editor. Thanks to a [GraphQL layer on top of the files](https://tina.io/blog/using-graphql-with-the-filesystem/) stored in your repository, Tina makes it more straightforward to query content all across your files. Let's see how this feels.
 
@@ -123,7 +123,7 @@ The Tina CLI provides a command to run a local GraphQL server to watch for chang
     Visit the playground at http://localhost:4001/altair/
     …
 
-When opening `http://localhost:4001/graphql`, the [Altair GraphQL client](https://altair.sirmuel.design/) lets you build queries and browse the API documentation.
+When opening `http://localhost:4001/altair`, the [Altair GraphQL client](https://altair.sirmuel.design/) lets you build queries and browse the API documentation.
 
 ![A Blog query returning our data in Altair GraphQL Client](/img/blog/altair-client-tina.png)
 
@@ -153,4 +153,4 @@ query BlogPost {
 
 Now that we know how to query data from our files, we still need to use that query in our Next.js application, request it from the client and ask  Tina to generate the corresponding form so that our contributors are able to edit it visually. We'll detail the remaining steps in a follow-up post, stay tuned!
 
-_[Join our Discord](https://discord.com/invite/zumN63Ybpf), if you have any question regarding how to work with Tina and Next.js._
+_[Join our Discord](https://discord.com/invite/zumN63Ybpf), if you have any question regarding how to work with Tina and Next.js.ll_
