@@ -4,9 +4,9 @@ date: '2021-06-25T18:34:12+02:00'
 author: Frank Taillandier
 last_edited: '2021-06-25T18:34:26.668Z'
 ---
-Tina adopts a developer-centric approach to structure content, which means you can model your content locally in your favourite editor. Thanks to a [GraphQL layer on top of the files](https://tina.io/blog/using-graphql-with-the-filesystem/) stored in your repository, Tina makes it more straightforward to query content all across your files. Let's this how this feels.
+Tina adopts a developer-centric approach to structure content, which means you can model your content locally in your favourite editor. Thanks to a [GraphQL layer on top of the files](https://tina.io/blog/using-graphql-with-the-filesystem/) stored in your repository, Tina makes it more straightforward to query content all across your files. Let's see how this feels.
 
-When we refer to Git-based, it means your content is stored in Markdown and JSON files and modelled with front matter; on top of that [Tina Cloud]() aims at let you leverage the power of [GraphQL](https://graphql.org/).
+When we refer to Git-based, it means your content is stored in Markdown and JSON files and modelled with front matter; on top of that [Tina Cloud](/cloud) aims to let you leverage the power of [GraphQL](https://graphql.org/).
 
 We open-sourced the [tina-graphql-gateway package](https://github.com/tinacms/tina-graphql-gateway) so that you can see how it works under the hood. It contains different tools for developers to work with Tina and GraphQL:
 
@@ -150,10 +150,6 @@ query BlogPost {
   }
 }
 ```
-
-> 💡 To get type autocompletion when you edit the schema install the [VSCode GraphQL extension](https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql).
->
-> ![](/img/blog/graphql_types_vscode.png)
 
 Now that we know how to query data from our files, we still need to use that query in our Next.js application, request it from the client and ask  Tina to generate the corresponding form so that our contributors are able to edit it visually. We'll detail the remaining steps in a follow-up post, stay tuned!
 
