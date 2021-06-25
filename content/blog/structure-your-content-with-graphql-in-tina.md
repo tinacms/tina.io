@@ -2,7 +2,7 @@
 title: Structure your content with GraphQL in Tina
 date: '2021-06-25T18:34:12+02:00'
 author: Frank Taillandier
-last_edited: '2021-06-25T18:08:51.675Z'
+last_edited: '2021-06-25T18:34:26.668Z'
 ---
 Tina adopts a developer-centric approach to structure content, which means you can model your content locally in your favourite editor. Thanks to a [GraphQL layer on top of the files](https://tina.io/blog/using-graphql-with-the-filesystem/) stored in your repository, Tina makes it more straightforward to query content all across your files. Let's this how this feels.
 
@@ -37,7 +37,6 @@ Let’s take a very basic example, where we declare a Blog Posts collection that
 To describe the shape of this content type, we need to provide a **template**. For our basic blog post, we’ll start by saying an _article_ has the following front matter fields:
 
 * `title` (text),
-* `hero` (image)
 * `author` (a reference to the author collection).
 
 We also need to define a collection for the authors, as well as a basic template for an author which has:
@@ -67,11 +66,6 @@ export default defineSchema({
               type: "text",
               label: "Title",
               name: "title",
-            },
-            {
-              name: 'hero',
-              type: 'image',
-              label: 'Hero',
             },
             {
               type: "reference",
@@ -114,7 +108,7 @@ export default defineSchema({
 >
 > You can use any [field type available in TinaCMS](https://tina.io/docs/fields/#default-field-plugins): text, textarea, datetime, list, group, select, blocks, etc. ([source](https://github.com/tinacms/tina-graphql-gateway/blob/5128b85fb2b3b69999c18eb5708eaf7e1fff4786/packages/tina-graphql-gateway-cli/src/cmds/compile/index.ts#L687))
 >
-> `Image` type was recently added and we currently only support [Cloudinary](https://cloudinary.com/) as a media provider with Tina Cloud.
+> `Image` type is under development with [Cloudinary](https://cloudinary.com/) support as a media provider with Tina Cloud.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/EwewKEHHkd4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true"></iframe>
 
@@ -142,7 +136,6 @@ query BlogPost {
       __typename
       ... on Article_Doc_Data {
         title
-        hero
           author {
             data {
               ... on Author_Doc_Data {
