@@ -153,4 +153,4 @@ query BlogPost {
 
 Now that we know how to query data from our files, we still need to use that query in our Next.js application, request it from the client and ask  Tina to generate the corresponding form so that our contributors are able to edit it visually. We'll detail the remaining steps in a follow-up post, stay tuned!
 
-_[Join our Discord](https://discord.com/invite/zumN63Ybpf), if you have any question regarding how to work with Tina and Next.js.ll_
+_[Join our Discord](https://discord.com/invite/zumN63Ybpf), if you have any question regarding how to work with Tina and Next.js._
