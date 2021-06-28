@@ -1,9 +1,7 @@
-import { DocsLayout } from 'components/layout'
+import { DocsLayout, MarkdownContent } from 'components/layout'
 import { NextSeo } from 'next-seo'
 import Link from 'next/link'
-import { release } from 'os'
 import React from 'react'
-import ReactMarkdown from 'react-markdown'
 import styled from 'styled-components'
 import { getReleases } from 'utils/docs/getReleases'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
@@ -36,7 +34,7 @@ export default function ReleaseIndex({ releases, docsNav }) {
           <DocGridContent>
             <h2>Latest Release</h2>
             <blockquote>
-              <ReactMarkdown>{latestRelease.body}</ReactMarkdown>
+              <MarkdownContent escapeHtml={true} content={latestRelease.body} />
               <Link href={latestRelease.slug}>Permalink</Link>
               <br />
               <a href={latestRelease.html_url} target="_blank">
