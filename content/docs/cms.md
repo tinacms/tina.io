@@ -13,9 +13,8 @@ consumes:
     description: Shows sidebar state interface
   - file: /packages/react-toolbar/toolbar.ts
     description: Shows Toolbar state interface
-last_edited: '2020-07-31T16:18:02.673Z'
+last_edited: '2021-06-22T19:01:05.703Z'
 ---
-
 The CMS object in Tina is a container for attaching and accessing [Plugins](/docs/plugins), [APIs](/docs/apis), and the [Event Bus](/docs/events). On its own, the CMS does very little; however, since it's the central integration point for everything that Tina does, it's extremely important!
 
 > Reference [Step 1](/docs/getting-started/cms-set-up) of the Introductory Tutorial for an example on setting up the CMS.
@@ -128,6 +127,9 @@ interface TinaCMSConfig {
   media?: {
     store: MediaStore
   }
+  mediaOptions?: {
+    pageSize?: number
+  }
 }
 
 interface SidebarConfig {
@@ -147,18 +149,19 @@ interface ToolbarConfig {
 }
 ```
 
----
+***
 
-| key         | usage                                                                            |
-| ----------- | -------------------------------------------------------------------------------- |
-| **enabled** | Controls whether the CMS is enabled or disabled. _Defaults to_ `false`           |
-| **plugins** | Array of plugins to be added to the CMS object.                                  |
-| **apis**    | Object containing APIs to be registered to the CMS                               |
+| key | usage |
+| --- | --- |
+| **enabled** | Controls whether the CMS is enabled or disabled. _Defaults to_ `false` |
+| **plugins** | Array of plugins to be added to the CMS object. |
+| **apis** | Object containing APIs to be registered to the CMS |
 | **sidebar** | Enables and configures behavior of the [sidebar](/docs/ui#sidebar-configuration) |
-| **toolbar** | Configures behavior of the [toolbar](/docs/ui#toolbar-configuration)             |
-| **media**   | Configures [media](/docs/media).                                                 |
+| **toolbar** | Configures behavior of the [toolbar](/docs/ui#toolbar-configuration) |
+| **media** | Configures [media](/docs/media). |
+| **pageSize** | Sets how many media objects are displayed at a time in the media manager. |
 
----
+***
 
 > Learn more about [sidebar & toolbar options](/docs/cms/ui).
 
@@ -205,13 +208,13 @@ interface TinaCMS {
 }
 ```
 
-| property      | description                                                                                   |
-| ------------- | --------------------------------------------------------------------------------------------- |
-| `enabled`     | Returns the enabled state. When `true`, content _can_ be edited.                              |
-| `disabled`    | Returns the disabled state. When `true`, content _cannot_ be edited.                          |
-| `registerApi` | Registers a new [external API](/docs/apis#adding-an-api) with the CMS.                        |
-| `enable`      | [Enables](/docs/cms#disabling--enabling-the-cms) the CMS so content can be edited.            |
-| `disable`     | [Disables](/docs/cms#disabling--enabling-the-cms) the CMS so content can no longer be edited. |
-| `toggle`      | [Toggles](/docs/cms#disabling--enabling-the-cms) the enabled/disabled state of the CMS .      |
+| property | description |
+| --- | --- |
+| `enabled` | Returns the enabled state. When `true`, content _can_ be edited. |
+| `disabled` | Returns the disabled state. When `true`, content _cannot_ be edited. |
+| `registerApi` | Registers a new [external API](/docs/apis#adding-an-api) with the CMS. |
+| `enable` | [Enables](/docs/cms#disabling--enabling-the-cms) the CMS so content can be edited. |
+| `disable` | [Disables](/docs/cms#disabling--enabling-the-cms) the CMS so content can no longer be edited. |
+| `toggle` | [Toggles](/docs/cms#disabling--enabling-the-cms) the enabled/disabled state of the CMS . |
 
 > Use the `useCMS` hook to [access the CMS](/docs/cms#accessing-the-cms-object) and execute these methods as needed.
