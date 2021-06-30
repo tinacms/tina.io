@@ -26,6 +26,11 @@
       "link": "https://github.com/tinacms/tinacms/tree/master/packages/react-tinacms-strapi"
     },
     {
+      "name": "next-tinacms-cloudinary",
+      "readme": "https://api.github.com/repos/tinacms/tina-graphql-gateway/contents/packages/next-tinacms-cloudinary/README.md",
+      "link": "https://github.com/tinacms/tina-graphql-gateway/tree/main/packages/next-tinacms-cloudinary"
+    },
+    {
       "name": "next-tinacms-github",
       "readme": "https://api.github.com/repos/tinacms/tinacms/contents/packages/next-tinacms-github/README.md",
       "link": "https://github.com/tinacms/tinacms/tree/master/packages/next-tinacms-github"

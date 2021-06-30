@@ -241,6 +241,11 @@
             "title": "react-tinacms-strapi"
           },
           {
+            "id": "/packages/next-tinacms-cloudinary",
+            "slug": "/packages/next-tinacms-cloudinary",
+            "title": "next-tinacms-cloudinary"
+          },
+          {
             "id": "/packages/next-tinacms-github",
             "slug": "/packages/next-tinacms-github",
             "title": "next-tinacms-github"
