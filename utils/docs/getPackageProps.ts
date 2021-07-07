@@ -44,6 +44,7 @@ export async function getPackageProps(
 
   interface GithubPackage {
     name: string
+    monorepo: string
     readme: string
     link: string
   }
@@ -72,12 +73,17 @@ export async function getPackageProps(
     }
   }
 
-  const latestTag = await axios
-    .get('https://api.github.com/repos/tinacms/tinacms/releases/latest')
-    .then((res: any) => res.data.tag_name)
-  const currentDoc = await axios.get(
-    `${currentPackage.readme}?ref=${latestTag}`
-  )
+  let currentDocUrl = currentPackage.readme
+  try {
+    const latestTag = await axios
+      .get(
+        `https://api.github.com/repos/${currentPackage.monorepo}/releases/latest`
+      )
+      .then((res: any) => res.data.tag_name)
+    currentDocUrl += `?ref=${latestTag}`
+  } catch {}
+
+  const currentDoc = await axios.get(currentDocUrl)
 
   const content = b64DecodeUnicode(currentDoc.data.content)
 
