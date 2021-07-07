@@ -2,13 +2,15 @@ Hello! and thanks for bootstrapping a Tina App! Before you do anything click on 
 
 ## Next steps
 
-### Wrap your App in "Edit State" (**Can probably skip this as CLI did this for you**)
+### Wrap your App in "Edit State" 
+
+**NOTE:** If you bootstrapped this application with the CLI it probably took care of this for you and you can skip to the [Make a page editable](#make-a-page-editable) Step.
 
 To do this add the following to your pages/_app.js. (or create this file if it is not present in your project)
 
 **_app.js**
 
-```tsx
+```tsx,copy
 import dynamic from "next/dynamic";
 
 import { EditProvider, setEditing, useEditState } from "tina-graphql-gateway";
@@ -73,9 +75,9 @@ To make a page editable we need to do three things
 
 #### Update schema.ts
 
-lets update our schema.ts to include product listings. We will do so by added an "pages collection" with a product listing template. When added to our existing blog collection it looks like this. We also need a place to store the authors in the file system. So lets create a folder "content/pages".
+lets update our schema.ts to include product listings. We will do so by adding a "pages collection" with a product listing template. When adding to our existing blog collection it looks like this. We also need a place to store the authors in the file system. So lets create a folder `content/pages`.
 
-```tsx
+```tsx,copy
 import { defineSchema } from "tina-graphql-gateway-cli";
 
 export default defineSchema({
@@ -133,7 +135,7 @@ export default defineSchema({
 ```
 
 
-Lets also create a file to query. In the folder we just created (content/pages) add a file called "product-listing.md"
+Lets also create a file to query. In the folder we just created (`content/pages`) add a file called `product-listing.md`
 
 ```md
 ---
@@ -144,9 +146,9 @@ _template: product
 
 #### Make a new Next.js page and a graphql Query
 
-Start by making a new file called pages/product-listing.tsx that contains the following
+Start by making a new file called `pages/product-listing.tsx` that contains the following
 
-```tsx
+```tsx,copy
 import { LocalClient } from "tina-graphql-gateway";
 import { Pages_Document } from "../.tina/__generated__/types";
 import { AsyncReturnType } from "./demo/blog/[filename]";
@@ -199,13 +201,13 @@ export const getStaticProps = async () => {
 };
 ```
 
-We are doing a couple of things here. A graphql query was written that looks for the content/pages/product-listing.md file
+We are doing a couple of things here. A graphql query was written that looks for the `content/pages/product-listing.md` file
 
 The query is being statically exported so it can be accessed by the TinaWrapper.
 
 The code was updated to display the list of products.
 
-Visit [http://localhost:3000/product-listing{" "}](http://localhost:3000/product-listing) {" "} to see what you just created. Click the "edit this site" button in the top to edit.
+Visit [http://localhost:3000/product-listing](http://localhost:3000/product-listing)to see what you just created. Click the "edit this site" button in the top to edit.
 
 #### Tina Cloud
 
@@ -218,4 +220,4 @@ To hook up this demo to Tina Cloud and save content to Github instead of the fil
 NEXT_PUBLIC_ORGANIZATION_NAME= get this from the organization you create at auth.tina.io
 NEXT_PUBLIC_TINA_CLIENT_ID= get this from the app you create at auth.tina.io
 NEXT_PUBLIC_USE_LOCAL_CLIENT=0
-å```
+```
