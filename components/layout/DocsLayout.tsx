@@ -12,10 +12,11 @@ interface DocsLayoutProps {
   navItems: any
   guide?: false | { category: string }
   children: any
+  showLayout?: boolean
 }
 
 export const DocsLayout = React.memo(
-  ({ children, navItems, guide = false }: DocsLayoutProps) => {
+  ({ children, navItems, guide = false, showLayout = true }: DocsLayoutProps) => {
     const router = useRouter()
     return (
       <>
@@ -25,10 +26,10 @@ export const DocsLayout = React.memo(
           }}
         />
         <DocsLayoutDiv>
-          <DocumentationNavigation navItems={navItems} guide={guide} />
+          {showLayout && <DocumentationNavigation navItems={navItems} guide={guide} />}
           <DocsTextWrapper>{children}</DocsTextWrapper>
           <FeedbackForm />
-          <Footer light />
+          {showLayout && <Footer light />}
         </DocsLayoutDiv>
       </>
     )

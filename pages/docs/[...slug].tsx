@@ -25,9 +25,10 @@ export function DocTemplate(props) {
   if (props.notFound) {
     return <Error statusCode={404} />
   }
-
+  
   const router = useRouter()
   const isCloudDocs = router.asPath.includes('tina-cloud')
+  const noLayout = router.query.layout === 'false'
 
   // Registers Tina Form
   const [data, form] = useGithubMarkdownForm(props.file, formOptions)
@@ -56,7 +57,7 @@ export function DocTemplate(props) {
           images: [openGraphImage(frontmatter.title, '| TinaCMS Docs')],
         }}
       />
-      <DocsLayout navItems={props.docsNav}>
+      <DocsLayout navItems={props.docsNav} showLayout={!noLayout}>
         <DocsGrid>
           <DocGridHeader>
             <DocsPageTitle>
