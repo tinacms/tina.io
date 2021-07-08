@@ -75,7 +75,7 @@ To make a page editable we need to do three things
 
 #### Update schema.ts
 
-lets update our schema.ts to include product listings. We will do so by adding a "pages collection" with a product listing template. When adding to our existing blog collection it looks like this. We also need a place to store the authors in the file system. So lets create a folder `content/pages`.
+let's update our schema.ts to include product listings. We will do so by adding a "pages collection" with a product listing template. When adding to our existing blog collection it looks like this. We also need a place to store the authors in the file system. So let's create a folder `content/pages`.
 
 ```tsx,copy
 import { defineSchema } from "tina-graphql-gateway-cli";
@@ -135,7 +135,7 @@ export default defineSchema({
 ```
 
 
-Lets also create a file to query. In the folder we just created (`content/pages`) add a file called `product-listing.md`
+let's also create a file to query. In the folder we just created (`content/pages`) add a file called `product-listing.md`
 
 ```md
 ---
