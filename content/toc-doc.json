@@ -277,63 +277,17 @@
       {
         "id": "/docs/tina-cloud/dashboard",
         "slug": "/docs/tina-cloud/dashboard",
-        "title": "Dashboard"
+        "title": "Tina Cloud Dashboard"
       },
       {
-        "id": "/docs/tina-cloud/cli",
-        "slug": "/docs/tina-cloud/cli",
-        "title": "Tina Cloud CLI",
-        "items": [
-          {
-            "id": "/docs/tina-cloud/cli/#defineschema",
-            "slug": "/docs/tina-cloud/cli/#defineschema",
-            "title": "Defining a schema",
-            "items": [
-              {
-                "id": "/docs/tina-cloud/cli/#collections",
-                "slug": "/docs/tina-cloud/cli/#collections",
-                "title": "Collections"
-              },
-              {
-                "id": "/docs/tina-cloud/cli/#templates",
-                "slug": "/docs/tina-cloud/cli/#templates",
-                "title": "Templates"
-              },
-              {
-                "id": "/docs/tina-cloud/cli/#fields",
-                "slug": "/docs/tina-cloud/cli/#fields",
-                "title": "Fields"
-              }
-            ]
-          },
-          {
-            "id": "/docs/tina-cloud/cli/#run-the-local-graphql-server",
-            "slug": "/docs/tina-cloud/cli/#run-the-local-graphql-server",
-            "title": "Local server"
-          }
-        ]
+        "id": "/docs/tina-cloud/cli/",
+        "slug": "/docs/tina-cloud/cli/",
+        "title": "Tina Cloud CLI"
       },
       {
-        "id": "/docs/tina-cloud/client",
-        "slug": "/docs/tina-cloud/client",
-        "title": "Tina Cloud client",
-        "items": [
-          {
-            "id": "/docs/tina-cloud/client/#usegraphqlforms",
-            "href": "/docs/tina-cloud/client/#usegraphqlforms",
-            "title": "useGraphQLForms"
-          },
-          {
-            "id": "/docs/tina-cloud/client/#usedocumentcreatorplugin",
-            "href": "/docs/tina-cloud/client/#usedocumentcreatorplugin",
-            "title": "useDocumentCreatorPlugin"
-          },
-          {
-            "id": "/docs/tina-cloud/client/#authentication-with-tina-cloud",
-            "href": "/docs/tina-cloud/client/#authentication-with-tina-cloud",
-            "title": "Authentication"
-          }
-        ]
+        "id": "/docs/tina-cloud/client/",
+        "slug": "/docs/tina-cloud/client/",
+        "title": "Tina Cloud Client"
       }
     ]
   },
