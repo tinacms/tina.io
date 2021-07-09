@@ -2,15 +2,16 @@
 title: Manage your media with Cloudinary
 date: '2021-07-09T08:34:47-04:00'
 author: James Perkins
-last_edited: '2021-07-09T12:48:46.027Z'
+last_edited: '2021-07-09T13:35:07.608Z'
 ---
-# Tina now supports Cloudinary & Media Manager
+# Tina now supports Cloudinary as a Media Manager
 
-We released the Alpha just over a month ago and one thing that has come up in the feedback we have been collecting is the ability to use our Media Manager. This was a core feature that gives content creators the ability to drag and drop their images or replace an image easily. We decided to start with Cloudinary, to allow users to keep their GitHub repositories lightweight.
+We released our public alpha just over a month ago and one thing that has come up in the feedback we have been collecting is the ability to use Tina's Media Manager. This was a core feature that gives content creators the ability to drag and drop their images or replace an image easily. We decided to start with Cloudinary, to allow users to keep their GitHub repositories lightweight.
 
 ### Why did we start with Cloudinary?
 
-Cloudinary has a powerful media API that can return optimized images, it can  be used with Next Image and Next image optimization, with minimal configuration.
+Serving images for the web is not just about uploading one file in a specific format and resolution, it's way more complicated than that.
+[Cloudinary](https://cloudinary.com/) has a powerful media API that returns optimized images. It can be used with [Next Image](https://nextjs.org/docs/api-reference/next/image) and Next image optimization, with minimal configuration.
 
 ### What formats are supported?
 
@@ -20,7 +21,7 @@ JPG, PNG, GIF, BMP, TIFF, ICO, PDF, EPS, PSD, SVG, WebP, JXR, and WDP.
 
 ### How to get started?
 
-You will need to install our new [Cloudinary package](https://www.npmjs.com/package/next-tinacms-cloudinary), this package will handle adding, retrieving, updating and deleting images without the need of any additional code.
+You need to install our new [Cloudinary package](https://www.npmjs.com/package/next-tinacms-cloudinary). This package handles adding, retrieving, updating and deleting images without the need for any additional code.
 
 ```other
 yarn add next-tinacms-cloudinary
@@ -28,7 +29,7 @@ or
 npm install next-tinacms-cloudinary
 ```
 
-You also need to add your Cloudinary cloud name, api key and api secret from you Cloudinary account, to your `.env.local`  which you can find in your Cloudinary Dashboard.
+You also need to add your Cloudinary cloud name, API key and API secret from your Cloudinary account, to your `.env.local` file  which you can find in your Cloudinary Dashboard.
 
 ```other
 NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=
@@ -42,7 +43,7 @@ CLOUDINARY_API_SECRET=
 
 Now that you have installed the Tina Cloudinary package, we need to make some changes to our Tina application to add support for images. Firstly you will need to update your Tina client to include the Cloudinary package:
 
-```other
+```js
 //Other imports
 
 ...
@@ -77,7 +78,7 @@ const TinaWrapper = (props) => {
 
 Then we will need to update our schema to include the use of Images instead of a text field for a URL. Below contains an updated schema that would handle images, we have removed the other templates:
 
-```other
+```js
 import { defineSchema } from 'tina-graphql-gateway-cli'
 
 export default defineSchema({
@@ -116,7 +117,7 @@ export default defineSchema({
 
 The last part of the Cloudinary integration is an API route that handles checking to see if the user is authorized to use the API route and then handle the correct api method.
 
-```other
+```js
 import {
   mediaHandlerConfig,
   createMediaHandler,
@@ -144,4 +145,6 @@ export default createMediaHandler({
 
 Now when you launch your application you will see a change in the sidebar, that gives you access to the media manager:
 
-![Example.gif](https://res.cloudinary.com/dub20ptvt/image/upload/v1625834243/Tina/AnimatedImage_z7kaub.gif)
+![Tina Cloudinary Media manager](https://res.cloudinary.com/dub20ptvt/image/upload/v1625834243/Tina/AnimatedImage_z7kaub.gif)
+
+Note that developers can [pass a `pageSize` option to the media store](https://github.com/tinacms/tina-graphql-gateway/blob/main/packages/next-tinacms-cloudinary/README.md) in order to decide how many media should be displayed per page in the manager. We'll continue improving Cloudinary integration and look into media caching later, for now, we feel it's already a huge step to make sure your content team can manage media like a pro in Tina.
