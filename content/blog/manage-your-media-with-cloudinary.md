@@ -2,11 +2,11 @@
 title: Manage your media with Cloudinary
 date: '2021-07-09T08:34:47-04:00'
 author: James Perkins
-last_edited: '2021-07-09T12:39:45.938Z'
+last_edited: '2021-07-09T12:48:46.027Z'
 ---
 # Tina now supports Cloudinary & Media Manager
 
-We released the Alpha just 20 days ago and one thing that has come up in the feedback we have been collecting is the ability to use our Media Manager. This was a core feature that gives content creators the ability to drag and drop their images or replace an image easily. We decided to start with Cloudinary, to allow users to keep their GitHub repositories lightweight.
+We released the Alpha just over a month ago and one thing that has come up in the feedback we have been collecting is the ability to use our Media Manager. This was a core feature that gives content creators the ability to drag and drop their images or replace an image easily. We decided to start with Cloudinary, to allow users to keep their GitHub repositories lightweight.
 
 ### Why did we start with Cloudinary?
 
