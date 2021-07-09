@@ -3,20 +3,20 @@
   "steps": [
     {
       "title": "Getting Started",
-      "id": "/guides/nextjs/git/getting-started",
-      "slug": "/guides/nextjs/git/getting-started",
+      "id": "/guides/nextjs/git/getting-started/",
+      "slug": "/guides/nextjs/git/getting-started/",
       "data": "./getting-started.md"
     },
     {
       "title": "Adding a Backend",
-      "id": "/guides/nextjs/git/adding-backend",
-      "slug": "/guides/nextjs/git/adding-backend",
+      "id": "/guides/nextjs/git/adding-backend/",
+      "slug": "/guides/nextjs/git/adding-backend/",
       "data": "./adding-backend.md"
     },
     {
       "title": "Creating Git Forms",
-      "id": "/guides/nextjs/git/creating-git-forms",
-      "slug": "/guides/nextjs/git/creating-git-forms",
+      "id": "/guides/nextjs/git/creating-git-forms/",
+      "slug": "/guides/nextjs/git/creating-git-forms/",
       "data": "./creating-git-forms.md"
     }
   ]
