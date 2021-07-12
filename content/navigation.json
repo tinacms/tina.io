@@ -6,12 +6,6 @@
     "external": false
   },
   {
-    "id": "guides",
-    "label": "Guides",
-    "href": "/guides",
-    "external": false
-  },
-  {
     "id": "blog",
     "label": "Blog",
     "href": "/blog",
