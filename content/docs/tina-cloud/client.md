@@ -247,7 +247,7 @@ Props for TinaCloudAuthWall
 
 | Prop                         | Description                                                                                                                                                                                                                                                                                            |
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `cms`                        | An instance of a [CMS](http://localhost:3000/docs/cms/#cms-configuration)                                                                                                                                                                                                                              |
+| `cms`                        | An instance of a [CMS](/docs/cms/#cms-configuration)                                                                                                                                                                                                                              |
 | `getModalActions` (optional) | A function that returns a list of actions / buttons that will be rendered to the model. Each button has name, action, and can be primary or not. The name is the text that will be displayed. The action is a function that will be run when the button is clicked. See example below for more details |
 
 ```tsx
