@@ -1,12 +1,10 @@
 ---
-title: Overview
+title: Getting Started with TinaCMS
 ---
 
-This guide will show you how to set up Tina in a Next.js environment. Since Next.js is a relatively open-ended framework and there are many different ways to build with it, these docs will attempt merely to give you an overview of what is required to get Tina working in a Next.js environment and provide some suggestions. The ultimate implementation will depend on your content strategy.
+Tina is a **toolkit for building visual editing** into your site. This guide will walk you through setting up Tina in a Next.js environment.
 
-> **The Finished Product**
->
-> The repository at [dwalkr/next-tina-blog-starter](https://github.com/dwalkr/next-tina-blog-starter) contains the end product of this guide. Feel free to fork it and follow along!
+![tinacms editing gif](/gif/tina-nextjs.gif)
 
 ## Project Setup Recommendations
 
@@ -31,3 +29,5 @@ Tina makes extensive use of React Hooks, which can only be used inside of functi
 ## More Info
 
 - [nextjs.org: Next-gen SSG Support](https://nextjs.org/blog/next-9-3#next-gen-static-site-generation-ssg-support)
+
+> If at any point you feel lost or confused during this tutorial, checkout the [Tina Community Forum](https://community.tinacms.org/) to get answers, help, and llama-humor.

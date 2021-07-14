@@ -1,5 +1,5 @@
 ---
-title: Adding the Tina Provider
+title: Setting Up the CMS
 last_edited: '2020-08-11T13:02:36.046Z'
 ---
 

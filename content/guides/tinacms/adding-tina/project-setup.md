@@ -2,7 +2,13 @@
 title: Project Setup
 ---
 
-We're going to use the Next.js [blog starter](https://github.com/zeit/next.js/tree/canary/examples/blog-starter) as the base for our project. Create a new project by running the following commands in your terminal:
+We're going to use the Next.js [blog starter](https://github.com/zeit/next.js/tree/canary/examples/blog-starter) as the base for our project.
+
+> **The Finished Product**
+>
+> The repository at [dwalkr/next-tina-blog-starter](https://github.com/dwalkr/next-tina-blog-starter) contains the end product of this guide. Feel free to fork it and follow along!
+
+Create a new project by running the following commands in your terminal:
 
 ```bash
 yarn create next-app -e blog-starter my-tina-blog
