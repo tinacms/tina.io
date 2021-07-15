@@ -1,3 +1,7 @@
+---
+title: Getting Started with Tina 
+last_edited: '2021-07-15T15:36:36.046Z'
+---
 # Tina Quickstart Guide
 
 The Tina Quickstart will allow you to get started in minutes with powerful visual editing on an existing NextJS application.
