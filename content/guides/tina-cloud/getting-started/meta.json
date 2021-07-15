@@ -1,0 +1,12 @@
+{
+    "title": "Getting started with Tina",
+    "steps": [
+      {
+        "title": "Draft",
+        "id": "/guides/tina-cloud/getting-started/draft/",
+        "slug": "/guides/tina-cloud/getting-started/draft/",
+        "data": "./draft.md"
+      }
+    ]
+  }
+  
