@@ -11,7 +11,7 @@ By the end of this guide, your whole team will be able to edit on a deployed ver
 ### Create your Next applicaton
 
 ```other
-npx create-next-app tina-quickstart
+npx create-next-app --example blog-starter tina-quickstart
 
 cd tina-quickstart
 ```
@@ -20,7 +20,7 @@ cd tina-quickstart
 
 Tina has created a quick way to bootstrap an application and show the power of visual editing, from your terminal enter the following command:
 
-```other
+```other,copy
 npx tina-graphql-gateway-cli init
 ```
 
@@ -34,11 +34,13 @@ This command will do a few things in your application:
 
 Now that we have a basic Tina setup you can launch your application using the following commmand:
 
-> yarn tina-dev
+```other,copy
+yarn tina-dev
+```
 
 Once you have launch the application you have a couple of urls to navigate to:
 
-- http://localhost:3000/demo/posts/firstpost
+- http://localhost:3000/demo/blog/HelloWorld
 - http://localhost:4001/altair
 
 The first one will bring you to the frontend with the ability to edit the title of the post and the second will alllow you to interact with your graphql layer .
@@ -122,7 +124,7 @@ Here is an example before we post the entire templating for each field. As you c
 
 Now we need a full template, to handle all the fields:
 
-```other
+```other,copy
 {
         label: 'Blog Posts',
         name: 'posts',
@@ -204,7 +206,7 @@ The `getStaticPaths` query is going to need to know where all of our markdown fi
 
 So based upon the `getPostsList` we will want to query the `sys` and retireve the `filename`, the query will look like the following:
 
-```other
+```other,copy
 query{
   getPostsList{
     sys{
@@ -216,7 +218,7 @@ query{
 
 If you run this query in the GraphQL client you will see the following returned:
 
-```other
+```other,copy
 {
   "data": {
     "getPostsList": [
@@ -250,7 +252,7 @@ export async function getStaticPaths() {
 
 Remove all the code inside and we can update it to use our TIna client and of course newly defined query above. The first step is to add an import to the top section to be able to create a client that can interact with our graphql:
 
-```other
+```js
 //other imports
 .....
 import { LocalClient } from "tina-graphql-gateway";
@@ -258,7 +260,7 @@ import { LocalClient } from "tina-graphql-gateway";
 
 Then we can create an constructor function named client so we can use this localClient as needed.
 
-```other
+```js
 import{ LocalClient} from "tina-graphql-gateway"
 
 const client = new LocalClient();
@@ -266,7 +268,7 @@ const client = new LocalClient();
 
 Inside of the getStaticPaths function we can construct our request to our content-api, when making a request we expect a query or mutation and any variables required, here is an example:
 
-```other
+```js
 client.request(query, {
         variables,
 }),
@@ -274,7 +276,7 @@ client.request(query, {
 
 As we already know what the query is we can make a request using the following:
 
-```other
+```js
 export async function getStaticPaths() {
 const postsListData = await client.request(
     (gql) => gql`
@@ -319,7 +321,7 @@ We need to query the following things from our content-api:
 
 Using our local graphql client we can query the getPostsDocument using the path to the blog post in question, below is the skeleton of what we need to fill out.
 
-```other
+```js
 query BlogPostQuery($relativePath: String!) {
       getPostsDocument(relativePath: $relativePath) {
 		//data from our posts.
@@ -329,7 +331,7 @@ query BlogPostQuery($relativePath: String!) {
 
 When retrieveing the data of a blog post we can use an [inline fragment](https://graphql.org/learn/queries/#inline-fragments) to retrieve all of the `Post_Doc_Data` which will look like this:
 
-```other
+```js
 query BlogPostQuery($relativePath: String!) {
       getPostsDocument(relativePath: $relativePath) {
         data {
@@ -356,7 +358,7 @@ ogImage{
 
 Once you have filed in all the fields you should have a query that looks like the following:
 
-```other
+```other,copy
 query BlogPostQuery($relativePath: String!) {
       getPostsDocument(relativePath: $relativePath) {
         data {
@@ -384,7 +386,7 @@ query BlogPostQuery($relativePath: String!) {
 
 Firstly we can take that query and make it into a graphql request to keep our code organized, this can be added after the Post functionality :
 
-```other
+```js,copy
 export const query = `#graphql
     query BlogPostQuery($relativePath: String!) {
       getPostsDocument(relativePath: $relativePath) {
@@ -412,7 +414,7 @@ export const query = `#graphql
 
 Now we remove everything from the getStaticProps and write our own that will interact with the content-api. First lets desructure the slug so we can use it for our query and return it as part of the returned data.
 
-```other
+```js
 export async function getStaticProps({ params }) {
 const {slug} = params;
 }
@@ -420,7 +422,7 @@ const {slug} = params;
 
 Then we can make a variables query that is going to be an object that contains the relative path to the post:
 
-```other
+```js
 export const getStaticProps = async ({params}) => {
   const {slug} = params;
   const variables = { relativePath: `${slug}.md` };
@@ -430,7 +432,7 @@ export const getStaticProps = async ({params}) => {
 
 Now in our return functionality we want to return the result of the query, the slug, the query and the varaibles used. The last two are going to be used by Tina to allow you to make edits in real time. So the full query should look like:
 
-```other
+```js,copy
 export const getStaticProps = async ({params}) => {
   const {slug} = params;
   const variables = { relativePath: `${slug}.md` };
@@ -451,7 +453,7 @@ export const getStaticProps = async ({params}) => {
 
 We now need to edit the Post function firstly we are now going to pass in the data and slug to it instead of what was there before:
 
-```other
+```js
 export default function Post({data,slug}) {
 
 // original code
@@ -460,14 +462,14 @@ export default function Post({data,slug}) {
 
 To make our code easy to follow and read we can destructure the data props:
 
-```other
+```js
 export default function Post({data,slug}) {
   const {title,coverImage,date,author,_body,ogImage} = data.getPostsDocument.data;
 ```
 
 Finally we can replace any of the old code with new code so the code should now look like this:
 
-```other
+```js,copy
 export default function Post({data,slug}) {
   const {title,coverImage,date,author,_body,ogImage} = data.getPostsDocument.data;
   const router = useRouter()
