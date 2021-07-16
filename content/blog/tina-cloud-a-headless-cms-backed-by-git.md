@@ -1,8 +1,8 @@
 ---
-title: 'Tina Cloud - A Headless CMS Backed by Git '
+title: Hello world
 date: '2021-04-21T14:06:05-03:00'
 author: Scott Gallant
-last_edited: '2021-04-22T16:21:48.271Z'
+last_edited: '2021-07-16T19:19:02.819Z'
 ---
 
 We are giving teams the ability to edit content stored in Git, but visually, in the context of their site.
