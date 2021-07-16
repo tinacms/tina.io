@@ -125,11 +125,7 @@ Here is an example before we post the entire templating for each field. As you c
 
 Now we need a full template, to handle all the fields:
 
-<<<<<<< HEAD
-```other,copy
-=======
-```js
->>>>>>> 9200bde697aacf2e9cb67f6680ef52fb029e6751
+```js,copy
 {
         label: 'Blog Posts',
         name: 'posts',
@@ -196,6 +192,28 @@ Now we need a full template, to handle all the fields:
 
 > You will notice there is a new type here called group. This works as a way to group fields together and on the UI which you will see in the future allows you to click into them and edit each field.
 
+The final change required to make everything work, is to state that each of blog posts are part of our template named post, open up each of the markdown files found in _posts and add `_template: post` to the bottom of the frontmatter so it should look like: 
+
+```md
+---
+title: A Test title
+excerpt: >-
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+  incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo
+  vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla
+  facilities morbi tempus.
+coverImage: >-
+  http://res.cloudinary.com/dub20ptvt/image/upload/v1624743050/Embrace_Typescript_ly0g9c.png
+date: '2020-03-16T05:35:07.322Z'
+author:
+  name: JJ Kasper
+  picture: /assets/blog/authors/jj.jpeg
+ogImage:
+  url: /assets/blog/dynamic-routing/cover.jpg
+_template: post
+---
+```
+
 ### Using and editing the content:
 
 Now the content is shaped, we can create a graphQL query to access the data and also edit the data. Using the url : [http://localhost:4001/altair/](http://localhost:4001/altair/) you can access a local client we need to create two different queries:
@@ -211,11 +229,7 @@ The `getStaticPaths` query is going to need to know where all of our markdown fi
 
 So based upon the `getPostsList` we will want to query the `sys` and retireve the `filename`, the query will look like the following:
 
-<<<<<<< HEAD
-```other,copy
-=======
-```graphql
->>>>>>> 9200bde697aacf2e9cb67f6680ef52fb029e6751
+```graphql,copy
 query{
   getPostsList{
     sys{
@@ -227,11 +241,8 @@ query{
 
 If you run this query in the GraphQL client you will see the following returned:
 
-<<<<<<< HEAD
-```other,copy
-=======
-```graphql
->>>>>>> 9200bde697aacf2e9cb67f6680ef52fb029e6751
+
+```graphql,copy
 {
   "data": {
     "getPostsList": [
@@ -289,7 +300,7 @@ client.request(query, {
 
 As we already know what the query is we can make a request using the following:
 
-```js
+```js,copy
 export async function getStaticPaths() {
 const postsListData = await client.request(
     (gql) => gql`
@@ -334,7 +345,7 @@ We need to query the following things from our content-api:
 
 Using our local graphql client we can query the getPostsDocument using the path to the blog post in question, below is the skeleton of what we need to fill out.
 
-```js
+```graphql
 query BlogPostQuery($relativePath: String!) {
       getPostsDocument(relativePath: $relativePath) {
 		//data from our posts.
@@ -344,7 +355,7 @@ query BlogPostQuery($relativePath: String!) {
 
 When retrieveing the data of a blog post we can use an [inline fragment](https://graphql.org/learn/queries/#inline-fragments) to retrieve all of the `Post_Doc_Data` which will look like this:
 
-```js
+```graphql 
 query BlogPostQuery($relativePath: String!) {
       getPostsDocument(relativePath: $relativePath) {
         data {
@@ -371,11 +382,7 @@ ogImage{
 
 Once you have filed in all the fields you should have a query that looks like the following:
 
-<<<<<<< HEAD
-```other,copy
-=======
-```js
->>>>>>> 9200bde697aacf2e9cb67f6680ef52fb029e6751
+```graphql,copy
 query BlogPostQuery($relativePath: String!) {
       getPostsDocument(relativePath: $relativePath) {
         data {
@@ -403,11 +410,7 @@ query BlogPostQuery($relativePath: String!) {
 
 Firstly we can take that query and make it into a GraphQL request to keep our code organized, this can be added after the Post functionality :
 
-<<<<<<< HEAD
 ```js,copy
-=======
-```js
->>>>>>> 9200bde697aacf2e9cb67f6680ef52fb029e6751
 export const query = `#graphql
     query BlogPostQuery($relativePath: String!) {
       getPostsDocument(relativePath: $relativePath) {
@@ -453,11 +456,7 @@ export const getStaticProps = async ({params}) => {
 
 Now in our return functionality we want to return the result of the query, the slug, the query and the varaibles used. The last two are going to be used by Tina to allow you to make edits in real time. So the full query should look like:
 
-<<<<<<< HEAD
 ```js,copy
-=======
-```js
->>>>>>> 9200bde697aacf2e9cb67f6680ef52fb029e6751
 export const getStaticProps = async ({params}) => {
   const {slug} = params;
   const variables = { relativePath: `${slug}.md` };
@@ -494,11 +493,8 @@ export default function Post({data,slug}) {
 
 Finally we can replace any of the old code with new code so the code should now look like this:
 
-<<<<<<< HEAD
+
 ```js,copy
-=======
-```js
->>>>>>> 9200bde697aacf2e9cb67f6680ef52fb029e6751
 export default function Post({data,slug}) {
   const {title,coverImage,date,author,_body,ogImage} = data.getPostsDocument.data;
   const router = useRouter()
