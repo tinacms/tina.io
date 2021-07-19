@@ -2,7 +2,7 @@
 title: Tina Cloud Client
 ---
 
-> Heads up - if you haven't already done so, read through the [CLI documentation](/docs/tina-cloud/cli/) to make sure you have a GraphQL server running locally.
+The _Tina Cloud Client_ can be used to interact with the GraphQL layer, and allow you to create the forms that your content team can interact with. 
 
 For a real-world example of how this is being used checkout the [Tina Cloud Starter](https://github.com/tinacms/tina-cloud-starter).
 
@@ -22,7 +22,7 @@ yarn add --dev tina-graphql-gateway
 
 ## The TinaCMS API Client
 
-This package exports a class which acts as [TinaCMS external API](https://tina.io/docs/apis/) for the Tina Content API. This is a headless GraphQL API that's serverd via Tina Cloud or locally from within the Tina CLI.
+This package exports a class which acts as [TinaCMS external API](https://tina.io/docs/apis/) for the Tina Content API. This is a headless GraphQL API that's served via Tina Cloud or locally from within the Tina CLI.
 
 ```ts
 import { Client, LocalClient } from 'tina-graphql-gateway'
@@ -124,7 +124,7 @@ const query = gql => gql`#graphql
 
 ### Formify
 
-If you'd like to control the output of those forms, tap into the `formify` callback:
+Formify allows you to control the output of the forms created through `useGraphqlForms`. In the examples below we show you how to overide a particular `id` and also show you how to customize specific fields. 
 
 ##### Form customization:
 
@@ -138,7 +138,7 @@ const [payload, isLoading] = useGraphqlForms({
     if (formConfig.id === 'getSiteNavsDocument') {
       const form = new Form(formConfig)
       // The site nav will be a global plugin
-      cms.plugins.add(new GlobalFormPlugin(form))
+      cms.plugins.add(new(form))
       return form
     }
 
@@ -146,7 +146,11 @@ const [payload, isLoading] = useGraphqlForms({
   },
   variables: { relativePath: `${props.filename}.md` },
 })
+```
 
+You can also skip a particlar `id` to stop it from creating a form altogether, this allows you to display content but stop it from being editable.
+
+```tsx
 // or to skip the nav from creating a form altogether:
 const [payload, isLoading] = useGraphqlForms({
   query,
@@ -163,7 +167,7 @@ const [payload, isLoading] = useGraphqlForms({
 
 ##### Field customization:
 
-Since your forms are built automatically, `formify` can also be used to customize fields:
+Since your forms are built automatically through the schema you create, you can also use `formify` to customize specific fields:
 
 ```tsx
 const [payload, isLoading] = useGraphqlForms({
@@ -186,7 +190,9 @@ const [payload, isLoading] = useGraphqlForms({
 
 ## `useDocumentCreatorPlugin`
 
-This hook allows your editors to safely create new pages. Note that you'll be responsible for redirecting the user after a new document has been created. To use this:
+An important part of any application or website is the ability to create new pages, you can use the `useDocumentCreatorPlugin` which allows the end user the ability to create new pages. 
+
+> Note that you'll be responsible for redirecting the user after a new document has been created.
 
 ```tsx
 import { useDocumentCreatorPlugin } from 'tina-graphql-gateway'
@@ -203,9 +209,9 @@ import { useDocumentCreatorPlugin } from 'tina-graphql-gateway'
 useDocumentCreatorPlugin(args => window.location.assign(buildMyRouter(args)))
 ```
 
-### Customizing the content creator options
+#### Customizing the content creator options
 
-To prevent editors from creating documents from certain collections, provide a filter function:
+In some cases you want to stop your content creators from creating new pages for a particular type of content, you can use `options` alongside `filter` :
 
 ```tsx
 // options are of type:
