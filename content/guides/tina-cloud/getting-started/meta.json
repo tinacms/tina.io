@@ -2,10 +2,42 @@
     "title": "Getting started with Tina",
     "steps": [
       {
-        "title": "Getting Started with Tina",
-        "id": "/guides/tina-cloud/getting-started/draft/",
-        "slug": "/guides/tina-cloud/getting-started/draft/",
-        "data": "./draft.md"
+        "title": "Overview",
+        "id": "/guides/tina-cloud/getting-started/overview/",
+        "slug": "/guides/tina-cloud/getting-started/overview/",
+        "data": "./overview.md"
+      },
+      {
+        "title": "Creating our Application",
+        "id": "/guides/tina-cloud/getting-started/create-app/",
+        "slug": "/guides/tina-cloud/getting-started/create-app/",
+        "data": "./create-app.md"
+      },
+      {
+        "title": "Defining Content",
+        "id": "/guides/tina-cloud/getting-started/defining-content/",
+        "slug": "/guides/tina-cloud/getting-started/defining-content/",
+        "data": "./defining-content.md"
+      },
+      {
+        "title": "Client Changes",
+        "id": "/guides/tina-cloud/getting-started/client-changes/",
+        "slug": "/guides/tina-cloud/getting-started/client-changes/",
+        "data": "./client-changes.md"
+      }
+      ,
+      {
+        "title": "Adding Plugins",
+        "id": "/guides/tina-cloud/getting-started/markdown-plugin/",
+        "slug": "/guides/tina-cloud/getting-started/markdown-plugin/",
+        "data": "./markdown-plugin.md"
+      }
+      ,
+      {
+        "title": "Tina Cloud and Deployment",
+        "id": "/guides/tina-cloud/getting-started/deployment/",
+        "slug": "/guides/tina-cloud/getting-started/deployment/",
+        "data": "./deployment.md"
       }
     ]
   }
