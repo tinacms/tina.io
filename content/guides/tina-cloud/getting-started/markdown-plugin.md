@@ -120,4 +120,4 @@ Then finally we can set the `PostBody` content to our nearly updated content.
 
 Now our content should be correctly formatted, and even when your content team is updated they will see it in real time. 
 
-![Markdown Done Gif](/gif/markdown-fin.gif)
+![Markdown Done Gif](/gif/markdown-fin_sm.gif)
