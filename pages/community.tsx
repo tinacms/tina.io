@@ -14,9 +14,6 @@ import {
 import { InlineTextarea } from 'react-tinacms-inline'
 import { Button, ButtonGroup } from 'components/ui'
 import { EmailForm } from 'components/forms'
-import TwitterIconSvg from '../public/svg/twitter-icon.svg'
-import GithubIconSvg from '../public/svg/github-icon.svg'
-import ForumIconSvg from '../public/svg/forum-icon.svg'
 import { NextSeo } from 'next-seo'
 import { InlineGithubForm } from 'components/layout/InlineGithubForm'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
@@ -96,7 +93,7 @@ function CommunityPage({ file: community, metadata, preview }) {
         <Hero>
           <InlineTextarea name="headline" />
         </Hero>
-        <SocialBar>
+        {/* <SocialBar>
           <SocialItem>
             <a
               href={`${metadata.social.twitter}`}
@@ -129,7 +126,7 @@ function CommunityPage({ file: community, metadata, preview }) {
               <h5>Ask us</h5>
             </a>
           </SocialItem>
-        </SocialBar>
+        </SocialBar> */}
         <RichTextWrapper>
           <Section>
             <Wrapper>
@@ -146,10 +143,28 @@ function CommunityPage({ file: community, metadata, preview }) {
                   </InfoText>
                   <ButtonGroup>
                     <DynamicLink
-                      href={'/docs/contributing/guidelines'}
+                      href={'https://discord.gg/QC724mKx'}
                       passHref
                     >
-                      <Button as="a">Contribute</Button>
+                      <Button as="a">Discord</Button>
+                    </DynamicLink>
+                    <DynamicLink
+                      href={'https://community.tinacms.org'}
+                      passHref
+                    >
+                      <Button as="a">Forum</Button>
+                    </DynamicLink>
+                    <DynamicLink
+                      href={'https://github.com/tinacms/tinacms'}
+                      passHref
+                    >
+                      <Button as="a">GitHub</Button>
+                    </DynamicLink>
+                    <DynamicLink
+                      href={'https://twitter.com/tina_cms'}
+                      passHref
+                    >
+                      <Button as="a">Twitter</Button>
                     </DynamicLink>
                   </ButtonGroup>
                 </InfoContent>
