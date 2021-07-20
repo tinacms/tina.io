@@ -1,22 +1,22 @@
 {
   "title": "Community",
-  "headline": "Join the club.",
+  "headline": "Join the club",
   "description": "Tina is open source, extensible and community driven. Join the club.",
   "gif": {
     "src": "/img/rico-replacement.jpg",
     "alt": "Join the club"
   },
-  "supporting_headline": "Open source, extensible and community driven",
-  "supporting_body": "Tina is made better by the wisdom of crowds. If you find a bug or have ideas about a feature, please make an issue on [GitHub](https://github.com/tinacms/tinacms/issues). If you have a question about how to use Tina or want to engage in broader discussions, check out the [forum](https://community.tinacms.org/).\n\nCheck out our [contribution guidelines](https://tinacms.org/docs/contributing/guidelines) for more info on how to get involved with development. If you are excited about TinaCMS, help us grow the community by ⭐️'ing the [repo on GitHub](https://github.com/tinacms/tinacms).",
+  "supporting_headline": "Open-source, extensible and community driven",
+  "supporting_body": "Tina is made better by the wisdom of crowds. If you find a bug or have ideas about a feature, please make an issue on [GitHub](https://github.com/tinacms/tinacms/issues). If you have a question about how to use Tina or want to engage in broader discussions, check out the [forum](https://community.tinacms.org/) or [Discord](https://discord.gg/QC724mKx) .\n\nCheck out our [contribution guidelines](https://tinacms.org/docs/contributing/guidelines) for more info on how to get involved with development. If you are excited about TinaCMS, help us grow the community by ⭐️'ing the [repo on GitHub](https://github.com/tinacms/tinacms).",
   "default": {
     "title": "",
-    "headline": "Join the club",
+    "headline": "Open-source, extensible and community driven",
     "gif": {
       "src": "/img/rico-replacement.jpg",
       "alt": "Join the club"
     },
-    "supporting_headline": "Open source, extensible and community driven",
-    "supporting_body": "Tina is made better by the wisdom of crowds. blah blah blah. ",
+    "supporting_headline": "",
+    "supporting_body": "",
     "default": {
       "title": "",
       "headline": "Join the club",
@@ -24,8 +24,8 @@
         "src": "/img/rico-replacement.jpg",
         "alt": "Join the club"
       },
-      "supporting_headline": "Open source, extensible and community driven",
-      "supporting_body": "Tina is made better by the wisdom of crowds. blah blah blah. "
+      "supporting_headline": "",
+      "supporting_body": ""
     }
   },
   "newsletter_header": "Newsletter ✌️",
