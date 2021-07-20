@@ -19,7 +19,6 @@ import Error from 'next/error'
 import { NotFoundError } from 'utils/error/NotFoundError'
 import { useRouter } from 'next/router'
 import { CloudDisclaimer } from 'components/cloud-beta-disclaimer'
-import * as ga from '../../utils/ga'
 
 export function DocTemplate(props) {
   // fallback workaround
@@ -45,21 +44,6 @@ export function DocTemplate(props) {
 
   usePlugin(form)
   useLastEdited(form)
-
-  React.useEffect(() => {
-    const handleRouteChange = url => {
-      ga.pageview(url)
-    }
-    //When the component is mounted, subscribe to router changes
-    //and log those page views
-    router.events.on('routeChangeComplete', handleRouteChange)
-
-    // If the component is unmounted, unsubscribe
-    // from the event with the `off` method
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
-    }
-  }, [router.events])
 
   return (
     <InlineGithubForm form={form}>
