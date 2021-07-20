@@ -318,8 +318,8 @@ export default function Post({data,slug}) {
 
 ### Editing content:
 
-Now we are ready to launch and start editing the content, launch the application using the `yarn tina-dev` command and navigate one of the posts, on the left hand side you will see a blue pencil clicking that will allow you to edit any of the content:
+Now we are ready to launch and start editing the content, launch the application using the `yarn tina-dev` command and navigate one of the posts. Now because our application is "protected" you will need to navigate to http://localhost:3000/admin or click the edit button at the top of the screen. Once you do one of those on the left hand side you will see a blue pencil clicking that will allow you to edit any of the content:
 
-**TODO: Insert Picture/Gif here**
+![Editing Gif](/gif/editing_smaller.gif)
 
 At this point we have created an exact replication of the NextJS starter with the ability to edit any of the fields and now have the ability to make changes. This is great except we have an issue the markdown is being treated as plaintext which isn't what we want.
