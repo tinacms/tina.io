@@ -1,12 +1,12 @@
 ---
-title: Client Changes 
+title: NextJS Starter Changes
 last_edited: '2021-07-19T15:36:36.046Z'
 ---
 
 
 ### Creating the getStaticPaths query
 
-The `getStaticPaths` query is going to need to know where all of our markdown files are located, with our current schema you have the option to `getPostsList` which will provide a list of all posts in our _posts folder. You can find the image below by selecting Docs on the right hand side and selecting Query.
+The `getStaticPaths` query is going to need to know where all of our markdown files are located, with our current schema you have the option to `getPostsList` which will provide a list of all posts in our `_posts` folder. Launch your server and navigate to https://localhost:4001/altair and select the Docs button, below is an image of what you should see:
 
 ![CleanShot 2021-07-13 at 13.18.05.png](https://res.craft.do/user/full/c67cad1b-6dc6-4909-0f8e-19d468ba9fd4/doc/A8636858-4B8D-4C7C-839D-30ACB08EFBD3/CC45C289-6517-4326-9DA8-7E90F8B55392_2/CleanShot%202021-07-13%20at%2013.18.05.png)
 
@@ -23,7 +23,6 @@ query{
 ```
 
 If you run this query in the GraphQL client you will see the following returned:
-
 
 ```graphql,copy
 {
@@ -52,10 +51,11 @@ If you run this query in the GraphQL client you will see the following returned:
 ### Adding this query to our Blog.
 
 The NextJS starter blog is served on the dynamic route `/pages/posts[slug].js` when you open the file you will see at the bottom
-
+```js
 export async function getStaticPaths() {
 
 ....
+```
 
 Remove all the code inside and we can update it to use our TIna client and of course newly defined query above. The first step is to add an import to the top section to be able to create a client that can interact with our graphql:
 
@@ -106,13 +106,13 @@ const postsListData = await client.request(
 }
 ```
 
-We  don't need to send any variables so we are sending an empty object, and this will return the list of the posts just as the previous getStaticPaths() that we replaced. If you launch the application nothing will change but know behind the scenes we are using the Tina content-api.
+We don't need to send any variables so we are sending an empty object, and this will return the list of the posts just as the previous `getStaticPaths()` that we replaced. If you launch the application nothing will change on screen but know behind the scenes we are using the Tina content-api.
 
 We now need to create one more query, this query will fill in all the data and give us the ability to make all our blog posts editable.
 
-### Creating the getStaticProps query
+### Creating the `getStaticProps` query
 
-The getStaticProps query is going to deliver all the content to the blog, which is how it works currently. When we use our content-api we will both delivery the content and give the content team the ability to edit it right in the browser.
+The `getStaticProps` query is going to deliver all the content to the blog, which is how it works currently. When we use our content-api we will both delivery the content and give the content team the ability to edit it right in the browser.
 
 We need to query the following things from our content-api:
 
@@ -120,13 +120,13 @@ We need to query the following things from our content-api:
 - Excerpt
 - Date
 - Cover Image
-- OG Image data.
+- OG Image data
 - Author Data
 - Body content
 
 ### Creating our Query
 
-Using our local graphql client we can query the getPostsDocument using the path to the blog post in question, below is the skeleton of what we need to fill out.
+Using our local graphql client we can query the `getPostsDocument` using the path to the blog post in question, below is the skeleton of what we need to fill out.
 
 ```graphql
 query BlogPostQuery($relativePath: String!) {
@@ -151,7 +151,7 @@ query BlogPostQuery($relativePath: String!) {
 }
 ```
 
-We can now fill in the relavent fields we need to query, take special note of both author and ogImage which are grouped so they get queried as:
+We can now fill in the relavent fields we need to query, take special note of both `author` and `ogImage` which are grouped so they get queried as:
 
 ```graphql
 author{
@@ -219,7 +219,7 @@ export const query = `#graphql
 `;
 ```
 
-Now we remove everything from the getStaticProps and write our own that will interact with the content-api. First lets desructure the slug so we can use it for our query and return it as part of the returned data.
+Now we remove everything from the getStaticProps and write our own that will interact with the content-api. First we can desructure the `slug` so we can use it for our query and return it as part of the returned data.
 
 ```js
 export async function getStaticProps({ params }) {

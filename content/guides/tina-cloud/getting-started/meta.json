@@ -20,10 +20,10 @@
         "data": "./defining-content.md"
       },
       {
-        "title": "Client Changes",
-        "id": "/guides/tina-cloud/getting-started/client-changes/",
-        "slug": "/guides/tina-cloud/getting-started/client-changes/",
-        "data": "./client-changes.md"
+        "title": "NextJS Changes",
+        "id": "/guides/tina-cloud/getting-started/next-changes/",
+        "slug": "/guides/tina-cloud/getting-started/next-changes/",
+        "data": "./next-changes.md"
       }
       ,
       {

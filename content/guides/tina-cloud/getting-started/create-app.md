@@ -5,7 +5,7 @@ last_edited: '2021-07-19T10:00:00.000Z'
 
 ### Create a Next.js application
 
-```other
+```bash
 npx create-next-app --example blog-starter tina-quickstart
 
 cd tina-quickstart
@@ -15,7 +15,7 @@ cd tina-quickstart
 
 We created a quick way to bootstrap a Tina application to show the power of visual editing, from your terminal enter the following command:
 
-```other,copy
+```bash,copy
 npx tina-graphql-gateway-cli init
 ```
 
@@ -29,7 +29,7 @@ This command does a few things in your Next.js application:
 
 Now that we have a basic Tina setup you can launch your application using the following commmand:
 
-```other,copy
+```bash,copy
 yarn tina-dev
 ```
 

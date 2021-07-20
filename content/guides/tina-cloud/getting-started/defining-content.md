@@ -56,7 +56,7 @@ As you can see, we have a quite a few fields that we want our content team to be
 
 Here we have created a label with a human friendly name "Blog Posts", and the queryable name will be "posts" and alll content should be saved in the "_posts" directory, which is where the NextJS starter blog post content lives.  The next step is to create the content template which will need to match the front matter we showed above:
 
-```js
+```json
 templates: [
         {
           label: 'Post',
@@ -73,7 +73,7 @@ Here is an example before we post the entire templating for each field. As you c
 
 Now we need a full template, to handle all the fields:
 
-```js,copy
+```json,copy
 {
         label: 'Blog Posts',
         name: 'posts',
@@ -138,26 +138,21 @@ Now we need a full template, to handle all the fields:
       },
 ```
 
-> You will notice there is a new type here called group. This works as a way to group fields together and on the UI which you will see in the future allows you to click into them and edit each field.
+> You will notice there is a new type here called group. This works as a way to group fields together and on the UI which you will see in the future, it allows you to click into them and edit each individual field.
 
 The final change required to make everything work, is to state that each of blog posts are part of our template named post, open up each of the markdown files found in _posts and add `_template: post` to the bottom of the frontmatter so it should look like: 
 
 ```md
 ---
-title: A Test title
-excerpt: >-
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-  incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo
-  vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla
-  facilities morbi tempus.
-coverImage: >-
-  http://res.cloudinary.com/dub20ptvt/image/upload/v1624743050/Embrace_Typescript_ly0g9c.png
+title: 'Dynamic Routing and Static Generation'
+excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus.'
+coverImage: '/assets/blog/dynamic-routing/cover.jpg'
 date: '2020-03-16T05:35:07.322Z'
 author:
   name: JJ Kasper
-  picture: /assets/blog/authors/jj.jpeg
+  picture: '/assets/blog/authors/jj.jpeg'
 ogImage:
-  url: /assets/blog/dynamic-routing/cover.jpg
+  url: '/assets/blog/dynamic-routing/cover.jpg'
 _template: post
 ---
 ```
