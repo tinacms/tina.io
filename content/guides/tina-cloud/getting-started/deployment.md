@@ -3,9 +3,7 @@ title: Tina Cloud and Deployment
 last_edited: '2021-07-19T15:36:36.046Z'
 ---
 
-
-
-## Connect to Tina Cloud (TODO: BELOW TO BE EDITED)
+## Connect to Tina Cloud 
 
 While the fully local development workflow is the recommended way for developers to work, you'll likely want other editors and collaborators to be able to make changes on a hosted website with authentication.
 
@@ -14,7 +12,8 @@ While the fully local development workflow is the recommended way for developers
 ## Register your local application with Tina Cloud
 
 1. Visit [auth.tina.io](https://auth.tina.io/register), create an organization, and sign in. Make a note of your organization name.
-2. Create a Tina Cloud app that connects to the GitHub repository you've just forked. Once your app is created, click on the app to get to the app settings and copy the client ID.
+2. Commit the project to your GitHub account. 
+2. Create a Tina Cloud app that connects to the GitHub repository you've just commited. Once your app is created, click on the app to get to the app settings and copy the client ID.
 
 ## Connect your local project with Tina Cloud
 
