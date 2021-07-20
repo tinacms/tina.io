@@ -3,7 +3,7 @@ title: Creating our Application
 last_edited: '2021-07-19T10:00:00.000Z'
 ---
 
-### Create a Next.js application
+## Create a Next.js application
 
 ```bash
 npx create-next-app --example blog-starter tina-quickstart
@@ -11,7 +11,7 @@ npx create-next-app --example blog-starter tina-quickstart
 cd tina-quickstart
 ```
 
-### Adding Tina
+## Adding Tina
 
 We created a quick way to bootstrap a Tina application to show the power of visual editing, from your terminal enter the following command:
 
@@ -40,7 +40,7 @@ Once you have launch the application you have a couple of URLs to navigate to:
 
 The first one will bring you to the frontend with the ability to edit the title of the post and the second will alllow you to interact with your GraphQL layer .
 
-### A quick test.
+### A quick test
 
 Now that we have a basic Tina implementation we should give it a quick test before making the rest of the site editable. Using the URL mentioned above you should see the following screen:
 

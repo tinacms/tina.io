@@ -3,25 +3,25 @@ title: Defining Content
 last_edited: '2021-07-15T15:36:36.046Z'
 ---
 
-### Defining the shape of our content
+## Defining the shape of our content
 
 One key element of Tina is defining a schema that allows you to shape and interact with the content on the page. Opening up the project, you will see a folder called `.tina` which contains a `schema.ts` file. This file allows you to instruct Tina's Contant API what content type to look for, how it should be labeled and much more!
 
 Before we look at our current project, let's discuss how the content is shaped. Our schema can be broken down into four sections: `collections`, `templates`, `fields` and `references`. Each one of them has its role:
 
-#### Collections
+### Collections
 
 The top-level key in the schema is an array of *collections*, a `collection` informs the API about *where* to save content.
 
-#### Templates
+### Templates
 
 Templates are responsible for defining the shape of your content and we can instruct the Content API *what* files belong to a template.
 
-#### Fields
+### Fields
 
 Fields instruct the Content API of the type expected for example text as well as the queryable name and the name to display to your content team.
 
-#### References
+### References
 
 We also have `reference` and `reference-list` fields. These are important concepts, when you *reference* another collection, you're effectively saying: "this document *belongs to* that document".
 
@@ -99,9 +99,9 @@ Now we need a full template, to handle all the fields:
                 name: 'coverImage',
               },
               {
-                type: "text",
-                label: "Date",
-                name: "date",
+                type: 'text',
+                label: 'Date',
+                name: 'date',
               },
               {
                 type: 'group',
