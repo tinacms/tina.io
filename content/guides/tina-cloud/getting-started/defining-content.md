@@ -25,6 +25,8 @@ Fields instruct the Content API of the type expected for example text as well as
 
 We also have `reference` and `reference-list` fields. These are important concepts, when you *reference* another collection, you're effectively saying: "this document *belongs to* that document".
 
+## Creating our content Schema
+
 The Next.js blog starter comes with three example blog posts that we are going to use to shape our content in our schema. You can find on any of the blog posts in the `_posts` directory, let us look at the front matter of the `preview.md`.
 
 ```md
@@ -40,10 +42,15 @@ author:
   picture: '/assets/blog/authors/joe.jpeg'
 ogImage:
   url: '/assets/blog/preview/cover.jpg'
+
 ---
 ```
 
-As you can see, we have a quite a few fields that we want our content team to be able to edit as well as the body of the blog post. To begin with underneath the object we need to create a new collection object:
+As you can see, we have a quite a few fields that we want our content team to be able to edit as well as the body of the blog post. 
+
+### Making changes to the Schema
+
+Open up the Tina `schema.ts` file located at `/.tina/schema.ts` To begin with underneath the object we provided, we need to create a new collection object:
 
 ```json
 {
@@ -139,6 +146,8 @@ Now we need a full template, to handle all the fields:
 ```
 
 > You will notice there is a new type here called group. This works as a way to group fields together and on the UI which you will see in the future, it allows you to click into them and edit each individual field.
+
+### Adding the content template
 
 The final change required to make everything work, is to state that each of blog posts are part of our template named post, open up each of the markdown files found in _posts and add `_template: post` to the bottom of the frontmatter so it should look like: 
 

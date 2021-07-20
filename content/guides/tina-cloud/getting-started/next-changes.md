@@ -4,7 +4,7 @@ last_edited: '2021-07-19T15:36:36.046Z'
 ---
 
 
-### Creating the getStaticPaths query
+## Creating the getStaticPaths query
 
 The `getStaticPaths` query is going to need to know where all of our markdown files are located, with our current schema you have the option to `getPostsList` which will provide a list of all posts in our `_posts` folder. Launch your server and navigate to https://localhost:4001/altair and select the Docs button, below is an image of what you should see:
 
@@ -110,7 +110,7 @@ We don't need to send any variables so we are sending an empty object, and this 
 
 We now need to create one more query, this query will fill in all the data and give us the ability to make all our blog posts editable.
 
-### Creating the `getStaticProps` query
+## Creating the `getStaticProps` query
 
 The `getStaticProps` query is going to deliver all the content to the blog, which is how it works currently. When we use our content-api we will both delivery the content and give the content team the ability to edit it right in the browser.
 
@@ -256,7 +256,7 @@ export const getStaticProps = async ({params}) => {
 };
 ```
 
-### Using the new content on the page
+## Using the new content on the page
 
 We now need to edit the Post function firstly we are now going to pass in the data and slug to it instead of what was there before:
 
