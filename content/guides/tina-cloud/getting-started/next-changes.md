@@ -6,11 +6,12 @@ last_edited: '2021-07-19T15:36:36.046Z'
 
 ## Creating the getStaticPaths query
 
-The `getStaticPaths` query is going to need to know where all of our markdown files are located, with our current schema you have the option to `getPostsList` which will provide a list of all posts in our `_posts` folder. Launch your server and navigate to https://localhost:4001/altair and select the Docs button, below is an image of what you should see:
+The `getStaticPaths` query is going to need to know where all of our markdown files are located, with our current schema you have the option to `getPostsList` which will provide a list of all posts in our `_posts` folder. Make sure your local server is running and navigate to https://localhost:4001/altair and select the Docs button. The Docs button gives you the ability to see all the queries possible and the variables returned:
 
-![CleanShot 2021-07-13 at 13.18.05.png](https://res.craft.do/user/full/c67cad1b-6dc6-4909-0f8e-19d468ba9fd4/doc/A8636858-4B8D-4C7C-839D-30ACB08EFBD3/CC45C289-6517-4326-9DA8-7E90F8B55392_2/CleanShot%202021-07-13%20at%2013.18.05.png)
 
-So based upon the `getPostsList` we will want to query the `sys` and retireve the `filename`, the query will look like the following:
+![Altair Doc example](/gif/altair_doc.gif)
+
+So based upon the `getPostsList` we will want to query the `sys` which is the filesystem and retireve the `filename`, which will return all the filenames without the extension. 
 
 ```graphql,copy
 query{
@@ -50,14 +51,14 @@ If you run this query in the GraphQL client you will see the following returned:
 
 ### Adding this query to our Blog.
 
-The NextJS starter blog is served on the dynamic route `/pages/posts[slug].js` when you open the file you will see at the bottom
+The NextJS starter blog is served on the dynamic route `/pages/posts[slug].js` when you open the file you will see a function called `getStaticPaths` at the bottom of the file.
 ```js
 export async function getStaticPaths() {
 
 ....
 ```
 
-Remove all the code inside and we can update it to use our TIna client and of course newly defined query above. The first step is to add an import to the top section to be able to create a client that can interact with our graphql:
+Remove all the code inside of this function and we can update it to use our own code. The first step is to add an import to the top of the file to be able to create a client that can interact with our graphql:
 
 ```js
 //other imports
@@ -65,7 +66,7 @@ Remove all the code inside and we can update it to use our TIna client and of co
 import { LocalClient } from "tina-graphql-gateway";
 ```
 
-Then we can create an constructor function named client so we can use this localClient as needed.
+Then we can create an constructor function named client so we can use this as needed on our page, and give us the ability to interact with our API. 
 
 ```js
 import{ LocalClient} from "tina-graphql-gateway"
@@ -73,7 +74,7 @@ import{ LocalClient} from "tina-graphql-gateway"
 const client = new LocalClient();
 ```
 
-Inside of the getStaticPaths function we can construct our request to our content-api, when making a request we expect a query or mutation and any variables required, here is an example:
+Inside of the `getStaticPaths` function we can construct our request to our content-api, when making a request we expect a `query` or `mutation` and then `variables` to be passed to the query, here is an example:
 
 ```js
 client.request(query, {
@@ -81,7 +82,7 @@ client.request(query, {
 }),
 ```
 
-As we already know what the query is we can make a request using the following:
+We have already created the query so we can take what we created above and add it as we aren't using a variable holding the grapqhl query we can use `client.request((gql) => gql``QUERY_HERE``)`.
 
 ```js,copy
 export async function getStaticPaths() {
@@ -106,7 +107,9 @@ const postsListData = await client.request(
 }
 ```
 
-We don't need to send any variables so we are sending an empty object, and this will return the list of the posts just as the previous `getStaticPaths()` that we replaced. If you launch the application nothing will change on screen but know behind the scenes we are using the Tina content-api.
+#### Quick break down of `getStaticPaths`
+
+The `getStaticPaths` code takes the graphql query we created, because it does not require any `variables` we can send down an empty object. In the return functionality we map through each item in the `postListData.getPostsList` and create a slug for each one. 
 
 We now need to create one more query, this query will fill in all the data and give us the ability to make all our blog posts editable.
 
