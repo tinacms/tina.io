@@ -32,6 +32,11 @@
         "title": "Tina Cloud CLI"
       },
       {
+        "id": "/docs/tina-cloud/schema/",
+        "slug": "/docs/tina-cloud/schema/",
+        "title": "Anatomy of a Tina schema"
+      },
+      {
         "id": "/docs/tina-cloud/client/",
         "slug": "/docs/tina-cloud/client/",
         "title": "Tina Cloud Client"

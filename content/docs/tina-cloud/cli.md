@@ -1,8 +1,8 @@
 ---
-title: Tina Cloud CLI
+title: The TinaCMS CLI
 ---
 
-The _Tina Cloud CLI_ can be used to set up your project with Tina Cloud configuration, and run a local version of the Tina Cloud content-api (using your file system's content). For a real-world example of how this is being used checkout the [Tina Cloud Starter](https://github.com/tinacms/tina-cloud-starter).
+The _TinaCMS CLI_ can be used to set up your project with TinaCMS schema configuration, and run a local version of the TinaCMS API (using your file system's content). For a real-world example of how this is being used checkout the [Tina Cloud Starter](https://github.com/tinacms/tina-cloud-starter).
 
 ## Installation
 
@@ -11,18 +11,20 @@ The CLI can be installed as a dev dependency in your project.
 Npm:
 
 ```bash
-npm install --save-dev tina-graphql-gateway-cli
+npm install --save-dev @tinacms/cli
 ```
 
 Yarn:
 
 ```bash
-yarn add --dev tina-graphql-gateway-cli
+yarn add --dev @tinacms/cli
 ```
 
 ## Usage
 
 ```
+$ -> yarn run @tinacms/cli
+
 Usage:  command [options]
 
 Options:
@@ -51,7 +53,7 @@ mkdir .tina && touch .tina/schema.ts
 
 ```ts
 // .tina/schema.ts
-import { defineSchema } from 'tina-graphql-gateway-cli'
+import { defineSchema } from '@tinacms/cli'
 
 export default defineSchema({
   collections: [
@@ -59,23 +61,23 @@ export default defineSchema({
       label: 'Blog Posts',
       name: 'post',
       path: 'content/posts',
-      templates: [
+      fields: [
         {
-          label: 'Article',
-          name: 'article',
-          fields: [
-            {
-              type: 'text',
-              label: 'Title',
-              name: 'title',
-            },
-            {
-              type: 'reference',
-              label: 'Author',
-              name: 'author',
-              collection: 'authors',
-            },
-          ],
+          type: 'string'
+          label: 'Title',
+          name: 'title',
+        },
+        {
+          type: 'string',
+          label: 'Body',
+          name: 'body',
+          isBody: true
+        },
+        {
+          type: 'reference',
+          label: 'Author',
+          name: 'author',
+          collection: 'authors',
         },
       ],
     },
@@ -83,22 +85,16 @@ export default defineSchema({
       label: 'Authors',
       name: 'authors',
       path: 'content/authors',
-      templates: [
+      fields: [
         {
-          label: 'Author',
-          name: 'basicAuthor',
-          fields: [
-            {
-              type: 'text',
-              label: 'Name',
-              name: 'name',
-            },
-            {
-              type: 'text',
-              label: 'Avatar',
-              name: 'avatar',
-            },
-          ],
+          type: 'text',
+          label: 'Name',
+          name: 'name',
+        },
+        {
+          type: 'text',
+          label: 'Avatar',
+          name: 'avatar',
         },
       ],
     },
@@ -131,33 +127,7 @@ updateAuthorDocument
 
 You can find your generated schema at `/.tina/__generated__/schema.gql` for inspection.
 
-### `collections`
-
-The top-level key in the schema is an array of _collections_, a `collection` informs the API about _where_ to save content. You can see from the example that a `posts` document would be stored in `content/posts`, and it can be the shape of any `template` from the `templates` key.
-
-### `templates`
-
-Templates are responsible for defining the shape of your content, you'll see in the schema for [the starter](https://github.com/tinacms/tina-cloud-starter) that we use `templates` for `collections` as well as `blocks`. One important thing to note is that since a `collection` can have multiple `templates`, each file in your collection must store a `_template` key in it's frontmatter:
-
-```markdown
----
-title: Vote For Pedro
-author: content/authors/napolean.md
-_template: article
----
-
-When you use Tina's GraphQL forms, we know about all of the relationships in your content, this allows us to keep your content in-sync with your form state. Try changing the author in the sidebar, notice the author data changes to reflect your new author!
-```
-
-### `fields`
-
-For the most part, you can think of `fields` as the backend equivalent to [Tina field plugins](https://tina.io/docs/plugins/fields/). You might notice that we're defining a `type` on each field, rather than a `component`. This is because the backend isn't concerned with `component`s, only the shape of your content. By default we use the built-in Tina fields, to customize your `component` read the [field customization](/docs/tina-cloud/client/#field-customization) instructions.
-
-#### `reference` & `reference-list`
-
-In addition to the core Tina fields, we also have `reference` and `reference-list` fields. These are important concepts, when you _reference_ another collection, you're effectively saying: "this document _belongs to_ that document". In the `article` template above, we're saying `posts` with an `article` template belong to `authors`. This is a powerful way to connect your content, and the `tina-graphql-gateway` client knows how to build forms to reflect these relationships.
-
-When you query across multiple documents, you'll see a `select` field for the related content, and by changing those values you'll see your query data updated automatically.
+For more information on how to define a schema, head over to the ["Anatomy of a Tina schema"](/docs/tina-cloud/schema/) documentation
 
 ## Run the local GraphQL server
 
@@ -175,7 +145,6 @@ Now let's add some content to the author
 ---
 name: Napolean
 avatar: https://images.unsplash.com/photo-1606721977440-13e6c3a3505a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=344&q=80
-_template: basicAuthor
 ---
 ```
 
@@ -191,7 +160,6 @@ Now we add some content to the post
 ---
 title: Vote For Pedro
 author: content/authors/napolean.md
-_template: article
 ---
 
 When you use Tina's GraphQL forms, we know about all of the relationships in your content, this allows us to keep your content in-sync with your form state. Try changing the author in the sidebar, notice the author data changes to reflect your new author!
@@ -203,7 +171,7 @@ When you use Tina's GraphQL forms, we know about all of the relationships in you
 yarn run tina-gql server:start
 ```
 
-This will start the server on  `http://localhost:4001` and can be accessed using a GraphQL client on `http://localhost:4001/graphql`
+This will start the server on `http://localhost:4001` and can be accessed using a GraphQL client on `http://localhost:4001/graphql`
 
 #### Query the content
 
@@ -214,18 +182,14 @@ With a GraphQL client, make the following request:
 ```graphql
 getPostDocument(relativePath: "voteForPedro.md") {
   data {
-    __typename
-    ... on Article_Doc_Data {
-      title
-      author {
-        data {
-          ... on BasicAuthor_Doc_Data {
-            name
-            avatar
-          }
+    title
+    author {
+      data {
+        ... on BasicAuthor_Doc_Data {
+          name
+          avatar
         }
       }
-      _body
     }
   }
 }

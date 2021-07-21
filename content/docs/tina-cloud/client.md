@@ -1,8 +1,8 @@
 ---
-title: Tina Cloud Client
+title: TinaCMS
 ---
 
-The _Tina Cloud Client_ can be used to interact with the GraphQL layer, and allow you to create the forms that your content team can interact with. 
+The _Tina Cloud Client_ can be used to interact with the GraphQL layer, and allow you to create the forms that your content team can interact with.
 
 For a real-world example of how this is being used checkout the [Tina Cloud Starter](https://github.com/tinacms/tina-cloud-starter).
 
@@ -11,13 +11,13 @@ For a real-world example of how this is being used checkout the [Tina Cloud Star
 Npm:
 
 ```bash
-npm install --save-dev tina-graphql-gateway
+npm install --save-dev tinacms
 ```
 
 Yarn:
 
 ```bash
-yarn add --dev tina-graphql-gateway
+yarn add --dev tinacms
 ```
 
 ## The TinaCMS API Client
@@ -124,7 +124,7 @@ const query = gql => gql`#graphql
 
 ### Formify
 
-Formify allows you to control the output of the forms created through `useGraphqlForms`. In the examples below we show you how to overide a particular `id` and also show you how to customize specific fields. 
+Formify allows you to control the output of the forms created through `useGraphqlForms`. In the examples below we show you how to overide a particular `id` and also show you how to customize specific fields.
 
 ##### Form customization:
 
@@ -138,7 +138,7 @@ const [payload, isLoading] = useGraphqlForms({
     if (formConfig.id === 'getSiteNavsDocument') {
       const form = new Form(formConfig)
       // The site nav will be a global plugin
-      cms.plugins.add(new(form))
+      cms.plugins.add(new form())
       return form
     }
 
@@ -190,7 +190,7 @@ const [payload, isLoading] = useGraphqlForms({
 
 ## `useDocumentCreatorPlugin`
 
-An important part of any application or website is the ability to create new pages, you can use the `useDocumentCreatorPlugin` which allows the end user the ability to create new pages. 
+An important part of any application or website is the ability to create new pages, you can use the `useDocumentCreatorPlugin` which allows the end user the ability to create new pages.
 
 > Note that you'll be responsible for redirecting the user after a new document has been created.
 
@@ -253,24 +253,29 @@ Props for TinaCloudAuthWall
 
 | Prop                         | Description                                                                                                                                                                                                                                                                                            |
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `cms`                        | An instance of a [CMS](/docs/cms/#cms-configuration)                                                                                                                                                                                                                              |
+| `cms`                        | An instance of a [CMS](/docs/cms/#cms-configuration)                                                                                                                                                                                                                                                   |
 | `getModalActions` (optional) | A function that returns a list of actions / buttons that will be rendered to the model. Each button has name, action, and can be primary or not. The name is the text that will be displayed. The action is a function that will be run when the button is clicked. See example below for more details |
 
 ```tsx
 return (
-    <TinaCloudAuthWall cms={cms} getModalActions={({closeModal})=>{
-      return [{
-         action: async ()=>{
-          //  use your own state to get in and out of edit mode
-           closeModal()
-         },
-         name: 'close',
-         primary: false,
-      }]
-    }}>
-      <Component {...pageProps} />
-    </TinaCloudAuthWall>
-);
+  <TinaCloudAuthWall
+    cms={cms}
+    getModalActions={({ closeModal }) => {
+      return [
+        {
+          action: async () => {
+            //  use your own state to get in and out of edit mode
+            closeModal()
+          },
+          name: 'close',
+          primary: false,
+        },
+      ]
+    }}
+  >
+    <Component {...pageProps} />
+  </TinaCloudAuthWall>
+)
 ```
 
 > Note: when using the LocalClient, TinaCloudAuthWall won't display a login screen, there is no authentication for the local GraphQL server.
