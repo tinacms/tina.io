@@ -1,7 +1,7 @@
 ---
 title: TinaCMS
 id: '/docs/tinacms'
-next: /docs/tinacms-context
+next: /docs/content-management
 ---
 
 By creating a custom visual editing experience with Tina instead of opting for a conventional CMS, developers can give their teams a contextual, intuitive editing experience without sacrificing code quality.

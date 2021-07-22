@@ -51,7 +51,7 @@ export default defineSchema({
 
 # `collections`
 
-The top-level key in the schema is an array of _collections_, a `collection` informs the API about _where_ to save content. You can see from the example that a `posts` document would be stored in `content/posts`. You can supply either `fields` or `templates` to define shape of your collection. For the most part you'll likey just want to use `fields`
+The top-level key in the schema is an array of _collections_, a `collection` informs the API about _where_ to save content. You can see from the example that a `posts` document would be stored in `content/posts`. You can supply either `fields` or `templates` to define shape of your collection. For the most part you'll likely just want to use `fields`
 
 ```ts
 {

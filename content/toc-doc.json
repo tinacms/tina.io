@@ -25,16 +25,6 @@
         "id": "/docs/tina-cloud/dashboard/",
         "slug": "/docs/tina-cloud/dashboard/",
         "title": "Tina Cloud Dashboard"
-      },
-      {
-        "id": "/docs/tina-cloud/cli/",
-        "slug": "/docs/tina-cloud/cli/",
-        "title": "Tina Cloud CLI"
-      },
-      {
-        "id": "/docs/tina-cloud/client/",
-        "slug": "/docs/tina-cloud/client/",
-        "title": "Tina Cloud Client"
       }
     ]
   },
@@ -45,18 +35,32 @@
     "items": [
       {
         "title": "API Reference",
-        "id": "/docs/tinacms/",
-        "slug": "/docs/tinacms/",
+        "id": "/docs/tinacms-reference/",
+        "slug": "/docs/tinacms-reference/",
         "items": [
           {
             "id": "/docs/tinacms-context/",
             "slug": "/docs/tinacms-context/",
-            "title": "Next.js APIs"
+            "title": "Next.js APIs",
+            "items": [
+              {
+                "id": "/docs/tinacms-context-advanced/",
+                "slug": "/docs/tinacms-context-advanced/",
+                "title": "Advanced Usage"
+              }
+            ]
           },
           {
-            "title": "Tina Schema API",
-            "id": "/docs/schema",
-            "slug": "/docs/schema/"
+            "id": "/docs/cli/",
+            "slug": "/docs/cli/",
+            "title": "Tina Schema & CLI",
+            "items": [
+              {
+                "title": "Anatomy of the Tina Schema",
+                "id": "/docs/schema",
+                "slug": "/docs/schema/"
+              }
+            ]
           },
           {
             "title": "GraphQL API",
@@ -70,9 +74,14 @@
           },
           {
             "title": "Toolkit",
-            "id": "/docs/content-management/",
-            "slug": "/docs/content-management/",
+            "slug": "/docs/tinacms",
+            "description": "The JavaScript toolkit for building content management interfaces",
             "items": [
+              {
+                "title": "Content Management",
+                "id": "/docs/content-management/",
+                "slug": "/docs/content-management/"
+              },
               { "id": "/docs/cms/", "slug": "/docs/cms/", "title": "The CMS" },
               {
                 "title": "Forms",
