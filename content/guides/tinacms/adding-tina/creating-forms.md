@@ -91,7 +91,7 @@ export default function Post({ post: initialPost, morePosts, preview }) {
         component: 'text',
       },
       {
-        name: 'rawMarkdownBody',
+        name: 'content',
         label: 'Content',
         component: 'markdown',
       },
