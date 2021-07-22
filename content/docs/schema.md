@@ -286,8 +286,4 @@ This will result in a resolvable node in your GraphQL structure:
 
 The resulting field in your TinaCMS form will be a `select` field, whose `options` are all of the documents in the given collections.
 
-> Note: _reverse_ relationship is not yet supported. For example, you'd likely want to view all of a given `author`'s `posts`. This is on our roadmap but not yet supported.
-
-### Putting it all together
-
-With TinaCMS, you query content on your filesystem through GraphQL. The schema tells the GraphQL server exactly where and in what shape those files should be. In that regard, you might find the experience similar to a traditional headless CMS. Where TinaCMS differs is in the contextual editing it generates for you. To learn more about that, head over to the [TinaCMS documentation](/docs/tinacms/)
+> Note: _reverse_ relationships are not yet supported. For example, you'd likely want to view all of a given `author`'s `posts`. This is on our roadmap but not yet supported.

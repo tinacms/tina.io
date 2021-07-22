@@ -1,7 +1,7 @@
 ---
 title: TinaCMS
 id: '/docs/tinacms'
-next: /docs/tinacms-context
+next: /docs/content-management
 ---
 
 By creating a custom visual editing experience with Tina instead of opting for a conventional CMS, developers can give their teams a contextual, intuitive editing experience without sacrificing code quality.
@@ -40,6 +40,7 @@ Tina gives you the tools you need to manage content from the data source of your
 - **Media Management:** [Media Stores](/docs/media 'Tina Media Store'), [Image Fields](/docs/plugins/fields/image 'Image Field Plugin')
 - **Custom Fields:** [How to Make a Custom Field Component](/blog/custom-field-components)
 - **Experimental Inline Editing:** [Inline Editing](/docs/ui/inline-editing), [Working with Inline Blocks](/guides//general/inline-blocks/overview), [Inline Images](/docs/ui/inline-editing/inline-image 'Inline Images')
+
 
 ## Integrating with React Frameworks
 

@@ -67,35 +67,6 @@ export default defineSchema({
           label: 'Title',
           name: 'title',
         },
-        {
-          type: 'string',
-          label: 'Body',
-          name: 'body',
-          isBody: true
-        },
-        {
-          type: 'reference',
-          label: 'Author',
-          name: 'author',
-          collection: 'authors',
-        },
-      ],
-    },
-    {
-      label: 'Authors',
-      name: 'authors',
-      path: 'content/authors',
-      fields: [
-        {
-          type: 'text',
-          label: 'Name',
-          name: 'name',
-        },
-        {
-          type: 'text',
-          label: 'Avatar',
-          name: 'avatar',
-        },
       ],
     },
   ],
@@ -114,20 +85,16 @@ getCollections
 # global mutations
 addPendingDocument
 updateDocument
-
 # schema-specific queries.
 getPostDocument
 getPostList
-getAuthorDocument
-getAuthorList
 # schema-specific mutations
 updatePostDocument
-updateAuthorDocument
 ```
 
 You can find your generated schema at `/.tina/__generated__/schema.gql` for inspection.
 
-For more information on how to define a schema, head over to the ["Anatomy of a Tina schema"](/docs/tina-cloud/schema/) documentation
+For more information on how to work with GraphQL, head to the ["GraphQL API"](/docs/graphql) documentation. Or for details on how to define a schema, checkout to the ["Anatomy of a Tina schema"](/docs/schema/) documentation
 
 ## Run the local GraphQL server
 
