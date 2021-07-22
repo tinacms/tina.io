@@ -44,9 +44,11 @@ Connect to your GitHub repository and set the same environment variables as the 
 ```other
 NEXT_PUBLIC_ORGANIZATION_NAME= <YOUR_ORGANIZATION>
 NEXT_PUBLIC_TINA_CLIENT_ID= <YOUR_CLIENT_ID>
+NEXT_PUBLIC_USE_LOCAL_CLIENT= 0
 ```
 
-![vercel-congratulations.png](https://raw.githubusercontent.com/tinacms/tina-cloud-starter/main/public/uploads/vercel-congratulations.png)
+Set the Build Command to `yarn tina-build` this will build the site by launching the graphQL server to create all the files. 
+
 
 🎉 Congratulations, your site is now live!
 
@@ -61,7 +63,7 @@ NEXT_PUBLIC_ORGANIZATION_NAME= <YOUR_ORGANIZATION>
 NEXT_PUBLIC_TINA_CLIENT_ID= <YOUR_CLIENT_ID>
 ```
 
-Set the **build command** to `yarn build`, Set the **publish directory**. To `.next/` .
+Set the **build command** to `yarn tina-build`, Set the **publish directory**. To `.next/` .
 
 Once you're done, click "Deploy site".
 
