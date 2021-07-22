@@ -1,7 +1,6 @@
 ---
 title: Next.js APIs
 id: '/docs/tinacms-context'
-next: /docs/edit-state
 ---
 
 ## `getStaticPropsForTina`
