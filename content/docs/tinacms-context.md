@@ -124,7 +124,7 @@ import dynamic from 'next/dynamic'
 import { TinaEditProvider } from 'tinacms/dist/edit-state'
 const TinaCMS = dynamic(() => import('tinacms'), { ssr: false })
 
-const App({ Component, pageProps }) {
+const App = ({ Component, pageProps }) => {
   return (
     <>
       <TinaEditProvider
@@ -140,7 +140,7 @@ const App({ Component, pageProps }) {
   )
 }
 
-export default App
+export default Ap
 ```
 
 You can enter and exit edit mode by tapping into the `useEditState` hook, a common pattern is to place this hook on an "admin" page, which simply puts you into edit mode and sends you back to the page you were on:
