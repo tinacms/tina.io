@@ -2,6 +2,9 @@
 title: Tina Cloud Starter structure
 last_edited: '2021-06-15T12:04:50.542Z'
 ---
+
+From here, you're ready to start building your own project. This section explains a bit about how this project is structured, and how to modify it to make it your own.
+
 ## Starter structure
 
 Tina Cloud Starter is a [Next.js](https://nextjs.org) application. The file-based routing happens through the `pages` directory. To edit this site click the "edit this site" button. This will cause you to go into edit mode where Tina is loaded. Tina is only loaded in edit mode so it will not effect the production bundle size.
