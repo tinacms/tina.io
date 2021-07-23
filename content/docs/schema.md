@@ -2,7 +2,9 @@
 title: Anatomy of the Tina schema
 ---
 
-The Tina schema is a way of defining the shape of your content for your entire site, with traditional content management systems you may have done this sort of content modeling via GUI. However given its tight coupling to Git, TinaCMS considers the filesystem the ultimate source of truth, and leverages a "content-modeling as code" approach. To that end, your schema is defined in a file called `.tina/schema.ts` (only `.ts` is supported for now).
+The Tina schema is a way of defining the shape of your content for your entire site.  With traditional content management systems you may have done this sort of content modeling via GUI, however, given its tight coupling to Git, TinaCMS considers the filesystem the ultimate source of truth and leverages a "content-modeling as code" approach. 
+
+To that end, your schema is defined in a file called `.tina/schema.ts` (only `.ts` is supported for now).
 
 ```ts
 // .tina/schema.ts
