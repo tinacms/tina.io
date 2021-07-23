@@ -140,7 +140,7 @@ const App = ({ Component, pageProps }) => {
   )
 }
 
-export default Ap
+export default App
 ```
 
 You can enter and exit edit mode by tapping into the `useEditState` hook, a common pattern is to place this hook on an "admin" page, which simply puts you into edit mode and sends you back to the page you were on:
