@@ -16,8 +16,10 @@ cd tina-quickstart
 We created a quick way to bootstrap a Tina application to show the power of visual editing, from your terminal enter the following command:
 
 ```bash,copy
-npx tina-graphql-gateway-cli init
+npx @tinacms/cli init
 ```
+
+> Heads up, this will override the `_app.js`, which has a stylesheet in it. Add it back to the top of the file -- `import "../styles/index.css";`
 
 This command does a few things in your Next.js application:
 

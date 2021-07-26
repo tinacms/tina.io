@@ -20,7 +20,7 @@ Plugins with Tina are added in three steps:
 Lets first add the two new packages we want to use for Markdown plugin:
 
 ```bash,copy
-yarn add react-tinacms-editor
+yarn add react-tinacms-editor react-tinacms-inline react-final-form final-form
 ```
 
 ### Adding our plugin to the site
@@ -28,19 +28,34 @@ yarn add react-tinacms-editor
 Inside the `pages/_app.js` file we need to import the `MarkdownFieldPlugin` and add it to the CMS callback:
 
 ```jsx
+import '../styles/index.css'
+import dynamic from 'next/dynamic'
+import { TinaEditProvider } from 'tinacms/dist/edit-state'
+const TinaCMS = dynamic(() => import('tinacms'), { ssr: false })
+
+// Import the plugin
 import { MarkdownFieldPlugin } from 'react-tinacms-editor'
-import TinaCMS from 'tinacms'
 
 const App = ({ Component, pageProps }) => {
   return (
-    <TinaCMS
-      // ...
-      cmsCallback={cms => {
-        cms.plugins.add(MarkdownFieldPlugin)
-      }}
-    >
-      {livePageProps => <Component {...livePageProps} />}
-    </TinaCMS>
+    <>
+      <TinaEditProvider
+        editMode={
+          <TinaCMS
+            // ...
+            // Add it to the cms instance
+            cmsCallback={cms => {
+              cms.plugins.add(MarkdownFieldPlugin)
+            }}
+            {...pageProps}
+          >
+            {livePageProps => <Component {...livePageProps} />}
+          </TinaCMS>
+        }
+      >
+        <Component {...pageProps} />
+      </TinaEditProvider>
+    </>
   )
 }
 
@@ -99,7 +114,7 @@ useEffect(() => {
   }
 
   parseMarkdown()
-}, [_body])
+}, [body])
 ```
 
 Then finally we can set the `PostBody` content to our nearly updated content.

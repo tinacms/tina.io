@@ -82,7 +82,7 @@ Now we need a full template, to handle all the fields:
       name: 'title',
     },
     {
-      type: 'textarea',
+      type: 'string',
       label: 'Excerpt',
       name: 'excerpt',
     },

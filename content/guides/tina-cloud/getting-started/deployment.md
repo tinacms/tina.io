@@ -3,7 +3,7 @@ title: Tina Cloud and Deployment
 last_edited: '2021-07-19T15:36:36.046Z'
 ---
 
-## Connect to Tina Cloud 
+## Connect to Tina Cloud
 
 While the fully local development workflow is the recommended way for developers to work, you'll likely want other editors and collaborators to be able to make changes on a hosted website with authentication.
 
@@ -12,20 +12,19 @@ While the fully local development workflow is the recommended way for developers
 ## Register your local application with Tina Cloud
 
 1. Visit [auth.tina.io](https://auth.tina.io/register), create an organization, and sign in. Make a note of your organization name.
-2. Commit the project to your GitHub account. 
-2. Create a Tina Cloud app that connects to the GitHub repository you've just commited. Once your app is created, click on the app to get to the app settings and copy the client ID.
+2. Commit the project to your GitHub account.
+3. Create a Tina Cloud app that connects to the GitHub repository you've just commited. For now, set `http://localhost:3000` as your callback URL. Once your app is created, click on the app to get to the app settings and copy the client ID. For more details on how to work with the Tina Cloud dashboard head over to the [dashboard documentation](/docs/tina-cloud/dashboard/).
 
 ## Connect your local project with Tina Cloud
 
 In the `env.local` file set:
 
 - `NEXT_PUBLIC_USE_LOCAL_CLIENT` to `0`.
-- `NEXT_PUBLIC_ORGANIZATION_NAME` to your Tina Cloud organization name
 - `NEXT_PUBLIC_TINA_CLIENT_ID` to the Client ID displayed in your Tina Cloud App.
 
 Restart your server and run `yarn dev` again.
 
-Open [`http://localhost:3000/`](http://localhost:3000/%60) and click "enter edit mode"
+Open [`http://localhost:3000/`](http://localhost:3000/) and click "enter edit mode"
 
 #### Edit content
 
@@ -42,13 +41,11 @@ Now that Tina Cloud editing is working correctly, we can deploy the site so that
 Connect to your GitHub repository and set the same environment variables as the ones in your `env.local` file:
 
 ```other
-NEXT_PUBLIC_ORGANIZATION_NAME= <YOUR_ORGANIZATION>
 NEXT_PUBLIC_TINA_CLIENT_ID= <YOUR_CLIENT_ID>
 NEXT_PUBLIC_USE_LOCAL_CLIENT= 0
 ```
 
-Set the Build Command to `yarn tina-build` this will build the site by launching the graphQL server to create all the files. 
-
+Set the Build Command to `yarn tina-build` this will build the site by launching the graphQL server to create all the files.
 
 🎉 Congratulations, your site is now live!
 
@@ -59,8 +56,8 @@ You can test that everything is configured correctly by navigating to your deplo
 Connect to your GitHub repository, click on **advanced** to set the same environment variables as the ones in your `env.local` file:
 
 ```other
-NEXT_PUBLIC_ORGANIZATION_NAME= <YOUR_ORGANIZATION>
 NEXT_PUBLIC_TINA_CLIENT_ID= <YOUR_CLIENT_ID>
+NEXT_PUBLIC_USE_LOCAL_CLIENT= 0
 ```
 
 Set the **build command** to `yarn tina-build`, Set the **publish directory**. To `.next/` .

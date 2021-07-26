@@ -86,8 +86,12 @@ export async function getStaticPaths() {
     request: `
     {
       getPostsList {
-        sys {
-          filename
+        edges {
+          node {
+            sys {
+              filename
+            }
+          }
         }
       }
     }
@@ -95,8 +99,8 @@ export async function getStaticPaths() {
     variables: {},
   })
   return {
-    paths: postsListData.getPostsList.map(post => ({
-      params: { slug: post.sys?.filename },
+    paths: postsListData.getPostsList.data.edges.map(edge => ({
+      params: { slug: edge.post.sys.filename },
     })),
     fallback: false,
   }
@@ -193,26 +197,23 @@ import { getStaticPropsForTina } from 'tinacms'
 export const getStaticProps = async ({ params }) => {
   const { slug } = params
   const variables = { relativePath: `${slug}.md` }
-  const tinaProps = getStaticPropsForTina({
+  const tinaProps = await getStaticPropsForTina({
     query: `
       query BlogPostQuery($relativePath: String!) {
         getPostsDocument(relativePath: $relativePath) {
           data {
-            __typename
-            ... on  Post_Doc_Data{
-              title,
-              excerpt,
-              date,
-              coverImage,
-              author{
-                name,
-                picture
-              }
-              ogImage{
-                url
-              },
-              _body
+            title
+            excerpt
+            date
+            coverImage
+            author {
+              name
+              picture
             }
+            ogImage {
+              url
+            }
+            body
           }
         }
       }
@@ -221,7 +222,10 @@ export const getStaticProps = async ({ params }) => {
   })
 
   return {
-    props: tinaProps, // {data: {...}, query: '...', variables: {...}}
+    props: {
+      ...tinaProps, // {data: {...}, query: '...', variables: {...}}
+      slug,
+    },
   }
 }
 ```
@@ -245,7 +249,7 @@ export default function Post({ data, slug }) {
     coverImage,
     date,
     author,
-    _body,
+    body,
     ogImage,
   } = data.getPostsDocument.data
 ```
@@ -259,7 +263,7 @@ export default function Post({ data, slug }) {
     coverImage,
     date,
     author,
-    _body,
+    body,
     ogImage,
   } = data.getPostsDocument.data
   const router = useRouter()
@@ -297,6 +301,8 @@ export default function Post({ data, slug }) {
   )
 }
 ```
+
+Visit [http://localhost:3000/posts/hello-world](http://localhost:3000/posts/hello-world) to see the GraphQL-powered page.
 
 ### Editing content:
 
