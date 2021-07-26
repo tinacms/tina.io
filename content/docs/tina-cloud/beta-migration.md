@@ -14,7 +14,7 @@ We've made a few changes and are ready to make a Tina Cloud beta publicly availa
 Aside from some user interface improvements in the Tina Cloud Dashboard, we've also been making a bunch of changes 
 under the hood. One of the biggest of these changes is how we handle user accounts. 
 
-Previously when you created a Tina Cloud account you were creating an **organization** that you accessed at `https://OrgName.tina.io`. We thought that giving each organization it's own unique subdomain and pool of users would be neat, but after spending some time in that paradigm it turned out to be a lot of added complexity that didn't add much value. 
+Previously when you created a Tina Cloud account you were creating an **organization** that you accessed at `https://OrgName.tina.io`. We thought that giving each organization its own unique subdomain and pool of users would be neat, but after spending some time in that paradigm it turned out to be a lot of added complexity that didn't add much value. 
 
 With the release of the beta we're moving user accounts to the forefront. Whenever you create a Tina Cloud account you'll always access it at https://app.tina.io. This means that even
 if you are part of multiple organizations, you'll only have a single Tina account.
