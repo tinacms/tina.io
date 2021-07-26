@@ -24,7 +24,7 @@ if you are part of multiple organizations, you'll only have a single Tina accoun
 
 ## Migration Path
 
-Since we're changing how user accounts work within Tina Cloud, alpha users will need to create new accounts for the beta. The process is pretty simple, you'll just need to **recreate your Tina Cloud account** an **update your Tina Cloud Site**. The good news is that since we don't control your content, there really isn't too much to do. 
+Since we're changing how user accounts work within Tina Cloud, existing alpha users must **recreate their Tina Cloud account** and **update their Tina Cloud Site**. The good news is that since we don't control your content, there really isn't anything else to do. 
 
 ### Recreate your Tina Cloud Account
 
