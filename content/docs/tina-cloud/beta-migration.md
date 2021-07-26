@@ -29,7 +29,7 @@ Since we're changing how user accounts work within Tina Cloud, existing alpha us
 ### Recreate your Tina Cloud Account
 
 * Head to https://app.tina.io and sign up for a new account.
-* Log in to your newly created account [recreate any existing **Apps**](https://tina.io/docs/tina-cloud/dashboard/#apps). 
+* Log in to your newly created account [recreate any existing **Apps**](/docs/tina-cloud/dashboard/#apps). 
 * Invite any users to your newly created account.
 
 
