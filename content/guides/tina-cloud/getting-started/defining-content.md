@@ -1,5 +1,5 @@
 ---
-title: Defining Content 
+title: Defining Content
 last_edited: '2021-07-15T15:36:36.046Z'
 ---
 
@@ -11,11 +11,11 @@ Before we look at our current project, let's discuss how the content is shaped. 
 
 ### Collections
 
-The top-level key in the schema is an array of *collections*, a `collection` informs the API about *where* to save content.
+The top-level key in the schema is an array of _collections_, a `collection` informs the API about _where_ to save content.
 
 ### Templates
 
-Templates are responsible for defining the shape of your content and we can instruct the Content API *what* files belong to a template.
+Templates are responsible for defining the shape of your content and we can instruct the Content API _what_ files belong to a template.
 
 ### Fields
 
@@ -23,145 +23,122 @@ Fields instruct the Content API of the type expected for example text as well as
 
 ### References
 
-We also have `reference` and `reference-list` fields. These are important concepts, when you *reference* another collection, you're effectively saying: "this document *belongs to* that document".
+We also have `reference` fields. This is an important concept, when you _reference_ another collection, you're effectively saying: "this document _belongs to_ that document".
 
 ## Creating our content Schema
 
 The Next.js blog starter comes with three example blog posts that we are going to use to shape our content in our schema. You can find on any of the blog posts in the `_posts` directory, let us look at the front matter of the `preview.md`.
 
 ```md
-//preview.md
-
 ---
-title: 'Preview Mode for Static Generation'
+title: Preview Mode for Static Generation
 excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus.'
 coverImage: '/assets/blog/preview/cover.jpg'
-date: '2020-03-16T05:35:07.322Z'  
+date: '2020-03-16T05:35:07.322Z'
 author:
   name: Joe Haddad
   picture: '/assets/blog/authors/joe.jpeg'
 ogImage:
   url: '/assets/blog/preview/cover.jpg'
-
 ---
+
+Lorem ipsum dolor sit amet, ...
 ```
 
-As you can see, we have a quite a few fields that we want our content team to be able to edit as well as the body of the blog post. 
+As you can see, we have a quite a few fields that we want our content team to be able to edit as well as the body of the blog post.
 
 ### Making changes to the Schema
 
 Open up the Tina `schema.ts` file located at `/.tina/schema.ts` To begin with underneath the object we provided, we need to create a new collection object:
 
-```json
+```js
 {
-      label: 'Blog Posts',
-      name: 'posts',
-      path: '_posts',
-      templates: []
+  label: "Blog Posts",
+  name: "posts",
+  path: "_posts",
+  fields: [
+    {
+      type: "string",
+      label: "Title",
+      name: "title"
+    }
+  ]
 }
 ```
 
-Here we have created a label with a human friendly name "Blog Posts", and the queryable name will be "posts" and alll content should be saved in the "_posts" directory, which is where the NextJS starter blog post content lives.  The next step is to create the content template which will need to match the front matter we showed above:
-
-```json
-templates: [
-        {
-          label: 'Post',
-          name: 'post',
-          fields: [
-            {
-              type: 'text',
-              label: 'Title',
-              name: 'title',
-            },
-```
-
-Here is an example before we post the entire templating for each field. As you can see we have selected to call this template post and it currently contains a single field of type of text named Title.
+Here we have created a label with a human friendly name "Blog Posts", the queryable name will be "posts", and all content should be saved in the "\_posts" directory, which is where the NextJS starter blog post content lives. You can see we just havea a single field called `title` which is of type `string`.
 
 Now we need a full template, to handle all the fields:
 
-```json,copy
+```js
 {
-        label: 'Blog Posts',
-        name: 'posts',
-        path: '_posts',
-        templates: [
-          {
-            label: 'Post',
-            name: 'post',
-            fields: [
-              {
-                type: 'text',
-                label: 'Title',
-                name: 'title',
-              },
-              {
-                type: 'textarea',
-                label: 'Excerpt',
-                name: 'excerpt',
-              },
-              {
-                type: 'text',
-                label: 'Cover Image',
-                name: 'coverImage',
-              },
-              {
-                type: 'text',
-                label: 'Date',
-                name: 'date',
-              },
-              {
-                type: 'group',
-                label: 'Author',
-                name: 'author',
-                fields: [
-                  {
-                    type: 'text',
-                    label: 'Name',
-                    name: 'name',
-                  },
-                  {
-                    type: 'text',
-                    label: 'Picture',
-                    name: 'picture',
-                  },
-                ],
-              },
-              {
-                type: 'group',
-                label: 'OG Image',
-                name: 'ogImage',
-                fields: [
-                  {
-                    type: 'text',
-                    label: 'Url',
-                    name: 'url',
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
+  label: 'Blog Posts',
+  name: 'posts',
+  path: '_posts',
+  fields: [
+    {
+      type: 'string',
+      label: 'Title',
+      name: 'title',
+    },
+    {
+      type: 'textarea',
+      label: 'Excerpt',
+      name: 'excerpt',
+    },
+    {
+      type: 'string',
+      label: 'Cover Image',
+      name: 'coverImage',
+    },
+    {
+      type: 'string',
+      label: 'Date',
+      name: 'date',
+    },
+    {
+      type: 'object',
+      label: 'Author',
+      name: 'author',
+      fields: [
+        {
+          type: 'string',
+          label: 'Name',
+          name: 'name',
+        },
+        {
+          type: 'string',
+          label: 'Picture',
+          name: 'picture',
+        },
+      ],
+    },
+    {
+      type: 'object',
+      label: 'OG Image',
+      name: 'ogImage',
+      fields: [
+        {
+          type: 'string',
+          label: 'Url',
+          name: 'url',
+        },
+      ],
+    },
+    {
+      type: 'string',
+      label: 'Body',
+      name: 'body',
+      isBody: true,
+    },
+  ],
+}
 ```
 
-> You will notice there is a new type here called group. This works as a way to group fields together and on the UI which you will see in the future, it allows you to click into them and edit each individual field.
+There are a couple of things you might notice. First, we have a `type` called `object`, this works as a way to group fields together and on the UI which you will see in the future, it allows you to click into them and edit each individual field.
 
-### Adding the content template
+Second, there's a `string` field called `body` with `isBody` set to true. By setting `isBody` to true we're stating that this field is responsible for the main _body_ of the markdown file. There can only be one field with the `isBody: true` property.
 
-The final change required to make everything work, is to state that each of blog posts are part of our template named post, open up each of the markdown files found in _posts and add `_template: post` to the bottom of the frontmatter so it should look like: 
+### Next steps
 
-```md
----
-title: 'Dynamic Routing and Static Generation'
-excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus.'
-coverImage: '/assets/blog/dynamic-routing/cover.jpg'
-date: '2020-03-16T05:35:07.322Z'
-author:
-  name: JJ Kasper
-  picture: '/assets/blog/authors/jj.jpeg'
-ogImage:
-  url: '/assets/blog/dynamic-routing/cover.jpg'
-_template: post
----
-```
+Our markdown files are now backed by a well-defined schema, this paves the way for us to query file content with GraphQL. Follow along as we update our NextJS site to use our new capabilities

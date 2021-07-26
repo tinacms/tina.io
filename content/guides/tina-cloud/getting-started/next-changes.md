@@ -3,20 +3,18 @@ title: NextJS Starter Changes
 last_edited: '2021-07-19T15:36:36.046Z'
 ---
 
-
 ## Creating the getStaticPaths query
 
-The `getStaticPaths` query is going to need to know where all of our markdown files are located, with our current schema you have the option to `getPostsList` which will provide a list of all posts in our `_posts` folder. Make sure your local server is running and navigate to https://localhost:4001/altair and select the Docs button. The Docs button gives you the ability to see all the queries possible and the variables returned:
-
+The `getStaticPaths` query is going to need to know where all of our markdown files are located, with our current schema you have the option to use `getPostsList` which will provide a list of all posts in our `_posts` folder. Make sure your local server is running and navigate to https://localhost:4001/altair and select the Docs button. The Docs button gives you the ability to see all the queries possible and the variables returned:
 
 ![Altair Doc example](/gif/altair_doc.gif)
 
-So based upon the `getPostsList` we will want to query the `sys` which is the filesystem and retireve the `filename`, which will return all the filenames without the extension. 
+So based upon the `getPostsList` we will want to query the `sys` which is the filesystem and retrieve the `filename`, which will return all the filenames without the extension.
 
 ```graphql,copy
-query{
-  getPostsList{
-    sys{
+query {
+  getPostsList {
+    sys {
       filename
     }
   }
@@ -25,7 +23,7 @@ query{
 
 If you run this query in the GraphQL client you will see the following returned:
 
-```graphql,copy
+```json,copy
 {
   "data": {
     "getPostsList": [
@@ -51,7 +49,8 @@ If you run this query in the GraphQL client you will see the following returned:
 
 ### Adding this query to our Blog.
 
-The NextJS starter blog is served on the dynamic route `/pages/posts[slug].js` when you open the file you will see a function called `getStaticPaths` at the bottom of the file.
+The NextJS starter blog is served on the dynamic route `/pages/posts/[slug].js` when you open the file you will see a function called `getStaticPaths` at the bottom of the file.
+
 ```js
 export async function getStaticPaths() {
 
@@ -63,61 +62,58 @@ Remove all the code inside of this function and we can update it to use our own 
 ```js
 //other imports
 .....
-import { LocalClient } from "tina-graphql-gateway";
-```
-
-Then we can create an constructor function named client so we can use this as needed on our page, and give us the ability to interact with our API. 
-
-```js
-import{ LocalClient} from "tina-graphql-gateway"
-
-const client = new LocalClient();
+import { staticRequest } from "tinacms";
 ```
 
 Inside of the `getStaticPaths` function we can construct our request to our content-api, when making a request we expect a `query` or `mutation` and then `variables` to be passed to the query, here is an example:
 
 ```js
-client.request(query, {
-        variables,
+staticRequest({
+  query: '...', // our query
+  variables: {...}, // any variables used by our query
 }),
 ```
 
-We have already created the query so we can take what we created above and add it as we aren't using a variable holding the grapqhl query we can use `client.request((gql) => gql``QUERY_HERE``)`.
+> "_What does `staticRequest` do_?"
+
+> It's just a helper function which supplies a query to your locally-running GraphQL server, which is started on port `4001`. You can just as easily use `fetch` or an http client of your choice.
+
+We can use the `getPostsList` query from earlier to build our dynamic routes:
 
 ```js,copy
 export async function getStaticPaths() {
-const postsListData = await client.request(
-    (gql) => gql`
-      {
-        getPostsList {
-          sys {
-            filename
-          }
+  const postsListData = await staticRequest({
+    request: `
+    {
+      getPostsList {
+        sys {
+          filename
         }
       }
+    }
     `,
-    { variables: {} }
-  );
+    variables: {},
+  })
   return {
-    paths: postsListData.getPostsList.map((post) => ({
+    paths: postsListData.getPostsList.map(post => ({
       params: { slug: post.sys?.filename },
     })),
     fallback: false,
-  };
+  }
 }
 ```
 
 #### Quick break down of `getStaticPaths`
 
-The `getStaticPaths` code takes the graphql query we created, because it does not require any `variables` we can send down an empty object. In the return functionality we map through each item in the `postListData.getPostsList` and create a slug for each one. 
+The `getStaticPaths` code takes the graphql query we created, because it does not require any `variables` we can send down an empty object. In the return functionality we map through each item in the `postsListData.getPostsList` and create a slug for each one.
 
 We now need to create one more query, this query will fill in all the data and give us the ability to make all our blog posts editable.
 
 ## Creating the `getStaticProps` query
 
-The `getStaticProps` query is going to deliver all the content to the blog, which is how it works currently. When we use our content-api we will both delivery the content and give the content team the ability to edit it right in the browser.
+The `getStaticProps` query is going to deliver all the content to the blog, which is how it works currently. When we use the GraphQL API we will both deliver the content and give the content team the ability to edit it right in the browser.
 
-We need to query the following things from our content-api:
+We need to query the following things from our content api:
 
 - Title
 - Excerpt
@@ -133,158 +129,141 @@ Using our local graphql client we can query the `getPostsDocument` using the pat
 
 ```graphql
 query BlogPostQuery($relativePath: String!) {
-      getPostsDocument(relativePath: $relativePath) {
-		//data from our posts.
-}
-}
-```
-
-When retrieveing the data of a blog post we can use an [inline fragment](https://graphql.org/learn/queries/#inline-fragments) to retrieve all of the `Post_Doc_Data` which will look like this:
-
-```graphql 
-query BlogPostQuery($relativePath: String!) {
-      getPostsDocument(relativePath: $relativePath) {
-        data {
-          __typename
-          ... on  Post_Doc_Data{
-				// everything we need is in here.
-			}
-		}
-	}
+  getPostsDocument(relativePath: $relativePath) {
+    # data from our posts.
+  }
 }
 ```
 
-We can now fill in the relavent fields we need to query, take special note of both `author` and `ogImage` which are grouped so they get queried as:
+We can now fill in the relevant fields we need to query, take special note of both `author` and `ogImage` which are grouped so they get queried as:
 
 ```graphql
-author{
- name,
- picture
+author {
+  name
+  picture
 }
-ogImage{
- url
-},
+ogImage {
+  url
+}
 ```
 
-Once you have filed in all the fields you should have a query that looks like the following:
+Once you have filled in all the fields you should have a query that looks like the following:
 
-```graphql,copy
+```graphql
 query BlogPostQuery($relativePath: String!) {
-      getPostsDocument(relativePath: $relativePath) {
-        data {
-          __typename
-          ... on  Post_Doc_Data{
-            title,
-            excerpt,
-            date,
-            coverImage,
-            author{
-                name,
-                picture
-            }
-            ogImage{
-              url
-            },
-            _body
-          }
-        }
+  getPostsDocument(relativePath: $relativePath) {
+    data {
+      title
+      excerpt
+      date
+      coverImage
+      author {
+        name
+        picture
       }
+      ogImage {
+        url
+      }
+      body
     }
+  }
+}
 ```
 
 ### Adding our query to our blog
 
-Firstly we can take that query and make it into a GraphQL request to keep our code organized, this can be added after the Post functionality :
+Since these pages are dynamic, we'll want to use the values we returned from `getStaticPaths` in our query. We'll destructure `params` to grab the `slug`, using it as a `relativePath`. As you'll recall the "Blog Posts" collection stores files in a folder called `_posts`, so we want to make a request for the relative path of our content. Meaning for the file located at `_posts/hello-world.md`, we only need to supply the relative portion of `hello-world.md`.
+
+```js
+export const getStaticProps = async ({ params }) => {
+  const { slug } = params
+  // Ex. `slug` is `hello-world`
+  const variables = { relativePath: `${slug}.md` }
+  // ...
+}
+```
+
+We'll use a new helper function called `getStaticPropsForTina`, which does exactly like it sounds like it might do. It will return not only the _data_ from your query, but also the query string and variables themselves. This is necessary for Tina to enable realtime editing on your page.
+
+So the full query should look like this:
 
 ```js,copy
-export const query = `#graphql
-    query BlogPostQuery($relativePath: String!) {
-      getPostsDocument(relativePath: $relativePath) {
-        data {
-          __typename
-          ... on  Post_Doc_Data{
-            title,
-            excerpt,
-            date,
-            coverImage,
-            author{
-              name,
-              picture
+import { getStaticPropsForTina } from 'tinacms'
+
+export const getStaticProps = async ({ params }) => {
+  const { slug } = params
+  const variables = { relativePath: `${slug}.md` }
+  const tinaProps = getStaticPropsForTina({
+    query: `
+      query BlogPostQuery($relativePath: String!) {
+        getPostsDocument(relativePath: $relativePath) {
+          data {
+            __typename
+            ... on  Post_Doc_Data{
+              title,
+              excerpt,
+              date,
+              coverImage,
+              author{
+                name,
+                picture
+              }
+              ogImage{
+                url
+              },
+              _body
             }
-            ogImage{
-              url
-            },
-            _body
           }
         }
       }
-    }
-`;
-```
+    `,
+    variables: variables,
+  })
 
-Now we remove everything from the getStaticProps and write our own that will interact with the content-api. First we can desructure the `slug` so we can use it for our query and return it as part of the returned data.
-
-```js
-export async function getStaticProps({ params }) {
-const {slug} = params;
-}
-```
-
-Then we can make a variables query that is going to be an object that contains the relative path to the post:
-
-```js
-export const getStaticProps = async ({params}) => {
-  const {slug} = params;
-  const variables = { relativePath: `${slug}.md` };
-	....
-}
-```
-
-Now in our return functionality we want to return the result of the query, the slug, the query and the varaibles used. The last two are going to be used by Tina to allow you to make edits in real time. So the full query should look like:
-
-```js,copy
-export const getStaticProps = async ({params}) => {
-  const {slug} = params;
-  const variables = { relativePath: `${slug}.md` };
   return {
-    props: {
-      data: await client.request(query, {
-        variables,
-      }),
-      slug,
-      variables,
-      query,
-    },
-  };
-};
+    props: tinaProps, // {data: {...}, query: '...', variables: {...}}
+  }
+}
 ```
 
 ## Using the new content on the page
 
-We now need to edit the Post function firstly we are now going to pass in the data and slug to it instead of what was there before:
+We now need to edit the Post function, firstly we are now going to pass in the data and slug to it instead of what was there before:
 
 ```js
-export default function Post({data,slug}) {
-
-// original code
+export default function Post({ data, slug }) {
+  // original code
 }
 ```
 
 To make our code easy to follow and read we can destructure the data props:
 
 ```js
-export default function Post({data,slug}) {
-  const {title,coverImage,date,author,_body,ogImage} = data.getPostsDocument.data;
+export default function Post({ data, slug }) {
+  const {
+    title,
+    coverImage,
+    date,
+    author,
+    _body,
+    ogImage,
+  } = data.getPostsDocument.data
 ```
 
 Finally we can replace any of the old code with new code so the code should now look like this:
 
-
-```js,copy
-export default function Post({data,slug}) {
-  const {title,coverImage,date,author,_body,ogImage} = data.getPostsDocument.data;
+```js
+export default function Post({ data, slug }) {
+  const {
+    title,
+    coverImage,
+    date,
+    author,
+    _body,
+    ogImage,
+  } = data.getPostsDocument.data
   const router = useRouter()
-  
+
   if (!router.isFallback && !slug) {
     return <ErrorPage statusCode={404} />
   }
@@ -309,7 +288,7 @@ export default function Post({data,slug}) {
                 date={date}
                 author={author}
               />
-              <PostBody content={_body } />
+              <PostBody content={body} />
             </article>
           </>
         )}
