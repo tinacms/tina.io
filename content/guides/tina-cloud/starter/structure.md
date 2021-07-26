@@ -1,25 +1,25 @@
 ---
 title: Tina Cloud Starter structure
-last_edited: '2021-06-15T12:04:50.542Z'
+last_edited: '2021-07-26T12:04:50.542Z'
 ---
 
 From here, you're ready to start building your own project. This section explains a bit about how this project is structured, and how to modify it to make it your own.
 
 ## Starter structure
 
-Tina Cloud Starter is a [Next.js](https://nextjs.org) application. The file-based routing happens through the `pages` directory. To edit this site click the "edit this site" button. This will cause you to go into edit mode where Tina is loaded. Tina is only loaded in edit mode so it will not effect the production bundle size.
+Tina Cloud Starter is a <a href="https://nextjs.org" target="_blank">Next.js</a> application. The file-based routing happens through the `pages` directory. To edit this site, navigate to the `/admin` route. This will cause you to go into edit mode where Tina is loaded. Tina is only loaded in edit mode so it will not effect the production bundle size.
 
-### `pages/index.tsx`
+### `pages/[filename].tsx`
 
-This page can be seen at `http://localhost:3000/`, it loads the content from a markdown file which can be found in this repository at `/content/marketing-pages/index.md`. You can edit this page at by clicking the "enter edit mode" button in the top right-hand corner
+This page can be seen at `http://localhost:3000/`, it loads the content from a markdown file which can be found in this repository at `/content/pages/home.md`. You can edit this page at by navigating to `http://localhost:3000/admin`.
 
-We wrap the site in a small `EditProvider` component, that stores whether or not we are in edit mode in React state and localstorage. When we are in edit mode it triggers authentication when needed, and then one is in edit mode.
+We wrap the site in a small `EditProvider` component, that stores whether or not we are in edit mode in React state and localstorage. When we are in edit mode it triggers authentication when needed.
 
 What makes this possible is `getStaticProps`: you'll notice that every editable page exports a `query` prop and a data prop from `getStaticProps`. When we are not in `editMode` we use the data prop to render the site. When we are in edit mode we use the query to fetch the latest data from Tina Cloud and create the sidebar form.
 
 ### `pages/posts/[filename].tsx`
 
-The posts are stored in the `content/posts` directory of this repository, and their routes are built with `getStaticPaths` dynamically at build time. To go in edit mode, click the "edit this site" button. This re-renders your site by wrapping it when a `TinaProvider` component, this only happens in edit mode to make sure Tina is not added to your production bundle.
+The posts are stored in the `content/posts` directory of this repository, and their routes are built with `getStaticPaths` dynamically at build time. To go in edit mode, navigate to the `/admin` route. This re-renders your site by wrapping it when a `TinaProvider` component, this only happens in edit mode to make sure Tina is not added to your production bundle.
 
 ### `components`
 
@@ -66,7 +66,7 @@ export default defineSchema({
 
 ### `defineSchema`
 
-> ℹ️ [Read the CLI documentation](/docs/tina-cloud/cli/#defineschema) for more details about the `defineSchema` API.
+> ℹ️ <a href="/docs/tina-cloud/cli/#defineschema" target="_blank">Read the CLI documentation</a> for more details about the `defineSchema` API.
 
 Be sure this is your default export from this file, we'll validate the schema and build out the GraphQL API with it.
 
@@ -114,4 +114,4 @@ Tina Cloud generates your GraphQL schema automatically. 🪄
 
 ### Explore the GraphQL API
 
-If you have a GraphQL client like [Altair](https://altair.sirmuel.design/) go to `http://localhost:4001/graphql` to browse the docs and query our GraphQL API.
+To browse the docs and query our GraphQL API, run `yarn dev` in your Tina project and go to `http://localhost:4001/altair`.
