@@ -114,4 +114,4 @@ Tina Cloud generates your GraphQL schema automatically. 🪄
 
 ### Explore the GraphQL API
 
-If you have a GraphQL client like [Altair](https://altair.sirmuel.design/) go to `http://localhost:4001/graphql` to browse the docs and query our GraphQL API.
+To browse the docs and query our GraphQL API, run 'yarn dev` in your Tina project and go to `http://localhost:4001/altair`.
