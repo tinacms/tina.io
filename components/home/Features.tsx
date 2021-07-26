@@ -96,7 +96,7 @@ export function FeatureBlock({ data, index }) {
           width: 100%;
           display: grid;
           grid-template-columns: 1fr;
-          grid-gap: calc(var(--spacer-size) / 2);
+          grid-gap: var(--spacer-size);
           align-items: center;
           z-index: 2;
 
@@ -115,6 +115,8 @@ export function FeatureBlock({ data, index }) {
 
         .featureText {
           position: relative;
+          max-width: 28rem;
+          justify-self: center;
 
           :global(p) {
             max-width: 400px;
