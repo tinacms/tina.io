@@ -11,7 +11,7 @@ We've made a few changes and are ready to make a Tina Cloud beta publicly availa
 
 ## Beta Changes
 
-Aside from some UI changes that you've might have noticed us developing in the Tina Cloud Dashboard, we've also been making a bunch of changes 
+Aside from some user interface improvements in the Tina Cloud Dashboard, we've also been making a bunch of changes 
 under the hood. One of the biggest of these changes is how we handle user accounts. 
 
 Previously when you created a Tina Cloud account you were creating an **organization** that you accessed at `https://OrgName.tina.io`. We thought that giving each organization it's own unique subdomain and pool of users would be neat, but after spending some time in that paradigm it turned out to be a lot of added complexity that didn't add much value. 
