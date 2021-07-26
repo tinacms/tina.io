@@ -38,7 +38,7 @@ Since we're changing how user accounts work within Tina Cloud, existing alpha us
 * Upgrade `tina-graphql-gateway` to `some-version`.
 * Update your site's environment variables
   * Delete `ORG_NAME`
-  * Change `APP_ID` to the ne
+  * Change `APP_ID` to the new value
 
 
 That's it! With any luck you should be able to keep working on your Tina enabled site the same as before. We're not expecting to have to repeat this process when we make it to our first full release.
