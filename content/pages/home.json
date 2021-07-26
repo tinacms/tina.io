@@ -8,7 +8,7 @@
       "_template": "navbar",
       "banner": {
         "display": true,
-        "text": "Tina Cloud, our headless backend is in public Alpha. Read more",
+        "text": "Tina Cloud, our headless backend is in public Beta. Read more",
         "link": "/blog/announcement-tina-cloud-is-officially-in-alpha/"
       },
       "navItems": [
@@ -21,14 +21,18 @@
           "label": "Blog"
         },
         {
-          "link": "/cloud",
-          "label": "Tina Cloud"
+          "link": "/community",
+          "label": "Community"
+        },
+        {
+          "link": "https://auth.tina.io/register",
+          "label": "Sign Up"
         }
       ]
     },
     {
       "_template": "hero",
-      "headline": "Unlock your team with *next-gen editing*",
+      "headline": "Unlock your Next.js project with next-gen editing",
       "subline": "Tina is an open-source editor for Jamstack sites",
       "actions": [
         {
@@ -84,14 +88,6 @@
           }
         }
       ]
-    },
-    {
-      "_template": "browser",
-      "headline": "*Edit Content, Not Code*",
-      "subline": "Make changes in context and see them in real-time. Hit save and Tina handles the commit.",
-      "media": {
-        "src": "/img/blocks.gif"
-      }
     },
     {
       "_template": "flying",

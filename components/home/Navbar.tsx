@@ -3,7 +3,8 @@ import Link from 'next/link'
 import { BlockTemplate } from 'tinacms'
 import ReactMarkdown from 'react-markdown'
 import { BlocksControls } from 'react-tinacms-inline'
-import { Container, IconRight, TinaIcon } from './'
+import { Container, IconRight } from './'
+import TinaLogo from '../../public/svg/tina-logo.svg'
 
 export const navbar_template: BlockTemplate = {
   label: 'Navbar',
@@ -72,7 +73,7 @@ export function NavbarBlock({ data, index }) {
       focusRing={{ offset: -16 }}
     >
       {banner.display && (
-        <div className="banner orange">
+        <div className="banner">
           <Container>
             <Link href={banner.link}>
               <a>
@@ -85,13 +86,12 @@ export function NavbarBlock({ data, index }) {
           </Container>
         </div>
       )}
-      <div className="navbar blue">
-        <Container>
+      <div className="navbar">
+        <Container width="wide">
           <div className="navGrid">
             <Link href="/">
-              <a className="logomark navLogo">
-                <TinaIcon />
-                <h1 className="wordmark">Tina</h1>
+              <a className="navLogo">
+                <TinaLogo />
               </a>
             </Link>
             <nav className="navWrapper navNav">
@@ -107,7 +107,7 @@ export function NavbarBlock({ data, index }) {
                 })}
               </ul>
             </nav>
-            <div className="githubStar navGithub">
+            <div className="navGithub">
               <iframe
                 className="starButton"
                 src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
@@ -122,6 +122,15 @@ export function NavbarBlock({ data, index }) {
       </div>
       <style jsx>{`
         .banner {
+          font-weight: bold;
+          background: linear-gradient(
+            to right,
+            var(--tina-color-primary-light),
+            var(--tina-color-primary),
+            var(--tina-color-primary-dark)
+          );
+          color: white;
+
           :global(a) {
             display: flex;
             align-items: center;
@@ -142,7 +151,7 @@ export function NavbarBlock({ data, index }) {
             text-decoration: underline;
           }
           :global(svg) {
-            margin-left: 1rem;
+            margin-left: 0.5rem;
             height: 1em;
           }
         }
@@ -153,8 +162,9 @@ export function NavbarBlock({ data, index }) {
         }
 
         .navbar {
-          padding: 2rem 0 2rem 0;
+          padding: 3.5rem 0 3.5rem 0;
           margin-bottom: -1px;
+          background: linear-gradient(to bottom, #d8f2ea, #e6faf8);
         }
 
         .navGrid {
@@ -178,6 +188,12 @@ export function NavbarBlock({ data, index }) {
           grid-row-start: 1;
           grid-row-end: 2;
           text-decoration: none;
+          padding-bottom: 10px;
+
+          :global(svg) {
+            width: 140px;
+            height: auto;
+          }
 
           @media (min-width: 800px) {
             grid-column-start: 1;
@@ -206,6 +222,8 @@ export function NavbarBlock({ data, index }) {
           grid-row-start: 1;
           grid-row-end: 2;
           justify-self: end;
+          display: flex;
+          align-items: center;
 
           @media (min-width: 800px) {
             grid-column-start: 3;
@@ -219,14 +237,15 @@ export function NavbarBlock({ data, index }) {
         }
 
         .navLi {
-          margin: 0 1.5rem;
+          margin: 0 1.75rem;
 
           :global(a) {
-            color: white;
+            color: var(--color-blue);
+            font-weight: 500;
             opacity: 0.7;
             transition: opacity 150ms ease-out;
             text-decoration: none;
-            font-size: 1.25rem;
+            font-size: 1.125rem;
             &:hover {
               opacity: 1;
             }

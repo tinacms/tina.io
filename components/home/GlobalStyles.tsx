@@ -41,24 +41,6 @@ export const GlobalStyles = css.global`
     }
   }
 
-  .headingHuge {
-    font-family: var(--font-tuner);
-    font-weight: bold;
-    font-size: 2.75rem;
-    line-height: 1.4;
-
-    &:not(:last-child) {
-      margin-bottom: 2.5rem;
-    }
-
-    :global(em),
-    :global(strong) {
-      font-weight: inherit;
-      color: var(--color-emphasis);
-      font-style: inherit;
-    }
-  }
-
   .headingLarge {
     font-family: var(--font-tuner);
     font-weight: bold;
@@ -130,6 +112,12 @@ export const GlobalStyles = css.global`
   .black {
     background: var(--color-black);
     color: var(--color-white);
+  }
+
+  .lightblue {
+    background: var(--tina-color-primary);
+    color: var(--color-white);
+    --color-emphasis: var(--color-orange);
   }
 
   .blue {
