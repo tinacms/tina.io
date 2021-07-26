@@ -164,7 +164,7 @@ export function NavbarBlock({ data, index }) {
         .navbar {
           padding: 3.5rem 0 3.5rem 0;
           margin-bottom: -1px;
-          background: linear-gradient(to bottom, #d8f2ea, #e6faf8);
+          background: linear-gradient(to bottom, #c3f6e7, #e6faf8);
         }
 
         .navGrid {
