@@ -80,7 +80,7 @@ Let's add some content so we can test out the GraphQL server
 #### Add an author
 
 ```sh
-mkdir content && mkdir content/authors && touch content/authors/napolean.md
+mkdir content && mkdir content/authors && touch content/authors/napoleon.md
 ```
 
 Now let's add some content to the author
