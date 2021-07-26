@@ -139,6 +139,19 @@ export function FeatureBlock({ data, index }) {
           }
         }
 
+        .dottedBorder {
+          border-top: none;
+          border-right: none;
+          border-left: none;
+          border-image: initial;
+          border-bottom: 5px dotted var(--color-orange);
+          width: 6rem;
+          max-width: 100%;
+          display: block;
+          height: 0px;
+          margin: 1.5rem 0px;
+        }
+
         .blob {
           position: absolute;
           top: -3rem;

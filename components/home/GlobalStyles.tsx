@@ -87,19 +87,6 @@ export const GlobalStyles = css.global`
     height: calc(var(--spacer-size) * 1.5);
   }
 
-  .dottedBorder {
-    border-top: none;
-    border-right: none;
-    border-left: none;
-    border-image: initial;
-    border-bottom: 4px dotted var(--color-orange);
-    width: 6rem;
-    max-width: 100%;
-    display: block;
-    height: 0px;
-    margin: 1.5rem 0px;
-  }
-
   .orange {
     background: linear-gradient(
       to top right,

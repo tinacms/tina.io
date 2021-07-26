@@ -123,13 +123,8 @@ export function NavbarBlock({ data, index }) {
       <style jsx>{`
         .banner {
           font-weight: bold;
-          background: linear-gradient(
-            to right,
-            var(--tina-color-primary-light),
-            var(--tina-color-primary),
-            var(--tina-color-primary-dark)
-          );
-          color: white;
+          background: white;
+          color: var(--tina-color-primary);
 
           :global(a) {
             display: flex;
