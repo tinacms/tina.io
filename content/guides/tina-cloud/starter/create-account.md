@@ -10,7 +10,7 @@ you'll likely want other editors and collaborators to be able to make changes on
 
 ## Create an Account
 
-1. Visit <a href="https://auth.tina.io/register" target="_blank">auth.tina.io</a>, create an account, and signin.
+1. Visit <a href="https://app.tina.io/register" target="_blank">app.tina.io</a>, create an account, and signin.
 2. On the landing page, you'll notice that there is an onboarding route for the Tina Cloud Starter. Click '**Fork Starter in Github**' to have the dashboard walk you through the configuration needed to setup this starter as a TinaCMS app.
 3. Once you create the app, click into that app's **Overview** section and copy the unique **Client ID**. You'll need this later on in this tutorial.
 

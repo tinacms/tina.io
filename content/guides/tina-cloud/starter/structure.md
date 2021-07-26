@@ -1,13 +1,13 @@
 ---
 title: Tina Cloud Starter structure
-last_edited: '2021-06-15T12:04:50.542Z'
+last_edited: '2021-07-26T12:04:50.542Z'
 ---
 
 From here, you're ready to start building your own project. This section explains a bit about how this project is structured, and how to modify it to make it your own.
 
 ## Starter structure
 
-Tina Cloud Starter is a [Next.js](https://nextjs.org) application. The file-based routing happens through the `pages` directory. To edit this site click the "edit this site" button. This will cause you to go into edit mode where Tina is loaded. Tina is only loaded in edit mode so it will not effect the production bundle size.
+Tina Cloud Starter is a <a href="https://nextjs.org" target="_blank">Next.js</a> application. The file-based routing happens through the `pages` directory. To edit this site, navigate to the `/admin` route. This will cause you to go into edit mode where Tina is loaded. Tina is only loaded in edit mode so it will not effect the production bundle size.
 
 ### `.tina/schema.ts`
 
@@ -15,11 +15,23 @@ This is where your schema is defined, when you make changes here you'll notice t
 
 > Tip: Visit the GraphQL GUI at `http://localhost:4001/altair` so you can see how changes to the schema are updated in GraphQL.
 
+### `pages/[filename].tsx`
+
+This page can be seen at `http://localhost:3000/`, it loads the content from a markdown file which can be found in this repository at `/content/pages/home.md`. You can edit this page at by navigating to `http://localhost:3000/admin`.
+
 Head over to the [reference](/docs/tinacms-reference/) documentation to learn more about [defining a schema](/docs/schema/) or [querying with GraphQL](/docs/graphql/)
+
+### `pages/posts/[filename].tsx`
+
+The posts are stored in the `content/posts` directory of this repository, and their routes are built with `getStaticPaths` dynamically at build time.
 
 ### The `content` folder
 
 Here's where your actual content lives, you can control how content is stored from the `defineSchema` function, by default we use `markdown`.
+
+### `components`
+
+Most of the components in this project are very basic and are for demonstration purposes, feel free to replace them with something of your own!
 
 ### `pages/_app.js`
 
@@ -40,3 +52,4 @@ For now, TinaCMS works best when you:
 3. Wrap your `_app.js` in TinaCMS dynamically.
 
 After that, you're on your own. Go build something and share it with us on [Twitter](https://twitter.com/tina_cms).
+To browse the docs and query our GraphQL API, run `yarn dev` in your Tina project and go to `http://localhost:4001/altair`.

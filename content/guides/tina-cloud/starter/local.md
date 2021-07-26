@@ -27,7 +27,7 @@ cp .env.local.sample .env.local
 yarn dev
 ```
 
-> In your .env.local file `NEXT_PUBLIC_USE_LOCAL_CLIENT` should be set to `1`, other values can be ignored for now. We will start by investigating how the TinaCMS API works locally.
+> In your .env.local file `NEXT_PUBLIC_USE_LOCAL_CLIENT` should be set to `1`, other values can be ignored for now. We will start by investigating how TinaCMS works locally.
 
 This command starts the GraphQL server and the Next.js application in development mode. It also regenerates your schema types for TypeScript and GraphQL so changes to your `.tina` config are reflected immediately.
 
@@ -40,3 +40,5 @@ Open <a href="http://localhost:3000" target="_blank">http://localhost:3000</a> i
 ## Edit content locally
 
 Click on the pencil in the lower left-hand corner to open Tina's sidebar which displays a variety of forms with fields you can edit and see updates live on the page. Since we're working locally, clicking save results in changes to your local filesystem.
+
+![tina-cloud-starter](/img/tina-cloud-starter.jpg)

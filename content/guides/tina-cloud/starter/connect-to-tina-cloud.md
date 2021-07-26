@@ -23,6 +23,8 @@ Changes are saved in your GitHub repository.
 
 Now that Tina Cloud editing is working correctly, we can deploy the site so that other team members can make edits too.
 
+![update-from-graphql-client](/img/update-from-graphql-client.jpg)
+
 > ℹ️ Gotcha: since your changes are being synced directly to Github, you'll notice that when you're in non-"edit" mode your page still receives the unedited data from your local file system. This is mostly fine since editing with Tina Cloud is designed for hosted environments. But beware that changes to your schema may result in a mismatch between the Tina Cloud API and your local client.
 
 ## Deploy
