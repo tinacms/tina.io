@@ -5,7 +5,7 @@ last_edited: '2021-05-10T10:00:00.000Z'
 
 ## Fork the repository
 
-⚠️⚠️ Start by [**forking** the repositorty](https://github.com/tinacms/tina-cloud-starter) and then pull it down to your computer. ⚠️⚠️
+⚠️⚠️ Start by [**forking** the repository](https://github.com/tinacms/tina-cloud-starter) and then pull it down to your computer. ⚠️⚠️
 
 ## Install
 
