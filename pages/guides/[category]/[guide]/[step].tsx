@@ -26,6 +26,7 @@ import { useLastEdited } from 'utils/useLastEdited'
 import { InlineGithubForm } from 'components/layout/InlineGithubForm'
 import { NavSectionProps } from 'components/DocumentationNavigation'
 import { openGraphImage } from 'utils/open-graph-image'
+import * as ga from '../../../../utils/ga'
 
 interface GuideTemplateProps {
   tocItems: string
@@ -66,6 +67,21 @@ export default function GuideTemplate({
 
     return () => window.removeEventListener('scroll', activeTocListener)
   }, [contentRef])
+
+  React.useEffect(() => {
+    const handleRouteChange = url => {
+      ga.pageview(url)
+    }
+    //When the component is mounted, subscribe to router changes
+    //and log those page views
+    router.events.on('routeChangeComplete', handleRouteChange)
+
+    // If the component is unmounted, unsubscribe
+    // from the event with the `off` method
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
 
   const [{ frontmatter, markdownBody }, stepForm] = useGithubMarkdownForm(
     markdownFile
