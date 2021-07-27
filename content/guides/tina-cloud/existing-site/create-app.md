@@ -29,4 +29,4 @@ Click save, your app should now be created!
 
 ## Access app's client id
 
-Click on the app from the app's list page, and you will see some new read-only fields: "Client ID" and "Organization ID". We'll use these values soon to reference this Tina Cloud app from our site.
+Click on the app from the app's list page, and you will see a new read-only "Client ID" field. We'll use this value soon to reference this Tina Cloud app from our site.
