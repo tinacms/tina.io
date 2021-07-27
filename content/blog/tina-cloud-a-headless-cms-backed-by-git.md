@@ -7,7 +7,7 @@ last_edited: '2021-04-22T16:21:48.271Z'
 
 We are giving teams the ability to edit content stored in Git, but visually, in the context of their site.
 
-Just over a year ago, we[ announced TinaCMS](https://www.youtube.com/watch?v=iPDCmbaEF0Y), an open-source, visual editor for React-based websites and now we're adding the final touches to bring our vision to reality. In the coming weeks, we’ll release **an open-source GraphQL API for your content** and [Tina Cloud](https://tinacms-site-next-h8iuc79pe-tinacms.vercel.app/blog/tina-cloud-a-headless-cms-backed-by-git/), our new **headless API that talks to Git**.
+Just over a year ago, we[ announced TinaCMS](https://www.youtube.com/watch?v=iPDCmbaEF0Y), an open-source, visual editor for React-based websites and now we're adding the final touches to bring our vision to reality. In the coming weeks, we’ll release **an open-source GraphQL API for your content** and [Tina Cloud](/blog/tina-cloud-a-headless-cms-backed-by-git/), our new **headless API that talks to Git**.
 
 ![Real-time editing of a Next.js + Tailwind CSS site with Tina’s sidebar.](https://res.cloudinary.com/forestry-demo/image/upload/v1619023278/tina-cms-visual-editing.gif 'Real-time editing of a Next.js + Tailwind CSS site with Tina’s sidebar.')_Real-time editing of a Next.js + TailwindCSS site with Tina’s sidebar._
 
