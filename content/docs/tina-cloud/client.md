@@ -27,7 +27,6 @@ This package exports a class which acts as [TinaCMS external API](https://tina.i
 ```ts
 import { Client, LocalClient } from 'tina-graphql-gateway'
 const client = new Client({
-  organizationId: 'the ID you get from Tina Cloud',
   clientId: 'the client ID you get from Tina Cloud',
   branch: 'main',
   tokenStorage: 'LOCAL_STORAGE' | 'MEMORY' | 'CUSTOM',

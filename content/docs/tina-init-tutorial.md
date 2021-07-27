@@ -217,7 +217,6 @@ To hook up this demo to Tina Cloud and save content to Github instead of the fil
 2.  Update .env file to include:
 
 ```
-NEXT_PUBLIC_ORGANIZATION_NAME= get this from the organization you create at auth.tina.io
 NEXT_PUBLIC_TINA_CLIENT_ID= get this from the app you create at auth.tina.io
 NEXT_PUBLIC_USE_LOCAL_CLIENT=0
 ```
