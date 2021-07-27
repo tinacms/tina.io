@@ -35,19 +35,21 @@ Since we're changing how user accounts work within Tina Cloud, existing alpha us
 
 ### Update your Tina Cloud site
 
-* Remove the `tina-graphql-gateway` and `tina-graphql-gateway-cli` dependencies.
+1. Remove the `tina-graphql-gateway` and `tina-graphql-gateway-cli` dependencies.
   ```
   yarn remove tina-graphql-gateway-cli tina-graphql-gateway
   ```
-* Add the new Tina dependencies.
+2. Add the new Tina dependencies.
   ```
   yarn add tinacms @tinacms/auth
   yarn add -D @tinacms/cli
   ```
 
-* Update your imports.
-  * 
-* Update your site's environment variables.
+3. Change any existing import from `tina-graphql-gateway` to `tinacms`.
+
+4. Update `package.json`. Replace `yarn tina-gql` calls with `yarn tinacms`.
+  
+5. Update your site's environment variables.
   * Delete `NEXT_PUBLIC_ORGANIZATION_NAME`
   * Change `NEXT_PUBLIC_TINA_CLIENT_ID` to the Client ID found in your new Tina Cloud Account.
 
