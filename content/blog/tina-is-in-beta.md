@@ -2,9 +2,9 @@
 title: Tina is in Beta
 date: '2021-07-27T20:00:00-04:00'
 author: James Perkins
-last_edited: '2021-07-27T13:25:23.350Z'
+last_edited: '2021-07-27T13:53:45.168Z'
 ---
-The team at Tina have been working hard since June 2nd when we launched in to Alpha. We took all the feedback and thoughts and iterated to make huge improvements to the product.
+The team at Tina have been working hard since June 2nd when we launch Tina Cloud. We took all the feedback and thoughts and iterated to make huge improvements to the product.
 
 The Alpha release contained the core product and we knew we had some features we wanted to add immediately and we had a lot of internal talks to make a simplified integration path.
 
@@ -16,9 +16,9 @@ Quite a lot has changed since we released the Alpha, we wanted to move quickly t
 
 We wanted to speed up getting Tina up and running, whether this was a newly bootstrapped Next.js application or your Production application. We introduced a number of things to improve this
 
-- Better documentation
-- Tina init
-- Guide improvements, more guides.
+* Better documentation
+* Tina init
+* Guide improvements, more guides.
 
 ### Better Docs
 
