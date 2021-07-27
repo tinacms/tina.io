@@ -42,6 +42,11 @@ export const navbar_template: BlockTemplate = {
                 component: 'text',
               },
               {
+                label: 'Mobile Label',
+                name: 'mobileLabel',
+                component: 'text',
+              },
+              {
                 label: 'Link',
                 name: 'href',
                 component: 'text',
@@ -88,10 +93,13 @@ export function NavbarBlock({ data, index }) {
       {banner.display && (
         <div className="banner">
           <div className="content">
-            <ReactMarkdown source={banner.text} />
+            <span className="desktop">
+              <ReactMarkdown source={banner.text} />
+            </span>
             <Link href={banner.link.href}>
               <a className="link">
-                {banner.link.label}
+                <span className="desktop">{banner.link.label}</span>
+                <span className="mobile">{banner.link.mobileLabel}</span>
                 <IconRight />
               </a>
             </Link>
@@ -147,6 +155,19 @@ export function NavbarBlock({ data, index }) {
         </Container>
       </div>
       <style jsx>{`
+        .desktop {
+          display: none;
+        }
+
+        @media (min-width: 800px) {
+          .desktop {
+            display: initial;
+          }
+          .mobile {
+            display: none;
+          }
+        }
+
         .banner {
           background: linear-gradient(to right, white, rgb(250, 250, 250));
           box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.03);
@@ -169,13 +190,16 @@ export function NavbarBlock({ data, index }) {
             transition: opacity 150ms ease-out;
             font-size: 1.125rem;
             opacity: 0.7;
-            margin-left: 1rem;
 
             &:not(:hover) {
               text-decoration: none;
             }
             &:hover {
               opacity: 1;
+            }
+
+            @media (min-width: 800px) {
+              margin-left: 1rem;
             }
           }
 

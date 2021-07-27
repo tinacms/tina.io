@@ -21,7 +21,7 @@ export const GlobalStyles = css.global`
 
     --spacer-size: 4.5rem;
     --section-padding: calc(var(--spacer-size) * 2);
-    --container-padding: 1.5rem;
+    --container-padding: 2rem;
   }
 
   html {

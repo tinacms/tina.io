@@ -11,6 +11,7 @@
         "text": "*Tina Cloud* is in Beta. Allow any team member to edit content!",
         "link": {
           "label": "Read The Announcement",
+          "mobileLabel": "Tina Cloud is in Beta",
           "href": "/blog/tina-is-in-beta/"
         }
       },

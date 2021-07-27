@@ -129,6 +129,7 @@ export function FeatureBlock({ data, index }) {
           position: relative;
           max-width: 28rem;
           justify-self: center;
+          margin-top: 1rem;
 
           :global(p) {
             max-width: 400px;
@@ -167,8 +168,8 @@ export function FeatureBlock({ data, index }) {
         .blob {
           position: absolute;
           top: -3rem;
-          left: -3rem;
-          right: 0;
+          left: -10%;
+          right: 33.3%;
           bottom: -3rem;
           z-index: -1;
 
@@ -176,7 +177,7 @@ export function FeatureBlock({ data, index }) {
             position: absolute;
             top: 0;
             left: 0;
-            width: 66.6%;
+            width: 100%;
             height: 100%;
           }
         }
