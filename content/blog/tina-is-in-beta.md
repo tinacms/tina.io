@@ -2,7 +2,7 @@
 title: Tina is in Beta
 date: '2021-07-27T20:00:00-04:00'
 author: James Perkins
-last_edited: '2021-07-27T13:53:45.168Z'
+last_edited: '2021-07-27T14:03:37.639Z'
 ---
 The team at Tina have been working hard since June 2nd when we launch Tina Cloud. We took all the feedback and thoughts and iterated to make huge improvements to the product.
 
@@ -51,7 +51,7 @@ Ashleigh went through our existing Next.js guides and made sure that the concept
 
 Media Manager was one of the most important features that we needed for Tina Cloud. Our Media manager allows you to change images, upload new images and delete ones you no longer need without ever leaving the front end.
 
-We introduced this in the middle of the Alpha and you can read about it in our blog post announcing it.
+We introduced this in the middle of the Alpha and you can read about it in our [blog post announcing it]().
 
 ## Improving Caching
 
