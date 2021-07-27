@@ -64,7 +64,7 @@ log in to Tina Cloud, and making some edits. Your changes should be saved to you
 
 Connect to your GitHub repository, click on **advanced** to set the same environment variables as the ones in your `env.local` file:
 
-```s
+```
 NEXT_PUBLIC_TINA_CLIENT_ID= <YOUR_CLIENT_ID>
 ```
 
