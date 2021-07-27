@@ -1,6 +1,6 @@
 ---
 title: Working with TinaCMS
-last_edited: '2021-05-10T10:00:00.000Z'
+last_edited: '2021-07-27T10:00:00.000Z'
 ---
 
 Open your project locally and in the `env.local` file set:
@@ -10,11 +10,13 @@ Open your project locally and in the `env.local` file set:
 
 Restart your server and run `yarn dev` again.
 
-Open <a href="http://localhost:3000/" target="_blank">http://localhost:3000</a> and click "enter edit mode".
+To edit the site, navigate to <a href="http://localhost:3000/admin" target="_blank">http://localhost:3000/admin</a>. This activates the edit mode.
 
 ![](https://raw.githubusercontent.com/tinacms/tina-cloud-starter/main/public/uploads/tina-cloud-authorization.png)
 
 This time a modal asks you to authenticate through TinaCMS. Upon success, Tina will send your edits to the TinaCMS server, and subsequently to GitHub.
+
+> To enter **edit mode**, navigate to the `admin` route of the site.
 
 ## Edit content
 
@@ -37,11 +39,14 @@ Connect to your GitHub repository and set the same environment variables as the 
 
 ```
 NEXT_PUBLIC_TINA_CLIENT_ID= <YOUR_CLIENT_ID>
+NEXT_PUBLIC_USE_LOCAL_CLIENT=0
 ```
+
+Add the deployment URL to your app's Site Urls. To do this, go to your app's **Configuration** page.
 
 🎉 Congratulations, your site is now live!
 
-You can test that everything is configured correctly by navigating to `[your deployment URL]/`, click "edit this site",
+You can test that everything is configured correctly by navigating to `[your deployment URL]/`, navigating to the `admin` route,
 log in to TinaCMS, and start making some edits. Your changes should be saved to your GitHub repository.
 
 ### Netlify
@@ -52,6 +57,7 @@ Connect to your GitHub repository, click on **advanced** to set the same environ
 
 ```
 NEXT_PUBLIC_TINA_CLIENT_ID= <YOUR_CLIENT_ID>
+NEXT_PUBLIC_USE_LOCAL_CLIENT=0
 ```
 
 Set the **build command** to `yarn build`,
@@ -59,7 +65,9 @@ Set the **publish directory**. To `.next/` .
 
 Once you're done, click "Deploy site".
 
-You can test that everything is configured correctly by navigating to `[your deployment URL]/`, click "edit this site",
+Add the deployment URL to your app's Site Urls. To do this, go to your app's **Configuration** page.
+
+You can test that everything is configured correctly by navigating to `[your deployment URL]/`, navigate to the `admin` route,
 log in to Tina, and making some edits. Your changes should be saved to your GitHub repository.
 
 > ℹ️ Changes in edit mode show up on your home page after your site finishes a rebuild.

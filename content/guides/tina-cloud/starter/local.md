@@ -3,6 +3,10 @@ title: Run Tina Cloud Starter Locally
 last_edited: '2021-07-23T10:00:00.000Z'
 ---
 
+## Initial Setup
+
+In the previous step, you forked the <a href="https://github.com/tinacms/tina-cloud-starter" target="_blank">tina-cloud-starter</a>. Now, **clone** this repository and ensure this is your working directory.
+
 ## Install
 
 > ℹ️ This project uses `yarn` as a package manager, if `yarn` isn't installed on your machine, open a terminal and run `npm install -g yarn`
@@ -38,6 +42,8 @@ This is ideal for development workflows and the API is identical to the one used
 Open <a href="http://localhost:3000" target="_blank">http://localhost:3000</a> in your browser to see your file-based content being loaded from the GraphQL API.
 
 ## Edit content locally
+
+Navigate to <a href="http://localhost:3000/admin" target="_blank">http://localhost:3000/admin</a> to enter edit mode.
 
 Click on the pencil in the lower left-hand corner to open Tina's sidebar which displays a variety of forms with fields you can edit and see updates live on the page. Since we're working locally, clicking save results in changes to your local filesystem.
 

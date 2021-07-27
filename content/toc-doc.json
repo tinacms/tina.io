@@ -325,14 +325,9 @@
         "title": "TinaCMS",
         "items": [
           {
-            "id": "/guides/tinacms/getting-started/introduction/",
-            "slug": "/guides/tinacms/getting-started/introduction/",
-            "title": "Getting Started With TinaCMS"
-          },
-          {
             "id": "/guides/tinacms/adding-tina/overview/",
             "slug": "/guides/tinacms/adding-tina/overview/",
-            "title": "Adding Tina"
+            "title": "Getting Started with TinaCMS"
           },
           {
             "id": "/guides/tinacms/github/initial-setup/",

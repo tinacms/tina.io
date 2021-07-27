@@ -2,7 +2,13 @@
 title: Project Setup
 ---
 
-We're going to use the Next.js [blog starter](https://github.com/zeit/next.js/tree/canary/examples/blog-starter) as the base for our project. Create a new project by running the following commands in your terminal:
+We're going to use the Next.js [blog starter](https://github.com/zeit/next.js/tree/canary/examples/blog-starter) as the base for our project.
+
+> **The Finished Product**
+>
+> The repository at [dwalkr/next-tina-blog-starter](https://github.com/dwalkr/next-tina-blog-starter) contains the end product of this guide. Feel free to fork it and follow along!
+
+Create a new project by running the following commands in your terminal:
 
 ```bash
 yarn create next-app -e blog-starter my-tina-blog
@@ -28,7 +34,7 @@ However, there is one point we need to address:
 
 This last point, as mentioned before, is a significant obstacle to ensuring a good editing experience with Tina. The Next.js blog starter stores its content in Markdown, and requires a compile step to convert the Markdown into HTML, which it performs at build time.
 
-It's worth noting that you can expect to come across this issue frequently for projects that aren't set up to work with Tina. Unless you are building your site to work specifically with a CMS that runs on the client-side and offers real-time previewing, there's no reason to perform this transformation client-side. Most projects, like this one, will opt to do it server-side or (as is common with JAMstack projects) during a build step.
+> It's worth noting that you can expect to come across this issue frequently for projects that aren't set up to work with Tina. Unless you are building your site to work specifically with a CMS that runs on the client-side and offers real-time previewing, there's no reason to perform this transformation client-side. Most projects, like this one, will opt to do it server-side or (as is common with JAMstack projects) during a build step.
 
 ## Setting up Client-Side Content Transformation
 
@@ -79,7 +85,7 @@ Now in the component props, `post.content` will refer to the raw markdown.
 yarn add react-markdown
 ```
 
-Open `components/page-body.js` and replace its contents with:
+Open `components/post-body.js` and replace its contents with:
 
 ```js,copy
 import ReactMarkdown from 'react-markdown'
