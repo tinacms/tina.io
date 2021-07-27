@@ -2,7 +2,7 @@
 title: Tina is in Beta
 date: '2021-07-27T20:00:00-04:00'
 author: James Perkins
-last_edited: '2021-07-27T14:53:04.070Z'
+last_edited: '2021-07-27T14:59:54.951Z'
 ---
 The team at Tina have been working hard since June 2nd when we launched Tina Cloud. We took all your feedback and thoughts and iterated to make huge improvements to the product.
 
@@ -28,7 +28,7 @@ I spent quite a bit of time reading the documentation over and over again when I
 
 ### Tina init
 
-Tina init is my favorite addition to the Tina experience. A single command can bootstrap Tina on a Next.js application and do all the heavy lifting for you. Logan spent quite a bit of time working on this, and refining it, to get it just right.  With the command `npx @tinacms/cli init` we will do the following:
+Tina init is my favorite addition to the Tina experience. A single command can bootstrap Tina on a Next.js application and do all the heavy lifting for you. The team spent quite a bit of time working on this, and refining it, to get it just right.  With the command `npx @tinacms/cli init` we will do the following:
 
 1. Install all dependencies to your application
 2. Add the Tina commands to your package.json (tina-dev, tina-build, tina-start
@@ -45,7 +45,7 @@ When we introduced Tina, we provided a quick start guide that guide you as a use
 
 I went back to the drawing board and created a new guide that takes the NextJS Starter Blog and adds Tina and Tina Cloud to it, while explaining each concept as we went. This felt like a perfect way to show off Tina and use something many users are experienced with.
 
-Ashley went through our existing Next.js guides and made sure that the concepts we were promoting were easily translated to Tina Cloud, in case a user wanted the power of real time editing without using the Cloud but then decided in the future to use our cloud offering.
+We also went through our existing Next.js guides and made sure that the concepts we were promoting were easily translated to Tina Cloud, in case a user wanted the power of real time editing without using the Cloud but then decided in the future to use our cloud offering.
 
 ## Media Manager
 
