@@ -35,10 +35,18 @@ Since we're changing how user accounts work within Tina Cloud, existing alpha us
 
 ### Update your Tina Cloud site
 
-* Upgrade `tina-graphql-gateway` to `some-version`.
-* Update your site's environment variables
+* Remove the `tina-graphql-gateway` and `tina-graphql-gateway-cli` dependencies.
+  ```
+  yarn remove tina-graphql-gateway-cli tina-graphql-gateway
+  ```
+* Add the new Tina dependencies.
+  ```
+  yarn add tinacms @tinacms/auth
+  yarn add -D @tinacms/cli
+  ```
+* Update your site's environment variables.
   * Delete `ORG_NAME`
-  * Change `APP_ID` to the new value
+  * Change `APP_ID` to the Client ID found in your new Tina Cloud Account.
 
 
 That's it! With any luck you should be able to keep working on your Tina enabled site the same as before. We're not expecting to have to repeat this process when we make it to our first full release.
