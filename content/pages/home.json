@@ -8,8 +8,11 @@
       "_template": "navbar",
       "banner": {
         "display": true,
-        "text": "Tina Cloud, our headless backend is in public Beta. Read more",
-        "link": "/blog/announcement-tina-cloud-is-officially-in-alpha/"
+        "text": "*Tina Cloud* is in Beta. Allow any team member to edit content!",
+        "link": {
+          "label": "Read The Announcement",
+          "href": "/blog/tina-is-in-beta/"
+        }
       },
       "navItems": [
         {
@@ -23,10 +26,6 @@
         {
           "link": "/community",
           "label": "Community"
-        },
-        {
-          "link": "https://auth.tina.io/register",
-          "label": "Sign Up"
         }
       ]
     },

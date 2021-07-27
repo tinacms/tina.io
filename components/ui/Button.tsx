@@ -1,7 +1,15 @@
 import styled, { css } from 'styled-components'
 
 interface ButtonProps {
-  color?: 'white' | 'primary' | 'secondary' | 'seafoam' | 'variable'
+  color?:
+    | 'white'
+    | 'primary'
+    | 'secondary'
+    | 'seafoam'
+    | 'variable'
+    | 'blue'
+    | 'blueInverted'
+  size?: 'large' | 'small'
 }
 
 export const Button = styled.button<ButtonProps>`
@@ -24,6 +32,7 @@ export const Button = styled.button<ButtonProps>`
   font-weight: regular;
   font-style: normal;
   text-decoration: none !important;
+  white-space: nowrap;
   opacity: 1;
   line-height: 1.25;
 
@@ -56,10 +65,19 @@ export const Button = styled.button<ButtonProps>`
   }
 
   ${props =>
+    props.size === 'small' &&
+    css`
+      padding: 0 1.25rem;
+      height: 34px;
+      font-size: 0.875rem;
+      line-height: 1;
+    `}
+
+  ${props =>
     props.color === 'white' &&
     css`
       background-color: white;
-      border-color: white;
+      border-color: rgba(0, 0, 0, 0.07);
 
       &:focus {
         box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px inset,
@@ -78,6 +96,32 @@ export const Button = styled.button<ButtonProps>`
       &:hover,
       &:focus {
         color: white;
+      }
+    `};
+
+  ${props =>
+    props.color === 'blue' &&
+    css`
+      background-color: var(--tina-color-primary);
+      border-color: var(--tina-color-primary-dark);
+      color: white;
+
+      &:hover,
+      &:focus {
+        color: white;
+      }
+    `};
+
+  ${props =>
+    props.color === 'blueInverted' &&
+    css`
+      background-color: white;
+      color: var(--tina-color-primary);
+      border-color: var(--tina-color-primary-dark);
+
+      &:hover,
+      &:focus {
+        color: var(--tina-color-primary-dark);
       }
     `};
 
@@ -116,6 +160,7 @@ export const ButtonGroup = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  margin-right: -1rem;
 
   ${Button} {
     margin-right: 1rem;

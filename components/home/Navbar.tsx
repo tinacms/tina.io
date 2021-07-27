@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown'
 import { BlocksControls } from 'react-tinacms-inline'
 import { Container, IconRight } from './'
 import TinaLogo from '../../public/svg/tina-logo.svg'
+import { Button, ButtonGroup } from 'components/ui'
 
 export const navbar_template: BlockTemplate = {
   label: 'Navbar',
@@ -33,7 +34,19 @@ export const navbar_template: BlockTemplate = {
           {
             label: 'Link',
             name: 'link',
-            component: 'text',
+            component: 'group',
+            fields: [
+              {
+                label: 'Label',
+                name: 'label',
+                component: 'text',
+              },
+              {
+                label: 'Link',
+                name: 'href',
+                component: 'text',
+              },
+            ],
           },
         ],
       },
@@ -74,16 +87,29 @@ export function NavbarBlock({ data, index }) {
     >
       {banner.display && (
         <div className="banner">
-          <Container>
-            <Link href={banner.link}>
-              <a>
-                <span>
-                  <ReactMarkdown source={banner.text} />
-                </span>
+          <div className="content">
+            <ReactMarkdown source={banner.text} />
+            <Link href={banner.link.href}>
+              <a className="link">
+                {banner.link.label}
                 <IconRight />
               </a>
             </Link>
-          </Container>
+          </div>
+          <div className="actions">
+            <ButtonGroup>
+              <Link href="https://auth.tina.io/">
+                <Button size="small" color="blueInverted">
+                  Sign In
+                </Button>
+              </Link>
+              <Link href="https://auth.tina.io/register">
+                <Button size="small" color="blue">
+                  Sign Up
+                </Button>
+              </Link>
+            </ButtonGroup>
+          </div>
         </div>
       )}
       <div className="navbar">
@@ -122,33 +148,51 @@ export function NavbarBlock({ data, index }) {
       </div>
       <style jsx>{`
         .banner {
-          font-weight: bold;
           background: white;
           color: var(--tina-color-primary);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0.5rem var(--container-padding);
+          font-size: 1.125rem;
 
           :global(a) {
+            font-weight: bold;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 0.75rem 0;
-            font-size: 1.25rem;
-            line-height: 1.4;
-            text-decoration: none;
             color: inherit;
             transition: opacity 150ms ease-out;
+            font-size: 1.25rem;
+            opacity: 0.7;
+            margin-left: 1rem;
+
+            &:not(:hover) {
+              text-decoration: none;
+            }
             &:hover {
-              opacity: 0.8;
+              opacity: 1;
             }
           }
+
           :global(em) {
             font-style: normal;
             font-weight: bold;
-            text-decoration: underline;
           }
           :global(svg) {
             margin-left: 0.5rem;
             height: 1em;
           }
+        }
+
+        .content {
+          display: flex;
+          align-items: center;
+        }
+
+        .link {
+          font-size: 1rem;
         }
 
         .tinaCloud {
