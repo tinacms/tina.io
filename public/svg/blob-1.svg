@@ -1,7 +1,7 @@
-<svg preserveAspectRatio="none" viewBox="0 0 145 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M117.762 39.8724C132.962 58.9724 148.062 78.0724 144.262 92.1724C140.562 106.372 117.962 115.572 96.7621 124.572C75.6621 133.672 55.7621 142.572 37.8621 137.772C19.9621 132.872 3.96208 114.272 0.662079 94.2724C-2.63792 74.2724 6.76208 52.9724 20.7621 34.0724C34.7621 15.1724 53.4621 -1.22762 70.4621 0.0723813C87.3621 1.47238 102.662 20.6724 117.762 39.8724Z" fill="url(#paint0_linear)"/>
+<svg preserveAspectRatio="none" viewBox="0 0 138 127" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M99.4 21.9519C114.3 28.9519 133.7 39.3519 136.7 52.7519C139.7 66.1519 126.3 82.5519 111.4 97.2519C96.4 111.952 80 124.852 62 126.552C43.9 128.152 24.3 118.452 13.3 103.752C2.3 89.0519 0.1 69.4519 0 49.7519C0 29.9519 2.1 10.2519 13.1 3.2519C24.1 -3.7481 43.8 2.0519 58.9 6.6519C74 11.3519 84.4 14.9519 99.4 21.9519Z" fill="url(#paint0_linear)"/>
 <defs>
-<linearGradient id="paint0_linear" x1="0" y1="0" x2="0" y2="140" gradientUnits="userSpaceOnUse">
+<linearGradient id="paint0_linear" x1="0" y1="0" x2="0" y2="127" gradientUnits="userSpaceOnUse">
 <stop stop-color="#D1FAF6"/>
 <stop offset="33%" stop-color="#E6FAF8" stop-opacity="0.66"/>
 <stop offset="100%" stop-color="#E6FAF8" stop-opacity="0.3"/>
