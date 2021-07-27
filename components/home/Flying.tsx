@@ -70,6 +70,7 @@ export function FlyingBlock({ data, index }) {
           padding: 5rem 0;
           position: relative;
           z-index: 2;
+          overflow: hidden;
         }
 
         @keyframes movingBackground {

@@ -31,20 +31,20 @@
     },
     {
       "_template": "hero",
-      "headline": "Unlock your Next.js project with next-gen editing",
-      "subline": "Tina is an open-source editor for Jamstack sites",
+      "headline": "Unlock your Next.js project with live editing",
+      "subline": "Empower your teammates to build and edit content stored in your Git repository.",
       "actions": [
         {
           "variant": "orange",
-          "label": "Quick Start",
+          "label": "Try Demo",
           "icon": "arrowRight",
-          "url": "https://tina.io/guides/tina-cloud/starter/overview/"
+          "url": "https://tina-tailwind-sidebar-demo-git-main-tinacms.vercel.app/"
         },
         {
           "variant": "ghost",
-          "label": "Try Demo",
+          "label": "Quickstart Guide",
           "icon": "",
-          "url": "https://tina-tailwind-sidebar-demo-git-main-tinacms.vercel.app/"
+          "url": "https://tina.io/guides/tina-cloud/starter/overview/"
         }
       ],
       "videoSrc": "v1571425758/tina-hero-demo-v2"
@@ -56,34 +56,42 @@
       "items": [
         {
           "_template": "feature",
-          "headline": "Visual Editing",
-          "subline": "Most CMSs feel like a GUI on a database. Tina gives your team a contextual, intuitive experience.",
+          "headline": "Align your Team on the GitHub Flow",
+          "subline": "Keep ownership of your content in Markdown and JSON files and empower all teammates to update your website through a user-friendly interface.",
           "media": {
-            "src": "/img/edit-alongside-content.gif"
+            "src": "/img/update-from-tina.jpg"
           }
         },
         {
           "_template": "feature",
-          "headline": "Built for the Jamstack",
-          "subline": "Tina is extensible by design, and already supports React and Next.js based websites.",
-          "media": {
-            "src": "/img/jamstack.png"
-          }
-        },
-        {
-          "_template": "feature",
-          "headline": "Your Design System & Components",
-          "subline": "Allow your team to pick from your custom, predefined components to build pages.  Maintain a simpler codebase that offers more versatility.",
+          "headline": "Build on Top of Your Components",
+          "subline": "Add a custom editing interface on top of your React Components, with block-based data and nested forms, content teams have the power to manage and build complex pages.",
           "media": {
             "src": "/img/your-blocks.gif"
           }
         },
         {
           "_template": "feature",
-          "headline": "Content Backed by Git",
-          "subline": "Tina supports content stored in Git. Give the benefits of version-control to your whole team.",
+          "headline": "Real-Time Visual Feedback",
+          "subline": "Be productive, see changes apply in real time when you edit your content on your live website Submit changes and it’s live!",
           "media": {
-            "src": "/img/update-from-tina.jpg"
+            "src": "/img/edit-alongside-content.gif"
+          }
+        },
+        {
+          "_template": "feature",
+          "headline": "Query Your Content",
+          "subline": "Tina Cloud provides a GraphQL layer on top of the files stored in your repository, allowing you to query content across all your files.",
+          "media": {
+            "src": "/img/your-blocks.gif"
+          }
+        },
+        {
+          "_template": "feature",
+          "headline": "Command Line Quickstart",
+          "subline": "The Tina CLI can be used to set up your project with Tina configuration and a basic content API, ready for you to tailor to your project.",
+          "media": {
+            "src": "/img/edit-alongside-content.gif"
           }
         }
       ]

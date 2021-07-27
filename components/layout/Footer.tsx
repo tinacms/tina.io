@@ -99,6 +99,11 @@ const FooterBottom = styled.div`
   }
 `
 
+const FootnoteLinks = styled.span`
+  display: inline-block;
+  padding: 0.5rem 0 0.5rem 1rem;
+`
+
 const Footnote = styled.span`
   display: flex;
   flex-direction: column;
@@ -111,7 +116,6 @@ const Footnote = styled.span`
     height: 40px;
     color: white;
     background-color: var(--color-primary);
-    margin-bottom: 1rem;
 
     &:hover,
     &:focus {
@@ -154,11 +158,7 @@ const Footnote = styled.span`
   @media (min-width: 500px) {
     flex-direction: row;
     align-items: center;
-
-    button {
-      margin-bottom: 0;
-      margin-right: 1rem;
-    }
+    flex-wrap: wrap;
   }
 `
 
@@ -211,29 +211,31 @@ export const Footer = styled(({ light, ...styleProps }) => {
         </FooterForm>
         <Footnote>
           <EditLink color={'primary'} />
-          <Link href="/security" passHref>
-            <a>Security</a>
-          </Link>
-          <FooterDivider />
-          <Link href="/terms-of-service" passHref>
-            <a>Terms of Service</a>
-          </Link>
-          <FooterDivider />
-          <Link href="/privacy-notice" passHref>
-            <a>Privacy Notice</a>
-          </Link>
-          <FooterDivider />
-          <a
-            href="https://github.com/tinacms/tinacms/blob/master/LICENSE"
-            target="_blank"
-          >
-            License
-          </a>
-          <FooterDivider />
-          <p>
-            &copy; TinaCMS 2019–
-            {new Date().getFullYear()}
-          </p>
+          <FootnoteLinks>
+            <Link href="/security" passHref>
+              <a>Security</a>
+            </Link>
+            <FooterDivider />
+            <Link href="/terms-of-service" passHref>
+              <a>Terms of Service</a>
+            </Link>
+            <FooterDivider />
+            <Link href="/privacy-notice" passHref>
+              <a>Privacy Notice</a>
+            </Link>
+            <FooterDivider />
+            <a
+              href="https://github.com/tinacms/tinacms/blob/master/LICENSE"
+              target="_blank"
+            >
+              License
+            </a>
+            <FooterDivider />
+            <p>
+              &copy; TinaCMS 2019–
+              {new Date().getFullYear()}
+            </p>
+          </FootnoteLinks>
         </Footnote>
       </FooterBottom>
     </div>
