@@ -74,7 +74,7 @@ export const Actions = ({ items, align = 'left' }) => {
           color: var(--color-primary);
           border-radius: 2rem;
           text-transform: uppercase;
-          padding: 1rem 1.25rem;
+          padding: 1rem 1.5rem;
           border: 1px solid #b4f4e0;
           font-family: var(--font-tuner);
           font-weight: regular;

@@ -43,9 +43,6 @@ export function FlyingBlock({ data, index }) {
     >
       <div className="learnTina">
         <div className="learnContainer">
-          <div className="learnImageWrapper">
-            <img className="learnImage" src="img/flyingTina.png" alt="" />
-          </div>
           <div>
             <h3 className="title">
               <InlineTextarea name="headline" />
@@ -54,6 +51,9 @@ export function FlyingBlock({ data, index }) {
               <InlineTextarea name="subline" />
             </p>
             <Actions items={data.actions} />
+          </div>
+          <div className="learnImageWrapper">
+            <img className="learnImage" src="img/flyingTina.png" alt="" />
           </div>
         </div>
         <div className="background">
@@ -150,11 +150,8 @@ export function FlyingBlock({ data, index }) {
           align-items: center;
           margin: 0 auto;
           max-width: 820px;
-
-          @media (min-width: 1000px) {
-            grid-gap: 2rem;
-            grid-template-columns: 2fr 3fr;
-          }
+          grid-gap: 2rem;
+          grid-template-columns: 3fr 2fr;
         }
 
         @keyframes learnImage {
