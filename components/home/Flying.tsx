@@ -2,6 +2,8 @@ import React from 'react'
 import { BlocksControls, InlineTextarea } from 'react-tinacms-inline'
 import { BlockTemplate } from 'tinacms'
 import { ActionFields, Actions } from './Actions'
+import NightSkySvg from '../../public/svg/night-sky.svg'
+import NightSkyTopSvg from '../../public/svg/night-sky-top.svg'
 
 export const flying_template: BlockTemplate = {
   label: 'Flying Tina',
@@ -45,23 +47,99 @@ export function FlyingBlock({ data, index }) {
             <img className="learnImage" src="img/flyingTina.png" alt="" />
           </div>
           <div>
-            <h3 className="headingLarge">
+            <h3 className="title">
               <InlineTextarea name="headline" />
             </h3>
-            <p className="textLarge">
+            <p className="text">
               <InlineTextarea name="subline" />
             </p>
             <Actions items={data.actions} />
           </div>
         </div>
+        <div className="background">
+          <NightSkySvg />
+          <NightSkySvg />
+        </div>
+        <div className="foreground">
+          <NightSkyTopSvg />
+          <NightSkyTopSvg />
+        </div>
       </div>
       <style jsx>{`
         .learnTina {
           padding: 5rem 0;
-          background-image: url('/img/clouds.jpg');
-          background-position: center top;
-          background-repeat: no-repeat;
-          background-size: cover;
+          position: relative;
+          z-index: 2;
+        }
+
+        @keyframes movingBackground {
+          from {
+            transform: translate3d(0, 0, 0);
+          }
+
+          to {
+            transform: translate3d(100%, 0, 0);
+          }
+        }
+
+        .background,
+        .foreground {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: -1;
+          pointer-events: none;
+
+          :global(svg) {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation-duration: 50s;
+            animation-name: movingBackground;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+          }
+
+          :global(svg:nth-child(2)) {
+            left: -100%;
+            margin-left: 1px;
+          }
+        }
+
+        .foreground {
+          z-index: 10;
+
+          :global(svg) {
+            animation-duration: 30s;
+          }
+
+          :global(svg:nth-child(2)) {
+            margin-left: 0px;
+          }
+        }
+
+        .title {
+          font-family: var(--font-tuner);
+          font-weight: bold;
+          line-height: 1.4;
+          margin-bottom: 1rem;
+          font-size: 2.25rem;
+          color: var(--color-seafoam);
+        }
+
+        .text {
+          color: white;
+          font-size: 1.125rem;
+          opacity: 0.85;
+
+          &:not(:last-child) {
+            margin-bottom: 1.25rem;
+          }
         }
 
         .learnContainer {

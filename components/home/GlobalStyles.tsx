@@ -47,6 +47,7 @@ export const GlobalStyles = css.global`
     line-height: 1.4;
     margin-bottom: 1rem;
     font-size: 2.25rem;
+    color: #00255b;
   }
 
   .headingMedium {

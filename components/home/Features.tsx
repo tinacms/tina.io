@@ -73,7 +73,7 @@ export function FeatureBlock({ data, index }) {
       <BlocksControls index={index}>
         <div className={`feature ${isReversed ? 'featureReverse' : ''}`}>
           <div className="featureText">
-            <h3 className="headingLarge">
+            <h3 className="featureTitle">
               <InlineTextarea name="headline" />
             </h3>
             <hr className="dottedBorder" />
@@ -104,6 +104,15 @@ export function FeatureBlock({ data, index }) {
             grid-template-columns: 1fr 1fr;
             grid-gap: var(--spacer-size);
           }
+        }
+
+        .featureTitle {
+          font-family: var(--font-tuner);
+          font-weight: bold;
+          line-height: 1.4;
+          margin-bottom: 1rem;
+          font-size: 2.25rem;
+          color: #00255b;
         }
 
         .featureReverse {
