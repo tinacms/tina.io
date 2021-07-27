@@ -26,7 +26,7 @@ export const Container = ({
         }
 
         .wide {
-          max-width: 1500px;
+          max-width: 1550px;
 
           @media (min-width: 600px) {
             width: 100%;
@@ -38,7 +38,7 @@ export const Container = ({
         }
 
         .medium {
-          max-width: 1240px;
+          max-width: 1350px;
 
           @media (min-width: 600px) {
             width: 90%;
@@ -50,7 +50,7 @@ export const Container = ({
         }
 
         .narrow {
-          max-width: 740px;
+          max-width: 900px;
 
           @media (min-width: 600px) {
             width: 60%;

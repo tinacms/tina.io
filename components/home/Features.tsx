@@ -69,7 +69,6 @@ export function FeatureBlock({ data, index }) {
 
   return (
     <>
-      {index !== 0 && <div className="spacer spacerBig"></div>}
       <BlocksControls index={index}>
         <div className={`feature ${isReversed ? 'featureReverse' : ''}`}>
           <div className="featureText">
@@ -99,6 +98,10 @@ export function FeatureBlock({ data, index }) {
           grid-gap: var(--spacer-size);
           align-items: center;
           z-index: 2;
+
+          :not(:last-child) {
+            margin-bottom: 9rem;
+          }
 
           @media (min-width: 900px) {
             grid-template-columns: 1fr 1fr;
@@ -239,29 +242,6 @@ export const features_template: BlockTemplate = {
   },
   fields: [
     {
-      label: 'Headline',
-      name: 'headline',
-      component: 'text',
-    },
-    {
-      label: 'Subline',
-      name: 'subline',
-      component: 'text',
-    },
-    {
-      label: 'Color',
-      name: 'color',
-      component: 'select',
-      //@ts-ignore
-      options: [
-        { label: 'White', value: 'white' },
-        { label: 'Light Gray', value: 'lightGray' },
-        { label: 'Orange', value: 'orange' },
-        { label: 'Black', value: 'black' },
-        { label: 'Blue', value: 'blue' },
-      ],
-    },
-    {
       label: 'Items',
       name: 'items',
       component: 'blocks',
@@ -280,15 +260,7 @@ export function FeaturesBlock({ data, index }) {
       insetControls={true}
       focusRing={{ offset: -16 }}
     >
-      <section
-        className={['section', data.color ? data.color : 'white'].join(' ')}
-      >
-        <Container width="narrow" center>
-          <HeroFeature
-            item={{ headline: data.headline, subline: data.subline }}
-          />
-        </Container>
-        <div className="spacer"></div>
+      <section className={'section white featureSection'}>
         <Container>
           <InlineBlocks name="items" blocks={FEATURE_BLOCKS} />
         </Container>
