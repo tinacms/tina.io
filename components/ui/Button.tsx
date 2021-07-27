@@ -77,7 +77,7 @@ export const Button = styled.button<ButtonProps>`
     props.color === 'white' &&
     css`
       background-color: white;
-      border-color: rgba(0, 0, 0, 0.07);
+      border-color: rgba(0, 0, 0, 0.1);
 
       &:focus {
         box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px inset,
@@ -117,7 +117,7 @@ export const Button = styled.button<ButtonProps>`
     css`
       background-color: white;
       color: var(--tina-color-primary);
-      border-color: var(--tina-color-primary-dark);
+      border-color: rgba(0, 0, 0, 0.1);
 
       &:hover,
       &:focus {

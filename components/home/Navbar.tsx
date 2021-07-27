@@ -148,13 +148,16 @@ export function NavbarBlock({ data, index }) {
       </div>
       <style jsx>{`
         .banner {
-          background: white;
+          background: linear-gradient(to right, white, rgb(250, 250, 250));
+          box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.03);
           color: var(--tina-color-primary);
           display: flex;
           justify-content: space-between;
           align-items: center;
           padding: 0.5rem var(--container-padding);
           font-size: 1.125rem;
+          position: relative;
+          z-index: 10;
 
           :global(a) {
             font-weight: bold;
@@ -164,7 +167,7 @@ export function NavbarBlock({ data, index }) {
             padding: 0.75rem 0;
             color: inherit;
             transition: opacity 150ms ease-out;
-            font-size: 1.25rem;
+            font-size: 1.125rem;
             opacity: 0.7;
             margin-left: 1rem;
 
