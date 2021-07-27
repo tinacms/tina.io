@@ -2,11 +2,11 @@
 title: Tina is in Beta
 date: '2021-07-27T20:00:00-04:00'
 author: James Perkins
-last_edited: '2021-07-27T14:03:37.639Z'
+last_edited: '2021-07-27T14:53:04.070Z'
 ---
-The team at Tina have been working hard since June 2nd when we launch Tina Cloud. We took all the feedback and thoughts and iterated to make huge improvements to the product.
+The team at Tina have been working hard since June 2nd when we launched Tina Cloud. We took all your feedback and thoughts and iterated to make huge improvements to the product.
 
-The Alpha release contained the core product and we knew we had some features we wanted to add immediately and we had a lot of internal talks to make a simplified integration path.
+The Alpha release contained the core product yet we knew we had some features we wanted to add immediately, including a simplified integration path.
 
 ## What has changed since Alpha?
 
@@ -30,35 +30,35 @@ I spent quite a bit of time reading the documentation over and over again when I
 
 Tina init is my favorite addition to the Tina experience. A single command can bootstrap Tina on a Next.js application and do all the heavy lifting for you. Logan spent quite a bit of time working on this, and refining it, to get it just right.  With the command `npx @tinacms/cli init` we will do the following:
 
-1. Install all dependancies to your application
+1. Install all dependencies to your application
 2. Add the Tina commands to your package.json (tina-dev, tina-build, tina-start
 3. Wrap your app.js / app.tsx in TinaProvider
-4. Create demo data that you can test Tina with.
-5. Create an admin route to allow people to edit.
-6. Create a schema file ready for you to shape your own content.
+4. Create demo data that you can test Tina with
+5. Create an admin route to allow people to edit
+6. Create a schema file ready for you to shape your own content
 
 This allows you to move quickly and experience Tina without having to write any code. Then when you are ready you can easily extend it to use parts of your existing site.
 
-### Improving and adding Guides
+### Improving and adding guides
 
 When we introduced Tina, we provided a quick start guide that guide you as a user through using our Tina Cloud Starter. This was a great way for users to experience Tina but we found that people were missing some key concepts of Tina.
 
-I went back to the drawing board and created a new guide that takes the NextJS Starter Blog and add Tina and Tina Cloud to it, while explaining each concept as we went. This felt like a perfect way to show off Tina and use something a lot of users are experienced with.
+I went back to the drawing board and created a new guide that takes the NextJS Starter Blog and adds Tina and Tina Cloud to it, while explaining each concept as we went. This felt like a perfect way to show off Tina and use something many users are experienced with.
 
-Ashleigh went through our existing Next.js guides and made sure that the concepts we were promoting were easily translated to Tina Cloud, in case a user wanted the power of real time editing without using the Cloud and decided in the future to use our cloud offering.
+Ashley went through our existing Next.js guides and made sure that the concepts we were promoting were easily translated to Tina Cloud, in case a user wanted the power of real time editing without using the Cloud but then decided in the future to use our cloud offering.
 
 ## Media Manager
 
-Media Manager was one of the most important features that we needed for Tina Cloud. Our Media manager allows you to change images, upload new images and delete ones you no longer need without ever leaving the front end.
+Media manager was one of the most important features that we needed for Tina Cloud. Our Media manager allows you to change images, upload new images, and delete ones you no longer need without ever leaving the front end.
 
 We introduced this in the middle of the Alpha and you can read about it in our [blog post announcing it]().
 
 ## Improving Caching
 
-Speed and performance has always been something we have been actively working on. We introduced some improvements behind the scenes to improve the way we retrieve the data for your site.
+Speed and performance has been something we have been actively working on. We introduced some improvements behind the scenes to improve the way we retrieve the data for your site.
 
 ## Creating `@tinacms/toolkit`
 
-TinaCMS was built in with small modular packages, this was great except we rely heavily on React context, and the dependency mismatches from over-modularizing our toolkit has led to many bugs related to missing context.
+TinaCMS was built in with small modular packages, this meant that we relied heavily on React context, and the dependency mismatches from over-modularizing our toolkit, which led to many bugs related to missing context.
 
 Our open source team created @tinacms/toolkit which incorporates the essentials of Tina all in one place. This simplifies everything for you as a user and Tina as a product.
