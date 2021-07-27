@@ -92,6 +92,7 @@ export const Button = styled.button<ButtonProps>`
       background-color: var(--color-primary);
       color: white;
       border-color: var(--color-primary);
+      font-weight: bold;
 
       &:hover,
       &:focus {
@@ -105,6 +106,7 @@ export const Button = styled.button<ButtonProps>`
       background-color: var(--tina-color-primary);
       border-color: var(--tina-color-primary-dark);
       color: white;
+      font-weight: bold;
 
       &:hover,
       &:focus {

@@ -61,43 +61,53 @@ export const Actions = ({ items, align = 'left' }) => {
         }
 
         .action {
-          position: relative;
-          text-decoration: none;
-          color: inherit;
-          font-size: 1.25rem;
-          line-height: 1;
           font-weight: bold;
-          padding: 1rem 1.75rem;
-          border-radius: 0.25rem;
+          font-size: 1.125rem;
+          border-radius: 2rem;
+          cursor: pointer;
+          transition: all 150ms ease-out;
+          width: max-content;
+          transform: translate3d(0px, 0px, 0px);
           display: flex;
           align-items: center;
+          background-color: var(--color-seafoam);
+          color: var(--color-primary);
+          border-radius: 2rem;
+          text-transform: uppercase;
+          padding: 1rem 1.25rem;
+          border: 1px solid #b4f4e0;
+          font-family: var(--font-tuner);
+          font-weight: regular;
+          font-style: normal;
+          text-decoration: none !important;
           white-space: nowrap;
-          outline: none;
+          opacity: 1;
+          line-height: 1;
 
-          &:after {
-            content: '';
-            display: block;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 0;
-            transition: opacity 150ms ease-out;
-            border-radius: 0.25rem;
-            box-shadow: 0 0 0 4px currentColor;
+          svg {
+            fill: currentColor;
+            margin-left: -0.25em;
+            margin-right: 0.125rem;
+          }
+
+          &:hover,
+          &:focus {
+            color: var(--color-primary);
+            text-decoration: none;
+            transform: translate3d(-1px, -2px, 0);
+            transition: transform 180ms ease-out;
+          }
+          &:focus {
+            box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px inset,
+              rgba(236, 72, 21, 0.7) 0px 0px 0px 3px,
+              rgba(0, 0, 0, 0.12) 0px 2px 3px;
           }
           &:focus,
           &:active {
-            &:after {
-              opacity: 0.3;
-            }
+            outline: none;
           }
-          :global(svg) {
-            display: inline-block;
-            width: auto;
-            height: 1.125em;
-            margin-left: 0.75rem;
+          &:active {
+            filter: none;
           }
         }
 
@@ -119,21 +129,23 @@ export const Actions = ({ items, align = 'left' }) => {
         }
 
         .orange {
-          background: var(--color-orange);
-          transition: background 150ms ease-out;
+          background-color: var(--color-primary);
           color: white;
+          border-color: var(--color-primary);
+          font-weight: bold;
 
-          :hover {
-            background: var(--color-orange-light);
+          &:hover,
+          &:focus {
+            color: white;
           }
         }
 
         .ghost {
-          opacity: 0.7;
-          transition: opacity 150ms ease-out;
+          border-color: transparent;
+          padding: 0 0.25rem;
 
           :hover {
-            opacity: 1;
+            opacity: 0.7;
           }
         }
       `}</style>
