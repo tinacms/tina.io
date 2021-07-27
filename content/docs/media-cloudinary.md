@@ -7,7 +7,7 @@ Manage **Cloudinary media assets** in TinaCMS.
 ## Installation
 
 ```bash
-yarn add next-tinacms-cloudinary
+yarn add next-tinacms-cloudinary @tinacms/auth
 ```
 
 ## Connect with Cloudinary
