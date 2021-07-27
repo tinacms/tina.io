@@ -127,9 +127,9 @@ export function FlyingBlock({ data, index }) {
           font-family: var(--font-tuner);
           font-weight: bold;
           line-height: 1.4;
-          margin-bottom: 1rem;
-          font-size: 2.25rem;
-          color: var(--color-seafoam);
+          margin-bottom: 1.25rem;
+          font-size: 2.5rem;
+          color: var(--color-seafoam-dark);
         }
 
         .text {
@@ -138,7 +138,7 @@ export function FlyingBlock({ data, index }) {
           opacity: 0.85;
 
           &:not(:last-child) {
-            margin-bottom: 1.25rem;
+            margin-bottom: 1.375rem;
           }
         }
 
