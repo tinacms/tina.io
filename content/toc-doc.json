@@ -312,9 +312,9 @@
             "title": "Tina Cloud Starter"
           },
           {
-            "id": "/guides/tina-cloud/existing-site/overview/",
-            "slug": "/guides/tina-cloud/existing-site/overview/",
-            "title": "Add Tina Cloud to a Next.js site"
+            "id": "/guides/tina-cloud/getting-started/overview/",
+            "slug": "/guides/tina-cloud/getting-started/overview/",
+            "title": "Getting Started with Tina Cloud"
           }
         ]
       },
