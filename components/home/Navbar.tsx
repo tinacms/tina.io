@@ -159,7 +159,7 @@ export function NavbarBlock({ data, index }) {
           display: none;
         }
 
-        @media (min-width: 800px) {
+        @media (min-width: 1200px) {
           .desktop {
             display: initial;
           }
@@ -169,7 +169,12 @@ export function NavbarBlock({ data, index }) {
         }
 
         .banner {
-          background: linear-gradient(to right, white, rgb(250, 250, 250));
+          background: linear-gradient(
+            to right,
+            white,
+            rgb(254, 254, 254),
+            rgb(250, 250, 250)
+          );
           box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.03);
           color: var(--tina-color-primary);
           display: flex;
@@ -198,7 +203,7 @@ export function NavbarBlock({ data, index }) {
               opacity: 1;
             }
 
-            @media (min-width: 800px) {
+            @media (min-width: 1200px) {
               margin-left: 1rem;
             }
           }
