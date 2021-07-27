@@ -1,6 +1,6 @@
 ---
 title: Working with TinaCMS
-last_edited: '2021-05-10T10:00:00.000Z'
+last_edited: '2021-07-27T10:00:00.000Z'
 ---
 
 Open your project locally and in the `env.local` file set:
@@ -10,11 +10,13 @@ Open your project locally and in the `env.local` file set:
 
 Restart your server and run `yarn dev` again.
 
-Open <a href="http://localhost:3000/" target="_blank">http://localhost:3000</a> and click "enter edit mode".
+To edit the site, navigate to <a href="http://localhost:3000/admin" target="_blank">http://localhost:3000/admin</a>. This activates the edit mode.
 
 ![](https://raw.githubusercontent.com/tinacms/tina-cloud-starter/main/public/uploads/tina-cloud-authorization.png)
 
 This time a modal asks you to authenticate through TinaCMS. Upon success, Tina will send your edits to the TinaCMS server, and subsequently to GitHub.
+
+> To enter **edit mode**, navigate to the `admin` route of the site.
 
 ## Edit content
 

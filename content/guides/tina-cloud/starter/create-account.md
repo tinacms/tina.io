@@ -1,6 +1,6 @@
 ---
 title: Create an Account with TinaCMS
-last_edited: '2021-07-23T10:00:00.000Z'
+last_edited: '2021-07-27T10:00:00.000Z'
 ---
 
 ## TinaCMS Backend
@@ -17,5 +17,11 @@ you'll likely want other editors and collaborators to be able to make changes on
 ![tina-cloud-dashboard](/img/cloud-starter-dashboard.png)
 
 > You will be prompted to fork the starter through the dashboard, but you can also check out this starter here: <a href="https://github.com/tinacms/tina-cloud-starter" target="_blank">https://github.com/tinacms/tina-cloud-starter</a>.
+
+### Site Urls
+
+When creating an app, you will notice there is a section titled **Development Environment**. This section can be found in your app's **Configuration** page. This is where you enter the site urls where you will be using TinaCMS. This will most likely be `http://localhost:3000` and your production url.
+
+_Note: You do not need to specify a specific route._
 
 For more information about the dashboard and setting up an app, click <a href="/docs/tina-cloud/dashboard" target="_blank">here</a>.

@@ -3,6 +3,10 @@ title: Run Tina Cloud Starter Locally
 last_edited: '2021-07-23T10:00:00.000Z'
 ---
 
+## Initial Setup
+
+In the previous step, you forked the <a href="https://github.com/tinacms/tina-cloud-starter" target="_blank">tina-cloud-starter</a>. Now, **clone** this repository and ensure this is your working directory.
+
 ## Install
 
 > ℹ️ This project uses `yarn` as a package manager, if `yarn` isn't installed on your machine, open a terminal and run `npm install -g yarn`
