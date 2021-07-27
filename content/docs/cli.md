@@ -87,7 +87,7 @@ Now let's add some content to the author
 
 ```markdown
 ---
-name: Napolean
+name: Napoleon
 ---
 ```
 
@@ -102,7 +102,7 @@ Now we add some content to the post
 ```markdown
 ---
 title: Vote For Pedro
-author: content/authors/napolean.md
+author: content/authors/napoleon.md
 ---
 
 You should really vote for Pedro.
