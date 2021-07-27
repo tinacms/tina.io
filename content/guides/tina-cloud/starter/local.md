@@ -43,6 +43,8 @@ Open <a href="http://localhost:3000" target="_blank">http://localhost:3000</a> i
 
 ## Edit content locally
 
+Navigate to <a href="http://localhost:3000/admin" target="_blank">http://localhost:3000/admin</a> to enter edit mode.
+
 Click on the pencil in the lower left-hand corner to open Tina's sidebar which displays a variety of forms with fields you can edit and see updates live on the page. Since we're working locally, clicking save results in changes to your local filesystem.
 
 ![tina-cloud-starter](/img/tina-cloud-starter.jpg)
