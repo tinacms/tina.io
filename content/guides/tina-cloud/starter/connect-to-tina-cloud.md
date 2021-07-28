@@ -71,3 +71,61 @@ You can test that everything is configured correctly by navigating to `[your dep
 log in to Tina, and making some edits. Your changes should be saved to your GitHub repository.
 
 > ℹ️ Changes in edit mode show up on your home page after your site finishes a rebuild.
+
+🎉 You now have a **completely customizable** site that can be fully edited with TinaCMS!
+
+## Media Management _(Optional)_
+
+Currently Tina Cloud only supports the <a href="https://github.com/tinacms/tinacms/tree/main/packages/next-tinacms-cloudinary" target="_blank">Cloudinary media store</a>. To add it, first uncomment two lines in your `_app.js`:
+
+```diff
+import "../styles.css";
+import dynamic from "next/dynamic";
+import { TinaEditProvider } from "tinacms/dist/edit-state";
+import { Layout } from "../components/layout";
+const TinaCMS = dynamic(() => import("tinacms"), { ssr: false });
+-// import { TinaCloudCloudinaryMediaStore } from "next-tinacms-cloudinary";
++ import { TinaCloudCloudinaryMediaStore } from "next-tinacms-cloudinary";
+
+const NEXT_PUBLIC_TINA_CLIENT_ID = process.env.NEXT_PUBLIC_TINA_CLIENT_ID;
+const NEXT_PUBLIC_USE_LOCAL_CLIENT =
+  process.env.NEXT_PUBLIC_USE_LOCAL_CLIENT || true;
+
+const App = ({ Component, pageProps }) => {
+  return (
+    <>
+      <TinaEditProvider
+        editMode={
+          <TinaCMS
+            branch="main"
+            clientId={NEXT_PUBLIC_TINA_CLIENT_ID}
+            isLocalClient={Boolean(Number(NEXT_PUBLIC_USE_LOCAL_CLIENT))}
+-            // mediaStore={TinaCloudCloudinaryMediaStore}
++             mediaStore={TinaCloudCloudinaryMediaStore}
+            {...pageProps}
+          >
+...
+```
+
+Next update your `.env.local` file with a couple of new environment variables that you can get from your [Cloudinary dashboard](https://cloudinary.com/console/).
+
+```env
+# These are used in conjunction with a Cloudinary account for media asset management
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=<Get this from your Cloudinary account>
+NEXT_PUBLIC_CLOUDINARY_API_KEY=<Get this from your Cloudinary account>
+CLOUDINARY_API_SECRET=<Get this from your Cloudinary account>
+```
+
+Now restart your development server to be able to access your Cloudinary media library in Tina 🤩.
+
+<!-- Not sure why but when this comment is here the video autoplay works. When it is not here it does not work -->
+
+
+<video autoplay muted loop>
+  <source src="/img/tina-starter/Media_video.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
+<!--  -->
+
+For more details check out the <a href="https://github.com/tinacms/tinacms/tree/main/packages/next-tinacms-cloudinary" target="_blank">package README to set up Cloudinary</a> in your own project.
