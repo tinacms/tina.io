@@ -1,8 +1,9 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Button } from '../ui'
+import { Button, ButtonGroup } from '../ui'
 import { DynamicLink } from '../ui/DynamicLink'
-import data from '../../content/docs-navigation.json'
+import data from '../../content/navigation.json'
+import Link from 'next/link'
 
 interface NavProps {
   color?: 'white' | 'secondary' | 'seafoam' | 'light'
@@ -12,32 +13,75 @@ interface NavProps {
 export const DocsHeaderNav = styled(
   React.memo(({ color, ...styleProps }: NavProps) => {
     return (
-      <ul {...styleProps}>
-        {data &&
-          data.map(({ id, href, label }) => {
-            return (
-              <li key={id}>
-                <DynamicLink href={href} passHref>
-                  <Button as="a" color="variable">
-                    {label}
-                  </Button>
-                </DynamicLink>
-              </li>
-            )
-          })}
-      </ul>
+      <div {...styleProps}>
+        <ul>
+          {data &&
+            data.map(({ id, href, label }) => {
+              return (
+                <li key={id}>
+                  <DynamicLink href={href} passHref>
+                    <a>{label}</a>
+                  </DynamicLink>
+                </li>
+              )
+            })}
+        </ul>
+        <div className="actions">
+          <ButtonGroup>
+            <Link href="https://auth.tina.io/">
+              <Button size="small" color="blueInverted">
+                Sign In
+              </Button>
+            </Link>
+            <Link href="https://auth.tina.io/register">
+              <Button size="small" color="blue">
+                Sign Up
+              </Button>
+            </Link>
+          </ButtonGroup>
+        </div>
+      </div>
     )
   })
 )`
-  margin: 0;
-  list-style-type: none;
+  position: relative;
   display: flex;
   justify-content: flex-end;
-  padding: 1rem 0.5rem;
+  align-items: center;
+  padding: 1rem 2rem;
+
+  ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 1rem 0 0;
+  }
 
   li {
-    position: relative;
-    margin: 0 0.5rem;
+    margin: 0 1.5rem;
+
+    a {
+      color: var(--color-blue);
+      font-weight: 500;
+      opacity: 0.7;
+      transition: opacity 150ms ease-out;
+      text-decoration: none;
+      font-size: 1.125rem;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  .actions {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    > * {
+      width: auto;
+    }
   }
 
   @media (max-width: 829px) {
