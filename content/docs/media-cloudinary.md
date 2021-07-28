@@ -7,7 +7,7 @@ Manage **Cloudinary media assets** in TinaCMS.
 ## Installation
 
 ```bash
-yarn add next-tinacms-cloudinary
+yarn add next-tinacms-cloudinary @tinacms/auth
 ```
 
 ## Connect with Cloudinary
@@ -16,7 +16,7 @@ You need some credentials provided by Cloudinary to set this up properly. If you
 
 **next-tinacms-cloudinary** uses environment variables within the context of a Next.js site to properly access your Cloudinary account.
 
-Add the following variables to a `.env` file.
+Add the following variables to an `.env` file.
 
 ```
 NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=<Your Cloudinary Cloud Name>
@@ -26,26 +26,31 @@ CLOUDINARY_API_SECRET=<Your Cloudinary API secret>
 
 ## Register the Media Store
 
-Now, you can register the Cloudinary Media store with the instance of Tina in your app by passing the `TinaCloudCloudinaryMediaStore` to the `TinaCloudProvider` via its `media` prop.
+Now, you can register the Cloudinary Media store with the instance of Tina in your app by passing the `TinaCloudCloudinaryMediaStore` to the `TinaCMS` instance via its `mediaStore` prop.
 
 This is also where we can update our `mediaOptions` on the cms object.
 
 ```tsx
-import TinaCMSProvider from 'tinacms'
+import { TinaEditProvider } from "tinacms/dist/edit-state";
 import { TinaCloudCloudinaryMediaStore } from 'next-tinacms-cloudinary'
 
-const TinaWrapper = (props) => {
-  return (
-    <TinaCMSProvider
-      // ...
-      mediaStore={TinaCloudCloudinaryMediaStore}
-    >
-      { // ... }
-    </TinaCMSProvider>
-  )
-}
+const TinaCMS = dynamic(() => import("tinacms"), { ssr: false });
 
-...
+const App = ({ Component, pageProps }) => {
+  return (
+    <>
+      <TinaEditProvider
+        editMode={
+          <TinaCMS
+            ...
+            mediaStore={TinaCloudCloudinaryMediaStore}
+            {...pageProps}
+          >
+         ...
+         </TinaCMS>
+        }
+      >
+      ...
 ```
 
 ## Set up API routes

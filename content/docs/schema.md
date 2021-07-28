@@ -18,7 +18,7 @@ export default defineSchema({
       path: 'content/posts',
       fields: [
         {
-          type: 'text',
+          type: 'string',
           label: 'Title',
           name: 'title',
         },
@@ -36,7 +36,7 @@ export default defineSchema({
       path: 'content/authors',
       fields: [
         {
-          type: 'text',
+          type: 'string',
           label: 'Name',
           name: 'name',
         },
