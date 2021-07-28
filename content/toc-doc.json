@@ -370,9 +370,9 @@
             "title": "Tina Cloud Starter"
           },
           {
-            "id": "/guides/tina-cloud/existing-site/overview/",
-            "slug": "/guides/tina-cloud/existing-site/overview/",
-            "title": "Add Tina Cloud to a Next.js site"
+            "id": "/guides/tina-cloud/getting-started/overview/",
+            "slug": "/guides/tina-cloud/getting-started/overview/",
+            "title": "Getting Started with Tina Cloud"
           }
         ]
       },
@@ -383,14 +383,9 @@
         "title": "TinaCMS",
         "items": [
           {
-            "id": "/guides/tinacms/getting-started/introduction/",
-            "slug": "/guides/tinacms/getting-started/introduction/",
-            "title": "Getting Started With TinaCMS"
-          },
-          {
             "id": "/guides/tinacms/adding-tina/overview/",
             "slug": "/guides/tinacms/adding-tina/overview/",
-            "title": "Adding Tina"
+            "title": "Getting Started with TinaCMS"
           },
           {
             "id": "/guides/tinacms/github/initial-setup/",
