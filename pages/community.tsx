@@ -128,6 +128,7 @@ function CommunityPage({ file: community, metadata, preview }) {
                     >
                       <Button color="white" as="a">
                         <TinaIconSvg
+                          // @ts-ignore
                           style={{
                             color: '#EC4815',
                             height: '1.675rem',
