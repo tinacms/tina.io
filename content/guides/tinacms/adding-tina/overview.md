@@ -1,16 +1,14 @@
 ---
-title: Overview
+title: Getting Started with TinaCMS
 ---
 
-This guide will show you how to set up Tina in a Next.js environment. Since Next.js is a relatively open-ended framework and there are many different ways to build with it, these docs will attempt merely to give you an overview of what is required to get Tina working in a Next.js environment and provide some suggestions. The ultimate implementation will depend on your content strategy.
+Tina is a **toolkit for building visual editing** into your site. This guide will walk you through setting up Tina in a Next.js environment.
 
-> **The Finished Product**
->
-> The repository at [dwalkr/next-tina-blog-starter](https://github.com/dwalkr/next-tina-blog-starter) contains the end product of this guide. Feel free to fork it and follow along!
+![tinacms editing gif](/gif/tina-nextjs.gif)
 
 ## Project Setup Recommendations
 
-Tina aims to work with a variety of project setups and content strategies, but we suggest following a few principles to ensure success when working with Tina.
+TinaCMS provides an end-to-end solution for creating a live editing experience on a Next.js site. We favour the use of Next.js but Tina aims to work with a variety of project setups and content strategies. However, we suggest following a few principles to ensure success when working with Tina.
 
 ### Client-side Capable Transformation
 
@@ -20,7 +18,7 @@ This doesn't mean that you can _only_ perform content transformation on the clie
 
 The kinds of projects that will struggle to work well with Tina are those which perform content transformation exclusively at build time, such as through a Webpack plugin.
 
-### Next 9.3 Data Fetching Methods
+### Data Fetching Methods
 
 Next.js 9.3 introduces [next-gen data fetching methods](https://nextjs.org/blog/next-9-3#next-gen-static-site-generation-ssg-support) _getStaticProps_, _getStaticPaths_, and _getServerSideProps_. Our Next.js documentation will center around workflows using these methods.
 
@@ -31,3 +29,5 @@ Tina makes extensive use of React Hooks, which can only be used inside of functi
 ## More Info
 
 - [nextjs.org: Next-gen SSG Support](https://nextjs.org/blog/next-9-3#next-gen-static-site-generation-ssg-support)
+
+> If at any point you feel lost or confused during this tutorial, checkout the [Tina Community Forum](https://community.tinacms.org/) to get answers, help, and llama-humor.
