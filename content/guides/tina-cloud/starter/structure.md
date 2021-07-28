@@ -35,7 +35,7 @@ This is set up for you in `./.tina/schema.ts`, let's break down what this functi
 
 ```ts
 import { defineSchema } from "tina-graphql-gateway-cli";
-
+```
 Head over to the [reference](/docs/tinacms-reference/) documentation to learn more about [defining a schema](/docs/schema/) or [querying with GraphQL](/docs/graphql/)
 
 ### `pages/posts/[filename].tsx`
