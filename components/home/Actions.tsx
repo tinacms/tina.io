@@ -71,7 +71,7 @@ export const Actions = ({ items, align = 'left' }) => {
           display: flex;
           align-items: center;
           background-color: var(--color-seafoam);
-          color: var(--color-primary);
+          color: var(--color-orange);
           border-radius: 2rem;
           text-transform: uppercase;
           padding: 1rem 1.5rem;
@@ -92,7 +92,7 @@ export const Actions = ({ items, align = 'left' }) => {
 
           &:hover,
           &:focus {
-            color: var(--color-primary);
+            color: var(--color-orange);
             text-decoration: none;
             transform: translate3d(-1px, -2px, 0);
             transition: transform 180ms ease-out;
@@ -129,14 +129,14 @@ export const Actions = ({ items, align = 'left' }) => {
         }
 
         .orange {
-          background-color: var(--color-primary);
+          background-color: var(--color-orange);
           background: linear-gradient(
             to bottom right,
-            var(--color-primary),
-            var(--color-primary-dark)
+            var(--color-orange),
+            var(--color-orange-dark)
           );
           color: white;
-          border-color: var(--color-primary);
+          border-color: var(--color-orange);
           font-weight: bold;
 
           &:hover,
@@ -150,7 +150,7 @@ export const Actions = ({ items, align = 'left' }) => {
           padding: 0 0.25rem;
 
           :hover {
-            color: var(--color-primary-dark);
+            color: var(--color-orange-dark);
           }
         }
       `}</style>

@@ -69,12 +69,21 @@ export const HeroTitle = styled(({ narrow, children, ...styleProps }) => {
   return <h2 {...styleProps}>{children}</h2>
 })`
   font-family: var(--font-tuner);
-  font-weight: regular;
+  font-weight: bold;
   font-style: normal;
   font-size: 2.5rem;
   line-height: 1.3;
   letter-spacing: 0.1px;
-  color: var(--color-primary);
+  display: inline-block;
+  color: transparent;
+  background: linear-gradient(
+    to right,
+    var(--color-orange-light),
+    var(--color-orange),
+    var(--color-orange-dark)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
   text-align: center;
   margin: 0 auto;
   max-width: 12em;
@@ -84,7 +93,7 @@ export const HeroTitle = styled(({ narrow, children, ...styleProps }) => {
   }
 
   @media (min-width: 1200px) {
-    font-size: 4rem;
+    font-size: 3.5rem;
   }
 
   ${props =>

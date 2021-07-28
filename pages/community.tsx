@@ -2,7 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { DynamicLink } from 'components/ui/DynamicLink'
 import { GetStaticProps } from 'next'
-
+import { FaDiscord, FaTwitter, FaGithub } from 'react-icons/fa'
+import TinaIconSvg from '../public/svg/tina-icon.svg'
 import {
   Layout,
   Hero,
@@ -109,22 +110,62 @@ function CommunityPage({ file: community, metadata, preview }) {
                   </InfoText>
                   <ButtonGroup>
                     <DynamicLink href={'https://discord.gg/QC724mKx'} passHref>
-                      <Button as="a">Discord</Button>
+                      <Button color="white" as="a">
+                        <FaDiscord
+                          style={{
+                            color: '#5865f2',
+                            height: '1.5rem',
+                            width: 'auto',
+                            margin: '0 0.5rem 0 0.125rem',
+                          }}
+                        />{' '}
+                        Discord
+                      </Button>
                     </DynamicLink>
                     <DynamicLink
                       href={'https://community.tinacms.org'}
                       passHref
                     >
-                      <Button as="a">Forum</Button>
+                      <Button color="white" as="a">
+                        <TinaIconSvg
+                          style={{
+                            color: '#EC4815',
+                            height: '1.675rem',
+                            width: 'auto',
+                            margin: '0 0.5rem 0 0.125rem',
+                          }}
+                        />{' '}
+                        Forum
+                      </Button>
                     </DynamicLink>
                     <DynamicLink
                       href={'https://github.com/tinacms/tinacms'}
                       passHref
                     >
-                      <Button as="a">GitHub</Button>
+                      <Button color="white" as="a">
+                        <FaGithub
+                          style={{
+                            color: '#24292e',
+                            height: '1.5rem',
+                            width: 'auto',
+                            margin: '0 0.5rem 0 0.125rem',
+                          }}
+                        />{' '}
+                        GitHub
+                      </Button>
                     </DynamicLink>
                     <DynamicLink href={'https://twitter.com/tina_cms'} passHref>
-                      <Button as="a">Twitter</Button>
+                      <Button color="white" as="a">
+                        <FaTwitter
+                          style={{
+                            color: '#1DA1F2',
+                            height: '1.5rem',
+                            width: 'auto',
+                            margin: '0 0.5rem 0 0.125rem',
+                          }}
+                        />{' '}
+                        Twitter
+                      </Button>
                     </DynamicLink>
                   </ButtonGroup>
                 </InfoContent>
@@ -257,7 +298,10 @@ const InfoImage = styled(({ src, ...styleProps }) => {
 
 // @ts-ignore
 const FormSection = styled(Section)`
+  padding: 4rem 0;
+
   @media (min-width: 800px) {
+    padding: 7rem 0;
     text-align: center;
 
     form {

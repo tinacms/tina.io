@@ -115,7 +115,7 @@ const Footnote = styled.span`
   button {
     height: 40px;
     color: white;
-    background-color: var(--color-primary);
+    background-color: var(--color-orange);
 
     &:hover,
     &:focus {
@@ -242,8 +242,8 @@ export const Footer = styled(({ light, ...styleProps }) => {
   )
 })`
   color: white;
-  --color-background: var(--color-primary);
-  --color-background-dark: var(--color-primary-dark);
+  --color-background: var(--color-orange);
+  --color-background-dark: var(--color-orange-dark);
   position: relative;
   z-index: 1000;
 
@@ -260,28 +260,28 @@ export const Footer = styled(({ light, ...styleProps }) => {
   }
 
   ${FooterBottom} {
-    --color-background: var(--color-primary-dark);
+    --color-background: var(--color-orange-dark);
   }
 
   ${props =>
     props.light &&
     css`
       border-top: 1px solid var(--color-light-dark);
-      color: var(--color-primary);
+      color: var(--color-orange);
       --color-background: var(--color-light);
       --color-background-dark: var(--color-light-dark);
 
       ${TinaIcon} {
-        fill: var(--color-primary);
+        fill: var(--color-orange);
       }
 
       ${FooterSocial} {
-        fill: var(--color-primary);
+        fill: var(--color-orange);
       }
 
       ${FooterBottom} {
         color: white;
-        --color-background: var(--color-primary);
+        --color-background: var(--color-orange);
       }
     `};
 `

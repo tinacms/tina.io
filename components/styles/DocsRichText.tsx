@@ -82,9 +82,10 @@ const DocsRichText = css`
   .h1,
   h2,
   .h2 {
-    color: var(--color-primary);
+    font-weight: bold;
+    color: var(--color-orange);
     em {
-      color: var(--color-primary);
+      color: var(--color-orange);
       font-style: italic;
     }
   }
@@ -174,8 +175,8 @@ const DocsRichText = css`
     &:hover,
     &:focus {
       opacity: 1;
-      color: var(--color-primary);
-      text-decoration-color: var(--color-primary);
+      color: var(--color-orange);
+      text-decoration-color: var(--color-orange);
     }
   }
 
@@ -235,7 +236,7 @@ const DocsRichText = css`
     background-color: var(--color-light);
     border: 1px solid var(--color-light-dark);
     border-radius: 0.3rem;
-    color: var(--color-primary);
+    color: var(--color-orange);
     font-size: 1em;
     line-height: inherit;
   }
@@ -284,7 +285,7 @@ const DocsRichText = css`
     font-family: var(--font-tuner);
     font-weight: regular;
     font-style: normal;
-    color: var(--color-primary);
+    color: var(--color-orange);
     letter-spacing: 0.5px;
     font-size: 1.125rem;
     line-height: 1.3;
@@ -322,7 +323,7 @@ const DocsRichText = css`
     }
 
     h3 {
-      color: var(--color-primary);
+      color: var(--color-orange);
       font-size: 1.5rem;
       margin-bottom: 1.25rem;
     }
@@ -357,14 +358,14 @@ const DocsRichText = css`
     align-items: center;
     white-space: nowrap;
     outline: none;
-    background: var(--color-primary);
+    background: var(--color-orange);
     transition: background 150ms ease-out;
     color: white;
 
     :hover,
     ::focus,
     :active {
-      background: var(--color-primary-light);
+      background: var(--color-orange-light);
     }
 
     svg {

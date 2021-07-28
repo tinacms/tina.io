@@ -102,8 +102,9 @@ export const GlobalStyle = React.memo(createGlobalStyle`
 
     /* Color */
     --color-white: #FFFFFF;
-    --color-primary: #EC4815;
-    --color-primary-dark: #CE411D;
+    --color-orange-light: #EB6337;
+    --color-orange: #EC4815;
+    --color-orange-dark: #CE411D;
     --color-secondary: #31215E;
     --color-secondary-dark: #241748;
     --color-blue: var(--color-secondary-dark);

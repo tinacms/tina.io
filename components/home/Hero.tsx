@@ -98,17 +98,7 @@ export function HeroBlock({ data, index }) {
 export const HeroFeature = ({ item }) => {
   return (
     <div className="feature">
-      {item.headline && (
-        <h2 className="heading">
-          <InlineWysiwyg name="headline">
-            <ReactMarkdown
-              disallowedTypes={['paragraph', 'heading']}
-              unwrapDisallowed
-              source={item.headline}
-            />
-          </InlineWysiwyg>
-        </h2>
-      )}
+      {item.headline && <h2 className="heading">{item.headline}</h2>}
       {item.subline && (
         <p className="textHuge">
           <InlineTextarea name="subline" />
@@ -125,18 +115,19 @@ export const HeroFeature = ({ item }) => {
           font-weight: bold;
           font-size: 3.125rem;
           line-height: 1.4;
-          color: var(--color-orange);
-          --color-emphasis: var(--color-orange);
+          display: inline-block;
+          color: transparent;
+          background: linear-gradient(
+            to right,
+            var(--color-orange-light),
+            var(--color-orange),
+            var(--color-orange-dark)
+          );
+          -webkit-background-clip: text;
+          background-clip: text;
 
           &:not(:last-child) {
             margin-bottom: 2.5rem;
-          }
-
-          :global(em),
-          :global(strong) {
-            font-weight: inherit;
-            color: var(--color-emphasis);
-            font-style: inherit;
           }
         }
       `}</style>

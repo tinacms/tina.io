@@ -88,10 +88,10 @@ const PaginationLink = styled.a<PaginationLinkProps>`
 
   &:hover {
     h5 {
-      color: var(--color-primary);
+      color: var(--color-orange);
     }
     svg {
-      fill: var(--color-primary);
+      fill: var(--color-orange);
     }
   }
 

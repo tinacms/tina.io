@@ -108,7 +108,7 @@ const TocButton = styled.button<{ isOpen: boolean }>`
   ${props =>
     props.isOpen
       ? css`
-          color: var(--color-primary);
+          color: var(--color-orange);
 
           svg {
             transform: rotate(90deg);
@@ -142,7 +142,7 @@ const TocContent = styled.div<TocContentProps>`
       id =>
         css`
       a[href="#${id}"] {
-        color: var(--color-primary);
+        color: var(--color-orange);
         text-decoration: none;
       }
     `

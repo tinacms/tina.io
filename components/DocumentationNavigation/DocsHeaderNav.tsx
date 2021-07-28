@@ -45,14 +45,14 @@ export const DocsHeaderNav = styled(
   }
 
   --color-background: white;
-  --color-foreground: var(--color-primary);
+  --color-foreground: var(--color-orange);
 
   ${props =>
     props.color &&
     props.color === 'secondary' &&
     css`
       --color-background: var(--color-secondary);
-      --color-foreground: var(--color-primary);
+      --color-foreground: var(--color-orange);
     `};
 
   ${props =>
@@ -60,7 +60,7 @@ export const DocsHeaderNav = styled(
     props.color === 'seafoam' &&
     css`
       --color-background: var(--color-seafoam);
-      --color-foreground: var(--color-primary);
+      --color-foreground: var(--color-orange);
     `};
 
   ${props =>
@@ -68,7 +68,7 @@ export const DocsHeaderNav = styled(
     props.color === 'light' &&
     css`
       --color-background: var(--color-light);
-      --color-foreground: var(--color-primary);
+      --color-foreground: var(--color-orange);
 
       ${Button} {
         border: 1px solid var(--color-light-dark);

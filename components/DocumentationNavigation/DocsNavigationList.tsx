@@ -169,7 +169,7 @@ const MobileMainNav = styled.div`
   a {
     display: block;
     padding: 0.5rem 3.5rem 0.5rem 1.5rem;
-    color: var(--color-primary);
+    color: var(--color-orange);
     margin: 0;
   }
 
@@ -223,7 +223,7 @@ const CategoryAnchor = styled.a`
   display: block;
   cursor: pointer;
   padding: 0.5rem 1.5rem 0.5rem 1.5rem;
-  color: var(--color-primary);
+  color: var(--color-orange);
   text-decoration: none;
   transition: all 180ms ease-out;
   font-family: var(--font-tuner);
@@ -246,7 +246,7 @@ const IndexLink = styled.button`
   outline: none;
   background: transparent;
   padding: 0;
-  color: var(--color-primary);
+  color: var(--color-orange);
   display: block;
   margin-bottom: 0.75rem;
   font-size: 0.9375rem;
@@ -268,7 +268,7 @@ const NavListHeader = styled.li`
 `
 
 const CategoryHeader = styled.h3`
-  color: var(--color-primary);
+  color: var(--color-orange);
   text-decoration: none;
   transition: all 180ms ease-out;
   font-family: var(--font-tuner);

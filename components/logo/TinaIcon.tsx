@@ -24,7 +24,7 @@ export const TinaIcon = styled(({ docs, ...styleProps }: TinaIconProps) => {
   )
 })`
   text-decoration: none;
-  fill: var(--color-primary);
+  fill: var(--color-orange);
 
   h1 {
     margin: 0;
@@ -36,7 +36,7 @@ export const TinaIcon = styled(({ docs, ...styleProps }: TinaIconProps) => {
   span {
     margin-left: 1rem;
     font-family: var(--font-tuner);
-    color: var(--color-primary);
+    color: var(--color-orange);
   }
 
   svg {

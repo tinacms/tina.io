@@ -318,7 +318,7 @@ const FeedbackButton = styled<any>(Button)`
 const ErrorMessage = styled.p`
   font-size: 1.125rem;
   font-weight: bold;
-  color: var(--color-primary);
+  color: var(--color-orange);
 `
 
 const HiddenFormWrapper = styled.div``

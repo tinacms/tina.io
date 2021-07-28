@@ -193,7 +193,7 @@ const BlogExcerpt = styled.a`
   &:focus {
     outline: none;
     ${BlogTitle} {
-      color: var(--color-primary) !important;
+      color: var(--color-orange) !important;
     }
   }
   &:focus {

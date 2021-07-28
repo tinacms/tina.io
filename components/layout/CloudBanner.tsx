@@ -75,7 +75,12 @@ export function CloudBanner() {
         }
 
         .banner {
-          background: linear-gradient(90deg, #f2fdfc 33.3%, #e6faf8 100%);
+          background: linear-gradient(
+            90deg,
+            white,
+            #f2fdfc 33.3%,
+            #e6faf8 100%
+          );
           box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.03);
           border-bottom: 1px solid #d1faf6;
           color: var(--tina-color-primary);
@@ -120,6 +125,17 @@ export function CloudBanner() {
         .content {
           display: flex;
           align-items: center;
+        }
+
+        .actions {
+          flex: 1 0 auto;
+          display: inline-flex;
+          align-items: center;
+          justify-content: flex-end;
+
+          :global(> *) {
+            width: auto;
+          }
         }
 
         .link {

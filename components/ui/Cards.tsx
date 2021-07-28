@@ -50,10 +50,10 @@ export const Card = styled.a`
   &:hover {
     h3,
     h4 {
-      color: var(--color-primary);
+      color: var(--color-orange);
     }
     svg {
-      fill: var(--color-primary);
+      fill: var(--color-orange);
     }
   }
 `

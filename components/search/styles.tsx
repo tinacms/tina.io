@@ -12,7 +12,7 @@ export const IconWrapper = styled.div`
   right: 0;
   width: 44px;
   height: 44px;
-  fill: var(--color-primary);
+  fill: var(--color-orange);
   pointer-events: none;
   display: flex;
   justify-content: center;
@@ -158,7 +158,7 @@ export const HitsWrapper = styled.div<HitsWrapperProps>`
     color: rgba(0, 0, 0, 0.5);
     h3 {
       margin: 0;
-      color: var(--color-primary);
+      color: var(--color-orange);
       font-family: var(--font-tuner);
       text-transform: uppercase;
       font-size: 1.125rem;
@@ -173,12 +173,12 @@ export const HitsWrapper = styled.div<HitsWrapperProps>`
     &:hover,
     &:focus {
       opacity: 1;
-      color: var(--color-primary);
-      text-decoration-color: var(--color-primary);
+      color: var(--color-orange);
+      text-decoration-color: var(--color-orange);
     }
   }
   a {
-    color: var(--color-primary);
+    color: var(--color-orange);
   }
 `
 
@@ -186,7 +186,7 @@ export const NoResultsLabel = styled.div`
   padding: 1rem 1.25rem 0 1.5rem;
   font-size: 1.25rem;
   font-weight: bold;
-  color: var(--color-primary);
+  color: var(--color-orange);
 `
 
 export const PoweredBy = styled(({ ...styleProps }) => (

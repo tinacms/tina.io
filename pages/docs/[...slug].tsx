@@ -244,7 +244,7 @@ export const DocsPageTitle = styled.h1`
   font-size: 2rem;
   line-height: 1.3;
   letter-spacing: 0.1px;
-  color: var(--color-primary);
+  color: var(--color-orange);
   position: relative;
   font-family: var(--font-tuner);
   font-style: normal;

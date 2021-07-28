@@ -22,7 +22,7 @@ export const Button = styled.button<ButtonProps>`
   display: flex;
   align-items: center;
   background-color: var(--color-seafoam);
-  color: var(--color-primary);
+  color: var(--color-orange);
   border-radius: 2rem;
   text-transform: uppercase;
   padding: 0 1.25rem;
@@ -44,7 +44,7 @@ export const Button = styled.button<ButtonProps>`
 
   &:hover,
   &:focus {
-    color: var(--color-primary);
+    color: var(--color-orange);
     text-decoration: none;
     transform: translate3d(-1px, -2px, 0);
     transition: transform 180ms ease-out;
@@ -89,9 +89,9 @@ export const Button = styled.button<ButtonProps>`
   ${props =>
     props.color === 'primary' &&
     css`
-      background-color: var(--color-primary);
+      background-color: var(--color-orange);
       color: white;
-      border-color: var(--color-primary);
+      border-color: var(--color-orange);
       font-weight: bold;
 
       &:hover,
@@ -143,7 +143,7 @@ export const Button = styled.button<ButtonProps>`
     props.color === 'secondary' &&
     css`
       background-color: var(--color-secondary);
-      color: var(--color-primary);
+      color: var(--color-orange);
       border-color: var(--color-secondary);
 
       &:hover,
@@ -173,10 +173,13 @@ export const ButtonGroup = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-start;
+  flex-wrap: wrap;
   align-items: center;
   margin-right: -1rem;
+  margin-bottom: -1rem;
 
   ${Button} {
     margin-right: 1rem;
+    margin-bottom: 1rem;
   }
 `

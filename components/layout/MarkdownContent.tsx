@@ -77,7 +77,7 @@ const StyledCopyCodeButton = styled.button`
   border-radius: 0 0 0 5px;
 
   &:hover {
-    color: var(--color-primary);
+    color: var(--color-orange);
     opacity: 1;
   }
 `
