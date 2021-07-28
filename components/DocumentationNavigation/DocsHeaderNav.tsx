@@ -2,7 +2,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { Button, ButtonGroup } from '../ui'
 import { DynamicLink } from '../ui/DynamicLink'
-import data from '../../content/navigation.json'
+import data from '../../content/docs-navigation.json'
 import Link from 'next/link'
 
 interface NavProps {

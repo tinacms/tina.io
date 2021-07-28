@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { DynamicLink } from './DynamicLink'
-import data from '../../content/navigation.json'
+import data from '../../content/docs-navigation.json'
 
 export const DocsLinkNav = styled(({ ...styleProps }) => {
   return (

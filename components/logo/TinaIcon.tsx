@@ -34,9 +34,12 @@ export const TinaIcon = styled(({ docs, ...styleProps }: TinaIconProps) => {
   }
 
   span {
-    margin-left: 1rem;
+    font-size: 1.5rem;
+    margin-left: 0.75rem;
     font-family: var(--font-tuner);
+    font-weight: bold;
     color: var(--color-orange);
+    margin-top: 0.5rem;
   }
 
   svg {
