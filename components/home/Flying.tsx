@@ -94,12 +94,13 @@ export function FlyingBlock({ data, index }) {
         .foreground {
           position: absolute;
           top: 0;
-          left: 0;
+          left: 50%;
           width: 100%;
+          min-width: 800px;
           height: 0;
           padding-bottom: 50%;
           top: 50%;
-          transform: translate3d(0, -50%, 0);
+          transform: translate3d(-50%, -50%, 0);
           z-index: -1;
           pointer-events: none;
 
