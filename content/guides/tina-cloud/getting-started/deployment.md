@@ -1,9 +1,9 @@
 ---
-title: Tina Cloud and Deployment
+title: TinaCMS backend and Deployment
 last_edited: '2021-07-19T15:36:36.046Z'
 ---
 
-## Connect to Tina Cloud
+## Connect to TinaCMS Backend
 
 While the fully local development workflow is the recommended way for developers to work, you'll likely want other editors and collaborators to be able to make changes on a hosted website with authentication.
 
@@ -15,7 +15,7 @@ While the fully local development workflow is the recommended way for developers
 2. Commit the project to your GitHub account.
 3. Create a Tina Cloud app that connects to the GitHub repository you've just commited. For now, set `http://localhost:3000` as your callback URL. Once your app is created, click on the app to get to the app settings and copy the client ID. For more details on how to work with the Tina Cloud dashboard head over to the [dashboard documentation](/docs/tina-cloud/dashboard/).
 
-## Connect your local project with Tina Cloud
+## Connect your local project with TinaCMS Backend
 
 In the `env.local` file set:
 
