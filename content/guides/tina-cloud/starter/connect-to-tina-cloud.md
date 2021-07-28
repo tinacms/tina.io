@@ -72,12 +72,11 @@ log in to Tina, and making some edits. Your changes should be saved to your GitH
 
 > ℹ️ Changes in edit mode show up on your home page after your site finishes a rebuild.
 
+🎉 You now have a **completely customizable** site that can be fully edited with TinaCMS!
 
-🎉 You now have a **fully customable** site that can be fully edited with TinaCMS 
+## Adding media _(Optional)_
 
-## Adding media *(Optional)*
-
-Currently Tina cloud only supports the [cloudinary media store](https://github.com/tinacms/tinacms/tree/main/packages/next-tinacms-cloudinary) which has already been implemented. To add it, first uncomment two lines in your _app.js
+Currently Tina Cloud only supports the <a href="https://github.com/tinacms/tinacms/tree/main/packages/next-tinacms-cloudinary" target="_blank">cloudinary media store</a> which has already been implemented. To add it, first uncomment two lines in your `_app.js`
 
 ```diff
 import "../styles.css";
@@ -117,8 +116,8 @@ NEXT_PUBLIC_CLOUDINARY_API_KEY=<Get this from your Cloudinary account>
 CLOUDINARY_API_SECRET=<Get this from your Cloudinary account>
 ```
 
-Now restart your dev server and you will be able to access your cloudinary media library 🤩. 
+Now restart your dev server and you will be able to access your cloudinary media library 🤩.
 
 ![Media Demo](/img/tina-starter/Media_video.gif)
 
-For more details check out the [package readme to set up cloudinary](https://github.com/tinacms/tinacms/tree/main/packages/next-tinacms-cloudinary) in your own project.
+For more details check out the <a href="https://github.com/tinacms/tinacms/tree/main/packages/next-tinacms-cloudinary" target="_blank">package readme to set up cloudinary</a> in your own project.
