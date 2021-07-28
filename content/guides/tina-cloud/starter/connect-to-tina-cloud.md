@@ -74,9 +74,9 @@ log in to Tina, and making some edits. Your changes should be saved to your GitH
 
 🎉 You now have a **completely customizable** site that can be fully edited with TinaCMS!
 
-## Adding media _(Optional)_
+## Media Management _(Optional)_
 
-Currently Tina Cloud only supports the <a href="https://github.com/tinacms/tinacms/tree/main/packages/next-tinacms-cloudinary" target="_blank">cloudinary media store</a> which has already been implemented. To add it, first uncomment two lines in your `_app.js`
+Currently Tina Cloud only supports the <a href="https://github.com/tinacms/tinacms/tree/main/packages/next-tinacms-cloudinary" target="_blank">Cloudinary media store</a>. To add it, first uncomment two lines in your `_app.js`:
 
 ```diff
 import "../styles.css";
@@ -107,7 +107,7 @@ const App = ({ Component, pageProps }) => {
 ...
 ```
 
-Next update your `.env.local` file with a couple of new environment variables that you can get from your cloudinary dashboard.
+Next update your `.env.local` file with a couple of new environment variables that you can get from your [Cloudinary dashboard](https://cloudinary.com/console/).
 
 ```env
 # These are used in conjunction with a Cloudinary account for media asset management
@@ -116,7 +116,7 @@ NEXT_PUBLIC_CLOUDINARY_API_KEY=<Get this from your Cloudinary account>
 CLOUDINARY_API_SECRET=<Get this from your Cloudinary account>
 ```
 
-Now restart your dev server and you will be able to access your cloudinary media library 🤩.
+Now restart your development server to be able to access your Cloudinary media library in Tina 🤩.
 
 <!-- Not sure why but when this comment is here the video autoplay works. When it is not here it does not work -->
 
@@ -128,4 +128,4 @@ Now restart your dev server and you will be able to access your cloudinary media
 
 <!--  -->
 
-For more details check out the <a href="https://github.com/tinacms/tinacms/tree/main/packages/next-tinacms-cloudinary" target="_blank">package readme to set up cloudinary</a> in your own project.
+For more details check out the <a href="https://github.com/tinacms/tinacms/tree/main/packages/next-tinacms-cloudinary" target="_blank">package README to set up Cloudinary</a> in your own project.
