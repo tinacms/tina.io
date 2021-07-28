@@ -41,7 +41,7 @@ export default defineSchema({
           name: 'name',
         },
         {
-          type: 'text',
+          type: 'string',
           label: 'Avatar',
           name: 'avatar',
         },
