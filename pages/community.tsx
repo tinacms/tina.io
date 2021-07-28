@@ -284,8 +284,10 @@ const InfoImage = styled(({ src, ...styleProps }) => {
   grid-area: image;
   max-width: 65vw;
   margin: 0 auto;
-  border-radius: 2rem;
   overflow: hidden;
+  border-radius: 0.5rem;
+  box-shadow: inset 0 0 0 1px rgba(236, 72, 21, 0.03),
+    0 6px 24px rgba(0, 37, 91, 0.05), 0 2px 4px rgba(0, 37, 91, 0.03);
 
   img {
     display: block;
