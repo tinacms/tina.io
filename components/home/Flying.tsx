@@ -2,8 +2,8 @@ import React from 'react'
 import { BlocksControls, InlineTextarea } from 'react-tinacms-inline'
 import { BlockTemplate } from 'tinacms'
 import { ActionFields, Actions } from './Actions'
-import NightSkySvg from '../../public/svg/night-sky.svg'
-import NightSkyTopSvg from '../../public/svg/night-sky-top.svg'
+import CloudsOne from '../../public/svg/clouds-1.svg'
+import CloudsTwo from '../../public/svg/clouds-2.svg'
 
 export const flying_template: BlockTemplate = {
   label: 'Flying Tina',
@@ -57,12 +57,12 @@ export function FlyingBlock({ data, index }) {
           </div>
         </div>
         <div className="background">
-          <NightSkySvg />
-          <NightSkySvg />
+          <CloudsOne />
+          <CloudsOne />
         </div>
         <div className="foreground">
-          <NightSkyTopSvg />
-          <NightSkyTopSvg />
+          <CloudsTwo />
+          <CloudsTwo />
         </div>
       </div>
       <style jsx>{`
@@ -71,6 +71,13 @@ export function FlyingBlock({ data, index }) {
           position: relative;
           z-index: 2;
           overflow: hidden;
+          background-color: var(--color-seafoam);
+          background: linear-gradient(
+            to bottom,
+            var(--color-seafoam-100),
+            var(--color-seafoam-200),
+            var(--color-seafoam-300)
+          );
         }
 
         @keyframes movingBackground {
@@ -130,11 +137,11 @@ export function FlyingBlock({ data, index }) {
           line-height: 1.4;
           margin-bottom: 1.25rem;
           font-size: 2.5rem;
-          color: var(--color-seafoam-dark);
+          color: var(--color-orangeg);
         }
 
         .text {
-          color: white;
+          color: var(--color-secondary);
           font-size: 1.125rem;
           opacity: 0.85;
 
