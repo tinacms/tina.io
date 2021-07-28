@@ -9,7 +9,8 @@ export const GlobalStyles = css.global`
     --color-yellow: #f2c94c;
     --color-green: #6fcf97;
     --color-black: #1c1b2e;
-    --color-blue: rgb(36, 23, 72);
+    --color-blue: #241748;
+    --color-blue-light: #31215e;
     --color-white: #ffffff;
     --color-gray: #f3f3f3;
     --color-light-gray: #fafafa;
@@ -22,6 +23,15 @@ export const GlobalStyles = css.global`
     --spacer-size: 4.5rem;
     --section-padding: calc(var(--spacer-size) * 2);
     --container-padding: 2rem;
+  }
+
+  ::-moz-selection {
+    background: var(--color-seafoam-dark);
+    color: var(--color-blue-light);
+  }
+  ::selection {
+    background: var(--color-seafoam-dark);
+    color: var(--color-blue-light);
   }
 
   html {

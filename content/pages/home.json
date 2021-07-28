@@ -5,32 +5,6 @@
   },
   "blocks": [
     {
-      "_template": "navbar",
-      "banner": {
-        "display": true,
-        "text": "*Tina Cloud* is in Beta. Allow any team member to edit content!",
-        "link": {
-          "label": "Read The Announcement",
-          "mobileLabel": "Tina Cloud is in Beta",
-          "href": "/blog/tina-is-in-beta/"
-        }
-      },
-      "navItems": [
-        {
-          "link": "/docs",
-          "label": "Docs"
-        },
-        {
-          "link": "/blog",
-          "label": "Blog"
-        },
-        {
-          "link": "/community",
-          "label": "Community"
-        }
-      ]
-    },
-    {
       "_template": "hero",
       "headline": "Unlock your Next.js project with live editing",
       "subline": "Empower your teammates to build and edit content stored in your Git repository.",

@@ -157,7 +157,7 @@ export function FeatureBlock({ data, index }) {
           border-right: none;
           border-left: none;
           border-image: initial;
-          border-bottom: 5px dotted var(--color-orange);
+          border-bottom: 5px dotted var(--color-seafoam-dark);
           width: 6rem;
           max-width: 100%;
           display: block;

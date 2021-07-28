@@ -2,7 +2,9 @@ import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import { DefaultSeo } from 'next-seo'
 import { useRouter } from 'next/router'
-import { Header, Footer } from '../layout'
+import { Footer } from './Footer'
+import { CloudBanner } from './CloudBanner'
+import { Navbar } from './Navbar'
 
 interface LayoutProps {
   children: any[]
@@ -20,7 +22,8 @@ export const Layout = styled(
             url: 'https://tina.io' + router.asPath,
           }}
         />
-        <Header color={color} />
+        <CloudBanner />
+        <Navbar />
         {children}
         <Footer />
       </div>

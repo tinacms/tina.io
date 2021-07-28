@@ -104,8 +104,10 @@ export const GlobalStyle = React.memo(createGlobalStyle`
     --color-white: #FFFFFF;
     --color-primary: #EC4815;
     --color-primary-dark: #CE411D;
-    --color-secondary: #302454;
+    --color-secondary: #31215E;
     --color-secondary-dark: #241748;
+    --color-blue: var(--color-secondary-dark);
+    --color-blue-light: var(--color-secondary);
     --color-seafoam: #E6FAF8;
     --color-seafoam-dark: #B4F4E0;
     --color-light: #FAFAFA;
@@ -120,6 +122,10 @@ export const GlobalStyle = React.memo(createGlobalStyle`
     --breakpoint-small: 400px;
     --breakpoint-medium: 800px;
     --breakpoint-large: 1200px;
+
+    --spacer-size: 4.5rem;
+    --section-padding: calc(var(--spacer-size) * 2);
+    --container-padding: 2rem;
 
     /* Typography */
     --font-tuner: 'tuner-regular', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
@@ -150,5 +156,14 @@ export const GlobalStyle = React.memo(createGlobalStyle`
         border: none;
       }
     }
+  }
+
+  ::-moz-selection {
+    background: var(--color-seafoam-dark);
+    color: var(--color-blue-light);
+  }
+  ::selection {
+    background: var(--color-seafoam-dark);
+    color: var(--color-blue-light);
   }
 `)

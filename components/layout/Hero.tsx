@@ -10,29 +10,29 @@ export const Hero = styled(({ overlap, narrow, children, ...styleProps }) => {
 })`
   position: relative;
   text-align: center;
-  padding: 8rem 1rem 6rem 1rem;
+  padding: 2rem 2rem 6rem 2rem;
   width: 100%;
-  overflow-x: hidden;
+  overflow: hidden;
 
   &:before {
     content: '';
     display: block;
     position: absolute;
-    top: 0;
+    top: -1px;
     left: 50%;
-    width: 100%;
-    height: 100%;
+    bottom: 1.5rem;
+    width: calc(100% + 2px);
     min-width: 800px;
-    background-image: url('/svg/header-bg.svg');
+    transform: translate3d(-50%, 0, 0);
+    background-image: url('/svg/hero-background.svg');
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
     z-index: -1;
-    transform: translate3d(-50%, 0, 0);
   }
 
   @media (min-width: 1200px) {
-    padding: 9rem 1rem;
+    padding: 3rem 2rem 8rem 2rem;
   }
 
   ${props =>

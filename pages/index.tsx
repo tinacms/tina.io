@@ -1,7 +1,7 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
-import { Footer } from 'components/layout'
+import { Layout } from 'components/layout'
 import { usePlugin } from 'tinacms'
 import { useGithubJsonForm } from 'react-tinacms-github'
 import { InlineGithubForm } from '../components/layout/InlineGithubForm'
@@ -31,8 +31,9 @@ const HomePage = (props: any) => {
           description: seo.description,
         }}
       />
-      <InlineBlocks name="blocks" blocks={HOMEPAGE_BLOCKS} />
-      <Footer />
+      <Layout>
+        <InlineBlocks name="blocks" blocks={HOMEPAGE_BLOCKS} />
+      </Layout>
       <style global jsx>
         {GlobalStyles}
       </style>

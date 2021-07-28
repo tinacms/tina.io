@@ -112,6 +112,12 @@ export const Button = styled.button<ButtonProps>`
       &:focus {
         color: white;
       }
+
+      &:focus {
+        box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px inset,
+          var(--tina-color-primary) 0px 0px 0px 3px,
+          rgba(0, 0, 0, 0.12) 0px 2px 3px;
+      }
     `};
 
   ${props =>
@@ -120,6 +126,12 @@ export const Button = styled.button<ButtonProps>`
       background-color: white;
       color: var(--tina-color-primary);
       border-color: rgba(0, 0, 0, 0.1);
+
+      &:focus {
+        box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px inset,
+          var(--tina-color-primary) 0px 0px 0px 3px,
+          rgba(0, 0, 0, 0.12) 0px 2px 3px;
+      }
 
       &:hover,
       &:focus {

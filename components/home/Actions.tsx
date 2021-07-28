@@ -130,6 +130,11 @@ export const Actions = ({ items, align = 'left' }) => {
 
         .orange {
           background-color: var(--color-primary);
+          background: linear-gradient(
+            to bottom right,
+            var(--color-primary),
+            var(--color-primary-dark)
+          );
           color: white;
           border-color: var(--color-primary);
           font-weight: bold;
@@ -145,7 +150,7 @@ export const Actions = ({ items, align = 'left' }) => {
           padding: 0 0.25rem;
 
           :hover {
-            opacity: 0.7;
+            color: var(--color-primary-dark);
           }
         }
       `}</style>

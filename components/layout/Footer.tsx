@@ -230,7 +230,7 @@ export const Footer = styled(({ light, ...styleProps }) => {
             >
               License
             </a>
-            <FooterDivider />
+            <br />
             <p>
               &copy; TinaCMS 2019–
               {new Date().getFullYear()}
