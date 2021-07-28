@@ -1,22 +1,27 @@
 ---
 title: Tina Cloud Starter structure
-last_edited: '2021-06-15T12:04:50.542Z'
+last_edited: '2021-07-26T12:04:50.542Z'
 ---
+
+From here, you're ready to start building your own project. This section explains a bit about how this project is structured, and how to modify it to make it your own.
+
 ## Starter structure
 
-Tina Cloud Starter is a [Next.js](https://nextjs.org) application. The file-based routing happens through the `pages` directory. To edit this site click the "edit this site" button. This will cause you to go into edit mode where Tina is loaded. Tina is only loaded in edit mode so it will not effect the production bundle size.
+Tina Cloud Starter is a <a href="https://nextjs.org" target="_blank">Next.js</a> application. The file-based routing happens through the `pages` directory. To edit this site, navigate to the `/admin` route. This will cause you to go into edit mode where Tina is loaded. Tina is only loaded in edit mode so it will not effect the production bundle size.
 
-### `pages/index.tsx`
+### `.tina/schema.ts`
 
-This page can be seen at `http://localhost:3000/`, it loads the content from a markdown file which can be found in this repository at `/content/marketing-pages/index.md`. You can edit this page at by clicking the "enter edit mode" button in the top right-hand corner
+This is where your schema is defined, when you make changes here you'll notice that the generated GraphQL API changes too. It's a good idea to run your GraphQL server while editing so you can see any breakages.
 
-We wrap the site in a small `EditProvider` component, that stores whether or not we are in edit mode in React state and localstorage. When we are in edit mode it triggers authentication when needed, and then one is in edit mode.
+> Tip: Visit the GraphQL GUI at `http://localhost:4001/altair` so you can see how changes to the schema are updated in GraphQL.\
 
-What makes this possible is `getStaticProps`: you'll notice that every editable page exports a `query` prop and a data prop from `getStaticProps`. When we are not in `editMode` we use the data prop to render the site. When we are in edit mode we use the query to fetch the latest data from Tina Cloud and create the sidebar form.
+### `pages/[filename].tsx`
+
+This page can be seen at `http://localhost:3000/`, it loads the content from a markdown file which can be found in this repository at `/content/pages/home.md`. You can edit this page at by navigating to `http://localhost:3000/admin`.
 
 ### `pages/posts/[filename].tsx`
 
-The posts are stored in the `content/posts` directory of this repository, and their routes are built with `getStaticPaths` dynamically at build time. To go in edit mode, click the "edit this site" button. This re-renders your site by wrapping it when a `TinaProvider` component, this only happens in edit mode to make sure Tina is not added to your production bundle.
+The posts are stored in the `content/posts` directory of this repository, and their routes are built with `getStaticPaths` dynamically at build time.
 
 ### `components`
 
@@ -31,39 +36,12 @@ This is set up for you in `./.tina/schema.ts`, let's break down what this functi
 ```ts
 import { defineSchema } from "tina-graphql-gateway-cli";
 
-export default defineSchema({
-  collections: [
-    {
-      label: "Blog Posts",
-      name: "posts",
-      path: "content/posts",
-      templates: [
-        {
-          label: "Article",
-          name: "article",
-          fields: [
-            {
-              type: "text",
-              label: "Title",
-              name: "title",
-            },
-            {
-              type: "reference",
-              label: "Author",
-              name: "author",
-              collection: "authors",
-            },
-          ],
-        },
-      ],
-    },
-  ]
-}
-```
+Head over to the [reference](/docs/tinacms-reference/) documentation to learn more about [defining a schema](/docs/schema/) or [querying with GraphQL](/docs/graphql/)
 
+### `pages/posts/[filename].tsx`
 ### `defineSchema`
 
-> ℹ️ [Read the CLI documentation](/docs/tina-cloud/cli/#defineschema) for more details about the `defineSchema` API.
+> ℹ️ <a href="/docs/tina-cloud/cli/#defineschema" target="_blank">Read the CLI documentation</a> for more details about the `defineSchema` API.
 
 Be sure this is your default export from this file, we'll validate the schema and build out the GraphQL API with it.
 
@@ -73,42 +51,32 @@ The top-level key in the schema is an array of _collections_, a `collection` inf
 
 ### `templates`
 
-Templates are responsible for defining the shape of your content, you'll see in the schema for this starter that we use `templates` for `collections` as well as `blocks`. If you look at the `landingPage` template, you'll notice that it has a set of `blocks`, which are also templates.
+The posts are stored in the `content/posts` directory of this repository, and their routes are built with `getStaticPaths` dynamically at build time.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/EwewKEHHkd4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true"></iframe>
+### The `content` folder
 
-## Local development workflow tips
+Here's where your actual content lives, you can control how content is stored from the `defineSchema` function, by default we use `markdown`.
 
-### Typescript
+### `components`
 
-A good way to ensure your components match the shape of your data is to leverage the auto-generated TypeScript types.
-These are rebuilt when your `.tina` config changes.
+Most of the components in this project are very basic and are for demonstration purposes, feel free to replace them with something of your own!
 
-You can import them from the `.tina` folder and use them to help guide your application development:
+### `pages/_app.js`
 
-```tsx
-import type { Posts_Document } from "../../.tina/__generated__/types";
+The `_app.js` file is a feature in Next.js that allows you to wrap all of your routes in some specific logic which will be applied to every page. We're using it to wrap your site content in TinaCMS context. We do this so when data passes through, we can _hydrate_ it so that it's editable in real time. You may notice that it's being loaded dynamically based on something called `EditState`, when you're in edit mode we'll load `TinaCMS` and all that it provides. When you're not in edit mode Tina stays out of the way so your builds stay lean.
 
-...
-return {
-  props: {
-    data: await client.request<{ getPostsDocument: Posts_Document }>(query,
-    {
-      variables,
-    }),
-    ...
-  },
-};
-```
+By default we've toggle the `showEditButton` to `true`. You'll likely want to remove that option as it'll show for visitors to your site.
 
-### Visual Studio Code
+### `pages/posts/[filename].tsx`
 
-#### GraphQL extension
+The posts are stored in the `content/posts` directory of this repository, and their routes are built with `getStaticPaths` dynamically at build time. You'll notice a couple of helper functions like `getStaticPropsForTina` and `staticRequest`. These are helper functions to make sure you're returning data from the local GraphQL server in a shape that Tina understands. Feel free to bring your own http client if you'd like. Read more about these helpers in the [Next.JS APIs documentation](/docs/tinacms-context/)
 
-Tina Cloud generates your GraphQL schema automatically. 🪄
+### Creating your own pages
 
-[Install GraphQL extension](https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql) to benefit from type auto-completion.
+For now, TinaCMS works best when you:
 
-### Explore the GraphQL API
+1. Use `getStaticProps` for data
+2. Return data from `getStaticProps` with `data`, `query`, and `variables` properties.
+3. Wrap your `_app.js` in TinaCMS dynamically.
 
-If you have a GraphQL client like [Altair](https://altair.sirmuel.design/) go to `http://localhost:4001/graphql` to browse the docs and query our GraphQL API.
+After that, you're on your own. Go build something and share it with us on [Twitter](https://twitter.com/tina_cms).
