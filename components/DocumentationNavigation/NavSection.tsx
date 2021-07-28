@@ -250,7 +250,7 @@ const NavItem = styled.li<NavItemProps>`
     props.open &&
     css`
       ${SubNav} {
-        max-height: 40rem;
+        max-height: 50rem;
         transition: all 180ms ease-in;
       }
 
