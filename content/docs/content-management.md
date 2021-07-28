@@ -1,6 +1,6 @@
 ---
 title: Content Management With Tina
-prev: /docs/tinacms
+prev: /docs/toolkit
 next: /docs/cms
 ---
 
