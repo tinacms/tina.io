@@ -8,13 +8,19 @@
       "data": "./overview.md"
     },
     {
+      "title": "Create an Account with TinaCMS",
+      "id": "/guides/tina-cloud/starter/create-account/",
+      "slug": "/guides/tina-cloud/starter/create-account/",
+      "data": "./create-account.md"
+    },
+    {
       "title": "Getting up and running locally",
       "id": "/guides/tina-cloud/starter/local/",
       "slug": "/guides/tina-cloud/starter/local/",
       "data": "./local.md"
     },
     {
-      "title": "Connect to Tina Cloud",
+      "title": "Working with TinaCMS",
       "id": "/guides/tina-cloud/starter/connect-to-tina-cloud/",
       "slug": "/guides/tina-cloud/starter/connect-to-tina-cloud/",
       "data": "./connect-to-tina-cloud.md"

@@ -32,7 +32,6 @@ const TinaWrapper = ({ children }) => {
     return new TinaCMS({
       apis: {
         tina: new Client({
-          organizationId: 'YOUR_ORGANIZATION_ID',
           clientId: 'YOUR_CLIENT_ID',
           branch: 'main',
         }),

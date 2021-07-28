@@ -138,4 +138,4 @@ Tina Cloud has an amazing local dev-workflow, as you can run a version of Tina C
 
 ### Use the Tina Cloud API on your production pages
 
-Currently, we are only using the Tina Cloud API on our /admin page. We can also update our production page so that we can source our content consistently between our production page and our editing pages. Read the [Tina Cloud Client](https://tinacms-site-next-git-tina-cloud-docs-tinacms.vercel.app/docs/tina-cloud/client/) docs to learn more.
+Currently, we are only using the Tina Cloud API on our /admin page. We can also update our production page so that we can source our content consistently between our production page and our editing pages. Read the [Tina Cloud Client](/docs/tina-cloud/client/) docs to learn more.
