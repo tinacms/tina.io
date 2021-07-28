@@ -226,6 +226,8 @@ An `object` type takes either a `fields` _or_ `templates` property (just like th
 
 Likewise, if you supply a `templates` field and `list: true`, you'll get the same API as `blocks`. However you can also say `list: false` (or omit it entirely), and you'll have a polymorphic object which is _not_ an array.
 
+> Gotcha - `type: object` with `templates: []` and `list: false` is not yet suppored for form generation. You can use it your API but won't be able to edit that field.
+
 This is identical to the current `blocks` definition:
 
 ```js
@@ -478,22 +480,12 @@ They now include the proper namespace to prevent naming collisions and no longer
       }
     }
   }
+}
 ```
 
 ### Undefined list fields will return `null`
 
-Previously an listable field which wasn't defined in the document was treated as an emptry array. So for example:
-
-```md
----
-title: 'Hello, World'
-categories:
-  - sports
-  - movies
----
-```
-
-The responsee would be `categories: ['sports', 'movies']`. If you omit the items, but kept the empty array:
+Previously a listable field which wasn't defined in the document was treated as an empty array. Moving forward the API response will result in `null` rather than `[]`:
 
 ```md
 ---
