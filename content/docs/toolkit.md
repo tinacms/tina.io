@@ -1,6 +1,6 @@
 ---
-title: TinaCMS
-id: '/docs/tinacms'
+title: TinaCMS Toolkit
+id: '/docs/toolkit'
 next: /docs/content-management
 ---
 
