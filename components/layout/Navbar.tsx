@@ -68,15 +68,19 @@ export function Navbar({}) {
         }
 
         .navbar {
-          padding: 3.5rem 0 3.5rem 0;
+          padding: 2rem 0 1rem 0;
           margin-bottom: -1px;
           background: linear-gradient(to bottom, #d1faf6, #e6faf8);
+
+          @media (min-width: 1200px) {
+            padding: 3.5rem 0 2rem 0;
+          }
         }
 
         .navGrid {
           width: 100%;
           display: grid;
-          grid-gap: 2rem 1rem;
+          grid-gap: 1rem;
           grid-template-columns: 1fr 1fr;
           grid-template-rows: 1fr 1fr;
 
@@ -97,7 +101,7 @@ export function Navbar({}) {
           padding-bottom: 10px;
 
           :global(svg) {
-            width: 130px;
+            width: 115px;
             height: auto;
           }
 

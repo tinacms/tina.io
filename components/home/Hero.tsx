@@ -117,8 +117,7 @@ export const HeroFeature = ({ item }) => {
       {item.actions && <Actions items={item.actions} align="center" />}
       <style jsx>{`
         .feature {
-          padding: calc(var(--spacer-size) * 0.5) 0 calc(var(--spacer-size) * 2)
-            0;
+          padding: 4rem 0 7rem 0;
         }
 
         .heading {

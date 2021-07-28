@@ -51,8 +51,13 @@ export const Hero = styled(({ overlap, narrow, children, ...styleProps }) => {
     props.mini &&
     css`
       padding: 0;
-      height: 10rem;
+      height: 3rem;
       margin-bottom: -6rem;
+
+      &:before {
+        bottom: 0;
+        background-image: url('/svg/hero-background-mini.svg');
+      }
 
       @media (min-width: 1200px) {
         padding: 0;

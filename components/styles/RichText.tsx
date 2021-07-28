@@ -175,13 +175,16 @@ const RichText = css`
   }
 
   hr {
-    border: none;
-    border-bottom: 3px dotted var(--color-primary);
-    width: 8rem;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-image: initial;
+    border-bottom: 5px dotted var(--color-seafoam-dark);
+    width: 6rem;
     max-width: 100%;
     display: block;
     height: 0px;
-    margin: 2rem 0;
+    margin: 2rem 0px;
   }
 
   strong {

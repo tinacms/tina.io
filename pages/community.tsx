@@ -255,6 +255,7 @@ const InfoImage = styled(({ src, ...styleProps }) => {
   }
 `
 
+// @ts-ignore
 const FormSection = styled(Section)`
   @media (min-width: 800px) {
     text-align: center;

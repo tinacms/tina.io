@@ -108,8 +108,12 @@ export const GlobalStyle = React.memo(createGlobalStyle`
     --color-secondary-dark: #241748;
     --color-blue: var(--color-secondary-dark);
     --color-blue-light: var(--color-secondary);
-    --color-seafoam: #E6FAF8;
-    --color-seafoam-dark: #B4F4E0;
+    --color-seafoam-100: #F2FDFC;
+    --color-seafoam-200: #E6FAF8;
+    --color-seafoam-300: #D1FAF6;
+    --color-seafoam-400: #B4F4E0;
+    --color-seafoam: var(--color-seafoam-200);
+    --color-seafoam-dark: var(--color-seafoam-400);
     --color-light: #FAFAFA;
     --color-light-dark: #E9E9EC;
     --color-grey: #595959;
