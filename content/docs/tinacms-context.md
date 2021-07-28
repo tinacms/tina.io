@@ -16,8 +16,8 @@ TinaCMS is easiest to work with when you provide a predictable shape to the prop
 // pages/home.js
 import { getStaticPropsForTina } from 'tinacms'
 
-const getStaticProps = () => {
-  return getStaticPropsForTina({
+const getStaticProps = async () => {
+  const tinaProps = await getStaticPropsForTina({
     query: `
       query GetPostDocument($relativePath: String!) {
         getPostDocument(relativePath: $relativePath) {
@@ -30,6 +30,11 @@ const getStaticProps = () => {
       relativePath: 'hello-world.md',
     },
   })
+
+  return {
+    ...tinaProps,
+    myOtherProp: 'some-other-data',
+  }
 }
 ```
 
