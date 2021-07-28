@@ -118,9 +118,14 @@ CLOUDINARY_API_SECRET=<Get this from your Cloudinary account>
 
 Now restart your dev server and you will be able to access your cloudinary media library 🤩.
 
+<!-- Not sure why but when this comment is here the video autoplay works. When it is not here it does not work -->
+
+
 <video autoplay muted loop>
   <source src="/img/tina-starter/Media_video.mp4" type="video/mp4" />
   Your browser does not support the video tag.
 </video>
+
+<!--  -->
 
 For more details check out the <a href="https://github.com/tinacms/tinacms/tree/main/packages/next-tinacms-cloudinary" target="_blank">package readme to set up cloudinary</a> in your own project.
