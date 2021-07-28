@@ -67,7 +67,7 @@ export function FlyingBlock({ data, index }) {
       </div>
       <style jsx>{`
         .learnTina {
-          padding: 5rem 0;
+          padding: 6rem 0;
           position: relative;
           z-index: 2;
           overflow: hidden;
@@ -96,7 +96,10 @@ export function FlyingBlock({ data, index }) {
           top: 0;
           left: 0;
           width: 100%;
-          height: 100%;
+          height: 0;
+          padding-bottom: 50%;
+          top: 50%;
+          transform: translate3d(0, -50%, 0);
           z-index: -1;
           pointer-events: none;
 
@@ -108,6 +111,7 @@ export function FlyingBlock({ data, index }) {
             height: 100%;
             object-fit: cover;
             animation-duration: 50s;
+            animation-delay: -25s;
             animation-name: movingBackground;
             animation-iteration-count: infinite;
             animation-timing-function: linear;
@@ -121,9 +125,11 @@ export function FlyingBlock({ data, index }) {
 
         .foreground {
           z-index: 10;
+          opacity: 0.7;
 
           :global(svg) {
             animation-duration: 30s;
+            animation-delay: -15s;
           }
 
           :global(svg:nth-child(2)) {
@@ -135,7 +141,7 @@ export function FlyingBlock({ data, index }) {
           font-family: var(--font-tuner);
           font-weight: bold;
           line-height: 1.4;
-          margin-bottom: 1.25rem;
+          margin-bottom: 1.5rem;
           font-size: 2.5rem;
           color: var(--color-orangeg);
         }
@@ -146,7 +152,7 @@ export function FlyingBlock({ data, index }) {
           opacity: 0.85;
 
           &:not(:last-child) {
-            margin-bottom: 1.375rem;
+            margin-bottom: 1.5rem;
           }
         }
 
