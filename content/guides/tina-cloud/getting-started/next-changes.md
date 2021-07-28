@@ -1,0 +1,313 @@
+---
+title: NextJS Starter Changes
+last_edited: '2021-07-19T15:36:36.046Z'
+---
+
+## Creating the getStaticPaths query
+
+The `getStaticPaths` query is going to need to know where all of our markdown files are located, with our current schema you have the option to use `getPostsList` which will provide a list of all posts in our `_posts` folder. Make sure your local server is running and navigate to https://localhost:4001/altair and select the Docs button. The Docs button gives you the ability to see all the queries possible and the variables returned:
+
+![Altair Doc example](/gif/altair_doc.gif)
+
+So based upon the `getPostsList` we will want to query the `sys` which is the filesystem and retrieve the `filename`, which will return all the filenames without the extension.
+
+```graphql,copy
+query {
+  getPostsList {
+    sys {
+      filename
+    }
+  }
+}
+```
+
+If you run this query in the GraphQL client you will see the following returned:
+
+```json,copy
+{
+  "data": {
+    "getPostsList": [
+      {
+        "sys": {
+          "filename": "dynamic-routing"
+        }
+      },
+      {
+        "sys": {
+          "filename": "hello-world"
+        }
+      },
+      {
+        "sys": {
+          "filename": "preview"
+        }
+      }
+    ]
+  }
+}
+```
+
+### Adding this query to our Blog.
+
+The NextJS starter blog is served on the dynamic route `/pages/posts/[slug].js` when you open the file you will see a function called `getStaticPaths` at the bottom of the file.
+
+```js
+export async function getStaticPaths() {
+
+....
+```
+
+Remove all the code inside of this function and we can update it to use our own code. The first step is to add an import to the top of the file to be able to create a client that can interact with our graphql:
+
+```js
+//other imports
+.....
+import { staticRequest } from "tinacms";
+```
+
+Inside of the `getStaticPaths` function we can construct our request to our content-api, when making a request we expect a `query` or `mutation` and then `variables` to be passed to the query, here is an example:
+
+```js
+staticRequest({
+  query: '...', // our query
+  variables: {...}, // any variables used by our query
+}),
+```
+
+> "_What does `staticRequest` do_?"
+
+> It's just a helper function which supplies a query to your locally-running GraphQL server, which is started on port `4001`. You can just as easily use `fetch` or an http client of your choice.
+
+We can use the `getPostsList` query from earlier to build our dynamic routes:
+
+```js,copy
+export async function getStaticPaths() {
+  const postsListData = await staticRequest({
+    request: `
+    {
+      getPostsList {
+        edges {
+          node {
+            sys {
+              filename
+            }
+          }
+        }
+      }
+    }
+    `,
+    variables: {},
+  })
+  return {
+    paths: postsListData.getPostsList.data.edges.map(edge => ({
+      params: { slug: edge.post.sys.filename },
+    })),
+    fallback: false,
+  }
+}
+```
+
+#### Quick break down of `getStaticPaths`
+
+The `getStaticPaths` code takes the graphql query we created, because it does not require any `variables` we can send down an empty object. In the return functionality we map through each item in the `postsListData.getPostsList` and create a slug for each one.
+
+We now need to create one more query, this query will fill in all the data and give us the ability to make all our blog posts editable.
+
+## Creating the `getStaticProps` query
+
+The `getStaticProps` query is going to deliver all the content to the blog, which is how it works currently. When we use the GraphQL API we will both deliver the content and give the content team the ability to edit it right in the browser.
+
+We need to query the following things from our content api:
+
+- Title
+- Excerpt
+- Date
+- Cover Image
+- OG Image data
+- Author Data
+- Body content
+
+### Creating our Query
+
+Using our local graphql client we can query the `getPostsDocument` using the path to the blog post in question, below is the skeleton of what we need to fill out.
+
+```graphql
+query BlogPostQuery($relativePath: String!) {
+  getPostsDocument(relativePath: $relativePath) {
+    # data from our posts.
+  }
+}
+```
+
+We can now fill in the relevant fields we need to query, take special note of both `author` and `ogImage` which are grouped so they get queried as:
+
+```graphql
+author {
+  name
+  picture
+}
+ogImage {
+  url
+}
+```
+
+Once you have filled in all the fields you should have a query that looks like the following:
+
+```graphql
+query BlogPostQuery($relativePath: String!) {
+  getPostsDocument(relativePath: $relativePath) {
+    data {
+      title
+      excerpt
+      date
+      coverImage
+      author {
+        name
+        picture
+      }
+      ogImage {
+        url
+      }
+      body
+    }
+  }
+}
+```
+
+### Adding our query to our blog
+
+Since these pages are dynamic, we'll want to use the values we returned from `getStaticPaths` in our query. We'll destructure `params` to grab the `slug`, using it as a `relativePath`. As you'll recall the "Blog Posts" collection stores files in a folder called `_posts`, so we want to make a request for the relative path of our content. Meaning for the file located at `_posts/hello-world.md`, we only need to supply the relative portion of `hello-world.md`.
+
+```js
+export const getStaticProps = async ({ params }) => {
+  const { slug } = params
+  // Ex. `slug` is `hello-world`
+  const variables = { relativePath: `${slug}.md` }
+  // ...
+}
+```
+
+We'll use a new helper function called `getStaticPropsForTina`, which does exactly like it sounds like it might do. It will return not only the _data_ from your query, but also the query string and variables themselves. This is necessary for Tina to enable realtime editing on your page.
+
+So the full query should look like this:
+
+```js,copy
+import { getStaticPropsForTina } from 'tinacms'
+
+export const getStaticProps = async ({ params }) => {
+  const { slug } = params
+  const variables = { relativePath: `${slug}.md` }
+  const tinaProps = await getStaticPropsForTina({
+    query: `
+      query BlogPostQuery($relativePath: String!) {
+        getPostsDocument(relativePath: $relativePath) {
+          data {
+            title
+            excerpt
+            date
+            coverImage
+            author {
+              name
+              picture
+            }
+            ogImage {
+              url
+            }
+            body
+          }
+        }
+      }
+    `,
+    variables: variables,
+  })
+
+  return {
+    props: {
+      ...tinaProps, // {data: {...}, query: '...', variables: {...}}
+      slug,
+    },
+  }
+}
+```
+
+## Using the new content on the page
+
+We now need to edit the Post function, firstly we are now going to pass in the data and slug to it instead of what was there before:
+
+```js
+export default function Post({ data, slug }) {
+  // original code
+}
+```
+
+To make our code easy to follow and read we can destructure the data props:
+
+```js
+export default function Post({ data, slug }) {
+  const {
+    title,
+    coverImage,
+    date,
+    author,
+    body,
+    ogImage,
+  } = data.getPostsDocument.data
+```
+
+Finally we can replace any of the old code with new code so the code should now look like this:
+
+```js
+export default function Post({ data, slug }) {
+  const {
+    title,
+    coverImage,
+    date,
+    author,
+    body,
+    ogImage,
+  } = data.getPostsDocument.data
+  const router = useRouter()
+
+  if (!router.isFallback && !slug) {
+    return <ErrorPage statusCode={404} />
+  }
+  return (
+    <Layout preview={false}>
+      <Container>
+        <Header />
+        {router.isFallback ? (
+          <PostTitle>Loading…</PostTitle>
+        ) : (
+          <>
+            <article className="mb-32">
+              <Head>
+                <title>
+                  {title} | Next.js Blog Example with {CMS_NAME}
+                </title>
+                <meta property="og:image" content={ogImage.url} />
+              </Head>
+              <PostHeader
+                title={title}
+                coverImage={coverImage}
+                date={date}
+                author={author}
+              />
+              <PostBody content={body} />
+            </article>
+          </>
+        )}
+      </Container>
+    </Layout>
+  )
+}
+```
+
+Visit [http://localhost:3000/posts/hello-world](http://localhost:3000/posts/hello-world) to see the GraphQL-powered page.
+
+### Editing content:
+
+Now we are ready to launch and start editing the content, launch the application using the `yarn tina-dev` command and navigate one of the posts. Now because our application is "protected" you will need to navigate to http://localhost:3000/admin or click the edit button at the top of the screen. Once you do one of those on the left hand side you will see a blue pencil clicking that will allow you to edit any of the content:
+
+![Editing Gif](/gif/editing_smaller.gif)
+
+At this point we have created an exact replication of the NextJS starter with the ability to edit any of the fields and now have the ability to make changes. This is great except we have an issue the markdown is being treated as plaintext which isn't what we want.

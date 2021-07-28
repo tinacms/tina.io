@@ -1,42 +1,31 @@
 ---
-title: Connect to Tina Cloud
-last_edited: '2021-05-10T10:00:00.000Z'
+title: Working with TinaCMS
+last_edited: '2021-07-27T10:00:00.000Z'
 ---
 
-## Connect to Tina Cloud
-
-While the fully local development workflow is the recommended way for developers to work,
-you'll likely want other editors and collaborators to be able to make changes on a hosted website with authentication.
-
-> ℹ️ Changes in edit mode show up on your home page after your site finishes a rebuild.
-
-## Register your local application with Tina Cloud
-
-1. Visit [auth.tina.io](https://auth.tina.io/register), create an organization, and sign in. Make a note of your organization name.
-2. Create a Tina Cloud app that connects to the GitHub repository you've just forked. Once your app is created, click on the app to get to the app settings and copy the client ID.
-
-## Connect your local project with Tina Cloud
-
-In the `env.local` file set:
+Open your project locally and in the `env.local` file set:
 
 - `NEXT_PUBLIC_USE_LOCAL_CLIENT` to `0`.
-- `NEXT_PUBLIC_ORGANIZATION_NAME` to your Tina Cloud organization name
-- `NEXT_PUBLIC_TINA_CLIENT_ID` to the Client ID displayed in your Tina Cloud App.
+- `NEXT_PUBLIC_TINA_CLIENT_ID` to the Client ID copied from an earlier step and found in your app's Overview section.
 
 Restart your server and run `yarn dev` again.
 
-Open [`http://localhost:3000/`](http://localhost:3000/`) and click "enter edit mode"
+To edit the site, navigate to <a href="http://localhost:3000/admin" target="_blank">http://localhost:3000/admin</a>. This activates the edit mode.
 
 ![](https://raw.githubusercontent.com/tinacms/tina-cloud-starter/main/public/uploads/tina-cloud-authorization.png)
 
-This time a modal asks you to authenticate through Tina Cloud. Upon success, Tina will send your edits to the cloud server, and subsequently to GitHub.
+This time a modal asks you to authenticate through TinaCMS. Upon success, Tina will send your edits to the TinaCMS server, and subsequently to GitHub.
 
-#### Edit content
+> To enter **edit mode**, navigate to the `admin` route of the site.
+
+## Edit content
 
 Make some edits through the sidebar and click save.
 Changes are saved in your GitHub repository.
 
 Now that Tina Cloud editing is working correctly, we can deploy the site so that other team members can make edits too.
+
+![update-from-graphql-client](/img/update-from-graphql-client.jpg)
 
 > ℹ️ Gotcha: since your changes are being synced directly to Github, you'll notice that when you're in non-"edit" mode your page still receives the unedited data from your local file system. This is mostly fine since editing with Tina Cloud is designed for hosted environments. But beware that changes to your schema may result in a mismatch between the Tina Cloud API and your local client.
 
@@ -49,16 +38,16 @@ Now that Tina Cloud editing is working correctly, we can deploy the site so that
 Connect to your GitHub repository and set the same environment variables as the ones in your `env.local` file:
 
 ```
-NEXT_PUBLIC_ORGANIZATION_NAME= <YOUR_ORGANIZATION>
 NEXT_PUBLIC_TINA_CLIENT_ID= <YOUR_CLIENT_ID>
+NEXT_PUBLIC_USE_LOCAL_CLIENT=0
 ```
 
-![](https://raw.githubusercontent.com/tinacms/tina-cloud-starter/main/public/uploads/vercel-congratulations.png)
+Add the deployment URL to your app's Site Urls. To do this, go to your app's **Configuration** page.
 
 🎉 Congratulations, your site is now live!
 
-You can test that everything is configured correctly by navigating to `[your deployment URL]/`, click "edit this site",
-log in to Tina Cloud, and making some edits. Your changes should be saved to your GitHub repository.
+You can test that everything is configured correctly by navigating to `[your deployment URL]/`, navigating to the `admin` route,
+log in to TinaCMS, and start making some edits. Your changes should be saved to your GitHub repository.
 
 ### Netlify
 
@@ -67,8 +56,8 @@ log in to Tina Cloud, and making some edits. Your changes should be saved to you
 Connect to your GitHub repository, click on **advanced** to set the same environment variables as the ones in your `env.local` file:
 
 ```
-NEXT_PUBLIC_ORGANIZATION_NAME= <YOUR_ORGANIZATION>
 NEXT_PUBLIC_TINA_CLIENT_ID= <YOUR_CLIENT_ID>
+NEXT_PUBLIC_USE_LOCAL_CLIENT=0
 ```
 
 Set the **build command** to `yarn build`,
@@ -76,5 +65,67 @@ Set the **publish directory**. To `.next/` .
 
 Once you're done, click "Deploy site".
 
-You can test that everything is configured correctly by navigating to `[your deployment URL]/`, click "edit this site",
-log in to Tina Cloud, and making some edits. Your changes should be saved to your GitHub repository.
+Add the deployment URL to your app's Site Urls. To do this, go to your app's **Configuration** page.
+
+You can test that everything is configured correctly by navigating to `[your deployment URL]/`, navigate to the `admin` route,
+log in to Tina, and making some edits. Your changes should be saved to your GitHub repository.
+
+> ℹ️ Changes in edit mode show up on your home page after your site finishes a rebuild.
+
+🎉 You now have a **completely customizable** site that can be fully edited with TinaCMS!
+
+## Media Management _(Optional)_
+
+Currently Tina Cloud only supports the <a href="https://github.com/tinacms/tinacms/tree/main/packages/next-tinacms-cloudinary" target="_blank">Cloudinary media store</a>. To add it, first uncomment two lines in your `_app.js`:
+
+```diff
+import "../styles.css";
+import dynamic from "next/dynamic";
+import { TinaEditProvider } from "tinacms/dist/edit-state";
+import { Layout } from "../components/layout";
+const TinaCMS = dynamic(() => import("tinacms"), { ssr: false });
+-// import { TinaCloudCloudinaryMediaStore } from "next-tinacms-cloudinary";
++ import { TinaCloudCloudinaryMediaStore } from "next-tinacms-cloudinary";
+
+const NEXT_PUBLIC_TINA_CLIENT_ID = process.env.NEXT_PUBLIC_TINA_CLIENT_ID;
+const NEXT_PUBLIC_USE_LOCAL_CLIENT =
+  process.env.NEXT_PUBLIC_USE_LOCAL_CLIENT || true;
+
+const App = ({ Component, pageProps }) => {
+  return (
+    <>
+      <TinaEditProvider
+        editMode={
+          <TinaCMS
+            branch="main"
+            clientId={NEXT_PUBLIC_TINA_CLIENT_ID}
+            isLocalClient={Boolean(Number(NEXT_PUBLIC_USE_LOCAL_CLIENT))}
+-            // mediaStore={TinaCloudCloudinaryMediaStore}
++             mediaStore={TinaCloudCloudinaryMediaStore}
+            {...pageProps}
+          >
+...
+```
+
+Next update your `.env.local` file with a couple of new environment variables that you can get from your [Cloudinary dashboard](https://cloudinary.com/console/).
+
+```env
+# These are used in conjunction with a Cloudinary account for media asset management
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=<Get this from your Cloudinary account>
+NEXT_PUBLIC_CLOUDINARY_API_KEY=<Get this from your Cloudinary account>
+CLOUDINARY_API_SECRET=<Get this from your Cloudinary account>
+```
+
+Now restart your development server to be able to access your Cloudinary media library in Tina 🤩.
+
+<!-- Not sure why but when this comment is here the video autoplay works. When it is not here it does not work -->
+
+
+<video autoplay muted loop>
+  <source src="/img/tina-starter/Media_video.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
+<!--  -->
+
+For more details check out the <a href="https://github.com/tinacms/tinacms/tree/main/packages/next-tinacms-cloudinary" target="_blank">package README to set up Cloudinary</a> in your own project.

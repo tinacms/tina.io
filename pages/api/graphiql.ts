@@ -1,0 +1,114 @@
+import { buildASTSchema, print } from 'graphql'
+import { graphqlHTTP } from 'express-graphql'
+import { createDatabase, resolve, indexDB } from '@tinacms/graphql'
+import type { TinaCloudSchema} from '@tinacms/graphql'
+
+export default async function feedback(req, res) {
+  const database = await createDatabase({
+    bridge: new InMemoryBridge(''),
+  })
+  await indexDB({ database, config })
+  return graphqlHTTP({
+    schema: buildASTSchema(await database.getGraphQLSchema()),
+    customExecuteFn: async args => {
+      const query = print(args.document)
+
+      const result = await resolve({
+        database,
+        query,
+        variables: args.variableValues,
+      })
+      return result
+    },
+    graphiql: true,
+  })(req, res)
+}
+
+export class InMemoryBridge {
+  public rootPath: string
+  private mockFileSystem: { [filepath: string]: string } | undefined
+  constructor(rootPath: string) {
+    this.rootPath = rootPath
+    this.mockFileSystem = mockFileSystem
+  }
+  public glob = async (pattern: string) => {
+    return Object.keys(this.mockFileSystem).filter(key =>
+      key.startsWith(pattern)
+    )
+  }
+  public get = async (filepath: string) => {
+    const mockData = await this.getMockData()
+    const value = mockData[filepath]
+    if (!value) {
+      throw new Error(`Unable to find record for ${filepath}`)
+    }
+    return value
+  }
+  public put = async (filepath: string, data: string) => {
+    const mockData = await this.getMockData()
+    this.mockFileSystem = { ...mockData, [filepath]: data }
+  }
+
+  public getMockData = async () => {
+    return this.mockFileSystem
+  }
+}
+
+const mockFileSystem = {
+  'content/posts/voteForPedro.json': JSON.stringify({
+    title: "Vote For Pedro",
+    category: "politics",
+    author:  "content/authors/napolean.json"
+  }),
+  'content/authors/napolean.json': JSON.stringify({
+    name: 'Napolean'
+  }),
+}
+
+const config: TinaCloudSchema = {
+  collections: [
+    {
+      label: 'Blog Posts',
+      name: 'post',
+      path: 'content/posts',
+      format: "json",
+      fields: [
+        {
+          type: 'string',
+          label: 'Title',
+          name: 'title',
+        },
+        {
+          type: 'string',
+          label: 'Category',
+          name: 'category',
+        },
+        {
+          type: 'reference',
+          label: 'Author',
+          name: 'author',
+          collections: ['author'],
+        },
+      ],
+    },
+    {
+      label: 'Authors',
+      name: 'author',
+      format: "json",
+      path: 'content/authors',
+      fields: [
+        {
+          type: 'string',
+          label: 'Name',
+          name: 'name',
+        },
+        {
+          type: 'string',
+          label: 'Avatar',
+          name: 'avatar',
+        },
+      ],
+    },
+  ],
+}
+

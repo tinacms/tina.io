@@ -1,5 +1,6 @@
 import React from 'react'
 import { connectSearchBox } from 'react-instantsearch-dom'
+// @ts-ignore
 import * as debounce from 'lodash/debounce'
 import { IconWrapper, Input, SearchContainer } from './styles'
 import { SearchIcon } from './SearchIcon'
