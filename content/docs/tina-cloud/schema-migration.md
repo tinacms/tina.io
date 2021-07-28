@@ -1,5 +1,5 @@
 ---
-title: Upgrading Tina GraphQL Gateway from Alpha to Beta
+title: From GraphQL Gateway to TinaCMS
 ---
 
 # Package reorganization
