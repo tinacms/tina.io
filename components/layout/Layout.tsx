@@ -7,7 +7,7 @@ import { CloudBanner } from './CloudBanner'
 import { Navbar } from './Navbar'
 
 interface LayoutProps {
-  children: any[]
+  children: any | any[]
   color?: 'white' | 'secondary' | 'seafoam'
 }
 
