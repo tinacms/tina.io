@@ -14,8 +14,12 @@ So based upon the `getPostsList` we will want to query the `sys` which is the fi
 ```graphql,copy
 query {
   getPostsList {
-    sys {
-      filename
+    edges {
+      node {
+        sys {
+          filename
+        }
+      }
     }
   }
 }
@@ -26,23 +30,31 @@ If you run this query in the GraphQL client you will see the following returned:
 ```json,copy
 {
   "data": {
-    "getPostsList": [
-      {
-        "sys": {
-          "filename": "dynamic-routing"
+    "getPostsList": {
+      "edges": [
+        {
+          "node": {
+            "sys": {
+              "filename": "dynamic-routing"
+            }
+          }
+        },
+        {
+          "node": {
+            "sys": {
+              "filename": "hello-world"
+            }
+          }
+        },
+        {
+          "node": {
+            "sys": {
+              "filename": "preview"
+            }
+          }
         }
-      },
-      {
-        "sys": {
-          "filename": "hello-world"
-        }
-      },
-      {
-        "sys": {
-          "filename": "preview"
-        }
-      }
-    ]
+      ]
+    }
   }
 }
 ```
@@ -57,12 +69,13 @@ export async function getStaticPaths() {
 ....
 ```
 
-Remove all the code inside of this function and we can update it to use our own code. The first step is to add an import to the top of the file to be able to create a client that can interact with our graphql:
+Remove all the code inside of this function and we can update it to use our own code. The first step is to add an import to the top of the file to be able interact with our graphql and remove the `getPostBySlug` and `getAllPosts` imports we won't be using:
 
-```js
+```diff
 //other imports
 .....
-import { staticRequest } from "tinacms";
+- import { getPostBySlug, getAllPosts } from '../../lib/api'
++ import { staticRequest } from "tinacms";
 ```
 
 Inside of the `getStaticPaths` function we can construct our request to our content-api, when making a request we expect a `query` or `mutation` and then `variables` to be passed to the query, here is an example:
@@ -83,16 +96,16 @@ We can use the `getPostsList` query from earlier to build our dynamic routes:
 ```js,copy
 export async function getStaticPaths() {
   const postsListData = await staticRequest({
-    request: `
-    {
-      getPostsList {
-        edges {
-          node {
+    query: `
+      query {
+        getPostsList {
+          edges {
+            node {
             sys {
               filename
+              }
             }
           }
-        }
       }
     }
     `,
@@ -189,10 +202,15 @@ export const getStaticProps = async ({ params }) => {
 
 We'll use a new helper function called `getStaticPropsForTina`, which does exactly like it sounds like it might do. It will return not only the _data_ from your query, but also the query string and variables themselves. This is necessary for Tina to enable realtime editing on your page.
 
+Add `getStaticPropsForTina` to the imports at the top of your file, your import should look like:
+
+```js, copy
+import { staticRequest,getStaticPropsForTina } from "tinacms";
+```
+
 So the full query should look like this:
 
 ```js,copy
-import { getStaticPropsForTina } from 'tinacms'
 
 export const getStaticProps = async ({ params }) => {
   const { slug } = params
@@ -254,10 +272,19 @@ export default function Post({ data, slug }) {
   } = data.getPostsDocument.data
 ```
 
-Finally we can replace any of the old code with new code so the code should now look like this:
+We also should set the ` <Layout preview={preview}>` to `false` as we won't be using it. 
 
-```js
-export default function Post({ data, slug }) {
+```diff
+  return (
+-    <Layout preview={preview}>
++    <Layout preview={false}>
+...
+```
+
+At this point we can replace all of the `post.*` with each of the new variables from Tina. If should look like the following
+
+```diff
+export default function Post({ data, slug}) {
   const {
     title,
     coverImage,
@@ -268,7 +295,8 @@ export default function Post({ data, slug }) {
   } = data.getPostsDocument.data
   const router = useRouter()
 
-  if (!router.isFallback && !slug) {
+- if (!router.isFallback && !post?.slug) {
++ if (!router.isFallback && !slug) {
     return <ErrorPage statusCode={404} />
   }
   return (
@@ -282,17 +310,23 @@ export default function Post({ data, slug }) {
             <article className="mb-32">
               <Head>
                 <title>
-                  {title} | Next.js Blog Example with {CMS_NAME}
+-                {post.title} | Next.js Blog Example with {CMS_NAME}
                 </title>
-                <meta property="og:image" content={ogImage.url} />
+-                <meta property="og:image" content={post.ogImage.url} />
++                <meta property="og:image" content={ogImage.url} />
               </Head>
               <PostHeader
-                title={title}
-                coverImage={coverImage}
-                date={date}
-                author={author}
+-                title={post.tiltle}
++                title={title}                 
+-                coverImage={post.coverImage}
++                coverImage={post.coverImage}
+-                date={post.date}
++                date={date}
+-                author={post.author}
++                author={author}
               />
-              <PostBody content={body} />
+-              <PostBody content={post.body} />
++              <PostBody content={body} />
             </article>
           </>
         )}
