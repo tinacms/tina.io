@@ -9,7 +9,7 @@ Enable live-editing on your Next.js site with TinaCMS. [Learn more](/docs/tinacm
 
 ## Tina Schema & CLI
 
-Learn how to model your content with `defineSchema` api and run it on top of your local filesystem with the CLI. [Learn more](/docs/cli)
+Learn how to model your content with `defineSchema` api and run it on top of your local filesystem with the CLI. [Learn more](/docs/cli-overview)
 
 ## The GraphQL API
 

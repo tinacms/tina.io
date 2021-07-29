@@ -51,14 +51,19 @@
             ]
           },
           {
-            "id": "/docs/cli/",
-            "slug": "/docs/cli/",
+            "id": "/docs/cli-overview/",
+            "slug": "/docs/cli-overview/",
             "title": "Tina Schema & CLI",
             "items": [
               {
-                "title": "Anatomy of the Tina Schema",
+                "title": "Content Modeling",
                 "id": "/docs/schema",
                 "slug": "/docs/schema/"
+              },
+              {
+                "title": "TinaCMS CLI",
+                "id": "/docs/cli",
+                "slug": "/docs/cli/"
               }
             ]
           },
