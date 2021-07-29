@@ -71,7 +71,7 @@ export async function getStaticPaths() {
 
 Remove all the code inside of this function and we can update it to use our own code. The first step is to add an import to the top of the file to be able interact with our graphql and remove the `getPostBySlug` and `getAllPosts` imports we won't be using:
 
-```js
+```diff
 //other imports
 .....
 - import { getPostBySlug, getAllPosts } from '../../lib/api'
@@ -204,7 +204,7 @@ We'll use a new helper function called `getStaticPropsForTina`, which does exact
 
 Add `getStaticPropsForTina` to the imports at the top of your file, your import should look like:
 
-```jscopy
+```js, copy
 import { staticRequest,getStaticPropsForTina } from "tinacms";
 ```
 
@@ -274,7 +274,7 @@ export default function Post({ data, slug, preview }) {
 
 We also should set the ` <Layout preview={preview}>` to `false` as we won't be using it. 
 
-```js
+```diff
   return (
 -    <Layout preview={preview}>
 +    <Layout preview={false}>
@@ -283,7 +283,7 @@ We also should set the ` <Layout preview={preview}>` to `false` as we won't be u
 
 At this point we can replace all of the `post.*` with each of the new variables from Tina. If should look like the following
 
-```js
+```diff
 export default function Post({ data, slug}) {
   const {
     title,
