@@ -6,8 +6,8 @@
   "blocks": [
     {
       "_template": "hero",
-      "headline": "Unlock your Next.js project with live editing",
-      "subline": "Empower your teammates to build and edit content stored in your Git repository.",
+      "headline": "Empower Your Team with Visual Editing",
+      "subline": "Tina allows teams to build faster and deliver to production with confidence.",
       "actions": [
         {
           "variant": "orange",
@@ -31,8 +31,8 @@
       "items": [
         {
           "_template": "feature",
-          "headline": "Align your Team on the GitHub Flow",
-          "subline": "Keep ownership of your content in Markdown and JSON files and empower all teammates to update your website through a user-friendly interface.",
+          "headline": "Share A Single Collaborative Workflow",
+          "subline": "Retain the benefits of a Git workflow for your content and empower all teammates to update your website through a user-friendly interface.",
           "media": {
             "src": "/img/update-from-tina.jpg"
           }
@@ -40,15 +40,15 @@
         {
           "_template": "feature",
           "headline": "Build on Top of Your Components",
-          "subline": "Add a custom editing interface on top of your React Components, with block-based data and nested forms, content teams have the power to manage and build complex pages.",
+          "subline": "Add an editing interface to your React components, with block-based data and nested forms to give content teams the power to manage and build complex pages.",
           "media": {
             "src": "/img/your-blocks.gif"
           }
         },
         {
           "_template": "feature",
-          "headline": "Real-Time Visual Feedback",
-          "subline": "Be productive, see changes apply in real time when you edit your content on your live website Submit changes and it’s live!",
+          "headline": "Edit with Dynamic Visual Feedback",
+          "subline": "Accelerate productivity; see changes in context as you edit your content on your website.",
           "media": {
             "src": "/img/edit-alongside-content.gif"
           }
@@ -56,7 +56,7 @@
         {
           "_template": "feature",
           "headline": "Query Your Content",
-          "subline": "Tina Cloud provides a GraphQL layer on top of the files stored in your repository, allowing you to query content across all your files.",
+          "subline": "Query your content across all your files using Tina Cloud’s GraphQL layer on top of the files stored in your repository.",
           "media": {
             "src": "/img/your-blocks.gif"
           }
@@ -64,7 +64,7 @@
         {
           "_template": "feature",
           "headline": "Command Line Quickstart",
-          "subline": "The Tina CLI can be used to set up your project with Tina configuration and a basic content API, ready for you to tailor to your project.",
+          "subline": "Bootstrap your Next.js project with a basic Tina setup and get started in minutes.",
           "media": {
             "src": "/img/edit-alongside-content.gif"
           }
