@@ -280,24 +280,6 @@
           }
         ]
       },
-
-      {
-        "id": "/guides#tinacms",
-        "href": "/guides#tinacms",
-        "title": "TinaCMS",
-        "items": [
-          {
-            "id": "/guides/tinacms/adding-tina/overview/",
-            "slug": "/guides/tinacms/adding-tina/overview/",
-            "title": "Getting Started with TinaCMS"
-          },
-          {
-            "id": "/guides/tinacms/github/initial-setup/",
-            "slug": "/guides/tinacms/github/initial-setup/",
-            "title": "GitHub Backend"
-          }
-        ]
-      },
       {
         "id": "/guides#experimental",
         "title": "Experimental",
@@ -311,6 +293,11 @@
             "id": "/guides/experimental/tina-with-strapi/overview/",
             "slug": "/guides/experimental/tina-with-strapi/overview/",
             "title": "Strapi Backend"
+          },
+          {
+            "id": "/guides/tinacms/github/initial-setup/",
+            "slug": "/guides/tinacms/github/initial-setup/",
+            "title": "GitHub Backend"
           }
         ]
       }
