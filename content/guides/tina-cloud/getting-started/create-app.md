@@ -38,13 +38,15 @@ yarn tina-dev
 Once you have launch the application you have a couple of URLs to navigate to:
 
 - http://localhost:3000/demo/blog/HelloWorld
-- http://localhost:4001/altair
+- http://localhost:4001/altair/
 
 The first one will bring you to the frontend with the ability to edit the title of the post and the second will alllow you to interact with your GraphQL layer .
 
 ### A quick test
 
-Now that we have a basic Tina implementation we should give it a quick test before making the rest of the site editable. Using the frontend URL mentioned you will be able to see a smaller guide to get going. Selecting the pencil in the bottom left allows you to edit the title and the body of the page right in the frontend. When you hit save, that will save your changes to the Markdown file.
+Now that we have a basic Tina implementation we should give it a quick test before making the rest of the site editable. Using the frontend URL mentioned you will be able to see a smaller guide to get going. 
+
+If you navigate to ![`http://localhost:3000/admin`](http://localhost:3000/admin) you will enter into edit mode. Selecting the pencil in the bottom left allows you to edit the title and the body of the page right in the frontend. When you hit save, that will save your changes to the Markdown file.
 
 ![Tina Init example](/gif/tina-init.gif)
 

@@ -83,7 +83,7 @@ The `ui` property allows you to control the output of the GraphQL-generated form
 
 ### A quick test
 
-If you check the Next Starter now and enter edit mode, you will see the body now has Markdown options to make editing easier:
+Restart your application by shutting it down and running `yarn tina-dev` and enter edit mode, you will see the body now has Markdown options to make editing easier:
 
 ![Markdown Gif](/gif/markdown.gif)
 
