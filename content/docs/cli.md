@@ -1,132 +1,69 @@
 ---
-title: The TinaCMS CLI
+title: TinaCMS CLI
 ---
 
-The _TinaCMS CLI_ can be used to set up your project with TinaCMS schema configuration, and run a local version of the TinaCMS API (using your file system's content). For a real-world example of how this is being used checkout the [Tina Cloud Starter](https://github.com/tinacms/tina-cloud-starter).
+The TinaCMS CLI has many uses, it's main usage is to start the local graphql server for serving static content, compiling the schema, and providing an **init** command that allows one to get up and running with Tina quickly.
 
-## Installation
+You can run commands without having the CLI installed by using `npx @tinacms/cli commandName`. If you wish, you can also [install the CLI](/docs/cli-overview/#installation) and run commands with `yarn run tinacms commandName`.
 
-The CLI can be installed as a dev dependency in your project.
+## Init Command
 
-Npm:
+> **Hint:** If you don't have a next.js site on hand you can first bootstrap one with
+> ```bash,copy
+> npx create-next-app --example with-typescript demo-project
+> ```
 
-```bash
-npm install --save-dev @tinacms/cli
+In an **existing** Next.js project you can run
+
+```bash,copy
+npx @tinacms/cli init
 ```
 
-Yarn:
+This will,
 
-```bash
-yarn add --dev @tinacms/cli
+1. install of the dependencies you need
+2. setup a basic content model in your [`schema.ts` file](/docs/schema/)
+3. drop in a ready to go `_app.js` file
+4. add an editable page at http://localhost:3000/demo/blog/helloWorld
+
+
+
+
+## Starting the server
+
+Once the CLI [is installed](/docs/cli-overview/#installation), you can start the CLI with
+
+```bash,copy
+yarn run tinacms sever:start
 ```
 
-## Usage
+This will compile the schema into a static files, generates typescript types for you to use in your project and starts a graphQL server on http://localhost:4001
 
-```sh
-> yarn run tinacms
 
-Usage:  command [options]
+This command also takes a argument (`-c`) that allows you to run a command as a child process. This is very helpful for running a dev server and building your next.js app. The scripts portion of your package.json should look like this.
 
-Options:
-  -V, --version           output the version number
-  -h, --help              display help for command
-
-Commands:
-  server:start [options]  Start Filesystem Graphql Server
-  schema:compile          Compile schema into static files for the server
-  schema:types            Generate a GraphQL query for your site's schema, (and
-                          optionally Typescript types)
-  help [command]          display help for command
+```json,copy
+"scripts": {
+  "dev": "yarn tinacms server:start -c \"next dev\"",
+  "build": "yarn tinacms server:start -c \"next build\"",
+  "start": "yarn tinacms server:start -c \"next start\"",
+  ...
+},
 ```
 
-## Getting started
+## Compiling and Generating Types
 
-The simplest way to get started is to add a `.tina/schema.ts` file
+Sometimes you might want to only compile your schema.ts into a static files for the server to use. This can be done with
 
-```
-mkdir .tina && touch .tina/schema.ts
-```
-
-### `defineSchema`
-
-`defineSchema` tells the CMS how to build your content API.
-
-```ts
-// .tina/schema.ts
-import { defineSchema } from '@tinacms/cli'
-
-export default defineSchema({
-  collections: [
-    {
-      label: 'Blog Posts',
-      name: 'post',
-      path: 'content/posts',
-      fields: [
-        {
-          type: 'string'
-          label: 'Title',
-          name: 'title',
-        },
-      ],
-    },
-  ],
-})
+```bash,copy
+yarn tinacms schema:compile
 ```
 
-## Run the local GraphQL server
+You also might only want to generate the types. We have a command for that.
 
-Let's add some content so we can test out the GraphQL server
-
-#### Add an author
-
-```sh
-mkdir content && mkdir content/authors && touch content/authors/napoleon.md
+```bash,copy
+yarn tinacms schema:types
 ```
 
-Now let's add some content to the author
+This will look at your graphql schema an and generate typescript types based on that. The output is in `.tina/__generated__/types.ts`
 
-```markdown
----
-name: Napoleon
----
-```
-
-#### Add a post
-
-```sh
-mkdir content/posts && touch content/posts/voteForPedro.md
-```
-
-Now we add some content to the post
-
-```markdown
----
-title: Vote For Pedro
-author: content/authors/napoleon.md
----
-
-You should really vote for Pedro.
-```
-
-#### Start the filesystem server
-
-```sh
-> yarn run tinacms server:start
-
-Started Filesystem GraphQL server on port: 4001
-Visit the playground at http://localhost:4001/altair/
-Generating Tina config
-...
-```
-
-The below query can be run against your locally-running GraphQL server
-
-<iframe loading="lazy" src="/api/graphiql/?query=%7B%0A%20%20getDocument(collection%3A%20%22post%22%2C%20relativePath%3A%20%22voteForPedro.json%22)%20%7B%0A%20%20%20%20...on%20PostDocument%20%7B%0A%20%20%20%20%20%20data%20%7B%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20author%20%7B%0A%20%20%20%20%20%20%20%20%20%20...on%20AuthorDocument%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20data%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20name%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D" width="800" height="400" />
-
-## Next Steps
-
-[Enable live-editing on your Next.js site](/docs/tinacms-context/)
-
-[Deep dive on the Tina schema](/docs/schema/)
-
-[Learn all about the GraphQL API](/docs/graphql/)
