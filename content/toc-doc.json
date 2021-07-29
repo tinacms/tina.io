@@ -266,17 +266,17 @@
       {
         "id": "/guides#tina-cloud",
         "href": "/guides#tina-cloud",
-        "title": "Tina Cloud",
+        "title": "TinaCMS",
         "items": [
           {
             "id": "/guides/tina-cloud/starter/overview/",
             "slug": "/guides/tina-cloud/starter/overview/",
-            "title": "Tina Cloud Starter"
+            "title": "Tina Starter"
           },
           {
             "id": "/guides/tina-cloud/getting-started/overview/",
             "slug": "/guides/tina-cloud/getting-started/overview/",
-            "title": "Getting Started with Tina Cloud"
+            "title": "Getting Started with TinaCMS"
           }
         ]
       },
@@ -296,7 +296,7 @@
           },
           {
             "id": "/guides/tinacms/github/initial-setup/",
-            "slug": "/guides/tinacms/github/initial-setup/",
+            "slug": "/guides/experimental/github/initial-setup/",
             "title": "GitHub Backend"
           }
         ]
