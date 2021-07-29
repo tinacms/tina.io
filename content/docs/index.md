@@ -37,7 +37,7 @@ The **TinaCMS Toolkit** empowers developers to build a visual editing experience
 
 [Extending Tina](/docs/extending-tina/) - Tina is open source giving you the ability to extend the functionality including: events, plugins, widgets.
 
-[Learn more about the TinaCMS toolkit](/docs/tinacms)
+[Learn more about the TinaCMS toolkit](/docs/tinacms-reference/)
 
 ## Guides
 
