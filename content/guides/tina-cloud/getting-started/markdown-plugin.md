@@ -20,7 +20,7 @@ Plugins with Tina are added in three steps:
 Lets first add the two new packages we want to use for Markdown plugin:
 
 ```bash,copy
-yarn add react-tinacms-editor react-tinacms-inline react-final-form final-form
+yarn add react-tinacms-editor
 ```
 
 ### Adding our plugin to the site

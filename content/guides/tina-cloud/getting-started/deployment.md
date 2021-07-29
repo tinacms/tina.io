@@ -24,7 +24,7 @@ In the `env.local` file set:
 
 Restart your server and run `yarn dev` again.
 
-Open [`http://localhost:3000/`](http://localhost:3000/) and click "enter edit mode"
+Open [`http://localhost:3000/`](http://localhost:3000/) and click "Edit with Tina"
 
 #### Edit content
 
