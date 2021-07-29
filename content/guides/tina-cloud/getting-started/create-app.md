@@ -37,14 +37,14 @@ Now that we have a basic Tina setup you can launch your application using the fo
 yarn tina-dev
 ```
 
-Once you have launch the application you have a couple of URLs to navigate to:
+Once you have launch the application you have a couple of new URLS:
 
-- http://localhost:3000/demo/blog/HelloWorld
-- http://localhost:4001/altair/
+- `http://localhost:3000/demo/blog/HelloWorld`
+- `http://localhost:4001/altair/`
 
 The first URL brings you to a Tina Page, this Tina page describes how to continue setting up your application, but you can also edit the Title and Body above the small guide. 
 
-If you navigate to http://localhost:3000/demo/blog/HelloWorld, you won't be able to edit right away. Firstly you need to enter admin mode, to enter admin mode, navigate to http://localhost:3000/admin you will enter into edit mode. Selecting the pencil in the bottom left allows you to edit the title and the body of the page right in the frontend. When you hit save, that will save your changes to the Markdown file.
+If you navigate to http://localhost:3000/demo/blog/HelloWorld, you won't be able to edit right away. Firstly you need to enter edit mode, to enter edit mode, navigate to http://localhost:3000/admin you will enter into edit mode. Selecting the pencil in the bottom left allows you to edit the title and the body of the page right in the frontend. When you hit save, that will save your changes to the Markdown file.
 
 <video controls autoplay muted loop>
   <source src="/gif/tina-init.mp4" type="video/mp4" />
@@ -52,3 +52,5 @@ If you navigate to http://localhost:3000/demo/blog/HelloWorld, you won't be able
 </video>
 
 > This works by using our Content API which will go into greater depth during this guide.
+
+The second URL http://localhost:4001/altair/ will launch to a graphQL client that will allow you to interact and create queries which we will do in this guide.
