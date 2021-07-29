@@ -253,7 +253,7 @@ export const getStaticProps = async ({ params }) => {
 We now need to edit the Post function, firstly we are now going to pass in the data and slug to it instead of what was there before:
 
 ```js
-export default function Post({ data, slug, preview }) {
+export default function Post({ data, slug }) {
   // original code
 }
 ```
@@ -261,7 +261,7 @@ export default function Post({ data, slug, preview }) {
 To make our code easy to follow and read we can destructure the data props:
 
 ```js
-export default function Post({ data, slug, preview }) {
+export default function Post({ data, slug }) {
   const {
     title,
     coverImage,
@@ -296,7 +296,6 @@ export default function Post({ data, slug}) {
   const router = useRouter()
 
 - if (!router.isFallback && !post?.slug) {
-
 + if (!router.isFallback && !slug) {
     return <ErrorPage statusCode={404} />
   }

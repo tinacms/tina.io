@@ -29,6 +29,8 @@ This command does a few things in your Next.js application:
 4. Create example content in the demo directory.
 5. Edit the `package.json` to add scripts to launch tina (tina-dev, tina-build, tina-start)
 
+### A quick test
+
 Now that we have a basic Tina setup you can launch your application using the following commmand:
 
 ```bash,copy
@@ -40,13 +42,9 @@ Once you have launch the application you have a couple of URLs to navigate to:
 - http://localhost:3000/demo/blog/HelloWorld
 - http://localhost:4001/altair/
 
-The first one will bring you to the frontend with the ability to edit the title of the post and the second will alllow you to interact with your GraphQL layer .
+The first URL brings you to a Tina Page, this Tina page describes how to continue setting up your application, but you can also edit the Title and Body above the small guide. 
 
-### A quick test
-
-Now that we have a basic Tina implementation we should give it a quick test before making the rest of the site editable. Using the frontend URL mentioned you will be able to see a smaller guide to get going. 
-
-If you navigate to ![`http://localhost:3000/admin`](http://localhost:3000/admin) you will enter into edit mode. Selecting the pencil in the bottom left allows you to edit the title and the body of the page right in the frontend. When you hit save, that will save your changes to the Markdown file.
+If you navigate to http://localhost:3000/demo/blog/HelloWorld, you won't be able to edit right away. Firstly you need to enter admin mode, to enter admin mode, navigate to http://localhost:3000/admin you will enter into edit mode. Selecting the pencil in the bottom left allows you to edit the title and the body of the page right in the frontend. When you hit save, that will save your changes to the Markdown file.
 
 ![Tina Init example](/gif/tina-init.gif)
 
