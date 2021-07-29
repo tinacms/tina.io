@@ -46,6 +46,9 @@ The first URL brings you to a Tina Page, this Tina page describes how to continu
 
 If you navigate to http://localhost:3000/demo/blog/HelloWorld, you won't be able to edit right away. Firstly you need to enter admin mode, to enter admin mode, navigate to http://localhost:3000/admin you will enter into edit mode. Selecting the pencil in the bottom left allows you to edit the title and the body of the page right in the frontend. When you hit save, that will save your changes to the Markdown file.
 
-![Tina Init example](/gif/tina-init.mp4)
+<video autoplay muted loop>
+  <source src="/gif/tina-init.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
 
 > This works by using our Content API which will go into greater depth during this guide.
