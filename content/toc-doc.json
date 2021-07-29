@@ -276,7 +276,7 @@
           {
             "id": "/guides/tina-cloud/getting-started/overview/",
             "slug": "/guides/tina-cloud/getting-started/overview/",
-            "title": "Getting Started with TinaCMS"
+            "title": "Adding TinaCMS to an existing Next.js app"
           }
         ]
       },
