@@ -70,7 +70,7 @@ Open up the Tina `schema.ts` file located at `/.tina/schema.ts` To begin with un
 }
 ```
 
-We have only replaced a single line so far, which is to replace the `path` to the where the content from the Starter Blog is stored. 
+We have only replaced a single line so far, which is to update the `path` to the where the content from the Starter Blog is stored. 
 
 Now we need to handle each field for our posts frontmatter, below is the finished file:
 
