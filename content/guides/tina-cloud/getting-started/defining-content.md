@@ -48,7 +48,7 @@ As you can see, we have a quite a few fields that we want our content team to be
 
 Open up the Tina `schema.ts` file located at `/.tina/schema.ts` To begin with underneath the object we provided, we need to replace the current collection with the content we want:
 
-```js
+```diff
 {
   label: "Blog Posts",
   name: "posts",
