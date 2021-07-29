@@ -12,9 +12,7 @@ last_edited: '2021-07-27T15:51:56.737Z'
 
 **Tina Cloud** is a hosted service purpose built for integration with the TinaCMS Toolkit. Tina Cloud makes it possible for entire content teams to take advantage of a Git-based workflow, regardless of whether they write code or have GitHub accounts. Additionally, Tina Cloud exposes a GraphQL API for your site's file-based content, giving developers a more powerful interface for querying data and reconciling relationships.
 
-[Tina Cloud CLI](/docs/tina-cloud/cli/) - The Tina Cloud CLI can be used to set up your project with Tina Cloud configuration, and run a local version of the Tina Cloud content-api. The CLI gives developers the ability to shape and define their content ready for consumption.
-
-[Tina Cloud Client](/docs/tina-cloud/client/)- The Tina Cloud Client allows you to easily retrieve, secure and edit your content using the content-api.
+[Tina Cloud Dashboard](docs/tina-cloud/dashboard/) - The Tina Cloud Dashboard is the interface for managing the administrative aspects of your content management. The dashboard allows you to create apps, and setup your users.
 
 <div class="callout">
 <img className="learnImage" src="../img/tina-laptop.png" alt="" />
@@ -28,6 +26,10 @@ last_edited: '2021-07-27T15:51:56.737Z'
 ## TinaCMS Toolkit
 
 The **TinaCMS Toolkit** empowers developers to build a visual editing experience directly on their sites. By creating a custom editing experience with Tina instead of opting for a conventional CMS, developers can give their teams a contextual, intuitive editing experience without sacrificing code control.
+
+[TinaCMS CLI](/docs/cli/) - The TinaCMS CLI can be used to set up your project with TinaCMS schema configuration, and run a local version of the TinaCMS API (using your file system's content).
+
+[Next.js APIs](/docs/tinacms-context/) - The Next.js APIs allow you to easily retrieve, secure and edit your content using the content-api.
 
 [Content Mangement](/docs/content-management/) - Tina's content management APIs are designed to give you an easy, flexible way to control how content is sourced, modified, and persisted.
 
