@@ -68,7 +68,7 @@ export const Button = styled.button<ButtonProps>`
     props.size === 'small' &&
     css`
       padding: 0 1.25rem;
-      height: 36px;
+      height: 38px;
       font-size: 0.95rem;
       line-height: 1;
     `}
