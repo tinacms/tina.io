@@ -1,8 +1,7 @@
 ---
 title: NextJS Starter Changes
-last_edited: '2021-07-19T15:36:36.046Z'
+last_edited: '2021-07-30T18:54:10.725Z'
 ---
-
 ## Creating the getStaticPaths query
 
 The `getStaticPaths` query is going to need to know where all of our markdown files are located, with our current schema you have the option to use `getPostsList` which will provide a list of all posts in our `_posts` folder. Make sure your local server is running and navigate to http://localhost:4001/altair and select the Docs button. The Docs button gives you the ability to see all the queries possible and the variables returned:
@@ -87,7 +86,7 @@ staticRequest({
 }),
 ```
 
-> "_What does `staticRequest` do_?"
+> "_What does_ `staticRequest` do?"
 
 > It's just a helper function which supplies a query to your locally-running GraphQL server, which is started on port `4001`. You can just as easily use `fetch` or an http client of your choice.
 
@@ -132,13 +131,13 @@ The `getStaticProps` query is going to deliver all the content to the blog, whic
 
 We need to query the following things from our content api:
 
-- Title
-- Excerpt
-- Date
-- Cover Image
-- OG Image data
-- Author Data
-- Body content
+* Title
+* Excerpt
+* Date
+* Cover Image
+* OG Image data
+* Author Data
+* Body content
 
 ### Creating our Query
 
@@ -280,7 +279,7 @@ We also should set the `<Layout preview={preview}>` to `false` as we won't be us
 ...
 ```
 
-At this point we can replace all of the `post.*` with each of the new variables from Tina. If should look like the following
+At this point we can replace all of the `post.*` with each of the new variables from Tina. It should look like the following
 
 ```diff
 export default function Post({ data, slug}) {
