@@ -1,8 +1,7 @@
 ---
 title: Adding Markdown editors
-last_edited: '2021-07-19T15:36:36.046Z'
+last_edited: '2021-07-30T20:10:55.164Z'
 ---
-
 ## Using Markdown plugins:
 
 One of the amazing features of Tina is ability to extend the project through plugins. The NextJS blog starter uses remark to render the Markdown files into HTML, so it would be useful for our content team to be able to edit using a markdown editor, plus we can add the functionality back.
@@ -49,7 +48,6 @@ const App = ({ Component, pageProps }) => {
 +                  cms.plugins.add(field.MarkdownFieldPlugin)
 +                  })
 +            }}
-                          }}
             {...pageProps}
           >
             {(livePageProps) => <Component {...livePageProps} />}
@@ -94,7 +92,7 @@ The problem is we are delivering the content directly, so we lose all formatting
 
 ### Markdown to HTML
 
-We need to update the `/post/[slug].js` file to use use the `markdownToHtml` function that the team over at Next.js prove, the problem is each time we update the file we want it to use that function. To handle this we can use `useEffect` and `useState`. 
+We need to update the `/post/[slug].js` file to use use the `markdownToHtml` function that the team over at Next.js prove, the problem is each time we update the file we want it to use that function. To handle this we can use `useEffect` and `useState`.
 
 Firstly we need to import `useEffect` and `useState`, add the following to the file:
 
@@ -146,6 +144,7 @@ Then finally we can set the `PostBody` content to our nearly updated content.
 ```js
 <PostBody content={content} />
 ```
+
 The completed file should look like:
 
 ```js,copy 
@@ -277,6 +276,7 @@ export async function getStaticPaths() {
   }
 }
 ```
+
 Now our content should be correctly formatted, and even when your content team is updated they will see it in real time.
 
 ![Markdown Done Gif](/gif/markdown-fin_sm.gif)
