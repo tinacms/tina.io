@@ -47,8 +47,8 @@ const App = ({ Component, pageProps }) => {
 +            cmsCallback={cms => {
 +                import('react-tinacms-editor').then((field)=>{
 +                  cms.plugins.add(field.MarkdownFieldPlugin)
-                  })
-            }}
++                  })
++            }}
                           }}
             {...pageProps}
           >
