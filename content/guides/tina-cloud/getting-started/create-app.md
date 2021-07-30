@@ -26,7 +26,7 @@ Your import section should now look like
 ```diff 
 import dynamic from 'next/dynamic'
 import { TinaEditProvider } from 'tinacms/dist/edit-state'
-+ import "../styles/index.css"
++ import '../styles/index.css'
 
 ...
 ```
