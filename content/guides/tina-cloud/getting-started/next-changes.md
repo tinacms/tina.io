@@ -1,6 +1,6 @@
 ---
 title: NextJS Starter Changes
-last_edited: '2021-07-30T18:54:10.725Z'
+last_edited: '2021-07-30T19:02:46.056Z'
 ---
 ## Creating the getStaticPaths query
 
@@ -317,14 +317,14 @@ export default function Post({ data, slug}) {
 -                title={post.tiltle}
 +                title={title}
 -                coverImage={post.coverImage}
-+                coverImage={post.coverImage}
++                coverImage={coverImage}
 -                date={post.date}
 +                date={date}
 -                author={post.author}
 +                author={author}
               />
--              <PostBody content={post.body} />
-+              <PostBody content={body} />
+-              <PostBody content={post.content} />
++              <PostBody content={content} />
             </article>
           </>
         )}
