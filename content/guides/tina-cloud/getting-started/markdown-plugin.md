@@ -30,7 +30,7 @@ Inside the `pages/_app.js` file we need to import the `MarkdownFieldPlugin` and 
 ```diff
 import dynamic from 'next/dynamic'
 import { TinaEditProvider } from 'tinacms/dist/edit-state'
-import "../styles/index.css"
+import '../styles/index.css'
 const TinaCMS = dynamic(() => import('tinacms'), { ssr: false })
 const App = ({ Component, pageProps }) => {
   return (
