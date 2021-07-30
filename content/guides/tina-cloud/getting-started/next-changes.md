@@ -5,7 +5,7 @@ last_edited: '2021-07-19T15:36:36.046Z'
 
 ## Creating the getStaticPaths query
 
-The `getStaticPaths` query is going to need to know where all of our markdown files are located, with our current schema you have the option to use `getPostsList` which will provide a list of all posts in our `_posts` folder. Make sure your local server is running and navigate to https://localhost:4001/altair and select the Docs button. The Docs button gives you the ability to see all the queries possible and the variables returned:
+The `getStaticPaths` query is going to need to know where all of our markdown files are located, with our current schema you have the option to use `getPostsList` which will provide a list of all posts in our `_posts` folder. Make sure your local server is running and navigate to http://localhost:4001/altair and select the Docs button. The Docs button gives you the ability to see all the queries possible and the variables returned:
 
 ![Altair Doc example](/gif/altair_doc.gif)
 
@@ -205,13 +205,12 @@ We'll use a new helper function called `getStaticPropsForTina`, which does exact
 Add `getStaticPropsForTina` to the imports at the top of your file, your import should look like:
 
 ```js, copy
-import { staticRequest,getStaticPropsForTina } from "tinacms";
+import { staticRequest, getStaticPropsForTina } from 'tinacms'
 ```
 
 So the full query should look like this:
 
 ```js,copy
-
 export const getStaticProps = async ({ params }) => {
   const { slug } = params
   const variables = { relativePath: `${slug}.md` }
@@ -272,7 +271,7 @@ export default function Post({ data, slug }) {
   } = data.getPostsDocument.data
 ```
 
-We also should set the ` <Layout preview={preview}>` to `false` as we won't be using it. 
+We also should set the `<Layout preview={preview}>` to `false` as we won't be using it.
 
 ```diff
   return (
@@ -317,7 +316,7 @@ export default function Post({ data, slug}) {
               </Head>
               <PostHeader
 -                title={post.tiltle}
-+                title={title}                 
++                title={title}
 -                coverImage={post.coverImage}
 +                coverImage={post.coverImage}
 -                date={post.date}

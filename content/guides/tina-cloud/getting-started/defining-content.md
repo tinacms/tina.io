@@ -13,7 +13,6 @@ Before we look at our current project, let's discuss how the content is shaped. 
 
 The top-level key in the schema is an array of _collections_, a `collection` informs the API about _where_ to save content.
 
-
 ### Fields
 
 Fields instruct the Content API of the type expected for example text as well as the queryable name and the name to display to your content team.
@@ -52,14 +51,14 @@ Open up the Tina `schema.ts` file located at `/.tina/schema.ts` To begin with un
 {
   label: "Blog Posts",
   name: "posts",
--  path: "content/posts"  
+-  path: "content/posts"
 +  path: '_posts',
   fields: [
     {
       type: "string",
       label: "Title",
       name: "title"
-    }, 
+    },
     {
       type: "string",
       label: "Blog Post Body",
@@ -70,82 +69,79 @@ Open up the Tina `schema.ts` file located at `/.tina/schema.ts` To begin with un
 }
 ```
 
-We have only replaced a single line so far, which is to update the `path` to the where the content from the Starter Blog is stored. 
+We have only replaced a single line so far, which is to update the `path` to the where the content from the Starter Blog is stored.
 
 Now we need to handle each field for our posts frontmatter, below is the finished file:
 
-```js
-
-import { defineSchema } from "@tinacms/cli";
+```js,copy
+import { defineSchema } from '@tinacms/cli'
 
 export default defineSchema({
   collections: [
-{
-  label: 'Blog Posts',
-  name: 'posts',
-  path: "content/posts"  
-  path: '_posts',
-  fields: [
     {
-      type: 'string',
-      label: 'Title',
-      name: 'title',
-    },
-    {
-      type: 'string',
-      label: 'Excerpt',
-      name: 'excerpt',
-    },
-    {
-      type: 'string',
-      label: 'Cover Image',
-      name: 'coverImage',
-    },
-    {
-      type: 'string',
-      label: 'Date',
-      name: 'date',
-    },
-    {
-      type: 'object',
-      label: 'Author',
-      name: 'author',
+      label: 'Blog Posts',
+      name: 'posts',
+      path: '_posts',
       fields: [
         {
           type: 'string',
-          label: 'Name',
-          name: 'name',
+          label: 'Title',
+          name: 'title',
         },
         {
           type: 'string',
-          label: 'Picture',
-          name: 'picture',
+          label: 'Excerpt',
+          name: 'excerpt',
         },
-      ],
-    },
-    {
-      type: 'object',
-      label: 'OG Image',
-      name: 'ogImage',
-      fields: [
         {
           type: 'string',
-          label: 'Url',
-          name: 'url',
+          label: 'Cover Image',
+          name: 'coverImage',
+        },
+        {
+          type: 'string',
+          label: 'Date',
+          name: 'date',
+        },
+        {
+          type: 'object',
+          label: 'Author',
+          name: 'author',
+          fields: [
+            {
+              type: 'string',
+              label: 'Name',
+              name: 'name',
+            },
+            {
+              type: 'string',
+              label: 'Picture',
+              name: 'picture',
+            },
+          ],
+        },
+        {
+          type: 'object',
+          label: 'OG Image',
+          name: 'ogImage',
+          fields: [
+            {
+              type: 'string',
+              label: 'Url',
+              name: 'url',
+            },
+          ],
+        },
+        {
+          type: 'string',
+          label: 'Body',
+          name: 'body',
+          isBody: true,
         },
       ],
     },
-    {
-      type: 'string',
-      label: 'Body',
-      name: 'body',
-      isBody: true,
-    },
   ],
-}
-  ],
-});
-
+})
 ```
 
 There are a couple of things you might notice. First, we have a `type` called `object`, this works as a way to group fields together and on the UI which you will see in the future, it allows you to click into them and edit each individual field.
