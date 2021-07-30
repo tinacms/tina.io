@@ -1,6 +1,6 @@
 ---
 title: Defining Content
-last_edited: '2021-07-30T17:57:23.921Z'
+last_edited: '2021-07-30T17:58:35.396Z'
 ---
 ## Defining the shape of our content
 
@@ -68,7 +68,7 @@ Open up the Tina `schema.ts` file located at `/.tina/schema.ts` To begin with un
 }
 ```
 
-We have only replaced a single line so far, which is to update the `path` to  where the content from the Starter Blog is stored.
+We have only replaced a single line so far, which is to update the `path` to  the correct location of the Starter Blog content.
 
 Now we need to handle each field for our posts frontmatter, below is the finished file:
 
