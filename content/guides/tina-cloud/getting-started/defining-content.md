@@ -1,6 +1,6 @@
 ---
 title: Defining Content
-last_edited: '2021-07-30T15:55:09.780Z'
+last_edited: '2021-07-30T17:55:40.749Z'
 ---
 ## Defining the shape of our content
 
@@ -14,7 +14,7 @@ The top-level key in the schema is an array of _collections_, a `collection` inf
 
 ### Fields
 
-Fields instruct the Content API of the type expected for example text as well as the queryable name and the name to display to your content team.
+Fields instruct the Content API of the type expected for example, `text`, as well as the queryable name and the name to display to your content team.
 
 ### References
 
