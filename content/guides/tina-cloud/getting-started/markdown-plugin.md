@@ -104,7 +104,14 @@ Then we can create variable called `content` that we can be used with `useState`
 
 ```diff
 export default function Post({data,slug}) {
-  const {title,coverImage,date,author,_body,ogImage} = data.getPostsDocument.data;
+  const {
+    title,
+    coverImage,
+    date,
+    author,
+    body,
+    ogImage,
+  } = data.getPostsDocument.data
   const router = useRouter()
 +  const [content, setContent] = useState('')
 ```
@@ -113,7 +120,14 @@ Now we can use `useEffect` to set content to the results of `markdownToHtml`
 
 ```diff
 export default function Post({data,slug}) {
-  const {title,coverImage,date,author,_body,ogImage} = data.getPostsDocument.data;
+  const {
+    title,
+    coverImage,
+    date,
+    author,
+    body,
+    ogImage,
+  } = data.getPostsDocument.data
   const router = useRouter()
   const [content, setContent] = useState('')
 + useEffect(() => {
