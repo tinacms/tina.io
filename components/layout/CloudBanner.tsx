@@ -17,10 +17,10 @@ export function CloudBanner() {
               <span className="wordmark">
                 <TinaCloudWordmark />
               </span>{' '}
-              is in Beta. Allow any team member to edit content!
+              is in Alpha. Allow any team member to edit content!
             </p>
           </span>
-          <Link href="/blog/tina-is-in-beta/">
+          <Link href="/blog/announcement-tina-cloud-is-officially-in-alpha/">
             <a className="link">
               <span className="desktop">Read The Announcement</span>
               <span className="mobile">Tina Cloud is in Beta</span>
