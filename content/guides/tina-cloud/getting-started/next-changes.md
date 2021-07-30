@@ -1,6 +1,6 @@
 ---
 title: NextJS Starter Changes
-last_edited: '2021-07-30T19:02:46.056Z'
+last_edited: '2021-07-30T19:24:19.950Z'
 ---
 ## Creating the getStaticPaths query
 
@@ -309,6 +309,7 @@ export default function Post({ data, slug}) {
               <Head>
                 <title>
 -                {post.title} | Next.js Blog Example with {CMS_NAME}
++                {title} | Next.js Blog Example with {CMS_NAME}
                 </title>
 -                <meta property="og:image" content={post.ogImage.url} />
 +                <meta property="og:image" content={ogImage.url} />
