@@ -1,6 +1,6 @@
 ---
 title: NextJS Starter Changes
-last_edited: '2021-07-30T19:25:18.973Z'
+last_edited: '2021-07-30T20:18:26.925Z'
 ---
 ## Creating the getStaticPaths query
 
@@ -111,8 +111,8 @@ export async function getStaticPaths() {
     variables: {},
   })
   return {
-    paths: postsListData.getPostsList.data.edges.map(edge => ({
-      params: { slug: edge.post.sys.filename },
+    paths: postsListData.getPostsList.edges.map(edge => ({
+      params: { slug: edge.node.sys.filename },
     })),
     fallback: false,
   }
