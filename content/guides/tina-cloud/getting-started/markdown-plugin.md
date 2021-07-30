@@ -27,29 +27,30 @@ yarn add react-tinacms-editor
 
 Inside the `pages/_app.js` file we need to import the `MarkdownFieldPlugin` and add it to the CMS callback:
 
-```jsx
-import '../styles/index.css'
+```diff
 import dynamic from 'next/dynamic'
 import { TinaEditProvider } from 'tinacms/dist/edit-state'
+import "../styles/index.css"
 const TinaCMS = dynamic(() => import('tinacms'), { ssr: false })
-
-// Import the plugin
-import { MarkdownFieldPlugin } from 'react-tinacms-editor'
-
++ import { MarkdownFieldPlugin } from 'react-tinacms-editor'
 const App = ({ Component, pageProps }) => {
   return (
     <>
       <TinaEditProvider
         editMode={
           <TinaCMS
-            // ...
-            // Add it to the cms instance
-            cmsCallback={cms => {
-              cms.plugins.add(MarkdownFieldPlugin)
-            }}
+            clientId={process.env.NEXT_PUBLIC_TINA_CLIENT_ID}
+            branch={process.env.NEXT_PUBLIC_EDIT_BRACH}
+            organization={process.env.NEXT_PUBLIC_ORGANIZATION_NAME}
+            isLocalClient={Boolean(
+              Number(process.env.NEXT_PUBLIC_USE_LOCAL_CLIENT ?? true)
+            )}
++            cmsCallback={cms => {
++              +              cms.plugins.add(MarkdownFieldPlugin)
+                          }}
             {...pageProps}
           >
-            {livePageProps => <Component {...livePageProps} />}
+            {(livePageProps) => <Component {...livePageProps} />}
           </TinaCMS>
         }
       >
@@ -66,7 +67,7 @@ The plugin is now available anywhere we want to use our markdown editor.
 
 ### Using the `ui` property
 
-The `ui` property allows you to control the output of the GraphQL-generated forms where your content editors are working. Let's update the `body` field in our schema to take advantage of our new Markdown plugin:
+The `ui` property allows you to control the output of the GraphQL-generated forms where your content editors are working. Let's update the `body` field in our `.tina/schema.ts` to take advantage of our new Markdown plugin:
 
 ```js
 // .tina/schema.ts
@@ -91,30 +92,37 @@ The problem is we are delivering the content directly, so we lose all formatting
 
 ### Markdown to HTML
 
-Inside of the Post function we need to add `useEffect` and also `useState`, to render the Markdown as HTML.
+We need to update the `/post/[slug].js` file to use use the `markdownToHtml` function that the team over at Next.js prove, the problem is each time we update the file we want it to use that function. To handle this we can use `useEffect` and `useState`. 
 
-Firstly we need to import `useEffect` and `useState` to the file:
+Firstly we need to import `useEffect` and `useState`, add the following to the file:
 
-```js
+```js, copy
 import { useEffect, useState } from 'react'
 ```
 
-Then we can create variable called `content` that we can be used with `useState()`.
+Then we can create variable called `content` that we can be used with `useState`.
 
-```js
-const [content, setContent] = useState('')
+```diff
+export default function Post({data,slug}) {
+  const {title,coverImage,date,author,_body,ogImage} = data.getPostsDocument.data;
+  const router = useRouter()
++  const [content, setContent] = useState('')
 ```
 
 Now we can use `useEffect` to set content to the results of `markdownToHtml`
 
-```js,copy
-useEffect(() => {
-  const parseMarkdown = async () => {
-    setContent(await markdownToHtml(body))
-  }
+```diff
+export default function Post({data,slug}) {
+  const {title,coverImage,date,author,_body,ogImage} = data.getPostsDocument.data;
+  const router = useRouter()
+  const [content, setContent] = useState('')
++ useEffect(() => {
++  const parseMarkdown = async () => {
++    setContent(await markdownToHtml(body))
++  }
 
-  parseMarkdown()
-}, [body])
++  parseMarkdown()
++ }, [body])
 ```
 
 Then finally we can set the `PostBody` content to our nearly updated content.
@@ -122,7 +130,137 @@ Then finally we can set the `PostBody` content to our nearly updated content.
 ```js
 <PostBody content={content} />
 ```
+The completed file should look like:
 
+```js,copy 
+import { useRouter } from 'next/router'
+import ErrorPage from 'next/error'
+import Container from '../../components/container'
+import PostBody from '../../components/post-body'
+import Header from '../../components/header'
+import PostHeader from '../../components/post-header'
+import Layout from '../../components/layout'
+import PostTitle from '../../components/post-title'
+import Head from 'next/head'
+import { CMS_NAME } from '../../lib/constants'
+import markdownToHtml from '../../lib/markdownToHtml'
+import { staticRequest,getStaticPropsForTina } from "tinacms";
+import { useEffect, useState } from 'react'
+
+export default function Post({ data,slug,preview }) {
+  const {
+    title,
+    coverImage,
+    date,
+    author,
+    body,
+    ogImage,
+  } = data.getPostsDocument.data
+  const router = useRouter()
+  const [content, setContent] = useState('')
+
+   useEffect(() => {
+      const parseMarkdown = async () => {
+        setContent(await markdownToHtml(body))
+      }
+      parseMarkdown()
+   }, [body])
+  if (!router.isFallback && !slug) {
+    return <ErrorPage statusCode={404} />
+  }
+  return (
+    <Layout preview={preview}>
+      <Container>
+        <Header />
+        {router.isFallback ? (
+          <PostTitle>Loading…</PostTitle>
+        ) : (
+          <>
+            <article className="mb-32">
+              <Head>
+                <title>
+                {title} | Next.js Blog Example with {CMS_NAME}
+                </title>
+                <meta property="og:image" content={ogImage.url} />
+              </Head>
+              <PostHeader
+                title={title}
+                coverImage={coverImage}
+                date={date}
+                author={author}
+              />
+              <PostBody content={content} />
+            </article>
+          </>
+        )}
+      </Container>
+    </Layout>
+  )
+}
+
+
+export const getStaticProps = async ({ params }) => {
+  const { slug } = params
+  const variables = { relativePath: `${slug}.md` }
+  const tinaProps = await getStaticPropsForTina({
+    query: `
+      query BlogPostQuery($relativePath: String!) {
+        getPostsDocument(relativePath: $relativePath) {
+          data {
+            title
+            excerpt
+            date
+            coverImage
+            author {
+              name
+              picture
+            }
+            ogImage {
+              url
+            }
+            body
+          }
+        }
+      }
+    `,
+    variables: variables,
+  })
+
+  return {
+    props: {
+      ...tinaProps,
+      slug,
+    },
+  }
+}
+
+export async function getStaticPaths() {
+  const postsListData = await staticRequest({
+    query: `
+    query {
+      getPostsList {
+        edges {
+          node {
+            sys {
+              filename
+            }
+          }
+        }
+      }
+    }
+    `,
+    variables: {},
+  })
+  console.log(postsListData.getPostsList.edges);
+  return {
+    paths: postsListData.getPostsList.edges.map(edge => ({
+
+      params: { slug: edge.node.sys.filename },
+    })),
+    fallback: false,
+  }
+}
+```
 Now our content should be correctly formatted, and even when your content team is updated they will see it in real time.
 
 ![Markdown Done Gif](/gif/markdown-fin_sm.gif)

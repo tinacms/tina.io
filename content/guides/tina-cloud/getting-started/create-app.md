@@ -19,8 +19,17 @@ We created a quick way to bootstrap a Tina application to show the power of visu
 npx @tinacms/cli init
 ```
 
-> Heads up, this will override the `_app.js`, which has a stylesheet in it. Add it back to the top of the file -- `import "../styles/index.css";`
+> Heads up, this will override the `_app.js`, which has a stylesheet in it. Make sure to add it back otherwise the styles will be broken.
 
+Your import section should now look like
+
+```diff 
+import dynamic from 'next/dynamic'
+import { TinaEditProvider } from 'tinacms/dist/edit-state'
++ import "../styles/index.css"
+
+...
+```
 This command does a few things in your Next.js application:
 
 1. Install all required dependencies for Tina
