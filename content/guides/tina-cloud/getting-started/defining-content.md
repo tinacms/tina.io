@@ -1,11 +1,10 @@
 ---
 title: Defining Content
-last_edited: '2021-07-15T15:36:36.046Z'
+last_edited: '2021-07-30T15:40:41.129Z'
 ---
-
 ## Defining the shape of our content
 
-One key element of Tina is defining a schema that allows you to shape and interact with the content on the page. Opening up the project, you will see a folder called `.tina` which contains a `schema.ts` file. This file allows you to instruct Tina's Contant API what content type to look for, how it should be labeled and much more!
+One key element of Tina is defining a schema that allows you to shape and interact with the content on the page. Opening up the project, you will see a folder called `.tina` which contains a `schema.ts` file. This file allows you to instruct Tina's Content API what content type to look for, how it should be labeled and much more!
 
 Before we look at our current project, let's discuss how the content is shaped. Our schema can be broken down into four sections: `collections`, `fields` and `references`. Each one of them has its role:
 
