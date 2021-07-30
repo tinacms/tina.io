@@ -1,13 +1,12 @@
 ---
 title: Defining Content
-last_edited: '2021-07-15T15:36:36.046Z'
+last_edited: '2021-07-30T17:58:35.396Z'
 ---
-
 ## Defining the shape of our content
 
-One key element of Tina is defining a schema that allows you to shape and interact with the content on the page. Opening up the project, you will see a folder called `.tina` which contains a `schema.ts` file. This file allows you to instruct Tina's Contant API what content type to look for, how it should be labeled and much more!
+One key element of Tina is defining a schema that allows you to shape and interact with the content on the page. Opening up the project, you will see a folder called `.tina` which contains a `schema.ts` file. This file allows you to instruct Tina's Content API which content type to look for, how it should be labeled, and much more!
 
-Before we look at our current project, let's discuss how the content is shaped. Our schema can be broken down into four sections: `collections`, `fields` and `references`. Each one of them has its role:
+Before we look at our current project, let's discuss how the content is shaped. Our schema can be broken down into three concepts: `collections`, `fields` and `references`. Each one of them has its role:
 
 ### Collections
 
@@ -15,7 +14,7 @@ The top-level key in the schema is an array of _collections_, a `collection` inf
 
 ### Fields
 
-Fields instruct the Content API of the type expected for example text as well as the queryable name and the name to display to your content team.
+Fields instruct the Content API of the type expected for example, `text`, as well as the queryable name and the name to display to your content team.
 
 ### References
 
@@ -69,7 +68,7 @@ Open up the Tina `schema.ts` file located at `/.tina/schema.ts` To begin with un
 }
 ```
 
-We have only replaced a single line so far, which is to update the `path` to the where the content from the Starter Blog is stored.
+We have only replaced a single line so far, which is to update the `path` to  the correct location of the Starter Blog content.
 
 Now we need to handle each field for our posts frontmatter, below is the finished file:
 
