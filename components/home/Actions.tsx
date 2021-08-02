@@ -84,12 +84,6 @@ export const Actions = ({ items, align = 'left' }) => {
           opacity: 1;
           line-height: 1;
 
-          svg {
-            fill: currentColor;
-            margin-left: -0.25em;
-            margin-right: 0.125rem;
-          }
-
           &:hover,
           &:focus {
             color: var(--color-orange);
@@ -109,6 +103,19 @@ export const Actions = ({ items, align = 'left' }) => {
           &:active {
             filter: none;
           }
+
+          :global(svg) {
+            display: inline-block;
+            fill: currentColor;
+            margin-left: 0.375em;
+            margin-right: 0;
+            height: 1em;
+            width: auto;
+            transition: opacity ease-out 150ms;
+          }
+          :not(:hover):global(svg) {
+            opacity: 0.85;
+          }
         }
 
         .link {
@@ -124,7 +131,16 @@ export const Actions = ({ items, align = 'left' }) => {
           }
 
           :global(svg) {
-            height: 1rem;
+            display: inline-block;
+            fill: currentColor;
+            margin-left: 0.375em;
+            margin-right: 0;
+            height: 1em;
+            width: auto;
+            transition: opacity ease-out 150ms;
+          }
+          :not(:hover):global(svg) {
+            opacity: 0.85;
           }
         }
 
