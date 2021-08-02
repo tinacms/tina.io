@@ -267,6 +267,6 @@
     {
       "source": "/guides/tina-cloud/existing-site/(.*)",
       "destination": "/guides/tina-cloud/add-tinacms-to-existing-site/$1"
-    },
+    }
   ]
 }
