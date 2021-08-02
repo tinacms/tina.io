@@ -23,7 +23,7 @@ export function CloudBanner() {
           <Link href="/blog/announcement-tina-cloud-is-officially-in-alpha/">
             <a className="link">
               <span className="desktop">Read The Announcement</span>
-              <span className="mobile">Tina Cloud is in Beta</span>
+              <span className="mobile">Tina Cloud is in Alpha</span>
               <IconRight />
             </a>
           </Link>
