@@ -148,10 +148,10 @@ export function FeatureBlock({ data, index }) {
         .featureImage {
           box-shadow: 0 6px 24px rgba(0, 37, 91, 0.05),
             0 2px 4px rgba(0, 37, 91, 0.03);
+          border: 1px solid rgba(0, 0, 0, 0.07);
           margin: 0;
           overflow: hidden;
           border-radius: 0.5rem;
-          border: 1px solid rgba(0, 0, 0, 0.1);
 
           :global(img) {
             display: block;
@@ -298,11 +298,11 @@ export const FeatureVideo = ({ src }) => {
         poster={`https://res.cloudinary.com/forestry-demo/video/upload/so_0/${src}.jpg`}
       >
         <source
-          src={`https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/${src}.webm`}
+          src={`https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/e_accelerate:-20/${src}.webm`}
           type="video/webm"
         />
         <source
-          src={`https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/${src}.mp4`}
+          src={`https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/e_accelerate:-20/${src}.mp4`}
           type="video/mp4"
         />
       </video>
@@ -310,8 +310,9 @@ export const FeatureVideo = ({ src }) => {
         .video {
           width: 100%;
           border-radius: 0.5rem;
-          box-shadow: inset 0 0 0 1px rgba(236, 72, 21, 0.03),
-            0 6px 24px rgba(0, 37, 91, 0.05), 0 2px 4px rgba(0, 37, 91, 0.03);
+          box-shadow: 0 6px 24px rgba(0, 37, 91, 0.05),
+            0 2px 4px rgba(0, 37, 91, 0.03);
+          border: 1px solid rgba(0, 0, 0, 0.07);
           display: flex;
           justify-content: center;
         }
