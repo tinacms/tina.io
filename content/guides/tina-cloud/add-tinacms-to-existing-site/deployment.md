@@ -11,7 +11,7 @@ While the fully local development workflow is the recommended way for developers
 
 ## Register your local application with Tina Cloud
 
-1. Visit [app.tina.io](https://app.tina.io/register), create an organization, and sign in. Make a note of your organization name.
+1. Visit [app.tina.io](https://app.tina.io/register), to sign in.
 2. Commit the project to your GitHub account.
 3. Create a Tina Cloud app that connects to the GitHub repository you've just commited. For now, set `http://localhost:3000` as your callback URL. Once your app is created, click on the app to get to the app settings and copy the client ID. For more details on how to work with the Tina Cloud dashboard head over to the [dashboard documentation](/docs/tina-cloud/dashboard/).
 
