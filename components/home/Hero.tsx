@@ -163,6 +163,15 @@ export const Video = ({ src }) => {
             0 6px 24px rgba(0, 37, 91, 0.05), 0 2px 4px rgba(0, 37, 91, 0.03);
           display: flex;
           justify-content: center;
+
+          @media (min-width: 1100px) {
+            width: 90%;
+            margin: 0 auto;
+          }
+
+          @media (min-width: 1400px) {
+            width: 80%;
+          }
         }
       `}</style>
     </>
