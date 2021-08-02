@@ -1,6 +1,6 @@
 ---
 title: TinaCMS CLI
-last_edited: '2021-08-02T20:19:57.963Z'
+last_edited: '2021-08-02T20:21:15.934Z'
 ---
 The TinaCMS CLI has many uses, it's main usage is to start the local graphql server for serving static content, compiling the schema, and providing an **init** command that allows one to get up and running with Tina quickly.
 
@@ -50,7 +50,7 @@ This command also takes an argument (`-c`) that allows you to run a command as a
 
 ## Compiling and Generating Types
 
-Sometimes you might want to only compile your schema.ts into a static files for the server to use. This can be done with
+Sometimes you might want to only compile your schema.ts into static files for the server to use. This can be done with
 
 ```bash,copy
 yarn tinacms schema:compile
