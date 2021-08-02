@@ -177,4 +177,4 @@ Second, there's a `string` field called `body` with `isBody` set to true. By set
 
 ### Next steps
 
-Our markdown files are now backed by a well-defined schema, this paves the way for us to query file content with GraphQL. You will notice that nothing has changed when navigating around the Next.js blog starter, this is because we need to update the starter to use our GraphQL layer instead of directly accessing the markdown files. In the next section we will handle converting the frontend to use TinaCMS.
+Our Markdown files are now backed by a well-defined schema, this paves the way for us to query file content with GraphQL. You will notice that nothing has changed when navigating around the Next.js blog starter, this is because we need to update the starter to use our GraphQL layer instead of directly accessing the Markdown files. In the next section we will handle converting the frontend to use TinaCMS.
