@@ -2,6 +2,11 @@
 title: NextJS Starter Changes
 last_edited: '2021-07-30T20:18:26.925Z'
 ---
+
+## Overview
+
+Currently, the Next Blog Starter grabs content from the file system. But since Tina comes with a GraphQL API on top of the filesystem, we’re going to query that instead. Using the GraphQL API will allow you to use the power of TinaCMS, you will be able to retrieve the content and also edit and save the content directly. 
+
 ## Creating the getStaticPaths query
 
 The `getStaticPaths` query is going to need to know where all of our markdown files are located, with our current schema you have the option to use `getPostsList` which will provide a list of all posts in our `_posts` folder. Make sure your local server is running and navigate to http://localhost:4001/altair and select the Docs button. The Docs button gives you the ability to see all the queries possible and the variables returned:
@@ -188,7 +193,7 @@ query BlogPostQuery($relativePath: String!) {
 
 ### Adding our query to our blog
 
-Since these pages are dynamic, we'll want to use the values we returned from `getStaticPaths` in our query. We'll destructure `params` to grab the `slug`, using it as a `relativePath`. As you'll recall the "Blog Posts" collection stores files in a folder called `_posts`, so we want to make a request for the relative path of our content. Meaning for the file located at `_posts/hello-world.md`, we only need to supply the relative portion of `hello-world.md`.
+Remove all the code inside of the `getStaticProps` function and we can update it to use our own code. Since these pages are dynamic, we'll want to use the values we returned from `getStaticPaths` in our query. We'll destructure `params` to grab the `slug`, using it as a `relativePath`. As you'll recall the "Blog Posts" collection stores files in a folder called `_posts`, so we want to make a request for the relative path of our content. Meaning for the file located at `_posts/hello-world.md`, we only need to supply the relative portion of `hello-world.md`. 
 
 ```js
 export const getStaticProps = async ({ params }) => {
@@ -339,8 +344,8 @@ Visit [http://localhost:3000/posts/hello-world](http://localhost:3000/posts/hell
 
 ### Editing content:
 
-Now we are ready to launch and start editing the content, launch the application using the `yarn tina-dev` command and navigate one of the posts. Now because our application is "protected" you will need to navigate to http://localhost:3000/admin or click the edit button at the top of the screen. Once you do one of those on the left hand side you will see a blue pencil clicking that will allow you to edit any of the content:
+Now we are ready to launch and start editing the content, launch the application using the `yarn tina-dev` command and navigate one of the posts. Now because our application is "protected" you will need to navigate to http://localhost:3000/admin. Once you navigate to the admin route, the page will 
 
 ![Editing Gif](/gif/editing_smaller.gif)
 
-At this point we have created an exact replication of the NextJS starter with the ability to edit any of the fields and now have the ability to make changes. This is great except we have an issue the markdown is being treated as plaintext which isn't what we want.
+At this point we have created an exact replication of the NextJS starter with the ability to edit any of the fields and now have the ability to make changes. You’ll notice the post’s body is in a single text field, which isn’t a great editing experience and isn't be returned as HTML. So in the next section we’re going to add a Markdown editor plugin and reuse the markdown to html code the Next.js team provided. 

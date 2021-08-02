@@ -1,5 +1,5 @@
 ---
-title: Defining Content
+title: Content Modelling
 last_edited: '2021-07-30T17:58:35.396Z'
 ---
 ## Defining the shape of our content
@@ -10,15 +10,43 @@ Before we look at our current project, let's discuss how the content is shaped. 
 
 ### Collections
 
-The top-level key in the schema is an array of _collections_, a `collection` informs the API about _where_ to save content.
+The top-level key in the schema is an array of _collections_, a `collection` informs the API about _where_ to save content. In our guide we are going to have a `posts` collection but we also could have an `author` and `pages` collections, for example. 
 
 ### Fields
 
-Fields instruct the Content API of the type expected for example, `text`, as well as the queryable name and the name to display to your content team.
+Fields instruct the Content API of the type expected for example, `text`, as well as the queryable name and the name to display to your content team. Fields are an array of objects that are a child of collections. We use this to retrieve the content from the markdown or json files, this fields should map to your _frontmatter_ ,  and we also use this to create the UI elements for editing. 
+
+```json
+fields: [
+    {
+      type: "string",
+      label: "Title",
+      name: "title"
+    },
+    {
+      type: "string",
+      label: "Blog Post Body",
+      name: "body",
+      isBody: true,
+    },
+    ...
+]
+```
 
 ### References
 
-We also have `reference` fields. This is an important concept, when you _reference_ another collection, you're effectively saying: "this document _belongs to_ that document".
+We also have `reference` fields. This is an important concept, when you _reference_ another collection, you're effectively saying: "this document _belongs to_ that document". A great example of using a reference is _author_ as each post would have an author and you could have mutiple authors, but you need to reference a particular author to the post. 
+
+```json
+{
+  label: "Author",
+  name: "author",
+  type: "reference",
+  collections: ["author"] // points to a collection with the name "author"
+}
+```
+
+> Before we move on you can read more about content modelling in our [documentation](/docs/schema/)
 
 ## Creating our content Schema
 
@@ -149,4 +177,4 @@ Second, there's a `string` field called `body` with `isBody` set to true. By set
 
 ### Next steps
 
-Our markdown files are now backed by a well-defined schema, this paves the way for us to query file content with GraphQL. Follow along as we update our NextJS site to use our new capabilities
+Our markdown files are now backed by a well-defined schema, this paves the way for us to query file content with GraphQL. You will notice that nothing has changed when navigating around the Next.js blog starter, this is because we need to update the starter to use our GraphQL layer instead of directly accessing the markdown files. In the next section we will handle converting the frontend to use TinaCMS.
