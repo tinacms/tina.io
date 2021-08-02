@@ -1,6 +1,6 @@
 ---
 title: TinaCMS CLI
-last_edited: '2021-08-02T20:17:22.444Z'
+last_edited: '2021-08-02T20:19:57.963Z'
 ---
 The TinaCMS CLI has many uses, it's main usage is to start the local graphql server for serving static content, compiling the schema, and providing an **init** command that allows one to get up and running with Tina quickly.
 
@@ -37,7 +37,7 @@ yarn tinacms sever:start
 
 This will compile the schema into a static files, generates typescript types for you to use in your project and starts a graphQL server on http://localhost:4001
 
-This command also takes a argument (`-c`) that allows you to run a command as a child process. This is very helpful for running a dev server and building your next.js app. The scripts portion of your package.json should look like this.
+This command also takes an argument (`-c`) that allows you to run a command as a child process. This is very helpful for running a dev server and building your next.js app. The scripts portion of your package.json should look like this.
 
 ```json,copy
 "scripts": {
