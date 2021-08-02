@@ -21,10 +21,10 @@ npx @tinacms/cli init
 
 This will,
 
-1. install of the dependencies you need
-2. setup a basic content model in your [`schema.ts` file](/docs/schema/)
-3. drop in a ready to go `_app.js` file
-4. add an editable page at http://localhost:3000/demo/blog/helloWorld
+1. Install of the dependencies you need
+2. Setup a basic content model in your [`schema.ts` file](/docs/schema/)
+3. Drop in a ready to go `_app.js` file
+4. Add an editable page at http://localhost:3000/demo/blog/helloWorld
 
 
 
