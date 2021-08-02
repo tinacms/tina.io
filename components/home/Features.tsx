@@ -51,8 +51,14 @@ export const feature_template: BlockTemplate = {
       component: 'group',
       fields: [
         {
-          label: 'Media Source',
+          label: 'Image Source',
           name: 'src',
+          component: 'text',
+        },
+        {
+          label: 'Video Source',
+          description: 'Cloudinary ID and file name',
+          name: 'videoSrc',
           component: 'text',
         },
       ],
@@ -84,9 +90,12 @@ export function FeatureBlock({ data, index }) {
               <FeatureBlobSvg />
             </div>
           </div>
-          <div className={`featureImage`}>
-            <img src={data.media.src} alt="" />
-          </div>
+          {data.media.src && (
+            <div className={`featureImage`}>
+              <img src={data.media.src} alt="" />
+            </div>
+          )}
+          {data.media.videoSrc && <FeatureVideo src={data.media.videoSrc} />}
         </div>
       </BlocksControls>
       <style jsx>{`
@@ -275,4 +284,38 @@ const FEATURE_BLOCKS = {
     Component: FeatureBlock,
     template: feature_template,
   },
+}
+
+export const FeatureVideo = ({ src }) => {
+  return (
+    <>
+      <video
+        className="video"
+        autoPlay={true}
+        loop
+        muted
+        playsInline
+        poster={`https://res.cloudinary.com/forestry-demo/video/upload/so_0/${src}.jpg`}
+      >
+        <source
+          src={`https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/${src}.webm`}
+          type="video/webm"
+        />
+        <source
+          src={`https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/${src}.mp4`}
+          type="video/mp4"
+        />
+      </video>
+      <style jsx>{`
+        .video {
+          width: 100%;
+          border-radius: 0.5rem;
+          box-shadow: inset 0 0 0 1px rgba(236, 72, 21, 0.03),
+            0 6px 24px rgba(0, 37, 91, 0.05), 0 2px 4px rgba(0, 37, 91, 0.03);
+          display: flex;
+          justify-content: center;
+        }
+      `}</style>
+    </>
+  )
 }
