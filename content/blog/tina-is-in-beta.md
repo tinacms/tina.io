@@ -4,13 +4,26 @@ date: '2021-07-27T20:00:00-04:00'
 author: James Perkins
 last_edited: '2021-07-27T15:22:06.367Z'
 ---
-The team at Tina have been working hard since June 2nd when we launched Tina Cloud. We took all your feedback and thoughts and iterated to make huge improvements to the product.
+The team at Tina have been working hard since June 2nd when we launched Tina Cloud. We took all your feedback and thoughts and iterated to make huge improvements to the product.The Alpha release contained the core product yet we knew we had some features we wanted to add immediately, including a simplified integration path.
 
-The Alpha release contained the core product yet we knew we had some features we wanted to add immediately, including a simplified integration path.
+//Scott thoughts here?
 
-## What has changed since Alpha?
 
-Quite a lot has changed since we released the Alpha, we wanted to move quickly to add features and improve on a great core concept.  We are going to discuss each of them in detail to give you an understanding of where the product is at and where we are heading.
+## What does being in Beta mean for you?
+
+The team and I believe that our product combines a fantastic developer and content creator experience into a single product, the update from Alpha to Beta is so large that I wanted to write a short paragraph about each part. Below is a list of each update, feel free to click on it to take you to the long form update:
+
+// These will be links once this comes together.
+
+- Better Documentation
+- Ability to Init Tina on any Next site.
+- Better Guides
+- Media Manager 
+- Cache improvments
+- Creating @tinacms/toolkit
+- Vercel Integration
+- Dashboard UI/UX improvements
+
 
 ## Getting started with Tina
 
@@ -62,3 +75,12 @@ Speed and performance have been something we have been actively working on. We i
 TinaCMS was built-in with small modular packages, this meant that we relied heavily on React context, and the dependency mismatches from over-modularizing our toolkit, which led to many bugs related to missing context.
 
 Our open-source team created @tinacms/toolkit which incorporates the essentials of Tina all in one place. This simplifies everything for you as a user and Tina as a product.
+
+## Vercel Integration
+
+We wanted to reduce the friction to almost zero when testing TinaCMS, so we worked on adding Vercel integration. This means if you sign up for an account, you can one click and deploy in minutes and start playing around with TinaCMS and Tina Cloud. 
+
+## Dashboard overhaul
+
+When using Tina Cloud in Alpha our dashboard UX wasn't a first class experience and at times could be confusing. We completely overhauled the experience, making it easier and quicker to add an application to the Cloud, invite users and find the important information such as site url(s) or client-id.
+
