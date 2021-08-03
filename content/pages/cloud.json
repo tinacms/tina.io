@@ -35,7 +35,7 @@
           "variant": "orange",
           "label": "Sign up",
           "icon": "arrowRight",
-          "url": "http://app.tina.io/register"
+          "url": "https://app.tina.io/register"
         },
         {
           "variant": "ghost",
