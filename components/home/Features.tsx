@@ -7,8 +7,6 @@ import {
 import { BlockTemplate } from 'tinacms'
 import { ActionFields, Actions } from './Actions'
 import { Container } from './Container'
-import { HeroFeature } from './Hero'
-import { IconRight } from './Icons'
 import BlobOne from '../../public/svg/blob-1.svg'
 import BlobTwo from '../../public/svg/blob-2.svg'
 import BlobThree from '../../public/svg/blob-3.svg'
@@ -92,7 +90,12 @@ export function FeatureBlock({ data, index }) {
           </div>
           {data.media.src && (
             <div className={`featureImage`}>
-              <img src={data.media.src} alt="" />
+              <img
+                src={data.media.src}
+                alt={data.headline}
+                width="1120px"
+                height="800px"
+              />
             </div>
           )}
           {data.media.videoSrc && <FeatureVideo src={data.media.videoSrc} />}

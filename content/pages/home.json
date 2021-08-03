@@ -58,7 +58,7 @@
           "headline": "Query Your Content",
           "subline": "Query your content across all your files using Tina Cloud’s GraphQL layer on top of the files stored in your repository.",
           "media": {
-            "src": "/img/your-blocks.gif"
+            "src": "https://res.cloudinary.com/forestry-demo/image/upload/v1628023277/tina-io/query-content.jpg"
           }
         },
         {
