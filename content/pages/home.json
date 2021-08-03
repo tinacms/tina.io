@@ -39,14 +39,6 @@
         },
         {
           "_template": "feature",
-          "headline": "Build on Top of Your Components",
-          "subline": "Add an editing interface to your React components, with block-based data and nested forms to give content teams the power to manage and build complex pages.",
-          "media": {
-            "videoSrc": "v1627931840/tina-io/Build_With_Components"
-          }
-        },
-        {
-          "_template": "feature",
           "headline": "Edit with Dynamic Visual Feedback",
           "subline": "Accelerate productivity; see changes in context as you edit your content on your website.",
           "media": {
@@ -59,6 +51,14 @@
           "subline": "Query your content across all your files using Tina Cloud’s GraphQL layer on top of the files stored in your repository.",
           "media": {
             "src": "https://res.cloudinary.com/forestry-demo/image/upload/v1628023277/tina-io/query-content.jpg"
+          }
+        },
+        {
+          "_template": "feature",
+          "headline": "Build on Top of Your Components",
+          "subline": "Add an editing interface to your React components, with block-based data and nested forms to give content teams the power to manage and build complex pages.",
+          "media": {
+            "videoSrc": "v1627931840/tina-io/Build_With_Components"
           }
         },
         {
