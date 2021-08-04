@@ -12,7 +12,7 @@ last_edited: '2021-07-27T15:51:56.737Z'
 
 **Tina Cloud** is a hosted service purpose built for integration with the TinaCMS Toolkit. Tina Cloud makes it possible for entire content teams to take advantage of a Git-based workflow, regardless of whether they write code or have GitHub accounts. Additionally, Tina Cloud exposes a GraphQL API for your site's file-based content, giving developers a more powerful interface for querying data and reconciling relationships.
 
-[Tina Cloud Dashboard](docs/tina-cloud/dashboard/) - The Tina Cloud Dashboard is the interface for managing the administrative aspects of your content management. The dashboard allows you to create apps, and setup your users.
+[Tina Cloud Dashboard](/docs/tina-cloud/dashboard/) - The Tina Cloud Dashboard is the interface for managing the administrative aspects of your content management. The dashboard allows you to create apps, and setup your users.
 
 <div class="callout">
 <img className="learnImage" src="../img/tina-laptop.png" alt="" />
