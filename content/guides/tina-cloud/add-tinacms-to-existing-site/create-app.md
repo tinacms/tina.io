@@ -31,7 +31,7 @@ import { TinaEditProvider } from 'tinacms/dist/edit-state'
 + import '../styles/index.css'
 
 ...
-
+```
 This command does a few things in your Next.js application:
 
 1. Install all required dependencies for Tina
