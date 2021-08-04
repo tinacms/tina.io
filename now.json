@@ -267,6 +267,14 @@
     {
       "source": "/guides/tina-cloud/existing-site/(.*)",
       "destination": "/guides/tina-cloud/add-tinacms-to-existing-site/$1"
+    },
+    {
+      "source": "/docs/tina-cloud/client",
+      "destination": "/docs/tinacms-context/"
+    },
+    {
+      "source": "/docs/tina-cloud/cli",
+      "destination": "/docs/cli-overview/"
     }
   ]
 }
