@@ -12,6 +12,6 @@ This guide covers the following:
 - Define the shape of your content
 - Use the content in `getStaticProps`, `getStaticPaths`
 - Add plugins to extend functionality
-- Deploy to TinaCMS Backend.
+- Deploy to Vercel or Netlify and connect to the TinaCMS Backend.
 
 This will allow your content creators to edit the blog posts in real time on a deployed site on a host such as a Vercel or Netlfiy
