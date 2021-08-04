@@ -250,6 +250,10 @@
       "destination": "/docs/tina-cloud/alpha-faq"
     },
     {
+      "source": "/docs/tina-cloud/cli",
+      "destination": "/docs/cli/",
+    },
+    {
       "source": "/guides/nextjs/github-open-authoring/(.*)",
       "destination": "/guides/experimental/github/$1"
     },{
