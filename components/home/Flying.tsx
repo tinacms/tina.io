@@ -69,7 +69,7 @@ export function FlyingBlock({ data, index }) {
         .learnTina {
           padding: 6rem 0;
           position: relative;
-          z-index: 2;
+          z-index: 3;
           overflow: hidden;
           background-color: var(--color-seafoam);
           background: linear-gradient(
@@ -101,7 +101,7 @@ export function FlyingBlock({ data, index }) {
           padding-bottom: 50%;
           top: 50%;
           transform: translate3d(-50%, -50%, 0);
-          z-index: -1;
+          z-index: -3;
           pointer-events: none;
 
           :global(svg) {
@@ -125,7 +125,7 @@ export function FlyingBlock({ data, index }) {
         }
 
         .foreground {
-          z-index: 10;
+          z-index: -1;
           opacity: 0.7;
 
           :global(svg) {
@@ -182,6 +182,7 @@ export function FlyingBlock({ data, index }) {
           margin: 0;
           position: relative;
           animation: learnImage 3s ease-in-out infinite alternate;
+          z-index: -2;
 
           @media (prefers-reduced-motion) {
             animation: none;
