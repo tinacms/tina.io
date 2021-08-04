@@ -5,6 +5,8 @@ last_edited: '2021-07-19T10:00:00.000Z'
 
 ## Create a Next.js application
 
+We are going to be using the Next.js Blog Starter for this guide, so from your terminal run the following: 
+
 ```bash
 npx create-next-app --example blog-starter tina-quickstart
 
@@ -26,7 +28,7 @@ Your import section should now look like
 ```diff 
 import dynamic from 'next/dynamic'
 import { TinaEditProvider } from 'tinacms/dist/edit-state'
-+ import '../styles/globals.css'
++ import '../styles/index.css'
 
 ...
 ```
@@ -51,13 +53,11 @@ Once you have launch the application you have a couple of new URLS:
 - `http://localhost:3000/demo/blog/HelloWorld`
 - `http://localhost:4001/altair/`
 
-The first URL brings you to a Tina Page, this Tina page describes how to continue setting up your application, but you can also edit the Title and Body above the small guide. 
-
-If you navigate to http://localhost:3000/demo/blog/HelloWorld, you won't be able to edit right away. Firstly you need to enter edit mode, to enter edit mode, navigate to http://localhost:3000/admin you will enter into edit mode. Selecting the pencil in the bottom left allows you to edit the title and the body of the page right in the frontend. When you hit save, that will save your changes to the Markdown file.
+The first URL brings you to a demo of TinaCMS, it will show you the power of Tina and also give you some informational links you check out. If you navigate to http://localhost:3000/demo/blog/HelloWorld, you won't be able to edit right away. Firstly you need to enter edit mode, to enter edit mode, navigate to http://localhost:3000/admin you will enter into edit mode. Selecting the pencil in the bottom left allows you to edit the title and the body of the page right in the frontend. When you hit save, that will save your changes to the Markdown file.
 
 > Want to see your changes? Open up the file located at `/content/HelloWorld.md` and the changes you've made will be there!
 
-<video controls autoplay muted loop>
+<video controls autoplay=true muted loop>
   <source src="/gif/tina-init.mp4" type="video/mp4" />
   Your browser does not support the video tag.
 </video>

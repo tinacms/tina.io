@@ -191,6 +191,8 @@ query BlogPostQuery($relativePath: String!) {
 }
 ```
 
+> If you would like to test this out, you can add the following to the variables section at the bottom `{"relativePath": "hello-world.md"}`
+
 ### Adding our query to our blog
 
 Remove all the code inside of the `getStaticProps` function and we can update it to use our own code. Since these pages are dynamic, we'll want to use the values we returned from `getStaticPaths` in our query. We'll destructure `params` to grab the `slug`, using it as a `relativePath`. As you'll recall the "Blog Posts" collection stores files in a folder called `_posts`, so we want to make a request for the relative path of our content. Meaning for the file located at `_posts/hello-world.md`, we only need to supply the relative portion of `hello-world.md`. 
@@ -320,7 +322,7 @@ export default function Post({ data, slug}) {
 +                <meta property="og:image" content={ogImage.url} />
               </Head>
               <PostHeader
--                title={post.tiltle}
+-                title={post.title}
 +                title={title}
 -                coverImage={post.coverImage}
 +                coverImage={coverImage}
