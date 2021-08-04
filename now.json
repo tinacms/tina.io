@@ -274,7 +274,7 @@
     },
     {
       "source": "/docs/tina-cloud/cli",
-      "destination": "/docs/docs/cli-overview/"
+      "destination": "/docs/cli-overview/"
     }
   ]
 }
