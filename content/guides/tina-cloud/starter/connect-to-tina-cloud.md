@@ -34,7 +34,7 @@ This time a modal asks you to authenticate through TinaCMS. Upon success, Tina w
 Make some edits through the sidebar and click save.
 Changes are saved in your GitHub repository.
 
-> Hint: To exit edit mode navigate to the `/exit-admin` route if your running on localhost it is http://localhost:3000/exit-admin .
+> Hint: To exit edit mode, navigate to the `/exit-admin` route.  If you are running on `localhost`, it is `http://localhost:3000/exit-admin`.
 
 Now that Tina Cloud editing is working correctly, we can deploy the site so that other team members can make edits too.
 

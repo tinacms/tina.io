@@ -44,4 +44,4 @@ Next, click on the pencil in the lower left-hand corner to open Tina's sidebar w
 Make some changes, build your own components and experience contextual editing with Tina. As fun as this is, you'll likely want to collaborate with others and view changes on a publicly available URL. To do that, in the next step we'll connect to Tina Cloud.
 
  
-> Hint: To exit edit mode navigate to the `/exit-admin` route if your running on localhost it is http://localhost:3000/exit-admin .
+> Hint: To exit edit mode, navigate to the `/exit-admin` route.  If you are running on `localhost`, it is `http://localhost:3000/exit-admin`.
