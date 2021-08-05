@@ -151,4 +151,18 @@ export const GlobalStyle = React.memo(createGlobalStyle`
       }
     }
   }
+
+
+  .fitVids-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+  }
+  .fitVids-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 `)
