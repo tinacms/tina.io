@@ -1,10 +1,10 @@
 ---
-title: Upgrading Tina GraphQL Gateway from Alpha to Beta
+title: From GraphQL Gateway to TinaCMS
 ---
 
 # Package reorganization
 
-As we've trialed the GraphQL API and how it works with TinaCMS, it's become apparent that this is the primary path we want to carve out for users of Tina. We'll be moving the `tina-graphq-gateway` APIs in to the `tinacms` package to reflect its more central role in the Tina workflow. Other backend integrations will still be available to build out via the new `@tinacms/toolkit` package. You can read more details on those changes [here]().
+As we've trialed the GraphQL API and how it works with TinaCMS, it's become apparent that this is the primary path we want to carve out for users of Tina. We'll be moving the `tina-graphq-gateway` APIs in to the `tinacms` package to reflect its more central role in the Tina workflow. Other backend integrations will still be available to build out via the new `@tinacms/toolkit` package. You can read more details on those changes [here](https://github.com/tinacms/tinacms/issues/1898).
 
 ### `tinacms` is absorbing `tina-graphql-gateway`
 
@@ -20,7 +20,7 @@ yarn remove tina-graphql-gateway
 + import { useGraphqlForms } from 'tinacms'
 ```
 
-> Heads up, `useGraphqlForms` is now considered a lower-level API. You may want to instead use the default import from `tinacms` to configure things. [Learn more]()
+> Heads up, `useGraphqlForms` is now considered a lower-level API. You may want to instead use the default import from `tinacms` to configure things. [Learn more](/docs/tinacms-context)
 
 ### `tina-graphql-gateway-cli` is now `@tinacms/cli`
 
