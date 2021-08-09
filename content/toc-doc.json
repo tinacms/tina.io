@@ -42,6 +42,11 @@
             "title": "The new schema"
           }
         ]
+      },
+      {
+        "id": "/docs/tina-cloud/faq/",
+        "slug": "/docs/tina-cloud/faq/",
+        "title": "FAQ"
       }
     ]
   },
