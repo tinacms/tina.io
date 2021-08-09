@@ -143,7 +143,7 @@ function CommunityPage({ file: community, metadata, preview }) {
                   </InfoText>
                   <ButtonGroup>
                     <DynamicLink
-                      href={'https://discord.gg/QC724mKx'}
+                      href={'https://discord.gg/HUz7G7h7D4'}
                       passHref
                     >
                       <Button as="a">Discord</Button>
