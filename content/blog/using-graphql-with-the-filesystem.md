@@ -197,7 +197,7 @@ export default defineSchema({
   collections: [
     {
       label: 'Posts',
-      name: 'posts',
+      name: 'post',
       /*
        * Indicates where to save this kind of content (eg. the "_posts" folder)
        */
@@ -315,7 +315,7 @@ Let's test it out:
 ```graphql
 # Point your request to http://localhost:4001/graphql
 {
-  getPostsList {
+  getPostList {
     data {
       ... on SimplePost_Doc_Data {
         title
@@ -332,7 +332,7 @@ And here is the result:
   "errors": [
     {
       "message": "Unexpected value of type string for boolean value",
-      "path": ["getPostsList"]
+      "path": ["getPostList"]
     }
   ],
   ...
@@ -344,7 +344,7 @@ This error is coming from our old friend `featured: "false"`. This is exactly th
 ```json
 {
   "data": {
-    "getPostsList": [
+    "getPostList": [
       {
         "data": {
           "title": "Dynamic Routing and Static Generation"
@@ -360,7 +360,7 @@ We can use GraphQL to replace all of our bespoke filesystem data-fetching logic 
 
 ```graphql
 query BlogPostQuery($relativePath: String!) {
-  getPostsDocument(relativePath: $relativePath) {
+  getPostDocument(relativePath: $relativePath) {
     data {
       ... on SimplePost_Doc_Data {
         title

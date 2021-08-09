@@ -4,6 +4,7 @@ date: '2021-07-09T08:34:47-04:00'
 author: James Perkins
 last_edited: '2021-07-09T13:35:07.608Z'
 ---
+
 # Tina now supports Cloudinary as a Media Manager
 
 We released our public alpha just over a month ago and one thing that has come up in the feedback we have been collecting is the ability to use Tina's Media Manager. This was a core feature that gives content creators the ability to drag and drop their images or replace an image easily. We decided to start with Cloudinary, to allow users to keep their GitHub repositories lightweight.
@@ -29,7 +30,7 @@ or
 npm install next-tinacms-cloudinary
 ```
 
-You also need to add your Cloudinary cloud name, API key and API secret from your Cloudinary account, to your `.env.local` file  which you can find in your Cloudinary Dashboard.
+You also need to add your Cloudinary cloud name, API key and API secret from your Cloudinary account, to your `.env.local` file which you can find in your Cloudinary Dashboard.
 
 ```other
 NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=
@@ -85,7 +86,7 @@ export default defineSchema({
   collections: [
     {
       label: 'Blog Posts',
-      name: 'posts',
+      name: 'post',
       path: 'content/posts',
       templates: [
         {

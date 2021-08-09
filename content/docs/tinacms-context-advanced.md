@@ -24,7 +24,7 @@ await client.request(
   gql => gql`#graphql
 query BlogPostQuery($relativePath: String!) {
   {
-    getPostsDocument(relativePath: "") {
+    getPostDocument(relativePath: "") {
       data {
         title
       }
@@ -62,7 +62,7 @@ import { useGraphqlForms } from 'tinacms'
 const query = gql => gql`#graphql
   query BlogPostQuery($relativePath: String!) {
     {
-      getPostsDocument(relativePath: $relativePath) {
+      getPostDocument(relativePath: $relativePath) {
         data {
           title
         }
@@ -81,7 +81,7 @@ const MyPage = (props) => {
 }
 ```
 
-If Tina is enabled you can see a form for the `getPostsDocument` request. If you query for multiple documents, you should see multiple forms:
+If Tina is enabled you can see a form for the `getPostDocument` request. If you query for multiple documents, you should see multiple forms:
 
 ```tsx
 const query = gql => gql`#graphql
@@ -97,7 +97,7 @@ const query = gql => gql`#graphql
         }
       }
       # this generates a separate Tina Form
-      getPostsDocument(relativePath: $relativePath) {
+      getPostDocument(relativePath: $relativePath) {
         data {
           title
         }

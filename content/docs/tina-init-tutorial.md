@@ -2,35 +2,35 @@ Hello! and thanks for bootstrapping a Tina App! Before you do anything click on 
 
 ## Next steps
 
-### Wrap your App in "Edit State" 
+### Wrap your App in "Edit State"
 
 **NOTE:** If you bootstrapped this application with the CLI it probably took care of this for you and you can skip to the [Make a page editable](#make-a-page-editable) Step.
 
-To do this add the following to your pages/_app.js. (or create this file if it is not present in your project)
+To do this add the following to your pages/\_app.js. (or create this file if it is not present in your project)
 
-**_app.js**
+**\_app.js**
 
 ```tsx,copy
-import dynamic from "next/dynamic";
+import dynamic from 'next/dynamic'
 
-import { EditProvider, setEditing, useEditState } from "tina-graphql-gateway";
+import { EditProvider, setEditing, useEditState } from 'tina-graphql-gateway'
 
 // InnerApp that handles rendering edit mode or not
 function InnerApp({ Component, pageProps }) {
-  const { edit } = useEditState();
+  const { edit } = useEditState()
   if (edit) {
     // Dynamically load Tina only when in edit mode so it does not affect production
     // see https://nextjs.org/docs/advanced-features/dynamic-import#basic-usage
-    const TinaWrapper = dynamic(() => import("../components/tina-wrapper"));
+    const TinaWrapper = dynamic(() => import('../components/tina-wrapper'))
     return (
       <>
         <TinaWrapper {...pageProps}>
-          {(props) => <Component {...props} />}
+          {props => <Component {...props} />}
         </TinaWrapper>
       </>
-    );
+    )
   }
-  return <Component {...pageProps} />;
+  return <Component {...pageProps} />
 }
 
 // Our app is wrapped with edit provider
@@ -40,29 +40,30 @@ function App(props) {
       <ToggleButton />
       <InnerApp {...props} />
     </EditProvider>
-  );
+  )
 }
 const ToggleButton = () => {
-  const { edit, setEdit } = useEditState();
+  const { edit, setEdit } = useEditState()
   return (
     <button
       onClick={() => {
-        setEdit(!edit);
+        setEdit(!edit)
       }}
     >
       Toggle Edit State
     </button>
-  );
-};
+  )
+}
 
-export default App;
+export default App
 ```
 
 Please restart your dev server (CTR + C and yarn dev) and now you will have access to the `useEditState` hook anywhere in your app. You will also notice that we are lazy loading the tina-wrapper component. This is so that no Tina code will load in your production bundle.
 
 Next you can delete the editProvider and TinaWrapper from 'pages/demo/blog/[filename].ts' by deleting the default export and adding
+
 ```tsx
-export default BlogPage;
+export default BlogPage
 ```
 
 ### Make a page editable
@@ -78,33 +79,33 @@ To make a page editable we need to do three things
 let's update our schema.ts to include product listings. We will do so by adding a "pages collection" with a product listing template. When adding to our existing blog collection it looks like this. We also need a place to store the authors in the file system. So let's create a folder `content/pages`.
 
 ```tsx,copy
-import { defineSchema } from "tina-graphql-gateway-cli";
+import { defineSchema } from 'tina-graphql-gateway-cli'
 
 export default defineSchema({
   collections: [
     {
-      label: "Pages",
-      name: "pages",
-      path: "content/pages",
+      label: 'Pages',
+      name: 'pages',
+      path: 'content/pages',
       templates: [
         {
-          label: "Product listing page",
-          name: "product",
+          label: 'Product listing page',
+          name: 'product',
           fields: [
             {
-              type: "group-list",
-              label: "Products",
-              name: "products",
+              type: 'group-list',
+              label: 'Products',
+              name: 'products',
               fields: [
                 {
-                  type: "text",
-                  label: "Item ID",
-                  name: "id",
+                  type: 'text',
+                  label: 'Item ID',
+                  name: 'id',
                 },
                 {
-                  type: "textarea",
-                  label: "Description",
-                  name: "description",
+                  type: 'textarea',
+                  label: 'Description',
+                  name: 'description',
                 },
               ],
             },
@@ -113,27 +114,26 @@ export default defineSchema({
       ],
     },
     {
-      label: "Blog Posts",
-      name: "posts",
-      path: "content/posts",
+      label: 'Blog Posts',
+      name: 'post',
+      path: 'content/posts',
       templates: [
         {
-          label: "Article",
-          name: "article",
+          label: 'Article',
+          name: 'article',
           fields: [
             {
-              type: "text",
-              label: "Title",
-              name: "title",
+              type: 'text',
+              label: 'Title',
+              name: 'title',
             },
           ],
         },
       ],
     },
   ],
-});
+})
 ```
-
 
 let's also create a file to query. In the folder we just created (`content/pages`) add a file called `product-listing.md`
 
@@ -143,34 +143,33 @@ _template: product
 ---
 ```
 
-
 #### Make a new Next.js page and a graphql Query
 
 Start by making a new file called `pages/product-listing.tsx` that contains the following
 
 ```tsx,copy
-import { LocalClient } from "tina-graphql-gateway";
-import { Pages_Document } from "../.tina/__generated__/types";
-import { AsyncReturnType } from "./demo/blog/[filename]";
+import { LocalClient } from 'tina-graphql-gateway'
+import { Pages_Document } from '../.tina/__generated__/types'
+import { AsyncReturnType } from './demo/blog/[filename]'
 
 const ProductListingPage = (
-  props: AsyncReturnType<typeof getStaticProps>["props"]
+  props: AsyncReturnType<typeof getStaticProps>['props']
 ) => {
-  console.log(props);
+  console.log(props)
   return (
     <div>
       <ol>
-        {props.data.getPagesDocument?.data?.products?.map((product) => (
+        {props.data.getPagesDocument?.data?.products?.map(product => (
           <li key={product.id}>
             id: {product.id}, description: {product.description}
           </li>
         ))}
       </ol>
     </div>
-  );
-};
+  )
+}
 
-export default ProductListingPage;
+export default ProductListingPage
 
 const query = `#graphql
 query ProuctPageQuery {
@@ -185,8 +184,8 @@ query ProuctPageQuery {
     }
   }
 }
-`;
-const client = new LocalClient();
+`
+const client = new LocalClient()
 
 export const getStaticProps = async () => {
   return {
@@ -197,8 +196,8 @@ export const getStaticProps = async () => {
       variables: {},
       query,
     },
-  };
-};
+  }
+}
 ```
 
 We are doing a couple of things here. A graphql query was written that looks for the `content/pages/product-listing.md` file

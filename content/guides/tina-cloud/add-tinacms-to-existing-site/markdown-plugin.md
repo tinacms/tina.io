@@ -2,6 +2,7 @@
 title: Adding Markdown editors
 last_edited: '2021-07-30T20:10:55.164Z'
 ---
+
 ## Using Markdown plugins:
 
 One of the amazing features of Tina is ability to extend the project through plugins. The NextJS blog starter uses remark to render the Markdown files into HTML, so it would be useful for our content team to be able to edit using a markdown editor, plus we can add the functionality back.
@@ -111,7 +112,7 @@ export default function Post({data,slug}) {
     author,
     body,
     ogImage,
-  } = data.getPostsDocument.data
+  } = data.getPostDocument.data
   const router = useRouter()
 +  const [content, setContent] = useState('')
 ```
@@ -127,7 +128,7 @@ export default function Post({data,slug}) {
     author,
     body,
     ogImage,
-  } = data.getPostsDocument.data
+  } = data.getPostDocument.data
   const router = useRouter()
   const [content, setContent] = useState('')
 + useEffect(() => {
@@ -147,7 +148,7 @@ Then finally we can set the `PostBody` content to our nearly updated content.
 
 The completed file should look like:
 
-```js,copy 
+```js,copy
 import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
 import Container from '../../components/container'
@@ -159,10 +160,10 @@ import PostTitle from '../../components/post-title'
 import Head from 'next/head'
 import { CMS_NAME } from '../../lib/constants'
 import markdownToHtml from '../../lib/markdownToHtml'
-import { staticRequest,getStaticPropsForTina } from "tinacms";
+import { staticRequest, getStaticPropsForTina } from 'tinacms'
 import { useEffect, useState } from 'react'
 
-export default function Post({ data,slug,preview }) {
+export default function Post({ data, slug, preview }) {
   const {
     title,
     coverImage,
@@ -170,16 +171,16 @@ export default function Post({ data,slug,preview }) {
     author,
     body,
     ogImage,
-  } = data.getPostsDocument.data
+  } = data.getPostDocument.data
   const router = useRouter()
   const [content, setContent] = useState('')
 
-   useEffect(() => {
-      const parseMarkdown = async () => {
-        setContent(await markdownToHtml(body))
-      }
-      parseMarkdown()
-   }, [body])
+  useEffect(() => {
+    const parseMarkdown = async () => {
+      setContent(await markdownToHtml(body))
+    }
+    parseMarkdown()
+  }, [body])
   if (!router.isFallback && !slug) {
     return <ErrorPage statusCode={404} />
   }
@@ -194,7 +195,7 @@ export default function Post({ data,slug,preview }) {
             <article className="mb-32">
               <Head>
                 <title>
-                {title} | Next.js Blog Example with {CMS_NAME}
+                  {title} | Next.js Blog Example with {CMS_NAME}
                 </title>
                 <meta property="og:image" content={ogImage.url} />
               </Head>
@@ -213,14 +214,13 @@ export default function Post({ data,slug,preview }) {
   )
 }
 
-
 export const getStaticProps = async ({ params }) => {
   const { slug } = params
   const variables = { relativePath: `${slug}.md` }
   const tinaProps = await getStaticPropsForTina({
     query: `
       query BlogPostQuery($relativePath: String!) {
-        getPostsDocument(relativePath: $relativePath) {
+        getPostDocument(relativePath: $relativePath) {
           data {
             title
             excerpt
@@ -253,7 +253,7 @@ export async function getStaticPaths() {
   const postsListData = await staticRequest({
     query: `
     query {
-      getPostsList {
+      getPostList {
         edges {
           node {
             sys {
@@ -266,10 +266,8 @@ export async function getStaticPaths() {
     `,
     variables: {},
   })
-  console.log(postsListData.getPostsList.edges);
   return {
-    paths: postsListData.getPostsList.edges.map(edge => ({
-
+    paths: postsListData.getPostList.edges.map(edge => ({
       params: { slug: edge.node.sys.filename },
     })),
     fallback: false,

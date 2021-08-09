@@ -5,19 +5,19 @@ last_edited: '2021-07-30T20:18:26.925Z'
 
 ## Overview
 
-Currently, the Next Blog Starter grabs content from the file system. But since Tina comes with a GraphQL API on top of the filesystem, we’re going to query that instead. Using the GraphQL API will allow you to use the power of TinaCMS, you will be able to retrieve the content and also edit and save the content directly. 
+Currently, the Next Blog Starter grabs content from the file system. But since Tina comes with a GraphQL API on top of the filesystem, we’re going to query that instead. Using the GraphQL API will allow you to use the power of TinaCMS, you will be able to retrieve the content and also edit and save the content directly.
 
 ## Creating the getStaticPaths query
 
-The `getStaticPaths` query is going to need to know where all of our markdown files are located, with our current schema you have the option to use `getPostsList` which will provide a list of all posts in our `_posts` folder. Make sure your local server is running and navigate to http://localhost:4001/altair and select the Docs button. The Docs button gives you the ability to see all the queries possible and the variables returned:
+The `getStaticPaths` query is going to need to know where all of our markdown files are located, with our current schema you have the option to use `getPostList` which will provide a list of all posts in our `_posts` folder. Make sure your local server is running and navigate to http://localhost:4001/altair and select the Docs button. The Docs button gives you the ability to see all the queries possible and the variables returned:
 
 ![Altair Doc example](/gif/altair_doc.gif)
 
-So based upon the `getPostsList` we will want to query the `sys` which is the filesystem and retrieve the `filename`, which will return all the filenames without the extension.
+So based upon the `getPostList` we will want to query the `sys` which is the filesystem and retrieve the `filename`, which will return all the filenames without the extension.
 
 ```graphql,copy
 query {
-  getPostsList {
+  getPostList {
     edges {
       node {
         sys {
@@ -34,7 +34,7 @@ If you run this query in the GraphQL client you will see the following returned:
 ```json,copy
 {
   "data": {
-    "getPostsList": {
+    "getPostList": {
       "edges": [
         {
           "node": {
@@ -95,14 +95,14 @@ staticRequest({
 
 > It's just a helper function which supplies a query to your locally-running GraphQL server, which is started on port `4001`. You can just as easily use `fetch` or an http client of your choice.
 
-We can use the `getPostsList` query from earlier to build our dynamic routes:
+We can use the `getPostList` query from earlier to build our dynamic routes:
 
 ```js,copy
 export async function getStaticPaths() {
   const postsListData = await staticRequest({
     query: `
       query {
-        getPostsList {
+        getPostList {
           edges {
             node {
             sys {
@@ -116,7 +116,7 @@ export async function getStaticPaths() {
     variables: {},
   })
   return {
-    paths: postsListData.getPostsList.edges.map(edge => ({
+    paths: postsListData.getPostList.edges.map(edge => ({
       params: { slug: edge.node.sys.filename },
     })),
     fallback: false,
@@ -126,7 +126,7 @@ export async function getStaticPaths() {
 
 #### Quick break down of `getStaticPaths`
 
-The `getStaticPaths` code takes the graphql query we created, because it does not require any `variables` we can send down an empty object. In the return functionality we map through each item in the `postsListData.getPostsList` and create a slug for each one.
+The `getStaticPaths` code takes the graphql query we created, because it does not require any `variables` we can send down an empty object. In the return functionality we map through each item in the `postsListData.getPostList` and create a slug for each one.
 
 We now need to create one more query, this query will fill in all the data and give us the ability to make all our blog posts editable.
 
@@ -136,21 +136,21 @@ The `getStaticProps` query is going to deliver all the content to the blog, whic
 
 We need to query the following things from our content api:
 
-* Title
-* Excerpt
-* Date
-* Cover Image
-* OG Image data
-* Author Data
-* Body content
+- Title
+- Excerpt
+- Date
+- Cover Image
+- OG Image data
+- Author Data
+- Body content
 
 ### Creating our Query
 
-Using our local graphql client we can query the `getPostsDocument` using the path to the blog post in question, below is the skeleton of what we need to fill out.
+Using our local graphql client we can query the `getPostDocument` using the path to the blog post in question, below is the skeleton of what we need to fill out.
 
 ```graphql
 query BlogPostQuery($relativePath: String!) {
-  getPostsDocument(relativePath: $relativePath) {
+  getPostDocument(relativePath: $relativePath) {
     # data from our posts.
   }
 }
@@ -172,7 +172,7 @@ Once you have filled in all the fields you should have a query that looks like t
 
 ```graphql
 query BlogPostQuery($relativePath: String!) {
-  getPostsDocument(relativePath: $relativePath) {
+  getPostDocument(relativePath: $relativePath) {
     data {
       title
       excerpt
@@ -195,7 +195,7 @@ query BlogPostQuery($relativePath: String!) {
 
 ### Adding our query to our blog
 
-Remove all the code inside of the `getStaticProps` function and we can update it to use our own code. Since these pages are dynamic, we'll want to use the values we returned from `getStaticPaths` in our query. We'll destructure `params` to grab the `slug`, using it as a `relativePath`. As you'll recall the "Blog Posts" collection stores files in a folder called `_posts`, so we want to make a request for the relative path of our content. Meaning for the file located at `_posts/hello-world.md`, we only need to supply the relative portion of `hello-world.md`. 
+Remove all the code inside of the `getStaticProps` function and we can update it to use our own code. Since these pages are dynamic, we'll want to use the values we returned from `getStaticPaths` in our query. We'll destructure `params` to grab the `slug`, using it as a `relativePath`. As you'll recall the "Blog Posts" collection stores files in a folder called `_posts`, so we want to make a request for the relative path of our content. Meaning for the file located at `_posts/hello-world.md`, we only need to supply the relative portion of `hello-world.md`.
 
 ```js
 export const getStaticProps = async ({ params }) => {
@@ -223,7 +223,7 @@ export const getStaticProps = async ({ params }) => {
   const tinaProps = await getStaticPropsForTina({
     query: `
       query BlogPostQuery($relativePath: String!) {
-        getPostsDocument(relativePath: $relativePath) {
+        getPostDocument(relativePath: $relativePath) {
           data {
             title
             excerpt
@@ -274,7 +274,7 @@ export default function Post({ data, slug }) {
     author,
     body,
     ogImage,
-  } = data.getPostsDocument.data
+  } = data.getPostDocument.data
 ```
 
 We also should set the `<Layout preview={preview}>` to `false` as we won't be using it.
@@ -297,7 +297,7 @@ export default function Post({ data, slug}) {
     author,
     body,
     ogImage,
-  } = data.getPostsDocument.data
+  } = data.getPostDocument.data
   const router = useRouter()
 
 - if (!router.isFallback && !post?.slug) {
@@ -346,8 +346,8 @@ Visit [http://localhost:3000/posts/hello-world](http://localhost:3000/posts/hell
 
 ### Editing content:
 
-Now we are ready to launch and start editing the content, launch the application using the `yarn tina-dev` command and navigate one of the posts. Now because our application is "protected" you will need to navigate to http://localhost:3000/admin. Once you navigate to the admin route, the page will 
+Now we are ready to launch and start editing the content, launch the application using the `yarn tina-dev` command and navigate one of the posts. Now because our application is "protected" you will need to navigate to http://localhost:3000/admin. Once you navigate to the admin route, the page will
 
 ![Editing Gif](/gif/editing_smaller.gif)
 
-At this point we have created an exact replication of the NextJS starter with the ability to edit any of the fields and now have the ability to make changes. You’ll notice the post’s body is in a single text field, which isn’t a great editing experience and isn't be returned as HTML. So in the next section we’re going to add a Markdown editor plugin and reuse the markdown to html code the Next.js team provided. 
+At this point we have created an exact replication of the NextJS starter with the ability to edit any of the fields and now have the ability to make changes. You’ll notice the post’s body is in a single text field, which isn’t a great editing experience and isn't be returned as HTML. So in the next section we’re going to add a Markdown editor plugin and reuse the markdown to html code the Next.js team provided.
