@@ -59,8 +59,8 @@ You'll likely want to query the GraphQL API for [dynamic routes](https://nextjs.
 export const getStaticPaths = async () => {
   const postsListData = await staticRequest({
     query: gql`
-      query GetPostsList {
-        getPostsList {
+      query GetPostList {
+        getPostList {
           edges {
             node {
               sys {
@@ -74,7 +74,7 @@ export const getStaticPaths = async () => {
   })
 
   return {
-    paths: postsListData.getPostsList.edges.map(post => ({
+    paths: postsListData.getPostList.edges.map(post => ({
       params: { filename: post.node.sys.filename },
     })),
   }

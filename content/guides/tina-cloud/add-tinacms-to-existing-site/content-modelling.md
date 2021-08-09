@@ -2,6 +2,7 @@
 title: Content Modelling
 last_edited: '2021-07-30T17:58:35.396Z'
 ---
+
 ## Defining the shape of our content
 
 One key element of Tina is defining a schema that allows you to shape and interact with the content on the page. Opening up the project, you will see a folder called `.tina` which contains a `schema.ts` file. This file allows you to instruct Tina's Content API which content type to look for, how it should be labeled, and much more!
@@ -10,11 +11,11 @@ Before we look at our current project, let's discuss how the content is shaped. 
 
 ### Collections
 
-The top-level key in the schema is an array of _collections_, a `collection` informs the API about _where_ to save content. In our guide we are going to have a `posts` collection but we also could have an `author` and `pages` collections, for example. 
+The top-level key in the schema is an array of _collections_, a `collection` informs the API about _where_ to save content. In our guide we are going to have a `posts` collection but we also could have an `author` and `pages` collections, for example.
 
 ### Fields
 
-Fields instruct the Content API of the type expected for example, `text`, as well as the queryable name and the name to display to your content team. Fields are an array of objects that are a child of collections. We use this to retrieve the content from the Markdown or JSON files, these fields should map to your _frontmatter_ ,  and we also use this to create the UI elements for editing. 
+Fields instruct the Content API of the type expected for example, `text`, as well as the queryable name and the name to display to your content team. Fields are an array of objects that are a child of collections. We use this to retrieve the content from the Markdown or JSON files, these fields should map to your _frontmatter_ , and we also use this to create the UI elements for editing.
 
 ```json
 fields: [
@@ -35,14 +36,14 @@ fields: [
 
 ### References
 
-We also have `reference` fields. This is an important concept, when you _reference_ another collection, you're effectively saying: "this document _belongs to_ that document". A great example of using a reference is _author_ as each post would have an author and you could have mutiple authors, but you need to reference a particular author to the post. 
+We also have `reference` fields. This is an important concept, when you _reference_ another collection, you're effectively saying: "this document _belongs to_ that document". A great example of using a reference is _author_ as each post would have an author and you could have mutiple authors, but you need to reference a particular author to the post.
 
 ```json
 {
-  label: "Author",
-  name: "author",
-  type: "reference",
-  collections: ["author"] // points to a collection with the name "author"
+  "label": "Author",
+  "name": "author",
+  "type": "reference",
+  "collections": ["author"] // points to a collection with the name "author"
 }
 ```
 
@@ -77,7 +78,7 @@ Open up the Tina `schema.ts` file located at `/.tina/schema.ts` To begin with un
 ```diff
 {
   label: "Blog Posts",
-  name: "posts",
+  name: "post",
 -  path: "content/posts"
 +  path: '_posts',
   fields: [
@@ -96,7 +97,7 @@ Open up the Tina `schema.ts` file located at `/.tina/schema.ts` To begin with un
 }
 ```
 
-We have only replaced a single line so far, which is to update the `path` to  the correct location of the Starter Blog content.
+We have only replaced a single line so far, which is to update the `path` to the correct location of the Starter Blog content.
 
 Now we need to handle each field for our posts frontmatter, below is the finished file:
 
@@ -107,7 +108,7 @@ export default defineSchema({
   collections: [
     {
       label: 'Blog Posts',
-      name: 'posts',
+      name: 'post',
       path: '_posts',
       fields: [
         {

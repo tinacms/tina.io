@@ -293,7 +293,7 @@ Keep in mind, `dataJSON` does _not_ resolve acrosss multiple documents. Instead,
 
 ```json
 {
-  "getPostsDocument": {
+  "getPostDocument": {
     "data": {
       "title": "Hello, World!",
       "author": "path/to/author.md"
@@ -310,7 +310,7 @@ Previously, lists would return a simple array of items:
 
 ```graphql
 {
-  getPostsList {
+  getPostList {
     id
   }
 }
@@ -321,7 +321,7 @@ Which would result in:
 ```json
 {
   "data": {
-    "getPostsList": [
+    "getPostList": [
       {
         "id": "content/posts/voteForPedro.md"
       }
@@ -334,7 +334,7 @@ In the new API, you'll need to step through `edges` & `nodes`:
 
 ```graphql
 {
-  getPostsList {
+  getPostList {
     edges {
       node {
         id
@@ -347,7 +347,7 @@ In the new API, you'll need to step through `edges` & `nodes`:
 ```json
 {
   "data": {
-    "getPostsList": {
+    "getPostList": {
       "edges": [
         {
           "node": {

@@ -32,7 +32,7 @@ export default defineSchema({
           type: 'reference',
           label: 'Author',
           name: 'author',
-          collections: ['authors'],
+          collections: ['author'],
         },
       ],
     },

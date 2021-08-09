@@ -26,13 +26,13 @@ export default defineSchema({
           type: 'reference',
           label: 'Author',
           name: 'author',
-          collection: 'authors',
+          collection: 'author',
         },
       ],
     },
     {
       label: 'Authors',
-      name: 'authors',
+      name: 'author',
       path: 'content/authors',
       fields: [
         {

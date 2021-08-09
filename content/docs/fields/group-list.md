@@ -55,7 +55,7 @@ For example, if we had a list of authors in a JSON file:
 
 ```json
 {
-  "authors": [
+  "author": [
     {
       "name": "Alice Walker",
       "id": "alice-walker",
