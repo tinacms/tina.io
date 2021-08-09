@@ -50,4 +50,4 @@ yarn add -D @tinacms/cli
 
 That's it! With any luck you should be able to keep working on your Tina enabled site the same as before. We're not expecting to have to repeat this process when we make it to our first full release.
 
-If you come across any problems or have any questions feel free to [head over to our Discord](https://discord.gg/QC724mKx)! We'd love to hear from you.
+If you come across any problems or have any questions feel free to [head over to our Discord](https://discord.com/invite/zumN63Ybpf)! We'd love to hear from you.
