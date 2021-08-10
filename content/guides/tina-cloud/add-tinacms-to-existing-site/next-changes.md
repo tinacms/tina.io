@@ -1,5 +1,5 @@
 ---
-title: NextJS Starter Changes
+title: Making our pages editable with Tina
 last_edited: '2021-07-30T20:18:26.925Z'
 ---
 
