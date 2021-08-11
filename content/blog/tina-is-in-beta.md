@@ -13,10 +13,9 @@ The team at Tina have been working hard since June 2nd when we launched Tina Clo
 
 The team and I believe that our product combines a fantastic developer and content creator experience into a single product, the update from Alpha to Beta is so large that I wanted to write a short paragraph about each part. Below is a list of each update, feel free to click on it to take you to the long form update:
 
-// These will be links once this comes together.
 
 - Better Documentation
-- Ability to Init Tina on any Next site.
+- Quicker to get started
 - Better Guides
 - Media Manager 
 - Cache improvments
@@ -33,21 +32,21 @@ We wanted to speed up getting Tina up and running, whether this was a newly boot
 * A tina init command
 * New and improved guides
 
-### Better Docs
+### Better Documentation
 
-The documentation at Tina has been something that we wanted to improve as much as possible, we found people were getting confused by concepts because we did not clearly explain them in the documentation.
+The documentation at Tina has been something that we wanted to improve as much as possible, we found people were unsure of Tina concepts because we did not clearly explain them in the documentation. We spent time crafting documentation that gives a developer of any experience a better understanding of each part of Tina, how they work together and how to accomplish specific tasks. 
 
-I spent quite a bit of time reading the documentation over and over again when I first started at Tina and had a large number of notes. I decided to treat each documentation page as a "first time" Tina user and added clarity and context where required.
+We also moved and created new navigation menus to better convey the intent of a piece of documentation, for example if you were looking for the Next.js APIs we have a section for that. 
 
 ### Tina init
 
 Tina init is my favourite addition to the Tina experience. A single command can bootstrap Tina on a Next.js application and do all the heavy lifting for you. The team spent quite a bit of time working on this, and refining it, to get it just right.  With the command `npx @tinacms/cli init` we will do the following:
 
 1. Install all dependencies to your application
-2. Add the Tina commands to your package.json (tina-dev, tina-build, tina-start
-3. Wrap your app.js / app.tsx in TinaProvider
-4. Create demo data that you can test Tina with
-5. Create an admin route to allow people to edit
+2. Add the Tina commands to your package.json (`tina-dev`, `tina-build`, `tina-start`)
+3. Wrap your `app.js` / `app.tsx` in our `TinaEditProvider`
+4. Create demo data that you can test Tina out with.
+5. Create an admin route to allow people to edit, and a way to exit.
 6. Create a schema file ready for you to shape your own content
 
 This allows you to move quickly and experience Tina without having to write any code. Then when you are ready you can easily extend it to use parts of your existing site.
@@ -58,17 +57,18 @@ When we introduced Tina, we provided a quick start guide that guides you as a us
 
 I went back to the drawing board and created a new guide that takes the Next.js Starter Blog and adds Tina and Tina Cloud to it while explaining each concept as we went. This felt like a perfect way to show off Tina and use something many users are experienced with.
 
-We also went through our existing Next.js guides and made sure that the concepts we were promoting were easily translated to Tina Cloud, in case a user wanted the power of real-time editing without using the Cloud but then decided in the future to use our cloud offering.
+We also removed old guides that no longer promote Tina best practices and moved some of our other guides in to our experimental section. Experimental to us means that we can't guranateee that there won't be bugs or issues with the packages used. 
 
 ## Media Manager
 
-Media manager was one of the most important features that we needed for Tina Cloud. Our Cloudinary Media manager allows you to change images, upload new images, and delete ones you no longer need without ever leaving the front end.
+Media manager was one of the most important features that we needed for Tina Cloud. Our Cloudinary Media manager allows you to change images, upload new images, and delete ones you no longer need without ever leaving the Tina editing experience. 
 
-We introduced this in the middle of the Alpha and you can read about it in our [blog post announcing it]().
+I wrote a [blog post announcing it](/blog/manage-your-media-with-cloudinary/) and how to implement it into your application.
 
 ## Improving Caching
 
-Speed and performance have been something we have been actively working on. We introduced some improvements behind the scenes to improve the way we retrieve the data for your site.
+Speed and performance have been something we have been actively working on. We introduced some improvements behind the scenes to improve the way we retrieve the data for your site. Tina was already performance first but now its even better! 
+
 
 ## Creating `@tinacms/toolkit`
 
@@ -78,7 +78,7 @@ Our open-source team created @tinacms/toolkit which incorporates the essentials 
 
 ## Vercel Integration
 
-We wanted to reduce the friction to almost zero when testing TinaCMS, so we worked on adding Vercel integration. This means if you sign up for an account, you can one click and deploy in minutes and start playing around with TinaCMS and Tina Cloud. 
+We wanted to reduce the friction to almost zero when testing TinaCMS, so we worked on adding Vercel integration. This means if you sign up for an account, you can one click and deploy in minutes and start playing around with TinaCMS and Tina Cloud, using our Starter. 
 
 ## Dashboard overhaul
 
