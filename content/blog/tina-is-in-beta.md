@@ -69,18 +69,19 @@ I wrote a [blog post announcing it](/blog/manage-your-media-with-cloudinary/) an
 
 Speed and performance have been something we have been actively working on. We introduced some improvements behind the scenes to improve the way we retrieve the data for your site. Tina was already performance first but now its even better! 
 
-
 ## Creating `@tinacms/toolkit`
 
 TinaCMS was built-in with small modular packages, this meant that we relied heavily on React context, and the dependency mismatches from over-modularizing our toolkit, which led to many bugs related to missing context.
 
 Our open-source team created @tinacms/toolkit which incorporates the essentials of Tina all in one place. This simplifies everything for you as a user and Tina as a product.
 
+You can read about all the updates and why decided to make the changes in our pinned [GitHub issue](https://github.com/tinacms/tinacms/issues/1898).
+
 ## Vercel Integration
 
 We wanted to reduce the friction to almost zero when testing TinaCMS, so we worked on adding Vercel integration. This means if you sign up for an account, you can one click and deploy in minutes and start playing around with TinaCMS and Tina Cloud, using our Starter. 
 
-## Dashboard overhaul
+## Dashboard Overhaul
 
 When using Tina Cloud in Alpha our dashboard UX wasn't a first class experience and at times could be confusing. We completely overhauled the experience, making it easier and quicker to add an application to the Cloud, invite users and find the important information such as site url(s) or client-id.
 
