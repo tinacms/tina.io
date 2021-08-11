@@ -9,6 +9,11 @@ The team at Tina have been working hard since June 2nd when we launched Tina Clo
 //Scott thoughts here?
 
 
+## Lessons learnt 
+
+// insert lessons learnt.
+
+
 ## What does being in Beta mean for you?
 
 The team and I believe that our product combines a fantastic developer and content creator experience into a single product, the update from Alpha to Beta is so large that I wanted to write a short paragraph about each part. Below is a list of each update, feel free to click on it to take you to the long form update:
@@ -84,4 +89,12 @@ We wanted to reduce the friction to almost zero when testing TinaCMS, so we work
 ## Dashboard Overhaul
 
 When using Tina Cloud in Alpha our dashboard UX wasn't a first class experience and at times could be confusing. We completely overhauled the experience, making it easier and quicker to add an application to the Cloud, invite users and find the important information such as site url(s) or client-id.
+
+## Changes to Content modeling 
+
+Content Modeling is the core of how you interact with TinaCMS and also retrieve the your content. We decided to make an important change and be more primitive based in nature. 
+
+This allows for more simplist queries that don't require disambiguation, we believe this will allow you as a developer to craft queries with ease. 
+
+If you used the Alpha of Tina you might want to read this article the team put together to explain all of the [changes and how to migrate](https://tina.io/docs/tina-cloud/migration-overview/). 
 
