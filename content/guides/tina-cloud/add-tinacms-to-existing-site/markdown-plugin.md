@@ -1,8 +1,7 @@
 ---
 title: Adding Markdown editors
-last_edited: '2021-07-30T20:10:55.164Z'
+last_edited: '2021-08-13T18:34:29.221Z'
 ---
-
 ## Using Markdown plugins:
 
 One of the amazing features of Tina is ability to extend the project through plugins. The NextJS blog starter uses remark to render the Markdown files into HTML, so it would be useful for our content team to be able to edit using a markdown editor, plus we can add the functionality back.
@@ -112,7 +111,7 @@ export default function Post({data,slug}) {
     author,
     body,
     ogImage,
-  } = data.getPostDocument.data
+  } = data.getPostsDocument.data
   const router = useRouter()
 +  const [content, setContent] = useState('')
 ```
@@ -128,7 +127,7 @@ export default function Post({data,slug}) {
     author,
     body,
     ogImage,
-  } = data.getPostDocument.data
+  } = data.getPostsDocument.data
   const router = useRouter()
   const [content, setContent] = useState('')
 + useEffect(() => {
@@ -171,7 +170,7 @@ export default function Post({ data, slug, preview }) {
     author,
     body,
     ogImage,
-  } = data.getPostDocument.data
+  } = data.getPostsDocument.data
   const router = useRouter()
   const [content, setContent] = useState('')
 
@@ -220,7 +219,7 @@ export const getStaticProps = async ({ params }) => {
   const tinaProps = await getStaticPropsForTina({
     query: `
       query BlogPostQuery($relativePath: String!) {
-        getPostDocument(relativePath: $relativePath) {
+        getPostsDocument(relativePath: $relativePath) {
           data {
             title
             excerpt
@@ -253,7 +252,7 @@ export async function getStaticPaths() {
   const postsListData = await staticRequest({
     query: `
     query {
-      getPostList {
+      getPostsList {
         edges {
           node {
             sys {
@@ -267,7 +266,7 @@ export async function getStaticPaths() {
     variables: {},
   })
   return {
-    paths: postsListData.getPostList.edges.map(edge => ({
+    paths: postsListData.getPostsList.edges.map(edge => ({
       params: { slug: edge.node.sys.filename },
     })),
     fallback: false,
