@@ -114,6 +114,8 @@ We wanted to reduce the friction to almost zero when testing TinaCMS, so we work
 
 When using Tina Cloud in Alpha our dashboard UX wasn't a first class experience and at times could be confusing. We completely overhauled the experience, making it easier and quicker to add an application to the Cloud, invite users and find the important information such as site url(s) or client-id.
 
+If you did user the Alpha you will need to sign up again as we made large changes to the way we handle user signup in our backend. 
+
 ## Changes to Content modeling 
 
 Content Modeling is the core of how you interact with TinaCMS and also retrieve the your content. We decided to make an important change and be more primitive based in nature. 
