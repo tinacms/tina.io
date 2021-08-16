@@ -123,3 +123,10 @@ Content Modeling is the core of how you interact with TinaCMS and also retrieve 
 This allows for more simplest queries that don't require disambiguation, we believe this will allow you as a developer to craft queries with ease. 
 
 If you used the Alpha of Tina you might want to read this article the team put together to explain all of the [changes and how to migrate](https://tina.io/docs/tina-cloud/migration-overview/). 
+
+## Give Us Feedback!
+The whole team is truly excited to enter Beta phase and hope you will check it out and give us honest feedback. We wanna hear about your projects, let us know how Tina Cloud can help your team make progress.
+
+To keep up to date with Tina goings-on make sure to follow @tina_cms and @james_r_perkins on Twitter.
+
+Stay tuned for further improvements, features, community-built projects and more!
