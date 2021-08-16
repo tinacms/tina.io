@@ -13,7 +13,12 @@ We are pleased to annouce that Tina is in Beta! If you are excited as we are you
 
 ## Lessons learnt 
 
-We learn
+We learnt a lot during our Alpha, which allowed us to really drive the product forward. Here is a summary of the things we learnt:
+
+- It took people a lot longer than we expected to make their first commit using Tina. In the beginning on average it was over 8 hours, this to us signal that even our starter took too long to setup.
+- Our user base had a lot of questions after using our starter, mostly surrounding content modeling, and our documentation didn't answer them. 
+- Tina could be used in Production on large sites, and both developers and content writers loved it.
+- Creating a [Discord](https://discord.gg/njvZZYHj2Q) allowed us to give and receive real time feedback, which  allowed us to add features, fix bugs and get people unstuck quickly.   
 
 
 ## What does being in Beta mean for you?
@@ -34,7 +39,7 @@ The team and I believe that our product combines a fantastic developer and conte
 
 
 <div class="callout">
-<img className="learnImage" src="../img/tina-laptop.png" alt="" />
+<img className="learnImage" src="/img/tina-laptop.png" alt="" />
   <div>
   <h3>Ready to get started?</h3>
   <p>Get a website running with Tina Cloud in no time!</P>
