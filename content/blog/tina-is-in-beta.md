@@ -26,16 +26,16 @@ We learned a lot during our Alpha, which allowed us to drive the product forward
 The team and I believe that our product combines a fantastic developer and content creator experience into a single product, the update from Alpha to Beta is so large that I wanted to write a short paragraph about each part. Below is a list of each update, feel free to click on it to take you to the long-form update:
 
 
-- Better Documentation
-- Quicker to get started
-- Better Guides
-- Improving our Tina Quickstart
-- Media Manager 
-- Cache improvements
-- Creating @tinacms/toolkit
-- Vercel Integration
-- Dashboard UI/UX improvements
-- Changes to the way we model content
+- [Better Documentation](#better-documentation)
+- [Quicker to get started](#tina-init)
+- [Better Guides](#improving-and-adding-guides)
+- [Improving our Tina Quickstart](#improving-and-adding-guides)
+- [Media Manager](#media-manager) 
+- [Cache improvements](#media-manager)
+- [Creating @tinacms/toolkit](#creating-tinacmstoolkit)
+- [Vercel Integration](creating-tinacmstoolkit)
+- [Dashboard UI/UX improvements](creating-tinacmstoolkit)
+- [Changes to the way we model content](creating-tinacmstoolkit)
 
 
 <div class="callout">
