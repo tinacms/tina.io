@@ -4,14 +4,16 @@ date: '2021-07-27T20:00:00-04:00'
 author: James Perkins
 last_edited: '2021-07-27T15:22:06.367Z'
 ---
-The team at Tina have been working hard since June 2nd when we launched Tina Cloud. We took all your feedback and thoughts and iterated to make huge improvements to the product.The Alpha release contained the core product yet we knew we had some features we wanted to add immediately, including a simplified integration path.
+The team at Tina have been working hard since June 2nd when we launched Tina Cloud. We took all your feedback and thoughts and iterated to make huge improvements to the product.The Alpha release contained the core product yet we knew we had some features we wanted to add immediately, including a simplified integration path. 
+
+We are pleased to annouce that Tina is in Beta! If you are excited as we are you can get started by [signing up](https://app.tina.io/register), but I'd love you to stick around and hear about the team's vision, lessons learnt and what we have added.
 
 //Scott thoughts here?
 
 
 ## Lessons learnt 
 
-// insert lessons learnt.
+We learn
 
 
 ## What does being in Beta mean for you?
@@ -22,12 +24,23 @@ The team and I believe that our product combines a fantastic developer and conte
 - Better Documentation
 - Quicker to get started
 - Better Guides
+- Improving our Tina Quickstart
 - Media Manager 
 - Cache improvments
 - Creating @tinacms/toolkit
 - Vercel Integration
 - Dashboard UI/UX improvements
+- Changes to the way we model content
 
+
+<div class="callout">
+<img className="learnImage" src="../img/tina-laptop.png" alt="" />
+  <div>
+  <h3>Ready to get started?</h3>
+  <p>Get a website running with Tina Cloud in no time!</P>
+  <a href="/guides/tina-cloud/starter/overview/" class="calloutButton">Quick Start Guide <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg></a>
+  </div>
+</div>
 
 ## Getting started with Tina
 
@@ -63,6 +76,12 @@ When we introduced Tina, we provided a quick start guide that guides you as a us
 I went back to the drawing board and created a new guide that takes the Next.js Starter Blog and adds Tina and Tina Cloud to it while explaining each concept as we went. This felt like a perfect way to show off Tina and use something many users are experienced with.
 
 We also removed old guides that no longer promote Tina best practices and moved some of our other guides in to our experimental section. Experimental to us means that we can't guranateee that there won't be bugs or issues with the packages used. 
+
+### Improving our Tina Quickstart
+
+The Tina quickstart was built originally to show "the power of Tina" while it did that, we didn't feel that it showed a real world example. So we went back to the drawing board and created our new Tina Quickstart, it includes a landing page, blog and about pages. You can edit and rearrange the content and we styled it with TailwindCSS to give it some extra shine! Below is an example of just some of the work you can do:
+
+![Quickstart Example](/img/edit-alongside-content.gif)
 
 ## Media Manager
 
