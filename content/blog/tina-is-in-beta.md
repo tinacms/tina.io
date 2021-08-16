@@ -82,7 +82,7 @@ I went back to the drawing board and created a new guide that takes the Next.js 
 
 We also removed old guides that no longer promote Tina best practices and moved some of our other guides in to our experimental section. Experimental to us means that we can't guranateee that there won't be bugs or issues with the packages used. 
 
-### Improving our Tina Quickstart
+## Improving our Tina Quickstart
 
 The Tina quickstart was built originally to show "the power of Tina" while it did that, we didn't feel that it showed a real world example. So we went back to the drawing board and created our new Tina Quickstart, it includes a landing page, blog and about pages. You can edit and rearrange the content and we styled it with TailwindCSS to give it some extra shine! Below is an example of just some of the work you can do:
 
