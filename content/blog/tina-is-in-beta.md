@@ -33,9 +33,9 @@ The team and I believe that our product combines a fantastic developer and conte
 - [Media Manager](#media-manager) 
 - [Cache improvements](#media-manager)
 - [Creating @tinacms/toolkit](#creating-tinacmstoolkit)
-- [Vercel Integration](creating-tinacmstoolkit)
-- [Dashboard UI/UX improvements](creating-tinacmstoolkit)
-- [Changes to the way we model content](creating-tinacmstoolkit)
+- [Vercel Integration](#vercel-integration)
+- [Dashboard UI/UX improvements](#dashboard-overhaul)
+- [Changes to the way we model content](#changes-to-content-modeling)
 
 
 <div class="callout">
