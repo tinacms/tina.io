@@ -30,12 +30,12 @@ export function CloudBanner() {
         </div>
         <div className="actions">
           <ButtonGroup>
-            <Link href="https://auth.tina.io/">
+            <Link href="https://app.tina.io/">
               <Button size="small" color="blueInverted">
                 Sign In
               </Button>
             </Link>
-            <Link href="https://auth.tina.io/register">
+            <Link href="https://app.tina.io/register">
               <Button size="small" color="blue">
                 Sign Up
               </Button>
