@@ -4,26 +4,26 @@ date: '2021-07-27T20:00:00-04:00'
 author: James Perkins
 last_edited: '2021-07-27T15:22:06.367Z'
 ---
-The team at Tina has been working hard since June 2nd when we launched Tina Cloud. We took all your feedback and thoughts and iterated to make huge improvements to the product. The Alpha release contained the core product yet we knew we had some features we wanted to add immediately, including a simplified integration path. 
+The team at Tina has been working hard since June 2nd when we launched Tina Cloud. We took all your feedback and thoughts and iterated to make huge improvements to the product. The alpha release contained the core product yet we knew we had some features we wanted to add immediately, including a simplified integration path. 
 
-We are pleased to announce that Tina is in Beta! If you are excited as we are you can get started by [signing up](https://app.tina.io/register), but I'd love you to stick around and hear about the team's vision, lessons learned, and what we have added.
+We are pleased to announce that Tina is in beta! If you are excited as we are you can get started by [signing up](https://app.tina.io/register). But first, I'd love for you to stick around and hear about the team's vision, lessons learned, and what we have added.
 
 //Scott thoughts here?
 
 
-## Lessons learned 
+## Lessons Learned 
 
-We learned a lot during our Alpha, which allowed us to drive the product forward. Here is a summary of the things we learned:
+We learned a lot during our alpha, which allowed us to drive the product forward.
 
-- It took people a lot longer than we expected to make their first commit using Tina. At the beginning on average, it was over 8 hours, this signaled that even our starter took too long to set up.
-- Our user base had a lot of questions after using our starter, mostly surrounding content modeling, and our documentation didn't answer them. 
+- It took a lot longer than we expected to make their first commit using Tina. At the beginning on average, it was over 8 hours. This signaled to us that even our starter took too long to set up.
+- You had a lot of questions after using our starter, mostly surrounding content modeling, and our documentation didn't answer them. 
 - Tina could be used in Production on large sites, and both developers and content writers loved it.
 - Creating a [Discord](https://discord.gg/njvZZYHj2Q) allowed us to give and receive real-time feedback, which allowed us to add features, fix bugs, and get people unstuck quickly.   
 
 
-## What does being in Beta mean for you?
+## What Does Being Beta Mean for You?
 
-The team and I believe that our product combines a fantastic developer and content creator experience into a single product, the update from Alpha to Beta is so large that I wanted to write a short paragraph about each part. Below is a list of each update, feel free to click on it to take you to the long-form update:
+We believe that our product combines a fantastic developer and content creator experience into a single product. The update from alpha to beta is so large that I wanted to write a short paragraph about each part. Below is a list of each update, feel free to click on it to take you to the long-form update:
 
 
 - [Better Documentation](#better-documentation)
@@ -76,15 +76,15 @@ This allows you to move quickly and experience Tina without having to write any 
 
 ### Improving and adding guides
 
-When we introduced Tina, we provided a quick start guide that guides you as a user through using our Tina Cloud Starter. This was a great way for users to experience Tina but we found that people were missing some key concepts of Tina.
+When we introduced Tina, we had a single guide that got you up and running with our Tina Cloud Starter. This was a great way for users to experience Tina but we found that people were missing some key concepts of Tina.
 
-I went back to the drawing board and created a new guide that takes the Next.js Starter Blog and adds Tina and Tina Cloud to it while explaining each concept as we went. This felt like a perfect way to show off Tina and use something many users are experienced with.
+I went back to the drawing board and created a new guide that takes the Next.js Starter Blog and adds Tina and Tina Cloud to it while explaining each concept as we went. This feels like a perfect way to show off Tina, learn how to use Tina, with somethign that many users are familar with.
 
 We also removed old guides that no longer promote Tina's best practices and moved some of our other guides into our experimental section. Experimental to us means that we can't guarantee that there won't be bugs or issues with the packages used. 
 
-## Improving our Tina Quickstart
+## Improving our Tina Starer
 
-The Tina quickstart was built originally to show "the power of Tina" while it did that, we didn't feel that it showed a real-world example. So we went back to the drawing board and created our new Tina Quickstart, which includes a landing page, blog, and about pages. You can edit and rearrange the content and we styled it with TailwindCSS to give it some extra shine! Below is an example of just some of the work you can do:
+The Tina Starter was built originally to show "the power of Tina" while it did that, we didn't feel that it showed a real-world example. So we went back to the drawing board and created our new Tina Starter, which includes a landing page, blog, and about pages. You can edit and rearrange the content and we styled it with TailwindCSS to give it some extra shine! Below is an example of just some of the work you can do:
 
 ![Quickstart Example](/img/edit-alongside-content.gif)
 
@@ -100,7 +100,7 @@ Speed and performance have been something we have been actively working on. We i
 
 ## Creating `@tinacms/toolkit`
 
-TinaCMS was built-in with small modular packages, this meant that we relied heavily on React context, and the dependency mismatches from over-modularizing our toolkit, which led to many bugs related to missing context.
+TinaCMS was built with small modular packages, this meant that we relied heavily on React context. The dependency mismatches from over-modularizing our toolkit,  led to many bugs related to missing context.
 
 Our open-source team created @tinacms/toolkit which incorporates the essentials of Tina all in one place. This simplifies everything for you as a user and Tina as a product.
 
@@ -112,21 +112,21 @@ We wanted to reduce the friction to almost zero when testing TinaCMS, so we work
 
 ## Dashboard Overhaul
 
-When using Tina Cloud in Alpha our dashboard UX wasn't a first-class experience and at times could be confusing. We completely overhauled the experience, making it easier and quicker to add an application to the Cloud, invite users and find the important information such as site URL(s) or client-id.
+When using Tina Cloud in alpha our dashboard UX wasn't a first-class experience and at times could be confusing. We completely overhauled the dashboard, making it easier and quicker to add an application to the Cloud, invite users, and find the important information such as site URL(s) or client-id.
 
-If you did use the Alpha you will need to sign up again as we made large changes to the way we handle user signup in our backend. 
+If you did use the alpha you will need to sign up again as we made large changes to the way we handle user signup in our backend. 
 
-## Changes to Content modeling 
+## Changes to Content Modeling 
 
 Content Modeling is the core of how you interact with TinaCMS and also retrieve your content. We decided to make an important change and be more primitive based in nature. 
 
-This allows for more simplest queries that don't require disambiguation, we believe this will allow you as a developer to craft queries with ease. 
+This allows for simplistic queries that don't require disambiguation, we believe this will allow you as a developer to craft queries with ease. 
 
-If you used the Alpha of Tina you might want to read this article the team put together to explain all of the [changes and how to migrate](https://tina.io/docs/tina-cloud/migration-overview/). 
+If you used the alpha of Tina you might want to read this article the team put together to explain all of the [changes and how to migrate](https://tina.io/docs/tina-cloud/migration-overview/). 
 
 ## Give Us Feedback!
-The whole team is truly excited to enter Beta phase and hope you will check it out and give us honest feedback. We wanna hear about your projects, let us know how Tina Cloud can help your team make progress.
+The whole team is truly excited to enter the beta phase and hope you will check it out and give us honest feedback. We want to hear about your projects or, let us know how Tina Cloud can help your team make progress.
 
-To keep up to date with Tina goings-on make sure to follow @tina_cms and @james_r_perkins on Twitter.
+To keep up to date with Tina goings-on make sure to follow [@tina_cms](https://twitter.com/tina_cms) and [@james_r_perkins](https://twitter.com/james_r_perkins) on Twitter.
 
 Stay tuned for further improvements, features, community-built projects and more!
