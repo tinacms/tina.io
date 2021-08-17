@@ -10,8 +10,7 @@ We are pleased to announce that Tina is in beta, and all of the core functionali
 
 ## A quick Message from Scott our CEO
 
-> The Tina Beta is a big milestone! All the core functionality is in place for teams to edit content on their Next.js sites. We’re just scratching the surface of what’s possible when you add an amazing content editing experience to content stored in your Git repo. Our goal is to 10x the experience for both developers and content editors. 
-      Scott Gallant - CEO - Tina
+The Tina Beta is a big milestone! All the core functionality is in place for teams to edit content on their Next.js sites. We’re just scratching the surface of what’s possible when you add an amazing content editing experience to content stored in your Git repo. Our goal is to 10x the experience for both developers and content editors. 
 
 ## Lessons Learned 
 
