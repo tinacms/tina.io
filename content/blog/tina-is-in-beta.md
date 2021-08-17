@@ -4,18 +4,16 @@ date: '2021-07-27T20:00:00-04:00'
 author: James Perkins
 last_edited: '2021-07-27T15:22:06.367Z'
 ---
-The team at Tina has been working hard since June 2nd when we launched Tina Cloud. We took all your feedback and thoughts and iterated to make huge improvements to the product. The alpha release contained the core product yet we knew we had some features we wanted to add immediately, including a simplified integration path. 
+The team at Tina has been working hard since June 2nd when we launched Tina Cloud alpha. We took all your feedback and thoughts and iterated to make huge improvements to the product. The alpha release contained the core product yet we knew we had some features we wanted to add immediately, including a simplified integration path. 
 
 We are pleased to announce that Tina is in beta! If you are excited as we are you can get started by [signing up](https://app.tina.io/register). But first, I'd love for you to stick around and hear about the team's vision, lessons learned, and what we have added.
-
-//Scott thoughts here?
 
 
 ## Lessons Learned 
 
 We learned a lot during our alpha, which allowed us to drive the product forward.
 
-- It took a lot longer than we expected to make their first commit using Tina. At the beginning on average, it was over 8 hours. This signaled to us that even our starter took too long to set up.
+- It took users a lot longer than we expected to make their first commit using Tina. At the beginning on average, it was over 8 hours. This signaled to us that even our starter took too long to set up.
 - You had a lot of questions after using our starter, mostly surrounding content modeling, and our documentation didn't answer them. 
 - Tina could be used in Production on large sites, and both developers and content writers loved it.
 - Creating a [Discord](https://discord.gg/njvZZYHj2Q) allowed us to give and receive real-time feedback, which allowed us to add features, fix bugs, and get people unstuck quickly.   
@@ -51,7 +49,7 @@ We believe that our product combines a fantastic developer and content creator e
 
 We wanted to speed up getting Tina up and running, whether this was a newly bootstrapped Next.js application or your Production application. We introduced several things to improve this:
 
-* A better documentation
+* Better documentation
 * A tina init command
 * New and improved guides
 
