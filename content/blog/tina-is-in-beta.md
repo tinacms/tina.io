@@ -2,19 +2,20 @@
 title: Tina is in Beta
 date: '2021-07-27T20:00:00-04:00'
 author: James Perkins
-last_edited: '2021-07-27T15:22:06.367Z'
+last_edited: '2021-07-27T15:39:06.367Z'
 ---
 The team at Tina has been working hard since June 2nd when we launched Tina Cloud alpha. We took all your feedback and thoughts and iterated to make huge improvements to the product. The alpha release contained the core product yet we knew we had some features we wanted to add immediately, including a simplified integration path. 
 
 We are pleased to announce that Tina is in beta, and all of the core functionality is in place for your team to have a great content editing experience on Next.js sites! If you are excited as we are you can get started by [signing up](https://app.tina.io/register). But first, I'd love for you to stick around and hear about the team's vision, lessons learned, and what we have added.
 
-## A quick Message from our Scott our CEO
+## A quick Message from Scott our CEO
 
-The Tina Beta is a big milestone! All the core functionality is in place for teams to edit content on their Next.js sites. We’re just scratching the surface of what’s possible when you add an amazing content editing experience to content stored in your Git repo. Our goal is to 10x the experience for both developers and content editors. 
+> The Tina Beta is a big milestone! All the core functionality is in place for teams to edit content on their Next.js sites. We’re just scratching the surface of what’s possible when you add an amazing content editing experience to content stored in your Git repo. Our goal is to 10x the experience for both developers and content editors. 
+      Scott Gallant - CEO - Tina
 
 ## Lessons Learned 
 
-We learned a lot during our alpha, which allowed us to drive the product forward.
+We learned a lot during the alpha stage, which allowed us to drive the product forward.
 
 - It took users a lot longer than we expected to make their first commit using Tina. At the beginning on average, it was over 8 hours. This signaled to us that even our starter took too long to set up.
 - You had a lot of questions after using our starter, mostly surrounding content modeling, and our documentation didn't answer them. 
@@ -48,7 +49,7 @@ We believe that our product combines a fantastic developer and content creator e
   </div>
 </div>
 
-## Getting started with Tina
+## Getting Started with Tina
 
 We wanted to speed up getting Tina up and running, whether this was a newly bootstrapped Next.js application or your Production application. We introduced several things to improve this:
 
@@ -62,7 +63,7 @@ The documentation at Tina has been something that we wanted to improve as much a
 
 We also moved and created new navigation menus to better convey the intent of a piece of documentation, for example, if you were looking for the Next.js APIs we have a section for that. 
 
-### A new initialize command in the CLI
+### A New Initialize Command in the CLI
 
 Tina init is my favorite addition to the Tina experience. A single command can bootstrap Tina on a Next.js application and do all the heavy lifting for you. The team spent quite a bit of time working on this, and refining it, to get it just right.  With the command `npx @tinacms/cli init` we will do the following:
 
@@ -75,7 +76,7 @@ Tina init is my favorite addition to the Tina experience. A single command can b
 
 This allows you to move quickly and experience Tina without having to write any code. Then when you are ready you can easily extend it to use parts of your existing site.
 
-### Improving and adding guides
+### Improving and Adding Guides
 
 When we introduced Tina, we had a single guide that got you up and running with our Tina Cloud Starter. This was a great way for users to experience Tina but we found that people were missing some key concepts of Tina.
 
@@ -85,7 +86,7 @@ We also removed old guides that no longer promote Tina's best practices and move
 
 ## Improving our Tina Starter
 
-The Tina Starter was built originally to show "the power of Tina" while it did that, we didn't feel that it showed a real-world example. So we went back to the drawing board and created our new [Tina Starter](https://tina.io/guides/tina-cloud/starter/overview/), which includes a landing page, blog, and about pages. You can edit and rearrange the content and we styled it with TailwindCSS to give it some extra shine! Below is an example of just some of the work you can do:
+The Tina Starter was built originally to show "the power of Tina" while it did that, we didn't feel that it showed a real-world example. So we went back to the drawing board and created our new [Tina Starter](/guides/tina-cloud/starter/overview/), which includes a landing page, blog, and about pages. You can edit and rearrange the content and we styled it with TailwindCSS to give it some extra shine! Below is an example of just some of the work you can do:
 
 ![Quickstart Example](/img/edit-alongside-content.gif)
 
@@ -95,7 +96,7 @@ Media manager was one of the most important features that we needed for Tina Clo
 
 I wrote a [blog post announcing it](/blog/manage-your-media-with-cloudinary/) and how to implement it into your application.
 
-## Caching improvements
+## Caching Improvements
 
 Speed and performance have been something we have been actively working on. We introduced some improvements behind the scenes to improve the way we retrieve the data for your site. Tina was already performance first but now it's even better! 
 
@@ -123,7 +124,7 @@ Content Modeling is the core of how you interact with TinaCMS and also retrieve 
 
 This allows for simplistic queries that don't require disambiguation, we believe this will allow you as a developer to craft queries with ease. 
 
-If you used the alpha of Tina you might want to read this article the team put together to explain all of the [changes and how to migrate](https://tina.io/docs/tina-cloud/migration-overview/). 
+If you used the alpha of Tina you might want to read this article the team put together to explain all of the [changes and how to migrate](/docs/tina-cloud/migration-overview/). 
 
 ## Give Us Feedback!
 The whole team is truly excited to enter the beta phase and hope you will check it out and give us honest feedback. We want to hear about your projects or, let us know how Tina Cloud can help your team make progress.
