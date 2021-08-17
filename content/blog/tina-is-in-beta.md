@@ -6,8 +6,12 @@ last_edited: '2021-07-27T15:22:06.367Z'
 ---
 The team at Tina has been working hard since June 2nd when we launched Tina Cloud alpha. We took all your feedback and thoughts and iterated to make huge improvements to the product. The alpha release contained the core product yet we knew we had some features we wanted to add immediately, including a simplified integration path. 
 
-We are pleased to announce that Tina is in beta! If you are excited as we are you can get started by [signing up](https://app.tina.io/register). But first, I'd love for you to stick around and hear about the team's vision, lessons learned, and what we have added.
+We are pleased to announce that Tina is in beta, and all of the core functionality is in place for your team to have a great content editing experience on Next.js sites! If you are excited as we are you can get started by [signing up](https://app.tina.io/register). But first, I'd love for you to stick around and hear about the team's vision, lessons learned, and what we have added.
 
+## A quick Message from our CEO
+
+> The Tina Beta is a big milestone! All the core functionality is in place for teams to edit content on their Next.js sites. We’re just scratching the surface of what’s possible when you add an amazing content editing experience to content stored in your Git repo. Our goal is to 10x the experience for both developers and content editors. 
+      Scott Gallant - CEO - Tina
 
 ## Lessons Learned 
 
@@ -25,15 +29,15 @@ We believe that our product combines a fantastic developer and content creator e
 
 
 - [Better Documentation](#better-documentation)
-- [Quicker to get started](#tina-init)
-- [Better Guides](#improving-and-adding-guides)
-- [Improving our Tina Quickstart](#improving-and-adding-guides)
+- [A new initialize command in the CLI](#a-new-initialize-command-in-the-cli)
+- [Improving and adding guides](#improving-and-adding-guides)
+- [Improving our Tina Starter](#improving-our-tina-starter)
 - [Media Manager](#media-manager) 
-- [Cache improvements](#media-manager)
+- [Caching improvements](#caching-improvements)
 - [Creating @tinacms/toolkit](#creating-tinacmstoolkit)
 - [Vercel Integration](#vercel-integration)
-- [Dashboard UI/UX improvements](#dashboard-overhaul)
-- [Changes to the way we model content](#changes-to-content-modeling)
+- [Dashboard Overhaul](#dashboard-overhaul)
+- [Changes to content modeling](#changes-to-content-modeling)
 
 
 <div class="callout">
@@ -59,7 +63,7 @@ The documentation at Tina has been something that we wanted to improve as much a
 
 We also moved and created new navigation menus to better convey the intent of a piece of documentation, for example, if you were looking for the Next.js APIs we have a section for that. 
 
-### Tina init
+### A new initialize command in the CLI
 
 Tina init is my favorite addition to the Tina experience. A single command can bootstrap Tina on a Next.js application and do all the heavy lifting for you. The team spent quite a bit of time working on this, and refining it, to get it just right.  With the command `npx @tinacms/cli init` we will do the following:
 
@@ -76,13 +80,13 @@ This allows you to move quickly and experience Tina without having to write any 
 
 When we introduced Tina, we had a single guide that got you up and running with our Tina Cloud Starter. This was a great way for users to experience Tina but we found that people were missing some key concepts of Tina.
 
-I went back to the drawing board and created a new guide that takes the Next.js Starter Blog and adds Tina and Tina Cloud to it while explaining each concept as we went. This feels like a perfect way to show off Tina, learn how to use Tina, with somethign that many users are familar with.
+I went back to the drawing board and created a new guide that takes the [Next.js Starter Blog and adds Tina and Tina Cloud](/guides/tina-cloud/add-tinacms-to-existing-site/overview/) to it while explaining each concept as we went. This feels like a perfect way to show off Tina, learn how to use Tina, with something that many users are familar with.
 
 We also removed old guides that no longer promote Tina's best practices and moved some of our other guides into our experimental section. Experimental to us means that we can't guarantee that there won't be bugs or issues with the packages used. 
 
-## Improving our Tina Starer
+## Improving our Tina Starter
 
-The Tina Starter was built originally to show "the power of Tina" while it did that, we didn't feel that it showed a real-world example. So we went back to the drawing board and created our new Tina Starter, which includes a landing page, blog, and about pages. You can edit and rearrange the content and we styled it with TailwindCSS to give it some extra shine! Below is an example of just some of the work you can do:
+The Tina Starter was built originally to show "the power of Tina" while it did that, we didn't feel that it showed a real-world example. So we went back to the drawing board and created our new [Tina Starter](https://tina.io/guides/tina-cloud/starter/overview/), which includes a landing page, blog, and about pages. You can edit and rearrange the content and we styled it with TailwindCSS to give it some extra shine! Below is an example of just some of the work you can do:
 
 ![Quickstart Example](/img/edit-alongside-content.gif)
 
@@ -92,7 +96,7 @@ Media manager was one of the most important features that we needed for Tina Clo
 
 I wrote a [blog post announcing it](/blog/manage-your-media-with-cloudinary/) and how to implement it into your application.
 
-## Improving Caching
+## Caching improvements
 
 Speed and performance have been something we have been actively working on. We introduced some improvements behind the scenes to improve the way we retrieve the data for your site. Tina was already performance first but now it's even better! 
 
