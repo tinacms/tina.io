@@ -64,7 +64,7 @@ We also moved and created new navigation menus to better convey the intent of a 
 
 ### A new initialize command in the CLI
 
-Tina init is my favorite addition to the Tina experience. A single command can bootstrap Tina on a Next.js application and do all the heavy lifting for you. The team spent quite a bit of time working on this, and refining it, to get it just right.  With the command `npx @tinacms/cli init` we will do the following:
+Tina init is my favorite addition to the Tina experience. A single command can bootstrap Tina on a Next.js application and do all the heavy lifting for you. The team spent quite a bit of time working on this, and refining it, to get it just right.The command `npx @tinacms/cli init` ommand currently does the following:
 
 1. Install all dependencies to your application
 2. Add the Tina commands to your package.json (`tina-dev`, `tina-build`, `tina-start`)
@@ -85,7 +85,7 @@ We also removed old guides that no longer promote Tina's best practices and move
 
 ## Improving our Tina Starter
 
-The Tina Starter was built originally to show "the power of Tina" while it did that, we didn't feel that it showed a real-world example. So we went back to the drawing board and created our new [Tina Starter](https://tina.io/guides/tina-cloud/starter/overview/), which includes a landing page, blog, and about pages. You can edit and rearrange the content and we styled it with TailwindCSS to give it some extra shine! Below is an example of just some of the work you can do:
+The Tina Starter was built originally to show "the power of Tina" while it did that, we didn't feel that it showed a real-world example. So we went back to the drawing board and created our new [Tina Starter](guides/tina-cloud/starter/overview/), which includes a landing page, blog, and about pages. You can edit and rearrange the content and we styled it with TailwindCSS to give it some extra shine! Below is an example of just some of the work you can do:
 
 ![Quickstart Example](/img/edit-alongside-content.gif)
 
@@ -123,7 +123,7 @@ Content Modeling is the core of how you interact with TinaCMS and also retrieve 
 
 This allows for simplistic queries that don't require disambiguation, we believe this will allow you as a developer to craft queries with ease. 
 
-If you used the alpha of Tina you might want to read this article the team put together to explain all of the [changes and how to migrate](https://tina.io/docs/tina-cloud/migration-overview/). 
+If you used the alpha of Tina you might want to read this article the team put together to explain all of the [changes and how to migrate](/docs/tina-cloud/migration-overview/). 
 
 ## Give Us Feedback!
 The whole team is truly excited to enter the beta phase and hope you will check it out and give us honest feedback. We want to hear about your projects or, let us know how Tina Cloud can help your team make progress.
