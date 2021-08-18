@@ -107,7 +107,7 @@ Speed and performance have been something we have been actively working on. We i
 
 TinaCMS was built with small modular packages, this meant that we relied heavily on React context. The dependency mismatches from over-modularizing our toolkit,  led to many bugs related to missing context.
 
-Our open-source team created @tinacms/toolkit which incorporates the essentials of Tina all in one place. This simplifies everything for you as a user and Tina as a product.
+Our open-source team created `@tinacms/toolkit` which incorporates the essentials of Tina all in one place. This simplifies everything for you as a user and Tina as a product.
 
 You can read about all the updates and why decided to make the changes in our pinned [GitHub issue](https://github.com/tinacms/tinacms/issues/1898).
 
