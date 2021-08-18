@@ -64,7 +64,7 @@ We also moved and created new navigation menus to better convey the intent of a 
 
 ### A New Initialize Command in the CLI
 
-Tina init is my favorite addition to the Tina experience. A single command can bootstrap Tina on a Next.js application and do all the heavy lifting for you. The team spent quite a bit of time working on this, and refining it, to get it just right.The command `npx @tinacms/cli init` ommand currently does the following:
+Tina init is my favorite addition to the Tina experience. A single command can bootstrap Tina on a Next.js application and do all the heavy lifting for you. The team spent quite a bit of time working on this, and refining it, to get it just right. The command `npx @tinacms/cli init` command currently does the following:
 
 1. Install all dependencies to your application
 2. Add the Tina commands to your package.json (`tina-dev`, `tina-build`, `tina-start`)
