@@ -59,6 +59,11 @@ export const feature_template: BlockTemplate = {
           name: 'videoSrc',
           component: 'text',
         },
+        {
+          label: 'Show CLI Codeblock Instead',
+          name: 'cli',
+          component: 'toggle',
+        },
       ],
     },
   ],
@@ -99,6 +104,11 @@ export function FeatureBlock({ data, index }) {
             </div>
           )}
           {data.media.videoSrc && <FeatureVideo src={data.media.videoSrc} />}
+          {data.media.cli && (
+            <div className={`featureImage`}>
+              <FeatureCLI />
+            </div>
+          )}
         </div>
       </BlocksControls>
       <style jsx>{`
@@ -319,6 +329,65 @@ export const FeatureVideo = ({ src }) => {
           border: 1px solid rgba(0, 0, 0, 0.07);
           display: flex;
           justify-content: center;
+        }
+      `}</style>
+    </>
+  )
+}
+
+export const FeatureCLI = () => {
+  return (
+    <>
+      <pre className="pre">
+        <code>
+          <span
+            style={{ display: 'block', marginBottom: '1.25rem' }}
+          >{`$ npx creat-next-app`}</span>
+          <span
+            style={{ display: 'block', marginBottom: '1.25rem' }}
+          >{`$ npx @tinacms/cli init`}</span>
+          <span
+            style={{
+              display: 'block',
+              marginBottom: '1.25rem',
+              fontWeight: 'bold',
+              color: '#49AF25',
+            }}
+          >{`Setting up Tina...`}</span>
+          <span
+            style={{ display: 'block', marginBottom: '1.25rem' }}
+          >{`Installing Tina packages. This might take a moment... ✅`}</span>
+          <span style={{ display: 'block' }}>
+            <span
+              style={{
+                display: 'inline',
+                fontWeight: 'bold',
+                color: '#49AF25',
+              }}
+            >{`?`}</span>
+            <span
+              style={{
+                display: 'inline',
+                fontWeight: 'bold',
+              }}
+            >{` Do you want us to override your _app.js`}</span>
+            {`? › (y/N)`}
+          </span>
+        </code>
+      </pre>
+      <style jsx>{`
+        .pre {
+          padding: 3.5rem;
+          background: linear-gradient(to top, #f5fdfc, #ecfcfa, #cef9f5);
+          white-space: pre-wrap;
+          color: #1d2b68;
+          font-size: 1rem;
+          line-height: 1.5;
+          font-family: monospace;
+
+          @media (min-width: 1300px) {
+            font-size: 1.365rem;
+          }
         }
       `}</style>
     </>
