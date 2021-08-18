@@ -81,7 +81,7 @@ This allows you to move quickly and experience Tina without having to write any 
 
 When we introduced Tina, we had a single guide that got you up and running with our Tina Cloud Starter. This was a great way for users to experience Tina but we found that people were missing some key concepts of Tina.
 
-I went back to the drawing board and created a new guide that takes the [Next.js Starter Blog and adds Tina and Tina Cloud](/guides/tina-cloud/add-tinacms-to-existing-site/overview/) to it while explaining each concept as we went. This feels like a perfect way to show off Tina, learn how to use Tina, with something that many users are familar with.
+I went back to the drawing board and created a new guide that takes the [Next.js Starter Blog and adds Tina and Tina Cloud](/guides/tina-cloud/add-tinacms-to-existing-site/overview/) to it while explaining each concept as we went. This feels like a perfect way to show off Tina, learn how to use Tina, with something that many users are familiar with.
 
 We also removed old guides that no longer promote Tina's best practices and moved some of our other guides into our experimental section. Experimental to us means that we can't guarantee that there won't be bugs or issues with the packages used. 
 
