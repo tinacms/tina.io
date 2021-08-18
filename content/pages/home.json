@@ -19,7 +19,7 @@
           "variant": "ghost",
           "label": "Quickstart Guide",
           "icon": "",
-          "url": "https://tina.io/guides/tina-cloud/starter/overview/"
+          "url": "/guides/tina-cloud/starter/overview/"
         }
       ],
       "videoSrc": "v1629294438/tina-io/Beta_Launch_Demo"
