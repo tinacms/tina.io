@@ -4,6 +4,7 @@ import {
   InlineBlocks,
   InlineTextarea,
 } from 'react-tinacms-inline'
+import ReactMarkdown from 'react-markdown'
 import { BlockTemplate } from 'tinacms'
 import { ActionFields, Actions } from './Actions'
 import { Container } from './Container'
@@ -85,9 +86,9 @@ export function FeatureBlock({ data, index }) {
               <InlineTextarea name="headline" />
             </h3>
             <hr className="dottedBorder" />
-            <p className="textLarge">
-              <InlineTextarea name="subline" />
-            </p>
+            <div className="textLarge">
+              <ReactMarkdown source={data.subline} />
+            </div>
             {data.actions && <Actions items={data.actions} />}
             <div className="blob">
               <FeatureBlobSvg />
