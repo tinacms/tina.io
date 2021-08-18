@@ -20,7 +20,7 @@ export function CloudBanner() {
               is in Alpha. Allow any team member to edit content!
             </p>
           </span>
-          <Link href="/blog/announcement-tina-cloud-is-officially-in-alpha/">
+          <Link href="/blog/tina-is-in-beta/">
             <a className="link">
               <span className="desktop">Read The Announcement</span>
               <span className="mobile">Tina Cloud is in Alpha</span>
