@@ -7,7 +7,7 @@
     {
       "_template": "hero",
       "headline": "The Fastest Way to Edit Next.js Sites",
-      "subline": "Tina allows teams to build faster and deliver to production with confidence.",
+      "subline": "Build visual editing on top of content versioned in GitHub",
       "actions": [
         {
           "variant": "orange",
