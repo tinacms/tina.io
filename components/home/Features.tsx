@@ -184,6 +184,7 @@ export function FeatureBlock({ data, index }) {
           right: 33.3%;
           bottom: -3rem;
           z-index: -1;
+          opacity: 0.5;
 
           :global(svg) {
             position: absolute;
