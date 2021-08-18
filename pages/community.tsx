@@ -109,7 +109,10 @@ function CommunityPage({ file: community, metadata, preview }) {
                     </InlineWysiwyg>
                   </InfoText>
                   <ButtonGroup>
-                    <DynamicLink href={'https://discord.com/invite/zumN63Ybpf'} passHref>
+                    <DynamicLink
+                      href={'https://discord.com/invite/zumN63Ybpf'}
+                      passHref
+                    >
                       <Button color="white" as="a">
                         <FaDiscord
                           style={{

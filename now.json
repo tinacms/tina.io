@@ -248,6 +248,33 @@
     {
       "source": "/docs/tina-cloud/beta-faq",
       "destination": "/docs/tina-cloud/alpha-faq"
+    },
+    {
+      "source": "/guides/nextjs/github-open-authoring/(.*)",
+      "destination": "/guides/experimental/github/$1"
+    },{
+      "source": "/guides/tinacms/github/(.*)",
+      "destination": "/guides/experimental/github/$1"
+    },
+    {
+      "source": "/guides/tinacms/tina-with-strapi/(.*)",
+      "destination": "/guides/experimental/tina-with-strapi/$1"
+    },
+    {
+      "source": "/guides/tina-cloud/getting-started/(.*)",
+      "destination": "/guides/tina-cloud/add-tinacms-to-existing-site/$1"
+    },
+    {
+      "source": "/guides/tina-cloud/existing-site/(.*)",
+      "destination": "/guides/tina-cloud/add-tinacms-to-existing-site/$1"
+    },
+    {
+      "source": "/docs/tina-cloud/client",
+      "destination": "/docs/tinacms-context/"
+    },
+    {
+      "source": "/docs/tina-cloud/cli",
+      "destination": "/docs/cli-overview/"
     }
   ]
 }

@@ -251,7 +251,14 @@ function useGuideNav(guide: any, allGuides: any) {
           title: guide.title,
           id: guide.title,
           collapsible: false,
-          items: guide.steps,
+          items: [
+            {
+              title: guide.title,
+              id: guide.title + 2,
+              collapsible: false,
+              items: guide.steps,
+            },
+          ],
           returnLink: {
             url: '/guides',
             label: '‹ Back to Guides',
