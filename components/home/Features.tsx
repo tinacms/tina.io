@@ -154,6 +154,14 @@ export function FeatureBlock({ data, index }) {
           justify-self: center;
           margin-top: 1rem;
 
+          :global(a) {
+            text-decoration: none;
+            transition: all ease-out 150ms;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+
           :global(p) {
             max-width: 400px;
           }
