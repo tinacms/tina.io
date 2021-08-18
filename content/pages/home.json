@@ -31,7 +31,7 @@
       "items": [
         {
           "_template": "feature",
-          "headline": "Version Control your Content",
+          "headline": "Version Control Your Content",
           "subline": "Retain the benefits of a Git workflow for your content and empower all teammates to update your website through a user-friendly interface.",
           "media": {
             "src": "/img/update-from-tina.jpg"
@@ -64,7 +64,7 @@
         {
           "_template": "feature",
           "headline": "Command Line Quickstart",
-          "subline": "Bootstrap your Next.js project with a basic Tina setup and get started in minutes.",
+          "subline": "[Bootstrap your Next.js project with Tina](/guides/tina-cloud/add-tinacms-to-existing-site/overview/) setup and get started in minutes.",
           "media": {
             "cli": true
           }
