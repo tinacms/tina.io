@@ -274,11 +274,11 @@
     },
     {
       "source":"/guides/nextjs/github/(.*)",
-      "destination": "guides/experimental/github/(.*)"
+      "destination": "guides/experimental/github/$1"
     },
     {
       "source":"/guides/nextjs/tina-with-strapi/(.*)",
-      "destination": "/guides/experimental/tina-with-strapi/(.*)"
+      "destination": "/guides/experimental/tina-with-strapi/($1)"
     },
     {
       "source": "/docs/tina-cloud/cli",
