@@ -115,7 +115,7 @@ We wanted to reduce the friction to almost zero when testing TinaCMS, so we work
 
 ## Dashboard Overhaul
 
-When using Tina Cloud in alpha our dashboard UX wasn't a first-class experience and at times could be confusing. We completely overhauled the dashboard, making it easier and quicker to add an application to the Cloud, invite users, and find the important information such as site URL(s) or client-id.
+When using Tina Cloud in alpha our dashboard UX wasn't a first-class experience and at times could be confusing. We completely overhauled the dashboard, making it easier and quicker to add an application to the Cloud, invite users, and find the important information such as site URL(s) or Client ID.
 
 If you did use the alpha you will need to sign up again as we made large changes to the way we handle user signup in our backend. 
 
