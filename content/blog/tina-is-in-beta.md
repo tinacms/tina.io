@@ -99,7 +99,7 @@ I wrote a [blog post announcing it](/blog/manage-your-media-with-cloudinary/) an
 
 ## Caching Improvements
 
-Speed and performance have been something we have been actively working on. We introduced some improvements behind the scenes to improve the way we retrieve the data for your site. Tina was already performance first but now it's even better! 
+Speed and performance have been something we have been actively working on. We introduced some improvements behind the scenes to improve the way we retrieve the data for your site. Tina is carefully built with performance in mind and is now faster! 
 
 ## Creating `@tinacms/toolkit`
 
