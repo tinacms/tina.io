@@ -111,7 +111,7 @@ You can read about all the updates and why decided to make the changes in our pi
 
 ## Vercel Integration
 
-We wanted to reduce the friction to almost zero when testing TinaCMS, so we worked on adding Vercel integration. This means if you sign up for an account, you can one-click and deploy in minutes and start playing around with TinaCMS and Tina Cloud, using our Starter. 
+We wanted to reduce the friction to almost zero when testing TinaCMS, so we worked on adding Vercel integration. This means if you sign up for an account, you can one-click and deploy in minutes and start playing around with TinaCMS and Tina Cloud, using our Starter. In the future we will be adding the ability to deploy any application in Tina Cloud to Vercel!
 
 ## Dashboard Overhaul
 
