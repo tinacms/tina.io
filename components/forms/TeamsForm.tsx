@@ -59,7 +59,6 @@ export function TeamsForm(props: any) {
     setCompany(e.target.value)
   }
 
-
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     const formData = {
@@ -173,7 +172,7 @@ export function TeamsForm(props: any) {
 const StyledForm = styled.form`
   h3 {
     text-transform: uppercase;
-    color: var(--color-primary) !important;
+    color: var(--color-orange) !important;
     text-align: center;
   }
 

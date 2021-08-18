@@ -12,12 +12,6 @@
     "external": false
   },
   {
-    "id": "cloud",
-    "label": "Tina Cloud",
-    "href": "/cloud",
-    "external": false
-  },
-  {
     "id": "community",
     "label": "Community",
     "href": "/community",

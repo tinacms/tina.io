@@ -2,7 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { DynamicLink } from 'components/ui/DynamicLink'
 import { GetStaticProps } from 'next'
-
+import { FaDiscord, FaTwitter, FaGithub } from 'react-icons/fa'
+import TinaIconSvg from '../public/svg/tina-icon.svg'
 import {
   Layout,
   Hero,
@@ -93,40 +94,6 @@ function CommunityPage({ file: community, metadata, preview }) {
         <Hero>
           <InlineTextarea name="headline" />
         </Hero>
-        {/* <SocialBar>
-          <SocialItem>
-            <a
-              href={`${metadata.social.twitter}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <TwitterIconSvg />
-              <h5>Tweet us</h5>
-            </a>
-            <span className="dotted-line" />
-          </SocialItem>
-          <SocialItem>
-            <a
-              href={`${metadata.social.github}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <GithubIconSvg />
-              <h5>Fork us</h5>
-            </a>
-            <span className="dotted-line" />
-          </SocialItem>
-          <SocialItem>
-            <a
-              href={`${metadata.social.forum}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <ForumIconSvg />
-              <h5>Ask us</h5>
-            </a>
-          </SocialItem>
-        </SocialBar> */}
         <RichTextWrapper>
           <Section>
             <Wrapper>
@@ -146,25 +113,63 @@ function CommunityPage({ file: community, metadata, preview }) {
                       href={'https://discord.com/invite/zumN63Ybpf'}
                       passHref
                     >
-                      <Button as="a">Discord</Button>
+                      <Button color="white" as="a">
+                        <FaDiscord
+                          style={{
+                            color: '#5865f2',
+                            height: '1.5rem',
+                            width: 'auto',
+                            margin: '0 0.5rem 0 0.125rem',
+                          }}
+                        />{' '}
+                        Discord
+                      </Button>
                     </DynamicLink>
                     <DynamicLink
                       href={'https://community.tinacms.org'}
                       passHref
                     >
-                      <Button as="a">Forum</Button>
+                      <Button color="white" as="a">
+                        <TinaIconSvg
+                          // @ts-ignore
+                          style={{
+                            color: '#EC4815',
+                            height: '1.675rem',
+                            width: 'auto',
+                            margin: '0 0.5rem 0 0.125rem',
+                          }}
+                        />{' '}
+                        Forum
+                      </Button>
                     </DynamicLink>
                     <DynamicLink
                       href={'https://github.com/tinacms/tinacms'}
                       passHref
                     >
-                      <Button as="a">GitHub</Button>
+                      <Button color="white" as="a">
+                        <FaGithub
+                          style={{
+                            color: '#24292e',
+                            height: '1.5rem',
+                            width: 'auto',
+                            margin: '0 0.5rem 0 0.125rem',
+                          }}
+                        />{' '}
+                        GitHub
+                      </Button>
                     </DynamicLink>
-                    <DynamicLink
-                      href={'https://twitter.com/tina_cms'}
-                      passHref
-                    >
-                      <Button as="a">Twitter</Button>
+                    <DynamicLink href={'https://twitter.com/tina_cms'} passHref>
+                      <Button color="white" as="a">
+                        <FaTwitter
+                          style={{
+                            color: '#1DA1F2',
+                            height: '1.5rem',
+                            width: 'auto',
+                            margin: '0 0.5rem 0 0.125rem',
+                          }}
+                        />{' '}
+                        Twitter
+                      </Button>
                     </DynamicLink>
                   </ButtonGroup>
                 </InfoContent>
@@ -195,7 +200,7 @@ export default CommunityPage
  ** DATA FETCHING -----------------------------------------------
  */
 
-export const getStaticProps: GetStaticProps = async function ({
+export const getStaticProps: GetStaticProps = async function({
   preview,
   previewData,
 }) {
@@ -212,97 +217,11 @@ export const getStaticProps: GetStaticProps = async function ({
  ** STYLES ------------------------------------------------------
  */
 
-const SocialBar = styled.div`
-  display: grid;
-  grid-template-rows: repeat(4, auto);
-  grid-gap: 1.5rem;
-  justify-content: center;
-  margin: 3em auto 1rem auto;
-  @media (min-width: 800px) {
-    grid-template-rows: unset;
-    grid-template-columns: repeat(4, auto);
-    margin: 4rem auto;
-    width: 700px;
-  }
-  @media (min-width: 1200px) {
-    grid-column-gap: 2rem;
-    margin: 6rem auto;
-  }
-`
-
-const SocialItem = styled('div')`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  fill: var(--color-primary);
-
-  a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    color: var(--color-primary);
-    font-family: var(--font-tuner);
-    font-weight: regular;
-    font-style: normal;
-  }
-  a:hover,
-  a:focus {
-    outline: none;
-    text-decoration: none;
-    color: var(--color-primary);
-    svg {
-      transform: scale3d(1.1, 1.1, 1.1);
-      transition: transform 250ms ease-out;
-    }
-  }
-  a:focus {
-    text-decoration: underline;
-  }
-  svg {
-    width: 4rem;
-    margin-bottom: 1rem;
-    transform: scale3d(1, 1, 1);
-    transition: transform 180ms ease-in;
-  }
-  h5 {
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-    text-decoration: none;
-  }
-  span.dotted-line {
-    display: block;
-    height: 30px;
-    border-left: 2px dotted var(--color-primary);
-  }
-  @media (min-width: 800px) {
-    flex-direction: row;
-    width: unset;
-    align-items: flex-end;
-    h5 {
-      margin: 0;
-    }
-    span.dotted-line {
-      height: 1px;
-      width: 57px;
-      border-left: unset;
-      border-top: 3px dotted var(--color-primary);
-      padding-bottom: 8px;
-      margin-left: 20px;
-    }
-  }
-  @media (min-width: 1200px) {
-    span.dotted-line {
-      margin-left: 32px;
-    }
-  }
-`
-
 const InfoLayout = styled.div`
   display: grid;
   grid-template-rows: repeat(2, auto);
   grid-template-columns: auto;
-  grid-gap: 2rem;
+  grid-gap: 4rem;
   margin-bottom: 2rem;
   grid-template-areas: 'image' 'content';
 
@@ -311,7 +230,7 @@ const InfoLayout = styled.div`
   }
 
   @media (min-width: 800px) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 3fr 2fr;
     grid-template-rows: auto;
     align-items: stretch;
     grid-template-areas: 'content image';
@@ -369,8 +288,10 @@ const InfoImage = styled(({ src, ...styleProps }) => {
   grid-area: image;
   max-width: 65vw;
   margin: 0 auto;
-  border-radius: 2rem;
   overflow: hidden;
+  border-radius: 0.5rem;
+  box-shadow: inset 0 0 0 1px rgba(236, 72, 21, 0.03),
+    0 6px 24px rgba(0, 37, 91, 0.05), 0 2px 4px rgba(0, 37, 91, 0.03);
 
   img {
     display: block;
@@ -381,8 +302,12 @@ const InfoImage = styled(({ src, ...styleProps }) => {
   }
 `
 
+// @ts-ignore
 const FormSection = styled(Section)`
+  padding: 4rem 0;
+
   @media (min-width: 800px) {
+    padding: 7rem 0;
     text-align: center;
 
     form {

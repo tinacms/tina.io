@@ -60,9 +60,7 @@ function BlogTemplate({ file, siteConfig, prevPage, nextPage }) {
             ],
           }}
         />
-        <Hero>
-          <InlineTextarea name="frontmatter.title" />
-        </Hero>
+        <Hero>{frontmatter.title}</Hero>
         <BlogWrapper>
           <DocsTextWrapper>
             <BlogMeta>
@@ -70,7 +68,9 @@ function BlogTemplate({ file, siteConfig, prevPage, nextPage }) {
                 <MetaBit>{formatDate(frontmatter.date)}</MetaBit>
                 <MetaBit>
                   <span>By</span>{' '}
-                  <InlineTextarea name="frontmatter.author" />
+                  <strong>
+                    <InlineTextarea name="frontmatter.author" />
+                  </strong>
                 </MetaBit>
               </MetaWrap>
               <EditLink />
@@ -215,7 +215,7 @@ const BlogMeta = styled.div`
 `
 
 const MetaWrap = styled.span`
-  opacity: 0.4;
+  opacity: 0.8;
 `
 
 const MetaBit = styled.p`
@@ -223,7 +223,7 @@ const MetaBit = styled.p`
   margin: 0 !important;
 
   span {
-    opacity: 0.5;
+    opacity: 0.7;
     margin-right: 0.25rem;
   }
 `
@@ -247,10 +247,10 @@ const EditButton = styled(Button)`
   background: none;
   display: flex;
   align-items: center;
-  border: 1px solid var(--color-primary);
+  border: 1px solid var(--color-orange);
   padding: 0 1.25rem;
   height: 45px;
-  color: var(--color-primary);
+  color: var(--color-orange);
   transition: all 150ms ease-out;
   transform: translate3d(0px, 0px, 0px);
 

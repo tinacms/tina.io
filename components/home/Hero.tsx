@@ -5,6 +5,7 @@ import { BlocksControls, InlineTextarea } from 'react-tinacms-inline'
 import { BlockTemplate } from 'tinacms'
 import { ActionFields, Actions } from './Actions'
 import { Container } from './Container'
+import HeroBackground from '../../public/svg/hero-background.svg'
 
 export const hero_template: BlockTemplate = {
   label: 'Hero',
@@ -54,36 +55,40 @@ export function HeroBlock({ data, index }) {
       insetControls={true}
       focusRing={{ offset: -16 }}
     >
-      <section className="hero section blue">
+      <section className="hero">
         <Container width="narrow" center>
           <HeroFeature item={data} />
         </Container>
         {data.videoSrc && (
-          <div className="splitBackgroundBlackWhite">
-            <Container>
-              <Video src={data.videoSrc} />
-            </Container>
-          </div>
+          <Container>
+            <Video src={data.videoSrc} />
+          </Container>
         )}
+        <div className="background">
+          <HeroBackground />
+        </div>
       </section>
       <style jsx>{`
         .hero {
-          :global(h2) {
-            :global(em) {
-              white-space: nowrap;
-              color: var(--color-seafoam-dark);
-            }
-          }
+          position: relative;
+          z-index: 2;
         }
 
-        .splitBackgroundBlackWhite {
-          background: linear-gradient(
-            to bottom,
-            var(--color-blue) 0%,
-            var(--color-black) 50%,
-            var(--color-light-gray) 50%,
-            var(--color-white) 100%
-          );
+        .background {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 66.6%;
+          z-index: -1;
+
+          :global(svg) {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          }
         }
       `}</style>
     </BlocksControls>
@@ -92,25 +97,41 @@ export function HeroBlock({ data, index }) {
 
 export const HeroFeature = ({ item }) => {
   return (
-    <>
-      {item.headline && (
-        <h2 className="headingHuge">
-          <InlineWysiwyg name="headline">
-            <ReactMarkdown
-              disallowedTypes={['paragraph', 'heading']}
-              unwrapDisallowed
-              source={item.headline}
-            />
-          </InlineWysiwyg>
-        </h2>
-      )}
+    <div className="feature">
+      {item.headline && <h2 className="heading">{item.headline}</h2>}
       {item.subline && (
         <p className="textHuge">
           <InlineTextarea name="subline" />
         </p>
       )}
       {item.actions && <Actions items={item.actions} align="center" />}
-    </>
+      <style jsx>{`
+        .feature {
+          padding: 4rem 0 7rem 0;
+        }
+
+        .heading {
+          font-family: var(--font-tuner);
+          font-weight: bold;
+          font-size: 3.125rem;
+          line-height: 1.4;
+          display: inline-block;
+          color: transparent;
+          background: linear-gradient(
+            to right,
+            var(--color-orange-light),
+            var(--color-orange),
+            var(--color-orange-dark)
+          );
+          -webkit-background-clip: text;
+          background-clip: text;
+
+          &:not(:last-child) {
+            margin-bottom: 2.5rem;
+          }
+        }
+      `}</style>
+    </div>
   )
 }
 
@@ -142,8 +163,15 @@ export const Video = ({ src }) => {
             0 6px 24px rgba(0, 37, 91, 0.05), 0 2px 4px rgba(0, 37, 91, 0.03);
           display: flex;
           justify-content: center;
-          margin-top: calc(var(--spacer-size) * 1.5);
-          margin-bottom: -9rem;
+
+          @media (min-width: 1100px) {
+            width: 90%;
+            margin: 0 auto;
+          }
+
+          @media (min-width: 1400px) {
+            width: 80%;
+          }
         }
       `}</style>
     </>

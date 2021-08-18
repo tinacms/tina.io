@@ -72,6 +72,7 @@
     "react-final-form": "^6.3.5",
     "react-gtm-module": "^2.0.8",
     "react-helmet": "^5.2.1",
+    "react-icons": "^4.2.0",
     "react-instantsearch-dom": "^6.3.0",
     "react-markdown": "^4.3.1",
     "react-syntax-highlighter": "^12.2.1",

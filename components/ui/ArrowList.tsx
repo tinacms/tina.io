@@ -22,7 +22,7 @@ export const ArrowList = styled(({ children, ...styleProps }) => {
       top: -1px;
       font-size: 1.75rem;
       line-height: 1;
-      color: var(--color-primary, #ec4815);
+      color: var(--color-orange, #ec4815);
     }
   }
 `

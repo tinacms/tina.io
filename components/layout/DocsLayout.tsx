@@ -7,6 +7,7 @@ import { DocumentationNavigation } from 'components/DocumentationNavigation'
 import { Footer } from './Footer'
 import { DocsTextWrapper } from './DocsTextWrapper'
 import { FeedbackForm } from 'components/forms'
+import { CloudBanner } from './CloudBanner'
 
 interface DocsLayoutProps {
   navItems: any
@@ -16,7 +17,12 @@ interface DocsLayoutProps {
 }
 
 export const DocsLayout = React.memo(
-  ({ children, navItems, guide = false, showLayout = true }: DocsLayoutProps) => {
+  ({
+    children,
+    navItems,
+    guide = false,
+    showLayout = true,
+  }: DocsLayoutProps) => {
     const router = useRouter()
     return (
       <>
@@ -26,7 +32,9 @@ export const DocsLayout = React.memo(
           }}
         />
         <DocsLayoutDiv>
-          {showLayout && <DocumentationNavigation navItems={navItems} guide={guide} />}
+          {showLayout && (
+            <DocumentationNavigation navItems={navItems} guide={guide} />
+          )}
           <DocsTextWrapper>{children}</DocsTextWrapper>
           <FeedbackForm />
           {showLayout && <Footer light />}

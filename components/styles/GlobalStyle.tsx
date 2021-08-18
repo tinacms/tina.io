@@ -102,12 +102,19 @@ export const GlobalStyle = React.memo(createGlobalStyle`
 
     /* Color */
     --color-white: #FFFFFF;
-    --color-primary: #EC4815;
-    --color-primary-dark: #CE411D;
-    --color-secondary: #302454;
+    --color-orange-light: #EB6337;
+    --color-orange: #EC4815;
+    --color-orange-dark: #CE411D;
+    --color-secondary: #31215E;
     --color-secondary-dark: #241748;
-    --color-seafoam: #E6FAF8;
-    --color-seafoam-dark: #B4F4E0;
+    --color-blue: var(--color-secondary-dark);
+    --color-blue-light: var(--color-secondary);
+    --color-seafoam-100: #F2FDFC;
+    --color-seafoam-200: #E6FAF8;
+    --color-seafoam-300: #D1FAF6;
+    --color-seafoam-400: #B4F4E0;
+    --color-seafoam: var(--color-seafoam-200);
+    --color-seafoam-dark: var(--color-seafoam-400);
     --color-light: #FAFAFA;
     --color-light-dark: #E9E9EC;
     --color-grey: #595959;
@@ -120,6 +127,10 @@ export const GlobalStyle = React.memo(createGlobalStyle`
     --breakpoint-small: 400px;
     --breakpoint-medium: 800px;
     --breakpoint-large: 1200px;
+
+    --spacer-size: 4.5rem;
+    --section-padding: calc(var(--spacer-size) * 2);
+    --container-padding: 2rem;
 
     /* Typography */
     --font-tuner: 'tuner-regular', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
@@ -152,6 +163,14 @@ export const GlobalStyle = React.memo(createGlobalStyle`
     }
   }
 
+  ::-moz-selection {
+    background: var(--color-seafoam-dark);
+    color: var(--color-blue-light);
+  }
+  ::selection {
+    background: var(--color-seafoam-dark);
+    color: var(--color-blue-light);
+  }
 
   .fitVids-wrapper {
     position: relative;

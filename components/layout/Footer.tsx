@@ -99,6 +99,11 @@ const FooterBottom = styled.div`
   }
 `
 
+const FootnoteLinks = styled.span`
+  display: inline-block;
+  padding: 0.5rem 0 0.5rem 1rem;
+`
+
 const Footnote = styled.span`
   display: flex;
   flex-direction: column;
@@ -110,8 +115,7 @@ const Footnote = styled.span`
   button {
     height: 40px;
     color: white;
-    background-color: var(--color-primary);
-    margin-bottom: 1rem;
+    background-color: var(--color-orange);
 
     &:hover,
     &:focus {
@@ -154,11 +158,7 @@ const Footnote = styled.span`
   @media (min-width: 500px) {
     flex-direction: row;
     align-items: center;
-
-    button {
-      margin-bottom: 0;
-      margin-right: 1rem;
-    }
+    flex-wrap: wrap;
   }
 `
 
@@ -211,37 +211,39 @@ export const Footer = styled(({ light, ...styleProps }) => {
         </FooterForm>
         <Footnote>
           <EditLink color={'primary'} />
-          <Link href="/security" passHref>
-            <a>Security</a>
-          </Link>
-          <FooterDivider />
-          <Link href="/terms-of-service" passHref>
-            <a>Terms of Service</a>
-          </Link>
-          <FooterDivider />
-          <Link href="/privacy-notice" passHref>
-            <a>Privacy Notice</a>
-          </Link>
-          <FooterDivider />
-          <a
-            href="https://github.com/tinacms/tinacms/blob/master/LICENSE"
-            target="_blank"
-          >
-            License
-          </a>
-          <FooterDivider />
-          <p>
-            &copy; TinaCMS 2019–
-            {new Date().getFullYear()}
-          </p>
+          <FootnoteLinks>
+            <Link href="/security" passHref>
+              <a>Security</a>
+            </Link>
+            <FooterDivider />
+            <Link href="/terms-of-service" passHref>
+              <a>Terms of Service</a>
+            </Link>
+            <FooterDivider />
+            <Link href="/privacy-notice" passHref>
+              <a>Privacy Notice</a>
+            </Link>
+            <FooterDivider />
+            <a
+              href="https://github.com/tinacms/tinacms/blob/master/LICENSE"
+              target="_blank"
+            >
+              License
+            </a>
+            <br />
+            <p>
+              &copy; TinaCMS 2019–
+              {new Date().getFullYear()}
+            </p>
+          </FootnoteLinks>
         </Footnote>
       </FooterBottom>
     </div>
   )
 })`
   color: white;
-  --color-background: var(--color-primary);
-  --color-background-dark: var(--color-primary-dark);
+  --color-background: var(--color-orange);
+  --color-background-dark: var(--color-orange-dark);
   position: relative;
   z-index: 1000;
 
@@ -258,28 +260,28 @@ export const Footer = styled(({ light, ...styleProps }) => {
   }
 
   ${FooterBottom} {
-    --color-background: var(--color-primary-dark);
+    --color-background: var(--color-orange-dark);
   }
 
   ${props =>
     props.light &&
     css`
       border-top: 1px solid var(--color-light-dark);
-      color: var(--color-primary);
+      color: var(--color-orange);
       --color-background: var(--color-light);
       --color-background-dark: var(--color-light-dark);
 
       ${TinaIcon} {
-        fill: var(--color-primary);
+        fill: var(--color-orange);
       }
 
       ${FooterSocial} {
-        fill: var(--color-primary);
+        fill: var(--color-orange);
       }
 
       ${FooterBottom} {
         color: white;
-        --color-background: var(--color-primary);
+        --color-background: var(--color-orange);
       }
     `};
 `

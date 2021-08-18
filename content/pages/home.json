@@ -5,93 +5,71 @@
   },
   "blocks": [
     {
-      "_template": "navbar",
-      "banner": {
-        "display": true,
-        "text": "Tina Cloud, our headless backend is in public Alpha. Read more",
-        "link": "/blog/announcement-tina-cloud-is-officially-in-alpha/"
-      },
-      "navItems": [
-        {
-          "link": "/docs",
-          "label": "Docs"
-        },
-        {
-          "link": "/blog",
-          "label": "Blog"
-        },
-        {
-          "link": "/cloud",
-          "label": "Tina Cloud"
-        }
-      ]
-    },
-    {
       "_template": "hero",
-      "headline": "Unlock your team with *next-gen editing*",
-      "subline": "Tina is an open-source editor for Jamstack sites",
+      "headline": "The Fastest Way to Edit Next.js Content",
+      "subline": "A visual editing experience for content stored in Markdown and JSON",
       "actions": [
         {
           "variant": "orange",
-          "label": "Quick Start",
+          "label": "Try Demo",
           "icon": "arrowRight",
-          "url": "https://tina.io/guides/tina-cloud/starter/overview/"
+          "url": "https://tina-tailwind-sidebar-demo-git-main-tinacms.vercel.app/"
         },
         {
           "variant": "ghost",
-          "label": "Try Demo",
+          "label": "Quickstart Guide",
           "icon": "",
-          "url": "https://tina-tailwind-sidebar-demo-git-main-tinacms.vercel.app/"
+          "url": "/guides/tina-cloud/starter/overview/"
         }
       ],
-      "videoSrc": "v1571425758/tina-hero-demo-v2"
+      "videoSrc": "v1629294438/tina-io/Beta_Launch_Demo"
     },
     {
       "_template": "features",
-      "headline": "",
-      "subline": "",
+      "headline": "Unlock your team with *next-gen editing*",
+      "subline": "Tina is an open-source editor for Jamstack sites",
       "items": [
         {
           "_template": "feature",
-          "headline": "Visual Editing",
-          "subline": "Most CMSs feel like a GUI on a database. Tina gives your team a contextual, intuitive experience.",
-          "media": {
-            "src": "/img/edit-alongside-content.gif"
-          }
-        },
-        {
-          "_template": "feature",
-          "headline": "Built for the Jamstack",
-          "subline": "Tina is extensible by design, and already supports React and Next.js based websites.",
-          "media": {
-            "src": "/img/jamstack.png"
-          }
-        },
-        {
-          "_template": "feature",
-          "headline": "Your Design System & Components",
-          "subline": "Allow your team to pick from your custom, predefined components to build pages.  Maintain a simpler codebase that offers more versatility.",
-          "media": {
-            "src": "/img/your-blocks.gif"
-          }
-        },
-        {
-          "_template": "feature",
-          "headline": "Content Backed by Git",
-          "subline": "Tina supports content stored in Git. Give the benefits of version-control to your whole team.",
+          "headline": "Version Control Your Content",
+          "subline": "Retain the benefits of a Git workflow for your content and empower all teammates to update your website through a user-friendly interface.",
           "media": {
             "src": "/img/update-from-tina.jpg"
           }
+        },
+        {
+          "_template": "feature",
+          "headline": "Edit with Real-Time Visual Feedback",
+          "subline": "Accelerate productivity; see changes in context as you edit your content on your website.",
+          "media": {
+            "videoSrc": "v1627927996/tina-io/dynamic-editing"
+          }
+        },
+        {
+          "_template": "feature",
+          "headline": "Query Your Content",
+          "subline": "Query your content across all your files using Tina Cloud’s GraphQL layer on top of the files stored in your repository.",
+          "media": {
+            "src": "https://res.cloudinary.com/forestry-demo/image/upload/v1628023277/tina-io/query-content.jpg"
+          }
+        },
+        {
+          "_template": "feature",
+          "headline": "Build on Top of Your Components",
+          "subline": "Add an editing interface to your React components and give your content team the power to build complex pages.",
+          "media": {
+            "videoSrc": "v1627931840/tina-io/Build_With_Components"
+          }
+        },
+        {
+          "_template": "feature",
+          "headline": "Command Line Quickstart",
+          "subline": "[Bootstrap your Next.js project with Tina](/guides/tina-cloud/add-tinacms-to-existing-site/overview/) setup and get started in minutes.",
+          "media": {
+            "cli": true
+          }
         }
       ]
-    },
-    {
-      "_template": "browser",
-      "headline": "*Edit Content, Not Code*",
-      "subline": "Make changes in context and see them in real-time. Hit save and Tina handles the commit.",
-      "media": {
-        "src": "/img/blocks.gif"
-      }
     },
     {
       "_template": "flying",
@@ -104,7 +82,33 @@
           "icon": "arrowRight",
           "url": "/guides/"
         }
+      ],
+      "items": [
+        {
+          "headline": "Visual Editing",
+          "subline": "Most CMSs feel like a GUI on a database. Tina gives your team a contextual, intuitive experience."
+        },
+        {
+          "headline": "Built for the Jamstack",
+          "subline": "Tina is extensible by design, and already supports React and Next.js based websites."
+        },
+        {
+          "headline": "Your Design System & Components",
+          "subline": "Allow your team to pick from your custom, predefined components to build pages.  Maintain a simpler codebase that offers more versatility."
+        },
+        {
+          "headline": "Content Backed by Git",
+          "subline": "Tina supports content stored in Git. Give the benefits of version-control to your whole team."
+        }
       ]
+    },
+    {
+      "headline": "*Edit Content, Not Code*",
+      "subline": "Make changes in context and see them in real-time. Hit save and Tina handles the commit."
+    },
+    {
+      "headline": "New to Tina?",
+      "subline": "Learn the basics of the development workflow"
     }
   ]
 }

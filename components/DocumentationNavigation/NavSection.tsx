@@ -168,7 +168,7 @@ const NavSectionTitle = styled.span<NavSectionTitleProps>`
   ${props =>
     props.currentPage &&
     css`
-      color: var(--color-primary);
+      color: var(--color-orange);
       font-weight: bold;
     `};
 `
@@ -188,7 +188,7 @@ const SubNav = styled.ul`
 
     &:hover,
     &:focus {
-      color: var(--color-primary);
+      color: var(--color-orange);
     }
   }
 
