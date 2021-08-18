@@ -95,9 +95,9 @@ The Tina Starter was built originally to show "the power of Tina" while it did t
 
 ## Media Manager
 
-Media manager was one of the most important features that we needed for Tina Cloud. Our Cloudinary Media manager allows you to change images, upload new images, and delete ones you no longer need without ever leaving the Tina editing experience. 
+Media manager was one of the most important features that we needed for Tina Cloud. Our [Cloudinary Media manager](/docs/media-cloudinary/) allows you to change images, upload new images, and delete ones you no longer need without ever leaving the Tina editing experience. 
 
-I wrote a [blog post announcing it](/blog/manage-your-media-with-cloudinary/) and how to implement it into your application.
+I wrote a [blog post announcing it](/blog/manage-your-media-with-cloudinary/) and how to implement it into your application. 
 
 ## Caching Improvements
 
@@ -132,6 +132,6 @@ If you used the alpha of Tina you might want to read this article the team put t
 ## Give Us Feedback!
 The whole team is truly excited to enter the beta phase and hope you will check it out and give us honest feedback. We want to hear about your projects or, let us know how Tina Cloud can help your team make progress.
 
-To keep up to date with Tina goings-on make sure to follow [@tina_cms](https://twitter.com/tina_cms) and [@james_r_perkins](https://twitter.com/james_r_perkins) on Twitter.
+To keep up to date with Tina goings-on make sure to follow [@tina_cms](https://twitter.com/tina_cms) and [@james_r_perkins](https://twitter.com/james_r_perkins) on Twitter. Want to chat with the team? Join the [Discord](https://discord.gg/njvZZYHj2Q)
 
 Stay tuned for further improvements, features, community-built projects and more!
