@@ -6,7 +6,9 @@ last_edited: '2021-07-27T15:39:06.367Z'
 ---
 The team at Tina has been working hard since June 2nd when we launched Tina Cloud alpha. We took all your feedback and thoughts and iterated to make huge improvements to the product. The alpha release contained the core product yet we knew we had some features we wanted to add immediately, including a simplified integration path. 
 
-We are pleased to announce that Tina is in beta, and all of the core functionality is in place for your team to have a great content editing experience on Next.js sites! If you are excited as we are you can get started by [signing up](https://app.tina.io/register). But first, I'd love for you to stick around and hear about the team's vision, lessons learned, and what we have added.
+We are pleased to announce that Tina is in beta, and all of the core functionality is in place for your team to have a great content editing experience on Next.js sites! If you are excited as we are you can get started by [signing up](https://app.tina.io/register). But first, I'd love for you to stick around and hear about the team's vision, lessons learned, and what we have added. If you are new to Tina, here is a quick demo:
+
+![Demo](https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/v1629136727/tina-io/Beta_Launch_Demo.webm)
 
 ## A quick Message from Scott our CEO
 
