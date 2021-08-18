@@ -273,8 +273,19 @@
       "destination": "/docs/tinacms-context/"
     },
     {
+      "source":"/guides/nextjs/github/(.*)",
+      "destination": "guides/experimental/github/(.*)"
+    },
+    {
+      "source":"/guides/nextjs/tina-with-strapi/(.*)",
+      "destination": "/guides/experimental/tina-with-strapi/(.*)"
+    },
+    {
       "source": "/docs/tina-cloud/cli",
       "destination": "/docs/cli-overview/"
+    },{
+      "source": "/guides/nextjs/adding-tina/(.*)",
+      "destination": "/guides/tina-cloud/add-tinacms-to-existing-site/overview/"
     }
   ]
 }
