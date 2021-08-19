@@ -12,7 +12,7 @@ yarn add next-tinacms-cloudinary @tinacms/auth
 
 ## Connect with Cloudinary
 
-You need some credentials provided by Cloudinary to set this up properly. If you do not already have an account, you can [register here](https://cloudinary.com/users/register/free).
+You need to provide your Cloudinary credentials to connect to your media library. Do [register on Cloudinary](https://cloudinary.com/users/register/free) if you don't have an account yet, your account details are displayed on the Cloudinary dashboard.
 
 **next-tinacms-cloudinary** uses environment variables within the context of a Next.js site to properly access your Cloudinary account.
 
