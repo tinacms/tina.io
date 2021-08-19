@@ -20,6 +20,7 @@
     }
   },
   "redirects": [
+    { "source": "/cloud/", "destination": "/" },
     { "source": "/blog/first", "destination": "/blog/announcing-tinacms" },
     {
       "source": "/blog/introducing-tina-grande-%F0%9F%8E%89",
@@ -123,11 +124,11 @@
     },
     {
       "source": "/teams",
-      "destination": "/cloud"
+      "destination": "/"
     },
     {
       "source": "/enterprise",
-      "destination": "/cloud"
+      "destination": "/"
     },
     {
       "source": "/docs/gatsby/quickstart",
