@@ -4,7 +4,7 @@ date: '2021-06-01T20:00:00-04:00'
 author: James Perkins
 last_edited: '2021-06-17T12:45:15.979Z'
 ---
-The team at Tina is pleased to announce that [Tina Cloud](/cloud/) is officially in public Alpha. Everyone is encouraged to [register a free account](https://auth.tina.io/register) on our headless GitHub-backed CMS and start committing. We have been working incredibly hard behind the scenes to get our vision in the hands of developers and content teams.
+The team at Tina is pleased to announce that [Tina Cloud](/) is officially in public Alpha. Everyone is encouraged to [register a free account](https://app.tina.io/register) on our headless GitHub-backed CMS and start committing. We have been working incredibly hard behind the scenes to get our vision in the hands of developers and content teams.
 
 Tina Cloud brings the power of Tina's open-source content editor with [a GraphQL API that allows you to interact with your Markdown files stored in your repository](/blog/using-graphql-with-the-filesystem/). Also, with Tina Cloud, you can allow _any_ team member to edit content — even if they don’t have a GitHub account.
 
@@ -32,7 +32,7 @@ Tina cloud isn't complete yet, some key features  are currently being shaped up:
 
 ## How can I get started?
 
-The first thing to do is to [signup for Tina Cloud](https://auth.tina.io/register), once you're in, we have a few ways for you to get started and get up and running in minutes.
+The first thing to do is to [signup for Tina Cloud](https://app.tina.io/register), once you're in, we have a few ways for you to get started and get up and running in minutes.
 
 * [Tina Cloud Starter](https://github.com/tinacms/tina-cloud-starter): A basic implementation of Tina Cloud aimed at getting your up and running in a few minutes.
 * [Tina Cloud Next.js blog starter](/guides/tina-cloud/existing-site/overview/) - A guide to add Tina Cloud on top of the default Next.js blog starter and work directly through our CMS.
