@@ -212,10 +212,10 @@ Visit [http://localhost:3000/product-listing](http://localhost:3000/product-list
 
 To hook up this demo to Tina Cloud and save content to Github instead of the file system you can do the following.
 
-1.  Register at https://auth.tina.io
+1.  Register at https://app.tina.io
 2.  Update .env file to include:
 
 ```
-NEXT_PUBLIC_TINA_CLIENT_ID= get this from the app you create at auth.tina.io
+NEXT_PUBLIC_TINA_CLIENT_ID= get this from the app you create at app.tina.io
 NEXT_PUBLIC_USE_LOCAL_CLIENT=0
 ```
