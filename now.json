@@ -21,6 +21,7 @@
   },
   "redirects": [
     { "source": "/cloud/", "destination": "/" },
+    { "source": "/docs/tina-cloud/alpha-faq/", "destination": "/docs/tina-cloud/faq/" },
     { "source": "/blog/first", "destination": "/blog/announcing-tinacms" },
     {
       "source": "/blog/introducing-tina-grande-%F0%9F%8E%89",
