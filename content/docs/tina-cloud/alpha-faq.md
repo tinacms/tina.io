@@ -1,28 +1,27 @@
 ---
-title: Tina Cloud Alpha FAQ
+title: Tina Cloud FAQ
 ---
 
-## What is the Tina Cloud Alpha release?
+## What is the Tina Cloud Beta release?
 
-The Tina Cloud Alpha release gives early adopters the chance to test visual content editing and our Git-backed content API!
+The Tina Cloud Beta release gives early adopters the chance to test visual content editing and our Git-backed content API!
 
 Tina Cloud brings together Tina's open-source content editor with a GraphQL API that talks to content stored in your repository (ie. Markdown and soon JSON).
 
 ## Where do I start?
 
-- Have a look at the updated [Tina Cloud docs](https://tina.io/docs/)
-- Try the [Next.js starter site](https://github.com/tinacms/tina-cloud-starter) (fork it, then follow the readme)
-- Follow the Tina Cloud [getting started guide](https://tina.io/guides/tina-cloud/existing-site/overview/)
-- [Sign up to Tina Cloud](https://auth.tina.io/register)!
+- Have a look at the updated [Tina Cloud docs](/docs/)
+- Try the [Next.js starter site](https://github.com/tinacms/tina-cloud-starter) 
+- Follow the Tina Cloud [getting started guide](/tina-cloud/starter/overview/)
+- [Sign up to Tina Cloud](https://app.tina.io/register)!
 - [Find us on Discord](https://discord.com/invite/zumN63Ybpf)
 
 ## What do I need to know about working with the Alpha release of Tina Cloud?
 
-Since this is an Alpha release you should expect to run into bugs occasionally or be required to update your code because of API improvements.
+Since this is a Beta release you should expect to run into bugs occasionally or be required to update your code because of API improvements.
 
 These features are not (yet) included in Tina Cloud and you might miss them:
 
-- A media management solution
 - A multi-branch workflow
 - The GraphQL API for your content is not yet queryable with read-only tokens. That means it’s only used while editing content with Tina.
 
@@ -45,8 +44,6 @@ The [Next.js starter](https://github.com/tinacms/tina-cloud-starter) can get you
 
 ## What is the pricing for Tina Cloud?
 
-There will be no cost for small teams to use Tina Cloud while it is in Alpha.
+Tina Cloud remains free until we go public. We are still working out our pricing model, and will offer a forever free plan for personal use.
 
-A fair use policy will be coming soon.
-
-We will contact you if we believe your use case may eventually fit within our post-beta paid plans.
+We will contact you if your use case fits within our paid plans for larger teams.
