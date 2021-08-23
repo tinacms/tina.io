@@ -1,8 +1,7 @@
 ---
 title: Tina Cloud Starter structure
-last_edited: '2021-07-26T12:04:50.542Z'
+last_edited: '2021-08-23T01:43:21.819Z'
 ---
-
 From here, you're ready to start building your own project. This section explains a bit about how this project is structured, and how to modify it to make it your own.
 
 ## Starter structure
@@ -13,7 +12,7 @@ Tina Cloud Starter is a <a href="https://nextjs.org" target="_blank">Next.js</a>
 
 This is where your schema is defined, when you make changes here you'll notice that the generated GraphQL API changes too. It's a good idea to run your GraphQL server while editing so you can see any breakages.
 
-> Tip: Visit the GraphQL GUI at `http://localhost:4001/altair` so you can see how changes to the schema are updated in GraphQL.\
+> Tip: Visit the GraphQL GUI at `http://localhost:4001/altair` so you can see how changes to the schema are updated in GraphQL.\\
 
 ### `pages/[filename].tsx`
 
@@ -36,12 +35,14 @@ This is set up for you in `./.tina/schema.ts`, let's break down what this functi
 ```ts
 import { defineSchema } from "tina-graphql-gateway-cli";
 ```
+
 Head over to the [reference](/docs/tinacms-reference/) documentation to learn more about [defining a schema](/docs/schema/) or [querying with GraphQL](/docs/graphql/)
 
 ### `pages/posts/[filename].tsx`
+
 ### `defineSchema`
 
-> ℹ️ <a href="/docs/tina-cloud/cli/#defineschema" target="_blank">Read the CLI documentation</a> for more details about the `defineSchema` API.
+> ℹ️ <a href="/docs/schema" target="_blank">Read the CLI documentation</a> for more details about the `defineSchema` API.
 
 Be sure this is your default export from this file, we'll validate the schema and build out the GraphQL API with it.
 
