@@ -48,6 +48,6 @@ In the future, we’ll look back at clunky, conventional CMSs and wonder why we 
 We believe in portability, which is why our headless CMS stores your content in open-specification file formats in a repository that _you_ control. Also, we are still very committed to TinaCMS’s storage-agnostic approach and Tina Cloud will be one of the many backend storage solutions available to you.
 Tina Cloud is the foundation we need to show the world how powerful Git-backed, visual content management can be.
 
-**Private Alpha**
+**Public Beta**
 
-> _Tina Cloud is currently open to a limited set of Next.js projects, sign for [early access](https://tina.io/cloud/) to get into the alpha._
+> _Tina Cloud is currently in [public beta](/blog/tina-is-in-beta/), [sign up](https://app.tina.io) to get started with Next.js._
