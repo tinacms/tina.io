@@ -8,7 +8,7 @@ Custom fields are made possible by the [plugin system](/docs/plugins/) in TinaCM
 
 ## Adding Custom Logic
 
-Adding custom logic is easy and can be done in two simple steps; registering a field plugin and then using the field plugin in your schema.
+Adding custom logic involves two steps: first registering a field plugin and then using the field plugin in your schema.
 
 ### 1. Create a Field Plugin
 
@@ -34,7 +34,7 @@ export interface FieldPlugin<ExtraFieldProps = {}, InputProps = {}> {
 
 Where component can be a [custom component](#adding-a-custom-field) or a built in component. [See here](#list-of-field-components) for a full list of custom components.
 
-It is considered a good practiced to have your plugins in a separate file, this allows the plugin to be lazy loaded only when the CMS is enabled. This way it does not effect your production bundle. 
+It is considered a good practice to have your plugins in a separate file, this allows the plugin to be lazy-loaded only when the CMS is enabled. This way it does not affect your production bundle. 
 
 ```tsx
 // ./plugins.tsx
@@ -52,7 +52,7 @@ export const validationPlugin = {
 
 ### 2. Register a Field Plugin
 
-The plugin can then be registered in [the CMS callback](https://tina.io/docs/tinacms-context/#tinacms) in the `<Tina>` wrapper component.
+The plugin can then be registered in [the CMS callback](/docs/tinacms-context/#tinacms) in the `<Tina>` wrapper component.
 
 ```tsx
 cmsCallback={cms => {
@@ -64,7 +64,7 @@ cmsCallback={cms => {
 
 ### 3. Use Field in  `.tina/schema.ts`
 
-Now in the [schema.ts file](https://tina.io/docs/schema/) this field can be used for any field. It can be added to the [`ui` property](https://tina.io/docs/schema/#the-ui-property)
+Now in the [schema.ts file](/docs/schema/) this field can be used for any field. It can be added to the [`ui` property](/docs/schema/#the-ui-property)
 
 ```ts
 ui: {

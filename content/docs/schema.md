@@ -162,7 +162,7 @@ For a `string` type you'll get the [`text` field](/docs/fields/text/) by default
 }
 ```
 
-The `component` property can be any [registered field](http://localhost:3000/docs/advanced-features/custom-fields/#2-register-a-field-plugin). Below is a list of default fields. 
+The `component` property can be any [registered field](/docs/advanced-features/custom-fields/#2-register-a-field-plugin). Below is a list of default fields. 
 ### Default Fields
 * [text](docs/fields/text/)
 * [textarea](/docs/fields/textarea/)
