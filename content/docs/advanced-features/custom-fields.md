@@ -77,7 +77,7 @@ ui: {
 
 ## Adding a Custom Field
 
-Instead of using one of the build in fields a [custom component can be provided](docs/fields/custom-fields/). This can be any react component and it will render in the sidebar as a field. Follow the steps above but provide a custom `Component` as shown [here](docs/fields/custom-fields/).
+Instead of using one of the build in fields a [custom component can be provided](/docs/fields/custom-fields/). This can be any react component and it will render in the sidebar as a field. Follow the steps above but provide a custom `Component` as shown [here](/docs/fields/custom-fields/).
 
 
 
@@ -96,7 +96,7 @@ export const MyPlugin = {
 
 Where `FieldComponentName` is an a Field Component from this list
 
-* [TextField](docs/fields/text/)
+* [TextField](/docs/fields/text/)
 * [TextareaField](/docs/fields/textarea/)
 * [NumberField](docs/fields/number/)
 * [ImageField](/docs/fields/image/)
