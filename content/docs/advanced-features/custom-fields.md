@@ -4,7 +4,7 @@ prev: Null
 next: null
 ---
 
-Custom fields are made possible by the [plugin system](/docs/plugins/) in TinaCMS. Custom fields are a way to either add [custom logic to existing fields]() or provide an [entirely new field component]().
+Custom fields are made possible by the [plugin system](/docs/plugins/) in TinaCMS. Custom fields are a way to either add [custom logic to existing fields](#adding-custom-logic) or provide an [entirely new field component](#adding-a-custom-field)
 
 ## Adding Custom Logic
 
@@ -32,7 +32,7 @@ export interface FieldPlugin<ExtraFieldProps = {}, InputProps = {}> {
 
 ```
 
-Where component can be a [custom component]() or a built in component. [See here]() for a full list of custom components.
+Where component can be a [custom component](#adding-a-custom-field) or a built in component. [See here](#list-of-field-components) for a full list of custom components.
 
 It is considered a good practiced to have your plugins in a separate file, this allows the plugin to be lazy loaded only when the CMS is enabled. This way it does not effect your production bundle. 
 
