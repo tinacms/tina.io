@@ -26,8 +26,6 @@ A field `Component` is React component that accepts three props:
 
 Checkout the [react-final-form](https://github.com/final-form/react-final-form#fieldrenderprops) docs for a more detailed description of the `input` and `meta` props.
 
-> Checkout [this blog](/blog/custom-field-components) for a step-by-step guide on creating a custom field component.
-
 ## 2. Creating Field Plugins
 
 A field plugin is a JavaScript object with three properties:
@@ -56,8 +54,6 @@ interface FieldPlugin {
 }
 ```
 
-> Checkout [this blog](/blog/custom-field-plugins) for a more in-depth look at creating custom field plugins.
-
 ### Validate (optional)
 
 The optional `validate` function can be utilized to configure field validation.
@@ -82,6 +78,8 @@ cms.fields.add({
   validate: validateMap,
 })
 ```
+
+**To use this component in a [follow these steps](/docs/advanced-features/custom-fields/)**
 
 ### Example
 
@@ -111,6 +109,8 @@ cms.fields.add({
   },
 })
 ```
+
+**This can also be added to your schema by [following these steps](/docs/advanced-features/custom-fields/)**
 
 ## Using Tina Styles
 
