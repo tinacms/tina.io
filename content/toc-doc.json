@@ -275,6 +275,18 @@
                 ]
               }
             ]
+          },
+          {
+            "title": "Advanced Features",
+            "slug": "/docs/advanced-features/overview/",
+            "description": "Extended the functionalalility of TinaCMS",
+            "items": [
+              {
+                "title": "Custom Fields",
+                "id": "tinacms:custom-fields/",
+                "slug": "/docs/advanced-features/custom-fields/"
+              }
+            ]
           }
         ]
       }
