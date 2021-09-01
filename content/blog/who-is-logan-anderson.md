@@ -2,7 +2,7 @@
 title: Introducing Logan Anderson!
 date: '2021-09-01T12:09:32-04:00'
 author: James Perkins
-last_edited: '2021-09-01T16:57:18.678Z'
+last_edited: '2021-09-01T16:59:54.780Z'
 ---
 Tina has a small core team of developers who work on both our open-source toolkit and cloud offering.  
   
@@ -35,3 +35,7 @@ I really love the people and the culture we have here. Continuous learning and h
 ## **Can we get a Sneak peek at something you are working on?**
 
 We are currently thinking a how to edit the content that is not directly reflected on the page. I made [this content viewer](https://github.com/tinacms/tina-cloud-starter/pull/171#issuecomment-906376371) that allows folks to edit authors from anywhere in their app.
+
+***
+
+Interested in keeping up with what Logan is up to? Make sure you follow him on Twitter [@logan_]()_[anders0n]() and @tin_cms_ 
