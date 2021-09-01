@@ -2,7 +2,7 @@
 title: Introducing Logan Anderson!
 date: '2021-09-01T12:09:32-04:00'
 author: James Perkins
-last_edited: '2021-09-01T17:01:29.227Z'
+last_edited: '2021-09-01T17:03:04.882Z'
 ---
 Tina has a small core team of developers who work on both our open-source toolkit and cloud offering.  
   
@@ -38,4 +38,4 @@ We are currently thinking a how to edit the content that is not directly reflect
 
 ***
 
-Interested in keeping up with what Logan and the team are up to? Make sure you follow him on Twitter [@logan_]()_[ande0n]() and [@tina_cms](https://twitter.com/tina_cms)_ 
+Interested in keeping up with what Logan and the team are up to? Make sure you follow him on Twitter [@logan_anders0n]() _and [@tina_cms](https://twitter.com/tina_cms)_ 
