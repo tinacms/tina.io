@@ -2,11 +2,11 @@
 title: Introducing Logan Anderson!
 date: '2021-09-01T12:09:32-04:00'
 author: James Perkins
-last_edited: '2021-09-01T17:01:05.658Z'
+last_edited: '2021-09-01T17:01:29.227Z'
 ---
 Tina has a small core team of developers who work on both our open-source toolkit and cloud offering.  
   
-When I started here, I was introduced to Logan as a member of the Open Source team, Logan was interning at Tina while pursuing his degree. Logan has done some impressive work while working with the Tina team, so impressive that we offered him a full-time position! 
+When I started here, I was introduced to Logan as a member of the Open Source team, Logan was interning at Tina while pursuing his degree. Logan has done some impressive work while working with the Tina team, recently we offered him a full time position and we are happy to announce that he accepted!
 
 Who is Logan Anderson I hear you cry? Well, I sat down and asked the important questions, so without further ado, let us talk all about Logan.
 
