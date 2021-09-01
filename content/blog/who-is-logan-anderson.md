@@ -2,11 +2,11 @@
 title: Introducing Logan Anderson!
 date: '2021-09-01T12:09:32-04:00'
 author: James Perkins
-last_edited: '2021-09-01T17:03:21.828Z'
+last_edited: '2021-09-01T17:04:17.251Z'
 ---
 Tina has a small core team of developers who work on both our open-source toolkit and cloud offering.  
   
-When I started here, I was introduced to Logan as a member of the Open Source team, Logan was interning at Tina while pursuing his degree. Logan has done some impressive work while working with the Tina team, recently we offered him a full time position and we are happy to announce that he accepted!
+When I started here, I was introduced to Logan as a member of the Open Source team, Logan was interning at Tina while pursuing his degree. Logan has done some impressive work while working with the Tina team, recently we offered him a full-time position and we are happy to announce that he accepted!
 
 Who is Logan Anderson I hear you cry? Well, I sat down and asked the important questions, so without further ado, let us talk all about Logan.
 
@@ -22,7 +22,7 @@ I started my adventure with Tina when I first started working here on my second 
 
 I really enjoy working on our core project. It is very open and flexible and is possible to do almost anything with. One of my favorite projects I have worked on is trying to make Tina easier to set up for users. It is a constant challenge between openness and ease of use. I enjoy this challenge!
 
->If you used our `@tinacms/cli init` command, this was Logan's hard work.
+>If you used our [`@tinacms/cli init`](https://tina.io/docs/cli/#init-command) command, this was Logan's hard work.
 
 ## **What do you believe makes Tina different than others?**
 
