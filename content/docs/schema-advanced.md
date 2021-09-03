@@ -268,7 +268,7 @@ const { datePublished, name, photo, description, meta, sections } = recipe;
     <div className="recipe-page">
       {photo ? <img src={photo} alt="photo" />}
       <h1>{name}</h1>
-      {localDatePublished ? <h2>{datePublished}</h2>}
+      {localDatePublished ? <h2>{localDatePublished}</h2>}
       <p>{description}</p>
       {meta && Object.keys(meta).length > 0 && (
         <dl>
