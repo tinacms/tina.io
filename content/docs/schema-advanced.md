@@ -231,7 +231,7 @@ This query will return an `Object` in the shape of:
 ​
 ## Rendering
 ​
-The important step here is correctly plucking the queried `data` out of `props`. The common pattern is `data: { query: { data: document }}`.
+The important step here is correctly retrieve the queried `data` out of `props`. The common pattern is `data: { query: { data: document }}`.
 ​
 Notice that `sections` is iterated via `map()` utilizing the `__typename` to determine how each `section` should be rendered. You could also use `_template`.
 ​
