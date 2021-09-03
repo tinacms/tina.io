@@ -8,7 +8,7 @@ import {
   RichTextWrapper,
 } from 'components/layout'
 import { NextSeo } from 'next-seo'
-import { LastModified } from './terms-of-service'
+import { LastModified } from '../../terms-of-service'
 import Link from 'next/link'
 
 export default () => (
