@@ -86,6 +86,11 @@
                 "title": "TinaCMS CLI",
                 "id": "/docs/cli",
                 "slug": "/docs/cli/"
+              },
+              {
+                "title": "Advanced Usage",
+                "id": "/docs/schema-advanced/",
+                "slug": "/docs/schema-advanced/"
               }
             ]
           },
