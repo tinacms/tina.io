@@ -238,12 +238,13 @@ Notice that `sections` is iterated via `map()` utilizing the `__typename` to det
 ```tsx, copy
 // pages/recipe/[filename].tsx
 const RecipePage = (props) => {
-  const {
+const {
     data: {
       getRecipeDocument: { data: recipe },
     },
-  } = props;
-  const { datePublished, name, photo, description, meta, sections } = recipe;
+  }  = props;
+  
+const { datePublished, name, photo, description, meta, sections } = recipe;
 ​
   /**
    * Because all `datetime` fields returned by GraphQL are in UTC, we
@@ -252,7 +253,9 @@ const RecipePage = (props) => {
    *
    * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
    */
+  
   let localDatePublished;
+  
   if (datePublished) {
     localDatePublished = new Date(datePublished).toLocaleDateString(undefined, {
       month: "short",
@@ -308,4 +311,5 @@ const RecipePage = (props) => {
       })}
     </div>
   )
+}
 ```
