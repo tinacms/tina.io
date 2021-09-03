@@ -254,15 +254,15 @@ const { datePublished, name, photo, description, meta, sections } = recipe;
    * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
    */
   
-  let localDatePublished;
-  
+  const localDatePublished = React.useMemo(() => {
   if (datePublished) {
-    localDatePublished = new Date(datePublished).toLocaleDateString(undefined, {
+    return new Date(datePublished).toLocaleDateString(undefined, {
       month: "short",
       day: "numeric",
       year: "numeric",
     });
-  }
+   }
+  }, [datePublished)
 ​
   return (
     <div className="recipe-page">
