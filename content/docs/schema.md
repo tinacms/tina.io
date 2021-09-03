@@ -1,5 +1,5 @@
 ---
-title: Advanced Usage Example
+title: Content Modeling with TinaCMS
 ---
 
 The Tina schema is a way of defining the shape of your content for your entire site. With traditional content management systems you may have done this sort of content modeling via GUI, however, given its tight coupling to Git, TinaCMS considers the filesystem the ultimate source of truth and leverages a "content-modeling as code" approach.
