@@ -21,9 +21,7 @@ export default () => (
           <LastModified>Last Modified: August 9, 2021</LastModified>
           Our integration lets you easily deploy your sites to Vercel through the Tina dashboard.
           <br />
-          We will act on your behalf to create a project, configure environment variables, and trigger a deployment.
-          <br />
-          Once the project is created, feel free to revoke our integration's access, as it's only used for getting the project set up.
+          We will act on your behalf to create a project, configure environment variables, and trigger a deployment for the project we create.
         </Wrapper>
       </Section>
     </RichTextWrapper>
