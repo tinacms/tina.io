@@ -262,7 +262,7 @@ const { datePublished, name, photo, description, meta, sections } = recipe;
       year: "numeric",
     });
    }
-  }, [datePublished)
+  }, [datePublished])
 ​
   return (
     <div className="recipe-page">
