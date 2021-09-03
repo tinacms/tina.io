@@ -3,6 +3,8 @@ title: Overview
 last_edited: '2021-07-23T14:56:22.352Z'
 ---
 
+> Would you rather try out Tina locally using the command line?<br /> `$ npx create-next-app --example https://github.com/tinacms/tina-cloud-starter`
+
 This guide involves a simple Next.js application configured with TinaCMS.
 
 Not only can you visually edit content in real-time, but since this starter is powered by Tina's GraphQL API, TinaCMS forms are automatically generated for you, all you need to do is to define your content schema ✨.
