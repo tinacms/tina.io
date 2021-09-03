@@ -1,7 +1,7 @@
 ---
 title: Advanced Usage Example
 ---
-The purpose of this walkthrough is to demonstrate how to create and use a more complicated `schema` (which utilizes simple and complex `object` fields), write a `getDocument` GraphQL query, and utilize the query's result in rendering.
+The purpose of this example is to demonstrate how to create and use a more complicated `schema` (which utilizes simple and complex `object` fields), write a `getDocument` GraphQL query, and utilize the query's result in rendering.
 ​
 ## Schema
 ​
