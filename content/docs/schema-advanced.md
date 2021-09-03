@@ -295,17 +295,20 @@ const { datePublished, name, photo, description, meta, sections } = recipe;
       {sections && sections.map((section) => {
         if (section.__typename === "RecipeSectionsIngredients") {
           return (
-            <RecipeIngredients key={`${name}.${section.__typename}`} {...section} />
+            <RecipeIngredients key={`${name}.${section.__typename}`} 
+            {...section} />
           )
         }
         if (section.__typename === "RecipeSectionsDirections") {
           return (
-            <RecipeDirections key={`${name}.${section.__typename}`} {...section} />
+            <RecipeDirections key={`${name}.${section.__typename}`} 
+            {...section} />
           )
         }
         if (section.__typename === "RecipeSectionsNutrition") {
           return (
-            <RecipeNutrition key={`${name}.${section.__typename}`} {...section} />
+            <RecipeNutrition key={`${name}.${section.__typename}`} 
+            {...section} />
           )
         }
       })}
