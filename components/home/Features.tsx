@@ -354,6 +354,9 @@ export const FeatureCLI = () => {
           >{`$ npx create-next-app`}</span>
           <span
             style={{ display: 'block', marginBottom: '1.25rem' }}
+          >{`$ cd <project name>`}</span>
+          <span
+            style={{ display: 'block', marginBottom: '1.25rem' }}
           >{`$ npx @tinacms/cli init`}</span>
           <span
             style={{
