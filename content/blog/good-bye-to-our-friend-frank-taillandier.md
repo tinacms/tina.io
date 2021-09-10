@@ -2,9 +2,13 @@
 title: 'Our Friend, Frank Taillandier ❤️'
 date: '2021-09-10T11:06:34-03:00'
 author: Scott Gallant
-last_edited: '2021-09-10T14:13:22.344Z'
+last_edited: '2021-09-10T14:52:41.673Z'
 ---
-Last Friday, Frank didn’t attend our company book club meeting which was very unusual for him. He was hungry to learn and loved to discuss new ideas with friends.  He brought curiosity, critical thinking, and a light and playful attitude to our group.  A few days later I received a call from his sister and learned why he wasn’t there.  The night prior to that gathering, Frank had passed away peacefully in his sleep. 
+Voir la [version française ici](#). Thanks to [Nicolas Goutay](https://twitter.com/messages/17271529-58286073) for the translation. 
+
+![Frank Taillandier and colleagues](https://res.cloudinary.com/forestry-demo/image/upload/v1631283892/tina-io/blog/frank-and-team-pei.jpg)
+
+Last Friday, Frank didn’t attend our company book club meeting which was very unusual for him. He was hungry to learn and loved to discuss new ideas with friends.  He brought curiosity, critical thinking, and a light and playful attitude to our group.  A few days later I received a call from his sister and learned why he wasn’t there.  The night prior to that gathering, Frank had passed away peacefully in his sleep.
 
 The day of his passing, I had observed Frank encourage and collaborate with his teammates, help our customers overcome problems, and even fix typos on our website.  The next day, we were discussing our book without him while he was resting peacefully in his home, in a country that he loved, most likely with a copy of our book on his night stand.
 
@@ -16,12 +20,15 @@ With very little direction, Frank got our customer support problem under control
 
 I was amazed. As founder and CEO, I care a lot about our customers but here was this new person putting so much care into his work that he was outperforming me! Frank had a founder-level of care in everything he did. Over time, Frank grew to take on more responsibilities but that level of care didn’t cease.
 
+![Frank at on-site retreat](https://res.cloudinary.com/forestry-demo/image/upload/v1631283892/tina-io/blog/forestry-retreat-1300.jpg)
 Frank had a special ability to connect with people. When he came to Prince Edward Island for a retreat (seen below, seated 3rd from the left), I noticed something remarkable about him. Every morning we would all stroll in and start working in our open-concept office.  When  Frank got there, he did something unique.  He walked up to each person at their desk and spent two or three minutes connecting with them.  He was light, funny, caring, and made each person feel special. I would see him put his hand on their shoulder as they chatted about their work or about last night’s festivities. Every morning, everyone felt special while they connected with Frank. It was so natural for him and I’m sure that’s how he was with most people in his life.
 
 Frank wanted us all to be better and he understood the power of teamwork. He was always working behind the scenes to support his teammates by testing features, taking notes during  meetings, sharing feedback from our users, fixing documentation, and more. He was everywhere, doing important work that was often invisible to some. He never let ego get in his way, he just wanted to help.
 
 Frank’s playful and funny side will be missed.  On a trip to see his sister in Oregon, he hopped into one of our weekly calls from his hot tub. This later became a trend for anyone with access to a hot tub.
 
-That’s what it was like to work with Frank. He was extremely caring, playfull, he had an incredible ability to connect with people, he was dedicated, and would move mountains to help people. We’re lucky to have had the opportunity to work with him. He helped make us a better team.  Our book club meetings will not be the same without him, but we’ll do our best to bring Frank’s energy and spirit to them in the future.
+That’s what it was like to work with Frank. He was extremely caring, playful, he had an incredible ability to connect with people, he was dedicated, and would move mountains to help people. We’re lucky to have had the opportunity to work with him. He helped make us a better team.  Our book club meetings will not be the same without him, but we’ll do our best to bring Frank’s energy and spirit to them in the future.
+
+![Frank Taillandier and the Forestry Team - PEI 2019](https://res.cloudinary.com/forestry-demo/image/upload/v1631283892/tina-io/blog/forestry-team-pei.jpg)
 
 Our thoughts are with his family and friends.
