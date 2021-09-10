@@ -2,11 +2,11 @@
 title: 'Our Friend, Frank Taillandier'
 date: '2021-09-10T11:06:34-03:00'
 author: Scott Gallant
-last_edited: '2021-09-10T14:08:25.645Z'
+last_edited: '2021-09-10T14:11:58.805Z'
 ---
-Last Friday, Frank didn’t attend our company book club meeting which was very unusual for him. He was hungry to learn and loved to discuss new ideas with friends.  He brought curiosity, critical thinking, and a light and playful attitude to our meetings.  A few days later I received a call from his sister and learned why he wasn’t there.  Frank had passed away peacefully in his sleep the night prior to that meeting.
+Last Friday, Frank didn’t attend our company book club meeting which was very unusual for him. He was hungry to learn and loved to discuss new ideas with friends.  He brought curiosity, critical thinking, and a light and playful attitude to our group.  A few days later I received a call from his sister and learned why he wasn’t there.  The night prior to that gathering, Frank had passed away peacefully in his sleep. 
 
-The day of his passing, I had observed Frank encourage and collaborate with his teammates, help our customers overcome problems, and even fix typos on our website.  He was always working behind the scenes finding ways to help the team and our customers.  The next day, we were discussing a book without him while he was resting peacefully in his home, in a country that he loved, likely with our book on his night stand.
+The day of his passing, I had observed Frank encourage and collaborate with his teammates, help our customers overcome problems, and even fix typos on our website.  The next day, we were discussing our book without him while he was resting peacefully in his home, in a country that he loved, most likely with a copy of our book on his night stand.
 
 I’d like to share what it was like to work with Frank during the last chapter of his career. It feels appropriate to write this with TinaCMS, a product that Frank helped craft, and whose clever name can be accredited to him.
 
