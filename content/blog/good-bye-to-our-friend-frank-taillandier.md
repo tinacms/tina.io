@@ -1,8 +1,8 @@
 ---
-title: 'Our Friend, Frank Taillandier'
+title: 'Our Friend, Frank Taillandier ❤️'
 date: '2021-09-10T11:06:34-03:00'
 author: Scott Gallant
-last_edited: '2021-09-10T14:11:58.805Z'
+last_edited: '2021-09-10T14:13:22.344Z'
 ---
 Last Friday, Frank didn’t attend our company book club meeting which was very unusual for him. He was hungry to learn and loved to discuss new ideas with friends.  He brought curiosity, critical thinking, and a light and playful attitude to our group.  A few days later I received a call from his sister and learned why he wasn’t there.  The night prior to that gathering, Frank had passed away peacefully in his sleep. 
 
