@@ -3,7 +3,10 @@ title: 'Our Friend, Frank Taillandier ❤️'
 date: '2021-09-10T11:06:34-03:00'
 author: Scott Gallant
 last_edited: '2021-09-10T17:20:41.474Z'
+opengraph:
+  image: https://res.cloudinary.com/forestry-demo/image/upload/v1631295724/tina-io/blog/frank-taillandier-painting.jpg
 ---
+
 🇫🇷 Voir la [version française ici](#) (translated by [Nicolas Goutay](https://twitter.com/messages/17271529-58286073)).
 
 ![Frank Taillandier and colleagues](https://res.cloudinary.com/forestry-demo/image/upload/v1631294419/tina-io/blog/frank-kendall-painting.jpg)
