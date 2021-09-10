@@ -2,11 +2,11 @@
 title: 'Notre Ami, Frank Taillandier ❤️'
 date: '2021-09-10T11:06:34-03:00'
 author: Scott Gallant
-last_edited: '2021-09-10T17:23:16.950Z'
+last_edited: '2021-09-10T17:42:17.194Z'
 ---
 🇨🇦 See the [english version here](#) (merci à [Nicolas Goutay](https://twitter.com/messages/17271529-58286073) pour la traduction en français).
 
-![Frank Taillandier and colleagues](https://res.cloudinary.com/forestry-demo/image/upload/v1631294419/tina-io/blog/frank-kendall-painting.jpg)
+![Frank Taillandier and colleagues](https://res.cloudinary.com/forestry-demo/image/upload/v1631295724/tina-io/blog/frank-taillandier-painting.jpg)
 
 Vendredi dernier, Frank n’a pas participé à notre club de lecture, ce qui n’était pas dans ses habitudes. Il avait toujours envie d’apprendre, et adorait discuter, entre amis, d’idées nouvelles. Dans nos réunions, il faisait toujours preuve de curiosité, d’esprit critique; mais aussi de bonne humeur et d’entrain. Quelques jours plus tard, un appel de sa soeur m’a appris pourquoi il n’était pas là. Frank s’était éteint, paisiblement, dans son sommeil, la veille de cette réunion.
 
