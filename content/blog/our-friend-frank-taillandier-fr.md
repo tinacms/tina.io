@@ -2,13 +2,13 @@
 title: 'Notre Ami, Frank Taillandier ❤️'
 date: '2021-09-10T11:06:34-03:00'
 author: Scott Gallant
-last_edited: '2021-09-10T17:03:19.897Z'
+last_edited: '2021-09-10T17:07:30.592Z'
 ---
 🇨🇦 See the [english version here](#) (merci à [Nicolas Goutay](https://twitter.com/messages/17271529-58286073) pour la traduction en français).
 
 ![Frank Taillandier and colleagues](https://res.cloudinary.com/forestry-demo/image/upload/v1631288488/tina-io/blog/frank-jamstack-nyc.jpg)
 
-Vendredi dernier, Franck n’a pas participé à notre club de lecture, ce qui n’était pas dans ses habitudes. Il avait toujours envie d’apprendre, et adorait discuter, entre amis, d’idées nouvelles. Dans nos réunions, il faisait toujours preuve de curiosité, d’esprit critique; mais aussi de bonne humeur et d’entrain. Quelques jours plus tard, un appel de sa soeur m’a appris pourquoi il n’était pas là. Frank s’était éteint, paisiblement, dans son sommeil, la veille de cette réunion.
+Vendredi dernier, Frank n’a pas participé à notre club de lecture, ce qui n’était pas dans ses habitudes. Il avait toujours envie d’apprendre, et adorait discuter, entre amis, d’idées nouvelles. Dans nos réunions, il faisait toujours preuve de curiosité, d’esprit critique; mais aussi de bonne humeur et d’entrain. Quelques jours plus tard, un appel de sa soeur m’a appris pourquoi il n’était pas là. Frank s’était éteint, paisiblement, dans son sommeil, la veille de cette réunion.
 
 Ce jour là, j’ai vu Frank encourager ses collègues, collaborer avec eux, aider nos clients à résoudre leurs problèmes, et même corriger des fautes de frappes sur notre site. Il trouvait en permanence des idées pour rendre la vie de ses collègues, et de nos clients, toujours plus facile. Le jour suivant, nous parlions d’un livre, sans lui, pendant qu’il était paisible, chez lui, dans un pays qu’il aimait, avec, peut-être, ce même livre sur sa table de chevet.
 
