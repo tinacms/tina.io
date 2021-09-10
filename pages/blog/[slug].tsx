@@ -52,11 +52,12 @@ function BlogTemplate({ file, siteConfig, prevPage, nextPage }) {
             title: frontmatter.title,
             description: excerpt,
             images: [
-              openGraphImage(
-                frontmatter.title,
-                ' | TinaCMS Blog',
-                frontmatter.author
-              ),
+              frontmatter.opengraph?.image ||
+                openGraphImage(
+                  frontmatter.title,
+                  ' | TinaCMS Blog',
+                  frontmatter.author
+                ),
             ],
           }}
         />
