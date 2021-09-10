@@ -3,7 +3,10 @@ title: 'Notre Ami, Frank Taillandier ❤️'
 date: '2021-09-10T11:06:34-03:00'
 author: Scott Gallant
 last_edited: '2021-09-10T17:42:17.194Z'
+opengraph:
+  image: https://res.cloudinary.com/forestry-demo/image/upload/v1631295724/tina-io/blog/frank-taillandier-painting.jpg
 ---
+
 🇨🇦 See the [english version here](#) (merci à [Nicolas Goutay](https://twitter.com/messages/17271529-58286073) pour la traduction en français).
 
 ![Frank Taillandier and colleagues](https://res.cloudinary.com/forestry-demo/image/upload/v1631295724/tina-io/blog/frank-taillandier-painting.jpg)
@@ -21,8 +24,6 @@ Il ne lui a pas fallu beaucoup de temps ni d’aide pour que Frank, tel un grand
 J’étais impressionné. En tant que fondateur et CEO, la relation client me tient énormément à coeur—mais voilà que le nouvel arrivé s’impliquait tellement dans son travail, y mettait tellement de coeur, qu’il était devenu meilleur que moi ! À voir l’attention que Frank portait à tout ce qu’il faisait, on aurait dit qu’il avait lui-même créé l’entreprise. Au fil du temps, Frank a pris de plus en plus de responsabilités, mais il a toujours montré autant d’attention, d’empathie, et de respect.
 
 Frank avait un don avec les gens. Quand il est venu à l’Île-du-Prince-Édouard pour un séminaire (photo ci-dessous, 3è en partant de la gauche), quelque chose m’a frappé. Tous les matins, en arrivant au bureau, nous nous installions et commençions à bosser. Quand il est arrivé, il a fait quelque chose d’unique. Il est passé voir tout le monde, à son bureau, et, pendant quelques minutes, il apprenait à les connaître un peu mieux. Il était drôle, de bonne humeur, attentionné, et, en sa présence, tout le monde se sentait spécial. Je le voyais poser sa main sur l’épaule du collègue qui lui racontait son travail, ou sa soirée de la veille. Tout les matins, chacun se sentait spécial en discutant avec Frank. C’était dans sa nature, et je suis sûr qu’il était comme ça avec la plupart des gens qui l’entouraient.
-
-
 
 ![Frank at on-site retreat](https://res.cloudinary.com/forestry-demo/image/upload/v1631283892/tina-io/blog/forestry-retreat-1300.jpg)
 
