@@ -11,7 +11,7 @@ opengraph:
     alt: Our Friend, Frank Taillandier ❤️,
 ---
 
-🇨🇦 See the [english version here](#) (merci à [Nicolas Goutay](https://twitter.com/messages/17271529-58286073) pour la traduction en français).
+🇨🇦 See the [english version here](/blog/our-friend-frank-taillandier/) (merci à [Nicolas Goutay](https://twitter.com/messages/17271529-58286073) pour la traduction en français).
 
 ![Frank Taillandier and colleagues](https://res.cloudinary.com/forestry-demo/image/upload/v1631295724/tina-io/blog/frank-taillandier-painting.jpg)
 
