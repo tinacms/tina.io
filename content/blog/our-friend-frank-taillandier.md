@@ -5,7 +5,7 @@ author: Scott Gallant
 last_edited: '2021-09-10T17:42:42.889Z'
 opengraph:
   image:
-    url: https://res.cloudinary.com/forestry-demo/image/upload/v1631295724/tina-io/blog/frank-taillandier-painting.jpg,
+    url: https://res.cloudinary.com/forestry-demo/image/upload/v1631295724/tina-io/blog/frank-taillandier-painting.jpg
     width: 1200,
     height: 628,
     alt: Our Friend, Frank Taillandier ❤️,
