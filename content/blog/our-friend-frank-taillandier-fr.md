@@ -2,7 +2,7 @@
 title: 'Notre Ami, Frank Taillandier ❤️'
 date: '2021-09-10T11:06:34-03:00'
 author: Scott Gallant
-last_edited: '2021-09-10T17:07:30.592Z'
+last_edited: '2021-09-10T17:10:43.654Z'
 ---
 🇨🇦 See the [english version here](#) (merci à [Nicolas Goutay](https://twitter.com/messages/17271529-58286073) pour la traduction en français).
 
@@ -33,3 +33,5 @@ Le côté joueur et blagueur de Frank va me manquer. Un jour, en visite chez sa 
 Voilà ce que c’était que de travailler avec Frank. Il était extrèmement attentionné, léger, marrant, il avait un don pour créer du lien avec les gens, il était passionné, et il aurait déplacé des montagnes pour aider quelqu’un. Nous avons de la chance d’avoir pu travailler avec lui. Il a fait de nous une meilleure équipe. Notre club de lecture ne sera plus pareil qu’avant, mais nous feront de notre mieux pour que l’énergie de Frank y soit présente, pour longtemps.
 
 ![Frank Taillandier and the Forestry Team - PEI 2019](https://res.cloudinary.com/forestry-demo/image/upload/v1631283892/tina-io/blog/forestry-team-pei.jpg)
+
+Nos pensées vont à sa famille et à ses amis.
