@@ -4,7 +4,11 @@ date: '2021-09-10T11:06:34-03:00'
 author: Scott Gallant
 last_edited: '2021-09-10T17:42:17.194Z'
 opengraph:
-  image: https://res.cloudinary.com/forestry-demo/image/upload/v1631295724/tina-io/blog/frank-taillandier-painting.jpg
+  image:
+    url: https://res.cloudinary.com/forestry-demo/image/upload/v1631295724/tina-io/blog/frank-taillandier-painting.jpg,
+    width: 1200,
+    height: 628,
+    alt: Our Friend, Frank Taillandier ❤️,
 ---
 
 🇨🇦 See the [english version here](#) (merci à [Nicolas Goutay](https://twitter.com/messages/17271529-58286073) pour la traduction en français).
