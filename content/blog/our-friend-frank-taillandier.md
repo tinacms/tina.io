@@ -2,11 +2,11 @@
 title: 'Our Friend, Frank Taillandier ❤️'
 date: '2021-09-10T11:06:34-03:00'
 author: Scott Gallant
-last_edited: '2021-09-10T15:33:09.290Z'
+last_edited: '2021-09-10T15:41:42.000Z'
 ---
 🇫🇷 Voir la [version française ici](#) (translated by [Nicolas Goutay](https://twitter.com/messages/17271529-58286073)).
 
-![Frank Taillandier and colleagues](https://res.cloudinary.com/forestry-demo/image/upload/v1631283892/tina-io/blog/frank-and-team-pei.jpg)
+![Frank Taillandier and colleagues](https://res.cloudinary.com/forestry-demo/image/upload/v1631288488/tina-io/blog/frank-jamstack-nyc.jpg)
 
 Last Friday, Frank didn’t attend our company book club meeting which was very unusual for him. He was hungry to learn and loved to discuss new ideas with friends.  He brought curiosity, critical thinking, and a light and playful attitude to our group.  A few days later I received a call from his sister and learned why he wasn’t there.  The night prior to that gathering, Frank had passed away peacefully in his sleep.
 
