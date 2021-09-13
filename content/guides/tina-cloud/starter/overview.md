@@ -3,7 +3,8 @@ title: Overview
 last_edited: '2021-07-23T14:56:22.352Z'
 ---
 
-> Would you rather try out Tina locally using the command line?<br /> `$ npx create-next-app --example https://github.com/tinacms/tina-cloud-starter`
+> Would you rather try out Tina locally using the command line?<br /> `$ npx create-next-app --example https://github.com/tinacms/tina-cloud-starter`.<br />
+> To start editing, with the starter running, navigate to [http://localhost:3000/admin](http://localhost:3000/admin).
 
 This guide involves a simple Next.js application configured with TinaCMS.
 
