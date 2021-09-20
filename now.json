@@ -289,6 +289,9 @@
     {
       "source": "/guides/nextjs/adding-tina/(.*)",
       "destination": "/guides/tina-cloud/add-tinacms-to-existing-site/overview/"
+    },{
+      "source": "/packages/next-tinacms-cloudinary/(.*)",
+      "destination": "/docs/media-cloudinary/"
     }
   ]
 }
