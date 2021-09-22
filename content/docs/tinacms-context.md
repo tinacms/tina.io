@@ -21,8 +21,10 @@ const getStaticProps = async () => {
     query: `
       query GetPostDocument($relativePath: String!) {
         getPostDocument(relativePath: $relativePath) {
-          title
-          body
+          data {
+            title
+            body
+          }
         }
       }
     `,
@@ -32,8 +34,10 @@ const getStaticProps = async () => {
   })
 
   return {
-    ...tinaProps,
-    myOtherProp: 'some-other-data',
+    props: {
+      ...tinaProps,
+      myOtherProp: 'some-other-data',
+    },
   }
 }
 ```
