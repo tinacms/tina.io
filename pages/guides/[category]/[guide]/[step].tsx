@@ -211,7 +211,7 @@ export const getStaticProps: GetStaticProps = async function(ctx) {
     props: { preview, file: markdownFile, tocItems },
   } = await getMarkdownPreviewProps(slug, ctx.preview, ctx.previewData)
 
-  const docsNav = await getDocsNav(preview, slug)
+  const docsNav = (await getDocsNav(preview, slug)).data
 
   return {
     props: {
