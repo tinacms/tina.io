@@ -309,7 +309,7 @@
       },
       {
         "id": "/guides#tina-cloud",
-        "href": "/guides#tina-cloud",
+        "slug": "/guides#tina-cloud",
         "title": "TinaCMS",
         "items": [
           {
@@ -327,6 +327,7 @@
       {
         "id": "/guides#experimental",
         "title": "Experimental",
+        "slug": "/guides#experimental",
         "items": [
           {
             "id": "/guides/experimental/inline-blocks/overview/",

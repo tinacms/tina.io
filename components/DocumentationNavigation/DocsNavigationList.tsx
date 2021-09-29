@@ -1,11 +1,12 @@
 import React, { useRef, createContext } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import Link from 'next/link'
 import { DocsLinkNav } from '../ui/DocsLinkNav'
 import { DocsNavProps } from './DocumentationNavigation'
 import { NavSection } from './NavSection'
 import { useRouter } from 'next/router'
 import { matchActualTarget } from 'utils'
+import { DynamicLink } from 'components/ui'
 
 export const NavListContext = createContext({ current: null })
 
@@ -48,8 +49,52 @@ const useActiveCategory = navItems => {
   return getCategoryMatch(navItems, router.asPath)
 }
 
+interface NavTitleProps {
+  selected: boolean
+}
+
+const NavTitle = styled.div<NavTitleProps>`
+  ${(props: any) =>
+    props.selected &&
+    css`
+      background: white;
+      font-weight: bold;
+    `}
+`
+
+const NavLevel = ({ categoryData }: { categoryData: any }) => {
+  const router = useRouter()
+
+  console.log('categoryData ', categoryData)
+  const trimUrl = (str: string) => str.replace(/^\|+|\|+$/g, '')
+
+  const expandChildren = trimUrl(router.asPath).includes(
+    trimUrl(categoryData.slug)
+  )
+  return (
+    <>
+      <DynamicLink href={categoryData.slug} passHref>
+        <NavTitle selected={router.asPath == categoryData.slug}>
+          {categoryData.title || categoryData.category}
+        </NavTitle>
+      </DynamicLink>
+      {expandChildren && (
+        <NavLevelChildContainer>
+          {(categoryData.items || []).map(item => (
+            <NavLevel categoryData={item} />
+          ))}
+        </NavLevelChildContainer>
+      )}
+    </>
+  )
+}
+
+const NavLevelChildContainer = styled.div`
+  margin-left: 0.5rem;
+`
+
 export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
-  const activeCategory = useActiveCategory(navItems)
+  const router = useRouter()
 
   return (
     <>
@@ -58,41 +103,11 @@ export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
       </MobileMainNav>
       <DocsNavigationContainer>
         {navItems.map(categoryData => (
-          <>
-            <DocsCategoryHeading
-              categoryData={categoryData}
-              isActive={categoryData.category == activeCategory}
-            />
-            {categoryData.category == activeCategory && (
-              <DocsNavigationSection navItems={categoryData.items} />
-            )}
-          </>
+          <NavLevel categoryData={categoryData} />
         ))}
       </DocsNavigationContainer>
     </>
   )
-
-  // return (
-  //   <>
-  //     <MobileMainNav>
-  //       <DocsLinkNav />
-  //     </MobileMainNav>
-  //     {currentCategoryData ? (
-  //       <DocsNavigationSection
-  //         navItems={currentCategoryData.items}
-  //         guide={guide}
-  //         BackLink={guide ? GuidesIndexLink : DocsIndexLink}
-  //         category={currentCategoryData.category}
-  //       />
-  //     ) : (
-  //       <DocsCategoryList
-  //         navItems={navItems}
-  //         onSelect={setCurrentCategory}
-  //         activeCategory={activeCategory}
-  //       />
-  //     )}
-  //   </>
-  // )
 }
 
 const DocsCategoryHeading = ({ categoryData, isActive }) => {
