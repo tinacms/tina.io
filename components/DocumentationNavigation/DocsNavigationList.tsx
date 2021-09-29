@@ -50,12 +50,6 @@ const useActiveCategory = navItems => {
 
 export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
   const activeCategory = useActiveCategory(navItems)
-  const [currentCategory, setCurrentCategory] = React.useState(activeCategory)
-  const currentCategoryData = React.useMemo(() => {
-    return navItems.find(
-      categoryData => categoryData.category === currentCategory
-    )
-  }, [currentCategory])
 
   return (
     <>
@@ -67,7 +61,6 @@ export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
           <>
             <DocsCategoryHeading
               categoryData={categoryData}
-              onSelect={setCurrentCategory}
               isActive={categoryData.category == activeCategory}
             />
             {categoryData.category == activeCategory && (
@@ -102,14 +95,13 @@ export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
   // )
 }
 
-const DocsCategoryHeading = ({ categoryData, onSelect, isActive }) => {
+const DocsCategoryHeading = ({ categoryData, isActive }) => {
   return (
     <Link href={categoryData.slug || '/'} passHref>
       <CategoryAnchor
         onClick={e => {
           if (isActive) {
             e.preventDefault()
-            onSelect(categoryData.category)
           }
         }}
       >
