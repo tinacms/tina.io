@@ -19,10 +19,25 @@ const NavTitle = styled.div<NavTitleProps>`
     `}
 `
 
+const hasNestedSlug = (navItems = [], slug) => {
+  for (let item of navItems) {
+    if (matchActualTarget(item.slug || item.href, slug)) {
+      return true
+    }
+    if (item.items) {
+      if (hasNestedSlug(item.items, slug)) {
+        return true
+      }
+    }
+  }
+  return false
+}
+
 const NavLevel = ({ categoryData }: { categoryData: any }) => {
   const router = useRouter()
-
-  const expandChildren = matchActualTarget(router.asPath, categoryData.slug)
+  const expandChildren =
+    matchActualTarget(categoryData.slug || categoryData.href, router.asPath) ||
+    hasNestedSlug(categoryData.items, router.asPath) //matchActualTarget(router.asPath, categoryData.slug)
   return (
     <>
       <DynamicLink href={categoryData.slug} passHref>
