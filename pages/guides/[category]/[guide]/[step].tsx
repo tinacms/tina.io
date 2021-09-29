@@ -172,7 +172,7 @@ export default function GuideTemplate({
           ],
         }}
       />
-      <DocsLayout navItems={docsNav} guide={breadcrumb}>
+      <DocsLayout navItems={docsNav}>
         <DocsGrid>
           <DocGridHeader>
             <DocsPageTitle>

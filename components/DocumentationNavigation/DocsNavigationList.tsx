@@ -48,7 +48,7 @@ const useActiveCategory = navItems => {
   return getCategoryMatch(navItems, router.asPath)
 }
 
-export const DocsNavigationList = ({ navItems, guide }: DocsNavProps) => {
+export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
   const activeCategory = useActiveCategory(navItems)
   const [currentCategory, setCurrentCategory] = React.useState(activeCategory)
   const currentCategoryData = React.useMemo(() => {
@@ -71,10 +71,7 @@ export const DocsNavigationList = ({ navItems, guide }: DocsNavProps) => {
               isActive={categoryData.category == activeCategory}
             />
             {categoryData.category == activeCategory && (
-              <DocsNavigationSection
-                navItems={categoryData.items}
-                guide={guide}
-              />
+              <DocsNavigationSection navItems={categoryData.items} />
             )}
           </>
         ))}

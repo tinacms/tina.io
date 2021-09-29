@@ -11,18 +11,12 @@ import { CloudBanner } from './CloudBanner'
 
 interface DocsLayoutProps {
   navItems: any
-  guide?: false | { category: string }
   children: any
   showLayout?: boolean
 }
 
 export const DocsLayout = React.memo(
-  ({
-    children,
-    navItems,
-    guide = false,
-    showLayout = true,
-  }: DocsLayoutProps) => {
+  ({ children, navItems, showLayout = true }: DocsLayoutProps) => {
     const router = useRouter()
     return (
       <>
@@ -32,9 +26,7 @@ export const DocsLayout = React.memo(
           }}
         />
         <DocsLayoutDiv>
-          {showLayout && (
-            <DocumentationNavigation navItems={navItems} guide={guide} />
-          )}
+          {showLayout && <DocumentationNavigation navItems={navItems} />}
           <DocsTextWrapper>{children}</DocsTextWrapper>
           <FeedbackForm />
           {showLayout && <Footer light />}

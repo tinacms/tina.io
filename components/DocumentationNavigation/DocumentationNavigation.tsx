@@ -14,10 +14,9 @@ import { searchIndices } from 'components/search/indices'
 
 export interface DocsNavProps {
   navItems: any
-  guide: false | { category: string }
 }
 
-export function DocumentationNavigation({ navItems, guide }: DocsNavProps) {
+export function DocumentationNavigation({ navItems }: DocsNavProps) {
   const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false)
   const router = useRouter()
 
@@ -36,7 +35,7 @@ export function DocumentationNavigation({ navItems, guide }: DocsNavProps) {
         {router.isFallback ? (
           <FallbackPlaceholder />
         ) : (
-          <DocsNavigationList navItems={navItems} guide={guide} />
+          <DocsNavigationList navItems={navItems} />
         )}
       </DocsLeftSidebar>
       <Overlay
