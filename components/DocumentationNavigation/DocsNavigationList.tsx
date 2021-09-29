@@ -7,11 +7,6 @@ import { NavSection } from './NavSection'
 import { useRouter } from 'next/router'
 import { matchActualTarget } from 'utils'
 
-export interface DocsSectionProps extends DocsNavProps {
-  BackLink: () => JSX.Element
-  category: string
-}
-
 export const NavListContext = createContext({ current: null })
 
 const getCategoryMatch = (navItems, currentPath) => {
@@ -62,87 +57,77 @@ export const DocsNavigationList = ({ navItems, guide }: DocsNavProps) => {
     )
   }, [currentCategory])
 
-  const DocsIndexLink = React.useCallback(
-    () => (
-      <Link href="/docs">
-        <IndexLink>← Docs Index</IndexLink>
-      </Link>
-    ),
-    []
-  )
-  const GuidesIndexLink = React.useCallback(
-    () => (
-      <Link href="/guides">
-        <IndexLink>← Guides Index</IndexLink>
-      </Link>
-    ),
-    []
-  )
-
   return (
     <>
       <MobileMainNav>
         <DocsLinkNav />
       </MobileMainNav>
-      {currentCategoryData ? (
-        <DocsNavigationSection
-          navItems={currentCategoryData.items}
-          guide={guide}
-          BackLink={guide ? GuidesIndexLink : DocsIndexLink}
-          category={currentCategoryData.category}
-        />
-      ) : (
-        <DocsCategoryList
-          navItems={navItems}
-          onSelect={setCurrentCategory}
-          activeCategory={activeCategory}
-        />
-      )}
+      <DocsNavigationContainer>
+        {navItems.map(categoryData => (
+          <>
+            <DocsCategoryHeading
+              categoryData={categoryData}
+              onSelect={setCurrentCategory}
+              isActive={categoryData.category == activeCategory}
+            />
+            {categoryData.category == activeCategory && (
+              <DocsNavigationSection
+                navItems={categoryData.items}
+                guide={guide}
+              />
+            )}
+          </>
+        ))}
+      </DocsNavigationContainer>
     </>
   )
+
+  // return (
+  //   <>
+  //     <MobileMainNav>
+  //       <DocsLinkNav />
+  //     </MobileMainNav>
+  //     {currentCategoryData ? (
+  //       <DocsNavigationSection
+  //         navItems={currentCategoryData.items}
+  //         guide={guide}
+  //         BackLink={guide ? GuidesIndexLink : DocsIndexLink}
+  //         category={currentCategoryData.category}
+  //       />
+  //     ) : (
+  //       <DocsCategoryList
+  //         navItems={navItems}
+  //         onSelect={setCurrentCategory}
+  //         activeCategory={activeCategory}
+  //       />
+  //     )}
+  //   </>
+  // )
 }
 
-const DocsCategoryList = ({ navItems, onSelect, activeCategory }) => {
+const DocsCategoryHeading = ({ categoryData, onSelect, isActive }) => {
   return (
-    <div style={{ padding: '1rem 0' }}>
-      {navItems.map(categoryData => {
-        return (
-          <Link href={categoryData.slug} passHref>
-            <CategoryAnchor
-              onClick={e => {
-                if (activeCategory === categoryData.category) {
-                  e.preventDefault()
-                  onSelect(categoryData.category)
-                }
-              }}
-            >
-              {categoryData.category} <AnchorIcon>→</AnchorIcon>
-              <CategoryDescription>
-                {categoryData.description}
-              </CategoryDescription>
-            </CategoryAnchor>
-          </Link>
-        )
-      })}
-    </div>
+    <Link href={categoryData.slug || '/'} passHref>
+      <CategoryAnchor
+        onClick={e => {
+          if (isActive) {
+            e.preventDefault()
+            onSelect(categoryData.category)
+          }
+        }}
+      >
+        {categoryData.category} {isActive && <AnchorIcon>→</AnchorIcon>}
+      </CategoryAnchor>
+    </Link>
   )
 }
 
-const DocsNavigationSection = ({
-  navItems,
-  guide,
-  BackLink,
-  category,
-}: DocsSectionProps) => {
+const DocsNavigationSection = ({ navItems }: DocsNavProps) => {
   const navListRef = useRef<HTMLUListElement>(null)
 
   return (
     <NavListContext.Provider value={navListRef}>
       <ul ref={navListRef}>
-        <NavListHeader>
-          {BackLink && <BackLink />}
-          <CategoryHeader>{category}</CategoryHeader>
-        </NavListHeader>
         {navItems &&
           navItems.map(section => (
             <NavSection key={section.id} {...section} collapsible={false} />
@@ -176,6 +161,11 @@ const MobileMainNav = styled.div`
   @media (min-width: 1200px) {
     display: none;
   }
+`
+
+const DocsNavigationContainer = styled.div`
+  overflow-y: auto;
+  overflow-x: hidden;
 `
 
 const Breadcrumbs = styled.li`

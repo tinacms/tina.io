@@ -28,8 +28,6 @@ export const DocsLeftSidebar = styled.div<{ open: boolean }>`
     background-attachment: local, scroll;
     background-repeat: no-repeat;
     background-size: 100% 1rem, 100% 1rem;
-    overflow-x: hidden;
-    overflow-y: auto;
     margin-right: -1px;
   }
 

@@ -27,6 +27,7 @@ import { InlineGithubForm } from 'components/layout/InlineGithubForm'
 import { NavSectionProps } from 'components/DocumentationNavigation'
 import { openGraphImage } from 'utils/open-graph-image'
 import * as ga from '../../../../utils/ga'
+import { getDocsNav } from 'utils/docs/getDocProps'
 
 interface GuideTemplateProps {
   tocItems: string
@@ -34,6 +35,7 @@ interface GuideTemplateProps {
   guideMeta: GitFile
   markdownFile: GitFile
   allGuides: NavSectionProps[]
+  docsNav: any
 }
 
 type GitFile = {
@@ -48,6 +50,7 @@ export default function GuideTemplate({
   guideMeta,
   markdownFile,
   allGuides,
+  docsNav,
 }: GuideTemplateProps) {
   const isBrowser = typeof window !== `undefined`
   const contentRef = React.useRef<HTMLDivElement>(null)
@@ -169,7 +172,7 @@ export default function GuideTemplate({
           ],
         }}
       />
-      <DocsLayout navItems={guideNav} guide={breadcrumb}>
+      <DocsLayout navItems={docsNav} guide={breadcrumb}>
         <DocsGrid>
           <DocGridHeader>
             <DocsPageTitle>
@@ -203,13 +206,12 @@ export const getStaticProps: GetStaticProps = async function(ctx) {
     ctx.previewData
   )
 
+  const slug = `content/guides/${category}/${guide}/${step}.md`
   const {
     props: { preview, file: markdownFile, tocItems },
-  } = await getMarkdownPreviewProps(
-    `content/guides/${category}/${guide}/${step}.md`,
-    ctx.preview,
-    ctx.previewData
-  )
+  } = await getMarkdownPreviewProps(slug, ctx.preview, ctx.previewData)
+
+  const docsNav = await getDocsNav(preview, slug)
 
   return {
     props: {
@@ -220,6 +222,7 @@ export const getStaticProps: GetStaticProps = async function(ctx) {
       },
       guideMeta,
       markdownFile,
+      docsNav,
       allGuides: await getGuideNavProps(),
       tocItems,
     },

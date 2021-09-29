@@ -21,7 +21,10 @@
   },
   "redirects": [
     { "source": "/cloud/", "destination": "/" },
-    { "source": "/docs/tina-cloud/alpha-faq/", "destination": "/docs/tina-cloud/faq/" },
+    {
+      "source": "/docs/tina-cloud/alpha-faq/",
+      "destination": "/docs/tina-cloud/faq/"
+    },
     { "source": "/blog/first", "destination": "/blog/announcing-tinacms" },
     {
       "source": "/blog/introducing-tina-grande-%F0%9F%8E%89",
@@ -254,7 +257,8 @@
     {
       "source": "/guides/nextjs/github-open-authoring/(.*)",
       "destination": "/guides/experimental/github/$1"
-    },{
+    },
+    {
       "source": "/guides/tinacms/github/(.*)",
       "destination": "/guides/experimental/github/$1"
     },
@@ -279,7 +283,7 @@
       "destination": "/guides/experimental/github/$1"
     },
     {
-      "source":"/guides/nextjs/tina-with-strapi/(.*)",
+      "source": "/guides/nextjs/tina-with-strapi/(.*)",
       "destination": "/guides/experimental/tina-with-strapi/$1"
     },
     {
@@ -289,9 +293,14 @@
     {
       "source": "/guides/nextjs/adding-tina/(.*)",
       "destination": "/guides/tina-cloud/add-tinacms-to-existing-site/overview/"
-    },{
+    },
+    {
       "source": "/packages/next-tinacms-cloudinary/(.*)",
       "destination": "/docs/media-cloudinary/"
+    },
+    {
+      "source": "/docs/",
+      "destination": "docs/tina-cloud/"
     }
   ]
 }

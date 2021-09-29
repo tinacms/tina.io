@@ -163,7 +163,6 @@ const NavSectionTitle = styled.span<NavSectionTitleProps>`
   text-decoration: none;
   transition: all 180ms ease-out;
   font-family: var(--font-tuner);
-  font-size: 1.125rem;
 
   ${props =>
     props.currentPage &&
