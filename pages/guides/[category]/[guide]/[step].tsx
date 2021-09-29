@@ -24,10 +24,22 @@ import { fileToUrl, createTocListener } from 'utils'
 import Toc from '../../../../components/toc'
 import { useLastEdited } from 'utils/useLastEdited'
 import { InlineGithubForm } from 'components/layout/InlineGithubForm'
-import { NavSectionProps } from 'components/DocumentationNavigation'
 import { openGraphImage } from 'utils/open-graph-image'
 import * as ga from '../../../../utils/ga'
 import { getDocsNav } from 'utils/docs/getDocProps'
+
+interface NavSectionProps {
+  id: string
+  slug?: string
+  href?: string
+  title: string
+  items: NavSectionProps[]
+  collapsible?: boolean
+  returnLink?: {
+    url: string
+    label: string
+  }
+}
 
 interface GuideTemplateProps {
   tocItems: string
