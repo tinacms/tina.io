@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
 import { GetStaticProps, GetStaticPaths } from 'next'
@@ -29,7 +29,6 @@ export function DocTemplate(props) {
 
   const router = useRouter()
   const isCloudDocs = router.asPath.includes('tina-cloud')
-  const noLayout = router.query.layout === 'false'
 
   // Registers Tina Form
   const [data, form] = useGithubMarkdownForm(props.file, formOptions)
@@ -73,7 +72,7 @@ export function DocTemplate(props) {
           images: [openGraphImage(frontmatter.title, '| TinaCMS Docs')],
         }}
       />
-      <DocsLayout navItems={props.docsNav} showLayout={!noLayout}>
+      <DocsLayout navItems={props.docsNav}>
         <DocsGrid>
           <DocGridHeader>
             <DocsPageTitle>
