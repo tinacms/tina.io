@@ -43,4 +43,8 @@ const DocsLayoutDiv = styled.div`
       display: none;
     }
   }
+
+  @media (min-width: 1600px) {
+    padding: 0 0 0 20rem;
+  }
 `

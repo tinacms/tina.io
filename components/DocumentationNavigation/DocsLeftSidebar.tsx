@@ -45,4 +45,8 @@ export const DocsLeftSidebar = styled.div<{ open: boolean }>`
     width: 16rem;
     transform: translate3d(0, 0, 0);
   }
+
+  @media (min-width: 1600px) {
+    width: 20rem;
+  }
 `

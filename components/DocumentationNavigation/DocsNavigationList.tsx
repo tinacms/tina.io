@@ -7,14 +7,60 @@ import { matchActualTarget } from 'utils'
 import { DynamicLink } from 'components/ui'
 
 interface NavTitleProps {
+  level: number
   selected: boolean
 }
 
-const NavTitle = styled.div<NavTitleProps>`
+const NavTitle = styled.a<NavTitleProps>`
+  display: block;
+  text-decoration: none;
+  transition: all 180ms ease-out 0s;
+  cursor: pointer;
+  color: var(--color-secondary);
+  font-family: var(--font-primary);
+  font-size: 0.9375rem;
+  opacity: 0.75;
+  line-height: 1.3;
+  padding: 0.125rem 0.5rem 0.125rem 1.125rem;
+
+  &:last-child {
+    padding-bottom: 0.375rem;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+
+  ${(props: any) =>
+    props.level === 0 &&
+    css`
+      opacity: 1;
+      color: var(--color-orange);
+      font-family: var(--font-tuner);
+      font-size: 1.25rem;
+      padding: 0.5rem 0.5rem 0.125rem 1.125rem;
+    `}
+
+  ${(props: any) =>
+    props.level === 1 &&
+    css`
+      /* padding: 0.125rem 0.5rem 0.125rem 1.125rem; */
+      font-size: 1rem;
+      opacity: 0.875;
+    `}
+
+    ${(props: any) =>
+      props.level === 2 &&
+      css`
+        /* padding: 0.125rem 0.5rem 0.125rem 1.125rem; */
+      `}
+
+
   ${(props: any) =>
     props.selected &&
     css`
-      background: white;
+      opacity: 1;
+      color: var(--color-orange);
       font-weight: bold;
     `}
 `
@@ -33,22 +79,35 @@ const hasNestedSlug = (navItems = [], slug) => {
   return false
 }
 
-const NavLevel = ({ categoryData }: { categoryData: any }) => {
+const NavLevel = ({
+  categoryData,
+  level = 0,
+}: {
+  categoryData: any
+  level: number
+}) => {
   const router = useRouter()
+  // const expandChildren =
+  // matchActualTarget(categoryData.slug || categoryData.href, router.asPath) ||
+  //   hasNestedSlug(categoryData.items, router.asPath) //matchActualTarget(router.asPath, categoryData.slug)
   const expandChildren =
-    matchActualTarget(categoryData.slug || categoryData.href, router.asPath) ||
-    hasNestedSlug(categoryData.items, router.asPath) //matchActualTarget(router.asPath, categoryData.slug)
+    level < 3
+      ? true
+      : matchActualTarget(
+          categoryData.slug || categoryData.href,
+          router.asPath
+        ) || hasNestedSlug(categoryData.items, router.asPath) //matchActualTarget(router.asPath, categoryData.slug)
   return (
     <>
       <DynamicLink href={categoryData.slug} passHref>
-        <NavTitle selected={router.asPath == categoryData.slug}>
+        <NavTitle level={level} selected={router.asPath == categoryData.slug}>
           {categoryData.title || categoryData.category}
         </NavTitle>
       </DynamicLink>
-      {expandChildren && (
-        <NavLevelChildContainer>
+      {expandChildren && categoryData.items && (
+        <NavLevelChildContainer level={level}>
           {(categoryData.items || []).map(item => (
-            <NavLevel categoryData={item} />
+            <NavLevel level={level + 1} categoryData={item} />
           ))}
         </NavLevelChildContainer>
       )}
@@ -56,8 +115,23 @@ const NavLevel = ({ categoryData }: { categoryData: any }) => {
   )
 }
 
-const NavLevelChildContainer = styled.div`
-  margin-left: 0.5rem;
+interface NavLevelChildContainerProps {
+  level: number
+}
+
+const NavLevelChildContainer = styled.div<NavLevelChildContainerProps>`
+  position: relative;
+  display: block;
+  padding-left: 0.5rem;
+  padding-top: 0.125rem;
+
+  ${(props: any) =>
+    props.level === 0 &&
+    css`
+      padding-left: 0.75rem;
+      padding-top: 0.25rem;
+      padding-bottom: 0.125rem;
+    `}
 `
 
 export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
@@ -106,6 +180,7 @@ const MobileMainNav = styled.div`
 const DocsNavigationContainer = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
+  padding: 0.5rem 0 1.5rem 0;
 `
 
 const AnchorIcon = styled.span`
