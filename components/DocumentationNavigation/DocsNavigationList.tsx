@@ -84,7 +84,7 @@ const NavLevel = ({
   level = 0,
 }: {
   categoryData: any
-  level: number
+  level?: number
 }) => {
   const router = useRouter()
   // const expandChildren =
