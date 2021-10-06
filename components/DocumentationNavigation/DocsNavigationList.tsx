@@ -44,15 +44,14 @@ const NavTitle = styled.a<NavTitleProps>`
   ${(props: any) =>
     props.level === 1 &&
     css`
-      /* padding: 0.125rem 0.5rem 0.125rem 1.125rem; */
       font-size: 1rem;
-      opacity: 0.875;
+      opacity: 1;
     `}
 
     ${(props: any) =>
       props.level === 2 &&
       css`
-        /* padding: 0.125rem 0.5rem 0.125rem 1.125rem; */
+        opacity: 0.875;
       `}
 
 
@@ -122,8 +121,9 @@ interface NavLevelChildContainerProps {
 const NavLevelChildContainer = styled.div<NavLevelChildContainerProps>`
   position: relative;
   display: block;
-  padding-left: 0.5rem;
+  padding-left: 0.675rem;
   padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
 
   ${(props: any) =>
     props.level === 0 &&
