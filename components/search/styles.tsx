@@ -73,7 +73,8 @@ export const SearchContainer = styled.div<SearchContainerProps>`
   font-size: 1rem;
   padding: 0.625rem 0;
   font-family: var(--font-tuner);
-  background-color: var(--color-background);
+  background-color: white;
+  box-shadow: 3px 3px 4px var(--tina-color-grey-2), -4px -4px 6px white;
   color: var(--color-foreground);
   display: flex;
   align-items: center;
@@ -133,8 +134,9 @@ export const HitsWrapper = styled.div<HitsWrapperProps>`
   top: calc(100% + 1.5rem);
   width: 80vw;
   max-width: 35rem;
-  border-radius: 24px;
-  filter: drop-shadow(0 13px 26px rgb(0, 0, 0, 0.15));
+  border-radius: 5px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1),
+    0 3rem 6rem 0rem rgba(0, 0, 0, 0.2);
   color: var(--color-secondary);
   padding: 0;
   background: white;
@@ -160,6 +162,7 @@ export const HitsWrapper = styled.div<HitsWrapperProps>`
       margin: 0;
       color: var(--color-orange);
       font-family: var(--font-tuner);
+      font-weight: bold;
       text-transform: uppercase;
       font-size: 1.125rem;
     }
