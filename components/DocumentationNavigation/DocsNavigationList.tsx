@@ -1,10 +1,10 @@
 import React, { createContext } from 'react'
 import styled, { css } from 'styled-components'
-import { DocsLinkNav } from '../ui/DocsLinkNav'
 import { DocsNavProps } from './DocumentationNavigation'
 import { useRouter } from 'next/router'
 import { matchActualTarget } from 'utils'
 import { DynamicLink } from 'components/ui'
+import docsLinks from '../../content/docs-navigation.json'
 
 interface NavTitleProps {
   level: number
@@ -140,7 +140,14 @@ export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
   return (
     <>
       <MobileMainNav>
-        <DocsLinkNav />
+        {docsLinks &&
+          docsLinks.map(({ id, href, label }) => {
+            return (
+              <DynamicLink href={href} passHref>
+                <a key={id}>{label}</a>
+              </DynamicLink>
+            )
+          })}
       </MobileMainNav>
       <DocsNavigationContainer>
         {navItems.map(categoryData => (
@@ -152,24 +159,29 @@ export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
 }
 
 const MobileMainNav = styled.div`
-  padding-top: 0rem;
-  margin-bottom: 1rem;
-  padding-bottom: 1rem;
+  padding: 0.5rem 0;
+  background: var(--tina-color-grey-1);
   border-bottom: 1px solid var(--color-light-dark);
-  background-color: white;
-
-  ul {
-  }
-
-  li {
-    margin: 0;
-  }
 
   a {
     display: block;
-    padding: 0.5rem 3.5rem 0.5rem 1.5rem;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.375rem 1rem 0.375rem 1rem;
     color: var(--color-orange);
     margin: 0;
+    font-family: var(--font-tuner);
+    font-style: normal;
+    opacity: 1;
+    transition: transform 180ms ease-out;
+    line-height: 1;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+      transform: translate3d(-1px, -2px, 0);
+    }
   }
 
   @media (min-width: 1200px) {

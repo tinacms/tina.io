@@ -26,7 +26,6 @@ export function DocumentationNavigation({ navItems }: DocsNavProps) {
         open={mobileNavIsOpen}
         onClick={() => setMobileNavIsOpen(!mobileNavIsOpen)}
       />
-      <MobileNavLogo />
       <DocsLeftSidebar open={mobileNavIsOpen}>
         <DocsSidebarHeader>
           <DocsDesktopTinaIcon docs />
@@ -51,16 +50,13 @@ const MobileNavToggle = styled(NavToggle)`
   position: fixed;
   background: var(--color-light);
   border: 1px solid var(--color-light-dark);
-  margin-top: 1.25rem;
+  margin-top: 1rem;
   padding: 0 0 0 1rem;
   border-radius: 0 2rem 2rem 0;
   width: 3.25rem;
   z-index: 1300;
 
-  svg {
-  }
-
-  @media (min-width: 1199px) {
+  @media (min-width: 840px) {
     display: none;
   }
 `
@@ -77,7 +73,7 @@ const MobileNavLogo = styled(TinaIcon)`
     justify-content: center;
   }
 
-  @media (min-width: 830px) {
+  @media (min-width: 840px) {
     display: none;
   }
 `
@@ -87,7 +83,7 @@ const DocsDesktopTinaIcon = styled(TinaIcon)`
   display: none;
   margin-bottom: 1rem;
 
-  @media (min-width: 1200px) {
+  @media (min-width: 840px) {
     display: block;
   }
 `
@@ -111,7 +107,7 @@ const DocsSidebarHeader = styled.div`
     margin-top: -1.625rem;
   }
 
-  @media (max-width: 1199px) {
+  @media (max-width: 839px) {
     padding-left: 4.5rem;
   }
 `

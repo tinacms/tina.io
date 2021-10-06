@@ -23,28 +23,41 @@ export const DocsLayout = React.memo(
             url: 'https://tinacms.org' + router.asPath,
           }}
         />
-        <DocsLayoutDiv>
+        <DocsLayoutGrid>
           <DocumentationNavigation navItems={navItems} />
-          <DocsTextWrapper>{children}</DocsTextWrapper>
+          <DocsMain>
+            <DocsTextWrapper>{children}</DocsTextWrapper>
+          </DocsMain>
           <FeedbackForm />
           <Footer light />
-        </DocsLayoutDiv>
+        </DocsLayoutGrid>
       </>
     )
   }
 )
 
-const DocsLayoutDiv = styled.div`
-  @media (min-width: 1200px) {
-    position: relative;
-    padding: 0 0 0 16rem;
+const DocsLayoutGrid = styled.div`
+  @media (min-width: 840px) {
+    width: 100%;
+    display: grid;
+    grid-template-columns: min(33vw, 20rem) minmax(0, 1fr);
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      'sidebar header'
+      'sidebar main'
+      'sidebar footer';
 
     ${Overlay} {
       display: none;
     }
   }
 
-  @media (min-width: 1600px) {
-    padding: 0 0 0 20rem;
+  @media (min-width: 1200px) {
+    grid-template-columns: 20rem minmax(0, 1fr);
   }
+`
+
+const DocsMain = styled.div`
+  grid-area: main;
+  place-self: stretch;
 `

@@ -55,5 +55,4 @@ export const DocsTextWrapper = ({ children }) => {
 
 const TextWrapper = styled.div`
   ${DocsRichText}
-  min-height: 68vh;
 `

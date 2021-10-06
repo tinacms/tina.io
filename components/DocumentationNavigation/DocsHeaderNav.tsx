@@ -45,6 +45,7 @@ export const DocsHeaderNav = styled(
   })
 )`
   position: relative;
+  grid-area: header;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -55,6 +56,10 @@ export const DocsHeaderNav = styled(
     display: flex;
     justify-content: flex-end;
     margin: 0 1rem 0 0;
+
+    @media (max-width: 1200px) {
+      display: none;
+    }
   }
 
   li {
@@ -82,10 +87,6 @@ export const DocsHeaderNav = styled(
     > * {
       width: auto;
     }
-  }
-
-  @media (max-width: 829px) {
-    display: none;
   }
 
   --color-background: white;

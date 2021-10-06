@@ -196,18 +196,12 @@ export const DocsGrid = styled.div`
   padding-top: 2rem;
   padding-bottom: 3rem;
 
-  @media (min-width: 830px) {
+  @media (min-width: 1200px) {
     grid-template-areas:
       '. header header .'
       '. content toc .';
     margin: 0 auto;
-    grid-auto-columns: minmax(2rem, auto) fit-content(768px) 240px
-      minmax(0, auto);
-    grid-column-gap: 2rem;
-  }
-
-  @media (min-width: 1600px) {
-    grid-auto-columns: auto 768px 330px auto;
+    grid-auto-columns: minmax(0, auto) fit-content(768px) 240px minmax(0, auto);
     grid-column-gap: 3rem;
   }
 `
@@ -215,17 +209,13 @@ export const DocsGrid = styled.div`
 export const DocGridHeader = styled.div`
   grid-area: header;
   width: 100%;
-
-  @media (min-width: 830px) {
-    max-width: none;
-  }
 `
 
 export const DocGridToc = styled.div`
   grid-area: toc;
   width: 100%;
 
-  @media (min-width: 830px) {
+  @media (min-width: 1200px) {
     padding-top: 4.5rem;
   }
 `
