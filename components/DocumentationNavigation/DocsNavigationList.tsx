@@ -12,6 +12,7 @@ interface NavTitleProps {
 }
 
 const NavTitle = styled.a<NavTitleProps>`
+  position: relative;
   display: block;
   text-decoration: none;
   transition: all 180ms ease-out 0s;
@@ -29,6 +30,30 @@ const NavTitle = styled.a<NavTitleProps>`
 
   &:hover {
     opacity: 1;
+  }
+
+  span {
+    display: inline-block;
+    background: white;
+    padding-right: 0.75rem;
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 1.125rem;
+      top: 50%;
+      height: 1px;
+      margin-top: -1px;
+      width: 100%;
+      background:  linear-gradient(
+        to right,
+        white,
+        var(--tina-color-grey-1),
+        var(--tina-color-grey-2)
+      );
+      z-index: -1;
+    }
   }
 
   ${(props: any) =>
@@ -96,11 +121,16 @@ const NavLevel = ({
           categoryData.slug || categoryData.href,
           router.asPath
         ) || hasNestedSlug(categoryData.items, router.asPath) //matchActualTarget(router.asPath, categoryData.slug)
+  const isSelected = router.asPath == categoryData.slug
   return (
     <>
       <DynamicLink href={categoryData.slug} passHref>
-        <NavTitle level={level} selected={router.asPath == categoryData.slug}>
-          {categoryData.title || categoryData.category}
+        <NavTitle level={level} selected={isSelected}>
+          {isSelected ? (
+            <span>{categoryData.title || categoryData.category}</span>
+          ) : (
+            categoryData.title || categoryData.category
+          )}
         </NavTitle>
       </DynamicLink>
       {expandChildren && categoryData.items && (
@@ -193,6 +223,11 @@ const DocsNavigationContainer = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   padding: 0.5rem 0 1.5rem 0;
+  margin-right: -1px;
+
+  @media (min-width: 1600px) {
+    padding: 1rem 1rem 2rem 1rem;
+  }
 `
 
 const AnchorIcon = styled.span`

@@ -55,6 +55,10 @@ const DocsLayoutGrid = styled.div`
   @media (min-width: 1200px) {
     grid-template-columns: 20rem minmax(0, 1fr);
   }
+
+  @media (min-width: 1600px) {
+    grid-template-columns: 22rem minmax(0, 1fr);
+  }
 `
 
 const DocsMain = styled.div`

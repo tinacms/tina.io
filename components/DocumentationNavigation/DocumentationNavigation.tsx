@@ -110,4 +110,8 @@ const DocsSidebarHeader = styled.div`
   @media (max-width: 839px) {
     padding-left: 4.5rem;
   }
+
+  @media (min-width: 1600px) {
+    padding: 1rem 1.75rem 1.5rem 1.75rem;
+  }
 `
