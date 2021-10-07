@@ -110,6 +110,7 @@ const NavLevel = ({
   categoryData: any
   level?: number
 }) => {
+  const navLevelElem = React.useRef(null)
   const router = useRouter()
   // const expandChildren =
   // matchActualTarget(categoryData.slug || categoryData.href, router.asPath) ||
@@ -121,11 +122,22 @@ const NavLevel = ({
           categoryData.slug || categoryData.href,
           router.asPath
         ) || hasNestedSlug(categoryData.items, router.asPath) //matchActualTarget(router.asPath, categoryData.slug)
-  const isSelected = router.asPath == categoryData.slug
+  const isSelected = router.asPath == categoryData.slug && level !== 0
+  console.log(router.asPath)
+
+  React.useEffect(() => {
+    if (navLevelElem.current && isSelected) {
+      navLevelElem.current.scrollIntoView({
+        behavior: 'auto',
+        block: 'center',
+      })
+    }
+  }, [navLevelElem, isSelected])
+
   return (
     <>
       <DynamicLink href={categoryData.slug} passHref>
-        <NavTitle level={level} selected={isSelected}>
+        <NavTitle ref={navLevelElem} level={level} selected={isSelected}>
           {isSelected ? (
             <span>{categoryData.title || categoryData.category}</span>
           ) : (
