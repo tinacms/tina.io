@@ -44,14 +44,9 @@ const NavTitle = styled.a<NavTitleProps>`
       left: 1.125rem;
       top: 50%;
       height: 1px;
-      margin-top: -1px;
+      margin-top: -3px;
       width: 100%;
-      background:  linear-gradient(
-        to right,
-        white,
-        var(--tina-color-grey-1),
-        var(--tina-color-grey-2)
-      );
+      border-bottom: 5px dotted var(--tina-color-grey-1);
       z-index: -1;
     }
   }
