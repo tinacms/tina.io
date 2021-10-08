@@ -99,9 +99,11 @@ const hasNestedSlug = (navItems = [], slug) => {
 }
 
 const NavLevel = ({
+  navListElem,
   categoryData,
   level = 0,
 }: {
+  navListElem?: any
   categoryData: any
   level?: number
 }) => {
@@ -118,16 +120,23 @@ const NavLevel = ({
           router.asPath
         ) || hasNestedSlug(categoryData.items, router.asPath) //matchActualTarget(router.asPath, categoryData.slug)
   const isSelected = router.asPath == categoryData.slug && level !== 0
-  console.log(router.asPath)
 
   React.useEffect(() => {
-    if (navLevelElem.current && isSelected) {
-      navLevelElem.current.scrollIntoView({
-        behavior: 'auto',
-        block: 'center',
-      })
+    if (
+      navListElem &&
+      navLevelElem.current &&
+      navListElem.current &&
+      isSelected
+    ) {
+      const topOffset = navLevelElem.current.getBoundingClientRect().top - 32
+      // navListElem.current.scrollTo({
+      //   top: topOffset,
+      //   behavior: 'auto',
+      //   block: 'nearest',
+      //   inline: 'start',
+      // })
     }
-  }, [navLevelElem, isSelected])
+  }, [navLevelElem, navListElem, isSelected])
 
   return (
     <>
@@ -143,7 +152,11 @@ const NavLevel = ({
       {expandChildren && categoryData.items && (
         <NavLevelChildContainer level={level}>
           {(categoryData.items || []).map(item => (
-            <NavLevel level={level + 1} categoryData={item} />
+            <NavLevel
+              navListElem={navListElem}
+              level={level + 1}
+              categoryData={item}
+            />
           ))}
         </NavLevelChildContainer>
       )}
@@ -173,6 +186,7 @@ const NavLevelChildContainer = styled.div<NavLevelChildContainerProps>`
 
 export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
   const router = useRouter()
+  const navListElem = React.useRef(null)
 
   return (
     <>
@@ -186,9 +200,9 @@ export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
             )
           })}
       </MobileMainNav>
-      <DocsNavigationContainer>
+      <DocsNavigationContainer ref={navListElem}>
         {navItems.map(categoryData => (
-          <NavLevel categoryData={categoryData} />
+          <NavLevel navListElem={navListElem} categoryData={categoryData} />
         ))}
       </DocsNavigationContainer>
     </>

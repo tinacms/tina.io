@@ -20,6 +20,7 @@ import { NotFoundError } from 'utils/error/NotFoundError'
 import { useRouter } from 'next/router'
 import { CloudDisclaimer } from 'components/cloud-beta-disclaimer'
 import * as ga from '../../utils/ga'
+import { Breadcrumbs } from 'components/DocumentationNavigation/Breadcrumbs'
 
 export function DocTemplate(props) {
   // fallback workaround
@@ -75,6 +76,7 @@ export function DocTemplate(props) {
       <DocsLayout navItems={props.docsNav}>
         <DocsGrid>
           <DocGridHeader>
+            <Breadcrumbs navItems={props.docsNav} />
             <DocsPageTitle>
               <InlineTextarea name="frontmatter.title" />
             </DocsPageTitle>
@@ -233,12 +235,14 @@ export const DocGridContent = styled.div<ContentProps>`
 
 export const DocsPageTitle = styled.h1`
   font-size: 2rem;
-  line-height: 1.3;
+  line-height: 1.2 !important;
   letter-spacing: 0.1px;
   color: var(--color-orange);
   position: relative;
   font-family: var(--font-tuner);
   font-style: normal;
+
+  margin: 0 0 0 0 !important;
 
   @media (max-width: 1199px) {
     margin: 0 0 1.25rem 0 !important;
