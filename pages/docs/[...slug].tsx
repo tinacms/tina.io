@@ -201,7 +201,8 @@ export const DocsGrid = styled.div`
       '. header header .'
       '. content toc .';
     margin: 0 auto;
-    grid-auto-columns: minmax(0, auto) fit-content(768px) 240px minmax(0, auto);
+    grid-auto-columns: minmax(0, auto) fit-content(768px)
+      clamp(17.5rem, 10rem + 10vw, 21.25rem) minmax(0, auto);
     grid-column-gap: 3rem;
   }
 `
