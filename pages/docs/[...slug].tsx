@@ -184,23 +184,24 @@ const formOptions = {
  */
 
 export const DocsGrid = styled.div`
-  display: grid;
+  display: block;
   width: 100%;
   position: relative;
-  grid-auto-columns: minmax(1.5rem, 4rem) minmax(280px, 768px)
-    minmax(1.5rem, 4rem);
-  grid-template-areas:
-    '. header .'
-    '. toc .'
-    '. content .';
-  padding-top: 2rem;
-  padding-bottom: 3rem;
+  padding: 1rem 2rem 3rem 2rem;
+  max-width: 768px;
+  margin: 0 auto;
+
+  @media (min-width: 500px) {
+    padding: 1rem 3rem 3rem 3rem;
+  }
 
   @media (min-width: 1200px) {
+    display: grid;
+    max-width: none;
+    padding: 2rem 0rem 4rem 0rem;
     grid-template-areas:
       '. header header .'
       '. content toc .';
-    margin: 0 auto;
     grid-auto-columns: minmax(0, auto) fit-content(768px)
       clamp(17.5rem, 10rem + 10vw, 21.25rem) minmax(0, auto);
     grid-column-gap: 3rem;
