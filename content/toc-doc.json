@@ -318,8 +318,8 @@
             "title": "Using the Tina starter"
           },
           {
-            "id": "/guides/tina-cloud/getting-started/overview/",
-            "slug": "/guides/tina-cloud/getting-started/overview/",
+            "id": "/guides/tina-cloud/add-tinacms-to-existing-site/overview/",
+            "slug": "/guides/tina-cloud/add-tinacms-to-existing-site/overview/",
             "title": "Adding TinaCMS to an existing Next.js app"
           }
         ]
