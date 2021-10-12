@@ -18,49 +18,46 @@ export interface DocsNavProps {
   navItems: any
 }
 
+const sanitizedPath = (str: string) => str.replace(/^\/|\/$/g, '')
+
+const getNestedBreadcrumbs = (
+  listItems,
+  pagePath,
+  breadcrumbs = new Array()
+) => {
+  for (const listItem of listItems || []) {
+    if (sanitizedPath(pagePath) == sanitizedPath(listItem.slug)) {
+      breadcrumbs.push(listItem)
+      return [listItem]
+    }
+    const nestedBreadcrumbs = getNestedBreadcrumbs(
+      listItem.items,
+      pagePath,
+      breadcrumbs
+    )
+    if (nestedBreadcrumbs.length) {
+      return [listItem, ...nestedBreadcrumbs]
+    }
+  }
+  return []
+}
+
 export function Breadcrumbs({ navItems }: DocsNavProps) {
-  // const router = useRouter()
-  // const currentPath = router.asPath
-  // const [breadcrumb, setBreadcrumb] = React.useState([])
-
-  // const findBreadcrumb = (listItems, breadcrumbs) => {
-  //   console.log(listItems)
-  //   for (const listItem of listItems) {
-  //     const newBreadcrumbs = breadcrumbs
-  //     newBreadcrumbs.push(listItem)
-
-  //     if (listItem.slug === currentPath) {
-  //       return newBreadcrumbs
-  //     } else if (listItem.items) {
-  //       findBreadcrumb(listItem.items, newBreadcrumbs)
-  //     }
-  //   }
-  // }
-
-  // React.useEffect(() => {
-  //   if (currentPath && navItems) {
-  //     setBreadcrumb(findBreadcrumb(navItems, []))
-  //   }
-  // }, [currentPath, navItems])
-
-  // React.useEffect(() => {
-  //   console.log(breadcrumb)
-  // }, [breadcrumb])
-
+  const router = useRouter()
+  const breadcrumbs = getNestedBreadcrumbs(navItems, router.asPath) || []
   return (
     <>
       <BreadcrumbList>
-        <li>
-          <a href="#">TinaCMS</a>
-        </li>
-        <ChevronRightIcon />
-        <li>
-          <a href="#">API Reference</a>
-        </li>
-        <ChevronRightIcon />
-        <li>
-          <a href="#">Tina Schema & CLI</a>
-        </li>
+        {breadcrumbs.map((breadcrumb, i) => (
+          <>
+            {i != 0 && <ChevronRightIcon />}
+            <li>
+              <a href={breadcrumb.slug}>
+                {breadcrumb.title || breadcrumb.category}
+              </a>
+            </li>
+          </>
+        ))}
       </BreadcrumbList>
     </>
   )
