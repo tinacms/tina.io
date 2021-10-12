@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
 import { GetStaticProps, GetStaticPaths } from 'next'
@@ -20,6 +20,7 @@ import { NotFoundError } from 'utils/error/NotFoundError'
 import { useRouter } from 'next/router'
 import { CloudDisclaimer } from 'components/cloud-beta-disclaimer'
 import * as ga from '../../utils/ga'
+import { Breadcrumbs } from 'components/DocumentationNavigation/Breadcrumbs'
 
 export function DocTemplate(props) {
   // fallback workaround
@@ -29,7 +30,6 @@ export function DocTemplate(props) {
 
   const router = useRouter()
   const isCloudDocs = router.asPath.includes('tina-cloud')
-  const noLayout = router.query.layout === 'false'
 
   // Registers Tina Form
   const [data, form] = useGithubMarkdownForm(props.file, formOptions)
@@ -73,9 +73,10 @@ export function DocTemplate(props) {
           images: [openGraphImage(frontmatter.title, '| TinaCMS Docs')],
         }}
       />
-      <DocsLayout navItems={props.docsNav} showLayout={!noLayout}>
+      <DocsLayout navItems={props.docsNav}>
         <DocsGrid>
           <DocGridHeader>
+            <Breadcrumbs navItems={props.docsNav} />
             <DocsPageTitle>
               <InlineTextarea name="frontmatter.title" />
             </DocsPageTitle>
@@ -185,30 +186,26 @@ const formOptions = {
  */
 
 export const DocsGrid = styled.div`
-  display: grid;
+  display: block;
   width: 100%;
   position: relative;
-  grid-auto-columns: minmax(1.5rem, 4rem) minmax(280px, 768px)
-    minmax(1.5rem, 4rem);
-  grid-template-areas:
-    '. header .'
-    '. toc .'
-    '. content .';
-  padding-top: 2rem;
-  padding-bottom: 3rem;
+  padding: 1rem 2rem 3rem 2rem;
+  max-width: 768px;
+  margin: 0 auto;
 
-  @media (min-width: 830px) {
+  @media (min-width: 500px) {
+    padding: 1rem 3rem 3rem 3rem;
+  }
+
+  @media (min-width: 1200px) {
+    display: grid;
+    max-width: none;
+    padding: 2rem 0rem 4rem 0rem;
     grid-template-areas:
       '. header header .'
       '. content toc .';
-    margin: 0 auto;
-    grid-auto-columns: minmax(2rem, auto) fit-content(768px) 240px
-      minmax(0, auto);
-    grid-column-gap: 2rem;
-  }
-
-  @media (min-width: 1600px) {
-    grid-auto-columns: auto 768px 330px auto;
+    grid-auto-columns: minmax(0, auto) fit-content(768px)
+      clamp(17.5rem, 10rem + 10vw, 21.25rem) minmax(0, auto);
     grid-column-gap: 3rem;
   }
 `
@@ -216,17 +213,13 @@ export const DocsGrid = styled.div`
 export const DocGridHeader = styled.div`
   grid-area: header;
   width: 100%;
-
-  @media (min-width: 830px) {
-    max-width: none;
-  }
 `
 
 export const DocGridToc = styled.div`
   grid-area: toc;
   width: 100%;
 
-  @media (min-width: 830px) {
+  @media (min-width: 1200px) {
     padding-top: 4.5rem;
   }
 `
@@ -242,12 +235,14 @@ export const DocGridContent = styled.div<ContentProps>`
 
 export const DocsPageTitle = styled.h1`
   font-size: 2rem;
-  line-height: 1.3;
+  line-height: 1.2 !important;
   letter-spacing: 0.1px;
   color: var(--color-orange);
   position: relative;
   font-family: var(--font-tuner);
   font-style: normal;
+
+  margin: 0 0 0 0 !important;
 
   @media (max-width: 1199px) {
     margin: 0 0 1.25rem 0 !important;

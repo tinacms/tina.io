@@ -52,7 +52,7 @@ const TocDesktopHeader = styled.span`
   line-height: 1;
   margin-bottom: 1.125rem;
 
-  @media (min-width: 830px) {
+  @media (min-width: 1200px) {
     display: block;
   }
 `
@@ -61,7 +61,7 @@ const TocWrapper = styled.div`
   margin-bottom: -0.375rem;
   flex: 0 0 auto;
 
-  @media (min-width: 830px) {
+  @media (min-width: 1200px) {
     position: sticky;
     top: 1.5rem;
   }
@@ -117,7 +117,7 @@ const TocButton = styled.button<{ isOpen: boolean }>`
         `
       : ``};
 
-  @media (min-width: 830px) {
+  @media (min-width: 1200px) {
     display: none;
   }
 `
@@ -156,7 +156,7 @@ const TocContent = styled.div<TocContentProps>`
         `
       : ``};
 
-  @media (min-width: 830px) {
+  @media (min-width: 1200px) {
     max-height: none;
   }
 

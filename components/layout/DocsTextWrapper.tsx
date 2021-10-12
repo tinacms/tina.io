@@ -23,7 +23,6 @@ export const DocsTextWrapper = ({ children }) => {
         var fitVid = fitVids[i]
         var width = fitVid.getAttribute('width')
         var height = fitVid.getAttribute('height')
-        console.log(width)
         // @ts-ignore
         var aspectRatio = height / width
         var parentDiv = fitVid.parentNode
@@ -55,5 +54,4 @@ export const DocsTextWrapper = ({ children }) => {
 
 const TextWrapper = styled.div`
   ${DocsRichText}
-  min-height: 68vh;
 `

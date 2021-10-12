@@ -14,10 +14,9 @@ import { searchIndices } from 'components/search/indices'
 
 export interface DocsNavProps {
   navItems: any
-  guide: false | { category: string }
 }
 
-export function DocumentationNavigation({ navItems, guide }: DocsNavProps) {
+export function DocumentationNavigation({ navItems }: DocsNavProps) {
   const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false)
   const router = useRouter()
 
@@ -27,7 +26,6 @@ export function DocumentationNavigation({ navItems, guide }: DocsNavProps) {
         open={mobileNavIsOpen}
         onClick={() => setMobileNavIsOpen(!mobileNavIsOpen)}
       />
-      <MobileNavLogo />
       <DocsLeftSidebar open={mobileNavIsOpen}>
         <DocsSidebarHeader>
           <DocsDesktopTinaIcon docs />
@@ -36,7 +34,7 @@ export function DocumentationNavigation({ navItems, guide }: DocsNavProps) {
         {router.isFallback ? (
           <FallbackPlaceholder />
         ) : (
-          <DocsNavigationList navItems={navItems} guide={guide} />
+          <DocsNavigationList navItems={navItems} />
         )}
       </DocsLeftSidebar>
       <Overlay
@@ -52,16 +50,13 @@ const MobileNavToggle = styled(NavToggle)`
   position: fixed;
   background: var(--color-light);
   border: 1px solid var(--color-light-dark);
-  margin-top: 1.25rem;
+  margin-top: 1rem;
   padding: 0 0 0 1rem;
   border-radius: 0 2rem 2rem 0;
   width: 3.25rem;
   z-index: 1300;
 
-  svg {
-  }
-
-  @media (min-width: 1199px) {
+  @media (min-width: 840px) {
     display: none;
   }
 `
@@ -78,7 +73,7 @@ const MobileNavLogo = styled(TinaIcon)`
     justify-content: center;
   }
 
-  @media (min-width: 830px) {
+  @media (min-width: 840px) {
     display: none;
   }
 `
@@ -88,7 +83,7 @@ const DocsDesktopTinaIcon = styled(TinaIcon)`
   display: none;
   margin-bottom: 1rem;
 
-  @media (min-width: 1200px) {
+  @media (min-width: 840px) {
     display: block;
   }
 `
@@ -96,8 +91,9 @@ const DocsDesktopTinaIcon = styled(TinaIcon)`
 const DocsSidebarHeader = styled.div`
   flex: 0 0 auto;
   background-color: white;
+  background: linear-gradient(to bottom, white, var(--tina-color-grey-1));
   z-index: 500;
-  padding: 1.25rem 1rem;
+  padding: 1rem 1rem 1.25rem 1rem;
   border-bottom: 1px solid var(--tina-color-grey-2);
   position: relative;
 
@@ -111,7 +107,11 @@ const DocsSidebarHeader = styled.div`
     margin-top: -1.625rem;
   }
 
-  @media (max-width: 1199px) {
+  @media (max-width: 839px) {
     padding-left: 4.5rem;
+  }
+
+  @media (min-width: 1600px) {
+    padding: 1rem 1.75rem 1.5rem 1.75rem;
   }
 `

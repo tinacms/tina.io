@@ -241,6 +241,7 @@ export const Footer = styled(({ light, ...styleProps }) => {
     </div>
   )
 })`
+  grid-area: footer;
   color: white;
   --color-background: var(--color-orange);
   --color-background-dark: var(--color-orange-dark);

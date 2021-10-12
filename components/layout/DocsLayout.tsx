@@ -7,22 +7,14 @@ import { DocumentationNavigation } from 'components/DocumentationNavigation'
 import { Footer } from './Footer'
 import { DocsTextWrapper } from './DocsTextWrapper'
 import { FeedbackForm } from 'components/forms'
-import { CloudBanner } from './CloudBanner'
 
 interface DocsLayoutProps {
   navItems: any
-  guide?: false | { category: string }
   children: any
-  showLayout?: boolean
 }
 
 export const DocsLayout = React.memo(
-  ({
-    children,
-    navItems,
-    guide = false,
-    showLayout = true,
-  }: DocsLayoutProps) => {
+  ({ children, navItems }: DocsLayoutProps) => {
     const router = useRouter()
     return (
       <>
@@ -31,26 +23,45 @@ export const DocsLayout = React.memo(
             url: 'https://tinacms.org' + router.asPath,
           }}
         />
-        <DocsLayoutDiv>
-          {showLayout && (
-            <DocumentationNavigation navItems={navItems} guide={guide} />
-          )}
-          <DocsTextWrapper>{children}</DocsTextWrapper>
+        <DocsLayoutGrid>
+          <DocumentationNavigation navItems={navItems} />
+          <DocsMain>
+            <DocsTextWrapper>{children}</DocsTextWrapper>
+          </DocsMain>
           <FeedbackForm />
-          {showLayout && <Footer light />}
-        </DocsLayoutDiv>
+          <Footer light />
+        </DocsLayoutGrid>
       </>
     )
   }
 )
 
-const DocsLayoutDiv = styled.div`
-  @media (min-width: 1200px) {
-    position: relative;
-    padding: 0 0 0 16rem;
+const DocsLayoutGrid = styled.div`
+  @media (min-width: 840px) {
+    width: 100%;
+    display: grid;
+    grid-template-columns: min(33vw, 20rem) minmax(0, 1fr);
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      'sidebar header'
+      'sidebar main'
+      'sidebar footer';
 
     ${Overlay} {
       display: none;
     }
   }
+
+  @media (min-width: 1200px) {
+    grid-template-columns: 20rem minmax(0, 1fr);
+  }
+
+  @media (min-width: 1600px) {
+    grid-template-columns: 22rem minmax(0, 1fr);
+  }
+`
+
+const DocsMain = styled.div`
+  grid-area: main;
+  place-self: stretch;
 `

@@ -1,42 +1,92 @@
-import React, { useRef, createContext } from 'react'
-import styled from 'styled-components'
-import Link from 'next/link'
-import { DocsLinkNav } from '../ui/DocsLinkNav'
+import React, { createContext } from 'react'
+import styled, { css } from 'styled-components'
 import { DocsNavProps } from './DocumentationNavigation'
-import { NavSection } from './NavSection'
 import { useRouter } from 'next/router'
 import { matchActualTarget } from 'utils'
+import { DynamicLink } from 'components/ui'
+import docsLinks from '../../content/docs-navigation.json'
 
-export interface DocsSectionProps extends DocsNavProps {
-  BackLink: () => JSX.Element
-  category: string
+interface NavTitleProps {
+  level: number
+  selected: boolean
 }
 
-export const NavListContext = createContext({ current: null })
+const NavTitle = styled.a<NavTitleProps>`
+  position: relative;
+  display: block;
+  text-decoration: none;
+  transition: all 180ms ease-out 0s;
+  cursor: pointer;
+  color: var(--color-secondary);
+  font-family: var(--font-primary);
+  font-size: 0.9375rem;
+  opacity: 0.75;
+  line-height: 1.3;
+  padding: 0.125rem 0.5rem 0.125rem 1.125rem;
 
-const getCategoryMatch = (navItems, currentPath) => {
-  for (let item of navItems) {
-    if (hasNestedSlug(item.items, currentPath)) {
-      return item.category
+  &:last-child {
+    padding-bottom: 0.375rem;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+
+  span {
+    display: inline-block;
+    background: white;
+    padding-right: 0.75rem;
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 1.125rem;
+      top: 50%;
+      height: 1px;
+      margin-top: -3px;
+      width: 100%;
+      border-bottom: 5px dotted var(--tina-color-grey-1);
+      z-index: -1;
     }
   }
 
-  // if we don't find a match in the category nav, do some "rule-of-thumb" matching
-  return matchHeuristic(currentPath)
-}
+  ${(props: any) =>
+    props.level === 0 &&
+    css`
+      opacity: 1;
+      color: var(--color-orange);
+      font-family: var(--font-tuner);
+      font-size: 1.25rem;
+      padding: 0.5rem 0.5rem 0.125rem 1.125rem;
+    `}
 
-const matchHeuristic = currentPath => {
-  if (currentPath.includes('/docs/releases')) return 'TinaCMS'
+  ${(props: any) =>
+    props.level === 1 &&
+    css`
+      font-size: 1rem;
+      opacity: 1;
+    `}
 
-  return null
-}
+    ${(props: any) =>
+      props.level === 2 &&
+      css`
+        opacity: 0.875;
+      `}
 
-const hasNestedSlug = (navItems, slug) => {
+
+  ${(props: any) =>
+    props.selected &&
+    css`
+      opacity: 1;
+      color: var(--color-orange);
+      font-weight: bold;
+    `}
+`
+
+const hasNestedSlug = (navItems = [], slug) => {
   for (let item of navItems) {
-    if (item.slug && matchActualTarget(item.slug, slug)) {
-      return true
-    }
-    if (item.href && matchActualTarget(item.href, slug)) {
+    if (matchActualTarget(item.slug || item.href, slug)) {
       return true
     }
     if (item.items) {
@@ -48,129 +98,141 @@ const hasNestedSlug = (navItems, slug) => {
   return false
 }
 
-const useActiveCategory = navItems => {
+const NavLevel = ({
+  navListElem,
+  categoryData,
+  level = 0,
+}: {
+  navListElem?: any
+  categoryData: any
+  level?: number
+}) => {
+  const navLevelElem = React.useRef(null)
   const router = useRouter()
-  return getCategoryMatch(navItems, router.asPath)
-}
+  // const expandChildren =
+  // matchActualTarget(categoryData.slug || categoryData.href, router.asPath) ||
+  //   hasNestedSlug(categoryData.items, router.asPath) //matchActualTarget(router.asPath, categoryData.slug)
+  const expandChildren =
+    level < 3
+      ? true
+      : matchActualTarget(
+          categoryData.slug || categoryData.href,
+          router.asPath
+        ) || hasNestedSlug(categoryData.items, router.asPath) //matchActualTarget(router.asPath, categoryData.slug)
+  const isSelected = router.asPath == categoryData.slug && level !== 0
 
-export const DocsNavigationList = ({ navItems, guide }: DocsNavProps) => {
-  const activeCategory = useActiveCategory(navItems)
-  const [currentCategory, setCurrentCategory] = React.useState(activeCategory)
-  const currentCategoryData = React.useMemo(() => {
-    return navItems.find(
-      categoryData => categoryData.category === currentCategory
-    )
-  }, [currentCategory])
-
-  const DocsIndexLink = React.useCallback(
-    () => (
-      <Link href="/docs">
-        <IndexLink>← Docs Index</IndexLink>
-      </Link>
-    ),
-    []
-  )
-  const GuidesIndexLink = React.useCallback(
-    () => (
-      <Link href="/guides">
-        <IndexLink>← Guides Index</IndexLink>
-      </Link>
-    ),
-    []
-  )
+  React.useEffect(() => {
+    if (
+      navListElem &&
+      navLevelElem.current &&
+      navListElem.current &&
+      isSelected
+    ) {
+      const topOffset = navLevelElem.current.getBoundingClientRect().top - 32
+      // navListElem.current.scrollTo({
+      //   top: topOffset,
+      //   behavior: 'auto',
+      //   block: 'nearest',
+      //   inline: 'start',
+      // })
+    }
+  }, [navLevelElem, navListElem, isSelected])
 
   return (
     <>
-      <MobileMainNav>
-        <DocsLinkNav />
-      </MobileMainNav>
-      {currentCategoryData ? (
-        <DocsNavigationSection
-          navItems={currentCategoryData.items}
-          guide={guide}
-          BackLink={guide ? GuidesIndexLink : DocsIndexLink}
-          category={currentCategoryData.category}
-        />
-      ) : (
-        <DocsCategoryList
-          navItems={navItems}
-          onSelect={setCurrentCategory}
-          activeCategory={activeCategory}
-        />
+      <DynamicLink href={categoryData.slug} passHref>
+        <NavTitle ref={navLevelElem} level={level} selected={isSelected}>
+          {isSelected ? (
+            <span>{categoryData.title || categoryData.category}</span>
+          ) : (
+            categoryData.title || categoryData.category
+          )}
+        </NavTitle>
+      </DynamicLink>
+      {expandChildren && categoryData.items && (
+        <NavLevelChildContainer level={level}>
+          {(categoryData.items || []).map(item => (
+            <NavLevel
+              navListElem={navListElem}
+              level={level + 1}
+              categoryData={item}
+            />
+          ))}
+        </NavLevelChildContainer>
       )}
     </>
   )
 }
 
-const DocsCategoryList = ({ navItems, onSelect, activeCategory }) => {
-  return (
-    <div style={{ padding: '1rem 0' }}>
-      {navItems.map(categoryData => {
-        return (
-          <Link href={categoryData.slug} passHref>
-            <CategoryAnchor
-              onClick={e => {
-                if (activeCategory === categoryData.category) {
-                  e.preventDefault()
-                  onSelect(categoryData.category)
-                }
-              }}
-            >
-              {categoryData.category} <AnchorIcon>→</AnchorIcon>
-              <CategoryDescription>
-                {categoryData.description}
-              </CategoryDescription>
-            </CategoryAnchor>
-          </Link>
-        )
-      })}
-    </div>
-  )
+interface NavLevelChildContainerProps {
+  level: number
 }
 
-const DocsNavigationSection = ({
-  navItems,
-  guide,
-  BackLink,
-  category,
-}: DocsSectionProps) => {
-  const navListRef = useRef<HTMLUListElement>(null)
+const NavLevelChildContainer = styled.div<NavLevelChildContainerProps>`
+  position: relative;
+  display: block;
+  padding-left: 0.675rem;
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+
+  ${(props: any) =>
+    props.level === 0 &&
+    css`
+      padding-left: 0.75rem;
+      padding-top: 0.25rem;
+      padding-bottom: 0.125rem;
+    `}
+`
+
+export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
+  const router = useRouter()
+  const navListElem = React.useRef(null)
 
   return (
-    <NavListContext.Provider value={navListRef}>
-      <ul ref={navListRef}>
-        <NavListHeader>
-          {BackLink && <BackLink />}
-          <CategoryHeader>{category}</CategoryHeader>
-        </NavListHeader>
-        {navItems &&
-          navItems.map(section => (
-            <NavSection key={section.id} {...section} collapsible={false} />
-          ))}
-      </ul>
-    </NavListContext.Provider>
+    <>
+      <MobileMainNav>
+        {docsLinks &&
+          docsLinks.map(({ id, href, label }) => {
+            return (
+              <DynamicLink href={href} passHref>
+                <a key={id}>{label}</a>
+              </DynamicLink>
+            )
+          })}
+      </MobileMainNav>
+      <DocsNavigationContainer ref={navListElem}>
+        {navItems.map(categoryData => (
+          <NavLevel navListElem={navListElem} categoryData={categoryData} />
+        ))}
+      </DocsNavigationContainer>
+    </>
   )
 }
 
 const MobileMainNav = styled.div`
-  padding-top: 0rem;
-  margin-bottom: 1rem;
-  padding-bottom: 1rem;
+  padding: 0.5rem 0;
+  background: var(--tina-color-grey-1);
   border-bottom: 1px solid var(--color-light-dark);
-  background-color: white;
-
-  ul {
-  }
-
-  li {
-    margin: 0;
-  }
 
   a {
     display: block;
-    padding: 0.5rem 3.5rem 0.5rem 1.5rem;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.375rem 1rem 0.375rem 1rem;
     color: var(--color-orange);
     margin: 0;
+    font-family: var(--font-tuner);
+    font-style: normal;
+    opacity: 1;
+    transition: transform 180ms ease-out;
+    line-height: 1;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+      transform: translate3d(-1px, -2px, 0);
+    }
   }
 
   @media (min-width: 1200px) {
@@ -178,38 +240,15 @@ const MobileMainNav = styled.div`
   }
 `
 
-const Breadcrumbs = styled.li`
-  display: block;
-  padding: 0 1.5rem 0.5rem 1.5rem;
+const DocsNavigationContainer = styled.div`
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0.5rem 0 1.5rem 0;
+  margin-right: -1px;
 
-  a {
-    color: var(--tina-color-grey-5);
-    text-decoration-color: rgba(0, 0, 0, 0.3);
-    font-size: 1rem;
-
-    &:hover {
-      color: var(--tina-color-grey-6);
-      text-decoration-color: var(--tina-color-grey-6);
-    }
+  @media (min-width: 1600px) {
+    padding: 1rem 1rem 2rem 1rem;
   }
-
-  a:not(:last-child):after {
-    content: '/';
-    display: inline-block;
-    margin: 0 0.25rem;
-    color: var(--tina-color-grey-4);
-  }
-`
-
-const CategoryDescription = styled.p`
-  margin-top: 0.5rem;
-  color: var(--color-secondary-dark);
-  opacity: 0.65;
-  font-size: 0.8em;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  transition: all 150ms ease-out;
 `
 
 const AnchorIcon = styled.span`
@@ -217,60 +256,4 @@ const AnchorIcon = styled.span`
   position: relative;
   transform: translate3d(0, 0, 0);
   transition: all 150ms ease-out;
-`
-
-const CategoryAnchor = styled.a`
-  display: block;
-  cursor: pointer;
-  padding: 0.5rem 1.5rem 0.5rem 1.5rem;
-  color: var(--color-orange);
-  text-decoration: none;
-  transition: all 180ms ease-out;
-  font-family: var(--font-tuner);
-  font-size: 1.125rem;
-
-  :hover {
-    ${CategoryDescription} {
-      opacity: 1;
-    }
-
-    ${AnchorIcon} {
-      transform: translate3d(0.25rem, 0, 0);
-    }
-  }
-`
-
-const IndexLink = styled.button`
-  cursor: pointer;
-  border: none;
-  outline: none;
-  background: transparent;
-  padding: 0;
-  color: var(--color-orange);
-  display: block;
-  margin-bottom: 0.75rem;
-  font-size: 0.9375rem;
-  opacity: 0.7;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  transition: all 150ms ease-out;
-
-  &:hover {
-    opacity: 1;
-  }
-`
-
-const NavListHeader = styled.li`
-  position: relative;
-  padding: 0.5rem 1.5rem 0.75rem 1.5rem;
-  z-index: 10;
-`
-
-const CategoryHeader = styled.h3`
-  color: var(--color-orange);
-  text-decoration: none;
-  transition: all 180ms ease-out;
-  font-family: var(--font-tuner);
-  font-size: 1.5rem;
 `
