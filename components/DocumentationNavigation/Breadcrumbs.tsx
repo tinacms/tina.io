@@ -1,6 +1,7 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 import styled from 'styled-components'
+import { matchActualTarget } from 'utils'
 
 export const ChevronRightIcon = () => (
   <svg
@@ -18,15 +19,13 @@ export interface DocsNavProps {
   navItems: any
 }
 
-const sanitizedPath = (str: string) => str.replace(/^\/|\/$/g, '')
-
 const getNestedBreadcrumbs = (
   listItems,
   pagePath,
   breadcrumbs = new Array()
 ) => {
   for (const listItem of listItems || []) {
-    if (sanitizedPath(pagePath) == sanitizedPath(listItem.slug)) {
+    if (matchActualTarget(pagePath, listItem.slug || listItem.href)) {
       breadcrumbs.push(listItem)
       return [listItem]
     }
