@@ -67,12 +67,13 @@ const BreadcrumbList = styled.ul`
   list-style-type: none;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   justify-content: flex-start;
   padding: 0 !important;
-  margin: 0 0 -0.25rem 0 !important;
+  margin: 0 0 0 0 !important;
 
   @media (min-width: 1200px) {
-    margin: -0.25rem 0 0rem 0 !important;
+    margin: -0.25rem 0 0.5rem 0 !important;
   }
 
   li {
@@ -86,9 +87,9 @@ const BreadcrumbList = styled.ul`
     opacity: 0.2;
     color: currentColor;
     fill: currentColor;
-    height: 1.5rem;
+    height: 1.25rem;
     width: auto;
-    margin: 1px 0.3rem 0 0.5rem;
+    margin: 0 0.3rem 0 0.5rem;
     text-align: center;
   }
 
@@ -99,6 +100,7 @@ const BreadcrumbList = styled.ul`
     text-transform: uppercase;
     opacity: 0.5 !important;
     color: var(--color-secondary);
+    line-height: 1 !important;
 
     &:hover {
       text-decoration-color: currentColor !important;
