@@ -33,9 +33,9 @@ export const DocsHeaderNav = styled(
                 Sign In
               </Button>
             </Link>
-            <Link href="https://app.tina.io/register">
+            <Link href="https://app.tina.io/quickstart">
               <Button size="small" color="blue">
-                Sign Up
+                Get Started
               </Button>
             </Link>
           </ButtonGroup>
