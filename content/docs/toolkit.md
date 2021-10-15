@@ -1,5 +1,5 @@
 ---
-title: TinaCMS Toolkit
+title: TinaCMS Toolkit (Legacy)
 id: '/docs/toolkit'
 next: /docs/content-management
 ---

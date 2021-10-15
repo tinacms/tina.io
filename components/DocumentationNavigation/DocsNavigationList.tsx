@@ -112,13 +112,12 @@ const NavLevel = ({
   // const expandChildren =
   // matchActualTarget(categoryData.slug || categoryData.href, router.asPath) ||
   //   hasNestedSlug(categoryData.items, router.asPath) //matchActualTarget(router.asPath, categoryData.slug)
-  const expandChildren =
-    level < 3
-      ? true
-      : matchActualTarget(
-          categoryData.slug || categoryData.href,
-          router.asPath
-        ) || hasNestedSlug(categoryData.items, router.asPath) //matchActualTarget(router.asPath, categoryData.slug)
+  const expandChildren = !categoryData.expandOnSelect
+    ? true
+    : matchActualTarget(
+        categoryData.slug || categoryData.href,
+        router.asPath
+      ) || hasNestedSlug(categoryData.items, router.asPath) //matchActualTarget(router.asPath, categoryData.slug)
   const isSelected = router.asPath == categoryData.slug && level !== 0
 
   React.useEffect(() => {

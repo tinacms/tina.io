@@ -3,6 +3,7 @@ title: Overview
 id: /docs/tinacms-context
 last_edited: '2021-07-30T16:08:34.541Z'
 ---
+
 ## Next.js API
 
 Enable live editing on your Next.js site with TinaCMS. [Learn more](/docs/tinacms-context)
@@ -18,8 +19,3 @@ Power your site with a [GraphQL API over Git-backed content](/docs/graphql).
 ## Working with Media
 
 TinaCMS currently works with [Cloudinary](/docs/media-cloudinary/), connect to your account in a few easy steps.
-
-## The Tina CMS Toolkit
-
-TinaCMS is powered by the [TinaCMS toolkit](/docs/toolkit/).   
-Check out the docs to [build integrations with external APIs](/docs/apis/).

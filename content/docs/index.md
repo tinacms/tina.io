@@ -3,10 +3,11 @@ title: Tina Docs
 id: introduction
 last_edited: '2021-07-27T15:51:56.737Z'
 ---
+
 **Tina** contains multiple tools and applications designed to improve collaboration between **content writers** and **developers** who work on web content. Under the umbrella of Tina, there are two main components:
 
-* **Tina Cloud**, a hosted service designed to make Git-based content management more powerful and accessible for cross-functional teams.
-* The **TinaCMS toolkit**, a suite of packages that enable developers to quickly create a custom visual editing experience for content writers.
+- **Tina Cloud**, a hosted service designed to make Git-based content management more powerful and accessible for cross-functional teams.
+- The **TinaCMS toolkit**, a suite of packages that enable developers to quickly create a custom visual editing experience for content writers.
 
 ## Tina Cloud
 
@@ -36,8 +37,6 @@ The **TinaCMS Toolkit** empowers developers to build a visual editing experience
 [User Interface](/docs/user-interface/) - Tina's User Interface allows developers to dictate the way content is navigated and edited for content creators.
 
 [Extending Tina](/docs/extending-tina/) - Tina is open source giving you the ability to extend the functionality including: events, plugins, widgets.
-
-[Learn more about the TinaCMS toolkit](/docs/tinacms-reference/)
 
 ## Guides
 
