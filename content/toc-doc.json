@@ -105,8 +105,21 @@
             "slug": "/docs/media-cloudinary/"
           },
           {
-            "title": "Toolkit",
+            "title": "Advanced Features",
+            "slug": "/docs/advanced-features/overview/",
+            "description": "Extended the functionalalility of TinaCMS",
+            "items": [
+              {
+                "title": "Custom Fields",
+                "id": "tinacms:custom-fields/",
+                "slug": "/docs/advanced-features/custom-fields/"
+              }
+            ]
+          },
+          {
+            "title": "Legacy API",
             "slug": "/docs/toolkit/",
+            "expandOnSelect": true,
             "description": "The JavaScript toolkit for building content management interfaces",
             "items": [
               {
@@ -280,18 +293,6 @@
                 ]
               }
             ]
-          },
-          {
-            "title": "Advanced Features",
-            "slug": "/docs/advanced-features/overview/",
-            "description": "Extended the functionalalility of TinaCMS",
-            "items": [
-              {
-                "title": "Custom Fields",
-                "id": "tinacms:custom-fields/",
-                "slug": "/docs/advanced-features/custom-fields/"
-              }
-            ]
           }
         ]
       }
@@ -402,8 +403,9 @@
       },
       {
         "id": "/guides#experimental",
-        "title": "Experimental",
+        "title": "Legacy Guides",
         "slug": "/guides#experimental",
+        "expandOnSelect": true,
         "items": [
           {
             "id": "/guides/experimental/inline-blocks/overview/",
