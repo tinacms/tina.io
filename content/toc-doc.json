@@ -403,8 +403,9 @@
       },
       {
         "id": "/guides#experimental",
-        "title": "Experimental",
+        "title": "Legacy Guides",
         "slug": "/guides#experimental",
+        "expandOnSelect": true,
         "items": [
           {
             "id": "/guides/experimental/inline-blocks/overview/",
