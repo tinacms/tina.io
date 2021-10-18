@@ -297,10 +297,6 @@
     {
       "source": "/packages/next-tinacms-cloudinary/(.*)",
       "destination": "/docs/media-cloudinary/"
-    },
-    {
-      "source": "/docs/",
-      "destination": "docs/tina-cloud/"
     }
   ]
 }
