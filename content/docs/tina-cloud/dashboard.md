@@ -52,7 +52,7 @@ If Tina Cloud is configured on your production site, this value might be somethi
 
 Once your app is created, you will see it listed on your Apps page.
 
-An app's Overview page gives you two important values: your app's unique **Client ID** and your unique **Organization ID**. These two values are used by Tina Cloud to connect to your site's repository. You will need to use these as environment variables when setting up your site to use Tina.
+An app's Overview page gives you an important value: your app's unique **Client ID**. This value is used by Tina Cloud to connect to your site's repository. You will need to use this as an environment variable when setting up your site to use Tina.
 
 ## Users
 
