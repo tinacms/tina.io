@@ -24,6 +24,8 @@ To start editing, with the starter running, navigate to http://localhost:3000/ad
 
 ## Manual Setup (on an existing site)
 
+The tina `init` command can be used to bootstrap Tina within your existing NextJS application.
+
 From the command line, run:
 
 We created a quick way to bootstrap a Tina application to show the power of visual editing, from your terminal enter the following command:
