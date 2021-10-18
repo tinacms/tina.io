@@ -30,6 +30,11 @@
         "title": "Contextual Editing",
         "id": "/docs/tinacms-context",
         "slug": "/docs/tinacms-context/"
+      },
+      {
+        "title": "Extending Tina",
+        "id": "/docs/extending-tina",
+        "slug": "/docs/features/extending-tina"
       }
     ]
   },

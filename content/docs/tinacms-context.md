@@ -28,17 +28,6 @@ const App = ({ Component, pageProps }) => {
       branch="main"
       // Optional: Your identifier when connecting to Tina Cloud
       clientId="<some-id-from-tina-cloud>"
-      // Optional: A callback for altering the CMS object if needed
-      cmsCallback={cms => {
-        cms.sidebar.position = 'overlay'
-      }}
-      // Optional: A callback for altering the form generation if needed
-      formifyCallback={args => {
-        if (args.formConfig.id === 'getNavDocument') {
-          return args.skip()
-        }
-        return args.createForm(args.formConfig)
-      }}
       // Optional: A callback for altering the document creator plugin
       documentCreatorCallback={args => {
         onNewDocument: args =>
