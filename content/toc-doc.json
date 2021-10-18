@@ -1,17 +1,5 @@
 [
   {
-    "category": "Quick Start Guide",
-    "slug": "/guides/tina-cloud/starter/overview/",
-    "description": "Get a website running with Tina Cloud in no time!",
-    "items": [
-      {
-        "id": "/guides/tina-cloud/starter/overview/",
-        "slug": "/guides/tina-cloud/starter/overview/",
-        "title": "Tina Cloud Starter"
-      }
-    ]
-  },
-  {
     "category": "Setup",
     "slug": "/docs/tinacms-setup",
     "description": "Quickly Setup Tina on your site",
