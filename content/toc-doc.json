@@ -39,16 +39,9 @@
     "description": "The JavaScript toolkit for building content management interfaces",
     "items": [
       {
-        "id": "/docs/tinacms-context/",
-        "slug": "/docs/tinacms-context/",
-        "title": "Next.js APIs",
-        "items": [
-          {
-            "id": "/docs/tinacms-context-advanced/",
-            "slug": "/docs/tinacms-context-advanced/",
-            "title": "Advanced Usage"
-          }
-        ]
+        "id": "/docs/tinacms-context-advanced/",
+        "slug": "/docs/tinacms-context-advanced/",
+        "title": "Contextual Editing - Advanced Usage"
       },
       {
         "id": "/docs/cli-overview/",
