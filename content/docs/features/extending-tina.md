@@ -5,9 +5,13 @@ id: '/docs/features/extending-tina'
 
 TinaCMS exposes some hooks that make it easy to extend. Most of these hooks exist on the `<TinaCMS>` container
 
-## Customizing the form
+## Customizing a form or field with `formifyCallback`
 
-The root `<TinaCMS>` container has an optional `formifyCallback` parameter that can be added to customize the Tina form generation.
+With Tina, the form definition for a piece of content is generated automatically.
+
+If you'd like to control the output of those forms, tap into the `formifyCallback` callback parameter on the root `<TinaCMS>` container.
+
+### Customizing a field
 
 ```tsx
 // pages/_app.js
@@ -17,11 +21,17 @@ const App = ({ Component, pageProps }) => {
   return (
     <TinaCMS
       // ...
-      formifyCallback={args => {
-        if (args.formConfig.id === 'getNavDocument') {
-          return args.skip()
-        }
-        return args.createForm(args.formConfig)
+      formifyCallback={{ formConfig, createForm, skip }) => {
+        return createForm({
+          ...formConfig,
+          fields: formConfig.fields.map(field => {
+            if (field.name === 'title') {
+              // replace `text` with `textarea`
+              field.component = 'textarea'
+            }
+            return field
+          }),
+        })
       }}
     >
       {livePageProps => <Component {...livePageProps} />}
@@ -32,7 +42,34 @@ const App = ({ Component, pageProps }) => {
 export default App
 ```
 
-With `formifyCallback`, we can do things like hiding specific forms, customizing a field's UI, etc.
+### Customizing a form
+
+```tsx
+// pages/_app.js
+import TinaCMS from 'tinacms'
+
+const App = ({ Component, pageProps }) => {
+  return (
+    <TinaCMS
+      // ...
+      formifyCallback={({ formConfig, createForm, skip }) => {
+        if (formConfig.id === 'getSiteNavsDocument') {
+          const form = new Form(formConfig)
+          // The site nav will be a global plugin
+          cms.plugins.add(new GlobalFormPlugin(form))
+          return form
+        }
+
+        return createForm(formConfig)
+      }}
+    >
+      {livePageProps => <Component {...livePageProps} />}
+    </TinaCMS>
+  )
+}
+
+export default App
+```
 
 ## Customizing the CMS instance
 

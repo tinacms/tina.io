@@ -33,8 +33,8 @@
       },
       {
         "title": "Extending Tina",
-        "id": "/docs/extending-tina",
-        "slug": "/docs/features/extending-tina"
+        "id": "/docs/features/extending-tina/",
+        "slug": "/docs/features/extending-tina/"
       }
     ]
   },
@@ -44,15 +44,10 @@
     "description": "The JavaScript toolkit for building content management interfaces",
     "items": [
       {
-        "id": "/docs/tinacms-context-advanced/",
-        "slug": "/docs/tinacms-context-advanced/",
+        "id": "/docs/media-cloudinary/",
+        "slug": "/docs/media-cloudinary/",
         "title": "tinacms",
         "items": [
-          {
-            "id": "/docs/tinacms-context-advanced/",
-            "slug": "/docs/tinacms-context-advanced/",
-            "title": "Contextual Editing - Advanced Usage"
-          },
           {
             "title": "Media",
             "id": "/docs/media-cloudinary/",
