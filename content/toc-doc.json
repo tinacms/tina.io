@@ -12,6 +12,18 @@
     ]
   },
   {
+    "category": "Setup",
+    "slug": "/docs/tinacms-setup",
+    "description": "Quickly Setup Tina on your site",
+    "items": [
+      {
+        "id": "/docs/setup-overview/",
+        "slug": "/docs/setup-overview/",
+        "title": "Overview"
+      }
+    ]
+  },
+  {
     "category": "Basic Features",
     "slug": "/docs/tinacms-reference",
     "description": "The JavaScript toolkit for building content management interfaces",
