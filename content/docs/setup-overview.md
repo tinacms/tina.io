@@ -20,7 +20,9 @@ To run the starter, run:
 yarn dev
 ```
 
-To start editing, with the starter running, navigate to http://localhost:3000/admin.
+### Testing out Tina
+
+To start editing, with the starter running, navigate to http://localhost:3000/admin. This allows you to enter edit-mode. Now navigate back to any page, start making edits, and see your local markdown files being updated!.
 
 ## Manual Setup (on an existing site)
 
@@ -40,9 +42,13 @@ Now run you project along with the Tina graphql API with:
 yarn tina-dev
 ```
 
-Now navigate to http://localhost:3000/demo/blog/HelloWorld. This is a new page created for you for demo purposes. You won't be able to edit right away, you'll first need to enter edit mode.
+### Testing out Tina
 
-To enter edit mode, to enter edit mode, navigate to http://localhost:3000/admin.
+> Let's assume your local site runs on port 3000.
+
+Navigate to http://localhost:3000/demo/blog/HelloWorld. This is a new page created for you for demo purposes. You won't be able to edit right away, you'll first need to enter edit mode.
+
+To enter edit mode, navigate to http://localhost:3000/admin.
 
 Selecting the pencil in the bottom left allows you to edit the title and the body of the page right in the frontend. When you hit save, that will save your changes to the Markdown file.
 
