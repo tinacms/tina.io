@@ -286,23 +286,6 @@
         "title": "Tina Cloud Dashboard"
       },
       {
-        "id": "/docs/tina-cloud/beta-migration/",
-        "slug": "/docs/tina-cloud/migration-overview/",
-        "title": "Upgrading from Alpha to Beta",
-        "items": [
-          {
-            "id": "/docs/tina-cloud/beta-migration/",
-            "slug": "/docs/tina-cloud/beta-migration/",
-            "title": "The new dashboard"
-          },
-          {
-            "id": "/docs/tina-cloud/schema-migration/",
-            "slug": "/docs/tina-cloud/schema-migration/",
-            "title": "The new schema"
-          }
-        ]
-      },
-      {
         "id": "/docs/tina-cloud/faq/",
         "slug": "/docs/tina-cloud/faq/",
         "title": "FAQ"
