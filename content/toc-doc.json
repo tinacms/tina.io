@@ -286,6 +286,11 @@
         "title": "Tina Cloud Dashboard"
       },
       {
+        "id": "/docs/tina-cloud/using-app/",
+        "slug": "/docs/tina-cloud/using-app/",
+        "title": "Using an app"
+      },
+      {
         "id": "/docs/tina-cloud/faq/",
         "slug": "/docs/tina-cloud/faq/",
         "title": "FAQ"
