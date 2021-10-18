@@ -5,6 +5,11 @@
     "description": "Quickly Setup Tina on your site",
     "items": [
       {
+        "id": "/docs/",
+        "slug": "/docs/",
+        "title": "Overview"
+      },
+      {
         "id": "/docs/setup-overview/",
         "slug": "/docs/setup-overview/",
         "title": "Getting Started"
