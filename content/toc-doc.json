@@ -15,7 +15,23 @@
     "category": "Basic Features",
     "slug": "/docs/tinacms-reference",
     "description": "The JavaScript toolkit for building content management interfaces",
-    "items": []
+    "items": [
+      {
+        "title": "Content Modeling",
+        "id": "/docs/schema",
+        "slug": "/docs/schema/"
+      },
+      {
+        "title": "Data fetching",
+        "id": "/docs/features/data-fetching",
+        "slug": "/docs/features/data-fetching/"
+      },
+      {
+        "title": "Contextual Editing",
+        "id": "/docs/tinacms-context",
+        "slug": "/docs/tinacms-context/"
+      }
+    ]
   },
   {
     "category": "Reference",
@@ -39,11 +55,6 @@
         "slug": "/docs/cli-overview/",
         "title": "Tina Schema & CLI",
         "items": [
-          {
-            "title": "Content Modeling",
-            "id": "/docs/schema",
-            "slug": "/docs/schema/"
-          },
           {
             "title": "TinaCMS CLI",
             "id": "/docs/cli",
