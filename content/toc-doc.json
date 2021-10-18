@@ -1,13 +1,13 @@
 [
   {
-    "category": "Setup",
-    "slug": "/docs/tinacms-setup",
+    "category": "Introduction",
+    "slug": "/docs/setup-overview/",
     "description": "Quickly Setup Tina on your site",
     "items": [
       {
         "id": "/docs/setup-overview/",
         "slug": "/docs/setup-overview/",
-        "title": "Overview"
+        "title": "Getting Started"
       }
     ]
   },
@@ -41,12 +41,42 @@
       {
         "id": "/docs/tinacms-context-advanced/",
         "slug": "/docs/tinacms-context-advanced/",
-        "title": "Contextual Editing - Advanced Usage"
+        "title": "tinacms",
+        "items": [
+          {
+            "id": "/docs/tinacms-context-advanced/",
+            "slug": "/docs/tinacms-context-advanced/",
+            "title": "Contextual Editing - Advanced Usage"
+          },
+
+          {
+            "title": "GraphQL API",
+            "id": "/docs/graphql/",
+            "slug": "/docs/graphql/"
+          },
+          {
+            "title": "Media",
+            "id": "/docs/media-cloudinary/",
+            "slug": "/docs/media-cloudinary/"
+          },
+          {
+            "title": "Advanced Features",
+            "slug": "/docs/advanced-features/overview/",
+            "description": "Extended the functionalalility of TinaCMS",
+            "items": [
+              {
+                "title": "Custom Fields",
+                "id": "tinacms:custom-fields/",
+                "slug": "/docs/advanced-features/custom-fields/"
+              }
+            ]
+          }
+        ]
       },
       {
         "id": "/docs/cli-overview/",
         "slug": "/docs/cli-overview/",
-        "title": "Tina Schema & CLI",
+        "title": "@tinacms/cli",
         "items": [
           {
             "title": "TinaCMS CLI",
@@ -57,28 +87,6 @@
             "title": "Advanced Usage",
             "id": "/docs/schema-advanced/",
             "slug": "/docs/schema-advanced/"
-          }
-        ]
-      },
-      {
-        "title": "GraphQL API",
-        "id": "/docs/graphql/",
-        "slug": "/docs/graphql/"
-      },
-      {
-        "title": "Media",
-        "id": "/docs/media-cloudinary/",
-        "slug": "/docs/media-cloudinary/"
-      },
-      {
-        "title": "Advanced Features",
-        "slug": "/docs/advanced-features/overview/",
-        "description": "Extended the functionalalility of TinaCMS",
-        "items": [
-          {
-            "title": "Custom Fields",
-            "id": "tinacms:custom-fields/",
-            "slug": "/docs/advanced-features/custom-fields/"
           }
         ]
       },
