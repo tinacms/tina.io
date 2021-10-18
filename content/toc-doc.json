@@ -53,12 +53,6 @@
             "slug": "/docs/tinacms-context-advanced/",
             "title": "Contextual Editing - Advanced Usage"
           },
-
-          {
-            "title": "GraphQL API",
-            "id": "/docs/graphql/",
-            "slug": "/docs/graphql/"
-          },
           {
             "title": "Media",
             "id": "/docs/media-cloudinary/",
@@ -87,6 +81,11 @@
             "title": "TinaCMS CLI",
             "id": "/docs/cli",
             "slug": "/docs/cli/"
+          },
+          {
+            "title": "GraphQL API",
+            "id": "/docs/graphql/",
+            "slug": "/docs/graphql/"
           },
           {
             "title": "Advanced Usage",
