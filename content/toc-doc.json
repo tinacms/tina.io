@@ -13,7 +13,7 @@
   },
   {
     "category": "Basic Features",
-    "slug": "/docs/tinacms-reference",
+    "slug": "/docs/schema/",
     "description": "The JavaScript toolkit for building content management interfaces",
     "items": [
       {
@@ -40,7 +40,7 @@
   },
   {
     "category": "Reference",
-    "slug": "/docs/tinacms-reference",
+    "slug": "/docs/media-cloudinary/",
     "description": "The JavaScript toolkit for building content management interfaces",
     "items": [
       {

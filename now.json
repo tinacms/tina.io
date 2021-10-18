@@ -305,6 +305,10 @@
     {
       "source": "/docs/tinacms-context-advanced/",
       "destination": "docs/tinacms-context/"
+    },
+    {
+      "source": "/docs/tinacms-reference/",
+      "destination": "docs/tinacms-context/"
     }
   ]
 }
