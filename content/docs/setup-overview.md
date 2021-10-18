@@ -6,7 +6,7 @@ last_edited: '2021-10-18T15:51:56.737Z'
 
 ## Quick Setup
 
-From the command line, run:
+To quickly setup a new Tina starter, from the command line, run:
 
 ```bash,copy
 npx create-next-app --example https://github.com/tinacms/tina-cloud-starter.
@@ -38,7 +38,7 @@ Now run you project along with the Tina graphql API with:
 yarn tina-dev
 ```
 
-Now navigate to http://localhost:3000/demo/blog/HelloWorld. This is a new page created for you for demo purposes. You won't be able to edit right away.
+Now navigate to http://localhost:3000/demo/blog/HelloWorld. This is a new page created for you for demo purposes. You won't be able to edit right away, you'll first need to enter edit mode.
 
 To enter edit mode, to enter edit mode, navigate to http://localhost:3000/admin.
 
