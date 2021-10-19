@@ -1,6 +1,7 @@
 ---
 title: Data Fetching
 id: '/docs/features/data-fetching'
+next: '/docs/tinacms-context'
 ---
 
 There are essentially two touch points you'll need set up in order for Tina to work with your Next.js application or website.

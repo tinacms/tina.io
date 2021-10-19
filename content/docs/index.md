@@ -2,6 +2,7 @@
 title: Tina Docs
 id: introduction
 last_edited: '2021-07-27T15:51:56.737Z'
+next: /docs/setup-overview
 ---
 
 **Tina** contains multiple tools and applications designed to improve collaboration between **content writers** and **developers** who work on web content. Under the umbrella of Tina, there are two main components:

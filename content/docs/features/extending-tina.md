@@ -1,6 +1,7 @@
 ---
 title: Extending Tina
 id: '/docs/features/extending-tina'
+next: '/docs/tina-cloud'
 ---
 
 TinaCMS exposes some hooks that make it easy to extend. Most of these hooks exist on the `<TinaCMS>` container

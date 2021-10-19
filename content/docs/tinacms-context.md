@@ -1,6 +1,7 @@
 ---
 title: Contextual Editing
 id: '/docs/tinacms-context'
+next: '/docs/features/extending-tina'
 ---
 
 After modelling out content, and using Tina's API for data-fetching, we can add TinaCMS to our site's frontend and add contextual editing.
