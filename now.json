@@ -297,6 +297,18 @@
     {
       "source": "/packages/next-tinacms-cloudinary/(.*)",
       "destination": "/docs/media-cloudinary/"
+    },
+    {
+      "source": "/docs/",
+      "destination": "/docs/tina-cloud/"
+    },
+    {
+      "source": "/docs/tinacms-context-advanced/",
+      "destination": "/docs/tinacms-context/"
+    },
+    {
+      "source": "/docs/tinacms-reference/",
+      "destination": "/docs/tinacms-context/"
     }
   ]
 }

@@ -1,5 +1,7 @@
 ---
 title: Tina Cloud Dashboard
+id: '/docs/tina-cloud/dashboard'
+next: '/docs/tina-cloud/using-app'
 ---
 
 The **Tina Cloud Dashboard** is the interface for managing the administrative aspects of your content management. The dashboard allows you to create **apps**, and setup your **users**.

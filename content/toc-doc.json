@@ -1,18 +1,50 @@
 [
   {
-    "category": "Quick Start Guide",
-    "slug": "/guides/tina-cloud/starter/overview/",
-    "description": "Get a website running with Tina Cloud in no time!",
+    "category": "Introduction",
+    "slug": "/docs/",
+    "description": "Quickly Setup Tina on your site",
     "items": [
       {
-        "id": "/guides/tina-cloud/starter/overview/",
-        "slug": "/guides/tina-cloud/starter/overview/",
-        "title": "Tina Cloud Starter"
+        "id": "/docs/",
+        "slug": "/docs/",
+        "title": "Overview"
+      },
+      {
+        "id": "/docs/setup-overview/",
+        "slug": "/docs/setup-overview/",
+        "title": "Getting Started"
       }
     ]
   },
   {
-    "category": "Tina Cloud",
+    "category": "Basic Features",
+    "slug": "/docs/schema/",
+    "description": "The JavaScript toolkit for building content management interfaces",
+    "items": [
+      {
+        "title": "Content Modeling",
+        "id": "/docs/schema",
+        "slug": "/docs/schema/"
+      },
+      {
+        "title": "Data Fetching",
+        "id": "/docs/features/data-fetching",
+        "slug": "/docs/features/data-fetching/"
+      },
+      {
+        "title": "Contextual Editing",
+        "id": "/docs/tinacms-context",
+        "slug": "/docs/tinacms-context/"
+      },
+      {
+        "title": "Extending Tina",
+        "id": "/docs/features/extending-tina/",
+        "slug": "/docs/features/extending-tina/"
+      }
+    ]
+  },
+  {
+    "category": "Going To Production",
     "slug": "/docs/tina-cloud",
     "description": "Powerful Git-based content management for teams",
     "items": [
@@ -27,21 +59,9 @@
         "title": "Tina Cloud Dashboard"
       },
       {
-        "id": "/docs/tina-cloud/beta-migration/",
-        "slug": "/docs/tina-cloud/migration-overview/",
-        "title": "Upgrading from Alpha to Beta",
-        "items": [
-          {
-            "id": "/docs/tina-cloud/beta-migration/",
-            "slug": "/docs/tina-cloud/beta-migration/",
-            "title": "The new dashboard"
-          },
-          {
-            "id": "/docs/tina-cloud/schema-migration/",
-            "slug": "/docs/tina-cloud/schema-migration/",
-            "title": "The new schema"
-          }
-        ]
+        "id": "/docs/tina-cloud/using-app/",
+        "slug": "/docs/tina-cloud/using-app/",
+        "title": "Using an app"
       },
       {
         "id": "/docs/tina-cloud/faq/",
@@ -51,54 +71,15 @@
     ]
   },
   {
-    "category": "TinaCMS",
-    "slug": "/docs/tinacms-reference",
+    "category": "Reference",
+    "slug": "/docs/media-cloudinary/",
     "description": "The JavaScript toolkit for building content management interfaces",
     "items": [
       {
-        "title": "API Reference",
-        "id": "/docs/tinacms-reference/",
-        "slug": "/docs/tinacms-reference/",
+        "id": "/docs/media-cloudinary/",
+        "slug": "/docs/media-cloudinary/",
+        "title": "tinacms",
         "items": [
-          {
-            "id": "/docs/tinacms-context/",
-            "slug": "/docs/tinacms-context/",
-            "title": "Next.js APIs",
-            "items": [
-              {
-                "id": "/docs/tinacms-context-advanced/",
-                "slug": "/docs/tinacms-context-advanced/",
-                "title": "Advanced Usage"
-              }
-            ]
-          },
-          {
-            "id": "/docs/cli-overview/",
-            "slug": "/docs/cli-overview/",
-            "title": "Tina Schema & CLI",
-            "items": [
-              {
-                "title": "Content Modeling",
-                "id": "/docs/schema",
-                "slug": "/docs/schema/"
-              },
-              {
-                "title": "TinaCMS CLI",
-                "id": "/docs/cli",
-                "slug": "/docs/cli/"
-              },
-              {
-                "title": "Advanced Usage",
-                "id": "/docs/schema-advanced/",
-                "slug": "/docs/schema-advanced/"
-              }
-            ]
-          },
-          {
-            "title": "GraphQL API",
-            "id": "/docs/graphql/",
-            "slug": "/docs/graphql/"
-          },
           {
             "title": "Media",
             "id": "/docs/media-cloudinary/",
@@ -115,182 +96,204 @@
                 "slug": "/docs/advanced-features/custom-fields/"
               }
             ]
+          }
+        ]
+      },
+      {
+        "id": "/docs/cli-overview/",
+        "slug": "/docs/cli-overview/",
+        "title": "@tinacms/cli",
+        "items": [
+          {
+            "title": "TinaCMS CLI",
+            "id": "/docs/cli",
+            "slug": "/docs/cli/"
           },
           {
-            "title": "Legacy API",
-            "slug": "/docs/toolkit/",
-            "expandOnSelect": true,
-            "description": "The JavaScript toolkit for building content management interfaces",
+            "title": "GraphQL API",
+            "id": "/docs/graphql/",
+            "slug": "/docs/graphql/"
+          },
+          {
+            "title": "Advanced Usage",
+            "id": "/docs/schema-advanced/",
+            "slug": "/docs/schema-advanced/"
+          }
+        ]
+      },
+      {
+        "title": "Legacy API",
+        "slug": "/docs/toolkit/",
+        "expandOnSelect": true,
+        "description": "The JavaScript toolkit for building content management interfaces",
+        "items": [
+          {
+            "title": "Content Management",
+            "id": "/docs/content-management/",
+            "slug": "/docs/content-management/"
+          },
+          { "id": "/docs/cms/", "slug": "/docs/cms/", "title": "The CMS" },
+          {
+            "title": "Forms",
+            "id": "forms/",
+            "slug": "/docs/forms/"
+          },
+          {
+            "title": "Fields",
+            "id": "fields/",
+            "slug": "/docs/fields/",
             "items": [
               {
-                "title": "Content Management",
-                "id": "/docs/content-management/",
-                "slug": "/docs/content-management/"
+                "id": "/docs/fields/text/",
+                "slug": "/docs/fields/text/",
+                "title": "Text"
               },
-              { "id": "/docs/cms/", "slug": "/docs/cms/", "title": "The CMS" },
               {
-                "title": "Forms",
+                "id": "/docs/fields/textarea/",
+                "slug": "/docs/fields/textarea/",
+                "title": "Text Area"
+              },
+
+              {
+                "id": "/docs/fields/number/",
+                "slug": "/docs/fields/number/",
+                "title": "Number"
+              },
+
+              {
+                "id": "/docs/fields/image/",
+                "slug": "/docs/fields/image/",
+                "title": "Image"
+              },
+              {
+                "id": "/docs/fields/color/",
+                "slug": "/docs/fields/color/",
+                "title": "Color"
+              },
+              {
+                "id": "/docs/fields/toggle/",
+                "slug": "/docs/fields/toggle/",
+                "title": "Toggle"
+              },
+              {
+                "id": "/docs/fields/radio-group/",
+                "slug": "/docs/fields/radio-group/",
+                "title": "Radio Group"
+              },
+              {
+                "id": "/docs/fields/select/",
+                "slug": "/docs/fields/select/",
+                "title": "Select"
+              },
+              {
+                "id": "/docs/fields/tags/",
+                "slug": "/docs/fields/tags/",
+                "title": "Tags"
+              },
+              {
+                "id": "/docs/fields/list/",
+                "slug": "/docs/fields/list/",
+                "title": "List"
+              },
+              {
+                "id": "/docs/fields/group/",
+                "slug": "/docs/fields/group/",
+                "title": "Group"
+              },
+              {
+                "id": "/docs/fields/group-list/",
+                "slug": "/docs/fields/group-list/",
+                "title": "Group List"
+              },
+              {
+                "id": "/docs/fields/blocks/",
+                "slug": "/docs/fields/blocks/",
+                "title": "Blocks"
+              },
+              {
+                "id": "/docs/fields/date/",
+                "slug": "/docs/fields/date/",
+                "title": "Date & Time"
+              },
+              {
+                "id": "/docs/fields/markdown/",
+                "slug": "/docs/fields/markdown/",
+                "title": "Markdown"
+              },
+              {
+                "id": "/docs/fields/html/",
+                "slug": "/docs/fields/html/",
+                "title": "HTML"
+              },
+              {
+                "id": "/docs/fields/custom-fields/",
+                "slug": "/docs/fields/custom-fields/",
+                "title": "Custom Fields"
+              }
+            ]
+          },
+          {
+            "title": "Content Creators",
+            "id": "content-creator",
+            "slug": "/docs/plugins/content-creators/"
+          },
+          {
+            "id": "/docs/media",
+            "slug": "/docs/media/",
+            "title": "Media"
+          },
+          {
+            "id": "/docs/api",
+            "slug": "/docs/apis/",
+            "title": "Using External APIs"
+          },
+          {
+            "title": "User Interface",
+            "id": "user-interface/",
+            "slug": "/docs/user-interface/",
+            "items": [
+              {
+                "id": "/docs/sidebar-toolbar/",
+                "title": "Sidebar & Toolbar",
+                "slug": "/docs/sidebar-toolbar/"
+              },
+
+              {
+                "id": "/docs/ui/alerts/",
+                "title": "Alerts",
+                "slug": "/docs/ui/alerts/"
+              },
+              {
+                "id": "/docs/ui/styles/",
+                "title": "Custom Styles",
+                "slug": "/docs/ui/styles/"
+              }
+            ]
+          },
+          {
+            "title": "Extending Tina",
+            "id": "/docs/extending-tina/",
+            "slug": "/docs/extending-tina/",
+            "items": [
+              {
+                "id": "/docs/events/",
+                "slug": "/docs/events/",
+                "title": "Events"
+              },
+              {
+                "title": "Plugins",
                 "id": "forms/",
-                "slug": "/docs/forms/"
+                "slug": "/docs/plugins/"
               },
               {
-                "title": "Fields",
-                "id": "fields/",
-                "slug": "/docs/fields/",
-                "items": [
-                  {
-                    "id": "/docs/fields/text/",
-                    "slug": "/docs/fields/text/",
-                    "title": "Text"
-                  },
-                  {
-                    "id": "/docs/fields/textarea/",
-                    "slug": "/docs/fields/textarea/",
-                    "title": "Text Area"
-                  },
-
-                  {
-                    "id": "/docs/fields/number/",
-                    "slug": "/docs/fields/number/",
-                    "title": "Number"
-                  },
-
-                  {
-                    "id": "/docs/fields/image/",
-                    "slug": "/docs/fields/image/",
-                    "title": "Image"
-                  },
-                  {
-                    "id": "/docs/fields/color/",
-                    "slug": "/docs/fields/color/",
-                    "title": "Color"
-                  },
-                  {
-                    "id": "/docs/fields/toggle/",
-                    "slug": "/docs/fields/toggle/",
-                    "title": "Toggle"
-                  },
-                  {
-                    "id": "/docs/fields/radio-group/",
-                    "slug": "/docs/fields/radio-group/",
-                    "title": "Radio Group"
-                  },
-                  {
-                    "id": "/docs/fields/select/",
-                    "slug": "/docs/fields/select/",
-                    "title": "Select"
-                  },
-                  {
-                    "id": "/docs/fields/tags/",
-                    "slug": "/docs/fields/tags/",
-                    "title": "Tags"
-                  },
-                  {
-                    "id": "/docs/fields/list/",
-                    "slug": "/docs/fields/list/",
-                    "title": "List"
-                  },
-                  {
-                    "id": "/docs/fields/group/",
-                    "slug": "/docs/fields/group/",
-                    "title": "Group"
-                  },
-                  {
-                    "id": "/docs/fields/group-list/",
-                    "slug": "/docs/fields/group-list/",
-                    "title": "Group List"
-                  },
-                  {
-                    "id": "/docs/fields/blocks/",
-                    "slug": "/docs/fields/blocks/",
-                    "title": "Blocks"
-                  },
-                  {
-                    "id": "/docs/fields/date/",
-                    "slug": "/docs/fields/date/",
-                    "title": "Date & Time"
-                  },
-                  {
-                    "id": "/docs/fields/markdown/",
-                    "slug": "/docs/fields/markdown/",
-                    "title": "Markdown"
-                  },
-                  {
-                    "id": "/docs/fields/html/",
-                    "slug": "/docs/fields/html/",
-                    "title": "HTML"
-                  },
-                  {
-                    "id": "/docs/fields/custom-fields/",
-                    "slug": "/docs/fields/custom-fields/",
-                    "title": "Custom Fields"
-                  }
-                ]
+                "title": "Screens",
+                "id": "screens/",
+                "slug": "/docs/plugins/screens/"
               },
               {
-                "title": "Content Creators",
-                "id": "content-creator",
-                "slug": "/docs/plugins/content-creators/"
-              },
-              {
-                "id": "/docs/media",
-                "slug": "/docs/media/",
-                "title": "Media"
-              },
-              {
-                "id": "/docs/api",
-                "slug": "/docs/apis/",
-                "title": "Using External APIs"
-              },
-              {
-                "title": "User Interface",
-                "id": "user-interface/",
-                "slug": "/docs/user-interface/",
-                "items": [
-                  {
-                    "id": "/docs/sidebar-toolbar/",
-                    "title": "Sidebar & Toolbar",
-                    "slug": "/docs/sidebar-toolbar/"
-                  },
-
-                  {
-                    "id": "/docs/ui/alerts/",
-                    "title": "Alerts",
-                    "slug": "/docs/ui/alerts/"
-                  },
-                  {
-                    "id": "/docs/ui/styles/",
-                    "title": "Custom Styles",
-                    "slug": "/docs/ui/styles/"
-                  }
-                ]
-              },
-              {
-                "title": "Extending Tina",
-                "id": "/docs/extending-tina/",
-                "slug": "/docs/extending-tina/",
-                "items": [
-                  {
-                    "id": "/docs/events/",
-                    "slug": "/docs/events/",
-                    "title": "Events"
-                  },
-                  {
-                    "title": "Plugins",
-                    "id": "forms/",
-                    "slug": "/docs/plugins/"
-                  },
-                  {
-                    "title": "Screens",
-                    "id": "screens/",
-                    "slug": "/docs/plugins/screens/"
-                  },
-                  {
-                    "title": "Toolbar Widgets",
-                    "id": "toolbar:widget/",
-                    "slug": "/docs/plugins/toolbar-widgets/"
-                  }
-                ]
+                "title": "Toolbar Widgets",
+                "id": "toolbar:widget/",
+                "slug": "/docs/plugins/toolbar-widgets/"
               }
             ]
           }

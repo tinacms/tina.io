@@ -1,5 +1,7 @@
 ---
 title: Content Modeling with TinaCMS
+id: /docs/schema/
+next: '/docs/features/data-fetching'
 ---
 
 The Tina schema is a way of defining the shape of your content for your entire site. With traditional content management systems you may have done this sort of content modeling via GUI, however, given its tight coupling to Git, TinaCMS considers the filesystem the ultimate source of truth and leverages a "content-modeling as code" approach.
@@ -162,31 +164,31 @@ For a `string` type you'll get the [`text` field](/docs/fields/text/) by default
 }
 ```
 
-The `component` property can be any [registered field](/docs/advanced-features/custom-fields/#2-register-a-field-plugin). Below is a list of default fields. 
+The `component` property can be any [registered field](/docs/advanced-features/custom-fields/#2-register-a-field-plugin). Below is a list of default fields.
+
 ### Default Fields
-* [text](/docs/fields/text/)
-* [textarea](/docs/fields/textarea/)
-* [number](/docs/fields/number/)
-* [image](/docs/fields/image/)
-* [color](/docs/fields/color/)
-* [toggle](/docs/fields/toggle/)
-* [radio-group](/docs/fields/radio-group/)
-* [select](/docs/fields/select/)
-* [tags](/docs/fields/tags/)
-* [list](/docs/fields/list/)
-* [group](/docs/fields/group/)
-* [group-list](/docs/fields/group-list/)
-* [blocks](/docs/fields/blocks/)
-* [date](/docs/fields/date/)
+
+- [text](/docs/fields/text/)
+- [textarea](/docs/fields/textarea/)
+- [number](/docs/fields/number/)
+- [image](/docs/fields/image/)
+- [color](/docs/fields/color/)
+- [toggle](/docs/fields/toggle/)
+- [radio-group](/docs/fields/radio-group/)
+- [select](/docs/fields/select/)
+- [tags](/docs/fields/tags/)
+- [list](/docs/fields/list/)
+- [group](/docs/fields/group/)
+- [group-list](/docs/fields/group-list/)
+- [blocks](/docs/fields/blocks/)
+- [date](/docs/fields/date/)
 
 Some fields must be imported and registered from [`react-tinacms-editor`](/packages/react-tinacms-editor/)
 
-* [markdown](/docs/fields/markdown/)
-* [html](/docs/fields/html/)
-
+- [markdown](/docs/fields/markdown/)
+- [html](/docs/fields/html/)
 
 To extend these fields with validation logic or to provide a custom fields component a [field plugin can be registered](/docs/advanced-features/custom-fields/).
-
 
 ## Nonscalar Types
 

@@ -2,6 +2,7 @@
 title: Creating our Application
 last_edited: '2021-08-13T17:36:53.377Z'
 ---
+
 ## Create a Next.js application
 
 We are going to be using the Next.js Blog Starter for this guide, so from your terminal run the following:
@@ -36,10 +37,10 @@ Now that we have a basic Tina setup you can launch your application using the fo
 yarn tina-dev
 ```
 
-Once you have launch the application you have a couple of new URLS:
+Once you have launched the application you have a couple of new URLS:
 
-* `http://localhost:3000/demo/blog/HelloWorld`
-* `http://localhost:4001/altair/`
+- `http://localhost:3000/demo/blog/HelloWorld`
+- `http://localhost:4001/altair/`
 
 The first URL brings you to a demo of TinaCMS, it will show you the power of Tina and also give you some informational links you check out. If you navigate to http://localhost:3000/demo/blog/HelloWorld, you won't be able to edit right away. Firstly you need to enter edit mode, to enter edit mode, navigate to http://localhost:3000/admin you will enter into edit mode. Selecting the pencil in the bottom left allows you to edit the title and the body of the page right in the frontend. When you hit save, that will save your changes to the Markdown file.
 
