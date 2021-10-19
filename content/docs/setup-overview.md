@@ -31,8 +31,6 @@ The tina `init` command can be used to bootstrap Tina within your existing NextJ
 
 From the command line, run:
 
-We created a quick way to bootstrap a Tina application to show the power of visual editing, from your terminal enter the following command:
-
 ```bash,copy
 npx @tinacms/cli@latest init
 ```
