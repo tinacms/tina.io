@@ -78,9 +78,9 @@
       "actions": [
         {
           "variant": "orange",
-          "label": "Follow our guides",
+          "label": "Let's get started!",
           "icon": "arrowRight",
-          "url": "/guides/"
+          "url": "/docs/setup-overview/"
         }
       ],
       "items": [
