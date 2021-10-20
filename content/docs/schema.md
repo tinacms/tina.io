@@ -194,7 +194,7 @@ To extend these fields with validation logic or to provide a custom fields compo
 
 If _scalar_ types are the building blocks for a schema, _nonscalar_ types allow you to represent almost any data structure you could want for you content.
 
-### The `object` property
+### The `object` type
 
 An object type takes either a `fields` or `templates` property (just like the `collections` definition). The simplest kind of `object` is one with `fields`:
 
