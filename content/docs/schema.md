@@ -6,7 +6,7 @@ next: '/docs/features/data-fetching'
 
 The Tina schema is a way of defining the shape of your content for your entire site. With traditional content management systems you may have done this sort of content modeling via GUI, however, given its tight coupling to Git, TinaCMS considers the filesystem the ultimate source of truth and leverages a "content-modeling as code" approach.
 
-To that end, your schema is defined in a file called `.tina/schema.ts` (only `.ts` is supported for now).
+Your schema is defined in a file called `.tina/schema.ts` (only `.ts` is supported for now).
 
 ```ts
 // .tina/schema.ts
@@ -55,15 +55,15 @@ export default defineSchema({
 
 # `collections`
 
-The top-level key in the schema is an array of _collections_, a `collection` informs the API about _where_ to save content. You can see from the example that a `posts` document would be stored in `content/posts`. You can supply either `fields` or `templates` to define shape of your collection. If all your collection documents share the same fields, just use `fields`, but if you need to use different templates inside a collection (e.g about page, pricing page, jobs page inside a page collection) then use templates.
+The top-level key in the schema is an array of _collections_, a `collection`
+maps to a directory (through the `path` property), and defines the shape for its content.
 
 ```ts
 {
   label: 'Blog Posts',
   name: 'post',          // The unique identifier for your collection
   path: 'content/posts', // Where your collection documents will be stored
-  format: "json" .       // Documents are stored as markdown by default
-  // You can define either an array of `fields` OR `templates`
+  format: "json" .       // Documents are stored as markdown by default  // You can define either an array of `fields` OR `templates`
   fields: [...]
   // OR
   templates: [...]
