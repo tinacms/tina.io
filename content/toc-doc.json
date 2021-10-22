@@ -76,26 +76,14 @@
     "description": "The JavaScript toolkit for building content management interfaces",
     "items": [
       {
-        "id": "/docs/media-cloudinary/",
-        "slug": "/docs/media-cloudinary/",
+        "id": "/docs/tinacms-package/",
+        "slug": "/docs/tinacms-package/",
         "title": "tinacms",
         "items": [
           {
-            "title": "Media",
-            "id": "/docs/media-cloudinary/",
-            "slug": "/docs/media-cloudinary/"
-          },
-          {
-            "title": "Advanced Features",
-            "slug": "/docs/advanced-features/overview/",
-            "description": "Extended the functionalalility of TinaCMS",
-            "items": [
-              {
-                "title": "Custom Fields",
-                "id": "tinacms:custom-fields/",
-                "slug": "/docs/advanced-features/custom-fields/"
-              }
-            ]
+            "title": "Custom Fields",
+            "id": "tinacms:custom-fields/",
+            "slug": "/docs/advanced-features/custom-fields/"
           }
         ]
       },
@@ -120,6 +108,11 @@
             "slug": "/docs/schema-advanced/"
           }
         ]
+      },
+      {
+        "title": "next-tinacms-cloudinary",
+        "id": "/docs/media-cloudinary/",
+        "slug": "/docs/media-cloudinary/"
       },
       {
         "title": "Legacy API",
