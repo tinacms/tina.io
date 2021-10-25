@@ -32,7 +32,7 @@ return(
         <CalloutWrapper type={backgroundColor[callout.type]} >
           <CalloutLabel >{label[callout.type] || callout.type}</CalloutLabel>
           <CalloutText textColor={textColor[callout.type] || textColor.default}>{callout?.text}</CalloutText>
-        ß</CalloutWrapper>
+        </CalloutWrapper>
 )}
 ```
 
@@ -80,7 +80,6 @@ const components = {
 };
 
 // Code removed for simplification
-ß
 <TinaMarkdown components={components}>
           {props.data.getDocsDocument.data.body}
 </TinaMarkdown>
