@@ -315,3 +315,30 @@ This will result in a resolvable node in your GraphQL structure:
 The resulting field in your TinaCMS form will be a `select` field, whose `options` are all of the documents in the given collections.
 
 > Note: _reverse_ relationships are not yet supported. For example, you'd likely want to view all of a given `author`'s `posts`. This is on our roadmap but not yet supported.
+
+### The `rich-text` type
+
+Provides structured content which can _embed_ custom templates that you define, much like the `object` type.
+
+> ⚡️ Heads up! Rich-text works best when coupled with the `<TinaMarkdown>` component. Learn more about how to work with `rich-text` [here](/docs/mdx/)
+
+```js
+{
+  type: 'rich-text',
+  label: 'Body',
+  name: 'body',
+  templates: [
+    {
+      name: 'Cta',
+      label: 'Call to Action',
+      fields: [
+        {
+          type: 'string',
+          name: 'heading',
+          label: 'Heading',
+        },
+      ],
+    },
+  ],
+},
+```
