@@ -18,7 +18,7 @@ export function CloudBanner() {
                 <TinaCloudWordmark />
               </span>{' '}
                Now supports MDX components. Give the power of MDX to your content creators!
-            </p>ß
+            </p>
           </span>
           <Link href="/blog/tina-supports-mdx/">
             <a className="link">
