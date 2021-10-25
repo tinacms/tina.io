@@ -84,6 +84,11 @@
             "title": "Custom Fields",
             "id": "tinacms:custom-fields/",
             "slug": "/docs/advanced-features/custom-fields/"
+          },
+          {
+            "title": "Rich text",
+            "id": "mdx",
+            "slug": "/docs/mdx/"
           }
         ]
       },

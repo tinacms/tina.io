@@ -58,7 +58,14 @@ const mockFileSystem = {
   'content/posts/voteForPedro.json': JSON.stringify({
     title: "Vote For Pedro",
     category: "politics",
-    author:  "content/authors/napolean.json"
+    author:  "content/authors/napolean.json",
+    body: `
+## Hello, world!
+
+This is some text
+
+<Cta heading="Welcome"/>
+`
   }),
   'content/authors/napolean.json': JSON.stringify({
     name: 'Napolean'
@@ -88,6 +95,25 @@ const config: TinaCloudSchema = {
           label: 'Author',
           name: 'author',
           collections: ['author'],
+        },
+        {
+          type: 'rich-text',
+          label: 'Body',
+          name: 'body',
+          isBody: true,
+          templates: [
+            {
+              name: "Cta",
+              label: "Call to Action",
+              fields: [
+                {
+                  type: "string",
+                  name: "heading",
+                  label: "Heading"
+                },
+              ]
+            }
+          ]
         },
       ],
     },
