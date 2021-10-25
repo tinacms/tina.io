@@ -7,7 +7,7 @@ last_edited: '2021-10-26T08:00:00-04:00'
 
 The team at Tina is dedicated to revolutionizing the CMS space. We were the first to offer contextual editing in real-time which enabled teams to be more productive. Now we are introducing the world’s first UI editor for MDX. This empowers content teams to add components to a page with a single click. 
 
-<iframe width="560" height="315" src="https://youtu.be/yYysK7rCNM4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true"></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/yYysK7rCNM4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true"></iframe>
 
 ## Why MDX?
 
@@ -28,14 +28,11 @@ Create a component as you normally would and use props for any part you would li
 ```javascript
 ...
 export default function Callout({callout}) {
-
-return(
-        
-  <CalloutWrapper type={backgroundColor[callout.type]} >
-    <CalloutLabel >{label[callout.type] || callout.type}</CalloutLabel>
-    <CalloutText textColor={textColor[callout.type] || textColor.default}>{callout?.text}</CalloutText>
-  </CalloutWrapper>
-    
+return(  
+        <CalloutWrapper type={backgroundColor[callout.type]} >
+          <CalloutLabel >{label[callout.type] || callout.type}</CalloutLabel>
+          <CalloutText textColor={textColor[callout.type] || textColor.default}>{callout?.text}</CalloutText>
+        ß</CalloutWrapper>
 )}
 ```
 
@@ -75,13 +72,15 @@ return(
 //imports
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import Callout from "../../blocks/callout-block";
+
 const components = {
   Callout: (props) => {
     return <Callout callout={props} />;
   },
 };
-// more code removed for simplification
 
+// Code removed for simplification
+ß
 <TinaMarkdown components={components}>
           {props.data.getDocsDocument.data.body}
 </TinaMarkdown>
