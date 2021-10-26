@@ -106,7 +106,7 @@ type TinaMarkdown = ({
 }) => JSX.Element
 ```
 
-## Differences to other MDX implementations
+## Differences from other MDX implementations
 
 If you've worked with MDX before, you know that there's usually a _compilation_ step which turns your `.mdx` file into JavaScript code.
 This works really well for developers who can access their files directly, but it creates problems when editing content from a rich-text interface.
