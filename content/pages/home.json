@@ -11,12 +11,6 @@
       "actions": [
         {
           "variant": "orange",
-          "label": "Try Demo",
-          "icon": "arrowRight",
-          "url": "https://tina-tailwind-sidebar-demo-git-main-tinacms.vercel.app/"
-        },
-        {
-          "variant": "ghost",
           "label": "Get Started",
           "icon": "",
           "url": "https://app.tina.io/quickstart"
