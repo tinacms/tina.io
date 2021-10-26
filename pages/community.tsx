@@ -110,6 +110,23 @@ function CommunityPage({ file: community, metadata, preview }) {
                   </InfoText>
                   <ButtonGroup>
                     <DynamicLink
+                      href={'https://github.com/tinacms/tinacms/discussions'}
+                      passHref
+                    >
+                      <Button color="white" as="a">
+                        <TinaIconSvg
+                          // @ts-ignore
+                          style={{
+                            color: '#EC4815',
+                            height: '1.675rem',
+                            width: 'auto',
+                            margin: '0 0.5rem 0 0.125rem',
+                          }}
+                        />{' '}
+                        Discussion
+                      </Button>
+                    </DynamicLink>
+                    <DynamicLink
                       href={'https://discord.com/invite/zumN63Ybpf'}
                       passHref
                     >
@@ -123,23 +140,6 @@ function CommunityPage({ file: community, metadata, preview }) {
                           }}
                         />{' '}
                         Discord
-                      </Button>
-                    </DynamicLink>
-                    <DynamicLink
-                      href={'https://community.tinacms.org'}
-                      passHref
-                    >
-                      <Button color="white" as="a">
-                        <TinaIconSvg
-                          // @ts-ignore
-                          style={{
-                            color: '#EC4815',
-                            height: '1.675rem',
-                            width: 'auto',
-                            margin: '0 0.5rem 0 0.125rem',
-                          }}
-                        />{' '}
-                        Forum
                       </Button>
                     </DynamicLink>
                     <DynamicLink
