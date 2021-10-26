@@ -123,7 +123,7 @@ Found unregistered JSX or HTML: <Cta>. Please ensure all structured elements hav
 
 ### All content must be _serializable_
 
-When we say serializable, we mean that they must not be JavaScript expressions the would need to be executed at any point.
+When we say serializable, we mean that they must not be JavaScript expressions that would need to be executed at any point.
 
 - No support for `import`/`export`
 - No support for JavaScript expressions (eg. `const a = 2`, `console.log("Hello")`)
