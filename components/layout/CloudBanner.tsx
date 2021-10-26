@@ -17,13 +17,13 @@ export function CloudBanner() {
               <span className="wordmark">
                 <TinaCloudWordmark />
               </span>{' '}
-              is in Beta. Allow any team member to edit content!
+               Now supports MDX components. Give the power of MDX to your content creators!
             </p>
           </span>
-          <Link href="/blog/tina-is-in-beta/">
+          <Link href="/blog/tina-supports-mdx/">
             <a className="link">
               <span className="desktop">Read The Announcement</span>
-              <span className="mobile">Tina Cloud is in Beta</span>
+              <span className="mobile">Tina Cloud supports MDX componentsß</span>
               <IconRight />
             </a>
           </Link>
