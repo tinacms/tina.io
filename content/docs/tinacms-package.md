@@ -20,7 +20,7 @@ yarn add tinacms
 
 ## `<TinaCMS>`
 
-To make data editable live on your site, you'll need to set up the TinaCMS context. The default import from `tinacms` is a context provider which sets up everything for you. You'll notice we're using a render prop pattern to pass `livePageProps` into your component.
+To allow editing on your live site, you'll need to set up the TinaCMS context. The default import from `tinacms` is a context provider which sets up everything for you. You'll notice we're using a render prop pattern to pass `livePageProps` into your component.
 
 ```tsx
 // pages/_app.js
