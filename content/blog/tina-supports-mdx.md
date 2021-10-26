@@ -9,13 +9,15 @@ The team at Tina is dedicated to revolutionizing the CMS space. We were the firs
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/yYysK7rCNM4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true"></iframe>
 
+You can see our starter repository on our [GitHub](https://github.com/tinacms/tina-docs-starter) or select `Documentation Starter` when going through our [quickstart](https://app.tina.io/quickstart?utm_source=blog&utm_medium=link&utm_campaign=mdx_announcement) flow.
+
 ## Why MDX?
 
 MDX provides the ability to write JSX into Markdown files, which gives developers the ability to create content that is dynamic, interactive, and customizable. The problem with MDX, by nature, is you need to have some technical understanding to be able to both use and create content using MDX. This is where we have empowered non-technical members of your team to leverage reusable components with a single click. This means that content teams can move quickly and developers can focus on other projects. 
 
 ## How to start using MDX?
 
-We have made the developer experience a breeze, below are the steps to start using MDX:
+We have made the developer experience a breeze, you can check out our [documentation](/docs/mdx/) or check out the steps to start using MDX :
 
 ### Update to the latest version Tina
 
@@ -85,5 +87,7 @@ const components = {
 </TinaMarkdown>
 ```
 
-You can see an example repository on our [GitHub](https://github.com/tinacms/tina-docs-example) or select `Documentation Starter` when going through our [quickstart](https://app.tina.io/quickstart) flow. 
+### Ready to get started?
+
+You can see our starter repository on our [GitHub](https://github.com/tinacms/tina-docs-starter) or select `Documentation Starter` when going through our [quickstart](https://app.tina.io/quickstart?utm_source=blog&utm_medium=link&utm_campaign=mdx_announcement) flow.
 
