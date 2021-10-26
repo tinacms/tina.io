@@ -86,7 +86,7 @@ export default App
 
 ## `staticRequest`
 
-Since TinaCMS only supports Next.js sites using Static Site Generation, `staticRequest` is all you need to handle data fetching:
+Since TinaCMS currently only supports Next.js sites using Static Site Generation, `staticRequest` is all you need to handle data fetching:
 
 ```tsx
 // pages/posts/[filename].js
