@@ -6,7 +6,6 @@ import { Overlay } from '../ui'
 import { DocumentationNavigation } from 'components/DocumentationNavigation'
 import { Footer } from './Footer'
 import { DocsTextWrapper } from './DocsTextWrapper'
-import { FeedbackForm } from 'components/forms'
 
 interface DocsLayoutProps {
   navItems: any
@@ -28,7 +27,6 @@ export const DocsLayout = React.memo(
           <DocsMain>
             <DocsTextWrapper>{children}</DocsTextWrapper>
           </DocsMain>
-          <FeedbackForm />
           <Footer light />
         </DocsLayoutGrid>
       </>
