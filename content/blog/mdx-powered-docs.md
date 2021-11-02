@@ -5,7 +5,7 @@ author: James Perkins
 last_edited: '2021-11-02T08:00:00-04:00'
 ---
 
-When we released our MDX Support (link), we wanted to create a real world application that showed the power of Tina and MDX. We knew that documentation is important to teams and the offerings in the market are lacking features that could bring collaboration.
+When we released our [MDX Support](/docs/mdx/), we wanted to create a real world application that showed the power of Tina and MDX. We knew that documentation is important to teams and the offerings in the market are lacking features that could bring collaboration.
 
 ![Docs_Starter_Example.mp4](https://res.cloudinary.com/tina-demos/video/upload/v1635858935/Docs_Starter_Example_ym1e5t.gif)
 
