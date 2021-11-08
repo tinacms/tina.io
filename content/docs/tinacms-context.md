@@ -97,9 +97,3 @@ export default GoToEditPage
 ```
 
 Note that the `tinacms/dist/edit-state (>2kb)` code _will_ be in your production bundle with this pattern.
-
-## FAQ
-
-### How do I customize the CMS instance?
-
-TinaCMS is highly customizable, use the `cmsCallback` property to access the `TinaCMS` instance and customize to your heart's desire.
