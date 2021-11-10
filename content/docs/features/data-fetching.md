@@ -4,7 +4,7 @@ id: '/docs/features/data-fetching'
 next: '/docs/tinacms-context'
 ---
 
-With Tina, your content is stored in Git along with your codebase. Instead of using something like `fs.readfile` to access your content, Tina provides an API to query your content through GraphQL, based on your defined content models.
+With Tina, your content is stored in Git along with your codebase. Tina provides an API to query your content through GraphQL, based on your defined content models.
 
 ## `staticRequest`
 
