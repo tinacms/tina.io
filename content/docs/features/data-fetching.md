@@ -4,7 +4,7 @@ id: '/docs/features/data-fetching'
 next: '/docs/tinacms-context'
 ---
 
-With Tina, your content is stored in Git along with your codebase. Instead of using something `fs.readfile` to access your content, Tina provides an API to query your content through GraphQL, based on your defined content models.
+With Tina, your content is stored in Git along with your codebase. Instead of using something like `fs.readfile` to access your content, Tina provides an API to query your content through GraphQL, based on your defined content models.
 
 ## `staticRequest`
 
@@ -54,6 +54,8 @@ const getStaticProps = async () => {
 
 > Note: for now, TinaCMS only supports static data fetching, so you must use `getStaticProps` (and `getStaticPaths` for dynamic pages). We'll be opening up more capabilities in the near future!
 
+### Example: Fetching content through getStaticPaths
+
 You'll likely want to query the Tina data layer for [dynamic routes](https://nextjs.org/docs/basic-features/data-fetching#getstaticpaths-static-generation).
 
 ```js
@@ -86,6 +88,6 @@ export const getStaticPaths = async () => {
 
 ### Do I need to use `staticRequest`?
 
-Absolutely not. These are helper functions which emphasize that static requests should only be made against your _local_ server. The `@tinacms/cli` runs a GraphQL server at `http://localhost:4001`, so feel free to use any HTTP client you'd like.
+Absolutely not. This is a helper function which emphasizes that static requests should only be made against your _local_ server. The `staticRequest` helper function makes the request against `http://localhost:4001`, which is where `@tinacms/cli` runs its GraphQL server. Feel free to use any HTTP client you'd like.
 
 Note, however, that it's important to return an object from `getStaticProps` which has `data`, `query`, and `variables` properties so the client-side TinaCMS container can make everything editable on your page.
