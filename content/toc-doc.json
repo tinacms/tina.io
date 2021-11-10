@@ -147,9 +147,13 @@
             "id": "/docs/content-management/",
             "slug": "/docs/content-management/"
           },
-          { "id": "/docs/cms/", "slug": "/docs/cms/", "title": "The CMS" },
           {
-            "title": "Forms",
+            "id": "/docs/cms/",
+            "slug": "/docs/cms/",
+            "title": "Using the CMS instance"
+          },
+          {
+            "title": "Using Forms",
             "id": "forms/",
             "slug": "/docs/forms/"
           },

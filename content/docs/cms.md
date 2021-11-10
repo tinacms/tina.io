@@ -1,5 +1,5 @@
 ---
-title: The CMS
+title: Using the CMS instance
 prev: /docs/content-management
 next: /docs/forms
 consumes:
