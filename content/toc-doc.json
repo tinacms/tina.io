@@ -120,6 +120,18 @@
         "slug": "/docs/media-cloudinary/"
       },
       {
+        "title": "CMS Toolkit",
+        "id": "/docs/reference/toolkit/overview/",
+        "slug": "/docs/reference/toolkit/overview/",
+        "items": [
+          {
+            "id": "/docs/reference/toolkit/cms/",
+            "slug": "/docs/reference/toolkit/cms/",
+            "title": "The CMS"
+          }
+        ]
+      },
+      {
         "title": "Legacy API",
         "slug": "/docs/toolkit/",
         "expandOnSelect": true,
