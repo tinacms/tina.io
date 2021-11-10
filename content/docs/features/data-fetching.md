@@ -31,7 +31,7 @@ const getStaticProps = async () => {
     relativePath: 'hello-world.md',
   }
 
-  let data
+  let data = {}
   try {
     data = await staticRequest({
       query,
