@@ -6,13 +6,16 @@ next: null
 
 Custom fields are made possible by the [plugin system](/docs/plugins/) in TinaCMS. Custom fields are a way to either add [custom logic to existing fields](#adding-custom-logic) or provide an [entirely new field component](#adding-a-custom-field)
 
-## Adding Custom Logic
+## Creating a Custom Field
 
-Adding custom logic involves two steps: first registering a field plugin and then using the field plugin in your schema.
+Creating a new type of field involves a few steps
 
-### 1. Create a Field Plugin
+- Define a field plugin
+- Register the field plugin
+- Using the field plugin in your schema.
 
-**Interface**
+**FieldPlugin Interface**
+
 ```ts
 export interface FieldPlugin<ExtraFieldProps = {}, InputProps = {}> {
   __type: 'field'
@@ -29,61 +32,74 @@ export interface FieldPlugin<ExtraFieldProps = {}, InputProps = {}> {
   format?: (value: any, name: string, field: Field) => any
   defaultValue?: any
 }
-
 ```
 
-Where component can be a [custom component](#adding-a-custom-field) or a built in component. [See here](#list-of-field-components) for a full list of custom components.
+The `Component` property can be a built-in component from the "tinacms" package or a [custom component](#adding-a-custom-field). [See here](#built-in-field-components) for a full list of built-in components.
 
-It is considered a good practice to have your plugins in a separate file, this allows the plugin to be lazy-loaded only when the CMS is enabled. This way it does not affect your production bundle. 
+### 1. Create a Field Plugin
 
 ```tsx
 // ./plugins.tsx
 import { TextField } from 'tinacms'
- 
-export const validationPlugin = {
-    Component: TextField,
-    name: "text-email-validation",
-    validate: (email, allValues, meta, field)=> {
-       let isValidEmail = /.*@.*\..*/.test(email)
-       if (!isValidEmail) return 'Invalid email address'
-    },
+
+export const emailFieldPlugin = {
+  Component: TextField, // Extend the built-in text
+  name: 'text-email',
+  validate: (email, allValues, meta, field) => {
+    let isValidEmail = /.*@.*\..*/.test(email)
+    if (!isValidEmail) return 'Invalid email address'
+  },
 }
 ```
 
-### 2. Register a Field Plugin
+> It is considered a good practice to declare your plugins in a separate file, this allows the plugin to be lazy-loaded only when in edit-mode. This way it does not affect your production bundle.
 
-The plugin can then be registered in [the CMS callback](/docs/tinacms-context/#tinacms) in the `<Tina>` wrapper component.
+### 2. Register the Field Plugin
+
+The plugin can then be registered in [the CMS callback](/docs/tinacms-context/#tinacms) in the `<TinaCMS>` wrapper component.
 
 ```tsx
-cmsCallback={cms => {
-    import('../plugins.tsx').then(({validationPlugin})=>{
-        cms.plugins.add(validationPlugin)
+<TinaCMS
+  // ...
+  cmsCallback={cms => {
+    import('../plugins.tsx').then(({ validationPlugin }) => {
+      cms.plugins.add(validationPlugin)
     })
-}}
+  }}
+/>
 ```
 
-### 3. Use Field in  `.tina/schema.ts`
+### 3. Use Field in `.tina/schema.ts`
 
-Now in the [schema.ts file](/docs/schema/) this field can be used for any field. It can be added to the [`ui` property](/docs/schema/#the-ui-property)
+Now in the [schema.ts file](/docs/schema/) this new field plugin can be used for any field. It can be added to the [`ui` property](/docs/schema/#the-ui-property)
 
 ```ts
-ui: {
-    component: "text-email-validation"
-}
+export default defineSchema({
+  collections: [
+    {
+      // ...
+      fields: [
+        {
+          type: 'string',
+          label: 'Email',
+          name: 'email',
+          ui: {
+            component: 'text-email'
+          }
+        },
+      ]
+    }]
 ```
-**Note** that the `name` of the field plugin must match that `component` used in the `ui` property.
 
+**Note** The ui `component` property must match the `name` of the field plugin.
 
+## Using a Custom Field Component
 
-## Adding a Custom Field
+Instead of using one of the built-in fields a [custom component can be provided](/docs/fields/custom-fields/). This can be any react component and it will render in the sidebar as a field. Follow the steps above but provide a custom `Component` as shown [here](/docs/fields/custom-fields/).
 
-Instead of using one of the build in fields a [custom component can be provided](/docs/fields/custom-fields/). This can be any react component and it will render in the sidebar as a field. Follow the steps above but provide a custom `Component` as shown [here](/docs/fields/custom-fields/).
+## Built-in Field Components
 
-
-
-## List of Field Components
-
-In general the field components can be imported from `tinacms` and then used as a component in your field plugin. 
+In general the field components can be imported from `tinacms` and then used as a component in your field plugin.
 
 ```ts
 import { FieldComponentName } from 'tinacms'
@@ -96,23 +112,22 @@ export const MyPlugin = {
 
 Where `FieldComponentName` is an a Field Component from this list
 
-* [TextField](/docs/fields/text/)
-* [TextareaField](/docs/fields/textarea/)
-* [NumberField](docs/fields/number/)
-* [ImageField](/docs/fields/image/)
-* [ColorField](/docs/fields/color/)
-* [ToggleField](/docs/fields/toggle/)
-* [RadioGroupField](/docs/fields/radio-group/)
-* [SelectField](/docs/fields/select/)
-* [TagsField](/docs/fields/tags/)
-* [ListField](/docs/fields/list/)
-* [GroupField](/docs/fields/group/)
-* [GroupListField](/docs/fields/group-list/)
-* [BlocksField](/docs/fields/blocks/)
-* [DateField](/docs/fields/date/)
+- [TextField](/docs/fields/text/)
+- [TextareaField](/docs/fields/textarea/)
+- [NumberField](docs/fields/number/)
+- [ImageField](/docs/fields/image/)
+- [ColorField](/docs/fields/color/)
+- [ToggleField](/docs/fields/toggle/)
+- [RadioGroupField](/docs/fields/radio-group/)
+- [SelectField](/docs/fields/select/)
+- [TagsField](/docs/fields/tags/)
+- [ListField](/docs/fields/list/)
+- [GroupField](/docs/fields/group/)
+- [GroupListField](/docs/fields/group-list/)
+- [BlocksField](/docs/fields/blocks/)
+- [DateField](/docs/fields/date/)
 
-Some fields must be imported from [`react-tinacms-editor`](/packages/react-tinacms-editor/)
+Some fields must be imported from the [`react-tinacms-editor`](/packages/react-tinacms-editor/) package.
 
-* [MarkdownField](/docs/fields/markdown/)
-* [HTMLField](/docs/fields/html/)
-
+- [MarkdownField](/docs/fields/markdown/)
+- [HTMLField](/docs/fields/html/)
