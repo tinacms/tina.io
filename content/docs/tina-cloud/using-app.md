@@ -1,8 +1,8 @@
 ---
 title: Using an app
+last_edited: '2021-11-14T08:02:51.297Z'
 ---
-
-Once you've created an app within the **Tina Cloud Dashboard** it's ready to be used within your site. By doing so, your app's editors will be able to save content to your app's repository, right from your sire.
+Once you've created an app within the **Tina Cloud Dashboard** it's ready to be used within your site. By doing so, your app's editors will be able to save content to your app's repository, right from your site.
 
 ## Switching <TinaCMS> to production mode.
 
@@ -41,3 +41,5 @@ This is your identifier for your Tina Cloud app. It can be retrieved by going to
 ### branch
 
 This is the branch in which we will load/save content to/from while in edit-mode. This can be a dynamic value if you'd like to implement a more complex branching, or can be fixed.
+
+t
