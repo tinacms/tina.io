@@ -11,8 +11,8 @@ you'll likely want other editors and collaborators to be able to make changes on
 ## Create an Account
 
 1. Visit <a href="https://app.tina.io/register" target="_blank">app.tina.io</a>, create an account, and signin.
-2. On the landing page, you'll notice that there is an onboarding route for the Tina Cloud Starter. Click '**Fork Starter in Github**' to have the dashboard walk you through the configuration needed to setup this starter as a TinaCMS app.
-3. Once you create the app, click into that app's **Overview** section and copy the unique **Client ID**. You'll need this later on in this tutorial.
+2. On the landing page, you'll notice that there is an onboarding route for the Tina Cloud Starter. Click '**Fork Starter in Github**' to have the dashboard walk you through the configuration needed to setup this starter as a TinaCMS project.
+3. Once you create the project, click into that project's **Overview** section and copy the unique **Client ID**. You'll need this later on in this tutorial.
 
 ![tina-cloud-dashboard](/img/cloud-starter-dashboard.png)
 
@@ -20,8 +20,8 @@ you'll likely want other editors and collaborators to be able to make changes on
 
 ### Site Urls
 
-When creating an app, you will notice there is a section titled **Development Environment**. This section can be found in your app's **Configuration** page. This is where you enter the site urls where you will be using TinaCMS. This will most likely be `http://localhost:3000` and your production url.
+When creating an project, you will notice there is a section titled **Development Environment**. This section can be found in your project's **Configuration** page. This is where you enter the site urls where you will be using TinaCMS. This will most likely be `http://localhost:3000` and your production url.
 
 _Note: You do not need to specify a specific route._
 
-For more information about the dashboard and setting up an app, click <a href="/docs/tina-cloud/dashboard" target="_blank">here</a>.
+For more information about the dashboard and setting up an project, click <a href="/docs/tina-cloud/dashboard" target="_blank">here</a>.

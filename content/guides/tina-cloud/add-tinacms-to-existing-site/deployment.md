@@ -13,14 +13,14 @@ While the fully local development workflow is the recommended way for developers
 
 1. Visit [app.tina.io](https://app.tina.io/register), to sign in.
 2. Commit the project to your GitHub account.
-3. Create a Tina Cloud app that connects to the GitHub repository you've just commited. For now, set `http://localhost:3000` as your callback URL. Once your app is created, click on the app to get to the app settings and copy the client ID. For more details on how to work with the Tina Cloud dashboard head over to the [dashboard documentation](/docs/tina-cloud/dashboard/).
+3. Create a Tina Cloud project that connects to the GitHub repository you've just commited. For now, set `http://localhost:3000` as your callback URL. Once your project is created, click on the project to get to the project settings and copy the client ID. For more details on how to work with the Tina Cloud dashboard head over to the [dashboard documentation](/docs/tina-cloud/dashboard/).
 
 ## Connect your local project with TinaCMS Backend
 
 Create an `env.local` file in the root of your project set:
 
 - `NEXT_PUBLIC_USE_LOCAL_CLIENT` to `0`.
-- `NEXT_PUBLIC_TINA_CLIENT_ID` to the Client ID displayed in your Tina Cloud App.
+- `NEXT_PUBLIC_TINA_CLIENT_ID` to the Client ID displayed in your Tina Cloud Project.
 
 Restart your server and run `yarn tina-dev` again.
 

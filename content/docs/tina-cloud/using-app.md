@@ -1,8 +1,8 @@
 ---
-title: Using an app
+title: Using your project
 ---
 
-Once you've created an app within the **Tina Cloud Dashboard** it's ready to be used within your site. By doing so, your app's editors will be able to save content to your app's repository, right from your sire.
+Once you've created a project within the **Tina Cloud Dashboard** it's ready to be used within your site. By doing so, your project's editors will be able to save content to your project's repository, right from your sire.
 
 ## Switching <TinaCMS> to production mode.
 
@@ -36,7 +36,7 @@ Switching this to false, means that we'll talk to Tina Cloud's hosted API instea
 
 ### clientId
 
-This is your identifier for your Tina Cloud app. It can be retrieved by going to app.tina.io, and looking at your app's configuration.
+This is your identifier for your Tina Cloud project. It can be retrieved by going to app.tina.io, and looking at your project's configuration.
 
 ### branch
 

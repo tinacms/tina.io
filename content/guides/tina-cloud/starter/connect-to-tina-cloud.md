@@ -18,7 +18,7 @@ In the `env.local` file set your client ID:
 
 ```
 # env.local
-NEXT_PUBLIC_TINA_CLIENT_ID=to the Client ID copied from an earlier step and found in your app's Overview section
+NEXT_PUBLIC_TINA_CLIENT_ID=to the Client ID copied from an earlier step and found in your project's Overview section
 ```
 
 > Tip: `.env.development` only runs when in Next.js development mode.
@@ -34,7 +34,7 @@ This time a modal asks you to authenticate through TinaCMS. Upon success, Tina w
 Make some edits through the sidebar and click save.
 Changes are saved in your GitHub repository.
 
-> Hint: To exit edit mode, navigate to the `/exit-admin` route.  If you are running on `localhost`, it is `http://localhost:3000/exit-admin`.
+> Hint: To exit edit mode, navigate to the `/exit-admin` route. If you are running on `localhost`, it is `http://localhost:3000/exit-admin`.
 
 Now that Tina Cloud editing is working correctly, we can deploy the site so that other team members can make edits too.
 
@@ -54,7 +54,7 @@ Connect to your GitHub repository and set the same environment variables as the 
 NEXT_PUBLIC_TINA_CLIENT_ID=<YOUR_CLIENT_ID>
 ```
 
-Add the deployment URL to your app's Site Urls. To do this, go to your app's **Configuration** page.
+Add the deployment URL to your project's Site Urls. To do this, go to your project's **Configuration** page.
 
 🎉 Congratulations, your site is now live!
 
@@ -76,7 +76,7 @@ Set the **publish directory**. To `.next/` .
 
 Once you're done, click "Deploy site".
 
-Add the deployment URL to your app's Site Urls. To do this, go to your app's **Configuration** page.
+Add the deployment URL to your project's Site Urls. To do this, go to your project's **Configuration** page.
 
 You can test that everything is configured correctly by navigating to `[your deployment URL]/`, navigate to the `admin` route,
 log in to Tina, and making some edits. Your changes should be saved to your GitHub repository.

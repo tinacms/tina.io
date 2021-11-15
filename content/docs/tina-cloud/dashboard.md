@@ -22,19 +22,19 @@ To create an account navigate to the <a href="https://app.tina.io/register" targ
 
 #### 1. Connecting a GitHub repository
 
-When setting up an app, the first step will prompt for authentication with GitHub. A modal window asks for permission to give Tina.io access to your GitHub repositories. This authentication allows Tina Cloud to push and pull content to and from your GitHub repository.
+When setting up a project, the first step will prompt for authentication with GitHub. A modal window asks for permission to give Tina.io access to your GitHub repositories. This authentication allows Tina Cloud to push and pull content to and from your GitHub repository.
 
 #### 2. Choosing a repository
 
 The next step is to choose the repository that houses your site's content. If you don't see your repository within the list of repositories on the dashboard, you may have to re-configure your Tina.io permissions within GitHub.
 
-#### 3. Configuring an app
+#### 3. Configuring a project
 
-On the last step of app creation, we ask you to enter a bit of configuration.
+On the last step of project creation, we ask you to enter a bit of configuration.
 
-##### App Name
+##### Project Name
 
-This name is shown to your users when they login to the app. The default is the repository name.
+This name is shown to your users when they login to the project. The default is the repository name.
 
 ##### Development Environments
 
@@ -50,11 +50,11 @@ If Tina Cloud is configured on your production site, this value might be somethi
 
 > Only the URL origin is needed, so there is no need to include the path to any specific pages.
 
-#### 4. Using your app
+#### 4. Using your project
 
-Once your app is created, you will see it listed on your Projects page.
+Once your project is created, you will see it listed on your Projects page.
 
-An app's Overview page gives you an important value: your app's unique **Client ID**. This value is used by Tina Cloud to connect to your site's repository. You will need to use this as an environment variable when setting up your site to use Tina.
+A project's Overview page gives you an important value: your project's unique **Client ID**. This value is used by Tina Cloud to connect to your site's repository. You will need to use this as an environment variable when setting up your site to use Tina.
 
 ## Users
 
