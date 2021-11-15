@@ -2,6 +2,7 @@
 title: Adding Markdown editors
 last_edited: '2021-08-13T18:34:29.221Z'
 ---
+
 ## Using Markdown plugins:
 
 One of the amazing features of Tina is ability to extend the project through plugins. The NextJS blog starter uses remark to render the Markdown files into HTML, so it would be useful for our content team to be able to edit using a markdown editor, plus we can add the functionality back.
@@ -159,7 +160,7 @@ import PostTitle from '../../components/post-title'
 import Head from 'next/head'
 import { CMS_NAME } from '../../lib/constants'
 import markdownToHtml from '../../lib/markdownToHtml'
-import { staticRequest, getStaticPropsForTina } from 'tinacms'
+import { staticRequest } from 'tinacms'
 import { useEffect, useState } from 'react'
 
 export default function Post({ data, slug, preview }) {
@@ -216,8 +217,8 @@ export default function Post({ data, slug, preview }) {
 export const getStaticProps = async ({ params }) => {
   const { slug } = params
   const variables = { relativePath: `${slug}.md` }
-  const tinaProps = await getStaticPropsForTina({
-    query: `
+
+  const query = `
       query BlogPostQuery($relativePath: String!) {
         getPostsDocument(relativePath: $relativePath) {
           data {
@@ -236,13 +237,23 @@ export const getStaticProps = async ({ params }) => {
           }
         }
       }
-    `,
-    variables: variables,
-  })
+    `
+
+  let data = {}
+  try {
+    data = await staticRequest({
+      query,
+      variables,
+    })
+  } catch {
+    // swallow errors related to document creation
+  }
 
   return {
     props: {
-      ...tinaProps,
+      query,
+      variables,
+      data,
       slug,
     },
   }

@@ -2,6 +2,7 @@
 title: Tina Cloud Starter structure
 last_edited: '2021-08-23T01:43:21.819Z'
 ---
+
 From here, you're ready to start building your own project. This section explains a bit about how this project is structured, and how to modify it to make it your own.
 
 ## Starter structure
@@ -33,7 +34,7 @@ With Tina Cloud there's no need to build forms manually like you would with Tina
 This is set up for you in `./.tina/schema.ts`, let's break down what this function is doing:
 
 ```ts
-import { defineSchema } from "tina-graphql-gateway-cli";
+import { defineSchema } from 'tina-graphql-gateway-cli'
 ```
 
 Head over to the [reference](/docs/tinacms-reference/) documentation to learn more about [defining a schema](/docs/schema/) or [querying with GraphQL](/docs/graphql/)
@@ -70,7 +71,7 @@ By default we've toggle the `showEditButton` to `true`. You'll likely want to re
 
 ### `pages/posts/[filename].tsx`
 
-The posts are stored in the `content/posts` directory of this repository, and their routes are built with `getStaticPaths` dynamically at build time. You'll notice a couple of helper functions like `getStaticPropsForTina` and `staticRequest`. These are helper functions to make sure you're returning data from the local GraphQL server in a shape that Tina understands. Feel free to bring your own http client if you'd like. Read more about these helpers in the [Next.JS APIs documentation](/docs/tinacms-context/)
+The posts are stored in the `content/posts` directory of this repository, and their routes are built with `getStaticPaths` dynamically at build time. You'll notice that we use the `staticRequest` helper to query our content. Feel free to bring your own http client if you'd like. Read more about these helpers in the [Next.JS APIs documentation](/docs/tinacms-context/).
 
 ### Creating your own pages
 
