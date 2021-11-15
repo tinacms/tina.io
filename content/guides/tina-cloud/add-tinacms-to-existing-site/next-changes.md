@@ -2,6 +2,7 @@
 title: Making our pages editable with Tina
 last_edited: '2021-08-13T18:33:15.008Z'
 ---
+
 ## Overview
 
 Currently, the Next Blog Starter grabs content from the file system. But since Tina comes with a GraphQL API on top of the filesystem, we’re going to query that instead. Using the GraphQL API will allow you to use the power of TinaCMS, you will be able to retrieve the content and also edit and save the content directly.
@@ -135,13 +136,13 @@ The `getStaticProps` query is going to deliver all the content to the blog, whic
 
 We need to query the following things from our content api:
 
-* Title
-* Excerpt
-* Date
-* Cover Image
-* OG Image data
-* Author Data
-* Body content
+- Title
+- Excerpt
+- Date
+- Cover Image
+- OG Image data
+- Author Data
+- Body content
 
 ### Creating our Query
 
@@ -205,12 +206,10 @@ export const getStaticProps = async ({ params }) => {
 }
 ```
 
-We'll use a new helper function called `getStaticPropsForTina`, which does exactly like it sounds like it might do. It will return not only the _data_ from your query, but also the query string and variables themselves. This is necessary for Tina to enable realtime editing on your page.
-
-Add `getStaticPropsForTina` to the imports at the top of your file, your import should look like:
+We'll also want to call `staticRequest` to load our data for our specific page. You'll also notice that we will return the query & variables from getStaticProps. We'll be using these values within the TinaCMS frontend.
 
 ```js, copy
-import { staticRequest, getStaticPropsForTina } from 'tinacms'
+import { staticRequest } from 'tinacms'
 ```
 
 So the full query should look like this:
@@ -219,33 +218,36 @@ So the full query should look like this:
 export const getStaticProps = async ({ params }) => {
   const { slug } = params
   const variables = { relativePath: `${slug}.md` }
-  const tinaProps = await getStaticPropsForTina({
-    query: `
-      query BlogPostQuery($relativePath: String!) {
-        getPostsDocument(relativePath: $relativePath) {
-          data {
-            title
-            excerpt
-            date
-            coverImage
-            author {
-              name
-              picture
-            }
-            ogImage {
-              url
-            }
-            body
+  const query = `
+    query BlogPostQuery($relativePath: String!) {
+      getPostsDocument(relativePath: $relativePath) {
+        data {
+          title
+          excerpt
+          date
+          coverImage
+          author {
+            name
+            picture
           }
+          ogImage {
+            url
+          }
+          body
         }
       }
-    `,
+    }
+  `
+  const data = await staticRequest({
+    query: query,
     variables: variables,
   })
 
   return {
     props: {
-      ...tinaProps, // {data: {...}, query: '...', variables: {...}}
+      query,
+      variables,
+      data,
       slug,
     },
   }
