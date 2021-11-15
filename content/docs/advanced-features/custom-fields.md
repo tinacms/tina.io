@@ -62,7 +62,7 @@ The plugin can then be registered in [the CMS callback](/docs/tinacms-context/#t
 <TinaCMS
   // ...
   cmsCallback={cms => {
-    import('../plugins.tsx').then(({ validationPlugin }) => {
+    import('../plugins.tsx').then(({ emailFieldPlugin }) => {
       cms.plugins.add(validationPlugin)
     })
   }}
