@@ -8,7 +8,7 @@ Tina Cloud is a multi-level backend solution for TinaCMS. Included in this solut
 
 ## Tina Cloud Dashboard
 
-The Tina Cloud dashboard is used to connect sites with your editors. Through the dashboard, you can setup an app. An app connects to your site's GitHub repository, and authorizes Tina Cloud to push and pull content directly from the repository. You can also authenticate certain users to edit your site through the dashboard's user management page. Together, this allows users to login directly to your site and start editing the content while also simultaneously updating the content within the GitHub repository.
+The Tina Cloud dashboard is used to connect sites with your editors. Through the dashboard, you can setup a project. A project connects to your site's GitHub repository, and authorizes Tina Cloud to push and pull content directly from the repository. You can also authenticate certain users to edit your site through the dashboard's user management page. Together, this allows users to login directly to your site and start editing the content while also simultaneously updating the content within the GitHub repository.
 
 An important distinction to make is that unlike a traditional CMS dashboard, the Tina Cloud dashboard is not used to edit your content. The difference of the Tina Cloud dashboard is that the content editing capabilities are setup by you, the developer, using our TinaCMS toolkit.
 

@@ -37,7 +37,7 @@ To overcome these limitations, Tina Cloud provides a GraphQL interface to your r
 
 ### Bring visual editing to the whole team with Tina Cloud
 
-The best websites result from collaboration between engineers, designers, writers, and marketers. These people need the ability to work from a single source of truth and Tina Cloud offers a simple **dashboard** for admins to manage sites and collaborators.![Tina Cloud Dashboard: Apps Tab](/img/blog/tina-cloud-dashboard.png 'Tina Cloud Dashboard: Apps Tab')
+The best websites result from collaboration between engineers, designers, writers, and marketers. These people need the ability to work from a single source of truth and Tina Cloud offers a simple **dashboard** for admins to manage sites and collaborators.![Tina Cloud Dashboard: Projects Tab](/img/blog/tina-cloud-dashboard.png 'Tina Cloud Dashboard: Projects Tab')
 
 Tina Cloud provides user management, authentication, and basic roles for your editing team. Give your team members access, even if they don’t have a GitHub account. ✨
 
