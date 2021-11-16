@@ -166,27 +166,27 @@ For a `string` type you'll get the [`text` field](/docs/fields/text/) by default
 
 The `component` property can be any [registered field](/docs/advanced-features/custom-fields/#2-register-a-field-plugin). Below is a list of default fields.
 
-### Default Fields
+### Default Field Plugins
 
-- [text](/docs/fields/text/)
-- [textarea](/docs/fields/textarea/)
-- [number](/docs/fields/number/)
-- [image](/docs/fields/image/)
-- [color](/docs/fields/color/)
-- [toggle](/docs/fields/toggle/)
-- [radio-group](/docs/fields/radio-group/)
-- [select](/docs/fields/select/)
-- [tags](/docs/fields/tags/)
-- [list](/docs/fields/list/)
-- [group](/docs/fields/group/)
-- [group-list](/docs/fields/group-list/)
-- [blocks](/docs/fields/blocks/)
-- [date](/docs/fields/date/)
+- [text](/docs/reference/toolkit/fields/text/)
+- [textarea](/docs/reference/toolkit/fields/textarea/)
+- [number](/docs/reference/toolkit/fields/number/)
+- [image](/docs/reference/toolkit/fields/image/)
+- [color](/docs/reference/toolkit/fields/color/)
+- [toggle](/docs/reference/toolkit/fields/toggle/)
+- [radio-group](/docs/reference/toolkit/fields/radio-group/)
+- [select](/docs/reference/toolkit/fields/select/)
+- [tags](/docs/reference/toolkit/fields/tags/)
+- [list](/docs/reference/toolkit/fields/list/)
+- [group](/docs/reference/toolkit/fields/group/)
+- [group-list](/docs/reference/toolkit/fields/group-list/)
+- [blocks](/docs/reference/toolkit/fields/blocks/)
+- [date](/docs/reference/toolkit/fields/date/)
 
 Some fields must be imported and registered from [`react-tinacms-editor`](/packages/react-tinacms-editor/)
 
-- [markdown](/docs/fields/markdown/)
-- [html](/docs/fields/html/)
+- [markdown](/docs/reference/toolkit/fields/markdown/)
+- [html](/docs/reference/toolkit/fields/html/)
 
 To extend these fields with validation logic or to provide a custom fields component a [field plugin can be registered](/docs/advanced-features/custom-fields/).
 
