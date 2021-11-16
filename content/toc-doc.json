@@ -120,6 +120,117 @@
         "slug": "/docs/media-cloudinary/"
       },
       {
+        "title": "CMS Toolkit",
+        "id": "/docs/reference/toolkit/overview/",
+        "slug": "/docs/reference/toolkit/overview/",
+        "items": [
+          {
+            "id": "/docs/reference/toolkit/cms/",
+            "slug": "/docs/reference/toolkit/cms/",
+            "title": "The CMS"
+          },
+          {
+            "id": "/docs/reference/toolkit/forms/",
+            "slug": "/docs/reference/toolkit/forms/",
+            "title": "Forms"
+          },
+          {
+            "title": "Field Plugins",
+            "id": "fields/",
+            "slug": "/docs/reference/toolkit/fields/",
+            "items": [
+              {
+                "id": "/docs/reference/toolkit/fields/text/",
+                "slug": "/docs/reference/toolkit/fields/text/",
+                "title": "Text"
+              },
+              {
+                "id": "/docs/reference/toolkit/fields/textarea/",
+                "slug": "/docs/reference/toolkit/fields/textarea/",
+                "title": "Text Area"
+              },
+
+              {
+                "id": "/docs/reference/toolkit/fields/number/",
+                "slug": "/docs/reference/toolkit/fields/number/",
+                "title": "Number"
+              },
+
+              {
+                "id": "/docs/reference/toolkit/fields/image/",
+                "slug": "/docs/reference/toolkit/fields/image/",
+                "title": "Image"
+              },
+              {
+                "id": "/docs/reference/toolkit/fields/color/",
+                "slug": "/docs/reference/toolkit/fields/color/",
+                "title": "Color"
+              },
+              {
+                "id": "/docs/reference/toolkit/fields/toggle/",
+                "slug": "/docs/reference/toolkit/fields/toggle/",
+                "title": "Toggle"
+              },
+              {
+                "id": "/docs/reference/toolkit/fields/radio-group/",
+                "slug": "/docs/reference/toolkit/fields/radio-group/",
+                "title": "Radio Group"
+              },
+              {
+                "id": "/docs/reference/toolkit/fields/select/",
+                "slug": "/docs/reference/toolkit/fields/select/",
+                "title": "Select"
+              },
+              {
+                "id": "/docs/reference/toolkit/fields/tags/",
+                "slug": "/docs/reference/toolkit/fields/tags/",
+                "title": "Tags"
+              },
+              {
+                "id": "/docs/reference/toolkit/fields/list/",
+                "slug": "/docs/reference/toolkit/fields/list/",
+                "title": "List"
+              },
+              {
+                "id": "/docs/reference/toolkit/fields/group/",
+                "slug": "/docs/reference/toolkit/fields/group/",
+                "title": "Group"
+              },
+              {
+                "id": "/docs/reference/toolkit/fields/group-list/",
+                "slug": "/docs/reference/toolkit/fields/group-list/",
+                "title": "Group List"
+              },
+              {
+                "id": "/docs/reference/toolkit/fields/blocks/",
+                "slug": "/docs/reference/toolkit/fields/blocks/",
+                "title": "Blocks"
+              },
+              {
+                "id": "/docs/reference/toolkit/fields/date/",
+                "slug": "/docs/reference/toolkit/fields/date/",
+                "title": "Date & Time"
+              },
+              {
+                "id": "/docs/reference/toolkit/fields/markdown/",
+                "slug": "/docs/reference/toolkit/fields/markdown/",
+                "title": "Markdown"
+              },
+              {
+                "id": "/docs/reference/toolkit/fields/html/",
+                "slug": "/docs/reference/toolkit/fields/html/",
+                "title": "HTML"
+              },
+              {
+                "id": "/docs/reference/toolkit/fields/custom-fields/",
+                "slug": "/docs/reference/toolkit/fields/custom-fields/",
+                "title": "Custom Fields"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "title": "Legacy API",
         "slug": "/docs/toolkit/",
         "expandOnSelect": true,
@@ -130,9 +241,13 @@
             "id": "/docs/content-management/",
             "slug": "/docs/content-management/"
           },
-          { "id": "/docs/cms/", "slug": "/docs/cms/", "title": "The CMS" },
           {
-            "title": "Forms",
+            "id": "/docs/cms/",
+            "slug": "/docs/cms/",
+            "title": "Using the CMS instance"
+          },
+          {
+            "title": "Using Forms",
             "id": "forms/",
             "slug": "/docs/forms/"
           },
