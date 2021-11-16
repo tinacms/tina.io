@@ -1,5 +1,5 @@
 ---
-title: Using forms
+title: Forms
 prev: /docs/cms
 next: /docs/fields
 consumes:

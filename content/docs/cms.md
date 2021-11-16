@@ -1,5 +1,5 @@
 ---
-title: Using the CMS instance
+title: The CMS
 prev: /docs/content-management
 next: /docs/forms
 consumes:
@@ -16,7 +16,7 @@ consumes:
 last_edited: '2021-06-22T19:01:05.703Z'
 ---
 
-> This document documents how to use the CMS object how our legacy API. Checkout the underlying CMS reference doc for details on how to use this object.
+The CMS object in Tina is a container for attaching and accessing [Plugins](/docs/plugins), [APIs](/docs/apis), and the [Event Bus](/docs/events). On its own, the CMS does very little; however, since it's the central integration point for everything that Tina does, it's extremely important!
 
 > Reference [Step 1](/docs/getting-started/cms-set-up) of the Introductory Tutorial for an example on setting up the CMS.
 
@@ -114,6 +114,58 @@ export default function ExitButton() {
 }
 ```
 
+## CMS Configuration
+
+When instantiating the `TinaCMS` object, you can pass in a configuration object. This allows you to configure some options for the sidebar, toolbar, and also allows you to configure [Plugins](/docs/plugins) and [APIs](/docs/apis) declaratively.
+
+```typescript
+interface TinaCMSConfig {
+  enabled?: boolean
+  plugins?: Plugin[]
+  apis?: { [key: string]: any }
+  sidebar?: SidebarConfig | boolean
+  toolbar?: ToolbarConfig | boolean
+  media?: {
+    store: MediaStore
+  }
+  mediaOptions?: {
+    pageSize?: number
+  }
+}
+
+interface SidebarConfig {
+  position?: SidebarPosition
+  placeholder?: React.FC
+  buttons?: {
+    save: string
+    reset: string
+  }
+}
+
+interface ToolbarConfig {
+  buttons?: {
+    save: string
+    reset: string
+  }
+}
+```
+
+---
+
+| key          | usage                                                                            |
+| ------------ | -------------------------------------------------------------------------------- |
+| **enabled**  | Controls whether the CMS is enabled or disabled. _Defaults to_ `false`           |
+| **plugins**  | Array of plugins to be added to the CMS object.                                  |
+| **apis**     | Object containing APIs to be registered to the CMS                               |
+| **sidebar**  | Enables and configures behavior of the [sidebar](/docs/ui#sidebar-configuration) |
+| **toolbar**  | Configures behavior of the [toolbar](/docs/ui#toolbar-configuration)             |
+| **media**    | Configures [media](/docs/media).                                                 |
+| **pageSize** | Sets how many media objects are displayed at a time in the media manager.        |
+
+---
+
+> Learn more about [sidebar & toolbar options](/docs/cms/ui).
+
 **Example**
 
 ```javascript
@@ -140,6 +192,30 @@ const cms = new TinaCMS({
 })
 ```
 
-## CMS Configuration & Reference
+## Reference
 
-For full details on configuring the CMS object, see its [reference docs](/docs/reference/toolkit/cms).
+There are a number of [core properties](https://github.com/tinacms/tinacms/blob/master/packages/%40tinacms/core/src/cms.ts) that can be helpful in working with the CMS.
+
+### TinaCMS Interface
+
+```ts
+interface TinaCMS {
+  enabled: boolean
+  disabled: boolean
+  registerApi(name: string, api: any): void
+  enable(): void
+  disable(): void
+  toggle(): void
+}
+```
+
+| property      | description                                                                                   |
+| ------------- | --------------------------------------------------------------------------------------------- |
+| `enabled`     | Returns the enabled state. When `true`, content _can_ be edited.                              |
+| `disabled`    | Returns the disabled state. When `true`, content _cannot_ be edited.                          |
+| `registerApi` | Registers a new [external API](/docs/apis#adding-an-api) with the CMS.                        |
+| `enable`      | [Enables](/docs/cms#disabling--enabling-the-cms) the CMS so content can be edited.            |
+| `disable`     | [Disables](/docs/cms#disabling--enabling-the-cms) the CMS so content can no longer be edited. |
+| `toggle`      | [Toggles](/docs/cms#disabling--enabling-the-cms) the enabled/disabled state of the CMS .      |
+
+> Use the `useCMS` hook to [access the CMS](/docs/cms#accessing-the-cms-object) and execute these methods as needed.
