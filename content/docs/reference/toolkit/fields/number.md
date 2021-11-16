@@ -1,7 +1,7 @@
 ---
 title: Number Field
-prev: /docs/fields/textarea
-next: /docs/fields/image
+prev: /docs/reference/toolkit/fields/textarea
+next: /docs/reference/toolkit/fields/image
 consumes:
   - file: /packages/@tinacms/fields/src/plugins/NumberFieldPlugin.tsx
     details: Shows text field interface and config options
@@ -35,7 +35,7 @@ interface NumberConfig extends FieldConfig {
 
 > This interfaces only shows the keys unique to the number field.
 >
-> Visit the [Field Config](/docs/fields) docs for a complete list of options.
+> Visit the [Field Config](/docs/reference/toolkit/fields) docs for a complete list of options.
 
 ## Example: A Sorting Weight
 

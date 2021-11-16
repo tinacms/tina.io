@@ -1,7 +1,7 @@
 ---
 title: Tags Field
-prev: /docs/fields/select
-next: /docs/fields/group
+prev: /docs/reference/toolkit/fields/select
+next: /docs/reference/toolkit/fields/group
 consumes:
   - file: /packages/@tinacms/fields/src/plugins/TagsFieldPlugin.tsx
     details: Shows Tags field and Option interfaces
@@ -31,7 +31,7 @@ interface TagsField {
 
 > This interfaces only shows the keys unique to the tags field.
 >
-> Visit the [Field Config](/docs/fields) docs for a complete list of options.
+> Visit the [Field Config](/docs/reference/toolkit/fields) docs for a complete list of options.
 
 ## Definition
 

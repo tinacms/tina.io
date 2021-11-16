@@ -1,7 +1,7 @@
 ---
 title: Date & Time Field
-prev: /docs/fields/blocks
-next: /docs/fields/markdown
+prev: /docs/reference/toolkit/fields/blocks
+next: /docs/reference/toolkit/fields/markdown
 consumes:
   - file: /packages/@tinacms/fields/src/plugins/DateFieldPlugin.tsx
     details: Documents how to use the date field plugin
@@ -43,7 +43,7 @@ interface DateConfig extends FieldConfig, DatetimepickerProps {
 
 This interfaces only shows the keys unique to the date field.
 
-Visit the [Field Config](https://tinacms.org/docs/fields) docs for a complete list of options.
+Visit the [Field Config](https://tinacms.org/docs/reference/toolkit/fields) docs for a complete list of options.
 
 ### DatetimepickerProps
 

@@ -151,7 +151,7 @@ For `markdown` collections, all data is stored as frontmatter by default. But fo
 
 Under the hood, TinaCMS is powered by the TinaCMS Toolkit, an expressive UI system which allows you to place forms and other content management controls into your Next.js application or website. To that end, most of what we've discussed so far has been about how data is structured and served. But when you use TinaCMS, all of this data can be edited from the context of your website with minimal frontend setup. And it's often desirable to tap into the UI for better control of how it behaves. Let's see how we might use the `ui` property to enhance the editing experience.
 
-For a `string` type you'll get the [`text` field](/docs/fields/text/) by default. If you'd rather use a `textarea` field you can specify it in the `ui` property:
+For a `string` type you'll get the [`text` field](/docs/reference/toolkit/fields/text/) by default. If you'd rather use a `textarea` field you can specify it in the `ui` property:
 
 ```js
 {

@@ -1,6 +1,6 @@
 ---
 title: Creating Custom Fields
-prev: /docs/fields/html
+prev: /docs/reference/toolkit/fields/html
 next: null
 consumes:
   - file: /packages/@tinacms/core/src/plugins.ts
@@ -20,7 +20,7 @@ There are two ways to create custom fields with Tina:
 
 A field `Component` is React component that accepts three props:
 
-- `field`: The [field definition](https://tinacms.org/docs/fields) for the current field.
+- `field`: The [field definition](https://tinacms.org/docs/reference/toolkit/fields) for the current field.
 - `input`: The data and callbacks necessary to make an input.
 - `meta`: Metadata about the field in the form. (e.g. `dirty`, `valid`)
 
@@ -30,7 +30,7 @@ Checkout the [react-final-form](https://github.com/final-form/react-final-form#f
 
 A field plugin is a JavaScript object with three properties:
 
-- `name`: A string used to identify the component. This is the name that is set in a [field definition](https://tinacms.org/docs/fields). This name must be unique; if multiple plugins are registered with the same name, only the last will be used.
+- `name`: A string used to identify the component. This is the name that is set in a [field definition](https://tinacms.org/docs/reference/toolkit/fields). This name must be unique; if multiple plugins are registered with the same name, only the last will be used.
 - `Component`: The component that will used in the form. The exact nature of this component depends on which form builder is being used.
 - `validate`: An optional function that will be used to validate the field's data.
 

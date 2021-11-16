@@ -1,7 +1,7 @@
 ---
 title: Toggle Field
-prev: /docs/fields/color
-next: /docs/fields/radio-group
+prev: /docs/reference/toolkit/fields/color
+next: /docs/reference/toolkit/fields/radio-group
 consumes:
   - file: /packages/tinacms/src/plugins/fields/ToggleFieldPlugin.tsx
     details: Shows toggle field interface and config options
@@ -35,7 +35,7 @@ interface ToggleConfig extends FieldConfig {
 
 > This interfaces only shows the keys unique to the date field.
 >
-> Visit the [Field Config](/docs/fields) docs for a complete list of options.
+> Visit the [Field Config](/docs/reference/toolkit/fields) docs for a complete list of options.
 
 ## Example: Published Flag
 

@@ -1,6 +1,6 @@
 ---
 title: Text Field
-next: /docs/fields/textarea
+next: /docs/reference/toolkit/fields/textarea
 consumes:
   - file: /packages/@tinacms/fields/src/plugins/TextFieldPlugin.tsx
     details: Shows text field interface and config options
@@ -34,7 +34,7 @@ interface TextConfig extends FieldConfig {
 
 > This interfaces only shows the keys unique to the text field.
 >
-> Visit the [Field Config](/docs/fields) docs for a complete list of options.
+> Visit the [Field Config](/docs/reference/toolkit/fields) docs for a complete list of options.
 
 ## Example: Blog Post Title
 
