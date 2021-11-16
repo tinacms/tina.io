@@ -100,6 +100,7 @@ Types fall into two general categories: _scalar_ types and _nonscalar_ types. A 
 
 - `reference`
 - `object`
+- `rich-text`
 
 Once you're familiar with _scalar_ types and how to define them, read more about _nonscalar_ types in the ["Nonscalar Types"](#nonscalar-types) section below.
 
@@ -192,7 +193,7 @@ To extend these fields with validation logic or to provide a custom fields compo
 
 ## Nonscalar Types
 
-If _scalar_ types are the building blocks for a schema, _nonscalar_ types allow you to represent almost any data structure you could want for you content.
+If _scalar_ types are the building blocks for a schema, _nonscalar_ types allow you to represent almost any data structure you could want for your content.
 
 ### The `object` type
 
