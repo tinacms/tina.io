@@ -46,6 +46,7 @@ export const VersionSelect = () => {
 
 const SelectContainer = styled.div`
   margin-bottom: 1rem;
+  text-align: right;
 `
 
 const SelectWrapper = styled.div`
