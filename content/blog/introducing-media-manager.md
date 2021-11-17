@@ -4,6 +4,7 @@ date: '2020-10-02T10:20:39-04:00'
 author: Kendall Strautman
 last_edited: '2020-10-05T01:23:41.347Z'
 ---
+
 Websites today contain more dog GIFs and landscape hero photos than ever. Content editors need a way to work with that media when creating and updating web pages, blogs, or articles.
 
 Up until now, media changes with Tina have been handled through image fields. By clicking on the field, editors could upload new images from their local filesystem. Developers would register a [Media Store](/docs/media/#media-store) to the CMS that would handle uploading files. However, there was no way to view images that had already been uploaded to use them in a piece of content.
@@ -44,35 +45,35 @@ new TinaCMS({
 
 3 new attributes were added to the individual [`Media` object interface](/docs/media/#media).
 
-* `type` : Denotes whether the media item is a [file or a directory](https://github.com/tinacms/tinacms/issues/1452).
-* `id`: A unique identifier for this file, typically the full path to the file.
-* `previewSrc`: A URL to source a preview image. This attribute is optional, but should be included in the return values of a media store's `list` function in order to display preview images in the media listing.
+- `type` : Denotes whether the media item is a [file or a directory](https://github.com/tinacms/tinacms/issues/1452).
+- `id`: A unique identifier for this file, typically the full path to the file.
+- `previewSrc`: A URL to source a preview image. This attribute is optional, but should be included in the return values of a media store's `list` function in order to display preview images in the media listing.
 
 ### Media Store
 
 Two new methods were added to the [Media Store](/docs/media/#media-store) interface.
 
-* `list`: This function provides a paginated list of available items for the media manager to render.
-* `delete`: This function deletes a media file.
+- `list`: This function provides a paginated list of available items for the media manager to render.
+- `delete`: This function deletes a media file.
 
 These methods are **required** in order to satisfy the `MediaStore` interface. All media stores available in `tinacms` have been updated to support these methods, but if you have created a custom store, you will need to implement these yourself when updating.
 
 ### Events
 
-We added many [new events](https://github.com/tinacms/tinacms/pull/1474) to mark the asynchronous methods used for media management. Use these media events to track media changes or states within your CMS and trigger feedback to the user. Read the [documentation](/docs/events) to learn how to subscribe to and interact with events.
+We added many [new events](https://github.com/tinacms/tinacms/pull/1474) to mark the asynchronous methods used for media management. Use these media events to track media changes or states within your CMS and trigger feedback to the user.
 
-* `media:upload:start`
-* `media:upload:success`
-* `media:upload:failure`
-* `media:list:start`
-* `media:list:success`
-* `media:list:failure`
-* `media:delete:start`
-* `media:delete:success`
-* `media:delete:failure`
-* `media:previewSrc:start`
-* `media:previewSrc:success`
-* `media:previewSrc:failure`
+- `media:upload:start`
+- `media:upload:success`
+- `media:upload:failure`
+- `media:list:start`
+- `media:list:success`
+- `media:list:failure`
+- `media:delete:start`
+- `media:delete:success`
+- `media:delete:failure`
+- `media:previewSrc:start`
+- `media:previewSrc:success`
+- `media:previewSrc:failure`
 
 ### Image Fields
 
@@ -99,7 +100,7 @@ Another improvement is the ability to [extend styles](/docs/ui/inline-editing/#e
   uploadDir={() => '/public/images/'}
   parse={media => media.id}
   alt={data.frontmatter.image.alt}
-  className="inline-img" 
+  className="inline-img"
 />
 
 // Example CSS

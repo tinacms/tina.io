@@ -1,7 +1,5 @@
 ---
 title: Field Plugins
-prev: /docs/forms
-next: /docs/plugins/content-creators
 last_edited: '2020-08-05T15:33:06.570Z'
 ---
 

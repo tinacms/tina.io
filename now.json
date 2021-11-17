@@ -452,7 +452,23 @@
       "destination": "/docs/legacy-redirect"
     },
     {
-      "source": "/guides/experimental/github/initial-setup/",
+      "source": "/guides/experimental(.*)",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/guides/gatsby(.*)",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/guides/general(.*)",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/guides/nextjs(.*)",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/guides/tinacms(.*)",
       "destination": "/docs/legacy-redirect"
     }
   ]

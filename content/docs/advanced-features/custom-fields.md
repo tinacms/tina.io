@@ -95,7 +95,7 @@ Where `FieldComponentName` is an a Field Component from this list
 
 - [TextField](/docs/reference/toolkit/fields/text/)
 - [TextareaField](/docs/reference/toolkit/fields/textarea/)
-- [NumberField](docs/fields/number/)
+- [NumberField](docs//reference/toolkit/fields/number/)
 - [ImageField](/docs/reference/toolkit/fields/image/)
 - [ColorField](/docs/reference/toolkit/fields/color/)
 - [ToggleField](/docs/reference/toolkit/fields/toggle/)
