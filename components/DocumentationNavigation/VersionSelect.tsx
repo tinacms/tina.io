@@ -8,7 +8,7 @@ const VERSIONS = [
   },
   {
     id: 'v-pre-beta',
-    url: 'https://tinacms-site-next-burxzt849-tinacms.vercel.app',
+    url: 'https://pre-beta.tina.io',
     label: 'v.Pre-Beta',
   },
 ]
