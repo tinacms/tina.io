@@ -305,6 +305,155 @@
     {
       "source": "/docs/tinacms-reference/",
       "destination": "/docs/tinacms-context/"
+    },
+    {
+      "source": "/docs/toolkit/",
+      "destination": "/docs/reference/toolkit/cms/"
+    },
+    {
+      "source": "/docs/content-management/",
+      "destination": "/docs/reference/toolkit/overview/"
+    },
+    {
+      "source": "/docs/cms/",
+      "destination": "/docs/reference/toolkit/cms/"
+    },
+    {
+      "source": "/docs/forms/",
+      "destination": "/docs/reference/toolkit/forms/"
+    },
+    {
+      "source": "/docs/fields/",
+      "destination": "/docs/reference/toolkit/fields/"
+    },
+    {
+      "source": "/docs/fields/text/",
+      "destination": "/docs/reference/toolkit/fields/text/"
+    },
+    {
+      "source": "/docs/fields/textarea/",
+      "destination": "/docs/reference/toolkit/fields/textarea/"
+    },
+    {
+      "source": "/docs/fields/number/",
+      "destination": "/docs/reference/toolkit/fields/number/"
+    },
+    {
+      "source": "/docs/fields/image/",
+      "destination": "/docs/reference/toolkit/fields/image/"
+    },
+    {
+      "source": "/docs/fields/color/",
+      "destination": "/docs/reference/toolkit/fields/color/"
+    },
+    {
+      "source": "/docs/fields/toggle/",
+      "destination": "/docs/reference/toolkit/fields/toggle/"
+    },
+    {
+      "source": "/docs/fields/radio-group/",
+      "destination": "/docs/reference/toolkit/fields/radio-group/"
+    },
+    {
+      "source": "/docs/fields/select/",
+      "destination": "/docs/reference/toolkit/fields/select/"
+    },
+    {
+      "source": "/docs/fields/tags/",
+      "destination": "/docs/reference/toolkit/fields/tags/"
+    },
+    {
+      "source": "/docs/fields/list/",
+      "destination": "/docs/reference/toolkit/fields/list/"
+    },
+    {
+      "source": "/docs/fields/group/",
+      "destination": "/docs/reference/toolkit/fields/group/"
+    },
+    {
+      "source": "/docs/fields/group-list/",
+      "destination": "/docs/reference/toolkit/fields/group-list/"
+    },
+    {
+      "source": "/docs/fields/blocks/",
+      "destination": "/docs/reference/toolkit/fields/blocks/"
+    },
+    {
+      "source": "/docs/fields/date/",
+      "destination": "/docs/reference/toolkit/fields/date/"
+    },
+    {
+      "source": "/docs/fields/markdown/",
+      "destination": "/docs/reference/toolkit/fields/markdown/"
+    },
+    {
+      "source": "/docs/fields/html/",
+      "destination": "/docs/reference/toolkit/fields/html/"
+    },
+    {
+      "source": "/docs/fields/custom-fields/",
+      "destination": "/docs/reference/toolkit/fields/custom-fields/"
+    },
+
+    {
+      "source": "/docs/plugins/content-creators/",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/docs/media/",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/docs/apis/",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/docs/user-interface/",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/docs/sidebar-toolbar/",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/ui/alerts",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/ui/styles",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/docs/extending-tina/",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/docs/events/",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/docs/plugins/plugins/",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/docs/plugins/plugins/screens/",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/docs/plugins/toolbar-widgets/",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/guides/experimental/inline-blocks/overview/",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/guides/experimental/tina-with-strapi/overview/",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/guides/experimental/github/initial-setup/",
+      "destination": "/docs/legacy-redirect"
     }
   ]
 }
