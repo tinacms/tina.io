@@ -440,6 +440,10 @@
       "destination": "/docs/legacy-redirect"
     },
     {
+      "source": "/docs/getting-started/faq/",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
       "source": "/guides/experimental/inline-blocks/overview/",
       "destination": "/docs/legacy-redirect"
     },

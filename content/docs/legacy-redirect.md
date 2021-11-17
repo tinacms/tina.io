@@ -1,5 +1,6 @@
 ---
 title: Outdated API reference
+id: legacy-redirect
 ---
 
 Tina's API has been changing over the past year, and it looks like the doc you are looking for is outdated.
