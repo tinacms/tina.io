@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Overlay } from '../ui/Overlay'
 import { DocsLeftSidebar } from './DocsLeftSidebar'
 import { DocsNavigationList } from './DocsNavigationList'
@@ -11,6 +11,7 @@ import { FallbackPlaceholder } from 'components/fallback-placeholder'
 import Search from '../search'
 import { HitsWrapper } from 'components/search/styles'
 import { searchIndices } from 'components/search/indices'
+import { VersionSelect } from './VersionSelect'
 
 export interface DocsNavProps {
   navItems: any
@@ -29,6 +30,7 @@ export function DocumentationNavigation({ navItems }: DocsNavProps) {
       <DocsLeftSidebar open={mobileNavIsOpen}>
         <DocsSidebarHeader>
           <DocsDesktopTinaIcon docs />
+          <VersionSelect />
           <Search collapse expanded={true} indices={searchIndices} />
         </DocsSidebarHeader>
         {router.isFallback ? (
