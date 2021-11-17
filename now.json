@@ -255,18 +255,6 @@
       "destination": "/docs/tina-cloud/alpha-faq"
     },
     {
-      "source": "/guides/nextjs/github-open-authoring/(.*)",
-      "destination": "/guides/experimental/github/$1"
-    },
-    {
-      "source": "/guides/tinacms/github/(.*)",
-      "destination": "/guides/experimental/github/$1"
-    },
-    {
-      "source": "/guides/tinacms/tina-with-strapi/(.*)",
-      "destination": "/guides/experimental/tina-with-strapi/$1"
-    },
-    {
       "source": "/guides/tina-cloud/getting-started/(.*)",
       "destination": "/guides/tina-cloud/add-tinacms-to-existing-site/$1"
     },
@@ -323,78 +311,9 @@
       "destination": "/docs/reference/toolkit/forms/"
     },
     {
-      "source": "/docs/fields/",
+      "source": "/docs/fields(.*)",
       "destination": "/docs/reference/toolkit/fields/"
     },
-    {
-      "source": "/docs/fields/text/",
-      "destination": "/docs/reference/toolkit/fields/text/"
-    },
-    {
-      "source": "/docs/fields/textarea/",
-      "destination": "/docs/reference/toolkit/fields/textarea/"
-    },
-    {
-      "source": "/docs/fields/number/",
-      "destination": "/docs/reference/toolkit/fields/number/"
-    },
-    {
-      "source": "/docs/fields/image/",
-      "destination": "/docs/reference/toolkit/fields/image/"
-    },
-    {
-      "source": "/docs/fields/color/",
-      "destination": "/docs/reference/toolkit/fields/color/"
-    },
-    {
-      "source": "/docs/fields/toggle/",
-      "destination": "/docs/reference/toolkit/fields/toggle/"
-    },
-    {
-      "source": "/docs/fields/radio-group/",
-      "destination": "/docs/reference/toolkit/fields/radio-group/"
-    },
-    {
-      "source": "/docs/fields/select/",
-      "destination": "/docs/reference/toolkit/fields/select/"
-    },
-    {
-      "source": "/docs/fields/tags/",
-      "destination": "/docs/reference/toolkit/fields/tags/"
-    },
-    {
-      "source": "/docs/fields/list/",
-      "destination": "/docs/reference/toolkit/fields/list/"
-    },
-    {
-      "source": "/docs/fields/group/",
-      "destination": "/docs/reference/toolkit/fields/group/"
-    },
-    {
-      "source": "/docs/fields/group-list/",
-      "destination": "/docs/reference/toolkit/fields/group-list/"
-    },
-    {
-      "source": "/docs/fields/blocks/",
-      "destination": "/docs/reference/toolkit/fields/blocks/"
-    },
-    {
-      "source": "/docs/fields/date/",
-      "destination": "/docs/reference/toolkit/fields/date/"
-    },
-    {
-      "source": "/docs/fields/markdown/",
-      "destination": "/docs/reference/toolkit/fields/markdown/"
-    },
-    {
-      "source": "/docs/fields/html/",
-      "destination": "/docs/reference/toolkit/fields/html/"
-    },
-    {
-      "source": "/docs/fields/custom-fields/",
-      "destination": "/docs/reference/toolkit/fields/custom-fields/"
-    },
-
     {
       "source": "/docs/plugins/content-creators/",
       "destination": "/docs/legacy-redirect"
@@ -441,14 +360,6 @@
     },
     {
       "source": "/docs/getting-started/faq/",
-      "destination": "/docs/legacy-redirect"
-    },
-    {
-      "source": "/guides/experimental/inline-blocks/overview/",
-      "destination": "/docs/legacy-redirect"
-    },
-    {
-      "source": "/guides/experimental/tina-with-strapi/overview/",
       "destination": "/docs/legacy-redirect"
     },
     {
