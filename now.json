@@ -432,15 +432,11 @@
       "destination": "/docs/legacy-redirect"
     },
     {
-      "source": "/docs/plugins/plugins/",
+      "source": "/docs/plugins(.*)",
       "destination": "/docs/legacy-redirect"
     },
     {
-      "source": "/docs/plugins/plugins/screens/",
-      "destination": "/docs/legacy-redirect"
-    },
-    {
-      "source": "/docs/plugins/toolbar-widgets/",
+      "source": "/docs/ui/(.*)",
       "destination": "/docs/legacy-redirect"
     },
     {
