@@ -52,27 +52,27 @@
     { "source": "/docs/concepts/plugins", "destination": "/docs/cms#plugins" },
     {
       "source": "/docs/getting-started/how-tina-works/",
-      "destination": "/guides/tinacms/getting-started/introduction"
+      "destination": "/docs/setup-overview/"
     },
     {
       "source": "/docs/getting-started/overview",
-      "destination": "/docs/getting-started/introduction"
+      "destination": "/docs/setup-overview/"
     },
     {
       "source": "/docs/getting-started/introduction",
-      "destination": "/guides/tinacms/getting-started/introduction"
+      "destination": "/docs/setup-overview/"
     },
     {
       "source": "/docs/getting-started/cms-set-up",
-      "destination": "/guides/tinacms/getting-started/cms-set-up"
+      "destination": "/docs/setup-overview/"
     },
     {
       "source": "/docs/getting-started/edit-content",
-      "destination": "/guides/tinacms/getting-started/edit-content"
+      "destination": "/docs/setup-overview/"
     },
     {
       "source": "/docs/getting-started/backends",
-      "destination": "/guides/tinacms/getting-started/backends"
+      "destination": "/docs/setup-overview/"
     },
     {
       "source": "/docs/inline-editing",
@@ -165,10 +165,6 @@
     {
       "source": "/docs/gatsby/custom-field",
       "destination": "/docs/plugins#adding-plugins-in-gatsby"
-    },
-    {
-      "source": "/docs/nextjs/overview",
-      "destination": "/docs/integrations/nextjs"
     },
     {
       "source": "/blog/2020-03-09-release-notes",
@@ -429,6 +425,10 @@
     },
     {
       "source": "/docs/getting-started/faq/",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/docs/integrations(.*)",
       "destination": "/docs/legacy-redirect"
     },
     {
