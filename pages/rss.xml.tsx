@@ -1,7 +1,7 @@
 import { NextPageContext } from 'next'
 
 import { formatExcerpt, orderPosts } from '../utils'
-import fetchBlogs from '../data-api/fetchBlogs'
+import { fetchRelevantBlogs as fetchBlogs } from '../data-api/fetchBlogs'
 
 export default function FeedPage() {
   // xml is passed to the browser and written via getInitialProps
