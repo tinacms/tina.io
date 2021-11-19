@@ -30,7 +30,7 @@
       "source": "/blog/introducing-tina-grande-%F0%9F%8E%89",
       "destination": "/blog/introducing-tina-grande"
     },
-    { "source": "/jamstack-conf  ", "destination": "/teams" },
+    { "source": "/jamstack-conf", "destination": "/teams" },
     { "source": "/smashing-conf", "destination": "/teams" },
     { "source": "/docs/concepts/sidebar", "destination": "/docs/cms" },
     { "source": "/docs/concepts/forms", "destination": "/docs/forms" },
@@ -55,31 +55,31 @@
       "destination": "/docs/setup-overview/"
     },
     {
-      "source": "/docs/getting-started/overview",
+      "source": "/docs/getting-started/overview/",
       "destination": "/docs/setup-overview/"
     },
     {
-      "source": "/docs/getting-started/introduction",
+      "source": "/docs/getting-started/introduction/",
       "destination": "/docs/setup-overview/"
     },
     {
-      "source": "/docs/getting-started/cms-set-up",
+      "source": "/docs/getting-started/cms-set-up/",
       "destination": "/docs/setup-overview/"
     },
     {
-      "source": "/docs/getting-started/edit-content",
+      "source": "/docs/getting-started/edit-content/",
       "destination": "/docs/setup-overview/"
     },
     {
-      "source": "/docs/getting-started/backends",
+      "source": "/docs/getting-started/backends/",
       "destination": "/docs/setup-overview/"
     },
     {
-      "source": "/docs/inline-editing",
+      "source": "/docs/inline-editing/",
       "destination": "/docs/ui/inline-editing"
     },
     {
-      "source": "/docs/nextjs/inline-editing",
+      "source": "/docs/nextjs/inline-editing/",
       "destination": "/docs/ui/inline-editing"
     },
     {
@@ -87,43 +87,43 @@
       "destination": "/guides/nextjs/github/$1"
     },
     {
-      "source": "/docs/gatsby/inline-editing",
+      "source": "/docs/gatsby/inline-editing/",
       "destination": "/docs/ui/inline-editing"
     },
     {
-      "source": "/docs/inline-blocks",
+      "source": "/docs/inline-blocks/",
       "destination": "/docs/ui/inline-editing/inline-blocks"
     },
     {
-      "source": "/docs/inline-editing/inline-blocks",
+      "source": "/docs/inline-editing/inline-blocks/",
       "destination": "/docs/ui/inline-editing/inline-blocks"
     },
     {
-      "source": "/docs/inline-blocks/block-text",
+      "source": "/docs/inline-blocks/block-text/",
       "destination": "/docs/ui/inline-editing/inline-text"
     },
     {
-      "source": "/docs/inline-blocks/block-textarea",
+      "source": "/docs/inline-blocks/block-textarea/",
       "destination": "/docs/ui/inline-editing/inline-textarea"
     },
     {
-      "source": "/docs/inline-blocks/block-image",
+      "source": "/docs/inline-blocks/block-image/",
       "destination": "/docs/ui/inline-editing/inline-image"
     },
     {
-      "source": "/docs/nextjs/bootstrapping",
+      "source": "/docs/nextjs/bootstrapping/",
       "destination": "/guides/nextjs/git/getting-started"
     },
     {
-      "source": "/docs/nextjs/adding-backends",
+      "source": "/docs/nextjs/adding-backends/",
       "destination": "/guides/nextjs/git/adding-backend"
     },
     {
-      "source": "/docs/nextjs/creating-forms",
+      "source": "/docs/nextjs/creating-forms/",
       "destination": "/guides/nextjs/git/creating-git-forms"
     },
     {
-      "source": "/docs/nextjs/markdown",
+      "source": "/docs/nextjs/markdown/",
       "destination": "/packages/next-tinacms-markdown"
     },
     {
@@ -135,19 +135,19 @@
       "destination": "/"
     },
     {
-      "source": "/docs/gatsby/quickstart",
+      "source": "/docs/gatsby/quickstart/",
       "destination": "/guides/gatsby/adding-tina/project-setup"
     },
     {
-      "source": "/docs/gatsby/manual-setup",
+      "source": "/docs/gatsby/manual-setup/",
       "destination": "/guides/gatsby/adding-tina/project-setup"
     },
     {
-      "source": "/docs/gatsby/markdown",
+      "source": "/docs/gatsby/markdown/",
       "destination": "/guides/gatsby/git/installation"
     },
     {
-      "source": "/guides/general/inline-editing",
+      "source": "/guides/general/inline-editing/",
       "destination": "/guides/experimental/inline-editing"
     },
     {
@@ -397,14 +397,6 @@
     },
     {
       "source": "/docs/sidebar-toolbar/",
-      "destination": "/docs/legacy-redirect"
-    },
-    {
-      "source": "/ui/alerts",
-      "destination": "/docs/legacy-redirect"
-    },
-    {
-      "source": "/ui/styles",
       "destination": "/docs/legacy-redirect"
     },
     {
