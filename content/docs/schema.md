@@ -190,7 +190,7 @@ The `reference` field connects one document to another, and only needs to be def
 }
 ```
 
-This will result in a resolvable node in your GraphQL structure (Don't worry, We'll discuss how to use the GraphQL API later)
+This will result in a resolvable node in your GraphQL structure (Don't worry, we'll discuss how to use the GraphQL API later)
 
 ```graphql
 {
