@@ -53,4 +53,4 @@ Your browser does not support the video tag.
 
 > This works by using our Content API which will go into greater depth during this guide.
 
-The second URL http://localhost:4001/altair/ will launch to a graphQL client that will allow you to interact and create queries which we will do in this guide.#
+The second URL http://localhost:4001/altair/ will launch to a graphQL client that will allow you to interact and create queries which we will do in this guide.
