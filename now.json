@@ -442,6 +442,10 @@
     {
       "source": "/guides/tinacms(.*)",
       "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/guides/tina-cloud/(.*)",
+      "destination": "/docs/setup-overview"
     }
   ]
 }
