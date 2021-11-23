@@ -242,6 +242,11 @@
         "slug": "/guides/",
         "title": "Overview"
       },
+      {
+        "id": "/guides#tina-cloud",
+        "slug": "/guides#tina-cloud",
+        "title": "TinaCMS",
+        "items": [
           {
             "id": "/guides/tina-cloud/add-tinacms-to-existing-site/overview/",
             "slug": "/guides/tina-cloud/add-tinacms-to-existing-site/overview/",
