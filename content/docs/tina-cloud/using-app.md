@@ -2,7 +2,7 @@
 title: Using your project
 ---
 
-Once you've created a project within the **Tina Cloud Dashboard** it's ready to be used within your site. By doing so, your project's editors will be able to save content to your project's repository, right from your sire.
+Once you've created a project within the **Tina Cloud Dashboard** it's ready to be used within your site. By doing so, your project's editors will be able to save content to your project's repository, right from your site.
 
 ## Switching <TinaCMS> to production mode.
 
