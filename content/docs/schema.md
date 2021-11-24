@@ -4,7 +4,7 @@ id: /docs/schema/
 next: '/docs/features/data-fetching'
 ---
 
-In Tina, The Tina schema defines the shape of your content. With traditional content management systems you may have done this sort of content modeling via GUI, however, given its tight coupling to Git, TinaCMS considers the filesystem the ultimate source of truth and leverages a "content-modeling as code" approach.
+The Tina schema defines the shape of your content. With traditional content management systems you may have done this sort of content modeling via a GUI; however, given its tight coupling to Git, TinaCMS considers the filesystem the ultimate source of truth and leverages a "content-modeling as code" approach.
 
 Your schema is defined in a file called `.tina/schema.ts` (only `.ts` is supported for now).
 
@@ -179,7 +179,7 @@ And its data structure (note that `_template` is required):
 
 ## Using references within a document
 
-The `reference` field connects one document to another, and only needs to be defined on _one_ side of the relationship. You can specify any number of collections you'd like to connect:
+The `reference` field connects one document to another and only needs to be defined on _one_ side of the relationship. You can specify any number of collections you'd like to connect:
 
 ```js
 {
@@ -190,7 +190,7 @@ The `reference` field connects one document to another, and only needs to be def
 }
 ```
 
-This will result in a resolvable node in your GraphQL structure (Don't worry, we'll discuss how to use the GraphQL API later)
+This will result in a resolvable node in your GraphQL structure (Don't worry, we'll discuss how to use the GraphQL API later):
 
 ```graphql
 {
