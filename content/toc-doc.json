@@ -40,11 +40,16 @@
   },
   {
     "title": "Extending Tina",
-    "id": "/docs/features/extending-tina/",
-    "slug": "/docs/features/extending-tina/",
+    "id": "/docs/advanced/extending-tina",
+    "slug": "/docs/advanced/extending-tina/",
     "items": [
       {
-        "title": "Configuring a field plugin",
+        "title": "Overview",
+        "id": "/docs/advanced/extending-tina",
+        "slug": "/docs/advanced/extending-tina/"
+      },
+      {
+        "title": "Configuring a field",
         "id": "/docs/advanced/configuring-field-plugin",
         "slug": "/docs/advanced/configuring-field-plugin/"
       },
@@ -60,8 +65,8 @@
       },
       {
         "title": "Customizing a form",
-        "id": "/docs/advanced/customizing-form",
-        "slug": "/docs/advanced/customizing-form/"
+        "id": "/docs/advanced/customizing-forms",
+        "slug": "/docs/advanced/customizing-forms/"
       },
       {
         "title": "Customizing Tina's UI",

@@ -1,6 +1,7 @@
 ---
-title: Create a field component
+title: Creating a field component
 id: '/docs/advanced/creating-field-component'
+next: 'docs/advanced/customizing-forms/'
 ---
 
 A field plugin's `Component` is React component that accepts three props:
