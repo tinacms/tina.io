@@ -1,6 +1,6 @@
 ---
 title: Changing a field's field plugin
-id: '/docs/advanced/changing-field-plugins'
+id: '/docs/advanced/configuring-field-plugin'
 ---
 
 When we add a field to our Tina schema, this field will be editable through a field plugin in the sidebar. The type of field plugin will change depending on properties like `type`, `isBody`, `list`, `options`, etc.

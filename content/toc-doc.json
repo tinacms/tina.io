@@ -44,9 +44,9 @@
     "slug": "/docs/features/extending-tina/",
     "items": [
       {
-        "title": "Changing a fields' field plugin",
-        "id": "/docs/advanced/changing-field-plugins",
-        "slug": "/docs/advanced/changing-field-plugins/"
+        "title": "Configuring a field plugin",
+        "id": "/docs/advanced/configuring-field-plugin",
+        "slug": "/docs/advanced/configuring-field-plugin/"
       },
       {
         "title": "Extending a field plugin",
