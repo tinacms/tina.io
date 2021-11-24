@@ -54,9 +54,9 @@
         "slug": "/docs/advanced/extending-field-plugin/"
       },
       {
-        "title": "Creating a new field plugin from scratch",
-        "id": "/docs/advanced/creating-field-plugins",
-        "slug": "/docs/advanced/creating-field-plugins/"
+        "title": "Creating a custom field component",
+        "id": "/docs/advanced/creating-field-component",
+        "slug": "/docs/advanced/creating-field-component/"
       },
       {
         "title": "Customizing a form",
@@ -107,11 +107,6 @@
         "slug": "/docs/tinacms-package/",
         "title": "tinacms",
         "items": [
-          {
-            "title": "Custom Fields",
-            "id": "tinacms:custom-fields/",
-            "slug": "/docs/advanced-features/custom-fields/"
-          },
           {
             "title": "Rich text",
             "id": "mdx",
@@ -247,11 +242,6 @@
                 "id": "/docs/reference/toolkit/fields/html/",
                 "slug": "/docs/reference/toolkit/fields/html/",
                 "title": "HTML"
-              },
-              {
-                "id": "/docs/reference/toolkit/fields/custom-fields/",
-                "slug": "/docs/reference/toolkit/fields/custom-fields/",
-                "title": "Custom Fields"
               }
             ]
           }

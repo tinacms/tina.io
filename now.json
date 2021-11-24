@@ -376,7 +376,11 @@
     },
     {
       "source": "/docs/fields/custom-fields/",
-      "destination": "/docs/reference/toolkit/fields/custom-fields/"
+      "destination": "/docs/advanced/configuring-field-plugin/"
+    },
+    {
+      "source": "/docs/reference/toolkit/fields/custom-fields",
+      "destination": "/docs/advanced/configuring-field-plugin/"
     },
 
     {
