@@ -70,7 +70,7 @@ The component property can be any registered field. Below is a list of default f
 - [blocks](/docs/reference/toolkit/fields/blocks/)
 - [date](/docs/reference/toolkit/fields/date/)
 
-Tina also supports some extra field plugins, that just need to be imported registered from different packages [`react-tinacms-editor`](/packages/react-tinacms-editor/)
+Tina also supports some extra field plugins, that need to be imported and registered from separate packages [`react-tinacms-editor`](/packages/react-tinacms-editor/)
 
 - [markdown](/docs/reference/toolkit/fields/markdown/)
 - [html](/docs/reference/toolkit/fields/html/)

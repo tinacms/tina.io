@@ -4,7 +4,7 @@ id: '/docs/advanced/creating-field-component'
 next: '/docs/advanced/customizing-forms'
 ---
 
-A field plugin's `Component` is React component that accepts three props:
+A field plugin's `Component` is a React component that accepts three props:
 
 - `field`: The [field definition](https://tinacms.org/docs/reference/toolkit/fields) for the current field.
 - `input`: The data and callbacks necessary to make an input.
@@ -31,7 +31,7 @@ export default function RangeInput({ field, input, meta }) {
           min="0"
           max="10"
           step=".1"
-          {...props.input} // This will pass along props.input.onChange to set our form values.
+          {...props.input} // This will pass along props.input.onChange to set our form values as this input changes.
         />
       </div>
     </>
@@ -41,8 +41,8 @@ export default function RangeInput({ field, input, meta }) {
 
 Now that we have a custom field component, we can:
 
-- [Create/register a new field plugin for it](http://localhost:3000/docs/advanced/extending-field-plugin/#creating-a-custom-field-plugin).
-- [Apply the new field plugin to fields in our schema](http://localhost:3000/docs/advanced/extending-field-plugin/#3-use-field-in-tinaschemats).
+- [Create/register a new field plugin for it](/docs/advanced/extending-field-plugin/#creating-a-custom-field-plugin).
+- [Apply the new field plugin to fields in our schema](/docs/advanced/extending-field-plugin/#3-use-field-in-tinaschemats).
 
 Once that's wired up, our editors will be able to use our new range field in their site.
 
@@ -50,7 +50,7 @@ Once that's wired up, our editors will be able to use our new range field in the
 
 ## Using Tina Styles
 
-If you want to style the custom field to fit in with the rest of the Tina sidebar, you'll need to use the [CSS custom properties](/docs/ui/styles) defined in [`@tinacms/styles`](https://github.com/tinacms/tinacms/blob/master/packages/%40tinacms/styles/src/Styles.tsx).
+If you want to style the custom field to fit in with the rest of the Tina sidebar, you'll need to use the [CSS custom properties](/docs/advanced/customizing-ui/) defined in [`@tinacms/styles`](https://github.com/tinacms/tinacms/blob/main/packages/%40tinacms/toolkit/src/packages/styles/Styles.tsx).
 
 **Example**
 

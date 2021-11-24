@@ -86,23 +86,3 @@ html body {
   --tina-color-primary-dark: Firebrick;
 }
 ```
-
-## Using Tina Styles for Custom Fields
-
-If you want to style the custom field to fit in with the rest of the Tina sidebar, you'll need to use the [CSS custom properties](/docs/ui/styles) defined in [`@tinacms/styles`](https://github.com/tinacms/tinacms/blob/master/packages/%40tinacms/styles/src/Styles.tsx).
-
-**Example**
-
-```jsx
-import styled from 'styled-components'
-// Use the Tina CSS variables in your styled component
-const Label = styled.h3`
-  color: var(--tina-color-primary);
-  font-size: var(--tina-font-size-3);
-  font-weight: var(--tina-font-weight-bold);
-  border-radius: var(--tina-radius-big);
-  border: 1px solid var(--tina-color-primary-light);
-  transition: color linear ease var(--tina-timing-medium);
-  padding: var(--tina-padding-small);
-`
-```

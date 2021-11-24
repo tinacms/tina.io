@@ -4,7 +4,7 @@ id: '/docs/advanced/extending-field-plugin'
 next: '/docs/advanced/creating-field-component'
 ---
 
-Sometimes we will want to modify an existing tinacms field-plugin, beyond what's available in a given plugin's configurable props. We can do this by extending a field-plugin on the frontend.
+Sometimes we will want to modify an existing tinacms field plugin, beyond what's available in a given plugin's configurable props. We can do this by extending a field-plugin on the frontend.
 
 ## Creating a Custom Field Plugin
 
@@ -34,9 +34,9 @@ export interface FieldPlugin<ExtraFieldProps = {}, InputProps = {}> {
 }
 ```
 
-The `Component` property can be a built-in component from the "tinacms" package or a custom component. [sSee here](#built-in-field-components) for a full list of built-in components.
+The `Component` property can be a built-in component from the "tinacms" package or a custom component. [See here](#built-in-field-components) for a full list of built-in components.
 
-Let's create a new "Email" plugin, that extends the basic behaviour of a text field, but adds some basic validation.
+Let's create a new "Email" plugin, that extends the basic behaviour of a text field, but adds some email validation.
 
 ```tsx
 // ./plugins.tsx
