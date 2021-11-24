@@ -1,12 +1,8 @@
 ---
-title: Extending Tina
-id: '/docs/features/extending-tina'
-next: '/docs/tina-cloud'
+title: Configuring a field
+id: '/docs/advanced/configuring-field-plugin'
+next: '/docs/advanced/extending-field-plugin'
 ---
-
-TinaCMS exposes some hooks that make it easy to extend. Most of these hooks exist on the `<TinaCMS>` container
-
-## Using a custom field plugin
 
 When we add a field to our Tina schema, this field will be editable through a field plugin in the sidebar. The type of field plugin will change depending on properties like `type`, `isBody`, `list`, `options`, etc.
 
@@ -57,7 +53,7 @@ If you want to override the field plugin used for a field, you can use the `ui` 
 
 The component property can be any registered field. Below is a list of default fields.
 
-### Default Field Plugins
+## Default Field Plugins
 
 - [text](/docs/reference/toolkit/fields/text/)
 - [textarea](/docs/reference/toolkit/fields/textarea/)
@@ -74,68 +70,29 @@ The component property can be any registered field. Below is a list of default f
 - [blocks](/docs/reference/toolkit/fields/blocks/)
 - [date](/docs/reference/toolkit/fields/date/)
 
-Some fields must be imported and registered from [`react-tinacms-editor`](/packages/react-tinacms-editor/)
+Tina also supports some extra field plugins, that need to be imported and registered from separate packages [`react-tinacms-editor`](/packages/react-tinacms-editor/)
 
 - [markdown](/docs/reference/toolkit/fields/markdown/)
 - [html](/docs/reference/toolkit/fields/html/)
 
-You can also extend any of these fields, or create your own from scratch. [Read more about creating/registering custom field plugins](https://tina.io/docs/advanced-features/custom-fields/).
+## Configuring a field plugin
 
-## Customizing a form
+Each of these fields has a unique set of properties that can be configured within the `.tina/schema.ts` file.
 
-With Tina, the form definition for a piece of content is generated automatically.
+If you take a look at the color field plugin's definition, it takes a `colorFormat` property. We can configure that in our `.tina/schema.ts` like so:
 
-If you'd like to control the output of those forms, tap into the `formifyCallback` callback parameter on the root `<TinaCMS>` container.
-
-```tsx
-// pages/_app.js
-import TinaCMS from 'tinacms'
-
-const App = ({ Component, pageProps }) => {
-  return (
-    <TinaCMS
-      // ...
-      formifyCallback={({ formConfig, createForm, skip }) => {
-        if (formConfig.id === 'getSiteNavsDocument') {
-          const form = new Form(formConfig)
-          // The site nav will be a global plugin
-          cms.plugins.add(new GlobalFormPlugin(form))
-          return form
-        }
-
-        return createForm(formConfig)
-      }}
-    >
-      {livePageProps => <Component {...livePageProps} />}
-    </TinaCMS>
-  )
-}
-
-export default App
+```ts
+// ...
+        {
+          type: 'string',
+          label: 'Background Color',
+          name: 'color',
+          ui: {
+            component: "color",
+            colorFormat: "rgb"
+          }
+        },
+// ...
 ```
 
-## Customizing the CMS instance
-
-The root `<TinaCMS>` container has an optional `cmsCallback` parameter that can be added to customize the CMS instance.
-
-```tsx
-// pages/_app.js
-import TinaCMS from 'tinacms'
-
-const App = ({ Component, pageProps }) => {
-  return (
-    <TinaCMS
-      // ...
-      cmsCallback={cms => {
-        cms.sidebar.position = 'overlay'
-      }}
-    >
-      {livePageProps => <Component {...livePageProps} />}
-    </TinaCMS>
-  )
-}
-
-export default App
-```
-
-`cmsCallback` might be used to alter Tina's UI, dynamically hide the sidebar on certain pages, tap into the CMS event bus, etc.
+Any field-plugin properties other than the [base schema-field properties](http://localhost:3000/docs/schema/) (e.g, `type`,`label`,`name` ,etc) are set under `ui`.

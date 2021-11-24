@@ -43,7 +43,14 @@
     { "source": "/docs/ui", "destination": "/docs/sidebar-toolbar" },
     { "source": "/docs/cms/ui", "destination": "/docs/sidebar-toolbar" },
     { "source": "/docs/cms/alerts", "destination": "/docs/ui/alerts" },
-    { "source": "/docs/cms/styles", "destination": "/docs/ui/styles" },
+    {
+      "source": "/docs/cms/styles",
+      "destination": "/docs/advanced/customizing-ui/"
+    },
+    {
+      "source": "/docs/ui/styles/",
+      "destination": "/docs/advanced/customizing-ui/"
+    },
     { "source": "/docs/cms/events", "destination": "/docs/events" },
     { "source": "/docs/cms/plugins", "destination": "/docs/plugins" },
     { "source": "/docs/plugins/fields", "destination": "/docs/fields" },
@@ -376,7 +383,11 @@
     },
     {
       "source": "/docs/fields/custom-fields/",
-      "destination": "/docs/reference/toolkit/fields/custom-fields/"
+      "destination": "/docs/advanced/configuring-field-plugin/"
+    },
+    {
+      "source": "/docs/reference/toolkit/fields/custom-fields",
+      "destination": "/docs/advanced/configuring-field-plugin/"
     },
 
     {
@@ -446,6 +457,10 @@
     {
       "source": "/guides/tina-cloud/(.*)",
       "destination": "/docs/setup-overview"
+    },
+    {
+      "source": "/docs/features/extending-tina/",
+      "destination": "/docs/advanced/extending-tina/"
     }
   ]
 }

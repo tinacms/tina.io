@@ -35,11 +35,43 @@
         "title": "Contextual Editing",
         "id": "/docs/tinacms-context",
         "slug": "/docs/tinacms-context/"
+      }
+    ]
+  },
+  {
+    "title": "Extending Tina",
+    "id": "/docs/advanced/extending-tina",
+    "slug": "/docs/advanced/extending-tina/",
+    "items": [
+      {
+        "title": "Overview",
+        "id": "/docs/advanced/extending-tina",
+        "slug": "/docs/advanced/extending-tina/"
       },
       {
-        "title": "Extending Tina",
-        "id": "/docs/features/extending-tina/",
-        "slug": "/docs/features/extending-tina/"
+        "title": "Configuring a field",
+        "id": "/docs/advanced/configuring-field-plugin",
+        "slug": "/docs/advanced/configuring-field-plugin/"
+      },
+      {
+        "title": "Extending a field plugin",
+        "id": "/docs/advanced/extending-field-plugin",
+        "slug": "/docs/advanced/extending-field-plugin/"
+      },
+      {
+        "title": "Creating a custom field component",
+        "id": "/docs/advanced/creating-field-component",
+        "slug": "/docs/advanced/creating-field-component/"
+      },
+      {
+        "title": "Customizing a form",
+        "id": "/docs/advanced/customizing-forms",
+        "slug": "/docs/advanced/customizing-forms/"
+      },
+      {
+        "title": "Customizing Tina's UI",
+        "id": "/docs/advanced/customizing-ui",
+        "slug": "/docs/advanced/customizing-ui/"
       }
     ]
   },
@@ -80,11 +112,6 @@
         "slug": "/docs/tinacms-package/",
         "title": "tinacms",
         "items": [
-          {
-            "title": "Custom Fields",
-            "id": "tinacms:custom-fields/",
-            "slug": "/docs/advanced-features/custom-fields/"
-          },
           {
             "title": "Rich text",
             "id": "mdx",
@@ -220,11 +247,6 @@
                 "id": "/docs/reference/toolkit/fields/html/",
                 "slug": "/docs/reference/toolkit/fields/html/",
                 "title": "HTML"
-              },
-              {
-                "id": "/docs/reference/toolkit/fields/custom-fields/",
-                "slug": "/docs/reference/toolkit/fields/custom-fields/",
-                "title": "Custom Fields"
               }
             ]
           }

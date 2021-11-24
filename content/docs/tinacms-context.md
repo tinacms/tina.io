@@ -1,7 +1,7 @@
 ---
 title: Contextual Editing
 id: '/docs/tinacms-context'
-next: '/docs/features/extending-tina'
+next: '/docs/advanced/extending-tina'
 ---
 
 After modelling out content, and using Tina's API for data-fetching, we can add TinaCMS to our site's frontend and add contextual editing.
@@ -101,6 +101,7 @@ const GoToEditPage = () => {
 
 export default GoToEditPage
 ```
+
 Note that the `tinacms/dist/edit-state (>2kb)` code _will_ be in your production bundle with this pattern.
 
 ## FAQ
