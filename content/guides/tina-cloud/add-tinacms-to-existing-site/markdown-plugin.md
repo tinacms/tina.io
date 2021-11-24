@@ -128,7 +128,7 @@ export default function Post({data,slug}) {
     author,
     body,
     ogImage,
-  } = data.getPostsDocument.data
+  } = data.getPostDocument.data
   const router = useRouter()
   const [content, setContent] = useState('')
 + useEffect(() => {
@@ -171,7 +171,7 @@ export default function Post({ data, slug, preview }) {
     author,
     body,
     ogImage,
-  } = data.getPostsDocument.data
+  } = data.getPostDocument.data
   const router = useRouter()
   const [content, setContent] = useState('')
 
@@ -220,7 +220,7 @@ export const getStaticProps = async ({ params }) => {
 
   const query = `
       query BlogPostQuery($relativePath: String!) {
-        getPostsDocument(relativePath: $relativePath) {
+        getPostDocument(relativePath: $relativePath) {
           data {
             title
             excerpt
@@ -263,7 +263,7 @@ export async function getStaticPaths() {
   const postsListData = await staticRequest({
     query: `
     query {
-      getPostsList {
+      getPostList {
         edges {
           node {
             sys {
@@ -277,7 +277,7 @@ export async function getStaticPaths() {
     variables: {},
   })
   return {
-    paths: postsListData.getPostsList.edges.map(edge => ({
+    paths: postsListData.getPostList.edges.map(edge => ({
       params: { slug: edge.node.sys.filename },
     })),
     fallback: false,

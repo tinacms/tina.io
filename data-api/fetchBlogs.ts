@@ -3,7 +3,7 @@ const fg = require('fast-glob')
 var fs = require('fs')
 var path = require('path')
 
-export default async function fetchBlogs() {
+export async function fetchBlogs() {
   const directory = path.resolve('./content/blog')
   const files = await fg(directory + '/**/*.md')
 
@@ -23,4 +23,12 @@ export default async function fetchBlogs() {
       content: post.content,
     }
   })
+}
+
+export async function fetchRelevantBlogs() {
+  const blogs = await fetchBlogs()
+  return blogs.filter(
+    post =>
+      new Date(post.data.date).getTime() >= new Date('2021-04-01').getTime()
+  )
 }
