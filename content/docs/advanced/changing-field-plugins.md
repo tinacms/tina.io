@@ -52,7 +52,7 @@ If you want to override the field plugin used for a field, you can use the `ui` 
 
 The component property can be any registered field. Below is a list of default fields.
 
-### Default Field Plugins
+## Default Field Plugins
 
 - [text](/docs/reference/toolkit/fields/text/)
 - [textarea](/docs/reference/toolkit/fields/textarea/)
@@ -73,6 +73,8 @@ Tina also supports some extra field plugins, that just need to be imported regis
 
 - [markdown](/docs/reference/toolkit/fields/markdown/)
 - [html](/docs/reference/toolkit/fields/html/)
+
+## Configuring a field plugin
 
 Each of these fields has a unique set of properties that can be configured within the `.tina/schema.ts` file.
 
