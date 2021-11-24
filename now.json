@@ -30,7 +30,7 @@
       "source": "/blog/introducing-tina-grande-%F0%9F%8E%89",
       "destination": "/blog/introducing-tina-grande"
     },
-    { "source": "/jamstack-conf  ", "destination": "/teams" },
+    { "source": "/jamstack-conf", "destination": "/teams" },
     { "source": "/smashing-conf", "destination": "/teams" },
     { "source": "/docs/concepts/sidebar", "destination": "/docs/cms" },
     { "source": "/docs/concepts/forms", "destination": "/docs/forms" },
@@ -52,34 +52,34 @@
     { "source": "/docs/concepts/plugins", "destination": "/docs/cms#plugins" },
     {
       "source": "/docs/getting-started/how-tina-works/",
-      "destination": "/guides/tinacms/getting-started/introduction"
+      "destination": "/docs/setup-overview/"
     },
     {
-      "source": "/docs/getting-started/overview",
-      "destination": "/docs/getting-started/introduction"
+      "source": "/docs/getting-started/overview/",
+      "destination": "/docs/setup-overview/"
     },
     {
-      "source": "/docs/getting-started/introduction",
-      "destination": "/guides/tinacms/getting-started/introduction"
+      "source": "/docs/getting-started/introduction/",
+      "destination": "/docs/setup-overview/"
     },
     {
-      "source": "/docs/getting-started/cms-set-up",
-      "destination": "/guides/tinacms/getting-started/cms-set-up"
+      "source": "/docs/getting-started/cms-set-up/",
+      "destination": "/docs/setup-overview/"
     },
     {
-      "source": "/docs/getting-started/edit-content",
-      "destination": "/guides/tinacms/getting-started/edit-content"
+      "source": "/docs/getting-started/edit-content/",
+      "destination": "/docs/setup-overview/"
     },
     {
-      "source": "/docs/getting-started/backends",
-      "destination": "/guides/tinacms/getting-started/backends"
+      "source": "/docs/getting-started/backends/",
+      "destination": "/docs/setup-overview/"
     },
     {
-      "source": "/docs/inline-editing",
+      "source": "/docs/inline-editing/",
       "destination": "/docs/ui/inline-editing"
     },
     {
-      "source": "/docs/nextjs/inline-editing",
+      "source": "/docs/nextjs/inline-editing/",
       "destination": "/docs/ui/inline-editing"
     },
     {
@@ -87,43 +87,43 @@
       "destination": "/guides/nextjs/github/$1"
     },
     {
-      "source": "/docs/gatsby/inline-editing",
+      "source": "/docs/gatsby/inline-editing/",
       "destination": "/docs/ui/inline-editing"
     },
     {
-      "source": "/docs/inline-blocks",
+      "source": "/docs/inline-blocks/",
       "destination": "/docs/ui/inline-editing/inline-blocks"
     },
     {
-      "source": "/docs/inline-editing/inline-blocks",
+      "source": "/docs/inline-editing/inline-blocks/",
       "destination": "/docs/ui/inline-editing/inline-blocks"
     },
     {
-      "source": "/docs/inline-blocks/block-text",
+      "source": "/docs/inline-blocks/block-text/",
       "destination": "/docs/ui/inline-editing/inline-text"
     },
     {
-      "source": "/docs/inline-blocks/block-textarea",
+      "source": "/docs/inline-blocks/block-textarea/",
       "destination": "/docs/ui/inline-editing/inline-textarea"
     },
     {
-      "source": "/docs/inline-blocks/block-image",
+      "source": "/docs/inline-blocks/block-image/",
       "destination": "/docs/ui/inline-editing/inline-image"
     },
     {
-      "source": "/docs/nextjs/bootstrapping",
+      "source": "/docs/nextjs/bootstrapping/",
       "destination": "/guides/nextjs/git/getting-started"
     },
     {
-      "source": "/docs/nextjs/adding-backends",
+      "source": "/docs/nextjs/adding-backends/",
       "destination": "/guides/nextjs/git/adding-backend"
     },
     {
-      "source": "/docs/nextjs/creating-forms",
+      "source": "/docs/nextjs/creating-forms/",
       "destination": "/guides/nextjs/git/creating-git-forms"
     },
     {
-      "source": "/docs/nextjs/markdown",
+      "source": "/docs/nextjs/markdown/",
       "destination": "/packages/next-tinacms-markdown"
     },
     {
@@ -135,19 +135,19 @@
       "destination": "/"
     },
     {
-      "source": "/docs/gatsby/quickstart",
+      "source": "/docs/gatsby/quickstart/",
       "destination": "/guides/gatsby/adding-tina/project-setup"
     },
     {
-      "source": "/docs/gatsby/manual-setup",
+      "source": "/docs/gatsby/manual-setup/",
       "destination": "/guides/gatsby/adding-tina/project-setup"
     },
     {
-      "source": "/docs/gatsby/markdown",
+      "source": "/docs/gatsby/markdown/",
       "destination": "/guides/gatsby/git/installation"
     },
     {
-      "source": "/guides/general/inline-editing",
+      "source": "/guides/general/inline-editing/",
       "destination": "/guides/experimental/inline-editing"
     },
     {
@@ -165,10 +165,6 @@
     {
       "source": "/docs/gatsby/custom-field",
       "destination": "/docs/plugins#adding-plugins-in-gatsby"
-    },
-    {
-      "source": "/docs/nextjs/overview",
-      "destination": "/docs/integrations/nextjs"
     },
     {
       "source": "/blog/2020-03-09-release-notes",
@@ -255,18 +251,6 @@
       "destination": "/docs/tina-cloud/alpha-faq"
     },
     {
-      "source": "/guides/nextjs/github-open-authoring/(.*)",
-      "destination": "/guides/experimental/github/$1"
-    },
-    {
-      "source": "/guides/tinacms/github/(.*)",
-      "destination": "/guides/experimental/github/$1"
-    },
-    {
-      "source": "/guides/tinacms/tina-with-strapi/(.*)",
-      "destination": "/guides/experimental/tina-with-strapi/$1"
-    },
-    {
       "source": "/guides/tina-cloud/getting-started/(.*)",
       "destination": "/guides/tina-cloud/add-tinacms-to-existing-site/$1"
     },
@@ -305,6 +289,163 @@
     {
       "source": "/docs/tinacms-reference/",
       "destination": "/docs/tinacms-context/"
+    },
+    {
+      "source": "/docs/toolkit/",
+      "destination": "/docs/reference/toolkit/cms/"
+    },
+    {
+      "source": "/docs/content-management/",
+      "destination": "/docs/reference/toolkit/overview/"
+    },
+    {
+      "source": "/docs/cms/",
+      "destination": "/docs/reference/toolkit/cms/"
+    },
+    {
+      "source": "/docs/forms/",
+      "destination": "/docs/reference/toolkit/forms/"
+    },
+    {
+      "source": "/docs/fields/",
+      "destination": "/docs/reference/toolkit/fields/"
+    },
+    {
+      "source": "/docs/fields/text/",
+      "destination": "/docs/reference/toolkit/fields/text/"
+    },
+    {
+      "source": "/docs/fields/textarea/",
+      "destination": "/docs/reference/toolkit/fields/textarea/"
+    },
+    {
+      "source": "/docs/fields/number/",
+      "destination": "/docs/reference/toolkit/fields/number/"
+    },
+    {
+      "source": "/docs/fields/image/",
+      "destination": "/docs/reference/toolkit/fields/image/"
+    },
+    {
+      "source": "/docs/fields/color/",
+      "destination": "/docs/reference/toolkit/fields/color/"
+    },
+    {
+      "source": "/docs/fields/toggle/",
+      "destination": "/docs/reference/toolkit/fields/toggle/"
+    },
+    {
+      "source": "/docs/fields/radio-group/",
+      "destination": "/docs/reference/toolkit/fields/radio-group/"
+    },
+    {
+      "source": "/docs/fields/select/",
+      "destination": "/docs/reference/toolkit/fields/select/"
+    },
+    {
+      "source": "/docs/fields/tags/",
+      "destination": "/docs/reference/toolkit/fields/tags/"
+    },
+    {
+      "source": "/docs/fields/list/",
+      "destination": "/docs/reference/toolkit/fields/list/"
+    },
+    {
+      "source": "/docs/fields/group/",
+      "destination": "/docs/reference/toolkit/fields/group/"
+    },
+    {
+      "source": "/docs/fields/group-list/",
+      "destination": "/docs/reference/toolkit/fields/group-list/"
+    },
+    {
+      "source": "/docs/fields/blocks/",
+      "destination": "/docs/reference/toolkit/fields/blocks/"
+    },
+    {
+      "source": "/docs/fields/date/",
+      "destination": "/docs/reference/toolkit/fields/date/"
+    },
+    {
+      "source": "/docs/fields/markdown/",
+      "destination": "/docs/reference/toolkit/fields/markdown/"
+    },
+    {
+      "source": "/docs/fields/html/",
+      "destination": "/docs/reference/toolkit/fields/html/"
+    },
+    {
+      "source": "/docs/fields/custom-fields/",
+      "destination": "/docs/reference/toolkit/fields/custom-fields/"
+    },
+
+    {
+      "source": "/docs/plugins/content-creators/",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/docs/media/",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/docs/apis/",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/docs/user-interface/",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/docs/sidebar-toolbar/",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/docs/extending-tina/",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/docs/events/",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/docs/plugins(.*)",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/docs/ui/(.*)",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/docs/getting-started/faq/",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/docs/integrations(.*)",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/guides/experimental(.*)",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/guides/gatsby(.*)",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/guides/general(.*)",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/guides/nextjs(.*)",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/guides/tinacms(.*)",
+      "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/guides/tina-cloud/(.*)",
+      "destination": "/docs/setup-overview"
     }
   ]
 }

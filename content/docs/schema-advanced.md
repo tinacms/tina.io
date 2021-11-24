@@ -1,128 +1,131 @@
 ---
 title: Advanced Usage Example
 ---
+
 The purpose of this example is to demonstrate how to create and use a more complicated `schema` (which utilizes simple and complex `object` fields), write a `getDocument` GraphQL query, and utilize the query's result in rendering.
 ​
+
 ## Schema
+
 ​
 The schema defines a `recipe` collection which consists of some standard fields (`name`, `photo`, `description`) and more advanced fields (`meta`, `sections`).
 ​
+
 ```ts, copy
 // .tina/schema.ts
-import { defineSchema } from "@tinacms/cli";
-​
+import { defineSchema } from '@tinacms/cli'
 export default defineSchema({
   collections: [
     {
-      name: "recipe",
-      label: "Recipes",
-      path: "content/recipes",
+      name: 'recipe',
+      label: 'Recipes',
+      path: 'content/recipes',
       fields: [
         {
-          name: "datePublished",
-          label: "Published On",
-          type: "datetime",
+          name: 'datePublished',
+          label: 'Published On',
+          type: 'datetime',
           ui: {
-            dateFormat: "MMM D, YYYY",
+            dateFormat: 'MMM D, YYYY',
           },
         },
         {
-          type: "string",
-          name: "name",
-          label: "Name",
+          type: 'string',
+          name: 'name',
+          label: 'Name',
         },
         {
-          type: "image",
-          name: "photo",
-          label: "Photo",
+          type: 'image',
+          name: 'photo',
+          label: 'Photo',
         },
         {
-          type: "string",
-          name: "description",
-          label: "Description",
+          type: 'string',
+          name: 'description',
+          label: 'Description',
           isBody: true,
           ui: {
-            component: "textarea",
+            component: 'textarea',
           },
         },
         {
-          type: "object",
-          name: "meta",
-          label: "Meta",
+          type: 'object',
+          name: 'meta',
+          label: 'Meta',
           fields: [
             {
-              name: "prep",
-              label: "Prep Time (in minutes)",
-              type: "string",
+              name: 'prep',
+              label: 'Prep Time (in minutes)',
+              type: 'string',
             },
             {
-              name: "cook",
-              label: "Cook Time (in minutes)",
-              type: "string",
+              name: 'cook',
+              label: 'Cook Time (in minutes)',
+              type: 'string',
             },
             {
-              name: "servings",
-              label: "Servings",
-              type: "string",
+              name: 'servings',
+              label: 'Servings',
+              type: 'string',
             },
           ],
         },
         {
-          type: "object",
-          name: "sections",
-          label: "Sections",
+          type: 'object',
+          name: 'sections',
+          label: 'Sections',
           list: true,
           templates: [
             {
-              name: "ingredients",
-              label: "Ingredients",
+              name: 'ingredients',
+              label: 'Ingredients',
               fields: [
                 {
-                  name: "items",
-                  label: "Items",
-                  type: "string",
+                  name: 'items',
+                  label: 'Items',
+                  type: 'string',
                   list: true,
                 },
                 {
-                  name: "details",
-                  label: "Details",
-                  type: "string",
+                  name: 'details',
+                  label: 'Details',
+                  type: 'string',
                   ui: {
-                    component: "textarea",
+                    component: 'textarea',
                   },
                 },
               ],
             },
             {
-              name: "directions",
-              label: "Directions",
+              name: 'directions',
+              label: 'Directions',
               fields: [
                 {
-                  name: "steps",
-                  label: "Steps",
-                  type: "string",
+                  name: 'steps',
+                  label: 'Steps',
+                  type: 'string',
                   list: true,
                 },
                 {
-                  name: "details",
-                  label: "Details",
-                  type: "string",
+                  name: 'details',
+                  label: 'Details',
+                  type: 'string',
                   ui: {
-                    component: "textarea",
+                    component: 'textarea',
                   },
                 },
               ],
             },
             {
-              name: "nutrition",
-              label: "Nutrition",
+              name: 'nutrition',
+              label: 'Nutrition',
               fields: [
                 {
-                  name: "details",
-                  label: "Details",
-                  type: "string",
+                  name: 'details',
+                  label: 'Details',
+                  type: 'string',
                   ui: {
-                    component: "textarea",
+                    component: 'textarea',
                   },
                 },
               ],
@@ -132,10 +135,13 @@ export default defineSchema({
       ],
     },
   ],
-});
+})
 ```
+
 ​
+
 ## Query
+
 ​
 To retrieve a single `recipe`, you would use a query like this one.
 ​
@@ -143,56 +149,68 @@ Notice that, for `sections`, we are using `__typename` to deobfuscate the availa
 ​
 Because `meta` does not have any `templates`, you do not need to deobfuscate and can access its properties directly.
 ​
+
 ```ts, copy
 // pages/recipe/[filename].tsx
-import { getStaticPropsForTina, gql } from "tinacms";
-​
+import { staticRequest, gql } from 'tinacms'
 export const getStaticProps = async ({ params }) => {
-  const recipe = await getStaticPropsForTina({
-    query: gql`
-      query GetRecipeDocument($relativePath: String!) {
-        getRecipeDocument(relativePath: $relativePath) {
-          data {
-            datePublished
-            name
-            photo
-            description
-            meta {
-              prep
-              cook
-              servings
+  const query = `
+    query GetRecipeDocument($relativePath: String!) {
+      getRecipeDocument(relativePath: $relativePath) {
+        data {
+          datePublished
+          name
+          photo
+          description
+          meta {
+            prep
+            cook
+            servings
+          }
+          sections {
+            __typename
+            ... on RecipeSectionsIngredients {
+              items
+              details
             }
-            sections {
-              __typename
-              ... on RecipeSectionsIngredients {
-                items
-                details
-              }
-              ... on RecipeSectionsDirections {
-                steps
-                details
-              }
-              ... on RecipeSectionsNutrition {
-                details
-              }
+            ... on RecipeSectionsDirections {
+              steps
+              details
+            }
+            ... on RecipeSectionsNutrition {
+              details
             }
           }
         }
       }
-    `,
-    variables: { relativePath: `${params.filename}.md` },
-  });
-​
+    }
+  `
+
+  const variables = { relativePath: `${params.filename}.md` }
+
+  let recipe = {}
+  try {
+    recipe = await staticRequest({
+      query,
+      variables,
+    })
+  } catch {
+    // swallow errors related to document creation
+  }
   return {
     props: {
-      ...recipe,
+      query,
+      variables,
+      data: recipe,
     },
-  };
-};
+  }
+}
 ```
+
 ​
 This query will return an `Object` in the shape of:
 ​
+
 ```ts, copy
 {
   "data": {
@@ -228,13 +246,17 @@ This query will return an `Object` in the shape of:
   }
 }
 ```
+
 ​
+
 ## Rendering
+
 ​
 The important step here is correctly retrieve the queried `data` out of `props`. The common pattern is `data: { query: { data: document }}`.
 ​
 Notice that `sections` is iterated via `map()` utilizing the `__typename` to determine how each `section` should be rendered.
 ​
+
 ```tsx, copy
 // pages/recipe/[filename].tsx
 const RecipePage = (props) => {
@@ -243,7 +265,7 @@ const {
       getRecipeDocument: { data: recipe },
     },
   }  = props;
-  
+
 const { datePublished, name, photo, description, meta, sections } = recipe;
 ​
   /**
@@ -253,7 +275,7 @@ const { datePublished, name, photo, description, meta, sections } = recipe;
    *
    * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
    */
-  
+
   const localDatePublished = React.useMemo(() => {
   if (datePublished) {
     return new Date(datePublished).toLocaleDateString(undefined, {
@@ -295,19 +317,19 @@ const { datePublished, name, photo, description, meta, sections } = recipe;
       {sections && sections.map((section) => {
         if (section.__typename === "RecipeSectionsIngredients") {
           return (
-            <RecipeIngredients key={`${name}.${section.__typename}`} 
+            <RecipeIngredients key={`${name}.${section.__typename}`}
             {...section} />
           )
         }
         if (section.__typename === "RecipeSectionsDirections") {
           return (
-            <RecipeDirections key={`${name}.${section.__typename}`} 
+            <RecipeDirections key={`${name}.${section.__typename}`}
             {...section} />
           )
         }
         if (section.__typename === "RecipeSectionsNutrition") {
           return (
-            <RecipeNutrition key={`${name}.${section.__typename}`} 
+            <RecipeNutrition key={`${name}.${section.__typename}`}
             {...section} />
           )
         }

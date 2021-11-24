@@ -3,7 +3,7 @@ require('dotenv').config()
 import algoliasearch, { SearchIndex } from 'algoliasearch'
 import { stripMarkdown } from '../utils/blog_helpers'
 import fetchDocs from '../data-api/fetchDocs'
-import fetchBlogs from '../data-api/fetchBlogs'
+import { fetchRelevantBlogs as fetchBlogs } from '../data-api/fetchBlogs'
 import fetchGuides from '../data-api/fetchGuides'
 
 const MAX_BODY_LENGTH = 200

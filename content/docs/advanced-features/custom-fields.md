@@ -6,7 +6,7 @@ next: null
 
 Custom fields are made possible by the [plugin system](/docs/plugins/) in TinaCMS. Custom fields are a way to either add [custom logic to existing fields](#adding-custom-logic) or provide an [entirely new field component](#adding-a-custom-field)
 
-## Creating a Custom Field
+## Creating a Custom Field Plugin
 
 Creating a new type of field involves a few steps
 
@@ -36,7 +36,7 @@ export interface FieldPlugin<ExtraFieldProps = {}, InputProps = {}> {
 
 The `Component` property can be a built-in component from the "tinacms" package or a [custom component](#adding-a-custom-field). [See here](#built-in-field-components) for a full list of built-in components.
 
-### 1. Create a Field Plugin
+> It is considered a good practice to have your plugins in a separate file, this allows the plugin to be lazy-loaded only when the CMS is enabled. This way it does not affect your production bundle.
 
 ```tsx
 // ./plugins.tsx
@@ -112,22 +112,22 @@ export const MyPlugin = {
 
 Where `FieldComponentName` is an a Field Component from this list
 
-- [TextField](/docs/fields/text/)
-- [TextareaField](/docs/fields/textarea/)
-- [NumberField](docs/fields/number/)
-- [ImageField](/docs/fields/image/)
-- [ColorField](/docs/fields/color/)
-- [ToggleField](/docs/fields/toggle/)
-- [RadioGroupField](/docs/fields/radio-group/)
-- [SelectField](/docs/fields/select/)
-- [TagsField](/docs/fields/tags/)
-- [ListField](/docs/fields/list/)
-- [GroupField](/docs/fields/group/)
-- [GroupListField](/docs/fields/group-list/)
-- [BlocksField](/docs/fields/blocks/)
-- [DateField](/docs/fields/date/)
+- [TextField](/docs/reference/toolkit/fields/text/)
+- [TextareaField](/docs/reference/toolkit/fields/textarea/)
+- [NumberField](/docs//reference/toolkit/fields/number/)
+- [ImageField](/docs/reference/toolkit/fields/image/)
+- [ColorField](/docs/reference/toolkit/fields/color/)
+- [ToggleField](/docs/reference/toolkit/fields/toggle/)
+- [RadioGroupField](/docs/reference/toolkit/fields/radio-group/)
+- [SelectField](/docs/reference/toolkit/fields/select/)
+- [TagsField](/docs/reference/toolkit/fields/tags/)
+- [ListField](/docs/reference/toolkit/fields/list/)
+- [GroupField](/docs/reference/toolkit/fields/group/)
+- [GroupListField](/docs/reference/toolkit/fields/group-list/)
+- [BlocksField](/docs/reference/toolkit/fields/blocks/)
+- [DateField](/docs/reference/toolkit/fields/date/)
 
-Some fields must be imported from the [`react-tinacms-editor`](/packages/react-tinacms-editor/) package.
+Some fields must be imported from [`react-tinacms-editor`](/packages/react-tinacms-editor/)
 
-- [MarkdownField](/docs/fields/markdown/)
-- [HTMLField](/docs/fields/html/)
+- [MarkdownField](/docs/reference/toolkit/fields/markdown/)
+- [HTMLField](/docs/reference/toolkit/fields/html/)

@@ -121,7 +121,7 @@ By default `string` will use the `text` field, but you can change that by specif
 }
 ```
 
-For the most part, the UI properties are added to the field and adhere to the existing capabilities of Tina's core [field plugins](https://tina.io/docs/fields/). But there's nothing stopping you from providing your own components -- just be sure to register those with the CMS object on the frontend:
+For the most part, the UI properties are added to the field and adhere to the existing capabilities of Tina's core [field plugins](https://tina.io/docs/reference/toolkit/fields/). But there's nothing stopping you from providing your own components -- just be sure to register those with the CMS object on the frontend:
 
 ```js
 {

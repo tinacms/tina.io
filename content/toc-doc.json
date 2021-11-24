@@ -61,7 +61,7 @@
       {
         "id": "/docs/tina-cloud/using-app/",
         "slug": "/docs/tina-cloud/using-app/",
-        "title": "Using an app"
+        "title": "Using a project"
       },
       {
         "id": "/docs/tina-cloud/faq/",
@@ -120,178 +120,111 @@
         "slug": "/docs/media-cloudinary/"
       },
       {
-        "title": "Legacy API",
-        "slug": "/docs/toolkit/",
-        "expandOnSelect": true,
-        "description": "The JavaScript toolkit for building content management interfaces",
+        "title": "CMS Toolkit",
+        "id": "/docs/reference/toolkit/overview/",
+        "slug": "/docs/reference/toolkit/overview/",
         "items": [
           {
-            "title": "Content Management",
-            "id": "/docs/content-management/",
-            "slug": "/docs/content-management/"
-          },
-          { "id": "/docs/cms/", "slug": "/docs/cms/", "title": "The CMS" },
-          {
-            "title": "Forms",
-            "id": "forms/",
-            "slug": "/docs/forms/"
+            "id": "/docs/reference/toolkit/cms/",
+            "slug": "/docs/reference/toolkit/cms/",
+            "title": "The CMS"
           },
           {
-            "title": "Fields",
+            "id": "/docs/reference/toolkit/forms/",
+            "slug": "/docs/reference/toolkit/forms/",
+            "title": "Forms"
+          },
+          {
+            "title": "Field Plugins",
             "id": "fields/",
-            "slug": "/docs/fields/",
+            "slug": "/docs/reference/toolkit/fields/",
             "items": [
               {
-                "id": "/docs/fields/text/",
-                "slug": "/docs/fields/text/",
+                "id": "/docs/reference/toolkit/fields/text/",
+                "slug": "/docs/reference/toolkit/fields/text/",
                 "title": "Text"
               },
               {
-                "id": "/docs/fields/textarea/",
-                "slug": "/docs/fields/textarea/",
+                "id": "/docs/reference/toolkit/fields/textarea/",
+                "slug": "/docs/reference/toolkit/fields/textarea/",
                 "title": "Text Area"
               },
 
               {
-                "id": "/docs/fields/number/",
-                "slug": "/docs/fields/number/",
+                "id": "/docs/reference/toolkit/fields/number/",
+                "slug": "/docs/reference/toolkit/fields/number/",
                 "title": "Number"
               },
 
               {
-                "id": "/docs/fields/image/",
-                "slug": "/docs/fields/image/",
+                "id": "/docs/reference/toolkit/fields/image/",
+                "slug": "/docs/reference/toolkit/fields/image/",
                 "title": "Image"
               },
               {
-                "id": "/docs/fields/color/",
-                "slug": "/docs/fields/color/",
+                "id": "/docs/reference/toolkit/fields/color/",
+                "slug": "/docs/reference/toolkit/fields/color/",
                 "title": "Color"
               },
               {
-                "id": "/docs/fields/toggle/",
-                "slug": "/docs/fields/toggle/",
+                "id": "/docs/reference/toolkit/fields/toggle/",
+                "slug": "/docs/reference/toolkit/fields/toggle/",
                 "title": "Toggle"
               },
               {
-                "id": "/docs/fields/radio-group/",
-                "slug": "/docs/fields/radio-group/",
+                "id": "/docs/reference/toolkit/fields/radio-group/",
+                "slug": "/docs/reference/toolkit/fields/radio-group/",
                 "title": "Radio Group"
               },
               {
-                "id": "/docs/fields/select/",
-                "slug": "/docs/fields/select/",
+                "id": "/docs/reference/toolkit/fields/select/",
+                "slug": "/docs/reference/toolkit/fields/select/",
                 "title": "Select"
               },
               {
-                "id": "/docs/fields/tags/",
-                "slug": "/docs/fields/tags/",
+                "id": "/docs/reference/toolkit/fields/tags/",
+                "slug": "/docs/reference/toolkit/fields/tags/",
                 "title": "Tags"
               },
               {
-                "id": "/docs/fields/list/",
-                "slug": "/docs/fields/list/",
+                "id": "/docs/reference/toolkit/fields/list/",
+                "slug": "/docs/reference/toolkit/fields/list/",
                 "title": "List"
               },
               {
-                "id": "/docs/fields/group/",
-                "slug": "/docs/fields/group/",
+                "id": "/docs/reference/toolkit/fields/group/",
+                "slug": "/docs/reference/toolkit/fields/group/",
                 "title": "Group"
               },
               {
-                "id": "/docs/fields/group-list/",
-                "slug": "/docs/fields/group-list/",
+                "id": "/docs/reference/toolkit/fields/group-list/",
+                "slug": "/docs/reference/toolkit/fields/group-list/",
                 "title": "Group List"
               },
               {
-                "id": "/docs/fields/blocks/",
-                "slug": "/docs/fields/blocks/",
+                "id": "/docs/reference/toolkit/fields/blocks/",
+                "slug": "/docs/reference/toolkit/fields/blocks/",
                 "title": "Blocks"
               },
               {
-                "id": "/docs/fields/date/",
-                "slug": "/docs/fields/date/",
+                "id": "/docs/reference/toolkit/fields/date/",
+                "slug": "/docs/reference/toolkit/fields/date/",
                 "title": "Date & Time"
               },
               {
-                "id": "/docs/fields/markdown/",
-                "slug": "/docs/fields/markdown/",
+                "id": "/docs/reference/toolkit/fields/markdown/",
+                "slug": "/docs/reference/toolkit/fields/markdown/",
                 "title": "Markdown"
               },
               {
-                "id": "/docs/fields/html/",
-                "slug": "/docs/fields/html/",
+                "id": "/docs/reference/toolkit/fields/html/",
+                "slug": "/docs/reference/toolkit/fields/html/",
                 "title": "HTML"
               },
               {
-                "id": "/docs/fields/custom-fields/",
-                "slug": "/docs/fields/custom-fields/",
+                "id": "/docs/reference/toolkit/fields/custom-fields/",
+                "slug": "/docs/reference/toolkit/fields/custom-fields/",
                 "title": "Custom Fields"
-              }
-            ]
-          },
-          {
-            "title": "Content Creators",
-            "id": "content-creator",
-            "slug": "/docs/plugins/content-creators/"
-          },
-          {
-            "id": "/docs/media",
-            "slug": "/docs/media/",
-            "title": "Media"
-          },
-          {
-            "id": "/docs/api",
-            "slug": "/docs/apis/",
-            "title": "Using External APIs"
-          },
-          {
-            "title": "User Interface",
-            "id": "user-interface/",
-            "slug": "/docs/user-interface/",
-            "items": [
-              {
-                "id": "/docs/sidebar-toolbar/",
-                "title": "Sidebar & Toolbar",
-                "slug": "/docs/sidebar-toolbar/"
-              },
-
-              {
-                "id": "/docs/ui/alerts/",
-                "title": "Alerts",
-                "slug": "/docs/ui/alerts/"
-              },
-              {
-                "id": "/docs/ui/styles/",
-                "title": "Custom Styles",
-                "slug": "/docs/ui/styles/"
-              }
-            ]
-          },
-          {
-            "title": "Extending Tina",
-            "id": "/docs/extending-tina/",
-            "slug": "/docs/extending-tina/",
-            "items": [
-              {
-                "id": "/docs/events/",
-                "slug": "/docs/events/",
-                "title": "Events"
-              },
-              {
-                "title": "Plugins",
-                "id": "forms/",
-                "slug": "/docs/plugins/"
-              },
-              {
-                "title": "Screens",
-                "id": "screens/",
-                "slug": "/docs/plugins/screens/"
-              },
-              {
-                "title": "Toolbar Widgets",
-                "id": "toolbar:widget/",
-                "slug": "/docs/plugins/toolbar-widgets/"
               }
             ]
           }
@@ -314,43 +247,6 @@
         "slug": "/guides#tina-cloud",
         "title": "TinaCMS",
         "items": [
-          {
-            "id": "/guides/tina-cloud/starter/overview/",
-            "slug": "/guides/tina-cloud/starter/overview/",
-            "title": "Using the Tina starter",
-            "items": [
-              {
-                "title": "Overview",
-                "id": "/guides/tina-cloud/starter/overview/",
-                "slug": "/guides/tina-cloud/starter/overview/",
-                "data": "./overview.md"
-              },
-              {
-                "title": "Create an Account with TinaCMS",
-                "id": "/guides/tina-cloud/starter/create-account/",
-                "slug": "/guides/tina-cloud/starter/create-account/",
-                "data": "./create-account.md"
-              },
-              {
-                "title": "Getting up and running locally",
-                "id": "/guides/tina-cloud/starter/local/",
-                "slug": "/guides/tina-cloud/starter/local/",
-                "data": "./local.md"
-              },
-              {
-                "title": "Working with TinaCMS",
-                "id": "/guides/tina-cloud/starter/connect-to-tina-cloud/",
-                "slug": "/guides/tina-cloud/starter/connect-to-tina-cloud/",
-                "data": "./connect-to-tina-cloud.md"
-              },
-              {
-                "title": "Starter Structure",
-                "id": "/guides/tina-cloud/starter/structure/",
-                "slug": "/guides/tina-cloud/starter/structure/",
-                "data": "./structure.md"
-              }
-            ]
-          },
           {
             "id": "/guides/tina-cloud/add-tinacms-to-existing-site/overview/",
             "slug": "/guides/tina-cloud/add-tinacms-to-existing-site/overview/",
@@ -399,29 +295,6 @@
                 "data": "./next-steps.md"
               }
             ]
-          }
-        ]
-      },
-      {
-        "id": "/guides#experimental",
-        "title": "Legacy Guides",
-        "slug": "/guides#experimental",
-        "expandOnSelect": true,
-        "items": [
-          {
-            "id": "/guides/experimental/inline-blocks/overview/",
-            "slug": "/guides/experimental/inline-blocks/overview/",
-            "title": "Inline Blocks"
-          },
-          {
-            "id": "/guides/experimental/tina-with-strapi/overview/",
-            "slug": "/guides/experimental/tina-with-strapi/overview/",
-            "title": "Strapi Backend"
-          },
-          {
-            "id": "/guides/tinacms/github/initial-setup/",
-            "slug": "/guides/experimental/github/initial-setup/",
-            "title": "GitHub Backend"
           }
         ]
       }

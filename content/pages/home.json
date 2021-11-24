@@ -13,7 +13,7 @@
           "variant": "orange",
           "label": "Get Started",
           "icon": "",
-          "url": "https://app.tina.io/quickstart"
+          "url": "https://tina.io/docs/setup-overview/"
         }
       ],
       "videoSrc": "v1629294438/tina-io/Beta_Launch_Demo"
