@@ -35,11 +35,38 @@
         "title": "Contextual Editing",
         "id": "/docs/tinacms-context",
         "slug": "/docs/tinacms-context/"
+      }
+    ]
+  },
+  {
+    "title": "Extending Tina",
+    "id": "/docs/features/extending-tina/",
+    "slug": "/docs/features/extending-tina/",
+    "items": [
+      {
+        "title": "Changing a fields' field plugin",
+        "id": "/docs/advanced/changing-field-plugins",
+        "slug": "/docs/advanced/changing-field-plugins/"
       },
       {
-        "title": "Extending Tina",
-        "id": "/docs/features/extending-tina/",
-        "slug": "/docs/features/extending-tina/"
+        "title": "Extending a field plugin",
+        "id": "/docs/advanced/extending-field-plugins",
+        "slug": "/docs/advanced/extending-field-plugins/"
+      },
+      {
+        "title": "Creating a new field plugin from scratch",
+        "id": "/docs/advanced/creating-field-plugins",
+        "slug": "/docs/advanced/creating-field-plugins/"
+      },
+      {
+        "title": "Customizing a form",
+        "id": "/docs/advanced/customizing-form",
+        "slug": "/docs/advanced/customizing-form/"
+      },
+      {
+        "title": "Customizing Tina's UI",
+        "id": "/docs/advanced/customizing-ui",
+        "slug": "/docs/advanced/customizing-ui/"
       }
     ]
   },
