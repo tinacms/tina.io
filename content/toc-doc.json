@@ -50,8 +50,8 @@
       },
       {
         "title": "Extending a field plugin",
-        "id": "/docs/advanced/extending-field-plugins",
-        "slug": "/docs/advanced/extending-field-plugins/"
+        "id": "/docs/advanced/extending-field-plugin",
+        "slug": "/docs/advanced/extending-field-plugin/"
       },
       {
         "title": "Creating a new field plugin from scratch",
