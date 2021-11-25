@@ -143,11 +143,6 @@
             "title": "GraphQL API",
             "id": "/docs/graphql/",
             "slug": "/docs/graphql/"
-          },
-          {
-            "title": "Advanced Usage",
-            "id": "/docs/schema-advanced/",
-            "slug": "/docs/schema-advanced/"
           }
         ]
       },

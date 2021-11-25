@@ -473,6 +473,10 @@
     {
       "source": "/docs/cli/",
       "destination": "/docs/cli-overview"
+    },
+    {
+      "source": "/docs/schema-advanced/",
+      "destination": "/docs/graphql/"
     }
   ]
 }
