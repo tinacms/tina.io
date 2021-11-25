@@ -17,7 +17,7 @@
     ]
   },
   {
-    "category": "Basic Features",
+    "category": "Core Concepts",
     "slug": "/docs/schema/",
     "description": "The JavaScript toolkit for building content management interfaces",
     "items": [
@@ -35,6 +35,33 @@
         "title": "Contextual Editing",
         "id": "/docs/tinacms-context",
         "slug": "/docs/tinacms-context/"
+      }
+    ]
+  },
+  {
+    "title": "Editing",
+    "id": "/docs/ediiting/overview",
+    "slug": "/docs/ediiting/overview/",
+    "items": [
+      {
+        "title": "Overview",
+        "id": "/docs/editing/overview",
+        "slug": "/docs/editing/overview/"
+      },
+      {
+        "title": "Markdown",
+        "id": "/docs/editing/markdown",
+        "slug": "/docs/editing/markdown/"
+      },
+      {
+        "title": "Rich Text with MDX",
+        "id": "/docs/editing/mdx",
+        "slug": "/docs/editing/mdx/"
+      },
+      {
+        "title": "Block-based editing",
+        "id": "/docs/editing/blocks",
+        "slug": "/docs/editing/blocks/"
       }
     ]
   },
@@ -110,14 +137,7 @@
       {
         "id": "/docs/tinacms-package/",
         "slug": "/docs/tinacms-package/",
-        "title": "tinacms",
-        "items": [
-          {
-            "title": "Rich text",
-            "id": "mdx",
-            "slug": "/docs/mdx/"
-          }
-        ]
+        "title": "tinacms"
       },
       {
         "id": "/docs/cli-overview/",

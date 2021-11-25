@@ -461,6 +461,10 @@
     {
       "source": "/docs/features/extending-tina/",
       "destination": "/docs/advanced/extending-tina/"
+    },
+    {
+      "source": "/docs/mdx",
+      "destination": "/docs/editing/mdx"
     }
   ]
 }
