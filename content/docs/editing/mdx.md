@@ -1,5 +1,7 @@
 ---
 title: Rich text with MDX
+id: '/docs/editing/mdx'
+next: '/docs/editing/blocks'
 ---
 
 ## The `rich-text` type

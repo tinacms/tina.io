@@ -20,7 +20,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ultricies urna ut
 
 ![markdown-editing](/gif/markdown.gif)
 
-But, sometimes you may want to give your editors more of a template to work with. Tina also supports blocks-based editing, so that you can your editors to build out full pages using your pre-defined blocks
+But, sometimes you may want to give your editors more of a template to work with. Tina also supports blocks-based editing, so that you can enable your editors to build out full pages using your pre-defined blocks
 
 ![blocks-based-editing](/img/your-blocks.gif)
 
