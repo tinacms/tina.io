@@ -140,11 +140,6 @@
         "title": "@tinacms/cli",
         "items": [
           {
-            "title": "TinaCMS CLI",
-            "id": "/docs/cli",
-            "slug": "/docs/cli/"
-          },
-          {
             "title": "GraphQL API",
             "id": "/docs/graphql/",
             "slug": "/docs/graphql/"
