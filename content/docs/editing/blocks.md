@@ -17,7 +17,7 @@ We want to allow our editors to use various blocks on each page.
 
 ## Defining our schema
 
-We are going to use the `object` type, and provide a list of `templates`, where each "template" represents a unique block type.
+We are going to use the [`object` type](http://localhost:3000/docs/schema/#grouping-properties-within-an-object), and provide a list of `templates`, where each "template" represents a unique block type.
 
 ```ts
 // .tina/schema.ts

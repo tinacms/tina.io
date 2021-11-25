@@ -10,12 +10,12 @@ The simplest use-case is with a Markdown file, with front matter and a body.
 
 ```md
 ---
+
 title: 'My first post'
 date: '2021-01-01T00:00:00.000Z'
 // ...
----
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ultricies urna ut ex varius, sed fringilla nibh posuere. Vestibulum a pulvinar eros, vel varius orci. Sed convallis purus sed tellus pellentesque ornare quis non velit. Quisque eget nibh nec nisl volutpat aliquet. Donec pharetra turpis vitae diam aliquam rutrum. Sed porta elit ut mi vehicula suscipit. Ut in pulvinar nunc.
+---Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ultricies urna ut ex varius, sed fringilla nibh posuere. Vestibulum a pulvinar eros, vel varius orci. Sed convallis purus sed tellus pellentesque ornare quis non velit. Quisque eget nibh nec nisl volutpat aliquet. Donec pharetra turpis vitae diam aliquam rutrum. Sed porta elit ut mi vehicula suscipit. Ut in pulvinar nunc.
 ```
 
 ![markdown-editing](/gif/markdown.gif)

@@ -13,7 +13,6 @@ Let's say your content looks something like:
 ```md
 ---
 title: 'My first post'
-date: '2021-01-01T00:00:00.000Z'
 // ...
 ---
 
@@ -101,6 +100,6 @@ const App = ({ Component, pageProps }) => {
 export default App
 ```
 
-Now, editors should be able to start editing markdown content!
+Assuming that [contextual editing](http://localhost:3000/docs/tinacms-context/) is setup on your page, your editors should be able to start editing markdown content!
 
 ![markdown-editing](/gif/markdown.gif)
