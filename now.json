@@ -463,7 +463,7 @@
       "destination": "/docs/advanced/extending-tina/"
     },
     {
-      "source": "/docs/mdx",
+      "source": "/docs/mdx/",
       "destination": "/docs/editing/mdx"
     }
   ]
