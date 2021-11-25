@@ -135,11 +135,6 @@
     "description": "The JavaScript toolkit for building content management interfaces",
     "items": [
       {
-        "id": "/docs/tinacms-package/",
-        "slug": "/docs/tinacms-package/",
-        "title": "tinacms"
-      },
-      {
         "id": "/docs/cli-overview/",
         "slug": "/docs/cli-overview/",
         "title": "@tinacms/cli",
@@ -185,6 +180,8 @@
             "title": "Field Plugins",
             "id": "fields/",
             "slug": "/docs/reference/toolkit/fields/",
+            "expandOnSelect": true,
+
             "items": [
               {
                 "id": "/docs/reference/toolkit/fields/text/",
@@ -293,6 +290,7 @@
             "id": "/guides/tina-cloud/add-tinacms-to-existing-site/overview/",
             "slug": "/guides/tina-cloud/add-tinacms-to-existing-site/overview/",
             "title": "Adding TinaCMS to an existing Next.js app",
+            "expandOnSelect": true,
             "items": [
               {
                 "title": "Overview",

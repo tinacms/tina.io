@@ -465,6 +465,10 @@
     {
       "source": "/docs/mdx/",
       "destination": "/docs/editing/mdx"
+    },
+    {
+      "source": "/docs/tinacms-package/",
+      "destination": "/docs/tinacms-context"
     }
   ]
 }
