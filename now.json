@@ -477,6 +477,10 @@
     {
       "source": "/docs/schema-advanced/",
       "destination": "/docs/graphql/"
+    },
+    {
+      "source": "/docs/graphql/",
+      "destination": "/docs/graphql/queries"
     }
   ]
 }

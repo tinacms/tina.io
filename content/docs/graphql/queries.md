@@ -1,5 +1,5 @@
 ---
-title: The GraphQL API
+title: Querying the GraphQL API
 ---
 
 When you [define a schema](/docs/schema), TinaCMS will generate a GraphQL API which treats your local filesystem as a database. You can serve this schema locally via the [CLI](/tina-cloud/cli) or you can consume it from Tina Cloud.

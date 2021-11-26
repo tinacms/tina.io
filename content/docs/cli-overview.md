@@ -2,10 +2,6 @@
 title: The TinaCMS CLI
 ---
 
-The _TinaCMS CLI_ can be used to set up your project with TinaCMS schema configuration, and run a local version of the TinaCMS API (using your file system's content). For a real-world example of how this is being used checkout the [Tina Cloud Starter](https://github.com/tinacms/tina-cloud-starter).
-
-The `@tinacms/cli` package will be installed as a dev dependency with the [tina init](/docs/setup-overview/#manual-setup-on-an-existing-site) command.
-
 ## Available Commands
 
 ```sh

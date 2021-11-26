@@ -39,6 +39,27 @@
     ]
   },
   {
+    "category": "Using the GraphQL API",
+    "slug": "/docs/graphql/overview/",
+    "items": [
+      {
+        "id": "/docs/graphql/overview/",
+        "slug": "/docs/graphql/overview/",
+        "title": "Overview"
+      },
+      {
+        "id": "/docs/graphql/cli/",
+        "slug": "/docs/graphql/cli/",
+        "title": "Running the Local GraphQL API"
+      },
+      {
+        "id": "/docs/graphql/queries/",
+        "slug": "/docs/graphql/queries/",
+        "title": "Querying the API"
+      }
+    ]
+  },
+  {
     "title": "Editing",
     "id": "/docs/ediiting/overview",
     "slug": "/docs/ediiting/overview/",
@@ -137,14 +158,7 @@
       {
         "id": "/docs/cli-overview/",
         "slug": "/docs/cli-overview/",
-        "title": "@tinacms/cli",
-        "items": [
-          {
-            "title": "GraphQL API",
-            "id": "/docs/graphql/",
-            "slug": "/docs/graphql/"
-          }
-        ]
+        "title": "@tinacms/cli"
       },
       {
         "title": "next-tinacms-cloudinary",
