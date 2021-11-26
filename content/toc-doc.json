@@ -61,8 +61,8 @@
   },
   {
     "title": "Editing",
-    "id": "/docs/ediiting/overview",
-    "slug": "/docs/ediiting/overview/",
+    "id": "/docs/editing/overview",
+    "slug": "/docs/editing/overview/",
     "items": [
       {
         "title": "Overview",
@@ -152,7 +152,7 @@
   },
   {
     "category": "Reference",
-    "slug": "/docs/media-cloudinary/",
+    "slug": "/docs/cli-overview/",
     "description": "The JavaScript toolkit for building content management interfaces",
     "items": [
       {
