@@ -10,8 +10,8 @@ consumes:
     details: Explains configuring git-specific environment variables to manually set author and ssh-key
 next: /blog/three-ways-to-edit-md
 prev: /blog/editing-on-the-cloud
+warningMessage: '**Update:** The examples in this post reference an outdated Gatsby implementation. We recommend using [Next.js](/docs/setup-overview/) for a solution with less friction.'
 ---
-{{ WarningCallout text="**Update:** The examples in this post reference an outdated Gatsby implementation. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction."}}
 
 We've [recently written](/blog/editing-on-the-cloud/ 'TinaCMS on the cloud') about how TinaCMS will work on the cloud. Gatsby Cloud offers a great way for editors to edit TinaCMS sites, without having to run a local development environment.
 

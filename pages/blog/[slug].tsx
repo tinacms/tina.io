@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { CloseIcon, EditIcon } from '@tinacms/icons'
-import { formatDate } from '../../utils'
+import { formatDate, isRelevantPost } from '../../utils'
 import {
   Layout,
   Hero,
@@ -24,7 +24,7 @@ import { usePlugin, useCMS } from 'tinacms'
 import { useLastEdited } from 'utils/useLastEdited'
 import { LastEdited, DocsPagination } from 'components/ui'
 import { openGraphImage } from 'utils/open-graph-image'
-
+import { WarningCallout } from '../../utils/shortcodes'
 function BlogTemplate({ file, siteConfig, prevPage, nextPage }) {
   // fallback workaround
   if (!file) {
@@ -40,6 +40,11 @@ function BlogTemplate({ file, siteConfig, prevPage, nextPage }) {
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
   const excerpt = data.excerpt
+
+  const warningMessage =
+    data.frontmatter.warningMessage ||
+    (!isRelevantPost(data.frontmatter) &&
+      '**Update:** The Tina API has been evolving, and the content in this post is outdated. For help getting started with Tina, we suggest checking out our [getting started doc](/docs/setup-overview/).')
 
   return (
     <InlineGithubForm form={form}>
@@ -76,6 +81,7 @@ function BlogTemplate({ file, siteConfig, prevPage, nextPage }) {
               </MetaWrap>
               <EditLink />
             </BlogMeta>
+            {warningMessage && <WarningCallout text={warningMessage} />}
             <InlineWysiwyg
               name="markdownBody"
               imageProps={{

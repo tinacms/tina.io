@@ -72,3 +72,7 @@ export function formatDate(fullDate) {
   }
   return date.toLocaleDateString('en-US', dateOptions)
 }
+
+export const isRelevantPost = (post: { date: string }) => {
+  return new Date(post.date).getTime() >= new Date('2021-04-01').getTime()
+}

@@ -1,4 +1,5 @@
 import matter from 'gray-matter'
+import { isRelevantPost } from 'utils'
 const fg = require('fast-glob')
 var fs = require('fs')
 var path = require('path')
@@ -27,8 +28,5 @@ export async function fetchBlogs() {
 
 export async function fetchRelevantBlogs() {
   const blogs = await fetchBlogs()
-  return blogs.filter(
-    post =>
-      new Date(post.data.date).getTime() >= new Date('2021-04-01').getTime()
-  )
+  return blogs.filter(post => isRelevantPost(post.data))
 }

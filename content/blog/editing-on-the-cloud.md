@@ -5,8 +5,8 @@ draft: false
 author: James O'Halloran
 next: /blog/using-tinacms-on-gatsby-cloud
 prev: /blog/what-are-blocks
+warningMessage: '**Update:** The examples in this post reference an outdated Gatsby implementation. We recommend using [Next.js](/docs/setup-overview/) for a solution with less friction.'
 ---
-{{ WarningCallout text="**Update:** The examples in this post reference an outdated Gatsby implementation. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction."}}
 
 TinaCMS allows you to build live-editing functionality directly into your site. Tina differs from other headless CMS's (e.g [Forestry.io](https://Forestry.io), [NetlifyCMS](https://NetlifyCMS.org), [Contentful](https://contentful.com)) which simply allow you to edit your site's content and are relatively detached from your site's code. Having Tina sit in between your content and your site's template gives editors an amazing real-time editing experience where they can navigate to any area of the site, start making changes, and immediately see these changes reflected within the site.
 

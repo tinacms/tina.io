@@ -3,8 +3,8 @@ title: More Changes Coming to Inline Editing
 date: '2021-01-13T10:16:45-05:00'
 author: DJ
 last_edited: '2021-01-13T15:45:05.411Z'
+warningMessage: '**Update:** Inline editing is evolving and the current version is considered experimental, read more about [the evolution of inline editing](/blog/evolution-of-inline-editing/).'
 ---
-{{ WarningCallout text="**Update:** Inline editing is evolving and the current version is considered experimental, read more about [the evolution of inline editing](/blog/evolution-of-inline-editing/)."}}
 
 It was around six months ago that we last dug deep into Tina's inline editing experience. At that time, we introduced new features and improved the UI of inline editing. Since then, there have been a few pain points we've run into from time to time.
 

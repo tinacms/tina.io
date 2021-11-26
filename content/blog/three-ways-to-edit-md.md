@@ -12,8 +12,8 @@ consumes:
     details: Demonstrates useLocalRemarkForm usage
 next: /blog/exporting-wordpress-content-to-gatsby
 prev: /blog/using-tinacms-on-gatsby-cloud
+warningMessage: '**Update:** The examples in this post reference an outdated Gatsby implementation. We recommend using [Next.js](/docs/setup-overview/) for a solution with less friction.'
 ---
-{{ WarningCallout text="**Update:** The examples in this post reference an outdated Gatsby implementation. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction."}}
 
 **Supercharge your static site with real-time content editing!** 🚀
 
