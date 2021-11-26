@@ -1,5 +1,7 @@
 ---
 title: Querying the GraphQL API
+id: /docs/graphql/queries
+next: /docs/editing/overview
 ---
 
 ## Schema-specific queries

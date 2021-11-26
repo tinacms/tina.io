@@ -166,7 +166,7 @@
         "slug": "/docs/media-cloudinary/"
       },
       {
-        "title": "CMS Toolkit",
+        "title": "@tinacms/toolkit",
         "id": "/docs/reference/toolkit/overview/",
         "slug": "/docs/reference/toolkit/overview/",
         "items": [
