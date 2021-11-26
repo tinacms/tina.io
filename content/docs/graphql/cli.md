@@ -3,7 +3,7 @@ title: Running the Local GraphQL API
 next: '/docs/graphql/queries'
 ---
 
-The _TinaCMS CLI_ can be used to set up your project with TinaCMS schema configuration, and run a local version of the TinaCMS API (using your file system's content). For a real-world example of how this is being used checkout the [Tina Cloud Starter](https://github.com/tinacms/tina-cloud-starter).
+The _TinaCMS CLI_ can be used to set up your project with a TinaCMS schema configuration, and run a local version of the TinaCMS GraphQL API (using your filesystem's content). For a real-world example of how this is being used checkout the [Tina Cloud Starter](https://github.com/tinacms/tina-cloud-starter).
 
 ## Installation
 
@@ -13,11 +13,11 @@ The `@tinacms/cli` package will be installed as a dev dependency with the [tina 
 npx @tinacms/cli init
 ```
 
-This will setup a dummy `.tina/schema.ts` in your site, and install any required Tina dependencies in your site.
+This will setup a dummy `.tina/schema.ts` in your site, and install any required Tina dependencies.
 
 ## Running the GraphQL API
 
-`schema:start` will compile the schema into static files, generates typescript types for you to use in your project and starts a graphQL server on http://localhost:4001
+`schema:start` will compile the schema into static files, generate typescript types for you to use in your project, and start a graphQL server on http://localhost:4001
 
 This command also takes an argument (`-c`) that allows you to run a command as a child process. This is very helpful for running a dev server and building your next.js app. The scripts portion of your package.json should look like this.
 

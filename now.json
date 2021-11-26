@@ -480,7 +480,7 @@
     },
     {
       "source": "/docs/graphql/",
-      "destination": "/docs/graphql/queries"
+      "destination": "/docs/graphql/overview"
     }
   ]
 }
