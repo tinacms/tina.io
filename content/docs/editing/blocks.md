@@ -1,6 +1,7 @@
 ---
 title: Block-based editing
 id: '/docs/editing/blocks'
+next: /docs/advanced/extending-tina
 ---
 
 Tina supports block-based editing, so that your editors can build out full pages using your pre-defined blocks

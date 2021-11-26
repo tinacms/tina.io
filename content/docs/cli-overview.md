@@ -2,25 +2,7 @@
 title: The TinaCMS CLI
 ---
 
-The _TinaCMS CLI_ can be used to set up your project with TinaCMS schema configuration, and run a local version of the TinaCMS API (using your file system's content). For a real-world example of how this is being used checkout the [Tina Cloud Starter](https://github.com/tinacms/tina-cloud-starter).
-
-## Installation
-
-The CLI can be installed as a dev dependency in your project.
-
-Npm:
-
-```bash
-npm install --save-dev @tinacms/cli
-```
-
-Yarn:
-
-```bash
-yarn add --dev @tinacms/cli
-```
-
-## Usage
+## Available Commands
 
 ```sh
 > yarn run tinacms
@@ -40,17 +22,47 @@ Commands:
   help [command]            display help for command
 ```
 
-## Getting started
+## Basic Usage:
 
-The simplest way to get started is to add a `.tina/schema.ts` file
+### init
 
+> **Hint:** If you don't have a next.js site on hand you can first bootstrap one with
+>
+> ```bash,copy
+> npx create-next-app --example with-typescript demo-project
+> ```
+
+In an **existing** Next.js project you can run
+
+```bash,copy
+npx @tinacms/cli init
 ```
-mkdir .tina && touch .tina/schema.ts
+
+This will,
+
+1. Install all of the dependencies you need
+2. Setup a basic content model in your [`schema.ts` file](/docs/schema/)
+3. Drop in a ready to go `_app.js` file
+4. Add an editable page at http://localhost:3000/demo/blog/helloWorld
+
+### schema:start
+
+> Prerequisite: To run this command, you must have a valid `.tina/schema.ts` file.
+
+`schema:start` will compile the schema into static files, generates typescript types for you to use in your project and starts a graphQL server on http://localhost:4001
+
+This command also takes an argument (`-c`) that allows you to run a command as a child process. This is very helpful for running a dev server and building your next.js app. The scripts portion of your package.json should look like this.
+
+```json,copy
+"scripts": {
+  "tina-dev": "yarn tinacms server:start -c \"next dev\"",
+  "tina-build": "yarn tinacms server:start -c \"next build\"",
+  "tina-start": "yarn tinacms server:start -c \"next start\"",
+  ...
+},
 ```
 
-### `defineSchema`
-
-`defineSchema` tells the CMS how to build your content API.
+For example, let's say that we have a schema like the one below:
 
 ```ts
 // .tina/schema.ts
@@ -74,42 +86,7 @@ export default defineSchema({
 })
 ```
 
-## Run the local GraphQL server
-
-Let's add some content so we can test out the GraphQL server
-
-#### Add an author
-
-```sh
-mkdir content && mkdir content/authors && touch content/authors/napoleon.md
-```
-
-Now let's add some content to the author
-
-```markdown
----
-name: Napoleon
----
-```
-
-#### Add a post
-
-```sh
-mkdir content/posts && touch content/posts/voteForPedro.md
-```
-
-Now we add some content to the post
-
-```markdown
----
-title: Vote For Pedro
-author: content/authors/napoleon.md
----
-
-You should really vote for Pedro.
-```
-
-#### Start the filesystem server
+We can run our local GraphQL server with:
 
 ```sh
 > yarn run tinacms server:start
@@ -120,14 +97,6 @@ Generating Tina config
 ...
 ```
 
-The below query can be run against your locally-running GraphQL server
+Once the graphql server is running, you can start to query your locally-running GraphQL server.
 
 <iframe loading="lazy" src="/api/graphiql/?query=%7B%0A%20%20getDocument(collection%3A%20%22post%22%2C%20relativePath%3A%20%22voteForPedro.json%22)%20%7B%0A%20%20%20%20...on%20PostDocument%20%7B%0A%20%20%20%20%20%20data%20%7B%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20author%20%7B%0A%20%20%20%20%20%20%20%20%20%20...on%20AuthorDocument%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20data%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20name%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D" width="800" height="400" />
-
-## Next Steps
-
-[Enable live-editing on your Next.js site](/docs/tinacms-context/)
-
-[Deep dive on the Tina schema](/docs/schema/)
-
-[Learn all about the GraphQL API](/docs/graphql/)

@@ -84,6 +84,8 @@ export const getStaticPaths = async () => {
 }
 ```
 
+> For more information on writing queries for your specific schema, check out our ["Using the GraphQL API"](/docs/graphql/overview/) docs.
+
 ## FAQ
 
 ### Do I need to use `staticRequest`?

@@ -469,6 +469,18 @@
     {
       "source": "/docs/tinacms-package/",
       "destination": "/docs/tinacms-context"
+    },
+    {
+      "source": "/docs/cli/",
+      "destination": "/docs/cli-overview"
+    },
+    {
+      "source": "/docs/schema-advanced/",
+      "destination": "/docs/graphql/"
+    },
+    {
+      "source": "/docs/graphql/",
+      "destination": "/docs/graphql/overview"
     }
   ]
 }

@@ -39,9 +39,30 @@
     ]
   },
   {
+    "category": "Using the GraphQL API",
+    "slug": "/docs/graphql/overview/",
+    "items": [
+      {
+        "id": "/docs/graphql/overview/",
+        "slug": "/docs/graphql/overview/",
+        "title": "Overview"
+      },
+      {
+        "id": "/docs/graphql/cli/",
+        "slug": "/docs/graphql/cli/",
+        "title": "Running the Local GraphQL API"
+      },
+      {
+        "id": "/docs/graphql/queries/",
+        "slug": "/docs/graphql/queries/",
+        "title": "Querying the API"
+      }
+    ]
+  },
+  {
     "title": "Editing",
-    "id": "/docs/ediiting/overview",
-    "slug": "/docs/ediiting/overview/",
+    "id": "/docs/editing/overview",
+    "slug": "/docs/editing/overview/",
     "items": [
       {
         "title": "Overview",
@@ -131,30 +152,13 @@
   },
   {
     "category": "Reference",
-    "slug": "/docs/media-cloudinary/",
+    "slug": "/docs/cli-overview/",
     "description": "The JavaScript toolkit for building content management interfaces",
     "items": [
       {
         "id": "/docs/cli-overview/",
         "slug": "/docs/cli-overview/",
-        "title": "@tinacms/cli",
-        "items": [
-          {
-            "title": "TinaCMS CLI",
-            "id": "/docs/cli",
-            "slug": "/docs/cli/"
-          },
-          {
-            "title": "GraphQL API",
-            "id": "/docs/graphql/",
-            "slug": "/docs/graphql/"
-          },
-          {
-            "title": "Advanced Usage",
-            "id": "/docs/schema-advanced/",
-            "slug": "/docs/schema-advanced/"
-          }
-        ]
+        "title": "@tinacms/cli"
       },
       {
         "title": "next-tinacms-cloudinary",
@@ -162,7 +166,7 @@
         "slug": "/docs/media-cloudinary/"
       },
       {
-        "title": "CMS Toolkit",
+        "title": "@tinacms/toolkit",
         "id": "/docs/reference/toolkit/overview/",
         "slug": "/docs/reference/toolkit/overview/",
         "items": [

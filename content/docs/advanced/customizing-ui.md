@@ -1,6 +1,7 @@
 ---
 title: Customizing Tina's UI
 id: '/docs/advanced/customizing-ui'
+next: '/docs/tina-cloud'
 ---
 
 ## CSS Custom Properties
