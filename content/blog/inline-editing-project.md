@@ -4,7 +4,7 @@ date: '2020-06-29T11:28:19-03:00'
 author: Kendall Strautman
 next: null
 prev: /blog/upgrade-notice-improved-github-security
-outdatedMessage: '**Update:** Inline editing is evolving and the current version is considered experimental, read more about [the evolution of inline editing](/blog/evolution-of-inline-editing/).'
+warningMessage: '**Update:** Inline editing is evolving and the current version is considered experimental, read more about [the evolution of inline editing](/blog/evolution-of-inline-editing/).'
 ---
 
 6 weeks ago, we embarked on a dedicated project with the goal of improving [Inline Editing](https://tinacms.org/docs/ui/inline-editing). We believe that **this way of creating content is the future**, and we want to be a driver in actualizing that future.
