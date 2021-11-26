@@ -18,7 +18,7 @@ The GraphQL API will generate queries which are specific to the schema you defin
 - `update<collection>Document`
 - `addPendingDocument`
 
-For a given collection, it's `name` will be used to generate `get<collection>Document` and `get<collection>List` queries, and the `update<collection>Document` mutation. You'll also notice the resulting _type_ field is based on the collection name.
+For a given collection, it's `name` will be used to generate `get<collection>Document` and `get<collection>List` queries, and the `update<collection>Document` mutation.
 
 ## Example schema
 
@@ -99,7 +99,7 @@ Here we will query our `post` collection with `getPostList`
 
 ### Updating a document with `update<collection>Document`
 
-Our collections for the above schema are named "post" and "author", so we can apply an update to each collection type using the `updatePostDocument` & `getAuthorDocument`
+Our collections for the above schema are named "post" and "author", so we can apply an update to each collection type using the `updatePostDocument` & `updateAuthorDocument`
 
 > Note: Update mutations will overwrite _all_ fields. Omitting a field will result in it being nullified.
 
