@@ -5,8 +5,8 @@ author: Nolan Phillips & Kendall Strautman
 draft: false
 next: /blog/simple-markdown-blog-nextjs
 prev: /blog/announcing-tinacms
+outdatedMessage: '**Update:** The examples in this post reference an outdated Gatsby implementation. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction.'
 ---
-{{ WarningCallout text="**Update:** The examples in this post reference an outdated Gatsby implementation. We recommend using [Next.js](/docs/integrations/nextjs/) for a solution with less friction."}}
 
 One of the core features of an editorial workflow is to provide writers & editors a safe space for creating and iterating on content without these in-process posts publishing to production — **draft-mode**.
 

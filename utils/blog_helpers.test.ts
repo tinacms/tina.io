@@ -1,4 +1,4 @@
-import { stripMarkdown } from './blog_helpers'
+import { isRelevantPost, stripMarkdown } from './blog_helpers'
 
 describe('stripMarkdown', () => {
   describe('with shortcodes', () => {
@@ -10,5 +10,17 @@ describe('stripMarkdown', () => {
       const stripped = await stripMarkdown(testDocument)
       expect(stripped).toEqual(expected)
     })
+  })
+})
+
+describe('isRelevantPost', () => {
+  it('returns false for old post', async () => {
+    const isRelevant = await isRelevantPost({ date: '03-03-2019' })
+    expect(isRelevant).toEqual(false)
+  })
+
+  it('returns true for new post', async () => {
+    const isRelevant = await isRelevantPost({ date: new Date().toString() })
+    expect(isRelevant).toEqual(true)
   })
 })

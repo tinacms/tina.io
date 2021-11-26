@@ -79,7 +79,12 @@ function BlogTemplate({ file, siteConfig, prevPage, nextPage }) {
               <EditLink />
             </BlogMeta>
             {isOutdatedPost && (
-              <WarningCallout text="**Update:** The Tina API has been changing, and the content in this post is outdated. For help getting started with Tina, we suggest checking out our [getting started doc](/docs/setup-overview/)." />
+              <WarningCallout
+                text={
+                  frontmatter.outdatedMessage ||
+                  '**Update:** The Tina API has been evolving, and the content in this post is outdated. For help getting started with Tina, we suggest checking out our [getting started doc](/docs/setup-overview/).'
+                }
+              />
             )}
             <InlineWysiwyg
               name="markdownBody"
