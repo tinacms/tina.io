@@ -1,5 +1,6 @@
 ---
 title: Running the Local GraphQL API
+next: '/docs/graphql/queries'
 ---
 
 The _TinaCMS CLI_ can be used to set up your project with TinaCMS schema configuration, and run a local version of the TinaCMS API (using your file system's content). For a real-world example of how this is being used checkout the [Tina Cloud Starter](https://github.com/tinacms/tina-cloud-starter).
