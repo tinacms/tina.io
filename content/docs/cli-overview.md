@@ -45,16 +45,7 @@ This will,
 
 `server:start` will compile the schema into static files, generates typescript types for you to use in your project and starts a graphQL server on http://localhost:4001
 
-This command also takes an argument (`-c`) that allows you to run a command as a child process. For example:
-
-```json,copy
-"scripts": {
-  "tina-dev": "yarn tinacms server:start -c \"next dev\"",
-  "tina-build": "yarn tinacms server:start -c \"next build\"",
-  "tina-start": "yarn tinacms server:start -c \"next start\"",
-  ...
-},
-```
+This command also takes an argument (`-c`) that allows you to run a command as a child process. For example, you could run your next project alongside the graphQL server `yarn tinacms server:start -c next dev`. 
 
 ### `schema:compile`
 
