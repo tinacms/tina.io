@@ -26,13 +26,7 @@ Commands:
 
 ### init
 
-> **Hint:** If you don't have a next.js site on hand you can first bootstrap one with
->
-> ```bash,copy
-> npx create-next-app --example with-typescript demo-project
-> ```
-
-In an **existing** Next.js project you can run
+> The init command must be run inside of a Next.js project
 
 ```bash,copy
 npx @tinacms/cli init
@@ -45,58 +39,19 @@ This will,
 3. Drop in a ready to go `_app.js` file
 4. Add an editable page at http://localhost:3000/demo/blog/helloWorld
 
-### schema:start
+### `server:start`
 
-> Prerequisite: To run this command, you must have a valid `.tina/schema.ts` file.
+> To run this command, you must have a valid `.tina/schema.ts` file.
 
-`schema:start` will compile the schema into static files, generates typescript types for you to use in your project and starts a graphQL server on http://localhost:4001
+`server:start` will compile the schema into static files, generates typescript types for you to use in your project and starts a graphQL server on http://localhost:4001
 
-This command also takes an argument (`-c`) that allows you to run a command as a child process. This is very helpful for running a dev server and building your next.js app. The scripts portion of your package.json should look like this.
+This command also takes an argument (`-c`) that allows you to run a command as a child process. For example, you could run your next project alongside the graphQL server `yarn tinacms server:start -c next dev`. 
 
-```json,copy
-"scripts": {
-  "tina-dev": "yarn tinacms server:start -c \"next dev\"",
-  "tina-build": "yarn tinacms server:start -c \"next build\"",
-  "tina-start": "yarn tinacms server:start -c \"next start\"",
-  ...
-},
-```
+### `schema:compile`
 
-For example, let's say that we have a schema like the one below:
+`schema:compile` is used to compile and transpile the schema files into static file(s) ready to be used with the server. The compilation can be found in the `.tina/__generated__/config` directory.
 
-```ts
-// .tina/schema.ts
-import { defineSchema } from '@tinacms/cli'
 
-export default defineSchema({
-  collections: [
-    {
-      label: 'Blog Posts',
-      name: 'post',
-      path: 'content/posts',
-      fields: [
-        {
-          type: 'string'
-          label: 'Title',
-          name: 'title',
-        },
-      ],
-    },
-  ],
-})
-```
+### `schema:types` 
 
-We can run our local GraphQL server with:
-
-```sh
-> yarn run tinacms server:start
-
-Started Filesystem GraphQL server on port: 4001
-Visit the playground at http://localhost:4001/altair/
-Generating Tina config
-...
-```
-
-Once the graphql server is running, you can start to query your locally-running GraphQL server.
-
-<iframe loading="lazy" src="/api/graphiql/?query=%7B%0A%20%20getDocument(collection%3A%20%22post%22%2C%20relativePath%3A%20%22voteForPedro.json%22)%20%7B%0A%20%20%20%20...on%20PostDocument%20%7B%0A%20%20%20%20%20%20data%20%7B%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20author%20%7B%0A%20%20%20%20%20%20%20%20%20%20...on%20AuthorDocument%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20data%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20name%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D" width="800" height="400" />
+`schema:types` will generate a GraphQL query for your site's schema and typescript files. You will find the generated files in the `.tina/__generated__/` directory.
