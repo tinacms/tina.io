@@ -13,7 +13,7 @@
           "variant": "orange",
           "label": "Get Started",
           "icon": "",
-          "url": "https://tina.io/docs/setup-overview/"
+          "url": "https://app.tina.io/quickstart"
         }
       ],
       "videoSrc": "v1629294438/tina-io/Beta_Launch_Demo"
@@ -72,9 +72,9 @@
       "actions": [
         {
           "variant": "orange",
-          "label": "Follow our guides",
+          "label": "Check out the docs",
           "icon": "arrowRight",
-          "url": "/guides/"
+          "url": "/docs/setup-overview/"
         }
       ],
       "items": [
