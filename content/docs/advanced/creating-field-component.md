@@ -12,7 +12,7 @@ A field plugin's `Component` is a React component that accepts three props:
 
 Checkout the [react-final-form](https://github.com/final-form/react-final-form#fieldrenderprops) docs for a more detailed description of the `input` and `meta` props.
 
-## 1. Creating a Custom Component For Our New Field Plugin
+## Creating a Custom Component For Our New Field Plugin
 
 Let's create a basic slider component:
 
@@ -31,7 +31,7 @@ export default function RangeInput({ field, input, meta }) {
           min="0"
           max="10"
           step=".1"
-          {...props.input} // This will pass along props.input.onChange to set our form values as this input changes.
+          {...input} // This will pass along props.input.onChange to set our form values as this input changes.
         />
       </div>
     </>
