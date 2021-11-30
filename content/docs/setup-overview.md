@@ -15,7 +15,7 @@ npx create-next-app --example https://github.com/tinacms/tina-cloud-starter
 yarn create next-app --example https://github.com/tinacms/tina-cloud-starter
 ```
 
-To run the starter, run:
+To run the starter, `cd <your-starter-name>` into its new directory & run:
 
 ```bash,copy
 yarn dev
