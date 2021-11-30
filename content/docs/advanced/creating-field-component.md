@@ -68,3 +68,5 @@ const Label = styled.h3`
   padding: var(--tina-padding-small);
 `
 ```
+
+Now you should have a working slider component! The next steps would be to [create a field plugin](/docs/advanced/extending-field-plugin/) that uses this component, and update a field in your schema to use this new field plugin.
