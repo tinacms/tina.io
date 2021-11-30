@@ -74,11 +74,22 @@ export default App
 
 Instead of having the full `tinacms` code in your production site, your main production bundle will just contain the much smaller `tinacms/dist/edit-state` bundle (>2kb).
 
-## Manually toggling edit-mode
+## Toggling edit-mode
 
-You can enter and exit edit mode by tapping into the `useEditState` hook. A common pattern is to place this hook on an "admin" page, which simply puts you into edit mode and sends you back to the page you were on.
+You can log into edit mode by visiting `/admin` and log out of edit mode by visiting `/admin/logout`.
 
-> If you setup Tina with [`tina init`]('/docs/setup-overview/#manual-setup-on-an-existing-site'), this should already be setup for you in the `/admin` page.
+> If you setup Tina with [`tinacms init`]('/docs/setup-overview/#manual-setup-on-an-existing-site'), this should already be setup for you in the `/pages/admin/[[...tina]].js` page.
+
+If you do not have a `/pages/admin/[[...tina]].js` file, you can create it very easily with two lines:
+
+```
+import { TinaAdmin } from 'tinacms';
+export default TinaAdmin;
+```
+
+### Manually toggling via `useEditState`
+
+You can manually enter and exit edit mode by tapping into the `useEditState` hook. A common pattern is to place this hook on an "admin" page, which simply puts you into edit mode and sends you back to the page you were on.
 
 ```tsx
 // pages/admin.js
