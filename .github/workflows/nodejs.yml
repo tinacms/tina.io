@@ -30,14 +30,7 @@ jobs:
           yarn test
         env:
           CI: true
-  check-links:
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [12.x]
-
-    steps:
-      - uses: chabad360/htmlproofer@master
+      - name: 'Proof HTML'
+        uses: chabad360/htmlproofer@master
         with:
           directory: './.next'
