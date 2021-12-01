@@ -51,7 +51,7 @@ A fair use policy will be coming soon.
 
 We will contact you if we believe your use case may eventually fit within our post-beta paid plans.
 
-## Tina.io Login window doesn't close when logging in from a site
+## Tina.io login window doesn't close when logging in from a site
 
 When a user logs in from your site, we will pop open a login window. When login is complete, we will attempt to send a message back to the main window.
 
@@ -61,4 +61,17 @@ The most common reasons for this issue are:
 - The Client ID setup in your site's environment variables does not match the Client ID in your project's settings on the Tina Cloud dashboard.
 - The user attempting to login to Tina Cloud does not have access to edit this site. Ensure that this user is authorized on the Tina Cloud dashboard.
 
+
 > Make sure to include `https` in the Site URL eg: https://forestry.io or if you are testing locally, it might be something like `http://localhost:3000`
+
+## Vercel Deployment Issue
+
+If you are attempting to use the Tina Cloud Quickstart or creating a project from one of our starters within the Tina Cloud dashboard, you may experience a `404 NOT FOUND` error during the Vercel deployment step.
+
+We have found that only a small subset of Vercel accounts experience this issue. We are actively working with Vercel to fix this bug, however there is a workaround.
+
+Navigate to the project's Settings > General > Build & Development Settings. If the Framework Preset field is set to 'Other' change this value to 'Next.js', click Save and redeploy the project.
+
+When the deployment is complete, edit or view your new Tina site. Navigate to the [Tina Cloud Dashboard](https://app.tina.io/projects) to view your Tina project.
+
+For more information, view the [Vercel documentation](https://vercel.com/docs/concepts/deployments/build-step) around their Build Step.
