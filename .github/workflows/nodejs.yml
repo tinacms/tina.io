@@ -30,6 +30,11 @@ jobs:
           yarn test
         env:
           CI: true
+      - name: yarn export
+        run: |
+          yarn export
+        env:
+          CI: true
       - name: 📉 Check HTML
         uses: chabad360/htmlproofer@master
         continue-on-error: true
