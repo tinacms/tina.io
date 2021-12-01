@@ -33,4 +33,12 @@ Your browser does not support the video tag.
 > ## Already have a NextJS site?
 >
 > The tina `init` command can be used to bootstrap Tina within your existing NextJS application.
-> If you're looking to setup Tina on an existing NextJS, checkout [our guide](/guides/tina-cloud/add-tinacms-to-existing-site/overview/)
+> If you're looking to setup Tina on an existing NextJS, [checkout our guide](/guides/tina-cloud/add-tinacms-to-existing-site/overview/)
+
+## What's next?
+
+There's plenty to do to customize your editing experience. We suggest:
+
+- Checking out [our concept docs](/docs/schema/), to learn how Tina powers the starters under the hood.
+- Learn how [Tina can be extended](/docs/advanced/extending-tina/) to create new field components
+- Make your site [editable with Tina on production](/docs/tina-cloud/)
