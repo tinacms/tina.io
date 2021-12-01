@@ -1,7 +1,7 @@
 {
   "seo": {
-    "title": "Build real-time editing into your React site",
-    "description": "Open-source editing UI designed for the Jamstack. Write to any backend."
+    "title": "Build contextual editing into your site",
+    "description": "Open-source visual editing experience, backed by git."
   },
   "blocks": [
     {
