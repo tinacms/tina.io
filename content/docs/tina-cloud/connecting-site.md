@@ -7,7 +7,7 @@ Once you've created a project within the **Tina Cloud**, the next step is to con
 
 ## Enabling Tina Cloud in TinaCMS
 
-In the [Contextual Editing doc](http://localhost:3000/docs/tinacms-context/), we showed you how the Tina context is setup on your site. 
+In the [Contextual Editing doc](/docs/tinacms-context/), we showed you how the Tina context is setup on your site. 
 
 To now enable Tina Cloud on your site, we just need to tweak a few properties to make the site editable:
 
