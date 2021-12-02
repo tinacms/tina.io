@@ -1,5 +1,5 @@
+import { WithCodeStyles } from 'components/layout/MarkdownContent'
 import React from 'react'
-import { InlineGroup } from 'react-tinacms-inline'
 import { IconRight } from './Icons'
 
 export const Actions = ({ items, align = 'left' }) => {
@@ -12,6 +12,10 @@ export const Actions = ({ items, align = 'left' }) => {
         ].join(' ')}
       >
         {items.map(item => {
+          if (item.variant == 'command') {
+            return <WithCodeStyles language="bash,copy" value={item.label} />
+          }
+
           const { variant, label, icon, url } = item
           const externalUrlPattern = /^((http|https|ftp):\/\/)/
           const external = externalUrlPattern.test(url)
