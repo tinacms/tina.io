@@ -136,12 +136,29 @@
       {
         "id": "/docs/tina-cloud/dashboard/",
         "slug": "/docs/tina-cloud/dashboard/",
-        "title": "Tina Cloud Dashboard"
+        "title": "Tina Cloud Dashboard",
+        "items": [
+          {
+            "id": "/docs/tina-cloud/dashboard/registration",
+            "slug": "/docs/tina-cloud/dashboard/registration",
+            "title": "Registration"
+          },
+          {
+            "id": "/docs/tina-cloud/dashboard/projects",
+            "slug": "/docs/tina-cloud/dashboard/projects",
+            "title": "Projects"
+          },
+          {
+            "id": "/docs/tina-cloud/dashboard/users",
+            "slug": "/docs/tina-cloud/dashboard/users",
+            "title": "Users"
+          }
+        ]
       },
       {
-        "id": "/docs/tina-cloud/using-app/",
-        "slug": "/docs/tina-cloud/using-app/",
-        "title": "Using a project"
+        "id": "/docs/tina-cloud/connecting-site/",
+        "slug": "/docs/tina-cloud/connecting-site/",
+        "title": "Connecting the site"
       },
       {
         "id": "/docs/tina-cloud/faq/",
