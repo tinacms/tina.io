@@ -477,6 +477,10 @@
     {
       "source": "/docs/graphql/",
       "destination": "/docs/graphql/overview"
+    },
+    {
+      "source": "/docs/releases(.*)",
+      "destination": "/docs/legacy-redirect"
     }
   ]
 }
