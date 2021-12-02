@@ -25,35 +25,20 @@ yarn dev
 
 To start editing, with the starter running, navigate to http://localhost:3000/admin. This allows you to enter edit-mode. Now navigate back to any page, start making edits, and see your local markdown files being updated!.
 
-## Manual Setup (on an existing site)
-
-The tina `init` command can be used to bootstrap Tina within your existing NextJS application.
-
-From the command line, run:
-
-```bash,copy
-npx @tinacms/cli@latest init
-```
-
-Now run you project along with the Tina graphql API with:
-
-```bash,copy
-yarn tina-dev
-```
-
-### Testing out Tina
-
-> Let's assume your local site runs on port 3000.
-
-Navigate to http://localhost:3000/demo/blog/HelloWorld. This is a new page created for you for demo purposes. You won't be able to edit right away, you'll first need to enter edit mode.
-
-To enter edit mode, navigate to http://localhost:3000/admin.
-
-Selecting the pencil in the bottom left allows you to edit the title and the body of the page right in the frontend. When you hit save, that will save your changes to the Markdown file.
-
-> Want to see your changes? Open up the file located at `/content/HelloWorld.md` and the changes you've made will be there!
-
 <video controls autoplay=true muted loop>
 <source src="/gif/tina-init.mp4" type="video/mp4" />
 Your browser does not support the video tag.
 </video>
+
+> ## Already have a NextJS site?
+>
+> The tina `init` command can be used to bootstrap Tina within your existing NextJS application.
+> If you're looking to setup Tina on an existing NextJS, [checkout our guide](/guides/tina-cloud/add-tinacms-to-existing-site/overview/)
+
+## What's next?
+
+There's plenty to do to customize your editing experience. We suggest:
+
+- Checking out [our concept docs](/docs/schema/), to learn how Tina powers the starters under the hood.
+- Learn how [Tina can be extended](/docs/advanced/extending-tina/) to create new field components
+- Make your site [editable with Tina on production](/docs/tina-cloud/)
