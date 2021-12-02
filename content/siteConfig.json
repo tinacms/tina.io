@@ -1,8 +1,8 @@
 {
   "title": "Tina",
   "sidebarTitle": "Tina",
-  "seoDefaultTitle": "Build real-time editing into your React site",
-  "description": "Open-source editing UI designed for the Jamstack. Write to any backend.",
+  "seoDefaultTitle": "Build contextual editing into your site",
+  "description": "Open-source visual editing experience, backed by git.",
   "siteUrl": "https://tinacms.org",
   "roadmapUrl": "https://github.com/tinacms/tinacms/blob/master/ROADMAP.md",
   "licenseUrl": "https://github.com/tinacms/tinacms/blob/master/LICENSE",

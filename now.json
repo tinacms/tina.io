@@ -455,10 +455,6 @@
       "destination": "/docs/legacy-redirect"
     },
     {
-      "source": "/guides/tina-cloud/(.*)",
-      "destination": "/docs/setup-overview"
-    },
-    {
       "source": "/docs/features/extending-tina/",
       "destination": "/docs/advanced/extending-tina/"
     },
