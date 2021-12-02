@@ -10,9 +10,9 @@ next: '/docs/schema'
 To quickly setup a new Tina starter, from the command line, run:
 
 ```bash
-npx create-next-app --example https://github.com/tinacms/tina-cloud-starter
+npx create-tina-app
 # or
-yarn create next-app --example https://github.com/tinacms/tina-cloud-starter
+yarn create tina-app
 ```
 
 To run the starter, `cd <your-starter-name>` into its new directory & run:
