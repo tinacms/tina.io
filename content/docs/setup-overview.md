@@ -2,7 +2,7 @@
 title: Getting Started
 id: /docs/setup-overview/
 last_edited: '2021-10-18T15:51:56.737Z'
-next: '/docs/schema'
+next: '/docs/using-tina-editor'
 ---
 
 ## Get Started using the CLI
@@ -36,10 +36,6 @@ If you prefer to get started using a UI, try our our Quickstart to setup a hoste
 
 <hr />
 
-## What's next?
+Next we'll show you how to use the Tina editor!
 
-There's plenty to do to customize your editing experience. We suggest:
-
-- Checking out [our concept docs](/docs/schema/), to learn how Tina powers the starters under the hood.
-- Learn how [Tina can be extended](/docs/advanced/extending-tina/) to create new field components
-- Make your site [editable with Tina on production](/docs/tina-cloud/)
+![using-tina-sidebar](/img/using-tina/sidebar.gif)

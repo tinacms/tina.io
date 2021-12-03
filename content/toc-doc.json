@@ -13,6 +13,11 @@
         "id": "/docs/setup-overview/",
         "slug": "/docs/setup-overview/",
         "title": "Getting Started"
+      },
+      {
+        "id": "/docs/using-tina-editor/",
+        "slug": "/docs/using-tina-editor/",
+        "title": "Using the Tina editor"
       }
     ]
   },
