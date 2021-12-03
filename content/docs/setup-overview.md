@@ -38,4 +38,4 @@ If you prefer to get started using a UI, try our our Quickstart to setup a hoste
 
 Next we'll show you how to use the Tina editor!
 
-![using-tina-sidebar](/img/using-tina/sidebar.gif)
+![using-tina-sidebar](https://res.cloudinary.com/forestry-demo/image/upload/v1638554818/tina-io/using-tina/sidebar.gif)

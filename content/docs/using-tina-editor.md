@@ -13,13 +13,13 @@ When Tina is initialized on a NextJS site, a "/admin" page is created to allow e
 
 > Note: For demo purposes, some of our starters show a "Edit with Tina" link to the "/admin". This can be removed on production sites.
 
-![tina-tailwind-starter](/img/using-tina/starter.png)
+![tina-tailwind-starter](https://res.cloudinary.com/forestry-demo/image/upload/c_scale,q_49,w_800/v1638554159/tina-io/using-tina/starter.png)
 
 On the "/admin" page, you will see a "Log In" button.
 
 > Note: When working in local-mode, you will not actually need to log in. In production-mode, only authorized users will be able to enter edit-mode on your site.
 
-![tina-admin](/img/using-tina/admin.png)
+![tina-admin](https://res.cloudinary.com/forestry-demo/image/upload/c_scale,q_50,w_800/v1638554159/tina-io/using-tina/admin.png)
 
 Clicking "Log in" will put the user in "edit-mode" and take you back to the homepage.
 
@@ -29,13 +29,13 @@ Once in edit-mode, you should see a little pencil icon in the bottom left corner
 
 Try clicking it and making some changes to the content!
 
-![using-tina-sidebar](/img/using-tina/sidebar.gif)
+![using-tina-sidebar](https://res.cloudinary.com/forestry-demo/image/upload/v1638554818/tina-io/using-tina/sidebar.gif)
 
 Once you hit "Save Changes"..
 
 - In "Local Mode", any changes that you make will be saved to the local Markdown/JSON files.
 
-![tina-markdown](/img/using-tina/markdown.png)
+![tina-markdown](https://res.cloudinary.com/forestry-demo/image/upload/c_scale,q_49,w_800/v1638554159/tina-io/using-tina/markdown.png)
 
 - In "Production Mode", any changes that you make will be committed to the GitHub repository.
 
