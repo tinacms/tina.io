@@ -14,10 +14,6 @@
           "label": "Get Started",
           "icon": "",
           "url": "https://app.tina.io/quickstart"
-        },
-        {
-          "variant": "command",
-          "label": "npx create-tina-app"
         }
       ],
       "videoSrc": "v1629294438/tina-io/Beta_Launch_Demo"
