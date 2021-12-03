@@ -1,5 +1,4 @@
 import React from 'react'
-import { InlineGroup } from 'react-tinacms-inline'
 import { IconRight } from './Icons'
 
 export const Actions = ({ items, align = 'left' }) => {

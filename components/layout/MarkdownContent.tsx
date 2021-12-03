@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import ReactMarkdown from 'react-markdown/with-html'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import CodeStyle from '../styles/Code'
