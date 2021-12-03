@@ -10,7 +10,7 @@ next: '/docs/using-tina-editor'
 To quickly setup a new Tina starter, from the command line:
 
 ```bash,copy
-npx create-tina-app
+npx create-tina-app@latest
 ```
 
 To run the starter, `cd <your-starter-name>` into its new directory & run:
