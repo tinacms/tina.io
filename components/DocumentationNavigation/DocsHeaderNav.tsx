@@ -33,7 +33,7 @@ export const DocsHeaderNav = styled(
                 Sign In
               </Button>
             </Link>
-            <Link href="https://app.tina.io/quickstart">
+            <Link href="/docs/setup-overview/">
               <Button size="small" color="blue">
                 Get Started
               </Button>
