@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import ReactMarkdown from 'react-markdown/with-html'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import CodeStyle from '../styles/Code'
@@ -17,7 +17,7 @@ interface MarkdownContentProps {
   skipHtml?: boolean
 }
 
-export function WithCodeStyles({ language: tags, value }) {
+function WithCodeStyles({ language: tags, value }) {
   const [language, ...other] = tags?.split(',') || []
   const copy = other.includes('copy') || language === 'copy'
   return (
