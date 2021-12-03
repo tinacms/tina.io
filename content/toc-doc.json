@@ -178,6 +178,53 @@
     "description": "The JavaScript toolkit for building content management interfaces",
     "items": [
       {
+        "id": "/docs/reference/types/",
+        "slug": "/docs/reference/types/",
+        "title": "Content Types",
+        "items": [
+          {
+            "id": "/docs/reference/types/string/",
+            "slug": "/docs/reference/types/string/",
+            "title": "string"
+          },
+          {
+            "id": "/docs/reference/types/number/",
+            "slug": "/docs/reference/types/number/",
+            "title": "number"
+          },
+          {
+            "id": "/docs/reference/types/datetime/",
+            "slug": "/docs/reference/types/datetime/",
+            "title": "datetime"
+          },
+          {
+            "id": "/docs/reference/types/boolean/",
+            "slug": "/docs/reference/types/boolean/",
+            "title": "boolean"
+          },
+          {
+            "id": "/docs/reference/types/image/",
+            "slug": "/docs/reference/types/image/",
+            "title": "image"
+          },
+          {
+            "id": "/docs/reference/types/reference/",
+            "slug": "/docs/reference/types/reference/",
+            "title": "reference"
+          },
+          {
+            "id": "/docs/reference/types/object/",
+            "slug": "/docs/reference/types/object/",
+            "title": "object"
+          },
+          {
+            "id": "/docs/reference/types/rich-text/",
+            "slug": "/docs/reference/types/rich-text/",
+            "title": "rich-text"
+          }
+        ]
+      },
+      {
         "id": "/docs/cli-overview/",
         "slug": "/docs/cli-overview/",
         "title": "@tinacms/cli"

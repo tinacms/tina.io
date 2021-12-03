@@ -1,0 +1,38 @@
+query getPostDocument($relativePath: String!) {
+  getPostDocument(relativePath: $relativePath) {
+    sys {
+      filename
+      basename
+      breadcrumbs
+      path
+      relativePath
+      extension
+    }
+    id
+    data {
+      ...PostParts
+    }
+  }
+}
+
+query getPostList {
+  getPostList {
+    totalCount
+    edges {
+      node {
+        id
+        sys {
+          filename
+          basename
+          breadcrumbs
+          path
+          relativePath
+          extension
+        }
+        data {
+          ...PostParts
+        }
+      }
+    }
+  }
+}

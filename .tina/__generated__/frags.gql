@@ -1,0 +1,3 @@
+fragment PostParts on Post {
+  title
+}
