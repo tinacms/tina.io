@@ -7,7 +7,7 @@ next: '/docs/using-tina-editor'
 
 ## Get Started using the CLI
 
-To jump into one of our starters using the command line:
+To quickly setup a new Tina starter, from the command line:
 
 ```bash,copy
 npx create-tina-app
