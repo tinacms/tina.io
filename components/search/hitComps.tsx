@@ -1,9 +1,10 @@
-import React from 'react'
-import { Highlight } from 'react-instantsearch-dom'
-import { Hit } from 'react-instantsearch-core'
-import path from 'path'
+import { Highlight, Snippet } from 'react-instantsearch-dom'
+
 import { DynamicLink } from '../ui/DynamicLink'
+import { Hit } from 'react-instantsearch-core'
+import React from 'react'
 import { formatDate } from '../../utils'
+import path from 'path'
 import styled from 'styled-components'
 
 const DocHit = (clickHandler: any) => ({ hit }: { hit: Hit }) => (
@@ -13,7 +14,7 @@ const DocHit = (clickHandler: any) => ({ hit }: { hit: Hit }) => (
         <Highlight attribute="title" hit={hit} tagName="mark" />
       </h4>
       {hit['_highlightResult'].excerpt.matchLevel !== 'none' && (
-        <Highlight attribute="excerpt" hit={hit} tagName="mark" />
+        <Snippet attribute="excerpt" hit={hit} tagName="mark" />
       )}
     </div>
   </DynamicLink>
@@ -31,7 +32,7 @@ const GuideHit = (clickHandler: any) => ({ hit }: { hit: Hit }) => (
         <Highlight attribute="title" hit={hit} tagName="mark" />
       </h4>
       {hit['_highlightResult'].excerpt.matchLevel !== 'none' && (
-        <Highlight attribute="excerpt" hit={hit} tagName="mark" />
+        <Snippet attribute="excerpt" hit={hit} tagName="mark" />
       )}
     </div>
   </DynamicLink>
@@ -54,7 +55,7 @@ const BlogHit = (clickHandler: any) => ({ hit }: { hit: Hit }) => {
           <Highlight attribute="title" hit={hit} tagName="mark" />
         </h4>
         {hit['_highlightResult'].excerpt.matchLevel !== 'none' && (
-          <Highlight attribute="excerpt" hit={hit} tagName="mark" />
+          <Snippet attribute="excerpt" hit={hit} tagName="mark" />
         )}
         <div>{formatDate(hit.date)}</div>
       </div>
@@ -70,7 +71,7 @@ const PackageHit = (clickHandler: any) => ({ hit }: { hit: Hit }) => {
           <Highlight attribute="package" hit={hit} tagName="mark" />
         </h4>
         {hit['_highlightResult'].excerpt.matchLevel !== 'none' && (
-          <Highlight attribute="excerpt" hit={hit} tagName="mark" />
+          <Snippet attribute="excerpt" hit={hit} tagName="mark" />
         )}
       </div>
     </DynamicLink>
