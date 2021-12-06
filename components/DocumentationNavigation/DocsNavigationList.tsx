@@ -24,10 +24,6 @@ const NavTitle = styled.a<NavTitleProps>`
   line-height: 1.3;
   padding: 0.125rem 0.5rem 0.125rem 1.125rem;
 
-  &:last-child {
-    padding-bottom: 0.375rem;
-  }
-
   &:hover {
     opacity: 1;
   }
@@ -187,6 +183,9 @@ const NavLevelChildContainer = styled.div<NavLevelChildContainerProps>`
 
 const NavLabelContainer = styled.div<{ beta: boolean }>`
   display: flex;
+  &:last-child {
+    padding-bottom: 0.375rem;
+  }
 
   ${(props: { beta: boolean }) =>
     props.beta &&
