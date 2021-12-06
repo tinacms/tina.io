@@ -139,15 +139,17 @@ const NavLevel = ({
 
   return (
     <>
-      <DynamicLink href={categoryData.slug} passHref>
-        <NavTitle ref={navLevelElem} level={level} selected={isSelected}>
-          {isSelected ? (
-            <span>{categoryData.title || categoryData.category}</span>
-          ) : (
-            categoryData.title || categoryData.category
-          )}
-        </NavTitle>
-      </DynamicLink>
+      <NavLabelContainer beta={false}>
+        <DynamicLink href={categoryData.slug} passHref>
+          <NavTitle ref={navLevelElem} level={level} selected={isSelected}>
+            {isSelected ? (
+              <span>{categoryData.title || categoryData.category}</span>
+            ) : (
+              categoryData.title || categoryData.category
+            )}
+          </NavTitle>
+        </DynamicLink>
+      </NavLabelContainer>
       {expandChildren && categoryData.items && (
         <NavLevelChildContainer level={level}>
           {(categoryData.items || []).map(item => (
@@ -180,6 +182,28 @@ const NavLevelChildContainer = styled.div<NavLevelChildContainerProps>`
       padding-left: 0.75rem;
       padding-top: 0.25rem;
       padding-bottom: 0.125rem;
+    `}
+`
+
+const NavLabelContainer = styled.div<{ beta: boolean }>`
+  display: flex;
+
+  ${(props: { beta: boolean }) =>
+    props.beta &&
+    css`
+      a::after {
+        content: 'Beta';
+        font-size: 0.7rem;
+        background-color: #ec4915;
+        width: fit-content;
+        padding: 3px;
+        border-radius: 5px;
+        color: white;
+        margin-right: 5px;
+        margin-left: 5px;
+        height: fit-content;
+        align-self: center;
+      }
     `}
 `
 
