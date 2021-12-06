@@ -82,7 +82,8 @@
       {
         "title": "Rich Text with MDX",
         "id": "/docs/editing/mdx",
-        "slug": "/docs/editing/mdx/"
+        "slug": "/docs/editing/mdx/",
+        "beta": true
       },
       {
         "title": "Block-based editing",

@@ -135,7 +135,7 @@ const NavLevel = ({
 
   return (
     <>
-      <NavLabelContainer beta={false}>
+      <NavLabelContainer beta={categoryData.beta}>
         <DynamicLink href={categoryData.slug} passHref>
           <NavTitle ref={navLevelElem} level={level} selected={isSelected}>
             {isSelected ? (
