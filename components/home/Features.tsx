@@ -155,10 +155,13 @@ export function FeatureBlock({ data, index }) {
           margin-top: 1rem;
 
           :global(a) {
-            text-decoration: none;
+            text-decoration: underline;
             transition: all ease-out 150ms;
+            color: var(--color-tina-blue-dark);
+            text-decoration-color: var(--color-seafoam-dark);
             &:hover {
-              text-decoration: underline;
+              color: var(--color-tina-blue);
+              text-decoration-color: var(--color-tina-blue);
             }
           }
 
