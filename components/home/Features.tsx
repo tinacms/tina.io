@@ -351,7 +351,7 @@ export const FeatureCLI = () => {
         <code>
           <span
             style={{ display: 'block', marginBottom: '1.25rem' }}
-          >{`$ npx create-tina-app@latest`}</span>
+          >{`$ npx create-next-app@latest`}</span>
           <span
             style={{ display: 'block', marginBottom: '1.25rem' }}
           >{`$ cd <project name>`}</span>

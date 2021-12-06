@@ -1,5 +1,15 @@
 import React from 'react'
+import styled from 'styled-components'
 import { IconRight } from './Icons'
+import { WithCodeStyles } from 'components/layout/MarkdownContent'
+
+const BashWrapper = styled.div`
+  code {
+    ::before {
+      content: '$ ';
+    }
+  }
+`
 
 export const Actions = ({ items, align = 'left' }) => {
   return (
@@ -11,6 +21,14 @@ export const Actions = ({ items, align = 'left' }) => {
         ].join(' ')}
       >
         {items.map(item => {
+          if (item.variant == 'command') {
+            return (
+              <BashWrapper>
+                <WithCodeStyles language="bash,copy" value={item.label} />
+              </BashWrapper>
+            )
+          }
+
           const { variant, label, icon, url } = item
           const externalUrlPattern = /^((http|https|ftp):\/\/)/
           const external = externalUrlPattern.test(url)

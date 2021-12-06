@@ -17,7 +17,7 @@ interface MarkdownContentProps {
   skipHtml?: boolean
 }
 
-function WithCodeStyles({ language: tags, value }) {
+export function WithCodeStyles({ language: tags, value }) {
   const [language, ...other] = tags?.split(',') || []
   const copy = other.includes('copy') || language === 'copy'
   return (
