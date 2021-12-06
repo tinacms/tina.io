@@ -1,11 +1,21 @@
 import { buildASTSchema, print } from 'graphql'
 import { graphqlHTTP } from 'express-graphql'
-import { createDatabase, resolve, indexDB } from '@tinacms/graphql'
+import { createDatabase, resolve, indexDB, MemoryStore } from '@tinacms/graphql'
 import type { TinaCloudSchema} from '@tinacms/graphql'
+class InMemoryStore extends MemoryStore {
+  public supportsSeeding() {
+    return true
+  }
+  public supportsIndexing() {
+    return false
+  }
+}
+
 
 export default async function feedback(req, res) {
   const database = await createDatabase({
     bridge: new InMemoryBridge(''),
+    store: new InMemoryStore('')
   })
   await indexDB({ database, config })
   return graphqlHTTP({
@@ -51,6 +61,12 @@ export class InMemoryBridge {
 
   public getMockData = async () => {
     return this.mockFileSystem
+  }
+  public async putConfig(filepath: string, data: string) {
+    await this.put(filepath, data)
+  }
+  public supportsBuilding() {
+    return true
   }
 }
 
