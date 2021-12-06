@@ -17,7 +17,7 @@
         },
         {
           "variant": "command",
-          "label": "npx create-tina-app"
+          "label": "npx create-tina-app@latest"
         }
       ],
       "videoSrc": "v1629294438/tina-io/Beta_Launch_Demo"

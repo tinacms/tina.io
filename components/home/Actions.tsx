@@ -206,7 +206,7 @@ export const CodeButton = ({ children }) => {
 
   return (
     <>
-      <button className="button" onClick={clickEvent}>
+      <button className="button event-cmd-button" onClick={clickEvent}>
         <span className={`success-message ${copied ? `visible` : ``}`}>
           Copied to clipboard!
         </span>
