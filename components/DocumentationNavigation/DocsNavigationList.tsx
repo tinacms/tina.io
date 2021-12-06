@@ -24,10 +24,6 @@ const NavTitle = styled.a<NavTitleProps>`
   line-height: 1.3;
   padding: 0.125rem 0.5rem 0.125rem 1.125rem;
 
-  &:last-child {
-    padding-bottom: 0.375rem;
-  }
-
   &:hover {
     opacity: 1;
   }
@@ -139,15 +135,17 @@ const NavLevel = ({
 
   return (
     <>
-      <DynamicLink href={categoryData.slug} passHref>
-        <NavTitle ref={navLevelElem} level={level} selected={isSelected}>
-          {isSelected ? (
-            <span>{categoryData.title || categoryData.category}</span>
-          ) : (
-            categoryData.title || categoryData.category
-          )}
-        </NavTitle>
-      </DynamicLink>
+      <NavLabelContainer beta={categoryData.beta}>
+        <DynamicLink href={categoryData.slug} passHref>
+          <NavTitle ref={navLevelElem} level={level} selected={isSelected}>
+            {isSelected ? (
+              <span>{categoryData.title || categoryData.category}</span>
+            ) : (
+              categoryData.title || categoryData.category
+            )}
+          </NavTitle>
+        </DynamicLink>
+      </NavLabelContainer>
       {expandChildren && categoryData.items && (
         <NavLevelChildContainer level={level}>
           {(categoryData.items || []).map(item => (
@@ -180,6 +178,37 @@ const NavLevelChildContainer = styled.div<NavLevelChildContainerProps>`
       padding-left: 0.75rem;
       padding-top: 0.25rem;
       padding-bottom: 0.125rem;
+    `}
+`
+
+const NavLabelContainer = styled.div<{ beta: boolean }>`
+  display: flex;
+  &:last-child {
+    padding-bottom: 0.375rem;
+  }
+
+  ${(props: { beta: boolean }) =>
+    props.beta &&
+    css`
+      a::after {
+        display: -ms-inline-flexbox;
+        content: 'Experimental';
+        font-size: 12px;
+        font-weight: bold;
+        background-color: #f9ebe6;
+        border: 1px solid #edcdc4;
+        width: fit-content;
+        padding: 2px 5px;
+        border-radius: 5px;
+        letter-spacing: 0.25px;
+        color: #ec4815;
+        margin-right: 5px;
+        margin-left: 5px;
+        line-height: 1;
+        vertical-align: middle;
+        height: fit-content;
+        align-self: center;
+      }
     `}
 `
 
