@@ -191,15 +191,21 @@ const NavLabelContainer = styled.div<{ beta: boolean }>`
     props.beta &&
     css`
       a::after {
+        display: -ms-inline-flexbox;
         content: 'Experimental';
-        font-size: 0.7rem;
-        background-color: #ec4915;
+        font-size: 12px;
+        font-weight: bold;
+        background-color: #f9ebe6;
+        border: 1px solid #edcdc4;
         width: fit-content;
-        padding: 3px;
+        padding: 2px 5px;
         border-radius: 5px;
-        color: white;
+        letter-spacing: 0.25px;
+        color: #ec4815;
         margin-right: 5px;
         margin-left: 5px;
+        line-height: 1;
+        vertical-align: middle;
         height: fit-content;
         align-self: center;
       }
