@@ -82,8 +82,7 @@
       {
         "title": "Rich Text with MDX",
         "id": "/docs/editing/mdx",
-        "slug": "/docs/editing/mdx/",
-        "beta": true
+        "slug": "/docs/editing/mdx/"
       },
       {
         "title": "Block-based editing",
@@ -170,6 +169,12 @@
         "id": "/docs/tina-cloud/faq/",
         "slug": "/docs/tina-cloud/faq/",
         "title": "FAQ"
+      },
+      {
+        "id": "/docs/tina-cloud/branching/",
+        "slug": "/docs/tina-cloud/branching/",
+        "title": "Branching",
+        "beta": true
       }
     ]
   },

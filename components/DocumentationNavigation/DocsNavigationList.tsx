@@ -191,7 +191,7 @@ const NavLabelContainer = styled.div<{ beta: boolean }>`
     props.beta &&
     css`
       a::after {
-        content: 'Beta';
+        content: 'Experimental';
         font-size: 0.7rem;
         background-color: #ec4915;
         width: fit-content;
