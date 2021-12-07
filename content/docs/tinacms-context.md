@@ -24,9 +24,9 @@ const App = ({ Component, pageProps }) => {
       // Required: The data from your `getStaticProps` request
       data={pageProps.data}
       // Optional: Set to true when working with the local API
-      isLocalClient={true}
+      isLocalClient={process.env.NODE_ENV == 'development'}
       // Optional: When using Tina Cloud, specify the git branch
-      branch="main"
+      branch={process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF || 'main'}
       // Optional: Your identifier when connecting to Tina Cloud
       clientId="<some-id-from-tina-cloud>"
       // Optional: A callback for altering the document creator plugin

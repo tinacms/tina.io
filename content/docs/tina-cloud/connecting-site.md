@@ -7,15 +7,15 @@ Once you've created a project within the **Tina Cloud**, the next step is to con
 
 ## Enabling Tina Cloud in TinaCMS
 
-In the [Contextual Editing doc](/docs/tinacms-context/), we showed you how the Tina context is setup on your site. 
+In the [Contextual Editing doc](/docs/tinacms-context/), we showed you how the Tina context is setup on your site.
 
 To now enable Tina Cloud on your site, we just need to tweak a few properties to make the site editable:
 
-| property      | description                                                          |
-| ------------- | -------------------------------------------------------------------- |
-| `clientId`    | This identifier associates your site with a Tina Cloud project. You can find your clientId on the [Dashboard](https://app.tina.io/projects) by viewing your project's configuration. |
-| `isLocalClient`     | When this is false, TinaCMS uses Tina Cloud's hosted API instead of a local server to load and save content during editing.    |
-| `branch` | This is the branch in which we will load/save content to/from while in edit-mode. This can be a dynamic value if you'd like to implement more complex branching, or it can be static.                           |
+| property        | description                                                                                                                                                                           |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `clientId`      | This identifier associates your site with a Tina Cloud project. You can find your clientId on the [Dashboard](https://app.tina.io/projects) by viewing your project's configuration.  |
+| `isLocalClient` | When this is false, TinaCMS uses Tina Cloud's hosted API instead of a local server to load and save content during editing.                                                           |
+| `branch`        | This is the branch in which we will load/save content to/from while in edit-mode. This can be a dynamic value if you'd like to implement more complex branching, or it can be static. |
 
 ### Example
 
@@ -31,7 +31,7 @@ const App = ({ Component, pageProps }) => {
       // Your app identifier when connecting to Tina Cloud
       clientId="<some-id-from-tina-cloud>"
       // Specify the git branch
-      branch="main"
+      branch={process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF || 'main'}
     >
       {livePageProps => <Component {...livePageProps} />}
     </TinaCMS>
@@ -41,3 +41,4 @@ const App = ({ Component, pageProps }) => {
 export default App
 ```
 
+> `NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF` is a [system environment variable](https://vercel.com/docs/concepts/projects/environment-variables#system-environment-variables) that represents the branch that has made the deployment commit. If not using Vercel, this can replaced with a custom environment variable, or even a hardcoded value.
