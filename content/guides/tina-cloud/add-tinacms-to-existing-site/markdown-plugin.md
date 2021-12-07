@@ -39,7 +39,7 @@ const App = ({ Component, pageProps }) => {
         editMode={
           <TinaCMS
             clientId={process.env.NEXT_PUBLIC_TINA_CLIENT_ID}
-            branch={process.env.NEXT_PUBLIC_EDIT_BRACH}
+            branch={process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF}
             organization={process.env.NEXT_PUBLIC_ORGANIZATION_NAME}
             isLocalClient={Boolean(
               Number(process.env.NEXT_PUBLIC_USE_LOCAL_CLIENT ?? true)
@@ -63,6 +63,8 @@ const App = ({ Component, pageProps }) => {
 
 export default App
 ```
+
+> `NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF` is a [system environment variable](https://vercel.com/docs/concepts/projects/environment-variables#system-environment-variables) that represents the branch that has made the deployment commit. If not using Vercel, this can replaced with a custom environment variable, or even a hardcoded value.
 
 The plugin is now available anywhere we want to use our markdown editor.
 
