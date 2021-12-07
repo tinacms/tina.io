@@ -68,19 +68,17 @@ The code to remove
 ```html
 <Head>
           {/* Tailwind CDN */}
-          <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.7/tailwind.min.css"
-            integrity="sha512-y6ZMKFUQrn+UUEVoqYe8ApScqbjuhjqzTuwUMEGMDuhS2niI8KA3vhH2LenreqJXQS+iIXVTRL2iaNfJbDNA1Q=="
-            crossOrigin="anonymous"
-            referrerPolicy="no-referrer"
-          />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.7/tailwind.min.css"
+        integrity="sha512-y6ZMKFUQrn+UUEVoqYe8ApScqbjuhjqzTuwUMEGMDuhS2niI8KA3vhH2LenreqJXQS+iIXVTRL2iaNfJbDNA1Q=="
+        crossOrigin="anonymous"
+        referrerPolicy="no-referrer"/>
           {/* Marked CDN */}
-          <script
-            type="text/javascript"
-            crossOrigin="anonymous"
-            src="https://cdn.jsdelivr.net/npm/marked@3.0.8/lib/marked.min.js"
-          />
+    <script
+        type="text/javascript"
+        crossOrigin="anonymous"
+        src="https://cdn.jsdelivr.net/npm/marked@3.0.8/lib/marked.min.js"/>
 </Head>
 ```
 
@@ -88,7 +86,7 @@ Now that you have removed the first part of the unused code, we can import `Tina
 
 At the top of the file your import section should now look like:
 
-```html,copy
+```javascript,copy
   import { staticRequest, gql, getStaticPropsForTina } from "tinacms";
   import { TinaMarkdown } from 'tinacms/dist/rich-text'
   import { createGlobalStyle } from "styled-components";
@@ -116,8 +114,6 @@ Then on line 234 we can replace the div that held the parsed markdown with our T
 Go ahead and run `yarn tina-dev` and navigate back to http://localhost:3000/demo/blog/HelloWorld you'll notice that the editing experience has changed, with the ability to insert markdown and a new button called "Embed".
 
 ![Tina Markdown Example](https://res.cloudinary.com/forestry-demo/image/upload/v1638886705/blog-media/Tina-markdown-demo.png)
-
-_Tina Rich Text editor with Embed button_
 
 ## Adding an MDX Component
 
@@ -199,11 +195,12 @@ The piece is to register the component with our `TinaMarkdown` . Open up the `[f
 ```
 
 For code clarity, we can create an object that contains all the different Tina-powered components. We are going to pass the props through to our components so we can define that here.
-```
-**const** components = {
-Callout: (props) **=\&gt;** {
-**return** \&lt;Callout callout={props} /\&gt;;
- }};
+
+```javascript,copy
+const components = {
+    Callout: (props) => {
+      return <Callout callout={props} />;
+    }};
 ```
 Finally, we can update your `TinaMarkdown` component to pass the components for our users to use.
 
@@ -218,10 +215,6 @@ Now relaunch your application and navigate back to the editable page, then click
 
 ![Callout](https://res.cloudinary.com/forestry-demo/image/upload/v1638886705/blog-media/Callout.png)
 
-_Callout button appears as well as a default editable callout on the page_
-
 Then when you select the button you will have the option to switch the type and edit the text.
 
 ![Warning](https://res.cloudinary.com/forestry-demo/image/upload/v1638886705/blog-media/warning.png)
-
-_Example when warning is selected for Callout type_
