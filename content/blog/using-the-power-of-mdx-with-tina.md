@@ -22,7 +22,7 @@ Use the following command inside of the project to add all the Tina dependencies
 ``` bash,copy
 npx @tinacms/cli@latest init
 ```
-
+When you are asked if you want to replace your `_app.js` file, select Y as we want our init command to take care of adding the Tina specific code.
 Step 3: Test Tina
 
 Run `yarn tina-dev` from the project directory and navigate to [http://localhost:3000/demo/blog/HelloWorld](http://localhost:3000/demo/blog/HelloWorld) , you can then enter edit mode by navigating to http://localhost:3000/admin
@@ -205,10 +205,7 @@ const components = {
 Finally, we can update your `TinaMarkdown` component to pass the components for our users to use.
 
 ```javascript,copy
-const components = {
-    Callout: (props) => {
-      return <Callout callout={props} />;
-    }};
+<TinaMarkdown content={content} components={components} />
 ```
 
 Now relaunch your application and navigate back to the editable page, then click the "Embed" button and you will see the "Callout" as an option. You will see a button appear in the editable UI and a new callout appear on the page.
