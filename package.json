@@ -25,7 +25,7 @@
   "dependencies": {
     "@codesandbox/sandpack-react": "^0.9.10",
     "@next/bundle-analyzer": "^10.0.0",
-    "@tinacms/graphql": "beta",
+    "@tinacms/graphql": "latest",
     "@types/react-instantsearch-dom": "^5.2.6",
     "@types/styled-components": "^4.4.2",
     "@uiw/react-monacoeditor": "^3.4.5",
@@ -61,6 +61,7 @@
     "next-tinacms-github": "^0.39.0",
     "next-tinacms-json": "^0.39.0",
     "next-tinacms-markdown": "^0.39.0",
+    "nextjs-cors": "^2.1.0",
     "node-fetch": "^2.6.1",
     "node-sass": "^5.0.0",
     "polished": "^3.4.4",
