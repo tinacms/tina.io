@@ -23,7 +23,6 @@
     "deploy": "yarn build && yarn export"
   },
   "dependencies": {
-    "@codesandbox/sandpack-react": "^0.9.10",
     "@next/bundle-analyzer": "^10.0.0",
     "@tinacms/graphql": "latest",
     "@types/react-instantsearch-dom": "^5.2.6",
