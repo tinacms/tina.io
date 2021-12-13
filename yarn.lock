@@ -1949,10 +1949,10 @@
     final-form "4.18 - 4.19"
     final-form-arrays "^3.0.1"
 
-"@tinacms/graphql@latest":
-  version "0.59.1"
-  resolved "https://registry.yarnpkg.com/@tinacms/graphql/-/graphql-0.59.1.tgz#8cac2dd50892888802e18a55001b59946718da5e"
-  integrity sha512-bOdwjmXTx5hn+DH0cQAkjUffaEPN2hTCWGqFvlA/Uer1eFJn9YqO57vvrbU1BeSotPVPakq3hMvpXtWBfxqQrA==
+"@tinacms/graphql@0.0.0-202111212155":
+  version "0.0.0-202111212155"
+  resolved "https://registry.yarnpkg.com/@tinacms/graphql/-/graphql-0.0.0-202111212155.tgz#00fb0d43d0fa14e9090262f9c879cb806f5a787f"
+  integrity sha512-fFF54bZo4/jSpqrrXd8hKigTB6+YIXRVEheO7SbEH3M3T+Hg0thJxJbk5VcMLxMkmidp/JI1bhKTj/FVtI9ekg==
   dependencies:
     "@octokit/auth-app" "^2.6.0"
     "@octokit/graphql" "^4.5.6"
@@ -1961,7 +1961,6 @@
     cors "^2.8.5"
     dataloader "^2.0.0"
     date-fns "^2.21.1"
-    encoding-down "^7.1.0"
     esbuild "^0.12.25"
     esbuild-jest "^0.5.0"
     estree-walker "^3.0.0"
@@ -1973,14 +1972,12 @@
     gray-matter "^4.0.2"
     js-yaml "^3.14.0"
     level "^7.0.1"
-    levelup "^5.1.1"
     lodash "^4.17.20"
     mdast "^3.0.0"
     mdast-util-from-markdown "^1.0.0"
     mdast-util-mdx "^1.1.0"
     mdast-util-mdx-expression "^1.1.0"
     mdast-util-to-markdown "^1.2.1"
-    memdown "^6.1.1"
     micromark-extension-mdxjs "^1.0.0"
     mocha "^9.1.1"
     normalize-path "^3.0.0"
@@ -6475,11 +6472,6 @@ function-bind@^1.1.1:
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
   integrity sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==
 
-functional-red-black-tree@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz#1b0ab3bd553b2a0d6399d29c0e3ea0b252078327"
-  integrity sha1-GwqzvVU7Kg1jmdKcDj6gslIHgyc=
-
 gauge@~2.7.3:
   version "2.7.4"
   resolved "https://registry.yarnpkg.com/gauge/-/gauge-2.7.4.tgz#2c03405c7538c39d7eb37b317022e325fb018bf7"
@@ -8682,7 +8674,7 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
-ltgt@^2.1.2, ltgt@^2.2.0:
+ltgt@^2.1.2:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/ltgt/-/ltgt-2.2.1.tgz#f35ca91c493f7b73da0e07495304f17b31f87ee5"
   integrity sha1-81ypHEk/e3PaDgdJUwTxezH4fuU=
@@ -8993,17 +8985,6 @@ media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
   integrity sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=
-
-memdown@^6.1.1:
-  version "6.1.1"
-  resolved "https://registry.yarnpkg.com/memdown/-/memdown-6.1.1.tgz#ab52fae1a029affb40af60fda9d247a5733e4dc3"
-  integrity sha512-vh2RiuVrn6Vv73088C1KzLwy9+hhRwoZsgddYqIoVuFFrcoc2Rt+lq/KrmkFn6ulko7AtQ0AvqtYid35exb38A==
-  dependencies:
-    abstract-leveldown "^7.2.0"
-    buffer "^6.0.3"
-    functional-red-black-tree "^1.0.1"
-    inherits "^2.0.1"
-    ltgt "^2.2.0"
 
 memoize-one@^5.0.0, memoize-one@^5.0.4:
   version "5.1.1"
