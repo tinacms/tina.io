@@ -14,7 +14,6 @@ import path from 'path'
 import { BlogPostCreatorPlugin } from '../tinacms/BlogPostCreator'
 import { ReleaseNotesCreatorPlugin } from '../tinacms/ReleaseNotesCreator'
 import { NextGithubMediaStore } from '../utils/plugins/NextGithubMediaStore'
-import '@codesandbox/sandpack-react/dist/index.css'
 
 // the following line will cause all content files to be available in a serverless context
 path.resolve('./content/')
