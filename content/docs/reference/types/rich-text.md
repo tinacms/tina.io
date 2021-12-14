@@ -16,4 +16,4 @@ type RichTextField = {
 }
 ```
 
-<iframe width="100%" height="700px" src="http://localhost:3000/iframe/rich-text" />
+<iframe width="100%" height="700px" src="https://tina-playground.vercel.app/iframe/rich-text" />
