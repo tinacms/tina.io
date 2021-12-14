@@ -1,9 +1,12 @@
 import * as gqlPackage from '@tinacms/graphql'
 
 export default async function feedback(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept')
   console.log('received request', req.query)
+  res.setHeader(
+    'Access-Control-Allow-Origin',
+    'https://tina-playground.vercel.app'
+  )
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept')
   // res.setHeader('Content-Type', 'application/json')
   class InMemoryStore extends gqlPackage.MemoryStore {
     public supportsSeeding() {
