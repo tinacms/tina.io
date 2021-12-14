@@ -18,16 +18,16 @@ type ObjectField = {
 }
 ```
 
-<iframe width="100%" height="700px" src="https://tina-playground.vercel.app/object" />
+<iframe width="100%" height="700px" src="https://tina-playground.vercel.app/iframeobject" />
 
 ### As a `list`
 
 > Note: you can set `defaultItem` to auto-populate new items as they're added
 
-<iframe width="100%" height="700px" src="https://tina-playground.vercel.app/object-list-data" />
+<iframe width="100%" height="700px" src="https://tina-playground.vercel.app/iframeobject-list-data" />
 
 ### With multiple `templates`
 
 If you always want your object to have the same fields, use the `fields` property. But if an object can be one of any different shape, define them as `templates`.
 
-<iframe width="100%" height="700px" src="https://tina-playground.vercel.app/object-list-templates" />
+<iframe width="100%" height="700px" src="https://tina-playground.vercel.app/iframeobject-list-templates" />
