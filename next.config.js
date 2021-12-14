@@ -27,7 +27,7 @@ const config = {
     return [
       {
         // matching all API routes
-        source: '/api/graphql',
+        source: '/api/graphql/',
         headers: [
           {
             key: 'Access-Control-Allow-Origin',
