@@ -33,6 +33,7 @@ const config = {
           {
             key: 'Access-Control-Allow-Origin',
             value: 'https://tina-playground.vercel.app',
+            // value: 'http://localhost:3000',
           },
           {
             key: 'Access-Control-Allow-Methods',
