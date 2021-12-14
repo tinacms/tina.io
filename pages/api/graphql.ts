@@ -69,7 +69,7 @@ export default async function feedback(req, res) {
       JSON.parse(req.query.variables as string)
     : {}
   try {
-    await gqlPackage.indexDB({ database, config: schema })
+    await gqlPackage.indexDB({ database, config: schema, buildSDK: false })
     const result = await gqlPackage.resolve({
       database,
       query,
