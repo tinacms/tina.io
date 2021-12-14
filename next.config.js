@@ -32,7 +32,8 @@ const config = {
         headers: [
           {
             key: 'Access-Control-Allow-Origin',
-            value: 'https://tina-playground.vercel.app',
+            value: '*',
+            // value: 'https://tina-playground.vercel.app',
             // value: 'http://localhost:3000',
           },
           {
