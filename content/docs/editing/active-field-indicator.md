@@ -41,4 +41,4 @@ export default defineSchema({
     {props.data.getPostDocument.data.title}
 </h2>
 ```
-[!Active Field Indicator](https://res.cloudinary.com/forestry-demo/image/upload/v1639489428/tina-io/Active%20Field%20Indicator.gif)
+![Active Field Indicator](https://res.cloudinary.com/forestry-demo/image/upload/v1639489428/tina-io/Active%20Field%20Indicator.gif)

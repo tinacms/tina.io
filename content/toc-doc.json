@@ -94,6 +94,12 @@
         "title": "Block-based editing",
         "id": "/docs/editing/blocks",
         "slug": "/docs/editing/blocks/"
+      },
+      {
+        "title": "Active Field Indicator",
+        "id": "/docs/editing/active-field-indicator",
+        "slug": "/docs/editing/active-field-indicator/",
+        "beta":true
       }
     ]
   },
