@@ -29,7 +29,10 @@ const config = {
         // matching all API routes
         source: '/api/graphql',
         headers: [
-          { key: 'Access-Control-Allow-Origin', value: '*' },
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: 'https://tina-playground.vercel.app',
+          },
           {
             key: 'Access-Control-Allow-Methods',
             value: 'GET,OPTIONS,PATCH,DELETE,POST,PUT',
