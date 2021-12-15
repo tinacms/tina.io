@@ -15,4 +15,4 @@ type BooleanField = {
 }
 ```
 
-<iframe width="100%" height="450px" src="https://tina-playground.vercel.app/iframeboolean" />
+<iframe width="100%" height="450px" src="https://tina-playground.vercel.app/iframe/boolean" />

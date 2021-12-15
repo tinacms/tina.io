@@ -20,40 +20,40 @@ type StringField = {
 }
 ```
 
-<iframe width="100%" height="450px" src="https://tina-playground.vercel.app/iframestring" />
+<iframe width="100%" height="450px" src="https://tina-playground.vercel.app/iframe/string" />
 
 ### With `options`
 
 Specifying an `options` array will provide a selection list
 
-<iframe width="100%" height="450px" src="https://tina-playground.vercel.app/iframestring-options" />
+<iframe width="100%" height="450px" src="https://tina-playground.vercel.app/iframe/string-options" />
 
 ### As a `list`
 
 Setting `list: true` will make the value an array
 
-<iframe width="100%" height="450px" src="https://tina-playground.vercel.app/iframestring-list" />
+<iframe width="100%" height="450px" src="https://tina-playground.vercel.app/iframe/string-list" />
 
 ### As a `list` with `options`
 
 Setting `list: true` and providing `options` will make the value an array with a selection list
 
-<iframe width="100%" height="450px" src="https://tina-playground.vercel.app/iframestring-list-options" />
+<iframe width="100%" height="450px" src="https://tina-playground.vercel.app/iframe/string-list-options" />
 
 ## The `isBody` property
 
 When working with markdown, you can indicate that a given field should repesent the markdown body
 
-<iframe width="100%" height="450px" src="https://tina-playground.vercel.app/iframestring-body" />
+<iframe width="100%" height="450px" src="https://tina-playground.vercel.app/iframe/string-body" />
 
 ## Overriding the component
 
 By default, the `text` field is used for strings. To use a different core field plugin, specify it with the `ui.component` property
 
-<iframe width="100%" height="450px" src="https://tina-playground.vercel.app/iframestring-textarea" />
+<iframe width="100%" height="450px" src="https://tina-playground.vercel.app/iframe/string-textarea" />
 
 ## Providing a custom component
 
 You can create your own components by adding them to the CMS
 
-<iframe width="100%" height="450px" src="https://tina-playground.vercel.app/iframestring-custom" />
+<iframe width="100%" height="450px" src="https://tina-playground.vercel.app/iframe/string-custom" />
