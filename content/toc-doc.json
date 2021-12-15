@@ -183,6 +183,11 @@
         "title": "FAQ"
       },
       {
+        "id": "/docs/tina-cloud/api-versioning/",
+        "slug": "/docs/tina-cloud/api-versioning/",
+        "title": "API Versioning"
+      },
+      {
         "id": "/docs/tina-cloud/branching/",
         "slug": "/docs/tina-cloud/branching/",
         "title": "Branching",
