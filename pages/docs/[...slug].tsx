@@ -204,7 +204,7 @@ export const DocsGrid = styled.div`
     grid-template-areas:
       '. header header .'
       '. content toc .';
-    grid-auto-columns: minmax(0, auto) fit-content(768px)
+    grid-auto-columns: minmax(0, auto) minmax(300px, 800px)
       clamp(17.5rem, 10rem + 10vw, 21.25rem) minmax(0, auto);
     grid-column-gap: 3rem;
   }

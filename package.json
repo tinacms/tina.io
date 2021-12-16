@@ -27,6 +27,7 @@
     "@tinacms/graphql": "0.59.2",
     "@types/react-instantsearch-dom": "^5.2.6",
     "@types/styled-components": "^4.4.2",
+    "@uiw/react-monacoeditor": "^3.4.5",
     "airtable": "^0.9.0",
     "algoliasearch": "^4.0.0",
     "axios": "^0.21.2",
@@ -59,6 +60,7 @@
     "next-tinacms-github": "^0.39.0",
     "next-tinacms-json": "^0.39.0",
     "next-tinacms-markdown": "^0.39.0",
+    "nextjs-cors": "^2.1.0",
     "node-fetch": "^2.6.1",
     "node-sass": "^5.0.0",
     "polished": "^3.4.4",
@@ -74,6 +76,7 @@
     "react-helmet": "^5.2.1",
     "react-icons": "^4.2.0",
     "react-instantsearch-dom": "^6.3.0",
+    "react-live": "^2.3.0",
     "react-markdown": "^4.3.1",
     "react-syntax-highlighter": "^12.2.1",
     "react-textarea-autosize": "^7.1.2",
@@ -90,6 +93,7 @@
     "styled-components": "^4.4.1",
     "styled-jsx-plugin-sass": "^1.0.0",
     "tinacms": "^0.39.0",
+    "tinacms-beta": "npm:tinacms@0.59.1",
     "webpack": "^4.41.5"
   },
   "devDependencies": {
