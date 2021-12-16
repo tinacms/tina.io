@@ -11,6 +11,17 @@ type DatetimeField = {
   name: string
   type: 'string'
   /** See docs/reference/toolkit/fields for customizing the UI **/
-  ui?: object
+  ui?: {
+    dateFormat: string // eg 'YYYY MM DD'
+    [key: string]: unknown
+  }
 }
 ```
+
+The return value for a datetime is in [ISO string format](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)
+
+<iframe width="100%" height="450px" src="https://tina-playground.vercel.app/iframe/datetime" />
+
+## Custom format
+
+<iframe width="100%" height="450px" src="https://tina-playground.vercel.app/iframe/datetime-format" />

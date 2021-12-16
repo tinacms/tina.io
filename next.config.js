@@ -26,15 +26,11 @@ const config = {
   async headers() {
     return [
       {
-        // matching all API routes
-        // source: '/api/graphql/',
         source: '/(.*)',
         headers: [
           {
             key: 'Access-Control-Allow-Origin',
             value: '*',
-            // value: 'https://tina-playground.vercel.app',
-            // value: 'http://localhost:3000',
           },
           {
             key: 'Access-Control-Allow-Methods',
