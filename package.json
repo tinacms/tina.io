@@ -5,7 +5,7 @@
   "author": "Forestry.io",
   "main": "n/a",
   "scripts": {
-    "dev-next": "next --port 3002",
+    "dev-next": "next",
     "dev": "yarn dev-next",
     "develop": "yarn dev-next",
     "build": "next build",
