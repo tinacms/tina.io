@@ -9,18 +9,11 @@ Content types
 
 Tina contains multiple tools and applications designed to improve collaboration between content writers and developers who work on web content.
 
-## `string`
-
-## `number`
-
-## `datetime`
-
-## `boolean`
-
-## `image`
-
-## `reference`
-
-## `object`
-
-## `rich-text`
+- [`string`](/docs/reference/types/string/)
+- [`number`](/docs/reference/types/number/)
+- [`datetime`](/docs/reference/types/datetime/)
+- [`boolean`](/docs/reference/types/boolean/)
+- [`image`](/docs/reference/types/image/)
+- [`reference`](/docs/reference/types/reference/)
+- [`object`](/docs/reference/types/object/)
+- [`rich-text`](/docs/reference/types/rich-text/)
