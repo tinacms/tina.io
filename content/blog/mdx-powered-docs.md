@@ -7,7 +7,7 @@ last_edited: '2021-11-02T08:00:00-04:00'
 
 When we released our [MDX Support](/docs/mdx/), we wanted to create a real-world application that showed the power of Tina and MDX. We know how important documentation is to teams and that the market’s current offerings lack features that bring collaboration.
 
-![Docs_Starter_Example.mp4](https://res.cloudinary.com/tina-demos/video/upload/v1635858935/Docs_Starter_Example_ym1e5t.gif)
+![Docs_Starter_Example](https://res.cloudinary.com/forestry-demo/video/upload/v1638887594/blog-media/Docs_Starter_Example.gif)
 
 # The technology behind our Documentation Starter
 

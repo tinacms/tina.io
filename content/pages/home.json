@@ -14,6 +14,10 @@
           "label": "Get Started",
           "icon": "",
           "url": "/docs/setup-overview/"
+        },
+        {
+          "variant": "command",
+          "label": "npx create-tina-app@latest"
         }
       ],
       "videoSrc": "v1629294438/tina-io/Beta_Launch_Demo"

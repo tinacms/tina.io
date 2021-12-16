@@ -1,12 +1,11 @@
 require('dotenv').config()
 
-import algoliasearch, { SearchIndex } from 'algoliasearch'
-import { stripMarkdown } from '../utils/blog_helpers'
-import fetchDocs from '../data-api/fetchDocs'
-import { fetchRelevantBlogs as fetchBlogs } from '../data-api/fetchBlogs'
-import fetchGuides from '../data-api/fetchGuides'
+import algoliasearch, { SearchClient, SearchIndex } from 'algoliasearch'
 
-const MAX_BODY_LENGTH = 200
+import { fetchRelevantBlogs as fetchBlogs } from '../data-api/fetchBlogs'
+import fetchDocs from '../data-api/fetchDocs'
+import fetchGuides from '../data-api/fetchGuides'
+import { stripMarkdown } from '../utils/blog_helpers'
 
 const mapContentToIndex = async ({
   content,
@@ -14,14 +13,19 @@ const mapContentToIndex = async ({
 }: Partial<{ data: { slug: string }; content: string }>) => {
   return {
     ...obj.data,
-    excerpt: await stripMarkdown((content || '').substring(0, MAX_BODY_LENGTH)),
+    excerpt: await stripMarkdown(content || ''),
     objectID: obj.data.slug,
   }
 }
 
-const saveIndex = async (client: any, indexName: string, data: any) => {
+const saveIndex = async (
+  client: SearchClient,
+  indexName: string,
+  data: any
+) => {
   try {
     const index = client.initIndex(indexName)
+    await index.setSettings({ attributesToSnippet: ['excerpt:50'] })
     const result = await index.saveObjects(data)
     console.log(
       `${indexName}: added/updated ${result.objectIDs.length} entries`

@@ -3,6 +3,9 @@ import css from 'styled-jsx/css'
 
 export const GlobalStyles = css.global`
   :root {
+    --color-tina-blue-light: #2296fe;
+    --color-tina-blue: #2296fe;
+    --color-tina-blue-dark: #0574e4;
     --color-orange: #ec4815;
     --color-orange-light: #eb6337;
     --color-orange-dark: #dc4419;
