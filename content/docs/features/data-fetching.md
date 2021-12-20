@@ -4,11 +4,24 @@ id: '/docs/features/data-fetching'
 next: '/docs/tinacms-context'
 ---
 
+## Introduction
+
 With Tina, your content is stored in Git along with your codebase. Tina provides an API to query your content through GraphQL, based on your defined content models.
 
-## `staticRequest`
+Here's an example of how the data-fetching for a basic "post" ties together with the content modelling (defined in `schema.ts`).
 
-`staticRequest` is a helper function, which makes a request to your locally-running GraphQL server.
+<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/basic" />
+
+Note that `getPostDocument` is not built-in to Tina's API. This is an example of a query based on YOUR defined schema, (where you have a "post" collection defined).
+
+> For more information on writing queries for your specific schema, check out our ["Using the GraphQL API"](/docs/graphql/overview/) docs.
+
+{{ WarningCallout text="The above example is incomplete for simplicity, and uses the experimental `useGraphqlForms`. Continue reading to see how data-fetching works in NextJS" }}
+
+## Querying Tina content in NextJS
+
+In NextJS, content is typically queried statically at build-time, or with SSR.
+Tina provides a `staticRequest` helper function, which makes a request to your locally-running GraphQL server at build-time.
 
 ### Example: Fetching content through getStaticProps
 
@@ -22,7 +35,6 @@ const getStaticProps = async () => {
         getPostDocument(relativePath: $relativePath) {
           data {
             title
-            body
           }
         }
       }
@@ -51,8 +63,6 @@ const getStaticProps = async () => {
   }
 }
 ```
-
-> Note: for now, TinaCMS only supports static data fetching, so you must use `getStaticProps` (and `getStaticPaths` for dynamic pages). We'll be opening up more capabilities in the near future!
 
 ### Example: Fetching content through getStaticPaths
 
@@ -84,7 +94,7 @@ export const getStaticPaths = async () => {
 }
 ```
 
-> For more information on writing queries for your specific schema, check out our ["Using the GraphQL API"](/docs/graphql/overview/) docs.
+> Note: for now, TinaCMS only supports static data fetching, so you must use `getStaticProps` (and `getStaticPaths` for dynamic pages). We'll be opening up more capabilities (like SSR, and client-side data-fetching) in the near future!
 
 ## FAQ
 
