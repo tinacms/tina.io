@@ -389,7 +389,7 @@ export const FeatureCLI = () => {
           >{`Setting up Tina...`}</span>
           <span
             style={{ display: 'block', marginBottom: '1.25rem' }}
-          >{`Installing Tina packages. This might take a moment... ✅`}</span>
+          >{`Installing Tina packages.  This might take a moment... ✅`}</span>
         </code>
       </pre>
       <style jsx>{`
