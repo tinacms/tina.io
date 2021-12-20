@@ -62,7 +62,7 @@
         {
           "_template": "feature",
           "headline": "Command Line Quickstart",
-          "subline": "[Bootstrap your Next.js project with Tina](/guides/tina-cloud/add-tinacms-to-existing-site/overview/) setup and get started in minutes.",
+          "subline": "[Bootstrap your Next.js project with Tina](/docs/setup-overview/) setup and get started in minutes.",
           "media": {
             "cli": true
           }
