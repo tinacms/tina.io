@@ -354,24 +354,8 @@ export const FeatureCLI = () => {
         <code>
           <span
             style={{ display: 'block', marginBottom: '1.25rem' }}
-          >{`$ npx create-next-app@latest`}</span>
-          <span
-            style={{ display: 'block', marginBottom: '1.25rem' }}
-          >{`$ cd <project name>`}</span>
-          <span
-            style={{ display: 'block', marginBottom: '1.25rem' }}
-          >{`$ npx @tinacms/cli init`}</span>
-          <span
-            style={{
-              display: 'block',
-              marginBottom: '1.25rem',
-              fontWeight: 'bold',
-              color: '#49AF25',
-            }}
-          >{`Setting up Tina...`}</span>
-          <span
-            style={{ display: 'block', marginBottom: '1.25rem' }}
-          >{`Installing Tina packages. This might take a moment... ✅`}</span>
+          >{`$ npx create-tina-app@latest`}</span>
+
           <span style={{ display: 'block' }}>
             <span
               style={{
@@ -380,14 +364,32 @@ export const FeatureCLI = () => {
                 color: '#49AF25',
               }}
             >{`?`}</span>
+
             <span
               style={{
                 display: 'inline',
                 fontWeight: 'bold',
               }}
-            >{` Do you want us to override your _app.js`}</span>
-            {`? › (y/N)`}
+            >{` What starter code would you like to use?`}</span>
+            {` 
+› Bare bones starter
+  Tailwind Starter
+  Documentation Starter
+`}
           </span>
+
+          <span
+            style={{
+              display: 'block',
+              marginTop: '1.25rem',
+              marginBottom: '1.25rem',
+              fontWeight: 'bold',
+              color: '#49AF25',
+            }}
+          >{`Setting up Tina...`}</span>
+          <span
+            style={{ display: 'block', marginBottom: '1.25rem' }}
+          >{`Installing Tina packages.  This might take a moment... ✅`}</span>
         </code>
       </pre>
       <style jsx>{`
