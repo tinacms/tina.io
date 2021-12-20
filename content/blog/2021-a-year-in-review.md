@@ -128,4 +128,10 @@ You can see how to use this experimental feature in our [GitHub](https://github.
 
 Allowing Tina-powered sites to switch to any branch is something that we have been working on for a while. Branching is so important to developers and content teams because if they want to launch a new feature or post they certainly don't want it live right away. We wanted to make sure we did it right, by making the user experience easy to navigate, and we just released it as an experimental feature. You can find out how to implement this in our [GitHub repository](https://github.com/tinacms/tinacms/tree/main/packages/%40tinacms/toolkit/src/plugins/branch-switcher).
 
-## OUTRO PART
+## The next phase
+
+At the beginning of the year, Tina was an experimental open-source project that was too open ended and was hard to maintain all of the moving pieces. We were supporting dozens of different packages and from the feedback we received this wasn't the best approach.After we making hard decisions on how to refine our approach, we now have a solid product that is seeing growing usage in production sites.
+
+In our next post, we're going to describe where this is all going and our plan for Tina in 2022. The whole team is truly excited to enter the next phase of our project and hope you will check it out and give us honest feedback. We want to hear about your projects that use Tina and anything we can do to make it easier, faster or better.
+
+To keep up to date with Tina goings-on make sure to follow [@tina_cms](https://twitter.com/tina_cms) and [@james_r_perkins](https://twitter.com/james_r_perkins) on Twitter. Want to chat with the team? Join the [Discord](https://discord.gg/njvZZYHj2Q)
