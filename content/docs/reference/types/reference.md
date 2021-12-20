@@ -17,6 +17,6 @@ type ReferenceField = {
 }
 ```
 
-<iframe width="100%" height="450px" src="https://tina-playground.vercel.app/iframe/reference" />
+<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/iframe/reference" />
 
 > Note: `reference` with `list: true` is not currently supported
