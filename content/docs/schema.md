@@ -139,43 +139,7 @@ Setting `list: true` would turn the values into an array:
 }
 ```
 
-More complex shapes can be built by supplying a `templates` array, here's an example of a page-builder structure:
-
-```js
-{
-  type: "object",
-  label: "Page Sections",
-  name: "pageSections",
-  list: true,
-  templates: [{
-    label: "Hero",
-    name: "hero",
-    fields: [{
-      label: "Title",
-      name: "title",
-      type: "string"
-    },{
-      label: "Background Image",
-      name: "backgroundImage",
-      type: "image"
-    }]
-  }]
-}
-```
-
-And its data structure (note that `_template` is required):
-
-```js
-{
-  pageSections: [
-    {
-      title: 'Hello, World!',
-      backgroundImage: 'https://path.to/my-img.jpg',
-      _template: 'hero',
-    },
-  ]
-}
-```
+> More complex shapes can be built by using the [`templates`](/docs/reference/types/object/#with-multiple-templates) property. This allows your editors to build out pages using predefined blocks.
 
 ## Using references within a document
 
