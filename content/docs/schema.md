@@ -46,17 +46,17 @@ Each of a collection's fields can be of the following `type`
 
 ### _scalar_
 
-- `string`
-- `datetime`
-- `boolean`
-- `image`
-- `number`
+- [string](/docs/reference/types/string/)
+- [datetime](/docs/reference/types/datetime/)
+- [boolean](/docs/reference/types/boolean/)
+- [image](/docs/reference/types/image/)
+- [number](/docs/reference/types/number/)
 
 ### _nonscalar_
 
-- `reference`
-- `object`
-- `rich-text`
+- [reference](/docs/reference/types/reference/)
+- [object](/docs/reference/types/object/)
+- [rich-text](/docs/reference/types/rich-text/)
 
 ## Using lists of items
 
