@@ -46,7 +46,7 @@ After talking to the teamabout the vision of Tina, I was all in, I didn't want t
 
 June 2nd, 2021 we announced to the community that Tina Cloud was in public alpha, and we encouraged anyone who wanted to see the future of content editing and management to give it a shot. 
 
-![Tina Alpha Tweet](https://res.cloudinary.com/forestry-demo/image/upload/v1640034755/blog-media/Alpha-tweet.png)
+![Tina Alpha Tweet](https://res.cloudinary.com/forestry-demo/image/upload/v1640092818/blog-media/year-in-review/alpha.png)
 
 You all took us up on our offer, users spiked, commits were made, and feedback started to come in. We felt the beginnings of a community that wanted and cared about Tina. Your feedback went directly to the team and into brainstorming product meetings.
 
@@ -74,7 +74,7 @@ In August we made the biggest announcement since I started at Tina. We placed th
 - Dashboard overhaul
 - Changes to content modeling
 
-![Beta Tweet](https://res.cloudinary.com/forestry-demo/image/upload/v1640034880/blog-media/beta-tweet.png)
+![Beta Tweet](https://res.cloudinary.com/forestry-demo/image/upload/v1640092818/blog-media/year-in-review/beta.png)
 
 We also hired Kelly to help with our Cloud offering and Logan to help with our open-source product. Logan had already been working as an intern but he was an integral part of the team and wanted him to work at Tina after he graduated.
 
