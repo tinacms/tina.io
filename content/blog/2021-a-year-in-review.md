@@ -14,7 +14,7 @@ In the new year, we look forward to sharing our vision for 2022 and talking abou
 
 ## January - March
 
-During the first part of 2021, we were still finding our feet as a product, we had a vision of easily editable content regardless of the CMS a user had chosen. A lot of work went into improving our current experience around features we had, and adding new ones that we thought were important to the community had fostered. We also added 3 members to the team to help drive the developer and user experience.
+During the first part of 2021, we were still finding our feet as a product, we had a vision of easily editable content regardless of the CMS a user had chosen. A lot of work went into improving our current experience around features we had, and adding new ones that we thought were important to the community. We also added 3 members to the team to help drive the developer and user experience.
 
 ## April 2021
 
@@ -38,7 +38,7 @@ We felt that we were on track and that we need more developers using Tina so tha
 
 "Tina is really powerful and I am going to show you only the surface of what it can do."
 
-After talking to the teamabout the vision of Tina, I was all in, I didn't want to do or go anywhere else. It felt like just yesterday, but here we are seven months later and I still feel exactly the same!
+After talking to the team about the vision of Tina, I was all in, I didn't want to do or go anywhere else. It felt like just yesterday, but here we are seven months later and I still feel exactly the same!
 
 ## June 2021
 
@@ -52,7 +52,7 @@ You all took us up on our offer, users spiked, commits were made, and feedback s
 
 ## July 2021
 
-One of the most common and most impactful pieces of feedback we received was around media management. You wanted to know why you couldn't have your media managed using Tina + Cloud. We knew that this was a big hurdle for users, so we immediately started working on a solution and introduced the integration with Cloudinary. We chose Cloudinary because they:
+One of the most common and most impactful pieces of feedback we received was around media management. You wanted to know why you couldn't have your media managed using Tina + Cloud. We knew that this was a big hurdle for users, so we immediately started working on a solution and introduced the integration with Cloudinary. We chose Cloudinary because:
 
 1. Support for all image types
 2. Optimized images
@@ -76,11 +76,11 @@ In August we made the biggest announcement since I started at Tina. We placed th
 
 ![Beta Tweet](https://res.cloudinary.com/forestry-demo/image/upload/v1640092818/blog-media/year-in-review/beta.png)
 
-We also hired Kelly to help with our Cloud offering and Logan to help with our open-source product. Logan had already been working as an intern but he was an integral part of the team and wanted him to work at Tina after he graduated.
+We also hired Kelly to help with our Cloud offering and Logan to help with our open-source product. Logan had already been working as an intern but he was an integral part of the team and we wanted him to work at Tina after he graduated.
 
 ## September 2021
 
-September was the hardest month for the team at Tina, our team member, Frank passed away unexpectedly. His amazing ability to connect with anyone he met, from users to team members led him in his mission to bring together the user, the product, and the Jamstack. He is missed, but we talk about his contributions to Tina regularly.
+September was the hardest month for the team at Tina, as our team member Frank passed away unexpectedly. His amazing ability to connect with anyone he met, from users to team members led him in his mission to bring together the user, the product, and the Jamstack. He is missed, but we talk about his contributions to Tina regularly.
 
 ## October 2021
 
@@ -90,7 +90,7 @@ Up to this point, we had been focusing heavily on developers, but we wanted to e
 
 ### Documentation Starter
 
-We also introduced a Tina Documentation Starter that allows documentation teams to get started quickly by giving them the ability to create new and edit pages with a single click. This starter is also powered by MDX so not only can you get started with a single click, you can add all the reusable components that your teams might need for creating fantastic documentation.
+We also introduced a Tina Documentation Starter that allows documentation teams to get started quickly by giving them the ability to create new pages and edit pages with a single click. This starter is also powered by MDX so not only can you get started with a single click, you can add all the reusable components that your teams might need for creating fantastic documentation.
 
 ## November
 
@@ -108,11 +108,11 @@ December is usually a slower time of the year, but not with Tina. We still had s
 
 ### Barebones Starter
 
-We introduced a new starter called "barebones" which gives you a minimal Next.js project with Tina. This allows you to start a new Tina project in a single step with a minimal Tina integration. Our starters prior to the barebones starter contained a lot of extra code for a specific task such as our documentation starter, we wanted to give you a good foundation without any additional code or dependencies.
+We introduced a new starter called "barebones" which gives you a minimal Next.js project with Tina. This allows you to start a new Tina project in a single step with a minimal Tina integration. Our starters prior to the barebones starter contained a lot of extra code for specific tasks, such as our documentation starter. We wanted to give you a good foundation without any additional code or dependencies.
 
 ### `create-tina-app`
 
-We also introduced `npx create-tina-app` which allows you to set up a Tina application using a starter of your choice. As fellow developers, we understand that working locally is important it allows you to investigate what is happening behind the scenes. With a single command, you can investigate Tina locally, make changes, and deploy later.
+We also introduced `npx create-tina-app` which allows you to set up a Tina application using a starter of your choice. As fellow developers, we understand that working locally is important and it allows you to investigate what is happening behind the scenes. With a single command, you can investigate Tina locally, make changes, and deploy later.
 
 **Autogenerated GraphQL Client (experimental)**
 
@@ -130,7 +130,7 @@ Allowing Tina-powered sites to switch to any branch is something that we have be
 
 ## The next phase
 
-At the beginning of the year, Tina was an experimental open-source project that was too open ended and was hard to maintain all of the moving pieces. We were supporting dozens of different packages and from the feedback we received this wasn't the best approach.After we making hard decisions on how to refine our approach, we now have a solid product that is seeing growing usage in production sites.
+At the beginning of the year, Tina was an experimental open-source project that was too open ended and was hard to maintain all of the moving pieces. We were supporting dozens of different packages and from the feedback we received, this wasn't the best approach. After making hard decisions on how to refine our approach, we now have a solid product that is seeing growing usage in production sites.
 
 In our next post, we're going to describe where this is all going and our plan for Tina in 2022. The whole team is truly excited to enter the next phase of our project and hope you will check it out and give us honest feedback. We want to hear about your projects that use Tina and anything we can do to make it easier, faster or better.
 
