@@ -18,7 +18,7 @@ During the first part of 2021, we were still finding our feet as a product, we h
 
 ## April 2021
 
-April was the launch of the cloud product. Scott Gallant (CEO) made the announcement on April 21, 2021, introducing Tina Cloud, speaking to the importance of git-backed content powered by contextual editing. We wanted to offer a first-in-classexperience using git and allowing users without GitHub to be able to edit content. If you are interested in reading the original announcement again, here is the [link](/blog/tina-cloud-a-headless-cms-backed-by-git/). As we were revisiting, we were really excited to see where we are just 8 months later.
+April was the launch of the cloud product. Scott Gallant (CEO) made the announcement on April 21, 2021, introducing Tina Cloud, speaking to the importance of git-backed content powered by contextual editing. We wanted to offer a first-in-class experience using git and allowing users without GitHub to be able to edit content. If you are interested in reading the original announcement again, here is the [link](/blog/tina-cloud-a-headless-cms-backed-by-git/). As we were revisiting, we were really excited to see where we are just 8 months later.
 
 ## May 2021
 
@@ -58,7 +58,7 @@ One of the most common and most impactful pieces of feedback we received was aro
 2. Optimized images
 3. Next Image loves Cloudinary
 
-We wanted to make it as easy as possible to add Cloudinary support for your site. So we created next-tinacms-cloudinary which takes care of the heavy lifting, and with minimal integration your site is ready!
+We wanted to make it as easy as possible to add Cloudinary support for your site. So we created `next-tinacms-cloudinary` which takes care of the heavy lifting, and with minimal integration your site is ready!
 
 ## August 2021
 
@@ -100,7 +100,7 @@ In November we set out to look at our documentation from all sides to ensure tha
 
 ### Dashboard onboarding improvements
 
-We also added the ability to log in with your GitHub account, making it easier to keep everything together. Through a simple quickstart flow, you can log in, pick one of our starters and have us deploy it for you.Essentially, this means you can test and play with Tina in minutes.
+We also added the ability to log in with your GitHub account, making it easier to keep everything together. Through a simple quickstart flow, you can log in, pick one of our starters and have us deploy it for you. Essentially, this means you can test and play with Tina in minutes.
 
 ## December
 
