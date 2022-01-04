@@ -41,18 +41,16 @@ export default App
 
 ## Using the deployment branch
 
-Typically you'll want to use the branch that you're deploying with your site. This will vary depending on your host, but most will provide an environment variable of some sort that you can use.
+Typically you'll want to use the branch that you're deploying with your site. This will vary depending on your host, but most will provide an environment variable of some sort that you can use. Note that your client ID isn't a secret and is not likely to change, so hardcoding it is usually ok.
 
 ```tsx
 // pages/_app.js
 import TinaCMS from 'tinacms'
 
-const clientId = process.env.NEXT_PUBLIC_TINA_CLIENT_ID
 const branch = process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF
 
-const apiURL =
-  clientId && branch
-    ? `https://content.tinajs.io/content/${clientId}/github/${branch}`
+const apiURL = branch
+    ? `https://content.tinajs.io/content/myClientId/github/${branch}`
     : 'http://localhost:4001/graphql'
 
 const App = ({ Component, pageProps }) => {
