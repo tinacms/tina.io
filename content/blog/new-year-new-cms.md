@@ -10,7 +10,6 @@ opengraph:
     height: 1080,
     alt: New Year, New CMS?
 ---
----
 Here we are, the new year is upon us,and if you are like us, you have set some New Year’s resolutions for yourself. We are big fans of the fresh start and self improvement that comes along with this time of year. Have you set any resolutions, maybe building or rebuilding  your own personal site, starting a new business, or giving your portfolio a new lick of pain?. That means that  you will need a CMS to handle all the content that drives your site and we think Tina can fill the role in some unique ways.
 
 ## Why Tina?
