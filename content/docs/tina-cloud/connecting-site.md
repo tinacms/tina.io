@@ -48,9 +48,9 @@ Typically you'll want to use the branch that you're deploying with your site. Th
 import TinaCMS from 'tinacms'
 
 const branch = process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF
-
+const clientId = "YOUR-CLIENT-ID-HERE"
 const apiURL = branch
-    ? `https://content.tinajs.io/content/myClientId/github/${branch}`
+    ? `https://content.tinajs.io/content/${clientId}/github/${branch}`
     : 'http://localhost:4001/graphql'
 
 const App = ({ Component, pageProps }) => {
