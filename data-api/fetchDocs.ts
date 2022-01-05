@@ -3,9 +3,11 @@ const fg = require('fast-glob')
 var fs = require('fs')
 var path = require('path')
 
-export default async function fetchDocs() {
+export default async function fetchSearchableDocs() {
   const directory = path.resolve('./content/docs')
-  const files = await fg(directory + '/**/*.md')
+  const files = await fg(
+    directory + '(?!/reference/toolkit)(?!/releases/)/**/*.md'
+  )
 
   return files.map(fileName => {
     const fullPath = path.resolve(directory, fileName)
