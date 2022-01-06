@@ -63,7 +63,7 @@ Tina CLI (`npx @tincms/cli@latest init`) allows you to add Tina to an existing N
 - Setting up a .tina folder with a basic schema
 - Creating a demo directory with an example Tina powered page
 - Creating an admin route
-- Ensure Tina best practices are used
+- Ensuring Tina best practices are used
 
 Using the Tina CLI allows you to add Tina and selectively integrate it into your existing Next.js application. This allows you to keep your established site and slowly bring the power of Tina to your editors and content team. Though once you use it, we are not sure how slowly you will want to move. 
 
