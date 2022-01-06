@@ -51,7 +51,7 @@ This approach allows you to see how Tina works in a production deployment almost
 
 `create-tina-app` allows you to work locally with one of our starters, this allows you to see how all the code behind the scenes is working before you decide that Tina is right for you.
 
-To use the `tina-create-app` you will need `Node 14+` .This doesn't require you to already have an application and will create a new project and directory and allow you to start developing locally.
+To use the `create-tina-app` you will need `Node 14+` .This doesn't require you to already have an application and will create a new project and directory and allow you to start developing locally.
 
 ![Create Tina App Example](https://res.cloudinary.com/forestry-demo/video/upload/v1641390724/blog-media/new-year-new-cms/create-tina-app.gif)
 
