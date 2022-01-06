@@ -49,7 +49,7 @@ This approach allows you to see how Tina works in a production deployment almost
 
 ### `npx create-tina-app`
 
-`tina-create-app` allows you to work locally with one of our starters, this allows you to see how all the code behind the scenes is working before you decide that Tina is right for you.
+`create-tina-app` allows you to work locally with one of our starters, this allows you to see how all the code behind the scenes is working before you decide that Tina is right for you.
 
 To use the `tina-create-app` you will need `Node 14+` .This doesn't require you to already have an application and will create a new project and directory and allow you to start developing locally.
 
