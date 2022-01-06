@@ -47,7 +47,7 @@ This approach allows you to see how Tina works in a production deployment almost
 
 ![Tina Quickstart example](https://res.cloudinary.com/forestry-demo/video/upload/v1641390729/blog-media/new-year-new-cms/tina-quickstart.gif)
 
-### `npx tina-create-app`
+### `npx create-tina-app`
 
 `tina-create-app` allows you to work locally with one of our starters, this allows you to see how all the code behind the scenes is working before you decide that Tina is right for you.
 
