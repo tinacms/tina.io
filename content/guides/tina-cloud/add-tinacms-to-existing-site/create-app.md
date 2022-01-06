@@ -5,6 +5,8 @@ last_edited: '2021-08-13T17:36:53.377Z'
 
 ## Create a Next.js application
 
+> Note: If you already have a NextJS site, you can skip this first step.
+
 We are going to be using the Next.js Blog Starter for this guide, so from your terminal run the following:
 
 ```bash
