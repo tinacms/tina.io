@@ -53,7 +53,7 @@ This approach allows you to see how Tina works in a production deployment almost
 
 To use the `tina-create-app` you will need `Node 14+` .This doesn't require you to already have an application and will create a new project and directory and allow you to start developing locally.
 
-![Tina Create App Example](https://res.cloudinary.com/forestry-demo/video/upload/v1641390724/blog-media/new-year-new-cms/create-tina-app.gif)
+![Create Tina App Example](https://res.cloudinary.com/forestry-demo/video/upload/v1641390724/blog-media/new-year-new-cms/create-tina-app.gif)
 
 ### Tina CLI
 
