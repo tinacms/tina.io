@@ -1,6 +1,6 @@
 ### General Contributing:
 
-* [ ] Have you followed the guidelines in our Contributing document?
+* [ ] Have you followed the guidelines in our [Contributing document](https://github.com/tinacms/tinacms.org/blob/master/CONTRIBUTING.md)?
 * [ ] Have you checked to ensure there aren't other open [Pull Requests](../../../pulls) for the same update/change?
 
 <!-- For non content related updates, or fixing things like typos, you can erase the following section -->
