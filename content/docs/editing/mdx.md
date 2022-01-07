@@ -85,7 +85,7 @@ const components = {
   Cta: Cta
 }
 
-export default function MyPage = (props) => {
+export default function MyPage(props) {
   return (
     <div>
       <TinaMarkdown components={components} content={props.body} />
