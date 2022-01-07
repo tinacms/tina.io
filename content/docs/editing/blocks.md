@@ -18,7 +18,7 @@ We want to allow our editors to use various blocks on each page.
 
 ## Defining our schema
 
-We are going to use the [`object` type](http://localhost:3000/docs/schema/#grouping-properties-within-an-object), and provide a list of `templates`, where each "template" represents a unique block type.
+We are going to use the [`object` type](/docs/schema/#grouping-properties-within-an-object), and provide a list of `templates`, where each "template" represents a unique block type.
 
 ```ts
 // .tina/schema.ts
@@ -123,7 +123,7 @@ export default defineSchema({
 
 We have defined the structure of our 3 blocks (`content`, `features`, `hero`), as well as our main blocks field: `blocks`.
 
-> Note, since our contentBlock uses the [markdown plugin](http://localhost:3000/docs/reference/toolkit/fields/markdown/) which is not registered out of the box, we will need to manually import the `react-tinacms-editor` plugin.
+> Note, since our contentBlock uses the [markdown plugin](/docs/reference/toolkit/fields/markdown/) which is not registered out of the box, we will need to manually import the `react-tinacms-editor` plugin.
 
 ## Rendering our blocks
 

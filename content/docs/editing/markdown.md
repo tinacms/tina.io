@@ -49,7 +49,7 @@ export default defineSchema({
 
 Notice that the first field (`title`) maps to a frontmatter field. We can add any other metadata fields that we want here.
 
-Our `body` field has the `isBody` property set, which will use the [markdown](http://localhost:3000/docs/reference/toolkit/fields/markdown/) field plugin.
+Our `body` field has the `isBody` property set, which will use the [markdown](/docs/reference/toolkit/fields/markdown/) field plugin.
 
 ## Registering the field plugins
 
@@ -100,6 +100,6 @@ const App = ({ Component, pageProps }) => {
 export default App
 ```
 
-Assuming that [contextual editing](http://localhost:3000/docs/tinacms-context/) is setup on your page, your editors should be able to start editing markdown content!
+Assuming that [contextual editing](/docs/tinacms-context/) is setup on your page, your editors should be able to start editing markdown content!
 
 ![markdown-editing](/gif/markdown.gif)

@@ -95,4 +95,4 @@ If you take a look at the color field plugin's definition, it takes a `colorForm
 // ...
 ```
 
-Any field-plugin properties other than the [base schema-field properties](http://localhost:3000/docs/schema/) (e.g, `type`,`label`,`name` ,etc) are set under `ui`.
+Any field-plugin properties other than the [base schema-field properties](/docs/schema/) (e.g, `type`,`label`,`name` ,etc) are set under `ui`.
