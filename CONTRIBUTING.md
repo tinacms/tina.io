@@ -13,7 +13,6 @@ Each of our docs should adhere to the following:
 - Spelling and grammer checker has been run
 - Graphics and images are clear and useful
 - Any prerequisites and next steps are defined.
-- Documents in a series have appropriate "Next" links 
 
 ## Style guide
 
