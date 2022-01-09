@@ -2,7 +2,7 @@
 title: 'New Year, New CMS?'
 date: '2022-01-06T00:00:00-04:00'
 author: James Perkins
-last_edited: '2022-01-09T19:10:06.023Z'
+last_edited: '2022-01-09T19:11:29.283Z'
 opengraph:
   image:
     url: >-
@@ -41,7 +41,7 @@ Tina also doesn’t require you to transform the MDX or hydrate your components,
 
 ### Tina Quickstart
 
-Our  flow is a web based way to get started with Tina, it allows you to choose from one of our starters (Tina Barebones, Tina Documentation Starter, Tina Cloud Starter) and deploy directly to Vercel.
+Our [Tina Quickstart ](https://app.tina.io/quickstart) flow is a web based way to get started with Tina, it allows you to choose from one of our starters (Tina Barebones, Tina Documentation Starter, Tina Cloud Starter) and deploy directly to Vercel.
 
 This approach allows you to see how Tina works in a production deployment almost immediately . This is great for getting to know what Tina can do, how Tina works,and show it to others such as your content team.
 
