@@ -9,26 +9,23 @@ Once you've created a project within the **Tina Cloud**, the next step is to con
 
 In the [Contextual Editing doc](/docs/tinacms-context/), we showed you how the Tina context is setup on your site.
 
-To use Tina Cloud, change the `apiURL` to:
+To have editing work in production, Change the `apiURL` to:
 
 ```
 https://content.tinajs.io/content/<myClientId>/github/<myBranch>
 ```
 
-`<myClientId>` is the value from the Tina Cloud dashboard, and `<myBranch>` is the branch which you wish to communicate with.
-
-We recommend storing this URL in an environment variable so you can switch between `localhost` and Tina Cloud easily. Note that it's safe for this variable to be public so if you're using Next, prefix it with `NEXT_PUBLIC_` for client-side access.
-
-```tsx
+```diff
 // pages/_app.js
 import TinaCMS from 'tinacms'
 
-const apiURL = process.env.NEXT_PUBLIC_TINA_API_URL
+- const apiURL = `http://localhost:4001/graphql`
++ const apiURL = `https://content.tinajs.io/content/${myClientId}/github/${myBranch}`
 
 const App = ({ Component, pageProps }) => {
   return (
     <TinaCMS
-      apiURL={process.env.NEXT_PUBLIC_TINA_API_URL}
+      apiURL={apiURL}
       // ... other props
     >
       {livePageProps => <Component {...livePageProps} />}
@@ -39,6 +36,8 @@ const App = ({ Component, pageProps }) => {
 export default App
 ```
 
+`<myClientId>` is the value from the Tina Cloud dashboard, and `<myBranch>` is the branch which you wish to communicate with.
+
 ## Using the deployment branch
 
 Typically you'll want to use the branch that you're deploying with your site. This will vary depending on your host, but most will provide an environment variable of some sort that you can use. Note that your client ID isn't a secret and is not likely to change, so hardcoding it is usually ok.
@@ -48,10 +47,10 @@ Typically you'll want to use the branch that you're deploying with your site. Th
 import TinaCMS from 'tinacms'
 
 const branch = process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF
-const clientId = "YOUR-CLIENT-ID-HERE"
+const clientId = 'YOUR-CLIENT-ID-HERE'
 const apiURL = branch
-    ? `https://content.tinajs.io/content/${clientId}/github/${branch}`
-    : 'http://localhost:4001/graphql'
+  ? `https://content.tinajs.io/content/${clientId}/github/${branch}`
+  : 'http://localhost:4001/graphql'
 
 const App = ({ Component, pageProps }) => {
   return (
@@ -68,3 +67,11 @@ export default App
 ```
 
 > `NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF` is a [system environment variable](https://vercel.com/docs/concepts/projects/environment-variables#system-environment-variables) that represents the branch that has made the deployment commit. If not using Vercel, this can replaced with a custom environment variable, or even a hardcoded value.
+
+## Using environment-based API URLs
+
+It may be preferable to test changes against the filesystem in development (local-mode), but use Tina Cloud in production. In these cases, your API URL may look like:
+
+```
+const apiURL = process.env.NODE_ENV == 'development' ? 'http://localhost:4001/graphql' : `https://content.tinajs.io/content/${clientId}/github/${branch}`
+```
