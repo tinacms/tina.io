@@ -12,7 +12,6 @@ import { GlobalStyle } from 'components/styles/GlobalStyle'
 import 'components/styles/fontImports.css'
 import path from 'path'
 import { BlogPostCreatorPlugin } from '../tinacms/BlogPostCreator'
-import { ReleaseNotesCreatorPlugin } from '../tinacms/ReleaseNotesCreator'
 import { NextGithubMediaStore } from '../utils/plugins/NextGithubMediaStore'
 
 // the following line will cause all content files to be available in a serverless context
@@ -38,7 +37,7 @@ const MainLayout = ({ Component, pageProps }) => {
           : {},
     },
     media: new NextGithubMediaStore(github),
-    plugins: [BlogPostCreatorPlugin, ReleaseNotesCreatorPlugin],
+    plugins: [BlogPostCreatorPlugin],
   }
 
   const cms = React.useMemo(() => new TinaCMS(tinaConfig), [])

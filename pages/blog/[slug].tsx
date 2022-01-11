@@ -153,7 +153,7 @@ export const getStaticPaths: GetStaticPaths = async function() {
       const slug = fileToUrl(file, 'blog')
       return { params: { slug } }
     }),
-    fallback: true,
+    fallback: false,
   }
 }
 
