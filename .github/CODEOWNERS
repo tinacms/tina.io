@@ -1,1 +1,5 @@
-* @tinacms/oss-reviewers @tinacms/maintainers
+* @tinacms/maintainers
+
+/content/docs/tina-cloud/**/* @tinacms/commercial-maintainers
+
+/content/blog/**/* james.perkins@forestry.io
