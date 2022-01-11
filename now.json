@@ -131,7 +131,7 @@
     },
     {
       "source": "/docs/nextjs/markdown/",
-      "destination": "/packages/next-tinacms-markdown"
+      "destination": "/docs/legacy-redirect"
     },
     {
       "source": "/teams",
@@ -239,15 +239,15 @@
     },
     {
       "source": "/docs/nextjs/next-tinacms-github",
-      "destination": "/packages/next-tinacms-github"
+      "destination": "/docs/legacy-redirect"
     },
     {
       "source": "/docs/nextjs/next-tinacms-json",
-      "destination": "/packages/next-tinacms-json"
+      "destination": "/docs/legacy-redirect"
     },
     {
       "source": "/docs/nextjs/next-tinacms-markdown",
-      "destination": "/packages/next-tinacms-markdown"
+      "destination": "/docs/legacy-redirect"
     },
     {
       "source": "/beta-docs",
@@ -286,8 +286,8 @@
       "destination": "/guides/tina-cloud/add-tinacms-to-existing-site/overview/"
     },
     {
-      "source": "/packages/next-tinacms-cloudinary/(.*)",
-      "destination": "/docs/media-cloudinary/"
+      "source": "/packages/(.*)",
+      "destination": "/docs/legacy-redirect"
     },
     {
       "source": "/docs/tinacms-context-advanced/",
