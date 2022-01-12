@@ -45,11 +45,9 @@ interface ColorConfig {
 
 > This interfaces only shows the keys unique to the color field.
 >
-> Visit the [Field Config](/docs/plugins/fields) docs for a complete list of options.
+> Visit the [Field Config](/docs/reference/toolkit/fields/) docs for a complete list of options.
 
 ## Definition
-
-Below is an example of how a `color` field could be defined in a Gatsby remark form. Read more on passing in form field options [here](/guides/gatsby/git/customize-form).
 
 ```javascript
 const BlogPostForm = {

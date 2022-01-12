@@ -76,7 +76,7 @@ const formOptions = {
 
 **Gatsby**
 
-Below is an example of how a `image` field could be defined in a Gatsby Remark form. Read more on passing in form field options in the [Gatsby Markdown Docs](/guides/gatsby/git/customize-form).
+Below is an example of how a `image` field could be defined in a Gatsby Remark form.
 
 ```javascript
 const BlogPostForm = {

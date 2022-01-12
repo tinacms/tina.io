@@ -60,7 +60,7 @@ Then add a new catch all API route for media.
 
 Call `createMediaHandler` to set up routes and connect your instance of the Media Store to your Cloudinary account.
 
-Import `isAuthorized` from [`tina-cloud-next`](https://github.com/tinacms/tinacms/tree/main/packages/tina-cloud-next).
+Import `isAuthorized` from ["@tinacms/auth"](https://github.com/tinacms/tinacms/tree/main/packages/%40tinacms/auth).
 
 The `authorized` key will make it so only authorized users within Tina Cloud can upload and make media edits.
 
