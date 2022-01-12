@@ -146,7 +146,7 @@ cms.fields.add({
 
 #### One important gotcha
 
-Every property in the `defineSchema` API must be serlializable. Meaning functions will not work. For example, there's no way to define a `validate` or `parse` function at this level. However, you can either use the [formify](https://tina.io/docs/tina-cloud/client/#formify) API to get access to the Tina form, or provide your own logic by specifying a plugin of your choice:
+Every property in the `defineSchema` API must be serlializable. Meaning functions will not work. For example, there's no way to define a `validate` or `parse` function at this level. However, you can either use the [formifyCallback](/docs/advanced/customizing-forms/#customizing-a-form) API to get access to the Tina form, or provide your own logic by specifying a plugin of your choice:
 
 ```js
 {
