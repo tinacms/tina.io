@@ -119,4 +119,4 @@ Note that the `tinacms/dist/edit-state (>2kb)` code _will_ be in your production
 
 ### There are no forms in the Tina sidebar
 
-TinaCMS will automatically build forms for supported queries. For now, only ["single-document" queries](https://tina.io/docs/graphql/#getnamedocument) are supported.
+TinaCMS will automatically build forms for supported queries. For now, only ["single-document" queries](/docs/graphql/#getnamedocument) are supported.

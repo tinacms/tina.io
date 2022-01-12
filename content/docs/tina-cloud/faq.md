@@ -11,7 +11,7 @@ Tina Cloud adds a GraphQL API to Tina's open-source content editor allowing it t
 
 ## Where do I start?
 
-- Have a look at the updated [Tina Cloud docs](https://tina.io/docs/setup-overview/) and try out a starter.
+- Have a look at the updated [Tina Cloud docs](/docs/setup-overview/) and try out a starter.
 - [Sign up for Tina Cloud](https://app.tina.io/register)!
 - [Find us on Discord](https://discord.com/invite/zumN63Ybpf)
 

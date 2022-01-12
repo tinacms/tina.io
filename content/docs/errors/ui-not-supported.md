@@ -7,7 +7,7 @@ We have expanded the graphql API capabilities to to have a [`list` property](/do
 
 ## 1. Wrap in object field
 
-Wrap in an [`object` field](https://tina.io/docs/schema/#the-object-property). If your field looked like this
+Wrap in an [`object` field](/docs/schema/#the-object-property). If your field looked like this
 
 ```js
 {

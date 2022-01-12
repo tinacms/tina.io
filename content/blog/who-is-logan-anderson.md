@@ -4,6 +4,7 @@ date: '2021-09-01T12:09:32-04:00'
 author: James Perkins
 last_edited: '2021-09-02T16:57:11.041Z'
 ---
+
 Tina has a small core team of developers who work on both our open-source toolkit and cloud offering.
 
 When I started here, I was introduced to Logan as a member of the Open Source team, Logan was interning at Tina while pursuing his degree. Logan has done some impressive work while working with the Tina team, recently we offered him a full-time position and we are happy to announce that he accepted!
@@ -24,7 +25,7 @@ I started my adventure with Tina when I first started working here on my second 
 
 I really enjoy working on our core project. It is very open and flexible and is possible to do almost anything with. One of my favorite projects I have worked on is trying to make Tina easier to set up for users. It is a constant challenge between openness and ease of use. I enjoy this challenge!
 
-> If you used our [`@tinacms/cli init`](https://tina.io/docs/cli/#init-command) command, this was Logan's hard work.
+> If you used our [`@tinacms/cli init`](/docs/cli/#init-command) command, this was Logan's hard work.
 
 ## **What do you believe makes Tina different than others?**
 
@@ -38,6 +39,6 @@ I really love the people and the culture we have here. Continuous learning and h
 
 We are currently thinking a how to edit the content that is not directly reflected on the page. I made [this content viewer](https://github.com/tinacms/tina-cloud-starter/pull/171#issuecomment-906376371) that allows folks to edit authors from anywhere in their app.
 
-***
+---
 
 Interested in keeping up with what Logan and the team are up to? Make sure you follow him on Twitter [@logan_anders0n](https://twitter.com/logan_anders0n) _and [@tina_cms](https://twitter.com/tina_cms)_
