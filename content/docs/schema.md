@@ -49,7 +49,7 @@ Each of a collection's fields can be of the following `type`
 - [string](/docs/reference/types/string/)
 - [datetime](/docs/reference/types/datetime/)
 - [boolean](/docs/reference/types/boolean/)
-- [image](/docs/reference/types/image/)
+- [image](/docs/reference/types/imageFAKE/)
 - [number](/docs/reference/types/number/)
 
 ### _nonscalar_
