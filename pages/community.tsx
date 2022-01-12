@@ -277,10 +277,10 @@ const InfoText = styled.div`
   }
 `
 
-const InfoImage = styled(({ src, ...styleProps }) => {
+const InfoImage = styled(({ src, alt, ...styleProps }) => {
   return (
     <div {...styleProps}>
-      <img src={src} alt="" />
+      <img src={src} alt={alt} />
     </div>
   )
 })`

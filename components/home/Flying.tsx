@@ -53,7 +53,11 @@ export function FlyingBlock({ data, index }) {
             <Actions items={data.actions} />
           </div>
           <div className="learnImageWrapper">
-            <img className="learnImage" src="img/flyingTina.png" alt="" />
+            <img
+              className="learnImage"
+              src="img/flyingTina.png"
+              alt="Tina learning"
+            />
           </div>
         </div>
         <div className="background">
