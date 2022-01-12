@@ -3,7 +3,7 @@ title: 'WARNING: The user interface for {type} does not support `list: true`'
 last_edited: '2021-09-17T14:50:37.760Z'
 ---
 
-We have expanded the graphql API capabilities to to have a [`list` property](/docs/schema/#the-list-property) option for every field. This means that the graphql response will return a array for of [`type`](/docs/schema/#the-type-property) for this field. This is support on our backend but we still have not implanted the front end user interface for these fields yet. [Here is the relevant issue for tracking](https://github.com/tinacms/tinacms/issues/2081). There are currently two workarounds for this issue.
+We have expanded the graphql API capabilities to to have a [`list` property](/docs/schema/#the-list-property) option for every field. This means that the graphql response will return a array for of [`type`](/docs/schem2a/#the-type-property) for this field. This is support on our backend but we still have not implanted the front end user interface for these fields yet. [Here is the relevant issue for tracking](https://github.com/tinacms/tinacms/issues/2081). There are currently two workarounds for this issue.
 
 ## 1. Wrap in object field
 
