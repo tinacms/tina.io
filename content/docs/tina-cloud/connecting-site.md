@@ -48,9 +48,13 @@ import TinaCMS from 'tinacms'
 
 const branch = process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF
 const clientId = 'YOUR-CLIENT-ID-HERE'
-const apiURL = branch
-  ? `https://content.tinajs.io/content/${clientId}/github/${branch}`
-  : 'http://localhost:4001/graphql'
+
+// When working locally, hit our local filesystem.
+// On a Vercel deployment, hit the Tina Cloud API
+const apiURL =
+  process.env.NODE_ENV == 'development'
+    ? 'http://localhost:4001/graphql'
+    : `https://content.tinajs.io/content/${clientId}/github/${branch}`
 
 const App = ({ Component, pageProps }) => {
   return (
@@ -67,11 +71,3 @@ export default App
 ```
 
 > `NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF` is a [system environment variable](https://vercel.com/docs/concepts/projects/environment-variables#system-environment-variables) that represents the branch that has made the deployment commit. If not using Vercel, this can replaced with a custom environment variable, or even a hardcoded value.
-
-## Using environment-based API URLs
-
-It may be preferable to test changes against the filesystem in development (local-mode), but use Tina Cloud in production. In these cases, your API URL may look like:
-
-```
-const apiURL = process.env.NODE_ENV == 'development' ? 'http://localhost:4001/graphql' : `https://content.tinajs.io/content/${clientId}/github/${branch}`
-```
