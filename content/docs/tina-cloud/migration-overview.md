@@ -17,4 +17,4 @@ We've refreshed the Tina Cloud dashboard and made some stable improvements along
 
 We've also implemented a new and improved `defineSchema` API, along with many API improvements for working with Next.js. [Learn how to migrate](/docs/tina-cloud/schema-migration)
 
-Also, be sure to check out the detailed API references, including an [interactive GraphQL playground!](/docs/graphql/)
+Also, be sure to check out the detailed API references, including an [interactive GraphQL playground!](/docs/graphql/overview/)

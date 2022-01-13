@@ -40,7 +40,7 @@ We believe that our product combines a fantastic developer and content creator e
 - [Changes to content modeling](#changes-to-content-modeling)
 
 <div class="callout">
-<img className="learnImage" src="/img/tina-laptop.png" alt="" />
+<img className="learnImage" src="/img/tina-laptop.png" alt="Tina laptop" />
   <div>
   <h3>Ready to get started?</h3>
   <p>Get a website running with Tina Cloud in no time!</P>

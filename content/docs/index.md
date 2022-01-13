@@ -11,7 +11,7 @@ next: /docs/setup-overview
 - Our **Tina Cloud** hosted service allows cross-functional teams to collaborate on the site's content in a git-based worflow (regardless of whether they write code or have GitHub accounts).
 
 <div class="callout">
-<img className="learnImage" src="../img/tina-laptop.png" alt="" />
+<img className="learnImage" src="../img/tina-laptop.png" alt="Tina laptop" />
 <div>
 <h3>Ready to get started?</h3>
 <p>Get a website running with Tina Cloud in a few clicks!</P>

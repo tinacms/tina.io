@@ -96,7 +96,7 @@ export default function MyPage(props) {
   )
 }
 
-// See https://tina.io/docs/features/data-fetching/ for more info on our getStaticProps/getStaticPaths data-fetching with NextJS
+// See /docs/features/data-fetching/ for more info on our getStaticProps/getStaticPaths data-fetching with NextJS
 export const getStaticPaths = async () => {
   const tinaProps = await staticRequest({
     query: `{

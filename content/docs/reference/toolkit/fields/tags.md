@@ -35,7 +35,7 @@ interface TagsField {
 
 ## Definition
 
-Below is an example of how a `tags` field could be defined in a [form](/docs/plugins/forms).
+Below is an example of how a `tags` field could be defined in a form.
 
 ```javascript
 const FormConfig = {

@@ -296,8 +296,8 @@ export default () => (
                     and usage trends for the services and to understand more
                     about the demographics of our users. You can learn more
                     about Google’s practices at{' '}
-                    <a href="https://policies.google.com/technologies/partner-Websites">
-                      https://policies.google.com/technologies/partner-Websites
+                    <a href="https://policies.google.com/technologies/partner-sites">
+                      https://policies.google.com/technologies/partner-sites
                     </a>{' '}
                     and view its opt-out options at{' '}
                     <a href="https://tools.google.com/dlpage/gaoptout">

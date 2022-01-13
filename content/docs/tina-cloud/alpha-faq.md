@@ -10,10 +10,8 @@ Tina Cloud brings together Tina's open-source content editor with a GraphQL API 
 
 ## Where do I start?
 
-- Have a look at the updated [Tina Cloud docs](/docs/)
-- Try the [Next.js starter site](https://github.com/tinacms/tina-cloud-starter) 
-- Follow the Tina Cloud [getting started guide](/tina-cloud/starter/overview/)
-- [Sign up to Tina Cloud](https://app.tina.io/register)!
+- Have a look at the updated [Tina Cloud docs](/docs/setup-overview/) and try out a starter.
+- [Sign up for Tina Cloud](https://app.tina.io/register)!
 - [Find us on Discord](https://discord.com/invite/zumN63Ybpf)
 
 ## What do I need to know about working with the Alpha release of Tina Cloud?
