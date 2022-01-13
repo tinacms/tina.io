@@ -38,17 +38,12 @@ const App = ({ Component, pageProps }) => {
       <TinaEditProvider
         editMode={
           <TinaCMS
-            clientId={process.env.NEXT_PUBLIC_TINA_CLIENT_ID}
-            branch={process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF}
-            organization={process.env.NEXT_PUBLIC_ORGANIZATION_NAME}
-            isLocalClient={Boolean(
-              Number(process.env.NEXT_PUBLIC_USE_LOCAL_CLIENT ?? true)
-            )}
-+            cmsCallback={cms => {
-+                import('react-tinacms-editor').then((field)=>{
-+                  cms.plugins.add(field.MarkdownFieldPlugin)
-+                  })
-+            }}
+            apiURL={process.env.NEXT_PUBLIC_TINA_API_URL}
++           cmsCallback={cms => {
++             import('react-tinacms-editor').then((field)=>{
++               cms.plugins.add(field.MarkdownFieldPlugin)
++             })
++           }}
             {...pageProps}
           >
             {(livePageProps) => <Component {...livePageProps} />}
