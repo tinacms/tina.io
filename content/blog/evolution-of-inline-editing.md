@@ -13,7 +13,7 @@ And let's not forget about sidebar editing in this discussion! The attractivenes
 
 ## A review of the original approach
 
-Let's take a look at a simple [inline editing](https://tina.io/docs/ui/inline-editing/) scenario where we make the title of a page editable.
+Let's take a look at a simple [inline editing](/docs/ui/inline-editing/) scenario where we make the title of a page editable.
 
 We wrap our page with the TinaCMS `InlineForm` component so that our child components behave like a form. We can edit the title value by using the `InlineText` component to inject a text input.
 

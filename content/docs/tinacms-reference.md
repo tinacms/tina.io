@@ -14,7 +14,7 @@ Learn how to model your content with our `defineSchema` API and run it on top of
 
 ## The GraphQL API
 
-Power your site with a [GraphQL API over Git-backed content](/docs/graphql).
+Power your site with a [GraphQL API over Git-backed content](/docs/graphql/overview).
 
 ## Working with Media
 

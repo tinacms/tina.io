@@ -22,6 +22,28 @@ const config = {
     BASE_REPO_FULL_NAME: process.env.BASE_REPO_FULL_NAME,
     BASE_BRANCH: process.env.BASE_BRANCH,
   },
+  //avoiding CORS error, more here: https://vercel.com/support/articles/how-to-enable-cors
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+          {
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET,OPTIONS,PATCH,DELETE,POST,PUT',
+          },
+          {
+            key: 'Access-Control-Allow-Headers',
+            value: 'Accept, Content-Length, Content-Type',
+          },
+        ],
+      },
+    ]
+  },
   trailingSlash: true,
   exportPathMap: async function() {
     return {}

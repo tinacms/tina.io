@@ -21,11 +21,11 @@ These are the default field plugins available through the `tinacms` package:
 - [Group](/docs/reference/toolkit/fields/group)
 - [Group List](/docs/reference/toolkit/fields/group-list)
 - [Blocks](/docs/reference/toolkit/fields/blocks)
+- [Date & Time](/docs/reference/toolkit/fields/date)
 
 ## External Field Plugins
 
 These are plugins that must be installed & imported through separate packages:
 
-- [Date & Time](/docs/reference/toolkit/fields/date)
 - [Markdown](/docs/reference/toolkit/fields/markdown)
 - [HTML](/docs/reference/toolkit/fields/html)

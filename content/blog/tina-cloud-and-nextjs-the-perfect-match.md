@@ -36,7 +36,7 @@ Next.js allows you to serve a static blazing-fast™ website while fetching and 
 
 ![Real-time editing with TinaCMS and Tina Cloud](/img/blog/edit_demo.gif 'Real-time editing with TinaCMS and Tina Cloud')
 
-[Tina Cloud](/cloud/) gives you instant editing previews by fetching the data dynamically in the browser from GitHub, loading and passing it as props to your page components. As the data is wrapped in React state, when you change the data in the content forms, it’s immediately reflected on your site preview. When your site is built for production use, the files are fetched from the file system using our [local GraphQL server.](https://tina.io/blog/using-graphql-with-the-filesystem/)
+[Tina Cloud](/cloud/) gives you instant editing previews by fetching the data dynamically in the browser from GitHub, loading and passing it as props to your page components. As the data is wrapped in React state, when you change the data in the content forms, it’s immediately reflected on your site preview. When your site is built for production use, the files are fetched from the file system using our [local GraphQL server.](/blog/using-graphql-with-the-filesystem/)
 
 ```js
 const TinaWrapper = props => {

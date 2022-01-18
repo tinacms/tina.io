@@ -17,7 +17,7 @@ export default async function feedback(req, res) {
     bridge: new InMemoryBridge(''),
     store: new InMemoryStore('')
   })
-  await indexDB({ database, config })
+  await indexDB({ database, config, buildSDK: false })
   return graphqlHTTP({
     schema: buildASTSchema(await database.getGraphQLSchema()),
     customExecuteFn: async args => {

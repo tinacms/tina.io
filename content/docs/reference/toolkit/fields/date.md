@@ -11,8 +11,6 @@ consumes:
 
 The `date` field represents a date and time picker. It can be used for data values that are valid date strings.
 
-> **Prior to v0.41.0, `DateFieldPlugin` was not a default plugin.** See the [react-tinacms-date](/packages/react-tinacms-date) docs for instructions on how to use the `date` field for previous versions.
-
 ![tinacms-date-field](/img/fields/date.jpg)
 
 ## Options

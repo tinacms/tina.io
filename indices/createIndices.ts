@@ -3,7 +3,7 @@ require('dotenv').config()
 import algoliasearch, { SearchClient, SearchIndex } from 'algoliasearch'
 
 import { fetchRelevantBlogs as fetchBlogs } from '../data-api/fetchBlogs'
-import fetchDocs from '../data-api/fetchDocs'
+import fetchSearchableDocs from '../data-api/fetchDocs'
 import fetchGuides from '../data-api/fetchGuides'
 import { stripMarkdown } from '../utils/blog_helpers'
 
@@ -69,7 +69,7 @@ const createIndices = async () => {
     process.env.ALGOLIA_APP_ID,
     process.env.ALGOLIA_ADMIN_KEY
   )
-  const docs = await fetchDocs()
+  const docs = await fetchSearchableDocs()
   await saveIndex(
     client,
     'Tina-Docs-Next',

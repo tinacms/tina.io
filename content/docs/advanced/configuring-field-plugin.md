@@ -70,7 +70,7 @@ The component property can be any registered field. Below is a list of default f
 - [blocks](/docs/reference/toolkit/fields/blocks/)
 - [date](/docs/reference/toolkit/fields/date/)
 
-Tina also supports some extra field plugins, that need to be imported and registered from separate packages [`react-tinacms-editor`](/packages/react-tinacms-editor/)
+Tina also supports some extra field plugins, that need to be imported and registered from separate packages:
 
 - [markdown](/docs/reference/toolkit/fields/markdown/)
 - [html](/docs/reference/toolkit/fields/html/)
@@ -95,4 +95,4 @@ If you take a look at the color field plugin's definition, it takes a `colorForm
 // ...
 ```
 
-Any field-plugin properties other than the [base schema-field properties](http://localhost:3000/docs/schema/) (e.g, `type`,`label`,`name` ,etc) are set under `ui`.
+Any field-plugin properties other than the [base schema-field properties](/docs/schema/) (e.g, `type`,`label`,`name` ,etc) are set under `ui`.

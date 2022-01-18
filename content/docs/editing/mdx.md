@@ -15,7 +15,10 @@ import { defineSchema } from '@tinacms/cli'
 export default defineSchema({
   collections: [
     {
-      //...
+      label: 'Blog Posts',
+      name: 'post',
+      // This assumes that you have a /content/post directory
+      path: 'content/post',
       fields: [
         // ...
         {
@@ -63,37 +66,92 @@ Results in the following response from the content API:
 
 ## `<TinaMarkdown>`
 
-Since the value for `rich-text` is a structured `object` instead of a `string`, rendering it out to your page requires more work. We've provided a special component which is super lightweight and can used directly in your code.
+Since the value for `rich-text` is a structured `object` instead of a `string`, rendering it out to your page requires more work. We've provided a special `TinaMarkdown` component which is super lightweight and can used directly in your code.
 
 ### Usage
 
 ```ts
-// my-page.js
+// [slug].js
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
+import { staticRequest } from 'tinacms'
 
-// The `props` here are identical to the respective template "fields"
+// The `props` here are based off our custom "Cta" MDX component
 const Cta = props => {
-  return (
-    <div>
-      {props.heading}
-    </div>
-  )
+  return <h2>{props.heading}</h2>
 }
 
 // Be sure to provide the appropriate components for each template you define
 const components = {
-  Cta: Cta
+  Cta: Cta,
 }
 
-export default function MyPage = (props) => {
+export default function MyPage(props) {
   return (
     <div>
-      <TinaMarkdown components={components} content={props.body} />
+      <TinaMarkdown
+        components={components}
+        content={props.data.getPostDocument.data.body}
+      />
     </div>
   )
 }
 
+// See /docs/features/data-fetching/ for more info on our getStaticProps/getStaticPaths data-fetching with NextJS
+export const getStaticPaths = async () => {
+  const tinaProps = await staticRequest({
+    query: `{
+        getPostList{
+          edges {
+            node {
+              sys {
+                filename
+              }
+            }
+          }
+        }
+      }`,
+    variables: {},
+  })
+  const paths = tinaProps.getPostList.edges.map(x => {
+    return { params: { slug: x.node.sys.filename } }
+  })
+
+  return {
+    paths,
+    fallback: 'blocking',
+  }
+}
+
+export const getStaticProps = async ctx => {
+  const query = `query getPost($relativePath: String!) {
+    getPostDocument(relativePath: $relativePath) {
+      data {
+        body
+      }
+    }
+  }
+  `
+  const variables = {
+    relativePath: ctx.params.slug + '.mdx',
+  }
+  let data = {}
+
+  data = await staticRequest({
+    query,
+    variables,
+  })
+
+  return {
+    props: {
+      data,
+      query,
+      variables,
+    },
+  }
+}
 ```
+
+You will notice the `TinaMarkdown` component takes two props:
 
 ```ts
 type TinaMarkdown = ({

@@ -141,7 +141,7 @@ export const getStaticPaths: GetStaticPaths = async function() {
   const contentDir = './content/docs/'
   const files = await fg(`${contentDir}**/*.md`)
   return {
-    fallback: 'blocking',
+    fallback: false,
     paths: files
       .filter(file => !file.endsWith('index.md'))
       .map(file => {
@@ -204,7 +204,7 @@ export const DocsGrid = styled.div`
     grid-template-areas:
       '. header header .'
       '. content toc .';
-    grid-auto-columns: minmax(0, auto) fit-content(768px)
+    grid-auto-columns: minmax(0, auto) minmax(300px, 800px)
       clamp(17.5rem, 10rem + 10vw, 21.25rem) minmax(0, auto);
     grid-column-gap: 3rem;
   }

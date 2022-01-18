@@ -6,8 +6,8 @@
   "blocks": [
     {
       "_template": "hero",
-      "headline": "The Fastest Way to Edit Next.js Content",
-      "subline": "A visual editing experience for content stored in Markdown and JSON",
+      "headline": "Next Gen Content Management",
+      "subline": "Tina is an open-source, Git-backed CMS with the ability to add visual editing to your NextJS site",
       "actions": [
         {
           "variant": "orange",
@@ -62,7 +62,7 @@
         {
           "_template": "feature",
           "headline": "Command Line Quickstart",
-          "subline": "[Bootstrap your Next.js project with Tina](/guides/tina-cloud/add-tinacms-to-existing-site/overview/) setup and get started in minutes.",
+          "subline": "[Bootstrap your Next.js project with Tina](/docs/setup-overview/) setup and get started in minutes.",
           "media": {
             "cli": true
           }

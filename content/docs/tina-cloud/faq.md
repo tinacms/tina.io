@@ -11,9 +11,7 @@ Tina Cloud adds a GraphQL API to Tina's open-source content editor allowing it t
 
 ## Where do I start?
 
-- Have a look at the updated [Tina Cloud docs](https://tina.io/docs/)
-- Try the [Next.js starter site](https://github.com/tinacms/tina-cloud-starter) (fork it, then follow the readme)
-- Follow the Tina Cloud [getting started guide](https://tina.io/guides/tina-cloud/starter/overview)
+- Have a look at the updated [Tina Cloud docs](/docs/setup-overview/) and try out a starter.
 - [Sign up for Tina Cloud](https://app.tina.io/register)!
 - [Find us on Discord](https://discord.com/invite/zumN63Ybpf)
 
@@ -60,7 +58,6 @@ The most common reasons for this issue are:
 - The Site URL is not properly set for the Tina project. The main window's base URL will need to match the Tina project's Site URL setup in the Tina Cloud Dashboard.
 - The Client ID setup in your site's environment variables does not match the Client ID in your project's settings on the Tina Cloud dashboard.
 - The user attempting to login to Tina Cloud does not have access to edit this site. Ensure that this user is authorized on the Tina Cloud dashboard.
-
 
 > Make sure to include `https` in the Site URL eg: https://forestry.io or if you are testing locally, it might be something like `http://localhost:3000`
 

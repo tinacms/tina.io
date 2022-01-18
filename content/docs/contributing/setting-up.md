@@ -12,6 +12,7 @@ consumes:
     details: 'Shows commands, how to get started'
 last_edited: '2021-02-18T13:05:33.946Z'
 ---
+
 ## Development
 
 To get started:
@@ -34,25 +35,21 @@ npm run start
 
 ## Commands
 
-| Commands | Description |
-| --- | --- |
-| npm run bootstrap | Install dependencies and link local packages. |
-| npm run build | Build all packages |
-| npm run test | Run tests for all packages |
-| lerna run build --scope <package> | Build only <package>. |
-| lerna run watch | Watch all packages for rebuilds. |
+| Commands                          | Description                                   |
+| --------------------------------- | --------------------------------------------- |
+| npm run bootstrap                 | Install dependencies and link local packages. |
+| npm run build                     | Build all packages                            |
+| npm run test                      | Run tests for all packages                    |
+| lerna run build --scope <package> | Build only <package>.                         |
+| lerna run watch                   | Watch all packages for rebuilds.              |
 
-## Links
-
-* [Circle CI](https://circleci.com/gh/tinacms/tinacms): Continuous Integration
-
-## Run Development Packages 
+## Run Development Packages
 
 After installing the development setup you can run demo applications contained in the _packages_ directory **demo-cra**, **demo-gatsby** and **demo-next**.
 
 These projects can be used as a development environment for Tina packages, you can edit any other package contained within Tina packages.
 
-When editing the packages of tina we can execute the command `npm run dev` to execute  an development build on the repository packages.
+When editing the packages of tina we can execute the command `npm run dev` to execute an development build on the repository packages.
 
 This command will build all Tina packages. This will reflect in the references of the tina demo packages, thus updating the demo packages according to the changes made.
 

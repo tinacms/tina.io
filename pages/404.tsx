@@ -47,6 +47,10 @@ function Page404() {
   )
 }
 
+export const getStaticProps = async function({ preview, previewData }) {
+  return { props: {} }
+}
+
 export default Page404
 
 /*

@@ -23,17 +23,14 @@ const App = ({ Component, pageProps }) => {
       variables={pageProps.variables} // Variables used in your query
       // Required: The data from your `getStaticProps` request
       data={pageProps.data}
-      // Optional: Set to true when working with the local API
-      isLocalClient={process.env.NODE_ENV == 'development'}
-      // Optional: When using Tina Cloud, specify the git branch
-      branch={process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF || 'main'}
-      // Optional: Your identifier when connecting to Tina Cloud
-      clientId="<some-id-from-tina-cloud>"
-      // Optional: A callback for altering the document creator plugin
-      documentCreatorCallback={args => {
-        onNewDocument: args =>
-          window.location.assign('https://my-site.com/my-new-url')
-      }}
+      /**
+       * The URL for the content API.
+       *
+       * When working locally, this should be http://localhost:4001/graphql.
+       *
+       * For Tina Cloud, use https://content.tinajs.io/content/my-client-id/github/my-branch
+       */
+      apiURL="http://localhost:4001/graphql"
     >
       {livePageProps => <Component {...livePageProps} />}
     </TinaCMS>
@@ -119,4 +116,4 @@ Note that the `tinacms/dist/edit-state (>2kb)` code _will_ be in your production
 
 ### There are no forms in the Tina sidebar
 
-TinaCMS will automatically build forms for supported queries. For now, only ["single-document" queries](https://tina.io/docs/graphql/#getnamedocument) are supported.
+TinaCMS will automatically build forms for supported queries. For now, only ["single-document" queries](/docs/graphql/#getnamedocument) are supported.

@@ -5,7 +5,7 @@ author: Frank Taillandier
 last_edited: '2021-06-25T20:42:18.533Z'
 ---
 
-Tina adopts a developer-centric approach to structure content, which means you can model your content locally in your favourite editor. Thanks to a [GraphQL layer on top of the files](https://tina.io/blog/using-graphql-with-the-filesystem/) stored in your repository, Tina makes it more straightforward to query content all across your files. Let's see how this feels.
+Tina adopts a developer-centric approach to structure content, which means you can model your content locally in your favourite editor. Thanks to a [GraphQL layer on top of the files](/blog/using-graphql-with-the-filesystem/) stored in your repository, Tina makes it more straightforward to query content all across your files. Let's see how this feels.
 
 When we refer to Git-based, it means your content is stored in Markdown and JSON files and modelled with front matter; on top of that [Tina Cloud](/cloud) aims to let you leverage the power of [GraphQL](https://graphql.org/).
 
@@ -22,7 +22,7 @@ The typical developer workflow when working on your structured content is to run
 
 ## The GraphQL schema is the single source of truth
 
-The GraphQL [schema](https://tina.io/docs/tina-cloud/cli/#defineschema) allows you to describe your content types or **collections** as we call them. At the root of the schema, you can list all your collections.
+The GraphQL [schema](/docs/tina-cloud/cli/#defineschema) allows you to describe your content types or **collections** as we call them. At the root of the schema, you can list all your collections.
 
 A collection points to a folder in your repository where you store a content type, like a blog post, a recipe, a book, a product, etc.
 
@@ -107,7 +107,7 @@ export default defineSchema({
 
 > ### What type can I use?
 >
-> You can use any [field type available in TinaCMS](https://tina.io/docs/fields/#default-field-plugins): text, textarea, datetime, list, group, select, blocks, etc. ([source](https://github.com/tinacms/tina-graphql-gateway/blob/5128b85fb2b3b69999c18eb5708eaf7e1fff4786/packages/tina-graphql-gateway-cli/src/cmds/compile/index.ts#L687))
+> You can use any [field type available in TinaCMS](/docs/fields/#default-field-plugins): text, textarea, datetime, list, group, select, blocks, etc. ([source](https://github.com/tinacms/tina-graphql-gateway/blob/5128b85fb2b3b69999c18eb5708eaf7e1fff4786/packages/tina-graphql-gateway-cli/src/cmds/compile/index.ts#L687))
 >
 > `Image` type is under development with [Cloudinary](https://cloudinary.com/) support as a media provider with Tina Cloud.
 
