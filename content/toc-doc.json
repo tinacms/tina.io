@@ -10,6 +10,11 @@
         "title": "Overview"
       },
       {
+        "id": "/docs/product-tour/",
+        "slug": "/docs/product-tour/",
+        "title": "Product Tour"
+      },
+      {
         "id": "/docs/setup-overview/",
         "slug": "/docs/setup-overview/",
         "title": "Getting Started"
