@@ -14,8 +14,6 @@ opengraph:
 
 👋 Hello and welcome. Today we are going to walk you through how to use syntax highlighting with TinaMarkdown. Through a very basic setup and example we will walk you through adding syntax highlighting so that your editors will love you (or at least highly appreciate you).
 
-[![Join our Discord](https://res.cloudinary.com/forestry-demo/image/upload/v1642688157/blog-media/Join_our_discord.webp)](https://discord.com/invite/zumN63Ybpf)
-
 Prefer to learn through videos? Check out our video covering syntax highlighting:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Qp-7YlGisBM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true"></iframe>
@@ -117,6 +115,8 @@ export {Codeblock}
 ```
 
 commit : [https://github.com/tinacms/examples/commit/983d80dd7fa07e29fb0d6802d989e40f260fb95d](https://github.com/tinacms/examples/commit/983d80dd7fa07e29fb0d6802d989e40f260fb95d)
+
+[![Join our Discord](https://res.cloudinary.com/forestry-demo/image/upload/v1642688157/blog-media/Join_our_discord.webp)](https://discord.com/invite/zumN63Ybpf)
 
 ### Using our component in our `[slug].js`
 
