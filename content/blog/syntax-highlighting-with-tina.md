@@ -23,7 +23,7 @@ Prefer to learn through videos? Check out our video covering syntax highlighting
 The starting point that I have created for this tutorial, contains a very basic implementation of Tina that includes a blog. It is using our `rich-text` editor and our `TinaMarkdown` component. 
 
 ```bash
-# code the repository
+# clone the repository
 git clone https://github.com/tinacms/examples.git
 
 # Starting commit
