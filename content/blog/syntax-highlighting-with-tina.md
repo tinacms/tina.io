@@ -55,7 +55,7 @@ For this tutorial we are going to use `react-syntax-highlighter`. If you prefer 
 yarn add react-syntax-highlighter
 ```
 
-Now we have our syntax highlighter installed we can create a component that we can pass our `props` to 
+Now we have our syntax highlighter installed, we can create a component that we can pass our `props` to.
 
 ### Creating our component
 
