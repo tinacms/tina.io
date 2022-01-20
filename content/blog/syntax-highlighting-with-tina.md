@@ -115,7 +115,7 @@ const Codeblock = ({children, language}) => {
 export {Codeblock}
 ```
 
-[Need to compare your code click here for the commit](https://github.com/tinacms/examples/commit/983d80dd7fa07e29fb0d6802d989e40f260fb95d)
+[View the completed component in this commit](https://github.com/tinacms/examples/commit/983d80dd7fa07e29fb0d6802d989e40f260fb95d)
 
 [![Join our Discord](https://res.cloudinary.com/forestry-demo/image/upload/v1642688157/blog-media/Join_our_discord.webp)](https://discord.com/invite/zumN63Ybpf)
 
