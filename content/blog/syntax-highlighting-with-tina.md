@@ -98,7 +98,7 @@ const Codeblock = ({children, language}) => {
 }
 ```
 
-You may notice that I included an, or statement to the props we are passing in. This will make sure that when we create a new empty code block that Prism doesn’t error out
+You may notice that I included an _or_ statement to the props we are passing in. This will make sure that when we create a new empty code block that Prism doesn’t error out
 
 Finally, we need to export our component for use inside our `[slug].js` we can do this by adding `export {Codeblock}` at the bottom of our file. Our component file is now complete, and should look like this:
 
