@@ -65,7 +65,7 @@ First, we need to create a new filed called `Codeblock.js` inside the `component
 touch  ./components/Codeblock.js
 ```
 
-commit: [https://github.com/tinacms/examples/commit/cdfbe238aa5510ec699f4b5066daf3dfc5fcb5ae](https://github.com/tinacms/examples/commit/cdfbe238aa5510ec699f4b5066daf3dfc5fcb5ae)
+[Need to compare your code click here for the commit](https://github.com/tinacms/examples/commit/cdfbe238aa5510ec699f4b5066daf3dfc5fcb5ae)
 
 Inside of our newly created `Codeblock.js` file, we need to import a theme and Prism. I am going to use my favorite theme `atomOneDark` but your favorites will work just as well as mine
 
@@ -114,7 +114,7 @@ const Codeblock = ({children, language}) => {
 export {Codeblock}
 ```
 
-commit : [https://github.com/tinacms/examples/commit/983d80dd7fa07e29fb0d6802d989e40f260fb95d](https://github.com/tinacms/examples/commit/983d80dd7fa07e29fb0d6802d989e40f260fb95d)
+[Need to compare your code click here for the commit](https://github.com/tinacms/examples/commit/983d80dd7fa07e29fb0d6802d989e40f260fb95d)
 
 [![Join our Discord](https://res.cloudinary.com/forestry-demo/image/upload/v1642688157/blog-media/Join_our_discord.webp)](https://discord.com/invite/zumN63Ybpf)
 
@@ -134,7 +134,7 @@ const components = {
   }
 ```
 
-We are going to override the `code_block` element, if you are wondering what elements can be overridden you can find them all here: [https://github.com/tinacms/tinacms/blob/main/packages/tinacms/src/rich-text.tsx](https://github.com/tinacms/tinacms/blob/main/packages/tinacms/src/rich-text.tsx)
+We are going to override the `code_block` element, if you are wondering what elements can be overridden you can find them all in our [tinacms](https://github.com/tinacms/tinacms/blob/main/packages/tinacms/src/rich-text.tsx) package.
 
 Inside our component variable we can put a property named `code_block` which we can then use to override the original styling:
 
@@ -171,6 +171,8 @@ The final step is to use these `components` in our `TinaMarkdown`. To do that we
 Now, you can launch using `yarn` dev and navigate back to [http://localhost:3000/post/HelloWorld](http://localhost:3000/post/HelloWorld). You will see that our code block now has Prism syntax highlighting.
 
 ![Image with syntax highlighting](https://res.cloudinary.com/forestry-demo/image/upload/v1642686958/blog-media/syntax-highlighting-with-tina/after-image.webp)
+
+You can find the finished code in our [Github](https://github.com/tinacms/examples/tree/main/syntax-highlighting)
 
 ## Where can you keep up to date with Tina?
 
