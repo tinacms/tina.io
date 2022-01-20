@@ -127,7 +127,7 @@ Now, we will import the component we just created into the `[slug].js` file.
 import { Codeblock } from '../../components/Codeblock';
 ```
 
-This gives us access to the component, and we can create a variable called `components`. This `components` variable can hold all of the different components we want our `TinaMarkdown` to use, in our example we are overriding an element versus creating a new component.  
+This gives us access to the component, and we can create a variable called `components`. This `components` variable can hold all of the different components we want our `TinaMarkdown` to use. In our example we are overriding an element versus creating a new component.  
 
 ```jsx
 const components = {
