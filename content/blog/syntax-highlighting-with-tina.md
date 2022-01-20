@@ -48,7 +48,7 @@ Once our Next.js application is running, you can navigate to [http://localhost:3
 
 ### Installing our package
 
-For this tutorial we are going to use `react-syntax-highlighter` if you prefer a different package, once you make your way through this tutorial and understand how it all works, you can use your favorite package, it will work the same.
+For this tutorial we are going to use `react-syntax-highlighter`. If you prefer a different package, once you make your way through this tutorial and understand how it all works, you can use your favorite package and it will work the same.
 
 ```bash
 # Install the syntax highlighting package
