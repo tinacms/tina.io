@@ -24,7 +24,8 @@ The starting point that I have created for this tutorial, contains a very basic 
 
 ```bash
 # clone the repository
-git clone https://github.com/tinacms/examples.git
+git clone https://github.com/tinacms/examples.git tina-examples
+cd tina-examples
 
 # Starting commit
 git checkout 7753363ad1e967524359131565f13791d3a378eb
