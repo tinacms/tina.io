@@ -169,7 +169,7 @@ The final step is to use these `components` in our `TinaMarkdown`. To do that we
 <TinaMarkdown content={props.data.getPostDocument.data.body} components={components}/>
 ```
 
-Now, you can launch using `yarn` dev and navigate back to [http://localhost:3000/post/HelloWorld](http://localhost:3000/post/HelloWorld). You will see that our code block now has Prism syntax highlighting.
+Now, you can launch using `yarn dev` and navigate back to [http://localhost:3000/post/HelloWorld](http://localhost:3000/post/HelloWorld). You will see that our code block now has Prism syntax highlighting.
 
 ![Image with syntax highlighting](https://res.cloudinary.com/forestry-demo/image/upload/v1642686958/blog-media/syntax-highlighting-with-tina/after-image.webp)
 
