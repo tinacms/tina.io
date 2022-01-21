@@ -149,7 +149,7 @@ Now we are going to use the props that get passed from our `TinaMarkdown` and pa
 
 ```jsx
 code_block: props => {
-      return <Codeblock children={props.children} language={props.language}/>
+      return <Codeblock children={props.children} language={props.lang}/>
     }
 ```
 
@@ -158,7 +158,7 @@ Our `components` object is now complete and should look like this:
 ```jsx
 const components = {
     code_block: props => {
-      return <Codeblock children={props.children} language={props.language}/>
+      return <Codeblock children={props.children} language={props.lang}/>
     }
   }
 ```
