@@ -1,6 +1,6 @@
 ---
 title: Tina Cloud FAQ
-last_edited: '2022-01-21T20:16:06.377Z'
+last_edited: '2022-01-21T20:22:53.597Z'
 ---
 ## What's the difference between Tina Cloud and TinaCMS?
 
@@ -53,6 +53,8 @@ We will contact you if we believe your use case may eventually fit within our po
 It does! Tina Cloud can work with sites inside mono repos by configuring pathToTina in you Projects. We use this path to find the .tina folder for your Project from the root of your repo.
 
 If your repo isn't a mono repo, then there's no need to do any configuration. We'll look for your Tina Config at the root of your repo.
+
+But, it doesn't work with nested sites. Each site need to be separate inside the mono repo.
 
 ## Tina.io login window doesn't close when logging in from a site
 
