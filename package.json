@@ -61,7 +61,7 @@
     "next-tinacms-json": "^0.39.0",
     "next-tinacms-markdown": "^0.39.0",
     "nextjs-cors": "^2.1.0",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^3.1.1",
     "node-sass": "^7.0.0",
     "polished": "^3.4.4",
     "prop-types": "^15.7.2",
