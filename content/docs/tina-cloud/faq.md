@@ -50,7 +50,7 @@ We will contact you if we believe your use case may eventually fit within our po
 
 ## **Does Tina Cloud work with Monorepos?**
 
-It does! Tina Cloud can work with sites inside monorepos by configuring the path to your .tina folder in your Projects.
+It does! Tina Cloud can work with sites inside monorepos by specifying the path to your `.tina` folder in your Project configuration.
 
 If your repo isn't a monorepo, then there's no need to do any configuration. We'll look for your Tina Config at the root of your repo.
 
