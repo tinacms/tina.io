@@ -28,7 +28,7 @@ const App = ({ Component, pageProps }) => {
       apiURL={apiURL}
       // ... other props
     >
-      {livePageProps => <Component {...livePageProps} />}
+      <Component {...pageProps} />
     </TinaCMS>
   )
 }
@@ -62,7 +62,7 @@ const App = ({ Component, pageProps }) => {
       apiURL={apiURL}
       // ... other props
     >
-      {livePageProps => <Component {...livePageProps} />}
+      <Component {...pageProps} />
     </TinaCMS>
   )
 }

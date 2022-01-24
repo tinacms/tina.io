@@ -42,9 +42,8 @@ const App = ({ Component, pageProps }) => {
       <TinaEditProvider
         editMode={
           <TinaCMS
-            ...
+            // ...
             mediaStore={TinaCloudCloudinaryMediaStore}
-            {...pageProps}
           >
          ...
          </TinaCMS>

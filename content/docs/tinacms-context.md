@@ -17,12 +17,6 @@ import TinaCMS from 'tinacms'
 const App = ({ Component, pageProps }) => {
   return (
     <TinaCMS
-      // Required: The query from your `getStaticProps` request
-      query={pageProps.query}
-      // Required: The variables from your `getStaticProps` request
-      variables={pageProps.variables} // Variables used in your query
-      // Required: The data from your `getStaticProps` request
-      data={pageProps.data}
       /**
        * The URL for the content API.
        *
@@ -32,7 +26,7 @@ const App = ({ Component, pageProps }) => {
        */
       apiURL="http://localhost:4001/graphql"
     >
-      {livePageProps => <Component {...livePageProps} />}
+      <Component {...pageProps} />
     </TinaCMS>
   )
 }
@@ -55,8 +49,8 @@ const App = ({ Component, pageProps }) => {
     <>
       <TinaEditProvider
         editMode={
-          <TinaCMS {...pageProps}>
-            {livePageProps => <Component {...livePageProps} />}
+          <TinaCMS apiURL="http://localhost:4001/graphql">
+            <Component {...pageProps} />
           </TinaCMS>
         }
       >
