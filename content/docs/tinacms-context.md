@@ -65,7 +65,7 @@ export default App
 
 Instead of having the full `tinacms` code in your production site, your main production bundle will just contain the much smaller `tinacms/dist/edit-state` bundle (>2kb).
 
-## Toggling edit-mode
+## Setting up the admin page, to enter/exit edit-mode
 
 You can log into edit mode by visiting `/admin` and log out of edit mode by visiting `/admin/logout`.
 
@@ -78,36 +78,39 @@ import { TinaAdmin } from 'tinacms';
 export default TinaAdmin;
 ```
 
-### Manually toggling via `useEditState`
+## Making content contextually editable with `useTina`
 
-You can manually enter and exit edit mode by tapping into the `useEditState` hook. A common pattern is to place this hook on an "admin" page, which simply puts you into edit mode and sends you back to the page you were on.
+Contextual editing can be setup on a page with the `useTina` hook
 
-```tsx
-// pages/admin.js
-import { useEffect } from 'react'
-import { useRouter } from 'next/router'
+```jsx
+// ...
+import { useTina } from 'tinacms/dist/edit-state'
 
-import { useEditState } from 'tinacms/dist/edit-state'
+const query = `{
+  getPageDocument(relativePath: "home.mdx"){
+    data{
+      body
+    }
+  }
+}`
 
-const GoToEditPage = () => {
-  const { editState, setEdit } = useEditState()
-  const router = useRouter()
-  useEffect(() => {
-    setEdit(!editState)
-    // Go back to the page you were on previously
-    router.back()
-  }, [])
-  // Display a brief message to the user
-  return <div>Going into edit mode...</div>
+export default function Home(props) {
+  // Pass our data through the "useTina" hook to make it editable
+  const { data } = useTina({
+    query,
+    variables: {},
+    data: props.data,
+  })
+
+  return <div>{JSON.stringify(data.getPageDocument.data.body)}</div>
 }
-
-export default GoToEditPage
 ```
 
-Note that the `tinacms/dist/edit-state (>2kb)` code _will_ be in your production bundle with this pattern.
+### The `useTina` hook:
 
-## FAQ
+`useTina` is used to make a piece of Tina content contextually editable. It is code-split, so that in production, this hook will simply pass through its data value. In edit-mode, it registers an editable form in the sidebar, and contextually updates its value as the user types.
 
-### There are no forms in the Tina sidebar
+`useTina` takes in a parameter with a few keys:
 
-TinaCMS will automatically build forms for supported queries. For now, only ["single-document" queries](/docs/graphql/#getnamedocument) are supported.
+- `query` and `variables`: These are the same values that you would use for the [backend data-fetching](/docs/features/data-fetching/).
+- `data`: This is the production value that gets passed through to the response unchanged in production.
