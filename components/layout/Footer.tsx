@@ -216,6 +216,10 @@ export const Footer = styled(({ light, ...styleProps }) => {
               <a>Security</a>
             </Link>
             <FooterDivider />
+            <Link href="/telemetry/" passHref>
+              <a>Open Source Telemetry</a>
+            </Link>
+            <FooterDivider />
             <Link href="/terms-of-service/" passHref>
               <a>Terms of Service</a>
             </Link>
