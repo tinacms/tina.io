@@ -20,4 +20,6 @@ Once you are ready to host your site in production and put editing behind authen
 
 Tina's Content API authenticates directly with GitHub removing the need for users to create GitHub accounts. Access is granted through the dashboard, allowing users to login directly through your site and begin editing! Any changes that are saved by your editors will be commited to the configured branch in your GitHub repository.
 
-The first step to get started moving from local-mode to prod-mode is to set up a project in the Tina Cloud dashboard.
+To start moving from local-mode to prod-mode, the next steps are to:
+- Push your repository to GitHub (if it isn't already)
+- Set up a project in the Tina Cloud dashboard. (See next page)
