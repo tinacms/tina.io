@@ -182,6 +182,7 @@ export const Actions = ({ items, align = 'left' }) => {
 
         .ghost {
           border-color: transparent;
+          background: transparent;
           padding: 0 0.25rem;
 
           :hover {
