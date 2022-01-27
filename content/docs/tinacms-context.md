@@ -34,7 +34,7 @@ const App = ({ Component, pageProps }) => {
 export default App
 ```
 
-## Dynamically loading tinacms with `<TinaEditProvider />`
+## Code-splitting tinacms with `TinaEditProvider`
 
 We can leverage Next.js `dynamic` imports to avoid bundling TinaCMS with your production build:
 
@@ -65,7 +65,7 @@ export default App
 
 Instead of having the full `tinacms` code in your production site, your main production bundle will just contain the much smaller `tinacms/dist/edit-state` bundle (>2kb).
 
-## Setting up the admin page, to enter/exit edit-mode
+## Entering / exiting edit-mode
 
 You can log into edit mode by visiting `/admin` and log out of edit mode by visiting `/admin/logout`.
 
@@ -78,7 +78,7 @@ import { TinaAdmin } from 'tinacms';
 export default TinaAdmin;
 ```
 
-## Making content contextually editable with `useTina`
+## Adding contextual-editing to a page
 
 Contextual editing can be setup on a page with the `useTina` hook
 
