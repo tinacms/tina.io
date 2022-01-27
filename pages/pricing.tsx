@@ -230,6 +230,14 @@ function PricingPage({ file: community, metadata, preview }) {
             margin-bottom: 4rem;
             display: flex;
             width: 100%;
+            overflow: hidden;
+            border-radius: 0.75rem;
+            box-shadow: 0 6px 24px rgba(0, 37, 91, 0.05),
+              0 2px 4px rgba(0, 37, 91, 0.03);
+
+            :global(> *) {
+              box-shadow: none;
+            }
 
             @media (max-width: 1099px) {
               max-width: 40rem;
@@ -330,7 +338,11 @@ const PricingCard = ({
           flex-wrap: wrap;
           align-items: center;
           line-height: 1.2;
-          background: var(--color-seafoam-100);
+          background: linear-gradient(
+            to bottom right,
+            var(--color-seafoam-100) 40%,
+            var(--color-seafoam-200)
+          );
           border-bottom: 1px solid var(--color-seafoam-300);
           padding: ${size === 'large' ? '2rem 2.5rem' : '1.75rem 2.25rem'};
         }
