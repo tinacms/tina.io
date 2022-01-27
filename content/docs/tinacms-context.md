@@ -75,7 +75,7 @@ Instead of having the full `tinacms` code in your production site, your main pro
 
 You can log into edit mode by visiting `/admin` and log out of edit mode by visiting `/admin/logout`.
 
-> If you setup Tina with [`tinacms init`]('/docs/setup-overview/#manual-setup-on-an-existing-site'), this should already be setup for you in the `/pages/admin/[[...tina]].js` page.
+> If you setup Tina with [`tinacms init`](/guides/tina-cloud/add-tinacms-to-existing-site/create-app/#adding-tina), this should already be setup for you in the `/pages/admin/[[...tina]].js` page.
 
 If you do not have a `/pages/admin/[[...tina]].js` file, you can create it very easily with two lines:
 
@@ -83,34 +83,6 @@ If you do not have a `/pages/admin/[[...tina]].js` file, you can create it very 
 import { TinaAdmin } from 'tinacms';
 export default TinaAdmin;
 ```
-
-### Manually toggling via `useEditState`
-
-You can manually enter and exit edit mode by tapping into the `useEditState` hook. A common pattern is to place this hook on an "admin" page, which simply puts you into edit mode and sends you back to the page you were on.
-
-```tsx
-// pages/admin.js
-import { useEffect } from 'react'
-import { useRouter } from 'next/router'
-
-import { useEditState } from 'tinacms/dist/edit-state'
-
-const GoToEditPage = () => {
-  const { editState, setEdit } = useEditState()
-  const router = useRouter()
-  useEffect(() => {
-    setEdit(!editState)
-    // Go back to the page you were on previously
-    router.back()
-  }, [])
-  // Display a brief message to the user
-  return <div>Going into edit mode...</div>
-}
-
-export default GoToEditPage
-```
-
-Note that the `tinacms/dist/edit-state (>2kb)` code _will_ be in your production bundle with this pattern.
 
 ## FAQ
 
