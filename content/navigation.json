@@ -16,5 +16,11 @@
     "label": "Community",
     "href": "/community",
     "external": false
+  },
+  {
+    "id": "pricing",
+    "label": "Pricing",
+    "href": "/pricing",
+    "external": false
   }
 ]
