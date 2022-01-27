@@ -86,28 +86,25 @@ export default TinaAdmin;
 
 ### Manually toggling via `useEditState`
 
-You can manually enter and exit edit mode by tapping into the `useEditState` hook. A common pattern is to place this hook on an "admin" page, which simply puts you into edit mode and sends you back to the page you were on.
+You can manually enter and exit edit mode by tapping into the `useEditState` hook. You should **always** have a  `/pages/admin/[[...tina]].{js,tsx}` file but in some cases you may want to go into edit mode without going to the `/admin` or `/admin/logout` routes. 
+
+In this case you can use the `useEditState` hook. This will enter you into edit mode (and trigger a tina cloud login if applicable). 
+
 
 ```tsx
-// pages/admin.js
-import { useEffect } from 'react'
-import { useRouter } from 'next/router'
+const MyEditButton = () => {
+  const { edit, setEdit } = useEditState();
 
-import { useEditState } from 'tinacms/dist/edit-state'
-
-const GoToEditPage = () => {
-  const { editState, setEdit } = useEditState()
-  const router = useRouter()
-  useEffect(() => {
-    setEdit(!editState)
-    // Go back to the page you were on previously
-    router.back()
-  }, [])
-  // Display a brief message to the user
-  return <div>Going into edit mode...</div>
-}
-
-export default GoToEditPage
+  return (
+    <button
+      onClick={() => {
+        setEdit((editState) => !editState);
+      }}
+    >
+      {edit ? "exit exit mode" : "Enter edit mode"}
+    </button>
+  );
+};
 ```
 
 Note that the `tinacms/dist/edit-state (>2kb)` code _will_ be in your production bundle with this pattern.
