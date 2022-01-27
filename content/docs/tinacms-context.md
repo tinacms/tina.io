@@ -104,6 +104,15 @@ export default function Home(props) {
 
   return <div>{JSON.stringify(data.getPageDocument.data.body)}</div>
 }
+
+export const getStaticProps = async () => {
+  const data = await staticRequest({
+      query,
+      variables = {},
+    })
+
+  return { props: { data } }
+}
 ```
 
 ### The `useTina` hook:

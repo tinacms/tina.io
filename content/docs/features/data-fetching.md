@@ -16,8 +16,6 @@ Note that `getPostDocument` is not built-in to Tina's API. This is an example of
 
 > For more information on writing queries for your specific schema, check out our ["Using the GraphQL API"](/docs/graphql/overview/) docs.
 
-{{ WarningCallout text="The above example is incomplete for simplicity, and uses the experimental `useGraphqlForms`. Continue reading to see how data-fetching works in NextJS" }}
-
 ## Querying Tina content in NextJS
 
 In NextJS, content is typically queried statically at build-time, or with SSR.
