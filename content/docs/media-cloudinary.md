@@ -41,13 +41,12 @@ const App = ({ Component, pageProps }) => {
       <TinaEditProvider
         editMode={
           <TinaCMS
-            ...
+            // ...
             mediaStore={async () => {
               // Load media store dynamically so it only loads in edit mode
               const pack = await import("next-tinacms-cloudinary");
               return pack.TinaCloudCloudinaryMediaStore;
             }}
-            {...pageProps}
           >
          ...
          </TinaCMS>

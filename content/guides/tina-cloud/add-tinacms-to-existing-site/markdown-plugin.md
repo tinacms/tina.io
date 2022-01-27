@@ -44,9 +44,8 @@ const App = ({ Component, pageProps }) => {
 +               cms.plugins.add(field.MarkdownFieldPlugin)
 +             })
 +           }}
-            {...pageProps}
           >
-            {(livePageProps) => <Component {...livePageProps} />}
+            <Component {...pageProps} />
           </TinaCMS>
         }
       >

@@ -172,3 +172,9 @@ This will result in a resolvable node in your GraphQL structure (Don't worry, we
 ```
 
 The resulting field in your TinaCMS form will be a `select` field, whose `options` are all of the documents in the referenced collections.
+
+## Summary
+
+- Your content is modeled in the .tina/schema.ts of your repo
+- Your content model contains an array "collections". A "collection" maps a content type to a directory in your repo.
+- A "collection" contains multiple fields, which can be of multiple scalar or non-scalar data types.

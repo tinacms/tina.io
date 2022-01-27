@@ -23,7 +23,7 @@ const App = ({ Component, pageProps }) => {
         cms.sidebar.position = 'overlay'
       }}
     >
-      {livePageProps => <Component {...livePageProps} />}
+      <Component {...pageProps} />
     </TinaCMS>
   )
 }

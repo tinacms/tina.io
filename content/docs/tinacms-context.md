@@ -17,12 +17,6 @@ import TinaCMS from 'tinacms'
 const App = ({ Component, pageProps }) => {
   return (
     <TinaCMS
-      // Required: The query from your `getStaticProps` request
-      query={pageProps.query}
-      // Required: The variables from your `getStaticProps` request
-      variables={pageProps.variables} // Variables used in your query
-      // Required: The data from your `getStaticProps` request
-      data={pageProps.data}
       /**
        * The URL for the content API.
        *
@@ -32,7 +26,7 @@ const App = ({ Component, pageProps }) => {
        */
       apiURL="http://localhost:4001/graphql"
     >
-      {livePageProps => <Component {...livePageProps} />}
+      <Component {...pageProps} />
     </TinaCMS>
   )
 }
@@ -40,7 +34,7 @@ const App = ({ Component, pageProps }) => {
 export default App
 ```
 
-## Dynamically loading tinacms with `<TinaEditProvider />`
+## Code-splitting tinacms with `TinaEditProvider`
 
 We can leverage Next.js `dynamic` imports to avoid bundling TinaCMS with your production build:
 
@@ -55,8 +49,8 @@ const App = ({ Component, pageProps }) => {
     <>
       <TinaEditProvider
         editMode={
-          <TinaCMS {...pageProps}>
-            {livePageProps => <Component {...livePageProps} />}
+          <TinaCMS apiURL="http://localhost:4001/graphql">
+            <Component {...pageProps} />
           </TinaCMS>
         }
       >
@@ -71,7 +65,7 @@ export default App
 
 Instead of having the full `tinacms` code in your production site, your main production bundle will just contain the much smaller `tinacms/dist/edit-state` bundle (>2kb).
 
-## Toggling edit-mode
+## Entering / exiting edit-mode
 
 You can log into edit mode by visiting `/admin` and log out of edit mode by visiting `/admin/logout`.
 
@@ -84,8 +78,60 @@ import { TinaAdmin } from 'tinacms';
 export default TinaAdmin;
 ```
 
-## FAQ
+## Adding contextual-editing to a page
 
-### There are no forms in the Tina sidebar
+Contextual editing can be setup on a page with the `useTina` hook
 
-TinaCMS will automatically build forms for supported queries. For now, only ["single-document" queries](/docs/graphql/#getnamedocument) are supported.
+```jsx
+// ...
+import { useTina } from 'tinacms/dist/edit-state'
+
+const query = `{
+  getPageDocument(relativePath: "home.mdx"){
+    data{
+      body
+    }
+  }
+}`
+
+export default function Home(props) {
+  // Pass our data through the "useTina" hook to make it editable
+  const { data } = useTina({
+    query,
+    variables: {},
+    data: props.data,
+  })
+
+// Note how our page body uses "data", and not the original "props.data".
+// This ensures that the content will be updated in edit-mode as the user types
+  return <h1>{data.getPageDocument.data.body}</h1>
+}
+
+export const getStaticProps = async () => {
+  const data = await staticRequest({
+      query,
+      variables = {},
+    })
+
+  // return the original data, which is used in our production page
+  return { props: { data } }
+}
+```
+
+![usetina-hello-world](https://res.cloudinary.com/forestry-demo/image/upload/q_32/v1643294947/tina-io/hello-world.png)
+
+### The `useTina` hook:
+
+`useTina` is used to make a piece of Tina content contextually editable. It is code-split, so that in production, this hook will simply pass through its data value. In edit-mode, it registers an editable form in the sidebar, and contextually updates its value as the user types.
+
+`useTina` takes in a parameter with a few keys:
+
+- `query` and `variables`: These are the same values that you would use for the [backend data-fetching](/docs/features/data-fetching/).
+- `data`: This is the production value that gets passed through to the response unchanged in production.
+
+## Summary
+
+- Tina can be added to a site's UI by wrapping its layout in the `<TinaCMS>` component.
+- The `<TinaEditProvider>` component should be used to dynamically code-split Tina out of your production site.
+- The Tina admin usually lives on the `/admin` route. This page allows editors to log in and enter edit-mode.
+- A piece of content can be made editable by running it through the `useTina` hook. In production, it returns the original data unchanged. In edit-mode, it returns the live data, which is updated as the user types in the sidebar.
