@@ -102,7 +102,7 @@ function PricingPage({ file: community, metadata, preview }) {
                   variant: 'orange',
                   label: 'Get Started',
                   icon: 'arrowRight',
-                  url: '/',
+                  url: '#',
                 },
               ]}
             />
