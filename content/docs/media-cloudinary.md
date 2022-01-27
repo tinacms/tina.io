@@ -32,7 +32,6 @@ This is also where we can update our `mediaOptions` on the cms object.
 
 ```tsx
 import { TinaEditProvider } from "tinacms/dist/edit-state";
-import { TinaCloudCloudinaryMediaStore } from 'next-tinacms-cloudinary'
 
 const TinaCMS = dynamic(() => import("tinacms"), { ssr: false });
 
@@ -43,7 +42,11 @@ const App = ({ Component, pageProps }) => {
         editMode={
           <TinaCMS
             // ...
-            mediaStore={TinaCloudCloudinaryMediaStore}
+            mediaStore={async () => {
+              // Load media store dynamically so it only loads in edit mode
+              const pack = await import("next-tinacms-cloudinary");
+              return pack.TinaCloudCloudinaryMediaStore;
+            }}
           >
          ...
          </TinaCMS>

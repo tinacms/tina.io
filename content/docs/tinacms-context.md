@@ -69,7 +69,7 @@ Instead of having the full `tinacms` code in your production site, your main pro
 
 You can log into edit mode by visiting `/admin` and log out of edit mode by visiting `/admin/logout`.
 
-> If you setup Tina with [`tinacms init`]('/docs/setup-overview/#manual-setup-on-an-existing-site'), this should already be setup for you in the `/pages/admin/[[...tina]].js` page.
+> If you setup Tina with [`tinacms init`](/guides/tina-cloud/add-tinacms-to-existing-site/create-app/#adding-tina), this should already be setup for you in the `/pages/admin/[[...tina]].js` page.
 
 If you do not have a `/pages/admin/[[...tina]].js` file, you can create it very easily with two lines:
 
