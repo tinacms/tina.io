@@ -104,7 +104,7 @@
         "title": "Active Field Indicator",
         "id": "/docs/editing/active-field-indicator",
         "slug": "/docs/editing/active-field-indicator/",
-        "beta":true
+        "beta": true
       }
     ]
   },
@@ -142,6 +142,11 @@
         "title": "Customizing Tina's UI",
         "id": "/docs/advanced/customizing-ui",
         "slug": "/docs/advanced/customizing-ui/"
+      },
+      {
+        "title": "Manually editing Tina's edit state",
+        "id": "/docs/advanced/edit-state/",
+        "slug": "/docs/advanced/edit-state/"
       }
     ]
   },

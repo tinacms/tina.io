@@ -75,7 +75,7 @@ Instead of having the full `tinacms` code in your production site, your main pro
 
 You can log into edit mode by visiting `/admin` and log out of edit mode by visiting `/admin/logout`.
 
-> If you setup Tina with [`tinacms init`]('/docs/setup-overview/#manual-setup-on-an-existing-site'), this should already be setup for you in the `/pages/admin/[[...tina]].js` page.
+> If you setup Tina with [`tinacms init`](/guides/tina-cloud/add-tinacms-to-existing-site/create-app/#adding-tina), this should already be setup for you in the `/pages/admin/[[...tina]].js` page.
 
 If you do not have a `/pages/admin/[[...tina]].js` file, you can create it very easily with two lines:
 
@@ -83,31 +83,6 @@ If you do not have a `/pages/admin/[[...tina]].js` file, you can create it very 
 import { TinaAdmin } from 'tinacms';
 export default TinaAdmin;
 ```
-
-### Manually toggling via `useEditState`
-
-You can manually enter and exit edit mode by tapping into the `useEditState` hook. You should **always** have a  `/pages/admin/[[...tina]].{js,tsx}` file but in some cases you may want to go into edit mode without going to the `/admin` or `/admin/logout` routes. 
-
-In this case you can use the `useEditState` hook. This will enter you into edit mode (and trigger a tina cloud login if applicable). 
-
-
-```tsx
-const MyEditButton = () => {
-  const { edit, setEdit } = useEditState();
-
-  return (
-    <button
-      onClick={() => {
-        setEdit((editState) => !editState);
-      }}
-    >
-      {edit ? "exit exit mode" : "Enter edit mode"}
-    </button>
-  );
-};
-```
-
-Note that the `tinacms/dist/edit-state (>2kb)` code _will_ be in your production bundle with this pattern.
 
 ## FAQ
 
