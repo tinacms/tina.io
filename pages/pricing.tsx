@@ -117,13 +117,13 @@ function PricingPage({ file: community, metadata, preview }) {
             <div className="card-wrapper">
               <PricingCard
                 name="Team"
-                price="$99"
+                price="$"
                 interval="month"
                 size="small"
               />
               <PricingCard
                 name="Business"
-                price="$949"
+                price="$$$"
                 interval="month"
                 body={`- Tina's Business plan offers **something** per project\n- Each additional something being billed at **$0/month**`}
                 size="small"
@@ -442,4 +442,4 @@ export const getStaticProps: GetStaticProps = async function({
 
 /* DUMMY CONTENT */
 
-const defaultCardMarkdown = `- Tina's Community plan offers **3 free users** per project\n- Each additional user being billed at **$15/month**\n- Maximum of **10 users** per project`
+const defaultCardMarkdown = `- Tina's Community plan offers **X free users** per project\n- Each additional user being billed at **$$/month**\n- Maximum of **X users** per project`
