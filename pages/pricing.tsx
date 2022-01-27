@@ -14,64 +14,12 @@ import { useGithubJsonForm } from 'react-tinacms-github'
 import { usePlugin, useCMS } from 'tinacms'
 import { Actions, Divider } from 'components/home'
 
-function PricingPage({ file: community, metadata, preview }) {
-  const cms = useCMS()
+const dummyData = {
+  title: 'Pricing',
+  description: 'Pricing page description',
+}
 
-  // Registers Tina Form
-  const [data, form] = useGithubJsonForm(community, {
-    label: 'Community Page',
-    fields: [
-      {
-        label: 'Headline',
-        name: 'headline',
-        description: 'Enter the main headline here',
-        component: 'text',
-      },
-      {
-        label: 'Community Image',
-        name: 'img',
-        component: 'group',
-        fields: [
-          {
-            label: 'Image',
-            name: 'src',
-            component: 'image',
-            parse: media => {
-              if (!media) return ''
-              return media.id
-            },
-            uploadDir: () => '/img/',
-          },
-          { label: 'Alt Text', name: 'alt', component: 'text' },
-        ],
-      },
-      {
-        label: 'Secondary Headline',
-        name: 'supporting_headline',
-        description: 'Enter the secondary headline here',
-        component: 'textarea',
-      },
-      {
-        label: 'Secondary Body Copy',
-        name: 'supporting_body',
-        description: 'Enter the body copy here',
-        component: 'markdown',
-      },
-      {
-        label: 'Newsletter Header',
-        name: 'newsletter_header',
-        component: 'text',
-      },
-      {
-        label: 'Newsletter CTA',
-        name: 'newsletter_cta',
-        component: 'text',
-      },
-    ],
-  })
-
-  usePlugin(form)
-
+function PricingPage({ data = dummyData }) {
   return (
     <Layout>
       <NextSeo
@@ -82,7 +30,7 @@ function PricingPage({ file: community, metadata, preview }) {
           description: data.description,
         }}
       />
-      <Hero>Pricing</Hero>
+      <Hero>{data.title}</Hero>
       <RichTextWrapper>
         <Section>
           <Wrapper>
@@ -359,6 +307,7 @@ const PricingCard = ({
           color: var(--color-secondary);
           font-size: ${size === 'large' ? '2rem' : '1.5rem'};
           flex: 0 0 auto;
+          padding-left: 1rem;
           margin: 0;
         }
         .interval {
@@ -413,7 +362,7 @@ const PricingCard = ({
           flex: 1 1 0;
           display: block;
           height: 0px;
-          margin: 0.5rem 1rem 0.5rem 0;
+          margin: 0.5rem 0 0.5rem 0;
         }
       `}</style>
     </>
