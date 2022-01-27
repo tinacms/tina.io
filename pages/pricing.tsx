@@ -106,6 +106,14 @@ function PricingPage({ file: community, metadata, preview }) {
                 },
               ]}
             />
+            <div className="segue">
+              <span>
+                <strong>Need a bit more?</strong>
+                <br /> We have you covered.
+              </span>
+            </div>
+          </Wrapper>
+          <Wrapper wide>
             <div className="card-wrapper">
               <PricingCard
                 name="Team"
@@ -127,65 +135,94 @@ function PricingPage({ file: community, metadata, preview }) {
                 size="small"
               />
             </div>
-            <style jsx>{`
-              .intro-text {
-                margin: 0 auto 4.5rem auto;
-                max-width: 40rem;
-
-                :global(p) {
-                  &:first-of-type {
-                    font-size: 1.5rem;
-                  }
-
-                  font-size: 1.25rem;
-                  color: var(--color-secondary);
-                }
-              }
-              .card-wrapper {
-                padding: 4rem 0;
-                display: flex;
-                width: 100%;
-
-                @media (max-width: 1099px) {
-                  max-width: 40rem;
-                  margin: 0 auto;
-                  flex-direction: column;
-                  align-items: stretch;
-                  justify-content: stretch;
-
-                  :global(> *) {
-                    &:not(:last-child) {
-                      border-bottom-right-radius: 0;
-                      border-bottom-left-radius: 0;
-                      border-bottom: none;
-                    }
-                    &:not(:first-child) {
-                      border-top-left-radius: 0;
-                      border-top-right-radius: 0;
-                    }
-                  }
-                }
-
-                @media (min-width: 1100px) {
-                  flex-direction: row;
-                  align-items: stretch;
-                  justify-content: space-between;
-
-                  :global(> *) {
-                    &:not(:last-child) {
-                      border-top-right-radius: 0;
-                      border-bottom-right-radius: 0;
-                      border-right: none;
-                    }
-                    &:not(:first-child) {
-                      border-top-left-radius: 0;
-                      border-bottom-left-radius: 0;
-                    }
-                  }
-                }
-              }
-            `}</style>
           </Wrapper>
+          <style jsx>{`
+            .intro-text {
+              margin: 0 auto 4.5rem auto;
+              max-width: 40rem;
+
+              :global(p) {
+                &:first-of-type {
+                  font-size: 1.5rem;
+                }
+
+                font-size: 1.25rem;
+                color: var(--color-secondary);
+              }
+            }
+            .segue {
+              position: relative;
+              font-size: 1.5rem;
+              text-align: center;
+              color: var(--color-secondary);
+              padding: 6rem 0;
+
+              :global(span) {
+                display: block;
+                padding: 1rem;
+                background: white;
+              }
+
+              @media (min-width: 1100px) {
+                padding: 8rem 0;
+              }
+
+              &:before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 50%;
+                height: 100%;
+                width: 0;
+                transform: translateX(-50%);
+                border-left: 5px dotted var(--color-seafoam-dark);
+                z-index: -1;
+              }
+            }
+            .card-wrapper {
+              margin-bottom: 4rem;
+              display: flex;
+              width: 100%;
+
+              @media (max-width: 1099px) {
+                max-width: 40rem;
+                margin: 0 auto;
+                flex-direction: column;
+                align-items: stretch;
+                justify-content: stretch;
+
+                :global(> *) {
+                  &:not(:last-child) {
+                    border-bottom-right-radius: 0;
+                    border-bottom-left-radius: 0;
+                    border-bottom: none;
+                  }
+                  &:not(:first-child) {
+                    border-top-left-radius: 0;
+                    border-top-right-radius: 0;
+                  }
+                }
+              }
+
+              @media (min-width: 1100px) {
+                flex-direction: row;
+                align-items: stretch;
+                justify-content: space-between;
+
+                :global(> *) {
+                  &:not(:last-child) {
+                    border-top-right-radius: 0;
+                    border-bottom-right-radius: 0;
+                    border-right: none;
+                  }
+                  &:not(:first-child) {
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                  }
+                }
+              }
+            }
+          `}</style>
         </Section>
       </RichTextWrapper>
     </Layout>
@@ -318,7 +355,7 @@ const PricingCard = ({
           flex: 1 1 0;
           display: block;
           height: 0px;
-          margin: 1rem 1rem 1rem 0;
+          margin: 0.5rem 1rem 0.5rem 0;
         }
       `}</style>
     </>

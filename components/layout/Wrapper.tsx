@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components'
 
 interface WrapperProps {
   narrow?: boolean
+  wide?: boolean
 }
 
 export const Wrapper = styled.div<WrapperProps>`
@@ -14,5 +15,11 @@ export const Wrapper = styled.div<WrapperProps>`
     props.narrow &&
     css`
       max-width: 900px;
+    `};
+
+  ${props =>
+    props.wide &&
+    css`
+      max-width: 1500px;
     `};
 `
