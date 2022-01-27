@@ -136,94 +136,140 @@ function PricingPage({ file: community, metadata, preview }) {
               />
             </div>
           </Wrapper>
-          <style jsx>{`
-            .intro-text {
-              margin: 0 auto 4.5rem auto;
-              max-width: 40rem;
-
-              :global(p) {
-                &:first-of-type {
-                  font-size: 1.5rem;
-                }
-
-                font-size: 1.25rem;
-                color: var(--color-secondary);
-              }
-            }
-            .segue {
-              position: relative;
-              font-size: 1.5rem;
-              text-align: center;
-              color: var(--color-secondary);
-              padding: 6rem 0;
-
-              :global(span) {
-                display: block;
-                padding: 1rem;
-                background: white;
-              }
-
-              @media (min-width: 1100px) {
-                padding: 8rem 0;
-              }
-
-              &:before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 50%;
-                height: 100%;
-                width: 0;
-                transform: translateX(-50%);
-                border-left: 5px dotted var(--color-seafoam-dark);
-                z-index: -1;
-              }
-            }
-            .card-wrapper {
-              margin-bottom: 4rem;
-              display: flex;
-              width: 100%;
-
-              @media (max-width: 1099px) {
-                max-width: 40rem;
-                margin: 0 auto;
-                flex-direction: column;
-                align-items: stretch;
-                justify-content: stretch;
-
-                :global(> *) {
-                  &:not(:last-child) {
-                    border-bottom-right-radius: 0;
-                    border-bottom-left-radius: 0;
-                    border-bottom: none;
-                  }
-                  &:not(:first-child) {
-                    border-top-left-radius: 0;
-                    border-top-right-radius: 0;
-                  }
-                }
-              }
-
-              @media (min-width: 1100px) {
-                flex-direction: row;
-                align-items: stretch;
-                justify-content: space-between;
-
-                :global(> *) {
-                  &:not(:last-child) {
-                    border-top-right-radius: 0;
-                    border-bottom-right-radius: 0;
-                    border-right: none;
-                  }
-                  &:not(:first-child) {
-                    border-top-left-radius: 0;
-                    border-bottom-left-radius: 0;
-                  }
-                }
-              }
-            }
-          `}</style>
         </Section>
+        <Section color="seafoam">
+          <Wrapper narrow>
+            <div className="faq-wrapper">
+              <h3>Frequently Asked Questions</h3>
+              <p>
+                Maecenas ac tellus vulputate, bibendum orci vitae, fermentum
+                purus.
+              </p>
+              <h4>What's the meaning of life?</h4>
+              <p>
+                Suspendisse lacinia tempor quam ac aliquet. Quisque sed nunc ac
+                sem dictum blandit. Morbi finibus, ligula vitae finibus
+                hendrerit, tellus metus auctor urna, lacinia pulvinar justo nibh
+                eget nibh. Maecenas a nulla cursus, scelerisque leo vel, ornare
+                leo. In hac habitasse platea dictumst. Maecenas ac tellus
+                vulputate, bibendum orci vitae, fermentum purus.
+              </p>
+              <hr />
+              <h4>Important question number two goes here?</h4>
+              <p>
+                Nulla eget sem vel nunc pellentesque iaculis. Donec hendrerit
+                eros eget lacus tristique imperdiet. Nulla at ex cursus, mattis
+                est tristique, blandit tortor.
+              </p>
+              <hr />
+              <h4>Donec viverra ullamcorper ligula a mollis?</h4>
+              <p>
+                Praesent massa sem, fermentum eu enim sed, convallis vulputate
+                nulla. Nam vitae ex eget lectus commodo elementum non sit amet
+                nisl. Proin egestas sit amet lectus ac ultricies. Suspendisse
+                potenti. Praesent sed tempus magna, sit amet vestibulum ex. Sed
+                pretium, ipsum vitae convallis tristique, tellus tortor euismod
+                ante.
+              </p>
+            </div>
+          </Wrapper>
+        </Section>
+
+        <style jsx>{`
+          .intro-text {
+            margin: 0 auto 4.5rem auto;
+            max-width: 40rem;
+
+            :global(p) {
+              &:first-of-type {
+                font-size: 1.5rem;
+              }
+
+              font-size: 1.25rem;
+              color: var(--color-secondary);
+            }
+          }
+          .faq-wrapper {
+            :global(p) {
+              &:first-of-type {
+                font-size: 1.5rem;
+              }
+              color: var(--color-secondary);
+            }
+          }
+          .segue {
+            position: relative;
+            font-size: 1.5rem;
+            text-align: center;
+            color: var(--color-secondary);
+            padding: 4.5rem 0;
+
+            :global(span) {
+              display: block;
+              padding: 1rem;
+              background: white;
+            }
+
+            @media (min-width: 1100px) {
+              padding: 6rem 0;
+            }
+
+            &:before {
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 50%;
+              height: 100%;
+              width: 0;
+              transform: translateX(-50%);
+              border-left: 5px dotted var(--color-seafoam-dark);
+              z-index: -1;
+            }
+          }
+          .card-wrapper {
+            margin-bottom: 4rem;
+            display: flex;
+            width: 100%;
+
+            @media (max-width: 1099px) {
+              max-width: 40rem;
+              margin: 0 auto;
+              flex-direction: column;
+              align-items: stretch;
+              justify-content: stretch;
+
+              :global(> *) {
+                &:not(:last-child) {
+                  border-bottom-right-radius: 0;
+                  border-bottom-left-radius: 0;
+                  border-bottom: none;
+                }
+                &:not(:first-child) {
+                  border-top-left-radius: 0;
+                  border-top-right-radius: 0;
+                }
+              }
+            }
+
+            @media (min-width: 1100px) {
+              flex-direction: row;
+              align-items: stretch;
+              justify-content: space-between;
+
+              :global(> *) {
+                &:not(:last-child) {
+                  border-top-right-radius: 0;
+                  border-bottom-right-radius: 0;
+                  border-right: none;
+                }
+                &:not(:first-child) {
+                  border-top-left-radius: 0;
+                  border-bottom-left-radius: 0;
+                }
+              }
+            }
+          }
+        `}</style>
       </RichTextWrapper>
     </Layout>
   )
