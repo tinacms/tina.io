@@ -12,4 +12,4 @@ The generated GraphQL client has two main functionalities,
 1. Generates Graphql fragments and queries that are written for you.
 2. Generates a Graphql client that can be used server-side (in getStaticProps)
 
-[See the readme for more information](https://github.com/tinacms/tinacms/discussions/2249)
+[See the readme for more information](https://github.com/tinacms/tinacms/blob/main/packages/%40tinacms/cli/GeneratedClientDocs.md)
