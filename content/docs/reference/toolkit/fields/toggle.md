@@ -9,6 +9,8 @@ consumes:
     details: Shows toggle field interface and config options
 ---
 
+{{ WarningCallout text="This is an advanced-use feature, and likely not something you'll need to configure. What you probably want is the [content types reference](/docs/reference/types/)" }}
+
 The `toggle` field represents a true/false toggle. This field is typically used for boolean content values. You could use this to toggle a certain feature on the page on or off.
 
 ![tinacms-toggle-field](/img/fields/toggle.png)

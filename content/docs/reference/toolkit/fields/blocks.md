@@ -7,6 +7,8 @@ consumes:
     details: Shows blocks interface
 ---
 
+{{ WarningCallout text="This is an advanced-use feature, and likely not something you'll need to configure. What you probably want is the [content types reference](/docs/reference/types/)" }}
+
 The **Blocks** field represents a list of items, similar to the [Group List](/docs/reference/toolkit/fields/group-list) field, but allows each entity in the list to have a unique shape.
 
 > For an in-depth explanation of the Blocks field, read our ["What are Blocks?"](/blog/what-are-blocks/) blog post. To see a real-world example of Blocks in use, check out the [Tina Grande Starter](https://github.com/tinacms/tina-starter-grande).

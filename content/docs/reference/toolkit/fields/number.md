@@ -9,6 +9,8 @@ consumes:
     details: Shows text field interface and config options
 ---
 
+{{ WarningCallout text="This is an advanced-use feature, and likely not something you'll need to configure. What you probably want is the [content types reference](/docs/reference/types/)" }}
+
 The `number` field represents a number input.
 
 ![tinacms-number-field](/img/fields/number-field.png)

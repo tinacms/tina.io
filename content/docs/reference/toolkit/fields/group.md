@@ -7,6 +7,8 @@ consumes:
     details: Shows group field interface and how to use
 ---
 
+{{ WarningCallout text="This is an advanced-use feature, and likely not something you'll need to configure. What you probably want is the [content types reference](/docs/reference/types/)" }}
+
 The `group` field represents a group of values. This field is best used when there is a **single** group to be edited, typically with a single JSON object or nested frontmatter values. If there are multiple groups, checkout the [group-list](/docs/reference/toolkit/fields/group-list) field.
 
 ![tinacms-date-field](/img/fields/group.gif)

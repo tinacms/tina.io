@@ -7,6 +7,8 @@ consumes:
     details: Shows Tags field and Option interfaces
 ---
 
+{{ WarningCallout text="This is an advanced-use feature, and likely not something you'll need to configure. What you probably want is the [content types reference](/docs/reference/types/)" }}
+
 The `tags` field represents a collection of tags.
 
 ![TinaCMS-tags-field](/img/fields/tags-field.png)
