@@ -16,7 +16,13 @@ Note that `getPostDocument` is not built-in to Tina's API. This is an example of
 
 > For more information on writing queries for your specific schema, check out our ["Using the GraphQL API"](/docs/graphql/overview/) docs.
 
-## Querying Tina content in NextJS
+## The Local Filesystem-based Content API
+
+With Tina, your content is all stored in filesystem, within your site's repo. Using file-based content in a site can be limited, so Tina provides a CLI tool that gets run locally next to your site, which allows all of your content to make available through an expressive GraphQL API.
+
+> We'll go over those details of running this CLI script later, but if you want to skip it, you can read about it [here](/docs/graphql/cli/).
+
+## Querying Tina Content in NextJS
 
 In NextJS, content is typically queried statically at build-time, or with SSR.
 Tina provides a `staticRequest` helper function, which makes a request to your locally-running GraphQL server at build-time.
@@ -94,10 +100,13 @@ export const getStaticPaths = async () => {
 
 > Note: for now, TinaCMS only supports static data fetching, so you must use `getStaticProps` (and `getStaticPaths` for dynamic pages). We'll be opening up more capabilities (like SSR, and client-side data-fetching) in the near future!
 
-## FAQ
-
 ### Do I need to use `staticRequest`?
 
 Absolutely not. This is a helper function which emphasizes that static requests should only be made against your _local_ server. The `staticRequest` helper function makes the request against `http://localhost:4001`, which is where `@tinacms/cli` runs its GraphQL server. Feel free to use any HTTP client you'd like.
 
-Note, however, that it's important to return an object from `getStaticProps` which has `data`, `query`, and `variables` properties so the client-side TinaCMS container can make everything editable on your page.
+## Summary
+
+- Tina provides a GraphQL API for querying your git-based content.
+- The query used for your requests is based on your defined schema.
+- Tina currently only supports static data-fetching (inside getStaticProps / getStaticPaths).
+- The `staticRequest` helper function is provided to simplify making requests to the local GraphQL server.
