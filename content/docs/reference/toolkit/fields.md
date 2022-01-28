@@ -3,6 +3,8 @@ title: Field Plugins
 last_edited: '2020-08-05T15:33:06.570Z'
 ---
 
+{{ WarningCallout text="This is an advanced-use feature, and likely not something you'll need to configure. What you probably want is the [content types reference](/docs/reference/types/)" }}
+
 Field plugins are the components that the editor interacts with to edit a given field. Tina provides some out of the box field plugins for its basic field types. We also allow you to extend any of the provided field plugins, of create your own.
 
 ## Default Field Plugins

@@ -7,6 +7,8 @@ consumes:
     details: Shows group list interface
 ---
 
+{{ WarningCallout text="This is an advanced-use feature, and likely not something you'll need to configure. What you probably want is the [content types reference](/docs/reference/types/)" }}
+
 The **Group List** field represents a list of [group fields](/docs/reference/toolkit/fields/group). This field exports an _array of objects_.
 
 Use this field when you want to support _multiple entities_ that all have the same shape. Each entity will appear in a list where you can add and delete them. You can then click into an entity to edit its individual fields according to the Group List's field definition.
