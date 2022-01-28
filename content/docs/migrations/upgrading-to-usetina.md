@@ -2,7 +2,7 @@
 title: Upgrading to v0.65
 ---
 
-> We've made some recent changes to the frontend Tina API. Everything is still currently backwards compatible if you upgrade to 0.65.3, but support for some of the props on `<TinaCMS>` will be removed in the future.
+> We've made some recent changes to the frontend Tina API. Everything is still currently backwards compatible if you upgrade to 0.65.3, but support for some of the legacy props on `<TinaCMS>` will likely be removed in the future: `isLocalClient`,`branch`,`clientId`,`query`,`data`,`variables`
 
 ## The "apiURL" prop
 
