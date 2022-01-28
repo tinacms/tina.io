@@ -131,7 +131,7 @@
     },
     {
       "source": "/docs/nextjs/markdown/",
-      "destination": "/docs/legacy-redirect"
+      "destination": "/docs/editing/markdown/"
     },
     {
       "source": "/teams",
@@ -247,7 +247,7 @@
     },
     {
       "source": "/docs/nextjs/next-tinacms-markdown",
-      "destination": "/docs/legacy-redirect"
+      "destination": "/docs/editing/markdown/"
     },
     {
       "source": "/beta-docs",
@@ -396,7 +396,7 @@
     },
     {
       "source": "/docs/media/",
-      "destination": "/docs/legacy-redirect"
+      "destination": "/docs/media-cloudinary/"
     },
     {
       "source": "/docs/apis/",
@@ -404,19 +404,19 @@
     },
     {
       "source": "/docs/user-interface/",
-      "destination": "/docs/legacy-redirect"
+      "destination": "/docs/advanced/extending-tina/"
     },
     {
       "source": "/docs/sidebar-toolbar/",
-      "destination": "/docs/legacy-redirect"
+      "destination": "/docs/advanced/extending-tina/"
     },
     {
       "source": "/docs/extending-tina/",
-      "destination": "/docs/legacy-redirect"
+      "destination": "/docs/advanced/extending-tina/"
     },
     {
       "source": "/docs/events/",
-      "destination": "/docs/legacy-redirect"
+      "destination": "/docs/advanced/extending-tina/"
     },
     {
       "source": "/docs/plugins(.*)",
@@ -424,11 +424,11 @@
     },
     {
       "source": "/docs/ui/(.*)",
-      "destination": "/docs/legacy-redirect"
+      "destination": "/docs/advanced/extending-tina/"
     },
     {
       "source": "/docs/getting-started/faq/",
-      "destination": "/docs/legacy-redirect"
+      "destination": "/docs/tina-cloud/faq/"
     },
     {
       "source": "/docs/integrations(.*)",
@@ -444,15 +444,15 @@
     },
     {
       "source": "/guides/general(.*)",
-      "destination": "/docs/legacy-redirect"
+      "destination": "/guides/"
     },
     {
       "source": "/guides/nextjs(.*)",
-      "destination": "/docs/legacy-redirect"
+      "destination": "/guides/tina-cloud/add-tinacms-to-existing-site/overview/"
     },
     {
       "source": "/guides/tinacms(.*)",
-      "destination": "/docs/legacy-redirect"
+      "destination": "/guides/"
     },
     {
       "source": "/docs/features/extending-tina/",
