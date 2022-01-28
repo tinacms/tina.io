@@ -70,7 +70,7 @@ const App = ({ Component, pageProps }) => {
 
 `useTina` allows devs to register forms, and setup contextual editing on a page-level, rather than having to pass everything through the root `<TinaCMS>` provider
 
-## Example implementation
+### Example implementation
 
 For the full example, see the basic starter in this PR: https://github.com/tinacms/tinacms/pull/2426/files#diff-42691b463aec5743dc024951e2db4ed514228f73d276082d4e6e1cdad9b1b246
 
@@ -149,9 +149,9 @@ You will also notice that `TinaCMS` now renders a ReactNode, instead of render p
 
 You can read more about the reasoning behind the change in the [initial PR](https://github.com/tinacms/tinacms/pull/2426)
 
-## Common issues
+### Common issues
 
-### Content not contextually updating
+#### Content not contextually updating
 
 If you wire this up on your site, and the forms are registered but the main content isn't contextually updating based on the sidebar values, then you like aren't using the `data` value from `useTina`
 
@@ -172,7 +172,7 @@ export default function Home(props) {
 }
 ```
 
-### Register layout-level forms
+#### Register layout-level forms
 
 A layout level "QueryContainer" can be created to register the `useForm` hook at a higher level than pages, if you're looking to make something outside of your pages editable
 
