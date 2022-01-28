@@ -27,7 +27,7 @@ For a list of CLI commands or to learn more about Tina’s CLI, click [here](/do
 
 Tina’s GraphQL API provides a structured API that can be used to fetch your site’s content. This GraphQL API uses your local filesystem as a database. When you define your schema in the Tina schema file, the Tina GraphQL API will generate queries specific to your schema.
 
-When running your site locally, Tina spins up a local GraphQL server at `http://localhost:3000` as well as an Altair client at `http://localhost:3000/altair` . This allows developers to test out the API and it’s file fetching capabilities.
+When running your site locally, Tina spins up a local GraphQL server at `http://localhost:3000` as well as an Altair client at `http://localhost:4001/altair/` . This allows developers to test out the API and it’s file fetching capabilities.
 
 > When running your site in production with Tina Cloud, instead of the local GraphQL server, your site will run using our hosted content API (more info below!).
 
