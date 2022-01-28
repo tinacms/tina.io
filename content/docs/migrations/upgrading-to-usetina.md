@@ -2,7 +2,7 @@
 title: Upgrading to v0.65
 ---
 
-> We've made some recent changes to the frontend Tina API. Everything is still currently backwards compatible if you upgrade to 0.65.3, but support for some of the legacy props on `<TinaCMS>` will likely be removed in the future: `isLocalClient`,`branch`,`clientId`,`query`,`data`,`variables`
+> We've made some recent changes to the frontend Tina API. Everything is still currently backwards-compatible if you upgrade to 0.65.3, but support for some of the legacy props on `<TinaCMS>` will likely be removed in the future: `isLocalClient`,`branch`,`clientId`,`query`,`data`,`variables`
 
 ## The "apiURL" prop
 
@@ -153,9 +153,9 @@ You can read more about the reasoning behind the change in the [initial PR](http
 
 #### Content not contextually updating
 
-If you wire this up on your site, and the forms are registered but the main content isn't contextually updating based on the sidebar values, then you like aren't using the `data` value from `useTina`
+If you wire this up on your site, and the forms are registered but the main content isn't contextually updating based on the sidebar values, then you likely aren't using the `data` value from `useTina`
 
-Do this:
+The likely fix:
 
 ```diff
 export default function Home(props) {
@@ -174,6 +174,6 @@ export default function Home(props) {
 
 #### Register layout-level forms
 
-A layout level "QueryContainer" can be created to register the `useForm` hook at a higher level than pages, if you're looking to make something outside of your pages editable
+A layout level "QueryContainer" can be created to register the `useForm` hook at a higher level than pages, if you're looking to make something outside of your pages editable.
 
 [See the cloud starter for an example](https://github.com/tinacms/tina-cloud-starter/blob/main/pages/_app.tsx#L11)
