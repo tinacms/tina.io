@@ -5,7 +5,6 @@ import {
   Layout,
   MarkdownContent,
   RichTextWrapper,
-  Section,
   Wrapper,
 } from 'components/layout'
 import { NextSeo } from 'next-seo'
@@ -15,7 +14,7 @@ import { usePlugin, useCMS } from 'tinacms'
 import { Actions, Divider } from 'components/home'
 
 const dummyData = {
-  title: 'Pricing',
+  title: 'Tina Cloud Pricing',
   description: 'Pricing page description',
 }
 
@@ -32,7 +31,7 @@ function PricingPage({ data = dummyData }) {
       />
       <Hero>{data.title}</Hero>
       <RichTextWrapper>
-        <Section>
+        <div className="section">
           <Wrapper>
             <div className="intro-text">
               <p>
@@ -84,8 +83,8 @@ function PricingPage({ data = dummyData }) {
               />
             </div>
           </Wrapper>
-        </Section>
-        <Section color="seafoam">
+        </div>
+        <div className="section seafoam">
           <Wrapper narrow>
             <div className="faq-wrapper">
               <h3>Frequently Asked Questions</h3>
@@ -121,9 +120,27 @@ function PricingPage({ data = dummyData }) {
               </p>
             </div>
           </Wrapper>
-        </Section>
+        </div>
 
         <style jsx>{`
+          .section {
+            padding: 3rem 0;
+
+            @media (min-width: 800px) {
+              padding: 5rem 0;
+            }
+          }
+
+          .seafoam {
+            background-color: var(--color-seafoam);
+            background: linear-gradient(
+              to bottom,
+              var(--color-seafoam-300),
+              var(--color-seafoam-200) 8rem,
+              var(--color-seafoam-100)
+            );
+          }
+
           .intro-text {
             margin: 0 auto 4.5rem auto;
             max-width: 40rem;
@@ -138,9 +155,15 @@ function PricingPage({ data = dummyData }) {
             }
           }
           .faq-wrapper {
+            :global(h3) {
+              font-size: 2rem;
+              color: var(--color-secondary);
+              font-family: var(--font-tuner);
+            }
             :global(p) {
               &:first-of-type {
                 font-size: 1.5rem;
+                margin-bottom: 2.5rem;
               }
               color: var(--color-secondary);
             }
@@ -251,7 +274,7 @@ const PricingCard = ({
       <div className="card">
         <div className="header">
           <h3 className="title">{name}</h3>
-          <hr />
+          <span className="dotted"></span>
           <h3 className="price">
             {price}
             {interval && <span className="interval">/{interval}</span>}
@@ -286,13 +309,9 @@ const PricingCard = ({
           flex-wrap: wrap;
           align-items: center;
           line-height: 1.2;
-          background: linear-gradient(
-            to bottom right,
-            var(--color-seafoam-100) 40%,
-            var(--color-seafoam-200)
-          );
+          background: var(--color-seafoam-100);
           border-bottom: 1px solid var(--color-seafoam-300);
-          padding: ${size === 'large' ? '2rem 2.5rem' : '1.75rem 2.25rem'};
+          padding: ${size === 'large' ? '2.5rem' : '2.25rem'};
         }
         .title {
           font-family: var(--font-tuner);
@@ -311,8 +330,9 @@ const PricingCard = ({
           margin: 0;
         }
         .interval {
-          opacity: 0.4;
+          margin-left: 0.125rem;
           font-size: 0.75em;
+          color: var(--color-seaforam-500);
         }
         .body {
           flex: 1 1 auto;
@@ -343,15 +363,14 @@ const PricingCard = ({
               width: 0.5em;
               height: 0.5em;
               border-radius: 100%;
-              background: var(--color-seafoam-300);
-              border: 1px solid var(--color-seafoam-400);
+              background: var(--color-seafoam-400);
             }
           }
           :global(p) {
             font-size: ${size === 'large' ? '1.25rem' : '1.125rem'};
           }
         }
-        hr {
+        .dotted {
           border-top: none;
           border-right: none;
           border-left: none;

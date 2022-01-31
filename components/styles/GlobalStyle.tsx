@@ -109,10 +109,14 @@ export const GlobalStyle = React.memo(createGlobalStyle`
     --color-secondary-dark: #241748;
     --color-blue: var(--color-secondary-dark);
     --color-blue-light: var(--color-secondary);
+    --color-tina-blue: #2296FE;
+    --color-tina-blue-light: #00A5FF;
+    --color-tina-blue-dark: #0574E4;
     --color-seafoam-100: #F2FDFC;
     --color-seafoam-200: #E6FAF8;
     --color-seafoam-300: #D1FAF6;
     --color-seafoam-400: #B4F4E0;
+    --color-seaforam-500: #96E7D8;
     --color-seafoam: var(--color-seafoam-200);
     --color-seafoam-dark: var(--color-seafoam-400);
     --color-light: #FAFAFA;
