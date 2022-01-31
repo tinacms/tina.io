@@ -103,3 +103,81 @@ export default App
 Assuming that [contextual editing](/docs/tinacms-context/) is setup on your page, your editors should be able to start editing markdown content!
 
 ![markdown-editing](/gif/markdown.gif)
+
+## Rendering Markdown
+
+The value you get back from the TinaCMS `markdown` field is raw markdown, so you'll want to make sure you have a way to render it to HTML on the page (if you're converting an existing markdown-powered site to use Tina, you probably already have a solution in place for this.)
+
+A popular solution is to use the [react-markdown](https://github.com/remarkjs/react-markdown) library, which provides document-safe rendering for markdown in React.
+
+After installing `react-markdown`, it can be used like this:
+
+```tsx
+import * as React from 'react'
+import ReactMarkdown from 'react-markdown'
+
+export default MyContentPage: (props) => {
+  const markdownContent = props.data.getPostDocument.data.body
+  return (
+    <main>
+      <ReactMarkdown>
+        {markdownContent}
+      </ReactMarkdown>
+    </main>
+  )
+}
+
+// See /docs/features/data-fetching/ for more info on our getStaticProps/getStaticPaths data-fetching with NextJS
+export const getStaticPaths = async () => {
+  const tinaProps = await staticRequest({
+    query: `{
+        getPostList{
+          edges {
+            node {
+              sys {
+                filename
+              }
+            }
+          }
+        }
+      }`,
+    variables: {},
+  })
+  const paths = tinaProps.getPostList.edges.map(x => {
+    return { params: { slug: x.node.sys.filename } }
+  })
+
+  return {
+    paths,
+    fallback: 'blocking',
+  }
+}
+
+export const getStaticProps = async ctx => {
+  const query = `query getPost($relativePath: String!) {
+    getPostDocument(relativePath: $relativePath) {
+      data {
+        body
+      }
+    }
+  }
+  `
+  const variables = {
+    relativePath: ctx.params.slug + '.md',
+  }
+  let data = {}
+
+  data = await staticRequest({
+    query,
+    variables,
+  })
+
+  return {
+    props: {
+      data,
+      query,
+      variables,
+    },
+  }
+}
+```
