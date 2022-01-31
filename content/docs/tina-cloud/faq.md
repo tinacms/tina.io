@@ -61,6 +61,17 @@ Here's an example monorepo structure that works with Tina Cloud:
     /projects/site-c
 ```
 
+## How do I resolve the `Unable to find record '.tina/__generated__/_graphql.json'` error?
+
+Tina Cloud's GraphQL API returns this error when it cannot find a file in your GitHub repository. This may occur under the following circumstances:
+
+- The `.tina` folder (and `__generated__` subfolder) is not in your GitHub repository remote.
+  - If the folder is in your local repository, but not in your remote, make sure there isn't a `.gitignore` file excluding it.
+- Tina is configured with a branch that doesn't exist or a branch that doesn't contain the `.tina` folder.
+  - The referenced branch should be created and should contain the `.tina` folder.
+- The apiURL prop is misconfigured on the TinaCMS component.
+  - Check the apiURL and make sure it looks like `https://content.tinajs.io/content/{tina_client_id}/github/{branch}` where `{tina_client_id}` matches the Client ID on the Project in Tina Cloud and `{branch}` is a valid branch.
+
 ## Tina.io login window doesn't close when logging in from a site
 
 When a user logs in from your site, we will pop open a login window. When login is complete, we will attempt to send a message back to the main window.
