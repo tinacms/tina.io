@@ -14,16 +14,9 @@ import {
 import { useRouter } from 'next/router'
 import { getGuideNavProps } from 'utils/guide_helpers'
 import { useMemo } from 'react'
-import { usePlugin, useFormScreenPlugin } from 'tinacms'
-import { InlineTextarea } from 'react-tinacms-inline'
-import { useGithubMarkdownForm, useGithubJsonForm } from 'react-tinacms-github'
-import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
-import { MarkdownCreatorPlugin } from 'utils/plugins'
-import { fileToUrl, createTocListener } from 'utils'
+import { createTocListener } from 'utils'
 import Toc from '../../../../components/toc'
-import { useLastEdited } from 'utils/useLastEdited'
-import { InlineGithubForm } from 'components/layout/InlineGithubForm'
 import { openGraphImage } from 'utils/open-graph-image'
 import * as ga from '../../../../utils/ga'
 import { getDocsNav } from 'utils/docs/getDocProps'
@@ -98,80 +91,14 @@ export default function GuideTemplate({
     }
   }, [router.events])
 
-  const [{ frontmatter, markdownBody }, stepForm] = useGithubMarkdownForm(
-    markdownFile
-  )
-
-  const [guide, guideForm] = useGithubJsonForm(guideMeta, {
-    label: 'Guide Metadata',
-    fields: [
-      { component: 'text', name: 'title', label: 'Title' },
-      {
-        name: 'steps',
-        component: 'group-list',
-        // @ts-ignore
-        itemProps: step => ({
-          label: step.title,
-        }),
-        fields: [
-          { component: 'text', name: 'title' },
-          { component: 'text', name: 'id' },
-          { component: 'text', name: 'slug' },
-          { component: 'text', name: 'data' },
-        ],
-      },
-    ],
-  })
+  const { frontmatter, markdownBody } = markdownFile.data
+  const guide = guideMeta.data
 
   const guideTitle = guide?.title || 'TinaCMS Guides'
-  const guideNav = useGuideNav(guide, allGuides)
   const { prev, next } = usePrevNextSteps(guide, currentPath)
 
-  usePlugin(
-    useMemo(
-      () =>
-        new MarkdownCreatorPlugin({
-          label: 'Step',
-          fields: [
-            { name: 'title', label: 'Title', component: 'text' },
-            { name: 'slug', label: 'Slug', component: 'text' },
-          ],
-          filename({ slug }) {
-            return `content/guides/nextjs/github/${slug}.md`
-          },
-          frontmatter({ title }) {
-            return { title }
-          },
-          body() {
-            return 'A step in the right direction.'
-          },
-          async afterCreate(response) {
-            let url = fileToUrl(
-              response.content.path.split('content')[1],
-              'guides'
-            )
-
-            guideForm.mutators.push('steps', {
-              title: url,
-              id: `/guides/${url}`,
-              slug: `/guides/${url}`,
-              data: `./${url.split('/').slice(-1)[0]}.md`,
-            })
-
-            await guideForm.submit()
-
-            window.location.href = `/guides/${url}`
-          },
-        }),
-      []
-    )
-  )
-  usePlugin(stepForm)
-  useFormScreenPlugin(guideForm)
-  useLastEdited(stepForm)
-
   return (
-    <InlineGithubForm form={stepForm}>
+    <>
       <NextSeo
         title={frontmatter.title}
         titleTemplate={'%s | TinaCMS Docs'}
@@ -187,24 +114,20 @@ export default function GuideTemplate({
       <DocsLayout navItems={docsNav}>
         <DocsGrid>
           <DocGridHeader>
-            <DocsPageTitle>
-              <InlineTextarea name="frontmatter.title" />
-            </DocsPageTitle>
+            <DocsPageTitle>{frontmatter.title}</DocsPageTitle>
           </DocGridHeader>
           <DocGridToc>
             <Toc tocItems={tocItems} activeIds={activeIds} />
           </DocGridToc>
           <DocGridContent ref={contentRef}>
             <hr />
-            <InlineWysiwyg name="markdownBody">
-              <MarkdownContent escapeHtml={false} content={markdownBody} />
-            </InlineWysiwyg>
+            <MarkdownContent escapeHtml={false} content={markdownBody} />
             <LastEdited date={frontmatter.last_edited} />
             <DocsPagination prevPage={prev} nextPage={next} />
           </DocGridContent>
         </DocsGrid>
       </DocsLayout>
-    </InlineGithubForm>
+    </>
   )
 }
 

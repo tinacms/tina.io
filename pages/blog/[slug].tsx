@@ -19,7 +19,6 @@ const fg = require('fast-glob')
 import { Button } from 'components/ui/Button'
 import Error from 'next/error'
 import { getMarkdownPreviewProps } from 'utils/getMarkdownPreviewProps'
-import { InlineWysiwyg } from 'components/inline-wysiwyg'
 import { usePlugin, useCMS } from 'tinacms'
 import { useLastEdited } from 'utils/useLastEdited'
 import { LastEdited, DocsPagination } from 'components/ui'
@@ -82,15 +81,7 @@ function BlogTemplate({ file, siteConfig, prevPage, nextPage }) {
               <EditLink />
             </BlogMeta>
             {warningMessage && <WarningCallout text={warningMessage} />}
-            <InlineWysiwyg
-              name="markdownBody"
-              imageProps={{
-                uploadDir: () => '/img/blog',
-                parse: media => `/img/blog/${media.filename}`,
-              }}
-            >
-              <MarkdownContent escapeHtml={false} content={markdownBody} />
-            </InlineWysiwyg>
+            <MarkdownContent escapeHtml={false} content={markdownBody} />
             <LastEdited date={frontmatter.last_edited} />
             {(prevPage?.slug !== null || nextPage?.slug !== null) && (
               <DocsPagination prevPage={prevPage} nextPage={nextPage} />

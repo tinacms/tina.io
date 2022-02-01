@@ -2,7 +2,6 @@ import path from 'path'
 import matter from 'gray-matter'
 import { readFile } from './readFile'
 import { formatExcerpt } from '.'
-import { parseMarkdown, getGithubFile, GithubFile } from 'next-tinacms-github'
 import { slugifyTocHeading as slugify } from './docs/slugifyToc'
 import getTocContent from './getTocContent'
 
@@ -17,8 +16,6 @@ export const readMarkdownFile = async (filePath: string) => {
     },
   }
 }
-
-
 
 export const getMarkdownPreviewProps = async (
   fileRelativePath: string,
@@ -51,15 +48,7 @@ export async function getMarkdownFile(
   fileRelativePath: string,
   preview: boolean,
   previewData: any
-): Promise<GithubFile<any>> {
-  if (preview) {
-    return getGithubFile<any>({
-      ...previewData,
-      fileRelativePath,
-      parse: parseMarkdown,
-    })
-  }
-
+): Promise<any> {
   const file = await readMarkdownFile(fileRelativePath)
 
   return { sha: '', ...file }
