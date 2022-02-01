@@ -25,6 +25,7 @@
   "dependencies": {
     "@next/bundle-analyzer": "^10.0.0",
     "@tinacms/graphql": "0.59.2",
+    "@tinacms/styles": "^0.42.1",
     "@types/react-instantsearch-dom": "^5.2.6",
     "@types/styled-components": "^4.4.2",
     "@uiw/react-monacoeditor": "^3.4.5",
@@ -57,9 +58,6 @@
     "next": "^10.1.2",
     "next-seo": "^4.1.0",
     "next-svgr": "0.0.2",
-    "next-tinacms-github": "^0.39.0",
-    "next-tinacms-json": "^0.39.0",
-    "next-tinacms-markdown": "^0.39.0",
     "nextjs-cors": "^2.1.0",
     "node-fetch": "^2.6.1",
     "node-sass": "^7.0.0",
@@ -80,11 +78,6 @@
     "react-markdown": "^4.3.1",
     "react-syntax-highlighter": "^12.2.1",
     "react-textarea-autosize": "^7.1.2",
-    "react-tinacms-date": "^0.39.0",
-    "react-tinacms-editor": "^0.39.0",
-    "react-tinacms-field-condition": "^0.2.5",
-    "react-tinacms-github": "^0.39.0",
-    "react-tinacms-inline": "^0.39.0",
     "remark": "^11.0.2",
     "remark-parse": "^8.0.0",
     "remark-shortcodes": "^0.3.1",
@@ -92,8 +85,6 @@
     "strip-markdown": "^3.1.1",
     "styled-components": "^4.4.1",
     "styled-jsx-plugin-sass": "^1.0.0",
-    "tinacms": "^0.39.0",
-    "tinacms-beta": "npm:tinacms@0.59.1",
     "webpack": "^4.41.5"
   },
   "devDependencies": {
