@@ -1,11 +1,8 @@
-import React from 'react'
-import { BlocksControls, InlineTextarea } from 'react-tinacms-inline'
-import { BlockTemplate } from 'tinacms'
 import { ActionFields, Actions } from './Actions'
 import CloudsOne from '../../public/svg/clouds-1.svg'
 import CloudsTwo from '../../public/svg/clouds-2.svg'
 
-export const flying_template: BlockTemplate = {
+export const flying_template = {
   label: 'Flying Tina',
   defaultItem: {
     headline: 'Learn Tina',

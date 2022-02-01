@@ -1,9 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import ReactMarkdown from 'react-markdown'
-import { BlocksControls } from 'react-tinacms-inline'
 import { IconRight } from '../home'
-import TinaLogo from '../../public/svg/tina-logo.svg'
 import TinaCloudWordmark from '../../public/svg/tina-cloud-wordmark.svg'
 import { Button, ButtonGroup } from 'components/ui'
 
@@ -17,13 +14,16 @@ export function CloudBanner() {
               <span className="wordmark">
                 <TinaCloudWordmark />
               </span>{' '}
-               Now supports MDX components. Give the power of MDX to your content creators!
+              Now supports MDX components. Give the power of MDX to your content
+              creators!
             </p>
           </span>
           <Link href="/blog/tina-supports-mdx/">
             <a className="link">
               <span className="desktop">Read The Announcement</span>
-              <span className="mobile">Tina Cloud supports MDX componentsß</span>
+              <span className="mobile">
+                Tina Cloud supports MDX componentsß
+              </span>
               <IconRight />
             </a>
           </Link>

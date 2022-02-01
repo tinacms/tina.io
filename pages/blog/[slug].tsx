@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { CloseIcon, EditIcon } from '@tinacms/icons'
 import { formatDate, isRelevantPost } from '../../utils'
 import {
   Layout,
@@ -10,17 +9,11 @@ import {
   MarkdownContent,
   DocsTextWrapper,
 } from 'components/layout'
-import { InlineTextarea } from 'react-tinacms-inline'
-import { useGithubMarkdownForm } from 'react-tinacms-github'
 import { fileToUrl } from 'utils/urls'
 import { getPageRef } from 'utils/docs/getDocProps'
-import { InlineGithubForm } from 'components/layout/InlineGithubForm'
 const fg = require('fast-glob')
-import { Button } from 'components/ui/Button'
 import Error from 'next/error'
 import { getMarkdownPreviewProps } from 'utils/getMarkdownPreviewProps'
-import { usePlugin, useCMS } from 'tinacms'
-import { useLastEdited } from 'utils/useLastEdited'
 import { LastEdited, DocsPagination } from 'components/ui'
 import { openGraphImage } from 'utils/open-graph-image'
 import { WarningCallout } from '../../utils/shortcodes'
@@ -29,12 +22,7 @@ function BlogTemplate({ file, siteConfig, prevPage, nextPage }) {
   if (!file) {
     return <Error statusCode={404} />
   }
-
-  // Registers Tina Form
-  const [data, form] = useGithubMarkdownForm(file, formOptions)
-
-  usePlugin(form)
-  useLastEdited(form)
+  const data = file.data
 
   const frontmatter = data.frontmatter
   const markdownBody = data.markdownBody
@@ -46,50 +34,44 @@ function BlogTemplate({ file, siteConfig, prevPage, nextPage }) {
       '**Update:** The Tina API has been evolving, and the content in this post is outdated. For help getting started with Tina, we suggest checking out our [getting started doc](/docs/setup-overview/).')
 
   return (
-    <InlineGithubForm form={form}>
-      <Layout>
-        <NextSeo
-          title={frontmatter.title}
-          titleTemplate={'%s | ' + siteConfig.title + ' Blog'}
-          description={excerpt}
-          openGraph={{
-            title: frontmatter.title,
-            description: excerpt,
-            images: [
-              frontmatter.opengraph?.image ||
-                openGraphImage(
-                  frontmatter.title,
-                  ' | TinaCMS Blog',
-                  frontmatter.author
-                ),
-            ],
-          }}
-        />
-        <Hero>{frontmatter.title}</Hero>
-        <BlogWrapper>
-          <DocsTextWrapper>
-            <BlogMeta>
-              <MetaWrap>
-                <MetaBit>{formatDate(frontmatter.date)}</MetaBit>
-                <MetaBit>
-                  <span>By</span>{' '}
-                  <strong>
-                    <InlineTextarea name="frontmatter.author" />
-                  </strong>
-                </MetaBit>
-              </MetaWrap>
-              <EditLink />
-            </BlogMeta>
-            {warningMessage && <WarningCallout text={warningMessage} />}
-            <MarkdownContent escapeHtml={false} content={markdownBody} />
-            <LastEdited date={frontmatter.last_edited} />
-            {(prevPage?.slug !== null || nextPage?.slug !== null) && (
-              <DocsPagination prevPage={prevPage} nextPage={nextPage} />
-            )}
-          </DocsTextWrapper>
-        </BlogWrapper>
-      </Layout>
-    </InlineGithubForm>
+    <Layout>
+      <NextSeo
+        title={frontmatter.title}
+        titleTemplate={'%s | ' + siteConfig.title + ' Blog'}
+        description={excerpt}
+        openGraph={{
+          title: frontmatter.title,
+          description: excerpt,
+          images: [
+            frontmatter.opengraph?.image ||
+              openGraphImage(
+                frontmatter.title,
+                ' | TinaCMS Blog',
+                frontmatter.author
+              ),
+          ],
+        }}
+      />
+      <Hero>{frontmatter.title}</Hero>
+      <BlogWrapper>
+        <DocsTextWrapper>
+          <BlogMeta>
+            <MetaWrap>
+              <MetaBit>{formatDate(frontmatter.date)}</MetaBit>
+              <MetaBit>
+                <span>By</span> <strong>{frontmatter.author}</strong>
+              </MetaBit>
+            </MetaWrap>
+          </BlogMeta>
+          {warningMessage && <WarningCallout text={warningMessage} />}
+          <MarkdownContent escapeHtml={false} content={markdownBody} />
+          <LastEdited date={frontmatter.last_edited} />
+          {(prevPage?.slug !== null || nextPage?.slug !== null) && (
+            <DocsPagination prevPage={prevPage} nextPage={nextPage} />
+          )}
+        </DocsTextWrapper>
+      </BlogWrapper>
+    </Layout>
   )
 }
 
@@ -223,37 +205,5 @@ const MetaBit = styled.p`
   span {
     opacity: 0.7;
     margin-right: 0.25rem;
-  }
-`
-
-/*
- ** Edit Button ------------------------------------------------------
- */
-
-const EditLink = () => {
-  const cms = useCMS()
-
-  return (
-    <EditButton id="OpenAuthoringBlogEditButton" onClick={cms.toggle}>
-      {cms.enabled ? <CloseIcon /> : <EditIcon />}
-      {cms.enabled ? 'Exit Edit Mode' : 'Edit This Post'}
-    </EditButton>
-  )
-}
-
-const EditButton = styled(Button)`
-  background: none;
-  display: flex;
-  align-items: center;
-  border: 1px solid var(--color-orange);
-  padding: 0 1.25rem;
-  height: 45px;
-  color: var(--color-orange);
-  transition: all 150ms ease-out;
-  transform: translate3d(0px, 0px, 0px);
-
-  svg {
-    fill: currentColor;
-    margin: 0 4px 0 -4px;
   }
 `
