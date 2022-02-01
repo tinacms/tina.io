@@ -60,7 +60,7 @@ export const WarningCallout = styled(({ text, ...styleProps }) => {
 
   a,
   a:visited {
-    color: var(--tina-color-primary-dark) !important;
+    color: var(--color-tina-blue-dark) !important;
     font-weight: bold;
   }
 

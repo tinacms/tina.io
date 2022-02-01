@@ -25,7 +25,6 @@
   "dependencies": {
     "@next/bundle-analyzer": "^10.0.0",
     "@tinacms/graphql": "0.59.2",
-    "@tinacms/styles": "^0.42.1",
     "@types/react-instantsearch-dom": "^5.2.6",
     "@types/styled-components": "^4.4.2",
     "@uiw/react-monacoeditor": "^3.4.5",

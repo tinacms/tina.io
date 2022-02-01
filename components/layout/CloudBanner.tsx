@@ -83,7 +83,7 @@ export function CloudBanner() {
           );
           box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.03);
           border-bottom: 1px solid #d1faf6;
-          color: var(--tina-color-primary);
+          color: var(--color-tina-blue);
           display: flex;
           justify-content: space-between;
           align-items: center;

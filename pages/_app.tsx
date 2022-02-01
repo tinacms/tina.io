@@ -5,7 +5,6 @@ import { DefaultSeo } from 'next-seo'
 import data from '../content/siteConfig.json'
 import TagManager from 'react-gtm-module'
 import { GlobalStyle } from 'components/styles/GlobalStyle'
-import { GlobalStyles } from '@tinacms/styles'
 import '../styles/index.css'
 import 'components/styles/fontImports.css'
 import path from 'path'
@@ -16,7 +15,6 @@ path.resolve('./content/')
 const MainLayout = ({ Component, pageProps }) => {
   return (
     <>
-      <GlobalStyles />
       <DefaultSeo
         title={data.seoDefaultTitle}
         titleTemplate={'%s | ' + data.title}

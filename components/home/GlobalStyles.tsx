@@ -116,7 +116,7 @@ export const GlobalStyles = css.global`
   }
 
   .lightblue {
-    background: var(--tina-color-primary);
+    background: var(--color-tina-blue);
     color: var(--color-white);
     --color-emphasis: var(--color-orange);
   }
