@@ -2,8 +2,6 @@ import React from 'react'
 import { GetStaticProps } from 'next'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
 import { NextSeo } from 'next-seo'
-import { useGithubJsonForm } from 'react-tinacms-github'
-import styled from 'styled-components'
 import {
   Layout,
   Hero,
@@ -12,13 +10,9 @@ import {
   RichTextWrapper,
   MarkdownContent,
 } from 'components/layout'
-import { usePlugin } from 'tinacms'
 
 const SecurityPage = (props: any) => {
-  //@ts-ignore
-  const [data, form] = useGithubJsonForm(props.file, SecurityPageTemplate)
-
-  usePlugin(form)
+  const data = props.file.data
 
   return (
     <Layout>
@@ -33,23 +27,6 @@ const SecurityPage = (props: any) => {
       </RichTextWrapper>
     </Layout>
   )
-}
-
-const SecurityPageTemplate = {
-  label: 'Security',
-  defaultItem: {},
-  fields: [
-    {
-      label: 'Page Title',
-      name: 'title',
-      component: 'textarea',
-    },
-    {
-      label: 'Body Copy',
-      name: 'body',
-      component: 'markdown',
-    },
-  ],
 }
 
 export const getStaticProps: GetStaticProps = async function({

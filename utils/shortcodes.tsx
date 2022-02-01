@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { useCMS } from 'tinacms'
-import { WarningIcon } from '@tinacms/icons'
+// import { useCMS } from 'tinacms'
+// import { WarningIcon } from '@tinacms/icons'
 import { Button } from 'components/ui'
 import ReactMarkdown from 'react-markdown'
 
@@ -17,13 +17,14 @@ const DemoButtonWrapper = styled.div`
 `
 
 export function AlertTest({ type, message, timeout, buttonText }) {
-  const cms = useCMS()
-  const sendAlert = React.useCallback(() => {
-    cms.alerts[type](message, timeout)
-  }, [type, message, timeout])
+  // TODO: investigate what removing this broke and if it needs to be added in
+  // const cms = useCMS()
+  // const sendAlert = React.useCallback(() => {
+  //   cms.alerts[type](message, timeout)
+  // }, [type, message, timeout])
   return (
     <DemoButtonWrapper>
-      <Button color="primary" onClick={sendAlert}>
+      <Button color="primary" onClick={() => {}}>
         {buttonText || 'Try it'}
       </Button>
     </DemoButtonWrapper>
@@ -31,12 +32,12 @@ export function AlertTest({ type, message, timeout, buttonText }) {
 }
 
 export const WarningCallout = styled(({ text, ...styleProps }) => {
+  // TODO: investigate what removing the  <WarningIcon /> under the div did
   return (
     <div {...styleProps}>
       <div>
         <ReactMarkdown>{text}</ReactMarkdown>
       </div>
-      <WarningIcon />
     </div>
   )
 })`

@@ -1,62 +1,18 @@
-import React from 'react'
 import styled from 'styled-components'
-import { BlockTemplate } from 'tinacms'
 import { NextSeo } from 'next-seo'
 import { GetStaticProps } from 'next'
-import { usePlugin } from 'tinacms'
 
 import { Layout, Wrapper, RichTextWrapper } from 'components/layout'
 import { ArrowList } from 'components/ui'
 import { TeamsForm } from 'components/forms'
-import {
-  InlineTextarea,
-  InlineBlocks,
-  BlocksControls,
-} from 'react-tinacms-inline'
-import { InlineGithubForm } from 'components/layout/InlineGithubForm'
-import { useGithubJsonForm } from 'react-tinacms-github'
+
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
 
-const formOptions = {
-  label: 'Teams',
-  fields: [
-    {
-      label: 'Headline',
-      name: 'headline',
-      description: 'Enter the main headline here',
-      component: 'textarea',
-    },
-    {
-      label: 'Supporting Points',
-      name: 'supporting_points',
-      description: 'Edit the points here',
-      component: 'group-list',
-      itemProps: item => ({
-        key: item.id,
-        label: `${item.point.slice(0, 25)}...`,
-      }),
-      defaultItem: () => ({
-        point: 'New Point',
-        _template: 'point',
-      }),
-      fields: [
-        {
-          label: 'Point',
-          name: 'point',
-          component: 'textarea',
-        },
-      ],
-    },
-  ],
-}
-
 function TeamsPage(props) {
-  // Adds Tina Form
-  const [data, form] = useGithubJsonForm(props.file, formOptions)
-  usePlugin(form)
+  const data = props.file.data
 
   return (
-    <InlineGithubForm form={form}>
+    <>
       <TeamsLayout color={'secondary'}>
         <NextSeo
           title={data.title}
@@ -71,15 +27,17 @@ function TeamsPage(props) {
             <RichTextWrapper>
               <TeamsGrid>
                 <TeamsContent>
-                  <h2>
-                    <InlineTextarea name="headline" />
-                  </h2>
+                  <h2>{data.headline}</h2>
                   <hr />
                   <ArrowList>
-                    <InlineBlocks
-                      name="supporting_points"
-                      blocks={TEAMS_POINTS_BLOCKS}
-                    />
+                    {data.supporting_points.map((block: any, index) => {
+                      switch (block._template) {
+                        case 'point':
+                          return <SupportingPoint data={block} index={index} />
+                        default:
+                          return null
+                      }
+                    })}
                   </ArrowList>
                 </TeamsContent>
                 <TeamsFormWrapper>
@@ -92,7 +50,7 @@ function TeamsPage(props) {
           </Wrapper>
         </TeamsSection>
       </TeamsLayout>
-    </InlineGithubForm>
+    </>
   )
 }
 
@@ -118,16 +76,10 @@ export const getStaticProps: GetStaticProps = async function({
  */
 
 function SupportingPoint({ data, index }) {
-  return (
-    <BlocksControls index={index}>
-      <li key={`supporting-point-${index}`}>
-        <InlineTextarea name="point" focusRing={false} />
-      </li>
-    </BlocksControls>
-  )
+  return <li key={`supporting-point-${index}`}>{data.point}</li>
 }
 
-const point_template: BlockTemplate = {
+const point_template = {
   label: 'Teams Point',
   defaultItem: { point: 'Something dope about TinaTeams 🤙' },
   fields: [],
