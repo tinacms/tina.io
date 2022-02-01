@@ -2,35 +2,6 @@ import { ActionFields, Actions } from './Actions'
 import CloudsOne from '../../public/svg/clouds-1.svg'
 import CloudsTwo from '../../public/svg/clouds-2.svg'
 
-export const flying_template = {
-  label: 'Flying Tina',
-  defaultItem: {
-    headline: 'Learn Tina',
-    subline: 'Learn Tina through Interactive & Fun Tutorials.',
-    actions: [
-      {
-        variant: 'button',
-        label: 'Get Started',
-        icon: 'arrowRight',
-        url: '#',
-      },
-    ],
-  },
-  fields: [
-    {
-      label: 'Headline',
-      name: 'headline',
-      component: 'markdown',
-    },
-    {
-      label: 'Subline',
-      name: 'subline',
-      component: 'text',
-    },
-    ...ActionFields,
-  ],
-}
-
 export function FlyingBlock({ data, index }) {
   return (
     <>
