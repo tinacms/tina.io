@@ -36,20 +36,12 @@ export const flying_template: BlockTemplate = {
 
 export function FlyingBlock({ data, index }) {
   return (
-    <BlocksControls
-      index={index}
-      insetControls={true}
-      focusRing={{ offset: -16 }}
-    >
-      <div className="learnTina">
+    <>
+      <div key={index} className="learnTina">
         <div className="learnContainer">
           <div>
-            <h3 className="title">
-              <InlineTextarea name="headline" />
-            </h3>
-            <p className="text">
-              <InlineTextarea name="subline" />
-            </p>
+            {data.headline && <h3 className="title">{data.headline}</h3>}
+            {data.subline && <p className="text">{data.subline}</p>}
             <Actions items={data.actions} />
           </div>
           <div className="learnImageWrapper">
@@ -193,6 +185,6 @@ export function FlyingBlock({ data, index }) {
           }
         }
       `}</style>
-    </BlocksControls>
+    </>
   )
 }
