@@ -4,7 +4,6 @@ import { LinkNav } from '../ui/LinkNav'
 import TwitterIconSvg from '../../public/svg/twitter-icon.svg'
 import GithubIconSvg from '../../public/svg/github-icon.svg'
 import { EmailForm } from '../forms/EmailForm'
-import { EditLink } from './EditLink'
 import { TinaIcon } from 'components/logo'
 import Link from 'next/link'
 
@@ -210,7 +209,6 @@ export const Footer = styled(({ light, ...styleProps }) => {
           <EmailForm isFooter />
         </FooterForm>
         <Footnote>
-          <EditLink color={'primary'} />
           <FootnoteLinks>
             <Link href="/security/" passHref>
               <a>Security</a>
