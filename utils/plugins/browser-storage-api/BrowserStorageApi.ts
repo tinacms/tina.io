@@ -33,7 +33,7 @@ export class BrowserStorageApi {
 
   private debouncePersist() {
     this.timeout && clearTimeout(this.timeout)
-    this.timeout = setTimeout(this.persist.bind(this), 1000)
+    this.timeout = setTimeout(this.persist.bind(this), 1000) as any
   }
 
   private persist() {
