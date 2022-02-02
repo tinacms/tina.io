@@ -1,7 +1,5 @@
 {
   "env": {
-    "GITHUB_CLIENT_ID": "942232a549642aea2bbf",
-    "GITHUB_CLIENT_SECRET": "@github_client_secret",
     "GTM_ID": "@gtm_id",
     "HUBSPOT_TEAMS_FORM_ID": "@hubspot_teams_form_id",
     "HUBSPOT_PORTAL_ID": "@hubspot_portal_id",
@@ -9,10 +7,7 @@
   },
   "build": {
     "env": {
-      "GITHUB_CLIENT_ID": "942232a549642aea2bbf",
-      "BASE_REPO_FULL_NAME": "tinacms/tinacms.org",
       "USE_CONTENT_API": "true",
-      "BASE_BRANCH": "master",
       "GTM_ID": "@gtm_id",
       "HUBSPOT_TEAMS_FORM_ID": "@hubspot_teams_form_id",
       "HUBSPOT_PORTAL_ID": "@hubspot_portal_id",
