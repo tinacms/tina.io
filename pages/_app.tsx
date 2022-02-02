@@ -5,7 +5,6 @@ import { DefaultSeo } from 'next-seo'
 import data from '../content/siteConfig.json'
 import TagManager from 'react-gtm-module'
 import { GlobalStyle } from 'components/styles/GlobalStyle'
-import '../styles/index.css'
 import 'components/styles/fontImports.css'
 import path from 'path'
 
