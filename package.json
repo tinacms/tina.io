@@ -20,7 +20,8 @@
     "test-watch": "jest  --passWithNoTests --watch",
     "type-check": "tsc",
     "create-indices": "tsc --project ./indices/tsconfig.json --outDir ./indices/out && node ./indices/out/indices/createIndices.js",
-    "deploy": "yarn build && yarn export"
+    "deploy": "yarn build && yarn export",
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
     "@next/bundle-analyzer": "^10.0.0",
@@ -108,6 +109,7 @@
     "@types/react-gtm-module": "^2.0.0",
     "babel-plugin-styled-components": "^1.8.0",
     "jest": "^25.1.0",
+    "next-sitemap": "^2.1.6",
     "prettier": "^1.18.2",
     "ts-jest": "^25.2.0",
     "tslint": "^5.18.0",

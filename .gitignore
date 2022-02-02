@@ -34,7 +34,12 @@ examples/**/out
 
 # env variables
 .env
+.env.local
 
 #indices
 indices/out
 .now
+
+#sitemaps
+/public/sitemap.xml
+/public/sitemap-0.xml
