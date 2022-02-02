@@ -1,55 +1,15 @@
-import React from 'react'
-import { BlocksControls, InlineTextarea } from 'react-tinacms-inline'
-import { BlockTemplate } from 'tinacms'
 import { ActionFields, Actions } from './Actions'
 import CloudsOne from '../../public/svg/clouds-1.svg'
 import CloudsTwo from '../../public/svg/clouds-2.svg'
 
-export const flying_template: BlockTemplate = {
-  label: 'Flying Tina',
-  defaultItem: {
-    headline: 'Learn Tina',
-    subline: 'Learn Tina through Interactive & Fun Tutorials.',
-    actions: [
-      {
-        variant: 'button',
-        label: 'Get Started',
-        icon: 'arrowRight',
-        url: '#',
-      },
-    ],
-  },
-  fields: [
-    {
-      label: 'Headline',
-      name: 'headline',
-      component: 'markdown',
-    },
-    {
-      label: 'Subline',
-      name: 'subline',
-      component: 'text',
-    },
-    ...ActionFields,
-  ],
-}
-
 export function FlyingBlock({ data, index }) {
   return (
-    <BlocksControls
-      index={index}
-      insetControls={true}
-      focusRing={{ offset: -16 }}
-    >
-      <div className="learnTina">
+    <>
+      <div key={index} className="learnTina">
         <div className="learnContainer">
           <div>
-            <h3 className="title">
-              <InlineTextarea name="headline" />
-            </h3>
-            <p className="text">
-              <InlineTextarea name="subline" />
-            </p>
+            {data.headline && <h3 className="title">{data.headline}</h3>}
+            {data.subline && <p className="text">{data.subline}</p>}
             <Actions items={data.actions} />
           </div>
           <div className="learnImageWrapper">
@@ -193,6 +153,6 @@ export function FlyingBlock({ data, index }) {
           }
         }
       `}</style>
-    </BlocksControls>
+    </>
   )
 }

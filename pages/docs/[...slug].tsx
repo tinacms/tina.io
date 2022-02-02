@@ -4,16 +4,9 @@ import { NextSeo } from 'next-seo'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { DocsLayout, MarkdownContent } from 'components/layout'
 import { NavToggle, DocsPagination, LastEdited } from 'components/ui'
-import { InlineTextarea } from 'react-tinacms-inline'
-import { useGithubMarkdownForm } from 'react-tinacms-github'
 import { getDocProps } from 'utils/docs/getDocProps'
-import { InlineGithubForm } from 'components/layout/InlineGithubForm'
-import { GithubError } from 'next-tinacms-github'
-import { InlineWysiwyg } from 'components/inline-wysiwyg'
-import { usePlugin } from 'tinacms'
 import Toc from '../../components/toc'
 import { useTocListener } from 'utils'
-import { useLastEdited } from 'utils/useLastEdited'
 import { openGraphImage } from 'utils/open-graph-image'
 import Error from 'next/error'
 import { NotFoundError } from 'utils/error/NotFoundError'
@@ -27,12 +20,10 @@ export function DocTemplate(props) {
   if (props.notFound) {
     return <Error statusCode={404} />
   }
+  const data = props.file.data
 
   const router = useRouter()
   const isCloudDocs = router.asPath.includes('tina-cloud')
-
-  // Registers Tina Form
-  const [data, form] = useGithubMarkdownForm(props.file, formOptions)
 
   const isBrowser = typeof window !== `undefined`
 
@@ -42,9 +33,6 @@ export function DocTemplate(props) {
   const tocItems = props.tocItems
 
   const { activeIds, contentRef } = useTocListener(data)
-
-  usePlugin(form)
-  useLastEdited(form)
 
   React.useEffect(() => {
     const handleRouteChange = url => {
@@ -62,7 +50,7 @@ export function DocTemplate(props) {
   }, [router.events])
 
   return (
-    <InlineGithubForm form={form}>
+    <>
       <NextSeo
         title={frontmatter.title}
         titleTemplate={'%s | TinaCMS Docs'}
@@ -77,9 +65,7 @@ export function DocTemplate(props) {
         <DocsGrid>
           <DocGridHeader>
             <Breadcrumbs navItems={props.docsNav} />
-            <DocsPageTitle>
-              <InlineTextarea name="frontmatter.title" />
-            </DocsPageTitle>
+            <DocsPageTitle>{frontmatter.title}</DocsPageTitle>
           </DocGridHeader>
           <DocGridToc>
             <Toc tocItems={tocItems} activeIds={activeIds} />
@@ -87,9 +73,7 @@ export function DocTemplate(props) {
           <DocGridContent ref={contentRef}>
             <hr />
             {isCloudDocs ? <CloudDisclaimer /> : null}
-            <InlineWysiwyg name="markdownBody">
-              <MarkdownContent escapeHtml={false} content={markdownBody} />
-            </InlineWysiwyg>
+            <MarkdownContent escapeHtml={false} content={markdownBody} />
             <LastEdited date={frontmatter.last_edited} />
             {(props.prevPage?.slug !== null ||
               props.nextPage?.slug !== null) && (
@@ -101,7 +85,7 @@ export function DocTemplate(props) {
           </DocGridContent>
         </DocsGrid>
       </DocsLayout>
-    </InlineGithubForm>
+    </>
   )
 }
 
@@ -120,7 +104,7 @@ export const getStaticProps: GetStaticProps = async function(props) {
   try {
     return await getDocProps(props, slug)
   } catch (e) {
-    if (e instanceof GithubError) {
+    if (e) {
       return {
         props: {
           error: { ...e }, //workaround since we cant return error as JSON
@@ -149,36 +133,6 @@ export const getStaticPaths: GetStaticPaths = async function() {
         return { params: { slug: path.split('/') } }
       }),
   }
-}
-
-/*
- * TINA FORM CONFIG -----------------------------------------------------
- */
-
-const formOptions = {
-  label: 'Tina Doc',
-  fields: [
-    {
-      label: 'Title',
-      name: 'frontmatter.title',
-      component: 'text',
-    },
-    {
-      label: 'Previous Doc',
-      name: 'frontmatter.prev',
-      component: 'text',
-    },
-    {
-      label: 'Next Doc',
-      name: 'frontmatter.next',
-      component: 'text',
-    },
-    {
-      label: 'Documentation Body',
-      name: 'markdownBody',
-      component: 'markdown',
-    },
-  ],
 }
 
 /*
