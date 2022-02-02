@@ -1,5 +1,3 @@
-const { aliasTinaDev } = require('@tinacms/webpack-helpers')
-
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin')
 const withSvgr = require('next-svgr')
 
@@ -49,14 +47,6 @@ const config = {
     return {}
   },
   webpack(config) {
-    if (process.env.TINA) {
-      let watch
-      if (process.env.TINA_WATCH) {
-        watch = process.env.TINA_WATCH.split(',')
-      }
-      aliasTinaDev(config, process.env.TINA, watch)
-    }
-
     config.module.rules.push({
       test: /\.md$/,
       use: 'raw-loader',
