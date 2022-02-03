@@ -1,34 +1,6 @@
-import * as React from 'react'
 import styled from 'styled-components'
-import { useCMS } from 'tinacms'
-import { WarningIcon } from '@tinacms/icons'
-import { Button } from 'components/ui'
 import ReactMarkdown from 'react-markdown'
-
-const DemoButtonWrapper = styled.div`
-  display: block;
-  width: 100%;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-  button {
-    margin-left: auto;
-    margin-right: auto;
-  }
-`
-
-export function AlertTest({ type, message, timeout, buttonText }) {
-  const cms = useCMS()
-  const sendAlert = React.useCallback(() => {
-    cms.alerts[type](message, timeout)
-  }, [type, message, timeout])
-  return (
-    <DemoButtonWrapper>
-      <Button color="primary" onClick={sendAlert}>
-        {buttonText || 'Try it'}
-      </Button>
-    </DemoButtonWrapper>
-  )
-}
+import { IoMdWarning } from 'react-icons/io'
 
 export const WarningCallout = styled(({ text, ...styleProps }) => {
   return (
@@ -36,7 +8,7 @@ export const WarningCallout = styled(({ text, ...styleProps }) => {
       <div>
         <ReactMarkdown>{text}</ReactMarkdown>
       </div>
-      <WarningIcon />
+      <IoMdWarning />
     </div>
   )
 })`
@@ -59,7 +31,7 @@ export const WarningCallout = styled(({ text, ...styleProps }) => {
 
   a,
   a:visited {
-    color: var(--tina-color-primary-dark) !important;
+    color: var(--color-tina-blue-dark) !important;
     font-weight: bold;
   }
 
@@ -67,7 +39,7 @@ export const WarningCallout = styled(({ text, ...styleProps }) => {
     position: absolute;
     top: 1.25rem;
     left: 1rem;
-    width: 1.5rem;
+    width: 1.625rem;
     height: auto;
     fill: var(--color-orange);
   }

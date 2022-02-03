@@ -57,14 +57,14 @@ const SelectWrapper = styled.div`
     font-size: 0.875rem;
     padding: 0.375rem 0.75rem;
     background-color: white;
-    border: 1px solid var(--tina-color-grey-1);
-    color: var(--tina-color-grey-7);
+    border: 1px solid var(--color-grey-1);
+    color: var(--color-grey-7);
     display: flex;
     width: 100%;
     align-items: center;
     transition: filter 250ms ease;
     border-radius: 100px;
-    box-shadow: 3px 3px 4px var(--tina-color-grey-2), -4px -4px 6px white;
+    box-shadow: 3px 3px 4px var(--color-grey-2), -4px -4px 6px white;
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;

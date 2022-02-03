@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { orderPosts, formatExcerpt, formatDate } from '../../../utils'
-import { getFiles as getGithubFiles } from 'next-tinacms-github'
 import path from 'path'
 
 import {
@@ -14,10 +13,7 @@ import {
   RichTextWrapper,
 } from 'components/layout'
 import { DynamicLink, BlogPagination } from 'components/ui'
-import { InlineGithubForm } from 'components/layout/InlineGithubForm'
-import { useForm } from 'tinacms'
 import { getMarkdownPreviewProps } from 'utils/getMarkdownPreviewProps'
-import { PreviewData } from 'next-tinacms-github'
 const Index = props => {
   const { currentPage, numPages } = props
 
@@ -86,19 +82,12 @@ export const getStaticProps: GetStaticProps = async function({
   preview,
   previewData,
   ...ctx
-}: Partial<{ previewData: PreviewData<any>; preview: boolean }>) {
+}) {
   // @ts-ignore page_index should always be a single string
   const page = parseInt((ctx.params && ctx.params.page_index) || '1')
 
   try {
-    const files = preview
-      ? await getGithubFiles(
-          'content/blog',
-          previewData.working_repo_full_name,
-          previewData.head_branch,
-          previewData.github_access_token
-        )
-      : await getLocalFiles('content/blog')
+    const files = await getLocalFiles('content/blog')
 
     const posts = await Promise.all(
       // TODO - potentially making a lot of requests here

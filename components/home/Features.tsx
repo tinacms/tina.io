@@ -167,7 +167,6 @@ export function FeatureBlock({ data, index }) {
 }
 
 export function FeaturesBlock({ data, index }) {
-  console.log(data)
   return (
     <section key={index} className={'section white featureSection'}>
       <Container>
@@ -254,7 +253,7 @@ export const FeatureCLI = () => {
           >{`Setting up Tina...`}</span>
           <span
             style={{ display: 'block', marginBottom: '1.25rem' }}
-          >{`Installing Tina packages.  This might take a moment... ✅`}</span>
+          >{`Installing Tina packages. This might take a moment... ✅`}</span>
         </code>
       </pre>
       <style jsx>{`

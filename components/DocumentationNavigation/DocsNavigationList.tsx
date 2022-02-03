@@ -42,7 +42,7 @@ const NavTitle = styled.a<NavTitleProps>`
       height: 1px;
       margin-top: -3px;
       width: 100%;
-      border-bottom: 5px dotted var(--tina-color-grey-1);
+      border-bottom: 5px dotted var(--color-grey-1);
       z-index: -1;
     }
   }
@@ -239,7 +239,7 @@ export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
 
 const MobileMainNav = styled.div`
   padding: 0.5rem 0;
-  background: var(--tina-color-grey-1);
+  background: var(--color-grey-1);
   border-bottom: 1px solid var(--color-light-dark);
 
   a {
