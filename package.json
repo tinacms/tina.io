@@ -8,7 +8,7 @@
     "dev-next": "next",
     "dev": "yarn dev-next",
     "develop": "yarn dev-next",
-    "build": "next build",
+    "build": "yarn create-rss && next build",
     "preexport": "npm run build",
     "export": "next export",
     "prestart": "npm run export",
@@ -20,6 +20,7 @@
     "test-watch": "jest  --passWithNoTests --watch",
     "type-check": "tsc",
     "create-indices": "tsc --project ./indices/tsconfig.json --outDir ./indices/out && node ./indices/out/indices/createIndices.js",
+    "create-rss": "tsc --project ./rss/tsconfig.json --outDir ./rss/out && node ./rss/out/rss/generateRss.js",
     "deploy": "yarn build && yarn export"
   },
   "dependencies": {
