@@ -6,7 +6,6 @@ import { DocsLayout, MarkdownContent } from 'components/layout'
 import { NavToggle, DocsPagination, LastEdited } from 'components/ui'
 import { getDocProps } from 'utils/docs/getDocProps'
 import Toc from '../../components/toc'
-import { useTocListener } from 'utils'
 import { openGraphImage } from 'utils/open-graph-image'
 import Error from 'next/error'
 import { NotFoundError } from 'utils/error/NotFoundError'
@@ -14,6 +13,7 @@ import { useRouter } from 'next/router'
 import { CloudDisclaimer } from 'components/cloud-beta-disclaimer'
 import * as ga from '../../utils/ga'
 import { Breadcrumbs } from 'components/DocumentationNavigation/Breadcrumbs'
+import { useTocListener } from 'utils/toc_helpers'
 
 export function DocTemplate(props) {
   // fallback workaround
