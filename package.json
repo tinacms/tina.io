@@ -8,7 +8,7 @@
     "dev-next": "next",
     "dev": "yarn dev-next",
     "develop": "yarn dev-next",
-    "build": "next build",
+    "build": "yarn create-rss && next build",
     "preexport": "npm run build",
     "export": "next export",
     "prestart": "npm run export",
@@ -20,6 +20,7 @@
     "test-watch": "jest  --passWithNoTests --watch",
     "type-check": "tsc",
     "create-indices": "tsc --project ./indices/tsconfig.json --outDir ./indices/out && node ./indices/out/indices/createIndices.js",
+    "create-rss": "tsc --project ./rss/tsconfig.json --outDir ./rss/out && node ./rss/out/rss/generateRss.js",
     "deploy": "yarn build && yarn export",
     "postbuild": "next-sitemap"
   },
@@ -27,7 +28,7 @@
     "@next/bundle-analyzer": "^10.0.0",
     "@tinacms/graphql": "0.59.2",
     "@types/react-instantsearch-dom": "^5.2.6",
-    "@types/styled-components": "^4.4.2",
+    "@types/styled-components": "^5.1.21",
     "@uiw/react-monacoeditor": "^3.4.5",
     "airtable": "^0.9.0",
     "algoliasearch": "^4.0.0",
@@ -55,7 +56,7 @@
     "matter": "^0.2.0",
     "moment": "^2.24.0",
     "moment-locales-webpack-plugin": "^1.2.0",
-    "next": "^10.1.2",
+    "next": "^12.0.10",
     "next-seo": "^4.1.0",
     "next-svgr": "0.0.2",
     "next-tinacms-github": "^0.39.0",
@@ -91,11 +92,11 @@
     "remark-shortcodes": "^0.3.1",
     "serve": "11.2.0",
     "strip-markdown": "^3.1.1",
-    "styled-components": "^4.4.1",
+    "styled-components": "^5.3.3",
     "styled-jsx-plugin-sass": "^1.0.0",
     "tinacms": "^0.39.0",
     "tinacms-beta": "npm:tinacms@0.59.1",
-    "webpack": "^4.41.5"
+    "webpack": "^5.68.0"
   },
   "devDependencies": {
     "@babel/plugin-syntax-jsx": "^7.10.4",
@@ -117,6 +118,6 @@
     "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.0.1",
     "tslint-react": "^4.0.0",
-    "typescript": "3.8.3"
+    "typescript": "^4.5.5"
   }
 }

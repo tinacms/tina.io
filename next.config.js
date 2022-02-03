@@ -1,6 +1,7 @@
 const { aliasTinaDev } = require('@tinacms/webpack-helpers')
 
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin')
+
 const withSvgr = require('next-svgr')
 
 require('dotenv').config()
@@ -62,9 +63,7 @@ const config = {
       use: 'raw-loader',
     })
 
-    config.node = {
-      fs: 'empty',
-    }
+    config.resolve.fallback = { ...config.resolve.fallback, fs: 'empty' }
 
     config.plugins.push(new MomentLocalesPlugin())
 

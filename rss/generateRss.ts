@@ -1,11 +1,8 @@
-import { NextPageContext } from 'next'
+require('dotenv').config()
 
-import { formatExcerpt, orderPosts } from '../utils'
-import { fetchRelevantBlogs as fetchBlogs } from '../data-api/fetchBlogs'
-
-export default function FeedPage() {
-  // xml is passed to the browser and written via getInitialProps
-}
+import { fetchRelevantBlogs } from '../data-api/fetchBlogs'
+import { formatExcerpt, orderPosts } from '../utils/blog_helpers'
+const fs = require('fs')
 
 const blogPostsRssXml = async blogPosts => {
   let latestPostDate: string = ''
@@ -45,12 +42,14 @@ const getRssXml = async blogPosts => {
   </rss>`
 }
 
-FeedPage.getInitialProps = async function({ res }: NextPageContext) {
-  if (!res) {
-    return
-  }
-  const blogPosts = orderPosts(await fetchBlogs())
-  res.setHeader('Content-Type', 'text/xml')
-  res.write(await getRssXml(blogPosts))
-  res.end()
+const geerateRss = async () => {
+  const relevantPosts = await fetchRelevantBlogs()
+  fs.writeFileSync('public/rss.xml', await getRssXml(orderPosts(relevantPosts)))
+}
+
+try {
+  geerateRss()
+} catch (e) {
+  console.error(e)
+  process.kill(1)
 }
