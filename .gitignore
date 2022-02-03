@@ -38,3 +38,4 @@ examples/**/out
 #indices
 indices/out
 .now
+public/rss.xml

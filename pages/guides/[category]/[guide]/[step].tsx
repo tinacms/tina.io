@@ -171,8 +171,9 @@ export const getStaticPaths: GetStaticPaths = async function() {
   const captureUrlParams = /\/guides\/([^\/]+)\/([^\/]+)\/([^\/]+)/
   return {
     paths: rawPaths.map(path => {
-      const slug = path.substring(contentDir.length, path.length - 3)
-      const [, category, guide, step] = captureUrlParams.exec(slug)
+      const [, category, guide, step] = captureUrlParams.exec(
+        path.split('.md')[0]
+      )
       return {
         params: { category, guide, step },
       }
