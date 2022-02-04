@@ -17,7 +17,19 @@
       {
         "id": "/docs/setup-overview/",
         "slug": "/docs/setup-overview/",
-        "title": "Getting Started"
+        "title": "Getting Started",
+        "items": [
+          {
+            "id": "/docs/introduction/using-starter/",
+            "slug": "/docs/introduction/using-starter/",
+            "title": "Using a starter"
+          },
+          {
+            "id": "/docs/introduction/tina-init",
+            "slug": "/docs/introduction/tina-init",
+            "title": "Adding Tina to existing NextJS site"
+          }
+        ]
       },
       {
         "id": "/docs/using-tina-editor/",
