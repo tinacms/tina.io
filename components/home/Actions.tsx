@@ -2,20 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { BiCopy } from 'react-icons/bi'
 import { IconRight } from './Icons'
-import {
-  copyToClipboard,
-  WithCodeStyles,
-} from 'components/layout/MarkdownContent'
-
-const BashWrapper = styled.div`
-  border: 1px solid black;
-
-  code {
-    ::before {
-      content: '$ ';
-    }
-  }
-`
+import { copyToClipboard } from 'components/layout/MarkdownContent'
 
 export const Actions = ({ items, align = 'left' }) => {
   return (
@@ -66,12 +53,11 @@ export const Actions = ({ items, align = 'left' }) => {
           display: flex;
           flex-wrap: wrap;
           align-items: center;
-          padding-top: 0.5rem;
-          margin: 0 -0.75rem;
+          margin: 0 -0.75rem -0.5rem -0.75rem;
 
           :global(a),
           :global(button) {
-            margin: 0 0.75rem;
+            margin: 0.5rem 0.75rem;
           }
         }
 
