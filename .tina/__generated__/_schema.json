@@ -8,6 +8,7 @@
   "meta": {},
   "collections": [
     {
+      "label": "Pages",
       "name": "page",
       "path": "content/pages",
       "fields": [
