@@ -1,0 +1,421 @@
+{
+  "version": {
+    "fullVersion": "0.59.6",
+    "major": "0",
+    "minor": "59",
+    "patch": "6"
+  },
+  "meta": {},
+  "collections": [
+    {
+      "name": "page",
+      "path": "content/pages",
+      "fields": [
+        {
+          "type": "string",
+          "name": "title",
+          "namespace": [
+            "page",
+            "title"
+          ]
+        },
+        {
+          "type": "object",
+          "name": "seo",
+          "label": "SEO",
+          "fields": [
+            {
+              "type": "string",
+              "name": "title",
+              "namespace": [
+                "page",
+                "seo",
+                "title"
+              ]
+            },
+            {
+              "type": "string",
+              "name": "description",
+              "namespace": [
+                "page",
+                "seo",
+                "description"
+              ]
+            }
+          ],
+          "namespace": [
+            "page",
+            "seo"
+          ]
+        },
+        {
+          "label": "Blocks",
+          "name": "blocks",
+          "type": "object",
+          "list": true,
+          "templates": [
+            {
+              "label": "Hero",
+              "name": "hero",
+              "fields": [
+                {
+                  "name": "headline",
+                  "type": "string",
+                  "namespace": [
+                    "page",
+                    "blocks",
+                    "hero",
+                    "headline"
+                  ]
+                },
+                {
+                  "name": "subline",
+                  "type": "string",
+                  "namespace": [
+                    "page",
+                    "blocks",
+                    "hero",
+                    "subline"
+                  ]
+                },
+                {
+                  "name": "videoSrc",
+                  "type": "string",
+                  "namespace": [
+                    "page",
+                    "blocks",
+                    "hero",
+                    "videoSrc"
+                  ]
+                }
+              ],
+              "namespace": [
+                "page",
+                "blocks",
+                "hero"
+              ]
+            },
+            {
+              "label": "Features",
+              "name": "features",
+              "fields": [
+                {
+                  "name": "headline",
+                  "type": "string",
+                  "namespace": [
+                    "page",
+                    "blocks",
+                    "features",
+                    "headline"
+                  ]
+                },
+                {
+                  "name": "subline",
+                  "type": "string",
+                  "namespace": [
+                    "page",
+                    "blocks",
+                    "features",
+                    "subline"
+                  ]
+                },
+                {
+                  "name": "items",
+                  "type": "object",
+                  "list": true,
+                  "templates": [
+                    {
+                      "label": "Feature",
+                      "name": "feature",
+                      "fields": [
+                        {
+                          "name": "headline",
+                          "type": "string",
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "features",
+                            "items",
+                            "feature",
+                            "headline"
+                          ]
+                        },
+                        {
+                          "name": "subline",
+                          "type": "string",
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "features",
+                            "items",
+                            "feature",
+                            "subline"
+                          ]
+                        },
+                        {
+                          "name": "media",
+                          "type": "object",
+                          "fields": [
+                            {
+                              "name": "src",
+                              "type": "string",
+                              "namespace": [
+                                "page",
+                                "blocks",
+                                "features",
+                                "items",
+                                "feature",
+                                "media",
+                                "src"
+                              ]
+                            },
+                            {
+                              "name": "videoSrc",
+                              "type": "string",
+                              "namespace": [
+                                "page",
+                                "blocks",
+                                "features",
+                                "items",
+                                "feature",
+                                "media",
+                                "videoSrc"
+                              ]
+                            }
+                          ],
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "features",
+                            "items",
+                            "feature",
+                            "media"
+                          ]
+                        },
+                        {
+                          "name": "actions",
+                          "type": "object",
+                          "list": true,
+                          "fields": [
+                            {
+                              "name": "label",
+                              "type": "string",
+                              "namespace": [
+                                "page",
+                                "blocks",
+                                "features",
+                                "items",
+                                "feature",
+                                "actions",
+                                "label"
+                              ]
+                            },
+                            {
+                              "name": "icon",
+                              "type": "string",
+                              "namespace": [
+                                "page",
+                                "blocks",
+                                "features",
+                                "items",
+                                "feature",
+                                "actions",
+                                "icon"
+                              ]
+                            },
+                            {
+                              "name": "variant",
+                              "type": "string",
+                              "namespace": [
+                                "page",
+                                "blocks",
+                                "features",
+                                "items",
+                                "feature",
+                                "actions",
+                                "variant"
+                              ]
+                            },
+                            {
+                              "name": "url",
+                              "type": "string",
+                              "namespace": [
+                                "page",
+                                "blocks",
+                                "features",
+                                "items",
+                                "feature",
+                                "actions",
+                                "url"
+                              ]
+                            }
+                          ],
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "features",
+                            "items",
+                            "feature",
+                            "actions"
+                          ]
+                        }
+                      ],
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "features",
+                        "items",
+                        "feature"
+                      ]
+                    }
+                  ],
+                  "namespace": [
+                    "page",
+                    "blocks",
+                    "features",
+                    "items"
+                  ]
+                }
+              ],
+              "namespace": [
+                "page",
+                "blocks",
+                "features"
+              ]
+            },
+            {
+              "name": "flying",
+              "label": "Flying",
+              "fields": [
+                {
+                  "name": "headline",
+                  "type": "string",
+                  "namespace": [
+                    "page",
+                    "blocks",
+                    "flying",
+                    "headline"
+                  ]
+                },
+                {
+                  "name": "subline",
+                  "type": "string",
+                  "namespace": [
+                    "page",
+                    "blocks",
+                    "flying",
+                    "subline"
+                  ]
+                },
+                {
+                  "name": "actions",
+                  "type": "object",
+                  "list": true,
+                  "fields": [
+                    {
+                      "name": "label",
+                      "type": "string",
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "flying",
+                        "actions",
+                        "label"
+                      ]
+                    },
+                    {
+                      "name": "icon",
+                      "type": "string",
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "flying",
+                        "actions",
+                        "icon"
+                      ]
+                    },
+                    {
+                      "name": "variant",
+                      "type": "string",
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "flying",
+                        "actions",
+                        "variant"
+                      ]
+                    },
+                    {
+                      "name": "url",
+                      "type": "string",
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "flying",
+                        "actions",
+                        "url"
+                      ]
+                    }
+                  ],
+                  "namespace": [
+                    "page",
+                    "blocks",
+                    "flying",
+                    "actions"
+                  ]
+                },
+                {
+                  "name": "items",
+                  "type": "object",
+                  "list": true,
+                  "fields": [
+                    {
+                      "name": "headline",
+                      "type": "string",
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "flying",
+                        "items",
+                        "headline"
+                      ]
+                    },
+                    {
+                      "name": "subline",
+                      "type": "string",
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "flying",
+                        "items",
+                        "subline"
+                      ]
+                    }
+                  ],
+                  "namespace": [
+                    "page",
+                    "blocks",
+                    "flying",
+                    "items"
+                  ]
+                }
+              ],
+              "namespace": [
+                "page",
+                "blocks",
+                "flying"
+              ]
+            }
+          ],
+          "namespace": [
+            "page",
+            "blocks"
+          ]
+        }
+      ],
+      "namespace": [
+        "page"
+      ]
+    }
+  ]
+}

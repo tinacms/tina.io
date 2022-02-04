@@ -1,12 +1,15 @@
 import React, { useEffect } from 'react'
 import App from 'next/app'
 import Head from 'next/head'
+import dynamic from 'next/dynamic'
 import { DefaultSeo } from 'next-seo'
 import data from '../content/siteConfig.json'
 import TagManager from 'react-gtm-module'
 import { GlobalStyle } from 'components/styles/GlobalStyle'
 import 'components/styles/fontImports.css'
 import path from 'path'
+import { TinaEditProvider } from 'tinacms/dist/edit-state'
+const TinaCMS = dynamic(() => import('tinacms'), { ssr: false })
 
 // the following line will cause all content files to be available in a serverless context
 path.resolve('./content/')
@@ -64,6 +67,7 @@ const MainLayout = ({ Component, pageProps }) => {
   )
 }
 
+// TODO: Probably should use hooks here
 class Site extends App {
   componentDidMount() {
     if (process.env.NODE_ENV === 'production') {
@@ -75,7 +79,17 @@ class Site extends App {
 
   render() {
     const { Component, pageProps } = this.props
-    return <MainLayout Component={Component} pageProps={pageProps} />
+    return (
+      <TinaEditProvider
+        editMode={
+          <TinaCMS apiURL="http://localhost:4001/graphql">
+            <MainLayout Component={Component} pageProps={pageProps} />
+          </TinaCMS>
+        }
+      >
+        <MainLayout Component={Component} pageProps={pageProps} />
+      </TinaEditProvider>
+    )
   }
 }
 
