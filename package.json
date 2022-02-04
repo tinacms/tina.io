@@ -8,7 +8,7 @@
     "dev-next": "tinacms server:start -c \"next\"",
     "dev": "yarn dev-next",
     "develop": "yarn dev-next",
-    "build": "yarn create-rss && next build",
+    "build": "yarn create-rss && tinacms server:start --noWatch -c \"next build\"",
     "preexport": "npm run build",
     "export": "tinacms server:start -c \"next export\"",
     "prestart": "tinacms server:start -c \"npm run export\"",
