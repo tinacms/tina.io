@@ -182,6 +182,19 @@
                                 "media",
                                 "videoSrc"
                               ]
+                            },
+                            {
+                              "name": "cli",
+                              "type": "boolean",
+                              "namespace": [
+                                "page",
+                                "blocks",
+                                "features",
+                                "items",
+                                "feature",
+                                "media",
+                                "cli"
+                              ]
                             }
                           ],
                           "namespace": [
@@ -390,6 +403,20 @@
                         "flying",
                         "items",
                         "subline"
+                      ]
+                    },
+                    {
+                      "name": "cli",
+                      "type": "boolean",
+                      "ui": {
+                        "defaultValue": false
+                      },
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "flying",
+                        "items",
+                        "cli"
                       ]
                     }
                   ],

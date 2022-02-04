@@ -24,6 +24,7 @@ fragment PageParts on Page {
             __typename
             src
             videoSrc
+            cli
           }
           actions {
             __typename
@@ -49,6 +50,7 @@ fragment PageParts on Page {
         __typename
         headline
         subline
+        cli
       }
     }
   }

@@ -91,6 +91,7 @@ type PageBlocksHero {
 type PageBlocksFeaturesItemsFeatureMedia {
   src: String
   videoSrc: String
+  cli: Boolean
 }
 
 type PageBlocksFeaturesItemsFeatureActions {
@@ -125,6 +126,7 @@ type PageBlocksFlyingActions {
 type PageBlocksFlyingItems {
   headline: String
   subline: String
+  cli: Boolean
 }
 
 type PageBlocksFlying {
@@ -188,6 +190,7 @@ input PageBlocksHeroMutation {
 input PageBlocksFeaturesItemsFeatureMediaMutation {
   src: String
   videoSrc: String
+  cli: Boolean
 }
 
 input PageBlocksFeaturesItemsFeatureActionsMutation {
@@ -224,6 +227,7 @@ input PageBlocksFlyingActionsMutation {
 input PageBlocksFlyingItemsMutation {
   headline: String
   subline: String
+  cli: Boolean
 }
 
 input PageBlocksFlyingMutation {

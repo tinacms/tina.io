@@ -79,6 +79,7 @@ export default defineSchema({
                           fields: [
                             { name: 'src', type: 'string' },
                             { name: 'videoSrc', type: 'string' },
+                            { name: 'cli', type: 'boolean' },
                           ],
                         },
                         ACTIONS,
@@ -102,6 +103,11 @@ export default defineSchema({
                   fields: [
                     { name: 'headline', type: 'string' },
                     { name: 'subline', type: 'string' },
+                    {
+                      name: 'cli',
+                      type: 'boolean',
+                      ui: { defaultValue: false },
+                    },
                   ],
                 },
               ],
