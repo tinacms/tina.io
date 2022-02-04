@@ -87,38 +87,6 @@ export default defineSchema({
                 },
               ],
             },
-            // {
-            //   label: 'Feature',
-            //   name: 'feature',
-            //   fields: [
-            //     { name: 'headline', type: 'string' },
-            //     { name: 'subline', type: 'string' },
-            //     {
-            //       name: 'items',
-            //       type: 'object',
-            //       list: true,
-            //       templates: [
-            //         {
-            //           label: 'Feature',
-            //           name: 'feature',
-            //           fields: [
-            //             { name: 'headline', type: 'string' },
-            //             { name: 'subline', type: 'string' },
-            //             {
-            //               name: 'media',
-            //               type: 'object',
-            //               fields: [
-            //                 { name: 'src', type: 'string' },
-            //                 { name: 'videoSrc', type: 'string' },
-            //               ],
-            //             },
-            //             ACTIONS,
-            //           ],
-            //         },
-            //       ],
-            //     },
-            //   ],
-            // },
             {
               name: 'flying',
               label: 'Flying',
