@@ -38,7 +38,7 @@ const FooterForm = styled.div`
   color: inherit;
   align-items: flex-start;
   justify-content: flex-start;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 
   span {
     margin: 0.5rem 1rem 0.5rem 0;
@@ -102,7 +102,7 @@ const FootnoteLinks = styled.span`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
 `
 
 const Footnote = styled.span`
@@ -140,7 +140,7 @@ const Footnote = styled.span`
   }
 
   div {
-    padding: 1rem;
+    padding: 0.5rem 1rem;
   }
 
   p {

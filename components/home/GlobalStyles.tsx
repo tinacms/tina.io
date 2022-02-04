@@ -38,7 +38,8 @@ export const GlobalStyles = css.global`
   }
 
   html {
-    min-width: 400px;
+    min-width: 380px;
+    width: 100%;
   }
 
   .section {
