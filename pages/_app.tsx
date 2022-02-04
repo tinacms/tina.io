@@ -79,10 +79,11 @@ class Site extends App {
 
   render() {
     const { Component, pageProps } = this.props
+    console.log(process.env.NEXT_PUBLIC_TINA_ENDPOINT)
     return (
       <TinaEditProvider
         editMode={
-          <TinaCMS apiURL="http://localhost:4001/graphql">
+          <TinaCMS apiURL={process.env.NEXT_PUBLIC_TINA_ENDPOINT}>
             <MainLayout Component={Component} pageProps={pageProps} />
           </TinaCMS>
         }
