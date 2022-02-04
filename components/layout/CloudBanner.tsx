@@ -22,7 +22,7 @@ export function CloudBanner() {
             <a className="link">
               <span className="desktop">Read The Announcement</span>
               <span className="mobile">
-                Tina Cloud supports MDX componentsß
+                Tina Cloud supports MDX components.
               </span>
               <IconRight />
             </a>
@@ -87,8 +87,8 @@ export function CloudBanner() {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 0.5rem 2rem;
-          font-size: 1.125rem;
+          padding: 0.75rem 1rem;
+          font-size: 1rem;
           position: relative;
           z-index: 10;
           line-height: 1.2;
@@ -98,7 +98,6 @@ export function CloudBanner() {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0.75rem 0;
             color: inherit;
             transition: opacity 150ms ease-out;
             font-size: 1.125rem;
@@ -120,6 +119,10 @@ export function CloudBanner() {
             font-style: normal;
             font-weight: bold;
           }
+
+          @media (min-width: 680px) {
+            padding: 0.75rem 1.5rem;
+          }
         }
 
         .content {
@@ -140,10 +143,18 @@ export function CloudBanner() {
 
         .link {
           font-size: 1rem;
-          margin-right: 2rem;
+          margin-right: 1rem;
           :global(svg) {
+            display: none;
             margin-left: 0.5rem;
             height: 1em;
+            @media (min-width: 680px) {
+              display: inline-block;
+            }
+          }
+          @media (min-width: 680px) {
+            margin-right: 2rem;
+            white-space: nowrap;
           }
         }
 
