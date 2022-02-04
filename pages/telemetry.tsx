@@ -13,7 +13,6 @@ import {
 
 const SecurityPage = (props: any) => {
   const { data } = props.file
-  console.log(props)
   return (
     <Layout>
       <NextSeo title={data.title} description={data.title} />
