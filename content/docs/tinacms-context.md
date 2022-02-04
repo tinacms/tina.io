@@ -59,7 +59,4 @@ export const getStaticProps = async () => {
 
 ## Summary
 
-- Tina can be added to a site's UI by wrapping its layout in the `<TinaCMS>` component.
-- The `<TinaEditProvider>` component should be used to dynamically code-split Tina out of your production site.
-- The Tina admin usually lives on the `/admin` route. This page allows editors to log in and enter edit-mode.
 - A piece of content can be made editable by running it through the `useTina` hook. In production, it returns the original data unchanged. In edit-mode, it returns the live data, which is updated as the user types in the sidebar.
