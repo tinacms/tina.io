@@ -125,6 +125,41 @@ We have defined the structure of our 3 blocks (`content`, `features`, `hero`), a
 
 > Note, since our contentBlock uses the [markdown plugin](/docs/reference/toolkit/fields/markdown/) which is not registered out of the box, we will need to manually import the `react-tinacms-editor` plugin.
 
+## Querying Block Data
+
+Because each item in a list of blocks can have a unique schema, querying this data isn't as straightforward as other types of fields. We'll need use GraphQL's fragment syntax to query the appropriate data shape for each block type.
+
+The fragment names are automatically generated based on the collection name and parent field name. For example, if the collection is `pages`, the field is `blocks`, and the block's name is `hero`, the fragment will be named `PagesBlocksHero`.
+
+```graphql
+query getPagesDocument($relativePath: String!) {
+  getPagesDocument(relativePath: $relativePath) {
+    data {
+      blocks {
+        __typename
+        ... on PagesBlocksHero {
+          __typename
+          tagline
+          headline
+          text
+        }
+        ... on PagesBlocksFeatures {
+          __typename
+          title
+          text
+        }
+        ... on PagesBlocksContent {
+          __typename
+          body
+        }
+      }
+    }
+  }
+}
+```
+
+> For more info on how to query data with Tina's GraphQL API, check out the [Query Documentation](https://tina.io/docs/graphql/queries/)
+
 ## Rendering our blocks
 
 We can render out the blocks on a page by creating a new `Blocks` component, which will conditionally render each block-type in a switch statement.
