@@ -86,6 +86,117 @@ This is some text
   'content/authors/napolean.json': JSON.stringify({
     name: 'Napolean'
   }),
+  'content/pages/turbo.json': JSON.stringify({
+    blocks: [
+      {
+        _template: 'hero',
+        headline: 'The All-New Turbo Model',
+        tagline: 'Turbo means good',
+        text: 'Think fast. Think Turbo.'
+      },
+      {
+        _template: 'features',
+        items: [
+          {
+            title: '10% Faster',
+            text: 'Than our slow one'
+          },
+          {
+            title: 'Safer Than Ever',
+            text: 'We settled the lawsuits out of court'
+          }
+        ]
+      },
+      {
+        _template: 'hero',
+        headline: 'Our Story',
+        text: 'Read about the history of Turbo'
+      },
+      {
+        _template: 'content',
+        body: 'Lorem ipsum dolor sit amet'
+      }
+    ]
+  })
+}
+
+const heroBlock = {
+  name: 'hero',
+  label: 'Hero',
+  ui: {
+    defaultItem: {
+      tagline: "Here's some text above the other text",
+      headline: 'This Big Text is Totally Awesome',
+      text:
+        'Phasellus scelerisque, libero eu finibus rutrum, risus risus accumsan libero, nec molestie urna dui a leo.',
+    },
+  },
+  fields: [
+    {
+      type: 'string',
+      label: 'Tagline',
+      name: 'tagline',
+    },
+    {
+      type: 'string',
+      label: 'Headline',
+      name: 'headline',
+    },
+    {
+      type: 'string',
+      label: 'Text',
+      name: 'text',
+      ui: {
+        component: 'markdown',
+      },
+    },
+  ],
+}
+
+const featureBlock = {
+  name: 'features',
+  label: 'Features',
+  fields: [
+    {
+      type: 'object',
+      label: 'Feature Items',
+      name: 'items',
+      list: true,
+      fields: [
+        {
+          type: 'string',
+          label: 'Title',
+          name: 'title',
+        },
+        {
+          type: 'string',
+          label: 'Text',
+          name: 'text',
+        },
+      ],
+    },
+  ],
+}
+
+const contentBlock = {
+  name: 'content',
+  label: 'Content',
+  ui: {
+    defaultItem: {
+      body:
+        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.',
+    },
+  },
+  fields: [
+    {
+      type: 'string',
+      ui: {
+        component: 'markdown',
+      },
+      label: 'Body',
+      name: 'body',
+    },
+  ],
 }
 
 const config: TinaCloudSchema = {
@@ -151,6 +262,21 @@ const config: TinaCloudSchema = {
         },
       ],
     },
+    {
+      label: 'Pages',
+      name: 'pages',
+      format: "markdown",
+      path: 'content/pages',
+      fields: [
+        {
+          type: 'object',
+          list: true,
+          name: 'blocks',
+          label: 'Sections',
+          templates: [heroBlock, featureBlock, contentBlock],
+        }
+      ]
+    }
   ],
 }
 
