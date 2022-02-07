@@ -21,16 +21,16 @@ In all of these use cases we can no longer rely static content but need a way to
 ### Generate them from the dashboard
 
 Navigate to [Tina Cloud](https://app.tina.io) and click on the project you wish to add a token to, click on the "tokens" tab
-![](/img/graphql-docs/token-tab.png)
+![Tina cloud token tab](/img/graphql-docs/token-tab.png)
 
 Next, click "New Token" and fill out fields. The token name is how you can identify the token and "Git branches" is the list of branches separated by commas that the token has assess too. 
 
-![](/img/graphql-docs/create-new-token.png)
+![Creating a new token in Tina Cloud](/img/graphql-docs/create-new-token.png)
 
 
 Finally, click "Create Token".
 
-![](/img/graphql-docs/final-token-page.png)
+![Successful creation of a token in Tina Cloud](/img/graphql-docs/final-token-page.png)
 
 
 ### Make a fetch request using the API key 
