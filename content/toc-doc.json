@@ -25,8 +25,8 @@
             "title": "Using a starter"
           },
           {
-            "id": "/docs/introduction/tina-init",
-            "slug": "/docs/introduction/tina-init",
+            "id": "/docs/introduction/tina-init/",
+            "slug": "/docs/introduction/tina-init/",
             "title": "Adding Tina to existing NextJS site"
           }
         ]
