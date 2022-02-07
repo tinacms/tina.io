@@ -1,6 +1,6 @@
 ---
 title: Read Only Tokens
-last_edited: '2021-11-06T18:00:00.000Z'
+last_edited: '2022-02-07T18:00:00.000Z'
 ---
 {{ WarningCallout text="This is an experimental feature and may be slow as we work on performance improvements" }}
 
@@ -11,7 +11,7 @@ Read only tokens allow data fetching at runtime without the need for the local g
 - [Incremental Static Site Generation](https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration)
 - [Server components](https://nextjs.org/docs/advanced-features/react-18#react-server-components)
 - [Nextjs middleware](https://nextjs.org/docs/middleware)
-- Client side data fetching
+- Client side data fetching (including `create-react-app`)
 - Future support for server side frameworks like [remix](https://remix.run/)
 
 In all of these use cases we can no longer rely static content but need a way to fetch data in real-time without being authenticated.
@@ -20,7 +20,7 @@ In all of these use cases we can no longer rely static content but need a way to
 
 ### Generate them from the dashboard
 
-Navigate to [Tina Cloud](https:app.tina.io) and click on the project you wish to add a token to, click on the "tokens" tab
+Navigate to [Tina Cloud](https://app.tina.io) and click on the project you wish to add a token to, click on the "tokens" tab
 ![](/img/graphql-docs/token-tab.png)
 
 Next, click "New Token" and fill out fields. The token name is how you can identify the token and "Git branches" is the list of branches separated by commas that the token has assess too. 
@@ -71,3 +71,74 @@ fetch("https://content.tinajs.io/content/<ClientId>/github/main", requestOptions
   .catch(error => console.log('error', error));
 ```
 
+
+## Examples of using read only tokens
+
+### Fetch data client side
+> In most cases Static site generation is preferred and faster but in some cases you may still want to get data at runtime
+
+```jsx
+import * as React from "react";
+import { useState, useEffect } from "react";
+
+// This query can be any query
+const query = `
+query ContentQuery($relativePath: String!) {
+  get<CollectionName>Document(relativePath: $relativePath) {
+    data {
+      body
+      title
+    }
+  }
+}
+`;
+
+// Variables used in the GraphQL query; 
+const variables = {
+  relativePath: "voteForPedro.md",
+};
+
+function BlogPostPage() {
+  const [data, setData] = useState(null);
+  const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch(
+      "https://content.tinajs.io/content/<ClientId>/github/<Branch>",
+      {
+        method: "POST",
+        body: JSON.stringify({ query, variables }),
+        headers: {
+          "X-API-KEY": "<ReadOnlyToken>",
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log({ data });
+        setData(data?.data?.getPostsDocument?.data);
+        setLoading(false);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  }, []);
+
+  if (isLoading) return <p>Loading...</p>;
+  if (!data) return <p>No data</p>;
+
+  return (
+    <div>
+      <h1>{data.title}</h1>
+      <p>{data.body}</p>
+    </div>
+  );
+}
+export default BlogPostPage;
+```
+
+### Nextjs `fallback: "blocking"`
+
+> TODO
