@@ -265,7 +265,7 @@ const config: TinaCloudSchema = {
     {
       label: 'Pages',
       name: 'pages',
-      format: "markdown",
+      format: "json",
       path: 'content/pages',
       fields: [
         {
