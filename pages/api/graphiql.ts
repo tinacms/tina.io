@@ -1,7 +1,7 @@
 import { buildASTSchema, print } from 'graphql'
 import { graphqlHTTP } from 'express-graphql'
 import { createDatabase, resolve, indexDB, MemoryStore } from '@tinacms/graphql'
-import type { TinaCloudSchema} from '@tinacms/graphql'
+import type { TinaCloudSchema, TinaTemplate} from '@tinacms/graphql'
 class InMemoryStore extends MemoryStore {
   public supportsSeeding() {
     return true
@@ -120,7 +120,7 @@ This is some text
   })
 }
 
-const heroBlock = {
+const heroBlock: TinaTemplate = {
   name: 'hero',
   label: 'Hero',
   ui: {
@@ -153,7 +153,7 @@ const heroBlock = {
   ],
 }
 
-const featureBlock = {
+const featureBlock: TinaTemplate = {
   name: 'features',
   label: 'Features',
   fields: [
@@ -178,7 +178,7 @@ const featureBlock = {
   ],
 }
 
-const contentBlock = {
+const contentBlock: TinaTemplate = {
   name: 'content',
   label: 'Content',
   ui: {
