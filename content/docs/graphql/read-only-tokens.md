@@ -10,11 +10,14 @@ Read only tokens allow data fetching at runtime without the need for the local g
 - Runtime server side logic in `getServerSideProps`, `getStaticProps` (when fallback is not `false`), etc.
 - [Incremental Static Site Generation](https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration)
 - [Server components](https://nextjs.org/docs/advanced-features/react-18#react-server-components)
-- [Nextjs middleware](https://nextjs.org/docs/middleware)
+- [Next.js middleware](https://nextjs.org/docs/middleware)
 - Client side data fetching (including `create-react-app`)
 - Future support for server side frameworks like [remix](https://remix.run/)
 
 In all of these use cases we can no longer rely static content but need a way to fetch data in real-time without being authenticated.
+
+
+Read only tokens can only be used for [GraphQL query requests]() and can not be used for mutations. It can also only be used to get data from the branch in the list of branches specified when the token was made. 
 
 ## How to use Read Only Tokens
 
@@ -78,7 +81,6 @@ fetch("https://content.tinajs.io/content/<ClientId>/github/main", requestOptions
 > In most cases Static site generation is preferred and faster but in some cases you may still want to get data at runtime
 
 ```jsx
-import * as React from "react";
 import { useState, useEffect } from "react";
 
 // This query can be any query
@@ -139,6 +141,80 @@ function BlogPostPage() {
 export default BlogPostPage;
 ```
 
-### Nextjs `fallback: "blocking"`
+### Next.js `fallback: "blocking"`
 
-> TODO
+In Next.js one can specify [`fallback: "blocking"`](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths#fallback-blocking), this allows `getStaticProps` to run server side at runtime when a user goes to a page that was not specified in `getStaticPaths`. 
+
+With read only tokens we can fetch the list of blog posts. This will allow us to visit pages that have been created but not statically generated.  
+
+
+
+#### Example page
+
+`pages/posts/[filename].js`
+
+```js
+const BlogPage = (props)=>{
+  // (Does not change)
+  //...
+}
+
+export const getStaticProps = async (ctx) => {
+  const query = `query getPost($relativePath: String!) {
+    getPostDocument(relativePath: $relativePath) {
+      data {
+        title
+        body
+      }
+    }
+  }
+  `;
+  const variables = {
+    relativePath: ctx.params.slug + ".md",
+  };
+  let data = {};
+  let error = false;
+  try {
+    // use the local client at build time
+    data = await staticRequest({
+      query,
+      variables,
+    });
+  } catch (error) {
+    // swallow errors related to document creation
+    error = true;
+  }
+  if(error){
+    // use read only tokens to get live data
+     data = await fetch(
+      "https://content.tinajs.io/content/<ClientId>/github/<Branch>",
+      {
+        method: "POST",
+        body: JSON.stringify({ query, variables }),
+        headers: {
+          "X-API-KEY": "<ReadOnlyToken>",
+          "Content-Type": "application/json",
+        },
+      }
+    )
+    if(!data){
+      return {
+        notFound: true,
+      }
+    }
+  }
+
+  return {
+    props: {
+      data,
+      query,
+      variables,
+    },
+  };
+};
+export const getStaticProps = ()=>{
+
+}
+
+export default BlogPage
+```
