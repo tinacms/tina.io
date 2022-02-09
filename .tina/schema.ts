@@ -22,7 +22,75 @@ const ACTIONS = {
     { name: 'url', type: 'string' as const },
   ],
 }
-import { defineSchema } from '@tinacms/cli'
+import { defineSchema, TinaTemplate } from '@tinacms/cli'
+
+const heroTemplate: TinaTemplate = {
+  label: 'Hero',
+  name: 'hero',
+  fields: [
+    { name: 'headline', type: 'string' },
+    { name: 'subline', type: 'string' },
+    { name: 'videoSrc', type: 'string' },
+  ],
+}
+
+const featuresTemplate: TinaTemplate = {
+  label: 'Features',
+  name: 'features',
+  fields: [
+    { name: 'headline', type: 'string' },
+    { name: 'subline', type: 'string' },
+    {
+      name: 'items',
+      type: 'object',
+      list: true,
+      templates: [
+        {
+          label: 'Feature',
+          name: 'feature',
+          fields: [
+            { name: 'headline', type: 'string' },
+            { name: 'subline', type: 'string' },
+            {
+              name: 'media',
+              type: 'object',
+              fields: [
+                { name: 'src', type: 'string' },
+                { name: 'videoSrc', type: 'string' },
+                { name: 'cli', type: 'boolean' },
+              ],
+            },
+            ACTIONS,
+          ],
+        },
+      ],
+    },
+  ],
+}
+
+const flyingTemplate: TinaTemplate = {
+  name: 'flying',
+  label: 'Flying',
+  fields: [
+    { name: 'headline', type: 'string' },
+    { name: 'subline', type: 'string' },
+    ACTIONS,
+    {
+      name: 'items',
+      type: 'object',
+      list: true,
+      fields: [
+        { name: 'headline', type: 'string' },
+        { name: 'subline', type: 'string' },
+        {
+          name: 'cli',
+          type: 'boolean',
+          ui: { defaultValue: false },
+        },
+      ],
+    },
+  ],
+}
 
 export default defineSchema({
   collections: [
@@ -46,73 +114,7 @@ export default defineSchema({
           name: 'blocks',
           type: 'object',
           list: true,
-          templates: [
-            {
-              label: 'Hero',
-              name: 'hero',
-              fields: [
-                { name: 'headline', type: 'string' },
-                { name: 'subline', type: 'string' },
-                { name: 'videoSrc', type: 'string' },
-              ],
-            },
-            {
-              label: 'Features',
-              name: 'features',
-              fields: [
-                { name: 'headline', type: 'string' },
-                { name: 'subline', type: 'string' },
-                {
-                  name: 'items',
-                  type: 'object',
-                  list: true,
-                  templates: [
-                    {
-                      label: 'Feature',
-                      name: 'feature',
-                      fields: [
-                        { name: 'headline', type: 'string' },
-                        { name: 'subline', type: 'string' },
-                        {
-                          name: 'media',
-                          type: 'object',
-                          fields: [
-                            { name: 'src', type: 'string' },
-                            { name: 'videoSrc', type: 'string' },
-                            { name: 'cli', type: 'boolean' },
-                          ],
-                        },
-                        ACTIONS,
-                      ],
-                    },
-                  ],
-                },
-              ],
-            },
-            {
-              name: 'flying',
-              label: 'Flying',
-              fields: [
-                { name: 'headline', type: 'string' },
-                { name: 'subline', type: 'string' },
-                ACTIONS,
-                {
-                  name: 'items',
-                  type: 'object',
-                  list: true,
-                  fields: [
-                    { name: 'headline', type: 'string' },
-                    { name: 'subline', type: 'string' },
-                    {
-                      name: 'cli',
-                      type: 'boolean',
-                      ui: { defaultValue: false },
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
+          templates: [heroTemplate, featuresTemplate, flyingTemplate],
         },
       ],
     },

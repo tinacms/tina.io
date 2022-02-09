@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { Container } from '../home'
+import { Container } from '../blocks'
 import TinaLogo from '../../public/svg/tina-logo.svg'
 import data from '../../content/navigation.json'
 

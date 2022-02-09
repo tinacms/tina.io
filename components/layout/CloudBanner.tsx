@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { IconRight } from '../home'
+import { IconRight } from '../blocks'
 import TinaCloudWordmark from '../../public/svg/tina-cloud-wordmark.svg'
 import { Button, ButtonGroup } from 'components/ui'
 

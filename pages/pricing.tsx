@@ -9,24 +9,34 @@ import {
 } from 'components/layout'
 import { NextSeo } from 'next-seo'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
-import { useGithubJsonForm } from 'react-tinacms-github'
-import { usePlugin, useCMS } from 'tinacms'
-import { Actions, Divider } from 'components/home'
+import { Actions } from 'components/blocks'
+import { useTina } from 'tinacms/dist/edit-state'
+import { ExperimentalGetTinaClient } from '.tina/__generated__/types'
 
-const dummyData = {
+const defaultData = {
   title: 'Tina Cloud Pricing',
   description: 'Pricing page description',
 }
 
-function PricingPage({ data = dummyData }) {
+const defaultCardMarkdown = `- Tina's Community plan offers **X free users** per project\n- Each additional user being billed at **$$/month**\n- Maximum of **X users** per project`
+
+const PricingPage = (
+  props: AsyncReturnType<typeof getStaticProps>['props']
+) => {
+  const tinaData = useTina({
+    query: props.query,
+    data: props.data,
+    variables: props.vars,
+  })
+  const data = tinaData.data.getPageDocument.data
   return (
     <Layout>
       <NextSeo
         title={data.title}
-        description={data.description}
+        description={data.description || defaultData.description}
         openGraph={{
           title: data.title,
-          description: data.description,
+          description: data.description || defaultData.description,
         }}
       />
       <Hero>{data.title}</Hero>
@@ -135,7 +145,6 @@ function PricingPage({ data = dummyData }) {
             background-color: var(--color-seafoam);
             background: linear-gradient(
               to bottom,
-              var(--color-seafoam-300),
               var(--color-seafoam-200) 8rem,
               var(--color-seafoam-100)
             );
@@ -261,7 +270,7 @@ const PricingCard = ({
   interval = '',
   actions = [
     {
-      variant: '',
+      variant: 'white',
       label: 'Contact Us',
       icon: 'arrowRight',
       url: '/',
@@ -388,26 +397,25 @@ const PricingCard = ({
   )
 }
 
-export default PricingPage
-
 /*
  ** DATA FETCHING -----------------------------------------------
  */
 
-export const getStaticProps: GetStaticProps = async function({
-  preview,
-  previewData,
-}) {
-  const { default: metadata } = await import('../content/siteConfig.json')
-
-  const previewProps = await getJsonPreviewProps(
-    'content/pages/pricing.json',
-    preview,
-    previewData
-  )
-  return { props: { ...previewProps.props, metadata } }
+export const getStaticProps = async function() {
+  const client = ExperimentalGetTinaClient()
+  const vars = { relativePath: 'pricing.json' }
+  const res = await client.getPageDocument(vars)
+  return {
+    props: {
+      query: res.query,
+      data: res.data,
+      vars,
+    },
+  }
 }
 
-/* DUMMY CONTENT */
+export type AsyncReturnType<
+  T extends (...args: any) => Promise<any>
+> = T extends (...args: any) => Promise<infer R> ? R : any
 
-const defaultCardMarkdown = `- Tina's Community plan offers **X free users** per project\n- Each additional user being billed at **$$/month**\n- Maximum of **X users** per project`
+export default PricingPage

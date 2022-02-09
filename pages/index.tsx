@@ -1,7 +1,7 @@
 import { ExperimentalGetTinaClient } from '../.tina/__generated__/types'
 import { Layout } from 'components/layout'
 import { NextSeo } from 'next-seo'
-import { Blocks, GlobalStyles } from 'components/home'
+import { Blocks, GlobalStyles } from 'components/blocks'
 import { useTina } from 'tinacms/dist/edit-state'
 
 const HomePage = (props: AsyncReturnType<typeof getStaticProps>['props']) => {
