@@ -143,7 +143,7 @@ export default BlogPostPage;
 
 ### Next.js `fallback: "blocking"`
 
-In Next.js one can specify [`fallback: "blocking"`](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths#fallback-blocking), this allows `getStaticProps` to run server side at runtime when a user goes to a page that was not specified in `getStaticPaths`. 
+In Next.js one can specify [`fallback: "blocking"`](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths#fallback-blocking), this allows `getStaticProps` to run server-side at request time when a user goes to a page that was not specified in `getStaticPaths`. 
 
 With read only tokens we can fetch the list of blog posts. This will allow us to visit pages that have been created but not statically generated.  
 
