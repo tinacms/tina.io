@@ -77,7 +77,7 @@ fetch("https://content.tinajs.io/content/<ClientId>/github/main", requestOptions
 
 ## Examples of using read only tokens
 
-### Fetch data client side
+### Fetch data client-side
 > In most cases Static site generation is preferred and faster but in some cases you may still want to get data at runtime
 
 ```jsx
