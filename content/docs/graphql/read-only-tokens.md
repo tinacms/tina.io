@@ -11,7 +11,7 @@ Read-only tokens allow data fetching at runtime without the need for the local g
 - [Incremental Static Site Generation](https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration)
 - [Server components](https://nextjs.org/docs/advanced-features/react-18#react-server-components)
 - [Next.js middleware](https://nextjs.org/docs/middleware)
-- Client side data fetching (including `create-react-app`)
+- Client-side data-fetching (including `create-react-app`)
 - Future support for server-side frameworks like [remix](https://remix.run/)
 
 In all of these use cases we can no longer rely static content but need a way to fetch data in real-time without being authenticated.
