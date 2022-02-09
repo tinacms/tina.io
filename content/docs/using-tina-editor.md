@@ -1,45 +1,43 @@
 ---
 title: Using the Tina Editor
 id: /docs/using-tina-editor/
-last_edited: '2021-12-03T00:00:00.000Z'
+last_edited: '2022-01-09T00:00:00.000Z'
 next: '/docs/schema'
 ---
 
-Tina is very flexible & extendable, so any Tina site may have a unique experience. Here we'll document the out-of-the-box approach that most of our starters use.
+Tina is very flexible & extendable, so any Tina site may have a unique experience. As an introduction, we'll cover the out-of-the-box experience that most of our starters implement.
 
-## Entering Edit-mode
+## Entering the Admin
 
-When Tina is initialized on a NextJS site, a "/admin" page is created to allow editors to login.
+When Tina is initialized on a NextJS site, a "/admin" page is created to allow editors to login and begin to make content changes.
 
-> Note: For demo purposes, some of our starters show a "Edit with Tina" link to the "/admin". This can be removed on production sites.
+> Screenshot of Login Page
 
-![tina-tailwind-starter](https://res.cloudinary.com/forestry-demo/image/upload/c_scale,q_49,w_800/v1638554159/tina-io/using-tina/starter.png)
+After successfully logging in, the user will land in the Admin with the Dashboard and Main Navigation.
 
-On the "/admin" page, you will see a "Log In" button.
+## Using the Admin
 
-> Note: When working in local-mode, you will not actually need to log in. In production-mode, only authorized users will be able to enter edit-mode on your site.
+> Screenshot of Dashboard with Collections and Screen Plugins
 
-![tina-admin](https://res.cloudinary.com/forestry-demo/image/upload/c_scale,q_50,w_800/v1638554159/tina-io/using-tina/admin.png)
+Depending on how Tina is configured, one or more Collections will appear in the Main Navigation. Clicking on a Collection will take the user to a Document List page for that Collection.
 
-Clicking "Log in" will put the user in "edit-mode" and take you back to the homepage.
+> Screenshot of Collection List page
 
-## Editing the content
+The table here lists all existing Documents for that Collection. This page also allows the user to create a new Document.
 
-Once in edit-mode, you should see a little pencil icon in the bottom left corner.
+If "Contextual Editing" has been configured for Tina, clicking on an existing Document will route the user to that Document's Preview Page with the Tina Sidebar open and ready for editing.
 
-Try clicking it and making some changes to the content!
+> Gif of "Contextual Editing" with either "posts" or "pages"
 
-![using-tina-sidebar](https://res.cloudinary.com/forestry-demo/image/upload/v1638554818/tina-io/using-tina/sidebar.gif)
+However, if "Contextual Editing" is not configured or simply not available for a particular Collection, clicking on an existing Document will present the user with a fullscreen form.
 
-Once you hit "Save Changes"..
+> Gif of "Fullscreen Editing" with either "authors" or "global"
 
-- In "Local Mode", any changes that you make will be saved to the local Markdown/JSON files.
+> Note: You can learn more about how to set up "Contextual Editing" for your users [here](/docs/tinacms-context).
 
-![tina-markdown](https://res.cloudinary.com/forestry-demo/image/upload/c_scale,q_49,w_800/v1638554159/tina-io/using-tina/markdown.png)
+Once saved, the changes to the Document, whether in "Contextual Mode" or "Fullscreen Mode", will be stored against the files.
 
-- In "Production Mode", any changes that you make will be committed to the GitHub repository.
-
-## What's next?
+## What's Next?
 
 There's plenty to do to customize your editing experience. We suggest:
 
