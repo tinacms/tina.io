@@ -121,11 +121,68 @@ export const GlobalStyle = React.memo(createGlobalStyle`
     --color-seafoam-dark: var(--color-seafoam-400);
     --color-light: #FAFAFA;
     --color-light-dark: #E9E9EC;
-    --color-grey: #595959;
-    --color-grey-dark: #404040;
     --color-warning-light: #FFFBEB;
     --color-warning: #FEF3C7;
     --color-warning-dark: #FDE68A;
+    --color-tina-blue-light: #2296fe;
+    --color-tina-blue: #0084ff;
+    --color-tina-blue-dark: #0574e4;
+    --color-error-light: var(--color-orange-light);
+    --color-error: var(--color-orange);
+    --color-error-dark: var(--color-orange-dark);
+    --color-success-light: #57c355;
+    --color-success: #3cad3a;
+    --color-success-dark: #249a21;
+    --color-grey: #595959;
+    --color-grey-dark: #404040;
+    --color-grey-0: #ffffff;
+    --color-grey-1: #f6f6f9;
+    --color-grey-2: #edecf3;
+    --color-grey-3: #e1ddec;
+    --color-grey-4: #b2adbe;
+    --color-grey-5: #918c9e;
+    --color-grey-6: #716c7f;
+    --color-grey-7: #565165;
+    --color-grey-8: #433e52;
+    --color-grey-9: #363145;
+    --color-grey-10: #252336;
+    --color-indicator: var(--color-primary);
+
+    --radius-small: 5px;
+    --radius-big: 24px;
+
+    --padding-small: 12px;
+    --padding-big: 20px;
+
+    --font-size-0: 12px;
+    --font-size-1: 13px;
+    --font-size-2: 15px;
+    --font-size-3: 16px;
+    --font-size-4: 18px;
+    --font-size-5: 20px;
+    --font-size-6: 22px;
+    --font-size-7: 26px;
+    --font-size-8: 32px;
+
+    --font-family: 'Inter', sans-serif;
+
+    --font-weight-regular: 400;
+    --font-weight-bold: 600;
+
+    --shadow-big: 0px 2px 3px rgba(0, 0, 0, 0.05),
+      0 4px 12px rgba(0, 0, 0, 0.1);
+    --shadow-small: 0px 2px 3px rgba(0, 0, 0, 0.12);
+
+    --timing-short: 85ms;
+    --timing-medium: 150ms;
+    --timing-long: 250ms;
+
+    --z-index-0: 0;
+    --z-index-1: 10;
+    --z-index-2: 20;
+    --z-index-3: 30;
+    --z-index-4: 40;
+    --z-index-5: 50;
 
     /* Layout */
     --breakpoint-small: 400px;

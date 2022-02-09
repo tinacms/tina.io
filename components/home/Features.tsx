@@ -1,12 +1,6 @@
 import React from 'react'
-import {
-  BlocksControls,
-  InlineBlocks,
-  InlineTextarea,
-} from 'react-tinacms-inline'
 import ReactMarkdown from 'react-markdown'
-import { BlockTemplate } from 'tinacms'
-import { ActionFields, Actions } from './Actions'
+import { Actions } from './Actions'
 import { Container } from './Container'
 import BlobOne from '../../public/svg/blob-1.svg'
 import BlobTwo from '../../public/svg/blob-2.svg'
@@ -14,6 +8,7 @@ import BlobThree from '../../public/svg/blob-3.svg'
 import BlobFour from '../../public/svg/blob-4.svg'
 import BlobFive from '../../public/svg/blob-5.svg'
 import BlobSix from '../../public/svg/blob-6.svg'
+import { Blocks } from './Blocks'
 
 const blobSvgOptions = [
   BlobOne,
@@ -24,94 +19,44 @@ const blobSvgOptions = [
   BlobSix,
 ]
 
-export const feature_template: BlockTemplate = {
-  label: 'Feature',
-  defaultItem: {
-    headline: 'New Feature',
-    subline:
-      'Pick from your custom predefined components to build web experiences, blazing fast',
-    media: { src: '/img/io-placeholder.jpg' },
-  },
-  fields: [
-    {
-      label: 'Headline',
-      name: 'headline',
-      component: 'text',
-    },
-    {
-      label: 'Subline',
-      name: 'subline',
-      component: 'text',
-    },
-    ...ActionFields,
-    {
-      label: 'Media',
-      name: 'media',
-      component: 'group',
-      fields: [
-        {
-          label: 'Image Source',
-          name: 'src',
-          component: 'text',
-        },
-        {
-          label: 'Video Source',
-          description: 'Cloudinary ID and file name',
-          name: 'videoSrc',
-          component: 'text',
-        },
-        {
-          label: 'Show CLI Codeblock Instead',
-          name: 'cli',
-          component: 'toggle',
-        },
-      ],
-    },
-  ],
-  itemProps: (item: any) => ({
-    label: item.headline,
-  }),
-}
-
 export function FeatureBlock({ data, index }) {
   const isReversed = index % 2 === 1
   const FeatureBlobSvg = blobSvgOptions[index % blobSvgOptions.length]
 
   return (
     <>
-      <BlocksControls index={index}>
-        <div className={`feature ${isReversed ? 'featureReverse' : ''}`}>
-          <div className="featureText">
-            <h3 className="featureTitle">
-              <InlineTextarea name="headline" />
-            </h3>
-            <hr className="dottedBorder" />
-            <div className="textLarge">
-              <ReactMarkdown source={data.subline} />
-            </div>
-            {data.actions && <Actions items={data.actions} />}
-            <div className="blob">
-              <FeatureBlobSvg />
-            </div>
+      <div
+        key={index}
+        className={`feature ${isReversed ? 'featureReverse' : ''}`}
+      >
+        <div className="featureText">
+          {data.headline && <h3 className="featureTitle">{data.headline}</h3>}
+          <hr className="dottedBorder" />
+          <div className="textLarge">
+            <ReactMarkdown source={data.subline} />
           </div>
-          {data.media.src && (
-            <div className={`featureImage`}>
-              <img
-                src={data.media.src}
-                alt={data.headline}
-                width="1120px"
-                height="800px"
-              />
-            </div>
-          )}
-          {data.media.videoSrc && <FeatureVideo src={data.media.videoSrc} />}
-          {data.media.cli && (
-            <div className={`featureImage`}>
-              <FeatureCLI />
-            </div>
-          )}
+          {data.actions && <Actions items={data.actions} />}
+          <div className="blob">
+            <FeatureBlobSvg />
+          </div>
         </div>
-      </BlocksControls>
+        {data.media.src && (
+          <div className={`featureImage`}>
+            <img
+              src={data.media.src}
+              alt={data.headline}
+              width="1120px"
+              height="800px"
+            />
+          </div>
+        )}
+        {data.media.videoSrc && <FeatureVideo src={data.media.videoSrc} />}
+        {data.media.cli && (
+          <div className={`featureImage`}>
+            <FeatureCLI />
+          </div>
+        )}
+      </div>
       <style jsx>{`
         .feature {
           position: relative;
@@ -221,95 +166,16 @@ export function FeatureBlock({ data, index }) {
   )
 }
 
-export const features_template: BlockTemplate = {
-  label: 'Features',
-  defaultItem: {
-    headline: 'Explore the *Tina ecosystem*',
-    subline:
-      'More than just a headless CMS, Tina has all the tools for building web experiences for interdisciplinary teams.',
-    color: 'white',
-    items: [
-      {
-        _template: 'feature',
-        headline: 'Data Source Plugins',
-        subline:
-          'Data Source plugins allow you to extend Tina to connect to different databases and 3rd Party APIs',
-        actions: [
-          {
-            variant: 'link',
-            label: 'Visit The Docs',
-            icon: 'arrowRight',
-            url: '#',
-          },
-        ],
-        media: { src: '/img/io-placeholder.jpg' },
-      },
-      {
-        _template: 'feature',
-        headline: 'Screen UI Plugins',
-        subline:
-          'Data Source plugins allow you to extend Tina to connect to different databases and 3rd Party AP',
-        actions: [
-          {
-            variant: 'link',
-            label: 'Visit The Docs',
-            icon: 'arrowRight',
-            url: '#',
-          },
-        ],
-        media: { src: '/img/io-placeholder.jpg' },
-      },
-      {
-        _template: 'feature',
-        headline: 'Custom Fields',
-        subline:
-          'Extend primary fields with custom field plugins to completely control the editing experience and functionality.',
-        actions: [
-          {
-            variant: 'link',
-            label: 'Visit The Docs',
-            icon: 'arrowRight',
-            url: '#',
-          },
-        ],
-        media: { src: '/img/io-placeholder.jpg' },
-      },
-    ],
-  },
-  fields: [
-    {
-      label: 'Items',
-      name: 'items',
-      component: 'blocks',
-      //@ts-ignore
-      templates: {
-        feature: feature_template,
-      },
-    },
-  ],
-}
-
 export function FeaturesBlock({ data, index }) {
   return (
-    <BlocksControls
-      index={index}
-      insetControls={true}
-      focusRing={{ offset: -16 }}
-    >
-      <section className={'section white featureSection'}>
-        <Container>
-          <InlineBlocks name="items" blocks={FEATURE_BLOCKS} />
-        </Container>
-      </section>
-    </BlocksControls>
+    <section key={index} className={'section white featureSection'}>
+      <Container>
+        {/* TODO: why is there a type error here */}
+        {/* @ts-ignore */}
+        <Blocks blocks={data.items} />
+      </Container>
+    </section>
   )
-}
-
-const FEATURE_BLOCKS = {
-  feature: {
-    Component: FeatureBlock,
-    template: feature_template,
-  },
 }
 
 export const FeatureVideo = ({ src }) => {
@@ -389,7 +255,7 @@ export const FeatureCLI = () => {
           >{`Setting up Tina...`}</span>
           <span
             style={{ display: 'block', marginBottom: '1.25rem' }}
-          >{`Installing Tina packages.  This might take a moment... ✅`}</span>
+          >{`Installing Tina packages. This might take a moment... ✅`}</span>
         </code>
       </pre>
       <style jsx>{`

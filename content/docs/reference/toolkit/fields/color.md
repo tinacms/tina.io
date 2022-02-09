@@ -9,6 +9,8 @@ consumes:
     details: Shows color field in use & interface
 ---
 
+{{ WarningCallout text="This is an advanced-use feature, and likely not something you'll need to configure. What you probably want is the [content types reference](/docs/reference/types/)" }}
+
 The `color` field is a visual color picker. This field is used for content values that handle the rendering of color. Can be saved as RGB or hex value.
 
 There are two types of color widgets, "sketch" or "block". The "sketch" widget allows the editor to pick a color from the familiar picker seen below.

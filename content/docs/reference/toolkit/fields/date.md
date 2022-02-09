@@ -9,6 +9,8 @@ consumes:
     details: References date formatting specifics
 ---
 
+{{ WarningCallout text="This is an advanced-use feature, and likely not something you'll need to configure. What you probably want is the [content types reference](/docs/reference/types/)" }}
+
 The `date` field represents a date and time picker. It can be used for data values that are valid date strings.
 
 ![tinacms-date-field](/img/fields/date.jpg)

@@ -99,14 +99,6 @@
           "subline": "Tina supports content stored in Git. Give the benefits of version-control to your whole team."
         }
       ]
-    },
-    {
-      "headline": "*Edit Content, Not Code*",
-      "subline": "Make changes in context and see them in real-time. Hit save and Tina handles the commit."
-    },
-    {
-      "headline": "New to Tina?",
-      "subline": "Learn the basics of the development workflow"
     }
   ]
 }

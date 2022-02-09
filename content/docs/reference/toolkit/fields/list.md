@@ -5,6 +5,8 @@ next: /docs/reference/toolkit/fields/group
 consumes:
 ---
 
+{{ WarningCallout text="This is an advanced-use feature, and likely not something you'll need to configure. What you probably want is the [content types reference](/docs/reference/types/)" }}
+
 The **List Field** represents an array of [primitive](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures) values — specifically strings or numbers.
 
 Use this field when you want to support _multiple entities_ that all output a single value. Each entity will appear in a list where you can edit, add and delete them. Fields that can be used to edit the array of primitive values in the list are: text, textarea, number & select.

@@ -31,7 +31,7 @@ const App = ({ Component, pageProps }) => {
         return createForm(formConfig)
       }}
     >
-      {livePageProps => <Component {...livePageProps} />}
+      <Component {...pageProps} />
     </TinaCMS>
   )
 }

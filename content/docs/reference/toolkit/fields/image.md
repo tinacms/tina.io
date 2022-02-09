@@ -9,6 +9,8 @@ consumes:
     details: References the image field and upload config
 ---
 
+{{ WarningCallout text="This is an advanced-use feature, and likely not something you'll need to configure. What you probably want is the [content types reference](/docs/reference/types/)" }}
+
 The `image` field is used for content values that point to an image used on the page. This field allows you to upload new images by via dragging or selection in Finder. Note this field does not handle any images included in the Markdown body, those would be handled by the [markdown](/docs/reference/toolkit/fields/markdown) component.
 
 ![tinacms-image-field](/img/fields/image.png)

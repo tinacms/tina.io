@@ -1,61 +1,12 @@
 import React from 'react'
-import ReactMarkdown from 'react-markdown'
-import { InlineWysiwyg } from 'react-tinacms-editor'
-import { BlocksControls, InlineTextarea } from 'react-tinacms-inline'
-import { BlockTemplate } from 'tinacms'
-import { ActionFields, Actions } from './Actions'
+import { Actions } from './Actions'
 import { Container } from './Container'
 import HeroBackground from '../../public/svg/hero-background.svg'
 
-export const hero_template: BlockTemplate = {
-  label: 'Hero',
-  defaultItem: {
-    headline: 'Content editing for modern teams',
-    subline: 'Tina is an open-source CMS admin that talks to any API',
-    actions: [
-      {
-        variant: 'button',
-        label: 'Try Demo',
-        icon: 'arrowRight',
-        url: '#',
-      },
-      {
-        variant: 'link',
-        label: 'Learn More',
-        icon: '',
-        url: '#',
-      },
-    ],
-    videoSrc: 'v1571425758/tina-hero-demo-v2',
-  },
-  fields: [
-    {
-      label: 'Headline',
-      name: 'headline',
-      component: 'markdown',
-    },
-    {
-      label: 'Subline',
-      name: 'subline',
-      component: 'text',
-    },
-    ...ActionFields,
-    {
-      label: 'Video Cloudinary Source',
-      name: 'videoSrc',
-      component: 'text',
-    },
-  ],
-}
-
 export function HeroBlock({ data, index }) {
   return (
-    <BlocksControls
-      index={index}
-      insetControls={true}
-      focusRing={{ offset: -16 }}
-    >
-      <section className="hero">
+    <>
+      <section key={index} className="hero">
         <Container width="narrow" center>
           <HeroFeature item={data} />
         </Container>
@@ -91,20 +42,18 @@ export function HeroBlock({ data, index }) {
           }
         }
       `}</style>
-    </BlocksControls>
+    </>
   )
 }
 
 export const HeroFeature = ({ item }) => {
   return (
-    <div className="feature">
-      {item.headline && <h2 className="heading">{item.headline}</h2>}
-      {item.subline && (
-        <p className="textHuge">
-          <InlineTextarea name="subline" />
-        </p>
-      )}
-      {item.actions && <Actions items={item.actions} align="center" />}
+    <>
+      <div className="feature">
+        {item.headline && <h2 className="heading">{item.headline}</h2>}
+        {item.subline && <p className="textHuge">{item.subline}</p>}
+        {item.actions && <Actions items={item.actions} align="center" />}
+      </div>
       <style jsx>{`
         .feature {
           padding: 4rem 0 7rem 0;
@@ -131,7 +80,7 @@ export const HeroFeature = ({ item }) => {
           }
         }
       `}</style>
-    </div>
+    </>
   )
 }
 

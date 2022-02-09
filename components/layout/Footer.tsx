@@ -4,7 +4,6 @@ import { LinkNav } from '../ui/LinkNav'
 import TwitterIconSvg from '../../public/svg/twitter-icon.svg'
 import GithubIconSvg from '../../public/svg/github-icon.svg'
 import { EmailForm } from '../forms/EmailForm'
-import { EditLink } from './EditLink'
 import { TinaIcon } from 'components/logo'
 import Link from 'next/link'
 
@@ -39,7 +38,7 @@ const FooterForm = styled.div`
   color: inherit;
   align-items: flex-start;
   justify-content: flex-start;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 
   span {
     margin: 0.5rem 1rem 0.5rem 0;
@@ -100,8 +99,10 @@ const FooterBottom = styled.div`
 `
 
 const FootnoteLinks = styled.span`
-  display: inline-block;
-  padding: 0.5rem 0 0.5rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0.5rem 1rem;
 `
 
 const Footnote = styled.span`
@@ -110,7 +111,7 @@ const Footnote = styled.span`
   align-items: flex-start;
   color: inherit;
   font-size: 1rem;
-  margin-bottom: 1.5rem;
+  margin: 0 -1rem 1rem -1rem;
 
   button {
     height: 40px;
@@ -136,6 +137,10 @@ const Footnote = styled.span`
   a,
   button {
     white-space: nowrap;
+  }
+
+  div {
+    padding: 0.5rem 1rem;
   }
 
   p {
@@ -164,17 +169,9 @@ const Footnote = styled.span`
 
 const FooterDivider = styled.span`
   &:after {
-    content: '—';
-    margin: 0.5rem 0;
+    content: '|';
+    margin: 0.5rem;
     opacity: 0.3;
-  }
-
-  @media (min-width: 500px) {
-    &:after {
-      content: '|';
-      margin: 0 0.5rem;
-      opacity: 0.3;
-    }
   }
 `
 
@@ -210,10 +207,13 @@ export const Footer = styled(({ light, ...styleProps }) => {
           <EmailForm isFooter />
         </FooterForm>
         <Footnote>
-          <EditLink color={'primary'} />
           <FootnoteLinks>
             <Link href="/security/" passHref>
               <a>Security</a>
+            </Link>
+            <FooterDivider />
+            <Link href="/telemetry/" passHref>
+              <a>Open Source Telemetry</a>
             </Link>
             <FooterDivider />
             <Link href="/terms-of-service/" passHref>
@@ -230,12 +230,13 @@ export const Footer = styled(({ light, ...styleProps }) => {
             >
               License
             </a>
-            <br />
+          </FootnoteLinks>
+          <div>
             <p>
               &copy; TinaCMS 2019–
               {new Date().getFullYear()}
             </p>
-          </FootnoteLinks>
+          </div>
         </Footnote>
       </FooterBottom>
     </div>

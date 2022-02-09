@@ -1,9 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import ReactMarkdown from 'react-markdown'
-import { BlocksControls } from 'react-tinacms-inline'
 import { IconRight } from '../home'
-import TinaLogo from '../../public/svg/tina-logo.svg'
 import TinaCloudWordmark from '../../public/svg/tina-cloud-wordmark.svg'
 import { Button, ButtonGroup } from 'components/ui'
 
@@ -17,13 +14,16 @@ export function CloudBanner() {
               <span className="wordmark">
                 <TinaCloudWordmark />
               </span>{' '}
-               Now supports MDX components. Give the power of MDX to your content creators!
+              Now supports MDX components. Give the power of MDX to your content
+              creators!
             </p>
           </span>
           <Link href="/blog/tina-supports-mdx/">
             <a className="link">
               <span className="desktop">Read The Announcement</span>
-              <span className="mobile">Tina Cloud supports MDX componentsß</span>
+              <span className="mobile">
+                Tina Cloud supports MDX components.
+              </span>
               <IconRight />
             </a>
           </Link>
@@ -83,12 +83,12 @@ export function CloudBanner() {
           );
           box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.03);
           border-bottom: 1px solid #d1faf6;
-          color: var(--tina-color-primary);
+          color: var(--color-tina-blue);
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 0.5rem 2rem;
-          font-size: 1.125rem;
+          padding: 0.75rem 1rem;
+          font-size: 1rem;
           position: relative;
           z-index: 10;
           line-height: 1.2;
@@ -98,7 +98,6 @@ export function CloudBanner() {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0.75rem 0;
             color: inherit;
             transition: opacity 150ms ease-out;
             font-size: 1.125rem;
@@ -120,6 +119,10 @@ export function CloudBanner() {
             font-style: normal;
             font-weight: bold;
           }
+
+          @media (min-width: 680px) {
+            padding: 0.75rem 1.5rem;
+          }
         }
 
         .content {
@@ -140,10 +143,18 @@ export function CloudBanner() {
 
         .link {
           font-size: 1rem;
-          margin-right: 2rem;
+          margin-right: 1rem;
           :global(svg) {
+            display: none;
             margin-left: 0.5rem;
             height: 1em;
+            @media (min-width: 680px) {
+              display: inline-block;
+            }
+          }
+          @media (min-width: 680px) {
+            margin-right: 2rem;
+            white-space: nowrap;
           }
         }
 

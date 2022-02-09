@@ -43,6 +43,7 @@ Let's create a new "Email" plugin, that extends the basic behaviour of a text fi
 import { TextField } from 'tinacms'
 
 export const emailFieldPlugin = {
+  __type: 'field',
   Component: TextField, // Extend the built-in text field
   name: 'text-email',
   validate: (email, allValues, meta, field) => {

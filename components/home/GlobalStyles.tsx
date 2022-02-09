@@ -38,7 +38,8 @@ export const GlobalStyles = css.global`
   }
 
   html {
-    min-width: 400px;
+    min-width: 380px;
+    width: 100%;
   }
 
   .section {
@@ -116,7 +117,7 @@ export const GlobalStyles = css.global`
   }
 
   .lightblue {
-    background: var(--tina-color-primary);
+    background: var(--color-tina-blue);
     color: var(--color-white);
     --color-emphasis: var(--color-orange);
   }

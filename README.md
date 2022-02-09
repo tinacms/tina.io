@@ -57,15 +57,15 @@ A "Copy" button can be added to Code Blocks by adding the `copy` tag to fenced c
 
 Non-copyable JS
 
-    ```js
-    const christmastPresent = new Banana()
-    ```
+```js
+const christmastPresent = new Banana()
+```
 
 Copyable JS
 
-    ```js,copy
-    const christmastPresent = new Banana()
-    ```
+```js,copy
+const christmastPresent = new Banana()
+```
 
 Copyable Text
 

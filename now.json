@@ -1,7 +1,5 @@
 {
   "env": {
-    "GITHUB_CLIENT_ID": "942232a549642aea2bbf",
-    "GITHUB_CLIENT_SECRET": "@github_client_secret",
     "GTM_ID": "@gtm_id",
     "HUBSPOT_TEAMS_FORM_ID": "@hubspot_teams_form_id",
     "HUBSPOT_PORTAL_ID": "@hubspot_portal_id",
@@ -9,10 +7,7 @@
   },
   "build": {
     "env": {
-      "GITHUB_CLIENT_ID": "942232a549642aea2bbf",
-      "BASE_REPO_FULL_NAME": "tinacms/tinacms.org",
       "USE_CONTENT_API": "true",
-      "BASE_BRANCH": "master",
       "GTM_ID": "@gtm_id",
       "HUBSPOT_TEAMS_FORM_ID": "@hubspot_teams_form_id",
       "HUBSPOT_PORTAL_ID": "@hubspot_portal_id",
@@ -131,7 +126,7 @@
     },
     {
       "source": "/docs/nextjs/markdown/",
-      "destination": "/docs/legacy-redirect"
+      "destination": "/docs/editing/markdown/"
     },
     {
       "source": "/teams",
@@ -247,7 +242,7 @@
     },
     {
       "source": "/docs/nextjs/next-tinacms-markdown",
-      "destination": "/docs/legacy-redirect"
+      "destination": "/docs/editing/markdown/"
     },
     {
       "source": "/beta-docs",
@@ -396,7 +391,7 @@
     },
     {
       "source": "/docs/media/",
-      "destination": "/docs/legacy-redirect"
+      "destination": "/docs/media-cloudinary/"
     },
     {
       "source": "/docs/apis/",
@@ -404,19 +399,19 @@
     },
     {
       "source": "/docs/user-interface/",
-      "destination": "/docs/legacy-redirect"
+      "destination": "/docs/advanced/extending-tina/"
     },
     {
       "source": "/docs/sidebar-toolbar/",
-      "destination": "/docs/legacy-redirect"
+      "destination": "/docs/advanced/extending-tina/"
     },
     {
       "source": "/docs/extending-tina/",
-      "destination": "/docs/legacy-redirect"
+      "destination": "/docs/advanced/extending-tina/"
     },
     {
       "source": "/docs/events/",
-      "destination": "/docs/legacy-redirect"
+      "destination": "/docs/advanced/extending-tina/"
     },
     {
       "source": "/docs/plugins(.*)",
@@ -424,11 +419,11 @@
     },
     {
       "source": "/docs/ui/(.*)",
-      "destination": "/docs/legacy-redirect"
+      "destination": "/docs/advanced/extending-tina/"
     },
     {
       "source": "/docs/getting-started/faq/",
-      "destination": "/docs/legacy-redirect"
+      "destination": "/docs/tina-cloud/faq/"
     },
     {
       "source": "/docs/integrations(.*)",
@@ -444,15 +439,15 @@
     },
     {
       "source": "/guides/general(.*)",
-      "destination": "/docs/legacy-redirect"
+      "destination": "/guides/"
     },
     {
       "source": "/guides/nextjs(.*)",
-      "destination": "/docs/legacy-redirect"
+      "destination": "/guides/tina-cloud/add-tinacms-to-existing-site/overview/"
     },
     {
       "source": "/guides/tinacms(.*)",
-      "destination": "/docs/legacy-redirect"
+      "destination": "/guides/"
     },
     {
       "source": "/docs/features/extending-tina/",

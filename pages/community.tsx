@@ -12,185 +12,115 @@ import {
   RichTextWrapper,
   MarkdownContent,
 } from 'components/layout'
-import { InlineTextarea } from 'react-tinacms-inline'
 import { Button, ButtonGroup } from 'components/ui'
 import { EmailForm } from 'components/forms'
 import { NextSeo } from 'next-seo'
-import { InlineGithubForm } from 'components/layout/InlineGithubForm'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
-import { useGithubJsonForm } from 'react-tinacms-github'
-import { InlineWysiwyg } from 'components/inline-wysiwyg'
-import { usePlugin, useCMS } from 'tinacms'
 
-function CommunityPage({ file: community, metadata, preview }) {
-  const cms = useCMS()
-
-  // Registers Tina Form
-  const [data, form] = useGithubJsonForm(community, {
-    label: 'Community Page',
-    fields: [
-      {
-        label: 'Headline',
-        name: 'headline',
-        description: 'Enter the main headline here',
-        component: 'text',
-      },
-      {
-        label: 'Community Image',
-        name: 'img',
-        component: 'group',
-        fields: [
-          {
-            label: 'Image',
-            name: 'src',
-            component: 'image',
-            parse: media => {
-              if (!media) return ''
-              return media.id
-            },
-            uploadDir: () => '/img/',
-          },
-          { label: 'Alt Text', name: 'alt', component: 'text' },
-        ],
-      },
-      {
-        label: 'Secondary Headline',
-        name: 'supporting_headline',
-        description: 'Enter the secondary headline here',
-        component: 'textarea',
-      },
-      {
-        label: 'Secondary Body Copy',
-        name: 'supporting_body',
-        description: 'Enter the body copy here',
-        component: 'markdown',
-      },
-      {
-        label: 'Newsletter Header',
-        name: 'newsletter_header',
-        component: 'text',
-      },
-      {
-        label: 'Newsletter CTA',
-        name: 'newsletter_cta',
-        component: 'text',
-      },
-    ],
-  })
-
-  usePlugin(form)
+function CommunityPage(props) {
+  const data = props.file.data
 
   return (
-    <InlineGithubForm form={form}>
-      <Layout>
-        <NextSeo
-          title={data.title}
-          description={data.description}
-          openGraph={{
-            title: data.title,
-            description: data.description,
-          }}
-        />
-        <Hero>
-          <InlineTextarea name="headline" />
-        </Hero>
-        <RichTextWrapper>
-          <Section>
-            <Wrapper>
-              <InfoLayout>
-                <InfoContent>
-                  <InfoText>
-                    <h2>
-                      <InlineTextarea name="supporting_headline" />
-                    </h2>
-                    <hr />
-                    <InlineWysiwyg name="supporting_body">
-                      <MarkdownContent content={data.supporting_body} />
-                    </InlineWysiwyg>
-                  </InfoText>
-                  <ButtonGroup>
-                    <DynamicLink
-                      href={'https://github.com/tinacms/tinacms/discussions'}
-                      passHref
-                    >
-                      <Button color="white" as="a">
-                        <TinaIconSvg
-                          // @ts-ignore
-                          style={{
-                            color: '#EC4815',
-                            height: '1.675rem',
-                            width: 'auto',
-                            margin: '0 0.5rem 0 0.125rem',
-                          }}
-                        />{' '}
-                        Discussion
-                      </Button>
-                    </DynamicLink>
-                    <DynamicLink
-                      href={'https://discord.com/invite/zumN63Ybpf'}
-                      passHref
-                    >
-                      <Button color="white" as="a">
-                        <FaDiscord
-                          style={{
-                            color: '#5865f2',
-                            height: '1.5rem',
-                            width: 'auto',
-                            margin: '0 0.5rem 0 0.125rem',
-                          }}
-                        />{' '}
-                        Discord
-                      </Button>
-                    </DynamicLink>
-                    <DynamicLink
-                      href={'https://github.com/tinacms/tinacms'}
-                      passHref
-                    >
-                      <Button color="white" as="a">
-                        <FaGithub
-                          style={{
-                            color: '#24292e',
-                            height: '1.5rem',
-                            width: 'auto',
-                            margin: '0 0.5rem 0 0.125rem',
-                          }}
-                        />{' '}
-                        GitHub
-                      </Button>
-                    </DynamicLink>
-                    <DynamicLink href={'https://twitter.com/tina_cms'} passHref>
-                      <Button color="white" as="a">
-                        <FaTwitter
-                          style={{
-                            color: '#1DA1F2',
-                            height: '1.5rem',
-                            width: 'auto',
-                            margin: '0 0.5rem 0 0.125rem',
-                          }}
-                        />{' '}
-                        Twitter
-                      </Button>
-                    </DynamicLink>
-                  </ButtonGroup>
-                </InfoContent>
-                <InfoImage src={data.img.src} alt={data.img.alt} />
-              </InfoLayout>
-            </Wrapper>
-          </Section>
-          <FormSection color="seafoam">
-            <Wrapper>
-              <h2>
-                <InlineTextarea name="newsletter_header" />
-              </h2>
-              <p>
-                <InlineTextarea name="newsletter_cta" />
-              </p>
-              <EmailForm />
-            </Wrapper>
-          </FormSection>
-        </RichTextWrapper>
-      </Layout>
-    </InlineGithubForm>
+    <Layout>
+      <NextSeo
+        title={data.title}
+        description={data.description}
+        openGraph={{
+          title: data.title,
+          description: data.description,
+        }}
+      />
+      <Hero>{data.headline}</Hero>
+      <RichTextWrapper>
+        <Section>
+          <Wrapper>
+            <InfoLayout>
+              <InfoContent>
+                <InfoText>
+                  {data.supporting_headline && (
+                    <h2>{data.supporting_headline}</h2>
+                  )}
+                  <hr />
+                  <MarkdownContent content={data.supporting_body} />
+                </InfoText>
+                <ButtonGroup>
+                  <DynamicLink
+                    href={'https://github.com/tinacms/tinacms/discussions'}
+                    passHref
+                  >
+                    <Button color="white" as="a">
+                      <TinaIconSvg
+                        // @ts-ignore
+                        style={{
+                          color: '#EC4815',
+                          height: '1.675rem',
+                          width: 'auto',
+                          margin: '0 0.5rem 0 0.125rem',
+                        }}
+                      />{' '}
+                      Discussion
+                    </Button>
+                  </DynamicLink>
+                  <DynamicLink
+                    href={'https://discord.com/invite/zumN63Ybpf'}
+                    passHref
+                  >
+                    <Button color="white" as="a">
+                      <FaDiscord
+                        style={{
+                          color: '#5865f2',
+                          height: '1.5rem',
+                          width: 'auto',
+                          margin: '0 0.5rem 0 0.125rem',
+                        }}
+                      />{' '}
+                      Discord
+                    </Button>
+                  </DynamicLink>
+                  <DynamicLink
+                    href={'https://github.com/tinacms/tinacms'}
+                    passHref
+                  >
+                    <Button color="white" as="a">
+                      <FaGithub
+                        style={{
+                          color: '#24292e',
+                          height: '1.5rem',
+                          width: 'auto',
+                          margin: '0 0.5rem 0 0.125rem',
+                        }}
+                      />{' '}
+                      GitHub
+                    </Button>
+                  </DynamicLink>
+                  <DynamicLink href={'https://twitter.com/tina_cms'} passHref>
+                    <Button color="white" as="a">
+                      <FaTwitter
+                        style={{
+                          color: '#1DA1F2',
+                          height: '1.5rem',
+                          width: 'auto',
+                          margin: '0 0.5rem 0 0.125rem',
+                        }}
+                      />{' '}
+                      Twitter
+                    </Button>
+                  </DynamicLink>
+                </ButtonGroup>
+              </InfoContent>
+              <InfoImage src={data.img.src} alt={data.img.alt} />
+            </InfoLayout>
+          </Wrapper>
+        </Section>
+        <FormSection color="seafoam">
+          <Wrapper>
+            {data.newsletter_header && <h2>{data.newsletter_header}</h2>}
+            {data.newsletter_cta && <p>{data.newsletter_cta}</p>}
+            <EmailForm />
+          </Wrapper>
+        </FormSection>
+      </RichTextWrapper>
+    </Layout>
   )
 }
 

@@ -17,14 +17,14 @@ So based upon the `getPostList` we will want to query the `sys` which is the fil
 
 ```graphql,copy
 query {
-  getPostList{
-    edges{
-      node{
-        sys{
-           basename
-          }
+  getPostList {
+    edges {
+      node {
+        sys {
+          basename
         }
       }
+    }
   }
 }
 ```
@@ -247,7 +247,7 @@ export const getStaticProps = async ({ params }) => {
     props: {
       query,
       variables,
-      data,
+      data: data.getPostDocument.data,
       slug,
     },
   }
@@ -344,6 +344,34 @@ export default function Post({ data, slug}) {
 ```
 
 Visit [http://localhost:3000/posts/hello-world](http://localhost:3000/posts/hello-world) to see the GraphQL-powered page.
+
+### Adding contextual editing:
+
+At this point, your page is rendering with the content loaded from Tina. We now want to setup Tina's contextual editing so that you can edit the content via the sidebar.
+
+Let's update your page component like so:
+
+```diff
+- export default function Post({ data, slug}) {
++ export default function Post({ data: initialData, slug, query}) {
+  const {
+    title,
+    coverImage,
+    date,
+    author,
+    body,
+    ogImage,
+  } = data.getPostDocument.data
+  const router = useRouter()
+
++  const { data } = useTina({
++    query,
++    variables: {},
++    data: initialData,
++  })
+```
+
+This filters our data through the `useTina` hook, which allows its content to be editable through the sidebar. When the user edits, it will update the `data` property, and cause the page to show the live data.
 
 ### Editing content:
 

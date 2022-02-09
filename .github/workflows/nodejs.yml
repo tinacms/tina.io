@@ -2,19 +2,13 @@ name: Node CI
 
 on: [push]
 
-env:
-  GITHUB_CLIENT_ID: 'fake'
-  GITHUB_CLIENT_SECRET: 'also-fake'
-  SIGNING_KEY: 'very-fake'
-  BASE_REPO_FULL_NAME: tinacms/tinacms.org
-
 jobs:
   build:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [14.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -39,4 +33,4 @@ jobs:
         uses: chabad360/htmlproofer@master
         with:
           directory: './out'
-          arguments: --only-4xx --assume-extension --check-favicon --check-html --check_opengraph --http-status-ignore "400, 403, 409, 429" --allow-hash-href --timeframe "1w" --file-ignore "/.+\/(blog|404)\/.+/"
+          arguments: --only-4xx --assume-extension --check-favicon --check-html --http-status-ignore "400, 403, 409, 429" --allow-hash-href --timeframe "1w" --file-ignore "/.+\/(blog|404)\/.+/"

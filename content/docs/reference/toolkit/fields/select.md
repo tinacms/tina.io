@@ -9,6 +9,8 @@ consumes:
     details: Shows select field and Option interfaces
 ---
 
+{{ WarningCallout text="This is an advanced-use feature, and likely not something you'll need to configure. What you probably want is the [content types reference](/docs/reference/types/)" }}
+
 The `select` field represents a select element.
 
 ![TinaCMS Select Field](/img/fields/select-field.png)
