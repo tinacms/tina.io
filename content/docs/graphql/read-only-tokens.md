@@ -7,7 +7,7 @@ last_edited: '2022-02-07T18:00:00.000Z'
 Read-only tokens allow data fetching at runtime without the need for the local graphQL server. Some use cases include the following:
 
 
-- Runtime server side logic in `getServerSideProps`, `getStaticProps` (when fallback is not `false`), etc.
+- Runtime server-side logic in `getServerSideProps`, `getStaticProps` (when fallback is not `false`), etc.
 - [Incremental Static Site Generation](https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration)
 - [Server components](https://nextjs.org/docs/advanced-features/react-18#react-server-components)
 - [Next.js middleware](https://nextjs.org/docs/middleware)
