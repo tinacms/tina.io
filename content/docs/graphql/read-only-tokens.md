@@ -1,5 +1,5 @@
 ---
-title: Read Only Tokens
+title: Read-only Tokens
 last_edited: '2022-02-07T18:00:00.000Z'
 ---
 {{ WarningCallout text="This is an experimental feature and may be slow as we work on performance improvements" }}
