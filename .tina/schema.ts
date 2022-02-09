@@ -53,6 +53,7 @@ export default defineSchema({
               fields: [
                 { name: 'headline', type: 'string' },
                 { name: 'subline', type: 'string' },
+                ACTIONS,
                 { name: 'videoSrc', type: 'string' },
               ],
             },
