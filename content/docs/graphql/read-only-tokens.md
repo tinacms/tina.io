@@ -42,7 +42,7 @@ Now you can make a POST request to the content API with the desired GraphQL requ
 
 The endpoint is `https://content.tinajs.io/content/<myClientId>/github/<myBranch>` and the token can be passed by including a `X-API-KEY` with the token as the value.
 
-Here is an example curl command that will query the content API for the list of collections.
+Here is an example curl request that will query the content API for the list of collections:
 
 #### Curl
 ```bash
