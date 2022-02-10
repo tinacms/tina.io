@@ -2070,10 +2070,10 @@
     "@svgr/plugin-svgo" "^4.3.1"
     loader-utils "^1.2.3"
 
-"@tinacms/cli@^0.0.0-202219205147":
-  version "0.0.0-202219205147"
-  resolved "https://registry.yarnpkg.com/@tinacms/cli/-/cli-0.0.0-202219205147.tgz#7a5af090010d931259ddb2dfe368ef2f4269a562"
-  integrity sha512-6z36/u4sohIx9V4L6ZsR0O8Tfg54F9n8N/1FluIzL21jNaGEHP0+N7jnYLtO3hFph/Tg5FJ0sBpzIn7MBdAMnQ==
+"@tinacms/cli@^0.0.0-2022110174656":
+  version "0.0.0-2022110174656"
+  resolved "https://registry.yarnpkg.com/@tinacms/cli/-/cli-0.0.0-2022110174656.tgz#dd0e2b2ef110b4b24551ad41e52343963eacbc5a"
+  integrity sha512-esO6M7XUgrhmx/3DWNUS2D6pi8jRkuDY28JlCOzzdh7fjiar+H6+4MFqxELgwsRePwBTz8nLXquugfB5aEdm7A==
   dependencies:
     "@graphql-codegen/core" "^2.1.0"
     "@graphql-codegen/plugin-helpers" latest

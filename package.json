@@ -91,7 +91,7 @@
   },
   "devDependencies": {
     "@babel/plugin-syntax-jsx": "^7.10.4",
-    "@tinacms/cli": "^0.0.0-202219205147",
+    "@tinacms/cli": "^0.0.0-2022110174656",
     "@types/cookie": "^0.3.3",
     "@types/glob": "^7.1.1",
     "@types/jest": "^25.1.2",

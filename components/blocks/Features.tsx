@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
-import { Actions } from './Actions'
+import { actionsTemplate, Actions } from './Actions'
 import { Container } from './Container'
 import BlobOne from '../../public/svg/blob-1.svg'
 import BlobTwo from '../../public/svg/blob-2.svg'
@@ -9,6 +9,41 @@ import BlobFour from '../../public/svg/blob-4.svg'
 import BlobFive from '../../public/svg/blob-5.svg'
 import BlobSix from '../../public/svg/blob-6.svg'
 import { Blocks } from './Blocks'
+import { TinaTemplate } from '@tinacms/cli'
+
+export const featuresTemplate: TinaTemplate = {
+  label: 'Features',
+  name: 'features',
+  fields: [
+    { name: 'headline', type: 'string' },
+    { name: 'subline', type: 'string' },
+    {
+      name: 'items',
+      type: 'object',
+      list: true,
+      templates: [
+        {
+          label: 'Feature',
+          name: 'feature',
+          fields: [
+            { name: 'headline', type: 'string' },
+            { name: 'subline', type: 'string' },
+            {
+              name: 'media',
+              type: 'object',
+              fields: [
+                { name: 'src', type: 'string' },
+                { name: 'videoSrc', type: 'string' },
+                { name: 'cli', type: 'boolean' },
+              ],
+            },
+            actionsTemplate,
+          ],
+        },
+      ],
+    },
+  ],
+}
 
 const blobSvgOptions = [
   BlobOne,

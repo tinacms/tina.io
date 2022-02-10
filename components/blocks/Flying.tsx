@@ -1,6 +1,31 @@
-import { ActionFields, Actions } from './Actions'
+import { actionsTemplate, Actions } from './Actions'
 import CloudsOne from '../../public/svg/clouds-1.svg'
 import CloudsTwo from '../../public/svg/clouds-2.svg'
+import { TinaTemplate } from '@tinacms/cli'
+
+export const flyingTemplate: TinaTemplate = {
+  name: 'flying',
+  label: 'Flying',
+  fields: [
+    { name: 'headline', type: 'string' },
+    { name: 'subline', type: 'string' },
+    actionsTemplate,
+    {
+      name: 'items',
+      type: 'object',
+      list: true,
+      fields: [
+        { name: 'headline', type: 'string' },
+        { name: 'subline', type: 'string' },
+        {
+          name: 'cli',
+          type: 'boolean',
+          ui: { defaultValue: false },
+        },
+      ],
+    },
+  ],
+}
 
 export function FlyingBlock({ data, index }) {
   return (

@@ -11,86 +11,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-const ACTIONS = {
-  name: 'actions' as const,
-  type: 'object' as const,
-  list: true,
-  fields: [
-    { name: 'label', type: 'string' as const },
-    { name: 'icon', type: 'string' as const },
-    { name: 'variant', type: 'string' as const },
-    { name: 'url', type: 'string' as const },
-  ],
-}
-import { defineSchema, TinaTemplate } from '@tinacms/cli'
-
-const heroTemplate: TinaTemplate = {
-  label: 'Hero',
-  name: 'hero',
-  fields: [
-    { name: 'headline', type: 'string' },
-    { name: 'subline', type: 'string' },
-    { name: 'videoSrc', type: 'string' },
-  ],
-}
-
-const featuresTemplate: TinaTemplate = {
-  label: 'Features',
-  name: 'features',
-  fields: [
-    { name: 'headline', type: 'string' },
-    { name: 'subline', type: 'string' },
-    {
-      name: 'items',
-      type: 'object',
-      list: true,
-      templates: [
-        {
-          label: 'Feature',
-          name: 'feature',
-          fields: [
-            { name: 'headline', type: 'string' },
-            { name: 'subline', type: 'string' },
-            {
-              name: 'media',
-              type: 'object',
-              fields: [
-                { name: 'src', type: 'string' },
-                { name: 'videoSrc', type: 'string' },
-                { name: 'cli', type: 'boolean' },
-              ],
-            },
-            ACTIONS,
-          ],
-        },
-      ],
-    },
-  ],
-}
-
-const flyingTemplate: TinaTemplate = {
-  name: 'flying',
-  label: 'Flying',
-  fields: [
-    { name: 'headline', type: 'string' },
-    { name: 'subline', type: 'string' },
-    ACTIONS,
-    {
-      name: 'items',
-      type: 'object',
-      list: true,
-      fields: [
-        { name: 'headline', type: 'string' },
-        { name: 'subline', type: 'string' },
-        {
-          name: 'cli',
-          type: 'boolean',
-          ui: { defaultValue: false },
-        },
-      ],
-    },
-  ],
-}
+import { defineSchema } from '@tinacms/cli'
+import {
+  heroTemplate,
+  flyingTemplate,
+  featuresTemplate,
+} from '../components/blocks'
 
 export default defineSchema({
   collections: [

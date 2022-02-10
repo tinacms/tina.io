@@ -1,7 +1,19 @@
 import React from 'react'
-import { Actions } from './Actions'
+import { actionsTemplate, Actions } from './Actions'
 import { Container } from './Container'
 import HeroBackground from '../../public/svg/hero-background.svg'
+import { TinaTemplate } from '@tinacms/cli'
+
+export const heroTemplate: TinaTemplate = {
+  label: 'Hero',
+  name: 'hero',
+  fields: [
+    { name: 'headline', type: 'string' },
+    { name: 'subline', type: 'string' },
+    actionsTemplate,
+    { name: 'videoSrc', type: 'string' },
+  ],
+}
 
 export function HeroBlock({ data, index }) {
   return (

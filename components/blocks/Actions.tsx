@@ -4,6 +4,18 @@ import { BiCopy } from 'react-icons/bi'
 import { IconRight } from './Icons'
 import { copyToClipboard } from 'components/layout/MarkdownContent'
 
+export const actionsTemplate = {
+  name: 'actions' as const,
+  type: 'object' as const,
+  list: true,
+  fields: [
+    { name: 'label', type: 'string' as const },
+    { name: 'icon', type: 'string' as const },
+    { name: 'variant', type: 'string' as const },
+    { name: 'url', type: 'string' as const },
+  ],
+}
+
 export const Actions = ({ items, align = 'left' }) => {
   return (
     <>
