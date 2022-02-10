@@ -129,9 +129,72 @@ export const getStaticProps = async () => {
 - `query` and `variables`: These are the same values that you would use for the [backend data-fetching](/docs/features/data-fetching/).
 - `data`: This is the production value that gets passed through to the response unchanged in production.
 
+## The `RouteMapping` Plugin
+
+The `RouteMapping` Plugin is used in the Collection List pages to route to a Document's "Contextual Editing" view rather than the default "Fullscreen Editing" view.
+
+```ts
+RouteMappingPlugin(mapper: (collection: Collection, document: Document) => string | undefined)
+```
+
+The `RouteMappingPlugin` accepts a single argument - the `mapper` function - that is run against each `document` and `collection` in a Collection List.
+
+- If the `mapper` returns a `string`, that `string` is used as the Document's route rather than the default one.
+- If the `mapper` returns `undefined`, the route defaults to the Document's "Fullscreen Editing" page.
+
+This is an example of the `RouteMappingPlugin` added to our `tina-cloud-starter` template:
+
+```tsx
+import { RouteMappingPlugin } from 'tinacms';
+
+...
+
+cmsCallback={(cms) => {
+  /**
+   * 1. Define the `RouteMappingPlugin`
+   **/
+  const RouteMapping = new RouteMappingPlugin(
+    (collection, document) => {
+      /**
+       * Because the `authors` and `global` collections do not
+       * have dedicated pages, we return `undefined`.
+       **/
+      if (["authors", "global"].includes(collection.name)) {
+        return undefined;
+      }
+
+      /**
+       * While the `pages` collection does have dedicated pages,
+       * their URLs are different than their document names.
+       **/
+      if (["pages"].includes(collection.name)) {
+        if (document.sys.filename === "home") {
+          return `/`;
+        }
+        if (document.sys.filename === "about") {
+          return `/about`;
+        }
+        return undefined;
+      }
+      /**
+       * Finally, any other collections (`posts`, for example)
+       * have URLs based on values in the `collection` and `document`.
+       **/
+      return `/${collection.name}/${document.sys.filename}`;
+    }
+  );
+
+  /**
+   * 2. Add the `RouteMappingPlugin` to the `cms`.
+   **/
+  cms.plugins.add(RouteMapping);
+}
+```
+
 ## Summary
 
 - Tina can be added to a site's UI by wrapping its layout in the `<TinaCMS>` component.
 - The `<TinaEditProvider>` component should be used to dynamically code-split Tina out of your production site.
 - The Tina admin usually lives on the `/admin` route. This page allows editors to log in and enter edit-mode.
 - A piece of content can be made editable by running it through the `useTina` hook. In production, it returns the original data unchanged. In edit-mode, it returns the live data, which is updated as the user types in the sidebar.
+- Optionally, make use of the `RouteMappingPlugin` to connect your Documents to their "Contextual Editing" views.

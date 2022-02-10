@@ -9,7 +9,7 @@ Tina is very flexible & extendable, so any Tina site may have a unique experienc
 
 ## Entering the Admin
 
-When Tina is initialized on a NextJS site, a "/admin" page is created to allow editors to login and begin to make content changes.
+When Tina is initialized on a NextJS site, a "/admin" page is created to allow editors to log in and begin to make content changes.
 
 > Screenshot of Login Page
 
