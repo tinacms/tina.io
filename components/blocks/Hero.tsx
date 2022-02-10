@@ -2,7 +2,7 @@ import React from 'react'
 import { actionsTemplate, Actions } from './Actions'
 import { Container } from './Container'
 import HeroBackground from '../../public/svg/hero-background.svg'
-import { TinaTemplate } from '@tinacms/cli'
+import type { TinaTemplate } from '@tinacms/cli'
 
 export const heroTemplate: TinaTemplate = {
   label: 'Hero',
