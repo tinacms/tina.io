@@ -10,7 +10,7 @@ This means that there was a syntax or semantic error somewhere in your code. Thi
 
 ## ERROR: your schema.ts was not successfully executed
 
-This error means that the schema was compiled correctly (correct syntax and semantics) but when the code was run it produced an error.
+This error means that the schema was compiled correctly (correct syntax) but when the code was run it produced an error.
 
 Some common issues are
 
