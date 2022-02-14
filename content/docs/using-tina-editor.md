@@ -11,27 +11,27 @@ Tina is very flexible & extendable, so any Tina site may have a unique experienc
 
 When Tina is initialized on a NextJS site, a "/admin" page is created to allow editors to log in and begin to make content changes.
 
-> Screenshot of Login Page
+![Tina Login Page](/img/tina-login.png)
 
 After successfully logging in, the user will land in the Admin with the Dashboard and Main Navigation.
 
 ## Using the Admin
 
-> Screenshot of Dashboard with Collections and Screen Plugins
+![Tina Editor Dashboard](/img/tina-dashboard.png)
 
 Depending on how Tina is configured, one or more Collections will appear in the Main Navigation. Clicking on a Collection will take the user to a Document List page for that Collection.
 
-> Screenshot of Collection List page
+![Tina Editor List Page](/img/tina-list-page.png)
 
 The table here lists all existing Documents for that Collection. This page also allows the user to create a new Document.
 
 If "Contextual Editing" has been configured for Tina, clicking on an existing Document will route the user to that Document's Preview Page with the Tina Sidebar open and ready for editing.
 
-> Gif of "Contextual Editing" with either "posts" or "pages"
+![Tina Editor Contextual Editing](/img/tina-contextual-editing.png)
 
 However, if "Contextual Editing" is not configured or simply not available for a particular Collection, clicking on an existing Document will present the user with a fullscreen form.
 
-> Gif of "Fullscreen Editing" with either "authors" or "global"
+![Tina Editor Standard Editing](/img/tina-standard-editing.png)
 
 > Note: You can learn more about how to set up "Contextual Editing" for your users [here](/docs/tinacms-context).
 
