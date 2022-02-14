@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@next/bundle-analyzer": "^10.0.0",
-    "@tinacms/graphql": "0.59.2",
+    "@tinacms/graphql": "^0.59.6",
     "@types/react-instantsearch-dom": "^5.2.6",
     "@types/styled-components": "^5.1.21",
     "@uiw/react-monacoeditor": "^3.4.5",
@@ -86,7 +86,7 @@
     "strip-markdown": "^3.1.1",
     "styled-components": "^5.3.3",
     "styled-jsx-plugin-sass": "^1.0.0",
-    "tinacms": "^0.66.1",
+    "tinacms": "^0.66.3",
     "webpack": "^5.68.0"
   },
   "devDependencies": {

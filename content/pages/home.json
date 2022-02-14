@@ -12,7 +12,7 @@
         {
           "variant": "orange",
           "label": "Get Started",
-          "icon": "",
+          "icon": false,
           "url": "/docs/setup-overview/"
         },
         {
@@ -77,7 +77,7 @@
         {
           "variant": "orange",
           "label": "Check out the docs",
-          "icon": "arrowRight",
+          "icon": true,
           "url": "/docs/"
         }
       ],

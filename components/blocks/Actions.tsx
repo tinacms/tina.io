@@ -5,14 +5,45 @@ import { IconRight } from './Icons'
 import { copyToClipboard } from 'components/layout/MarkdownContent'
 
 export const actionsTemplate = {
+  label: 'Actions',
   name: 'actions' as const,
   type: 'object' as const,
   list: true,
+  ul: {
+    defaultItem: {
+      variant: 'default',
+      label: 'Secondary Action',
+      icon: false,
+      url: '/',
+    },
+  },
   fields: [
-    { name: 'label', type: 'string' as const },
-    { name: 'icon', type: 'string' as const },
-    { name: 'variant', type: 'string' as const },
-    { name: 'url', type: 'string' as const },
+    { name: 'label', label: 'Label', type: 'string' as const },
+    { name: 'icon', label: 'Icon', type: 'boolean' as const },
+    {
+      name: 'variant',
+      label: 'Variant',
+      type: 'string',
+      options: [
+        {
+          value: 'default',
+          label: 'Default',
+        },
+        {
+          value: 'orange',
+          label: 'Orange',
+        },
+        {
+          value: 'ghost',
+          label: 'Ghost',
+        },
+        {
+          value: 'command',
+          label: 'Command',
+        },
+      ],
+    },
+    { name: 'url', label: 'URL', type: 'string' as const },
   ],
 }
 
@@ -43,7 +74,7 @@ export const Actions = ({ items, align = 'left' }) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {label} {icon === 'arrowRight' && <IconRight />}
+                {label} {icon && <IconRight />}
               </a>
             )
           } else {
@@ -53,7 +84,7 @@ export const Actions = ({ items, align = 'left' }) => {
                 href={url}
                 className={`action ${variant}`}
               >
-                {label} {icon === 'arrowRight' && <IconRight />}
+                {label} {icon && <IconRight />}
               </a>
             )
           }
@@ -159,6 +190,9 @@ export const Actions = ({ items, align = 'left' }) => {
           :not(:hover):global(svg) {
             opacity: 0.85;
           }
+        }
+
+        .default {
         }
 
         .orange {

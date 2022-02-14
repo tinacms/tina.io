@@ -153,7 +153,7 @@ export type PageSeo = {
 export type PageBlocksHeroActions = {
   __typename?: 'PageBlocksHeroActions';
   label?: Maybe<Scalars['String']>;
-  icon?: Maybe<Scalars['String']>;
+  icon?: Maybe<Scalars['Boolean']>;
   variant?: Maybe<Scalars['String']>;
   url?: Maybe<Scalars['String']>;
 };
@@ -176,7 +176,7 @@ export type PageBlocksFeaturesItemsFeatureMedia = {
 export type PageBlocksFeaturesItemsFeatureActions = {
   __typename?: 'PageBlocksFeaturesItemsFeatureActions';
   label?: Maybe<Scalars['String']>;
-  icon?: Maybe<Scalars['String']>;
+  icon?: Maybe<Scalars['Boolean']>;
   variant?: Maybe<Scalars['String']>;
   url?: Maybe<Scalars['String']>;
 };
@@ -201,7 +201,7 @@ export type PageBlocksFeatures = {
 export type PageBlocksFlyingActions = {
   __typename?: 'PageBlocksFlyingActions';
   label?: Maybe<Scalars['String']>;
-  icon?: Maybe<Scalars['String']>;
+  icon?: Maybe<Scalars['Boolean']>;
   variant?: Maybe<Scalars['String']>;
   url?: Maybe<Scalars['String']>;
 };
@@ -306,7 +306,7 @@ export type PageSeoMutation = {
 
 export type PageBlocksHeroActionsMutation = {
   label?: InputMaybe<Scalars['String']>;
-  icon?: InputMaybe<Scalars['String']>;
+  icon?: InputMaybe<Scalars['Boolean']>;
   variant?: InputMaybe<Scalars['String']>;
   url?: InputMaybe<Scalars['String']>;
 };
@@ -326,7 +326,7 @@ export type PageBlocksFeaturesItemsFeatureMediaMutation = {
 
 export type PageBlocksFeaturesItemsFeatureActionsMutation = {
   label?: InputMaybe<Scalars['String']>;
-  icon?: InputMaybe<Scalars['String']>;
+  icon?: InputMaybe<Scalars['Boolean']>;
   variant?: InputMaybe<Scalars['String']>;
   url?: InputMaybe<Scalars['String']>;
 };
@@ -350,7 +350,7 @@ export type PageBlocksFeaturesMutation = {
 
 export type PageBlocksFlyingActionsMutation = {
   label?: InputMaybe<Scalars['String']>;
-  icon?: InputMaybe<Scalars['String']>;
+  icon?: InputMaybe<Scalars['Boolean']>;
   variant?: InputMaybe<Scalars['String']>;
   url?: InputMaybe<Scalars['String']>;
 };
@@ -380,19 +380,19 @@ export type PageMutation = {
   blocks?: InputMaybe<Array<InputMaybe<PageBlocksMutation>>>;
 };
 
-export type PagePartsFragment = { __typename?: 'Page', title?: string | null, seo?: { __typename: 'PageSeo', title?: string | null, description?: string | null } | null, blocks?: Array<{ __typename: 'PageBlocksHero', headline?: string | null, subline?: string | null, videoSrc?: string | null, actions?: Array<{ __typename: 'PageBlocksHeroActions', label?: string | null, icon?: string | null, variant?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksFeatures', headline?: string | null, subline?: string | null, items?: Array<{ __typename: 'PageBlocksFeaturesItemsFeature', headline?: string | null, subline?: string | null, media?: { __typename: 'PageBlocksFeaturesItemsFeatureMedia', src?: string | null, videoSrc?: string | null, cli?: boolean | null } | null, actions?: Array<{ __typename: 'PageBlocksFeaturesItemsFeatureActions', label?: string | null, icon?: string | null, variant?: string | null, url?: string | null } | null> | null } | null> | null } | { __typename: 'PageBlocksFlying', headline?: string | null, subline?: string | null, actions?: Array<{ __typename: 'PageBlocksFlyingActions', label?: string | null, icon?: string | null, variant?: string | null, url?: string | null } | null> | null, items?: Array<{ __typename: 'PageBlocksFlyingItems', headline?: string | null, subline?: string | null, cli?: boolean | null } | null> | null } | null> | null };
+export type PagePartsFragment = { __typename?: 'Page', title?: string | null, seo?: { __typename: 'PageSeo', title?: string | null, description?: string | null } | null, blocks?: Array<{ __typename: 'PageBlocksHero', headline?: string | null, subline?: string | null, videoSrc?: string | null, actions?: Array<{ __typename: 'PageBlocksHeroActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksFeatures', headline?: string | null, subline?: string | null, items?: Array<{ __typename: 'PageBlocksFeaturesItemsFeature', headline?: string | null, subline?: string | null, media?: { __typename: 'PageBlocksFeaturesItemsFeatureMedia', src?: string | null, videoSrc?: string | null, cli?: boolean | null } | null, actions?: Array<{ __typename: 'PageBlocksFeaturesItemsFeatureActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null> | null } | { __typename: 'PageBlocksFlying', headline?: string | null, subline?: string | null, actions?: Array<{ __typename: 'PageBlocksFlyingActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null, items?: Array<{ __typename: 'PageBlocksFlyingItems', headline?: string | null, subline?: string | null, cli?: boolean | null } | null> | null } | null> | null };
 
 export type GetPageDocumentQueryVariables = Exact<{
   relativePath: Scalars['String'];
 }>;
 
 
-export type GetPageDocumentQuery = { __typename?: 'Query', getPageDocument: { __typename?: 'PageDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Page', title?: string | null, seo?: { __typename: 'PageSeo', title?: string | null, description?: string | null } | null, blocks?: Array<{ __typename: 'PageBlocksHero', headline?: string | null, subline?: string | null, videoSrc?: string | null, actions?: Array<{ __typename: 'PageBlocksHeroActions', label?: string | null, icon?: string | null, variant?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksFeatures', headline?: string | null, subline?: string | null, items?: Array<{ __typename: 'PageBlocksFeaturesItemsFeature', headline?: string | null, subline?: string | null, media?: { __typename: 'PageBlocksFeaturesItemsFeatureMedia', src?: string | null, videoSrc?: string | null, cli?: boolean | null } | null, actions?: Array<{ __typename: 'PageBlocksFeaturesItemsFeatureActions', label?: string | null, icon?: string | null, variant?: string | null, url?: string | null } | null> | null } | null> | null } | { __typename: 'PageBlocksFlying', headline?: string | null, subline?: string | null, actions?: Array<{ __typename: 'PageBlocksFlyingActions', label?: string | null, icon?: string | null, variant?: string | null, url?: string | null } | null> | null, items?: Array<{ __typename: 'PageBlocksFlyingItems', headline?: string | null, subline?: string | null, cli?: boolean | null } | null> | null } | null> | null } } };
+export type GetPageDocumentQuery = { __typename?: 'Query', getPageDocument: { __typename?: 'PageDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Page', title?: string | null, seo?: { __typename: 'PageSeo', title?: string | null, description?: string | null } | null, blocks?: Array<{ __typename: 'PageBlocksHero', headline?: string | null, subline?: string | null, videoSrc?: string | null, actions?: Array<{ __typename: 'PageBlocksHeroActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksFeatures', headline?: string | null, subline?: string | null, items?: Array<{ __typename: 'PageBlocksFeaturesItemsFeature', headline?: string | null, subline?: string | null, media?: { __typename: 'PageBlocksFeaturesItemsFeatureMedia', src?: string | null, videoSrc?: string | null, cli?: boolean | null } | null, actions?: Array<{ __typename: 'PageBlocksFeaturesItemsFeatureActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null> | null } | { __typename: 'PageBlocksFlying', headline?: string | null, subline?: string | null, actions?: Array<{ __typename: 'PageBlocksFlyingActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null, items?: Array<{ __typename: 'PageBlocksFlyingItems', headline?: string | null, subline?: string | null, cli?: boolean | null } | null> | null } | null> | null } } };
 
 export type GetPageListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetPageListQuery = { __typename?: 'Query', getPageList: { __typename?: 'PageConnection', totalCount: number, edges?: Array<{ __typename?: 'PageConnectionEdges', node?: { __typename?: 'PageDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Page', title?: string | null, seo?: { __typename: 'PageSeo', title?: string | null, description?: string | null } | null, blocks?: Array<{ __typename: 'PageBlocksHero', headline?: string | null, subline?: string | null, videoSrc?: string | null, actions?: Array<{ __typename: 'PageBlocksHeroActions', label?: string | null, icon?: string | null, variant?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksFeatures', headline?: string | null, subline?: string | null, items?: Array<{ __typename: 'PageBlocksFeaturesItemsFeature', headline?: string | null, subline?: string | null, media?: { __typename: 'PageBlocksFeaturesItemsFeatureMedia', src?: string | null, videoSrc?: string | null, cli?: boolean | null } | null, actions?: Array<{ __typename: 'PageBlocksFeaturesItemsFeatureActions', label?: string | null, icon?: string | null, variant?: string | null, url?: string | null } | null> | null } | null> | null } | { __typename: 'PageBlocksFlying', headline?: string | null, subline?: string | null, actions?: Array<{ __typename: 'PageBlocksFlyingActions', label?: string | null, icon?: string | null, variant?: string | null, url?: string | null } | null> | null, items?: Array<{ __typename: 'PageBlocksFlyingItems', headline?: string | null, subline?: string | null, cli?: boolean | null } | null> | null } | null> | null } } | null } | null> | null } };
+export type GetPageListQuery = { __typename?: 'Query', getPageList: { __typename?: 'PageConnection', totalCount: number, edges?: Array<{ __typename?: 'PageConnectionEdges', node?: { __typename?: 'PageDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Page', title?: string | null, seo?: { __typename: 'PageSeo', title?: string | null, description?: string | null } | null, blocks?: Array<{ __typename: 'PageBlocksHero', headline?: string | null, subline?: string | null, videoSrc?: string | null, actions?: Array<{ __typename: 'PageBlocksHeroActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksFeatures', headline?: string | null, subline?: string | null, items?: Array<{ __typename: 'PageBlocksFeaturesItemsFeature', headline?: string | null, subline?: string | null, media?: { __typename: 'PageBlocksFeaturesItemsFeatureMedia', src?: string | null, videoSrc?: string | null, cli?: boolean | null } | null, actions?: Array<{ __typename: 'PageBlocksFeaturesItemsFeatureActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null> | null } | { __typename: 'PageBlocksFlying', headline?: string | null, subline?: string | null, actions?: Array<{ __typename: 'PageBlocksFlyingActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null, items?: Array<{ __typename: 'PageBlocksFlyingItems', headline?: string | null, subline?: string | null, cli?: boolean | null } | null> | null } | null> | null } } | null } | null> | null } };
 
 export const PagePartsFragmentDoc = gql`
     fragment PageParts on Page {

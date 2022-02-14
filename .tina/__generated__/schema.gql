@@ -84,7 +84,7 @@ type PageSeo {
 
 type PageBlocksHeroActions {
   label: String
-  icon: String
+  icon: Boolean
   variant: String
   url: String
 }
@@ -104,7 +104,7 @@ type PageBlocksFeaturesItemsFeatureMedia {
 
 type PageBlocksFeaturesItemsFeatureActions {
   label: String
-  icon: String
+  icon: Boolean
   variant: String
   url: String
 }
@@ -126,7 +126,7 @@ type PageBlocksFeatures {
 
 type PageBlocksFlyingActions {
   label: String
-  icon: String
+  icon: Boolean
   variant: String
   url: String
 }
@@ -191,7 +191,7 @@ input PageSeoMutation {
 
 input PageBlocksHeroActionsMutation {
   label: String
-  icon: String
+  icon: Boolean
   variant: String
   url: String
 }
@@ -211,7 +211,7 @@ input PageBlocksFeaturesItemsFeatureMediaMutation {
 
 input PageBlocksFeaturesItemsFeatureActionsMutation {
   label: String
-  icon: String
+  icon: Boolean
   variant: String
   url: String
 }
@@ -235,7 +235,7 @@ input PageBlocksFeaturesMutation {
 
 input PageBlocksFlyingActionsMutation {
   label: String
-  icon: String
+  icon: Boolean
   variant: String
   url: String
 }

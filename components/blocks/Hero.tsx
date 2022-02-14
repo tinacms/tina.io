@@ -7,18 +7,39 @@ import type { TinaTemplate } from '@tinacms/cli'
 export const heroTemplate: TinaTemplate = {
   label: 'Hero',
   name: 'hero',
+  ui: {
+    defaultItem: {
+      headline: 'Next Gen Content Management',
+      subline: 'Tina is an open-source, Git-backed CMS with the ability to add visual editing to your NextJS site',
+      actions: [
+        {
+          variant: 'orange',
+          label: 'Primary Action',
+          icon: true,
+          url: '/',
+        },
+        {
+          variant: '',
+          label: 'Secondary Action',
+          icon: false,
+          url: '/',
+        },
+      ],
+    },
+  },
   fields: [
-    { name: 'headline', type: 'string' },
-    { name: 'subline', type: 'string' },
+    { name: 'headline', label: "Headline", type: 'string' },
+    { name: 'subline', label: "Subline", type: 'string' },
+    // @ts-ignore
     actionsTemplate,
-    { name: 'videoSrc', type: 'string' },
+    { name: 'videoSrc', label:"Video Source", type: 'string' },
   ],
 }
 
 export function HeroBlock({ data, index }) {
   return (
     <>
-      <section key={index} className="hero">
+      <section key={index} className={`hero ${data.videoSrc ? 'with-video' : 'without-video'}`}>
         <Container width="narrow" center>
           <HeroFeature item={data} />
         </Container>
@@ -27,7 +48,7 @@ export function HeroBlock({ data, index }) {
             <Video src={data.videoSrc} />
           </Container>
         )}
-        <div className="background">
+        <div className={`background ${data.videoSrc ? 'with-video' : 'without-video'}`}>
           <HeroBackground />
         </div>
       </section>
@@ -37,12 +58,24 @@ export function HeroBlock({ data, index }) {
           z-index: 2;
         }
 
+        .hero.without-video {
+          margin-bottom: -2rem;
+        }
+
+
+        .background.with-video {
+          height: 66.6%;
+        }
+
+        .background.without-video {
+          height: calc(100%);
+        }
+
         .background {
           position: absolute;
           top: 0;
           left: 0;
           width: 100%;
-          height: 66.6%;
           z-index: -1;
 
           :global(svg) {

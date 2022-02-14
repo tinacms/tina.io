@@ -1208,7 +1208,7 @@
             "kind": "NamedType",
             "name": {
               "kind": "Name",
-              "value": "String"
+              "value": "Boolean"
             }
           }
         },
@@ -1409,7 +1409,7 @@
             "kind": "NamedType",
             "name": {
               "kind": "Name",
-              "value": "String"
+              "value": "Boolean"
             }
           }
         },
@@ -1630,7 +1630,7 @@
             "kind": "NamedType",
             "name": {
               "kind": "Name",
-              "value": "String"
+              "value": "Boolean"
             }
           }
         },
@@ -2543,7 +2543,7 @@
             "kind": "NamedType",
             "name": {
               "kind": "Name",
-              "value": "String"
+              "value": "Boolean"
             }
           }
         },
@@ -2727,7 +2727,7 @@
             "kind": "NamedType",
             "name": {
               "kind": "Name",
-              "value": "String"
+              "value": "Boolean"
             }
           }
         },
@@ -2937,7 +2937,7 @@
             "kind": "NamedType",
             "name": {
               "kind": "Name",
-              "value": "String"
+              "value": "Boolean"
             }
           }
         },
