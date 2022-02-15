@@ -5,7 +5,7 @@ last_edited: '2022-02-15T20:00:00.000Z'
 
 {{ WarningCallout text="This is an experimental feature, and the API is subject to change. Have any thoughts? Let us know in the chat, or through one of our [community channels](/community/)!" }}
 
-Tina Cloud now supports an optional Data Layer which implements a database layer between the Tina's GraphQL api and the
+Tina Cloud now supports an optional Data Layer which implements a database layer between the Tina GraphQL api and the
 GitHub rest api. This data layer buffers requests between Tina Cloud and GitHub resulting in improved editing
 performance with TinaCMS. As this feature evolves, it will provide additional capabilities such as:
 - more sophisticated GraphQL queries
