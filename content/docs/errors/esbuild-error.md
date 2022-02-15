@@ -4,7 +4,7 @@ title: 'ESbuild compilation and build errors'
 
 The `.tina/schema.{ts,js,tsx}` file is built with [esbuild](https://esbuild.github.io/) and executed in a node.js runtime. This allows you to import from outside your `.tina` folder and esbuild will handle this for us. This also can run into some edge cases where some things are being run on the server that should not be.
 
-## ERROR: your schema was not successfully build
+## ERROR: your schema was not successfully built
 
 This means that there was a syntax or semantic error somewhere in your code. This could be inside the .tina folder or in any file that was imported from your schema file.
 
