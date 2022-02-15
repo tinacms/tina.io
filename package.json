@@ -86,7 +86,7 @@
     "strip-markdown": "^3.1.1",
     "styled-components": "^5.3.3",
     "styled-jsx-plugin-sass": "^1.0.0",
-    "tinacms": "^0.66.3",
+    "tinacms": "^0.66.4",
     "webpack": "^5.68.0"
   },
   "devDependencies": {

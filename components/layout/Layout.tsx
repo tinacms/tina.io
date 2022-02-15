@@ -24,7 +24,7 @@ export const Layout = styled(
         />
         <CloudBanner />
         <Navbar />
-        {children}
+        <div className="content">{children}</div>
         <Footer />
       </div>
     )
@@ -33,6 +33,9 @@ export const Layout = styled(
   display: flex;
   flex-direction: column;
   position: relative;
-  flex: 1 1 auto;
-  min-height: 100%;
+  min-height: 100vh;
+
+  .content {
+    flex: 1 1 auto;
+  }
 `

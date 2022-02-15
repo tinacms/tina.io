@@ -92,6 +92,7 @@ export function CloudBanner() {
           position: relative;
           z-index: 10;
           line-height: 1.2;
+          flex: 0 1 auto;
 
           :global(a) {
             font-weight: bold;

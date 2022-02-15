@@ -66,7 +66,7 @@ export function FeatureBlock({ data, index }) {
   return (
     <>
       <div
-        key={index}
+        key={'feature-' + index}
         className={`feature ${isReversed ? 'featureReverse' : ''}`}
       >
         <div className="featureText">
@@ -82,7 +82,7 @@ export function FeatureBlock({ data, index }) {
             <FeatureBlobSvg />
           </div>
         </div>
-        {data.media.src && (
+        {data.media && data.media.src && (
           <div className={`featureImage`}>
             <img
               src={data.media.src}
@@ -92,8 +92,10 @@ export function FeatureBlock({ data, index }) {
             />
           </div>
         )}
-        {data.media.videoSrc && <FeatureVideo src={data.media.videoSrc} />}
-        {data.media.cli && (
+        {data.media && data.media.videoSrc && (
+          <FeatureVideo src={data.media.videoSrc} />
+        )}
+        {data.media && data.media.cli && (
           <div className={`featureImage`}>
             <FeatureCLI />
           </div>
@@ -138,10 +140,11 @@ export function FeatureBlock({ data, index }) {
         .featureText {
           position: relative;
           max-width: 28rem;
+          min-width: 8rem;
           justify-self: center;
           margin-top: 1rem;
 
-          :global(a) {
+          :global(p > a) {
             text-decoration: underline;
             transition: all ease-out 150ms;
             color: var(--color-tina-blue-dark);
@@ -210,11 +213,17 @@ export function FeatureBlock({ data, index }) {
 
 export function FeaturesBlock({ data, index }) {
   return (
-    <section key={index} className={'section white featureSection'}>
+    <section
+      key={'features-' + index}
+      className={'section white featureSection'}
+    >
       <Container>
         {/* TODO: why is there a type error here */}
         {/* @ts-ignore */}
-        <Blocks blocks={data.items} />
+        {data.items &&
+          data.items.map((data, index) => {
+            return <FeatureBlock data={data} index={index} />
+          })}
       </Container>
     </section>
   )
