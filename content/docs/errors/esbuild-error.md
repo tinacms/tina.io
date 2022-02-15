@@ -2,7 +2,7 @@
 title: 'ESbuild compilation and build errors'
 ---
 
-The `.tina/schema.{ts,js,tsx}` file is built with [esbuild](https://esbuild.github.io/) and execute in a node.js runtime. This allows you to import from outside your `.tina` folder and esbuild will handle this for us. This also can run into some edge cases where some things are being run on the server that should not be.
+The `.tina/schema.{ts,js,tsx}` file is built with [esbuild](https://esbuild.github.io/) and executed in a node.js runtime. This allows you to import from outside your `.tina` folder and esbuild will handle this for us. This also can run into some edge cases where some things are being run on the server that should not be.
 
 ## ERROR: your schema was not successfully build
 
