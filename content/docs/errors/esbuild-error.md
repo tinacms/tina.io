@@ -14,7 +14,7 @@ This error means that the schema was compiled correctly (correct syntax) but whe
 
 Some common issues are
 
-- Importing code that requires a custom compile logic (webpack loader,esbuild loader, bable plugin, etc)
+- Importing code that requires a custom compile logic (webpack loader, esbuild loader, babel plugin, etc)
 - Importing and running code that needs to be run on the frontend (uses `window`, the dom, etc)
 
 If you run into one of the above issues you can try only importing the code that you need. 
