@@ -91,7 +91,7 @@ type PageBlocksHeroActions {
 
 type PageBlocksHero {
   headline: String
-  subline: String
+  text: String
   actions: [PageBlocksHeroActions]
   videoSrc: String
 }
@@ -111,7 +111,7 @@ type PageBlocksFeaturesItemsFeatureActions {
 
 type PageBlocksFeaturesItemsFeature {
   headline: String
-  subline: String
+  text: String
   media: PageBlocksFeaturesItemsFeatureMedia
   actions: [PageBlocksFeaturesItemsFeatureActions]
 }
@@ -119,8 +119,6 @@ type PageBlocksFeaturesItemsFeature {
 union PageBlocksFeaturesItems = PageBlocksFeaturesItemsFeature
 
 type PageBlocksFeatures {
-  headline: String
-  subline: String
   items: [PageBlocksFeaturesItems]
 }
 
@@ -131,23 +129,15 @@ type PageBlocksFlyingActions {
   url: String
 }
 
-type PageBlocksFlyingItems {
-  headline: String
-  subline: String
-  cli: Boolean
-}
-
 type PageBlocksFlying {
   headline: String
-  subline: String
+  text: String
   actions: [PageBlocksFlyingActions]
-  items: [PageBlocksFlyingItems]
 }
 
 union PageBlocks = PageBlocksHero | PageBlocksFeatures | PageBlocksFlying
 
 type Page {
-  title: String
   seo: PageSeo
   blocks: [PageBlocks]
 }
@@ -198,7 +188,7 @@ input PageBlocksHeroActionsMutation {
 
 input PageBlocksHeroMutation {
   headline: String
-  subline: String
+  text: String
   actions: [PageBlocksHeroActionsMutation]
   videoSrc: String
 }
@@ -218,7 +208,7 @@ input PageBlocksFeaturesItemsFeatureActionsMutation {
 
 input PageBlocksFeaturesItemsFeatureMutation {
   headline: String
-  subline: String
+  text: String
   media: PageBlocksFeaturesItemsFeatureMediaMutation
   actions: [PageBlocksFeaturesItemsFeatureActionsMutation]
 }
@@ -228,8 +218,6 @@ input PageBlocksFeaturesItemsMutation {
 }
 
 input PageBlocksFeaturesMutation {
-  headline: String
-  subline: String
   items: [PageBlocksFeaturesItemsMutation]
 }
 
@@ -240,17 +228,10 @@ input PageBlocksFlyingActionsMutation {
   url: String
 }
 
-input PageBlocksFlyingItemsMutation {
-  headline: String
-  subline: String
-  cli: Boolean
-}
-
 input PageBlocksFlyingMutation {
   headline: String
-  subline: String
+  text: String
   actions: [PageBlocksFlyingActionsMutation]
-  items: [PageBlocksFlyingItemsMutation]
 }
 
 input PageBlocksMutation {
@@ -260,7 +241,6 @@ input PageBlocksMutation {
 }
 
 input PageMutation {
-  title: String
   seo: PageSeoMutation
   blocks: [PageBlocksMutation]
 }

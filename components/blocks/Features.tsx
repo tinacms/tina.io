@@ -15,10 +15,9 @@ export const featuresTemplate: TinaTemplate = {
   label: 'Features',
   name: 'features',
   fields: [
-    { name: 'headline', type: 'string' },
-    { name: 'subline', type: 'string' },
     {
       name: 'items',
+      label: 'Feature Items',
       type: 'object',
       list: true,
       templates: [
@@ -26,15 +25,21 @@ export const featuresTemplate: TinaTemplate = {
           label: 'Feature',
           name: 'feature',
           fields: [
-            { name: 'headline', type: 'string' },
-            { name: 'subline', type: 'string' },
+            { name: 'headline', label: 'Headline', type: 'string' },
+            {
+              name: 'text',
+              label: 'Text',
+              ui: { component: 'textarea' },
+              type: 'string',
+            },
             {
               name: 'media',
+              label: 'Media',
               type: 'object',
               fields: [
-                { name: 'src', type: 'string' },
-                { name: 'videoSrc', type: 'string' },
-                { name: 'cli', type: 'boolean' },
+                { name: 'src', label: 'Image Source', type: 'string' },
+                { name: 'videoSrc', label: 'Video Source', type: 'string' },
+                { name: 'cli', label: 'CLI', type: 'boolean' },
               ],
             },
             actionsTemplate,
@@ -66,10 +71,12 @@ export function FeatureBlock({ data, index }) {
       >
         <div className="featureText">
           {data.headline && <h3 className="featureTitle">{data.headline}</h3>}
-          <hr className="dottedBorder" />
-          <div className="textLarge">
-            <ReactMarkdown source={data.subline} />
-          </div>
+          {(data.text || data.actions) && <hr className="dottedBorder" />}
+          {data.text && (
+            <div className="textLarge">
+              <ReactMarkdown source={data.text} />
+            </div>
+          )}
           {data.actions && <Actions items={data.actions} />}
           <div className="blob">
             <FeatureBlobSvg />
@@ -274,7 +281,7 @@ export const FeatureCLI = () => {
             >{` What starter code would you like to use?`}</span>
             {` 
 › Bare bones starter
-  Tailwind Starter
+  Tina Cloud Starter
   Documentation Starter
 `}
           </span>

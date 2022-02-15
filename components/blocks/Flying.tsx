@@ -8,22 +8,8 @@ export const flyingTemplate: TinaTemplate = {
   label: 'Flying',
   fields: [
     { name: 'headline', type: 'string' },
-    { name: 'subline', type: 'string' },
+    { name: 'text', ui: { component: 'textarea' }, type: 'string' },
     actionsTemplate,
-    {
-      name: 'items',
-      type: 'object',
-      list: true,
-      fields: [
-        { name: 'headline', type: 'string' },
-        { name: 'subline', type: 'string' },
-        {
-          name: 'cli',
-          type: 'boolean',
-          ui: { defaultValue: false },
-        },
-      ],
-    },
   ],
 }
 
@@ -34,7 +20,7 @@ export function FlyingBlock({ data, index }) {
         <div className="learnContainer">
           <div>
             {data.headline && <h3 className="title">{data.headline}</h3>}
-            {data.subline && <p className="text">{data.subline}</p>}
+            {data.text && <p className="text">{data.text}</p>}
             <Actions items={data.actions} />
           </div>
           <div className="learnImageWrapper">

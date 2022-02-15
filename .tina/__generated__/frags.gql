@@ -1,5 +1,4 @@
 fragment PageParts on Page {
-  title
   seo {
     __typename
     title
@@ -9,7 +8,7 @@ fragment PageParts on Page {
     __typename
     ... on PageBlocksHero {
       headline
-      subline
+      text
       actions {
         __typename
         label
@@ -20,13 +19,11 @@ fragment PageParts on Page {
       videoSrc
     }
     ... on PageBlocksFeatures {
-      headline
-      subline
       items {
         __typename
         ... on PageBlocksFeaturesItemsFeature {
           headline
-          subline
+          text
           media {
             __typename
             src
@@ -45,19 +42,13 @@ fragment PageParts on Page {
     }
     ... on PageBlocksFlying {
       headline
-      subline
+      text
       actions {
         __typename
         label
         icon
         variant
         url
-      }
-      items {
-        __typename
-        headline
-        subline
-        cli
       }
     }
   }

@@ -6,8 +6,8 @@ import { copyToClipboard } from 'components/layout/MarkdownContent'
 
 export const actionsTemplate = {
   label: 'Actions',
-  name: 'actions' as const,
-  type: 'object' as const,
+  name: 'actions',
+  type: 'object',
   list: true,
   ul: {
     defaultItem: {
@@ -18,8 +18,8 @@ export const actionsTemplate = {
     },
   },
   fields: [
-    { name: 'label', label: 'Label', type: 'string' as const },
-    { name: 'icon', label: 'Icon', type: 'boolean' as const },
+    { name: 'label', label: 'Label', type: 'string' },
+    { name: 'icon', label: 'Icon', type: 'boolean' },
     {
       name: 'variant',
       label: 'Variant',
@@ -43,7 +43,7 @@ export const actionsTemplate = {
         },
       ],
     },
-    { name: 'url', label: 'URL', type: 'string' as const },
+    { name: 'url', label: 'URL', type: 'string' },
   ],
 }
 

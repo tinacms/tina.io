@@ -25,14 +25,20 @@ export default defineSchema({
       name: 'page',
       path: 'content/pages',
       fields: [
-        { type: 'string', name: 'title' },
         {
           type: 'object',
           name: 'seo',
-          label: 'SEO',
+          label: 'Page Information',
           fields: [
-            { type: 'string', name: 'title' },
-            { type: 'string', name: 'description' },
+            { type: 'string', label: 'Title', name: 'title' },
+            {
+              type: 'string',
+              label: ' Description',
+              name: 'description',
+              ui: {
+                component: 'textarea',
+              },
+            },
           ],
         },
         {
@@ -40,6 +46,9 @@ export default defineSchema({
           name: 'blocks',
           type: 'object',
           list: true,
+          ui: {
+            visualSelector: true,
+          },
           templates: [heroTemplate, featuresTemplate, flyingTemplate],
         },
       ],

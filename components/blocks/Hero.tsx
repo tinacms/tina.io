@@ -10,7 +10,7 @@ export const heroTemplate: TinaTemplate = {
   ui: {
     defaultItem: {
       headline: 'Next Gen Content Management',
-      subline: 'Tina is an open-source, Git-backed CMS with the ability to add visual editing to your NextJS site',
+      text: 'Tina is an open-source, Git-backed CMS with the ability to add visual editing to your NextJS site',
       actions: [
         {
           variant: 'orange',
@@ -29,7 +29,7 @@ export const heroTemplate: TinaTemplate = {
   },
   fields: [
     { name: 'headline', label: "Headline", type: 'string' },
-    { name: 'subline', label: "Subline", type: 'string' },
+    { name: 'text', label: "Text", type: 'string' },
     // @ts-ignore
     actionsTemplate,
     { name: 'videoSrc', label:"Video Source", type: 'string' },
@@ -96,7 +96,7 @@ export const HeroFeature = ({ item }) => {
     <>
       <div className="feature">
         {item.headline && <h2 className="heading">{item.headline}</h2>}
-        {item.subline && <p className="textHuge">{item.subline}</p>}
+        {item.text && <p className="textHuge">{item.text}</p>}
         {item.actions && <Actions items={item.actions} align="center" />}
       </div>
       <style jsx>{`
