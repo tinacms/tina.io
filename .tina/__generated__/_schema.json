@@ -1254,6 +1254,88 @@
                 "blocks",
                 "pricing"
               ]
+            },
+            {
+              "label": "FAQ",
+              "name": "faq",
+              "ui": {
+                "defaultItem": {
+                  "title": "Frequently Asked Questions",
+                  "questions": [
+                    {
+                      "question": "What is Tina?",
+                      "answer": "Tina is a Git-backed headless content management system that enables developers and content creators to collaborate seamlessly. With Tina, developers can create a custom visual editing experience that is perfectly tailored to their site.\n"
+                    }
+                  ]
+                }
+              },
+              "fields": [
+                {
+                  "name": "title",
+                  "label": "Title",
+                  "type": "string",
+                  "namespace": [
+                    "page",
+                    "blocks",
+                    "faq",
+                    "title"
+                  ]
+                },
+                {
+                  "name": "intro",
+                  "label": "Introduction",
+                  "type": "rich-text",
+                  "namespace": [
+                    "page",
+                    "blocks",
+                    "faq",
+                    "intro"
+                  ]
+                },
+                {
+                  "name": "questions",
+                  "label": "Questions",
+                  "type": "object",
+                  "list": true,
+                  "fields": [
+                    {
+                      "name": "question",
+                      "label": "Question",
+                      "type": "string",
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "faq",
+                        "questions",
+                        "question"
+                      ]
+                    },
+                    {
+                      "name": "answer",
+                      "label": "Answer",
+                      "type": "rich-text",
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "faq",
+                        "questions",
+                        "answer"
+                      ]
+                    }
+                  ],
+                  "namespace": [
+                    "page",
+                    "blocks",
+                    "faq",
+                    "questions"
+                  ]
+                }
+              ],
+              "namespace": [
+                "page",
+                "blocks",
+                "faq"
+              ]
             }
           ],
           "namespace": [

@@ -115,5 +115,14 @@ fragment PageParts on Page {
         }
       }
     }
+    ... on PageBlocksFaq {
+      title
+      intro
+      questions {
+        __typename
+        question
+        answer
+      }
+    }
   }
 }

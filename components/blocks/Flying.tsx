@@ -26,12 +26,12 @@ export function FlyingBlock({ data, index }) {
           <div>
             {data.headline && <h3 className="title">{data.headline}</h3>}
             {data.text && <p className="text">{data.text}</p>}
-            {data.acitons && <Actions items={data.actions} />}
+            {data.actions && <Actions items={data.actions} />}
           </div>
           <div className="learnImageWrapper">
             <img
               className="learnImage"
-              src="img/flyingTina.png"
+              src="/img/flyingTina.png"
               alt="Tina learning"
             />
           </div>

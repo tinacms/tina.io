@@ -10,8 +10,79 @@
     },
     {
       "intro": "**No surprises.**  Predictable pricing for every project. Complete control of your content, forever.\n\nTina’s source code is open-source. Your content lives in accessible formats right in your Git repository.\n",
+      "tierOne": {
+        "name": "Community",
+        "price": "Free",
+        "body": "*   Tina's Community plan offers **X free users** per project\n*   Each additional user being billed at **$$/month**\n*   Maximum of **X users** per project\n",
+        "large": true,
+        "actions": [
+          {
+            "label": "Secondary Action",
+            "icon": true,
+            "variant": "orange",
+            "url": "/"
+          }
+        ]
+      },
       "segue": "**Need a bit more?**\n\nWe have you covered.\n",
+      "tierTwo": {
+        "name": "Team",
+        "price": "$99",
+        "interval": "month",
+        "body": "*   Tina's **Team** plan offers **10** **users** per project\n*   Each additional user being billed at **$15/month**\n*   **3 Roles**\n",
+        "actions": [
+          {
+            "label": "Contact Us",
+            "icon": true,
+            "variant": "default",
+            "url": "/"
+          }
+        ]
+      },
+      "tierThree": {
+        "name": "Business",
+        "price": "$949",
+        "interval": "month",
+        "body": "*   20 Users per project\n*   5 Roles\n*   Increased API calls\n*   Priority support\n",
+        "actions": [
+          {
+            "label": "Contact Us",
+            "icon": true,
+            "variant": "default",
+            "url": "/"
+          }
+        ]
+      },
+      "tierFour": {
+        "name": "Enterprise",
+        "price": "Contact Us",
+        "body": "*   Elit esse laborum elit tempor incididunt anim reprehenderit.\n*   Quis nulla ut ipsum aliquip.\n*   Do est adipiscing incididunt laborum officia ad anim elit irure culpa ex.\n",
+        "large": false,
+        "actions": [
+          {
+            "label": "Contact Us",
+            "icon": false,
+            "variant": "default",
+            "url": "/"
+          }
+        ]
+      },
       "_template": "pricing"
+    },
+    {
+      "title": "Frequently Asked Questions",
+      "intro": "",
+      "questions": [
+        {
+          "question": "What is Tina?",
+          "answer": "Reprehenderit eu cupidatat cupidatat et officia commodo aute amet cillum ipsum qui labore ad qui excepteur est qui aliquip commodo. Commodo occaecat id excepteur officia magna commodo quis minim eu culpa amet excepteur esse ipsum adipiscing voluptate culpa.\n"
+        },
+        {
+          "question": "Minim ut irure lorem?",
+          "answer": "Fugiat ullamco pariatur eu laborum elit anim labore eu ea sed reprehenderit lorem aute quis cillum in. Dolore quis in nostrud consequat nulla elit culpa qui culpa. Magna non in minim officia dolor ipsum cupidatat nisi veniam et. Voluptate nulla ad excepteur do ex aute labore elit sint nisi deserunt eu dolor voluptate.\n"
+        }
+      ],
+      "_template": "faq"
     }
   ]
 }

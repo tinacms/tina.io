@@ -208,7 +208,18 @@ type PageBlocksPricing {
   tierFour: PageBlocksPricingTierFour
 }
 
-union PageBlocks = PageBlocksHero | PageBlocksFeatures | PageBlocksFlying | PageBlocksPricing
+type PageBlocksFaqQuestions {
+  question: String
+  answer: JSON
+}
+
+type PageBlocksFaq {
+  title: String
+  intro: JSON
+  questions: [PageBlocksFaqQuestions]
+}
+
+union PageBlocks = PageBlocksHero | PageBlocksFeatures | PageBlocksFlying | PageBlocksPricing | PageBlocksFaq
 
 type Page {
   seo: PageSeo
@@ -380,11 +391,23 @@ input PageBlocksPricingMutation {
   tierFour: PageBlocksPricingTierFourMutation
 }
 
+input PageBlocksFaqQuestionsMutation {
+  question: String
+  answer: JSON
+}
+
+input PageBlocksFaqMutation {
+  title: String
+  intro: JSON
+  questions: [PageBlocksFaqQuestionsMutation]
+}
+
 input PageBlocksMutation {
   hero: PageBlocksHeroMutation
   features: PageBlocksFeaturesMutation
   flying: PageBlocksFlyingMutation
   pricing: PageBlocksPricingMutation
+  faq: PageBlocksFaqMutation
 }
 
 input PageMutation {

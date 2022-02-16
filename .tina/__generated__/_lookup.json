@@ -30,7 +30,8 @@
       "hero": "PageBlocksHero",
       "features": "PageBlocksFeatures",
       "flying": "PageBlocksFlying",
-      "pricing": "PageBlocksPricing"
+      "pricing": "PageBlocksPricing",
+      "faq": "PageBlocksFaq"
     }
   },
   "PageDocument": {

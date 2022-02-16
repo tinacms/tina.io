@@ -1,5 +1,46 @@
 import React from 'react'
-import { RichTextWrapper, Wrapper } from 'components/layout'
+import { RichTextWrapper } from '../layout/RichTextWrapper'
+import { Wrapper } from '../layout/Wrapper'
+import type { TinaTemplate } from '@tinacms/cli'
+import { TinaMarkdown } from 'tinacms/dist/rich-text'
+
+export const faqTemplate: TinaTemplate = {
+  label: 'FAQ',
+  name: 'faq',
+  ui: {
+    defaultItem: {
+      title:'Frequently Asked Questions',
+      questions: [
+        {
+          question: 'What is Tina?',
+          answer: 'Tina is a Git-backed headless content management system that enables developers and content creators to collaborate seamlessly. With Tina, developers can create a custom visual editing experience that is perfectly tailored to their site.\n'
+        }
+      ]
+    },
+  },
+  fields: [
+    { name: 'title', label: 'Title', type: 'string' },
+    {
+      name: 'intro',
+      label: 'Introduction',
+      type: 'rich-text',
+    },
+    {
+      name: 'questions',
+      label: 'Questions',
+      type: 'object',
+      list: true,
+      fields: [
+        { name: 'question', label: 'Question', type: 'string' },
+        {
+          name: 'answer',
+          label: 'Answer',
+          type: 'rich-text',
+        },
+      ]
+    },
+  ],
+}
 
 export function FaqBlock({ data, index }) {
   return (
@@ -8,37 +49,18 @@ export function FaqBlock({ data, index }) {
         <RichTextWrapper>
           <Wrapper narrow>
             <div className="faq-wrapper">
-              <h3>Frequently Asked Questions</h3>
-              <p>
-                Maecenas ac tellus vulputate, bibendum orci vitae, fermentum
-                purus.
-              </p>
-              <h4>What's the meaning of life?</h4>
-              <p>
-                Suspendisse lacinia tempor quam ac aliquet. Quisque sed nunc ac
-                sem dictum blandit. Morbi finibus, ligula vitae finibus
-                hendrerit, tellus metus auctor urna, lacinia pulvinar justo nibh
-                eget nibh. Maecenas a nulla cursus, scelerisque leo vel, ornare
-                leo. In hac habitasse platea dictumst. Maecenas ac tellus
-                vulputate, bibendum orci vitae, fermentum purus.
-              </p>
-              <hr />
-              <h4>Important question number two goes here?</h4>
-              <p>
-                Nulla eget sem vel nunc pellentesque iaculis. Donec hendrerit
-                eros eget lacus tristique imperdiet. Nulla at ex cursus, mattis
-                est tristique, blandit tortor.
-              </p>
-              <hr />
-              <h4>Donec viverra ullamcorper ligula a mollis?</h4>
-              <p>
-                Praesent massa sem, fermentum eu enim sed, convallis vulputate
-                nulla. Nam vitae ex eget lectus commodo elementum non sit amet
-                nisl. Proin egestas sit amet lectus ac ultricies. Suspendisse
-                potenti. Praesent sed tempus magna, sit amet vestibulum ex. Sed
-                pretium, ipsum vitae convallis tristique, tellus tortor euismod
-                ante.
-              </p>
+              {data.title && <h3>{data.title}</h3>}
+              {data.intro && <TinaMarkdown content={data.intro} />}
+              {data.questions &&
+                data.questions.map((item, index) => {
+                  return (
+                    <div key={index}>
+                      {item.question && <h4>{item.question}</h4>}
+                      {item.answer && <TinaMarkdown content={item.answer} />}
+                      {index < data.questions.length - 1 && <hr />}
+                    </div>
+                  )
+                })}
             </div>
           </Wrapper>
         </RichTextWrapper>
@@ -62,16 +84,18 @@ export function FaqBlock({ data, index }) {
         }
 
         .faq-wrapper {
+          width: 100%; 
+
           :global(h3) {
             font-size: 2rem;
             color: var(--color-secondary);
             font-family: var(--font-tuner);
           }
           :global(p) {
-            &:first-of-type {
+            ${data.intro && `&:first-of-type {
               font-size: 1.5rem;
               margin-bottom: 2.5rem;
-            }
+            }`}
             color: var(--color-secondary);
           }
         }
