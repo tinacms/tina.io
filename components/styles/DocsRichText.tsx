@@ -247,7 +247,6 @@ const DocsRichText = css`
     text-shadow: white 0px 1px;
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
     text-align: left;
-    white-space: pre;
     word-spacing: normal;
     word-break: normal;
     overflow-wrap: normal;
@@ -258,6 +257,19 @@ const DocsRichText = css`
     margin: 0.5em 0px;
     overflow: auto;
     border-radius: 0.3rem;
+    /* fix wrapping issues breaking layout */
+    white-space: pre-wrap !important;
+    white-space: -moz-pre-wrap !important;
+    white-space: -pre-wrap !important;
+    white-space: -o-pre-wrap !important;
+    word-wrap: break-word !important;
+    code {
+      white-space: pre-wrap !important;
+      white-space: -moz-pre-wrap !important;
+      white-space: -pre-wrap !important;
+      white-space: -o-pre-wrap !important;
+      word-wrap: break-word !important;
+    }
   }
 
   table {
