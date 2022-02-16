@@ -17,7 +17,7 @@ import { heroTemplate } from '../components/blocks/Hero'
 import { featuresTemplate } from '../components/blocks/Features'
 import { flyingTemplate } from '../components/blocks/Flying'
 import { pricingTemplate } from '../components/blocks/Pricing'
-import { faqTemplate } from '../components/blocks/Faq'
+import { faqTemplate } from '../components/blocks/FAQ'
 import { contentTemplate } from '../components/blocks/Content'
 
 export default defineSchema({
