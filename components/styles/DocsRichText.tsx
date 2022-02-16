@@ -242,26 +242,22 @@ const DocsRichText = css`
   }
 
   pre {
-    border-radius: 5px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgb(237, 238, 238);
-    border-image: initial;
-    max-width: 100%;
-    overflow-x: auto;
-    /* fix wrapping issues breaking layout */
-    white-space: pre-wrap !important;
-    white-space: -moz-pre-wrap !important;
-    white-space: -pre-wrap !important;
-    white-space: -o-pre-wrap !important;
-    word-wrap: break-word !important;
-    code {
-      white-space: pre-wrap !important;
-      white-space: -moz-pre-wrap !important;
-      white-space: -pre-wrap !important;
-      white-space: -o-pre-wrap !important;
-      word-wrap: break-word !important;
-    }
+    background-color: var(--color-light);
+    border: 1px solid var(--color-light-dark);
+    text-shadow: white 0px 1px;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    overflow-wrap: normal;
+    line-height: 1.5;
+    tab-size: 4;
+    hyphens: none;
+    padding: 1em;
+    margin: 0.5em 0px;
+    overflow: auto;
+    border-radius: 0.3rem;
   }
 
   table {

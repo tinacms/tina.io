@@ -219,7 +219,13 @@ type PageBlocksFaq {
   questions: [PageBlocksFaqQuestions]
 }
 
-union PageBlocks = PageBlocksHero | PageBlocksFeatures | PageBlocksFlying | PageBlocksPricing | PageBlocksFaq
+type PageBlocksContent {
+  narrow: Boolean
+  seafoam: Boolean
+  content: JSON
+}
+
+union PageBlocks = PageBlocksHero | PageBlocksFeatures | PageBlocksFlying | PageBlocksPricing | PageBlocksFaq | PageBlocksContent
 
 type Page {
   seo: PageSeo
@@ -402,12 +408,19 @@ input PageBlocksFaqMutation {
   questions: [PageBlocksFaqQuestionsMutation]
 }
 
+input PageBlocksContentMutation {
+  narrow: Boolean
+  seafoam: Boolean
+  content: JSON
+}
+
 input PageBlocksMutation {
   hero: PageBlocksHeroMutation
   features: PageBlocksFeaturesMutation
   flying: PageBlocksFlyingMutation
   pricing: PageBlocksPricingMutation
   faq: PageBlocksFaqMutation
+  content: PageBlocksContentMutation
 }
 
 input PageMutation {

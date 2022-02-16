@@ -31,7 +31,8 @@
       "features": "PageBlocksFeatures",
       "flying": "PageBlocksFlying",
       "pricing": "PageBlocksPricing",
-      "faq": "PageBlocksFaq"
+      "faq": "PageBlocksFaq",
+      "content": "PageBlocksContent"
     }
   },
   "PageDocument": {

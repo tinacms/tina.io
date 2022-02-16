@@ -18,6 +18,7 @@ import { featuresTemplate } from '../components/blocks/Features'
 import { flyingTemplate } from '../components/blocks/Flying'
 import { pricingTemplate } from '../components/blocks/Pricing'
 import { faqTemplate } from '../components/blocks/Faq'
+import { contentTemplate } from '../components/blocks/Content'
 
 export default defineSchema({
   collections: [
@@ -56,6 +57,7 @@ export default defineSchema({
             flyingTemplate,
             pricingTemplate,
             faqTemplate,
+            contentTemplate,
           ],
         },
       ],

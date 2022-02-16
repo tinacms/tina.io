@@ -124,5 +124,10 @@ fragment PageParts on Page {
         answer
       }
     }
+    ... on PageBlocksContent {
+      narrow
+      seafoam
+      content
+    }
   }
 }

@@ -1336,6 +1336,91 @@
                 "blocks",
                 "faq"
               ]
+            },
+            {
+              "label": "Content",
+              "name": "content",
+              "fields": [
+                {
+                  "name": "narrow",
+                  "label": "Narrow",
+                  "type": "boolean",
+                  "namespace": [
+                    "page",
+                    "blocks",
+                    "content",
+                    "narrow"
+                  ]
+                },
+                {
+                  "name": "seafoam",
+                  "label": "Seafoam",
+                  "type": "boolean",
+                  "namespace": [
+                    "page",
+                    "blocks",
+                    "content",
+                    "seafoam"
+                  ]
+                },
+                {
+                  "name": "content",
+                  "label": "Content",
+                  "type": "rich-text",
+                  "templates": [
+                    {
+                      "name": "code",
+                      "label": "Code",
+                      "fields": [
+                        {
+                          "type": "string",
+                          "name": "language",
+                          "label": "Language",
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "content",
+                            "content",
+                            "code",
+                            "language"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "name": "code",
+                          "label": "Code",
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "content",
+                            "content",
+                            "code",
+                            "code"
+                          ]
+                        }
+                      ],
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "content",
+                        "content",
+                        "code"
+                      ]
+                    }
+                  ],
+                  "namespace": [
+                    "page",
+                    "blocks",
+                    "content",
+                    "content"
+                  ]
+                }
+              ],
+              "namespace": [
+                "page",
+                "blocks",
+                "content"
+              ]
             }
           ],
           "namespace": [
