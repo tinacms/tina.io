@@ -60,7 +60,6 @@ export const getStaticProps: GetStaticProps = async function({
 }
 
 export const getStaticPaths: GetStaticPaths = async function() {
-  console.log('shit')
   const pages = await fg(`./content/blocksPages/*.json`)
   const paths = pages.map(file => {
     const slug = fileToUrl(file, 'blocksPages')
@@ -69,7 +68,6 @@ export const getStaticPaths: GetStaticPaths = async function() {
   const updatedPaths = paths.filter(path => {
     return path.params.slug !== 'home'
   })
-  console.log(updatedPaths)
   return {
     paths: updatedPaths,
     fallback: false,

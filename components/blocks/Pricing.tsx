@@ -180,8 +180,8 @@ export const pricingTemplate: TinaTemplate = {
       type: 'rich-text',
     },
     {
-      name: 'community',
-      label: 'Community',
+      name: 'tierOne',
+      label: 'Tier One',
       // @ts-ignore
       type: cardTemplate.type,
       fields: cardTemplate.fields,
@@ -190,6 +190,27 @@ export const pricingTemplate: TinaTemplate = {
       name: 'segue',
       label: 'Segue Text',
       type: 'rich-text',
+    },
+    {
+      name: 'tierTwo',
+      label: 'Tier Two',
+      // @ts-ignore
+      type: cardTemplate.type,
+      fields: cardTemplate.fields,
+    },
+    {
+      name: 'tierThree',
+      label: 'Tier Three',
+      // @ts-ignore
+      type: cardTemplate.type,
+      fields: cardTemplate.fields,
+    },
+    {
+      name: 'tierFour',
+      label: 'Tier Four',
+      // @ts-ignore
+      type: cardTemplate.type,
+      fields: cardTemplate.fields,
     },
   ],
 }
@@ -205,7 +226,7 @@ export function PricingBlock({ data, index }) {
                 <TinaMarkdown content={data.intro} />
               </div>
             )}
-            {data.community && <PricingCard data={data.community} />}
+            {data.tierOne && <PricingCard data={data.tierOne} />}
             <div className="segue">
               {data.segue && (
                 <span>
@@ -216,25 +237,9 @@ export function PricingBlock({ data, index }) {
           </Wrapper>
           <Wrapper wide>
             <div className="card-wrapper">
-              {/* <PricingCard
-                name="Team"
-                price="$"
-                interval="month"
-                size="small"
-              />
-              <PricingCard
-                name="Business"
-                price="$$$"
-                interval="month"
-                body={`- Tina's Business plan offers **something** per project\n- Each additional something being billed at **$0/month**`}
-                size="small"
-              />
-              <PricingCard
-                name="Enterprise"
-                price="Contact Us"
-                body={`- Our Enterprise plan offers **amazing features**\n- Really **exceptional value**\n- **Anything is possible**`}
-                size="small"
-              /> */}
+            {data.tierTwo && <PricingCard data={data.tierTwo} />}
+            {data.tierThree && <PricingCard data={data.tierThree} />}
+            {data.tierFour && <PricingCard data={data.tierFour} />}
             </div>
           </Wrapper>
         </RichTextWrapper>

@@ -135,26 +135,77 @@ type PageBlocksFlying {
   actions: [PageBlocksFlyingActions]
 }
 
-type PageBlocksPricingCommunityActions {
+type PageBlocksPricingTierOneActions {
   label: String
   icon: Boolean
   variant: String
   url: String
 }
 
-type PageBlocksPricingCommunity {
+type PageBlocksPricingTierOne {
   name: String
   price: String
   interval: String
   body: JSON
   large: Boolean
-  actions: [PageBlocksPricingCommunityActions]
+  actions: [PageBlocksPricingTierOneActions]
+}
+
+type PageBlocksPricingTierTwoActions {
+  label: String
+  icon: Boolean
+  variant: String
+  url: String
+}
+
+type PageBlocksPricingTierTwo {
+  name: String
+  price: String
+  interval: String
+  body: JSON
+  large: Boolean
+  actions: [PageBlocksPricingTierTwoActions]
+}
+
+type PageBlocksPricingTierThreeActions {
+  label: String
+  icon: Boolean
+  variant: String
+  url: String
+}
+
+type PageBlocksPricingTierThree {
+  name: String
+  price: String
+  interval: String
+  body: JSON
+  large: Boolean
+  actions: [PageBlocksPricingTierThreeActions]
+}
+
+type PageBlocksPricingTierFourActions {
+  label: String
+  icon: Boolean
+  variant: String
+  url: String
+}
+
+type PageBlocksPricingTierFour {
+  name: String
+  price: String
+  interval: String
+  body: JSON
+  large: Boolean
+  actions: [PageBlocksPricingTierFourActions]
 }
 
 type PageBlocksPricing {
   intro: JSON
-  community: PageBlocksPricingCommunity
+  tierOne: PageBlocksPricingTierOne
   segue: JSON
+  tierTwo: PageBlocksPricingTierTwo
+  tierThree: PageBlocksPricingTierThree
+  tierFour: PageBlocksPricingTierFour
 }
 
 union PageBlocks = PageBlocksHero | PageBlocksFeatures | PageBlocksFlying | PageBlocksPricing
@@ -256,26 +307,77 @@ input PageBlocksFlyingMutation {
   actions: [PageBlocksFlyingActionsMutation]
 }
 
-input PageBlocksPricingCommunityActionsMutation {
+input PageBlocksPricingTierOneActionsMutation {
   label: String
   icon: Boolean
   variant: String
   url: String
 }
 
-input PageBlocksPricingCommunityMutation {
+input PageBlocksPricingTierOneMutation {
   name: String
   price: String
   interval: String
   body: JSON
   large: Boolean
-  actions: [PageBlocksPricingCommunityActionsMutation]
+  actions: [PageBlocksPricingTierOneActionsMutation]
+}
+
+input PageBlocksPricingTierTwoActionsMutation {
+  label: String
+  icon: Boolean
+  variant: String
+  url: String
+}
+
+input PageBlocksPricingTierTwoMutation {
+  name: String
+  price: String
+  interval: String
+  body: JSON
+  large: Boolean
+  actions: [PageBlocksPricingTierTwoActionsMutation]
+}
+
+input PageBlocksPricingTierThreeActionsMutation {
+  label: String
+  icon: Boolean
+  variant: String
+  url: String
+}
+
+input PageBlocksPricingTierThreeMutation {
+  name: String
+  price: String
+  interval: String
+  body: JSON
+  large: Boolean
+  actions: [PageBlocksPricingTierThreeActionsMutation]
+}
+
+input PageBlocksPricingTierFourActionsMutation {
+  label: String
+  icon: Boolean
+  variant: String
+  url: String
+}
+
+input PageBlocksPricingTierFourMutation {
+  name: String
+  price: String
+  interval: String
+  body: JSON
+  large: Boolean
+  actions: [PageBlocksPricingTierFourActionsMutation]
 }
 
 input PageBlocksPricingMutation {
   intro: JSON
-  community: PageBlocksPricingCommunityMutation
+  tierOne: PageBlocksPricingTierOneMutation
   segue: JSON
+  tierTwo: PageBlocksPricingTierTwoMutation
+  tierThree: PageBlocksPricingTierThreeMutation
+  tierFour: PageBlocksPricingTierFourMutation
 }
 
 input PageBlocksMutation {

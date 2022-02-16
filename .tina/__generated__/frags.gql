@@ -53,7 +53,7 @@ fragment PageParts on Page {
     }
     ... on PageBlocksPricing {
       intro
-      community {
+      tierOne {
         __typename
         name
         price
@@ -69,6 +69,51 @@ fragment PageParts on Page {
         }
       }
       segue
+      tierTwo {
+        __typename
+        name
+        price
+        interval
+        body
+        large
+        actions {
+          __typename
+          label
+          icon
+          variant
+          url
+        }
+      }
+      tierThree {
+        __typename
+        name
+        price
+        interval
+        body
+        large
+        actions {
+          __typename
+          label
+          icon
+          variant
+          url
+        }
+      }
+      tierFour {
+        __typename
+        name
+        price
+        interval
+        body
+        large
+        actions {
+          __typename
+          label
+          icon
+          variant
+          url
+        }
+      }
     }
   }
 }

@@ -574,8 +574,8 @@
                   ]
                 },
                 {
-                  "name": "community",
-                  "label": "Community",
+                  "name": "tierOne",
+                  "label": "Tier One",
                   "type": "object",
                   "fields": [
                     {
@@ -586,7 +586,7 @@
                         "page",
                         "blocks",
                         "pricing",
-                        "community",
+                        "tierOne",
                         "name"
                       ]
                     },
@@ -598,7 +598,7 @@
                         "page",
                         "blocks",
                         "pricing",
-                        "community",
+                        "tierOne",
                         "price"
                       ]
                     },
@@ -610,7 +610,7 @@
                         "page",
                         "blocks",
                         "pricing",
-                        "community",
+                        "tierOne",
                         "interval"
                       ]
                     },
@@ -622,7 +622,7 @@
                         "page",
                         "blocks",
                         "pricing",
-                        "community",
+                        "tierOne",
                         "body"
                       ]
                     },
@@ -634,7 +634,7 @@
                         "page",
                         "blocks",
                         "pricing",
-                        "community",
+                        "tierOne",
                         "large"
                       ]
                     },
@@ -660,7 +660,7 @@
                             "page",
                             "blocks",
                             "pricing",
-                            "community",
+                            "tierOne",
                             "actions",
                             "label"
                           ]
@@ -673,7 +673,7 @@
                             "page",
                             "blocks",
                             "pricing",
-                            "community",
+                            "tierOne",
                             "actions",
                             "icon"
                           ]
@@ -704,7 +704,7 @@
                             "page",
                             "blocks",
                             "pricing",
-                            "community",
+                            "tierOne",
                             "actions",
                             "variant"
                           ]
@@ -717,7 +717,7 @@
                             "page",
                             "blocks",
                             "pricing",
-                            "community",
+                            "tierOne",
                             "actions",
                             "url"
                           ]
@@ -727,7 +727,7 @@
                         "page",
                         "blocks",
                         "pricing",
-                        "community",
+                        "tierOne",
                         "actions"
                       ]
                     }
@@ -736,7 +736,7 @@
                     "page",
                     "blocks",
                     "pricing",
-                    "community"
+                    "tierOne"
                   ]
                 },
                 {
@@ -748,6 +748,504 @@
                     "blocks",
                     "pricing",
                     "segue"
+                  ]
+                },
+                {
+                  "name": "tierTwo",
+                  "label": "Tier Two",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "name",
+                      "label": "Name",
+                      "type": "string",
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "pricing",
+                        "tierTwo",
+                        "name"
+                      ]
+                    },
+                    {
+                      "name": "price",
+                      "label": "Price",
+                      "type": "string",
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "pricing",
+                        "tierTwo",
+                        "price"
+                      ]
+                    },
+                    {
+                      "name": "interval",
+                      "label": "Interval",
+                      "type": "string",
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "pricing",
+                        "tierTwo",
+                        "interval"
+                      ]
+                    },
+                    {
+                      "name": "body",
+                      "label": "Body",
+                      "type": "rich-text",
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "pricing",
+                        "tierTwo",
+                        "body"
+                      ]
+                    },
+                    {
+                      "name": "large",
+                      "label": "Large",
+                      "type": "boolean",
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "pricing",
+                        "tierTwo",
+                        "large"
+                      ]
+                    },
+                    {
+                      "label": "Actions",
+                      "name": "actions",
+                      "type": "object",
+                      "list": true,
+                      "ui": {
+                        "defaultItem": {
+                          "variant": "default",
+                          "label": "Secondary Action",
+                          "icon": false,
+                          "url": "/"
+                        }
+                      },
+                      "fields": [
+                        {
+                          "name": "label",
+                          "label": "Label",
+                          "type": "string",
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "pricing",
+                            "tierTwo",
+                            "actions",
+                            "label"
+                          ]
+                        },
+                        {
+                          "name": "icon",
+                          "label": "Icon",
+                          "type": "boolean",
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "pricing",
+                            "tierTwo",
+                            "actions",
+                            "icon"
+                          ]
+                        },
+                        {
+                          "name": "variant",
+                          "label": "Variant",
+                          "type": "string",
+                          "options": [
+                            {
+                              "value": "default",
+                              "label": "Default"
+                            },
+                            {
+                              "value": "orange",
+                              "label": "Orange"
+                            },
+                            {
+                              "value": "ghost",
+                              "label": "Ghost"
+                            },
+                            {
+                              "value": "command",
+                              "label": "Command"
+                            }
+                          ],
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "pricing",
+                            "tierTwo",
+                            "actions",
+                            "variant"
+                          ]
+                        },
+                        {
+                          "name": "url",
+                          "label": "URL",
+                          "type": "string",
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "pricing",
+                            "tierTwo",
+                            "actions",
+                            "url"
+                          ]
+                        }
+                      ],
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "pricing",
+                        "tierTwo",
+                        "actions"
+                      ]
+                    }
+                  ],
+                  "namespace": [
+                    "page",
+                    "blocks",
+                    "pricing",
+                    "tierTwo"
+                  ]
+                },
+                {
+                  "name": "tierThree",
+                  "label": "Tier Three",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "name",
+                      "label": "Name",
+                      "type": "string",
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "pricing",
+                        "tierThree",
+                        "name"
+                      ]
+                    },
+                    {
+                      "name": "price",
+                      "label": "Price",
+                      "type": "string",
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "pricing",
+                        "tierThree",
+                        "price"
+                      ]
+                    },
+                    {
+                      "name": "interval",
+                      "label": "Interval",
+                      "type": "string",
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "pricing",
+                        "tierThree",
+                        "interval"
+                      ]
+                    },
+                    {
+                      "name": "body",
+                      "label": "Body",
+                      "type": "rich-text",
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "pricing",
+                        "tierThree",
+                        "body"
+                      ]
+                    },
+                    {
+                      "name": "large",
+                      "label": "Large",
+                      "type": "boolean",
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "pricing",
+                        "tierThree",
+                        "large"
+                      ]
+                    },
+                    {
+                      "label": "Actions",
+                      "name": "actions",
+                      "type": "object",
+                      "list": true,
+                      "ui": {
+                        "defaultItem": {
+                          "variant": "default",
+                          "label": "Secondary Action",
+                          "icon": false,
+                          "url": "/"
+                        }
+                      },
+                      "fields": [
+                        {
+                          "name": "label",
+                          "label": "Label",
+                          "type": "string",
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "pricing",
+                            "tierThree",
+                            "actions",
+                            "label"
+                          ]
+                        },
+                        {
+                          "name": "icon",
+                          "label": "Icon",
+                          "type": "boolean",
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "pricing",
+                            "tierThree",
+                            "actions",
+                            "icon"
+                          ]
+                        },
+                        {
+                          "name": "variant",
+                          "label": "Variant",
+                          "type": "string",
+                          "options": [
+                            {
+                              "value": "default",
+                              "label": "Default"
+                            },
+                            {
+                              "value": "orange",
+                              "label": "Orange"
+                            },
+                            {
+                              "value": "ghost",
+                              "label": "Ghost"
+                            },
+                            {
+                              "value": "command",
+                              "label": "Command"
+                            }
+                          ],
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "pricing",
+                            "tierThree",
+                            "actions",
+                            "variant"
+                          ]
+                        },
+                        {
+                          "name": "url",
+                          "label": "URL",
+                          "type": "string",
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "pricing",
+                            "tierThree",
+                            "actions",
+                            "url"
+                          ]
+                        }
+                      ],
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "pricing",
+                        "tierThree",
+                        "actions"
+                      ]
+                    }
+                  ],
+                  "namespace": [
+                    "page",
+                    "blocks",
+                    "pricing",
+                    "tierThree"
+                  ]
+                },
+                {
+                  "name": "tierFour",
+                  "label": "Tier Four",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "name",
+                      "label": "Name",
+                      "type": "string",
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "pricing",
+                        "tierFour",
+                        "name"
+                      ]
+                    },
+                    {
+                      "name": "price",
+                      "label": "Price",
+                      "type": "string",
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "pricing",
+                        "tierFour",
+                        "price"
+                      ]
+                    },
+                    {
+                      "name": "interval",
+                      "label": "Interval",
+                      "type": "string",
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "pricing",
+                        "tierFour",
+                        "interval"
+                      ]
+                    },
+                    {
+                      "name": "body",
+                      "label": "Body",
+                      "type": "rich-text",
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "pricing",
+                        "tierFour",
+                        "body"
+                      ]
+                    },
+                    {
+                      "name": "large",
+                      "label": "Large",
+                      "type": "boolean",
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "pricing",
+                        "tierFour",
+                        "large"
+                      ]
+                    },
+                    {
+                      "label": "Actions",
+                      "name": "actions",
+                      "type": "object",
+                      "list": true,
+                      "ui": {
+                        "defaultItem": {
+                          "variant": "default",
+                          "label": "Secondary Action",
+                          "icon": false,
+                          "url": "/"
+                        }
+                      },
+                      "fields": [
+                        {
+                          "name": "label",
+                          "label": "Label",
+                          "type": "string",
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "pricing",
+                            "tierFour",
+                            "actions",
+                            "label"
+                          ]
+                        },
+                        {
+                          "name": "icon",
+                          "label": "Icon",
+                          "type": "boolean",
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "pricing",
+                            "tierFour",
+                            "actions",
+                            "icon"
+                          ]
+                        },
+                        {
+                          "name": "variant",
+                          "label": "Variant",
+                          "type": "string",
+                          "options": [
+                            {
+                              "value": "default",
+                              "label": "Default"
+                            },
+                            {
+                              "value": "orange",
+                              "label": "Orange"
+                            },
+                            {
+                              "value": "ghost",
+                              "label": "Ghost"
+                            },
+                            {
+                              "value": "command",
+                              "label": "Command"
+                            }
+                          ],
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "pricing",
+                            "tierFour",
+                            "actions",
+                            "variant"
+                          ]
+                        },
+                        {
+                          "name": "url",
+                          "label": "URL",
+                          "type": "string",
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "pricing",
+                            "tierFour",
+                            "actions",
+                            "url"
+                          ]
+                        }
+                      ],
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "pricing",
+                        "tierFour",
+                        "actions"
+                      ]
+                    }
+                  ],
+                  "namespace": [
+                    "page",
+                    "blocks",
+                    "pricing",
+                    "tierFour"
                   ]
                 }
               ],
