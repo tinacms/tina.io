@@ -17,6 +17,7 @@ export const flyingTemplate: TinaTemplate = {
       ui: { component: 'textarea' },
       type: 'string',
     },
+    // @ts-ignore
     actionsTemplate,
   ],
 }

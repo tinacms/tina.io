@@ -44,6 +44,7 @@ export const featuresTemplate: TinaTemplate = {
                 { name: 'cli', label: 'CLI', type: 'boolean' },
               ],
             },
+            // @ts-ignore
             actionsTemplate,
           ],
         },
