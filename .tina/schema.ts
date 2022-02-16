@@ -12,12 +12,11 @@ limitations under the License.
 */
 
 import { defineSchema } from '@tinacms/cli'
-import {
-  heroTemplate,
-  flyingTemplate,
-  featuresTemplate,
-  pricingTemplate,
-} from '../components/blocks'
+
+import { heroTemplate } from '../components/blocks/Hero'
+import { featuresTemplate } from '../components/blocks/Features'
+import { flyingTemplate } from '../components/blocks/Flying'
+import { pricingTemplate } from '../components/blocks/Pricing'
 
 export default defineSchema({
   collections: [

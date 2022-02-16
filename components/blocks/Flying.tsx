@@ -1,7 +1,7 @@
 import { actionsTemplate, Actions } from './Actions'
 import CloudsOne from '../../public/svg/clouds-1.svg'
 import CloudsTwo from '../../public/svg/clouds-2.svg'
-import { TinaTemplate } from '@tinacms/cli'
+import type { TinaTemplate } from '@tinacms/cli'
 
 export const flyingTemplate: TinaTemplate = {
   name: 'flying',

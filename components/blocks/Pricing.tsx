@@ -1,7 +1,8 @@
 import * as React from 'react'
-import { MarkdownContent, RichTextWrapper, Wrapper } from 'components/layout'
-import { Actions, actionsTemplate } from 'components/blocks'
-import { TinaTemplate } from '@tinacms/cli'
+import { RichTextWrapper } from '../layout/RichTextWrapper'
+import { Wrapper } from '../layout/Wrapper'
+import { Actions, actionsTemplate } from './Actions'
+import type { TinaTemplate } from '@tinacms/cli'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 
 export const cardTemplate: TinaTemplate = {
