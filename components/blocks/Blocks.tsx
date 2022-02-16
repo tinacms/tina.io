@@ -1,7 +1,7 @@
 import type {PageBlocks} from '../../.tina/__generated__/types'
 import { FeaturesBlock, FlyingBlock, HeroBlock, PricingBlock, FaqBlock, ContentBlock } from './'
 
-export const Blocks = ({ blocks }: {blocks:PageBlocks}) => {
+export const Blocks = ({ blocks }: {blocks:PageBlocks[]}) => {
   return blocks.map((block, index) => {
     switch (block.__typename) {
       case 'PageBlocksFeatures':
