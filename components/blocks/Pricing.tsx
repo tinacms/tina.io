@@ -168,6 +168,7 @@ export const pricingTemplate: TinaTemplate = {
   name: 'pricing',
   label: 'Pricing',
   ui: {
+    previewSrc: '/img/blocks/pricing.png',
     defaultItem: {
       intro:
         '**No surprises. **Predictable pricing for every project. Complete control of your content, forever.\n\nTina’s source code is open-source. Your content lives in accessible formats right in your Git repository.\n',

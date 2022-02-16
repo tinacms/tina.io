@@ -6,6 +6,9 @@ import type { TinaTemplate } from '@tinacms/cli'
 export const flyingTemplate: TinaTemplate = {
   name: 'flying',
   label: 'Flying',
+  ui: {
+    previewSrc: '/img/blocks/flying.png',
+  },
   fields: [
     { name: 'headline', label: 'Headline', type: 'string' },
     {

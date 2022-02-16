@@ -13,6 +13,9 @@ import type { TinaTemplate } from '@tinacms/cli'
 export const featuresTemplate: TinaTemplate = {
   label: 'Features',
   name: 'features',
+  ui: {
+    previewSrc: '/img/blocks/features.png',
+  },
   fields: [
     {
       name: 'items',

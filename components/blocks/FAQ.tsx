@@ -8,6 +8,7 @@ export const faqTemplate: TinaTemplate = {
   label: 'FAQ',
   name: 'faq',
   ui: {
+    previewSrc: '/img/blocks/faq.png',
     defaultItem: {
       title:'Frequently Asked Questions',
       questions: [

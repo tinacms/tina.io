@@ -15,7 +15,7 @@
         {
           "type": "object",
           "name": "seo",
-          "label": "Page Information",
+          "label": "SEO Information",
           "fields": [
             {
               "type": "string",
@@ -59,6 +59,7 @@
               "label": "Hero",
               "name": "hero",
               "ui": {
+                "previewSrc": "/img/blocks/hero.png",
                 "defaultItem": {
                   "headline": "Next Gen Content Management",
                   "text": "Tina is an open-source, Git-backed CMS with the ability to add visual editing to your NextJS site",
@@ -210,6 +211,9 @@
             {
               "label": "Features",
               "name": "features",
+              "ui": {
+                "previewSrc": "/img/blocks/features.png"
+              },
               "fields": [
                 {
                   "name": "items",
@@ -432,6 +436,9 @@
             {
               "name": "flying",
               "label": "Flying",
+              "ui": {
+                "previewSrc": "/img/blocks/flying.png"
+              },
               "fields": [
                 {
                   "name": "headline",
@@ -557,6 +564,7 @@
               "name": "pricing",
               "label": "Pricing",
               "ui": {
+                "previewSrc": "/img/blocks/pricing.png",
                 "defaultItem": {
                   "intro": "**No surprises. **Predictable pricing for every project. Complete control of your content, forever.\n\nTina’s source code is open-source. Your content lives in accessible formats right in your Git repository.\n"
                 }
@@ -1259,6 +1267,7 @@
               "label": "FAQ",
               "name": "faq",
               "ui": {
+                "previewSrc": "/img/blocks/faq.png",
                 "defaultItem": {
                   "title": "Frequently Asked Questions",
                   "questions": [
@@ -1340,6 +1349,9 @@
             {
               "label": "Content",
               "name": "content",
+              "ui": {
+                "previewSrc": "/img/blocks/content.png"
+              },
               "fields": [
                 {
                   "name": "narrow",

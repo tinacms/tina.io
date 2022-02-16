@@ -30,7 +30,7 @@ export default defineSchema({
         {
           type: 'object',
           name: 'seo',
-          label: 'Page Information',
+          label: 'SEO Information',
           fields: [
             { type: 'string', label: 'Title', name: 'title' },
             {

@@ -8,7 +8,7 @@ export const heroTemplate: TinaTemplate = {
   label: 'Hero',
   name: 'hero',
   ui: {
-    // previewSrc: 'img/hero-preview.png',
+    previewSrc: '/img/blocks/hero.png',
     defaultItem: {
       headline: 'Next Gen Content Management',
       text: 'Tina is an open-source, Git-backed CMS with the ability to add visual editing to your NextJS site',

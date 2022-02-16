@@ -8,6 +8,9 @@ import { TinaMarkdown } from 'tinacms/dist/rich-text'
 export const contentTemplate: TinaTemplate = {
   label: 'Content',
   name: 'content',
+  ui: {
+    previewSrc: '/img/blocks/content.png',
+  },
   fields: [
     {
       name: 'narrow',
