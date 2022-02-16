@@ -1,6 +1,197 @@
 import * as React from 'react'
 import { MarkdownContent, RichTextWrapper, Wrapper } from 'components/layout'
-import { Actions } from 'components/blocks'
+import { Actions, actionsTemplate } from 'components/blocks'
+import { TinaTemplate } from '@tinacms/cli'
+import { TinaMarkdown } from 'tinacms/dist/rich-text'
+
+export const cardTemplate: TinaTemplate = {
+  name: 'card',
+  label: 'Card',
+  //@ts-ignore
+  type: 'object',
+  fields: [
+    {
+      name: 'name',
+      label: 'Name',
+      type: 'string',
+    },
+    {
+      name: 'price',
+      label: 'Price',
+      type: 'string',
+    },
+    {
+      name: 'interval',
+      label: 'Interval',
+      type: 'string',
+    },
+    {
+      name: 'body',
+      label: 'Body',
+      type: 'rich-text',
+    },
+    {
+      name: 'large',
+      label: 'Large',
+      type: 'boolean',
+    },
+    // @ts-ignore
+    actionsTemplate,
+  ],
+}
+
+const PricingCard = ({ data }) => {
+  return (
+    <>
+      <div className="card">
+        <div className="header">
+          <h3 className="title">{data.name}</h3>
+          <span className="dotted"></span>
+          <h3 className="price">
+            {data.price}
+            {data.interval && (
+              <span className="interval">/{data.interval}</span>
+            )}
+          </h3>
+        </div>
+        <div className="body">
+          <div className="content">
+            {/* @ts-ignore */}
+            {data.body && <TinaMarkdown content={data.body} />}
+          </div>
+          {data.actions && <Actions items={data.actions} />}
+        </div>
+      </div>
+      <style jsx>{`
+        .card {
+          flex: 1 1 auto;
+          width: 100%;
+          margin: 0 auto;
+          max-width: 45rem;
+          border: 1px solid var(--color-seafoam-300);
+          border-radius: 0.75rem;
+          box-shadow: 0 6px 24px rgba(0, 37, 91, 0.05),
+            0 2px 4px rgba(0, 37, 91, 0.03);
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+        .header {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          align-items: center;
+          line-height: 1.2;
+          background: var(--color-seafoam-100);
+          border-bottom: 1px solid var(--color-seafoam-300);
+          padding: ${data.large ? '2.5rem' : '2.25rem'};
+        }
+        .title {
+          font-family: var(--font-tuner);
+          color: var(--color-orange);
+          font-size: ${data.large ? '2rem' : '1.5rem'};
+          flex: 0 0 auto;
+          padding-right: 1rem;
+          margin: 0;
+        }
+        .price {
+          font-family: var(--font-tuner);
+          color: var(--color-secondary);
+          font-size: ${data.large ? '2rem' : '1.5rem'};
+          flex: 0 0 auto;
+          padding-left: 1rem;
+          margin: 0;
+        }
+        .interval {
+          margin-left: 0.125rem;
+          font-size: 0.75em;
+          color: var(--color-seaforam-500);
+        }
+        .body {
+          flex: 1 1 auto;
+          padding: ${data.large ? '2.5rem' : '2.25rem'};
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          color: var(--color-secondary);
+        }
+        .content {
+          :global(strong) {
+            opacity: 0.8;
+          }
+          :global(ul) {
+            margin: 0 0 1.5rem 0;
+            padding: 0;
+            list-style-type: none;
+          }
+          :global(li) {
+            position: relative;
+            margin: 0 0 0.5rem 0;
+            padding: 0 0 0 1.5rem;
+            &:before {
+              content: '';
+              position: absolute;
+              left: 0;
+              top: 0.6em;
+              width: 0.5em;
+              height: 0.5em;
+              border-radius: 100%;
+              background: var(--color-seafoam-400);
+            }
+          }
+          :global(p) {
+            font-size: ${data.large ? '1.25rem' : '1.125rem'};
+          }
+        }
+        .dotted {
+          border-top: none;
+          border-right: none;
+          border-left: none;
+          border-image: initial;
+          border-bottom: 5px dotted var(--color-seafoam-dark);
+          width: 100%;
+          max-width: 100%;
+          flex: 1 1 0;
+          display: block;
+          height: 0px;
+          margin: 0.5rem 0 0.5rem 0;
+        }
+      `}</style>
+    </>
+  )
+}
+
+export const pricingTemplate: TinaTemplate = {
+  name: 'pricing',
+  label: 'Pricing',
+  ui: {
+    defaultItem: {
+      intro:
+        '**No surprises. **Predictable pricing for every project. Complete control of your content, forever.\n\nTina’s source code is open-source. Your content lives in accessible formats right in your Git repository.\n',
+    },
+  },
+  fields: [
+    {
+      name: 'intro',
+      label: 'Intro Text',
+      type: 'rich-text',
+    },
+    {
+      name: 'community',
+      label: 'Community',
+      // @ts-ignore
+      type: cardTemplate.type,
+      fields: cardTemplate.fields,
+    },
+    {
+      name: 'segue',
+      label: 'Segue Text',
+      type: 'rich-text',
+    },
+  ],
+}
 
 export function PricingBlock({ data, index }) {
   return (
@@ -8,36 +199,23 @@ export function PricingBlock({ data, index }) {
       <section key={index} className="section pricing">
         <RichTextWrapper>
           <Wrapper>
-            <div className="intro-text">
-              <p>
-                <strong>No surprises.</strong> Predictable pricing for every
-                project. Complete control of your content, forever.
-              </p>
-              <p>
-                Tina’s source code is open-source. Your content lives in
-                accessible formats right in your Git repository.
-              </p>
-            </div>
-            <PricingCard
-              actions={[
-                {
-                  variant: 'orange',
-                  label: 'Get Started',
-                  icon: 'arrowRight',
-                  url: '#',
-                },
-              ]}
-            />
+            {data.intro && (
+              <div className="intro-text">
+                <TinaMarkdown content={data.intro} />
+              </div>
+            )}
+            {data.community && <PricingCard data={data.community} />}
             <div className="segue">
-              <span>
-                <strong>Need a bit more?</strong>
-                <br /> We have you covered.
-              </span>
+              {data.segue && (
+                <span>
+                  <TinaMarkdown content={data.segue} />
+                </span>
+              )}
             </div>
           </Wrapper>
           <Wrapper wide>
             <div className="card-wrapper">
-              <PricingCard
+              {/* <PricingCard
                 name="Team"
                 price="$"
                 interval="month"
@@ -55,7 +233,7 @@ export function PricingBlock({ data, index }) {
                 price="Contact Us"
                 body={`- Our Enterprise plan offers **amazing features**\n- Really **exceptional value**\n- **Anything is possible**`}
                 size="small"
-              />
+              /> */}
             </div>
           </Wrapper>
         </RichTextWrapper>
@@ -114,8 +292,18 @@ export function PricingBlock({ data, index }) {
 
           :global(span) {
             display: block;
-            padding: 1rem;
+            padding: 0.5rem;
             background: white;
+          }
+
+          :global(p) {
+            &:first-of-type {
+              font-size: 1.5rem;
+            }
+
+            font-size: 1.25rem;
+            margin: 0.5rem 0;
+            color: var(--color-secondary);
           }
 
           @media (min-width: 1100px) {
@@ -184,140 +372,6 @@ export function PricingBlock({ data, index }) {
               }
             }
           }
-        }
-      `}</style>
-    </>
-  )
-}
-
-const PricingCard = ({
-  size = 'large',
-  name = 'Community',
-  price = 'Free',
-  interval = '',
-  actions = [
-    {
-      variant: 'white',
-      label: 'Contact Us',
-      icon: 'arrowRight',
-      url: '/',
-    },
-  ],
-  body = '',
-}) => {
-  return (
-    <>
-      <div className="card">
-        <div className="header">
-          <h3 className="title">{name}</h3>
-          <span className="dotted"></span>
-          <h3 className="price">
-            {price}
-            {interval && <span className="interval">/{interval}</span>}
-          </h3>
-        </div>
-        <div className="body">
-          <div className="content">
-            <MarkdownContent content={body} />
-          </div>
-          <Actions items={actions} />
-        </div>
-      </div>
-      <style jsx>{`
-        .card {
-          flex: 1 1 auto;
-          width: 100%;
-          margin: 0 auto;
-          max-width: 45rem;
-          border: 1px solid var(--color-seafoam-300);
-          border-radius: 0.75rem;
-          box-shadow: 0 6px 24px rgba(0, 37, 91, 0.05),
-            0 2px 4px rgba(0, 37, 91, 0.03);
-          overflow: hidden;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-        }
-        .header {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          flex-wrap: wrap;
-          align-items: center;
-          line-height: 1.2;
-          background: var(--color-seafoam-100);
-          border-bottom: 1px solid var(--color-seafoam-300);
-          padding: ${size === 'large' ? '2.5rem' : '2.25rem'};
-        }
-        .title {
-          font-family: var(--font-tuner);
-          color: var(--color-orange);
-          font-size: ${size === 'large' ? '2rem' : '1.5rem'};
-          flex: 0 0 auto;
-          padding-right: 1rem;
-          margin: 0;
-        }
-        .price {
-          font-family: var(--font-tuner);
-          color: var(--color-secondary);
-          font-size: ${size === 'large' ? '2rem' : '1.5rem'};
-          flex: 0 0 auto;
-          padding-left: 1rem;
-          margin: 0;
-        }
-        .interval {
-          margin-left: 0.125rem;
-          font-size: 0.75em;
-          color: var(--color-seaforam-500);
-        }
-        .body {
-          flex: 1 1 auto;
-          padding: ${size === 'large' ? '2.5rem' : '2.25rem'};
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          color: var(--color-secondary);
-        }
-        .content {
-          :global(strong) {
-            opacity: 0.8;
-          }
-          :global(ul) {
-            margin: 0 0 1.5rem 0;
-            padding: 0;
-            list-style-type: none;
-          }
-          :global(li) {
-            position: relative;
-            margin: 0 0 0.5rem 0;
-            padding: 0 0 0 1.5rem;
-            &:before {
-              content: '';
-              position: absolute;
-              left: 0;
-              top: 0.6em;
-              width: 0.5em;
-              height: 0.5em;
-              border-radius: 100%;
-              background: var(--color-seafoam-400);
-            }
-          }
-          :global(p) {
-            font-size: ${size === 'large' ? '1.25rem' : '1.125rem'};
-          }
-        }
-        .dotted {
-          border-top: none;
-          border-right: none;
-          border-left: none;
-          border-image: initial;
-          border-bottom: 5px dotted var(--color-seafoam-dark);
-          width: 100%;
-          max-width: 100%;
-          flex: 1 1 0;
-          display: block;
-          height: 0px;
-          margin: 0.5rem 0 0.5rem 0;
         }
       `}</style>
     </>

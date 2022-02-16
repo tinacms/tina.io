@@ -2311,10 +2311,10 @@
     "@svgr/plugin-svgo" "^4.3.1"
     loader-utils "^1.2.3"
 
-"@tinacms/cli@^0.0.0-2022110174656":
-  version "0.0.0-2022110174656"
-  resolved "https://registry.yarnpkg.com/@tinacms/cli/-/cli-0.0.0-2022110174656.tgz#dd0e2b2ef110b4b24551ad41e52343963eacbc5a"
-  integrity sha512-esO6M7XUgrhmx/3DWNUS2D6pi8jRkuDY28JlCOzzdh7fjiar+H6+4MFqxELgwsRePwBTz8nLXquugfB5aEdm7A==
+"@tinacms/cli@^0.0.0-202211418050":
+  version "0.0.0-202211418050"
+  resolved "https://registry.yarnpkg.com/@tinacms/cli/-/cli-0.0.0-202211418050.tgz#8c65d435243318fe121bd69e8fc6eac95972db50"
+  integrity sha512-szPPX6op1EQjYzJVeSpzEBnPf217PS6jdSH856rDpAO03GBxyB5kfDWByHUzGK8w10U2USmrUq1aqnOaWic9HA==
   dependencies:
     "@graphql-codegen/core" "^2.1.0"
     "@graphql-codegen/plugin-helpers" latest
@@ -3904,9 +3904,9 @@
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
 
 "@yarnpkg/esbuild-plugin-pnp@^2.0.1-rc.3":
-  version "2.0.1-rc.3"
-  resolved "https://registry.yarnpkg.com/@yarnpkg/esbuild-plugin-pnp/-/esbuild-plugin-pnp-2.0.1-rc.3.tgz#aa7dc2f5134d26059516c61696aa934ee8684c46"
-  integrity sha512-kilL8I7j2NtMseeIVFmCgYjvPgyaaoY9+1P1as0J6ody2PSi87soYhRkH4jdVLBfxgHxS7l7L95LDTkLBW4lDw==
+  version "2.0.1-rc.4"
+  resolved "https://registry.yarnpkg.com/@yarnpkg/esbuild-plugin-pnp/-/esbuild-plugin-pnp-2.0.1-rc.4.tgz#a965c1c724c439b69d04f4374c598039c80c662f"
+  integrity sha512-UAR/WnOKwmVQiWcAeT5A576eMl4oPoFe6fC9ONVEpKRlr+JybArTQ+Oovem8XPWYXN7BUVoBEZP2AUxlTjJo1Q==
   dependencies:
     tslib "^1.13.0"
 

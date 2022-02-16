@@ -51,5 +51,24 @@ fragment PageParts on Page {
         url
       }
     }
+    ... on PageBlocksPricing {
+      intro
+      community {
+        __typename
+        name
+        price
+        interval
+        body
+        large
+        actions {
+          __typename
+          label
+          icon
+          variant
+          url
+        }
+      }
+      segue
+    }
   }
 }

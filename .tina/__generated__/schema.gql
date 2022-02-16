@@ -135,7 +135,29 @@ type PageBlocksFlying {
   actions: [PageBlocksFlyingActions]
 }
 
-union PageBlocks = PageBlocksHero | PageBlocksFeatures | PageBlocksFlying
+type PageBlocksPricingCommunityActions {
+  label: String
+  icon: Boolean
+  variant: String
+  url: String
+}
+
+type PageBlocksPricingCommunity {
+  name: String
+  price: String
+  interval: String
+  body: JSON
+  large: Boolean
+  actions: [PageBlocksPricingCommunityActions]
+}
+
+type PageBlocksPricing {
+  intro: JSON
+  community: PageBlocksPricingCommunity
+  segue: JSON
+}
+
+union PageBlocks = PageBlocksHero | PageBlocksFeatures | PageBlocksFlying | PageBlocksPricing
 
 type Page {
   seo: PageSeo
@@ -234,10 +256,33 @@ input PageBlocksFlyingMutation {
   actions: [PageBlocksFlyingActionsMutation]
 }
 
+input PageBlocksPricingCommunityActionsMutation {
+  label: String
+  icon: Boolean
+  variant: String
+  url: String
+}
+
+input PageBlocksPricingCommunityMutation {
+  name: String
+  price: String
+  interval: String
+  body: JSON
+  large: Boolean
+  actions: [PageBlocksPricingCommunityActionsMutation]
+}
+
+input PageBlocksPricingMutation {
+  intro: JSON
+  community: PageBlocksPricingCommunityMutation
+  segue: JSON
+}
+
 input PageBlocksMutation {
   hero: PageBlocksHeroMutation
   features: PageBlocksFeaturesMutation
   flying: PageBlocksFlyingMutation
+  pricing: PageBlocksPricingMutation
 }
 
 input PageMutation {

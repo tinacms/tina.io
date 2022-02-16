@@ -16,6 +16,7 @@ import {
   heroTemplate,
   flyingTemplate,
   featuresTemplate,
+  pricingTemplate,
 } from '../components/blocks'
 
 export default defineSchema({
@@ -23,7 +24,7 @@ export default defineSchema({
     {
       label: 'Pages',
       name: 'page',
-      path: 'content/pages',
+      path: 'content/blocksPages',
       fields: [
         {
           type: 'object',
@@ -42,49 +43,21 @@ export default defineSchema({
           ],
         },
         {
-          label: 'Blocks',
+          label: 'Page Sections',
           name: 'blocks',
           type: 'object',
           list: true,
           ui: {
             visualSelector: true,
           },
-          templates: [heroTemplate, featuresTemplate, flyingTemplate],
+          templates: [
+            heroTemplate,
+            featuresTemplate,
+            flyingTemplate,
+            pricingTemplate,
+          ],
         },
       ],
     },
-    //   We can use this collection when we want to add tina to the blog page
-    // {
-    //   name: 'blog',
-    //   path: 'content/blog',
-    //   label: 'Blog Posts',
-    //   format: 'mdx',
-    //   fields: [
-    //     {
-    //       type: 'string',
-    //       label: 'Title',
-    //       description: 'Title of the blog post',
-    //       name: 'title',
-    //     },
-    //     {
-    //       type: 'datetime',
-    //       name: 'date',
-    //     },
-    //     {
-    //       type: 'datetime',
-    //       name: 'last_edited',
-    //     },
-    //     {
-    //       type: 'string',
-    //       name: 'author',
-    //     },
-    //     {
-    //       name: 'body',
-    //       label: 'Main Content',
-    //       type: 'rich-text',
-    //       isBody: true,
-    //     },
-    //   ],
-    // },
   ],
 })

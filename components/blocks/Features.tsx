@@ -8,7 +8,6 @@ import BlobThree from '../../public/svg/blob-3.svg'
 import BlobFour from '../../public/svg/blob-4.svg'
 import BlobFive from '../../public/svg/blob-5.svg'
 import BlobSix from '../../public/svg/blob-6.svg'
-import { Blocks } from './Blocks'
 import { TinaTemplate } from '@tinacms/cli'
 
 export const featuresTemplate: TinaTemplate = {

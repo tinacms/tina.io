@@ -29,7 +29,8 @@
     "typeMap": {
       "hero": "PageBlocksHero",
       "features": "PageBlocksFeatures",
-      "flying": "PageBlocksFlying"
+      "flying": "PageBlocksFlying",
+      "pricing": "PageBlocksPricing"
     }
   },
   "PageDocument": {

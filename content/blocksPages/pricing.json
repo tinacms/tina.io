@@ -1,0 +1,17 @@
+{
+  "seo": {
+    "title": "Tina Cloud Pricing",
+    "description": "Predictable pricing for every project. Complete control of your content, forever."
+  },
+  "blocks": [
+    {
+      "headline": "Pricing",
+      "_template": "hero"
+    },
+    {
+      "intro": "**No surprises.**  Predictable pricing for every project. Complete control of your content, forever.\n\nTina’s source code is open-source. Your content lives in accessible formats right in your Git repository.\n",
+      "segue": "**Need a bit more?**\n\nWe have you covered.\n",
+      "_template": "pricing"
+    }
+  ]
+}

@@ -3,13 +3,15 @@ import styled from 'styled-components'
 import { BiCopy } from 'react-icons/bi'
 import { IconRight } from './Icons'
 import { copyToClipboard } from 'components/layout/MarkdownContent'
+import { TinaTemplate } from '@tinacms/cli'
 
-export const actionsTemplate = {
+export const actionsTemplate: TinaTemplate = {
   label: 'Actions',
   name: 'actions',
+  //@ts-ignore
   type: 'object',
   list: true,
-  ul: {
+  ui: {
     defaultItem: {
       variant: 'default',
       label: 'Secondary Action',

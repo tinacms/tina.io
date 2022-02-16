@@ -7,8 +7,13 @@ export const flyingTemplate: TinaTemplate = {
   name: 'flying',
   label: 'Flying',
   fields: [
-    { name: 'headline', type: 'string' },
-    { name: 'text', ui: { component: 'textarea' }, type: 'string' },
+    { name: 'headline', label: 'Headline', type: 'string' },
+    {
+      name: 'text',
+      label: 'Text',
+      ui: { component: 'textarea' },
+      type: 'string',
+    },
     actionsTemplate,
   ],
 }
