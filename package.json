@@ -62,7 +62,6 @@
     "nextjs-cors": "^2.1.0",
     "node-fetch": "^2.6.1",
     "node-sass": "^7.0.0",
-    "path": "^0.12.7",
     "polished": "^3.4.4",
     "prop-types": "^15.7.2",
     "qs": "^6.9.1",

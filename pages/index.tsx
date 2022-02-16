@@ -3,7 +3,6 @@ import { Layout } from 'components/layout'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { NextSeo } from 'next-seo'
 import { fileToUrl } from 'utils/urls'
-const fg = require('fast-glob')
 import { GlobalStyles } from 'components/blocks/GlobalStyles'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
 import { Blocks } from 'components/blocks'
