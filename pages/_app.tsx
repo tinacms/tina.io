@@ -82,7 +82,31 @@ class Site extends App {
     return (
       <TinaEditProvider
         editMode={
-          <TinaCMS apiURL={process.env.NEXT_PUBLIC_TINA_ENDPOINT}>
+          <TinaCMS
+            apiURL={process.env.NEXT_PUBLIC_TINA_ENDPOINT}
+            cmsCallback={cms => {
+              import('react-tinacms-editor').then(({ MarkdownFieldPlugin }) => {
+                cms.plugins.add(MarkdownFieldPlugin)
+              })
+              cms.flags.set('tina-admin', true)
+              cms.flags.set('branch-switcher', true)
+              cms.flags.set('rich-text-alt', true)
+
+              import('tinacms').then(({ RouteMappingPlugin }) => {
+                const RouteMapping = new RouteMappingPlugin(
+                  (collection, document) => {
+                    if (['docs'].includes(collection.name)) {
+                      return `/docs/${document.sys.breadcrumbs.join('/')}`
+                    }
+
+                    return undefined
+                  }
+                )
+
+                cms.plugins.add(RouteMapping)
+              })
+            }}
+          >
             <MainLayout Component={Component} pageProps={pageProps} />
           </TinaCMS>
         }

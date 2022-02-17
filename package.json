@@ -80,6 +80,7 @@
     "react-markdown": "^4.3.1",
     "react-syntax-highlighter": "^12.2.1",
     "react-textarea-autosize": "^7.1.2",
+    "react-tinacms-editor": "^0.53.5",
     "remark": "^11.0.2",
     "remark-parse": "^8.0.0",
     "remark-shortcodes": "^0.3.1",
