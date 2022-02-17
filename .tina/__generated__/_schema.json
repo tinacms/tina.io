@@ -1276,7 +1276,8 @@
                       "question": "What is Tina?",
                       "answer": "Tina is a Git-backed headless content management system that enables developers and content creators to collaborate seamlessly. With Tina, developers can create a custom visual editing experience that is perfectly tailored to their site.\n"
                     }
-                  ]
+                  ],
+                  "color": "seafoam"
                 }
               },
               "fields": [
@@ -1338,6 +1339,27 @@
                     "blocks",
                     "faq",
                     "questions"
+                  ]
+                },
+                {
+                  "name": "color",
+                  "label": "Color",
+                  "type": "string",
+                  "options": [
+                    {
+                      "label": "Seafoam",
+                      "value": "seafoam"
+                    },
+                    {
+                      "label": "White",
+                      "value": "white"
+                    }
+                  ],
+                  "namespace": [
+                    "page",
+                    "blocks",
+                    "faq",
+                    "color"
                   ]
                 }
               ],

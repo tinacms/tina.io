@@ -123,6 +123,7 @@ fragment PageParts on Page {
         question
         answer
       }
+      color
     }
     ... on PageBlocksContent {
       narrow

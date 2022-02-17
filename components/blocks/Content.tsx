@@ -50,23 +50,12 @@ export const contentTemplate: TinaTemplate = {
 
 export function ContentBlock({ data, index }) {
   return (
-    <>
-      <Section color={data.seafoam ? 'seafoam' : 'white'}>
-        <DocsTextWrapper>
-          <Wrapper narrow={data.narrow} >
-            {data.content && <TinaMarkdown content={data.content} />}
-          </Wrapper>
-        </DocsTextWrapper>
-      </Section>
-      <style jsx>{`
-        .section {
-          padding: 3rem 0;
-
-          @media (min-width: 800px) {
-            padding: 5rem 0;
-          }
-        }
-      `}</style>
-    </>
+    <Section color={data.seafoam ? 'seafoam' : 'white'}>
+      <DocsTextWrapper>
+        <Wrapper narrow={data.narrow} >
+          {data.content && <TinaMarkdown content={data.content} />}
+        </Wrapper>
+      </DocsTextWrapper>
+    </Section>
   )
 }

@@ -16,7 +16,8 @@ export const faqTemplate: TinaTemplate = {
           question: 'What is Tina?',
           answer: 'Tina is a Git-backed headless content management system that enables developers and content creators to collaborate seamlessly. With Tina, developers can create a custom visual editing experience that is perfectly tailored to their site.\n'
         }
-      ]
+      ],
+      color: 'seafoam'
     },
   },
   fields: [
@@ -40,13 +41,25 @@ export const faqTemplate: TinaTemplate = {
         },
       ]
     },
+    {
+      name: 'color',
+      label: 'Color',
+      type: 'string',
+      options: [{
+        label: 'Seafoam',
+        value: 'seafoam'
+      }, {
+        label: 'White',
+        value: 'white'
+      }]
+    }
   ],
 }
 
 export function FaqBlock({ data, index }) {
   return (
     <>
-      <section key={index} className="faq section seafoam">
+      <section key={index} className={`faq section ${data.color === 'seafoam' ? 'seafoam' : ''}`}>
         <RichTextWrapper>
           <Wrapper narrow>
             <div className="faq-wrapper">

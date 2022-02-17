@@ -217,6 +217,7 @@ type PageBlocksFaq {
   title: String
   intro: JSON
   questions: [PageBlocksFaqQuestions]
+  color: String
 }
 
 type PageBlocksContent {
@@ -406,6 +407,7 @@ input PageBlocksFaqMutation {
   title: String
   intro: JSON
   questions: [PageBlocksFaqQuestionsMutation]
+  color: String
 }
 
 input PageBlocksContentMutation {
