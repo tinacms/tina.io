@@ -95,8 +95,11 @@ class Site extends App {
               import('tinacms').then(({ RouteMappingPlugin }) => {
                 const RouteMapping = new RouteMappingPlugin(
                   (collection, document) => {
-                    if (['docs'].includes(collection.name)) {
-                      return `/docs/${document.sys.breadcrumbs.join('/')}`
+                    if (['page'].includes(collection.name)) {
+                      if (document.sys.filename === 'home') {
+                        return `/`
+                      }
+                      return `/${document.sys.filename}`
                     }
 
                     return undefined

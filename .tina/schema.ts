@@ -26,6 +26,7 @@ export default defineSchema({
       label: 'Pages',
       name: 'page',
       path: 'content/blocksPages',
+      format: 'json',
       fields: [
         {
           type: 'object',
