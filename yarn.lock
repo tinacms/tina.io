@@ -2354,7 +2354,7 @@
     yarn "^1.22.17"
     yup "^0.32.9"
 
-"@tinacms/datalayer@0.0.2":
+"@tinacms/datalayer@0.0.2", "@tinacms/datalayer@^0.0.2":
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/@tinacms/datalayer/-/datalayer-0.0.2.tgz#f5f79c61185e187c6b209472f861fdf15af981a6"
   integrity sha512-OvuE8r/9Uh6EaNod/t5zNCank7PoC9YV1f4WayAg3ENq75IeEQRmeqzBJm4gakAGWg9AJj2jQEc2akqLhbWO1Q==

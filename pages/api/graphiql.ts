@@ -1,6 +1,7 @@
 import { buildASTSchema, print } from 'graphql'
 import { graphqlHTTP } from 'express-graphql'
-import { createDatabase, resolve, indexDB, MemoryStore } from '@tinacms/graphql'
+import { MemoryStore } from '@tinacms/datalayer'
+import { createDatabase, resolve, indexDB } from '@tinacms/graphql'
 import type { TinaCloudSchema, TinaTemplate} from '@tinacms/graphql'
 class InMemoryStore extends MemoryStore {
   public supportsSeeding() {
