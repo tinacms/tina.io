@@ -2,6 +2,8 @@ import React from 'react'
 import { DocsTextWrapper } from '../layout/DocsTextWrapper'
 import { Wrapper } from '../layout/Wrapper'
 import { Section } from '../layout/Section'
+import { Actions, actionsTemplate } from './Actions'
+import { SocialBlock, socialTemplate } from './Social'
 import type { TinaTemplate } from '@tinacms/cli'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 
@@ -27,25 +29,18 @@ export const contentTemplate: TinaTemplate = {
       label: 'Content',
       type: 'rich-text',
       templates: [
-        {
-          name: 'code',
-          label: 'Code',
-          fields: [
-            {
-              type: 'string',
-              name: 'language',
-              label: 'Language',
-            },
-            {
-              type: 'string',
-              name: 'code',
-              label: 'Code',
-            },
-          ],
-        },
+        // @ts-ignore
+        actionsTemplate,
+        // @ts-ignore
+        socialTemplate,
       ],
     },
   ],
+}
+
+export const contentComponents = {
+  actions: Actions,
+  social: SocialBlock,
 }
 
 export function ContentBlock({ data, index }) {
@@ -53,7 +48,7 @@ export function ContentBlock({ data, index }) {
     <Section color={data.seafoam ? 'seafoam' : 'white'}>
       <DocsTextWrapper>
         <Wrapper narrow={data.narrow} >
-          {data.content && <TinaMarkdown content={data.content} />}
+          {data.content && <TinaMarkdown components={contentComponents} content={data.content} />}
         </Wrapper>
       </DocsTextWrapper>
     </Section>

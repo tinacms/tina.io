@@ -1,14 +1,11 @@
 import React from 'react'
-import styled from 'styled-components'
 import { BiCopy } from 'react-icons/bi'
 import { IconRight } from './Icons'
 import { copyToClipboard } from 'components/layout/MarkdownContent'
-import { TinaTemplate } from '@tinacms/cli'
 
-export const actionsTemplate: TinaTemplate = {
+export const actionsTemplate = {
   label: 'Actions',
   name: 'actions',
-  //@ts-ignore
   type: 'object',
   list: true,
   ui: {
@@ -58,40 +55,41 @@ export const Actions = ({ items, align = 'left' }) => {
           align === 'center' && 'actionGroupCenter',
         ].join(' ')}
       >
-        {items.map(item => {
-          if (item.variant == 'command') {
-            return <CodeButton>{item.label}</CodeButton>
-          }
+        {items &&
+          items.map(item => {
+            if (item.variant == 'command') {
+              return <CodeButton>{item.label}</CodeButton>
+            }
 
-          const { variant, label, icon, url } = item
-          const externalUrlPattern = /^((http|https|ftp):\/\/)/
-          const external = externalUrlPattern.test(url)
-          let link = null
-          if (external) {
-            link = (
-              <a
-                key={`action-${label}`}
-                href={url}
-                className={`action ${variant}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {label} {icon && <IconRight />}
-              </a>
-            )
-          } else {
-            link = (
-              <a
-                key={`action-${label}`}
-                href={url}
-                className={`action ${variant}`}
-              >
-                {label} {icon && <IconRight />}
-              </a>
-            )
-          }
-          return link
-        })}
+            const { variant, label, icon, url } = item
+            const externalUrlPattern = /^((http|https|ftp):\/\/)/
+            const external = externalUrlPattern.test(url)
+            let link = null
+            if (external) {
+              link = (
+                <a
+                  key={`action-${label}`}
+                  href={url}
+                  className={`action ${variant}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {label} {icon && <IconRight />}
+                </a>
+              )
+            } else {
+              link = (
+                <a
+                  key={`action-${label}`}
+                  href={url}
+                  className={`action ${variant}`}
+                >
+                  {label} {icon && <IconRight />}
+                </a>
+              )
+            }
+            return link
+          })}
       </div>
       <style jsx>{`
         .actionGroup {
@@ -355,39 +353,3 @@ export const CodeButton = ({ children }) => {
     </>
   )
 }
-
-export const ActionFields = [
-  {
-    label: 'Actions',
-    name: 'actions',
-    component: 'group-list',
-    fields: [
-      {
-        label: 'Label',
-        name: 'label',
-        component: 'text',
-      },
-      {
-        label: 'Variant',
-        name: 'variant',
-        component: 'select',
-        options: ['button', 'link'],
-      },
-      {
-        label: 'URL',
-        name: 'url',
-        component: 'text',
-      },
-      {
-        label: 'Icon',
-        name: 'icon',
-        component: 'select',
-        options: ['none', 'arrowRight'],
-      },
-    ],
-    itemProps: (item: any) => ({
-      key: item.name,
-      label: `Action: ${item.label || 'New Action'}`,
-    }),
-  },
-]
