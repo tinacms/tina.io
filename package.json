@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@next/bundle-analyzer": "^10.0.0",
+    "@tinacms/auth": "^0.50.2",
     "@tinacms/datalayer": "^0.0.2",
     "@tinacms/graphql": "^0.59.6",
     "@types/react-instantsearch-dom": "^5.2.6",
@@ -60,6 +61,7 @@
     "next": "^12.0.10",
     "next-seo": "^4.1.0",
     "next-svgr": "0.0.2",
+    "next-tinacms-cloudinary": "^3.5.8",
     "nextjs-cors": "^2.1.0",
     "node-fetch": "^2.6.1",
     "node-sass": "^7.0.0",

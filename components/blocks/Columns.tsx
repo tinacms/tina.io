@@ -120,6 +120,10 @@ export const ColumnsBlock = ({ data, index }) => {
         .column {
           width: 100%;
         }
+        
+      ${data.options?.columns === 'notDefault' && `.column:nth-child(1) {
+          grid-column: span 2;
+        }`}
       `}</style>
     </>
   )

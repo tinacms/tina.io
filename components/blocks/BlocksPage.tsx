@@ -6,14 +6,16 @@ import { Blocks } from './Blocks'
 export const BlocksPage = ({ data }) => {
   return (
     <>
-      <NextSeo
-        title={data.seo.title}
-        description={data.seo.description}
-        openGraph={{
-          title: data.seo.title,
-          description: data.seo.description,
-        }}
-      />
+      {data.seo && (
+        <NextSeo
+          title={data.seo.title}
+          description={data.seo.description}
+          openGraph={{
+            title: data.seo.title,
+            description: data.seo.description,
+          }}
+        />
+      )}
       <Layout>
         {/* TODO: why is there a type error here */}
         {/* @ts-ignore */}
