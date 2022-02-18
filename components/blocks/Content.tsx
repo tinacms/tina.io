@@ -15,14 +15,43 @@ export const contentTemplate: TinaTemplate = {
   },
   fields: [
     {
-      name: 'narrow',
-      label: 'Narrow',
-      type: 'boolean',
-    },
-    {
-      name: 'seafoam',
-      label: 'Seafoam',
-      type: 'boolean',
+      name: 'options',
+      label: 'Options',
+      type: 'object',
+      fields: [
+        {
+          name: 'narrow',
+          label: 'Narrow',
+          type: 'boolean',
+        },
+        {
+          name: 'color',
+          label: 'Color',
+          type: 'string',
+          options: [{
+            label: 'Seafoam',
+            value: 'seafoam'
+          }, {
+            label: 'White',
+            value: 'white'
+          }]
+        },
+        {
+          name: 'align',
+          label: 'Align Content',
+          type: 'string',
+          options: [{
+            label: 'Left',
+            value: 'left'
+          }, {
+            label: 'Center',
+            value: 'center'
+          }, {
+            label: 'Right',
+            value: 'right'
+          }]
+        }
+      ]
     },
     {
       name: 'content',
@@ -39,15 +68,15 @@ export const contentTemplate: TinaTemplate = {
 }
 
 export const contentComponents = {
-  actions: Actions,
+  actions: Actions, 
   social: SocialBlock,
 }
 
 export function ContentBlock({ data, index }) {
   return (
-    <Section color={data.seafoam ? 'seafoam' : 'white'}>
+    <Section color={data.options?.color || 'white'}>
       <DocsTextWrapper>
-        <Wrapper narrow={data.narrow} >
+        <Wrapper align={data.options?.align || 'left'} narrow={data.options?.narrow || false} >
           {data.content && <TinaMarkdown components={contentComponents} content={data.content} />}
         </Wrapper>
       </DocsTextWrapper>

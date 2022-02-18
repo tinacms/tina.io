@@ -220,9 +220,14 @@ type PageBlocksFaq {
   color: String
 }
 
-type PageBlocksContent {
+type PageBlocksContentOptions {
   narrow: Boolean
-  seafoam: Boolean
+  color: String
+  align: String
+}
+
+type PageBlocksContent {
+  options: PageBlocksContentOptions
   content: JSON
 }
 
@@ -410,9 +415,14 @@ input PageBlocksFaqMutation {
   color: String
 }
 
-input PageBlocksContentMutation {
+input PageBlocksContentOptionsMutation {
   narrow: Boolean
-  seafoam: Boolean
+  color: String
+  align: String
+}
+
+input PageBlocksContentMutation {
+  options: PageBlocksContentOptionsMutation
   content: JSON
 }
 

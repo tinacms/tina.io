@@ -126,8 +126,12 @@ fragment PageParts on Page {
       color
     }
     ... on PageBlocksContent {
-      narrow
-      seafoam
+      options {
+        __typename
+        narrow
+        color
+        align
+      }
       content
     }
   }

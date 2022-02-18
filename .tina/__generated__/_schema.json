@@ -1377,25 +1377,76 @@
               },
               "fields": [
                 {
-                  "name": "narrow",
-                  "label": "Narrow",
-                  "type": "boolean",
+                  "name": "options",
+                  "label": "Options",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "narrow",
+                      "label": "Narrow",
+                      "type": "boolean",
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "content",
+                        "options",
+                        "narrow"
+                      ]
+                    },
+                    {
+                      "name": "color",
+                      "label": "Color",
+                      "type": "string",
+                      "options": [
+                        {
+                          "label": "Seafoam",
+                          "value": "seafoam"
+                        },
+                        {
+                          "label": "White",
+                          "value": "white"
+                        }
+                      ],
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "content",
+                        "options",
+                        "color"
+                      ]
+                    },
+                    {
+                      "name": "align",
+                      "label": "Align Content",
+                      "type": "string",
+                      "options": [
+                        {
+                          "label": "Left",
+                          "value": "left"
+                        },
+                        {
+                          "label": "Center",
+                          "value": "center"
+                        },
+                        {
+                          "label": "Right",
+                          "value": "right"
+                        }
+                      ],
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "content",
+                        "options",
+                        "align"
+                      ]
+                    }
+                  ],
                   "namespace": [
                     "page",
                     "blocks",
                     "content",
-                    "narrow"
-                  ]
-                },
-                {
-                  "name": "seafoam",
-                  "label": "Seafoam",
-                  "type": "boolean",
-                  "namespace": [
-                    "page",
-                    "blocks",
-                    "content",
-                    "seafoam"
+                    "options"
                   ]
                 },
                 {
