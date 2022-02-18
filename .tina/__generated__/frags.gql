@@ -134,5 +134,16 @@ fragment PageParts on Page {
       }
       content
     }
+    ... on PageBlocksColumns {
+      options {
+        __typename
+        columns
+        narrow
+        color
+        align
+      }
+      columnOne
+      columnTwo
+    }
   }
 }

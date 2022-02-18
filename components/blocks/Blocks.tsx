@@ -1,5 +1,6 @@
 import type {PageBlocks} from '../../.tina/__generated__/types'
 import { FeaturesBlock, FlyingBlock, HeroBlock, PricingBlock, FaqBlock, ContentBlock } from './'
+import { ColumnsBlock } from './Columns'
 
 export const Blocks = ({ blocks }: {blocks:PageBlocks[]}) => {
   if (!blocks) return null
@@ -17,6 +18,8 @@ export const Blocks = ({ blocks }: {blocks:PageBlocks[]}) => {
         return <FaqBlock data={block} index={index} />
       case 'PageBlocksContent':
         return <ContentBlock data={block} index={index} />
+      case 'PageBlocksColumns':
+        return <ColumnsBlock data={block} index={index} />
       default:
         return null
     }

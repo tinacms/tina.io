@@ -4,6 +4,7 @@ import { Wrapper } from '../layout/Wrapper'
 import { Section } from '../layout/Section'
 import { Actions, actionsTemplate } from './Actions'
 import { SocialBlock, socialTemplate } from './Social'
+import { NewsletterBlock, newsletterTemplate } from './Newsletter'
 import type { TinaTemplate } from '@tinacms/cli'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 
@@ -62,6 +63,8 @@ export const contentTemplate: TinaTemplate = {
         actionsTemplate,
         // @ts-ignore
         socialTemplate,
+        // @ts-ignore
+        newsletterTemplate,
       ],
     },
   ],
@@ -70,6 +73,7 @@ export const contentTemplate: TinaTemplate = {
 export const contentComponents = {
   actions: Actions, 
   social: SocialBlock,
+  newsletter: NewsletterBlock,
 }
 
 export function ContentBlock({ data, index }) {

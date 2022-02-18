@@ -1619,6 +1619,47 @@
                         "content",
                         "social"
                       ]
+                    },
+                    {
+                      "name": "newsletter",
+                      "label": "Newsletter Signup",
+                      "ui": {
+                        "defaultItem": {
+                          "style": "default"
+                        }
+                      },
+                      "fields": [
+                        {
+                          "name": "style",
+                          "label": "Style",
+                          "type": "string",
+                          "options": [
+                            {
+                              "label": "Default",
+                              "value": "default"
+                            },
+                            {
+                              "label": "Small",
+                              "value": "small"
+                            }
+                          ],
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "content",
+                            "content",
+                            "newsletter",
+                            "style"
+                          ]
+                        }
+                      ],
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "content",
+                        "content",
+                        "newsletter"
+                      ]
                     }
                   ],
                   "namespace": [
@@ -1633,6 +1674,555 @@
                 "page",
                 "blocks",
                 "content"
+              ]
+            },
+            {
+              "label": "Columns",
+              "name": "columns",
+              "ui": {
+                "previewSrc": "/img/blocks/columns.png"
+              },
+              "fields": [
+                {
+                  "name": "options",
+                  "label": "Options",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "columns",
+                      "label": "Column Sizes",
+                      "type": "string",
+                      "options": [
+                        {
+                          "label": "Default",
+                          "value": "default"
+                        },
+                        {
+                          "label": "Not Default",
+                          "value": "notDefault"
+                        }
+                      ],
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "columns",
+                        "options",
+                        "columns"
+                      ]
+                    },
+                    {
+                      "name": "narrow",
+                      "label": "Narrow",
+                      "type": "boolean",
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "columns",
+                        "options",
+                        "narrow"
+                      ]
+                    },
+                    {
+                      "name": "color",
+                      "label": "Color",
+                      "type": "string",
+                      "options": [
+                        {
+                          "label": "Seafoam",
+                          "value": "seafoam"
+                        },
+                        {
+                          "label": "White",
+                          "value": "white"
+                        }
+                      ],
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "columns",
+                        "options",
+                        "color"
+                      ]
+                    },
+                    {
+                      "name": "align",
+                      "label": "Align Content",
+                      "type": "string",
+                      "options": [
+                        {
+                          "label": "Left",
+                          "value": "left"
+                        },
+                        {
+                          "label": "Center",
+                          "value": "center"
+                        },
+                        {
+                          "label": "Right",
+                          "value": "right"
+                        }
+                      ],
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "columns",
+                        "options",
+                        "align"
+                      ]
+                    }
+                  ],
+                  "namespace": [
+                    "page",
+                    "blocks",
+                    "columns",
+                    "options"
+                  ]
+                },
+                {
+                  "name": "columnOne",
+                  "label": "Column One",
+                  "type": "rich-text",
+                  "templates": [
+                    {
+                      "label": "Actions",
+                      "name": "actions",
+                      "type": "object",
+                      "list": true,
+                      "ui": {
+                        "defaultItem": {
+                          "variant": "default",
+                          "label": "Secondary Action",
+                          "icon": false,
+                          "url": "/"
+                        }
+                      },
+                      "fields": [
+                        {
+                          "name": "label",
+                          "label": "Label",
+                          "type": "string",
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "columns",
+                            "columnOne",
+                            "actions",
+                            "label"
+                          ]
+                        },
+                        {
+                          "name": "icon",
+                          "label": "Icon",
+                          "type": "boolean",
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "columns",
+                            "columnOne",
+                            "actions",
+                            "icon"
+                          ]
+                        },
+                        {
+                          "name": "variant",
+                          "label": "Variant",
+                          "type": "string",
+                          "options": [
+                            {
+                              "value": "default",
+                              "label": "Default"
+                            },
+                            {
+                              "value": "orange",
+                              "label": "Orange"
+                            },
+                            {
+                              "value": "ghost",
+                              "label": "Ghost"
+                            },
+                            {
+                              "value": "command",
+                              "label": "Command"
+                            }
+                          ],
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "columns",
+                            "columnOne",
+                            "actions",
+                            "variant"
+                          ]
+                        },
+                        {
+                          "name": "url",
+                          "label": "URL",
+                          "type": "string",
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "columns",
+                            "columnOne",
+                            "actions",
+                            "url"
+                          ]
+                        }
+                      ],
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "columns",
+                        "columnOne",
+                        "actions"
+                      ]
+                    },
+                    {
+                      "name": "social",
+                      "label": "Social Links",
+                      "ui": {
+                        "defaultItem": {
+                          "tina": "https://github.com/tinacms/tinacms/discussions",
+                          "discord": "https://discord.com/invite/zumN63Ybpf",
+                          "github": "https://github.com/tinacms/tinacms",
+                          "twitter": "https://twitter.com/tina_cms"
+                        }
+                      },
+                      "fields": [
+                        {
+                          "type": "string",
+                          "name": "tina",
+                          "label": "Tina",
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "columns",
+                            "columnOne",
+                            "social",
+                            "tina"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "name": "discord",
+                          "label": "Discord",
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "columns",
+                            "columnOne",
+                            "social",
+                            "discord"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "name": "github",
+                          "label": "Github",
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "columns",
+                            "columnOne",
+                            "social",
+                            "github"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "name": "twitter",
+                          "label": "Twitter",
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "columns",
+                            "columnOne",
+                            "social",
+                            "twitter"
+                          ]
+                        }
+                      ],
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "columns",
+                        "columnOne",
+                        "social"
+                      ]
+                    },
+                    {
+                      "name": "newsletter",
+                      "label": "Newsletter Signup",
+                      "ui": {
+                        "defaultItem": {
+                          "style": "default"
+                        }
+                      },
+                      "fields": [
+                        {
+                          "name": "style",
+                          "label": "Style",
+                          "type": "string",
+                          "options": [
+                            {
+                              "label": "Default",
+                              "value": "default"
+                            },
+                            {
+                              "label": "Small",
+                              "value": "small"
+                            }
+                          ],
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "columns",
+                            "columnOne",
+                            "newsletter",
+                            "style"
+                          ]
+                        }
+                      ],
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "columns",
+                        "columnOne",
+                        "newsletter"
+                      ]
+                    }
+                  ],
+                  "namespace": [
+                    "page",
+                    "blocks",
+                    "columns",
+                    "columnOne"
+                  ]
+                },
+                {
+                  "name": "columnTwo",
+                  "label": "Column Two",
+                  "type": "rich-text",
+                  "templates": [
+                    {
+                      "label": "Actions",
+                      "name": "actions",
+                      "type": "object",
+                      "list": true,
+                      "ui": {
+                        "defaultItem": {
+                          "variant": "default",
+                          "label": "Secondary Action",
+                          "icon": false,
+                          "url": "/"
+                        }
+                      },
+                      "fields": [
+                        {
+                          "name": "label",
+                          "label": "Label",
+                          "type": "string",
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "columns",
+                            "columnTwo",
+                            "actions",
+                            "label"
+                          ]
+                        },
+                        {
+                          "name": "icon",
+                          "label": "Icon",
+                          "type": "boolean",
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "columns",
+                            "columnTwo",
+                            "actions",
+                            "icon"
+                          ]
+                        },
+                        {
+                          "name": "variant",
+                          "label": "Variant",
+                          "type": "string",
+                          "options": [
+                            {
+                              "value": "default",
+                              "label": "Default"
+                            },
+                            {
+                              "value": "orange",
+                              "label": "Orange"
+                            },
+                            {
+                              "value": "ghost",
+                              "label": "Ghost"
+                            },
+                            {
+                              "value": "command",
+                              "label": "Command"
+                            }
+                          ],
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "columns",
+                            "columnTwo",
+                            "actions",
+                            "variant"
+                          ]
+                        },
+                        {
+                          "name": "url",
+                          "label": "URL",
+                          "type": "string",
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "columns",
+                            "columnTwo",
+                            "actions",
+                            "url"
+                          ]
+                        }
+                      ],
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "columns",
+                        "columnTwo",
+                        "actions"
+                      ]
+                    },
+                    {
+                      "name": "social",
+                      "label": "Social Links",
+                      "ui": {
+                        "defaultItem": {
+                          "tina": "https://github.com/tinacms/tinacms/discussions",
+                          "discord": "https://discord.com/invite/zumN63Ybpf",
+                          "github": "https://github.com/tinacms/tinacms",
+                          "twitter": "https://twitter.com/tina_cms"
+                        }
+                      },
+                      "fields": [
+                        {
+                          "type": "string",
+                          "name": "tina",
+                          "label": "Tina",
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "columns",
+                            "columnTwo",
+                            "social",
+                            "tina"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "name": "discord",
+                          "label": "Discord",
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "columns",
+                            "columnTwo",
+                            "social",
+                            "discord"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "name": "github",
+                          "label": "Github",
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "columns",
+                            "columnTwo",
+                            "social",
+                            "github"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "name": "twitter",
+                          "label": "Twitter",
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "columns",
+                            "columnTwo",
+                            "social",
+                            "twitter"
+                          ]
+                        }
+                      ],
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "columns",
+                        "columnTwo",
+                        "social"
+                      ]
+                    },
+                    {
+                      "name": "newsletter",
+                      "label": "Newsletter Signup",
+                      "ui": {
+                        "defaultItem": {
+                          "style": "default"
+                        }
+                      },
+                      "fields": [
+                        {
+                          "name": "style",
+                          "label": "Style",
+                          "type": "string",
+                          "options": [
+                            {
+                              "label": "Default",
+                              "value": "default"
+                            },
+                            {
+                              "label": "Small",
+                              "value": "small"
+                            }
+                          ],
+                          "namespace": [
+                            "page",
+                            "blocks",
+                            "columns",
+                            "columnTwo",
+                            "newsletter",
+                            "style"
+                          ]
+                        }
+                      ],
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "columns",
+                        "columnTwo",
+                        "newsletter"
+                      ]
+                    }
+                  ],
+                  "namespace": [
+                    "page",
+                    "blocks",
+                    "columns",
+                    "columnTwo"
+                  ]
+                }
+              ],
+              "namespace": [
+                "page",
+                "blocks",
+                "columns"
               ]
             }
           ],
