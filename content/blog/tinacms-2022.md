@@ -9,7 +9,7 @@ opengraph:
       https://res.cloudinary.com/forestry-demo/image/upload/v1645630893/blog-media/tinacms-2022-vision.png
     width: '1920,'
     height: '1080,'
-    alt: 'New Year, New CMS?'
+    alt: 'TinaCMS in 2022'
 ---
 
 
@@ -20,9 +20,9 @@ Tina has two unique differentiators from other, more traditional, CMSs:  
 1.  **Git -** We’re big believers in using files (Markdown, MDX, JSON, etc) and Git for content storage
 2.  **Contextual Editing -** The best editing experience is contextual, where your content editors can see their changes reflected on their site in real-time
 
-Using Git to store your content is the dream. When your content is in Markdown and JSON files, it simplifies your stack. You no longer need a database and can run your site serverlessly. You own your content in* your* repo, in open-formats, instead of renting space in a 3rd-party database or managing a backend server.  When you use the file system + Git for your content you get version control (history, roll-backs, etc) and a CI/CD-friendly workflow. Most importantly, you gain portability and aren’t locked into any one system. With Git, you’re in control of your site: code and content.
+Using Git to store your content is the dream. When your content is in Markdown and JSON files, it simplifies your stack. You get the benefits of structured content wihtout a database. You own your content in *your* repo, in open-formats, instead of renting space in a 3rd-party database or managing a backend server.  When you use the file system + Git for your content you get version control (history, roll-backs, etc) and a CI/CD-friendly workflow. Most importantly, you gain portability and aren’t locked into any one system. With Git, you’re in control of your site: code and content. 
 
-The best editing experience shows your content changes in the context of your site, in real-time.  This is the case for every B2C site-builder tool on the market and it’s finally possible now for developer-first, headless CMSs when using modern frameworks like those built on React, Vue, and Svelte. We’re just getting started on what’s possible and we’re seeing teams build platforms that give their teams complete creative control, while giving developers complete control over the code and CMS guide rails.  Having said that, Tina will also offer a basic editing mode for content that isn’t rendered in a view (described below). 
+Your content creators don't need to know that - under the hood - Tina is powered by Git. The editing experience shows your content changes in the context of your site, in real-time.  This is the case for every B2C site-builder tool on the market and it’s finally possible now for developer-first, headless CMSs when using modern frameworks like those built on React, Vue, and Svelte. We’re just getting started on what’s possible and we’re seeing teams build platforms that give their teams complete creative control, while giving developers complete control over the code and CMS guide rails.  Having said that, Tina will also offer a basic editing mode for content that isn’t rendered in a view (described below). 
 
 Here’s a summary of what’s coming in 2022 with more details below.
 
@@ -48,7 +48,7 @@ Tina has been focused on Next.js while in beta. This has reduced our maintenance
 
 As mentioned above, we’re big believers in using Markdown, MDX, and JSON files (under Git version control) for your content.  You just get so much out of the box:
 
-*   Serverless sites (no database) 
+*   No database required for your content 
 *   Portability and no lock-in
 *   Git history, rollbacks, etc.
 *   CI/CD-friendly workflow 
@@ -60,7 +60,7 @@ Tina’s headless API will allow you to use advanced queries for your content (i
 
 ## Markdown at Scale
 
-Using Markdown for sites with thousands of pages has become a much better experience with tools like [incremental static regeneration](https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration) (ISR) in Next.js. Now you can get the reliability of storing content in Markdown files without the need to compile every page upfront, resulting in shorter build-times.  This year, we will improve what it’s like to manage content across all of those thousands of Markdown, MDX, or JSON files. This includes: 
+Using Markdown for sites with thousands of pages has become a much better experience with tools like [Incremental Static Regeneration](https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration) (ISR) in Next.js. Now you can get the reliability of storing content in Markdown files without the need to compile every page upfront, resulting in shorter build-times.  This year, we will improve what it’s like to manage content across all of those thousands of Markdown, MDX, or JSON files. This includes: 
 
 *   Migration and audit capabilities in the TinaCMS CLI to ensure data consistency across all of your files based on your Tina Schema file
 *   Improved querying with the [GraphQL API](https://tina.io/docs/graphql/overview/) - supporting advanced queries for your content (i.e. sort, filter, paginate) and relational data across multiple files (i.e. if your Markdown blog post has an associated author, query the author name, bio, etc)
@@ -104,7 +104,7 @@ I hope this gives you a picture of what we’re trying to accomplish this year.�
 
 If you haven’t had a chance to try Tina yet, spin up a starter site on Tina Cloud or with the command line and share your feedback.  
 
-<a href="https://app.tina.io/quickstart" style="text-decoration: none; border-radius: 10px; padding: 10px;background:#ec4815; display:inline-block; color:white;">Try a starter</a><div style="padding: 1rem 1.5rem; font-family: monospace; white-space: nowrap; width: auto; display:inline-block; border: 1px solid gray; padding: 1rem 1.5rem;border: 1px solid #8080803b;line-height: 1em;border-radius: 10px;margin-left: 20px;">npx create-tina-app@latest</div>
+<a href="https://app.tina.io/quickstart" style="text-decoration: none; border-radius: 10px; padding: 1rem 1.5rem; line-height: 1em; font-weight: bold; background:#ec4815; display:inline-block; color:white;">Try a starter</a><div style="padding: 1rem 1.5rem; font-family: monospace; white-space: nowrap; width: auto; display:inline-block; border: 1px solid gray; padding: 1rem 1.5rem;border: 1px solid #8080803b;line-height: 1em;border-radius: 10px;margin-left: 20px;">npx create-tina-app@latest</div>
 
 Our [Discord community](https://discord.com/invite/zumN63Ybpf) is full of developers building next-generation sites and our amazing team is always there to lend a hand. And you can always reach out to [me on twitter](https://twitter.com/scottgallant). 
 
