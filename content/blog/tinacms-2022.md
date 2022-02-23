@@ -33,14 +33,14 @@ Here’s a summary of what’s coming in 2022 with more details below.
 
 Tina is currently in Beta but we’re steadily progressing toward 1.0.  We expect this to happen relatively soon because we’re seeing more and more people try and fall in love with Tina every day ❤️.  
 
-![](https://res.cloudinary.com/forestry-demo/image/upload/v1645631378/blog-media/tinacms-community-feedback-leroy.png)
-![](https://res.cloudinary.com/forestry-demo/image/upload/v1645631378/blog-media/tinacms-community-feedback-jason.png)
+![Community Feedback from Leroy](https://res.cloudinary.com/forestry-demo/image/upload/v1645631378/blog-media/tinacms-community-feedback-leroy.png)
+![Community Feedback from Jason Mason](https://res.cloudinary.com/forestry-demo/image/upload/v1645631378/blog-media/tinacms-community-feedback-jason.png)
 
 As Tina approaches 1.0 you will see some rough edges smoothed out like the UX around media management and improved performance when loading content in the CMS. Also, since we’ve been focused on solving the hardest problems first (like scaling Git to thousands of pages) you might have noticed that some functionality is missing, like simply deleting pages.  This functionality will be in place before 1.0 and Tina will be a full-fledged, mature CMS. 
 
 ## More frameworks (Remix, Nuxt, SvelteKit, etc)
 
-![](https://res.cloudinary.com/forestry-demo/image/upload/v1645631638/blog-media/SSG-logos.png)
+![next.js, remix, nuxt, hugo, eleventy](https://res.cloudinary.com/forestry-demo/image/upload/v1645631638/blog-media/SSG-logos.png)
 
 Tina has been focused on Next.js while in beta. This has reduced our maintenance “surface area” while we get the product right.  Before 1.0, we will open up Tina to other frameworks.  Phase 1 will include modern, data-agnostic, Javascript frameworks like Remix, Nuxt, and SveltKit.  Phase 2 will include all JAMstack frameworks (Jekyll, Hugo, 11ty, etc).  
 
@@ -78,7 +78,7 @@ Tina’s UI will offer a more-traditional CMS experience for browsing content on
 <iframe width="560" height="315" src="https://youtube.com/embed/GMe8F7vyUa0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true"></iframe> 
 
 ### 2. Built on Tailwind
-Tina’s editing UI is moving to [Tailwind](https://tailwindcss.com/) to make it easier to customize and extend. ![](https://res.cloudinary.com/forestry-demo/image/upload/v1645631818/blog-media/tailwindcss.jpg)
+Tina’s editing UI is moving to [Tailwind](https://tailwindcss.com/) to make it easier to customize and extend. ![tailwind css logo](https://res.cloudinary.com/forestry-demo/image/upload/v1645631818/blog-media/tailwindcss.jpg)
 
 ### 3. Blocks UI
 Tina will have an improved block-picking experience so users can get a visual preview of their blocks before adding them to the page.
