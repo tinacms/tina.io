@@ -60,7 +60,7 @@ Tina’s headless API will allow you to use advanced queries for your content (i
 
 ## Markdown at Scale
 
-Using Markdown for sites with thousands of pages has become a much better experience with tools like [incremental static regeneration](https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration) (ISR) in Next.js. Now you can get the reliability of storing content in Markdown files without the need to compile every page upfront, resulting in shorter build-times.  This year, we will improve what it’s like to manage content across all of those thousands of Markdown, MDX, or JSON files. This includes: 
+Using Markdown for sites with thousands of pages has become a much better experience with tools like [Incremental Static Regeneration](https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration) (ISR) in Next.js. Now you can get the reliability of storing content in Markdown files without the need to compile every page upfront, resulting in shorter build-times.  This year, we will improve what it’s like to manage content across all of those thousands of Markdown, MDX, or JSON files. This includes: 
 
 *   Migration and audit capabilities in the TinaCMS CLI to ensure data consistency across all of your files based on your Tina Schema file
 *   Improved querying with the [GraphQL API](https://tina.io/docs/graphql/overview/) - supporting advanced queries for your content (i.e. sort, filter, paginate) and relational data across multiple files (i.e. if your Markdown blog post has an associated author, query the author name, bio, etc)
