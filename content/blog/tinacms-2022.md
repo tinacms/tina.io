@@ -9,7 +9,7 @@ opengraph:
       https://res.cloudinary.com/forestry-demo/image/upload/v1645630893/blog-media/tinacms-2022-vision.png
     width: '1920,'
     height: '1080,'
-    alt: 'New Year, New CMS?'
+    alt: 'TinaCMS in 2022'
 ---
 
 
