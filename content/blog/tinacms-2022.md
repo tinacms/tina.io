@@ -104,7 +104,7 @@ I hope this gives you a picture of what we’re trying to accomplish this year.�
 
 If you haven’t had a chance to try Tina yet, spin up a starter site on Tina Cloud or with the command line and share your feedback.  
 
-<a href="https://app.tina.io/quickstart" style="text-decoration: none; border-radius: 10px; padding: 10px;background:#ec4815; display:inline-block; color:white;">Try a starter</a><div style="padding: 1rem 1.5rem; font-family: monospace; white-space: nowrap; width: auto; display:inline-block; border: 1px solid gray; padding: 1rem 1.5rem;border: 1px solid #8080803b;line-height: 1em;border-radius: 10px;margin-left: 20px;">npx create-tina-app@latest</div>
+<a href="https://app.tina.io/quickstart" style="text-decoration: none; border-radius: 10px; padding: 1rem 1.5rem; line-height: 1em; font-weight: bold; background:#ec4815; display:inline-block; color:white;">Try a starter</a><div style="padding: 1rem 1.5rem; font-family: monospace; white-space: nowrap; width: auto; display:inline-block; border: 1px solid gray; padding: 1rem 1.5rem;border: 1px solid #8080803b;line-height: 1em;border-radius: 10px;margin-left: 20px;">npx create-tina-app@latest</div>
 
 Our [Discord community](https://discord.com/invite/zumN63Ybpf) is full of developers building next-generation sites and our amazing team is always there to lend a hand. And you can always reach out to [me on twitter](https://twitter.com/scottgallant). 
 
