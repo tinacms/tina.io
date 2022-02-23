@@ -170,6 +170,8 @@ export function FeaturesBlock({ data, index }) {
   return (
     <section key={index} className={'section white featureSection'}>
       <Container>
+        {/* TODO: why is there a type error here */}
+        {/* @ts-ignore */}
         <Blocks blocks={data.items} />
       </Container>
     </section>

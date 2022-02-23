@@ -1,0 +1,57 @@
+fragment PageParts on Page {
+  title
+  seo {
+    __typename
+    title
+    description
+  }
+  blocks {
+    __typename
+    ... on PageBlocksHero {
+      headline
+      subline
+      videoSrc
+    }
+    ... on PageBlocksFeatures {
+      headline
+      subline
+      items {
+        __typename
+        ... on PageBlocksFeaturesItemsFeature {
+          headline
+          subline
+          media {
+            __typename
+            src
+            videoSrc
+            cli
+          }
+          actions {
+            __typename
+            label
+            icon
+            variant
+            url
+          }
+        }
+      }
+    }
+    ... on PageBlocksFlying {
+      headline
+      subline
+      actions {
+        __typename
+        label
+        icon
+        variant
+        url
+      }
+      items {
+        __typename
+        headline
+        subline
+        cli
+      }
+    }
+  }
+}

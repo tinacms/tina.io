@@ -1,12 +1,16 @@
-import React from 'react'
-import { GetStaticProps } from 'next'
-import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
+import { ExperimentalGetTinaClient } from '../.tina/__generated__/types'
 import { Layout } from 'components/layout'
 import { NextSeo } from 'next-seo'
 import { Blocks, GlobalStyles } from 'components/home'
+import { useTina } from 'tinacms/dist/edit-state'
 
-const HomePage = (props: any) => {
-  const data = props.file.data
+const HomePage = (props: AsyncReturnType<typeof getStaticProps>['props']) => {
+  const tinaData = useTina({
+    query: props.query,
+    data: props.data,
+    variables: props.vars,
+  })
+  const data = tinaData.data.getPageDocument.data
 
   return (
     <>
@@ -19,6 +23,8 @@ const HomePage = (props: any) => {
         }}
       />
       <Layout>
+        {/* TODO: why is there a type error here */}
+        {/* @ts-ignore */}
         <Blocks blocks={data.blocks} />
       </Layout>
       <style global jsx>
@@ -28,11 +34,21 @@ const HomePage = (props: any) => {
   )
 }
 
-export default HomePage
-
-export const getStaticProps: GetStaticProps = async function({
-  preview,
-  previewData,
-}) {
-  return getJsonPreviewProps('content/pages/home.json', preview, previewData)
+// Data Fetching
+export const getStaticProps = async function() {
+  const client = ExperimentalGetTinaClient()
+  const vars = { relativePath: 'home.json' }
+  const res = await client.getPageDocument(vars)
+  return {
+    props: {
+      query: res.query,
+      data: res.data,
+      vars,
+    },
+  }
 }
+
+export type AsyncReturnType<
+  T extends (...args: any) => Promise<any>
+> = T extends (...args: any) => Promise<infer R> ? R : any
+export default HomePage
