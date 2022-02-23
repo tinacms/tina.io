@@ -20,7 +20,7 @@ Tina has two unique differentiators from other, more traditional, CMSs:  
 1.  **Git -** We’re big believers in using files (Markdown, MDX, JSON, etc) and Git for content storage
 2.  **Contextual Editing -** The best editing experience is contextual, where your content editors can see their changes reflected on their site in real-time
 
-Using Git to store your content is the dream. When your content is in Markdown and JSON files, it simplifies your stack. You no longer need a database and can run your site serverlessly. You own your content in *your* repo, in open-formats, instead of renting space in a 3rd-party database or managing a backend server.  When you use the file system + Git for your content you get version control (history, roll-backs, etc) and a CI/CD-friendly workflow. Most importantly, you gain portability and aren’t locked into any one system. With Git, you’re in control of your site: code and content. 
+Using Git to store your content is the dream. When your content is in Markdown and JSON files, it simplifies your stack. You get the benefits of structured content wihtout a database. You own your content in *your* repo, in open-formats, instead of renting space in a 3rd-party database or managing a backend server.  When you use the file system + Git for your content you get version control (history, roll-backs, etc) and a CI/CD-friendly workflow. Most importantly, you gain portability and aren’t locked into any one system. With Git, you’re in control of your site: code and content. 
 
 Your content creators don't need to know that - under the hood - Tina is powered by Git. The editing experience shows your content changes in the context of your site, in real-time.  This is the case for every B2C site-builder tool on the market and it’s finally possible now for developer-first, headless CMSs when using modern frameworks like those built on React, Vue, and Svelte. We’re just getting started on what’s possible and we’re seeing teams build platforms that give their teams complete creative control, while giving developers complete control over the code and CMS guide rails.  Having said that, Tina will also offer a basic editing mode for content that isn’t rendered in a view (described below). 
 
@@ -48,7 +48,7 @@ Tina has been focused on Next.js while in beta. This has reduced our maintenance
 
 As mentioned above, we’re big believers in using Markdown, MDX, and JSON files (under Git version control) for your content.  You just get so much out of the box:
 
-*   Serverless sites (no database) 
+*   No database required for your content 
 *   Portability and no lock-in
 *   Git history, rollbacks, etc.
 *   CI/CD-friendly workflow 
