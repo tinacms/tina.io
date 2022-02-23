@@ -129,9 +129,15 @@ export const getStaticProps = async () => {
 - `query` and `variables`: These are the same values that you would use for the [backend data-fetching](/docs/features/data-fetching/).
 - `data`: This is the production value that gets passed through to the response unchanged in production.
 
-## The `RouteMapping` Plugin
+## Accessing contextual-editing from the CMS
 
-The `RouteMapping` Plugin is used in the Collection List pages to route to a Document's "Contextual Editing" view rather than the default "Fullscreen Editing" view.
+At this point, when your editors go to `/your-page-url` in edit-mode, they will be able to edit and see those changes reflected in real-time. Next, let's wire up the CMS so that users will be navigated to that same editing experience when clicking any document in the Document List (instead of seeing the basic editor).
+
+To accomplish this, we will make use of the `RouteMappingPlugin`.
+
+### The `RouteMappingPlugin`
+
+The `RouteMappingPlugin` is used in the Collection List pages to route to a Document's "Contextual Editing" view rather than the default "Fullscreen Editing" view.
 
 ```ts
 RouteMappingPlugin(mapper: (collection: Collection, document: Document) => string | undefined)
@@ -145,49 +151,54 @@ The `RouteMappingPlugin` accepts a single argument - the `mapper` function - tha
 This is an example of the `RouteMappingPlugin` added to our `tina-cloud-starter` template:
 
 ```tsx
-import { RouteMappingPlugin } from 'tinacms';
-
 ...
 
 cmsCallback={(cms) => {
   /**
-   * 1. Define the `RouteMappingPlugin`
+   * 1. Import `tinacms` and `RouteMappingPlugin`
    **/
-  const RouteMapping = new RouteMappingPlugin(
-    (collection, document) => {
-      /**
-       * Because the `authors` and `global` collections do not
-       * have dedicated pages, we return `undefined`.
-       **/
-      if (["authors", "global"].includes(collection.name)) {
-        return undefined;
-      }
+  import('tinacms').then(({ RouteMappingPlugin }) => {
 
-      /**
-       * While the `pages` collection does have dedicated pages,
-       * their URLs are different than their document names.
-       **/
-      if (["pages"].includes(collection.name)) {
-        if (document.sys.filename === "home") {
-          return `/`;
+    /**
+    * 2. Define the `RouteMappingPlugin`
+    **/
+    const RouteMapping = new RouteMappingPlugin(
+      (collection, document) => {
+        /**
+        * Because the `authors` and `global` collections do not
+        * have dedicated pages, we return `undefined`.
+        **/
+        if (["authors", "global"].includes(collection.name)) {
+          return undefined;
         }
-        if (document.sys.filename === "about") {
-          return `/about`;
-        }
-        return undefined;
-      }
-      /**
-       * Finally, any other collections (`posts`, for example)
-       * have URLs based on values in the `collection` and `document`.
-       **/
-      return `/${collection.name}/${document.sys.filename}`;
-    }
-  );
 
-  /**
-   * 2. Add the `RouteMappingPlugin` to the `cms`.
-   **/
-  cms.plugins.add(RouteMapping);
+        /**
+        * While the `pages` collection does have dedicated pages,
+        * their URLs are different than their document names.
+        **/
+        if (["pages"].includes(collection.name)) {
+          if (document.sys.filename === "home") {
+            return `/`;
+          }
+          if (document.sys.filename === "about") {
+            return `/about`;
+          }
+          return undefined;
+        }
+        /**
+        * Finally, any other collections (`posts`, for example)
+        * have URLs based on values in the `collection` and `document`.
+        **/
+        return `/${collection.name}/${document.sys.filename}`;
+      }
+    );
+
+    /**
+    * 3. Add the `RouteMappingPlugin` to the `cms`.
+    **/
+    cms.plugins.add(RouteMapping);
+
+  });
 }
 ```
 
@@ -197,4 +208,4 @@ cmsCallback={(cms) => {
 - The `<TinaEditProvider>` component should be used to dynamically code-split Tina out of your production site.
 - The Tina admin usually lives on the `/admin` route. This page allows editors to log in and enter edit-mode.
 - A piece of content can be made editable by running it through the `useTina` hook. In production, it returns the original data unchanged. In edit-mode, it returns the live data, which is updated as the user types in the sidebar.
-- Optionally, make use of the `RouteMappingPlugin` to connect your Documents to their "Contextual Editing" views.
+- Make use of the `RouteMappingPlugin` to automatically navigate to the contextual-editing experience from the CMS.
