@@ -137,16 +137,16 @@ To accomplish this, we will make use of the `RouteMappingPlugin`.
 
 ### The `RouteMappingPlugin`
 
-The `RouteMappingPlugin` is used by the CMS's Document List to navigate to a Document's contextual editor rather than the basic editor.
+The `RouteMappingPlugin` is used by the CMS's Document List to navigate to a document's contextual editor rather than the basic editor.
 
 ```ts
 RouteMappingPlugin(mapper: (collection: Collection, document: Document) => string | undefined)
 ```
 
-The `RouteMappingPlugin` accepts a single argument - the `mapper` function - that is run when a Document is clicked within a Document List.
+The `RouteMappingPlugin` accepts a single argument - the `mapper` function - that is run when a document is clicked within a Document List:
 
-- If the `mapper` returns a `string`, that `string` is used as the Document's route rather than the default.
-- If the `mapper` returns `undefined`, the route defaults to the basic editor.
+- If the `mapper` returns a `string`, the `string` is used as the document's route rather than the default.
+- If the `mapper` returns `undefined`, the user is navigated to the document's basic editor.
 
 This is an example of the `RouteMappingPlugin` added to our `tina-cloud-starter` template:
 
