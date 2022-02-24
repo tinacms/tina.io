@@ -192,6 +192,63 @@
                   ]
                 },
                 {
+                  "name": "actions",
+                  "type": "object",
+                  "list": true,
+                  "fields": [
+                    {
+                      "name": "label",
+                      "type": "string",
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "hero",
+                        "actions",
+                        "label"
+                      ]
+                    },
+                    {
+                      "name": "icon",
+                      "type": "string",
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "hero",
+                        "actions",
+                        "icon"
+                      ]
+                    },
+                    {
+                      "name": "variant",
+                      "type": "string",
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "hero",
+                        "actions",
+                        "variant"
+                      ]
+                    },
+                    {
+                      "name": "url",
+                      "type": "string",
+                      "namespace": [
+                        "page",
+                        "blocks",
+                        "hero",
+                        "actions",
+                        "url"
+                      ]
+                    }
+                  ],
+                  "namespace": [
+                    "page",
+                    "blocks",
+                    "hero",
+                    "actions"
+                  ]
+                },
+                {
                   "name": "videoSrc",
                   "label": "Video Source",
                   "type": "string",
