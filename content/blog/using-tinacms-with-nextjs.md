@@ -16,7 +16,7 @@ This blog is a part of a series exploring the use of Next.js + Tina. In [Part I]
 
 ### Tina Overview 🦙
 
-We like to say that "[Tina](https://tina.io/) is not a CMS". Rather, Tina is a collection of open-source javascript components that you build into your site codebase — **a toolkit for creating a real time content-editing UI.** It's incredibly flexible, developers are in absolute control over content management, and editors get a "real-time WYSIWYG" experience.
+[Tina](https://tina.io/) is a Git-backed headless content management system that enables developers and content creators to collaborate seamlessly. With Tina, developers can create a custom visual editing experience that is perfectly tailored to their site.
 
 The best way to get a feel for how Tina works is to use it. We hope that by the end of this tutorial, you’ll not only learn how to use Tina, but also how Tina rethinks the way a CMS should work.
 
