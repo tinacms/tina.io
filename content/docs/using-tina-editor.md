@@ -23,19 +23,19 @@ Depending on how Tina is configured, one or more Collections will appear in the 
 
 ![Tina Editor List Page](/img/tina-list-page.png)
 
-The table here lists all existing Documents for the chosen Collection. This page also allows the user to create a new Document.
+The table here lists all documents for the chosen Collection. This page also allows the user to create a new document.
 
-If **contextual-editing** has been configured, clicking on an existing Document will route the user to that Document's Preview Page with the Tina Sidebar open and ready for editing.
+If **contextual-editing** has been configured, clicking on a document will navigate the user to that document's preview with the Sidebar open and ready for editing.
 
 ![Tina Editor Contextual Editing](/img/tina-contextual-editing.png)
 
-However, if **contextual-editing** is not configured or simply not available for a particular Collection, clicking on an existing Document will present the user with the basic editor.
+However, if **contextual-editing** is not configured or simply not available for a particular Collection, clicking on a document will present the user with the basic editor.
 
 ![Tina Editor Standard Editing](/img/tina-standard-editing.png)
 
 > Note: You can learn more about how to set up **contextual-editing** for your users [here](/docs/tinacms-context).
 
-Once saved, the changes to the Document, whether in contextual-editing or not, will be stored against the files.
+Once saved, the changes to the document, whether in contextual-editing or not, will be stored against the files.
 
 ## What's Next?
 
