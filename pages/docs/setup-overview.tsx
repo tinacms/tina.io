@@ -126,6 +126,10 @@ const OverviewTemplate = props => {
             @media (min-width: 500px) {
               padding: 1rem 3rem 3rem 3rem;
             }
+
+            @media (min-width: 900px) {
+              width: 90%;
+            }
           }
 
           .intro {
