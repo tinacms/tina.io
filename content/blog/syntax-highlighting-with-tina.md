@@ -2,7 +2,7 @@
 title: 'How to Use Syntax Highlighting with TinaMarkdown'
 date: '2022-01-20T00:00:00-04:00'
 author: James Perkins
-last_edited: '2022-01-20TT00:00:00Z'
+last_edited: '2022-01-20T00:00:00Z'
 opengraph:
   image:
     url: >-
