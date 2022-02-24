@@ -11,7 +11,7 @@ Currently, the Next Blog Starter grabs content from the file system. But since T
 
 The `getStaticPaths` query is going to need to know where all of our markdown files are located, with our current schema you have the option to use `getPostList` which will provide a list of all posts in our `_posts` folder. Make sure your local server is running and navigate to http://localhost:4001/altair and select the Docs button. The Docs button gives you the ability to see all the queries possible and the variables returned:
 
-![Altair Doc example](/gif/altair_doc.gif)
+![Altair Doc example](https://res.cloudinary.com/forestry-demo/image/upload/v1645712822/tina-io/docs/altair_doc.gif)
 
 So based upon the `getPostList` we will want to query the `sys` which is the filesystem and retrieve the `filename`, which will return all the filenames without the extension.
 
@@ -377,6 +377,6 @@ This filters our data through the `useTina` hook, which allows its content to be
 
 Now we are ready to launch and start editing the content, launch the application using the `yarn tina-dev` command and navigate one of the posts. Now because our application is "protected" you will need to navigate to http://localhost:3000/admin. Once you navigate to the admin route, the page will
 
-![Editing Gif](/gif/editing_smaller.gif)
+![Editing Gif](https://res.cloudinary.com/forestry-demo/image/upload/v1645712825/tina-io/docs/editing_smaller.gif)
 
 At this point we have created an exact replication of the NextJS starter with the ability to edit any of the fields and now have the ability to make changes. You’ll notice the post’s body is in a single text field, which isn’t a great editing experience and isn't be returned as HTML. So in the next section we’re going to add a Markdown editor plugin and reuse the markdown to html code the Next.js team provided.

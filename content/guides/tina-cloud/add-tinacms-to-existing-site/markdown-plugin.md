@@ -83,7 +83,7 @@ The `ui` property allows you to control the output of the GraphQL-generated form
 
 Restart your application by shutting it down and running `yarn tina-dev` and enter edit mode, you will see the body now has Markdown options to make editing easier:
 
-![Markdown Gif](/gif/markdown.gif)
+![Markdown Gif](https://res.cloudinary.com/forestry-demo/image/upload/v1645712826/tina-io/docs/markdown.gif)
 
 The problem is we are delivering the content directly, so we lose all formatting on our rendered page.
 
@@ -283,4 +283,4 @@ export async function getStaticPaths() {
 
 Now our content should be correctly formatted, and even when your content team is updated they will see it in real time.
 
-![Markdown Done Gif](/gif/markdown-fin_sm.gif)
+![Markdown Done Gif](https://res.cloudinary.com/forestry-demo/image/upload/v1645712825/tina-io/docs/markdown-fin_sm.gif)
