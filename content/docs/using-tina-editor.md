@@ -13,7 +13,7 @@ When Tina is initialized on a NextJS site, a "/admin" page is created to allow e
 
 ![Tina Login Page](/img/tina-login.png)
 
-After successfully logging in, the user will land in the CMS with the Dashboard and Global Navigation.
+After successfully logging in, the user will arrive at the CMS.
 
 ## Using the Admin
 
@@ -23,17 +23,17 @@ Depending on how Tina is configured, one or more Collections will appear in the 
 
 ![Tina Editor List Page](/img/tina-list-page.png)
 
-The table here lists all existing Documents for that Collection. This page also allows the user to create a new Document.
+The table here lists all existing Documents for the chosen Collection. This page also allows the user to create a new Document.
 
-If "Contextual Editing" has been configured for TinaCMS, clicking on an existing Document will route the user to that Document's Preview Page with the Tina Sidebar open and ready for editing.
+If **contextual-editing** has been configured, clicking on an existing Document will route the user to that Document's Preview Page with the Tina Sidebar open and ready for editing.
 
 ![Tina Editor Contextual Editing](/img/tina-contextual-editing.png)
 
-However, if "Contextual Editing" is not configured or simply not available for a particular Collection, clicking on an existing Document will present the user with the basic editor.
+However, if **contextual-editing** is not configured or simply not available for a particular Collection, clicking on an existing Document will present the user with the basic editor.
 
 ![Tina Editor Standard Editing](/img/tina-standard-editing.png)
 
-> Note: You can learn more about how to set up "Contextual Editing" for your users [here](/docs/tinacms-context).
+> Note: You can learn more about how to set up **contextual-editing** for your users [here](/docs/tinacms-context).
 
 Once saved, the changes to the Document, whether in contextual-editing or not, will be stored against the files.
 
