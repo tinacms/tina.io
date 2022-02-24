@@ -15,7 +15,7 @@ When Tina is initialized on a NextJS site, a "/admin" page is created to allow e
 
 After successfully logging in, the user will arrive at the CMS.
 
-## Using the Admin
+## Using the CMS
 
 ![Tina Editor Dashboard](/img/tina-dashboard.png)
 
