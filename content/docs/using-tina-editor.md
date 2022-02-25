@@ -35,7 +35,7 @@ However, if **contextual-editing** is not configured or simply not available for
 
 > Note: You can learn more about how to set up **contextual-editing** for your users [here](/docs/tinacms-context).
 
-Once saved, the changes to the document, whether in contextual-editing or not, will be stored against the files.
+Once saved, the changes to the document will be stored against the files.
 
 ## What's Next?
 
