@@ -82,9 +82,17 @@ type PageSeo {
   description: String
 }
 
+type PageBlocksHeroActions {
+  label: String
+  icon: String
+  variant: String
+  url: String
+}
+
 type PageBlocksHero {
   headline: String
   subline: String
+  actions: [PageBlocksHeroActions]
   videoSrc: String
 }
 
@@ -181,9 +189,17 @@ input PageSeoMutation {
   description: String
 }
 
+input PageBlocksHeroActionsMutation {
+  label: String
+  icon: String
+  variant: String
+  url: String
+}
+
 input PageBlocksHeroMutation {
   headline: String
   subline: String
+  actions: [PageBlocksHeroActionsMutation]
   videoSrc: String
 }
 
