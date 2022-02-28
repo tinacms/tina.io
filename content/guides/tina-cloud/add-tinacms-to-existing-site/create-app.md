@@ -49,7 +49,7 @@ The first URL brings you to a demo of TinaCMS, it will show you the power of Tin
 > Want to see your changes? Open up the file located at `/content/HelloWorld.md` and the changes you've made will be there!
 
 <video controls autoplay=true muted loop>
-<source src="/gif/tina-init.mp4" type="video/mp4" />
+<source src="https://res.cloudinary.com/forestry-demo/video/upload/v1645712750/tina-io/docs/tina-init.mp4" type="video/mp4" />
 Your browser does not support the video tag.
 </video>
 

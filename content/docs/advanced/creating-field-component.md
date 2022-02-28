@@ -46,7 +46,7 @@ Now that we have a custom field component, we can:
 
 Once that's wired up, our editors will be able to use our new range field in their site.
 
-![saturation-custom-field-gif](/gif/saturate-custom-field.gif)
+![saturation-custom-field-gif](https://res.cloudinary.com/forestry-demo/image/upload/v1645712782/tina-io/docs/saturate-custom-field.gif)
 
 ## Using Tina Styles
 

@@ -1,7 +1,8 @@
 import * as gqlPackage from '@tinacms/graphql'
+import * as datalayerPackage from '@tinacms/datalayer'
 
 export default async function feedback(req, res) {
-  class InMemoryStore extends gqlPackage.MemoryStore {
+  class InMemoryStore extends datalayerPackage.MemoryStore {
     public supportsSeeding() {
       return true
     }

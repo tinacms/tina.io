@@ -1,12 +1,46 @@
 import React from 'react'
-import { Actions } from './Actions'
+import { actionsTemplate, Actions } from './Actions'
 import { Container } from './Container'
 import HeroBackground from '../../public/svg/hero-background.svg'
+import type { TinaTemplate } from '@tinacms/cli'
+
+export const heroTemplate: TinaTemplate = {
+  label: 'Hero',
+  name: 'hero',
+  ui: {
+    previewSrc: '/img/blocks/hero.png',
+    defaultItem: {
+      headline: 'Next Gen Content Management',
+      text: 'Tina is an open-source, Git-backed CMS with the ability to add visual editing to your NextJS site',
+      actions: [
+        {
+          variant: 'orange',
+          label: 'Primary Action',
+          icon: true,
+          url: '/',
+        },
+        {
+          variant: '',
+          label: 'Secondary Action',
+          icon: false,
+          url: '/',
+        },
+      ],
+    },
+  },
+  fields: [
+    { name: 'headline', label: "Headline", type: 'string' },
+    { name: 'text', label: "Text", type: 'string' },
+    // @ts-ignore
+    actionsTemplate,
+    { name: 'videoSrc', label:"Video Source", type: 'string' },
+  ],
+}
 
 export function HeroBlock({ data, index }) {
   return (
     <>
-      <section key={index} className="hero">
+      <section key={index} className={`hero ${data.videoSrc ? 'with-video' : 'without-video'}`}>
         <Container width="narrow" center>
           <HeroFeature item={data} />
         </Container>
@@ -15,7 +49,7 @@ export function HeroBlock({ data, index }) {
             <Video src={data.videoSrc} />
           </Container>
         )}
-        <div className="background">
+        <div className={`background ${data.videoSrc ? 'with-video' : 'without-video'}`}>
           <HeroBackground />
         </div>
       </section>
@@ -25,12 +59,24 @@ export function HeroBlock({ data, index }) {
           z-index: 2;
         }
 
+        .hero.without-video {
+          margin-bottom: -2rem;
+        }
+
+
+        .background.with-video {
+          height: 66.6%;
+        }
+
+        .background.without-video {
+          height: calc(100%);
+        }
+
         .background {
           position: absolute;
           top: 0;
           left: 0;
           width: 100%;
-          height: 66.6%;
           z-index: -1;
 
           :global(svg) {
@@ -51,7 +97,7 @@ export const HeroFeature = ({ item }) => {
     <>
       <div className="feature">
         {item.headline && <h2 className="heading">{item.headline}</h2>}
-        {item.subline && <p className="textHuge">{item.subline}</p>}
+        {item.text && <p className="textHuge">{item.text}</p>}
         {item.actions && <Actions items={item.actions} align="center" />}
       </div>
       <style jsx>{`

@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { IconRight } from '../home'
+import { IconRight } from '../blocks'
 import TinaCloudWordmark from '../../public/svg/tina-cloud-wordmark.svg'
 import { Button, ButtonGroup } from 'components/ui'
 
@@ -8,7 +8,7 @@ export function CloudBanner() {
   return (
     <>
       <div className="banner">
-        <div className="content">
+        <div className="banner-content">
           <span className="desktop">
             <p className="text">
               <span className="wordmark">
@@ -92,6 +92,8 @@ export function CloudBanner() {
           position: relative;
           z-index: 10;
           line-height: 1.2;
+          flex: 0 1 auto;
+          width: 100%;
 
           :global(a) {
             font-weight: bold;
@@ -125,7 +127,7 @@ export function CloudBanner() {
           }
         }
 
-        .content {
+        .banner-content {
           display: flex;
           align-items: center;
         }
