@@ -153,7 +153,7 @@ export type PageSeo = {
 export type PageBlocksHeroActions = {
   __typename?: 'PageBlocksHeroActions';
   label?: Maybe<Scalars['String']>;
-  icon?: Maybe<Scalars['String']>;
+  icon?: Maybe<Scalars['Boolean']>;
   variant?: Maybe<Scalars['String']>;
   url?: Maybe<Scalars['String']>;
 };
@@ -161,7 +161,7 @@ export type PageBlocksHeroActions = {
 export type PageBlocksHero = {
   __typename?: 'PageBlocksHero';
   headline?: Maybe<Scalars['String']>;
-  subline?: Maybe<Scalars['String']>;
+  text?: Maybe<Scalars['String']>;
   actions?: Maybe<Array<Maybe<PageBlocksHeroActions>>>;
   videoSrc?: Maybe<Scalars['String']>;
 };
@@ -176,7 +176,7 @@ export type PageBlocksFeaturesItemsFeatureMedia = {
 export type PageBlocksFeaturesItemsFeatureActions = {
   __typename?: 'PageBlocksFeaturesItemsFeatureActions';
   label?: Maybe<Scalars['String']>;
-  icon?: Maybe<Scalars['String']>;
+  icon?: Maybe<Scalars['Boolean']>;
   variant?: Maybe<Scalars['String']>;
   url?: Maybe<Scalars['String']>;
 };
@@ -184,7 +184,7 @@ export type PageBlocksFeaturesItemsFeatureActions = {
 export type PageBlocksFeaturesItemsFeature = {
   __typename?: 'PageBlocksFeaturesItemsFeature';
   headline?: Maybe<Scalars['String']>;
-  subline?: Maybe<Scalars['String']>;
+  text?: Maybe<Scalars['String']>;
   media?: Maybe<PageBlocksFeaturesItemsFeatureMedia>;
   actions?: Maybe<Array<Maybe<PageBlocksFeaturesItemsFeatureActions>>>;
 };
@@ -193,39 +193,152 @@ export type PageBlocksFeaturesItems = PageBlocksFeaturesItemsFeature;
 
 export type PageBlocksFeatures = {
   __typename?: 'PageBlocksFeatures';
-  headline?: Maybe<Scalars['String']>;
-  subline?: Maybe<Scalars['String']>;
   items?: Maybe<Array<Maybe<PageBlocksFeaturesItems>>>;
 };
 
 export type PageBlocksFlyingActions = {
   __typename?: 'PageBlocksFlyingActions';
   label?: Maybe<Scalars['String']>;
-  icon?: Maybe<Scalars['String']>;
+  icon?: Maybe<Scalars['Boolean']>;
   variant?: Maybe<Scalars['String']>;
   url?: Maybe<Scalars['String']>;
-};
-
-export type PageBlocksFlyingItems = {
-  __typename?: 'PageBlocksFlyingItems';
-  headline?: Maybe<Scalars['String']>;
-  subline?: Maybe<Scalars['String']>;
-  cli?: Maybe<Scalars['Boolean']>;
 };
 
 export type PageBlocksFlying = {
   __typename?: 'PageBlocksFlying';
   headline?: Maybe<Scalars['String']>;
-  subline?: Maybe<Scalars['String']>;
+  text?: Maybe<Scalars['String']>;
   actions?: Maybe<Array<Maybe<PageBlocksFlyingActions>>>;
-  items?: Maybe<Array<Maybe<PageBlocksFlyingItems>>>;
 };
 
-export type PageBlocks = PageBlocksHero | PageBlocksFeatures | PageBlocksFlying;
+export type PageBlocksPricingTierOneActions = {
+  __typename?: 'PageBlocksPricingTierOneActions';
+  label?: Maybe<Scalars['String']>;
+  icon?: Maybe<Scalars['Boolean']>;
+  variant?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+};
+
+export type PageBlocksPricingTierOne = {
+  __typename?: 'PageBlocksPricingTierOne';
+  name?: Maybe<Scalars['String']>;
+  price?: Maybe<Scalars['String']>;
+  interval?: Maybe<Scalars['String']>;
+  body?: Maybe<Scalars['JSON']>;
+  large?: Maybe<Scalars['Boolean']>;
+  actions?: Maybe<Array<Maybe<PageBlocksPricingTierOneActions>>>;
+};
+
+export type PageBlocksPricingTierTwoActions = {
+  __typename?: 'PageBlocksPricingTierTwoActions';
+  label?: Maybe<Scalars['String']>;
+  icon?: Maybe<Scalars['Boolean']>;
+  variant?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+};
+
+export type PageBlocksPricingTierTwo = {
+  __typename?: 'PageBlocksPricingTierTwo';
+  name?: Maybe<Scalars['String']>;
+  price?: Maybe<Scalars['String']>;
+  interval?: Maybe<Scalars['String']>;
+  body?: Maybe<Scalars['JSON']>;
+  large?: Maybe<Scalars['Boolean']>;
+  actions?: Maybe<Array<Maybe<PageBlocksPricingTierTwoActions>>>;
+};
+
+export type PageBlocksPricingTierThreeActions = {
+  __typename?: 'PageBlocksPricingTierThreeActions';
+  label?: Maybe<Scalars['String']>;
+  icon?: Maybe<Scalars['Boolean']>;
+  variant?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+};
+
+export type PageBlocksPricingTierThree = {
+  __typename?: 'PageBlocksPricingTierThree';
+  name?: Maybe<Scalars['String']>;
+  price?: Maybe<Scalars['String']>;
+  interval?: Maybe<Scalars['String']>;
+  body?: Maybe<Scalars['JSON']>;
+  large?: Maybe<Scalars['Boolean']>;
+  actions?: Maybe<Array<Maybe<PageBlocksPricingTierThreeActions>>>;
+};
+
+export type PageBlocksPricingTierFourActions = {
+  __typename?: 'PageBlocksPricingTierFourActions';
+  label?: Maybe<Scalars['String']>;
+  icon?: Maybe<Scalars['Boolean']>;
+  variant?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+};
+
+export type PageBlocksPricingTierFour = {
+  __typename?: 'PageBlocksPricingTierFour';
+  name?: Maybe<Scalars['String']>;
+  price?: Maybe<Scalars['String']>;
+  interval?: Maybe<Scalars['String']>;
+  body?: Maybe<Scalars['JSON']>;
+  large?: Maybe<Scalars['Boolean']>;
+  actions?: Maybe<Array<Maybe<PageBlocksPricingTierFourActions>>>;
+};
+
+export type PageBlocksPricing = {
+  __typename?: 'PageBlocksPricing';
+  intro?: Maybe<Scalars['JSON']>;
+  tierOne?: Maybe<PageBlocksPricingTierOne>;
+  segue?: Maybe<Scalars['JSON']>;
+  tierTwo?: Maybe<PageBlocksPricingTierTwo>;
+  tierThree?: Maybe<PageBlocksPricingTierThree>;
+  tierFour?: Maybe<PageBlocksPricingTierFour>;
+};
+
+export type PageBlocksFaqQuestions = {
+  __typename?: 'PageBlocksFaqQuestions';
+  question?: Maybe<Scalars['String']>;
+  answer?: Maybe<Scalars['JSON']>;
+};
+
+export type PageBlocksFaq = {
+  __typename?: 'PageBlocksFaq';
+  title?: Maybe<Scalars['String']>;
+  intro?: Maybe<Scalars['JSON']>;
+  questions?: Maybe<Array<Maybe<PageBlocksFaqQuestions>>>;
+  color?: Maybe<Scalars['String']>;
+};
+
+export type PageBlocksContentOptions = {
+  __typename?: 'PageBlocksContentOptions';
+  narrow?: Maybe<Scalars['Boolean']>;
+  color?: Maybe<Scalars['String']>;
+  align?: Maybe<Scalars['String']>;
+};
+
+export type PageBlocksContent = {
+  __typename?: 'PageBlocksContent';
+  options?: Maybe<PageBlocksContentOptions>;
+  content?: Maybe<Scalars['JSON']>;
+};
+
+export type PageBlocksColumnsOptions = {
+  __typename?: 'PageBlocksColumnsOptions';
+  columns?: Maybe<Scalars['String']>;
+  narrow?: Maybe<Scalars['Boolean']>;
+  color?: Maybe<Scalars['String']>;
+  align?: Maybe<Scalars['String']>;
+};
+
+export type PageBlocksColumns = {
+  __typename?: 'PageBlocksColumns';
+  options?: Maybe<PageBlocksColumnsOptions>;
+  columnOne?: Maybe<Scalars['JSON']>;
+  columnTwo?: Maybe<Scalars['JSON']>;
+};
+
+export type PageBlocks = PageBlocksHero | PageBlocksFeatures | PageBlocksFlying | PageBlocksPricing | PageBlocksFaq | PageBlocksContent | PageBlocksColumns;
 
 export type Page = {
   __typename?: 'Page';
-  title?: Maybe<Scalars['String']>;
   seo?: Maybe<PageSeo>;
   blocks?: Maybe<Array<Maybe<PageBlocks>>>;
 };
@@ -306,14 +419,14 @@ export type PageSeoMutation = {
 
 export type PageBlocksHeroActionsMutation = {
   label?: InputMaybe<Scalars['String']>;
-  icon?: InputMaybe<Scalars['String']>;
+  icon?: InputMaybe<Scalars['Boolean']>;
   variant?: InputMaybe<Scalars['String']>;
   url?: InputMaybe<Scalars['String']>;
 };
 
 export type PageBlocksHeroMutation = {
   headline?: InputMaybe<Scalars['String']>;
-  subline?: InputMaybe<Scalars['String']>;
+  text?: InputMaybe<Scalars['String']>;
   actions?: InputMaybe<Array<InputMaybe<PageBlocksHeroActionsMutation>>>;
   videoSrc?: InputMaybe<Scalars['String']>;
 };
@@ -326,14 +439,14 @@ export type PageBlocksFeaturesItemsFeatureMediaMutation = {
 
 export type PageBlocksFeaturesItemsFeatureActionsMutation = {
   label?: InputMaybe<Scalars['String']>;
-  icon?: InputMaybe<Scalars['String']>;
+  icon?: InputMaybe<Scalars['Boolean']>;
   variant?: InputMaybe<Scalars['String']>;
   url?: InputMaybe<Scalars['String']>;
 };
 
 export type PageBlocksFeaturesItemsFeatureMutation = {
   headline?: InputMaybe<Scalars['String']>;
-  subline?: InputMaybe<Scalars['String']>;
+  text?: InputMaybe<Scalars['String']>;
   media?: InputMaybe<PageBlocksFeaturesItemsFeatureMediaMutation>;
   actions?: InputMaybe<Array<InputMaybe<PageBlocksFeaturesItemsFeatureActionsMutation>>>;
 };
@@ -343,60 +456,162 @@ export type PageBlocksFeaturesItemsMutation = {
 };
 
 export type PageBlocksFeaturesMutation = {
-  headline?: InputMaybe<Scalars['String']>;
-  subline?: InputMaybe<Scalars['String']>;
   items?: InputMaybe<Array<InputMaybe<PageBlocksFeaturesItemsMutation>>>;
 };
 
 export type PageBlocksFlyingActionsMutation = {
   label?: InputMaybe<Scalars['String']>;
-  icon?: InputMaybe<Scalars['String']>;
+  icon?: InputMaybe<Scalars['Boolean']>;
   variant?: InputMaybe<Scalars['String']>;
   url?: InputMaybe<Scalars['String']>;
 };
 
-export type PageBlocksFlyingItemsMutation = {
-  headline?: InputMaybe<Scalars['String']>;
-  subline?: InputMaybe<Scalars['String']>;
-  cli?: InputMaybe<Scalars['Boolean']>;
-};
-
 export type PageBlocksFlyingMutation = {
   headline?: InputMaybe<Scalars['String']>;
-  subline?: InputMaybe<Scalars['String']>;
+  text?: InputMaybe<Scalars['String']>;
   actions?: InputMaybe<Array<InputMaybe<PageBlocksFlyingActionsMutation>>>;
-  items?: InputMaybe<Array<InputMaybe<PageBlocksFlyingItemsMutation>>>;
+};
+
+export type PageBlocksPricingTierOneActionsMutation = {
+  label?: InputMaybe<Scalars['String']>;
+  icon?: InputMaybe<Scalars['Boolean']>;
+  variant?: InputMaybe<Scalars['String']>;
+  url?: InputMaybe<Scalars['String']>;
+};
+
+export type PageBlocksPricingTierOneMutation = {
+  name?: InputMaybe<Scalars['String']>;
+  price?: InputMaybe<Scalars['String']>;
+  interval?: InputMaybe<Scalars['String']>;
+  body?: InputMaybe<Scalars['JSON']>;
+  large?: InputMaybe<Scalars['Boolean']>;
+  actions?: InputMaybe<Array<InputMaybe<PageBlocksPricingTierOneActionsMutation>>>;
+};
+
+export type PageBlocksPricingTierTwoActionsMutation = {
+  label?: InputMaybe<Scalars['String']>;
+  icon?: InputMaybe<Scalars['Boolean']>;
+  variant?: InputMaybe<Scalars['String']>;
+  url?: InputMaybe<Scalars['String']>;
+};
+
+export type PageBlocksPricingTierTwoMutation = {
+  name?: InputMaybe<Scalars['String']>;
+  price?: InputMaybe<Scalars['String']>;
+  interval?: InputMaybe<Scalars['String']>;
+  body?: InputMaybe<Scalars['JSON']>;
+  large?: InputMaybe<Scalars['Boolean']>;
+  actions?: InputMaybe<Array<InputMaybe<PageBlocksPricingTierTwoActionsMutation>>>;
+};
+
+export type PageBlocksPricingTierThreeActionsMutation = {
+  label?: InputMaybe<Scalars['String']>;
+  icon?: InputMaybe<Scalars['Boolean']>;
+  variant?: InputMaybe<Scalars['String']>;
+  url?: InputMaybe<Scalars['String']>;
+};
+
+export type PageBlocksPricingTierThreeMutation = {
+  name?: InputMaybe<Scalars['String']>;
+  price?: InputMaybe<Scalars['String']>;
+  interval?: InputMaybe<Scalars['String']>;
+  body?: InputMaybe<Scalars['JSON']>;
+  large?: InputMaybe<Scalars['Boolean']>;
+  actions?: InputMaybe<Array<InputMaybe<PageBlocksPricingTierThreeActionsMutation>>>;
+};
+
+export type PageBlocksPricingTierFourActionsMutation = {
+  label?: InputMaybe<Scalars['String']>;
+  icon?: InputMaybe<Scalars['Boolean']>;
+  variant?: InputMaybe<Scalars['String']>;
+  url?: InputMaybe<Scalars['String']>;
+};
+
+export type PageBlocksPricingTierFourMutation = {
+  name?: InputMaybe<Scalars['String']>;
+  price?: InputMaybe<Scalars['String']>;
+  interval?: InputMaybe<Scalars['String']>;
+  body?: InputMaybe<Scalars['JSON']>;
+  large?: InputMaybe<Scalars['Boolean']>;
+  actions?: InputMaybe<Array<InputMaybe<PageBlocksPricingTierFourActionsMutation>>>;
+};
+
+export type PageBlocksPricingMutation = {
+  intro?: InputMaybe<Scalars['JSON']>;
+  tierOne?: InputMaybe<PageBlocksPricingTierOneMutation>;
+  segue?: InputMaybe<Scalars['JSON']>;
+  tierTwo?: InputMaybe<PageBlocksPricingTierTwoMutation>;
+  tierThree?: InputMaybe<PageBlocksPricingTierThreeMutation>;
+  tierFour?: InputMaybe<PageBlocksPricingTierFourMutation>;
+};
+
+export type PageBlocksFaqQuestionsMutation = {
+  question?: InputMaybe<Scalars['String']>;
+  answer?: InputMaybe<Scalars['JSON']>;
+};
+
+export type PageBlocksFaqMutation = {
+  title?: InputMaybe<Scalars['String']>;
+  intro?: InputMaybe<Scalars['JSON']>;
+  questions?: InputMaybe<Array<InputMaybe<PageBlocksFaqQuestionsMutation>>>;
+  color?: InputMaybe<Scalars['String']>;
+};
+
+export type PageBlocksContentOptionsMutation = {
+  narrow?: InputMaybe<Scalars['Boolean']>;
+  color?: InputMaybe<Scalars['String']>;
+  align?: InputMaybe<Scalars['String']>;
+};
+
+export type PageBlocksContentMutation = {
+  options?: InputMaybe<PageBlocksContentOptionsMutation>;
+  content?: InputMaybe<Scalars['JSON']>;
+};
+
+export type PageBlocksColumnsOptionsMutation = {
+  columns?: InputMaybe<Scalars['String']>;
+  narrow?: InputMaybe<Scalars['Boolean']>;
+  color?: InputMaybe<Scalars['String']>;
+  align?: InputMaybe<Scalars['String']>;
+};
+
+export type PageBlocksColumnsMutation = {
+  options?: InputMaybe<PageBlocksColumnsOptionsMutation>;
+  columnOne?: InputMaybe<Scalars['JSON']>;
+  columnTwo?: InputMaybe<Scalars['JSON']>;
 };
 
 export type PageBlocksMutation = {
   hero?: InputMaybe<PageBlocksHeroMutation>;
   features?: InputMaybe<PageBlocksFeaturesMutation>;
   flying?: InputMaybe<PageBlocksFlyingMutation>;
+  pricing?: InputMaybe<PageBlocksPricingMutation>;
+  faq?: InputMaybe<PageBlocksFaqMutation>;
+  content?: InputMaybe<PageBlocksContentMutation>;
+  columns?: InputMaybe<PageBlocksColumnsMutation>;
 };
 
 export type PageMutation = {
-  title?: InputMaybe<Scalars['String']>;
   seo?: InputMaybe<PageSeoMutation>;
   blocks?: InputMaybe<Array<InputMaybe<PageBlocksMutation>>>;
 };
 
-export type PagePartsFragment = { __typename?: 'Page', title?: string | null, seo?: { __typename: 'PageSeo', title?: string | null, description?: string | null } | null, blocks?: Array<{ __typename: 'PageBlocksHero', headline?: string | null, subline?: string | null, videoSrc?: string | null, actions?: Array<{ __typename: 'PageBlocksHeroActions', label?: string | null, icon?: string | null, variant?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksFeatures', headline?: string | null, subline?: string | null, items?: Array<{ __typename: 'PageBlocksFeaturesItemsFeature', headline?: string | null, subline?: string | null, media?: { __typename: 'PageBlocksFeaturesItemsFeatureMedia', src?: string | null, videoSrc?: string | null, cli?: boolean | null } | null, actions?: Array<{ __typename: 'PageBlocksFeaturesItemsFeatureActions', label?: string | null, icon?: string | null, variant?: string | null, url?: string | null } | null> | null } | null> | null } | { __typename: 'PageBlocksFlying', headline?: string | null, subline?: string | null, actions?: Array<{ __typename: 'PageBlocksFlyingActions', label?: string | null, icon?: string | null, variant?: string | null, url?: string | null } | null> | null, items?: Array<{ __typename: 'PageBlocksFlyingItems', headline?: string | null, subline?: string | null, cli?: boolean | null } | null> | null } | null> | null };
+export type PagePartsFragment = { __typename?: 'Page', seo?: { __typename: 'PageSeo', title?: string | null, description?: string | null } | null, blocks?: Array<{ __typename: 'PageBlocksHero', headline?: string | null, text?: string | null, videoSrc?: string | null, actions?: Array<{ __typename: 'PageBlocksHeroActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksFeatures', items?: Array<{ __typename: 'PageBlocksFeaturesItemsFeature', headline?: string | null, text?: string | null, media?: { __typename: 'PageBlocksFeaturesItemsFeatureMedia', src?: string | null, videoSrc?: string | null, cli?: boolean | null } | null, actions?: Array<{ __typename: 'PageBlocksFeaturesItemsFeatureActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null> | null } | { __typename: 'PageBlocksFlying', headline?: string | null, text?: string | null, actions?: Array<{ __typename: 'PageBlocksFlyingActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksPricing', intro?: any | null, segue?: any | null, tierOne?: { __typename: 'PageBlocksPricingTierOne', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierOneActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null, tierTwo?: { __typename: 'PageBlocksPricingTierTwo', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierTwoActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null, tierThree?: { __typename: 'PageBlocksPricingTierThree', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierThreeActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null, tierFour?: { __typename: 'PageBlocksPricingTierFour', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierFourActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null } | { __typename: 'PageBlocksFaq', title?: string | null, intro?: any | null, color?: string | null, questions?: Array<{ __typename: 'PageBlocksFaqQuestions', question?: string | null, answer?: any | null } | null> | null } | { __typename: 'PageBlocksContent', content?: any | null, options?: { __typename: 'PageBlocksContentOptions', narrow?: boolean | null, color?: string | null, align?: string | null } | null } | { __typename: 'PageBlocksColumns', columnOne?: any | null, columnTwo?: any | null, options?: { __typename: 'PageBlocksColumnsOptions', columns?: string | null, narrow?: boolean | null, color?: string | null, align?: string | null } | null } | null> | null };
 
 export type GetPageDocumentQueryVariables = Exact<{
   relativePath: Scalars['String'];
 }>;
 
 
-export type GetPageDocumentQuery = { __typename?: 'Query', getPageDocument: { __typename?: 'PageDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Page', title?: string | null, seo?: { __typename: 'PageSeo', title?: string | null, description?: string | null } | null, blocks?: Array<{ __typename: 'PageBlocksHero', headline?: string | null, subline?: string | null, videoSrc?: string | null, actions?: Array<{ __typename: 'PageBlocksHeroActions', label?: string | null, icon?: string | null, variant?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksFeatures', headline?: string | null, subline?: string | null, items?: Array<{ __typename: 'PageBlocksFeaturesItemsFeature', headline?: string | null, subline?: string | null, media?: { __typename: 'PageBlocksFeaturesItemsFeatureMedia', src?: string | null, videoSrc?: string | null, cli?: boolean | null } | null, actions?: Array<{ __typename: 'PageBlocksFeaturesItemsFeatureActions', label?: string | null, icon?: string | null, variant?: string | null, url?: string | null } | null> | null } | null> | null } | { __typename: 'PageBlocksFlying', headline?: string | null, subline?: string | null, actions?: Array<{ __typename: 'PageBlocksFlyingActions', label?: string | null, icon?: string | null, variant?: string | null, url?: string | null } | null> | null, items?: Array<{ __typename: 'PageBlocksFlyingItems', headline?: string | null, subline?: string | null, cli?: boolean | null } | null> | null } | null> | null } } };
+export type GetPageDocumentQuery = { __typename?: 'Query', getPageDocument: { __typename?: 'PageDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Page', seo?: { __typename: 'PageSeo', title?: string | null, description?: string | null } | null, blocks?: Array<{ __typename: 'PageBlocksHero', headline?: string | null, text?: string | null, videoSrc?: string | null, actions?: Array<{ __typename: 'PageBlocksHeroActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksFeatures', items?: Array<{ __typename: 'PageBlocksFeaturesItemsFeature', headline?: string | null, text?: string | null, media?: { __typename: 'PageBlocksFeaturesItemsFeatureMedia', src?: string | null, videoSrc?: string | null, cli?: boolean | null } | null, actions?: Array<{ __typename: 'PageBlocksFeaturesItemsFeatureActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null> | null } | { __typename: 'PageBlocksFlying', headline?: string | null, text?: string | null, actions?: Array<{ __typename: 'PageBlocksFlyingActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksPricing', intro?: any | null, segue?: any | null, tierOne?: { __typename: 'PageBlocksPricingTierOne', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierOneActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null, tierTwo?: { __typename: 'PageBlocksPricingTierTwo', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierTwoActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null, tierThree?: { __typename: 'PageBlocksPricingTierThree', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierThreeActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null, tierFour?: { __typename: 'PageBlocksPricingTierFour', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierFourActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null } | { __typename: 'PageBlocksFaq', title?: string | null, intro?: any | null, color?: string | null, questions?: Array<{ __typename: 'PageBlocksFaqQuestions', question?: string | null, answer?: any | null } | null> | null } | { __typename: 'PageBlocksContent', content?: any | null, options?: { __typename: 'PageBlocksContentOptions', narrow?: boolean | null, color?: string | null, align?: string | null } | null } | { __typename: 'PageBlocksColumns', columnOne?: any | null, columnTwo?: any | null, options?: { __typename: 'PageBlocksColumnsOptions', columns?: string | null, narrow?: boolean | null, color?: string | null, align?: string | null } | null } | null> | null } } };
 
 export type GetPageListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetPageListQuery = { __typename?: 'Query', getPageList: { __typename?: 'PageConnection', totalCount: number, edges?: Array<{ __typename?: 'PageConnectionEdges', node?: { __typename?: 'PageDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Page', title?: string | null, seo?: { __typename: 'PageSeo', title?: string | null, description?: string | null } | null, blocks?: Array<{ __typename: 'PageBlocksHero', headline?: string | null, subline?: string | null, videoSrc?: string | null, actions?: Array<{ __typename: 'PageBlocksHeroActions', label?: string | null, icon?: string | null, variant?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksFeatures', headline?: string | null, subline?: string | null, items?: Array<{ __typename: 'PageBlocksFeaturesItemsFeature', headline?: string | null, subline?: string | null, media?: { __typename: 'PageBlocksFeaturesItemsFeatureMedia', src?: string | null, videoSrc?: string | null, cli?: boolean | null } | null, actions?: Array<{ __typename: 'PageBlocksFeaturesItemsFeatureActions', label?: string | null, icon?: string | null, variant?: string | null, url?: string | null } | null> | null } | null> | null } | { __typename: 'PageBlocksFlying', headline?: string | null, subline?: string | null, actions?: Array<{ __typename: 'PageBlocksFlyingActions', label?: string | null, icon?: string | null, variant?: string | null, url?: string | null } | null> | null, items?: Array<{ __typename: 'PageBlocksFlyingItems', headline?: string | null, subline?: string | null, cli?: boolean | null } | null> | null } | null> | null } } | null } | null> | null } };
+export type GetPageListQuery = { __typename?: 'Query', getPageList: { __typename?: 'PageConnection', totalCount: number, edges?: Array<{ __typename?: 'PageConnectionEdges', node?: { __typename?: 'PageDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Page', seo?: { __typename: 'PageSeo', title?: string | null, description?: string | null } | null, blocks?: Array<{ __typename: 'PageBlocksHero', headline?: string | null, text?: string | null, videoSrc?: string | null, actions?: Array<{ __typename: 'PageBlocksHeroActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksFeatures', items?: Array<{ __typename: 'PageBlocksFeaturesItemsFeature', headline?: string | null, text?: string | null, media?: { __typename: 'PageBlocksFeaturesItemsFeatureMedia', src?: string | null, videoSrc?: string | null, cli?: boolean | null } | null, actions?: Array<{ __typename: 'PageBlocksFeaturesItemsFeatureActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null> | null } | { __typename: 'PageBlocksFlying', headline?: string | null, text?: string | null, actions?: Array<{ __typename: 'PageBlocksFlyingActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksPricing', intro?: any | null, segue?: any | null, tierOne?: { __typename: 'PageBlocksPricingTierOne', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierOneActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null, tierTwo?: { __typename: 'PageBlocksPricingTierTwo', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierTwoActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null, tierThree?: { __typename: 'PageBlocksPricingTierThree', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierThreeActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null, tierFour?: { __typename: 'PageBlocksPricingTierFour', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierFourActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null } | { __typename: 'PageBlocksFaq', title?: string | null, intro?: any | null, color?: string | null, questions?: Array<{ __typename: 'PageBlocksFaqQuestions', question?: string | null, answer?: any | null } | null> | null } | { __typename: 'PageBlocksContent', content?: any | null, options?: { __typename: 'PageBlocksContentOptions', narrow?: boolean | null, color?: string | null, align?: string | null } | null } | { __typename: 'PageBlocksColumns', columnOne?: any | null, columnTwo?: any | null, options?: { __typename: 'PageBlocksColumnsOptions', columns?: string | null, narrow?: boolean | null, color?: string | null, align?: string | null } | null } | null> | null } } | null } | null> | null } };
 
 export const PagePartsFragmentDoc = gql`
     fragment PageParts on Page {
-  title
   seo {
     __typename
     title
@@ -406,7 +621,7 @@ export const PagePartsFragmentDoc = gql`
     __typename
     ... on PageBlocksHero {
       headline
-      subline
+      text
       actions {
         __typename
         label
@@ -417,13 +632,11 @@ export const PagePartsFragmentDoc = gql`
       videoSrc
     }
     ... on PageBlocksFeatures {
-      headline
-      subline
       items {
         __typename
         ... on PageBlocksFeaturesItemsFeature {
           headline
-          subline
+          text
           media {
             __typename
             src
@@ -442,7 +655,7 @@ export const PagePartsFragmentDoc = gql`
     }
     ... on PageBlocksFlying {
       headline
-      subline
+      text
       actions {
         __typename
         label
@@ -450,12 +663,100 @@ export const PagePartsFragmentDoc = gql`
         variant
         url
       }
-      items {
+    }
+    ... on PageBlocksPricing {
+      intro
+      tierOne {
         __typename
-        headline
-        subline
-        cli
+        name
+        price
+        interval
+        body
+        large
+        actions {
+          __typename
+          label
+          icon
+          variant
+          url
+        }
       }
+      segue
+      tierTwo {
+        __typename
+        name
+        price
+        interval
+        body
+        large
+        actions {
+          __typename
+          label
+          icon
+          variant
+          url
+        }
+      }
+      tierThree {
+        __typename
+        name
+        price
+        interval
+        body
+        large
+        actions {
+          __typename
+          label
+          icon
+          variant
+          url
+        }
+      }
+      tierFour {
+        __typename
+        name
+        price
+        interval
+        body
+        large
+        actions {
+          __typename
+          label
+          icon
+          variant
+          url
+        }
+      }
+    }
+    ... on PageBlocksFaq {
+      title
+      intro
+      questions {
+        __typename
+        question
+        answer
+      }
+      color
+    }
+    ... on PageBlocksContent {
+      options {
+        __typename
+        narrow
+        color
+        align
+      }
+      content
+    }
+    ... on PageBlocksColumns {
+      options {
+        __typename
+        columns
+        narrow
+        color
+        align
+      }
+      columnOne
+      columnTwo
     }
   }
 }

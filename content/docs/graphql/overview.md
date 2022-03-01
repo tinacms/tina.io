@@ -8,4 +8,4 @@ TinaCMS is a git-backed content management system, that generates a GraphQL API 
 
 This gives the developer all the benefits of using git-backed content (version control, content-ownership, branching, etc) but also adds a structured API that can easily be queried.
 
-![Altair client](/gif/altair_doc.gif)
+![Altair client](https://res.cloudinary.com/forestry-demo/image/upload/v1645712822/tina-io/docs/altair_doc.gif)

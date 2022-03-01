@@ -62,4 +62,4 @@ Generating Tina config
 
 Once the graphql server is running, you can start to explore your graphQL content through the Altair client at `http://localhost:4001/altair/`
 
-![Altair client](/gif/altair_doc.gif)
+![Altair client](https://res.cloudinary.com/forestry-demo/image/upload/v1645712822/tina-io/docs/altair_doc.gif)

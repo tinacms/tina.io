@@ -60,7 +60,7 @@ export const SingleDividerSvg = () => {
 }
 
 interface DividerProps {
-  type: 'desktop' | 'mobile'
+  type?: 'desktop' | 'mobile'
 }
 
 export const Divider = ({ type = 'desktop' }: DividerProps) => {

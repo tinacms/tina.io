@@ -2,9 +2,10 @@ export function fileToUrl(filepath: string, base: string = null) {
   if (base) {
     filepath = filepath.split(`/${base}/`)[1]
   }
+  const index = filepath.lastIndexOf('.')
   return filepath
     .replace(/ /g, '-')
-    .slice(0, -3)
+    .slice(0, index)
     .trim()
 }
 

@@ -6,7 +6,7 @@ next: /docs/advanced/extending-tina
 
 Tina supports block-based editing, so that your editors can build out full pages using your pre-defined blocks
 
-![block-based-editing](/img/your-blocks.gif)
+![block-based-editing](https://res.cloudinary.com/forestry-demo/image/upload/v1645712511/tina-io/docs/your-blocks.gif)
 
 Let's say you want your editors to build out a page, and you have 3 main "block" types to start.
 

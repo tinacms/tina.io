@@ -87,7 +87,7 @@ We also removed old guides that no longer promote Tina's best practices and move
 
 The Tina Starter was built originally to show "the power of Tina" while it did that, we didn't feel that it showed a real-world example. So we went back to the drawing board and created our new [Tina Starter](/guides/tina-cloud/starter/overview/), which includes a landing page, blog, and about pages. You can edit and rearrange the content and we styled it with TailwindCSS to give it some extra shine! Below is an example of just some of the work you can do:
 
-![Quickstart Example](/img/edit-alongside-content.gif)
+![Quickstart Example](https://res.cloudinary.com/forestry-demo/image/upload/v1645712509/tina-io/docs/edit-alongside-content.gif)
 
 ## Media Manager
 

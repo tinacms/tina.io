@@ -1,6 +1,26 @@
-import { ActionFields, Actions } from './Actions'
+import { actionsTemplate, Actions } from './Actions'
 import CloudsOne from '../../public/svg/clouds-1.svg'
 import CloudsTwo from '../../public/svg/clouds-2.svg'
+import type { TinaTemplate } from '@tinacms/cli'
+
+export const flyingTemplate: TinaTemplate = {
+  name: 'flying',
+  label: 'Flying',
+  ui: {
+    previewSrc: '/img/blocks/flying.png',
+  },
+  fields: [
+    { name: 'headline', label: 'Headline', type: 'string' },
+    {
+      name: 'text',
+      label: 'Text',
+      ui: { component: 'textarea' },
+      type: 'string',
+    },
+    // @ts-ignore
+    actionsTemplate,
+  ],
+}
 
 export function FlyingBlock({ data, index }) {
   return (
@@ -9,13 +29,13 @@ export function FlyingBlock({ data, index }) {
         <div className="learnContainer">
           <div>
             {data.headline && <h3 className="title">{data.headline}</h3>}
-            {data.subline && <p className="text">{data.subline}</p>}
-            <Actions items={data.actions} />
+            {data.text && <p className="text">{data.text}</p>}
+            {data.actions && <Actions items={data.actions} />}
           </div>
           <div className="learnImageWrapper">
             <img
               className="learnImage"
-              src="img/flyingTina.png"
+              src="/img/flyingTina.png"
               alt="Tina learning"
             />
           </div>
