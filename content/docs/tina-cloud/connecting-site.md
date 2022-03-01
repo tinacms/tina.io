@@ -9,31 +9,17 @@ Once you've created a project within the **Tina Cloud**, the next step is to con
 
 In the [Contextual Editing doc](/docs/tinacms-context/), we showed you how the Tina context is setup on your site.
 
-To have editing work in production, Change the `apiURL` to:
-
-```
-https://content.tinajs.io/content/<myClientId>/github/<myBranch>
-```
+To have editing work in production, in the `.tina/components/TinaConfig.tsx`, change the `apiURL` to point to Tina's hosted content API (instead of your local filesystem).
 
 ```diff
-// pages/_app.js
-import TinaCMS from 'tinacms'
+// .tina/components/TinaConfig.tsx
+
+// ...
 
 - const apiURL = `http://localhost:4001/graphql`
 + const apiURL = `https://content.tinajs.io/content/${myClientId}/github/${myBranch}`
 
-const App = ({ Component, pageProps }) => {
-  return (
-    <TinaCMS
-      apiURL={apiURL}
-      // ... other props
-    >
-      <Component {...pageProps} />
-    </TinaCMS>
-  )
-}
 
-export default App
 ```
 
 `<myClientId>` is the value from the Tina Cloud dashboard, and `<myBranch>` is the branch which you wish to communicate with.
@@ -43,7 +29,8 @@ export default App
 Typically you'll want to use the branch that you're deploying with your site. This will vary depending on your host, but most will provide an environment variable of some sort that you can use. Note that your client ID isn't a secret and is not likely to change, so hardcoding it is usually ok.
 
 ```tsx
-// pages/_app.js
+// .tina/components/TinaConfig.tsx
+
 import TinaCMS from 'tinacms'
 
 const branch = process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF
@@ -56,18 +43,22 @@ const apiURL =
     ? 'http://localhost:4001/graphql'
     : `https://content.tinajs.io/content/${clientId}/github/${branch}`
 
-const App = ({ Component, pageProps }) => {
+// Importing the TinaProvider directly into your page will cause Tina to be added to the production bundle.
+// Instead, import the tina/provider/index default export to have it dynamially imported in edit-moode
+const TinaConfig = ({ children }) => {
   return (
     <TinaCMS
       apiURL={apiURL}
-      // ... other props
+      cmsCallback={cms => {
+        cms.flags.set('tina-admin', true)
+      }}
     >
-      <Component {...pageProps} />
+      {children}
     </TinaCMS>
   )
 }
 
-export default App
+export default TinaConfig
 ```
 
 > `NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF` is a [system environment variable](https://vercel.com/docs/concepts/projects/environment-variables#system-environment-variables) that represents the branch that has made the deployment commit. If not using Vercel, this can replaced with a custom environment variable, or even a hardcoded value.
