@@ -202,6 +202,12 @@
         "slug": "/docs/tina-cloud/branching/",
         "title": "Branching",
         "beta": true
+      },
+      {
+        "id": "/docs/tina-cloud/data-layer/",
+        "slug": "/docs/tina-cloud/data-layer/",
+        "title": "Data Layer",
+        "beta": true
       }
     ]
   },
