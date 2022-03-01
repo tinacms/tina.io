@@ -3,9 +3,6 @@ import { NextSeo } from 'next-seo'
 import { DocsLayout } from 'components/layout'
 import { useRouter } from 'next/router'
 import * as ga from '../../utils/ga'
-import { getDocProps, getDocsNav } from 'utils/docs/getDocProps'
-import { GetStaticProps } from 'next/types'
-import { NotFoundError } from 'utils/error/NotFoundError'
 import { Actions } from 'components/home/Actions'
 
 const pageData = {
@@ -62,52 +59,52 @@ const OverviewTemplate = props => {
           </div>
           <div className="cards">
             <a className="card" href="#">
-              <h2>CLI Quickstart</h2>
+              <h2>Use our CLI Quickstart</h2>
               <p>
-                Select a starter or bootstrap your Next.js project with Tina
-                setup and get started in minutes.
+                Using the CLI, choose one of our starters and get started
+                locally.
               </p>
               <div className="spacer"></div>
               <Actions
                 items={[
                   {
                     variant: 'secondary',
-                    label: 'Learn More',
+                    label: 'Get Started',
                     icon: 'arrowRight',
-                    url: '/',
+                    url: '/docs/introduction/using-starter/',
                   },
                 ]}
               />
             </a>
             <a className="card" href="#">
-              <h2>Existing Next.js Site</h2>
+              <h2>Add Tina to an Existing Next.js Site</h2>
+              <p>Have an existing NextJS site? Start here!</p>
+              <div className="spacer"></div>
+              <Actions
+                items={[
+                  {
+                    variant: 'secondary',
+                    label: 'Get Started',
+                    icon: 'arrowRight',
+                    url: '/docs/introduction/tina-init/',
+                  },
+                ]}
+              />
+            </a>
+            <a className="card" href="#">
+              <h2>Dashboard Quickstart</h2>
               <p>
-                Learn how to set up an existing Next.js site for editing with
-                Tina.
+                Setup a pre-configured Tina project with Tina & Vercel in
+                minutes.
               </p>
               <div className="spacer"></div>
               <Actions
                 items={[
                   {
                     variant: 'secondary',
-                    label: 'Learn More',
+                    label: 'Get Started',
                     icon: 'arrowRight',
-                    url: '/',
-                  },
-                ]}
-              />
-            </a>
-            <a className="card" href="#">
-              <h2>Select A Tina Starter</h2>
-              <p>Select a Tina starter from Tina Cloud's onboarding process.</p>
-              <div className="spacer"></div>
-              <Actions
-                items={[
-                  {
-                    variant: 'secondary',
-                    label: 'Select Starter',
-                    icon: 'arrowRight',
-                    url: '/',
+                    url: 'https://app.tina.io',
                   },
                 ]}
               />
@@ -196,29 +193,6 @@ const OverviewTemplate = props => {
       </DocsLayout>
     </>
   )
-}
-
-export const getStaticProps: GetStaticProps = async function(props) {
-  // @ts-ignore This should maybe always be a string[]?
-  const slug = 'setup-overview'
-
-  try {
-    return await getDocProps(props, slug)
-  } catch (e) {
-    if (e) {
-      return {
-        props: {
-          error: { ...e }, //workaround since we cant return error as JSON
-        },
-      }
-    } else if (e instanceof NotFoundError) {
-      return {
-        props: {
-          notFound: true,
-        },
-      }
-    }
-  }
 }
 
 export default OverviewTemplate
