@@ -11,7 +11,12 @@ To quickly setup a new Tina starter, from the command line:
 npx create-tina-app@latest
 ```
 
-To run the starter, `cd <your-starter-name>` into its new directory & run:
+From there, you will be prompted a few quick setup questions:
+
+![create-tina-app](https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_981/v1646165612/tina-io/docs/Screen_Shot_2022-03-01_at_4.10.27_PM.png)
+
+Once your local starter has been created, to run the starter:
+`cd <your-starter-name>` into its new directory & run:
 
 ```bash,copy
 yarn dev
