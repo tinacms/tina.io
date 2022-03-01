@@ -23,7 +23,7 @@ recommend editing the script(s) in your site's package.json to pass the flag:
 "start-tina": "yarn tinacms server:start -c \"next start\" --experimentalData"
 ```
 
-Once the flag is added and the TinaCMS cli is executed using the flag, the generated schema will be updated. **These
+Once the flag is added and the TinaCMS CLI is executed using the flag, the generated schema will be updated. **These
 updates must be committed and pushed to the remote GitHub repository in order to activate the data layer.**
 
 # Indexing
