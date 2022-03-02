@@ -9,26 +9,20 @@ Tina has many advanced features that allow the entire CMS editing experience to 
 
 ## Customizing the CMS instance
 
-The `.tina/components/TinaConfig.(jsx|tsx)` config has an optional `cmsCallback` parameter that can be added to customize the CMS instance.
+The `.tina/schema.ts` config has an optional `cmsCallback` parameter that can be added to customize the CMS instance.
 
 ```diff
-// .tina/components/TinaConfig.tsx
+// .tina/schema.ts
 
 // ...
-const TinaConfig = ({ children }) => {
-  return (
-    <TinaCMS
-      apiURL={apiURL}
-+     cmsCallback={cms => {
-+       import('react-tinacms-editor').then((field)=> {
-+         cms.sidebar.position = 'overlay'
-+       })
-+     }}
-    >
-      {children}
-    </TinaCMS>
-  )
-}
+export defineConfig({
+  apiURL,
++ cmsCallback={cms => {
++   import('react-tinacms-editor').then((field)=> {
++     cms.sidebar.position = 'overlay'
++   })
++ }}
+})
 ```
 
 The `cmsCallback` hook might be used to alter Tina's UI, dynamically hide the sidebar on certain pages, tap into the CMS event bus, etc, but the most common use-case is for registering custom field plugins.

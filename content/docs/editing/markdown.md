@@ -67,26 +67,20 @@ or
 npm install react-tinacms-editor
 ```
 
-Inside the `.tina/components/TinaConfig.(jsx|tsx)` file we need to import the `MarkdownFieldPlugin` and add it to the CMS callback:
+Inside the config within the `.tina/schema.ts` file we need to import the `MarkdownFieldPlugin` and add it to the CMS callback:
 
 ```diff
-// .tina/components/TinaConfig.tsx
+// .tina/schema.ts
 
 // ...
-const TinaConfig = ({ children }) => {
-  return (
-    <TinaCMS
-      apiURL={apiURL}
-+     cmsCallback={cms => {
-+       import('react-tinacms-editor').then((field)=> {
-+         cms.plugins.add(field.MarkdownFieldPlugin)
-+       })
-+     }}
-    >
-      {children}
-    </TinaCMS>
-  )
-}
+export defineConfig({
+  apiURL,
++ cmsCallback={cms => {
++   import('react-tinacms-editor').then((field)=> {
++     cms.plugins.add(field.MarkdownFieldPlugin)
++   })
++ }}
+})
 ```
 
 Assuming that [contextual editing](/docs/tinacms-context/) is setup on your page, your editors should be able to start editing markdown content!

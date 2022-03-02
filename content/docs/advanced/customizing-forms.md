@@ -10,29 +10,23 @@ With Tina, the editors interact with Tina through forms in the sidebar. These fo
 
 ## Customizing a form
 
-If you'd like to control the output of those forms, tap into the `formifyCallback` callback parameter in the `.tina/components/TinaConfig.(jsx|tsx)`
+If you'd like to control the output of those forms, tap into the `formifyCallback` callback parameter in config with the `.tina/schema.ts` file
 
 ```diff
-// .tina/components/TinaConfig.tsx
+// .tina/schema.ts
 
 // ...
-const TinaConfig = ({ children }) => {
-  return (
-    <TinaCMS
-      apiURL={apiURL}
-+      formifyCallback={({ formConfig, createForm, skip }) => {
-+        if (formConfig.id === 'getSiteNavsDocument') {
-+          const form = new Form(formConfig)
-+          // The site nav will be a global plugin
-+          cms.plugins.add(new GlobalFormPlugin(form))
-+          return form
-+        }
+export defineConfig({
+  apiURL,
++ formifyCallback={({ formConfig, createForm, skip }) => {
++   if (formConfig.id === 'getSiteNavsDocument') {
++     const form = new Form(formConfig)
++     // The site nav will be a global plugin
++     cms.plugins.add(new GlobalFormPlugin(form))
++     return form
++   }
 +
-+        return createForm(formConfig)
-+      }}
-    >
-      {children}
-    </TinaCMS>
-  )
-}
++   return createForm(formConfig)
++ }}
+})
 ```

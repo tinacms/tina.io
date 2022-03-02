@@ -26,10 +26,10 @@ This command does a few things in your Next.js application:
 Now that Tina has been installed in your site, you will need to add the Tina Provider to your site's layout.
 
 In your `_app.jsx` file, you will want to wrap your layout with the TinaProvider
-from `.tina/DynamicTinaProvider.(tsx|jsx)`
+from `.tina/components/DynamicTinaProvider.(tsx|jsx)`
 
 ```diff
-+ import TinaProvider from ../.tina/DynamicTinaProvider
++ import TinaProvider from ../.tina/components/DynamicTinaProvider
 
 // ...
 
