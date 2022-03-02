@@ -16,7 +16,7 @@ If you'd like to control the output of those forms, tap into the `formifyCallbac
 // .tina/schema.ts
 
 // ...
-export defineConfig({
+export config = defineConfig({
   apiURL,
 + formifyCallback={({ formConfig, createForm, skip }) => {
 +   if (formConfig.id === 'getSiteNavsDocument') {

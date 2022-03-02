@@ -35,7 +35,7 @@ The `mediaOptions` prop can be configured within `.tina/schema.ts`.
 
 // ...
 
-export defineConfig({
+export config = defineConfig({
   apiURL,
 + mediaStore={async () => {
 + // Load media store dynamically so it only loads in edit mode

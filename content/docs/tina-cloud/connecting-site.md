@@ -16,7 +16,7 @@ To have editing work in production, in the config within the `.tina/schema.ts` f
 
 // ...
 
-export defineConfig({
+export config = defineConfig({
 - apiURL: `http://localhost:4001/graphql`,
 + apiURL: `https://content.tinajs.io/content/${myClientId}/github/${myBranch}`,
 })
@@ -43,7 +43,7 @@ const apiURL =
     ? 'http://localhost:4001/graphql'
     : `https://content.tinajs.io/content/${clientId}/github/${branch}`
 
-export defineConfig({
+export config = defineConfig({
   apiURL
 })
 ```

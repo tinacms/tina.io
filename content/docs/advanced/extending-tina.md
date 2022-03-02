@@ -15,7 +15,7 @@ The `.tina/schema.ts` config has an optional `cmsCallback` parameter that can be
 // .tina/schema.ts
 
 // ...
-export defineConfig({
+export config = defineConfig({
   apiURL,
 + cmsCallback={cms => {
 +   import('react-tinacms-editor').then((field)=> {
