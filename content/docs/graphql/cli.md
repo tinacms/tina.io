@@ -23,6 +23,18 @@ This command also takes an argument (`-c`) that allows you to run a command as a
 
 ```json,copy
 "scripts": {
+  "tina-dev": "yarn tinacms server:start -c \"next dev\"",
+  "tina-build": "yarn tinacms server:start -c \"next build\"",
+  "tina-start": "yarn tinacms server:start -c \"next start\"",
+  ...
+},
+```
+
+You likely will want to replace your default `dev`, `build`,and `start`
+scripts with these new `tina-dev`, `tina-build`,and `tina-start` scripts.
+
+```json,copy
+"scripts": {
   "dev": "yarn tinacms server:start -c \"next dev\"",
   "build": "yarn tinacms server:start -c \"next build\"",
   "start": "yarn tinacms server:start -c \"next start\"",
