@@ -102,7 +102,7 @@ export default App
 
 Assuming that [contextual editing](/docs/tinacms-context/) is setup on your page, your editors should be able to start editing markdown content!
 
-![markdown-editing](/gif/markdown.gif)
+![markdown-editing](https://res.cloudinary.com/forestry-demo/image/upload/v1645712826/tina-io/docs/markdown.gif)
 
 ## Rendering Markdown
 

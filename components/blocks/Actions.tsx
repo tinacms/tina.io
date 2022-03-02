@@ -1,8 +1,50 @@
 import React from 'react'
-import styled from 'styled-components'
 import { BiCopy } from 'react-icons/bi'
 import { IconRight } from './Icons'
 import { copyToClipboard } from 'components/layout/MarkdownContent'
+
+export const actionsTemplate = {
+  label: 'Actions',
+  name: 'actions',
+  type: 'object',
+  list: true,
+  ui: {
+    defaultItem: {
+      variant: 'default',
+      label: 'Secondary Action',
+      icon: false,
+      url: '/',
+    },
+  },
+  fields: [
+    { name: 'label', label: 'Label', type: 'string' },
+    { name: 'icon', label: 'Icon', type: 'boolean' },
+    {
+      name: 'variant',
+      label: 'Variant',
+      type: 'string',
+      options: [
+        {
+          value: 'default',
+          label: 'Default',
+        },
+        {
+          value: 'orange',
+          label: 'Orange',
+        },
+        {
+          value: 'ghost',
+          label: 'Ghost',
+        },
+        {
+          value: 'command',
+          label: 'Command',
+        },
+      ],
+    },
+    { name: 'url', label: 'URL', type: 'string' },
+  ],
+}
 
 export const Actions = ({ items, align = 'left' }) => {
   return (
@@ -13,40 +55,41 @@ export const Actions = ({ items, align = 'left' }) => {
           align === 'center' && 'actionGroupCenter',
         ].join(' ')}
       >
-        {items.map(item => {
-          if (item.variant == 'command') {
-            return <CodeButton>{item.label}</CodeButton>
-          }
+        {items &&
+          items.map(item => {
+            if (item.variant == 'command') {
+              return <CodeButton>{item.label}</CodeButton>
+            }
 
-          const { variant, label, icon, url } = item
-          const externalUrlPattern = /^((http|https|ftp):\/\/)/
-          const external = externalUrlPattern.test(url)
-          let link = null
-          if (external) {
-            link = (
-              <a
-                key={`action-${label}`}
-                href={url}
-                className={`action ${variant}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {label} {icon === 'arrowRight' && <IconRight />}
-              </a>
-            )
-          } else {
-            link = (
-              <a
-                key={`action-${label}`}
-                href={url}
-                className={`action ${variant}`}
-              >
-                {label} {icon === 'arrowRight' && <IconRight />}
-              </a>
-            )
-          }
-          return link
-        })}
+            const { variant, label, icon, url } = item
+            const externalUrlPattern = /^((http|https|ftp):\/\/)/
+            const external = externalUrlPattern.test(url)
+            let link = null
+            if (external) {
+              link = (
+                <a
+                  key={`action-${label}`}
+                  href={url}
+                  className={`action ${variant}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {label} {icon && <IconRight />}
+                </a>
+              )
+            } else {
+              link = (
+                <a
+                  key={`action-${label}`}
+                  href={url}
+                  className={`action ${variant}`}
+                >
+                  {label} {icon && <IconRight />}
+                </a>
+              )
+            }
+            return link
+          })}
       </div>
       <style jsx>{`
         .actionGroup {
@@ -149,6 +192,9 @@ export const Actions = ({ items, align = 'left' }) => {
           }
         }
 
+        .default {
+        }
+
         .orange {
           background-color: var(--color-orange);
           background: linear-gradient(
@@ -168,6 +214,7 @@ export const Actions = ({ items, align = 'left' }) => {
 
         .ghost {
           border-color: transparent;
+          background: transparent;
           padding: 0 0.25rem;
 
           :hover {
@@ -306,39 +353,3 @@ export const CodeButton = ({ children }) => {
     </>
   )
 }
-
-export const ActionFields = [
-  {
-    label: 'Actions',
-    name: 'actions',
-    component: 'group-list',
-    fields: [
-      {
-        label: 'Label',
-        name: 'label',
-        component: 'text',
-      },
-      {
-        label: 'Variant',
-        name: 'variant',
-        component: 'select',
-        options: ['button', 'link'],
-      },
-      {
-        label: 'URL',
-        name: 'url',
-        component: 'text',
-      },
-      {
-        label: 'Icon',
-        name: 'icon',
-        component: 'select',
-        options: ['none', 'arrowRight'],
-      },
-    ],
-    itemProps: (item: any) => ({
-      key: item.name,
-      label: `Action: ${item.label || 'New Action'}`,
-    }),
-  },
-]

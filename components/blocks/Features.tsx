@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
-import { Actions } from './Actions'
+import { actionsTemplate, Actions } from './Actions'
 import { Container } from './Container'
 import BlobOne from '../../public/svg/blob-1.svg'
 import BlobTwo from '../../public/svg/blob-2.svg'
@@ -8,7 +8,50 @@ import BlobThree from '../../public/svg/blob-3.svg'
 import BlobFour from '../../public/svg/blob-4.svg'
 import BlobFive from '../../public/svg/blob-5.svg'
 import BlobSix from '../../public/svg/blob-6.svg'
-import { Blocks } from './Blocks'
+import type { TinaTemplate } from '@tinacms/cli'
+
+export const featuresTemplate: TinaTemplate = {
+  label: 'Features',
+  name: 'features',
+  ui: {
+    previewSrc: '/img/blocks/features.png',
+  },
+  fields: [
+    {
+      name: 'items',
+      label: 'Feature Items',
+      type: 'object',
+      list: true,
+      templates: [
+        {
+          label: 'Feature',
+          name: 'feature',
+          fields: [
+            { name: 'headline', label: 'Headline', type: 'string' },
+            {
+              name: 'text',
+              label: 'Text',
+              ui: { component: 'textarea' },
+              type: 'string',
+            },
+            {
+              name: 'media',
+              label: 'Media',
+              type: 'object',
+              fields: [
+                { name: 'src', label: 'Image Source', type: 'string' },
+                { name: 'videoSrc', label: 'Video Source', type: 'string' },
+                { name: 'cli', label: 'CLI', type: 'boolean' },
+              ],
+            },
+            // @ts-ignore
+            actionsTemplate,
+          ],
+        },
+      ],
+    },
+  ],
+}
 
 const blobSvgOptions = [
   BlobOne,
@@ -26,21 +69,23 @@ export function FeatureBlock({ data, index }) {
   return (
     <>
       <div
-        key={index}
+        key={'feature-' + index}
         className={`feature ${isReversed ? 'featureReverse' : ''}`}
       >
         <div className="featureText">
           {data.headline && <h3 className="featureTitle">{data.headline}</h3>}
-          <hr className="dottedBorder" />
-          <div className="textLarge">
-            <ReactMarkdown source={data.subline} />
-          </div>
+          {(data.text || data.actions) && <hr className="dottedBorder" />}
+          {data.text && (
+            <div className="textLarge">
+              <ReactMarkdown source={data.text} />
+            </div>
+          )}
           {data.actions && <Actions items={data.actions} />}
           <div className="blob">
             <FeatureBlobSvg />
           </div>
         </div>
-        {data.media.src && (
+        {data.media && data.media.src && (
           <div className={`featureImage`}>
             <img
               src={data.media.src}
@@ -50,8 +95,10 @@ export function FeatureBlock({ data, index }) {
             />
           </div>
         )}
-        {data.media.videoSrc && <FeatureVideo src={data.media.videoSrc} />}
-        {data.media.cli && (
+        {data.media && data.media.videoSrc && (
+          <FeatureVideo src={data.media.videoSrc} />
+        )}
+        {data.media && data.media.cli && (
           <div className={`featureImage`}>
             <FeatureCLI />
           </div>
@@ -96,10 +143,11 @@ export function FeatureBlock({ data, index }) {
         .featureText {
           position: relative;
           max-width: 28rem;
+          min-width: 8rem;
           justify-self: center;
           margin-top: 1rem;
 
-          :global(a) {
+          :global(p > a) {
             text-decoration: underline;
             transition: all ease-out 150ms;
             color: var(--color-tina-blue-dark);
@@ -168,11 +216,17 @@ export function FeatureBlock({ data, index }) {
 
 export function FeaturesBlock({ data, index }) {
   return (
-    <section key={index} className={'section white featureSection'}>
+    <section
+      key={'features-' + index}
+      className={'section white featureSection'}
+    >
       <Container>
         {/* TODO: why is there a type error here */}
         {/* @ts-ignore */}
-        <Blocks blocks={data.items} />
+        {data.items &&
+          data.items.map((data, index) => {
+            return <FeatureBlock data={data} index={index} />
+          })}
       </Container>
     </section>
   )
@@ -239,7 +293,7 @@ export const FeatureCLI = () => {
             >{` What starter code would you like to use?`}</span>
             {` 
 › Bare bones starter
-  Tailwind Starter
+  Tina Cloud Starter
   Documentation Starter
 `}
           </span>

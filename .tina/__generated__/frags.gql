@@ -1,5 +1,4 @@
 fragment PageParts on Page {
-  title
   seo {
     __typename
     title
@@ -9,17 +8,22 @@ fragment PageParts on Page {
     __typename
     ... on PageBlocksHero {
       headline
-      subline
+      text
+      actions {
+        __typename
+        label
+        icon
+        variant
+        url
+      }
       videoSrc
     }
     ... on PageBlocksFeatures {
-      headline
-      subline
       items {
         __typename
         ... on PageBlocksFeaturesItemsFeature {
           headline
-          subline
+          text
           media {
             __typename
             src
@@ -38,7 +42,7 @@ fragment PageParts on Page {
     }
     ... on PageBlocksFlying {
       headline
-      subline
+      text
       actions {
         __typename
         label
@@ -46,12 +50,100 @@ fragment PageParts on Page {
         variant
         url
       }
-      items {
+    }
+    ... on PageBlocksPricing {
+      intro
+      tierOne {
         __typename
-        headline
-        subline
-        cli
+        name
+        price
+        interval
+        body
+        large
+        actions {
+          __typename
+          label
+          icon
+          variant
+          url
+        }
       }
+      segue
+      tierTwo {
+        __typename
+        name
+        price
+        interval
+        body
+        large
+        actions {
+          __typename
+          label
+          icon
+          variant
+          url
+        }
+      }
+      tierThree {
+        __typename
+        name
+        price
+        interval
+        body
+        large
+        actions {
+          __typename
+          label
+          icon
+          variant
+          url
+        }
+      }
+      tierFour {
+        __typename
+        name
+        price
+        interval
+        body
+        large
+        actions {
+          __typename
+          label
+          icon
+          variant
+          url
+        }
+      }
+    }
+    ... on PageBlocksFaq {
+      title
+      intro
+      questions {
+        __typename
+        question
+        answer
+      }
+      color
+    }
+    ... on PageBlocksContent {
+      options {
+        __typename
+        narrow
+        color
+        align
+      }
+      content
+    }
+    ... on PageBlocksColumns {
+      options {
+        __typename
+        columns
+        narrow
+        color
+        align
+      }
+      columnOne
+      columnTwo
     }
   }
 }

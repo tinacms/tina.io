@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { Container } from '../home'
+import { Container } from '../blocks'
 import TinaLogo from '../../public/svg/tina-logo.svg'
 import data from '../../content/navigation.json'
 
@@ -71,6 +71,7 @@ export function Navbar({}) {
           padding: 2rem 0 1rem 0;
           margin-bottom: -1px;
           background: linear-gradient(to bottom, #d1faf6, #e6faf8);
+          flex: 0 1 auto;
 
           @media (min-width: 1200px) {
             padding: 3.5rem 0 2rem 0;

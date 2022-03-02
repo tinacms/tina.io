@@ -6,7 +6,7 @@ next: /docs/advanced/extending-tina
 
 Tina supports block-based editing, so that your editors can build out full pages using your pre-defined blocks
 
-![block-based-editing](/img/your-blocks.gif)
+![block-based-editing](https://res.cloudinary.com/forestry-demo/image/upload/v1645712511/tina-io/docs/your-blocks.gif)
 
 Let's say you want your editors to build out a page, and you have 3 main "block" types to start.
 
@@ -124,6 +124,43 @@ export default defineSchema({
 We have defined the structure of our 3 blocks (`content`, `features`, `hero`), as well as our main blocks field: `blocks`.
 
 > Note, since our contentBlock uses the [markdown plugin](/docs/reference/toolkit/fields/markdown/) which is not registered out of the box, we will need to manually import the `react-tinacms-editor` plugin.
+
+## Querying Block Data
+
+Because each item in a list of blocks can have a unique schema, querying this data isn't as straightforward as other types of fields. We'll need use GraphQL's fragment syntax to query the appropriate data shape for each block type.
+
+The fragment names are automatically generated based on the collection name and parent field name. For example, if the collection is `pages`, the field is `blocks`, and the block's name is `hero`, the fragment will be named `PagesBlocksHero`.
+
+```graphql
+query getPagesDocument($relativePath: String!) {
+  getPagesDocument(relativePath: $relativePath) {
+    data {
+      blocks {
+        __typename
+        ... on PagesBlocksHero {
+          __typename
+          tagline
+          headline
+          text
+        }
+        ... on PagesBlocksFeatures {
+          __typename
+          title
+          text
+        }
+        ... on PagesBlocksContent {
+          __typename
+          body
+        }
+      }
+    }
+  }
+}
+```
+
+<iframe loading="lazy" src="/api/graphiql/?query=%7B%0A%20%20getPagesDocument(relativePath%3A%20%22turbo.json%22)%20%7B%0A%20%20%20%20data%20%7B%0A%20%20%20%20%20%20blocks%20%7B%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20...%20on%20PagesBlocksHero%20%7B%0A%20%20%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20%20%20tagline%0A%20%20%20%20%20%20%20%20%20%20headline%0A%20%20%20%20%20%20%20%20%20%20text%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20...%20on%20PagesBlocksFeatures%20%7B%0A%20%20%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20%20%20items%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20%20%20%20%20text%0A%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20...%20on%20PagesBlocksContent%20%7B%0A%20%20%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20%20%20body%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&operationName=getPagesDocument" width="800" height="400">
+
+> For more info on how to query data with Tina's GraphQL API, check out the [Query Documentation](https://tina.io/docs/graphql/queries/)
 
 ## Rendering our blocks
 

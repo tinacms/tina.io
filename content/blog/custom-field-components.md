@@ -26,7 +26,7 @@ Throughout the post, I'll refer to a few core TinaCMS concepts such as [forms](h
 
 Tina was intended to be fully customizable and extensible. Creating **custom fields can provide precise control** over the sidebar configuration and styling, along with implementing unique field functionality.
 
-![saturation-custom-field-gif](/gif/saturate-custom-field.gif)
+![saturation-custom-field-gif](https://res.cloudinary.com/forestry-demo/image/upload/v1645712782/tina-io/docs/saturate-custom-field.gif)
 
 > Want to jump ahead? Feel free to check out a **[finished version](https://github.com/kendallstrautman/llama-filters) of the custom range input field** seen in the gif above, or take a peak at a more complex [_Authors_ field plugin](https://github.com/tinacms/tina-starter-grande/blob/master/src/fields/authors.js) in the Tina Grande repo.
 
