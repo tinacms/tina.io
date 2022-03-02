@@ -82,7 +82,7 @@ fetch("https://content.tinajs.io/content/<ClientId>/github/main", requestOptions
 
 ```jsx
 import { useState, useEffect } from "react";
-
+import { useTina } from "tinacms/dist/edit-state";
 // This query can be any query
 const query = `
 query ContentQuery($relativePath: String!) {
@@ -95,13 +95,13 @@ query ContentQuery($relativePath: String!) {
 }
 `;
 
-// Variables used in the GraphQL query; 
+// Variables used in the GraphQL query;
 const variables = {
-  relativePath: "voteForPedro.md",
+  relativePath: "HelloWorld.md",
 };
 
 function BlogPostPage() {
-  const [data, setData] = useState(null);
+  const [initalData, setData] = useState(null);
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -120,23 +120,20 @@ function BlogPostPage() {
       .then((res) => res.json())
       .then((data) => {
         console.log({ data });
-        setData(data?.data?.getPostsDocument?.data);
+        setData(data);
         setLoading(false);
       })
       .catch((e) => {
         console.error(e);
       });
-  }, []);
+  }, [query, JSON.stringify(variables)]);
+
+  const { data } = useTina({ query, variables, data: initalData });
 
   if (isLoading) return <p>Loading...</p>;
   if (!data) return <p>No data</p>;
 
-  return (
-    <div>
-      <h1>{data.title}</h1>
-      <p>{data.body}</p>
-    </div>
-  );
+  return <div>{JSON.stringify(data)}</div>;
 }
 export default BlogPostPage;
 ```
