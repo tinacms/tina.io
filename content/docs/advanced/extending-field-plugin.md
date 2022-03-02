@@ -57,24 +57,29 @@ export const emailFieldPlugin = {
 
 ### 2. Register the Field Plugin
 
-The plugin can then be registered in [the CMS callback](/docs/tinacms-context/#tinacms) in the `<TinaCMS>` wrapper component.
+The plugin can then be registered in [the CMS callback](/docs/tinacms-context/#tinacms) in the config within `.tina/schema.ts`
 
-```tsx
-<TinaCMS
-  // ...
-  cmsCallback={cms => {
-    import('../plugins.tsx').then(({ emailFieldPlugin }) => {
-      cms.plugins.add(emailFieldPlugin)
-    })
-  }}
-/>
+```diff
+// .tina/schema.ts
+
+// ...
+export config = defineConfig({
+  apiURL,
++ cmsCallback: (cms) => {
++   import('../plugins.tsx').then(({ emailFieldPlugin }) => {
++     cms.plugins.add(emailFieldPlugin)
++   })
++ }
+})
 ```
 
-### 3. Use Field in `.tina/schema.ts`
+### 3. Use New Field in the schema
 
-Now in the [schema.ts file](/docs/schema/) this new field plugin can be used for any field. It can be added to the [`ui` property](/docs/schema/#the-ui-property)
+Now in the schema within the [schema.ts file](/docs/schema/), this new field plugin can be used for any field. It can be added to the [`ui` property](/docs/schema/#the-ui-property)
 
 ```ts
+ // ...
+
 export default defineSchema({
   collections: [
     {

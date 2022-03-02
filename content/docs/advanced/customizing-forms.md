@@ -18,7 +18,7 @@ If you'd like to control the output of those forms, tap into the `formifyCallbac
 // ...
 export config = defineConfig({
   apiURL,
-+ formifyCallback={({ formConfig, createForm, skip }) => {
++ formifyCallback: ({ formConfig, createForm, skip }) => {
 +   if (formConfig.id === 'getSiteNavsDocument') {
 +     const form = new Form(formConfig)
 +     // The site nav will be a global plugin
@@ -27,6 +27,6 @@ export config = defineConfig({
 +   }
 +
 +   return createForm(formConfig)
-+ }}
++ }
 })
 ```

@@ -37,11 +37,11 @@ The `mediaOptions` prop can be configured within `.tina/schema.ts`.
 
 export config = defineConfig({
   apiURL,
-+ mediaStore={async () => {
-+ // Load media store dynamically so it only loads in edit mode
-+ const pack = await import("next-tinacms-cloudinary");
++ mediaStore: async () => {
++   // Load media store dynamically so it only loads in edit mode
++   const pack = await import("next-tinacms-cloudinary");
 +   return pack.TinaCloudCloudinaryMediaStore;
-+ }}
++ }
 })
 ```
 

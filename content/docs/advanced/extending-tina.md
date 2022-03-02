@@ -17,11 +17,11 @@ The `.tina/schema.ts` config has an optional `cmsCallback` parameter that can be
 // ...
 export config = defineConfig({
   apiURL,
-+ cmsCallback={cms => {
++ cmsCallback: (cms) => {
 +   import('react-tinacms-editor').then((field)=> {
 +     cms.sidebar.position = 'overlay'
 +   })
-+ }}
++ }
 })
 ```
 
