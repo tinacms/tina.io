@@ -64,7 +64,7 @@ Your live site will run, but so will a local version of the GraphQL Content API.
 Your console might show something like:
 
 ```sh
-> yarn tina-dev
+> yarn dev
 
 Started Filesystem GraphQL server on port: 4001
 Visit the playground at http://localhost:4001/altair/
