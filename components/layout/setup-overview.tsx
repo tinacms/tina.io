@@ -52,10 +52,6 @@ const OverviewTemplate = props => {
               With Tina, developers can create a custom visual editing
               experience that is perfectly tailored to their site.
             </p>
-            <p>
-              Tina is a Git-backed headless content management system that
-              enables developers and content creators to collaborate seamlessly.
-            </p>
           </div>
           <div className="cards">
             <a className="card" href="#">
