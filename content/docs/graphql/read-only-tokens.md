@@ -1,18 +1,18 @@
 ---
-title: Read Only Tokens
+title: Read-only Tokens
 last_edited: '2022-02-07T18:00:00.000Z'
 ---
 {{ WarningCallout text="This is an experimental feature and may be slow as we work on performance improvements" }}
 
-Read only tokens allow data fetching at runtime without the need for the local graphQL server. Some use cases might include the following.
+Read-only tokens allow data fetching at runtime without the need for the local graphQL server. Some use cases include the following:
 
 
-- Runtime server side logic in `getServerSideProps`, `getStaticProps` (when fallback is not `false`), etc.
+- Runtime server-side logic in `getServerSideProps`, `getStaticProps` (when fallback is not `false`), etc.
 - [Incremental Static Site Generation](https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration)
 - [Server components](https://nextjs.org/docs/advanced-features/react-18#react-server-components)
 - [Next.js middleware](https://nextjs.org/docs/middleware)
-- Client side data fetching (including `create-react-app`)
-- Future support for server side frameworks like [remix](https://remix.run/)
+- Client-side data-fetching (including `create-react-app`)
+- Future support for server-side frameworks like [remix](https://remix.run/)
 
 In all of these use cases we can no longer rely static content but need a way to fetch data in real-time without being authenticated.
 
@@ -42,7 +42,7 @@ Now you can make a POST request to the content API with the desired GraphQL requ
 
 The endpoint is `https://content.tinajs.io/content/<myClientId>/github/<myBranch>` and the token can be passed by including a `X-API-KEY` with the token as the value.
 
-Here is an example curl command that will query the content API for the list of collections.
+Here is an example curl request that will query the content API for the list of collections:
 
 #### Curl
 ```bash
@@ -75,9 +75,9 @@ fetch("https://content.tinajs.io/content/<ClientId>/github/main", requestOptions
 ```
 
 
-## Examples of using read only tokens
+## Examples of using read-only tokens
 
-### Fetch data client side
+### Fetch data client-side
 > In most cases Static site generation is preferred and faster but in some cases you may still want to get data at runtime
 
 ```jsx
@@ -140,9 +140,9 @@ export default BlogPostPage;
 
 ### Next.js `fallback: "blocking"`
 
-In Next.js one can specify [`fallback: "blocking"`](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths#fallback-blocking), this allows `getStaticProps` to run server side at runtime when a user goes to a page that was not specified in `getStaticPaths`. 
+In Next.js one can specify [`fallback: "blocking"`](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths#fallback-blocking), this allows `getStaticProps` to run server-side at request time when a user goes to a page that was not specified in `getStaticPaths`. 
 
-With read only tokens we can fetch the list of blog posts. This will allow us to visit pages that have been created but not statically generated.  
+With read-only tokens we can fetch the list of blog posts. This will allow us to visit pages that have been created but not statically generated.  
 
 
 
