@@ -9,7 +9,7 @@ next: '/docs/using-tina-editor'
 
 ## Adding Tina
 
-We created a quick way to bootstrap a Tina application to show the power of visual editing, from your terminal enter the following command:
+We created a quick way to bootstrap a Tina application to show the power of visual editing; from your terminal, enter the following command:
 
 ```bash,copy
 npx @tinacms/cli@latest init
