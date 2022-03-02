@@ -29,6 +29,26 @@ const OverviewTemplate = props => {
     }
   }, [router.events])
 
+  const cards = [
+    {
+      header: 'Use our CLI Quickstart',
+      description:
+        'Using the CLI, choose one of our starters and get started locally.',
+      link: '/docs/introduction/using-starter/',
+    },
+    {
+      header: 'Add Tina to an Existing Next.js Site',
+      description: 'Have an existing NextJS site? Start here!',
+      link: '/docs/introduction/tina-init/',
+    },
+    {
+      header: 'Dashboard Quickstart',
+      description:
+        'Setup a pre-configured Tina project with Tina & Vercel in minutes.',
+      link: 'https://app.tina.io',
+    },
+  ]
+
   return (
     <>
       <NextSeo
@@ -54,57 +74,23 @@ const OverviewTemplate = props => {
             </p>
           </div>
           <div className="cards">
-            <a className="card" href="#">
-              <h2>Use our CLI Quickstart</h2>
-              <p>
-                Using the CLI, choose one of our starters and get started
-                locally.
-              </p>
-              <div className="spacer"></div>
-              <Actions
-                items={[
-                  {
-                    variant: 'secondary',
-                    label: 'Get Started',
-                    icon: 'arrowRight',
-                    url: '/docs/introduction/using-starter/',
-                  },
-                ]}
-              />
-            </a>
-            <a className="card" href="#">
-              <h2>Add Tina to an Existing Next.js Site</h2>
-              <p>Have an existing NextJS site? Start here!</p>
-              <div className="spacer"></div>
-              <Actions
-                items={[
-                  {
-                    variant: 'secondary',
-                    label: 'Get Started',
-                    icon: 'arrowRight',
-                    url: '/docs/introduction/tina-init/',
-                  },
-                ]}
-              />
-            </a>
-            <a className="card" href="#">
-              <h2>Dashboard Quickstart</h2>
-              <p>
-                Setup a pre-configured Tina project with Tina & Vercel in
-                minutes.
-              </p>
-              <div className="spacer"></div>
-              <Actions
-                items={[
-                  {
-                    variant: 'secondary',
-                    label: 'Get Started',
-                    icon: 'arrowRight',
-                    url: 'https://app.tina.io',
-                  },
-                ]}
-              />
-            </a>
+            {cards.map(card => (
+              <a className="card" href={card.link}>
+                <h2>{card.header}</h2>
+                <p>{card.description}</p>
+                <div className="spacer"></div>
+                <Actions
+                  items={[
+                    {
+                      variant: 'secondary',
+                      label: 'Get Started',
+                      icon: 'arrowRight',
+                      url: card.link,
+                    },
+                  ]}
+                />
+              </a>
+            ))}
           </div>
         </div>
         <style jsx>{`
