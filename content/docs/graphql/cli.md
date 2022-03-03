@@ -23,6 +23,18 @@ This command also takes an argument (`-c`) that allows you to run a command as a
 
 ```json,copy
 "scripts": {
+  "tina-dev": "yarn tinacms server:start -c \"next dev\"",
+  "tina-build": "yarn tinacms server:start -c \"next build\"",
+  "tina-start": "yarn tinacms server:start -c \"next start\"",
+  ...
+},
+```
+
+You likely will want to replace your default `dev`, `build`,and `start`
+scripts with these new `tina-dev`, `tina-build`,and `tina-start` scripts.
+
+```json,copy
+"scripts": {
   "dev": "yarn tinacms server:start -c \"next dev\"",
   "build": "yarn tinacms server:start -c \"next build\"",
   "start": "yarn tinacms server:start -c \"next start\"",
@@ -52,7 +64,7 @@ Your live site will run, but so will a local version of the GraphQL Content API.
 Your console might show something like:
 
 ```sh
-> yarn tina-dev
+> yarn dev
 
 Started Filesystem GraphQL server on port: 4001
 Visit the playground at http://localhost:4001/altair/

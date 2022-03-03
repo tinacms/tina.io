@@ -34,10 +34,11 @@ npx @tinacms/cli init
 
 This will,
 
-1. Install all of the dependencies you need
-2. Setup a basic content model in your [`schema.ts` file](/docs/schema/)
-3. Drop in a ready to go `_app.js` file
-4. Add an editable page at http://localhost:3000/demo/blog/helloWorld
+1. Install all required dependencies for Tina.
+2. Define a basic content schema in the `.tina` directory.
+3. Add some Tina boilerplate components.
+4. Create example content in the demo directory.
+5. Edit the `package.json` to add scripts to launch tina (tina-dev, tina-build, tina-start).
 
 ### `tinacms server:start`
 
@@ -54,16 +55,13 @@ This command also takes the following arguments
 | `--noWatch`     | Don't regenerate config on file changes. This option is good to add when building in CI or if you do not want to watch the file system for changes.                     |
 | `--noSDK`       | Don't generate the generated client SDK. [Read here](/docs/graphql/client/) for more details about the SDK                                                              |
 
-
-
-
 ## Advanced Usage:
+
 ### `tinacms schema:compile`
 
 `schema:compile` is used to compile and transpile the schema files into static file(s) ready to be used with the server. The compilation can be found in the `.tina/__generated__/config` directory.
 
-
-### `tinacms schema:types` 
+### `tinacms schema:types`
 
 `schema:types` will generate a GraphQL query for your site's schema and typescript files. You will find the generated files in the `.tina/__generated__/` directory.
 
