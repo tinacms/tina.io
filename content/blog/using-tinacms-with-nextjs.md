@@ -45,20 +45,21 @@ $ npx @tinacms/cli@latest init
 
 $ do you want us to override your _app.js? Yes
 ```
+
 The `npx @tinacms/cli@latest init` command does a few things in your Next.js application:
 
 - Install all required dependencies for Tina
 - Define a basic schema that is easily extendable, in the .tina directory
 - Wrap your next.js application with Tina so that any page can be easily edited.
 - Create example content in the demo directory.
-- Edit the package.json to add scripts to launch tina (tina-dev, tina-build, tina-start)
+- Edit the package.json to add scripts to launch tina (dev, build, start)
 
 ### A quick test
 
 Now that you have a basic Tina setup you can launch your application using the following command:
 
 ```bash,copy
-yarn tina-dev
+yarn dev
 ```
 
 Once you have launched the application you have a couple of new URLS:
@@ -281,14 +282,15 @@ If you run this query in the GraphQL client you will see the following returned:
 
 ### Adding this query to your Blog.
 
-The query above can be used to create your dynamic paths, this happens inside of the `[slug].js` file. When you open the file you will see a function called getStaticPaths at the bottom of the file. 
+The query above can be used to create your dynamic paths, this happens inside of the `[slug].js` file. When you open the file you will see a function called getStaticPaths at the bottom of the file.
 
 ```javascript
 export async function getStaticPaths() {
 
 ....
 ```
-Remove all the code inside of this function and you can update it to use your own code. The first step is to add an import to the top of the file to be able interact with your graphql layer. While you are there you can remove `glob`, as you will no longer need it. 
+
+Remove all the code inside of this function and you can update it to use your own code. The first step is to add an import to the top of the file to be able interact with your graphql layer. While you are there you can remove `glob`, as you will no longer need it.
 
 ```diff
 //other imports
@@ -299,7 +301,7 @@ Remove all the code inside of this function and you can update it to use your ow
 
 > "What does staticRequest do?"
 
->It's just a helper function which supplies a query to your locally-running GraphQL server, which is started on port 4001. You can just as easily use fetch or an http client of your choice.
+> It's just a helper function which supplies a query to your locally-running GraphQL server, which is started on port 4001. You can just as easily use fetch or an http client of your choice.
 
 Inside of the `getStaticPaths` function you can construct your request to our content-api. When making a request Tina expects a query or mutation and then variables to be passed to the query, here is an example:
 
@@ -309,6 +311,7 @@ staticRequest({
   variables: {...}, // any variables used by our query
 }),
 ```
+
 You can use the `getPostList` query from earlier to build your dynamic routes:
 
 ```js,copy
@@ -369,7 +372,7 @@ query BlogPostQuery($relativePath: String!) {
 }
 ```
 
->If you haven't used graphql before, you will notice a strange `$relativePath` followed by `String!`. This is a variable and the String! means that it must be a string and is required. 
+> If you haven't used graphql before, you will notice a strange `$relativePath` followed by `String!`. This is a variable and the String! means that it must be a string and is required.
 
 You can now fill in the relevant fields you need to query. Inside the data object add in the fields author , date , hero_image, title. You also want to retrieve the body of your blog posts, so you can add new content. You should have a query that looks like the following:
 
@@ -386,6 +389,7 @@ query BlogPostQuery($relativePath: String!) {
   }
 }
 ```
+
 > If you would like to test this out, you can add the following to the variables section at the bottom `{"relativePath": "bali.md"}`
 
 ### Using contextual-editing
@@ -401,7 +405,7 @@ import { useTina } from 'tinacms/dist/edit-state'
 
 > `useTina` is a hook that can be used to make a piece of Tina content contextually editable. It is code-split, so that in production, this hook will simply pass through its data value. In edit-mode, it registers an editable form in the sidebar, and contextually updates its value as the user types.
 
-You can now use your query that you created as a variable, this variable will be used both in your `getStaticProps` and in your `useTina` hook. 
+You can now use your query that you created as a variable, this variable will be used both in your `getStaticProps` and in your `useTina` hook.
 
 ```javascript,copy
 const query = `query BlogPostQuery($relativePath: String!) {
@@ -419,9 +423,9 @@ const query = `query BlogPostQuery($relativePath: String!) {
 
 #### Replacing your getStaticProps
 
-To replace your getStaticProps you will be using the `staticRequest` in a similar way to what you used in our `getStaticPaths` code. 
+To replace your getStaticProps you will be using the `staticRequest` in a similar way to what you used in our `getStaticPaths` code.
 
-The first thing to do is remove all the code you no longer need, this includes the `content`, and `data` variables and the `markdownBody`, `frontmatter` from your props. 
+The first thing to do is remove all the code you no longer need, this includes the `content`, and `data` variables and the `markdownBody`, `frontmatter` from your props.
 
 ```diff
 export async function getStaticProps({ ...ctx }) {
@@ -439,6 +443,7 @@ export async function getStaticProps({ ...ctx }) {
   }
 }
 ```
+
 Now you have removed that from your code, you can use our `staticRequest` to retrieve the data. The only difference this time is you actually need a variable to pass along named `relativePath`, which is the slug. You will also need to send the variables along as a prop so you can use this in our `useTina` hook.
 
 ```javascript
@@ -463,13 +468,13 @@ export async function getStaticProps({ ...ctx }) {
 
 #### Updating the client for `useTina`
 
-Now that you are returning only two props from `getStaticProps` you need to update your client code to use them. Remove the destructured elements and pass in `props` to your client. 
+Now that you are returning only two props from `getStaticProps` you need to update your client code to use them. Remove the destructured elements and pass in `props` to your client.
 
 ```javascript
 export default function BlogTemplate(props) {
 ```
 
-Now you can use the `useTina` hook to handle contextual editing. The useTina hook expects the query, variables and data. Which you can pass in from your props. 
+Now you can use the `useTina` hook to handle contextual editing. The useTina hook expects the query, variables and data. Which you can pass in from your props.
 
 ```
 const { data } = useTina({
@@ -479,7 +484,7 @@ const { data } = useTina({
   })
 ```
 
-This now means you have the ability to edit your content using Tina, but before you do that you need to update all of your elements to use your new Tina powered data. 
+This now means you have the ability to edit your content using Tina, but before you do that you need to update all of your elements to use your new Tina powered data.
 
 ```diff
 - if (!frontmatter) return <></>
@@ -499,7 +504,7 @@ This now means you have the ability to edit your content using Tina, but before 
         </figure>
         <div className={styles.blog__info}>
 -          <h1>{frontmatter.title}</h1>
-+          <h1>{data.getPostDocument.data.title}</h1> 
++          <h1>{data.getPostDocument.data.title}</h1>
 -          <h3>{reformatDate(frontmatter.date)}</h3>
 +          <h3>{reformatDate(data.getPostDocument.data.date)}</h3>
         </div>
@@ -520,7 +525,7 @@ This now means you have the ability to edit your content using Tina, but before 
 
 If all went well, your blog posts will now be editable by Tina. Let's see it in action!
 
-Start up the dev server by running `yarn tina-dev`, and open up a blog post in the browser. Go ahead and make edits, and then check the source file in a text editor. If you keep the browser and code editor open side-by-side, you should be able to watch the changes reflect in real time in both places!
+Start up the dev server by running `yarn dev`, and open up a blog post in the browser. Go ahead and make edits, and then check the source file in a text editor. If you keep the browser and code editor open side-by-side, you should be able to watch the changes reflect in real time in both places!
 
 You had a problem though, your body is a tiny input box that doesn't support Markdown! You should fix this.
 
@@ -536,10 +541,11 @@ To add markdown support you need to do two things.
 Open up your `schema.ts` located in the `.tina` folder. The great thing about Tina is you can extend the UI field for your exact needs, to do this you use `ui` object and tell Tina the component you'd like to use.
 
 ```typescript
-    ui:   {
-            component: COMPONENT_NAME
-          }
+ui: {
+  component: COMPONENT_NAME
+}
 ```
+
 You want to use the markdown component so you can override your body and it should look like this:
 
 ```typescript
@@ -556,24 +562,26 @@ You want to use the markdown component so you can override your body and it shou
 
 #### Updating `_app.js`
 
-Before opening up your `_app.js` file, you need to install the markdown plugin from Tina. 
+Before opening up your `_app.js` file, you need to install the markdown plugin from Tina.
 
 ```bash,cp
 yarn add react-tinacms-editor
 ```
+
 Open up your `_app.js` file, this is where you are going to use the `cmsCallback` prop for the `TinaCMS` component which allows you to extend the default functionality, add plugins, handle document creation, and more
 
 ```javascript
 cmsCallback={cms => {
 ```
 
-Here you are passing the `cms` and now you can import our component you installed to add to the plugins. 
+Here you are passing the `cms` and now you can import our component you installed to add to the plugins.
 
 ```javascript
-import('react-tinacms-editor').then((field)=>{
-                                cms.plugins.add(field.MarkdownFieldPlugin)
-                                })
-```      
+import('react-tinacms-editor').then(field => {
+  cms.plugins.add(field.MarkdownFieldPlugin)
+})
+```
+
 Your TinaCMS should now look like this:
 
 ```javascript
@@ -585,7 +593,8 @@ Your TinaCMS should now look like this:
                                 })
                           }}
           >
-```          
+```
+
 #### Testing
 
 Go ahead and launch your blog and you should be able to see a new markdown editor that allows you to pass in data. Well done! With some config and calling a few hooks, you can now edit all our blog posts with Tina. Checkout the [final repo](https://github.com/perkinsjr/tina-simple-markdown), you might consider doing the following
@@ -598,10 +607,10 @@ You know that you will want to be part of this creative, innovative, supportive 
 
 Tina has a community [Discord](https://discord.com/invite/zumN63Ybpf) that is full of Jamstack lovers and Tina enthusiasts. When you join you will find a place:
 
-* To get help with issues
-* Find the latest Tina news and sneak previews
-* Share your project with Tina community, and talk about your experience
-* Chat about the Jamstack
+- To get help with issues
+- Find the latest Tina news and sneak previews
+- Share your project with Tina community, and talk about your experience
+- Chat about the Jamstack
 
 ### Tina Twitter
 

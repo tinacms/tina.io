@@ -21,7 +21,7 @@ This command does a few things in your Next.js application:
 2. Defines a basic content schema in the `.tina` directory.
 3. Adds some Tina boilerplate components.
 4. Creates example content in the demo directory.
-5. Edit the `package.json` to add scripts to launch tina (tina-dev, tina-build, tina-start).
+5. Edit the `package.json` to have the `dev`, `build`, and `start` scripts run the tina GraphQL API.
 
 Now that Tina has been installed in your site, you will need to add the Tina Provider to your site's layout.
 
@@ -43,10 +43,10 @@ return (
 
 ### A quick test
 
-Now that we have a basic Tina setup you can launch your application using the following commmand:
+Now that we have a basic Tina setup, you can launch your application using the following commmand:
 
 ```bash,copy
-yarn tina-dev
+yarn dev
 ```
 
 When Tina is initialized on a NextJS site, a "/admin" page is created to allow editors to log in and begin to make content changes.
