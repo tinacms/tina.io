@@ -46,7 +46,7 @@ npx @tinacms/cli@latest init
 When you are prompted if you would like Tina to override your `_app.js` you can select yes.
 
 
-> ⚠️ If you are using your own blog, you may not want us to override your _app.js. If that is the case check this documentation on what is required.
+> If you are using your own blog, you may not want us to override your _app.js. If that is the case check this documentation on what is required.
 
 So what did Tina CLI do? It did a number of thing in your Next.js application:
 
@@ -81,7 +81,7 @@ If you select “Blog Posts” on the left of the screen it will show you all th
 
 When you hit save, Tina’s GraphQL layer saves those changes directly in the Markdown file “HelloWorld.md” located in the content/posts directory. Go ahead, open it up, see your new changes.
 
-> ⚠️ When you do this in production, Tina will commit this directly to GitHub for you!
+> When you do this in production, Tina will commit this directly to GitHub for you!
 
 ## Making the starter blog editable
 
@@ -238,9 +238,9 @@ export default defineSchema({
           type: 'string',
           label: 'Body',
           name: 'body',
-	ui: {
-	      component: "textarea"
-	     }
+	        ui: {
+	            component: "textarea"
+	            }
           isBody: true,
         },
       ],
