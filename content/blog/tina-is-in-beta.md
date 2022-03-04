@@ -67,7 +67,7 @@ We also moved and created new navigation menus to better convey the intent of a 
 Tina init is my favorite addition to the Tina experience. A single command can bootstrap Tina on a Next.js application and do all the heavy lifting for you. The team spent quite a bit of time working on this, and refining it, to get it just right. The command `npx @tinacms/cli init` command currently does the following:
 
 1. Install all dependencies to your application
-2. Add the Tina commands to your package.json (`tina-dev`, `tina-build`, `tina-start`)
+2. Add the updated Tina commands to your package.json (`dev`, `build`, `start`)
 3. Wrap your `app.js` / `app.tsx` in our `TinaEditProvider`
 4. Create demo data that you can test Tina out with.
 5. Create an admin route to allow people to edit, and a way to exit.

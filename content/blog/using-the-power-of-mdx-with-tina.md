@@ -4,6 +4,7 @@ date: '2021-12-09T12:09:32-04:00'
 author: James Perkins
 last_edited: '2021-12-09T12:09:32-04:00'
 ---
+
 # Using the power of MDX with Tina
 
 Tina allows content teams and developers to work at a fast pace and removes the friction between static sites and editing content. We took this approach a step further with the release of our MDX support, which allows developers to create reusable components and content teams to use them whenever they need to. This blog post will show you how to add Tina to your site, then how to create and use components to Tina.
@@ -11,21 +12,24 @@ Tina allows content teams and developers to work at a fast pace and removes the 
 ### Project setup.
 
 Step 1: Create a project with tailwind
-``` bash,copy
+
+```bash,copy
 npx create-next-app -e with-tailwindcss tina-demo
 cd tina-demo
 ```
+
 Step 2: Add Tina to the project
 
 Use the following command inside of the project to add all the Tina dependencies and wrap the application, ready to be used.
 
-``` bash,copy
+```bash,copy
 npx @tinacms/cli@latest init
 ```
+
 When you are asked if you want to replace your `_app.js` file, select Y as we want our init command to take care of adding the Tina specific code.
 Step 3: Test Tina
 
-Run `yarn tina-dev` from the project directory and navigate to [http://localhost:3000/demo/blog/HelloWorld](http://localhost:3000/demo/blog/HelloWorld) , you can then enter edit mode by navigating to http://localhost:3000/admin
+Run `yarn dev` from the project directory and navigate to [http://localhost:3000/demo/blog/HelloWorld](http://localhost:3000/demo/blog/HelloWorld) , you can then enter edit mode by navigating to http://localhost:3000/admin
 
 ## Using Tina rich editor
 
@@ -34,6 +38,7 @@ To first use an MDX component we need to use Tina's rich editor, this will allow
 ### Update our Tina Schema.
 
 Open up the `.tina/schema.ts` file and edit the body section from the following
+
 ```typescript,copy
 {
           type: "string",
@@ -45,6 +50,7 @@ Open up the `.tina/schema.ts` file and edit the body section from the following
           },
  },
 ```
+
 to
 
 ```typescript,copy
@@ -66,20 +72,22 @@ Firstly, we need to remove all the code we no longer need. Let us go ahead and r
 The code to remove
 
 ```html
-<Head>
-          {/* Tailwind CDN */}
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.7/tailwind.min.css"
-        integrity="sha512-y6ZMKFUQrn+UUEVoqYe8ApScqbjuhjqzTuwUMEGMDuhS2niI8KA3vhH2LenreqJXQS+iIXVTRL2iaNfJbDNA1Q=="
-        crossOrigin="anonymous"
-        referrerPolicy="no-referrer"/>
-          {/* Marked CDN */}
-    <script
-        type="text/javascript"
-        crossOrigin="anonymous"
-        src="https://cdn.jsdelivr.net/npm/marked@3.0.8/lib/marked.min.js"/>
-</Head>
+<head>
+  {/* Tailwind CDN */}
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.7/tailwind.min.css"
+    integrity="sha512-y6ZMKFUQrn+UUEVoqYe8ApScqbjuhjqzTuwUMEGMDuhS2niI8KA3vhH2LenreqJXQS+iIXVTRL2iaNfJbDNA1Q=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  {/* Marked CDN */}
+  <script
+    type="text/javascript"
+    crossorigin="anonymous"
+    src="https://cdn.jsdelivr.net/npm/marked@3.0.8/lib/marked.min.js"
+  />
+</head>
 ```
 
 Now that you have removed the first part of the unused code, we can import `TinaMarkdown` to handle parsing the markdown and in the future handle our components.
@@ -87,9 +95,9 @@ Now that you have removed the first part of the unused code, we can import `Tina
 At the top of the file your import section should now look like:
 
 ```javascript,copy
-  import { staticRequest, gql, getStaticPropsForTina } from "tinacms";
-  import { TinaMarkdown } from 'tinacms/dist/rich-text'
-  import { createGlobalStyle } from "styled-components";
+import { staticRequest, gql, getStaticPropsForTina } from 'tinacms'
+import { TinaMarkdown } from 'tinacms/dist/rich-text'
+import { createGlobalStyle } from 'styled-components'
 ```
 
 ### Replace marked with `TinaMarkdown`
@@ -111,7 +119,7 @@ Then on line 234 we can replace the div that held the parsed markdown with our T
 + <TinaMarkdown content={content} />
 ```
 
-Go ahead and run `yarn tina-dev` and navigate back to http://localhost:3000/demo/blog/HelloWorld you'll notice that the editing experience has changed, with the ability to insert markdown and a new button called "Embed".
+Go ahead and run `yarn dev` and navigate back to http://localhost:3000/demo/blog/HelloWorld you'll notice that the editing experience has changed, with the ability to insert markdown and a new button called "Embed".
 
 ![Tina Markdown Example](https://res.cloudinary.com/forestry-demo/image/upload/v1638886705/blog-media/Tina-markdown-demo.png)
 
@@ -127,29 +135,31 @@ For this blog post, let's create a customized callout that changes based on the 
 
 ```javascript,copy
 const backgroundColor = {
-    warning: "bg-yellow-200",
-    error: "bg-red-600",
-    default: "bg-gray-200"
+  warning: 'bg-yellow-200',
+  error: 'bg-red-600',
+  default: 'bg-gray-200',
 }
 
 const textColor = {
-    warning: "text-gray-600",
-    error: "text-white	",
-    default: "text-gray-600"
+  warning: 'text-gray-600',
+  error: 'text-white	',
+  default: 'text-gray-600',
 }
 
-const Callout = ({callout}) => {
-    const background = backgroundColor[callout.type]; 
-    const color = textColor[callout.type];
+const Callout = ({ callout }) => {
+  const background = backgroundColor[callout.type]
+  const color = textColor[callout.type]
 
-return(<div className={`${background} ${color} flex rounded-lg mt-6 p-6`}>
-    <div className="">{callout.text}</div>
-  </div>)
+  return (
+    <div className={`${background} ${color} flex rounded-lg mt-6 p-6`}>
+      <div className="">{callout.text}</div>
+    </div>
+  )
 }
 
-export default Callout;
-
+export default Callout
 ```
+
 Before we continue on, let us talk about this component. It is taking a prop named "callout", which provides the type of callout and callout text. The callout type will change the text color and background color.
 
 ### Update the tina schema.
@@ -191,17 +201,19 @@ To make the experience more enjoyable, we are going to add a UI object that hold
 The piece is to register the component with our `TinaMarkdown` . Open up the `[filename].js` file again. First, we need to import our component so add the following to the top of the file:
 
 ```javascript,copy
- import Callout from "../../../components/Callout";
+import Callout from '../../../components/Callout'
 ```
 
 For code clarity, we can create an object that contains all the different Tina-powered components. We are going to pass the props through to our components so we can define that here.
 
 ```javascript,copy
 const components = {
-    Callout: (props) => {
-      return <Callout callout={props} />;
-    }};
+  Callout: props => {
+    return <Callout callout={props} />
+  },
+}
 ```
+
 Finally, we can update your `TinaMarkdown` component to pass the components for our users to use.
 
 ```javascript,copy

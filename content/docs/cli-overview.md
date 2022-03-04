@@ -38,7 +38,7 @@ This will,
 2. Define a basic content schema in the `.tina` directory.
 3. Add some Tina boilerplate components.
 4. Create example content in the demo directory.
-5. Edit the `package.json` to add scripts to launch tina (tina-dev, tina-build, tina-start).
+5. Edit the `package.json` to have the `dev`, `build`, and `start` scripts run the tina GraphQL API.
 
 ### `tinacms server:start`
 
