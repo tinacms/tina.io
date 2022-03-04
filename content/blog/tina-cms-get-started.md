@@ -261,7 +261,7 @@ Now the new schema is ready, go ahead and restart your server using `yarn tina-d
 
 ![3 blog posts](https://res.cloudinary.com/forestry-demo/image/upload/v1646412108/blog-media/getting-started-tina-admin/post-list-example.webp)
 
-If you choose the first post “dynamic routing” you will see all of the fields that we defined in our schema which match all the front matter. Go ahead and edit some fields like the title or the body and hit save. Now if you navigate to [Dynamic Routing and Static Generation | Next.js Blog Example with Markdown](http://localhost:3000/posts/dynamic-routing)  you will see those changes!
+If you choose the first post “dynamic routing” you will see all of the fields that we defined in our schema which match all the front matter. Go ahead and edit some fields like the title or the body and hit save. Now if you navigate to [http://localhost:3000/posts/dynamic-routing](http://localhost:3000/posts/dynamic-routing)  you will see those changes!
 
 ## Where can you try, or keep up to date with Tina?
 
