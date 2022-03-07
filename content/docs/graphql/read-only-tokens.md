@@ -4,7 +4,7 @@ last_edited: '2022-02-07T18:00:00.000Z'
 ---
 {{ WarningCallout text="This is an experimental feature and may be slow as we work on performance improvements" }}
 
-Read-only tokens allow data fetching at runtime without the need for the local graphQL server. Some use cases include the following:
+Read-only tokens allow data fetching at runtime without the need for the local GraphQL server. Some use cases include the following:
 
 
 - Runtime server-side logic in `getServerSideProps`, `getStaticProps` (when fallback is not `false`), etc.
