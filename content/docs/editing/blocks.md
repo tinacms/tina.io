@@ -288,7 +288,8 @@ const featureBlock = {
 }
 ```
 
-The `previewSrc` is an image URL that will be rendered in the visual selector.
+The `previewSrc` is an image URL that will be rendered in the visual selector. If a preview isn't provided the block will still be available with a title to click on, just no preview image will be displayed.
+
 
 _optionally_ a  `category` can  be provided that will allows the blocks to be grouped into different catagories.
 
