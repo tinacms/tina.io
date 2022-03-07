@@ -3,7 +3,6 @@ title: Tina CMS - Get started
 date: '2022-03-04T08:00:00-04:00'
 author: James Perkins
 ---
-# Getting Started With Tina
 
 Until now, as a Tina user, you have enjoyed contextual editing when interacting with your content. We know that while this experience is first class for your content team, the amount of time it takes to implement Tina with contextual editing into your application is longer than you may want to invest when testing a new CMS. 
 
