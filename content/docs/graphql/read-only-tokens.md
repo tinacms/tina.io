@@ -9,7 +9,7 @@ Read-only tokens allow data fetching at runtime without the need for the local G
 
 - Runtime server-side logic in `getServerSideProps`, `getStaticProps` (when fallback is not `false`), etc.
 - [Incremental Static Site Generation](https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration)
-- [Server components](https://nextjs.org/docs/advanced-features/react-18#react-server-components)
+- [Server components](https://nextjs.org/docs/advanced-features/react-18/overview#react-server-components-alpha)
 - [Next.js middleware](https://nextjs.org/docs/middleware)
 - Client-side data-fetching (including `create-react-app`)
 - Future support for server-side frameworks like [remix](https://remix.run/)
