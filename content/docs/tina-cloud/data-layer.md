@@ -20,7 +20,7 @@ The TinaCMS data layer is enabled by specifying the following TinaCMS command li
 recommend editing the script(s) in your site's package.json to pass the flag:
 
 ```json
-"start-tina": "yarn tinacms server:start -c \"next start\" --experimentalData"
+"start": "yarn tinacms server:start -c \"next start\" --experimentalData"
 ```
 
 Once the flag is added and the TinaCMS CLI is executed using the flag, the generated schema will be updated. **These
