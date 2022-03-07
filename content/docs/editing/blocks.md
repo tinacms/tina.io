@@ -224,7 +224,7 @@ In our case:
 {{ WarningCallout text="This is an experimental feature, and the API is subject to change. Have any thoughts? Let us know in the chat, or through one of our [community channels](/community/)!" }}
 
 
-This visual block selector allows editors to select blocks from a a set images instead of text. 
+This visual block selector allows editors to select blocks from a set images instead of text. 
 
 <!-- TODO: add a gif -->
 <!-- ![block-based-editing-visual](/gif/visual-blocks.gif) -->
