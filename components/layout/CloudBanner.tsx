@@ -11,18 +11,14 @@ export function CloudBanner() {
         <div className="banner-content">
           <span className="desktop">
             <p className="text">
-              <span className="wordmark">
-                <TinaCloudWordmark />
-              </span>{' '}
-              Now supports MDX components. Give the power of MDX to your content
-              creators!
+              We're excited about what's coming in 2022!
             </p>
           </span>
-          <Link href="/blog/tina-supports-mdx/">
+          <Link href="/blog/tinacms-2022/">
             <a className="link">
-              <span className="desktop">Read The Announcement</span>
+              <span className="desktop">Read more</span>
               <span className="mobile">
-                Tina Cloud supports MDX components.
+                From the blog: TinaCMS in 2022
               </span>
               <IconRight />
             </a>
