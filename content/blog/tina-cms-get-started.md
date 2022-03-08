@@ -8,9 +8,9 @@ Until now, as a Tina user, you have enjoyed contextual editing when interacting 
 
 ## Tina as a CMS in a traditional way
 
-In order to give the best experience to  all users, Tina now offers two ways to edit content, contextual editing and a more traditional looking CMS. Except with our traditional CMS, we are still powered by Markdown, JSON, or MDX and backed by git. Here is a quick GIF of what it looks like implemented on a deployed website:
+In order to give the best experience to  all users, Tina now offers two ways to edit content, contextual editing and a more traditional looking CMS. Except with our traditional CMS, we are still powered by Markdown, JSON, or MDX and backed by Git. Here is a quick GIF of what it looks like implemented on a deployed website:
 
-[Example Gif of Tina CMS](https://res.cloudinary.com/forestry-demo/video/upload/c_scale,w_1174/v1646412458/blog-media/getting-started-tina-admin/example.gif)
+![Example Gif of Tina CMS](https://res.cloudinary.com/forestry-demo/video/upload/c_scale,w_1174/v1646412458/blog-media/getting-started-tina-admin/example.gif)
 
 ### How to implement Tina?
 
@@ -126,7 +126,7 @@ We also have `reference` fields. This is an important concept, when you *referen
 
 > Before we move on you can read more about content modeling in our documentation.
 
-## Creating our content Schema**
+## Creating our content Schema
 
 The Next.js blog starter comes with three example blog posts that you can use to shape the content in our schema. You can find on any of the blog posts in the `_posts` directory. Let’s look at the front matter of the `preview.md`.
 
