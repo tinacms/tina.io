@@ -21,7 +21,7 @@ const App = ({ Component, pageProps }) => {
     <TinaCMS
       // ...
       formifyCallback={({ formConfig, createForm, skip }) => {
-        if (formConfig.id === 'getSiteNavsDocument') {
+        if (formConfig.id === 'content/navigation/main.json') {
           const form = new Form(formConfig)
           // The site nav will be a global plugin
           cms.plugins.add(new GlobalFormPlugin(form))
