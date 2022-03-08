@@ -92,7 +92,7 @@ The top-level key in the schema is an array of *collections*, a `collection` inf
 
 ### Fields
 
-Fields instructs the Content API of the type of content expected. For example, `text`, as well as the queryable name and the name to display to your content team. Fields are an array of objects that are a child of collections. We use this to retrieve the content from the Markdown or JSON files. These fields should map to your *frontmatter* and we also use this to create the UI elements for editing.
+The "fields" property instructs the Content API of the type of content expected. For example, `text`, as well as the queryable name and the name to display to your content team. Fields are an array of objects that are a child of collections. We use this to retrieve the content from the Markdown or JSON files. These fields should map to your *frontmatter* and we also use this to create the UI elements for editing.
 
 ```ts
 fields: [
