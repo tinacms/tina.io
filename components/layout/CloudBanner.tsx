@@ -10,16 +10,12 @@ export function CloudBanner() {
       <div className="banner">
         <div className="banner-content">
           <span className="desktop">
-            <p className="text">
-              We're excited about what's coming in 2022!
-            </p>
+            <p className="text">We're excited about what's coming in 2022!</p>
           </span>
           <Link href="/blog/tinacms-2022/">
             <a className="link">
               <span className="desktop">Read more</span>
-              <span className="mobile">
-                From the blog: TinaCMS in 2022
-              </span>
+              <span className="mobile">From the blog: TinaCMS in 2022</span>
               <IconRight />
             </a>
           </Link>
@@ -31,7 +27,7 @@ export function CloudBanner() {
                 Sign In
               </Button>
             </Link>
-            <Link href="https://app.tina.io/quickstart">
+            <Link href="https://tina.io/docs/setup-overview/">
               <Button size="small" color="blue">
                 Get Started
               </Button>
