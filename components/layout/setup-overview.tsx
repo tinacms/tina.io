@@ -45,7 +45,7 @@ const OverviewTemplate = props => {
       header: 'Dashboard Quickstart',
       description:
         'Setup a pre-configured Tina project with Tina & Vercel in minutes.',
-      link: 'https://app.tina.io',
+      link: 'https://app.tina.io/quickstart',
     },
   ]
 
