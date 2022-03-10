@@ -217,3 +217,113 @@ In our case:
 - CollectionName: "Pages"
 - FieldName: "Blocks"
 - BlockTemplateName: "Content" | "Hero" | "Features"
+
+
+## Adding a visual block selector (Experimental)
+
+{{ WarningCallout text="This is an experimental feature, and the API is subject to change. Have any thoughts? Let us know in the chat, or through one of our [community channels](/community/)!" }}
+
+
+This visual block selector allows editors to select blocks from a set images instead of text. 
+
+<!-- TODO: add a gif -->
+<!-- ![block-based-editing-visual](/gif/visual-blocks.gif) -->
+
+First, to enable the visual block selector the `visualSelector` property in the UI key must be set to true.
+
+
+```diff
+...
+export default defineSchema({
+  collections: [
+    {
+      // ...
+      fields: [
+        {
+          type: 'object',
+          list: true,
+          name: 'blocks',
+          label: 'Sections',
++          ui: {
++            visualSelector: true,
++          },
+          templates: [heroBlock, featureBlock, contentBlock],
+        },
+      ],
+    },
+  ],
+})
+...
+```
+
+To set up the block selector a preview image must be provided for each block you want a preview image for. The basic structure for each block looks like this.
+
+```diff
+const featureBlock = {
+  name: 'features',
+  label: 'Features',
++  ui: {
++    previewSrc: "https://...",
++  },
+  fields: [
+    {
+      type: 'object',
+      label: 'Feature Items',
+      name: 'items',
+      list: true,
+      fields: [
+        {
+          type: 'string',
+          label: 'Title',
+          name: 'title',
+        },
+        {
+          type: 'string',
+          label: 'Text',
+          name: 'text',
+        },
+      ],
+    },
+  ],
+}
+```
+
+The `previewSrc` is an image URL that will be rendered in the visual selector. If a preview isn't provided the block will still be available with a title to click on, just no preview image will be displayed.
+
+
+_optionally_ a  `category` can  be provided that will allows the blocks to be grouped into different catagories.
+
+
+```diff
+const featureBlock = {
+  name: 'features',
+  label: 'Features',
+  ui: {
++    category: "Page Section", 
+    previewSrc: "https://...",
+  },
+  fields: [
+    {
+      type: 'object',
+      label: 'Feature Items',
+      name: 'items',
+      list: true,
+      fields: [
+        {
+          type: 'string',
+          label: 'Title',
+          name: 'title',
+        },
+        {
+          type: 'string',
+          label: 'Text',
+          name: 'text',
+        },
+      ],
+    },
+  ],
+}
+```
+
+<!-- TODO: add a gif of a category -->
+<!-- ![block-based-editing-visual](/gif/visual-blocks.gif) -->
