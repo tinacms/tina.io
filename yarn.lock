@@ -2485,10 +2485,10 @@
   resolved "https://registry.yarnpkg.com/@tinacms/sharedctx/-/sharedctx-0.1.0.tgz#1ca290ac96f394362d07b625164a30b85194cc97"
   integrity sha512-iorVcydqFDsjDp/PMaN4y0kF15qTTfHDd00fUN3wgW9h2fOmCu3o0KjC4yjrDyLnCdA0pHivpbPvOg3kLmCXog==
 
-"@tinacms/toolkit@0.56.14":
-  version "0.56.14"
-  resolved "https://registry.yarnpkg.com/@tinacms/toolkit/-/toolkit-0.56.14.tgz#ab99e3bde0621620e39d7e1120d6e5fddd09ca73"
-  integrity sha512-UMXEaxImFCLqxD2XUqlJaeggOj7nms1bx1gosD4/9cc3LR9SxpkceRj5a4Z5L3+iwrygTpHizKQ1eWCjMLdNtw==
+"@tinacms/toolkit@0.56.15":
+  version "0.56.15"
+  resolved "https://registry.yarnpkg.com/@tinacms/toolkit/-/toolkit-0.56.15.tgz#90d4099fe984db02da4f2074b8228bfe232a3834"
+  integrity sha512-yWB+61vpaLx/Ch4HrYmyFkbimzQE84gzNNMKUNAy5hu700lbnjHY90UAVUyZocjJxpbcpCbf21BQN5XTHtmlqA==
   dependencies:
     "@floating-ui/dom" "^0.1.7"
     "@floating-ui/react-dom" "^0.3.3"
@@ -2553,10 +2553,10 @@
     slate-react "^0.66.0"
     webfontloader "1.6.28"
 
-"@tinacms/toolkit@0.56.15":
-  version "0.56.15"
-  resolved "https://registry.yarnpkg.com/@tinacms/toolkit/-/toolkit-0.56.15.tgz#90d4099fe984db02da4f2074b8228bfe232a3834"
-  integrity sha512-yWB+61vpaLx/Ch4HrYmyFkbimzQE84gzNNMKUNAy5hu700lbnjHY90UAVUyZocjJxpbcpCbf21BQN5XTHtmlqA==
+"@tinacms/toolkit@0.56.16":
+  version "0.56.16"
+  resolved "https://registry.yarnpkg.com/@tinacms/toolkit/-/toolkit-0.56.16.tgz#c014873cd4b6fa6e9b9b8062ab8cf1fc2b664918"
+  integrity sha512-pHho45bNN07nol2NswXPLc0hLiPh48etocGmJVwlB63eIsYwrnxyDjAd1mRNkOcdjLp2CLXJxlfbQPQ016PNRg==
   dependencies:
     "@floating-ui/dom" "^0.1.7"
     "@floating-ui/react-dom" "^0.3.3"
@@ -11870,12 +11870,12 @@ react-textarea-autosize@^8.3.3:
     use-composed-ref "^1.0.0"
     use-latest "^1.0.0"
 
-react-tinacms-editor@^0.53.5:
-  version "0.53.5"
-  resolved "https://registry.yarnpkg.com/react-tinacms-editor/-/react-tinacms-editor-0.53.5.tgz#5c23823d1df66e7f2b65f9172a892137c87c0ea3"
-  integrity sha512-lHLv/QK2eaCbW3rHbnRmbmFIixOgbIlO9howwHDlzT7v+gWDjfOVO782B8YnOuVCn/ySGioEh/LWEmhySmuXpA==
+react-tinacms-editor@^0.53.7:
+  version "0.53.7"
+  resolved "https://registry.yarnpkg.com/react-tinacms-editor/-/react-tinacms-editor-0.53.7.tgz#18de743d732d64d2b8a449fcce07d1e1d0c04616"
+  integrity sha512-oJ1a0t5QBUKFMr03+urC7HlpXmeD1U+zcR0dYJ3MoDU39zWM7ev/36+sMk2NNqz29aSxkUU/1lrKipmLR0H6Kg==
   dependencies:
-    "@tinacms/toolkit" "0.56.14"
+    "@tinacms/toolkit" "0.56.16"
     codemirror "^5.42.2"
     lodash.debounce "^4.0.8"
     lodash.get "^4.4.2"

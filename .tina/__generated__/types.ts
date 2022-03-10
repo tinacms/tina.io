@@ -69,6 +69,8 @@ export type Query = {
   getDocumentFields: Scalars['JSON'];
   getPageDocument: PageDocument;
   getPageList: PageConnection;
+  getPostDocument: PostDocument;
+  getPostList: PostConnection;
 };
 
 
@@ -102,6 +104,19 @@ export type QueryGetPageDocumentArgs = {
 
 
 export type QueryGetPageListArgs = {
+  before?: InputMaybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
+};
+
+
+export type QueryGetPostDocumentArgs = {
+  relativePath?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryGetPostListArgs = {
   before?: InputMaybe<Scalars['String']>;
   after?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Float']>;
@@ -142,7 +157,7 @@ export type CollectionDocumentsArgs = {
   last?: InputMaybe<Scalars['Float']>;
 };
 
-export type DocumentNode = PageDocument;
+export type DocumentNode = PageDocument | PostDocument;
 
 export type PageSeo = {
   __typename?: 'PageSeo';
@@ -366,6 +381,38 @@ export type PageConnection = Connection & {
   edges?: Maybe<Array<Maybe<PageConnectionEdges>>>;
 };
 
+export type Post = {
+  __typename?: 'Post';
+  title?: Maybe<Scalars['String']>;
+  date?: Maybe<Scalars['String']>;
+  last_edited?: Maybe<Scalars['String']>;
+  author?: Maybe<Scalars['String']>;
+  body?: Maybe<Scalars['String']>;
+};
+
+export type PostDocument = Node & Document & {
+  __typename?: 'PostDocument';
+  id: Scalars['ID'];
+  sys: SystemInfo;
+  data: Post;
+  form: Scalars['JSON'];
+  values: Scalars['JSON'];
+  dataJSON: Scalars['JSON'];
+};
+
+export type PostConnectionEdges = {
+  __typename?: 'PostConnectionEdges';
+  cursor?: Maybe<Scalars['String']>;
+  node?: Maybe<PostDocument>;
+};
+
+export type PostConnection = Connection & {
+  __typename?: 'PostConnection';
+  pageInfo?: Maybe<PageInfo>;
+  totalCount: Scalars['Float'];
+  edges?: Maybe<Array<Maybe<PostConnectionEdges>>>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   addPendingDocument: DocumentNode;
@@ -373,6 +420,8 @@ export type Mutation = {
   createDocument: DocumentNode;
   updatePageDocument: PageDocument;
   createPageDocument: PageDocument;
+  updatePostDocument: PostDocument;
+  createPostDocument: PostDocument;
 };
 
 
@@ -408,8 +457,21 @@ export type MutationCreatePageDocumentArgs = {
   params: PageMutation;
 };
 
+
+export type MutationUpdatePostDocumentArgs = {
+  relativePath: Scalars['String'];
+  params: PostMutation;
+};
+
+
+export type MutationCreatePostDocumentArgs = {
+  relativePath: Scalars['String'];
+  params: PostMutation;
+};
+
 export type DocumentMutation = {
   page?: InputMaybe<PageMutation>;
+  post?: InputMaybe<PostMutation>;
 };
 
 export type PageSeoMutation = {
@@ -596,7 +658,17 @@ export type PageMutation = {
   blocks?: InputMaybe<Array<InputMaybe<PageBlocksMutation>>>;
 };
 
+export type PostMutation = {
+  title?: InputMaybe<Scalars['String']>;
+  date?: InputMaybe<Scalars['String']>;
+  last_edited?: InputMaybe<Scalars['String']>;
+  author?: InputMaybe<Scalars['String']>;
+  body?: InputMaybe<Scalars['String']>;
+};
+
 export type PagePartsFragment = { __typename?: 'Page', seo?: { __typename: 'PageSeo', title?: string | null, description?: string | null } | null, blocks?: Array<{ __typename: 'PageBlocksHero', headline?: string | null, text?: string | null, videoSrc?: string | null, actions?: Array<{ __typename: 'PageBlocksHeroActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksFeatures', items?: Array<{ __typename: 'PageBlocksFeaturesItemsFeature', headline?: string | null, text?: string | null, media?: { __typename: 'PageBlocksFeaturesItemsFeatureMedia', src?: string | null, videoSrc?: string | null, cli?: boolean | null } | null, actions?: Array<{ __typename: 'PageBlocksFeaturesItemsFeatureActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null> | null } | { __typename: 'PageBlocksFlying', headline?: string | null, text?: string | null, actions?: Array<{ __typename: 'PageBlocksFlyingActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksPricing', intro?: any | null, segue?: any | null, tierOne?: { __typename: 'PageBlocksPricingTierOne', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierOneActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null, tierTwo?: { __typename: 'PageBlocksPricingTierTwo', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierTwoActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null, tierThree?: { __typename: 'PageBlocksPricingTierThree', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierThreeActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null, tierFour?: { __typename: 'PageBlocksPricingTierFour', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierFourActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null } | { __typename: 'PageBlocksFaq', title?: string | null, intro?: any | null, color?: string | null, questions?: Array<{ __typename: 'PageBlocksFaqQuestions', question?: string | null, answer?: any | null } | null> | null } | { __typename: 'PageBlocksContent', content?: any | null, options?: { __typename: 'PageBlocksContentOptions', narrow?: boolean | null, color?: string | null, align?: string | null } | null } | { __typename: 'PageBlocksColumns', columnOne?: any | null, columnTwo?: any | null, options?: { __typename: 'PageBlocksColumnsOptions', columns?: string | null, narrow?: boolean | null, color?: string | null, align?: string | null } | null } | null> | null };
+
+export type PostPartsFragment = { __typename?: 'Post', title?: string | null, date?: string | null, last_edited?: string | null, author?: string | null, body?: string | null };
 
 export type GetPageDocumentQueryVariables = Exact<{
   relativePath: Scalars['String'];
@@ -609,6 +681,18 @@ export type GetPageListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetPageListQuery = { __typename?: 'Query', getPageList: { __typename?: 'PageConnection', totalCount: number, edges?: Array<{ __typename?: 'PageConnectionEdges', node?: { __typename?: 'PageDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Page', seo?: { __typename: 'PageSeo', title?: string | null, description?: string | null } | null, blocks?: Array<{ __typename: 'PageBlocksHero', headline?: string | null, text?: string | null, videoSrc?: string | null, actions?: Array<{ __typename: 'PageBlocksHeroActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksFeatures', items?: Array<{ __typename: 'PageBlocksFeaturesItemsFeature', headline?: string | null, text?: string | null, media?: { __typename: 'PageBlocksFeaturesItemsFeatureMedia', src?: string | null, videoSrc?: string | null, cli?: boolean | null } | null, actions?: Array<{ __typename: 'PageBlocksFeaturesItemsFeatureActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null> | null } | { __typename: 'PageBlocksFlying', headline?: string | null, text?: string | null, actions?: Array<{ __typename: 'PageBlocksFlyingActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksPricing', intro?: any | null, segue?: any | null, tierOne?: { __typename: 'PageBlocksPricingTierOne', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierOneActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null, tierTwo?: { __typename: 'PageBlocksPricingTierTwo', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierTwoActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null, tierThree?: { __typename: 'PageBlocksPricingTierThree', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierThreeActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null, tierFour?: { __typename: 'PageBlocksPricingTierFour', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierFourActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null } | { __typename: 'PageBlocksFaq', title?: string | null, intro?: any | null, color?: string | null, questions?: Array<{ __typename: 'PageBlocksFaqQuestions', question?: string | null, answer?: any | null } | null> | null } | { __typename: 'PageBlocksContent', content?: any | null, options?: { __typename: 'PageBlocksContentOptions', narrow?: boolean | null, color?: string | null, align?: string | null } | null } | { __typename: 'PageBlocksColumns', columnOne?: any | null, columnTwo?: any | null, options?: { __typename: 'PageBlocksColumnsOptions', columns?: string | null, narrow?: boolean | null, color?: string | null, align?: string | null } | null } | null> | null } } | null } | null> | null } };
+
+export type GetPostDocumentQueryVariables = Exact<{
+  relativePath: Scalars['String'];
+}>;
+
+
+export type GetPostDocumentQuery = { __typename?: 'Query', getPostDocument: { __typename?: 'PostDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Post', title?: string | null, date?: string | null, last_edited?: string | null, author?: string | null, body?: string | null } } };
+
+export type GetPostListQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetPostListQuery = { __typename?: 'Query', getPostList: { __typename?: 'PostConnection', totalCount: number, edges?: Array<{ __typename?: 'PostConnectionEdges', node?: { __typename?: 'PostDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Post', title?: string | null, date?: string | null, last_edited?: string | null, author?: string | null, body?: string | null } } | null } | null> | null } };
 
 export const PagePartsFragmentDoc = gql`
     fragment PageParts on Page {
@@ -761,6 +845,15 @@ export const PagePartsFragmentDoc = gql`
   }
 }
     `;
+export const PostPartsFragmentDoc = gql`
+    fragment PostParts on Post {
+  title
+  date
+  last_edited
+  author
+  body
+}
+    `;
 export const GetPageDocumentDocument = gql`
     query getPageDocument($relativePath: String!) {
   getPageDocument(relativePath: $relativePath) {
@@ -802,6 +895,47 @@ export const GetPageListDocument = gql`
   }
 }
     ${PagePartsFragmentDoc}`;
+export const GetPostDocumentDocument = gql`
+    query getPostDocument($relativePath: String!) {
+  getPostDocument(relativePath: $relativePath) {
+    sys {
+      filename
+      basename
+      breadcrumbs
+      path
+      relativePath
+      extension
+    }
+    id
+    data {
+      ...PostParts
+    }
+  }
+}
+    ${PostPartsFragmentDoc}`;
+export const GetPostListDocument = gql`
+    query getPostList {
+  getPostList {
+    totalCount
+    edges {
+      node {
+        id
+        sys {
+          filename
+          basename
+          breadcrumbs
+          path
+          relativePath
+          extension
+        }
+        data {
+          ...PostParts
+        }
+      }
+    }
+  }
+}
+    ${PostPartsFragmentDoc}`;
 export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R>
   export function getSdk<C>(requester: Requester<C>) {
     return {
@@ -810,6 +944,12 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
       },
     getPageList(variables?: GetPageListQueryVariables, options?: C): Promise<{data: GetPageListQuery, variables: GetPageListQueryVariables, query: string}> {
         return requester<{data: GetPageListQuery, variables: GetPageListQueryVariables, query: string}, GetPageListQueryVariables>(GetPageListDocument, variables, options);
+      },
+    getPostDocument(variables: GetPostDocumentQueryVariables, options?: C): Promise<{data: GetPostDocumentQuery, variables: GetPostDocumentQueryVariables, query: string}> {
+        return requester<{data: GetPostDocumentQuery, variables: GetPostDocumentQueryVariables, query: string}, GetPostDocumentQueryVariables>(GetPostDocumentDocument, variables, options);
+      },
+    getPostList(variables?: GetPostListQueryVariables, options?: C): Promise<{data: GetPostListQuery, variables: GetPostListQueryVariables, query: string}> {
+        return requester<{data: GetPostListQuery, variables: GetPostListQueryVariables, query: string}, GetPostListQueryVariables>(GetPostListDocument, variables, options);
       }
     };
   }

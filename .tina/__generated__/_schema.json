@@ -2235,6 +2235,66 @@
       "namespace": [
         "page"
       ]
+    },
+    {
+      "name": "post",
+      "label": "Blog Posts",
+      "path": "content/blog",
+      "format": "markdown",
+      "fields": [
+        {
+          "type": "string",
+          "name": "title",
+          "label": "Title",
+          "namespace": [
+            "post",
+            "title"
+          ]
+        },
+        {
+          "type": "datetime",
+          "name": "date",
+          "label": "Date Created",
+          "namespace": [
+            "post",
+            "date"
+          ]
+        },
+        {
+          "type": "datetime",
+          "name": "last_edited",
+          "label": "Last Edited",
+          "namespace": [
+            "post",
+            "last_edited"
+          ]
+        },
+        {
+          "type": "string",
+          "name": "author",
+          "label": "Author",
+          "namespace": [
+            "post",
+            "author"
+          ]
+        },
+        {
+          "type": "string",
+          "name": "body",
+          "label": "Body",
+          "isBody": true,
+          "ui": {
+            "component": "markdown"
+          },
+          "namespace": [
+            "post",
+            "body"
+          ]
+        }
+      ],
+      "namespace": [
+        "post"
+      ]
     }
   ]
 }

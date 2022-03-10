@@ -147,3 +147,11 @@ fragment PageParts on Page {
     }
   }
 }
+
+fragment PostParts on Post {
+  title
+  date
+  last_edited
+  author
+  body
+}

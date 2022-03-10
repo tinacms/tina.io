@@ -65,5 +65,48 @@ export default defineSchema({
         },
       ],
     },
+    {
+      name: 'post',
+      label: 'Blog Posts',
+      path: 'content/blog',
+      format: 'markdown',
+      fields: [
+        // title, date, author, last_edited, body
+        {
+          type: 'string',
+          name: 'title',
+          label: 'Title',
+        },
+        {
+          // note: default to current date/time
+          type: 'datetime',
+          name: 'date',
+          label: 'Date Created',
+        },
+        {
+          // note: this should be a hidden field that auto-updates
+          type: 'datetime',
+          name: 'last_edited',
+          label: 'Last Edited',
+        },
+        {
+          // TODO create an authors collection and make this a relation field
+          type: 'string',
+          name: 'author',
+          label: 'Author',
+        },
+        {
+          // TODO make rich-text (compatibility updates needed)
+          type: 'string',
+          name: 'body',
+          label: 'Body',
+          isBody: true,
+          ui: {
+            component: 'markdown',
+          },
+        },
+        // TODO add relation field for prev/next
+      ],
+    },
   ],
 })

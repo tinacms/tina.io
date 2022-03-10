@@ -1,3 +1,6 @@
+import { ExperimentalGetTinaClient } from '../../.tina/__generated__/types'
+
+import * as React from 'react'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
 import { GetStaticProps, GetStaticPaths } from 'next'
@@ -12,25 +15,27 @@ import {
 import { fileToUrl } from 'utils/urls'
 import { getPageRef } from 'utils/docs/getDocProps'
 const fg = require('fast-glob')
-import Error from 'next/error'
-import { getMarkdownPreviewProps } from 'utils/getMarkdownPreviewProps'
 import { LastEdited, DocsPagination } from 'components/ui'
 import { openGraphImage } from 'utils/open-graph-image'
 import { WarningCallout } from '../../utils/shortcodes'
-function BlogTemplate({ file, siteConfig, prevPage, nextPage }) {
-  // fallback workaround
-  if (!file) {
-    return <Error statusCode={404} />
-  }
-  const data = file.data
+import { useTina } from 'tinacms/dist/edit-state'
 
-  const frontmatter = data.frontmatter
-  const markdownBody = data.markdownBody
-  const excerpt = data.excerpt
+function BlogTemplate({ file, siteConfig, prevPage, nextPage, ...props }) {
+  const { data, isLoading } = useTina({
+    query: props.query,
+    data: props.data,
+    variables: props.vars,
+  })
+
+  const { body, excerpt, ...frontmatter } = data.getPostDocument.data
+
+  React.useEffect(() => {
+    //console.log(body)
+  }, [body])
 
   const warningMessage =
-    data.frontmatter.warningMessage ||
-    (!isRelevantPost(data.frontmatter) &&
+    data.warningMessage ||
+    (!isRelevantPost(frontmatter) &&
       '**Update:** The Tina API has been evolving, and the content in this post is outdated. For help getting started with Tina, we suggest checking out our [getting started doc](/docs/setup-overview/).')
 
   return (
@@ -64,11 +69,11 @@ function BlogTemplate({ file, siteConfig, prevPage, nextPage }) {
             </MetaWrap>
           </BlogMeta>
           {warningMessage && <WarningCallout text={warningMessage} />}
-          <MarkdownContent escapeHtml={false} content={markdownBody} />
+          <MarkdownContent skipHtml={false} escapeHtml={false} content={body} />
           <LastEdited date={frontmatter.last_edited} />
-          {(prevPage?.slug !== null || nextPage?.slug !== null) && (
+          {/* {(prevPage?.slug !== null || nextPage?.slug !== null) && (
             <DocsPagination prevPage={prevPage} nextPage={nextPage} />
-          )}
+          )} */}
         </DocsTextWrapper>
       </BlogWrapper>
     </Layout>
@@ -91,29 +96,27 @@ export const getStaticProps: GetStaticProps = async function({
   //TODO - move to readFile
   const { default: siteConfig } = await import('../../content/siteConfig.json')
 
-  const currentBlog = await getMarkdownPreviewProps(
-    `content/blog/${slug}.md`,
-    preview,
-    previewData
-  )
-
-  if ((currentBlog.props.error?.status || '') === 'ENOENT') {
-    return { props: {} } // will render the 404 error
-  }
+  const client = ExperimentalGetTinaClient()
+  const vars = { relativePath: `${slug}.md` }
+  const res = await client.getPostDocument(vars)
 
   return {
     props: {
-      ...currentBlog.props,
-      nextPage: await getPageRef(
-        currentBlog.props.file.data.frontmatter.next,
-        preview,
-        previewData
-      ),
-      prevPage: await getPageRef(
-        currentBlog.props.file.data.frontmatter.prev,
-        preview,
-        previewData
-      ),
+      query: res.query,
+      data: res.data,
+      vars,
+      // nextPage: await getPageRef(
+      //   currentBlog.props.file.data.frontmatter.next,
+      //   preview,
+      //   previewData
+      // ),
+      // prevPage: await getPageRef(
+      //   currentBlog.props.file.data.frontmatter.prev,
+      //   preview,
+      //   previewData
+      // ),
+      nextPage: null,
+      prevPage: null,
       siteConfig: { title: siteConfig.title },
     },
   }
@@ -130,46 +133,6 @@ export const getStaticPaths: GetStaticPaths = async function() {
   }
 }
 
-/*
- ** TINA FORM CONFIG --------------------------------------------------
- */
-
-const formOptions = {
-  label: 'Blog Post',
-  fields: [
-    {
-      label: 'Title',
-      name: 'frontmatter.title',
-      component: 'text',
-    },
-    {
-      label: 'Author',
-      name: 'frontmatter.author',
-      component: 'text',
-    },
-    /*
-     ** TODO: add this back in once
-     ** draft functionality works again
-     */
-    // {
-    //   name: 'frontmatter.draft',
-    //   component: 'toggle',
-    //   label: 'Draft',
-    // },
-    {
-      label: 'Date Posted',
-      name: 'frontmatter.date',
-      component: 'date',
-      dateFormat: 'MMMM DD YYYY',
-      timeFormat: false,
-    },
-    {
-      label: 'Blog Body',
-      name: 'markdownBody',
-      component: 'markdown',
-    },
-  ],
-}
 /*
  ** STYLES ---------------------------------------------------------
  */
