@@ -148,6 +148,7 @@ const DocsRichText = css`
   }
 
   iframe {
+    max-width: 100%;
     display: block;
     margin: 1.5rem auto;
     border-radius: 5px;
