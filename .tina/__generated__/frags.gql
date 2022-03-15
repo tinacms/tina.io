@@ -153,5 +153,15 @@ fragment PostParts on Post {
   date
   last_edited
   author
+  prev {
+    ... on Document {
+      id
+    }
+  }
+  next {
+    ... on Document {
+      id
+    }
+  }
   body
 }

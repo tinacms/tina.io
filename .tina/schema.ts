@@ -96,6 +96,22 @@ export default defineSchema({
           label: 'Author',
         },
         {
+          type: 'reference',
+          name: 'prev',
+          label: 'Previous Post',
+          description:
+            '(Optional) link to an earlier post at the bottom of this one',
+          collections: ['post'],
+        },
+        {
+          type: 'reference',
+          name: 'next',
+          label: 'Next Post',
+          description:
+            '(Optional) link to a later post at the bottom of this one',
+          collections: ['post'],
+        },
+        {
           // TODO make rich-text (compatibility updates needed)
           type: 'string',
           name: 'body',
@@ -105,7 +121,6 @@ export default defineSchema({
             component: 'markdown',
           },
         },
-        // TODO add relation field for prev/next
       ],
     },
   ],

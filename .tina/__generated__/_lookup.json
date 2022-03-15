@@ -49,6 +49,18 @@
     "resolveType": "collectionDocumentList",
     "collection": "page"
   },
+  "PostPrevDocument": {
+    "type": "PostPrevDocument",
+    "resolveType": "multiCollectionDocument",
+    "createDocument": "create",
+    "updateDocument": "update"
+  },
+  "PostNextDocument": {
+    "type": "PostNextDocument",
+    "resolveType": "multiCollectionDocument",
+    "createDocument": "create",
+    "updateDocument": "update"
+  },
   "PostDocument": {
     "type": "PostDocument",
     "resolveType": "collectionDocument",

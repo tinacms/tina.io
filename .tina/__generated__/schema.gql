@@ -273,11 +273,17 @@ type PageConnection implements Connection {
   edges: [PageConnectionEdges]
 }
 
+union PostPrevDocument = PostDocument
+
+union PostNextDocument = PostDocument
+
 type Post {
   title: String
   date: String
   last_edited: String
   author: String
+  prev: PostPrevDocument
+  next: PostNextDocument
   body: String
 }
 
@@ -505,6 +511,8 @@ input PostMutation {
   date: String
   last_edited: String
   author: String
+  prev: String
+  next: String
   body: String
 }
 

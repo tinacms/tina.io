@@ -19,19 +19,40 @@ import { LastEdited, DocsPagination } from 'components/ui'
 import { openGraphImage } from 'utils/open-graph-image'
 import { WarningCallout } from '../../utils/shortcodes'
 import { useTina } from 'tinacms/dist/edit-state'
+import path from 'path'
 
-function BlogTemplate({ file, siteConfig, prevPage, nextPage, ...props }) {
+function BlogTemplate({ file, siteConfig, ...props }) {
   const { data, isLoading } = useTina({
     query: props.query,
     data: props.data,
     variables: props.vars,
   })
 
-  const { body, excerpt, ...frontmatter } = data.getPostDocument.data
+  const {
+    body,
+    excerpt,
+    prev,
+    next,
+    ...frontmatter
+  } = data.getPostDocument.data
 
-  React.useEffect(() => {
-    //console.log(body)
-  }, [body])
+  const prevPage = React.useMemo(() => {
+    if (!prev) return null
+    const { name } = path.parse(prev.id)
+    return {
+      slug: `/blog/${name}`,
+      title: prev.data.title,
+    }
+  }, [prev])
+
+  const nextPage = React.useMemo(() => {
+    if (!next) return null
+    const { name } = path.parse(next.id)
+    return {
+      slug: `/blog/${name}`,
+      title: next.data.title,
+    }
+  }, [next])
 
   const warningMessage =
     data.warningMessage ||
@@ -71,9 +92,9 @@ function BlogTemplate({ file, siteConfig, prevPage, nextPage, ...props }) {
           {warningMessage && <WarningCallout text={warningMessage} />}
           <MarkdownContent skipHtml={false} escapeHtml={false} content={body} />
           <LastEdited date={frontmatter.last_edited} />
-          {/* {(prevPage?.slug !== null || nextPage?.slug !== null) && (
+          {(prevPage?.slug !== null || nextPage?.slug !== null) && (
             <DocsPagination prevPage={prevPage} nextPage={nextPage} />
-          )} */}
+          )}
         </DocsTextWrapper>
       </BlogWrapper>
     </Layout>
@@ -98,25 +119,13 @@ export const getStaticProps: GetStaticProps = async function({
 
   const client = ExperimentalGetTinaClient()
   const vars = { relativePath: `${slug}.md` }
-  const res = await client.getPostDocument(vars)
+  const res = await client.getExpandedPostDocument(vars)
 
   return {
     props: {
       query: res.query,
       data: res.data,
       vars,
-      // nextPage: await getPageRef(
-      //   currentBlog.props.file.data.frontmatter.next,
-      //   preview,
-      //   previewData
-      // ),
-      // prevPage: await getPageRef(
-      //   currentBlog.props.file.data.frontmatter.prev,
-      //   preview,
-      //   previewData
-      // ),
-      nextPage: null,
-      prevPage: null,
       siteConfig: { title: siteConfig.title },
     },
   }

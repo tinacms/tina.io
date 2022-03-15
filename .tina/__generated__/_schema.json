@@ -2279,6 +2279,32 @@
           ]
         },
         {
+          "type": "reference",
+          "name": "prev",
+          "label": "Previous Post",
+          "description": "(Optional) link to an earlier post at the bottom of this one",
+          "collections": [
+            "post"
+          ],
+          "namespace": [
+            "post",
+            "prev"
+          ]
+        },
+        {
+          "type": "reference",
+          "name": "next",
+          "label": "Next Post",
+          "description": "(Optional) link to a later post at the bottom of this one",
+          "collections": [
+            "post"
+          ],
+          "namespace": [
+            "post",
+            "next"
+          ]
+        },
+        {
           "type": "string",
           "name": "body",
           "label": "Body",
