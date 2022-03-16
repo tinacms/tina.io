@@ -284,7 +284,7 @@ type Post {
   author: String
   prev: PostPrevDocument
   next: PostNextDocument
-  body: String
+  body: JSON
 }
 
 type PostDocument implements Node & Document {
@@ -513,7 +513,7 @@ input PostMutation {
   author: String
   prev: String
   next: String
-  body: String
+  body: JSON
 }
 
 schema {

@@ -31,7 +31,7 @@ We are big believers in storing your website’s content in the filesystem backe
 
 However, Git and the filesystem have limitations when you’re interacting with your content programmatically. That’s why databases exist.
 
-> _Because of the file-based nature of content in a Git-based CMS, there really is no way to guarantee [referential integrity](https://en.wikipedia.org/wiki/Referential_integrity) — [Brian Rinaldi](https://www.stackbit.com/blog/git-based-cms-relationships/)_
+> *Because of the file-based nature of content in a Git-based CMS, there really is no way to guarantee* [_referential integrity_](https://en.wikipedia.org/wiki/Referential_integrity) — [Brian Rinaldi](https://www.stackbit.com/blog/git-based-cms-relationships/)
 
 To overcome these limitations, Tina Cloud provides a GraphQL interface to your repository files where content is stored in open formats like Markdown and JSON. This way you can interact with your repository files like you would a database: define content types, relationships, and query your content with GraphQL.
 
@@ -50,4 +50,4 @@ Tina Cloud is the foundation we need to show the world how powerful Git-backed, 
 
 **Public Beta**
 
-> _Tina Cloud is currently in [public beta](/blog/tina-is-in-beta/), [sign up](https://app.tina.io) to get started with Next.js._
+> _Tina Cloud is currently in _[_public beta_](/blog/tina-is-in-beta/)_, _[_sign up_](https://app.tina.io)_ to get started with Next.js._

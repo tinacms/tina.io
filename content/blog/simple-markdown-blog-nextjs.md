@@ -10,7 +10,7 @@ draft: false
 
 > **02.08.22**: This post has been updated to use Next 12 and it's latest features.
 
-_Want to skip to using Tina with Next.js? Jump to [Part II](https://tinacms.org/blog/using-tinacms-with-nextjs/) of this series._
+_Want to skip to using Tina with Next.js? Jump to _[_Part II_](https://tinacms.org/blog/using-tinacms-with-nextjs/)_ of this series._
 
 Next.js is a React "metaframework" (a framework built on a framework) for developing web applications. Next.js has become a popular choice for web developers due to its bootstrapped React environment (similar to `create-react-app`) and its simple, file-based routing for writing backend code.
 
@@ -19,7 +19,6 @@ Next.js is a React "metaframework" (a framework built on a framework) for develo
 ---
 
 If you'd like to skip ahead and reference final versions of the starter, feel free to checkout the [finished implementation](https://github.com/perkinsjr/brevifolia-next-2022).
-
 
 ## Clone the starter
 
@@ -108,7 +107,7 @@ Within `Layout`, there is a `Meta` component that contains all global styles alo
 
 One thing you may notice in the `Layout` component is the use of component level CSS. **Next.js works out of the box with** [**component level css**](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css). It’s super intuitive to use. All of the styles are scoped to the component, this means you don't have to worry about accidentally overriding a style somewhere else.
 
-Note that global styles and fonts are handled in the `globals.css` found in the `styles` directory, so if you want to change fonts, or add more global styles you can add it here. 
+Note that global styles and fonts are handled in the `globals.css` found in the `styles` directory, so if you want to change fonts, or add more global styles you can add it here.
 
 ## Adding the Posts Directory
 
@@ -322,7 +321,7 @@ Then you are free to loop through the blogs and render the list within your `Blo
 
 ## Next Steps
 
-> Checkout the [final repo](https://github.com/perkinsjr/brevifolia-next-2022)! 
+> Checkout the [final repo](https://github.com/perkinsjr/brevifolia-next-2022)!
 
 After setting up your blog or portfolio site, you’ll most likely need a content management system to make editing and updating your posts or data easier. Stay tuned for my next blog on setting up this starter with TinaCMS. In the meantime, you can check out our [documentation ](/docs), or [fork the finished Next+Tina blog](https://github.com/perkinsjr/tina-simple-markdown) to start playing with TinaCMS right away.
 
@@ -334,10 +333,10 @@ You know that you want to be part of this creative, innovative, supportive commu
 
 Tina has a community [Discord](https://discord.com/invite/zumN63Ybpf) that is full of Jamstack lovers and Tina enthusiasts. When you join you will find a place:
 
-* To get help with issues
-* Find the latest Tina news and sneak previews
-* Share your project with Tina community, and talk about your experience
-* Chat about the Jamstack
+- To get help with issues
+- Find the latest Tina news and sneak previews
+- Share your project with Tina community, and talk about your experience
+- Chat about the Jamstack
 
 ### Tina Twitter
 

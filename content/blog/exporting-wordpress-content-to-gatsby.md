@@ -3,8 +3,8 @@ title: Export WordPress Content to Markdown and Gatsby
 date: '2020-01-13T00:00:00.000Z'
 draft: false
 author: Mitch MacKenzie
-next: /blog/custom-field-components
-prev: /blog/three-ways-to-edit-md
+#next: content/blog/custom-field-components.md
+#prev: content/blog/three-ways-to-edit-md.md
 warningMessage: '**Update:** The examples in this post reference an outdated Gatsby implementation. We recommend using [Next.js](/docs/setup-overview/) for a solution with less friction.'
 ---
 
@@ -52,13 +52,15 @@ To get our exported WordPress content in place:
 2.  Place the "uploads" directory from the WordPress export in the "content" directory of the starter.
 3.  Add the following under the plugins section of gatsby-config.js so that any images and uploads exported from WordPress can be found by Gatsby:
 
-        {
-          resolve: `gatsby-source-filesystem`,
-          options: {
-            path: `${__dirname}/content/uploads`,
-            name: `uploads`,
-          },
-        },
+```
+{
+  resolve: `gatsby-source-filesystem`,
+  options: {
+    path: `${__dirname}/content/uploads`,
+    name: `uploads`,
+  },
+},
+```
 
 Then running `gatsby develop` or `gatsby build` will show the newly exported content in Gatsby.
 

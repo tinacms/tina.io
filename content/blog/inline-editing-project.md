@@ -3,13 +3,13 @@ title: Inline Editing Revamped
 date: '2020-06-29T11:28:19-03:00'
 author: Kendall Strautman
 next: null
-prev: /blog/upgrade-notice-improved-github-security
+prev: content/blog/upgrade-notice-improved-github-security.md
 warningMessage: '**Update:** Inline editing is evolving and the current version is considered experimental, read more about [the evolution of inline editing](/blog/evolution-of-inline-editing/).'
 ---
 
 6 weeks ago, we embarked on a dedicated project with the goal of improving [Inline Editing](https://tinacms.org/docs/ui/inline-editing). We believe that **this way of creating content is the future**, and we want to be a driver in actualizing that future.
 
-<iframe width="100%" height="398" src="https://www.youtube.com/embed/4qGz0cP_DSA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<Youtube embedSrc={"https://www.youtube.com/embed/4qGz0cP_DSA"} />
 
 We chose to specifically focus on [Inline Blocks](https://tinacms.org/docs/ui/inline-editing/inline-blocks), to hone in on the page builder capacities of Tina. What follows are some **improvements and changes** made within [react-tinacms-inline](https://github.com/tinacms/tinacms/tree/master/packages/react-tinacms-inline), along with process notes gathered throughout the course of this project:
 

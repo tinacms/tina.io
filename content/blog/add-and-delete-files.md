@@ -12,8 +12,8 @@ consumes:
     details: Shows how to add delete action
   - file: /packages/tinacms/src/components/CreateContent.tsx
     details: Has image of what the create form looks like
-next: /blog/jamstack-denver-talk
-prev: /blog/dynamic-plugin-system
+next: content/blog/jamstack-denver-talk.md
+prev: content/blog/dynamic-plugin-system.md
 warningMessage: '**Update:** The examples in this post reference an outdated Gatsby implementation. We recommend using [Next.js](/docs/setup-overview/) for a solution with less friction.'
 ---
 

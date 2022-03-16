@@ -20,6 +20,128 @@ import { openGraphImage } from 'utils/open-graph-image'
 import { WarningCallout } from '../../utils/shortcodes'
 import { useTina } from 'tinacms/dist/edit-state'
 import path from 'path'
+import { TinaMarkdown } from 'tinacms/dist/rich-text'
+
+const components = {
+  Youtube: ({ embedSrc }) => (
+    <iframe
+      width="560"
+      height="315"
+      src={embedSrc}
+      title="YouTube video player"
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen={true}
+    ></iframe>
+  ),
+  CreateAppCta: ({ ctaText, cliText }) => (
+    <>
+      <a
+        href={ctaText}
+        style={{
+          textDecoration: 'none',
+          borderRadius: '10px',
+          padding: '1rem 1.5rem',
+          lineHeight: '1em',
+          fontWeight: 'bold',
+          background: '#ec4815',
+          display: 'inline-block',
+          color: 'white',
+        }}
+      >
+        Try a starter
+      </a>
+
+      <div
+        style={{
+          padding: '1rem 1.5rem',
+          fontFamily: 'monospace',
+          whiteSpace: 'nowrap',
+          width: 'auto',
+          display: 'inline-block',
+          border: '1px solid #8080803b',
+          lineHeight: '1em',
+          borderRadius: '10px',
+          marginLeft: '20px',
+        }}
+      >
+        {cliText}
+      </div>
+    </>
+  ),
+  Callout: ({ title, description, url, buttonText }) => (
+    <div className="callout">
+      <img
+        className="learnImage"
+        src="/img/tina-laptop.png"
+        alt="Tina laptop"
+      />
+      <div>
+        <h3>{title}</h3>
+        <p>{description}</p>
+        <a href={url} className="calloutButton">
+          {buttonText}
+          <svg
+            stroke="currentColor"
+            fill="currentColor"
+            stroke-width="0"
+            viewBox="0 0 448 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  ),
+  Codesandbox: ({ embedSrc, title }) => (
+    <iframe
+      src={embedSrc}
+      style={{
+        width: '100%',
+        height: '500px',
+        border: 'none',
+        borderRadius: '4px',
+        overflow: 'hidden',
+      }}
+      title={title}
+      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+      className="wide"
+    ></iframe>
+  ),
+  Diagram: ({ alt, src }) => (
+    <img
+      alt={alt}
+      style={{
+        margin: 'auto',
+        padding: '2rem .5rem',
+        border: 'none',
+      }}
+      src={src}
+    />
+  ),
+  CustomFieldComponentDemo: () => (
+    <iframe
+      height="450"
+      style={{ width: '100%' }}
+      scrolling="no"
+      title="CSS Filters + A Springer Spaniel"
+      src="https://codepen.io/kendallstrautman/embed/WNbzLJZ?height=265&theme-id=default&default-tab=css,result"
+      frameBorder="no"
+      allowTransparency={true}
+      allowFullScreen={true}
+    >
+      See the Pen{' '}
+      <a href="https://codepen.io/kendallstrautman/pen/WNbzLJZ">
+        CSS Filters + A Springer Spaniel
+      </a>{' '}
+      by Kendall strautman (
+      <a href="https://codepen.io/kendallstrautman">@kendallstrautman</a>) on{' '}
+      <a href="https://codepen.io">CodePen</a>.
+    </iframe>
+  ),
+}
 
 function BlogTemplate({ file, siteConfig, ...props }) {
   const { data, isLoading } = useTina({
@@ -90,7 +212,7 @@ function BlogTemplate({ file, siteConfig, ...props }) {
             </MetaWrap>
           </BlogMeta>
           {warningMessage && <WarningCallout text={warningMessage} />}
-          <MarkdownContent skipHtml={false} escapeHtml={false} content={body} />
+          <TinaMarkdown components={components} content={body} />
           <LastEdited date={frontmatter.last_edited} />
           {(prevPage?.slug !== null || nextPage?.slug !== null) && (
             <DocsPagination prevPage={prevPage} nextPage={nextPage} />

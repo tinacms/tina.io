@@ -113,13 +113,100 @@ export default defineSchema({
         },
         {
           // TODO make rich-text (compatibility updates needed)
-          type: 'string',
+          type: 'rich-text',
           name: 'body',
           label: 'Body',
           isBody: true,
-          ui: {
-            component: 'markdown',
-          },
+          templates: [
+            {
+              name: 'Youtube',
+              label: 'Youtube Embed',
+              fields: [
+                {
+                  type: 'string',
+                  name: 'embedSrc',
+                  label: 'Embed URL',
+                },
+              ],
+            },
+            {
+              name: 'CreateAppCta',
+              label: '"Create Tina App" Call-to-action',
+              fields: [
+                {
+                  type: 'string',
+                  name: 'ctaText',
+                  label: 'Button Text',
+                },
+                {
+                  type: 'string',
+                  name: 'cliText',
+                  label: 'CLI Command Example',
+                },
+              ],
+            },
+            {
+              name: 'Callout',
+              label: 'Callout',
+              fields: [
+                {
+                  type: 'string',
+                  name: 'title',
+                  label: 'Title',
+                },
+                {
+                  type: 'string',
+                  name: 'description',
+                  label: 'Description',
+                },
+                {
+                  type: 'string',
+                  name: 'url',
+                  label: 'URL',
+                },
+                {
+                  type: 'string',
+                  name: 'buttonText',
+                  label: 'Button Text',
+                },
+              ],
+            },
+            {
+              name: 'Codesandbox',
+              label: 'Codesandbox embed',
+              fields: [
+                {
+                  type: 'string',
+                  name: 'embedSrc',
+                  label: 'Embed URL',
+                },
+                {
+                  type: 'string',
+                  name: 'title',
+                  label: 'A11y Title',
+                },
+              ],
+            },
+            {
+              name: 'Diagram',
+              label: 'Diagram',
+              fields: [
+                {
+                  type: 'string',
+                  name: 'src',
+                },
+                {
+                  type: 'string',
+                  name: 'alt',
+                },
+              ],
+            },
+            {
+              name: 'CustomFieldComponentDemo',
+              label: 'Field Component Demo [do not use]',
+              fields: [],
+            },
+          ],
         },
       ],
     },

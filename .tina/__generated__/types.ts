@@ -393,7 +393,7 @@ export type Post = {
   author?: Maybe<Scalars['String']>;
   prev?: Maybe<PostPrevDocument>;
   next?: Maybe<PostNextDocument>;
-  body?: Maybe<Scalars['String']>;
+  body?: Maybe<Scalars['JSON']>;
 };
 
 export type PostDocument = Node & Document & {
@@ -671,7 +671,7 @@ export type PostMutation = {
   author?: InputMaybe<Scalars['String']>;
   prev?: InputMaybe<Scalars['String']>;
   next?: InputMaybe<Scalars['String']>;
-  body?: InputMaybe<Scalars['String']>;
+  body?: InputMaybe<Scalars['JSON']>;
 };
 
 export type GetExpandedPostDocumentQueryVariables = Exact<{
@@ -679,11 +679,11 @@ export type GetExpandedPostDocumentQueryVariables = Exact<{
 }>;
 
 
-export type GetExpandedPostDocumentQuery = { __typename?: 'Query', getPostDocument: { __typename?: 'PostDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Post', title?: string | null, date?: string | null, last_edited?: string | null, author?: string | null, body?: string | null, prev?: { __typename?: 'PostDocument', id: string, data: { __typename?: 'Post', title?: string | null } } | null, next?: { __typename?: 'PostDocument', id: string, data: { __typename?: 'Post', title?: string | null } } | null } } };
+export type GetExpandedPostDocumentQuery = { __typename?: 'Query', getPostDocument: { __typename?: 'PostDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Post', title?: string | null, date?: string | null, last_edited?: string | null, author?: string | null, body?: any | null, prev?: { __typename?: 'PostDocument', id: string, data: { __typename?: 'Post', title?: string | null } } | null, next?: { __typename?: 'PostDocument', id: string, data: { __typename?: 'Post', title?: string | null } } | null } } };
 
 export type PagePartsFragment = { __typename?: 'Page', seo?: { __typename: 'PageSeo', title?: string | null, description?: string | null } | null, blocks?: Array<{ __typename: 'PageBlocksHero', headline?: string | null, text?: string | null, videoSrc?: string | null, actions?: Array<{ __typename: 'PageBlocksHeroActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksFeatures', items?: Array<{ __typename: 'PageBlocksFeaturesItemsFeature', headline?: string | null, text?: string | null, media?: { __typename: 'PageBlocksFeaturesItemsFeatureMedia', src?: string | null, videoSrc?: string | null, cli?: boolean | null } | null, actions?: Array<{ __typename: 'PageBlocksFeaturesItemsFeatureActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null> | null } | { __typename: 'PageBlocksFlying', headline?: string | null, text?: string | null, actions?: Array<{ __typename: 'PageBlocksFlyingActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksPricing', intro?: any | null, segue?: any | null, tierOne?: { __typename: 'PageBlocksPricingTierOne', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierOneActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null, tierTwo?: { __typename: 'PageBlocksPricingTierTwo', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierTwoActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null, tierThree?: { __typename: 'PageBlocksPricingTierThree', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierThreeActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null, tierFour?: { __typename: 'PageBlocksPricingTierFour', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierFourActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null } | { __typename: 'PageBlocksFaq', title?: string | null, intro?: any | null, color?: string | null, questions?: Array<{ __typename: 'PageBlocksFaqQuestions', question?: string | null, answer?: any | null } | null> | null } | { __typename: 'PageBlocksContent', content?: any | null, options?: { __typename: 'PageBlocksContentOptions', narrow?: boolean | null, color?: string | null, align?: string | null } | null } | { __typename: 'PageBlocksColumns', columnOne?: any | null, columnTwo?: any | null, options?: { __typename: 'PageBlocksColumnsOptions', columns?: string | null, narrow?: boolean | null, color?: string | null, align?: string | null } | null } | null> | null };
 
-export type PostPartsFragment = { __typename?: 'Post', title?: string | null, date?: string | null, last_edited?: string | null, author?: string | null, body?: string | null, prev?: { __typename?: 'PostDocument', id: string } | null, next?: { __typename?: 'PostDocument', id: string } | null };
+export type PostPartsFragment = { __typename?: 'Post', title?: string | null, date?: string | null, last_edited?: string | null, author?: string | null, body?: any | null, prev?: { __typename?: 'PostDocument', id: string } | null, next?: { __typename?: 'PostDocument', id: string } | null };
 
 export type GetPageDocumentQueryVariables = Exact<{
   relativePath: Scalars['String'];
@@ -702,12 +702,12 @@ export type GetPostDocumentQueryVariables = Exact<{
 }>;
 
 
-export type GetPostDocumentQuery = { __typename?: 'Query', getPostDocument: { __typename?: 'PostDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Post', title?: string | null, date?: string | null, last_edited?: string | null, author?: string | null, body?: string | null, prev?: { __typename?: 'PostDocument', id: string } | null, next?: { __typename?: 'PostDocument', id: string } | null } } };
+export type GetPostDocumentQuery = { __typename?: 'Query', getPostDocument: { __typename?: 'PostDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Post', title?: string | null, date?: string | null, last_edited?: string | null, author?: string | null, body?: any | null, prev?: { __typename?: 'PostDocument', id: string } | null, next?: { __typename?: 'PostDocument', id: string } | null } } };
 
 export type GetPostListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetPostListQuery = { __typename?: 'Query', getPostList: { __typename?: 'PostConnection', totalCount: number, edges?: Array<{ __typename?: 'PostConnectionEdges', node?: { __typename?: 'PostDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Post', title?: string | null, date?: string | null, last_edited?: string | null, author?: string | null, body?: string | null, prev?: { __typename?: 'PostDocument', id: string } | null, next?: { __typename?: 'PostDocument', id: string } | null } } | null } | null> | null } };
+export type GetPostListQuery = { __typename?: 'Query', getPostList: { __typename?: 'PostConnection', totalCount: number, edges?: Array<{ __typename?: 'PostConnectionEdges', node?: { __typename?: 'PostDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Post', title?: string | null, date?: string | null, last_edited?: string | null, author?: string | null, body?: any | null, prev?: { __typename?: 'PostDocument', id: string } | null, next?: { __typename?: 'PostDocument', id: string } | null } } | null } | null> | null } };
 
 export const PagePartsFragmentDoc = gql`
     fragment PageParts on Page {

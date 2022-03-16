@@ -10,8 +10,8 @@ consumes:
     details: Shows how to use remarkForm HOC
   - file: /packages/gatsby-tinacms-remark/src/useRemarkForm.tsx
     details: Demonstrates useLocalRemarkForm usage
-next: /blog/exporting-wordpress-content-to-gatsby
-prev: /blog/using-tinacms-on-gatsby-cloud
+next: content/blog/exporting-wordpress-content-to-gatsby.md
+prev: content/blog/using-tinacms-on-gatsby-cloud.md
 warningMessage: '**Update:** The examples in this post reference an outdated Gatsby implementation. We recommend using [Next.js](/docs/setup-overview/) for a solution with less friction.'
 ---
 
@@ -19,7 +19,7 @@ warningMessage: '**Update:** The examples in this post reference an outdated Gat
 
 In this post, I will explore _the three different methods_ Tina offers to edit Markdown on your Gatsby site. You’ll learn how to set up Tina with both Page Queries and Static Queries.
 
-_This post will not cover the basics of using Tina with Gatsby. Please reference the [documentation](https://tinacms.org/guides/gatsby/adding-tina/project-setup) on how to initially set up Tina with Gatsby._
+_This post will not cover the basics of using Tina with Gatsby. Please reference the _[_documentation_](https://tinacms.org/guides/gatsby/adding-tina/project-setup)_ on how to initially set up Tina with Gatsby._
 
 ## What’s the deal with Page Queries and Static Queries?
 
@@ -58,7 +58,7 @@ Given all the options for creating components and sourcing data in Gatsby, we ha
 First, Let’s dive into how to hook up TinaCMS with a Page Query.
 The `remarkForm` Component in TinaCMS is a [Higher Order Component](https://reactjs.org/docs/higher-order-components.html), a HOC in short. This means that it is a function that takes in another component and will return a new component that has added functionality to it.
 
-> If you’re not familiar with HOC's, I suggest you read about them in the <a href="https://reactjs.org/docs/higher-order-components.html"><b>React official docs</b></a>. They are considered “advanced usage” in the React world.
+> If you’re not familiar with HOC's, I suggest you read about them in the [React official docs]("https://reactjs.org/docs/higher-order-components.html"). They are considered “advanced usage” in the React world.
 
 The `remarkForm` component wants another component as an argument and is intended for Page Queries. A Page Query injects the data as a prop to the component and we access the data from this prop. With a `useStaticQuery` hook, the data is collected in a variable, that you choose, inside the component itself. That means if you're using the `useStaticQuery` hook in Gatsby you won’t have a component to give the `remarkForm` HOC. Bummer!😞 That’s why you can only use the `remarkForm` component with Page Queries.
 

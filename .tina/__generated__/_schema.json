@@ -2305,13 +2305,196 @@
           ]
         },
         {
-          "type": "string",
+          "type": "rich-text",
           "name": "body",
           "label": "Body",
           "isBody": true,
-          "ui": {
-            "component": "markdown"
-          },
+          "templates": [
+            {
+              "name": "Youtube",
+              "label": "Youtube Embed",
+              "fields": [
+                {
+                  "type": "string",
+                  "name": "embedSrc",
+                  "label": "Embed URL",
+                  "namespace": [
+                    "post",
+                    "body",
+                    "Youtube",
+                    "embedSrc"
+                  ]
+                }
+              ],
+              "namespace": [
+                "post",
+                "body",
+                "Youtube"
+              ]
+            },
+            {
+              "name": "CreateAppCta",
+              "label": "\"Create Tina App\" Call-to-action",
+              "fields": [
+                {
+                  "type": "string",
+                  "name": "ctaText",
+                  "label": "Button Text",
+                  "namespace": [
+                    "post",
+                    "body",
+                    "CreateAppCta",
+                    "ctaText"
+                  ]
+                },
+                {
+                  "type": "string",
+                  "name": "cliText",
+                  "label": "CLI Command Example",
+                  "namespace": [
+                    "post",
+                    "body",
+                    "CreateAppCta",
+                    "cliText"
+                  ]
+                }
+              ],
+              "namespace": [
+                "post",
+                "body",
+                "CreateAppCta"
+              ]
+            },
+            {
+              "name": "Callout",
+              "label": "Callout",
+              "fields": [
+                {
+                  "type": "string",
+                  "name": "title",
+                  "label": "Title",
+                  "namespace": [
+                    "post",
+                    "body",
+                    "Callout",
+                    "title"
+                  ]
+                },
+                {
+                  "type": "string",
+                  "name": "description",
+                  "label": "Description",
+                  "namespace": [
+                    "post",
+                    "body",
+                    "Callout",
+                    "description"
+                  ]
+                },
+                {
+                  "type": "string",
+                  "name": "url",
+                  "label": "URL",
+                  "namespace": [
+                    "post",
+                    "body",
+                    "Callout",
+                    "url"
+                  ]
+                },
+                {
+                  "type": "string",
+                  "name": "buttonText",
+                  "label": "Button Text",
+                  "namespace": [
+                    "post",
+                    "body",
+                    "Callout",
+                    "buttonText"
+                  ]
+                }
+              ],
+              "namespace": [
+                "post",
+                "body",
+                "Callout"
+              ]
+            },
+            {
+              "name": "Codesandbox",
+              "label": "Codesandbox embed",
+              "fields": [
+                {
+                  "type": "string",
+                  "name": "embedSrc",
+                  "label": "Embed URL",
+                  "namespace": [
+                    "post",
+                    "body",
+                    "Codesandbox",
+                    "embedSrc"
+                  ]
+                },
+                {
+                  "type": "string",
+                  "name": "title",
+                  "label": "A11y Title",
+                  "namespace": [
+                    "post",
+                    "body",
+                    "Codesandbox",
+                    "title"
+                  ]
+                }
+              ],
+              "namespace": [
+                "post",
+                "body",
+                "Codesandbox"
+              ]
+            },
+            {
+              "name": "Diagram",
+              "label": "Diagram",
+              "fields": [
+                {
+                  "type": "string",
+                  "name": "src",
+                  "namespace": [
+                    "post",
+                    "body",
+                    "Diagram",
+                    "src"
+                  ]
+                },
+                {
+                  "type": "string",
+                  "name": "alt",
+                  "namespace": [
+                    "post",
+                    "body",
+                    "Diagram",
+                    "alt"
+                  ]
+                }
+              ],
+              "namespace": [
+                "post",
+                "body",
+                "Diagram"
+              ]
+            },
+            {
+              "name": "CustomFieldComponentDemo",
+              "label": "Field Component Demo [do not use]",
+              "fields": [],
+              "namespace": [
+                "post",
+                "body",
+                "CustomFieldComponentDemo"
+              ]
+            }
+          ],
           "namespace": [
             "post",
             "body"
