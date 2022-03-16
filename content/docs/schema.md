@@ -4,6 +4,8 @@ id: /docs/schema/
 next: '/docs/features/data-fetching'
 ---
 
+## Introduction
+
 The Tina schema defines the shape of your content. With traditional content management systems you may have done this sort of content modeling via a GUI; however, given its tight coupling to Git, TinaCMS considers the filesystem the ultimate source of truth and leverages a "content-modeling as code" approach.
 
 Your schema is defined in a file called `.tina/schema.ts` (only `.ts` is supported for now).
