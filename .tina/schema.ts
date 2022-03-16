@@ -71,7 +71,6 @@ export default defineSchema({
       path: 'content/blog',
       format: 'markdown',
       fields: [
-        // title, date, author, last_edited, body
         {
           type: 'string',
           name: 'title',
@@ -112,7 +111,6 @@ export default defineSchema({
           collections: ['post'],
         },
         {
-          // TODO make rich-text (compatibility updates needed)
           type: 'rich-text',
           name: 'body',
           label: 'Body',
