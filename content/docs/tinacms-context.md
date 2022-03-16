@@ -6,7 +6,7 @@ next: '/docs/graphql/overview'
 
 ## Introduction
 
-Out of the box, Once you define a new collection in Tina, its content becomes available through the "basic editor".
+Out of the box, once you define a new collection in Tina, its content becomes available through the "basic editor".
 
 ![basic editor](https://res.cloudinary.com/forestry-demo/image/upload/v1647455231/tina-io/docs/basic-editor.png)
 
