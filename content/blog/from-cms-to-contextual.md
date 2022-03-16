@@ -1,3 +1,9 @@
+---
+title: From CMS To Contextual Editing 
+date: '2022-03-16:00:00-04:00'
+author: James Perkins
+---
+
 Tina allows you as a developer to create an amazing editing experience. By default the editing experience is a more traditional CMS, where you login to a specific URL and you edit your content without being able to see the content till after you finish your changes. But, if you are looking for a more transparent real-time editing experience, Tina has a superpower, called Contextual Editing. Just as it sounds, you get instant feedback on the page as well as being able to preview the changes before publishing live to your site. 
 
 ![Example of Tina Context editing](https://res.cloudinary.com/forestry-demo/video/upload/q_100/v1647436971/blog-media/cms-to-contextual/TinaSuper.gif)
