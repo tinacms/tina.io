@@ -218,19 +218,18 @@ In our case:
 - FieldName: "Blocks"
 - BlockTemplateName: "Content" | "Hero" | "Features"
 
-
 ## Adding a visual block selector (Experimental)
+
+![Preview of Visual Block Selector](https://res.cloudinary.com/forestry-demo/video/upload/w_800/v1647540863/Tina%20Newsletter/visual-selector-preview.gif)
 
 {{ WarningCallout text="This is an experimental feature, and the API is subject to change. Have any thoughts? Let us know in the chat, or through one of our [community channels](/community/)!" }}
 
-
-This visual block selector allows editors to select blocks from a set images instead of text. 
+This visual block selector allows editors to select blocks from a set images instead of text.
 
 <!-- TODO: add a gif -->
 <!-- ![block-based-editing-visual](/gif/visual-blocks.gif) -->
 
 First, to enable the visual block selector the `visualSelector` property in the UI key must be set to true.
-
 
 ```diff
 ...
@@ -290,16 +289,14 @@ const featureBlock = {
 
 The `previewSrc` is an image URL that will be rendered in the visual selector. If a preview isn't provided the block will still be available with a title to click on, just no preview image will be displayed.
 
-
-_optionally_ a  `category` can  be provided that will allows the blocks to be grouped into different catagories.
-
+_optionally_ a `category` can be provided that will allows the blocks to be grouped into different catagories.
 
 ```diff
 const featureBlock = {
   name: 'features',
   label: 'Features',
   ui: {
-+    category: "Page Section", 
++    category: "Page Section",
     previewSrc: "https://...",
   },
   fields: [
