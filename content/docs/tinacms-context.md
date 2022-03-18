@@ -4,7 +4,17 @@ id: '/docs/tinacms-context'
 next: '/docs/graphql/overview'
 ---
 
-After modelling our content, and using Tina's API for data-fetching, we can add TinaCMS to our site's frontend and add contextual editing.
+## Introduction
+
+Out of the box, once you define a new collection in Tina, its content becomes available through the "basic editor".
+
+![basic editor](https://res.cloudinary.com/forestry-demo/image/upload/v1647455231/tina-io/docs/basic-editor.png)
+
+Tina also allows for "Contextual Editing" so that editors can see their pages being updated in real-time as they make changes
+
+![contextual editor](https://res.cloudinary.com/forestry-demo/image/upload/v1647455231/tina-io/docs/contextual-editing.png)
+
+> Note: Before a page can be setup with contextual editing, it first needs to be using [Tina's data-fetching](/docs/features/data-fetching/).
 
 ## Adding contextual-editing to a page
 
