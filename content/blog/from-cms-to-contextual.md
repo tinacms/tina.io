@@ -135,7 +135,7 @@ export async function getStaticPaths() {
 
 Remove all the code inside of this function and we can update it to use our own code. The first step is to add an import to the top of the file to be able interact with our graphql, and remove the `getPostBySlug` and `getAllPosts` imports we won’t be using:
 
-```bash
+```diff
 //other imports
 .....
 - import { getPostBySlug, getAllPosts } from '../../lib/api'
@@ -327,6 +327,7 @@ import {useTina} from 'tinacms/dist/edit-state'
 We are going to update our props from `({ post, morePosts, preview })` to `(props)`. We are going to pass the props into our `useTina` hook. Now that has been updated with the props coming in we can use `useTina` . 
 
 ```diff
+
 - export default function Post({ post, morePosts, preview }) {
 + export default function Post( props ) {
  
