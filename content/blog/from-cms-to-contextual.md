@@ -12,6 +12,8 @@ Tina allows you as a developer to create an amazing editing experience. By defau
 
 For this blog post we are going to use Tina’s example which is located in the Next.js official examples and allows us to use `create-next-app`.This example is based upon Next.js blog starter which is a markdown blog.
 
+> You can find the source code in the Next.js examples directory, [https://github.com/vercel/next.js/tree/canary/examples/cms-tina](https://github.com/vercel/next.js/tree/canary/examples/cms-tina).
+
 ```bash
 ## Create our new Tina site
 
@@ -157,7 +159,7 @@ export async function getStaticPaths() {
   const postsListData = await staticRequest({
     query: `
       query {
-        getPostList {
+        getPostsList {
           edges {
             node {
             sys {
@@ -170,7 +172,7 @@ export async function getStaticPaths() {
     `,
   })
   return {
-    paths: postsListData.getPostList.edges.map(edge => ({
+    paths: postsListData.getPostsList.edges.map(edge => ({
       params: { slug: edge.node.sys.filename },
     })),
     fallback: false,
@@ -180,11 +182,11 @@ export async function getStaticPaths() {
 
 **Quick break down of `getStaticPaths`**
 
-The `getStaticPaths` code takes the graphql query we created, because it does not require any `variables` we can send down an empty object. In the return functionality we map through each item in the `postsListData.getPostList` and create a slug for each one.
+The `getStaticPaths` code takes the graphql query we created, because it does not require any `variables` we can send down an empty object. In the return functionality we map through each item in the `postsListData.getPostsList` and create a slug for each one.
 
-### Creating getStaticProps query
+## Creating getStaticProps query
 
-## Creating the query
+### Creating the query
 
 The `getStaticProps` query is going to deliver all the content to the blog, which is how it works currently with the code provided by Next.js. When we use the GraphQL API we will both deliver the content and give the content team the ability to edit it right in the browser.
 
@@ -278,7 +280,7 @@ export const getStaticProps = async ({ params }) => {
   return {
     props: {
       data,
-      slug,
+      variables,
     },
   }
 }
@@ -322,29 +324,36 @@ import {useTina} from 'tinacms/dist/edit-state'
 
 ### Changing our props and adding UseTina
 
-We are going to update our props from `({ post, morePosts, preview })` to `(props)` . We are going to pass the props into our `useTina` hook. Now that has been updated with the props coming in we can use `useTina` . 
+We are going to update our props from `({ post, morePosts, preview })` to `(props)`. We are going to pass the props into our `useTina` hook. Now that has been updated with the props coming in we can use `useTina` . 
 
-```jsx
-const { data } = useTina({
-    query,
-    variables: props.variables,
-    data: props.data,
-  }) 
+```diff
+- export default function Post({ post, morePosts, preview }) {
++ export default function Post( props ) {
+ 
+
++  const { data } = useTina({
++    query,
++    variables: props.variables,
++    data: props.data,
++  })
 ```
 
 As you can see, we are reusing our query from before and passing the variables, and data to `useTina`.  This now means we can power our site using contextual editing. Congratulations your site now has superpowers! 
+
 
 ### Update our elements to use Tina data
 
 Now we have access to our Tina powered data we can go through and update all of our elements to use Tina. You can replace each of the `post.` with `data.getPostsDocument.data.` and then replace the `!post?.slug` with `!props.variables.relativePath` when you are finished your return code should look like:
 
-```jsx
+```diff
 const router = useRouter()
-  if (!router.isFallback && !props.variables.relativePath) {
+-  if (!router.isFallback && !post?.slug) {
++  if (!router.isFallback && !props.variables.relativePath) {
     return <ErrorPage statusCode={404} />
   }
   return (
-    <Layout preview={false}>
+-   <Layout preview={preview}>
++   <Layout preview={false}>
       <Container>
         <Header />
         {router.isFallback ? (
@@ -354,17 +363,24 @@ const router = useRouter()
             <article className="mb-32">
               <Head>
                 <title>
-                  {data.getPostsDocument.data.title} | Next.js Blog Example with {CMS_NAME}
+-                  {post.title} | Next.js Blog Example with {CMS_NAME}
++                  {data.getPostsDocument.data.title} | Next.js Blog Example with {CMS_NAME}
                 </title>
-                <meta property="og:image" content={data.getPostsDocument.data.ogImage.url} />
+-                <meta property="og:image" content={post.ogImage.url} />
++                <meta property="og:image" content={data.getPostsDocument.data.ogImage.url} />
               </Head>
               <PostHeader
-                title={data.getPostsDocument.data.title}
-                coverImage={data.getPostsDocument.data.coverImage}
-                date={data.getPostsDocument.data.date}
-                author={data.getPostsDocument.data.author}
+-                title={post.title}
+-                coverImage={post.coverImage}
+-                date={post.date}
+-                author={post.author}
++                title={data.getPostsDocument.data.title}
++                coverImage={data.getPostsDocument.data.coverImage}
++                date={data.getPostsDocument.data.date}
++                author={data.getPostsDocument.data.author}
               />
-              <PostBody content={data.getPostsDocument.data.body} />
+-             <PostBody content={post.content} />              
++             <PostBody content={data.getPostsDocument.data.body} />
             </article>
           </>
         )}
@@ -376,7 +392,9 @@ const router = useRouter()
 
 ### The final piece of Contextual Editing.
 
-One piece of code that the original was doing was taking the markdown and turning it into HTML. We currently aren’t doing that with our body, the reason is, we have to keep track of changes when using Tina. This is where useState and useEffect come in, first create a content variable that is track by a state:
+One piece of code that the original was doing was taking the markdown and turning it into HTML, inside of the `getStaticPriops`. We currently aren’t doing that with our body and just returning the string. Due to the nature of contextual editing, we need to make sure that we are always passing the latest content through the `markdownToHtml` function provided by the team at Next.js. This is where `useState` and `useEffect` come in, first create a content variable that is track by a state:
+
+> Note you could use another markdown to html package that would not require this, but in this example we want to reuse as much of the original code as possible to show how you could integrate with minimal code replacement. 
 
 ```jsx
 const [content, setContent] = useState('')
