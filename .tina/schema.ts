@@ -69,7 +69,7 @@ export default defineSchema({
       name: 'post',
       label: 'Blog Posts',
       path: 'content/blog',
-      format: 'markdown',
+      format: 'md',
       fields: [
         {
           type: 'string',
