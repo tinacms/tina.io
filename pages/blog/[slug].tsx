@@ -63,6 +63,7 @@ const components = {
           lineHeight: '1em',
           borderRadius: '10px',
           marginLeft: '20px',
+          fontSize: '1rem',
         }}
       >
         {cliText}
