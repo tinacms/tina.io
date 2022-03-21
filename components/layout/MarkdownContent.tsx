@@ -145,11 +145,24 @@ export function MarkdownContent({
   escapeHtml,
   skipHtml,
 }: MarkdownContentProps) {
+  /*
+  There's an issue with referential integrity in DOM nodes when ReactMarkdown renders HTML.
+  Rendering an empty tree in between updates seems to avoid the issue:
+  https://github.com/remarkjs/react-markdown/issues/402#issuecomment-601609362
+  */
+  const [body, setBody] = React.useState('')
+  React.useEffect(() => {
+    setBody(content)
+    return () => {
+      setBody('')
+    }
+  }, [content])
+
   return (
     <ReactMarkdown
+      source={body}
       escapeHtml={escapeHtml === false ? escapeHtml : true}
       skipHtml={skipHtml ? skipHtml : false}
-      source={content}
       renderers={{
         code: WithCodeStyles,
         heading: WithHeadings,

@@ -12,8 +12,8 @@ consumes:
     details: Depends on the Field interface
   - file: /packages/@tinacms/form-builder/src/field-plugin.tsx
     details: Depends on the FieldPlugin interface
-next: /blog/custom-field-plugins
-prev: /blog/exporting-wordpress-content-to-gatsby
+next: content/blog/custom-field-plugins.md
+prev: content/blog/exporting-wordpress-content-to-gatsby.md
 ---
 
 Form fields are the bread and butter of any CMS. While Tina provides a solid collection of fields 'out-of-the-box', you can also create your own. This post will show you the basic concepts of how to create custom field components and use them in the Tina sidebar.
@@ -28,11 +28,11 @@ Tina was intended to be fully customizable and extensible. Creating **custom fie
 
 ![saturation-custom-field-gif](https://res.cloudinary.com/forestry-demo/image/upload/v1645712782/tina-io/docs/saturate-custom-field.gif)
 
-> Want to jump ahead? Feel free to check out a **[finished version](https://github.com/kendallstrautman/llama-filters) of the custom range input field** seen in the gif above, or take a peak at a more complex [_Authors_ field plugin](https://github.com/tinacms/tina-starter-grande/blob/master/src/fields/authors.js) in the Tina Grande repo.
+> Want to jump ahead? Feel free to check out a [**finished version**](https://github.com/kendallstrautman/llama-filters) of the custom range input field seen in the gif above, or take a peak at a more complex [_Authors_ field plugin](https://github.com/tinacms/tina-starter-grande/blob/master/src/fields/authors.js) in the Tina Grande repo.
 
 ## Two Methods — Let’s start simple
 
-There are two ways to add [custom fields](https://tinacms.org/docs/plugins/fields/custom-fields) to Tina. The first approach involves _defining a React component and passing it into the `component` property_ of a field definition. The Tina Team refers to this as an **inline field component.** This option is more straightforward; it will be the method of focus in this post.
+There are two ways to add [custom fields](https://tinacms.org/docs/plugins/fields/custom-fields) to Tina. The first approach involves defining a React component and passing it into the `component` property of a field definition. The Tina Team refers to this as an **inline field component.** This option is more straightforward; it will be the method of focus in this post.
 
 The second approach involves defining a custom component, then registering that component as a [field plugin](https://tinacms.org/docs/plugins/fields/custom-fields#2-creating-field-plugins) with the CMS. All the [core fields](https://tinacms.org/docs/plugins/fields) provided by Tina are used as plugins.
 
@@ -111,10 +111,7 @@ Now this example component is super simple — a glorified label. This type of c
 
 Say we had an image on the _About Me_ page and we wanted to be able to control some [CSS filters](https://css-tricks.com/almanac/properties/f/filter/) on that image. The pen below shows all the CSS filters we have to play with.
 
-<iframe height="450" style="width: 100%;" scrolling="no" title="CSS Filters + A Springer Spaniel" src="https://codepen.io/kendallstrautman/embed/WNbzLJZ?height=265&theme-id=default&default-tab=css,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a href='https://codepen.io/kendallstrautman/pen/WNbzLJZ'>CSS Filters + A Springer Spaniel</a> by Kendall strautman
-  (<a href='https://codepen.io/kendallstrautman'>@kendallstrautman</a>) on <a href='https://codepen.io'>CodePen</a>.
-</iframe>
+<CustomFieldComponentDemo />
 
 We can create a custom input field to provide editing control over these visual filters. **Let’s make a custom field that controls image saturation.**
 
@@ -347,9 +344,9 @@ Some other examples of awesome _CSS-in-JS_ frameworks are [styled-components](ht
 
 A good next step would be _adding styles to the custom `RangeInput` component_. You could use [`@tinacms/styles`](https://tinacms.org/docs/plugins/fields/custom-fields#using-tina-styles) to fit the vibe of other Tina fields ✌️. Or you could go wild and spice up the sidebar in your own way 🤠.
 
-If we wanted to reuse this component throughout the site, **we could take a step further and make it into a [Field Plugin](https://tinacms.org/docs/plugins/fields/custom-fields#2-creating-field-plugins)**. Stay tuned for a follow-up post that dives into creating custom Field Plugins, or swing by the [docs](https://tinacms.org/docs/plugins/fields/custom-fields#2-creating-field-plugins) to get a head start.
+If we wanted to reuse this component throughout the site, we could take a step further and make it into a [Field Plugin](https://tinacms.org/docs/plugins/fields/custom-fields#2-creating-field-plugins). Stay tuned for a follow-up post that dives into creating custom Field Plugins, or swing by the [docs](https://tinacms.org/docs/plugins/fields/custom-fields#2-creating-field-plugins) to get a head start.
 
-> Feel free to check out a **[finished version](https://github.com/kendallstrautman/llama-filters) of this custom range input field**, or take a peak at a more complex [_Authors_ field plugin](https://github.com/tinacms/tina-starter-grande/blob/master/src/fields/authors.js) in the Tina Grande repo.
+> Feel free to check out a [finished version](https://github.com/kendallstrautman/llama-filters) of this custom range input field, or take a peak at a more complex [_Authors_ field plugin](https://github.com/tinacms/tina-starter-grande/blob/master/src/fields/authors.js) in the Tina Grande repo.
 
 ### Takeaways 🕺🏻
 

@@ -103,6 +103,10 @@ class Site extends App {
                       return `/${document.sys.filename}`
                     }
 
+                    if (['post'].includes(collection.name)) {
+                      return `/blog/${document.sys.filename}`
+                    }
+
                     return undefined
                   }
                 )

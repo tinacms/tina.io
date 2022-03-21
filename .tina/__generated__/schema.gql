@@ -50,6 +50,8 @@ type Query {
   getDocumentFields: JSON!
   getPageDocument(relativePath: String): PageDocument!
   getPageList(before: String, after: String, first: Float, last: Float): PageConnection!
+  getPostDocument(relativePath: String): PostDocument!
+  getPostList(before: String, after: String, first: Float, last: Float): PostConnection!
 }
 
 type DocumentConnectionEdges {
@@ -75,7 +77,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float): DocumentConnection!
 }
 
-union DocumentNode = PageDocument
+union DocumentNode = PageDocument | PostDocument
 
 type PageSeo {
   title: String
@@ -271,16 +273,53 @@ type PageConnection implements Connection {
   edges: [PageConnectionEdges]
 }
 
+union PostPrevDocument = PostDocument
+
+union PostNextDocument = PostDocument
+
+type Post {
+  title: String
+  date: String
+  last_edited: String
+  author: String
+  prev: PostPrevDocument
+  next: PostNextDocument
+  body: JSON
+}
+
+type PostDocument implements Node & Document {
+  id: ID!
+  sys: SystemInfo!
+  data: Post!
+  form: JSON!
+  values: JSON!
+  dataJSON: JSON!
+}
+
+type PostConnectionEdges {
+  cursor: String
+  node: PostDocument
+}
+
+type PostConnection implements Connection {
+  pageInfo: PageInfo
+  totalCount: Float!
+  edges: [PostConnectionEdges]
+}
+
 type Mutation {
   addPendingDocument(collection: String!, relativePath: String!, template: String): DocumentNode!
   updateDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
   createDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
   updatePageDocument(relativePath: String!, params: PageMutation!): PageDocument!
   createPageDocument(relativePath: String!, params: PageMutation!): PageDocument!
+  updatePostDocument(relativePath: String!, params: PostMutation!): PostDocument!
+  createPostDocument(relativePath: String!, params: PostMutation!): PostDocument!
 }
 
 input DocumentMutation {
   page: PageMutation
+  post: PostMutation
 }
 
 input PageSeoMutation {
@@ -465,6 +504,16 @@ input PageBlocksMutation {
 input PageMutation {
   seo: PageSeoMutation
   blocks: [PageBlocksMutation]
+}
+
+input PostMutation {
+  title: String
+  date: String
+  last_edited: String
+  author: String
+  prev: String
+  next: String
+  body: JSON
 }
 
 schema {

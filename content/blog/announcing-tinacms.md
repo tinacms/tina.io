@@ -4,10 +4,10 @@ date: '2019-10-16T07:00:00.000Z'
 author: Scott Gallant
 draft: false
 prev: null
-next: /blog/creating-markdown-drafts
+next: content/blog/creating-markdown-drafts.md
 ---
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/iPDCmbaEF0Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<Youtube embedSrc={"https://www.youtube.com/embed/iPDCmbaEF0Y"} />
 
 Today, we’re excited to announce [TinaCMS](https://github.com/tinacms/tinacms): an open-source site editing toolkit for React-based sites (Gatsby and Next.js).
 

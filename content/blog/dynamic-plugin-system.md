@@ -8,8 +8,8 @@ consumes:
     details: Talks at a high level about the plugin manager
   - file: /packages/gatsby-tinacms-remark/src/remark-creator-plugin.ts
     details: Shows example of RemarkCreatorPlugin in use
-next: /blog/add-and-delete-files
-prev: /blog/deprecating-tina-git-server
+next: content/blog/add-and-delete-files.md
+prev: content/blog/deprecating-tina-git-server.md
 ---
 
 One of the most important aspects of TinaCMS is its dynamic plugin system.

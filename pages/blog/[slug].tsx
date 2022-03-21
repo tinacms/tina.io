@@ -1,3 +1,6 @@
+import { ExperimentalGetTinaClient } from '../../.tina/__generated__/types'
+
+import * as React from 'react'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
 import { GetStaticProps, GetStaticPaths } from 'next'
@@ -12,25 +15,170 @@ import {
 import { fileToUrl } from 'utils/urls'
 import { getPageRef } from 'utils/docs/getDocProps'
 const fg = require('fast-glob')
-import Error from 'next/error'
-import { getMarkdownPreviewProps } from 'utils/getMarkdownPreviewProps'
 import { LastEdited, DocsPagination } from 'components/ui'
 import { openGraphImage } from 'utils/open-graph-image'
 import { WarningCallout } from '../../utils/shortcodes'
-function BlogTemplate({ file, siteConfig, prevPage, nextPage }) {
-  // fallback workaround
-  if (!file) {
-    return <Error statusCode={404} />
-  }
-  const data = file.data
+import { useTina } from 'tinacms/dist/edit-state'
+import path from 'path'
+import { TinaMarkdown } from 'tinacms/dist/rich-text'
 
-  const frontmatter = data.frontmatter
-  const markdownBody = data.markdownBody
-  const excerpt = data.excerpt
+const components = {
+  Youtube: ({ embedSrc }) => (
+    <iframe
+      width="560"
+      height="315"
+      src={embedSrc}
+      title="YouTube video player"
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen={true}
+    ></iframe>
+  ),
+  CreateAppCta: ({ ctaText, cliText }) => (
+    <>
+      <a
+        href={ctaText}
+        style={{
+          textDecoration: 'none',
+          borderRadius: '10px',
+          padding: '1rem 1.5rem',
+          lineHeight: '1em',
+          fontWeight: 'bold',
+          background: '#ec4815',
+          display: 'inline-block',
+          color: 'white',
+        }}
+      >
+        Try a starter
+      </a>
+
+      <div
+        style={{
+          padding: '1rem 1.5rem',
+          fontFamily: 'monospace',
+          whiteSpace: 'nowrap',
+          width: 'auto',
+          display: 'inline-block',
+          border: '1px solid #8080803b',
+          lineHeight: '1em',
+          borderRadius: '10px',
+          marginLeft: '20px',
+        }}
+      >
+        {cliText}
+      </div>
+    </>
+  ),
+  Callout: ({ title, description, url, buttonText }) => (
+    <div className="callout">
+      <img
+        className="learnImage"
+        src="/img/tina-laptop.png"
+        alt="Tina laptop"
+      />
+      <div>
+        <h3>{title}</h3>
+        <p>{description}</p>
+        <a href={url} className="calloutButton">
+          {buttonText}
+          <svg
+            stroke="currentColor"
+            fill="currentColor"
+            stroke-width="0"
+            viewBox="0 0 448 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  ),
+  Codesandbox: ({ embedSrc, title }) => (
+    <iframe
+      src={embedSrc}
+      style={{
+        width: '100%',
+        height: '500px',
+        border: 'none',
+        borderRadius: '4px',
+        overflow: 'hidden',
+      }}
+      title={title}
+      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+      className="wide"
+    ></iframe>
+  ),
+  Diagram: ({ alt, src }) => (
+    <img
+      alt={alt}
+      style={{
+        margin: 'auto',
+        padding: '2rem .5rem',
+        border: 'none',
+      }}
+      src={src}
+    />
+  ),
+  CustomFieldComponentDemo: () => (
+    <iframe
+      height="450"
+      style={{ width: '100%' }}
+      scrolling="no"
+      title="CSS Filters + A Springer Spaniel"
+      src="https://codepen.io/kendallstrautman/embed/WNbzLJZ?height=265&theme-id=default&default-tab=css,result"
+      frameBorder="no"
+      allowTransparency={true}
+      allowFullScreen={true}
+    >
+      See the Pen{' '}
+      <a href="https://codepen.io/kendallstrautman/pen/WNbzLJZ">
+        CSS Filters + A Springer Spaniel
+      </a>{' '}
+      by Kendall strautman (
+      <a href="https://codepen.io/kendallstrautman">@kendallstrautman</a>) on{' '}
+      <a href="https://codepen.io">CodePen</a>.
+    </iframe>
+  ),
+}
+
+function BlogTemplate({ file, siteConfig, ...props }) {
+  const { data, isLoading } = useTina({
+    query: props.query,
+    data: props.data,
+    variables: props.vars,
+  })
+
+  const {
+    body,
+    excerpt,
+    prev,
+    next,
+    ...frontmatter
+  } = data.getPostDocument.data
+
+  const prevPage = React.useMemo(() => {
+    if (!prev) return null
+    const { name } = path.parse(prev.id)
+    return {
+      slug: `/blog/${name}`,
+      title: prev.data.title,
+    }
+  }, [prev])
+
+  const nextPage = React.useMemo(() => {
+    if (!next) return null
+    const { name } = path.parse(next.id)
+    return {
+      slug: `/blog/${name}`,
+      title: next.data.title,
+    }
+  }, [next])
 
   const warningMessage =
-    data.frontmatter.warningMessage ||
-    (!isRelevantPost(data.frontmatter) &&
+    data.warningMessage ||
+    (!isRelevantPost(frontmatter) &&
       '**Update:** The Tina API has been evolving, and the content in this post is outdated. For help getting started with Tina, we suggest checking out our [getting started doc](/docs/setup-overview/).')
 
   return (
@@ -64,7 +212,7 @@ function BlogTemplate({ file, siteConfig, prevPage, nextPage }) {
             </MetaWrap>
           </BlogMeta>
           {warningMessage && <WarningCallout text={warningMessage} />}
-          <MarkdownContent escapeHtml={false} content={markdownBody} />
+          <TinaMarkdown components={components} content={body} />
           <LastEdited date={frontmatter.last_edited} />
           {(prevPage?.slug !== null || nextPage?.slug !== null) && (
             <DocsPagination prevPage={prevPage} nextPage={nextPage} />
@@ -91,29 +239,15 @@ export const getStaticProps: GetStaticProps = async function({
   //TODO - move to readFile
   const { default: siteConfig } = await import('../../content/siteConfig.json')
 
-  const currentBlog = await getMarkdownPreviewProps(
-    `content/blog/${slug}.md`,
-    preview,
-    previewData
-  )
-
-  if ((currentBlog.props.error?.status || '') === 'ENOENT') {
-    return { props: {} } // will render the 404 error
-  }
+  const client = ExperimentalGetTinaClient()
+  const vars = { relativePath: `${slug}.md` }
+  const res = await client.getExpandedPostDocument(vars)
 
   return {
     props: {
-      ...currentBlog.props,
-      nextPage: await getPageRef(
-        currentBlog.props.file.data.frontmatter.next,
-        preview,
-        previewData
-      ),
-      prevPage: await getPageRef(
-        currentBlog.props.file.data.frontmatter.prev,
-        preview,
-        previewData
-      ),
+      query: res.query,
+      data: res.data,
+      vars,
       siteConfig: { title: siteConfig.title },
     },
   }
@@ -130,46 +264,6 @@ export const getStaticPaths: GetStaticPaths = async function() {
   }
 }
 
-/*
- ** TINA FORM CONFIG --------------------------------------------------
- */
-
-const formOptions = {
-  label: 'Blog Post',
-  fields: [
-    {
-      label: 'Title',
-      name: 'frontmatter.title',
-      component: 'text',
-    },
-    {
-      label: 'Author',
-      name: 'frontmatter.author',
-      component: 'text',
-    },
-    /*
-     ** TODO: add this back in once
-     ** draft functionality works again
-     */
-    // {
-    //   name: 'frontmatter.draft',
-    //   component: 'toggle',
-    //   label: 'Draft',
-    // },
-    {
-      label: 'Date Posted',
-      name: 'frontmatter.date',
-      component: 'date',
-      dateFormat: 'MMMM DD YYYY',
-      timeFormat: false,
-    },
-    {
-      label: 'Blog Body',
-      name: 'markdownBody',
-      component: 'markdown',
-    },
-  ],
-}
 /*
  ** STYLES ---------------------------------------------------------
  */

@@ -9,7 +9,7 @@ Inline editing removes many usability hurdles that content editors face when wor
 
 We're continuing to learn from our development community and looking at better ways of integrating the superpowers that inline editing bestows.
 
-And let's not forget about sidebar editing in this discussion! The attractiveness of inline editing often overshadows the flexible setup and usability wins that we get with sidebar editing. **We recommend starting with [sidebar editing](/docs/getting-started/cms-set-up/#sidebar) to get up and running quickly.**
+And let's not forget about sidebar editing in this discussion! The attractiveness of inline editing often overshadows the flexible setup and usability wins that we get with sidebar editing. **We recommend starting with **[**sidebar editing**](/docs/getting-started/cms-set-up/#sidebar)** to get up and running quickly.**
 
 ## A review of the original approach
 
@@ -17,13 +17,7 @@ Let's take a look at a simple [inline editing](/docs/ui/inline-editing/) scenari
 
 We wrap our page with the TinaCMS `InlineForm` component so that our child components behave like a form. We can edit the title value by using the `InlineText` component to inject a text input.
 
-<iframe src="https://codesandbox.io/embed/tina-inline-editing-y28os?fontsize=14&hidenavigation=1&theme=dark&view=split&editorsize=65"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="tina-inline-editing"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-     class="wide"
-   ></iframe>
+<Codesandbox embedSrc="https://codesandbox.io/embed/tina-inline-editing-y28os?fontsize=14&hidenavigation=1&theme=dark&view=split&editorsize=65" title="tina-inline-editing" />
 
 We gain a lot of control as developers with this approach. The inline editing components live with your layout components and behave pretty much as you would expect them to.
 
@@ -50,13 +44,7 @@ In contrast to our first example, we define an `inlineComponent` key in our form
 
 We then call `useFieldRef` to acquire the ref that will be attached to our title element.
 
-<iframe src="https://codesandbox.io/embed/tina-ref-based-inline-editing-p8kx4?fontsize=14&hidenavigation=1&theme=dark&view=split&editorsize=65"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="tina-inline-editing"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-     class="wide"
-   ></iframe>
+<Codesandbox embedSrc="https://codesandbox.io/embed/tina-ref-based-inline-editing-p8kx4?fontsize=14&hidenavigation=1&theme=dark&view=split&editorsize=65" title="tina-inline-editing" />
 
 ### Editing Routes
 

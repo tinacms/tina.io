@@ -111,7 +111,7 @@ export default defineSchema({
 >
 > `Image` type is under development with [Cloudinary](https://cloudinary.com/) support as a media provider with Tina Cloud.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/EwewKEHHkd4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true"></iframe>
+<Youtube embedSrc={"https://www.youtube.com/embed/EwewKEHHkd4"} />
 
 ## Query your content with GraphQL
 
@@ -154,4 +154,4 @@ query BlogPost {
 
 Now that we know how to query data from our files, we still need to use that query in our Next.js application, request it from the client and ask Tina to generate the corresponding form so that our contributors are able to edit it visually. We'll detail the remaining steps in a follow-up post, stay tuned!
 
-_[Join our Discord](https://discord.com/invite/zumN63Ybpf), if you have any question regarding how to work with Tina and Next.js._
+[_Join our Discord_](https://discord.com/invite/zumN63Ybpf)_, if you have any question regarding how to work with Tina and Next.js._

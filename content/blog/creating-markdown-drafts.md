@@ -3,8 +3,8 @@ title: Creating Markdown Drafts with Gatsby
 date: '2019-10-28T22:17:53.124Z'
 author: Nolan Phillips & Kendall Strautman
 draft: false
-next: /blog/simple-markdown-blog-nextjs
-prev: /blog/announcing-tinacms
+next: content/blog/simple-markdown-blog-nextjs.md
+prev: content/blog/announcing-tinacms.md
 warningMessage: '**Update:** The examples in this post reference an outdated Gatsby implementation. We recommend using [Next.js](/docs/setup-overview/) for a solution with less friction.'
 ---
 

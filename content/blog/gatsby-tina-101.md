@@ -10,8 +10,8 @@ consumes:
     details: Shows how to use inlineRemarkForm HOC
   - file: /packages/@tinacms/fields/src/Wysiwyg/Wysiwyg.tsx
     details: TinaField uses Wysiwyg component for inline editing
-next: /blog/introducing-visual-open-authoring
-prev: /blog/custom-field-plugins
+next: content/blog/introducing-visual-open-authoring.md
+prev: content/blog/custom-field-plugins.md
 warningMessage: '**Update:** The examples in this post reference an outdated Gatsby implementation. We recommend using [Next.js](/docs/setup-overview/) for a solution with less friction.'
 ---
 
@@ -23,7 +23,7 @@ Despite the technical gains, **static sites can have a hampered content editing 
 
 To understand better how Tina works, I decided to add it to an existing site, my [Gatsby starter, _Tyra_](https://github.com/madelyneriksen/gatsby-starter-tyra/). What follows is a walkthrough of my process. Feel free to _use this as a reference for adding TinaCMS to an existing Gatsby site!_
 
-> **In a rush?** _Check out the code [on Github](https://github.com/madelyneriksen/gatsby-starter-tyra/tree/feature/add-tyra)_
+> **In a rush?** Check out the code [on Github](https://github.com/madelyneriksen/gatsby-starter-tyra/tree/feature/add-tyra)
 
 ## Getting Started with Tina
 

@@ -147,3 +147,21 @@ fragment PageParts on Page {
     }
   }
 }
+
+fragment PostParts on Post {
+  title
+  date
+  last_edited
+  author
+  prev {
+    ... on Document {
+      id
+    }
+  }
+  next {
+    ... on Document {
+      id
+    }
+  }
+  body
+}
