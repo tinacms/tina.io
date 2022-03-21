@@ -1,14 +1,14 @@
 ---
-title: Tina CMS - Get started 
+title: Tina CMS - Get started
 date: '2022-03-04T08:00:00-04:00'
 author: James Perkins
 ---
 
-Until now, as a Tina user, you have enjoyed contextual editing when interacting with your content. We know that while this experience is first class for your content team, the amount of time it takes to implement Tina with contextual editing into your application is longer than you may want to invest when testing a new CMS. 
+Until now, as a Tina user, you have enjoyed contextual editing when interacting with your content. We know that while this experience is first class for your content team, the amount of time it takes to implement Tina with contextual editing into your application is longer than you may want to invest when testing a new CMS.
 
 ## Tina as a CMS in a traditional way
 
-In order to give the best experience to  all users, Tina now offers two ways to edit content, contextual editing and a more traditional looking CMS. Except with our traditional CMS, we are still powered by Markdown, JSON, or MDX and backed by Git. Here is a quick GIF of what it looks like implemented on a deployed website:
+In order to give the best experience to all users, Tina now offers two ways to edit content, contextual editing and a more traditional looking CMS. Except with our traditional CMS, we are still powered by Markdown, JSON, or MDX and backed by Git. Here is a quick GIF of what it looks like implemented on a deployed website:
 
 ![Example Gif of Tina CMS](https://res.cloudinary.com/forestry-demo/video/upload/c_scale,w_1174/v1646412458/blog-media/getting-started-tina-admin/example.gif)
 
@@ -16,26 +16,26 @@ In order to give the best experience to  all users, Tina now offers two ways to 
 
 When we launched Tina + Cloud in it’s alpha, you had to do the following to get Tina integrated and we only supported contextual editing:
 
-1. Add Tina using `npx @tinacms/cli init` 
+1. Add Tina using `npx @tinacms/cli init`
 2. Create your schema for your Markdown
 3. Implement your queries, for `getStaticPaths` and `getStaticProps`
 4. Handle the props to make your content editable.
 
 These steps are now cut in half. When you use just Tina as a CMS without contextual editing, you will only need to do:
 
-1. Add Tina using `npx @tinacms/cli init` 
+1. Add Tina using `npx @tinacms/cli init`
 2. Create your schema for your Markdown
 
-With that being said, let’s use the Next.js starter to create an editable blog using just the CMS. 
+With that being said, let’s use the Next.js starter to create an editable blog using just the CMS.
 
-The first step is to create the blog starter and initialize Tina 
+The first step is to create the blog starter and initialize Tina
 
 ```bash
 #Create your blog
 npx create-next-app --example blog-starter tina-cms-blog
 
 # Move into your new blog
-cd tina-cms-blog 
+cd tina-cms-blog
 
 # Intialize Tina
 npx @tinacms/cli@latest init
@@ -44,8 +44,7 @@ npx @tinacms/cli@latest init
 
 When you are prompted if you would like Tina to override your `_app.js` you can select yes.
 
-
-> If you are using your own blog, you may not want us to override your _app.js. If that is the case check this documentation on what is required.
+> If you are using your own blog, you may not want us to override your \_app.js. If that is the case check this documentation on what is required.
 
 So what did Tina CLI do? It did a number of thing in your Next.js application:
 
@@ -62,7 +61,7 @@ Now that you have Tina setup you can launch your application using the following
 
 `yarn tina-dev`
 
-Now, if you navigate to [http://localhost:3000/admin](http://localhost:3000/admin) you will see a new page. Go ahead and click the Edit with Tina button. 
+Now, if you navigate to [http://localhost:3000/admin](http://localhost:3000/admin) you will see a new page. Go ahead and click the Edit with Tina button.
 
 ![Login Example](https://res.cloudinary.com/forestry-demo/image/upload/v1646412107/blog-media/getting-started-tina-admin/login-example.webp)
 
@@ -72,7 +71,7 @@ You will land on a page that looks like this:
 
 ### Edit the content
 
-If you select “Blog Posts” on the left of the screen it will show you all the available posts for editing, you might notice that Tina placed a blog post named “Hello World” for you to look at. Go ahead and click it, and you will see an editable form. Feel free to change the title or the body and hit the save button. 
+If you select “Blog Posts” on the left of the screen it will show you all the available posts for editing, you might notice that Tina placed a blog post named “Hello World” for you to look at. Go ahead and click it, and you will see an editable form. Feel free to change the title or the body and hit the save button.
 
 ![Example of editing with Tina](https://res.cloudinary.com/forestry-demo/image/upload/v1646412108/blog-media/getting-started-tina-admin/Editing%20example.jpg)
 
@@ -88,11 +87,11 @@ Now you have seen Tina editing in action, let’s make the Next.js starter conte
 
 ### Collections
 
-The top-level key in the schema is an array of *collections*, a `collection` informs the API about *where* to save content. In our guide there will be a `posts` collection but you also could have `author` and `pages` collections, for example.
+The top-level key in the schema is an array of _collections_, a `collection` informs the API about _where_ to save content. In our guide there will be a `posts` collection but you also could have `author` and `pages` collections, for example.
 
 ### Fields
 
-The "fields" property instructs the Content API of the type of content expected. For example, `text`, as well as the queryable name and the name to display to your content team. Fields are an array of objects that are a child of collections. We use this to retrieve the content from the Markdown or JSON files. These fields should map to your *frontmatter* and we also use this to create the UI elements for editing.
+The "fields" property instructs the Content API of the type of content expected. For example, `text`, as well as the queryable name and the name to display to your content team. Fields are an array of objects that are a child of collections. We use this to retrieve the content from the Markdown or JSON files. These fields should map to your _frontmatter_ and we also use this to create the UI elements for editing.
 
 ```ts
 fields: [
@@ -113,7 +112,7 @@ fields: [
 
 ### References
 
-We also have `reference` fields. This is an important concept, when you *reference* another collection, you're effectively saying: "this document *belongs to* that document". A great example of using a reference is *author*, as each post would have an author and you could have multiple authors, but you need to reference a particular author to the post.
+We also have `reference` fields. This is an important concept, when you _reference_ another collection, you're effectively saying: "this document _belongs to_ that document". A great example of using a reference is _author_, as each post would have an author and you could have multiple authors, but you need to reference a particular author to the post.
 
 ```ts
 {
@@ -252,21 +251,24 @@ export default defineSchema({
 
 There are a couple of things you might notice. First, there is a `type` called `object`, this works as a way to group fields together. On the UI which you will see in the future, it allows you to click into and edit each individual field.
 
-Second, there's a `string` field called `body` with `isBody` set to true. By setting `isBody` to true we're stating that this field is responsible for the main *body* of the Markdown file. There can only be one field with the `isBody: true` property.
+Second, there's a `string` field called `body` with `isBody` set to true. By setting `isBody` to true we're stating that this field is responsible for the main _body_ of the Markdown file. There can only be one field with the `isBody: true` property.
 
 ## One final test
 
-Now the new schema is ready, go ahead and restart your server using `yarn tina-dev` and navigate to [http://localhost:3000/admin](http://localhost:3000/admin). You will see that if you select the Blog Posts on the left side nav that you now have all three posts from Next.js. 
+Now the new schema is ready, go ahead and restart your server using `yarn tina-dev` and navigate to [http://localhost:3000/admin](http://localhost:3000/admin). You will see that if you select the Blog Posts on the left side nav that you now have all three posts from Next.js.
 
 ![3 blog posts](https://res.cloudinary.com/forestry-demo/image/upload/v1646412108/blog-media/getting-started-tina-admin/post-list-example.webp)
 
-If you choose the first post “dynamic routing” you will see all of the fields that we defined in our schema which match all the front matter. Go ahead and edit some fields like the title or the body and hit save. Now if you navigate to [http://localhost:3000/posts/dynamic-routing](http://localhost:3000/posts/dynamic-routing)  you will see those changes!
+If you choose the first post “dynamic routing” you will see all of the fields that we defined in our schema which match all the front matter. Go ahead and edit some fields like the title or the body and hit save. Now if you navigate to [http://localhost:3000/posts/dynamic-routing](http://localhost:3000/posts/dynamic-routing) you will see those changes!
 
 ## Where can you try, or keep up to date with Tina?
 
-If you haven’t had a chance to try Tina yet, and don't have time to follow this tutorial, spin up a starter site on Tina Cloud or with the command line and share your feedback. 
+If you haven’t had a chance to try Tina yet, and don't have time to follow this tutorial, spin up a starter site on Tina Cloud or with the command line and share your feedback.
 
-<a href="https://app.tina.io/quickstart" style="text-decoration: none; border-radius: 10px; padding: 1rem 1.5rem; line-height: 1em; font-weight: bold; background:#ec4815; display:inline-block; color:white;">Try a starter</a><div style="padding: 1rem 1.5rem; font-family: monospace; white-space: nowrap; width: auto; display:inline-block; border: 1px solid gray; padding: 1rem 1.5rem;border: 1px solid #8080803b;line-height: 1em;border-radius: 10px;margin-left: 20px;">npx create-tina-app@latest</div>
+<CreateAppCta
+ctaText="Try a starter"
+cliText="npx create-tina-app@latest"
+/>
 
 You know that you will want to be part of this creative, innovative, supportive community of developers (and even some editors and designers) who are experimenting and implementing Tina daily.
 
@@ -274,12 +276,11 @@ You know that you will want to be part of this creative, innovative, supportive 
 
 Tina has a community [Discord](https://discord.com/invite/zumN63Ybpf) that is full of Jamstack lovers and Tina enthusiasts. When you join you will find a place:
 
-* To get help with issues
-* Find the latest Tina news and sneak previews
-* Share your project with Tina community, and talk about your experience
-* Chat about the Jamstack
+- To get help with issues
+- Find the latest Tina news and sneak previews
+- Share your project with Tina community, and talk about your experience
+- Chat about the Jamstack
 
 ### Tina Twitter
 
 Our Twitter account ([@tina_cms](https://twitter.com/tina_cms)) announces the latest features, improvements, and sneak peeks to Tina. We would also be psyched if you tagged us in projects you have built.
-
