@@ -45,7 +45,7 @@ In some cases we might have to re-index your project, this is usually happens wh
 
 ### Some things to note
 
-This is still an experimental feature and the following things should be considered before enabling on your project: 
+This is still an experimental feature and the following things should be considered before enabling it on your project: 
 
 1\. The index process isn’t exposed to the end user, which means it is possible that in an event a partially indexed site could return incomplete results
 
