@@ -7,7 +7,7 @@ prev: content/blog/from-cms-to-contextual.md
 
 Tina has worked on the premise of direct interaction with Tina's GraphQL API and GitHub’s API. While this is a perfectly acceptable option, it does reduce performance slightly due to the nature of sending and retrieving data as “new” each time. 
 
-The Tina team recently introduced a new optional data layer that sits between Tina and GitHub. In the future, this will be our default offering once it is out of the experimental stage. Our data layer will buffer your requests between Tina and GitHub which increases the performance when editing your content. This blog post is going to explain how it works, what it does and what we have planned for the future!
+The Tina team recently introduced a new optional data layer that sits between Tina and GitHub. In the future, this will be our default offering once it is out of the experimental stage. Our data layer buffers the requests between Tina and GitHub, increasing performance while editing your content. This blog post is going to explain how it works, what it does and what we have planned for the future!
 
 <Youtube embedSrc="https://res.cloudinary.com/forestry-demo/video/upload/v1647955731/blog-media/data-layer/Before_perf_1.mp4"/>
 
