@@ -1,23 +1,19 @@
 ---
 title: 'Tina Data Layer: Performant Editing'
+date: '2022-03-24T07:00:00.000Z'
 author: James Perkins
 prev: content/blog/from-cms-to-contextual.md
-date: '2022-03-24T07:00:00.000Z'
 ---
 
 Tina has worked on the premise of direct interaction with Tina's GraphQL API and GitHub’s API. While this is a perfectly acceptable option, it does reduce performance slightly due to the nature of sending and retrieving data as “new” each time. 
 
-
 The Tina team recently introduced a new optional data layer that sits between Tina and GitHub. In the future, this will be our default offering once it is out of the experimental stage. Our data layer will buffer your requests between Tina and GitHub which increases the performance when editing your content. This blog post is going to explain how it works, what it does and what we have planned for the future!
 
-![Performant GIF](https://res.cloudinary.com/forestry-demo/video/upload/v1647955731/blog-media/data-layer/Before_perf_1.gif)
+<Youtube embedSrc="https://res.cloudinary.com/forestry-demo/video/upload/v1647955731/blog-media/data-layer/Before_perf_1.mp4"/>
 
-
-How to enable the Data Layer on your project
---------------------------------------------
+## How to enable the Data Layer on your project
 
 We made enabling and using the Data Layer with minimal development required. In fact you can enable the data layer by passing `--experimentalData` as a command line flag. The easiest way to make sure this happens is by editing your `package.json` script. 
-
 
 ```jsx
 "scripts": {
@@ -51,17 +47,11 @@ In some cases we might have to re-index your project, this is usually happens wh
 
 This is still an experimental feature and the following things should be considered before enabling on your project: 
 
-
-
-
 1\. The index process isn’t exposed to the end user, which means it is possible that in an event a partially indexed site could return incomplete results
 
 2\. GitHub has a API request limitation of 5000 requests per repository per hour, if you have an extremely large project you could hit this rate limit. If you have a repository with more than 1500 items please do not activate this feature.
 
-
 ## The future
-
-
 
 The team at Tina has plans for the following highly requested features as the Data Layer matures out of its experimental phase. In fact we have already begun working on some of the features mentioned below, so stay tuned! 
 
