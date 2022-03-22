@@ -37,7 +37,7 @@ In some cases we might have to re-index your project, this is usually happens wh
 
 \- Changes to \`.tina/schema.ts\`
 
-\- Changes to the \[path to tina]\(https://tina.io/docs/tina-cloud/faq/#does-tina-cloud-work-with-monorepos)
+\- Changes to the path to [https://tina.io/docs/tina-cloud/faq/#does-tina-cloud-work-with-monorepos](https://tina.io/docs/tina-cloud/faq/#does-tina-cloud-work-with-monorepos "Tina")
 
 \- Changes to the configured \[repository]\(https://tina.io/docs/tina-cloud/dashboard/projects/#changing-the-repository)
 
