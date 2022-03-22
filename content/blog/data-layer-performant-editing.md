@@ -23,7 +23,7 @@ We made enabling and using the Data Layer with minimal development required. In 
   },
 ```
 
-Once the flag is added and the CLI has been run, Tina will update the generated schema which will let Tina know you want to use the Data Layer. 
+Once the flag is added and the CLI has been run, Tina will update the generated schema letting Tina know you want to use the Data Layer.
 
 > Once you have generated the Schema, you will need to commit the changes to GitHub for it to start working on the project.
 
