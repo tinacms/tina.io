@@ -33,7 +33,7 @@ Once the Data Layer is enabled on your project, we will automatically synchroniz
 
 ### When we might do a full re-index
 
-In some cases we might have to re-index your project, this is usually happens when the core of the project has changed for example:
+In some cases we might have to fully re-index your project. This usually happens when the schema of your project has changed. For example:
 
  - Changes to `.tina\schema.ts`
 
