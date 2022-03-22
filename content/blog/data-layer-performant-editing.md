@@ -47,7 +47,7 @@ In some cases we might have to re-index your project, this is usually happens wh
 
 This is still an experimental feature and the following things should be considered before enabling it on your project: 
 
-1\. The index process isn’t exposed to the end user, which means it is possible that in an event a partially indexed site could return incomplete results
+1\. The indexing process isn’t exposed to the end user, which means it is possible that queries made during the indexing process could return incomplete results
 
 2\. GitHub has a API request limitation of 5000 requests per repository per hour, if you have an extremely large project you could hit this rate limit. If you have a repository with more than 1500 items please do not activate this feature.
 
