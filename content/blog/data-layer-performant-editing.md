@@ -69,4 +69,4 @@ This means you will be able to reduce some of your calls if you don’t need a f
 
 ### Referential Integrity
 
-With the introduction of the Data Layer it allows us to now be able to offer referential integrity. This will stop a content writer from accidentally making changes to content that could break other content or an entire site. The biggest benefits from a content user is the ability to rename files or even delete content safely.
+With the introduction of the Data Layer it allows us to now be able to offer referential integrity. This will stop a content writer from accidentally making changes to content that could break other content or an entire site. The biggest benefit to a content user will be the ability to rename files or even delete content without breaking any existing references.
