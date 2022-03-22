@@ -1,7 +1,8 @@
 ---
-title: 'Tina Data Layer: Performant Editing '
+title: 'Tina Data Layer: Performant Editing'
 author: James Perkins
 prev: content/blog/from-cms-to-contextual.md
+date: '2022-03-24T07:00:00.000Z'
 ---
 
 Tina has worked on the premise of direct interaction with Tina's GraphQL API and GitHub’s API. While this is a perfectly acceptable option, it does reduce performance slightly due to the nature of sending and retrieving data as “new” each time. 
@@ -9,7 +10,7 @@ Tina has worked on the premise of direct interaction with Tina's GraphQL API and
 
 The Tina team recently introduced a new optional data layer that sits between Tina and GitHub. In the future, this will be our default offering once it is out of the experimental stage. Our data layer will buffer your requests between Tina and GitHub which increases the performance when editing your content. This blog post is going to explain how it works, what it does and what we have planned for the future!
 
-![Video](https://res.cloudinary.com/forestry-demo/video/upload/v1647955731/blog-media/data-layer/Before_perf_1.mp4)
+![Performant GIF](https://res.cloudinary.com/forestry-demo/video/upload/v1647955731/blog-media/data-layer/Before_perf_1.gif)
 
 
 How to enable the Data Layer on your project
@@ -58,7 +59,7 @@ This is still an experimental feature and the following things should be conside
 2\. GitHub has a API request limitation of 5000 requests per repository per hour, if you have an extremely large project you could hit this rate limit. If you have a repository with more than 1500 items please do not activate this feature.
 
 
-The future
+## The future
 
 
 
