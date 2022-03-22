@@ -31,17 +31,17 @@ Once the flag is added and the CLI has been run, Tina will update the generated 
 
 Once the Data Layer is enabled on your project, we will automatically synchronize a copy of your repository with our secure cloud database. After Tina has run the initial indexing of your repository Tina will automatically index new or updated content. This is done behind the scenes and you won’t notice that we are doing this, except the increase in performance when editing.
 
-### &#xA;When we might do a full re-index
+### When we might do a full re-index
 
 In some cases we might have to re-index your project, this is usually happens when the core of the project has changed for example:
 
-\- Changes to \`.tina/schema.ts\`
+ - Changes to `.tina\schema.ts`
 
-\- Changes to the path to [https://tina.io/docs/tina-cloud/faq/#does-tina-cloud-work-with-monorepos](https://tina.io/docs/tina-cloud/faq/#does-tina-cloud-work-with-monorepos "Tina")
+ - Changes to the path to [.tina](https://tina.io/docs/tina-cloud/faq/#does-tina-cloud-work-with-monorepos)
 
-\- Changes to the configured \[repository]\(https://tina.io/docs/tina-cloud/dashboard/projects/#changing-the-repository)
+ - Changes to the configured [repository](https://tina.io/docs/tina-cloud/dashboard/projects/#changing-the-repository)
 
-\- New branches in GitHub
+ - New branches in GitHub
 
 ### Some things to note
 
@@ -55,18 +55,18 @@ This is still an experimental feature and the following things should be conside
 
 The team at Tina has plans for the following highly requested features as the Data Layer matures out of its experimental phase. In fact we have already begun working on some of the features mentioned below, so stay tuned! 
 
-### &#xA;More complex and advanced queries
+### More complex and advanced queries
 
 The Data Layer opens up our GraphQL layer to be even more powerful, in the future Tina plans to offer: 
 
-1\. Pagination
+1. Pagination
 
-2\. Filtering
+2. Filtering
 
-3\. Sorting 
+3. Sorting 
 
 This means you will be able to reduce some of your calls if you don’t need a full data set, a good example of this would be where you only need 3 blog posts for a features section. In the current Tina integration you will need to retrieve all of the posts and filter them down after the fact, in the future you won’t need to do this. 
 
-### &#xA;Referential Integrity
+### Referential Integrity
 
-With the introduction of the Data Layer it allows us to now be able to offer referential integrity. This will stop a content writer from accidentally making changes to content that could break other content or an entire site. The biggest benefits from a content user is the ability to rename files or even delete content safely.&#x20;
+With the introduction of the Data Layer it allows us to now be able to offer referential integrity. This will stop a content writer from accidentally making changes to content that could break other content or an entire site. The biggest benefits from a content user is the ability to rename files or even delete content safely.
