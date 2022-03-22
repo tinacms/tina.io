@@ -29,7 +29,7 @@ Once the flag is added and the CLI has been run, Tina will update the generated 
 
 ## What does the Data Layer do to increase Performance?
 
-Once the Data Layer is enabled on your project, we will automatically synchronize a copy of your repository with our secure cloud database. After Tina has run the initial indexing of your repository Tina will automatically index new or updated content. This is done behind the scenes and you won’t notice that we are doing this, except the increase in performance when editing.
+Once the Data Layer is enabled on your project, we will automatically synchronize a copy of your repository with our secure cloud database. After Tina has run the initial indexing of your repository, Tina will automatically index new or updated content. This is done behind the scenes and you won’t notice that we are doing this, except the increase in performance when editing.
 
 ### When we might do a full re-index
 
