@@ -65,7 +65,7 @@ The Data Layer opens up our GraphQL layer to be even more powerful, in the futur
 
 3. Sorting 
 
-This means you will be able to reduce some of your calls if you don’t need a full data set, a good example of this would be where you only need 3 blog posts for a features section. In the current Tina integration you will need to retrieve all of the posts and filter them down after the fact, in the future you won’t need to do this. 
+This means you will be able to reduce some of your calls if you don’t need a full data set. A good example of this would be where you only need 3 blog posts for a features section. In the current Tina integration, you need to retrieve all of the posts and filter them down after the fact. In the future you won’t need to do this. 
 
 ### Referential Integrity
 
