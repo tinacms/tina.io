@@ -92,6 +92,7 @@ class Site extends App {
               })
               cms.flags.set('tina-admin', true)
               cms.flags.set('rich-text-alt', true)
+              cms.flags.set('branch-switcher', true)
 
               import('tinacms').then(({ RouteMappingPlugin }) => {
                 const RouteMapping = new RouteMappingPlugin(
