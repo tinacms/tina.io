@@ -23,8 +23,10 @@ We are going to use the [`object` type](/docs/schema/#grouping-properties-within
 ```ts
 // .tina/schema.ts
 import { defineSchema } from '@tinacms/cli'
+import type { TinaTemplate } from "tinacms";
 
-const heroBlock = {
+
+const heroBlock:TinaTemplate = {
   name: 'hero',
   label: 'Hero',
   ui: {
@@ -57,7 +59,7 @@ const heroBlock = {
   ],
 }
 
-const featureBlock = {
+const featureBlock:TinaTemplate = {
   name: 'features',
   label: 'Features',
   fields: [
@@ -82,7 +84,7 @@ const featureBlock = {
   ],
 }
 
-const contentBlock = {
+const contentBlock:TinaTemplate = {
   name: 'content',
   label: 'Content',
   ui: {
