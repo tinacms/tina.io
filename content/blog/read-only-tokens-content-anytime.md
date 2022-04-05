@@ -232,7 +232,7 @@ The code above does a lot of different things, so let us break it down into the 
 2. If there is no data returned, we set the error flag to true. If the error flag is true, we attempt to use read-only tokens to retrieve your data and return it to be displayed to the user, or to the content editor. 
 3. If there is no data returned and the read-only token returns no data, we return `notFound: true` (this is a special flag for Next.js). This flag will return your 404 error page as well as `404` in the status code.
 
-**How to keep up to date with Tina?**
+## How to keep up to date with Tina?**
 
 The best way to keep up with Tina is to subscribe to our newsletter, we send out updates every two weeks. Updates include new features, what we have been working on, blog posts you may have missed, and so much more!
 
