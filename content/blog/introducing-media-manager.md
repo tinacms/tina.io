@@ -164,8 +164,6 @@ The breaking change is that the additional arguments are now passed to `previewS
 }
 ```
 
-<!-- This example could be more instructive...-->
-
 Media stores can implement a catch-all `previewSrc` method that will be run if a field does not define its own `previewSrc`. If you're using a media store provided by a Tina package, or using one that otherwise defines a `previewSrc`, you can probably remove your field's custom `previewSrc` method entirely.
 
 ### _parse_

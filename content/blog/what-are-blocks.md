@@ -3,8 +3,8 @@ title: What are Blocks?
 date: '2019-12-18T03:15:26.426Z'
 draft: false
 author: DJ Walker
-next: /blog/editing-on-the-cloud
-prev: /blog/jamstack-denver-talk
+next: content/blog/editing-on-the-cloud.md
+prev: content/blog/jamstack-denver-talk.md
 ---
 
 > "There are only two hard things in Computer Science: cache invalidation and naming things."
@@ -50,7 +50,7 @@ We might use a simple text field in the first case, and a **Group** of two text 
 
 ### Group Lists
 
-<img alt="diagram of linked circles" style="margin: auto; padding: 2rem .5rem; border: none;" src="/img/blog/fig-group-grouplist.svg" />
+<Diagram alt="diagram of linked circles" src="/img/blog/fig-group-grouplist.svg" />
 
 A **Group List** is similar to the **Group** field type, with an added dimension. Whereas the Group field represents a single entity, the Group List represents _multiple entities_.
 
@@ -80,7 +80,7 @@ We could use a **Group List** here. All entities in the Group List have the same
 
 ## Blocks: Like a Group List, But Different
 
-<img alt="diagram of different shapes linked together" style="margin: auto; padding: 2rem .5rem; border: none;" src="/img/blog/fig-blocks.svg" />
+<Diagram alt="diagram of different shapes linked together" src="/img/blog/fig-blocks.svg" />
 
 Like the **Group List**, the **Blocks** structure represents multiple entities. The difference between a Group List and Blocks is that the Blocks structure supports multiple entities _with potentially different shapes_. This makes the relationship between entities in a Blocks structure much looser than with a Group List.
 

@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 
 interface SectionProps {
-  color?: 'seafoam'
+  color?: 'seafoam' | 'white'
 }
 
 export const Section = styled.section<SectionProps>`

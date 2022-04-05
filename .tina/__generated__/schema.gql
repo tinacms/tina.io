@@ -50,6 +50,8 @@ type Query {
   getDocumentFields: JSON!
   getPageDocument(relativePath: String): PageDocument!
   getPageList(before: String, after: String, first: Float, last: Float): PageConnection!
+  getPostDocument(relativePath: String): PostDocument!
+  getPostList(before: String, after: String, first: Float, last: Float): PostConnection!
 }
 
 type DocumentConnectionEdges {
@@ -75,16 +77,24 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float): DocumentConnection!
 }
 
-union DocumentNode = PageDocument
+union DocumentNode = PageDocument | PostDocument
 
 type PageSeo {
   title: String
   description: String
 }
 
+type PageBlocksHeroActions {
+  label: String
+  icon: Boolean
+  variant: String
+  url: String
+}
+
 type PageBlocksHero {
   headline: String
-  subline: String
+  text: String
+  actions: [PageBlocksHeroActions]
   videoSrc: String
 }
 
@@ -96,14 +106,14 @@ type PageBlocksFeaturesItemsFeatureMedia {
 
 type PageBlocksFeaturesItemsFeatureActions {
   label: String
-  icon: String
+  icon: Boolean
   variant: String
   url: String
 }
 
 type PageBlocksFeaturesItemsFeature {
   headline: String
-  subline: String
+  text: String
   media: PageBlocksFeaturesItemsFeatureMedia
   actions: [PageBlocksFeaturesItemsFeatureActions]
 }
@@ -111,35 +121,134 @@ type PageBlocksFeaturesItemsFeature {
 union PageBlocksFeaturesItems = PageBlocksFeaturesItemsFeature
 
 type PageBlocksFeatures {
-  headline: String
-  subline: String
   items: [PageBlocksFeaturesItems]
 }
 
 type PageBlocksFlyingActions {
   label: String
-  icon: String
+  icon: Boolean
   variant: String
   url: String
 }
 
-type PageBlocksFlyingItems {
-  headline: String
-  subline: String
-  cli: Boolean
-}
-
 type PageBlocksFlying {
   headline: String
-  subline: String
+  text: String
   actions: [PageBlocksFlyingActions]
-  items: [PageBlocksFlyingItems]
 }
 
-union PageBlocks = PageBlocksHero | PageBlocksFeatures | PageBlocksFlying
+type PageBlocksPricingTierOneActions {
+  label: String
+  icon: Boolean
+  variant: String
+  url: String
+}
+
+type PageBlocksPricingTierOne {
+  name: String
+  price: String
+  interval: String
+  body: JSON
+  large: Boolean
+  actions: [PageBlocksPricingTierOneActions]
+}
+
+type PageBlocksPricingTierTwoActions {
+  label: String
+  icon: Boolean
+  variant: String
+  url: String
+}
+
+type PageBlocksPricingTierTwo {
+  name: String
+  price: String
+  interval: String
+  body: JSON
+  large: Boolean
+  actions: [PageBlocksPricingTierTwoActions]
+}
+
+type PageBlocksPricingTierThreeActions {
+  label: String
+  icon: Boolean
+  variant: String
+  url: String
+}
+
+type PageBlocksPricingTierThree {
+  name: String
+  price: String
+  interval: String
+  body: JSON
+  large: Boolean
+  actions: [PageBlocksPricingTierThreeActions]
+}
+
+type PageBlocksPricingTierFourActions {
+  label: String
+  icon: Boolean
+  variant: String
+  url: String
+}
+
+type PageBlocksPricingTierFour {
+  name: String
+  price: String
+  interval: String
+  body: JSON
+  large: Boolean
+  actions: [PageBlocksPricingTierFourActions]
+}
+
+type PageBlocksPricing {
+  intro: JSON
+  tierOne: PageBlocksPricingTierOne
+  segue: JSON
+  tierTwo: PageBlocksPricingTierTwo
+  tierThree: PageBlocksPricingTierThree
+  tierFour: PageBlocksPricingTierFour
+}
+
+type PageBlocksFaqQuestions {
+  question: String
+  answer: JSON
+}
+
+type PageBlocksFaq {
+  title: String
+  intro: JSON
+  questions: [PageBlocksFaqQuestions]
+  color: String
+}
+
+type PageBlocksContentOptions {
+  narrow: Boolean
+  color: String
+  align: String
+}
+
+type PageBlocksContent {
+  options: PageBlocksContentOptions
+  content: JSON
+}
+
+type PageBlocksColumnsOptions {
+  columns: String
+  narrow: Boolean
+  color: String
+  align: String
+}
+
+type PageBlocksColumns {
+  options: PageBlocksColumnsOptions
+  columnOne: JSON
+  columnTwo: JSON
+}
+
+union PageBlocks = PageBlocksHero | PageBlocksFeatures | PageBlocksFlying | PageBlocksPricing | PageBlocksFaq | PageBlocksContent | PageBlocksColumns
 
 type Page {
-  title: String
   seo: PageSeo
   blocks: [PageBlocks]
 }
@@ -164,16 +273,53 @@ type PageConnection implements Connection {
   edges: [PageConnectionEdges]
 }
 
+union PostPrevDocument = PostDocument
+
+union PostNextDocument = PostDocument
+
+type Post {
+  title: String
+  date: String
+  last_edited: String
+  author: String
+  prev: PostPrevDocument
+  next: PostNextDocument
+  body: JSON
+}
+
+type PostDocument implements Node & Document {
+  id: ID!
+  sys: SystemInfo!
+  data: Post!
+  form: JSON!
+  values: JSON!
+  dataJSON: JSON!
+}
+
+type PostConnectionEdges {
+  cursor: String
+  node: PostDocument
+}
+
+type PostConnection implements Connection {
+  pageInfo: PageInfo
+  totalCount: Float!
+  edges: [PostConnectionEdges]
+}
+
 type Mutation {
   addPendingDocument(collection: String!, relativePath: String!, template: String): DocumentNode!
   updateDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
   createDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
   updatePageDocument(relativePath: String!, params: PageMutation!): PageDocument!
   createPageDocument(relativePath: String!, params: PageMutation!): PageDocument!
+  updatePostDocument(relativePath: String!, params: PostMutation!): PostDocument!
+  createPostDocument(relativePath: String!, params: PostMutation!): PostDocument!
 }
 
 input DocumentMutation {
   page: PageMutation
+  post: PostMutation
 }
 
 input PageSeoMutation {
@@ -181,9 +327,17 @@ input PageSeoMutation {
   description: String
 }
 
+input PageBlocksHeroActionsMutation {
+  label: String
+  icon: Boolean
+  variant: String
+  url: String
+}
+
 input PageBlocksHeroMutation {
   headline: String
-  subline: String
+  text: String
+  actions: [PageBlocksHeroActionsMutation]
   videoSrc: String
 }
 
@@ -195,14 +349,14 @@ input PageBlocksFeaturesItemsFeatureMediaMutation {
 
 input PageBlocksFeaturesItemsFeatureActionsMutation {
   label: String
-  icon: String
+  icon: Boolean
   variant: String
   url: String
 }
 
 input PageBlocksFeaturesItemsFeatureMutation {
   headline: String
-  subline: String
+  text: String
   media: PageBlocksFeaturesItemsFeatureMediaMutation
   actions: [PageBlocksFeaturesItemsFeatureActionsMutation]
 }
@@ -212,41 +366,154 @@ input PageBlocksFeaturesItemsMutation {
 }
 
 input PageBlocksFeaturesMutation {
-  headline: String
-  subline: String
   items: [PageBlocksFeaturesItemsMutation]
 }
 
 input PageBlocksFlyingActionsMutation {
   label: String
-  icon: String
+  icon: Boolean
   variant: String
   url: String
 }
 
-input PageBlocksFlyingItemsMutation {
-  headline: String
-  subline: String
-  cli: Boolean
-}
-
 input PageBlocksFlyingMutation {
   headline: String
-  subline: String
+  text: String
   actions: [PageBlocksFlyingActionsMutation]
-  items: [PageBlocksFlyingItemsMutation]
+}
+
+input PageBlocksPricingTierOneActionsMutation {
+  label: String
+  icon: Boolean
+  variant: String
+  url: String
+}
+
+input PageBlocksPricingTierOneMutation {
+  name: String
+  price: String
+  interval: String
+  body: JSON
+  large: Boolean
+  actions: [PageBlocksPricingTierOneActionsMutation]
+}
+
+input PageBlocksPricingTierTwoActionsMutation {
+  label: String
+  icon: Boolean
+  variant: String
+  url: String
+}
+
+input PageBlocksPricingTierTwoMutation {
+  name: String
+  price: String
+  interval: String
+  body: JSON
+  large: Boolean
+  actions: [PageBlocksPricingTierTwoActionsMutation]
+}
+
+input PageBlocksPricingTierThreeActionsMutation {
+  label: String
+  icon: Boolean
+  variant: String
+  url: String
+}
+
+input PageBlocksPricingTierThreeMutation {
+  name: String
+  price: String
+  interval: String
+  body: JSON
+  large: Boolean
+  actions: [PageBlocksPricingTierThreeActionsMutation]
+}
+
+input PageBlocksPricingTierFourActionsMutation {
+  label: String
+  icon: Boolean
+  variant: String
+  url: String
+}
+
+input PageBlocksPricingTierFourMutation {
+  name: String
+  price: String
+  interval: String
+  body: JSON
+  large: Boolean
+  actions: [PageBlocksPricingTierFourActionsMutation]
+}
+
+input PageBlocksPricingMutation {
+  intro: JSON
+  tierOne: PageBlocksPricingTierOneMutation
+  segue: JSON
+  tierTwo: PageBlocksPricingTierTwoMutation
+  tierThree: PageBlocksPricingTierThreeMutation
+  tierFour: PageBlocksPricingTierFourMutation
+}
+
+input PageBlocksFaqQuestionsMutation {
+  question: String
+  answer: JSON
+}
+
+input PageBlocksFaqMutation {
+  title: String
+  intro: JSON
+  questions: [PageBlocksFaqQuestionsMutation]
+  color: String
+}
+
+input PageBlocksContentOptionsMutation {
+  narrow: Boolean
+  color: String
+  align: String
+}
+
+input PageBlocksContentMutation {
+  options: PageBlocksContentOptionsMutation
+  content: JSON
+}
+
+input PageBlocksColumnsOptionsMutation {
+  columns: String
+  narrow: Boolean
+  color: String
+  align: String
+}
+
+input PageBlocksColumnsMutation {
+  options: PageBlocksColumnsOptionsMutation
+  columnOne: JSON
+  columnTwo: JSON
 }
 
 input PageBlocksMutation {
   hero: PageBlocksHeroMutation
   features: PageBlocksFeaturesMutation
   flying: PageBlocksFlyingMutation
+  pricing: PageBlocksPricingMutation
+  faq: PageBlocksFaqMutation
+  content: PageBlocksContentMutation
+  columns: PageBlocksColumnsMutation
 }
 
 input PageMutation {
-  title: String
   seo: PageSeoMutation
   blocks: [PageBlocksMutation]
+}
+
+input PostMutation {
+  title: String
+  date: String
+  last_edited: String
+  author: String
+  prev: String
+  next: String
+  body: JSON
 }
 
 schema {

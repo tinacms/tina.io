@@ -14,8 +14,16 @@ import { CloudDisclaimer } from 'components/cloud-beta-disclaimer'
 import * as ga from '../../utils/ga'
 import { Breadcrumbs } from 'components/DocumentationNavigation/Breadcrumbs'
 import { useTocListener } from 'utils/toc_helpers'
+import SetupOverview from '../../components/layout/setup-overview'
 
 export function DocTemplate(props) {
+  if (props.file.fileRelativePath.includes('setup-overview')) {
+    return <SetupOverview {...props} />
+  }
+  return <_DocTemplate {...props} />
+}
+
+function _DocTemplate(props) {
   // fallback workaround
   if (props.notFound) {
     return <Error statusCode={404} />

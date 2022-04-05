@@ -3,7 +3,7 @@ title: Active Field Indicator (Experimental)
 last_edited: '2021-11-06T18:00:00.000Z'
 ---
 
-{{ WarningCallout text="This is an experimental feature, and the API is subject to change. We don't yet suggest using this for production use-cases. Have any thoughts? Let us know in the chat, or through the [GitHub discussion](https://github.com/tinacms/tinacms/discussions/2249)!" }}
+{{ WarningCallout text="This is an experimental feature, and the API is subject to change. We don't yet suggest using this for production use-cases. Have any thoughts? Let us know in the chat, or through the [GitHub discussion](https://github.com/tinacms/tinacms/discussions/2250)!" }}
 
 ## Try it out
 

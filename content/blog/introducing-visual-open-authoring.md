@@ -4,8 +4,8 @@ date: '2020-03-09T07:00:00.000Z'
 author: Scott Gallant
 draft: false
 consumes: null
-next: /blog/tinacms-ui-whats-next
-prev: /blog/gatsby-tina-101
+next: content/blog/tinacms-ui-whats-next.md
+prev: content/blog/gatsby-tina-101.md
 ---
 
 We're focused on improving the independent web as a whole. We want to craft tools that help people build better sites and create better content.

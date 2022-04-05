@@ -248,6 +248,7 @@ export const Footer = styled(({ light, ...styleProps }) => {
   --color-background-dark: var(--color-orange-dark);
   position: relative;
   z-index: 1000;
+  flex: 0 1 auto;
 
   ${TinaIcon} {
     fill: var(--color-white);

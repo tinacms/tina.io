@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { IconRight } from '../home'
+import { IconRight } from '../blocks'
 import TinaCloudWordmark from '../../public/svg/tina-cloud-wordmark.svg'
 import { Button, ButtonGroup } from 'components/ui'
 
@@ -8,22 +8,14 @@ export function CloudBanner() {
   return (
     <>
       <div className="banner">
-        <div className="content">
+        <div className="banner-content">
           <span className="desktop">
-            <p className="text">
-              <span className="wordmark">
-                <TinaCloudWordmark />
-              </span>{' '}
-              Now supports MDX components. Give the power of MDX to your content
-              creators!
-            </p>
+            <p className="text">We're excited about what's coming in 2022!</p>
           </span>
-          <Link href="/blog/tina-supports-mdx/">
+          <Link href="/blog/tinacms-2022/">
             <a className="link">
-              <span className="desktop">Read The Announcement</span>
-              <span className="mobile">
-                Tina Cloud supports MDX components.
-              </span>
+              <span className="desktop">Read more</span>
+              <span className="mobile">From the blog: TinaCMS in 2022</span>
               <IconRight />
             </a>
           </Link>
@@ -35,7 +27,7 @@ export function CloudBanner() {
                 Sign In
               </Button>
             </Link>
-            <Link href="https://app.tina.io/quickstart">
+            <Link href="https://tina.io/docs/setup-overview/">
               <Button size="small" color="blue">
                 Get Started
               </Button>
@@ -92,6 +84,8 @@ export function CloudBanner() {
           position: relative;
           z-index: 10;
           line-height: 1.2;
+          flex: 0 1 auto;
+          width: 100%;
 
           :global(a) {
             font-weight: bold;
@@ -125,7 +119,7 @@ export function CloudBanner() {
           }
         }
 
-        .content {
+        .banner-content {
           display: flex;
           align-items: center;
         }

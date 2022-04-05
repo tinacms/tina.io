@@ -67,42 +67,25 @@ or
 npm install react-tinacms-editor
 ```
 
-Inside the `pages/_app.js` file we need to import the `MarkdownFieldPlugin` and add it to the CMS callback:
+Inside the config within the `.tina/schema.ts` file we need to import the `MarkdownFieldPlugin` and add it to the CMS callback:
 
 ```diff
-import dynamic from 'next/dynamic'
-import { TinaEditProvider } from 'tinacms/dist/edit-state'
-import '../styles/index.css'
-const TinaCMS = dynamic(() => import('tinacms'), { ssr: false })
-const App = ({ Component, pageProps }) => {
-  return (
-    <>
-      <TinaEditProvider
-        editMode={
-          <TinaCMS
-            { /* ... */ }
-+            cmsCallback={cms => {
-+                import('react-tinacms-editor').then((field)=>{
-+                  cms.plugins.add(field.MarkdownFieldPlugin)
-+                  })
-+            }}
-          >
-            { /* ... */ }
-          </TinaCMS>
-        }
-      >
-        <Component {...pageProps} />
-      </TinaEditProvider>
-    </>
-  )
-}
+// .tina/schema.ts
 
-export default App
+// ...
+export config = defineConfig({
+  apiURL,
++ cmsCallback: (cms) => {
++   import('react-tinacms-editor').then((field)=> {
++     cms.plugins.add(field.MarkdownFieldPlugin)
++   })
++ }
+})
 ```
 
 Assuming that [contextual editing](/docs/tinacms-context/) is setup on your page, your editors should be able to start editing markdown content!
 
-![markdown-editing](/gif/markdown.gif)
+![markdown-editing](https://res.cloudinary.com/forestry-demo/image/upload/v1645712826/tina-io/docs/markdown.gif)
 
 ## Rendering Markdown
 

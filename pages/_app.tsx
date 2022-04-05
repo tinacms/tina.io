@@ -9,6 +9,7 @@ import { GlobalStyle } from 'components/styles/GlobalStyle'
 import 'components/styles/fontImports.css'
 import path from 'path'
 import { TinaEditProvider } from 'tinacms/dist/edit-state'
+// @ts-ignore FIXME: default export needs to be 'ComponentType<{}>
 const TinaCMS = dynamic(() => import('tinacms'), { ssr: false })
 
 // the following line will cause all content files to be available in a serverless context
@@ -82,7 +83,44 @@ class Site extends App {
     return (
       <TinaEditProvider
         editMode={
-          <TinaCMS apiURL={process.env.NEXT_PUBLIC_TINA_ENDPOINT}>
+          <TinaCMS
+            apiURL={process.env.NEXT_PUBLIC_TINA_ENDPOINT}
+            // @ts-ignore
+            cmsCallback={cms => {
+              import('react-tinacms-editor').then(({ MarkdownFieldPlugin }) => {
+                cms.plugins.add(MarkdownFieldPlugin)
+              })
+              cms.flags.set('tina-admin', true)
+              cms.flags.set('rich-text-alt', true)
+              cms.flags.set('branch-switcher', true)
+
+              import('tinacms').then(({ RouteMappingPlugin }) => {
+                const RouteMapping = new RouteMappingPlugin(
+                  (collection, document) => {
+                    if (['page'].includes(collection.name)) {
+                      if (document.sys.filename === 'home') {
+                        return `/`
+                      }
+                      return `/${document.sys.filename}`
+                    }
+
+                    if (['post'].includes(collection.name)) {
+                      return `/blog/${document.sys.filename}`
+                    }
+
+                    return undefined
+                  }
+                )
+
+                cms.plugins.add(RouteMapping)
+              })
+            }}
+            mediaStore={async () => {
+              // Load media store dynamically so it only loads in edit mode
+              const pack = await import('next-tinacms-cloudinary')
+              return pack.TinaCloudCloudinaryMediaStore
+            }}
+          >
             <MainLayout Component={Component} pageProps={pageProps} />
           </TinaCMS>
         }

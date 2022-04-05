@@ -11,143 +11,202 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-const ACTIONS = {
-  name: 'actions' as const,
-  type: 'object' as const,
-  list: true,
-  fields: [
-    { name: 'label', type: 'string' as const },
-    { name: 'icon', type: 'string' as const },
-    { name: 'variant', type: 'string' as const },
-    { name: 'url', type: 'string' as const },
-  ],
-}
 import { defineSchema } from '@tinacms/cli'
+
+import { heroTemplate } from '../components/blocks/Hero'
+import { featuresTemplate } from '../components/blocks/Features'
+import { flyingTemplate } from '../components/blocks/Flying'
+import { pricingTemplate } from '../components/blocks/Pricing'
+import { faqTemplate } from '../components/blocks/FAQ'
+import { contentTemplate } from '../components/blocks/Content'
+import { columnsTemplate } from '../components/blocks/Columns'
 
 export default defineSchema({
   collections: [
     {
       label: 'Pages',
       name: 'page',
-      path: 'content/pages',
+      path: 'content/blocksPages',
+      format: 'json',
       fields: [
-        { type: 'string', name: 'title' },
         {
           type: 'object',
           name: 'seo',
-          label: 'SEO',
+          label: 'SEO Information',
           fields: [
-            { type: 'string', name: 'title' },
-            { type: 'string', name: 'description' },
+            { type: 'string', label: 'Title', name: 'title' },
+            {
+              type: 'string',
+              label: ' Description',
+              name: 'description',
+              ui: {
+                component: 'textarea',
+              },
+            },
           ],
         },
         {
-          label: 'Blocks',
+          label: 'Page Sections',
           name: 'blocks',
           type: 'object',
           list: true,
+          ui: {
+            visualSelector: true,
+          },
+          templates: [
+            heroTemplate,
+            featuresTemplate,
+            flyingTemplate,
+            pricingTemplate,
+            faqTemplate,
+            contentTemplate,
+            columnsTemplate,
+          ],
+        },
+      ],
+    },
+    {
+      name: 'post',
+      label: 'Blog Posts',
+      path: 'content/blog',
+      format: 'md',
+      fields: [
+        {
+          type: 'string',
+          name: 'title',
+          label: 'Title',
+        },
+        {
+          // note: default to current date/time
+          type: 'datetime',
+          name: 'date',
+          label: 'Date Created',
+        },
+        {
+          // note: this should be a hidden field that auto-updates
+          type: 'datetime',
+          name: 'last_edited',
+          label: 'Last Edited',
+        },
+        {
+          // TODO create an authors collection and make this a relation field
+          type: 'string',
+          name: 'author',
+          label: 'Author',
+        },
+        {
+          type: 'reference',
+          name: 'prev',
+          label: 'Previous Post',
+          description:
+            '(Optional) link to an earlier post at the bottom of this one',
+          collections: ['post'],
+        },
+        {
+          type: 'reference',
+          name: 'next',
+          label: 'Next Post',
+          description:
+            '(Optional) link to a later post at the bottom of this one',
+          collections: ['post'],
+        },
+        {
+          type: 'rich-text',
+          name: 'body',
+          label: 'Body',
+          isBody: true,
           templates: [
             {
-              label: 'Hero',
-              name: 'hero',
+              name: 'Youtube',
+              label: 'Youtube Embed',
               fields: [
-                { name: 'headline', type: 'string' },
-                { name: 'subline', type: 'string' },
-                { name: 'videoSrc', type: 'string' },
-              ],
-            },
-            {
-              label: 'Features',
-              name: 'features',
-              fields: [
-                { name: 'headline', type: 'string' },
-                { name: 'subline', type: 'string' },
                 {
-                  name: 'items',
-                  type: 'object',
-                  list: true,
-                  templates: [
-                    {
-                      label: 'Feature',
-                      name: 'feature',
-                      fields: [
-                        { name: 'headline', type: 'string' },
-                        { name: 'subline', type: 'string' },
-                        {
-                          name: 'media',
-                          type: 'object',
-                          fields: [
-                            { name: 'src', type: 'string' },
-                            { name: 'videoSrc', type: 'string' },
-                            { name: 'cli', type: 'boolean' },
-                          ],
-                        },
-                        ACTIONS,
-                      ],
-                    },
-                  ],
+                  type: 'string',
+                  name: 'embedSrc',
+                  label: 'Embed URL',
                 },
               ],
             },
             {
-              name: 'flying',
-              label: 'Flying',
+              name: 'CreateAppCta',
+              label: '"Create Tina App" Call-to-action',
               fields: [
-                { name: 'headline', type: 'string' },
-                { name: 'subline', type: 'string' },
-                ACTIONS,
                 {
-                  name: 'items',
-                  type: 'object',
-                  list: true,
-                  fields: [
-                    { name: 'headline', type: 'string' },
-                    { name: 'subline', type: 'string' },
-                    {
-                      name: 'cli',
-                      type: 'boolean',
-                      ui: { defaultValue: false },
-                    },
-                  ],
+                  type: 'string',
+                  name: 'ctaText',
+                  label: 'Button Text',
+                },
+                {
+                  type: 'string',
+                  name: 'cliText',
+                  label: 'CLI Command Example',
                 },
               ],
+            },
+            {
+              name: 'Callout',
+              label: 'Callout',
+              fields: [
+                {
+                  type: 'string',
+                  name: 'title',
+                  label: 'Title',
+                },
+                {
+                  type: 'string',
+                  name: 'description',
+                  label: 'Description',
+                },
+                {
+                  type: 'string',
+                  name: 'url',
+                  label: 'URL',
+                },
+                {
+                  type: 'string',
+                  name: 'buttonText',
+                  label: 'Button Text',
+                },
+              ],
+            },
+            {
+              name: 'Codesandbox',
+              label: 'Codesandbox embed',
+              fields: [
+                {
+                  type: 'string',
+                  name: 'embedSrc',
+                  label: 'Embed URL',
+                },
+                {
+                  type: 'string',
+                  name: 'title',
+                  label: 'A11y Title',
+                },
+              ],
+            },
+            {
+              name: 'Diagram',
+              label: 'Diagram',
+              fields: [
+                {
+                  type: 'string',
+                  name: 'src',
+                },
+                {
+                  type: 'string',
+                  name: 'alt',
+                },
+              ],
+            },
+            {
+              name: 'CustomFieldComponentDemo',
+              label: 'Field Component Demo [do not use]',
+              fields: [],
             },
           ],
         },
       ],
     },
-    //   We can use this collection when we want to add tina to the blog page
-    // {
-    //   name: 'blog',
-    //   path: 'content/blog',
-    //   label: 'Blog Posts',
-    //   format: 'mdx',
-    //   fields: [
-    //     {
-    //       type: 'string',
-    //       label: 'Title',
-    //       description: 'Title of the blog post',
-    //       name: 'title',
-    //     },
-    //     {
-    //       type: 'datetime',
-    //       name: 'date',
-    //     },
-    //     {
-    //       type: 'datetime',
-    //       name: 'last_edited',
-    //     },
-    //     {
-    //       type: 'string',
-    //       name: 'author',
-    //     },
-    //     {
-    //       name: 'body',
-    //       label: 'Main Content',
-    //       type: 'rich-text',
-    //       isBody: true,
-    //     },
-    //   ],
-    // },
   ],
 })

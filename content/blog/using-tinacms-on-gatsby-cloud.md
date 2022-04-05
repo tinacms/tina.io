@@ -8,8 +8,8 @@ consumes:
     details: Explains configuring git-specific environment variables to manually set author and ssh-key
   - file: /packages/@tinacms/gatsby-tinacms-git/index.ts
     details: Explains configuring git-specific environment variables to manually set author and ssh-key
-next: /blog/three-ways-to-edit-md
-prev: /blog/editing-on-the-cloud
+next: content/blog/three-ways-to-edit-md.md
+prev: content/blog/editing-on-the-cloud.md
 warningMessage: '**Update:** The examples in this post reference an outdated Gatsby implementation. We recommend using [Next.js](/docs/setup-overview/) for a solution with less friction.'
 ---
 
