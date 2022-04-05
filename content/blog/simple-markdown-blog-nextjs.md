@@ -1,6 +1,6 @@
 ---
 title: Creating a Markdown Blog with Next.js
-date: '2019-11-16T07:00:00.000Z'
+date: '2022-02-18T07:00:00.000Z'
 last_edited: '2022-02-18T07:00:00.000Z'
 author: Kendall Strautman & James Perkins
 draft: false
