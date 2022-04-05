@@ -41,7 +41,7 @@ At this point you are now ready to make requests using the Read-only token. I ha
 
 In most cases your content will be statically generated at build time, but on occasion you might need to use SSR in your Tina-powered app. It could be a page that isn’t powered by Tina but you are using our graphQL layer to power your whole application.
 
-```jsx
+```javascript
 const query = `
     getPostDocument(example.md) {
       data {
@@ -84,7 +84,7 @@ Client side rendering can be a great way to keep content on the page up to date,
 
  
 
-```jsx
+```javascript
 import { useState, useEffect } from "react";
 import { useTina } from "tinacms/dist/edit-state";
 // This is a query you want.
@@ -159,7 +159,7 @@ With Read-only tokens this has a lot less developer friction and a better user e
 2. Data is not returned, so fetch it using read-only tokens. If it’s there, return it.
 3. Data is not returned, data is not returned using read-only tokens, so return a fallback page. 
 
-```jsx
+```javascript
 import { staticRequest } from 'tinacms';
 
 const query = `query getPost($relativePath: String!) {
