@@ -1,0 +1,42 @@
+{
+  "title": "Adding Internationlization to Tina",
+  "steps": [
+    {
+      "title": "Overview",
+      "id": "/guides/tinacms/adding-internationalization-to-tina/overview/",
+      "slug": "/guides/tinacms/adding-internationalization-to-tina/overview/",
+      "data": "./overview.md"
+    },
+    {
+      "title": "Update next.config.js",
+      "id": "/guides/tinacms/adding-internationalization-to-tina/update-next-config/",
+      "slug": "/guides/tinacms/adding-internationalization-to-tina/update-next-config/",
+      "data": "./update-next-config.md"
+    },
+    {
+      "title": "Modify getStaticPaths()",
+      "id": "/guides/tinacms/adding-internationalization-to-tina/modify-get-static-paths/",
+      "slug": "/guides/tinacms/adding-internationalization-to-tina/modify-get-static-paths/"
+    },
+    {
+      "title": "Modify getStaticProps()",
+      "id": "/guides/tinacms/adding-internationalization-to-tina/modify-get-static-props/",
+      "slug": "/guides/tinacms/adding-internationalization-to-tina/modify-get-static-props/"
+    },
+    {
+      "title": "Create Locale-Ready Documents",
+      "id": "/guides/tinacms/adding-internationalization-to-tina/create-locale-ready-documents/",
+      "slug": "/guides/tinacms/adding-internationalization-to-tina/create-locale-ready-documents/"
+    },
+    {
+      "title": "Testing",
+      "id": "/guides/tinacms/adding-internationalization-to-tina/testing/",
+      "slug": "/guides/tinacms/adding-internationalization-to-tina/testing/"
+    },
+    {
+      "title": "Next Steps",
+      "id": "/guides/tinacms/adding-internationalization-to-tina/next-steps/",
+      "slug": "/guides/tinacms/adding-internationalization-to-tina/next-steps/"
+    }
+  ]
+}

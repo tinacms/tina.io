@@ -230,6 +230,17 @@
     ]
   },
   {
+    "category": "Guides",
+    "slug": "/guides",
+    "items": [
+      {
+        "id": "/guides/tinacms/adding-internationalization-to-tina/overview/",
+        "slug": "/guides/tinacms/adding-internationalization-to-tina/overview/",
+        "title": "Adding Internationalization to Tina"
+      }
+    ]
+  },
+  {
     "category": "Reference",
     "slug": "/docs/cli-overview/",
     "description": "The JavaScript toolkit for building content management interfaces",
