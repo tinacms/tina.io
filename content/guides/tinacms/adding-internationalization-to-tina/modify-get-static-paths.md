@@ -33,8 +33,8 @@ const getStaticPaths = async({ locales }) {
       paths.push({
         params: {
           filename: post.node.sys.filename,
-          locale,
         },
+        locale
       });
     });
   });
