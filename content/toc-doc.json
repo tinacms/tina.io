@@ -234,8 +234,8 @@
     "slug": "/guides",
     "items": [
       {
-        "id": "/guides/tinacms/adding-internationalization-to-tina/overview/",
-        "slug": "/guides/tinacms/adding-internationalization-to-tina/overview/",
+        "id": "/guides/tinacms/adding-internationalization-to-tina/guide/",
+        "slug": "/guides/tinacms/adding-internationalization-to-tina/guide/",
         "title": "Adding Internationalization to Tina"
       }
     ]
