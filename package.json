@@ -27,8 +27,7 @@
   "dependencies": {
     "@next/bundle-analyzer": "^10.0.0",
     "@tinacms/auth": "^0.50.2",
-    "@tinacms/datalayer": "^0.0.2",
-    "@tinacms/graphql": "^0.59.8",
+    "@tinacms/graphql": "^0.59.10",
     "@types/react-instantsearch-dom": "^5.2.6",
     "@types/styled-components": "^5.1.21",
     "@uiw/react-monacoeditor": "^3.4.5",
@@ -95,7 +94,7 @@
   },
   "devDependencies": {
     "@babel/plugin-syntax-jsx": "^7.10.4",
-    "@tinacms/cli": "^0.60.9",
+    "@tinacms/cli": "^0.60.11",
     "@types/cookie": "^0.3.3",
     "@types/glob": "^7.1.1",
     "@types/jest": "^25.1.2",
