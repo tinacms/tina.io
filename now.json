@@ -446,7 +446,7 @@
       "destination": "/guides/tina-cloud/add-tinacms-to-existing-site/overview/"
     },
     {
-      "source": "/guides/tinacms(.*)",
+      "source": "/guides/tina-cloud(.*)",
       "destination": "/guides/"
     },
     {
