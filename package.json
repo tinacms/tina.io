@@ -4,6 +4,9 @@
   "description": "A hub for Tina's documentation, blog & general info.",
   "author": "Forestry.io",
   "main": "n/a",
+  "engines": {
+    "node": ">=14"
+  },
   "scripts": {
     "dev-next": "tinacms server:start --noTelemetry -c \"next\" ",
     "dev": "yarn dev-next",
