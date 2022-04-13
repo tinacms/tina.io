@@ -27,7 +27,7 @@ My preferred branch pattern looks like the following:
 
 **blog-post-name** - Used for a blog post article. 
 
-When work on a temporary branch is complete, the pull request will go to staging. Here, it will be tested and determined if everything works as expected. A pull request will then be opened to production. Once the production release is complete, the temporary branch will be removed.
+When the work on a temporary branch is complete, the pull request will go to staging. Here, it will be tested and determined if everything works as expected. A pull request will then be opened to production. Once the production release is complete, the temporary branch will be removed.
 
 ## PR Scheduler
 
