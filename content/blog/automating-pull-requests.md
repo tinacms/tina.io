@@ -1,37 +1,15 @@
 ---
-title: Branch patterns and automating PRs
+title: Automating Pull Requests
 date: '2022-04-14T07:00:00.000Z'
 author: James Perkins
 prev: content/blog/read-only-tokens-content-anytime.md
 ---
 
-When working on a git-backed site, you don’t normally want to work directly on your main branch. Ideally, you want to be able to finish your post or site update, check if it looks good, and schedule the release. A good branch pattern and scheduler is key to making this work. In this post, we are going to cover two different options to automate your PRs and an example of the branch pattern I use with Tina.
-
-## Branch Pattern
-
-Branching patterns are very much a personal or business decision, however it usually comes down to how we work on a feature or fix, where we stage the code, and finally when we deploy it. 
-
-My preferred branch pattern looks like the following:
-
-### Permanent Branches:
-
-**main** - This holds the production site that is live and is also the source of truth.
-
-**staging** - This holds the current planned work that is ready for release but may also be a copy of the main branch.
-
-### Temporary Branches:
-
-**feature-name** - Used for a new feature on a site or application.
-
-**bug-fix-name** - Used to fix a bug that was found.
-
-**blog-post-name** - Used for a blog post article. 
-
-When the work on a temporary branch is complete, the pull request will go to staging. Here, it will be tested and determined if everything works as expected. A pull request will then be opened to production. Once the production release is complete, the temporary branch will be removed.
+When working on a git-backed site, you don’t normally want to work directly on your main branch. Ideally, you want to be able to finish your post or site update, check if it looks good, and schedule the release. In this post, we are going to cover two different options to automate your PRs to make scheduling content easier.
 
 ## PR Scheduler
 
-PR Scheduler is a GitHub integration that can be installed directly within your GitHub repositories. It was built by [Tom Kadwill](https://tomkadwill.com/) with the goal to make it easy to schedule pull requests. Instead of having to write your own GitHub action, you can write a comment in your pull request and the application will take care of it for you.
+PR Scheduler is a GitHub integration that can be installed directly within your GitHub repositories. It was built by [Tom Kadwill](https://tomkadwill.com/) with the goal to make it easy to schedule pull requests. PR Scheduler lets developers schedule PRs to be merged at a specific time. Instead of having to write your own GitHub action, you can write a comment in your pull request and the application will take care of it for you.
 
 ### How to install
 
@@ -47,20 +25,19 @@ Now, the PR Scheduler can now be used to schedule any of your pull requests. To 
 2. Add a new comment with DD/MM/YYYTHH:MM for example `@prscheduler 05/04/2022T14:00`
 3. PR Scheduler will respond back telling you it's ready.
 
-
-That's it! Now when that time comes, your PR will be merged. If you make a mistake with the time or date, just run the same command and it will reschedule.
-
 ![Example Image of PR Scheduled](https://res.cloudinary.com/forestry-demo/image/upload/v1649865121/blog-media/branch-automate-pr/Screen_Shot_2022-04-12_at_7.34.54_AM.png)
+
+That's it! Now when that time comes, your PR will be merged. If you make a mistake with the time or date, just run the same command and it will reschedule. 
 
 ## Github Actions
 
-Github Actions are a powerful and flexible way to allow you to run all sorts of DevOps workflows without needing separate tooling. Github Actions uses YAML to define workflows.
+Github Actions are a powerful and flexible way to allow you to run all sorts of DevOps workflows without needing separate tooling. Github Actions uses YAML to define workflows. This makes a great option for scheduling your pull requests where you want to have maximum control.
 
 ### Creating your GitHub Action
 
 Create a file in your project called `.github/workflows/scheduler.yml`. We will use this to create our action.
 
-There are quite a few options for Github Actions. I have used **merge-schedule-action**  in quite a few projects. This action takes a few different arguments and uses the date to schedule your PR:
+There are quite a few options for Github Actions. I have used **merge-schedule-action** in multiple personal projects, it has create customization and is easy to use. This action takes a few different arguments and uses the date to schedule your PR:
 
 ```
 name: Merge Schedule
@@ -89,9 +66,11 @@ jobs:
 
 So let us break down what is happening. We have given this job a name of Merge Schedule. It will only trigger on pull requests that are opened, edited, or synchronized. Every hour we run a job called `merge_schedule`, thanks to the cronjob `0 * * * *` 
 
-The steps are the most important here. First, the job needs to use `gr2m/merge-schedule-action@v1` and tell it the merge method to use. I have set it to merge but you could use squash if you prefer. The `time_zone` is t set to UTC by default, but can be any time zone you need.
+The steps inside of the jobs section are the most important, it tells GitHub what to do when the schedule runs. First, the job needs to use `gr2m/merge-schedule-action@v1` and tell it the merge method to use. I have set it to merge but you could use squash if you prefer. The `time_zone` is t set to UTC by default, but can be any time zone you need.
 
-The `GITHUB_TOKEN` doesn’t need to be set, since GitHub will retrieve a `GITHUB_TOKEN` to use for the account. 
+The `GITHUB_TOKEN` doesn’t need to be set, since GitHub will retrieve a `GITHUB_TOKEN` to use for the account.
+
+> If you want to read more about triggering GitHub actions check out there documentation https://docs.github.com/en/github-ae@latest/actions/using-workflows/events-that-trigger-workflows
 
 ### How to run the action
 
