@@ -56,7 +56,7 @@ That's it! Now when that time comes, your PR will be merged. If you make a mista
 
 Github Actions are a powerful and flexible way to allow you to run all sorts of DevOps workflows without needing separate tooling. Github Actions uses YAML to define workflows.
 
-### Creating your GitHub action
+### Creating your GitHub Action
 
 Create a file in your project called `.github/workflows/scheduler.yml`. We will use this to create our action.
 
