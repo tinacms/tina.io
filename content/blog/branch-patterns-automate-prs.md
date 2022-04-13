@@ -5,7 +5,7 @@ author: James Perkins
 prev: content/blog/read-only-tokens-content-anytime.md
 ---
 
-When working on a git backed site you don’t normally want to work directly on your main branch. Ideally, you want to be able to finish your post or site update, check if it looks good, and schedule the release. A good branch pattern and scheduler is key to making this work. In this post, we are going to cover two different options to automate your PRs and an example of the branch pattern I use with Tina.
+When working on a git-backed site, you don’t normally want to work directly on your main branch. Ideally, you want to be able to finish your post or site update, check if it looks good, and schedule the release. A good branch pattern and scheduler is key to making this work. In this post, we are going to cover two different options to automate your PRs and an example of the branch pattern I use with Tina.
 
 ## Branch Pattern
 
