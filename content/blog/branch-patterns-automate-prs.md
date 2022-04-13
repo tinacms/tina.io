@@ -54,7 +54,7 @@ That's it! Now when that time comes, your PR will be merged. If you make a mista
 
 ## Github Actions
 
-Github Actions are a powerful and flexible way to allow you to run all sorts of DevOps operations without needing separate tooling. Github Actions use YAML to create and run your operations. 
+Github Actions are a powerful and flexible way to allow you to run all sorts of DevOps workflows without needing separate tooling. Github Actions uses YAML to define workflows.
 
 ### Creating your GitHub action
 
