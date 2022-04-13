@@ -95,7 +95,7 @@ The `GITHUB_TOKEN` doesn’t need to be set, since GitHub will retrieve a `GITHU
 
 ### How to run the action
 
-Now that we have created the action, when you create a pull request, you need to add `/schedule YYYY-MM-DD` to your pull request description. At this point the action will check all PRs until the date matches and then deploy the code. If you need precise deployments you can use `/schedule 2019-12-31T00:00:00.000Z.`
+Now that we have created the action, when you create a pull request, you need to add `/schedule YYYY-MM-DD` to your pull request description. This Github Action will run on the schedule defined in the cron statement and check for PRs where the date matches and then deploy the code. If you need precise deployments you can use `/schedule 2019-12-31T00:00:00.000Z.`
 
 ## How to keep up to date with Tina?
 
