@@ -43,7 +43,7 @@ PR Scheduler is a GitHub integration that can be installed directly within your 
 
 Now, the PR Scheduler can now be used to schedule any of your pull requests. To initiate,do the following:
 
-1. Open  the pull request that you want to schedule.
+1. Open the pull request that you want to schedule.
 2. Add a new comment with DD/MM/YYYTHH:MM for example `@prscheduler 05/04/2022T14:00`
 3. PR Scheduler will respond back telling you it's ready.
 
