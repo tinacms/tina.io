@@ -127,6 +127,38 @@
     ]
   },
   {
+    "title": "Extending Tina NEW",
+    "id": "/docs/extending-tina/overview",
+    "slug": "/docs/extending-tina/overview/",
+    "items": [
+      {
+        "title": "Overview",
+        "id": "/docs/extending-tina/overview",
+        "slug": "/docs/extending-tina/overview/"
+      },
+      {
+        "title": "Validation",
+        "id": "/docs/extending-tina/validation",
+        "slug": "/docs/extending-tina/validation/"
+      },
+      {
+        "title": "Custom field components",
+        "id": "/docs/extending-tina/custom-field-components",
+        "slug": "/docs/extending-tina/custom-field-components/"
+      },
+      {
+        "title": "Customize List UI",
+        "id": "/docs/extending-tina/customize-list-ui",
+        "slug": "/docs/extending-tina/customize-list-ui/"
+      },
+      {
+        "title": "Format and parse input",
+        "id": "/docs/extending-tina/format-and-parse",
+        "slug": "/docs/extending-tina/format-and-parse/"
+      }
+    ]
+  },
+  {
     "title": "Extending Tina",
     "id": "/docs/advanced/extending-tina",
     "slug": "/docs/advanced/extending-tina/",

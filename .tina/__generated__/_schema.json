@@ -1,12 +1,40 @@
 {
   "version": {
-    "fullVersion": "0.59.8",
+    "fullVersion": "0.59.10",
     "major": "0",
     "minor": "59",
-    "patch": "8"
+    "patch": "10"
   },
   "meta": {},
   "collections": [
+    {
+      "label": "Test",
+      "name": "test",
+      "path": "content/test",
+      "format": "md",
+      "fields": [
+        {
+          "name": "title",
+          "type": "string",
+          "ui": {},
+          "namespace": [
+            "test",
+            "title"
+          ]
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "namespace": [
+            "test",
+            "description"
+          ]
+        }
+      ],
+      "namespace": [
+        "test"
+      ]
+    },
     {
       "label": "Pages",
       "name": "page",
@@ -2246,6 +2274,8 @@
           "type": "string",
           "name": "title",
           "label": "Title",
+          "list": false,
+          "ui": {},
           "namespace": [
             "post",
             "title"

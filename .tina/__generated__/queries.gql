@@ -1,3 +1,42 @@
+query getTestDocument($relativePath: String!) {
+  getTestDocument(relativePath: $relativePath) {
+    sys {
+      filename
+      basename
+      breadcrumbs
+      path
+      relativePath
+      extension
+    }
+    id
+    data {
+      ...TestParts
+    }
+  }
+}
+
+query getTestList {
+  getTestList {
+    totalCount
+    edges {
+      node {
+        id
+        sys {
+          filename
+          basename
+          breadcrumbs
+          path
+          relativePath
+          extension
+        }
+        data {
+          ...TestParts
+        }
+      }
+    }
+  }
+}
+
 query getPageDocument($relativePath: String!) {
   getPageDocument(relativePath: $relativePath) {
     sys {
