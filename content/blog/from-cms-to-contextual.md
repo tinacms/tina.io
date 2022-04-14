@@ -1,6 +1,6 @@
 ---
 title: From CMS To Contextual Editing 
-date: '2022-03-16:T07:00:00.000Z'
+date: '2022-03-16T07:00:00.000Z'
 author: James Perkins
 ---
 
