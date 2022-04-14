@@ -3,7 +3,7 @@ title: Filtering a query result
 id: /docs/graphql/queries/advanced/filter-documents
 next: /docs/graphql/queries/advanced/sorting
 ---
-{{ WarningCallout text="This is an experimental feature, and the API is subject to change. We don't yet suggest using this for production use-cases. Have any thoughts? Let us know in the chat, or through the [GitHub discussion](https://github.com/tinacms/tinacms/discussions/)!" }}
+{{ WarningCallout text="This is an experimental feature, and the API is subject to change. We don't yet suggest using this for production use-cases. Have any thoughts? Let us know in the chat, or through the [GitHub discussion](https://github.com/tinacms/tinacms/discussions/2811)!" }}
 
 Tina automatically creates filters for collections defined in your schema.
 
