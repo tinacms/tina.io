@@ -4,10 +4,9 @@ id: /docs/graphql/queries/query-documents
 next: /docs/graphql/queries/advanced/filter-documents
 ---
 
-List queries offer limited functionality for now.
+List queries offer limited functionality for now. Depending on how many items you may have in your collection, the query could be quite slow.
 
-- Because of the nature of list items, we don't currently auto-generate Tina forms for these queries.
-- Depending on how many items you may have in your collection, the query could be quite slow. To improve query performance, as well as utilize [filtering](/docs/graphql/queries/advanced/filter-documents), [sorting](/docs/graphql/queries/advanced/sorting), and [pagination](/docs/graphql/queries/advanced/pagination), we recommend [enabling](/docs/tina-cloud/data-layer/#enabling-the-data-layer) the experimental data layer.
+To improve query performance, as well as utilize [filtering](/docs/graphql/queries/advanced/filter-documents), [sorting](/docs/graphql/queries/advanced/sorting), and [pagination](/docs/graphql/queries/advanced/pagination), we recommend [enabling](/docs/tina-cloud/data-layer/#enabling-the-data-layer) the experimental data layer.
 
 ## Example
 
