@@ -2367,30 +2367,6 @@
     yarn "^1.22.17"
     yup "^0.32.9"
 
-"@tinacms/datalayer@0.0.0-202237155422":
-  version "0.0.0-202237155422"
-  resolved "https://registry.yarnpkg.com/@tinacms/datalayer/-/datalayer-0.0.0-202237155422.tgz#afe8d60f68dcda6baf4d648aed2e36c9849001f1"
-  integrity sha512-Xmq65ra6M+0QnP4ZmESRCPyzNXMkZQYmVbC2EiM24GRcdFiDeeIBBoJOIoBsLfN9TZZUaY9R9txHv9E4Rzl7qQ==
-  dependencies:
-    "@octokit/auth-app" "^2.6.0"
-    "@octokit/graphql" "^4.5.6"
-    "@octokit/rest" "18.0.6"
-    encoding-down "^7.1.0"
-    fast-glob "^3.2.5"
-    fs-extra "^9.0.1"
-    graphql "^15.3.0"
-    gray-matter "^4.0.2"
-    js-yaml "^3.14.0"
-    jsonpath-plus "^6.0.1"
-    level "^7.0.1"
-    leveldown "^6.1.0"
-    levelup "^5.1.1"
-    lodash "^4.17.20"
-    memdown "^6.1.1"
-    normalize-path "^3.0.0"
-    prettier "^2.2.1"
-    yup "^0.32.9"
-
 "@tinacms/datalayer@0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@tinacms/datalayer/-/datalayer-0.1.0.tgz#f851ddea69331cbba429877a8a6807cd9791fac1"

@@ -3,7 +3,7 @@ title: Query performance
 id: /docs/graphql/queries/advanced/performance
 next: /docs/graphql/queries/advanced/limitations
 ---
-{{ WarningCallout text="This is an experimental feature, and the API is subject to change. We don't yet suggest using this for production use-cases. Have any thoughts? Let us know in the chat, or through the [GitHub discussion](https://github.com/tinacms/tinacms/discussions/)!" }}
+{{ WarningCallout text="This is an experimental feature, and the API is subject to change. We don't yet suggest using this for production use-cases. Have any thoughts? Let us know in the chat, or through the [GitHub discussion](https://github.com/tinacms/tinacms/discussions/2811)!" }}
 
 The GraphQL API indexes on collection fields to provide sorted results when using the `sort` parameter. If a `filter` is specified, the existence of an index can have a large impact on how quickly a query executes.
 

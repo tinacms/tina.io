@@ -3,7 +3,7 @@ title: Paginating query results
 id: /docs/graphql/queries/advanced/pagination
 next: /docs/graphql/queries/advanced/performance
 ---
-{{ WarningCallout text="This is an experimental feature, and the API is subject to change. We don't yet suggest using this for production use-cases. Have any thoughts? Let us know in the chat, or through the [GitHub discussion](https://github.com/tinacms/tinacms/discussions/)!" }}
+{{ WarningCallout text="This is an experimental feature, and the API is subject to change. We don't yet suggest using this for production use-cases. Have any thoughts? Let us know in the chat, or through the [GitHub discussion](https://github.com/tinacms/tinacms/discussions/2811)!" }}
 
 Collection queries implement cursor based pagination. The client specifies a result limit parameter (using `first` or `last`) and a corresponding cursor parameter (using `after` or `before`) which is a pointer to the last item on the previous page of results.
 

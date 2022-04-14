@@ -3,7 +3,7 @@ title: Sorting query results
 id: /docs/graphql/queries/advanced/sorting
 next: /docs/graphql/queries/advanced/pagination
 ---
-{{ WarningCallout text="This is an experimental feature, and the API is subject to change. We don't yet suggest using this for production use-cases. Have any thoughts? Let us know in the chat, or through the [GitHub discussion](https://github.com/tinacms/tinacms/discussions/)!" }}
+{{ WarningCallout text="This is an experimental feature, and the API is subject to change. We don't yet suggest using this for production use-cases. Have any thoughts? Let us know in the chat, or through the [GitHub discussion](https://github.com/tinacms/tinacms/discussions/2811)!" }}
 
 To sort collection results by a collection field, pass the `sort` argument to the `get<collection>List` query, with the value corresponding to the desired collection field to sort by. Results are returned in ascending order.
 
