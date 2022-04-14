@@ -40,6 +40,14 @@ This will,
 4. Create example content in the demo directory.
 5. Edit the `package.json` to have the `dev`, `build`, and `start` scripts run the tina GraphQL API.
 
+#### Optional parameters
+
+| Argument                    | Description                                                                              |
+|-----------------------------|------------------------------------------------------------------------------------------|
+| `--experimentalData`        | Enables the experimental [data layer](/docs/tina-cloud/data-layer/)                      |
+| `--noTelemetry`             | Disables Open Source Telemetry                                                           |
+| `--schemaFileType`          | Overrides default Tina schema file type. Valid values are: `.ts`, `.tsx`, `.js`, `.jsx`  |
+
 ### `tinacms server:start`
 
 > To run this command, you must have a valid `.tina/schema.ts` file.
