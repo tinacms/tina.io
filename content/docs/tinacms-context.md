@@ -67,6 +67,8 @@ export const getStaticProps = async () => {
 - `query` and `variables`: These are the same values that you would use for the [backend data-fetching](/docs/features/data-fetching/).
 - `data`: This is the production value that gets passed through to the response unchanged in production.
 
+> Note: Only queries for individual documents can be used with `useTina`
+
 ## Accessing contextual-editing from the CMS
 
 At this point, when your editors go to `/your-page-url` in edit-mode, they will be able to edit and see those changes reflected in real-time. Next, let's wire up the CMS so that users will be navigated to that same editing experience when clicking any document in the Document List (instead of seeing the basic editor).
