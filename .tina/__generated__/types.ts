@@ -68,8 +68,6 @@ export type Query = {
   getDocument: DocumentNode;
   getDocumentList: DocumentConnection;
   getDocumentFields: Scalars['JSON'];
-  getTestDocument: TestDocument;
-  getTestList: TestConnection;
   getPageDocument: PageDocument;
   getPageList: PageConnection;
   getPostDocument: PostDocument;
@@ -99,20 +97,6 @@ export type QueryGetDocumentArgs = {
 
 
 export type QueryGetDocumentListArgs = {
-  before?: InputMaybe<Scalars['String']>;
-  after?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Float']>;
-  last?: InputMaybe<Scalars['Float']>;
-  sort?: InputMaybe<Scalars['String']>;
-};
-
-
-export type QueryGetTestDocumentArgs = {
-  relativePath?: InputMaybe<Scalars['String']>;
-};
-
-
-export type QueryGetTestListArgs = {
   before?: InputMaybe<Scalars['String']>;
   after?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Float']>;
@@ -183,36 +167,7 @@ export type CollectionDocumentsArgs = {
   sort?: InputMaybe<Scalars['String']>;
 };
 
-export type DocumentNode = TestDocument | PageDocument | PostDocument;
-
-export type Test = {
-  __typename?: 'Test';
-  username?: Maybe<Scalars['String']>;
-  lastUpdated?: Maybe<Scalars['String']>;
-};
-
-export type TestDocument = Node & Document & {
-  __typename?: 'TestDocument';
-  id: Scalars['ID'];
-  sys: SystemInfo;
-  data: Test;
-  form: Scalars['JSON'];
-  values: Scalars['JSON'];
-  dataJSON: Scalars['JSON'];
-};
-
-export type TestConnectionEdges = {
-  __typename?: 'TestConnectionEdges';
-  cursor?: Maybe<Scalars['String']>;
-  node?: Maybe<TestDocument>;
-};
-
-export type TestConnection = Connection & {
-  __typename?: 'TestConnection';
-  pageInfo?: Maybe<PageInfo>;
-  totalCount: Scalars['Float'];
-  edges?: Maybe<Array<Maybe<TestConnectionEdges>>>;
-};
+export type DocumentNode = PageDocument | PostDocument;
 
 export type PageSeo = {
   __typename?: 'PageSeo';
@@ -479,8 +434,6 @@ export type Mutation = {
   addPendingDocument: DocumentNode;
   updateDocument: DocumentNode;
   createDocument: DocumentNode;
-  updateTestDocument: TestDocument;
-  createTestDocument: TestDocument;
   updatePageDocument: PageDocument;
   createPageDocument: PageDocument;
   updatePostDocument: PostDocument;
@@ -509,18 +462,6 @@ export type MutationCreateDocumentArgs = {
 };
 
 
-export type MutationUpdateTestDocumentArgs = {
-  relativePath: Scalars['String'];
-  params: TestMutation;
-};
-
-
-export type MutationCreateTestDocumentArgs = {
-  relativePath: Scalars['String'];
-  params: TestMutation;
-};
-
-
 export type MutationUpdatePageDocumentArgs = {
   relativePath: Scalars['String'];
   params: PageMutation;
@@ -545,14 +486,8 @@ export type MutationCreatePostDocumentArgs = {
 };
 
 export type DocumentMutation = {
-  test?: InputMaybe<TestMutation>;
   page?: InputMaybe<PageMutation>;
   post?: InputMaybe<PostMutation>;
-};
-
-export type TestMutation = {
-  username?: InputMaybe<Scalars['String']>;
-  lastUpdated?: InputMaybe<Scalars['String']>;
 };
 
 export type PageSeoMutation = {
@@ -756,23 +691,9 @@ export type GetExpandedPostDocumentQueryVariables = Exact<{
 
 export type GetExpandedPostDocumentQuery = { __typename?: 'Query', getPostDocument: { __typename?: 'PostDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Post', title?: string | null, date?: string | null, last_edited?: string | null, author?: string | null, body?: any | null, prev?: { __typename?: 'PostDocument', id: string, data: { __typename?: 'Post', title?: string | null } } | null, next?: { __typename?: 'PostDocument', id: string, data: { __typename?: 'Post', title?: string | null } } | null } } };
 
-export type TestPartsFragment = { __typename?: 'Test', username?: string | null, lastUpdated?: string | null };
-
 export type PagePartsFragment = { __typename?: 'Page', seo?: { __typename: 'PageSeo', title?: string | null, description?: string | null } | null, blocks?: Array<{ __typename: 'PageBlocksHero', headline?: string | null, text?: string | null, videoSrc?: string | null, actions?: Array<{ __typename: 'PageBlocksHeroActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksFeatures', items?: Array<{ __typename: 'PageBlocksFeaturesItemsFeature', headline?: string | null, text?: string | null, media?: { __typename: 'PageBlocksFeaturesItemsFeatureMedia', src?: string | null, videoSrc?: string | null, cli?: boolean | null } | null, actions?: Array<{ __typename: 'PageBlocksFeaturesItemsFeatureActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null> | null } | { __typename: 'PageBlocksFlying', headline?: string | null, text?: string | null, actions?: Array<{ __typename: 'PageBlocksFlyingActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksPricing', intro?: any | null, segue?: any | null, tierOne?: { __typename: 'PageBlocksPricingTierOne', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierOneActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null, tierTwo?: { __typename: 'PageBlocksPricingTierTwo', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierTwoActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null, tierThree?: { __typename: 'PageBlocksPricingTierThree', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierThreeActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null, tierFour?: { __typename: 'PageBlocksPricingTierFour', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierFourActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null } | { __typename: 'PageBlocksFaq', title?: string | null, intro?: any | null, color?: string | null, questions?: Array<{ __typename: 'PageBlocksFaqQuestions', question?: string | null, answer?: any | null } | null> | null } | { __typename: 'PageBlocksContent', content?: any | null, options?: { __typename: 'PageBlocksContentOptions', narrow?: boolean | null, color?: string | null, align?: string | null } | null } | { __typename: 'PageBlocksColumns', columnOne?: any | null, columnTwo?: any | null, options?: { __typename: 'PageBlocksColumnsOptions', columns?: string | null, narrow?: boolean | null, color?: string | null, align?: string | null } | null } | null> | null };
 
 export type PostPartsFragment = { __typename?: 'Post', title?: string | null, date?: string | null, last_edited?: string | null, author?: string | null, body?: any | null, prev?: { __typename?: 'PostDocument', id: string } | null, next?: { __typename?: 'PostDocument', id: string } | null };
-
-export type GetTestDocumentQueryVariables = Exact<{
-  relativePath: Scalars['String'];
-}>;
-
-
-export type GetTestDocumentQuery = { __typename?: 'Query', getTestDocument: { __typename?: 'TestDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Test', username?: string | null, lastUpdated?: string | null } } };
-
-export type GetTestListQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetTestListQuery = { __typename?: 'Query', getTestList: { __typename?: 'TestConnection', totalCount: number, edges?: Array<{ __typename?: 'TestConnectionEdges', node?: { __typename?: 'TestDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Test', username?: string | null, lastUpdated?: string | null } } | null } | null> | null } };
 
 export type GetPageDocumentQueryVariables = Exact<{
   relativePath: Scalars['String'];
@@ -798,12 +719,6 @@ export type GetPostListQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetPostListQuery = { __typename?: 'Query', getPostList: { __typename?: 'PostConnection', totalCount: number, edges?: Array<{ __typename?: 'PostConnectionEdges', node?: { __typename?: 'PostDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Post', title?: string | null, date?: string | null, last_edited?: string | null, author?: string | null, body?: any | null, prev?: { __typename?: 'PostDocument', id: string } | null, next?: { __typename?: 'PostDocument', id: string } | null } } | null } | null> | null } };
 
-export const TestPartsFragmentDoc = gql`
-    fragment TestParts on Test {
-  username
-  lastUpdated
-}
-    `;
 export const PagePartsFragmentDoc = gql`
     fragment PageParts on Page {
   seo {
@@ -1012,47 +927,6 @@ export const GetExpandedPostDocumentDocument = gql`
   }
 }
     `;
-export const GetTestDocumentDocument = gql`
-    query getTestDocument($relativePath: String!) {
-  getTestDocument(relativePath: $relativePath) {
-    sys {
-      filename
-      basename
-      breadcrumbs
-      path
-      relativePath
-      extension
-    }
-    id
-    data {
-      ...TestParts
-    }
-  }
-}
-    ${TestPartsFragmentDoc}`;
-export const GetTestListDocument = gql`
-    query getTestList {
-  getTestList {
-    totalCount
-    edges {
-      node {
-        id
-        sys {
-          filename
-          basename
-          breadcrumbs
-          path
-          relativePath
-          extension
-        }
-        data {
-          ...TestParts
-        }
-      }
-    }
-  }
-}
-    ${TestPartsFragmentDoc}`;
 export const GetPageDocumentDocument = gql`
     query getPageDocument($relativePath: String!) {
   getPageDocument(relativePath: $relativePath) {
@@ -1140,12 +1014,6 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
     return {
       getExpandedPostDocument(variables: GetExpandedPostDocumentQueryVariables, options?: C): Promise<{data: GetExpandedPostDocumentQuery, variables: GetExpandedPostDocumentQueryVariables, query: string}> {
         return requester<{data: GetExpandedPostDocumentQuery, variables: GetExpandedPostDocumentQueryVariables, query: string}, GetExpandedPostDocumentQueryVariables>(GetExpandedPostDocumentDocument, variables, options);
-      },
-    getTestDocument(variables: GetTestDocumentQueryVariables, options?: C): Promise<{data: GetTestDocumentQuery, variables: GetTestDocumentQueryVariables, query: string}> {
-        return requester<{data: GetTestDocumentQuery, variables: GetTestDocumentQueryVariables, query: string}, GetTestDocumentQueryVariables>(GetTestDocumentDocument, variables, options);
-      },
-    getTestList(variables?: GetTestListQueryVariables, options?: C): Promise<{data: GetTestListQuery, variables: GetTestListQueryVariables, query: string}> {
-        return requester<{data: GetTestListQuery, variables: GetTestListQueryVariables, query: string}, GetTestListQueryVariables>(GetTestListDocument, variables, options);
       },
     getPageDocument(variables: GetPageDocumentQueryVariables, options?: C): Promise<{data: GetPageDocumentQuery, variables: GetPageDocumentQueryVariables, query: string}> {
         return requester<{data: GetPageDocumentQuery, variables: GetPageDocumentQueryVariables, query: string}, GetPageDocumentQueryVariables>(GetPageDocumentDocument, variables, options);

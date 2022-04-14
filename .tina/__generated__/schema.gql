@@ -49,8 +49,6 @@ type Query {
   getDocument(collection: String, relativePath: String): DocumentNode!
   getDocumentList(before: String, after: String, first: Float, last: Float, sort: String): DocumentConnection!
   getDocumentFields: JSON!
-  getTestDocument(relativePath: String): TestDocument!
-  getTestList(before: String, after: String, first: Float, last: Float, sort: String): TestConnection!
   getPageDocument(relativePath: String): PageDocument!
   getPageList(before: String, after: String, first: Float, last: Float, sort: String): PageConnection!
   getPostDocument(relativePath: String): PostDocument!
@@ -80,32 +78,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String): DocumentConnection!
 }
 
-union DocumentNode = TestDocument | PageDocument | PostDocument
-
-type Test {
-  username: String
-  lastUpdated: String
-}
-
-type TestDocument implements Node & Document {
-  id: ID!
-  sys: SystemInfo!
-  data: Test!
-  form: JSON!
-  values: JSON!
-  dataJSON: JSON!
-}
-
-type TestConnectionEdges {
-  cursor: String
-  node: TestDocument
-}
-
-type TestConnection implements Connection {
-  pageInfo: PageInfo
-  totalCount: Float!
-  edges: [TestConnectionEdges]
-}
+union DocumentNode = PageDocument | PostDocument
 
 type PageSeo {
   title: String
@@ -339,8 +312,6 @@ type Mutation {
   addPendingDocument(collection: String!, relativePath: String!, template: String): DocumentNode!
   updateDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
   createDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
-  updateTestDocument(relativePath: String!, params: TestMutation!): TestDocument!
-  createTestDocument(relativePath: String!, params: TestMutation!): TestDocument!
   updatePageDocument(relativePath: String!, params: PageMutation!): PageDocument!
   createPageDocument(relativePath: String!, params: PageMutation!): PageDocument!
   updatePostDocument(relativePath: String!, params: PostMutation!): PostDocument!
@@ -348,14 +319,8 @@ type Mutation {
 }
 
 input DocumentMutation {
-  test: TestMutation
   page: PageMutation
   post: PostMutation
-}
-
-input TestMutation {
-  username: String
-  lastUpdated: String
 }
 
 input PageSeoMutation {

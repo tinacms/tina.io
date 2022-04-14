@@ -8,36 +8,6 @@
   "meta": {},
   "collections": [
     {
-      "label": "Test",
-      "name": "test",
-      "path": "content/test",
-      "format": "md",
-      "fields": [
-        {
-          "name": "username",
-          "type": "string",
-          "label": "Username",
-          "ui": {},
-          "namespace": [
-            "test",
-            "username"
-          ]
-        },
-        {
-          "name": "lastUpdated",
-          "type": "string",
-          "ui": {},
-          "namespace": [
-            "test",
-            "lastUpdated"
-          ]
-        }
-      ],
-      "namespace": [
-        "test"
-      ]
-    },
-    {
       "label": "Pages",
       "name": "page",
       "path": "content/blocksPages",

@@ -11,7 +11,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { defineSchema, TextField } from 'tinacms'
+import { defineSchema } from 'tinacms'
 
 import { heroTemplate } from '../components/blocks/Hero'
 import { featuresTemplate } from '../components/blocks/Features'
@@ -21,45 +21,10 @@ import { faqTemplate } from '../components/blocks/FAQ'
 import { contentTemplate } from '../components/blocks/Content'
 import { columnsTemplate } from '../components/blocks/Columns'
 import type { TinaTemplate } from 'tinacms'
-import { parse } from 'path'
 
 
 export default defineSchema({
   collections: [
-    
-    {
-      label: "Test",
-      name: "test",
-      path: "content/test",
-      format: "md",
-      fields: [
-        {
-         name: "username",
-         type: "string",
-         label: "Username",
-         ui: {
-// is called on every form change but result is stored in data and not in the form value (saved to file but not displayed to the user)
-           parse: (val?: string)=>val && val.toUpperCase(),
-// Is called on every form change and the result is put back into the value of the form (displayed to the user)           
-           format: (val?: string)=> (val ? val.toLowerCase() : ""),
-         },
-        },
-        {
-          name: "lastUpdated",
-          type: "string",
-          ui: {
-            parse: (val?: string)=>val || "",
-            format: ()=> {
-              return (new Date()).toLocaleDateString()
-            },
-            component: ({input})=>{
-              return <div>Last updated: {input.value}</div>
-            }
-          },
-         },
-        
-    ]
-    },
     {
       label: 'Pages',
       name: 'page',

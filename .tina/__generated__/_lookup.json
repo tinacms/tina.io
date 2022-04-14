@@ -3,7 +3,6 @@
     "type": "DocumentConnection",
     "resolveType": "multiCollectionDocumentList",
     "collections": [
-      "test",
       "page",
       "post"
     ]
@@ -17,18 +16,6 @@
     "resolveType": "multiCollectionDocument",
     "createDocument": "create",
     "updateDocument": "update"
-  },
-  "TestDocument": {
-    "type": "TestDocument",
-    "resolveType": "collectionDocument",
-    "collection": "test",
-    "createTestDocument": "create",
-    "updateTestDocument": "update"
-  },
-  "TestConnection": {
-    "type": "TestConnection",
-    "resolveType": "collectionDocumentList",
-    "collection": "test"
   },
   "PageBlocksFeaturesItems": {
     "type": "PageBlocksFeaturesItems",
