@@ -1,6 +1,6 @@
 ---
 title: From CMS To Contextual Editing 
-date: '2022-03-16:00:00-04:00'
+date: '2022-03-16T07:00:00.000Z'
 author: James Perkins
 ---
 
@@ -12,7 +12,7 @@ Tina allows you as a developer to create an amazing editing experience. By defau
 
 For this blog post we are going to use Tina’s example which is located in the Next.js official examples and allows us to use `create-next-app`.This example is based upon Next.js blog starter which is a markdown blog.
 
-> You can find the source code in the Next.js examples directory, [https://github.com/vercel/next.js/tree/canary/examples/cms-tina](https://github.com/vercel/next.js/tree/canary/examples/cms-tina).
+> You can find the source code in the Next.js examples directory, under the name [cms-tina](https://github.com/vercel/next.js/tree/canary/examples/cms-tina).
 
 ```bash
 ## Create our new Tina site
