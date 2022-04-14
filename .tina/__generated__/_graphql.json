@@ -1478,7 +1478,7 @@
           "kind": "FieldDefinition",
           "name": {
             "kind": "Name",
-            "value": "title"
+            "value": "username"
           },
           "arguments": [],
           "type": {
@@ -1493,7 +1493,7 @@
           "kind": "FieldDefinition",
           "name": {
             "kind": "Name",
-            "value": "description"
+            "value": "lastUpdated"
           },
           "arguments": [],
           "type": {
@@ -4789,7 +4789,7 @@
           "kind": "InputValueDefinition",
           "name": {
             "kind": "Name",
-            "value": "title"
+            "value": "username"
           },
           "type": {
             "kind": "NamedType",
@@ -4803,7 +4803,7 @@
           "kind": "InputValueDefinition",
           "name": {
             "kind": "Name",
-            "value": "description"
+            "value": "lastUpdated"
           },
           "type": {
             "kind": "NamedType",

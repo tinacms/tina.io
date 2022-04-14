@@ -11,7 +11,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { defineSchema } from 'tinacms'
+import { defineSchema, TextField } from 'tinacms'
 
 import { heroTemplate } from '../components/blocks/Hero'
 import { featuresTemplate } from '../components/blocks/Features'
@@ -21,9 +21,12 @@ import { faqTemplate } from '../components/blocks/FAQ'
 import { contentTemplate } from '../components/blocks/Content'
 import { columnsTemplate } from '../components/blocks/Columns'
 import type { TinaTemplate } from 'tinacms'
+import { parse } from 'path'
+
 
 export default defineSchema({
   collections: [
+    
     {
       label: "Test",
       name: "test",
@@ -31,22 +34,30 @@ export default defineSchema({
       format: "md",
       fields: [
         {
-         name: "title",
+         name: "username",
          type: "string",
+         label: "Username",
          ui: {
-           validate: (value, data)=>{
-             const lengthOfTitle = value?.length || 0
-             const lengthOfDescription =data?.description?.length || 0
-             if(lengthOfTitle >= lengthOfDescription){
-               return 'The description must be longer then the title'
-             }
-           }
-         }
-      },
-      {
-        name: "description",
-        type: "string",
-      },
+// is called on every form change but result is stored in data and not in the form value (saved to file but not displayed to the user)
+           parse: (val?: string)=>val && val.toUpperCase(),
+// Is called on every form change and the result is put back into the value of the form (displayed to the user)           
+           format: (val?: string)=> (val ? val.toLowerCase() : ""),
+         },
+        },
+        {
+          name: "lastUpdated",
+          type: "string",
+          ui: {
+            parse: (val?: string)=>val || "",
+            format: ()=> {
+              return (new Date()).toLocaleDateString()
+            },
+            component: ({input})=>{
+              return <div>Last updated: {input.value}</div>
+            }
+          },
+         },
+        
     ]
     },
     {
@@ -103,7 +114,7 @@ export default defineSchema({
           label: 'Title',
           list: false,
           ui: {
-            validate: (value, _data) => {
+            validate: (value) => {
               if (value.length > 40) {
                 return 'Title can not be more then 40 characters long'
               }

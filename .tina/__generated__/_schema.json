@@ -14,20 +14,22 @@
       "format": "md",
       "fields": [
         {
-          "name": "title",
+          "name": "username",
+          "type": "string",
+          "label": "Username",
+          "ui": {},
+          "namespace": [
+            "test",
+            "username"
+          ]
+        },
+        {
+          "name": "lastUpdated",
           "type": "string",
           "ui": {},
           "namespace": [
             "test",
-            "title"
-          ]
-        },
-        {
-          "name": "description",
-          "type": "string",
-          "namespace": [
-            "test",
-            "description"
+            "lastUpdated"
           ]
         }
       ],

@@ -83,8 +83,8 @@ type Collection {
 union DocumentNode = TestDocument | PageDocument | PostDocument
 
 type Test {
-  title: String
-  description: String
+  username: String
+  lastUpdated: String
 }
 
 type TestDocument implements Node & Document {
@@ -354,8 +354,8 @@ input DocumentMutation {
 }
 
 input TestMutation {
-  title: String
-  description: String
+  username: String
+  lastUpdated: String
 }
 
 input PageSeoMutation {

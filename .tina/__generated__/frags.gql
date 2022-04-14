@@ -1,6 +1,6 @@
 fragment TestParts on Test {
-  title
-  description
+  username
+  lastUpdated
 }
 
 fragment PageParts on Page {

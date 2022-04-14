@@ -9,6 +9,8 @@ Tina allows frontend validation to be provided in the form of a function. This f
 
 Example;
 ```ts
+// .tina/schema.{js,tsx}
+
 //...
 {
     type: 'string'
@@ -25,10 +27,11 @@ Example;
 
 <!-- TODO: add screenshot -->
 
-
-If you also want to include other field values of the form in the validation, a data argument can be used.
+To include other field values of the form in the validation, a data argument can be used.
 
 ```ts
+// .tina/schema.{js,tsx}
+
 /// ...
 fields: [
     // Other fields...
@@ -38,7 +41,7 @@ fields: [
          ui: {
            validate: (value, data)=>{
              const lengthOfTitle = value?.length || 0
-             //  We have access to value by using data?.<Name of field>
+//  We have access to value of description by using data?.<Name of field>
              const lengthOfDescription =data?.description?.length || 0
              if(lengthOfTitle >= lengthOfDescription){
                return 'The description must be longer then the title'
@@ -57,7 +60,7 @@ fields: [
 
 
 
-Support schema types that can use `validate`
+The following schema types support the use of `validate`
 - [string](/docs/reference/types/string/)
 - [datetime](/docs/reference/types/datetime/)
 - [boolean](/docs/reference/types/boolean/)

@@ -187,8 +187,8 @@ export type DocumentNode = TestDocument | PageDocument | PostDocument;
 
 export type Test = {
   __typename?: 'Test';
-  title?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
+  username?: Maybe<Scalars['String']>;
+  lastUpdated?: Maybe<Scalars['String']>;
 };
 
 export type TestDocument = Node & Document & {
@@ -551,8 +551,8 @@ export type DocumentMutation = {
 };
 
 export type TestMutation = {
-  title?: InputMaybe<Scalars['String']>;
-  description?: InputMaybe<Scalars['String']>;
+  username?: InputMaybe<Scalars['String']>;
+  lastUpdated?: InputMaybe<Scalars['String']>;
 };
 
 export type PageSeoMutation = {
@@ -756,7 +756,7 @@ export type GetExpandedPostDocumentQueryVariables = Exact<{
 
 export type GetExpandedPostDocumentQuery = { __typename?: 'Query', getPostDocument: { __typename?: 'PostDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Post', title?: string | null, date?: string | null, last_edited?: string | null, author?: string | null, body?: any | null, prev?: { __typename?: 'PostDocument', id: string, data: { __typename?: 'Post', title?: string | null } } | null, next?: { __typename?: 'PostDocument', id: string, data: { __typename?: 'Post', title?: string | null } } | null } } };
 
-export type TestPartsFragment = { __typename?: 'Test', title?: string | null, description?: string | null };
+export type TestPartsFragment = { __typename?: 'Test', username?: string | null, lastUpdated?: string | null };
 
 export type PagePartsFragment = { __typename?: 'Page', seo?: { __typename: 'PageSeo', title?: string | null, description?: string | null } | null, blocks?: Array<{ __typename: 'PageBlocksHero', headline?: string | null, text?: string | null, videoSrc?: string | null, actions?: Array<{ __typename: 'PageBlocksHeroActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksFeatures', items?: Array<{ __typename: 'PageBlocksFeaturesItemsFeature', headline?: string | null, text?: string | null, media?: { __typename: 'PageBlocksFeaturesItemsFeatureMedia', src?: string | null, videoSrc?: string | null, cli?: boolean | null } | null, actions?: Array<{ __typename: 'PageBlocksFeaturesItemsFeatureActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null> | null } | { __typename: 'PageBlocksFlying', headline?: string | null, text?: string | null, actions?: Array<{ __typename: 'PageBlocksFlyingActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksPricing', intro?: any | null, segue?: any | null, tierOne?: { __typename: 'PageBlocksPricingTierOne', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierOneActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null, tierTwo?: { __typename: 'PageBlocksPricingTierTwo', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierTwoActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null, tierThree?: { __typename: 'PageBlocksPricingTierThree', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierThreeActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null, tierFour?: { __typename: 'PageBlocksPricingTierFour', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierFourActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null } | { __typename: 'PageBlocksFaq', title?: string | null, intro?: any | null, color?: string | null, questions?: Array<{ __typename: 'PageBlocksFaqQuestions', question?: string | null, answer?: any | null } | null> | null } | { __typename: 'PageBlocksContent', content?: any | null, options?: { __typename: 'PageBlocksContentOptions', narrow?: boolean | null, color?: string | null, align?: string | null } | null } | { __typename: 'PageBlocksColumns', columnOne?: any | null, columnTwo?: any | null, options?: { __typename: 'PageBlocksColumnsOptions', columns?: string | null, narrow?: boolean | null, color?: string | null, align?: string | null } | null } | null> | null };
 
@@ -767,12 +767,12 @@ export type GetTestDocumentQueryVariables = Exact<{
 }>;
 
 
-export type GetTestDocumentQuery = { __typename?: 'Query', getTestDocument: { __typename?: 'TestDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Test', title?: string | null, description?: string | null } } };
+export type GetTestDocumentQuery = { __typename?: 'Query', getTestDocument: { __typename?: 'TestDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Test', username?: string | null, lastUpdated?: string | null } } };
 
 export type GetTestListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetTestListQuery = { __typename?: 'Query', getTestList: { __typename?: 'TestConnection', totalCount: number, edges?: Array<{ __typename?: 'TestConnectionEdges', node?: { __typename?: 'TestDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Test', title?: string | null, description?: string | null } } | null } | null> | null } };
+export type GetTestListQuery = { __typename?: 'Query', getTestList: { __typename?: 'TestConnection', totalCount: number, edges?: Array<{ __typename?: 'TestConnectionEdges', node?: { __typename?: 'TestDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Test', username?: string | null, lastUpdated?: string | null } } | null } | null> | null } };
 
 export type GetPageDocumentQueryVariables = Exact<{
   relativePath: Scalars['String'];
@@ -800,8 +800,8 @@ export type GetPostListQuery = { __typename?: 'Query', getPostList: { __typename
 
 export const TestPartsFragmentDoc = gql`
     fragment TestParts on Test {
-  title
-  description
+  username
+  lastUpdated
 }
     `;
 export const PagePartsFragmentDoc = gql`
