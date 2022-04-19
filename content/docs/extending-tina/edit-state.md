@@ -1,7 +1,8 @@
 ---
 title: Manually editing Tina's edit state
-id: '/docs/advanced/edit-state'
-# next: '/docs/tina-cloud'
+id: /docs/extending-tina/edit-state
+next: '/docs/extending-tina/advanced/overview'
+prev: /docs/extending-tina/customizing-forms
 ---
 
 ## Manually toggling via `useEditState`

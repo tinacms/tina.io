@@ -2,7 +2,7 @@
 title: Extending Tina
 id: '/docs/extending-tina/overview'
 prev: null
-next: null
+next: /docs/extending-tina/validation
 ---
 
 Tina has many advanced features that allow the entire CMS editing experience to be customized.

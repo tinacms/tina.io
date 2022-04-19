@@ -1,8 +1,8 @@
 ---
 title: Customize List User Interface
 id: '/docs/extending-tina/customize-list-ui'
-prev: null
-next: null
+prev: /docs/extending-tina/custom-field-components
+next: /docs/extending-tina/format-and-parse
 ---
 
 

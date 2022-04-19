@@ -1,8 +1,8 @@
 ---
 title: Format and parse input
 id: '/docs/extending-tina/format-and-parse'
-prev: null
-next: null
+prev: /docs/extending-tina/customize-list-ui
+next: /docs/extending-tina/customizing-forms
 ---
 
 Format and parse can be used together to customize the value of the form (What the users see's) and the value of the data being saved. See the following example,

@@ -1,8 +1,8 @@
 ---
 title: Validation
-id: '/docs/extending-tina/validation'
-prev: null
-next: null
+id: '/docs/extending-tina/validation/'
+prev: '/docs/extending-tina/overview'
+next: '/docs/extending-tina/custom-field-components'
 ---
 
 Tina allows frontend validation to be provided in the form of a function. This function returns a `string` of an error message if the value is **invalid** and returns `null` if the field is **valid**.

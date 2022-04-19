@@ -1,8 +1,8 @@
 ---
 title: 'Custom field components'
-id: '/docs/extending-tina/custom-field-components.md'
-prev: null
-next: null
+id: '/docs/extending-tina/custom-field-components'
+prev: /docs/extending-tina/validation
+next: /docs/extending-tina/customize-list-ui
 ---
 
 A custom component can be passed and rendered by providing `ui.component` property in a field. This component completely overrides the original component, providing the user with the full ability to customize the field.
