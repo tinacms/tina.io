@@ -2,7 +2,7 @@ import * as gqlPackage from '@tinacms/graphql'
 import * as datalayerPackage from '@tinacms/datalayer'
 
 export default async function feedback(req, res) {
-  class InMemoryStore extends datalayerPackage.MemoryStore {
+  class InMemoryStore extends datalayerPackage.LevelStore {
     public supportsSeeding() {
       return true
     }
@@ -59,7 +59,7 @@ export default async function feedback(req, res) {
     // @ts-ignore
     bridge: new InMemoryBridge('', req.query.content),
     // @ts-ignore
-    store: new InMemoryStore(''),
+    store: new InMemoryStore('', true),
   })
 
   const query = req.query.query

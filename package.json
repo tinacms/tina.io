@@ -4,6 +4,9 @@
   "description": "A hub for Tina's documentation, blog & general info.",
   "author": "Forestry.io",
   "main": "n/a",
+  "engines": {
+    "node": ">=14"
+  },
   "scripts": {
     "dev-next": "tinacms server:start --noTelemetry -c \"next\" ",
     "dev": "yarn dev-next",
@@ -27,8 +30,7 @@
   "dependencies": {
     "@next/bundle-analyzer": "^10.0.0",
     "@tinacms/auth": "^0.50.2",
-    "@tinacms/datalayer": "^0.0.2",
-    "@tinacms/graphql": "^0.59.8",
+    "@tinacms/graphql": "^0.59.10",
     "@types/react-instantsearch-dom": "^5.2.6",
     "@types/styled-components": "^5.1.21",
     "@uiw/react-monacoeditor": "^3.4.5",
