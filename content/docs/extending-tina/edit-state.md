@@ -1,7 +1,7 @@
 ---
 title: Manually editing Tina's edit state
 id: '/docs/advanced/edit-state'
-next: '/docs/tina-cloud'
+# next: '/docs/tina-cloud'
 ---
 
 ## Manually toggling via `useEditState`

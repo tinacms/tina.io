@@ -27,7 +27,10 @@ As you type you will see all lowercase but when it is saved it will be all upper
 
 We can also use this to cast inputs to numbers that might have otherwise been saved as strings. See [this example] for more details.
 
-Combining this with a custom input we can make fields that are automatically updated. For example we have have a "Last edited" field that will automatically update when the form was last updated.
+
+
+<!-- TODO add this back in when this bug is fixed -->
+<!-- Combining this with a custom input we can make fields that are automatically updated. For example we have have a "Last edited" field that will automatically update when the form was last updated.
 
 ```tsx
 // .tina/schema.ts
@@ -46,4 +49,4 @@ Combining this with a custom input we can make fields that are automatically upd
    }
  },
 },
-```
+``` -->
