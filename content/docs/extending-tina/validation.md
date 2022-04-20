@@ -18,7 +18,7 @@ Example;
     ui: {
         validate: (value)=>{
             if(value.length > 40){
-                return 'Title can not be more then 40 characters long'
+                return 'Title cannot be more than 40 characters long'
             }
         }
     }
