@@ -49,7 +49,7 @@ This file handles importing the configuration and TinaProvider.
 
 ### `TinaDynamicProvider.js`
 
-This file lazy loads the `TinaProvider.js` to ensure that tina is only loaded in edit mode and does not effect your production bundle.
+This file lazily loads `TinaProvider.js` to ensure that tina is only loaded in edit mode and does not increase the size of your production bundle.
 
 ## `queries` folder (*optional*)
 
