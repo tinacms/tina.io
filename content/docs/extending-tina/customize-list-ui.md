@@ -12,7 +12,7 @@ If list is `true` the default label is often not very useful to editors.
 
 The label used for list items can be customized using the `itemProps` function. The main use-case for this is to provide a custom label based on the data in the component.
 
-For example,
+For example, to use the `title` field as the label for this image gallery collection:
 
 ```ts
 // schema.{ts,js,tsx}
