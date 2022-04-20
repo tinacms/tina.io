@@ -5,7 +5,7 @@ prev: /docs/extending-tina/customize-list-ui
 next: /docs/extending-tina/customizing-forms
 ---
 
-Format and parse can be used together to customize the value of the form (What the users see's) and the value of the data being saved. See the following example,
+The `format` and `parse` props can be used to customize the value of the form (what is rendered) and the value of the data being saved. See the following example:
 
 ```ts
 // .tina/schema.{js,ts,tsx}
