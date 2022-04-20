@@ -12,7 +12,7 @@ Tina has many advanced features that allow the entire CMS editing experience to 
 Tina allows the forms to be customized through the `ui` property. This allows a custom experience to be created for your editors. Some of the main customization features are:
 
 - Adding [client-side validation](/docs/extending-tina/validation/) to a component so that a desired format can be enforced before saving
-- Customizing [the field component](/docs/extending-tina/custom-field-components/) that is rendered
+- Customizing the rendered [field component](/docs/extending-tina/custom-field-components/)
 - Customizing how the users input is [parsed and formatted](/docs/extending-tina/format-and-parse/)
 
 
