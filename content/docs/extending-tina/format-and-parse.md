@@ -23,7 +23,7 @@ The `format` and `parse` props can be used to customize the value of the form (w
 },
 ```
 
-As you type you will see all lowercase but when it is saved it will be all uppercase.
+For this example, as the user types, they will see all lowercase characters. When it is saved, it will be all uppercase characters.
 
 We can also use this to cast inputs to numbers that might have otherwise been saved as strings. See [this example] for more details.
 
