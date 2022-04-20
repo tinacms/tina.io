@@ -46,7 +46,7 @@ For example, to use the `title` field as the label for this image gallery collec
   ],
 };
 ```
-
+which will render as:
 ![List UI with label prop](https://res.cloudinary.com/forestry-demo/image/upload/v1649941182/tina-io/docs/extending-tina/Extending_Tina_Label_List_Props.png)
 
 
