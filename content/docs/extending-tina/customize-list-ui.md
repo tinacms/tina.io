@@ -10,7 +10,7 @@ If list is `true` the default label is often not very useful to editors.
 
 ![list UI](https://res.cloudinary.com/forestry-demo/image/upload/v1649941182/tina-io/docs/extending-tina/Extending_Tina_No_List_Props.png)
 
-This can be customized threw the use of `itemProps`. When a new item is added to the list, the list UI will get the props passed by this function. The main use case of this is to provide a custom label based on the data in the component.
+The label used for list items can be customized using the `itemProps` function. The main use-case for this is to provide a custom label based on the data in the component.
 
 For example,
 
