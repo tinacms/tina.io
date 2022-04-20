@@ -6,7 +6,7 @@ next: /docs/extending-tina/format-and-parse
 ---
 
 
-If list is `true` many times the default label is not very useful to the editors.
+If list is `true` the default label is often not very useful to editors.
 
 ![list UI](https://res.cloudinary.com/forestry-demo/image/upload/v1649941182/tina-io/docs/extending-tina/Extending_Tina_No_List_Props.png)
 
