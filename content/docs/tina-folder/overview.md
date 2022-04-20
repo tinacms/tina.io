@@ -66,7 +66,7 @@ The Graphql AST (represented in JSON). Must be pushed to GitHub.
 
 ### `_lookup.json`
 
-This is a lookup file that is used to resolve document names. (This must also be pushed to github)
+This is a lookup file that is used to resolve document names. Must be pushed to GitHub.
 
 ### `_schema.json`
 
