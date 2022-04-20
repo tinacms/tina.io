@@ -74,7 +74,7 @@ The Graphql Schema AST (represented in JSON). This is used by Tina Cloud so it m
 
 ### `frags.gql`
 
-This the the raw graphql fragments that are generated and used by the [experimental generated client](/docs/graphql/client/). This does not need to be checked into source control. 
+This file contains the raw Graphql fragments that are generated and used by the [experimental generated client](/docs/graphql/client/). Does not need to be checked into source control.
 
 ### `queries.gql`
 
