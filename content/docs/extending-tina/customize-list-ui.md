@@ -50,7 +50,7 @@ For example, to use the `title` field as the label for this image gallery collec
 ![List UI with label prop](https://res.cloudinary.com/forestry-demo/image/upload/v1649941182/tina-io/docs/extending-tina/Extending_Tina_Label_List_Props.png)
 
 
-Although label is probably the most useful part of `itemProps`, `className` and `style` can also be passed to allow custom styling of the list component.
+Although providing a custom label is the most common use-case of `itemProps`, the `className` and `style` props can also be returned to allow custom styling of the list component.
 
 
 
