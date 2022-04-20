@@ -35,7 +35,7 @@ This is where the schema is defined and must be the default export of this file.
 import { defineSchema, defineConfig } from 'tinacms'
 
 const schema = defineSchema({...})
-export const config = definedConfig({ schema: schema, ...})
+export const config = defineConfig({ schema: schema, ...})
 export default schema
 ```
 
