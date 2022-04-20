@@ -32,7 +32,7 @@ The `.tina` folder is normally at the root of the repo (unless a [mono repo setu
 This is where the schema is defined and must be the default export of this file. This is also where the Tina configuration for the site can be defined.
 
 ```
-import { defineSchema, definedConfig } from 'tinacms'
+import { defineSchema, defineConfig } from 'tinacms'
 
 const schema = defineSchema({...})
 export const config = definedConfig({ schema: schema, ...})
