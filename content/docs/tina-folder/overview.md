@@ -62,7 +62,7 @@ This is where all the files that are generated during the schema build process a
 
 ### `_graphql.json`
 
-The Graphql AST (represented in JSON). This is used by Tina Cloud so it must be pushed to github
+The Graphql AST (represented in JSON). Must be pushed to GitHub.
 
 ### `_lookup.json`
 
