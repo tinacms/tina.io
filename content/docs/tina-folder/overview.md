@@ -82,7 +82,7 @@ This file contains the raw graphql queries that are generated and used by the [e
 
 ### `schema.gql` 
 
-This the the raw graphql schema. This does not need to be checked into source control. 
+This file contains the raw graphql schema. Does not need to be checked into source control.
 
 
 
