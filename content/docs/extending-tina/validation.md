@@ -60,7 +60,7 @@ fields: [
 
 
 
-The following schema types support the use of `validate`
+The following schema types support the use of `validate`:
 - [string](/docs/reference/types/string/)
 - [datetime](/docs/reference/types/datetime/)
 - [boolean](/docs/reference/types/boolean/)
