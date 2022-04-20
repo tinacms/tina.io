@@ -33,5 +33,5 @@ export config = defineConfig({
 })
 ```
 
-The `cmsCallback` hook might be used to alter Tina's UI, dynamically hide the sidebar on certain pages, tap into the CMS event bus, etc, but the most common use-case is for registering custom field plugins.
+The `cmsCallback` hook is primarily used for registering custom field plugins. It can also be used for altering Tina's UI, dynamically hiding the sidebar on specific pages, tapping into the CMS event bus, etc.
 
