@@ -13,7 +13,7 @@ Tina allows the forms to be customized through the `ui` property. This allows a 
 
 - Adding [client-side validation](/docs/extending-tina/validation/) to a component so that a desired format can be enforced before saving
 - Customizing the rendered [field component](/docs/extending-tina/custom-field-components/)
-- Customizing how the users input is [parsed and formatted](/docs/extending-tina/format-and-parse/)
+- Customizing the [parsing and formatting](/docs/extending-tina/format-and-parse/) of user input
 
 
 ## Customizing the CMS instance
