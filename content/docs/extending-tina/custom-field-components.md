@@ -28,7 +28,7 @@ Let's create a basic slider component:
 {
   name: 'saturation',
   type: 'number',
-  ui:{
+  ui: {
     parse: (val) => Number(val),
     component: ({ field, input, meta }) => {
       return (
