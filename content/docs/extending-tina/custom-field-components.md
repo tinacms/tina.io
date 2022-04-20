@@ -85,7 +85,7 @@ Below is a list of default fields.
 - [blocks](/docs/reference/toolkit/fields/blocks/)
 - [date](/docs/reference/toolkit/fields/date/)
 
-Tina also supports some extra field plugins, that need to be imported and registered from separate packages:
+Tina also supports some add-on field plugins. These need to be imported and registered from separate packages:
 
 - [markdown](/docs/reference/toolkit/fields/markdown/)
 - [html](/docs/reference/toolkit/fields/html/)
