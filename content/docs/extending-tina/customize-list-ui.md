@@ -89,5 +89,5 @@ For example:
   ],
 }
 ```
-
+which will render as:
 ![List UI with label and style prop](https://res.cloudinary.com/forestry-demo/image/upload/v1649941182/tina-io/docs/extending-tina/Extending_Tina_Style_List_Props.png)
