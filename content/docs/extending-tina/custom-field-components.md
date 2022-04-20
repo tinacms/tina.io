@@ -5,7 +5,7 @@ prev: /docs/extending-tina/validation
 next: /docs/extending-tina/customize-list-ui
 ---
 
-A custom component can be passed and rendered by providing `ui.component` property in a field. This component completely overrides the original component, providing the user with the full ability to customize the field.
+A custom component can be passed and rendered by setting the `ui.component` property on a field. This component completely overrides the original component, providing the user with the ability to fully customize the field.
 
 ## Providing your own component
 
