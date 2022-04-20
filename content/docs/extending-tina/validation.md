@@ -42,7 +42,7 @@ fields: [
            validate: (value, data)=>{
              const lengthOfTitle = value?.length || 0
 //  We have access to value of description by using data?.<Name of field>
-             const lengthOfDescription =data?.description?.length || 0
+             const lengthOfDescription = data?.description?.length || 0
              if(lengthOfTitle >= lengthOfDescription){
                return 'The description must be longer then the title'
              }
