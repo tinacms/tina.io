@@ -9,7 +9,7 @@ A custom component can be passed and rendered by setting the `ui.component` prop
 
 ## Providing your own component
 
-A fields `ui.component` property is a React component that accepts three props:
+A field's `ui.component` property is a React component that accepts three props:
 
 - `field`: The [field definition](https://tinacms.org/docs/reference/toolkit/fields) for the current field.
 - `input`: The data and callbacks necessary to make an input.
