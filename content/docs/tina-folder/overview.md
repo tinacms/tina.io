@@ -78,7 +78,7 @@ This file contains the raw Graphql fragments that are generated and used by the 
 
 ### `queries.gql`
 
-This the the raw graphql queries that are generated and used by the [experimental generated client](/docs/graphql/client/). This does not need to be checked into source control. 
+This file contains the raw graphql queries that are generated and used by the [experimental generated client](/docs/graphql/client/). Does not need to be checked into source control. 
 
 ### `schema.gql` 
 
