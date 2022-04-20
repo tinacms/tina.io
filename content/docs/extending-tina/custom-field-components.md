@@ -65,7 +65,7 @@ Let's create a basic slider component:
 
 ## Using pre-built components
 
-If you do not want to provide your own component we have a few prebuilt components. The `ui.component` property is a string in this case and can be any registered field
+Tina also provides a variety of pre-built components. To specify these, the `ui.component` property should be configured with the string name of the registered field plugin.
 
 Below is a list of default fields.
 ### Default Field Plugins
