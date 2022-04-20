@@ -53,7 +53,7 @@ For example, to use the `title` field as the label for this image gallery collec
 Although providing a custom label is the most common use-case of `itemProps`, the `className` and `style` props can also be returned to allow custom styling of the list component.
 
 
-
+For example:
 ```ts
 // schema.{ts,js,tsx}
 
