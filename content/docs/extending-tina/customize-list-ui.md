@@ -1,5 +1,5 @@
 ---
-title: Customize List User Interface
+title: Custom List Rendering
 id: '/docs/extending-tina/customize-list-ui'
 prev: /docs/extending-tina/custom-field-components
 next: /docs/extending-tina/format-and-parse
