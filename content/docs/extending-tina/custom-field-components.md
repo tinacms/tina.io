@@ -63,7 +63,7 @@ Let's create a basic slider component:
 > Note in this example parse is also needed. [Read more about parse here](/docs/extending-tina/format-and-parse.md)
 
 
-## Using pre-build components
+## Using pre-built components
 
 If you do not want to provide your own component we have a few prebuilt components. The `ui.component` property is a string in this case and can be any registered field
 
