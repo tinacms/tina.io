@@ -58,7 +58,7 @@ The `queries` folder is optional and is used by the [experimental generated clie
 
 ## `__generated___` folder
 
-This is where all the files that are generated durning the schema build process are put. Generally speaking, these files **must be checked into source control and pushed to github** with a couple of exceptions. The reason for this is that Tina cloud looks at the generated files in order to resolve documents.
+This is where all the files that are generated during the schema build process are stored. Generally speaking, these files **must be checked into source control and pushed to github** with a couple of exceptions. The reason for this is that Tina Cloud uses the generated files in order to resolve documents.
 
 ### `_graphql.json`
 
