@@ -9,7 +9,9 @@ Tina's "contextual editing" features require a React-based site, however Tina ca
 
 > ⚠️ **This support is still very much experimental**, and we hope to have a more streamlined onboarding in the future.
 
-While this should work with any Markdown/JSON based site, this guide specifically refers to a Hugo project
+While this should work with any Markdown/JSON-based site, this guide specifically refers to a Hugo project.
+
+If you don't already have a Hugo site setup, you can [learn how to create one here](https://gohugo.io/getting-started/quick-start/)
 
 ## Tina Scaffolding Setup
 
@@ -68,13 +70,40 @@ yarn dev
 ```
 
 You should be able to browse the content API's dummy content, by going to:
-`http://localhost:4001/altair`
+[http://localhost:4001/altair](http://localhost:4001/altair)
 
 ![A Blog query returning our data in Altair GraphQL Client](/img/blog/altair-client-tina.png)
 
+You can try running the following query in altair to confirm that your Tina schema is configured correctly:
+
+```graphql
+{
+  getPostList {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        data {
+          title
+          body
+        }
+      }
+    }
+  }
+}
+```
+
+You should see a post-list response, with your one new dummy post.
+
 ## Running the Tina admin:
 
-Now, in a new tab, let's run the Tina admin locally with:
+Now, with the GraphQL server still running, in a new tab let's run the Tina admin locally with:
 
 ```bash
 cd tina-admin
@@ -118,16 +147,22 @@ where `<YOUR-TINA-PROJECT-ID-GOES-HERE>` is replaced by your client-id from your
 Build the site locally with
 
 ```bash
-  cd tina-admin && yarn build
+cd tina-admin && yarn build
 ```
 
 This will output Tina's static admin page to the site's static directory.
 
-Once that is built, push everything up to git (including the newly built admin)
+Once that is built, **push everything up to git (including the newly built admin)**
 
 ### Step 5) Edit in production
 
 When everything has redeployed, you should be able to enter edit-mode at:
 `<your-site-url>/admin`
 
-\_\_Note: Anytime your admin is updated, (E.g, by changing the clientId or branch), you will need to rebuild it locally and re-push it to git).
+> Note: Anytime your admin is updated, (E.g, by changing the clientId or branch), you will need to rebuild it locally and re-push it to git).
+
+## Next steps: (we want your feedback!)
+
+Non-React-based SSG support is still experimental, so we would love to hear your early feedback.
+
+You can reach out to us in the chat bubble, in our [Community Discord](https://discord.com/invite/zumN63Ybpf), or on [this GitHub discussion](https://github.com/tinacms/tinacms/discussions/2215)
