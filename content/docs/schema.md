@@ -185,11 +185,11 @@ This will result in a resolvable node in your GraphQL structure (Don't worry, we
 
 The resulting field in your TinaCMS form will be a `select` field, whose `options` are all of the documents in the referenced collections.
 
-## Customizing the Fields with the `UI` property
+## Customizing fields with the `UI` property
 
 <!-- TODO add links when https://github.com/tinacms/tinacms.org/pull/1293/files is merged -->
 
-Fields can customized to allow a better experience for the content editors. The `ui` property on each field can enable: [custom frontend validation functions]() which does not allow editors to submit values that are invalid, [formate and parse]() input to allow customization of what gets saved to the document and what gets displayed to the user and allow [custom field components]() to allow any input imaginable to be used in the CMS. 
+Fields can customized to allow a better experience for the content editors. The `ui` property on each field can enable: [custom frontend validation functions]() which does not allow editors to submit values that are invalid, [formate and parse]() input to allow customization of what is saved to the document and what is displayed to the user, and allow [custom field components]() to display any input imaginable in the CMS. 
 
 This is done by using the `ui` key in the field definition.
 
