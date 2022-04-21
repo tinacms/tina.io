@@ -22,7 +22,7 @@ We are going to use the [`object` type](/docs/schema/#grouping-properties-within
 
 ```ts
 // .tina/schema.ts
-import { defineSchema } from '@tinacms/cli'
+import { defineSchema } from 'tinacms'
 import type { TinaTemplate } from "tinacms";
 
 

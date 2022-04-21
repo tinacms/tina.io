@@ -166,7 +166,7 @@ You have only replaced a single line so far, which is to update the `path` to th
 Now you need to handle each field for your posts frontmatter, below is the finished file:
 
 ```js,copy
-import { defineSchema } from '@tinacms/cli'
+import { defineSchema } from 'tinacms'
 
 export default defineSchema({
   collections: [
