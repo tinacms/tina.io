@@ -349,10 +349,7 @@
       {
         "id": "/docs/tina-folder/overview/",
         "slug": "/docs/tina-folder/overview/",
-        "title": "`.tina` folder",
-        "items": [
-
-        ]
+        "title": "`.tina` folder"
       },
       {
         "id": "/docs/cli-overview/",
