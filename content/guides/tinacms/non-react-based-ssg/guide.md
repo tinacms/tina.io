@@ -101,7 +101,7 @@ You can try running the following query in altair to confirm that your Tina sche
 
 You should see a post-list response, with your one new dummy post.
 
-## Running the Tina admin:
+## Running the Tina admin
 
 Now, with the GraphQL server still running, in a new tab let's run the Tina admin locally with:
 
