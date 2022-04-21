@@ -18,7 +18,11 @@ A field's `ui.component` property is a React component that accepts three props:
 Checkout the [react-final-form](https://github.com/final-form/react-final-form#fieldrenderprops) docs for a more detailed description of the `input` and `meta` props.
 
 
-Let's create a basic slider component:
+### Custom Component Example
+
+Here is a custom slider component that can be used for adjusting image saturation.
+
+![A basic slider custom component](https://res.cloudinary.com/forestry-demo/image/upload/v1649941211/tina-io/docs/extending-tina/Extending_Tina_Custom_Component.png)
 
 
 ```tsx
@@ -55,10 +59,6 @@ Let's create a basic slider component:
   }
 }
 ```
-
-
-![A basic slider custom component](https://res.cloudinary.com/forestry-demo/image/upload/v1649941211/tina-io/docs/extending-tina/Extending_Tina_Custom_Component.png)
-
 
 > Note in this example parse is also needed. [Read more about parse here](/docs/extending-tina/format-and-parse.md)
 

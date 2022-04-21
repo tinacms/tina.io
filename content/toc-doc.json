@@ -227,11 +227,6 @@
         "expandOnSelect": true,
         "items": [
           {
-            "title": "Overview",
-            "id": "/docs/extending-tina/advanced/overview",
-            "slug": "/docs/extending-tina/advanced/overview/"
-          },
-          {
             "title": "Extending a field plugin",
             "id": "/docs/extending-tina/advanced/extending-field-plugin",
             "slug": "/docs/extending-tina/advanced/extending-field-plugin/"

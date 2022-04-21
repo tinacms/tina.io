@@ -25,7 +25,7 @@ The `format` and `parse` props can be used to customize the value of the form (w
 
 For this example, as the user types, they will see all lowercase characters. When it is saved, it will be all uppercase characters.
 
-We can also use this to cast inputs to numbers that might have otherwise been saved as strings. See [this example] for more details.
+We can also use this to cast inputs to numbers that might have otherwise been saved as strings. See [this example](/docs/extending-tina/custom-field-components/#custom-component-example) for more details.
 
 
 
