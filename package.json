@@ -58,7 +58,7 @@
     "jsonp": "^0.2.1",
     "markdown-toc": "^1.2.0",
     "matter": "^0.2.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "moment-locales-webpack-plugin": "^1.2.0",
     "next": "^12.1.0",
     "next-seo": "^4.1.0",
