@@ -81,7 +81,7 @@ This is a lookup file that is used to resolve document names. Must be pushed to 
 
 ### `_schema.json`
 
-The Graphql Schema AST (represented in JSON). This is used by Tina Cloud so it must be pushed to github
+The Graphql Schema AST (represented in JSON). Must be pushed to GitHub.
 
 ### `frags.gql`
 
