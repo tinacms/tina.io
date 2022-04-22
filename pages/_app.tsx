@@ -12,6 +12,7 @@ import path from 'path'
 import { TinaEditProvider } from 'tinacms/dist/edit-state'
 // @ts-ignore FIXME: default export needs to be 'ComponentType<{}>
 const TinaCMS = dynamic(() => import('tinacms'), { ssr: false })
+import schema from '../.tina/schema'
 
 // the following line will cause all content files to be available in a serverless context
 path.resolve('./content/')
@@ -86,6 +87,7 @@ class Site extends App {
         editMode={
           <TinaCMS
             apiURL={process.env.NEXT_PUBLIC_TINA_ENDPOINT}
+            schema={schema}
             // @ts-ignore
             cmsCallback={cms => {
               import('react-tinacms-editor').then(({ MarkdownFieldPlugin }) => {

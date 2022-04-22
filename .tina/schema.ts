@@ -11,7 +11,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { defineSchema } from '@tinacms/cli'
+import { defineSchema } from 'tinacms'
 
 import { heroTemplate } from '../components/blocks/Hero'
 import { featuresTemplate } from '../components/blocks/Features'
