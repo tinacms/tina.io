@@ -86,6 +86,7 @@ export function ShowcaseBlock({ data, index }) {
           <div className={`featureImage`}>
               <a href={data.url} target="_blank" >
               <img
+                className="showcaseImage"
                 src={data.media.src}
                 alt={data.headline}
                 width="1120px"
@@ -161,6 +162,8 @@ export function ShowcaseBlock({ data, index }) {
           margin: 0;
           overflow: hidden;
           border-radius: 0.5rem;
+          transition: .5s ease;
+          backface-visibility: hidden;
 
           :global(img) {
             display: block;
@@ -168,6 +171,10 @@ export function ShowcaseBlock({ data, index }) {
             height: auto;
             margin: 0;
           }
+        }
+        .featureImage:hover .showcaseImage {
+          opacity: 0.3;
+          transition: .5s ease;
         }
 
         .dottedBorder {
