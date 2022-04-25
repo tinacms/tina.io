@@ -12,6 +12,15 @@
     {
       "items": [
         {
+          "headline": "Devolver Digital",
+          "text": "Extensive library of games published by gaming agency",
+          "media": {
+            "src": "/img/devolver.png"
+          },
+          "url": "https://www.devolverdigital.com/",
+          "_template": "project"
+        },
+        {
           "headline": "Paradise Helicopters",
           "text": "A marketing site developed for a tours company using Next.js and Tina",
           "media": {
