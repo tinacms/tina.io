@@ -446,8 +446,8 @@
       "destination": "/guides/tina-cloud/add-tinacms-to-existing-site/overview/"
     },
     {
-      "source": "/guides/(.*)",
-      "destination": "/docs/setup-overview/"
+      "source": "/guides/tina-cloud(.*)",
+      "destination": "/guides/"
     },
     {
       "source": "/docs/features/extending-tina/",

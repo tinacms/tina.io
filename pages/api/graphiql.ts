@@ -1,22 +1,14 @@
 import { buildASTSchema, print } from 'graphql'
 import { graphqlHTTP } from 'express-graphql'
-import { MemoryStore } from '@tinacms/datalayer'
+import { LevelStore } from '@tinacms/datalayer'
 import { createDatabase, resolve, indexDB } from '@tinacms/graphql'
 import type { TinaCloudSchema, TinaTemplate} from '@tinacms/graphql'
-class InMemoryStore extends MemoryStore {
-  public supportsSeeding() {
-    return true
-  }
-  public supportsIndexing() {
-    return false
-  }
-}
 
 
 export default async function feedback(req, res) {
   const database = await createDatabase({
     bridge: new InMemoryBridge(''),
-    store: new InMemoryStore('')
+    store: new LevelStore('', true)
   })
   await indexDB({ database, config, buildSDK: false })
   return graphqlHTTP({
@@ -47,6 +39,11 @@ export class InMemoryBridge {
       key.startsWith(pattern)
     )
   }
+  public delete = async (filepath: string) => {
+    const mockData = await this.getMockData()
+    delete mockData[filepath]
+  }
+
   public get = async (filepath: string) => {
     const mockData = await this.getMockData()
     const value = mockData[filepath]
@@ -76,12 +73,25 @@ const mockFileSystem = {
     title: "Vote For Pedro",
     category: "politics",
     author:  "content/authors/napolean.json",
+    date: "2022-06-15T07:00:00.000Z",
     body: `
 ## Hello, world!
 
 This is some text
 
 <Cta heading="Welcome"/>
+`
+  }),
+  'content/posts/anotherPost.json': JSON.stringify({
+    title: "Just Another Blog Post",
+    category: "lifestyle",
+    author:  "content/authors/napolean.json",
+    date: "2022-07-15T07:00:00.000Z",
+    body: `
+## Vote For Pedro
+
+Lorem markdownum evinctus ut cape
+
 `
   }),
   'content/authors/napolean.json': JSON.stringify({
@@ -219,6 +229,11 @@ const config: TinaCloudSchema = {
           name: 'category',
         },
         {
+          type: 'datetime',
+          label: 'Date',
+          name: 'date',
+        },
+        {
           type: 'reference',
           label: 'Author',
           name: 'author',
@@ -244,6 +259,12 @@ const config: TinaCloudSchema = {
           ]
         },
       ],
+      indexes: [
+        {
+          name: "category-date",
+          fields: [{name:"category"}, {name:"date"}]
+        }
+      ]
     },
     {
       label: 'Authors',

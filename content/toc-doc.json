@@ -77,7 +77,61 @@
       {
         "id": "/docs/graphql/queries/",
         "slug": "/docs/graphql/queries/",
-        "title": "Querying the API"
+        "title": "Querying the API",
+        "items": [
+          {
+            "id": "/docs/graphql/queries/get-document/",
+            "slug": "/docs/graphql/queries/get-document/",
+            "title": "Getting a Single Document"
+          },
+          {
+            "id": "/docs/graphql/queries/query-documents/",
+            "slug": "/docs/graphql/queries/query-documents/",
+            "title": "Querying a Collection",
+            "items": [
+              {
+                "id": "/docs/graphql/queries/advanced/filter-documents/",
+                "slug": "/docs/graphql/queries/advanced/filter-documents/",
+                "title": "Filtering",
+                "beta": true
+              },
+              {
+                "id": "/docs/graphql/queries/advanced/sorting/",
+                "slug": "/docs/graphql/queries/advanced/sorting/",
+                "title": "Sorting",
+                "beta": true
+              },
+              {
+                "id": "/docs/graphql/queries/advanced/pagination/",
+                "slug": "/docs/graphql/queries/advanced/pagination/",
+                "title": "Paginating",
+                "beta": true
+              },
+              {
+                "id": "/docs/graphql/queries/advanced/performance/",
+                "slug": "/docs/graphql/queries/advanced/performance/",
+                "title": "Performance",
+                "beta": true
+              },
+              {
+                "id": "/docs/graphql/queries/advanced/limitations/",
+                "slug": "/docs/graphql/queries/advanced/limitations/",
+                "title": "Limitations",
+                "beta": true
+              }
+            ]
+          },
+          {
+            "id": "/docs/graphql/queries/update-document/",
+            "slug": "/docs/graphql/queries/update-document/",
+            "title": "Updating a Document"
+          },
+          {
+            "id": "/docs/graphql/queries/add-document/",
+            "slug": "/docs/graphql/queries/add-document/",
+            "title": "Adding a Document"
+          }
+        ]
       },
       {
         "id": "/docs/graphql/client/",
@@ -226,6 +280,17 @@
         "slug": "/docs/tina-cloud/data-layer/",
         "title": "Data Layer",
         "beta": true
+      }
+    ]
+  },
+  {
+    "category": "Guides",
+    "slug": "/guides",
+    "items": [
+      {
+        "id": "/guides/tinacms/adding-internationalization-to-tina/guide/",
+        "slug": "/guides/tinacms/adding-internationalization-to-tina/guide/",
+        "title": "Adding Internationalization to Tina"
       }
     ]
   },

@@ -3,7 +3,7 @@ const fg = require('fast-glob')
 var fs = require('fs')
 var path = require('path')
 
-export default async function fetchDocs() {
+export default async function fetchGuides() {
   const directory = path.resolve('./content/guides')
   const files = await fg(directory + '/**/*.md')
 

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import App from 'next/app'
 import Head from 'next/head'
+import Script from 'next/script'
 import dynamic from 'next/dynamic'
 import { DefaultSeo } from 'next-seo'
 import data from '../content/siteConfig.json'
@@ -45,13 +46,14 @@ const MainLayout = ({ Component, pageProps }) => {
       <Head>
         <link rel="shortcut icon" href="/favicon/favicon.ico" />
         <meta name="theme-color" content="#E6FAF8" />
-        <script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
+      </Head>
+      <Script
+        async
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+      />
+      <Script
+        dangerouslySetInnerHTML={{
+          __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
@@ -59,9 +61,8 @@ const MainLayout = ({ Component, pageProps }) => {
               page_path: window.location.pathname,
             });
           `,
-          }}
-        />
-      </Head>
+        }}
+      />
       <GlobalStyle />
       <Component {...pageProps} />
     </>
