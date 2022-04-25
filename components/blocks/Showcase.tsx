@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
-import { actionsTemplate, Actions } from './Actions'
+import { Actions } from './Actions'
 import { Container } from './Container'
 import BlobOne from '../../public/svg/blob-1.svg'
 import BlobTwo from '../../public/svg/blob-2.svg'
