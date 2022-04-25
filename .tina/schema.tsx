@@ -11,7 +11,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { defineSchema } from '@tinacms/cli'
+import { defineSchema } from 'tinacms'
 
 import { heroTemplate } from '../components/blocks/Hero'
 import { featuresTemplate } from '../components/blocks/Features'
@@ -20,6 +20,8 @@ import { pricingTemplate } from '../components/blocks/Pricing'
 import { faqTemplate } from '../components/blocks/FAQ'
 import { contentTemplate } from '../components/blocks/Content'
 import { columnsTemplate } from '../components/blocks/Columns'
+import type { TinaTemplate } from 'tinacms'
+
 
 export default defineSchema({
   collections: [
@@ -54,13 +56,13 @@ export default defineSchema({
             visualSelector: true,
           },
           templates: [
-            heroTemplate,
-            featuresTemplate,
-            flyingTemplate,
-            pricingTemplate,
-            faqTemplate,
-            contentTemplate,
-            columnsTemplate,
+            heroTemplate as TinaTemplate ,
+            featuresTemplate as TinaTemplate,
+            flyingTemplate as TinaTemplate,
+            pricingTemplate as TinaTemplate,
+            faqTemplate as TinaTemplate,
+            contentTemplate as TinaTemplate,
+            columnsTemplate as TinaTemplate,
           ],
         },
       ],
@@ -75,6 +77,14 @@ export default defineSchema({
           type: 'string',
           name: 'title',
           label: 'Title',
+          list: false,
+          ui: {
+            validate: (value) => {
+              if (value.length > 40) {
+                return 'Title can not be more then 40 characters long'
+              }
+            },
+          },
         },
         {
           // note: default to current date/time

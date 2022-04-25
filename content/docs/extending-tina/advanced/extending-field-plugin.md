@@ -1,8 +1,11 @@
 ---
 title: Extending a field plugin
 id: '/docs/advanced/extending-field-plugin'
-next: '/docs/advanced/creating-field-component'
+next: '/docs/extending-tina/advanced/creating-field-component'
+prev: '/docs/extending-tina/advanced/overview'
 ---
+
+{{ WarningCallout text="This is only needed for advanced usage and special circumstances. Please refer to our [main docs](/docs/extending-tina/overview)  for most use case's" }}
 
 Sometimes we will want to modify an existing tinacms field plugin, beyond what's available in a given plugin's configurable props. We can do this by extending a field-plugin on the frontend.
 

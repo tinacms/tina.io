@@ -476,6 +476,34 @@
     {
       "source": "/docs/releases(.*)",
       "destination": "/docs/legacy-redirect"
+    },
+    {
+      "source": "/docs/advanced/extending-tina/",
+      "destination": "/docs/extending-tina/overview/"
+    },
+    {
+      "source": "/docs/advanced/configuring-field-plugin/",
+      "destination": "/docs/extending-tina/custom-field-components/"
+    },
+    {
+      "source": "/docs/advanced/extending-field-plugin/",
+      "destination": "/docs/extending-tina/advanced/extending-field-plugin/"
+    },
+    {
+      "source": "/docs/advanced/creating-field-component/",
+      "destination": "/docs/extending-tina/advanced/creating-field-component/"
+    },
+    {
+      "source": "/docs/advanced/customizing-forms/",
+      "destination": "/docs/extending-tina/customizing-forms/"
+    },
+    {
+      "source": "/docs/advanced/customizing-ui/",
+      "destination": "/docs/extending-tina/customizing-ui/"
+    },
+    {
+      "source": "/docs/advanced/edit-state/",
+      "destination": "/docs/extending-tina/edit-state/"
     }
   ]
 }
