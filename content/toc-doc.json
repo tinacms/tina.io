@@ -182,43 +182,66 @@
   },
   {
     "title": "Extending Tina",
-    "id": "/docs/advanced/extending-tina",
-    "slug": "/docs/advanced/extending-tina/",
+    "id": "/docs/extending-tina/overview",
+    "slug": "/docs/extending-tina/overview/",
     "items": [
       {
         "title": "Overview",
-        "id": "/docs/advanced/extending-tina",
-        "slug": "/docs/advanced/extending-tina/"
+        "id": "/docs/extending-tina/overview",
+        "slug": "/docs/extending-tina/overview/"
       },
       {
-        "title": "Configuring a field",
-        "id": "/docs/advanced/configuring-field-plugin",
-        "slug": "/docs/advanced/configuring-field-plugin/"
+        "title": "Validation",
+        "id": "/docs/extending-tina/validation",
+        "slug": "/docs/extending-tina/validation/"
       },
       {
-        "title": "Extending a field plugin",
-        "id": "/docs/advanced/extending-field-plugin",
-        "slug": "/docs/advanced/extending-field-plugin/"
+        "title": "Custom field components",
+        "id": "/docs/extending-tina/custom-field-components",
+        "slug": "/docs/extending-tina/custom-field-components/"
       },
       {
-        "title": "Creating a custom field component",
-        "id": "/docs/advanced/creating-field-component",
-        "slug": "/docs/advanced/creating-field-component/"
+        "title": "Custom List Rendering",
+        "id": "/docs/extending-tina/customize-list-ui",
+        "slug": "/docs/extending-tina/customize-list-ui/"
+      },
+      {
+        "title": "Format and parse input",
+        "id": "/docs/extending-tina/format-and-parse",
+        "slug": "/docs/extending-tina/format-and-parse/"
       },
       {
         "title": "Customizing a form",
-        "id": "/docs/advanced/customizing-forms",
-        "slug": "/docs/advanced/customizing-forms/"
+        "id": "/docs/extending-tina/customizing-forms",
+        "slug": "/docs/extending-tina/customizing-forms/"
+      },
+      {
+        "title": "Manually editing and accessing Tina's edit state",
+        "id": "/docs/extending-tina/edit-state",
+        "slug": "/docs/extending-tina/edit-state/"
+      },
+      {
+        "title": "Advanced field customization",
+        "id": "/docs/extending-tina/advanced/overview",
+        "slug": "/docs/extending-tina/advanced/overview/",
+        "expandOnSelect": true,
+        "items": [
+          {
+            "title": "Extending a field plugin",
+            "id": "/docs/extending-tina/advanced/extending-field-plugin",
+            "slug": "/docs/extending-tina/advanced/extending-field-plugin/"
+          },
+          {
+            "title": "Creating a custom field component",
+            "id": "/docs/extending-tina/advanced/creating-field-component",
+            "slug": "/docs/extending-tina/advanced/creating-field-component/"
+          }
+        ]
       },
       {
         "title": "Customizing Tina's UI",
-        "id": "/docs/advanced/customizing-ui",
-        "slug": "/docs/advanced/customizing-ui/"
-      },
-      {
-        "title": "Manually editing Tina's edit state",
-        "id": "/docs/advanced/edit-state/",
-        "slug": "/docs/advanced/edit-state/"
+        "id": "/docs/extending-tina/customizing-ui",
+        "slug": "/docs/extending-tina/customizing-ui/"
       }
     ]
   },

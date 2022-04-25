@@ -2246,6 +2246,8 @@
           "type": "string",
           "name": "title",
           "label": "Title",
+          "list": false,
+          "ui": {},
           "namespace": [
             "post",
             "title"

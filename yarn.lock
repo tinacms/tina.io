@@ -2446,10 +2446,20 @@
   dependencies:
     isomorphic-fetch "^3.0.0"
 
+"@tinacms/schema-tools@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@tinacms/schema-tools/-/schema-tools-0.0.2.tgz#219c2b3ddc54b74bff74d94cecfb2f7241c83a6e"
+  integrity sha512-KOq9YOjmSvs5PuId9iLrRjSQHy0rh3JodqdhJGGW6LYoo9wfXqQ/hmBSkqE8udKrlKnjtQsz8isf1tdBVBel6A==
+
 "@tinacms/sharedctx@0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@tinacms/sharedctx/-/sharedctx-0.1.0.tgz#1ca290ac96f394362d07b625164a30b85194cc97"
   integrity sha512-iorVcydqFDsjDp/PMaN4y0kF15qTTfHDd00fUN3wgW9h2fOmCu3o0KjC4yjrDyLnCdA0pHivpbPvOg3kLmCXog==
+
+"@tinacms/sharedctx@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@tinacms/sharedctx/-/sharedctx-0.1.1.tgz#8ca3446348b87653095a4a3bda797ddaa65d4d38"
+  integrity sha512-+23d5EWdj34p/fYTYn+R2QOt8hn5qqirH7/o2cWYhY1ywCi/gZbCjzRXyi7PxBMh4fH1lFZuO5zseZrIWgmodA==
 
 "@tinacms/toolkit@0.56.18":
   version "0.56.18"
@@ -2466,6 +2476,75 @@
     "@react-types/shared" "^3.10.0"
     "@sambego/storybook-styles" "^1.0.0"
     "@tinacms/sharedctx" "0.1.0"
+    "@types/atob" "^2.1.2"
+    "@types/cors" "^2.8.12"
+    "@types/express" "^4.17.13"
+    "@types/multer" "^1.4.7"
+    "@types/prop-types" "^15.7.4"
+    "@udecode/plate" "^7.0.3"
+    "@udecode/plate-autoformat" "^9.2.1"
+    "@udecode/plate-basic-elements" "^9.2.1"
+    "@udecode/plate-basic-marks" "^9.2.1"
+    "@udecode/plate-block-quote" "^9.2.1"
+    "@udecode/plate-break" "^9.2.1"
+    "@udecode/plate-code-block" "^9.2.1"
+    "@udecode/plate-common" "^7.0.2"
+    "@udecode/plate-core" "^9.2.1"
+    "@udecode/plate-heading" "^9.2.1"
+    "@udecode/plate-horizontal-rule" "^9.2.1"
+    "@udecode/plate-image" "^9.2.1"
+    "@udecode/plate-kbd" "^9.2.1"
+    "@udecode/plate-link" "^9.2.1"
+    "@udecode/plate-list" "^9.2.1"
+    "@udecode/plate-node-id" "^9.2.1"
+    "@udecode/plate-normalizers" "^9.2.1"
+    "@udecode/plate-paragraph" "^9.2.1"
+    "@udecode/plate-reset-node" "^9.2.1"
+    "@udecode/plate-select" "^9.2.1"
+    "@udecode/plate-table" "^9.2.1"
+    "@udecode/plate-trailing-block" "^9.2.1"
+    "@udecode/plate-ui-combobox" "^9.2.1"
+    atob "2.1.2"
+    color-string "^1.5.3"
+    cors "^2.8.5"
+    express "^4.17.1"
+    final-form "^4.20.2"
+    final-form-arrays "^3.0.1"
+    final-form-set-field-data "^1.0.2"
+    is-hotkey "^0.2.0"
+    lodash.get "^4.4.2"
+    moment ">=2 <=3"
+    multer "1.4.2"
+    path "^0.12.7"
+    prop-types "15.7.2"
+    react-beautiful-dnd "^13.1.0"
+    react-color "^2.17.3"
+    react-datetime "^2.16.3"
+    react-dropzone "10.1.8"
+    react-final-form "^6.3.0"
+    react-icons "^4.3.1"
+    simple-git "1.126.0"
+    slate "^0.66.0"
+    slate-history "^0.66.0"
+    slate-hyperscript "^0.66.0"
+    slate-react "^0.66.0"
+    webfontloader "1.6.28"
+
+"@tinacms/toolkit@0.56.19":
+  version "0.56.19"
+  resolved "https://registry.yarnpkg.com/@tinacms/toolkit/-/toolkit-0.56.19.tgz#2713237d02a2ff38ad0866365ad48d931b48113e"
+  integrity sha512-Hv7oxOn28SYjQgQyTJIZfsyRO8R7SA/h8jUTkwc2KZVFjQUgnYHIgoR6zi3pM067P3Bn/miXrjVcFTWdV3qXrw==
+  dependencies:
+    "@floating-ui/dom" "^0.1.7"
+    "@floating-ui/react-dom" "^0.3.3"
+    "@headlessui/react" "^1.4.2"
+    "@heroicons/react" "^1.0.5"
+    "@react-aria/i18n" "^3.3.4"
+    "@react-aria/listbox" "3.3.0"
+    "@react-types/combobox" "^3.2.0"
+    "@react-types/shared" "^3.10.0"
+    "@sambego/storybook-styles" "^1.0.0"
+    "@tinacms/sharedctx" "0.1.1"
     "@types/atob" "^2.1.2"
     "@types/cors" "^2.8.12"
     "@types/express" "^4.17.13"
@@ -13365,16 +13444,17 @@ through2@^2.0.0:
     readable-stream "~2.3.6"
     xtend "~4.0.1"
 
-tinacms@^0.66.9:
-  version "0.66.9"
-  resolved "https://registry.yarnpkg.com/tinacms/-/tinacms-0.66.9.tgz#0778467357a440ba40bcb1fd961447d8c0e18041"
-  integrity sha512-b+OAHEKs2GcBQdruf4B7IIquKZy8jqWckVIi1UHe/gfB9vzTSghCGtANc4LaJek065ykYz7/ATtWtbVTh5B96w==
+tinacms@^0.67.0:
+  version "0.67.0"
+  resolved "https://registry.yarnpkg.com/tinacms/-/tinacms-0.67.0.tgz#c7bc63b76e85cdb19e4c08f4e18752f07a30122e"
+  integrity sha512-AtGszSsmmewVeWG39kHHN/9qWicBQ63sRMT5pUoWzdp6FAvqaRytj04Itgo0smqSI8TuNQlmMthzLzQOUhv+0g==
   dependencies:
     "@graphql-tools/relay-operation-optimizer" "^6.4.1"
     "@headlessui/react" "^1.4.1"
     "@heroicons/react" "^1.0.4"
-    "@tinacms/sharedctx" "0.1.0"
-    "@tinacms/toolkit" "0.56.18"
+    "@tinacms/schema-tools" "0.0.2"
+    "@tinacms/sharedctx" "0.1.1"
+    "@tinacms/toolkit" "0.56.19"
     crypto-js "^4.0.0"
     final-form "4.20.1"
     graphql "^15.1.0"
