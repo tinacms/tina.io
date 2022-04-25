@@ -347,6 +347,11 @@
         ]
       },
       {
+        "id": "/docs/tina-folder/overview/",
+        "slug": "/docs/tina-folder/overview/",
+        "title": "\".tina\" folder"
+      },
+      {
         "id": "/docs/cli-overview/",
         "slug": "/docs/cli-overview/",
         "title": "@tinacms/cli"
