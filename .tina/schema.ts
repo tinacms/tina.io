@@ -20,6 +20,7 @@ import { pricingTemplate } from '../components/blocks/Pricing'
 import { faqTemplate } from '../components/blocks/FAQ'
 import { contentTemplate } from '../components/blocks/Content'
 import { columnsTemplate } from '../components/blocks/Columns'
+import { showcaseTemplate } from '../components/blocks/Showcase'
 
 export default defineSchema({
   collections: [
@@ -61,6 +62,7 @@ export default defineSchema({
             faqTemplate,
             contentTemplate,
             columnsTemplate,
+            showcaseTemplate,
           ],
         },
       ],

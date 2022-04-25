@@ -24,6 +24,13 @@
       "feature": "PageBlocksFeaturesItemsFeature"
     }
   },
+  "PageBlocksShowcaseItems": {
+    "type": "PageBlocksShowcaseItems",
+    "resolveType": "unionData",
+    "typeMap": {
+      "project": "PageBlocksShowcaseItemsProject"
+    }
+  },
   "PageBlocks": {
     "type": "PageBlocks",
     "resolveType": "unionData",
@@ -34,7 +41,8 @@
       "pricing": "PageBlocksPricing",
       "faq": "PageBlocksFaq",
       "content": "PageBlocksContent",
-      "columns": "PageBlocksColumns"
+      "columns": "PageBlocksColumns",
+      "showcase": "PageBlocksShowcase"
     }
   },
   "PageDocument": {

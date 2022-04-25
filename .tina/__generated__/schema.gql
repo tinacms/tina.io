@@ -247,7 +247,24 @@ type PageBlocksColumns {
   columnTwo: JSON
 }
 
-union PageBlocks = PageBlocksHero | PageBlocksFeatures | PageBlocksFlying | PageBlocksPricing | PageBlocksFaq | PageBlocksContent | PageBlocksColumns
+type PageBlocksShowcaseItemsProjectMedia {
+  src: String
+}
+
+type PageBlocksShowcaseItemsProject {
+  headline: String
+  text: String
+  url: String
+  media: PageBlocksShowcaseItemsProjectMedia
+}
+
+union PageBlocksShowcaseItems = PageBlocksShowcaseItemsProject
+
+type PageBlocksShowcase {
+  items: [PageBlocksShowcaseItems]
+}
+
+union PageBlocks = PageBlocksHero | PageBlocksFeatures | PageBlocksFlying | PageBlocksPricing | PageBlocksFaq | PageBlocksContent | PageBlocksColumns | PageBlocksShowcase
 
 type Page {
   seo: PageSeo
@@ -492,6 +509,25 @@ input PageBlocksColumnsMutation {
   columnTwo: JSON
 }
 
+input PageBlocksShowcaseItemsProjectMediaMutation {
+  src: String
+}
+
+input PageBlocksShowcaseItemsProjectMutation {
+  headline: String
+  text: String
+  url: String
+  media: PageBlocksShowcaseItemsProjectMediaMutation
+}
+
+input PageBlocksShowcaseItemsMutation {
+  project: PageBlocksShowcaseItemsProjectMutation
+}
+
+input PageBlocksShowcaseMutation {
+  items: [PageBlocksShowcaseItemsMutation]
+}
+
 input PageBlocksMutation {
   hero: PageBlocksHeroMutation
   features: PageBlocksFeaturesMutation
@@ -500,6 +536,7 @@ input PageBlocksMutation {
   faq: PageBlocksFaqMutation
   content: PageBlocksContentMutation
   columns: PageBlocksColumnsMutation
+  showcase: PageBlocksShowcaseMutation
 }
 
 input PageMutation {

@@ -145,6 +145,20 @@ fragment PageParts on Page {
       columnOne
       columnTwo
     }
+    ... on PageBlocksShowcase {
+      items {
+        __typename
+        ... on PageBlocksShowcaseItemsProject {
+          headline
+          text
+          url
+          media {
+            __typename
+            src
+          }
+        }
+      }
+    }
   }
 }
 
