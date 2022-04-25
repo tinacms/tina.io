@@ -84,14 +84,14 @@ export function ShowcaseBlock({ data, index }) {
         </div>
         {data.media && data.media.src && (
           <div className={`featureImage`}>
-            <a href={data.url} target="_blank" >
-            <img
-              src={data.media.src}
-              alt={data.headline}
-              width="1120px"
-              height="800px"
-            />
-            </a>
+              <a href={data.url} target="_blank" >
+              <img
+                src={data.media.src}
+                alt={data.headline}
+                width="1120px"
+                height="800px"
+              />
+              </a>
           </div>
         )}
       </div>
