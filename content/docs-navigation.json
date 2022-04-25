@@ -18,6 +18,12 @@
     "external": false
   },
   {
+    "id": "showcase",
+    "label": "Showcase",
+    "href": "/showcase",
+    "external": false
+  },
+  {
     "id": "playground",
     "label": "Playground",
     "href": "https://tina-gql-playground.vercel.app/",
