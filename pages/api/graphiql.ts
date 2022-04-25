@@ -39,6 +39,11 @@ export class InMemoryBridge {
       key.startsWith(pattern)
     )
   }
+  public delete = async (filepath: string) => {
+    const mockData = await this.getMockData()
+    delete mockData[filepath]
+  }
+
   public get = async (filepath: string) => {
     const mockData = await this.getMockData()
     const value = mockData[filepath]
