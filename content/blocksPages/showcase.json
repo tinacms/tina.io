@@ -13,7 +13,7 @@
       "items": [
         {
           "headline": "Devolver Digital",
-          "text": "Library of games published by gaming agency",
+          "text": "Marketing site for gaming agency including a library of published games",
           "media": {
             "src": "/img/devolver.png"
           },
@@ -22,7 +22,7 @@
         },
         {
           "headline": "pcode",
-          "text": "Marketing site for development company",
+          "text": "Marketing site for German based development company",
           "media": {
             "src": "/img/pcode.png"
           },
@@ -31,7 +31,7 @@
         },
         {
           "headline": "Catalyst Miami",
-          "text": "Marketing site showcasing work of non-profit organization",
+          "text": "Blog style site showcasing work of non-profit organization",
           "media": {
             "src": "/img/catalyst.png"
           },
@@ -40,7 +40,7 @@
         },
         {
           "headline": "Get Session",
-          "text": "Marketing site for coaching business",
+          "text": "Marketing site for global online coaching business",
           "media": {
             "src": "/img/getsession.png"
           },
@@ -49,7 +49,7 @@
         },
         {
           "headline": "Paradise Helicopters",
-          "text": "Marketing site for helicopter tours company",
+          "text": "Marketing site for Hawaii based helicopter tours company",
           "media": {
             "src": "/img/paradise-helicopters.png"
           },
@@ -58,7 +58,7 @@
         },
         {
           "headline": "Metrics Watch",
-          "text": "Marketing site for email based analytics product",
+          "text": "Marketing site for email based analytics tool",
           "media": {
             "src": "/img/metrics-watch.png"
           },
