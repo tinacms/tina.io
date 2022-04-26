@@ -87,10 +87,8 @@ import { useTina } from 'tinacms/dist/edit-state'
 const query = `
 query ContentQuery($relativePath: String!) {
   <collection.name>(relativePath: $relativePath) {
-    data {
-      body
-      title
-    }
+    body
+    title
   }
 }
 `

@@ -90,10 +90,8 @@ import { useTina } from 'tinacms/dist/edit-state'
 const query = `
 query ContentQuery($relativePath: String!) {
   <collection.name>(relativePath: $relativePath) {
-    data {
-      body
-      title
-    }
+    body
+    title
   }
 }
 `
@@ -156,7 +154,7 @@ const BlogPage = props => {
 
 export const getStaticProps = async ctx => {
   const query = `query Post($relativePath: String!) {
-    Post(relativePath: $relativePath) {
+    post(relativePath: $relativePath) {
       title
       body
     }
