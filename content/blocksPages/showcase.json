@@ -13,7 +13,7 @@
       "items": [
         {
           "headline": "Devolver Digital",
-          "text": "Extensive library of games published by gaming agency",
+          "text": "Library of games published by gaming agency",
           "media": {
             "src": "/img/devolver.png"
           },
@@ -21,8 +21,8 @@
           "_template": "project"
         },
         {
-          "headline": "PCode",
-          "text": "A development company's marketing site built with Next.js and Tina",
+          "headline": "pcode",
+          "text": "Marketing site for development company",
           "media": {
             "src": "/img/pcode.png"
           },
@@ -30,8 +30,26 @@
           "_template": "project"
         },
         {
+          "headline": "Catalyst Miami",
+          "text": "Marketing site showcasing work of non-profit organization",
+          "media": {
+            "src": "/img/catalyst.png"
+          },
+          "url": "https://stories.catalystmiami.org/",
+          "_template": "project"
+        },
+        {
+          "headline": "Get Session",
+          "text": "Marketing site for coaching business",
+          "media": {
+            "src": "/img/getsession.png"
+          },
+          "url": "https://getsession.com/",
+          "_template": "project"
+        },
+        {
           "headline": "Paradise Helicopters",
-          "text": "A marketing site developed for a tours company using Next.js and Tina",
+          "text": "Marketing site for helicopter tours company",
           "media": {
             "src": "/img/paradise-helicopters.png"
           },
@@ -40,7 +58,7 @@
         },
         {
           "headline": "Metrics Watch",
-          "text": "Originally built with Forestry.io but converted to Tina to unlock a better editing experience",
+          "text": "Marketing site for email based analytics product",
           "media": {
             "src": "/img/metrics-watch.png"
           },
