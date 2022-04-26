@@ -10,8 +10,21 @@ type BooleanField = {
   label: string
   name: string
   type: 'boolean'
-  /** See docs/reference/toolkit/fields for customizing the UI **/
-  ui?: object
+  /** See https://tina.io/docs/extending-tina/overview/ for customizing the UI **/
+  ui?: {
+    label?: string
+    description?: string
+    component?: FC<any> | string | null
+    parse?: (value: boolean | boolean[], name: string, field: F) => any
+    format?: (value: boolean | boolean[], name: string, field: F) => any
+    validate?(
+      // boolean or  boolean[] depends on list true or false
+      value: boolean | boolean[],
+      allValues: any,
+      meta: any,
+      field: UIField<F, Shape>
+    ): string | undefined | void
+  }
 }
 ```
 
