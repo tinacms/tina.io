@@ -1,7 +1,8 @@
 ---
 title: Customizing a form
-id: '/docs/advanced/customizing-forms'
-next: '/docs/advanced/customizing-ui'
+id: '/docs/extending-tina/customizing-forms'
+prev: /docs/extending-tina/format-and-parse
+next: /docs/extending-tina/edit-state
 ---
 
 With Tina, the editors interact with Tina through forms in the sidebar. These forms are wired up automatically based on the site's schema, and the queries used on each page.

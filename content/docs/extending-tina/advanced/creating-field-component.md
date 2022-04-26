@@ -1,8 +1,11 @@
 ---
 title: Creating a custom field component
-id: '/docs/advanced/creating-field-component'
-next: '/docs/advanced/customizing-forms'
+id: '/docs/extending-tina/advanced/creating-field-component'
+next: '/docs/extending-tina/customizing-ui'
+prev: /docs/extending-tina/advanced/extending-field-plugin
 ---
+
+{{ WarningCallout text="This is only needed for advanced usage and special circumstances. Please refer to our [main docs](/docs/extending-tina/overview)  for most use case's" }}
 
 A field plugin's `Component` is a React component that accepts three props:
 
