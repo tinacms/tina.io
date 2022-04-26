@@ -58,6 +58,10 @@ fields: [
 
 <!-- TODO: add screenshots -->
 
+See live example below;
+
+<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/validation" />
+
 
 
 The following schema types support the use of `validate`:

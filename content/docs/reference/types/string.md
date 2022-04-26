@@ -67,6 +67,18 @@ By default, the `text` field is used for strings. To use a different core field 
 
 ## Providing a custom component
 
-You can create your own components by adding them to the CMS
+You can [create your own components](/docs/extending-tina/custom-field-components/)
 
-<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/iframe/string-custom" />
+<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/string-component" />
+
+## Providing validation
+
+You can provide a [validation function](/docs/extending-tina/validation/) for frontend validation
+
+<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/validation" />
+
+## Format and parse
+
+You can provide [custom format and parse functions](/docs/extending-tina/format-and-parse/) to a string field
+
+<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/string-format-parse" />
