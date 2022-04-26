@@ -1,7 +1,8 @@
 ---
 title: Customizing Tina's UI
-id: '/docs/advanced/customizing-ui'
-next: '/docs/advanced/edit-state'
+id: '/docs/extending-tina/customizing-ui'
+prev: /docs/extending-tina/advanced/creating-field-component
+next: /docs/tina-cloud
 ---
 
 ## CSS Custom Properties
