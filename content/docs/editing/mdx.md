@@ -88,10 +88,7 @@ const components = {
 export default function MyPage(props) {
   return (
     <div>
-      <TinaMarkdown
-        components={components}
-        content={props.data.getPostDocument.data.body}
-      />
+      <TinaMarkdown components={components} content={props.data.post.body} />
     </div>
   )
 }
@@ -100,10 +97,10 @@ export default function MyPage(props) {
 export const getStaticPaths = async () => {
   const tinaProps = await staticRequest({
     query: `{
-        getPostList{
+        postConnection {
           edges {
             node {
-              sys {
+              _sys {
                 filename
               }
             }
@@ -112,8 +109,8 @@ export const getStaticPaths = async () => {
       }`,
     variables: {},
   })
-  const paths = tinaProps.getPostList.edges.map(x => {
-    return { params: { slug: x.node.sys.filename } }
+  const paths = tinaProps.postConnection.edges.map(x => {
+    return { params: { slug: x.node._sys.filename } }
   })
 
   return {
@@ -123,11 +120,9 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async ctx => {
-  const query = `query getPost($relativePath: String!) {
-    getPostDocument(relativePath: $relativePath) {
-      data {
-        body
-      }
+  const query = `query Post($relativePath: String!) {
+    post(relativePath: $relativePath) {
+      body
     }
   }
   `

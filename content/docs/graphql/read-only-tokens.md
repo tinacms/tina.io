@@ -47,7 +47,7 @@ Here is an example curl request that will query the content API for the list of 
 curl --location --request POST 'https://content.tinajs.io/content/<ClientId>/github/main' \
 --header 'X-API-KEY: 5f47d1d1c89755aba3b54684dd25f580ec6bb0d3' \
 --header 'Content-Type: application/json' \
---data-raw '{"query":"{\n        getCollections{\n            name\n        }\n}","variables":{}}'
+--data-raw '{"query":"{\n        collections{\n            name\n        }\n}","variables":{}}'
 ```
 
 #### Fetch
@@ -58,7 +58,7 @@ myHeaders.append('X-API-KEY', '5f47d1d1c89755aba3b54684dd25f580ec6bb0d3')
 myHeaders.append('Content-Type', 'application/json')
 
 var graphql = JSON.stringify({
-  query: '{\n        getCollections{\n            name\n        }\n}',
+  query: '{\n        collections{\n            name\n        }\n}',
   variables: {},
 })
 var requestOptions = {
@@ -89,7 +89,7 @@ import { useTina } from 'tinacms/dist/edit-state'
 // This query can be any query
 const query = `
 query ContentQuery($relativePath: String!) {
-  get<CollectionName>Document(relativePath: $relativePath) {
+  <collection.name>(relativePath: $relativePath) {
     data {
       body
       title
@@ -155,12 +155,10 @@ const BlogPage = props => {
 }
 
 export const getStaticProps = async ctx => {
-  const query = `query getPost($relativePath: String!) {
-    getPostDocument(relativePath: $relativePath) {
-      data {
-        title
-        body
-      }
+  const query = `query Post($relativePath: String!) {
+    Post(relativePath: $relativePath) {
+      title
+      body
     }
   }
   `

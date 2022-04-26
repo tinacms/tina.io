@@ -4,9 +4,9 @@ id: /docs/graphql/queries/update-document
 next: /docs/graphql/queries/add-document
 ---
 
-## Updating a document with `update<collection>Document`
+## Updating a document with `update<collection>`
 
-Our collections for the above [schema](/docs/graphql/queries/#example-schema) are named "post" and "author", so we can apply an update to each collection type using the `updatePostDocument` & `updateAuthorDocument`
+Our collections for the above [schema](/docs/graphql/queries/#example-schema) are named "post" and "author", so we can apply an update to each collection type using the `updatePost` & `updateAuthor`
 
 > Note: Update mutations will overwrite _all_ fields. Omitting a field will result in it being nullified.
 

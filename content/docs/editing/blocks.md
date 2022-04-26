@@ -134,26 +134,24 @@ Because each item in a list of blocks can have a unique schema, querying this da
 The fragment names are automatically generated based on the collection name and parent field name. For example, if the collection is `pages`, the field is `blocks`, and the block's name is `hero`, the fragment will be named `PagesBlocksHero`.
 
 ```graphql
-query getPagesDocument($relativePath: String!) {
-  getPagesDocument(relativePath: $relativePath) {
-    data {
-      blocks {
+query PagesDocument($relativePath: String!) {
+  pages(relativePath: $relativePath) {
+    blocks {
+      __typename
+      ... on PagesBlocksHero {
         __typename
-        ... on PagesBlocksHero {
-          __typename
-          tagline
-          headline
-          text
-        }
-        ... on PagesBlocksFeatures {
-          __typename
-          title
-          text
-        }
-        ... on PagesBlocksContent {
-          __typename
-          body
-        }
+        tagline
+        headline
+        text
+      }
+      ... on PagesBlocksFeatures {
+        __typename
+        title
+        text
+      }
+      ... on PagesBlocksContent {
+        __typename
+        body
       }
     }
   }
@@ -245,9 +243,9 @@ export default defineSchema({
           list: true,
           name: 'blocks',
           label: 'Sections',
-+          ui: {
-+            visualSelector: true,
-+          },
++         ui: {
++           visualSelector: true,
++         },
           templates: [heroBlock, featureBlock, contentBlock],
         },
       ],

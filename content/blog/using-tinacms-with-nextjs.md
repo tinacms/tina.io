@@ -219,19 +219,19 @@ Currently, the Next Blog Starter grabs content from the file system. But since T
 
 ## Creating the getStaticPaths query
 
-The `getStaticPaths` query is going to need to know where all of your markdown files are located, with your current schema you have the option to use `getPostList` which will provide a list of all posts in your `posts` folder. Make sure your local server is running and navigate to http://localhost:4001/altair and select the Docs button. The Docs button gives you the ability to see all the queries possible and the variables returned:
+The `getStaticPaths` query is going to need to know where all of your markdown files are located, with your current schema you have the option to use `postConnection` which will provide a list of all posts in your `posts` folder. Make sure your local server is running and navigate to http://localhost:4001/altair and select the Docs button. The Docs button gives you the ability to see all the queries possible and the variables returned:
 
 ![Altair Doc example](/gif/altair_doc.gif)
 
-So based upon the `getPostList` you will want to query the `sys` which is the filesystem and retrieve the `filename`, which will return all the filenames without the extension.
+So based upon the `postConnection` you will want to query the `sys` which is the filesystem and retrieve the `filename`, which will return all the filenames without the extension.
 
 ```graphql,copy
 query {
-  getPostList {
+  postCOnnection {
     edges {
       node {
-        sys {
-          basename
+        _sys {
+          filename
         }
       }
     }
@@ -244,34 +244,28 @@ If you run this query in the GraphQL client you will see the following returned:
 ```json,copy
 {
   "data": {
-    "getPostList": {
+    "postConnection": {
       "edges": [
         {
           "node": {
-            "sys": {
-              "basename": "bali.md"
+            "_sys": {
+              "filename": "bali"
             }
           }
         },
         {
           "node": {
-            "sys": {
-              "basename": "iceland.md"
-            }
+            "_sys": { "filename": "iceland" }
           }
         },
         {
           "node": {
-            "sys": {
-              "basename": "joshua-tree.md"
-            }
+            "_sys": { "filename": "joshua-tree" }
           }
         },
         {
           "node": {
-            "sys": {
-              "basename": "mauritius.md"
-            }
+            "_sys": { "filename": "mauritius" }
           }
         }
       ]
@@ -312,29 +306,29 @@ staticRequest({
 }),
 ```
 
-You can use the `getPostList` query from earlier to build your dynamic routes:
+You can use the `postConnection` query from earlier to build your dynamic routes:
 
 ```js,copy
 export async function getStaticPaths() {
   const postsListData = await staticRequest({
     query: `
       query {
-        getPostList {
+        postConnection {
           edges {
             node {
-            sys {
-              filename
+              _sys {
+                filename
               }
             }
           }
+        }
       }
-    }
     `,
     variables: {},
   })
   return {
-    paths: postsListData.getPostList.edges.map(edge => ({
-      params: { slug: edge.node.sys.filename },
+    paths: postsListData.postConnection.edges.map(edge => ({
+      params: { slug: edge.node._sys.filename },
     })),
     fallback: false,
   }
@@ -362,12 +356,12 @@ You need to query the following items from your content api:
 
 ### Creating your Query
 
-Using your local graphql client you can query the `getPostDocument` using the path to the blog post in question, below is the skeleton of what you need to fill out.
+Using your local graphql client you can query the `post` using the path to the blog post in question, below is the skeleton of what you need to fill out.
 
 ```graphql
 query BlogPostQuery($relativePath: String!) {
-  getPostDocument(relativePath: $relativePath) {
-    # data: {}  this is data you want to retrieve from your posts.
+  post(relativePath: $relativePath) {
+    # this is data you want to retrieve from your posts.
   }
 }
 ```
@@ -379,13 +373,11 @@ You can now fill in the relevant fields you need to query. Inside the data objec
 ```graphql
 query BlogPostQuery($relativePath: String!) {
   getPostDocument(relativePath: $relativePath) {
-    data {
-      title
-      date
-      hero_image
-      author
-      body
-    }
+    title
+    date
+    hero_image
+    author
+    body
   }
 }
 ```
@@ -409,14 +401,12 @@ You can now use your query that you created as a variable, this variable will be
 
 ```javascript,copy
 const query = `query BlogPostQuery($relativePath: String!) {
-  getPostDocument(relativePath: $relativePath) {
-    data {
-      title
-      date
-      hero_image
-      author
-      body
-    }
+  post(relativePath: $relativePath) {
+    title
+    date
+    hero_image
+    author
+    body
   }
 }`
 ```
@@ -497,23 +487,23 @@ This now means you have the ability to edit your content using Tina, but before 
             width="1920"
             height="1080"
 -            src={frontmatter.hero_image}
-+            src={data.getPostDocument.data.hero_image}
++            src={data.post.hero_image}
 -            alt={`blog_hero_${frontmatter.title}`}
-+            alt={`blog_hero_${data.getPostDocument.data.title}`}
++            alt={`blog_hero_${data.post.title}`}
           />
         </figure>
         <div className={styles.blog__info}>
 -          <h1>{frontmatter.title}</h1>
-+          <h1>{data.getPostDocument.data.title}</h1>
++          <h1>{data.post.title}</h1>
 -          <h3>{reformatDate(frontmatter.date)}</h3>
-+          <h3>{reformatDate(data.getPostDocument.data.date)}</h3>
++          <h3>{reformatDate(data.post.date)}</h3>
         </div>
         <div className={styles.blog__body}>
 -          <ReactMarkdown children={markdownBody} />
-+          <ReactMarkdown children={data.getPostDocument.data.body} />
++          <ReactMarkdown children={data.post.body} />
         </div>
 -        <h2 className={styles.blog__footer}>Written By: {frontmatter.author}</h2>
-+        <h2 className={styles.blog__footer}>Written By: {data.getPostDocument.data.author}</h2>
++        <h2 className={styles.blog__footer}>Written By: {data.post.author}</h2>
       </article>
     </Layout>
   )
@@ -556,7 +546,7 @@ You want to use the markdown component so you can override your body and it shou
   isBody: true,
   ui: {
     component: 'markdown'
-      }
+  }
 },
 ```
 
@@ -586,13 +576,13 @@ Your TinaCMS should now look like this:
 
 ```javascript
 <TinaCMS
-            apiURL={apiURL}
-            cmsCallback={cms => {
-                              import('react-tinacms-editor').then((field)=>{
-                                cms.plugins.add(field.MarkdownFieldPlugin)
-                                })
-                          }}
-          >
+  apiURL={apiURL}
+  cmsCallback={cms => {
+    import('react-tinacms-editor').then((field)=>{
+      cms.plugins.add(field.MarkdownFieldPlugin)
+    })
+  }}
+>
 ```
 
 #### Testing

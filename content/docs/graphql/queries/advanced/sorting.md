@@ -3,9 +3,10 @@ title: Sorting query results
 id: /docs/graphql/queries/advanced/sorting
 next: /docs/graphql/queries/advanced/pagination
 ---
+
 {{ WarningCallout text="This is an experimental feature, and the API is subject to change. We don't yet suggest using this for production use-cases. Have any thoughts? Let us know in the chat, or through the [GitHub discussion](https://github.com/tinacms/tinacms/discussions/2811)!" }}
 
-To sort collection results by a collection field, pass the `sort` argument to the `get<collection>List` query, with the value corresponding to the desired collection field to sort by. Results are returned in ascending order.
+To sort collection results by a collection field, pass the `sort` argument to the `<collection>Connection` query, with the value corresponding to the desired collection field to sort by. Results are returned in ascending order.
 
 > See [reverse pagination](/docs/graphql/queries/advanced/pagination/) for how to retrieve results in descending order.
 
@@ -23,7 +24,7 @@ Here is an example index definition for our posts collection:
   fields: [
     {
       name:"category"
-    }, 
+    },
     {
       name:"date"
     }
@@ -41,12 +42,12 @@ If the `sort` parameter is not specified in a query, results will be returned ba
 
 ### Sorting by a single field
 
-Here we will query our `post` collection with `getPostList` and sort the results by the `date` field:
+Here we will query our `post` collection with `postConnection` and sort the results by the `date` field:
 
-<iframe width="800" height="400" loading="lazy" src="/api/graphiql/?query=%7B%0A%20%20getPostList(sort%3A%22date%22)%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20data%20%7B%0A%20%20%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20%20%20date%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A" /> 
+<iframe width="800" height="400" loading="lazy" src="/api/graphiql/?query=%7B%0A%20%20postConnection(sort%3A%20%22date%22)%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20date%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A" />
 
 ### Sorting by multiple fields
 
-Here we will query our `post` collection with `getPostList` and sort the results first by `category` and then by `date` using the multi-field index named `category-date`:
+Here we will query our `post` collection with `postConnection` and sort the results first by `category` and then by `date` using the multi-field index named `category-date`:
 
-<iframe width="800" height="400" loading="lazy" src="/api/graphiql/?query=%7B%0A%20%20getPostList(sort%3A%22category-date%22)%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20data%20%7B%0A%20%20%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20%20%20category%0A%20%20%20%20%20%20%20%20%20%20date%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A" />
+<iframe width="800" height="400" loading="lazy" src="http://localhost:3000/api/graphiql/?query=%7B%0A%20%20postConnection(sort%3A%20%22category-date%22)%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20category%0A%20%20%20%20%20%20%20%20date%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A" />

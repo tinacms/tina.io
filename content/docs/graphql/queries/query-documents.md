@@ -10,6 +10,6 @@ To improve query performance, as well as utilize [filtering](/docs/graphql/queri
 
 ## Example
 
-Here we will query our `post` collection with `getPostList`
+Here we will query our `post` collection with `postConnection`
 
 <iframe loading="lazy" src="/api/graphiql/?query=%7B%0A%20%20postConnection%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A" width="800" height="400" />
