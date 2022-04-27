@@ -48,15 +48,6 @@
           "_template": "project"
         },
         {
-          "headline": "Paradise Helicopters",
-          "text": "Marketing site for Hawaii based helicopter tours company",
-          "media": {
-            "src": "/img/paradise-helicopters.png"
-          },
-          "url": "https://paradise-helicopters.netlify.app/",
-          "_template": "project"
-        },
-        {
           "headline": "Metrics Watch",
           "text": "Marketing site for email based analytics tool",
           "media": {
