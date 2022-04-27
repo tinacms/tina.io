@@ -227,7 +227,7 @@ So based upon the `postConnection` you will want to query the `sys` which is the
 
 ```graphql,copy
 query {
-  postCOnnection {
+  postConnection {
     edges {
       node {
         _sys {
