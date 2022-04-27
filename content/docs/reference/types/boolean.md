@@ -3,7 +3,7 @@ title: The "boolean" field
 last_edited: '2021-07-27T15:51:56.737Z'
 ---
 
-# `boolean`
+## `boolean` type
 
 ```ts
 type BooleanField = {
@@ -29,3 +29,11 @@ type BooleanField = {
 ```
 
 <iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/iframe/boolean" />
+
+## Examples
+
+### `boolean` with custom component
+
+This example shows how a [custom component](/docs/extending-tina/custom-field-components/) can be rendered to the user instead of the default component.
+
+<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/boolean-component" />

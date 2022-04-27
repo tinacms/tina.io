@@ -4,7 +4,7 @@ last_edited: '2021-07-27T15:51:56.737Z'
 next: /docs/reference/types/number
 ---
 
-# `string`
+## `string` type
 
 ```ts
 type StringField = {
@@ -34,6 +34,8 @@ type StringField = {
 ```
 
 <iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/iframe/string" />
+
+## Examples
 
 ### With `options`
 
