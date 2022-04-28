@@ -6,13 +6,13 @@ author: Logan Anderson
 prev: content/blog/automating-pull-requests.md
 ---
 
-The latest update enpowers devolopers to put `validation` , `component` , and `parse` functions directly into the schema.
+The latest update empowers devolopers to put `validation` , `component` , and `parse` functions directly into the schema.
 
 ## Quick Demo
 
 ### Validation
 
-Below, if you click the "pencil" icon and add "Title" field the validation function runs and gives an error to the user when it is more then 20 characters
+Below, if you click the "pencil" icon and edit "Title" field the validation function runs and gives an error to the user when it is more then 20 characters
 
 <Iframe
   height="500"
@@ -21,7 +21,7 @@ Below, if you click the "pencil" icon and add "Title" field the validation funct
 
 ### Custom components
 
-With this update this custom compoments can be provided easily, see the example below for how to use a custom component.
+With this update this custom components can be provided easily, see the example below for how to use a custom components.
 
 <Iframe
   height="500"
@@ -38,9 +38,9 @@ To update do the following,
 
 We are going to be using the `schema` file on the backend and fronend (previously it was just the frontend) so all imports from `@tinacms/cli` need to be changed to `tinacms` .
 
-### 2 add `defineConfig`  to the schema.
+### 2. add `defineConfig`  to the schema
 
-We are now recommending that your config be seperate fromt he wrapper component and placed in the `schema.{ts,tsx,js}` or in its only folder.
+We are now recommending that your config be seperate from the wrapper component and placed in the `schema.{ts,tsx,js}` or in its only folder.
 
 So previously the schema file would look like this 
 
@@ -74,9 +74,9 @@ export const tinaConfig = defineConfig({
 export default schema
 ```
 
-Next two files should be addedi in the `.tina/components`  folder
+Next two files should be added in the `.tina/components`  folder
 
-### 3 Add `.tina/components/TinaProvider.js`
+### 3. Add `.tina/components/TinaProvider.js`
 
 This file handles the Tina configeration and the tina provider component, this will only be loaded in edit mode and an [example can be seen here](https://github.com/tinacms/tina-cloud-starter/blob/main/.tina/components/TinaProvider.jsx) and below. 
 
@@ -95,7 +95,8 @@ const TinaProvider = ({ children }) => {
 };
 
 ```
-### 4 Add `.tina/components/TinaDynamicProvider.js`
+
+### 4. Add `.tina/components/TinaDynamicProvider.js`
 
 The `TinaDynamicProvider.js` handles  the loading of the TinaProvider when in "Edit mode".  [See this example](https://github.com/tinacms/tina-cloud-starter/blob/main/.tina/components/TinaDynamicProvider.jsx) or below for what the file looks like.
 
@@ -119,11 +120,11 @@ export default DynamicTina;
 
 > [Read more](/docs/tina-folder/overview/#tinadynamicproviderjs) about these two files in our reference docs
 
-### 5 Update your `_app.{js,tsx}`
+### 5. Update your `_app.{js,tsx}`
 
-The last step is to change your `_app.{js,tsx}` since we have moved the config and the provider to a seperate file this will be simplier then what was there previously.
+The last step is to update your `_app.{js,tsx}`. Since the config and the provider are in seperate file this will be less code then what was there previously.
 
-`_app.{js,tsx}` before.
+`_app.{js,tsx}` before:
 
 ```js
 import dynamic from "next/dynamic";
@@ -154,7 +155,7 @@ const App = ({ Component, pageProps }) => {
 export default App
 ```
 
-Can now be changed to
+`_app.{js,tsx}` after:
 
 ```js
 import DynamicTina  from '../.tina/components/TinaDynamicProvider'
@@ -169,14 +170,14 @@ const App = ({ Component, pageProps }) => {
 export default App
 ```
 
-This seperation of config into another file makes it much cleaner and easier to understand. The schema now being apaert of the config and used on the fronent end will not only allow functions to be passed and used it will also allow us to make less network requests since we have more informtion.
+This seperation of config into another file makes it much cleaner and easier to understand. The schema now being apart of the config and used on the front-end will not only allow functions to be passed and used it will also allow us to make less network requests since we have more informtion.
 
 
 ## Closing words
 
 The new features we talked about in this artical only scratch the service of what is possible, please [read the docs](/docs/extending-tina/overview/) to find out more.
 
-If you are having any issue at all please [react out to us on discord](https://discord.com/invite/zumN63Ybpf) or create a [github issue](https://github.com/tinacms/tinacms/issues/new/choose).
+If you are having any issue at all please [reach out to us on discord](https://discord.com/invite/zumN63Ybpf) or create a [github issue](https://github.com/tinacms/tinacms/issues/new/choose).
 
 
 
