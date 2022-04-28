@@ -23,6 +23,9 @@ import path from 'path'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 
 const components = {
+  Iframe: ({ iframeSrc, height }) => {
+    return <iframe width="100%" height={`${height}px`} src={iframeSrc} />
+  },
   Youtube: ({ embedSrc }) => (
     <iframe
       width="560"
