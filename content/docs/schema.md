@@ -212,6 +212,6 @@ This is done by using the `ui` key in the field definition.
 ```
 ## Summary
 
-- Your content is modeled in the .tina/schema.{ts,js,tsx} of your repo
+- Your content is modeled in the `.tina/schema.{ts,js,tsx}` of your repo
 - Your content model contains an array "collections". A "collection" maps a content type to a directory in your repo.
 - A "collection" contains multiple fields, which can be of multiple scalar or non-scalar data types.
