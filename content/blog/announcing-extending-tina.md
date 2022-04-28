@@ -6,7 +6,7 @@ author: Logan Anderson
 prev: content/blog/automating-pull-requests.md
 ---
 
-The latest update enpowers devolopers to put `validation` , `component` , and `parse` functions directly into the schema.&#x20;
+The latest update enpowers devolopers to put `validation` , `component` , and `parse` functions directly into the schema.
 
 ## Quick Demo
 
@@ -34,9 +34,9 @@ With this update this custom compoments can be provided easily, see the example 
 
 To update do the following,
 
-### 1.  Update imports in the `.tina/schema.ts` file
+### 1.  Update imports in the `.tina/schema.{ts,tsx,js}` file
 
-We are going to be using the schema.ts file on the backend and fronend (previously it was just the frontend) so all imports from `@tinacms/cli` need to be changed to `tinacms` .
+We are going to be using the `schema` file on the backend and fronend (previously it was just the frontend) so all imports from `@tinacms/cli` need to be changed to `tinacms` .
 
 ### 2 add `defineConfig`  to the schema.
 
@@ -59,7 +59,7 @@ const schema = defineSchema({
 })
 
 export const tinaConfig = defineConfig({
-  // pass schema and apiUrl to the config (required)
+  // pass schema and apiUrl to the config (required) (this is how it is passed to the fronend)
   schema: schema,
   apiUrl: apiUrl,
   // add other config that would have previosly been in the _app.{js,tsx} file in the <TinaCMS> component. 
@@ -73,9 +73,6 @@ export const tinaConfig = defineConfig({
 })
 export default schema
 ```
-
-
-
 
 Next two files should be addedi in the `.tina/components`  folder
 
