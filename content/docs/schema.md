@@ -189,7 +189,7 @@ The resulting field in your TinaCMS form will be a `select` field, whose `option
 
 <!-- TODO add links when https://github.com/tinacms/tinacms.org/pull/1293/files is merged -->
 
-Fields can customized to allow a better experience for the content editors. The `ui` property on each field can enable: [custom frontend validation functions](/docs/extending-tina/validation/) which does not allow editors to submit values that are invalid, [formate and parse](/docs/extending-tina/format-and-parse/) input to allow customization of what is saved to the document and what is displayed to the user, and allow [custom field components](/docs/extending-tina/custom-field-components/) to display any input imaginable in the CMS. 
+Fields can be customized to provide a better experience for content editors. The `ui` property on each field can enable: [custom frontend validation functions](/docs/extending-tina/validation/) which does not allow editors to submit values that are invalid, [formate and parse](/docs/extending-tina/format-and-parse/) functions to allow customization of what is saved to the document and what is displayed to the user, and allow [custom field components](/docs/extending-tina/custom-field-components/) to display any input imaginable in the CMS. 
 
 This is done by using the `ui` key in the field definition.
 
