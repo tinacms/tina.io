@@ -60,4 +60,4 @@ It is possible to filter on multiple fields. Multiple conditions are currently t
 
 Here we will query our `post` collection with `postConnection`, and filtering on the referenced `author`'s name:
 
-<iframe width="800" height="400" loading="lazy" src="http://localhost:3000/api/graphiql/?query=%7B%0A%20%20postConnection(filter%3A%20%7Bauthor%3A%20%7Bauthor%3A%20%7Bname%3A%20%7Beq%3A%20%22Napolean%22%7D%7D%7D%7D)%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20category%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A" />
+<iframe width="800" height="400" loading="lazy" src="/api/graphiql/?query=%7B%0A%20%20postConnection(filter%3A%20%7Bauthor%3A%20%7Bauthor%3A%20%7Bname%3A%20%7Beq%3A%20%22Napolean%22%7D%7D%7D%7D)%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20category%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A" />
