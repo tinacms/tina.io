@@ -13,8 +13,13 @@ type ObjectField = {
   /** `fields OR `templates` may be provided, not both **/
   fields?: Field[]
   templates?: Template[]
-  /** See docs/reference/toolkit/fields for customizing the UI **/
-  ui?: object
+  list?: boolean
+  /** See https://tina.io/docs/extending-tina/overview/ for customizing the UI **/
+  ui?: {
+   itemProps?(item: Record<string, any>): {
+      label?: string
+    }
+  }
 }
 ```
 

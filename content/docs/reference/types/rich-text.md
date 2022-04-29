@@ -11,8 +11,6 @@ type RichTextField = {
   name: string
   type: 'rich-text'
   templates: Template[]
-  /** See docs/reference/toolkit/fields for customizing the UI **/
-  ui?: object
 }
 ```
 

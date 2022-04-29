@@ -4,7 +4,7 @@ last_edited: '2021-07-27T15:51:56.737Z'
 next: /docs/reference/types/number
 ---
 
-# `string`
+## `string` type
 
 ```ts
 type StringField = {
@@ -14,13 +14,28 @@ type StringField = {
   list?: boolean
   options?: (string | { value: string; label: string })[]
   /** Represents the "body" of a markdown file **/
-  isBody: boolean
-  /** See docs/reference/toolkit/fields for customizing the UI **/
-  ui?: object
+  isBody?: boolean
+  /** See https://tina.io/docs/extending-tina/overview/ for customizing the UI **/
+  ui?: {
+    label?: string
+    description?: string
+    component?: FC<any> | string | null
+    parse?: (value: string | string[], name: string, field: F) => any
+    format?: (value: string | string[], name: string, field: F) => any
+    validate?(
+      // string or string[] depends on list true or false
+      value: string | string[],
+      allValues: any,
+      meta: any,
+      field: UIField<F, Shape>
+    ): string | undefined | void
+  }
 }
 ```
 
 <iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/iframe/string" />
+
+## Examples
 
 ### With `options`
 
@@ -54,6 +69,18 @@ By default, the `text` field is used for strings. To use a different core field 
 
 ## Providing a custom component
 
-You can create your own components by adding them to the CMS
+You can [create your own components](/docs/extending-tina/custom-field-components/)
 
-<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/iframe/string-custom" />
+<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/string-component" />
+
+## Providing validation
+
+You can provide a [validation function](/docs/extending-tina/validation/) for frontend validation
+
+<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/validation" />
+
+## Format and parse
+
+You can provide [custom format and parse functions](/docs/extending-tina/format-and-parse/) to a string field
+
+<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/string-format-parse" />
