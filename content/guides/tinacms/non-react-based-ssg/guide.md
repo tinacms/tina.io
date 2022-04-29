@@ -46,7 +46,7 @@ Enter the following values into the newly generated package.json:
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@tinacms/cli": "^0.60.11"
+    "@tinacms/cli": "^0.60.15"
   }
 }
 ```
@@ -78,7 +78,7 @@ You can try running the following query in altair to confirm that your Tina sche
 
 ```graphql
 {
-  getPostList {
+  postConnection {
     pageInfo {
       hasPreviousPage
       hasNextPage
@@ -87,12 +87,8 @@ You can try running the following query in altair to confirm that your Tina sche
     }
     totalCount
     edges {
-      cursor
       node {
-        data {
-          title
-          body
-        }
+        title
       }
     }
   }
