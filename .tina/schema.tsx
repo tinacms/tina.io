@@ -79,7 +79,7 @@ export default defineSchema({
           list: false,
           ui: {
             validate: (value) => {
-              if (value.length > 40) {
+              if (value?.length > 40) {
                 return 'Title can not be more then 40 characters long'
               }
             },
