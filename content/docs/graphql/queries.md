@@ -12,23 +12,23 @@ The GraphQL API will generate queries which are specific to the schema you defin
 
 **Available queries**:
 
-- `get<collection>Document`
-- `get<collection>List`
+- `<collection>`
+- `<collection>Connection`
 
 **Available mutations**
 
-- `update<collection>Document`
+- `update<collection>`
 - `addPendingDocument`
 
-For a given collection, it's `name` will be used to generate `get<collection>Document` and `get<collection>List` queries, and the `update<collection>Document` mutation.
+For a given collection, it's `name` will be used to generate `<collection>` and `<collection>Connection` queries, and the `update<collection>` mutation.
 
 ### General queries
 
 As an alternative to the schema-specific queries, the GraphQL API also makes the following general queries available:
 
-- getDocument
-- getCollections
-- getCollection
+- document
+- collection
+- collections
 - addPendingDocument
 - updateDocument
 
@@ -72,10 +72,10 @@ export default defineSchema({
       ],
       indexes: [
         {
-          name: "category-date",
-          fields: [{name:"category"}, {name:"date"}]
-        }
-      ]
+          name: 'category-date',
+          fields: [{ name: 'category' }, { name: 'date' }],
+        },
+      ],
     },
     {
       label: 'Authors',

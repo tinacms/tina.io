@@ -12,7 +12,6 @@ limitations under the License.
 */
 
 import { defineSchema } from 'tinacms'
-
 import { heroTemplate } from '../components/blocks/Hero'
 import { featuresTemplate } from '../components/blocks/Features'
 import { flyingTemplate } from '../components/blocks/Flying'
@@ -56,7 +55,7 @@ export default defineSchema({
             visualSelector: true,
           },
           templates: [
-            heroTemplate as TinaTemplate ,
+            heroTemplate as TinaTemplate,
             featuresTemplate as TinaTemplate,
             flyingTemplate as TinaTemplate,
             pricingTemplate as TinaTemplate,

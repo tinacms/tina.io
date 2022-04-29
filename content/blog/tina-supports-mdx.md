@@ -84,9 +84,7 @@ const components = {
 }
 
 // Code removed for simplification
-;<TinaMarkdown components={components}>
-  {props.data.getDocsDocument.data.body}
-</TinaMarkdown>
+;<TinaMarkdown components={components}>{props.data.docs.body}</TinaMarkdown>
 ```
 
 ### Ready to get started?

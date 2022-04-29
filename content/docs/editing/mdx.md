@@ -60,7 +60,7 @@ This is some text
 
 Results in the following response from the content API:
 
-<iframe loading="lazy" src="/api/graphiql/?query=%7B%0A%20%20getPostDocument(relativePath%3A%20%22voteForPedro.json%22)%20%7B%0A%20%20%20%20data%20%7B%0A%20%20%20%20%20%20body%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D" width="800" height="400" />
+<iframe loading="lazy" src="/api/graphiql/?query=%7B%0A%20%20post(relativePath%3A%20%22voteForPedro.json%22)%20%7B%0A%20%20%20%20body%0A%20%20%7D%0A%7D%0A" width="800" height="400" />
 
 > Notice the `body` response, it's a structured object instead of a string!
 
@@ -88,10 +88,7 @@ const components = {
 export default function MyPage(props) {
   return (
     <div>
-      <TinaMarkdown
-        components={components}
-        content={props.data.getPostDocument.data.body}
-      />
+      <TinaMarkdown components={components} content={props.data.post.body} />
     </div>
   )
 }
@@ -100,10 +97,10 @@ export default function MyPage(props) {
 export const getStaticPaths = async () => {
   const tinaProps = await staticRequest({
     query: `{
-        getPostList{
+        postConnection {
           edges {
             node {
-              sys {
+              _sys {
                 filename
               }
             }
@@ -112,8 +109,8 @@ export const getStaticPaths = async () => {
       }`,
     variables: {},
   })
-  const paths = tinaProps.getPostList.edges.map(x => {
-    return { params: { slug: x.node.sys.filename } }
+  const paths = tinaProps.postConnection.edges.map(x => {
+    return { params: { slug: x.node._sys.filename } }
   })
 
   return {
@@ -123,11 +120,9 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async ctx => {
-  const query = `query getPost($relativePath: String!) {
-    getPostDocument(relativePath: $relativePath) {
-      data {
-        body
-      }
+  const query = `query Post($relativePath: String!) {
+    post(relativePath: $relativePath) {
+      body
     }
   }
   `

@@ -175,10 +175,7 @@ const components = {
 The final step is to use these `components` in our `TinaMarkdown`. To do that we are going to pass our components object to the components prop `components={components}` and our `TinaMarkdown` will look like the following:
 
 ```jsx
-<TinaMarkdown
-  content={props.data.getPostDocument.data.body}
-  components={components}
-/>
+<TinaMarkdown content={props.data.post.body} components={components} />
 ```
 
 Now, you can launch using `yarn dev` and navigate back to [http://localhost:3000/post/HelloWorld](http://localhost:3000/post/HelloWorld). You will see that our code block now has Prism syntax highlighting.

@@ -169,13 +169,11 @@ This will result in a resolvable node in your GraphQL structure (Don't worry, we
 
 ```graphql
 {
-  getPostDocument(relativePath: $relativePath) {
-    data {
-      author {
-        # disambiguate because could have _many_ collections
-        ... on AuthorDocument {
-          name
-        }
+  post(relativePath: $relativePath) {
+    author {
+      # disambiguate because could have _many_ collections
+      ... on Author {
+        name
       }
     }
   }

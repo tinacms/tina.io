@@ -25,10 +25,8 @@ Contextual editing can be set up on a page with the `useTina` hook
 import { useTina } from 'tinacms/dist/edit-state'
 
 const query = `{
-  getPageDocument(relativePath: "home.mdx"){
-    data{
-      body
-    }
+  page(relativePath: "home.mdx"){
+    body
   }
 }`
 
@@ -42,7 +40,7 @@ export default function Home(props) {
 
 // Note how our page body uses "data", and not the original "props.data".
 // This ensures that the content will be updated in edit-mode as the user types
-  return <h1>{data.getPageDocument.data.body}</h1>
+  return <h1>{data.page.body}</h1>
 }
 
 export const getStaticProps = async () => {

@@ -100,10 +100,8 @@ const App = ({ Component, pageProps }) => {
 // ...
 
 const query = `{
-  getPageDocument(relativePath: "home.mdx"){
-    data{
-      body
-    }
+  page(relativePath: "home.mdx"){
+    body
   }
 }`
 
@@ -114,7 +112,7 @@ export default function Home(props) {
     data: props.data,
   })
 
-  const content = data.getPageDocument.data.body
+  const content = data.page.body
   return (
     <Layout>
       <TinaMarkdown content={content} />
@@ -166,8 +164,8 @@ export default function Home(props) {
   })
 
   return (
--    <div>{props.data.getPageDocument.data.body}</div>
-+    <div>{data.getPageDocument.data.body}</div>
+-    <div>{props.data.page.body}</div>
++    <div>{data.page.body}</div>
   )
 }
 ```

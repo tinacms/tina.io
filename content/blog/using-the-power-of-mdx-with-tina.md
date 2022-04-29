@@ -41,26 +41,26 @@ Open up the `.tina/schema.ts` file and edit the body section from the following
 
 ```typescript,copy
 {
-          type: "string",
-          label: "Blog Post Body",
-          name: "body",
-          isBody: true,
-          ui: {
-            component: "textarea"
-          },
+  type: "string",
+  label: "Blog Post Body",
+  name: "body",
+  isBody: true,
+  ui: {
+    component: "textarea"
+  },
  },
 ```
 
 to
 
 ```typescript,copy
-		{
-          type: 'rich-text',
-          label: "Blog Post Body",
-          name: "body",
-          templates: [],
-          isBody: true,
-        },
+  {
+    type: 'rich-text',
+    label: "Blog Post Body",
+    name: "body",
+    templates: [],
+    isBody: true,
+  },
 ```
 
 We will fill in the `templates` section with all of our components later, we are just replacing the `textArea` with our Rich Text editor which allows us to use markdown and MDX components.
@@ -106,9 +106,9 @@ Now that we are adding our rich-text editor, we no longer need to use marked to 
 
 ```diff
 - {typeof window !== "undefined" && (
--              <ContentSection content={window.marked.parse(props.data.getPostsDocument.data.body)}>
-+              <ContentSection content={props.data.getPostsDocument.data.body}>
-              </ContentSection>
+-   <ContentSection content={window.marked.parse(props.data.post.body)}>
++   <ContentSection content={props.data.post.body}>
+</ContentSection>
 - )}
 ```
 
@@ -172,27 +172,27 @@ To make the experience more enjoyable, we are going to add a UI object that hold
 
 ```typescript,copy
 {
-              name: "Callout",
-              label: "Callout",
-              ui: {
-                defaultItem: {
-                  type: "default",
-                  text: "Lorem ipsum dolor sit amet.",
-                },
-              },
-              fields: [
-                {
-                  name: "type",
-                  label: "Type",
-                  type: "string",
-                  options: ["default", "warning", "error"],
-                },
-                {
-                  name: "text",
-                  label: "Text",
-                  type: "string",
-                },
-              ],
+  name: "Callout",
+  label: "Callout",
+  ui: {
+    defaultItem: {
+      type: "default",
+      text: "Lorem ipsum dolor sit amet.",
+    },
+  },
+  fields: [
+    {
+      name: "type",
+      label: "Type",
+      type: "string",
+      options: ["default", "warning", "error"],
+    },
+    {
+      name: "text",
+      label: "Text",
+      type: "string",
+    },
+  ],
 },
 ```
 
