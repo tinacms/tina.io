@@ -64,6 +64,15 @@
           },
           "url": "https://metricswatch.com/",
           "_template": "project"
+        },
+        {
+          "headline": "James Perkins",
+          "text": "Professional blog from our own dev advocate!",
+          "media": {
+            "src": "/img/james-perkins.png"
+          },
+          "url": "https://www.jamesperkins.dev/",
+          "_template": "project"
         }
       ],
       "_template": "showcase"
