@@ -12,9 +12,9 @@ Your schema is defined in a file called `.tina/schema.ts` (only `.ts` is support
 
 ```ts
 // .tina/schema.ts
-import { defineSchema } from '@tinacms/cli'
+import { defineSchema, defineConfig } from 'tinacms'
 
-export default defineSchema({
+const schema = defineSchema({
   collections: [
     {
       label: 'Blog Posts',
@@ -36,6 +36,15 @@ export default defineSchema({
     },
   ],
 })
+
+export const config = defineConfig({
+  schema: schema,
+  // This is the URL for "Local Mode" using the file system. In production it will be `https://content.tinajs.io/content/${myClientId}/github/${myBranch}`
+  apiUrl: 'https://localhost:4001/graphql',
+  //... Other config
+})
+
+export default schema
 ```
 
 Each item in your `collections` array represents its own entity.
@@ -173,10 +182,36 @@ This will result in a resolvable node in your GraphQL structure (Don't worry, we
 }
 ```
 
+
 The resulting field in your TinaCMS form will be a `select` field, whose `options` are all of the documents in the referenced collections.
 
+## Customizing fields with the `UI` property
+
+<!-- TODO add links when https://github.com/tinacms/tinacms.org/pull/1293/files is merged -->
+
+Fields can be customized to provide a better experience for content editors. The `ui` property on each field can enable: [custom frontend validation functions](/docs/extending-tina/validation/) which does not allow editors to submit values that are invalid, [formate and parse](/docs/extending-tina/format-and-parse/) functions to allow customization of what is saved to the document and what is displayed to the user, and allow [custom field components](/docs/extending-tina/custom-field-components/) to display any input imaginable in the CMS. 
+
+This is done by using the `ui` key in the field definition.
+
+```ts
+{
+  label: "Title",
+  name: "title",
+  type: "string",
+  ui: {
+    validate: (val) => {
+      if ( val.length > 20 ) {
+        return 'The title field must be less then 20 characters'
+      }
+      if ( val.length < 5 ) {
+        return 'The title field must be more then 5 characters'
+      }
+    }
+  }
+}
+```
 ## Summary
 
-- Your content is modeled in the .tina/schema.ts of your repo
+- Your content is modeled in the `.tina/schema.{ts,js,tsx}` of your repo
 - Your content model contains an array "collections". A "collection" maps a content type to a directory in your repo.
 - A "collection" contains multiple fields, which can be of multiple scalar or non-scalar data types.

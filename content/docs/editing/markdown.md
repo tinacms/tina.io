@@ -23,7 +23,7 @@ You would model this collection as:
 
 ```ts
 // .tina/schema.ts
-import { defineSchema } from '@tinacms/cli'
+import { defineSchema } from 'tinacms'
 
 export default defineSchema({
   collections: [

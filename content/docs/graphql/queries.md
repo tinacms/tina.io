@@ -38,7 +38,7 @@ Using the following schema, we'll show you how each of the schema-specific queri
 
 ```ts
 // .tina/schema.ts
-import { defineSchema } from '@tinacms/cli'
+import { defineSchema } from 'tinacms'
 
 export default defineSchema({
   collections: [
