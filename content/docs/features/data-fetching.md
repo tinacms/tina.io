@@ -18,7 +18,7 @@ Note that `getPostDocument` is not built-in to Tina's API. This is an example of
 
 ## The Local Filesystem-based Content API
 
-With Tina, your content is all stored in filesystem, within your site's repo. Using file-based content in a site can be limited, so Tina provides a CLI tool that gets run locally next to your site, which allows all of your content to make available through an expressive GraphQL API.
+With Tina, your content is all stored in filesystem, within your site's repository. Using file-based content in a site can be limiting, so Tina provides a CLI tool that gets run locally next to your site. This allows all of your content to be made available through an expressive GraphQL API.
 
 > We'll go over those details of running this CLI script later, but if you want to skip it, you can read about it [here](/docs/graphql/cli/).
 
