@@ -2341,10 +2341,10 @@
   resolved "https://registry.yarnpkg.com/@tinacms/auth/-/auth-0.50.2.tgz#d44998aac125a68d96d097e49ff84d1c1ff7a7c2"
   integrity sha512-5oBWtkXG8vu/W9txQrcIb7r2GC6XlgpPsO2EKdjGF4gTWZVlwah73OHqL/QogZWIbZ/4znPL1QkZVwGZuYURiw==
 
-"@tinacms/cli@^0.60.14":
-  version "0.60.14"
-  resolved "https://registry.yarnpkg.com/@tinacms/cli/-/cli-0.60.14.tgz#4bfc2a18dad91b5a83092afd7dd4dd70f5556109"
-  integrity sha512-6aIqHMxNz4fZfFog27pYOcMIbaSOIqoMjiBkZmlIoDkJOJyZXjG5a4SpqCpZD8M6JUednQR1zHHTD4ous1nthg==
+"@tinacms/cli@^0.60.15":
+  version "0.60.15"
+  resolved "https://registry.yarnpkg.com/@tinacms/cli/-/cli-0.60.15.tgz#080489c3d77b6ed8f40bd5cb4e1489b5eaa802a7"
+  integrity sha512-p6rySgyRuF70Js5Rk44Jt11eNh4h3wDSjqb1prMET53/sh+iAaCkMsUsw5jzPWxlpXVI+1WgYc9ryD4h1MszWA==
   dependencies:
     "@graphql-codegen/core" "^2.1.0"
     "@graphql-codegen/plugin-helpers" latest
@@ -2550,10 +2550,10 @@
     slate-react "^0.66.0"
     webfontloader "1.6.28"
 
-"@tinacms/toolkit@0.56.23":
-  version "0.56.23"
-  resolved "https://registry.yarnpkg.com/@tinacms/toolkit/-/toolkit-0.56.23.tgz#284b9dbd6cf0e47bbd21b5f6139c096f60287ba8"
-  integrity sha512-oyvMpEwczM7TFeBeutErgulpCq3lQrk3CsktWTwmhj79f6WkI0OWrwXxVaDtpQvD0gEoUay3QMEfGnQxsfjD1w==
+"@tinacms/toolkit@0.56.25":
+  version "0.56.25"
+  resolved "https://registry.yarnpkg.com/@tinacms/toolkit/-/toolkit-0.56.25.tgz#25f4157f8a2f0d1a3554f9b832f9a0bc7382835a"
+  integrity sha512-Bm3XCgmVuZ7cdaL2VYHXuMoeYELOzoUkt9BV7D2omc2tlYU4bIMm0Q5+o+u4EISLAxsqXcGjeoXczJ4EbFjSxg==
   dependencies:
     "@floating-ui/dom" "^0.1.7"
     "@floating-ui/react-dom" "^0.3.3"
@@ -13458,17 +13458,17 @@ through2@^2.0.0:
     readable-stream "~2.3.6"
     xtend "~4.0.1"
 
-tinacms@^0.68.0:
-  version "0.68.0"
-  resolved "https://registry.yarnpkg.com/tinacms/-/tinacms-0.68.0.tgz#c1470a73837e39e85a1a2748a3c229a511799c55"
-  integrity sha512-GIImY91pc3H9mbkVzgETsPYE+laHOg8Vn/DN0MEMRDisP5oJlMc7AZVJJe7Od6shCLi4khvD7oEkxFX3SGN7PA==
+tinacms@^0.68.2:
+  version "0.68.2"
+  resolved "https://registry.yarnpkg.com/tinacms/-/tinacms-0.68.2.tgz#59f7b414071610c369a40783c6f363c30cc5a3bb"
+  integrity sha512-rJlJEjyWhBahPQbAPT3JRS+LTpZfMTrLsIb3vEQ31YstLZZCPb1CrBGzV4llndmyTcBPlEYDur8vF+Rg1goqBA==
   dependencies:
     "@graphql-tools/relay-operation-optimizer" "^6.4.1"
     "@headlessui/react" "^1.5.0"
     "@heroicons/react" "^1.0.4"
     "@tinacms/schema-tools" "0.0.3"
     "@tinacms/sharedctx" "0.1.1"
-    "@tinacms/toolkit" "0.56.23"
+    "@tinacms/toolkit" "0.56.25"
     crypto-js "^4.0.0"
     final-form "4.20.1"
     graphql "^15.1.0"

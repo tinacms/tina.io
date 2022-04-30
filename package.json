@@ -92,12 +92,12 @@
     "strip-markdown": "^3.1.1",
     "styled-components": "^5.3.3",
     "styled-jsx-plugin-sass": "^1.0.0",
-    "tinacms": "^0.68.0",
+    "tinacms": "^0.68.2",
     "webpack": "^5.68.0"
   },
   "devDependencies": {
     "@babel/plugin-syntax-jsx": "^7.10.4",
-    "@tinacms/cli": "^0.60.14",
+    "@tinacms/cli": "^0.60.15",
     "@types/cookie": "^0.3.3",
     "@types/glob": "^7.1.1",
     "@types/jest": "^25.1.2",
