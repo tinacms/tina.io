@@ -22,7 +22,7 @@ We are going to use the [`object` type](/docs/schema/#grouping-properties-within
 
 ```ts
 // .tina/schema.ts
-import { defineSchema } from '@tinacms/cli'
+import { defineSchema } from 'tinacms'
 import type { TinaTemplate } from "tinacms";
 
 
@@ -134,33 +134,31 @@ Because each item in a list of blocks can have a unique schema, querying this da
 The fragment names are automatically generated based on the collection name and parent field name. For example, if the collection is `pages`, the field is `blocks`, and the block's name is `hero`, the fragment will be named `PagesBlocksHero`.
 
 ```graphql
-query getPagesDocument($relativePath: String!) {
-  getPagesDocument(relativePath: $relativePath) {
-    data {
-      blocks {
+query PagesDocument($relativePath: String!) {
+  pages(relativePath: $relativePath) {
+    blocks {
+      __typename
+      ... on PagesBlocksHero {
         __typename
-        ... on PagesBlocksHero {
-          __typename
-          tagline
-          headline
-          text
-        }
-        ... on PagesBlocksFeatures {
-          __typename
-          title
-          text
-        }
-        ... on PagesBlocksContent {
-          __typename
-          body
-        }
+        tagline
+        headline
+        text
+      }
+      ... on PagesBlocksFeatures {
+        __typename
+        title
+        text
+      }
+      ... on PagesBlocksContent {
+        __typename
+        body
       }
     }
   }
 }
 ```
 
-<iframe loading="lazy" src="/api/graphiql/?query=%7B%0A%20%20getPagesDocument(relativePath%3A%20%22turbo.json%22)%20%7B%0A%20%20%20%20data%20%7B%0A%20%20%20%20%20%20blocks%20%7B%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20...%20on%20PagesBlocksHero%20%7B%0A%20%20%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20%20%20tagline%0A%20%20%20%20%20%20%20%20%20%20headline%0A%20%20%20%20%20%20%20%20%20%20text%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20...%20on%20PagesBlocksFeatures%20%7B%0A%20%20%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20%20%20items%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20%20%20%20%20text%0A%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20...%20on%20PagesBlocksContent%20%7B%0A%20%20%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20%20%20body%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&operationName=getPagesDocument" width="800" height="400">
+<iframe loading="lazy" src="/api/graphiql/?query=%7B%0A%20%20pages(relativePath%3A%20%22turbo.json%22)%20%7B%0A%20%20%20%20blocks%20%7B%0A%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20...%20on%20PagesBlocksHero%20%7B%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20tagline%0A%20%20%20%20%20%20%20%20headline%0A%20%20%20%20%20%20%20%20text%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20...%20on%20PagesBlocksFeatures%20%7B%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20items%20%7B%0A%20%20%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20%20%20text%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20...%20on%20PagesBlocksContent%20%7B%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20body%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A" width="800" height="400">
 
 > For more info on how to query data with Tina's GraphQL API, check out the [Query Documentation](https://tina.io/docs/graphql/queries/)
 
@@ -245,9 +243,9 @@ export default defineSchema({
           list: true,
           name: 'blocks',
           label: 'Sections',
-+          ui: {
-+            visualSelector: true,
-+          },
++         ui: {
++           visualSelector: true,
++         },
           templates: [heroBlock, featureBlock, contentBlock],
         },
       ],

@@ -31,7 +31,7 @@ yarn remove tina-graphql-gateway-cli
 
 ```diff
 - import { defineSchema } from 'tina-graphql-gateway-cli'
-+ import { defineSchema } from '@tinacms/cli'
++ import { defineSchema } from 'tinacms'
 ```
 
 > Note: the `defineSchema` API has changed, too. Read on for how to upgrade

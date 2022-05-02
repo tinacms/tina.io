@@ -8,7 +8,7 @@ const HomePage = props => {
     data: props.data,
     variables: props.vars,
   })
-  const data = tinaData.data.getPageDocument.data
+  const data = tinaData.data.page
 
   return <BlocksPage data={data} />
 }
@@ -17,7 +17,7 @@ const HomePage = props => {
 export const getStaticProps = async function() {
   const client = ExperimentalGetTinaClient()
   const vars = { relativePath: 'home.json' }
-  const res = await client.getPageDocument(vars)
+  const res = await client.page(vars)
   return {
     props: {
       query: res.query,

@@ -12,13 +12,13 @@ Here's an example of how the data-fetching for a basic "post" ties together with
 
 <iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/basic" />
 
-Note that `getPostDocument` is not built-in to Tina's API. This is an example of a query based on YOUR defined schema, (where you have a "post" collection defined).
+Note that the `post` query is not built-in to Tina's API. This is an example of a query based on YOUR defined schema, (where you have a "post" collection defined).
 
 > For more information on writing queries for your specific schema, check out our ["Using the GraphQL API"](/docs/graphql/overview/) docs.
 
 ## The Local Filesystem-based Content API
 
-With Tina, your content is all stored in filesystem, within your site's repo. Using file-based content in a site can be limited, so Tina provides a CLI tool that gets run locally next to your site, which allows all of your content to make available through an expressive GraphQL API.
+With Tina, your content is all stored in filesystem, within your site's repository. Using file-based content in a site can be limiting, so Tina provides a CLI tool that gets run locally next to your site. This allows all of your content to be made available through an expressive GraphQL API.
 
 > We'll go over those details of running this CLI script later, but if you want to skip it, you can read about it [here](/docs/graphql/cli/).
 
@@ -35,11 +35,9 @@ import { staticRequest } from 'tinacms'
 
 const getStaticProps = async () => {
   const query = `
-      query GetPostDocument($relativePath: String!) {
-        getPostDocument(relativePath: $relativePath) {
-          data {
-            title
-          }
+      query Post($relativePath: String!) {
+        post(relativePath: $relativePath) {
+          title
         }
       }
     `
@@ -76,11 +74,11 @@ You'll likely want to query the Tina data layer for [dynamic routes](https://nex
 export const getStaticPaths = async () => {
   const postsListData = await staticRequest({
     query: gql`
-      query GetPostList {
-        getPostList {
+      query PostConnection {
+        postConnection {
           edges {
             node {
-              sys {
+              _sys {
                 filename
               }
             }
@@ -91,8 +89,8 @@ export const getStaticPaths = async () => {
   })
 
   return {
-    paths: postsListData.getPostList.edges.map(post => ({
-      params: { filename: post.node.sys.filename },
+    paths: postsListData.postConnection.edges.map(post => ({
+      params: { filename: post.node._sys.filename },
     })),
   }
 }

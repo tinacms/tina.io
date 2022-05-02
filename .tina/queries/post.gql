@@ -1,6 +1,6 @@
 query getExpandedPostDocument($relativePath: String!) {
-  getPostDocument(relativePath: $relativePath) {
-    sys {
+  post(relativePath: $relativePath) {
+    _sys {
       filename
       basename
       breadcrumbs
@@ -9,28 +9,22 @@ query getExpandedPostDocument($relativePath: String!) {
       extension
     }
     id
-    data {
-      title
-      date
-      last_edited
-      author
-      prev {
-        ... on PostDocument {
-          id
-          data {
-            title
-          }
-        }
+    title
+    date
+    last_edited
+    author
+    prev {
+      ... on Post {
+        id
+        title
       }
-      next {
-        ... on PostDocument {
-          id
-          data {
-            title
-          }
-        }
-      }
-      body
     }
+    next {
+      ... on Post {
+        id
+        title
+      }
+    }
+    body
   }
 }

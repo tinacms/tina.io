@@ -35,10 +35,11 @@ export default defineSchema({
     }
   ]
 ```
+
 ### Client Code
+
 ```javascript,copy
-<h2 data-tinafield="title">
-    {props.data.getPostDocument.data.title}
-</h2>
+<h2 data-tinafield="title">{props.data.post.title}</h2>
 ```
+
 ![Active Field Indicator](https://res.cloudinary.com/forestry-demo/image/upload/v1639489428/tina-io/Active%20Field%20Indicator.gif)

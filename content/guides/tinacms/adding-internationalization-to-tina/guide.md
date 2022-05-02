@@ -61,15 +61,15 @@ Given that we're adding `i18n` support to the `post` collection, we'll be updati
 // `locales` is provided to `getStaticPaths` and matches `locales` in the `config`
 const getStaticPaths = async({ locales }) {
   const client = ExperimentalGetTinaClient();
-  const postsListData = await client.getPostsList();
+  const postConnection = await client.postConnection();
   const paths = [];
 
   // for each `post` document...
-  postsListData.data.getPostsList.edges.map((post) => {
+  postConnection.data.edges.map((post) => {
     // ensure a `path` is created for each `locale`
     locales.map((locale) => {
       paths.push({
-        params: { filename: post.node.sys.filename },
+        params: { filename: post.node._sys.filename },
         locale,
       });
     });

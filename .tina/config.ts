@@ -15,14 +15,14 @@ export const tinaConfig = defineConfig({
     import('tinacms').then(({ RouteMappingPlugin }) => {
       const RouteMapping = new RouteMappingPlugin((collection, document) => {
         if (['page'].includes(collection.name)) {
-          if (document.sys.filename === 'home') {
+          if (document._sys.filename === 'home') {
             return `/`
           }
-          return `/${document.sys.filename}`
+          return `/${document._sys.filename}`
         }
 
         if (['post'].includes(collection.name)) {
-          return `/blog/${document.sys.filename}`
+          return `/blog/${document._sys.filename}`
         }
 
         return undefined

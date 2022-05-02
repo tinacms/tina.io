@@ -132,21 +132,17 @@ We can query a blog post by passing its relative path to the collection defined 
 
 ```graphql
 query BlogPost {
-  getPostDocument(relativePath: "myBlogPost.md") {
-    data {
-      __typename
-      ... on Article_Doc_Data {
-        title
-        author {
-          data {
-            ... on Author_Doc_Data {
-              name
-              avatar
-            }
-          }
+  post(relativePath: "myBlogPost.md") {
+    __typename
+    ... on PostArticle {
+      title
+      author {
+        ... on Author {
+          name
+          avatar
         }
-        _body
       }
+      _body
     }
   }
 }

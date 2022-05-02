@@ -154,20 +154,14 @@ function BlogTemplate({ file, siteConfig, ...props }) {
     variables: props.vars,
   })
 
-  const {
-    body,
-    excerpt,
-    prev,
-    next,
-    ...frontmatter
-  } = data.getPostDocument.data
+  const { body, excerpt, prev, next, ...frontmatter } = data.post
 
   const prevPage = React.useMemo(() => {
     if (!prev) return null
     const { name } = path.parse(prev.id)
     return {
       slug: `/blog/${name}`,
-      title: prev.data.title,
+      title: prev.title,
     }
   }, [prev])
 
@@ -176,7 +170,7 @@ function BlogTemplate({ file, siteConfig, ...props }) {
     const { name } = path.parse(next.id)
     return {
       slug: `/blog/${name}`,
-      title: next.data.title,
+      title: next.title,
     }
   }, [next])
 

@@ -13,21 +13,21 @@ PR Scheduler is a GitHub integration that can be installed directly within your 
 
 ### How to install
 
-1. Open [PR Scheduler's GitHub App page](https://github.com/apps/pr-scheduler).
-2. Click the 'Install' button
-3. Select whether to install PR Scheduler on all repositories or only specific repositories. Then click 'Install'.
+1.  Open [PR Scheduler's GitHub App page](https://github.com/apps/pr-scheduler).
+2.  Click the 'Install' button
+3.  Select whether to install PR Scheduler on all repositories or only specific repositories. Then click 'Install'.
 
 ### How to schedule a pull request
 
 Now, the PR Scheduler can now be used to schedule any of your pull requests. To initiate,do the following:
 
-1. Open the pull request that you want to schedule.
-2. Add a new comment with DD/MM/YYYTHH:MM for example `@prscheduler 05/04/2022T14:00`
-3. PR Scheduler will respond back telling you it's ready.
+1.  Open the pull request that you want to schedule.
+2.  Add a new comment with DD/MM/YYYTHH:MM for example `@prscheduler 05/04/2022T14:00`
+3.  PR Scheduler will respond back telling you it's ready.
 
-![Example Image of PR Scheduled](https://res.cloudinary.com/forestry-demo/image/upload/v1649865121/blog-media/branch-automate-pr/Screen_Shot_2022-04-12_at_7.34.54_AM.png)
+![Example Image of PR Scheduled](https://res.cloudinary.com/forestry-demo/image/upload/v1649865121/blog-media/branch-automate-pr/Screen\_Shot\_2022-04-12\_at\_7.34.54\_AM.png "")
 
-That's it! Now when that time comes, your PR will be merged. If you make a mistake with the time or date, just run the same command and it will reschedule. 
+That's it! Now when that time comes, your PR will be merged. If you make a mistake with the time or date, just run the same command and it will reschedule.
 
 ## Github Actions
 
@@ -64,7 +64,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-So let us break down what is happening. We have given this job a name of Merge Schedule. It will only trigger on pull requests that are opened, edited, or synchronized. Every hour we run a job called `merge_schedule`, thanks to the cronjob `0 * * * *` 
+So let us break down what is happening. We have given this job a name of Merge Schedule. It will only trigger on pull requests that are opened, edited, or synchronized. Every hour we run a job called `merge_schedule`, thanks to the cronjob `0 * * * *`
 
 The steps inside of the jobs section are the most important, it tells GitHub what to do when the schedule runs. First, the job needs to use `gr2m/merge-schedule-action@v1` and tell it the merge method to use. I have set it to merge but you could use squash if you prefer. The `time_zone` is t set to UTC by default, but can be any time zone you need.
 

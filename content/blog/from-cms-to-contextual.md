@@ -1,10 +1,10 @@
 ---
-title: From CMS To Contextual Editing 
+title: From CMS To Contextual Editing
 date: '2022-03-16T07:00:00.000Z'
 author: James Perkins
 ---
 
-Tina allows you as a developer to create an amazing editing experience. By default the editing experience is a more traditional CMS, where you login to a specific URL and you edit your content without being able to see the content till after you finish your changes. But, if you are looking for a more transparent real-time editing experience, Tina has a superpower, called Contextual Editing. Just as it sounds, you get instant feedback on the page as well as being able to preview the changes before publishing live to your site. 
+Tina allows you as a developer to create an amazing editing experience. By default the editing experience is a more traditional CMS, where you login to a specific URL and you edit your content without being able to see the content till after you finish your changes. But, if you are looking for a more transparent real-time editing experience, Tina has a superpower, called Contextual Editing. Just as it sounds, you get instant feedback on the page as well as being able to preview the changes before publishing live to your site.
 
 ![Example of Tina Context editing](https://res.cloudinary.com/forestry-demo/video/upload/q_100/v1647436971/blog-media/cms-to-contextual/TinaSuper.gif)
 
@@ -26,34 +26,33 @@ cd tina-contextual-editing
 ## Open with your favorite editor
 ```
 
-
 > If you want to learn how this example was created check out the blog post that covers [getting started with Tina](https://tina.io/blog/tina-cms-get-started/).
 
 ## What does the Tina code do?
 
-Before you add any code to this example, I want to cover how Tina is integrated and how it works. 
+Before you add any code to this example, I want to cover how Tina is integrated and how it works.
 
 ### `.tina` folder
 
-You will find a `.tina` folder in the root of the project, this is the heart and brain of Tina in any project. 
+You will find a `.tina` folder in the root of the project, this is the heart and brain of Tina in any project.
 
 ### `schema.ts`
 
 The schema file contains two important pieces of code `defineSchema` and `defineConfig`. The `defineSchema` allows you to define the shape of your content. If you have used a more traditional CMS before you may have done this via a GUI. However, given how Tina is tightly coupled with Git and we treat the filesystem as the “source of truth”, we take the approach of “content-modeling as code”.
 
-If you look at the current defined schema, you will see that each one of the fields is related to the front matter contained within any of the posts in the `_posts` folder. 
+If you look at the current defined schema, you will see that each one of the fields is related to the front matter contained within any of the posts in the `_posts` folder.
 
 Moving on to the `defineConfig`, the `defineConfig` tells your project where the content is requested from, what branch to use, and any configuration to TinaCMS itself.
 
 ### `components`
 
-The `components` folder inside the `.tina` holds both our `TinaProvider` and `DynamicTinaProvider`; these two components wrap your application with the power of Tina. We will be heading back here later for some updates. 
+The `components` folder inside the `.tina` holds both our `TinaProvider` and `DynamicTinaProvider`; these two components wrap your application with the power of Tina. We will be heading back here later for some updates.
 
 ### `_generated__`
 
-This folder holds all the auto generated files from Tina, if you open this up you will see files that contain queries, fragments and types. You won’t need to make changes here but it’s good to know what you might find in there. 
+This folder holds all the auto generated files from Tina, if you open this up you will see files that contain queries, fragments and types. You won’t need to make changes here but it’s good to know what you might find in there.
 
-Before we add contextual editing, go ahead and launch the application using `yarn tina-dev` and navigate to [`http://localhost:3000/`](http://localhost:3000/). You will notice that it is a static blog. Feel free to navigate around and get a feel for the blog. 
+Before we add contextual editing, go ahead and launch the application using `yarn tina-dev` and navigate to [`http://localhost:3000/`](http://localhost:3000/). You will notice that it is a static blog. Feel free to navigate around and get a feel for the blog.
 
 Now if you navigate to [http://localhost:3000/admin](http://localhost:3000/admin) you will be presented with a screen to login, if you login you will land on the CMS dashboard. Selecting a collection on the left will bring you to a screen with all the current files in that space. Then selecting a file will allow you to edit it as you see fit.
 
@@ -61,7 +60,7 @@ Now if you navigate to [http://localhost:3000/admin](http://localhost:3000/admin
 
 ## Adding Contextual Editing.
 
-Now you have an understanding of both how the CMS works, and how the code behind is laid out we can start working on adding contextual editing to our project. What do we need to do to make contextual editing work? 
+Now you have an understanding of both how the CMS works, and how the code behind is laid out we can start working on adding contextual editing to our project. What do we need to do to make contextual editing work?
 
 1. Update `getStaticPaths` and `getStaticProps` to use Tina’s graphql layer
 
@@ -71,16 +70,16 @@ Now you have an understanding of both how the CMS works, and how the code behind
 
 ### Creating the getStaticPaths query
 
-The `getStaticPaths` query is going to need to know where all of our markdown files are located. With our current schema you have the option to use `getPostsList`, which will provide a list of all posts in our `_posts` folder. Make sure your local server is running and navigate to http://localhost:4001/altair and select the Docs button. The Docs button gives you the ability to see all the queries possible and the variables returned:
+The `getStaticPaths` query is going to need to know where all of our markdown files are located. With our current schema you have the option to use `postConnection`, which will provide a list of all posts in our `_posts` folder. Make sure your local server is running and navigate to http://localhost:4001/altair and select the Docs button. The Docs button gives you the ability to see all the queries possible and the variables returned:
 
-So based upon the `getPostsList` we will want to query the `sys` which is the filesystem and retrieve the `filename`, which will return all the filenames without the extension.
+So based upon the `postConnection` we will want to query the `_sys` which is the filesystem and retrieve the `filename`, which will return all the filenames without the extension.
 
 ```bash
 query {
-  getPostsList {
+  postConnection {
     edges {
       node {
-        sys {
+        _sys {
           basename
         }
       }
@@ -94,25 +93,25 @@ If you run this query in the GraphQL client you will see the following returned:
 ```bash
 {
   "data": {
-    "getPostsList": {
+    "postConnection": {
       "edges": [
         {
           "node": {
-            "sys": {
+            "_sys": {
               "filename": "dynamic-routing"
             }
           }
         },
         {
           "node": {
-            "sys": {
+            "_sys": {
               "filename": "hello-world"
             }
           }
         },
         {
           "node": {
-            "sys": {
+            "_sys": {
               "filename": "preview"
             }
           }
@@ -144,11 +143,9 @@ Remove all the code inside of this function and we can update it to use our own 
 
 Inside of the `getStaticPaths` function we can construct our request to our content-api. When making a request we expect a `query` or `mutation` and then `variables` if needed to be passed to the query, here is an example:
 
-`staticRequest({
-  query: '...', // our query
-}),`
+`staticRequest({ query: '...', // our query }),`
 
-“*What does* `staticRequest` do?”
+“_What does_ `staticRequest` do?”
 
 It’s just a helper function which supplies a query to your locally-running GraphQL server, which is started on port `4001`. You can just as easily use `fetch` or an http client of your choice.
 
@@ -156,24 +153,23 @@ We can use the `getPostsList` query from earlier to build our dynamic routes:
 
 ```bash
 export async function getStaticPaths() {
-  const postsListData = await staticRequest({
+  const result = await staticRequest({
     query: `
       query {
-        getPostsList {
+        postConnection {
           edges {
             node {
-            sys {
+            _sys {
               filename
-              }
             }
           }
+        }
       }
-    }
     `,
   })
   return {
-    paths: postsListData.getPostsList.edges.map(edge => ({
-      params: { slug: edge.node.sys.filename },
+    paths: result.data.postConnection.edges.map(edge => ({
+      params: { slug: edge.node._sys.filename },
     })),
     fallback: false,
   }
@@ -202,11 +198,11 @@ We need to query the following things from our content api:
 
 **Creating our Query**
 
-Using our local graphql client we can query the `getPostDocument` using the path to the blog post in question, below is the skeleton of what we need to fill out.
+Using our local graphql client we can query the `post` using the path to the blog post in question, below is the skeleton of what we need to fill out.
 
 ```bash
 query BlogPostQuery($relativePath: String!) {
-  getPostsDocument(relativePath: $relativePath) {
+  post(relativePath: $relativePath) {
     # data from our posts.
   }
 }
@@ -228,21 +224,19 @@ Once you have filled in all the fields you should have a query that looks like t
 
 ```bash
 query BlogPostQuery($relativePath: String!) {
-  getPostsDocument(relativePath: $relativePath) {
-    data {
-      title
-      excerpt
-      date
-      coverImage
-      author {
-        name
-        picture
-      }
-      ogImage {
-        url
-      }
-      body
+  post(relativePath: $relativePath) {
+    title
+    excerpt
+    date
+    coverImage
+    author {
+      name
+      picture
     }
+    ogImage {
+      url
+    }
+    body
   }
 }
 ```
@@ -290,32 +284,30 @@ You may have noticed that our query isn’t there but we are referencing it. Thi
 
 ```jsx
 const query = `query BlogPostQuery($relativePath: String!) {
-  getPostsDocument(relativePath: $relativePath) {
-    data {
-      title
-      excerpt
-      date
-      coverImage
-      author {
-        name
-        picture
-      }
-      ogImage {
-        url
-      }
-      body
+  post(relativePath: $relativePath) {
+    title
+    excerpt
+    date
+    coverImage
+    author {
+      name
+      picture
     }
+    ogImage {
+      url
+    }
+    body
   }
 }`
 ```
 
 ### Adding `useTina` hook
 
-The `useTina` hook is used to make a piece of Tina content editable. It is code-split so in production, this hook will pass through the data value. When you are in edit mode, it registers an editable form in the sidebar. 
+The `useTina` hook is used to make a piece of Tina content editable. It is code-split so in production, this hook will pass through the data value. When you are in edit mode, it registers an editable form in the sidebar.
 
 ### Adding imports
 
-The first thing that needs to be done is import useTina, useEffect and useState. We can also remove a few imports that we will no longer be using. 
+The first thing that needs to be done is import useTina, useEffect and useState. We can also remove a few imports that we will no longer be using.
 
 ```bash
 import {useState, useEffect} from 'react'
@@ -324,13 +316,13 @@ import {useTina} from 'tinacms/dist/edit-state'
 
 ### Changing our props and adding UseTina
 
-We are going to update our props from `({ post, morePosts, preview })` to `(props)`. We are going to pass the props into our `useTina` hook. Now that has been updated with the props coming in we can use `useTina` . 
+We are going to update our props from `({ post, morePosts, preview })` to `(props)`. We are going to pass the props into our `useTina` hook. Now that has been updated with the props coming in we can use `useTina` .
 
 ```diff
 
 - export default function Post({ post, morePosts, preview }) {
 + export default function Post( props ) {
- 
+
 
 +  const { data } = useTina({
 +    query,
@@ -339,8 +331,7 @@ We are going to update our props from `({ post, morePosts, preview })` to `(prop
 +  })
 ```
 
-As you can see, we are reusing our query from before and passing the variables, and data to `useTina`.  This now means we can power our site using contextual editing. Congratulations your site now has superpowers! 
-
+As you can see, we are reusing our query from before and passing the variables, and data to `useTina`. This now means we can power our site using contextual editing. Congratulations your site now has superpowers!
 
 ### Update our elements to use Tina data
 
@@ -365,29 +356,29 @@ const router = useRouter()
               <Head>
                 <title>
 -                  {post.title} | Next.js Blog Example with {CMS_NAME}
-+                  {data.getPostsDocument.data.title} | Next.js Blog Example with {CMS_NAME}
++                  {data.post.title} | Next.js Blog Example with {CMS_NAME}
                 </title>
 -                <meta property="og:image" content={post.ogImage.url} />
-+                <meta property="og:image" content={data.getPostsDocument.data.ogImage.url} />
++                <meta property="og:image" content={data.post.ogImage.url} />
               </Head>
               <PostHeader
 -                title={post.title}
 -                coverImage={post.coverImage}
 -                date={post.date}
 -                author={post.author}
-+                title={data.getPostsDocument.data.title}
-+                coverImage={data.getPostsDocument.data.coverImage}
-+                date={data.getPostsDocument.data.date}
-+                author={data.getPostsDocument.data.author}
++                title={data.post.title}
++                coverImage={data.post.coverImage}
++                date={data.post.date}
++                author={data.post.author}
               />
--             <PostBody content={post.content} />              
-+             <PostBody content={data.getPostsDocument.data.body} />
+-             <PostBody content={post.content} />
++             <PostBody content={data.post.body} />
             </article>
           </>
         )}
       </Container>
     </Layout>
-    
+
   )
 ```
 
@@ -395,7 +386,7 @@ const router = useRouter()
 
 One piece of code that the original was doing was taking the markdown and turning it into HTML, inside of the `getStaticPriops`. We currently aren’t doing that with our body and just returning the string. Due to the nature of contextual editing, we need to make sure that we are always passing the latest content through the `markdownToHtml` function provided by the team at Next.js. This is where `useState` and `useEffect` come in, first create a content variable that is track by a state:
 
-> Note you could use another markdown to html package that would not require this, but in this example we want to reuse as much of the original code as possible to show how you could integrate with minimal code replacement. 
+> Note you could use another markdown to html package that would not require this, but in this example we want to reuse as much of the original code as possible to show how you could integrate with minimal code replacement.
 
 ```jsx
 const [content, setContent] = useState('')
@@ -405,14 +396,14 @@ Then in useEffect we are going to parse our body to the markdownToHtml code prov
 
 ```jsx
 useEffect(() => {
-      const parseMarkdown = async () => {
-        setContent(await markdownToHtml(data.getPostsDocument.data.body))
-      } 
-      parseMarkdown()
-     }, [data.getPostsDocument.data.body])
+  const parseMarkdown = async () => {
+    setContent(await markdownToHtml(data.post.body))
+  }
+  parseMarkdown()
+}, [data.post.body])
 ```
 
-Now all we need to do is update our post body content from `data.getPostsDocument.data.body` to `content` . If you go ahead and test your application now, you can now edit on the page! 
+Now all we need to do is update our post body content from `data.post.body` to `content` . If you go ahead and test your application now, you can now edit on the page!
 
 ## Next steps
 
@@ -425,7 +416,7 @@ Now that you have contextual editing here are a few things you can explore with 
 
 ## How to keep up to date with Tina?
 
-The best way to keep up with Tina is to subscribe to our newsletter, we send out updates every two weeks. Updates include new features, what we have been working on, blog posts you may of missed and so much more! 
+The best way to keep up with Tina is to subscribe to our newsletter, we send out updates every two weeks. Updates include new features, what we have been working on, blog posts you may of missed and so much more!
 
 You can subscribe by following this link and entering your email: [https://tina.io/community/](https://tina.io/community/)
 
@@ -433,10 +424,10 @@ You can subscribe by following this link and entering your email: [https://tina.
 
 Tina has a community [Discord](https://discord.com/invite/zumN63Ybpf) that is full of Jamstack lovers and Tina enthusiasts. When you join you will find a place:
 
-* To get help with issues
-* Find the latest Tina news and sneak previews
-* Share your project with Tina community, and talk about your experience
-* Chat about the Jamstack
+- To get help with issues
+- Find the latest Tina news and sneak previews
+- Share your project with Tina community, and talk about your experience
+- Chat about the Jamstack
 
 ### Tina Twitter
 
