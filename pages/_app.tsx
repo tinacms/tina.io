@@ -16,7 +16,6 @@ import { useTina } from 'tinacms/dist/edit-state'
 path.resolve('./content/')
 
 const MainLayout = ({ Component, pageProps }) => {
-  const { data: d } = useTina({ query: '', data: {}, variables: {} })
   return (
     <>
       <DefaultSeo
