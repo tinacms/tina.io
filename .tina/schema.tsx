@@ -11,45 +11,44 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { defineSchema } from 'tinacms'
-import { heroTemplate } from '../components/blocks/Hero'
-import { featuresTemplate } from '../components/blocks/Features'
-import { flyingTemplate } from '../components/blocks/Flying'
-import { pricingTemplate } from '../components/blocks/Pricing'
-import { faqTemplate } from '../components/blocks/FAQ'
-import { contentTemplate } from '../components/blocks/Content'
-import { columnsTemplate } from '../components/blocks/Columns'
-import type { TinaTemplate } from 'tinacms'
-
+import { defineSchema } from "tinacms";
+import { heroTemplate } from "../components/blocks/Hero";
+import { featuresTemplate } from "../components/blocks/Features";
+import { flyingTemplate } from "../components/blocks/Flying";
+import { pricingTemplate } from "../components/blocks/Pricing";
+import { faqTemplate } from "../components/blocks/FAQ";
+import { contentTemplate } from "../components/blocks/Content";
+import { columnsTemplate } from "../components/blocks/Columns";
+import type { TinaTemplate } from "tinacms";
 
 export default defineSchema({
   collections: [
     {
-      label: 'Pages',
-      name: 'page',
-      path: 'content/blocksPages',
-      format: 'json',
+      label: "Pages",
+      name: "page",
+      path: "content/blocksPages",
+      format: "json",
       fields: [
         {
-          type: 'object',
-          name: 'seo',
-          label: 'SEO Information',
+          type: "object",
+          name: "seo",
+          label: "SEO Information",
           fields: [
-            { type: 'string', label: 'Title', name: 'title' },
+            { type: "string", label: "Title", name: "title" },
             {
-              type: 'string',
-              label: ' Description',
-              name: 'description',
+              type: "string",
+              label: " Description",
+              name: "description",
               ui: {
-                component: 'textarea',
+                component: "textarea",
               },
             },
           ],
         },
         {
-          label: 'Page Sections',
-          name: 'blocks',
-          type: 'object',
+          label: "Page Sections",
+          name: "blocks",
+          type: "object",
           list: true,
           ui: {
             visualSelector: true,
@@ -67,150 +66,164 @@ export default defineSchema({
       ],
     },
     {
-      name: 'post',
-      label: 'Blog Posts',
-      path: 'content/blog',
-      format: 'md',
+      name: "post",
+      label: "Blog Posts",
+      path: "content/blog",
+      format: "md",
       fields: [
         {
-          type: 'string',
-          name: 'title',
-          label: 'Title',
+          type: "string",
+          name: "title",
+          label: "Title",
           list: false,
           ui: {
             validate: (value) => {
               if (value?.length > 40) {
-                return 'Title can not be more then 40 characters long'
+                return "Title can not be more then 40 characters long";
               }
             },
           },
         },
         {
           // note: default to current date/time
-          type: 'datetime',
-          name: 'date',
-          label: 'Date Created',
+          type: "datetime",
+          name: "date",
+          label: "Date Created",
         },
         {
           // note: this should be a hidden field that auto-updates
-          type: 'datetime',
-          name: 'last_edited',
-          label: 'Last Edited',
+          type: "datetime",
+          name: "last_edited",
+          label: "Last Edited",
         },
         {
           // TODO create an authors collection and make this a relation field
-          type: 'string',
-          name: 'author',
-          label: 'Author',
+          type: "string",
+          name: "author",
+          label: "Author",
         },
         {
-          type: 'reference',
-          name: 'prev',
-          label: 'Previous Post',
+          type: "reference",
+          name: "prev",
+          label: "Previous Post",
           description:
-            '(Optional) link to an earlier post at the bottom of this one',
-          collections: ['post'],
+            "(Optional) link to an earlier post at the bottom of this one",
+          collections: ["post"],
         },
         {
-          type: 'reference',
-          name: 'next',
-          label: 'Next Post',
+          type: "reference",
+          name: "next",
+          label: "Next Post",
           description:
-            '(Optional) link to a later post at the bottom of this one',
-          collections: ['post'],
+            "(Optional) link to a later post at the bottom of this one",
+          collections: ["post"],
         },
         {
-          type: 'rich-text',
-          name: 'body',
-          label: 'Body',
+          type: "rich-text",
+          name: "body",
+          label: "Body",
           isBody: true,
           templates: [
             {
-              name: 'Youtube',
-              label: 'Youtube Embed',
+              name: "Youtube",
+              label: "Youtube Embed",
               fields: [
                 {
-                  type: 'string',
-                  name: 'embedSrc',
-                  label: 'Embed URL',
+                  type: "string",
+                  name: "embedSrc",
+                  label: "Embed URL",
                 },
               ],
             },
             {
-              name: 'CreateAppCta',
+              name: "Iframe",
+              label: "Embeded an Iframe",
+              fields: [
+                { name: "iframeSrc", type: "string" },
+                {
+                  name: "height",
+                  type: "number",
+                  label: "Height",
+                  description: "The hight of the iframe (in px) ",
+                  ui: { defaultValue: 400 },
+                },
+              ],
+            },
+            {
+              name: "CreateAppCta",
               label: '"Create Tina App" Call-to-action',
               fields: [
                 {
-                  type: 'string',
-                  name: 'ctaText',
-                  label: 'Button Text',
+                  type: "string",
+                  name: "ctaText",
+                  label: "Button Text",
                 },
                 {
-                  type: 'string',
-                  name: 'cliText',
-                  label: 'CLI Command Example',
+                  type: "string",
+                  name: "cliText",
+                  label: "CLI Command Example",
                 },
               ],
             },
             {
-              name: 'Callout',
-              label: 'Callout',
+              name: "Callout",
+              label: "Callout",
               fields: [
                 {
-                  type: 'string',
-                  name: 'title',
-                  label: 'Title',
+                  type: "string",
+                  name: "title",
+                  label: "Title",
                 },
                 {
-                  type: 'string',
-                  name: 'description',
-                  label: 'Description',
+                  type: "string",
+                  name: "description",
+                  label: "Description",
                 },
                 {
-                  type: 'string',
-                  name: 'url',
-                  label: 'URL',
+                  type: "string",
+                  name: "url",
+                  label: "URL",
                 },
                 {
-                  type: 'string',
-                  name: 'buttonText',
-                  label: 'Button Text',
+                  type: "string",
+                  name: "buttonText",
+                  label: "Button Text",
                 },
               ],
             },
             {
-              name: 'Codesandbox',
-              label: 'Codesandbox embed',
+              name: "Codesandbox",
+              label: "Codesandbox embed",
               fields: [
                 {
-                  type: 'string',
-                  name: 'embedSrc',
-                  label: 'Embed URL',
+                  type: "string",
+                  name: "embedSrc",
+                  label: "Embed URL",
                 },
                 {
-                  type: 'string',
-                  name: 'title',
-                  label: 'A11y Title',
+                  type: "string",
+                  name: "title",
+                  label: "A11y Title",
                 },
               ],
             },
             {
-              name: 'Diagram',
-              label: 'Diagram',
+              name: "Diagram",
+              label: "Diagram",
               fields: [
                 {
-                  type: 'string',
-                  name: 'src',
+                  type: "string",
+                  name: "src",
                 },
                 {
-                  type: 'string',
-                  name: 'alt',
+                  type: "string",
+                  name: "alt",
                 },
               ],
             },
             {
-              name: 'CustomFieldComponentDemo',
-              label: 'Field Component Demo [do not use]',
+              name: "CustomFieldComponentDemo",
+              label: "Field Component Demo [do not use]",
               fields: [],
             },
           ],
@@ -218,4 +231,4 @@ export default defineSchema({
       ],
     },
   ],
-})
+});
