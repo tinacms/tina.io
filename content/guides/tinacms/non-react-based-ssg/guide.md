@@ -9,9 +9,9 @@ Tina's "contextual editing" features require a React-based site, however Tina ca
 
 > ⚠️ **This support is still very much experimental**, and we hope to have a more streamlined onboarding in the future.
 
-While this should work with any Markdown/JSON-based site, this guide specifically refers to a Hugo project.
+This guide should work with any Markdown/JSON-based site: E.g: Hugo, GatsbyJS, Astro, Jekyll, 11ty, Gridsome, etc.
 
-If you don't already have a Hugo site setup, you can [learn how to create one here](https://gohugo.io/getting-started/quick-start/)
+If you don't already have a site setup, you can quicky setup a [Hugo site here](https://gohugo.io/getting-started/quick-start/)
 
 ## Tina Scaffolding Setup
 
@@ -146,7 +146,9 @@ Build the site locally with
 cd tina-admin && yarn build
 ```
 
-This will output Tina's static admin page to the site's static directory.
+This will output Tina's static admin page to the site's `/static` directory.
+
+> Note, the `/static` directory is used by many SSG's to serve static content (e.g Hugo, GatsbyJS, etc), but this output location can be configured via `outDir` in `/tina-admin/vite.config.js`.
 
 Once that is built, **push everything up to git (including the newly built admin)**
 
