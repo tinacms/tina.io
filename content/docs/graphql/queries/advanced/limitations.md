@@ -3,7 +3,7 @@ title: Query limitations
 id: /docs/graphql/queries/advanced/limitations
 next: /docs/graphql/queries/update-document
 ---
-{{ WarningCallout text="This is an experimental feature, and the API is subject to change. We don't yet suggest using this for production use-cases. Have any thoughts? Let us know in the chat, or through the [GitHub discussion](https://github.com/tinacms/tinacms/discussions/2811)!" }}
+{{ WarningCallout text="This is an experimental feature, and the API is subject to change. We don't yet suggest using this for production use-cases. The `--experimentalData` cli flag must be specified in order to enable this feature. Visit this [page](/docs/tina-cloud/data-layer/#enabling-the-data-layer) for more details. Have any thoughts? Let us know in the chat, or through the [GitHub discussion](https://github.com/tinacms/tinacms/discussions/2811)!" }}
 
 There are a number of limitations to keep in mind when leveraging query functionality with the data layer.
 
