@@ -232,6 +232,23 @@ type PageBlocksContent {
   content: JSON
 }
 
+type PageBlocksShowcaseItemsProjectMedia {
+  src: String
+}
+
+type PageBlocksShowcaseItemsProject {
+  headline: String
+  text: String
+  url: String
+  media: PageBlocksShowcaseItemsProjectMedia
+}
+
+union PageBlocksShowcaseItems = PageBlocksShowcaseItemsProject
+
+type PageBlocksShowcase {
+  items: [PageBlocksShowcaseItems]
+}
+
 type PageBlocksColumnsOptions {
   columns: String
   narrow: Boolean
@@ -245,7 +262,7 @@ type PageBlocksColumns {
   columnTwo: JSON
 }
 
-union PageBlocks = PageBlocksHero | PageBlocksFeatures | PageBlocksFlying | PageBlocksPricing | PageBlocksFaq | PageBlocksContent | PageBlocksColumns
+union PageBlocks = PageBlocksHero | PageBlocksFeatures | PageBlocksFlying | PageBlocksPricing | PageBlocksFaq | PageBlocksContent | PageBlocksShowcase | PageBlocksColumns
 
 type Page implements Node & Document {
   seo: PageSeo
@@ -466,6 +483,25 @@ input PageBlocksContentMutation {
   content: JSON
 }
 
+input PageBlocksShowcaseItemsProjectMediaMutation {
+  src: String
+}
+
+input PageBlocksShowcaseItemsProjectMutation {
+  headline: String
+  text: String
+  url: String
+  media: PageBlocksShowcaseItemsProjectMediaMutation
+}
+
+input PageBlocksShowcaseItemsMutation {
+  project: PageBlocksShowcaseItemsProjectMutation
+}
+
+input PageBlocksShowcaseMutation {
+  items: [PageBlocksShowcaseItemsMutation]
+}
+
 input PageBlocksColumnsOptionsMutation {
   columns: String
   narrow: Boolean
@@ -486,6 +522,7 @@ input PageBlocksMutation {
   pricing: PageBlocksPricingMutation
   faq: PageBlocksFaqMutation
   content: PageBlocksContentMutation
+  showcase: PageBlocksShowcaseMutation
   columns: PageBlocksColumnsMutation
 }
 

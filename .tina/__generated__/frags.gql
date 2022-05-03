@@ -134,6 +134,20 @@ fragment PageParts on Page {
       }
       content
     }
+    ... on PageBlocksShowcase {
+      items {
+        __typename
+        ... on PageBlocksShowcaseItemsProject {
+          headline
+          text
+          url
+          media {
+            __typename
+            src
+          }
+        }
+      }
+    }
     ... on PageBlocksColumns {
       options {
         __typename

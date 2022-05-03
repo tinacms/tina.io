@@ -1,0 +1,81 @@
+{
+    "seo": {
+      "title": "Showcase",
+      "description": "Projects built using Tina."
+    },
+    "blocks": [
+      {
+        "headline": "Showcase",
+        "text": "Real projects built with Tina",
+        "_template": "hero"
+      },
+      {
+        "items": [
+          {
+            "headline": "Devolver Digital",
+            "text": "Marketing site for gaming agency including a library of published games",
+            "media": {
+              "src": "/img/devolver.png"
+            },
+            "url": "https://www.devolverdigital.com/",
+            "_template": "project"
+          },
+          {
+            "headline": "pcode",
+            "text": "Marketing site for Austrian based development company",
+            "media": {
+              "src": "/img/pcode.png"
+            },
+            "url": "https://www.pcode.at/",
+            "_template": "project"
+          },
+          {
+            "headline": "Catalyst Miami",
+            "text": "Blog style site showcasing work of non-profit organization",
+            "media": {
+              "src": "/img/catalyst.png"
+            },
+            "url": "https://stories.catalystmiami.org/",
+            "_template": "project"
+          },
+          {
+            "headline": "APFX",
+            "text": "Marketing site for international financial company",
+            "media": {
+              "src": "/img/apfx.png"
+            },
+            "url": "https://www.apfx.com.au/en-us",
+            "_template": "project"
+          },
+          {
+            "headline": "Get Session",
+            "text": "Marketing site for global online coaching business",
+            "media": {
+              "src": "/img/getsession.png"
+            },
+            "url": "https://getsession.com/",
+            "_template": "project"
+          },
+          {
+            "headline": "Metrics Watch",
+            "text": "Marketing site for email based analytics tool",
+            "media": {
+              "src": "/img/metrics-watch.png"
+            },
+            "url": "https://metricswatch.com/",
+            "_template": "project"
+          },
+          {
+            "headline": "James Perkins",
+            "text": "Professional blog from our own dev advocate!",
+            "media": {
+              "src": "/img/james-perkins.png"
+            },
+            "url": "https://www.jamesperkins.dev/",
+            "_template": "project"
+          }
+        ],
+        "_template": "showcase"
+      }
+    ]
+  }

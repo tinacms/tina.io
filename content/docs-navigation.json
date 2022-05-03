@@ -12,6 +12,12 @@
     "external": false
   },
   {
+    "id": "showcase",
+    "label": "Showcase",
+    "href": "/showcase",
+    "external": false
+  },
+  {
     "id": "community",
     "label": "Community",
     "href": "/community",
