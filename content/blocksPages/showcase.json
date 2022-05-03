@@ -1,81 +1,81 @@
 {
-    "seo": {
-      "title": "Showcase",
-      "description": "Projects built using Tina."
+  "seo": {
+    "title": "Showcase",
+    "description": "Projects built using Tina."
+  },
+  "blocks": [
+    {
+      "headline": "Showcase",
+      "text": "Real projects built with Tina",
+      "_template": "hero"
     },
-    "blocks": [
-      {
-        "headline": "Showcase",
-        "text": "Real projects built with Tina",
-        "_template": "hero"
-      },
-      {
-        "items": [
-          {
-            "headline": "Devolver Digital",
-            "text": "Marketing site for gaming agency including a library of published games",
-            "media": {
-              "src": "/img/devolver.png"
-            },
-            "url": "https://www.devolverdigital.com/",
-            "_template": "project"
+    {
+      "items": [
+        {
+          "headline": "Devolver Digital",
+          "text": "A marketing site for a boutique game label that works with independent developers from all over the world to produce and promote some of the most original, eccentric, and beloved games of the past decade.",
+          "url": "https://www.devolverdigital.com/",
+          "media": {
+            "src": "/img/devolver.png"
           },
-          {
-            "headline": "pcode",
-            "text": "Marketing site for Austrian based development company",
-            "media": {
-              "src": "/img/pcode.png"
-            },
-            "url": "https://www.pcode.at/",
-            "_template": "project"
+          "_template": "project"
+        },
+        {
+          "headline": "Session",
+          "text": "A marketing site for Session, a global online coaching company that connects professionals and companies with world-class business coaches.\n\n",
+          "url": "https://getsession.com/",
+          "media": {
+            "src": "/img/getsession.png"
           },
-          {
-            "headline": "Catalyst Miami",
-            "text": "Blog style site showcasing work of non-profit organization",
-            "media": {
-              "src": "/img/catalyst.png"
-            },
-            "url": "https://stories.catalystmiami.org/",
-            "_template": "project"
+          "_template": "project"
+        },
+        {
+          "headline": "Catalyst Miami",
+          "text": "A blog-style site showcasing the work of a non-profit organization built by the team at [Code Nation](https://www.codenation.com/). Catalyst Miami's mission is to identify and collectively solve issues adversely affecting low-wealth communities throughout Miami-Dade County. \n",
+          "url": "https://stories.catalystmiami.org/",
+          "media": {
+            "src": "/img/catalyst.png"
           },
-          {
-            "headline": "APFX",
-            "text": "Marketing site for international financial company",
-            "media": {
-              "src": "/img/apfx.png"
-            },
-            "url": "https://www.apfx.com.au/en-us",
-            "_template": "project"
+          "_template": "project"
+        },
+        {
+          "headline": "pcode",
+          "text": "A marketing site for an Austrian-based agency focused on customer journey development, UX/UI design, software development, and e-commerce. ",
+          "url": "https://www.pcode.at/",
+          "media": {
+            "src": "/img/pcode.png"
           },
-          {
-            "headline": "Get Session",
-            "text": "Marketing site for global online coaching business",
-            "media": {
-              "src": "/img/getsession.png"
-            },
-            "url": "https://getsession.com/",
-            "_template": "project"
+          "_template": "project"
+        },
+        {
+          "headline": "APFX",
+          "text": "A marketing site for APFX, an international foreign exchange firm providing bespoke services for corporate businesses globally.",
+          "url": "https://www.apfx.com.au/en-us",
+          "media": {
+            "src": "/img/apfx.png"
           },
-          {
-            "headline": "Metrics Watch",
-            "text": "Marketing site for email based analytics tool",
-            "media": {
-              "src": "/img/metrics-watch.png"
-            },
-            "url": "https://metricswatch.com/",
-            "_template": "project"
+          "_template": "project"
+        },
+        {
+          "headline": "Metrics Watch",
+          "text": "A marketing site for Metrics Watch, a marketing reporting platform for agencies. ",
+          "url": "https://metricswatch.com/",
+          "media": {
+            "src": "/img/metrics-watch.png"
           },
-          {
-            "headline": "James Perkins",
-            "text": "Professional blog from our own dev advocate!",
-            "media": {
-              "src": "/img/james-perkins.png"
-            },
-            "url": "https://www.jamesperkins.dev/",
-            "_template": "project"
-          }
-        ],
-        "_template": "showcase"
-      }
-    ]
-  }
+          "_template": "project"
+        },
+        {
+          "headline": "James Perkins",
+          "text": "Professional blog from our own dev advocate!",
+          "url": "https://www.jamesperkins.dev/",
+          "media": {
+            "src": "/img/james-perkins.png"
+          },
+          "_template": "project"
+        }
+      ],
+      "_template": "showcase"
+    }
+  ]
+}
