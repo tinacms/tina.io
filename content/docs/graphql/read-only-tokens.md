@@ -33,6 +33,12 @@ Finally, click "Create Token".
 
 ![Successful creation of a token in Tina Cloud](/img/graphql-docs/final-token-page.png)
 
+### Wild card matching
+
+Wild card matching is supported in the branch names using '\*' to match anything. For example: `feat/*` will match `feat/foo` and `feat/bar`. If only `*` is entered it will match any branch.
+
+Wild card matching is useful for matching branches that have not been created yet and can be used for editorial workflows.
+
 ### Make a fetch request using the API key
 
 Now you can make a POST request to the content API with the desired GraphQL request.
