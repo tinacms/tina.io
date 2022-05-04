@@ -39,9 +39,95 @@ Wild card matching is supported in the branch names using '\*' to match anything
 
 Wild card matching is useful for matching branches that have not been created yet and can be used for editorial workflows.
 
-### Make a fetch request using the API key
+### Making requests with the tina client
+#### Setting up the Tina client
 
-Now you can make a POST request to the content API with the desired GraphQL request.
+This client can be used for data fetching with Tina. It can be used on the client and server to make graphQL requests. 
+
+To set up first add a new file called `.tina/client.{js,ts}`
+
+```ts
+const branch = "main";
+const apiURL =
+  process.env.NODE_ENV == "development"
+    ? ["http://localhost:4001/graphql"](http://localhost:4001/graphql)
+    : `https://content.tinajs.io/content/<Your Client ID>/github/${branch}`;
+
+// Token generated on app.tina.io
+export const client = createClient({ url: apiURL, token: "***" });
+export const client = createClient({
+    // default values
+    url: apiURL,
+    token: "Your Read Only Token generated above",
+})
+```
+When using "http://localhost:4001/graphql" the content will be queried from file system (This only works during devolvement or in CI) and when using `https://content.tinajs.io/content/<Your Client ID>/github/${branch}` the content will be queried from Tina cloud. 
+
+In most cases the `apiURL` is the same one that is used for editing. So instead of passing the passing `apiURL` the client can be passed.
+
+`.tina/schema.{ts,tsx,js}`
+
+```diff
+import { client } from './client'
+//...
+export const tinaConfig = defineConfig({
++  client,
+-  url: ...
+  //...
+})
+```
+
+#### Requesting data using Read only tokens
+
+Now that the client is defined we can use it to query our content.
+
+```ts
+import { client } from '../pathToTina/.tina/client'
+
+const data = await client.request({query: "Your Graphql query"})
+```
+
+`variables` can also be passed
+
+```ts
+import { client } from "../pathToTina/.tina/client";
+
+const data = await client.request({
+  query: "Your Graphql query",
+  variables: {...},
+});
+
+```
+
+*optionally* the `url` or `token` can be overridden from request to request.
+
+```ts
+import { client } from "../pathToTina/.tina/client";
+// Same as staticRequest
+const data = await client.request({
+  query: "Your Graphql query",
+  variables: {...},
+  url: "http//localhost:4001/graphql",
+});
+
+```
+
+```ts
+import { client } from "../pathToTina/.tina/client";
+// over-ride token
+const data = await client.request({
+  query: "Your Graphql query",
+  variables: {...},
+  token: "Your token",
+});
+
+```
+
+### Making requests with `curl` and `fetch`
+
+> NOTE: for most cases the tina client can be used and it is not necessary to use fetch directly
+
+If you do not want to use the Tina client you can make a POST request directly to the content API.
 
 The endpoint is `https://content.tinajs.io/content/<myClientId>/github/<myBranch>` and the token can be passed by including a `X-API-KEY` with the token as the value.
 
@@ -51,7 +137,7 @@ Here is an example curl request that will query the content API for the list of 
 
 ```bash
 curl --location --request POST 'https://content.tinajs.io/content/<ClientId>/github/main' \
---header 'X-API-KEY: 5f47d1d1c89755aba3b54684dd25f580ec6bb0d3' \
+--header 'X-API-KEY: <Your API KEY>' \
 --header 'Content-Type: application/json' \
 --data-raw '{"query":"{\n        collections{\n            name\n        }\n}","variables":{}}'
 ```
@@ -92,7 +178,8 @@ fetch(
 ```jsx
 import { useState, useEffect } from 'react'
 import { useTina } from 'tinacms/dist/edit-state'
-// This query can be any query
+import { client } from '../PathToTina/.tina/client'
+ // This query can be any query
 const query = `
 query ContentQuery($relativePath: String!) {
   <collection.name>(relativePath: $relativePath) {
@@ -112,24 +199,11 @@ function BlogPostPage() {
   const [isLoading, setLoading] = useState(false)
 
   useEffect(() => {
-    setLoading(true)
-    fetch('https://content.tinajs.io/content/<ClientId>/github/<Branch>', {
-      method: 'POST',
-      body: JSON.stringify({ query, variables }),
-      headers: {
-        'X-API-KEY': '<ReadOnlyToken>',
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(res => res.json())
-      .then(data => {
-        console.log({ data })
-        setData(data)
-        setLoading(false)
-      })
-      .catch(e => {
-        console.error(e)
-      })
+    const fetchContent = async () =>{
+      const data = await client.request({query, variables})
+      setData(data)
+    }
+    fetchContent()
   }, [query, JSON.stringify(variables)])
 
   const { data } = useTina({ query, variables, data: initalData })
@@ -153,6 +227,8 @@ With read-only tokens we can fetch the list of blog posts. This will allow us to
 `pages/posts/[filename].js`
 
 ```js
+import { client } from '../pathToTina/.tina/client'
+
 const BlogPage = props => {
   // (Does not change)
   //...
@@ -173,28 +249,20 @@ export const getStaticProps = async ctx => {
   let error = false
   try {
     // use the local client at build time
-    data = await staticRequest({
+    data = await client.request({
+      url: 'http://localhost:4001/graphql',
       query,
       variables,
-    })
+    });
   } catch (error) {
     // swallow errors related to document creation
-    error = true
+  }
+  if (!data) {
+    error = true;
   }
   if (error) {
     // use read only tokens to get live data
-    const resp = await fetch(
-      'https://content.tinajs.io/content/<ClientId>/github/<Branch>',
-      {
-        method: 'POST',
-        body: JSON.stringify({ query, variables }),
-        headers: {
-          'X-API-KEY': '<ReadOnlyToken>',
-          'Content-Type': 'application/json',
-        },
-      }
-    )
-    data = await resp.json()
+    data = client.request({query, variables})
     if (!data) {
       return {
         notFound: true,
@@ -210,7 +278,6 @@ export const getStaticProps = async ctx => {
     },
   }
 }
-export const getStaticProps = () => {}
 
 export default BlogPage
 ```
