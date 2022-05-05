@@ -54,7 +54,7 @@ To set up first add a new file called `.tina/client.{js,ts}`
 const branch = "main";
 const apiURL =
   process.env.NODE_ENV == "development"
-    ? ["http://localhost:4001/graphql"](http://localhost:4001/graphql)
+    ? "http://localhost:4001/graphql"
     : `https://content.tinajs.io/content/<Your Client ID>/github/${branch}`;
 
 // Token generated on app.tina.io
