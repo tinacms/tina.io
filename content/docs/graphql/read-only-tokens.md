@@ -257,7 +257,6 @@ export const getStaticProps = async ctx => {
       query,
       variables,
     });
-    console.log({ res });
     data = res?.data;
   } catch (error) {
     // swallow errors related to document creation
