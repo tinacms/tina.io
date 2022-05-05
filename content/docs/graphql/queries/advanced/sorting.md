@@ -50,4 +50,4 @@ Here we will query our `post` collection with `postConnection` and sort the resu
 
 Here we will query our `post` collection with `postConnection` and sort the results first by `category` and then by `date` using the multi-field index named `category-date`:
 
-<iframe width="800" height="400" loading="lazy" src="http://localhost:3000/api/graphiql/?query=%7B%0A%20%20postConnection(sort%3A%20%22category-date%22)%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20category%0A%20%20%20%20%20%20%20%20date%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A" />
+<iframe width="800" height="400" loading="lazy" src="/api/graphiql/?query=%7B%0A%20%20postConnection(sort%3A%20%22category-date%22)%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20category%0A%20%20%20%20%20%20%20%20date%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A" />
