@@ -5,6 +5,10 @@ last_edited: '2022-02-07T18:00:00.000Z'
 
 {{ WarningCallout text="This is an experimental feature and may be slow as we work on performance improvements" }}
 
+<br/>
+
+{{ WarningCallout text="It is highly recommended to  [enable the data layer](/docs/tina-cloud/data-layer/#enabling-the-data-layer) to use this feature. Have any thoughts? Let us know in the chat, or through the [GitHub discussion](https://github.com/tinacms/tinacms/discussions/2811)!" }}
+
 Read-only tokens allow data fetching at runtime without the need for the local GraphQL server. Some use cases include the following:
 
 - Runtime server-side logic in `getServerSideProps`, `getStaticProps` (when fallback is not `false`), etc.
@@ -54,7 +58,6 @@ const apiURL =
     : `https://content.tinajs.io/content/<Your Client ID>/github/${branch}`;
 
 // Token generated on app.tina.io
-export const client = createClient({ url: apiURL, token: "***" });
 export const client = createClient({
     // default values
     url: apiURL,
@@ -194,26 +197,28 @@ const variables = {
   relativePath: 'HelloWorld.md',
 }
 
-function BlogPostPage() {
-  const [initalData, setData] = useState(null)
-  const [isLoading, setLoading] = useState(false)
+export default function BlogPostPage() {
+  const [initialData, setData] = useState(null);
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
-    const fetchContent = async () =>{
-      const data = await client.request({query, variables})
-      setData(data)
-    }
-    fetchContent()
-  }, [query, JSON.stringify(variables)])
+    const fetchContent = async () => {
+      setLoading(true);
+      const data = await client.request({ query, variables });
+      setData(data?.data);
+      setLoading(false);
+    };
+    fetchContent();
+  }, [query, JSON.stringify(variables)]);
 
-  const { data } = useTina({ query, variables, data: initalData })
+  const { data } = useTina({ query, variables, data: initialData });
 
-  if (isLoading) return <p>Loading...</p>
-  if (!data) return <p>No data</p>
+  if (isLoading) return <p>Loading...</p>;
+  if (!data) return <p>No data</p>;
 
-  return <div>{JSON.stringify(data)}</div>
+  return <div>{JSON.stringify(data)}</div>;
 }
-export default BlogPostPage
+
 ```
 
 ### Next.js `fallback: "blocking"`
@@ -245,29 +250,23 @@ export const getStaticProps = async ctx => {
   const variables = {
     relativePath: ctx.params.slug + '.md',
   }
-  let data = {}
-  let error = false
+  let data;
   try {
-    // use the local client at build time
-    data = await client.request({
-      url: 'http://localhost:4001/graphql',
+    // This will use the URL that was passed to the client
+    const res = await client.request({
       query,
       variables,
     });
+    console.log({ res });
+    data = res?.data;
   } catch (error) {
     // swallow errors related to document creation
   }
+
   if (!data) {
-    error = true;
-  }
-  if (error) {
-    // use read only tokens to get live data
-    data = client.request({query, variables})
-    if (!data) {
-      return {
-        notFound: true,
-      }
-    }
+    return {
+      notFound: true,
+    };
   }
 
   return {
@@ -276,8 +275,17 @@ export const getStaticProps = async ctx => {
       query,
       variables,
     },
-  }
-}
+  };
+};
+
+
+export const getStaticPaths = async () => {
+  //... Same as before
+  return {
+    paths,
+    fallback: "blocking",
+  };
+};
 
 export default BlogPage
 ```
