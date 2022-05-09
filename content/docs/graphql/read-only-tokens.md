@@ -48,7 +48,7 @@ Wild card matching is useful for matching branches that have not been created ye
 
 This client can be used for data fetching with Tina. It can be used on the client and server to make graphQL requests. 
 
-To set up first add a new file called `.tina/client.{js,ts}`
+To set up, first add a new file called `.tina/client.{js,ts}`
 
 ```ts
 const branch = "main";
