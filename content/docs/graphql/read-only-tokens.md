@@ -117,7 +117,7 @@ const data = await client.request({
 
 ```ts
 import { client } from "../pathToTina/.tina/client";
-// over-ride token
+// override token
 const data = await client.request({
   query: "Your Graphql query",
   variables: {...},
@@ -229,9 +229,10 @@ With read-only tokens we can fetch the list of blog posts. This will allow us to
 
 #### Example page
 
-`pages/posts/[filename].js`
-
 ```js
+// pages/posts/[filename].{js,tsx}
+
+
 import { client } from '../pathToTina/.tina/client'
 
 const BlogPage = props => {
