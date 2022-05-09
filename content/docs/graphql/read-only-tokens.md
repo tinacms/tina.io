@@ -130,7 +130,7 @@ const data = await client.request({
 
 > NOTE: for most cases the tina client can be used and it is not necessary to use fetch directly
 
-If you do not want to use the Tina client you can make a POST request directly to the content API.
+If you do not want to use the Tina client, you can make a POST request directly to the content API.
 
 The endpoint is `https://content.tinajs.io/content/<myClientId>/github/<myBranch>` and the token can be passed by including a `X-API-KEY` with the token as the value.
 
