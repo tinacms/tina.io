@@ -64,7 +64,7 @@ export const client = createClient({
     token: "Your Read Only Token generated above",
 })
 ```
-When using "http://localhost:4001/graphql" the content will be queried from file system (This only works during devolvement or in CI) and when using `https://content.tinajs.io/content/<Your Client ID>/github/${branch}` the content will be queried from Tina cloud. 
+When using "http://localhost:4001/graphql," the content will be queried from file system (This only works during devolvement or in CI) and when using `https://content.tinajs.io/content/<Your Client ID>/github/${branch}` the content will be queried from Tina cloud. 
 
 In most cases the `apiURL` is the same one that is used for editing. So instead of passing the passing `apiURL` the client can be passed.
 
