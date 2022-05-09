@@ -82,7 +82,7 @@ export const tinaConfig = defineConfig({
 
 #### Requesting data using Read only tokens
 
-Now that the client is defined we can use it to query our content.
+Now that the client is defined, we can use it to query our content.
 
 ```ts
 import { client } from '../pathToTina/.tina/client'
