@@ -60,6 +60,8 @@ This is my main post body.
 
 Once we've defined a collection, we can edit its fields through the Tina UI, or [query its content](/docs/graphql/overview/) using the Tina Content API.
 
+<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/iframe/string-body" />
+
 ## "List" fields
 
 Specifying `list: true` on _any_ field type will turn that field into an array of items:
@@ -67,17 +69,16 @@ Specifying `list: true` on _any_ field type will turn that field into an array o
 ```js
 // ...
 fields: [
-  // ...
   {
-    label: 'Categories',
-    name: 'categories',
+    label: 'Tags',
+    name: 'tags',
     type: 'string',
     list: true,
   },
 ]
 ```
 
-The resulting field in your TinaCMS form will be a `list` field. And the resulting data structure would be: `["movies", "art"]`.
+<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/iframe/string-list" />
 
 ## Limiting values to a set of options
 
@@ -86,18 +87,28 @@ Any _scalar_ field can accept an `options` array, note that in the example below
 ```js
 // ...
 fields: [
-  // ...
   {
     label: 'Categories',
     name: 'categories',
     type: 'string',
-    options: ['movies', 'art', 'food', 'sports'],
     list: true,
+    options: [
+      {
+        value: 'movies',
+        label: 'Movies',
+      },
+      {
+        value: 'music',
+        label: 'Music',
+      },
+    ],
   },
 ]
 ```
 
-In this example, the resulting field in your TinaCMS form will be a `checkbox` field. Omitting `list: true` (or setting it to `false`) would result in a `radio` field.
+<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/iframe/string-list-options" />
+
+> Omitting `list: true` (or setting it to `false`) would result in a single-select `radio` field.
 
 ## Grouping properties as an "object"
 
@@ -106,22 +117,28 @@ An object type takes either a `fields` or `templates` property (just like the `c
 ```js
 // ...
 fields: [
-  // ...
   {
-    label: 'Social Media',
-    name: 'socialMedia',
+    label: 'Testimonial',
+    name: 'testimonial',
     type: 'object',
     fields: [
       {
-        label: 'Handle',
-        name: 'handle',
+        label: 'Author',
+        name: 'author',
         type: 'string',
       },
       {
-        label: 'Service',
-        name: 'service',
+        label: 'Role',
+        name: 'role',
         type: 'string',
-        options: ['twitter', 'instagram', 'tiktok'],
+      },
+      {
+        label: 'Quote',
+        name: 'quote',
+        type: 'string',
+        ui: {
+          component: 'textarea',
+        },
       },
     ],
   },
@@ -129,33 +146,11 @@ fields: [
 // ...
 ```
 
-The resulting data structure would be:
-
-```js
-{
-  socialMedia: {
-    handle: "tinacms",
-    service: "twitter"
-  }
-}
-```
+<iframe width="100%" height="700px" src="https://tina-gql-playground.vercel.app/iframe/object" />
 
 Setting `list: true` would turn the values into an array:
 
-```js
-{
-  socialMedia: [
-    {
-      handle: 'tinacms',
-      service: 'twitter',
-    },
-    {
-      handle: 'tinacms',
-      service: 'instagram',
-    },
-  ]
-}
-```
+<iframe width="100%" height="700px" src="https://tina-gql-playground.vercel.app/iframe/object-list-data" />
 
 > More complex shapes can be built by using the [`templates`](/docs/reference/types/object/#with-multiple-templates) property. This allows your editors to build out pages using predefined blocks.
 
@@ -177,24 +172,9 @@ fields: [
 //
 ```
 
-This will result in a resolvable node in your GraphQL structure (Don't worry, we'll discuss how to use the GraphQL API later):
+<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/iframe/reference" />
 
-```graphql
-{
-  post(relativePath: $relativePath) {
-    author {
-      # disambiguate because could have _many_ collections
-      ... on Author {
-        name
-      }
-    }
-  }
-}
-```
-
-The resulting field in your TinaCMS form will be a `select` field, whose `options` are all of the documents in the referenced collections.
-
-## Using different data types
+## Available data types
 
 Each field in a collection can be of the following `type`:
 
@@ -215,5 +195,5 @@ Each field in a collection can be of the following `type`:
 ## Summary
 
 - Your content is modeled in the `.tina/schema.{ts,js,tsx}` of your repo
-- Your content model contains an array "collections". A "collection" maps a content type to a directory in your repo.
+- Your content model contains an array of "collections". A "collection" maps a content type to a directory in your repo.
 - A "collection" contains multiple fields, which can be of multiple scalar or non-scalar data types.
