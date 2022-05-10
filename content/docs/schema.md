@@ -60,7 +60,7 @@ This is my main post body.
 
 Once we've defined a collection, we can edit its fields through the Tina UI, or [query its content](/docs/graphql/overview/) using the Tina Content API.
 
-<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/iframe/string-body" />
+<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/string-body" />
 
 ## "List" fields
 
@@ -78,7 +78,7 @@ fields: [
 ]
 ```
 
-<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/iframe/string-list" />
+<a href="https://tina-gql-playground.vercel.app/string-list" target="_blank">See Example</a>
 
 ## Limiting values to a set of options
 
@@ -106,7 +106,7 @@ fields: [
 ]
 ```
 
-<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/iframe/string-list-options" />
+<a href="https://tina-gql-playground.vercel.app/string-list-options" target="_blank">See Example</a>
 
 > Omitting `list: true` (or setting it to `false`) would result in a single-select `radio` field.
 
@@ -146,11 +146,11 @@ fields: [
 // ...
 ```
 
-<iframe width="100%" height="700px" src="https://tina-gql-playground.vercel.app/iframe/object" />
+<a href="https://tina-gql-playground.vercel.app/object" target="_blank">See Example</a>
 
 Setting `list: true` would turn the values into an array:
 
-<iframe width="100%" height="700px" src="https://tina-gql-playground.vercel.app/iframe/object-list-data" />
+<a href="https://tina-gql-playground.vercel.app/object-list-data" target="_blank">See Example</a>
 
 > More complex shapes can be built by using the [`templates`](/docs/reference/types/object/#with-multiple-templates) property. This allows your editors to build out pages using predefined blocks.
 
@@ -172,7 +172,7 @@ fields: [
 //
 ```
 
-<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/iframe/reference" />
+<a href="https://tina-gql-playground.vercel.app/reference" target="_blank">See Example</a>
 
 ## Available data types
 
