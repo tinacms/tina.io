@@ -6,13 +6,17 @@ next: '/docs/features/data-fetching'
 
 ## Introduction
 
-The Tina schema defines the shape of your content. With traditional content management systems you may have done this sort of content modeling via a GUI; however, given its tight coupling to Git, TinaCMS considers the filesystem the ultimate source of truth and leverages a "content-modeling as code" approach.
+The Tina schema defines the shape of your content. Tina uses a "content-modeling as code" approach. This has a few benefits compared to modelling through a UI:
 
-Your schema is defined in a file called `.tina/schema.ts` (only `.ts` is supported for now).
+- The schema is version-controlled
+- Mutating the schema is easy, as you can test out changes locally, or in a branch.
+- The developer can extend the schema in interesting ways (custom validation, custom UI fields, etc).
+
+The content model is defined in a file called `.tina/schema.ts`.
 
 ```ts
 // .tina/schema.ts
-import { defineSchema, defineConfig } from 'tinacms'
+import { defineSchema } from 'tinacms'
 
 const schema = defineSchema({
   collections: [
@@ -37,25 +41,144 @@ const schema = defineSchema({
   ],
 })
 
-export const config = defineConfig({
-  schema: schema,
-  // This is the URL for "Local Mode" using the file system. In production it will be `https://content.tinajs.io/content/${myClientId}/github/${myBranch}`
-  apiUrl: 'https://localhost:4001/graphql',
-  //... Other config
-})
-
 export default schema
 ```
 
-Each item in your `collections` array represents its own entity.
+## Defining "collections"
+
+Each item in your `collections` array represents its own entity. In the above example, we defined a `post` collection, and set its path as `content/posts`, which maps to a directory in our site's repository. Each collection contains an array of `fields`, that each have a defined `type`.
+
+```md
+---
+title: This is my title
+---
+
+This is my main post body.
+```
 
 > Note: The `isBody` property is used to output a given field to the markdown body, instead of its frontmatter.
 
-## Using different data types
+Once we've defined a collection, we can edit its fields through the Tina UI, or [query its content](/docs/graphql/overview/) using the Tina Content API.
 
-Each of a collection's fields can be of the following `type`
+<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/iframe/string-body" />
 
-### _scalar_
+## "List" fields
+
+Specifying `list: true` on _any_ field type will turn that field into an array of items:
+
+```js
+// ...
+fields: [
+  {
+    label: 'Tags',
+    name: 'tags',
+    type: 'string',
+    list: true,
+  },
+]
+```
+
+<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/iframe/string-list" />
+
+## Limiting values to a set of options
+
+Any _scalar_ field can accept an `options` array, note that in the example below we're using both `options` and `list` properties:
+
+```js
+// ...
+fields: [
+  {
+    label: 'Categories',
+    name: 'categories',
+    type: 'string',
+    list: true,
+    options: [
+      {
+        value: 'movies',
+        label: 'Movies',
+      },
+      {
+        value: 'music',
+        label: 'Music',
+      },
+    ],
+  },
+]
+```
+
+<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/iframe/string-list-options" />
+
+> Omitting `list: true` (or setting it to `false`) would result in a single-select `radio` field.
+
+## Grouping properties as an "object"
+
+An object type takes either a `fields` or `templates` property (just like the `collections` definition). The simplest kind of `object` is one with `fields`:
+
+```js
+// ...
+fields: [
+  {
+    label: 'Testimonial',
+    name: 'testimonial',
+    type: 'object',
+    fields: [
+      {
+        label: 'Author',
+        name: 'author',
+        type: 'string',
+      },
+      {
+        label: 'Role',
+        name: 'role',
+        type: 'string',
+      },
+      {
+        label: 'Quote',
+        name: 'quote',
+        type: 'string',
+        ui: {
+          component: 'textarea',
+        },
+      },
+    ],
+  },
+]
+// ...
+```
+
+<iframe width="100%" height="700px" src="https://tina-gql-playground.vercel.app/iframe/object" />
+
+Setting `list: true` would turn the values into an array:
+
+<iframe width="100%" height="700px" src="https://tina-gql-playground.vercel.app/iframe/object-list-data" />
+
+> More complex shapes can be built by using the [`templates`](/docs/reference/types/object/#with-multiple-templates) property. This allows your editors to build out pages using predefined blocks.
+
+## Referencing another document
+
+The `reference` field connects one document to another and only needs to be defined on _one_ side of the relationship. You can specify any number of collections you'd like to connect:
+
+```js
+// ...
+fields: [
+  // ...
+  {
+    label: 'Author',
+    name: 'author',
+    type: 'reference',
+    collections: ['author'], // points to a collection with the name "author"
+  },
+]
+//
+```
+
+<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/iframe/reference" />
+
+## Available data types
+
+Each field in a collection can be of the following `type`:
+
+### _scalar types_
 
 - [string](/docs/reference/types/string/)
 - [datetime](/docs/reference/types/datetime/)
@@ -63,153 +186,14 @@ Each of a collection's fields can be of the following `type`
 - [image](/docs/reference/types/image/)
 - [number](/docs/reference/types/number/)
 
-### _nonscalar_
+### _nonscalar types_
 
 - [reference](/docs/reference/types/reference/)
 - [object](/docs/reference/types/object/)
 - [rich-text](/docs/reference/types/rich-text/)
 
-## Using lists of items
-
-Specifying `list: true` on _any_ field type will turn that field into an array of items:
-
-```js
-{
-  label: "Categories",
-  name: "categories",
-  type: "string",
-  list: true
-}
-```
-
-The resulting field in your TinaCMS form will be a `list` field. And the resulting data structure would be: `["movies", "art"]`.
-
-## Limiting values to a set of options
-
-Any _scalar_ field can accept an `options` array, note that in the example below we're using both `options` and `list` properties:
-
-```js
-{
-  label: "Categories",
-  name: "categories",
-  type: "string",
-  options: ["movies", "art", "food", "sports"],
-  list: true
-}
-```
-
-In this example, the resulting field in your TinaCMS form will be a `checkbox` field. Omitting `list: true` (or setting it to `false`) would result in a `radio` field.
-
-## Grouping properties within an "object"
-
-An object type takes either a `fields` or `templates` property (just like the `collections` definition). The simplest kind of `object` is one with `fields`:
-
-```js
-{
-  label: "Social Media",
-  name: "socialMedia",
-  type: "object",
-  fields: [{
-    label: "Handle",
-    name: "handle",
-    type: "string"
-  }, {
-    label: "Service",
-    name: "service",
-    type: "string",
-    options: ["twitter", "instagram", "tiktok"]
-  }]
-}
-```
-
-The resulting data structure would be:
-
-```js
-{
-  socialMedia: {
-    handle: "tinacms",
-    service: "twitter"
-  }
-}
-```
-
-Setting `list: true` would turn the values into an array:
-
-```js
-{
-  socialMedia: [
-    {
-      handle: 'tinacms',
-      service: 'twitter',
-    },
-    {
-      handle: 'tinacms',
-      service: 'instagram',
-    },
-  ]
-}
-```
-
-> More complex shapes can be built by using the [`templates`](/docs/reference/types/object/#with-multiple-templates) property. This allows your editors to build out pages using predefined blocks.
-
-## Using references within a document
-
-The `reference` field connects one document to another and only needs to be defined on _one_ side of the relationship. You can specify any number of collections you'd like to connect:
-
-```js
-{
-  label: "Author",
-  name: "author",
-  type: "reference",
-  collections: ["author"] // points to a collection with the name "author"
-}
-```
-
-This will result in a resolvable node in your GraphQL structure (Don't worry, we'll discuss how to use the GraphQL API later):
-
-```graphql
-{
-  post(relativePath: $relativePath) {
-    author {
-      # disambiguate because could have _many_ collections
-      ... on Author {
-        name
-      }
-    }
-  }
-}
-```
-
-
-The resulting field in your TinaCMS form will be a `select` field, whose `options` are all of the documents in the referenced collections.
-
-## Customizing fields with the `UI` property
-
-<!-- TODO add links when https://github.com/tinacms/tinacms.org/pull/1293/files is merged -->
-
-Fields can be customized to provide a better experience for content editors. The `ui` property on each field can enable: [custom frontend validation functions](/docs/extending-tina/validation/) which does not allow editors to submit values that are invalid, [formate and parse](/docs/extending-tina/format-and-parse/) functions to allow customization of what is saved to the document and what is displayed to the user, and allow [custom field components](/docs/extending-tina/custom-field-components/) to display any input imaginable in the CMS. 
-
-This is done by using the `ui` key in the field definition.
-
-```ts
-{
-  label: "Title",
-  name: "title",
-  type: "string",
-  ui: {
-    validate: (val) => {
-      if ( val.length > 20 ) {
-        return 'The title field must be less then 20 characters'
-      }
-      if ( val.length < 5 ) {
-        return 'The title field must be more then 5 characters'
-      }
-    }
-  }
-}
-```
 ## Summary
 
 - Your content is modeled in the `.tina/schema.{ts,js,tsx}` of your repo
-- Your content model contains an array "collections". A "collection" maps a content type to a directory in your repo.
+- Your content model contains an array of "collections". A "collection" maps a content type to a directory in your repo.
 - A "collection" contains multiple fields, which can be of multiple scalar or non-scalar data types.
