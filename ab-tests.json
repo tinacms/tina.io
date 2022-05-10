@@ -1,0 +1,12 @@
+[
+  {
+    "id": "home",
+    "href": "/",
+    "variants": [
+      {
+        "id": "b",
+        "href": "/home/b"
+      }
+    ]
+  }
+]
