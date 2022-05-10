@@ -60,7 +60,7 @@ This is my main post body.
 
 Once we've defined a collection, we can edit its fields through the Tina UI, or [query its content](/docs/graphql/overview/) using the Tina Content API.
 
-<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/string-body" />
+<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/iframe/string-body" />
 
 ## "List" fields
 
