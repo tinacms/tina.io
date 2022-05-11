@@ -11,7 +11,7 @@ export function middleware(req: NextRequest) {
     return NextResponse.next()
   }
 
-  const COOKIE_NAME = `bucket-${matchingABTest.id}`
+  const COOKIE_NAME = `bucket-${matchingABTest.testId}`
 
   const abTestResult = getABTestResult(matchingABTest, req.cookies[COOKIE_NAME])
   url.pathname = abTestResult.url

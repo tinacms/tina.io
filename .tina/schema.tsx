@@ -232,5 +232,34 @@ export default defineSchema({
         },
       ],
     },
+    {
+      label: "AB Test",
+      name: "abtest",
+      path: "content/ab-tests",
+      format: "json",
+      fields: [
+        { type: 'object', label: 'tests', name: 'tests', list: true, 
+        ui: {
+          itemProps: (item) => {
+      // Field values are accessed by title?.<Field name>
+            return { label: item.testId };
+          },
+        }, fields: [
+          { type: "string", label: "Id", name: "testId" },
+          { type: "string", label: "Page", name: "href" },
+          {
+            type: "object",
+            name: "variants",
+            label: "Variants",
+            list: true,
+            fields: [
+              { type: "string", label: "Id", name: "testId" },
+              { type: "string", label: "Page", name: "href" },
+            ],
+          },
+        ]}
+
+      ]
+    }
   ],
 });

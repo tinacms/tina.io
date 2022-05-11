@@ -1,12 +1,15 @@
 import { getBucket } from './getBucket'
-import abTests from '../../ab-tests.json'
+import { tests as abTests } from '../../content/ab-tests/index.json'
 
 export const getABTestResult = (matchingABTest: any, bucketCookie?: string) => {
   const bucket =
     bucketCookie ||
-    getBucket([matchingABTest.id, ...matchingABTest.variants.map(t => t.id)])
+    getBucket([
+      matchingABTest.testId,
+      ...matchingABTest.variants.map(t => t.testId),
+    ])
 
-  const matchingVariant = matchingABTest.variants.find(t => t.id == bucket)
+  const matchingVariant = matchingABTest.variants.find(t => t.testId == bucket)
   if (matchingVariant) {
     return {
       url: matchingVariant.href,
@@ -16,7 +19,7 @@ export const getABTestResult = (matchingABTest: any, bucketCookie?: string) => {
     //invalid bucket, or we're matched with the default AB test
     return {
       url: matchingABTest.href,
-      bucket: matchingABTest.id,
+      bucket: matchingABTest.testId,
     }
   }
 }

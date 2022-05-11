@@ -179,3 +179,16 @@ fragment PostParts on Post {
   }
   body
 }
+
+fragment AbtestParts on Abtest {
+  tests {
+    __typename
+    testId
+    href
+    variants {
+      __typename
+      testId
+      href
+    }
+  }
+}

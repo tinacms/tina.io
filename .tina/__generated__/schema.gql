@@ -51,6 +51,8 @@ type Query {
   pageConnection(before: String, after: String, first: Float, last: Float, sort: String): PageConnection!
   post(relativePath: String): Post!
   postConnection(before: String, after: String, first: Float, last: Float, sort: String): PostConnection!
+  abtest(relativePath: String): Abtest!
+  abtestConnection(before: String, after: String, first: Float, last: Float, sort: String): AbtestConnection!
 }
 
 type DocumentConnectionEdges {
@@ -76,7 +78,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String): DocumentConnection!
 }
 
-union DocumentNode = Page | Post
+union DocumentNode = Page | Post | Abtest
 
 type PageSeo {
   title: String
@@ -311,6 +313,35 @@ type PostConnection implements Connection {
   edges: [PostConnectionEdges]
 }
 
+type AbtestTestsVariants {
+  testId: String
+  href: String
+}
+
+type AbtestTests {
+  testId: String
+  href: String
+  variants: [AbtestTestsVariants]
+}
+
+type Abtest implements Node & Document {
+  tests: [AbtestTests]
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+type AbtestConnectionEdges {
+  cursor: String!
+  node: Abtest
+}
+
+type AbtestConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [AbtestConnectionEdges]
+}
+
 type Mutation {
   addPendingDocument(collection: String!, relativePath: String!, template: String): DocumentNode!
   updateDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
@@ -320,11 +351,14 @@ type Mutation {
   createPage(relativePath: String!, params: PageMutation!): Page!
   updatePost(relativePath: String!, params: PostMutation!): Post!
   createPost(relativePath: String!, params: PostMutation!): Post!
+  updateAbtest(relativePath: String!, params: AbtestMutation!): Abtest!
+  createAbtest(relativePath: String!, params: AbtestMutation!): Abtest!
 }
 
 input DocumentMutation {
   page: PageMutation
   post: PostMutation
+  abtest: AbtestMutation
 }
 
 input PageSeoMutation {
@@ -539,6 +573,21 @@ input PostMutation {
   prev: String
   next: String
   body: JSON
+}
+
+input AbtestTestsVariantsMutation {
+  testId: String
+  href: String
+}
+
+input AbtestTestsMutation {
+  testId: String
+  href: String
+  variants: [AbtestTestsVariantsMutation]
+}
+
+input AbtestMutation {
+  tests: [AbtestTestsMutation]
 }
 
 schema {

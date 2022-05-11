@@ -4,11 +4,11 @@ import { getBucket } from './getBucket'
 jest.mock('./getBucket')
 
 const homeAbTest = {
-  id: 'home',
+  testId: 'home',
   href: '/',
   variants: [
     {
-      id: 'b',
+      testId: 'b',
       href: '/home/b',
     },
   ],
