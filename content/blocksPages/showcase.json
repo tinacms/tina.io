@@ -12,6 +12,15 @@
     {
       "items": [
         {
+          "headline": "Protocol Labs",
+          "text": "The marketing site for [Protocol Labs](https://protocol.ai/), built by [Tom Benbow](https://github.com/tbenbow). Protocol Labs is an open-source research, development, and deployment laboratory. Their projects include IPFS, Filecoin, libp2p, and many more. ",
+          "url": "https://protocol.ai/",
+          "media": {
+            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_900,g_face/v1652310720/tina-showcase/protocol-labs.png"
+          },
+          "_template": "project"
+        },
+        {
           "headline": "Devolver Digital",
           "text": "A marketing site for a boutique game label that works with independent developers from all over the world to produce and promote some of the most original, eccentric, and beloved games of the past decade.",
           "url": "https://www.devolverdigital.com/",
