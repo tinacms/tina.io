@@ -168,7 +168,7 @@ variables:
 
 ### Default Value variables
 
-You can also have a default value variable(s). When default values are provided for all variables in a query, you can then call the query with no variables, and data will be returned. For example: ****
+You can also have a default value variable(s). When default values are provided for all variables in a query, you can then call the query with no variables, and data will be returned. For example:
 
 ```graphql
 query getAge($name: String = "John') {
