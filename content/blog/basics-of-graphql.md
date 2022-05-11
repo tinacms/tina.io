@@ -9,7 +9,7 @@ The Tina team is a big fan of GraphQL, and it is a core component of our project
 
 ## Queries
 
-Queries are the means of retrieving data from a server. If you have used REST before, this is the equivalent of a GET request, except with GraphQL, you have much more control. You can request as much (or as little) data as you need, making GraphQL a powerful development tool. Below is an example of a query in GraphQL:
+Queries are the means of retrieving data from a server. If you have used REST before, this is the equivalent of a `GET` request, except with GraphQL, you have much more control. You can request as much (or as little) data as you need, making GraphQL a powerful development tool. Below is an example of a query in GraphQL:
 
 ```graphql
 query MyAwesomeQuery(){
@@ -53,7 +53,7 @@ query MyAwesomeQuery(){
   }
 }
 
-#What is returned
+# What is returned
 
 {
   "data": {
@@ -79,7 +79,7 @@ query MyAwesomeQuery(){
 
 GraphQL also supports arguments, just like REST. Unlike REST, you can only send a single set of arguments, and you might have to make multiple requests. GraphQL supports arguments for every field or object. You can specify the exact data you need, and the server will only return that data. Arguments can help you with a lot of data or avoid unnecessary data loading into your application.
 
-You can also use arguments to control the structure of your data. For example, you might want to get all posts from a particular author but only include the title and date published field. You could do this by passing an argument to GraphQL that specifies which author you want to be returned and the title and body fields you want to be returned.
+You can also use arguments to control the structure of your data. For example, you might want to get all posts from a particular author but only include the title and date published field. You could do this by passing an argument to GraphQL that specifies which author and the title and body fields you want to be returned.
 
 ```jsx
 {
@@ -182,7 +182,7 @@ If no variable is provided, it will use `John` and return his age. If you have m
 
 ## Mutations
 
-Mutations in GraphQL are used to change the data in your application, similar to PUT or POST requests in REST. As with queries, if your returned data is an object type, you can request just the nested fields. This means you can return only the data you need, versus returning all of the data and having to parse the parts you do need:
+Mutations in GraphQL are used to change the data in your application, similar to `PUT` or `POST` requests in REST. As with queries, if your returned data is an object type, you can request just the nested fields. This means you can return only the data you need, versus returning all of the data and having to parse the parts you do need:
 
 ```graphql
 mutation createNewAuthor($name: String, $bio: String, $twitter: String, $image: String){
