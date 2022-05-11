@@ -1,7 +1,11 @@
 import { getBucket } from './getBucket'
-import { tests as abTests } from '../../content/ab-tests/index.json'
+import abTestDB from '../../content/ab-tests/index.json'
+import { AbtestTests } from '.tina/__generated__/types'
 
-export const getABTestResult = (matchingABTest: any, bucketCookie?: string) => {
+export const getABTestResult = (
+  matchingABTest: AbtestTests,
+  bucketCookie?: string
+) => {
   const bucket =
     bucketCookie ||
     getBucket([
@@ -24,5 +28,5 @@ export const getABTestResult = (matchingABTest: any, bucketCookie?: string) => {
   }
 }
 
-export const getABTest = (pathname: string) =>
-  abTests.find(test => test.href == pathname)
+export const getExperiment = (pathname: string) =>
+  abTestDB.tests.find(test => test.href == pathname)

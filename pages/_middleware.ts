@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getABTest, getABTestResult } from '../utils/ab-test'
+import { getExperiment, getABTestResult } from '../utils/ab-test'
 
 // Check for AB tests on a given page
 export function middleware(req: NextRequest) {
   const url = req.nextUrl.clone()
 
-  const matchingABTest = getABTest(url.pathname)
+  const matchingABTest = getExperiment(url.pathname)
 
   if (!matchingABTest) {
     return NextResponse.next()
