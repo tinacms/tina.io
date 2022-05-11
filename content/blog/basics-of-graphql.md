@@ -1,6 +1,6 @@
 ---
 title: GraphQL Basics
-date: '2022-04-14T07:00:00.000Z'
+date: '2022-05-12T07:00:00.000Z'
 author: James Perkins
 prev: content/blog/announcing-extending-tina.md
 ---
