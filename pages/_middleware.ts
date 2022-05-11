@@ -3,6 +3,7 @@ import { getBucket } from '../utils/getABBucket'
 
 import abTests from '../ab-tests.json'
 
+// Check for AB tests on a given page
 export function middleware(req: NextRequest) {
   const url = req.nextUrl.clone()
 
@@ -16,8 +17,6 @@ export function middleware(req: NextRequest) {
     url.pathname =
       matchingABTest.variants.find(t => t.id == bucket)?.href ||
       matchingABTest.href
-
-    url.searchParams.set('ab', bucket)
 
     const res = NextResponse.rewrite(url)
 
