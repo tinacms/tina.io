@@ -16,5 +16,3 @@ export function getBucket(buckets: readonly string[]) {
 function cryptoRandom() {
   return crypto.getRandomValues(new Uint32Array(1))[0] / (0xffffffff + 1)
 }
-
-export const HOME_BUCKETS = ['a', 'b'] as const
