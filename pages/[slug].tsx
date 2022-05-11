@@ -23,9 +23,11 @@ export const getStaticProps: GetStaticProps = async function({
   previewData,
   ...ctx
 }) {
-  const { slug } = ctx.params
+  const slug = ctx.params?.slug || 'home'
   const client = ExperimentalGetTinaClient()
   const vars = { relativePath: slug + '.json' }
+
+  console.log('slug', slug)
   const res = await client.page(vars)
 
   return {
@@ -43,11 +45,8 @@ export const getStaticPaths: GetStaticPaths = async function() {
     const slug = fileToUrl(file, 'blocksPages')
     return { params: { slug } }
   })
-  const updatedPaths = paths.filter(path => {
-    return path.params.slug !== 'home'
-  })
   return {
-    paths: updatedPaths,
+    paths: paths,
     fallback: false,
   }
 }
