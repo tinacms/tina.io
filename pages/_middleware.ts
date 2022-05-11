@@ -5,6 +5,7 @@ import abTests from '../ab-tests.json'
 
 export function middleware(req: NextRequest) {
   const url = req.nextUrl.clone()
+
   const matchingABTest = abTests.find(test => test.href == url.pathname)
   if (matchingABTest) {
     const COOKIE_NAME = `bucket-${matchingABTest.id}`
@@ -28,5 +29,5 @@ export function middleware(req: NextRequest) {
     return res
   }
 
-  return NextResponse
+  return NextResponse.next()
 }
