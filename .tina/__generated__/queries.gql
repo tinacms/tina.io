@@ -67,3 +67,38 @@ query postConnection {
     }
   }
 }
+
+query abtest($relativePath: String!) {
+  abtest(relativePath: $relativePath) {
+    _sys {
+      filename
+      basename
+      breadcrumbs
+      path
+      relativePath
+      extension
+    }
+    id
+    ...AbtestParts
+  }
+}
+
+query abtestConnection {
+  abtestConnection {
+    totalCount
+    edges {
+      node {
+        id
+        _sys {
+          filename
+          basename
+          breadcrumbs
+          path
+          relativePath
+          extension
+        }
+        ...AbtestParts
+      }
+    }
+  }
+}

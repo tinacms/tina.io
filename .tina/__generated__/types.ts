@@ -70,6 +70,8 @@ export type Query = {
   pageConnection: PageConnection;
   post: Post;
   postConnection: PostConnection;
+  abtest: Abtest;
+  abtestConnection: AbtestConnection;
 };
 
 
@@ -121,6 +123,20 @@ export type QueryPostConnectionArgs = {
   sort?: InputMaybe<Scalars['String']>;
 };
 
+
+export type QueryAbtestArgs = {
+  relativePath?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryAbtestConnectionArgs = {
+  before?: InputMaybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
+  sort?: InputMaybe<Scalars['String']>;
+};
+
 export type DocumentConnectionEdges = {
   __typename?: 'DocumentConnectionEdges';
   cursor: Scalars['String'];
@@ -156,7 +172,7 @@ export type CollectionDocumentsArgs = {
   sort?: InputMaybe<Scalars['String']>;
 };
 
-export type DocumentNode = Page | Post;
+export type DocumentNode = Page | Post | Abtest;
 
 export type PageSeo = {
   __typename?: 'PageSeo';
@@ -424,6 +440,40 @@ export type PostConnection = Connection & {
   edges?: Maybe<Array<Maybe<PostConnectionEdges>>>;
 };
 
+export type AbtestTestsVariants = {
+  __typename?: 'AbtestTestsVariants';
+  testId?: Maybe<Scalars['String']>;
+  href?: Maybe<Scalars['String']>;
+};
+
+export type AbtestTests = {
+  __typename?: 'AbtestTests';
+  testId?: Maybe<Scalars['String']>;
+  href?: Maybe<Scalars['String']>;
+  variants?: Maybe<Array<Maybe<AbtestTestsVariants>>>;
+};
+
+export type Abtest = Node & Document & {
+  __typename?: 'Abtest';
+  tests?: Maybe<Array<Maybe<AbtestTests>>>;
+  id: Scalars['ID'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON'];
+};
+
+export type AbtestConnectionEdges = {
+  __typename?: 'AbtestConnectionEdges';
+  cursor: Scalars['String'];
+  node?: Maybe<Abtest>;
+};
+
+export type AbtestConnection = Connection & {
+  __typename?: 'AbtestConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float'];
+  edges?: Maybe<Array<Maybe<AbtestConnectionEdges>>>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   addPendingDocument: DocumentNode;
@@ -434,6 +484,8 @@ export type Mutation = {
   createPage: Page;
   updatePost: Post;
   createPost: Post;
+  updateAbtest: Abtest;
+  createAbtest: Abtest;
 };
 
 
@@ -487,9 +539,22 @@ export type MutationCreatePostArgs = {
   params: PostMutation;
 };
 
+
+export type MutationUpdateAbtestArgs = {
+  relativePath: Scalars['String'];
+  params: AbtestMutation;
+};
+
+
+export type MutationCreateAbtestArgs = {
+  relativePath: Scalars['String'];
+  params: AbtestMutation;
+};
+
 export type DocumentMutation = {
   page?: InputMaybe<PageMutation>;
   post?: InputMaybe<PostMutation>;
+  abtest?: InputMaybe<AbtestMutation>;
 };
 
 export type PageSeoMutation = {
@@ -706,6 +771,21 @@ export type PostMutation = {
   body?: InputMaybe<Scalars['JSON']>;
 };
 
+export type AbtestTestsVariantsMutation = {
+  testId?: InputMaybe<Scalars['String']>;
+  href?: InputMaybe<Scalars['String']>;
+};
+
+export type AbtestTestsMutation = {
+  testId?: InputMaybe<Scalars['String']>;
+  href?: InputMaybe<Scalars['String']>;
+  variants?: InputMaybe<Array<InputMaybe<AbtestTestsVariantsMutation>>>;
+};
+
+export type AbtestMutation = {
+  tests?: InputMaybe<Array<InputMaybe<AbtestTestsMutation>>>;
+};
+
 export type GetExpandedPostDocumentQueryVariables = Exact<{
   relativePath: Scalars['String'];
 }>;
@@ -716,6 +796,8 @@ export type GetExpandedPostDocumentQuery = { __typename?: 'Query', post: { __typ
 export type PagePartsFragment = { __typename?: 'Page', seo?: { __typename: 'PageSeo', title?: string | null, description?: string | null } | null, blocks?: Array<{ __typename: 'PageBlocksHero', headline?: string | null, text?: string | null, videoSrc?: string | null, actions?: Array<{ __typename: 'PageBlocksHeroActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksFeatures', items?: Array<{ __typename: 'PageBlocksFeaturesItemsFeature', headline?: string | null, text?: string | null, media?: { __typename: 'PageBlocksFeaturesItemsFeatureMedia', src?: string | null, videoSrc?: string | null, cli?: boolean | null } | null, actions?: Array<{ __typename: 'PageBlocksFeaturesItemsFeatureActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null> | null } | { __typename: 'PageBlocksFlying', headline?: string | null, text?: string | null, actions?: Array<{ __typename: 'PageBlocksFlyingActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksPricing', intro?: any | null, segue?: any | null, tierOne?: { __typename: 'PageBlocksPricingTierOne', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierOneActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null, tierTwo?: { __typename: 'PageBlocksPricingTierTwo', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierTwoActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null, tierThree?: { __typename: 'PageBlocksPricingTierThree', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierThreeActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null, tierFour?: { __typename: 'PageBlocksPricingTierFour', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierFourActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null } | { __typename: 'PageBlocksFaq', title?: string | null, intro?: any | null, color?: string | null, questions?: Array<{ __typename: 'PageBlocksFaqQuestions', question?: string | null, answer?: any | null } | null> | null } | { __typename: 'PageBlocksContent', content?: any | null, options?: { __typename: 'PageBlocksContentOptions', narrow?: boolean | null, color?: string | null, align?: string | null } | null } | { __typename: 'PageBlocksShowcase', items?: Array<{ __typename: 'PageBlocksShowcaseItemsProject', headline?: string | null, text?: string | null, url?: string | null, media?: { __typename: 'PageBlocksShowcaseItemsProjectMedia', src?: string | null } | null } | null> | null } | { __typename: 'PageBlocksColumns', columnOne?: any | null, columnTwo?: any | null, options?: { __typename: 'PageBlocksColumnsOptions', columns?: string | null, narrow?: boolean | null, color?: string | null, align?: string | null } | null } | null> | null };
 
 export type PostPartsFragment = { __typename?: 'Post', title?: string | null, date?: string | null, last_edited?: string | null, author?: string | null, body?: any | null, prev?: { __typename?: 'Post', id: string } | null, next?: { __typename?: 'Post', id: string } | null };
+
+export type AbtestPartsFragment = { __typename?: 'Abtest', tests?: Array<{ __typename: 'AbtestTests', testId?: string | null, href?: string | null, variants?: Array<{ __typename: 'AbtestTestsVariants', testId?: string | null, href?: string | null } | null> | null } | null> | null };
 
 export type PageQueryVariables = Exact<{
   relativePath: Scalars['String'];
@@ -740,6 +822,18 @@ export type PostConnectionQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type PostConnectionQuery = { __typename?: 'Query', postConnection: { __typename?: 'PostConnection', totalCount: number, edges?: Array<{ __typename?: 'PostConnectionEdges', node?: { __typename?: 'Post', id: string, title?: string | null, date?: string | null, last_edited?: string | null, author?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, prev?: { __typename?: 'Post', id: string } | null, next?: { __typename?: 'Post', id: string } | null } | null } | null> | null } };
+
+export type AbtestQueryVariables = Exact<{
+  relativePath: Scalars['String'];
+}>;
+
+
+export type AbtestQuery = { __typename?: 'Query', abtest: { __typename?: 'Abtest', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, tests?: Array<{ __typename: 'AbtestTests', testId?: string | null, href?: string | null, variants?: Array<{ __typename: 'AbtestTestsVariants', testId?: string | null, href?: string | null } | null> | null } | null> | null } };
+
+export type AbtestConnectionQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AbtestConnectionQuery = { __typename?: 'Query', abtestConnection: { __typename?: 'AbtestConnection', totalCount: number, edges?: Array<{ __typename?: 'AbtestConnectionEdges', node?: { __typename?: 'Abtest', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, tests?: Array<{ __typename: 'AbtestTests', testId?: string | null, href?: string | null, variants?: Array<{ __typename: 'AbtestTestsVariants', testId?: string | null, href?: string | null } | null> | null } | null> | null } | null } | null> | null } };
 
 export const PagePartsFragmentDoc = gql`
     fragment PageParts on Page {
@@ -925,6 +1019,20 @@ export const PostPartsFragmentDoc = gql`
   body
 }
     `;
+export const AbtestPartsFragmentDoc = gql`
+    fragment AbtestParts on Abtest {
+  tests {
+    __typename
+    testId
+    href
+    variants {
+      __typename
+      testId
+      href
+    }
+  }
+}
+    `;
 export const GetExpandedPostDocumentDocument = gql`
     query getExpandedPostDocument($relativePath: String!) {
   post(relativePath: $relativePath) {
@@ -1031,6 +1139,43 @@ export const PostConnectionDocument = gql`
   }
 }
     ${PostPartsFragmentDoc}`;
+export const AbtestDocument = gql`
+    query abtest($relativePath: String!) {
+  abtest(relativePath: $relativePath) {
+    _sys {
+      filename
+      basename
+      breadcrumbs
+      path
+      relativePath
+      extension
+    }
+    id
+    ...AbtestParts
+  }
+}
+    ${AbtestPartsFragmentDoc}`;
+export const AbtestConnectionDocument = gql`
+    query abtestConnection {
+  abtestConnection {
+    totalCount
+    edges {
+      node {
+        id
+        _sys {
+          filename
+          basename
+          breadcrumbs
+          path
+          relativePath
+          extension
+        }
+        ...AbtestParts
+      }
+    }
+  }
+}
+    ${AbtestPartsFragmentDoc}`;
 export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R>
   export function getSdk<C>(requester: Requester<C>) {
     return {
@@ -1048,6 +1193,12 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
       },
     postConnection(variables?: PostConnectionQueryVariables, options?: C): Promise<{data: PostConnectionQuery, variables: PostConnectionQueryVariables, query: string}> {
         return requester<{data: PostConnectionQuery, variables: PostConnectionQueryVariables, query: string}, PostConnectionQueryVariables>(PostConnectionDocument, variables, options);
+      },
+    abtest(variables: AbtestQueryVariables, options?: C): Promise<{data: AbtestQuery, variables: AbtestQueryVariables, query: string}> {
+        return requester<{data: AbtestQuery, variables: AbtestQueryVariables, query: string}, AbtestQueryVariables>(AbtestDocument, variables, options);
+      },
+    abtestConnection(variables?: AbtestConnectionQueryVariables, options?: C): Promise<{data: AbtestConnectionQuery, variables: AbtestConnectionQueryVariables, query: string}> {
+        return requester<{data: AbtestConnectionQuery, variables: AbtestConnectionQueryVariables, query: string}, AbtestConnectionQueryVariables>(AbtestConnectionDocument, variables, options);
       }
     };
   }

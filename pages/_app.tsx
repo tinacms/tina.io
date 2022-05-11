@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import App from 'next/app'
 import Head from 'next/head'
 import Script from 'next/script'
-import dynamic from 'next/dynamic'
 import { DefaultSeo } from 'next-seo'
 import data from '../content/siteConfig.json'
 import TagManager from 'react-gtm-module'
@@ -10,7 +9,6 @@ import { GlobalStyle } from 'components/styles/GlobalStyle'
 import 'components/styles/fontImports.css'
 import path from 'path'
 import Tina from '../.tina/components/TinaDynamicProvider'
-import { useTina } from 'tinacms/dist/edit-state'
 
 // the following line will cause all content files to be available in a serverless context
 path.resolve('./content/')
