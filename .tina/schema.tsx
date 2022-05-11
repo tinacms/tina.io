@@ -246,7 +246,7 @@ export default defineSchema({
           },
         }, fields: [
           { type: "string", label: "Id", name: "testId" },
-          { type: "string", label: "Page", name: "href" },
+          { type: "string", label: "Page", name: "href", description: "This is the root page that will be conditionally swapped out" },
           {
             type: "object",
             name: "variants",
@@ -254,7 +254,7 @@ export default defineSchema({
             list: true,
             fields: [
               { type: "string", label: "Id", name: "testId" },
-              { type: "string", label: "Page", name: "href" },
+              { type: "string", label: "Page", name: "href", description: "This is the variant page that will be conditionally used instead of the original" },
             ],
           },
         ]}
