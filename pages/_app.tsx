@@ -13,26 +13,6 @@ import Tina from '../.tina/components/TinaDynamicProvider'
 // the following line will cause all content files to be available in a serverless context
 path.resolve('./content/')
 
-const getABCookies = () => {
-  const cookieArr =
-    typeof document !== 'undefined'
-      ? document.cookie
-          .split(';')
-          .filter(function(c) {
-            return c.trim().indexOf('bucket-') === 0
-          })
-          .map(function(c) {
-            return c.trim()
-          })
-      : []
-
-  return cookieArr.reduce(function(map, cookie) {
-    const cookieParts = cookie.split('=')
-    map[cookieParts[0]] = cookieParts[1]
-    return map
-  }, {})
-}
-
 const MainLayout = ({ Component, pageProps }) => {
   return (
     <>
@@ -77,8 +57,6 @@ const MainLayout = ({ Component, pageProps }) => {
             gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
               page_path: window.location.pathname,
             });
-
-            gtag('set', ${JSON.stringify(getABCookies())});
           `,
         }}
       />
