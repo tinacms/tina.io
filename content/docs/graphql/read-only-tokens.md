@@ -66,11 +66,11 @@ export const client = createClient({
 })
 ```
 
-*optionally generated queries can be attached to the client by passing the generated sdk*
+*optionally generated queries can be attached to the client by passing the `queries` variable to createClient*
 
 ```diff
 import { createClient } from 'tinacms/dist/client'
-+ import { sdk } from './__generated__/types' 
++ import { queries } from './__generated__/types' 
 
 const branch = "main";
 const apiURL =
@@ -80,7 +80,7 @@ const apiURL =
 
 // Token generated on app.tina.io
 export const client = createClient({
-+   sdk,
++   queries,
     // default values
     url: apiURL,
     token: "Your Read Only Token generated above",
@@ -148,12 +148,12 @@ const data = await client.request({
 });
 ```
 
-If the `sdk` was passed, then queries can be called from the `sdk` namespace.
+If the `queries` was passed, then queries can be called from the `queries` namespace.
 
 ```ts
 import { client } from "../pathToTina/.tina/client";
 
-const data = await client.sdk.post({ relativePath: "HelloWorld.md"})
+const data = await client.queries.post({ relativePath: "HelloWorld.md"})
 ```
 
 
