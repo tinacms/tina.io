@@ -51,6 +51,7 @@ This client can be used for data fetching with Tina. It can be used on the clien
 To set up, first add a new file called `.tina/client.{js,ts}`
 
 ```ts
+import { createClient } from 'tinacms/dist/client'
 const branch = "main";
 const apiURL =
   process.env.NODE_ENV == "development"
@@ -64,6 +65,28 @@ export const client = createClient({
     token: "Your Read Only Token generated above",
 })
 ```
+
+*optionally generated queries can be attached to the client by passing the generated sdk*
+
+```diff
+import { createClient } from 'tinacms/dist/client'
++ import { sdk } from './__generated__/types' 
+
+const branch = "main";
+const apiURL =
+  process.env.NODE_ENV == "development"
+    ? "http://localhost:4001/graphql"
+    : `https://content.tinajs.io/content/<Your Client ID>/github/${branch}`;
+
+// Token generated on app.tina.io
+export const client = createClient({
++   sdk,
+    // default values
+    url: apiURL,
+    token: "Your Read Only Token generated above",
+})
+```
+
 When using "http://localhost:4001/graphql," the content will be queried from file system (This only works during devolvement or in CI) and when using `https://content.tinajs.io/content/<Your Client ID>/github/${branch}` the content will be queried from Tina cloud. 
 
 In most cases, the `apiURL` is the same one that is used for editing. So instead of passing the passing `apiURL` the client can be passed.
@@ -123,8 +146,16 @@ const data = await client.request({
   variables: {...},
   token: "Your token",
 });
-
 ```
+
+If the `sdk` was passed, then queries can be called from the `sdk` namespace.
+
+```ts
+import { client } from "../pathToTina/.tina/client";
+
+const data = await client.sdk.post({ relativePath: "HelloWorld.md"})
+```
+
 
 ### Making requests with `curl` and `fetch`
 
