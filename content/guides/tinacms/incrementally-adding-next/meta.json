@@ -1,0 +1,11 @@
+{
+  "title": "Incrementally switching to Next+Tina",
+  "steps": [
+    {
+      "title": "Guide",
+      "id": "/guides/tinacms/incrementally-adding-next/guide/",
+      "slug": "/guides/tinacms/incrementally-adding-next/guide/",
+      "data": "./guide.md"
+    }
+  ]
+}
