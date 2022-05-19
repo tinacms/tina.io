@@ -17,57 +17,56 @@ A field's `ui.component` property is a React component that accepts three props:
 
 Checkout the [react-final-form](https://github.com/final-form/react-final-form#fieldrenderprops) docs for a more detailed description of the `input` and `meta` props.
 
-
 ### Custom Component Example
 
 Here is a custom slider component that can be used for adjusting image saturation.
 
-![A basic slider custom component](https://res.cloudinary.com/forestry-demo/image/upload/v1649941211/tina-io/docs/extending-tina/Extending_Tina_Custom_Component.png)
-
+![A basic slider custom component](https://res.cloudinary.com/forestry-demo/image/upload/v1652976482/tina-io/docs/extending-tina/image-saturation.png)
 
 ```tsx
 // .tina/schema.{js,tsx}
+import { defineSchema, wrapFieldsWithMeta } from 'tinacms'
 
 //.. other fields
 {
-  name: 'saturation',
-  type: 'number',
+  label: "Image Saturation",
+  name: "saturation",
+  type: "number",
+  description: "My custom saturation field",
   ui: {
     parse: (val) => Number(val),
-    component: ({ field, input, meta }) => {
+
+    // wrapping our component in wrapFieldsWithMeta renders our label & description.
+    component: wrapFieldsWithMeta(({ field, input, meta }) => {
       return (
-        <>
-          <div>
-            <label htmlFor="saturation">Image Saturation</label>
-          </div>
-          <div>
-            <input
-              name="saturation"
-              id="saturation"
-              type="range"
-              min="0"
-              max="10"
-              step=".1"
-// This will pass along props.input.onChange to set our form values as this input changes.
-              {...input} 
-            />
-           Value: {input.value}
-          </div>
-        </>
+        <div>
+          <input
+            name="saturation"
+            id="saturation"
+            type="range"
+            min="0"
+            max="10"
+            step=".1"
+            // This will pass along props.input.onChange to set our form values as this input changes.
+            {...input}
+          />
+          <br />
+          Value: {input.value}
+        </div>
       )
-    }
+    })
   }
 }
 ```
 
 > Note in this example parse is also needed. [Read more about parse here](/docs/extending-tina/format-and-parse.md)
 
-
 ## Using pre-built components
 
 Tina also provides a variety of pre-built components. To specify these, the `ui.component` property should be configured with the string name of the registered field plugin.
 
 Below is a list of default fields.
+
 ### Default Field Plugins
 
 - [text](/docs/reference/toolkit/fields/text/)
@@ -90,8 +89,6 @@ Tina also supports some add-on field plugins. These need to be imported and regi
 - [markdown](/docs/reference/toolkit/fields/markdown/)
 - [html](/docs/reference/toolkit/fields/html/)
 
-
-
 ### Configuring a field plugin
 
 Each field has a unique set of properties that can be configured within the `.tina/schema.ts` file.
@@ -111,4 +108,3 @@ For example, if you take a look at the color field plugin's definition, it takes
         },
 // ...
 ```
-
