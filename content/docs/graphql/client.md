@@ -4,7 +4,7 @@ last_edited: '2021-11-06T18:00:00.000Z'
 next: /docs/graphql/read-only-tokens
 ---
 
-{{ WarningCallout text="This is an experimental feature, and the API is subject to change. We don't yet suggest using this for production use-cases. Have any thoughts? Let us know in the chat, or through the [GitHub discussion](https://github.com/tinacms/tinacms/discussions/2249)!" }}
+{{ WarningCallout text="This is an experimental feature, and the API is subject to change. We don't yet suggest using this for production use cases. Have any thoughts? Let us know in the chat or through the [GitHub discussion](https://github.com/tinacms/tinacms/discussions/2249)!" }}
 
 ## Try it out
 
@@ -15,7 +15,7 @@ The generated GraphQL client has two main functionalities,
 
 ## Using the built-in Graphql Queries
 
-The client comes with several built-in GraphQL queries to allow you to get up and running quickly. There is one caveat it **does not resolve references**. Although we plan to support an API do to this in the future, the built-in generated client queries do not resolve references. To resolve reference you will have to [write your own queries](#writing-your-own-gql-queries).
+The client comes with several built-in GraphQL queries to allow you to get up and running quickly. However, there is one caveat it **does not resolve references**. Although we plan to support an API to do this in the future, the built-in generated client queries do not resolve references. To resolve a reference you will have to [write your queries](#writing-your-own-gql-queries).
 
 Firstly, you can import a function to get the client from generated folder located in `.tina/__generated/types`.
 ```ts
@@ -38,13 +38,13 @@ return {
 
 ## Writing your own GQL Queries
 
-First of all you can import the generated client
+First of all, you can import the generated client.
 
 ```ts
 import { ExperimentalGetTinaClient } from "../path/to/tinaFolder/.tina/__generated__/types";
 ```
 
-Then you can use the typed client. The types are based on your Graphql queries that you have written. The Graphql queries are written in the `.tina/queries/` folder and these will be used to generate the client.
+Then you can use the typed client. The types are based on the Graphql queries that you have written. The Graphql queries are written in the `.tina/queries/` folder, and these will be used to generate the client.
 
 Example of `.tina/queries/example.gql`  
 ```gql
@@ -54,7 +54,7 @@ query getCollections {
   }
 }
 ```
-Once the query is added, the client can be used to retrieve the data for example:
+Once the query is added, the client can be used to retrieve the data, for example:
 
 ```ts
 const client = ExperimentalGetTinaClient();
@@ -74,4 +74,4 @@ query GetAuthorDocument($path: String!) {
 }
 ```
 
-We are using an `AuthorsParts` Fragment. For each collection this fragment is generated and updated when the schema is updated. This means you no longer have to update your Graphql query when you update your schema.ts (assuming you want to query for all the fields)
+We are using an `AuthorsParts` Fragment. For each collection, this fragment is generated and updated when the schema is updated. This means you no longer have to update your Graphql query when you update your schema.ts (assuming you want to query for all the fields)
