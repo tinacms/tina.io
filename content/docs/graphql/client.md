@@ -54,15 +54,16 @@ query getCollections {
   }
 }
 ```
-would generate a client that would allow you to do this.
+Once the query is added, the client can be used to retrieve the data for example:
+
 ```ts
 const client = ExperimentalGetTinaClient();
 const data = await client.getCollections();
 console.log(data.getCollections);
 ```
 
+We can take this further and add this to our `example.gql` file: 
 
-We can take this further and add this to our `example.gql` file
 ```gql
 query GetAuthorDocument($path: String!) {
   author(relativePath: $path) {
