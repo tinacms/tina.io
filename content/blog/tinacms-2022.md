@@ -108,6 +108,6 @@ I hope this gives you a picture of what we’re trying to accomplish this year.�
 
 If you haven’t had a chance to try Tina yet, spin up a starter site on Tina Cloud or with the command line and share your feedback.
 
-<CreateAppCta ctaText="Try a starter" cliText="npx create-tina-app@latest" />
+<CreateAppCta ctaURL="/docs/introduction/using-starter/" ctaText="Try a starter" cliText="npx create-tina-app@latest" />
 
 Our [Discord community](https://discord.com/invite/zumN63Ybpf) is full of developers building next-generation sites and our amazing team is always there to lend a hand. And you can always reach out to [me on twitter](https://twitter.com/scottgallant).

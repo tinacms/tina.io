@@ -162,6 +162,11 @@ export default defineSchema({
                 },
                 {
                   type: "string",
+                  name: "ctaURL",
+                  label: "CTA URL",
+                },
+                {
+                  type: "string",
                   name: "cliText",
                   label: "CLI Command Example",
                 },
