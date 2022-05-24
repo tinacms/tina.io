@@ -74,7 +74,7 @@ Read our [Tina Cloud docs](https://tina.io/docs/tina-cloud/) for help creating a
 In your project's `.tina/schema.ts` file, set the branch that you are using with Tina:
 
 ```diff
-- const branch = "master";
+- const branch = "main";
 + const branch = <YOUR BRANCH GOES HERE>;
 ```
 
