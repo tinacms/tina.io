@@ -37,10 +37,10 @@ const components = {
       allowFullScreen={true}
     ></iframe>
   ),
-  CreateAppCta: ({ ctaText,ctaURL, cliText }) => (
+  CreateAppCta: ({ ctaText, cliText }) => (
     <>
       <a
-        href={ctaURL}
+        href="/docs/introduction/using-starter/"
         style={{
           textDecoration: 'none',
           borderRadius: '10px',
