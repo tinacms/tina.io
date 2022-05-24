@@ -40,7 +40,7 @@ const components = {
   CreateAppCta: ({ ctaText, cliText }) => (
     <>
       <a
-        href={ctaText}
+        href="/docs/introduction/using-starter/"
         style={{
           textDecoration: 'none',
           borderRadius: '10px',
@@ -52,7 +52,7 @@ const components = {
           color: 'white',
         }}
       >
-        Try a starter
+       {ctaText}
       </a>
 
       <div
