@@ -5,9 +5,9 @@ author: James Perkins
 prev: content/blog/basics-of-graphql.md
 ---
 
-A/B testing is an important part of any site, it allows you to increase user engagement, reduce bounce rates, increase conversion rate and effectively create content. 
+A/B testing is an essential part of any site. It allows you to increase user engagement, reduce bounce rates, increase conversion rate and effectively create content. 
 
-Tina opens the ability to easily power any site A/B testing, allowing marketing teams to test content without the need for the development team, once it has been implemented. 
+Tina opens the ability to easily power any site A/B testing, allowing marketing teams to test content without the need for the development team once it has been implemented. 
 
 ## Create A/B testing with Tina.
 
@@ -19,7 +19,7 @@ We are going to break this tutorial into three sections:
 
 ### Creating our Tina application
 
-This blog post is going to use the Tina Cloud Starter,  use the `create-tina-app` command for that, when prompted select your package manager of choice, and then use Tailwind Starter:
+This blog post is going to use the Tina Cloud Starter. Use the `create-tina-app` command for that, when prompted select your package manager of choice, and then use Tailwind Starter:
 
 ```bash
 # create our Tina application
@@ -31,7 +31,7 @@ npx create-tina-app@latest a-b-testing
 Downloading files from repo tinacms/tina-cloud-starter. This might take a moment.
 Installing packages. This might take a couple of minutes.
 
-## Move into the directory and make sure everything is up to date.
+## Move into the directory and make sure everything is updated.
 
 cd a-b-testing
 
@@ -39,21 +39,21 @@ yarn upgrade
   
 ```
 
-Now we have our application ready you can check out the code and launch it using `yarn dev` or `npm run dev` depending on your package manager. Now we need to update our code so are pages can be driven by A/B testing.
+Now we have our application ready. Depending on your package manager, you can check the code and launch it using `yarn dev` or `npm run dev`. We need to update our code so are pages can be driven by A/B testing.
 
 ### Updating Tina Schema
 
-We are going to have a collection that will allow our content teams to decide what page is going to be replaced. This is what the user will see: 
+We will have a collection that will allow our content teams to decide what page is going to be replaced. This is what the user will see: 
 
 ![A-B Test page one](https://res.cloudinary.com/forestry-demo/image/upload/v1653521516/blog-media/a-b-testing/a-b-test1.png)
 
-The ID will allow the content team to identify the A/B test and the Page field will be the page that the team wants to run the testing on, in this example, it would be the homepage. 
+The ID will allow the content team to identify the A/B test, and the Page field will be the page that the team wants to run the testing on. In this example, it would be the homepage. 
 
-Then all the variants a user wants to run will be a list of different variants, for example, we have test `b` that will show a user page named `home-b` 
+Then all the variants a user wants to run will be a list of different variants. For example, we have test `b` that will show a user page named `home-b.` 
 
 ![A-B Test page two](https://res.cloudinary.com/forestry-demo/image/upload/v1653521516/blog-media/a-b-testing/a-b-test2.png)
 
-Open up your `schema.ts` and underneath the `Pages` collection create a new collection with a `label` of `AB Test` and a name of `abtest`. So far your collection should look like this:
+Open up your `schema.ts` and underneath the `Pages` collection, create a new collection with a `label` of `AB Test` and `abtest`. So far, your collection should look like this:
 
 ```jsx
 {
@@ -62,7 +62,7 @@ Open up your `schema.ts` and underneath the `Pages` collection create a new coll
 }
 ```
 
-Then we need to set the path for the A/B test content we can set that to `content/ab-tests` and set the format to JSON. 
+Then we need to set the path for the A/B test content. We can set that to `content/ab-tests` and set the format to JSON. 
 
 ```jsx
 {
@@ -73,7 +73,7 @@ Then we need to set the path for the A/B test content we can set that to `conten
 }
 ```
 
-We now need to add are fields we want our content team to be able to edit, so that would be the ID, the page to run the test against, and the variants we want to run. We also want to be able to run tests on any number of pages so we will be using a list of objects. 
+We now need to add are fields we want our content team to be able to edit, so that would be the ID, the page to run the test against, and the variants we want to run. We also want to be able to run tests on any number of pages so that we will be using a list of objects. 
 
 
 > If you want to learn more about all the different field types and how to use them, check them out in our [Content Modeling documentation.](https://tina.io/docs/schema/)
@@ -127,7 +127,7 @@ fields: [
 ```
 
 
-> You may notice the `ui` prop, we are using this to give a more descriptive label of the lists. Otherwise, each one would be `AB Test Item` you can read about this in our [extending Tina documentation.](https://tina.io/docs/extending-tina/customize-list-ui/)
+> You may notice the `ui` prop. We are using this to give a more descriptive label to the lists. Otherwise, each one would be `AB Test Item` you can read about this in our [extending Tina documentation.](https://tina.io/docs/extending-tina/customize-list-ui/)
 
 
 Now we have a schema we can use, go ahead and launch the server using `yarn dev` and navigate to `[https://localhost:3000/admin](https://localhost:3000/admin)` and create a test. 
@@ -145,7 +145,7 @@ Below is an example of the process of creating a new test.
 
 ### Adding the `home-b` page.
 
-We need to add a home-b page to our application that we described in our a/b testing variant. To do that click pages on the left-hand side of the admin. Select the `Create New` button and give the filename `home-b` and add content to the page. 
+We need to add a home-b page to our application described in our a/b testing variant. To do that, click pages on the left-hand side of the admin. Next, select the `Create New` button and give the filename `home-b` and add content to the page. 
 
 We are now ready to create the code that will power our variant decisions. 
 
@@ -156,9 +156,9 @@ The variant code is made of two parts:
 1. a “random” value that maps to an array element
 2. Returning the `ABTestResult`
 
-So at the root of the project let us create a folder structure of `utils` and then folder `ab-test` inside the folder create a file called `getBucket.ts`
+So at the root of the project, let us create a folder structure of `utils` and then the folder `ab-test` inside the folder create a file called `getBucket.ts`
 
-This `getBucket` is going to return a number to reference the bucket for which the user lands. We need to first randomly generate the number. Then use that number and the number of buckets, which is passed in as an array, available to decide what bucket they are in. 
+This `getBucket` will return a number to reference the bucket for which the user lands. We need first randomly to generate the number. Then use that number and the number of buckets, which is passed in as an array, to decide what bucket they are in. 
 
 For the random value, we are going to use `crypto` 
  
@@ -169,7 +169,7 @@ function cryptoRandom() {
   }
 ```
 
-For our `getBucket` function, we are going to pass the array of options and use the `cryptoRandom` function we just wrote, to decide which bucket the user lands in. 
+For our `getBucket` function, we will pass the array of options and use the `cryptoRandom` function we just wrote to decide which bucket the user lands in. 
 
 ```json
 export function getBucket(buckets: readonly string[]) {
@@ -193,24 +193,24 @@ To go over the function above step by step:
 
 1. We are passing in our array of options (buckets)
 2. Get a number between 0 and 1. 
-3. Get the percentage of each buckets (2 would be 50% each)
-4. Loop through the bucket and see if the number falls within the range and return the bucket. 
+3. Get the percentage of each bucket (2 would be 50% each)
+4. Loop through the bucket, see if the number falls within the range, and return the bucket. 
 
 ### Creating our `getABTestResult`
 
-Now we have a way to get a bucket, we need to return the URL and the bucket the user is in for when we use Next.js Middleware to power our A/B testing.
+Now we have a way to get a bucket. We need to return the URL and the bucket the user is in for when we use Next.js Middleware to power our A/B testing.
 
-First we need import the `getBucket` code we just wrote, the `index.json` that holds our A/B Tests and the types from our Tina schema.
+First, we need to import the `getBucket` code we just wrote, the `index.json` that holds our A/B Tests, and the types from our Tina schema.
 
-```ts
+```javascript
 import { getBucket } from './getBucket'
 import abTestDB from '../../content/ab-tests/index.json'
 import { AbtestTests } from '.tina/__generated__/types'
 ```
 
-Our `getABTestResult` function is going to take two parameters *`matchingABTest` and `bucketCookie`.* The `bucketCookie` is optional as a user may not have a cookie at the time of the requests. 
+Our `getABTestResult` function is going to take two parameters *`matchingABTest` and `bucketCookie`.* The `bucketCookie` is optional as users may not have a cookie when they land on the page. 
 
-```ts
+```javascript
 import { getBucket } from './getBucket'
 import abTestDB from '../../content/ab-tests/index.json'
 import { AbtestTests } from '.tina/__generated__/types'
@@ -221,9 +221,9 @@ export const getABTestResult = (
 ) => {}
 ```
 
-We now need to use our getBucket function but only if the `bucketCookie` is not passed to the function. 
+We now need to use our getBucket function, but only if the `bucketCookie` is not passed to the function. 
 
-```ts
+```javascript
 import { getBucket } from './getBucket'
 import abTestDB from '../../content/ab-tests/index.json'
 import { AbtestTests } from '.tina/__generated__/types'
@@ -241,9 +241,9 @@ export const getABTestResult = (
 }
 ```
 
-We have most of the code now, we just need to check if the `matchingABTest` exists in our database, and if it does we should return the URL and bucket, otherwise it’s invalid or the default URL. 
+We have most of the code now, we need to check if the `matchingABTest` exists in our database, and if it does, we should return the URL and bucket. Otherwise, it’s invalid or the default URL. 
 
-```ts
+```javascript
 export const getABTestResult = (
   matchingABTest: AbtestTests,
   bucketCookie?: string
@@ -271,16 +271,16 @@ export const getABTestResult = (
 }
 ```
 
-The final piece to our functionality code is adding the ability to `getExperiment` based on the pathname. This is a simple function we will also use in the Middleware
+The final piece to our functionality code is adding the ability to `getExperiment` based on the pathname. This is a simple function we will also use in the Middleware.
 
-```ts
+```javascript
 export const getExperiment = (pathname: string) =>
   abTestDB.tests.find(test => test.href == pathname)
 ```
 
-Our `index.ts` file is now complete and we can move on to creating the Middleware that will issue the cookie, and provide the correct path based upon the A/B test. Below is the full `index.ts` file.
+Our `index.ts` file is now complete, and we can move on to creating the Middleware that will issue the cookie and provide the correct path based upon the A/B test. Below is the complete `index.ts` file.
 
-```ts
+```javascript
 import { getBucket } from './getBucket'
 import abTestDB from '../../content/ab-tests/index.json'
 import { AbtestTests } from '.tina/__generated__/types'
@@ -317,18 +317,18 @@ export const getExperiment = (pathname: string) =>
 
 ## Middleware
 
-Next.js Middleware allows you to use code over configuration, we need to check if there is an experiment for the URL, and then return the correct URL for the user and finally add a cookie if the user doesn’t have one. 
+Next.js Middleware allows you to use code over configuration. We need to check if there is an experiment for the URL, return the correct URL for the user, and finally add a cookie if the user doesn’t have one. 
 
 Create the `_middleware.ts` file in the `pages` folder, then we need to import `getExperiment` and `getABTestResult` and then the `NextResponse` and `NextRequest` from Next.js 
 
-```ts
+```javascript
 import { NextRequest, NextResponse } from 'next/server'
 import { getExperiment, getABTestResult } from '../utils/ab-test'
 ```
 
-A middleware functionality uses a `req` as a prop so our function will look like: 
+A middleware functionality uses a `req` as a prop, so our function will look like this: 
 
-```ts
+```javascript
 import { NextRequest, NextResponse } from 'next/server'
 import { getExperiment, getABTestResult } from '../utils/ab-test'
 
@@ -336,9 +336,9 @@ import { getExperiment, getABTestResult } from '../utils/ab-test'
 export function middleware(req: NextRequest) {}
 ```
 
-We can now use a built in clone function to create a URL variable that we will use to check what we need to do for our visitor.
+We can now use a built-in clone function to create a URL variable that we will use to check what we need to do for our visitors.
 
-```ts
+```javascript
 import { NextRequest, NextResponse } from 'next/server'
 import { getExperiment, getABTestResult } from '../utils/ab-test'
 
@@ -348,9 +348,9 @@ export function middleware(req: NextRequest) {
 }
 ```
 
-Next we need to use our `getExperiment` code to retrieve the experiments for the URL, and if there isn’t an experiment we can just stop and return the original response.
+Next, we need to use our `getExperiment` code to retrieve the experiments for the URL, and if there isn’t an experiment, we can stop and return the original response.
 
-```ts
+```javascript
 import { NextRequest, NextResponse } from 'next/server'
 import { getExperiment, getABTestResult } from '../utils/ab-test'
 
@@ -365,16 +365,16 @@ export function middleware(req: NextRequest) {
   }
 ```
 
-We now need to create a variable for our cookie name, so we can use the `testId` 
+We now need to create a variable for our cookie name so that we can use the `testId` 
 
-```ts
+```javascript
 
   const COOKIE_NAME = `bucket-${matchingABTest.testId}`
 ```
 
 Then we can use our abTestResult using the cookie (if available) and the `matchingABTest` variable. 
 
-```ts
+```javascript
 
   const COOKIE_NAME = `bucket-${matchingABTest.testId}`
 
@@ -383,22 +383,22 @@ Then we can use our abTestResult using the cookie (if available) and the `matchi
 
 We can then set the `url.pathname` to the result of the `abTestResult` 
 
-```ts
+```javascript
 
   const abTestResult = getABTestResult(matchingABTest, req.cookies[COOKIE_NAME])
   url.pathname = abTestResult.url
 ```
 
-Then set the response to the URL using the `NextResponse.rewrite` function. 
+Then, set the URL response using the `NextResponse.rewrite` function. 
 
-```ts
+```javascript
 
   const res = NextResponse.rewrite(url)
 ```
 
-Finally we want to add the cookie to the users browser so they will be served the correct experiment if they return to the site and then return the response. Below is the final result.
+Finally, we want to add the cookie to the users' browser so they will be served the correct experiment if they return to the site and then return the response. Below is the final result.
 
-```ts
+```javascript
 import { NextRequest, NextResponse } from 'next/server'
 import { getExperiment, getABTestResult } from '../utils/ab-test'
 
@@ -427,17 +427,17 @@ export function middleware(req: NextRequest) {
 }
 ```
 
-The A/B experiment is now ready to use and you can test it by running it locally, you have a 50% chance of landing on `home-b` so you may need to delete your cookie each time. 
+The A/B experiment is now ready to use, and you can test it by running it locally. You have a 50% chance of landing on `home-b`, so you may need to delete your cookie each time. 
 
 ## How to keep up to date with Tina?
 
-The best way to keep up with Tina is to subscribe to our newsletter, we send out updates every two weeks. Updates include new features, what we have been working on, blog posts you may have missed, and so much more!
+The best way to keep up with Tina is to subscribe to our newsletter. We send out updates every two weeks. Updates include new features, what we have been working on, blog posts you may have missed, and more!
 
-You can subscribe by following this link and entering your email: [https://tina.io/community/](https://tina.io/community/)
+You can subscribe by following this link and entering your email: [https://tina.io/community/](https://tina.io/community/)
 
 ### Tina Community Discord
 
-Tina has a community [Discord](https://discord.com/invite/zumN63Ybpf) that is full of Jamstack lovers and Tina enthusiasts. When you join you will find a place:
+Tina has a community [Discord](https://discord.com/invite/zumN63Ybpf) full of Jamstack lovers and Tina enthusiasts. When you join, you will find a place:
 
 - To get help with issues
 - Find the latest Tina news and sneak previews
