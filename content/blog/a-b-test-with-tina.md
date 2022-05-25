@@ -55,7 +55,7 @@ Then all the variants a user wants to run will be a list of different variants. 
 
 Open up your `schema.ts` and underneath the `Pages` collection, create a new collection with a `label` of `AB Test` and `abtest`. So far, your collection should look like this:
 
-```jsx
+```json
 {
       label: "AB Test",
       name: "abtest",
@@ -64,7 +64,7 @@ Open up your `schema.ts` and underneath the `Pages` collection, create a new col
 
 Then we need to set the path for the A/B test content. We can set that to `content/ab-tests` and set the format to JSON. 
 
-```jsx
+```json
 {
       label: "AB Test",
       name: "abtest",
@@ -163,7 +163,7 @@ This `getBucket` will return a number to reference the bucket for which the user
 For the random value, we are going to use `crypto` 
  
 
-```json
+```javascript
 function cryptoRandom() {
     return crypto.getRandomValues(new Uint32Array(1))[0] / (0xffffffff + 1)
   }
@@ -171,7 +171,7 @@ function cryptoRandom() {
 
 For our `getBucket` function, we will pass the array of options and use the `cryptoRandom` function we just wrote to decide which bucket the user lands in. 
 
-```json
+```javascript
 export function getBucket(buckets: readonly string[]) {
     // Get a random number between 0 and 1
     let n = cryptoRandom() * 100
@@ -368,23 +368,19 @@ export function middleware(req: NextRequest) {
 We now need to create a variable for our cookie name so that we can use the `testId` 
 
 ```javascript
-
   const COOKIE_NAME = `bucket-${matchingABTest.testId}`
 ```
 
 Then we can use our abTestResult using the cookie (if available) and the `matchingABTest` variable. 
 
 ```javascript
-
   const COOKIE_NAME = `bucket-${matchingABTest.testId}`
-
   const abTestResult = getABTestResult(matchingABTest, req.cookies[COOKIE_NAME])
 ```
 
 We can then set the `url.pathname` to the result of the `abTestResult` 
 
 ```javascript
-
   const abTestResult = getABTestResult(matchingABTest, req.cookies[COOKIE_NAME])
   url.pathname = abTestResult.url
 ```
@@ -392,7 +388,6 @@ We can then set the `url.pathname` to the result of the `abTestResult`
 Then, set the URL response using the `NextResponse.rewrite` function. 
 
 ```javascript
-
   const res = NextResponse.rewrite(url)
 ```
 
