@@ -29,9 +29,12 @@ type ObjectField = {
 
 ### As a `list`
 
-> Note: you can set `defaultItem` to auto-populate new items as they're added
+> **Default Values**  
+> To display default values when fields are first added to a page, use the `defaultItem` property. 
+>   
+> Currently, if setting a default value for a [rich-text field](/docs/reference/types/rich-text/), you must provide the document AST. 
 
-<a href="https://tina-gql-playground.vercel.app/object-list-data" target="_blank">See Example</a>
+<a href="https://tina-gql-playground.vercel.app/object-list-data" target="_blank">See this example</a> of a list of objects with default values.
 
 ### With multiple `templates`
 
