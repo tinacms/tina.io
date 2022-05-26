@@ -191,7 +191,7 @@ fields: [
 ],
 ```
 ### Default value for objects
-For setting default values for objects of fields, use the `defaultItem` property (see [example here](https://tina-gql-playground.vercel.app/object-list-data)).
+To set default values for objects of fields, use the `defaultItem` property (see [example here](https://tina-gql-playground.vercel.app/object-list-data)).
 
 ### Default value for rich-text
 Currently, when setting a default value for a [rich-text field](/docs/reference/types/rich-text/), you must provide the document Abstract Syntax Tree (AST).  See the following example:
