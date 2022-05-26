@@ -115,10 +115,10 @@ cmsCallback={(cms) => {
         * their URLs are different than their document names.
         **/
         if (["pages"].includes(collection.name)) {
-          if (document.sys.filename === "home") {
+          if (document._sys.filename === "home") {
             return `/`;
           }
-          if (document.sys.filename === "about") {
+          if (document._sys.filename === "about") {
             return `/about`;
           }
           return undefined;
@@ -127,7 +127,7 @@ cmsCallback={(cms) => {
         * Finally, any other collections (`posts`, for example)
         * have URLs based on values in the `collection` and `document`.
         **/
-        return `/${collection.name}/${document.sys.filename}`;
+        return `/${collection.name}/${document._sys.filename}`;
       }
     );
 
