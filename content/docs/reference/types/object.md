@@ -32,7 +32,7 @@ type ObjectField = {
 > **Default Values**  
 > To display default values when fields are first added to a page, use the `defaultItem` property. 
 >   
-> Currently, if setting a default value for a [rich-text field](/docs/reference/types/rich-text/), you must provide the document AST. 
+> Currently, if setting a default value for a [rich-text field](/docs/reference/types/rich-text/), you must provide the document AST. See [example here](/docs/schema/#default-value-for-rich-text)
 
 <a href="https://tina-gql-playground.vercel.app/object-list-data" target="_blank">See this example</a> of a list of objects with default values.
 
