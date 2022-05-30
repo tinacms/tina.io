@@ -24,8 +24,9 @@ With Tina, your content is all stored in filesystem, within your site's reposito
 
 ## Querying Tina Content in NextJS
 
-In NextJS, content is typically queried statically at build-time, or with SSR.
-Tina provides a `staticRequest` helper function, which makes a request to your locally-running GraphQL server at build-time.
+In NextJS, content can be queried statically at build-time or dynamically at runtime (using [SSR](https://nextjs.org/docs/basic-features/data-fetching/get-server-side-props), or [CSR](https://nextjs.org/docs/basic-features/data-fetching/client-side)).
+
+For build-time queries, Tina provides a `staticRequest` helper function, which makes a request to your locally-running GraphQL server.
 
 ### Example: Fetching content through getStaticProps
 
@@ -97,6 +98,9 @@ export const getStaticPaths = async () => {
 ```
 
 > Note: for now, TinaCMS only supports static data fetching, so you must use `getStaticProps` (and `getStaticPaths` for dynamic pages). We'll be opening up more capabilities (like SSR, and client-side data-fetching) in the near future!
+
+### Example: Fetching content dynamically 
+If you wish to fetch content at runtime with server-side rendering (SSR) or client-side rendering (CSR), you can do so with Tina's [read-only tokens](https://tina.io/docs/graphql/read-only-tokens/).  The following blog post provides examples - [Read-only tokens - Query Requests anytime](https://tina.io/blog/read-only-tokens-content-anytime/).
 
 ### Do I need to use `staticRequest`?
 
