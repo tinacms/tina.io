@@ -13,8 +13,8 @@ Tina opens up the ability to A/B test, allowing marketing teams to test content 
 
 We are going to break this tutorial into two sections:
 
-1. Setting up A/B Tests is NextJS's middleware
-2. Setting up our A/B Tests with Tina, so that our editors can spin up dynamic A/B Tests
+1. Setting up A/B Tests with NextJS's middleware.
+2. Configuring our A/B Tests with Tina, so that our editors can spin up dynamic A/B Tests.
 
 ## Creating our Tina application
 
@@ -50,13 +50,13 @@ This page is already setup nicely for an A/B test, its page layout (`[slug].tsx`
 Let's start by creating an alternate version of the homepage called `home-b`.
 You can do so in Tina [at http://localhost:3000/admin#/collections/page/new](http://localhost:3000/admin#/collections/page/new)
 
-![Tina Add document(https://res.cloudinary.com/forestry-demo/image/upload/v1653936344/blog-media/a-b-testing/add-document.png)
+![Tina Add document](https://res.cloudinary.com/forestry-demo/image/upload/v1653936344/blog-media/a-b-testing/add-document.png)
 
 Once that's done, go to: `http://localhost:3000/home-b` to confirm that your new `/home-b` page has been created.
 
 ## Setting up our A/B tests
 
-Utlimately, we want our site to dynamically swap out certain pages for alternate page-variants, but we will first need a place to store the pages that have an active A/b test.
+Utlimately, we want our site to dynamically swap out certain pages for alternate page-variants, but we will first need a place to reference these active A/b tests.
 
 Let's create the following file at `content/ab-test/index.json`:
 
@@ -293,7 +293,7 @@ The process for editors to create new A/B tests would be as follows:
 - Editor creates a new page in the CMS
 - Editor wires up the page as a page-variant in the "A/B Tests" collection
 
-And that's it! We hope this empowers your team to start testing out different page variants to find the most effective pieces of content!
+And that's it! We hope this empowers your team to start testing out different page variants to start optimizing your content!
 
 ## How to keep up to date with Tina?
 
