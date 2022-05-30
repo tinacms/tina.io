@@ -1,23 +1,22 @@
 ---
 title: Using Tina to power A/B testing
 date: '2022-05-26T07:00:00.000Z'
-author: James Perkins
+author: James Perkins & James O'Halloran
 prev: content/blog/basics-of-graphql.md
 ---
 
-A/B testing is an essential part of any site. It allows you to increase user engagement, reduce bounce rates, increase conversion rate and effectively create content.
+A/B testing can be an incredibly useful tool on any site. It allows you to increase user engagement, reduce bounce rates, increase conversion rate and effectively create content.
 
-Tina opens the ability to easily power any site A/B testing, allowing marketing teams to test content without the need for the development team once it has been implemented.
+Tina opens up the ability to A/B test, allowing marketing teams to test content without the need for the development team once it has been implemented.
 
-## Create A/B testing with Tina.
+## Introduction
 
-We are going to break this tutorial into three sections:
+We are going to break this tutorial into two sections:
 
-1. Allow your editors to create new A/B tests
-2. Create a method to decide how a user will see a variant.
-3. Use Next.js Middleware to redirect the user to the correct page-variant
+1. Setting up A/B Tests is NextJS's middleware
+2. Setting up our A/B Tests with Tina, so that our editors can spin up dynamic A/B Tests
 
-### Creating our Tina application
+## Creating our Tina application
 
 This blog post is going to use the Tailwind Starter. Using the `create-tina-app` command, choose "Tailwind Starter" as the starter template:
 
@@ -34,390 +33,225 @@ Installing packages. This might take a couple of minutes.
 ## Move into the directory and make sure everything is updated.
 
 cd a-b-testing
-
-yarn upgrade
-
+yarn dev
 ```
 
-Now we have our application ready. Depending on your package manager, you can check the code and launch it using `yarn dev` or `npm run dev`. We need to update our code so are pages can be driven by A/B testing.
+With your site running, you should be able to access it at [`http://localhost:3000`](http://localhost:3000)
 
-### Updating Tina Schema
+## Planning our tests
 
-We will have a collection that will allow our content teams to decide what page is going to be replaced. This is what the user will see:
+The home page of the starter should look like this:
 
-![A-B Test page two](https://res.cloudinary.com/forestry-demo/image/upload/v1653521516/blog-media/a-b-testing/a-b-test2.png)
+TODO-HOMEPAGE-PNG
 
-The ID will allow the content team to identify the A/B test, and the Page field will be the page that the team wants to run the testing on. In this example, it would be the homepage.
+This page is already setup nicely for an A/B test, because under the hood, its page layout, `[slug].tsx` renders dynamic pages, by accepting a variable `slug`.
 
-Then all the variants a user wants to run will be a list of different variants. For example, we have test `b` that will show a user page named `home-b.`
+Let's start by creating an alternate version of the homepage called `home-b`.
+You can do so in Tina [at http://localhost:3000/admin#/collections/page/new](http://localhost:3000/admin#/collections/page/new)
 
-![A-B Test page one](https://res.cloudinary.com/forestry-demo/image/upload/v1653521516/blog-media/a-b-testing/a-b-test1.png)
+## Storing our active A/B tests
 
-Open up your `schema.ts` and underneath the `Pages` collection, create a new collection with a `label` of `AB Test` and `name` of `abtest`. So far, your collection should look like this:
+Utlimately, we want our site to dynamically swap out certain pages for alternate page-variants, but we will first need a place to store the pages that have an active A/b test.
+
+Let's create the following file at `content/ab-tests/index.json`:
 
 ```json
 {
-  "label": "AB Test",
-  "name": "abtest"
-}
-```
-
-Then we need to set the path for the A/B test content. We can set that to `content/ab-tests` and set the format to JSON.
-
-```json
-{
-  "label": "AB Test",
-  "name": "abtest",
-  "path": "content/ab-tests",
-  "format": "json"
-}
-```
-
-We now need to add are fields we want our content team to be able to edit, so that would be the ID, the page to run the test against, and the variants we want to run. We also want to be able to run tests on any number of pages so that we will be using a list of objects.
-
-> If you want to learn more about all the different field types and how to use them, check them out in our [Content Modeling documentation.](https://tina.io/docs/schema/)
-
-```json
-fields: [
+  "tests": [
+    {
+      "testId": "home",
+      "href": "/",
+      "variants": [
         {
-          type: "object",
-          label: "tests",
-          name: "tests",
-          list: true,
-          ui: {
-            itemProps: (item) => {
-              return { label: item.testId };
-            },
-          },
-          fields: [
-            { type: "string", label: "Id", name: "testId" },
-            {
-              type: "string",
-              label: "Page",
-              name: "href",
-              description:
-                "This is the root page that will be conditionally swapped out",
-            },
-            {
-              type: "object",
-              name: "variants",
-              label: "Variants",
-              ui: {
-                itemProps: (item) => {
-                  return { label: item.testId };
-                },
-              },
-              list: true,
-              fields: [
-                { type: "string", label: "Id", name: "testId" },
-                {
-                  type: "string",
-                  label: "Page",
-                  name: "href",
-                  description:
-                    "This is the variant page that will be conditionally used instead of the original",
-                },
-              ],
-            },
-          ],
-        },
-      ],
-```
-
-> You may notice the `ui` prop. We are using this to give a more descriptive label to the list items. You can read about this in our [extending Tina documentation.](https://tina.io/docs/extending-tina/customize-list-ui/)
-
-Now we have a schema we can use, go ahead and launch the server using `yarn dev`, navigate to [`https://localhost:3000/admin`](https://localhost:3000/admin), and create a test.
-
-The test you want to create for this demo is:
-
-1. Create a new file called `index`
-2. Create a test id home
-3. Page to replace will be `/`
-4. Create a variant id of b, and the page will be `/home-b`
-
-Below is an example of the process of creating a new test.
-
-<Youtube embedSrc={"https://res.cloudinary.com/forestry-demo/video/upload/v1653521516/blog-media/a-b-testing/a-b-testing-video.mp4"} />
-
-### Adding a variant to our `home` page.
-
-We need to add a "home-b" page to our application described in our a/b testing variant. To do that, click pages on the left-hand side of the admin. Next, select the `Create New` button and give the filename `home-b` and add content to the page.
-
-We are now ready to create the code that will power our variant decisions.
-
-## Variant Code
-
-The variant code is made of two parts:
-
-1. a “random” value that maps to an array element
-2. Returning the `ABTestResult`
-
-So at the root of the project, let us create a folder structure of `utils` and then the folder `ab-test` inside the folder create a file called `getBucket.ts`
-
-This `getBucket` will return a number to reference the bucket for which the user lands. We need first randomly to generate the number. Then use that number and the number of buckets, which is passed in as an array, to decide what bucket they are in.
-
-For the random value, we are going to use `crypto`
-
-```javascript
-function cryptoRandom() {
-  return crypto.getRandomValues(new Uint32Array(1))[0] / (0xffffffff + 1)
-}
-```
-
-For our `getBucket` function, we will pass the array of options and use the `cryptoRandom` function we just wrote to decide which bucket the user lands in.
-
-```javascript
-export function getBucket(buckets: readonly string[]) {
-    // Get a random number between 0 and 1
-    let n = cryptoRandom() * 100
-    // Get the percentage of each bucket
-    let percentage = 100 / buckets.length
-    // Loop through the buckets and see if the random number falls
-    // within the range of the bucket
-    return (
-      buckets.find(() => {
-        n -= percentage
-        return n <= 0
-      }) ?? buckets[0]
-    )
-
-  }
-```
-
-To go over the function above step by step:
-
-1. We are passing in our array of options (buckets)
-2. Get a number between 0 and 1.
-3. Get the percentage of each bucket (2 would be 50% each)
-4. Loop through the bucket, see if the number falls within the range, and return the bucket.
-
-### Creating our `getABTestResult`
-
-Now we have a way to get a bucket. We need to return the URL and the bucket the user is in for when we use Next.js Middleware to power our A/B testing.
-
-First, we need to import the `getBucket` code we just wrote, the `index.json` that holds our A/B Tests, and the types from our Tina schema.
-
-```javascript
-import { getBucket } from './getBucket'
-import abTestDB from '../../content/ab-tests/index.json'
-import { AbtestTests } from '.tina/__generated__/types'
-```
-
-Our `getABTestResult` function is going to take two parameters _`matchingABTest` and `bucketCookie`._ The `bucketCookie` is optional as users may not have a cookie when they land on the page.
-
-```javascript
-import { getBucket } from './getBucket'
-import abTestDB from '../../content/ab-tests/index.json'
-import { AbtestTests } from '.tina/__generated__/types'
-
-export const getABTestResult = (
-  matchingABTest: AbtestTests,
-  bucketCookie?: string
-) => {}
-```
-
-We now need to use our getBucket function, but only if the `bucketCookie` is not passed to the function.
-
-```javascript
-import { getBucket } from './getBucket'
-import abTestDB from '../../content/ab-tests/index.json'
-import { AbtestTests } from '.tina/__generated__/types'
-
-export const getABTestResult = (
-  matchingABTest: AbtestTests,
-  bucketCookie?: string
-) => {
-  const bucket =
-    bucketCookie ||
-    getBucket([
-      matchingABTest.testId,
-      ...matchingABTest.variants.map(t => t.testId),
-    ])
-}
-```
-
-We have most of the code now, we need to check if the `matchingABTest` exists in our database, and if it does, we should return the URL and bucket. Otherwise, it’s invalid or the default URL.
-
-```javascript
-export const getABTestResult = (
-  matchingABTest: AbtestTests,
-  bucketCookie?: string
-) => {
-  const bucket =
-    bucketCookie ||
-    getBucket([
-      matchingABTest.testId,
-      ...matchingABTest.variants.map(t => t.testId),
-    ])
-
-  const matchingVariant = matchingABTest.variants.find(t => t.testId == bucket)
-  if (matchingVariant) {
-    return {
-      url: matchingVariant.href,
-      bucket,
+          "testId": "b",
+          "href": "/home-b"
+        }
+      ]
     }
-  } else {
-    //invalid bucket, or we're matched with the default AB test
-    return {
-      url: matchingABTest.href,
-      bucket: matchingABTest.testId,
-    }
-  }
+  ]
 }
 ```
 
-The final piece to our functionality code is adding the ability to `getExperiment` based on the pathname. This is a simple function we will also use in the Middleware.
+We'll use this file to tell our site that we have an A/B test on our homepage, using `/home-b` as a variant.
 
-```javascript
-export const getExperiment = (pathname: string) =>
-  abTestDB.tests.find(test => test.href == pathname)
-```
+In the next step, we'll setup some NextJS middleware to dynamically use this page variant.
 
-Our `index.ts` file is now complete, and we can move on to creating the Middleware that will issue the cookie and provide the correct path based upon the A/B test. Below is the complete `index.ts` file.
+## Delivering dynamic pages with NextJS middleware
 
-```javascript
-import { getBucket } from './getBucket'
-import abTestDB from '../../content/ab-tests/index.json'
-import { AbtestTests } from '.tina/__generated__/types'
+NextJS's middleware allows you to run code before the request is completed. We will leverage NextJS's middleware to conditionally swap out a page for its page-variant.
 
-export const getABTestResult = (
-  matchingABTest: AbtestTests,
-  bucketCookie?: string
-) => {
-  const bucket =
-    bucketCookie ||
-    getBucket([
-      matchingABTest.testId,
-      ...matchingABTest.variants.map(t => t.testId),
-    ])
+> You can learn more about NextJS's middleware [here](https://nextjs.org/docs/advanced-features/middleware).
 
-  const matchingVariant = matchingABTest.variants.find(t => t.testId == bucket)
-  if (matchingVariant) {
-    return {
-      url: matchingVariant.href,
-      bucket,
-    }
-  } else {
-    //invalid bucket, or we're matched with the default AB test
-    return {
-      url: matchingABTest.href,
-      bucket: matchingABTest.testId,
-    }
-  }
-}
+Start by creating the `pages/_middleware.ts` file, with the following code
 
-export const getExperiment = (pathname: string) =>
-  abTestDB.tests.find(test => test.href == pathname)
-```
+```ts
+//pages/_middleware.ts
 
-## Middleware
-
-Next.js Middleware allows you to use code over configuration. We need to check if there is an experiment for the URL, return the correct URL for the user, and finally add a cookie if the user doesn’t have one.
-
-Create the `_middleware.ts` file in the `pages` folder, then we need to import `getExperiment` and `getABTestResult` and then the `NextResponse` and `NextRequest` from Next.js
-
-```javascript
 import { NextRequest, NextResponse } from 'next/server'
-import { getExperiment, getABTestResult } from '../utils/ab-test'
-```
-
-A middleware functionality uses a `req` as a prop, so our function will look like this:
-
-```javascript
-import { NextRequest, NextResponse } from 'next/server'
-import { getExperiment, getABTestResult } from '../utils/ab-test'
-
-// Check for AB tests on a given page
-export function middleware(req: NextRequest) {}
-```
-
-We can now use a built-in clone function to create a URL variable that we will use to check what we need to do for our visitors.
-
-```javascript
-import { NextRequest, NextResponse } from 'next/server'
-import { getExperiment, getABTestResult } from '../utils/ab-test'
-
-// Check for AB tests on a given page
-export function middleware(req: NextRequest) {
-  const url = req.nextUrl.clone()
-}
-```
-
-Next, we need to use our `getExperiment` code to retrieve the experiments for the URL, and if there isn’t an experiment, we can stop and return the original response.
-
-```javascript
-import { NextRequest, NextResponse } from 'next/server'
-import { getExperiment, getABTestResult } from '../utils/ab-test'
+import abTestDB from '../content/ab-tests/index.json'
+import { getBucket } from '../utils/getBucket'
 
 // Check for AB tests on a given page
 export function middleware(req: NextRequest) {
   const url = req.nextUrl.clone()
 
-  const matchingABTest = getExperiment(url.pathname)
+  // find the experiment that matches the request's url
+  const matchingExperiment = abTestDB.tests.find(
+    test => test.href == url.pathname
+  )
 
-  if (!matchingABTest) {
-    return NextResponse.next()
-  }
-```
-
-We now need to create a variable for our cookie name so that we can use the `testId`
-
-```javascript
-const COOKIE_NAME = `bucket-${matchingABTest.testId}`
-```
-
-Then we can use our abTestResult using the cookie (if available) and the `matchingABTest` variable.
-
-```javascript
-const COOKIE_NAME = `bucket-${matchingABTest.testId}`
-const abTestResult = getABTestResult(matchingABTest, req.cookies[COOKIE_NAME])
-```
-
-We can then set the `url.pathname` to the result of the `abTestResult`
-
-```javascript
-const abTestResult = getABTestResult(matchingABTest, req.cookies[COOKIE_NAME])
-url.pathname = abTestResult.url
-```
-
-Then, set the URL response using the `NextResponse.rewrite` function.
-
-```javascript
-const res = NextResponse.rewrite(url)
-```
-
-Finally, we want to add the cookie to the users' browser so they will be served the correct experiment if they return to the site and then return the response. Below is the final result.
-
-```javascript
-import { NextRequest, NextResponse } from 'next/server'
-import { getExperiment, getABTestResult } from '../utils/ab-test'
-
-// Check for AB tests on a given page
-export function middleware(req: NextRequest) {
-  const url = req.nextUrl.clone()
-
-  const matchingABTest = getExperiment(url.pathname)
-
-  if (!matchingABTest) {
+  if (!matchingExperiment) {
+    // no matching A/B experiment found, so use the original page slug
     return NextResponse.next()
   }
 
-  const COOKIE_NAME = `bucket-${matchingABTest.testId}`
+  const COOKIE_NAME = `bucket-${matchingExperiment.testId}`
+  const bucket = getBucket(matchingExperiment, req.cookies[COOKIE_NAME])
 
-  const abTestResult = getABTestResult(matchingABTest, req.cookies[COOKIE_NAME])
-  url.pathname = abTestResult.url
+  url.pathname = bucket.url
+
+  // Update the request URL to our bucket URL
   const res = NextResponse.rewrite(url)
 
-  // Add the bucket to cookies if it's not there
+  // Add the bucket to cookies if it's not already there
   if (!req.cookies[COOKIE_NAME]) {
-    res.cookie(COOKIE_NAME, abTestResult.bucket)
+    res.cookie(COOKIE_NAME, bucket.id)
   }
 
   return res
 }
 ```
 
-The A/B experiment is now ready to use, and you can test it by running it locally. You have a 50% chance of landing on `home-b`, so you may need to delete your cookie each time.
+There's a little bit going on in the above snippet, but basically:
+
+- We check if there's an active experiment for our request's URL
+- If there is, we call `getBucket` to see which version of the page we should deliver
+- We update the user's cookies so that they consistently get delivered the same page for their given bucket.
+
+You'll notice that the above code references a `getBucket` function. We will need to create that, which will conditionally put us in a bucket for each page's A/B test.
+
+```ts
+// /utils/getBucket
+
+export const getBucket = (matchingABTest: any, bucketCookie?: string) => {
+  // if we already have been assigned a bucket, use that
+  // otherwise, call getAssignedBucketId to put us in a bucket
+  const bucketId =
+    bucketCookie ||
+    getAssignedBucketId([
+      matchingABTest.testId,
+      ...matchingABTest.variants.map(t => t.testId),
+    ])
+
+  // check if our bucket matches a variant
+  const matchingVariant = matchingABTest.variants.find(
+    t => t.testId == bucketId
+  )
+
+  if (matchingVariant) {
+    // we matched a page variant
+    return {
+      url: matchingVariant.href,
+      id: bucketId,
+    }
+  } else {
+    //invalid bucket, or we're matched with the default AB test
+    return {
+      url: matchingABTest.href,
+      id: matchingABTest.testId,
+    }
+  }
+}
+
+function getAssignedBucketId(buckets: readonly string[]) {
+  // Get a random number between 0 and 1
+  let n = cryptoRandom() * 100
+  // Get the percentage of each bucket
+  let percentage = 100 / buckets.length
+  // Loop through the buckets and see if the random number falls
+  // within the range of the bucket
+  return (
+    buckets.find(() => {
+      n -= percentage
+      return n <= 0
+    }) ?? buckets[0]
+  )
+}
+
+function cryptoRandom() {
+  return crypto.getRandomValues(new Uint32Array(1))[0] / (0xffffffff + 1)
+}
+```
+
+The above code snippet does the following:
+
+- Checks if we're already in a bucket, and if not, it calls `getAssignedBucketId` to randomly put us in a bucket.
+- Returns the matching A/B test info for our given bucket.
+
+That should be all for our middleware! Now, you should be able to visit the homepage at [http://localhost:3000](http://localhost:3000), and you will have a 50-50 chance of being served the contents of `home.md`, or `home-b.md`. You can reset your bucket by clearing your browser's cookies.
+
+## Using Tina to create A/B Tests
+
+At this point, our editors can edit the contents of both `home.md` & `home-b.md`, however we'd like our editors to be empowered to setup new A/B tests.
+
+Let's make our `content/ab-tests/index.json` file from earlier editable, by creating a Tina collection for it.
+
+Open up your `schema.ts` and underneath the `Pages` collection, create a new collection like this:
+
+```ts
+/// ...,
+    {
+      label: "AB Test",
+      name: "abtest",
+      path: "content/ab-tests",
+      format: "json",
+    }
+```
+
+We now need to add the fields we want our content team to be able to edit, so that would be the ID, the page to run the test against, and the variants we want to run. We also want to be able to run tests on any number of pages so we will be using a list of objects for the `tests` field.
+
+> If you want to learn more about all the different field types and how to use them, check them out in our [Content Modeling documentation.](https://tina.io/docs/schema/)
+
+```ts
+    {
+      label: "AB Test",
+      name: "abtest",
+      path: "content/ab-tests",
+      format: "json",
+      fields: [
+        { type: 'object', label: 'tests', name: 'tests', list: true,
+        ui: {
+          itemProps: (item) => {
+      // Field values are accessed by title?.<Field name>
+            return { label: item.testId };
+          },
+        }, fields: [
+          { type: "string", label: "Id", name: "testId" },
+          { type: "string", label: "Page", name: "href", description: "This is the root page that will be conditionally swapped out" },
+          {
+            type: "object",
+            name: "variants",
+            label: "Variants",
+            list: true,
+            fields: [
+              { type: "string", label: "Id", name: "testId" },
+              { type: "string", label: "Page", name: "href", description: "This is the variant page that will be conditionally used instead of the original" },
+            ],
+          },
+        ]}
+
+      ]
+    }
+```
+
+> You may notice the `ui` prop. We are using this to give a more descriptive label to the list items. You can read about this in our [extending Tina documentation.](https://tina.io/docs/extending-tina/customize-list-ui/)
+
+The process for editors to create new A/B tests would be as follows:
+
+- Editor creates a new page in the CMS
+- Editor wires up the page as a page-variant in the "A/B Tests" collection
+
+And that's it! We hope this empowers your team to start testing out different page variants to find the most effective pieces of content!
 
 ## How to keep up to date with Tina?
 
