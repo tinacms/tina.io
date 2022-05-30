@@ -1,6 +1,6 @@
 ---
 title: Using Tina to power A/B testing
-date: '2022-05-26T07:00:00.000Z'
+date: '2022-05-30T14:00:00.000Z'
 author: James Perkins & James O'Halloran
 prev: content/blog/basics-of-graphql.md
 ---
