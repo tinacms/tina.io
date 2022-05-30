@@ -226,32 +226,67 @@ We now need to add the fields we want our content team to be able to edit, so th
       path: "content/ab-test",
       format: "json",
       fields: [
-        { type: 'object', label: 'tests', name: 'tests', list: true,
-        ui: {
-          itemProps: (item) => {
-            // Field values are accessed by title?.<Field name>
-            return { label: item.testId };
+        {
+          type: "object",
+          label: "tests",
+          name: "tests",
+          list: true,
+          ui: {
+            itemProps: (item) => {
+              return { label: item.testId || "New A/B Test" };
+            },
           },
-        }, fields: [
-          { type: "string", label: "Id", name: "testId" },
-          { type: "string", label: "Page", name: "href", description: "This is the root page that will be conditionally swapped out" },
-          {
-            type: "object",
-            name: "variants",
-            label: "Variants",
-            list: true,
-            fields: [
-              { type: "string", label: "Id", name: "testId" },
-              { type: "string", label: "Page", name: "href", description: "This is the variant page that will be conditionally used instead of the original" },
-            ],
-          },
-        ]}
-
-      ]
+          fields: [
+            { type: "string", label: "Id", name: "testId" },
+            {
+              type: "string",
+              label: "Page",
+              name: "href",
+              description:
+                "This is the root page that will be conditionally swapped out",
+            },
+            {
+              type: "object",
+              name: "variants",
+              label: "Variants",
+              list: true,
+              ui: {
+                itemProps: (item) => {
+                  return { label: item.testId || "New variant" };
+                },
+              },
+              fields: [
+                { type: "string", label: "Id", name: "testId" },
+                {
+                  type: "string",
+                  label: "Page",
+                  name: "href",
+                  description:
+                    "This is the variant page that will be conditionally used instead of the original",
+                },
+              ],
+            },
+          ],
+        },
+      ],
     }
 ```
 
 > You may notice the `ui` prop. We are using this to give a more descriptive label to the list items. You can read about this in our [extending Tina documentation.](https://tina.io/docs/extending-tina/customize-list-ui/)
+
+We also need to update our `RouteMappingPlugin` in `.tina/schema.ts` to ensure that our collection is only editable with the basic editor.
+
+```ts
+      const RouteMapping = new RouteMappingPlugin((collection, document) => {
+        if (collection.name == 'abtest') {
+          return undefined
+        }
+        // ...
+```
+
+Now, restart your dev server, and go to: [`http://localhost:3000/admin#/collections/abtest/index`](http://localhost:3000/admin#/collections/abtest/index). Your editors should be able to wire up their own A/B tests!
+
+![Tina Edit Variant](https://res.cloudinary.com/forestry-demo/image/upload/v1653939832/blog-media/a-b-testing/edit-test.png)
 
 The process for editors to create new A/B tests would be as follows:
 
