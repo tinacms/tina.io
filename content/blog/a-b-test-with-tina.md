@@ -33,6 +33,7 @@ Installing packages. This might take a couple of minutes.
 ## Move into the directory and make sure everything is updated.
 
 cd a-b-testing
+yarn upgrade
 yarn dev
 ```
 
@@ -42,18 +43,22 @@ With your site running, you should be able to access it at [`http://localhost:30
 
 The home page of the starter should look like this:
 
-TODO-HOMEPAGE-PNG
+![Tina Cloud Starter](https://res.cloudinary.com/forestry-demo/image/upload/v1653936476/blog-media/a-b-testing/starter-homepage.png)
 
-This page is already setup nicely for an A/B test, because under the hood, its page layout, `[slug].tsx` renders dynamic pages, by accepting a variable `slug`.
+This page is already setup nicely for an A/B test, its page layout (`[slug].tsx`) renders dynamic pages by accepting a variable `slug`.
 
 Let's start by creating an alternate version of the homepage called `home-b`.
 You can do so in Tina [at http://localhost:3000/admin#/collections/page/new](http://localhost:3000/admin#/collections/page/new)
 
-## Storing our active A/B tests
+![Tina Add document(https://res.cloudinary.com/forestry-demo/image/upload/v1653936344/blog-media/a-b-testing/add-document.png)
+
+Once that's done, go to: `http://localhost:3000/home-b` to confirm that your new `/home-b` page has been created.
+
+## Setting up our A/B tests
 
 Utlimately, we want our site to dynamically swap out certain pages for alternate page-variants, but we will first need a place to store the pages that have an active A/b test.
 
-Let's create the following file at `content/ab-tests/index.json`:
+Let's create the following file at `content/ab-test/index.json`:
 
 ```json
 {
@@ -72,7 +77,7 @@ Let's create the following file at `content/ab-tests/index.json`:
 }
 ```
 
-We'll use this file to tell our site that we have an A/B test on our homepage, using `/home-b` as a variant.
+We'll use this file later to tell our site that we have an A/B test on our homepage, using `/home-b` as a variant.
 
 In the next step, we'll setup some NextJS middleware to dynamically use this page variant.
 
@@ -88,16 +93,14 @@ Start by creating the `pages/_middleware.ts` file, with the following code
 //pages/_middleware.ts
 
 import { NextRequest, NextResponse } from 'next/server'
-import abTestDB from '../content/ab-tests/index.json'
+import abTestDB from '../content/ab-test/index.json'
 import { getBucket } from '../utils/getBucket'
 
 // Check for AB tests on a given page
 export function middleware(req: NextRequest) {
-  const url = req.nextUrl.clone()
-
   // find the experiment that matches the request's url
   const matchingExperiment = abTestDB.tests.find(
-    test => test.href == url.pathname
+    test => test.href == req.nextUrl.pathname
   )
 
   if (!matchingExperiment) {
@@ -108,10 +111,14 @@ export function middleware(req: NextRequest) {
   const COOKIE_NAME = `bucket-${matchingExperiment.testId}`
   const bucket = getBucket(matchingExperiment, req.cookies[COOKIE_NAME])
 
-  url.pathname = bucket.url
+  const updatedUrl = req.nextUrl.clone()
+  updatedUrl.pathname = bucket.url
 
-  // Update the request URL to our bucket URL
-  const res = NextResponse.rewrite(url)
+  // Update the request URL to our bucket URL (if its changed)
+  const res =
+    req.nextUrl.pathname == bucket.url
+      ? NextResponse.next()
+      : NextResponse.rewrite(updatedUrl)
 
   // Add the bucket to cookies if it's not already there
   if (!req.cookies[COOKIE_NAME]) {
@@ -131,7 +138,7 @@ There's a little bit going on in the above snippet, but basically:
 You'll notice that the above code references a `getBucket` function. We will need to create that, which will conditionally put us in a bucket for each page's A/B test.
 
 ```ts
-// /utils/getBucket
+// /utils/getBucket.ts
 
 export const getBucket = (matchingABTest: any, bucketCookie?: string) => {
   // if we already have been assigned a bucket, use that
@@ -167,7 +174,7 @@ function getAssignedBucketId(buckets: readonly string[]) {
   // Get a random number between 0 and 1
   let n = cryptoRandom() * 100
   // Get the percentage of each bucket
-  let percentage = 100 / buckets.length
+  const percentage = 100 / buckets.length
   // Loop through the buckets and see if the random number falls
   // within the range of the bucket
   return (
@@ -194,7 +201,7 @@ That should be all for our middleware! Now, you should be able to visit the home
 
 At this point, our editors can edit the contents of both `home.md` & `home-b.md`, however we'd like our editors to be empowered to setup new A/B tests.
 
-Let's make our `content/ab-tests/index.json` file from earlier editable, by creating a Tina collection for it.
+Let's make our `content/ab-test/index.json` file from earlier editable, by creating a Tina collection for it.
 
 Open up your `schema.ts` and underneath the `Pages` collection, create a new collection like this:
 
@@ -203,7 +210,7 @@ Open up your `schema.ts` and underneath the `Pages` collection, create a new col
     {
       label: "AB Test",
       name: "abtest",
-      path: "content/ab-tests",
+      path: "content/ab-test",
       format: "json",
     }
 ```
@@ -216,13 +223,13 @@ We now need to add the fields we want our content team to be able to edit, so th
     {
       label: "AB Test",
       name: "abtest",
-      path: "content/ab-tests",
+      path: "content/ab-test",
       format: "json",
       fields: [
         { type: 'object', label: 'tests', name: 'tests', list: true,
         ui: {
           itemProps: (item) => {
-      // Field values are accessed by title?.<Field name>
+            // Field values are accessed by title?.<Field name>
             return { label: item.testId };
           },
         }, fields: [
