@@ -5,7 +5,7 @@ last_edited: '2021-07-27T15:51:56.737Z'
 
 # `reference`
 
-The `reference` field allows a document to connect to another in another collection.  This relationship only needs to be defined on *one side*.
+The `reference` field allows a "parent" document to connect to another document in different collection.  This relationship only needs to be defined on *one side*.
 
 Once defined, the values of the *referenced* document become available to the parent.
 
