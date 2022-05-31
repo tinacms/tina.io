@@ -1,5 +1,5 @@
 ---
-title: A/B testing with Next.js Middleware & TinaCMS
+title: A/B testing with Next.js Middleware and TinaCMS
 date: '2022-05-30T14:00:00.000Z'
 author: James Perkins & James O'Halloran
 prev: content/blog/basics-of-graphql.md
