@@ -4,7 +4,8 @@ export function openGraphImage(
   subtitle?: string
 ) {
   let url
-  const encodedTitle = encodeURIComponent(title)
+  //cloudinary can't handle url encoded slashes
+  const encodedTitle = encodeURIComponent(title.replace('/', ' '))
   const encodedSubtitle = subtitle && encodeURIComponent(subtitle)
   const renderSubtitle = typeof encodedSubtitle === 'string'
 
