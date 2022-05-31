@@ -36,7 +36,6 @@ type ReferenceField = {
 }
 ```
 
-> Note: `reference` with `list: true` is not currently supported
 
 ## Example
 
