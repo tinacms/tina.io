@@ -9,6 +9,9 @@ The `reference` field allows a "parent" document to connect to another document 
 
 Once defined, the values of the *referenced* document become available to the parent.
 
+> Note: `reference` with `list: true` is not currently supported
+
+## Object Definition
 ```ts
 type ReferenceField = {
   label: string
