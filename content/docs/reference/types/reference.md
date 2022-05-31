@@ -74,7 +74,7 @@ The `post` collection has a `reference` field to the `author` collection.
 
 When editing in Tina, the user will be able to choose a document in the `author` collection for the value of `author`.
 
-When querying for a `post` document, the `author` key in the response will contain the values of the *referenced* document:
+When querying for a `post` document, the `author` key in the response will contain the values of the *referenced* `author` document:
 
 ```graphql
 {
