@@ -42,8 +42,9 @@ scenarios are:
 
 There are some issues to be aware of when using the data layer: 
 
-- The status of the indexing process is not currently exposed to the end user, so it is possible for an editor to access
-a partially indexed site, in which case any queries may return with incomplete results.
+- We offer a server command to poll for the status of indexing: `server:waitForDB`.  When using `server:start`, `server:waitForDB` is automatically called if you have configured `client.ts`.
+  - You can learn more about `server:waitForDB` [here](/docs/cli-overview/#tinacms-serverwaitfordb-experimental).
+
 - Since the GitHub API currently only allows 5,000 requests per repository per hour, any repositories with large numbers
 of items may not be able to complete indexing before hitting the limit. For this reason, this feature should not be
 activated for repositories with more than 1000-1500 items.

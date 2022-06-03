@@ -10,16 +10,17 @@ title: The TinaCMS CLI
 Usage: @tinacms/cli command [options]
 
 Options:
-  -V, --version             output the version number
-  -h, --help                display help for command
+  -V, --version               output the version number
+  -h, --help                  display help for command
 
 Commands:
-  server:start [options]    Start Filesystem Graphql Server
-  schema:compile [options]  Compile schema into static files for the server
-  schema:types [options]    Generate a GraphQL query for your site's schema, (and optionally Typescript types)
-  init [options]            Add Tina Cloud to an existing project
-  audit [options]           Audit your schema and the files to check for errors
-  help [command]            display help for command
+  server:start [options]      Start Filesystem Graphql Server
+  server:waitForDB [options]  Wait for DB to finish indexing, start subprocess
+  schema:compile [options]    Compile schema into static files for the server
+  schema:types [options]      Generate a GraphQL query for your site's schema, (and optionally Typescript types)
+  init [options]              Add Tina Cloud to an existing project
+  audit [options]             Audit your schema and the files to check for errors
+  help [command]              display help for command
 ```
 
 ## Basic Usage:
@@ -42,11 +43,12 @@ This will,
 
 #### Optional parameters
 
-| Argument                    | Description                                                                              |
-|-----------------------------|------------------------------------------------------------------------------------------|
-| `--experimentalData`        | Enables the experimental [data layer](/docs/tina-cloud/data-layer/)                      |
-| `--noTelemetry`             | Disables Open Source Telemetry                                                           |
-| `--schemaFileType`          | Overrides default Tina schema file type. Valid values are: `.ts`, `.tsx`, `.js`, `.jsx`  |
+| Argument             | Description                                                                             |
+| -------------------- | --------------------------------------------------------------------------------------- |
+| `--experimentalData` | Enables the experimental [data layer](/docs/tina-cloud/data-layer/)                     |
+| `--noTelemetry`      | Disables Open Source Telemetry                                                          |
+| `--schemaFileType`   | Overrides default Tina schema file type. Valid values are: `.ts`, `.tsx`, `.js`, `.jsx` |
+| `--dev`              | Sets NODE_ENV=`development`, defaults to `production`                                   |
 
 ### `tinacms server:start`
 
@@ -87,3 +89,11 @@ Takes the following options,
 | Argument  | Description                                                                                                                                                                                                                                                             |
 | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `--clean` | When this flag is used, it really submits the Graphql mutations to the file system. This means that it will clean out any fields that are not defined in your `schema.ts`. It is a good practice to do a `git commit` before doing this so one can undo changes easily. |
+
+### `tinacms server:waitForDB` (Experimental)
+
+> To run this command, you must have a valid `.tina/client.ts` file.  [Read here](/docs/graphql/read-only-tokens/#making-requests-with-the-tina-client) to learn how to create one.
+
+For sites with Tina Cloud configured and `--experimentalData` enabled, `server:waitForDB` will block startup until the data layer's indexing process responds with `complete` or `failed`. For `complete`, any subprocess will be run. For `failed`, an error message will be displayed and startup will exit.
+
+> [Read here](https://tina.io/docs/tina-cloud/data-layer/#indexing) to learn more about indexing.
