@@ -17,7 +17,7 @@ If you don't already have a site setup, you can quicky setup a [Hugo site here](
 
 To set up the Tina scaffolding in your Hugo project...
 
-From within your Hugo root directory, run:
+From within your projects root directory, run:
 
 ```bash
 npx hygen init repo tinalabs/ssg-admin
@@ -50,6 +50,8 @@ Enter the following values into the newly generated package.json:
   }
 }
 ```
+
+> ⚠️ **Warning** You need to make sure your root project is using `@tinacms/cli": "0.60.12 ` in the future you will be able to use newer versions.
 
 Add the node_modules directory to the .gitignore
 
