@@ -1,6 +1,6 @@
 ---
 title: Using Tina to power Internationalization
-date: '2022-14-06T14:00:00.000Z'
+date: '2022-06-16T14:00:00.000Z'
 author: James Perkins
 prev: content/blog/a-b-test-with-tina.md
 ---
