@@ -20,3 +20,6 @@ type RichTextField = {
 
 To add an embedded template quickly enter `/`, this will present you with the embedable objects,
 filtering them out as you type.
+
+#### Default values
+> Currently, if setting a default value for a rich-text field, you must provide the document AST. See [example here](/docs/schema/#default-value-for-rich-text)

@@ -21,6 +21,8 @@ import { WarningCallout } from '../../utils/shortcodes'
 import { useTina } from 'tinacms/dist/edit-state'
 import path from 'path'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import atomOneDark from 'react-syntax-highlighter/dist/cjs/styles/prism/atom-dark'
 
 const components = {
   Iframe: ({ iframeSrc, height }) => {
@@ -40,7 +42,7 @@ const components = {
   CreateAppCta: ({ ctaText, cliText }) => (
     <>
       <a
-        href={ctaText}
+        href="/docs/introduction/using-starter/"
         style={{
           textDecoration: 'none',
           borderRadius: '10px',
@@ -52,7 +54,7 @@ const components = {
           color: 'white',
         }}
       >
-        Try a starter
+        {ctaText}
       </a>
 
       <div
@@ -125,6 +127,15 @@ const components = {
       src={src}
     />
   ),
+  code_block: ({ children, language }) => {
+    return (
+      <SyntaxHighlighter
+        code={children || ''}
+        language={language || 'jsx'}
+        style={atomOneDark}
+      />
+    )
+  },
   CustomFieldComponentDemo: () => (
     <iframe
       height="450"

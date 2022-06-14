@@ -69,7 +69,7 @@ export const getStaticProps = async () => {
 
 ## Accessing contextual-editing from the CMS
 
-At this point, when your editors go to `/your-page-url` in edit-mode, they will be able to edit and see those changes reflected in real-time. Next, let's wire up the CMS so that users will be navigated to that same editing experience when clicking any document in the Document List (instead of seeing the basic editor).
+At this point, when your editors go to `/your-page-url` in edit-mode, they will be able to edit content and see those changes reflected on the page, in real-time. Next, let's ensure users will be navigated to that same live-editing experience (instead of the basic editor experience) every time they click on a document in the CMS Document List.
 
 To accomplish this, we will make use of the `RouteMappingPlugin`.
 
@@ -115,10 +115,10 @@ cmsCallback={(cms) => {
         * their URLs are different than their document names.
         **/
         if (["pages"].includes(collection.name)) {
-          if (document.sys.filename === "home") {
+          if (document._sys.filename === "home") {
             return `/`;
           }
-          if (document.sys.filename === "about") {
+          if (document._sys.filename === "about") {
             return `/about`;
           }
           return undefined;
@@ -127,7 +127,7 @@ cmsCallback={(cms) => {
         * Finally, any other collections (`posts`, for example)
         * have URLs based on values in the `collection` and `document`.
         **/
-        return `/${collection.name}/${document.sys.filename}`;
+        return `/${collection.name}/${document._sys.filename}`;
       }
     );
 
