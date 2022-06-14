@@ -3,8 +3,8 @@ title: JAMstack Denver Talks Tina
 date: '2019-12-17T07:00:00.000Z'
 author: Kendall Strautman
 draft: false
-next: content/blog/what-are-blocks.md
-prev: content/blog/add-and-delete-files.md
+next: content/blog/designing-an-extensible-styling-system.md
+prev: null
 ---
 
 <Youtube embedSrc={"https://www.youtube.com/embed/LhBH9RTEK78?start=234"} />

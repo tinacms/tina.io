@@ -2,8 +2,8 @@
 title: 'Designing an Extensible Styling System'
 date: '2020-03-23T00:00:00.000Z'
 author: Scott Byrne
-next: content/blog/screen-plugins.md
-prev: content/blog/tinacms-ui-whats-next.md
+next: content/blog/software-engineering-daily-podcast-tinacms.md
+prev: content/blog/jamstack-denver-talk.md
 ---
 
 ## Writing an adaptable UI is hard.

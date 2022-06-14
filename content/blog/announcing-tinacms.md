@@ -4,7 +4,7 @@ date: '2019-10-16T07:00:00.000Z'
 author: Scott Gallant
 draft: false
 prev: null
-next: content/blog/creating-markdown-drafts.md
+next: null
 ---
 
 <Youtube embedSrc={"https://www.youtube.com/embed/iPDCmbaEF0Y"} />
