@@ -2,7 +2,7 @@
 title: Using Tina to power Internationalization
 date: '2022-14-06T14:00:00.000Z'
 author: James Perkins
-prev: a-b-test-with0tina.md
+prev: a-b-test-with-tina.md
 ---
 
 When working on a website you may need to introduce internationalization also known as i18n. While Tina currently doesn’t offer a plugin or native support we can leverage Next.js’s i18n feature to create a site that has internationalization support. 
