@@ -14,8 +14,7 @@ Now, here we are in December, and Tina has evolved significantly. We're truly pr
 In the new year, we look forward to sharing our vision for 2022 and talking about all the exciting features we have planned for TinaCMS.
 
 <CreateAppCta
-  ctaText="Test"
-  cliText="Thing"
+  ctaText="Try a starter" cliText="npx create-tina-app@latest"
 />
 
 ## January - March
@@ -52,7 +51,7 @@ After talking to the team about the vision of Tina, I was all in, I didn't want 
 
 June 2nd, 2021 we announced to the community that Tina Cloud was in public alpha, and we encouraged anyone who wanted to see the future of content editing and management to give it a shot.
 
-![Tina Alpha Tweet](https://res.cloudinary.com/forestry-demo/image/upload/v1640092818/blog-media/year-in-review/alpha.png "")
+![Tina Alpha Tweet](https://res.cloudinary.com/forestry-demo/image/upload/v1640092818/blog-media/year-in-review/alpha.png)
 
 You all took us up on our offer, users spiked, commits were made, and feedback started to come in. We felt the beginnings of a community that wanted and cared about Tina. Your feedback went directly to the team and into brainstorming product meetings.
 
@@ -80,7 +79,7 @@ In August we made the biggest announcement since I started at Tina. We placed th
 *   Dashboard overhaul
 *   Changes to content modeling
 
-![Beta Tweet](https://res.cloudinary.com/forestry-demo/image/upload/v1640092818/blog-media/year-in-review/beta.png "")
+![Beta Tweet](https://res.cloudinary.com/forestry-demo/image/upload/v1640092818/blog-media/year-in-review/beta.png)
 
 We also hired Kelly to help with our Cloud offering and Logan to help with our open-source product. Logan had already been working as an intern but he was an integral part of the team and we wanted him to work at Tina after he graduated.
 
