@@ -28,7 +28,7 @@ Now we have a basic project setup we are going to do the following things to mak
 
 The `next.config.js` allows you to create advanced configurations for your Next.js sites, including what locales you want to support on your site. 
 
-> If you want to read more bout next.config.js and all the configurations you can set, check out the next.js [documentation](https://nextjs.org/docs/api-reference/next.config.js/introduction).  
+> If you want to read more about next.config.js and all the configurations you can set, check out the next.js [documentation](https://nextjs.org/docs/api-reference/next.config.js/introduction).  
 
 To support different locales we need to add the `i8n` object to the configuration: 
 
