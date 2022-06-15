@@ -7,7 +7,6 @@ scalar JSON
 
 type SystemInfo {
   filename: String!
-  title: String
   basename: String!
   breadcrumbs(excludeExtension: Boolean): [String!]!
   path: String!

@@ -1,41 +1,31 @@
 query page($relativePath: String!) {
   page(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
+    _sys {
+      filename
+      basename
+      breadcrumbs
+      path
+      relativePath
+      extension
     }
+    id
     ...PageParts
   }
 }
 
-query pageConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
-  pageConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-  ) {
+query pageConnection {
+  pageConnection {
     totalCount
     edges {
       node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
+        id
+        _sys {
+          filename
+          basename
+          breadcrumbs
+          path
+          relativePath
+          extension
         }
         ...PageParts
       }
@@ -45,42 +35,32 @@ query pageConnection($before: String, $after: String, $first: Float, $last: Floa
 
 query post($relativePath: String!) {
   post(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
+    _sys {
+      filename
+      basename
+      breadcrumbs
+      path
+      relativePath
+      extension
     }
+    id
     ...PostParts
   }
 }
 
-query postConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
-  postConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-  ) {
+query postConnection {
+  postConnection {
     totalCount
     edges {
       node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
+        id
+        _sys {
+          filename
+          basename
+          breadcrumbs
+          path
+          relativePath
+          extension
         }
         ...PostParts
       }
@@ -90,42 +70,32 @@ query postConnection($before: String, $after: String, $first: Float, $last: Floa
 
 query abtest($relativePath: String!) {
   abtest(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
+    _sys {
+      filename
+      basename
+      breadcrumbs
+      path
+      relativePath
+      extension
     }
+    id
     ...AbtestParts
   }
 }
 
-query abtestConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
-  abtestConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-  ) {
+query abtestConnection {
+  abtestConnection {
     totalCount
     edges {
       node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
+        id
+        _sys {
+          filename
+          basename
+          breadcrumbs
+          path
+          relativePath
+          extension
         }
         ...AbtestParts
       }
