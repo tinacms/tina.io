@@ -1,7 +1,7 @@
 ---
 title: Field Types
 id: types
-last_edited: '2021-07-27T15:51:56.737Z'
+last_edited: '2022-06-15T15:51:56.737Z'
 next: /docs/reference/types/string
 prev: /docs/reference/templates
 ---

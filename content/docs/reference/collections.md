@@ -1,13 +1,13 @@
 ---
 title: Collections
 id: collections
-last_edited: '2021-07-27T15:51:56.737Z'
+last_edited: '2022-06-15T15:51:56.737Z'
 next: /docs/reference/fields
 prev: /docs/reference/schema
 ---
 
 
-Collections represent a type of content (EX, blog post, page, author, etc). We recommend using singular naming in a collection.
+Collections represent a type of content (EX, blog post, page, author, etc). We recommend using singular naming in a collection (Ex: use post and not posts).
 
 
 | Property     | Description              |

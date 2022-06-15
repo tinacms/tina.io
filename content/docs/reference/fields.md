@@ -1,7 +1,7 @@
 ---
 title: Fields
 id: fields
-last_edited: '2021-07-27T15:51:56.737Z'
+last_edited: '2022-06-15T15:51:56.737Z'
 next: /docs/reference/templates
 prev: /docs/reference/collections
 ---
@@ -19,8 +19,8 @@ Although some fields have more properties here is a list of common ones that are
 | `type` | The [type of the field](/docs/reference/types/) to be used |
 | `label` | A human friendly label that will be displayed to the user (*optional* and will default to `name`)|
 | `required` | If `true`, the collection can not be saved without this field present (*optional*, defaults to `false`) | 
-| `isTitle`  | The title of the document. This will be displayed in the CMS. (*optional*, defaults to `false`)|
-| `isBody`  | If `true` this field will be used as the body of the document (*optional*, defaults to `false`) |
+| `isTitle`  | Denote a field as the title of a collection. [See below for more details](#istitle) (*optional*, defaults to `false`)|
+| `isBody`  | If `true` this field will be used as the body of the document.  [See below for more details](#isbody) (*optional*, defaults to `false`) |
 | `ui`  | Used to extend the user interface of the field and the field behaver. See [extending tina section](/docs/extending-tina/overview/) for more information (*optional*) |
 
 
