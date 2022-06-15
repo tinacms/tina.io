@@ -6,7 +6,7 @@ next: /docs/reference/collections
 ---
 
 
-The Schema is located in `.tina/schema.{ts,tsx,js}` and it **must be** the default export of this file. It used to define the shape of the content. 
+The Schema is located in `.tina/schema.{ts,tsx,js}` and it **must be** the default export of this file. It is used to define the shape of the content. 
 
 
 | Property     | Description              |
