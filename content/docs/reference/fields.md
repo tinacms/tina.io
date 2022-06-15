@@ -2,6 +2,8 @@
 title: Fields
 id: fields
 last_edited: '2021-07-27T15:51:56.737Z'
+next: /docs/reference/templates
+prev: /docs/reference/collections
 ---
 
 <!-- # next: /docs/reference/schema -->

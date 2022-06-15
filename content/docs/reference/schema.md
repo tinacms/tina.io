@@ -3,6 +3,7 @@ title: The Schema
 id: schema
 last_edited: '2021-07-27T15:51:56.737Z'
 next: /docs/reference/collections
+prev: /docs/reference/overview
 ---
 
 
