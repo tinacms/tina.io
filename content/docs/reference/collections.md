@@ -19,7 +19,7 @@ Collections represent a type of content (EX, blog post, page, author, etc). We r
 | `fields` | An array of [fields](/docs/reference/fields/) |
 | `templates` | An array of [templates](/docs/reference/templates/) |
 
-> Note: Must provide only one of fields or templates but never both
+> Note: Must provide only one of `fields` or `templates` but never both
 
 ## Example
 
