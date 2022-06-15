@@ -13,7 +13,7 @@ Collections represent a type of content (EX, blog post, page, author, etc). We r
 | Property     | Description              |
 |--------------|--------------------------|
 | `name` | The name of the collection |
-| `path` | The path to a folder of where the content is stored. (relative to where the CLI is running) |
+| `path` | The path (relative to where the CLI is running) to a folder where the content is stored. |
 | `label` | A human friendly label that will be displayed to the user|
 | `fields` | An array of [fields](/docs/reference/fields/) |
 | `templates` | An array of [templates](/docs/reference/templates/) |
