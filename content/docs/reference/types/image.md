@@ -1,6 +1,6 @@
 ---
 title: The "image" field
-last_edited: '2021-07-27T15:51:56.737Z'
+last_edited: '2022-06-15T15:51:56.737Z'
 ---
 
 # `image`
@@ -26,3 +26,32 @@ type ImageField = {
   }
 }
 ```
+
+## Example
+
+```ts
+const schema = defineSchema({
+    collections: [
+      {
+       name: "posts",
+       label: "Blog Posts",
+       path: "content/posts",
+       format: "mdx",
+       fields: [
+         {
+           type: 'image',
+           label: 'Hero image',
+           name: 'imgSrc',
+         },
+         // ... other fields
+       ],
+      },
+    ]
+}) 
+// ...
+
+export default schema
+
+```
+
+Please see [the media docs](/docs/media-cloudinary/) for how to set up media in your site.

@@ -13,6 +13,8 @@ Fields define the shape of the content and the user input. There are [many types
 
 Although some fields have more properties here is a list of common ones that are used.
 
+## Definition
+
 | Property     | Description              |
 |--------------|--------------------------|
 | `name` | The name of the field |

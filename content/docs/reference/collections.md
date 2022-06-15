@@ -9,6 +9,8 @@ prev: /docs/reference/schema
 
 Collections represent a type of content (EX, blog post, page, author, etc). We recommend using singular naming in a collection (Ex: use post and not posts).
 
+## Definition
+
 
 | Property     | Description              |
 |--------------|--------------------------|
