@@ -11,7 +11,7 @@ The Schema is located in `.tina/schema.{ts,tsx,js}` and it **must be** the defau
 
 | Property     | Description              |
 |--------------|--------------------------|
-| `collection` | An array of collections. |
+| `collection` | An array of [collections](/docs/reference/collections/). |
 
 
 ## Example

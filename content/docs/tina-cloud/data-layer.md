@@ -23,6 +23,14 @@ recommend editing the script(s) in your site's package.json to pass the flag:
 "start": "yarn tinacms server:start -c \"next start\" --experimentalData"
 ```
 
+To opt into the frontend features of the datalayer you can set a flag in the `cmsCallback`.
+
+```ts
+cmsCallback: (cms) => {
+   cms.flags.set("experimentalData", true);
+},
+```
+
 Once the flag is added and the TinaCMS CLI is executed using the flag, the generated schema will be updated. **These
 updates must be committed and pushed to the remote GitHub repository in order to activate the data layer.**
 

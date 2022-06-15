@@ -42,3 +42,6 @@ const schema = defineSchema({
 
 export default schema
 ```
+
+
+For more information [check out the content modeling docs](/docs/schema/)
