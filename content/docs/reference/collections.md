@@ -7,7 +7,7 @@ prev: /docs/reference/schema
 ---
 
 
-Collections represent a type of content (EX, blog post, page, author, etc). It is recommended to use singular naming in a collection.
+Collections represent a type of content (EX, blog post, page, author, etc). We recommend using singular naming in a collection.
 
 
 | Property     | Description              |
