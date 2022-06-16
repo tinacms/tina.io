@@ -325,53 +325,84 @@
   },
   {
     "category": "Reference",
-    "slug": "/docs/cli-overview/",
-    "description": "The JavaScript toolkit for building content management interfaces",
+    "slug": "/docs/reference/overview/",
     "items": [
       {
-        "id": "/docs/reference/types/",
-        "slug": "/docs/reference/types/",
-        "title": "Content Types",
+        "id": "/docs/reference/overview/",
+        "slug": "/docs/reference/overview/",
+        "title": "Overview"
+      },
+      {
+        "id": "/docs/reference/schema/",
+        "slug": "/docs/reference/schema/",
+        "title": "Schema",
         "items": [
           {
-            "id": "/docs/reference/types/string/",
-            "slug": "/docs/reference/types/string/",
-            "title": "string"
+            "id": "/docs/reference/schema/",
+            "slug": "/docs/reference/schema/",
+            "title": "Overview"
           },
           {
-            "id": "/docs/reference/types/number/",
-            "slug": "/docs/reference/types/number/",
-            "title": "number"
+            "id": "/docs/reference/collections/",
+            "slug": "/docs/reference/collections/",
+            "title": "Collections"
           },
           {
-            "id": "/docs/reference/types/datetime/",
-            "slug": "/docs/reference/types/datetime/",
-            "title": "datetime"
+            "id": "/docs/reference/fields/",
+            "slug": "/docs/reference/fields/",
+            "title": "Fields"
           },
           {
-            "id": "/docs/reference/types/boolean/",
-            "slug": "/docs/reference/types/boolean/",
-            "title": "boolean"
+            "id": "/docs/reference/templates/",
+            "slug": "/docs/reference/templates/",
+            "title": "Templates"
           },
           {
-            "id": "/docs/reference/types/image/",
-            "slug": "/docs/reference/types/image/",
-            "title": "image"
-          },
-          {
-            "id": "/docs/reference/types/reference/",
-            "slug": "/docs/reference/types/reference/",
-            "title": "reference"
-          },
-          {
-            "id": "/docs/reference/types/object/",
-            "slug": "/docs/reference/types/object/",
-            "title": "object"
-          },
-          {
-            "id": "/docs/reference/types/rich-text/",
-            "slug": "/docs/reference/types/rich-text/",
-            "title": "rich-text"
+            "id": "/docs/reference/types/",
+            "slug": "/docs/reference/types/",
+            "title": "Field Types",
+            "items": [
+              {
+                "id": "/docs/reference/types/string/",
+                "slug": "/docs/reference/types/string/",
+                "title": "string"
+              },
+              {
+                "id": "/docs/reference/types/number/",
+                "slug": "/docs/reference/types/number/",
+                "title": "number"
+              },
+              {
+                "id": "/docs/reference/types/datetime/",
+                "slug": "/docs/reference/types/datetime/",
+                "title": "datetime"
+              },
+              {
+                "id": "/docs/reference/types/boolean/",
+                "slug": "/docs/reference/types/boolean/",
+                "title": "boolean"
+              },
+              {
+                "id": "/docs/reference/types/image/",
+                "slug": "/docs/reference/types/image/",
+                "title": "image"
+              },
+              {
+                "id": "/docs/reference/types/reference/",
+                "slug": "/docs/reference/types/reference/",
+                "title": "reference"
+              },
+              {
+                "id": "/docs/reference/types/object/",
+                "slug": "/docs/reference/types/object/",
+                "title": "object"
+              },
+              {
+                "id": "/docs/reference/types/rich-text/",
+                "slug": "/docs/reference/types/rich-text/",
+                "title": "rich-text"
+              }
+            ]
           }
         ]
       },
@@ -383,15 +414,22 @@
       {
         "id": "/docs/cli-overview/",
         "slug": "/docs/cli-overview/",
-        "title": "@tinacms/cli"
+        "title": "The TinaCMS CLI"
       },
       {
-        "title": "next-tinacms-cloudinary",
+        "title": "Media",
         "id": "/docs/media-cloudinary/",
-        "slug": "/docs/media-cloudinary/"
+        "slug": "/docs/media-cloudinary/",
+        "items": [
+          {
+            "title": "Cloudinary",
+            "id": "/docs/media-cloudinary/",
+            "slug": "/docs/media-cloudinary/"
+          }
+        ]
       },
       {
-        "title": "@tinacms/toolkit",
+        "title": "CMS Toolkit",
         "id": "/docs/reference/toolkit/overview/",
         "slug": "/docs/reference/toolkit/overview/",
         "items": [

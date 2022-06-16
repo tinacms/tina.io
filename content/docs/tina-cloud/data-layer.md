@@ -1,6 +1,6 @@
 ---
 title: Data Layer
-last_edited: '2022-02-15T20:00:00.000Z'
+last_edited: '2022-06-15T15:51:56.737Z'
 ---
 
 {{ WarningCallout text="This is an experimental feature, and the API is subject to change. Have any thoughts? Let us know in the chat, or through one of our [community channels](/community/)!" }}
@@ -21,6 +21,14 @@ recommend editing the script(s) in your site's package.json to pass the flag:
 
 ```json
 "start": "yarn tinacms server:start -c \"next start\" --experimentalData"
+```
+
+To opt-in to the frontend features of the datalayer you must set the `experimentalData` flag in the `cmsCallback` to true.
+
+```ts
+cmsCallback: (cms) => {
+   cms.flags.set("experimentalData", true);
+},
 ```
 
 Once the flag is added and the TinaCMS CLI is executed using the flag, the generated schema will be updated. **These
