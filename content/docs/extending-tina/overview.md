@@ -9,12 +9,45 @@ Tina has many advanced features that allow the entire CMS editing experience to 
 
 ## Customizing Fields
 
-Tina allows the forms to be customized through the `ui` property. This allows a custom experience to be created for your editors. Some of the main customization features are:
+Tina allows any field to be customized through the `ui` property. This allows a custom experience to be created for your editors. Some of the main customization features are:
 
 - Adding [client-side validation](/docs/extending-tina/validation/) to a component so that a desired format can be enforced before saving
 - Customizing the rendered [field component](/docs/extending-tina/custom-field-components/)
 - Customizing the [parsing and formatting](/docs/extending-tina/format-and-parse/) of user input
 
+### Example
+
+```ts
+const schema = defineSchema({
+    collections: [
+      {
+       name: "posts",
+       label: "Blog Posts",
+       path: "content/posts",
+       format: "mdx",
+       fields: [
+         {
+           type: 'string',
+           label: 'Title',
+           name: 'title',
+           ui: {
+              validate: (value)=>{
+                  if(value?.length > 40){
+                    return 'Title cannot be more than 40 characters long'
+                  }
+              }  
+           }
+         },
+         // ... other fields
+       ],
+      },
+    ]
+}) 
+// ...
+
+export default schema
+
+```
 
 ## Customizing the CMS instance
 

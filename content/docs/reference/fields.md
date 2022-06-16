@@ -23,7 +23,7 @@ Although some fields have more properties here is a list of common ones that are
 | `required` | If `true`, the collection cannot be saved without this field present (*optional*, defaults to `false`) | 
 | `isTitle`  | Denote a field as the title of a collection. [See below for more details](#istitle) (*optional*, defaults to `false`)|
 | `isBody`  | If `true` this field will be used as the body of the document.  [See below for more details](#isbody) (*optional*, defaults to `false`) |
-| `ui`  | Used to extend the user interface of the field and the field behaver. See [extending tina section](/docs/extending-tina/overview/) for more information (*optional*) |
+| `ui`  | Used to extend the user interface of the field and the field behaver. See [extending tina section](/docs/extending-tina/overview/#customizing-fields) for more information (*optional*) |
 
 
 ## `isTitle` 
