@@ -23,7 +23,7 @@ recommend editing the script(s) in your site's package.json to pass the flag:
 "start": "yarn tinacms server:start -c \"next start\" --experimentalData"
 ```
 
-To opt into the frontend features of the datalayer you can set a flag in the `cmsCallback`.
+To opt-in to the frontend features of the datalayer you must set the `experimentalData` flag in the `cmsCallback` to true.
 
 ```ts
 cmsCallback: (cms) => {

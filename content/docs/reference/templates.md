@@ -8,7 +8,7 @@ prev: /docs/reference/fields
 
 <!-- # next: /docs/reference/schema -->
 
-Although in most use cases just using [`fields`](/docs/reference/fields/) is enough, templates can be used when there is multiple variants of documents of the same collection or object. For example in a "page" collection there might be a need for a marketing page template and a content page template, both under the collection "page". 
+In most cases, just using [`fields`](/docs/reference/fields/) is enough, however templates can be used when there are multiple variants of the same collection or object. For example in a "page" collection there might be a need for a marketing page template and a content page template, both under the collection "page". 
 
 ## Definition
 
