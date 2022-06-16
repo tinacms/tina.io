@@ -30,7 +30,7 @@ The `next.config.js` allows you to create advanced configurations for your Next.
 
 > If you want to read more about next.config.js and all the configurations you can set, check out the next.js [documentation](https://nextjs.org/docs/api-reference/next.config.js/introduction).  
 
-To support different locales we need to add the `i8n` object to the configuration: 
+To support different locales we need to add the `i18n` object to the configuration: 
 
 ```json
 module.exports = {
