@@ -19,7 +19,7 @@ Although some fields have more properties here is a list of common ones that are
 |--------------|--------------------------|
 | `name` | The name of the field |
 | `type` | The [type of the field](/docs/reference/types/) to be used |
-| `label` | A human friendly label that will be displayed to the user (*optional* and will default to `name`)|
+| `label` | A human friendly label that will be displayed to the user (*optional*, defaults to `name`)|
 | `required` | If `true`, the collection cannot be saved without this field present (*optional*, defaults to `false`) | 
 | `isTitle`  | Denote a field as the title of a collection. [See below for more details](#istitle) (*optional*, defaults to `false`)|
 | `isBody`  | If `true` this field will be used as the body of the document.  [See below for more details](#isbody) (*optional*, defaults to `false`) |
