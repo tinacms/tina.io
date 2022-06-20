@@ -6,109 +6,56 @@ next: '/docs/tinacms-context'
 
 ## Introduction
 
-With Tina, your content is stored in Git along with your codebase. Tina provides an API to query your content through GraphQL, based on your defined content models.
+With Tina, your content is stored in Git along with your codebase. Tina provides a content API in front of your repo-based content, so that you can interact with your files as if they're in a database.
+
+You can:
+
+- Query content for a given collection
+- Add filters, sort parameters. paginate, etc
+- Query your content based on relational fields.
+
+To interface with the API, you can use Tina's type-safe client for data-fetching, or you can manually write your own GraphQL queries and hit the API yourself.
+
+## Making requests with the Tina Client
+
+The Tina client is the easiest way to fetch your site's content. The client can be configured in `.tina/client.<js|ts>`.
+
+Tina client provides a type-safe query builder, that is auto-generated based on your site's schema:
+
+```js
+import { client } from '../pathToTina/.tina/client'
+
+const myPost = await client.queries.post({ relativePath: 'HelloWorld.md' })
+
+console.log(myPost.title)
+```
+
+The above `client.queries.post` query is not built-in to Tina's API. This is an example of a query based on YOUR defined schema, (where you have a "post" collection defined).
+
+From the post-list page, you can fetch the list of posts like so:
+
+```js
+const postsResponse = await client.queries.postConnection()
+const posts = postResponse.data.postConnection.edges.map(x => {
+  return { slug: x.node._sys.filename }
+})
+// This would return an array like: [ { slug: 'HelloWorld.md'}, /*...*/ ]
+```
 
 Here's an example of how the data-fetching for a basic "post" ties together with the content modelling (defined in `schema.ts`).
 
 <iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/basic" />
 
-Note that the `post` query is not built-in to Tina's API. This is an example of a query based on YOUR defined schema, (where you have a "post" collection defined).
-
-> For more information on writing queries for your specific schema, check out our ["Using the GraphQL API"](/docs/graphql/overview/) docs.
+> For more information on manually writing queries for your specific schema, check out our ["Using the GraphQL API"](/docs/graphql/overview/) docs.
 
 ## The Local Filesystem-based Content API
 
-With Tina, your content is all stored in filesystem, within your site's repository. Using file-based content in a site can be limiting, so Tina provides a CLI tool that gets run locally next to your site. This allows all of your content to be made available through an expressive GraphQL API.
+When developing locally, it's often beneficial to talk to the content on your local file-system, rather than talk to the hosted content API. Tina provides a CLI tool that gets run locally next to your site. This allows all of your content to be made available through an expressive GraphQL API.
 
-> We'll go over those details of running this CLI script later, but if you want to skip it, you can read about it [here](/docs/graphql/cli/).
-
-## Querying Tina Content in NextJS
-
-In NextJS, content can be queried statically at build-time or dynamically at runtime (using [SSR](https://nextjs.org/docs/basic-features/data-fetching/get-server-side-props), or [CSR](https://nextjs.org/docs/basic-features/data-fetching/client-side)).
-
-For build-time queries, Tina provides a `staticRequest` helper function, which makes a request to your locally-running GraphQL server.
-
-### Example: Fetching content through getStaticProps
-
-```tsx
-// pages/home.js
-import { staticRequest } from 'tinacms'
-
-const getStaticProps = async () => {
-  const query = `
-      query Post($relativePath: String!) {
-        post(relativePath: $relativePath) {
-          title
-        }
-      }
-    `
-  const variables = {
-    relativePath: 'hello-world.md',
-  }
-
-  let data = {}
-  try {
-    data = await staticRequest({
-      query,
-      variables,
-    })
-  } catch {
-    // swallow errors related to document creation
-  }
-
-  return {
-    props: {
-      query,
-      variables,
-      data,
-      //myOtherProp: 'some-other-data',
-    },
-  }
-}
-```
-
-### Example: Fetching content through getStaticPaths
-
-You'll likely want to query the Tina data layer for [dynamic routes](https://nextjs.org/docs/basic-features/data-fetching/get-static-paths#getstaticpaths).
-
-```js
-export const getStaticPaths = async () => {
-  const postsListData = await staticRequest({
-    query: gql`
-      query PostConnection {
-        postConnection {
-          edges {
-            node {
-              _sys {
-                filename
-              }
-            }
-          }
-        }
-      }
-    `,
-  })
-
-  return {
-    paths: postsListData.postConnection.edges.map(post => ({
-      params: { filename: post.node._sys.filename },
-    })),
-  }
-}
-```
-
-> Note: for now, TinaCMS only supports static data fetching, so you must use `getStaticProps` (and `getStaticPaths` for dynamic pages). We'll be opening up more capabilities (like SSR, and client-side data-fetching) in the near future!
-
-### Example: Fetching content dynamically 
-If you wish to fetch content at runtime with server-side rendering (SSR) or client-side rendering (CSR), you can do so with Tina's [read-only tokens](https://tina.io/docs/graphql/read-only-tokens/).  The following blog post provides examples - [Read-only tokens - Query Requests anytime](https://tina.io/blog/read-only-tokens-content-anytime/).
-
-### Do I need to use `staticRequest`?
-
-Absolutely not. This is a helper function which emphasizes that static requests should only be made against your _local_ server. The `staticRequest` helper function makes the request against `http://localhost:4001`, which is where `@tinacms/cli` runs its GraphQL server. Feel free to use any HTTP client you'd like.
+> If you setup Tina via `@tinacms/cli init`, or used one of our starters, this should be setup by default, but you can read about the CLI [here](/docs/graphql/cli/).
 
 ## Summary
 
 - Tina provides a GraphQL API for querying your git-based content.
-- The query used for your requests is based on your defined schema.
-- Tina currently only supports static data-fetching (inside getStaticProps / getStaticPaths).
-- The `staticRequest` helper function is provided to simplify making requests to the local GraphQL server.
+- Tina provides a client that allows your to make type-safe requests to the API.
+- The client's "queries" property is generated based on YOUR schem.
