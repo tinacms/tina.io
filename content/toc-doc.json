@@ -92,32 +92,27 @@
               {
                 "id": "/docs/graphql/queries/advanced/filter-documents/",
                 "slug": "/docs/graphql/queries/advanced/filter-documents/",
-                "title": "Filtering",
-                "beta": true
+                "title": "Filtering"
               },
               {
                 "id": "/docs/graphql/queries/advanced/sorting/",
                 "slug": "/docs/graphql/queries/advanced/sorting/",
-                "title": "Sorting",
-                "beta": true
+                "title": "Sorting"
               },
               {
                 "id": "/docs/graphql/queries/advanced/pagination/",
                 "slug": "/docs/graphql/queries/advanced/pagination/",
-                "title": "Paginating",
-                "beta": true
+                "title": "Paginating"
               },
               {
                 "id": "/docs/graphql/queries/advanced/performance/",
                 "slug": "/docs/graphql/queries/advanced/performance/",
-                "title": "Performance",
-                "beta": true
+                "title": "Performance"
               },
               {
                 "id": "/docs/graphql/queries/advanced/limitations/",
                 "slug": "/docs/graphql/queries/advanced/limitations/",
-                "title": "Limitations",
-                "beta": true
+                "title": "Limitations"
               }
             ]
           },
