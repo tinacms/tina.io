@@ -222,12 +222,7 @@ export default defineSchema({
                   name: "alt",
                 },
               ],
-            },
-            {
-              name: "CustomFieldComponentDemo",
-              label: "Field Component Demo [do not use]",
-              fields: [],
-            },
+            }
           ],
         },
       ],

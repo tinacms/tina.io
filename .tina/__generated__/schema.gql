@@ -49,11 +49,17 @@ type Query {
   node(id: String): Node!
   document(collection: String, relativePath: String): DocumentNode!
   page(relativePath: String): Page!
-  pageConnection(before: String, after: String, first: Float, last: Float, sort: String): PageConnection!
+  pageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PageFilter): PageConnection!
   post(relativePath: String): Post!
-  postConnection(before: String, after: String, first: Float, last: Float, sort: String): PostConnection!
+  postConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PostFilter): PostConnection!
   abtest(relativePath: String): Abtest!
-  abtestConnection(before: String, after: String, first: Float, last: Float, sort: String): AbtestConnection!
+  abtestConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: AbtestFilter): AbtestConnection!
+}
+
+input DocumentFilter {
+  page: PageFilter
+  post: PostFilter
+  abtest: AbtestFilter
 }
 
 type DocumentConnectionEdges {
@@ -76,7 +82,7 @@ type Collection {
   matches: String
   templates: [JSON]
   fields: [JSON]
-  documents(before: String, after: String, first: Float, last: Float, sort: String): DocumentConnection!
+  documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter): DocumentConnection!
 }
 
 union DocumentNode = Page | Post | Abtest
@@ -275,6 +281,300 @@ type Page implements Node & Document {
   _values: JSON!
 }
 
+input StringFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+  in: [String]
+}
+
+input PageSeoFilter {
+  title: StringFilter
+  description: StringFilter
+}
+
+input BooleanFilter {
+  eq: Boolean
+  exists: Boolean
+}
+
+input PageBlocksHeroActionsFilter {
+  label: StringFilter
+  icon: BooleanFilter
+  variant: StringFilter
+  url: StringFilter
+}
+
+input PageBlocksHeroFilter {
+  headline: StringFilter
+  text: StringFilter
+  actions: PageBlocksHeroActionsFilter
+  videoSrc: StringFilter
+}
+
+input PageBlocksFeaturesItemsFeatureMediaFilter {
+  src: StringFilter
+  videoSrc: StringFilter
+  cli: BooleanFilter
+}
+
+input PageBlocksFeaturesItemsFeatureActionsFilter {
+  label: StringFilter
+  icon: BooleanFilter
+  variant: StringFilter
+  url: StringFilter
+}
+
+input PageBlocksFeaturesItemsFeatureFilter {
+  headline: StringFilter
+  text: StringFilter
+  media: PageBlocksFeaturesItemsFeatureMediaFilter
+  actions: PageBlocksFeaturesItemsFeatureActionsFilter
+}
+
+input PageBlocksFeaturesItemsFilter {
+  feature: PageBlocksFeaturesItemsFeatureFilter
+}
+
+input PageBlocksFeaturesFilter {
+  items: PageBlocksFeaturesItemsFilter
+}
+
+input PageBlocksFlyingActionsFilter {
+  label: StringFilter
+  icon: BooleanFilter
+  variant: StringFilter
+  url: StringFilter
+}
+
+input PageBlocksFlyingFilter {
+  headline: StringFilter
+  text: StringFilter
+  actions: PageBlocksFlyingActionsFilter
+}
+
+input RichTextFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+}
+
+input PageBlocksPricingTierOneActionsFilter {
+  label: StringFilter
+  icon: BooleanFilter
+  variant: StringFilter
+  url: StringFilter
+}
+
+input PageBlocksPricingTierOneFilter {
+  name: StringFilter
+  price: StringFilter
+  interval: StringFilter
+  body: RichTextFilter
+  large: BooleanFilter
+  actions: PageBlocksPricingTierOneActionsFilter
+}
+
+input PageBlocksPricingTierTwoActionsFilter {
+  label: StringFilter
+  icon: BooleanFilter
+  variant: StringFilter
+  url: StringFilter
+}
+
+input PageBlocksPricingTierTwoFilter {
+  name: StringFilter
+  price: StringFilter
+  interval: StringFilter
+  body: RichTextFilter
+  large: BooleanFilter
+  actions: PageBlocksPricingTierTwoActionsFilter
+}
+
+input PageBlocksPricingTierThreeActionsFilter {
+  label: StringFilter
+  icon: BooleanFilter
+  variant: StringFilter
+  url: StringFilter
+}
+
+input PageBlocksPricingTierThreeFilter {
+  name: StringFilter
+  price: StringFilter
+  interval: StringFilter
+  body: RichTextFilter
+  large: BooleanFilter
+  actions: PageBlocksPricingTierThreeActionsFilter
+}
+
+input PageBlocksPricingTierFourActionsFilter {
+  label: StringFilter
+  icon: BooleanFilter
+  variant: StringFilter
+  url: StringFilter
+}
+
+input PageBlocksPricingTierFourFilter {
+  name: StringFilter
+  price: StringFilter
+  interval: StringFilter
+  body: RichTextFilter
+  large: BooleanFilter
+  actions: PageBlocksPricingTierFourActionsFilter
+}
+
+input PageBlocksPricingFilter {
+  intro: RichTextFilter
+  tierOne: PageBlocksPricingTierOneFilter
+  segue: RichTextFilter
+  tierTwo: PageBlocksPricingTierTwoFilter
+  tierThree: PageBlocksPricingTierThreeFilter
+  tierFour: PageBlocksPricingTierFourFilter
+}
+
+input PageBlocksFaqQuestionsFilter {
+  question: StringFilter
+  answer: RichTextFilter
+}
+
+input PageBlocksFaqFilter {
+  title: StringFilter
+  intro: RichTextFilter
+  questions: PageBlocksFaqQuestionsFilter
+  color: StringFilter
+}
+
+input PageBlocksContentOptionsFilter {
+  narrow: BooleanFilter
+  color: StringFilter
+  align: StringFilter
+}
+
+input PageBlocksContentContentActionsFilter {
+  label: StringFilter
+  icon: BooleanFilter
+  variant: StringFilter
+  url: StringFilter
+}
+
+input PageBlocksContentContentSocialFilter {
+  tina: StringFilter
+  discord: StringFilter
+  github: StringFilter
+  twitter: StringFilter
+}
+
+input PageBlocksContentContentNewsletterFilter {
+  style: StringFilter
+}
+
+input PageBlocksContentContentFilter {
+  actions: PageBlocksContentContentActionsFilter
+  social: PageBlocksContentContentSocialFilter
+  newsletter: PageBlocksContentContentNewsletterFilter
+}
+
+input PageBlocksContentFilter {
+  options: PageBlocksContentOptionsFilter
+  content: PageBlocksContentContentFilter
+}
+
+input PageBlocksShowcaseItemsProjectMediaFilter {
+  src: StringFilter
+}
+
+input PageBlocksShowcaseItemsProjectFilter {
+  headline: StringFilter
+  text: StringFilter
+  url: StringFilter
+  media: PageBlocksShowcaseItemsProjectMediaFilter
+}
+
+input PageBlocksShowcaseItemsFilter {
+  project: PageBlocksShowcaseItemsProjectFilter
+}
+
+input PageBlocksShowcaseFilter {
+  items: PageBlocksShowcaseItemsFilter
+}
+
+input PageBlocksColumnsOptionsFilter {
+  columns: StringFilter
+  narrow: BooleanFilter
+  color: StringFilter
+  align: StringFilter
+}
+
+input PageBlocksColumnsColumnOneActionsFilter {
+  label: StringFilter
+  icon: BooleanFilter
+  variant: StringFilter
+  url: StringFilter
+}
+
+input PageBlocksColumnsColumnOneSocialFilter {
+  tina: StringFilter
+  discord: StringFilter
+  github: StringFilter
+  twitter: StringFilter
+}
+
+input PageBlocksColumnsColumnOneNewsletterFilter {
+  style: StringFilter
+}
+
+input PageBlocksColumnsColumnOneFilter {
+  actions: PageBlocksColumnsColumnOneActionsFilter
+  social: PageBlocksColumnsColumnOneSocialFilter
+  newsletter: PageBlocksColumnsColumnOneNewsletterFilter
+}
+
+input PageBlocksColumnsColumnTwoActionsFilter {
+  label: StringFilter
+  icon: BooleanFilter
+  variant: StringFilter
+  url: StringFilter
+}
+
+input PageBlocksColumnsColumnTwoSocialFilter {
+  tina: StringFilter
+  discord: StringFilter
+  github: StringFilter
+  twitter: StringFilter
+}
+
+input PageBlocksColumnsColumnTwoNewsletterFilter {
+  style: StringFilter
+}
+
+input PageBlocksColumnsColumnTwoFilter {
+  actions: PageBlocksColumnsColumnTwoActionsFilter
+  social: PageBlocksColumnsColumnTwoSocialFilter
+  newsletter: PageBlocksColumnsColumnTwoNewsletterFilter
+}
+
+input PageBlocksColumnsFilter {
+  options: PageBlocksColumnsOptionsFilter
+  columnOne: PageBlocksColumnsColumnOneFilter
+  columnTwo: PageBlocksColumnsColumnTwoFilter
+}
+
+input PageBlocksFilter {
+  hero: PageBlocksHeroFilter
+  features: PageBlocksFeaturesFilter
+  flying: PageBlocksFlyingFilter
+  pricing: PageBlocksPricingFilter
+  faq: PageBlocksFaqFilter
+  content: PageBlocksContentFilter
+  showcase: PageBlocksShowcaseFilter
+  columns: PageBlocksColumnsFilter
+}
+
+input PageFilter {
+  seo: PageSeoFilter
+  blocks: PageBlocksFilter
+}
+
 type PageConnectionEdges {
   cursor: String!
   node: Page
@@ -301,6 +601,82 @@ type Post implements Node & Document {
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
+}
+
+input DatetimeFilter {
+  after: String
+  before: String
+  eq: String
+  exists: Boolean
+  in: [String]
+}
+
+input PostPrevFilter {
+  post: PostFilter
+}
+
+input PostNextFilter {
+  post: PostFilter
+}
+
+input PostBodyYoutubeFilter {
+  embedSrc: StringFilter
+}
+
+input NumberFilter {
+  lt: Float
+  lte: Float
+  gte: Float
+  gt: Float
+  eq: Float
+  exists: Boolean
+  in: [Float]
+}
+
+input PostBodyIframeFilter {
+  iframeSrc: StringFilter
+  height: NumberFilter
+}
+
+input PostBodyCreateAppCtaFilter {
+  ctaText: StringFilter
+  cliText: StringFilter
+}
+
+input PostBodyCalloutFilter {
+  title: StringFilter
+  description: StringFilter
+  url: StringFilter
+  buttonText: StringFilter
+}
+
+input PostBodyCodesandboxFilter {
+  embedSrc: StringFilter
+  title: StringFilter
+}
+
+input PostBodyDiagramFilter {
+  src: StringFilter
+  alt: StringFilter
+}
+
+input PostBodyFilter {
+  Youtube: PostBodyYoutubeFilter
+  Iframe: PostBodyIframeFilter
+  CreateAppCta: PostBodyCreateAppCtaFilter
+  Callout: PostBodyCalloutFilter
+  Codesandbox: PostBodyCodesandboxFilter
+  Diagram: PostBodyDiagramFilter
+}
+
+input PostFilter {
+  title: StringFilter
+  date: DatetimeFilter
+  last_edited: DatetimeFilter
+  author: StringFilter
+  prev: PostPrevFilter
+  next: PostNextFilter
+  body: PostBodyFilter
 }
 
 type PostConnectionEdges {
@@ -330,6 +706,21 @@ type Abtest implements Node & Document {
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
+}
+
+input AbtestTestsVariantsFilter {
+  testId: StringFilter
+  href: StringFilter
+}
+
+input AbtestTestsFilter {
+  testId: StringFilter
+  href: StringFilter
+  variants: AbtestTestsVariantsFilter
+}
+
+input AbtestFilter {
+  tests: AbtestTestsFilter
 }
 
 type AbtestConnectionEdges {
