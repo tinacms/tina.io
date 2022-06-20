@@ -660,6 +660,10 @@ input PostBodyDiagramFilter {
   alt: StringFilter
 }
 
+input PostBodyCustomFieldComponentDemoFilter {
+  test: StringFilter
+}
+
 input PostBodyFilter {
   Youtube: PostBodyYoutubeFilter
   Iframe: PostBodyIframeFilter
@@ -667,6 +671,7 @@ input PostBodyFilter {
   Callout: PostBodyCalloutFilter
   Codesandbox: PostBodyCodesandboxFilter
   Diagram: PostBodyDiagramFilter
+  CustomFieldComponentDemo: PostBodyCustomFieldComponentDemoFilter
 }
 
 input PostFilter {

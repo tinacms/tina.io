@@ -795,6 +795,10 @@ export type PostBodyDiagramFilter = {
   alt?: InputMaybe<StringFilter>;
 };
 
+export type PostBodyCustomFieldComponentDemoFilter = {
+  test?: InputMaybe<StringFilter>;
+};
+
 export type PostBodyFilter = {
   Youtube?: InputMaybe<PostBodyYoutubeFilter>;
   Iframe?: InputMaybe<PostBodyIframeFilter>;
@@ -802,6 +806,7 @@ export type PostBodyFilter = {
   Callout?: InputMaybe<PostBodyCalloutFilter>;
   Codesandbox?: InputMaybe<PostBodyCodesandboxFilter>;
   Diagram?: InputMaybe<PostBodyDiagramFilter>;
+  CustomFieldComponentDemo?: InputMaybe<PostBodyCustomFieldComponentDemoFilter>;
 };
 
 export type PostFilter = {
