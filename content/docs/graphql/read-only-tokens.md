@@ -9,22 +9,11 @@ last_edited: '2022-02-07T18:00:00.000Z'
 
 {{ WarningCallout text="It is highly recommended to  [enable the data layer](/docs/tina-cloud/data-layer/#enabling-the-data-layer) to use this feature. Have any thoughts? Let us know in the chat, or through the [GitHub discussion](https://github.com/tinacms/tinacms/discussions/2811)!" }}
 
-Read-only tokens allow data fetching at runtime without the need for the local GraphQL server. Some use cases include the following:
-
-- Runtime server-side logic in `getServerSideProps`, `getStaticProps` (when fallback is not `false`), etc.
-- [Incremental Static Site Generation](https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration)
-- [Server components](https://nextjs.org/docs/advanced-features/react-18/overview#react-server-components-alpha)
-- [Next.js middleware](https://nextjs.org/docs/middleware)
-- Client-side data-fetching (including `create-react-app`)
-- Future support for server-side frameworks like [remix](https://remix.run/)
-
-In all of these use cases we can no longer rely static content but need a way to fetch data in real-time without being authenticated.
-
-Read only tokens can only be used for [GraphQL query requests]() and can not be used for mutations. It can also only be used to get data from the branch in the list of branches specified when the token was made.
+Read-only tokens provide read-only access to your project's content.
 
 ## How to use Read Only Tokens
 
-### Generate them from the dashboard
+### Generate tokens from the dashboard
 
 Navigate to [Tina Cloud](https://app.tina.io) and click on the project you wish to add a token to, click on the "tokens" tab
 ![Tina cloud token tab](/img/graphql-docs/token-tab.png)
@@ -44,62 +33,22 @@ Wild card matching is supported in the branch names using '\*' to match anything
 Wild card matching is useful for matching branches that have not been created yet and can be used for editorial workflows.
 
 ### Making requests with the tina client
+
 #### Setting up the Tina client
 
-This client can be used for data fetching with Tina. It can be used on the client and server to make graphQL requests. 
+The Tina client can be used for data fetching with Tina. It can be used on the client and server to make graphQL requests.
 
-To set up, first add a new file called `.tina/client.{js,ts}`
+Once your token has been generated through the [Tina dashboard](https://app.tina.io), it can added to the client
 
-```ts
-import { createClient } from 'tinacms/dist/client'
-const branch = "main";
-const apiURL =
-  process.env.NODE_ENV == "development"
-    ? "http://localhost:4001/graphql"
-    : `https://content.tinajs.io/content/<Your Client ID>/github/${branch}`;
+```diff
+// .tina/client.ts
+// ...
 
 // Token generated on app.tina.io
 export const client = createClient({
-    // default values
-    url: apiURL,
-    token: "Your Read Only Token generated above",
-})
-```
-
-*optionally generated queries can be attached to the client by passing the `queries` variable to createClient*
-
-```diff
-import { createClient } from 'tinacms/dist/client'
-+ import { queries } from './__generated__/types' 
-
-const branch = "main";
-const apiURL =
-  process.env.NODE_ENV == "development"
-    ? "http://localhost:4001/graphql"
-    : `https://content.tinajs.io/content/<Your Client ID>/github/${branch}`;
-
-// Token generated on app.tina.io
-export const client = createClient({
-+   queries,
-    // default values
-    url: apiURL,
-    token: "Your Read Only Token generated above",
-})
-```
-
-When using "http://localhost:4001/graphql," the content will be queried from file system (This only works during devolvement or in CI) and when using `https://content.tinajs.io/content/<Your Client ID>/github/${branch}` the content will be queried from Tina cloud. 
-
-In most cases, the `apiURL` is the same one that is used for editing. So instead of passing the passing `apiURL` the client can be passed.
-
-`.tina/schema.{ts,tsx,js}`
-
-```diff
-import { client } from './client'
-//...
-export const tinaConfig = defineConfig({
-+  client,
--  url: ...
-  //...
+  // default values
+  url: apiURL,
+  + token: 'Your Read Only Token generated above',
 })
 ```
 
@@ -110,52 +59,8 @@ Now that the client is defined, we can use it to query our content.
 ```ts
 import { client } from '../pathToTina/.tina/client'
 
-const data = await client.request({query: "Your Graphql query"})
+const data = await client.request({ query: 'Your Graphql query' })
 ```
-
-`variables` can also be passed
-
-```ts
-import { client } from "../pathToTina/.tina/client";
-
-const data = await client.request({
-  query: "Your Graphql query",
-  variables: {...},
-});
-
-```
-
-*optionally* the `url` or `token` can be overridden from request to request.
-
-```ts
-import { client } from "../pathToTina/.tina/client";
-// Same as staticRequest
-const data = await client.request({
-  query: "Your Graphql query",
-  variables: {...},
-  url: "http//localhost:4001/graphql",
-});
-
-```
-
-```ts
-import { client } from "../pathToTina/.tina/client";
-// override token
-const data = await client.request({
-  query: "Your Graphql query",
-  variables: {...},
-  token: "Your token",
-});
-```
-
-If the `queries` was passed, then queries can be called from the `queries` namespace.
-
-```ts
-import { client } from "../pathToTina/.tina/client";
-
-const data = await client.queries.post({ relativePath: "HelloWorld.md"})
-```
-
 
 ### Making requests with `curl` and `fetch`
 
@@ -213,7 +118,7 @@ fetch(
 import { useState, useEffect } from 'react'
 import { useTina } from 'tinacms/dist/edit-state'
 import { client } from '../PathToTina/.tina/client'
- // This query can be any query
+// This query can be any query
 const query = `
 query ContentQuery($relativePath: String!) {
   <collection.name>(relativePath: $relativePath) {
@@ -229,27 +134,26 @@ const variables = {
 }
 
 export default function BlogPostPage() {
-  const [initialData, setData] = useState(null);
-  const [isLoading, setLoading] = useState(false);
+  const [initialData, setData] = useState(null)
+  const [isLoading, setLoading] = useState(false)
 
   useEffect(() => {
     const fetchContent = async () => {
-      setLoading(true);
-      const data = await client.request({ query, variables });
-      setData(data?.data);
-      setLoading(false);
-    };
-    fetchContent();
-  }, [query, JSON.stringify(variables)]);
+      setLoading(true)
+      const data = await client.request({ query, variables })
+      setData(data?.data)
+      setLoading(false)
+    }
+    fetchContent()
+  }, [query, JSON.stringify(variables)])
 
-  const { data } = useTina({ query, variables, data: initialData });
+  const { data } = useTina({ query, variables, data: initialData })
 
-  if (isLoading) return <p>Loading...</p>;
-  if (!data) return <p>No data</p>;
+  if (isLoading) return <p>Loading...</p>
+  if (!data) return <p>No data</p>
 
-  return <div>{JSON.stringify(data)}</div>;
+  return <div>{JSON.stringify(data)}</div>
 }
-
 ```
 
 ### Next.js `fallback: "blocking"`
@@ -262,7 +166,6 @@ With read-only tokens we can fetch the list of blog posts. This will allow us to
 
 ```js
 // pages/posts/[filename].{js,tsx}
-
 
 import { client } from '../pathToTina/.tina/client'
 
@@ -282,14 +185,14 @@ export const getStaticProps = async ctx => {
   const variables = {
     relativePath: ctx.params.slug + '.md',
   }
-  let data;
+  let data
   try {
     // This will use the URL that was passed to the client
     const res = await client.request({
       query,
       variables,
-    });
-    data = res?.data;
+    })
+    data = res?.data
   } catch (error) {
     // swallow errors related to document creation
   }
@@ -297,7 +200,7 @@ export const getStaticProps = async ctx => {
   if (!data) {
     return {
       notFound: true,
-    };
+    }
   }
 
   return {
@@ -306,17 +209,16 @@ export const getStaticProps = async ctx => {
       query,
       variables,
     },
-  };
-};
-
+  }
+}
 
 export const getStaticPaths = async () => {
   //... Same as before
   return {
     paths,
-    fallback: "blocking",
-  };
-};
+    fallback: 'blocking',
+  }
+}
 
 export default BlogPage
 ```
