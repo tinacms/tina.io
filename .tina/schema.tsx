@@ -12,6 +12,8 @@ limitations under the License.
 */
 
 import { defineSchema } from "tinacms";
+import type { TinaTemplate } from "tinacms";
+
 import { heroTemplate } from "../components/blocks/Hero";
 import { featuresTemplate } from "../components/blocks/Features";
 import { flyingTemplate } from "../components/blocks/Flying";
@@ -20,7 +22,6 @@ import { faqTemplate } from "../components/blocks/FAQ";
 import { contentTemplate } from "../components/blocks/Content";
 import { columnsTemplate } from "../components/blocks/Columns";
 import {showcaseTemplate} from "../components/blocks/Showcase";
-import type { TinaTemplate } from "tinacms";
 
 export default defineSchema({
   collections: [
