@@ -13,15 +13,6 @@ Here's an example of data-fetching client-side, on a React site
 import { useState, useEffect } from 'react'
 import { useTina } from 'tinacms/dist/edit-state'
 import { client } from '../PathToTina/.tina/client'
-// This query can be any query
-const query = `
-query ContentQuery($relativePath: String!) {
-  <collection.name>(relativePath: $relativePath) {
-    body
-    title
-  }
-}
-`
 
 // Variables used in the GraphQL query;
 const variables = {
@@ -29,20 +20,22 @@ const variables = {
 }
 
 export default function BlogPostPage() {
-  const [initialData, setData] = useState(null)
+  const [postQuery, setPostQuery] = useState(null)
   const [isLoading, setLoading] = useState(false)
 
   useEffect(() => {
     const fetchContent = async () => {
       setLoading(true)
-      const data = await client.request({ query, variables })
-      setData(data?.data)
+      const postResponse = await client.queries.post({
+        relativePath: 'HelloWorld.md',
+      })
+      setPostQuery(postResponse)
       setLoading(false)
     }
     fetchContent()
   }, [query, JSON.stringify(variables)])
 
-  const { data } = useTina({ query, variables, data: initialData })
+  const { data } = useTina({ postQuery?.query, postQuery?.variables, data: postQuery?.data })
 
   if (isLoading) return <p>Loading...</p>
   if (!data) return <p>No data</p>
