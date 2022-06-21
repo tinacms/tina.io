@@ -13,12 +13,12 @@ With Tina, the editors interact with Tina through forms in the sidebar. These fo
 
 If you'd like to control the output of those forms, tap into the `formifyCallback` callback parameter in config with the `.tina/schema.ts` file
 
-```diff
+````diff
 // .tina/schema.ts
 
 // ...
 export config = defineConfig({
-  apiURL,
+// ...
 + formifyCallback: ({ formConfig, createForm, skip }) => {
 +   if (formConfig.id === 'content/navigation/main.json') {
 +     const form = new Form(formConfig)
@@ -30,3 +30,4 @@ export config = defineConfig({
 +   return createForm(formConfig)
 + }
 })```
+````

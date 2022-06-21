@@ -74,7 +74,7 @@ Inside the config within the `.tina/schema.ts` file we need to import the `Markd
 
 // ...
 export config = defineConfig({
-  apiURL,
+// ...
 + cmsCallback: (cms) => {
 +   import('react-tinacms-editor').then((field)=> {
 +     cms.plugins.add(field.MarkdownFieldPlugin)
