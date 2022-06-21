@@ -10,7 +10,7 @@ Tina client provides a type-safe query builder, that is auto-generated based on 
 
 ## Using the built-in Graphql Queries
 
-The client comes with several built-in GraphQL queries to allow you easily request content based on your defined collections.
+The client comes with several built-in GraphQL queries to allow you to easily request content based on your defined collections.
 
 The client can be imported from `/.tina/client.ts`
 
@@ -18,7 +18,7 @@ The client can be imported from `/.tina/client.ts`
 import { client } from '../pathToTina/.tina/client'
 
 // Use the client to perform data fetching
-// Here, is grabs a single "post" item
+// Here, it fetches a single "post" item
 const myPost = await client.queries.post({ relativePath: 'HelloWorld.md' })
 
 console.log(myPost.title)
@@ -53,7 +53,7 @@ Once the query is added, the client will have its types updated so that it can b
 import { client } from '../pathToTina/.tina/client'
 
 // Use the client to perform data fetching
-// Here, is grabs a single "post" item
+// Here, it fetches a single "post" item
 const myPost = await client.queries.postWithAuthor({
   relativePath: 'HelloWorld.md',
 })
