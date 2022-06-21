@@ -60,7 +60,6 @@ Given that we're adding `i18n` support to the `post` collection, we'll be updati
 
 // `locales` is provided to `getStaticPaths` and matches `locales` in the `config`
 const getStaticPaths = async({ locales }) {
-  const client = ExperimentalGetTinaClient();
   const postConnection = await client.postConnection();
   const paths = [];
 
@@ -93,7 +92,6 @@ Next, we'll want to update `getStaticProps` to include `locale` as part of the `
 
 // `locale` is provided alongside `params`
 const getStaticProps = async({ params, locale }) {
-  const client = ExperimentalGetTinaClient();
   const tinaProps = await client.BlogPostQuery({
     // compose `relativePath` where `locale` is a sub-folder to the `post`
     relativePath: `${locale}/${params.filename}.mdx`,
@@ -138,7 +136,6 @@ const getStaticProps = async({ params, locale }) {
   // compose `relativePath` where `locale` is a sub-folder to the `post`
   const relativePath = `${locale}/${params.filename}.mdx`
 
-  const client = ExperimentalGetTinaClient();
   const tinaProps = await client.BlogPostQuery({
     relativePath,
   });
