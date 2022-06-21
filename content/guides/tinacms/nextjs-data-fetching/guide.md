@@ -1,5 +1,5 @@
 ---
-title: Adding Internationalization to Tina
+title: Querying Tina Content in NextJS
 last_edited: '2022-04-08T10:00:00.000Z'
 ---
 
@@ -82,8 +82,75 @@ export const getStaticPaths = async () => {
 
 ### Example: Fetching content dynamically
 
-If you wish to fetch content at runtime with server-side rendering (SSR) or client-side rendering (CSR), you can do so with Tina's [read-only tokens](https://tina.io/docs/graphql/read-only-tokens/). The following blog post provides examples - [Read-only tokens - Query Requests anytime](https://tina.io/blog/read-only-tokens-content-anytime/).
+If you wish to fetch content at runtime with server-side rendering (SSR) or client-side rendering (CSR), you can do so with Tina's [read-only tokens](/docs/tina-cloud/dashboard/projects/#read-only-tokens/). The following blog post provides examples - [Read-only tokens - Query Requests anytime](https://tina.io/blog/read-only-tokens-content-anytime/).
 
 ### Do I need to use `staticRequest`?
 
 Absolutely not. This is a helper function which emphasizes that static requests should only be made against your _local_ server. The `staticRequest` helper function makes the request against `http://localhost:4001`, which is where `@tinacms/cli` runs its GraphQL server. Feel free to use any HTTP client you'd like.
+
+### Next.js `fallback: "blocking"`
+
+In Next.js one can specify [`fallback: "blocking"`](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths#fallback-blocking), this allows `getStaticProps` to run server-side at request time when a user goes to a page that was not specified in `getStaticPaths`.
+
+With read-only tokens we can fetch the list of blog posts. This will allow us to visit pages that have been created but not statically generated.
+
+#### Example page
+
+```js
+// pages/posts/[filename].{js,tsx}
+
+import { client } from '../pathToTina/.tina/client'
+
+const BlogPage = props => {
+  // (Does not change)
+  //...
+}
+
+export const getStaticProps = async ctx => {
+  const query = `query Post($relativePath: String!) {
+    post(relativePath: $relativePath) {
+      title
+      body
+    }
+  }
+  `
+  const variables = {
+    relativePath: ctx.params.slug + '.md',
+  }
+  let data
+  try {
+    // This will use the URL that was passed to the client
+    const res = await client.request({
+      query,
+      variables,
+    })
+    data = res?.data
+  } catch (error) {
+    // swallow errors related to document creation
+  }
+
+  if (!data) {
+    return {
+      notFound: true,
+    }
+  }
+
+  return {
+    props: {
+      data,
+      query,
+      variables,
+    },
+  }
+}
+
+export const getStaticPaths = async () => {
+  //... Same as before
+  return {
+    paths,
+    fallback: 'blocking',
+  }
+}
+
+export default BlogPage
+```

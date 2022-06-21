@@ -65,3 +65,28 @@ From the project configuration screen, click the "Change Repository" button. You
 #### Refreshing Webhooks
 
 In rare circumstances, the GitHub Webhook connecting your repository to Tina Cloud may be disrupted. Click the "Refresh Webhooks" button to restore them.
+
+### Read Only Tokens
+
+Read-only tokens provide read-only access to your project's content.
+
+#### Generate tokens from the dashboard
+
+Navigate to [Tina Cloud](https://app.tina.io) and click on the project you wish to add a token to, click on the "tokens" tab
+![Tina cloud token tab](/img/graphql-docs/token-tab.png)
+
+Next, click "New Token" and fill out fields. The token name is how you can identify the token and "Git branches" is the list of branches separated by commas that the token has assess too.
+
+![Creating a new token in Tina Cloud](/img/graphql-docs/create-new-token.png)
+
+Finally, click "Create Token".
+
+![Successful creation of a token in Tina Cloud](/img/graphql-docs/final-token-page.png)
+
+This token will be used later when we connect the site's frontend to our project.
+
+#### Wild card matching
+
+Wild card matching is supported in the branch names using '\*' to match anything. For example: `feat/*` will match `feat/foo` and `feat/bar`. If only `*` is entered it will match any branch.
+
+Wild card matching is useful for matching branches that have not been created yet and can be used for editorial workflows.

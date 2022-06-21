@@ -92,7 +92,7 @@ Takes the following options,
 
 ### `tinacms server:waitForDB` (Experimental)
 
-> To run this command, you must have a valid `.tina/client.ts` file.  [Read here](/docs/graphql/read-only-tokens/#making-requests-with-the-tina-client) to learn how to create one.
+> To run this command, you must have a valid `.tina/client.ts` file. [Read here](/docs/tina-cloud/dashboard/projects/#read-only-tokens) to learn how to create one.
 
 For sites with Tina Cloud configured and `--experimentalData` enabled, `server:waitForDB` will block startup until the data layer's indexing process responds with `complete` or `failed`. For `complete`, any subprocess will be run. For `failed`, an error message will be displayed and startup will exit.
 

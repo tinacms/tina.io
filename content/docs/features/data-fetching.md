@@ -58,4 +58,5 @@ When developing locally, it's often beneficial to talk to the content on your lo
 
 - Tina provides a GraphQL API for querying your git-based content.
 - Tina provides a client that allows your to make type-safe requests to the API.
-- The client's "queries" property is generated based on YOUR schem.
+- The client's "queries" property is generated based on YOUR schema.
+- A local version of the content API is often used for development.
