@@ -86,58 +86,77 @@ The `RouteMappingPlugin` accepts a single argument - the `mapper` function - tha
 - If the `mapper` returns a `string`, the `string` is used as the document's route rather than the default.
 - If the `mapper` returns `undefined`, the user is navigated to the document's basic editor.
 
-This is an example of the `RouteMappingPlugin` added to our `tina-cloud-starter` template:
+This is an example of the `RouteMappingPlugin`.
 
 ```tsx
-...
-
-cmsCallback={(cms) => {
-  /**
-   * 1. Import `tinacms` and `RouteMappingPlugin`
-   **/
-  import('tinacms').then(({ RouteMappingPlugin }) => {
-
+//.tina/schema.{ts,tsx}
+import { defineConfig, RouteMappingPlugin } from 'tinacms'
+//...
+export const tinaConfig = defineConfig({
+  //...
+  cmsCallback: cms => {
     /**
-    * 2. Define the `RouteMappingPlugin`
-    **/
-    const RouteMapping = new RouteMappingPlugin(
-      (collection, document) => {
-        /**
-        * Because the `authors` and `global` collections do not
-        * have dedicated pages, we return `undefined`.
-        **/
-        if (["authors", "global"].includes(collection.name)) {
-          return undefined;
-        }
-
-        /**
-        * While the `pages` collection does have dedicated pages,
-        * their URLs are different than their document names.
-        **/
-        if (["pages"].includes(collection.name)) {
-          if (document._sys.filename === "home") {
-            return `/`;
-          }
-          if (document._sys.filename === "about") {
-            return `/about`;
-          }
-          return undefined;
-        }
-        /**
-        * Finally, any other collections (`posts`, for example)
-        * have URLs based on values in the `collection` and `document`.
-        **/
-        return `/${collection.name}/${document._sys.filename}`;
+     *  Define the `RouteMappingPlugin`
+     **/
+    const RouteMapping = new RouteMappingPlugin((collection, document) => {
+      /**
+       * Because the `authors` and `global` collections do not
+       * have dedicated pages, we return `undefined`.
+       **/
+      if (['authors', 'global'].includes(collection.name)) {
+        return undefined
       }
-    );
+
+      /**
+       * While the `page` collection does have dedicated pages,
+       * their URLs are different than their document names.
+       **/
+      if (collection.name === 'blog') {
+        if (document._sys.filename === 'home') {
+          return `/`
+        }
+        if (document._sys.filename === 'about') {
+          return `/about`
+        }
+        return undefined
+      }
+      /**
+       *  The post collection always re-directs to /post/<FileName>
+       **/
+      if (collection.name === 'post') {
+        return `/post/${document._sys.filename}`
+      }
+
+      // Other collections
+      // ...
+
+      // Default case, return `undefined`
+      return undefined
+    })
 
     /**
-    * 3. Add the `RouteMappingPlugin` to the `cms`.
-    **/
-    cms.plugins.add(RouteMapping);
-  });
-}
+     *  Add the `RouteMappingPlugin` to the `cms`.
+     **/
+    cms.plugins.add(RouteMapping)
+  },
+})
 ```
+
+Now when a document is clicked in the CMS we will be re-directed to the page in the site with contextual editing.
+
+<video
+className="video"
+autoPlay="true"
+loop
+muted
+playsInline><source
+          src="https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/e_accelerate:-20/v1655919318/tina-io/docs/RoutMapperVid.webm"
+          type="video/webm"
+        /><source
+src="https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/e_accelerate:-20/v1655919318/tina-io/docs/RoutMapperVid.mp4"
+type="video/mp4"
+/>
+</video>
 
 ## Summary
 
