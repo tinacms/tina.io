@@ -209,39 +209,6 @@
         "title": "Format and parse input",
         "id": "/docs/extending-tina/format-and-parse",
         "slug": "/docs/extending-tina/format-and-parse/"
-      },
-      {
-        "title": "Customizing a form",
-        "id": "/docs/extending-tina/customizing-forms",
-        "slug": "/docs/extending-tina/customizing-forms/"
-      },
-      {
-        "title": "Manually editing and accessing Tina's edit state",
-        "id": "/docs/extending-tina/edit-state",
-        "slug": "/docs/extending-tina/edit-state/"
-      },
-      {
-        "title": "Advanced field customization",
-        "id": "/docs/extending-tina/advanced/overview",
-        "slug": "/docs/extending-tina/advanced/overview/",
-        "expandOnSelect": true,
-        "items": [
-          {
-            "title": "Extending a field plugin",
-            "id": "/docs/extending-tina/advanced/extending-field-plugin",
-            "slug": "/docs/extending-tina/advanced/extending-field-plugin/"
-          },
-          {
-            "title": "Creating a custom field component",
-            "id": "/docs/extending-tina/advanced/creating-field-component",
-            "slug": "/docs/extending-tina/advanced/creating-field-component/"
-          }
-        ]
-      },
-      {
-        "title": "Customizing Tina's UI",
-        "id": "/docs/extending-tina/customizing-ui",
-        "slug": "/docs/extending-tina/customizing-ui/"
       }
     ]
   },
@@ -427,6 +394,11 @@
             "slug": "/docs/media-cloudinary/"
           }
         ]
+      },
+      {
+        "title": "Tina's edit state",
+        "id": "/docs/extending-tina/edit-state",
+        "slug": "/docs/extending-tina/edit-state/"
       },
       {
         "title": "CMS Toolkit",
