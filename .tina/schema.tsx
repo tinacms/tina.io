@@ -77,6 +77,8 @@ export default defineSchema({
           type: "string",
           name: "title",
           label: "Title",
+          isTitle: true,
+          required: true,
           list: false,
           ui: {
             validate: (value) => {
@@ -226,7 +228,7 @@ export default defineSchema({
             {
               name: "CustomFieldComponentDemo",
               label: "Field Component Demo [do not use]",
-              fields: [],
+              fields: [{type: 'string', name: "test"}],
             },
           ],
         },
