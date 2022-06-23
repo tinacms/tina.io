@@ -61,81 +61,6 @@
     ]
   },
   {
-    "category": "Using the GraphQL API",
-    "slug": "/docs/graphql/overview/",
-    "items": [
-      {
-        "id": "/docs/graphql/overview/",
-        "slug": "/docs/graphql/overview/",
-        "title": "Overview"
-      },
-      {
-        "id": "/docs/graphql/cli/",
-        "slug": "/docs/graphql/cli/",
-        "title": "Running the Local GraphQL API"
-      },
-      {
-        "id": "/docs/graphql/queries/",
-        "slug": "/docs/graphql/queries/",
-        "title": "Querying the API",
-        "items": [
-          {
-            "id": "/docs/graphql/queries/get-document/",
-            "slug": "/docs/graphql/queries/get-document/",
-            "title": "Getting a Single Document"
-          },
-          {
-            "id": "/docs/graphql/queries/query-documents/",
-            "slug": "/docs/graphql/queries/query-documents/",
-            "title": "Querying a Collection",
-            "items": [
-              {
-                "id": "/docs/graphql/queries/advanced/filter-documents/",
-                "slug": "/docs/graphql/queries/advanced/filter-documents/",
-                "title": "Filtering"
-              },
-              {
-                "id": "/docs/graphql/queries/advanced/sorting/",
-                "slug": "/docs/graphql/queries/advanced/sorting/",
-                "title": "Sorting"
-              },
-              {
-                "id": "/docs/graphql/queries/advanced/pagination/",
-                "slug": "/docs/graphql/queries/advanced/pagination/",
-                "title": "Paginating"
-              },
-              {
-                "id": "/docs/graphql/queries/advanced/performance/",
-                "slug": "/docs/graphql/queries/advanced/performance/",
-                "title": "Performance"
-              },
-              {
-                "id": "/docs/graphql/queries/advanced/limitations/",
-                "slug": "/docs/graphql/queries/advanced/limitations/",
-                "title": "Limitations"
-              }
-            ]
-          },
-          {
-            "id": "/docs/graphql/queries/update-document/",
-            "slug": "/docs/graphql/queries/update-document/",
-            "title": "Updating a Document"
-          },
-          {
-            "id": "/docs/graphql/queries/add-document/",
-            "slug": "/docs/graphql/queries/add-document/",
-            "title": "Adding a Document"
-          }
-        ]
-      },
-      {
-        "id": "/docs/graphql/client/",
-        "slug": "/docs/graphql/client/",
-        "title": "Querying with the Tina Client"
-      }
-    ]
-  },
-  {
     "title": "Editing",
     "id": "/docs/editing/overview",
     "slug": "/docs/editing/overview/",
@@ -395,9 +320,78 @@
       },
       {
         "title": "Content API",
-        "id": "/docs/reference/content-api/content-delivery/",
-        "slug": "/docs/reference/content-api/content-delivery/",
+        "id": "/docs/graphql/overview/",
+        "slug": "/docs/graphql/overview/",
         "items": [
+          {
+            "id": "/docs/graphql/overview/",
+            "slug": "/docs/graphql/overview/",
+            "title": "Overview"
+          },
+          {
+            "id": "/docs/graphql/cli/",
+            "slug": "/docs/graphql/cli/",
+            "title": "Running the Local GraphQL API"
+          },
+          {
+            "id": "/docs/graphql/queries/",
+            "slug": "/docs/graphql/queries/",
+            "title": "Querying the API",
+            "items": [
+              {
+                "id": "/docs/graphql/queries/get-document/",
+                "slug": "/docs/graphql/queries/get-document/",
+                "title": "Getting a Single Document"
+              },
+              {
+                "id": "/docs/graphql/queries/query-documents/",
+                "slug": "/docs/graphql/queries/query-documents/",
+                "title": "Querying a Collection",
+                "items": [
+                  {
+                    "id": "/docs/graphql/queries/advanced/filter-documents/",
+                    "slug": "/docs/graphql/queries/advanced/filter-documents/",
+                    "title": "Filtering"
+                  },
+                  {
+                    "id": "/docs/graphql/queries/advanced/sorting/",
+                    "slug": "/docs/graphql/queries/advanced/sorting/",
+                    "title": "Sorting"
+                  },
+                  {
+                    "id": "/docs/graphql/queries/advanced/pagination/",
+                    "slug": "/docs/graphql/queries/advanced/pagination/",
+                    "title": "Paginating"
+                  },
+                  {
+                    "id": "/docs/graphql/queries/advanced/performance/",
+                    "slug": "/docs/graphql/queries/advanced/performance/",
+                    "title": "Performance"
+                  },
+                  {
+                    "id": "/docs/graphql/queries/advanced/limitations/",
+                    "slug": "/docs/graphql/queries/advanced/limitations/",
+                    "title": "Limitations"
+                  }
+                ]
+              },
+              {
+                "id": "/docs/graphql/queries/update-document/",
+                "slug": "/docs/graphql/queries/update-document/",
+                "title": "Updating a Document"
+              },
+              {
+                "id": "/docs/graphql/queries/add-document/",
+                "slug": "/docs/graphql/queries/add-document/",
+                "title": "Adding a Document"
+              }
+            ]
+          },
+          {
+            "id": "/docs/graphql/client/",
+            "slug": "/docs/graphql/client/",
+            "title": "Querying with the Tina Client"
+          },
           {
             "title": "Using Curl & Fetch",
             "id": "/docs/reference/content-api/content-delivery/",
