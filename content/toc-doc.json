@@ -69,6 +69,11 @@
         "title": "Overview",
         "id": "/docs/data-fetching/overview/",
         "slug": "/docs/data-fetching/overview/"
+      },
+      {
+        "title": "Extending the client",
+        "id": "/docs/data-fetching/extending-client/",
+        "slug": "/docs/data-fetching/extending-client/"
       }
     ]
   },
@@ -398,11 +403,6 @@
                 "title": "Adding a Document"
               }
             ]
-          },
-          {
-            "id": "/docs/graphql/client/",
-            "slug": "/docs/graphql/client/",
-            "title": "Querying with the Tina Client"
           },
           {
             "title": "Using Curl & Fetch",

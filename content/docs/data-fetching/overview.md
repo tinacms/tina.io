@@ -2,7 +2,7 @@
 title: Querying content
 id: '/docs/data-fetching/overview'
 prev: null
-next: /docs/extending-tina/validation
+next: /docs/data-fetching/extending-client
 ---
 
 ## Introduction
@@ -10,6 +10,8 @@ next: /docs/extending-tina/validation
 As mentioned in the [Introduction to Data fetching doc](/docs/features/data-fetching/), Tina provides a client for querying content.
 
 > Note, for advanced use-cases, you can also manually query the underlying [GraphQL API](http://localhost:3000/docs/graphql/overview/).
+
+One caveat to using the built-in queries on the client is that it **does not resolve references**. To resolve a reference you will have to [write your own queries](#extending-the-client).
 
 ## Querying a single document
 
