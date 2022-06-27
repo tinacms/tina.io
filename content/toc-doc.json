@@ -61,6 +61,18 @@
     ]
   },
   {
+    "title": "Querying content",
+    "id": "/docs/data-fetching/overview/",
+    "slug": "/docs/data-fetching/overview/",
+    "items": [
+      {
+        "title": "Overview",
+        "id": "/docs/data-fetching/overview/",
+        "slug": "/docs/data-fetching/overview/"
+      }
+    ]
+  },
+  {
     "title": "Editing",
     "id": "/docs/editing/overview",
     "slug": "/docs/editing/overview/",
