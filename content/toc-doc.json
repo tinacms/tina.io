@@ -385,9 +385,19 @@
       },
       {
         "title": "Media",
-        "id": "/docs/media-cloudinary/",
-        "slug": "/docs/media-cloudinary/",
+        "id": "/docs/reference/media/overview/",
+        "slug": "/docs/reference/media/overview/",
         "items": [
+          {
+            "title": "Overview",
+            "id": "/docs/reference/media/overview/",
+            "slug": "/docs/reference/media/overview/"
+          },
+          {
+            "title": "Repo-based Media",
+            "id": "/docs/reference/media/repo-based/",
+            "slug": "/docs/reference/media/repo-based/"
+          },
           {
             "title": "Cloudinary",
             "id": "/docs/media-cloudinary/",
