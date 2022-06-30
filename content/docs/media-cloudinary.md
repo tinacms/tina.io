@@ -26,22 +26,29 @@ CLOUDINARY_API_SECRET=<Your Cloudinary API secret>
 
 ## Register the Media Store
 
-Now, you can register the Cloudinary Media store with the instance of Tina in your app by passing the `TinaCloudCloudinaryMediaStore` to the `TinaCMS` instance via its `mediaStore` prop.
+Now, you can replace the default repo-based media with the external media store. You can register the Cloudinary Media store via the `loadCustomStore` prop.
 
-The `mediaOptions` prop can be configured within `.tina/schema.ts`.
+The `loadCustomStore` prop can be configured within `.tina/schema.ts`.
 
 ```diff
 // .tina/schema.ts
 
 // ...
 
-export config = defineConfig({
-  apiURL,
-+ mediaStore: async () => {
-+   // Load media store dynamically so it only loads in edit mode
-+   const pack = await import("next-tinacms-cloudinary");
-+   return pack.TinaCloudCloudinaryMediaStore;
-+ }
+export default defineSchema({
+  // ...
+  config: {
+     media: {
+-       tina: {
+-         publicFolder: "",
+-         mediaRoot: ""
+-       },
++       loadCustomStore: async () => {
++         const pack = await import("next-tinacms-cloudinary");
++         return pack.TinaCloudCloudinaryMediaStore;
++       },
+     }
+  },
 })
 ```
 
