@@ -31,7 +31,7 @@ const schema = defineSchema(
 
 The path to your site's "public" folder. This path is relative to your project's root.
 
-E.g, in our [tina-cloud-starter](https://github.com/tinacms/tina-cloud-starter/tree/main/public), this value would be `"public"`
+E.g, For any NextJS site, (such as our [tina-cloud-starter](https://github.com/tinacms/tina-cloud-starter/tree/main/public)), this value would be `"public"`
 
 ### `mediaRoot`
 
@@ -61,3 +61,10 @@ In your `.tina/schema.ts` add a new `image` field to a collection, e.g:
 When your editors add an image to a document, the value that is saved will be a relative path:
 
 `"/<mediaRoot>/<imgName>"`
+
+## Branching Caveats
+
+Repo-based media is designed to be used around a single-branch workflow. If your project is using the [experimental branching plugin](https://tina.io/docs/tina-cloud/branching/), there's some known caveats to be aware of.
+
+- If you only have a single branch with media enabled, the media store will source/upload images to/from that branch.
+- If you have multiple branches with media enabled, then all media will be sourced/uploaded to/from the repository's default branch.
