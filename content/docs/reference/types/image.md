@@ -10,7 +10,7 @@ type ImageField = {
   label: string
   name: string
   type: 'image'
- /** See https://tina.io/docs/extending-tina/overview/ for customizing the UI **/
+  /** See https://tina.io/docs/extending-tina/overview/ for customizing the UI **/
   ui?: {
     label?: string
     description?: string
@@ -31,27 +31,26 @@ type ImageField = {
 
 ```ts
 const schema = defineSchema({
-    collections: [
-      {
-       name: "posts",
-       label: "Blog Posts",
-       path: "content/posts",
-       format: "mdx",
-       fields: [
-         {
-           type: 'image',
-           label: 'Hero image',
-           name: 'imgSrc',
-         },
-         // ... other fields
-       ],
-      },
-    ]
-}) 
+  collections: [
+    {
+      name: 'posts',
+      label: 'Blog Posts',
+      path: 'content/posts',
+      format: 'mdx',
+      fields: [
+        {
+          type: 'image',
+          label: 'Hero image',
+          name: 'imgSrc',
+        },
+        // ... other fields
+      ],
+    },
+  ],
+})
 // ...
 
 export default schema
-
 ```
 
-Please see [the media docs](/docs/media-cloudinary/) for how to set up media in your site.
+Please see [the media docs](/docs/reference/media/cloudinary/) for how to set up media in your site.

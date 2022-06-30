@@ -395,7 +395,7 @@
     },
     {
       "source": "/docs/media/",
-      "destination": "/docs/media-cloudinary/"
+      "destination": "/docs/reference/media/"
     },
     {
       "source": "/docs/apis/",
@@ -508,6 +508,10 @@
     {
       "source": "/docs/advanced/edit-state/",
       "destination": "/docs/extending-tina/edit-state/"
+    },
+    {
+      "source": "/docs/media-cloudinary/",
+      "destination": "/docs/reference/media/cloudinary/"
     }
   ]
 }
