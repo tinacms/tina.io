@@ -7,7 +7,7 @@ next: /docs/reference/media/cloudinary
 
 Repo-based media storage is the default media storage solution for TinaCMS.
 
-## Congfiguration
+## Configuration
 
 To configure repo-based media in your project, add the following to your schema definition in `.tina/schema.ts`
 
