@@ -42,10 +42,6 @@ const posts = postResponse.data.postConnection.edges.map(x => {
 // This would return an array like: [ { slug: 'HelloWorld.md'}, /*...*/ ]
 ```
 
-Here's an example of how the data-fetching for a basic "post" ties together with the content modelling (defined in `schema.ts`).
-
-<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/basic" />
-
 > For more information on manually writing queries for your specific schema, check out our ["Using the GraphQL API"](/docs/graphql/overview/) docs.
 
 ## The Local Filesystem-based Content API
