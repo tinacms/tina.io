@@ -93,54 +93,18 @@ export default function MyPage(props) {
   )
 }
 
-// See /docs/features/data-fetching/ for more info on our getStaticProps/getStaticPaths data-fetching with NextJS
-export const getStaticPaths = async () => {
-  const tinaProps = await staticRequest({
-    query: `{
-        postConnection {
-          edges {
-            node {
-              _sys {
-                filename
-              }
-            }
-          }
-        }
-      }`,
-    variables: {},
-  })
-  const paths = tinaProps.postConnection.edges.map(x => {
-    return { params: { slug: x.node._sys.filename } }
-  })
-
-  return {
-    paths,
-    fallback: 'blocking',
-  }
-}
-
 export const getStaticProps = async ctx => {
-  const query = `query Post($relativePath: String!) {
-    post(relativePath: $relativePath) {
-      body
-    }
-  }
-  `
-  const variables = {
-    relativePath: ctx.params.slug + '.mdx',
-  }
-  let data = {}
+  // See https://tina.io/guides/tinacms/nextjs-data-fetching/guide/ for more info on our getStaticProps/getStaticPaths data-fetching with NextJS
 
-  data = await staticRequest({
-    query,
-    variables,
+  const postResponse = await client.queries.post({
+    relativePath: 'hello-world.md',
   })
 
   return {
     props: {
-      data,
-      query,
-      variables,
+      data: postResponse.data,
+      query: postResponse.query,
+      variables: postResponse.variables,
     },
   }
 }

@@ -7,8 +7,6 @@ last_edited: '2022-04-08T10:00:00.000Z'
 
 In NextJS, content can be queried statically at build-time or dynamically at runtime (using [SSR](https://nextjs.org/docs/basic-features/data-fetching/get-server-side-props), or [CSR](https://nextjs.org/docs/basic-features/data-fetching/client-side)).
 
-For build-time queries, Tina provides a `staticRequest` helper function, which makes a request to your locally-running GraphQL server.
-
 ### Example: Fetching content through getStaticProps
 
 ```tsx
