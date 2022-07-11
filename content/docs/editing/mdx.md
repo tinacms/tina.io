@@ -73,7 +73,7 @@ Since the value for `rich-text` is a structured `object` instead of a `string`, 
 ```ts
 // [slug].js
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
-import { staticRequest } from 'tinacms'
+import { client } from '../pathToTina/.tina/client'
 
 // The `props` here are based off our custom "Cta" MDX component
 const Cta = props => {
