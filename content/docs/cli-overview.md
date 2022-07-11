@@ -97,3 +97,11 @@ Takes the following options,
 For sites with Tina Cloud configured and `--experimentalData` enabled, `server:waitForDB` will block startup until the data layer's indexing process responds with `complete` or `failed`. For `complete`, any subprocess will be run. For `failed`, an error message will be displayed and startup will exit.
 
 > [Read here](https://tina.io/docs/tina-cloud/data-layer/#indexing) to learn more about indexing.
+
+#### Optional parameters
+
+| Argument             | Description                                                                                                                                                             |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-c`                 | `-c` allows you to run a command as a child process. For example, you could run your next project alongside the graphQL server `yarn tinacms server:start -c next dev`. |
+| `--experimentalData` | Enables the experimental [data layer](/docs/tina-cloud/data-layer/)                                                                                                     |
+| `--noTelemetry`      | Disables Open Source Telemetry                                                                                                                                          |
