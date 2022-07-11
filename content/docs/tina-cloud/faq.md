@@ -61,6 +61,8 @@ Here's an example monorepo structure that works with Tina Cloud:
     /projects/site-c
 ```
 
+See [Path To Tina](/docs/tina-cloud/dashboard/projects/#path-to-tina) for more information.
+
 ## How do I resolve the `Unable to find record '.tina/__generated__/_graphql.json'` error?
 
 Tina Cloud's GraphQL API returns this error when it cannot find a file in your GitHub repository. This may occur under the following circumstances:
