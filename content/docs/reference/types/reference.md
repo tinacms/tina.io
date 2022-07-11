@@ -9,7 +9,7 @@ The `reference` field allows a "parent" document to connect to another document 
 
 Once defined, the values of the *referenced* document become available to the parent.
 
-> Note: `reference` with `list: true` is not currently supported
+> Note: `reference` with `list: true` is not currently supported. See the "Temporary work around" section of [issue #2056](https://github.com/tinacms/tinacms/issues/2056) for a suggested approach to achieve a similar result
 
 ## Object Definition
 ```ts

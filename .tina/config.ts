@@ -8,8 +8,7 @@ export const tinaConfig = defineConfig({
     import('react-tinacms-editor').then(({ MarkdownFieldPlugin }) => {
       cms.plugins.add(MarkdownFieldPlugin)
     })
-    cms.flags.set('tina-admin', true)
-    cms.flags.set('rich-text-alt', true)
+    cms.flags.set('experimentalData', true)
     cms.flags.set('branch-switcher', true)
 
     import('tinacms').then(({ RouteMappingPlugin }) => {
