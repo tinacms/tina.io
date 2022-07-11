@@ -71,9 +71,9 @@
         "slug": "/docs/data-fetching/overview/"
       },
       {
-        "title": "Extending the client",
-        "id": "/docs/data-fetching/extending-client/",
-        "slug": "/docs/data-fetching/extending-client/"
+        "title": "Writing custom queries",
+        "id": "/docs/data-fetching/custom-queries/",
+        "slug": "/docs/data-fetching/custom-queries/"
       }
     ]
   },

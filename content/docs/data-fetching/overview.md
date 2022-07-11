@@ -2,7 +2,7 @@
 title: Querying content
 id: '/docs/data-fetching/overview'
 prev: null
-next: /docs/data-fetching/extending-client
+next: /docs/data-fetching/custom-queries
 ---
 
 ## Introduction
@@ -10,8 +10,6 @@ next: /docs/data-fetching/extending-client
 As mentioned in the [Introduction to Data fetching doc](/docs/features/data-fetching/), Tina provides a client for querying content.
 
 > Note, for advanced use-cases, you can also manually query the underlying [GraphQL API](http://localhost:3000/docs/graphql/overview/).
-
-One caveat to using the built-in queries on the client is that it **does not resolve references**. To resolve a reference you will have to [write your own queries](#extending-the-client).
 
 ## Querying a single document
 
@@ -103,4 +101,4 @@ const postsResponse = await client.queries.postConnection({
 // ...
 ```
 
-For more information, check out the [querying reference docs](/docs/graphql/queries/)
+One caveat to using the built-in queries on the client is that it **you can only query one root collection at a time**. If you have a page that has multiple forms on it, you may need to [write your own queries](/docs/data-fetching/custom-queries/).
