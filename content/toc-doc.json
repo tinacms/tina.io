@@ -71,9 +71,9 @@
         "slug": "/docs/data-fetching/overview/"
       },
       {
-        "title": "Extending the client",
-        "id": "/docs/data-fetching/extending-client/",
-        "slug": "/docs/data-fetching/extending-client/"
+        "title": "Writing custom queries",
+        "id": "/docs/data-fetching/custom-queries/",
+        "slug": "/docs/data-fetching/custom-queries/"
       }
     ]
   },
@@ -193,12 +193,6 @@
         "id": "/docs/tina-cloud/branching/",
         "slug": "/docs/tina-cloud/branching/",
         "title": "Branching",
-        "beta": true
-      },
-      {
-        "id": "/docs/tina-cloud/data-layer/",
-        "slug": "/docs/tina-cloud/data-layer/",
-        "title": "Data Layer",
         "beta": true
       }
     ]
@@ -332,13 +326,23 @@
       },
       {
         "title": "Media",
-        "id": "/docs/media-cloudinary/",
-        "slug": "/docs/media-cloudinary/",
+        "id": "/docs/reference/media/overview/",
+        "slug": "/docs/reference/media/overview/",
         "items": [
           {
+            "title": "Overview",
+            "id": "/docs/reference/media/overview/",
+            "slug": "/docs/reference/media/overview/"
+          },
+          {
+            "title": "Repo-based Media",
+            "id": "/docs/reference/media/repo-based/",
+            "slug": "/docs/reference/media/repo-based/"
+          },
+          {
             "title": "Cloudinary",
-            "id": "/docs/media-cloudinary/",
-            "slug": "/docs/media-cloudinary/"
+            "id": "/docs/reference/media/cloudinary/",
+            "slug": "/docs/reference/media/cloudinary/"
           }
         ]
       },
@@ -415,6 +419,11 @@
             "title": "Using Curl & Fetch",
             "id": "/docs/reference/content-api/content-delivery/",
             "slug": "/docs/reference/content-api/content-delivery/"
+          },
+          {
+            "id": "/docs/reference/content-api/data-layer/",
+            "slug": "/docs/reference/content-api/data-layer/",
+            "title": "Data Layer"
           }
         ]
       },

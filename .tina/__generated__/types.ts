@@ -114,6 +114,7 @@ export type QueryPageConnectionArgs = {
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
   sort?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<PageFilter>;
 };
 
 
@@ -128,6 +129,7 @@ export type QueryPostConnectionArgs = {
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
   sort?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<PostFilter>;
 };
 
 
@@ -142,6 +144,13 @@ export type QueryAbtestConnectionArgs = {
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
   sort?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<AbtestFilter>;
+};
+
+export type DocumentFilter = {
+  page?: InputMaybe<PageFilter>;
+  post?: InputMaybe<PostFilter>;
+  abtest?: InputMaybe<AbtestFilter>;
 };
 
 export type DocumentConnectionEdges = {
@@ -177,6 +186,7 @@ export type CollectionDocumentsArgs = {
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
   sort?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<DocumentFilter>;
 };
 
 export type DocumentNode = Page | Post | Abtest;
@@ -403,6 +413,300 @@ export type Page = Node & Document & {
   _values: Scalars['JSON'];
 };
 
+export type StringFilter = {
+  startsWith?: InputMaybe<Scalars['String']>;
+  eq?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type PageSeoFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+};
+
+export type BooleanFilter = {
+  eq?: InputMaybe<Scalars['Boolean']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type PageBlocksHeroActionsFilter = {
+  label?: InputMaybe<StringFilter>;
+  icon?: InputMaybe<BooleanFilter>;
+  variant?: InputMaybe<StringFilter>;
+  url?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksHeroFilter = {
+  headline?: InputMaybe<StringFilter>;
+  text?: InputMaybe<StringFilter>;
+  actions?: InputMaybe<PageBlocksHeroActionsFilter>;
+  videoSrc?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksFeaturesItemsFeatureMediaFilter = {
+  src?: InputMaybe<StringFilter>;
+  videoSrc?: InputMaybe<StringFilter>;
+  cli?: InputMaybe<BooleanFilter>;
+};
+
+export type PageBlocksFeaturesItemsFeatureActionsFilter = {
+  label?: InputMaybe<StringFilter>;
+  icon?: InputMaybe<BooleanFilter>;
+  variant?: InputMaybe<StringFilter>;
+  url?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksFeaturesItemsFeatureFilter = {
+  headline?: InputMaybe<StringFilter>;
+  text?: InputMaybe<StringFilter>;
+  media?: InputMaybe<PageBlocksFeaturesItemsFeatureMediaFilter>;
+  actions?: InputMaybe<PageBlocksFeaturesItemsFeatureActionsFilter>;
+};
+
+export type PageBlocksFeaturesItemsFilter = {
+  feature?: InputMaybe<PageBlocksFeaturesItemsFeatureFilter>;
+};
+
+export type PageBlocksFeaturesFilter = {
+  items?: InputMaybe<PageBlocksFeaturesItemsFilter>;
+};
+
+export type PageBlocksFlyingActionsFilter = {
+  label?: InputMaybe<StringFilter>;
+  icon?: InputMaybe<BooleanFilter>;
+  variant?: InputMaybe<StringFilter>;
+  url?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksFlyingFilter = {
+  headline?: InputMaybe<StringFilter>;
+  text?: InputMaybe<StringFilter>;
+  actions?: InputMaybe<PageBlocksFlyingActionsFilter>;
+};
+
+export type RichTextFilter = {
+  startsWith?: InputMaybe<Scalars['String']>;
+  eq?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type PageBlocksPricingTierOneActionsFilter = {
+  label?: InputMaybe<StringFilter>;
+  icon?: InputMaybe<BooleanFilter>;
+  variant?: InputMaybe<StringFilter>;
+  url?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksPricingTierOneFilter = {
+  name?: InputMaybe<StringFilter>;
+  price?: InputMaybe<StringFilter>;
+  interval?: InputMaybe<StringFilter>;
+  body?: InputMaybe<RichTextFilter>;
+  large?: InputMaybe<BooleanFilter>;
+  actions?: InputMaybe<PageBlocksPricingTierOneActionsFilter>;
+};
+
+export type PageBlocksPricingTierTwoActionsFilter = {
+  label?: InputMaybe<StringFilter>;
+  icon?: InputMaybe<BooleanFilter>;
+  variant?: InputMaybe<StringFilter>;
+  url?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksPricingTierTwoFilter = {
+  name?: InputMaybe<StringFilter>;
+  price?: InputMaybe<StringFilter>;
+  interval?: InputMaybe<StringFilter>;
+  body?: InputMaybe<RichTextFilter>;
+  large?: InputMaybe<BooleanFilter>;
+  actions?: InputMaybe<PageBlocksPricingTierTwoActionsFilter>;
+};
+
+export type PageBlocksPricingTierThreeActionsFilter = {
+  label?: InputMaybe<StringFilter>;
+  icon?: InputMaybe<BooleanFilter>;
+  variant?: InputMaybe<StringFilter>;
+  url?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksPricingTierThreeFilter = {
+  name?: InputMaybe<StringFilter>;
+  price?: InputMaybe<StringFilter>;
+  interval?: InputMaybe<StringFilter>;
+  body?: InputMaybe<RichTextFilter>;
+  large?: InputMaybe<BooleanFilter>;
+  actions?: InputMaybe<PageBlocksPricingTierThreeActionsFilter>;
+};
+
+export type PageBlocksPricingTierFourActionsFilter = {
+  label?: InputMaybe<StringFilter>;
+  icon?: InputMaybe<BooleanFilter>;
+  variant?: InputMaybe<StringFilter>;
+  url?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksPricingTierFourFilter = {
+  name?: InputMaybe<StringFilter>;
+  price?: InputMaybe<StringFilter>;
+  interval?: InputMaybe<StringFilter>;
+  body?: InputMaybe<RichTextFilter>;
+  large?: InputMaybe<BooleanFilter>;
+  actions?: InputMaybe<PageBlocksPricingTierFourActionsFilter>;
+};
+
+export type PageBlocksPricingFilter = {
+  intro?: InputMaybe<RichTextFilter>;
+  tierOne?: InputMaybe<PageBlocksPricingTierOneFilter>;
+  segue?: InputMaybe<RichTextFilter>;
+  tierTwo?: InputMaybe<PageBlocksPricingTierTwoFilter>;
+  tierThree?: InputMaybe<PageBlocksPricingTierThreeFilter>;
+  tierFour?: InputMaybe<PageBlocksPricingTierFourFilter>;
+};
+
+export type PageBlocksFaqQuestionsFilter = {
+  question?: InputMaybe<StringFilter>;
+  answer?: InputMaybe<RichTextFilter>;
+};
+
+export type PageBlocksFaqFilter = {
+  title?: InputMaybe<StringFilter>;
+  intro?: InputMaybe<RichTextFilter>;
+  questions?: InputMaybe<PageBlocksFaqQuestionsFilter>;
+  color?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksContentOptionsFilter = {
+  narrow?: InputMaybe<BooleanFilter>;
+  color?: InputMaybe<StringFilter>;
+  align?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksContentContentActionsFilter = {
+  label?: InputMaybe<StringFilter>;
+  icon?: InputMaybe<BooleanFilter>;
+  variant?: InputMaybe<StringFilter>;
+  url?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksContentContentSocialFilter = {
+  tina?: InputMaybe<StringFilter>;
+  discord?: InputMaybe<StringFilter>;
+  github?: InputMaybe<StringFilter>;
+  twitter?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksContentContentNewsletterFilter = {
+  style?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksContentContentFilter = {
+  actions?: InputMaybe<PageBlocksContentContentActionsFilter>;
+  social?: InputMaybe<PageBlocksContentContentSocialFilter>;
+  newsletter?: InputMaybe<PageBlocksContentContentNewsletterFilter>;
+};
+
+export type PageBlocksContentFilter = {
+  options?: InputMaybe<PageBlocksContentOptionsFilter>;
+  content?: InputMaybe<PageBlocksContentContentFilter>;
+};
+
+export type PageBlocksShowcaseItemsProjectMediaFilter = {
+  src?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksShowcaseItemsProjectFilter = {
+  headline?: InputMaybe<StringFilter>;
+  text?: InputMaybe<StringFilter>;
+  url?: InputMaybe<StringFilter>;
+  media?: InputMaybe<PageBlocksShowcaseItemsProjectMediaFilter>;
+};
+
+export type PageBlocksShowcaseItemsFilter = {
+  project?: InputMaybe<PageBlocksShowcaseItemsProjectFilter>;
+};
+
+export type PageBlocksShowcaseFilter = {
+  items?: InputMaybe<PageBlocksShowcaseItemsFilter>;
+};
+
+export type PageBlocksColumnsOptionsFilter = {
+  columns?: InputMaybe<StringFilter>;
+  narrow?: InputMaybe<BooleanFilter>;
+  color?: InputMaybe<StringFilter>;
+  align?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksColumnsColumnOneActionsFilter = {
+  label?: InputMaybe<StringFilter>;
+  icon?: InputMaybe<BooleanFilter>;
+  variant?: InputMaybe<StringFilter>;
+  url?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksColumnsColumnOneSocialFilter = {
+  tina?: InputMaybe<StringFilter>;
+  discord?: InputMaybe<StringFilter>;
+  github?: InputMaybe<StringFilter>;
+  twitter?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksColumnsColumnOneNewsletterFilter = {
+  style?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksColumnsColumnOneFilter = {
+  actions?: InputMaybe<PageBlocksColumnsColumnOneActionsFilter>;
+  social?: InputMaybe<PageBlocksColumnsColumnOneSocialFilter>;
+  newsletter?: InputMaybe<PageBlocksColumnsColumnOneNewsletterFilter>;
+};
+
+export type PageBlocksColumnsColumnTwoActionsFilter = {
+  label?: InputMaybe<StringFilter>;
+  icon?: InputMaybe<BooleanFilter>;
+  variant?: InputMaybe<StringFilter>;
+  url?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksColumnsColumnTwoSocialFilter = {
+  tina?: InputMaybe<StringFilter>;
+  discord?: InputMaybe<StringFilter>;
+  github?: InputMaybe<StringFilter>;
+  twitter?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksColumnsColumnTwoNewsletterFilter = {
+  style?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksColumnsColumnTwoFilter = {
+  actions?: InputMaybe<PageBlocksColumnsColumnTwoActionsFilter>;
+  social?: InputMaybe<PageBlocksColumnsColumnTwoSocialFilter>;
+  newsletter?: InputMaybe<PageBlocksColumnsColumnTwoNewsletterFilter>;
+};
+
+export type PageBlocksColumnsFilter = {
+  options?: InputMaybe<PageBlocksColumnsOptionsFilter>;
+  columnOne?: InputMaybe<PageBlocksColumnsColumnOneFilter>;
+  columnTwo?: InputMaybe<PageBlocksColumnsColumnTwoFilter>;
+};
+
+export type PageBlocksFilter = {
+  hero?: InputMaybe<PageBlocksHeroFilter>;
+  features?: InputMaybe<PageBlocksFeaturesFilter>;
+  flying?: InputMaybe<PageBlocksFlyingFilter>;
+  pricing?: InputMaybe<PageBlocksPricingFilter>;
+  faq?: InputMaybe<PageBlocksFaqFilter>;
+  content?: InputMaybe<PageBlocksContentFilter>;
+  showcase?: InputMaybe<PageBlocksShowcaseFilter>;
+  columns?: InputMaybe<PageBlocksColumnsFilter>;
+};
+
+export type PageFilter = {
+  seo?: InputMaybe<PageSeoFilter>;
+  blocks?: InputMaybe<PageBlocksFilter>;
+};
+
 export type PageConnectionEdges = {
   __typename?: 'PageConnectionEdges';
   cursor: Scalars['String'];
@@ -422,7 +726,7 @@ export type PostNext = Post;
 
 export type Post = Node & Document & {
   __typename?: 'Post';
-  title?: Maybe<Scalars['String']>;
+  title: Scalars['String'];
   date?: Maybe<Scalars['String']>;
   last_edited?: Maybe<Scalars['String']>;
   author?: Maybe<Scalars['String']>;
@@ -432,6 +736,87 @@ export type Post = Node & Document & {
   id: Scalars['ID'];
   _sys: SystemInfo;
   _values: Scalars['JSON'];
+};
+
+export type DatetimeFilter = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  eq?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type PostPrevFilter = {
+  post?: InputMaybe<PostFilter>;
+};
+
+export type PostNextFilter = {
+  post?: InputMaybe<PostFilter>;
+};
+
+export type PostBodyYoutubeFilter = {
+  embedSrc?: InputMaybe<StringFilter>;
+};
+
+export type NumberFilter = {
+  lt?: InputMaybe<Scalars['Float']>;
+  lte?: InputMaybe<Scalars['Float']>;
+  gte?: InputMaybe<Scalars['Float']>;
+  gt?: InputMaybe<Scalars['Float']>;
+  eq?: InputMaybe<Scalars['Float']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
+};
+
+export type PostBodyIframeFilter = {
+  iframeSrc?: InputMaybe<StringFilter>;
+  height?: InputMaybe<NumberFilter>;
+};
+
+export type PostBodyCreateAppCtaFilter = {
+  ctaText?: InputMaybe<StringFilter>;
+  cliText?: InputMaybe<StringFilter>;
+};
+
+export type PostBodyCalloutFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  url?: InputMaybe<StringFilter>;
+  buttonText?: InputMaybe<StringFilter>;
+};
+
+export type PostBodyCodesandboxFilter = {
+  embedSrc?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type PostBodyDiagramFilter = {
+  src?: InputMaybe<StringFilter>;
+  alt?: InputMaybe<StringFilter>;
+};
+
+export type PostBodyCustomFieldComponentDemoFilter = {
+  test?: InputMaybe<StringFilter>;
+};
+
+export type PostBodyFilter = {
+  Youtube?: InputMaybe<PostBodyYoutubeFilter>;
+  Iframe?: InputMaybe<PostBodyIframeFilter>;
+  CreateAppCta?: InputMaybe<PostBodyCreateAppCtaFilter>;
+  Callout?: InputMaybe<PostBodyCalloutFilter>;
+  Codesandbox?: InputMaybe<PostBodyCodesandboxFilter>;
+  Diagram?: InputMaybe<PostBodyDiagramFilter>;
+  CustomFieldComponentDemo?: InputMaybe<PostBodyCustomFieldComponentDemoFilter>;
+};
+
+export type PostFilter = {
+  title?: InputMaybe<StringFilter>;
+  date?: InputMaybe<DatetimeFilter>;
+  last_edited?: InputMaybe<DatetimeFilter>;
+  author?: InputMaybe<StringFilter>;
+  prev?: InputMaybe<PostPrevFilter>;
+  next?: InputMaybe<PostNextFilter>;
+  body?: InputMaybe<PostBodyFilter>;
 };
 
 export type PostConnectionEdges = {
@@ -466,6 +851,21 @@ export type Abtest = Node & Document & {
   id: Scalars['ID'];
   _sys: SystemInfo;
   _values: Scalars['JSON'];
+};
+
+export type AbtestTestsVariantsFilter = {
+  testId?: InputMaybe<StringFilter>;
+  href?: InputMaybe<StringFilter>;
+};
+
+export type AbtestTestsFilter = {
+  testId?: InputMaybe<StringFilter>;
+  href?: InputMaybe<StringFilter>;
+  variants?: InputMaybe<AbtestTestsVariantsFilter>;
+};
+
+export type AbtestFilter = {
+  tests?: InputMaybe<AbtestTestsFilter>;
 };
 
 export type AbtestConnectionEdges = {
@@ -798,11 +1198,11 @@ export type GetExpandedPostDocumentQueryVariables = Exact<{
 }>;
 
 
-export type GetExpandedPostDocumentQuery = { __typename?: 'Query', post: { __typename?: 'Post', id: string, title?: string | null, date?: string | null, last_edited?: string | null, author?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, prev?: { __typename?: 'Post', id: string, title?: string | null } | null, next?: { __typename?: 'Post', id: string, title?: string | null } | null } };
+export type GetExpandedPostDocumentQuery = { __typename?: 'Query', post: { __typename?: 'Post', id: string, title: string, date?: string | null, last_edited?: string | null, author?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, prev?: { __typename?: 'Post', id: string, title: string } | null, next?: { __typename?: 'Post', id: string, title: string } | null } };
 
 export type PagePartsFragment = { __typename?: 'Page', seo?: { __typename: 'PageSeo', title?: string | null, description?: string | null } | null, blocks?: Array<{ __typename: 'PageBlocksHero', headline?: string | null, text?: string | null, videoSrc?: string | null, actions?: Array<{ __typename: 'PageBlocksHeroActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksFeatures', items?: Array<{ __typename: 'PageBlocksFeaturesItemsFeature', headline?: string | null, text?: string | null, media?: { __typename: 'PageBlocksFeaturesItemsFeatureMedia', src?: string | null, videoSrc?: string | null, cli?: boolean | null } | null, actions?: Array<{ __typename: 'PageBlocksFeaturesItemsFeatureActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null> | null } | { __typename: 'PageBlocksFlying', headline?: string | null, text?: string | null, actions?: Array<{ __typename: 'PageBlocksFlyingActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksPricing', intro?: any | null, segue?: any | null, tierOne?: { __typename: 'PageBlocksPricingTierOne', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierOneActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null, tierTwo?: { __typename: 'PageBlocksPricingTierTwo', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierTwoActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null, tierThree?: { __typename: 'PageBlocksPricingTierThree', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierThreeActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null, tierFour?: { __typename: 'PageBlocksPricingTierFour', name?: string | null, price?: string | null, interval?: string | null, body?: any | null, large?: boolean | null, actions?: Array<{ __typename: 'PageBlocksPricingTierFourActions', label?: string | null, icon?: boolean | null, variant?: string | null, url?: string | null } | null> | null } | null } | { __typename: 'PageBlocksFaq', title?: string | null, intro?: any | null, color?: string | null, questions?: Array<{ __typename: 'PageBlocksFaqQuestions', question?: string | null, answer?: any | null } | null> | null } | { __typename: 'PageBlocksContent', content?: any | null, options?: { __typename: 'PageBlocksContentOptions', narrow?: boolean | null, color?: string | null, align?: string | null } | null } | { __typename: 'PageBlocksShowcase', items?: Array<{ __typename: 'PageBlocksShowcaseItemsProject', headline?: string | null, text?: string | null, url?: string | null, media?: { __typename: 'PageBlocksShowcaseItemsProjectMedia', src?: string | null } | null } | null> | null } | { __typename: 'PageBlocksColumns', columnOne?: any | null, columnTwo?: any | null, options?: { __typename: 'PageBlocksColumnsOptions', columns?: string | null, narrow?: boolean | null, color?: string | null, align?: string | null } | null } | null> | null };
 
-export type PostPartsFragment = { __typename?: 'Post', title?: string | null, date?: string | null, last_edited?: string | null, author?: string | null, body?: any | null, prev?: { __typename?: 'Post', id: string } | null, next?: { __typename?: 'Post', id: string } | null };
+export type PostPartsFragment = { __typename?: 'Post', title: string, date?: string | null, last_edited?: string | null, author?: string | null, body?: any | null, prev?: { __typename?: 'Post', id: string } | null, next?: { __typename?: 'Post', id: string } | null };
 
 export type AbtestPartsFragment = { __typename?: 'Abtest', tests?: Array<{ __typename: 'AbtestTests', testId?: string | null, href?: string | null, variants?: Array<{ __typename: 'AbtestTestsVariants', testId?: string | null, href?: string | null } | null> | null } | null> | null };
 
@@ -819,6 +1219,7 @@ export type PageConnectionQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
   sort?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<PageFilter>;
 }>;
 
 
@@ -829,7 +1230,7 @@ export type PostQueryVariables = Exact<{
 }>;
 
 
-export type PostQuery = { __typename?: 'Query', post: { __typename?: 'Post', id: string, title?: string | null, date?: string | null, last_edited?: string | null, author?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, prev?: { __typename?: 'Post', id: string } | null, next?: { __typename?: 'Post', id: string } | null } };
+export type PostQuery = { __typename?: 'Query', post: { __typename?: 'Post', id: string, title: string, date?: string | null, last_edited?: string | null, author?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, prev?: { __typename?: 'Post', id: string } | null, next?: { __typename?: 'Post', id: string } | null } };
 
 export type PostConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']>;
@@ -837,10 +1238,11 @@ export type PostConnectionQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
   sort?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<PostFilter>;
 }>;
 
 
-export type PostConnectionQuery = { __typename?: 'Query', postConnection: { __typename?: 'PostConnection', totalCount: number, edges?: Array<{ __typename?: 'PostConnectionEdges', node?: { __typename?: 'Post', id: string, title?: string | null, date?: string | null, last_edited?: string | null, author?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, prev?: { __typename?: 'Post', id: string } | null, next?: { __typename?: 'Post', id: string } | null } | null } | null> | null } };
+export type PostConnectionQuery = { __typename?: 'Query', postConnection: { __typename?: 'PostConnection', totalCount: number, edges?: Array<{ __typename?: 'PostConnectionEdges', node?: { __typename?: 'Post', id: string, title: string, date?: string | null, last_edited?: string | null, author?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, prev?: { __typename?: 'Post', id: string } | null, next?: { __typename?: 'Post', id: string } | null } | null } | null> | null } };
 
 export type AbtestQueryVariables = Exact<{
   relativePath: Scalars['String'];
@@ -855,6 +1257,7 @@ export type AbtestConnectionQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
   sort?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<AbtestFilter>;
 }>;
 
 
@@ -1109,13 +1512,14 @@ export const PageDocument = gql`
 }
     ${PagePartsFragmentDoc}`;
 export const PageConnectionDocument = gql`
-    query pageConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
+    query pageConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: PageFilter) {
   pageConnection(
     before: $before
     after: $after
     first: $first
     last: $last
     sort: $sort
+    filter: $filter
   ) {
     totalCount
     edges {
@@ -1156,13 +1560,14 @@ export const PostDocument = gql`
 }
     ${PostPartsFragmentDoc}`;
 export const PostConnectionDocument = gql`
-    query postConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
+    query postConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: PostFilter) {
   postConnection(
     before: $before
     after: $after
     first: $first
     last: $last
     sort: $sort
+    filter: $filter
   ) {
     totalCount
     edges {
@@ -1203,13 +1608,14 @@ export const AbtestDocument = gql`
 }
     ${AbtestPartsFragmentDoc}`;
 export const AbtestConnectionDocument = gql`
-    query abtestConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
+    query abtestConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: AbtestFilter) {
   abtestConnection(
     before: $before
     after: $after
     first: $first
     last: $last
     sort: $sort
+    filter: $filter
   ) {
     totalCount
     edges {

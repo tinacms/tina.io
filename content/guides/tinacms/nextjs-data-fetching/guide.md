@@ -33,7 +33,7 @@ const getStaticProps = async () => {
 
 ### Example: Fetching content through getStaticPaths
 
-You'll likely want to query the Tina data layer for [dynamic routes](https://nextjs.org/docs/basic-features/data-fetching/get-static-paths#getstaticpaths).
+You'll likely want to query the Tina's Content API for [dynamic routes](https://nextjs.org/docs/basic-features/data-fetching/get-static-paths#getstaticpaths).
 
 ```js
 export const getStaticPaths = async () => {

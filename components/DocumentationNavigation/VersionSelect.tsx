@@ -7,6 +7,11 @@ const VERSIONS = [
     label: 'v.Latest',
   },
   {
+    id: 'v-0.68.13',
+    url: 'https://tinacms-site-next-i08bcbicy-tinacms.vercel.app/',
+    label: 'v.0.68.13',
+  },
+  {
     id: 'v-0.67.3',
     url: 'https://tinacms-site-next-pu1t2v9y4-tinacms.vercel.app',
     label: 'v.0.67.3',

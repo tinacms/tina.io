@@ -27,7 +27,7 @@ export const getStaticProps: GetStaticProps = async function({
   const client = ExperimentalGetTinaClient()
   const vars = { relativePath: slug + '.json' }
 
-  const res = await client.page(vars)
+  const res = await client.page({ relativePath: slug + '.json' })
 
   return {
     props: {
