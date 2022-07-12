@@ -194,12 +194,6 @@
         "slug": "/docs/tina-cloud/branching/",
         "title": "Branching",
         "beta": true
-      },
-      {
-        "id": "/docs/tina-cloud/data-layer/",
-        "slug": "/docs/tina-cloud/data-layer/",
-        "title": "Data Layer",
-        "beta": true
       }
     ]
   },
@@ -425,6 +419,11 @@
             "title": "Using Curl & Fetch",
             "id": "/docs/reference/content-api/content-delivery/",
             "slug": "/docs/reference/content-api/content-delivery/"
+          },
+          {
+            "id": "/docs/reference/content-api/data-layer/",
+            "slug": "/docs/reference/content-api/data-layer/",
+            "title": "Data Layer"
           }
         ]
       },
