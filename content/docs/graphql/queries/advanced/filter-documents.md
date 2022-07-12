@@ -4,8 +4,6 @@ id: /docs/graphql/queries/advanced/filter-documents
 next: /docs/graphql/queries/advanced/sorting
 ---
 
-{{ WarningCallout text="This is an experimental feature, and the API is subject to change. We don't yet suggest using this for production use-cases. The `--experimentalData` cli flag must be specified in order to enable this feature. Visit this [page](/docs/tina-cloud/data-layer/#enabling-the-data-layer) for more details. Have any thoughts? Let us know in the chat, or through the [GitHub discussion](https://github.com/tinacms/tinacms/discussions/2811)!" }}
-
 Tina automatically creates filters for collections defined in your schema.
 
 To filter collection results, pass the `filter` argument to the `<collection>Connection` query, followed by any of the filter [operator types](/docs/graphql/queries/advanced/filter-documents/#operator-types) for the fields on your collection.
