@@ -33,4 +33,4 @@ jobs:
         uses: chabad360/htmlproofer@master
         with:
           directory: './out'
-          arguments: --only_4xx --assume_extension --checks "Links,Images,Scripts,Favicon,OpenGraph" --ignore_status_codes "400, 403, 409, 429" --allow-hash-href --ignore_files "/.+\/(blog|404)\/.+/"
+          arguments: --only_4xx --assume_extension --checks "Links,Images,Scripts,Favicon,OpenGraph" --ignore_status_codes "400, 403, 409, 429" --allow_hash_href --ignore_files "/.+\/(blog|404)\/.+/"
