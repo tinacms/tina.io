@@ -6,15 +6,15 @@ next: '/docs/tinacms-context'
 
 ## Introduction
 
-With Tina, your content is stored in Git along with your codebase. Tina provides a content API in front of your repo-based content, so that you can interact with your files as if they're in a database.
+With Tina, your content is stored in Git along with your codebase. Tina provides a Content API in front of your repo-based content, so that you can interact with your files as if they're in a database.
 
 You can:
 
 - Query content for a given collection
-- Add filters, sort parameters. paginate, etc
+- Apply filters, sorting, pagination, etc
 - Query your content based on relational fields.
 
-To interface with the API, you can use Tina's type-safe client for data-fetching, or you can manually write your own GraphQL queries and hit the API yourself.
+To interface with the API, you can use Tina's type-safe client for data-fetching, or manually write custom GraphQL queries and hit the API yourself.
 
 ## Making requests with the Tina Client
 
@@ -30,7 +30,7 @@ const myPost = await client.queries.post({ relativePath: 'HelloWorld.md' })
 console.log(myPost.title)
 ```
 
-The above `client.queries.post` query is not built-in to Tina's API. This is an example of a query based on YOUR defined schema, (where you have a "post" collection defined).
+The above `client.queries.post` query is not built-in to Tina's API. This is an example of a query based on _your_ defined schema, (where you have a "post" collection defined).
 
 From the post-list page, you can fetch the list of posts like so:
 
@@ -46,13 +46,13 @@ const posts = postResponse.data.postConnection.edges.map(x => {
 
 ## The Local Filesystem-based Content API
 
-When developing locally, it's often beneficial to talk to the content on your local file-system, rather than talk to the hosted content API. Tina provides a CLI tool that gets run locally next to your site. This allows all of your content to be made available through an expressive GraphQL API.
+When developing locally, it's often beneficial to talk to the content on your local file-system, rather than talk to the hosted content API. Tina provides a CLI tool that lets you run the Content API locally next to your site. This allows all of your content to be made available through the same expressive GraphQL API during development.
 
-> If you setup Tina via `@tinacms/cli init`, or used one of our starters, this should be setup by default, but you can read about the CLI [here](/docs/graphql/cli/).
+> If you setup Tina via `@tinacms/cli init`, or used one of our starters, this should be setup by default. (Read about the CLI [here](/docs/graphql/cli/.)
 
 ## Summary
 
 - Tina provides a GraphQL API for querying your git-based content.
-- Tina provides a client that allows your to make type-safe requests to the API.
-- The client's "queries" property is generated based on YOUR schema.
-- A local version of the content API is often used for development.
+- Tina provides a client that allows you to make type-safe requests to the Content API.
+- The client's "queries" property is generated based on _your_ schema.
+- A local version of the Content API can be used for local development.

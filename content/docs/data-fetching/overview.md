@@ -89,7 +89,7 @@ const postsResponse = await client.queries.postConnection({
 
 ### Pagination
 
-Tina supports cursor-based pagination
+Tina supports cursor-based pagination:
 
 ```js
 const postsResponse = await client.queries.postConnection({
@@ -101,4 +101,4 @@ const postsResponse = await client.queries.postConnection({
 // ...
 ```
 
-One caveat to using the built-in queries on the client is that it **you can only query one root collection at a time**. If you have a page that has multiple forms on it, you may need to [write your own queries](/docs/data-fetching/custom-queries/).
+One caveat to using the built-in queries on the client is that **you can only query one root collection at a time**. If you have a page that has multiple forms on it, you may need to use [custom queries](/docs/data-fetching/custom-queries/).

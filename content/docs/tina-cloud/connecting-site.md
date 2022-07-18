@@ -68,4 +68,4 @@ export const client = createClient({
 })
 ```
 
-The apiURL is configured to use the local content API in development (to talk to your local files), and the hosted content API (with auth) in production.
+The apiURL is configured to use the local Content API in development (to query your local files), and the hosted content API (with auth) in production.

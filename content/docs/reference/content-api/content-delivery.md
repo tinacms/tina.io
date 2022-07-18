@@ -4,15 +4,15 @@ id: /docs/reference/content-api/content-delivery
 last_edited: '2022-06-15T15:51:56.737Z'
 ---
 
-Requests can be made to Tina Content API with Read Only Tokens. In the majority of cases, these requests are made using the [Tina client](/docs/features/data-fetching/#making-requests-with-the-tina-client), however you can also hit the API directly.
+Requests can be made to the Tina Content API with Read Only Tokens. In the majority of cases, these requests are made using the [Tina client](/docs/features/data-fetching/#making-requests-with-the-tina-client), however you can also hit the API directly.
 
 ## Making requests with `curl` and `fetch`
 
 > NOTE: for most cases the tina client can be used and it is not necessary to use fetch directly
 
-The endpoint is `https://content.tinajs.io/content/<myClientId>/github/<myBranch>` and the token can be passed by including a `X-API-KEY` with the token as the value.
+The Content API endpoint is `https://content.tinajs.io/content/<myClientId>/github/<myBranch>`. The token can be passed by including a `X-API-KEY` custom HTTP header with the token as the value.
 
-Here is an example curl request that will query the content API for the list of collections:
+Here is an example curl request that will query the Content API for the list of collections:
 
 ### Curl
 

@@ -35,7 +35,7 @@ We offer a server command to poll for the status of indexing and wait for comple
 
 ### Webhook Failures
 
-In rare circumstances, the GitHub Webhook connecting your repository to Tina Cloud may be disrupted. If the webhook does
+In rare circumstances, the GitHub webhook connecting your repository to Tina Cloud may be disrupted. If the webhook does
 not execute, Tina Cloud may become out of sync with your GitHub repository.
 
 Use the [Refresh Webhooks](/docs/tina-cloud/dashboard/projects/#refresh-webhooks) button to re-initialize the webhook.
