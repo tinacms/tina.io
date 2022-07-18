@@ -33,7 +33,7 @@ const posts = postResponse.data.postConnection.edges.map(x => {
 // This would return an array like: [ { slug: 'HelloWorld.md'}, /*...*/ ]
 ```
 
-`<collection-name>Connection` can we used to query a list of documents (in the above example, our collection name is `post`).
+`<collection-name>Connection` can be used to query a list of documents (in the above example, our collection name is `post`).
 
 ### Filtering
 

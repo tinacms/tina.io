@@ -1,13 +1,13 @@
 ---
-title: Querying Tina Content Client-side in React
+title: Querying Tina Content Client-side at Runtime
 last_edited: '2022-04-08T10:00:00.000Z'
 ---
 
 ## Fetch data client-side
 
-> In fetching content on the server (SSR), or at build time (SSG) is preferred and faster but in some cases you may still want to get data client-side at runtime.
+> Fetching content on the server (SSR), or at build time (SSG) is preferred and faster but in some cases you may still want to get data client-side at runtime.
 
-Here's an example of data-fetching client-side, on a React site
+Here's an example of data-fetching client-side, on a React site:
 
 ```jsx
 import { useState, useEffect } from 'react'
