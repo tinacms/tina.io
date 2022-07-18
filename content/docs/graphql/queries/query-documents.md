@@ -4,7 +4,7 @@ id: /docs/graphql/queries/query-documents
 next: /docs/graphql/queries/advanced/filter-documents
 ---
 
-Tina's list queries implement the cursor-based Relay specification. Collection lists can be queried with `<collection>Connection`.
+Tina's list queries implement the [cursor-based Relay specification](https://relay.dev/graphql/connections.htm). Collection lists can be queried with `<collection>Connection`.
 
 ## Example
 

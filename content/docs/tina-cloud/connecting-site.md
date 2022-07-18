@@ -9,7 +9,7 @@ Once you've created a project within the **Tina Cloud**, the next step is to con
 
 In the [Contextual Editing doc](/docs/tinacms-context/), we showed you how the Tina context is setup on your site.
 
-To have editing work in production, in the config within the `.tina/client.<ts|js>` file, configure the `clientId` to point to our Tina Cloud project, and add our generated `token`.
+To have editing work in production, in the config within the `.tina/client.<ts|js>` file, configure the `clientId` to point to your Tina Cloud project, and add your generated `token`.
 
 ```tsx
 // .tina/client.ts

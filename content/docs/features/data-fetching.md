@@ -32,7 +32,7 @@ console.log(myPost.title)
 
 The above `client.queries.post` query is not built-in to Tina's API. This is an example of a query based on _your_ defined schema, (where you have a "post" collection defined).
 
-From the post-list page, you can fetch the list of posts like so:
+On a page that displays a list of posts, you can fetch the posts like so:
 
 ```js
 const postsResponse = await client.queries.postConnection()
@@ -42,7 +42,7 @@ const posts = postResponse.data.postConnection.edges.map(x => {
 // This would return an array like: [ { slug: 'HelloWorld.md'}, /*...*/ ]
 ```
 
-> For more information on manually writing queries for your specific schema, check out our ["Using the GraphQL API"](/docs/graphql/overview/) docs.
+> For more information on manually writing queries for your specific schema, check out our ["Writing Custom Queries"](/docs/data-fetching/custom-queries/#writing-inline-queries) docs.
 
 ## The Local Filesystem-based Content API
 
