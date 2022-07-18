@@ -7,21 +7,21 @@ next: /docs/data-fetching/custom-queries
 
 ## Introduction
 
-As mentioned in the [Introduction to Data fetching doc](/docs/features/data-fetching/), Tina provides a client for querying content.
+As mentioned in [Introduction to Data fetching](/docs/features/data-fetching/), Tina provides a client for querying content.
 
-> Note, for advanced use-cases, you can also manually query the underlying [GraphQL API](http://localhost:3000/docs/graphql/overview/).
+> Note, for advanced use-cases, you can also manually query the underlying [GraphQL API](/docs/data-fetching/custom-queries/#writing-inline-queries).
 
 ## Querying a single document
 
 ```js
-import { client } from '../pathToTina/.tina/client'
+import { client } from '../[pathToTina]/.tina/client'
 
 const myPost = await client.queries.post({ relativePath: 'HelloWorld.md' })
 
 console.log(myPost.title)
 ```
 
-In the abve example `post` is the name of our collection. This can be replaced with one of your schema's defined collection names.
+In the above example `post` is the name of the collection being queried. This can be replaced with one of your schema's defined collection names.
 
 ## Querying a list of documents
 
@@ -33,7 +33,7 @@ const posts = postResponse.data.postConnection.edges.map(x => {
 // This would return an array like: [ { slug: 'HelloWorld.md'}, /*...*/ ]
 ```
 
-`<collection-name>Connection` can we used to query a list of documents (in the above example, our collection name is `post`.
+`<collection-name>Connection` can we used to query a list of documents (in the above example, our collection name is `post`).
 
 ### Filtering
 

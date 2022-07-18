@@ -91,9 +91,9 @@ Takes the following options,
 
 ### `tinacms server:waitForDB` (Experimental)
 
-> To run this command, you must have a valid `.tina/client.ts` file. [Read here](/docs/tina-cloud/dashboard/projects/#read-only-tokens) to learn how to create one.
+> To run this command, you must have a valid `.tina/client.ts` file. This file is created with the [`init command`](/docs/cli-overview/#init).
 
-`server:waitForDB` will block startup until the Content API's indexing process responds with `complete` or `failed`. For `complete`, any subprocess will be run. For `failed`, an error message will be displayed and startup will exit.
+`server:waitForDB` will block startup until the Content API's indexing process responds with `complete` or `failed`. For `complete`, any subprocess will then be run. For `failed`, an error message will be displayed and startup will exit.
 
 #### Optional parameters
 

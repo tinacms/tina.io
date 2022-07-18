@@ -12,7 +12,7 @@ Here's an example of data-fetching client-side, on a React site
 ```jsx
 import { useState, useEffect } from 'react'
 import { useTina } from 'tinacms/dist/edit-state'
-import { client } from '../PathToTina/.tina/client'
+import { client } from '../[pathToTina]/.tina/client'
 
 // Variables used in the GraphQL query;
 const variables = {

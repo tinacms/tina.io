@@ -11,7 +11,7 @@ In NextJS, content can be queried statically at build-time or dynamically at run
 
 ```tsx
 // pages/home.js
-import { client } from '../pathToTina/.tina/client'
+import { client } from '../[pathToTina]/.tina/client'
 
 const getStaticProps = async () => {
   let postResponse = {}

@@ -23,7 +23,7 @@ The Tina client is the easiest way to fetch your site's content. The client can 
 Tina client provides a type-safe query builder, that is auto-generated based on your site's schema:
 
 ```js
-import { client } from '../pathToTina/.tina/client'
+import { client } from '../[pathToTina]/.tina/client'
 
 const myPost = await client.queries.post({ relativePath: 'HelloWorld.md' })
 
