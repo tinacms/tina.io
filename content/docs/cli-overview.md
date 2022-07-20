@@ -10,22 +10,48 @@ title: The TinaCMS CLI
 Usage: @tinacms/cli command [options]
 
 Options:
-  -V, --version               output the version number
-  -h, --help                  display help for command
+  -V, --version           output the version number
+  -h, --help              display help for command
 
 Commands:
-  server:start [options]      Start Filesystem Graphql Server
-  server:waitForDB [options]  Wait for DB to finish indexing, start subprocess
-  schema:compile [options]    Compile schema into static files for the server
-  schema:types [options]      Generate a GraphQL query for your site's schema, (and optionally Typescript types)
-  init [options]              Add Tina Cloud to an existing project
-  audit [options]             Audit your schema and the files to check for errors
-  help [command]              display help for command
+  server:start [options]  Start Filesystem Graphql Server
+  build [options]         Build Tina.
+  init [options]          Add Tina Cloud to an existing project
+  audit [options]         Audit your schema and the files to check for errors
+  help [command]          display help for command
+
+You can get help on any command with "-h" or "--help".
+e.g: "tinacms server:start --help"
 ```
 
 ## Basic Usage:
 
-### init
+### `tinacms server:start`
+
+> To run this command, you must have a valid `.tina/schema.ts` file.
+
+`server:start` will compile the schema into static files, generates typescript types for you to use in your project and starts a graphQL server on http://localhost:4001
+
+This command also takes the following arguments
+
+| Argument        | Description                                                                                                                                                             |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-c`            | `-c` allows you to run a command as a child process. For example, you could run your next project alongside the graphQL server `yarn tinacms server:start -c next dev`. |
+| `--port <port>` | Specify a port to run the server on. (default 4001)                                                                                                                     |
+| `--noWatch`     | Don't regenerate config on file changes. This option is good to add when building in CI or if you do not want to watch the file system for changes.                     |
+| `--noSDK`       | Don't generate the generated client SDK. [Read here](/docs/graphql/client/) for more details about the SDK                                                              |
+
+### `tinacms build`
+
+This command compiles and checks schema, client and types. As well it will check your content to make sure it has finished indexing.
+
+| Argument         | Description                                                                                             |
+| ---------------- | ------------------------------------------------------------------------------------------------------- |
+| `--noTelemetry`  | Disables Open Source Telemetry                                                                          |
+| `--local`        | If the local flag is passed it will setup the client with the local URL (http://localhost:4001/graphql) |
+| `-v`,`--verbose` | increase verbosity of logged output (default: false)                                                    |
+
+### `npx @tinacms/cli@latest init`
 
 > The init command must be run inside of a Next.js project
 
@@ -47,22 +73,6 @@ This will,
 | ------------------ | --------------------------------------------------------------------------------------- |
 | `--noTelemetry`    | Disables Open Source Telemetry                                                          |
 | `--schemaFileType` | Overrides default Tina schema file type. Valid values are: `.ts`, `.tsx`, `.js`, `.jsx` |
-| `--dev`            | Sets NODE_ENV=`development`, defaults to `production`                                   |
-
-### `tinacms server:start`
-
-> To run this command, you must have a valid `.tina/schema.ts` file.
-
-`server:start` will compile the schema into static files, generates typescript types for you to use in your project and starts a graphQL server on http://localhost:4001
-
-This command also takes the following arguments
-
-| Argument        | Description                                                                                                                                                             |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `-c`            | `-c` allows you to run a command as a child process. For example, you could run your next project alongside the graphQL server `yarn tinacms server:start -c next dev`. |
-| `--port <port>` | Specify a port to run the server on. (default 4001)                                                                                                                     |
-| `--noWatch`     | Don't regenerate config on file changes. This option is good to add when building in CI or if you do not want to watch the file system for changes.                     |
-| `--noSDK`       | Don't generate the generated client SDK. [Read here](/docs/graphql/client/) for more details about the SDK                                                              |
 
 ## Advanced Usage:
 
@@ -88,10 +98,4 @@ Takes the following options,
 | Argument  | Description                                                                                                                                                                                                                                                             |
 | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `--clean` | When this flag is used, it really submits the Graphql mutations to the file system. This means that it will clean out any fields that are not defined in your `schema.ts`. It is a good practice to do a `git commit` before doing this so one can undo changes easily. |
-
-#### Optional parameters
-
-| Argument        | Description                                                                                                                                                             |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `-c`            | `-c` allows you to run a command as a child process. For example, you could run your next project alongside the graphQL server `yarn tinacms server:start -c next dev`. |
-| `--noTelemetry` | Disables Open Source Telemetry                                                                                                                                          |
+|           |
