@@ -18,12 +18,34 @@ To interface with the API, you can use Tina's type-safe client for data-fetching
 
 ## Making requests with the Tina Client
 
-The Tina client is the easiest way to fetch your site's content. The client can be configured in `.tina/client.<js|ts>`.
+The Tina client is the easiest way to fetch your site's content. The client can be configured the `.tina/schema.<js|ts>` in the `defineSchema` function.
+
+> Note: token, clientID and branch are **not** used in [local-mode](/docs/tina-cloud/#local-mode). To setup these values for production see [this doc](/docs/tina-cloud/connecting-site)
+
+<!-- TODO: update above doc -->
+
+```js
+const schema = defineSchema({
+  config: {
+    token: '***',
+    clientID: '***',
+    branch: 'main',
+  },
+  collections: [
+    //...
+    // See https://tina.io/docs/schema/ for more info about "collections"
+  ],
+})
+
+export default schema
+```
+
+When working locally the client will be build with the local url (http://localhost:40001/graphql). When in [production mode]() `clientID`, `branch` and `token` are used to query Tina Cloud.
 
 Tina client provides a type-safe query builder, that is auto-generated based on your site's schema:
 
 ```js
-import { client } from '../[pathToTina]/.tina/client'
+import { client } from '../[pathToTina]/.tina/__generated__/client'
 
 const myPost = await client.queries.post({ relativePath: 'HelloWorld.md' })
 

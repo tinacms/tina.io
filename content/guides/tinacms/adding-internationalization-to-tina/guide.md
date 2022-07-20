@@ -57,7 +57,8 @@ Given that we're adding `i18n` support to the `post` collection, we'll be updati
 /**
  * /pages/post/[filename].tsx
  */
-import { client } from '../[pathToTina]/.tina/client'
+import { client } from '../[pathToTina]/.tina/__generated__/client'
+
 // ...
 
 // `locales` is provided to `getStaticPaths` and matches `locales` in the `config`

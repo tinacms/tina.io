@@ -24,13 +24,6 @@ scenarios are:
 - Changes to the configured [repository](/docs/tina-cloud/dashboard/projects/#changing-the-repository)
 - New branches in GitHub
 
-## `waitForDB`
-
-We offer a server command to poll for the status of indexing and wait for completion: `server:waitForDB`. When using
-`server:start`, `server:waitForDB` is automatically called if you have configured `client.ts`.
-
-- You can learn more about `server:waitForDB` [here](/docs/cli-overview/#tinacms-serverwaitfordb-experimental).
-
 ## Synchronization Issues
 
 ### Webhook Failures

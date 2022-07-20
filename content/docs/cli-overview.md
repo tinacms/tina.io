@@ -89,12 +89,6 @@ Takes the following options,
 | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `--clean` | When this flag is used, it really submits the Graphql mutations to the file system. This means that it will clean out any fields that are not defined in your `schema.ts`. It is a good practice to do a `git commit` before doing this so one can undo changes easily. |
 
-### `tinacms server:waitForDB` (Experimental)
-
-> To run this command, you must have a valid `.tina/client.ts` file. This file is created with the [`init command`](/docs/cli-overview/#init).
-
-`server:waitForDB` will block startup until the Content API's indexing process responds with `complete` or `failed`. For `complete`, any subprocess will then be run. For `failed`, an error message will be displayed and startup will exit.
-
 #### Optional parameters
 
 | Argument        | Description                                                                                                                                                             |
