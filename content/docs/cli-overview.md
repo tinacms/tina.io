@@ -32,18 +32,18 @@ e.g: "tinacms server:start --help"
 
 `server:start` will compile the schema into static files, generates typescript types for you to use in your project and starts a graphQL server on http://localhost:4001
 
-This command also takes the following arguments
+This command takes the following arguments:
 
 | Argument        | Description                                                                                                                                                             |
 | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `-c`            | `-c` allows you to run a command as a child process. For example, you could run your next project alongside the graphQL server `yarn tinacms server:start -c next dev`. |
+| `-c`            | `-c` allows you to optionally run a command as a child process. For example, you could run your Next.js project alongside the graphQL server `yarn tinacms server:start -c next dev`. |
 | `--port <port>` | Specify a port to run the server on. (default 4001)                                                                                                                     |
 | `--noWatch`     | Don't regenerate config on file changes. This option is good to add when building in CI or if you do not want to watch the file system for changes.                     |
-| `--noSDK`       | Don't generate the generated client SDK. [Read here](/docs/graphql/client/) for more details about the SDK                                                              |
+| `--noSDK`       | Don't generate the generated client SDK. [Read here](/docs/graphql/client/) for more details about the SDK.                                                             |
 
 ### `tinacms build`
 
-This command compiles and checks schema, client and types. As well it will check your content to make sure it has finished indexing.
+This command compiles and validates the schema and generates the client and types. It will also ensure your content has finished indexing.
 
 | Argument         | Description                                                                                             |
 | ---------------- | ------------------------------------------------------------------------------------------------------- |

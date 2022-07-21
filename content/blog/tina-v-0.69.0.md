@@ -5,14 +5,14 @@ last_edited: '2022-07-21T04:00:00.000Z'
 author: Logan Anderson
 ---
 
-Tinacms Version `0.69` brings some extensive improvements to tina. Here is a short list of a few of the major features.
+TinaCMS Version `0.69` brings some extensive improvements to Tina. Here is a short list of a few of the major features:
 
 1.  New unified client that can be used on the frontend and backend.
 2.  Data layer is enabled by default
 3.  Better support for read only tokens
-4.  Cleared and more concise way of working with TinaCMS in CI
+4.  Clearer and more concise way of working with TinaCMS in CI
 
-To update to the latest version please run
+To update to the latest version run:
 
 ```bash
 yarn add tinacms@latest
@@ -21,15 +21,15 @@ yarn add --dev @tinacms/cli@latest
 
 ## New Unified client
 
-TinaCMS has always been missing a "unified way" to query and fetch content. Previously, there was \`StaticRequest\`, "Read only token client", "Experimental Generate client" and "just using fetch". Now all these are amalgamated into one client that can be used on both the frontend and backend.
+TinaCMS has always been missing a "unified way" to query and fetch content. Previously, there was \`StaticRequest\`, "Read only token client", "Experimental Generated client" and "just using fetch". Now all of these have been reduced to a single client that can be used on both the frontend and backend.
 
-There are a couple of small changes to be made in order to update.
+There are only a couple of small changes to be made in order to update.
 
 ### Updates in `.tina/schema.{ts,js}`
 
-Instead of passing an `apiURL`, now the clientID, branch and read only token (NEW) will all be configured in the schema. The local url will be used if the `--local` flag is passed.
+Instead of passing an `apiURL`, now the clientID, branch and read only token (NEW) are all configured in the schema. The local graphql api url is used if the `--local` flag is passed.
 
-This will require a change to the schema and the scripts.
+This requires a change to the schema and the scripts:
 
 ```diff
 // .tina/schema.ts
@@ -61,9 +61,9 @@ export const tinaConfig = defineConfig({
 export default schema
 ```
 
-The token must be a wildcard token (`*`) and can be generated from the tina dashboard. [Read more hear](https://tina.io/docs/graphql/read-only-tokens/)
+The token must be a wildcard token (`*`) and can be generated from the Tina dashboard. Read more about read only tokens [here](https://tina.io/docs/graphql/read-only-tokens/)
 
-For more information of where to get these values [please read out "going to production docs"](/docs/tina-cloud/connecting-site/#enabling-tina-cloud-in-tinacms)
+For more information about where to get these values, see the ["going to production"](/docs/tina-cloud/connecting-site/#enabling-tina-cloud-in-tinacms) docs.
 
 ### Updates to scripts in package.json
 
@@ -97,17 +97,17 @@ The old `-c` subcommand can still be used. This will start the dev server and ne
 
 ### Updates to generated files (optional)
 
-We now recommend ignoring most of the generated files. This is because `client.ts` and `types.ts` will be generated in CI with `tinacms build`
+We now recommend ignoring most of the generated files. This is because `client.ts` and `types.ts` will be generated in CI when `tinacms build` runs.
 
 To remove them from your repository, run `git rm --cached .tina/__generated__/*` and then `yarn tinacms build` to update the generated files that need to stay.
 
-Once these updates have been made the new client should be configured and ready to be used for querying.
+Once these updates have been made, the new client should be configured and ready to be used for querying.
 
 ## Migrating data fetching
 
-To migrate data fetching, all uses of `statRequest`, or `GetExperimentalClient` can be replaced with `client.request` or `client.queries.<QueryName>` respectively.
+To migrate data fetching, all uses of `staticRequest`, or `GetExperimentalClient` can be replaced with `client.request` or `client.queries.<QueryName>` respectively.
 
-For example, to migrate the `staticRequest` function may look like this.
+For example, to migrate usage of the `staticRequest` function:
 
 ```diff
 // pages/home.js
@@ -153,12 +153,12 @@ const getStaticProps = async () => {
 }
 ```
 
-For more information, [see the new data fetching docs](/docs/features/data-fetching).
+For more information, see the new [data fetching](/docs/features/data-fetching) docs.
 
 ## Data layer is enabled by default
 
-This this change the [data layer](/docs/reference/content-api/data-layer/) is now enable by default. This will causes your repo to be cached and allow the content to be queried without using Github's API. This will make data fetching faster and it will also allow us to bypass Github's [api limits](https://docs.github.com/en/developers/apps/building-github-apps/rate-limits-for-github-apps).
+The [data layer](/docs/reference/content-api/data-layer/) is now enabled by default. With this feature your repository is cached, allowing the content to be queried without using Github's API. This makes data fetching faster and it also allows us to bypass Github's [api limits](https://docs.github.com/en/developers/apps/building-github-apps/rate-limits-for-github-apps).
 
-There is no action required for this change besides updating the the latest version.
+There is no action required for this change besides updating to the latest version of `@tinacms/cli`.
 
-For a full set of changes please read the [version packages changelog](https://github.com/tinacms/tinacms/pull/3041).
+For a full set of changes please see the [changelog](https://github.com/tinacms/tinacms/pull/3041) for this version.

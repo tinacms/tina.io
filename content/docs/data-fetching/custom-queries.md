@@ -24,9 +24,9 @@ Tina generates custom [GraphQL fragments](https://graphql.org/learn/queries/#fra
 
 <!-- TODO: add internal docs link -->
 
-> Note: This fragments can be seen in [`.tina/__generated__/frags.gql`]()
+> Note: These fragments can be seen in [`.tina/__generated__/frags.gql`]()
 
-Example of `.tina/queries/postWithNav.gql`
+Example of `.tina/queries/postWithNav.gql`:
 
 ```ts
 query postWithNav($relativePath: String!) {

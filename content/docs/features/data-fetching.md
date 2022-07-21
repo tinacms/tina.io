@@ -40,7 +40,7 @@ const schema = defineSchema({
 export default schema
 ```
 
-When working locally the client will be build with the local url (http://localhost:40001/graphql). When in [production mode]() `clientID`, `branch` and `token` are used to query Tina Cloud.
+When working locally, the client is built with the local url (http://localhost:40001/graphql). When in [production mode]() `clientID`, `branch` and `token` are used to query Tina Cloud.
 
 Tina client provides a type-safe query builder, that is auto-generated based on your site's schema:
 
