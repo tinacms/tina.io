@@ -127,11 +127,11 @@ const components = {
       src={src}
     />
   ),
-  code_block: ({ children, language }) => {
+  code_block: ({ children, lang }) => {
     return (
       <SyntaxHighlighter
         code={children || ''}
-        language={language || 'jsx'}
+        language={lang || 'jsx'}
         style={atomOneDark}
       />
     )
