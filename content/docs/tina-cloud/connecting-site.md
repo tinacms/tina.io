@@ -17,7 +17,7 @@ To have editing work in production, in the `.tina/schema.<ts|js>` file, configur
 const schema = defineSchema({
   config: {
     token: '<Your Read Only Token>' // generated on app.tina.io,
-    clientID: '<Your Client ID>', // generated on app.tina.io
+    clientId: '<Your Client ID>', // generated on app.tina.io
     branch,
   },
   collections: [
@@ -44,7 +44,7 @@ Typically you'll want to use the branch that you're deploying with your site. Th
 const schema = defineSchema({
   config: {
     token: '<Your Read Only Token>' // generated on app.tina.io,
-    clientID: '<Your Client ID>', // generated on app.tina.io
+    clientId: '<Your Client ID>', // generated on app.tina.io
     branch,
   },
   collections: [
@@ -73,7 +73,7 @@ const branch =
 const schema = defineSchema({
   config: {
     token: '<Your Read Only Token>' // generated on app.tina.io
-    clientID: '<Your Client ID>', // generated on app.tina.io
+    clientId: '<Your Client ID>', // generated on app.tina.io
     branch,
   },
   collections: [

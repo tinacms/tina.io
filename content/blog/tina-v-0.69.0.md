@@ -27,7 +27,7 @@ There are only a couple of small changes to be made in order to update.
 
 ### Updates in `.tina/schema.{ts,js}`
 
-Instead of passing an `apiURL`, now the clientID, branch and read only token (NEW) are all configured in the schema. The local graphql api url is used if the `--local` flag is passed.
+Instead of passing an `apiURL`, now the clientId, branch and read only token (NEW) are all configured in the schema. The local graphql api url is used if the `--local` flag is passed.
 
 This requires a change to the schema and the scripts:
 
@@ -38,7 +38,7 @@ This requires a change to the schema and the scripts:
 const schema = defineSchema({
 +    config: {
 +        branch: "main",
-+        clientID: "***",
++        clientId: "***",
 +        token: "***",
     },
     collections: [
