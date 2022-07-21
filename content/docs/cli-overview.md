@@ -30,7 +30,7 @@ e.g: "tinacms server:start --help"
 
 > To run this command, you must have a valid `.tina/schema.ts` file.
 
-`server:start` will compile the schema into static files, generates typescript types for you to use in your project and starts a graphQL server on http://localhost:4001
+`server:start` will compile the schema into static files, generate typescript types for use in your project and start a graphQL server on http://localhost:4001
 
 This command takes the following arguments:
 
