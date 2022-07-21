@@ -39,7 +39,7 @@ query postWithNav($relativePath: String!) {
 }
 ```
 
-It is good practice to add a [`graphql.config.js`](https://github.com/tinacms/tina-cloud-starter/blob/main/graphql.config.js) that points to `.tina/__generated__/schema.gql` and `.tina/__generated__/frags.gql`.
+To get autocomplete in your GraphQL files add a [`graphql.config.js`](https://github.com/tinacms/tina-cloud-starter/blob/main/graphql.config.js) that points to `.tina/__generated__/schema.gql` and `.tina/__generated__/frags.gql`.
 
 > Note: fragments are named by using the collection name (capitalized) followed by "Parts"
 
