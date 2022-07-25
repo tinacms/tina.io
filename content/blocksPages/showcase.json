@@ -109,15 +109,6 @@
             "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_1000,g_face/v1651703972/tina-showcase/brokenhearthorsefarm.png"
           },
           "_template": "project"
-        },
-        {
-          "headline": "James Perkins",
-          "text": "Professional blog from our own dev advocate!",
-          "url": "https://www.jamesperkins.dev/",
-          "media": {
-            "src": "/img/james-perkins.png"
-          },
-          "_template": "project"
         }
       ],
       "_template": "showcase"
