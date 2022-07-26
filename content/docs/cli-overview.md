@@ -14,32 +14,32 @@ Options:
   -h, --help              display help for command
 
 Commands:
-  server:start [options]  Start Filesystem Graphql Server
+  dev [options]  Start Filesystem Graphql Server
   build [options]         Build Tina.
   init [options]          Add Tina Cloud to an existing project
   audit [options]         Audit your schema and the files to check for errors
   help [command]          display help for command
 
 You can get help on any command with "-h" or "--help".
-e.g: "tinacms server:start --help"
+e.g: "tinacms dev --help"
 ```
 
 ## Basic Usage:
 
-### `tinacms server:start`
+### `tinacms dev`
 
 > To run this command, you must have a valid `.tina/schema.ts` file.
 
-`server:start` will compile the schema into static files, generate typescript types for use in your project and start a graphQL server on http://localhost:4001
+`dev` will compile the schema into static files, generate typescript types for use in your project and start a graphQL server on http://localhost:4001
 
 This command takes the following arguments:
 
-| Argument        | Description                                                                                                                                                             |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `-c`            | `-c` allows you to optionally run a command as a child process. For example, you could run your Next.js project alongside the graphQL server `yarn tinacms server:start -c next dev`. |
-| `--port <port>` | Specify a port to run the server on. (default 4001)                                                                                                                     |
-| `--noWatch`     | Don't regenerate config on file changes. This option is good to add when building in CI or if you do not want to watch the file system for changes.                     |
-| `--noSDK`       | Don't generate the generated client SDK. [Read here](/docs/graphql/client/) for more details about the SDK.                                                             |
+| Argument        | Description                                                                                                                                                                  |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-c`            | `-c` allows you to optionally run a command as a child process. For example, you could run your Next.js project alongside the graphQL server `yarn tinacms dev -c next dev`. |
+| `--port <port>` | Specify a port to run the server on. (default 4001)                                                                                                                          |
+| `--noWatch`     | Don't regenerate config on file changes. This option is good to add when building in CI or if you do not want to watch the file system for changes.                          |
+| `--noSDK`       | Don't generate the generated client SDK. [Read here](/docs/graphql/client/) for more details about the SDK.                                                                  |
 
 ### `tinacms build`
 

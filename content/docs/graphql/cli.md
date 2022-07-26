@@ -23,9 +23,9 @@ This command also takes an argument (`-c`) that allows you to run a command as a
 
 ```json,copy
 "scripts": {
-  "dev": "yarn tinacms server:start -c \"next dev\"",
-  "build": "yarn tinacms server:start -c \"next build\"",
-  "start": "yarn tinacms server:start -c \"next start\"",
+  "dev": "yarn tinacms dev -c \"next dev\"",
+  "build": "yarn tinacms dev -c \"next build\"",
+  "start": "yarn tinacms dev -c \"next start\"",
   ...
 },
 ```
