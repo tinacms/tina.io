@@ -67,7 +67,7 @@ For more information about where to get these values, see the ["going to product
 
 ### Updates to scripts in package.json
 
-We now recommend using the content API in CI and using our new `dev` and `build` commands. the `dev` command starts the local graphql server and start your subscript (`next dev`). The `build` command compiles the client with the production URL and build the graphQL schema.
+We now recommend using the content API in CI and using our new `dev` and `build` commands. The `dev` command starts the local GraphQL server and runs your subscript (`next dev`). The `build` command compiles the client with the production URL and builds the GraphQL schema.
 
 The scripts should look like this:
 

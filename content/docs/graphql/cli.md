@@ -17,7 +17,7 @@ This will setup a dummy `.tina/schema.ts` in your site, and install any required
 
 ## Running the GraphQL API
 
-`tinacms dev` will compile the schema into static files, generate typescript types for you to use in your project, and start a graphQL server on http://localhost:4001
+`tinacms dev` will compile the schema into static files, generate typescript types for you to use in your project, and start a GraphQL server on http://localhost:4001
 
 This command also takes an argument (`-c`) that allows you to run a command as a child process. This is very helpful for running a dev server and building your next.js app. The scripts portion of your package.json should look like this.
 
