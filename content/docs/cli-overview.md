@@ -74,17 +74,7 @@ This will,
 | `--noTelemetry`    | Disables Open Source Telemetry                                                          |
 | `--schemaFileType` | Overrides default Tina schema file type. Valid values are: `.ts`, `.tsx`, `.js`, `.jsx` |
 
-## Advanced Usage:
-
-### `tinacms schema:compile`
-
-`schema:compile` is used to compile and transpile the schema files into static file(s) ready to be used with the server. The compilation can be found in the `.tina/__generated__/config` directory.
-
-### `tinacms schema:types`
-
-`schema:types` will generate a GraphQL query for your site's schema and typescript files. You will find the generated files in the `.tina/__generated__/` directory.
-
-### `tinacms audit` (Experimental)
+### `tinacms audit`
 
 `audit` is used for checking for errors in your in your files. It currently does two things.
 

@@ -67,33 +67,21 @@ For more information about where to get these values, see the ["going to product
 
 ### Updates to scripts in package.json
 
-We now recommend separating the graphQL server into two separate processes (two separate terminals in development). The scripts should look like this:
+We now recommend using the content API in CI and using our new `dev` and `build` commands. the `dev` command starts the local graphql server and start your subscript (`next dev`). The `build` command compiles the client with the production URL and build the graphQL schema.
+
+The scripts should look like this:
 
 ```json
 {
   "scripts": {
-    "dev": "tinacms build --local && next dev",
-    "dev-server": "tinacms server:start",
+    "dev": "tinacms dev -c \"next dev\"",
     "build": "tinacms build && next build"
     // ... Other Scripts
   }
 }
 ```
 
-When developing, in the first terminal run `yarn dev-server` and then `yarn dev` in the second.
-
-The old `-c` subcommand can still be used. This will start the dev server and next dev process in the same terminal.
-
-```json
-{
-  "scripts": {
-    "dev": "tinacms server:start \"tinacms build --local && next dev\"",
-    "dev-server": "tinacms server:start",
-    "build": "tinacms build && next build"
-    // ... Other Scripts
-  }
-}
-```
+When developing, run `yarn dev`, this will start the dev server and next dev process in the same terminal.
 
 ### Updates to generated files (optional)
 
