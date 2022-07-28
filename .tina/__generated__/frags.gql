@@ -168,11 +168,745 @@ fragment PostParts on Post {
   last_edited
   author
   prev {
+    ... on Post {
+      title
+      date
+      last_edited
+      author
+      prev {
+        ... on Post {
+          title
+          date
+          last_edited
+          author
+          prev {
+            ... on Post {
+              title
+              date
+              last_edited
+              author
+              prev {
+                ... on Post {
+                  title
+                  date
+                  last_edited
+                  author
+                  prev {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  next {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  body
+                }
+                ... on Document {
+                  id
+                }
+              }
+              next {
+                ... on Post {
+                  title
+                  date
+                  last_edited
+                  author
+                  prev {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  next {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  body
+                }
+                ... on Document {
+                  id
+                }
+              }
+              body
+            }
+            ... on Document {
+              id
+            }
+          }
+          next {
+            ... on Post {
+              title
+              date
+              last_edited
+              author
+              prev {
+                ... on Post {
+                  title
+                  date
+                  last_edited
+                  author
+                  prev {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  next {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  body
+                }
+                ... on Document {
+                  id
+                }
+              }
+              next {
+                ... on Post {
+                  title
+                  date
+                  last_edited
+                  author
+                  prev {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  next {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  body
+                }
+                ... on Document {
+                  id
+                }
+              }
+              body
+            }
+            ... on Document {
+              id
+            }
+          }
+          body
+        }
+        ... on Document {
+          id
+        }
+      }
+      next {
+        ... on Post {
+          title
+          date
+          last_edited
+          author
+          prev {
+            ... on Post {
+              title
+              date
+              last_edited
+              author
+              prev {
+                ... on Post {
+                  title
+                  date
+                  last_edited
+                  author
+                  prev {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  next {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  body
+                }
+                ... on Document {
+                  id
+                }
+              }
+              next {
+                ... on Post {
+                  title
+                  date
+                  last_edited
+                  author
+                  prev {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  next {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  body
+                }
+                ... on Document {
+                  id
+                }
+              }
+              body
+            }
+            ... on Document {
+              id
+            }
+          }
+          next {
+            ... on Post {
+              title
+              date
+              last_edited
+              author
+              prev {
+                ... on Post {
+                  title
+                  date
+                  last_edited
+                  author
+                  prev {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  next {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  body
+                }
+                ... on Document {
+                  id
+                }
+              }
+              next {
+                ... on Post {
+                  title
+                  date
+                  last_edited
+                  author
+                  prev {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  next {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  body
+                }
+                ... on Document {
+                  id
+                }
+              }
+              body
+            }
+            ... on Document {
+              id
+            }
+          }
+          body
+        }
+        ... on Document {
+          id
+        }
+      }
+      body
+    }
     ... on Document {
       id
     }
   }
   next {
+    ... on Post {
+      title
+      date
+      last_edited
+      author
+      prev {
+        ... on Post {
+          title
+          date
+          last_edited
+          author
+          prev {
+            ... on Post {
+              title
+              date
+              last_edited
+              author
+              prev {
+                ... on Post {
+                  title
+                  date
+                  last_edited
+                  author
+                  prev {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  next {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  body
+                }
+                ... on Document {
+                  id
+                }
+              }
+              next {
+                ... on Post {
+                  title
+                  date
+                  last_edited
+                  author
+                  prev {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  next {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  body
+                }
+                ... on Document {
+                  id
+                }
+              }
+              body
+            }
+            ... on Document {
+              id
+            }
+          }
+          next {
+            ... on Post {
+              title
+              date
+              last_edited
+              author
+              prev {
+                ... on Post {
+                  title
+                  date
+                  last_edited
+                  author
+                  prev {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  next {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  body
+                }
+                ... on Document {
+                  id
+                }
+              }
+              next {
+                ... on Post {
+                  title
+                  date
+                  last_edited
+                  author
+                  prev {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  next {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  body
+                }
+                ... on Document {
+                  id
+                }
+              }
+              body
+            }
+            ... on Document {
+              id
+            }
+          }
+          body
+        }
+        ... on Document {
+          id
+        }
+      }
+      next {
+        ... on Post {
+          title
+          date
+          last_edited
+          author
+          prev {
+            ... on Post {
+              title
+              date
+              last_edited
+              author
+              prev {
+                ... on Post {
+                  title
+                  date
+                  last_edited
+                  author
+                  prev {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  next {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  body
+                }
+                ... on Document {
+                  id
+                }
+              }
+              next {
+                ... on Post {
+                  title
+                  date
+                  last_edited
+                  author
+                  prev {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  next {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  body
+                }
+                ... on Document {
+                  id
+                }
+              }
+              body
+            }
+            ... on Document {
+              id
+            }
+          }
+          next {
+            ... on Post {
+              title
+              date
+              last_edited
+              author
+              prev {
+                ... on Post {
+                  title
+                  date
+                  last_edited
+                  author
+                  prev {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  next {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  body
+                }
+                ... on Document {
+                  id
+                }
+              }
+              next {
+                ... on Post {
+                  title
+                  date
+                  last_edited
+                  author
+                  prev {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  next {
+                    ... on Post {
+                      title
+                      date
+                      last_edited
+                      author
+                      body
+                    }
+                    ... on Document {
+                      id
+                    }
+                  }
+                  body
+                }
+                ... on Document {
+                  id
+                }
+              }
+              body
+            }
+            ... on Document {
+              id
+            }
+          }
+          body
+        }
+        ... on Document {
+          id
+        }
+      }
+      body
+    }
     ... on Document {
       id
     }
