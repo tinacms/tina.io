@@ -1,5 +1,7 @@
 name: Node CI
-on: [push]
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
 env:
   NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
   TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
