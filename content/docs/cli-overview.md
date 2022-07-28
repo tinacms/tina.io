@@ -15,7 +15,7 @@ Options:
 
 Commands:
   dev [options]  Start Filesystem Graphql Server
-  build [options]         Build Tina.
+  build [options]         Build Tina
   init [options]          Add Tina Cloud to an existing project
   audit [options]         Audit your schema and the files to check for errors
   help [command]          display help for command
