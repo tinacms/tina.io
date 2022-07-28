@@ -1,4 +1,4 @@
-import { ExperimentalGetTinaClient } from '../.tina/__generated__/types'
+import { client } from '../.tina/__generated__/client'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { fileToUrl } from 'utils/urls'
 import { useTina } from 'tinacms/dist/edit-state'
@@ -24,10 +24,9 @@ export const getStaticProps: GetStaticProps = async function({
   ...ctx
 }) {
   const slug = ctx.params?.slug || 'home'
-  const client = ExperimentalGetTinaClient()
   const vars = { relativePath: slug + '.json' }
 
-  const res = await client.page({ relativePath: slug + '.json' })
+  const res = await client.queries.page({ relativePath: slug + '.json' })
 
   return {
     props: {

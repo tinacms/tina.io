@@ -8,13 +8,11 @@
     "node": ">=14"
   },
   "scripts": {
-    "dev-next": "tinacms server:start --experimentalData --noTelemetry  -c \"next\" ",
-    "dev": "yarn dev-next",
-    "develop": "yarn dev-next",
-    "build": "yarn create-rss && tinacms server:start --experimentalData  --noTelemetry --noWatch -c \"next build\"",
+    "dev": "tinacms dev  --noTelemetry  -c \"next dev\" ",
+    "build": "yarn create-rss && tinacms build --noTelemetry && next build",
     "preexport": "npm run build",
-    "export": "tinacms server:start --experimentalData  --noTelemetry -c \"next export\"",
-    "prestart": "tinacms server:start --experimentalData  --noTelemetry -c \"npm run export\"",
+    "export": "tinacms tinacms build --noTelemetry && next export",
+    "prestart": "tinacms tinacms build --noTelemetry && npm run export",
     "static-start": "serve out",
     "start": "tinacms server:start --noTelemetry -c \"next start\"",
     "format": "prettier --write \"src/**/*.{ts,tsx,md}\"",

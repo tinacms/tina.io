@@ -2,13 +2,10 @@ import { defineConfig } from 'tinacms'
 import schema from './schema'
 export const tinaConfig = defineConfig({
   schema,
-  apiURL: process.env.NEXT_PUBLIC_TINA_ENDPOINT,
-  // @ts-ignore
   cmsCallback: cms => {
     import('react-tinacms-editor').then(({ MarkdownFieldPlugin }) => {
       cms.plugins.add(MarkdownFieldPlugin)
     })
-    cms.flags.set('experimentalData', true)
     cms.flags.set('branch-switcher', true)
 
     import('tinacms').then(({ RouteMappingPlugin }) => {
@@ -30,10 +27,5 @@ export const tinaConfig = defineConfig({
       cms.plugins.add(RouteMapping)
     })
     return cms
-  },
-  mediaStore: async () => {
-    // Load media store dynamically so it only loads in edit mode
-    const pack = await import('next-tinacms-cloudinary')
-    return pack.TinaCloudCloudinaryMediaStore
   },
 })

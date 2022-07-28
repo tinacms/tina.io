@@ -1,4 +1,4 @@
-import { ExperimentalGetTinaClient } from '../../.tina/__generated__/types'
+import { client } from '../../.tina/__generated__/client'
 
 import * as React from 'react'
 import styled from 'styled-components'
@@ -248,9 +248,8 @@ export const getStaticProps: GetStaticProps = async function({
   //TODO - move to readFile
   const { default: siteConfig } = await import('../../content/siteConfig.json')
 
-  const client = ExperimentalGetTinaClient()
   const vars = { relativePath: `${slug}.md` }
-  const res = await client.getExpandedPostDocument(vars)
+  const res = await client.queries.getExpandedPostDocument(vars)
 
   return {
     props: {
