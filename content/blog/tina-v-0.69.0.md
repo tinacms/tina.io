@@ -1,5 +1,5 @@
 ---
-title: 'TinaCMS V0.69 '
+title: 'TinaCMS V0.69'
 date: '2022-07-21T04:00:00.000Z'
 last_edited: '2022-07-21T04:00:00.000Z'
 author: Logan Anderson
@@ -37,7 +37,7 @@ This requires a change to the schema and the scripts:
 // ...
 const schema = defineSchema({
 +    config: {
-+        branch: "main",
++        branch: "***",
 +        clientId: "***",
 +        token: "***",
     },
@@ -46,8 +46,8 @@ const schema = defineSchema({
     ]
 })
 // ...
-- const branch = process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF
-- const clientId = 'YOUR-CLIENT-ID-HERE'
+- const branch = "***"
+- const clientId = "***"
 - const apiURL =
 -   process.env.NODE_ENV == 'development'
 -     ? 'http://localhost:4001/graphql'
