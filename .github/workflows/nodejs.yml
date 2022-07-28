@@ -1,7 +1,9 @@
 name: Node CI
-
 on: [push]
-
+env:
+  NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
+  TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
+  NEXT_PUBLIC_TINA_BRANCH: ${{ github.head_ref }}
 jobs:
   build:
     runs-on: ubuntu-latest
