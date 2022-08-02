@@ -68,8 +68,8 @@ import { defineSchema } from 'tinacms'
 const branch =
   process.env.NEXT_PUBLIC_TINA_BRANCH ||
   process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF ||
-  process.env.HEAD ||
-  ''
+  process.env.HEAD
+
 const schema = defineSchema({
   config: {
     token: '<Your Read Only Token>' // generated on app.tina.io
