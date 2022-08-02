@@ -25,7 +25,8 @@ The Schema is located in `.tina/schema.{ts,tsx,js,jsx}` and it **must be** the d
 const branch =
   process.env.NEXT_PUBLIC_TINA_BRANCH ||
   process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF ||
-  process.env.HEAD
+  process.env.HEAD ||
+  ''
 
 const schema = defineSchema({
   config: {
