@@ -14,7 +14,7 @@
     "export": "tinacms build --noTelemetry && next export",
     "prestart": "tinacms build --noTelemetry && npm run export",
     "static-start": "serve out",
-    "start": "tinacms server:start --noTelemetry -c \"next start\"",
+    "start": "tinacms build --noTelemetry -c \"next start\"",
     "format": "prettier --write \"src/**/*.{ts,tsx,md}\"",
     "lint": "yarn type-check && tslint 'src/**/*.{ts,tsx}' -p tsconfig.json",
     "test": "jest --passWithNoTests",
