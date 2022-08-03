@@ -27,13 +27,13 @@ There are only a couple of small changes to be made in order to update.
 
 ### Updates in `.tina/schema.{ts,js}`
 
-Instead of passing an `apiURL` & `client` into `defineConfig`, now the clientId, branch and read only token (NEW) are all configured in the schema. The local graphql api url is used if the `--local` flag is passed.
+Instead of passing an `apiURL` into `defineConfig`, now the clientId, branch and read only token (NEW) are all configured in the schema and the generated `client` must be passed to the schema. The local graphql api url is used if the `--local` flag is passed.
 
 This requires a change to the schema and the scripts:
 
 ```diff
 // .tina/schema.ts
-- import { client } from "./__generated__/client";
++ import { client } from "./__generated__/client";
 // ...
 const schema = defineSchema({
 +    config: {
@@ -53,7 +53,7 @@ const schema = defineSchema({
 -     ? 'http://localhost:4001/graphql'
 -    : `https://content.tinajs.io/content/${clientId}/github/${branch}`
 export const tinaConfig = defineConfig({
--  client,
++  client,
 -  apiURl,
   schema,
   // ...
