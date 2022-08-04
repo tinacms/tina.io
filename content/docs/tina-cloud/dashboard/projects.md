@@ -62,6 +62,55 @@ After your project has been created, you can visit the Configuration page to upd
 
 From the project configuration screen, click the "Change Repository" button. You will authorize Tina.io again and a list of repositories will be displayed. Selecting the new repository and click Save Project to update the repository.
 
-#### Refreshing Webhooks
+#### Advanced Settings
 
-In rare circumstances, the GitHub Webhook connecting your repository to Tina Cloud may be disrupted. Click the "Refresh Webhooks" button to restore them.
+The Advanced Settings button is located in the Configuration tab of your project in Tina Cloud.
+
+##### Path To Tina
+
+If your GitHub repository uses a monorepo structure, the Path To Tina Config input can be used to specify the path to the
+`.tina` directory in your repository. For example, if you have a project named `my-site`, and it is located in the
+`projects` directory of your repository, you would enter `projects/my-site` in this field and click Save Project to
+update the project.
+
+##### Refresh Webhooks
+
+In rare circumstances, the GitHub Webhook connecting your repository to Tina Cloud may be disrupted. If the webhook does
+not execute, Tina Cloud may become out of sync with your GitHub repository. Click the "Refresh Webhooks" button to restore them.
+
+##### Reset Repository Cache
+
+Clicking this will completely reset the cached copy of your GitHub repository and initiate a reindexing process. Any
+changes only present in the cached copy will be lost.
+
+##### Force Push
+
+If there are changes in the repository cache which cannot be automatically merged to your GitHub repository, it may be
+necessary to execute a force push. With a force push, the commit history on the remote will be forcefully overwritten 
+with the history in the repository cache. This should only be used if you are confident that the changes in the 
+TinaCMS repository cache are correct.
+
+### Read Only Tokens
+
+Read-only tokens provide read-only access to your project's content.
+
+#### Generate tokens from the dashboard
+
+Navigate to [Tina Cloud](https://app.tina.io) and click on the project you wish to add a token to, click on the "tokens" tab
+![Tina cloud token tab](/img/graphql-docs/token-tab.png)
+
+Next, click "New Token" and fill out fields. The token name is how you can identify the token and "Git branches" is the list of branches separated by commas that the token has assess too.
+
+![Creating a new token in Tina Cloud](/img/graphql-docs/create-new-token.png)
+
+Finally, click "Create Token".
+
+![Successful creation of a token in Tina Cloud](/img/graphql-docs/final-token-page.png)
+
+This token will be used later when we connect the site's frontend to our project.
+
+#### Wild card matching
+
+Wild card matching is supported in the branch names using '\*' to match anything. For example: `feat/*` will match `feat/foo` and `feat/bar`. If only `*` is entered it will match any branch.
+
+Wild card matching is useful for matching branches that have not been created yet and can be used for editorial workflows.

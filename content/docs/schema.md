@@ -12,10 +12,10 @@ The Tina schema defines the shape of your content. Tina uses a "content-modeling
 - Mutating the schema is easy, as you can test out changes locally, or in a branch.
 - The developer can extend the schema in interesting ways (custom validation, custom UI fields, etc).
 
-The content model is defined in a file called `.tina/schema.ts`.
+The content model is defined in a file called `.tina/schema.{ts,js,tsx}`.
 
 ```ts
-// .tina/schema.ts
+// .tina/schema.{ts,js,tsx}
 import { defineSchema } from 'tinacms'
 
 const schema = defineSchema({
@@ -178,7 +178,6 @@ fields: [
 
 To display default values when fields are first added to a page, use the `defaultValue` property.
 
-
 ```ts
 // ...
 fields: [
@@ -190,11 +189,14 @@ fields: [
   },
 ],
 ```
+
 ### Default value for objects
+
 To set default values for objects of fields, use the `defaultItem` property (see [example here](https://tina-gql-playground.vercel.app/object-list-data)).
 
 ### Default value for rich-text
-Currently, when setting a default value for a [rich-text field](/docs/reference/types/rich-text/), you must provide the document Abstract Syntax Tree (AST).  See the following example:
+
+Currently, when setting a default value for a [rich-text field](/docs/reference/types/rich-text/), you must provide the document Abstract Syntax Tree (AST). See the following example:
 
 ```ts
 // ...

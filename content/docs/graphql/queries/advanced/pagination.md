@@ -4,8 +4,6 @@ id: /docs/graphql/queries/advanced/pagination
 next: /docs/graphql/queries/advanced/performance
 ---
 
-{{ WarningCallout text="This is an experimental feature, and the API is subject to change. We don't yet suggest using this for production use-cases. The `--experimentalData` cli flag must be specified in order to enable this feature. Visit this [page](/docs/tina-cloud/data-layer/#enabling-the-data-layer) for more details. Have any thoughts? Let us know in the chat, or through the [GitHub discussion](https://github.com/tinacms/tinacms/discussions/2811)!" }}
-
 Collection queries implement cursor based pagination. The client specifies a result limit parameter (using `first` or `last`) and a corresponding cursor parameter (using `after` or `before`) which is a pointer to the last item on the previous page of results.
 
 Both of these parameters are optional. If a result limit is omitted, a maximum of `10` results will be returned. If the cursor is omitted, results will start with the first matching item.

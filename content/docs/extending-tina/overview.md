@@ -19,34 +19,33 @@ Tina allows any field to be customized through the `ui` property. This allows a 
 
 ```ts
 const schema = defineSchema({
-    collections: [
-      {
-       name: "posts",
-       label: "Blog Posts",
-       path: "content/posts",
-       format: "mdx",
-       fields: [
-         {
-           type: 'string',
-           label: 'Title',
-           name: 'title',
-           ui: {
-              validate: (value)=>{
-                  if(value?.length > 40){
-                    return 'Title cannot be more than 40 characters long'
-                  }
-              }  
-           }
-         },
-         // ... other fields
-       ],
-      },
-    ]
-}) 
+  collections: [
+    {
+      name: 'posts',
+      label: 'Blog Posts',
+      path: 'content/posts',
+      format: 'mdx',
+      fields: [
+        {
+          type: 'string',
+          label: 'Title',
+          name: 'title',
+          ui: {
+            validate: value => {
+              if (value?.length > 40) {
+                return 'Title cannot be more than 40 characters long'
+              }
+            },
+          },
+        },
+        // ... other fields
+      ],
+    },
+  ],
+})
 // ...
 
 export default schema
-
 ```
 
 ## Customizing the CMS instance
@@ -58,7 +57,7 @@ The `.tina/schema.ts` config has an optional `cmsCallback` parameter that can be
 
 // ...
 export config = defineConfig({
-  apiURL,
+// ...
 + cmsCallback: (cms) => {
 +   cms.sidebar.position = 'overlay'
 +   return cms
@@ -67,4 +66,3 @@ export config = defineConfig({
 ```
 
 The `cmsCallback` hook is primarily used for registering custom field plugins. It can also be used for altering Tina's UI, dynamically hiding the sidebar on specific pages, tapping into the CMS event bus, etc.
-
