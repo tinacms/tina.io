@@ -4,11 +4,9 @@ id: /docs/tina-folder/overview/
 # next: '/docs/features/data-fetching'
 ---
 
-
 ## Overview
 
 The `.tina` folder is where the configuration, schema and UI customization for TinaCMS is located.
-
 
 The `.tina` folder is normally at the root of the repo (unless a [mono repo setup](/docs/tina-cloud/faq/#does-tina-cloud-work-with-monorepos) is being used). It has the following folder structure:
 
@@ -16,7 +14,7 @@ The `.tina` folder is normally at the root of the repo (unless a [mono repo setu
 - `components` folder
   - `TinaProvider.js`
   - `TinaDynamicProvider.js`
-- `queries` folder (*optional*)
+- `queries` folder (_optional_)
 - `__generated___` folder
   - `_graphql.json`
   - `_lookup.json`
@@ -25,12 +23,9 @@ The `.tina` folder is normally at the root of the repo (unless a [mono repo setu
   - `queries.gql`
   - `schema.gql`
 
-
-
 ## `schema.{ts,tsx,js}`
 
 This file contains the [definition for the project's schema](/docs/schema), as well as the Tina configuration object. The schema must be the default export of this file.
-
 
 See our ["Tina Cloud Starter"](https://github.com/tinacms/tina-cloud-starter/blob/main/.tina/schema.ts) for an example of how this file is used
 
@@ -41,7 +36,6 @@ const schema = defineSchema({...})
 export const config = defineConfig({ schema: schema, ...})
 export default schema
 ```
-
 
 > For help defining the Tina schema, see our [content modelling documentation](/docs/schema/)
 
@@ -57,15 +51,13 @@ This file handles importing the configuration and TinaProvider.
 
 This file lazily loads `TinaProvider.js` to ensure that tina is only loaded in edit mode and does not increase the size of your production bundle.
 
-## `queries` folder (*optional*)
+## `queries` folder (_optional_)
 
-The `queries` folder is optional and is used by the [experimental generated client](/docs/graphql/client/). The queries that are defined in this folder will automatically be attached to the generated client when it is built.
-
+The `queries` folder is optional and is used by the [experimental generated client](/docs/data-fetching/overview/). The queries that are defined in this folder will automatically be attached to the generated client when it is built.
 
 ## `__generated___` folder
 
 This is where all the files that are generated during the schema build process are stored. Generally speaking, these files **must be checked into source control and pushed to github** with a couple of exceptions (Listed below). The reason for this is that Tina Cloud uses the generated files in order to resolve documents.
-
 
 ### `types.ts`
 
@@ -85,15 +77,12 @@ The Graphql Schema AST (represented in JSON). Must be pushed to GitHub.
 
 ### `frags.gql`
 
-This file contains the raw Graphql fragments that are generated and used by the [experimental generated client](/docs/graphql/client/). Does not need to be checked into source control.
+This file contains the raw Graphql fragments that are generated and used by the [experimental generated client](/docs/data-fetching/overview/). Does not need to be checked into source control.
 
 ### `queries.gql`
 
-This file contains the raw graphql queries that are generated and used by the [experimental generated client](/docs/graphql/client/). Does not need to be checked into source control since the the code for the generated client is `.tina/__generated__/types.ts`. 
+This file contains the raw graphql queries that are generated and used by the [experimental generated client](/docs/data-fetching/overview/). Does not need to be checked into source control since the the code for the generated client is `.tina/__generated__/types.ts`.
 
-### `schema.gql` 
+### `schema.gql`
 
 This file contains the raw graphql schema. Does not need to be checked into source control.
-
-
-

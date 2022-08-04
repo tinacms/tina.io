@@ -512,6 +512,10 @@
     {
       "source": "/docs/media-cloudinary/",
       "destination": "/docs/reference/media/cloudinary/"
+    },
+    {
+      "source": "/docs/tina-cloud/data-layer/",
+      "destination": "/docs/reference/content-api/data-layer/"
     }
   ]
 }

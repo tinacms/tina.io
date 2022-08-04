@@ -1,7 +1,7 @@
 ---
 title: Contextual Editing
 id: '/docs/tinacms-context'
-next: '/docs/graphql/overview'
+next: '/docs/data-fetching/overview'
 ---
 
 ## Introduction
@@ -20,37 +20,35 @@ Tina also allows for "Contextual Editing" so that editors can see their pages be
 
 Contextual editing can be set up on a page with the `useTina` hook
 
+Here is an example of setting up contextual editing, on a NextJS-based site.
+
 ```jsx
 // ...
 import { useTina } from 'tinacms/dist/edit-state'
 
-const query = `{
-  page(relativePath: "home.mdx"){
-    body
-  }
-}`
-
 export default function Home(props) {
   // Pass our data through the "useTina" hook to make it editable
   const { data } = useTina({
-    query,
-    variables: {},
+    query: props.query,
+    variables: props.variables,
     data: props.data,
   })
 
-// Note how our page body uses "data", and not the original "props.data".
-// This ensures that the content will be updated in edit-mode as the user types
+  // Note how our page body uses "data", and not the original "props.data".
+  // This ensures that the content will be updated in edit-mode as the user types
   return <h1>{data.page.body}</h1>
 }
 
 export const getStaticProps = async () => {
-  const data = await staticRequest({
-      query,
-      variables = {},
-    })
+  const pageResponse = await client.queries.page({ relativePath: 'home.mdx' })
 
-  // return the original data, which is used in our production page
-  return { props: { data } }
+  return {
+    props: {
+      data: pageResponse.data,
+      query: pageResponse.query,
+      variables: pageResponse.variables,
+    },
+  }
 }
 ```
 

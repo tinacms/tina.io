@@ -8,7 +8,7 @@
     "node": ">=14"
   },
   "scripts": {
-    "dev-next": "tinacms server:start --experimentalData --noTelemetry  -c \"next\" ",
+    "dev-next": "tinacms server:start --experimentalData --noTelemetry  --watchFolders 'content'  -c \"next\" ",
     "dev": "yarn dev-next",
     "develop": "yarn dev-next",
     "build": "yarn create-rss && tinacms server:start --experimentalData  --noTelemetry --noWatch -c \"next build\"",

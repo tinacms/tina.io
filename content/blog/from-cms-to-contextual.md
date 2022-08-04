@@ -411,8 +411,6 @@ Now that you have contextual editing here are a few things you can explore with 
 
 - [Media management through Cloudinary](https://tina.io/docs/reference/media/cloudinary/)
 - [Route Mapping (connect the CMS to contextual editing](https://tina.io/docs/tinacms-context/#the-routemappingplugin)
-- [Data layer](https://tina.io/docs/tina-cloud/data-layer/)
-- [Read-only tokens](https://tina.io/docs/graphql/read-only-tokens/)
 
 ## How to keep up to date with Tina?
 
