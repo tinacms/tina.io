@@ -1,11 +1,11 @@
 ---
-title: 'TinaCMS V0.69'
+title: 'TinaCMS V0.68.14'
 date: '2022-07-21T04:00:00.000Z'
 last_edited: '2022-07-21T04:00:00.000Z'
 author: Logan Anderson
 ---
 
-TinaCMS Version `0.69` brings some extensive improvements to Tina. Here is a short list of a few of the major features:
+TinaCMS Version `0.68.14` brings some extensive improvements to Tina. Here is a short list of a few of the major features:
 
 1.  New unified client that can be used on the frontend and backend.
 2.  Data layer is enabled by default
@@ -29,7 +29,7 @@ There are only a couple of small changes to be made in order to update.
 
 Instead of passing an `apiURL` into `defineConfig`, now the clientId, branch and read only token (NEW) are all configured in the schema. The generated `client` must be passed to `defineConfig`.
 
-Instead of needing to configure localhost as the `apiURL`, the local graphql api is now used by default with `yarn dev`. 
+Instead of needing to configure localhost as the `apiURL`, the local graphql api is now used by default with `yarn dev`.
 
 This requires a change to the schema and the scripts:
 
