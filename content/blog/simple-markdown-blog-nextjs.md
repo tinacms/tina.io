@@ -18,15 +18,15 @@ Next.js is a React "metaframework" (a framework built on a framework) for develo
 
 ---
 
-If you'd like to skip ahead and reference final versions of the starter, feel free to checkout the [finished implementation](https://github.com/perkinsjr/brevifolia-next-2022).
+If you'd like to skip ahead and reference final versions of the starter, feel free to checkout the [finished implementation](https://github.com/tinalabs/brevifolia-next-2022).
 
 ## Clone the starter
 
-Let’s get started. I have provided a [bare bones starter](https://github.com/perkinsjr/nextjs-starter-boilerplate) to use as a starting point for this tutorial. You can clone the project or check it out on [github](https://github.com/perkinsjr/nextjs-starter-boilerplate) for reference.
+Let’s get started. I have provided a [bare bones starter](https://github.com/tinalabs/nextjs-starter-boilerplate) to use as a starting point for this tutorial. You can clone the project or check it out on [github](https://github.com/tinalabs/nextjs-starter-boilerplate) for reference.
 
 ```javascript
 // clone the repo from your terminal
-$ git clone https://github.com/perkinsjr/nextjs-starter-boilerplate my-nextjs-blog
+$ git clone https://github.com/tinalabs/nextjs-starter-boilerplate my-nextjs-blog
 
 // install the dependencies
 $ cd my-nextjs-blog
@@ -317,11 +317,11 @@ const Index = props => {
 export default Index
 ```
 
-Then you are free to loop through the blogs and render the list within your `BlogList` component as you need. Feel free to check out the [BlogList component](https://github.com/perkinsjr/brevifolia-next-2022/blob/master/components/BlogList.js) in my starter to see how that data could be handled.
+Then you are free to loop through the blogs and render the list within your `BlogList` component as you need. Feel free to check out the [BlogList component](https://github.com/tinalabs/brevifolia-next-2022/blob/master/components/BlogList.js) in my starter to see how that data could be handled.
 
 ## Next Steps
 
-> Checkout the [final repo](https://github.com/perkinsjr/brevifolia-next-2022)!
+> Checkout the [final repo](https://github.com/tinalabs/brevifolia-next-2022)!
 
 After setting up your blog or portfolio site, you’ll most likely need a content management system to make editing and updating your posts or data easier. Stay tuned for my next blog on setting up this starter with TinaCMS. In the meantime, you can check out our [documentation ](/docs), or [try out a starter](https://tina.io/docs/introduction/using-starter/) to start playing with TinaCMS right away.
 

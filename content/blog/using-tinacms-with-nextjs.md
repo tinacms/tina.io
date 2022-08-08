@@ -34,7 +34,7 @@ Feel free to follow along and fit these guidelines to your own site or blog, or 
 
 ```bash
 # clone the repo
-$ git clone https://github.com/perkinsjr/brevifolia-next-2022 next-tina-blog
+$ git clone https://github.com/tinalabs/brevifolia-next-2022 next-tina-blog
 
 # navigate to the directory
 $ cd next-tina-blog
