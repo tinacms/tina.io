@@ -17,6 +17,10 @@
   "redirects": [
     { "source": "/cloud/", "destination": "/" },
     {
+      "source": "/blog/tina-v-0.69.0/",
+      "destination": "/blog/tina-v-0.68.14"
+    },
+    {
       "source": "/docs/extending-tina/customizing-forms/",
       "destination": "/docs/extending-tina/overview/"
     },
