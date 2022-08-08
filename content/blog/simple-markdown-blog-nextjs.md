@@ -323,7 +323,7 @@ Then you are free to loop through the blogs and render the list within your `Blo
 
 > Checkout the [final repo](https://github.com/perkinsjr/brevifolia-next-2022)!
 
-After setting up your blog or portfolio site, you’ll most likely need a content management system to make editing and updating your posts or data easier. Stay tuned for my next blog on setting up this starter with TinaCMS. In the meantime, you can check out our [documentation ](/docs), or [fork the finished Next+Tina blog](https://github.com/perkinsjr/tina-simple-markdown) to start playing with TinaCMS right away.
+After setting up your blog or portfolio site, you’ll most likely need a content management system to make editing and updating your posts or data easier. Stay tuned for my next blog on setting up this starter with TinaCMS. In the meantime, you can check out our [documentation ](/docs), or [try out a starter](https://tina.io/docs/introduction/using-starter/) to start playing with TinaCMS right away.
 
 ## Where can you keep up to date with Tina?
 

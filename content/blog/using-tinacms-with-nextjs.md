@@ -26,7 +26,7 @@ The best way to get a feel for how Tina works is to use it. We hope that by the 
 
 This tutorial will show you how to install and **configure Tina for editing content on a simple markdown-based blog** that was created in last week’s post. If you want to dig into how the base blog was made, read [Part I](/blog/simple-markdown-blog-nextjs/) of this series.
 
-> Jump ahead to see the [final repo here](https://github.com/perkinsjr/tina-simple-markdown). Or check out the [Tina documentation](/docs/setup-overview/) here
+> Jump ahead and check out the [Tina documentation](/docs/setup-overview/) here
 
 ### Set up Locally 🏡
 
@@ -587,7 +587,7 @@ Your TinaCMS should now look like this:
 
 #### Testing
 
-Go ahead and launch your blog and you should be able to see a new markdown editor that allows you to pass in data. Well done! With some config and calling a few hooks, you can now edit all our blog posts with Tina. Checkout the [final repo](https://github.com/perkinsjr/tina-simple-markdown), you might consider doing the following
+Go ahead and launch your blog and you should be able to see a new markdown editor that allows you to pass in data. Well done! With some config and calling a few hooks, you can now edit all our blog posts with Tina.
 
 ## Where can you keep up to date with Tina?
 
