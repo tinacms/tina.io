@@ -59,6 +59,6 @@ We are still deciding out what we believe will be fair pricing for people who de
 
 The whole team is truly excited to enter a public Alpha phase and hope you will check it out and give us honest feedback. We wanna hear about your projects, let us know how Tina Cloud can help your team make progress.
 
-To keep up to date with Tina goings-on make sure to follow [@tina_cms](https://twitter.com/tina_cms) and [@james_r_perkins](https://twitter.com/james_r_perkins) on Twitter.
+To keep up to date with Tina goings-on make sure to follow [@tina_cms](https://twitter.com/tina_cms) on Twitter.
 
 Stay tuned for further improvements, features, community-built projects and more!

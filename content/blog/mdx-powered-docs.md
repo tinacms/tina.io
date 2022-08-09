@@ -13,13 +13,11 @@ When we released our [MDX Support](/docs/mdx/), we wanted to create a real-world
 
 Creating a documentation starter required some investigation. We wanted a starting point that would allow us to add all the features we believe are important to documentation, such as an easy way to add videos without using iframes or callouts. So we decided that Smooth Doc would be the perfect starting point.
 
-
 ## Smooth Doc
 
 [Smooth Doc](https://smooth-doc.com/) was created by [Greg Bergé](https://twitter.com/neoziro) who also created xstyled components and spends a lot of time creating products. He needed a great documentation site that he could reuse over and over again. The original Smooth Doc is built on Gatsby and uses MDX under the hood to power the entire site, another open-source creator turned Smooth Doc into a Next site.
 
-Smooth Doc has a lot of features, but we removed some,  such as carbon ads, so that we could deliver a streamlined product for our starter.
-
+Smooth Doc has a lot of features, but we removed some, such as carbon ads, so that we could deliver a streamlined product for our starter.
 
 ## MDX
 
@@ -46,7 +44,6 @@ We are big fans of markdown and have just introduced the ability to support MDX.
 ![CleanShot 2021-11-02 at 09.32.00.png](https://res.craft.do/user/full/c67cad1b-6dc6-4909-0f8e-19d468ba9fd4/doc/F38A8651-6C07-422F-A3E4-DBB7464B4570/06AE2D56-FB1D-49BA-A5E2-74C98022B81E_2/CleanShot%202021-11-02%20at%2009.32.00.png)
 
 Each one of these components is easily edited by content teams with no development experience. We also give developers the ability to create their own components for their content teams, such as a newsletter signup.
-
 
 ## Tina
 
@@ -78,4 +75,4 @@ One benefit of using Tina is that you can create new pages without leaving your 
 
 We hope you enjoy the documentation starter and it unlocks your team’s productivity. If you have any questions or issues please make sure to join the [Discord](https://discord.gg/njvZZYHj2Q) or use our [GitHub Discussions](https://github.com/tinacms/tinacms/discussions).
 
-To keep up to date with Tina’s goings-on make sure to follow [@tina_cms](https://twitter.com/tina_cms) and [@james_r_perkins](https://twitter.com/james_r_perkins) on Twitter.
+To keep up to date with Tina’s goings-on make sure to follow [@tina_cms](https://twitter.com/tina_cms) on Twitter.
