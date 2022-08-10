@@ -1,6 +1,8 @@
 import { defineConfig } from 'tinacms'
 import schema from './schema'
+import { client } from './__generated__/client'
 export const tinaConfig = defineConfig({
+  client,
   schema,
   cmsCallback: cms => {
     import('react-tinacms-editor').then(({ MarkdownFieldPlugin }) => {
