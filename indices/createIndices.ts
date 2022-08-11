@@ -10,12 +10,29 @@ import { stripMarkdown } from '../utils/blog_helpers'
 const mapContentToIndex = async ({
   content,
   ...obj
-}: Partial<{ data: { slug: string }; content: string }>) => {
-  return {
-    ...obj.data,
-    excerpt: await stripMarkdown(content || ''),
-    objectID: obj.data.slug,
-  }
+}: Partial<{ data: { slug: string }; content: string }>): Promise<{
+  excerpt: string
+  objectID: string
+  slug: string
+}[]> => {
+  //Break up the indexes to keep them within the algolia size limit
+  //TODO, a smarter regex might be better here, but this seems to work.
+  const paragraphs = (content || '')
+    .replaceAll('## ', '__BREAKINDEX__')
+    .split('__BREAKINDEX__')
+
+  return Promise.all(
+    paragraphs.map(async (paragraph, i) => {
+      const excerpt = await stripMarkdown(paragraph)
+      if (excerpt) {
+        return {
+          ...obj.data,
+          excerpt,
+          objectID: obj.data.slug + `_${i}`,
+        }
+      }
+    })
+  )
 }
 
 const saveIndex = async (
@@ -25,7 +42,11 @@ const saveIndex = async (
 ) => {
   try {
     const index = client.initIndex(indexName)
-    await index.setSettings({ attributesToSnippet: ['excerpt:50'] })
+    await index.setSettings({
+      attributesToSnippet: ['excerpt:50'],
+      attributeForDistinct: 'slug',
+      distinct: 1,
+    })
     const result = await index.saveObjects(data)
     console.log(
       `${indexName}: added/updated ${result.objectIDs.length} entries`
@@ -70,24 +91,25 @@ const createIndices = async () => {
     process.env.ALGOLIA_ADMIN_KEY
   )
   const docs = await fetchSearchableDocs()
+
   await saveIndex(
     client,
     'Tina-Docs-Next',
-    await Promise.all(docs.map(mapContentToIndex))
+    (await Promise.all(docs.map(mapContentToIndex))).flat()
   )
 
   const blogs = await fetchBlogs()
   await saveIndex(
     client,
     'Tina-Blogs-Next',
-    await Promise.all(blogs.map(mapContentToIndex))
+    (await Promise.all(blogs.map(mapContentToIndex))).flat()
   )
 
   const guides = await fetchGuides()
   await saveIndex(
     client,
     'Tina-Guides-Next',
-    await Promise.all(guides.map(mapContentToIndex))
+    (await Promise.all(guides.map(mapContentToIndex))).flat()
   )
 }
 
