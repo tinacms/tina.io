@@ -125,6 +125,160 @@ type TinaMarkdown = ({
 }) => JSX.Element
 ```
 
+## Handling markdown
+
+Since markdown is an open-format Tina does it's best to handle the most common syntaxes, but in some scenarios Tina will ignore or automatically alter content:
+
+### Unsupported elements
+
+While most markdown features are supported out of the box, Tina will ignore elements that it cannot handle. We _do not_ expect to support the full [CommonMark](https://commonmark.org/) and
+[Github Flavored Markdown](https://github.github.com/gfm/) specs. In areas where something is not supported you can most likely find a workaround with JSX, see the [workarounds](#workarounds) section below for details and be sure to
+voice your support for various rich-text features by reaching out through one of our [community channels](/community/)!
+
+- Tables
+- Footnotes
+- Code blocks via indentation (use ` ``` ` instead)
+- Strikethrough
+
+### Automatic transforms
+
+For some elements, Tina will automatically transform the values:
+
+**Bold and italic marks**:
+
+```
+__Hello__
+```
+
+Will be transformed to:
+
+```
+**Hello**
+```
+
+**Line items**:
+
+```
+- Item 1
+```
+
+Will be transformed to:
+
+```
+* Item 1
+```
+
+**Deeply-nested blockquotes and code blocks**:
+
+Some of the more complex nesting patterns you can do with markdown are not supported
+
+```
+* > My blockquote
+```
+
+Will be transformed to:
+
+```
+* My blockquote
+```
+
+### Custom shortcode syntax
+
+{{ WarningCallout text="This is an experimental feature, and the API is subject to change. Have any thoughts? Let us know in the chat, or through one of our [community channels](/community/)!" }}
+
+If you have some custom shortcode logic in your markdown, you can specify it in the `templates` property and Tina will handle it as if it were a `jsx` element:
+
+The following snippet would throw an error while parsing since Tina doesn't know what to do with `{{}}`:
+
+```markdown
+{{ WarningCallout text="This is an experimental feature, and the API is subject to change. Have any thoughts? Let us know in the chat, or through one of our [community channels](/community/)!" }}
+```
+
+But you can tell Tina how to handle it with a `template`:
+
+```ts
+// .tina/schema.ts
+{
+  collections: [
+    {
+      // ...
+      fields: [
+        {
+          type: 'rich-text',
+          name: 'body',
+          templates: [
+            {
+              name: 'WarningCallout',
+              label: 'WarningCallout',
+              match: {
+                start: '{{',
+                end: '}}',
+              },
+              fields: [
+                {
+                  // Be sure to call this field `text`
+                  name: 'text',
+                  label: 'Text',
+                  type: 'string',
+                  required: true,
+                  isTitle: true,
+                  ui: {
+                    component: 'textarea',
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ]
+}
+```
+
+### Workarounds
+
+In most scenarios you can represent what you need with a custom JSX element. For example, let's implement support for "strikethrough". First, declare a new template in your `rich-text` config:
+
+```ts
+// .tina/schema.ts
+{
+  collections: [
+    {
+      // ...
+      fields: [
+        {
+          type: 'rich-text',
+          name: 'body',
+          templates: [
+            {
+              name: 'Strikethrough',
+              label: 'Strikethrough',
+              inline: true,
+              fields: [
+                {
+                  type: 'string',
+                  name: 'text',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ]
+}
+```
+
+And when it's time to render it with `<TinaMarkdown>`, supply a `Strikethrough` component:
+
+```tsx
+<TinaMarkdown
+  components={{ Strikethrough: props => <s>{props.text}</s> }}
+  content={data.body}
+/>
+```
+
 ## Differences from other MDX implementations
 
 If you've worked with MDX before, you know that there's usually a _compilation_ step which turns your `.mdx` file into JavaScript code.
