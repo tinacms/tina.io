@@ -190,6 +190,11 @@
         "title": "API Versioning"
       },
       {
+        "id": "/docs/self-hosted/overview/",
+        "slug": "/docs/self-hosted/overview/",
+        "title": "Self Hosted Tina"
+      },
+      {
         "id": "/docs/tina-cloud/branching/",
         "slug": "/docs/tina-cloud/branching/",
         "title": "Branching",
@@ -219,15 +224,16 @@
         ]
       },
       {
-        "id": "/guides/tinacms/react-data-fetching/guide/",
-        "slug": "/guides/tinacms/react-data-fetching/guide/",
-        "title": "Querying Tina Content at Runtime"
-      },
-      {
         "id": "/guides/tinacms/non-react-based-ssg/guide/",
         "slug": "/guides/tinacms/non-react-based-ssg/guide/",
         "title": "Non-React-based SSG support",
         "beta": true
+      },
+      {
+        "id": "/guides/tinacms/react-data-fetching/guide/",
+        "slug": "/guides/tinacms/react-data-fetching/guide/",
+        "title": "Querying Tina Content at Runtime",
+        "considering": true
       }
     ]
   },
@@ -452,7 +458,6 @@
             "id": "fields/",
             "slug": "/docs/reference/toolkit/fields/",
             "expandOnSelect": true,
-
             "items": [
               {
                 "id": "/docs/reference/toolkit/fields/text/",
@@ -464,13 +469,11 @@
                 "slug": "/docs/reference/toolkit/fields/textarea/",
                 "title": "Text Area"
               },
-
               {
                 "id": "/docs/reference/toolkit/fields/number/",
                 "slug": "/docs/reference/toolkit/fields/number/",
                 "title": "Number"
               },
-
               {
                 "id": "/docs/reference/toolkit/fields/image/",
                 "slug": "/docs/reference/toolkit/fields/image/",
