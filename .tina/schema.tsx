@@ -93,6 +93,12 @@ export default defineSchema({
           type: 'string',
         },
         {
+          // note: this should be a hidden field that auto-updates
+          type: "datetime",
+          name: "last_edited",
+          label: "Last Edited",
+        },
+        {
           name: 'prev',
           label: 'Prev',
           type: 'string',
