@@ -2209,5 +2209,5 @@
       "namespace": ["abtest"]
     }
   ],
-  "config": { "media": {} }
+  "config": { "media": { } }
 }
