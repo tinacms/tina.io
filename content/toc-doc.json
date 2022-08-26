@@ -349,6 +349,16 @@
             "title": "Cloudinary",
             "id": "/docs/reference/media/cloudinary/",
             "slug": "/docs/reference/media/cloudinary/"
+          },
+          {
+            "title": "Digital Ocean Space",
+            "id": "/docs/reference/media/do-space/",
+            "slug": "/docs/reference/media/do-space/"
+          },
+          {
+            "title": "AWS S3 Bucket",
+            "id": "/docs/reference/media/s3/",
+            "slug": "/docs/reference/media/s3/"
           }
         ]
       },
