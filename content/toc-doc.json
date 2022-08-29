@@ -106,7 +106,7 @@
         "title": "Active Field Indicator",
         "id": "/docs/editing/active-field-indicator",
         "slug": "/docs/editing/active-field-indicator/",
-        "beta": true
+        "status": "beta"
       }
     ]
   },
@@ -192,13 +192,14 @@
       {
         "id": "/docs/self-hosted/overview/",
         "slug": "/docs/self-hosted/overview/",
-        "title": "Self Hosted Tina"
+        "title": "Self Hosted Tina",
+        "status": "considering"
       },
       {
         "id": "/docs/tina-cloud/branching/",
         "slug": "/docs/tina-cloud/branching/",
         "title": "Branching",
-        "beta": true
+        "status": "beta"
       }
     ]
   },
@@ -227,7 +228,7 @@
         "id": "/guides/tinacms/non-react-based-ssg/guide/",
         "slug": "/guides/tinacms/non-react-based-ssg/guide/",
         "title": "Non-React-based SSG support",
-        "beta": true
+        "status": "beta"
       },
       {
         "id": "/guides/tinacms/react-data-fetching/guide/",

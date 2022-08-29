@@ -135,7 +135,7 @@ const NavLevel = ({
 
   return (
     <>
-      <NavLabelContainer beta={categoryData.beta}>
+      <NavLabelContainer status={categoryData.status}>
         <DynamicLink href={categoryData.slug} passHref>
           <NavTitle ref={navLevelElem} level={level} selected={isSelected}>
             {isSelected ? (
@@ -181,18 +181,19 @@ const NavLevelChildContainer = styled.div<NavLevelChildContainerProps>`
     `}
 `
 
-const NavLabelContainer = styled.div<{ beta: boolean }>`
+const NavLabelContainer = styled.div<{ status: string }>`
   display: flex;
   &:last-child {
     padding-bottom: 0.375rem;
   }
 
-  ${(props: { beta: boolean }) =>
-    props.beta &&
+  ${(props: { status: string }) =>
+    props.status &&
     css`
       a::after {
         display: -ms-inline-flexbox;
-        content: 'Experimental';
+        content: '${props.status.toLowerCase()}';
+        text-transform: capitalize;
         font-size: 12px;
         font-weight: bold;
         background-color: #f9ebe6;
