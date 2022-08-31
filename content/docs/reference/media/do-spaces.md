@@ -1,41 +1,43 @@
 ---
-title: Using Media with Digital Ocean Space
+title: Using Media with Digital Ocean Spaces
 prev: /docs/reference/media/cloudinary
 next: /docs/reference/media/s3
 ---
 
-Manage **Digital Ocean Space media assets** in TinaCMS.
+Manage **Digital Ocean Spaces media assets** in TinaCMS.
 
 ## Installation
 
 ### With Yarn
+
 ```bash
 yarn add next-tinacms-dos
 ```
 
 ### With NPM
+
 ```bash
 npm install next-tinacms-dos
 ```
 
-## Connect with Digital Ocean Space
+## Connect with Digital Ocean Spaces
 
-You need some credentials provided by Digital Ocean Space to set this up properly. If you do not already have an account, you can (register here)[https://cloud.digitalocean.com/registrations/new].
+You need some credentials provided by Digital Ocean Spaces to set this up properly. If you do not already have an account, you can (register here)[https://cloud.digitalocean.com/registrations/new].
 
-**next-tinacms-dos** uses environment variables within the context of a Next.js site to properly access your Digital Ocean Space account.
+**next-tinacms-dos** uses environment variables within the context of a Next.js site to properly access your Digital Ocean Spaces account.
 
 Add the following variables to an `.env` file.
 
 ```
-NEXT_PUBLIC_SPACE_ENDPOINT=<Your Digital Ocean Space Endpoint: ex. https://fra1.digitaloceanspaces.com>
-NEXT_PUBLIC_SPACE_NAME=<Your Digital Ocean Space Name: ex. my-space>
-NEXT_PUBLIC_SPACE_KEY=<Your Digital Ocean Space access key>
-SPACE_SECRET_KEY=<Your Digital Ocean Space access secret>
+NEXT_PUBLIC_SPACES_ENDPOINT=<Your Digital Ocean Spaces Endpoint: ex. https://fra1.digitaloceanspaces.com>
+NEXT_PUBLIC_SPACES_NAME=<Your Digital Ocean Spaces Name: ex. my-spaces>
+NEXT_PUBLIC_SPACES_KEY=<Your Digital Ocean Spaces access key>
+SPACES_SECRET_KEY=<Your Digital Ocean Spaces access secret>
 ```
 
 ## Register the Media Store
 
-Now, you can register the Digital Ocean Space Media store with the instance of Tina in your app by passing the `TinaCloudDOSMediaStore` to the `TinaCMS` instance via its `mediaStore` prop.
+Now, you can register the Digital Ocean Spaces Media store with the instance of Tina in your app by passing the `TinaCloudDOSMediaStore` to the `TinaCMS` instance via its `mediaStore` prop.
 
 This is also where we can update our `mediaOptions` on the cms object.
 
@@ -92,7 +94,7 @@ const App = ({ Component, pageProps }) => {
 Set up a new API route in the `pages` directory of your Next.js app, e.g. `pages/api/dos/[...media].ts`.
 Then add a new catch all API route for media.
 
-Call `createMediaHandler` to set up routes and connect your instance of the Media Store to your Digital Ocean Space.
+Call `createMediaHandler` to set up routes and connect your instance of the Media Store to your Digital Ocean Spaces.
 
 Import `isAuthorized` from ["@tinacms/auth"](https://github.com/tinacms/tinacms/tree/main/packages/%40tinacms/auth).
 
@@ -112,16 +114,16 @@ export const config = mediaHandlerConfig
 
 export default createMediaHandler({
   config: {
-    endpoint: process.env.NEXT_PUBLIC_SPACE_ENDPOINT,
+    endpoint: process.env.NEXT_PUBLIC_SPACES_ENDPOINT,
     credentials: {
-      accessKeyId: process.env.NEXT_PUBLIC_SPACE_KEY || '',
-      secretAccessKey: process.env.SPACE_SECRET_KEY || '',
+      accessKeyId: process.env.NEXT_PUBLIC_SPACES_KEY || '',
+      secretAccessKey: process.env.SPACES_SECRET_KEY || '',
     },
     region: 'us-east-1',
   },
-  bucket: process.env.NEXT_PUBLIC_SPACE_NAME || '',
+  bucket: process.env.NEXT_PUBLIC_SPACES_NAME || '',
   authorized: async (req, _res) => {
-    if (process.env.NEXT_PUBLIC_USE_LOCAL_CLIENT === "1") {
+    if (process.env.NEXT_PUBLIC_USE_LOCAL_CLIENT === '1') {
       return true
     }
     try {
@@ -150,4 +152,4 @@ In your `.tina/schema.ts` add a new field for the image, e.g:
  }
 ```
 
-Now, when editing your site, the image field will allow you to connect to your Digital Ocean Space via the Media Store to manage your media assets.
+Now, when editing your site, the image field will allow you to connect to your Digital Ocean Spaces via the Media Store to manage your media assets.
