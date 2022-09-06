@@ -82,7 +82,7 @@ export default createMediaHandler({
   api_secret: process.env.CLOUDINARY_API_SECRET,
   authorized: async (req, _res) => {
     try {
-      if (process.env.NEXT_PUBLIC_USE_LOCAL_CLIENT) {
+      if (process.env.NODE_ENV == 'development') {
         return true
       }
 
