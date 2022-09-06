@@ -29,7 +29,7 @@ const schema = defineSchema({
 export default schema
 ```
 
-{{ WarningCallout text="Note ⚠️ If you're loading your schema config values from a local environment file, note that Tina's build process will only pickup `.env` files, (not `.env` or `.env.development` files)" }}
+{{ WarningCallout text="Note ⚠️ If you're loading your schema config values from a local environment file, note that Tina's build process will only pickup `.env` files, (not `.env.local` or `.env.development` files)" }}
 
 ## Configuring the branch
 
