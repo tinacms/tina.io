@@ -77,7 +77,7 @@ This file is where all the types of the schema are generated. This file is for t
 
 ### `client.{js,ts}`
 
-This file is where all client is generated. This client can be used on the backend and the frontend. It is very lightweight as to not bloat the bundle size. It is generated on every build, and does not need to be pushed to Github. [Check out this document](/docs/data-fetching/overview/) for more information on how to use the client.
+This file is where all client is generated. This client can be used on the backend and the frontend. It is very lightweight as to not bloat the bundle size. It is generated on every build, and does not need to be pushed to GitHub. [Check out this document](/docs/data-fetching/overview/) for more information on how to use the client.
 
 ### `frags.gql`
 
