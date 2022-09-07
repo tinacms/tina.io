@@ -30,7 +30,7 @@ or
 npm install next-tinacms-cloudinary
 ```
 
-You also need to add your Cloudinary cloud name, API key and API secret from your Cloudinary account, to your `.env.local` file which you can find in your Cloudinary Dashboard.
+You also need to add your Cloudinary cloud name, API key and API secret from your Cloudinary account, to your `.env` file which you can find in your Cloudinary Dashboard.
 
 ```other
 NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=
