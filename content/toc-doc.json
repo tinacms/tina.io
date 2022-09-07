@@ -106,7 +106,7 @@
         "title": "Active Field Indicator",
         "id": "/docs/editing/active-field-indicator",
         "slug": "/docs/editing/active-field-indicator/",
-        "beta": true
+        "status": "beta"
       }
     ]
   },
@@ -190,10 +190,16 @@
         "title": "API Versioning"
       },
       {
+        "id": "/docs/self-hosted/overview/",
+        "slug": "/docs/self-hosted/overview/",
+        "title": "Self Hosted Tina",
+        "status": "considering"
+      },
+      {
         "id": "/docs/tina-cloud/branching/",
         "slug": "/docs/tina-cloud/branching/",
         "title": "Branching",
-        "beta": true
+        "status": "beta"
       }
     ]
   },
@@ -219,15 +225,16 @@
         ]
       },
       {
-        "id": "/guides/tinacms/react-data-fetching/guide/",
-        "slug": "/guides/tinacms/react-data-fetching/guide/",
-        "title": "Querying Tina Content at Runtime"
-      },
-      {
         "id": "/guides/tinacms/non-react-based-ssg/guide/",
         "slug": "/guides/tinacms/non-react-based-ssg/guide/",
         "title": "Non-React-based SSG support",
-        "beta": true
+        "status": "beta"
+      },
+      {
+        "id": "/guides/tinacms/react-data-fetching/guide/",
+        "slug": "/guides/tinacms/react-data-fetching/guide/",
+        "title": "Querying Tina Content at Runtime",
+        "considering": true
       }
     ]
   },
@@ -317,7 +324,7 @@
       {
         "id": "/docs/tina-folder/overview/",
         "slug": "/docs/tina-folder/overview/",
-        "title": "\".tina\" folder"
+        "title": "The \".tina\" folder"
       },
       {
         "id": "/docs/cli-overview/",
@@ -452,7 +459,6 @@
             "id": "fields/",
             "slug": "/docs/reference/toolkit/fields/",
             "expandOnSelect": true,
-
             "items": [
               {
                 "id": "/docs/reference/toolkit/fields/text/",
@@ -464,13 +470,11 @@
                 "slug": "/docs/reference/toolkit/fields/textarea/",
                 "title": "Text Area"
               },
-
               {
                 "id": "/docs/reference/toolkit/fields/number/",
                 "slug": "/docs/reference/toolkit/fields/number/",
                 "title": "Number"
               },
-
               {
                 "id": "/docs/reference/toolkit/fields/image/",
                 "slug": "/docs/reference/toolkit/fields/image/",

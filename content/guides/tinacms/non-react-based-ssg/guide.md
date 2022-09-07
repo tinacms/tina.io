@@ -5,9 +5,11 @@ last_edited: '2022-04-21T10:00:00.000Z'
 
 ## Introduction
 
-Tina's "contextual editing" features require a React-based site, however Tina can still be used in "CMS-only" mode to edit content for non-React-based sites.
+Tina's "contextual editing" features require a React-based site, however Tina can still be used in "CMS-only mode" to edit content for non-React-based sites.
 
-> ⚠️ **This support is still very much experimental**, and we hope to have a more streamlined onboarding in the future.
+> ⚠️ We are close to releasing an update to Tina that will allow it to work out-of-the-box on non-React sites (in "CMS-only mode"). The following guide will soon be phased out and replaced with the much more streamlined solution. If you're looking to use Hugo with a Non-React framework, we suggest [joining our community](https://tina.io/community/), or [subscribing to this GitHub thread](https://github.com/tinacms/tinacms/discussions/2215).
+
+## Getting Started
 
 This guide should work with any Markdown/JSON-based site: E.g: Hugo, GatsbyJS, Astro, Jekyll, 11ty, Gridsome, etc.
 
@@ -51,7 +53,7 @@ Enter the following values into the newly generated package.json:
 }
 ```
 
-> ⚠️ **Warning** You need to make sure your root project is using `@tinacms/cli": "0.60.12 ` in the future you will be able to use newer versions.
+> ⚠️ **Warning** You need to make sure your root project is using `@tinacms/cli": "0.60.12` in the future you will be able to use newer versions.
 
 Add the node_modules directory to the .gitignore
 

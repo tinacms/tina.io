@@ -5,7 +5,7 @@ Source code for the [tina.io](https://tina.io) website.
 ## Development
 
 ```
-cp .env.example .env.local
+cp .env.example .env
 yarn install
 yarn develop
 ```
