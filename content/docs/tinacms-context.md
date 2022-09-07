@@ -69,74 +69,68 @@ export const getStaticProps = async () => {
 
 At this point, when your editors go to `/your-page-url` in edit-mode, they will be able to edit content and see those changes reflected on the page, in real-time. Next, let's ensure users will be navigated to that same live-editing experience (instead of the basic editor experience) every time they click on a document in the CMS Document List.
 
-To accomplish this, we will make use of the `RouteMappingPlugin`.
+To accomplish this, we will make use of the [`ui.router`](/docs/reference/collections/#definition) property on a collection.
 
-### The `RouteMappingPlugin`
+### The `router` Property
 
-The `RouteMappingPlugin` is used by the CMS's Document List to navigate to a document's contextual editor rather than the basic editor.
+The `router` property is used by the CMS's Document List to navigate to a document's contextual editor rather than the basic editor.
 
 ```ts
-RouteMappingPlugin(mapper: (collection: Collection, document: Document) => string | undefined)
+router: ({ collection: Collection, document: Document }) => string | undefined
 ```
 
-The `RouteMappingPlugin` accepts a single argument - the `mapper` function - that is run when a document is clicked within a Document List:
+The `router` property is a function function, that is run when a document is clicked within a Document List:
 
-- If the `mapper` returns a `string`, the `string` is used as the document's route rather than the default.
-- If the `mapper` returns `undefined`, the user is navigated to the document's basic editor.
+- If `router` returns a `string`, the `string` is used as the document's route rather than the default.
+- If `router` returns `undefined`, the user is navigated to the document's basic editor.
 
-This is an example of the `RouteMappingPlugin`.
+This is an example using `router`.
 
 ```tsx
 //.tina/schema.{ts,tsx}
-import { defineConfig, RouteMappingPlugin } from 'tinacms'
+import { defineSchema } from 'tinacms'
 //...
-export const tinaConfig = defineConfig({
-  //...
-  cmsCallback: cms => {
-    /**
-     *  Define the `RouteMappingPlugin`
-     **/
-    const RouteMapping = new RouteMappingPlugin((collection, document) => {
-      /**
-       * Because the `authors` and `global` collections do not
-       * have dedicated pages, we return `undefined`.
-       **/
-      if (['authors', 'global'].includes(collection.name)) {
-        return undefined
-      }
 
-      /**
-       * While the `page` collection does have dedicated pages,
-       * their URLs are different than their document names.
-       **/
-      if (collection.name === 'blog') {
-        if (document._sys.filename === 'home') {
-          return `/`
-        }
-        if (document._sys.filename === 'about') {
-          return `/about`
-        }
-        return undefined
-      }
-      /**
-       *  The post collection always re-directs to /post/<FileName>
-       **/
-      if (collection.name === 'post') {
-        return `/post/${document._sys.filename}`
-      }
-
-      // Other collections
-      // ...
-
-      // Default case, return `undefined`
-      return undefined
-    })
-
-    /**
-     *  Add the `RouteMappingPlugin` to the `cms`.
-     **/
-    cms.plugins.add(RouteMapping)
-  },
+const schema = defineSchema({
+  collections: [
+    {
+      name: 'page',
+      label: 'Page',
+      path: 'content/page',
+      format: 'md',
+      ui: {
+        router: ({ document }) => {
+          // navigate to the home page
+          if (document._sys.filename === 'home') {
+            return '/'
+          }
+          // navigate to the about page
+          if (document._sys.filename === 'about') {
+            return `/about`
+          }
+          return undefined
+        },
+      },
+      fields: [
+        // An array of fields
+      ],
+    },
+    {
+      label: 'Blog Posts',
+      name: 'post',
+      path: 'content/posts',
+      format: 'mdx',
+      ui: {
+        router: ({ document }) => {
+          // navigate to the post that was clicked
+          return `/post/${document._sys.filename}`
+        },
+      },
+      fields: [
+        // An array of fields
+      ],
+    },
+  ],
 })
 ```
 
@@ -159,4 +153,4 @@ type="video/mp4"
 ## Summary
 
 - A piece of content can be made editable by running it through the `useTina` hook. In production, it returns the original data unchanged. In edit-mode, it returns the live data, which is updated as the user types in the sidebar.
-- Make use of the `RouteMappingPlugin` to automatically navigate to the contextual-editing experience from the CMS.
+- Make use of the `router` property to automatically navigate to the contextual-editing experience from the CMS.
