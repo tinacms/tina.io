@@ -73,7 +73,7 @@ The Graphql Schema AST (represented in JSON). Must be pushed to GitHub.
 
 ### `types.ts`
 
-This file is where all the types of the schema are generated. This file is for the user to use in there site if they want to use the types. It is generated on every build, and does not need to be pushed to Github.
+This file is where all the types of the schema are generated. This file is for the user to use in there site if they want to use the types. It is generated on every build, and does not need to be pushed to GitHub.
 
 ### `client.{js,ts}`
 
