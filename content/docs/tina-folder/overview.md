@@ -59,10 +59,6 @@ The `queries` folder is optional and is used by the [experimental generated clie
 
 This is where all the files that are generated during the schema build process are stored. Generally speaking, these files **must be checked into source control and pushed to github** with a couple of exceptions (Listed below). The reason for this is that Tina Cloud uses the generated files in order to resolve documents.
 
-### `types.ts`
-
-This file is where all the types of the schema are generated. This is also where the experimental client is generated. This file is for the user to use in there site if they want to use the types or the generated client. Must be pushed to Github.
-
 ### `_graphql.json`
 
 The Graphql AST (represented in JSON). Must be pushed to GitHub.
@@ -74,6 +70,14 @@ This is a lookup file that is used to resolve document names. Must be pushed to 
 ### `_schema.json`
 
 The Graphql Schema AST (represented in JSON). Must be pushed to GitHub.
+
+### `types.ts`
+
+This file is where all the types of the schema are generated. This file is for the user to use in there site if they want to use the types. It is generated on every build, and does not need to be pushed to GitHub.
+
+### `client.{js,ts}`
+
+This file is where all client is generated. This client can be used on the backend and the frontend. It is very lightweight as to not bloat the bundle size. It is generated on every build, and does not need to be pushed to GitHub. [Check out this document](/docs/data-fetching/overview/) for more information on how to use the client.
 
 ### `frags.gql`
 
