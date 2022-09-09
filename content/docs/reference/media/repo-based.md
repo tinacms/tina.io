@@ -55,6 +55,8 @@ module.exports = {
 }
 ````
 
+See the [next/image docs](https://nextjs.org/docs/api-reference/next/image#domains) for more information.
+
 ## Usage
 
 Once media has been configured, you can use `image` fields in your collections.
