@@ -40,7 +40,9 @@ ui: {
 // ...
 ```
 
-This allows its form to be configured from anywhere in the contextual sidebar.
+Global forms can be edited from any page. They are accessed through the sidebar
+
+![Global Forms Sidebar](https://res.cloudinary.com/forestry-demo/image/upload/v1663178182/blog-media/0.69.7/Screen_Shot_2022-09-14_at_2.53.21_PM.png)
 
 ![Global Form](https://res.cloudinary.com/forestry-demo/image/upload/v1663153667/blog-media/0.69.7/global-form.png)
 
@@ -50,10 +52,13 @@ The sidebar now links to an "Event Log" UI, which makes it easier to debug thing
 
 ![Event Log UI](https://res.cloudinary.com/forestry-demo/image/upload/v1663153677/blog-media/0.69.7/event-log.png)
 
+## S3 & "Digital Ocean Spaces" media stores
+
+Docs are still in progress for this, but in the meantime you can check out the [S3 PR](https://github.com/tinacms/tinacms/pull/3124) & [Digital Ocean Spaces PR](https://github.com/tinacms/tinacms/pull/3102).
+
 ## Other Improvements & Fixes
 
 - Fix for when collection paths overlap [see issue](https://github.com/tinacms/tinacms/issues/2947)
 - Improved error outputs from the CLI builds
 - Fix "create-tina-app" on Windows
 - Fix large image previews being too large for the screen
-- S3 media store (docs still WIP)
