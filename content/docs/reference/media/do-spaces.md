@@ -37,56 +37,27 @@ SPACES_SECRET_KEY=<Your Digital Ocean Spaces access secret>
 
 ## Register the Media Store
 
-Now, you can register the Digital Ocean Spaces Media store with the instance of Tina in your app by passing the `TinaCloudDOSMediaStore` to the `TinaCMS` instance via its `mediaStore` prop.
+You can register the Digital Ocean Space Media store via the `loadCustomStore` prop.
 
-This is also where we can update our `mediaOptions` on the cms object.
+The `loadCustomStore` prop can be configured within `.tina/schema.ts`.
 
 ```tsx
-// Typically in the _app.js file of a Next.js project
+// .tina/schema.ts
 
-import dynamic from "next/dynamic";
-import { TinaEditProvider } from "tinacms/dist/edit-state";
-import { Layout } from "../components/layout";
-const TinaCMS = dynamic(() => import("tinacms"), { ssr: false });
+// ...
 
-const App = ({ Component, pageProps }) => {
-  return (
-    <>
-      <TinaEditProvider
-        editMode={
-          <TinaCMS
-            branch="main"
-            clientId={NEXT_PUBLIC_TINA_CLIENT_ID}
-            isLocalClient={Boolean(Number(NEXT_PUBLIC_USE_LOCAL_CLIENT))}
-            mediaStore={async () => {
-              const pack = await import("next-tinacms-dos");
-              return pack.TinaCloudDOSMediaStore;
-            }}
-            {...pageProps}
-          >
-            {(livePageProps) => (
-              <Layout
-                rawData={livePageProps}
-                data={livePageProps.data?.getGlobalDocument?.data}
-              >
-                <Component {...livePageProps} />
-              </Layout>
-            )}
-          </TinaCMS>
-        }
-      >
-        <Layout
-          rawData={pageProps}
-          data={pageProps.data?.getGlobalDocument?.data}
-        >
-          <Component {...pageProps} />
-        </Layout>
-      </TinaEditProvider>
-    </>
-  );
-};
-
-...
+export default defineSchema({
+  // ...
+  config: {
+     media: {
+        loadCustomStore: async () => {
+          const pack = await import("next-tinacms-dos");
+          return pack.TinaCloudDOSMediaStore;
+        },
+     }
+  },
+  // ...
+})
 ```
 
 ## Set up API routes
