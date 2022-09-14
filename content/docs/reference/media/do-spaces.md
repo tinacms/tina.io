@@ -123,7 +123,7 @@ export default createMediaHandler({
   },
   bucket: process.env.NEXT_PUBLIC_SPACES_NAME || '',
   authorized: async (req, _res) => {
-    if (process.env.NEXT_PUBLIC_USE_LOCAL_CLIENT === '1') {
+    if (process.env.NODE_ENV === 'development') {
       return true
     }
     try {
