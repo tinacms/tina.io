@@ -5,16 +5,7 @@ import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { formatDate, isRelevantPost } from '../../utils'
-import {
-  Layout,
-  Hero,
-  Wrapper,
-  MarkdownContent,
-  DocsTextWrapper,
-} from 'components/layout'
-import { fileToUrl } from 'utils/urls'
-import { getPageRef } from 'utils/docs/getDocProps'
-const fg = require('fast-glob')
+import { Layout, Hero, Wrapper, DocsTextWrapper } from 'components/layout'
 import { LastEdited, DocsPagination } from 'components/ui'
 import { openGraphImage } from 'utils/open-graph-image'
 import { WarningCallout } from '../../utils/shortcodes'
@@ -262,12 +253,12 @@ export const getStaticProps: GetStaticProps = async function({
 }
 
 export const getStaticPaths: GetStaticPaths = async function() {
-  const blogs = await fg(`./content/blog/**/*.md`)
+  const postListData = await client.queries.postConnection({ first: -1 })
+
   return {
-    paths: blogs.map(file => {
-      const slug = fileToUrl(file, 'blog')
-      return { params: { slug } }
-    }),
+    paths: postListData.data.postConnection.edges.map(post => ({
+      params: { slug: post.node._sys.filename },
+    })),
     fallback: false,
   }
 }
