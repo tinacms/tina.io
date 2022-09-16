@@ -1,15 +1,7 @@
 ---
 title: Contribution Releases
-id: /docs/contributing/releasing
 prev: content/docs/contributing/setting-up.md
 next: content/docs/contributing/troubleshooting.md
-consumes:
-  - file: /RELEASE.md
-    details: 'Shares the release process, should mirror'
-  - file: /lerna.json
-    details: Uses publish command
-  - file: README.md
-    details: 'Shows crelease process, should mirror'
 ---
 
 ## Overarching Process
@@ -57,9 +49,9 @@ The general release process looks like this:
    Lerna sometimes adds empty changelog entries. For example, if `react-tinacms` is changed
    then `tinacms` will get get a patch update with only the dependency updated. Make sure to install `lerna-clean-changelog-cli`:
 
-   ```
-   npm i -g lerna-clean-changelogs-cli
-   ```
+```
+npm i -g lerna-clean-changelogs-cli
+```
 
 1. **Publish to NPM:**
 
@@ -75,101 +67,108 @@ The exact commands vary slightly depending on the type of release being made.
 
 1. **Build the source files:**
 
-   ```
-   npm run build
-   ```
+```
+npm run build
+```
 
 1. **Generate CHANGELOGs and Git tags:**
 
-   ```
-   lerna version \
-     --conventional-commits \
-     --conventional-prerelease \
-     --no-push \
-     --allow-branch next \
-     -m "chore(publish): prerelease"
-   ```
+```
+lerna version \
+   --conventional-commits \
+   --conventional-prerelease \
+   --no-push \
+   --allow-branch next \
+   -m "chore(publish): prerelease"
+```
 
 1. **Clean the CHANGELOGs**
 
-   ```
-   lcc ** && git commit -am "chore: clean changelogs"
-   ```
+```
+lcc ** && git commit -am "chore: clean changelogs"
+```
 
 1. **Publish to NPM:**
-   ```
-   lerna publish from-package --dist-tag next
-   ```
+
+```
+lerna publish from-package --dist-tag next
+```
+
 1. **Push CHANGELOGs and Git tags to Github:**
-   ```
-   git push && git push --tags
-   ```
+
+```
+git push && git push --tags
+```
 
 ### Graduating Prereleases
 
 1. **Build the source files:**
 
-   ```
-   npm run build
-   ```
+```
+npm run build
+```
 
 1. **Generate CHANGELOGs and Git tags:**
 
-   ```
-   lerna version \
-     --conventional-commits \
-     --conventional-graduate \
-     --no-push \
-     --allow-branch next \
-     -m "chore(publish): graduation"
-   ```
+```
+lerna version \
+   --conventional-commits \
+   --conventional-graduate \
+   --no-push \
+   --allow-branch next \
+   -m "chore(publish): graduation"
+```
 
 1. **Clean the CHANGELOGs**
 
-   ```
-   lcc ** && git commit -am "chore: clean changelogs"
-   ```
+```
+lcc ** && git commit -am "chore: clean changelogs"
+```
 
-1) **Publish to NPM:**
+1. **Publish to NPM:**
 
-   ```
-   lerna publish from-package
-   ```
+```
+lerna publish from-package
+```
 
-1) **Push CHANGELOGs and Git tags to Github:**
-   ```
-   git push && git push --tags
-   ```
+1. **Push CHANGELOGs and Git tags to Github:**
+
+```
+git push && git push --tags
+```
 
 ### Release
 
 1. **Build the source files:**
 
-   ```
-   npm run build
-   ```
+```
+npm run build
+```
 
 1. **Generate CHANGELOGs and Git tags:**
 
-   ```
-   lerna version \
-     --conventional-commits \
-     --no-push \
-     --allow-branch master \
-     -m "chore(publish): release"
-   ```
+```
+lerna version \
+   --conventional-commits \
+   --no-push \
+   --allow-branch master \
+   -m "chore(publish): release"
+```
 
 1. **Clean the CHANGELOGs**
 
-   ```
-   lcc ** && git commit -am "chore: clean changelogs"
-   ```
+```
+lcc ** && git commit -am "chore: clean changelogs"
+```
 
 1. **Publish to NPM:**
-   ```
-   lerna publish from-package
-   ```
+
+```
+lerna publish from-package
+```
+
 1. **Push CHANGELOGs and Git tags to Github:**
-   ```
-   git push && git push --tags
-   ```
+
+```
+git push && git push --tags
+```

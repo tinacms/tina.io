@@ -35,13 +35,13 @@ npm run start
 
 ## Commands
 
-| Commands                          | Description                                   |
-| --------------------------------- | --------------------------------------------- |
-| npm run bootstrap                 | Install dependencies and link local packages. |
-| npm run build                     | Build all packages                            |
-| npm run test                      | Run tests for all packages                    |
-| lerna run build --scope <package> | Build only <package>.                         |
-| lerna run watch                   | Watch all packages for rebuilds.              |
+| Commands                            | Description                                   |
+| ----------------------------------- | --------------------------------------------- |
+| npm run bootstrap                   | Install dependencies and link local packages. |
+| npm run build                       | Build all packages                            |
+| npm run test                        | Run tests for all packages                    |
+| lerna run build --scope `<package>` | Build only `<package>`.                       |
+| lerna run watch                     | Watch all packages for rebuilds.              |
 
 ## Run Development Packages
 

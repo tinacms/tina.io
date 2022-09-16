@@ -115,6 +115,27 @@ export default defineSchema({
           name: "body",
           label: "Body",
           isBody: true,
+          templates: [{
+            name: 'WarningCallout',
+            label: 'WarningCallout',
+            match: {
+              start: '{{',
+              end: '}}',
+            },
+            fields: [
+              {
+                // Be sure to call this field `text`
+                name: 'text',
+                label: 'Text',
+                type: 'string',
+                required: true,
+                isTitle: true,
+                ui: {
+                  component: 'textarea',
+                },
+              },
+            ],
+          }]
         }
       ]
     },

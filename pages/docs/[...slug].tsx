@@ -129,12 +129,7 @@ const getTocItems = ({
 }) => {
   return {
     children: children.filter(
-      c =>
-        c.type == 'h1' ||
-        c.type == 'h2' ||
-        c.type == 'h3' ||
-        c.type == 'h4' ||
-        c.type == 'h5'
+      c => c.type == 'h1' || c.type == 'h2' || c.type == 'h3' || c.type == 'h4'
     ),
     ...richTextProps,
   }

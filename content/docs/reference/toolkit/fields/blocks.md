@@ -2,9 +2,6 @@
 title: Blocks Field
 prev: content/docs/reference/toolkit/fields/group-list.md
 next: content/docs/reference/toolkit/fields/date.md
-consumes:
-  - file: /packages/tinacms/src/plugins/fields/BlocksFieldPlugin.tsx
-    details: Shows blocks interface
 ---
 
 {{ WarningCallout text="This is an advanced-use feature, and likely not something you'll need to configure. What you probably want is the [content types reference](/docs/reference/types/)" }}
@@ -103,13 +100,25 @@ interface BlockTemplate {
 }
 ```
 
-| Option        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `label`       | A human readable label for the Block.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| `key`         | Should be unique to optimize the [rendering of the list](https://reactjs.org/docs/lists-and-keys.html).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| `fields`      | An array of [`fields`](/docs/reference/toolkit/fields) that will render as a sub-menu for each group item. The fields should map to editable content.                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| `defaultItem` | A function to provide the block with default data upon being created. _(Optional)_                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `itemProps`   | A function that generates `props` for each group item. It takes the item as an argument. _(Optional)_ <br> It returns an object containing, <ul> <li>`key`: This property is used to optimize the rendering of lists. If rendering is causing problems, use `defaultItem` to generate a new key, as is seen in [this example](http://tinacms.org/docs/reference/toolkit/fields/group-list#definition). Feel free to reference the [React documentation](https://reactjs.org/docs/lists-and-keys.html) for more on keys and lists. </li> <li> `label`: A readable label for the new Block. </li> </ul> |
+### `label`
+
+A human readable label for the Block.
+
+### `key`
+
+Should be unique to optimize the [rendering of the list](https://reactjs.org/docs/lists-and-keys.html).
+
+### `fields`
+
+An array of [`fields`](/docs/reference/toolkit/fields) that will render as a sub-menu for each group item. The fields should map to editable content.
+
+### `defaultItem`
+
+A function to provide the block with default data upon being created. _(Optional)_
+
+### `itemProps`
+
+A function that generates `props` for each group item. It takes the item as an argument. _(Optional)_ <br /> It returns an object containing, <ul> <li>`key`: This property is used to optimize the rendering of lists. If rendering is causing problems, use `defaultItem` to generate a new key, as is seen in [this example](http://tinacms.org/docs/reference/toolkit/fields/group-list#definition). Feel free to reference the [React documentation](https://reactjs.org/docs/lists-and-keys.html) for more on keys and lists. </li> <li> `label`: A readable label for the new Block. </li> </ul> |
 
 > This interfaces only shows the keys unique to the blocks field.
 >
