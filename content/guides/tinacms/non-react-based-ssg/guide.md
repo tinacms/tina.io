@@ -119,7 +119,7 @@ From here, you should be able to edit your site's content from the editor. For h
 
 **Note: To run this locally, you will need to be running the GraphQL server from the previous step**.
 
-<img width="1150" alt="Screen Shot 2022-04-11 at 11 52 58 AM" src="https://user-images.githubusercontent.com/3323181/162766629-999d7d52-6822-4133-90e6-062c08153dec.png" />
+![tina sidebar](https://user-images.githubusercontent.com/3323181/162766629-999d7d52-6822-4133-90e6-062c08153dec.png)
 
 ## Model your content
 
