@@ -1,7 +1,7 @@
 ---
 title: Paginating query results
 id: /docs/graphql/queries/advanced/pagination
-next: /docs/graphql/queries/advanced/performance
+next: content/docs/graphql/queries/advanced/performance.md
 ---
 
 Collection queries implement cursor based pagination. The client specifies a result limit parameter (using `first` or `last`) and a corresponding cursor parameter (using `after` or `before`) which is a pointer to the last item on the previous page of results.

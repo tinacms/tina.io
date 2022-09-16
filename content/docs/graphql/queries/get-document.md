@@ -1,7 +1,7 @@
 ---
 title: Querying a Single Document
 id: /docs/graphql/queries/get-document
-next: /docs/graphql/queries/query-documents
+next: content/docs/graphql/queries/query-documents.md
 ---
 
 ## Querying a single document

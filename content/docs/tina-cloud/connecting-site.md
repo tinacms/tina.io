@@ -1,6 +1,6 @@
 ---
 title: Connecting the site
-next: '/docs/tina-cloud/faq'
+next: content/docs/tina-cloud/faq.md
 ---
 
 Once you've created a project within the **Tina Cloud**, the next step is to connect your site. Once connected, your project's editors will be able to save content directly to its GitHub repository, entirely from within your site.

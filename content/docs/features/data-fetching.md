@@ -1,7 +1,7 @@
 ---
 title: Data Fetching
 id: '/docs/features/data-fetching'
-next: '/docs/tinacms-context'
+next: content/docs/tinacms-context.md
 ---
 
 ## Introduction
@@ -21,8 +21,6 @@ To interface with the API, you can use Tina's type-safe client for data-fetching
 The Tina client is the easiest way to fetch your site's content. The client can be configured the `.tina/schema.<js|ts>` in the `defineSchema` function.
 
 > Note: token, clientId and branch are **not** used in [local-mode](/docs/tina-cloud/#local-mode). To setup these values for production see [this doc](/docs/tina-cloud/connecting-site)
-
-<!-- TODO: update above doc -->
 
 ```js
 const schema = defineSchema({

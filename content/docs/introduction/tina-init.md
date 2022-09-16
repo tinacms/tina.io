@@ -2,7 +2,7 @@
 title: Adding Tina to an existing NextJS site
 id: /docs/introduction/tina-init/
 last_edited: '2022-02-04T15:51:56.737Z'
-next: '/docs/using-tina-editor'
+next: content/docs/using-tina-editor.md
 ---
 
 > Note: This doc assumes that you have a working NextJS site. If not, you can quickly get started using one of our [starters](/docs/introduction/using-starter/).

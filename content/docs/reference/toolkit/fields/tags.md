@@ -1,7 +1,7 @@
 ---
 title: Tags Field
-prev: /docs/reference/toolkit/fields/select
-next: /docs/reference/toolkit/fields/group
+prev: content/docs/reference/toolkit/fields/select.md
+next: content/docs/reference/toolkit/fields/group.md
 consumes:
   - file: /packages/@tinacms/fields/src/plugins/TagsFieldPlugin.tsx
     details: Shows Tags field and Option interfaces

@@ -1,7 +1,7 @@
 ---
 title: Color Field
-prev: /docs/reference/toolkit/fields/image
-next: /docs/reference/toolkit/fields/toggle
+prev: content/docs/reference/toolkit/fields/image.md
+next: content/docs/reference/toolkit/fields/toggle.md
 consumes:
   - file: /packages/tinacms/src/plugins/fields/ColorFieldPlugin.tsx
     details: Documents color field plugin

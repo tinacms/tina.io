@@ -101,12 +101,14 @@ export default defineSchema({
         {
           name: 'prev',
           label: 'Prev',
-          type: 'string',
+          type: 'reference',
+          collections: ['doc']
         },
         {
           name: 'next',
           label: 'Next',
-          type: 'string',
+          type: 'reference',
+          collections: ['doc']
         },
         {
           type: "rich-text",

@@ -1,8 +1,8 @@
 ---
 id: /docs/contributing/troubleshooting
 title: Contribution Troubleshooting
-prev: /docs/contributing/releasing
-next: /docs/contributing/style-guide
+prev: content/docs/contributing/releasing.md
+next: content/docs/contributing/style-guide.md
 ---
 
 ## Troubleshooting in Development

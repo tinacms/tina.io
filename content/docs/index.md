@@ -2,7 +2,7 @@
 title: Tina Docs
 id: introduction
 last_edited: '2021-07-27T15:51:56.737Z'
-next: /docs/product-tour
+next: content/docs/product-tour.md
 ---
 
 ## Introduction

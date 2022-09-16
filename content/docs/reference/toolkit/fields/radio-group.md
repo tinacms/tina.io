@@ -1,7 +1,7 @@
 ---
 title: Radio Group Field
-prev: /docs/reference/toolkit/fields/toggle
-next: /docs/reference/toolkit/fields/select
+prev: content/docs/reference/toolkit/fields/toggle.md
+next: content/docs/reference/toolkit/fields/select.md
 consumes:
   - file: /packages/@tinacms/fields/src/RadioGroup.tsx
     details: Shows radio group field and Option interfaces

@@ -1,7 +1,7 @@
 ---
 title: The .tina folder
 id: /docs/tina-folder/overview/
-# next: '/docs/features/data-fetching'
+# next: content/docs/features/data-fetching'
 ---
 
 ## Overview

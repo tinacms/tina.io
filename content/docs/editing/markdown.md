@@ -1,7 +1,7 @@
 ---
 title: Markdown
 id: '/docs/editing/markdown'
-next: '/docs/editing/mdx'
+next: content/docs/editing/mdx.md
 ---
 
 Editing a markdown file (with front matter and a body) is the simplest use-case of editing with Tina

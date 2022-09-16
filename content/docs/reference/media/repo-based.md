@@ -1,8 +1,8 @@
 ---
 title: Repo-based Media (default)
 last_edited: '2022-06-29T00:00:00.000Z'
-prev: /docs/reference/media/overview
-next: /docs/reference/media/cloudinary
+prev: content/docs/reference/media/overview.md
+next: content/docs/reference/media/cloudinary.md
 ---
 
 Repo-based media storage is the default media storage solution for TinaCMS.

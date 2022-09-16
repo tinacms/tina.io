@@ -1,7 +1,7 @@
 ---
 title: Blocks Field
-prev: /docs/reference/toolkit/fields/group-list
-next: /docs/reference/toolkit/fields/date
+prev: content/docs/reference/toolkit/fields/group-list.md
+next: content/docs/reference/toolkit/fields/date.md
 consumes:
   - file: /packages/tinacms/src/plugins/fields/BlocksFieldPlugin.tsx
     details: Shows blocks interface

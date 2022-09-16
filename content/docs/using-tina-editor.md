@@ -2,7 +2,7 @@
 title: Using the Tina Editor
 id: /docs/using-tina-editor/
 last_edited: '2022-01-09T00:00:00.000Z'
-next: '/docs/schema'
+next: content/docs/schema.md
 ---
 
 Tina is very flexible & extendable, so any Tina site may have a unique experience. As an introduction, we'll cover the out-of-the-box experience that most of our starters implement.

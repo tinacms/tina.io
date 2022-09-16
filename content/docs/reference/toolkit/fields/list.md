@@ -1,7 +1,7 @@
 ---
 title: List Field
-prev: /docs/reference/toolkit/fields/tags
-next: /docs/reference/toolkit/fields/group
+prev: content/docs/reference/toolkit/fields/tags.md
+next: content/docs/reference/toolkit/fields/group.md
 consumes:
 ---
 

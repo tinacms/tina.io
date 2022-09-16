@@ -1,7 +1,7 @@
 ---
 title: Image Field
-prev: /docs/reference/toolkit/fields/number
-next: /docs/reference/toolkit/fields/color
+prev: content/docs/reference/toolkit/fields/number.md
+next: content/docs/reference/toolkit/fields/color.md
 consumes:
   - file: /packages/tinacms/src/plugins/fields/ImageFieldPlugin.tsx
     details: Shows image field interface and how to use

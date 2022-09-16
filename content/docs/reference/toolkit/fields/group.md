@@ -1,7 +1,7 @@
 ---
 title: Group Field
-prev: /docs/reference/toolkit/fields/select
-next: /docs/reference/toolkit/fields/group-list
+prev: content/docs/reference/toolkit/fields/select.md
+next: content/docs/reference/toolkit/fields/group-list.md
 consumes:
   - file: /packages/tinacms/src/plugins/fields/GroupFieldPlugin.tsx
     details: Shows group field interface and how to use

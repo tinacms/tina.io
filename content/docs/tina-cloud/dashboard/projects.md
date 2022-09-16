@@ -1,7 +1,7 @@
 ---
 title: Projects
 id: '/docs/tina-cloud/dashboard/projects'
-next: '/docs/tina-cloud/dashboard/users'
+next: content/docs/tina-cloud/dashboard/users.md
 ---
 
 **Projects** connect Tina Cloud with a GitHub repository. A project is the **link between your site and your site's editors**, allowing users that you have authorized to access and modify the site's content.
@@ -86,8 +86,8 @@ changes only present in the cached copy will be lost.
 ##### Force Push
 
 If there are changes in the repository cache which cannot be automatically merged to your GitHub repository, it may be
-necessary to execute a force push. With a force push, the commit history on the remote will be forcefully overwritten 
-with the history in the repository cache. This should only be used if you are confident that the changes in the 
+necessary to execute a force push. With a force push, the commit history on the remote will be forcefully overwritten
+with the history in the repository cache. This should only be used if you are confident that the changes in the
 TinaCMS repository cache are correct.
 
 ### Read Only Tokens

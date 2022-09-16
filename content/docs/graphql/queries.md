@@ -1,7 +1,7 @@
 ---
 title: Querying the GraphQL API
 id: /docs/graphql/queries
-next: /docs/graphql/queries/get-document
+next: content/docs/graphql/queries/get-document.md
 ---
 
 ## Schema-specific queries

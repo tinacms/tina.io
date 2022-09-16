@@ -1,7 +1,7 @@
 ---
 title: Content Modeling with TinaCMS
 id: /docs/schema/
-next: '/docs/features/data-fetching'
+next: content/docs/features/data-fetching.md
 ---
 
 ## Introduction

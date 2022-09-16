@@ -1,7 +1,7 @@
 ---
 title: Sorting query results
 id: /docs/graphql/queries/advanced/sorting
-next: /docs/graphql/queries/advanced/pagination
+next: content/docs/graphql/queries/advanced/pagination.md
 ---
 
 To sort collection results by a collection field, pass the `sort` argument to the `<collection>Connection` query, with the value corresponding to the desired collection field to sort by. Results are returned in ascending order.

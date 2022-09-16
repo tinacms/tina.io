@@ -1,7 +1,7 @@
 ---
 title: Query limitations
 id: /docs/graphql/queries/advanced/limitations
-next: /docs/graphql/queries/update-document
+next: content/docs/graphql/queries/update-document.md
 ---
 
 There are a number of limitations to keep in mind when leveraging query functionality with Tina's Content API:

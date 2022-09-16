@@ -2,7 +2,7 @@
 title: Getting Started with a Starter
 id: /docs/introduction/using-starter/
 last_edited: '2022-02-04T15:51:56.737Z'
-next: '/docs/using-tina-editor'
+next: content/docs/using-tina-editor.md
 ---
 
 To quickly setup a new Tina starter, from the command line:

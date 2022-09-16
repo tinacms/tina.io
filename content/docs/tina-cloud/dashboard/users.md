@@ -1,7 +1,7 @@
 ---
 title: Users
 id: '/docs/tina-cloud/dashboard/users'
-next: '/docs/tina-cloud/connecting-site'
+next: content/docs/tina-cloud/connecting-site.md
 ---
 
 The **User** section of the Tina Cloud dashboard allows external users to be invited to the Tina Cloud dashboard. Within each project, there is a **Collaborators'** tab. Adding an editor as a collaborator grants them authorization to edit directly on that Tina configured site. This allows you to organize and grant editors access on a per-project basis. All admins will have access to all projects by default so they do not need to be set up as collaborators.

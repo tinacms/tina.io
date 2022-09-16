@@ -1,7 +1,7 @@
 ---
 title: Group-List Field
-prev: /docs/reference/toolkit/fields/group
-next: /docs/reference/toolkit/fields/blocks
+prev: content/docs/reference/toolkit/fields/group.md
+next: content/docs/reference/toolkit/fields/blocks.md
 consumes:
   - file: /packages/tinacms/src/plugins/fields/GroupListFieldPlugin.tsx
     details: Shows group list interface

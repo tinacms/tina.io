@@ -1,9 +1,7 @@
-import DocTemplate from './[...slug]'
-import { getDocProps } from 'utils/docs/getDocProps'
-import { GetStaticProps } from 'next'
+import DocTemplate, { getStaticProps as _getStaticProps } from './[...slug]'
 
-export const getStaticProps: GetStaticProps = async function(props) {
-  return await getDocProps(props, 'index')
+export const getStaticProps = async function() {
+  return await _getStaticProps({ params: { slug: ['index'] } })
 }
 
 export default DocTemplate

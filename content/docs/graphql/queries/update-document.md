@@ -1,7 +1,7 @@
 ---
 title: Updating a document
 id: /docs/graphql/queries/update-document
-next: /docs/graphql/queries/add-document
+next: content/docs/graphql/queries/add-document.md
 ---
 
 ## Updating a document with `update<collection>`

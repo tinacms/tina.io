@@ -1,7 +1,7 @@
 ---
 title: Block-based editing
 id: '/docs/editing/blocks'
-next: /docs/extending-tina/overview
+next: content/docs/extending-tina/overview.md
 ---
 
 Tina supports block-based editing, so that your editors can build out full pages using your pre-defined blocks
@@ -226,9 +226,6 @@ In our case:
 
 This visual block selector allows editors to select blocks from a set images instead of text.
 
-<!-- TODO: add a gif -->
-<!-- ![block-based-editing-visual](/gif/visual-blocks.gif) -->
-
 First, to enable the visual block selector the `visualSelector` property in the UI key must be set to true.
 
 ```diff
@@ -321,6 +318,3 @@ const featureBlock = {
   ],
 }
 ```
-
-<!-- TODO: add a gif of a category -->
-<!-- ![block-based-editing-visual](/gif/visual-blocks.gif) -->

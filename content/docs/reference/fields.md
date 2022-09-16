@@ -2,11 +2,9 @@
 title: Fields
 id: fields
 last_edited: '2022-06-15T15:51:56.737Z'
-next: /docs/reference/templates
-prev: /docs/reference/collections
+next: content/docs/reference/templates.md
+prev: content/docs/reference/collections.md
 ---
-
-<!-- # next: /docs/reference/schema -->
 
 Fields define the shape of the content and the user input. There are [many types of fields](/docs/reference/types) each with its own input and type.
 

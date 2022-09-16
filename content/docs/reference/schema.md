@@ -2,8 +2,8 @@
 title: The Schema
 id: /docs/reference/schema/
 last_edited: '2022-06-15T15:51:56.737Z'
-next: /docs/reference/collections
-prev: /docs/reference/overview
+next: content/docs/reference/collections.md
+prev: content/docs/reference/overview.md
 ---
 
 The Schema is located in `.tina/schema.{ts,tsx,js,jsx}` and it **must be** the default export of this file. It is used to define the shape of the content.

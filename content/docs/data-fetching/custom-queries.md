@@ -1,8 +1,7 @@
 ---
 title: Writing Custom Queries
 id: '/docs/data-fetching/custom-queries'
-prev: null
-next: /docs/editing/overview
+next: content/docs/editing/overview.md
 ---
 
 For most simple cases, you should be able to leverage the Tina Client's generated queries to do your data fetching:
@@ -21,8 +20,6 @@ In more advanced cases, you may want more control on the underlying GraphQL quer
 The client can be extended to perform more advanced queries (including querying multiple root collections at once), by adding queries to the `.tina/queries` directory. All files that end in `gql` or `graphql` in this directory will be added to the client.
 
 Tina generates custom [GraphQL fragments](https://graphql.org/learn/queries/#fragments) to be used in custom queries so that the queries will not have to be updated when the schema is updated.
-
-<!-- TODO: add internal docs link -->
 
 > Note: These fragments can be seen in [`.tina/__generated__/frags.gql`]()
 

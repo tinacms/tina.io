@@ -1,8 +1,7 @@
 ---
 title: Style Guide
 id: /docs/contributing/style-guide
-prev: /docs/contributing/troubleshooting
-next: null
+prev: content/docs/contributing/troubleshooting.md
 ---
 
 This document should be used as a guideline when writing documentation and blog posts on [tinacms.org](http://tinacms.org)

@@ -1,7 +1,7 @@
 ---
 title: Query performance
 id: /docs/graphql/queries/advanced/performance
-next: /docs/graphql/queries/advanced/limitations
+next: content/docs/graphql/queries/advanced/limitations.md
 ---
 
 The GraphQL API indexes on collection fields to provide sorted results when using the `sort` parameter. If a `filter` is specified, the existence of an index can have a large impact on how quickly a query executes.

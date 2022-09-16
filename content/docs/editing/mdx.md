@@ -1,7 +1,7 @@
 ---
 title: Rich text with MDX
 id: '/docs/editing/mdx'
-next: '/docs/editing/blocks'
+next: content/docs/editing/blocks.md
 ---
 
 ## The `rich-text` type
@@ -166,10 +166,9 @@ Then you can create a `Date` component which returns `new Date().toLocaleString(
 Traditionally, MDX will compile whatever components you `import` so they're in scope when it's time to render your content.
 But with Tina, MDX is completely decoupled from your JavaScript so it's up to you to ensure that for every `template` in your `rich-text` definition, there's an equivalent `component` in your `<TinaMarkdown>` component.
 
+## Overriding the default buttons
 
-## Overriding the default buttons 
-
-You can override the default buttons (heading, link, etc) in the rich-text editor if you supply your own component.  Here is an example of how you might do that. 
+You can override the default buttons (heading, link, etc) in the rich-text editor if you supply your own component. Here is an example of how you might do that.
 
 ```
 const components = {

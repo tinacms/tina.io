@@ -1,7 +1,7 @@
 ---
 title: Select Field
-prev: /docs/reference/toolkit/fields/radio-group
-next: /docs/reference/toolkit/fields/tags
+prev: content/docs/reference/toolkit/fields/radio-group.md
+next: content/docs/reference/toolkit/fields/tags.md
 consumes:
   - file: /packages/@tinacms/fields/src/Select.tsx
     details: Shows select field and Option interfaces

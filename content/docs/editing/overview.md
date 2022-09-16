@@ -1,7 +1,7 @@
 ---
 title: Editing with Tina
 id: '/docs/editing/overview'
-next: '/docs/editing/markdown'
+next: content/docs/editing/markdown.md
 ---
 
 Tina is very flexible & extendable, so there are lots of different supported ways to edit content with Tina.

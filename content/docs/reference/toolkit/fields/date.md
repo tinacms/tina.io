@@ -1,7 +1,7 @@
 ---
 title: Date & Time Field
-prev: /docs/reference/toolkit/fields/blocks
-next: /docs/reference/toolkit/fields/markdown
+prev: content/docs/reference/toolkit/fields/blocks.md
+next: content/docs/reference/toolkit/fields/markdown.md
 consumes:
   - file: /packages/@tinacms/fields/src/plugins/DateFieldPlugin.tsx
     details: Documents how to use the date field plugin

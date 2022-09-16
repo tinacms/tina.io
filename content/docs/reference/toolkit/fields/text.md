@@ -1,6 +1,6 @@
 ---
 title: Text Field
-next: /docs/reference/toolkit/fields/textarea
+next: content/docs/reference/toolkit/fields/textarea.md
 consumes:
   - file: /packages/@tinacms/fields/src/plugins/TextFieldPlugin.tsx
     details: Shows text field interface and config options

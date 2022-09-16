@@ -1,8 +1,7 @@
 ---
 title: Querying content
 id: '/docs/data-fetching/overview'
-prev: null
-next: /docs/data-fetching/custom-queries
+next: content/docs/data-fetching/custom-queries.md
 ---
 
 ## Introduction

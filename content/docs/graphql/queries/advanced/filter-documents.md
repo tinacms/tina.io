@@ -1,7 +1,7 @@
 ---
 title: Filtering a query result
 id: /docs/graphql/queries/advanced/filter-documents
-next: /docs/graphql/queries/advanced/sorting
+next: content/docs/graphql/queries/advanced/sorting.md
 ---
 
 Tina automatically creates filters for collections defined in your schema.

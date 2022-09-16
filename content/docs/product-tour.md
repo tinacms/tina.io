@@ -2,7 +2,7 @@
 title: Product Tour
 id: /docs/product-tour/
 last_edited: '2022-01-17T15:51:56.737Z'
-next: '/docs/setup-overview'
+next: content/docs/setup-overview.md
 ---
 
 To understand the power of Tina, let us first break down Tina into it’s components.

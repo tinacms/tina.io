@@ -1,7 +1,7 @@
 ---
 title: Contextual Editing
 id: '/docs/tinacms-context'
-next: '/docs/data-fetching/overview'
+next: content/docs/data-fetching/overview.md
 ---
 
 ## Introduction

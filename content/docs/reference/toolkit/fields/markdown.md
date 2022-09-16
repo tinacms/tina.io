@@ -1,7 +1,7 @@
 ---
 title: Markdown Field
-prev: /docs/reference/toolkit/fields/date
-next: /docs/reference/toolkit/fields/html
+prev: content/docs/reference/toolkit/fields/date.md
+next: content/docs/reference/toolkit/fields/html.md
 ---
 
 {{ WarningCallout text="This is an advanced-use feature, and likely not something you'll need to configure. What you probably want is the [content types reference](/docs/reference/types/)" }}

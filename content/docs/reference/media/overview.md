@@ -1,7 +1,7 @@
 ---
 title: Media Overview
 last_edited: '2022-06-29T00:00:00.000Z'
-next: /docs/reference/media/repo-based
+next: content/docs/reference/media/repo-based.md
 ---
 
 TinaCMS provides multiple options for managing media.

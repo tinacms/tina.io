@@ -1,7 +1,7 @@
 ---
 title: Text Area Field
-prev: /docs/reference/toolkit/fields/text
-next: /docs/reference/toolkit/fields/number
+prev: content/docs/reference/toolkit/fields/text.md
+next: content/docs/reference/toolkit/fields/number.md
 consumes:
   - file: /packages/@tinacms/fields/src/plugins/TextareaFieldPlugin.tsx
     details: Shows textarea field interface and config options

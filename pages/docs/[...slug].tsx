@@ -1,44 +1,36 @@
 import React from 'react'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
-import { GetStaticProps, GetStaticPaths } from 'next'
-import { DocsLayout, MarkdownContent } from 'components/layout'
+import { DocsLayout } from 'components/layout'
 import { NavToggle, DocsPagination, LastEdited } from 'components/ui'
-import { getDocProps } from 'utils/docs/getDocProps'
 import Toc from '../../components/toc'
 import { openGraphImage } from 'utils/open-graph-image'
-import Error from 'next/error'
-import { NotFoundError } from 'utils/error/NotFoundError'
 import { useRouter } from 'next/router'
 import { CloudDisclaimer } from 'components/cloud-beta-disclaimer'
 import * as ga from '../../utils/ga'
 import { Breadcrumbs } from 'components/DocumentationNavigation/Breadcrumbs'
 import { useTocListener } from 'utils/toc_helpers'
 import SetupOverview from '../../components/layout/setup-overview'
+import { client } from '../../.tina/__generated__/client'
+import { AsyncReturnType } from 'utils/asyncReturnType'
+import { formatExcerpt } from 'utils'
+import { getDocsNav } from 'utils/docs/getDocProps'
+import { TinaMarkdown } from 'tinacms/dist/rich-text'
 
-export function DocTemplate(props) {
-  if (props.file.fileRelativePath.includes('setup-overview')) {
+export function DocTemplate(
+  props: AsyncReturnType<typeof getStaticProps>['props']
+) {
+  if (props.variables.relativePath.includes('setup-overview')) {
     return <SetupOverview {...props} />
   }
   return <_DocTemplate {...props} />
 }
 
-function _DocTemplate(props) {
-  // fallback workaround
-  if (props.notFound) {
-    return <Error statusCode={404} />
-  }
-  const data = props.file.data
+function _DocTemplate(props: AsyncReturnType<typeof getStaticProps>['props']) {
+  const data = props.data
 
   const router = useRouter()
   const isCloudDocs = router.asPath.includes('tina-cloud')
-
-  const isBrowser = typeof window !== `undefined`
-
-  const frontmatter = data.frontmatter
-  const markdownBody = data.markdownBody
-  const excerpt = props.file.data.excerpt
-  const tocItems = props.tocItems
 
   const { activeIds, contentRef } = useTocListener(data)
 
@@ -60,34 +52,43 @@ function _DocTemplate(props) {
   return (
     <>
       <NextSeo
-        title={frontmatter.title}
+        title={data.doc.title}
         titleTemplate={'%s | TinaCMS Docs'}
-        description={excerpt}
+        description={props.excerpt}
         openGraph={{
-          title: frontmatter.title,
-          description: excerpt,
-          images: [openGraphImage(frontmatter.title, '| TinaCMS Docs')],
+          title: data.doc.title,
+          description: props.excerpt,
+          images: [openGraphImage(data.doc.title, '| TinaCMS Docs')],
         }}
       />
       <DocsLayout navItems={props.docsNav}>
         <DocsGrid>
           <DocGridHeader>
             <Breadcrumbs navItems={props.docsNav} />
-            <DocsPageTitle>{frontmatter.title}</DocsPageTitle>
+            <DocsPageTitle>{data.doc.title}</DocsPageTitle>
           </DocGridHeader>
           <DocGridToc>
-            <Toc tocItems={tocItems} activeIds={activeIds} />
+            <Toc tocItems={props.tocItems} activeIds={activeIds} />
           </DocGridToc>
           <DocGridContent ref={contentRef}>
             <hr />
             {isCloudDocs ? <CloudDisclaimer /> : null}
-            <MarkdownContent escapeHtml={false} content={markdownBody} />
-            <LastEdited date={frontmatter.last_edited} />
-            {(props.prevPage?.slug !== null ||
-              props.nextPage?.slug !== null) && (
+            <TinaMarkdown content={data.doc.body} />
+            <LastEdited date={data.doc.last_edited} />
+            {(props.data.doc.prev !== null || props.data.doc.next !== null) && (
               <DocsPagination
-                prevPage={props.prevPage}
-                nextPage={props.nextPage}
+                prevPage={
+                  props.data.doc.prev && {
+                    title: props.data.doc.prev.title,
+                    slug: props.data.doc.prev.id,
+                  }
+                }
+                nextPage={
+                  props.data.doc.next && {
+                    title: props.data.doc.next.title,
+                    slug: props.data.doc.next.id,
+                  }
+                }
               />
             )}
           </DocGridContent>
@@ -103,43 +104,35 @@ export default DocTemplate
  * DATA FETCHING ------------------------------------------------------
  */
 
-export const getStaticProps: GetStaticProps = async function(props) {
-  let { slug: slugs } = props.params
+export const getStaticProps = async function(props) {
+  let slug = props.params.slug.join('/')
+  const tinaProps = await client.queries.doc({ relativePath: `${slug}.md` })
+  const docsNav = await getDocsNav(false, {})
 
-  // @ts-ignore This should maybe always be a string[]?
-  const slug = slugs.join('/')
-
-  try {
-    return await getDocProps(props, slug)
-  } catch (e) {
-    if (e) {
-      return {
-        props: {
-          error: { ...e }, //workaround since we cant return error as JSON
-        },
-      }
-    } else if (e instanceof NotFoundError) {
-      return {
-        props: {
-          notFound: true,
-        },
-      }
-    }
+  return {
+    props: {
+      ...tinaProps,
+      excerpt: await formatExcerpt(
+        tinaProps.data.doc.body.children.map(c => c.value).join('\n')
+      ),
+      docsNav: docsNav.data,
+      tocItems: '', //getTocItems(tinaProps.data.doc.body),
+    },
   }
 }
 
-export const getStaticPaths: GetStaticPaths = async function() {
-  const fg = require('fast-glob')
-  const contentDir = './content/docs/'
-  const files = await fg(`${contentDir}**/*.md`)
+// const getTocItems = (richText: {children: {type: string, children: any[]}[]}) => {
+// return richText.children.filter(node => node.type == 'h2')
+// }
+
+export const getStaticPaths = async () => {
+  const docListData = await client.queries.docConnection()
+
   return {
-    fallback: false,
-    paths: files
-      .filter(file => !file.endsWith('index.md'))
-      .map(file => {
-        const path = file.substring(contentDir.length, file.length - 3)
-        return { params: { slug: path.split('/') } }
-      }),
+    paths: docListData.data.docConnection.edges.map(post => ({
+      params: { slug: post.node._sys.filename.split('/') },
+    })),
+    fallback: 'blocking',
   }
 }
 

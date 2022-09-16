@@ -1,7 +1,6 @@
 ---
 title: Add a pending document
 id: /docs/graphql/queries/add-document
-[//]: # (next: /docs/graphql/queries/add-document.md)
 ---
 
 ## Adding a document with `addPendingDocument`

@@ -1,8 +1,8 @@
 ---
 id: /docs/contributing/setting-up
 title: Contribution Set-up
-prev: /docs/contributing/guidelines
-next: /docs/contributing/releasing
+prev: content/docs/contributing/guidelines.md
+next: content/docs/contributing/releasing.md
 consumes:
   - file: /package.json
     details: Uses scripts for local dev

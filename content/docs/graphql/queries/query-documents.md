@@ -1,7 +1,7 @@
 ---
 title: Querying a List of Documents
 id: /docs/graphql/queries/query-documents
-next: /docs/graphql/queries/advanced/filter-documents
+next: content/docs/graphql/queries/advanced/filter-documents.md
 ---
 
 Tina's list queries implement the [cursor-based Relay specification](https://relay.dev/graphql/connections.htm). Collection lists can be queried with `<collection>Connection`.
