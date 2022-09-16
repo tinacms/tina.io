@@ -391,7 +391,7 @@
               {
                 "id": "/docs/graphql/queries/query-documents/",
                 "slug": "/docs/graphql/queries/query-documents/",
-                "title": "Querying a Collection",
+                "title": "Querying a List of Documents",
                 "items": [
                   {
                     "id": "/docs/graphql/queries/advanced/filter-documents/",
