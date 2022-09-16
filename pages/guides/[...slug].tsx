@@ -10,7 +10,6 @@ import { CloudDisclaimer } from 'components/cloud-beta-disclaimer'
 import * as ga from '../../utils/ga'
 import { Breadcrumbs } from 'components/DocumentationNavigation/Breadcrumbs'
 import { useTocListener } from 'utils/toc_helpers'
-import SetupOverview from '../../components/layout/setup-overview'
 import { client } from '../../.tina/__generated__/client'
 import { AsyncReturnType } from 'utils/asyncReturnType'
 import { formatExcerpt } from 'utils'
@@ -20,9 +19,6 @@ import { TinaMarkdown } from 'tinacms/dist/rich-text'
 export function DocTemplate(
   props: AsyncReturnType<typeof getStaticProps>['props']
 ) {
-  if (props.variables.relativePath.includes('setup-overview')) {
-    return <SetupOverview {...props} />
-  }
   return <_DocTemplate {...props} />
 }
 
@@ -52,20 +48,20 @@ function _DocTemplate(props: AsyncReturnType<typeof getStaticProps>['props']) {
   return (
     <>
       <NextSeo
-        title={data.doc.title}
-        titleTemplate={'%s | TinaCMS Docs'}
+        title={data.guide.title}
+        titleTemplate={'%s | TinaCMS Guides'}
         description={props.excerpt}
         openGraph={{
-          title: data.doc.title,
+          title: data.guide.title,
           description: props.excerpt,
-          images: [openGraphImage(data.doc.title, '| TinaCMS Docs')],
+          images: [openGraphImage(data.guide.title, '| TinaCMS Guides')],
         }}
       />
       <DocsLayout navItems={props.docsNav}>
         <DocsGrid>
           <DocGridHeader>
             <Breadcrumbs navItems={props.docsNav} />
-            <DocsPageTitle>{data.doc.title}</DocsPageTitle>
+            <DocsPageTitle>{data.guide.title}</DocsPageTitle>
           </DocGridHeader>
           <DocGridToc>
             <Toc tocItems={props.tocItems} activeIds={activeIds} />
@@ -73,20 +69,21 @@ function _DocTemplate(props: AsyncReturnType<typeof getStaticProps>['props']) {
           <DocGridContent ref={contentRef}>
             <hr />
             {isCloudDocs ? <CloudDisclaimer /> : null}
-            <TinaMarkdown content={data.doc.body} />
-            <LastEdited date={data.doc.last_edited} />
-            {(props.data.doc.prev !== null || props.data.doc.next !== null) && (
+            <TinaMarkdown content={data.guide.body} />
+            <LastEdited date={data.guide.last_edited} />
+            {(props.data.guide.prev !== null ||
+              props.data.guide.next !== null) && (
               <DocsPagination
                 prevPage={
-                  props.data.doc.prev && {
-                    title: props.data.doc.prev.title,
-                    slug: props.data.doc.prev.id,
+                  props.data.guide.prev && {
+                    title: props.data.guide.prev.title,
+                    slug: props.data.guide.prev.id,
                   }
                 }
                 nextPage={
-                  props.data.doc.next && {
-                    title: props.data.doc.next.title,
-                    slug: props.data.doc.next.id,
+                  props.data.guide.next && {
+                    title: props.data.guide.next.title,
+                    slug: props.data.guide.next.id,
                   }
                 }
               />
@@ -106,17 +103,17 @@ export default DocTemplate
 
 export const getStaticProps = async function(props) {
   let slug = props.params.slug.join('/')
-  const tinaProps = await client.queries.doc({ relativePath: `${slug}.md` })
+  const tinaProps = await client.queries.guide({ relativePath: `${slug}.md` })
   const docsNav = await getDocsNav(false, {})
 
   return {
     props: {
       ...tinaProps,
       excerpt: await formatExcerpt(
-        tinaProps.data.doc.body.children.map(c => c.value).join('\n')
+        tinaProps.data.guide.body.children.map(c => c.value).join('\n')
       ),
       docsNav: docsNav.data,
-      tocItems: getTocItems(tinaProps.data.doc.body),
+      tocItems: getTocItems(tinaProps.data.guide.body),
     },
   }
 }

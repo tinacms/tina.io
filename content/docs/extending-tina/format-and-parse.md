@@ -1,7 +1,7 @@
 ---
 title: Format and parse input
 id: '/docs/extending-tina/format-and-parse'
-prev: content/docs/extending-tina/customize-list-ui
+prev: content/docs/extending-tina/customize-list-ui.md
 ---
 
 The `format` and `parse` props can be used to customize the value of the form (what is rendered) and the value of the data being saved. See the following example:

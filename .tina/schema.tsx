@@ -140,6 +140,64 @@ export default defineSchema({
       ]
     },
     {
+      name: "guide",
+      label: "Guide",
+      path: "content/guides",
+      format: "md",
+      fields: [
+        {
+          name: 'title',
+          label: 'Title',
+          type: 'string',
+        },
+        {
+          // note: this should be a hidden field that auto-updates
+          type: "datetime",
+          name: "last_edited",
+          label: "Last Edited",
+        },
+        {
+          name: 'prev',
+          label: 'Prev',
+          type: 'reference',
+          collections: ['doc']
+        },
+        {
+          name: 'next',
+          label: 'Next',
+          type: 'reference',
+          collections: ['doc']
+        },
+        {
+          type: "rich-text",
+          name: "body",
+          label: "Body",
+          isBody: true,
+          templates: [{
+            name: 'WarningCallout',
+            label: 'WarningCallout',
+            match: {
+              start: '{{',
+              end: '}}',
+            },
+            fields: [
+              {
+                // Be sure to call this field `text`
+                name: 'text',
+                label: 'Text',
+                type: 'string',
+                required: true,
+                isTitle: true,
+                ui: {
+                  component: 'textarea',
+                },
+              },
+            ],
+          }]
+        }
+      ]
+    },
+    {
       name: "post",
       label: "Blog Posts",
       path: "content/blog",
