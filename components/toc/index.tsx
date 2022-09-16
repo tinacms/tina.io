@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import ReactMarkdown from 'react-markdown'
 import styled, { css } from 'styled-components'
+import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import RightArrowSvg from '../../public/svg/right-arrow.svg'
 
 interface TocProps {
-  tocItems: string
+  tocItems: any
   activeIds: string[]
 }
 
@@ -36,12 +37,43 @@ const Toc = ({ tocItems, activeIds }: TocProps) => {
       </TocButton>
       <TocContent activeIds={activeIds} isOpen={isOpen}>
         <TocDesktopHeader>Table of Contents</TocDesktopHeader>
-        <ReactMarkdown source={tocItems} />
+        <ul>
+          <TinaMarkdown
+            content={tocItems}
+            components={{
+              h2: TOCTitle1,
+              h3: TOCTitle2,
+              h4: TOCTitle2,
+            }}
+          />
+        </ul>
       </TocContent>
     </TocWrapper>
   )
 }
 export default Toc
+
+const TOCTitle1 = props => {
+  return (
+    <li>
+      {/* <a href={`#${props.children.props.content[0].text.replace(' ', '-')}`}> */}
+      {props.children}
+      {/* </a> */}
+    </li>
+  )
+}
+
+const TOCTitle2 = props => {
+  return (
+    <ul>
+      <li>
+        {/* <a href={`#${props.children.props.content[0].text.replace(' ', '-')}`}> */}
+        {props.children}
+        {/* </a> */}
+      </li>
+    </ul>
+  )
+}
 
 const TocDesktopHeader = styled.span`
   display: none;

@@ -116,14 +116,29 @@ export const getStaticProps = async function(props) {
         tinaProps.data.doc.body.children.map(c => c.value).join('\n')
       ),
       docsNav: docsNav.data,
-      tocItems: '', //getTocItems(tinaProps.data.doc.body),
+      tocItems: getTocItems(tinaProps.data.doc.body),
     },
   }
 }
 
-// const getTocItems = (richText: {children: {type: string, children: any[]}[]}) => {
-// return richText.children.filter(node => node.type == 'h2')
-// }
+const getTocItems = ({
+  children,
+  ...richTextProps
+}: {
+  children: { type: string; children: any[] }[]
+}) => {
+  return {
+    children: children.filter(
+      c =>
+        c.type == 'h1' ||
+        c.type == 'h2' ||
+        c.type == 'h3' ||
+        c.type == 'h4' ||
+        c.type == 'h5'
+    ),
+    ...richTextProps,
+  }
+}
 
 export const getStaticPaths = async () => {
   const docListData = await client.queries.docConnection()
