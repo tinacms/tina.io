@@ -1,10 +1,7 @@
 import { client } from '../.tina/__generated__/client'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { fileToUrl } from 'utils/urls'
 import { useTina } from 'tinacms/dist/edit-state'
 import { BlocksPage } from 'components/blocks/BlocksPage'
-
-const fg = require('fast-glob')
 
 const Page = props => {
   const tinaData = useTina({
@@ -38,13 +35,12 @@ export const getStaticProps: GetStaticProps = async function({
 }
 
 export const getStaticPaths: GetStaticPaths = async function() {
-  const pages = await fg(`./content/blocksPages/*.json`)
-  const paths = pages.map(file => {
-    const slug = fileToUrl(file, 'blocksPages')
-    return { params: { slug } }
-  })
+  const postListData = await client.queries.pageConnection({ first: -1 })
+
   return {
-    paths: paths,
+    paths: postListData.data.pageConnection.edges.map(post => ({
+      params: { slug: post.node._sys.filename },
+    })),
     fallback: false,
   }
 }
