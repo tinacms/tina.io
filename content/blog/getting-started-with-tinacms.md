@@ -1,5 +1,5 @@
 ---
-title: "Getting Started With TinaCMS -\_Part 1"
+title: "Getting Started With TinaCMS - Part 1"
 date: '2022-09-19T14:00:00.000Z'
 last_edited: '2022-09-19T14:00:00.000Z'
 author: Scott Gallant

@@ -1,7 +1,8 @@
 ---
-title: 'Getting Started With TinaCMS - Part 2 '
+title: "Getting Started With TinaCMS - Part 2"
+date: '2022-09-20T14:00:00.000Z'
+last_edited: '2022-09-20T14:00:00.000Z'
 author: Scott Gallant
-prev: ''
 ---
 
 This is Part 2 of David Konsumer's guide to setting up and customizing TinaCMS.   If you missed [part 1](https://tina.io/blog/getting-started-with-tinacms/), you should start there first.&#x20;
