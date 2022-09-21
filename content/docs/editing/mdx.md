@@ -28,7 +28,7 @@ The fields registered in between the `---` delimiters, are called your **frontma
 
 ### What is MDX?
 
-MDX is similar to Markdown, however is adds the ability to write JSX components in your **markdown body**.
+MDX is similar to Markdown, however it adds the ability to write JSX components in your **markdown body**.
 
 ```md
 ---
