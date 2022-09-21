@@ -81,13 +81,13 @@ export default schema
 - All of the **frontmatter** fields can be registed, and assigned a type.
 - Your markdown body is registered by defining a `rich-text` field, and setting `isBody: true`.
 
-## Rendering content with `<TinaMarkdown>`
+## Rendering content with `TinaMarkdown`
 
 When your markdown content is requested through Tina's API, Tina serves a _parsed AST_ version of the content.
 
 > The _parsed AST_ gives developers the ability to step through each node, and render it with full control.
 
-Tina also provides a `<TinaMarkdown>` component, which renders your `md` or `mdx` component out of the box.
+Tina also provides a `<TinaMarkdown>` component, which renders your `md` or `mdx` component from the _parsed AST_.
 
 Here's an example of fetching our markdown content, and rendering it on the page.
 
@@ -184,7 +184,7 @@ Saving a document would output a component in the markdown body that looks like 
 <NewsletterSignup buttonText="Submit">### Hello world</NewsletterSignup>
 ```
 
-### Registering a "component" with `<TinaMarkdown />`
+### Registering a "component" with `TinaMarkdown`
 
 Once you've registered a `template` with a rich-text field in a collection, Tina still needs to know how to render the custom component.
 
