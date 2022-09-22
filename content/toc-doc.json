@@ -88,14 +88,9 @@
         "slug": "/docs/editing/overview/"
       },
       {
-        "title": "Markdown",
+        "title": "Markdown & MDX",
         "id": "/docs/editing/markdown",
         "slug": "/docs/editing/markdown/"
-      },
-      {
-        "title": "Rich Text with MDX",
-        "id": "/docs/editing/mdx",
-        "slug": "/docs/editing/mdx/"
       },
       {
         "title": "Block-based editing",
