@@ -99,7 +99,7 @@ Read-only tokens provide read-only access to your project's content.
 Navigate to [Tina Cloud](https://app.tina.io) and click on the project you wish to add a token to, click on the "tokens" tab
 ![Tina cloud token tab](/img/graphql-docs/token-tab.png)
 
-Next, click "New Token" and fill out fields. The token name is how you can identify the token and "Git branches" is the list of branches separated by commas that the token has assess too.
+Next, click "New Token" and fill out fields. The token name is how you can identify the token and "Git branches" is the list of branches separated by commas that the token has access to.
 
 ![Creating a new token in Tina Cloud](/img/graphql-docs/create-new-token.png)
 

@@ -1,6 +1,7 @@
 ---
 title: Using Media with Cloudinary
 prev: /docs/reference/media/repo-based
+next: /docs/reference/media/do-spaces
 ---
 
 Manage **Cloudinary media assets** in TinaCMS.
@@ -55,7 +56,7 @@ export default defineSchema({
 
 ## Set up API routes
 
-Set up a new API route in the `pages` directory of your Next.js app, e.g. `pages/api/cloudinary`.
+Set up a new API route in the `pages` directory of your Next.js app at `pages/api/cloudinary/[...media].ts`.
 Then add a new catch all API route for media.
 
 Call `createMediaHandler` to set up routes and connect your instance of the Media Store to your Cloudinary account.
@@ -82,7 +83,7 @@ export default createMediaHandler({
   api_secret: process.env.CLOUDINARY_API_SECRET,
   authorized: async (req, _res) => {
     try {
-      if (process.env.NEXT_PUBLIC_USE_LOCAL_CLIENT) {
+      if (process.env.NODE_ENV == 'development') {
         return true
       }
 

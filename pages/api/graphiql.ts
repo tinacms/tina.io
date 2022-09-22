@@ -94,6 +94,18 @@ Lorem markdownum evinctus ut cape
 
 `
   }),
+  'content/posts/nested/anotherPost.json': JSON.stringify({
+    title: "Just Another Blog Post",
+    category: "lifestyle",
+    author:  "content/authors/napolean.json",
+    date: "2022-07-15T07:00:00.000Z",
+    body: `
+## Vote For Pedro
+
+Lorem markdownum evinctus ut cape
+
+`
+  }),
   'content/authors/napolean.json': JSON.stringify({
     name: 'Napolean'
   }),

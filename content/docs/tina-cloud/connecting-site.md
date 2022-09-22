@@ -29,6 +29,8 @@ const schema = defineSchema({
 export default schema
 ```
 
+{{ WarningCallout text="Note ⚠️ If you're loading your schema config values from a local environment file, note that Tina's build process will only pickup `.env` files, (not `.env.local` or `.env.development` files)" }}
+
 ## Configuring the branch
 
 Typically you'll want to use the branch that you're deploying with your site. This will vary depending on your host, but most will provide an environment variable of some sort that you can use.
