@@ -118,7 +118,7 @@ export default function MyPage(props) {
 
 Since markdown and MDX are traditionally handled through some sort of build
 step, Tina's approach adds some constraints to make things work as expected.
-[Read more](/docs/editing/mdx/) about Tina's approach to handling markdown
+[Read more](/docs/editing/markdown/) about Tina's approach to handling markdown
 and MDX.
 
 ### All content must be _serializable_

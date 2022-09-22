@@ -1,6 +1,6 @@
 ---
 title: Markdown & MDX
-id: '/docs/editing/mdx'
+id: '/docs/editing/markdown'
 next: '/docs/editing/blocks'
 ---
 
