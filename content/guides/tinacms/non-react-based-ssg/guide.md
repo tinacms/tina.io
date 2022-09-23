@@ -7,167 +7,100 @@ last_edited: '2022-04-21T10:00:00.000Z'
 
 Tina's "contextual editing" features require a React-based site, however Tina can still be used in "CMS-only mode" to edit content for non-React-based sites.
 
-> ⚠️ We are close to releasing an update to Tina that will allow it to work out-of-the-box on non-React sites (in "CMS-only mode"). The following guide will soon be phased out and replaced with the much more streamlined solution. If you're looking to use Hugo with a Non-React framework, we suggest [joining our community](https://tina.io/community/), or [subscribing to this GitHub thread](https://github.com/tinacms/tinacms/discussions/2215).
-
 ## Getting Started
 
-This guide should work with any Markdown/JSON-based site: E.g: Hugo, GatsbyJS, Astro, Jekyll, 11ty, Gridsome, etc.
+Most of this guide should apply to any Markdown/JSON-based site: E.g: Hugo, GatsbyJS, Astro, Jekyll, 11ty, Gridsome, etc.
 
-If you don't already have a site setup, you can quicky setup a [Hugo site here](https://gohugo.io/getting-started/quick-start/)
+We'll assume your using Hugo for this example. If you don't have a Hugo site you started you can clone this [simple starter site](https://github.com/tinalabs/vanilla-hugo).
 
-## Tina Scaffolding Setup
+```bash,copy
+git clone https://github.com/tinalabs/vanilla-hugo.git
+cd vanilla-hugo
+```
 
-To set up the Tina scaffolding in your Hugo project...
+> Ensure you have Hugo [installed](https://gohugo.io/getting-started/installing/) on your machine!
 
-From within your projects root directory, run:
+Run the Hugo dev server
+
+```bash,copy
+hugo server -D -p 3003
+```
+
+Visit [http://localhost:3003](http://localhost:3003) and you'll see a very plain website with no content:
+
+![Vanilla Hugo site screenshot](/img/hugo-screenshot.png)
+
+Now that we have a working Hugo site, stop your server so we can add TinaCMS.
+
+## Adding TinaCMS
+
+You can initialize tina with the `init` command:
+
+```bash,copy
+ npx @tinacms/cli@latest init --static
+```
+
+The command will ask you a few questions which we'll go through one-by-one, once it's done you'll have everything you need to work with Tina:
+
+- A `package.json`
+- A TinaCMS configuration file at `.tina/config.js`. Here you can give TinaCMS instructions on how to handle your content.
+- A markdown file at `content/posts/hello-world.md`. The frontmatter in this file will match the schema definition you'll find in `.tina/config.js`.
+
+First it'll ask you to choose a package manager, let's choose `NPM`:
 
 ```bash
-npx hygen init repo tinalabs/ssg-admin
+? Choose your package manager › - Use arrow-keys. Return to submit.
+    PNPM
+    Yarn
+❯   NPM
 ```
 
-Now we'll create the Node configuration, to run the GraphQL API locally.
-
-Run:
+And we'll opt in to using Typescript so errors in our config more clear:
 
 ```bash
-touch package.json
+? Would you like to use Typescript? › (Y/n)
 ```
 
-Enter the following values into the newly generated package.json:
-
-```json
-{
-  "name": "my-tina-content-api",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "yarn tinacms server:start"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@tinacms/cli": "0.60.12"
-  }
-}
-```
-
-> ⚠️ **Warning** You need to make sure your root project is using `@tinacms/cli": "0.60.12` in the future you will be able to use newer versions.
-
-Add the node_modules directory to the .gitignore
+Next it'll ask us where public assets should be stored. TinaCMS is installed as a static asset so it should be
+deployed alongside other assets like images, stylesheets and javascript files. Since this is a [Hugo site](https://gohugo.io/content-management/static-files/), well enter "static".
 
 ```bash
-echo "node_modules/" >> .gitignore
+? Where are public assets stored? (default: "public") › static
 ```
 
-Now you can install the new dependencies with
+Once Tina finishes installing it's time to run your site. This command will start the TinaCMS dev server along with whatever
+subprocess you give it, _this should be the dev command for your site_.
 
-```bash
-yarn install
+```bash,copy
+npx tinacms dev -c "hugo server -D -p 3003"
 ```
 
-Now let's test that the content API is running correctly by running
+Navigate to the TinaCMS dashboard, with the default configuration is will be [http://localhost:3003/admin](http://localhost:3003/admin)
 
-```bash
-yarn dev
-```
+From here you can navigate to the `Posts` collection and edit the markdown file provided. For Hugo sites,
 
-You should be able to browse the content API's dummy content, by going to:
-[http://localhost:4001/altair](http://localhost:4001/altair)
+> Depending on your framework you may need to append `index.html` to the URL. For Hugo, this isn't necessary.
 
-![A Blog query returning our data in Altair GraphQL Client](/img/blog/altair-client-tina.png)
+![](/img/hugo-tina-admin-screenshot.png)
 
-You can try running the following query in altair to confirm that your Tina schema is configured correctly:
+For Hugo sites, the default content initalized by Tina has some fields in common with Hugo's default [archetype](https://gohugo.io/content-management/archetypes/#readout)
+so when you visit your homepage you should see content right away!
 
-```graphql
-{
-  getPostList {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        data {
-          title
-          body
-        }
-      }
-    }
-  }
-}
-```
+![](/img/hugo-tina-screenshot.png)
 
-You should see a post-list response, with your one new dummy post.
+Edit the blog post by visiting [http://localhost:3003/admin/posts/hello-world](http://localhost:3003/admin/posts/hello-world)
 
-## Running the Tina admin
+## Next steps
 
-Now, with the GraphQL server still running, in a new tab let's run the Tina admin locally with:
+### Model your content
 
-```bash
-cd tina-admin
-yarn install
-yarn dev
-```
+Out of the box, there is a content model created for a "dummy-post". You will want to check out Tina's [content modeling docs](/docs/schema/), so that you can edit the content that's used within your Hugo site.
 
-From here, you should be able to edit your site's content from the editor. For help using the editor, [checkout our docs](https://tina.io/docs/using-tina-editor/)
+### Deploy your site
 
-**Note: To run this locally, you will need to be running the GraphQL server from the previous step**.
+To edit your site on a deployed server you'll need to authorize with Tina Cloud. You can read about signing up and going to production [here](/docs/tina-cloud/)
 
-<img width="1150" alt="Screen Shot 2022-04-11 at 11 52 58 AM" src="https://user-images.githubusercontent.com/3323181/162766629-999d7d52-6822-4133-90e6-062c08153dec.png">
-
-## Model your content
-
-Out of the box, there is a content model created for a "dummy-post". You will want to check out Tina's [content modeling docs](https://tina.io/docs/schema/), so that you can edit the content that's used within your Hugo site.
-
-## Deploying the admin
-
-### Step 1) Push your repo to git
-
-Push your repo up to git, along with its new Tina configuration.
-
-### Step 2) Setup a Tina Cloud project
-
-Read our [Tina Cloud docs](https://tina.io/docs/tina-cloud/) for help creating a Tina Cloud project
-
-### Step 3) Connect the project ID
-
-In `/tina-admin/src/App.tsx`, set the following properties:
-
-```ts
-const clientId = '<YOUR-TINA-PROJECT-ID-GOES-HERE>'
-const branch = '<YOUR-BRANCH-HERE>'
-```
-
-where `<YOUR-TINA-PROJECT-ID-GOES-HERE>` is replaced by your client-id from your new Tina Cloud project.
-
-### Step 4) Build the admin for prod
-
-Build the site locally with
-
-```bash
-cd tina-admin && yarn build
-```
-
-This will output Tina's static admin page to the site's `/static` directory.
-
-> Note, the `/static` directory is used by many SSG's to serve static content (e.g Hugo, GatsbyJS, etc), but this output location can be configured via `outDir` in `/tina-admin/vite.config.js`.
-
-Once that is built, **push everything up to git (including the newly built admin)**
-
-### Step 5) Edit in production
-
-When everything has redeployed, you should be able to enter edit-mode at:
-`<your-site-url>/admin`
-
-> Note: Anytime your admin is updated, (E.g, by changing the clientId or branch), you will need to rebuild it locally and re-push it to git).
-
-## Next steps: (we want your feedback!)
+### We want your feedback!
 
 Non-React-based SSG support is still experimental, so we would love to hear your early feedback.
 
