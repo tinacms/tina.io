@@ -64,7 +64,7 @@ Fore more information [check out the docs](/docs/reference/collections/#definiti
 
 In this new version the filename can be customized with the ui.filename prop in the schema. With this prop you can provide a slugify function to generate the filename and optionally disable the filename input from editors.
 
-Here is an example of how the slugify function can be used to generate a filename with the format ${topic}-${title}.
+Here is an example of how the slugify function can be used to generate a filename with the format `${topic}-${title}`.
 
 ### Example
 
