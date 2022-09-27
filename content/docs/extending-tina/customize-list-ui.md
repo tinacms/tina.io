@@ -33,7 +33,6 @@ For example, to use the `title` field as the label for this image gallery collec
       label: "Title",
       name: "title",
       type: "string",
-      ui: { defaultValue: "A new title" },
     },
     { label: "Image", name: "image", type: "image" },
     {
@@ -76,7 +75,6 @@ For example:
       label: "Title",
       name: "title",
       type: "string",
-      ui: { defaultValue: "A new title" },
     },
     { label: "Image", name: "image", type: "image" },
     {
