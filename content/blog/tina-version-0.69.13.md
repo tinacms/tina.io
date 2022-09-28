@@ -18,7 +18,7 @@ To start we are deprecating the use of defaultValue this value would misbehave a
 
 Now `defaultValues` can be provided at the collection level. This will serve as the default values for the form when **the document is being created**. This is a breaking change and will be removed in the next major version.
 
-### Example
+### Example using defaultItem
 
 ```ts
 const schema = defineSchema({
