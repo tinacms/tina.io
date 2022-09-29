@@ -5,7 +5,7 @@ last_edited: '2022-04-21T10:00:00.000Z'
 
 ## Introduction
 
-Tina's "contextual editing" features require a React-based site, however Tina can still be used in "CMS-only mode" to edit content for non-React-based sites.
+Tina's "contextual editing" features require a React-based site, however Tina can still be used in basic mode to edit content for non-React-based sites (but you will have to forgo the live preview that comes with contextual editing).
 
 ## Getting Started
 
