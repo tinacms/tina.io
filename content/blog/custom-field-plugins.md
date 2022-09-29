@@ -103,7 +103,6 @@ interface FieldPlugin {
   ): string | object | undefined
   parse?: (value: any, name: string, field: Field) => any
   format?: (value: any, name: string, field: Field) => any
-  defaultValue?: any
 }
 ```
 
