@@ -4,7 +4,7 @@ date: '2021-12-21T04:00:00.000Z'
 last_edited: '2021-12-21T04:00:00.000Z'
 author: James Perkins
 ---
-
+DUMMY CHANGE - do not commit
 As the year is winding down, the team and I spent some time reflecting on how far Tina has come from the beginning of the year. At the beginning of 2021 TinaCMS was a new and growing open-source project that the Forestry team was excited to build. That project, in many ways, looked very different from the TinaCMS you know today. This year's journey involved some significant changes to the open-source project but our mission has remained the same: to deliver an open-source CMS that provides a 10x experience for the world's best web developers and content editors.
 
 Earlier this year we received a lot of feedback from both small and large companies using TinaCMS in that early phase. We learned that Tina was too open-ended and was trying to do too much. We decided to put certain constraints in place that narrowed Tina's focus but provided a better overall experience for more users. We chose Next.js as Tina's preferred framework for now (instead of Gatsby and others), focused on content stored in Git instead of supporting any data store, and replaced the in-page editing experience for a side-by-side editing experience that you see now in order to improve the overall developer experience. Also, we added a [GraphQL API](/docs/graphql/overview/) to TinaCMS that gives you all the benefits of Git-backed content (version control, content-ownership, branching, etc) but also adds a structured API that can easily be queried.
