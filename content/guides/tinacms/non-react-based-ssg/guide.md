@@ -89,7 +89,7 @@ edit the `.tina/config.ts` "schema" property to match the shape of your content.
 
 ![](/img/hugo-tina-screenshot.png)
 
-> You can edit the "Hello, World" blog post by visiting [http://localhost:3003/admin/posts/hello-world](http://localhost:3003/admin/posts/hello-world)
+> You can edit the "Hello, World" blog post by visiting [http://localhost:3003/admin/post/hello-world](http://localhost:3003/admin/post/hello-world)
 
 ## Next steps
 
