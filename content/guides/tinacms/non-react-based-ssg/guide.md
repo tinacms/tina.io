@@ -77,18 +77,19 @@ npx tinacms dev -c "hugo server -D -p 3003"
 
 Navigate to the TinaCMS dashboard, with the default configuration is will be [http://localhost:3003/admin](http://localhost:3003/admin)
 
-From here you can navigate to the `Posts` collection and edit the markdown file provided. For Hugo sites,
+From here you can navigate to the `Posts` collection and edit the markdown file provided.
 
 > Depending on your framework you may need to append `index.html` to the URL. For Hugo, this isn't necessary.
 
 ![](/img/hugo-tina-admin-screenshot.png)
 
 For Hugo sites, the default content initalized by Tina has some fields in common with Hugo's default [archetype](https://gohugo.io/content-management/archetypes/#readout)
-so when you visit your homepage you should see content right away!
+so when you visit your homepage you should see content right away! Note that for other frameworks, or if your Hugo site is set up with different archetypes you'll need to
+edit the `.tina/config.ts` "schema" property to match the shape of your content.
 
 ![](/img/hugo-tina-screenshot.png)
 
-Edit the blog post by visiting [http://localhost:3003/admin/posts/hello-world](http://localhost:3003/admin/posts/hello-world)
+> You can edit the "Hello, World" blog post by visiting [http://localhost:3003/admin/posts/hello-world](http://localhost:3003/admin/posts/hello-world)
 
 ## Next steps
 
