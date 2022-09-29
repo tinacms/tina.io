@@ -22,19 +22,19 @@
           {
             "id": "/docs/introduction/using-starter/",
             "slug": "/docs/introduction/using-starter/",
-            "title": "Using a starter"
+            "title": "Using a Starter"
           },
           {
             "id": "/docs/introduction/tina-init/",
             "slug": "/docs/introduction/tina-init/",
-            "title": "Adding Tina to existing NextJS site"
+            "title": "Adding Tina to Existing NextJS Site"
           }
         ]
       },
       {
         "id": "/docs/using-tina-editor/",
         "slug": "/docs/using-tina-editor/",
-        "title": "Using the Tina editor"
+        "title": "Using the Tina Editor"
       }
     ]
   },
@@ -61,7 +61,7 @@
     ]
   },
   {
-    "title": "Querying content",
+    "title": "Querying Content",
     "id": "/docs/data-fetching/overview/",
     "slug": "/docs/data-fetching/overview/",
     "items": [
@@ -106,7 +106,7 @@
     ]
   },
   {
-    "title": "Extending Tina",
+    "title": "Customizing Tina",
     "id": "/docs/extending-tina/overview",
     "slug": "/docs/extending-tina/overview/",
     "items": [
@@ -121,7 +121,7 @@
         "slug": "/docs/extending-tina/validation/"
       },
       {
-        "title": "Custom field components",
+        "title": "Custom Field Components",
         "id": "/docs/extending-tina/custom-field-components",
         "slug": "/docs/extending-tina/custom-field-components/"
       },
@@ -131,9 +131,14 @@
         "slug": "/docs/extending-tina/customize-list-ui/"
       },
       {
-        "title": "Format and parse input",
+        "title": "Format and Parse Input",
         "id": "/docs/extending-tina/format-and-parse",
         "slug": "/docs/extending-tina/format-and-parse/"
+      },
+      {
+        "title": "Filename Customization",
+        "id": "/docs/extending-tina/filename-customization",
+        "slug": "/docs/extending-tina/filename-customization/"
       }
     ]
   },
@@ -172,7 +177,7 @@
       {
         "id": "/docs/tina-cloud/connecting-site/",
         "slug": "/docs/tina-cloud/connecting-site/",
-        "title": "Connecting the site"
+        "title": "Connecting the Site"
       },
       {
         "id": "/docs/tina-cloud/faq/",
