@@ -11,7 +11,7 @@ Tina's "contextual editing" features require a React-based site, however Tina ca
 
 Most of this guide should apply to any Markdown/JSON-based site: E.g: Hugo, GatsbyJS, Astro, Jekyll, 11ty, Gridsome, etc.
 
-We'll assume your using Hugo for this example. If you don't have a Hugo site you started you can clone this [simple starter site](https://github.com/tinalabs/vanilla-hugo).
+We'll assume you're using Hugo for this example. If you don't have a Hugo site you started you can clone this [simple starter site](https://github.com/tinalabs/vanilla-hugo).
 
 ```bash,copy
 git clone https://github.com/tinalabs/vanilla-hugo.git
