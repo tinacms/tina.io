@@ -11,7 +11,7 @@ The filename customization API allows you to customize the filename of a documen
 
 | Property               | Description                                                              |
 | ---------------------- | ------------------------------------------------------------------------ |
-| `ui.filename.disabled` | Disable the editor from editing the filename                             |
+| `ui.filename.readonly` | Disable the editor from editing the filename                             |
 | `ui.filename.slugify`  | A function that takes in the values of the form and returns the filename |
 
 ## Usage
