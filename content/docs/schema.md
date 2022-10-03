@@ -174,22 +174,6 @@ fields: [
 
 <a href="https://tina-gql-playground.vercel.app/reference" target="_blank">See Example</a>
 
-## Setting default values
-
-To display default values when fields are first added to a page, use the `defaultValue` property.
-
-```ts
-// ...
-fields: [
-  {
-    label: "Title",
-    name: "title",
-    type: "string",
-    ui: { defaultValue: "A new title" },
-  },
-],
-```
-
 ### Default value for objects
 
 To set default values for objects of fields, use the `defaultItem` property (see [example here](https://tina-gql-playground.vercel.app/object-list-data)).

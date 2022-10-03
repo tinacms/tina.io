@@ -14,6 +14,31 @@ In this example, the `post` collection has a path of `content/posts` and your do
 
 Our collections for the above [schema](/docs/graphql/queries/#example-schema) are named "post" and "author", so we can query for each using the `post` & `author`
 
+### Example
+
 <iframe loading="lazy" src="/api/graphiql/?query=%7B%0A%20%20post(relativePath%3A%20%22voteForPedro.json%22)%20%7B%0A%20%20%20%20title%0A%20%20%20%20category%0A%20%20%20%20author%20%7B%0A%20%20%20%20%20%20...%20on%20Author%20%7B%0A%20%20%20%20%20%20%20%20name%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A" width="800" height="400" />
 
 <iframe loading="lazy" src="/api/graphiql/?query=%7B%0A%20%20author(relativePath%3A%20%22napolean.json%22)%20%7B%0A%20%20%20%20name%0A%20%20%7D%0A%7D%0A" width="800" height="400" />
+
+## Common fields
+
+In a collection, there are a few fields that are common to all documents. These are: `id`, `_values` and `_sys`. The `id` field is a unique identifier for the document. The `_values` field is used internally in edit mode and is not for external use. The `_sys` field contains meta information about the document.
+
+The `_sys` field is an object with the following fields:
+
+- `filename`: The name of the file without the extension
+- `basename`: The name of the file with the extension
+- `path`: The full path of the file relative to the project root
+- `breadcrumbs`: An array of the parent folders of the file
+- `relativePath`: The path of the file relative to the collection path
+- `extension`: The extension of the file
+- `template`: The template of the document (or the name of the collection if not using `templates`)
+- `collection`: Information about the collection
+
+### Example with a nester folder
+
+<iframe loading="lazy" src="/api/graphiql/?query=%7B%0A%20%20post(relativePath%3A%20%22nested%2FanotherPost.json%22)%20%7B%0A%20%20%20%20id%0A%20%20%20%20_sys%20%7B%0A%20%20%20%20%20%20filename%0A%20%20%20%20%20%20basename%0A%20%20%20%20%20%20path%0A%20%20%20%20%20%20breadcrumbs%0A%20%20%20%20%20%20relativePath%0A%20%20%20%20%20%20extension%0A%20%20%20%20%20%20template%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D"  width="800" height="400"/>
+
+### Example without a nester folder
+
+<iframe loading="lazy" src='/api/graphiql/?query=%7B%0A%20%20post(relativePath%3A%20"anotherPost.json")%20%7B%0A%20%20%20%20id%0A%20%20%20%20_sys%20%7B%0A%20%20%20%20%20%20filename%0A%20%20%20%20%20%20basename%0A%20%20%20%20%20%20path%0A%20%20%20%20%20%20breadcrumbs%0A%20%20%20%20%20%20relativePath%0A%20%20%20%20%20%20extension%0A%20%20%20%20%20%20template%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D' width="800" height="400"/>

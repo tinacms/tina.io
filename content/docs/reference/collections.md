@@ -10,20 +10,24 @@ Collections represent a type of content (EX, blog post, page, author, etc). We r
 
 ## Definition
 
-| Property    | Description                                                                                                                         |
-| ----------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| `name`      | The name of the collection                                                                                                          |
-| `path`      | The path (relative to where the CLI is running) to a folder where the content is stored.                                            |
-| `format`    | The extension of all the documents in this collection (Default is "md"). Must be one of `"md"`, `"markdown"`, `"mdx"`, or `"json"`. |
-| `label`     | A human friendly label that will be displayed to the user                                                                           |
-| `fields`    | An array of [fields](/docs/reference/fields/)                                                                                       |
-| `templates` | An array of [templates](/docs/reference/templates/)                                                                                 |
-| `ui.global` | A boolean that if true will make this collection Global. (_optional_)                                                               |
-| `ui.router` | A function that takes in a document and returns the route for it. If nothing is returned the admin view will be used. (_optional_)  |
+| Property      | Description                                                                                                                                           |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`        | The name of the collection                                                                                                                            |
+| `path`        | The path (relative to where the CLI is running) to a folder where the content is stored.                                                              |
+| `format`      | The extension of all the documents in this collection (Default is "md"). Must be one of `"md"`, `"markdown"`, `"mdx"`, or `"json"`.                   |
+| `label`       | A human friendly label that will be displayed to the user                                                                                             |
+| `fields`      | An array of [fields](/docs/reference/fields/)                                                                                                         |
+| `templates`   | An array of [templates](/docs/reference/templates/)                                                                                                   |
+| `defaultItem` | An object or a function that returns an object. The object that is returned will be the data used as the default data when a new document is created. |
+| `ui.filename` | See [Filename customization](/docs/extending-tina/filename-customization/)                                                                            |
+| `ui.global`   | A boolean that if true will make this collection Global. (_optional_)                                                                                 |
+| `ui.router`   | A function that takes in a document and returns the route for it. If nothing is returned the admin view will be used. (_optional_)                    |
 
 > Note: Must provide only one of `fields` or `templates` but never both
 
-## Example
+## Examples
+
+### Basic Example
 
 ```ts
 const schema = defineSchema({
@@ -45,7 +49,7 @@ const schema = defineSchema({
 export default schema
 ```
 
-## Example with router and global
+### Example with router and global
 
 ```ts
 const schema = defineSchema({
@@ -75,6 +79,44 @@ const schema = defineSchema({
       format: 'json',
       fields: [
         // An array of fields
+      ],
+    },
+  ],
+})
+
+// ...
+
+export default schema
+```
+
+### Example with default item
+
+```ts
+const schema = defineSchema({
+  collections: [
+    {
+      name: 'posts',
+      label: 'Blog Posts',
+      path: 'content/posts',
+      format: 'mdx',
+      defaultItem: () => {
+        return {
+          // Return a default title and the current date as the default date
+          title: 'new post',
+          date: new Date().toISOString(),
+        }
+      },
+      fields: [
+        {
+          label: 'Title',
+          name: 'title',
+          type: 'string',
+        },
+        {
+          label: 'Date',
+          name: 'date',
+          type: 'date',
+        },
       ],
     },
   ],

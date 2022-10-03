@@ -43,6 +43,20 @@ E.g, in our [tina-cloud-starter](https://github.com/tinacms/tina-cloud-starter/t
 
 `mediaRoot` can be set to "", if you want your media to be uploaded to the root of your `publicFolder`.
 
+### next/image
+
+If you are using Next images, you will need to add the following to your `next.config.js` file to allow access to external images hosted on the Tina media hostname:
+
+```js
+module.exports = {
+  images: {
+    domains: ['assets.tina.io'],
+  },
+}
+````
+
+See the [next/image docs](https://nextjs.org/docs/api-reference/next/image#domains) for more information.
+
 ## Usage
 
 Once media has been configured, you can use `image` fields in your collections.

@@ -1,6 +1,7 @@
 ---
 title: Using Media with Cloudinary
 prev: content/docs/reference/media/repo-based.md
+next: content/docs/reference/media/do-spaces.md
 ---
 
 Manage **Cloudinary media assets** in TinaCMS.

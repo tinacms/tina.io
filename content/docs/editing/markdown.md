@@ -1,43 +1,70 @@
 ---
-title: Markdown
-id: '/docs/editing/markdown'
-next: content/docs/editing/mdx.md
+title: Markdown & MDX
+id: 'content/docs/editing/blocks.md'
 ---
 
-Editing a markdown file (with front matter and a body) is the simplest use-case of editing with Tina
+## Overview
 
-## Defining our schema
+Markdown `(.md)` & MDX `(.mdx)` are two popular formats for authoring content. Tina works great with both formats, and provides a simple WYSIWYG editor (so your editors won't have to manually write markdown)
 
-Let's say your content looks something like:
+![tinacms-markdown-field](/img/fields/markdown.png)
+
+### What is markdown?
+
+A basic `.md` might look like this:
 
 ```md
 ---
-title: 'My first post'
-// ...
+title: This is my title
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ultricies urna ut ex varius, sed fringilla nibh posuere. Vestibulum a pulvinar eros, vel varius orci. Sed convallis purus sed tellus pellentesque ornare quis non velit. Quisque eget nibh nec nisl volutpat aliquet. Donec pharetra turpis vitae diam aliquam rutrum. Sed porta elit ut mi vehicula suscipit. Ut in pulvinar nunc.
+## Knock Knock!
+
+Who's there?
 ```
 
-You would model this collection as:
+The fields registered in between the `---` delimiters, are called your **frontmatter**. Anything below is your **markdown body**.
+
+### What is MDX?
+
+MDX is similar to Markdown, however it adds the ability to write JSX components in your **markdown body**.
+
+```md
+---
+title: This is my title
+---
+
+## Knock Knock!
+
+Who's there?
+
+<PunchLine text="orange your glad I didn't say banana?" />
+```
+
+## Configuring the collection
+
+To define a Tina collection that maps to a `.md` file, your schema might look like this:
 
 ```ts
-// .tina/schema.ts
+// .tina/schema.{ts,js,tsx}
 import { defineSchema } from 'tinacms'
 
-export default defineSchema({
+const schema = defineSchema({
   collections: [
     {
-      // ...
+      label: 'Blog Posts',
+      name: 'post',
+      path: 'content/posts',
+      format: 'md',
       fields: [
         {
-          type: 'string'
+          type: 'string',
           label: 'Title',
           name: 'title',
         },
         {
-          type: 'string',
-          label: 'Body',
+          type: 'rich-text',
+          label: 'Post Body',
           name: 'body',
           isBody: true,
         },
@@ -45,84 +72,159 @@ export default defineSchema({
     },
   ],
 })
+
+export default schema
 ```
 
-Notice that the first field (`title`) maps to a frontmatter field. We can add any other metadata fields that we want here.
+- `format`, at the root of the collection, defines the filetype (`md` in this case).
+- All of the **frontmatter** fields can be registed, and assigned a type.
+- Your markdown body is registered by defining a `rich-text` field, and setting `isBody: true`.
 
-Our `body` field has the `isBody` property set, which will use the [markdown](/docs/reference/toolkit/fields/markdown/) field plugin.
+## Rendering content with `TinaMarkdown`
 
-## Registering the field plugins
+When your markdown content is requested through Tina's API, Tina serves a _parsed AST_ version of the content.
 
-The majority of our built-in field plugins work out of the box, but some of the larger field plugins (like the "markdown" editor) need to be manually imported and registered.
+> The _parsed AST_ gives developers the ability to step through each node, and render it with full control.
 
-First, install the markdown editor package with:
+Tina also provides a `<TinaMarkdown>` component, which renders your `md` or `mdx` component from the _parsed AST_.
 
-```copy
-yarn add react-tinacms-editor
+Here's an example of fetching our markdown content, and rendering it on the page.
+
+```jsx
+import { TinaMarkdown } from "tinacms/dist/rich-text";
+
+// server code
+const getStaticProps = () => {
+  const post = await client.queries.post({ relativePath: 'HelloWorld.md' })
+  return { data: { post: post } }
+}
+
+// Page component
+const MyBlogPost = (props) => {
+  return (<>
+    <h1>{props.data.title}</h1>
+    <TinaMarkdown content={props.data.body} />
+  </>)
+}
 ```
 
-or
+## Providing "custom components" for MDX documents
 
-```copy
-npm install react-tinacms-editor
-```
+If you are using `mdx` as the format, you'll have the ability to define custom components that your editors can leverage.
 
-Inside the config within the `.tina/schema.ts` file we need to import the `MarkdownFieldPlugin` and add it to the CMS callback:
+![Docs_Starter_Example](https://res.cloudinary.com/forestry-demo/video/upload/v1638887594/blog-media/Docs_Starter_Example.gif)
+
+> ### How does MDX work with Tina?
+>
+> Tina doesn't require a compilation step like other MDX tooling you
+> might be familiar with, so it needs to know about all the possible elements
+> you support ahead of time. Instead of doing an `import` statement in MDX,
+> you need to register each element as a `template` in your Tina schema.
+
+### Defining a "template" in a collection
+
+Tina needs to have each MDX component defined in advance, in the `.tina/schema.{ts,js,tsx}` file.
 
 ```diff
-// .tina/schema.ts
+// .tina/schema.{ts,js,tsx}
+import { defineSchema } from 'tinacms'
 
-// ...
-export config = defineConfig({
-// ...
-+ cmsCallback: (cms) => {
-+   import('react-tinacms-editor').then((field)=> {
-+     cms.plugins.add(field.MarkdownFieldPlugin)
-+   })
-+ }
+const schema = defineSchema({
+  collections: [
+    {
+      label: 'Blog Posts',
+      name: 'post',
+      path: 'content/posts',
+-     format: 'md',
++     format: 'mdx',
+      fields: [
+        // ...
+        {
+          type: 'rich-text',
+          label: 'Post Body',
+          name: 'body',
+          isBody: true,
++          templates: [
++            {
++              name: "NewsletterSignup",
++              label: "Newsletter Sign Up",
++              fields: [
++                {
++                  name: "children",
++                  label: "CTA",
++                  type: "rich-text",
++                },
++                {
++                  name: "buttonText",
++                  label: "Button Text",
++                  type: "string",
++                }
++              ],
++            },
++          ],
+        },
+      ],
+    },
+  ],
 })
+
+export default schema
 ```
 
-Assuming that [contextual editing](/docs/tinacms-context/) is setup on your page, your editors should be able to start editing markdown content!
+By defining the above `NewsletterSignup` template, our editors now have the ability to add that template to the page body.
 
-![markdown-editing](https://res.cloudinary.com/forestry-demo/image/upload/v1645712826/tina-io/docs/markdown.gif)
+![MDX Template](https://res.cloudinary.com/forestry-demo/image/upload/v1663772538/tina-io/docs/md/Screen_Shot_2022-09-21_at_12.00.15_PM.png)
 
-## Rendering Markdown
-
-The value you get back from the TinaCMS `markdown` field is raw markdown, so you'll want to make sure you have a way to render it to HTML on the page (if you're converting an existing markdown-powered site to use Tina, you probably already have a solution in place for this.)
-
-A popular solution is to use the [react-markdown](https://github.com/remarkjs/react-markdown) library, which provides document-safe rendering for markdown in React.
-
-After installing `react-markdown`, it can be used like this:
+Saving a document would output a component in the markdown body that looks like this:
 
 ```tsx
-import * as React from 'react'
-import ReactMarkdown from 'react-markdown'
+//...
 
-export default MyContentPage: (props) => {
-  const markdownContent = props.data.post.body
+<NewsletterSignup buttonText="Submit">### Hello world</NewsletterSignup>
+```
+
+### Registering a "component" with `TinaMarkdown`
+
+Once you've registered a `template` with a rich-text field in a collection, Tina still needs to know how to render the custom component.
+
+Custom components can be defined with the `components` prop on `<TinaMarkdown>`.
+
+```tsx
+const components = {
+  // The "NewsletterSignup" key maps to a "template" defined
+  // on our "rich-text" field
+  NewsletterSignup: props => {
+    return (
+      <>
+        <div>
+          <TinaMarkdown content={props.children} />
+        </div>
+        <div>
+          <form>
+            <label htmlFor="email-address">Email address</label>
+            <input name="email-address" type="email" required />
+            <button type="submit">{props.buttonText}</button>
+          </form>
+        </div>
+      </>
+    )
+  },
+}
+
+const MyBlogPost = props => {
   return (
-    <main>
-      <ReactMarkdown>
-        {markdownContent}
-      </ReactMarkdown>
-    </main>
+    <>
+      <h1>{props.data.title}</h1>
+      <TinaMarkdown content={props.data.body} components={components} />
+    </>
   )
 }
-
-export const getStaticProps = async ctx => {
-  // See https://tina.io/guides/tinacms/nextjs-data-fetching/guide/ for more info on our getStaticProps/getStaticPaths data-fetching with NextJS
-
-  const postResponse = await client.queries.post({
-    relativePath: "hello-world.md"
-  })
-
-  return {
-    props: {
-      data: postResponse.data,
-      query: postResponse.query,
-      variables: postResponse.variables,
-    },
-  }
-}
 ```
+
+Once our custom component has been registered with TinaMarkdown, editors can easily add components, and immedietly see them rendered on the page.
+
+![MDX Template](https://res.cloudinary.com/forestry-demo/image/upload/v1663774068/tina-io/docs/md/Screen_Shot_2022-09-21_at_12.25.11_PM.png)
+
+## Reference
+
+For full usage details, check out the [`rich-text`](/docs/reference/types/rich-text) reference documentation
