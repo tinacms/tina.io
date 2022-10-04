@@ -42,6 +42,13 @@ state of your repository. This will discard any updates in Tina Cloud that haven
 
 Use the [Reset Repository Cache](/docs/tina-cloud/dashboard/projects/#reset-repository-cache) button to re-initialize the webhook.
 
+### Export Branch
+
+Using [Reset Repository Cache](/docs/tina-cloud/dashboard/projects/#reset-repository-cache) will discard any changes in 
+Tina Cloud that haven't been pushed to your repository. If you need to export your unsaved content from Tina Cloud, you
+can use the [Export Branch](/docs/tina-cloud/dashboard/projects/#export-branch) button to export the current state of
+your repository to a new branch.
+
 ### Conflicts
 
 If you have changes that are visible in edit mode but not in your repository or site, there may be a conflict between

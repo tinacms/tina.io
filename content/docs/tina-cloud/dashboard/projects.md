@@ -78,10 +78,21 @@ update the project.
 In rare circumstances, the GitHub Webhook connecting your repository to Tina Cloud may be disrupted. If the webhook does
 not execute, Tina Cloud may become out of sync with your GitHub repository. Click the "Refresh Webhooks" button to restore them.
 
+##### Export Branch
+
+Clicking this opens a modal dialog that allows you to push a new branch with the changes from an existing branch at a
+particular point in time. First select the branch where the changes are located under Source Branch. An export branch
+name is auto-generated from this selection, but can also be edited as desired as long as it doesn't conflict with an
+exisitng branch name. Next, select the point in time from which you want to push the changes, either
+'Last Successful Push' or a custom date in the past. Once these selections are made, click the 'Export Branch' button. After
+a few minutes, the new branch will be available in your GitHub repository with any changes in Tina Cloud. A pull request
+can then be created to merge the changes to your desired branch.
+
 ##### Reset Repository Cache
 
 Clicking this will completely reset the cached copy of your GitHub repository and initiate a reindexing process. Any
-changes only present in the cached copy will be lost.
+changes only present in the cached copy will be lost. Before resetting the cache, you should ensure that any changes have
+been successfully pushed to GitHub using the Export Branch feature.
 
 ##### Force Push
 
