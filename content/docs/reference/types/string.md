@@ -22,6 +22,8 @@ type StringField = {
     component?: FC<any> | string | null
     parse?: (value: string | string[], name: string, field: F) => any
     format?: (value: string | string[], name: string, field: F) => any
+    // Note: defaultItem can only can be used when {list: true}
+    defaultItem?: () => string | string
     validate?(
       // string or string[] depends on list true or false
       value: string | string[],

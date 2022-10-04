@@ -16,6 +16,7 @@ type ObjectField = {
   list?: boolean
   /** See https://tina.io/docs/extending-tina/overview/ for customizing the UI **/
   ui?: {
+    defaultItem?: Record<string, any> | () => Record<string, any>,
     itemProps?(
       item: Record<string, any>
     ): {
@@ -30,9 +31,7 @@ type ObjectField = {
 ### As a `list`
 
 > **Default Values**  
-> To display default values when fields are first added to a page, use the `defaultItem` property. 
->   
-> Currently, if setting a default value for a [rich-text field](/docs/reference/types/rich-text/), you must provide the document AST. See [example here](/docs/schema/#default-value-for-rich-text)
+> To display default values when fields are first added to a page, use the `ui.defaultItem` property.
 
 <a href="https://tina-gql-playground.vercel.app/object-list-data" target="_blank">See this example</a> of a list of objects with default values.
 

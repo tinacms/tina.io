@@ -11,7 +11,7 @@ The filename customization API allows you to customize the filename of a documen
 
 | Property               | Description                                                              |
 | ---------------------- | ------------------------------------------------------------------------ |
-| `ui.filename.disabled` | Disable the editor from editing the filename                             |
+| `ui.filename.readonly` | Disable the editor from editing the filename                             |
 | `ui.filename.slugify`  | A function that takes in the values of the form and returns the filename |
 
 ## Usage
@@ -34,7 +34,7 @@ const schema = defineSchema({
       ui: {
         filename: {
           // if disabled, the editor can not edit the filename
-          disabled: true,
+          readonly: true,
           // Example of using a custom slugify function
           slugify: values => {
             // Values is an object containing all the values of the form. In this case it is {title?: string, topic?: string}
