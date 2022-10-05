@@ -14,9 +14,9 @@ Today, we are releasing a new version of Tinacms. This version adds several impr
 
 ## New default values behavior
 
-To start we are deprecating the use of defaultValue this value would misbehave and make it hard or impossible in some cases to nullify a value.
+To start we are deprecating the use of `defaultValue` this value would misbehave and make it hard or impossible in some cases to nullify a value.
 
-Now `defaultValues` can be provided at the collection level. This will serve as the default values for the form when **the document is being created**. This is a breaking change and will be removed in the next major version.
+Now `defaultItem` can be provided at the collection level. This will serve as the default values for the form when **the document is being created**. This is a breaking change and will be removed in the next major version.
 
 ### Example using defaultItem
 
