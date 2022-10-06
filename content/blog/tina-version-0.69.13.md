@@ -81,7 +81,7 @@ const schema = defineSchema({
       format: 'md',
       ui: {
         filename: {
-          // if disabled, the editor can not edit the filename
+          // if readonly, the editor can not edit the filename
           readonly: true,
           // Example of using a custom slugify function
           slugify: values => {
