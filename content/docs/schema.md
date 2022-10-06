@@ -154,6 +154,102 @@ Setting `list: true` would turn the values into an array:
 
 > More complex shapes can be built by using the [`templates`](/docs/reference/types/object/#with-multiple-templates) property. This allows your editors to build out pages using predefined blocks.
 
+## Defining defaults
+
+Every collection has a `defaultItem` property, which is used to populate the form when creating a new item. This is useful for setting default values for fields, or for adding default content to the markdown body.
+
+### Default item
+
+```js
+// .tina/schema.{ts,js,tsx}
+import { defineSchema } from 'tinacms'
+
+const schema = defineSchema({
+  collections: [
+    {
+      label: 'Blog Posts',
+      name: 'post',
+      path: 'content/posts',
+      defaultItem: () => {
+        return {
+          // When a new post is created the title field will be set to "New post"
+          title: 'New Post',
+        }
+      },
+      fields: [
+        {
+          type: 'string',
+          label: 'Title',
+          name: 'title',
+        },
+      ],
+    },
+  ],
+})
+
+export default schema
+```
+
+[See the docs](/docs/reference/collections/) for more examples of how to define defaults.
+
+### Default value for objects
+
+To set default values for objects of fields, use the `defaultItem` property (see [example here](https://tina-gql-playground.vercel.app/object-list-data)).
+
+### Default value for rich-text
+
+Currently, when setting a default value for a [rich-text field](/docs/reference/types/rich-text/), you must provide the document Abstract Syntax Tree (AST). See the following example:
+
+```js
+// .tina/schema.{ts,js,tsx}
+import { defineSchema } from 'tinacms'
+
+const schema = defineSchema({
+  collections: [
+    {
+      label: 'Blog Posts',
+      name: 'post',
+      path: 'content/posts',
+      defaultItem: () => {
+        return {
+          title: 'My New Post',
+          // The body will be populated with "Default Text"
+          body: {
+            type: 'root',
+            children: [
+              {
+                type: 'p',
+                children: [
+                  {
+                    type: 'text',
+                    text: 'Default Text',
+                  },
+                ],
+              },
+            ],
+          },
+        }
+      },
+      fields: [
+        {
+          type: 'string',
+          label: 'Title',
+          name: 'title',
+        },
+        {
+          type: 'string',
+          label: 'Post Body',
+          name: 'body',
+          isBody: true,
+        },
+      ],
+    },
+  ],
+})
+
+export default schema
+```
+
 ## Referencing another document
 
 The `reference` field connects one document to another and only needs to be defined on _one_ side of the relationship. You can specify any number of collections you'd like to connect:
@@ -173,42 +269,6 @@ fields: [
 ```
 
 <a href="https://tina-gql-playground.vercel.app/reference" target="_blank">See Example</a>
-
-### Default value for objects
-
-To set default values for objects of fields, use the `defaultItem` property (see [example here](https://tina-gql-playground.vercel.app/object-list-data)).
-
-### Default value for rich-text
-
-Currently, when setting a default value for a [rich-text field](/docs/reference/types/rich-text/), you must provide the document Abstract Syntax Tree (AST). See the following example:
-
-```ts
-// ...
-fields: [
-  // ...
-  {
-    type: "rich-text",
-    label: "Body",
-    name: "_body",
-      ui: {
-        defaultValue: {
-          type: "root",
-          children: [
-            {
-              type: "p",
-              children: [
-                {
-                  type: "text",
-                  text: "Default Text",
-                },
-              ],
-            },
-          ],
-        },
-      },
-  },
-],
-```
 
 ## Available data types
 

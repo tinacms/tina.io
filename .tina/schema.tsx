@@ -198,7 +198,6 @@ export default defineSchema({
                   type: "number",
                   label: "Height",
                   description: "The hight of the iframe (in px) ",
-                  ui: { defaultValue: 400 },
                 },
               ],
             },
