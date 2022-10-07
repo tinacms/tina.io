@@ -248,6 +248,12 @@
         "title": "Overview"
       },
       {
+        "id": "/docs/reference/config/",
+        "slug": "/docs/reference/config/",
+        "title": "Config (static mode)",
+        "status": "beta"
+      },
+      {
         "id": "/docs/reference/schema/",
         "slug": "/docs/reference/schema/",
         "title": "Schema",
