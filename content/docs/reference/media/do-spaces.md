@@ -39,28 +39,26 @@ SPACES_SECRET_KEY=<Your Digital Ocean Spaces access secret>
 
 You can register the Digital Ocean Space Media store via the `loadCustomStore` prop.
 
-The `loadCustomStore` prop can be configured within `.tina/schema.ts`.
+The `loadCustomStore` prop can be configured within `.tina/config.{js,ts,tsx}`.
 
 ```tsx
-// .tina/schema.ts
+//.tina/config.{ts,js}
+//...
 
-// ...
-
-export default defineSchema({
-  // ...
-  config: {
-     media: {
-        loadCustomStore: async () => {
-          const pack = await import("next-tinacms-dos");
-          return pack.TinaCloudDOSMediaStore;
-        },
-     }
+export default defineConfig({
+  //...
+  media: {
+    loadCustomStore: async () => {
+      const pack = await import('next-tinacms-dos')
+      return pack.TinaCloudCloudinaryMediaStore
+    },
   },
-  // ...
 })
 ```
 
-## Set up API routes
+## Set up API routes (Next.js example)
+
+> ** NOTE: **this step will show you how to set up an API route for Next.js. If you are using a different framework, you will need to set up your own API route.
 
 Set up a new API route in the `pages` directory of your Next.js app, e.g. `pages/api/dos/[...media].ts`.
 Then add a new catch all API route for media.

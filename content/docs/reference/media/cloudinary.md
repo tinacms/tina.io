@@ -30,31 +30,29 @@ CLOUDINARY_API_SECRET=<Your Cloudinary API secret>
 
 Now, you can replace the default repo-based media with the external media store. You can register the Cloudinary Media store via the `loadCustomStore` prop.
 
-The `loadCustomStore` prop can be configured within `.tina/schema.ts`.
+The `loadCustomStore` prop can be configured within `.tina/config.{js,ts}`.
 
 ```diff
-// .tina/schema.ts
+//.tina/config.{ts,js}
 
-// ...
-
-export default defineSchema({
-  // ...
-  config: {
-     media: {
--       tina: {
--         publicFolder: "",
--         mediaRoot: ""
--       },
-+       loadCustomStore: async () => {
-+         const pack = await import("next-tinacms-cloudinary");
-+         return pack.TinaCloudCloudinaryMediaStore;
-+       },
-     }
+export default defineConfig({
+  //...
+  media: {
+-    tina: {
+-      publicFolder: 'public',
+-      mediaRoot: 'uploads',
+-    },
++    loadCustomStore: async () => {
++      const pack = await import("next-tinacms-cloudinary");
++      return pack.TinaCloudCloudinaryMediaStore;
++    },
   },
 })
 ```
 
-## Set up API routes
+## Set up API routes (Next.js example)
+
+> ** NOTE: **this step will show you how to set up an API route for Next.js. If you are using a different framework, you will need to set up your own API route.
 
 Set up a new API route in the `pages` directory of your Next.js app at `pages/api/cloudinary/[...media].ts`.
 Then add a new catch all API route for media.
@@ -102,7 +100,7 @@ export default createMediaHandler({
 
 Now that the media store is registered and the API route for media set up, let's add an image to your schema.
 
-In your `.tina/schema.ts` add a new field for the image, e.g:
+In your `.tina/config.{ts,tsx,js}` add a new field for the image, e.g:
 
 ```ts
  {

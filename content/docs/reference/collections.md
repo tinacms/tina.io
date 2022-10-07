@@ -46,7 +46,10 @@ const schema = defineSchema({
 
 // ...
 
-export default schema
+export default defineConfig({
+  schema,
+  //...
+})
 ```
 
 ### Example with router and global
@@ -86,7 +89,10 @@ const schema = defineSchema({
 
 // ...
 
-export default schema
+export default defineConfig({
+  schema,
+  //...
+})
 ```
 
 ### Example with default item
@@ -124,7 +130,10 @@ const schema = defineSchema({
 
 // ...
 
-export default schema
+export default defineConfig({
+  schema,
+  //...
+})
 ```
 
 For more information [check out the content modeling docs](/docs/schema/)

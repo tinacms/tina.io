@@ -59,7 +59,10 @@ const schema = defineSchema({
 })
 // ...
 
-export default schema
+export default defineConfig({
+  schema,
+  //...
+})
 ```
 
 ## `isBody`
@@ -90,5 +93,8 @@ const schema = defineSchema({
 })
 // ...
 
-export default schema
+export default defineConfig({
+  schema,
+  //...
+})
 ```
