@@ -12,7 +12,7 @@ To enable Active field indication you will need to add the `data-tinafield` to y
 ### Schema Code
 
 ```typescript
-export default defineSchema({
+const schema = defineSchema({
   collections: [
     {
       label: "Blog Posts",

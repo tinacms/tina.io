@@ -44,19 +44,15 @@ const schema = defineSchema({
   ],
 })
 // ...
-
-export default schema
 ```
 
 ## Customizing the CMS instance
 
-The `.tina/schema.ts` config has an optional `cmsCallback` parameter that can be added to customize the CMS instance.
+The `.tina/config.{ts,js,tsx}` config has an optional `cmsCallback` parameter that can be added to customize the CMS instance.
 
 ```diff
-// .tina/schema.ts
-
 // ...
-export config = defineConfig({
+export default defineConfig({
 // ...
 + cmsCallback: (cms) => {
 +   cms.sidebar.position = 'overlay'

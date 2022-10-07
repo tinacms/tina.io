@@ -24,7 +24,7 @@ Here is an example of setting up contextual editing, on a NextJS-based site.
 
 ```jsx
 // ...
-import { useTina } from 'tinacms/dist/edit-state'
+import { useTina } from 'tinacms/dist/react'
 
 export default function Home(props) {
   // Pass our data through the "useTina" hook to make it editable
@@ -87,10 +87,6 @@ The `router` property is a function function, that is run when a document is cli
 This is an example using `router`.
 
 ```tsx
-//.tina/schema.{ts,tsx}
-import { defineSchema } from 'tinacms'
-//...
-
 const schema = defineSchema({
   collections: [
     {

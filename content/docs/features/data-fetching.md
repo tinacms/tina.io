@@ -18,23 +18,17 @@ To interface with the API, you can use Tina's type-safe client for data-fetching
 
 ## Making requests with the Tina Client
 
-The Tina client is the easiest way to fetch your site's content. The client can be configured the `.tina/schema.<js|ts>` in the `defineSchema` function.
+The Tina client is the easiest way to fetch your site's content. The client can be configured the `.tina/config.<js|ts>` in the `defineConfig` function.
 
 > Note: token, clientId and branch are **not** used in [local-mode](/docs/tina-cloud/#local-mode). To setup these values for production see [this doc](/docs/tina-cloud/connecting-site)
 
-<!-- TODO: update above doc -->
-
 ```js
-const schema = defineSchema({
-  config: {
-    token: '***',
-    clientId: '***',
-    branch: 'main',
-  },
-  collections: [
-    //...
-    // See https://tina.io/docs/schema/ for more info about "collections"
-  ],
+// .tina/config.{js,ts,tsx}
+export default defineConfig({
+  schema,
+  token: '***',
+  clientId: '***',
+  branch: 'main',
 })
 
 export default schema
@@ -49,7 +43,7 @@ import { client } from '../[pathToTina]/.tina/__generated__/client'
 
 const myPost = await client.queries.post({ relativePath: 'HelloWorld.md' })
 
-console.log(myPost.title)
+console.log(myPost.data.title)
 ```
 
 The above `client.queries.post` query is not built-in to Tina's API. This is an example of a query based on _your_ defined schema, (where you have a "post" collection defined).

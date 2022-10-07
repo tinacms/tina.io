@@ -21,12 +21,11 @@ We want to allow our editors to use various blocks on each page.
 We are going to use the [`object` type](/docs/schema/#grouping-properties-within-an-object), and provide a list of `templates`, where each "template" represents a unique block type.
 
 ```ts
-// .tina/schema.ts
 import { defineSchema } from 'tinacms'
 import type { TinaTemplate } from "tinacms";
 
 
-const heroBlock:TinaTemplate = {
+const heroBlock: TinaTemplate = {
   name: 'hero',
   label: 'Hero',
   ui: {

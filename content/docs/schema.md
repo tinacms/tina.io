@@ -12,11 +12,11 @@ The Tina schema defines the shape of your content. Tina uses a "content-modeling
 - Mutating the schema is easy, as you can test out changes locally, or in a branch.
 - The developer can extend the schema in interesting ways (custom validation, custom UI fields, etc).
 
-The content model is defined in a file called `.tina/schema.{ts,js,tsx}`.
+The content model, and all configuration code is defined in a file called `.tina/config.{ts,js,tsx}`.
 
 ```ts
-// .tina/schema.{ts,js,tsx}
-import { defineSchema } from 'tinacms'
+// .tina/config.{ts,js,tsx}
+import { defineSchema, defineConfig } from 'tinacms'
 
 const schema = defineSchema({
   collections: [
@@ -41,7 +41,10 @@ const schema = defineSchema({
   ],
 })
 
-export default schema
+export default defineConfig({
+  schema,
+  //...
+})
 ```
 
 ## Defining "collections"
@@ -161,9 +164,6 @@ Every collection has a `defaultItem` property, which is used to populate the for
 ### Default item
 
 ```js
-// .tina/schema.{ts,js,tsx}
-import { defineSchema } from 'tinacms'
-
 const schema = defineSchema({
   collections: [
     {
@@ -186,8 +186,6 @@ const schema = defineSchema({
     },
   ],
 })
-
-export default schema
 ```
 
 [See the docs](/docs/reference/collections/) for more examples of how to define defaults.
@@ -201,9 +199,6 @@ To set default values for objects of fields, use the `defaultItem` property (see
 Currently, when setting a default value for a [rich-text field](/docs/reference/types/rich-text/), you must provide the document Abstract Syntax Tree (AST). See the following example:
 
 ```js
-// .tina/schema.{ts,js,tsx}
-import { defineSchema } from 'tinacms'
-
 const schema = defineSchema({
   collections: [
     {
@@ -246,8 +241,6 @@ const schema = defineSchema({
     },
   ],
 })
-
-export default schema
 ```
 
 ## Referencing another document
