@@ -28,7 +28,7 @@ e.g: "tinacms dev --help"
 
 ### `tinacms dev`
 
-> To run this command, you must have a valid `.tina/schema.ts` file.
+> To run this command, you must have a valid `.tina/config.{ts,tsx.js}` file.
 
 `dev` will compile the schema into static files, generate typescript types for use in your project and start a graphQL server on http://localhost:4001
 
@@ -85,7 +85,7 @@ By default the mutation will not change the content of the files.
 
 Takes the following options,
 
-| Argument  | Description                                                                                                                                                                                                                                                             |
-| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--clean` | When this flag is used, it really submits the Graphql mutations to the file system. This means that it will clean out any fields that are not defined in your `schema.ts`. It is a good practice to do a `git commit` before doing this so one can undo changes easily. |
+| Argument  | Description                                                                                                                                                                                                                                                        |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `--clean` | When this flag is used, it really submits the Graphql mutations to the file system. This means that it will clean out any fields that are not defined in your schema. It is a good practice to do a `git commit` before doing this so one can undo changes easily. |
 |           |

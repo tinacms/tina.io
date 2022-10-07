@@ -21,7 +21,7 @@ We want to allow our editors to use various blocks on each page.
 We are going to use the [`object` type](/docs/schema/#grouping-properties-within-an-object), and provide a list of `templates`, where each "template" represents a unique block type.
 
 ```ts
-import { defineSchema } from 'tinacms'
+import { defineSchema, defineConfig } from 'tinacms'
 import type { TinaTemplate } from "tinacms";
 
 
@@ -104,7 +104,7 @@ const contentBlock:TinaTemplate = {
   ],
 }
 
-export default defineSchema({
+const schema = defineSchema({
   collections: [
     {
       // ...
@@ -119,6 +119,10 @@ export default defineSchema({
       ],
     },
   ],
+})
+export default defineConfig({
+  // ...
+  schema,
 })
 ```
 
@@ -232,7 +236,7 @@ First, to enable the visual block selector the `visualSelector` property in the 
 
 ```diff
 ...
-export default defineSchema({
+const schema = defineSchema({
   collections: [
     {
       // ...

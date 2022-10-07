@@ -111,7 +111,7 @@ export default createMediaHandler({
 
 Now that the media store is registered and the API route for media set up, let's add an image to your schema.
 
-In your `.tina/schema.ts` add a new field for the image, e.g:
+In your schema add a new field for the image, e.g:
 
 ```ts
  {

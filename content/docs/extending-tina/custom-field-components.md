@@ -90,9 +90,9 @@ Tina also supports some add-on field plugins. These need to be imported and regi
 
 ### Configuring a field plugin
 
-Each field has a unique set of properties that can be configured within the `.tina/schema.ts` file.
+Each field has a unique set of properties that can be configured within the schema.
 
-For example, if you take a look at the color field plugin's definition, it takes a `colorFormat` property. We can configure that in our `.tina/schema.ts` like so:
+For example, if you take a look at the color field plugin's definition, it takes a `colorFormat` property. We can configure that in our schema like so:
 
 ```ts
 // ...

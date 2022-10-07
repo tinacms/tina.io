@@ -283,6 +283,6 @@ Each field in a collection can be of the following `type`:
 
 ## Summary
 
-- Your content is modeled in the `.tina/schema.{ts,js,tsx}` of your repo
+- Your content is modeled in the `.tina/config.{ts,js,tsx}` in your repo using `defineSchema`.
 - Your content model contains an array of "collections". A "collection" maps a content type to a directory in your repo.
 - A "collection" contains multiple fields, which can be of multiple scalar or non-scalar data types.

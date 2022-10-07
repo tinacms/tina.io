@@ -13,8 +13,6 @@ All of the media configuration is done in the `defineSchema` function under `con
 Example:
 
 ```ts
-// .tina/schema.{ts,js,tsx,jsx}
-
 const schema = defineSchema({
   config: {
     media:{
@@ -34,7 +32,10 @@ const schema = defineSchema({
 
 // ...
 
-export default schema
+export default defineConfig({
+  //... Other config
+  schema,
+})
 ```
 
 > Note: Can only Repo-based Media or an External Media Provider but **not both**

@@ -49,8 +49,6 @@ const schema = defineSchema({
   ],
 })
 // ...
-
-export default schema
 ```
 
 Please see [the media docs](/docs/reference/media/cloudinary/) for how to set up media in your site.

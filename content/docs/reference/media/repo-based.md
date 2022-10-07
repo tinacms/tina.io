@@ -58,7 +58,7 @@ See the [next/image docs](https://nextjs.org/docs/api-reference/next/image#domai
 
 Once media has been configured, you can use `image` fields in your collections.
 
-In your `.tina/schema.ts` add a new `image` field to a collection, e.g:
+In your `schema` add a new `image` field to a collection, e.g:
 
 ```ts
  // ...

@@ -21,10 +21,9 @@ type RichTextField = {
 <iframe width="100%" height="700px" src="https://tina-gql-playground.vercel.app/iframe/rich-text" />
 
 ```ts
-// .tina/schema.ts
 import { defineSchema } from 'tinacms'
 
-export default defineSchema({
+const schema = defineSchema({
   collections: [
     {
       label: 'Blog Posts',
@@ -220,7 +219,6 @@ The following snippet would throw an error while parsing since Tina doesn't know
 But you can tell Tina how to handle it with a `template`:
 
 ```ts
-// .tina/schema.ts
 {
   collections: [
     {
