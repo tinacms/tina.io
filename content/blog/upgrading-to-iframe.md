@@ -62,11 +62,11 @@ Your `pages/admin` file can now be deleted.
 
 Rename your `schema.{ts,tsx,js,jsx}` file to `config.{ts,tsx,js,jsx}`
 
-Replace `defineSchema` with `defineConfig`. This contains both your schema, and your build config.
+Replace `defineSchema` with `defineStaticConfig`. This contains both your schema, and your build config.
 
 ```diff
 - const schema = defineSchema({
-+ const config = defineConfig({
++ const config = defineStaticConfig({
     // ...
 }
 
