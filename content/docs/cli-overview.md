@@ -63,9 +63,8 @@ This will,
 
 1. Install all required dependencies for Tina.
 2. Define a basic content schema in the `.tina` directory.
-3. Add some Tina boilerplate components.
-4. Create example content in the demo directory.
-5. Edit the `package.json` to have the `dev`, `build`, and `start` scripts run the tina GraphQL API.
+3. Create example content in the demo directory.
+4. Edit the `package.json` to have the `dev`, `build`, and `start` scripts run the tina GraphQL API.
 
 #### Optional parameters
 

@@ -42,18 +42,12 @@ npx @tinacms/cli@latest init
 
 ```
 
-When you are prompted if you would like Tina to override your `_app.js` you can select yes.
-
-> If you are using your own blog, you may not want us to override your \_app.js. If that is the case check this documentation on what is required.
-
 So what did Tina CLI do? It did a number of thing in your Next.js application:
 
 1. Installs all required dependencies for Tina.
 2. Defines a basic content schema in the `.tina` directory.
-3. Adds some Tina boilerplate components.
-4. Creates example content in the demo directory.
-5. Edit the `package.json` to add scripts to launch tina (tina-dev, tina-build, tina-start).
-6. Override your `_app.js` (if you selected yes)
+3. Creates example content in the demo directory.
+4. Edits the `package.json` to add scripts to launch tina (tina-dev, tina-build, tina-start).
 
 ### Time to test
 
