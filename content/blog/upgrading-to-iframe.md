@@ -48,6 +48,8 @@ Switch any instance of the `useTina` hook to come from `tinacms/dist/react`
   );
 ```
 
+You can also now delete the entire `.tina/components` directory.
+
 > This wrapper is no longer needed, since the Tina wrapper is instead run on its own process outside of the iframe.
 
 ### Remove pages/admin
