@@ -24,7 +24,7 @@ Here is a custom slider component that can be used for adjusting image saturatio
 ![A basic slider custom component](https://res.cloudinary.com/forestry-demo/image/upload/v1652976482/tina-io/docs/extending-tina/image-saturation.png)
 
 ```tsx
-import { defineSchema, wrapFieldsWithMeta } from 'tinacms'
+import { defineConfig, wrapFieldsWithMeta } from 'tinacms'
 
 //.. other fields
 {

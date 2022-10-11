@@ -21,38 +21,34 @@ In most cases, just using [`fields`](/docs/reference/fields/) is enough, however
 ## Example using templates instead of fields
 
 ```ts
-const schema = defineSchema({
-  collections: [
-    {
-      name: 'page',
-      label: 'A page of the website',
-      path: 'content/pages',
-      format: 'mdx',
-      templates: [
-        {
-          name: 'content',
-          label: 'Content Page',
-          fields: [
-            // ... content page fields
-          ],
-        },
-        {
-          name: 'marketing',
-          label: 'Marketing Page',
-          fields: [
-            //... marketing page fields
-          ],
-        },
-      ],
-    },
-  ],
-})
-
-// ...
-
 export default defineConfig({
-  schema,
   //...
+  schema: {
+    collections: [
+      {
+        name: 'page',
+        label: 'A page of the website',
+        path: 'content/pages',
+        format: 'mdx',
+        templates: [
+          {
+            name: 'content',
+            label: 'Content Page',
+            fields: [
+              // ... content page fields
+            ],
+          },
+          {
+            name: 'marketing',
+            label: 'Marketing Page',
+            fields: [
+              //... marketing page fields
+            ],
+          },
+        ],
+      },
+    ],
+  },
 })
 ```
 

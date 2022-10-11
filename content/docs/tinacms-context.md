@@ -87,46 +87,48 @@ The `router` property is a function function, that is run when a document is cli
 This is an example using `router`.
 
 ```tsx
-const schema = defineSchema({
-  collections: [
-    {
-      name: 'page',
-      label: 'Page',
-      path: 'content/page',
-      format: 'md',
-      ui: {
-        router: ({ document }) => {
-          // navigate to the home page
-          if (document._sys.filename === 'home') {
-            return '/'
-          }
-          // navigate to the about page
-          if (document._sys.filename === 'about') {
-            return `/about`
-          }
-          return undefined
+const default defineConfig({
+  schema: {
+    collections: [
+      {
+        name: 'page',
+        label: 'Page',
+        path: 'content/page',
+        format: 'md',
+        ui: {
+          router: ({ document }) => {
+            // navigate to the home page
+            if (document._sys.filename === 'home') {
+              return '/'
+            }
+            // navigate to the about page
+            if (document._sys.filename === 'about') {
+              return `/about`
+            }
+            return undefined
+          },
         },
+        fields: [
+          // An array of fields
+        ],
       },
-      fields: [
-        // An array of fields
-      ],
-    },
-    {
-      label: 'Blog Posts',
-      name: 'post',
-      path: 'content/posts',
-      format: 'mdx',
-      ui: {
-        router: ({ document }) => {
-          // navigate to the post that was clicked
-          return `/post/${document._sys.filename}`
+      {
+        label: 'Blog Posts',
+        name: 'post',
+        path: 'content/posts',
+        format: 'mdx',
+        ui: {
+          router: ({ document }) => {
+            // navigate to the post that was clicked
+            return `/post/${document._sys.filename}`
+          },
         },
-      },
-      fields: [
-        // An array of fields
-      ],
-    },
-  ],
+        fields: [
+          // An array of fields
+        ],
+      }
+    ]
+  }
 })
 ```
 

@@ -47,8 +47,10 @@ Who's there?
 To define a Tina collection that maps to a `.md` file, your schema might look like this:
 
 ```ts
-const schema = defineSchema({
-  collections: [
+const default defineConfig({
+  // ...
+  schema: {
+    collections: [
     {
       label: 'Blog Posts',
       name: 'post',
@@ -68,7 +70,7 @@ const schema = defineSchema({
         },
       ],
     },
-  ],
+  ]}
 })
 ```
 
@@ -122,21 +124,23 @@ If you are using `mdx` as the format, you'll have the ability to define custom c
 Tina needs to have each MDX component defined in advance, in the `.tina/config.{ts,js,tsx}` file.
 
 ```diff
-const schema = defineSchema({
-  collections: [
-    {
-      label: 'Blog Posts',
-      name: 'post',
-      path: 'content/posts',
+export default defineConfig({
+  // ...
+  schema: {
+    collections: [
+      {
+        label: 'Blog Posts',
+        name: 'post',
+        path: 'content/posts',
 -     format: 'md',
 +     format: 'mdx',
-      fields: [
-        // ...
-        {
-          type: 'rich-text',
-          label: 'Post Body',
-          name: 'body',
-          isBody: true,
+        fields: [
+          // ...
+          {
+            type: 'rich-text',
+            label: 'Post Body',
+            name: 'body',
+            isBody: true,
 +          templates: [
 +            {
 +              name: "NewsletterSignup",
@@ -155,10 +159,11 @@ const schema = defineSchema({
 +              ],
 +            },
 +          ],
-        },
-      ],
-    },
-  ],
+          },
+        ],
+      },
+    ],
+  }
 })
 ```
 

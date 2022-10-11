@@ -8,33 +8,27 @@ TinaCMS provides multiple options for managing media.
 
 ![media-manager-image](/img/media-manager-ui.png)
 
-All of the media configuration is done in the `defineSchema` function under `config.media`.
+All of the media configuration is done in the `defineConfig` function under `config.media`.
 
 Example:
 
 ```ts
-const schema = defineSchema({
-  config: {
-    media:{
-        // Media config
-        tina: {
-            // Repo-based Media config
-        },
-        // function that loads  the media store
-        loadCustomStore: async ()=>{},
-    }
-    //.. Other config
-  }
-  collections: [
-    //..Array of collections
-  ],
-})
-
-// ...
-
 export default defineConfig({
-  //... Other config
-  schema,
+  //...
+  schema: {
+    collections: [
+      // Array of collections
+    ]
+  }
+  media: {
+    // Media config
+    tina: {
+      // Repo-based Media config
+    },
+    // function that loads  the media store
+    loadCustomStore: async () => {},
+  },
+  //.. Other config
 })
 ```
 

@@ -21,39 +21,42 @@ type RichTextField = {
 <iframe width="100%" height="700px" src="https://tina-gql-playground.vercel.app/iframe/rich-text" />
 
 ```ts
-import { defineSchema } from 'tinacms'
+import { defineConfig } from 'tinacms'
 
-const schema = defineSchema({
-  collections: [
-    {
-      label: 'Blog Posts',
-      name: 'post',
-      // This assumes that you have a /content/post directory
-      path: 'content/post',
-      fields: [
-        // ...
-        {
-          type: 'rich-text',
-          label: 'Body',
-          name: 'body',
-          isBody: true,
-          templates: [
-            {
-              name: 'Cta',
-              label: 'Call to Action',
-              fields: [
-                {
-                  type: 'string',
-                  name: 'heading',
-                  label: 'Heading',
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-  ],
+export default defineConfig({
+  //...
+  schema: {
+    collections: [
+      {
+        label: 'Blog Posts',
+        name: 'post',
+        // This assumes that you have a /content/post directory
+        path: 'content/post',
+        fields: [
+          // ...
+          {
+            type: 'rich-text',
+            label: 'Body',
+            name: 'body',
+            isBody: true,
+            templates: [
+              {
+                name: 'Cta',
+                label: 'Call to Action',
+                fields: [
+                  {
+                    type: 'string',
+                    name: 'heading',
+                    label: 'Heading',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
 })
 ```
 

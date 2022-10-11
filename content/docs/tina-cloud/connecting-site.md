@@ -14,18 +14,16 @@ To have editing work in production, in the `.tina/config.<ts|js>` file, configur
 ```tsx
 // .tina/config.ts
 //...
-const schema = defineSchema({
-  collections: [
-    //...
-    // See https://tina.io/docs/schema/ for more info about "collections"
-  ],
-})
-
 export default defineConfig({
+  //...
   token: '<Your Read Only Token>' // generated on app.tina.io,
   clientId: '<Your Client ID>', // generated on app.tina.io
   branch,
-  schema,
+  schema: {
+    collections: [
+    //...
+    // See https://tina.io/docs/schema/ for more info about "collections"
+  ]}
 })
 ```
 
@@ -38,23 +36,21 @@ Typically you'll want to use the branch that you're deploying with your site. Th
 ```diff
 // .tina/config.ts
 //...
-+const branch =
++ const branch =
 +  process.env.NEXT_PUBLIC_TINA_BRANCH ||
 +  process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF ||
 +  process.env.HEAD ||
 +  ''
-const schema = defineSchema({
-  collections: [
-    //...
-    // See https://tina.io/docs/schema/ for more info about "collections"
-  ],
-})
-
 export default defineConfig({
+  //...
   token: '<Your Read Only Token>' // generated on app.tina.io,
   clientId: '<Your Client ID>', // generated on app.tina.io
   branch,
-  schema,
+  schema: {
+    collections: [
+    //...
+    // See https://tina.io/docs/schema/ for more info about "collections"
+  ]}
 })
 ```
 

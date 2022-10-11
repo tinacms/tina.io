@@ -42,39 +42,42 @@ type ReferenceField = {
 Given the following schema:
 
 ```ts
-const schema = defineSchema({
-  collections: [
-    {
-      label: 'Post',
-      name: 'post',
-      path: 'posts',
-      fields: [
-        {
-          label: 'Author',
-          name: 'author',
-          type: 'reference',
-          collections: ['author'],
-        },
-      ],
-    },
-    {
-      label: 'Author',
-      name: 'author',
-      path: 'authors',
-      fields: [
-        {
-          label: 'Name',
-          name: 'name',
-          type: 'string',
-        },
-        {
-          label: 'Avatar',
-          name: 'avatar',
-          type: 'string',
-        },
-      ],
-    },
-  ],
+export default defineConfig({
+  //...
+  schema: {
+    collections: [
+      {
+        label: 'Post',
+        name: 'post',
+        path: 'posts',
+        fields: [
+          {
+            label: 'Author',
+            name: 'author',
+            type: 'reference',
+            collections: ['author'],
+          },
+        ],
+      },
+      {
+        label: 'Author',
+        name: 'author',
+        path: 'authors',
+        fields: [
+          {
+            label: 'Name',
+            name: 'name',
+            type: 'string',
+          },
+          {
+            label: 'Avatar',
+            name: 'avatar',
+            type: 'string',
+          },
+        ],
+      },
+    ],
+  },
 })
 ```
 

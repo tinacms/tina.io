@@ -76,6 +76,6 @@ The most common reasons for this issue are:
 ## How do I resolve errors caused by unindexed branches?
 
 If you receive an error like `The specified branch, 'my-branch-name', has not been indexed by Tina Cloud`, first verify that the correct branch has been specified in
-the config object passed to defineSchema in `.tina/config.ts`. Note, that this value may be set as an environment variable in your CI build process. Second, verify that the branch exists
+the config properties passed to defineConfig in `.tina/config.ts`. Note, that this value may be set as an environment variable in your CI build process. Second, verify that the branch exists
 in the GitHub repository. Lastly, you can force a reindexing of a particular branch by making a whitespace change to the `.tina/__generated__/_schema.json` file in that branch,
 commit the change, and push it to GitHub. This will initiate indexing for the branch and (after a few minutes) the error should be resolved.

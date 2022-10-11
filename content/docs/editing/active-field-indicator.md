@@ -12,28 +12,32 @@ To enable Active field indication you will need to add the `data-tinafield` to y
 ### Schema Code
 
 ```typescript
-const schema = defineSchema({
-  collections: [
-    {
-      label: "Blog Posts",
-      name: "posts",
-      path: "content/posts",
-      format: "mdx",
-      fields: [
-        {
-          type: "string",
-          label: "Title",
-          name: "title",
-        },
-        {
-          type: "rich-text",
-          label: "Body",
-          name: "_body",
-          templates: []
-        }
-      ]
-    }
-  ]
+export default defineConfig({
+  // ...
+  schema: {
+    collections: [
+      {
+        label: 'Blog Posts',
+        name: 'posts',
+        path: 'content/posts',
+        format: 'mdx',
+        fields: [
+          {
+            type: 'string',
+            label: 'Title',
+            name: 'title',
+          },
+          {
+            type: 'rich-text',
+            label: 'Body',
+            name: '_body',
+            templates: [],
+          },
+        ],
+      },
+    ],
+  },
+})
 ```
 
 ### Client Code

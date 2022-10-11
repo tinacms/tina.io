@@ -28,18 +28,16 @@ const branch =
   process.env.HEAD ||
   ''
 
-const schema = defineSchema({
-  collections: [
-    //..Array of collections
-  ],
-})
-
-
 export default defineConfig({
+  //...
   branch,
   token: '<Your Read Only Token>' // generated on app.tina.io
   clientId: '<Your Client ID>', // generated on app.tina.io
-  schema,
+  schema: {
+    collections: [
+      //..Array of collections
+    ]
+  }
 })
 ```
 

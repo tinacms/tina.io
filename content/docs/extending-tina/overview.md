@@ -18,30 +18,33 @@ Tina allows any field to be customized through the `ui` property. This allows a 
 ### Example
 
 ```ts
-const schema = defineSchema({
-  collections: [
-    {
-      name: 'posts',
-      label: 'Blog Posts',
-      path: 'content/posts',
-      format: 'mdx',
-      fields: [
-        {
-          type: 'string',
-          label: 'Title',
-          name: 'title',
-          ui: {
-            validate: value => {
-              if (value?.length > 40) {
-                return 'Title cannot be more than 40 characters long'
-              }
+export default defineConfig({
+  //...
+  schema: {
+    collections: [
+      {
+        name: 'posts',
+        label: 'Blog Posts',
+        path: 'content/posts',
+        format: 'mdx',
+        fields: [
+          {
+            type: 'string',
+            label: 'Title',
+            name: 'title',
+            ui: {
+              validate: value => {
+                if (value?.length > 40) {
+                  return 'Title cannot be more than 40 characters long'
+                }
+              },
             },
           },
-        },
-        // ... other fields
-      ],
-    },
-  ],
+          // ... other fields
+        ],
+      },
+    ],
+  },
 })
 // ...
 ```

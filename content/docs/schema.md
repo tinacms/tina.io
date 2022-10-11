@@ -160,27 +160,30 @@ Every collection has a `defaultItem` property, which is used to populate the for
 ### Default item
 
 ```js
-const schema = defineSchema({
-  collections: [
-    {
-      label: 'Blog Posts',
-      name: 'post',
-      path: 'content/posts',
-      defaultItem: () => {
-        return {
-          // When a new post is created the title field will be set to "New post"
-          title: 'New Post',
-        }
-      },
-      fields: [
-        {
-          type: 'string',
-          label: 'Title',
-          name: 'title',
+export default defineConfig({
+  // ...
+  schema: {
+    collections: [
+      {
+        label: 'Blog Posts',
+        name: 'post',
+        path: 'content/posts',
+        defaultItem: () => {
+          return {
+            // When a new post is created the title field will be set to "New post"
+            title: 'New Post',
+          }
         },
-      ],
-    },
-  ],
+        fields: [
+          {
+            type: 'string',
+            label: 'Title',
+            name: 'title',
+          },
+        ],
+      },
+    ],
+  },
 })
 ```
 
@@ -195,47 +198,50 @@ To set default values for objects of fields, use the `defaultItem` property (see
 Currently, when setting a default value for a [rich-text field](/docs/reference/types/rich-text/), you must provide the document Abstract Syntax Tree (AST). See the following example:
 
 ```js
-const schema = defineSchema({
-  collections: [
-    {
-      label: 'Blog Posts',
-      name: 'post',
-      path: 'content/posts',
-      defaultItem: () => {
-        return {
-          title: 'My New Post',
-          // The body will be populated with "Default Text"
-          body: {
-            type: 'root',
-            children: [
-              {
-                type: 'p',
-                children: [
-                  {
-                    type: 'text',
-                    text: 'Default Text',
-                  },
-                ],
-              },
-            ],
+export default defineConfig({
+  // ...
+  schema: {
+    collections: [
+      {
+        label: 'Blog Posts',
+        name: 'post',
+        path: 'content/posts',
+        defaultItem: () => {
+          return {
+            title: 'My New Post',
+            // The body will be populated with "Default Text"
+            body: {
+              type: 'root',
+              children: [
+                {
+                  type: 'p',
+                  children: [
+                    {
+                      type: 'text',
+                      text: 'Default Text',
+                    },
+                  ],
+                },
+              ],
+            },
+          }
+        },
+        fields: [
+          {
+            type: 'string',
+            label: 'Title',
+            name: 'title',
           },
-        }
+          {
+            type: 'string',
+            label: 'Post Body',
+            name: 'body',
+            isBody: true,
+          },
+        ],
       },
-      fields: [
-        {
-          type: 'string',
-          label: 'Title',
-          name: 'title',
-        },
-        {
-          type: 'string',
-          label: 'Post Body',
-          name: 'body',
-          isBody: true,
-        },
-      ],
-    },
-  ],
+    ],
+  },
 })
 ```
 
@@ -279,6 +285,6 @@ Each field in a collection can be of the following `type`:
 
 ## Summary
 
-- Your content is modeled in the `.tina/config.{ts,js,tsx}` in your repo using `defineSchema`.
+- Your content is modeled in the `.tina/config.{ts,js,tsx}` in your repo using `defineConfig`.
 - Your content model contains an array of "collections". A "collection" maps a content type to a directory in your repo.
 - A "collection" contains multiple fields, which can be of multiple scalar or non-scalar data types.

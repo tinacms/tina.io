@@ -30,23 +30,26 @@ type ImageField = {
 ## Example
 
 ```ts
-const schema = defineSchema({
-  collections: [
-    {
-      name: 'posts',
-      label: 'Blog Posts',
-      path: 'content/posts',
-      format: 'mdx',
-      fields: [
-        {
-          type: 'image',
-          label: 'Hero image',
-          name: 'imgSrc',
-        },
-        // ... other fields
-      ],
-    },
-  ],
+export default defineConfig({
+  //...
+  schema: {
+    collections: [
+      {
+        name: 'posts',
+        label: 'Blog Posts',
+        path: 'content/posts',
+        format: 'mdx',
+        fields: [
+          {
+            type: 'image',
+            label: 'Hero image',
+            name: 'imgSrc',
+          },
+          // ... other fields
+        ],
+      },
+    ],
+  },
 })
 // ...
 ```

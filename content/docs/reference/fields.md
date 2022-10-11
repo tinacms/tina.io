@@ -37,31 +37,28 @@ Make sure the following is true when using `isTitle`
 ### Example of `isTitle`
 
 ```ts
-const schema = defineSchema({
-  collections: [
-    {
-      name: 'posts',
-      label: 'Blog Posts',
-      path: 'content/posts',
-      format: 'mdx',
-      fields: [
-        {
-          type: 'string',
-          label: 'Title',
-          name: 'title',
-          isTitle: true,
-          required: true,
-        },
-        // ... other fields
-      ],
-    },
-  ],
-})
-// ...
-
 export default defineConfig({
-  schema,
   //...
+  schema: {
+    collections: [
+      {
+        name: 'posts',
+        label: 'Blog Posts',
+        path: 'content/posts',
+        format: 'mdx',
+        fields: [
+          {
+            type: 'string',
+            label: 'Title',
+            name: 'title',
+            isTitle: true,
+            required: true,
+          },
+          // ... other fields
+        ],
+      },
+    ],
+  },
 })
 ```
 
@@ -72,7 +69,8 @@ export default defineConfig({
 ### Example of `isBody`
 
 ```ts
-const schema = defineSchema({
+export default defineConfig({
+  //...
   collections: [
     {
       name: 'posts',
@@ -90,11 +88,5 @@ const schema = defineSchema({
       ],
     },
   ],
-})
-// ...
-
-export default defineConfig({
-  schema,
-  //...
 })
 ```

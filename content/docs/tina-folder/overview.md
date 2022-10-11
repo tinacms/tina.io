@@ -29,7 +29,10 @@ See our ["Tina Cloud Starter"](https://github.com/tinacms/tina-cloud-starter/blo
 ```ts
 import { defineConfig } from 'tinacms'
 
-export default defineConfig({ schema: schema, ...})
+export default defineConfig({
+  schema: schema,
+  // ...
+})
 ```
 
 > For help defining the Tina schema, see our [content modelling documentation](/docs/schema/)

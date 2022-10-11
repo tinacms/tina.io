@@ -30,32 +30,29 @@ Collections represent a type of content (EX, blog post, page, author, etc). We r
 ### Basic Example
 
 ```ts
-const schema = defineSchema({
-  collections: [
-    {
-      name: 'posts',
-      label: 'Blog Posts',
-      path: 'content/posts',
-      format: 'mdx',
-      fields: [
-        // An array of fields
-      ],
-    },
-  ],
-})
-
-// ...
-
 export default defineConfig({
-  schema,
   //...
+  schema: {
+    collections: [
+      {
+        name: 'posts',
+        label: 'Blog Posts',
+        path: 'content/posts',
+        format: 'mdx',
+        fields: [
+          // An array of fields
+        ],
+      },
+    ],
+  },
 })
 ```
 
 ### Example with router and global
 
 ```ts
-const schema = defineSchema({
+export default defineConfig({
+  //...
   collections: [
     {
       name: 'posts',
@@ -86,19 +83,13 @@ const schema = defineSchema({
     },
   ],
 })
-
-// ...
-
-export default defineConfig({
-  schema,
-  //...
-})
 ```
 
 ### Example with default item
 
 ```ts
-const schema = defineSchema({
+export default defineConfig({
+  //...
   collections: [
     {
       name: 'posts',
@@ -126,13 +117,6 @@ const schema = defineSchema({
       ],
     },
   ],
-})
-
-// ...
-
-export default defineConfig({
-  schema,
-  //...
 })
 ```
 
