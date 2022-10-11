@@ -37,9 +37,10 @@ As an alternative to the schema-specific queries, the GraphQL API also makes the
 Using the following schema, we'll show you how each of the schema-specific queries/mutations can be used.
 
 ```ts
-import { defineSchema, defineConfig } from 'tinacms'
+import { defineConfig } from 'tinacms'
 
-const schema = defineSchema({
+export default defineConfig({
+  // ...
   collections: [
     {
       label: 'Blog Posts',
@@ -95,10 +96,5 @@ const schema = defineSchema({
       ],
     },
   ],
-})
-
-export default defineConfig({
-  // ...
-  schema,
 })
 ```

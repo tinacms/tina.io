@@ -16,9 +16,10 @@ The content model, and all configuration code is defined in a file called `.tina
 
 ```ts
 // .tina/config.{ts,js,tsx}
-import { defineSchema, defineConfig } from 'tinacms'
+import { defineConfig } from 'tinacms'
 
-const schema = defineSchema({
+export default defineConfig({
+  // ...
   collections: [
     {
       label: 'Blog Posts',
@@ -39,11 +40,6 @@ const schema = defineSchema({
       ],
     },
   ],
-})
-
-export default defineConfig({
-  schema,
-  //...
 })
 ```
 

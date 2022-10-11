@@ -6,6 +6,8 @@ author: Logan Anderson
 prev: content/blog/automating-pull-requests.md
 ---
 
+> **Note:** This post is out of date. For the latest Tina usage, [see our docs](/docs).
+
 The latest update empowers developers to put `validation` ,`component` and `parse` functions directly into the schema.
 
 ## Quick Demo
@@ -34,55 +36,54 @@ With this update, you can create your custom components easily; see the example 
 
 To update do the following,
 
-### 1.  Update imports in the `.tina/schema.{ts,tsx,js}` file
+### 1. Update imports in the `.tina/schema.{ts,tsx,js}` file
 
 We will be using the `schema` file on the backend and frontend (previously, it was just the frontend), so all imports from `@tinacms/cli` need to be changed to `tinacms`.
 
-### 2. add `defineConfig`  to the schema
+### 2. add `defineConfig` to the schema
 
 We are now recommending that your config be separate from the wrapper component and placed in the `schema.{ts,tsx,js}` or in its only folder.
 
-So previously, the schema file would look like this. 
+So previously, the schema file would look like this.
 
 ```ts
 export default defineSchema({
   // schema here
 })
-``` 
+```
 
 must be changed to
 
 ```ts
-import { defineSchema, defineConfig } from 'tinacms'
-const schema = defineSchema({
-  // schema here
-})
+import { defineStaticConfig } from 'tinacms'
 
-export const tinaConfig = defineConfig({
+export default defineStaticConfig({
   // pass schema and apiUrl to the config (required) (this is how it is passed to the fronend)
   schema: schema,
   apiUrl: apiUrl,
-  // add other config that would have previosly been in the _app.{js,tsx} file in the <TinaCMS> component. 
-  cmsCallback: (cms) =>{
+  // add other config that would have previosly been in the _app.{js,tsx} file in the <TinaCMS> component.
+  cmsCallback: cms => {
     //...
   },
   mediaStore: async () => {
     //...
-  }
-
+  },
+  collections: [
+    // ...
+  ],
 })
 export default schema
 ```
 
-You should add the following two files in the `.tina/components`  folder.
+You should add the following two files in the `.tina/components` folder.
 
 ### 3. Add `.tina/components/TinaProvider.js`
 
-This file handles the Tina configuration and the tina provider component, and this will only load when in edit mode, and an [you can find an example of the Tina Provider here](https://github.com/tinacms/tina-cloud-starter/blob/main/.tina/components/TinaProvider.jsx) and below. 
+This file handles the Tina configuration and the tina provider component, and this will only load when in edit mode, and an [you can find an example of the Tina Provider here](https://github.com/tinacms/tina-cloud-starter/blob/main/.tina/components/TinaProvider.jsx) and below.
 
-```js   
-import TinaCMS from "tinacms";
-import { tinaConfig } from "../schema.ts";
+```js
+import TinaCMS from 'tinacms'
+import { tinaConfig } from '../schema.ts'
 
 // Importing the TinaProvider directly into your page will cause Tina to be added to the production bundle.
 // Instead, import the tina/provider/index default export to have it dynamically imported in edit-mode
@@ -91,9 +92,8 @@ import { tinaConfig } from "../schema.ts";
  * @private Do not import this directly, please import the dynamic provider instead
  */
 const TinaProvider = ({ children }) => {
-  return <TinaCMS {...tinaConfig}>{children}</TinaCMS>;
-};
-
+  return <TinaCMS {...tinaConfig}>{children}</TinaCMS>
+}
 ```
 
 ### 4. Add `.tina/components/TinaDynamicProvider.js`
@@ -101,9 +101,9 @@ const TinaProvider = ({ children }) => {
 The `TinaDynamicProvider.js` handles the loading of the TinaProvider when in "Edit mode." [See this example](https://github.com/tinacms/tina-cloud-starter/blob/main/.tina/components/TinaDynamicProvider.jsx) or the example provided below
 
 ```js
-import dynamic from "next/dynamic";
-const TinaProvider = dynamic(() => import("./TinaProvider"), { ssr: false });
-import { TinaEditProvider } from "tinacms/dist/edit-state";
+import dynamic from 'next/dynamic'
+const TinaProvider = dynamic(() => import('./TinaProvider'), { ssr: false })
+import { TinaEditProvider } from 'tinacms/dist/edit-state'
 
 const DynamicTina = ({ children }) => {
   return (
@@ -112,10 +112,10 @@ const DynamicTina = ({ children }) => {
         {children}
       </TinaEditProvider>
     </>
-  );
-};
+  )
+}
 
-export default DynamicTina;
+export default DynamicTina
 ```
 
 > [Read more](/docs/tina-folder/overview/#tinadynamicproviderjs) about these two files in our reference docs
@@ -127,8 +127,8 @@ The last step is to update your `_app.{js,tsx}`. Since the config and the provid
 `_app.{js,tsx}` before:
 
 ```js
-import dynamic from "next/dynamic";
-import { TinaEditProvider } from "tinacms/dist/edit-state";
+import dynamic from 'next/dynamic'
+import { TinaEditProvider } from 'tinacms/dist/edit-state'
 //...
 
 const App = ({ Component, pageProps }) => {
@@ -138,7 +138,7 @@ const App = ({ Component, pageProps }) => {
         showEditButton={true}
         editMode={
           <TinaCMS
-            cmsCallback={(cms) => {
+            cmsCallback={cms => {
               //...
             }}
             apiURL={apiURL}
@@ -150,34 +150,30 @@ const App = ({ Component, pageProps }) => {
         <Component {...pageProps} />
       </TinaEditProvider>
     </>
-  );
-};
+  )
+}
 export default App
 ```
 
 `_app.{js,tsx}` after:
 
 ```js
-import DynamicTina  from '../.tina/components/TinaDynamicProvider'
+import DynamicTina from '../.tina/components/TinaDynamicProvider'
 
 const App = ({ Component, pageProps }) => {
   return (
     <DynamicTina>
       <Component {...pageProps} />
     </DynamicTina>
-  );
-};
+  )
+}
 export default App
 ```
 
 This separation of config into another file makes it much cleaner and easier to understand. In addition, the schema now being a part of the config and used on the frontend will allow functions to be passed and used. It will also allow us to make fewer network requests since we have more information.
-
 
 ## Closing words
 
 The new features we talked about in this article only scratch the surface of what is possible; please [read the docs](/docs/extending-tina/overview/) to find out more.
 
 If you are having any issues at all, please [reach out to us on discord](https://discord.com/invite/zumN63Ybpf) or create a [github issue](https://github.com/tinacms/tinacms/issues/new/choose).
-
-
-

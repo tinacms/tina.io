@@ -64,11 +64,7 @@ export default defineConfig({
 Your fully configured `.tina/config.{js,ts}` should look something like this:
 
 ```ts
-import { defineSchema, defineConfig } from 'tinacms'
-
-const schema = defineSchema({
-  //...
-})
+import {  defineConfig } from 'tinacms'
 
 const branch =
   process.env.NEXT_PUBLIC_TINA_BRANCH ||
@@ -79,7 +75,9 @@ export default defineConfig({
   token: '<Your Read Only Token>' // generated on app.tina.io
   clientId: '<Your Client ID>', // generated on app.tina.io
   branch,
-  schema,
+  schema: {
+    // ...
+  },
 })
 ```
 

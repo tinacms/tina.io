@@ -27,9 +27,8 @@ This file contains the [definition for the project's schema](/docs/schema), as w
 See our ["Tina Cloud Starter"](https://github.com/tinacms/tina-cloud-starter/blob/main/.tina/config.ts) for an example of how this file is used. The default export of the file must be `defineConfig({})`.
 
 ```ts
-import { defineSchema, defineConfig } from 'tinacms'
+import { defineConfig } from 'tinacms'
 
-const schema = defineSchema({...})
 export default defineConfig({ schema: schema, ...})
 ```
 
