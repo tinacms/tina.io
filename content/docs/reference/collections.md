@@ -53,35 +53,37 @@ export default defineConfig({
 ```ts
 export default defineConfig({
   //...
-  collections: [
-    {
-      name: 'posts',
-      label: 'Blog Posts',
-      path: 'content/posts',
-      format: 'mdx',
-      ui: {
-        router: ({ document }) => {
-          // navigate to the post that was clicked
-          return `/post/${document._sys.filename}`
+  schema: {
+    collections: [
+      {
+        name: 'posts',
+        label: 'Blog Posts',
+        path: 'content/posts',
+        format: 'mdx',
+        ui: {
+          router: ({ document }) => {
+            // navigate to the post that was clicked
+            return `/post/${document._sys.filename}`
+          },
         },
+        fields: [
+          // An array of fields
+        ],
       },
-      fields: [
-        // An array of fields
-      ],
-    },
-    {
-      label: 'Global',
-      name: 'global',
-      path: 'content/global',
-      ui: {
-        global: true,
+      {
+        label: 'Global',
+        name: 'global',
+        path: 'content/global',
+        ui: {
+          global: true,
+        },
+        format: 'json',
+        fields: [
+          // An array of fields
+        ],
       },
-      format: 'json',
-      fields: [
-        // An array of fields
-      ],
-    },
-  ],
+    ],
+  },
 })
 ```
 
@@ -90,33 +92,35 @@ export default defineConfig({
 ```ts
 export default defineConfig({
   //...
-  collections: [
-    {
-      name: 'posts',
-      label: 'Blog Posts',
-      path: 'content/posts',
-      format: 'mdx',
-      defaultItem: () => {
-        return {
-          // Return a default title and the current date as the default date
-          title: 'new post',
-          date: new Date().toISOString(),
-        }
+  schema: {
+    collections: [
+      {
+        name: 'posts',
+        label: 'Blog Posts',
+        path: 'content/posts',
+        format: 'mdx',
+        defaultItem: () => {
+          return {
+            // Return a default title and the current date as the default date
+            title: 'new post',
+            date: new Date().toISOString(),
+          }
+        },
+        fields: [
+          {
+            label: 'Title',
+            name: 'title',
+            type: 'string',
+          },
+          {
+            label: 'Date',
+            name: 'date',
+            type: 'date',
+          },
+        ],
       },
-      fields: [
-        {
-          label: 'Title',
-          name: 'title',
-          type: 'string',
-        },
-        {
-          label: 'Date',
-          name: 'date',
-          type: 'date',
-        },
-      ],
-    },
-  ],
+    ],
+  },
 })
 ```
 

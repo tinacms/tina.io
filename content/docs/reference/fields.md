@@ -71,22 +71,24 @@ export default defineConfig({
 ```ts
 export default defineConfig({
   //...
-  collections: [
-    {
-      name: 'posts',
-      label: 'Blog Posts',
-      path: 'content/posts',
-      format: 'mdx',
-      fields: [
-        {
-          type: 'rich-text',
-          label: 'Body of post',
-          name: 'body',
-          isBody: true,
-        },
-        //... Other fields
-      ],
-    },
-  ],
+  schema: {
+    collections: [
+      {
+        name: 'posts',
+        label: 'Blog Posts',
+        path: 'content/posts',
+        format: 'mdx',
+        fields: [
+          {
+            type: 'rich-text',
+            label: 'Body of post',
+            name: 'body',
+            isBody: true,
+          },
+          //... Other fields
+        ],
+      },
+    ],
+  },
 })
 ```

@@ -53,7 +53,7 @@ This command compiles and validates the schema and generates the client and type
 
 ### `npx @tinacms/cli@latest init`
 
-> The init command must be run inside of a Next.js project
+> The init command must be run inside of an existing project (E.g a NextJS project, Hugo, Jekyll, etc).
 
 ```bash,copy
 npx @tinacms/cli init

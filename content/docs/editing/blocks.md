@@ -105,6 +105,8 @@ const contentBlock:TinaTemplate = {
 }
 
 export default defineConfig({
+  // ...
+  schema: {
   collections: [
     {
       // ...
@@ -118,7 +120,7 @@ export default defineConfig({
         },
       ],
     },
-  ],
+  ]}
 })
 ```
 
@@ -233,6 +235,8 @@ First, to enable the visual block selector the `visualSelector` property in the 
 ```diff
 ...
 export default defineConfig({
+  // ...
+  schema: {
   collections: [
     {
       // ...
@@ -249,7 +253,7 @@ export default defineConfig({
         },
       ],
     },
-  ],
+  ]}
 })
 ...
 ```

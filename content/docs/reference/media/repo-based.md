@@ -15,6 +15,7 @@ To configure repo-based media in your project, add the following to your schema 
 //.tina/config.{ts,js}
 
 export default defineConfig({
+  // ...
   media: {
     tina: {
       publicFolder: 'public',

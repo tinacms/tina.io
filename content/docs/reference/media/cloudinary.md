@@ -6,6 +6,8 @@ next: /docs/reference/media/do-spaces
 
 Manage **Cloudinary media assets** in TinaCMS.
 
+> The following guide relies on NextJS's API functions to authenticate the 3rd-party media interactions. We hope to document a framework-agnostic approach soon.
+
 ## Installation
 
 ```bash
