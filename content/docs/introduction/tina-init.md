@@ -29,7 +29,7 @@ In your `_app.jsx` file, you will want to wrap your layout with the TinaProvider
 from `.tina/components/TinaDynamicProvider.js`
 
 ```diff
-+ import TinaProvider from ../.tina/components/TinaDynamicProvider.js
++ import TinaProvider from '../.tina/components/TinaDynamicProvider.js'
 
 // ...
 
