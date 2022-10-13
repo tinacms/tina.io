@@ -1,3 +1,5 @@
+
+
 name: Node CI
 on:
   pull_request:
@@ -34,9 +36,7 @@ jobs:
         env:
           CI: true
       - name: 📉 Check HTML
-        uses: anishathalye/proof-html@v1
+        uses: chabad360/htmlproofer@v1
         with:
-         directory: ./out
-         check_img_http: false
-         check_external_hash: false
-         url_ignore_re: "/.+\/(blog|404)\/.+/"
+          directory: './out'
+          arguments: --checks "Links,Images,Scripts,Favicon,OpenGraph" --ignore-status-codes "400, 403, 409, 429" --disable_external=true --check-internal-hash=false --ignore-files "/.+\/(blog|404)\/.+/"
