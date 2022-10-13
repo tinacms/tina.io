@@ -39,4 +39,4 @@ jobs:
         uses: chabad360/htmlproofer@v1.1
         with:
           directory: './out'
-          arguments:  --check_external_hash=false --ignore_empty_alt --checks "Links,Images,Scripts,Favicon,OpenGraph" --ignore-status-codes "400, 403, 409, 429" --ignore-files "/.+\/(blog|404)\/.+/"
+          arguments:  --check_internal_hash=false --ignore_empty_alt --checks "Links,Images,Scripts,Favicon,OpenGraph" --ignore-status-codes "400, 403, 409, 429" --ignore-files "/.+\/(blog|404)\/.+/"
