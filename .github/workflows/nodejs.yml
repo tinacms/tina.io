@@ -34,7 +34,6 @@ jobs:
         env:
           CI: true
       - name: 📉 Check HTML
-        uses: chabad360/htmlproofer@master
+      - uses: anishathalye/proof-html@v1
         with:
-          directory: './out'
-          arguments: --checks "Links,Images,Scripts,Favicon,OpenGraph" --ignore-status-codes "400, 403, 409, 429" --disable_external=true --ignore-files "/.+\/(blog|404)\/.+/"
+         directory: ./out
