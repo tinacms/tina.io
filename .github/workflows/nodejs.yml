@@ -37,3 +37,6 @@ jobs:
         uses: anishathalye/proof-html@v1
         with:
          directory: ./out
+         check_img_http: false
+         check_external_hash: false
+         url_ignore_re: "/.+\/(blog|404)\/.+/"
