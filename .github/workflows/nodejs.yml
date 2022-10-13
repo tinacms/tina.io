@@ -34,6 +34,6 @@ jobs:
         env:
           CI: true
       - name: 📉 Check HTML
-      - uses: anishathalye/proof-html@v1
+        uses: anishathalye/proof-html@v1
         with:
          directory: ./out
