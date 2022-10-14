@@ -17,6 +17,9 @@ import { useTocListener } from 'utils/toc_helpers'
 import SetupOverview from '../../components/layout/setup-overview'
 
 export function DocTemplate(props) {
+  if (!props.file) {
+    console.log(props)
+  }
   if (props.file.fileRelativePath.includes('setup-overview')) {
     return <SetupOverview {...props} />
   }

@@ -1,7 +1,7 @@
 ---
 title: Using Media with Digital Ocean Spaces
-prev: /docs/reference/media/cloudinary
-next: /docs/reference/media/s3
+prev: /docs/reference/media/external/cloudinary
+next: /docs/reference/media/external/s3
 ---
 
 Manage **Digital Ocean Spaces media assets** in TinaCMS.
@@ -108,6 +108,8 @@ export default createMediaHandler({
   },
 })
 ```
+
+For Netlify usecase, please read how to set up Netlify Functions [here](/docs/reference/media/external/authentication/#netlify)
 
 ## Update Schema
 

@@ -1,7 +1,7 @@
 ---
 title: Using Media with Cloudinary
-prev: /docs/reference/media/repo-based
-next: /docs/reference/media/do-spaces
+prev: /docs/reference/media/external/authentication
+next: /docs/reference/media/external/do-spaces
 ---
 
 Manage **Cloudinary media assets** in TinaCMS.
@@ -97,6 +97,8 @@ export default createMediaHandler({
   },
 })
 ```
+
+For Netlify usecase, please read how to set up Netlify Functions [here](/docs/reference/media/external/authentication/#netlify)
 
 ## Update Schema
 

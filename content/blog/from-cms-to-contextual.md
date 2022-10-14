@@ -409,7 +409,7 @@ Now all we need to do is update our post body content from `data.post.body` to `
 
 Now that you have contextual editing here are a few things you can explore with Tina
 
-- [Media management through Cloudinary](https://tina.io/docs/reference/media/cloudinary/)
+- [Media management through Cloudinary](https://tina.io/docs/reference/media/external/cloudinary/)
 - [Route Mapping (connect the CMS to contextual editing](https://tina.io/docs/tinacms-context/#the-routemappingplugin)
 
 ## How to keep up to date with Tina?
