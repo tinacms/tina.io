@@ -66,7 +66,7 @@ Import `isAuthorized` from ["@tinacms/auth"](https://github.com/tinacms/tinacms/
 The `authorized` key will make it so only authorized users within Tina Cloud can upload and make media edits.
 
 ```ts
-//[...media].ts
+// pages/api/cloudinary/[...media].ts
 
 import {
   mediaHandlerConfig,
