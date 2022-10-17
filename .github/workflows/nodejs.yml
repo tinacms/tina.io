@@ -36,7 +36,16 @@ jobs:
         env:
           CI: true
       - name: 📉 Check HTML
-        uses: chabad360/htmlproofer@v2
+        uses: anishathalye/proof-html@v1.4.0
         with:
           directory: './out'
-          arguments: --checks "Links,Images,Scripts,Favicon,OpenGraph" --ignore-status-codes "400, 403, 409, 429" --ignore-files "/.+\/(blog|404)\/.+/"
+          enforce_https: false
+          check_img_http: false
+          empty_alt_ignore: true
+          url_ignore_re: '/.+\/(blog|404)\/.+/'
+
+      # - name: 📉 Check HTML
+      #   uses: chabad360/htmlproofer@v2
+      #   with:
+      #     directory: './out'
+      #     arguments: --checks "Links,Images,Scripts,Favicon,OpenGraph" --ignore-status-codes "400, 403, 409, 429" --ignore-files "/.+\/(blog|404)\/.+/"
