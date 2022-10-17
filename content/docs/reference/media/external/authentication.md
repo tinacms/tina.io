@@ -4,7 +4,7 @@ prev: /docs/reference/media/repo-based
 next: /docs/reference/media/external/cloudinary
 ---
 
-Set up authenication for external media store access.
+Tina supports using external media providers, however a light backend media handler needs to be setup/hosted by the user. Tina offers some helpers to make this easy, for `cloudinary`,`s3`, & `dos` ("Digital Ocean Spaces")
 
 ## Installation
 
@@ -12,39 +12,11 @@ Set up authenication for external media store access.
 yarn add @tinacms/auth
 ```
 
-## Register the Media Store
+Depending on your site's framework & hosting provider, there are multiple ways to host the media handler.
 
-Now, you can replace the default repo-based media with the external media store. You can register a media store via the `loadCustomStore` prop.
+> In the following examples, replace `<YOUR_MEDIA_STORE_NAME>` with `cloudinary`,`s3`, or `dos`.
 
-The `loadCustomStore` prop can be configured within `.tina/schema.ts`.
-
-```diff
-// .tina/schema.ts
-
-// ...
-
-export default defineSchema({
-  // ...
-  config: {
-     media: {
--       tina: {
--         publicFolder: "",
--         mediaRoot: ""
--       },
-+       loadCustomStore: async () => {
-+         const pack = await import("next-tinacms-<YOUR_MEDIA_STORE_NAME>");
-+         return pack.TinaCloud<YOUR_MEDIA_STORE>;
-+       },
-     }
-  },
-})
-```
-
-## Set up API routes
-
-You need to set up API routes and create a media handler to connect your instance of the Media Store to your external storage.
-
-### Next.js
+### Option 1) Next.js API Routes (NextJS-only)
 
 Set up a new API route in the `pages` directory of your Next.js app at `pages/api/<YOUR_MEDIA_STORE_NAME>/[...media].ts`.
 
@@ -57,9 +29,7 @@ The `authorized` key will make it so only authorized users within Tina Cloud can
 ```ts
 // pages/api/<YOUR_MEDIA_STORE_NAME>/[...media].ts
 
-import {
-  createMediaHandler,
-} from 'next-tinacms-<YOUR_MEDIA_STORE_NAME>/dist/handlers'
+import { createMediaHandler } from 'next-tinacms-<YOUR_MEDIA_STORE_NAME>/dist/handlers'
 
 import { isAuthorized } from '@tinacms/auth'
 
@@ -82,9 +52,9 @@ export default createMediaHandler({
 })
 ```
 
-### Netlify
+### Option 2) Netlify Functions
 
-In case of Netlify, you can use Netlify Functions.
+If your site is hosted on Netlify, you can use "Netlify Functions" to host your media handler.
 
 First, you must set up redirects so that all requests to `/api/*` can be redirected to Netlify Functions. You can set up redirects at `netlify.toml`.
 
@@ -138,4 +108,32 @@ router.delete('/<YOUR_MEDIA_STORE_NAME>/:media', (req, res) => {
 app.use('/api/', router)
 ```
 
-Now you can manage external media store inside TinaCMS. To check each media store in detail, please read next sections.
+## Register the Media Store on the frontend
+
+Now, you can replace the default repo-based media with the external media store. You can register a media store via the `loadCustomStore` prop.
+
+The `loadCustomStore` prop can be configured within `.tina/schema.ts`.
+
+```diff
+// .tina/schema.ts
+
+// ...
+
+export default defineSchema({
+  // ...
+  config: {
+     media: {
+-       tina: {
+-         publicFolder: "",
+-         mediaRoot: ""
+-       },
++       loadCustomStore: async () => {
++         const pack = await import("next-tinacms-<YOUR_MEDIA_STORE_NAME>");
++         return pack.TinaCloud<YOUR_MEDIA_STORE>;
++       },
+     }
+  },
+})
+```
+
+Now you can manage external media store inside TinaCMS. To learn more about each media store in detail, please refer to the next sections.

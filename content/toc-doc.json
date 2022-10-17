@@ -354,13 +354,13 @@
           },
           {
             "title": "External Media Providers",
-            "id": "/docs/reference/media/external/authentication",
-            "slug": "/docs/reference/media/external/authentication",
+            "id": "/docs/reference/media/external/authentication/",
+            "slug": "/docs/reference/media/external/authentication/",
             "items": [
               {
                 "title": "Setting up Authentication",
-                "id": "/docs/reference/media/external/authentication",
-                "slug": "/docs/reference/media/external/authentication"
+                "id": "/docs/reference/media/external/authentication/",
+                "slug": "/docs/reference/media/external/authentication/"
               },
               {
                 "title": "Cloudinary",
