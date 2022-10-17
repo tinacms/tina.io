@@ -67,17 +67,37 @@ Replace `defineSchema` with `defineStaticConfig`. This contains both your schema
 ```diff
 - const schema = defineSchema({
 + const config = defineStaticConfig({
-    // ...
-}
++     schema,
++     clientId,
++     branch,
++     token,
++     media,
++     build: {
++        publicFolder: "public", // The public asset folder for your framework
++        outputFolder: "admin", // within the public folder
++    },
++}
 
 - export const tinaConfig = defineConfig({
 -   client,
 -   schema,
+-   // ...
 - });
 
 
 - export default schema;
 + export default config;
+```
+
+Most of the `defineStaticConfig` properties will look familiar, apart from the new `build` property. This is required now that the Tina admin gets built outsite your site's build-process.
+
+For NextJS sites, use these values:
+
+```
+     build: {
+        publicFolder: "public",
+        outputFolder: "admin"
+    },
 ```
 
 > Only one export is needed from our `config.{js,ts,jsx,tsx}` file. Previously, the config & schema were both exported separately.
