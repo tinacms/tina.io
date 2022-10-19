@@ -102,11 +102,11 @@ For NextJS sites, use these values:
 
 > Only one export is needed from our `config.{js,ts,jsx,tsx}` file. Previously, the config & schema were both exported separately.
 
-### Access the new admin page. (NextJS only)
+### Access the new admin page.
 
 The admin is currently generated & accessible at `/admin/index.html`.
 
-If you want things to work with just `/admin` you'll need to update your `next.config.js` to handle the redirect. This
+On NextJS sites, if you want things to work with just `/admin` you'll need to update your `next.config.js` to handle the redirect.
 
 ```js
 //next.config.js
