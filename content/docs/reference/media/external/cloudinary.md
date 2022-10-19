@@ -1,7 +1,7 @@
 ---
 title: Using Media with Cloudinary
-prev: /docs/reference/media/repo-based
-next: /docs/reference/media/do-spaces
+prev: /docs/reference/media/external/authentication
+next: /docs/reference/media/external/do-spaces
 ---
 
 Manage **Cloudinary media assets** in TinaCMS.
@@ -56,6 +56,10 @@ export default defineSchema({
 
 ## Set up API routes
 
+Tina's "external media provider" support requires a light backend media handler, that needs to be setup/hosted by the user. There are multiple ways to do this, including the framework-agnostic [Netlify Functions implementation](/docs/reference/media/external/authentication/#netlify).
+
+### "NextJS API Routes" example (NextJS-only)
+
 Set up a new API route in the `pages` directory of your Next.js app at `pages/api/cloudinary/[...media].ts`.
 Then add a new catch all API route for media.
 
@@ -66,7 +70,7 @@ Import `isAuthorized` from ["@tinacms/auth"](https://github.com/tinacms/tinacms/
 The `authorized` key will make it so only authorized users within Tina Cloud can upload and make media edits.
 
 ```ts
-//[...media].ts
+// pages/api/cloudinary/[...media].ts
 
 import {
   mediaHandlerConfig,
