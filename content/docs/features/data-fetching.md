@@ -1,7 +1,7 @@
 ---
 title: Data Fetching
 id: '/docs/features/data-fetching'
-next: '/docs/tinacms-context'
+next: '/docs/contextual-editing/overview'
 ---
 
 ## Introduction
