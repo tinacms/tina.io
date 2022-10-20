@@ -62,8 +62,31 @@
       },
       {
         "title": "Contextual Editing",
-        "id": "/docs/tinacms-context",
-        "slug": "/docs/tinacms-context/"
+        "id": "/docs/contextual-editing/overview",
+        "slug": "/docs/contextual-editing/overview/",
+        "items": [
+          {
+            "id": "/docs/contextual-editing/overview",
+            "slug": "/docs/contextual-editing/overview/",
+            "title": "Overview"
+          },
+          {
+            "id": "/docs/contextual-editing/react",
+            "slug": "/docs/contextual-editing/react/",
+            "title": "React"
+          },
+          {
+            "id": "/docs/contextual-editing/vue",
+            "slug": "/docs/contextual-editing/vue/",
+            "title": "Vue",
+            "status": "coming soon"
+          },
+          {
+            "id": "/docs/contextual-editing/router",
+            "slug": "/docs/contextual-editing/router/",
+            "title": "Setting up the Router"
+          }
+        ]
       }
     ]
   },
