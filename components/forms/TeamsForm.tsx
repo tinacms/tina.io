@@ -162,7 +162,7 @@ export function TeamsForm(props: any) {
           onChange={handleProjectDetailsChange}
         />
       </label>
-      <Button type="submit" color="primary">
+      <Button type="submit" color="orange">
         Request Access
       </Button>
     </StyledForm>

@@ -6,8 +6,9 @@ import data from '../../content/navigation.json'
 export const LinkNav = styled(({ ...styleProps }) => {
   return (
     <ul {...styleProps}>
-      {data &&
-        data.map(({ id, href, label }) => {
+      {data.map(item => {
+        if (item.href) {
+          const { id, href, label } = item
           return (
             <li key={id}>
               <DynamicLink href={href} passHref>
@@ -15,7 +16,8 @@ export const LinkNav = styled(({ ...styleProps }) => {
               </DynamicLink>
             </li>
           )
-        })}
+        }
+      })}
     </ul>
   )
 })`

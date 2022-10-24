@@ -52,10 +52,10 @@ function CommunityPage(props) {
                       <TinaIconSvg
                         // @ts-ignore
                         style={{
-                          color: '#EC4815',
+                          fill: '#EC4815',
                           height: '1.675rem',
                           width: 'auto',
-                          margin: '0 0.5rem 0 0.125rem',
+                          margin: '0 0.675rem 0 0.125rem',
                         }}
                       />{' '}
                       Discussion
@@ -71,7 +71,7 @@ function CommunityPage(props) {
                           color: '#5865f2',
                           height: '1.5rem',
                           width: 'auto',
-                          margin: '0 0.5rem 0 0.125rem',
+                          margin: '0 0.675rem 0 0.125rem',
                         }}
                       />{' '}
                       Discord
@@ -87,7 +87,7 @@ function CommunityPage(props) {
                           color: '#24292e',
                           height: '1.5rem',
                           width: 'auto',
-                          margin: '0 0.5rem 0 0.125rem',
+                          margin: '0 0.675rem 0 0.125rem',
                         }}
                       />{' '}
                       GitHub
@@ -100,7 +100,7 @@ function CommunityPage(props) {
                           color: '#1DA1F2',
                           height: '1.5rem',
                           width: 'auto',
-                          margin: '0 0.5rem 0 0.125rem',
+                          margin: '0 0.675rem 0 0.125rem',
                         }}
                       />{' '}
                       Twitter

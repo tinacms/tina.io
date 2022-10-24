@@ -51,7 +51,7 @@ export const EmailForm = (props: EmailFormProps) => {
       {props.isFooter ? (
         isEntering && <Button type="submit">Subscribe</Button>
       ) : (
-        <Button type="submit" color="primary">
+        <Button type="submit" color="orange">
           Subscribe
         </Button>
       )}
@@ -79,7 +79,7 @@ const StyledEmailForm = styled.form<StyledEmailFormProps>`
 
   @media (min-width: 800px) {
     grid-template-rows: auto;
-    grid-template-columns: auto 8rem;
+    grid-template-columns: 1fr auto;
   }
 
   ${props =>

@@ -22,7 +22,6 @@ export const Layout = styled(
             url: 'https://tina.io' + router.asPath,
           }}
         />
-        <CloudBanner />
         <Navbar />
         <div className="content">{children}</div>
         <Footer />

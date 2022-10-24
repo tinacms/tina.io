@@ -12,7 +12,46 @@ interface ButtonProps {
   size?: 'large' | 'small'
 }
 
-export const Button = styled.button<ButtonProps>`
+export const Button = ({
+  color = 'seafoam',
+  size = 'large',
+  className = '',
+  children,
+  ...props
+}) => {
+  const baseClasses =
+    'transition duration-150 ease-out rounded-full flex items-center font-tuner px-6 py-2 text-base font-medium focus:outline-none focus:shadow-outline hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px leading-tight'
+
+  const raisedButtonClasses = 'shadow active:shadow-none'
+
+  const colorClasses = {
+    seafoam:
+      raisedButtonClasses +
+      ' text-orange-600 border border-seafoam-200 bg-gradient-to-br from-seafoam-50 to-seafoam-200',
+    blue:
+      raisedButtonClasses +
+      ' text-white border border-blue-600 bg-gradient-to-br from-blue-300 to-blue-600',
+    orange:
+      raisedButtonClasses +
+      ' text-white border border-orange-600 bg-gradient-to-br from-orange-400 to-orange-600',
+    white:
+      raisedButtonClasses +
+      ' text-red-600 border border-gray-100 bg-gradient-to-br from-white to-gray-50',
+  }
+
+  return (
+    <button
+      className={`${baseClasses} ${
+        colorClasses[color] ? colorClasses[color] : ''
+      } ${className}`}
+      {...props}
+    >
+      {children}
+    </button>
+  )
+}
+
+export const ButtonOld = styled.button<ButtonProps>`
   font-size: 1rem;
   border-radius: 2rem;
   cursor: pointer;
@@ -169,17 +208,10 @@ Button.defaultProps = {
   color: 'seafoam',
 }
 
-export const ButtonGroup = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-right: -1rem;
-  margin-bottom: -1rem;
-
-  ${Button} {
-    margin-right: 1rem;
-    margin-bottom: 1rem;
-  }
-`
+export const ButtonGroup = ({ children }) => {
+  return (
+    <div className="w-full flex justify-start flex-wrap items-center gap-4">
+      {children}
+    </div>
+  )
+}

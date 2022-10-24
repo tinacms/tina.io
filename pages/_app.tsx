@@ -9,6 +9,7 @@ import { GlobalStyle } from 'components/styles/GlobalStyle'
 import 'components/styles/fontImports.css'
 import path from 'path'
 import Tina from '../.tina/components/TinaDynamicProvider'
+import '../styles/tailwind.css'
 
 // the following line will cause all content files to be available in a serverless context
 path.resolve('./content/')

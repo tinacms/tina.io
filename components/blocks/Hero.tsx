@@ -106,8 +106,8 @@ export const HeroFeature = ({ item }) => {
         }
 
         .heading {
-          font-family: var(--font-tuner);
-          font-weight: bold;
+          font-family: var(--font-tuner-medium);
+          font-weight: normal;
           font-size: 3.125rem;
           line-height: 1.4;
           display: inline-block;
