@@ -11,32 +11,19 @@ interface LayoutProps {
   color?: 'white' | 'secondary' | 'seafoam'
 }
 
-export const Layout = styled(
-  ({ children, color, ...styleProps }: LayoutProps) => {
-    const router = useRouter()
+export const Layout = ({ children, color, ...styleProps }: LayoutProps) => {
+  const router = useRouter()
 
-    return (
-      <div {...styleProps}>
-        <DefaultSeo
-          openGraph={{
-            url: 'https://tina.io' + router.asPath,
-          }}
-        />
-        <Navbar />
-        <div className="content">{children}</div>
-        <Footer />
-      </div>
-    )
-  }
-)`
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  min-height: 100vh;
-
-  .content {
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: column;
-  }
-`
+  return (
+    <div {...styleProps}>
+      <DefaultSeo
+        openGraph={{
+          url: 'https://tina.io' + router.asPath,
+        }}
+      />
+      <Navbar />
+      <div className="content">{children}</div>
+      <Footer />
+    </div>
+  )
+}
