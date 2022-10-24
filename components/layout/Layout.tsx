@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import { Footer } from './Footer'
 import { CloudBanner } from './CloudBanner'
 import { Navbar } from './Navbar'
+import BlobBackground from '../../public/svg/blob-bg.svg'
 
 interface LayoutProps {
   children: any | any[]
@@ -24,6 +25,7 @@ export const Layout = ({ children, color }: LayoutProps) => {
       <Navbar />
       <div className="flex flex-col flex-1">{children}</div>
       <Footer />
+      <BlobBackground className="absolute top-0 left-0 w-screen h-screen -z-1" />
     </div>
   )
 }
