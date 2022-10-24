@@ -11,18 +11,18 @@ interface LayoutProps {
   color?: 'white' | 'secondary' | 'seafoam'
 }
 
-export const Layout = ({ children, color, ...styleProps }: LayoutProps) => {
+export const Layout = ({ children, color }: LayoutProps) => {
   const router = useRouter()
 
   return (
-    <div {...styleProps}>
+    <div className="flex flex-col min-h-screen">
       <DefaultSeo
         openGraph={{
           url: 'https://tina.io' + router.asPath,
         }}
       />
       <Navbar />
-      <div className="content">{children}</div>
+      <div className="flex flex-col flex-1">{children}</div>
       <Footer />
     </div>
   )
