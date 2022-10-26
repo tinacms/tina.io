@@ -93,7 +93,7 @@ function CommunityPage(props) {
                       GitHub
                     </Button>
                   </DynamicLink>
-                  <DynamicLink href={'https://twitter.com/tina_cms'} passHref>
+                  <DynamicLink href={'https://twitter.com/tinacms'} passHref>
                     <Button color="white" as="a">
                       <FaTwitter
                         style={{

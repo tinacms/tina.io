@@ -283,4 +283,4 @@ Tina has a community [Discord](https://discord.com/invite/zumN63Ybpf) that is fu
 
 ### Tina Twitter
 
-Our Twitter account ([@tina_cms](https://twitter.com/tina_cms)) announces the latest features, improvements, and sneak peeks to Tina. We would also be psyched if you tagged us in projects you have built.
+Our Twitter account ([@tinacms](https://twitter.com/tinacms)) announces the latest features, improvements, and sneak peeks to Tina. We would also be psyched if you tagged us in projects you have built.

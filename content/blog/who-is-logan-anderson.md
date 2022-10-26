@@ -41,4 +41,4 @@ We are currently thinking a how to edit the content that is not directly reflect
 
 ---
 
-Interested in keeping up with what Logan and the team are up to? Make sure you follow him on Twitter [@logan_anders0n](https://twitter.com/logan_anders0n) _and_ [_@tina_cms_](https://twitter.com/tina_cms)
+Interested in keeping up with what Logan and the team are up to? Make sure you follow him on Twitter [@logan_anders0n](https://twitter.com/logan_anders0n) _and_ [_@tinacms_](https://twitter.com/tinacms)

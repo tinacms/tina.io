@@ -5,11 +5,11 @@ author: James Perkins
 prev: content/blog/a-b-test-with-tina.md
 ---
 
-When working on a website you may need to introduce internationalization also known as i18n. While Tina currently doesn’t offer a plugin or native support we can leverage Next.js’s i18n feature to create a site that has internationalization support. 
+When working on a website you may need to introduce internationalization also known as i18n. While Tina currently doesn’t offer a plugin or native support we can leverage Next.js’s i18n feature to create a site that has internationalization support.
 
 ## Create a new project.
 
-To create our project we can use the `create-tina-app` that will use one of our starters. For this blog post, we are going to use the barebones starter. 
+To create our project we can use the `create-tina-app` that will use one of our starters. For this blog post, we are going to use the barebones starter.
 
 ```bash
 npx create-tina-app@latest tina-internationalization
@@ -26,27 +26,27 @@ Now we have a basic project setup we are going to do the following things to mak
 
 ## Adding our locales to the `next.config.js`
 
-The `next.config.js` allows you to create advanced configurations for your Next.js sites, including what locales you want to support on your site. 
+The `next.config.js` allows you to create advanced configurations for your Next.js sites, including what locales you want to support on your site.
 
-> If you want to read more about next.config.js and all the configurations you can set, check out the next.js [documentation](https://nextjs.org/docs/api-reference/next.config.js/introduction).  
+> If you want to read more about next.config.js and all the configurations you can set, check out the next.js [documentation](https://nextjs.org/docs/api-reference/next.config.js/introduction).
 
-To support different locales we need to add the `i18n` object to the configuration: 
+To support different locales we need to add the `i18n` object to the configuration:
 
 ```json
-module.exports = {
-    i18n: {}
-}
+(module.exports = {
+  "i18n": {}
+})
 ```
 
-Then inside the i18n object, we need to add two things, a `locales` array, and a `defaultLocale` . The `defaultLocale` will be used if someone visits a locale you don’t support. In our example, we are going to support `en-US` and `fr`  
+Then inside the i18n object, we need to add two things, a `locales` array, and a `defaultLocale` . The `defaultLocale` will be used if someone visits a locale you don’t support. In our example, we are going to support `en-US` and `fr`
 
 ```json
-module.exports = {
-    i18n: {
-      locales: ['en-US', 'fr'],
-      defaultLocale: 'en-US'
-    }
+(module.exports = {
+  "i18n": {
+    "locales": ["en-US", "fr"],
+    "defaultLocale": "en-US"
   }
+})
 ```
 
 ## Update `getStaticPaths`
@@ -68,19 +68,19 @@ export const getStaticPaths = async () => {
         }
       }`,
     variables: {},
-  });
-  const paths = postsResponse.postConnection.edges.map((x) => {
-    return { params: { slug: x.node._sys.filename } };
-  });
+  })
+  const paths = postsResponse.postConnection.edges.map(x => {
+    return { params: { slug: x.node._sys.filename } }
+  })
 
   return {
     paths,
-    fallback: "blocking",
-  };
-};
+    fallback: 'blocking',
+  }
+}
 ```
 
- We can pass locales as a prop to the `getStaticPaths` function and Next.js will send the array of all configured locales. We can also update paths to start as an empty array:
+We can pass locales as a prop to the `getStaticPaths` function and Next.js will send the array of all configured locales. We can also update paths to start as an empty array:
 
 ```jsx
 export const getStaticPaths = async ({locales}) => {
@@ -88,25 +88,25 @@ const paths = [];
 ...
 ```
 
-Now we have the ability to access each locale we need to update our `paths` variable to include the `locale`. We will need to map over each locale so we can create a path for each one.  
+Now we have the ability to access each locale we need to update our `paths` variable to include the `locale`. We will need to map over each locale so we can create a path for each one.
 
 ```jsx
-postsResponse.postConnection.edges.map((post) => {
-    // ensure a `path` is created for each `locale`
-    locales.map((locale) => {
-      paths.push({
-        params: { slug: post.node._sys.filename },
-        locale,
-      });
-    });
-  });
+postsResponse.postConnection.edges.map(post => {
+  // ensure a `path` is created for each `locale`
+  locales.map(locale => {
+    paths.push({
+      params: { slug: post.node._sys.filename },
+      locale,
+    })
+  })
+})
 ```
 
 The completed `getStaticPaths` should look like this:
 
 ```jsx
-export const getStaticPaths = async ({locales}) => {
-  const paths =[];
+export const getStaticPaths = async ({ locales }) => {
+  const paths = []
   const postsResponse = await staticRequest({
     query: `{
         postConnection {
@@ -120,27 +120,27 @@ export const getStaticPaths = async ({locales}) => {
         }
       }`,
     variables: {},
-  });
-  postsResponse.postConnection.edges.map((post) => {
+  })
+  postsResponse.postConnection.edges.map(post => {
     // ensure a `path` is created for each `locale`
-    locales.map((locale) => {
+    locales.map(locale => {
       paths.push({
         params: { slug: post.node._sys.filename },
         locale,
-      });
-    });
-  });
+      })
+    })
+  })
 
   return {
     paths,
-    fallback: "blocking",
-  };
-};
+    fallback: 'blocking',
+  }
+}
 ```
 
 ## Updating `getStaticProps`
 
-We need to make a small change to our `getStaticProps` function to look for the locale and add that to the relative path so we are editing the correct file. 
+We need to make a small change to our `getStaticProps` function to look for the locale and add that to the relative path so we are editing the correct file.
 
 ```jsx
 ++ relativePath: `${ctx.locale}/${ctx.params.slug}.md`,
@@ -153,10 +153,9 @@ With this change, we can now open any of the support locale URLs. Our applicatio
 
 To create our files we are going to leverage a filename structure of `<locale>/posname` the locale will be handled by Next.js So a filename of `fr/bonjour` will be treated as `<domain>/fr/another-post` in your Next.js application.
 
-Below is an example of the file structure. 
+Below is an example of the file structure.
 
 ![Example of the file structure used when creating a new file in Tina](https://res.cloudinary.com/forestry-demo/image/upload/v1655216726/blog-media/tina-i8n/Screen_Shot_2022-06-09_at_10.34.47_AM.png)
-
 
 ## How to keep up to date with Tina?
 
@@ -175,6 +174,4 @@ Tina has a community [Discord](https://discord.com/invite/zumN63Ybpf) full of Ja
 
 ### Tina Twitter
 
-Our Twitter account ([@tina_cms](https://twitter.com/tina_cms)) announces the latest features, improvements, and sneak peeks to Tina. We would also be psyched if you tagged us in projects you have built.
-
-
+Our Twitter account ([@tinacms](https://twitter.com/tinacms)) announces the latest features, improvements, and sneak peeks to Tina. We would also be psyched if you tagged us in projects you have built.

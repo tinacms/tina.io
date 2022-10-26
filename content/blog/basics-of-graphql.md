@@ -4,8 +4,9 @@ date: '2022-05-12T07:00:00.000Z'
 author: James Perkins
 prev: content/blog/announcing-extending-tina.md
 ---
+
 ​​
-The Tina team is a big fan of GraphQL, and it is a core component of our project. One reason for this is that it allows a developer to retrieve only the data required and makes it easier to evolve APIs. This blog post will cover the basics of GraphQL. 
+The Tina team is a big fan of GraphQL, and it is a core component of our project. One reason for this is that it allows a developer to retrieve only the data required and makes it easier to evolve APIs. This blog post will cover the basics of GraphQL.
 
 ## Queries
 
@@ -41,7 +42,7 @@ query MyAwesomeQuery(){
 
 You can see that the query and the result are the same shape. GraphQL is powerful because you always know what to expect to receive back from the server, and the server knows what fields the client is requesting.
 
-You can also make requests for *sub-selection fields*. GraphQL queries can traverse related objects and fields, letting clients fetch related data in a single request. For example, if we needed all the blog posts that a user wrote, we could request them, and the server will return all of them.
+You can also make requests for _sub-selection fields_. GraphQL queries can traverse related objects and fields, letting clients fetch related data in a single request. For example, if we needed all the blog posts that a user wrote, we could request them, and the server will return all of them.
 
 ```graphql
 query MyAwesomeQuery(){
@@ -108,7 +109,7 @@ You can also use arguments to control the structure of your data. For example, y
 
 ## **Fragments**
 
-GraphQL fragments are a way to break up a GraphQL query into smaller, more manageable pieces. Fragments can be helpful when you're trying to figure out what's going on in a complex query or when you just need to take a small piece of data from a larger dataset. Fragments can also be reused wherever you might need the data you have defined, 
+GraphQL fragments are a way to break up a GraphQL query into smaller, more manageable pieces. Fragments can be helpful when you're trying to figure out what's going on in a complex query or when you just need to take a small piece of data from a larger dataset. Fragments can also be reused wherever you might need the data you have defined,
 
 To create a fragment, start by defining a new type. This type will represent the data you want to extract from your query. Once you've defined the type, you can use it in your queries just like any other type. Here is an example of an author Fragment, which is created from our Author Type:
 
@@ -144,10 +145,14 @@ fragment AuthorParts on Author {
 Variable substitution is a key concept in GraphQL. When you specify a field, you can optionally provide a list of variables to be used as inputs for that field. For example, the following query specifies the name variable of John:
 
 ```graphql
-query { person(name: "John") { age } }
+query {
+  person(name: "John") {
+    age
+  }
+}
 ```
 
-This query will return the age field for the person with the given name. This isn’t great because we are hard coding the name of `John`.  This is where we start to use variables. To use a variable, you need three things:
+This query will return the age field for the person with the given name. This isn’t great because we are hard coding the name of `John`. This is where we start to use variables. To use a variable, you need three things:
 
 1. Replace the hardcoded value with `$variableName`. So for this, we would use `$name` instead of hardcoding `John`.
 2. Declare the variable as one of the accepted variables in the query along with the Type. The name variable would have the type `String` in this case.
@@ -185,15 +190,20 @@ If no variable is provided, it will use `John` and return his age. If you have m
 Mutations in GraphQL are used to change the data in your application, similar to `PUT` or `POST` requests in REST. As with queries, if your returned data is an object type, you can request just the nested fields. This means you can return only the data you need, versus returning all of the data and having to parse the parts you do need:
 
 ```graphql
-mutation createNewAuthor($name: String, $bio: String, $twitter: String, $image: String){
-	creatAuthor(name: $name, bio: $bio, twitter: $twitter, image: $image){
-		id
-		name
-	}
+mutation createNewAuthor(
+  $name: String
+  $bio: String
+  $twitter: String
+  $image: String
+) {
+  creatAuthor(name: $name, bio: $bio, twitter: $twitter, image: $image) {
+    id
+    name
+  }
 }
 ```
 
- In this example, we create a new Author and return just the author's id and name on successful creation.
+In this example, we create a new Author and return just the author's id and name on successful creation.
 
 ## **How to keep up to date with Tina?**
 
@@ -212,5 +222,4 @@ Tina has a community [Discord](https://discord.com/invite/zumN63Ybpf) full of Ja
 
 ### Tina Twitter
 
-Our Twitter account ([@tina_cms](https://twitter.com/tina_cms)) announces the latest features, improvements, and sneak peeks to Tina. We would also be psyched if you tagged us in projects you have built.
-
+Our Twitter account ([@tinacms](https://twitter.com/tinacms)) announces the latest features, improvements, and sneak peeks to Tina. We would also be psyched if you tagged us in projects you have built.
