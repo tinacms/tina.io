@@ -99,6 +99,6 @@ This simplifies inline editing configuration. Developers no longer need to make 
 
 We know this is just the beginning. We are very passionate about the inline editing experience and will work to continually improve this API.
 
-We want to give developers the freedom to build fully custom page-builder type workflows. While we have some ideas already on how to take this further, **we'd love to hear your feedback**! Feel free to reach out with ideas on [Twitter](https://twitter.com/tina_cms), or in the [Forum](https://community.tinacms.org/).
+We want to give developers the freedom to build fully custom page-builder type workflows. While we have some ideas already on how to take this further, **we'd love to hear your feedback**! Feel free to reach out with ideas on [Twitter](https://twitter.com/tinacms), or in the [Forum](https://community.tinacms.org/).
 
 To dive deeper, please read [this guide](https://tinacms.org/guides/general/inline-blocks/overview) to get more familiar with the technical implementation of these new features. Or play around with the [simple demo](https://logan-anderson.github.io/cra-hosted-demo/) made from [the guide](https://tinacms.org/guides/general/inline-blocks/overview) to get inspired!

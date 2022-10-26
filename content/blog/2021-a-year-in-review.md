@@ -140,4 +140,4 @@ At the beginning of the year, Tina was an experimental open-source project that 
 
 In our next post, we're going to describe where this is all going and our plan for Tina in 2022. The whole team is truly excited to enter the next phase of our project and hope you will check it out and give us honest feedback. We want to hear about your projects that use Tina and anything we can do to make it easier, faster or better.
 
-To keep up to date with Tina goings-on make sure to follow [@tina_cms](https://twitter.com/tina_cms) on Twitter. Want to chat with the team? Join the [Discord](https://discord.gg/njvZZYHj2Q)
+To keep up to date with Tina goings-on make sure to follow [@tinacms](https://twitter.com/tinacms) on Twitter. Want to chat with the team? Join the [Discord](https://discord.gg/njvZZYHj2Q)
