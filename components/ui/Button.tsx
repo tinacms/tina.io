@@ -20,7 +20,7 @@ export const Button = ({
   ...props
 }) => {
   const baseClasses =
-    'transition duration-150 ease-out rounded-full flex items-center font-tuner px-6 py-2 text-base font-medium focus:outline-none focus:shadow-outline hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px leading-tight'
+    'transition duration-150 ease-out rounded-full flex items-center font-tuner px-6 pt-[9px] pb-2 text-base font-medium focus:outline-none focus:shadow-outline hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px leading-tight'
 
   const raisedButtonClasses = 'shadow active:shadow-none'
 
@@ -30,13 +30,13 @@ export const Button = ({
       ' text-orange-600 border border-seafoam-200 bg-gradient-to-br from-seafoam-50 to-seafoam-200',
     blue:
       raisedButtonClasses +
-      ' text-white border border-blue-600 bg-gradient-to-br from-blue-300 to-blue-600',
+      ' text-white border border-blue-500 bg-gradient-to-br from-blue-300 to-blue-600',
     orange:
       raisedButtonClasses +
       ' text-white border border-orange-600 bg-gradient-to-br from-orange-400 to-orange-600',
     white:
       raisedButtonClasses +
-      ' text-red-600 border border-gray-100 bg-gradient-to-br from-white to-gray-50',
+      ' text-blue-700 border border-gray-50 bg-gradient-to-br from-white to-gray-50',
   }
 
   return (

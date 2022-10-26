@@ -1,13 +1,27 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
+import HeroBg from '../../public/svg/hero-bg.svg'
 
-export const Hero = styled(({ overlap, narrow, children, ...styleProps }) => {
+export const Hero = ({ overlap, narrow, children }) => {
   return (
-    <div {...styleProps}>
+    <div
+      className={`relative z-10 text-center px-8 pb-8 lg:pb-10 pt-20 lg:pt-24`}
+    >
       <HeroTitle narrow={narrow}>{children}</HeroTitle>
+      <HeroBg className="absolute z-10 left-0 bottom-0 w-full h-auto" />
     </div>
   )
-})`
+}
+
+export const HeroOld = styled(
+  ({ overlap, narrow, children, ...styleProps }) => {
+    return (
+      <div {...styleProps}>
+        <HeroTitle narrow={narrow}>{children}</HeroTitle>
+      </div>
+    )
+  }
+)`
   position: relative;
   text-align: center;
   padding: 2rem 2rem 6rem 2rem;

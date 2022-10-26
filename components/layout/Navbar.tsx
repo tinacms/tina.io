@@ -19,7 +19,7 @@ export function Navbar({}) {
         <ul className="flex gap-6 lg:gap-10">
           {data.map(item => {
             const navLinkClasses =
-              'flex items-center text-blue-700 drop-shadow-sm text-base font-medium'
+              'group flex items-center text-blue-700 hover:text-blue-500 transition ease-out duration-150 cursor-pointer drop-shadow-sm text-base font-medium'
             if (item.href) {
               const { id, href, label } = item
               return (
@@ -33,7 +33,7 @@ export function Navbar({}) {
                 <li key={id} className={navLinkClasses}>
                   {label}{' '}
                   <BiChevronRight
-                    className={`text-blue-200 hover:text-blue-400 w-6 h-auto transition ease-out duration-200 transform`}
+                    className={`text-blue-200 group-hover:text-blue-400 group-hover:rotate-90 w-6 h-auto transition ease-out group-hover:duration-300 duration-150 transform`}
                   />
                 </li>
               )
