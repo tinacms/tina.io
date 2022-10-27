@@ -47,6 +47,30 @@ export const getStaticPaths = async () => {
 }
 ```
 
+### Example: Fetching content through getServerSideProps
+
+```tsx
+// pages/home.js
+import { client } from '../[pathToTina]/.tina/__generated__/client'
+
+const getServerSideProps = async () => {
+  let postResponse = {}
+  try {
+    postResponse = await client.queries.post({ relativePath: 'HelloWorld.md' })
+  } catch {
+    // swallow errors related to document creation
+  }
+
+  return {
+    props: {
+      data: postResponse.data,
+      query: postResponse.query,
+      variables: postResponse.variables,
+    },
+  }
+}
+```
+
 ### Next.js `fallback: "blocking"`
 
 In Next.js one can specify [`fallback: "blocking"`](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths#fallback-blocking), this allows `getStaticProps` to run server-side at request time when a user goes to a page that was not specified in `getStaticPaths`. This allows document-creation to work with Tina, as well as advanced NextJS features like ISR.
