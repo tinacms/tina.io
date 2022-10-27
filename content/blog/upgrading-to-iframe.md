@@ -62,11 +62,11 @@ Your `pages/admin` file can now be deleted.
 
 Rename your `schema.{ts,tsx,js,jsx}` file to `config.{ts,tsx,js,jsx}`
 
-Replace `defineSchema` with `defineStaticConfig`. This contains both your schema, and your build config.
+Replace `defineSchema` with `defineConfig`. This contains both your schema, and your build config.
 
 ```diff
 - const schema = defineSchema({
-+ const config = defineStaticConfig({
++ const config = defineConfig({
 +     schema,
 +     clientId,
 +     branch,
@@ -89,7 +89,7 @@ Replace `defineSchema` with `defineStaticConfig`. This contains both your schema
 + export default config;
 ```
 
-Most of the `defineStaticConfig` properties will look familiar, apart from the new `build` property. This is required now that the Tina admin gets built outsite your site's build-process.
+Most of the `defineConfig` properties will look familiar, apart from the new `build` property. This is required now that the Tina admin gets built outsite your site's build-process.
 
 For NextJS sites, use these values:
 

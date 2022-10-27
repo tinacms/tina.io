@@ -55,9 +55,9 @@ export default defineSchema({
 must be changed to
 
 ```ts
-import { defineStaticConfig } from 'tinacms'
+import { defineConfig } from 'tinacms'
 
-export default defineStaticConfig({
+export default defineConfig({
   // pass schema and apiUrl to the config (required) (this is how it is passed to the fronend)
   schema: schema,
   apiUrl: apiUrl,
