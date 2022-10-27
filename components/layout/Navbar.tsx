@@ -1,40 +1,60 @@
 import React from 'react'
 import Link from 'next/link'
 import { Container } from '../blocks'
-import TinaIcon from '../../public/svg/tina-icon.svg'
 import GitHubButton from 'react-github-btn'
 import data from '../../content/navigation.json'
 import { Button, ButtonGroup } from 'components/ui/Button'
 import { BiChevronRight } from 'react-icons/bi'
+import { TinaIcon } from 'components/logo'
 
 export function Navbar({}) {
   return (
     <div className="w-full p-4 lg:py-6 lg:px-10 flex items-center justify-between">
       <Link href="/">
         <a className="">
-          <TinaIcon className="w-10 h-auto block fill-orange-500" />
+          <TinaIcon color="orange" />
         </a>
       </Link>
       <nav className="flex flex-col-reverse sm:flex-row items-end sm:items-center gap-2 sm:gap-6 lg:gap-10">
-        <ul className="flex gap-6 lg:gap-10">
+        <ul className="flex gap-6 lg:gap-10 relative z-20">
           {data.map(item => {
             const navLinkClasses =
-              'group flex items-center text-blue-700 hover:text-blue-500 transition ease-out duration-150 cursor-pointer drop-shadow-sm text-base font-medium'
+              'flex items-center text-blue-700 hover:text-blue-500 transition ease-out duration-150 cursor-pointer drop-shadow-sm text-base font-medium'
             if (item.href) {
               const { id, href, label } = item
               return (
-                <li key={id} className={navLinkClasses}>
-                  <Link href={href}>{label}</Link>
+                <li key={id} className={`group ${navLinkClasses}`}>
+                  <Link href={href}>
+                    <a className="py-2">{label}</a>
+                  </Link>
                 </li>
               )
             } else {
               const { id, label } = item
               return (
-                <li key={id} className={navLinkClasses}>
-                  {label}{' '}
+                <li key={id} className={`group ${navLinkClasses} relative`}>
+                  <span className="py-2">{label}</span>
                   <BiChevronRight
-                    className={`text-blue-200 group-hover:text-blue-400 group-hover:rotate-90 w-6 h-auto transition ease-out group-hover:duration-300 duration-150 transform`}
+                    className={`text-blue-200 group-hover:text-blue-400 group-hover:rotate-90 w-6 h-auto transition ease-out duration-300 transform`}
                   />
+                  <ul className="absolute origin-top-left transition duration-300 ease-out opacity-0 group-hover:opacity-100 scale-95 group-hover:100 pointer-events-none group-hover:pointer-events-auto -translate-y-2 group-hover:translate-y-0 z-50 top-full -mt-0.5 -left-2 bg-white shadow-lg rounded-md px-4 py-3">
+                    {item.items &&
+                      item.items.map(child => {
+                        const { id, href, label } = child
+                        return (
+                          <li
+                            key={id}
+                            className={`${navLinkClasses} whitespace-nowrap`}
+                          >
+                            <Link href={href}>
+                              <a className="py-1 text-gray-600 hover:text-blue-500">
+                                {label}
+                              </a>
+                            </Link>
+                          </li>
+                        )
+                      })}
+                  </ul>
                 </li>
               )
             }

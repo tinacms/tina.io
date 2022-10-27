@@ -14,7 +14,7 @@ export const Footer = ({ light }) => {
       {/* Top */}
       <div className="flex w-full justify-between items-start border-t-2 border-orange-400 bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 px-4 py-6 lg:py-10 lg:px-10">
         <div className="max-w-[20%] flex-1">
-          <TinaIconSvg className="w-10 h-auto fill-white" />
+          <TinaIcon color="white" />
         </div>
         <div className="flex-1">
           <LinkNav />

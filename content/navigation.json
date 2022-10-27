@@ -22,15 +22,39 @@
     "label": "Resources",
     "items": [
       {
-        "id": "blog",
-        "label": "Blog",
-        "href": "/blog",
+        "id": "playground",
+        "label": "Schema Playground",
+        "href": "/playground",
+        "external": false
+      },
+      {
+        "id": "generator",
+        "label": "Schema Generator",
+        "href": "/generator",
         "external": false
       },
       {
         "id": "showcase",
         "label": "Showcase",
         "href": "/showcase",
+        "external": false
+      },
+      {
+        "id": "videos",
+        "label": "Video Demos",
+        "href": "/video-demos",
+        "external": false
+      },
+      {
+        "id": "notes",
+        "label": "Release Notes",
+        "href": "/release-notes",
+        "external": false
+      },
+      {
+        "id": "blog",
+        "label": "Blog",
+        "href": "/blog",
         "external": false
       }
     ]
