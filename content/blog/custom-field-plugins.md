@@ -152,4 +152,4 @@ Index.getInitialProps = async function() {
 
 ## Short and sweet, as promised 🍰
 
-This post, combined with the former, should give you all the building blocks to start making your own field plugins. Feel free to _dive into the documentation_ on [fields](https://tinacms.org/docs/plugins/fields/custom-fields/) or [plugins](https://tinacms.org/docs/cms#plugins). Make sure to share your groovy custom fields with us [@tina_cms](https://twitter.com/tina_cms) 🖖. Or, if you feel there is a fundamental field missing from Tina, [open up a PR](https://github.com/tinacms/tinacms/) to contribute your custom field!
+This post, combined with the former, should give you all the building blocks to start making your own field plugins. Feel free to _dive into the documentation_ on [fields](https://tinacms.org/docs/plugins/fields/custom-fields/) or [plugins](https://tinacms.org/docs/cms#plugins). Make sure to share your groovy custom fields with us [@tinacms](https://twitter.com/tinacms) 🖖. Or, if you feel there is a fundamental field missing from Tina, [open up a PR](https://github.com/tinacms/tinacms/) to contribute your custom field!

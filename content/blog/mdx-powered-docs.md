@@ -75,4 +75,4 @@ One benefit of using Tina is that you can create new pages without leaving your 
 
 We hope you enjoy the documentation starter and it unlocks your team’s productivity. If you have any questions or issues please make sure to join the [Discord](https://discord.gg/njvZZYHj2Q) or use our [GitHub Discussions](https://github.com/tinacms/tinacms/discussions).
 
-To keep up to date with Tina’s goings-on make sure to follow [@tina_cms](https://twitter.com/tina_cms) on Twitter.
+To keep up to date with Tina’s goings-on make sure to follow [@tinacms](https://twitter.com/tinacms) on Twitter.

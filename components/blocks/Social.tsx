@@ -12,7 +12,7 @@ export const socialTemplate = {
       tina: 'https://github.com/tinacms/tinacms/discussions',
       discord: 'https://discord.com/invite/zumN63Ybpf',
       github: 'https://github.com/tinacms/tinacms',
-      twitter: 'https://twitter.com/tina_cms',
+      twitter: 'https://twitter.com/tinacms',
     },
   },
   fields: [

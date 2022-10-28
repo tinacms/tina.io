@@ -4,6 +4,7 @@ date: '2020-09-10T10:20:39-04:00'
 author: DJ
 last_edited: '2020-09-10T15:10:14.859Z'
 ---
+
 👋 Hey all you cool cats and kittens! It's been a while since our last update, so we wanted to let you know what we've been up to.
 
 ## Documentation Cycle Recap
@@ -26,7 +27,7 @@ The Tina Open Source Team will be conducting bi-weekly office hours. Anyone inte
 
 Our first office hours session will be on September 11th from 10AM-11AM EDT (7AM-8AM PDT). We plan to alternate between morning and afternoon time slots to accommodate as many timezones as we can.
 
-Keep an eye out on [Twitter](https://twitter.com/tina_cms) or [our community forum](https://community.tinacms.org/) for the meeting link.
+Keep an eye out on [Twitter](https://twitter.com/tinacms) or [our community forum](https://community.tinacms.org/) for the meeting link.
 
 ## In Closing
 

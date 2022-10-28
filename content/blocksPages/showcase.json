@@ -12,6 +12,15 @@
     {
       "items": [
         {
+          "headline": "Photography Portfolio",
+          "text": "A beautiful personal portfolio site by [Aníbal Santos Gómez](https://github.com/ansango/). ",
+          "url": "https://www.anibalsantosgomez.com/",
+          "media": {
+            "src": "https://res.cloudinary.com/forestry-demo/image/upload/v1666102900/tina-showcase/anibalsantosgomez.com.gif"
+          },
+          "_template": "project"
+        },
+        {
           "headline": "Paradise Helicopters",
           "text": "A marketing site for Hawaii's largest locally owned and operated helicopter company. Built by [Murmur Creative](https://murmurcreative.com/) in Portland, Oregon. ",
           "url": "https://paradisecopters.com/",
@@ -93,24 +102,6 @@
           "_template": "project"
         },
         {
-          "headline": "Metrics Watch",
-          "text": "A marketing site for Metrics Watch, a marketing reporting platform for agencies. ",
-          "url": "https://metricswatch.com/",
-          "media": {
-            "src": "/img/metrics-watch.png"
-          },
-          "_template": "project"
-        },
-        {
-          "headline": "Broken Heart Horse Farm",
-          "text": "A Marketing site for a full-service boarding, training, sales, lessons, and equestrian show facility and ranch in Colorado, US. ",
-          "url": "https://www.brokenhearthorsefarm.com/",
-          "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_1000,g_face/v1651703972/tina-showcase/brokenhearthorsefarm.png"
-          },
-          "_template": "project"
-        },
-        {
           "headline": "Maximum Image",
           "text": "The corporate website of Maximum Image , a promotional company that creates and maintains corporate images for top level clients. Developed by Sols.mk",
           "url": "https://www.maximumimage.eu/",
@@ -118,9 +109,23 @@
             "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_1000,g_face/v1651703972/tina-showcase/maximumimage.png"
           },
           "_template": "project"
+        },
+        {
+          "headline": "Metrics Watch",
+          "text": "A marketing site for Metrics Watch, a marketing reporting platform for agencies. ",
+          "url": "https://metricswatch.com/",
+          "media": {
+            "src": "/img/metrics-watch.png"
+          },
+          "_template": "project"
         }
       ],
       "_template": "showcase"
     }
-  ]
+  ],
+  "_collection": "page",
+  "_keepTemplateKey": false,
+  "_template": "page",
+  "_relativePath": "showcase.json",
+  "_id": "content/blocksPages/showcase.json"
 }

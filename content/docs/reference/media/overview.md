@@ -44,4 +44,4 @@ With the built-in repo-based media option, media is stored within the site's rep
 
 TinaCMS also supports pluggable external media providers.
 
-[Read more about the Cloudinary implementation here](/docs/reference/media/cloudinary/)
+[Read more about the external media store implementation here](/docs/reference/media/external/authentication)

@@ -48,7 +48,7 @@ If the source JSON for the example contact info looked like this:
 {
   "contact": {
     "email": "hello@tinacms.org",
-    "twitter_handle": "tina_cms",
+    "twitter_handle": "tinacms",
     "github_handle": "tinacms"
   }
 }

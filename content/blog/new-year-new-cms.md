@@ -11,6 +11,7 @@ opengraph:
     height: '1080,'
     alt: 'New Year, New CMS?'
 ---
+
 Here we are, the new year is upon us, and if you are like us, you have set some New Year’s resolutions for yourself. We are big fans of the fresh start and self-improvement that comes along with this time of year. Have you set any resolutions, maybe building or rebuilding your own personal site, starting a new business, or giving your portfolio a new lick of pain?. That means that you will need a CMS to handle all the content that drives your site and we think Tina can fill the role in some unique ways.
 
 ## Why Tina?
@@ -19,9 +20,9 @@ Here we are, the new year is upon us, and if you are like us, you have set some 
 
 Traditionally when you sign up for a CMS, your content is locked into the vendor. This means if you decide that the CMS is not for you, you have to find a way to export that data and import it into your new CMS. That is not what Tina is about, we don’t want to hold you or your content hostage. In fact, Tina doesn’t store any of your data, it is stored in a GitHub repository that you own. Yep, that is right, you own and control it all. In addition to feeling secure that you own your own content, there are many practical advantages to this approach such as:
 
-* Easy to track when and what changed in your project
-* CI / CD support
-* No vendor lock in
+- Easy to track when and what changed in your project
+- CI / CD support
+- No vendor lock in
 
 ### Contextual Editing
 
@@ -59,11 +60,11 @@ To use the `create-tina-app` you will need `Node 14+` .This doesn't require you 
 
 Tina CLI (`npx @tincms/cli@latest init`) allows you to add Tina to an existing Next.js application. When using the CLI we will take care of the important pieces including:
 
-* Adding all the Tina dependencies
-* Setting up a .tina folder with a basic schema
-* Creating a demo directory with an example Tina powered page
-* Creating an admin route
-* Ensuring Tina best practices are used
+- Adding all the Tina dependencies
+- Setting up a .tina folder with a basic schema
+- Creating a demo directory with an example Tina powered page
+- Creating an admin route
+- Ensuring Tina best practices are used
 
 Using the Tina CLI allows you to add Tina and selectively integrate it into your existing Next.js application. This allows you to keep your established site and slowly bring the power of Tina to your editors and content team. Though once you use it, we are not sure how slowly you will want to move.
 
@@ -77,11 +78,11 @@ You know that you will want to be part of this creative, innovative, supportive 
 
 Tina has a community [Discord](https://discord.com/invite/zumN63Ybpf) that is full of Jamstack lovers and Tina enthusiasts. When you join you will find a place:
 
-* To get help with issues
-* Find the latest Tina news and sneak previews
-* Share your project with Tina community, and talk about your experience
-* Chat about the Jamstack
+- To get help with issues
+- Find the latest Tina news and sneak previews
+- Share your project with Tina community, and talk about your experience
+- Chat about the Jamstack
 
 ### Tina Twitter
 
-Our Twitter account ([@tina_cms](https://twitter.com/tina_cms)) announces the latest features, improvements, and sneak peeks to Tina. We would also be psyched if you tagged us in projects you have built.
+Our Twitter account ([@tinacms](https://twitter.com/tinacms)) announces the latest features, improvements, and sneak peeks to Tina. We would also be psyched if you tagged us in projects you have built.
