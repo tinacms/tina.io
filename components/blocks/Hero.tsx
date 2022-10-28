@@ -1,8 +1,9 @@
 import React from 'react'
 import { actionsTemplate, Actions } from './Actions'
 import { Container } from './Container'
-import HeroBackground from '../../public/svg/hero-background.svg'
+import HeroBackground from '../../public/svg/hero-bg.svg'
 import type { TinaTemplate } from '@tinacms/cli'
+import HeroBg from '../../public/svg/hero-bg.svg'
 
 export const heroTemplate: TinaTemplate = {
   label: 'Hero',
@@ -39,8 +40,7 @@ export const heroTemplate: TinaTemplate = {
 
 export function HeroBlock({ data, index }) {
   return (
-    <>
-      <section key={index} className={`hero ${data.videoSrc ? 'with-video' : 'without-video'}`}>
+      <section key={index} className={`relative overflow-visible z-10 text-center px-8 pb-10 md:pb-16 lg:pb-28 pt-20 lg:pt-24`}>
         <Container width="narrow" center>
           <HeroFeature item={data} />
         </Container>
@@ -49,46 +49,8 @@ export function HeroBlock({ data, index }) {
             <Video src={data.videoSrc} />
           </Container>
         )}
-        <div className={`background ${data.videoSrc ? 'with-video' : 'without-video'}`}>
-          <HeroBackground />
-        </div>
+        <HeroBg className="absolute pointer-events-none -z-1 left-0 bottom-0 w-full h-auto" />
       </section>
-      <style jsx>{`
-        .hero {
-          position: relative;
-          z-index: 2;
-        }
-
-        .hero.without-video {
-          margin-bottom: -2rem;
-        }
-
-
-        .background.with-video {
-          height: 66.6%;
-        }
-
-        .background.without-video {
-          height: calc(100%);
-        }
-
-        .background {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          z-index: -1;
-
-          :global(svg) {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-          }
-        }
-      `}</style>
-    </>
   )
 }
 
@@ -101,15 +63,14 @@ export const HeroFeature = ({ item }) => {
         {item.actions && <Actions items={item.actions} align="center" />}
       </div>
       <style jsx>{`
-        .feature {
-          padding: 4rem 0 7rem 0;
-        }
 
         .heading {
-          font-family: var(--font-tuner-medium);
-          font-weight: normal;
-          font-size: 3.125rem;
-          line-height: 1.4;
+          font-family: var(--font-tuner);
+          font-weight: bold;
+          font-style: normal;
+          font-size: 2.5rem;
+          line-height: 1.3;
+          letter-spacing: 0.1px;
           display: inline-block;
           color: transparent;
           background: linear-gradient(
@@ -120,9 +81,16 @@ export const HeroFeature = ({ item }) => {
           );
           -webkit-background-clip: text;
           background-clip: text;
+          text-align: center;
+          margin: 0 auto;
+          max-width: 12em;
 
-          &:not(:last-child) {
-            margin-bottom: 2.5rem;
+          @media (min-width: 800px) {
+            font-size: 3rem;
+          }
+
+          @media (min-width: 1200px) {
+            font-size: 3.5rem;
           }
         }
       `}</style>

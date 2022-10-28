@@ -5,7 +5,12 @@
   },
   "blocks": [
     {
-      "intro": "Something that talks about pricing.\n",
+      "headline": "Pricing",
+      "text": "",
+      "_template": "hero"
+    },
+    {
+      "intro": "Here's some text to introduce the page.\n",
       "tierOne": {
         "name": "Basic",
         "price": "Free",
@@ -18,7 +23,7 @@
         "name": "Basic",
         "price": "$10",
         "interval": "Month",
-        "body": "* Basic features\n* Basic support\n* A couple users\n\n",
+        "body": "* Basic features\n* Basic support\n* A couple users\n",
         "actions": [
           {
             "label": "Sign Up",
@@ -32,7 +37,7 @@
         "name": "Advanced",
         "price": "$100",
         "interval": "Month",
-        "body": "* Advanced features\n* More money\n* More support\n* More users\n\n",
+        "body": "* Advanced features\n* More money\n* More support\n* More users\n",
         "actions": [
           {
             "label": "Sign Up",
@@ -70,7 +75,7 @@
           "answer": "This is the answer to that question.\n"
         }
       ],
-      "color": "seafoam",
+      "color": "gradient",
       "_template": "faq"
     }
   ]

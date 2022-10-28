@@ -3,6 +3,7 @@ import { RichTextWrapper } from '../layout/RichTextWrapper'
 import { Wrapper } from '../layout/Wrapper'
 import type { TinaTemplate } from '@tinacms/cli'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
+import BlobBackground from '../../public/svg/blob-bg.svg'
 
 export const faqTemplate: TinaTemplate = {
   label: 'FAQ',
@@ -46,8 +47,8 @@ export const faqTemplate: TinaTemplate = {
       label: 'Color',
       type: 'string',
       options: [{
-        label: 'Seafoam',
-        value: 'seafoam'
+        label: 'Gradient',
+        value: 'gradient'
       }, {
         label: 'White',
         value: 'white'
@@ -58,12 +59,13 @@ export const faqTemplate: TinaTemplate = {
 
 export function FaqBlock({ data, index }) {
   return (
-    <section key={index} className={`faq section ${data.color === 'seafoam' ? 'seafoam' : ''}`}>
-        <RichTextWrapper>
+    <section key={index} className={`relative py-16 lg:py-24`}>
+        {data.color === 'gradient' && <BlobBackground className="absolute pointer-events-none top-0 left-0 -z-1 w-full h-auto min-h-screen max-h-full" />}
           <Wrapper narrow>
             <div className="faq-wrapper">
-              <div className="mb-8">{data.title && <h3>{data.title}</h3>}
-              {data.intro && <TinaMarkdown content={data.intro} />}</div>
+              <div className="mb-8">{data.title && <h3 className="font-tuner text-3xl text-orange-500 mb-8">{data.title}</h3>}
+              {data.intro && <RichTextWrapper><TinaMarkdown content={data.intro} /></RichTextWrapper>}</div>
+              <RichTextWrapper>
               {data.questions &&
                 data.questions.map((item, index) => {
                   return (
@@ -74,9 +76,9 @@ export function FaqBlock({ data, index }) {
                     </div>
                   )
                 })}
+                </RichTextWrapper>
             </div>
           </Wrapper>
-        </RichTextWrapper>
       </section>
   )
 }

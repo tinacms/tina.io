@@ -48,7 +48,7 @@ const PricingCard = ({ data }) => {
         <div className="header">
           <h3 className="title">{data.name}</h3>
           {data.price && <><span className="dotted"></span>
-          <h3 className="price">
+          <h3 className="price text-blue-700">
             {data.price}
             {data.interval && (
               <span className="interval">/{data.interval}</span>
@@ -99,7 +99,6 @@ const PricingCard = ({ data }) => {
         }
         .price {
           font-family: var(--font-tuner);
-          color: var(--color-secondary);
           font-size: ${data.large ? '2rem' : '1.5rem'};
           flex: 0 0 auto;
           margin: 0;
@@ -182,15 +181,10 @@ export const pricingTemplate: TinaTemplate = {
     },
     {
       name: 'tierOne',
-      label: 'Tier One',
+      label: 'Base Tier',
       // @ts-ignore
       type: cardTemplate.type,
       fields: cardTemplate.fields,
-    },
-    {
-      name: 'segue',
-      label: 'Segue Text',
-      type: 'rich-text',
     },
     {
       name: 'tierTwo',
@@ -223,17 +217,12 @@ export function PricingBlock({ data, index }) {
         <RichTextWrapper>
           <Wrapper>
             {data.intro && (
-              <div className="intro-text">
+              <div className="intro-text text-center">
                 <TinaMarkdown content={data.intro} />
               </div>
             )}
             {data.tierOne && <PricingCard data={data.tierOne} />}
             <div className="segue">
-              {data.segue && (
-                <span>
-                  <TinaMarkdown content={data.segue} />
-                </span>
-              )}
             </div>
           </Wrapper>
           <Wrapper wide>
@@ -291,43 +280,18 @@ export function PricingBlock({ data, index }) {
           }
         }
         .segue {
-          position: relative;
-          font-size: 1.5rem;
-          text-align: center;
-          color: var(--color-secondary);
-          padding: 4.5rem 0;
-
-          :global(span) {
-            display: block;
-            padding: 0.5rem;
-          }
-
-          :global(p) {
-            &:first-of-type {
-              font-size: 1.5rem;
-            }
-
-            font-size: 1.25rem;
-            margin: 0.5rem 0;
-            color: var(--color-secondary);
-          }
-
-          @media (min-width: 1100px) {
-            padding: 6rem 0;
-          }
-
-          &:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            height: 100%;
-            width: 0;
-            transform: translateX(-50%);
-            border-left: 5px dotted var(--color-seafoam-dark);
-            z-index: -1;
-          }
+          display: block;
+          border: none;
+          border-image: initial;
+          background: url('/svg/vr.svg');
+          background-position: center;
+          background-size: 100% auto;
+          background-repeat: no-repeat;
+          width: 7px;
+          height: 200px;
+          margin: 0 auto;
         }
+
         .card-wrapper {
           margin-bottom: 4rem;
           display: flex;
