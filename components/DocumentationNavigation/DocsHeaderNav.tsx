@@ -29,7 +29,7 @@ export const DocsHeaderNav = styled(
         <div className="actions">
           <ButtonGroup>
             <Link href="https://app.tina.io/signin">
-              <Button size="small" color="blueInverted">
+              <Button size="small" color="white">
                 Sign In
               </Button>
             </Link>
