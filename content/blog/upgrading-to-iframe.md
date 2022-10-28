@@ -1,23 +1,23 @@
 ---
-title: Upgrading to 0.69.18 (with iframe-based previews)
-date: '2022-10-11T04:00:00.000Z'
-last_edited: '2022-10-11T04:00:00.000Z'
+title: Upgrading to 0.70.0 (with iframe-based previews)
+date: '2022-10-28T04:00:00.000Z'
+last_edited: '2022-10-28T04:00:00.000Z'
 author: James O'Halloran
 ---
 
-`tinacms@0.69.18` is a considerable rework to how TinaCMS is run, and how it renders previews.
+`tinacms@0.70.0` is a considerable rework to how TinaCMS is run, and how it renders previews.
 
 ## Background
 
 Previously, Tina's setup required you to wrap your site in a `TinaProvider` component. Tina would only be run from within your site.
 
-In `0.69.18`, we have introduced a "standalone tinacms build process", which instead runs your site's preview in sandboxed iframe.
+In `0.70.0`, we have introduced a "standalone tinacms build process", which instead runs your site's preview in sandboxed iframe.
 
 This offers several benefits including:
 
-- Removing styling conflicts between Tina, and your site.
-- A consistent framework-agnostic implementation.
-- Clearer and simpler code-splitting, for smaller bundle sizes on your live-site.
+* Removing styling conflicts between Tina, and your site.
+* A consistent framework-agnostic implementation.
+* Clearer and simpler code-splitting, for smaller bundle sizes on your live-site.
 
 ## Upgrading
 
@@ -122,4 +122,4 @@ module.exports = {
 }
 ```
 
-And that should be it! If you have any questions about migration, check out our [ community channels](/community/) for assistance.
+And that should be it! If you have any questions about migration, check out our [ community channels](/community/ "") for assistance.
