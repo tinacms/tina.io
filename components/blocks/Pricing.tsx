@@ -48,7 +48,7 @@ const PricingCard = ({ data }) => {
         <div className="header">
           <h3 className="title">{data.name}</h3>
           {data.price && <><span className="dotted"></span>
-          <h3 className="price text-blue-700">
+          <h3 className="price !text-blue-800">
             {data.price}
             {data.interval && (
               <span className="interval">/{data.interval}</span>

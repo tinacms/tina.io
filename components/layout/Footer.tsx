@@ -8,6 +8,29 @@ import { TinaIcon } from 'components/logo'
 import Link from 'next/link'
 import TinaIconSvg from '../../public/svg/tina-icon.svg'
 
+const footerLinks = [
+  {
+    link: '/security/',
+    label: 'Security',
+  },
+  {
+    link: '/telemetry/',
+    label: 'Open Source Telemetry',
+  },
+  {
+    link: '/terms-of-service/',
+    label: 'Terms of Service',
+  },
+  {
+    link: '/privacy-notice/',
+    label: 'Privacy Notice',
+  },
+  {
+    link: 'https://github.com/tinacms/tinacms/blob/master/LICENSE',
+    label: 'License',
+  },
+]
+
 export const Footer = ({}) => {
   return (
     <div>
@@ -52,33 +75,10 @@ export const Footer = ({}) => {
         </div>
         <div className="flex drop-shadow-sm flex-wrap justify-end gap-x-6 gap-y-2">
           <div className="flex flex-wrap justify-end gap-x-3 gap-y-1">
-            <Link href="/security/" passHref>
-              <a className="transition ease-out duration-150 hover:opacity-100 opacity-70 whitespace-nowrap">
-                Security
-              </a>
-            </Link>
-            <Link href="/telemetry/" passHref>
-              <a className="transition ease-out duration-150 hover:opacity-100 opacity-70 whitespace-nowrap">
-                Open Source Telemetry
-              </a>
-            </Link>
-            <Link href="/terms-of-service/" passHref>
-              <a className="transition ease-out duration-150 hover:opacity-100 opacity-70 whitespace-nowrap">
-                Terms of Service
-              </a>
-            </Link>
-            <Link href="/privacy-notice/" passHref>
-              <a className="transition ease-out duration-150 hover:opacity-100 opacity-70 whitespace-nowrap">
-                Privacy Notice
-              </a>
-            </Link>
-            <a
-              href="https://github.com/tinacms/tinacms/blob/master/LICENSE"
-              target="_blank"
-              className="transition ease-out duration-150 hover:opacity-100 opacity-70 whitespace-nowrap"
-            >
-              License
-            </a>
+            {footerLinks.map(item => {
+              const { link, label } = item
+              return <FooterLink link={link} label={label} />
+            })}
           </div>
           <div>
             <p>
@@ -89,5 +89,15 @@ export const Footer = ({}) => {
         </div>
       </div>
     </div>
+  )
+}
+
+const FooterLink = ({ link, label }) => {
+  return (
+    <Link href={link} passHref>
+      <a className="transition ease-out duration-150 hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] hover:opacity-100 opacity-70 whitespace-nowrap">
+        {label}
+      </a>
+    </Link>
   )
 }

@@ -25,7 +25,7 @@ export const LinkItem = ({ item }) => {
   return (
     <li key={id} className="">
       <DynamicLink href={href} passHref>
-        <a className="inline-block drop-shadow-sm relative opacity-90 hover:opacity-100 text-white uppercase text-lg lg:text-xl font-tuner transition duration-150 ease-out hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px">
+        <a className="inline-block drop-shadow-sm relative opacity-90 hover:opacity-100 text-white uppercase text-lg lg:text-xl font-tuner transition duration-150 ease-out hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px">
           {label}
         </a>
       </DynamicLink>
