@@ -8,18 +8,18 @@ import { TinaIcon } from 'components/logo'
 import Link from 'next/link'
 import TinaIconSvg from '../../public/svg/tina-icon.svg'
 
-export const Footer = ({ light }) => {
+export const Footer = ({}) => {
   return (
     <div>
       {/* Top */}
-      <div className="flex w-full justify-between items-start border-t-2 border-orange-400 bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 px-4 py-6 lg:py-10 lg:px-10">
+      <div className="flex flex-col md:flex-row gap-6 w-full justify-between items-start bg-gradient-to-b from-orange-400 via-orange-500 to-orange-600 px-4 py-6 lg:py-10 lg:px-10">
         <div className="max-w-[20%] flex-1">
           <TinaIcon color="white" />
         </div>
         <div className="flex-1">
           <LinkNav />
         </div>
-        <div className="flex">
+        <div className="flex items-center gap-4">
           <iframe
             src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
             frameBorder="0"
@@ -27,21 +27,25 @@ export const Footer = ({ light }) => {
             width="150px"
             height="30px"
           ></iframe>
-          <a href="https://twitter.com/tina_cms" target="_blank">
-            <TwitterIconSvg />
+          <a
+            href="https://twitter.com/tina_cms"
+            className="transition ease-out duration-150 opacity-80 hover:opacity-100"
+            target="_blank"
+          >
+            <TwitterIconSvg className="w-8 h-auto fill-white" />
           </a>
           <a
-            className="github"
+            className="transition ease-out duration-150 opacity-80 hover:opacity-100"
             href="https://github.com/tinacms/tinacms"
             target="_blank"
           >
-            <GithubIconSvg />
+            <GithubIconSvg className="w-8 h-auto fill-white" />
           </a>
         </div>
       </div>
 
       {/* Bottom */}
-      <div className="flex flex-col lg:flex-row w-full lg:items-center lg:justify-between bg-gradient-to-br border-t-2 border-orange-500 from-orange-700 via-orange-800 to-orange-900 text-white p-4 lg:py-6 lg:px-10">
+      <div className="flex flex-col lg:flex-row w-full lg:items-center lg:justify-between bg-gradient-to-br border-t-2 border-orange-500 from-orange-600 via-orange-800 to-orange-900 text-white p-4 lg:py-6 lg:px-10">
         <div className="flex items-center gap-3 whitespace-nowrap">
           <span>Stay in touch 👉</span>
           <EmailForm isFooter />

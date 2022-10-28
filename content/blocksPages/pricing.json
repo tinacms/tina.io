@@ -1,0 +1,77 @@
+{
+  "seo": {
+    "title": "Build contextual editing into your site",
+    "description": "Open-source visual editing experience, backed by git."
+  },
+  "blocks": [
+    {
+      "intro": "Something that talks about pricing.\n",
+      "tierOne": {
+        "name": "Basic",
+        "price": "Free",
+        "interval": "",
+        "body": "* Here's a feature\n* And another one!\n* Such great value.\n",
+        "large": false
+      },
+      "segue": "",
+      "tierTwo": {
+        "name": "Basic",
+        "price": "$10",
+        "interval": "Month",
+        "body": "* Basic features\n* Basic support\n* A couple users\n\n",
+        "actions": [
+          {
+            "label": "Sign Up",
+            "icon": true,
+            "variant": "default",
+            "url": "/"
+          }
+        ]
+      },
+      "tierThree": {
+        "name": "Advanced",
+        "price": "$100",
+        "interval": "Month",
+        "body": "* Advanced features\n* More money\n* More support\n* More users\n\n",
+        "actions": [
+          {
+            "label": "Sign Up",
+            "icon": true,
+            "variant": "default",
+            "url": "/"
+          }
+        ]
+      },
+      "tierFour": {
+        "name": "Enterprise",
+        "price": "",
+        "body": "Whatever your needs, we can work something out.\n",
+        "actions": [
+          {
+            "label": "Contact Us",
+            "icon": true,
+            "variant": "default",
+            "url": "/"
+          }
+        ]
+      },
+      "_template": "pricing"
+    },
+    {
+      "title": "Frequently Asked Questions",
+      "intro": "Here are some common questions around our pricing model.\n",
+      "questions": [
+        {
+          "question": "Why is that not the thing?",
+          "answer": "This is definitely a great question, no doubt.\n"
+        },
+        {
+          "question": "What is this?",
+          "answer": "This is the answer to that question.\n"
+        }
+      ],
+      "color": "seafoam",
+      "_template": "faq"
+    }
+  ]
+}

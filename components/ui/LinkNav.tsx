@@ -5,60 +5,30 @@ import data from '../../content/navigation.json'
 
 export const LinkNav = ({}) => {
   return (
-    <ul className="flex flex-col gap-1">
+    <ul className="gap-1 lg:columns-2">
       {data.map(item => {
         if (item.href) {
-          const { id, href, label } = item
-          return (
-            <li key={id} className="">
-              <DynamicLink href={href} passHref>
-                <a className="inline-block relative text-white uppercase text-2xl font-tuner transition duration-150 ease-out hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px">
-                  {label}
-                </a>
-              </DynamicLink>
-            </li>
-          )
+          return <LinkItem item={item} />
+        }
+        if (item.items) {
+          return item.items.map(item => {
+            return <LinkItem item={item} />
+          })
         }
       })}
     </ul>
   )
 }
 
-// `
-//   padding: 0;
-//   margin: 0;
-//   list-style-type: none;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-
-//   li {
-//     margin: 0;
-//     display: block;
-
-//     &:not(:last-child) {
-//       margin-bottom: 0.5rem;
-//     }
-//   }
-
-//   a {
-//     font-size: 1.5rem;
-//     text-transform: uppercase;
-//     color: inherit;
-//     text-decoration: none;
-//     cursor: pointer;
-//     font-family: var(--font-tuner);
-//     font-weight: regular;
-//     font-style: normal;
-//     opacity: 1;
-//     transition: transform 180ms ease-out;
-//     display: block;
-//     line-height: 1;
-
-//     &:hover,
-//     &:focus {
-//       text-decoration: none;
-//       transform: translate3d(-1px, -2px, 0);
-//     }
-//   }
-// `
+export const LinkItem = ({ item }) => {
+  const { id, href, label } = item
+  return (
+    <li key={id} className="">
+      <DynamicLink href={href} passHref>
+        <a className="inline-block relative opacity-90 hover:opacity-100 text-white uppercase text-lg lg:text-xl font-tuner transition duration-150 ease-out hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px">
+          {label}
+        </a>
+      </DynamicLink>
+    </li>
+  )
+}

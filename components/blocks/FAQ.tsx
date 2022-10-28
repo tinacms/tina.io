@@ -58,13 +58,12 @@ export const faqTemplate: TinaTemplate = {
 
 export function FaqBlock({ data, index }) {
   return (
-    <>
-      <section key={index} className={`faq section ${data.color === 'seafoam' ? 'seafoam' : ''}`}>
+    <section key={index} className={`faq section ${data.color === 'seafoam' ? 'seafoam' : ''}`}>
         <RichTextWrapper>
           <Wrapper narrow>
             <div className="faq-wrapper">
-              {data.title && <h3>{data.title}</h3>}
-              {data.intro && <TinaMarkdown content={data.intro} />}
+              <div className="mb-8">{data.title && <h3>{data.title}</h3>}
+              {data.intro && <TinaMarkdown content={data.intro} />}</div>
               {data.questions &&
                 data.questions.map((item, index) => {
                   return (
@@ -79,41 +78,5 @@ export function FaqBlock({ data, index }) {
           </Wrapper>
         </RichTextWrapper>
       </section>
-      <style jsx>{`
-        .section {
-          padding: 3rem 0;
-
-          @media (min-width: 800px) {
-            padding: 5rem 0;
-          }
-        }
-
-        .seafoam {
-          background-color: var(--color-seafoam);
-          background: linear-gradient(
-            to bottom,
-            var(--color-seafoam-200) 8rem,
-            var(--color-seafoam-100)
-          );
-        }
-
-        .faq-wrapper {
-          width: 100%; 
-
-          :global(h3) {
-            font-size: 2rem;
-            color: var(--color-secondary);
-            font-family: var(--font-tuner);
-          }
-          :global(p) {
-            ${data.intro && `&:first-of-type {
-              font-size: 1.5rem;
-              margin-bottom: 2.5rem;
-            }`}
-            color: var(--color-secondary);
-          }
-        }
-      `}</style>
-    </>
   )
 }

@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
 import Link from 'next/link'
 import TinaIconSvg from '../../public/svg/tina-icon.svg'
 

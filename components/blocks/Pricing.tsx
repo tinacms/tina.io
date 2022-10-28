@@ -47,13 +47,13 @@ const PricingCard = ({ data }) => {
       <div className="card">
         <div className="header">
           <h3 className="title">{data.name}</h3>
-          <span className="dotted"></span>
+          {data.price && <><span className="dotted"></span>
           <h3 className="price">
             {data.price}
             {data.interval && (
               <span className="interval">/{data.interval}</span>
             )}
-          </h3>
+          </h3></>}
         </div>
         <div className="body">
           <div className="content">
@@ -84,8 +84,9 @@ const PricingCard = ({ data }) => {
           justify-content: space-between;
           flex-wrap: wrap;
           align-items: center;
+          gap: 1rem;
           line-height: 1.2;
-          background: var(--color-seafoam-100);
+          background: linear-gradient(to bottom right, var(--color-seafoam-200), var(--color-seafoam-100), white);
           border-bottom: 1px solid var(--color-seafoam-300);
           padding: ${data.large ? '2.5rem' : '2.25rem'};
         }
@@ -94,7 +95,6 @@ const PricingCard = ({ data }) => {
           color: var(--color-orange);
           font-size: ${data.large ? '2rem' : '1.5rem'};
           flex: 0 0 auto;
-          padding-right: 1rem;
           margin: 0;
         }
         .price {
@@ -102,7 +102,6 @@ const PricingCard = ({ data }) => {
           color: var(--color-secondary);
           font-size: ${data.large ? '2rem' : '1.5rem'};
           flex: 0 0 auto;
-          padding-left: 1rem;
           margin: 0;
         }
         .interval {
@@ -117,6 +116,7 @@ const PricingCard = ({ data }) => {
           flex-direction: column;
           justify-content: space-between;
           color: var(--color-secondary);
+          background: white;
         }
         .content {
           :global(strong) {
@@ -300,7 +300,6 @@ export function PricingBlock({ data, index }) {
           :global(span) {
             display: block;
             padding: 0.5rem;
-            background: white;
           }
 
           :global(p) {

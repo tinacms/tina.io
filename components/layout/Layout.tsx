@@ -25,7 +25,10 @@ export const Layout = ({ children, color }: LayoutProps) => {
       <Navbar />
       <div className="flex flex-col flex-1">{children}</div>
       <Footer />
-      <BlobBackground className="absolute top-0 left-0 w-screen h-screen -z-1" />
+      <div className="absolute top-0 left-0 w-screen -z-1">
+        <BlobBackground className="w-full h-auto" />
+        <div className="absolute w-full h-1/2 bg-gradient-to-t from-white to-transparent bottom-0 left-0"></div>
+      </div>
     </div>
   )
 }
