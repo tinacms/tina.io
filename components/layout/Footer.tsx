@@ -13,13 +13,13 @@ export const Footer = ({}) => {
     <div>
       {/* Top */}
       <div className="flex flex-col md:flex-row gap-6 w-full justify-between items-start bg-gradient-to-b from-orange-400 via-orange-500 to-orange-600 px-4 py-6 lg:py-10 lg:px-10">
-        <div className="max-w-[20%] flex-1">
+        <div className="max-w-[20%] flex-1 drop-shadow-sm">
           <TinaIcon color="white" />
         </div>
         <div className="flex-1">
           <LinkNav />
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 drop-shadow-sm">
           <iframe
             src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
             frameBorder="0"
@@ -50,7 +50,7 @@ export const Footer = ({}) => {
           <span>Stay in touch 👉</span>
           <EmailForm isFooter />
         </div>
-        <div className="flex flex-wrap justify-end gap-x-6 gap-y-2">
+        <div className="flex drop-shadow-sm flex-wrap justify-end gap-x-6 gap-y-2">
           <div className="flex flex-wrap justify-end gap-x-3 gap-y-1">
             <Link href="/security/" passHref>
               <a className="transition ease-out duration-150 hover:opacity-100 opacity-70 whitespace-nowrap">

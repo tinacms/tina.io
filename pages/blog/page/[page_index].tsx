@@ -25,7 +25,6 @@ const Index = props => {
           title: 'Blog',
         }}
       />
-      <Hero mini="true"></Hero>
       <BlogWrapper>
         {props.posts.map(post => (
           <DynamicLink

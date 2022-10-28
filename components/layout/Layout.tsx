@@ -16,7 +16,7 @@ export const Layout = ({ children, color }: LayoutProps) => {
   const router = useRouter()
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen overflow-hidden">
       <DefaultSeo
         openGraph={{
           url: 'https://tina.io' + router.asPath,
@@ -25,10 +25,7 @@ export const Layout = ({ children, color }: LayoutProps) => {
       <Navbar />
       <div className="flex flex-col flex-1">{children}</div>
       <Footer />
-      <div className="absolute top-0 left-0 w-screen -z-1">
-        <BlobBackground className="w-full h-auto" />
-        <div className="absolute w-full h-1/2 bg-gradient-to-t from-white to-transparent bottom-0 left-0"></div>
-      </div>
+      <BlobBackground className="absolute top-0 left-0 -z-1 w-full h-auto min-h-screen" />
     </div>
   )
 }

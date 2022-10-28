@@ -156,7 +156,7 @@ export const DocsGrid = styled.div`
   margin: 0 auto;
 
   @media (min-width: 500px) {
-    padding: 1rem 3rem 3rem 3rem;
+    padding: 1rem 3rem 4rem 3rem;
   }
 
   @media (min-width: 1200px) {
