@@ -37,12 +37,12 @@ const OverviewTemplate = props => {
       link: '/docs/introduction/using-starter/',
     },
     {
-      header: 'Add Tina to an Existing Next.js Site',
-      description: 'Have an existing NextJS site? Start here!',
+      header: 'Add Tina to an Existing Site',
+      description: 'Have an existing site? Start here!',
       link: '/docs/introduction/tina-init/',
     },
     {
-      header: 'Dashboard Quickstart',
+      header: 'Dashboard Quickstart (Next.js only)',
       description:
         'Setup a pre-configured Tina project with Tina & Vercel in minutes.',
       link: 'https://app.tina.io/quickstart',

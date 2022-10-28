@@ -47,11 +47,10 @@ Who's there?
 To define a Tina collection that maps to a `.md` file, your schema might look like this:
 
 ```ts
-// .tina/schema.{ts,js,tsx}
-import { defineSchema } from 'tinacms'
-
-const schema = defineSchema({
-  collections: [
+const default defineConfig({
+  // ...
+  schema: {
+    collections: [
     {
       label: 'Blog Posts',
       name: 'post',
@@ -71,10 +70,8 @@ const schema = defineSchema({
         },
       ],
     },
-  ],
+  ]}
 })
-
-export default schema
 ```
 
 - `format`, at the root of the collection, defines the filetype (`md` in this case).
@@ -124,27 +121,26 @@ If you are using `mdx` as the format, you'll have the ability to define custom c
 
 ### Defining a "template" in a collection
 
-Tina needs to have each MDX component defined in advance, in the `.tina/schema.{ts,js,tsx}` file.
+Tina needs to have each MDX component defined in advance, in the `.tina/config.{ts,js,tsx}` file.
 
 ```diff
-// .tina/schema.{ts,js,tsx}
-import { defineSchema } from 'tinacms'
-
-const schema = defineSchema({
-  collections: [
-    {
-      label: 'Blog Posts',
-      name: 'post',
-      path: 'content/posts',
+export default defineConfig({
+  // ...
+  schema: {
+    collections: [
+      {
+        label: 'Blog Posts',
+        name: 'post',
+        path: 'content/posts',
 -     format: 'md',
 +     format: 'mdx',
-      fields: [
-        // ...
-        {
-          type: 'rich-text',
-          label: 'Post Body',
-          name: 'body',
-          isBody: true,
+        fields: [
+          // ...
+          {
+            type: 'rich-text',
+            label: 'Post Body',
+            name: 'body',
+            isBody: true,
 +          templates: [
 +            {
 +              name: "NewsletterSignup",
@@ -163,13 +159,12 @@ const schema = defineSchema({
 +              ],
 +            },
 +          ],
-        },
-      ],
-    },
-  ],
+          },
+        ],
+      },
+    ],
+  }
 })
-
-export default schema
 ```
 
 By defining the above `NewsletterSignup` template, our editors now have the ability to add that template to the page body.

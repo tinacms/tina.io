@@ -5,6 +5,8 @@ last_edited: '2021-11-06T18:00:00.000Z'
 
 {{ WarningCallout text="This is an experimental feature, and the API is subject to change. We don't yet suggest using this for production use-cases. Have any thoughts? Let us know in the chat, or through the [GitHub discussion](https://github.com/tinacms/tinacms/discussions/2250)!" }}
 
+> Note: The active field indicator is not yet compatible with the new iframe approach introduced in `0.69.23`. Support will be added soon.
+
 ## Try it out
 
 To enable Active field indication you will need to add the `data-tinafield` to your client code that is powered by Tina. The `data-tinafield` will need to match the field name you provided in your schema. Below is an example:
@@ -12,28 +14,32 @@ To enable Active field indication you will need to add the `data-tinafield` to y
 ### Schema Code
 
 ```typescript
-export default defineSchema({
-  collections: [
-    {
-      label: "Blog Posts",
-      name: "posts",
-      path: "content/posts",
-      format: "mdx",
-      fields: [
-        {
-          type: "string",
-          label: "Title",
-          name: "title",
-        },
-        {
-          type: "rich-text",
-          label: "Body",
-          name: "_body",
-          templates: []
-        }
-      ]
-    }
-  ]
+export default defineConfig({
+  // ...
+  schema: {
+    collections: [
+      {
+        label: 'Blog Posts',
+        name: 'posts',
+        path: 'content/posts',
+        format: 'mdx',
+        fields: [
+          {
+            type: 'string',
+            label: 'Title',
+            name: 'title',
+          },
+          {
+            type: 'rich-text',
+            label: 'Body',
+            name: '_body',
+            templates: [],
+          },
+        ],
+      },
+    ],
+  },
+})
 ```
 
 ### Client Code

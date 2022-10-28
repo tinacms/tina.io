@@ -12,36 +12,37 @@ The Tina schema defines the shape of your content. Tina uses a "content-modeling
 - Mutating the schema is easy, as you can test out changes locally, or in a branch.
 - The developer can extend the schema in interesting ways (custom validation, custom UI fields, etc).
 
-The content model is defined in a file called `.tina/schema.{ts,js,tsx}`.
+The content model, and all configuration code is defined in a file called `.tina/config.{ts,js,tsx}`.
 
 ```ts
-// .tina/schema.{ts,js,tsx}
-import { defineSchema } from 'tinacms'
+// .tina/config.{ts,js,tsx}
+import { defineConfig } from 'tinacms'
 
-const schema = defineSchema({
-  collections: [
-    {
-      label: 'Blog Posts',
-      name: 'post',
-      path: 'content/posts',
-      fields: [
-        {
-          type: 'string',
-          label: 'Title',
-          name: 'title',
-        },
-        {
-          type: 'string',
-          label: 'Post Body',
-          name: 'body',
-          isBody: true,
-        },
-      ],
-    },
-  ],
+export default defineConfig({
+  // ...
+  schema: {
+    collections: [
+      {
+        label: 'Blog Posts',
+        name: 'post',
+        path: 'content/posts',
+        fields: [
+          {
+            type: 'string',
+            label: 'Title',
+            name: 'title',
+          },
+          {
+            type: 'string',
+            label: 'Post Body',
+            name: 'body',
+            isBody: true,
+          },
+        ],
+      },
+    ],
+  },
 })
-
-export default schema
 ```
 
 ## Defining "collections"
@@ -161,33 +162,31 @@ Every collection has a `defaultItem` property, which is used to populate the for
 ### Default item
 
 ```js
-// .tina/schema.{ts,js,tsx}
-import { defineSchema } from 'tinacms'
-
-const schema = defineSchema({
-  collections: [
-    {
-      label: 'Blog Posts',
-      name: 'post',
-      path: 'content/posts',
-      defaultItem: () => {
-        return {
-          // When a new post is created the title field will be set to "New post"
-          title: 'New Post',
-        }
-      },
-      fields: [
-        {
-          type: 'string',
-          label: 'Title',
-          name: 'title',
+export default defineConfig({
+  // ...
+  schema: {
+    collections: [
+      {
+        label: 'Blog Posts',
+        name: 'post',
+        path: 'content/posts',
+        defaultItem: () => {
+          return {
+            // When a new post is created the title field will be set to "New post"
+            title: 'New Post',
+          }
         },
-      ],
-    },
-  ],
+        fields: [
+          {
+            type: 'string',
+            label: 'Title',
+            name: 'title',
+          },
+        ],
+      },
+    ],
+  },
 })
-
-export default schema
 ```
 
 [See the docs](/docs/reference/collections/) for more examples of how to define defaults.
@@ -201,53 +200,51 @@ To set default values for objects of fields, use the `defaultItem` property (see
 Currently, when setting a default value for a [rich-text field](/docs/reference/types/rich-text/), you must provide the document Abstract Syntax Tree (AST). See the following example:
 
 ```js
-// .tina/schema.{ts,js,tsx}
-import { defineSchema } from 'tinacms'
-
-const schema = defineSchema({
-  collections: [
-    {
-      label: 'Blog Posts',
-      name: 'post',
-      path: 'content/posts',
-      defaultItem: () => {
-        return {
-          title: 'My New Post',
-          // The body will be populated with "Default Text"
-          body: {
-            type: 'root',
-            children: [
-              {
-                type: 'p',
-                children: [
-                  {
-                    type: 'text',
-                    text: 'Default Text',
-                  },
-                ],
-              },
-            ],
+export default defineConfig({
+  // ...
+  schema: {
+    collections: [
+      {
+        label: 'Blog Posts',
+        name: 'post',
+        path: 'content/posts',
+        defaultItem: () => {
+          return {
+            title: 'My New Post',
+            // The body will be populated with "Default Text"
+            body: {
+              type: 'root',
+              children: [
+                {
+                  type: 'p',
+                  children: [
+                    {
+                      type: 'text',
+                      text: 'Default Text',
+                    },
+                  ],
+                },
+              ],
+            },
+          }
+        },
+        fields: [
+          {
+            type: 'string',
+            label: 'Title',
+            name: 'title',
           },
-        }
+          {
+            type: 'string',
+            label: 'Post Body',
+            name: 'body',
+            isBody: true,
+          },
+        ],
       },
-      fields: [
-        {
-          type: 'string',
-          label: 'Title',
-          name: 'title',
-        },
-        {
-          type: 'string',
-          label: 'Post Body',
-          name: 'body',
-          isBody: true,
-        },
-      ],
-    },
-  ],
+    ],
+  },
 })
-
-export default schema
 ```
 
 ## Referencing another document
@@ -290,6 +287,6 @@ Each field in a collection can be of the following `type`:
 
 ## Summary
 
-- Your content is modeled in the `.tina/schema.{ts,js,tsx}` of your repo
+- Your content is modeled in the `.tina/config.{ts,js,tsx}` in your repo using `defineConfig`.
 - Your content model contains an array of "collections". A "collection" maps a content type to a directory in your repo.
 - A "collection" contains multiple fields, which can be of multiple scalar or non-scalar data types.

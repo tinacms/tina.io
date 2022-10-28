@@ -6,6 +6,8 @@ next: /docs/reference/media/external/s3
 
 Manage **Digital Ocean Spaces media assets** in TinaCMS.
 
+> The following guide relies on NextJS's API functions to authenticate the 3rd-party media interactions. We hope to document a framework-agnostic approach soon.
+
 ## Installation
 
 ### With Yarn
@@ -39,28 +41,26 @@ SPACES_SECRET_KEY=<Your Digital Ocean Spaces access secret>
 
 You can register the Digital Ocean Space Media store via the `loadCustomStore` prop.
 
-The `loadCustomStore` prop can be configured within `.tina/schema.ts`.
+The `loadCustomStore` prop can be configured within `.tina/config.{js,ts,tsx}`.
 
 ```tsx
-// .tina/schema.ts
+//.tina/config.{ts,js}
+//...
 
-// ...
-
-export default defineSchema({
-  // ...
-  config: {
-    media: {
-      loadCustomStore: async () => {
-        const pack = await import('next-tinacms-dos')
-        return pack.TinaCloudDOSMediaStore
-      },
+export default defineConfig({
+  //...
+  media: {
+    loadCustomStore: async () => {
+      const pack = await import('next-tinacms-dos')
+      return pack.TinaCloudCloudinaryMediaStore
     },
   },
-  // ...
 })
 ```
 
-## Set up API routes
+## Set up API routes (Next.js example)
+
+> ** NOTE: **this step will show you how to set up an API route for Next.js. If you are using a different framework, you will need to set up your own API route.
 
 Tina's "external media provider" support requires a light backend media handler, that needs to be setup/hosted by the user. There are multiple ways to do this, including the framework-agnostic [Netlify Functions implementation](/docs/reference/media/external/authentication/#netlify).
 
@@ -119,7 +119,7 @@ For Netlify usecase, please read how to set up Netlify Functions [here](/docs/re
 
 Now that the media store is registered and the API route for media set up, let's add an image to your schema.
 
-In your `.tina/schema.ts` add a new field for the image, e.g:
+In your schema add a new field for the image, e.g:
 
 ```ts
  {

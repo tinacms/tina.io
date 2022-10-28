@@ -37,64 +37,66 @@ As an alternative to the schema-specific queries, the GraphQL API also makes the
 Using the following schema, we'll show you how each of the schema-specific queries/mutations can be used.
 
 ```ts
-// .tina/schema.ts
-import { defineSchema } from 'tinacms'
+import { defineConfig } from 'tinacms'
 
-export default defineSchema({
-  collections: [
-    {
-      label: 'Blog Posts',
-      name: 'post',
-      path: 'content/posts',
-      format: 'json',
-      fields: [
-        {
-          type: 'string',
-          label: 'Title',
-          name: 'title',
-        },
-        {
-          type: 'string',
-          label: 'Category',
-          name: 'category',
-        },
-        {
-          type: 'datetime',
-          label: 'Date',
-          name: 'date',
-        },
-        {
-          type: 'reference',
-          label: 'Author',
-          name: 'author',
-          collections: ['author'],
-        },
-      ],
-      indexes: [
-        {
-          name: 'category-date',
-          fields: [{ name: 'category' }, { name: 'date' }],
-        },
-      ],
-    },
-    {
-      label: 'Authors',
-      name: 'author',
-      format: 'json',
-      path: 'content/authors',
-      fields: [
-        {
-          type: 'string',
-          label: 'Name',
-          name: 'name',
-        },
-        {
-          type: 'string',
-          label: 'Avatar',
-          name: 'avatar',
-        },
-      ],
-    },
-  ],
+export default defineConfig({
+  // ...
+  schema: {
+    collections: [
+      {
+        label: 'Blog Posts',
+        name: 'post',
+        path: 'content/posts',
+        format: 'json',
+        fields: [
+          {
+            type: 'string',
+            label: 'Title',
+            name: 'title',
+          },
+          {
+            type: 'string',
+            label: 'Category',
+            name: 'category',
+          },
+          {
+            type: 'datetime',
+            label: 'Date',
+            name: 'date',
+          },
+          {
+            type: 'reference',
+            label: 'Author',
+            name: 'author',
+            collections: ['author'],
+          },
+        ],
+        indexes: [
+          {
+            name: 'category-date',
+            fields: [{ name: 'category' }, { name: 'date' }],
+          },
+        ],
+      },
+      {
+        label: 'Authors',
+        name: 'author',
+        format: 'json',
+        path: 'content/authors',
+        fields: [
+          {
+            type: 'string',
+            label: 'Name',
+            name: 'name',
+          },
+          {
+            type: 'string',
+            label: 'Avatar',
+            name: 'avatar',
+          },
+        ],
+      },
+    ],
+  },
 })
 ```

@@ -12,6 +12,15 @@ const dummyMailchimpEndpoint =
   'https://theDomainHere.us18.list-manage.com/subscribe/post?u=1512315231252&amp;id=0asd21t12e1'
 
 const config = {
+  async redirects() {
+    return [
+      {
+        source: '/docs/tinacms-context',
+        destination: '/docs/contextual-editing/overview',
+        permanent: true,
+      },
+    ]
+  },
   env: {
     MAILCHIMP_ADDRESS: process.env.MAILCHIMP_ADDRESS || dummyMailchimpEndpoint,
     HUBSPOT_TEAMS_FORM_ID: process.env.HUBSPOT_TEAMS_FORM_ID,

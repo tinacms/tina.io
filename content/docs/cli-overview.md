@@ -28,7 +28,7 @@ e.g: "tinacms dev --help"
 
 ### `tinacms dev`
 
-> To run this command, you must have a valid `.tina/schema.ts` file.
+> To run this command, you must have a valid `.tina/config.{ts,tsx.js}` file.
 
 `dev` will compile the schema into static files, generate typescript types for use in your project and start a graphQL server on http://localhost:4001
 
@@ -53,7 +53,7 @@ This command compiles and validates the schema and generates the client and type
 
 ### `npx @tinacms/cli@latest init`
 
-> The init command must be run inside of a Next.js project
+> The init command must be run inside of an existing project (E.g a NextJS project, Hugo, Jekyll, etc).
 
 ```bash,copy
 npx @tinacms/cli init
@@ -63,9 +63,8 @@ This will,
 
 1. Install all required dependencies for Tina.
 2. Define a basic content schema in the `.tina` directory.
-3. Add some Tina boilerplate components.
-4. Create example content in the demo directory.
-5. Edit the `package.json` to have the `dev`, `build`, and `start` scripts run the tina GraphQL API.
+3. Create example content in the demo directory.
+4. Edit the `package.json` to have the `dev`, `build`, and `start` scripts run the tina GraphQL API.
 
 #### Optional parameters
 
@@ -85,7 +84,7 @@ By default the mutation will not change the content of the files.
 
 Takes the following options,
 
-| Argument  | Description                                                                                                                                                                                                                                                             |
-| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--clean` | When this flag is used, it really submits the Graphql mutations to the file system. This means that it will clean out any fields that are not defined in your `schema.ts`. It is a good practice to do a `git commit` before doing this so one can undo changes easily. |
+| Argument  | Description                                                                                                                                                                                                                                                        |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `--clean` | When this flag is used, it really submits the Graphql mutations to the file system. This means that it will clean out any fields that are not defined in your schema. It is a good practice to do a `git commit` before doing this so one can undo changes easily. |
 |           |

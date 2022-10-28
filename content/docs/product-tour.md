@@ -15,7 +15,7 @@ TinaCMS CLI is a quick and easy way to set up a project with Tina. The CLI can i
 
 A Tina-ified site includes:
 
-- A Tina schema file that will be used to structure your content.
+- A Tina config file that be used to structure your content and configure tina.
 - A local version of the Tina GraphQL API (see below!) used to fetch your content.
 
 The Tina schema file is used to define the shape of your content. To learn more about content modelling within the Tina schema file, click [here](/docs/schema).
@@ -35,11 +35,19 @@ For more info on Tina’s GraphQL API or to understand content fetching, click [
 
 ## Tina Editing UI
 
+Tina's editing UI is compiled statically into the sites public directory. This allows Tina to be used in any site, regardless of the framework it is built with.
+
+When a Tina site is served, navigating to the `/admin` (or `/admin/index.html`) route take you to the Tina editing UI. This UI is used to edit content and manage your site’s content.
+
+For more info on Tina’s editing UI, click [here](/docs/using-tina-editor).
+
+Tina has two editing modes. Basic editing, which allows an editor to edit in a "basic editor" and contextual editing which can be used on any Reactive site (currently only support react).
+
+### Contextual editing
+
 ![Real-time editing with TinaCMS and Tina Cloud](https://res.cloudinary.com/forestry-demo/image/upload/v1619023278/tina-cms-visual-editing.gif 'Real-time editing with TinaCMS and Tina Cloud')
 
 Tina’s sidebar editor allows users to make changes to text, styling or components. Tina’s sidebar editor is set up on the frontend of your site and can be customizable to suit the needs of your site.
-
-When a Tina site is served, navigating to the `/admin` route will toggle Tina’s editing capability. When editing locally, the /admin route will redirect the user to the currently opened page in editing mode. When editing in production (using Tina Cloud - more info coming next!), a user will first be prompted to sign in, and then will be redirected to the page in editing mode.
 
 To learn more about contextual editing and setting up the sidebar, click [here](/docs/tinacms-context).
 
