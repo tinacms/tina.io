@@ -9,13 +9,13 @@ import { TinaIcon } from 'components/logo'
 
 export function Navbar({}) {
   return (
-    <div className="w-full p-4 lg:py-6 lg:px-10 flex items-center justify-between">
+    <div className="w-full p-4 lg:py-6 lg:px-10 flex items-center justify-between gap-6">
       <Link href="/">
         <a className="">
           <TinaIcon color="orange" />
         </a>
       </Link>
-      <nav className="flex flex-col-reverse sm:flex-row items-end sm:items-center gap-2 sm:gap-6 lg:gap-10">
+      <nav className="flex-1 flex flex-wrap-reverse justify-end items-end md:items-center gap-2 md:gap-x-6 lg:gap-x-10">
         <ul className="flex gap-6 lg:gap-10 relative z-20">
           {data.map(item => {
             const navLinkClasses =
@@ -71,14 +71,14 @@ export function Navbar({}) {
               Star
             </GitHubButton>
           </div>
-          <ButtonGroup>
+          <div className="w-full flex justify-start items-center gap-4">
             <Button className="" color="white">
               Log In
             </Button>
             <Button className="" color="blue">
               Sign Up
             </Button>
-          </ButtonGroup>
+          </div>
         </div>
       </nav>
     </div>
