@@ -1,7 +1,7 @@
 ---
 title: Using Media with Digital Ocean Spaces
-prev: /docs/reference/media/cloudinary
-next: /docs/reference/media/s3
+prev: /docs/reference/media/external/cloudinary
+next: /docs/reference/media/external/s3
 ---
 
 Manage **Digital Ocean Spaces media assets** in TinaCMS.
@@ -62,6 +62,10 @@ export default defineConfig({
 
 > ** NOTE: **this step will show you how to set up an API route for Next.js. If you are using a different framework, you will need to set up your own API route.
 
+Tina's "external media provider" support requires a light backend media handler, that needs to be setup/hosted by the user. There are multiple ways to do this, including the framework-agnostic [Netlify Functions implementation](/docs/reference/media/external/authentication/#netlify).
+
+### "NextJS API Routes" example (NextJS-only)
+
 Set up a new API route in the `pages` directory of your Next.js app, e.g. `pages/api/dos/[...media].ts`.
 Then add a new catch all API route for media.
 
@@ -108,6 +112,8 @@ export default createMediaHandler({
   },
 })
 ```
+
+For Netlify usecase, please read how to set up Netlify Functions [here](/docs/reference/media/external/authentication/#netlify)
 
 ## Update Schema
 

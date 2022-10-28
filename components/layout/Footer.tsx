@@ -189,7 +189,7 @@ export const Footer = styled(({ light, ...styleProps }) => {
             width="150px"
             height="30px"
           ></iframe>
-          <a href="https://twitter.com/tina_cms" target="_blank">
+          <a href="https://twitter.com/tinacms" target="_blank">
             <TwitterIconSvg />
           </a>
           <a

@@ -376,19 +376,31 @@
             "slug": "/docs/reference/media/repo-based/"
           },
           {
-            "title": "Cloudinary",
-            "id": "/docs/reference/media/cloudinary/",
-            "slug": "/docs/reference/media/cloudinary/"
-          },
-          {
-            "title": "Digital Ocean Spaces",
-            "id": "/docs/reference/media/do-spaces/",
-            "slug": "/docs/reference/media/do-spaces/"
-          },
-          {
-            "title": "AWS S3 Bucket",
-            "id": "/docs/reference/media/s3/",
-            "slug": "/docs/reference/media/s3/"
+            "title": "External Media Providers",
+            "id": "/docs/reference/media/external/authentication/",
+            "slug": "/docs/reference/media/external/authentication/",
+            "items": [
+              {
+                "title": "Setting up Authentication",
+                "id": "/docs/reference/media/external/authentication/",
+                "slug": "/docs/reference/media/external/authentication/"
+              },
+              {
+                "title": "Cloudinary",
+                "id": "/docs/reference/media/external/cloudinary/",
+                "slug": "/docs/reference/media/external/cloudinary/"
+              },
+              {
+                "title": "Digital Ocean Spaces",
+                "id": "/docs/reference/media/external/do-spaces/",
+                "slug": "/docs/reference/media/external/do-spaces/"
+              },
+              {
+                "title": "AWS S3 Bucket",
+                "id": "/docs/reference/media/external/s3/",
+                "slug": "/docs/reference/media/external/s3/"
+              }
+            ]
           }
         ]
       },

@@ -54,4 +54,4 @@ export default defineConfig({
 // ...
 ```
 
-Please see [the media docs](/docs/reference/media/cloudinary/) for how to set up media in your site.
+Please see [the media docs](/docs/reference/media/external/cloudinary/) for how to set up media in your site.
