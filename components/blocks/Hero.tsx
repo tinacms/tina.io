@@ -40,7 +40,7 @@ export const heroTemplate: TinaTemplate = {
 
 export function HeroBlock({ data, index }) {
   return (
-      <section key={index} className={`relative overflow-visible z-10 text-center px-8 pb-10 md:pb-16 lg:pb-28 pt-20 lg:pt-32`}>
+      <section key={index} className={`relative overflow-visible z-10 text-center px-8 pb-10 md:pb-16 lg:pb-28 pt-32 lg:pt-40`}>
         <Container width="narrow" center>
           <HeroFeature item={data} />
         </Container>

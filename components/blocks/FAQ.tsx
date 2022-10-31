@@ -59,9 +59,9 @@ export const faqTemplate: TinaTemplate = {
 
 export function FaqBlock({ data, index }) {
   return (
-    <section key={index} className={`relative py-16 lg:py-24`}>
-        {data.color === 'gradient' && <BlobBackground className="absolute pointer-events-none top-0 left-0 -z-1 w-full h-auto min-h-screen max-h-full" />}
-          <Wrapper narrow>
+    <section key={index} className={`relative overflow-hidden py-16 lg:py-24`}>
+        {data.color === 'gradient' && <BlobBackground className="absolute pointer-events-none top-0 left-0 w-full h-auto min-h-screen max-h-full" />}
+          <div className="relative z-10"><Wrapper narrow>
             <div className="faq-wrapper">
               <div className="mb-8">{data.title && <h3 className="font-tuner text-3xl text-orange-500 mb-8">{data.title}</h3>}
               {data.intro && <RichTextWrapper><TinaMarkdown content={data.intro} /></RichTextWrapper>}</div>
@@ -78,7 +78,7 @@ export function FaqBlock({ data, index }) {
                 })}
                 </RichTextWrapper>
             </div>
-          </Wrapper>
+          </Wrapper></div>
       </section>
   )
 }
