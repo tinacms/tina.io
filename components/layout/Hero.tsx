@@ -2,7 +2,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import HeroBg from '../../public/svg/hero-bg.svg'
 
-export const Hero = ({ overlap, narrow, children }) => {
+export const Hero = ({ narrow = false, children }) => {
   return (
     <div
       className={`relative overflow-visible z-10 text-center px-8 pb-10 md:pb-16 lg:pb-28 pt-32 lg:pt-40`}
