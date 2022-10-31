@@ -62,6 +62,7 @@ export function Navbar({}) {
         </ul>
         <div className="flex items-center gap-6 lg:gap-10">
           <div className="github flex-none h-[27px] drop-shadow">
+            {/* @ts-ignore */}
             <GitHubButton
               href="https://github.com/tinacms/tinacms"
               data-size="large"
