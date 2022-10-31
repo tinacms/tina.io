@@ -9,7 +9,7 @@ import { TinaIcon } from 'components/logo'
 
 export function Navbar({}) {
   return (
-    <div className="w-full p-4 lg:py-6 lg:px-10 flex items-center justify-between gap-6">
+    <div className="absolute w-full p-4 lg:py-6 lg:px-10 flex items-center justify-between gap-6">
       <Link href="/">
         <a className="">
           <TinaIcon color="orange" />
@@ -72,10 +72,10 @@ export function Navbar({}) {
             </GitHubButton>
           </div>
           <div className="w-full flex justify-start items-center gap-4">
-            <Button className="" color="white">
+            <Button className="" color="white" size="small">
               Log In
             </Button>
-            <Button className="" color="blue">
+            <Button className="" color="blue" size="small">
               Sign Up
             </Button>
           </div>

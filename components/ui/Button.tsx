@@ -24,7 +24,7 @@ const colorClasses = {
     ' text-orange-600 hover:text-orange-500 border border-seafoam-150 bg-gradient-to-br from-seafoam-50 to-seafoam-150',
   blue:
     raisedButtonClasses +
-    ' text-white hover:text-gray-50 border border-blue-500 bg-gradient-to-br from-blue-300 to-blue-600',
+    ' text-white hover:text-gray-50 border border-blue-400 bg-gradient-to-br from-blue-300 via-blue-400 to-blue-600',
   orange:
     raisedButtonClasses +
     ' text-white hover:text-gray-50 border border-orange-600 bg-gradient-to-br from-orange-400 to-orange-600',

@@ -26,7 +26,7 @@ export const Container = ({
         }
 
         .wide {
-          max-width: 1550px;
+          max-width: 1500px;
 
           @media (min-width: 600px) {
             width: 100%;

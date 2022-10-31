@@ -85,7 +85,6 @@ export const Actions = ({ items, align = 'left' }) => {
             if (item.variant == 'command') {
               return <CodeButton>{item.label}</CodeButton>
             }
-            console.log(item)
             const { variant, label, icon, url } = item
             const externalUrlPattern = /^((http|https|ftp):\/\/)/
             const external = externalUrlPattern.test(url)

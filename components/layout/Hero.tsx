@@ -5,79 +5,13 @@ import HeroBg from '../../public/svg/hero-bg.svg'
 export const Hero = ({ overlap, narrow, children }) => {
   return (
     <div
-      className={`relative overflow-visible z-10 text-center px-8 pb-10 md:pb-16 lg:pb-28 pt-20 lg:pt-24`}
+      className={`relative overflow-visible z-10 text-center px-8 pb-10 md:pb-16 lg:pb-28 pt-20 lg:pt-40`}
     >
       <HeroTitle narrow={narrow}>{children}</HeroTitle>
       <HeroBg className="absolute pointer-events-none -z-1 left-0 bottom-0 w-full h-auto" />
     </div>
   )
 }
-
-export const HeroOld = styled(
-  ({ overlap, narrow, children, ...styleProps }) => {
-    return (
-      <div {...styleProps}>
-        <HeroTitle narrow={narrow}>{children}</HeroTitle>
-      </div>
-    )
-  }
-)`
-  position: relative;
-  text-align: center;
-  padding: 2rem 2rem 6rem 2rem;
-  width: 100%;
-  overflow: hidden;
-
-  &:before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: -1px;
-    left: 50%;
-    bottom: 1.5rem;
-    width: calc(100% + 2px);
-    min-width: 800px;
-    transform: translate3d(-50%, 0, 0);
-    background-image: url('/svg/hero-background.svg');
-    background-size: 100% 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: -1;
-  }
-
-  @media (min-width: 1200px) {
-    padding: 3rem 2rem 8rem 2rem;
-  }
-
-  ${props =>
-    props.overlap &&
-    css`
-      padding-bottom: 12rem;
-      margin-bottom: -6rem;
-
-      @media (min-width: 1200px) {
-        padding: 9rem 1rem 21rem 1rem;
-        margin-bottom: -14rem;
-      }
-    `};
-
-  ${props =>
-    props.mini &&
-    css`
-      padding: 0;
-      height: 3rem;
-      margin-bottom: -6rem;
-
-      &:before {
-        bottom: 0;
-        background-image: url('/svg/hero-background-mini.svg');
-      }
-
-      @media (min-width: 1200px) {
-        padding: 0;
-      }
-    `};
-`
 
 export const HeroTitle = styled(({ narrow, children, ...styleProps }) => {
   return <h2 {...styleProps}>{children}</h2>
