@@ -5,9 +5,7 @@
   },
   "blocks": [
     {
-      "columnOne": "Test\n",
-      "columnTwo": "Test\n",
-      "_template": "columns"
+      "_template": "story"
     }
   ]
 }

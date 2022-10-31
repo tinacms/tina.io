@@ -19,7 +19,8 @@ import { pricingTemplate } from "../components/blocks/Pricing";
 import { faqTemplate } from "../components/blocks/FAQ";
 import { contentTemplate } from "../components/blocks/Content";
 import { columnsTemplate } from "../components/blocks/Columns";
-import {showcaseTemplate} from "../components/blocks/Showcase";
+import { showcaseTemplate } from "../components/blocks/Showcase";
+import { storyTemplate } from "../components/blocks/Story";
 import type { TinaTemplate } from "tinacms";
 
 export default defineSchema({
@@ -77,6 +78,7 @@ export default defineSchema({
             contentTemplate as TinaTemplate,
             showcaseTemplate as TinaTemplate,
             columnsTemplate as TinaTemplate,
+            storyTemplate as TinaTemplate,
           ],
         },
       ],

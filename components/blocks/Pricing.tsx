@@ -88,7 +88,11 @@ const PricingCard = ({ data }) => {
           line-height: 1.2;
           background: linear-gradient(to bottom right, var(--color-seafoam-200), var(--color-seafoam-100), white);
           border-bottom: 1px solid var(--color-seafoam-300);
-          padding: ${data.large ? '2.5rem' : '2.25rem'};
+          padding: ${data.large ? '2rem' : '1.75rem'};
+
+          @media (min-width: 1400px) {
+            padding: ${data.large ? '2.5rem' : '2.25rem'};
+          }
         }
         .title {
           font-family: var(--font-tuner);
@@ -110,12 +114,16 @@ const PricingCard = ({ data }) => {
         }
         .body {
           flex: 1 1 auto;
-          padding: ${data.large ? '2.5rem' : '2.25rem'};
           display: flex;
           flex-direction: column;
           justify-content: space-between;
           color: var(--color-secondary);
           background: white;
+          padding: ${data.large ? '2rem' : '1.75rem'};
+
+          @media (min-width: 1400px) {
+            padding: ${data.large ? '2.5rem' : '2.25rem'};
+          }
         }
         .content {
           :global(strong) {

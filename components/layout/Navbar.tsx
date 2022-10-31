@@ -47,7 +47,7 @@ export function Navbar({}) {
                             className={`${navLinkClasses} whitespace-nowrap`}
                           >
                             <Link href={href}>
-                              <a className="py-1 text-gray-600 hover:text-blue-500">
+                              <a className="p-1 text-gray-600 hover:text-blue-500">
                                 {label}
                               </a>
                             </Link>
