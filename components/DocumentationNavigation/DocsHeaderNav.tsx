@@ -114,9 +114,5 @@ export const DocsHeaderNav = styled(
     css`
       --color-background: var(--color-light);
       --color-foreground: var(--color-orange);
-
-      ${Button} {
-        border: 1px solid var(--color-light-dark);
-      }
     `};
 `

@@ -10,7 +10,7 @@
       "_template": "hero"
     },
     {
-      "intro": "Here's some text to introduce the page.\n",
+      "intro": "Here's some text to introduce the page.",
       "tierOne": {
         "name": "Basic",
         "price": "Free",

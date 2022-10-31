@@ -176,10 +176,6 @@ const StyledForm = styled.form`
     text-align: center;
   }
 
-  ${Button} {
-    margin: 1.5rem auto 0 auto;
-  }
-
   p {
     color: var(--color-seafoam-dark) !important;
     margin: 1rem 0 0.5rem 0 !important;
