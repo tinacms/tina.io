@@ -65,10 +65,19 @@ const RichText = css`
 
   h1,
   .h1 {
+    display: inline-block;
     font-size: 2.5rem;
     line-height: 1.3;
     letter-spacing: 0.1px;
-    color: var(--color-orange);
+    color: transparent;
+    background: linear-gradient(
+      to bottom right,
+      var(--color-orange-light),
+      var(--color-orange),
+      var(--color-orange-dark)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
 
     em {
       color: var(--color-secondary-dark);
@@ -85,10 +94,19 @@ const RichText = css`
 
   h2,
   .h2 {
+    display: inline-block;
     font-size: 2.25rem;
     line-height: 1.3;
     letter-spacing: 0.1px;
-    color: var(--color-orange);
+    color: transparent;
+    background: linear-gradient(
+      to bottom right,
+      var(--color-orange-light),
+      var(--color-orange),
+      var(--color-orange-dark)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
     font-weight: bold;
 
     em {
