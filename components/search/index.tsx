@@ -70,6 +70,7 @@ export default function Search({ indices, collapse, expanded = false }: any) {
   useClickOutside(ref, () => setFocus(false))
 
   return (
+    // @ts-ignore
     <InstantSearch
       searchClient={searchClient}
       indexName={indices[0].name}
