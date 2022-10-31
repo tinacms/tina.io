@@ -77,6 +77,7 @@ export function FeatureBlock({ data, index }) {
           {(data.text || data.actions) && <hr className="dottedBorder" />}
           {data.text && (
             <div className="textLarge">
+              {/* @ts-ignore */}
               <ReactMarkdown source={data.text} />
             </div>
           )}
