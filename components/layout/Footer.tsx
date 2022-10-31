@@ -101,7 +101,7 @@ export const Footer = ({}) => {
         <div className="max-w-[20%] flex-1 drop-shadow-sm">
           <TinaIcon color="white" />
         </div>
-        <div className="flex-1 flex flex-col py-2 lg:py-0 lg:grid lg:grid-cols-3 gap-8">
+        <div className="flex-1 flex flex-col py-2 lg:py-0 md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {footerNav.map(item => {
             const { label, items } = item
             return (
@@ -115,19 +115,21 @@ export const Footer = ({}) => {
               </div>
             )
           })}
-          <div className="flex flex-col lg:items-end gap-4 drop-shadow-sm">
-            <SocialLink link="https://github.com/tinacms/tinacms">
-              <GithubIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
-              Github
-            </SocialLink>
-            <SocialLink link="https://twitter.com/tina_cms">
-              <TwitterIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
-              Twitter
-            </SocialLink>
-            <SocialLink link="/">
-              <BsDiscord className="w-7 h-auto fill-current opacity-80" />{' '}
-              Discord
-            </SocialLink>
+          <div className="flex flex-col lg:items-start">
+            <div className="flex w-1/2 flex-col lg:items-end gap-4 drop-shadow-sm">
+              <SocialLink link="https://github.com/tinacms/tinacms">
+                <GithubIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
+                Github
+              </SocialLink>
+              <SocialLink link="https://twitter.com/tina_cms">
+                <TwitterIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
+                Twitter
+              </SocialLink>
+              <SocialLink link="/">
+                <BsDiscord className="w-7 h-auto fill-current opacity-80" />{' '}
+                Discord
+              </SocialLink>
+            </div>
           </div>
         </div>
       </div>

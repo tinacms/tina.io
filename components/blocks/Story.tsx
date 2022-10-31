@@ -114,8 +114,8 @@ export function StoryBlock({ data, index }) {
               />
             ))}
           </div>
-          <div className="w-full lg:w-3/5 lg:h-screen sticky top-4 lg:top-8">
-              
+          <div className="w-full lg:w-3/5 lg:h-screen sticky top-6 lg:top-8">
+              <div className="relative"></div>
           </div>
         </div>
        </Container>
