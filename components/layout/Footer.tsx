@@ -7,6 +7,45 @@ import { EmailForm } from '../forms/EmailForm'
 import { TinaIcon } from 'components/logo'
 import Link from 'next/link'
 import TinaIconSvg from '../../public/svg/tina-icon.svg'
+import { DynamicLink } from 'components/ui'
+import { BsDiscord } from 'react-icons/bs'
+
+const footerNav = [
+  {
+    label: 'Product',
+    items: [
+      {
+        link: '/demo/',
+        label: 'Demo',
+      },
+      {
+        link: '/showcase/',
+        label: 'Showcase',
+      },
+      {
+        link: 'https://app.tina.io/',
+        label: 'Tina Cloud',
+      },
+    ],
+  },
+  {
+    label: 'Docs',
+    items: [
+      {
+        link: '/',
+        label: 'Introduction',
+      },
+      {
+        link: '/',
+        label: 'How Tina Works',
+      },
+      {
+        link: '/',
+        label: 'Releases',
+      },
+    ],
+  },
+]
 
 const footerLinks = [
   {
@@ -31,6 +70,29 @@ const footerLinks = [
   },
 ]
 
+export const LinkItem = ({ item }) => {
+  const { id, link, label } = item
+  return (
+    <DynamicLink href={link} passHref>
+      <a className="inline-block drop-shadow-sm relative opacity-90 hover:opacity-100 text-white uppercase text-lg lg:text-xl font-tuner transition duration-150 ease-out hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px">
+        {label}
+      </a>
+    </DynamicLink>
+  )
+}
+
+const SocialLink = ({ link, children }) => {
+  return (
+    <a
+      className="transition ease-out duration-150 opacity-80 hover:opacity-100 flex items-center gap-2 text-white font-tuner"
+      href={link}
+      target="_blank"
+    >
+      {children}
+    </a>
+  )
+}
+
 export const Footer = ({}) => {
   return (
     <div>
@@ -39,31 +101,34 @@ export const Footer = ({}) => {
         <div className="max-w-[20%] flex-1 drop-shadow-sm">
           <TinaIcon color="white" />
         </div>
-        <div className="flex-1">
-          <LinkNav />
-        </div>
-        <div className="flex items-center gap-4 drop-shadow-sm">
-          <iframe
-            src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
-            frameBorder="0"
-            scrolling="0"
-            width="150px"
-            height="30px"
-          ></iframe>
-          <a
-            href="https://twitter.com/tina_cms"
-            className="transition ease-out duration-150 opacity-80 hover:opacity-100"
-            target="_blank"
-          >
-            <TwitterIconSvg className="w-8 h-auto fill-white" />
-          </a>
-          <a
-            className="transition ease-out duration-150 opacity-80 hover:opacity-100"
-            href="https://github.com/tinacms/tinacms"
-            target="_blank"
-          >
-            <GithubIconSvg className="w-8 h-auto fill-white" />
-          </a>
+        <div className="flex-1 flex flex-col py-2 lg:py-0 lg:grid lg:grid-cols-3 gap-8">
+          {footerNav.map(item => {
+            const { label, items } = item
+            return (
+              <div className="flex flex-col items-stretch justify-start gap-2">
+                <p className="uppercase text-orange-100 font-bold -mt-1">
+                  {label}
+                </p>
+                {items.map(item => {
+                  return <LinkItem item={item} />
+                })}
+              </div>
+            )
+          })}
+          <div className="flex flex-col lg:items-end gap-4 drop-shadow-sm">
+            <SocialLink link="https://github.com/tinacms/tinacms">
+              <GithubIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
+              Github
+            </SocialLink>
+            <SocialLink link="https://twitter.com/tina_cms">
+              <TwitterIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
+              Twitter
+            </SocialLink>
+            <SocialLink link="/">
+              <BsDiscord className="w-7 h-auto fill-current opacity-80" />{' '}
+              Discord
+            </SocialLink>
+          </div>
         </div>
       </div>
 

@@ -2,7 +2,6 @@ import React from 'react'
 import { useInView } from 'react-intersection-observer'
 import type { TinaTemplate } from '@tinacms/cli'
 import { Container } from './Container'
-import { Button } from 'components/ui'
 import { Actions } from './Actions'
 
 export const storyTemplate: TinaTemplate = {
@@ -29,11 +28,13 @@ const features = [
     actions: [
       {
         variant: 'blue',
+        size: 'large',
         label: 'Sign Up',
         url: '/',
       },
       {
         variant: 'command',
+        size: 'large',
         label: 'npx create-tina-app@latest',
         url: '/',
       },
@@ -83,14 +84,14 @@ const Feature = ({ activeId, setActiveId, item }) => {
   return (
     <div
       key={item.id}
-      className={`py-8 min-h-[75vh] lg:min-h-screen flex flex-col justify-center transition ease-out duration-300 ${inView && activeId === item.id ? '' : 'opacity-0'}`}
+      className={`py-8 min-h-[75vh] lg:min-h-screen flex flex-col justify-center transition ease-out duration-500 ${inView && activeId === item.id ? '' : 'opacity-0'}`}
     >
       <div className="drop-shadow-sm flex flex-col gap-8" ref={ref}>
         <div className="title-wrapper">
           <h2 className="font-tuner inline-block text-3xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">{item.title}</h2>
         </div>
         <hr className='!my-0' />
-        <p className="text-lg lg:text-xl lg:leading-normal block bg-gradient-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent">{item.description}</p>
+        <p className="text-lg lg:text-xl lg:leading-normal block bg-gradient-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent -mb-1">{item.description}</p>
         {item.actions && <Actions items={item.actions} />}
       </div>
     </div>
@@ -114,7 +115,7 @@ export function StoryBlock({ data, index }) {
             ))}
           </div>
           <div className="w-full lg:w-3/5 lg:h-screen sticky top-4 lg:top-8">
-           
+              
           </div>
         </div>
        </Container>

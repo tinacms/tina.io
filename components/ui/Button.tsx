@@ -35,7 +35,7 @@ const colorClasses = {
 }
 
 const sizeClasses = {
-  large: 'px-8 pt-[15px] pb-[13px] text-lg font-medium',
+  large: 'px-8 pt-[14px] pb-[12px] text-lg font-medium',
   medium: 'px-6 pt-[12px] pb-[10px] text-base font-medium',
   small: 'px-5 pt-[10px] pb-[8px] text-sm font-medium',
 }

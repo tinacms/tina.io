@@ -9,7 +9,7 @@ import { TinaIcon } from 'components/logo'
 
 export function Navbar({}) {
   return (
-    <div className="absolute w-full p-4 lg:py-6 lg:px-10 flex items-center justify-between gap-6">
+    <div className="absolute z-40 w-full p-4 lg:py-6 lg:px-10 flex items-center justify-between gap-6">
       <Link href="/">
         <a className="">
           <TinaIcon color="orange" />
