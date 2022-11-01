@@ -31,17 +31,14 @@ export const cardTemplate: TinaTemplate = {
       label: 'Body',
       type: 'rich-text',
     },
-    {
-      name: 'large',
-      label: 'Large',
-      type: 'boolean',
-    },
     // @ts-ignore
     actionsTemplate,
   ],
 }
 
 const PricingCard = ({ data }) => {
+  if (!data) return null
+
   return (
     <>
       <div className="card">
@@ -49,9 +46,9 @@ const PricingCard = ({ data }) => {
           <h3 className="title">{data.name}</h3>
           {data.price && <><span className="dotted"></span>
           <h3 className="price !text-blue-800">
-            {data.price}
+            <span className="number">{data.price}</span>
             {data.interval && (
-              <span className="interval">/{data.interval}</span>
+              <span className="interval">{data.interval}</span>
             )}
           </h3></>}
         </div>
@@ -88,27 +85,30 @@ const PricingCard = ({ data }) => {
           line-height: 1.2;
           background: linear-gradient(to bottom right, var(--color-seafoam-200), var(--color-seafoam-100), white);
           border-bottom: 1px solid var(--color-seafoam-300);
-          padding: ${data.large ? '2rem' : '1.75rem'};
+          padding: 1.5rem 1.5rem;
 
           @media (min-width: 1400px) {
-            padding: ${data.large ? '2.5rem' : '2.25rem'};
+            padding: 1.5rem 2rem;
           }
         }
         .title {
           font-family: var(--font-tuner);
           color: var(--color-orange);
-          font-size: ${data.large ? '2rem' : '1.5rem'};
+          font-size:1.5rem;
           flex: 0 0 auto;
           margin: 0;
         }
         .price {
           font-family: var(--font-tuner);
-          font-size: ${data.large ? '2rem' : '1.5rem'};
+          font-size:1.5rem;
           flex: 0 0 auto;
           margin: 0;
+          display: flex;
+          flex-direction: column;
+          item-align: center;
+          text-align: center;
         }
         .interval {
-          margin-left: 0.125rem;
           font-size: 0.75em;
           color: var(--color-seaforam-500);
         }
@@ -119,10 +119,10 @@ const PricingCard = ({ data }) => {
           justify-content: space-between;
           color: var(--color-secondary);
           background: white;
-          padding: ${data.large ? '2rem' : '1.75rem'};
+          padding: 1.75rem 1.5rem;
 
           @media (min-width: 1400px) {
-            padding: ${data.large ? '2.5rem' : '2.25rem'};
+            padding: 2.25rem 2rem;
           }
         }
         .content {
@@ -150,7 +150,7 @@ const PricingCard = ({ data }) => {
             }
           }
           :global(p) {
-            font-size: ${data.large ? '1.25rem' : '1.125rem'};
+            font-size: 1.125rem;
           }
         }
         .dotted {
@@ -188,32 +188,30 @@ export const pricingTemplate: TinaTemplate = {
       type: 'rich-text',
     },
     {
-      name: 'tierOne',
-      label: 'Base Tier',
+      name: 'base',
+      label: 'Base Plan',
       // @ts-ignore
       type: cardTemplate.type,
       fields: cardTemplate.fields,
     },
     {
-      name: 'tierTwo',
-      label: 'Tier Two',
+      name: 'plans',
+      label: 'Pricing Plans',
       // @ts-ignore
       type: cardTemplate.type,
+      list: true,
       fields: cardTemplate.fields,
-    },
-    {
-      name: 'tierThree',
-      label: 'Tier Three',
-      // @ts-ignore
-      type: cardTemplate.type,
-      fields: cardTemplate.fields,
-    },
-    {
-      name: 'tierFour',
-      label: 'Tier Four',
-      // @ts-ignore
-      type: cardTemplate.type,
-      fields: cardTemplate.fields,
+      ui: {
+        itemProps: (item) => ({
+          key: item.id,
+          label: item.name,
+        }),
+        defaultItem: {
+          name: 'Pricing Tier',
+          price: '$99',
+          interval: 'month',
+        }
+      },
     },
   ],
 }
@@ -229,15 +227,15 @@ export function PricingBlock({ data, index }) {
                 <TinaMarkdown content={data.intro} />
               </div>
             )}
-            {data.tierOne && <PricingCard data={data.tierOne} />}
+            {data.base && <PricingCard data={data.base} />}
             <div className="segue">
             </div>
           </Wrapper>
           <Wrapper wide>
             <div className="card-wrapper">
-            {data.tierTwo && <PricingCard data={data.tierTwo} />}
-            {data.tierThree && <PricingCard data={data.tierThree} />}
-            {data.tierFour && <PricingCard data={data.tierFour} />}
+              {data.plans && data.plans.map((plan, index) => (
+                <PricingCard data={plan} key={index} />
+              ))}
             </div>
           </Wrapper>
         </RichTextWrapper>

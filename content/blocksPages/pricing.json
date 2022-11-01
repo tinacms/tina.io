@@ -10,56 +10,47 @@
       "_template": "hero"
     },
     {
-      "intro": "Here's some text to introduce the page.",
-      "tierOne": {
+      "intro": "Here's some text to introduce the page.\n",
+      "base": {
         "name": "Basic",
         "price": "Free",
         "interval": "",
-        "body": "* Here's a feature\n* And another one!\n* Such great value.\n",
-        "large": false
-      },
-      "segue": "",
-      "tierTwo": {
-        "name": "Basic",
-        "price": "$10",
-        "interval": "Month",
-        "body": "* Basic features\n* Basic support\n* A couple users\n",
+        "body": "* Two Users\n* Forum Support\n\n",
         "actions": [
           {
             "label": "Sign Up",
-            "icon": true,
-            "variant": "default",
+            "icon": false,
+            "variant": "blue",
+            "size": "medium",
             "url": "/"
           }
         ]
       },
-      "tierThree": {
-        "name": "Advanced",
-        "price": "$100",
-        "interval": "Month",
-        "body": "* Advanced features\n* More money\n* More support\n* More users\n",
-        "actions": [
-          {
-            "label": "Sign Up",
-            "icon": true,
-            "variant": "default",
-            "url": "/"
-          }
-        ]
-      },
-      "tierFour": {
-        "name": "Enterprise",
-        "price": "",
-        "body": "Whatever your needs, we can work something out.\n",
-        "actions": [
-          {
-            "label": "Contact Us",
-            "icon": true,
-            "variant": "default",
-            "url": "/"
-          }
-        ]
-      },
+      "plans": [
+        {
+          "name": "Team",
+          "price": "$29",
+          "interval": "month",
+          "body": "* 3 Users\n* Forum Support\n* Additional Users $15/seat\n\n"
+        },
+        {
+          "name": "Business",
+          "price": "$599",
+          "interval": "month",
+          "body": "* 10 Users\n* Priority Support\n* Additional Users $15/seat\n\n"
+        },
+        {
+          "name": "Enterprise",
+          "price": "",
+          "interval": "",
+          "body": ""
+        },
+        {
+          "name": "Agency",
+          "price": "",
+          "interval": ""
+        }
+      ],
       "_template": "pricing"
     },
     {

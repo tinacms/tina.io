@@ -6,6 +6,7 @@ import {
   Wrapper,
   Section,
   RichTextWrapper,
+  HeroTitle,
 } from 'components/layout'
 import { NextSeo } from 'next-seo'
 import { Button, ButtonGroup } from 'components/ui'
@@ -16,33 +17,33 @@ function Page404() {
     <Layout>
       <NextSeo title={'404'} description={'404'} />
       <Hero>404 </Hero>
-      <RichTextWrapper>
-        <Section>
-          <Wrapper>
-            <InfoLayout>
-              <InfoContent>
-                <InfoText>
-                  <h2>Sorry, Friend.</h2>
-                  <hr />
-                  <p>We couldn't find what you were looking for.</p>
-                </InfoText>
-                <ButtonGroup>
-                  <DynamicLink href={'/docs'} passHref>
-                    <Button as="a">Documentation</Button>
-                  </DynamicLink>
-                  <DynamicLink href={'/guides'} passHref>
-                    <Button as="a">Guides</Button>
-                  </DynamicLink>
-                  <DynamicLink href={'/'} passHref>
-                    <Button as="a">Home</Button>
-                  </DynamicLink>
-                </ButtonGroup>
-              </InfoContent>
-              <InfoImage src="/img/rico-replacement.jpg" />
-            </InfoLayout>
-          </Wrapper>
-        </Section>
-      </RichTextWrapper>
+      <Section>
+        <Wrapper>
+          <InfoLayout>
+            <InfoContent>
+              <InfoText>
+                <HeroTitle>Sorry, Friend.</HeroTitle>
+                <hr />
+                <p className="text-lg lg:text-xl lg:leading-normal block bg-gradient-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent -mb-1">
+                  We couldn't find what you were looking for.
+                </p>
+              </InfoText>
+              <ButtonGroup>
+                <DynamicLink href={'/docs'} passHref>
+                  <Button as="a">Documentation</Button>
+                </DynamicLink>
+                <DynamicLink href={'/guides'} passHref>
+                  <Button as="a">Guides</Button>
+                </DynamicLink>
+                <DynamicLink href={'/'} passHref>
+                  <Button as="a">Home</Button>
+                </DynamicLink>
+              </ButtonGroup>
+            </InfoContent>
+            <InfoImage src="/img/rico-replacement.jpg" />
+          </InfoLayout>
+        </Wrapper>
+      </Section>
     </Layout>
   )
 }
