@@ -65,7 +65,7 @@ const PricingCard = ({ data }) => {
           flex: 1 1 auto;
           width: 100%;
           margin: 0 auto;
-          max-width: 45rem;
+          max-width: 38rem;
           border: 1px solid var(--color-seafoam-300);
           border-radius: 0.75rem;
           box-shadow: 0 6px 24px rgba(0, 37, 91, 0.05),

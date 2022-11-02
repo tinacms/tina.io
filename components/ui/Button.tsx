@@ -2,14 +2,7 @@ import Link from 'next/link'
 import styled, { css } from 'styled-components'
 
 interface ButtonProps {
-  color?:
-    | 'white'
-    | 'primary'
-    | 'secondary'
-    | 'seafoam'
-    | 'variable'
-    | 'blue'
-    | 'blueInverted'
+  color?: 'white' | 'blue' | 'orange' | 'seafoam' | 'ghost'
   size?: 'large' | 'small'
 }
 

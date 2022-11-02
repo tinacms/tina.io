@@ -15,7 +15,7 @@
         "name": "Basic",
         "price": "Free",
         "interval": "",
-        "body": "* Two Users\n* Forum Support\n\n",
+        "body": "* Two Users\n* Forum Support\n* No Additional Users\n",
         "actions": [
           {
             "label": "Sign Up",
@@ -31,24 +31,61 @@
           "name": "Team",
           "price": "$29",
           "interval": "month",
-          "body": "* 3 Users\n* Forum Support\n* Additional Users $15/seat\n\n"
+          "body": "* 3 Users\n* Forum Support\n* Additional Users $15/seat\n* Max 10 Users\n\n",
+          "actions": [
+            {
+              "label": "Sign Up",
+              "icon": false,
+              "variant": "blue",
+              "size": "medium",
+              "url": "/"
+            }
+          ]
         },
         {
           "name": "Business",
           "price": "$599",
           "interval": "month",
-          "body": "* 10 Users\n* Priority Support\n* Additional Users $15/seat\n\n"
+          "body": "* 10 Users\n* Priority Support\n* Additional Users $15/seat\n* No User Limit\n\n",
+          "actions": [
+            {
+              "label": "Sign Up",
+              "icon": false,
+              "variant": "blue",
+              "size": "medium",
+              "url": "/"
+            }
+          ]
         },
         {
           "name": "Enterprise",
           "price": "",
           "interval": "",
-          "body": ""
+          "body": "Contact us for bulk pricing.\n",
+          "actions": [
+            {
+              "label": "Contact Us",
+              "icon": false,
+              "variant": "white",
+              "size": "medium",
+              "url": "/"
+            }
+          ]
         },
         {
           "name": "Agency",
           "price": "",
-          "interval": ""
+          "interval": "",
+          "body": "Contact us for bulk pricing.\n",
+          "actions": [
+            {
+              "label": "Contact Us",
+              "icon": false,
+              "variant": "white",
+              "size": "medium",
+              "url": "/"
+            }
+          ]
         }
       ],
       "_template": "pricing"

@@ -100,6 +100,7 @@ module.exports = {
         xs: '0 0 0 1px rgba(0, 0, 0, 0.05)',
         DEFAULT:
           '0 1px 3px 0 rgb(0 0 0 / 0.07), 0 2px 6px -1px rgb(0 0 0 / 0.07)',
+        panel: '6px 4px 16px rgba(0,132,255, 0.07), 10px 8px 32px rgba(0,132,255, 0.07), 18px 16px 64px rgba(0,132,255, 0.1)',
         outline: '0 0 0 3px rgba(66, 153, 225, 0.5)',
       },
       colors: {
@@ -161,7 +162,13 @@ module.exports = {
   future: {
     removeDeprecatedGapUtilities: true,
   },
-  plugins: [require('@tailwindcss/forms')],
+  corePlugins: {
+    aspectRatio: false,
+  },
+  plugins: [
+    require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/forms'),
+  ],
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',

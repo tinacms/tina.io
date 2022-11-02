@@ -39,6 +39,10 @@ export const actionsTemplate = {
           label: 'Orange',
         },
         {
+          value: 'white',
+          label: 'White',
+        },
+        {
           value: 'ghost',
           label: 'Ghost',
         },
