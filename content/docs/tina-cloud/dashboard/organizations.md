@@ -10,7 +10,7 @@ Each user can belong to multiple organization. The organization can be toggled w
 
 ![tina-cloud-dropdown](https://res.cloudinary.com/forestry-demo/image/upload/v1667430691/tina-io/docs/tina-cloud/Screen_Shot_2022-11-02_at_8.09.55_PM.png)
 
-Each user in an organization can have one of the following roles:
+Each user in an organization can have one of the following org-level roles:
 
 - Editor
 - Admin
