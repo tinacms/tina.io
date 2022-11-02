@@ -201,6 +201,11 @@
             "id": "/docs/tina-cloud/dashboard/users/",
             "slug": "/docs/tina-cloud/dashboard/users/",
             "title": "Users"
+          },
+          {
+            "id": "/docs/tina-cloud/dashboard/organizations/",
+            "slug": "/docs/tina-cloud/dashboard/organizations/",
+            "title": "Organizations"
           }
         ]
       },
