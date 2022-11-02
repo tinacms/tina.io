@@ -96,6 +96,15 @@ module.exports = {
       100: '1',
     },
     extend: {
+      keyframes: {
+        slideIn: {
+          '0%': { transform: 'translate3d(0,-100%,0)' },
+          '100%': { transform: 'translate3d(0,0,0)' },
+        }
+      },
+      animation: {
+        'slide-in': 'slideIn 200ms ease-out 1',
+      },
       boxShadow: {
         xs: '0 0 0 1px rgba(0, 0, 0, 0.05)',
         DEFAULT:

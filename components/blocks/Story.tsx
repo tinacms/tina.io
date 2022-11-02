@@ -263,9 +263,9 @@ export function StoryBlock({ data, index }) {
                   {pane.file && (
                     <div className="flex flex-col justify-start items-start">
                       {pane.file.name && (
-                        <div className="inline-block rounded-t-lg overflow-hidden bg-gradient-to-br from-blue-50 to-white text-blue-900 border-2 border-b-0 border-blue-50 px-6 py-3 font-tuner">{pane.file.name}</div>
+                        <div className="inline-block rounded-t-lg overflow-hidden text-white border-2 border-b-0 border-blue-800 bg-gradient-to-tl from-blue-800 to-blue-900 px-7 py-3 font-tuner">{pane.file.name}</div>
                       )}
-                      <div className={`${pane.file.name ? 'rounded-lg rounded-tl-none' : 'rounded-lg'} overflow-hidden w-full text-blue-900 border-2 border-blue-50 bg-gradient-to-br from-blue-50 to-white shadow-panel`} style={{
+                      <div className={`${pane.file.name ? 'rounded-lg rounded-tl-none' : 'rounded-lg'} overflow-hidden w-full text-blue-50 border-2 border-blue-800 bg-gradient-to-br from-blue-800 via-blue-900 to-blue-1000 shadow-panel`} style={{
                         fontSize:
                           1.25 *
                             (pane.file.textScale ? pane.file.textScale : 1) +
