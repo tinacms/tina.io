@@ -272,7 +272,7 @@ export function StoryBlock({ data, index }) {
                           'em',
                       }}>
                         <SyntaxHighlighter
-                          languag={
+                          language={
                             pane.file.language
                               ? pane.file.language
                               : 'javascript'
