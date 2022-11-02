@@ -107,6 +107,7 @@ module.exports = {
       },
       boxShadow: {
         xs: '0 0 0 1px rgba(0, 0, 0, 0.05)',
+        sm: '0 1px 3px 0 rgba(29, 44, 108, 0.07)',
         DEFAULT:
           '0 1px 3px 0 rgb(0 0 0 / 0.07), 0 2px 6px -1px rgb(0 0 0 / 0.07)',
         panel: '6px 4px 16px rgba(0,132,255, 0.07), 10px 8px 32px rgba(0,132,255, 0.07), 18px 16px 64px rgba(0,132,255, 0.1)',

@@ -26,7 +26,7 @@ export function Navbar({}) {
       <div
         className={`${
           stuck
-            ? `fixed shadow-sm bg-gradient-to-r from-seafoam-50/70 to-blue-50/70 backdrop-blur animate-slide-in top-0`
+            ? `fixed shadow-sm bg-gradient-to-r from-[rgba(216,251,248,0.7)] to-[rgba(215,233,255,0.7)] backdrop-blur animate-slide-in top-0`
             : `absolute translate-y-2`
         } transition-all z-40 w-full p-4 lg:px-10 flex items-center justify-between gap-6`}
       >
