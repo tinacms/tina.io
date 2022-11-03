@@ -195,12 +195,19 @@
           {
             "id": "/docs/tina-cloud/dashboard/projects/",
             "slug": "/docs/tina-cloud/dashboard/projects/",
-            "title": "Projects"
+            "title": "Projects",
+            "items": [
+              {
+                "id": "/docs/tina-cloud/dashboard/users/",
+                "slug": "/docs/tina-cloud/dashboard/users/",
+                "title": "Project Collaborators"
+              }
+            ]
           },
           {
-            "id": "/docs/tina-cloud/dashboard/users/",
-            "slug": "/docs/tina-cloud/dashboard/users/",
-            "title": "Users"
+            "id": "/docs/tina-cloud/dashboard/organizations/",
+            "slug": "/docs/tina-cloud/dashboard/organizations/",
+            "title": "Organizations"
           }
         ]
       },

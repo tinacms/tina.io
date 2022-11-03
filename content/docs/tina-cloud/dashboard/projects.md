@@ -97,8 +97,8 @@ been successfully pushed to GitHub using the Export Branch feature.
 ##### Force Push
 
 If there are changes in the repository cache which cannot be automatically merged to your GitHub repository, it may be
-necessary to execute a force push. With a force push, the commit history on the remote will be forcefully overwritten 
-with the history in the repository cache. This should only be used if you are confident that the changes in the 
+necessary to execute a force push. With a force push, the commit history on the remote will be forcefully overwritten
+with the history in the repository cache. This should only be used if you are confident that the changes in the
 TinaCMS repository cache are correct.
 
 ### Read Only Tokens
@@ -108,15 +108,11 @@ Read-only tokens provide read-only access to your project's content.
 #### Generate tokens from the dashboard
 
 Navigate to [Tina Cloud](https://app.tina.io) and click on the project you wish to add a token to, click on the "tokens" tab
-![Tina cloud token tab](/img/graphql-docs/token-tab.png)
+![Tina cloud token tab](https://res.cloudinary.com/forestry-demo/image/upload/v1667433036/tina-io/docs/tina-cloud/Screen_Shot_2022-11-02_at_8.50.24_PM.png)
 
 Next, click "New Token" and fill out fields. The token name is how you can identify the token and "Git branches" is the list of branches separated by commas that the token has access to.
 
-![Creating a new token in Tina Cloud](/img/graphql-docs/create-new-token.png)
-
-Finally, click "Create Token".
-
-![Successful creation of a token in Tina Cloud](/img/graphql-docs/final-token-page.png)
+![Creating a new token in Tina Cloud](https://res.cloudinary.com/forestry-demo/image/upload/v1667433115/tina-io/docs/tina-cloud/Screen_Shot_2022-11-02_at_8.51.47_PM.png)
 
 This token will be used later when we connect the site's frontend to our project.
 
