@@ -13,12 +13,12 @@ Project collaborators can have one of the following project-level roles:
 
 The following roles/permissions apply to "Project Admins" & "Project Editors":
 
-| Actions                      | Org Admin | Org Editor |
-| ---------------------------- | --------- | ---------- |
-| Edit Project Content         | ✔️        | ✔️         |
-| View Project Overview        | ✔️        | ✔️         |
-| Manage Project Configuration | ✔️        | ❌         |
-| Manage Project Collaborators | ✔️        | ❌         |
+| Actions                      | Project Admin | Project Editor |
+| ---------------------------- | ------------- | -------------- |
+| Edit Project Content         | ✔️            | ✔️             |
+| View Project Overview        | ✔️            | ✔️             |
+| Manage Project Configuration | ✔️            | ❌             |
+| Manage Project Collaborators | ✔️            | ❌             |
 
 Both Admins and Editors are authorized to access the editing route on a Tina configured site. Both users can save content changes directly to a site's GitHub repository using TinaCMS.
 
