@@ -112,13 +112,19 @@ function CommunityPage(props) {
             </InfoLayout>
           </Wrapper>
         </Section>
-        <FormSection color="seafoam">
-          <Wrapper>
-            {data.newsletter_header && <h2>{data.newsletter_header}</h2>}
-            {data.newsletter_cta && <p>{data.newsletter_cta}</p>}
-            <EmailForm />
+        <Section color="seafoam">
+          <Wrapper align="center">
+            {data.newsletter_header && (
+              <h2 className="font-tuner">{data.newsletter_header}</h2>
+            )}
+            {data.newsletter_cta && (
+              <p className="!mb-7 !-mt-1">{data.newsletter_cta}</p>
+            )}
+            <div className="w-full flex justify-center">
+              <EmailForm />
+            </div>
           </Wrapper>
-        </FormSection>
+        </Section>
       </RichTextWrapper>
     </Layout>
   )
@@ -130,7 +136,7 @@ export default CommunityPage
  ** DATA FETCHING -----------------------------------------------
  */
 
-export const getStaticProps: GetStaticProps = async function({
+export const getStaticProps: GetStaticProps = async function ({
   preview,
   previewData,
 }) {
@@ -229,24 +235,5 @@ const InfoImage = styled(({ src, alt, ...styleProps }) => {
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
-`
-
-// @ts-ignore
-const FormSection = styled(Section)`
-  padding: 4rem 0;
-
-  @media (min-width: 800px) {
-    padding: 7rem 0;
-    text-align: center;
-
-    form {
-      margin: 0 auto;
-    }
-  }
-
-  p {
-    margin-bottom: 2rem;
-    font-family: var(--font-tuner);
   }
 `

@@ -1,25 +1,20 @@
 import styled, { css } from 'styled-components'
 
 interface SectionProps {
+  children: any | any[]
   color?: 'seafoam' | 'white'
 }
 
-export const Section = styled.section<SectionProps>`
-  padding: 3rem 0;
-
-  @media (min-width: 800px) {
-    padding: 5rem 0;
-  }
-
-  ${props =>
-    props.color === 'seafoam' &&
-    css`
-      background-color: var(--color-seafoam);
-      background: linear-gradient(
-        to bottom,
-        var(--color-seafoam-100),
-        var(--color-seafoam-200),
-        var(--color-seafoam-300)
-      );
-    `};
-`
+export const Section = ({ children, color = 'white' }: SectionProps) => {
+  return (
+    <section
+      className={`py-16 lg:py-24 ${
+        color === 'seafoam'
+          ? 'bg-gradient-to-br from-seafoam-150/50 via-seafoam-100/30 to-white'
+          : ''
+      }`}
+    >
+      {children}
+    </section>
+  )
+}

@@ -135,7 +135,7 @@ export const Footer = ({}) => {
       </div>
 
       {/* Bottom */}
-      <div className="flex flex-col lg:flex-row w-full lg:items-center lg:justify-between bg-gradient-to-br border-t-2 border-orange-500 from-orange-600 via-orange-800 to-orange-900 text-white p-4 lg:py-6 lg:px-10">
+      <div className="flex flex-col lg:flex-row w-full lg:items-center lg:justify-between bg-gradient-to-br from-orange-600 via-orange-800 to-orange-900 text-white p-4 lg:py-6 lg:px-10">
         <div className="flex items-center gap-3 whitespace-nowrap">
           <span>Stay in touch 👉</span>
           <EmailForm isFooter />
