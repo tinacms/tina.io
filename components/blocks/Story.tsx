@@ -116,25 +116,25 @@ text="MDX Rocks"
       language: 'json',
       textScale: 1,
       code: `{
-type: "string",
-label: "Title",
-name: "title"
+  type: "string",
+  label: "Title",
+  name: "title"
 },
 {
-type: 'string',
-label: 'Description',
-name: 'body',
-isBody: true,
+  type: 'string',
+  label: 'Description',
+  name: 'body',
+  isBody: true,
 },`,
       newCode: `{
-type: "string",
-label: "Title",
-name: "title"
+  type: "string",
+  label: "Title",
+  name: "title"
 },
 {
-type: "string",
-label: "Description",
-name: "description",
+  type: "string",
+  label: "Description",
+  name: "description",
 },`,
     },
     positions: {
@@ -255,7 +255,7 @@ const Pane = ({ data, position }) => {
               </div>
             )}
             <div
-              className={`${
+              className={`file relative ${
                 data.file.name ? 'rounded-lg rounded-tl-none' : 'rounded-lg'
               } overflow-hidden w-full text-blue-50 border-2 border-blue-800 bg-gradient-to-br from-blue-800 via-blue-900 to-blue-1000 shadow-panel`}
               style={{
@@ -278,6 +278,28 @@ const Pane = ({ data, position }) => {
         )}
       </div>
       <style jsx>{`
+        .file:after {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 0.07;
+          background: repeating-linear-gradient(
+            #2296fe,
+            #85c5fe 40%,
+            #0574e4 50%,
+            #1d2c6c 90%
+          );
+          pointer-events: none;
+          background-repeat: repeat-both;
+          background-size: auto 6px;
+          mix-blend-mode: overlay;
+          border-radius: 8px;
+        }
+
         .right {
           perspective: 1000px;
           transform: scale(0.85);
