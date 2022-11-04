@@ -302,6 +302,7 @@ const Pane = ({ data, position }) => {
 
         .right {
           perspective: 1000px;
+          perspective-origin: 50% 50%;
           transform: scale(0.85);
           --right-rotation: -5deg;
         }
@@ -417,7 +418,7 @@ export function StoryBlock({ data, index }) {
     <>
       <section key={index} className={``}>
         <Container width="wide">
-          <div className="relative w-full flex flex-col-reverse lg:flex-row gap-x-8 gap-y-4">
+          <div className="relative w-full flex flex-col-reverse lg:flex-row gap-x-10 gap-y-4">
             <div className="w-full lg:w-2/5 max-w-prose">
               {features.map((item) => (
                 <Feature
@@ -449,6 +450,7 @@ export function StoryBlock({ data, index }) {
       <style jsx>{`
         .right {
           perspective: 1000px;
+          -moz-perspective: none;
           transform: scale(0.85);
           --right-rotation: -5deg;
         }

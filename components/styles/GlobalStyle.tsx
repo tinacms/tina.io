@@ -148,6 +148,8 @@ export const GlobalStyle = React.memo(createGlobalStyle`
     --color-grey-10: #252336;
     --color-indicator: var(--color-primary);
 
+    
+
     --radius-small: 5px;
     --radius-big: 24px;
 
