@@ -99,12 +99,16 @@ export function Navbar({}) {
               </GitHubButton>
             </div>
             <div className="w-full flex justify-start items-center gap-4">
-              <Button className="" color="white" size="small">
-                Log In
-              </Button>
-              <Button className="" color="blue" size="small">
-                Sign Up
-              </Button>
+              <Link href="https://app.tina.io/signin">
+                <Button color="white" size="small">
+                  Log In
+                </Button>
+              </Link>
+              <Link href="https://app.tina.io/register">
+                <Button color="blue" size="small">
+                  Sign Up
+                </Button>
+              </Link>
             </div>
           </div>
         </nav>
