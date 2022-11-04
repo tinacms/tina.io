@@ -11,7 +11,9 @@ import TinaIconSvg from '../../public/svg/tina-icon.svg'
 
 export function Navbar({}) {
   const [stuck, setStuck] = React.useState(false)
-  const { ref, inView, entry } = useInView()
+  const { ref, inView, entry } = useInView({
+    rootMargin: '128px 0px',
+  })
 
   React.useEffect(() => {
     if (inView) {
@@ -24,26 +26,24 @@ export function Navbar({}) {
   return (
     <div ref={ref}>
       <div
-        className={`${
+        className={`absolute ${
           stuck
-            ? `fixed shadow-sm bg-gradient-to-r from-[rgba(216,251,248,0.7)] to-[rgba(215,233,255,0.7)] backdrop-blur animate-slide-in top-0`
-            : `absolute translate-y-2`
-        } transition-all z-40 w-full p-4 lg:px-10 flex items-center justify-between gap-6`}
+            ? `md:fixed shadow-sm bg-gradient-to-r from-[rgba(216,251,248,0.6)] to-[rgba(215,233,255,0.6)] backdrop-blur animate-slide-in top-0`
+            : `translate-y-2`
+        } z-40 w-full p-4 lg:px-10 flex items-center justify-between gap-6`}
       >
         <Link href={'/'}>
           <a>
             <h1 className="flex items-center">
               <TinaIconSvg
-                className={`${
-                  stuck ? 'w-8' : 'w-10'
-                } transition h-auto fill-orange-500`}
+                className={`${stuck ? 'w-8' : 'w-10'} h-auto fill-orange-500`}
               />
             </h1>
           </a>
         </Link>
         <nav className="flex-1 flex flex-wrap-reverse justify-end items-end md:items-center gap-2 md:gap-x-6 lg:gap-x-10">
           <ul className="flex gap-6 lg:gap-10 relative z-20">
-            {data.map(item => {
+            {data.map((item) => {
               const navLinkClasses =
                 'flex items-center text-blue-700 hover:text-blue-500 transition ease-out duration-150 cursor-pointer drop-shadow-sm text-base font-medium'
               if (item.href) {
@@ -63,17 +63,17 @@ export function Navbar({}) {
                     <BiChevronRight
                       className={`text-blue-200 group-hover:text-blue-400 group-hover:rotate-90 w-6 h-auto transition ease-out duration-300 transform`}
                     />
-                    <ul className="absolute origin-top-left transition duration-300 ease-out opacity-0 group-hover:opacity-100 scale-95 group-hover:100 pointer-events-none group-hover:pointer-events-auto -translate-y-2 group-hover:translate-y-0 z-50 top-full -mt-0.5 -left-2 bg-white shadow-lg rounded-md px-4 py-3">
+                    <ul className="absolute origin-top-right lg:origin-top-left transition duration-300 ease-out opacity-0 group-hover:opacity-100 scale-95 group-hover:100 pointer-events-none group-hover:pointer-events-auto -translate-y-2 group-hover:translate-y-0 z-50 top-full -mt-0.5 right-0 lg:right-auto lg:-left-2 text-right lg:text-left bg-white shadow-lg rounded-md px-4 py-3">
                       {item.items &&
-                        item.items.map(child => {
+                        item.items.map((child) => {
                           const { id, href, label } = child
                           return (
                             <li
                               key={id}
-                              className={`${navLinkClasses} whitespace-nowrap`}
+                              className={`${navLinkClasses} w-full whitespace-nowrap`}
                             >
                               <Link href={href}>
-                                <a className="p-1 text-gray-600 hover:text-blue-500">
+                                <a className="block p-1 text-gray-600 hover:text-blue-500">
                                   {label}
                                 </a>
                               </Link>

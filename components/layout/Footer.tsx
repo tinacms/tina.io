@@ -97,19 +97,19 @@ export const Footer = ({}) => {
   return (
     <div>
       {/* Top */}
-      <div className="flex flex-col md:flex-row gap-6 w-full justify-between items-start bg-gradient-to-b from-orange-400 via-orange-500 to-orange-600 px-4 py-6 lg:py-10 lg:px-10">
+      <div className="flex flex-col md:flex-row gap-6 w-full justify-between items-start bg-[url('/svg/orange-bg.svg')] bg-cover bg-center px-4 py-6 lg:py-10 lg:px-10">
         <div className="max-w-[20%] flex-1 drop-shadow-sm">
           <TinaIcon color="white" />
         </div>
         <div className="flex-1 flex flex-col py-2 lg:py-0 md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {footerNav.map(item => {
+          {footerNav.map((item) => {
             const { label, items } = item
             return (
               <div className="flex flex-col items-stretch justify-start gap-2">
                 <p className="uppercase text-orange-100 font-bold -mt-1">
                   {label}
                 </p>
-                {items.map(item => {
+                {items.map((item) => {
                   return <LinkItem item={item} />
                 })}
               </div>
@@ -142,7 +142,7 @@ export const Footer = ({}) => {
         </div>
         <div className="flex drop-shadow-sm flex-wrap justify-end gap-x-6 gap-y-2">
           <div className="flex flex-wrap justify-end gap-x-3 gap-y-1">
-            {footerLinks.map(item => {
+            {footerLinks.map((item) => {
               const { link, label } = item
               return <FooterLink link={link} label={label} />
             })}

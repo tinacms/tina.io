@@ -1,90 +1,90 @@
-import React from "react";
-import { useInView } from "react-intersection-observer";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { Container } from "./Container";
-import { Actions } from "./Actions";
-import type { TinaTemplate } from "@tinacms/cli";
+import React from 'react'
+import { useInView } from 'react-intersection-observer'
+import SyntaxHighlighter from 'react-syntax-highlighter'
+import { Container } from './Container'
+import { Actions } from './Actions'
+import type { TinaTemplate } from '@tinacms/cli'
 
 export const storyTemplate: TinaTemplate = {
-  label: "Story",
-  name: "story",
+  label: 'Story',
+  name: 'story',
   ui: {
-    previewSrc: "/img/blocks/hero.png",
+    previewSrc: '/img/blocks/hero.png',
   },
   fields: [
     {
-      label: "Title",
-      name: "title",
-      type: "string",
+      label: 'Title',
+      name: 'title',
+      type: 'string',
     },
   ],
-};
+}
 
 const features = [
   {
-    id: "editing",
-    title: "Edit Markdown, Visually",
+    id: 'editing',
+    title: 'Edit Markdown, Visually',
     description:
-      "Tina is an open-source, headless CMS for Markdown, MDX, and JSON.",
+      'Tina is an open-source, headless CMS for Markdown, MDX, and JSON.',
     actions: [
       {
-        variant: "blue",
-        size: "large",
-        label: "Sign Up",
-        url: "/",
+        variant: 'blue',
+        size: 'large',
+        label: 'Sign Up',
+        url: '/',
       },
       {
-        variant: "command",
-        size: "large",
-        label: "npx create-tina-app@latest",
-        url: "/",
+        variant: 'command',
+        size: 'large',
+        label: 'npx create-tina-app@latest',
+        url: '/',
       },
     ],
   },
   {
-    id: "file",
-    title: "Own Your Content",
+    id: 'file',
+    title: 'Own Your Content',
     description:
-      "Store content in your repo. Tina saves to MDX, Markdown, and JSON and provides a powerful data layer on top of your static files.",
+      'Store content in your repo. Tina saves to MDX, Markdown, and JSON and provides a powerful data layer on top of your static files.',
   },
   {
-    id: "schema",
-    title: "Simple CMS Configuration",
+    id: 'schema',
+    title: 'Simple CMS Configuration',
     description:
       "Define your content's schema and Tina will provide you with a user friendly editing experience.",
   },
   {
-    id: "git",
-    title: "Powered by Git",
+    id: 'git',
+    title: 'Powered by Git',
     description:
-      "Let your editoral team focus on writing content, while Tina commits to your repository.",
+      'Let your editoral team focus on writing content, while Tina commits to your repository.',
   },
-];
+]
 
 const panes = [
   {
-    name: "Contextual Editing",
-    background: "light",
-    width: "100",
-    height: "auto",
-    video: "v1656009626/tina-io/new-homepage/editing-demo",
+    name: 'Contextual Editing',
+    background: 'light',
+    width: '100',
+    height: 'auto',
+    video: 'v1656009626/tina-io/new-homepage/editing-demo',
     positions: {
-      editing: "front",
-      file: "back",
-      schema: "front-bottom",
-      git: "back",
-      default: "out-bottom",
-      mobile: "front",
+      editing: 'front',
+      file: 'back',
+      schema: 'front-bottom',
+      git: 'back',
+      default: 'out-bottom',
+      mobile: 'front',
     },
   },
   {
-    name: "File System",
-    background: "dark",
-    width: "100",
-    height: "100",
+    name: 'File System',
+    background: 'dark',
+    width: '100',
+    height: '100',
     file: {
-      name: "about.mdx",
-      language: "mdx",
+      name: 'about.mdx',
+      language: 'mdx',
       textScale: 1.375,
       code: `---
 title: Awesome Developer Experience
@@ -98,22 +98,22 @@ text="MDX Rocks"
 />`,
     },
     positions: {
-      editing: "back",
-      file: "front",
-      schema: "out-top",
-      default: "out-bottom",
-      mobile: "front",
+      editing: 'back',
+      file: 'front',
+      schema: 'out-top',
+      default: 'out-bottom',
+      mobile: 'front',
     },
   },
   {
-    name: "Schema",
-    background: "dark",
-    width: "60",
-    height: "90",
-    basePosition: "absolute-right",
+    name: 'Schema',
+    background: 'dark',
+    width: '60',
+    height: '90',
+    basePosition: 'absolute-right',
     file: {
-      name: "schema.tsx",
-      language: "json",
+      name: 'schema.tsx',
+      language: 'json',
       textScale: 1,
       code: `{
 type: "string",
@@ -138,19 +138,19 @@ name: "description",
 },`,
     },
     positions: {
-      schema: "foreground",
-      git: "out-right",
-      default: "out-bottom",
-      mobile: "foreground",
+      schema: 'foreground',
+      git: 'out-right',
+      default: 'out-bottom',
+      mobile: 'foreground',
     },
   },
   {
-    name: "Git Commit",
-    background: "dark",
-    width: "95",
-    height: "40",
+    name: 'Git Commit',
+    background: 'dark',
+    width: '95',
+    height: '40',
     file: {
-      language: "shell",
+      language: 'shell',
       textScale: 1.1,
       code: `commit 4ca9edc2ee64c1ab5127a1fd4519a83426731cd7
 Author:  Scott Gallant <scottgallant@gmail.com>
@@ -158,13 +158,13 @@ Date:    Thu May 26 13:31:02 2022 -0300
 Message: Update From Tina`,
     },
     positions: {
-      schema: "out-bottom",
-      git: "front",
-      default: "out-top",
-      mobile: "front",
+      schema: 'out-bottom',
+      git: 'front',
+      default: 'out-top',
+      mobile: 'front',
     },
   },
-];
+]
 
 const Video = ({ src }) => {
   return (
@@ -185,33 +185,33 @@ const Video = ({ src }) => {
         type="video/mp4"
       />
     </video>
-  );
-};
+  )
+}
 
 const Feature = ({ activeId, setActiveId, item }) => {
   const { ref, inView, entry } = useInView({
-    rootMargin: "-100px 0px",
-  });
+    rootMargin: '-100px 0px',
+  })
 
   React.useEffect(() => {
     if (inView) {
-      setActiveId(item.id);
+      setActiveId(item.id)
     } else if (activeId === item.id) {
-      setActiveId(null);
+      setActiveId(null)
     }
-  }, [inView]);
+  }, [inView])
 
   React.useEffect(() => {
     if (!activeId && inView) {
-      setActiveId(item.id);
+      setActiveId(item.id)
     }
-  }, [activeId]);
+  }, [activeId])
 
   return (
     <div
       key={item.id}
       className={`py-8 min-h-[75vh] lg:min-h-screen flex flex-col justify-center transition ease-out duration-500 ${
-        activeId === item.id ? "" : "opacity-0"
+        activeId === item.id ? '' : 'opacity-0'
       }`}
     >
       <div className="drop-shadow-sm flex flex-col gap-8" ref={ref}>
@@ -227,19 +227,19 @@ const Feature = ({ activeId, setActiveId, item }) => {
         {item.actions && <Actions items={item.actions} />}
       </div>
     </div>
-  );
-};
+  )
+}
 
 const Pane = ({ data, position }) => {
   return (
     <>
       <div
         className={`pane ${
-          data.basePosition ? data.basePosition : ""
+          data.basePosition ? data.basePosition : ''
         } ${position}`}
         style={{
-          width: data.width + "%",
-          height: data.height === "auto" ? "auto" : data.height + "%",
+          width: data.width + '%',
+          height: data.height === 'auto' ? 'auto' : data.height + '%',
         }}
       >
         {data.video && (
@@ -256,16 +256,16 @@ const Pane = ({ data, position }) => {
             )}
             <div
               className={`${
-                data.file.name ? "rounded-lg rounded-tl-none" : "rounded-lg"
+                data.file.name ? 'rounded-lg rounded-tl-none' : 'rounded-lg'
               } overflow-hidden w-full text-blue-50 border-2 border-blue-800 bg-gradient-to-br from-blue-800 via-blue-900 to-blue-1000 shadow-panel`}
               style={{
                 fontSize:
-                  1.25 * (data.file.textScale ? data.file.textScale : 1) + "em",
+                  1.25 * (data.file.textScale ? data.file.textScale : 1) + 'em',
               }}
             >
               <SyntaxHighlighter
                 language={
-                  data.file.language ? data.file.language : "javascript"
+                  data.file.language ? data.file.language : 'javascript'
                 }
                 useInlineStyles={false}
                 // wrapLines={true}
@@ -348,12 +348,12 @@ const Pane = ({ data, position }) => {
         /* Code Styles */
 
         :global(.hljs) {
-          font-size: unquote("clamp(0.75em,0.676em + 0.37vw, 1em)			");
+          font-size: unquote('clamp(0.75em,0.676em + 0.37vw, 1em)			');
           padding: 32px;
           color: var(--blue-250);
           font-weight: medium;
           font-family: SFMono-Regular, Menlo, Monaco, Consolas,
-            "Liberation Mono", "Courier New", monospace;
+            'Liberation Mono', 'Courier New', monospace;
           text-shadow: 0 0 7px rgba(var(--blue-250-rgb), 0.15),
             0 0 12px rgba(var(--blue-250-rgb), 0.2),
             0 0 32px rgba(var(--blue-250-rgb), 0.3);
@@ -385,11 +385,11 @@ const Pane = ({ data, position }) => {
         }
       `}</style>
     </>
-  );
-};
+  )
+}
 
 export function StoryBlock({ data, index }) {
-  const [activeId, setActiveId] = React.useState(features[0].id);
+  const [activeId, setActiveId] = React.useState(features[0].id)
 
   return (
     <>
@@ -409,9 +409,14 @@ export function StoryBlock({ data, index }) {
               <div className="w-full aspect-w-16 aspect-h-9 relative -mt-[6%]">
                 <div className="absolute w-full h-full right">
                   {panes.map((pane) => (
-                    <Pane data={pane} position={pane.positions[activeId]
-                      ? pane.positions[activeId]
-                      : pane.positions.default} />
+                    <Pane
+                      data={pane}
+                      position={
+                        pane.positions[activeId]
+                          ? pane.positions[activeId]
+                          : pane.positions.default
+                      }
+                    />
                   ))}
                 </div>
               </div>
@@ -433,5 +438,5 @@ export function StoryBlock({ data, index }) {
         }
       `}</style>
     </>
-  );
+  )
 }

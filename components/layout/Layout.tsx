@@ -16,16 +16,26 @@ export const Layout = ({ children, color }: LayoutProps) => {
   const router = useRouter()
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <DefaultSeo
-        openGraph={{
-          url: 'https://tina.io' + router.asPath,
-        }}
-      />
-      <Navbar />
-      <div className="flex flex-col flex-1">{children}</div>
-      <Footer />
-      <BlobBackground className="fixed pointer-events-none top-0 left-0 -z-1 w-screen h-auto max-h-screen" />
-    </div>
+    <>
+      <div className="flex flex-col min-h-screen blob-bg">
+        <DefaultSeo
+          openGraph={{
+            url: 'https://tina.io' + router.asPath,
+          }}
+        />
+        <Navbar />
+        <div className="flex flex-col flex-1">{children}</div>
+        <Footer />
+      </div>
+      <style jsx>{`
+        .blob-bg {
+          background-image: url('/svg/blob-bg.svg');
+          background-repeat: no-repeat;
+          background-position: top center;
+          background-size: 100% 100%;
+          background-attachment: fixed;
+        }
+      `}</style>
+    </>
   )
 }

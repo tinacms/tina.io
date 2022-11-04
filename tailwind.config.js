@@ -100,18 +100,23 @@ module.exports = {
         slideIn: {
           '0%': { transform: 'translate3d(0,-100%,0)' },
           '100%': { transform: 'translate3d(0,0,0)' },
-        }
+        },
       },
       animation: {
         'slide-in': 'slideIn 200ms ease-out 1',
       },
       boxShadow: {
         xs: '0 0 0 1px rgba(0, 0, 0, 0.05)',
-        sm: '0 1px 3px 0 rgba(29, 44, 108, 0.07)',
+        sm: '0 1px 3px 0 rgba(20, 70, 150, 0.05)',
         DEFAULT:
-          '0 1px 3px 0 rgb(0 0 0 / 0.07), 0 2px 6px -1px rgb(0 0 0 / 0.07)',
-        panel: '6px 4px 16px rgba(0,132,255, 0.07), 10px 8px 32px rgba(0,132,255, 0.07), 18px 16px 64px rgba(0,132,255, 0.1)',
+          '0 1px 3px 0 rgb(20 70 150 / 0.07), 0 2px 6px -1px rgb(20 70 150 / 0.07)',
+        lg: '0 10px 15px -3px rgb(20 70 150 / 0.1), 0 4px 6px -4px rgb(20 70 150 / 0.1)',
+        panel:
+          '6px 4px 16px rgba(0,132,255, 0.07), 10px 8px 32px rgba(0,132,255, 0.07), 18px 16px 64px rgba(0,132,255, 0.1)',
         outline: '0 0 0 3px rgba(66, 153, 225, 0.5)',
+      },
+      dropShadow: {
+        sm: '0 1px 1px rgb(20 70 150 / 0.05)',
       },
       colors: {
         seafoam: {

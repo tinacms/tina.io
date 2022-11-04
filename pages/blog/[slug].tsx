@@ -238,7 +238,7 @@ export default BlogTemplate
  ** DATA FETCHING --------------------------------------------------
  */
 
-export const getStaticProps: GetStaticProps = async function({
+export const getStaticProps: GetStaticProps = async function ({
   preview,
   previewData,
   ...ctx
@@ -261,10 +261,10 @@ export const getStaticProps: GetStaticProps = async function({
   }
 }
 
-export const getStaticPaths: GetStaticPaths = async function() {
+export const getStaticPaths: GetStaticPaths = async function () {
   const blogs = await fg(`./content/blog/**/*.md`)
   return {
-    paths: blogs.map(file => {
+    paths: blogs.map((file) => {
       const slug = fileToUrl(file, 'blog')
       return { params: { slug } }
     }),
@@ -284,12 +284,13 @@ const BlogWrapper = styled(Wrapper)`
 
 const BlogMeta = styled.div`
   width: 100%;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   display: flex;
   flex-direction: row;
   margin-bottom: 3rem;
   margin-top: -0.5rem;
+  text-align: center;
 
   @media (min-width: 550px) {
     flex-direction: row;
@@ -298,6 +299,9 @@ const BlogMeta = styled.div`
 
 const MetaWrap = styled.span`
   opacity: 0.8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 const MetaBit = styled.p`
