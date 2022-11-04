@@ -5,7 +5,7 @@ last_edited: '2022-11-07T04:00:00.000Z'
 author: James O'Halloran
 ---
 
-We're excited to announce that TinaCMS has gone 1.0 and coming out of beta!
+We're excited to announce that TinaCMS has gone 1.0 and is coming out of beta!
 
 TinaCMS was announced over 3 years ago, and has matured greatly over that time.
 
