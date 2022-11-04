@@ -27,20 +27,24 @@ For existing sites, initialize TinaCMS with:
 npx @tinacms/cli@latest init
 ```
 
-> Check out the "getting started" docs for more info
+You can check out the "getting started" docs for more info
 
-For existing Tina sites looking to migrate to the latest iframe-based changes, [see our migration doc here](https://tina.io/blog/upgrading-to-iframe/)
+> For existing Tina sites looking to migrate to the latest iframe-based changes, [see our migration doc here](https://tina.io/blog/upgrading-to-iframe/)
 
 ## New pricing in effect
 
 Tina's new pricing will go into effect now that Tina is out of Beta.
 ![Tina Launch Pricing](https://res.cloudinary.com/forestry-demo/image/upload/v1667564867/tina-io/blog/TinaCMS_pricing_1.png)
 
-If you have any questions about out pricing, please contact sales@tina.io
+If you have any questions about out pricing, [Please contact us](mailto:support@tina.io)
 
 ## A Fresh coat of paint
 
-TinaCMS's landing page also got a fresh new look along with this release. Check it out at https://tina.io
+TinaCMS's landing page also got a fresh new look along with this release.
+
+![Tina Launch Pricing](https://res.cloudinary.com/forestry-demo/image/upload/v1667565910/tina-io/blog/tinaio-homepage.png)
+
+Check it out at [tina.io](https://tina.io)
 
 ## Acknowledgements
 
