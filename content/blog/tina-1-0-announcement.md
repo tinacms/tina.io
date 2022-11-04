@@ -5,13 +5,13 @@ last_edited: '2022-11-07T04:00:00.000Z'
 author: James O'Halloran
 ---
 
-We're excited to announce that TinaCMS has gone 1.0!
+We're excited to announce that TinaCMS has gone 1.0 and coming out of beta!
 
 TinaCMS was announced over 3 years ago, and has matured greatly over that time.
 
-In the early days of TinaCMS, there was a high bar for getting started. TinaCMS is now framework agnostic, and is now easier than ever to setup.
+In the early days of TinaCMS, there was a high bar for getting started. TinaCMS is now easier than ever to setup. With our [recent changes](https://tina.io/blog/upgrading-to-iframe/), TinaCMS now works with all frameworks, such as Next.js, Remix, Astro, Hugo, 11ty, and more!
 
-TinaCMS's 1.0 release also means that we can now release under [semantic versioning](https://semver.org/), so that breaking changes will be easier to manage/
+TinaCMS's 1.0 release also means that we can now release under [semantic versioning](https://semver.org/), so that breaking changes will be easier to manage.
 
 ## Getting Started with TinaCMS
 
@@ -33,7 +33,7 @@ You can check out the "getting started" docs for more info
 
 ## New pricing in effect
 
-Tina's new pricing will go into effect now that Tina is out of Beta.
+Tina Cloud's new pricing will go into effect now that Tina is out of Beta. For organizations that were created during the beta phase, pricing will go into effect on December 1st.
 ![Tina Launch Pricing](https://res.cloudinary.com/forestry-demo/image/upload/v1667564867/tina-io/blog/TinaCMS_pricing_1.png)
 
 If you have any questions about out pricing, [Please contact us](mailto:support@tina.io)
@@ -48,4 +48,4 @@ Check it out at [tina.io](https://tina.io)
 
 ## Acknowledgements
 
-This release couldn't have been possible without the help of all our contributors, and our community members. With over 100 contributors, and 9400 commits, its truely been a massive team/community effort to this milestone. Thank you all for helping shape TinaCMS into what it is today, and for believing is our vision of briding the gap between developers & editors.
+This release couldn't have been possible without the help of all our contributors, and our community members. With over 100 contributors and 9400 commits, its truly been a massive team/community effort to this milestone. Thank you all for helping shape TinaCMS into what it is today, and for believing in our vision of bridging the gap between developers & editors.
