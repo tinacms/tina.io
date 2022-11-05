@@ -169,6 +169,10 @@ module.exports = {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
         tuner: ['tuner-medium', ...defaultTheme.fontFamily.sans],
       },
+      gridTemplateColumns: {
+        'auto-sm': 'repeat(auto-fit, minmax(300px, 1fr))',
+        'auto-lg': 'repeat(auto-fit, minmax(400px, 1fr))',
+      },
       zIndex: {
         '-1': '-1',
       },
