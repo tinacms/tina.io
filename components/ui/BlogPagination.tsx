@@ -24,17 +24,27 @@ export const BlogPagination = styled(
         <PaginationLinks>
           {!isFirst && (
             <DynamicLink href={prevPage} passHref>
-              <a onClick={() => setSelectValue(selectValue - 1)}>← Newer</a>
+              <a
+                onClick={() => setSelectValue(selectValue - 1)}
+                className="font-tuner"
+              >
+                <span className="font-sans font-bold">←</span> Newer
+              </a>
             </DynamicLink>
           )}
           {!isLast && (
             <DynamicLink href={nextPage} passHref>
-              <a onClick={() => setSelectValue(selectValue + 1)}>Older →</a>
+              <a
+                onClick={() => setSelectValue(selectValue + 1)}
+                className="font-tuner"
+              >
+                Older <span className="font-sans font-bold">→</span>
+              </a>
             </DynamicLink>
           )}
         </PaginationLinks>
         <div>
-          Page{' '}
+          <span className="text-gray-700">Page</span>{' '}
           <SelectWrapper>
             <select
               aria-label="Pagination Dropdown"
@@ -53,7 +63,7 @@ export const BlogPagination = styled(
               ))}
             </select>
           </SelectWrapper>{' '}
-          of {numPages}
+          <span className="text-gray-700">of</span> {numPages}
         </div>
       </div>
     )
@@ -62,8 +72,9 @@ export const BlogPagination = styled(
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 1.125rem;
-  margin-bottom: 2rem;
+  font-size: 1.25rem;
+  margin-bottom: 3rem;
+  font-family: var(--font-tuner-medium);
 
   p {
     color: var(--color-secondary);
@@ -71,7 +82,6 @@ export const BlogPagination = styled(
 
   select {
     display: inline-block;
-    padding: 0.1rem 1.25rem 0.1rem 0.5rem;
     border-radius: 0.3em;
     background-color: var(--color-light);
     border: 1px solid var(--color-light-dark);
@@ -79,6 +89,7 @@ export const BlogPagination = styled(
     color: var(--color-orange);
     outline: none;
     cursor: pointer;
+    min-width: 3.5rem;
 
     -moz-appearance: none;
     -webkit-appearance: none;
@@ -106,17 +117,6 @@ export const BlogPagination = styled(
 const SelectWrapper = styled.div`
   display: inline-block;
   position: relative;
-
-  &:after {
-    content: '▼';
-    display: block;
-    position: absolute;
-    right: 0.5rem;
-    top: 50%;
-    transform: translate3d(0, -50%, 0);
-    color: var(--color-orange);
-    font-size: 0.5rem;
-  }
 `
 
 const PaginationLinks = styled.div``

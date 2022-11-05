@@ -1,9 +1,18 @@
-import type {PageBlocks} from '../../.tina/__generated__/types'
-import { StoryBlock, FeaturesBlock, FlyingBlock, HeroBlock, PricingBlock, FaqBlock, ContentBlock } from './'
+import type { PageBlocks } from '../../.tina/__generated__/types'
+import {
+  StoryBlock,
+  FeatureGridBlock,
+  FeaturesBlock,
+  FlyingBlock,
+  HeroBlock,
+  PricingBlock,
+  FaqBlock,
+  ContentBlock,
+} from './'
 import { ColumnsBlock } from './Columns'
 import { ShowcaseItemsBlock } from './Showcase'
 
-export const Blocks = ({ blocks }: {blocks:PageBlocks[]}) => {
+export const Blocks = ({ blocks }: { blocks: PageBlocks[] }) => {
   if (!blocks) return null
   return blocks.map((block, index) => {
     switch (block.__typename) {
@@ -25,6 +34,8 @@ export const Blocks = ({ blocks }: {blocks:PageBlocks[]}) => {
         return <ShowcaseItemsBlock data={block} index={index} />
       case 'PageBlocksStory':
         return <StoryBlock data={block} index={index} />
+      case 'PageBlocksFeatureGrid':
+        return <FeatureGridBlock data={block} index={index} />
       default:
         return null
     }

@@ -8,9 +8,6 @@ import type { TinaTemplate } from '@tinacms/cli'
 export const storyTemplate: TinaTemplate = {
   label: 'Story',
   name: 'story',
-  ui: {
-    previewSrc: '/img/blocks/hero.png',
-  },
   fields: [
     {
       label: 'Title',
@@ -52,6 +49,14 @@ const features = [
     title: 'Simple CMS Configuration',
     description:
       "Define your content's schema and Tina will provide you with a user friendly editing experience.",
+    actions: [
+      {
+        variant: 'seafoam',
+        size: 'large',
+        label: 'Read The Docs',
+        url: '/docs/schema/',
+      },
+    ],
   },
   {
     id: 'git',
@@ -418,7 +423,7 @@ export function StoryBlock({ data, index }) {
     <>
       <section key={index} className={``}>
         <Container width="wide">
-          <div className="relative w-full flex flex-col-reverse lg:flex-row gap-x-10 gap-y-4">
+          <div className="relative w-full flex flex-col-reverse lg:flex-row gap-x-8 gap-y-4">
             <div className="w-full lg:w-2/5 max-w-prose">
               {features.map((item) => (
                 <Feature
@@ -429,7 +434,7 @@ export function StoryBlock({ data, index }) {
               ))}
             </div>
             <div className="w-full lg:w-3/5 lg:h-screen flex flex-col justify-center sticky top-32 lg:top-0">
-              <div className="w-full aspect-w-16 aspect-h-9 relative -mt-[6%]">
+              <div className="w-full aspect-w-9 aspect-h-6 relative">
                 <div className="absolute w-full h-full right">
                   {panes.map((pane) => (
                     <Pane

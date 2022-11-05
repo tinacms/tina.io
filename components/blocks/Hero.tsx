@@ -30,27 +30,30 @@ export const heroTemplate: TinaTemplate = {
     },
   },
   fields: [
-    { name: 'headline', label: "Headline", type: 'string' },
-    { name: 'text', label: "Text", type: 'string' },
+    { name: 'headline', label: 'Headline', type: 'string' },
+    { name: 'text', label: 'Text', type: 'string' },
     // @ts-ignore
     actionsTemplate,
-    { name: 'videoSrc', label:"Video Source", type: 'string' },
+    { name: 'videoSrc', label: 'Video Source', type: 'string' },
   ],
 }
 
 export function HeroBlock({ data, index }) {
   return (
-      <section key={index} className={`relative overflow-visible z-10 text-center px-8 pb-10 md:pb-16 lg:pb-28 pt-32 lg:pt-40`}>
-        <Container width="narrow" center>
-          <HeroFeature item={data} />
+    <section
+      key={index}
+      className={`relative overflow-visible z-10 text-center px-8 pb-10 md:pb-16 lg:pb-28 pt-32 lg:pt-40`}
+    >
+      <Container width="narrow" center>
+        <HeroFeature item={data} />
+      </Container>
+      {data.videoSrc && (
+        <Container>
+          <Video src={data.videoSrc} />
         </Container>
-        {data.videoSrc && (
-          <Container>
-            <Video src={data.videoSrc} />
-          </Container>
-        )}
-        <HeroBg className="absolute pointer-events-none -z-1 left-0 bottom-0 w-full h-auto" />
-      </section>
+      )}
+      <HeroBg className="absolute pointer-events-none -z-1 left-0 bottom-0 w-full h-auto" />
+    </section>
   )
 }
 
@@ -59,11 +62,10 @@ export const HeroFeature = ({ item }) => {
     <>
       <div className="feature">
         {item.headline && <h2 className="heading">{item.headline}</h2>}
-        {item.text && <p className="textHuge">{item.text}</p>}
+        {item.text && <p className="text-xl mt-6">{item.text}</p>}
         {item.actions && <Actions items={item.actions} align="center" />}
       </div>
       <style jsx>{`
-
         .heading {
           font-family: var(--font-tuner);
           font-weight: bold;

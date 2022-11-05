@@ -38,7 +38,7 @@ function CommunityPage(props) {
               <InfoContent>
                 <InfoText>
                   {data.supporting_headline && (
-                    <h2>{data.supporting_headline}</h2>
+                    <h2 className="!mb-0">{data.supporting_headline}</h2>
                   )}
                   <hr />
                   <MarkdownContent content={data.supporting_body} />
