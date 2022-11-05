@@ -11,48 +11,39 @@
       "items": [
         {
           "headline": "Customize the Editing UI",
-          "text": "Take full control of the editing UI by providing custom components in Tina’s schema.",
-          "_template": "feature"
+          "text": "Take full control of the editing UI by providing custom components in Tina’s schema."
         },
         {
           "headline": "Site Building",
-          "text": "Create reusable components that you can edit with Tina. Give your editors the ability to assemble pages like a custom built site-builder.",
-          "_template": "feature"
+          "text": "Create reusable components that you can edit with Tina. Give your editors the ability to assemble pages like a custom built site-builder."
         },
         {
           "headline": "GraphQL Data Layer",
-          "text": "Query your Markdown content like you would a database. Tina’s GraphQL Data Layer supports filtering, sorting, pagination, and more.",
-          "_template": "feature"
+          "text": "Query your Markdown content like you would a database. Tina’s GraphQL Data Layer supports filtering, sorting, pagination, and more."
         },
         {
           "headline": "Static or Server Side Rendering",
-          "text": "Power your SSR and ISR sites with Markdown content when you use the GraphQL Data Layer.",
-          "_template": "feature"
+          "text": "Power your SSR and ISR sites with Markdown content when you use the GraphQL Data Layer."
         },
         {
           "headline": "Develop Locally",
-          "text": "In development, run Tina locally and talk to your local filesystem. This makes making changes to your schema a breeze.",
-          "_template": "feature"
+          "text": "In development, run Tina locally and talk to your local filesystem. This makes making changes to your schema a breeze."
         },
         {
           "headline": "Integrate 3rd-party Media",
-          "text": "If you don’t wish to store media in your repo, connect to S3, Cloudinary, etc.",
-          "_template": "feature"
+          "text": "If you don’t wish to store media in your repo, connect to S3, Cloudinary, etc."
         },
         {
           "headline": "MDX, Markdown, JSON",
-          "text": "Tina support open-formats, in your repo.",
-          "_template": "feature"
+          "text": "Tina support open-formats, in your repo."
         },
         {
           "headline": "Markdown at Scale ",
-          "text": "There is no limit to what you can do with Markdown when combined with a data layer.  Tina powers 10’s of thousands of pages for Smashing Magazine with great performance and without GitHub rate-limiting.",
-          "_template": "feature"
+          "text": "There is no limit to what you can do with Markdown when combined with a data layer.  Tina powers 10’s of thousands of pages for Smashing Magazine with great performance and without GitHub rate-limiting."
         },
         {
           "headline": "No database, no sync issues",
-          "text": "In development, run Tina locally and talk to your local filesystem. This makes making changes to your schema a breeze.",
-          "_template": "feature"
+          "text": "In development, run Tina locally and talk to your local filesystem. This makes making changes to your schema a breeze."
         }
       ],
       "_template": "featureGrid"
