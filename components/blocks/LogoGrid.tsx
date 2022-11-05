@@ -45,7 +45,7 @@ const Logo = ({ data, index, windowWidth = 1000 }) => {
       href={data.link}
       title={data.name}
       target="_blank"
-      className="block transition ease-out duration-150 hover:opacity-70 cursor-pointer"
+      className="block flex-none transition ease-out duration-150 hover:opacity-70 cursor-pointer"
       style={{
         width: data.size ? data.size * scaleFactor : 200 * scaleFactor,
       }}
