@@ -59,8 +59,30 @@ const Logo = ({ data, index, windowWidth = 1000 }) => {
   )
 }
 
+function getWindowSize() {
+  if (typeof window === 'undefined') {
+    return 1000
+  }
+  const { innerWidth, innerHeight } = window
+  return { width: innerWidth, height: innerHeight }
+}
+
 export function LogoGridBlock({ data, index }) {
-  const windowWidth = useWindowWidth()
+  const [windowSize, setWindowSize] = React.useState(getWindowSize())
+
+  React.useEffect(() => {
+    function handleWindowResize() {
+      setWindowSize(getWindowSize())
+    }
+
+    if (!window) return
+
+    window.addEventListener('resize', handleWindowResize)
+
+    return () => {
+      window.removeEventListener('resize', handleWindowResize)
+    }
+  }, [])
 
   return (
     <section
@@ -80,7 +102,11 @@ export function LogoGridBlock({ data, index }) {
             {data.items &&
               data.items.map((data, index) => {
                 return (
-                  <Logo data={data} index={index} windowWidth={windowWidth} />
+                  <Logo
+                    data={data}
+                    index={index}
+                    windowWidth={windowSize.width}
+                  />
                 )
               })}
           </div>
