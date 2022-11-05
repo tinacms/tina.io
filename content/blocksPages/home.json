@@ -53,21 +53,25 @@
       "items": [
         {
           "name": "Devolver Digital",
+          "link": "https://www.devolverdigital.com/",
           "logo": "/svg/logos/devolverdigital.svg",
           "size": 209
         },
         {
           "name": "Planet Scale",
+          "link": "https://planetscale.com/",
           "logo": "/svg/logos/planetscale.svg",
           "size": 110
         },
         {
           "name": "Protocol Labs",
+          "link": "https://protocol.ai/",
           "logo": "/svg/logos/protocollabs.svg",
           "size": 110
         },
         {
           "name": "Smashing Magazine",
+          "link": "https://www.smashingmagazine.com/",
           "logo": "/svg/logos/smashing.svg",
           "size": 128
         }

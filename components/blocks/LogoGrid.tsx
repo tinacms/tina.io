@@ -13,6 +13,11 @@ export const logoGridTemplate: TinaTemplate = {
       type: 'string',
     },
     {
+      label: 'Link',
+      name: 'link',
+      type: 'string',
+    },
+    {
       name: 'items',
       label: 'Logos',
       type: 'object',
@@ -36,12 +41,21 @@ const Logo = ({ data, index, windowWidth = 1000 }) => {
   const scaleFactor = windowWidth > 1200 ? 1 : windowWidth > 600 ? 0.75 : 0.5
 
   return (
-    <img
-      src={data.logo}
-      className={`h-auto`}
-      style={{ width: data.size ? data.size * scaleFactor : 200 * scaleFactor }}
-      alt={data.name}
-    />
+    <a
+      href={data.link}
+      title={data.name}
+      target="_blank"
+      className="block transition ease-out duration-150 hover:opacity-70 cursor-pointer"
+      style={{
+        width: data.size ? data.size * scaleFactor : 200 * scaleFactor,
+      }}
+    >
+      <img
+        src={data.logo}
+        className="block w-full h-auto m-0"
+        alt={data.name}
+      />
+    </a>
   )
 }
 
