@@ -2558,7 +2558,7 @@
   dependencies:
     "@react-hook/latest" "^1.0.2"
 
-"@react-hook/window-size@^3.0.7":
+"@react-hook/window-size@^3.0.7", "@react-hook/window-size@^3.1.1":
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/@react-hook/window-size/-/window-size-3.1.1.tgz#1a564902cfe212e8c27ffc2e74adcaa18a7d65b3"
   integrity sha512-yWnVS5LKnOUIrEsI44oz3bIIUYqflamPL27n+k/PC//PsX/YeWBky09oPeAoc9As6jSH16Wgo8plI+ECZaHk3g==

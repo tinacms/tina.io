@@ -38,7 +38,7 @@ const Feature = ({ data, index }) => {
   return (
     <div className="py-6 px-8 md:py-9 md:px-11 lg:py-12 lg:px-14 rounded-sm bg-gradient-to-br from-white via-white/80 to-white/50 flex flex-col gap-4">
       {data.headline && (
-        <h3 className="text-2xl lg:text-3xl font-tuner lg:leading-tight bg-gradient-to-br from-blue-700/80 via-blue-900/90 to-blue-1000 bg-clip-text text-transparent">
+        <h3 className="text-2xl lg:text-3xl font-tuner lg:leading-tight bg-gradient-to-br from-blue-700/80 via-blue-900/90 to-blue-1000 bg-clip-text text-transparent mb-2">
           {data.headline}
         </h3>
       )}

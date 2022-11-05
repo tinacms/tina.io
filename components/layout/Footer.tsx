@@ -97,7 +97,7 @@ export const Footer = ({}) => {
   return (
     <div>
       {/* Top */}
-      <div className="flex flex-col md:flex-row gap-6 w-full justify-between items-start bg-[url('/svg/orange-bg.svg')] bg-cover bg-center px-4 py-6 lg:py-10 lg:px-10">
+      <div className="flex flex-col md:flex-row gap-6 w-full justify-between items-start bg-[url('/svg/orange-bg.svg')] bg-cover bg-center px-4 py-6 lg:py-10 lg:px-10 -mt-px">
         <div className="max-w-[20%] flex-1 drop-shadow-sm">
           <TinaIcon color="white" />
         </div>

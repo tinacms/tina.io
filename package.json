@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@next/bundle-analyzer": "^10.0.0",
+    "@react-hook/window-size": "^3.1.1",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tinacms/auth": "^0.50.2",
     "@tinacms/graphql": "^0.60.0",

@@ -47,6 +47,32 @@
         }
       ],
       "_template": "featureGrid"
+    },
+    {
+      "title": "Trusted by",
+      "items": [
+        {
+          "name": "Devolver Digital",
+          "logo": "/svg/logos/devolverdigital.svg",
+          "size": 209
+        },
+        {
+          "name": "Planet Scale",
+          "logo": "/svg/logos/planetscale.svg",
+          "size": 110
+        },
+        {
+          "name": "Protocol Labs",
+          "logo": "/svg/logos/protocollabs.svg",
+          "size": 110
+        },
+        {
+          "name": "Smashing Magazine",
+          "logo": "/svg/logos/smashing.svg",
+          "size": 128
+        }
+      ],
+      "_template": "logoGrid"
     }
   ]
 }

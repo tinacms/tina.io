@@ -8,6 +8,7 @@ import {
   PricingBlock,
   FaqBlock,
   ContentBlock,
+  LogoGridBlock,
 } from './'
 import { ColumnsBlock } from './Columns'
 import { ShowcaseItemsBlock } from './Showcase'
@@ -36,6 +37,8 @@ export const Blocks = ({ blocks }: { blocks: PageBlocks[] }) => {
         return <StoryBlock data={block} index={index} />
       case 'PageBlocksFeatureGrid':
         return <FeatureGridBlock data={block} index={index} />
+      case 'PageBlocksLogoGrid':
+        return <LogoGridBlock data={block} index={index} />
       default:
         return null
     }

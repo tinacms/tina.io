@@ -23,6 +23,7 @@ import { showcaseTemplate } from '../components/blocks/Showcase'
 import { storyTemplate } from '../components/blocks/Story'
 import { featureGridTemplate } from '../components/blocks/FeatureGrid'
 import type { TinaTemplate } from 'tinacms'
+import { logoGridTemplate } from 'components/blocks'
 
 export default defineSchema({
   config: {
@@ -81,6 +82,7 @@ export default defineSchema({
             columnsTemplate as TinaTemplate,
             storyTemplate as TinaTemplate,
             featureGridTemplate as TinaTemplate,
+            logoGridTemplate as TinaTemplate,
           ],
         },
       ],
