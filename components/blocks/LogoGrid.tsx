@@ -56,18 +56,20 @@ export function LogoGridBlock({ data, index }) {
       }
     >
       <Container width="wide">
-        {data.title && (
-          <h3 className="font-tuner block text-center text-3xl lg:text-4xl lg:leading-tight bg-gradient-to-br from-white via-white/80 to-white/50 bg-clip-text text-transparent mb-6">
-            {data.title}
-          </h3>
-        )}
-        <div className="w-full flex items-center flex-wrap justify-center gap-12 md:gap-16 lg:gap-20">
-          {data.items &&
-            data.items.map((data, index) => {
-              return (
-                <Logo data={data} index={index} windowWidth={windowWidth} />
-              )
-            })}
+        <div className="flex flex-col items-center">
+          {data.title && (
+            <h3 className="font-tuner inline-block text-center text-3xl lg:text-4xl lg:leading-tight bg-gradient-to-br from-blue-200 via-blue-300 to-blue-500 bg-clip-text text-transparent mb-6">
+              {data.title}
+            </h3>
+          )}
+          <div className="w-full flex items-center flex-wrap justify-center gap-10 md:gap-16 lg:gap-20">
+            {data.items &&
+              data.items.map((data, index) => {
+                return (
+                  <Logo data={data} index={index} windowWidth={windowWidth} />
+                )
+              })}
+          </div>
         </div>
       </Container>
     </section>
