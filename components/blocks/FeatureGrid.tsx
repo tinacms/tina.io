@@ -55,7 +55,7 @@ export function FeatureGridBlock({ data, index }) {
       className={'relative z-10 py-16 lg:py-24'}
     >
       <Container width="wide">
-        <div className="grid gap-px grid-flow-row grid-cols-auto-sm md:grid-cols-auto-lg auto-rows-auto w-full rounded-xl overflow-hidden shadow border border-blue-50/50 bg-gradient-to-br from-seafoam-200/30 to-blue-100/30">
+        <div className="grid gap-[0.5px] grid-flow-row grid-cols-auto-sm md:grid-cols-auto-lg auto-rows-auto w-full rounded-xl overflow-hidden shadow border border-blue-50/50 bg-gradient-to-br from-seafoam-200/30 to-blue-100/30">
           {data.items &&
             data.items.map((data, index) => {
               return <Feature data={data} index={index} />
