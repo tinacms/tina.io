@@ -409,14 +409,14 @@ const Feature = ({ activeId, setActiveId, item }) => {
               ))}
           </div>
         </div>
-        <div className="drop-shadow-sm flex flex-col gap-8" ref={ref}>
+        <div className="drop-shadow-sm flex flex-col gap-6 lg:gap-8" ref={ref}>
           <div className="title-wrapper">
             <h2 className="font-tuner inline-block text-3xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
               {item.title}
             </h2>
           </div>
           <hr className="!my-0" />
-          <p className="text-lg lg:text-xl lg:leading-normal block bg-gradient-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent -mb-1">
+          <p className="text-lg lg:text-xl lg:leading-normal block bg-gradient-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent -mb-2">
             {item.description}
           </p>
           {item.actions && <Actions items={item.actions} />}

@@ -17,7 +17,7 @@ export const Layout = ({ children, color }: LayoutProps) => {
 
   return (
     <>
-      <div className="flex flex-col min-h-screen blob-bg">
+      <div className="flex flex-col min-h-screen blob-bg font-sans">
         <DefaultSeo
           openGraph={{
             url: 'https://tina.io' + router.asPath,
