@@ -79,7 +79,6 @@ const panes = [
       schema: 'front-bottom',
       git: 'back',
       default: 'out-bottom',
-      mobile: 'front',
     },
   },
   {
@@ -107,7 +106,6 @@ text="MDX Rocks"
       file: 'front',
       schema: 'out-top',
       default: 'out-bottom',
-      mobile: 'front',
     },
   },
   {
@@ -146,7 +144,6 @@ text="MDX Rocks"
       schema: 'foreground',
       git: 'out-right',
       default: 'out-bottom',
-      mobile: 'foreground',
     },
   },
   {
@@ -166,7 +163,6 @@ Message: Update From Tina`,
       schema: 'out-bottom',
       git: 'front',
       default: 'out-top',
-      mobile: 'front',
     },
   },
 ]
@@ -193,53 +189,11 @@ const Video = ({ src }) => {
   )
 }
 
-const Feature = ({ activeId, setActiveId, item }) => {
-  const { ref, inView, entry } = useInView({
-    rootMargin: '-100px 0px',
-  })
-
-  React.useEffect(() => {
-    if (inView) {
-      setActiveId(item.id)
-    } else if (activeId === item.id) {
-      setActiveId(null)
-    }
-  }, [inView])
-
-  React.useEffect(() => {
-    if (!activeId && inView) {
-      setActiveId(item.id)
-    }
-  }, [activeId])
-
-  return (
-    <div
-      key={item.id}
-      className={`py-8 min-h-[75vh] lg:min-h-screen flex flex-col justify-center transition ease-out duration-500 ${
-        activeId === item.id ? '' : 'opacity-0'
-      }`}
-    >
-      <div className="drop-shadow-sm flex flex-col gap-8" ref={ref}>
-        <div className="title-wrapper">
-          <h2 className="font-tuner inline-block text-3xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
-            {item.title}
-          </h2>
-        </div>
-        <hr className="!my-0" />
-        <p className="text-lg lg:text-xl lg:leading-normal block bg-gradient-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent -mb-1">
-          {item.description}
-        </p>
-        {item.actions && <Actions items={item.actions} />}
-      </div>
-    </div>
-  )
-}
-
 const Pane = ({ data, position }) => {
   return (
     <>
       <div
-        className={`pane ${
+        className={`pane text-xs sm:text-sm lg:text-base ${
           data.basePosition ? data.basePosition : ''
         } ${position}`}
         style={{
@@ -377,7 +331,7 @@ const Pane = ({ data, position }) => {
 
         :global(.hljs) {
           font-size: unquote('clamp(0.75em,0.676em + 0.37vw, 1em)			');
-          padding: 32px;
+          padding: 1.5em;
           color: var(--blue-250);
           font-weight: medium;
           font-family: SFMono-Regular, Menlo, Monaco, Consolas,
@@ -416,14 +370,81 @@ const Pane = ({ data, position }) => {
   )
 }
 
+const Feature = ({ activeId, setActiveId, item }) => {
+  const featurePanes = panes.filter((pane) => {
+    return item.id in pane.positions
+  })
+
+  const { ref, inView, entry } = useInView({
+    rootMargin: '-100px 0px',
+  })
+
+  React.useEffect(() => {
+    if (inView) {
+      setActiveId(item.id)
+    } else if (activeId === item.id) {
+      setActiveId(null)
+    }
+  }, [inView])
+
+  React.useEffect(() => {
+    if (!activeId && inView) {
+      setActiveId(item.id)
+    }
+  }, [activeId])
+
+  return (
+    <>
+      <div
+        key={item.id}
+        className={`py-8 min-h-[75vh] lg:min-h-screen flex flex-col justify-center transition ease-out duration-500 ${
+          activeId === item.id ? '' : 'lg:opacity-0'
+        }`}
+      >
+        <div className="lg:hidden w-full aspect-w-9 aspect-h-6 relative mt-6 mb-24">
+          <div className="absolute w-full h-full pane-container">
+            {featurePanes &&
+              featurePanes.map((pane) => (
+                <Pane data={pane} position={pane.positions[item.id]} />
+              ))}
+          </div>
+        </div>
+        <div className="drop-shadow-sm flex flex-col gap-8" ref={ref}>
+          <div className="title-wrapper">
+            <h2 className="font-tuner inline-block text-3xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+              {item.title}
+            </h2>
+          </div>
+          <hr className="!my-0" />
+          <p className="text-lg lg:text-xl lg:leading-normal block bg-gradient-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent -mb-1">
+            {item.description}
+          </p>
+          {item.actions && <Actions items={item.actions} />}
+        </div>
+      </div>
+      <style jsx>{`
+        .pane-container {
+          perspective: 1000px;
+          -moz-perspective: none;
+          transform: scale(0.85);
+          --right-rotation: -5deg;
+        }
+      `}</style>
+    </>
+  )
+}
+
 export function StoryBlock({ data, index }) {
   const [activeId, setActiveId] = React.useState(features[0].id)
 
   return (
     <>
-      <section key={index} className={``}>
+      <section
+        key={index}
+        className={`w-full max-w-full overflow-hidden lg:overflow-visible`}
+      >
         <Container width="wide">
-          <div className="relative w-full flex flex-col-reverse lg:flex-row gap-x-8 gap-y-4">
+          <div className="relative w-full flex flex-col-reverse items-center lg:items-start lg:flex-row gap-x-8 gap-y-4">
             <div className="w-full lg:w-2/5 max-w-prose">
               {features.map((item) => (
                 <Feature
@@ -433,7 +454,7 @@ export function StoryBlock({ data, index }) {
                 />
               ))}
             </div>
-            <div className="w-full lg:w-3/5 lg:h-screen flex flex-col justify-center sticky top-32 lg:top-0">
+            <div className="hidden lg:flex w-full lg:w-3/5 lg:h-screen flex-col justify-center sticky top-32 lg:top-0">
               <div className="w-full aspect-w-9 aspect-h-6 relative">
                 <div className="absolute w-full h-full right">
                   {panes.map((pane) => (
