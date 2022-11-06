@@ -47,7 +47,7 @@ export function DocumentationNavigation({ navItems }: DocsNavProps) {
         open={mobileNavIsOpen}
         onClick={() => setMobileNavIsOpen(false)}
       />
-      <DocsHeaderNav color={'light'} open={mobileNavIsOpen} />
+      <DocsHeaderNav />
     </>
   )
 }
