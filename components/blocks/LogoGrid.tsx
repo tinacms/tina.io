@@ -61,7 +61,7 @@ const Logo = ({ data, index, windowWidth = 1000 }) => {
 
 function getWindowSize() {
   if (typeof window === 'undefined') {
-    return 1000
+    return { width: 1000, height: 800 }
   }
   const { innerWidth, innerHeight } = window
   return { width: innerWidth, height: innerHeight }
@@ -71,6 +71,8 @@ export function LogoGridBlock({ data, index }) {
   const [windowSize, setWindowSize] = React.useState(getWindowSize())
 
   React.useEffect(() => {
+    setWindowSize(getWindowSize())
+
     function handleWindowResize() {
       setWindowSize(getWindowSize())
     }
