@@ -28,8 +28,8 @@ const LaunchBanner = () => {
       </p>
       <Divider className="flex-shrink" />
       <Link href="/blog/tina-1-0-announcement/">
-        <a className="font-tuner text-blue-600 hover:text-blue-400 transition ease-out duration-150 underline decoration-blue-100 flex items-center gap-2">
-          Read The Post <BiRightArrowAlt className="h-5 w-auto -mt-0.5" />
+        <a className="font-tuner text-blue-600 hover:text-blue-400 transition ease-out duration-150 underline decoration-blue-100 flex items-center gap-1">
+          Read More <BiRightArrowAlt className="h-5 w-auto -mt-0.5" />
         </a>
       </Link>
     </div>
@@ -56,7 +56,7 @@ export function Navbar({}) {
       <LaunchBanner />
       <div className="flex md:hidden w-full py-4 pr-4 pl-18 items-center justify-between gap-6">
         <div
-          className={`fixed top-0 left-0 h-full w-3/4 bg-white shadow-2xl z-50 transition ease-out duration-200 ${
+          className={`fixed top-0 left-0 h-full w-3/4 bg-gradient-to-t from-blue-50 to-white shadow-2xl z-50 transition ease-out duration-200 ${
             open ? 'translate-x-0' : '-translate-x-full'
           }`}
         >
