@@ -24,31 +24,13 @@
       {
         "id": "playground",
         "label": "Schema Playground",
-        "href": "/playground",
-        "external": false
-      },
-      {
-        "id": "generator",
-        "label": "Schema Generator",
-        "href": "/generator",
+        "href": "https://tina-gql-playground.vercel.app/",
         "external": false
       },
       {
         "id": "showcase",
         "label": "Showcase",
         "href": "/showcase",
-        "external": false
-      },
-      {
-        "id": "videos",
-        "label": "Video Demos",
-        "href": "/video-demos",
-        "external": false
-      },
-      {
-        "id": "notes",
-        "label": "Release Notes",
-        "href": "/release-notes",
         "external": false
       },
       {

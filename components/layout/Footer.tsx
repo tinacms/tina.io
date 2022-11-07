@@ -14,10 +14,10 @@ const footerNav = [
   {
     label: 'Product',
     items: [
-      {
-        link: '/demo/',
-        label: 'Demo',
-      },
+      // {
+      //   link: '/demo/',
+      //   label: 'Demo',
+      // },
       {
         link: '/showcase/',
         label: 'Showcase',
@@ -39,10 +39,10 @@ const footerNav = [
         link: '/',
         label: 'How Tina Works',
       },
-      {
-        link: '/',
-        label: 'Releases',
-      },
+      // {
+      //   link: '/',
+      //   label: 'Releases',
+      // },
     ],
   },
 ]
@@ -125,7 +125,7 @@ export const Footer = ({}) => {
                 <TwitterIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
                 Twitter
               </SocialLink>
-              <SocialLink link="/">
+              <SocialLink link="https://discord.com/invite/zumN63Ybpf">
                 <BsDiscord className="w-7 h-auto fill-current opacity-80" />{' '}
                 Discord
               </SocialLink>

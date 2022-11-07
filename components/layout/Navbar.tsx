@@ -18,7 +18,7 @@ import Divider from '../../public/svg/hr.svg'
 
 const LaunchBanner = () => {
   return (
-    <div className="w-full h-12 px-4 lg:px-8 text-lg bg-gradient-to-r from-seafoam-50 to-blue-50 font-sans text-blue-800 flex items-center justify-center gap-4 whitespace-nowrap">
+    <div className="w-full h-12 px-4 lg:px-8 text-lg bg-gradient-to-r from-seafoam-50 to-blue-50 font-sans text-blue-700 flex items-center justify-center gap-4 whitespace-nowrap">
       <p className="font-medium">
         <span className="font-tuner text-orange-600">Tina</span> has gone 1.0
         <span className="hidden lg:inline ">

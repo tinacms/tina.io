@@ -189,10 +189,11 @@ const Video = ({ src }) => {
   )
 }
 
-const Pane = ({ data, position }) => {
+const Pane = ({ data, position, ...props }) => {
   return (
     <>
       <div
+        {...props}
         className={`pane text-xs sm:text-sm lg:text-base ${
           data.basePosition ? data.basePosition : ''
         } ${position}`}
@@ -370,7 +371,7 @@ const Pane = ({ data, position }) => {
   )
 }
 
-const Feature = ({ activeId, setActiveId, item }) => {
+const Feature = ({ activeId, setActiveId, item, ...props }) => {
   const featurePanes = panes.filter((pane) => {
     return item.id in pane.positions
   })
@@ -396,7 +397,7 @@ const Feature = ({ activeId, setActiveId, item }) => {
   return (
     <>
       <div
-        key={item.id}
+        {...props}
         className={`py-8 min-h-[75vh] lg:min-h-screen flex flex-col justify-center transition ease-out duration-500 ${
           activeId === item.id ? '' : 'lg:opacity-0'
         }`}
@@ -405,7 +406,11 @@ const Feature = ({ activeId, setActiveId, item }) => {
           <div className="absolute w-full h-full pane-container">
             {featurePanes &&
               featurePanes.map((pane) => (
-                <Pane data={pane} position={pane.positions[item.id]} />
+                <Pane
+                  kay={pane.name + '-mobile'}
+                  data={pane}
+                  position={pane.positions[item.id]}
+                />
               ))}
           </div>
         </div>
@@ -448,6 +453,7 @@ export function StoryBlock({ data, index }) {
             <div className="w-full lg:w-2/5 max-w-prose">
               {features.map((item) => (
                 <Feature
+                  key={item.id}
                   activeId={activeId}
                   setActiveId={setActiveId}
                   item={item}
@@ -459,6 +465,7 @@ export function StoryBlock({ data, index }) {
                 <div className="absolute w-full h-full right">
                   {panes.map((pane) => (
                     <Pane
+                      key={pane.name + '-desktop'}
                       data={pane}
                       position={
                         pane.positions[activeId]
