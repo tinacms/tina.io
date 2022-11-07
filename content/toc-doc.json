@@ -27,7 +27,14 @@
           {
             "id": "/docs/introduction/tina-init/",
             "slug": "/docs/introduction/tina-init/",
-            "title": "Adding Tina to Existing NextJS Site"
+            "title": "Adding Tina to an Existing Site",
+            "items": [
+              {
+                "id": "/guides/tinacms/non-react-based-ssg/guide/",
+                "slug": "/guides/tinacms/non-react-based-ssg/guide/",
+                "title": "Non-React-based SSG support"
+              }
+            ]
           }
         ]
       },
@@ -55,8 +62,31 @@
       },
       {
         "title": "Contextual Editing",
-        "id": "/docs/tinacms-context",
-        "slug": "/docs/tinacms-context/"
+        "id": "/docs/contextual-editing/overview",
+        "slug": "/docs/contextual-editing/overview/",
+        "items": [
+          {
+            "id": "/docs/contextual-editing/overview",
+            "slug": "/docs/contextual-editing/overview/",
+            "title": "Overview"
+          },
+          {
+            "id": "/docs/contextual-editing/react",
+            "slug": "/docs/contextual-editing/react/",
+            "title": "React"
+          },
+          {
+            "id": "/docs/contextual-editing/vue",
+            "slug": "/docs/contextual-editing/vue/",
+            "title": "Vue",
+            "status": "coming soon"
+          },
+          {
+            "id": "/docs/contextual-editing/router",
+            "slug": "/docs/contextual-editing/router/",
+            "title": "Setting up the Router"
+          }
+        ]
       }
     ]
   },
@@ -165,12 +195,19 @@
           {
             "id": "/docs/tina-cloud/dashboard/projects/",
             "slug": "/docs/tina-cloud/dashboard/projects/",
-            "title": "Projects"
+            "title": "Projects",
+            "items": [
+              {
+                "id": "/docs/tina-cloud/dashboard/users/",
+                "slug": "/docs/tina-cloud/dashboard/users/",
+                "title": "Project Collaborators"
+              }
+            ]
           },
           {
-            "id": "/docs/tina-cloud/dashboard/users/",
-            "slug": "/docs/tina-cloud/dashboard/users/",
-            "title": "Users"
+            "id": "/docs/tina-cloud/dashboard/organizations/",
+            "slug": "/docs/tina-cloud/dashboard/organizations/",
+            "title": "Organizations"
           }
         ]
       },
@@ -225,12 +262,6 @@
         ]
       },
       {
-        "id": "/guides/tinacms/non-react-based-ssg/guide/",
-        "slug": "/guides/tinacms/non-react-based-ssg/guide/",
-        "title": "Non-React-based SSG support",
-        "status": "beta"
-      },
-      {
         "id": "/guides/tinacms/react-data-fetching/guide/",
         "slug": "/guides/tinacms/react-data-fetching/guide/",
         "title": "Querying Tina Content at Runtime",
@@ -250,8 +281,7 @@
       {
         "id": "/docs/reference/config/",
         "slug": "/docs/reference/config/",
-        "title": "Config (static mode)",
-        "status": "beta"
+        "title": "Config"
       },
       {
         "id": "/docs/reference/schema/",

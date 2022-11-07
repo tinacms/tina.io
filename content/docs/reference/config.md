@@ -6,16 +6,13 @@ next: /docs/reference/schema
 prev: /docs/reference/overview
 ---
 
-{{ WarningCallout text="This is an experimental feature, and the API is subject to change. We don't yet suggest using this for production use-cases. Have any thoughts? Let us know in the chat, or through the [GitHub discussion](https://github.com/tinacms/tinacms/discussions)!" }}
-
-In contrast to traditional TinaCMS setups, static mode doesn't require you to wrap your site in a `TinaCMS` component.
-The only requirement for enabling "visual editing" is the `useTina` hook.
-
-> Read the [experimental guide to enabling static mode](/guides/tinacms/non-react-based-ssg/guide/) on a non-NextJS site.
+<!-- TODO: Move this info somewhere -->
+<!-- In contrast to traditional TinaCMS setups, static mode doesn't require you to wrap your site in a `TinaCMS` component.
+The only requirement for enabling "visual editing" is the `useTina` hook. -->
 
 # The config file
 
-When you provide a file at `.tina/config.{ts,tsx,js,jsx}` that exports a `defineStaticConfig` function,
+When you provide a file at `.tina/config.{ts,tsx,js,jsx}` that exports a `defineConfig` function,
 Tina will automatically generate TinaCMS as a static asset. Note that it **must be** the default export of this file.
 
 ## Definition
@@ -40,7 +37,7 @@ const branch =
   process.env.HEAD ||
   'main'
 
-export default defineStaticConfig({
+export default defineConfig({
   branch,
   token: '<Your Read Only Token>' // generated on app.tina.io
   clientId: '<Your Client ID>', // generated on app.tina.io
@@ -48,6 +45,7 @@ export default defineStaticConfig({
     publicFolder: 'public', // The public asset folder for your framework
     outputFolder: 'admin'  // within the public folder
   }
+  // See https://tina.io/docs/reference/schema/ for more information
   schema: {
     collections: [
       //..Array of collections

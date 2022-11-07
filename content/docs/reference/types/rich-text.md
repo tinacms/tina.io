@@ -21,40 +21,42 @@ type RichTextField = {
 <iframe width="100%" height="700px" src="https://tina-gql-playground.vercel.app/iframe/rich-text" />
 
 ```ts
-// .tina/schema.ts
-import { defineSchema } from 'tinacms'
+import { defineConfig } from 'tinacms'
 
-export default defineSchema({
-  collections: [
-    {
-      label: 'Blog Posts',
-      name: 'post',
-      // This assumes that you have a /content/post directory
-      path: 'content/post',
-      fields: [
-        // ...
-        {
-          type: 'rich-text',
-          label: 'Body',
-          name: 'body',
-          isBody: true,
-          templates: [
-            {
-              name: 'Cta',
-              label: 'Call to Action',
-              fields: [
-                {
-                  type: 'string',
-                  name: 'heading',
-                  label: 'Heading',
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-  ],
+export default defineConfig({
+  //...
+  schema: {
+    collections: [
+      {
+        label: 'Blog Posts',
+        name: 'post',
+        // This assumes that you have a /content/post directory
+        path: 'content/post',
+        fields: [
+          // ...
+          {
+            type: 'rich-text',
+            label: 'Body',
+            name: 'body',
+            isBody: true,
+            templates: [
+              {
+                name: 'Cta',
+                label: 'Call to Action',
+                fields: [
+                  {
+                    type: 'string',
+                    name: 'heading',
+                    label: 'Heading',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
 })
 ```
 
@@ -220,7 +222,6 @@ The following snippet would throw an error while parsing since Tina doesn't know
 But you can tell Tina how to handle it with a `template`:
 
 ```ts
-// .tina/schema.ts
 {
   collections: [
     {

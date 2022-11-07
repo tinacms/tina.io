@@ -14,8 +14,6 @@ The label used for list items can be customized using the `itemProps` function. 
 For example, to use the `title` field as the label for this image gallery collection:
 
 ```ts
-// schema.{ts,js,tsx}
-
 // ...Other fields
 {
   label: "Image Gallery",
@@ -53,8 +51,6 @@ Although providing a custom label is the most common use-case of `itemProps`, th
 For example:
 
 ```ts
-// schema.{ts,js,tsx}
-
 // ...Other fields
 {
   label: "Image Gallery",

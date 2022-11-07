@@ -11,7 +11,7 @@ Here's an example of data-fetching client-side, on a React site:
 
 ```jsx
 import { useState, useEffect } from 'react'
-import { useTina } from 'tinacms/dist/edit-state'
+import { useTina } from 'tinacms/dist/react'
 import { client } from '../[pathToTina]/.tina/__generated__/client'
 
 

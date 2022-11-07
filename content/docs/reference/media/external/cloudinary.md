@@ -6,6 +6,8 @@ next: /docs/reference/media/external/do-spaces
 
 Manage **Cloudinary media assets** in TinaCMS.
 
+> The following guide relies on NextJS's API functions to authenticate the 3rd-party media interactions. We hope to document a framework-agnostic approach soon.
+
 ## Installation
 
 ```bash
@@ -30,31 +32,29 @@ CLOUDINARY_API_SECRET=<Your Cloudinary API secret>
 
 Now, you can replace the default repo-based media with the external media store. You can register the Cloudinary Media store via the `loadCustomStore` prop.
 
-The `loadCustomStore` prop can be configured within `.tina/schema.ts`.
+The `loadCustomStore` prop can be configured within `.tina/config.{js,ts}`.
 
 ```diff
-// .tina/schema.ts
+//.tina/config.{ts,js}
 
-// ...
-
-export default defineSchema({
-  // ...
-  config: {
-     media: {
--       tina: {
--         publicFolder: "",
--         mediaRoot: ""
--       },
-+       loadCustomStore: async () => {
-+         const pack = await import("next-tinacms-cloudinary");
-+         return pack.TinaCloudCloudinaryMediaStore;
-+       },
-     }
+export default defineConfig({
+  //...
+  media: {
+-    tina: {
+-      publicFolder: 'public',
+-      mediaRoot: 'uploads',
+-    },
++    loadCustomStore: async () => {
++      const pack = await import("next-tinacms-cloudinary");
++      return pack.TinaCloudCloudinaryMediaStore;
++    },
   },
 })
 ```
 
-## Set up API routes
+## Set up API routes (Next.js example)
+
+> ** NOTE: **this step will show you how to set up an API route for Next.js. If you are using a different framework, you will need to set up your own API route.
 
 Tina's "external media provider" support requires a light backend media handler, that needs to be setup/hosted by the user. There are multiple ways to do this, including the framework-agnostic [Netlify Functions implementation](/docs/reference/media/external/authentication/#netlify).
 
@@ -106,7 +106,7 @@ export default createMediaHandler({
 
 Now that the media store is registered and the API route for media set up, let's add an image to your schema.
 
-In your `.tina/schema.ts` add a new field for the image, e.g:
+In your `.tina/config.{ts,tsx,js}` add a new field for the image, e.g:
 
 ```ts
  {

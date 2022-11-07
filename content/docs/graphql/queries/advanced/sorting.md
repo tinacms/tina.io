@@ -18,13 +18,20 @@ Here is an example index definition for our posts collection:
 
 ```ts
 {
-  name: "category-date",
-  fields: [
+  collections: [
     {
-      name:"category"
-    },
-    {
-      name:"date"
+      label: "Blog Posts",
+      name: "post",
+      path: "content/posts",
+      format: "mdx",
+      fields: [...],
+      indexes: [{
+        name: "category-date",
+        fields: [
+          { name:"category" },
+          { name:"date" }
+        ]
+      }]
     }
   ]
 }

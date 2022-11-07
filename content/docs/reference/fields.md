@@ -37,29 +37,29 @@ Make sure the following is true when using `isTitle`
 ### Example of `isTitle`
 
 ```ts
-const schema = defineSchema({
-  collections: [
-    {
-      name: 'posts',
-      label: 'Blog Posts',
-      path: 'content/posts',
-      format: 'mdx',
-      fields: [
-        {
-          type: 'string',
-          label: 'Title',
-          name: 'title',
-          isTitle: true,
-          required: true,
-        },
-        // ... other fields
-      ],
-    },
-  ],
+export default defineConfig({
+  //...
+  schema: {
+    collections: [
+      {
+        name: 'posts',
+        label: 'Blog Posts',
+        path: 'content/posts',
+        format: 'mdx',
+        fields: [
+          {
+            type: 'string',
+            label: 'Title',
+            name: 'title',
+            isTitle: true,
+            required: true,
+          },
+          // ... other fields
+        ],
+      },
+    ],
+  },
 })
-// ...
-
-export default schema
 ```
 
 ## `isBody`
@@ -69,26 +69,26 @@ export default schema
 ### Example of `isBody`
 
 ```ts
-const schema = defineSchema({
-  collections: [
-    {
-      name: 'posts',
-      label: 'Blog Posts',
-      path: 'content/posts',
-      format: 'mdx',
-      fields: [
-        {
-          type: 'rich-text',
-          label: 'Body of post',
-          name: 'body',
-          isBody: true,
-        },
-        //... Other fields
-      ],
-    },
-  ],
+export default defineConfig({
+  //...
+  schema: {
+    collections: [
+      {
+        name: 'posts',
+        label: 'Blog Posts',
+        path: 'content/posts',
+        format: 'mdx',
+        fields: [
+          {
+            type: 'rich-text',
+            label: 'Body of post',
+            name: 'body',
+            isBody: true,
+          },
+          //... Other fields
+        ],
+      },
+    ],
+  },
 })
-// ...
-
-export default schema
 ```

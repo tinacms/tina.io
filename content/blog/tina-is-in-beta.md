@@ -127,6 +127,6 @@ If you used the alpha of Tina you might want to read this article the team put t
 
 The whole team is truly excited to enter the beta phase and hope you will check it out and give us honest feedback. We want to hear about your projects or, let us know how Tina Cloud can help your team make progress.
 
-To keep up to date with Tina goings-on make sure to follow [@tina_cms](https://twitter.com/tina_cms) on Twitter. Want to chat with the team? Join the [Discord](https://discord.gg/njvZZYHj2Q)
+To keep up to date with Tina goings-on make sure to follow [@tinacms](https://twitter.com/tinacms) on Twitter. Want to chat with the team? Join the [Discord](https://discord.gg/njvZZYHj2Q)
 
 Stay tuned for further improvements, features, community-built projects and more!

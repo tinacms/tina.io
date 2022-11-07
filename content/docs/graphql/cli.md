@@ -13,7 +13,7 @@ The `@tinacms/cli` package will be installed as a dev dependency with the [tina 
 npx @tinacms/cli init
 ```
 
-This will setup a dummy `.tina/schema.ts` in your site, and install any required Tina dependencies.
+This will setup a dummy `.tina/config.{js,ts}` in your site, and install any required Tina dependencies.
 
 ## Running the GraphQL API
 

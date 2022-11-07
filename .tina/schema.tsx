@@ -34,6 +34,7 @@ export default defineSchema({
       process.env.HEAD!, // Netlify branch env
     token: process.env.TINA_TOKEN!,
     media: {
+      // @ts-ignore
       loadCustomStore: async () => {
         const pack = await import('next-tinacms-cloudinary')
         return pack.TinaCloudCloudinaryMediaStore

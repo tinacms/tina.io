@@ -6,7 +6,7 @@ next: /docs/reference/collections
 prev: /docs/reference/overview
 ---
 
-The Schema is located in `.tina/schema.{ts,tsx,js,jsx}` and it **must be** the default export of this file. It is used to define the shape of the content.
+The Schema is located in `.tina/config.{ts,tsx,js,jsx}` and it is used to define the shape of the content.
 
 ## Definition
 
@@ -28,20 +28,17 @@ const branch =
   process.env.HEAD ||
   ''
 
-const schema = defineSchema({
-  config: {
-    branch,
-    token: '<Your Read Only Token>' // generated on app.tina.io
-    clientId: '<Your Client ID>', // generated on app.tina.io
-  },
-  collections: [
-    //..Array of collections
-  ],
+export default defineConfig({
+  //...
+  branch,
+  token: '<Your Read Only Token>' // generated on app.tina.io
+  clientId: '<Your Client ID>', // generated on app.tina.io
+  schema: {
+    collections: [
+      //..Array of collections
+    ]
+  }
 })
-
-// ...
-
-export default schema
 ```
 
 For more information [check out the content modeling section](/docs/schema/)

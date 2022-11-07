@@ -8,7 +8,6 @@ next: /docs/extending-tina/filename-customization
 The `format` and `parse` props can be used to customize the value of the form (what is rendered) and the value of the data being saved. See the following example:
 
 ```ts
-// .tina/schema.{js,ts,tsx}
 // ...fields
 {
  name: "username",
@@ -31,8 +30,6 @@ We can also use this to cast inputs to numbers that might have otherwise been sa
 <!-- Combining this with a custom input we can make fields that are automatically updated. For example we have have a "Last edited" field that will automatically update when the form was last updated.
 
 ```tsx
-// .tina/schema.ts
-
 // ...other fields
 {
  name: "lastUpdated",

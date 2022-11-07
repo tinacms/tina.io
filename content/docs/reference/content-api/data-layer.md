@@ -19,7 +19,7 @@ GitHub remote repository and storing a copy in the database. After the initial i
 index content that has been updated. There are some circumstances where a full re-indexing may be required. Some example
 scenarios are:
 
-- Changes to `.tina/schema.ts`
+- Changes to `.tina/config.{ts,js}`
 - Changes to the [path to tina](/docs/tina-cloud/dashboard/projects/#path-to-tina)
 - Changes to the configured [repository](/docs/tina-cloud/dashboard/projects/#changing-the-repository)
 - New branches in GitHub
@@ -44,7 +44,7 @@ Use the [Reset Repository Cache](/docs/tina-cloud/dashboard/projects/#reset-repo
 
 ### Export Branch
 
-Using [Reset Repository Cache](/docs/tina-cloud/dashboard/projects/#reset-repository-cache) will discard any changes in 
+Using [Reset Repository Cache](/docs/tina-cloud/dashboard/projects/#reset-repository-cache) will discard any changes in
 Tina Cloud that haven't been pushed to your repository. If you need to export your unsaved content from Tina Cloud, you
 can use the [Export Branch](/docs/tina-cloud/dashboard/projects/#export-branch) button to export the current state of
 your repository to a new branch.

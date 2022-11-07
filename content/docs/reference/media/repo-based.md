@@ -9,22 +9,20 @@ Repo-based media storage is the default media storage solution for TinaCMS.
 
 ## Configuration
 
-To configure repo-based media in your project, add the following to your schema definition in `.tina/schema.ts`
+To configure repo-based media in your project, add the following to your schema definition in `.tina/config.{ts,js}`
 
 ```ts
-//.tina/schema.ts
+//.tina/config.{ts,js}
 
-const schema = defineSchema(
+export default defineConfig({
   // ...
-  config: {
-     media: {
-        tina: {
-            publicFolder: "public",
-            mediaRoot: "uploads"
-          },
-     }
-  }
-)
+  media: {
+    tina: {
+      publicFolder: 'public',
+      mediaRoot: 'uploads',
+    },
+  },
+})
 ```
 
 ### `publicFolder`
@@ -53,7 +51,7 @@ module.exports = {
     domains: ['assets.tina.io'],
   },
 }
-````
+```
 
 See the [next/image docs](https://nextjs.org/docs/api-reference/next/image#domains) for more information.
 
@@ -61,7 +59,7 @@ See the [next/image docs](https://nextjs.org/docs/api-reference/next/image#domai
 
 Once media has been configured, you can use `image` fields in your collections.
 
-In your `.tina/schema.ts` add a new `image` field to a collection, e.g:
+In your `schema` add a new `image` field to a collection, e.g:
 
 ```ts
  // ...

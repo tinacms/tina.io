@@ -10,7 +10,6 @@ import { openGraphImage } from 'utils/open-graph-image'
 import Error from 'next/error'
 import { NotFoundError } from 'utils/error/NotFoundError'
 import { useRouter } from 'next/router'
-import { CloudDisclaimer } from 'components/cloud-beta-disclaimer'
 import * as ga from '../../utils/ga'
 import { Breadcrumbs } from 'components/DocumentationNavigation/Breadcrumbs'
 import { useTocListener } from 'utils/toc_helpers'
@@ -80,7 +79,6 @@ function _DocTemplate(props) {
           </DocGridToc>
           <DocGridContent ref={contentRef}>
             <hr />
-            {isCloudDocs ? <CloudDisclaimer /> : null}
             <MarkdownContent escapeHtml={false} content={markdownBody} />
             <LastEdited date={frontmatter.last_edited} />
             {(props.prevPage?.slug !== null ||
