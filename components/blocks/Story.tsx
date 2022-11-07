@@ -27,8 +27,8 @@ const features = [
       {
         variant: 'blue',
         size: 'large',
-        label: 'Sign Up',
-        url: '/',
+        label: 'Get Started',
+        url: '/docs/setup-overview/',
       },
       {
         variant: 'command',
@@ -43,6 +43,14 @@ const features = [
     title: 'Own Your Content',
     description:
       'Store content in your repo. Tina saves to MDX, Markdown, and JSON and provides a powerful data layer on top of your static files.',
+    actions: [
+      {
+        variant: 'seafoam',
+        size: 'large',
+        label: 'Learn More',
+        url: '/docs/product-tour/',
+      },
+    ],
   },
   {
     id: 'schema',
@@ -63,6 +71,14 @@ const features = [
     title: 'Powered by Git',
     description:
       'Let your editoral team focus on writing content, while Tina commits to your repository.',
+    actions: [
+      {
+        variant: 'seafoam',
+        size: 'large',
+        label: 'Learn More',
+        url: '/docs/',
+      },
+    ],
   },
 ]
 
@@ -407,7 +423,7 @@ const Feature = ({ activeId, setActiveId, item, ...props }) => {
             {featurePanes &&
               featurePanes.map((pane) => (
                 <Pane
-                  kay={pane.name + '-mobile'}
+                  key={pane.name + '-mobile'}
                   data={pane}
                   position={pane.positions[item.id]}
                 />
@@ -421,10 +437,12 @@ const Feature = ({ activeId, setActiveId, item, ...props }) => {
             </h2>
           </div>
           <hr className="!my-0" />
-          <p className="text-lg lg:text-xl lg:leading-normal block bg-gradient-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent -mb-2">
+          <p className="text-lg lg:text-xl lg:leading-normal block bg-gradient-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent -mb-2 max-w-prose">
             {item.description}
           </p>
-          {item.actions && <Actions items={item.actions} />}
+          <div className="-mx-0.5">
+            {item.actions && <Actions items={item.actions} />}
+          </div>
         </div>
       </div>
       <style jsx>{`
@@ -449,7 +467,7 @@ export function StoryBlock({ data, index }) {
         className={`w-full max-w-full overflow-hidden lg:overflow-visible`}
       >
         <Container width="wide">
-          <div className="relative w-full flex flex-col-reverse items-center lg:items-start lg:flex-row gap-x-8 gap-y-4">
+          <div className="relative w-full flex flex-col-reverse items-center lg:items-start lg:flex-row gap-x-6 gap-y-4">
             <div className="w-full lg:w-2/5 max-w-prose">
               {features.map((item) => (
                 <Feature

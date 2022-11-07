@@ -85,7 +85,7 @@ export const Actions = ({ items, align = 'left' }) => {
         ].join(' ')}
       >
         {items &&
-          items.map(item => {
+          items.map((item) => {
             if (item.variant == 'command') {
               return <CodeButton>{item.label}</CodeButton>
             }
@@ -222,7 +222,7 @@ export const CodeButton = ({ children }) => {
         }
 
         .text {
-          padding: 1rem 1.5rem;
+          padding: 1rem 1.25rem;
         }
 
         .button {
