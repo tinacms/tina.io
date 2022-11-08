@@ -38,7 +38,7 @@
               "icon": false,
               "variant": "blue",
               "size": "medium",
-              "url": "/"
+              "url": "https://app.tina.io/register"
             }
           ]
         },
@@ -53,7 +53,7 @@
               "icon": false,
               "variant": "blue",
               "size": "medium",
-              "url": "/"
+              "url": "https://app.tina.io/register"
             }
           ]
         },
@@ -68,7 +68,7 @@
               "icon": false,
               "variant": "white",
               "size": "medium",
-              "url": "/"
+              "url": "mailto:info@tina.io"
             }
           ]
         },
@@ -83,28 +83,12 @@
               "icon": false,
               "variant": "white",
               "size": "medium",
-              "url": "/"
+              "url": "mailto:info@tina.io"
             }
           ]
         }
       ],
       "_template": "pricing"
-    },
-    {
-      "title": "Frequently Asked Questions",
-      "intro": "Here are some common questions around our pricing model.\n",
-      "questions": [
-        {
-          "question": "Why is that not the thing?",
-          "answer": "This is definitely a great question, no doubt.\n"
-        },
-        {
-          "question": "What is this?",
-          "answer": "This is the answer to that question.\n"
-        }
-      ],
-      "color": "gradient",
-      "_template": "faq"
     }
   ]
 }

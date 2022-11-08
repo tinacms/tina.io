@@ -131,7 +131,7 @@ text="MDX Rocks"
     height: '90',
     basePosition: 'absolute-right',
     file: {
-      name: 'schema.tsx',
+      name: 'config.tsx',
       language: 'json',
       textScale: 1,
       code: `{
