@@ -1,3 +1,13 @@
+/* Tuner Medium */
+@font-face {
+  font-family: 'tuner-medium';
+  font-style: normal;
+  font-weight: medium;
+  font-display: fallback;
+  src: url('../../public/fonts/tuner-medium.woff2') format('woff2'),
+    url('../../public/fonts/tuner-medium.woff') format('woff');
+}
+
 /* Tuner Regular */
 @font-face {
   font-family: 'tuner-regular';
@@ -26,6 +36,26 @@
   font-display: fallback;
   src: url('../../public/fonts/Inter-Italic.woff2') format('woff2'),
     url('../../public/fonts/Inter-Italic.woff') format('woff');
+}
+
+/* Inter Medium */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: fallback;
+  src: url('../../public/fonts/Inter-Medium.woff2') format('woff2'),
+    url('../../public/fonts/Inter-Medium.woff') format('woff');
+}
+
+/* Inter Medium Italic */
+@font-face {
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 500;
+  font-display: fallback;
+  src: url('../../public/fonts/Inter-MediumItalic.woff2') format('woff2'),
+    url('../../public/fonts/Inter-MediumItalic.woff') format('woff');
 }
 
 /* Inter Bold */

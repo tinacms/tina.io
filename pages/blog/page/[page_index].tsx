@@ -14,7 +14,7 @@ import {
 } from 'components/layout'
 import { DynamicLink, BlogPagination } from 'components/ui'
 import { getMarkdownPreviewProps } from 'utils/getMarkdownPreviewProps'
-const Index = props => {
+const Index = (props) => {
   const { currentPage, numPages } = props
 
   return (
@@ -25,16 +25,17 @@ const Index = props => {
           title: 'Blog',
         }}
       />
-      <Hero mini="true"></Hero>
       <BlogWrapper>
-        {props.posts.map(post => (
+        {props.posts.map((post) => (
           <DynamicLink
             key={post.data.slug}
             href={`/blog/${post.data.slug}`}
             passHref
           >
-            <BlogExcerpt>
-              <BlogTitle>{post.data.title}</BlogTitle>
+            <a className="group">
+              <h3 className="font-tuner inline-block text-3xl lg:text-4xl lg:leading-tight bg-gradient-to-br from-blue-700/70 via-blue-900/90 to-blue-1000 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent mb-4">
+                {post.data.title}
+              </h3>
               <RichTextWrapper>
                 <BlogMeta>
                   <MetaBit>
@@ -46,7 +47,7 @@ const Index = props => {
                 <hr />
               </RichTextWrapper>
               <br />
-            </BlogExcerpt>
+            </a>
           </DynamicLink>
         ))}
         <BlogPagination currentPage={currentPage} numPages={numPages} />
@@ -61,7 +62,7 @@ const Index = props => {
 
 const POSTS_PER_PAGE = 8
 
-export const getStaticPaths: GetStaticPaths = async function() {
+export const getStaticPaths: GetStaticPaths = async function () {
   const fg = require('fast-glob')
   const contentDir = './content/blog/'
   const posts = await fg(`${contentDir}**/*.md`)
@@ -78,7 +79,7 @@ export const getStaticPaths: GetStaticPaths = async function() {
   return { paths: pages, fallback: false }
 }
 
-export const getStaticProps: GetStaticProps = async function({
+export const getStaticProps: GetStaticProps = async function ({
   preview,
   previewData,
   ...ctx
@@ -91,7 +92,7 @@ export const getStaticProps: GetStaticProps = async function({
 
     const posts = await Promise.all(
       // TODO - potentially making a lot of requests here
-      files.map(async file => {
+      files.map(async (file) => {
         const post = (await getMarkdownPreviewProps(file, preview, previewData))
           .props.file
 
@@ -154,46 +155,6 @@ const getLocalFiles = async (filePath: string) => {
 const BlogWrapper = styled(Wrapper)`
   padding-top: 10rem;
   max-width: 768px;
-`
-
-const BlogTitle = styled(({ children, ...styleProps }) => {
-  return (
-    <h3 className {...styleProps}>
-      {children}
-    </h3>
-  )
-})`
-  font-family: var(--font-tuner);
-  font-weight: regular;
-  font-style: normal;
-  font-size: 2rem;
-  color: inherit;
-  transition: all 180ms ease-out;
-  line-height: 1.3;
-  margin-bottom: 1.5rem;
-  color: var(--color-secondary);
-  max-width: 38rem;
-`
-
-const BlogExcerpt = styled.a`
-  cursor: pointer;
-  text-decoration: none;
-  &:hover,
-  &:focus {
-    outline: none;
-    ${BlogTitle} {
-      color: var(--color-orange) !important;
-    }
-  }
-  &:focus {
-    hr {
-      transition: all 230ms ease-out;
-      width: 100%;
-    }
-  }
-  hr {
-    transition: all 180ms ease-out;
-  }
 `
 
 const MetaBit = styled.p`

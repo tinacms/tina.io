@@ -1,0 +1,94 @@
+{
+  "seo": {
+    "title": "Build contextual editing into your site",
+    "description": "Open-source visual editing experience, backed by git."
+  },
+  "blocks": [
+    {
+      "headline": "Pricing",
+      "text": "",
+      "_template": "hero"
+    },
+    {
+      "intro": "Tina has a per-project pricing model that can scale to meet your needs.",
+      "base": {
+        "name": "Basic",
+        "price": "Free",
+        "interval": "",
+        "body": "* Two Users\n* Forum Support\n* No Additional Users\n",
+        "actions": [
+          {
+            "label": "Sign Up",
+            "icon": false,
+            "variant": "blue",
+            "size": "medium",
+            "url": "/"
+          }
+        ]
+      },
+      "plans": [
+        {
+          "name": "Team",
+          "price": "$29",
+          "interval": "month",
+          "body": "* 3 Users\n* Forum Support\n* Additional Users $15/seat\n* Max 10 Users\n\n",
+          "actions": [
+            {
+              "label": "Sign Up",
+              "icon": false,
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://app.tina.io/register"
+            }
+          ]
+        },
+        {
+          "name": "Business",
+          "price": "$599",
+          "interval": "month",
+          "body": "* 10 Users\n* Priority Support\n* Additional Users $15/seat\n* No User Limit\n\n",
+          "actions": [
+            {
+              "label": "Sign Up",
+              "icon": false,
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://app.tina.io/register"
+            }
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "price": "",
+          "interval": "",
+          "body": "Contact us for bulk pricing.\n",
+          "actions": [
+            {
+              "label": "Contact Us",
+              "icon": false,
+              "variant": "white",
+              "size": "medium",
+              "url": "mailto:info@tina.io"
+            }
+          ]
+        },
+        {
+          "name": "Agency",
+          "price": "",
+          "interval": "",
+          "body": "Contact us for bulk pricing.\n",
+          "actions": [
+            {
+              "label": "Contact Us",
+              "icon": false,
+              "variant": "white",
+              "size": "medium",
+              "url": "mailto:info@tina.io"
+            }
+          ]
+        }
+      ],
+      "_template": "pricing"
+    }
+  ]
+}

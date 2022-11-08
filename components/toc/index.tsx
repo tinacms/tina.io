@@ -36,6 +36,7 @@ const Toc = ({ tocItems, activeIds }: TocProps) => {
       </TocButton>
       <TocContent activeIds={activeIds} isOpen={isOpen}>
         <TocDesktopHeader>Table of Contents</TocDesktopHeader>
+        {/* @ts-ignore */}
         <ReactMarkdown source={tocItems} />
       </TocContent>
     </TocWrapper>

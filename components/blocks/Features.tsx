@@ -77,6 +77,7 @@ export function FeatureBlock({ data, index }) {
           {(data.text || data.actions) && <hr className="dottedBorder" />}
           {data.text && (
             <div className="textLarge">
+              {/* @ts-ignore */}
               <ReactMarkdown source={data.text} />
             </div>
           )}
@@ -180,16 +181,15 @@ export function FeatureBlock({ data, index }) {
         }
 
         .dottedBorder {
-          border-top: none;
-          border-right: none;
-          border-left: none;
-          border-image: initial;
-          border-bottom: 5px dotted var(--color-seafoam-dark);
-          width: 6rem;
-          max-width: 100%;
           display: block;
-          height: 0px;
-          margin: 1.5rem 0px;
+          border: none;
+          border-image: initial;
+          background: url('/svg/hr.svg');
+          background-size: auto 100%;
+          background-repeat: no-repeat;
+          height: 7px;
+          width: 100%;
+          margin: 2rem 0px;
         }
 
         .blob {

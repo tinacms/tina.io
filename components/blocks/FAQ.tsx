@@ -3,6 +3,7 @@ import { RichTextWrapper } from '../layout/RichTextWrapper'
 import { Wrapper } from '../layout/Wrapper'
 import type { TinaTemplate } from '@tinacms/cli'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
+import BlobBackground from '../../public/svg/blob-bg.svg'
 
 export const faqTemplate: TinaTemplate = {
   label: 'FAQ',
@@ -46,8 +47,8 @@ export const faqTemplate: TinaTemplate = {
       label: 'Color',
       type: 'string',
       options: [{
-        label: 'Seafoam',
-        value: 'seafoam'
+        label: 'Gradient',
+        value: 'gradient'
       }, {
         label: 'White',
         value: 'white'
@@ -58,13 +59,17 @@ export const faqTemplate: TinaTemplate = {
 
 export function FaqBlock({ data, index }) {
   return (
-    <>
-      <section key={index} className={`faq section ${data.color === 'seafoam' ? 'seafoam' : ''}`}>
-        <RichTextWrapper>
-          <Wrapper narrow>
+    <section key={index} className={`relative overflow-hidden py-16 lg:py-24`}>
+        {data.color === 'gradient' && <BlobBackground className="absolute pointer-events-none top-0 left-0 w-full h-auto min-h-screen max-h-full" />}
+          <div className="relative z-10"><Wrapper narrow>
             <div className="faq-wrapper">
-              {data.title && <h3>{data.title}</h3>}
-              {data.intro && <TinaMarkdown content={data.intro} />}
+              <div className="mb-10">{data.title && <h3 className="font-tuner text-3xl text-orange-500 mb-8">{data.title}</h3>}
+              {data.intro && (
+                <div className="text-xl">
+                  <TinaMarkdown content={data.intro} />
+                </div>
+              )}</div>
+              <RichTextWrapper>
               {data.questions &&
                 data.questions.map((item, index) => {
                   return (
@@ -75,45 +80,9 @@ export function FaqBlock({ data, index }) {
                     </div>
                   )
                 })}
+                </RichTextWrapper>
             </div>
-          </Wrapper>
-        </RichTextWrapper>
+          </Wrapper></div>
       </section>
-      <style jsx>{`
-        .section {
-          padding: 3rem 0;
-
-          @media (min-width: 800px) {
-            padding: 5rem 0;
-          }
-        }
-
-        .seafoam {
-          background-color: var(--color-seafoam);
-          background: linear-gradient(
-            to bottom,
-            var(--color-seafoam-200) 8rem,
-            var(--color-seafoam-100)
-          );
-        }
-
-        .faq-wrapper {
-          width: 100%; 
-
-          :global(h3) {
-            font-size: 2rem;
-            color: var(--color-secondary);
-            font-family: var(--font-tuner);
-          }
-          :global(p) {
-            ${data.intro && `&:first-of-type {
-              font-size: 1.5rem;
-              margin-bottom: 2.5rem;
-            }`}
-            color: var(--color-secondary);
-          }
-        }
-      `}</style>
-    </>
   )
 }

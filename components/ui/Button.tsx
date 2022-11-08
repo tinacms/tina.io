@@ -1,185 +1,87 @@
+import Link from 'next/link'
 import styled, { css } from 'styled-components'
 
 interface ButtonProps {
-  color?:
-    | 'white'
-    | 'primary'
-    | 'secondary'
-    | 'seafoam'
-    | 'variable'
-    | 'blue'
-    | 'blueInverted'
+  color?: 'white' | 'blue' | 'orange' | 'seafoam' | 'ghost'
   size?: 'large' | 'small'
 }
 
-export const Button = styled.button<ButtonProps>`
-  font-size: 1rem;
-  border-radius: 2rem;
-  cursor: pointer;
-  transition: all 150ms ease-out;
-  width: max-content;
-  transform: translate3d(0px, 0px, 0px);
-  display: flex;
-  align-items: center;
-  background-color: var(--color-seafoam);
-  color: var(--color-orange);
-  border-radius: 2rem;
-  text-transform: uppercase;
-  padding: 0 1.25rem;
-  height: 45px;
-  border: 1px solid #b4f4e0;
-  font-family: var(--font-tuner);
-  font-weight: regular;
-  font-style: normal;
-  text-decoration: none !important;
-  white-space: nowrap;
-  opacity: 1;
-  line-height: 1.25;
+const baseClasses =
+  'transition duration-150 ease-out rounded-full flex items-center font-tuner whitespace-nowrap leading-snug focus:outline-none focus:shadow-outline hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px leading-tight'
 
-  svg {
-    fill: currentColor;
-    margin-left: -0.25em;
-    margin-right: 0.125rem;
-  }
+const raisedButtonClasses = 'hover:shadow active:shadow-none'
 
-  &:hover,
-  &:focus {
-    color: var(--color-orange);
-    text-decoration: none;
-    transform: translate3d(-1px, -2px, 0);
-    transition: transform 180ms ease-out;
-  }
-  &:focus {
-    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px inset,
-      rgba(236, 72, 21, 0.7) 0px 0px 0px 3px, rgba(0, 0, 0, 0.12) 0px 2px 3px;
-  }
-  &:focus,
-  &:active {
-    outline: none;
-  }
-  &:active {
-    filter: none;
-  }
-
-  svg {
-  }
-
-  ${props =>
-    props.size === 'small' &&
-    css`
-      padding: 0 1.25rem;
-      height: 38px;
-      font-size: 0.95rem;
-      line-height: 1;
-    `}
-
-  ${props =>
-    props.color === 'white' &&
-    css`
-      background-color: white;
-      border-color: rgba(0, 0, 0, 0.1);
-
-      &:focus {
-        box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px inset,
-          rgba(255, 255, 255, 0.7) 0px 0px 0px 3px,
-          rgba(0, 0, 0, 0.12) 0px 2px 3px;
-      }
-    `};
-
-  ${props =>
-    props.color === 'primary' &&
-    css`
-      background-color: var(--color-orange);
-      color: white;
-      border-color: var(--color-orange);
-      font-weight: bold;
-
-      &:hover,
-      &:focus {
-        color: white;
-      }
-    `};
-
-  ${props =>
-    props.color === 'blue' &&
-    css`
-      background-color: var(--color-tina-blue);
-      border-color: var(--color-tina-blue-dark);
-      color: white;
-      font-weight: bold;
-
-      &:hover,
-      &:focus {
-        color: white;
-      }
-
-      &:focus {
-        box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px inset,
-          var(--color-tina-blue) 0px 0px 0px 3px,
-          rgba(0, 0, 0, 0.12) 0px 2px 3px;
-      }
-    `};
-
-  ${props =>
-    props.color === 'blueInverted' &&
-    css`
-      background-color: white;
-      color: var(--color-tina-blue);
-      border-color: rgba(0, 0, 0, 0.1);
-
-      &:focus {
-        box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px inset,
-          var(--color-tina-blue) 0px 0px 0px 3px,
-          rgba(0, 0, 0, 0.12) 0px 2px 3px;
-      }
-
-      &:hover,
-      &:focus {
-        color: var(--color-tina-blue-dark);
-      }
-    `};
-
-  ${props =>
-    props.color === 'secondary' &&
-    css`
-      background-color: var(--color-secondary);
-      color: var(--color-orange);
-      border-color: var(--color-secondary);
-
-      &:hover,
-      &:focus {
-        color: white;
-      }
-    `};
-
-  ${props =>
-    props.color === 'variable' &&
-    css`
-      background-color: var(--color-background);
-      color: var(--color-foreground);
-      border-color: var(--color-background);
-      &:focus {
-        background-color: var(--color-background);
-        color: var(--color-foreground);
-      }
-    `};
-`
-
-Button.defaultProps = {
-  color: 'seafoam',
+const colorClasses = {
+  seafoam:
+    raisedButtonClasses +
+    ' text-orange-600 hover:text-orange-500 border border-seafoam-150 bg-gradient-to-br from-seafoam-50 to-seafoam-150',
+  blue:
+    raisedButtonClasses +
+    ' text-white hover:text-gray-50 border border-blue-400 bg-gradient-to-br from-blue-300 via-blue-400 to-blue-600',
+  orange:
+    raisedButtonClasses +
+    ' text-white hover:text-gray-50 border border-orange-600 bg-gradient-to-br from-orange-400 to-orange-600',
+  white:
+    raisedButtonClasses +
+    ' text-orange-500 hover:text-orange-400 border border-gray-100/60 bg-gradient-to-br from-white to-gray-50',
+  ghost: 'text-orange-500 hover:text-orange-400',
 }
 
-export const ButtonGroup = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-right: -1rem;
-  margin-bottom: -1rem;
+const sizeClasses = {
+  large: 'px-8 pt-[14px] pb-[12px] text-lg font-medium',
+  medium: 'px-6 pt-[12px] pb-[10px] text-base font-medium',
+  small: 'px-5 pt-[10px] pb-[8px] text-sm font-medium',
+}
 
-  ${Button} {
-    margin-right: 1rem;
-    margin-bottom: 1rem;
-  }
-`
+export const Button = ({
+  color = 'seafoam',
+  size = 'medium',
+  className = '',
+  children,
+  ...props
+}) => {
+  return (
+    <button
+      className={`${baseClasses} ${
+        colorClasses[color] ? colorClasses[color] : colorClasses['seafoam']
+      } ${
+        sizeClasses[size] ? sizeClasses[size] : sizeClasses['medium']
+      } ${className}`}
+      {...props}
+    >
+      {children}
+    </button>
+  )
+}
+
+export const LinkButton = ({
+  link = '/',
+  color = 'seafoam',
+  size = 'medium',
+  className = '',
+  children,
+  ...props
+}) => {
+  return (
+    <Link href={link} passHref>
+      <a
+        className={`${baseClasses} ${
+          colorClasses[color] ? colorClasses[color] : colorClasses['seafoam']
+        } ${
+          sizeClasses[size] ? sizeClasses[size] : sizeClasses['medium']
+        } ${className}`}
+        {...props}
+      >
+        {children}
+      </a>
+    </Link>
+  )
+}
+
+export const ButtonGroup = ({ children }) => {
+  return (
+    <div className="w-full flex justify-start flex-wrap items-center gap-4">
+      {children}
+    </div>
+  )
+}

@@ -102,10 +102,10 @@ export const GlobalStyle = React.memo(createGlobalStyle`
 
     /* Color */
     --color-white: #FFFFFF;
-    --color-orange-light: #EB6337;
+    --color-orange-light: #EA6D43;
     --color-orange: #EC4815;
-    --color-orange-dark: #CE411D;
-    --color-secondary: #31215E;
+    --color-orange-dark: #D94217;
+    --color-secondary: #1D2C6C;
     --color-secondary-dark: #241748;
     --color-blue: var(--color-secondary-dark);
     --color-blue-light: var(--color-secondary);
@@ -147,6 +147,8 @@ export const GlobalStyle = React.memo(createGlobalStyle`
     --color-grey-9: #363145;
     --color-grey-10: #252336;
     --color-indicator: var(--color-primary);
+
+    
 
     --radius-small: 5px;
     --radius-big: 24px;
@@ -197,6 +199,9 @@ export const GlobalStyle = React.memo(createGlobalStyle`
     --font-tuner: 'tuner-regular', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
       "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
       "Helvetica Neue", sans-serif;
+    --font-tuner-medium: 'tuner-medium', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
 
     * {
       box-sizing: inherit;
@@ -205,22 +210,6 @@ export const GlobalStyle = React.memo(createGlobalStyle`
       line-height: inherit;
       font-size: 100%;
       font-weight: inherit;
-      scrollbar-width: thin;
-      scrollbar-color: #E1DDEC var(--color-light);
-      
-      &::-webkit-scrollbar {
-        width: 9px;
-      }
-      ::-webkit-scrollbar-track {
-        background: transparent;
-        border-left: 1px solid var(--color-light-dark);
-        border-right: 1px solid var(--color-light-dark);
-      }
-      &::-webkit-scrollbar-thumb {
-        background-color: #E1DDEC;
-        border-radius: 0;
-        border: none;
-      }
     }
   }
 
@@ -244,5 +233,17 @@ export const GlobalStyle = React.memo(createGlobalStyle`
     left: 0;
     width: 100%;
     height: 100%;
+  }
+
+  hr {
+    display: block;
+    border: none;
+    border-image: initial;
+    background: url('/svg/hr.svg');
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    height: 7px;
+    width: 100%;
+    margin: 2rem 0px;
   }
 `)

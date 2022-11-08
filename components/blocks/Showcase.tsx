@@ -39,9 +39,7 @@ export const showcaseTemplate: TinaTemplate = {
               name: 'media',
               label: 'Media',
               type: 'object',
-              fields: [
-                { name: 'src', label: 'Image Source', type: 'string' },
-              ],
+              fields: [{ name: 'src', label: 'Image Source', type: 'string' }],
             },
           ],
         },
@@ -50,18 +48,8 @@ export const showcaseTemplate: TinaTemplate = {
   ],
 }
 
-const blobSvgOptions = [
-  BlobOne,
-  BlobTwo,
-  BlobThree,
-  BlobFour,
-  BlobFive,
-  BlobSix,
-]
-
 export function ShowcaseBlock({ data, index }) {
   const isReversed = index % 2 === 1
-  const ShowcaseBlobSvg = blobSvgOptions[index % blobSvgOptions.length]
 
   return (
     <>
@@ -70,21 +58,23 @@ export function ShowcaseBlock({ data, index }) {
         className={`feature ${isReversed ? 'featureReverse' : ''}`}
       >
         <div className="featureText">
-          {data.headline && <h3 className="featureTitle">{data.headline}</h3>}
+          {data.headline && (
+            <h3 className="text-3xl lg:text-4xl font-tuner lg:leading-tight bg-gradient-to-br from-blue-700/80 via-blue-900/90 to-blue-1000 bg-clip-text text-transparent mb-2">
+              {data.headline}
+            </h3>
+          )}
           {(data.text || data.actions) && <hr className="dottedBorder" />}
           {data.text && (
             <div className="textLarge">
+              {/* @ts-ignore */}
               <ReactMarkdown source={data.text} />
             </div>
           )}
           {data.actions && <Actions items={data.actions} />}
-          <div className="blob">
-            <ShowcaseBlobSvg />
-          </div>
         </div>
         {data.media && data.media.src && (
           <div className={`featureImage`}>
-              <a href={data.url} target="_blank" >
+            <a href={data.url} target="_blank">
               <img
                 className="showcaseImage"
                 src={data.media.src}
@@ -92,7 +82,7 @@ export function ShowcaseBlock({ data, index }) {
                 width="1120px"
                 height="800px"
               />
-              </a>
+            </a>
           </div>
         )}
       </div>
@@ -112,14 +102,6 @@ export function ShowcaseBlock({ data, index }) {
             grid-template-columns: 1fr 1fr;
             grid-gap: var(--spacer-size);
           }
-        }
-        .featureTitle {
-          font-family: var(--font-tuner);
-          font-weight: bold;
-          line-height: 1.4;
-          margin-bottom: 1rem;
-          font-size: 2.25rem;
-          color: #00255b;
         }
         .featureReverse {
           direction: rtl;
@@ -154,7 +136,7 @@ export function ShowcaseBlock({ data, index }) {
           margin: 0;
           overflow: hidden;
           border-radius: 0.5rem;
-          transition: .5s ease;
+          transition: 0.5s ease;
           backface-visibility: hidden;
           :global(img) {
             display: block;
@@ -165,35 +147,18 @@ export function ShowcaseBlock({ data, index }) {
         }
         .featureImage:hover .showcaseImage {
           opacity: 0.3;
-          transition: .5s ease;
+          transition: 0.5s ease;
         }
         .dottedBorder {
-          border-top: none;
-          border-right: none;
-          border-left: none;
-          border-image: initial;
-          border-bottom: 5px dotted var(--color-seafoam-dark);
-          width: 6rem;
-          max-width: 100%;
           display: block;
-          height: 0px;
-          margin: 1.5rem 0px;
-        }
-        .blob {
-          position: absolute;
-          top: -3rem;
-          left: -10%;
-          right: 33.3%;
-          bottom: -3rem;
-          z-index: -1;
-          opacity: 0.5;
-          :global(svg) {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-          }
+          border: none;
+          border-image: initial;
+          background: url('/svg/hr.svg');
+          background-size: auto 100%;
+          background-repeat: no-repeat;
+          height: 7px;
+          width: 100%;
+          margin: 2rem 0px;
         }
       `}</style>
     </>
@@ -202,10 +167,7 @@ export function ShowcaseBlock({ data, index }) {
 
 export function ShowcaseItemsBlock({ data, index }) {
   return (
-    <section
-      key={'features-' + index}
-      className={'section white featureSection'}
-    >
+    <section key={'features-' + index} className={'section featureSection'}>
       <Container>
         {/* TODO: why is there a type error here */}
         {/* @ts-ignore */}

@@ -103,7 +103,7 @@ const OverviewTemplate = props => {
             margin: 0 auto;
 
             @media (min-width: 500px) {
-              padding: 1rem 3rem 3rem 3rem;
+              padding: 1rem 3rem 5rem 3rem;
             }
 
             @media (min-width: 900px) {

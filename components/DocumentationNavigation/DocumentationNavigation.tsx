@@ -30,7 +30,9 @@ export function DocumentationNavigation({ navItems }: DocsNavProps) {
       <DocsLeftSidebar open={mobileNavIsOpen}>
         <DocsSidebarHeaderWrapper>
           <DocsSidebarHeader>
-            <DocsDesktopTinaIcon docs />
+            <TinaIcon link="/docs" className="hidden md:block" color="orange">
+              Docs
+            </TinaIcon>
             <VersionSelect />
           </DocsSidebarHeader>
           <Search collapse expanded={true} indices={searchIndices} />
@@ -45,7 +47,7 @@ export function DocumentationNavigation({ navItems }: DocsNavProps) {
         open={mobileNavIsOpen}
         onClick={() => setMobileNavIsOpen(false)}
       />
-      <DocsHeaderNav color={'light'} open={mobileNavIsOpen} />
+      <DocsHeaderNav />
     </>
   )
 }
@@ -65,41 +67,11 @@ const MobileNavToggle = styled(NavToggle)`
   }
 `
 
-const MobileNavLogo = styled(TinaIcon)`
-  position: relative;
-  display: block;
-  padding: 1rem 0;
-
-  h1 {
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  @media (min-width: 840px) {
-    display: none;
-  }
-`
-
-const DocsDesktopTinaIcon = styled(TinaIcon)`
-  position: relative;
-  display: none;
-
-  @media (min-width: 840px) {
-    display: block;
-  }
-`
-
 const DocsSidebarHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
-
-  ${DocsDesktopTinaIcon} {
-    margin-right: 1rem;
-  }
 `
 
 const DocsSidebarHeaderWrapper = styled.div`

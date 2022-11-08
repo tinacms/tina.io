@@ -2,19 +2,7 @@
   {
     "id": "docs",
     "label": "Docs",
-    "href": "/docs/",
-    "external": false
-  },
-  {
-    "id": "blog",
-    "label": "Blog",
-    "href": "/blog",
-    "external": false
-  },
-  {
-    "id": "showcase",
-    "label": "Showcase",
-    "href": "/showcase",
+    "href": "/docs",
     "external": false
   },
   {
@@ -22,5 +10,35 @@
     "label": "Community",
     "href": "/community",
     "external": false
+  },
+  {
+    "id": "pricing",
+    "label": "Pricing",
+    "href": "/pricing",
+    "external": false
+  },
+  {
+    "id": "resources",
+    "label": "Resources",
+    "items": [
+      {
+        "id": "playground",
+        "label": "Schema Playground",
+        "href": "https://tina-gql-playground.vercel.app/",
+        "external": false
+      },
+      {
+        "id": "showcase",
+        "label": "Showcase",
+        "href": "/showcase",
+        "external": false
+      },
+      {
+        "id": "blog",
+        "label": "Blog",
+        "href": "/blog",
+        "external": false
+      }
+    ]
   }
 ]

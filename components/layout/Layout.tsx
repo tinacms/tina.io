@@ -5,39 +5,37 @@ import { useRouter } from 'next/router'
 import { Footer } from './Footer'
 import { CloudBanner } from './CloudBanner'
 import { Navbar } from './Navbar'
+import BlobBackground from '../../public/svg/blob-bg.svg'
 
 interface LayoutProps {
   children: any | any[]
   color?: 'white' | 'secondary' | 'seafoam'
 }
 
-export const Layout = styled(
-  ({ children, color, ...styleProps }: LayoutProps) => {
-    const router = useRouter()
+export const Layout = ({ children, color }: LayoutProps) => {
+  const router = useRouter()
 
-    return (
-      <div {...styleProps}>
+  return (
+    <>
+      <div className="flex flex-col min-h-screen blob-bg font-sans">
         <DefaultSeo
           openGraph={{
             url: 'https://tina.io' + router.asPath,
           }}
         />
-        <CloudBanner />
         <Navbar />
-        <div className="content">{children}</div>
+        <div className="flex flex-col flex-1">{children}</div>
         <Footer />
       </div>
-    )
-  }
-)`
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  min-height: 100vh;
-
-  .content {
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: column;
-  }
-`
+      <style jsx>{`
+        .blob-bg {
+          background-image: url('/svg/blob-bg.svg');
+          background-repeat: no-repeat;
+          background-position: top center;
+          background-size: 100% 100%;
+          background-attachment: fixed;
+        }
+      `}</style>
+    </>
+  )
+}

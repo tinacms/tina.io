@@ -6,9 +6,9 @@ export const GlobalStyles = css.global`
     --color-tina-blue-light: #2296fe;
     --color-tina-blue: #2296fe;
     --color-tina-blue-dark: #0574e4;
+    --color-orange-light: #ea6d43;
     --color-orange: #ec4815;
-    --color-orange-light: #eb6337;
-    --color-orange-dark: #dc4419;
+    --color-orange-dark: #d94217;
     --color-yellow: #f2c94c;
     --color-green: #6fcf97;
     --color-black: #1c1b2e;

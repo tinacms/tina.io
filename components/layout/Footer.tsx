@@ -6,285 +6,165 @@ import GithubIconSvg from '../../public/svg/github-icon.svg'
 import { EmailForm } from '../forms/EmailForm'
 import { TinaIcon } from 'components/logo'
 import Link from 'next/link'
+import TinaIconSvg from '../../public/svg/tina-icon.svg'
+import { DynamicLink } from 'components/ui'
+import { BsDiscord } from 'react-icons/bs'
 
-const FooterSocial = styled.div`
-  display: flex;
-  align-items: center;
-  color: inherit;
-  margin-bottom: 1rem;
+const footerNav = [
+  {
+    label: 'Product',
+    items: [
+      // {
+      //   link: '/demo/',
+      //   label: 'Demo',
+      // },
+      {
+        link: '/showcase/',
+        label: 'Showcase',
+      },
+      {
+        link: 'https://app.tina.io/',
+        label: 'Tina Cloud',
+      },
+    ],
+  },
+  {
+    label: 'Docs',
+    items: [
+      {
+        link: '/docs/',
+        label: 'Introduction',
+      },
+      {
+        link: '/docs/product-tour/',
+        label: 'How Tina Works',
+      },
+      // {
+      //   link: '/',
+      //   label: 'Releases',
+      // },
+    ],
+  },
+]
 
-  @media (min-width: 600px) {
-    justify-content: flex-end;
-    margin-bottom: 0;
-  }
+const footerLinks = [
+  {
+    link: '/security/',
+    label: 'Security',
+  },
+  {
+    link: '/telemetry/',
+    label: 'Open Source Telemetry',
+  },
+  {
+    link: '/terms-of-service/',
+    label: 'Terms of Service',
+  },
+  {
+    link: '/privacy-notice/',
+    label: 'Privacy Notice',
+  },
+  {
+    link: 'https://github.com/tinacms/tinacms/blob/master/LICENSE',
+    label: 'License',
+  },
+]
 
-  a {
-    display: flex;
-    align-items: center;
-    color: inherit;
-  }
-
-  svg {
-    width: 2rem;
-    height: auto;
-    fill: inherit;
-    margin-left: 1rem;
-  }
-`
-
-const FooterForm = styled.div`
-  display: flex;
-  flex-direction: column;
-  color: inherit;
-  align-items: flex-start;
-  justify-content: flex-start;
-  margin-bottom: 1rem;
-
-  span {
-    margin: 0.5rem 1rem 0.5rem 0;
-    white-space: nowrap;
-    font-size: 1.25rem;
-    line-height: 1;
-  }
-
-  @media (min-width: 550px) {
-    flex-direction: row;
-  }
-`
-
-const FooterTop = styled.div`
-  display: grid;
-  grid-gap: 1rem;
-  padding: 2.5rem 2rem;
-  background-color: var(--color-background);
-  align-items: start;
-  grid-template-areas: 'logo' 'social' 'nav';
-
-  @media (min-width: 600px) {
-    grid-template-areas: 'logo social' 'nav nav';
-  }
-
-  @media (min-width: 800px) {
-    grid-template-columns: 1fr 3fr 1fr;
-    grid-template-areas: 'logo nav social';
-  }
-
-  ${TinaIcon} {
-    grid-area: logo;
-    margin-bottom: 1rem;
-  }
-
-  ${LinkNav} {
-    grid-area: nav;
-  }
-
-  ${FooterSocial} {
-    grid-area: social;
-  }
-`
-
-const FooterBottom = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 1.5rem 2rem 0 2rem;
-  background-color: var(--color-background);
-
-  @media (min-width: 1200px) {
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-`
-
-const FootnoteLinks = styled.span`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  padding: 0.5rem 1rem;
-`
-
-const Footnote = styled.span`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  color: inherit;
-  font-size: 1rem;
-  margin: 0 -1rem 1rem -1rem;
-
-  button {
-    height: 40px;
-    color: white;
-    background-color: var(--color-orange);
-
-    &:hover,
-    &:focus {
-      color: white;
-      fill: white;
-    }
-
-    &:focus {
-      border-color: white;
-    }
-
-    svg {
-      fill: white;
-    }
-  }
-
-  p,
-  a,
-  button {
-    white-space: nowrap;
-  }
-
-  div {
-    padding: 0.5rem 1rem;
-  }
-
-  p {
-    color: inherit;
-    margin: 0;
-    font-size: 1rem;
-    opacity: 0.65;
-  }
-
-  a {
-    text-decoration: none;
-    color: inherit;
-    opacity: 0.65;
-    &:hover {
-      color: inherit;
-      opacity: 1;
-    }
-  }
-
-  @media (min-width: 500px) {
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-`
-
-const FooterDivider = styled.span`
-  &:after {
-    content: '|';
-    margin: 0.5rem;
-    opacity: 0.3;
-  }
-`
-
-export const Footer = styled(({ light, ...styleProps }) => {
+export const LinkItem = ({ item }) => {
+  const { id, link, label } = item
   return (
-    <div {...styleProps}>
-      <FooterTop>
-        <TinaIcon />
-        <LinkNav />
-        <FooterSocial>
-          <iframe
-            src="https://ghbtns.com/github-btn.html?user=tinacms&repo=tinacms&type=star&count=true&size=large"
-            frameBorder="0"
-            scrolling="0"
-            width="150px"
-            height="30px"
-          ></iframe>
-          <a href="https://twitter.com/tinacms" target="_blank">
-            <TwitterIconSvg />
-          </a>
-          <a
-            className="github"
-            href="https://github.com/tinacms/tinacms"
-            target="_blank"
-          >
-            <GithubIconSvg />
-          </a>
-        </FooterSocial>
-      </FooterTop>
-      <FooterBottom>
-        <FooterForm>
+    <DynamicLink href={link} passHref>
+      <a className="inline-block drop-shadow-sm relative opacity-90 hover:opacity-100 text-white uppercase text-lg lg:text-xl font-tuner transition duration-150 ease-out hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px">
+        {label}
+      </a>
+    </DynamicLink>
+  )
+}
+
+const SocialLink = ({ link, children }) => {
+  return (
+    <a
+      className="transition ease-out duration-150 opacity-80 hover:opacity-100 flex items-center gap-2 text-white font-tuner"
+      href={link}
+      target="_blank"
+    >
+      {children}
+    </a>
+  )
+}
+
+export const Footer = ({}) => {
+  return (
+    <div>
+      {/* Top */}
+      <div className="flex flex-col md:flex-row gap-6 w-full justify-between items-start bg-[url('/svg/orange-bg.svg')] bg-cover bg-center px-4 py-6 lg:py-10 lg:px-10 -mt-px">
+        <div className="max-w-[20%] flex-1 drop-shadow-sm">
+          <TinaIcon color="white" />
+        </div>
+        <div className="flex-1 flex flex-col py-2 lg:py-0 md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {footerNav.map((item) => {
+            const { label, items } = item
+            return (
+              <div className="flex flex-col items-stretch justify-start gap-2">
+                <p className="uppercase text-orange-100 font-bold -mt-1">
+                  {label}
+                </p>
+                {items.map((item) => {
+                  return <LinkItem item={item} />
+                })}
+              </div>
+            )
+          })}
+          <div className="flex flex-col lg:items-start">
+            <div className="flex w-1/2 flex-col lg:items-end gap-4 drop-shadow-sm">
+              <SocialLink link="https://github.com/tinacms/tinacms">
+                <GithubIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
+                Github
+              </SocialLink>
+              <SocialLink link="https://twitter.com/tina_cms">
+                <TwitterIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
+                Twitter
+              </SocialLink>
+              <SocialLink link="https://discord.com/invite/zumN63Ybpf">
+                <BsDiscord className="w-7 h-auto fill-current opacity-80" />{' '}
+                Discord
+              </SocialLink>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom */}
+      <div className="flex flex-col lg:flex-row w-full lg:items-center lg:justify-between bg-gradient-to-br from-orange-600 via-orange-800 to-orange-900 text-white p-4 lg:py-6 lg:px-10">
+        <div className="flex items-center gap-3 whitespace-nowrap">
           <span>Stay in touch 👉</span>
           <EmailForm isFooter />
-        </FooterForm>
-        <Footnote>
-          <FootnoteLinks>
-            <Link href="/security/" passHref>
-              <a>Security</a>
-            </Link>
-            <FooterDivider />
-            <Link href="/telemetry/" passHref>
-              <a>Open Source Telemetry</a>
-            </Link>
-            <FooterDivider />
-            <Link href="/terms-of-service/" passHref>
-              <a>Terms of Service</a>
-            </Link>
-            <FooterDivider />
-            <Link href="/privacy-notice/" passHref>
-              <a>Privacy Notice</a>
-            </Link>
-            <FooterDivider />
-            <a
-              href="https://github.com/tinacms/tinacms/blob/master/LICENSE"
-              target="_blank"
-            >
-              License
-            </a>
-          </FootnoteLinks>
+        </div>
+        <div className="flex drop-shadow-sm flex-wrap justify-end gap-x-6 gap-y-2">
+          <div className="flex flex-wrap justify-end gap-x-3 gap-y-1">
+            {footerLinks.map((item) => {
+              const { link, label } = item
+              return <FooterLink link={link} label={label} />
+            })}
+          </div>
           <div>
             <p>
               &copy; TinaCMS 2019–
               {new Date().getFullYear()}
             </p>
           </div>
-        </Footnote>
-      </FooterBottom>
+        </div>
+      </div>
     </div>
   )
-})`
-  grid-area: footer;
-  color: white;
-  --color-background: var(--color-orange);
-  --color-background-dark: var(--color-orange-dark);
-  position: relative;
-  z-index: 1000;
-  flex: 0 1 auto;
+}
 
-  ${TinaIcon} {
-    fill: var(--color-white);
-
-    svg {
-      height: 3.5rem;
-    }
-  }
-
-  ${FooterSocial} {
-    fill: white;
-  }
-
-  ${FooterBottom} {
-    --color-background: var(--color-orange-dark);
-  }
-
-  ${props =>
-    props.light &&
-    css`
-      border-top: 1px solid var(--color-light-dark);
-      color: var(--color-orange);
-      --color-background: var(--color-light);
-      --color-background-dark: var(--color-light-dark);
-
-      ${TinaIcon} {
-        fill: var(--color-orange);
-      }
-
-      ${FooterSocial} {
-        fill: var(--color-orange);
-      }
-
-      ${FooterBottom} {
-        color: white;
-        --color-background: var(--color-orange);
-      }
-    `};
-`
+const FooterLink = ({ link, label }) => {
+  return (
+    <Link href={link} passHref>
+      <a className="transition ease-out duration-150 hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] hover:opacity-100 opacity-70 whitespace-nowrap">
+        {label}
+      </a>
+    </Link>
+  )
+}

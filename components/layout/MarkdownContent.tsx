@@ -159,6 +159,7 @@ export function MarkdownContent({
   }, [content])
 
   return (
+    // @ts-ignore
     <ReactMarkdown
       source={body}
       escapeHtml={escapeHtml === false ? escapeHtml : true}

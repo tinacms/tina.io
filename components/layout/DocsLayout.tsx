@@ -27,7 +27,7 @@ export const DocsLayout = React.memo(
           <DocsMain>
             <DocsTextWrapper>{children}</DocsTextWrapper>
           </DocsMain>
-          <Footer light />
+          <Footer />
         </DocsLayoutGrid>
       </>
     )

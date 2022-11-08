@@ -31,29 +31,26 @@ export const cardTemplate: TinaTemplate = {
       label: 'Body',
       type: 'rich-text',
     },
-    {
-      name: 'large',
-      label: 'Large',
-      type: 'boolean',
-    },
     // @ts-ignore
     actionsTemplate,
   ],
 }
 
 const PricingCard = ({ data }) => {
+  if (!data) return null
+
   return (
     <>
       <div className="card">
         <div className="header">
           <h3 className="title">{data.name}</h3>
-          <span className="dotted"></span>
-          <h3 className="price">
-            {data.price}
+          {data.price && <><span className="dotted"></span>
+          <h3 className="price !text-blue-800">
+            <span className="number">{data.price}</span>
             {data.interval && (
-              <span className="interval">/{data.interval}</span>
+              <span className="interval">{data.interval}</span>
             )}
-          </h3>
+          </h3></>}
         </div>
         <div className="body">
           <div className="content">
@@ -68,7 +65,7 @@ const PricingCard = ({ data }) => {
           flex: 1 1 auto;
           width: 100%;
           margin: 0 auto;
-          max-width: 45rem;
+          max-width: 38rem;
           border: 1px solid var(--color-seafoam-300);
           border-radius: 0.75rem;
           box-shadow: 0 6px 24px rgba(0, 37, 91, 0.05),
@@ -84,39 +81,49 @@ const PricingCard = ({ data }) => {
           justify-content: space-between;
           flex-wrap: wrap;
           align-items: center;
+          gap: 1rem;
           line-height: 1.2;
-          background: var(--color-seafoam-100);
+          background: linear-gradient(to bottom right, var(--color-seafoam-200), var(--color-seafoam-100), white);
           border-bottom: 1px solid var(--color-seafoam-300);
-          padding: ${data.large ? '2.5rem' : '2.25rem'};
+          padding: 1.5rem 1.5rem;
+
+          @media (min-width: 1400px) {
+            padding: 1.5rem 2rem;
+          }
         }
         .title {
           font-family: var(--font-tuner);
           color: var(--color-orange);
-          font-size: ${data.large ? '2rem' : '1.5rem'};
+          font-size:1.5rem;
           flex: 0 0 auto;
-          padding-right: 1rem;
           margin: 0;
         }
         .price {
           font-family: var(--font-tuner);
-          color: var(--color-secondary);
-          font-size: ${data.large ? '2rem' : '1.5rem'};
+          font-size:1.5rem;
           flex: 0 0 auto;
-          padding-left: 1rem;
           margin: 0;
+          display: flex;
+          flex-direction: column;
+          item-align: center;
+          text-align: center;
         }
         .interval {
-          margin-left: 0.125rem;
           font-size: 0.75em;
           color: var(--color-seaforam-500);
         }
         .body {
           flex: 1 1 auto;
-          padding: ${data.large ? '2.5rem' : '2.25rem'};
           display: flex;
           flex-direction: column;
           justify-content: space-between;
           color: var(--color-secondary);
+          background: white;
+          padding: 1.75rem 1.5rem;
+
+          @media (min-width: 1400px) {
+            padding: 2.25rem 2rem;
+          }
         }
         .content {
           :global(strong) {
@@ -143,7 +150,7 @@ const PricingCard = ({ data }) => {
             }
           }
           :global(p) {
-            font-size: ${data.large ? '1.25rem' : '1.125rem'};
+            font-size: 1.125rem;
           }
         }
         .dotted {
@@ -181,37 +188,30 @@ export const pricingTemplate: TinaTemplate = {
       type: 'rich-text',
     },
     {
-      name: 'tierOne',
-      label: 'Tier One',
+      name: 'base',
+      label: 'Base Plan',
       // @ts-ignore
       type: cardTemplate.type,
       fields: cardTemplate.fields,
     },
     {
-      name: 'segue',
-      label: 'Segue Text',
-      type: 'rich-text',
-    },
-    {
-      name: 'tierTwo',
-      label: 'Tier Two',
+      name: 'plans',
+      label: 'Pricing Plans',
       // @ts-ignore
       type: cardTemplate.type,
+      list: true,
       fields: cardTemplate.fields,
-    },
-    {
-      name: 'tierThree',
-      label: 'Tier Three',
-      // @ts-ignore
-      type: cardTemplate.type,
-      fields: cardTemplate.fields,
-    },
-    {
-      name: 'tierFour',
-      label: 'Tier Four',
-      // @ts-ignore
-      type: cardTemplate.type,
-      fields: cardTemplate.fields,
+      ui: {
+        itemProps: (item) => ({
+          key: item.id,
+          label: item.name,
+        }),
+        defaultItem: {
+          name: 'Pricing Tier',
+          price: '$99',
+          interval: 'month',
+        }
+      },
     },
   ],
 }
@@ -223,24 +223,19 @@ export function PricingBlock({ data, index }) {
         <RichTextWrapper>
           <Wrapper>
             {data.intro && (
-              <div className="intro-text">
+              <div className="intro-text text-center">
                 <TinaMarkdown content={data.intro} />
               </div>
             )}
-            {data.tierOne && <PricingCard data={data.tierOne} />}
+            {data.base && <PricingCard data={data.base} />}
             <div className="segue">
-              {data.segue && (
-                <span>
-                  <TinaMarkdown content={data.segue} />
-                </span>
-              )}
             </div>
           </Wrapper>
           <Wrapper wide>
             <div className="card-wrapper">
-            {data.tierTwo && <PricingCard data={data.tierTwo} />}
-            {data.tierThree && <PricingCard data={data.tierThree} />}
-            {data.tierFour && <PricingCard data={data.tierFour} />}
+              {data.plans && data.plans.map((plan, index) => (
+                <PricingCard data={plan} key={index} />
+              ))}
             </div>
           </Wrapper>
         </RichTextWrapper>
@@ -291,44 +286,18 @@ export function PricingBlock({ data, index }) {
           }
         }
         .segue {
-          position: relative;
-          font-size: 1.5rem;
-          text-align: center;
-          color: var(--color-secondary);
-          padding: 4.5rem 0;
-
-          :global(span) {
-            display: block;
-            padding: 0.5rem;
-            background: white;
-          }
-
-          :global(p) {
-            &:first-of-type {
-              font-size: 1.5rem;
-            }
-
-            font-size: 1.25rem;
-            margin: 0.5rem 0;
-            color: var(--color-secondary);
-          }
-
-          @media (min-width: 1100px) {
-            padding: 6rem 0;
-          }
-
-          &:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            height: 100%;
-            width: 0;
-            transform: translateX(-50%);
-            border-left: 5px dotted var(--color-seafoam-dark);
-            z-index: -1;
-          }
+          display: block;
+          border: none;
+          border-image: initial;
+          background: url('/svg/vr.svg');
+          background-position: center;
+          background-size: 100% auto;
+          background-repeat: no-repeat;
+          width: 7px;
+          height: 200px;
+          margin: 0 auto;
         }
+
         .card-wrapper {
           margin-bottom: 4rem;
           display: flex;

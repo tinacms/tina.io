@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="LOGO_PROTOTYP" data-name="LOGO PROTOTYP" viewBox="0 0 60 80">
+  <defs>
+    <style>.cls-1{opacity:0.05;}.cls-2{fill:#fff;}.cls-3{fill:url(#linear-gradient);}.cls-4{fill:url(#linear-gradient-2);}</style>
+    <linearGradient id="linear-gradient" x1="25.72" y1="46.74" x2="25.72" y2="88.51" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity="0.3" />
+      <stop offset="0.02" stop-color="#fff" stop-opacity="0.28" />
+      <stop offset="0.28" stop-color="#fff" stop-opacity="0.13" />
+      <stop offset="0.48" stop-color="#fff" stop-opacity="0.04" />
+      <stop offset="0.6" stop-color="#fff" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="44.44" y1="52.59" x2="44.44" y2="93.72" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity="0.2" />
+      <stop offset="0.14" stop-color="#fff" stop-opacity="0.13" />
+      <stop offset="0.36" stop-color="#fff" stop-opacity="0.04" />
+      <stop offset="0.5" stop-color="#fff" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+  <title>Artboard 9</title>
+  <ellipse class="cls-1" cx="30.69" cy="48.43" rx="24.63" ry="3.38" />
+  <g id="S">
+    <g id="Kasten">
+      <path class="cls-2" d="M38.51,30.34a27.55,27.55,0,0,0-7-3.78,28.32,28.32,0,0,1-5.36-2.87q-6-4.18-6-10.37a10.63,10.63,0,0,1,2.25-6.89,10.19,10.19,0,0,1,.86-.94l-8.55,2A4.62,4.62,0,0,0,11.18,13l7.08,30.59A4.62,4.62,0,0,0,23.79,47l3.51-.81L27,46.16a33.76,33.76,0,0,1-6.78-2.92l3.66-8.18a16.3,16.3,0,0,0,10.4,3.66c4,0,6-1.43,6-4.27A5.26,5.26,0,0,0,38.51,30.34Z" />
+      <path class="cls-2" d="M57.85,34.45,50.77,3.86A4.62,4.62,0,0,0,45.23.4L40.08,1.59q.89.14,1.76.33A28.13,28.13,0,0,1,48.5,4.31l-3,8c-2.24-1.92-5.37-2.88-9.37-2.88q-5.38,0-5.39,4.28a3.86,3.86,0,0,0,1.77,3,36.82,36.82,0,0,0,7.56,3.66,23.64,23.64,0,0,1,6.39,3.55,12.68,12.68,0,0,1,2,2A12.35,12.35,0,0,1,51,33.75a11.85,11.85,0,0,1-2.45,7.58L54.38,40A4.61,4.61,0,0,0,57.85,34.45Z" />
+    </g>
+  </g>
+  <g id="S-2" data-name="S">
+    <g id="Kasten-2" data-name="Kasten">
+      <path class="cls-3" d="M34.35,55.2a16.34,16.34,0,0,0-10.43,3.66l-3.67-8.19a33.83,33.83,0,0,1,6.8-2.93l.27-.07-3.51-.81a4.63,4.63,0,0,0-5.55,3.47L11.18,81a4.63,4.63,0,0,0,3.47,5.55l8.56,2a10.22,10.22,0,0,1-.86-.95,10.66,10.66,0,0,1-2.25-6.9q0-6.2,6-10.39a28.38,28.38,0,0,1,5.37-2.88,27.61,27.61,0,0,0,7.06-3.79,5.27,5.27,0,0,0,1.81-4.12C40.37,56.63,38.37,55.2,34.35,55.2Z" />
+      <path class="cls-4" d="M54.47,53.93l-5.84-1.35a11.87,11.87,0,0,1,2.46,7.6,12.37,12.37,0,0,1-2.56,7.87,12.71,12.71,0,0,1-2,2,23.69,23.69,0,0,1-6.41,3.56,36.89,36.89,0,0,0-7.57,3.66,3.87,3.87,0,0,0-1.78,3q0,4.28,5.4,4.29c4,0,7.15-1,9.39-2.89l3,8a28.19,28.19,0,0,1-6.67,2.4q-.87.19-1.76.33L45.3,93.6a4.63,4.63,0,0,0,5.55-3.46l7.09-30.66A4.62,4.62,0,0,0,54.47,53.93Z" />
+    </g>
+  </g>
+</svg>

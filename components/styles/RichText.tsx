@@ -65,10 +65,19 @@ const RichText = css`
 
   h1,
   .h1 {
+    display: inline-block;
     font-size: 2.5rem;
     line-height: 1.3;
     letter-spacing: 0.1px;
-    color: var(--color-orange);
+    color: transparent;
+    background: linear-gradient(
+      to bottom right,
+      var(--color-orange-light),
+      var(--color-orange),
+      var(--color-orange-dark)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
 
     em {
       color: var(--color-secondary-dark);
@@ -85,10 +94,19 @@ const RichText = css`
 
   h2,
   .h2 {
+    display: inline-block;
     font-size: 2.25rem;
     line-height: 1.3;
     letter-spacing: 0.1px;
-    color: var(--color-orange);
+    color: transparent;
+    background: linear-gradient(
+      to bottom right,
+      var(--color-orange-light),
+      var(--color-orange),
+      var(--color-orange-dark)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
     font-weight: bold;
 
     em {
@@ -178,15 +196,14 @@ const RichText = css`
   }
 
   hr {
-    border-top: none;
-    border-right: none;
-    border-left: none;
-    border-image: initial;
-    border-bottom: 5px dotted var(--color-seafoam-dark);
-    width: 6rem;
-    max-width: 100%;
     display: block;
-    height: 0px;
+    border: none;
+    border-image: initial;
+    background: url('/svg/hr.svg');
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    height: 7px;
+    width: 100%;
     margin: 2rem 0px;
   }
 
