@@ -32,11 +32,11 @@ const footerNav = [
     label: 'Docs',
     items: [
       {
-        link: '/',
+        link: '/docs/',
         label: 'Introduction',
       },
       {
-        link: '/',
+        link: '/docs/product-tour/',
         label: 'How Tina Works',
       },
       // {

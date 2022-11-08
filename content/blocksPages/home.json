@@ -10,40 +10,28 @@
     {
       "items": [
         {
-          "headline": "Customize the Editing UI",
-          "text": "Take full control of the editing UI by providing custom components in Tina’s schema."
+          "headline": "Visual Editing",
+          "text": "See content changes in real-time as you edit. "
         },
         {
-          "headline": "Site Building",
-          "text": "Create reusable components that you can edit with Tina. Give your editors the ability to assemble pages like a custom built site-builder."
-        },
-        {
-          "headline": "GraphQL Data Layer",
-          "text": "Query your Markdown content like you would a database. Tina’s GraphQL Data Layer supports filtering, sorting, pagination, and more."
-        },
-        {
-          "headline": "Static or Server Side Rendering",
-          "text": "Power your SSR and ISR sites with Markdown content when you use the GraphQL Data Layer."
+          "headline": "Static and Dynamic",
+          "text": "Query your Markdown content like you would with a headless CMS. Tina’s GraphQL Data Layer supports filtering, sorting, pagination, and more."
         },
         {
           "headline": "Develop Locally",
-          "text": "In development, run Tina locally and talk to your local filesystem. This makes making changes to your schema a breeze."
+          "text": "Run Tina locally and talk to your local filesystem. "
         },
         {
-          "headline": "Integrate 3rd-party Media",
-          "text": "If you don’t wish to store media in your repo, connect to S3, Cloudinary, etc."
+          "headline": "3rd-party Media",
+          "text": "Store Media assets in your repo or connect to S3, Cloudinary, etc."
         },
         {
-          "headline": "MDX, Markdown, JSON",
-          "text": "Tina support open-formats, in your repo."
+          "headline": "Composable Blocks",
+          "text": "Create reusable components that you can edit with Tina. Let your team assemble pages like a site-builder."
         },
         {
           "headline": "Markdown at Scale ",
-          "text": "There is no limit to what you can do with Markdown when combined with a data layer.  Tina powers 10’s of thousands of pages for Smashing Magazine with great performance and without GitHub rate-limiting."
-        },
-        {
-          "headline": "No database, no sync issues",
-          "text": "In development, run Tina locally and talk to your local filesystem. This makes making changes to your schema a breeze."
+          "text": "Tina powers sites with 10’s of thousands of pages with great performance and without GitHub rate-limiting."
         }
       ],
       "_template": "featureGrid"
@@ -53,25 +41,21 @@
       "items": [
         {
           "name": "Devolver Digital",
-          "link": "https://www.devolverdigital.com/",
           "logo": "/svg/logos/devolverdigital.svg",
           "size": 209
         },
         {
           "name": "Planet Scale",
-          "link": "https://planetscale.com/",
           "logo": "/svg/logos/planetscale.svg",
           "size": 110
         },
         {
           "name": "Protocol Labs",
-          "link": "https://protocol.ai/",
           "logo": "/svg/logos/protocollabs.svg",
           "size": 110
         },
         {
           "name": "Smashing Magazine",
-          "link": "https://www.smashingmagazine.com/",
           "logo": "/svg/logos/smashing.svg",
           "size": 128
         }

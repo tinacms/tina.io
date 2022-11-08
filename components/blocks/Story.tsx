@@ -70,7 +70,7 @@ const features = [
     id: 'git',
     title: 'Powered by Git',
     description:
-      'Let your editoral team focus on writing content, while Tina commits to your repository.',
+      'Let your editorial team focus on writing content, while Tina commits to your repository.',
     actions: [
       {
         variant: 'seafoam',
