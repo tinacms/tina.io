@@ -10,12 +10,12 @@
       "_template": "hero"
     },
     {
-      "intro": "Tina has a per-project pricing model that can scale to meet your needs.",
+      "intro": "Tina has a **per-project** pricing model that can scale to meet your needs.\n",
       "base": {
         "name": "Basic",
         "price": "Free",
         "interval": "",
-        "body": "* Two Users\n* Forum Support\n* No Additional Users\n",
+        "body": "* 2 Users\n* 2 Roles\n* No Additional Users\n* Forum Support\n",
         "actions": [
           {
             "label": "Sign Up",
@@ -31,7 +31,7 @@
           "name": "Team",
           "price": "$29",
           "interval": "month",
-          "body": "* 3 Users\n* Forum Support\n* Additional Users $15/seat\n* Max 10 Users\n\n",
+          "body": "* 3 Users\n* 2 Roles\n* Max 10 Users\n* Additional Users $15/seat\n* Forum Support\n",
           "actions": [
             {
               "label": "Sign Up",
@@ -46,7 +46,7 @@
           "name": "Business",
           "price": "$599",
           "interval": "month",
-          "body": "* 10 Users\n* Priority Support\n* Additional Users $15/seat\n* No User Limit\n\n",
+          "body": "* 10 Users\n* 3 Roles *(coming soon)*\n* No User Limit\n* Additional Users $15/seat\n* Priority Support\n* SSO&#x20;\n* Approval flow *(coming soon)*\n",
           "actions": [
             {
               "label": "Sign Up",
@@ -59,9 +59,9 @@
         },
         {
           "name": "Enterprise",
-          "price": "",
-          "interval": "",
-          "body": "Contact us for bulk pricing.\n",
+          "price": "$2999",
+          "interval": "month",
+          "body": "**Bulk pricing available**\n\n* Custom Users\n* Custom Roles\n* No User Limit\n* Variable user pricing\n* Enterprise Support\n* SSO&#x20;\n* Custom workflows\n",
           "actions": [
             {
               "label": "Contact Us",
@@ -74,9 +74,9 @@
         },
         {
           "name": "Agency",
-          "price": "",
-          "interval": "",
-          "body": "Contact us for bulk pricing.\n",
+          "price": "Contact Us",
+          "interval": "Custom",
+          "body": "**Bulk pricing available**\n\n* Custom Users\n* Custom Roles\n* No User Limit\n* Variable user pricing\n* Custom Support\n* SSO\n* Custom workflows\n",
           "actions": [
             {
               "label": "Contact Us",
