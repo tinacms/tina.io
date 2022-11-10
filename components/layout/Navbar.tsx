@@ -20,11 +20,7 @@ const LaunchBanner = () => {
   return (
     <div className="w-full h-12 px-4 lg:px-8 text-lg bg-gradient-to-r from-seafoam-50 to-blue-50 font-sans text-blue-700 flex items-center justify-center gap-4 whitespace-nowrap">
       <p className="font-medium">
-        <span className="font-tuner text-orange-600">Tina</span> has gone 1.0
-        <span className="hidden lg:inline ">
-          {` `}and is coming out of beta
-        </span>
-        !
+        <span className="font-tuner text-orange-600">Tina</span> v1.0 is live!
       </p>
       <Divider className="flex-shrink" />
       <Link href="/blog/tina-1-0-announcement/">
@@ -36,7 +32,7 @@ const LaunchBanner = () => {
   )
 }
 
-export function Navbar({}) {
+export function Navbar({ }) {
   const [open, setOpen] = React.useState(false)
   const [stuck, setStuck] = React.useState(false)
   const { ref, inView, entry } = useInView({
@@ -56,9 +52,8 @@ export function Navbar({}) {
       <LaunchBanner />
       <div className="flex md:hidden w-full py-4 pr-4 pl-18 items-center justify-between gap-6">
         <div
-          className={`fixed top-0 left-0 h-full w-3/4 bg-gradient-to-t from-blue-50 to-white shadow-2xl z-50 transition ease-out duration-200 ${
-            open ? 'translate-x-0' : '-translate-x-full'
-          }`}
+          className={`fixed top-0 left-0 h-full w-3/4 bg-gradient-to-t from-blue-50 to-white shadow-2xl z-50 transition ease-out duration-200 ${open ? 'translate-x-0' : '-translate-x-full'
+            }`}
         >
           <button
             className="absolute mt-12 top-6 right-0 translate-x-full transition duration-150 ease-out rounded-r-full flex items-center font-tuner whitespace-nowrap leading-tight hover:shadow active:shadow-none text-orange-500 hover:text-orange-400 border border-gray-100/60 bg-gradient-to-br from-white to-gray-50 pl-3 pr-4 pt-[8px] pb-[6px] text-sm font-medium cursor-pointer"
@@ -67,14 +62,12 @@ export function Navbar({}) {
             }}
           >
             <BiMenu
-              className={`h-6 w-auto transition ease-out duration-200 ${
-                open ? 'rotate-90 opacity-0' : ''
-              }`}
+              className={`h-6 w-auto transition ease-out duration-200 ${open ? 'rotate-90 opacity-0' : ''
+                }`}
             />
             <IoMdClose
-              className={`absolute h-6 w-auto transition ease-out duration-150 ${
-                open ? '' : '-rotate-90 opacity-0'
-              }`}
+              className={`absolute h-6 w-auto transition ease-out duration-150 ${open ? '' : '-rotate-90 opacity-0'
+                }`}
             />
           </button>
           <ul className="flex flex-col py-4 px-6 relative z-20">
@@ -118,11 +111,10 @@ export function Navbar({}) {
           </ul>
         </div>
         <div
-          className={`fixed top-0 left-0 w-full h-full bg-gray-900/70 z-30 ${
-            open
-              ? 'opacity-100 pointer-events-auto'
-              : 'opacity-0 pointer-events-none'
-          }`}
+          className={`fixed top-0 left-0 w-full h-full bg-gray-900/70 z-30 ${open
+            ? 'opacity-100 pointer-events-auto'
+            : 'opacity-0 pointer-events-none'
+            }`}
           onClick={() => {
             setOpen(false)
           }}
@@ -148,11 +140,10 @@ export function Navbar({}) {
         </div>
       </div>
       <div
-        className={`absolute ${
-          stuck
-            ? `md:fixed shadow-sm bg-gradient-to-r from-[rgba(216,251,248,0.6)] to-[rgba(215,233,255,0.6)] backdrop-blur animate-slide-in top-0`
-            : `translate-y-2`
-        } z-40 w-full p-4 lg:px-10 hidden md:flex items-center justify-between gap-6`}
+        className={`absolute ${stuck
+          ? `md:fixed shadow-sm bg-gradient-to-r from-[rgba(216,251,248,0.6)] to-[rgba(215,233,255,0.6)] backdrop-blur animate-slide-in top-0`
+          : `translate-y-2`
+          } z-40 w-full p-4 lg:px-10 hidden md:flex items-center justify-between gap-6`}
       >
         <Link href={'/'}>
           <a>
