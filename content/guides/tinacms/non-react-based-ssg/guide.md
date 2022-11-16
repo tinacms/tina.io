@@ -37,7 +37,7 @@ Now that we have a working Hugo site, stop your server so we can add TinaCMS.
 You can initialize tina with the `init` command:
 
 ```bash,copy
- npx @tinacms/cli@latest init --static
+ npx @tinacms/cli@latest init
 ```
 
 The command will ask you a few questions which we'll go through one-by-one, once it's done you'll have everything you need to work with Tina:
