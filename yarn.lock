@@ -2819,7 +2819,7 @@
     prettier "^2.2.1"
     yup "^0.32.9"
 
-"@tinacms/graphql@1.0.1":
+"@tinacms/graphql@1.0.1", "@tinacms/graphql@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@tinacms/graphql/-/graphql-1.0.1.tgz#438e5f914d12e8b68d1c205de17a22d064c3392d"
   integrity sha512-ZeRZFNKd0IHGY7RmknI3+au8p2VTeewEONez50WFbetcC9MV279O6kGXXoSpXX2WkkP3sRl1KWl+StdxXYQ4LA==

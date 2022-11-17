@@ -12,6 +12,7 @@ export const contentTemplate: TinaTemplate = {
   label: 'Content',
   name: 'content',
   ui: {
+    // @ts-ignore TODO: fix this in tinacms
     previewSrc: '/img/blocks/content.png',
   },
   fields: [
@@ -29,30 +30,37 @@ export const contentTemplate: TinaTemplate = {
           name: 'color',
           label: 'Color',
           type: 'string',
-          options: [{
-            label: 'Seafoam',
-            value: 'seafoam'
-          }, {
-            label: 'White',
-            value: 'white'
-          }]
+          options: [
+            {
+              label: 'Seafoam',
+              value: 'seafoam',
+            },
+            {
+              label: 'White',
+              value: 'white',
+            },
+          ],
         },
         {
           name: 'align',
           label: 'Align Content',
           type: 'string',
-          options: [{
-            label: 'Left',
-            value: 'left'
-          }, {
-            label: 'Center',
-            value: 'center'
-          }, {
-            label: 'Right',
-            value: 'right'
-          }]
-        }
-      ]
+          options: [
+            {
+              label: 'Left',
+              value: 'left',
+            },
+            {
+              label: 'Center',
+              value: 'center',
+            },
+            {
+              label: 'Right',
+              value: 'right',
+            },
+          ],
+        },
+      ],
     },
     {
       name: 'content',
@@ -71,7 +79,7 @@ export const contentTemplate: TinaTemplate = {
 }
 
 export const contentComponents = {
-  actions: Actions, 
+  actions: Actions,
   social: SocialBlock,
   newsletter: NewsletterBlock,
 }
@@ -80,8 +88,16 @@ export function ContentBlock({ data, index }) {
   return (
     <Section color={data.options?.color || 'white'}>
       <DocsTextWrapper>
-        <Wrapper align={data.options?.align || 'left'} narrow={data.options?.narrow || false} >
-          {data.content && <TinaMarkdown components={contentComponents} content={data.content} />}
+        <Wrapper
+          align={data.options?.align || 'left'}
+          narrow={data.options?.narrow || false}
+        >
+          {data.content && (
+            <TinaMarkdown
+              components={contentComponents}
+              content={data.content}
+            />
+          )}
         </Wrapper>
       </DocsTextWrapper>
     </Section>

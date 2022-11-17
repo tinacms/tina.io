@@ -14,6 +14,7 @@ export const featuresTemplate: TinaTemplate = {
   label: 'Features',
   name: 'features',
   ui: {
+    // @ts-ignore TODO: fix this in tinacms
     previewSrc: '/img/blocks/features.png',
   },
   fields: [

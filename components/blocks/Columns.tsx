@@ -2,7 +2,7 @@ import React from 'react'
 import { Wrapper } from '../layout/Wrapper'
 import { Section } from '../layout/Section'
 import type { TinaTemplate } from '@tinacms/cli'
-import { contentComponents } from "./Content"
+import { contentComponents } from './Content'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import { actionsTemplate } from './Actions'
 import { socialTemplate } from './Social'
@@ -13,6 +13,7 @@ export const columnsTemplate: TinaTemplate = {
   label: 'Columns',
   name: 'columns',
   ui: {
+    // @ts-ignore TODO: fix this in TinaCMS
     previewSrc: '/img/blocks/columns.png',
   },
   fields: [
@@ -25,13 +26,16 @@ export const columnsTemplate: TinaTemplate = {
           name: 'columns',
           label: 'Column Sizes',
           type: 'string',
-          options: [{
-            label: 'Default',
-            value: 'default'
-          }, {
-            label: 'Not Default',
-            value: 'notDefault'
-          }]
+          options: [
+            {
+              label: 'Default',
+              value: 'default',
+            },
+            {
+              label: 'Not Default',
+              value: 'notDefault',
+            },
+          ],
         },
         {
           name: 'narrow',
@@ -42,30 +46,37 @@ export const columnsTemplate: TinaTemplate = {
           name: 'color',
           label: 'Color',
           type: 'string',
-          options: [{
-            label: 'Seafoam',
-            value: 'seafoam'
-          }, {
-            label: 'White',
-            value: 'white'
-          }]
+          options: [
+            {
+              label: 'Seafoam',
+              value: 'seafoam',
+            },
+            {
+              label: 'White',
+              value: 'white',
+            },
+          ],
         },
         {
           name: 'align',
           label: 'Align Content',
           type: 'string',
-          options: [{
-            label: 'Left',
-            value: 'left'
-          }, {
-            label: 'Center',
-            value: 'center'
-          }, {
-            label: 'Right',
-            value: 'right'
-          }]
-        }
-      ]
+          options: [
+            {
+              label: 'Left',
+              value: 'left',
+            },
+            {
+              label: 'Center',
+              value: 'center',
+            },
+            {
+              label: 'Right',
+              value: 'right',
+            },
+          ],
+        },
+      ],
     },
     {
       name: 'columnOne',
@@ -100,15 +111,31 @@ export const ColumnsBlock = ({ data, index }) => {
   return (
     <>
       <Section color={data.options?.color || 'white'}>
-      <DocsTextWrapper>
-        <Wrapper align={data.options?.align || 'left'} narrow={data.options?.narrow || false}><div className="columns">
-          <div className="column">
-          {data.columnOne && <TinaMarkdown components={contentComponents} content={data.columnOne} />}
-          </div>
-          <div className="column">
-          {data.columnTwo && <TinaMarkdown components={contentComponents} content={data.columnTwo} />}
-          </div>
-        </div></Wrapper></DocsTextWrapper>
+        <DocsTextWrapper>
+          <Wrapper
+            align={data.options?.align || 'left'}
+            narrow={data.options?.narrow || false}
+          >
+            <div className="columns">
+              <div className="column">
+                {data.columnOne && (
+                  <TinaMarkdown
+                    components={contentComponents}
+                    content={data.columnOne}
+                  />
+                )}
+              </div>
+              <div className="column">
+                {data.columnTwo && (
+                  <TinaMarkdown
+                    components={contentComponents}
+                    content={data.columnTwo}
+                  />
+                )}
+              </div>
+            </div>
+          </Wrapper>
+        </DocsTextWrapper>
       </Section>
       <style jsx>{`
         .columns {

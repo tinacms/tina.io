@@ -9,6 +9,7 @@ export const heroTemplate: TinaTemplate = {
   label: 'Hero',
   name: 'hero',
   ui: {
+    // @ts-ignore TODO: fix this in tinacms
     previewSrc: '/img/blocks/hero.png',
     defaultItem: {
       headline: 'Next Gen Content Management',

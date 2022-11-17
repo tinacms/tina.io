@@ -44,13 +44,17 @@ const PricingCard = ({ data }) => {
       <div className="card">
         <div className="header">
           <h3 className="title">{data.name}</h3>
-          {data.price && <><span className="dotted"></span>
-          <h3 className="price !text-blue-800">
-            <span className="number">{data.price}</span>
-            {data.interval && (
-              <span className="interval">{data.interval}</span>
-            )}
-          </h3></>}
+          {data.price && (
+            <>
+              <span className="dotted"></span>
+              <h3 className="price !text-blue-800">
+                <span className="number">{data.price}</span>
+                {data.interval && (
+                  <span className="interval">{data.interval}</span>
+                )}
+              </h3>
+            </>
+          )}
         </div>
         <div className="body">
           <div className="content">
@@ -83,7 +87,12 @@ const PricingCard = ({ data }) => {
           align-items: center;
           gap: 1rem;
           line-height: 1.2;
-          background: linear-gradient(to bottom right, var(--color-seafoam-200), var(--color-seafoam-100), white);
+          background: linear-gradient(
+            to bottom right,
+            var(--color-seafoam-200),
+            var(--color-seafoam-100),
+            white
+          );
           border-bottom: 1px solid var(--color-seafoam-300);
           padding: 1.5rem 1.5rem;
 
@@ -94,13 +103,13 @@ const PricingCard = ({ data }) => {
         .title {
           font-family: var(--font-tuner);
           color: var(--color-orange);
-          font-size:1.5rem;
+          font-size: 1.5rem;
           flex: 0 0 auto;
           margin: 0;
         }
         .price {
           font-family: var(--font-tuner);
-          font-size:1.5rem;
+          font-size: 1.5rem;
           flex: 0 0 auto;
           margin: 0;
           display: flex;
@@ -175,6 +184,7 @@ export const pricingTemplate: TinaTemplate = {
   name: 'pricing',
   label: 'Pricing',
   ui: {
+    // @ts-ignore TODO: fix this in tinacms
     previewSrc: '/img/blocks/pricing.png',
     defaultItem: {
       intro:
@@ -210,7 +220,7 @@ export const pricingTemplate: TinaTemplate = {
           name: 'Pricing Tier',
           price: '$99',
           interval: 'month',
-        }
+        },
       },
     },
   ],
@@ -228,14 +238,14 @@ export function PricingBlock({ data, index }) {
               </div>
             )}
             {data.base && <PricingCard data={data.base} />}
-            <div className="segue">
-            </div>
+            <div className="segue"></div>
           </Wrapper>
           <Wrapper wide>
             <div className="card-wrapper">
-              {data.plans && data.plans.map((plan, index) => (
-                <PricingCard data={plan} key={index} />
-              ))}
+              {data.plans &&
+                data.plans.map((plan, index) => (
+                  <PricingCard data={plan} key={index} />
+                ))}
             </div>
           </Wrapper>
         </RichTextWrapper>

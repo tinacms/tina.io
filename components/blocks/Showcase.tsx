@@ -14,6 +14,7 @@ export const showcaseTemplate: TinaTemplate = {
   label: 'Showcase',
   name: 'showcase',
   ui: {
+    // @ts-ignore TODO: fix this in TinaCMS
     previewSrc: '/img/blocks/features.png',
   },
   fields: [

@@ -7,6 +7,7 @@ export const flyingTemplate: TinaTemplate = {
   name: 'flying',
   label: 'Flying',
   ui: {
+    // @ts-ignore TODO: fix this in tinacms
     previewSrc: '/img/blocks/flying.png',
   },
   fields: [
