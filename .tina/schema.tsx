@@ -10,6 +10,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+import React from 'react'
 
 import { defineSchema } from 'tinacms'
 import { heroTemplate } from '../components/blocks/Hero'
@@ -23,30 +24,23 @@ import { showcaseTemplate } from '../components/blocks/Showcase'
 import { storyTemplate } from '../components/blocks/Story'
 import { featureGridTemplate } from '../components/blocks/FeatureGrid'
 import type { TinaTemplate } from 'tinacms'
-import { logoGridTemplate } from 'components/blocks'
+import { logoGridTemplate } from '../components/blocks'
 
 export default defineSchema({
-  config: {
-    clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID!,
-    branch:
-      process.env.NEXT_PUBLIC_TINA_BRANCH! || // custom branch env override
-      process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF! || // Vercel branch env
-      process.env.HEAD!, // Netlify branch env
-    token: process.env.TINA_TOKEN!,
-    media: {
-      // @ts-ignore
-      loadCustomStore: async () => {
-        const pack = await import('next-tinacms-cloudinary')
-        return pack.TinaCloudCloudinaryMediaStore
-      },
-    },
-  },
   collections: [
     {
       label: 'Pages',
       name: 'page',
       path: 'content/blocksPages',
       format: 'json',
+      ui: {
+        router: ({document})=>{
+          if (document._sys.filename === 'home') {
+                    return `/`
+                  }
+                  return `/${document._sys.filename}`
+        },
+      },
       fields: [
         {
           type: 'object',

@@ -3,14 +3,14 @@ import Link from 'next/link'
 import { Container } from '../blocks'
 import GitHubButton from 'react-github-btn'
 import data from '../../content/navigation.json'
-import { Button, ButtonGroup } from 'components/ui/Button'
+import { Button, ButtonGroup } from '../../components/ui/Button'
 import {
   BiArrowFromBottom,
   BiChevronRight,
   BiMenu,
   BiRightArrowAlt,
 } from 'react-icons/bi'
-import { TinaIcon } from 'components/logo'
+import { TinaIcon } from '../../components/logo'
 import { useInView } from 'react-intersection-observer'
 import TinaIconSvg from '../../public/svg/tina-icon.svg'
 import { IoMdClose } from 'react-icons/io'

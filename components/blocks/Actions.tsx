@@ -1,8 +1,8 @@
 import React from 'react'
 import { BiCopy } from 'react-icons/bi'
 import { IconRight } from './Icons'
-import { copyToClipboard } from 'components/layout/MarkdownContent'
-import { LinkButton } from 'components/ui'
+import { copyToClipboard } from '../../components/layout/MarkdownContent'
+import { LinkButton } from '../../components/ui'
 
 export const actionsTemplate = {
   label: 'Actions',

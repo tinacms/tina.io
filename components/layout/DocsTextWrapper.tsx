@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import DocsRichText from '../styles/DocsRichText'
 import { useRouter } from 'next/router'
-import { FallbackPlaceholder } from 'components/fallback-placeholder'
+import { FallbackPlaceholder } from '../../components/fallback-placeholder'
 
 /* Styles rich text (markdown output)
  */

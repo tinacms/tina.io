@@ -1,5 +1,5 @@
+import { EmailForm } from '../../components/forms'
 import React from 'react'
-import { EmailForm } from 'components/forms'
 
 export const newsletterTemplate = {
   name: 'newsletter',

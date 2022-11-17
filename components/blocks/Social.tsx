@@ -1,5 +1,5 @@
 import React from 'react'
-import { DynamicLink } from 'components/ui/DynamicLink'
+import { DynamicLink } from '../../components/ui/DynamicLink'
 import { FaDiscord, FaTwitter, FaGithub } from 'react-icons/fa'
 import TinaIconSvg from '../../public/svg/tina-icon.svg'
 import { Button, ButtonGroup } from '../ui'

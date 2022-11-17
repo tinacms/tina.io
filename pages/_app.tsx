@@ -8,7 +8,6 @@ import TagManager from 'react-gtm-module'
 import { GlobalStyle } from 'components/styles/GlobalStyle'
 import 'components/styles/fontImports.css'
 import path from 'path'
-import Tina from '../.tina/components/TinaDynamicProvider'
 import '../styles/tailwind.css'
 
 // the following line will cause all content files to be available in a serverless context
@@ -80,9 +79,7 @@ class Site extends App {
   render() {
     const { Component, pageProps } = this.props
     return (
-      <Tina>
         <MainLayout Component={Component} pageProps={pageProps} />
-      </Tina>
     )
   }
 }

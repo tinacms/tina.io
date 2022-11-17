@@ -18,7 +18,7 @@ const fg = require('fast-glob')
 import { LastEdited, DocsPagination } from 'components/ui'
 import { openGraphImage } from 'utils/open-graph-image'
 import { WarningCallout } from '../../utils/shortcodes'
-import { useTina } from 'tinacms/dist/edit-state'
+import { useTina } from 'tinacms/dist/react'
 import path from 'path'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'

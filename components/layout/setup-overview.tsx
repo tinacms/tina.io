@@ -1,9 +1,9 @@
 import React from 'react'
 import { NextSeo } from 'next-seo'
-import { DocsLayout } from 'components/layout'
+import { DocsLayout } from '../../components/layout'
 import { useRouter } from 'next/router'
 import * as ga from '../../utils/ga'
-import { Actions } from 'components/blocks/Actions'
+import { Actions } from '../../components/blocks/Actions'
 
 const pageData = {
   title: 'Getting Started',
