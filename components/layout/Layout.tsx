@@ -1,11 +1,8 @@
-import React, { useMemo } from 'react'
-import styled from 'styled-components'
+import React from 'react'
 import { DefaultSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { Footer } from './Footer'
-import { CloudBanner } from './CloudBanner'
 import { Navbar } from './Navbar'
-import BlobBackground from '../../public/svg/blob-bg.svg'
 
 interface LayoutProps {
   children: any | any[]
