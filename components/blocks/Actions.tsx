@@ -87,7 +87,7 @@ export const Actions = ({ items, align = 'left' }) => {
         {items &&
           items.map((item) => {
             if (item.variant == 'command') {
-              return <CodeButton>{item.label}</CodeButton>
+              return <CodeButton key={item.label}>{item.label}</CodeButton>
             }
             const { variant, label, icon, url } = item
             const externalUrlPattern = /^((http|https|ftp):\/\/)/
@@ -95,6 +95,7 @@ export const Actions = ({ items, align = 'left' }) => {
             let link = null
             return (
               <LinkButton
+                key={label}
                 size={item.size ? item.size : 'medium'}
                 link={url}
                 color={variant}
