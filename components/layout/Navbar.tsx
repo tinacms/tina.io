@@ -51,7 +51,7 @@ export function Navbar({}) {
   return (
     <div ref={ref}>
       <LaunchBanner />
-      <div className="flex md:hidden w-full py-4 pr-4 pl-18 items-center justify-between gap-6">
+      <div className="flex lg:hidden w-full py-4 pr-4 pl-18 items-center justify-between gap-6">
         <div
           className={`fixed top-0 left-0 h-full w-3/4 bg-gradient-to-t from-blue-50 to-white shadow-2xl z-50 transition ease-out duration-200 ${
             open ? 'translate-x-0' : '-translate-x-full'
@@ -147,9 +147,9 @@ export function Navbar({}) {
       <div
         className={`absolute ${
           stuck
-            ? `md:fixed shadow-sm bg-gradient-to-r from-[rgba(216,251,248,0.6)] to-[rgba(215,233,255,0.6)] backdrop-blur animate-slide-in top-0`
+            ? `lg:fixed shadow-sm bg-gradient-to-r from-[rgba(216,251,248,0.6)] to-[rgba(215,233,255,0.6)] backdrop-blur animate-slide-in top-0`
             : `translate-y-2`
-        } z-40 w-full p-4 lg:px-10 hidden md:flex items-center justify-between gap-6`}
+        } z-40 w-full p-4 lg:px-10 hidden lg:flex items-center justify-between gap-6`}
       >
         <Link href={'/'}>
           <a>
@@ -160,7 +160,7 @@ export function Navbar({}) {
             </h1>
           </a>
         </Link>
-        <nav className="flex-1 flex flex-wrap-reverse justify-end items-end md:items-center gap-2 md:gap-x-6 lg:gap-x-10">
+        <nav className="flex-1 flex flex-wrap-reverse justify-end items-end lg:items-center gap-2 lg:gap-x-6 lg:gap-x-10">
           <ul className="flex gap-6 lg:gap-10 relative z-20">
             {data.map((item) => {
               const navLinkClasses =
