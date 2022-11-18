@@ -152,7 +152,7 @@ export const Actions = ({ items, align = 'left' }) => {
   )
 }
 
-export const CodeButton = ({ children }) => {
+export const CodeButton = ({ children, ...props }) => {
   const [copied, setCopied] = React.useState(false)
 
   const clickEvent = () => {
@@ -165,7 +165,11 @@ export const CodeButton = ({ children }) => {
 
   return (
     <>
-      <button className="button event-cmd-button" onClick={clickEvent}>
+      <button
+        className="button event-cmd-button"
+        onClick={clickEvent}
+        {...props}
+      >
         <span className={`success-message ${copied ? `visible` : ``}`}>
           Copied to clipboard!
         </span>
