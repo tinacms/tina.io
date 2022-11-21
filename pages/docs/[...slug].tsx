@@ -55,8 +55,6 @@ function _DocTemplate(props) {
       router.events.off('routeChangeComplete', handleRouteChange)
     }
   }, [router.events])
-  console.log('markdownBody', markdownBody)
-
   return (
     <>
       <NextSeo
