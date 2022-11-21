@@ -1,5 +1,9 @@
 import React from 'react'
-import ReactMarkdown from 'react-markdown/with-html'
+import ReactMarkdown from 'react-markdown'
+import rehypeRaw from 'rehype-raw'
+// Need this to render tables
+import remarkGfm from 'remark-gfm'
+
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import CodeStyle from '../styles/Code'
 
@@ -17,18 +21,23 @@ interface MarkdownContentProps {
   skipHtml?: boolean
 }
 
-export function WithCodeStyles({ language: tags, value }) {
-  const [language, ...other] = tags?.split(',') || []
-  const copy = other.includes('copy') || language === 'copy'
-  return (
-    <CodeWrapper>
-      <SyntaxHighlighter language={language} style={CodeStyle}>
-        {value}
-      </SyntaxHighlighter>
-      {copy ? <CopyCodeButton value={value} /> : null}
-    </CodeWrapper>
-  )
-}
+// export function WithCodeStyles({ language: tags, value, ...props }) {
+//   const [language, ...other] = tags?.split(',') || []
+//   const copy = other.includes('copy') || language === 'copy'
+//   return (
+//     <CodeWrapper>
+//       <SyntaxHighlighter
+//         {...props}
+//         language={language}
+//         style={CodeStyle}
+//         PreTag="div"
+//       >
+//         {String(value).replace(/\n$/, '')}
+//       </SyntaxHighlighter>
+//       {copy ? <CopyCodeButton value={value} /> : null}
+//     </CodeWrapper>
+//   )
+// }
 
 export const copyToClipboard = (text: string) => {
   const el = document.createElement('textarea')
@@ -85,11 +94,13 @@ const StyledCopyCodeButton = styled.button`
 const CodeWrapper = styled.div`
   position: relative;
 `
-
 function WithHeadings({ children, level }) {
   const HeadingTag = `h${level}` as any
   const value = children
-    .map(child => child.props.value || child.props.children[0].props.value)
+    .map(
+      (child) =>
+        child?.props?.value || child?.props?.children[0]?.props?.value || child
+    )
     .join('')
   var slugger = new GithubSlugger()
   const slug = slugger.slug(value)
@@ -159,18 +170,43 @@ export function MarkdownContent({
   }, [content])
 
   return (
-    // @ts-ignore
     <ReactMarkdown
-      source={body}
-      escapeHtml={escapeHtml === false ? escapeHtml : true}
+      rehypePlugins={[
+        rehypeRaw,
+        remarkGfm,
+        [shortcodes, { startBlock: '{{', endBlock: '}}' }],
+      ]}
       skipHtml={skipHtml ? skipHtml : false}
-      renderers={{
-        code: WithCodeStyles,
-        heading: WithHeadings,
+      components={{
+        pre({ node, ...props }) {
+          return <>{props.children}</>
+        },
+        code({ node, inline, className, children, ...props }) {
+          const match = /language-(\w+)/.exec(className || '') || props.lang
+          return !inline && match ? (
+            <CodeWrapper>
+              <SyntaxHighlighter style={CodeStyle} language={match[1]}>
+                {String(children).replace(/\n$/, '')}
+              </SyntaxHighlighter>
+            </CodeWrapper>
+          ) : (
+            <code className={className} {...props}>
+              {children}
+            </code>
+          )
+        },
+        h1: (props) => <WithHeadings level={1} {...props} />,
+        h2: (props) => <WithHeadings level={2} {...props} />,
+        h3: (props) => <WithHeadings level={3} {...props} />,
+        h4: (props) => <WithHeadings level={5} {...props} />,
+        h5: (props) => <WithHeadings level={5} {...props} />,
+        h6: (props) => <WithHeadings level={6} {...props} />,
+        // @ts-ignore
         shortcode: ShortcodeRenderer,
       }}
-      plugins={[[shortcodes, { startBlock: '{{', endBlock: '}}' }]]}
-    />
+    >
+      {body}
+    </ReactMarkdown>
   )
 }
 
