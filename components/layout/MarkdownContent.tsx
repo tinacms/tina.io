@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw'
-import rehypeSanitize from 'rehype-sanitize'
 
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import CodeStyle from '../styles/Code'
@@ -167,14 +166,13 @@ export function MarkdownContent({
       setBody('')
     }
   }, [content])
-  const plugins = [shortcodes, { startBlock: '{{', endBlock: '}}' }]
-  if (escapeHtml) {
-    plugins.push(rehypeRaw, rehypeSanitize)
-  }
 
   return (
     <ReactMarkdown
-      rehypePlugins={plugins}
+      rehypePlugins={[
+        rehypeRaw,
+        [shortcodes, { startBlock: '{{', endBlock: '}}' }],
+      ]}
       skipHtml={skipHtml ? skipHtml : false}
       components={{
         pre({ node, ...props }) {
