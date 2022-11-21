@@ -76,7 +76,7 @@
           "name": "Agency",
           "price": "Contact Us",
           "interval": "Custom",
-          "body": "**Bulk pricing available**\n\n* Custom Users\n* Custom Roles\n* No User Limit\n* Variable user pricing\n* Custom Support\n* SSO\n* Custom workflows\n* White Label *(coming soon)*\n\n",
+          "body": "**Bulk pricing available**\n\n* Custom Users\n* Custom Roles\n* No User Limit\n* Variable user pricing\n* Custom Support\n* SSO\n* Custom workflows\n* White Label *(coming soon) *\n\n",
           "actions": [
             {
               "label": "Contact Us",
