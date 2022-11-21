@@ -1,38 +1,8 @@
 import React from 'react'
 import type { TinaTemplate } from '@tinacms/cli'
 import { Container } from './Container'
-import { actionsTemplate, Actions } from './Actions'
+import { Actions } from './Actions'
 import GradGlow from '../../public/svg/grad-glow.svg'
-
-export const featureGridTemplate: TinaTemplate = {
-  label: 'Feature Grid',
-  name: 'featureGrid',
-  fields: [
-    {
-      name: 'items',
-      label: 'Feature Items',
-      type: 'object',
-      list: true,
-      ui: {
-        itemProps: (item) => ({
-          key: item.id,
-          label: item.headline,
-        }),
-      },
-      fields: [
-        { name: 'headline', label: 'Headline', type: 'string' },
-        {
-          name: 'text',
-          label: 'Text',
-          ui: { component: 'textarea' },
-          type: 'string',
-        },
-        // @ts-ignore
-        actionsTemplate,
-      ],
-    },
-  ],
-}
 
 const Feature = ({ data, index }) => {
   return (

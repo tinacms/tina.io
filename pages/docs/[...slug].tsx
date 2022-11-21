@@ -42,7 +42,7 @@ function _DocTemplate(props) {
   const { activeIds, contentRef } = useTocListener(data)
 
   React.useEffect(() => {
-    const handleRouteChange = url => {
+    const handleRouteChange = (url) => {
       ga.pageview(url)
     }
     //When the component is mounted, subscribe to router changes
@@ -55,7 +55,6 @@ function _DocTemplate(props) {
       router.events.off('routeChangeComplete', handleRouteChange)
     }
   }, [router.events])
-
   return (
     <>
       <NextSeo
@@ -101,7 +100,7 @@ export default DocTemplate
  * DATA FETCHING ------------------------------------------------------
  */
 
-export const getStaticProps: GetStaticProps = async function(props) {
+export const getStaticProps: GetStaticProps = async function (props) {
   let { slug: slugs } = props.params
 
   // @ts-ignore This should maybe always be a string[]?
@@ -126,15 +125,15 @@ export const getStaticProps: GetStaticProps = async function(props) {
   }
 }
 
-export const getStaticPaths: GetStaticPaths = async function() {
+export const getStaticPaths: GetStaticPaths = async function () {
   const fg = require('fast-glob')
   const contentDir = './content/docs/'
   const files = await fg(`${contentDir}**/*.md`)
   return {
     fallback: false,
     paths: files
-      .filter(file => !file.endsWith('index.md'))
-      .map(file => {
+      .filter((file) => !file.endsWith('index.md'))
+      .map((file) => {
         const path = file.substring(contentDir.length, file.length - 3)
         return { params: { slug: path.split('/') } }
       }),

@@ -15,11 +15,11 @@ const Toc = ({ tocItems, activeIds }: TocProps) => {
     const close = () => setIsOpen(false)
     const allLinks = document.querySelectorAll('a')
     if (allLinks.length > 0) {
-      allLinks.forEach(a => a.addEventListener('click', close))
+      allLinks.forEach((a) => a.addEventListener('click', close))
     }
     return () => {
       if (allLinks.length > 0) {
-        allLinks.forEach(a => a.removeEventListener('click', close))
+        allLinks.forEach((a) => a.removeEventListener('click', close))
       }
     }
   }, [])
@@ -36,8 +36,7 @@ const Toc = ({ tocItems, activeIds }: TocProps) => {
       </TocButton>
       <TocContent activeIds={activeIds} isOpen={isOpen}>
         <TocDesktopHeader>Table of Contents</TocDesktopHeader>
-        {/* @ts-ignore */}
-        <ReactMarkdown source={tocItems} />
+        <ReactMarkdown>{tocItems}</ReactMarkdown>
       </TocContent>
     </TocWrapper>
   )
@@ -106,7 +105,7 @@ const TocButton = styled.button<{ isOpen: boolean }>`
     }
   }
 
-  ${props =>
+  ${(props) =>
     props.isOpen
       ? css`
           color: var(--color-orange);
@@ -137,19 +136,19 @@ const TocContent = styled.div<TocContentProps>`
   overflow: hidden;
   transition: all 400ms ease-out;
 
-  ${props =>
+  ${(props) =>
     props.activeIds &&
     props.activeIds.map(
-      id =>
+      (id) =>
         css`
-      a[href="#${id}"] {
-        color: var(--color-orange);
-        text-decoration: none;
-      }
-    `
+          a[href='#${id}'] {
+            color: var(--color-orange);
+            text-decoration: none;
+          }
+        `
     )}
 
-  ${props =>
+  ${(props) =>
     props.isOpen
       ? css`
           transition: all 750ms ease-in;

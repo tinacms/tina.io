@@ -4,77 +4,6 @@ import { IconRight } from './Icons'
 import { copyToClipboard } from 'components/layout/MarkdownContent'
 import { LinkButton } from 'components/ui'
 
-export const actionsTemplate = {
-  label: 'Actions',
-  name: 'actions',
-  type: 'object',
-  list: true,
-  ui: {
-    defaultItem: {
-      variant: 'default',
-      label: 'Secondary Action',
-      icon: false,
-      size: 'medium',
-      url: '/',
-    },
-  },
-  fields: [
-    { name: 'label', label: 'Label', type: 'string' },
-    { name: 'icon', label: 'Icon', type: 'boolean' },
-    {
-      name: 'variant',
-      label: 'Variant',
-      type: 'string',
-      options: [
-        {
-          value: 'default',
-          label: 'Seafoam',
-        },
-        {
-          value: 'blue',
-          label: 'Blue',
-        },
-        {
-          value: 'orange',
-          label: 'Orange',
-        },
-        {
-          value: 'white',
-          label: 'White',
-        },
-        {
-          value: 'ghost',
-          label: 'Ghost',
-        },
-        {
-          value: 'command',
-          label: 'Command',
-        },
-      ],
-    },
-    {
-      name: 'size',
-      label: 'Size',
-      type: 'string',
-      options: [
-        {
-          value: 'small',
-          label: 'Small',
-        },
-        {
-          value: 'medium',
-          label: 'Medium',
-        },
-        {
-          value: 'large',
-          label: 'Large',
-        },
-      ],
-    },
-    { name: 'url', label: 'URL', type: 'string' },
-  ],
-}
-
 export const Actions = ({ items, align = 'left' }) => {
   return (
     <>
@@ -87,7 +16,7 @@ export const Actions = ({ items, align = 'left' }) => {
         {items &&
           items.map((item) => {
             if (item.variant == 'command') {
-              return <CodeButton>{item.label}</CodeButton>
+              return <CodeButton key={item.label}>{item.label}</CodeButton>
             }
             const { variant, label, icon, url } = item
             const externalUrlPattern = /^((http|https|ftp):\/\/)/
@@ -95,6 +24,7 @@ export const Actions = ({ items, align = 'left' }) => {
             let link = null
             return (
               <LinkButton
+                key={label}
                 size={item.size ? item.size : 'medium'}
                 link={url}
                 color={variant}
@@ -151,7 +81,7 @@ export const Actions = ({ items, align = 'left' }) => {
   )
 }
 
-export const CodeButton = ({ children }) => {
+export const CodeButton = ({ children, ...props }) => {
   const [copied, setCopied] = React.useState(false)
 
   const clickEvent = () => {
@@ -164,7 +94,11 @@ export const CodeButton = ({ children }) => {
 
   return (
     <>
-      <button className="button event-cmd-button" onClick={clickEvent}>
+      <button
+        className="button event-cmd-button"
+        onClick={clickEvent}
+        {...props}
+      >
         <span className={`success-message ${copied ? `visible` : ``}`}>
           Copied to clipboard!
         </span>
