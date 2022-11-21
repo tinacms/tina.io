@@ -13,7 +13,6 @@ import styled from 'styled-components'
 import * as shortcodeRenderers from 'utils/shortcodes'
 
 var GithubSlugger = require('github-slugger')
-const shortcodes = require('remark-shortcodes')
 
 interface MarkdownContentProps {
   content: string
@@ -171,11 +170,7 @@ export function MarkdownContent({
 
   return (
     <ReactMarkdown
-      rehypePlugins={[
-        rehypeRaw,
-        remarkGfm,
-        [shortcodes, { startBlock: '{{', endBlock: '}}' }],
-      ]}
+      rehypePlugins={[rehypeRaw, remarkGfm]}
       skipHtml={skipHtml ? skipHtml : false}
       components={{
         pre({ node, ...props }) {

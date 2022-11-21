@@ -9,7 +9,14 @@ consumes:
     details: References the image field and upload config
 ---
 
-{{ WarningCallout text="This is an advanced-use feature, and likely not something you'll need to configure. What you probably want is the [content types reference](/docs/reference/types/)" }}
+<div class="short-code-warning">
+   <div>
+      <p>This is an advanced-use feature, and likely not something you'll need to configure. What you probably want is the <a href="/docs/reference/types/">content types reference</a>!</p>
+   </div>
+   <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+      <path d="M32 464h448L256 48 32 464zm248-64h-48v-48h48v48zm0-80h-48v-96h48v96z"></path>
+   </svg>
+</div>
 
 The `image` field is used for content values that point to an image used on the page. This field allows you to upload new images by via dragging or selection in Finder. Note this field does not handle any images included in the Markdown body, those would be handled by the [markdown](/docs/reference/toolkit/fields/markdown) component.
 
@@ -63,13 +70,13 @@ const formOptions = {
       name: 'frontmatter.hero_image',
       component: 'image',
       // Generate the frontmatter value based on the filename
-      parse: media => `/static/${media.filename}`,
+      parse: (media) => `/static/${media.filename}`,
 
       // Decide the file upload directory for the post
       uploadDir: () => '/public/static/',
 
       // Generate the src attribute for the preview image.
-      previewSrc: fullSrc => fullSrc.replace('/public', ''),
+      previewSrc: (fullSrc) => fullSrc.replace('/public', ''),
     },
   ],
   //...
@@ -87,7 +94,7 @@ const BlogPostForm = {
       label: 'Hero Image',
       name: 'rawFrontmatter.hero.image',
       component: 'image',
-      parse: media => {
+      parse: (media) => {
         if (!media) return ''
         return `../images/${media.filename}`
       },
@@ -125,10 +132,10 @@ const BlogPostForm = {
       },
 
       // upload images to same directory as content file
-      uploadDir: formValues => path.dirname(formValues.fileRelativePath),
+      uploadDir: (formValues) => path.dirname(formValues.fileRelativePath),
 
       // image file is sibling of content file
-      parse: filename => `./${filename}`,
+      parse: (filename) => `./${filename}`,
     },
     // ...
   ],

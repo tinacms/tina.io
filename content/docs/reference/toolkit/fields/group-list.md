@@ -7,7 +7,14 @@ consumes:
     details: Shows group list interface
 ---
 
-{{ WarningCallout text="This is an advanced-use feature, and likely not something you'll need to configure. What you probably want is the [content types reference](/docs/reference/types/)" }}
+<div class="short-code-warning">
+   <div>
+      <p>This is an advanced-use feature, and likely not something you'll need to configure. What you probably want is the <a href="/docs/reference/types/">content types reference</a>!</p>
+   </div>
+   <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+      <path d="M32 464h448L256 48 32 464zm248-64h-48v-48h48v48zm0-80h-48v-96h48v96z"></path>
+   </svg>
+</div>
 
 The **Group List** field represents a list of [group fields](/docs/reference/toolkit/fields/group). This field exports an _array of objects_.
 
@@ -26,9 +33,7 @@ interface GroupListConfig {
   fields: Field[]
   label?: string
   defaultItem?: object | (() => object)
-  itemProps?(
-    item: object
-  ): {
+  itemProps?(item: object): {
     key?: string
     label?: string
   }
@@ -87,15 +92,13 @@ const formOptions = {
       name: 'rawJson.authors',
       component: 'group-list',
       description: 'Authors List',
-      itemProps: item => ({
+      itemProps: (item) => ({
         key: item.id,
         label: item.name,
       }),
       defaultItem: () => ({
         name: 'New Author',
-        id: Math.random()
-          .toString(36)
-          .substr(2, 9),
+        id: Math.random().toString(36).substr(2, 9),
       }),
       fields: [
         {

@@ -100,7 +100,7 @@ type TinaMarkdown = ({
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 
 // The `props` here are based off our custom "Cta" MDX component
-const Cta = props => {
+const Cta = (props) => {
   return <h2>{props.heading}</h2>
 }
 
@@ -209,7 +209,14 @@ Will be transformed to:
 
 ### Custom shortcode syntax
 
-{{ WarningCallout text="This is an experimental feature, and the API is subject to change. Have any thoughts? Let us know in the chat, or through one of our [community channels](/community/)!" }}
+<div class="short-code-warning">
+   <div>
+      <p>This is an experimental feature, and the API is subject to change. Have any thoughts? Let us know in the chat, or through one of our <a href="/community/">community channels</a></p>
+   </div>
+   <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+      <path d="M32 464h448L256 48 32 464zm248-64h-48v-48h48v48zm0-80h-48v-96h48v96z"></path>
+   </svg>
+</div>
 
 If you have some custom shortcode logic in your markdown, you can specify it in the `templates` property and Tina will handle it as if it were a `jsx` element:
 

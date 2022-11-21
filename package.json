@@ -93,16 +93,15 @@
     "react-textarea-autosize": "^7.1.2",
     "react-tinacms-editor": "^0.53.9",
     "rehype-raw": "^6.1.1",
-    "rehype-sanitize": "^5.0.1",
     "remark": "^11.0.2",
     "remark-gfm": "^3.0.1",
     "remark-parse": "^8.0.0",
-    "remark-shortcodes": "^0.3.1",
     "serve": "11.2.0",
     "strip-markdown": "^3.1.1",
     "styled-components": "^5.3.3",
     "styled-jsx-plugin-sass": "^1.0.0",
     "tinacms": "0.69.5",
+    "unist-util-visit": "^4.1.1",
     "webpack": "^5.68.0"
   },
   "devDependencies": {
