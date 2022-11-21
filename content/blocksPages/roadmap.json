@@ -1,0 +1,53 @@
+{
+  "seo": {
+    "title": "Roadmap",
+    "description": "Roadmap for TinaCMS"
+  },
+  "blocks": [
+    {
+      "headline": "Next 3 months",
+      "items": [
+        {
+          "headline": "Self-Hosted Alternative to Tina Cloud (MVP)",
+          "content": "Offering a way to self-host the Tina Cloud backend, to avoid vendor lock-in.  \\\n\\\n**Status: Research**\n",
+          "actions": [
+            {
+              "label": "GitHub Discussion",
+              "icon": false,
+              "variant": "default",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/3096"
+            }
+          ]
+        },
+        {
+          "headline": "Drafts",
+          "content": "Supporting Drafts on a single branch, through a \\`draft: true\\` frontmatter field.\\\n\\\n**Status: In progress**\n"
+        },
+        {
+          "headline": "Framework-specific Guides",
+          "content": "As of 1.0, Tina is framework-agnostic (in CMS-only mode). We need some guides on tina.io for configuring Tina with the most popular frameworks.\\\n\\\n**Status: Ready for development**\n"
+        },
+        {
+          "headline": "Document Search",
+          "content": "Document Discoverability can be a challenge as the number of posts grow. We're looking into improving this either by providing our own search, or by supporting external search (e.g through Algolia)\\\n\\\nStatus: Needs RFC\n"
+        },
+        {
+          "headline": "Registering Multiple Forms Per Page",
+          "content": "The ability to register multiple forms on a page through separate useTina hooks.\\\n\\\n**Status: Needs RFC**\n"
+        }
+      ],
+      "_template": "roadmapGrid"
+    },
+    {
+      "headline": "3-6 months",
+      "items": [
+        {
+          "headline": "Improving Media Management UX",
+          "content": "Details TDB\n"
+        }
+      ],
+      "_template": "roadmapGrid"
+    }
+  ]
+}

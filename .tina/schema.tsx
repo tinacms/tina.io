@@ -24,6 +24,7 @@ import { storyTemplate } from '../components/blocks/Story'
 import { featureGridTemplate } from '../components/blocks/FeatureGrid'
 import type { TinaTemplate } from 'tinacms'
 import { logoGridTemplate } from 'components/blocks'
+import { roadmapGridTemplate } from 'components/blocks/RoadmapGrid'
 
 export default defineSchema({
   config: {
@@ -84,6 +85,7 @@ export default defineSchema({
             storyTemplate as TinaTemplate,
             featureGridTemplate as TinaTemplate,
             logoGridTemplate as TinaTemplate,
+            roadmapGridTemplate as TinaTemplate,
           ],
         },
       ],
