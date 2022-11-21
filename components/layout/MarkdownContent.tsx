@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw'
+// Need this to render tables
+import remarkGfm from 'remark-gfm'
 
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import CodeStyle from '../styles/Code'
@@ -171,6 +173,7 @@ export function MarkdownContent({
     <ReactMarkdown
       rehypePlugins={[
         rehypeRaw,
+        remarkGfm,
         [shortcodes, { startBlock: '{{', endBlock: '}}' }],
       ]}
       skipHtml={skipHtml ? skipHtml : false}
