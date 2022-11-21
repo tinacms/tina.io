@@ -1,40 +1,7 @@
-import * as React from 'react'
 import { RichTextWrapper } from '../layout/RichTextWrapper'
 import { Wrapper } from '../layout/Wrapper'
-import { Actions, actionsTemplate } from './Actions'
-import type { TinaTemplate } from '@tinacms/cli'
+import { Actions } from './Actions'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
-
-export const cardTemplate: TinaTemplate = {
-  name: 'card',
-  label: 'Card',
-  //@ts-ignore
-  type: 'object',
-  fields: [
-    {
-      name: 'name',
-      label: 'Name',
-      type: 'string',
-    },
-    {
-      name: 'price',
-      label: 'Price',
-      type: 'string',
-    },
-    {
-      name: 'interval',
-      label: 'Interval',
-      type: 'string',
-    },
-    {
-      name: 'body',
-      label: 'Body',
-      type: 'rich-text',
-    },
-    // @ts-ignore
-    actionsTemplate,
-  ],
-}
 
 const PricingCard = ({ data }) => {
   if (!data) return null
@@ -44,13 +11,17 @@ const PricingCard = ({ data }) => {
       <div className="card">
         <div className="header">
           <h3 className="title">{data.name}</h3>
-          {data.price && <><span className="dotted"></span>
-          <h3 className="price !text-blue-800">
-            <span className="number">{data.price}</span>
-            {data.interval && (
-              <span className="interval">{data.interval}</span>
-            )}
-          </h3></>}
+          {data.price && (
+            <>
+              <span className="dotted"></span>
+              <h3 className="price !text-blue-800">
+                <span className="number">{data.price}</span>
+                {data.interval && (
+                  <span className="interval">{data.interval}</span>
+                )}
+              </h3>
+            </>
+          )}
         </div>
         <div className="body">
           <div className="content">
@@ -83,7 +54,12 @@ const PricingCard = ({ data }) => {
           align-items: center;
           gap: 1rem;
           line-height: 1.2;
-          background: linear-gradient(to bottom right, var(--color-seafoam-200), var(--color-seafoam-100), white);
+          background: linear-gradient(
+            to bottom right,
+            var(--color-seafoam-200),
+            var(--color-seafoam-100),
+            white
+          );
           border-bottom: 1px solid var(--color-seafoam-300);
           padding: 1.5rem 1.5rem;
 
@@ -94,13 +70,13 @@ const PricingCard = ({ data }) => {
         .title {
           font-family: var(--font-tuner);
           color: var(--color-orange);
-          font-size:1.5rem;
+          font-size: 1.5rem;
           flex: 0 0 auto;
           margin: 0;
         }
         .price {
           font-family: var(--font-tuner);
-          font-size:1.5rem;
+          font-size: 1.5rem;
           flex: 0 0 auto;
           margin: 0;
           display: flex;
@@ -171,51 +147,6 @@ const PricingCard = ({ data }) => {
   )
 }
 
-export const pricingTemplate: TinaTemplate = {
-  name: 'pricing',
-  label: 'Pricing',
-  ui: {
-    previewSrc: '/img/blocks/pricing.png',
-    defaultItem: {
-      intro:
-        '**No surprises. **Predictable pricing for every project. Complete control of your content, forever.\n\nTina’s source code is open-source. Your content lives in accessible formats right in your Git repository.\n',
-    },
-  },
-  fields: [
-    {
-      name: 'intro',
-      label: 'Intro Text',
-      type: 'rich-text',
-    },
-    {
-      name: 'base',
-      label: 'Base Plan',
-      // @ts-ignore
-      type: cardTemplate.type,
-      fields: cardTemplate.fields,
-    },
-    {
-      name: 'plans',
-      label: 'Pricing Plans',
-      // @ts-ignore
-      type: cardTemplate.type,
-      list: true,
-      fields: cardTemplate.fields,
-      ui: {
-        itemProps: (item) => ({
-          key: item.id,
-          label: item.name,
-        }),
-        defaultItem: {
-          name: 'Pricing Tier',
-          price: '$99',
-          interval: 'month',
-        }
-      },
-    },
-  ],
-}
-
 export function PricingBlock({ data, index }) {
   return (
     <>
@@ -228,14 +159,14 @@ export function PricingBlock({ data, index }) {
               </div>
             )}
             {data.base && <PricingCard data={data.base} />}
-            <div className="segue">
-            </div>
+            <div className="segue"></div>
           </Wrapper>
           <Wrapper wide>
             <div className="card-wrapper">
-              {data.plans && data.plans.map((plan, index) => (
-                <PricingCard data={plan} key={index} />
-              ))}
+              {data.plans &&
+                data.plans.map((plan, index) => (
+                  <PricingCard data={plan} key={index} />
+                ))}
             </div>
           </Wrapper>
         </RichTextWrapper>

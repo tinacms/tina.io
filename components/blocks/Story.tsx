@@ -5,18 +5,6 @@ import { Container } from './Container'
 import { Actions } from './Actions'
 import type { TinaTemplate } from '@tinacms/cli'
 
-export const storyTemplate: TinaTemplate = {
-  label: 'Story',
-  name: 'story',
-  fields: [
-    {
-      label: 'Title',
-      name: 'title',
-      type: 'string',
-    },
-  ],
-}
-
 const features = [
   {
     id: 'editing',
