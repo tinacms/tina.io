@@ -1,25 +1,24 @@
-import { defineConfig } from 'tinacms'
-import schema from './schema'
+import { defineConfig, defineSchema } from 'tinacms'
+import { schema } from './schema'
 
 const tinaConfig = defineConfig({
-  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID!,
-
-  branch:
-      process.env.NEXT_PUBLIC_TINA_BRANCH! || // custom branch env override
-      process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF! || // Vercel branch env
-      process.env.HEAD!, // Netlify branch env
-  token: process.env.TINA_TOKEN!,
-  media: {
-      // @ts-ignore
-      loadCustomStore: async () => {
-        const pack = await import('next-tinacms-cloudinary')
-        return pack.TinaCloudCloudinaryMediaStore
-      },
-  },
-
-  build: {outputFolder: "admin", publicFolder: "public"},
   schema,
-  cmsCallback: cms => {
+  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID!,
+  branch:
+    process.env.NEXT_PUBLIC_TINA_BRANCH! || // custom branch env override
+    process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF! || // Vercel branch env
+    process.env.HEAD!, // Netlify branch env
+  token: process.env.TINA_TOKEN!,
+  // media: {
+  //   // @ts-ignore
+  //   loadCustomStore: async () => {
+  //     const pack = await import('next-tinacms-cloudinary')
+  //     return pack.TinaCloudCloudinaryMediaStore
+  //   },
+  // },
+
+  build: { outputFolder: 'admin', publicFolder: 'public' },
+  cmsCallback: (cms) => {
     import('react-tinacms-editor').then(({ MarkdownFieldPlugin }) => {
       cms.plugins.add(MarkdownFieldPlugin)
     })

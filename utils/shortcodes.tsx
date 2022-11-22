@@ -6,7 +6,6 @@ export const WarningCallout = styled(({ text, ...styleProps }) => {
   return (
     <div {...styleProps}>
       <div>
-        {/* @ts-ignore */}
         <ReactMarkdown>{text}</ReactMarkdown>
       </div>
       <IoMdWarning />

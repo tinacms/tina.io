@@ -13,20 +13,21 @@ limitations under the License.
 import React from 'react'
 
 import { defineSchema } from 'tinacms'
-import { heroTemplate } from '../components/blocks/Hero'
-import { featuresTemplate } from '../components/blocks/Features'
-import { flyingTemplate } from '../components/blocks/Flying'
-import { pricingTemplate } from '../components/blocks/Pricing'
-import { faqTemplate } from '../components/blocks/FAQ'
-import { contentTemplate } from '../components/blocks/Content'
-import { columnsTemplate } from '../components/blocks/Columns'
-import { showcaseTemplate } from '../components/blocks/Showcase'
-import { storyTemplate } from '../components/blocks/Story'
-import { featureGridTemplate } from '../components/blocks/FeatureGrid'
 import type { TinaTemplate } from 'tinacms'
-import { logoGridTemplate } from '../components/blocks'
 
-export default defineSchema({
+import { heroTemplate } from '../components/blocks/Hero.template'
+import { featuresTemplate } from '../components/blocks/Features.template'
+import { flyingTemplate } from '../components/blocks/Flying.template'
+import { pricingTemplate } from '../components/blocks/Pricing.template'
+import { faqTemplate } from '../components/blocks/FAQ.template'
+import { contentTemplate } from '../components/blocks/Content.template'
+import { columnsTemplate } from '../components/blocks/Columns.template'
+import { showcaseTemplate } from '../components/blocks/Showcase.template'
+import { storyTemplate } from '../components/blocks/Story.template'
+import { featureGridTemplate } from '../components/blocks/FeatureGrid.template'
+import { logoGridTemplate } from '../components/blocks/LogoGrid.template'
+
+export const schema = defineSchema({
   collections: [
     {
       label: 'Pages',
@@ -34,11 +35,11 @@ export default defineSchema({
       path: 'content/blocksPages',
       format: 'json',
       ui: {
-        router: ({document})=>{
+        router: ({ document }) => {
           if (document._sys.filename === 'home') {
-                    return `/`
-                  }
-                  return `/${document._sys.filename}`
+            return `/`
+          }
+          return `/${document._sys.filename}`
         },
       },
       fields: [

@@ -1,6 +1,5 @@
-import React from 'react'
 import ReactMarkdown from 'react-markdown'
-import { actionsTemplate, Actions } from './Actions'
+import { Actions } from './Actions'
 import { Container } from './Container'
 import BlobOne from '../../public/svg/blob-1.svg'
 import BlobTwo from '../../public/svg/blob-2.svg'
@@ -8,51 +7,6 @@ import BlobThree from '../../public/svg/blob-3.svg'
 import BlobFour from '../../public/svg/blob-4.svg'
 import BlobFive from '../../public/svg/blob-5.svg'
 import BlobSix from '../../public/svg/blob-6.svg'
-import type { TinaTemplate } from '@tinacms/cli'
-
-export const featuresTemplate: TinaTemplate = {
-  label: 'Features',
-  name: 'features',
-  ui: {
-    // @ts-ignore TODO: fix this in tinacms
-    previewSrc: '/img/blocks/features.png',
-  },
-  fields: [
-    {
-      name: 'items',
-      label: 'Feature Items',
-      type: 'object',
-      list: true,
-      templates: [
-        {
-          label: 'Feature',
-          name: 'feature',
-          fields: [
-            { name: 'headline', label: 'Headline', type: 'string' },
-            {
-              name: 'text',
-              label: 'Text',
-              ui: { component: 'textarea' },
-              type: 'string',
-            },
-            {
-              name: 'media',
-              label: 'Media',
-              type: 'object',
-              fields: [
-                { name: 'src', label: 'Image Source', type: 'string' },
-                { name: 'videoSrc', label: 'Video Source', type: 'string' },
-                { name: 'cli', label: 'CLI', type: 'boolean' },
-              ],
-            },
-            // @ts-ignore
-            actionsTemplate,
-          ],
-        },
-      ],
-    },
-  ],
-}
 
 const blobSvgOptions = [
   BlobOne,
@@ -78,8 +32,7 @@ export function FeatureBlock({ data, index }) {
           {(data.text || data.actions) && <hr className="dottedBorder" />}
           {data.text && (
             <div className="textLarge">
-              {/* @ts-ignore */}
-              <ReactMarkdown source={data.text} />
+              <ReactMarkdown>{data.text}</ReactMarkdown>
             </div>
           )}
           {data.actions && <Actions items={data.actions} />}

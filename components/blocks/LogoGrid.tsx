@@ -3,40 +3,6 @@ import type { TinaTemplate } from '@tinacms/cli'
 import { Container } from './Container'
 import { useWindowWidth } from '@react-hook/window-size'
 
-export const logoGridTemplate: TinaTemplate = {
-  label: 'Logo Grid',
-  name: 'logoGrid',
-  fields: [
-    {
-      label: 'Title',
-      name: 'title',
-      type: 'string',
-    },
-    {
-      label: 'Link',
-      name: 'link',
-      type: 'string',
-    },
-    {
-      name: 'items',
-      label: 'Logos',
-      type: 'object',
-      list: true,
-      ui: {
-        itemProps: (item) => ({
-          key: item.id,
-          label: item.name,
-        }),
-      },
-      fields: [
-        { name: 'name', label: 'Name', type: 'string' },
-        { name: 'logo', label: 'Logo Link', type: 'string' },
-        { name: 'size', label: 'Size', type: 'number' },
-      ],
-    },
-  ],
-}
-
 const Logo = ({ data, index, windowWidth = 1000 }) => {
   const scaleFactor = windowWidth > 1200 ? 1 : windowWidth > 600 ? 0.75 : 0.5
 

@@ -41,12 +41,18 @@ export const Input = styled.input<InputProps>`
   box-sizing: border-box;
   cursor: pointer;
   color: inherit;
+  box-shadow: none !important;
+
+  &:focus,
+  &:active {
+    box-shadow: none !important;
+  }
 
   @media (max-width: 684px) {
     width: 100%;
   }
 
-  ${p =>
+  ${(p) =>
     p.focus &&
     css`
       width: 12rem;
@@ -54,7 +60,7 @@ export const Input = styled.input<InputProps>`
       cursor: text;
     `};
 
-  ${p =>
+  ${(p) =>
     p.expanded &&
     css`
       width: 100%;
@@ -87,7 +93,7 @@ export const SearchContainer = styled.div<SearchContainerProps>`
     transition: filter 250ms ease;
   }
 
-  ${p =>
+  ${(p) =>
     p.expanded
       ? css`
           border: 1px solid var(--color-light-dark);
@@ -122,7 +128,7 @@ interface HitsWrapperProps {
 }
 
 export const HitsWrapper = styled.div<HitsWrapperProps>`
-  display: ${props => (props.show ? `grid` : `none`)};
+  display: ${(props) => (props.show ? `grid` : `none`)};
   max-height: calc(80vh - 4rem);
   overflow: hidden;
   z-index: 2;

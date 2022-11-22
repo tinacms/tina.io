@@ -2,52 +2,6 @@ import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import { Actions } from './Actions'
 import { Container } from './Container'
-import BlobOne from '../../public/svg/blob-1.svg'
-import BlobTwo from '../../public/svg/blob-2.svg'
-import BlobThree from '../../public/svg/blob-3.svg'
-import BlobFour from '../../public/svg/blob-4.svg'
-import BlobFive from '../../public/svg/blob-5.svg'
-import BlobSix from '../../public/svg/blob-6.svg'
-import type { TinaTemplate } from '@tinacms/cli'
-
-export const showcaseTemplate: TinaTemplate = {
-  label: 'Showcase',
-  name: 'showcase',
-  ui: {
-    // @ts-ignore TODO: fix this in TinaCMS
-    previewSrc: '/img/blocks/features.png',
-  },
-  fields: [
-    {
-      name: 'items',
-      label: 'Showcase Items',
-      type: 'object',
-      list: true,
-      templates: [
-        {
-          label: 'Project',
-          name: 'project',
-          fields: [
-            { name: 'headline', label: 'Headline', type: 'string' },
-            {
-              name: 'text',
-              label: 'Text',
-              ui: { component: 'textarea' },
-              type: 'string',
-            },
-            { name: 'url', label: 'URL', type: 'string' },
-            {
-              name: 'media',
-              label: 'Media',
-              type: 'object',
-              fields: [{ name: 'src', label: 'Image Source', type: 'string' }],
-            },
-          ],
-        },
-      ],
-    },
-  ],
-}
 
 export function ShowcaseBlock({ data, index }) {
   const isReversed = index % 2 === 1
@@ -67,8 +21,7 @@ export function ShowcaseBlock({ data, index }) {
           {(data.text || data.actions) && <hr className="dottedBorder" />}
           {data.text && (
             <div className="textLarge">
-              {/* @ts-ignore */}
-              <ReactMarkdown source={data.text} />
+              <ReactMarkdown>{data.text}</ReactMarkdown>
             </div>
           )}
           {data.actions && <Actions items={data.actions} />}

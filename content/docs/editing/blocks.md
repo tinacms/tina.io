@@ -22,8 +22,7 @@ We are going to use the [`object` type](/docs/schema/#grouping-properties-within
 
 ```ts
 import { defineConfig } from 'tinacms'
-import type { TinaTemplate } from "tinacms";
-
+import type { TinaTemplate } from 'tinacms'
 
 const heroBlock: TinaTemplate = {
   name: 'hero',
@@ -32,8 +31,7 @@ const heroBlock: TinaTemplate = {
     defaultItem: {
       tagline: "Here's some text above the other text",
       headline: 'This Big Text is Totally Awesome',
-      text:
-        'Phasellus scelerisque, libero eu finibus rutrum, risus risus accumsan libero, nec molestie urna dui a leo.',
+      text: 'Phasellus scelerisque, libero eu finibus rutrum, risus risus accumsan libero, nec molestie urna dui a leo.',
     },
   },
   fields: [
@@ -58,7 +56,7 @@ const heroBlock: TinaTemplate = {
   ],
 }
 
-const featureBlock:TinaTemplate = {
+const featureBlock: TinaTemplate = {
   name: 'features',
   label: 'Features',
   fields: [
@@ -83,13 +81,12 @@ const featureBlock:TinaTemplate = {
   ],
 }
 
-const contentBlock:TinaTemplate = {
+const contentBlock: TinaTemplate = {
   name: 'content',
   label: 'Content',
   ui: {
     defaultItem: {
-      body:
-        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.',
+      body: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.',
     },
   },
   fields: [
@@ -107,20 +104,21 @@ const contentBlock:TinaTemplate = {
 export default defineConfig({
   // ...
   schema: {
-  collections: [
-    {
-      // ...
-      fields: [
-        {
-          type: 'object',
-          list: true,
-          name: 'blocks',
-          label: 'Sections',
-          templates: [heroBlock, featureBlock, contentBlock],
-        },
-      ],
-    },
-  ]}
+    collections: [
+      {
+        // ...
+        fields: [
+          {
+            type: 'object',
+            list: true,
+            name: 'blocks',
+            label: 'Sections',
+            templates: [heroBlock, featureBlock, contentBlock],
+          },
+        ],
+      },
+    ],
+  },
 })
 ```
 
@@ -170,12 +168,12 @@ We can render out the blocks on a page by creating a new `Blocks` component, whi
 ```tsx
 // Blocks.tsx
 
-import React from "react";
-import type { Pages } from "../.tina/__generated__/types";
-import { Content } from "./blocks/content";
-import { Features } from "./blocks/features";
-import { Hero } from "./blocks/hero";
-import { Testimonial } from "./blocks/testimonial";
+import React from 'react'
+import type { Pages } from '../.tina/__generated__/types'
+import { Content } from './blocks/content'
+import { Features } from './blocks/features'
+import { Hero } from './blocks/hero'
+import { Testimonial } from './blocks/testimonial'
 
 export const Blocks = (props: Pages) => {
   return (
@@ -183,32 +181,32 @@ export const Blocks = (props: Pages) => {
       {props.blocks
         ? props.blocks.map(function (block, i) {
             switch (block.__typename) {
-              case "PagesBlocksContent":
+              case 'PagesBlocksContent':
                 return (
                   <React.Fragment key={i + block.__typename}>
                     <Content data={block} />
                   </React.Fragment>
-                );
-              case "PagesBlocksHero":
+                )
+              case 'PagesBlocksHero':
                 return (
                   <React.Fragment key={i + block.__typename}>
                     <Hero data={block} />
                   </React.Fragment>
-                );
-              case "PagesBlocksFeatures":
+                )
+              case 'PagesBlocksFeatures':
                 return (
                   <React.Fragment key={i + block.__typename}>
                     <Features data={block} />
                   </React.Fragment>
-                );
+                )
               default:
-                return null;
+                return null
             }
           })
         : null}
     </>
-  );
-};
+  )
+}
 ```
 
 Note that the `__typename` on each blog is `{CollectionName}{FieldName}{BlockTemplateName}`
@@ -223,7 +221,14 @@ In our case:
 
 ![Preview of Visual Block Selector](https://res.cloudinary.com/forestry-demo/video/upload/w_800/v1647540863/Tina%20Newsletter/visual-selector-preview.gif)
 
-{{ WarningCallout text="This is an experimental feature, and the API is subject to change. Have any thoughts? Let us know in the chat, or through one of our [community channels](/community/)!" }}
+<div class="short-code-warning">
+   <div>
+      <p>This is an experimental feature, and the API is subject to change. Have any thoughts? Let us know in the chat, or through one of our <a href="/community/">community channels</a>!</p>
+   </div>
+   <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+      <path d="M32 464h448L256 48 32 464zm248-64h-48v-48h48v48zm0-80h-48v-96h48v96z"></path>
+   </svg>
+</div>
 
 This visual block selector allows editors to select blocks from a set images instead of text.
 

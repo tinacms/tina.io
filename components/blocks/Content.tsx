@@ -2,81 +2,11 @@ import React from 'react'
 import { DocsTextWrapper } from '../layout/DocsTextWrapper'
 import { Wrapper } from '../layout/Wrapper'
 import { Section } from '../layout/Section'
-import { Actions, actionsTemplate } from './Actions'
-import { SocialBlock, socialTemplate } from './Social'
-import { NewsletterBlock, newsletterTemplate } from './Newsletter'
-import type { TinaTemplate } from '@tinacms/cli'
-import { TinaMarkdown } from 'tinacms/dist/rich-text'
+import { Actions } from './Actions'
+import { SocialBlock } from './Social'
+import { NewsletterBlock } from './Newsletter'
 
-export const contentTemplate: TinaTemplate = {
-  label: 'Content',
-  name: 'content',
-  ui: {
-    // @ts-ignore TODO: fix this in tinacms
-    previewSrc: '/img/blocks/content.png',
-  },
-  fields: [
-    {
-      name: 'options',
-      label: 'Options',
-      type: 'object',
-      fields: [
-        {
-          name: 'narrow',
-          label: 'Narrow',
-          type: 'boolean',
-        },
-        {
-          name: 'color',
-          label: 'Color',
-          type: 'string',
-          options: [
-            {
-              label: 'Seafoam',
-              value: 'seafoam',
-            },
-            {
-              label: 'White',
-              value: 'white',
-            },
-          ],
-        },
-        {
-          name: 'align',
-          label: 'Align Content',
-          type: 'string',
-          options: [
-            {
-              label: 'Left',
-              value: 'left',
-            },
-            {
-              label: 'Center',
-              value: 'center',
-            },
-            {
-              label: 'Right',
-              value: 'right',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      name: 'content',
-      label: 'Content',
-      type: 'rich-text',
-      templates: [
-        // @ts-ignore
-        actionsTemplate,
-        // @ts-ignore
-        socialTemplate,
-        // @ts-ignore
-        newsletterTemplate,
-      ],
-    },
-  ],
-}
+import { TinaMarkdown } from 'tinacms/dist/rich-text'
 
 export const contentComponents = {
   actions: Actions,
