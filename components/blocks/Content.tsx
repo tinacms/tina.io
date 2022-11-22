@@ -6,7 +6,6 @@ import { Actions } from './Actions'
 import { SocialBlock } from './Social'
 import { NewsletterBlock } from './Newsletter'
 
-import type { TinaTemplate } from '@tinacms/cli'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 
 export const contentComponents = {

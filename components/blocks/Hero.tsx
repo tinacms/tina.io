@@ -1,4 +1,3 @@
-import React from 'react'
 import { Actions } from './Actions'
 import { Container } from './Container'
 import HeroBg from '../../public/svg/hero-bg.svg'

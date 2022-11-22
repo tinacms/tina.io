@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { IconRight } from '../blocks'
-import { Button, ButtonGroup } from 'components/ui'
+import { Button, ButtonGroup } from '../../components/ui'
 
 export function CloudBanner() {
   return (

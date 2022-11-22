@@ -2,13 +2,6 @@ import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import { Actions } from './Actions'
 import { Container } from './Container'
-import BlobOne from '../../public/svg/blob-1.svg'
-import BlobTwo from '../../public/svg/blob-2.svg'
-import BlobThree from '../../public/svg/blob-3.svg'
-import BlobFour from '../../public/svg/blob-4.svg'
-import BlobFive from '../../public/svg/blob-5.svg'
-import BlobSix from '../../public/svg/blob-6.svg'
-import type { TinaTemplate } from '@tinacms/cli'
 
 export function ShowcaseBlock({ data, index }) {
   const isReversed = index % 2 === 1
