@@ -2793,6 +2793,56 @@
     yarn "^1.22.17"
     yup "^0.32.9"
 
+"@tinacms/datalayer-old@npm:@tinacms/datalayer@0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@tinacms/datalayer/-/datalayer-0.2.3.tgz#aa245b4634633967c637ff5e7506b76d5d3db8eb"
+  integrity sha512-s5XiW5IZYjJeDYpCHfHMlNYFhpaYMvJvSoQsoALTqlUgsUnmXW/tf4xoowCEfpvoXn+emt+SqEIobvzsdjvTwQ==
+  dependencies:
+    "@octokit/auth-app" "^2.6.0"
+    "@octokit/graphql" "^4.5.6"
+    "@octokit/rest" "18.0.6"
+    encoding-down "^7.1.0"
+    fast-glob "^3.2.5"
+    fs-extra "^9.0.1"
+    glob-parent "^6.0.2"
+    graphql "^15.3.0"
+    gray-matter "^4.0.2"
+    isomorphic-git "^1.10.3"
+    js-yaml "^3.14.0"
+    jsonpath-plus "^6.0.1"
+    level "^7.0.1"
+    leveldown "^6.1.0"
+    levelup "^5.1.1"
+    lodash "^4.17.20"
+    memdown "^6.1.1"
+    normalize-path "^3.0.0"
+    prettier "^2.2.1"
+    yup "^0.32.9"
+
+"@tinacms/datalayer@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@tinacms/datalayer/-/datalayer-0.1.1.tgz#b68ca33b91f2759852353b6fad68a8eb4cf6d806"
+  integrity sha512-RDe1b8LqiJm2ztv2Cw8fM3kIVwQDf6bjJNnkKTu+5dM1M6CA86XXfXMhmtwnBGI/4QVlGLnF8eoYDK5Gva4DmA==
+  dependencies:
+    "@octokit/auth-app" "^2.6.0"
+    "@octokit/graphql" "^4.5.6"
+    "@octokit/rest" "18.0.6"
+    encoding-down "^7.1.0"
+    fast-glob "^3.2.5"
+    fs-extra "^9.0.1"
+    graphql "^15.3.0"
+    gray-matter "^4.0.2"
+    js-yaml "^3.14.0"
+    jsonpath-plus "^6.0.1"
+    level "^7.0.1"
+    leveldown "^6.1.0"
+    levelup "^5.1.1"
+    lodash "^4.17.20"
+    memdown "^6.1.1"
+    normalize-path "^3.0.0"
+    prettier "^2.2.1"
+    yup "^0.32.9"
+
 "@tinacms/datalayer@1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@tinacms/datalayer/-/datalayer-1.0.0.tgz#5c6a0069354db72a2381ac834b24ed454bdaebff"
@@ -2819,7 +2869,55 @@
     prettier "^2.2.1"
     yup "^0.32.9"
 
-"@tinacms/graphql@1.0.1", "@tinacms/graphql@^1.0.1":
+"@tinacms/graphql-old@npm:@tinacms/graphql@0.60.0":
+  version "0.60.0"
+  resolved "https://registry.yarnpkg.com/@tinacms/graphql/-/graphql-0.60.0.tgz#5ea5f60205f49db2210e804331397f1196e3f6f2"
+  integrity sha512-2anZMz/RNefJpzj13ct0mTy+sNqjAU3kJvf0wFHDFqQkCrZWg8IVlHRzN0IqT5g0C500EWETD8/Zc1xsjXyT9Q==
+  dependencies:
+    "@graphql-tools/relay-operation-optimizer" "^6.4.1"
+    "@tinacms/datalayer" "0.1.1"
+    body-parser "^1.19.0"
+    cors "^2.8.5"
+    dataloader "^2.0.0"
+    date-fns "^2.21.1"
+    encoding-down "^7.1.0"
+    esbuild "^0.12.25"
+    esbuild-jest "^0.5.0"
+    estree-walker "^3.0.0"
+    fast-glob "^3.2.5"
+    flat "^5.0.2"
+    fs-extra "^9.0.1"
+    graphql "^15.3.0"
+    graphql-type-json "^0.3.2"
+    gray-matter "^4.0.2"
+    js-yaml "^3.14.0"
+    leveldown "^6.1.0"
+    lodash "^4.17.20"
+    mdast "^3.0.0"
+    mdast-util-from-markdown "^1.0.0"
+    mdast-util-mdx "^1.1.0"
+    mdast-util-mdx-expression "^1.1.0"
+    mdast-util-to-markdown "^1.2.1"
+    micromark-extension-mdxjs "^1.0.0"
+    normalize-path "^3.0.0"
+    prettier "^2.2.1"
+    rehype-format "^3.1.0"
+    rehype-stringify "^8.0.0"
+    remark "^13.0.0"
+    remark-frontmatter "^3.0.0"
+    remark-mdx next
+    remark-parse "^10.0.0"
+    remark-rehype "^8.0.0"
+    remark-slate "^1.8.0"
+    remark-stringify "^8.1.1"
+    unified "^10.1.0"
+    unist-util-remove-position "^3.0.0"
+    unist-util-visit "^4.0.0"
+    vfile "^4.2.0"
+    ws "^7.3.1"
+    yup "^0.32.9"
+
+"@tinacms/graphql@1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@tinacms/graphql/-/graphql-1.0.1.tgz#438e5f914d12e8b68d1c205de17a22d064c3392d"
   integrity sha512-ZeRZFNKd0IHGY7RmknI3+au8p2VTeewEONez50WFbetcC9MV279O6kGXXoSpXX2WkkP3sRl1KWl+StdxXYQ4LA==
@@ -7686,7 +7784,7 @@ graphql-type-json@^0.3.2:
   resolved "https://registry.yarnpkg.com/graphql-type-json/-/graphql-type-json-0.3.2.tgz#f53a851dbfe07bd1c8157d24150064baab41e115"
   integrity sha512-J+vjof74oMlCWXSvt0DOf2APEdZOCdubEvGDUAlqH//VBYcOYsGgRW7Xzorr44LvkjiuvecWc8fChxuZZbChtg==
 
-graphql@15.8.0, graphql@^15.5.1:
+graphql@15.8.0, graphql@^15.3.0, graphql@^15.5.1:
   version "15.8.0"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-15.8.0.tgz#33410e96b012fa3bdb1091cc99a94769db212b38"
   integrity sha512-5gghUc24tP9HRznNpV2+FIoq3xKkj5dTQqf4v0CpdPbFVwFkWoxOM+o+2OC9ZSvjEMTjfmG9QT+gcvggTwW1zw==

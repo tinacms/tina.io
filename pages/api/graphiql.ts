@@ -1,9 +1,9 @@
 import { buildASTSchema, print } from 'graphql'
 import { graphqlHTTP } from 'express-graphql'
-import { LevelStore } from '@tinacms/datalayer'
+import { LevelStore } from '@tinacms/datalayer-old'
 // @ts-ignore TODO: fix this it will fail since indexDB is no longer exported
-import { createDatabase, resolve, indexDB } from '@tinacms/graphql'
-import type { TinaCloudSchema, TinaTemplate } from '@tinacms/graphql'
+import { createDatabase, resolve, indexDB } from '@tinacms/graphql-old'
+import type { TinaCloudSchema, TinaTemplate } from '@tinacms/graphql-old'
 
 export default async function feedback(req, res) {
   const database = await createDatabase({
