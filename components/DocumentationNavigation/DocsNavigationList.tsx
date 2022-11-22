@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 import { DocsNavProps } from './DocumentationNavigation'
 import { useRouter } from 'next/router'
 import { matchActualTarget } from 'utils'
-import { DynamicLink } from 'components/ui'
+import { DynamicLink } from '../../components/ui'
 import docsLinks from '../../content/docs-navigation.json'
 
 interface NavTitleProps {

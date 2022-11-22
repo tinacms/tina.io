@@ -1,19 +1,19 @@
 import { buildASTSchema, print } from 'graphql'
 import { graphqlHTTP } from 'express-graphql'
-import { LevelStore } from '@tinacms/datalayer'
-import { createDatabase, resolve, indexDB } from '@tinacms/graphql'
-import type { TinaCloudSchema, TinaTemplate} from '@tinacms/graphql'
-
+import { LevelStore } from '@tinacms/datalayer-old'
+// @ts-ignore TODO: fix this it will fail since indexDB is no longer exported
+import { createDatabase, resolve, indexDB } from '@tinacms/graphql-old'
+import type { TinaCloudSchema, TinaTemplate } from '@tinacms/graphql-old'
 
 export default async function feedback(req, res) {
   const database = await createDatabase({
     bridge: new InMemoryBridge(''),
-    store: new LevelStore('', true)
+    store: new LevelStore('', true),
   })
   await indexDB({ database, config, buildSDK: false })
   return graphqlHTTP({
     schema: buildASTSchema(await database.getGraphQLSchema()),
-    customExecuteFn: async args => {
+    customExecuteFn: async (args) => {
       const query = print(args.document)
 
       const result = await resolve({
@@ -35,7 +35,7 @@ export class InMemoryBridge {
     this.mockFileSystem = mockFileSystem
   }
   public glob = async (pattern: string) => {
-    return Object.keys(this.mockFileSystem).filter(key =>
+    return Object.keys(this.mockFileSystem).filter((key) =>
       key.startsWith(pattern)
     )
   }
@@ -70,44 +70,44 @@ export class InMemoryBridge {
 
 const mockFileSystem = {
   'content/posts/voteForPedro.json': JSON.stringify({
-    title: "Vote For Pedro",
-    category: "politics",
-    author:  "content/authors/napolean.json",
-    date: "2022-06-15T07:00:00.000Z",
+    title: 'Vote For Pedro',
+    category: 'politics',
+    author: 'content/authors/napolean.json',
+    date: '2022-06-15T07:00:00.000Z',
     body: `
 ## Hello, world!
 
 This is some text
 
 <Cta heading="Welcome"/>
-`
+`,
   }),
   'content/posts/anotherPost.json': JSON.stringify({
-    title: "Just Another Blog Post",
-    category: "lifestyle",
-    author:  "content/authors/napolean.json",
-    date: "2022-07-15T07:00:00.000Z",
+    title: 'Just Another Blog Post',
+    category: 'lifestyle',
+    author: 'content/authors/napolean.json',
+    date: '2022-07-15T07:00:00.000Z',
     body: `
 ## Vote For Pedro
 
 Lorem markdownum evinctus ut cape
 
-`
+`,
   }),
   'content/posts/nested/anotherPost.json': JSON.stringify({
-    title: "Just Another Blog Post",
-    category: "lifestyle",
-    author:  "content/authors/napolean.json",
-    date: "2022-07-15T07:00:00.000Z",
+    title: 'Just Another Blog Post',
+    category: 'lifestyle',
+    author: 'content/authors/napolean.json',
+    date: '2022-07-15T07:00:00.000Z',
     body: `
 ## Vote For Pedro
 
 Lorem markdownum evinctus ut cape
 
-`
+`,
   }),
   'content/authors/napolean.json': JSON.stringify({
-    name: 'Napolean'
+    name: 'Napolean',
   }),
   'content/pages/turbo.json': JSON.stringify({
     blocks: [
@@ -115,45 +115,37 @@ Lorem markdownum evinctus ut cape
         _template: 'hero',
         headline: 'The All-New Turbo Model',
         tagline: 'Turbo means good',
-        text: 'Think fast. Think Turbo.'
+        text: 'Think fast. Think Turbo.',
       },
       {
         _template: 'features',
         items: [
           {
             title: '10% Faster',
-            text: 'Than our slow one'
+            text: 'Than our slow one',
           },
           {
             title: 'Safer Than Ever',
-            text: 'We settled the lawsuits out of court'
-          }
-        ]
+            text: 'We settled the lawsuits out of court',
+          },
+        ],
       },
       {
         _template: 'hero',
         headline: 'Our Story',
-        text: 'Read about the history of Turbo'
+        text: 'Read about the history of Turbo',
       },
       {
         _template: 'content',
-        body: 'Lorem ipsum dolor sit amet'
-      }
-    ]
-  })
+        body: 'Lorem ipsum dolor sit amet',
+      },
+    ],
+  }),
 }
 
 const heroBlock: TinaTemplate = {
   name: 'hero',
   label: 'Hero',
-  ui: {
-    defaultItem: {
-      tagline: "Here's some text above the other text",
-      headline: 'This Big Text is Totally Awesome',
-      text:
-        'Phasellus scelerisque, libero eu finibus rutrum, risus risus accumsan libero, nec molestie urna dui a leo.',
-    },
-  },
   fields: [
     {
       type: 'string',
@@ -204,12 +196,6 @@ const featureBlock: TinaTemplate = {
 const contentBlock: TinaTemplate = {
   name: 'content',
   label: 'Content',
-  ui: {
-    defaultItem: {
-      body:
-        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.',
-    },
-  },
   fields: [
     {
       type: 'string',
@@ -228,7 +214,7 @@ const config: TinaCloudSchema = {
       label: 'Blog Posts',
       name: 'post',
       path: 'content/posts',
-      format: "json",
+      format: 'json',
       fields: [
         {
           type: 'string',
@@ -258,30 +244,30 @@ const config: TinaCloudSchema = {
           isBody: true,
           templates: [
             {
-              name: "Cta",
-              label: "Call to Action",
+              name: 'Cta',
+              label: 'Call to Action',
               fields: [
                 {
-                  type: "string",
-                  name: "heading",
-                  label: "Heading"
+                  type: 'string',
+                  name: 'heading',
+                  label: 'Heading',
                 },
-              ]
-            }
-          ]
+              ],
+            },
+          ],
         },
       ],
       indexes: [
         {
-          name: "category-date",
-          fields: [{name:"category"}, {name:"date"}]
-        }
-      ]
+          name: 'category-date',
+          fields: [{ name: 'category' }, { name: 'date' }],
+        },
+      ],
     },
     {
       label: 'Authors',
       name: 'author',
-      format: "json",
+      format: 'json',
       path: 'content/authors',
       fields: [
         {
@@ -299,7 +285,7 @@ const config: TinaCloudSchema = {
     {
       label: 'Pages',
       name: 'pages',
-      format: "json",
+      format: 'json',
       path: 'content/pages',
       fields: [
         {
@@ -308,9 +294,8 @@ const config: TinaCloudSchema = {
           name: 'blocks',
           label: 'Sections',
           templates: [heroBlock, featureBlock, contentBlock],
-        }
-      ]
-    }
+        },
+      ],
+    },
   ],
 }
-

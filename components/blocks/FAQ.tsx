@@ -1,7 +1,6 @@
 import React from 'react'
 import { RichTextWrapper } from '../layout/RichTextWrapper'
 import { Wrapper } from '../layout/Wrapper'
-import type { TinaTemplate } from '@tinacms/cli'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import BlobBackground from '../../public/svg/blob-bg.svg'
 

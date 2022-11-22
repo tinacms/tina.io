@@ -18,13 +18,26 @@ const fg = require('fast-glob')
 import { LastEdited, DocsPagination } from 'components/ui'
 import { openGraphImage } from 'utils/open-graph-image'
 import { WarningCallout } from '../../utils/shortcodes'
-import { useTina } from 'tinacms/dist/edit-state'
+import { useTina } from 'tinacms/dist/react'
 import path from 'path'
-import { TinaMarkdown } from 'tinacms/dist/rich-text'
+import { TinaMarkdown, Components } from 'tinacms/dist/rich-text'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import atomOneDark from 'react-syntax-highlighter/dist/cjs/styles/prism/atom-dark'
 
-const components = {
+const components: Components<{
+  Iframe: { iframeSrc: string; height: string }
+  Youtube: { embedSrc: string }
+  CreateAppCta: { ctaText: string; cliText: string }
+  Callout: {
+    title: string
+    description: string
+    url: string
+    buttonText: string
+  }
+  Codesandbox: { embedSrc: string; title: string }
+  Diagram: { alt: string; src: string }
+  CustomFieldComponentDemo: {}
+}> = {
   Iframe: ({ iframeSrc, height }) => {
     return <iframe width="100%" height={`${height}px`} src={iframeSrc} />
   },
@@ -127,10 +140,11 @@ const components = {
       src={src}
     />
   ),
-  code_block: ({ children, lang }) => {
+  // @ts-ignore TODO: fix this in TinaCMS
+  code_block: ({ value, lang, children }) => {
     return (
       <SyntaxHighlighter
-        code={children || ''}
+        code={children || value || ''}
         language={lang || 'jsx'}
         style={atomOneDark}
       />
@@ -159,7 +173,7 @@ const components = {
 }
 
 function BlogTemplate({ file, siteConfig, ...props }) {
-  const { data, isLoading } = useTina({
+  const { data } = useTina({
     query: props.query,
     data: props.data,
     variables: props.vars,

@@ -1,5 +1,5 @@
-import * as gqlPackage from '@tinacms/graphql'
-import * as datalayerPackage from '@tinacms/datalayer'
+import * as gqlPackage from '@tinacms/graphql-old'
+import * as datalayerPackage from '@tinacms/datalayer-old'
 
 export default async function feedback(req, res) {
   class InMemoryStore extends datalayerPackage.LevelStore {
@@ -20,7 +20,7 @@ export default async function feedback(req, res) {
       this.content = content
     }
     public glob = async (pattern: string) => {
-      return Object.keys(this.mockFileSystem).filter(key =>
+      return Object.keys(this.mockFileSystem).filter((key) =>
         key.startsWith(pattern)
       )
     }
@@ -74,7 +74,7 @@ export default async function feedback(req, res) {
       JSON.parse(req.query.variables as string)
     : {}
   try {
-    await gqlPackage.indexDB({ database, config: schema, buildSDK: false })
+    await gqlPackage?.indexDB({ database, config: schema, buildSDK: false })
     const result = await gqlPackage.resolve({
       database,
       query,

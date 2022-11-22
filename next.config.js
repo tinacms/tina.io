@@ -11,7 +11,16 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const dummyMailchimpEndpoint =
   'https://theDomainHere.us18.list-manage.com/subscribe/post?u=1512315231252&amp;id=0asd21t12e1'
 
+
 const config = {
+  async rewrites(){
+    return [
+      {
+        source: '/admin',
+        destination: '/admin/index.html',
+      },
+    ]
+  },
   async redirects() {
     return [
       {

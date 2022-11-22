@@ -1,4 +1,4 @@
-import { TinaTemplate } from 'tinacms'
+import type { TinaTemplate } from 'tinacms'
 import { actionsTemplate } from './Actions.template'
 
 export const featureGridTemplate: TinaTemplate = {
@@ -16,6 +16,7 @@ export const featureGridTemplate: TinaTemplate = {
           label: item.headline,
         }),
       },
+      // @ts-ignore
       fields: [
         { name: 'headline', label: 'Headline', type: 'string' },
         {

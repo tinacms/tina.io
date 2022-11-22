@@ -1,7 +1,7 @@
 import { client } from '../.tina/__generated__/client'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { fileToUrl } from 'utils/urls'
-import { useTina } from 'tinacms/dist/edit-state'
+import { useTina } from 'tinacms/dist/react'
 import { BlocksPage } from 'components/blocks/BlocksPage'
 
 const fg = require('fast-glob')

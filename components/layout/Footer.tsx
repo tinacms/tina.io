@@ -4,10 +4,10 @@ import { LinkNav } from '../ui/LinkNav'
 import TwitterIconSvg from '../../public/svg/twitter-icon.svg'
 import GithubIconSvg from '../../public/svg/github-icon.svg'
 import { EmailForm } from '../forms/EmailForm'
-import { TinaIcon } from 'components/logo'
+import { TinaIcon } from '../../components/logo'
 import Link from 'next/link'
 import TinaIconSvg from '../../public/svg/tina-icon.svg'
-import { DynamicLink } from 'components/ui'
+import { DynamicLink } from '../../components/ui'
 import { BsDiscord } from 'react-icons/bs'
 
 const footerNav = [
