@@ -1,7 +1,8 @@
 import React from 'react'
 import type { TinaTemplate } from '@tinacms/cli'
 import { Container } from './Container'
-import { actionsTemplate, Actions } from './Actions'
+import { Actions } from './Actions'
+import { actionsTemplate } from './Actions.template'
 import GradGlow from '../../public/svg/grad-glow.svg'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 
