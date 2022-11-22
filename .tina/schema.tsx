@@ -25,7 +25,7 @@ import { showcaseTemplate } from '../components/blocks/Showcase.template'
 import { storyTemplate } from '../components/blocks/Story.template'
 import { featureGridTemplate } from '../components/blocks/FeatureGrid.template'
 import { logoGridTemplate } from '../components/blocks/LogoGrid.template'
-import { roadmapGridTemplate } from 'components/blocks/RoadmapGrid'
+import { roadmapGridTemplate } from 'components/blocks/RoadmapGrid.template'
 
 export default defineSchema({
   config: {

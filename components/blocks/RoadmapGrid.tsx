@@ -1,40 +1,8 @@
 import React from 'react'
-import type { TinaTemplate } from '@tinacms/cli'
 import { Container } from './Container'
 import { Actions } from './Actions'
-import { actionsTemplate } from './Actions.template'
 import GradGlow from '../../public/svg/grad-glow.svg'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
-
-export const roadmapGridTemplate: TinaTemplate = {
-  label: 'Roadmap Grid',
-  name: 'roadmapGrid',
-  fields: [
-    { name: 'headline', label: 'Headline', type: 'string' },
-    {
-      name: 'items',
-      label: 'Roadmap Items',
-      type: 'object',
-      list: true,
-      ui: {
-        itemProps: (item) => ({
-          key: item.id,
-          label: item.headline,
-        }),
-      },
-      fields: [
-        { name: 'headline', label: 'Headline', type: 'string' },
-        {
-          name: 'content',
-          label: 'Content',
-          type: 'rich-text',
-        },
-        // @ts-ignore
-        actionsTemplate,
-      ],
-    },
-  ],
-}
 
 const Roadmap = ({ data, index }) => {
   return (
