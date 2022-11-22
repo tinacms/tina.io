@@ -3,17 +3,34 @@ import { Container } from './Container'
 import { Actions } from './Actions'
 import GradGlow from '../../public/svg/grad-glow.svg'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
+import { spawn } from 'child_process'
 
-const Roadmap = ({ data, index }) => {
+const Roadmap = ({ data, last = false, index }) => {
   return (
-    <div className="py-6 px-8 md:py-9 md:px-11 lg:py-12 lg:px-14 rounded-sm bg-gradient-to-br from-white via-white to-white/50 flex flex-col gap-4 shadow-[inset_0_0_0_1px_rgba(223,219,252,0.15),_0_0_1px_1px_rgba(223,219,252,0.5)]">
-      {data.headline && (
-        <h3 className="text-2xl lg:text-3xl font-tuner lg:leading-tight bg-gradient-to-br from-blue-700/80 via-blue-900/90 to-blue-1000 bg-clip-text text-transparent mb-2">
-          {data.headline}
-        </h3>
-      )}
-      {data.content && <TinaMarkdown content={data.content} />}
-      {data.actions && <Actions items={data.actions} />}
+    <div className="px-6 flex items-stretch w-full gap-8">
+      <div className="flex-0 flex flex-col items-center">
+        <div className="flex-shrink-0 w-[2px] h-12 bg-gradient-to-t from-blue-700 to-blue-400"></div>
+        <div className="flex-shrink-0 relative w-4 h-4 rounded-full border-2 border-blue-700">
+          <div className="h-[2px] w-6 absolute top-1/2 left-full -translate-y-1/2 bg-gradient-to-r from-blue-700 to-blue-400"></div>
+        </div>
+        {!last && (
+          <div className="w-[2px] h-full bg-gradient-to-b from-blue-700 to-blue-400"></div>
+        )}
+      </div>
+      <div className="flex-1 pt-10 pb-4 flex flex-col items-start gap-4">
+        {data.headline && (
+          <h3 className="text-2xl lg:text-3xl font-tuner lg:leading-tight bg-gradient-to-br from-blue-700/80 via-blue-900/90 to-blue-1000 bg-clip-text text-transparent">
+            {data.headline}
+          </h3>
+        )}
+        {data.content && <TinaMarkdown content={data.content} />}
+        {data.status && (
+          <span className="rounded-full w-auto flex-grow-0 flex items-center font-tuner whitespace-nowrap leading-snug text-blue-800 px-4 pt-[7px] pb-[5px] text-sm font-medium border border-blue-100 bg-gradient-to-br from-white to-blue-50">
+            {data.status}
+          </span>
+        )}
+        {data.actions && <Actions items={data.actions} />}
+      </div>
     </div>
   )
 }
@@ -22,21 +39,21 @@ export function RoadmapGridBlock({ data, index }) {
   return (
     <section
       key={'roadmap-grid-' + index}
-      className={'relative z-10 py-16 lg:py-24'}
+      className={'pt-16 lg:pt-24 last:pb-16 lg:last:pb-24'}
     >
-
-      <Container width="wide">
-      <h3 className="text-3xl lg:text-4xl font-tuner lg:leading-tight bg-gradient-to-br from-blue-700/80 via-blue-900/90 to-blue-1000 bg-clip-text text-transparent mb-2">
-      {data.headline}
-      </h3>
-        <div className="grid gap-[0.5px] grid-flow-row grid-cols-auto-sm md:grid-cols-auto-lg auto-rows-auto w-full rounded-xl overflow-hidden shadow border border-blue-50/50 bg-gradient-to-br from-seafoam-200/30 to-blue-100/30">
+      <Container width="narrow">
+        <h3 className="font-tuner inline-block text-3xl lg:text-4xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent mb-4">
+          {data.headline}
+        </h3>
+        <div className="">
           {data.items &&
-            data.items.map((data, index) => {
-              return <Roadmap data={data} index={index} />
+            data.items.map((itemData, index) => {
+              const last = data.items.length - 1 === index
+              return <Roadmap data={itemData} last={last} index={index} />
             })}
         </div>
       </Container>
-      <GradGlow className="absolute w-full h-auto bottom-0 left-0 -z-1" />
+      {/* <GradGlow className="absolute w-full h-auto bottom-0 left-0 -z-1" /> */}
     </section>
   )
 }

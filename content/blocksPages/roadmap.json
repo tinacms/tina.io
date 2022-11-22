@@ -5,11 +5,17 @@
   },
   "blocks": [
     {
+      "headline": "Roadmap",
+      "text": "",
+      "_template": "hero"
+    },
+    {
       "headline": "Next 3 months",
       "items": [
         {
           "headline": "Self-Hosted Alternative to Tina Cloud (MVP)",
-          "content": "Offering a way to self-host the Tina Cloud backend, to avoid vendor lock-in.  \\\n\\\n**Status: Research**\n",
+          "status": "Research",
+          "content": "Offering a way to self-host the Tina Cloud backend, to avoid vendor lock-in.",
           "actions": [
             {
               "label": "GitHub Discussion",
@@ -22,19 +28,23 @@
         },
         {
           "headline": "Drafts",
-          "content": "Supporting Drafts on a single branch, through a \\`draft: true\\` frontmatter field.\\\n\\\n**Status: In progress**\n"
+          "status": "In Progress",
+          "content": "Supporting Drafts on a single branch, through a \\`draft: true\\` frontmatter field."
         },
         {
           "headline": "Framework-specific Guides",
-          "content": "As of 1.0, Tina is framework-agnostic (in CMS-only mode). We need some guides on tina.io for configuring Tina with the most popular frameworks.\\\n\\\n**Status: Ready for development**\n"
+          "status": "Ready for Development",
+          "content": "As of 1.0, Tina is framework-agnostic (in CMS-only mode). We need some guides on tina.io for configuring Tina with the most popular frameworks."
         },
         {
           "headline": "Document Search",
-          "content": "Document Discoverability can be a challenge as the number of posts grow. We're looking into improving this either by providing our own search, or by supporting external search (e.g through Algolia)\\\n\\\nStatus: Needs RFC\n"
+          "status": "Needs RFC",
+          "content": "Document Discoverability can be a challenge as the number of posts grow. We're looking into improving this either by providing our own search, or by supporting external search (e.g through Algolia)"
         },
         {
           "headline": "Registering Multiple Forms Per Page",
-          "content": "The ability to register multiple forms on a page through separate useTina hooks.\\\n\\\n**Status: Needs RFC**\n"
+          "status": "Needs RFC",
+          "content": "The ability to register multiple forms on a page through separate useTina hooks."
         }
       ],
       "_template": "roadmapGrid"
