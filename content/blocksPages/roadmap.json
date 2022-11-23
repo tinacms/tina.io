@@ -39,7 +39,16 @@
         {
           "headline": "Document Search",
           "status": "Needs RFC",
-          "content": "Document Discoverability can be a challenge as the number of posts grow. We're looking into improving this either by providing our own search, or by supporting external search (e.g through Algolia)\n"
+          "content": "Document Discoverability can be a challenge as the number of posts grow. We're looking into improving this either by providing our own search, or by supporting external search (e.g through Algolia)\n",
+          "actions": [
+            {
+              "label": "GitHub Discussion",
+              "icon": false,
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/2299#discussioncomment-4216480"
+            }
+          ]
         },
         {
           "headline": "Registering Multiple Forms Per Page",
@@ -59,5 +68,10 @@
       ],
       "_template": "roadmapGrid"
     }
-  ]
+  ],
+  "_collection": "page",
+  "_keepTemplateKey": false,
+  "_template": "page",
+  "_relativePath": "roadmap.json",
+  "_id": "content/blocksPages/roadmap.json"
 }
