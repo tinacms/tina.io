@@ -72,7 +72,16 @@
       "items": [
         {
           "headline": "Improving Media Management UX",
-          "content": "There are several media management improvements that we have on our list: &#x20;\n\n* Built-in support for image metadata\n* Image search\n* Ability for editor to create nested directories\n* Baked-in support for image transformations\n* More filetypes (PDF, video, etc)\n"
+          "content": "There are several media management improvements that we have on our list: &#x20;\n\n* Built-in support for image metadata\n* Image search\n* Ability for editor to create nested directories\n* Baked-in support for image transformations\n* More filetypes (PDF, video, etc)\n",
+          "actions": [
+            {
+              "label": "Github Discussion",
+              "icon": false,
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/3418"
+            }
+          ]
         }
       ],
       "_template": "roadmapGrid"
