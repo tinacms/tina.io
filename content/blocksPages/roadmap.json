@@ -10,6 +10,14 @@
       "_template": "hero"
     },
     {
+      "options": {
+        "narrow": true,
+        "color": "white"
+      },
+      "content": "Welcome to Tina's public roadmap! This is a live document, and will be updated regularly. We'll move tickets to the roadmap once we have a high degree of confidence that they will be worked on in a given time-frame. To submit an idea, or to view a list of feature requests and ideas that we're considering, check out our [GitHub Discussions](https://github.com/tinacms/tinacms/discussions \"GitHub Discussions\")\n",
+      "_template": "content"
+    },
+    {
       "headline": "Next 3 months",
       "items": [
         {
@@ -74,6 +82,10 @@
           ]
         }
       ],
+      "options": {
+        "paddingTop": false,
+        "paddingBottom": true
+      },
       "_template": "roadmapGrid"
     },
     {
@@ -93,20 +105,11 @@
           ]
         }
       ],
-      "_template": "roadmapGrid"
-    },
-    {
       "options": {
-        "narrow": true,
-        "color": "white"
+        "paddingTop": false,
+        "paddingBottom": true
       },
-      "content": "Welcome to Tina's public roadmap! This is a live document, and will be updated regularly. We'll move tickets to the roadmap once we have a high degree of confidence that they will be worked on in a given time-frame. To submit an idea, or to view a list of feature requests and ideas that we're considering, check out our [GitHub Discussions](https://github.com/tinacms/tinacms/discussions \"GitHub Discussions\")\n",
-      "_template": "content"
+      "_template": "roadmapGrid"
     }
-  ],
-  "_collection": "page",
-  "_keepTemplateKey": false,
-  "_template": "page",
-  "_relativePath": "roadmap.json",
-  "_id": "content/blocksPages/roadmap.json"
+  ]
 }

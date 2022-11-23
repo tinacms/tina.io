@@ -39,7 +39,9 @@ export function RoadmapGridBlock({ data, index }) {
   return (
     <section
       key={'roadmap-grid-' + index}
-      className={'pt-16 lg:pt-24 last:pb-16 lg:last:pb-24'}
+      className={`${
+        data.options && data.options.paddingTop ? 'pt-16 lg:pt-24' : ''
+      } ${data.options && data.options.paddingBottom ? 'pb-16 lg:pb-24' : ''}`}
     >
       <Container width="narrow">
         <h3 className="font-tuner inline-block text-3xl lg:text-4xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent mb-4">

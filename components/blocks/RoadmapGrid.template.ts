@@ -29,5 +29,14 @@ export const roadmapGridTemplate: TinaTemplate = {
         actionsTemplate,
       ],
     },
+    {
+      name: 'options',
+      label: 'Options',
+      type: 'object',
+      fields: [
+        { name: 'paddingTop', label: 'Top Padding', type: 'boolean' },
+        { name: 'paddingBottom', label: 'Bottom Padding', type: 'boolean' },
+      ],
+    },
   ],
 }
