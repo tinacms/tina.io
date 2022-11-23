@@ -37,6 +37,10 @@
       "_template": "featureGrid"
     },
     {
+      "title": "Recent Posts",
+      "_template": "recentPosts"
+    },
+    {
       "title": "Trusted by",
       "items": [
         {

@@ -11,6 +11,7 @@ import {
   LogoGridBlock,
 } from './'
 import { ColumnsBlock } from './Columns'
+import { RecentPostsBlock } from './RecentPosts'
 import { RoadmapGridBlock } from './RoadmapGrid'
 import { ShowcaseItemsBlock } from './Showcase'
 
@@ -42,6 +43,8 @@ export const Blocks = ({ blocks }: { blocks: PageBlocks[] }) => {
         return <LogoGridBlock data={block} index={index} />
       case 'PageBlocksRoadmapGrid':
         return <RoadmapGridBlock data={block} index={index} />
+      case 'PageBlocksRecentPosts':
+        return <RecentPostsBlock data={block} index={index} />
       default:
         return null
     }
