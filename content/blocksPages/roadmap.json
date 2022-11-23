@@ -62,7 +62,16 @@
         {
           "headline": "Registering Multiple Forms Per Page",
           "status": "Needs RFC",
-          "content": "The ability to register multiple forms on a page through separate useTina hooks.\n"
+          "content": "The ability to register multiple forms on a page through separate useTina hooks.\n",
+          "actions": [
+            {
+              "label": "GitHub Discussion",
+              "icon": false,
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/3420"
+            }
+          ]
         }
       ],
       "_template": "roadmapGrid"
