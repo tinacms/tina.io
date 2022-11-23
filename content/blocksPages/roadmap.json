@@ -72,7 +72,7 @@
       "items": [
         {
           "headline": "Improving Media Management UX",
-          "content": "Details TDB\n"
+          "content": "There are several media management improvements that we have on our list: &#x20;\n\n* Built-in support for image metadata\n* Image search\n* Ability for editor to create nested directories\n* Baked-in support for image transformations\n* More filetypes (PDF, video, etc)\n\n"
         }
       ],
       "_template": "roadmapGrid"
