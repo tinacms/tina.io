@@ -34,6 +34,12 @@
         "external": false
       },
       {
+        "id": "roadmap",
+        "label": "Roadmap",
+        "href": "/roadmap",
+        "external": false
+      },
+      {
         "id": "blog",
         "label": "Blog",
         "href": "/blog",
