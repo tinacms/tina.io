@@ -34,7 +34,16 @@
         {
           "headline": "Framework-specific Guides",
           "status": "Ready for Development",
-          "content": "As of 1.0, Tina is framework-agnostic (in CMS-only mode). We need some guides on tina.io for configuring Tina with the most popular frameworks.\n"
+          "content": "As of 1.0, Tina is framework-agnostic (in CMS-only mode). We need some guides on tina.io for configuring Tina with the most popular frameworks.\n",
+          "actions": [
+            {
+              "label": "GitHub Issue",
+              "icon": false,
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tina.io/issues/1437"
+            }
+          ]
         },
         {
           "headline": "Document Search",
