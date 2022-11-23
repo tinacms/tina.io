@@ -241,6 +241,23 @@
     ]
   },
   {
+    "category": "Drafts",
+    "status": "beta",
+    "slug": "/docs/drafts",
+    "items": [
+      {
+        "id": "/docs/drafts/overview/",
+        "slug": "/docs/drafts/overview/",
+        "title": "Overview"
+      },
+      {
+        "id": "/docs/drafts/drafts-field/",
+        "slug": "/docs/drafts/drafts-field/",
+        "title": "Draft Field"
+      }
+    ]
+  },
+  {
     "category": "Guides",
     "slug": "/guides",
     "items": [
