@@ -29,7 +29,7 @@
         {
           "headline": "Drafts",
           "status": "In Progress",
-          "content": "Supporting Drafts on a single branch, through a \\`draft: true\\` frontmatter field.\n"
+          "content": "Supporting Drafts on un-published documents through a \"`draft: true`\" front-matter field. \\\nWe are also looking into some ways to better support working from separate branch deployments, for bigger sets of changes.&#x20;\n"
         },
         {
           "headline": "Framework-specific Guides",
