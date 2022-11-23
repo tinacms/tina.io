@@ -81,7 +81,7 @@
       "items": [
         {
           "headline": "Improving Media Management UX",
-          "content": "There are several media management improvements that we have on our list: &#x20;\n\n* Built-in support for image metadata\n* Image search\n* Ability for editor to create nested directories\n* Baked-in support for image transformations\n* More filetypes (PDF, video, etc)\n",
+          "content": "There are several media management improvements that we have on our list (image search, support for more media types, etc). We'd like to invest some time making Tina+media more powerful for editors and developers.\n",
           "actions": [
             {
               "label": "Github Discussion",
