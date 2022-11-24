@@ -42,7 +42,14 @@ If Tina Cloud is configured on your production site, this value might be somethi
 
 `https://<YOUR-SITE-NAME.com>`
 
-> Only the URL origin is needed. There is no need to include the path to any specific pages.
+> For the Site URL, Only the URL origin is needed. There is no need to include the path to any specific pages.
+
+##### Glob Patterns
+
+
+Tina also supports Glob patterns for the Site URL. This can be useful if you want to allow editing on dynamic preview deployments.
+
+E.g. on Vercel this may look like: `https://<VERCEL-PROJECT-NAME>-*-<VERCEL-ACCOUNT-OWNER>.vercel.app`
 
 ### 4. Using the project
 
