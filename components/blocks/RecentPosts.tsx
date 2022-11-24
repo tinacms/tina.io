@@ -1,4 +1,3 @@
-import { MarkdownContent } from 'components/layout'
 import { RichTextWrapper } from 'components/layout/RichTextWrapper'
 import { DynamicLink } from 'components/ui'
 import { BlogMeta, MetaBit } from 'pages/blog/page/[page_index]'
@@ -6,7 +5,8 @@ import React from 'react'
 import { formatDate } from 'utils/blog_helpers'
 import { Container } from './Container'
 
-export const RecentPostsBlock = ({ data, index }) => {
+export const RecentPostsBlock = ({ data, index, recentPosts }) => {
+
   return (
     <section
       key={'recent-posts-' + index}
@@ -22,50 +22,45 @@ export const RecentPostsBlock = ({ data, index }) => {
           </div>
         )}
         <div className="w-full flex flex-wrap gap-12">
-          <DynamicLink href={`/`} passHref>
+          { recentPosts.edges.map(({node: post}) => {
+
+            return (<DynamicLink href={`/`} passHref>
             <a className="group flex-1 min-w-[20rem]">
               <h3 className="font-tuner inline-block text-3xl lg:text-4xl lg:leading-tight bg-gradient-to-br from-blue-700/70 via-blue-900/90 to-blue-1000 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent mb-4">
-                Blog Post Title
+                {post.title}
               </h3>
               <RichTextWrapper>
                 <BlogMeta>
                   <MetaBit>
-                    <strong>{formatDate('2022-02-22T00:00:00-04:00')}</strong>
+                    <strong>{formatDate(post.date)}</strong>
                   </MetaBit>
                   <MetaBit>
-                    <span>By</span> <strong>Scott Byrne</strong>
+                    <span>By</span> <strong>{post.author}</strong>
                   </MetaBit>
                 </BlogMeta>
-                <MarkdownContent
-                  skipHtml={true}
-                  content={`The Tina team is off-to-the races on an exciting year. We’re on a mission to redefine web publishing by making the most hackable CMS on the planet, giving developers complete control over the editing experience for their sites.`}
-                />
+                {getExcerpt(post.body, 200)}
               </RichTextWrapper>
             </a>
-          </DynamicLink>
-          <DynamicLink href={`/`} passHref>
-            <a className="group flex-1 min-w-[20rem]">
-              <h3 className="font-tuner inline-block text-3xl lg:text-4xl lg:leading-tight bg-gradient-to-br from-blue-700/70 via-blue-900/90 to-blue-1000 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent mb-4">
-                Blog Post Title
-              </h3>
-              <RichTextWrapper>
-                <BlogMeta>
-                  <MetaBit>
-                    <strong>{formatDate('2022-02-22T00:00:00-04:00')}</strong>
-                  </MetaBit>
-                  <MetaBit>
-                    <span>By</span> <strong>Scott Byrne</strong>
-                  </MetaBit>
-                </BlogMeta>
-                <MarkdownContent
-                  skipHtml={true}
-                  content={`The Tina team is off-to-the races on an exciting year. We’re on a mission to redefine web publishing by making the most hackable CMS on the planet, giving developers complete control over the editing experience for their sites.`}
-                />
-              </RichTextWrapper>
-            </a>
-          </DynamicLink>
+          </DynamicLink>)
+          })
+          }
         </div>
       </Container>
     </section>
   )
+}
+
+const getExcerpt = (body: {children: any[]},excerptLength: number) => {
+  return body.children.filter(c => c.type == 'p').reduce(function(excerpt, child){
+    // combine all of child's text nodes into a single string
+     excerpt += child.children.filter(c => c.type == 'text').reduce(function(text, child){
+       return text + " " + child.text;
+     }, '');
+     // if the combined text is too long, truncate it
+     if (excerpt.length > excerptLength) {
+       excerpt = excerpt.substring(0, excerptLength) + '...';
+     }
+   
+     return excerpt; 
+   }, '')
 }

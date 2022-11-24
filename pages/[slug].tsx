@@ -14,7 +14,7 @@ const Page = props => {
   })
   const data = tinaData.data.page
 
-  return <BlocksPage data={data} />
+  return <BlocksPage data={data} recentPosts={tinaData.data.recentPosts} />
 }
 
 // Data Fetching
@@ -26,7 +26,7 @@ export const getStaticProps: GetStaticProps = async function({
   const slug = ctx.params?.slug || 'home'
   const vars = { relativePath: slug + '.json' }
 
-  const res = await client.queries.page({ relativePath: slug + '.json' })
+  const res = await client.queries.pageWithRecentPosts({ relativePath: slug + '.json' })
 
   return {
     props: {
