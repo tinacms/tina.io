@@ -12,11 +12,20 @@
     {
       "items": [
         {
-          "headline": "Photography Portfolio",
-          "text": "A beautiful personal portfolio site by [Aníbal Santos Gómez](https://github.com/ansango/). ",
-          "url": "https://www.anibalsantosgomez.com/",
+          "headline": "Devolver Digital",
+          "text": "A marketing site for a boutique game label that works with independent developers from all over the world to produce and promote some of the most original, eccentric, and beloved games of the past decade.",
+          "url": "https://www.devolverdigital.com/",
           "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/v1666102900/tina-showcase/anibalsantosgomez.com.gif"
+            "src": "/img/devolver.png"
+          },
+          "_template": "project"
+        },
+        {
+          "headline": "Microgen",
+          "text": "An open-source site builder developed by [Protocol Labs](https://protocol.ai/) and [Bustout](https://bustout.com/). Find it on [GitHub here](https://github.com/pathfindertools/microgen).\n",
+          "url": "https://microgen.site/",
+          "media": {
+            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_1000,g_face/v1651703972/tina-showcase/microgen.png"
           },
           "_template": "project"
         },
@@ -30,11 +39,11 @@
           "_template": "project"
         },
         {
-          "headline": "Devolver Digital",
-          "text": "A marketing site for a boutique game label that works with independent developers from all over the world to produce and promote some of the most original, eccentric, and beloved games of the past decade.",
-          "url": "https://www.devolverdigital.com/",
+          "headline": "Photography Portfolio",
+          "text": "A beautiful personal portfolio site by [Aníbal Santos Gómez](https://github.com/ansango/). ",
+          "url": "https://www.anibalsantosgomez.com/",
           "media": {
-            "src": "/img/devolver.png"
+            "src": "https://res.cloudinary.com/forestry-demo/image/upload/v1666102900/tina-showcase/anibalsantosgomez.com.gif"
           },
           "_template": "project"
         },
@@ -89,15 +98,6 @@
           "url": "https://www.apfx.com.au/en-us",
           "media": {
             "src": "/img/apfx.png"
-          },
-          "_template": "project"
-        },
-        {
-          "headline": "Microgen",
-          "text": "A marketing site for Microgen, a site builder for web 3.0 ready websites. Developed by Protocol Labs.",
-          "url": "https://microgen.site/",
-          "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_1000,g_face/v1651703972/tina-showcase/microgen.png"
           },
           "_template": "project"
         },
