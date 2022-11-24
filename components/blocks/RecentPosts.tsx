@@ -7,7 +7,6 @@ import { getExcerpt } from 'utils/getExcerpt'
 import { Container } from './Container'
 
 export const RecentPostsBlock = ({ data, index, recentPosts }) => {
-
   return (
     <section
       key={'recent-posts-' + index}
@@ -23,28 +22,29 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
           </div>
         )}
         <div className="w-full flex flex-wrap gap-12">
-          { recentPosts.edges.map(({node: post}) => {
-
-            return (<DynamicLink href={`/`} passHref>
-            <a className="group flex-1 min-w-[20rem]">
-              <h3 className="font-tuner inline-block text-3xl lg:text-4xl lg:leading-tight bg-gradient-to-br from-blue-700/70 via-blue-900/90 to-blue-1000 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent mb-4">
-                {post.title}
-              </h3>
-              <RichTextWrapper>
-                <BlogMeta>
-                  <MetaBit>
-                    <strong>{formatDate(post.date)}</strong>
-                  </MetaBit>
-                  <MetaBit>
-                    <span>By</span> <strong>{post.author}</strong>
-                  </MetaBit>
-                </BlogMeta>
-                {getExcerpt(post.body, 200)}
-              </RichTextWrapper>
-            </a>
-          </DynamicLink>)
-          })
-          }
+          {recentPosts.edges.map(({ node: post }) => {
+            const slug = post['_sys']['filename']
+            return (
+              <DynamicLink key={slug} href={`/blog/${slug}`} passHref>
+                <a className="group flex-1 min-w-[20rem]">
+                  <h3 className="font-tuner inline-block text-3xl lg:text-4xl lg:leading-tight bg-gradient-to-br from-blue-700/70 via-blue-900/90 to-blue-1000 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent mb-4">
+                    {post.title}
+                  </h3>
+                  <RichTextWrapper>
+                    <BlogMeta>
+                      <MetaBit>
+                        <strong>{formatDate(post.date)}</strong>
+                      </MetaBit>
+                      <MetaBit>
+                        <span>By</span> <strong>{post.author}</strong>
+                      </MetaBit>
+                    </BlogMeta>
+                    {getExcerpt(post.body, 200)}
+                  </RichTextWrapper>
+                </a>
+              </DynamicLink>
+            )
+          })}
         </div>
       </Container>
     </section>
