@@ -152,12 +152,12 @@ const getLocalFiles = async (filePath: string) => {
  *  STYLES -----------------------------------------------------
  */
 
-const BlogWrapper = styled(Wrapper)`
+export const BlogWrapper = styled(Wrapper)`
   padding-top: 10rem;
   max-width: 768px;
 `
 
-const MetaBit = styled.p`
+export const MetaBit = styled.p`
   display: flex;
   margin: 0 !important;
 
@@ -171,7 +171,7 @@ const MetaBit = styled.p`
   }
 `
 
-const BlogMeta = styled.div`
+export const BlogMeta = styled.div`
   width: 100%;
   justify-content: space-between;
   display: flex;

@@ -1,4 +1,4 @@
-import type { PageBlocks } from '../../.tina/__generated__/types'
+import type { PageBlocks, PostConnection } from '../../.tina/__generated__/types'
 import {
   StoryBlock,
   FeatureGridBlock,
@@ -11,10 +11,11 @@ import {
   LogoGridBlock,
 } from './'
 import { ColumnsBlock } from './Columns'
+import { RecentPostsBlock } from './RecentPosts'
 import { RoadmapGridBlock } from './RoadmapGrid'
 import { ShowcaseItemsBlock } from './Showcase'
 
-export const Blocks = ({ blocks }: { blocks: PageBlocks[] }) => {
+export const Blocks = ({ blocks, recentPosts }: { blocks: PageBlocks[], recentPosts: PostConnection }) => {
   if (!blocks) return null
   return blocks.map((block, index) => {
     switch (block.__typename) {
@@ -42,6 +43,8 @@ export const Blocks = ({ blocks }: { blocks: PageBlocks[] }) => {
         return <LogoGridBlock data={block} index={index} />
       case 'PageBlocksRoadmapGrid':
         return <RoadmapGridBlock data={block} index={index} />
+      case 'PageBlocksRecentPosts':
+        return <RecentPostsBlock data={block} index={index} recentPosts={recentPosts} />
       default:
         return null
     }

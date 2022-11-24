@@ -28,3 +28,35 @@ query getExpandedPostDocument($relativePath: String!) {
     body
   }
 }
+
+query pageWithRecentPosts($relativePath: String!) {
+  page(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...PageParts
+  }
+  recentPosts: postConnection(sort: "date", last: 2) {
+    edges {
+      node {
+        _sys {
+          filename
+          basename
+          breadcrumbs
+          path
+          relativePath
+          extension
+        }
+        ...PostParts
+      }
+    }
+  }
+}
