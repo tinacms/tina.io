@@ -76,7 +76,7 @@ const panes = [
     background: 'light',
     width: '100',
     height: 'auto',
-    video: 'v1656009626/tina-io/new-homepage/editing-demo',
+    video: 'v1656009626/tina-io/new-homepage/homepage-demo-2-quick-test',
     positions: {
       editing: 'front',
       file: 'back',
@@ -129,7 +129,7 @@ text="MDX Rocks"
 },
 {
   type: 'string',
-  label: 'Description',
+  label: 'Body',
   name: 'body',
   isBody: true,
 },`,
@@ -140,8 +140,8 @@ text="MDX Rocks"
 },
 {
   type: "string",
-  label: "Description",
-  name: "description",
+  label: "Body",
+  name: "body",
 },`,
     },
     positions: {
@@ -182,11 +182,11 @@ const Video = ({ src }) => {
       poster={`https://res.cloudinary.com/forestry-demo/video/upload/so_0/${src}.jpg`}
     >
       <source
-        src={`https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/${src}.webm`}
+        src={`https://res.cloudinary.com/forestry-demo/video/upload/q_90,h_410/${src}.webm`}
         type="video/webm"
       />
       <source
-        src={`https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/${src}.mp4`}
+        src={`https://res.cloudinary.com/forestry-demo/video/upload/q_90,h_410/${src}.mp4`}
         type="video/mp4"
       />
     </video>
