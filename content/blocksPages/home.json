@@ -37,10 +37,6 @@
       "_template": "featureGrid"
     },
     {
-      "title": "Recent Posts",
-      "_template": "recentPosts"
-    },
-    {
       "title": "Trusted by",
       "items": [
         {
@@ -65,6 +61,15 @@
         }
       ],
       "_template": "logoGrid"
+    },
+    {
+      "title": "Recent Posts",
+      "_template": "recentPosts"
     }
-  ]
+  ],
+  "_collection": "page",
+  "_keepTemplateKey": false,
+  "_template": "page",
+  "_relativePath": "home.json",
+  "_id": "content/blocksPages/home.json"
 }
