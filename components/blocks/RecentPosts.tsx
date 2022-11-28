@@ -23,7 +23,7 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
         )}
         <div className="w-full flex flex-wrap gap-12">
           {recentPosts.edges.map(({ node: post }) => {
-            const slug = post['_sys']['filename']
+const slug = post._sys.filename
             return (
               <DynamicLink key={slug} href={`/blog/${slug}`} passHref>
                 <a className="group flex-1 min-w-[20rem]">
