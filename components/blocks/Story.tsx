@@ -76,7 +76,7 @@ const panes = [
     background: 'light',
     width: '100',
     height: 'auto',
-    video: 'v1656009626/tina-io/new-homepage/editing-demo',
+    video: 'v1656009626/tina-io/new-homepage/homepage-demo-2',
     positions: {
       editing: 'front',
       file: 'back',
@@ -93,16 +93,18 @@ const panes = [
     file: {
       name: 'about.mdx',
       language: 'mdx',
-      textScale: 1.375,
+      textScale: 1.25,
       code: `---
-title: Awesome Developer Experience
+title: Collaborate With Your Team
 ---
 
-Tina empowers your team by giving you
-more control over your components.
+Online tools help drive your business forward.
+Reach new audiences and collaborate with your
+team – **All in the cloud.**
 
-<CoolComponent
-text="MDX Rocks"
+<Button
+text="Get Started"
+link="/get-started"
 />`,
     },
     positions: {
@@ -121,7 +123,7 @@ text="MDX Rocks"
     file: {
       name: 'config.tsx',
       language: 'json',
-      textScale: 1,
+      textScale: 1.125,
       code: `{
   type: "string",
   label: "Title",
@@ -129,7 +131,7 @@ text="MDX Rocks"
 },
 {
   type: 'string',
-  label: 'Description',
+  label: 'Body',
   name: 'body',
   isBody: true,
 },`,
@@ -140,8 +142,8 @@ text="MDX Rocks"
 },
 {
   type: "string",
-  label: "Description",
-  name: "description",
+  label: "Body",
+  name: "body",
 },`,
     },
     positions: {
@@ -157,7 +159,7 @@ text="MDX Rocks"
     height: '40',
     file: {
       language: 'shell',
-      textScale: 1.1,
+      textScale: 1.25,
       code: `commit 4ca9edc2ee64c1ab5127a1fd4519a83426731cd7
 Author:  Scott Gallant <scottgallant@gmail.com>
 Date:    Thu May 26 13:31:02 2022 -0300
@@ -179,14 +181,14 @@ const Video = ({ src }) => {
       loop
       muted
       playsInline
-      poster={`https://res.cloudinary.com/forestry-demo/video/upload/so_0/${src}.jpg`}
+      poster={`https://res.cloudinary.com/forestry-demo/video/upload/so_0,q_70,h_410/${src}.jpg`}
     >
       <source
-        src={`https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/${src}.webm`}
+        src={`https://res.cloudinary.com/forestry-demo/video/upload/q_90,h_410/${src}.webm`}
         type="video/webm"
       />
       <source
-        src={`https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/${src}.mp4`}
+        src={`https://res.cloudinary.com/forestry-demo/video/upload/q_90,h_410/${src}.mp4`}
         type="video/mp4"
       />
     </video>
@@ -385,7 +387,7 @@ const Feature = ({ activeId, setActiveId, item, ...props }) => {
   })
 
   React.useEffect(() => {
-    if (inView) {
+    if (inView && activeId !== item.id) {
       setActiveId(item.id)
     } else if (activeId === item.id) {
       setActiveId(null)
