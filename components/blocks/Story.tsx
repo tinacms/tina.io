@@ -175,23 +175,26 @@ Message: Update From Tina`,
 
 const Video = ({ src }) => {
   return (
-    <video
-      className="w-full h-auto"
-      autoPlay={true}
-      loop
-      muted
-      playsInline
-      poster={`https://res.cloudinary.com/forestry-demo/video/upload/so_0,q_70,h_410/${src}.jpg`}
-    >
-      <source
-        src={`https://res.cloudinary.com/forestry-demo/video/upload/q_90,h_410/${src}.webm`}
-        type="video/webm"
-      />
-      <source
-        src={`https://res.cloudinary.com/forestry-demo/video/upload/q_90,h_410/${src}.mp4`}
-        type="video/mp4"
-      />
-    </video>
+    <div className="rounded-lg shadow-panel overflow-hidden aspect-w-3 aspect-h-2 w-full">
+      <div className="rounded-lg pointer-events-none absolute w-full h-full bg-gradient-to-br from-blue-800 via-blue-900 to-slate-900 scale-[0.997] origin-center"></div>
+      <video
+        className="absolute w-full h-full"
+        autoPlay={true}
+        loop
+        muted
+        playsInline
+        poster={`https://res.cloudinary.com/forestry-demo/video/upload/so_0,q_70,h_410/${src}.jpg`}
+      >
+        <source
+          src={`https://res.cloudinary.com/forestry-demo/video/upload/q_90,h_410/${src}.webm`}
+          type="video/webm"
+        />
+        <source
+          src={`https://res.cloudinary.com/forestry-demo/video/upload/q_90,h_410/${src}.mp4`}
+          type="video/mp4"
+        />
+      </video>
+    </div>
   )
 }
 
@@ -208,11 +211,7 @@ const Pane = ({ data, position, ...props }) => {
           height: data.height === 'auto' ? 'auto' : data.height + '%',
         }}
       >
-        {data.video && (
-          <div className="rounded-lg shadow-panel overflow-hidden">
-            <Video src={data.video} />
-          </div>
-        )}
+        {data.video && <Video src={data.video} />}
         {data.file && (
           <div className="flex flex-col justify-start items-start">
             {data.file.name && (
