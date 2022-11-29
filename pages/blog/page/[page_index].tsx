@@ -32,8 +32,8 @@ const Index = (props) => {
             href={`/blog/${post.data.slug}`}
             passHref
           >
-            <a className="group">
-              <h3 className="font-tuner inline-block text-3xl lg:text-4xl lg:leading-tight bg-gradient-to-br from-blue-700/70 via-blue-900/90 to-blue-1000 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent mb-4">
+            <a className="w-full group flex flex-col gap-6 lg:gap-8 items-start mb-6 lg:mb-8">
+              <h3 className="font-tuner inline-block text-3xl lg:text-4xl lg:leading-tight bg-gradient-to-br from-blue-700/70 via-blue-900/90 to-blue-1000 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent">
                 {post.data.title}
               </h3>
               <RichTextWrapper>
@@ -46,7 +46,6 @@ const Index = (props) => {
                 <MarkdownContent skipHtml={true} content={post.content} />
                 <hr />
               </RichTextWrapper>
-              <br />
             </a>
           </DynamicLink>
         ))}
@@ -153,8 +152,12 @@ const getLocalFiles = async (filePath: string) => {
  */
 
 export const BlogWrapper = styled(Wrapper)`
-  padding-top: 10rem;
+  padding-top: 4rem;
   max-width: 768px;
+
+  @media (min-width: 1024px) {
+    padding-top: 12rem;
+  }
 `
 
 export const MetaBit = styled.p`

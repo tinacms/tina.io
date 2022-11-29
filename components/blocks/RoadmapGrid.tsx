@@ -16,6 +16,9 @@ const Roadmap = ({ data, last = false, index }) => {
         {!last && (
           <div className="w-[2px] h-full bg-gradient-to-b from-blue-700 to-blue-400"></div>
         )}
+        {last && (
+          <div className="w-[2px] h-2/3 bg-gradient-to-b from-blue-600 via-blue-500/30 to-blue-400/0"></div>
+        )}
       </div>
       <div className="flex-1 pt-10 pb-4 flex flex-col items-start gap-4">
         {data.headline && (

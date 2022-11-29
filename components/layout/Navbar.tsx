@@ -3,11 +3,7 @@ import Link from 'next/link'
 import GitHubButton from 'react-github-btn'
 import data from '../../content/navigation.json'
 import { Button } from '../../components/ui/Button'
-import {
-  BiChevronRight,
-  BiMenu,
-  BiRightArrowAlt,
-} from 'react-icons/bi'
+import { BiChevronRight, BiMenu, BiRightArrowAlt } from 'react-icons/bi'
 import { TinaIcon } from '../../components/logo'
 import { useInView } from 'react-intersection-observer'
 import TinaIconSvg from '../../public/svg/tina-icon.svg'
@@ -73,11 +69,15 @@ export function Navbar({}) {
             />
           </button>
           <ul className="flex flex-col py-4 px-6 relative z-20">
-            <li className="pb-3">
+            <li className="pb-4 pt-2">
               <Link href={'/'}>
-                <a>
+                <a
+                  onClick={() => {
+                    setOpen(false)
+                  }}
+                >
                   <h1 className="flex items-center">
-                    <TinaIconSvg className={`w-8 h-auto fill-orange-500`} />
+                    <TinaIconSvg className={`w-7 h-auto fill-orange-500`} />
                   </h1>
                 </a>
               </Link>
@@ -90,7 +90,14 @@ export function Navbar({}) {
                 return (
                   <li key={id} className={`group ${navLinkClasses}`}>
                     <Link href={href}>
-                      <a className="py-1">{label}</a>
+                      <a
+                        className="py-2"
+                        onClick={() => {
+                          setOpen(false)
+                        }}
+                      >
+                        {label}
+                      </a>
                     </Link>
                   </li>
                 )
@@ -102,7 +109,14 @@ export function Navbar({}) {
                     return (
                       <li key={id} className={`group ${navLinkClasses}`}>
                         <Link href={href}>
-                          <a className="py-1">{label}</a>
+                          <a
+                            className="py-2"
+                            onClick={() => {
+                              setOpen(false)
+                            }}
+                          >
+                            {label}
+                          </a>
                         </Link>
                       </li>
                     )
@@ -158,8 +172,8 @@ export function Navbar({}) {
             </h1>
           </a>
         </Link>
-        <nav className="flex-1 flex flex-wrap-reverse justify-end items-end lg:items-center gap-2 lg:gap-x-6 lg:gap-x-10">
-          <ul className="flex gap-6 lg:gap-10 relative z-20">
+        <nav className="flex-1 flex flex-wrap-reverse justify-end items-end lg:items-center gap-2 lg:gap-x-12">
+          <ul className="flex gap-6 lg:gap-8 xl:gap-12 relative z-20">
             {data.map((item) => {
               const navLinkClasses =
                 'flex items-center text-blue-700 hover:text-blue-500 transition ease-out duration-150 cursor-pointer drop-shadow-sm text-base font-medium'
@@ -190,7 +204,7 @@ export function Navbar({}) {
                               className={`${navLinkClasses} w-full whitespace-nowrap`}
                             >
                               <Link href={href}>
-                                <a className="block p-1 text-gray-600 hover:text-blue-500">
+                                <a className="block px-2 py-1.5 text-gray-600 hover:text-blue-500">
                                   {label}
                                 </a>
                               </Link>

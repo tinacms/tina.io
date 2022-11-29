@@ -97,7 +97,7 @@ export const Footer = ({}) => {
   return (
     <div>
       {/* Top */}
-      <div className="flex flex-col md:flex-row gap-6 w-full justify-between items-start bg-[url('/svg/orange-bg.svg')] bg-cover bg-center px-4 py-6 lg:py-10 lg:px-10 -mt-px">
+      <div className="flex flex-col md:flex-row gap-6 w-full justify-between items-start bg-[url('/svg/orange-bg.svg')] bg-cover bg-center px-6 py-8 lg:py-12 lg:px-12 -mt-px">
         <div className="max-w-[20%] flex-1 drop-shadow-sm">
           <TinaIcon color="white" />
         </div>
@@ -135,13 +135,13 @@ export const Footer = ({}) => {
       </div>
 
       {/* Bottom */}
-      <div className="flex flex-col lg:flex-row w-full lg:items-center lg:justify-between bg-gradient-to-br from-orange-600 via-orange-800 to-orange-900 text-white p-4 lg:py-6 lg:px-10">
+      <div className="flex flex-col lg:flex-row w-full lg:items-center lg:justify-between bg-gradient-to-br from-orange-600 via-orange-800 to-orange-900 text-white px-6 py-8 lg:px-12 gap-6">
         <div className="flex items-center gap-3 whitespace-nowrap">
           <span>Stay in touch 👉</span>
           <EmailForm isFooter />
         </div>
-        <div className="flex drop-shadow-sm flex-wrap justify-end gap-x-6 gap-y-2">
-          <div className="flex flex-wrap justify-end gap-x-3 gap-y-1">
+        <div className="flex drop-shadow-sm flex-wrap justify-end gap-6">
+          <div className="flex flex-wrap justify-end gap-x-6 gap-y-2">
             {footerLinks.map((item) => {
               const { link, label } = item
               return <FooterLink link={link} label={label} />
