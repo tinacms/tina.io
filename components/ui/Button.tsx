@@ -1,11 +1,11 @@
 import Link from 'next/link'
-import styled, { css } from 'styled-components'
 
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   color?: 'white' | 'blue' | 'orange' | 'seafoam' | 'ghost'
   size?: 'large' | 'small' | 'medium'
   className?: string
   href?: string
+  type?: 'button' | 'submit' | 'reset'
   children: React.ReactNode | React.ReactNode[]
 }
 
