@@ -9,7 +9,7 @@ export const SocialBlock = (props) => {
     <ButtonGroup>
       {props.tina && (
         <DynamicLink href={props.tina} passHref>
-          <Button color="white" as="a">
+          <Button color="white">
             <TinaIconSvg
               // @ts-ignore
               style={{
@@ -25,7 +25,7 @@ export const SocialBlock = (props) => {
       )}
       {props.discord && (
         <DynamicLink href={props.discord} passHref>
-          <Button color="white" as="a">
+          <Button color="white">
             <FaDiscord
               style={{
                 color: '#5865f2',
@@ -40,7 +40,7 @@ export const SocialBlock = (props) => {
       )}
       {props.github && (
         <DynamicLink href={props.github} passHref>
-          <Button color="white" as="a">
+          <Button color="white">
             <FaGithub
               style={{
                 color: '#24292e',
@@ -55,7 +55,7 @@ export const SocialBlock = (props) => {
       )}
       {props.twitter && (
         <DynamicLink href={props.twitter} passHref>
-          <Button color="white" as="a">
+          <Button color="white">
             <FaTwitter
               style={{
                 color: '#1DA1F2',
