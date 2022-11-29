@@ -3,12 +3,12 @@ import { Wrapper } from '../layout/Wrapper'
 import { Actions } from './Actions'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 
-const PricingCard = ({ data }) => {
+const PricingCard = ({ data, single = false }) => {
   if (!data) return null
 
   return (
     <>
-      <div className="card">
+      <div className={`card ${single ? 'single' : 'grouped'}`}>
         <div className="header">
           <h3 className="title">{data.name}</h3>
           {data.price && (
@@ -36,15 +36,22 @@ const PricingCard = ({ data }) => {
           flex: 1 1 auto;
           width: 100%;
           margin: 0 auto;
-          max-width: 38rem;
           border: 1px solid var(--color-seafoam-300);
-          border-radius: 0.75rem;
-          box-shadow: 0 6px 24px rgba(0, 37, 91, 0.05),
-            0 2px 4px rgba(0, 37, 91, 0.03);
           overflow: hidden;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
+        }
+        .single {
+          border-radius: 0.75rem;
+          background: white;
+          max-width: 38rem;
+          box-shadow: 0 6px 24px rgba(0, 37, 91, 0.05),
+            0 2px 4px rgba(0, 37, 91, 0.03);
+        }
+        .grouped {
+          box-shadow: inset 0 6px 24px rgba(0, 37, 91, 0.03),
+            inset 0 2px 4px rgba(0, 37, 91, 0.03);
         }
         .header {
           display: flex;
@@ -94,7 +101,6 @@ const PricingCard = ({ data }) => {
           flex-direction: column;
           justify-content: space-between;
           color: var(--color-secondary);
-          background: white;
           padding: 1.75rem 1.5rem;
 
           @media (min-width: 1400px) {
@@ -158,17 +164,17 @@ export function PricingBlock({ data, index }) {
                 <TinaMarkdown content={data.intro} />
               </div>
             )}
-            {data.base && <PricingCard data={data.base} />}
+            {data.base && <PricingCard data={data.base} single />}
             <div className="segue"></div>
           </Wrapper>
-          <Wrapper wide>
+          <div className="px-8 xl:px-12">
             <div className="card-wrapper">
               {data.plans &&
                 data.plans.map((plan, index) => (
                   <PricingCard data={plan} key={index} />
                 ))}
             </div>
-          </Wrapper>
+          </div>
         </RichTextWrapper>
       </section>
       <style jsx>{`
@@ -230,13 +236,15 @@ export function PricingBlock({ data, index }) {
         }
 
         .card-wrapper {
-          margin-bottom: 4rem;
           display: flex;
           width: 100%;
           overflow: hidden;
           border-radius: 0.75rem;
           box-shadow: 0 6px 24px rgba(0, 37, 91, 0.05),
             0 2px 4px rgba(0, 37, 91, 0.03);
+          background: white;
+          max-width: 152rem;
+          margin: 0 auto 4rem auto
 
           :global(> *) {
             box-shadow: none;

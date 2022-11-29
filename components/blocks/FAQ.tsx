@@ -6,7 +6,7 @@ import BlobBackground from '../../public/svg/blob-bg.svg'
 
 export function FaqBlock({ data, index }) {
   return (
-    <section key={index} className={`relative overflow-hidden py-16 lg:py-24`}>
+    <section key={index} className={`relative overflow-hidden py-20 lg:py-28`}>
       {data.color === 'gradient' && (
         <BlobBackground className="absolute pointer-events-none top-0 left-0 w-full h-auto min-h-screen max-h-full" />
       )}

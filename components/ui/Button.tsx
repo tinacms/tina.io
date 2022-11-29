@@ -3,7 +3,10 @@ import styled, { css } from 'styled-components'
 
 interface ButtonProps {
   color?: 'white' | 'blue' | 'orange' | 'seafoam' | 'ghost'
-  size?: 'large' | 'small'
+  size?: 'large' | 'small' | 'medium'
+  className?: string
+  href?: string
+  children: React.ReactNode | React.ReactNode[]
 }
 
 const baseClasses =
@@ -39,7 +42,7 @@ export const Button = ({
   className = '',
   children,
   ...props
-}) => {
+}: ButtonProps) => {
   return (
     <button
       className={`${baseClasses} ${
