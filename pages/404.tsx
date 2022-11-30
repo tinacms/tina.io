@@ -30,13 +30,13 @@ function Page404() {
               </InfoText>
               <ButtonGroup>
                 <DynamicLink href={'/docs'} passHref>
-                  <Button as="a">Documentation</Button>
+                  <Button>Documentation</Button>
                 </DynamicLink>
                 <DynamicLink href={'/guides'} passHref>
-                  <Button as="a">Guides</Button>
+                  <Button>Guides</Button>
                 </DynamicLink>
                 <DynamicLink href={'/'} passHref>
-                  <Button as="a">Home</Button>
+                  <Button>Home</Button>
                 </DynamicLink>
               </ButtonGroup>
             </InfoContent>
@@ -48,7 +48,7 @@ function Page404() {
   )
 }
 
-export const getStaticProps = async function({ preview, previewData }) {
+export const getStaticProps = async function ({ preview, previewData }) {
   return { props: {} }
 }
 

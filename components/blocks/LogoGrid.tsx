@@ -62,7 +62,7 @@ export function LogoGridBlock({ data, index }) {
       <Container width="wide">
         <div className="flex flex-col items-center">
           {data.title && (
-            <h3 className="font-tuner inline-block text-center text-3xl lg:text-4xl lg:leading-tight bg-gradient-to-br from-blue-200 via-blue-300 to-blue-500 bg-clip-text text-transparent mb-6">
+            <h3 className="font-tuner inline-block text-center text-3xl lg:text-4xl lg:leading-tight bg-gradient-to-br from-blue-200 via-blue-300 to-blue-500 bg-clip-text text-transparent mb-6 lg:mb-8">
               {data.title}
             </h3>
           )}

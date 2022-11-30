@@ -13,7 +13,7 @@ limitations under the License.
 import React from 'react'
 
 import { defineSchema } from 'tinacms'
-import type { TinaTemplate } from 'tinacms'
+import type { Template } from 'tinacms'
 
 import { heroTemplate } from '../components/blocks/Hero.template'
 import { featuresTemplate } from '../components/blocks/Features.template'
@@ -26,6 +26,8 @@ import { showcaseTemplate } from '../components/blocks/Showcase.template'
 import { storyTemplate } from '../components/blocks/Story.template'
 import { featureGridTemplate } from '../components/blocks/FeatureGrid.template'
 import { logoGridTemplate } from '../components/blocks/LogoGrid.template'
+import { roadmapGridTemplate } from '../components/blocks/RoadmapGrid.template'
+import { recentPostsTemplate } from '../components/blocks/RecentPosts.template'
 
 export const schema = defineSchema({
   collections: [
@@ -68,17 +70,19 @@ export const schema = defineSchema({
             visualSelector: true,
           },
           templates: [
-            heroTemplate as TinaTemplate,
-            featuresTemplate as TinaTemplate,
-            flyingTemplate as TinaTemplate,
-            pricingTemplate as TinaTemplate,
-            faqTemplate as TinaTemplate,
-            contentTemplate as TinaTemplate,
-            showcaseTemplate as TinaTemplate,
-            columnsTemplate as TinaTemplate,
-            storyTemplate as TinaTemplate,
-            featureGridTemplate as TinaTemplate,
-            logoGridTemplate as TinaTemplate,
+            heroTemplate as Template,
+            featuresTemplate as Template,
+            flyingTemplate as Template,
+            pricingTemplate as Template,
+            faqTemplate as Template,
+            contentTemplate as Template,
+            showcaseTemplate as Template,
+            columnsTemplate as Template,
+            storyTemplate as Template,
+            featureGridTemplate as Template,
+            logoGridTemplate as Template,
+            roadmapGridTemplate as Template,
+            recentPostsTemplate as Template,
           ],
         },
       ],

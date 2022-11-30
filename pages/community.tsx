@@ -48,7 +48,7 @@ function CommunityPage(props) {
                     href={'https://github.com/tinacms/tinacms/discussions'}
                     passHref
                   >
-                    <Button color="white" as="a">
+                    <Button color="white">
                       <TinaIconSvg
                         // @ts-ignore
                         style={{
@@ -65,7 +65,7 @@ function CommunityPage(props) {
                     href={'https://discord.com/invite/zumN63Ybpf'}
                     passHref
                   >
-                    <Button color="white" as="a">
+                    <Button color="white">
                       <FaDiscord
                         style={{
                           color: '#5865f2',
@@ -81,7 +81,7 @@ function CommunityPage(props) {
                     href={'https://github.com/tinacms/tinacms'}
                     passHref
                   >
-                    <Button color="white" as="a">
+                    <Button color="white">
                       <FaGithub
                         style={{
                           color: '#24292e',
@@ -94,7 +94,7 @@ function CommunityPage(props) {
                     </Button>
                   </DynamicLink>
                   <DynamicLink href={'https://twitter.com/tinacms'} passHref>
-                    <Button color="white" as="a">
+                    <Button color="white">
                       <FaTwitter
                         style={{
                           color: '#1DA1F2',

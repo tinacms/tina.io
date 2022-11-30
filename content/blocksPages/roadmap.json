@@ -1,0 +1,115 @@
+{
+  "seo": {
+    "title": "Roadmap",
+    "description": "Roadmap for TinaCMS"
+  },
+  "blocks": [
+    {
+      "headline": "Roadmap",
+      "text": "",
+      "_template": "hero"
+    },
+    {
+      "options": {
+        "narrow": true,
+        "color": "white"
+      },
+      "content": "Welcome to Tina's public roadmap! This is a live document, and will be updated regularly. We'll move tickets to the roadmap once we have a high degree of confidence that they will be worked on in a given time-frame. To submit an idea, or to view a list of feature requests and ideas that we're considering, check out our [GitHub Discussions](https://github.com/tinacms/tinacms/discussions \"GitHub Discussions\")\n",
+      "_template": "content"
+    },
+    {
+      "headline": "Next 3 months",
+      "items": [
+        {
+          "headline": "Self-Hosted Alternative to Tina Cloud (MVP)",
+          "status": "Research",
+          "content": "Offering a way to self-host the Tina Cloud backend, to avoid vendor lock-in.\n",
+          "actions": [
+            {
+              "label": "GitHub Discussion",
+              "icon": false,
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/3096"
+            }
+          ]
+        },
+        {
+          "headline": "Drafts",
+          "status": "In Progress",
+          "content": "Supporting Drafts on un-published documents through a \"`draft: true`\" front-matter field. \\\nWe are also looking into some ways to better support working from separate branch deployments, for bigger sets of changes.&#x20;\n"
+        },
+        {
+          "headline": "Framework-specific Guides",
+          "status": "Ready for Development",
+          "content": "As of 1.0, Tina is framework-agnostic (in CMS-only mode). We need some guides on tina.io for configuring Tina with the most popular frameworks.\n",
+          "actions": [
+            {
+              "label": "GitHub Issue",
+              "icon": false,
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tina.io/issues/1437"
+            }
+          ]
+        },
+        {
+          "headline": "Document Search",
+          "status": "Needs RFC",
+          "content": "Document Discoverability can be a challenge as the number of posts grow. We're looking into improving this either by providing our own search, or by supporting external search (e.g through Algolia)\n",
+          "actions": [
+            {
+              "label": "GitHub Discussion",
+              "icon": false,
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/2299#discussioncomment-4216480"
+            }
+          ]
+        },
+        {
+          "headline": "Registering Multiple Forms Per Page",
+          "status": "Needs RFC",
+          "content": "The ability to register multiple forms on a page through separate useTina hooks.\n",
+          "actions": [
+            {
+              "label": "GitHub Discussion",
+              "icon": false,
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/3420"
+            }
+          ]
+        }
+      ],
+      "options": {
+        "paddingTop": false,
+        "paddingBottom": true
+      },
+      "_template": "roadmapGrid"
+    },
+    {
+      "headline": "3-6 months",
+      "items": [
+        {
+          "headline": "Improving Media Management UX",
+          "content": "There are several media management improvements that we have on our list (image search, support for more media types, etc). We'd like to invest some time making Tina+media more powerful for editors and developers.\n",
+          "actions": [
+            {
+              "label": "Github Discussion",
+              "icon": false,
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/3418"
+            }
+          ]
+        }
+      ],
+      "options": {
+        "paddingTop": false,
+        "paddingBottom": true
+      },
+      "_template": "roadmapGrid"
+    }
+  ]
+}
