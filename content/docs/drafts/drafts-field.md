@@ -7,7 +7,7 @@ id: '/docs/drafts/draft-fields'
 
 ## What is "A draft field"?
 
-Draft fields are just boolean fields that can be used to indicate weather a document is a draft or not. There is nothing special about draft fields are they are not treaded any differently then any other boolean fields.
+Draft fields are just boolean fields that can be used to indicate whether a document is a draft or not. There is nothing special about draft fields are they are not treaded any differently then any other boolean fields.
 
 ### Setting up a draft field
 
@@ -52,6 +52,10 @@ const req = await client.queries.postConnection()
 Read more about querying data [here](/docs/data-fetching/overview).
 
 ## Potential issues
+
+- Drafts can not be [contextual edited](/docs/contextual-editing/overview) as they are not published. To add contextual editing to drafts see this documentation [here]().
+
+<!-- ## Potential issues
 
 > Work in progress
 
@@ -107,4 +111,4 @@ There are two solutions to this problem:
   - this means they will be available for contextual editing but will also be available to the public
 - Do two separate builds of your application
   - One build shows the draft documents and can be served from a different domain.
-  - One build for the public that does not show the draft documents.
+  - One build for the public that does not show the draft documents. -->

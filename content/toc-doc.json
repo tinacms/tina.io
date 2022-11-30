@@ -253,7 +253,19 @@
       {
         "id": "/docs/drafts/drafts-field/",
         "slug": "/docs/drafts/drafts-field/",
-        "title": "Draft Field"
+        "title": "Draft Field",
+        "items": [
+          {
+            "id": "/docs/drafts/drafts-field/",
+            "slug": "/docs/drafts/drafts-field/",
+            "title": "Overview"
+          },
+          {
+            "id": "/docs/drafts/drafts-contextual-editing",
+            "slug": "/docs/drafts/drafts-contextual-editing/",
+            "title": "Using a draft field with contextual editing"
+          }
+        ]
       }
     ]
   },
