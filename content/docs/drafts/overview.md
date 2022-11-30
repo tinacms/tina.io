@@ -16,4 +16,6 @@ Drafts fields are not special, they are just fields that have the boolean type. 
 
 ## Working with branches
 
-> Work in progress
+For more advanced use cases you can use branches to handle drafts.
+
+> Work in progress, please come back later for the full documentation.
