@@ -23,7 +23,7 @@ For a list of CLI commands or to learn more about Tina’s CLI, click [here](/do
 
 ## Tina GraphQl API
 
-![Tina GraphQL API](https://res.cloudinary.com/deuzrsg3m/image/upload/v1651008834/carbon_csq54s.png 'Fetch data using Tina's GraphQL API')
+![Tina GraphQL API](https://res.cloudinary.com/deuzrsg3m/image/upload/v1651008834/carbon_csq54s.png "Fetch data using Tina's GraphQL API")
 
 Tina’s GraphQL API provides a structured API that can be used to fetch your site’s content. This GraphQL API uses your local filesystem as a database. When you define your schema in the Tina schema file, the Tina GraphQL API will generate queries specific to your schema.
 
