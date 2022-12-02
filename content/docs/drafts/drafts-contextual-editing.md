@@ -18,7 +18,7 @@ Preview mode can be added in just a few steps:
 Create a file called `pages/api/preview/enter.{ts,js}` this will handel the request to enter preview mode. This file should look like this:
 
 ```ts
-import { isAuthorized } from '@tinacms/auth'
+import { isUserAuthorized } from '@tinacms/auth'
 
 const handler = async (req, res) => {
   if (process.env.IS_LOCAL === 'true') {
@@ -28,10 +28,9 @@ const handler = async (req, res) => {
   }
 
   // Check tina cloud token
-  // TODO: update this example to use isAuthorizedUser
-  const isAuthorizedRes = await isAuthorized({
-    query: { clientID: process.env.NEXT_PUBLIC_TINA_CLIENT_ID },
-    headers: { authorization: `Bearer ${req.query.token}` },
+  const isAuthorizedRes = await isUserAuthorized({
+    token: `Bearer ${req.query.token}`,
+    clientID: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
   })
 
   if (isAuthorizedRes) {
