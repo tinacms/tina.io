@@ -1,7 +1,7 @@
 ---
 title: Drafts in TinaCMS
 id: '/docs/drafts/overview'
-next: '/docs/drafts/drafts-field'
+next: '/docs/drafts/drafts-fields'
 ---
 
 TinaCMS supports a few implementations of "drafts".
@@ -10,7 +10,7 @@ TinaCMS supports a few implementations of "drafts".
 
 Developers can setup a "draft" field on a document, which can be toggled to conditionally include pages based on their draft state.
 
-[Read more about implementing a "draft field" here](/docs/drafts/drafts-field)
+[Read more about implementing a "draft field" here](/docs/drafts/drafts-fields)
 
 ## Working in branches
 

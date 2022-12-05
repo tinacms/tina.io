@@ -251,21 +251,9 @@
         "title": "Overview"
       },
       {
-        "id": "/docs/drafts/drafts-field/",
-        "slug": "/docs/drafts/drafts-field/",
-        "title": "Draft Field",
-        "items": [
-          {
-            "id": "/docs/drafts/drafts-field/",
-            "slug": "/docs/drafts/drafts-field/",
-            "title": "Overview"
-          },
-          {
-            "id": "/docs/drafts/drafts-contextual-editing",
-            "slug": "/docs/drafts/drafts-contextual-editing/",
-            "title": "Using Drafts with Contextual Editing"
-          }
-        ]
+        "id": "/docs/drafts/drafts-fields/",
+        "slug": "/docs/drafts/drafts-fields/",
+        "title": "Draft Fields"
       }
     ]
   },
@@ -287,6 +275,11 @@
             "id": "/guides/tinacms/adding-internationalization-to-tina/guide/",
             "slug": "/guides/tinacms/adding-internationalization-to-tina/guide/",
             "title": "Adding Internationalization to Tina"
+          },
+          {
+            "id": "/guides/tinacms/contextual-drafts/guide/",
+            "slug": "/guides/tinacms/contextual-drafts/guide/",
+            "title": "Using Drafts with Contextual Editing"
           }
         ]
       },

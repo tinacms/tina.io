@@ -1,11 +1,11 @@
 ---
 title: Using Drafts with Contextual Editing
-id: '/docs/drafts/drafts-contextual-editing'
+last_edited: '2022-12-05T10:00:00.000Z'
 ---
 
 ## Using Drafts with Contextual Editing
 
-In most cases, you will not want to create pages on your production site for your draft documents. This makes handling drafts a challenge with contextual editing. In this example we will show how to add contextual editing to a draft document using [Next.js preview-mode](https://nextjs.org/docs/advanced-features/preview-mode).
+In most cases, you will not want to create pages on your production site for your draft documents. This makes [handling drafts](/docs/drafts/overview/) a challenge with contextual editing. In this example we will show how to add contextual editing to a draft document using [Next.js preview-mode](https://nextjs.org/docs/advanced-features/preview-mode).
 
 In preview-mode `getStaticProps` will be called on every request. This means that we can conditionally grab draft documents in preview-mode, and keep them out of your production site.
 
@@ -199,4 +199,4 @@ const App = ({ Component, pageProps }) => {
 export default App
 ```
 
-Now when an editor logs in they will enter preview-mode and be able to contextually edit draft documents.
+Now when an editor logs in they will enter preview-mode and contextually edit draft documents.
