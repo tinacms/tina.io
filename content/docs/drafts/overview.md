@@ -4,18 +4,18 @@ id: '/docs/drafts/overview'
 next: '/docs/drafts/drafts-field'
 ---
 
-> NOTE: Drafts are in an initial stage. While this while these methods of drafts will be supported, our final version of drafts will be easier to use and will require less setup.
+TinaCMS supports a few implementations of "drafts".
 
-Currently TinaCMS supports a few different ways to handle drafts. This document will give an overview of the different ways to handle drafts and how to configure them.
+## Document-based "draft" state
 
-## A draft field
+Developers can setup a "draft" field on a document, which can be toggled to conditionally include pages based on their draft state.
 
-Drafts fields are not special, they are just fields that have the boolean type. They can be used to indicate weather a document is a draft or not. This is the most basic way to handle drafts but requires some changes to the way you fetch your data.
+[Read more about implementing a "draft field" here](/docs/drafts/drafts-field)
 
-[Read more about draft fields here](/docs/drafts/drafts-field)
+## Working in branches
 
-## Working with branches
+Some editoral teams like to work in branches, for more control over what gets merged into production.
 
-For more advanced use cases you can use branches to handle drafts.
+In these cases, you may want to have your editors work from your hosting provider's preview deployments, instead of `<your-production-site>/admin`.
 
-> Work in progress, please come back later for the full documentation.
+See our [Tina Cloud Docs](/docs/tina-cloud/dashboard/projects/#glob-patterns) for help setting this up.
