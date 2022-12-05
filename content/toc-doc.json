@@ -231,12 +231,6 @@
         "slug": "/docs/self-hosted/overview/",
         "title": "Self Hosted Tina",
         "status": "considering"
-      },
-      {
-        "id": "/docs/tina-cloud/branching/",
-        "slug": "/docs/tina-cloud/branching/",
-        "title": "Branching",
-        "status": "beta"
       }
     ]
   },
