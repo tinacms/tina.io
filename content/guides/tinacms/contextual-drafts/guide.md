@@ -3,6 +3,8 @@ title: Using Drafts with Contextual Editing
 last_edited: '2022-12-05T10:00:00.000Z'
 ---
 
+> The following guide requires tinacms: 1.0.2 or later.
+
 ## Using Drafts with Contextual Editing
 
 In most cases, you will not want to create pages on your production site for your draft documents. This makes [handling drafts](/docs/drafts/overview/) a challenge with contextual editing. In this example we will show how to add contextual editing to a draft document using [Next.js preview-mode](https://nextjs.org/docs/advanced-features/preview-mode).
