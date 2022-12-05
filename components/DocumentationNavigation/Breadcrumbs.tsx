@@ -3,13 +3,14 @@ import { useRouter } from 'next/router'
 import styled from 'styled-components'
 import { matchActualTarget } from 'utils'
 
-export const ChevronRightIcon = () => (
+export const ChevronRightIcon = ({ ...props }) => (
   <svg
     width="32"
     height="32"
     viewBox="0 0 32 32"
     fill="inherit"
     xmlns="http://www.w3.org/2000/svg"
+    {...props}
   >
     <path d="M11 24.792L12.2654 26L21.4773 17.2061C22.1747 16.5403 22.1737 15.4588 21.4773 14.7939L12.2654 6L11 7.208L20.2099 16L11 24.792Z" />
   </svg>
@@ -48,14 +49,12 @@ export function Breadcrumbs({ navItems }: DocsNavProps) {
     <>
       <BreadcrumbList>
         {breadcrumbs.map((breadcrumb, i) => (
-          <>
+          <li key={breadcrumb.slug}>
             {i != 0 && <ChevronRightIcon />}
-            <li>
-              <a href={breadcrumb.slug}>
-                {breadcrumb.title || breadcrumb.category}
-              </a>
-            </li>
-          </>
+            <a href={breadcrumb.slug}>
+              {breadcrumb.title || breadcrumb.category}
+            </a>
+          </li>
         ))}
       </BreadcrumbList>
     </>
@@ -77,6 +76,8 @@ const BreadcrumbList = styled.ul`
 
   li {
     position: relative;
+    display: flex;
+    align-items: center;
     list-style-type: none;
     padding: 0;
     margin: 0;

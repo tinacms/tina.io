@@ -65,10 +65,10 @@ const NavTitle = styled.a<NavTitleProps>`
     `}
 
     ${(props: any) =>
-      props.level === 2 &&
-      css`
-        opacity: 0.875;
-      `}
+    props.level === 2 &&
+    css`
+      opacity: 0.875;
+    `}
 
 
   ${(props: any) =>
@@ -148,8 +148,9 @@ const NavLevel = ({
       </NavLabelContainer>
       {expandChildren && categoryData.items && (
         <NavLevelChildContainer level={level}>
-          {(categoryData.items || []).map(item => (
+          {(categoryData.items || []).map((item) => (
             <NavLevel
+              key={item.slug + level}
               navListElem={navListElem}
               level={level + 1}
               categoryData={item}
@@ -223,15 +224,19 @@ export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
         {docsLinks &&
           docsLinks.map(({ id, href, label }) => {
             return (
-              <DynamicLink href={href} passHref>
+              <DynamicLink key={id + href} href={href} passHref>
                 <a key={id}>{label}</a>
               </DynamicLink>
             )
           })}
       </MobileMainNav>
       <DocsNavigationContainer ref={navListElem}>
-        {navItems.map(categoryData => (
-          <NavLevel navListElem={navListElem} categoryData={categoryData} />
+        {navItems.map((categoryData) => (
+          <NavLevel
+            key={'mobile-' + categoryData.slug}
+            navListElem={navListElem}
+            categoryData={categoryData}
+          />
         ))}
       </DocsNavigationContainer>
     </>
