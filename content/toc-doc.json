@@ -241,6 +241,17 @@
     ]
   },
   {
+    "category": "Migrating From Forestry",
+    "slug": "/forestry",
+    "items": [
+      {
+        "id": "/docs/forestry/overview/",
+        "slug": "/docs/forestry/overview/",
+        "title": "Overview"
+      }
+    ]
+  },
+  {
     "category": "Guides",
     "slug": "/guides",
     "items": [
