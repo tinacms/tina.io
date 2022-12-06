@@ -11,44 +11,51 @@ import AnimateHeight from 'react-animate-height'
 interface NavTitleProps {
   level: number
   selected: boolean
+  childSelected?: boolean
   children: React.ReactNode | React.ReactNode[]
   onClick?: () => void
 }
 
-const NavTitle = ({ children, level, selected, ...props }: NavTitleProps) => {
+const NavTitle = ({
+  children,
+  level = 3,
+  selected,
+  childSelected,
+  ...props
+}: NavTitleProps) => {
   const headerLevelClasses = {
-    0: {
-      default:
-        'opacity-100 font-tuner-light text-orange-500 text-xl pt-2 pb-0.5 pl-4',
-      selected:
-        'opacity-100 font-tuner-light text-orange-500 text-xl pt-2 pb-0.5 pl-4',
-    },
+    0: 'opacity-100 font-tuner-light text-orange-500 text-xl pt-2',
     1: {
-      default: 'text-base font-sans pt-1 pb-0.5 pl-4 text-gray-800',
-      selected: 'text-base font-sans pt-1 pb-0.5 pl-4 font-bold text-blue-500',
+      default: 'text-base font-sans pt-1 text-gray-800',
+      selected: 'text-base font-sans pt-1 font-bold text-blue-500',
+      childSelected: 'text-base font-sans pt-1 font-[500] text-gray-800',
     },
     2: {
-      default:
-        'text-[15px] font-sans opacity-80 pt-0.5 pb-0.5 pl-4 text-gray-700',
-      selected:
-        'text-[15px] font-sans pt-0.5 pb-0.5 pl-4 font-bold text-blue-500',
+      default: 'text-[15px] font-sans opacity-80 pt-0.5 text-gray-700',
+      selected: 'text-[15px] font-sans pt-0.5 font-bold text-blue-500',
+      childSelected: 'text-[15px] font-sans pt-1 font-[500] text-gray-800',
     },
     3: {
-      default:
-        'text-[15px] font-sans opacity-80 pt-0.5 pb-0.5 pl-4 text-gray-700',
-      selected:
-        'text-[15px] font-sans pt-0.5 pb-0.5 pl-4 font-bold text-blue-500',
+      default: 'text-[15px] font-sans opacity-80 pt-0.5 text-gray-700',
+      selected: 'text-[15px] font-sans pt-0.5 font-bold text-blue-500',
+      childSelected: 'text-[15px] font-sans pt-1 font-[500] text-gray-800',
     },
   }
 
+  const headerLevel = level > 3 ? 3 : level
+  const selectedClass = selected
+    ? 'selected'
+    : childSelected
+    ? 'childSelected'
+    : 'default'
+  const classes =
+    level < 1
+      ? headerLevelClasses[headerLevel]
+      : headerLevelClasses[headerLevel][selectedClass]
+
   return (
     <a
-      className={`group flex items-center gap-1 transition duration-150 ease-out cursor-pointer hover:opacity-100 leading-tight ${
-        headerLevelClasses[level] &&
-        headerLevelClasses[level][selected ? 'selected' : 'default']
-          ? headerLevelClasses[level][selected ? 'selected' : 'default']
-          : headerLevelClasses[3][selected ? 'selected' : 'default']
-      }`}
+      className={`group flex items-center gap-1 transition duration-150 ease-out cursor-pointer hover:opacity-100 leading-tight pb-0.5 pl-4 ${classes}`}
       {...props}
     >
       {children}
@@ -126,6 +133,7 @@ const NavLevel = ({
           <NavTitle
             level={level}
             selected={selected && !childSelected}
+            childSelected={childSelected}
             onClick={() => {
               setExpanded(!expanded)
             }}
