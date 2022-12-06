@@ -1,11 +1,12 @@
 ---
-title: Migrate
+title: Migrate from Forestry
 id: '/docs/forestry/migrate/'
+next: '/docs/forestry/media'
 ---
 
 ## Introduction
 
-TinaCMS can be added to your site locally. When ready, you can push your site to git to allow editing on your live site.
+TinaCMS can be added to your site locally. In this doc, we'll guide through the local setup, as well as editing on your production site.
 
 ## Getting Started
 
@@ -120,3 +121,5 @@ You should prepend `yarn tinacms && ` or `npm run tinacms && ` to your site's bu
 With that set, you should be able to push your config to Git and start editing on production at `<your-site-url>/admin`!
 
 > Tip: If you have Netlify or Vercel previews set up, you can even edit on `<your-preview-url>/admin`.
+
+At this point, you'll be able to edit one of your site's files in production. Next we'll guide you through setting up some other Forestry-supported features like media, data files,

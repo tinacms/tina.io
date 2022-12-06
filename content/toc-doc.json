@@ -248,6 +248,16 @@
         "id": "/docs/forestry/overview/",
         "slug": "/docs/forestry/overview/",
         "title": "Overview"
+      },
+      {
+        "id": "/docs/forestry/migrate/",
+        "slug": "/docs/forestry/migrate/",
+        "title": "Setting up Tina"
+      },
+      {
+        "id": "/docs/forestry/media/",
+        "slug": "/docs/forestry/media/",
+        "title": "Media"
       }
     ]
   },
