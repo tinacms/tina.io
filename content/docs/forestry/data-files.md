@@ -1,5 +1,5 @@
 ---
-title: 'Data Files'
+title: 'Comparing Tina & Forestry: Data Files'
 id: '/docs/forestry/data-files/'
 ---
 

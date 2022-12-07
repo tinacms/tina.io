@@ -1,5 +1,5 @@
 ---
-title: 'Previews'
+title: 'Comparing Tina & Forestry: Previews'
 id: '/docs/forestry/previews/'
 ---
 

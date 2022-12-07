@@ -1,5 +1,5 @@
 ---
-title: 'Local Workflow'
+title: 'Comparing Tina & Forestry: Local Workflow'
 id: '/docs/forestry/local-workflow/'
 ---
 

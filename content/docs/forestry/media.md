@@ -1,5 +1,5 @@
 ---
-title: 'Migrating from Forestry: Media'
+title: 'Comparing Tina & Forestry: Migrating from Forestry: Media'
 id: '/docs/forestry/media/'
 ---
 

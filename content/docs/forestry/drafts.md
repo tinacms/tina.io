@@ -1,5 +1,5 @@
 ---
-title: 'Drafts'
+title: 'Comparing Tina & Forestry: Drafts'
 id: '/docs/forestry/drafts/'
 ---
 

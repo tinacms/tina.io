@@ -1,5 +1,5 @@
 ---
-title: 'Content Modelling'
+title: 'Comparing Tina & Forestry: Content Modelling'
 id: '/docs/forestry/content-modelling/'
 ---
 
