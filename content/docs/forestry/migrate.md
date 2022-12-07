@@ -1,7 +1,7 @@
 ---
 title: Migrate from Forestry
 id: '/docs/forestry/migrate/'
-next: '/docs/forestry/media'
+next: '/docs/forestry/accessing-cms'
 ---
 
 ## Introduction

@@ -241,19 +241,45 @@
     "slug": "/forestry",
     "items": [
       {
-        "id": "/docs/forestry/overview/",
         "slug": "/docs/forestry/overview/",
         "title": "Overview"
       },
       {
-        "id": "/docs/forestry/migrate/",
         "slug": "/docs/forestry/migrate/",
         "title": "Setting up Tina"
       },
       {
-        "id": "/docs/forestry/media/",
-        "slug": "/docs/forestry/media/",
-        "title": "Media"
+        "title": "Comparing Forestry & Tina Concepts",
+        "items": [
+          {
+            "slug": "/docs/forestry/accessing-cms/",
+            "title": "Accessing the CMS"
+          },
+          {
+            "slug": "/docs/forestry/local-workflow/",
+            "title": "Local Workflow"
+          },
+          {
+            "slug": "/docs/forestry/previews/",
+            "title": "Previews"
+          },
+          {
+            "slug": "/docs/forestry/content-modelling/",
+            "title": "Content Modelling"
+          },
+          {
+            "slug": "/docs/forestry/drafts/",
+            "title": "Drafts"
+          },
+          {
+            "slug": "/docs/forestry/data-files/",
+            "title": "Data Files"
+          },
+          {
+            "slug": "/docs/forestry/media/",
+            "title": "Media"
+          }
+        ]
       }
     ]
   },
