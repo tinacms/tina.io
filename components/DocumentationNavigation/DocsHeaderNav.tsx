@@ -1,9 +1,7 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
-import { Button, ButtonGroup } from '../ui'
+import { LinkButton } from '../ui'
 import { DynamicLink } from '../ui/DynamicLink'
 import data from '../../content/docs-navigation.json'
-import Link from 'next/link'
 
 export const DocsHeaderNav = () => {
   return (
@@ -23,16 +21,20 @@ export const DocsHeaderNav = () => {
           })}
       </ul>
       <div className="flex justify-start items-center gap-4">
-        <Link href="https://app.tina.io/signin">
-          <Button color="white" size="small">
-            Log In
-          </Button>
-        </Link>
-        <Link href="https://app.tina.io/register">
-          <Button color="blue" size="small">
-            Sign Up
-          </Button>
-        </Link>
+        <LinkButton
+          link="https://app.tina.io/signin"
+          color="white"
+          size="small"
+        >
+          Log In
+        </LinkButton>
+        <LinkButton
+          link="https://app.tina.io/register"
+          color="blue"
+          size="small"
+        >
+          Sign Up
+        </LinkButton>
       </div>
     </nav>
   )

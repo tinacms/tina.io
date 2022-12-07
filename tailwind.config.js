@@ -168,6 +168,7 @@ module.exports = {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
         tuner: ['tuner-medium', ...defaultTheme.fontFamily.sans],
+        'tuner-light': ['tuner-regular', ...defaultTheme.fontFamily.sans],
       },
       gridTemplateColumns: {
         'auto-sm': 'repeat(auto-fit, minmax(300px, 1fr))',

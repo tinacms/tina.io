@@ -12,7 +12,7 @@ import {
   RichTextWrapper,
   MarkdownContent,
 } from 'components/layout'
-import { Button, ButtonGroup } from 'components/ui'
+import { Button, ButtonGroup, LinkButton } from 'components/ui'
 import { EmailForm } from 'components/forms'
 import { NextSeo } from 'next-seo'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
@@ -44,68 +44,63 @@ function CommunityPage(props) {
                   <MarkdownContent content={data.supporting_body} />
                 </InfoText>
                 <ButtonGroup>
-                  <DynamicLink
-                    href={'https://github.com/tinacms/tinacms/discussions'}
-                    passHref
+                  <LinkButton
+                    color="white"
+                    link={'https://github.com/tinacms/tinacms/discussions'}
                   >
-                    <Button color="white">
-                      <TinaIconSvg
-                        // @ts-ignore
-                        style={{
-                          fill: '#EC4815',
-                          height: '1.675rem',
-                          width: 'auto',
-                          margin: '0 0.675rem 0 0.125rem',
-                        }}
-                      />{' '}
-                      Discussion
-                    </Button>
-                  </DynamicLink>
-                  <DynamicLink
-                    href={'https://discord.com/invite/zumN63Ybpf'}
-                    passHref
+                    <TinaIconSvg
+                      // @ts-ignore
+                      style={{
+                        fill: '#EC4815',
+                        height: '1.675rem',
+                        width: 'auto',
+                        margin: '0 0.675rem 0 0.125rem',
+                      }}
+                    />{' '}
+                    Discussion
+                  </LinkButton>
+                  <LinkButton
+                    link={'https://discord.com/invite/zumN63Ybpf'}
+                    color="white"
                   >
-                    <Button color="white">
-                      <FaDiscord
-                        style={{
-                          color: '#5865f2',
-                          height: '1.5rem',
-                          width: 'auto',
-                          margin: '0 0.675rem 0 0.125rem',
-                        }}
-                      />{' '}
-                      Discord
-                    </Button>
-                  </DynamicLink>
-                  <DynamicLink
-                    href={'https://github.com/tinacms/tinacms'}
-                    passHref
+                    <FaDiscord
+                      style={{
+                        color: '#5865f2',
+                        height: '1.5rem',
+                        width: 'auto',
+                        margin: '0 0.675rem 0 0.125rem',
+                      }}
+                    />{' '}
+                    Discord
+                  </LinkButton>
+                  <LinkButton
+                    link={'https://github.com/tinacms/tinacms'}
+                    color="white"
                   >
-                    <Button color="white">
-                      <FaGithub
-                        style={{
-                          color: '#24292e',
-                          height: '1.5rem',
-                          width: 'auto',
-                          margin: '0 0.675rem 0 0.125rem',
-                        }}
-                      />{' '}
-                      GitHub
-                    </Button>
-                  </DynamicLink>
-                  <DynamicLink href={'https://twitter.com/tinacms'} passHref>
-                    <Button color="white">
-                      <FaTwitter
-                        style={{
-                          color: '#1DA1F2',
-                          height: '1.5rem',
-                          width: 'auto',
-                          margin: '0 0.675rem 0 0.125rem',
-                        }}
-                      />{' '}
-                      Twitter
-                    </Button>
-                  </DynamicLink>
+                    <FaGithub
+                      style={{
+                        color: '#24292e',
+                        height: '1.5rem',
+                        width: 'auto',
+                        margin: '0 0.675rem 0 0.125rem',
+                      }}
+                    />{' '}
+                    GitHub
+                  </LinkButton>
+                  <LinkButton
+                    link={'https://twitter.com/tinacms'}
+                    color="white"
+                  >
+                    <FaTwitter
+                      style={{
+                        color: '#1DA1F2',
+                        height: '1.5rem',
+                        width: 'auto',
+                        margin: '0 0.675rem 0 0.125rem',
+                      }}
+                    />{' '}
+                    Twitter
+                  </LinkButton>
                 </ButtonGroup>
               </InfoContent>
               <InfoImage src={data.img.src} alt={data.img.alt} />

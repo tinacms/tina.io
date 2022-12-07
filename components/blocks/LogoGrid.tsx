@@ -71,6 +71,7 @@ export function LogoGridBlock({ data, index }) {
               data.items.map((data, index) => {
                 return (
                   <Logo
+                    key={Object.values(data).join('')}
                     data={data}
                     index={index}
                     windowWidth={windowSize.width}
