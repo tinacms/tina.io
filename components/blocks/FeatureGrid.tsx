@@ -28,7 +28,13 @@ export function FeatureGridBlock({ data, index }) {
         <div className="grid gap-[0.5px] grid-flow-row grid-cols-auto-sm md:grid-cols-auto-lg auto-rows-auto w-full rounded-xl overflow-hidden shadow border border-blue-50/50 bg-gradient-to-br from-seafoam-200/30 to-blue-100/30">
           {data.items &&
             data.items.map((data, index) => {
-              return <Feature data={data} index={index} />
+              return (
+                <Feature
+                  key={Object.values(data).join('')}
+                  data={data}
+                  index={index}
+                />
+              )
             })}
         </div>
       </Container>
