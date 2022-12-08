@@ -8,7 +8,7 @@ next: '/docs/forestry/migrate'
 
 Forestery.io and TinaCMS are both headless content management systems (CMS's) that allow you to manage your content in a centralized location and deliver it to your website or application. However, there are some key differences between the two that you should be aware of..
 
-## Differences between Forestry.io and TinaCMS
+## Core Differences between Forestry.io and TinaCMS
 
 ### Open-source
 
@@ -22,6 +22,8 @@ TinaCMS is focused on providing live, in-context editing capabilities, while For
 
 TinaCMS gives allows devs to iterate more quickly by allowing TinaCMS to be run in dev-mode, locally alongside your site. For example, you can make changes to your content models and fields, and see the results immediately, without having to wait for them to be synchronized with a hosted dashboard.
 
+To read more about some of the specific conceptual difference of TinaCMS vs Forestry, read our [Comparing Forestry & Tina Concepts doc]("/docs/forestry/accessing-cms/")
+
 ## Caveats of using TinaCMS
 
 - As mentioned above, TinaCMS's contextual editing only supports React-based websites and applications. If your website or application is not built with React, you will still be able to use the TinaCMS standalone editor, but there will be no previews.
@@ -31,3 +33,5 @@ TinaCMS gives allows devs to iterate more quickly by allowing TinaCMS to be run 
 For a list of Forestry features that that haven't (yet) made their way to TinaCMS, see our [blog post](https://github.com/forestryio/forestry.io/pull/323).
 
 TinaCMS is our V2 CMS, and where or future development efforts will be focused. We're confident TinaCMS will eclipse Forestry's feature-set, and provide a much improved editor experience & developer experience to teams.
+
+Read on for a step-by-step guide of migrating to TinaCMS from Forestry!
