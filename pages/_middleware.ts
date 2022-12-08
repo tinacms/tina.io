@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getExperiment, getABTestResult } from '../utils/ab-test'
-import { isUserAuthorized } from '@tinacms/auth'
+//import { isUserAuthorized } from '@tinacms/auth'
 
 // Check for AB tests on a given page
 export function middleware(req: NextRequest) {
   const url = req.nextUrl.clone()
 
   const dest = req.headers.get('sec-fetch-dest')
-  console.log('dest', req.url)
+  console.log('URL: ', req.url)
   if (
     dest != 'iframe'
     // &&
@@ -17,7 +17,7 @@ export function middleware(req: NextRequest) {
     //   token: process.env.TINA_TOKEN,
     // })
   ) {
-    console.log("(new URL('/admin', req.url): ", new URL('/admin', req.url))
+    console.log('new url: ', new URL('/admin', req.url).href)
     return NextResponse.rewrite(new URL('/admin', req.url).href)
   }
 
@@ -40,4 +40,16 @@ export function middleware(req: NextRequest) {
   }
 
   return res
+}
+
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - favicon.ico (favicon file)
+     */
+    '/((?!api|_next/static|favicon.ico).*)',
+  ],
 }
