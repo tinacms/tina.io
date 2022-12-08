@@ -1,6 +1,7 @@
 ---
 title: 'Comparing Tina & Forestry: Migrating from Forestry: Media'
 id: '/docs/forestry/media/'
+next: '/docs/forestry/missing-forestry-features'
 ---
 
 ## Media in Forestry
