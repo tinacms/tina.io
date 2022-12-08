@@ -34,10 +34,10 @@ export function middleware(req: NextRequest) {
 
   const res = NextResponse.rewrite(url)
 
-  // Add the bucket to cookies if it's not there
-  if (!req.cookies[COOKIE_NAME]) {
-    res.cookie(COOKIE_NAME, abTestResult.bucket)
-  }
+  // // Add the bucket to cookies if it's not there
+  // if (!req.cookies[COOKIE_NAME]) {
+  //   res.cookies(COOKIE_NAME, abTestResult.bucket)
+  // }
 
   return res
 }
