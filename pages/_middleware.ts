@@ -7,13 +7,15 @@ export function middleware(req: NextRequest) {
   const url = req.nextUrl.clone()
 
   const dest = req.headers.get('sec-fetch-dest')
+  console.log('dest', dest)
   if (
     dest != 'iframe' &&
     process.env.NODE_ENV != 'development' &&
     isUserAuthorized({
       clientID: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
       token: process.env.TINA_TOKEN,
-    })
+    }) &&
+    false
   ) {
     return NextResponse.rewrite(new URL('/admin', req.url) as any)
   }
