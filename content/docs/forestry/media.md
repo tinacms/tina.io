@@ -47,6 +47,16 @@ Out of the box, TinaCMS supports repo-based media. This is configured in `.tina/
 
 The above config would source your media from `/public/uploads`.
 
+#### Unsupported parent-directory relatives paths.
+
+In Forestry, you could use images outside of your configured media directory:
+
+```
+![](../images/post-img.jpg)
+```
+
+Using `..` in the media path isn't supported in TinaCMS.
+
 ### 3rd-party Media Providers
 
 Tina supports using external media providers (E.g Cloudinary, Digital Ocean Spaces, S3, etc), however a light backend media handler needs to be setup/hosted by the user. Tina offers some helpers to make this easy. This is usually pretty simple thanks to Netlify & Vercel's serverless function support.
