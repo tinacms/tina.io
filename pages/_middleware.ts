@@ -7,17 +7,18 @@ export function middleware(req: NextRequest) {
   const url = req.nextUrl.clone()
 
   const dest = req.headers.get('sec-fetch-dest')
-  console.log('dest', dest)
+  console.log('dest', req.url)
   if (
-    dest != 'iframe' &&
-    process.env.NODE_ENV != 'development' &&
-    isUserAuthorized({
-      clientID: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
-      token: process.env.TINA_TOKEN,
-    }) &&
-    false
+    dest != 'iframe'
+    // &&
+    // process.env.NODE_ENV != 'development' &&
+    // isUserAuthorized({
+    //   clientID: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
+    //   token: process.env.TINA_TOKEN,
+    // })
   ) {
-    return NextResponse.rewrite(new URL('/admin', req.url) as any)
+    console.log("(new URL('/admin', req.url): ", new URL('/admin', req.url))
+    return NextResponse.rewrite(new URL('/admin', req.url).href)
   }
 
   const matchingABTest = getExperiment(url.pathname)
