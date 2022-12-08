@@ -12,7 +12,7 @@ export function middleware(req: NextRequest) {
     process.env.NODE_ENV != 'development' &&
     isAuthorized(req as any)
   ) {
-    return NextResponse.rewrite(new URL('/admin', req.url))
+    return NextResponse.rewrite(new URL('/admin', req.url) as any)
   }
 
   const matchingABTest = getExperiment(url.pathname)
