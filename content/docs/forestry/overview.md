@@ -30,7 +30,7 @@ To read more about some of the specific conceptual difference of TinaCMS vs Fore
 - TinaCMS is a relatively new and rapidly evolving CMS, so there may be some missing Framework-specific features compared to Forestry.
 - Since TinaCMS uses code by configuration, the initial setup process may take a bit more effort compared to Forestry's UI import. This is a tradeoff for the amount of customizability TinaCMS provides.
 
-For a list of Forestry features that that haven't (yet) made their way to TinaCMS, see our [blog post](https://github.com/forestryio/forestry.io/pull/323).
+For a list of Forestry features that that haven't (yet) made their way to TinaCMS, see our [blog post](https://github.com/forestryio/forestry.io/blob/forestry-tina-migration/hugo/content/blog/forestry-tina-migration.md).
 
 TinaCMS is our V2 CMS, and where or future development efforts will be focused. We're confident TinaCMS will eclipse Forestry's feature-set, and provide a much improved editor experience & developer experience to teams.
 
