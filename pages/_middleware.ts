@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getExperiment, getABTestResult } from '../utils/ab-test'
-import { isAuthorized } from '@tinacms/auth'
+import { isUserAuthorized } from '@tinacms/auth'
 
 // Check for AB tests on a given page
 export function middleware(req: NextRequest) {
@@ -10,7 +10,10 @@ export function middleware(req: NextRequest) {
   if (
     dest != 'iframe' &&
     process.env.NODE_ENV != 'development' &&
-    isAuthorized(req as any)
+    isUserAuthorized({
+      clientID: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
+      token: process.env.TINA_TOKEN,
+    })
   ) {
     return NextResponse.rewrite(new URL('/admin', req.url) as any)
   }
