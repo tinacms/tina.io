@@ -1,9 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getExperiment, getABTestResult } from '../utils/ab-test'
+import { isAuthorized } from '@tinacms/auth'
 
 // Check for AB tests on a given page
 export function middleware(req: NextRequest) {
   const url = req.nextUrl.clone()
+
+  const dest = req.headers.get('sec-fetch-dest')
+  if (
+    dest != 'iframe' &&
+    process.env.NODE_ENV != 'development' &&
+    isAuthorized(req as any)
+  ) {
+    return NextResponse.rewrite(new URL('/admin', req.url))
+  }
 
   const matchingABTest = getExperiment(url.pathname)
 

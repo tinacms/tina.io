@@ -2740,10 +2740,12 @@
     webfontloader "1.6.28"
     xstate "4.32.1"
 
-"@tinacms/auth@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@tinacms/auth/-/auth-1.0.0.tgz#49a7e9763cd47d341496da22dee8d9d351765b9f"
-  integrity sha512-LCUJfruXhx8J3t1DSkNDPEU/4I5abmploGK9ZC/C+XAfpImmZ9hvBkApjXNBh30nYwFPRjvnBU6Nky48jN+s/w==
+"@tinacms/auth@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@tinacms/auth/-/auth-1.0.2.tgz#7d1380cd2bc0bce7a77b9c244aa8a0e1116599d6"
+  integrity sha512-NlrcnAanyKSgB2dBahj9SM9x7Z4vq8a1x0xIaQ3W2vCrSmHGTxsUOcB1PI2gJFU4IipmPhinDMtMv2X/2Hzvcw==
+  dependencies:
+    fetch-ponyfill "^7.1.0"
 
 "@tinacms/cli@^1.0.3":
   version "1.0.3"
