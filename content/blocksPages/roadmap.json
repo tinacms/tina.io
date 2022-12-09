@@ -40,6 +40,11 @@
           "content": "Supporting Drafts on un-published documents through a \"`draft: true`\" front-matter field. \\\nWe are also looking into some ways to better support working from separate branch deployments, for bigger sets of changes.&#x20;\n"
         },
         {
+          "headline": "Improve Forestry.io -> Tina Migration",
+          "status": "In Progress",
+          "content": "There are a number of features/concepts from Forestry.io that haven't made their way to TinaCMS. We're looking to smooth over the process for migrating from Forestry.io to TinaCMS by filling in some feature gaps, and adding some \"configuration migration tooling\".&#x20;\n"
+        },
+        {
           "headline": "Framework-specific Guides",
           "status": "Ready for Development",
           "content": "As of 1.0, Tina is framework-agnostic (in CMS-only mode). We need some guides on tina.io for configuring Tina with the most popular frameworks.\n",
@@ -111,5 +116,10 @@
       },
       "_template": "roadmapGrid"
     }
-  ]
+  ],
+  "_collection": "page",
+  "_keepTemplateKey": false,
+  "_template": "page",
+  "_relativePath": "roadmap.json",
+  "_id": "content/blocksPages/roadmap.json"
 }
