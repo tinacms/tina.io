@@ -148,10 +148,6 @@
     "description": "Powerful Git-based content management for teams",
     "items": [
       {
-        "slug": "/docs/tina-cloud",
-        "title": "Overview"
-      },
-      {
         "slug": "/docs/tina-cloud/",
         "title": "Overview"
       },
