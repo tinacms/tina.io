@@ -5,6 +5,10 @@ last_edited: '2022-12-05T10:00:00.000Z'
 
 > The following guide requires tinacms: 1.0.2 or later.
 
+> Want to skip the the end result? [Check out the final result](https://github.com/tinacms/tina-barebones-starter-preview-mode)
+
+## Adding contextual editing with Drafts
+
 ## Using Drafts with Contextual Editing
 
 In most cases, you will not want to create pages on your production site for your draft documents. This makes [handling drafts](/docs/drafts/overview/) a challenge with contextual editing. In this example we will show how to add contextual editing to a draft document using [Next.js preview-mode](https://nextjs.org/docs/advanced-features/preview-mode).
@@ -70,10 +74,13 @@ export default defineConfig({
   admin: {
     auth: {
       onLogin: async ({ token }) => {
-        // Enter preview and pass the token
+        //  When the user logs in enter preview mode
         location.href =
-          `/api/preview/enter?token=${token.id_token}&slug=` +
-          location?.pathname
+          `/api/preview/enter?token=${token.id_token}&slug=` + location
+      },
+      onLogout: async () => {
+        // When the user logs out exit preview mode
+        location.href = `/api/preview/exit?slug=` + location
       },
     },
   },
@@ -87,6 +94,10 @@ export default defineConfig({
 
 We'll now update our `getStaticPaths`, so that draft pages are excluded in our production site.
 
+```ts
+const req = await client.queries.postConnection()
+```
+
 ```diff
 export const getStaticPaths = async () => {
 - const req = await client.queries.postConnection()
@@ -97,6 +108,8 @@ export const getStaticPaths = async () => {
   // ...
 }
 ```
+
+Depending on your use case you can also safely use any value for `fallback`.
 
 ### Updates to getStaticProps
 
@@ -177,19 +190,20 @@ In `pages/_app.{ts,js}` add the following:
 
 ```tsx
 const App = ({ Component, pageProps }) => {
+  const slug = typeof window !== 'undefined' ? window.location.pathname : '/'
   return (
     <>
       {/* Feel free to add your own styling! */}
       {pageProps.preview && (
         <div>
           You are in preview-mode
+          {/* This link will logout of Tina and exit preview mode */}
           <a
-            href={`/api/preview/exit?slug=${
-              (typeof location !== 'undefined' && location?.pathname) || '/'
-            }`}
+            href={`/admin/index.html#/logout?slug=/api/preview/exit?slug=${slug}`}
           >
             Click here
-          </a> to exit
+          </a>{' '}
+          to exit
         </div>
       )}
 
@@ -201,4 +215,6 @@ const App = ({ Component, pageProps }) => {
 export default App
 ```
 
-Now when an editor logs in they will enter preview-mode and contextually edit draft documents.
+Now when an editor logs in they will enter preview mode and be able to contextual edit draft documents.
+
+You can see the [final result here](https://github.com/tinacms/tina-barebones-starter-preview-mode) and if you want to learn more about preview mode [see the Next.js docs](https://nextjs.org/docs/advanced-features/preview-mode).
