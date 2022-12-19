@@ -196,6 +196,21 @@
       {
         "slug": "/docs/self-hosted/overview/",
         "title": "Self Hosted Tina",
+        "status": "considering"
+      }
+    ]
+  },
+  {
+    "title": "Drafts",
+    "status": "beta",
+    "items": [
+      {
+        "slug": "/docs/drafts/overview/",
+        "title": "Overview"
+      },
+      {
+        "slug": "/docs/drafts/drafts-fields/",
+        "title": "Draft Fields",
         "status": "Considering"
       },
       {
@@ -222,6 +237,10 @@
           {
             "slug": "/guides/tinacms/adding-internationalization-to-tina/guide/",
             "title": "Adding Internationalization to Tina"
+          },
+          {
+            "title": "Using Drafts with Contextual Editing",
+            "slug": "/guides/tinacms/contextual-drafts/guide/"
           }
         ]
       },

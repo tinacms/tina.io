@@ -76,7 +76,7 @@ When your editors add an image to a document, the value that is saved will be a 
 
 ## Branching Caveats
 
-Repo-based media is designed to be used around a single-branch workflow. If your project is using the [experimental branching plugin](https://tina.io/docs/tina-cloud/branching/), there's some known caveats to be aware of.
+Repo-based media is designed to be used around a single-branch workflow. If your project is using the [experimental branching plugin](https://github.com/tinacms/tinacms/tree/main/packages/%40tinacms/toolkit/src/plugins/branch-switcher), there's some known caveats to be aware of.
 
 - Images cannot be altered, once uploaded any subsequent changes to an asset will not be reflected.
 - If you only have a single branch with media enabled, the media store will source/upload images to/from that branch.
