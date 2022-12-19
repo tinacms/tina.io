@@ -201,20 +201,16 @@
     ]
   },
   {
-    "category": "Drafts",
+    "title": "Drafts",
     "status": "beta",
-    "slug": "/docs/drafts/overview/",
     "items": [
       {
-        "id": "/docs/drafts/overview/",
         "slug": "/docs/drafts/overview/",
         "title": "Overview"
       },
       {
-        "id": "/docs/drafts/drafts-fields/",
         "slug": "/docs/drafts/drafts-fields/",
-        "title": "Draft Fields",
-        "status": "Considering"
+        "title": "Draft Fields"
       },
       {
         "slug": "/docs/tina-cloud/branching/",
@@ -240,30 +236,10 @@
           {
             "slug": "/guides/tinacms/adding-internationalization-to-tina/guide/",
             "title": "Adding Internationalization to Tina"
-          }
-        ]
-      },
-      {
-        "title": "Draft Documents",
-        "status": "beta",
-        "items": [
-          {
-            "id": "/guides/tinacms/contextual-drafts/guide/",
-            "slug": "/guides/tinacms/contextual-drafts/guide/",
-            "title": "Using Drafts with Contextual Editing"
           },
           {
-            "title": "Draft Field",
-            "items": [
-              {
-                "slug": "/docs/drafts/drafts-field/",
-                "title": "Overview"
-              },
-              {
-                "slug": "/docs/drafts/drafts-contextual-editing/",
-                "title": "Using a draft field with contextual editing"
-              }
-            ]
+            "title": "Using Drafts with Contextual Editing",
+            "slug": "/guides/tinacms/contextual-drafts/guide/"
           }
         ]
       },
