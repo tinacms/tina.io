@@ -210,7 +210,8 @@
       },
       {
         "slug": "/docs/drafts/drafts-fields/",
-        "title": "Draft Fields"
+        "title": "Draft Fields",
+        "status": "Considering"
       },
       {
         "slug": "/docs/tina-cloud/branching/",
@@ -223,7 +224,7 @@
     "title": "Guides",
     "items": [
       {
-        "slug": "/guides/",
+        "slug": "/guides",
         "title": "Overview"
       },
       {
