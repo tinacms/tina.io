@@ -107,7 +107,7 @@ export default defineConfig({
 
 > You should apply the token above in an environment variable, instead of hardcoding it.
 
-### Step 4)
+### Step 4) Configure build commands
 
 Tina's build will need to be apart of your site's static generation.
 If you are using Netlify, this is configured in `app.netlify.com/sites/<your-site-id>/settings/deploys`
@@ -116,7 +116,7 @@ You should prepend `yarn tinacms && ` or `npm run tinacms && ` to your site's bu
 
 ![](https://res.cloudinary.com/forestry-demo/image/upload/v1670337650/tina-io/docs/forestry-migration/Screen_Shot_2022-12-06_at_10.38.10_AM.png)
 
-### Step 5)
+### Step 5) Start using Tina!
 
 With that set, you should be able to push your config to Git and start editing on production at `<your-site-url>/admin`!
 
