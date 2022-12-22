@@ -5,7 +5,7 @@ id: '/docs/forestry/accessing-cms/'
 
 ## CMS Hosting
 
-One of the main differences between Forestry.io and TinaCMS is how you access the CMS. In Forestry, you access the CMS via our hosted environment (`app.tina.io`).
+One of the main differences between Forestry.io and TinaCMS is how you access the CMS. In Forestry, you access the CMS via our hosted environment (`app.forestry.io`).
 
 In TinaCMS, the CMS frontend is hosted alongside your site. This pattern is comparable to Forestry's "remote-admin" feature, which allows you to access the CMS from your site's URL.
 
