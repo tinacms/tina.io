@@ -7,7 +7,7 @@ Source code for the [tina.io](https://tina.io) website.
 ```
 cp .env.example .env
 yarn install
-yarn develop
+yarn dev
 ```
 
 ### Testing Local TinaCMS Changes
@@ -15,7 +15,7 @@ yarn develop
 If you have the **tinacms** repository cloned locally you can use it when running **tina.io**:
 
 ```
-TINA=../path/to/tinacms yarn develop
+TINA=../path/to/tinacms yarn dev
 ```
 
 You can also specify which packages you want to watch:
