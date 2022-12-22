@@ -20,7 +20,7 @@ TinaCMS is focused on providing live, in-context editing capabilities, while For
 
 ### Improved Local Workflow
 
-TinaCMS gives allows devs to iterate more quickly by allowing TinaCMS to be run in dev-mode, locally alongside your site. For example, you can make changes to your content models and fields, and see the results immediately, without having to wait for them to be synchronized with a hosted dashboard.
+TinaCMS allows devs to iterate more quickly by allowing TinaCMS to be run in dev-mode, locally alongside your site. For example, you can make changes to your content models and fields, and see the results immediately, without having to wait for them to be synchronized with a hosted dashboard.
 
 To read more about some of the specific conceptual difference of TinaCMS vs Forestry, read our [Comparing Forestry & Tina Concepts doc]("/docs/forestry/accessing-cms/")
 
