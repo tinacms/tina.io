@@ -31,7 +31,7 @@
           "name": "Team",
           "price": "$29",
           "interval": "month",
-          "body": "* 3 Users\n* 2 Roles\n* Max 10 Users\n* Additional Users $15/seat\n* Forum Support\n",
+          "body": "* 3 Users\n* 2 Roles\n* Max 10 Users\n* Additional Users $9/seat\n* Forum Support\n\n",
           "actions": [
             {
               "label": "Sign Up",
@@ -46,7 +46,7 @@
           "name": "Business",
           "price": "$599",
           "interval": "month",
-          "body": "* 10 Users\n* 3 Roles *(coming soon)*\n* No User Limit\n* Additional Users $15/seat\n* Priority Support\n* SSO&#x20;\n* Approval flow *(coming soon)*\n",
+          "body": "* 10 Users\n* 3 Roles *(coming soon)*\n* No User Limit\n* Additional Users $9/seat\n* Priority Support\n* SSO&#x20;\n* Approval flow *(coming soon)*\n\n",
           "actions": [
             {
               "label": "Sign Up",
@@ -76,7 +76,7 @@
           "name": "Agency",
           "price": "Contact Us",
           "interval": "Custom",
-          "body": "**Bulk pricing available**\n\n* Custom Users\n* Custom Roles\n* No User Limit\n* Variable user pricing\n* Custom Support\n* SSO\n* Custom workflows\n* White Label *(coming soon)*\n\n",
+          "body": "**Bulk pricing available**\n\n* Custom Users\n* Custom Roles\n* No User Limit\n* Variable user pricing\n* Custom Support\n* SSO\n* Custom workflows\n* White Label *(coming soon)*\n",
           "actions": [
             {
               "label": "Contact Us",
