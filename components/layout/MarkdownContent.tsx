@@ -7,13 +7,10 @@ import remarkGfm from 'remark-gfm'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import CodeStyle from '../styles/Code'
 
-import LinkSvg from '../../public/svg/link.svg'
 import styled from 'styled-components'
 
 import * as shortcodeRenderers from '../../utils/shortcodes'
-
-import GithubSlugger from 'github-slugger'
-
+import { MarkdownHeading } from './MarkdownHeading'
 
 interface MarkdownContentProps {
   content: string
@@ -94,50 +91,6 @@ const StyledCopyCodeButton = styled.button`
 const CodeWrapper = styled.div`
   position: relative;
 `
-function WithHeadings({ children, level }) {
-  const HeadingTag = `h${level}` as any
-  const value = children
-    .map(
-      (child) =>
-        child?.props?.value || child?.props?.children[0]?.props?.value || child
-    )
-    .join('')
-  var slugger = new GithubSlugger()
-  const slug = slugger.slug(value)
-
-  return (
-    <HeadingTag id={slug}>
-      <HeadingLink href={`#${slug}`} aria-label={value} className="anchor">
-        <LinkSvg />
-      </HeadingLink>
-      {children}
-    </HeadingTag>
-  )
-}
-
-const HeadingLink = styled.a`
-  fill: var(--color-secondary);
-  opacity: 0;
-  display: flex;
-  align-items: center;
-  position: absolute;
-  top: 1rem;
-  left: -0.25rem;
-  height: 1.3em;
-  transform: translate3d(-100%, 0, 0);
-  transition: all 180ms ease-out;
-
-  svg {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
-
-  &:hover,
-  &:focus,
-  *:hover > & {
-    opacity: 1;
-  }
-`
 
 // https://github.com/rexxars/react-markdown/issues/113#issuecomment-490060741
 const ShortcodeRenderer = ({ identifier, attributes }) => {
@@ -191,12 +144,12 @@ export function MarkdownContent({
             </code>
           )
         },
-        h1: (props) => <WithHeadings level={1} {...props} />,
-        h2: (props) => <WithHeadings level={2} {...props} />,
-        h3: (props) => <WithHeadings level={3} {...props} />,
-        h4: (props) => <WithHeadings level={5} {...props} />,
-        h5: (props) => <WithHeadings level={5} {...props} />,
-        h6: (props) => <WithHeadings level={6} {...props} />,
+        h1: MarkdownHeading,
+        h2: MarkdownHeading,
+        h3: MarkdownHeading,
+        h4: MarkdownHeading,
+        h5: MarkdownHeading,
+        h6: MarkdownHeading,
         // @ts-ignore
         shortcode: ShortcodeRenderer,
       }}
