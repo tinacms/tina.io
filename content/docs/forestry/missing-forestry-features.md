@@ -24,7 +24,7 @@ Keep in mind, TinaCMS's frontend is open source, so we are open to community add
 | -------------------------- | --------------------------------------------------------------------- | ----------------------------------------------------------- |
 | **Hugo Features**          | Hugo Menus                                                            | Considering Support                                         |
 |                            | Drafts                                                                | Supported (through ["draft field"](/docs/forestry/drafts/)) |
-|                            | Insertable Hugo shortcodes                                            | Considering Support                                         |
+|                            | Insertable Hugo shortcodes                                            | Support Planned                                             |
 | **Jekyll Features**        | Jekyll Menus                                                          | Not Considering Support                                     |
 | **Sections/Collections**   | Globs in sidebar definition                                           | Considering Support                                         |
 |                            | Customizable headers in sidebar                                       | Considering Support                                         |
@@ -33,7 +33,7 @@ Keep in mind, TinaCMS's frontend is open source, so we are open to community add
 |                            | Single Document modeling:  "Data files"                               | Support planned                                             |
 | **Organization Features:** | "Sub-Teams"                                                           | Considering Support                                         |
 |                            | SSO                                                                   | Support planned                                             |
-|                            | Audit Logs                                                            | Support planned                                             |
+|                            | Audit Logs                                                            | Considering Support                                         |
 | **Media**                  | Netlify Large Media                                                   | Not Considering Support                                     |
 |                            | Media Search                                                          | Support planned                                             |
 |                            | Date variables for media storage locations (:year:/:month:/:filename) | Considering Support                                         |
@@ -50,8 +50,8 @@ Keep in mind, TinaCMS's frontend is open source, so we are open to community add
 |                            | Persisting unsaved changes in a document                              | Support planned                                             |
 |                            | Multi-user document-locking                                           | Support planned (in some capacity)                          |
 |                            | UI around creating a document that can have multiple templates        | Support planned                                             |
-|                            | Ability to create folders in the UI                                   | Support planned                                         |
-|                            | Previews (for non-react based sites)                                  | Considering Support (in some capacity)                                    |
+|                            | Ability to create folders in the UI                                   | Support planned                                             |
+|                            | Previews (for non-react based sites)                                  | Considering Support (in some capacity)                      |
 | **Git Providers:**         | GitLab                                                                | Support planned                                             |
 |                            | BitBucket                                                             | Considering support                                         |
 |                            | Azure DevOps                                                          | Considering support                                         |
