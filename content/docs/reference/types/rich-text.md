@@ -207,7 +207,7 @@ Will be transformed to:
 * My blockquote
 ```
 
-### Custom shortcode syntax
+## Custom shortcode syntax
 
 <div class="short-code-warning">
    <div>
@@ -223,7 +223,7 @@ If you have some custom shortcode logic in your markdown, you can specify it in 
 The following snippet would throw an error while parsing since Tina doesn't know what to do with `{{}}`:
 
 ```markdown
-{{ WarningCallout text="This is an experimental feature, and the API is subject to change. Have any thoughts? Let us know in the chat, or through one of our [community channels](/community/)!" }}
+{{ WarningCallout content="This is an experimental feature, and the API is subject to change. Have any thoughts? Let us know in the chat, or through one of our [community channels](/community/)!" }}
 ```
 
 But you can tell Tina how to handle it with a `template`:
@@ -247,12 +247,10 @@ But you can tell Tina how to handle it with a `template`:
               },
               fields: [
                 {
-                  // Be sure to call this field `text`
-                  name: 'text',
-                  label: 'Text',
+                  name: 'content',
+                  label: 'Content',
                   type: 'string',
                   required: true,
-                  isTitle: true,
                   ui: {
                     component: 'textarea',
                   },
@@ -265,6 +263,84 @@ But you can tell Tina how to handle it with a `template`:
     },
   ]
 }
+```
+
+### Raw strings in shortcodes
+
+Certain frameworks support shortcodes with Raw string values:
+
+```
+{{<  myshortcode "This is some raw text" >}}
+```
+
+This is supported in Tina with the special `text` field.
+
+```ts
+fields: [
+  {
+    type: 'rich-text',
+    name: 'body',
+    templates: [
+      {
+        name: 'myshortcode',
+        label: 'myshortcode',
+        match: {
+          start: '{{',
+          end: '}}',
+        },
+        fields: [
+          {
+            name: 'text',
+            label: 'text',
+            type: 'string',
+            required: true,
+          },
+        ],
+      },
+    ],
+  },
+]
+```
+
+### Nesting content in a shortcode.
+
+Shortcodes can provide a `children` field, which allows content to be nested within a shortcode.
+
+```md
+{{% shortcode %}}
+What up!
+{{% /shortcode %}}
+```
+
+### Using shortcode names with dashes.
+
+Sometimes your shortcode will contain characters that aren't supported in Tina's content modelling
+
+```md
+{{% my-shortcode %}}
+```
+
+You can supply a `name` on the `match` object to handle this.
+
+```ts
+fields: [
+  {
+    type: 'rich-text',
+    name: 'body',
+    templates: [
+      {
+        name: 'myshortcode',
+        label: 'myshortcode',
+        match: {
+          start: '{{',
+          end: '}}',
+          name: 'my-shortcode',
+        },
+        // ...
+      },
+    ],
+  },
+]
 ```
 
 ## Other notes
