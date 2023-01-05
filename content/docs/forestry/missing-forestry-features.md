@@ -44,12 +44,12 @@ Keep in mind, TinaCMS's frontend is open source, so we are open to community add
 |                            | Ability to setup references to lists in a document                    | Considering Support                                         |
 |                            | Ability to change a document's template through UI                    | Not Considering Support                                     |
 |                            | Ability to create a template from a document                          | Support planned                                             |
+|                            | TOML Support in frontmatter                                           | Support planned                                             |
 | **Editor Functionality:**  | Document Search                                                       | Support planned                                             |
 |                            | Duplicating documents                                                 | Support planned                                             |
 |                            | Ability to rename documents                                           | Support planned                                             |
 |                            | Persisting unsaved changes in a document                              | Support planned                                             |
 |                            | Multi-user document-locking                                           | Support planned (in some capacity)                          |
-|                            | UI around creating a document that can have multiple templates        | Support planned                                             |
 |                            | Ability to create folders in the UI                                   | Support planned                                             |
 |                            | Previews (for non-react based sites)                                  | Considering Support (in some capacity)                      |
 | **Git Providers:**         | GitLab                                                                | Support planned                                             |
