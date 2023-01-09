@@ -14,7 +14,6 @@ In NextJS, content can be queried statically at build-time or dynamically at run
 ```tsx
 // pages/home.js
 import { client } from '../[pathToTina]/.tina/__generated__/client'
-
 const getStaticProps = async () => {
   let postResponse = {}
   try {
@@ -22,7 +21,6 @@ const getStaticProps = async () => {
   } catch {
     // swallow errors related to document creation
   }
-
   return {
     props: {
       data: postResponse.data,
@@ -41,7 +39,7 @@ You'll likely want to query the Tina's Content API for [dynamic routes](https://
 export const getStaticPaths = async () => {
   const postListResponse = await client.queries.postConnection()
   return {
-    paths: postListResponse.data.postConnection.edges.map(page => ({
+    paths: postListResponse.data.postConnection.edges.map((page) => ({
       params: { filename: page.node._sys.filename },
     })),
     fallback: 'blocking',
@@ -62,7 +60,6 @@ For a full working example of Tina + NextJS, [check out our "Barebones Starter"]
 ```tsx
 // pages/home.js
 import { client } from '../[pathToTina]/.tina/__generated__/client'
-
 const getServerSideProps = async () => {
   let postResponse = {}
   try {
@@ -70,7 +67,6 @@ const getServerSideProps = async () => {
   } catch {
     // swallow errors related to document creation
   }
-
   return {
     props: {
       data: postResponse.data,
