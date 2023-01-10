@@ -51,7 +51,7 @@ Keep in mind, TinaCMS's frontend is open source, so we are open to community add
 |                            | Persisting unsaved changes in a document                              | Support planned                                             |
 |                            | Multi-user document-locking                                           | Support planned (in some capacity)                          |
 |                            | Ability to create folders in the UI                                   | Support planned                                             |
-|                            | Previews (for non-react based sites)                                  | Considering Support (in some capacity)                      |
+|                            | Previews (for non-react based sites)                                  | Considering Support ([in some capacity]("https://github.com/tinacms/tinacms/discussions/3509" ""))                      |
 | **Git Providers:**         | GitLab                                                                | Support planned                                             |
 |                            | BitBucket                                                             | Considering support                                         |
 |                            | Azure DevOps                                                          | Considering support                                         |
