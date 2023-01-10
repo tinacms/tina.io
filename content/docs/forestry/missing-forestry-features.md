@@ -1,6 +1,6 @@
 ---
 title: Missing Forestry Features
-id: '/docs/forestry/missing-forestry-features/'
+id: /docs/forestry/missing-forestry-features/
 ---
 
 Below is a list of features that exist in Forestry, but are currently missing from TinaCMS. Each feature falls in one of the following categories:
@@ -23,8 +23,8 @@ Keep in mind, TinaCMS's frontend is open source, so we are open to community add
 | Category                   | Name                                                                  | Status                                                      |
 | -------------------------- | --------------------------------------------------------------------- | ----------------------------------------------------------- |
 | **Hugo Features**          | Hugo Menus                                                            | Considering Support                                         |
-|                            | Drafts                                                                | Supported (through ["draft field"](/docs/forestry/drafts/)) |
-|                            | Insertable Hugo shortcodes                                            | Support Planned                                             |
+|                            | Drafts                                                                | Supported (through ["draft field"](/docs/forestry/drafts/ "")) |
+|                            | Insertable Hugo shortcodes                                            | [In Review]("https://github.com/tinacms/tinacms/pull/3475" "")                                             |
 | **Jekyll Features**        | Jekyll Menus                                                          | Not Considering Support                                     |
 | **Sections/Collections**   | Globs in sidebar definition                                           | Considering Support                                         |
 |                            | Customizable headers in sidebar                                       | Considering Support                                         |
@@ -44,7 +44,7 @@ Keep in mind, TinaCMS's frontend is open source, so we are open to community add
 |                            | Ability to setup references to lists in a document                    | Considering Support                                         |
 |                            | Ability to change a document's template through UI                    | Not Considering Support                                     |
 |                            | Ability to create a template from a document                          | Support planned                                             |
-|                            | TOML Support in frontmatter                                           | Support planned                                             |
+|                            | TOML Support in frontmatter                                           | [In Review]("https://github.com/tinacms/tinacms/pull/3497" "")                                             |
 | **Editor Functionality:**  | Document Search                                                       | Support planned                                             |
 |                            | Duplicating documents                                                 | Support planned                                             |
 |                            | Ability to rename documents                                           | Support planned                                             |
