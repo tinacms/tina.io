@@ -11,22 +11,21 @@ next: content/blog/using-tinacms-with-nextjs.md
 
 > 11.01.23: This post has been updated to use Next.js 13 and its latest features.
 
-Want to skip to using Tina with Next.js? Jump to[ Part II](https://tinacms.org/blog/using-tinacms-with-nextjs/) of this series.
+Want to skip to using Tina with Next.js? Jump to[ Part II](https://tinacms.org/blog/using-tinacms-with-nextjs/ "") of this series.
 
 Next.js is a framework built on top of React for developing web applications. In detail, Next.js has become one of the most popular choices when it comes to web development thanks to its bootstrapped React environment (similar to create-react-app) and its simple, file-based routing logic.
 
-Next.js is simple and flexible. Here you’ll see how to use Next.js to build a simple Markdown-based blog. 
+Next.js is simple and flexible. Here you'll see how to use Next.js to build a simple Markdown-based blog.
 
 Follow this step-by-step tutorial, and learn how to implement the following Markdown blog in Next.js:
 
 ![A complete overview of the Markdown-based Next.js blog](https://res.cloudinary.com/forestry-demo/image/upload/v1673425424/blog-media/tRBGrDoQ_1_dkgk2m.gif "A complete overview of the Markdown-based Next.js blog")
 
-
 Now, let's learn how to implement this Next.js blog based on Markdown.
 
 ## Clone the Starter Project
 
-First, let's clone the starter project. That’s nothing more than a boilerplate blog app to use as a starting point for this tutorial. Check it out on[ GitHub](https://github.com/tinalabs/nextjs-starter-boilerplate) for reference, or clone the starter repository in the my-nextjs-blog directory with: 
+First, let's clone the starter project. That's nothing more than a boilerplate blog app to use as a starting point for this tutorial. Check it out on[ GitHub](https://github.com/tinalabs/nextjs-starter-boilerplate "") for reference, or clone the starter repository in the my-nextjs-blog directory with:
 
 ```
 git clone https://github.com/tinalabs/nextjs-starter-boilerplate my-nextjs-blog
@@ -40,15 +39,15 @@ npm install
 npm run dev
 ```
 
-After cloning the project and starting the [Next.js dev server](https://nextjs.org/docs/api-reference/cli#development), navigate to http://localhost:3000/ in your browser and you should be able to see the following page:
+After cloning the project and starting the [Next.js dev server](https://nextjs.org/docs/api-reference/cli#development ""), navigate to `http://localhost:3000/` in your browser and you should be able to see the following page:
 
 ![The starter project in action](http://res.cloudinary.com/forestry-demo/image/upload/v1673425637/hm8AJj0t_hi0mer.png "The starter project in action")
 
-As you can see, the blog app is pretty simple at the moment. Let’s now dig into the structure of this starter project to learn how to turn this app into a real Markdown-based blog.
+As you can see, the blog app is pretty simple at the moment. Let's now dig into the structure of this starter project to learn how to turn this app into a real Markdown-based blog.
 
 ## Project Structure
 
-If you take look at the starter project in your IDE, you’ll see the following file structure:
+If you take look at the starter project in your IDE, you'll see the following file structure:
 
 ```
 my-nextjs-blog
@@ -59,7 +58,7 @@ my-nextjs-blog
 └── styles/
 ```
 
-Note that pages, public, and styles come from the [Create Next App](https://nextjs.org/docs/api-reference/create-next-app) initialization command. The other two directories were added to the project. Specifically, data contains the blog configuration and other data, while components stores all React components required by the blog.
+Note that pages, public, and styles come from the [Create Next App](https://nextjs.org/docs/api-reference/create-next-app "") initialization command. The other two directories were added to the project. Specifically, data contains the blog configuration and other data, while components stores all React components required by the blog.
 
 Now, let's look at the pages/index.js file:
 
@@ -94,7 +93,7 @@ export async function getStaticProps() {
 }
 ```
 
-This file contains the home page component. Specifically, it returns a Layout component wrapping a \<section> HTML element containing a BlogList component. These are all the pieces that render our little starter app so far. 
+This file contains the home page component. Specifically, it returns a Layout component wrapping a \<section> HTML element containing a BlogList component. These are all the pieces that render our little starter app so far.
 
 This is what BlogList looks like:
 
@@ -114,7 +113,7 @@ const BlogList = ({ allBlogs }) => {
 export default BlogList
 ```
 
-As you can see, it accepts a allBlogs prop value. This should contain the list of all blog posts to show on the home page of the blog. You’ll learn how to populate this prop later in this tutorial. As for now, let’s learn how data fetching works in Next.js.
+As you can see, it accepts a allBlogs prop value. This should contain the list of all blog posts to show on the home page of the blog. You'll learn how to populate this prop later in this tutorial. As for now, let's learn how data fetching works in Next.js.
 
 ## Layout and Styling
 
@@ -143,7 +142,7 @@ export default function Layout(props) {
 }
 ```
 
-In detail, the purpose of the Layout component is to provide the visual skeleton for every page of the site. Typically, such a component contains a nav and/or header that appears on most or all pages, along with a footer element. In this case, Layout only contains a header component that shows the site title. Keep in mind that the use of a Layout component isn’t unique to Next.js, and Gatsby websites also rely on a similar approach.
+In detail, the purpose of the Layout component is to provide the visual skeleton for every page of the site. Typically, such a component contains a nav and/or header that appears on most or all pages, along with a footer element. In this case, Layout only contains a header component that shows the site title. Keep in mind that the use of a Layout component isn't unique to Next.js, and Gatsby websites also rely on a similar approach.
 
 Note that Layout contains also the following Meta component:
 
@@ -164,11 +163,11 @@ export default function Meta(props) {
 }
 ```
 
-This uses the Next.js [Head](https://nextjs.org/docs/api-reference/next/head) component that enables you to specify what to put in the head section of your page for SEO or accessibility purposes.
+This uses the Next.js [Head](https://nextjs.org/docs/api-reference/next/head "") component that enables you to specify what to put in the head section of your page for SEO or accessibility purposes.
 
-An important aspect to mention is that the Layout component uses component-level CSS. Don’t forget that Next.js works out of the box with[ component-level CSS](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css). That’s super intuitive to use. All of the styles are scoped to the component. This means you don't have to worry about accidentally overriding a style rule somewhere else.
+An important aspect to mention is that the Layout component uses component-level CSS. Don't forget that Next.js works out of the box with[ component-level CSS](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css ""). That's super intuitive to use. All of the styles are scoped to the component. This means you don't have to worry about accidentally overriding a style rule somewhere else.
 
-The global style of the blog app is handled in the globals.css you can find in the styles directory. So, if you want to change or add some global CSS rules, you can do it there. At the same time, keep in mind that the global font isn’t defined in the global.css file. This is defined in the Next.js \_app.js file below:
+The global style of the blog app is handled in the globals.css you can find in the styles directory. So, if you want to change or add some global CSS rules, you can do it there. At the same time, keep in mind that the global font isn't defined in the global.css file. This is defined in the Next.js \_app.js file below:
 
 ```javascript
 // pages/_app.js
@@ -195,15 +194,15 @@ export default MyApp
 
 ## Add the Posts Directory to the Project
 
-Now that you’re familiar with the structure of the project and Next.js fundamentals, let’s add everything required to make the Markdown blog in Next.js work.
+Now that you're familiar with the structure of the project and Next.js fundamentals, let's add everything required to make the Markdown blog in Next.js work.
 
-First, create a new directory called posts in the root folder of your project. This folder will contain all your Markdown blog posts. If you don’t already have content ready, just add a few dummy blog posts. Consider using[ Unsplash](https://unsplash.com/) for sample photos, while [Cupcake](http://www.cupcakeipsum.com/), [Hipsum](https://hipsum.co/), or [Sagan Ipsum](http://saganipsum.com/) can help you generate text for your posts.
+First, create a new directory called posts in the root folder of your project. This folder will contain all your Markdown blog posts. If you don't already have content ready, just add a few dummy blog posts. Consider using[ Unsplash](https://unsplash.com/ "") for sample photos, while [Cupcake](http://www.cupcakeipsum.com/ ""), [Hipsum](https://hipsum.co/ ""), or [Sagan Ipsum](http://saganipsum.com/ "") can help you generate text for your posts.
 
-### Create a Sample Post 
+### Create a Sample Post
 
-Now that you have a posts folder, it’s time to fill it with some Markdown posts.
+Now that you have a posts folder, it's time to fill it with some Markdown posts.
 
-Here’s an example of filler content for /posts/my-post.md with commonly used frontmatter values.
+Here's an example of filler content for `/posts/my-post.md` with commonly used frontmatter values.
 
 ```markdown
 ---
@@ -215,9 +214,9 @@ hero_image: /norris-niman-iceland.jpg
   Brain is the seed of intelligence something incredible is waiting to be known.
 ```
 
-If you aren’t familiar with this concept, a frontmatter is a way to store metadata in Markdown files. Typically, frontmatter metadata is stored in[ YAML](https://en.wikipedia.org/wiki/YAML) format in a block wrapped by three dashes placed at the beginning of a Markdown file.
+If you aren't familiar with this concept, a frontmatter is a way to store metadata in Markdown files. Typically, frontmatter metadata is stored in[ YAML](https://en.wikipedia.org/wiki/YAML "") format in a block wrapped by three dashes placed at the beginning of a Markdown file.
 
-Also, place the images referenced in the .md files in the public directory. In Next.js, you can access any file inside public from the base URL /. Learn more about [static file serving in Next.js](https://nextjs.org/docs/basic-features/static-file-serving).
+Also, place the images referenced in the .md files in the public directory. In Next.js, you can access any file inside public from the base URL /. Learn more about [static file serving in Next.js](https://nextjs.org/docs/basic-features/static-file-serving "").
 
 ## Processing Markdown Files in Next.js
 
@@ -227,15 +226,15 @@ npm add raw-loader gray-matter react-markdown
 
 Specifically:
 
-* [Raw Loader](https://github.com/webpack-contrib/raw-loader) will process your Markdown files.
-* [Gray Matter](https://github.com/jonschlinkert/gray-matter) will parse your YAML frontmatter values.
-* [React Markdown](https://github.com/rexxars/react-markdown) will parse and render the body of your Markdown files.
+* [Raw Loader](https://github.com/webpack-contrib/raw-loader "") will process your Markdown files.
+* [Gray Matter](https://github.com/jonschlinkert/gray-matter "") will parse your YAML frontmatter values.
+* [React Markdown](https://github.com/rexxars/react-markdown "") will parse and render the body of your Markdown files.
 
-### Add a next.config.js File to Configure Next.js 
+### Add a next.config.js File to Configure Next.js
 
-Now that you installed some packages needed to handle Markdown, you need to configure the use of the raw-loader. First, create a [next.config.js](https://nextjs.org/docs#custom-configuration) file at the root of the project.
+Now that you installed some packages needed to handle Markdown, you need to configure the use of the raw-loader. First, create a [next.config.js](https://nextjs.org/docs#custom-configuration "") file at the root of the project.
 
-This file enables you to handle any custom configuration for Webpack, routing, build and runtime config, export options, and more. In this use case, you simply have to [add a Webpack rule to make it use raw-loader](https://v4.webpack.js.org/loaders/raw-loader/) to process Markdown .md files.
+This file enables you to handle any custom configuration for Webpack, routing, build and runtime config, export options, and more. In this use case, you simply have to [add a Webpack rule to make it use raw-loader](https://v4.webpack.js.org/loaders/raw-loader/ "") to process Markdown .md files.
 
 ```javascript
 // next.config.js
@@ -251,35 +250,35 @@ module.exports = {
 }
 ```
 
-Webpack is now able to deal with Markdown files. You now need to configure Next.js to create a web page for each Markdown blog post file. Let’s learn how.
+Webpack is now able to deal with Markdown files. You now need to configure Next.js to create a web page for each Markdown blog post file. Let's learn how.
 
 ## Configure Dynamic Routing in Next.js
 
-For some background knowledge, the pages directory is special in Next.js. Each .js file in this directory will respond to a matching HTTP request. For example, when the home page “/” is requested, the component exported from pages/index.js will be rendered. So, if you want your site to have a page at /about, simply create a file named pages/about.js.
+For some background knowledge, the pages directory is special in Next.js. Each `.js` file in this directory will respond to a matching HTTP request. For example, when the home page `"/"` is requested, the component exported from `pages/index.js` will be rendered. So, if you want your site to have a page at `/about`, simply create a file named `pages/about.js`.
 
-This is awesome for static pages, but you want to have a single template from which all blog posts will be built, sourcing the different data from each Markdown file. This means you need to implement dynamic routing. In detail, you want each blog post to have a good-looking URL associated with a page based on this template. 
+This is awesome for static pages, but you want to have a single template from which all blog posts will be built, sourcing the different data from each Markdown file. This means you need to implement dynamic routing. In detail, you want each blog post to have a good-looking URL associated with a page based on this template.
 
-This can be achieved in Next.js very easily. In detail, [dynamic routes](https://nextjs.org/docs#dynamic-routing) in Next.js are identified by square brackets \[] in the filename. Within these brackets, you can pass a query parameter to the page component.
+This can be achieved in Next.js very easily. In detail, [dynamic routes](https://nextjs.org/docs#dynamic-routing "") in Next.js are identified by square brackets `[``]` in the filename. Within these brackets, you can pass a query parameter to the page component.
 
 ### Initialize the Blog Post Dynamic Content Page
 
-Let’s create a new folder in pages called blog, then add a new file within that blog folder \[slug].js.
+Let's create a new folder in pages called blog, then add a new file within that blog folder `[slug].js`.
 
-You’ll learn how to complete this file soon. As for now, you need to know that this file represents a dynamic web page.
+You'll learn how to complete this file soon. As for now, you need to know that this file represents a dynamic web page.
 
-In other words, the content of pages/blog/\[slug].js will change based on the \[slug] parameter in the URL. In detail, based on the slug string extracted from the URL, \[slug].js will read a Markdown file from the file system and use its data to render the blog post.
+In other words, the content of `pages/blog/[slug].js` will change based on the `[slug]` parameter in the URL. In detail, based on the slug string extracted from the URL, `[slug].js` will read a Markdown file from the file system and use its data to render the blog post.
 
 ## Create the pages/blog/\[slug].js Page Component
 
-Let’s code the BlogTemplate blog page component that will render the content contained in a Markdown file read from posts. Thanks to this page, most of the blog logic will be implemented.
+Let's code the BlogTemplate blog page component that will render the content contained in a Markdown file read from posts. Thanks to this page, most of the blog logic will be implemented.
 
-In the \[slug].js page component stored inside the blog directory, you’ll be able to access whatever string passed in the URL through the slug parameter. Typically, such info is used to dynamically retrieve the data to render the page. For example, if you visit http://localhost:3000/blog/julius-caesar, the slug query parameter in \[slug].js will contain the “julius-caesar” string.
+In the `[slug].js` page component stored inside the blog directory, you'll be able to access whatever string passed in the URL through the `slug` parameter. Typically, such info is used to dynamically retrieve the data to render the page. For example, if you visit `http://localhost:3000/blog/julius-caesar`, the slug query parameter in `[slug].js` will contain the “julius-caesar” string.
 
-Let’s now learn how to use the slug parameter to retrieve your content data.
+Let's now learn how to use the slug parameter to retrieve your content data.
 
 ### Get the Markdown Data for the Blog Page Component
 
-With dynamic routing, you can make use of the slug parameter. Specifically, you can use slug to get the data from the corresponding Markdown file in getStaticProps() as follows:
+With dynamic routing, you can make use of the slug parameter. Specifically, you can use slug to get the data from the corresponding Markdown file in `getStaticProps()` as follows:
 
 ```javascript
 // pages/blog/[slug].js
@@ -366,24 +365,24 @@ export async function getStaticPaths() {
 
 > Note the use of gray-matter and ReactMarkdown to properly handle the YAML frontmatter and Markdown body, respectively.
 
-An in-depth look at how this snippet works. Let’s assume you navigate to the http://localhost:3000/blog/julius-caesar dynamic route. The BlogTemplate component in pages/blog/\[slug].js is passed the params object { slug: "julius-caesar" }. 
+An in-depth look at how this snippet works. Let's assume you navigate to the `http://localhost:3000/blog/julius-caesar` dynamic route. The `BlogTemplate` component in `pages/blog/[slug].js` is passed the params object `{ slug: "julius-caesar" }`.
 
-When the getStaticProps() function is called, that params object is passed in through the [context parameter](https://nextjs.org/docs/api-reference/data-fetching/get-server-side-props#context-parameter). Then, slug is extracted from the query params stored in context. In detail, slug is used to search for a .md file within the posts directory that has the same file name. 
+When the `getStaticProps()` function is called, that params object is passed in through the [context parameter](https://nextjs.org/docs/api-reference/data-fetching/get-server-side-props#context-parameter ""). Then, slug is extracted from the query params stored in `context`. In detail, slug is used to search for a .md file within the posts directory that has the same file name.
 
 Once you get the data from that file, you parse the frontmatter from the Markdown body and return the data. That data is passed down as props to the BlogTemplate component, which will render that data as it needs.
 
-#### Implementing getStaticPaths()
+#### Implementing `getStaticPaths()`
 
-At this point, you should be more familiar with getStaticProps(). But the [getStatisPaths()](https://nextjs.org/docs/basic-features/data-fetching/get-static-paths) function may look new to you. Since this template uses dynamic routes, you need to define a list of paths for each blog. This way, Next.js will be able to statically render each blog post past at build time. Keep in mind that you need to use getStaticPaths() only when it comes to dynamic routing.
+At this point, you should be more familiar with getStaticProps(). But the [getStatisPaths()](https://nextjs.org/docs/basic-features/data-fetching/get-static-paths "") function may look new to you. Since this template uses dynamic routes, you need to define a list of paths for each blog. This way, Next.js will be able to statically render each blog post past at build time. Keep in mind that you need to use getStaticPaths() only when it comes to dynamic routing.
 
-In the return object from getStaticPaths(), the following two keys are required: 
+In the return object from `getStaticPaths()`, the following two keys are required:
 
-* [paths](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths#paths): contains an array of object having a params field with the required dynamic param. For example, { params : { slug: "julius-caesar"} }. 
-* [fallback](https://nextjs.org/docs/basic-features/data-fetching/overview#the-fallback-key-required): allows you to control the Next.js behavior when a path isn’t returned from getStaticPaths(). Set it to false to make Next.js return a 404 page for unknown paths.
+* [paths](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths#paths ""): contains an array of object having a params field with the required dynamic param. For example, `{ params : { slug: "julius-caesar"} }`.
+* [fallback](https://nextjs.org/docs/basic-features/data-fetching/overview#the-fallback-key-required ""): allows you to control the Next.js behavior when a path isn't returned from `getStaticPaths()`. Set it to false to make Next.js return a 404 page for unknown paths.
 
-> Before the release of Next.js 9.3, this path generation for static export could be handled via [exportPathMap](https://nextjs.org/docs/api-reference/next.config.js/exportPathMap).
+> Before the release of Next.js 9.3, this path generation for static export could be handled via [`exportPathMap`](https://nextjs.org/docs/api-reference/next.config.js/exportPathMap "").
 
-Now Navigate to [http://localhost:3000/blog/my-post](http://localhost:3000/blog/my-post). This is what the BlogTemplate component looks like:
+Now Navigate to [`http://localhost:3000/blog/my-post`](http://localhost:3000/blog/my-post ""). This is what the BlogTemplate component looks like:
 
 ![http://localhost:3000/blog/my-post in action](http://res.cloudinary.com/forestry-demo/image/upload/v1673426650/mArAHU8g_1_bedrfy.gif "http://localhost:3000/blog/my-post in action")
 
@@ -391,7 +390,7 @@ As you can see, it perfectly renders the blog post data stored in Markdown forma
 
 ## Add a Homepage to Your Blog
 
-Let’s finish this simple Markdown-based blog in Next.js by completing the home page. All you have to do is change the data retrieval logic in pages/index.js page. Specifically, you want to pass the proper data to the BlogList component on the Index page. Since you can only use getStaticProps() on page components, you’ll have to pass the blog data down from the Index component to BlogList as a prop.
+Let's finish this simple Markdown-based blog in Next.js by completing the home page. All you have to do is change the data retrieval logic in pages/index.js page. Specifically, you want to pass the proper data to the BlogList component on the Index page. Since you can only use getStaticProps() on page components, you'll have to pass the blog data down from the Index component to BlogList as a prop.
 
 Implement pages/index.js as follows:
 
@@ -464,13 +463,13 @@ export async function getStaticProps() {
 }
 ```
 
-The getStaticProps() function here may be slightly complex to look at, but let’s take it one step at a time. The logic here is based on the [require.context()](https://webpack.js.org/guides/dependency-management/#requirecontext) function provided by Webpack. This allows you to create your own Webpack context based on three parameters:
+The `getStaticProps()` function here may be slightly complex to look at, but let's take it one step at a time. The logic here is based on the [`require.context()`](https://webpack.js.org/guides/dependency-management/#requirecontext "") function provided by Webpack. This allows you to create your own Webpack context based on three parameters:
 
 * The directory to match within.
 * A boolean flag to include or exclude subdirectories.
 * A regular expression to match files against.
 
-You can define a Webpack context with require.context() with the following syntax:
+You can define a Webpack context with `require.context()` with the following syntax:
 
 ```javascript
 require.context(
@@ -480,9 +479,11 @@ require.context(
 )
 ```
 
-Note that the parameters in round brackets are optional. For example, this is how you can call the require.context() function:
+Note that the parameters in round brackets are optional. For example, this is how you can call the `require.context()` function:
 
+```javascript
 require.context("../posts", true, /\\.md$/)
+```
 
 Thanks to a Webpack context, you can pick out all the files matching a regular expression from a particular directory. This allows you to generate the slug string from each file name, read its content, parse it with the frontmatter library, and pass the manipulated data to Index as props.
 
@@ -533,7 +534,7 @@ const BlogList = ({ allBlogs }) => {
 export default BlogList
 ```
 
-If your development server is running, you should now be able to navigate your Next.js Markdown blog app at http://localhost:3000. Otherwise, launch the app with:
+If your development server is running, you should now be able to navigate your Next.js Markdown blog app at `http://localhost:3000`. Otherwise, launch the app with:
 
 ```
 npm run dev
@@ -541,10 +542,9 @@ npm run dev
 
 Note that you may have to relaunch the homepage of the blog to see the blog posts.
 
+Congrats! You just learned how to build a Markdown blog in Next.js!
 
-Congrats! You just learned how to build a Markdown blog in Next.js!\
-\
-If you'd like to take a look at the final result, feel free to check out the[ repository of the Markdown-based blog website](https://github.com/tinalabs/brevifolia-next-2022).
+If you'd like to take a look at the final result, feel free to check out the [repository of the Markdown-based blog website](https://github.com/tinalabs/brevifolia-next-2022 "").
 
 Clone it with the command below:
 
@@ -560,13 +560,13 @@ npm install
 npm run dev
 ```
 
-Visit [http://localhost:3000](http://localhost:3000) in your browser and you now should be seeing the Markdown-based blog application in action.
+Visit [`http://localhost:3000`](http://localhost:3000 "") in your browser and you now should be seeing the Markdown-based blog application in action.
 
 ## Conclusion and Next Steps
 
-In this article, you learned how to build a Markdown-based blog app in Next.js from scratch. As you saw here, this doesn’t require a lot of code. In detail, you can easily configure Next.js to read Markdown files from the file system. You can then use these files as a source for your blog posts.
+In this article, you learned how to build a Markdown-based blog app in Next.js from scratch. As you saw here, this doesn't require a lot of code. In detail, you can easily configure Next.js to read Markdown files from the file system. You can then use these files as a source for your blog posts.
 
-After setting up your Markdown-based blog site, you’ll most likely need a CMS ([Content Management System)](https://en.wikipedia.org/wiki/Content_management_system) to make editing and updating your posts or data easier. Stay tuned for the next blog on setting up this starter with TinaCMS. In the meantime, you can check out our[ documentation](https://tina.io/docs), or[ try out a starter](https://tina.io/docs/introduction/using-starter/) to start playing with TinaCMS right away.
+After setting up your Markdown-based blog site, you'll most likely need a CMS ([Content Management System)](https://en.wikipedia.org/wiki/Content_management_system "") to make editing and updating your posts or data easier. Stay tuned for the next blog on setting up this starter with TinaCMS. In the meantime, you can check out our[ documentation](https://tina.io/docs ""), or[ try out a starter](https://tina.io/docs/introduction/using-starter/ "") to start playing with TinaCMS right away.
 
 ## Where Can You Keep Up to Date with Tina?
 
@@ -574,7 +574,7 @@ You know that you want to be part of this creative, innovative, supportive commu
 
 ### Tina Community Discord
 
-Tina has a community [Discord](https://discord.com/invite/zumN63Ybpf) that is full of Jamstack lovers and Tina enthusiasts. When you join you will find a place:
+Tina has a community [Discord](https://discord.com/invite/zumN63Ybpf "") that is full of Jamstack lovers and Tina enthusiasts. When you join you will find a place:
 
 * To get help with issues
 * Find the latest Tina news and sneak previews
@@ -583,4 +583,4 @@ Tina has a community [Discord](https://discord.com/invite/zumN63Ybpf) that is 
 
 ### Tina Twitter
 
-Our Twitter account ([@tinacms](https://twitter.com/tinacms)) announces the latest features, improvements, and sneak peeks to Tina. We would also be psyched if you tagged us in projects you have built.
+Our Twitter account ([@tinacms](https://twitter.com/tinacms "")) announces the latest features, improvements, and sneak peeks to Tina. We would also be psyched if you tagged us in projects you have built.
