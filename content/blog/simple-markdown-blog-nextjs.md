@@ -395,150 +395,74 @@ Let’s finish this simple Markdown-based blog in Next.js by completing the home
 
 Implement pages/index.js as follows:
 
-
-
-
+```javascript
 // pages/index.js
 
-
-
-
 import matter from "gray-matter"
-
 import Layout from "../components/Layout"
-
 import BlogList from "../components/BlogList"
 
-
-
-
 const Index = props => {
-
-  return (
-
-      \<Layout
-
-          pathname="/"
-
-          siteTitle={props.title}
-
-          siteDescription={props.description}
-
-      >
-
-        \<section>
-
-          \<BlogList allBlogs={props.allBlogs} />
-
-        \</section>
-
-      \</Layout>
-
-  )
-
+  return (
+    <Layout
+      pathname="/"
+      siteTitle={props.title}
+      siteDescription={props.description}
+    >
+      <section>
+        <BlogList allBlogs={props.allBlogs} />
+      </section>
+    </Layout>
+  )
 }
-
-
-
 
 export default Index
 
-
-
-
 export async function getStaticProps() {
+  // getting the website config
+  const siteConfig = await import(`../data/config.json`)
 
-  // getting the website config
+  const webpackContext = require.context("../posts", true, /\.md$/)
+  // the list of file names contained
+  // inside the "posts" directory
+  const keys = webpackContext.keys()
+  const values = keys.map(webpackContext)
 
-  const siteConfig = await import(\`../data/config.json\`)
+  // getting the post data from the files contained
+  // in the "posts" folder
+  const posts = keys.map((key, index) => {
+    // dynamically creating the post slug
+    // from file name
+    const slug = key
+      .replace(/^.*[\\\/]/, "")
+      .split(".")
+      .slice(0, -1)
+      .join(".")
 
+    // getting the .md file value associated
+    // with the current file name
+    const value = values[index]
 
+    // parsing the YAML metadata and markdown body
+    // contained in the .md file
+    const document = matter(value.default)
 
+    return {
+      frontmatter: document.data,
+      markdownBody: document.content,
+      slug,
+    }
+  })
 
-  const webpackContext = require.context("../posts", true, /\\.md$/)
-
-  // the list of file names contained
-
-  // inside the "posts" directory
-
-  const keys = webpackContext.keys()
-
-  const values = keys.map(webpackContext)
-
-
-
-
-  // getting the post data from the files contained
-
-  // in the "posts" folder
-
-  const posts = keys.map((key, index) => {
-
-    // dynamically creating the post slug
-
-    // from file name
-
-    const slug = key
-
-        .replace(/^.\*\[\\\\\\/]/, "")
-
-        .split(".")
-
-        .slice(0, -1)
-
-        .join(".")
-
-
-
-
-    // getting the .md file value associated
-
-    // with the current file name
-
-    const value = values\[index]
-
-
-
-
-    // parsing the YAML metadata and markdown body
-
-    // contained in the .md file
-
-    const document = matter(value.default)
-
-
-
-
-    return {
-
-      frontmatter: document.data,
-
-      markdownBody: document.content,
-
-      slug,
-
-    }
-
-  })
-
-
-
-
-  return {
-
-    props: {
-
-      allBlogs: posts,
-
-      title: siteConfig.default.title,
-
-      description: siteConfig.default.description,
-
-    },
-
-  }
-
+  return {
+    props: {
+      allBlogs: posts,
+      title: siteConfig.default.title,
+      description: siteConfig.default.description,
+    },
+  }
 }
+```
 
 The getStaticProps() function here may be slightly complex to look at, but let’s take it one step at a time. The logic here is based on the [require.context()](https://webpack.js.org/guides/dependency-management/#requirecontext) function provided by Webpack. This allows you to create your own Webpack context based on three parameters:
 
@@ -548,15 +472,13 @@ The getStaticProps() function here may be slightly complex to look at, but let�
 
 You can define a Webpack context with require.context() with the following syntax:
 
+```javascript
 require.context(
-
-  directory, 
-
-  (useSubdirectories = true),
-
-  (regExp = /^\\.\\/.\*$/),
-
+  directory,
+  (useSubdirectories = true),
+  (regExp = /^\.\/.*$/),
 )
+```
 
 Note that the parameters in round brackets are optional. For example, this is how you can call the require.context() function:
 
@@ -566,106 +488,79 @@ Thanks to a Webpack context, you can pick out all the files matching a regular e
 
 Then, the blog data is passed as a prop to the BlogList component. In the BlogList component, you can iterate over the blog data and render the list of post previews as you wish. Specifically, the BlogList component takes care of rendering the blog data. This is what BlogList looks like:
 
+```javascript
 import Link from "next/link"
-
 import ReactMarkdown from "react-markdown"
-
 import styles from "../styles/BlogList.module.css"
-
 import Image from "next/image"
 
-
-
-
 function truncateSummary(content) {
-
-    return content.slice(0, 200).trimEnd()
-
+  return content.slice(0, 200).trimEnd()
 }
-
-
-
 
 function reformatDate(fullDate) {
-
-    const date = new Date(fullDate)
-
-    return date.toDateString().slice(4)
-
+  const date = new Date(fullDate)
+  return date.toDateString().slice(4)
 }
-
-
-
 
 const BlogList = ({ allBlogs }) => {
-
-    return (
-
-        \<ul>
-
-            {allBlogs && allBlogs.length > 1 &&
-
-                allBlogs.map(post => (
-
-                    \<li key={post.slug}>
-
-                        \<Link href={{ pathname: \`/blog/${post.slug}\` }} className={styles.blog\_\_link}>
-
-                            \<div className={styles.hero\_image}>
-
-                                \<Image
-
-                                    width={384}
-
-                                    height={288}
-
-                                    src={post.frontmatter.hero\_image}
-
-                                    alt={post.frontmatter.hero\_image}
-
-                                />
-
-                            \</div>
-
-                            \<div className={styles.blog\_\_info}>
-
-                                \<h2>{post.frontmatter.title}\</h2>
-
-                                \<h3>{reformatDate(post.frontmatter.date)}\</h3>
-
-                                \<ReactMarkdown disallowedElements={\["a"]}>{truncateSummary(post.markdownBody)}\</ReactMarkdown>
-
-                            \</div>
-
-                        \</Link>
-
-                    \</li>
-
-                ))}
-
-        \</ul>
-
-    )
-
+  return (
+    <ul>
+      {allBlogs && allBlogs.length > 1 &&
+        allBlogs.map(post => (
+          <li key={post.slug}>
+            <Link href={{ pathname: `/blog/${post.slug}` }} className={styles.blog__link}>
+              <div className={styles.hero_image}>
+                <Image
+                  width={384}
+                  height={288}
+                  src={post.frontmatter.hero_image}
+                  alt={post.frontmatter.hero_image}
+                />
+              </div>
+              <div className={styles.blog__info}>
+                <h2>{post.frontmatter.title}</h2>
+                <h3>{reformatDate(post.frontmatter.date)}</h3>
+                <ReactMarkdown disallowedElements={["a"]}>{truncateSummary(post.markdownBody)}</ReactMarkdown>
+              </div>
+            </Link>
+          </li>
+        ))}
+    </ul>
+  )
 }
 
-
-
-
 export default BlogList
-
+```
 
 If your development server is running, you should now be able to navigate your Next.js Markdown blog app at http://localhost:3000. Otherwise, launch the app with:
 
+```
 npm run dev
-
+```
 
 Note that you may have to relaunch the homepage of the blog to see the blog posts.
 
 
-Congrats! You just learned how to build a Markdown blog in Next.js!
+Congrats! You just learned how to build a Markdown blog in Next.js!\
+\
+If you'd like to take a look at the final result, feel free to check out the[ repository of the Markdown-based blog website](https://github.com/tinalabs/brevifolia-next-2022).
 
-> Check out the[ final repo](https://github.com/tinalabs/brevifolia-next-2022)!
+Clone it with the command below:
+
+```
+git clone https://github.com/tinalabs/brevifolia-next-2023
+```
+
+Enter the project folder, and launch the following command to install the dependencies and launch the Mardkown-based Next.js blog app:
+
+```
+cd brevifolia-next-2023
+npm install
+npm run dev
+```
+
+Visit [http://localhost:3000](http://localhost:3000) in your browser and you now should be seeing the Markdown-based blog application in action.
 
 ## Conclusion and Next Steps
 
