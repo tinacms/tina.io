@@ -28,18 +28,17 @@ Now, let's learn how to implement this Next.js blog based on Markdown.
 
 First, let's clone the starter project. That’s nothing more than a boilerplate blog app to use as a starting point for this tutorial. Check it out on[ GitHub](https://github.com/tinalabs/nextjs-starter-boilerplate) for reference, or clone the starter repository in the my-nextjs-blog directory with: 
 
+```
 git clone https://github.com/tinalabs/nextjs-starter-boilerplate my-nextjs-blog
-
+```
 
 Then, enter the project folder, install the project dependencies, and launch the blog app with the following commands
 
+```
 cd my-nextjs-blog
-
 npm install
-
 npm run dev
-
-
+```
 
 After cloning the project and starting the [Next.js dev server](https://nextjs.org/docs/api-reference/cli#development), navigate to http://localhost:3000/ in your browser and you should be able to see the following page:
 
@@ -51,17 +50,14 @@ As you can see, the blog app is pretty simple at the moment. Let’s now dig int
 
 If you take look at the starter project in your IDE, you’ll see the following file structure:
 
+```
 my-nextjs-blog
-
 ├── components/
-
 ├── data/
-
 ├── pages/
-
 ├── public/
-
 └── styles/
+```
 
 Note that pages, public, and styles come from the [Create Next App](https://nextjs.org/docs/api-reference/create-next-app) initialization command. The other two directories were added to the project. Specifically, data contains the blog configuration and other data, while components stores all React components required by the blog.
 
