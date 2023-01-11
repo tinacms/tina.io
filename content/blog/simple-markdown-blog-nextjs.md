@@ -1,6 +1,6 @@
 ---
 title: How To Create a Markdown Blog With Next.js
-date: '2022-02-18T07:00:00.000Z'
+date: '2023-01-11T04:00:00.000Z'
 last_edited: '2023-01-10T23:00:00.000Z'
 author: Antonello Zanini
 draft: false
@@ -9,7 +9,7 @@ next: content/blog/using-tinacms-with-nextjs.md
 
 # How To Create a Markdown Blog With Next.js
 
-> 11.01.23: This post has been updated to use Next.js 13 and its latest features.
+> This post has been updated to use Next.js 13 and its latest features.
 
 *Want to skip to using Tina with Next.js? Jump to[ Part II](https://tinacms.org/blog/using-tinacms-with-nextjs/) of this series.*
 
