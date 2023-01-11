@@ -7,6 +7,7 @@ draft: false
 next: content/blog/using-tinacms-with-nextjs.md
 ---
 
+
 # How To Create a Markdown Blog With Next.js
 
 > 11.01.23: This post has been updated to use Next.js 13 and its latest features.
