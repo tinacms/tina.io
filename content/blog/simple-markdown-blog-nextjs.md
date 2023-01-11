@@ -63,100 +63,56 @@ Note that pages, public, and styles come from the [Create Next App](https://next
 
 Now, let's look at the pages/index.js file:
 
-// pages/index.js 
-
-
-
+```javascript
+// pages/index.js
 
 const Index = props => {
-
-  return (
-
-    \<Layout
-
-      pathname="/"
-
-      siteTitle={props.title}
-
-      siteDescription={props.description}
-
-    >
-
-      \<section>
-
-        \<BlogList />
-
-      \</section>
-
-    \</Layout>
-
-  )
-
+  return (
+    <Layout
+      pathname="/"
+      siteTitle={props.title}
+      siteDescription={props.description}
+    >
+      <section>
+        <BlogList />
+      </section>
+    </Layout>
+  )
 }
-
-
-
 
 export default Index
 
-
-
-
 export async function getStaticProps() {
+  const configData = await import(`../data/config.json`)
 
-  const configData = await import(\`../data/config.json\`)
-
-
-
-
-  return {
-
-    props: {
-
-      title: configData.title,
-
-      description: configData.description,
-
-    },
-
-  }
-
+  return {
+    props: {
+      title: configData.title,
+      description: configData.description,
+    },
+  }
 }
-
+```
 
 This file contains the home page component. Specifically, it returns a Layout component wrapping a \<section> HTML element containing a BlogList component. These are all the pieces that render our little starter app so far. 
 
 This is what BlogList looks like:
 
+```javascript
 // components/BlogList.js
-
-
-
 
 import styles from "../styles/BlogList.module.css"
 
-
-
-
 const BlogList = ({ allBlogs }) => {
-
-    return (
-
-    \<div className={styles.bloglist\_\_container}>
-
-      \<h3>List of all blog posts will go here\</h3>
-
-    \</div>
-
-    )
-
+  return (
+    <div className={styles.bloglist__container}>
+      <h3>List of all blog posts will go here</h3>
+    </div>
+  )
 }
 
-
-
-
 export default BlogList
-
+```
 
 As you can see, it accepts a allBlogs prop value. This should contain the list of all blog posts to show on the home page of the blog. You’ll learn how to populate this prop later in this tutorial. As for now, let’s learn how data fetching works in Next.js.
 
@@ -164,48 +120,28 @@ As you can see, it accepts a allBlogs prop value. This should contain the list o
 
 Each blog page has a common layout. This is defined in the Layout component below:
 
+```javascript
 // components/Layout.js
 
-
-
-
 import Header from "./Header"
-
 import Meta from './Meta'
-
 import styles from '../styles/Layout.module.css'
 
-
-
-
 export default function Layout(props) {
-
-  return (
-
-    \<section
-
-    className={styles.layout}
-
-  >
-
-    \<Meta
-
-      siteTitle={props.siteTitle}
-
-      siteDescription={props.siteDescription}
-
-    />
-
-    \<Header siteTitle={props.siteTitle} />
-
-    \<div className={styles.content}>{props.children}\</div>
-
-  \</section>
-
-  )
-
+  return (
+    <section
+      className={styles.layout}
+    >
+      <Meta
+        siteTitle={props.siteTitle}
+        siteDescription={props.siteDescription}
+      />
+      <Header siteTitle={props.siteTitle} />
+      <div className={styles.content}>{props.children}</div>
+    </section>
+  )
 }
-
+```
 
 In detail, the purpose of the Layout component is to provide the visual skeleton for every page of the site. Typically, such a component contains a nav and/or header that appears on most or all pages, along with a footer element. In this case, Layout only contains a header component that shows the site title. Keep in mind that the use of a Layout component isn’t unique to Next.js, and Gatsby websites also rely on a similar approach.
 
