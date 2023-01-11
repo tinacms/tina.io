@@ -1,7 +1,7 @@
 ---
 title: 'TinaCMS V1.1.3'
-date: '2023-01-11T04:00:00.000Z'
-last_edited: '2023-01-11T04:00:00.000Z'
+date: '2023-01-11T22:00:00.000Z'
+last_edited: '2023-01-11T22:00:00.000Z'
 author: James O'Halloran
 ---
 
@@ -32,6 +32,8 @@ outputs `<<% rimg myprop="" %>>`
 Previously, this would match any content within `{{<` and `>}}`. Now, this will only match when the name of the shortcode also matches.
 
 Editors will also be able to edit fields in the shortcodes indivudually, instead of through a global `text` field.
+
+See [here](https://tina.io/docs/reference/types/rich-text/#custom-shortcode-syntax) for more info.
 
 ## Min/Max Support in list fields
 
