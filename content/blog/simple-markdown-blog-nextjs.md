@@ -369,17 +369,17 @@ export async function getStaticPaths() {
 }
 ```
 
-> Note the use of gray-matter and ReactMarkdown to properly handle the YAML frontmatter and Markdown body, respectively.
+> Note the use of `gray-matter` and `ReactMarkdown` to properly handle the YAML frontmatter and Markdown body, respectively.
 
 An in-depth look at how this snippet works. Let's assume you navigate to the `http://localhost:3000/blog/julius-caesar` dynamic route. The `BlogTemplate` component in `pages/blog/[slug].js` is passed the params object `{ slug: "julius-caesar" }`.
 
-When the `getStaticProps()` function is called, that params object is passed in through the [context parameter](https://nextjs.org/docs/api-reference/data-fetching/get-server-side-props#context-parameter). Then, slug is extracted from the query params stored in `context`. In detail, slug is used to search for a .md file within the posts directory that has the same file name.
+When the `getStaticProps()` function is called, that `params` object is passed in through the [context parameter](https://nextjs.org/docs/api-reference/data-fetching/get-server-side-props#context-parameter). Then, `slug` is extracted from the query params stored in `context`. In detail, **`slug` is used to search for a `.md` file within the posts directory that has the same file name**.
 
-Once you get the data from that file, you parse the frontmatter from the Markdown body and return the data. That data is passed down as props to the `BlogTemplate` component, which will render that data as it needs.
+Once you get the data from that file, **you can parse the frontmatter from the Markdown body and return its data**. That data is passed down as props to the `BlogTemplate` component, which will render that data as it needs.
 
 ### Implementing `getStaticPaths()`
 
-At this point, you should be more familiar with `getStaticProps()`. But the [`getStatisPaths()`](https://nextjs.org/docs/basic-features/data-fetching/get-static-paths) function may look new to you. Since this template uses dynamic routes, you need to define a list of paths for each blog. This way, Next.js will be able to statically render each blog post past at build time. Keep in mind that you need to use `getStaticPaths()` only when it comes to dynamic routing.
+At this point, you should be more familiar with `getStaticProps()`. But the **[`getStatisPaths()`](https://nextjs.org/docs/basic-features/data-fetching/get-static-paths)** function may look new to you. Since this template uses dynamic routes, you need to define a list of paths for each blog. This way, **Next.js will be able to statically render each blog post past at build time**. Keep in mind that you need to use `getStaticPaths()` only when it comes to dynamic routing.
 
 In the return object from `getStaticPaths()`, the following two keys are required:
 
@@ -396,7 +396,9 @@ As you can see, it perfectly renders the blog post data stored in Markdown forma
 
 ## Add a Homepage to Your Blog
 
-Let's finish this simple Markdown-based blog in Next.js by completing the home page. All you have to do is change the data retrieval logic in `pages/index.js` page. Specifically, you want to pass the proper data to the `BlogList` component on the Index page. Since you can only use `getStaticProps()` on page components, you'll have to pass the blog data down from the Index component to `BlogList` as a prop.
+Let's finish this simple Markdown-based blog in Next.js by completing the home page.
+
+All you have to do is **change the data retrieval logic in `pages/index.js` page**. Specifically, you want to pass the proper data to the `BlogList` component on the `Index` page. Since you can only use `getStaticProps()` on page components, you'll have to pass the blog data down from the `Index` component to `BlogList` as a prop.
 
 Implement `pages/index.js` as follows:
 
@@ -469,7 +471,7 @@ export async function getStaticProps() {
 }
 ```
 
-The `getStaticProps()` function here may be slightly complex to look at, but let's take it one step at a time. The logic here is based on the [`require.context()`](https://webpack.js.org/guides/dependency-management/#requirecontext) function provided by Webpack. This allows you to create your own Webpack context based on three parameters:
+The `getStaticProps()` function here may be slightly complex to look at, but let's take it one step at a time. The logic here is based on the [`require.context()`](https://webpack.js.org/guides/dependency-management/#requirecontext) function provided by Webpack. This **allows you to create your own Webpack context** based on three parameters:
 
 * The directory to match within.
 * A boolean flag to include or exclude subdirectories.
@@ -491,9 +493,11 @@ Note that the parameters in round brackets are optional. For example, this is ho
 require.context("../posts", true, /\\.md$/)
 ```
 
-Thanks to a Webpack context, you can pick out all the files matching a regular expression from a particular directory. This allows you to generate the slug string from each file name, read its content, parse it with the frontmatter library, and pass the manipulated data to Index as props.
+Thanks to a Webpack context, you can pick out all the files matching a regular expression from a particular directory. This allows you to **generate the slug string from each file name, read its content, parse it with the frontmatter library, and pass the manipulated data to Index as props**.
 
-Then, the blog data is passed as a prop to the `BlogList` component. In the `BlogList` component, you can iterate over the blog data and render the list of post previews as you wish. Specifically, the `BlogList` component takes care of rendering the blog data. This is what `BlogList` looks like:
+Then, the blog data is passed as a prop to the `BlogList` component. In the `BlogList` component, you can iterate over the blog data and render the list of post previews as you wish. Specifically, **the `BlogList` component takes care of rendering the blog data**.
+
+This is what `BlogList` looks like:
 
 ```javascript
 import Link from "next/link"
@@ -546,11 +550,11 @@ If your development server is running, you should now be able to navigate your N
 npm run dev
 ```
 
-Note that you may have to relaunch the homepage of the blog to see the blog posts.
+Note that **you may have to relaunch the homepage of the blog to see the blog posts**.
 
 Congrats! You just learned how to build a Markdown blog in Next.js!
 
-If you'd like to take a look at the final result, feel free to check out the [repository of the Markdown-based blog website](https://github.com/tinalabs/brevifolia-next-2022).
+If you'd like to take a look at the final result, feel free to **check out the [repository of the Markdown-based blog website](https://github.com/tinalabs/brevifolia-next-2023)**.
 
 Clone it with the command below:
 
@@ -572,7 +576,7 @@ Visit [`http://localhost:3000`](http://localhost:3000) in your browser and you n
 
 In this article, you learned how to build a Markdown-based blog app in Next.js from scratch. As you saw here, this doesn't require a lot of code. In detail, you can easily configure Next.js to read Markdown files from the file system. You can then use these files as a source for your blog posts.
 
-After setting up your Markdown-based blog site, you'll most likely need a CMS ([Content Management System)](https://en.wikipedia.org/wiki/Content_management_system) to make editing and updating your posts or data easier. Stay tuned for the next blog on setting up this starter with TinaCMS. In the meantime, you can check out our[ documentation](https://tina.io/docs), or[ try out a starter](https://tina.io/docs/introduction/using-starter/) to start playing with TinaCMS right away.
+After setting up your Markdown-based blog site, you'll most likely need a CMS ([Content Management System)](https://en.wikipedia.org/wiki/Content_management_system) to make editing and updating your posts or data easier. Stay tuned for **the next blog on setting up this starter with TinaCMS**. In the meantime, you can check out our[ documentation](https://tina.io/docs), or[ try out a starter](https://tina.io/docs/introduction/using-starter/) to start playing with TinaCMS right away.
 
 ## Where Can You Keep Up to Date with Tina?
 
