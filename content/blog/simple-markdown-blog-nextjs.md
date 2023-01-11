@@ -11,9 +11,9 @@ next: content/blog/using-tinacms-with-nextjs.md
 
 > 11.01.23: This post has been updated to use Next.js 13 and its latest features.
 
-Want to skip to using Tina with Next.js? Jump to[ Part II](https://tinacms.org/blog/using-tinacms-with-nextjs/ "") of this series.
+*Want to skip to using Tina with Next.js? Jump to[ Part II](https://tinacms.org/blog/using-tinacms-with-nextjs/ "") of this series.*
 
-Next.js is a framework built on top of React for developing web applications. In detail, Next.js has become one of the most popular choices when it comes to web development thanks to its bootstrapped React environment (similar to create-react-app) and its simple, file-based routing logic.
+Next.js is a framework built on top of React for developing web applications. In detail, Next.js has become one of the most popular choices when it comes to web development thanks to its bootstrapped React environment (similar to `create-react-app`) and its simple, file-based routing logic.
 
 Next.js is simple and flexible. Here you'll see how to use Next.js to build a simple Markdown-based blog.
 
@@ -25,7 +25,7 @@ Now, let's learn how to implement this Next.js blog based on Markdown.
 
 ## Clone the Starter Project
 
-First, let's clone the starter project. That's nothing more than a boilerplate blog app to use as a starting point for this tutorial. Check it out on[ GitHub](https://github.com/tinalabs/nextjs-starter-boilerplate "") for reference, or clone the starter repository in the my-nextjs-blog directory with:
+First, let's clone the starter project. That's nothing more than a boilerplate blog app to use as a starting point for this tutorial. Check it out on[ GitHub](https://github.com/tinalabs/nextjs-starter-boilerplate "") for reference, or clone the starter repository in the `my-nextjs-blog` directory with:
 
 ```
 git clone https://github.com/tinalabs/nextjs-starter-boilerplate my-nextjs-blog
@@ -58,9 +58,9 @@ my-nextjs-blog
 └── styles/
 ```
 
-Note that pages, public, and styles come from the [Create Next App](https://nextjs.org/docs/api-reference/create-next-app "") initialization command. The other two directories were added to the project. Specifically, data contains the blog configuration and other data, while components stores all React components required by the blog.
+Note that `pages`, `public`, and `styles` come from the [Create Next App](https://nextjs.org/docs/api-reference/create-next-app "") initialization command. The other two directories were added to the project. Specifically, `data` contains the blog configuration and other data, while `components` stores all React components required by the blog.
 
-Now, let's look at the pages/index.js file:
+Now, let's look at the `pages/index.js` file:
 
 ```javascript
 // pages/index.js
@@ -93,9 +93,9 @@ export async function getStaticProps() {
 }
 ```
 
-This file contains the home page component. Specifically, it returns a Layout component wrapping a \<section> HTML element containing a BlogList component. These are all the pieces that render our little starter app so far.
+This file contains the home page component. Specifically, it returns a `Layout` component wrapping a `<section>` HTML element containing a `BlogList` component. These are all the pieces that render our little starter app so far.
 
-This is what BlogList looks like:
+This is what `BlogList` looks like:
 
 ```javascript
 // components/BlogList.js
@@ -113,11 +113,11 @@ const BlogList = ({ allBlogs }) => {
 export default BlogList
 ```
 
-As you can see, it accepts a allBlogs prop value. This should contain the list of all blog posts to show on the home page of the blog. You'll learn how to populate this prop later in this tutorial. As for now, let's learn how data fetching works in Next.js.
+As you can see, it accepts a `allBlogs` prop value. This should contain the list of all blog posts to show on the home page of the blog. You'll learn how to populate this prop later in this tutorial.
 
 ## Layout and Styling
 
-Each blog page has a common layout. This is defined in the Layout component below:
+Each blog page has a common layout. This is defined in the `Layout` component below:
 
 ```javascript
 // components/Layout.js
@@ -142,9 +142,9 @@ export default function Layout(props) {
 }
 ```
 
-In detail, the purpose of the Layout component is to provide the visual skeleton for every page of the site. Typically, such a component contains a nav and/or header that appears on most or all pages, along with a footer element. In this case, Layout only contains a header component that shows the site title. Keep in mind that the use of a Layout component isn't unique to Next.js, and Gatsby websites also rely on a similar approach.
+In detail, the purpose of the `Layout` component is to provide the visual skeleton for every page of the site. Typically, such a component contains a nav and/or header that appears on most or all pages, along with a footer element. In this case, `Layout` only contains a header component that shows the site title. Keep in mind that the use of a `Layout` component isn't unique to Next.js, and Gatsby websites also rely on a similar approach.
 
-Note that Layout contains also the following Meta component:
+Note that `Layout` contains also the following Meta component:
 
 ```javascript
 // components/Meta.js
@@ -163,11 +163,11 @@ export default function Meta(props) {
 }
 ```
 
-This uses the Next.js [Head](https://nextjs.org/docs/api-reference/next/head "") component that enables you to specify what to put in the head section of your page for SEO or accessibility purposes.
+This uses the Next.js [`Head`](https://nextjs.org/docs/api-reference/next/head "") component that enables you to specify what to put in the head section of your page for SEO or accessibility purposes.
 
-An important aspect to mention is that the Layout component uses component-level CSS. Don't forget that Next.js works out of the box with[ component-level CSS](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css ""). That's super intuitive to use. All of the styles are scoped to the component. This means you don't have to worry about accidentally overriding a style rule somewhere else.
+An important aspect to mention is that the `Layout` component uses component-level CSS. Don't forget that Next.js works out of the box with [component-level CSS](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css ""). That's super intuitive to use. All of the styles are scoped to the component. This means you don't have to worry about accidentally overriding a style rule somewhere else.
 
-The global style of the blog app is handled in the globals.css you can find in the styles directory. So, if you want to change or add some global CSS rules, you can do it there. At the same time, keep in mind that the global font isn't defined in the global.css file. This is defined in the Next.js \_app.js file below:
+The global style of the blog app is handled in the `globals.css` you can find in the styles directory. So, if you want to change or add some global CSS rules, you can do it there. At the same time, keep in mind that the global font isn't defined in the `global.css` file. This is defined in the Next.js `_app.js` file below:
 
 ```javascript
 // pages/_app.js
@@ -196,7 +196,7 @@ export default MyApp
 
 Now that you're familiar with the structure of the project and Next.js fundamentals, let's add everything required to make the Markdown blog in Next.js work.
 
-First, create a new directory called posts in the root folder of your project. This folder will contain all your Markdown blog posts. If you don't already have content ready, just add a few dummy blog posts. Consider using[ Unsplash](https://unsplash.com/ "") for sample photos, while [Cupcake](http://www.cupcakeipsum.com/ ""), [Hipsum](https://hipsum.co/ ""), or [Sagan Ipsum](http://saganipsum.com/ "") can help you generate text for your posts.
+First, create a new directory called posts in the root folder of your project. This folder will contain all your Markdown blog posts. If you don't already have content ready, just add a few dummy blog posts. Consider using [Unsplash](https://unsplash.com/ "") for sample photos, while [Cupcake](http://www.cupcakeipsum.com/ ""), [Hipsum](https://hipsum.co/ ""), or [Sagan Ipsum](http://saganipsum.com/ "") can help you generate text for your posts.
 
 ### Create a Sample Post
 
@@ -214,15 +214,17 @@ hero_image: /norris-niman-iceland.jpg
   Brain is the seed of intelligence something incredible is waiting to be known.
 ```
 
-If you aren't familiar with this concept, a frontmatter is a way to store metadata in Markdown files. Typically, frontmatter metadata is stored in[ YAML](https://en.wikipedia.org/wiki/YAML "") format in a block wrapped by three dashes placed at the beginning of a Markdown file.
+If you aren't familiar with this concept, a frontmatter is a way to store metadata in Markdown files. Typically, frontmatter metadata is stored in [YAML](https://en.wikipedia.org/wiki/YAML "") format in a block wrapped by three dashes placed at the beginning of a Markdown file.
 
-Also, place the images referenced in the .md files in the public directory. In Next.js, you can access any file inside public from the base URL /. Learn more about [static file serving in Next.js](https://nextjs.org/docs/basic-features/static-file-serving "").
+Also, place the images referenced in the `.md` files in the public directory. In Next.js, you can access any file inside public from the base URL `/`. Learn more about [static file serving in Next.js](https://nextjs.org/docs/basic-features/static-file-serving "").
 
 ## Processing Markdown Files in Next.js
 
 Now, it is time to install a few packages. These will help you process your Markdown files.
 
+```
 npm add raw-loader gray-matter react-markdown
+```
 
 Specifically:
 
@@ -230,11 +232,11 @@ Specifically:
 * [Gray Matter](https://github.com/jonschlinkert/gray-matter "") will parse your YAML frontmatter values.
 * [React Markdown](https://github.com/rexxars/react-markdown "") will parse and render the body of your Markdown files.
 
-### Add a next.config.js File to Configure Next.js
+### Add a `next.config.js` File to Configure Next.js
 
-Now that you installed some packages needed to handle Markdown, you need to configure the use of the raw-loader. First, create a [next.config.js](https://nextjs.org/docs#custom-configuration "") file at the root of the project.
+Now that you installed some packages needed to handle Markdown, you need to configure the use of the raw-loader. First, create a [`next.config.js`](https://nextjs.org/docs#custom-configuration "") file at the root of the project.
 
-This file enables you to handle any custom configuration for Webpack, routing, build and runtime config, export options, and more. In this use case, you simply have to [add a Webpack rule to make it use raw-loader](https://v4.webpack.js.org/loaders/raw-loader/ "") to process Markdown .md files.
+This file enables you to handle any custom configuration for Webpack, routing, build and runtime config, export options, and more. In this use case, you simply have to [add a Webpack rule to make it use `raw-loader`](https://v4.webpack.js.org/loaders/raw-loader/ "") to process Markdown `.md` files.
 
 ```javascript
 // next.config.js
