@@ -9,13 +9,13 @@ const tinaConfig = defineConfig({
     process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF! || // Vercel branch env
     process.env.HEAD!, // Netlify branch env
   token: process.env.TINA_TOKEN!,
-  // media: {
-  //   // @ts-ignore
-  //   loadCustomStore: async () => {
-  //     const pack = await import('next-tinacms-cloudinary')
-  //     return pack.TinaCloudCloudinaryMediaStore
-  //   },
-  // },
+  media: {
+    //@ts-ignore
+    loadCustomStore: async () => {
+      const pack = await import('next-tinacms-cloudinary')
+      return pack.TinaCloudCloudinaryMediaStore
+    },
+  },
 
   build: { outputFolder: 'admin', publicFolder: 'public' },
   cmsCallback: (cms) => {

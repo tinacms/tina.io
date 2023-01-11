@@ -245,9 +245,13 @@
         ]
       },
       {
+        "title": "Gatsby",
+        "slug": "/guides/tinacms/gatsby-data-fetching/guide/",
+        "status": "Beta"
+      },
+      {
         "slug": "/guides/tinacms/react-data-fetching/guide/",
-        "title": "Querying Tina Content at Runtime",
-        "considering": true
+        "title": "Querying Tina Content at Runtime"
       }
     ]
   },
