@@ -18,76 +18,12 @@ Next.js is simple and flexible. Here you’ll see how to use Next.js to build a 
 
 Follow this step-by-step tutorial, and learn how to implement the following Markdown blog in Next.js:
 
-![A complete overview of the Markdown-based Next.js blog](http://res.cloudinary.com/forestry-demo/image/upload/v1673425246/tRBGrDoQ_1_xfcbz2.gif "A complete overview of the Markdown-based Next.js blog")
-
-
-
-***
-
-
-
-If you'd like to skip ahead and take a look at the final result, feel free to check out the[ repository of the Markdown-based blog website](https://github.com/tinalabs/brevifolia-next-2022).
+![A complete overview of the Markdown-based Next.js blog](https://res.cloudinary.com/forestry-demo/image/upload/v1673425424/blog-media/tRBGrDoQ_1_dkgk2m.gif "A complete overview of the Markdown-based Next.js blog")
 
 
 
 
-Clone it with the command below:
-
-git clone [https://github.com/tinalabs/brevifolia-next-2022](https://github.com/tinalabs/brevifolia-next-2022)
-
-
-
-
-Enter the project folder, and launch the following command to install the dependencies and launch the Mardkown-based Next.js blog app:
-
-cd brevifolia-next-2022
-
-npm install
-
-npm run dev
-
-
-
-
-Visit [http://localhost:3000](http://localhost:3000) in your browser and you now should be seeing the blog application you are going to learn how to build.
-
-## Data Fetching in Next.js
-
-Before getting started, you need to understand how Next.js works. In detail, Next.js allows you to[ pre-render](https://nextjs.org/docs/basic-features/pages#pre-rendering) every page, meaning it can generate the HTML document for each page in advance. As of[ Next.js 9.3](https://nextjs.org/blog/next-9-3), there are two ways to pre-render pages: 
-
-* Static generation
-* Server-side-rendering (SSR)
-
-You can even use different pre-rending approaches for different pages in the same application.
-
-
-
-
-In this blog app, you’ll see how to implement static generation. This means that Next.js will generate HTML documents for each route at build time. So, you can cache the pre-rendered pages with a CDN and improve the performance of your website. That’s the main benefit of static generation in Next.js.
-
-
-
-
-You can implement static generation in Next.js with the getStaticProps() function. Let’s learn how it works.
-
-### getStaticProps
-
-This function allows you to fetch data and return it as props to your page component. The page will be rendered at build time based on the props received by executing getStaticProps(). In other terms, the object returned by getStaticProps() is fed to the page component via the props.
-
-
-
-
-This is how you can retrieve page-level data in Next. In particular, you can use getStaticProps() to fetch data from an external API or local data sources. In this tutorial, you’ll see how to fetch data from local Markdown files.
-
-
-
-
-Note: getStaticProps() only works for components defined in the pages/ directory. You can’t use this method on child components contained in components or any other directory. Yet, you can pass down the data received in the page components through the props to these child components.
-
-
-
-
-Now, follow this step-by-step tutorial and learn how you can implement a Next.js blog based on Markdown.
+Now, let's learn how to implement this Next.js blog based on Markdown.
 
 ## Clone the Starter Project
 
