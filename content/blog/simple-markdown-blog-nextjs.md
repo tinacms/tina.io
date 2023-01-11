@@ -124,8 +124,8 @@ Each blog page has a common layout. This is defined in the Layout component belo
 // components/Layout.js
 
 import Header from "./Header"
-import Meta from './Meta'
-import styles from '../styles/Layout.module.css'
+import Meta from "./Meta"
+import styles from "../styles/Layout.module.css"
 
 export default function Layout(props) {
   return (
@@ -150,7 +150,7 @@ Note that Layout contains also the following Meta component:
 ```javascript
 // components/Meta.js
 
-import Head from 'next/head'
+import Head from "next/head"
 
 export default function Meta(props) {
   return (
@@ -173,8 +173,8 @@ The global style of the blog app is handled in the globals.css you can find in t
 ```javascript
 // pages/_app.js
 
-import '../styles/globals.css'
-import { Work_Sans } from '@next/font/google'
+import "../styles/globals.css"
+import { Work_Sans } from "@next/font/google"
 
 // importing the Work Sans font with
 // the Next.js 13 Font Optimization Feature
@@ -285,11 +285,11 @@ With dynamic routing, you can make use of the slug parameter. Specifically, you 
 // pages/blog/[slug].js
 
 import Image from "next/image"
-import matter from 'gray-matter'
-import ReactMarkdown from 'react-markdown'
+import matter from "gray-matter"
+import ReactMarkdown from "react-markdown"
 import styles from "../../styles/Blog.module.css"
 import glob from "glob"
-import Layout from '../../components/Layout'
+import Layout from "../../components/Layout"
 
 function reformatDate(fullDate) {
   const date = new Date(fullDate)
@@ -343,7 +343,7 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
   // getting all .md files from the posts directory
-  const blogs = glob.sync('posts/**/*.md')
+  const blogs = glob.sync(`posts/**/*.md`)
 
   // converting the file names to their slugs
   const blogSlugs = blogs.map(file =>
