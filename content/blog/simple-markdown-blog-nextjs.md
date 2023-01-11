@@ -384,7 +384,7 @@ In the return object from `getStaticPaths()`, the following two keys are require
 
 > Before the release of Next.js 9.3, this path generation for static export could be handled via [`exportPathMap`](https://nextjs.org/docs/api-reference/next.config.js/exportPathMap).
 
-Now Navigate to [`http://localhost:3000/blog/my-post`](http://localhost:3000/blog/my-post). This is what the BlogTemplate component looks like:
+Now, navigate to [`http://localhost:3000/blog/my-post`](http://localhost:3000/blog/my-post). This is what the BlogTemplate component looks like:
 
 ![http://localhost:3000/blog/my-post in action](http://res.cloudinary.com/forestry-demo/image/upload/v1673426650/mArAHU8g_1_bedrfy.gif "http://localhost:3000/blog/my-post in action")
 
