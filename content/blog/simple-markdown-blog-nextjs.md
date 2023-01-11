@@ -598,9 +598,7 @@ In the return object from getStaticPaths(), the following two keys are required:
 * [paths](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths#paths): contains an array of object having a params field with the required dynamic param. For example, { params : { slug: "julius-caesar"} }. 
 * [fallback](https://nextjs.org/docs/basic-features/data-fetching/overview#the-fallback-key-required): allows you to control the Next.js behavior when a path isn’t returned from getStaticPaths(). Set it to false to make Next.js return a 404 page for unknown paths.
 
-
 > Before the release of Next.js 9.3, this path generation for static export could be handled via [exportPathMap](https://nextjs.org/docs/api-reference/next.config.js/exportPathMap).
->
 
 Now Navigate to [http://localhost:3000/blog/my-post](http://localhost:3000/blog/my-post). This is what the BlogTemplate component looks like:
 
@@ -608,15 +606,9 @@ Now Navigate to [http://localhost:3000/blog/my-post](http://localhost:3000/blog/
 
 As you can see, it perfectly renders the blog post data stored in Markdown format.
 
-
-
-
 ## Add a Homepage to Your Blog
 
 Let’s finish this simple Markdown-based blog in Next.js by completing the home page. All you have to do is change the data retrieval logic in pages/index.js page. Specifically, you want to pass the proper data to the BlogList component on the Index page. Since you can only use getStaticProps() on page components, you’ll have to pass the blog data down from the Index component to BlogList as a prop.
-
-
-
 
 Implement pages/index.js as follows:
 
@@ -765,14 +757,11 @@ export async function getStaticProps() {
 
 }
 
-This getStaticProps() function may be slightly complex to look at, but let’s take it one step at a time. The logic here is based on the[ require.context()](https://webpack.js.org/guides/dependency-management/#requirecontext) function provided by Webpack. This allows you to create your own Webpack context based on three parameters:
+The getStaticProps() function here may be slightly complex to look at, but let’s take it one step at a time. The logic here is based on the [require.context()](https://webpack.js.org/guides/dependency-management/#requirecontext) function provided by Webpack. This allows you to create your own Webpack context based on three parameters:
 
 * The directory to match within.
 * A boolean flag to include or exclude subdirectories.
 * A regular expression to match files against.
-
-
-
 
 You can define a Webpack context with require.context() with the following syntax:
 
