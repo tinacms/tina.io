@@ -22,8 +22,6 @@ Follow this step-by-step tutorial, and learn how to implement the following Mark
 ![A complete overview of the Markdown-based Next.js blog](https://res.cloudinary.com/forestry-demo/image/upload/v1673425424/blog-media/tRBGrDoQ_1_dkgk2m.gif "A complete overview of the Markdown-based Next.js blog")
 
 
-
-
 Now, let's learn how to implement this Next.js blog based on Markdown.
 
 ## Clone the Starter Project
@@ -31,8 +29,6 @@ Now, let's learn how to implement this Next.js blog based on Markdown.
 First, let's clone the starter project. That’s nothing more than a boilerplate blog app to use as a starting point for this tutorial. Check it out on[ GitHub](https://github.com/tinalabs/nextjs-starter-boilerplate) for reference, or clone the starter repository in the my-nextjs-blog directory with: 
 
 git clone https://github.com/tinalabs/nextjs-starter-boilerplate my-nextjs-blog
-
-
 
 
 Then, enter the project folder, install the project dependencies, and launch the blog app with the following commands
@@ -45,10 +41,9 @@ npm run dev
 
 
 
+After cloning the project and starting the [Next.js dev server](https://nextjs.org/docs/api-reference/cli#development), navigate to http://localhost:3000/ in your browser and you should be able to see the following page:
 
-After cloning the project and starting the[ Next.js dev server](https://nextjs.org/docs/api-reference/cli#development), navigate to http://localhost:3000/ in your browser and you should be able to see the following page:
-
-
+![The starter project in action](http://res.cloudinary.com/forestry-demo/image/upload/v1673425637/hm8AJj0t_hi0mer.png "The starter project in action")
 
 As you can see, the blog app is pretty simple at the moment. Let’s now dig into the structure of this starter project to learn how to turn this app into a real Markdown-based blog.
 
