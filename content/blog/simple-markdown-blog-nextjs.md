@@ -145,96 +145,53 @@ export default function Layout(props) {
 
 In detail, the purpose of the Layout component is to provide the visual skeleton for every page of the site. Typically, such a component contains a nav and/or header that appears on most or all pages, along with a footer element. In this case, Layout only contains a header component that shows the site title. Keep in mind that the use of a Layout component isn’t unique to Next.js, and Gatsby websites also rely on a similar approach.
 
-
 Note that Layout contains also the following Meta component:
 
+```javascript
 // components/Meta.js
-
-
-
 
 import Head from 'next/head'
 
-
-
-
 export default function Meta(props) {
-
-    return (
-
-          \<Head>
-
-              \<meta name="viewport" content="width=device-width, initial-scale=1" />
-
-              \<meta charSet="utf-8" />
-
-              \<title>{props.siteTitle}\</title>
-
-              \<meta name="Description" content={props.description}>\</meta>
-
-          \</Head>
-
-    )
-
+  return (
+    <Head>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta charSet="utf-8" />
+      <title>{props.siteTitle}</title>
+      <meta name="Description" content={props.description}></meta>
+    </Head>
+  )
 }
-
-
-
+```
 
 This uses the Next.js [Head](https://nextjs.org/docs/api-reference/next/head) component that enables you to specify what to put in the head section of your page for SEO or accessibility purposes.
 
-
 An important aspect to mention is that the Layout component uses component-level CSS. Don’t forget that Next.js works out of the box with[ component-level CSS](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css). That’s super intuitive to use. All of the styles are scoped to the component. This means you don't have to worry about accidentally overriding a style rule somewhere else.
-
 
 The global style of the blog app is handled in the globals.css you can find in the styles directory. So, if you want to change or add some global CSS rules, you can do it there. At the same time, keep in mind that the global font isn’t defined in the global.css file. This is defined in the Next.js \_app.js file below:
 
-// pages/\_app.js
-
-
-
+```javascript
+// pages/_app.js
 
 import '../styles/globals.css'
-
-import { Work\_Sans } from '@next/font/google'
-
-
-
+import { Work_Sans } from '@next/font/google'
 
 // importing the Work Sans font with
-
 // the Next.js 13 Font Optimization Feature
-
-const workSans = Work\_Sans({
-
-  weight: \['400', '700'],
-
-  style: \['normal', 'italic'],
-
-  subsets: \['latin'],
-
+const workSans = Work_Sans({
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
 })
 
-
-
-
 function MyApp({ Component, pageProps }) {
-
-  return \<main className={workSans.className}>
-
-    \<Component {...pageProps} />
-
-  \</main>
-
+  return <main className={workSans.className}>
+    <Component {...pageProps} />
+  </main>
 }
 
-
-
-
 export default MyApp
-
-
-This file defines the font to use in the entire application through the[ Next.js Font Optimization feature for Google Fonts introduced in Next.js 13](https://nextjs.org/docs/basic-features/font-optimization#google-fonts).
+```
 
 ## Add the Posts Directory to the Project
 
