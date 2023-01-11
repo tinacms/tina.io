@@ -272,7 +272,7 @@ In other words, the content of `pages/blog/[slug].js` will change based on the `
 
 ## Create the pages/blog/\[slug].js Page Component
 
-Let's code the BlogTemplate blog page component that will render the content contained in a Markdown file read from posts. Thanks to this page, most of the blog logic will be implemented.
+Let's code the `BlogTemplate` blog page component that will render the content contained in a Markdown file read from posts. Thanks to this page, most of the blog logic will be implemented.
 
 In the `[slug].js` page component stored inside the blog directory, you'll be able to access whatever string passed in the URL through the `slug` parameter. Typically, such info is used to dynamically retrieve the data to render the page. For example, if you visit `http://localhost:3000/blog/julius-caesar`, the slug query parameter in `[slug].js` will contain the “julius-caesar” string.
 
@@ -371,11 +371,11 @@ An in-depth look at how this snippet works. Let's assume you navigate to the `ht
 
 When the `getStaticProps()` function is called, that params object is passed in through the [context parameter](https://nextjs.org/docs/api-reference/data-fetching/get-server-side-props#context-parameter ""). Then, slug is extracted from the query params stored in `context`. In detail, slug is used to search for a .md file within the posts directory that has the same file name.
 
-Once you get the data from that file, you parse the frontmatter from the Markdown body and return the data. That data is passed down as props to the BlogTemplate component, which will render that data as it needs.
+Once you get the data from that file, you parse the frontmatter from the Markdown body and return the data. That data is passed down as props to the `BlogTemplate` component, which will render that data as it needs.
 
-#### Implementing `getStaticPaths()`
+### Implementing `getStaticPaths()`
 
-At this point, you should be more familiar with getStaticProps(). But the [getStatisPaths()](https://nextjs.org/docs/basic-features/data-fetching/get-static-paths "") function may look new to you. Since this template uses dynamic routes, you need to define a list of paths for each blog. This way, Next.js will be able to statically render each blog post past at build time. Keep in mind that you need to use getStaticPaths() only when it comes to dynamic routing.
+At this point, you should be more familiar with `getStaticProps()`. But the [`getStatisPaths()`](https://nextjs.org/docs/basic-features/data-fetching/get-static-paths "") function may look new to you. Since this template uses dynamic routes, you need to define a list of paths for each blog. This way, Next.js will be able to statically render each blog post past at build time. Keep in mind that you need to use `getStaticPaths()` only when it comes to dynamic routing.
 
 In the return object from `getStaticPaths()`, the following two keys are required:
 
@@ -392,9 +392,9 @@ As you can see, it perfectly renders the blog post data stored in Markdown forma
 
 ## Add a Homepage to Your Blog
 
-Let's finish this simple Markdown-based blog in Next.js by completing the home page. All you have to do is change the data retrieval logic in pages/index.js page. Specifically, you want to pass the proper data to the BlogList component on the Index page. Since you can only use getStaticProps() on page components, you'll have to pass the blog data down from the Index component to BlogList as a prop.
+Let's finish this simple Markdown-based blog in Next.js by completing the home page. All you have to do is change the data retrieval logic in `pages/index.js` page. Specifically, you want to pass the proper data to the `BlogList` component on the Index page. Since you can only use `getStaticProps()` on page components, you'll have to pass the blog data down from the Index component to `BlogList` as a prop.
 
-Implement pages/index.js as follows:
+Implement `pages/index.js` as follows:
 
 ```javascript
 // pages/index.js
@@ -489,7 +489,7 @@ require.context("../posts", true, /\\.md$/)
 
 Thanks to a Webpack context, you can pick out all the files matching a regular expression from a particular directory. This allows you to generate the slug string from each file name, read its content, parse it with the frontmatter library, and pass the manipulated data to Index as props.
 
-Then, the blog data is passed as a prop to the BlogList component. In the BlogList component, you can iterate over the blog data and render the list of post previews as you wish. Specifically, the BlogList component takes care of rendering the blog data. This is what BlogList looks like:
+Then, the blog data is passed as a prop to the `BlogList` component. In the `BlogList` component, you can iterate over the blog data and render the list of post previews as you wish. Specifically, the `BlogList` component takes care of rendering the blog data. This is what `BlogList` looks like:
 
 ```javascript
 import Link from "next/link"
