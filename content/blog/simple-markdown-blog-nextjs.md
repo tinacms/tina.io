@@ -408,7 +408,6 @@ With dynamic routing, you can make use of the slug parameter. Specifically, you 
 
 
 
-
 import Image from "next/image"
 
 import matter from 'gray-matter'
@@ -581,47 +580,29 @@ export async function getStaticPaths() {
 
 
 
-* Note the use of gray-matter and ReactMarkdown to properly handle the YAML frontmatter and Markdown body, respectively.
+> Note the use of gray-matter and ReactMarkdown to properly handle the YAML frontmatter and Markdown body, respectively.
+>
 
+An in-depth look at how this snippet works. Let’s assume you navigate to the http://localhost:3000/blog/julius-caesar dynamic route. The BlogTemplate component in pages/blog/\[slug].js is passed the params object { slug: "julius-caesar" }. 
 
-
-
-An in-depth look at how this snippet works: let’s assume you navigate to the http://localhost:3000/blog/julius-caesar dynamic route. The BlogTemplate component in pages/blog/\[slug].js is passed the params object { slug: 'julius-caesar' }. 
-
-
-
-
-When the getStaticProps() function is called, that params object is passed in through the[ context parameter](https://nextjs.org/docs/api-reference/data-fetching/get-server-side-props#context-parameter). Then, slug is extracted from the query params stored in context. In detail, slug is used to search for a .md file within the posts directory that has the same file name. 
-
-
-
+When the getStaticProps() function is called, that params object is passed in through the [context parameter](https://nextjs.org/docs/api-reference/data-fetching/get-server-side-props#context-parameter). Then, slug is extracted from the query params stored in context. In detail, slug is used to search for a .md file within the posts directory that has the same file name. 
 
 Once you get the data from that file, you parse the frontmatter from the Markdown body and return the data. That data is passed down as props to the BlogTemplate component, which will render that data as it needs.
 
+#### Implementing getStaticPaths()
 
-
-
-getStaticPaths
-
-At this point, you should be more familiar with getStaticProps(). But the[ getStatisPaths()](https://nextjs.org/docs/basic-features/data-fetching/get-static-paths)function should look new to you. Since this template uses dynamic routes, you need to define a list of paths for each blog. This way, Next.js will be able to statically render each blog post past at build time. Keep in mind that you need to use getStaticPaths() only when it comes to dynamic routing.
-
-
-
+At this point, you should be more familiar with getStaticProps(). But the [getStatisPaths()](https://nextjs.org/docs/basic-features/data-fetching/get-static-paths) function may look new to you. Since this template uses dynamic routes, you need to define a list of paths for each blog. This way, Next.js will be able to statically render each blog post past at build time. Keep in mind that you need to use getStaticPaths() only when it comes to dynamic routing.
 
 In the return object from getStaticPaths(), the following two keys are required: 
 
-* [paths](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths#paths): contains an array of object having a params field with the required dynamic param. For example, { params : { slug: 'julius-caesar'} }. 
+* [paths](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths#paths): contains an array of object having a params field with the required dynamic param. For example, { params : { slug: "julius-caesar"} }. 
 * [fallback](https://nextjs.org/docs/basic-features/data-fetching/overview#the-fallback-key-required): allows you to control the Next.js behavior when a path isn’t returned from getStaticPaths(). Set it to false to make Next.js return a 404 page for unknown paths.
 
 
+> Before the release of Next.js 9.3, this path generation for static export could be handled via [exportPathMap](https://nextjs.org/docs/api-reference/next.config.js/exportPathMap).
+>
 
-
-* Before the release of Next.js 9.3, this path generation for static export could be handled via[ exportPathMap](https://nextjs.org/docs/api-reference/next.config.js/exportPathMap).
-
-
-
-
-Now Navigate to [http://localhost:3000/blog/my-post](http://localhost:3000/blog/my-post).  This is what the BlogTemplate component looks like:
+Now Navigate to [http://localhost:3000/blog/my-post](http://localhost:3000/blog/my-post). This is what the BlogTemplate component looks like:
 
 
 
