@@ -198,13 +198,13 @@ export default MyApp
 
 ## Add the Posts Directory to the Project
 
-Now that you're familiar with the structure of the project and Next.js fundamentals, let's add everything required to make the Markdown blog in Next.js work.
+Now that you're familiar with the structure of the project and Next.js fundamentals, let's **add everything required to make the Markdown blog in Next.js work**.
 
-First, create a new directory called posts in the root folder of your project. This folder will contain all your Markdown blog posts. If you don't already have content ready, just add a few dummy blog posts. Consider using [Unsplash](https://unsplash.com/) for sample photos, while [Cupcake](http://www.cupcakeipsum.com/), [Hipsum](https://hipsum.co/), or [Sagan Ipsum](http://saganipsum.com/) can help you generate text for your posts.
+First, create a new directory called `posts` in the root folder of your project. This folder will contain all your Markdown blog posts. If you don't already have content ready, just add a few dummy blog posts. Consider using **[Unsplash](https://unsplash.com/)** for sample photos, while **[Cupcake](http://www.cupcakeipsum.com/)**, **[Hipsum](https://hipsum.co/)**, or **[Sagan Ipsum](http://saganipsum.com/)** can help you generate text for your posts.
 
 ### Create a Sample Post
 
-Now that you have a posts folder, it's time to fill it with some Markdown posts.
+Now that you have a `posts` folder, it's time to **fill it with some Markdown posts**.
 
 Here's an example of filler content for `/posts/my-post.md` with commonly used frontmatter values.
 
@@ -218,9 +218,9 @@ hero_image: /norris-niman-iceland.jpg
   Brain is the seed of intelligence something incredible is waiting to be known.
 ```
 
-If you aren't familiar with this concept, a frontmatter is a way to store metadata in Markdown files. Typically, frontmatter metadata is stored in [YAML](https://en.wikipedia.org/wiki/YAML) format in a block wrapped by three dashes placed at the beginning of a Markdown file.
+If you aren't familiar with this concept, **a frontmatter is a way to store metadata in Markdown files**. Typically, **frontmatter metadata is stored in [YAML](https://en.wikipedia.org/wiki/YAML) format** in a block wrapped by three dashes placed at the beginning of a Markdown file.
 
-Also, place the images referenced in the `.md` files in the public directory. In Next.js, you can access any file inside public from the base URL `/`. Learn more about [static file serving in Next.js](https://nextjs.org/docs/basic-features/static-file-serving).
+Also, **place the images referenced in the `.md` files in the public directory**. In Next.js, you can access any file inside public from the base URL `/`. Learn more about [static file serving in Next.js](https://nextjs.org/docs/basic-features/static-file-serving).
 
 ## Processing Markdown Files in Next.js
 
@@ -232,15 +232,15 @@ npm add raw-loader gray-matter react-markdown
 
 Specifically:
 
-* [Raw Loader](https://github.com/webpack-contrib/raw-loader) will process your Markdown files.
-* [Gray Matter](https://github.com/jonschlinkert/gray-matter) will parse your YAML frontmatter values.
-* [React Markdown](https://github.com/rexxars/react-markdown) will parse and render the body of your Markdown files.
+* **[Raw Loader](https://github.com/webpack-contrib/raw-loader)** will process your Markdown files.
+* **[Gray Matter](https://github.com/jonschlinkert/gray-matter)** will parse your YAML frontmatter values.
+* **[React Markdown](https://github.com/rexxars/react-markdown)** will parse and render the body of your Markdown files.
 
 ### Add a `next.config.js` File to Configure Next.js
 
-Now that you installed some packages needed to handle Markdown, you need to configure the use of the raw-loader. First, create a [`next.config.js`](https://nextjs.org/docs#custom-configuration) file at the root of the project.
+Now that you installed some packages needed to handle Markdown, you need to configure the use of the `raw-loader`. First, **create a [`next.config.js`](https://nextjs.org/docs#custom-configuration) file** at the root of the project.
 
-This file enables you to handle any custom configuration for Webpack, routing, build and runtime config, export options, and more. In this use case, you simply have to [add a Webpack rule to make it use `raw-loader`](https://v4.webpack.js.org/loaders/raw-loader/) to process Markdown `.md` files.
+This file enables you to **handle any custom configuration for Webpack, routing, build and runtime config, export options, and more**. In this use case, you simply have to [add a Webpack rule to make it use `raw-loader`](https://v4.webpack.js.org/loaders/raw-loader/) to process Markdown `.md` files.
 
 ```javascript
 // next.config.js
@@ -256,35 +256,35 @@ module.exports = {
 }
 ```
 
-Webpack is now able to deal with Markdown files. You now need to configure Next.js to create a web page for each Markdown blog post file. Let's learn how.
+Webpack is now able to deal with Markdown files. You now need to **configure Next.js to create a web page for each Markdown blog post file**. Let's learn how.
 
 ## Configure Dynamic Routing in Next.js
 
-For some background knowledge, the pages directory is special in Next.js. Each `.js` file in this directory will respond to a matching HTTP request. For example, when the home page `"/"` is requested, the component exported from `pages/index.js` will be rendered. So, if you want your site to have a page at `/about`, simply create a file named `pages/about.js`.
+For some background knowledge, the `pages` directory is special in Next.js. Each `.js` file in this directory will respond to a matching HTTP request. For example, when the home page `"/"` is requested, the component exported from `pages/index.js` will be rendered. So, if you want your site to have a page at `/about`, simply create a file named `pages/about.js`.
 
-This is awesome for static pages, but you want to have a single template from which all blog posts will be built, sourcing the different data from each Markdown file. This means you need to implement dynamic routing. In detail, you want each blog post to have a good-looking URL associated with a page based on this template.
+This is awesome for static pages, but you want to have a single template from which all blog posts will be built, sourcing the different data from each Markdown file. This means you need to implement **dynamic routing**. In detail, **you want each blog post to have a good-looking URL associated with a page based on this template**.
 
-This can be achieved in Next.js very easily. In detail, [dynamic routes](https://nextjs.org/docs#dynamic-routing) in Next.js are identified by square brackets `[]` in the filename. Within these brackets, you can pass a query parameter to the page component.
+This can be achieved in Next.js very easily. In detail, **[dynamic routes](https://nextjs.org/docs#dynamic-routing) in Next.js are identified by square brackets `[]` in the filename**. Within these brackets, you can pass a query parameter to the page component.
 
 ### Initialize the Blog Post Dynamic Content Page
 
 Let's create a new folder in pages called blog, then add a new file within that blog folder `[slug].js`.
 
-You'll learn how to complete this file soon. As for now, you need to know that this file represents a dynamic web page.
+You'll learn how to complete this file soon. As for now, you need to know that **this file represents a dynamic web page**.
 
-In other words, the content of `pages/blog/[slug].js` will change based on the `[slug]` parameter in the URL. In detail, based on the slug string extracted from the URL, `[slug].js` will read a Markdown file from the file system and use its data to render the blog post.
+In other words, **the content of `pages/blog/[slug].js` will change based on the `[slug]` parameter in the URL**. In detail, based on the slug string extracted from the URL, `[slug].js` will read a Markdown file from the file system and use its data to render the blog post.
 
 ## Create the `pages/blog/[slug].js` Page Component
 
 Let's code the `BlogTemplate` blog page component that will render the content contained in a Markdown file read from posts. Thanks to this page, most of the blog logic will be implemented.
 
-In the `[slug].js` page component stored inside the blog directory, you'll be able to access whatever string passed in the URL through the `slug` parameter. Typically, such info is used to dynamically retrieve the data to render the page. For example, if you visit `http://localhost:3000/blog/julius-caesar`, the slug query parameter in `[slug].js` will contain the “julius-caesar” string.
+In the `[slug].js` page component stored inside the blog directory, **you'll be able to access whatever string passed in the URL through the `slug` parameter**. Typically, such info is used to dynamically retrieve the data to render the page. For example, if you visit `http://localhost:3000/blog/julius-caesar`, the slug query parameter in `[slug].js` will contain the `"julius-caesar"` string.
 
 Let's now learn how to use the slug parameter to retrieve your content data.
 
 ### Get the Markdown Data for the Blog Page Component
 
-With dynamic routing, you can make use of the slug parameter. Specifically, you can use slug to get the data from the corresponding Markdown file in `getStaticProps()` as follows:
+With dynamic routing, you can **make use of the `slug` parameter**. Specifically, you can use `slug` to get the data from the corresponding Markdown file in `getStaticProps()` as follows:
 
 ```javascript
 // pages/blog/[slug].js
