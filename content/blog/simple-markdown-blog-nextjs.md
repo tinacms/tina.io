@@ -205,21 +205,15 @@ Now that you have a posts folder, it’s time to fill it with some Markdown post
 
 Here’s an example of filler content for /posts/my-post.md with commonly used frontmatter values.
 
-\---
-
-title: A trip to Iceland
-
+```markdown
+---
+  title: A trip to Iceland
 author: 'Watson & Crick '
-
 date: '2019-07-10T16:04:44.000Z'
-
-hero\_image: /norris-niman-iceland.jpg
-
-\---
-
-Brain is the seed of intelligence something incredible is waiting to be known.
-
-
+hero_image: /norris-niman-iceland.jpg
+---
+  Brain is the seed of intelligence something incredible is waiting to be known.
+```
 
 If you aren’t familiar with this concept, a frontmatter is a way to store metadata in Markdown files. Typically, frontmatter metadata is stored in[ YAML](https://en.wikipedia.org/wiki/YAML) format in a block wrapped by three dashes placed at the beginning of a Markdown file.
 
@@ -243,25 +237,19 @@ Now that you installed some packages needed to handle Markdown, you need to conf
 
 This file enables you to handle any custom configuration for Webpack, routing, build and runtime config, export options, and more. In this use case, you simply have to [add a Webpack rule to make it use raw-loader](https://v4.webpack.js.org/loaders/raw-loader/) to process Markdown .md files.
 
+```javascript
 // next.config.js
 
 module.exports = {
-
-  webpack: function(config) {
-
-    config.module.rules.push({
-
-      test: /\\.md$/,
-
-      use: 'raw-loader',
-
-    })
-
-    return config
-
-  },
-
+  webpack: function (config) {
+    config.module.rules.push({
+      test: /\.md$/,
+      use: 'raw-loader',
+    })
+    return config
+  },
 }
+```
 
 Webpack is now able to deal with Markdown files. You now need to configure Next.js to create a web page for each Markdown blog post file. Let’s learn how.
 
@@ -293,184 +281,90 @@ Let’s now learn how to use the slug parameter to retrieve your content data.
 
 With dynamic routing, you can make use of the slug parameter. Specifically, you can use slug to get the data from the corresponding Markdown file in getStaticProps() as follows:
 
-// pages/blog/\[slug].js
-
-
+```javascript
+// pages/blog/[slug].js
 
 import Image from "next/image"
-
 import matter from 'gray-matter'
-
 import ReactMarkdown from 'react-markdown'
-
 import styles from "../../styles/Blog.module.css"
-
 import glob from "glob"
-
-
-
-
 import Layout from '../../components/Layout'
 
-
-
-
 function reformatDate(fullDate) {
-
-  const date = new Date(fullDate)
-
-  return date.toDateString().slice(4)
-
+  const date = new Date(fullDate)
+  return date.toDateString().slice(4)
 }
-
-
-
 
 export default function BlogTemplate({ frontmatter, markdownBody, siteTitle }) {
-
-  return (
-
-    \<Layout siteTitle={siteTitle}>
-
-      \<article className={styles.blog}>
-
-        \<figure className={styles.blog\_\_hero}>
-
-          \<Image
-
-            width="1920"
-
-            height="1080"
-
-            src={frontmatter.hero\_image}
-
-            alt={\`blog\_hero\_${frontmatter.title}\`}
-
-          />
-
-        \</figure>
-
-        \<div className={styles.blog\_\_info}>
-
-          \<h1>{frontmatter.title}\</h1>
-
-          \<h3>{reformatDate(frontmatter.date)}\</h3>
-
-        \</div>
-
-        \<div className={styles.blog\_\_body}>
-
-          \<ReactMarkdown>{markdownBody}\</ReactMarkdown>
-
-        \</div>
-
-        \<h2 className={styles.blog\_\_footer}>Written By: {frontmatter.author}\</h2>
-
-      \</article>
-
-    \</Layout>
-
-  )
-
+  return (
+    <Layout siteTitle={siteTitle}>
+      <article className={styles.blog}>
+        <figure className={styles.blog__hero}>
+          <Image
+            width="1920"
+            height="1080"
+            src={frontmatter.hero_image}
+            alt={`blog_hero_${frontmatter.title}`}
+          />
+        </figure>
+        <div className={styles.blog__info}>
+          <h1>{frontmatter.title}</h1>
+          <h3>{reformatDate(frontmatter.date)}</h3>
+        </div>
+        <div className={styles.blog__body}>
+          <ReactMarkdown>{markdownBody}</ReactMarkdown>
+        </div>
+        <h2 className={styles.blog__footer}>Written By: {frontmatter.author}</h2>
+      </article>
+    </Layout>
+  )
 }
-
-
-
 
 export async function getStaticProps(context) {
+  // extracting the slug from the context
+  const { slug } = context.params
 
-  // extracting the slug from the context
+  const config = await import(`../../data/config.json`)
 
-  const { slug } = context.params
+  // retrieving the Markdown file associated to the slug
+  // and reading its data
+  const content = await import(`../../posts/${slug}.md`)
+  const data = matter(content.default)
 
-
-
-
-  const config = await import(\`../../data/config.json\`)
-
-
-
-
-  // retrieving the Markdown file associated to the slug
-
-  // and reading its data
-
-  const content = await import(\`../../posts/${slug}.md\`)
-
-  const data = matter(content.default)
-
-
-
-
-  return {
-
-    props: {
-
-      siteTitle: config.title,
-
-      frontmatter: data.data,
-
-      markdownBody: data.content,
-
-    },
-
-  }
-
+  return {
+    props: {
+      siteTitle: config.title,
+      frontmatter: data.data,
+      markdownBody: data.content,
+    },
+  }
 }
-
-
-
 
 export async function getStaticPaths() {
+  // getting all .md files from the posts directory
+  const blogs = glob.sync('posts/**/*.md')
 
-  // getting all .md files from the posts directory
+  // converting the file names to their slugs
+  const blogSlugs = blogs.map(file =>
+    file
+      .split('/')[1]
+      .replace(/ /g, '-')
+      .slice(0, -3)
+      .trim()
+  )
 
-  const blogs = glob.sync('posts/\*\*/\*.md')
+  // creating a path for each of the `slug` parameter
+  const paths = blogSlugs.map(slug => { return { params: { slug: slug } } })
 
-
-
-
-  // converting the file names to their slugs
-
-  const blogSlugs = blogs.map(file =>
-
-    file
-
-      .split('/')\[1]
-
-      .replace(/ /g, '-')
-
-      .slice(0, -3)
-
-      .trim()
-
-  )
-
-
-
-
-  // creating a path for each of the \`slug\` parameter
-
-  const paths = blogSlugs.map(slug => { return { params: { slug: slug} } })
-
-
-
-
-  return {
-
-    paths,
-
-    fallback: false,
-
-  }
-
+  return {
+    paths,
+    fallback: false,
+  }
 }
-
-
-
+```
 
 > Note the use of gray-matter and ReactMarkdown to properly handle the YAML frontmatter and Markdown body, respectively.
->
 
 An in-depth look at how this snippet works. Let’s assume you navigate to the http://localhost:3000/blog/julius-caesar dynamic route. The BlogTemplate component in pages/blog/\[slug].js is passed the params object { slug: "julius-caesar" }. 
 
