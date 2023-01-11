@@ -25,7 +25,7 @@ Now, let's learn how to implement this Next.js blog based on Markdown.
 
 ## Clone the Starter Project
 
-First, let's clone the starter project. That's nothing more than a boilerplate blog app to use as a starting point for this tutorial. Check it out on[ GitHub](https://github.com/tinalabs/nextjs-starter-boilerplate "") for reference, or clone the starter repository in the `my-nextjs-blog` directory with:
+First, let's clone the starter project. That's nothing more than a boilerplate blog app to use as a starting point for this tutorial. Check it out on [GitHub](https://github.com/tinalabs/nextjs-starter-boilerplate "") for reference, or clone the starter repository in the `my-nextjs-blog` directory with:
 
 ```
 git clone https://github.com/tinalabs/nextjs-starter-boilerplate my-nextjs-blog
@@ -260,7 +260,7 @@ For some background knowledge, the pages directory is special in Next.js. Each `
 
 This is awesome for static pages, but you want to have a single template from which all blog posts will be built, sourcing the different data from each Markdown file. This means you need to implement dynamic routing. In detail, you want each blog post to have a good-looking URL associated with a page based on this template.
 
-This can be achieved in Next.js very easily. In detail, [dynamic routes](https://nextjs.org/docs#dynamic-routing "") in Next.js are identified by square brackets `[``]` in the filename. Within these brackets, you can pass a query parameter to the page component.
+This can be achieved in Next.js very easily. In detail, [dynamic routes](https://nextjs.org/docs#dynamic-routing "") in Next.js are identified by square brackets `[]` in the filename. Within these brackets, you can pass a query parameter to the page component.
 
 ### Initialize the Blog Post Dynamic Content Page
 
