@@ -23,8 +23,7 @@ Keep in mind, TinaCMS's frontend is open source, so we are open to community add
 | Category                   | Name                                                                  | Status                                                      |
 | -------------------------- | --------------------------------------------------------------------- | ----------------------------------------------------------- |
 | **Hugo Features**          | Hugo Menus                                                            | Considering Support                                         |
-|                            | Drafts                                                                | Supported (through ["draft field"](/docs/forestry/drafts/ "")) |
-|                            | Insertable Hugo shortcodes                                            | [In Review]("https://github.com/tinacms/tinacms/pull/3475" "")                                             |
+|                            | Drafts                                                                | Supported (through ["draft field"](/docs/forestry/drafts/)) |
 | **Jekyll Features**        | Jekyll Menus                                                          | Not Considering Support                                     |
 | **Sections/Collections**   | Globs in sidebar definition                                           | Considering Support                                         |
 |                            | Customizable headers in sidebar                                       | Considering Support                                         |
