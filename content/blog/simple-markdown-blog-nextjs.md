@@ -13,11 +13,11 @@ next: content/blog/using-tinacms-with-nextjs.md
 
 *Want to skip to using Tina with Next.js? Jump to[ Part II](https://tinacms.org/blog/using-tinacms-with-nextjs/) of this series.*
 
-Next.js is a framework built on top of React for developing web applications. In detail, Next.js has become one of the most popular choices when it comes to web development thanks to its bootstrapped React environment (similar to `create-react-app`) and its simple, file-based routing logic.
+Next.js is a framework built on top of React for developing web applications. In detail, **Next.js has become one of the most popular choices when it comes to web development** thanks to its bootstrapped React environment (similar to `create-react-app`) and its simple, file-based routing logic.
 
-Next.js is simple and flexible. Here you'll see how to use Next.js to build a simple Markdown-based blog.
+**Next.js is simple and flexible**. Here you'll see how to use Next.js to build a simple Markdown-based blog.
 
-Follow this step-by-step tutorial, and learn how to implement the following Markdown blog in Next.js:
+Follow this step-by-step tutorial, and learn **how to implement the following Markdown blog in Next.js**:
 
 ![A complete overview of the Markdown-based Next.js blog](https://res.cloudinary.com/forestry-demo/image/upload/v1673425424/blog-media/tRBGrDoQ_1_dkgk2m.gif "A complete overview of the Markdown-based Next.js blog")
 
@@ -25,7 +25,7 @@ Now, let's learn how to implement this Next.js blog based on Markdown.
 
 ## Clone the Starter Project
 
-First, let's clone the starter project. That's nothing more than a boilerplate blog app to use as a starting point for this tutorial. Check it out on [GitHub](https://github.com/tinalabs/nextjs-starter-boilerplate) for reference, or clone the starter repository in the `my-nextjs-blog` directory with:
+First, let's **clone the starter project**. That's nothing more than a boilerplate blog app to use as a starting point for this tutorial. Check it out on [GitHub](https://github.com/tinalabs/nextjs-starter-boilerplate) for reference, or clone the starter repository in the `my-nextjs-blog` directory with:
 
 ```
 git clone https://github.com/tinalabs/nextjs-starter-boilerplate my-nextjs-blog
@@ -43,7 +43,7 @@ After cloning the project and starting the [Next.js dev server](https://nextjs.o
 
 ![The starter project in action](http://res.cloudinary.com/forestry-demo/image/upload/v1673425637/hm8AJj0t_hi0mer.png "The starter project in action")
 
-As you can see, the blog app is pretty simple at the moment. Let's now dig into the structure of this starter project to learn how to turn this app into a real Markdown-based blog.
+As you can see, the blog app is pretty simple at the moment. Let's now dig into the structure of this starter project to **learn how to turn this app into a real Markdown-based blog**.
 
 ## Project Structure
 
@@ -58,7 +58,7 @@ my-nextjs-blog
 └── styles/
 ```
 
-Note that `pages`, `public`, and `styles` come from the [Create Next App](https://nextjs.org/docs/api-reference/create-next-app) initialization command. The other two directories were added to the project. Specifically, `data` contains the blog configuration and other data, while `components` stores all React components required by the blog.
+Note that `pages`, `public`, and `styles` come from the [Create Next App](https://nextjs.org/docs/api-reference/create-next-app) initialization command. The other two directories were added to the project. Specifically, **`data` contains the blog configuration and other data, while `components` stores all React components required by the blog**.
 
 Now, let's look at the `pages/index.js` file:
 
@@ -93,7 +93,9 @@ export async function getStaticProps() {
 }
 ```
 
-This file contains the home page component. Specifically, it returns a `Layout` component wrapping a `<section>` HTML element containing a `BlogList` component. These are all the pieces that render our little starter app so far.
+This file contains the home page component. Specifically, it returns a `Layout` component wrapping a `<section>` HTML element containing a `BlogList` component.
+
+These are all the pieces that render our little starter app so far.
 
 This is what `BlogList` looks like:
 
@@ -113,11 +115,11 @@ const BlogList = ({ allBlogs }) => {
 export default BlogList
 ```
 
-As you can see, it accepts a `allBlogs` prop value. This should contain the list of all blog posts to show on the home page of the blog. You'll learn how to populate this prop later in this tutorial.
+As you can see, it accepts a `allBlogs` prop value. This should **contain the list of all blog posts to show on the home page of the blog**. You'll learn how to populate this prop later in this tutorial.
 
 ## Layout and Styling
 
-Each blog page has a common layout. This is defined in the `Layout` component below:
+**Each blog page has a common layout**. This is defined in the `Layout` component below:
 
 ```javascript
 // components/Layout.js
@@ -142,7 +144,9 @@ export default function Layout(props) {
 }
 ```
 
-In detail, the purpose of the `Layout` component is to provide the visual skeleton for every page of the site. Typically, such a component contains a nav and/or header that appears on most or all pages, along with a footer element. In this case, `Layout` only contains a header component that shows the site title. Keep in mind that the use of a `Layout` component isn't unique to Next.js, and Gatsby websites also rely on a similar approach.
+In detail, **the purpose of the `Layout` component is to provide the visual skeleton for every page of the site**. Typically, such a component contains a nav and/or header that appears on most or all pages, along with a footer element.
+
+In this case, `Layout` only contains a header component that shows the site title. Keep in mind that **the use of a `Layout` component isn't unique to Next.js, and Gatsby websites also rely on a similar approach**.
 
 Note that `Layout` contains also the following Meta component:
 
@@ -163,11 +167,11 @@ export default function Meta(props) {
 }
 ```
 
-This uses the Next.js [`Head`](https://nextjs.org/docs/api-reference/next/head) component that enables you to specify what to put in the head section of your page for SEO or accessibility purposes.
+This uses the **Next.js [`Head`](https://nextjs.org/docs/api-reference/next/head) component that enables you to specify what to put in the head section of your page for SEO** or accessibility purposes.
 
-An important aspect to mention is that the `Layout` component uses component-level CSS. Don't forget that Next.js works out of the box with [component-level CSS](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css). That's super intuitive to use. All of the styles are scoped to the component. This means you don't have to worry about accidentally overriding a style rule somewhere else.
+An important aspect to mention is that the `Layout` component uses component-level CSS. Don't forget that **Next.js works out of the box with [component-level CSS](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css)**. That's super intuitive to use. All of the styles are scoped to the component. This means you don't have to worry about accidentally overriding a style rule somewhere else.
 
-The global style of the blog app is handled in the `globals.css` you can find in the styles directory. So, if you want to change or add some global CSS rules, you can do it there. At the same time, keep in mind that the global font isn't defined in the `global.css` file. This is defined in the Next.js `_app.js` file below:
+The global style of the blog app is handled in the `globals.css` you can find in the styles directory. So, if you want to change or add some global CSS rules, you can do it there. At the same time, **keep in mind that the global font isn't defined in the `global.css` file**. This is defined in the Next.js `_app.js` file below:
 
 ```javascript
 // pages/_app.js
