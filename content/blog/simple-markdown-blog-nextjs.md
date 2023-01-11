@@ -602,7 +602,7 @@ In the return object from getStaticPaths(), the following two keys are required:
 
 Now Navigate to [http://localhost:3000/blog/my-post](http://localhost:3000/blog/my-post). This is what the BlogTemplate component looks like:
 
-
+![http://localhost:3000/blog/my-post in action](http://res.cloudinary.com/forestry-demo/image/upload/v1673426650/mArAHU8g_1_bedrfy.gif "http://localhost:3000/blog/my-post in action")
 
 As you can see, it perfectly renders the blog post data stored in Markdown format.
 
