@@ -273,7 +273,7 @@ Certain frameworks support shortcodes with Raw string values:
 {{<  myshortcode "This is some raw text" >}}
 ```
 
-This is supported in Tina with the special `text` field.
+This is supported in Tina with the special `_value` field.
 
 ```ts
 fields: [
@@ -290,8 +290,8 @@ fields: [
         },
         fields: [
           {
-            name: 'text',
-            label: 'text',
+            name: '_value',
+            label: 'value',
             type: 'string',
             required: true,
           },
@@ -347,4 +347,4 @@ fields: [
 
 ### Default values
 
-> Currently, if setting a default value for a rich-text field, you must provide the document AST. See [example here](/docs/schema/#default-value-for-rich-text)
+If setting a default value for a rich-text field, you must provide the document AST. See [example here](/docs/schema/#default-value-for-rich-text)
