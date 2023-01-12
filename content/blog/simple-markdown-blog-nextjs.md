@@ -7,11 +7,11 @@ draft: false
 next: content/blog/using-tinacms-with-nextjs.md
 ---
 
-# How To Create a Markdown Blog With Next.js
+## Tina + Next: Part I
 
 > This post has been updated to use Next.js 13 and its latest features.
 
-*Want to skip to using Tina with Next.js? Jump to[ Part II](https://tinacms.org/blog/using-tinacms-with-nextjs/) of this series.*
+*Want to skip to using Tina with Next.js? Jump to [Part II](https://tinacms.org/blog/using-tinacms-with-nextjs/) of this series.*
 
 Next.js is a framework built on top of React for developing web applications. In detail, **Next.js has become one of the most popular choices when it comes to web development** thanks to its bootstrapped React environment (similar to `create-react-app`) and its simple, file-based routing logic.
 
