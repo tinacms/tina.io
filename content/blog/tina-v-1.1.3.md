@@ -39,7 +39,9 @@ See [here](https://tina.io/docs/reference/types/rich-text/#custom-shortcode-synt
 
 ## Min/Max Support in list fields
 
-The field UI object now accepts a min and max when the field is `list: true`. If the list/group list/block field is at the max or min value, the add or remove buttons are disabled. If the min and max values are the same, the field is considered 'fixed length' and the add/remove buttons are removed entirely, unless the data is invalid (you can still add items if there's not enough to satisfy the validation).
+The field UI object now accepts a `min` and `max` when the field is `list: true`. If the list/group list/block field is at the max or min value, the add or remove buttons are disabled.
+
+![min max](https://res.cloudinary.com/forestry-demo/image/upload/v1673542191/tina-io/docs/minmax.png)
 
 ## TOML & YML Support
 
