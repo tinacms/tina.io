@@ -268,6 +268,10 @@
         "title": "Setting up Tina"
       },
       {
+        "slug": "/docs/forestry/common-errors/",
+        "title": "Common Errors & Fixes when Migrating to TinaCMS"
+      },
+      {
         "title": "Comparing Forestry & Tina Concepts",
         "items": [
           {
