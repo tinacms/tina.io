@@ -28,10 +28,26 @@ type DatetimeField = {
 }
 ```
 
-The return value for a datetime is in [ISO string format](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)
+The return value for a datetime is in [ISO string format](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString "")
 
 <iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/iframe/datetime" />
 
 ## Custom format
 
 <iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/iframe/datetime-format" />
+
+### Using a time picker
+
+You can add a timepicker to the date UI by supplying the \`ui.timeFormat\` property
+
+```javascript
+{
+  type: "datetime",
+  name: "date",
+  label: "Date",
+  ui: {
+    timeFormat: "HH:mm"
+  },
+},
+```
+
