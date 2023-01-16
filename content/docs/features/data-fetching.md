@@ -34,7 +34,7 @@ export default defineConfig({
 export default schema
 ```
 
-When working locally, the client is built with the local url (http://localhost:40001/graphql). When in [production mode](/docs/tina-cloud/#prod-mode), `clientId`, `branch` and `token` are used to query Tina Cloud.
+When working locally, the client is built with the local url (http://localhost:4001/graphql). When in [production mode](/docs/tina-cloud/#prod-mode), `clientId`, `branch` and `token` are used to query Tina Cloud.
 
 Tina client provides a type-safe query builder, that is auto-generated based on your site's schema:
 
@@ -52,7 +52,7 @@ On a page that displays a list of posts, you can fetch the posts like so:
 
 ```js
 const postsResponse = await client.queries.postConnection()
-const posts = postResponse.data.postConnection.edges.map(x => {
+const posts = postResponse.data.postConnection.edges.map((x) => {
   return { slug: x.node._sys.filename }
 })
 // This would return an array like: [ { slug: 'HelloWorld.md'}, /*...*/ ]
