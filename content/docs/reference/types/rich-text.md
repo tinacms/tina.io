@@ -313,9 +313,7 @@ What up!
 {{% /shortcode %}}
 ```
 
-Your field template definition would look something like:\
-\
-
+Your field template definition would look something like:
 
 ```javascript
 {
@@ -339,8 +337,7 @@ Your field template definition would look something like:\
 
 > Note: the children type currently needs to be of type: \`rich-text\`.
 
-\
-Using shortcode names with dashes.
+### Using shortcode names with dashes.
 
 Sometimes your shortcode will contain characters that aren't supported in Tina's content modelling
 
