@@ -36,7 +36,7 @@ The return value for a datetime is in [ISO string format](https://developer.mozi
 
 <iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/iframe/datetime-format" />
 
-### Using a time picker
+## Using a time picker
 
 You can add a timepicker to the date UI by supplying the \`ui.timeFormat\` property
 
