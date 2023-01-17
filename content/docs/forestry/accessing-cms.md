@@ -21,11 +21,11 @@ The `tinacms build` step outputs the Tina admin's dashboard SPA in your site's b
 Once TinaCMS is setup, your editors will access the CMS via (`<your-site-url>/admin`)
 ![](https://res.cloudinary.com/forestry-demo/image/upload/v1670430150/tina-io/docs/forestry-migration/accessing-admin.gif)
 
-## Extra flexability
+## Extra flexibility
 
-By having the CMS-frontend hosted within your site, you have more felxability/control over your CMS behaviour. Write custom field components, create custom field validations, reuse your schema models, etc.
+By having the CMS-frontend hosted within your site, you have more flexibility/control over your CMS behaviour. Write custom field components, create custom field validations, reuse your schema models, etc.
 
-For example, here's you you might go about creating a custom "read-only field"
+For example, here's how you might go about creating a custom "read-only field"
 
 ```js
 //config.js
