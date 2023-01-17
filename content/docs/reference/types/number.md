@@ -10,7 +10,8 @@ type NumberField = {
   label: string
   name: string
   type: 'number'
- /** See https://tina.io/docs/extending-tina/overview/ for customizing the UI **/
+  /** See https://tina.io/docs/extending-tina/overview/ for customizing the UI **/
+  list?: boolean
   ui?: {
     label?: string
     description?: string
@@ -31,10 +32,9 @@ type NumberField = {
 <iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/iframe/number" />
 
 ## Examples
+
 ### `number` with validate
 
 This is an example of how to use the [frontend validate function](/docs/extending-tina/validation/) with the number field
 
 <iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/number-validate" />
-
-
