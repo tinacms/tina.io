@@ -1,0 +1,17 @@
+title: 'New Article'
+slug: 'new-article'
+author: firstname-lastname
+image: 'test.png'
+date: 2023-01-01T00:00:00.000Z
+summary: 'Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod.'
+description: 'Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod.'
+categories:
+  - placeholder
+disable_ads: true
+disable_panels: true
+disable_newsletterbox: true
+---
+
+## Lorem Ipsum
+
+Lorem Ipsum dolor porta sem malesuada magna mollis euismod. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Nullam id dolor id nibh ultricies vehicula ut id elit.
