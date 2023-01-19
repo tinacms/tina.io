@@ -1,8 +1,8 @@
 ---
-title: New Article
+title: 'New Article'
 date: '2023-01-01T00:00:00.000Z'
-author: firstname-lastname
-prev: content/blog/basics-of-graphql.md
+author: 'firstname-lastname'
+prev: 'content/blog/basics-of-graphql.md'
 ---
 
 
