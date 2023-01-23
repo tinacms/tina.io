@@ -92,7 +92,11 @@ You can [read more about this issue here](https://github.com/tinacms/tinacms/iss
 
 ![](https://res.cloudinary.com/forestry-demo/image/upload/v1673619483/tina-io/docs/forestry-migration/Screen-Shot-Error-Messager.png)
 
-This can happen for many reason but a common reason is because the data you are trying to fetch is not in the correct format, missing a required field or is missing the `_template` key. If you look at the error message in the terminal you should see the exact error that is causing the issue.
+This can happen for many reasons. Some common reasons are because the data you are trying to fetch is 
+- not in the correct format 
+- missing a required field
+- is missing the `_template` key. 
+If you look at the error message in the terminal you should see the exact error that is causing the issue.
 
 For example, if you are missing `_template` you will see an error like this
 
