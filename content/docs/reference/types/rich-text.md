@@ -333,8 +333,6 @@ Your field template definition would look something like:
 }
 ```
 
-
-
 > Note: the children type currently needs to be of type: \`rich-text\`.
 
 ### Using shortcode names with dashes.
@@ -369,6 +367,10 @@ fields: [
 ```
 
 ## Other notes
+
+### Full Spec
+
+The full Tina MDX spec can be found [here](https://github.com/tinacms/tinacms/blob/main/packages/%40tinacms/mdx/spec.md "TinaCMS MDX Spec")
 
 ### Default values
 
