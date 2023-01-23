@@ -114,7 +114,7 @@ _template: my_template
 ---
 ```
 
-Where "my_template" is the name of the template in the collection to which the file belongs.
+..where "my_template" is the name of the template in the collection to which the file belongs.
 
 ## Error `YAMLException: duplicated mapping key`
 
