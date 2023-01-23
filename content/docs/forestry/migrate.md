@@ -1,7 +1,8 @@
 ---
 title: Migrate from Forestry
 id: '/docs/forestry/migrate/'
-next: '/docs/forestry/accessing-cms'
+prev: '/docs/forestry/overview'
+next: '/docs/forestry/common-errors'
 ---
 
 ## Introduction
@@ -10,13 +11,38 @@ TinaCMS can be added to your site locally. In this doc, we'll guide through the 
 
 ## Getting Started
 
+> Note: This Tina Migration will change your site's content files. Please backup your sites content before proceeding. This is best done by doing a git commit before proceeding.
+
 From within your site's directory, run:
+
+```bash
+git commit -am "backup"
+```
+
+Then, run the migration command:
 
 ```bash
  npx @tinacms/cli@latest init
 ```
 
-This will ask you a few questions, and eventually drop the Tina boilerplate in your project.
+This will ask you a few questions, when it asks you if you went to migrate your forestry folder please answer `y` for yes.
+
+## Migrating your content
+
+This will migrate your content from Forestry to TinaCMS. It will create a `.tina/config.{ts,js}` that will contain the setup for Tina as well as the schema for your content. However, this migration will not be perfect. You will have to make some changes to your site to get it working with TinaCMS. We will go over these changes in the next section.
+
+This migration tool takes each section in your `.forestry/settings.yaml` file and turns it into a [TinaCMS collection](http://localhost:3000/docs/schema/#defining-collections). If one or more templates are defined in the section, it will create a [TinaCMS template](docs/reference/templates/) for each fontmatter template. If only one template is defined it will create a [TinaCMS collection with fields](/docs/reference/collections/#basic-example)
+
+TinaCMS will use the `label` field in the `.forestry/settings.yaml` file as the name of the collection.
+
+TinaCMS is a bit handles a few things differently that will cause you to have to make some updates to your site.
+
+Here is a list of the changes that will need to be made to your site:
+
+- You can only have alphanumeric characters or underscores in your field names, templates names, and collection names (**This includes `-`**). You will likely have to updates your template names in your content and code. See [this doc](/docs/forestry/common-errors/#migrating-fields-with-non-alphanumeric-characters) for more details.
+- If you are using the "blocks" field see [this doc](/docs/forestry/common-errors/#migrating-blocks) for how to migrate your blocks.
+
+## Starting TinaCMS
 
 You can start TinaCMS with:
 
@@ -30,14 +56,15 @@ With TinaCMS running, navigate to `http://localhost:1313/admin`
 
 > ^ The above default port may differ depending on your framework.
 
-At this point, you should be able to see the Tina admin, select a dummy post, save changes, and see the changes persisted to your local markdown files.
+> Hint: If you are getting error when running this command please see the [Common Errors](/docs/forestry/common-errors) page.
+
+At this point, you should be able to see the Tina admin, select a post, save changes, and see the changes persisted to your local markdown files.
 
 ![](/img/hugo-tina-admin-screenshot.png)
 
 ## Model your content
 
-Out of the box, there is a content model created for a "dummy-post".
-In Forestry, your content models were defined as "Front Matter Templates", but in TinaCMS, these are called "Collections". These are defined in your `.tina/config.js` file. You can update the dummy collection to map to a real model used on your site:
+In Forestry, your content models were defined as "Front Matter Templates", but in TinaCMS, these are called "Collections". These are defined in your `.tina/config.js` file. The migration tool will have created a collection for each section in your `.forestry/settings.yaml` file but if you wish to update or change any of these you can do so in the `.tina/config.js` file.
 
 ```diff
 // ...
@@ -72,8 +99,6 @@ schema: {
 }
 // ...
 ```
-
-To test out Tina, you might want to start by modeling a single collection with a single field. The "body" field above is a good test, to demo any markdown file with a body below its frontmatter.
 
 You can lean more about content modelling in Tina's [content modeling docs](https://tina.io/docs/schema/).
 
