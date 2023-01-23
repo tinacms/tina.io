@@ -370,7 +370,7 @@ fields: [
 
 ### Full Spec
 
-The full Tina MDX spec can be found [here](https://github.com/tinacms/tinacms/blob/main/packages/%40tinacms/mdx/spec.md "Tina CMS MDX Spec")
+The full Tina MDX spec can be found [here](https://github.com/tinacms/tinacms/blob/main/packages/%40tinacms/mdx/spec.md "TinaCMS MDX Spec")
 
 ### Default values
 
