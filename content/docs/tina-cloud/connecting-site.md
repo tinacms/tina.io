@@ -85,32 +85,32 @@ export default defineConfig({
 })
 ```
 
-The apiURL is configured to use the local Content API in development (to query your local files), and the hosted content API (with auth) in production.\
-\
-\## Deploying your site (with the TinaCMS admin)\
-\
-The next step is to update your deployment configuration, so the TinaCMS admin gets built alongside your site. This allows your editors to enter the CMS through \`\<your-site>/admin\` (or \`your-site/admin/index.html\`).\
-\
-Here are some popular deployment options:\
-\
-\### Option: Netlify\
-\
-\#### Build Configuration\
-\
+The apiURL is configured to use the local Content API in development (to query your local files), and the hosted content API (with auth) in production.\\
+
+## Deploying your site (with the TinaCMS admin)\\
+
+The next step is to update your deployment configuration, so the TinaCMS admin gets built alongside your site. This allows your editors to enter the CMS through `<your-site>/admin` (or `your-site/admin/index.html`).
+
+Here are some popular deployment options:
+
+### Option: Netlify
+
+#### Build Configuration
+
 In Netlify, your build configuration can be updated at **Settings** > **Build & Deploy** > **Build Command**.
 
 ![Netlify build config](http://res.cloudinary.com/forestry-demo/image/upload/v1674607585/Screen_Shot_2023-01-24_at_8.45.23_PM_gbqyqb.png "Netlify build config")
 
 > If your package.json has a "build" script like \`tinacms && \<your-site-build-cmd>\`, this likely doesn't need to be changed. If your Netlify config is not running a custom build script (e.g \`next build\`), you would have to change this to \`tinacms dev && next build\`
 
-\#### Environment variables\
-\
-Assuming that your Tina `clientID` and `token` are setup as environment variables, you will need to add those to the Netlify UI for your project. You can learn more about environment variables [here](https://docs.netlify.com/environment-variables/overview/?_ga=2.128850127.213489666.1674607241-1149277376.1674150726 "netlify environment variables")\
-\
-\### Option: Vercel\
-\
-Docs coming soon\
-\
-\### Option: GitHub Pages\
-\
+#### Environment variables
+
+Assuming that your Tina `clientID` and `token` are setup as environment variables, you will need to add those to the Netlify UI for your project. You can learn more about environment variables [here](https://docs.netlify.com/environment-variables/overview/?_ga=2.128850127.213489666.1674607241-1149277376.1674150726 "netlify environment variables")
+
+### Option: Vercel
+
+Docs coming soon
+
+### Option: GitHub Pages
+
 Docs coming soon
