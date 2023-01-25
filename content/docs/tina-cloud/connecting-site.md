@@ -123,9 +123,9 @@ Assuming that your Tina `clientID` and `token` are setup as environment variable
 
 ### Option: GitHub Pages
 
-GitHub Pages is a popular hosting option for static sites. GitHub Pages can be configured in **\<your-repo>** / **Settings** > **Pages. **\
-\
-Build Configuration\
+GitHub Pages is a popular hosting option for static sites. GitHub Pages can be configured in **\<your-repo>** / **Settings** > \*\*Pages. \*\*
+
+Build Configuration
 \
 GitHub Pages offers a few build options:\
 \- GitHub Actions\
@@ -140,4 +140,3 @@ By clicking "Configure" on the action it's created for us, we can then tweak the
 Once you prepend \`tinacms build && \` to your build script, your GitHub Action will look something like:
 
 ![Github Action](https://res.cloudinary.com/forestry-demo/image/upload/v1674654604/tina-io/docs/tina-cloud/github-action_co7uin.png "Github Action")
-
