@@ -87,7 +87,7 @@ export default defineConfig({
 
 The apiURL is configured to use the local Content API in development (to query your local files), and the hosted content API (with auth) in production.\\
 
-## Deploying your site (with the TinaCMS admin)\\
+## Deploying your site (with the TinaCMS admin)
 
 The next step is to update your deployment configuration, so the TinaCMS admin gets built alongside your site. This allows your editors to enter the CMS through `<your-site>/admin` (or `your-site/admin/index.html`).
 
