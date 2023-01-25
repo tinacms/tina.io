@@ -123,4 +123,13 @@ Assuming that your Tina `clientID` and `token` are setup as environment variable
 
 ### Option: GitHub Pages
 
-Docs coming soon
+GitHub Pages is a popular hosting option for static sites. GitHub Pages can be configured in **\<your-repo>** / **Settings** > **Pages. **\
+\
+GitHub Pages offers a few build options:\
+\- GitHub Actions\
+\- Deploy from a branch
+
+![GitHub Actions](https://res.cloudinary.com/forestry-demo/image/upload/v1674654344/tina-io/docs/tina-cloud/Screen_Shot_2023-01-25_at_9.40.52_AM_fby9q2.png "GitHub Actions")
+
+We want to choose "**GitHub Actions**" so that we can control the build script, and make sure it's also building the TinaCMS admin\
+\
