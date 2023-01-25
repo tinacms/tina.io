@@ -126,17 +126,18 @@ Assuming that your Tina `clientID` and `token` are setup as environment variable
 GitHub Pages is a popular hosting option for static sites. GitHub Pages can be configured in **\<your-repo>** / **Settings** > \*\*Pages. \*\*
 
 Build Configuration
-\
-GitHub Pages offers a few build options:\
-\- GitHub Actions\
-\- Deploy from a branch
+
+GitHub Pages offers a few build options:
+
+* GitHub Actions
+* Deploy from a branch
 
 ![GitHub Actions](https://res.cloudinary.com/forestry-demo/image/upload/v1674654344/tina-io/docs/tina-cloud/Screen_Shot_2023-01-25_at_9.40.52_AM_fby9q2.png "GitHub Actions")
 
-We want to choose "**GitHub Actions**" so that we can control the build script, and make sure it's also building the TinaCMS admin\
-\
-By clicking "Configure" on the action it's created for us, we can then tweak the build script to build tinacms along with our site.\
-\
-Once you prepend \`tinacms build && \` to your build script, your GitHub Action will look something like:
+We want to choose "**GitHub Actions**" so that we can control the build script, and make sure it's also building the TinaCMS admin
+
+By clicking "Configure" on the action it's created for us, we can then tweak the build script to build tinacms along with our site.
+
+Once you prepend `tinacms build && ` to your build script, your GitHub Action will look something like:
 
 ![Github Action](https://res.cloudinary.com/forestry-demo/image/upload/v1674654604/tina-io/docs/tina-cloud/github-action_co7uin.png "Github Action")
