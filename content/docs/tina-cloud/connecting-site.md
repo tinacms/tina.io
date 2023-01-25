@@ -109,7 +109,17 @@ Assuming that your Tina `clientID` and `token` are setup as environment variable
 
 ### Option: Vercel
 
-Docs coming soon
+#### Build Configuration
+
+In Vercel, your build configuration can be updated at **Settings** > **General** > **Build & Development Settings**.
+
+![Vercel Build Settings](https://res.cloudinary.com/forestry-demo/image/upload/v1674653527/tina-io/docs/tina-cloud/vercel-build-settings_vubza8.png "Vercel Build Settings")
+
+> If your package.json has a "build" script like \`tinacms && \<your-site-build-cmd>\`, this likely doesn't need to be changed. If your Vercel config is not running a custom build script (e.g \`next build\` instead of \`npm run build\`), you would have to change this to \`tinacms dev && next build\`
+
+#### Environment variables
+
+Assuming that your Tina `clientID` and `token` are setup as environment variables, you will need to add those to the Vercel "Environment Variables" tab for your project.
 
 ### Option: GitHub Pages
 
