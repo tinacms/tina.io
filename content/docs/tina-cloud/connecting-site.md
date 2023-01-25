@@ -7,7 +7,7 @@ Once you've created a project in **Tina Cloud**, the next step is to connect you
 
 ## Enabling Tina Cloud in TinaCMS
 
-In the [Contextual Editing doc](/docs/tinacms-context/ ""), we showed you how the Tina context is setup on your site.
+In the [Contextual Editing doc](/docs/tinacms-context/), we showed you how the Tina context is setup on your site.
 
 To have editing work in production, in the `.tina/config.<ts|js>` file, configure the `clientId` to point to your Tina Cloud project, and add your generated `token`.
 
@@ -62,8 +62,8 @@ export default defineConfig({
 })
 ```
 
-> `NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF` is Vercel's [system environment variable](https://vercel.com/docs/concepts/projects/environment-variables#system-environment-variables "") that represents the branch that has made the deployment commit.
-> `HEAD` is the equivalent system environment variable used by [Netlify](https://docs.netlify.com/configure-builds/environment-variables/#git-metadata "").
+> `NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF` is Vercel's [system environment variable](https://vercel.com/docs/concepts/projects/environment-variables#system-environment-variables) that represents the branch that has made the deployment commit.
+> `HEAD` is the equivalent system environment variable used by [Netlify](https://docs.netlify.com/configure-builds/environment-variables/#git-metadata).
 
 Your fully configured `.tina/config.{js,ts}` should look something like this:
 
@@ -85,7 +85,7 @@ export default defineConfig({
 })
 ```
 
-The apiURL is configured to use the local Content API in development (to query your local files), and the hosted content API (with auth) in production.\\
+The apiURL is configured to use the local Content API in development (to query your local files), and the hosted content API (with auth) in production.
 
 ## Deploying your site (with the TinaCMS admin)
 
@@ -99,13 +99,13 @@ Here are some popular deployment options:
 
 In Netlify, your build configuration can be updated at **Settings** > **Build & Deploy** > **Build Command**.
 
-![Netlify build config](http://res.cloudinary.com/forestry-demo/image/upload/v1674607585/Screen_Shot_2023-01-24_at_8.45.23_PM_gbqyqb.png "Netlify build config")
+![Netlify build config](http://res.cloudinary.com/forestry-demo/image/upload/v1674607585/Screen_Shot_2023-01-24_at_8.45.23_PM_gbqyqb.png 'Netlify build config')
 
-> If your package.json has a "build" script like \`tinacms && \<your-site-build-cmd>\`, this likely doesn't need to be changed. If your Netlify config is not running a custom build script (e.g \`next build\`), you would have to change this to \`tinacms dev && next build\`
+> If your package.json has a "build" script like `tinacms && <your-site-build-cmd>`, this likely doesn't need to be changed. If your Netlify config is not running a custom build script (e.g `next build`), you would have to change this to `tinacms dev && next build`
 
 #### Environment variables
 
-Assuming that your Tina `clientID` and `token` are setup as environment variables, you will need to add those to the Netlify UI for your project. You can learn more about environment variables [here](https://docs.netlify.com/environment-variables/overview/?_ga=2.128850127.213489666.1674607241-1149277376.1674150726 "netlify environment variables")
+Assuming that your Tina `clientID` and `token` are setup as environment variables, you will need to add those to the Netlify UI for your project. You can learn more about environment variables [here](https://docs.netlify.com/environment-variables/overview/?_ga=2.128850127.213489666.1674607241-1149277376.1674150726 'netlify environment variables')
 
 ### Option: Vercel
 
@@ -113,9 +113,9 @@ Assuming that your Tina `clientID` and `token` are setup as environment variable
 
 In Vercel, your build configuration can be updated at **Settings** > **General** > **Build & Development Settings**.
 
-![Vercel Build Settings](https://res.cloudinary.com/forestry-demo/image/upload/v1674653527/tina-io/docs/tina-cloud/vercel-build-settings_vubza8.png "Vercel Build Settings")
+![Vercel Build Settings](https://res.cloudinary.com/forestry-demo/image/upload/v1674653527/tina-io/docs/tina-cloud/vercel-build-settings_vubza8.png 'Vercel Build Settings')
 
-> If your package.json has a "build" script like \`tinacms && \<your-site-build-cmd>\`, this likely doesn't need to be changed. If your Vercel config is not running a custom build script (e.g \`next build\` instead of \`npm run build\`), you would have to change this to \`tinacms dev && next build\`
+> If your package.json has a "build" script like `tinacms && <your-site-build-cmd>`, this likely doesn't need to be changed. If your Vercel config is not running a custom build script (e.g `next build` instead of `npm run build`), you would have to change this to `tinacms dev && next build`
 
 #### Environment variables
 
@@ -123,16 +123,16 @@ Assuming that your Tina `clientID` and `token` are setup as environment variable
 
 ### Option: GitHub Pages
 
-GitHub Pages is a popular hosting option for static sites. GitHub Pages can be configured in **\<your-repo>** > **Settings** > **Pages**.
+GitHub Pages is a popular hosting option for static sites. GitHub Pages can be configured in **<your-repo>** > **Settings** > **Pages**.
 
 #### Build Configuration
 
 GitHub Pages offers a few build options:
 
-* GitHub Actions
-* Deploy from a branch
+- GitHub Actions
+- Deploy from a branch
 
-![GitHub Actions](https://res.cloudinary.com/forestry-demo/image/upload/v1674654344/tina-io/docs/tina-cloud/Screen_Shot_2023-01-25_at_9.40.52_AM_fby9q2.png "GitHub Actions")
+![GitHub Actions](https://res.cloudinary.com/forestry-demo/image/upload/v1674654344/tina-io/docs/tina-cloud/Screen_Shot_2023-01-25_at_9.40.52_AM_fby9q2.png 'GitHub Actions')
 
 We want to choose "**GitHub Actions**" so that we can control the build script, and make sure it's also building the TinaCMS admin
 
@@ -140,10 +140,10 @@ By clicking "Configure" on the action it's created for us, we can then tweak the
 
 Once you prepend `tinacms build && ` to your build script, your GitHub Action will look something like:
 
-![Github Action](https://res.cloudinary.com/forestry-demo/image/upload/v1674654604/tina-io/docs/tina-cloud/github-action_co7uin.png "Github Action")
+![Github Action](https://res.cloudinary.com/forestry-demo/image/upload/v1674654604/tina-io/docs/tina-cloud/github-action_co7uin.png 'Github Action')
 
 #### Environment variables
 
 Assuming that your Tina `clientID` and `token` are setup as environment variables, you will need to add those to the GitHub Secrets for your project. to your build script, your GitHub Action will look something like:
 
-![Github Action](https://res.cloudinary.com/forestry-demo/image/upload/v1674654604/tina-io/docs/tina-cloud/github-action_co7uin.png "Github Action")
+![Github Action](https://res.cloudinary.com/forestry-demo/image/upload/v1674654604/tina-io/docs/tina-cloud/github-action_co7uin.png 'Github Action')
