@@ -123,7 +123,7 @@ Assuming that your Tina `clientID` and `token` are setup as environment variable
 
 ### Option: GitHub Pages
 
-GitHub Pages is a popular hosting option for static sites. GitHub Pages can be configured in **\<your-repo>** / **Settings** > \*\*Pages. \*\*
+GitHub Pages is a popular hosting option for static sites. GitHub Pages can be configured in **\<your-repo>** > **Settings** > \*\*Pages. \*\*
 
 Build Configuration
 
