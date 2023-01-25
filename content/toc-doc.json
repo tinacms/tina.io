@@ -245,6 +245,10 @@
         ]
       },
       {
+        "title": "Separate Content Repo",
+        "slug": "/guides/tinacms/separate-content-repo/guide/"
+      },
+      {
         "title": "Gatsby",
         "slug": "/guides/tinacms/gatsby-data-fetching/guide/",
         "status": "Beta"
