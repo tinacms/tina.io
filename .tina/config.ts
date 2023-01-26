@@ -1,4 +1,4 @@
-import { defineConfig, defineSchema } from 'tinacms'
+import { defineConfig } from 'tinacms'
 import { schema } from './schema'
 
 const tinaConfig = defineConfig({
