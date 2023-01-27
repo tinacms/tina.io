@@ -1,6 +1,6 @@
 ---
 title: Non-React-based SSG support
-last_edited: '2022-04-21T10:00:00.000Z'
+last_edited: '2022-12-11T21:30:00.000Z'
 ---
 
 ## Introduction
@@ -59,6 +59,14 @@ And we'll opt in to using Typescript so errors in our config more clear:
 
 ```bash
 ? Would you like to use Typescript? › (Y/n)
+```
+
+Then, it'll ask you what framework you are using. Choose `Other (SSG frameworks like hugo, jekyll, etc.)`:
+
+```bash
+? What framework are you using? › - Use arrow-keys. Return to submit.
+    Next.js
+❯   Other (SSG frameworks like hugo, jekyll, etc.)
 ```
 
 Next it'll ask us where public assets should be stored. TinaCMS is installed as a static asset so it should be

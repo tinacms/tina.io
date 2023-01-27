@@ -96,7 +96,7 @@ const handler = createMediaHandler({
   },
 })
 
-router.get('/<YOUR_MEDIA_STORE_NAME>/meida', handler)
+router.get('/<YOUR_MEDIA_STORE_NAME>/media', handler)
 
 router.post('/<YOUR_MEDIA_STORE_NAME>/media', handler)
 

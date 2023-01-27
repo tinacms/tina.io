@@ -105,12 +105,15 @@ export const Footer = ({}) => {
           {footerNav.map((item) => {
             const { label, items } = item
             return (
-              <div className="flex flex-col items-stretch justify-start gap-2">
+              <div
+                key={label}
+                className="flex flex-col items-stretch justify-start gap-2"
+              >
                 <p className="uppercase text-orange-100 font-bold -mt-1">
                   {label}
                 </p>
                 {items.map((item) => {
-                  return <LinkItem item={item} />
+                  return <LinkItem key={item.label} item={item} />
                 })}
               </div>
             )
@@ -121,7 +124,7 @@ export const Footer = ({}) => {
                 <GithubIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
                 Github
               </SocialLink>
-              <SocialLink link="https://twitter.com/tina_cms">
+              <SocialLink link="https://twitter.com/tinacms">
                 <TwitterIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
                 Twitter
               </SocialLink>
@@ -144,7 +147,7 @@ export const Footer = ({}) => {
           <div className="flex flex-wrap justify-end gap-x-6 gap-y-2">
             {footerLinks.map((item) => {
               const { link, label } = item
-              return <FooterLink link={link} label={label} />
+              return <FooterLink key={label} link={link} label={label} />
             })}
           </div>
           <div>

@@ -1,4 +1,7 @@
-import type { PageBlocks, PostConnection } from '../../.tina/__generated__/types'
+import type {
+  PageBlocks,
+  PostConnection,
+} from '../../.tina/__generated__/types'
 import {
   StoryBlock,
   FeatureGridBlock,
@@ -15,36 +18,69 @@ import { RecentPostsBlock } from './RecentPosts'
 import { RoadmapGridBlock } from './RoadmapGrid'
 import { ShowcaseItemsBlock } from './Showcase'
 
-export const Blocks = ({ blocks, recentPosts }: { blocks: PageBlocks[], recentPosts: PostConnection }) => {
+export const Blocks = ({
+  blocks,
+  recentPosts,
+}: {
+  blocks: PageBlocks[]
+  recentPosts: PostConnection
+}) => {
   if (!blocks) return null
   return blocks.map((block, index) => {
     switch (block.__typename) {
       case 'PageBlocksFeatures':
-        return <FeaturesBlock data={block} index={index} />
+        return (
+          <FeaturesBlock key={`block-${index}`} data={block} index={index} />
+        )
       case 'PageBlocksFlying':
-        return <FlyingBlock data={block} index={index} />
+        return <FlyingBlock key={`block-${index}`} data={block} index={index} />
       case 'PageBlocksHero':
-        return <HeroBlock data={block} index={index} />
+        return <HeroBlock key={`block-${index}`} data={block} index={index} />
       case 'PageBlocksPricing':
-        return <PricingBlock data={block} index={index} />
+        return (
+          <PricingBlock key={`block-${index}`} data={block} index={index} />
+        )
       case 'PageBlocksFaq':
-        return <FaqBlock data={block} index={index} />
+        return <FaqBlock key={`block-${index}`} data={block} index={index} />
       case 'PageBlocksContent':
-        return <ContentBlock data={block} index={index} />
+        return (
+          <ContentBlock key={`block-${index}`} data={block} index={index} />
+        )
       case 'PageBlocksColumns':
-        return <ColumnsBlock data={block} index={index} />
+        return (
+          <ColumnsBlock key={`block-${index}`} data={block} index={index} />
+        )
       case 'PageBlocksShowcase':
-        return <ShowcaseItemsBlock data={block} index={index} />
+        return (
+          <ShowcaseItemsBlock
+            key={`block-${index}`}
+            data={block}
+            index={index}
+          />
+        )
       case 'PageBlocksStory':
-        return <StoryBlock data={block} index={index} />
+        return <StoryBlock key={`block-${index}`} data={block} index={index} />
       case 'PageBlocksFeatureGrid':
-        return <FeatureGridBlock data={block} index={index} />
+        return (
+          <FeatureGridBlock key={`block-${index}`} data={block} index={index} />
+        )
       case 'PageBlocksLogoGrid':
-        return <LogoGridBlock data={block} index={index} />
+        return (
+          <LogoGridBlock key={`block-${index}`} data={block} index={index} />
+        )
       case 'PageBlocksRoadmapGrid':
-        return <RoadmapGridBlock data={block} index={index} />
+        return (
+          <RoadmapGridBlock key={`block-${index}`} data={block} index={index} />
+        )
       case 'PageBlocksRecentPosts':
-        return <RecentPostsBlock data={block} index={index} recentPosts={recentPosts} />
+        return (
+          <RecentPostsBlock
+            key={`block-${index}`}
+            data={block}
+            index={index}
+            recentPosts={recentPosts}
+          />
+        )
       default:
         return null
     }

@@ -5,80 +5,63 @@ import { useRouter } from 'next/router'
 import { matchActualTarget } from 'utils'
 import { DynamicLink } from '../../components/ui'
 import docsLinks from '../../content/docs-navigation.json'
+import { BiChevronRight } from 'react-icons/bi'
+import AnimateHeight from 'react-animate-height'
 
 interface NavTitleProps {
   level: number
   selected: boolean
+  childSelected?: boolean
+  children: React.ReactNode | React.ReactNode[]
+  onClick?: () => void
 }
 
-const NavTitle = styled.a<NavTitleProps>`
-  position: relative;
-  display: block;
-  text-decoration: none;
-  transition: all 180ms ease-out 0s;
-  cursor: pointer;
-  color: var(--color-secondary);
-  font-family: var(--font-primary);
-  font-size: 0.9375rem;
-  opacity: 0.75;
-  line-height: 1.3;
-  padding: 0.125rem 0.5rem 0.125rem 1.125rem;
-
-  &:hover {
-    opacity: 1;
+const NavTitle = ({
+  children,
+  level = 3,
+  selected,
+  childSelected,
+  ...props
+}: NavTitleProps) => {
+  const headerLevelClasses = {
+    0: 'opacity-100 font-tuner-light text-orange-500 text-xl pt-2',
+    1: {
+      default: 'text-base font-sans pt-1 text-gray-800',
+      selected: 'text-base font-sans pt-1 font-bold text-blue-500',
+      childSelected: 'text-base font-sans pt-1 font-[500] text-gray-800',
+    },
+    2: {
+      default: 'text-[15px] font-sans opacity-80 pt-0.5 text-gray-700',
+      selected: 'text-[15px] font-sans pt-0.5 font-bold text-blue-500',
+      childSelected: 'text-[15px] font-sans pt-1 font-[500] text-gray-800',
+    },
+    3: {
+      default: 'text-[15px] font-sans opacity-80 pt-0.5 text-gray-700',
+      selected: 'text-[15px] font-sans pt-0.5 font-bold text-blue-500',
+      childSelected: 'text-[15px] font-sans pt-1 font-[500] text-gray-800',
+    },
   }
 
-  span {
-    display: inline-block;
-    background: white;
-    padding-right: 0.75rem;
+  const headerLevel = level > 3 ? 3 : level
+  const selectedClass = selected
+    ? 'selected'
+    : childSelected
+    ? 'childSelected'
+    : 'default'
+  const classes =
+    level < 1
+      ? headerLevelClasses[headerLevel]
+      : headerLevelClasses[headerLevel][selectedClass]
 
-    &:before {
-      content: '';
-      display: block;
-      position: absolute;
-      left: 1.125rem;
-      top: 50%;
-      height: 1px;
-      margin-top: -3px;
-      width: 100%;
-      border-bottom: 5px dotted var(--color-grey-1);
-      z-index: -1;
-    }
-  }
-
-  ${(props: any) =>
-    props.level === 0 &&
-    css`
-      opacity: 1;
-      color: var(--color-orange);
-      font-family: var(--font-tuner);
-      font-size: 1.25rem;
-      padding: 0.5rem 0.5rem 0.125rem 1.125rem;
-    `}
-
-  ${(props: any) =>
-    props.level === 1 &&
-    css`
-      font-size: 1rem;
-      opacity: 1;
-    `}
-
-    ${(props: any) =>
-      props.level === 2 &&
-      css`
-        opacity: 0.875;
-      `}
-
-
-  ${(props: any) =>
-    props.selected &&
-    css`
-      opacity: 1;
-      color: var(--color-orange);
-      font-weight: bold;
-    `}
-`
+  return (
+    <a
+      className={`group flex items-center gap-1 transition duration-150 ease-out cursor-pointer hover:opacity-100 leading-tight pb-0.5 pl-4 ${classes}`}
+      {...props}
+    >
+      {children}
+    </a>
+  )
+}
 
 const hasNestedSlug = (navItems = [], slug) => {
   for (let item of navItems) {
@@ -105,57 +88,95 @@ const NavLevel = ({
 }) => {
   const navLevelElem = React.useRef(null)
   const router = useRouter()
-  // const expandChildren =
-  // matchActualTarget(categoryData.slug || categoryData.href, router.asPath) ||
-  //   hasNestedSlug(categoryData.items, router.asPath) //matchActualTarget(router.asPath, categoryData.slug)
-  const expandChildren = !categoryData.expandOnSelect
-    ? true
-    : matchActualTarget(
-        categoryData.slug || categoryData.href,
-        router.asPath
-      ) || hasNestedSlug(categoryData.items, router.asPath) //matchActualTarget(router.asPath, categoryData.slug)
-  const isSelected = router.asPath == categoryData.slug && level !== 0
+  const [expanded, setExpanded] = React.useState(
+    matchActualTarget(categoryData.slug || categoryData.href, router.asPath) ||
+      hasNestedSlug(categoryData.items, router.asPath) ||
+      level === 0
+  )
+  const selected = router.asPath == categoryData.slug
+  const childSelected = hasNestedSlug(categoryData.items, router.asPath)
 
   React.useEffect(() => {
     if (
       navListElem &&
       navLevelElem.current &&
       navListElem.current &&
-      isSelected
+      selected
     ) {
-      const topOffset = navLevelElem.current.getBoundingClientRect().top - 32
-      // navListElem.current.scrollTo({
-      //   top: topOffset,
-      //   behavior: 'auto',
-      //   block: 'nearest',
-      //   inline: 'start',
-      // })
+      const scrollOffset = navListElem.current.scrollTop
+      const navListOffset = navListElem.current.getBoundingClientRect().top
+      const navListHeight = navListElem.current.offsetHeight
+      const navItemOffset = navLevelElem.current.getBoundingClientRect().top
+      const elementOutOfView =
+        navItemOffset - navListOffset > navListHeight + scrollOffset
+
+      if (elementOutOfView) {
+        navLevelElem.current.scrollIntoView({
+          behavior: 'auto',
+          block: 'center',
+          inline: 'nearest',
+        })
+      }
     }
-  }, [navLevelElem, navListElem, isSelected])
+  }, [navLevelElem.current, navListElem, selected])
 
   return (
     <>
-      <NavLabelContainer status={categoryData.status}>
-        <DynamicLink href={categoryData.slug} passHref>
-          <NavTitle ref={navLevelElem} level={level} selected={isSelected}>
-            {isSelected ? (
-              <span>{categoryData.title || categoryData.category}</span>
-            ) : (
-              categoryData.title || categoryData.category
+      <NavLabelContainer ref={navLevelElem} status={categoryData.status}>
+        {categoryData.slug ? (
+          <DynamicLink href={categoryData.slug} passHref>
+            <NavTitle level={level} selected={selected && !childSelected}>
+              <span className="bg-white pr-2 -mr-2">{categoryData.title}</span>
+            </NavTitle>
+          </DynamicLink>
+        ) : (
+          <NavTitle
+            level={level}
+            selected={selected && !childSelected}
+            childSelected={childSelected}
+            onClick={() => {
+              setExpanded(!expanded)
+            }}
+          >
+            <span className="bg-white pr-2 -mr-2">{categoryData.title}</span>
+            {categoryData.items && !selected && (
+              <BiChevronRight
+                className={`${
+                  level < 1
+                    ? 'text-orange-100 group-hover:text-orange-300'
+                    : 'text-blue-200 group-hover:text-blue-400'
+                } group-hover:rotate-90 w-5 h-auto -my-2 transition ease-out duration-300 transform ${
+                  expanded ? 'rotate-90' : ''
+                }`}
+              />
             )}
           </NavTitle>
-        </DynamicLink>
+        )}
+        {!childSelected && selected && level > 0 && (
+          <div
+            className="absolute right-0 top-1/2 -translate-y-1/2 h-[5px] w-full -z-10"
+            style={{
+              background: "url('/svg/hr.svg')",
+              backgroundPosition: 'right',
+              backgroundSize: 'auto 100%',
+              backgroundRepeat: 'no-repeat',
+            }}
+          ></div>
+        )}
       </NavLabelContainer>
-      {expandChildren && categoryData.items && (
-        <NavLevelChildContainer level={level}>
-          {(categoryData.items || []).map(item => (
-            <NavLevel
-              navListElem={navListElem}
-              level={level + 1}
-              categoryData={item}
-            />
-          ))}
-        </NavLevelChildContainer>
+      {categoryData.items && (
+        <AnimateHeight duration={300} height={expanded ? 'auto' : 0}>
+          <NavLevelChildContainer level={level}>
+            {(categoryData.items || []).map((item) => (
+              <NavLevel
+                key={item.slug ? item.slug + level : item.title + level}
+                navListElem={navListElem}
+                level={level + 1}
+                categoryData={item}
+              />
+            ))}
+          </NavLevelChildContainer>
+        </AnimateHeight>
       )}
     </>
   )
@@ -182,9 +203,11 @@ const NavLevelChildContainer = styled.div<NavLevelChildContainerProps>`
 `
 
 const NavLabelContainer = styled.div<{ status: string }>`
+  position: relative;
   display: flex;
+
   &:last-child {
-    padding-bottom: 0.375rem;
+    margin-bottom: 0.375rem;
   }
 
   ${(props: { status: string }) =>
@@ -223,15 +246,22 @@ export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
         {docsLinks &&
           docsLinks.map(({ id, href, label }) => {
             return (
-              <DynamicLink href={href} passHref>
+              <DynamicLink key={id + href} href={href} passHref>
                 <a key={id}>{label}</a>
               </DynamicLink>
             )
           })}
       </MobileMainNav>
       <DocsNavigationContainer ref={navListElem}>
-        {navItems.map(categoryData => (
-          <NavLevel navListElem={navListElem} categoryData={categoryData} />
+        {navItems.map((categoryData) => (
+          <NavLevel
+            key={
+              'mobile-' +
+              (categoryData.slug ? categoryData.slug : categoryData.title)
+            }
+            navListElem={navListElem}
+            categoryData={categoryData}
+          />
         ))}
       </DocsNavigationContainer>
     </>

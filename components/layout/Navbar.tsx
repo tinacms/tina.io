@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import GitHubButton from 'react-github-btn'
 import data from '../../content/navigation.json'
-import { Button } from '../../components/ui/Button'
+import { Button, LinkButton } from '../../components/ui/Button'
 import { BiChevronRight, BiMenu, BiRightArrowAlt } from 'react-icons/bi'
 import { TinaIcon } from '../../components/logo'
 import { useInView } from 'react-intersection-observer'
@@ -144,16 +144,20 @@ export function Navbar({}) {
           </a>
         </Link>
         <div className="w-full flex justify-end items-center gap-4">
-          <Link href="https://app.tina.io/signin">
-            <Button color="white" size="small">
-              Log In
-            </Button>
-          </Link>
-          <Link href="https://app.tina.io/register">
-            <Button color="blue" size="small">
-              Sign Up
-            </Button>
-          </Link>
+          <LinkButton
+            link="https://app.tina.io/signin"
+            color="white"
+            size="small"
+          >
+            Log In
+          </LinkButton>
+          <LinkButton
+            link="https://app.tina.io/register"
+            color="blue"
+            size="small"
+          >
+            Sign Up
+          </LinkButton>
         </div>
       </div>
       <div
@@ -230,16 +234,20 @@ export function Navbar({}) {
               </GitHubButton>
             </div>
             <div className="w-full flex justify-start items-center gap-4">
-              <Link href="https://app.tina.io/signin">
-                <Button color="white" size="small">
-                  Log In
-                </Button>
-              </Link>
-              <Link href="https://app.tina.io/register">
-                <Button color="blue" size="small">
-                  Sign Up
-                </Button>
-              </Link>
+              <LinkButton
+                link="https://app.tina.io/signin"
+                color="white"
+                size="small"
+              >
+                Log In
+              </LinkButton>
+              <LinkButton
+                link="https://app.tina.io/register"
+                color="blue"
+                size="small"
+              >
+                Sign Up
+              </LinkButton>
             </div>
           </div>
         </nav>
