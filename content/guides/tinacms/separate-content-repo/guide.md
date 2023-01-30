@@ -3,10 +3,12 @@ title: Separate Content Repo
 last_edited: '2023-01-24T10:00:00.000Z'
 ---
 
-Tina supports sourcing content from a separate Git repo. With this approach you can continue to define your
-Tina config in your website repo, but documents will be saved elsewhere.
+## Introduction
 
-## Why?
+Tina supports sourcing content from a separate Git repo. With this approach you can continue to define your
+Tina config in your "website repo", but documents will be saved elsewhere.
+
+### Why?
 
 You might want to do this for a variety of reasons, such as:
 
@@ -15,7 +17,7 @@ You might want to do this for a variety of reasons, such as:
 
 <div class="short-code-warning">
   <div>
-    <p>Throughout this guide we'll be referring to a "website repo" and a "content repo". The _website repo_ is where your actual website is running, while the _content repo_ is where you'll be storing your markdown content.</p>
+    <p>Throughout this guide we'll be referring to a "website repo" and a "content repo". The "website repo" is where your actual website is running, while the "content repo" is where you'll be storing your markdown content.</p>
   </div>
 
   <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
@@ -23,26 +25,26 @@ You might want to do this for a variety of reasons, such as:
   </svg>
 </div>
 
-## Introduction
+### Requirements
 
-This guide will start by having you clone the _website repo_ locally. From there, you'll be creating the
-_content repo_ so you can start by cloning the project [here](https://github.com/tinacms/separate-website-repo):
+- You must have _both_ the "content repo" and the "website repo" checked out onto your local machine.
+- You must provide the location of your content repo in your Tina config (more about that below).
+- When making changes, you'll need to ensure you've pushed _both_ repos to Github, with the "content repo"
+  changes first
+
+## Create the website repository
+
+We have deployed a basic starting "website repo", which you can clone to get started.
 
 ```sh
 git clone git@github.com:tinacms/separate-website-repo.git
 ```
 
-The workflow requirements are:
-
-- You must have _both_ the _content repo_ and the _website repo_ checked out onto your local machine.
-- You must provide the location of your content repo in your Tina config (more about that below).
-- When making changes, you'll need to ensure you've pushed _both_ repos to Github, with the _content repo_
-  changes first
+The "website repo" contains the NextJS site, and the .tina config.
 
 ## Create the content repository
 
-Using a separate content repo works by defining your config in the repo you'll use for _editing_ with the CMS (which is this repo). We'll call that the _website repo_.
-To set up the _content repo_, we'll start with a simple `.mdx` file:
+To set up the "content repo", we'll start with a simple `.mdx` file:
 
 ```sh
 mkdir -p ../demo-content-repo/content/pages && touch ../demo-content-repo/content/pages/home.mdx && echo "Hello" >> ../demo-content-repo/content/pages/home.mdx
@@ -52,7 +54,7 @@ This command created a folder (`demo-content-repo`) and added a single MDX file 
 
 ## Local Development
 
-In the _website repo_, install the project's dependencies
+In the "website repo", install the project's dependencies
 
 ```sh
 yarn install
@@ -72,13 +74,13 @@ From here you can add more fields to you content models in `.tina/config.js`. [V
 
 ## Deploying your content repo
 
-Next we'll want to create a Tina Cloud project from our _content repo_
+Next we'll want to create a Tina Cloud project from our "content repo"
 
 Initialize Git in your content repo and push it to Github. From there [connect to Tina Cloud](https://tina.io/docs/tina-cloud/dashboard/projects/)
 
 Once that's done, [create a token](https://tina.io/docs/tina-cloud/dashboard/projects/#read-only-tokens) for the `main` branch, or use `*` to allow all branches.
 
-Switch back to this repo (your _website repo_) and set up an `.env` file to use when connecting to Tina Cloud
+Switch back to your "website repo" and set up an `.env` file to use when connecting to Tina Cloud:
 
 ```
 cp .env.example .env
