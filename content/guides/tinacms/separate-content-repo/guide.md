@@ -13,10 +13,20 @@ You might want to do this for a variety of reasons, such as:
 - To decouple your website code from your content files so your commit history isn't a mix of content updates and code updates
 - To avoid having to give Tina Cloud write access to your website's code (only give access to your content repo)
 
+<div class="short-code-warning">
+  <div>
+    <p>Throughout this guide we'll be referring to a "website repo" and a "content repo". The _website repo_ is where your actual website is running, while the _content repo_ is where you'll be storing your markdown content.</p>
+  </div>
+
+  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+    <path d="M32 464h448L256 48 32 464zm248-64h-48v-48h48v48zm0-80h-48v-96h48v96z" />
+  </svg>
+</div>
+
 ## Walkthrough
 
-This guide will start by having you clone the "website repo" locally. From there, you'll be creating the
-"content repo" so you can start by cloning the project [here](https://github.com/tinacms/separate-website-repo):
+This guide will start by having you clone the _website repo_ locally. From there, you'll be creating the
+_content repo_ so you can start by cloning the project [here](https://github.com/tinacms/separate-website-repo):
 
 ```sh
 git clone git@github.com:tinacms/separate-website-repo.git
@@ -24,23 +34,25 @@ git clone git@github.com:tinacms/separate-website-repo.git
 
 The workflow requirements are:
 
-- You must have _both_ the "content repo" and the "website repo" checked out onto your local machine.
+- You must have _both_ the _content repo_ and the _website repo_ checked out onto your local machine.
 - You must provide the location of your content repo in your Tina config (more about that below).
-- When making changes, you'll need to ensure you've pushed _both_ repos to Github, with the "content repo"
+- When making changes, you'll need to ensure you've pushed _both_ repos to Github, with the _content repo_
   changes first
 
 ## Create the content repository
 
-Using a separate content repo works by defining your config in the repo you'll use for _editing_ with the CMS (which is this repo). We'll call that the "website repo".
-To set up the "content repo", we'll start with a simple `.mdx` file:
+Using a separate content repo works by defining your config in the repo you'll use for _editing_ with the CMS (which is this repo). We'll call that the _website repo_.
+To set up the _content repo_, we'll start with a simple `.mdx` file:
 
 ```sh
 mkdir -p ../demo-content-repo/content/pages && touch ../demo-content-repo/content/pages/home.mdx && echo "Hello" >> ../demo-content-repo/content/pages/home.mdx
 ```
 
+This command created a folder (`demo-content-repo`) and added a single MDX file to it in the `content/pages` directory, we'll be using that directory for the `page` collection defined in the Tina config.
+
 ## Local Development
 
-Install the project's dependencies:
+In the _website repo_, install the project's dependencies
 
 ```sh
 yarn install
@@ -66,7 +78,7 @@ Initialize Git in your content repo and push it to Github. From there [connect t
 
 Once that's done, [create a token](https://tina.io/docs/tina-cloud/dashboard/projects/#read-only-tokens) for the `main` branch, or use `*` to allow all branches.
 
-Switch back to this repo (your "website repo") and set up an `.env` file to use when connecting to Tina Cloud
+Switch back to this repo (your _website repo_) and set up an `.env` file to use when connecting to Tina Cloud
 
 ```
 cp .env.example .env
