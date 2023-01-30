@@ -6,23 +6,26 @@ next: /docs/reference/templates
 prev: /docs/reference/collections
 ---
 
-<!-- # next: /docs/reference/schema -->
-
 Fields define the shape of the content and the user input. There are [many types of fields](/docs/reference/types) each with its own input and type.
 
 Although some fields have more properties here is a list of common ones that are used.
 
 ## Definition
 
-| Property   | Description                                                                                                                                                                             |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`     | The name of the field                                                                                                                                                                   |
-| `type`     | The [type of the field](/docs/reference/types/) to be used                                                                                                                              |
-| `label`    | A human friendly label that will be displayed to the user (_optional_, defaults to `name`)                                                                                              |
-| `required` | If `true`, the collection cannot be saved without this field present (_optional_, defaults to `false`)                                                                                  |
-| `isTitle`  | Denote a field as the title of a collection. [See below for more details](#istitle) (_optional_, defaults to `false`)                                                                   |
-| `isBody`   | If `true` this field will be used as the body of the document. [See below for more details](#isbody) (_optional_, defaults to `false`)                                                  |
-| `ui`       | Used to extend the user interface of the field and the field behaver. See [extending tina section](/docs/extending-tina/overview/#customizing-fields) for more information (_optional_) |
+| Property       | Description                                                                                                                                                                             |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`         | The name of the field                                                                                                                                                                   |
+| `type`         | The [type of the field](/docs/reference/types/) to be used                                                                                                                              |
+| `label`        | A human friendly label that will be displayed to the user (_optional_, defaults to `name`)                                                                                              |
+| `required`     | If `true`, the collection cannot be saved without this field present (_optional_, defaults to `false`)                                                                                  |
+| `isTitle`      | Denote a field as the title of a collection. [See below for more details](#istitle) (_optional_, defaults to `false`)                                                                   |
+| `isBody`       | If `true` this field will be used as the body of the document. [See below for more details](#isbody) (_optional_, defaults to `false`)                                                  |
+| `ui`           | Used to extend the user interface of the field and the field behaver. See [extending tina section](/docs/extending-tina/overview/#customizing-fields) for more information (_optional_) |
+| `ui.list`      | This can be used to make any field into a list of that type (_optional_)                                                                                                                |
+| `ui.min`       | If `{ list: true }` can provide a minimum amount of items (_optional_)                                                                                                                  |
+| `ui.max`       | If `{ list: true }` can provide a maximin amount of items (_optional_)                                                                                                                  |
+| `ui.component` | Used for [custom field components](/docs/extending-tina/custom-field-components)                                                                                                        |
+| `ui.validate`  | Used for [custom field validation](/docs/extending-tina/validation/)                                                                                                                    |
 
 ## `isTitle`
 
