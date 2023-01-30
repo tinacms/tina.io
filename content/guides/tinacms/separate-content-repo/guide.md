@@ -72,7 +72,7 @@ From here you can add more fields to you content models in `.tina/config.js`. [V
 
 ## Deploying your content repo
 
-Since your content is in a separate repo, we'll want to use _that_ repo to connect to Tina Cloud.
+Next we'll want to create a Tina Cloud project from our _content repo_
 
 Initialize Git in your content repo and push it to Github. From there [connect to Tina Cloud](https://tina.io/docs/tina-cloud/dashboard/projects/)
 
