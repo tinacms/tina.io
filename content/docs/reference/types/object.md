@@ -10,12 +10,15 @@ type ObjectField = {
   label: string
   name: string
   type: 'object'
+  list?: boolean
   /** `fields OR `templates` may be provided, not both **/
   fields?: Field[]
   templates?: Template[]
   list?: boolean
   /** See https://tina.io/docs/extending-tina/overview/ for customizing the UI **/
   ui?: {
+     /** Weather or not the Visual Selector  is enabled. See https://tina.io/docs/editing/blocks/#adding-a-visual-block-selector-experimental **/
+    visualSelector?: boolean,
     defaultItem?: Record<string, any> | () => Record<string, any>,
     itemProps?(
       item: Record<string, any>

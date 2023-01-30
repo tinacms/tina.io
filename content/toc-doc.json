@@ -228,19 +228,34 @@
         "title": "Overview"
       },
       {
-        "title": "NextJS",
+        "slug": "/docs/integration/frameworks/",
+        "title": "Supported Frameworks",
         "items": [
           {
-            "slug": "/guides/tinacms/nextjs-data-fetching/guide/",
-            "title": "Querying Tina Content in NextJS"
+            "slug": "/docs/integration/frameworks/",
+            "title": "Overview"
           },
           {
-            "slug": "/guides/tinacms/adding-internationalization-to-tina/guide/",
-            "title": "Adding Internationalization to Tina"
+            "title": "NextJS",
+            "items": [
+              {
+                "slug": "/guides/tinacms/nextjs-data-fetching/guide/",
+                "title": "Querying Tina Content in NextJS"
+              },
+              {
+                "slug": "/guides/tinacms/adding-internationalization-to-tina/guide/",
+                "title": "Adding Internationalization to Tina"
+              },
+              {
+                "title": "Using Drafts with Contextual Editing",
+                "slug": "/guides/tinacms/contextual-drafts/guide/"
+              }
+            ]
           },
           {
-            "title": "Using Drafts with Contextual Editing",
-            "slug": "/guides/tinacms/contextual-drafts/guide/"
+            "title": "Gatsby",
+            "slug": "/guides/tinacms/gatsby-data-fetching/guide/",
+            "status": "Beta"
           }
         ]
       },
