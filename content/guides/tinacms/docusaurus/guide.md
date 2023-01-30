@@ -4,7 +4,7 @@ title: Using TinaCMS with Docusaurus
 
 Docusaurus is a powerful React-based SSG for creating beautiful documentation websites with ease. Given it's designed primarily for docs maintainers, the user experience is built around working with the filesystem and editing files directly. It's a very flexible system that leverages multiple filetypes, meta file configuration, javascript files with hard-coded content, and auto-generation. With Tina you can leverage the powerful features of Docusaurus from a simple but flexible editing UI.
 
-This guide is based on adapting the [Docusaurus Classic Example](https://github.com/facebook/docusaurus/tree/main/examples/classic) to work with Tina's basic editing. You can find the completed Tina + Docusaurus startere here [link to public repo].
+This guide is based on adapting the [Docusaurus Classic Example](https://github.com/facebook/docusaurus/tree/main/examples/classic) to work with Tina's basic editing. You can find the completed Tina + Docusaurus starter here [link to public repo].
 
 ![Tinasaurus](https://res.cloudinary.com/forestry-demo/image/upload/v1675108174/tina-io/docs/docusaurus/tinasaurus-home.png 'Docusaurus + Tina Homepage')
 
