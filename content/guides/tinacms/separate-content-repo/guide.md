@@ -23,7 +23,7 @@ You might want to do this for a variety of reasons, such as:
   </svg>
 </div>
 
-## Walkthrough
+## Introduction
 
 This guide will start by having you clone the _website repo_ locally. From there, you'll be creating the
 _content repo_ so you can start by cloning the project [here](https://github.com/tinacms/separate-website-repo):
