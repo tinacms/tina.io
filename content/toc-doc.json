@@ -256,6 +256,10 @@
             "title": "Gatsby",
             "slug": "/guides/tinacms/gatsby-data-fetching/guide/",
             "status": "Beta"
+          },
+          {
+            "title": "Docusaurus",
+            "slug": "/guides/tinacms/docusaurus/guide/"
           }
         ]
       },
