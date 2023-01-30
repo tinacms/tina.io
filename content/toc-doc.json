@@ -260,6 +260,15 @@
         ]
       },
       {
+        "title": "Separate Content Repo",
+        "slug": "/guides/tinacms/separate-content-repo/guide/"
+      },
+      {
+        "title": "Gatsby",
+        "slug": "/guides/tinacms/gatsby-data-fetching/guide/",
+        "status": "Beta"
+      },
+      {
         "slug": "/guides/tinacms/react-data-fetching/guide/",
         "title": "Querying Tina Content at Runtime"
       }
