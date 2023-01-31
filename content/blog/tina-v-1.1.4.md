@@ -28,7 +28,7 @@ Several improvements have been made to the rich-text editor to better safe-guard
 \- Rich-text error links to raw-mode editor\
 \- Fix bug where switching from raw-mode to rich-text editor with errors would lose unsaved changes.
 
-## Other fixes/improvements:
+![rich-text-error](http://res.cloudinary.com/forestry-demo/image/upload/v1675180829/Screen_Shot_2023-01-26_at_10.53.16_AM_v4lfjo.png "rich-text-error")
 
 \- Forms can now be saved with ctrl/cmd-s (Thanks @Maxobat!)\
 \- Fix issue where user could not save top level empty array\
