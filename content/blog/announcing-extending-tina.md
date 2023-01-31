@@ -16,17 +16,14 @@ The latest update empowers developers to put `validation` ,`component` and `pars
 
 Below, if you click the "pencil" icon and edit the "Title" field, the validation function runs and gives an error to the user when it is more than 20 characters.
 
-<Iframe
-  height="500"
-  iframeSrc="https://tina-gql-playground.vercel.app/?markdownCode=---%0Atitle%3A+Hello%2C+World%0A---&schemaCode=import+%7B+defineSchema+%7D+from+%27tinacms%27%0A%0Aexport+default+defineSchema%28%7B%0A++collections%3A+%5B%7B%0A++++label%3A+%22Post%22%2C%0A++++name%3A+%22post%22%2C%0A++++path%3A+%22posts%22%2C%0A++++fields%3A+%5B%7B%0A++++++label%3A+%22Title%22%2C%0A++++++name%3A+%22title%22%2C%0A++++++type%3A+%22string%22%2C%0A++++++ui%3A+%7B%0A++++++++validate%3A+%28val%29+%3D%3E+%7B%0A++++++++++if+%28val.length+%3E+20%29+%7B%0A++++++++++++return+%27The+title+can+not+be+more+the+20+characters%27%0A++++++++++%7D%0A++++++++%7D%0A++++++%7D%0A++++%7D%5D%0A++%7D%5D%0A%7D%29&reactCode=import+*+as+React+from+%27react%27%0Aimport+%7B+useTina+%7D+from+%27tinacms%2Fdist%2Fedit-state%27%0A%0Aexport+default+function+Page%28props%29+%7B%0A++const+%7Bdata%2C+isLoading%7D+%3D+useTina%28%7B+query%3A+%60query+%7B%0A++post%28relativePath%3A+%22hello-world.md%22%29+%7B%0A++++title%0A++%7D%0A%7D%60%2C%0A++++variables%3A+%7B%7D%2C%0A++++data%3A+props.data%0A++%7D%29%0A%0A++if%28isLoading%29+%7B%0A++++return+%3Cdiv%3ELoading...%3C%2Fdiv%3E%0A++%7D%0A%0A++return+%28%0A++++%3Cdiv+className%3D%22bg-white%22%3E%0A++++++%3Cdiv+className%3D%22max-w-7xl+mx-auto+text-center+py-12+px-4+sm%3Apx-6+lg%3Apy-16+lg%3Apx-8%22%3E%0A++++++++%3Ch2+className%3D%22text-3xl+font-extrabold+tracking-tight+text-gray-900+sm%3Atext-4xl%22%3E%0A++++++++++%3Cspan+className%3D%22block%22%3E%7Bdata.post.title%7D%3C%2Fspan%3E%0A++++++++++%3Cspan+className%3D%22block%22%3EStart+your+free+trial+today.%3C%2Fspan%3E%0A++++++++%3C%2Fh2%3E%0A++++++++%3Cdiv+className%3D%22mt-8+flex+justify-center%22%3E%0A++++++++++%3Cdiv+className%3D%22inline-flex+rounded-md+shadow%22%3E%0A++++++++++++%3Ca%0A++++++++++++++href%3D%22%23%22%0A++++++++++++++className%3D%22inline-flex+items-center+justify-center+px-5+py-3+border+border-transparent+text-base+font-medium+rounded-md+text-white+bg-indigo-600+hover%3Abg-indigo-700%22%0A++++++++++++%3E%0A++++++++++++++Get+started%0A++++++++++++%3C%2Fa%3E%0A++++++++++%3C%2Fdiv%3E%0A++++++++++%3Cdiv+className%3D%22ml-3+inline-flex%22%3E%0A++++++++++++%3Ca%0A++++++++++++++href%3D%22%23%22%0A++++++++++++++className%3D%22inline-flex+items-center+justify-center+px-5+py-3+border+border-transparent+text-base+font-medium+rounded-md+text-indigo-700+bg-indigo-100+hover%3Abg-indigo-200%22%0A++++++++++++%3E%0A++++++++++++++Learn+more%0A++++++++++++%3C%2Fa%3E%0A++++++++++%3C%2Fdiv%3E%0A++++++++%3C%2Fdiv%3E%0A++++++%3C%2Fdiv%3E%0A++++%3C%2Fdiv%3E%0A++%29%0A%7D"
-/>
+<Iframe height={500} iframeSrc="https://tina-gql-playground.vercel.app/?markdownCode=---%0Atitle%3A+Hello%2C+World%0A---&schemaCode=import+%7B+defineSchema+%7D+from+%27tinacms%27%0A%0Aexport+default+defineSchema%28%7B%0A++collections%3A+%5B%7B%0A++++label%3A+%22Post%22%2C%0A++++name%3A+%22post%22%2C%0A++++path%3A+%22posts%22%2C%0A++++fields%3A+%5B%7B%0A++++++label%3A+%22Title%22%2C%0A++++++name%3A+%22title%22%2C%0A++++++type%3A+%22string%22%2C%0A++++++ui%3A+%7B%0A++++++++validate%3A+%28val%29+%3D%3E+%7B%0A++++++++++if+%28val.length+%3E+20%29+%7B%0A++++++++++++return+%27The+title+can+not+be+more+the+20+characters%27%0A++++++++++%7D%0A++++++++%7D%0A++++++%7D%0A++++%7D%5D%0A++%7D%5D%0A%7D%29&reactCode=import+*+as+React+from+%27react%27%0Aimport+%7B+useTina+%7D+from+%27tinacms%2Fdist%2Fedit-state%27%0A%0Aexport+default+function+Page%28props%29+%7B%0A++const+%7Bdata%2C+isLoading%7D+%3D+useTina%28%7B+query%3A+%60query+%7B%0A++post%28relativePath%3A+%22hello-world.md%22%29+%7B%0A++++title%0A++%7D%0A%7D%60%2C%0A++++variables%3A+%7B%7D%2C%0A++++data%3A+props.data%0A++%7D%29%0A%0A++if%28isLoading%29+%7B%0A++++return+%3Cdiv%3ELoading...%3C%2Fdiv%3E%0A++%7D%0A%0A++return+%28%0A++++%3Cdiv+className%3D%22bg-white%22%3E%0A++++++%3Cdiv+className%3D%22max-w-7xl+mx-auto+text-center+py-12+px-4+sm%3Apx-6+lg%3Apy-16+lg%3Apx-8%22%3E%0A++++++++%3Ch2+className%3D%22text-3xl+font-extrabold+tracking-tight+text-gray-900+sm%3Atext-4xl%22%3E%0A++++++++++%3Cspan+className%3D%22block%22%3E%7Bdata.post.title%7D%3C%2Fspan%3E%0A++++++++++%3Cspan+className%3D%22block%22%3EStart+your+free+trial+today.%3C%2Fspan%3E%0A++++++++%3C%2Fh2%3E%0A++++++++%3Cdiv+className%3D%22mt-8+flex+justify-center%22%3E%0A++++++++++%3Cdiv+className%3D%22inline-flex+rounded-md+shadow%22%3E%0A++++++++++++%3Ca%0A++++++++++++++href%3D%22%23%22%0A++++++++++++++className%3D%22inline-flex+items-center+justify-center+px-5+py-3+border+border-transparent+text-base+font-medium+rounded-md+text-white+bg-indigo-600+hover%3Abg-indigo-700%22%0A++++++++++++%3E%0A++++++++++++++Get+started%0A++++++++++++%3C%2Fa%3E%0A++++++++++%3C%2Fdiv%3E%0A++++++++++%3Cdiv+className%3D%22ml-3+inline-flex%22%3E%0A++++++++++++%3Ca%0A++++++++++++++href%3D%22%23%22%0A++++++++++++++className%3D%22inline-flex+items-center+justify-center+px-5+py-3+border+border-transparent+text-base+font-medium+rounded-md+text-indigo-700+bg-indigo-100+hover%3Abg-indigo-200%22%0A++++++++++++%3E%0A++++++++++++++Learn+more%0A++++++++++++%3C%2Fa%3E%0A++++++++++%3C%2Fdiv%3E%0A++++++++%3C%2Fdiv%3E%0A++++++%3C%2Fdiv%3E%0A++++%3C%2Fdiv%3E%0A++%29%0A%7D" />
 
 ### Custom components
 
 With this update, you can create your custom components easily; see the example below for using a custom component.
 
 <Iframe
-  height="500"
+  height={500}
   iframeSrc="https://tina-gql-playground.vercel.app/string-component"
 />
 
@@ -62,7 +59,7 @@ export default defineConfig({
   schema: schema,
   apiUrl: apiUrl,
   // add other config that would have previosly been in the _app.{js,tsx} file in the <TinaCMS> component.
-  cmsCallback: cms => {
+  cmsCallback: (cms) => {
     //...
   },
   mediaStore: async () => {
@@ -138,7 +135,7 @@ const App = ({ Component, pageProps }) => {
         showEditButton={true}
         editMode={
           <TinaCMS
-            cmsCallback={cms => {
+            cmsCallback={(cms) => {
               //...
             }}
             apiURL={apiURL}

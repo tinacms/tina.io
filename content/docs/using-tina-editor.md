@@ -9,7 +9,7 @@ Tina is very flexible & extendable, so any Tina site may have a unique experienc
 
 ## Entering the CMS
 
-When tina is initialized it creates a static build of your site, and a `/admin` route that allows you to edit your site's content. The static build is located at at `<PublicFolder>/admin/index.html`.
+When tina is initialized it creates a static build of your site, and a `/admin` route that allows you to edit your site's content. The static build is located at `<PublicFolder>/admin/index.html`.
 
 When this page is visited in the browser, the Tina CMS is loaded and the user is prompted to log in.
 

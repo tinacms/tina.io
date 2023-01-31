@@ -124,7 +124,7 @@ export const Footer = ({}) => {
                 <GithubIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
                 Github
               </SocialLink>
-              <SocialLink link="https://twitter.com/tina_cms">
+              <SocialLink link="https://twitter.com/tinacms">
                 <TwitterIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
                 Twitter
               </SocialLink>
