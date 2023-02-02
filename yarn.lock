@@ -2732,10 +2732,10 @@
     traverse "^0.6.6"
     unified "^6.1.6"
 
-"@tinacms/app@1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@tinacms/app/-/app-1.0.4.tgz#c1c26224588f28cabe37c9c54f68226e1316a9fd"
-  integrity sha512-r8tnwIIqQd0nwjo3WPGN5xxT+BkKZ8w0DLiLfiXO9qw3iLATaYB45n4WJ1Ez3v5u42Ly7M5FbM2X1ksABI9NZA==
+"@tinacms/app@1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@tinacms/app/-/app-1.0.5.tgz#d98fb32db0fde884710fb2018867798dc3964171"
+  integrity sha512-f0/EywBHBgdeuOJmcHdSofsdupfDGLsY7SJ/AmNWRSGVJQ49AjGbR2zmQQAArRk/8XE3ph6A8M3KI5cnw86ceQ==
   dependencies:
     "@headlessui/react" "1.6.6"
     "@heroicons/react" "1.0.6"
@@ -2768,10 +2768,10 @@
   resolved "https://registry.yarnpkg.com/@tinacms/auth/-/auth-1.0.0.tgz#49a7e9763cd47d341496da22dee8d9d351765b9f"
   integrity sha512-LCUJfruXhx8J3t1DSkNDPEU/4I5abmploGK9ZC/C+XAfpImmZ9hvBkApjXNBh30nYwFPRjvnBU6Nky48jN+s/w==
 
-"@tinacms/cli@^1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@tinacms/cli/-/cli-1.0.6.tgz#ba438a5e7bf7f0f1f764e79f3f77e9246ebbe121"
-  integrity sha512-N2hbKTATOBHvd1pMO5/HMnPN+V5F1JWxJnNpIc+wfrC/ZMHWx+83eCM2dtutsJF0sG54MvbYiiltDlt7kp1+0w==
+"@tinacms/cli@1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@tinacms/cli/-/cli-1.0.7.tgz#e8a9e13c9708f4d2fc100e5301001527ab33b089"
+  integrity sha512-Y91U1ImSj4uKlpqf9MInSdnK+3S+mQC/xUztcfB2/AtwX5ZflBL4M/Bxy04/uTP8Ew7KF9wjP1Dw8o3ehAEx7g==
   dependencies:
     "@graphql-codegen/core" "^2.1.0"
     "@graphql-codegen/plugin-helpers" latest
@@ -2781,12 +2781,11 @@
     "@graphql-codegen/visitor-plugin-common" "^2.4.0"
     "@graphql-tools/graphql-file-loader" "^7.2.0"
     "@graphql-tools/load" "^7.3.2"
-    "@tinacms/app" "1.0.4"
-    "@tinacms/datalayer" "1.0.0"
-    "@tinacms/graphql" "1.0.5"
+    "@tinacms/app" "1.0.5"
+    "@tinacms/datalayer" "1.0.1"
+    "@tinacms/graphql" "1.1.0"
     "@tinacms/metrics" "1.0.1"
-    "@tinacms/schema-tools" "1.2.0"
-    add "^2.0.6"
+    "@tinacms/schema-tools" "1.2.1"
     ajv "^6.12.3"
     altair-express-middleware "4.0.6"
     auto-bind "^4.0.0"
@@ -2808,6 +2807,7 @@
     lodash "^4.17.19"
     lodash.get "^4.4.2"
     log4js "^6.4.0"
+    minimatch "^5.1.2"
     multer "1.4.5-lts.1"
     normalize-path "^3.0.0"
     prettier "^2.2.1"
@@ -2868,10 +2868,10 @@
     prettier "^2.2.1"
     yup "^0.32.9"
 
-"@tinacms/datalayer@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@tinacms/datalayer/-/datalayer-1.0.0.tgz#5c6a0069354db72a2381ac834b24ed454bdaebff"
-  integrity sha512-pRKVUZ0UPkX8PROUATFR2TFtf5oBtHpmK3l+l5mod+jYBf1pgP4EHoqkyTa5RCT43AWTnSwNTfQ2sYOnQi/giQ==
+"@tinacms/datalayer@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@tinacms/datalayer/-/datalayer-1.0.1.tgz#5b8a957939741f417c91767f555e7f9a16fda58e"
+  integrity sha512-zQ2ZkdGSbNxHhOHbEaDLuCUbR467DjoUkIAXuRoqqy0Jc44dr5F1YKZ6J4+5o1UhSWmJNHk+vA0wu00dAvmdtg==
   dependencies:
     "@octokit/auth-app" "^2.6.0"
     "@octokit/graphql" "^4.5.6"
@@ -2942,16 +2942,16 @@
     ws "^7.3.1"
     yup "^0.32.9"
 
-"@tinacms/graphql@1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@tinacms/graphql/-/graphql-1.0.5.tgz#af9c5535381179b75305c2a62ceb3945efaba193"
-  integrity sha512-a7h7+bto4ZJsxYhIiOHaKMuu8fndUNJTGjbwhNQKOjPkI/o4piysYGqOBxAcCSItYzxaS025xSeLkl0lpLtBUQ==
+"@tinacms/graphql@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@tinacms/graphql/-/graphql-1.1.0.tgz#0cfa9c19413f5030f678de02527c5aaf7454c11f"
+  integrity sha512-98u9TnIbYUZizsYy9XeM9AzcxY1LHfUMCOD2aCaHDur8KKc8PxRmGGbO/m0gbFuNCJhNNSMurLw1eZ8uGaHOyA==
   dependencies:
     "@graphql-tools/relay-operation-optimizer" "^6.4.1"
     "@iarna/toml" "^2.2.5"
-    "@tinacms/datalayer" "1.0.0"
-    "@tinacms/mdx" "1.1.0"
-    "@tinacms/schema-tools" "1.2.0"
+    "@tinacms/datalayer" "1.0.1"
+    "@tinacms/mdx" "1.1.1"
+    "@tinacms/schema-tools" "1.2.1"
     body-parser "^1.19.0"
     cors "^2.8.5"
     dataloader "^2.0.0"
@@ -2993,12 +2993,12 @@
     ws "^7.3.1"
     yup "^0.32.9"
 
-"@tinacms/mdx@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@tinacms/mdx/-/mdx-1.1.0.tgz#a9189a0020f02e8f7def6288fee3ef8d34bb1c56"
-  integrity sha512-o1mMyZfequg0C6RGwJzj3uj0s5tBgymVNlUkDNMRUmvjLHCtoCHiPXtbMqL3/l+HlsMS6MIuGq4nf3+Xue7yqg==
+"@tinacms/mdx@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@tinacms/mdx/-/mdx-1.1.1.tgz#4f22f39d99084eb29e0a1568710a52c25accad72"
+  integrity sha512-B60SvoT6Gjop300dVKXw9auAP7C4O4TTxymsjeKnOvLMh1jq+jZOk84vDzGp2OK2G66BJ6+IRHuvsFNXFEEbYg==
   dependencies:
-    "@tinacms/schema-tools" "1.2.0"
+    "@tinacms/schema-tools" "1.2.1"
     acorn "^8.7.1"
     concat-md "^0.5.0"
     lodash-es "^4.17.21"
@@ -3019,10 +3019,10 @@
   dependencies:
     isomorphic-fetch "^3.0.0"
 
-"@tinacms/schema-tools@1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@tinacms/schema-tools/-/schema-tools-1.2.0.tgz#10b560376a60974d810e113dab452a50d9160d4e"
-  integrity sha512-+2gwhdMazP4rX6+Cz9xVHImEET37NwRgWynG1MTdbUSHErch0DOn+kpcmv94YNNWb8c2ySm2hinNtk7HueX8NA==
+"@tinacms/schema-tools@1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@tinacms/schema-tools/-/schema-tools-1.2.1.tgz#6c94f85f73b03d392cb31ff529e48830d57288f8"
+  integrity sha512-/41AzYgUuGdq6RRc7V2jCKZzfHG7SXkW6ADgYeolh08cks22YC3/vXx1osBrcRjUX5IeGnEZLY6ku/qM+PAnlQ==
   dependencies:
     zod "^3.14.3"
 
@@ -3106,10 +3106,10 @@
     slate-react "^0.66.0"
     webfontloader "1.6.28"
 
-"@tinacms/toolkit@1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@tinacms/toolkit/-/toolkit-1.2.1.tgz#158aa1b5c6aa848bde3cea7982943d9a614b46d2"
-  integrity sha512-Y51q9Ib6AJvh59Ny5TurHaVJSBGPwx/OJxrFD+iL61mvti4uG/8fRA9lOo4I5rE8ke7EqNehDdnBTpOLIAM6tw==
+"@tinacms/toolkit@1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@tinacms/toolkit/-/toolkit-1.3.0.tgz#519851fec05265cc67a4eef7e647aeee2d857e37"
+  integrity sha512-YFuMiyNz2VAg6iHbmUaRF5jaDYsQfk17LBGnIMeIS0vBDLhrGClaaz3MzJykAhJHrdudC7y0r8j9tK+jL+c1Qw==
   dependencies:
     "@floating-ui/dom" "^0.1.7"
     "@floating-ui/react-dom" "^0.3.3"
@@ -4477,11 +4477,6 @@ acorn@^8.0.4, acorn@^8.4.1, acorn@^8.7.0:
   version "8.7.0"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.7.0.tgz#90951fde0f8f09df93549481e5fc141445b791cf"
   integrity sha512-V/LGr1APy+PXIwKebEWrkZPwoeoF+w1jiOBUmuxuiUIaOHtob8Qc9BTrYo7VuI5fR8tqsy+buA2WFooR5olqvQ==
-
-add@^2.0.6:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/add/-/add-2.0.6.tgz#248f0a9f6e5a528ef2295dbeec30532130ae2235"
-  integrity sha512-j5QzrmsokwWWp6kUcJQySpbG+xfOBqqKnup3OIk1pz+kB/80SLorZ9V8zHFLO92Lcd+hbvq8bT+zOGoPkmBV0Q==
 
 agent-base@6, agent-base@^6.0.0, agent-base@^6.0.2:
   version "6.0.2"
@@ -14769,18 +14764,18 @@ through2@^2.0.0:
     readable-stream "~2.3.6"
     xtend "~4.0.1"
 
-tinacms@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/tinacms/-/tinacms-1.1.3.tgz#1610fa0693d42e97dfd0ead7f273f82c177cb21c"
-  integrity sha512-EEg2aMNkPdn8+WvF9zaFsIIHrpCXwlIws+gYLw6aCuDaRYf4TZSS+IpgAMOlpltiKjpFrBnGUs+47TKlzfccBQ==
+tinacms@1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/tinacms/-/tinacms-1.1.4.tgz#fe27f4c63d9171e8c7e24f0625d8322b6b41effd"
+  integrity sha512-wj3sukBU9odr2vswH3a6JjMLyKkdVbQis/CtFIzPnziuPcYDQDNyfzpHceVC4Gjk29o6zRTxAEc5FJiwM0dHkA==
   dependencies:
     "@graphql-tools/relay-operation-optimizer" "^6.4.1"
     "@headlessui/react" "^1.5.0"
     "@heroicons/react" "^1.0.4"
     "@react-hook/window-size" "^3.0.7"
-    "@tinacms/schema-tools" "1.2.0"
+    "@tinacms/schema-tools" "1.2.1"
     "@tinacms/sharedctx" "1.0.0"
-    "@tinacms/toolkit" "1.2.1"
+    "@tinacms/toolkit" "1.3.0"
     crypto-js "^4.0.0"
     encoding "0.1.13"
     fetch-ponyfill "^7.1.0"
