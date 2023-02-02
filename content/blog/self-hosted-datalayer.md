@@ -1,11 +1,11 @@
 ---
-title: Self-Hosting TinaCMS's Data Layer
+title: Self-Hosting the Tina Data Layer
 date: '2023-01-31T04:00:00.000Z'
 last_edited: '2023-02-06T04:00:00.000Z'
 author: Scott Gallant & James O'Halloran
 ---
 
-Today we're excited to announce the first iteration of TinaCMS's self-hosted Data Layer. This has been a [highly requested feature](https://github.com/tinacms/tinacms/discussions/3096 "") for a veriety of reasons. Some feedback we've heard:
+Today we're excited to announce the first iteration of TinaCMS's self-hosted Data Layer. This has been a [highly requested feature](https://github.com/tinacms/tinacms/discussions/3096 "") for a variety of reasons. Some feedback we've heard:
 
 * "We want flexibility to eject from Tina Cloud down the road"
 * "We need our content stored on-premise"
@@ -13,7 +13,9 @@ Today we're excited to announce the first iteration of TinaCMS's self-hosted Dat
 * "We want to use our custom authentication that isn't supported in Tina Cloud"
 * We want to customize/extend the behaviour used within Tina Cloud"
 
-We're excited to get this is the community's hands so that we can learn, iterate, and flesh out this self-hosted experience.
+By self-hosting the Tina Data Layer, you can run TinaCMS without lock-in to Tina Cloud.&#x20;
+
+We're excited to get this in the community's hands so that we can learn, iterate, and flesh out the self-hosted experience.
 
 ## What is the Tina Data Layer
 
