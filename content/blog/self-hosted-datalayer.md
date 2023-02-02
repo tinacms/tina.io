@@ -29,13 +29,11 @@ Also, since the Data Layer provides an API, you can fetch your content like you 
 
 ## How come I didn't know there was a Data Layer?
 
-When you’re developing your site locally, the Data Layer doesn’t need to be configured and just runs in the background. If you use Tina Cloud in production, it runs your Tina Data Layer for you and syncs with GitHub.&#x20;
-
-Now, we’re giving users the ability to self-host the Tina Data Layer so you’re not dependant on Tina Cloud.
+When you’re developing your site locally, the Data Layer doesn’t need to be configured and just runs in the background. If you use Tina Cloud in production, it runs your Tina Data Layer for you and syncs with GitHub.  Now, you can host your own Data Layer as an alternative to using Tina Cloud.&#x20;
 
 ## Is the Tina Data Layer open-source?
 
-Most of TinaCMS is open-source under the Apache 2.0 but we chose to use a [source-available](https://en.wikipedia.org/wiki/Source-available_software) license for the Tina Data Layer. This license limits some commercial usage but allows us to offer a cost-free, self-hosted solution for smaller sites like those used at startups, small and medium businesses, or for simple sites at large organizations. Source available licenses are used with many companies like MongoDB, Elastic, and Sentry.  Read the [license](https://github.com/tinacms/tinacms/blob/main/packages/%40tinacms/datalayer/LICENSE) and related [FAQ](https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/datalayer/LICENSE-FAQ.md) for more details.&#x20;
+Most of TinaCMS is open-source under the Apache 2.0 but we chose a [source-available](https://en.wikipedia.org/wiki/Source-available_software) license for the Tina Data Layer. This license limits some commercial usage but allows us to offer a cost-free, self-hosted solution for smaller sites like those used at startups or small and medium businesses. Source available licenses are used at many companies like MongoDB, Elastic, and Sentry.  You can find the [license](https://github.com/tinacms/tinacms/blob/main/packages/%40tinacms/datalayer/LICENSE) and related [FAQ](https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/datalayer/LICENSE-FAQ.md) in our repository.&#x20;
 
 ## Where can I host it?
 
