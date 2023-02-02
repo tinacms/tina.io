@@ -25,19 +25,21 @@ The Tina Data Layer provides a GraphQL API that serves Markdown and JSON files. 
 
 As mentioned above, your Markdown files are the source of truth but TinaCMS still requires the Data Layer to do its job. This includes things like content search, pagination, references between Markdown files, and more.&#x20;
 
-Also, since the Data Layer provides an API, you can fetch your content like you would with a traditional headless CMS.  This opens up your file-based content to dynamic sites that use server-side rendering.&#x20;
+Also, since the Data Layer provides an API, you can fetch your content like you would with a traditional headless CMS (and can support things like server-side rendering).&#x20;
 
-When you’re developing your site locally, the Data Layer doesn’t need to be configured and just runs in the background. If you use Tina Cloud in production, it handles your Tina Data Layer and syncs with GitHub.&#x20;
+## How come I didn't know there was a Data Layer?
+
+When you’re developing your site locally, the Data Layer doesn’t need to be configured and just runs in the background. If you use Tina Cloud in production, it runs your Tina Data Layer for you and syncs with GitHub.&#x20;
 
 Now, we’re giving users the ability to self-host the Tina Data Layer so you’re not dependant on Tina Cloud.
 
 ## Is the Tina Data Layer open-source?
 
-Most of TinaCMS is open-source under the Apache 2.0 but we chose to use a [source-available](https://en.wikipedia.org/wiki/Source-available_software) license for the Tina Data Layer. This license has a limit to the commercial usage but allows us to offer a cost-free, self-hosted solution for smaller sites like those at startups, small and medium businesses, or other simple use-cases. Source available licenses are used with many companies like MongoDB, Elastic, and Sentry.  Read the [license](https://github.com/tinacms/tinacms/blob/main/packages/%40tinacms/datalayer/LICENSE) and related [FAQ](https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/datalayer/LICENSE-FAQ.md) for more details.&#x20;
+Most of TinaCMS is open-source under the Apache 2.0 but we chose to use a [source-available](https://en.wikipedia.org/wiki/Source-available_software) license for the Tina Data Layer. This license limits some commercial usage but allows us to offer a cost-free, self-hosted solution for smaller sites like those used at startups, small and medium businesses, or for simple sites at large organizations. Source available licenses are used with many companies like MongoDB, Elastic, and Sentry.  Read the [license](https://github.com/tinacms/tinacms/blob/main/packages/%40tinacms/datalayer/LICENSE) and related [FAQ](https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/datalayer/LICENSE-FAQ.md) for more details.&#x20;
 
 ## Where can I host it?
 
-We've designed the Data Layer so that it can be hosted as a Serverless function alongside your site (with Vercel/Netlify functions). You can also host it as a long function API function wherever you like!
+We've designed the Data Layer so that it can be hosted as a Serverless function alongside your site (with Vercel/Netlify functions, for example). You can also host it as a long function API function wherever you like!
 
 ## Try it out!
 
