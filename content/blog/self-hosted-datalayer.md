@@ -25,7 +25,7 @@ The Tina Data Layer provides a GraphQL API that serves Markdown and JSON files. 
 
 As mentioned above, your Markdown files are the source of truth but TinaCMS still requires the Data Layer to do its job. This includes things like content search, pagination, references between Markdown files, and more.&#x20;
 
-Also, since the Data Layer provides an API, you can use it to fetch your content like you would with a traditional headless CMS.  This opens up Markdown to dynamic sites that use server-side rendering.&#x20;
+Also, since the Data Layer provides an API, you can fetch your content like you would with a traditional headless CMS.  This opens up your file-based content to dynamic sites that use server-side rendering.&#x20;
 
 When you’re developing your site locally, the Data Layer doesn’t need to be configured and just runs in the background. If you use Tina Cloud in production, it handles your Tina Data Layer and syncs with GitHub.&#x20;
 
