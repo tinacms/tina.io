@@ -19,13 +19,13 @@ We're excited to get this in the community's hands so that we can learn, iterate
 
 ## What is the Tina Data Layer
 
-The Tina Data Layer provides a GraphQL API that serves Markdown and JSON files. The Data Layer’s *store* is a key-value database. You can think of the store like a cache since the single source of truth for your content is really your Markdown/JSON files. The Data Layer's store can be swapped for any database using adapters.&#x20;
+The Tina Data Layer provides a GraphQL API that serves Markdown and JSON files. The Data Layer’s *store* is a key-value database. You can think of the store more like a cache since the single source of truth for your content is really your Markdown/JSON files.&#x20;
 
 ## Why does TinaCMS need a Data Layer when I store my content in Markdown files?
 
-As mentioned above, your Markdown files are the source of truth but TinaCMS still requires the Data Layer to do its job. This includes things like content search, pagination, references between Markdown files, and more.&#x20;
+As mentioned above, your Markdown files are the source of truth but TinaCMS still requires the Data Layer to do things like search, pagination, references between Markdown files, and more.&#x20;
 
-Also, since the Data Layer provides an API, you can fetch your content like you would with a traditional headless CMS (and can support things like server-side rendering).&#x20;
+Also, since the Data Layer provides an API, you can fetch your content like you would with a traditional headless CMS.&#x20;
 
 ## How come I didn't know there was a Data Layer?
 
