@@ -19,7 +19,7 @@ We're excited to get this in the community's hands so that we can learn, iterate
 
 ## What is the Tina Data Layer
 
-The Tina Data Layer provides a GraphQL API that serves Markdown and JSON files. The Data Layer’s _store_ is a key-value database. You can think of the store more like a cache since the single source of truth for your content is really your Markdown/JSON files.&#x20;
+The Tina Data Layer provides a GraphQL API that serves Markdown and JSON files backed by a database. You can think of the database as more of an ephemeral cache, since the single source of truth for your content is really your Markdown/JSON files.
 
 ![TinaCMS GraphQL Data Layer](http://res.cloudinary.com/forestry-demo/image/upload/v1675375259/tinacms-data-layer_geyrv8.png 'TinaCMS Data Layer')
 
