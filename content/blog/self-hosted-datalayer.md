@@ -41,6 +41,8 @@ Most of TinaCMS is open-source under the Apache 2.0 but we chose a [source-avail
 
 We've designed the Data Layer so that it can be hosted as a Serverless function alongside your site (with Vercel/Netlify functions, for example). You can also host it separately wherever you like!
 
+If you're self-hosting, you're also responsible for hosting your own database (Our self-hosted starter uses MongoDB).
+
 ## Try it out!
 
 To learn more about self-hosting the Data Layer, checkout the [GitHub discussion](https://tinacms-site-next-git-self-hosted-doc-tinacms.vercel.app/docs/self-hosted/overview/).
