@@ -144,14 +144,14 @@ Add the following step **before** your site's build step:
 - name: Build TinaCMS
   env:
     CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
-    READ_TOKEN: ${{ secrets.TINA_PUBLIC_READ_TOKEN }}
+    TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
   run: ${{ steps.detect-package-manager.outputs.runner }} tinacms build
 ```
 
 Your GitHub Action will look something like:
 
-![Github Action](https://res.cloudinary.com/forestry-demo/image/upload/v1675781570/tina-io/docs/tina-cloud/gh-config.png 'Github Action')
+![Github Action](https://res.cloudinary.com/forestry-demo/image/upload/v1675783496/tina-io/docs/tina-cloud/gh-config.png 'Github Action')
 
 #### Environment variables
 
-Assuming that your Tina `clientID` and `token` are setup as environment variables, you will need to add those to the GitHub Secrets for your project. The secrets we used in the code snippet above were `TINA_PUBLIC_CLIENT_ID` & `TINA_PUBLIC_READ_TOKEN`
+Assuming that your Tina `clientID` and `token` are setup as environment variables, you will need to add those to the GitHub Secrets for your project. The secrets we used in the code snippet above were `TINA_PUBLIC_CLIENT_ID` & `TINA_TOKEN`
