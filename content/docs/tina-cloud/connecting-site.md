@@ -138,12 +138,20 @@ We want to choose "**GitHub Actions**" so that we can control the build script, 
 
 By clicking "Configure" on the action it's created for us, we can then tweak the build script to build tinacms along with our site.
 
-Once you prepend `tinacms build && ` to your build script, your GitHub Action will look something like:
+Add the following step **before** your site's build step:
 
-![Github Action](https://res.cloudinary.com/forestry-demo/image/upload/v1674654604/tina-io/docs/tina-cloud/github-action_co7uin.png 'Github Action')
+```yml
+- name: Build TinaCMS
+  env:
+    CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
+    TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
+  run: ${{ steps.detect-package-manager.outputs.runner }} tinacms build
+```
+
+Your GitHub Action will look something like:
+
+![Github Action](https://res.cloudinary.com/forestry-demo/image/upload/v1675783496/tina-io/docs/tina-cloud/gh-config.png 'Github Action')
 
 #### Environment variables
 
-Assuming that your Tina `clientID` and `token` are setup as environment variables, you will need to add those to the GitHub Secrets for your project. to your build script, your GitHub Action will look something like:
-
-![Github Action](https://res.cloudinary.com/forestry-demo/image/upload/v1674654604/tina-io/docs/tina-cloud/github-action_co7uin.png 'Github Action')
+Assuming that your Tina `clientID` and `token` are setup as environment variables, you will need to add those to the GitHub Secrets for your project. The secrets we used in the code snippet above were `TINA_PUBLIC_CLIENT_ID` & `TINA_TOKEN`
