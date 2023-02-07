@@ -144,6 +144,4 @@ Once you prepend `tinacms build && ` to your build script, your GitHub Action wi
 
 #### Environment variables
 
-Assuming that your Tina `clientID` and `token` are setup as environment variables, you will need to add those to the GitHub Secrets for your project. to your build script, your GitHub Action will look something like:
-
-![Github Action](https://res.cloudinary.com/forestry-demo/image/upload/v1674654604/tina-io/docs/tina-cloud/github-action_co7uin.png 'Github Action')
+Assuming that your Tina `clientID` and `token` are setup as environment variables, you will need to add those to the GitHub Secrets for your project.
