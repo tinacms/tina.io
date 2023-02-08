@@ -45,4 +45,4 @@ If you're self-hosting, you're also responsible for hosting your own database (O
 
 ## Try it out!
 
-To learn more about self-hosting the Data Layer, checkout the [GitHub discussion](https://tinacms-site-next-git-self-hosted-doc-tinacms.vercel.app/docs/self-hosted/overview/).
+To learn more about self-hosting the Data Layer, checkout the [GitHub discussion](https://github.com/tinacms/tinacms/discussions/3589).
