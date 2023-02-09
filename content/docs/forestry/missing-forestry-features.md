@@ -43,10 +43,7 @@ Keep in mind, TinaCMS's frontend is open source, so we are open to community add
 |                            | Ability to setup references to lists in a document                    | Considering Support                                                                             |
 |                            | Ability to change a document's template through UI                    | Not Considering Support                                                                         |
 |                            | Ability to create a template from a document                          | Support planned                                                                                 |
-|                            | TOML Support in frontmatter                                           | [In Review]("https://github.com/tinacms/tinacms/pull/3497")                                     |
-| **Editor Functionality:**  | Document Search                                                       | Support planned                                                                                 |
-|                            | Duplicating documents                                                 | Support planned                                                                                 |
-|                            | Ability to rename documents                                           | Support planned                                                                                 |
+| **Editor Functionality:**  | Duplicating documents                                                 | Support planned                                                                                 |
 |                            | Persisting unsaved changes in a document                              | Support planned                                                                                 |
 |                            | Multi-user document-locking                                           | Support planned (in some capacity)                                                              |
 |                            | Ability to create folders in the UI                                   | Support planned                                                                                 |
