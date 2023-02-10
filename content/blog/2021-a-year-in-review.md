@@ -13,7 +13,7 @@ Now, here we are in December, and Tina has evolved significantly. We're truly pr
 
 In the new year, we look forward to sharing our vision for 2022 and talking about all the exciting features we have planned for TinaCMS.
 
-<CreateAppCta ctaText="Test Go!" cliText="Thing" />
+<CreateAppCta ctaText="Test" cliText="Thing" />
 
 ## January - March
 
