@@ -31,7 +31,6 @@ Keep in mind, TinaCMS's frontend is open source, so we are open to community add
 |                            | Configurable section icons in sidebar                                 | Support planned                                                                                 |
 |                            | Single Document modeling:  "Data files"                               | Support planned                                                                                 |
 | **Organization Features:** | "Sub-Teams"                                                           | Considering Support                                                                             |
-|                            | SSO                                                                   | Support planned                                                                                 |
 |                            | Audit Logs                                                            | Considering Support                                                                             |
 | **Media**                  | Netlify Large Media                                                   | Not Considering Support                                                                         |
 |                            | Media Search                                                          | Support planned                                                                                 |
