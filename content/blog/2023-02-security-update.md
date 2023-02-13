@@ -16,7 +16,7 @@ We highly recommend that you take immediate action to address this issue:
 - Please update the @tinacms/cli library to the latest version that includes a fix for this vulnerability (@tinacms/cli >= 1.0.9)
 - Rotate any sensitive keys associated with your project.
 
-Tina credentials like the API token are not considered especially vulnerable because they're for read-only access. Nevertheless, it may be a good idea to update them. More importantly, if your Tina-enabled website has other credentials (eg. Algolia API keys) you should rotate those keys immediately.
+Tina credentials like the API token are not considered especially vulnerable because they're for read-only access. Nevertheless, it may be a good idea to update them. More importantly, if your Tina-enabled website has other credentials (eg. Algolia or Cloudinary API keys) you should rotate those keys immediately.
 
 If you have any questions or concerns, please don't hesitate to reach out to our security team at support@tina.io
 
