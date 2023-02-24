@@ -19,7 +19,7 @@ From within your site's directory, run:
 
 This will ask you a few setup questions.
 
-When prompted for the "**public assets directory**", enter: **static**.
+When prompted for the "**public assets directory**", enter: **public**.
 
 ## Model your content
 
