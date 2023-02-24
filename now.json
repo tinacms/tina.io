@@ -520,6 +520,10 @@
     {
       "source": "/docs/tina-cloud/data-layer/",
       "destination": "/docs/reference/content-api/data-layer/"
+    },
+    {
+      "source": "/guides/tinacms/gatsby-data-fetching/guide/",
+      "destination": "/guides/tinacms/gatsby-data-fetching/"
     }
   ]
 }

@@ -38,6 +38,10 @@
                 "title": "Hugo"
               },
               {
+                "slug": "/docs/frameworks/gatsby/",
+                "title": "Gatsby"
+              },
+              {
                 "slug": "/docs/frameworks/jekyll/",
                 "title": "Jekyll"
               },
@@ -262,22 +266,12 @@
                 "slug": "/guides/tinacms/contextual-drafts/guide/"
               }
             ]
-          },
-          {
-            "title": "Gatsby",
-            "slug": "/guides/tinacms/gatsby-data-fetching/guide/",
-            "status": "Beta"
           }
         ]
       },
       {
         "title": "Separate Content Repo",
         "slug": "/guides/tinacms/separate-content-repo/guide/"
-      },
-      {
-        "title": "Gatsby",
-        "slug": "/guides/tinacms/gatsby-data-fetching/guide/",
-        "status": "Beta"
       },
       {
         "slug": "/guides/tinacms/react-data-fetching/guide/",
