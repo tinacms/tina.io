@@ -30,6 +30,10 @@
                 "title": "NextJS"
               },
               {
+                "slug": "/docs/frameworks/astro/",
+                "title": "Astro"
+              },
+              {
                 "slug": "/docs/frameworks/hugo/",
                 "title": "Hugo"
               },
