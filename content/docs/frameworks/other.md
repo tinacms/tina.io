@@ -21,6 +21,20 @@ This will ask you a few setup questions.
 
 When prompted for the "**public assets directory**", see our [list of frameworks](/docs/integration/frameworks/) for help.
 
+## Updating your build scripts
+
+Depending on your framework, `tina init` may try to update your `package.json` scripts.
+
+```json
+  "scripts": {
+    "dev": "tinacms dev -c \"next dev\"",
+    "build": "tinacms build && next build",
+    "start": "tinacms build && next start"
+  }
+```
+
+These should be applied manually if they haven't been set by the CLI.
+
 ## Model your content
 
 To edit your site's content in Tina, you can model your content in the .tina/config.ts file.
@@ -86,7 +100,7 @@ You should prepend `yarn tinacms && ` or `npm run tinacms && ` to your site's bu
 
 ![](https://res.cloudinary.com/forestry-demo/image/upload/v1670337650/tina-io/docs/forestry-migration/Screen_Shot_2022-12-06_at_10.38.10_AM.png)
 
-> Your build command is likely something like: `yarn tinacms build && next build` (where "next build" is your site's existing build command).
+> If you're using the build command defined in your package.json, this value is likely something like: `yarn build`
 
 For more information on deploying Tina with Netlify, Vercel, or GitHub Pages, [see this doc](/docs/tina-cloud/connecting-site/#deploying-your-site-with-the-tinacms-admin)
 

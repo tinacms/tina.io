@@ -86,7 +86,7 @@ You should prepend `yarn tinacms && ` or `npm run tinacms && ` to your site's bu
 
 ![](https://res.cloudinary.com/forestry-demo/image/upload/v1670337650/tina-io/docs/forestry-migration/Screen_Shot_2022-12-06_at_10.38.10_AM.png)
 
-> Your build command is likely something like: `yarn tinacms build && jekyll build`
+> If you're using the build command defined in your package.json, this value is likely something like: `yarn build`
 
 For more information on deploying Tina with Netlify, Vercel, or GitHub Pages, [see this doc](/docs/tina-cloud/connecting-site/#deploying-your-site-with-the-tinacms-admin)
 
