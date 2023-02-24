@@ -28,6 +28,10 @@
               {
                 "slug": "/docs/frameworks/hugo/",
                 "title": "Hugo"
+              },
+              {
+                "slug": "/docs/frameworks/jekyll/",
+                "title": "Jekyll"
               }
             ]
           }
