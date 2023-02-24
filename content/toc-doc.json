@@ -26,6 +26,10 @@
             "title": "Framework-Specific Guides",
             "items": [
               {
+                "slug": "/docs/frameworks/nextjs/",
+                "title": "NextJS"
+              },
+              {
                 "slug": "/docs/frameworks/hugo/",
                 "title": "Hugo"
               },
