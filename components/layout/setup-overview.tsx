@@ -10,12 +10,12 @@ const pageData = {
   excerpt: 'Whatever',
 }
 
-const OverviewTemplate = props => {
+const OverviewTemplate = (props) => {
   const router = useRouter()
   const isBrowser = typeof window !== `undefined`
 
   React.useEffect(() => {
-    const handleRouteChange = url => {
+    const handleRouteChange = (url) => {
       ga.pageview(url)
     }
     //When the component is mounted, subscribe to router changes
@@ -47,6 +47,11 @@ const OverviewTemplate = props => {
         'Setup a pre-configured Tina project with Tina & Vercel in minutes.',
       link: 'https://app.tina.io/quickstart',
     },
+    {
+      header: 'Migrate from Forestry',
+      description: 'Migrate an existing Forestry site to TinaCMS',
+      link: 'https://tina.io/docs/forestry/overview/',
+    },
   ]
 
   return (
@@ -74,7 +79,7 @@ const OverviewTemplate = props => {
             </p>
           </div>
           <div className="cards">
-            {cards.map(card => (
+            {cards.map((card) => (
               <a className="card" href={card.link}>
                 <h2>{card.header}</h2>
                 <p>{card.description}</p>
