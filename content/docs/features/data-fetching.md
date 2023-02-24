@@ -52,8 +52,8 @@ On a page that displays a list of posts, you can fetch the posts like so:
 
 ```js
 const postsResponse = await client.queries.postConnection()
-const posts = postResponse.data.postConnection.edges.map((x) => {
-  return { slug: x.node._sys.filename }
+const posts = postsResponse.data.postConnection.edges.map((post) => {
+  return { slug: post.node._sys.filename }
 })
 // This would return an array like: [ { slug: 'HelloWorld.md'}, /*...*/ ]
 ```

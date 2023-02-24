@@ -27,8 +27,8 @@ In the above example `post` is the name of the collection being queried. This ca
 
 ```js
 const postsResponse = await client.queries.postConnection()
-const posts = postResponse.data.postConnection.edges.map(x => {
-  return { slug: x.node._sys.filename }
+const posts = postsResponse.data.postConnection.edges.map((post) => {
+  return { slug: post.node._sys.filename }
 })
 // This would return an array like: [ { slug: 'HelloWorld.md'}, /*...*/ ]
 ```
