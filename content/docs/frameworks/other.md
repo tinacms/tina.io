@@ -1,13 +1,13 @@
 ---
-title: Astro + Tina Setup Guide
-id: '/docs/frameworks/astro'
+title: Framework-Agnostic TinaCMS Setup Guide
+id: '/docs/frameworks/other'
 prev: '/docs/setup-overview'
 next: '/docs/using-tina-editor'
 ---
 
 ## Introduction
 
-TinaCMS can be added to your Astro site locally. In this doc, we'll guide through the local setup, as well as editing on your production site.
+For the most part, TinaCMS is framework agnostic. Unless you're using "visual editing", the setup is mostly the same regardless of the site's framework.
 
 ## Getting Started
 
@@ -19,7 +19,7 @@ From within your site's directory, run:
 
 This will ask you a few setup questions.
 
-When prompted for the "**public assets directory**", enter: **public**.
+When prompted for the "**public assets directory**", see our [list of frameworks](/docs/integration/frameworks/) for help.
 
 ## Model your content
 
@@ -32,12 +32,12 @@ Learn more about content modelling [here](/docs/schema/)
 You can start TinaCMS with:
 
 ```bash
-npx tinacms dev -c "astro dev --port 8080"
+npx tinacms dev -c "<your-dev-process>"
 ```
 
-> `astro dev --port 8080`can be replaced with your site's custom dev command.
+> `<your-dev-process>`can be replaced with your site's custom dev command.
 
-With TinaCMS running, navigate to `http://localhost:8080/admin`
+With TinaCMS running, navigate to `http://localhost:3000/admin`
 
 > ^ The above default port may differ depending on your framework.
 
@@ -46,16 +46,6 @@ With TinaCMS running, navigate to `http://localhost:8080/admin`
 At this point, you should be able to see the Tina admin, select a post, save changes, and see the changes persisted to your local markdown files.
 
 ![](/img/hugo-tina-admin-screenshot.png)
-
-## Setting up Visual Editing (Optional)
-
-If you want to power your pages with TinaCMS's API, you'll be able to leverage TinaCMS's visual editing features.
-
-![block-based-editing-visual](/gif/blocks.gif)
-
-Read more about [data fetching](http://localhost:3000/docs/features/data-fetching/) and [visual editing](http://localhost:3000/docs/contextual-editing/overview/).
-
-> Note: Visual Editing with Astro is considered experimental. [See Discussion](https://github.com/tinacms/tinacms/discussions/3399)
 
 ## Deploy Tina to your site
 
@@ -96,7 +86,7 @@ You should prepend `yarn tinacms && ` or `npm run tinacms && ` to your site's bu
 
 ![](https://res.cloudinary.com/forestry-demo/image/upload/v1670337650/tina-io/docs/forestry-migration/Screen_Shot_2022-12-06_at_10.38.10_AM.png)
 
-> Your build command is likely something like: `yarn tinacms build && astro build`
+> Your build command is likely something like: `yarn tinacms build && next build` (where "next build" is your site's existing build command).
 
 For more information on deploying Tina with Netlify, Vercel, or GitHub Pages, [see this doc](/docs/tina-cloud/connecting-site/#deploying-your-site-with-the-tinacms-admin)
 

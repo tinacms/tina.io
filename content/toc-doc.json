@@ -40,6 +40,10 @@
               {
                 "slug": "/docs/frameworks/jekyll/",
                 "title": "Jekyll"
+              },
+              {
+                "slug": "/docs/frameworks/other/",
+                "title": "Other"
               }
             ]
           }
