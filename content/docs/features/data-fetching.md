@@ -30,8 +30,6 @@ export default defineConfig({
   clientId: '***',
   branch: 'main',
 })
-
-export default schema
 ```
 
 When working locally, the client is built with the local url (http://localhost:4001/graphql). When in [production mode](/docs/tina-cloud/#prod-mode), `clientId`, `branch` and `token` are used to query Tina Cloud.
