@@ -23,15 +23,11 @@
             "title": "Using a Starter"
           },
           {
-            "title": "Adding Tina to an Existing Site",
+            "title": "Framework-Specific Guides",
             "items": [
               {
-                "slug": "/docs/introduction/tina-init/",
-                "title": "Overview"
-              },
-              {
-                "slug": "/guides/tinacms/non-react-based-ssg/guide/",
-                "title": "Non-React-based SSG support"
+                "slug": "/docs/frameworks/hugo/",
+                "title": "Hugo"
               }
             ]
           }
