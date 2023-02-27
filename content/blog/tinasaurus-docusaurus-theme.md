@@ -16,7 +16,7 @@ Tinasaurus includes:
 ✅ Editing interface for Markdown, MDX, JSON, and YAML content\
 ✅ Integrates with existing Git and CI/CD workflows\
 ✅ Embeddable MDX components  \
-✅ Media manager with support for 3rd-party media providers
+✅ Media manager with support for 3rd-party media providers  
 ✅ Edit in the cloud (no local setup needed)
 
 Check out this 5-min overview of the project or [clone the repository](https://github.com/tinacms/tinasaurus "") and take it for a spin.
