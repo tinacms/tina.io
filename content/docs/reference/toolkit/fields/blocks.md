@@ -52,7 +52,7 @@ export const ContentBlock = {
   defaultItem: {
     content: '',
   },
-  fields: [{ name: 'content', label: 'Content', component: 'markdown' }],
+  fields: [{ name: 'content', label: 'Content', component: 'textarea' }],
 }
 ```
 

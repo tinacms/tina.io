@@ -23,15 +23,39 @@
             "title": "Using a Starter"
           },
           {
-            "title": "Adding Tina to an Existing Site",
+            "title": "Framework-Specific Guides",
             "items": [
               {
-                "slug": "/docs/introduction/tina-init/",
-                "title": "Overview"
+                "slug": "/docs/frameworks/nextjs/",
+                "title": "NextJS"
               },
               {
-                "slug": "/guides/tinacms/non-react-based-ssg/guide/",
-                "title": "Non-React-based SSG support"
+                "slug": "/docs/frameworks/astro/",
+                "title": "Astro"
+              },
+              {
+                "slug": "/docs/frameworks/hugo/",
+                "title": "Hugo"
+              },
+              {
+                "slug": "/docs/frameworks/gatsby/",
+                "title": "Gatsby"
+              },
+              {
+                "slug": "/docs/frameworks/jekyll/",
+                "title": "Jekyll"
+              },
+              {
+                "slug": "/docs/frameworks/remix/",
+                "title": "Remix"
+              },
+              {
+                "slug": "/docs/frameworks/11ty/",
+                "title": "11ty"
+              },
+              {
+                "slug": "/docs/frameworks/other/",
+                "title": "Other"
               }
             ]
           }
@@ -195,8 +219,7 @@
       },
       {
         "slug": "/docs/self-hosted/overview/",
-        "title": "Self Hosted Tina",
-        "status": "considering"
+        "title": "Self Hosted Tina"
       }
     ]
   },
@@ -262,6 +285,10 @@
             "slug": "/guides/tinacms/docusaurus/guide/"
           }
         ]
+      },
+      {
+        "title": "Separate Content Repo",
+        "slug": "/guides/tinacms/separate-content-repo/guide/"
       },
       {
         "slug": "/guides/tinacms/react-data-fetching/guide/",

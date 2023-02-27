@@ -1,0 +1,11 @@
+{
+  "title": "Separate Content REpo",
+  "steps": [
+    {
+      "title": "Guide",
+      "id": "/guides/tinacms/separate-content-repo/guide/",
+      "slug": "/guides/tinacms/separate-content-repo/guide/",
+      "data": "./guide.md"
+    }
+  ]
+}
