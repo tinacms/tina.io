@@ -39,7 +39,7 @@ const OverviewTemplate = (props) => {
     {
       header: 'Add Tina to an Existing Site',
       description: 'Have an existing site? Start here!',
-      link: '/docs/introduction/tina-init/',
+      link: '/docs/frameworks/other/',
     },
     {
       header: 'Dashboard Quickstart (Next.js only)',

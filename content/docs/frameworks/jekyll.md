@@ -37,7 +37,7 @@ npx tinacms dev -c "jekyll serve"
 
 > `jekyll serve`can be replaced with your site's custom dev command.
 
-With TinaCMS running, navigate to `http://localhost:4000/admin`
+With TinaCMS running, navigate to `http://localhost:4000/admin/index.html`
 
 > ^ The above default port may differ depending on your framework.
 

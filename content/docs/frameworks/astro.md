@@ -37,7 +37,7 @@ npx tinacms dev -c "astro dev --port 8080"
 
 > `astro dev --port 8080`can be replaced with your site's custom dev command.
 
-With TinaCMS running, navigate to `http://localhost:8080/admin`
+With TinaCMS running, navigate to `http://localhost:8080/admin/index.html`
 
 > ^ The above default port may differ depending on your framework.
 

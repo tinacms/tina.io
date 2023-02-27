@@ -51,7 +51,7 @@ yarn tinacms dev -c "next dev"
 
 > `next dev`can be replaced with your site's custom dev command.
 
-With TinaCMS running, navigate to `http://localhost:3000/admin`
+With TinaCMS running, navigate to `http://localhost:3000/admin/index.html`
 
 > ^ The above default port may differ depending on your framework.
 
