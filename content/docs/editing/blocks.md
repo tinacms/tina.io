@@ -145,8 +145,10 @@ query PagesDocument($relativePath: String!) {
       }
       ... on PagesBlocksFeatures {
         __typename
-        title
-        text
+        items {
+          title
+          text
+        }
       }
       ... on PagesBlocksContent {
         __typename
