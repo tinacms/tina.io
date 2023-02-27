@@ -50,6 +50,10 @@
                 "title": "Remix"
               },
               {
+                "slug": "/docs/frameworks/11ty/",
+                "title": "11ty"
+              },
+              {
                 "slug": "/docs/frameworks/other/",
                 "title": "Other"
               }
