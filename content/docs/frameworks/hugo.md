@@ -23,6 +23,8 @@ This will ask you a few setup questions.
 
 When prompted for the "**public assets directory**", enter: **static**.
 
+> If you are importing your site from Forestry.io CMS, some models & config will be auto-imported.
+
 ## Model your content
 
 To edit your site's content in Tina, you can model your content in the .tina/config.ts file.
