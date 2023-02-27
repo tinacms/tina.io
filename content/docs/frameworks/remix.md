@@ -9,6 +9,8 @@ next: '/docs/using-tina-editor'
 
 TinaCMS can be added to your Remix site locally. In this doc, we'll guide through the local setup, as well as editing on your production site.
 
+> You can reference our [Tina Remix Starter](https://github.com/tinacms/tina-remix-starter) for an example.
+
 ## Getting Started
 
 From within your site's directory, run:

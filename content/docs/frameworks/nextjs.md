@@ -9,6 +9,8 @@ next: '/docs/using-tina-editor'
 
 TinaCMS can be added to your NextJS site locally. In this doc, we'll guide through the local setup, as well as editing on your production site.
 
+> You can reference one of our [(NextJS) Tina Barebones Starter](https://github.com/tinacms/tina-barebones-starter) for an example.
+
 ## Getting Started
 
 From within your site's directory, run:
