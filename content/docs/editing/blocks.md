@@ -50,7 +50,7 @@ const heroBlock: TinaTemplate = {
       label: 'Text',
       name: 'text',
       ui: {
-        component: 'markdown',
+        component: 'textarea',
       },
     },
   ],
@@ -93,7 +93,7 @@ const contentBlock: TinaTemplate = {
     {
       type: 'string',
       ui: {
-        component: 'markdown',
+        component: 'textarea',
       },
       label: 'Body',
       name: 'body',
