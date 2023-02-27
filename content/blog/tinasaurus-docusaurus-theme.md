@@ -21,7 +21,7 @@ Tinasaurus includes:
 
 Check out this 5-min overview of the project or [clone the repository](https://github.com/tinacms/tinasaurus "") and take it for a spin.
 
-<Youtube embedSrc="https://www.youtube.com/watch?v=2bHBwM54UB8" />
+<Youtube embedSrc="https://www.youtube.com/embed/2bHBwM54UB8" />
 
 ## Docusaurus + TinaCMS = ❤️
 
