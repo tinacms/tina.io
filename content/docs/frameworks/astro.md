@@ -53,7 +53,7 @@ If you want to power your pages with TinaCMS's API, you'll be able to leverage T
 
 ![block-based-editing-visual](/gif/blocks.gif)
 
-Read more about [data fetching](http://localhost:3000/docs/features/data-fetching/) and [visual editing](http://localhost:3000/docs/contextual-editing/overview/).
+Read more about [data fetching](/docs/features/data-fetching/) and [visual editing](/docs/contextual-editing/overview/).
 
 > Note: Visual Editing with Astro is considered experimental. [See Discussion](https://github.com/tinacms/tinacms/discussions/3399)
 

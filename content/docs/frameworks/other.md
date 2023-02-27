@@ -61,6 +61,14 @@ At this point, you should be able to see the Tina admin, select a post, save cha
 
 ![](/img/hugo-tina-admin-screenshot.png)
 
+## Setting up Visual Editing (Optional)
+
+If you want to power your pages with TinaCMS's API, and you're using a React-based framework, you may be able to leverage TinaCMS's visual editing features.
+
+![block-based-editing-visual](/gif/blocks.gif)
+
+Read more about [data fetching](/docs/features/data-fetching/) and [visual editing](/docs/contextual-editing/overview/).
+
 ## Deploy Tina to your site
 
 Next we'll take you from editing with TinaCMS locally, to editing in production with your team.

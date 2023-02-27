@@ -61,4 +61,4 @@ Using `..` in the media path isn't supported in TinaCMS.
 
 Tina supports using external media providers (E.g Cloudinary, Digital Ocean Spaces, S3, etc), however a light backend media handler needs to be setup/hosted by the user. Tina offers some helpers to make this easy. This is usually pretty simple thanks to Netlify & Vercel's serverless function support.
 
-You can check out our 3rd-party media guides [here](http://localhost:3000/docs/reference/media/external/authentication/)
+You can check out our 3rd-party media guides [here](/docs/reference/media/external/authentication/)
