@@ -46,6 +46,10 @@
                 "title": "Jekyll"
               },
               {
+                "slug": "/docs/frameworks/remix/",
+                "title": "Remix"
+              },
+              {
                 "slug": "/docs/frameworks/other/",
                 "title": "Other"
               }
