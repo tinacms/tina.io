@@ -13,7 +13,7 @@ const dummyMailchimpEndpoint =
 
 
 const config = {
-  async rewrites(){
+  async rewrites() {
     return [
       {
         source: '/admin',
@@ -26,6 +26,11 @@ const config = {
       {
         source: '/docs/tinacms-context',
         destination: '/docs/contextual-editing/overview',
+        permanent: true,
+      },
+      {
+        source: '/tinasaurus',
+        destination: '/blog/tinasaurus-docusaurus-starter/',
         permanent: true,
       },
     ]
@@ -59,7 +64,7 @@ const config = {
     ]
   },
   trailingSlash: true,
-  exportPathMap: async function() {
+  exportPathMap: async function () {
     return {}
   },
   webpack(config) {
