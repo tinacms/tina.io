@@ -280,6 +280,20 @@ export const schema = defineSchema({
               ],
             },
             {
+              name: 'WideImage',
+              label: 'Wide Image',
+              fields: [
+                {
+                  type: 'image',
+                  name: 'src',
+                },
+                {
+                  type: 'string',
+                  name: 'alt',
+                },
+              ],
+            },
+            {
               name: 'CustomFieldComponentDemo',
               label: 'Field Component Demo [do not use]',
               fields: [{ type: 'string', name: 'test' }],
