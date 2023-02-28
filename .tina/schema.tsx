@@ -284,7 +284,7 @@ export const schema = defineSchema({
               label: 'Wide Image',
               fields: [
                 {
-                  type: 'string',
+                  type: 'image',
                   name: 'src',
                 },
                 {
