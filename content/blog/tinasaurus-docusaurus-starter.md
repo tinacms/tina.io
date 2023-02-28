@@ -1,10 +1,9 @@
 ---
-title: Tinasaurus - Edit your Docusaurus site with TinaCMS
+title: 'Tinasaurus: Edit your Docusaurus site with TinaCMS'
 date: '2023-02-27T04:00:00.000Z'
 last_edited: '2023-02-27T04:00:00.000Z'
 author: Scott Gallant & Scott Byrne
 ---
-
 
 We're excited to share [Tinasaurus](https://github.com/tinacms/tinasaurus ""), a Docusaurus starter site with support for TinaCMS.
 
@@ -17,7 +16,7 @@ Tinasaurus includes:
 ✅ Editing interface for Markdown, MDX, JSON, and YAML content\
 ✅ Integrates with existing Git and CI/CD workflows\
 ✅ Embeddable MDX components  \
-✅ Media manager with support for 3rd-party media providers  
+✅ Media manager with support for 3rd-party media providers\
 ✅ Edit in the cloud (no local setup needed)
 
 Check out this 5-min overview of the project or [clone the repository](https://github.com/tinacms/tinasaurus "") and take it for a spin.
@@ -30,4 +29,4 @@ Tinasaurus is based off of the default, classic Docusaurus theme with some modif
 
 ## Getting Started
 
-To get started fork and clone the [Tinasaurus repo](https://github.com/tinacms/tinasaurus) and start creating great documentation!
+To get started fork and clone the [Tinasaurus repo](https://github.com/tinacms/tinasaurus "") and start creating great documentation!
