@@ -36,6 +36,7 @@ const components: Components<{
   }
   Codesandbox: { embedSrc: string; title: string }
   Diagram: { alt: string; src: string }
+  WideImage: { alt: string; src: string }
   CustomFieldComponentDemo: {}
 }> = {
   Iframe: ({ iframeSrc, height }) => {
@@ -136,6 +137,23 @@ const components: Components<{
         margin: 'auto',
         padding: '2rem .5rem',
         border: 'none',
+      }}
+      src={src}
+    />
+  ),
+  WideImage: ({ alt, src }) => (
+    <img
+      alt={alt}
+      style={{
+        margin: '1.5rem auto',
+        overflow: 'hidden',
+        width: '140%',
+        maxWidth: 'calc(100vw - 5rem)',
+        left: '50%',
+        position: 'relative',
+        transform: 'translate3d(-50%,0,0)',
+        borderRadius: '5px',
+        border: '1px solid rgba(0,0,0,0.1)',
       }}
       src={src}
     />
