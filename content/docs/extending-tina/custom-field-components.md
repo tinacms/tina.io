@@ -58,7 +58,7 @@ import { defineConfig, wrapFieldsWithMeta } from 'tinacms'
 }
 ```
 
-> Note in this example parse is also needed. [Read more about parse here](/docs/extending-tina/format-and-parse.md)
+> Note in this example parse is also needed. [Read more about parse here](/docs/extending-tina/format-and-parse/)
 
 ## Using pre-built components
 
