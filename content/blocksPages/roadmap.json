@@ -52,12 +52,26 @@
         {
           "headline": "Improve Forestry.io -> Tina Migration",
           "status": "In Progress",
-          "content": "There are a number of features/concepts from Forestry.io that haven't made their way to TinaCMS. We're looking to smooth over the process for migrating from Forestry.io to TinaCMS by filling in some feature gaps, and adding some \"configuration migration tooling\".&#x20;\n"
+          "content": "There are a number of features/concepts from Forestry.io that haven't made their way to TinaCMS. We're looking to smooth over the process for migrating from Forestry.io to TinaCMS by filling in some feature gaps, and adding some \"configuration migration tooling\". \n"
+        },
+        {
+          "headline": "Improving Media Management UX",
+          "status": "In Progress",
+          "content": "There are several media management improvements that we have on our list (image search, support for more media types, etc). We'd like to invest some time making Tina+media more powerful for editors and developers.\n",
+          "actions": [
+            {
+              "label": "GitHub Discussion",
+              "icon": false,
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/3418"
+            }
+          ]
         },
         {
           "headline": "Drafts",
           "status": "In Progress",
-          "content": "Supporting Drafts on un-published documents through a \"`draft: true`\" front-matter field. \\\nWe are also looking into some ways to better support working from separate branch deployments, for bigger sets of changes.&#x20;\n"
+          "content": "Supporting Drafts on un-published documents through a \"`draft: true`\" front-matter field. \\\nWe are also looking into some ways to better support working from separate branch deployments, for bigger sets of changes. \n"
         },
         {
           "headline": "Registering Multiple Forms Per Page",
@@ -70,29 +84,6 @@
               "variant": "blue",
               "size": "medium",
               "url": "https://github.com/tinacms/tinacms/discussions/3420"
-            }
-          ]
-        }
-      ],
-      "options": {
-        "paddingTop": false,
-        "paddingBottom": true
-      },
-      "_template": "roadmapGrid"
-    },
-    {
-      "headline": "3-6 months",
-      "items": [
-        {
-          "headline": "Improving Media Management UX",
-          "content": "There are several media management improvements that we have on our list (image search, support for more media types, etc). We'd like to invest some time making Tina+media more powerful for editors and developers.\n",
-          "actions": [
-            {
-              "label": "Github Discussion",
-              "icon": false,
-              "variant": "blue",
-              "size": "medium",
-              "url": "https://github.com/tinacms/tinacms/discussions/3418"
             }
           ]
         }
