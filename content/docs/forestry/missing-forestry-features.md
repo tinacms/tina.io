@@ -23,19 +23,19 @@ Keep in mind, TinaCMS's frontend is open source, so we are open to community add
 | Category                   | Name                                                                  | Status                                                                                          |
 | -------------------------- | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | **Hugo Features**          | Hugo Menus                                                            | Considering Support                                                                             |
-|                            | Drafts                                                                | Supported (through ["draft field"](/docs/forestry/drafts/))                                     |
+|                            | Drafts                                                                | Supported (through ["draft field"](/docs/forestry/drafts/ ""))                                     |
 | **Jekyll Features**        | Jekyll Menus                                                          | Not Considering Support                                                                         |
-| **Sections/Collections**   | Globs in sidebar definition                                           | Support Planned                                                                                 |
+| **Sections/Collections**   | Globs in sidebar definition                                           | In Review                                                                                 |
 |                            | Customizable headers in sidebar                                       | Considering Support                                                                             |
 |                            | Readonly Documents                                                    | Supported (with custom readonly field)                                                          |
 |                            | Configurable section icons in sidebar                                 | Support planned                                                                                 |
-|                            | Single Document modeling:  "Data files"                               | Support planned                                                                                 |
+|                            | Single Document modeling:  "Data files"                               | In Review                                                                                |
 | **Organization Features:** | "Sub-Teams"                                                           | Considering Support                                                                             |
 |                            | Audit Logs                                                            | Considering Support                                                                             |
 | **Media**                  | Netlify Large Media                                                   | Not Considering Support                                                                         |
 |                            | Media Search                                                          | Support planned                                                                                 |
-|                            | Date variables for media storage locations (:year:/:month:/:filename) | Considering Support                                                                             |
-|                            | PDF support                                                           | Support planned                                                                                 |
+|                            | Date variables for media storage locations (\:year:/\:month:/\:filename) | Considering Support                                                                             |
+|                            | PDF support                                                           | In Review                                                                                |
 |                            | Multi-image field                                                     | Considering support                                                                             |
 | **Content Modeling:**      | UI for defining Front Matter Templates ("collections")                | Not Considering Support                                                                         |
 |                            | Include template field                                                | Supported (by nature of JS-based templates)                                                     |
@@ -46,7 +46,7 @@ Keep in mind, TinaCMS's frontend is open source, so we are open to community add
 |                            | Persisting unsaved changes in a document                              | Support planned                                                                                 |
 |                            | Multi-user document-locking                                           | Support planned (in some capacity)                                                              |
 |                            | Ability to create folders in the UI                                   | Support planned                                                                                 |
-|                            | Previews (for non-react based sites)                                  | Considering Support ([in some capacity]("https://github.com/tinacms/tinacms/discussions/3509")) |
+|                            | Previews (for non-react based sites)                                  | Considering Support ([in some capacity]("https://github.com/tinacms/tinacms/discussions/3509" "")) |
 | **Git Providers:**         | GitLab                                                                | Support planned                                                                                 |
 |                            | BitBucket                                                             | Considering support                                                                             |
 |                            | Azure DevOps                                                          | Considering support                                                                             |
