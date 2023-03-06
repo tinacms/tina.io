@@ -10,23 +10,24 @@ Collections represent a type of content (EX, blog post, page, author, etc). We r
 
 ## Overview
 
-| Property                      | Description                                                                                                                                                                                                                          |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [`name`](#name)               | The name of the collection                                                                                                                                                                                                           |
-| [`path`](#path)               | The path (relative to where the CLI is running) to a folder where the content is stored.                                                                                                                                             |
-| [`format`](#format)           | The extension of all the documents in this collection (Default is "md"). Must be one of `"md"`, `"markdown"`, `"mdx"`,`"json"`, `"toml"`, or `"yaml"`.                                                                               |
-| [`match`](#match)             | A [glob pattern](<https://en.wikipedia.org/wiki/Glob_(programming)>) (without the file extension) that will be used to match a subset of the files in the `path` folder.                                                             |
-| `label`                       | A human friendly label that will be displayed to the user                                                                                                                                                                            |
-| `fields`                      | An array of [fields](/docs/reference/fields/)                                                                                                                                                                                        |
-| `templates`                   | An array of [templates](/docs/reference/templates/)                                                                                                                                                                                  |
-| [`defaultItem`](#defaultitem) | An object or a function that returns an object. The object that is returned will be the data used as the default data when a new document is created.                                                                                |
-| `frontmatterFormat`           | The format used to parse the frontmatter. This can be `"yaml"` ,`"toml"`, or `"json"`. It defaults to `"yaml"`                                                                                                                       |
-| `frontmatterDelimiters`       | The Delimiters used for the frontmatter for a document. This is what Has type `string \| [string, string]` . The default is `---`. Read more about delimiters [here](https://github.com/jonschlinkert/gray-matter#optionsdelimiters) |
-| `ui.filename`                 | See [Filename customization](/docs/extending-tina/filename-customization/)                                                                                                                                                           |
-| `ui.global`                   | A boolean that if true will make this collection Global. (_optional_)                                                                                                                                                                |
-| `ui.router`                   | A function that takes in a document and returns the route for it. If nothing is returned the basic editor will be used. Read more about contextual editing [here](/docs/contextual-editing/router/#the-router-property)(_optional_)  |
-| `ui.allowedActions.create`    | If this is false, the create button will not appear in the collection list page. See [example](#example-with-allowed-actions). (_optional_)                                                                                          |
-| `ui.allowedActions.delete`    | If this is false, the create delete button will not appear in the collection list page. See [example](#example-with-allowed-actions). (_optional_)                                                                                   |
+| Property                          | Description                                                                                                                                                                                                                          |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [`name`](#name)                   | The name of the collection                                                                                                                                                                                                           |
+| [`path`](#path)                   | The path (relative to where the CLI is running) to a folder where the content is stored.                                                                                                                                             |
+| [`format`](#format)               | The extension of all the documents in this collection (Default is "md"). Must be one of `"md"`, `"markdown"`, `"mdx"`,`"json"`, `"toml"`, or `"yaml"`.                                                                               |
+| [`match.include`](#match.include) | A [glob pattern](<https://en.wikipedia.org/wiki/Glob_(programming)>) (without the file extension) that will be used to match a subset of the files in the `path` folder.                                                             |
+| [`match.exclude`](#match.exclude) | A [glob pattern](<https://en.wikipedia.org/wiki/Glob_(programming)>) (without the file extension) that will be used to exclude a subset of the files in the `path` folder.                                                           |
+| `label`                           | A human friendly label that will be displayed to the user                                                                                                                                                                            |
+| `fields`                          | An array of [fields](/docs/reference/fields/)                                                                                                                                                                                        |
+| `templates`                       | An array of [templates](/docs/reference/templates/)                                                                                                                                                                                  |
+| [`defaultItem`](#defaultitem)     | An object or a function that returns an object. The object that is returned will be the data used as the default data when a new document is created.                                                                                |
+| `frontmatterFormat`               | The format used to parse the frontmatter. This can be `"yaml"` ,`"toml"`, or `"json"`. It defaults to `"yaml"`                                                                                                                       |
+| `frontmatterDelimiters`           | The Delimiters used for the frontmatter for a document. This is what Has type `string \| [string, string]` . The default is `---`. Read more about delimiters [here](https://github.com/jonschlinkert/gray-matter#optionsdelimiters) |
+| `ui.filename`                     | See [Filename customization](/docs/extending-tina/filename-customization/)                                                                                                                                                           |
+| `ui.global`                       | A boolean that if true will make this collection Global. (_optional_)                                                                                                                                                                |
+| `ui.router`                       | A function that takes in a document and returns the route for it. If nothing is returned the basic editor will be used. Read more about contextual editing [here](/docs/contextual-editing/router/#the-router-property)(_optional_)  |
+| `ui.allowedActions.create`        | If this is false, the create button will not appear in the collection list page. See [example](#example-with-allowed-actions). (_optional_)                                                                                          |
+| `ui.allowedActions.delete`        | If this is false, the create delete button will not appear in the collection list page. See [example](#example-with-allowed-actions). (_optional_)                                                                                   |
 
 > Note: Must provide only one of `fields` or `templates` but never both
 
@@ -72,20 +73,22 @@ export const defineConfig({
 })
 ```
 
-## Match
+## match.include
 
 A [glob pattern](<https://en.wikipedia.org/wiki/Glob_(programming)>) that will be used to match a subset of the files in the `path` directory.
 
 The provided pattern does not have to include the file extension. The extension will be added automatically based on the [`format`](#format) of the collection. The final pattern that is used will be determined by match, format and path.
 
-`<path>/<match>.<format>`
+`<path>/<match.include>.<format>`
 
 For example, if you have a collection with the following:
 
 ```ts
 {
   path: 'content/posts',
-  match: '*',
+  match: {
+    include: '*',
+  },
   format: 'md'
 }
 ```
@@ -110,7 +113,9 @@ Example:
 ```ts
 {
   path: 'content/posts',
-  match: '*',
+  match: {
+    include: '*',
+  },
   format: 'md'
 }
 ```
@@ -124,7 +129,9 @@ Example:
 ```ts
 {
   path: 'content/config',
-  match: 'index',
+  match: {
+    include: 'index',
+  },
   format: 'json'
 }
 ```
@@ -138,7 +145,9 @@ Example:
 ```ts
 {
   path: 'content/config',
-  match: '{foo,bar}',
+  match: {
+    include: '{foo,bar}',
+  },
   format: 'json'
 }
 ```
@@ -152,12 +161,36 @@ Example:
 ```ts
 {
   path: 'content/config',
-  match: 'foo-{bar,baz}',
+  match: {
+    include:'foo-{bar,baz}',
+  },
   format: 'json'
 }
 ```
 
 This will match on `content/config/foo-bar.json` and `content/config/foo-baz.json`. It will not match on anything else.
+
+## match.exclude
+
+This works the same as `match.include` but will exclude any files that match the pattern. This is useful for excluding files that you don't want to be editable or are apart of a different collection.
+
+The resulting pattern is the same except that it is prefixed with `!`
+
+`!(<path>/<match.exclude>.<format>)`
+
+### Example with match.exclude
+
+```ts
+{
+  path: 'content/posts',
+  match: {
+    exclude: '**/index',
+  },
+  format: 'md'
+}
+```
+
+This will exclude all `index.md` files from your collection.
 
 ## defaultItem
 
