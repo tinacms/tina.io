@@ -9,6 +9,16 @@ next: '/docs/using-tina-editor'
 
 For the most part, TinaCMS is framework agnostic. Unless you're using "visual editing", the setup is mostly the same regardless of the site's framework.
 
+We also have some guides tailored for some popular frameworks:
+
+- [NextJS](/docs/frameworks/nextjs/)
+- [Astro](/docs/frameworks/astro/)
+- [Hugo](/docs/frameworks/hugo/)
+- [Gatsby](/docs/frameworks/gatsby/)
+- [Jekyll](/docs/frameworks/jekyll/)
+- [Remix](/docs/frameworks/remix/)
+- [11ty](/docs/frameworks/11ty/)
+
 ## Getting Started
 
 From within your site's directory, run:

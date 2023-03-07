@@ -15,7 +15,7 @@ We created a quick way to bootstrap a Tina application to show the power of visu
 npx @tinacms/cli@latest init
 ```
 
-_For help with the prompts for non-NextJS based sites, see [this guide](/guides/tinacms/non-react-based-ssg/guide/)._
+_For help with the prompts for non-NextJS based sites, see [this guide](/docs/frameworks/other/)._
 
 This command will ask you a few questions, and sets up the Tina boilerplate in your application:
 
