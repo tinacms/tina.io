@@ -524,6 +524,10 @@
     {
       "source": "/guides/tinacms/gatsby-data-fetching/guide/",
       "destination": "/guides/tinacms/gatsby-data-fetching/"
+    },
+    {
+      "source": "/guides/tinacms/non-react-based-ssg/guide/",
+      "destination": "/docs/frameworks/other/"
     }
   ]
 }
