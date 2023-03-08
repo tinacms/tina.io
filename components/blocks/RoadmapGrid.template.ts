@@ -26,7 +26,7 @@ export const roadmapGridTemplate: TinaTemplate = {
           type: 'rich-text',
         },
         // @ts-ignore
-        actionsTemplate,
+        actionsTemplate as any,
       ],
     },
     {
