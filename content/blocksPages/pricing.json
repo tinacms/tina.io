@@ -31,7 +31,7 @@
           "name": "Team",
           "price": "$29",
           "interval": "month",
-          "body": "* 3 Users\n* 2 Roles\n* Max 10 Users\n* Additional Users $9/seat\n* Forum Support\n\n",
+          "body": "* 3 Users\n* 2 Roles\n* Max 10 Users\n* Additional Users $9/seat\n* Forum Support\n",
           "actions": [
             {
               "label": "Sign Up",
@@ -46,7 +46,7 @@
           "name": "Business",
           "price": "$599",
           "interval": "month",
-          "body": "* 10 Users\n* 3 Roles *(coming soon)*\n* No User Limit\n* Additional Users $9/seat\n* Priority Support\n* SSO&#x20;\n* Approval flow *(coming soon)*\n\n",
+          "body": "* 10 Users\n* 3 Roles *(coming soon)*\n* No User Limit\n* Additional Users $9/seat\n* Priority Support\n* SSO \n* Approval flow *(coming soon)*\n",
           "actions": [
             {
               "label": "Sign Up",
@@ -61,7 +61,7 @@
           "name": "Enterprise",
           "price": "$2999",
           "interval": "month",
-          "body": "**Bulk pricing available**\n\n* Custom Users\n* Custom Roles\n* No User Limit\n* Variable user pricing\n* Enterprise Support\n* SSO&#x20;\n* Custom workflows\n",
+          "body": "**Bulk pricing available**\n\n* Custom Users\n* Custom Roles\n* No User Limit\n* Variable user pricing\n* Enterprise Support\n* SSO \n* Custom workflows\n",
           "actions": [
             {
               "label": "Contact Us",
@@ -91,9 +91,5 @@
       "_template": "pricing"
     }
   ],
-  "_collection": "page",
-  "_keepTemplateKey": false,
-  "_template": "page",
-  "_relativePath": "pricing.json",
-  "_id": "content/blocksPages/pricing.json"
+  "foo-bar": "plop"
 }
