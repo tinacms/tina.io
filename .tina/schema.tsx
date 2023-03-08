@@ -46,6 +46,12 @@ export const schema = defineSchema({
       },
       fields: [
         {
+          type: 'string',
+          label: 'Id',
+          name: 'foo_bar',
+          nameOverride: 'foo-bar',
+        },
+        {
           type: 'object',
           name: 'seo',
           label: 'SEO Information',
