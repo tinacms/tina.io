@@ -12,13 +12,19 @@
     {
       "items": [
         {
+          "headline": "We Are Many Hands",
+          "text": "[ManyHands](https://wearemanyhands.com) is an event  for product people.  The event (and website) is by [Lighthouse](https://wearelighthouse.com), a specialist UX and UI design agency based in London design agency based in London.  ",
+          "media": {
+            "src": "https://res.cloudinary.com/forestry-demo/image/upload/v1678369877/tina-showcase/wearemanyhands.png"
+          }
+        },
+        {
           "headline": "Devolver Digital",
           "text": "A marketing site for a boutique game label that works with independent developers from all over the world to produce and promote some of the most original, eccentric, and beloved games of the past decade.",
           "url": "https://www.devolverdigital.com/",
           "media": {
             "src": "/img/devolver.png"
-          },
-          "_template": "project"
+          }
         },
         {
           "headline": "Microgen",
@@ -26,8 +32,7 @@
           "url": "https://microgen.site/",
           "media": {
             "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_1000,g_face/v1651703972/tina-showcase/microgen.png"
-          },
-          "_template": "project"
+          }
         },
         {
           "headline": "Paradise Helicopters",
@@ -35,8 +40,7 @@
           "url": "https://paradisecopters.com/",
           "media": {
             "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_900,g_face/v1653398867/tina-showcase/paradise-helicopters.png"
-          },
-          "_template": "project"
+          }
         },
         {
           "headline": "Photography Portfolio",
@@ -44,8 +48,7 @@
           "url": "https://www.anibalsantosgomez.com/",
           "media": {
             "src": "https://res.cloudinary.com/forestry-demo/image/upload/v1666102900/tina-showcase/anibalsantosgomez.com.gif"
-          },
-          "_template": "project"
+          }
         },
         {
           "headline": "Community Coordinated Modeling Center",
@@ -53,8 +56,7 @@
           "url": "https://ccmc.gsfc.nasa.gov/",
           "media": {
             "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_1000,g_face/v1651711033/tina-showcase/CCMC.png"
-          },
-          "_template": "project"
+          }
         },
         {
           "headline": "Labrys",
@@ -62,8 +64,7 @@
           "url": "https://labrys.io/",
           "media": {
             "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_900,g_face/v1651840687/tina-showcase/labrys.gif"
-          },
-          "_template": "project"
+          }
         },
         {
           "headline": "Session",
@@ -71,8 +72,7 @@
           "url": "https://getsession.com/",
           "media": {
             "src": "/img/getsession.png"
-          },
-          "_template": "project"
+          }
         },
         {
           "headline": "Catalyst Miami",
@@ -80,8 +80,7 @@
           "url": "https://stories.catalystmiami.org/",
           "media": {
             "src": "/img/catalyst.png"
-          },
-          "_template": "project"
+          }
         },
         {
           "headline": "pcode",
@@ -89,8 +88,7 @@
           "url": "https://www.pcode.at/",
           "media": {
             "src": "/img/pcode.png"
-          },
-          "_template": "project"
+          }
         },
         {
           "headline": "APFX",
@@ -98,8 +96,7 @@
           "url": "https://www.apfx.com.au/en-us",
           "media": {
             "src": "/img/apfx.png"
-          },
-          "_template": "project"
+          }
         },
         {
           "headline": "Maximum Image",
@@ -107,8 +104,7 @@
           "url": "https://www.maximumimage.eu/",
           "media": {
             "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_1000,g_face/v1651703972/tina-showcase/maximumimage.png"
-          },
-          "_template": "project"
+          }
         },
         {
           "headline": "Metrics Watch",
@@ -116,16 +112,10 @@
           "url": "https://metricswatch.com/",
           "media": {
             "src": "/img/metrics-watch.png"
-          },
-          "_template": "project"
+          }
         }
       ],
       "_template": "showcase"
     }
-  ],
-  "_collection": "page",
-  "_keepTemplateKey": false,
-  "_template": "page",
-  "_relativePath": "showcase.json",
-  "_id": "content/blocksPages/showcase.json"
+  ]
 }
