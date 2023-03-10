@@ -12,26 +12,25 @@ export const showcaseTemplate: TinaTemplate = {
       label: 'Showcase Items',
       type: 'object',
       list: true,
-      templates: [
+      ui: {
+        itemProps: (item) => {
+          return { label: item?.headline };
+        },
+      },
+      fields: [
+        { name: 'headline', label: 'Headline', type: 'string' },
         {
-          label: 'Project',
-          name: 'project',
-          fields: [
-            { name: 'headline', label: 'Headline', type: 'string' },
-            {
-              name: 'text',
-              label: 'Text',
-              ui: { component: 'textarea' },
-              type: 'string',
-            },
-            { name: 'url', label: 'URL', type: 'string' },
-            {
-              name: 'media',
-              label: 'Media',
-              type: 'object',
-              fields: [{ name: 'src', label: 'Image Source', type: 'string' }],
-            },
-          ],
+          name: 'text',
+          label: 'Text',
+          ui: { component: 'textarea' },
+          type: 'string',
+        },
+        { name: 'url', label: 'URL', type: 'string' },
+        {
+          name: 'media',
+          label: 'Media',
+          type: 'object',
+          fields: [{ name: 'src', label: 'Image Source', type: 'string' }],
         },
       ],
     },

@@ -9,25 +9,25 @@ Here is a list of the the common things that someone may run into when migrating
 
 ## Migrating fields with non alphanumeric characters
 
-In TinaCMS all fields can only contain alphanumeric characters or underscores. While in forestry you could have fields with non alphanumeric characters, such as `my-field-name` or `my field name`. The migration tool will convert these fields to `my_field_name` (replacing all non alphanumeric character with `_`).
+In TinaCMS all fields can only contain alphanumeric characters or underscores. While in forestry you could have fields with non alphanumeric characters, such as `my-field-name` or `my field name`.
 
-However, the migration tool will not migrate your content. You will have to update every instance of `my-field-name` to `my_field_name` in your content.
+TinaCMS provides a `nameOverride` property, that allows you to specify how a field with special characters gets output.
 
-Since the content has been updated you will also update to update your code that renders your site as well. You will have to change `my-field-name` to `my_field_name` in your code as well.
+E.g:
 
-For example if you had a field in your front matter that looked like this.
-
-```yaml
-my-cool-field foo bar: 'hello world'
+```js
+// collection fields
+{
+  name: `my_field_name`,
+  nameOverride: `my-field-name`
+}
 ```
 
-It will have to be updated to look like this
-
-```yaml
-my_cool_field_foo_bar: 'hello world'
-```
+> The Forestry migration tool (`npx @tinacms/cli init`) should automatically apply nameOverride when importing your templates.
 
 ## Migrating Blocks
+
+### \_template vs template
 
 The concept of using [blocks as field types in forestry](https://forestry.io/docs/settings/fields/blocks/) is supported in TinaCMS as [providing templates in an object field](/docs/editing/blocks/). During the migration, the migration tool will convert your blocks into templates in the Tina schema but it will not update your content.
 
@@ -71,6 +71,10 @@ You would have to update your content to be
 
 Since you have updated your content you will have to update all uses of `template` in your rendering code to be `_template` and update `template-name` to be `template_name`.
 
+### templates with common field names of different types
+
+If you have multiple block templates that share a common field name, but the types differ (E.g, multiple templates with a `heading` field, where one is required and the other is not), then you may run into [this GraphQL error](/docs/forestry/common-errors/#graphql-error).
+
 ## Common error message and how to fix them
 
 ### GraphQL error
@@ -92,11 +96,12 @@ You can [read more about this issue here](https://github.com/tinacms/tinacms/iss
 
 ![](https://res.cloudinary.com/forestry-demo/image/upload/v1673619483/tina-io/docs/forestry-migration/Screen-Shot-Error-Messager.png)
 
-This can happen for many reasons. Some common reasons are because the data you are trying to fetch is 
-- not in the correct format 
+This can happen for many reasons. Some common reasons are because the data you are trying to fetch is
+
+- not in the correct format
 - missing a required field
-- is missing the `_template` key. 
-If you look at the error message in the terminal you should see the exact error that is causing the issue.
+- is missing the `_template` key.
+  If you look at the error message in the terminal you should see the exact error that is causing the issue.
 
 For example, if you are missing `_template` you will see an error like this
 
