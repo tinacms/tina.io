@@ -1,7 +1,7 @@
 ---
-title: TinaCMS V1.3.0
-date: '2023-03-08T04:00:00.000Z'
-last_edited: '2023-03-08T04:00:00.000Z'
+title: TinaCMS V1.3.2
+date: '2023-03-10T04:00:00.000Z'
+last_edited: '2023-03-10T04:00:00.000Z'
 author: James O'Halloran
 ---
 
@@ -37,7 +37,7 @@ The above field will read/write to the frontmatter key `id`, which previously wa
 
 Editors can now browse media in the media library through a grid view. A sidebar slides out to show some image metadata: filename, image URL (coming soon).
 
-![Media Grid View](https://user-images.githubusercontent.com/5075484/222774276-a1cf302d-ef7d-4816-9e68-e9cdfa6f9ebc.png 'Media Grid View')
+![Media Grid View](https://res.cloudinary.com/forestry-demo/image/upload/v1678481393/tina-io/blog/media-manager_uuaotf.png "Media Grid View")
 
 Editors can also easily copy the absolute image URL from the media library.
 
@@ -45,13 +45,13 @@ Editors can also easily copy the absolute image URL from the media library.
 
 Editors can now upload some non-image file types to the media library. When inserted into a rich-text field, files are inserted as links, while images are inserted as markdown images.
 
-[See Pull Request](https://github.com/tinacms/tinacms/pull/3655)
+[See Pull Request](https://github.com/tinacms/tinacms/pull/3655 "")
 
 ## Other fixes & improvements
 
-- fix: Improve error message when indexing hasn't finished, and build is triggered.
-- fix: When current branch doesn't exist, handle error more gracefully
-- Remove warning about TinaProvider being deprecated.
-- security: update some 3rd party dependencies
-- feat: Add docusaurus starter to create-tina-app CLI
-- fix: "Previous Directory" link in Tina MediaManager (Thanks @coreyaus)!
+* fix: Improve error message when indexing hasn't finished, and build is triggered.
+* fix: When current branch doesn't exist, handle error more gracefully
+* Remove warning about TinaProvider being deprecated.
+* security: update some 3rd party dependencies
+* feat: Add docusaurus starter to create-tina-app CLI
+* fix: "Previous Directory" link in Tina MediaManager (Thanks @coreyaus)!
