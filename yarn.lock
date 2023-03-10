@@ -3146,10 +3146,10 @@
     slate-react "^0.66.0"
     webfontloader "1.6.28"
 
-"@tinacms/toolkit@1.5.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@tinacms/toolkit/-/toolkit-1.5.0.tgz#0e56b7a532048bd6d9a73825107e63f99a4143ef"
-  integrity sha512-CrW9PGygUMCclKOmG+gMVDwme6eG0gGycEwInVo8SHTY5H5uyIt8VBVxe0u5HCZqxASWxDGKBumodgWYWxZLGg==
+"@tinacms/toolkit@1.5.1":
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/@tinacms/toolkit/-/toolkit-1.5.1.tgz#ad42679c9a4669810439f62132ef0b866658de35"
+  integrity sha512-TEpdBOcQO0x7NO55RxxPWQIaKosSeiUQ2vZuqIA35g1zXrMuqkiFBTidnEwrFEaqlNy2gMqzVjgyPHakQdKJqA==
   dependencies:
     "@floating-ui/dom" "^0.1.7"
     "@floating-ui/react-dom" "^0.3.3"
@@ -15199,10 +15199,10 @@ through2@^2.0.0:
     readable-stream "~2.3.6"
     xtend "~4.0.1"
 
-tinacms@1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/tinacms/-/tinacms-1.3.1.tgz#cfc5a53cdcc6b3d9abfb2f482311ce9302869f53"
-  integrity sha512-2RoqQ8VxPTGgnp/bn9n+04nnamw0lsSlWQQbudC1E9DN/gEb9su2pY5SpHtCJUzios21c1Pu0c8vPCplEEmh9g==
+tinacms@1.3.2:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/tinacms/-/tinacms-1.3.2.tgz#01ee77ba8c44d542998c9916b66035eda85a5c35"
+  integrity sha512-EzeQXU+5aJRI5q0sl16swtOGH3E0hzbiuqOgWweDqEFeWjJrIrwk912PUYrop+xeSUnYtXG28yXU+rezh7aI3w==
   dependencies:
     "@graphql-inspector/core" "^4.0.0"
     "@graphql-tools/relay-operation-optimizer" "^6.4.1"
@@ -15211,7 +15211,7 @@ tinacms@1.3.1:
     "@react-hook/window-size" "^3.0.7"
     "@tinacms/schema-tools" "1.3.3"
     "@tinacms/sharedctx" "1.0.1"
-    "@tinacms/toolkit" "1.5.0"
+    "@tinacms/toolkit" "1.5.1"
     crypto-js "^4.0.0"
     encoding "0.1.13"
     fetch-ponyfill "^7.1.0"

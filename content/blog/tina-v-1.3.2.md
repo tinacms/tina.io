@@ -5,7 +5,7 @@ last_edited: '2023-03-08T04:00:00.000Z'
 author: James O'Halloran
 ---
 
-TinaCMS Version `1.3.0` (and `@tinacms/cli@1.3.1`) improves media, adds support for special characters in field names, and some other fixes and improvements.
+TinaCMS Version `1.3.2` (and `@tinacms/cli@1.3.2`) improves media, adds support for special characters in field names, and some other fixes and improvements.
 
 ## Using Field names with special characters (using nameOverride)
 
