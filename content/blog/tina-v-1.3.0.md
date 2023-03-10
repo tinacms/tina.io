@@ -39,7 +39,7 @@ Editors can now browse media in the media library through a grid view. A sidebar
 
 ![Media Grid View](https://user-images.githubusercontent.com/5075484/222774276-a1cf302d-ef7d-4816-9e68-e9cdfa6f9ebc.png 'Media Grid View')
 
-Editors can also easily copy the image URL from the media library.
+Editors can also easily copy the absolute image URL from the media library.
 
 ## PDF Uploads
 
