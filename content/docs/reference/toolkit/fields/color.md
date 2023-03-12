@@ -62,6 +62,7 @@ interface ColorConfig {
 const BlogPostForm = {
   fields: [
     {
+      type: 'string',
       name: 'rawFrontmatter.background_color',
       label: 'Background Color',
       description: 'Edit the page background color here',
