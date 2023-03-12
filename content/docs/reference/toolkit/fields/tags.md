@@ -50,10 +50,14 @@ Below is an example of how a `tags` field could be defined in a form.
 const FormConfig = {
   fields: [
     {
+      type: 'string',
       name: 'frontmatter.tags',
-      component: 'tags',
       label: 'Tags',
       description: 'Tags for this post',
+      list: true,
+      ui: {
+        component: 'tags',
+      }
     },
     // ...
   ],
