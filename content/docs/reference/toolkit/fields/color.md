@@ -62,13 +62,16 @@ interface ColorConfig {
 const BlogPostForm = {
   fields: [
     {
+      type: 'string',
       name: 'rawFrontmatter.background_color',
-      component: 'color',
       label: 'Background Color',
       description: 'Edit the page background color here',
-      colorFormat: 'hex',
-      colors: ['#EC4815', '#241748', '#B4F4E0', '#E6FAF8'],
-      widget: 'sketch',
+      ui: {
+        component: 'color',
+        colorFormat: 'hex',
+        colors: ['#EC4815', '#241748', '#B4F4E0', '#E6FAF8'],
+        widget: 'sketch',
+      }
     },
     // ...
   ],
