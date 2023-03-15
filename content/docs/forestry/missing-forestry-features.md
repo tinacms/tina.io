@@ -36,6 +36,7 @@ Keep in mind, TinaCMS's frontend is open source, so we are open to community add
 |                            | Media Search                                                             | Support planned                                                                                 |
 |                            | Date variables for media storage locations (\:year:/\:month:/\:filename) | Considering Support                                                                             |
 |                            | Multi-image field                                                        | Considering support                                                                             |
+|                            | Video filetypes in media manager                                                         | Considering support                                                                             |
 | **Content Modeling:**      | UI for defining Front Matter Templates ("collections")                   | Not Considering Support                                                                         |
 |                            | Include template field                                                   | Supported (by nature of JS-based templates)                                                     |
 |                            | Ability to setup references to lists in a document                       | Considering Support                                                                             |
