@@ -33,7 +33,7 @@ You can also use nameOverride to use special restricted field names like `id`
 
 The above field will read/write to the frontmatter key `id`, which previously wasn't possible.
 
-## Media Manager Udates
+## Media Manager Updates
 
 Editors can now browse media in the media library through a grid view. A sidebar slides out to show some image metadata: filename, image URL (coming soon).
 
