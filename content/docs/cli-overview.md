@@ -46,11 +46,12 @@ This command takes the following arguments:
 
 This command compiles and validates the schema and generates the client and types. It will also ensure your content has finished indexing.
 
-| Argument         | Description                                                                                                 |
-| ---------------- | ----------------------------------------------------------------------------------------------------------- |
-| `--noTelemetry`  | Disables Open Source Telemetry                                                                              |
-| `--noSDK`        | Don't generate the generated client SDK. [Read here](/docs/graphql/client/) for more details about the SDK. |
-| `-v`,`--verbose` | increase verbosity of logged output (default: false)                                                        |
+| Argument                 | Description                                                                                                 |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------- |
+| `--noTelemetry`          | Disables Open Source Telemetry                                                                              |
+| `--noSDK`                | Don't generate the generated client SDK. [Read here](/docs/graphql/client/) for more details about the SDK. |
+| `-v`,`--verbose`         | increase verbosity of logged output (default: false)                                                        |
+| `--tina-graphql-version` | Specify the version of `@tinacms/graphql` that the backend will use. (Only needed in advanced cases)        |
 
 ### `npx @tinacms/cli@latest init`
 
