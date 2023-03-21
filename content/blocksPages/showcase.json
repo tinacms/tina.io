@@ -12,19 +12,19 @@
     {
       "items": [
         {
-          "headline": "TinySurvey",
-          "text": "[TinaSurvey](https://tinysurvey.co.uk/) is a service that lelt's  you create super-specific, one-question surveys that are a breeze for your users to complete. ",
-          "url": "https://tinysurvey.co.uk/",
-          "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_700/v1679406617/tina-showcase/tinasurvey.png"
-          }
-        },
-        {
           "headline": "Shadow Lion",
           "text": "[Shadow Lion](https://shadowlion.com/) was founded in 2017 with the goal of supporting Tom Brady’s off-field media efforts but quickly began providing creative services to other athletes, influencers and organizations. The site was built by [VisualBoston](https://visualboston.com/) a digital studio based out of Boston, MA. ",
           "url": "https://shadowlion.com/",
           "media": {
             "src": "https://res.cloudinary.com/forestry-demo/image/upload/v1678372708/tina-showcase/shadowlion3.gif"
+          }
+        },
+        {
+          "headline": "TinySurvey",
+          "text": "[TinaSurvey](https://tinysurvey.co.uk/) is a service that lelt's  you create super-specific, one-question surveys that are a breeze for your users to complete. ",
+          "url": "https://tinysurvey.co.uk/",
+          "media": {
+            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_700/v1679406617/tina-showcase/tinasurvey.png"
           }
         },
         {
