@@ -12,6 +12,14 @@
     {
       "items": [
         {
+          "headline": "Simon Austerberry",
+          "text": "Freelance UX Designer Manchester, UK.",
+          "url": "https://www.simonausterberry.co.uk/",
+          "media": {
+            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_700/v1679406617/tina-showcase/Simon-Austerberry.png"
+          }
+        },
+        {
           "headline": "Shadow Lion",
           "text": "[Shadow Lion](https://shadowlion.com/) was founded in 2017 with the goal of supporting Tom Brady’s off-field media efforts but quickly began providing creative services to other athletes, influencers and organizations. The site was built by [VisualBoston](https://visualboston.com/) a digital studio based out of Boston, MA. ",
           "url": "https://shadowlion.com/",
