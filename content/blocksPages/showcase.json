@@ -20,19 +20,19 @@
           }
         },
         {
-          "headline": "Jeroen van Wissen",
-          "text": "A personal site and blog for [Jeroen van Wissen](https://jeroenvanwissen.nl/), a\nJavaScript Developer, Engineering Manager, and Tech Lead. ",
-          "url": "https://jeroenvanwissen.nl/",
-          "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_700/v1679428687/tina-showcase/Jeroen-van-Wissen.png"
-          }
-        },
-        {
           "headline": "Useagility",
           "text": "[Useagility](https://useagility.com) is a Missouri-based agency operating since 2012.  They shape high-impact technology improvement projects for world-class businesses. ",
           "url": "https://useagility.com/",
           "media": {
             "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_800,g_face/v1679421309/tina-showcase/useagility.png"
+          }
+        },
+        {
+          "headline": "Devolver Digital",
+          "text": "A marketing site for a boutique game label that works with independent developers from all over the world to produce and promote some of the most original, eccentric, and beloved games of the past decade.",
+          "url": "https://www.devolverdigital.com/",
+          "media": {
+            "src": "/img/devolver.png"
           }
         },
         {
@@ -60,11 +60,11 @@
           }
         },
         {
-          "headline": "Devolver Digital",
-          "text": "A marketing site for a boutique game label that works with independent developers from all over the world to produce and promote some of the most original, eccentric, and beloved games of the past decade.",
-          "url": "https://www.devolverdigital.com/",
+          "headline": "Jeroen van Wissen",
+          "text": "A personal site and blog for [Jeroen van Wissen](https://jeroenvanwissen.nl/), a\nJavaScript Developer, Engineering Manager, and Tech Lead. ",
+          "url": "https://jeroenvanwissen.nl/",
           "media": {
-            "src": "/img/devolver.png"
+            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_700/v1679428687/tina-showcase/Jeroen-van-Wissen.png"
           }
         },
         {
