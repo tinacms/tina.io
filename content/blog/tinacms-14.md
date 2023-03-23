@@ -31,12 +31,14 @@ export default defineConfig({
 })
 ```
 
-this will not match on subdirectories. It will match `collections/posts/foo.md` but not `collections/posts/nested/bar.md`.
+this will not match on subdirectories. It will match `collections/posts/foo.md` but not `collections/posts/nested/bar.md`. Check out the [docs for more info](/docs/reference/collections/#matchinclude "Match docs").
 
 \
 CLI updates
 -----------
 
-The GraphQL playground is now hosted at \<YourDevUrl>/admin/index.html#/graphql (It was previously on the same port as the local GraphQL server). This allows the playground to be used in production and allows us to customize more in the feature. We have also updated are entire CLI to a more typesafe system allowing us to develop quicker and safer.  \
-\
-Other improvements
+The GraphQL playground is now hosted at \<YourDevUrl>/admin/index.html#/graphql (It was previously on the same port as the local GraphQL server). This allows the playground to be used in production and allows us to customize more in the feature. We have also updated are entire CLI to a more typesafe system allowing us to develop quicker and safer. 
+
+## Other improvements
+
+We have migrated our endpoint to a versioned endpoint. This likely does not require any action unless you are using [custom data fetching](/docs/reference/content-api/content-delivery/ "Custom Data Fetching docs"). If you are using custom data fetching you will have to update the url from /content/\<ClientID>/github/\<branch> to /\<TinaGraphQLVersion>content/\<ClientID>/github/\<branch> where TinaGraphQL version in the version of the @tinacms/graphql package. 
