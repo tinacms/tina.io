@@ -15,9 +15,11 @@ For example,\
 
 
 ```typescript
+import { defineConfig } from 'tinacms'
+
 export default defineConfig({
   schema: {
-    collections: {
+    collections: [
       {
     path: 'content/posts',
     match: {
@@ -25,7 +27,7 @@ export default defineConfig({
     },
     format: 'md'
   }
-    }
+    ]
   }
 })
 ```
