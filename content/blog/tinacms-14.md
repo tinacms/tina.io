@@ -41,4 +41,21 @@ The GraphQL playground is now hosted at \<YourDevUrl>/admin/index.html#/graphql 
 
 ## Other improvements
 
+### Use Markdown parser by default on .md files
+
+We are now going to use a markdown parser by default if format: 'md' is used. This means that if you are using markdown files that contain templates you will have to turn on the mdx parser on each field by doing\
+
+
+```typescript
+{
+  type: 'rich-text',
+  parser: {
+      type: 'mdx',
+  },
+  //...
+}
+```
+
+### New Content API endpoint
+
 We have migrated our endpoint to a versioned endpoint. This likely does not require any action unless you are using [custom data fetching](/docs/reference/content-api/content-delivery/ "Custom Data Fetching docs"). If you are using custom data fetching you will have to update the url from `/content/<ClientID>/github/<branch>` to `/<TinaGraphQLVersion>content/<ClientID>/github/<branch>` where TinaGraphQL version in the version of the @tinacms/graphql package.
