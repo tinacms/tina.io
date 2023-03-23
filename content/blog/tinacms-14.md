@@ -11,8 +11,7 @@ Today we are excited to release `tinacms@1.4.0` and `@tinacms/graphql@1.4.0` the
 
 Now if you want to only include a subset of your documents in your collection this can be done with the match property.
 
-For example,\
-
+For example,
 
 ```typescript
 import { defineConfig } from 'tinacms'
@@ -21,19 +20,18 @@ export default defineConfig({
   schema: {
     collections: [
       {
-    path: 'content/posts',
-    match: {
-      include: '*',
-    },
-    format: 'md'
-  }
+        path: 'content/posts',
+        match: {
+          include: '*',
+        },
+        format: 'md'
+      }
     ]
   }
 })
 ```
 
-\
- 
+this will not match on subdirectories. It will match `collections/posts/foo.md` but not `collections/posts/nested/bar.md`.
 
 \
 CLI updates\
