@@ -5,3 +5,13 @@ last_edited: '2023-03-23T04:00:00.000Z'
 author: Logan Anderson
 ---
 
+Today we are excited to release `tinacms@1.4.0` and `@tinacms/graphql@1.4.0` these new versions add a match property (used for excluding an including a subset of documents), a massive update to out CLI and various big fixes and other improvements.  The full list of changes can be found [in the changeset PR](https://github.com/tinacms/tinacms/pull/3706 "Changset pull request"). 
+
+## The `match` property on a collection
+
+\
+CLI updates\
+\
+\
+Other improvements 
+-------------------
