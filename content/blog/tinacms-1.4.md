@@ -55,4 +55,4 @@ We are now going to use a markdown parser by default if format: 'md' is used. Th
 
 ### New Content API endpoint
 
-We have migrated our endpoint to a versioned endpoint. This likely does not require any action unless you are using [custom data fetching](/docs/reference/content-api/content-delivery/ "Custom Data Fetching docs"). If you are using custom data fetching you will have to update the url from `/content/<ClientID>/github/<branch>` to `/<TinaGraphQLVersion>content/<ClientID>/github/<branch>` where TinaGraphQL version in the version of the @tinacms/graphql package.
+We have migrated our endpoint to a versioned endpoint. This likely does not require any action unless you are using [custom data fetching](/docs/reference/content-api/content-delivery/ "Custom Data Fetching docs"). If you are using custom data fetching you will have to update the url from `/content/<ClientID>/github/<branch>` to `/<TinaGraphQLVersion>/content/<ClientID>/github/<branch>` where TinaGraphQL version is the "<major>.<minor>" version of the @tinacms/graphql package. So if you are using Tina `1.4.3`, the version would be `1.4`
