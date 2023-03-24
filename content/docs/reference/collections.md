@@ -41,7 +41,7 @@ The path to a folder where the content is stored. By default, the path is relati
 
 ## Format
 
-The extension of all the documents in this collection (Default is "md"). Must be one of `"md"`, `"markdown"`, `"mdx"`,`"json"`, `"toml"`, or `"yaml"`.
+The file extension of all the documents in this collection. (Default extension is "md"). Must be one of `"md"`, `"markdown"`, `"mdx"`,`"json"`, `"toml"`, or `"yaml"`.
 
 The format is used to determine the parser that will be used to parse the document. The format is also used to determine the extension of the file when a new document is created. We do not support more then one format per collection but you can work around this by doing the following:
 
