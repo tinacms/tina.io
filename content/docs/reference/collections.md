@@ -120,7 +120,7 @@ Example:
 }
 ```
 
-Matches all files in `content/posts` folder but does not match sub directories. It would match `content/posts/hello-world.md` but not `content/posts/subfolder/foo.md`
+Matches all files in `content/posts` folder but does not match subdirectories. It would match `content/posts/hello-world.md` but not `content/posts/subfolder/foo.md`
 
 #### Match on a single file
 
