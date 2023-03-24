@@ -52,7 +52,7 @@ const query = `
 export async function getServerSideProps(context) {
   let data
   const res = await fetch(
-    'https://content.tinajs.io/content/<CLIENT_ID>/github/<BRANCH>',
+    'https://content.tinajs.io/<VersionOfTina>/content/<CLIENT_ID>/github/<BRANCH>',
     {
       method: 'POST',
       body: JSON.stringify({ query, variables }),
@@ -104,21 +104,24 @@ function BlogPostPage() {
 
   useEffect(() => {
     setLoading(true)
-    fetch('https://content.tinajs.io/content/<ClientId>/github/<Branch>', {
-      method: 'POST',
-      body: JSON.stringify({ query, variables }),
-      headers: {
-        'X-API-KEY': '<ReadOnlyToken>',
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(res => res.json())
-      .then(data => {
+    fetch(
+      'https://content.tinajs.io/<VersionOfTina>/content/<ClientId>/github/<Branch>',
+      {
+        method: 'POST',
+        body: JSON.stringify({ query, variables }),
+        headers: {
+          'X-API-KEY': '<ReadOnlyToken>',
+          'Content-Type': 'application/json',
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
         console.log({ data })
         setData(data)
         setLoading(false)
       })
-      .catch(e => {
+      .catch((e) => {
         console.error(e)
       })
   }, [query, JSON.stringify(variables)])
@@ -161,7 +164,7 @@ const query = `query PostQuery($relativePath: String!) {
   }
   `
 
-export const getStaticProps = async ctx => {
+export const getStaticProps = async (ctx) => {
   const variables = {
     relativePath: ctx.params.slug + '.md',
   }
@@ -185,7 +188,7 @@ export const getStaticProps = async ctx => {
   if (error) {
     // use read-only tokens to get live data
     const res = await fetch(
-      'https://content.tinajs.io/content/<CLIENT_ID>/github/<BRANCH>',
+      'https://content.tinajs.io/<VersionOfTina>/content/<CLIENT_ID>/github/<BRANCH>',
       {
         method: 'POST',
         body: JSON.stringify({ query, variables }),

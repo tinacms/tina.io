@@ -10,15 +10,15 @@ title: The TinaCMS CLI
 Usage: @tinacms/cli command [options]
 
 Options:
-  -V, --version           output the version number
-  -h, --help              display help for command
+  -v, --version    output the version number
+  -h, --help       display help for command
 
 Commands:
-  dev [options]  Start Filesystem Graphql Server
-  build [options]         Build Tina
-  init [options]          Add Tina Cloud to an existing project
-  audit [options]         Audit your schema and the files to check for errors
-  help [command]          display help for command
+  dev [options]    Start Filesystem Graphql Server
+  build [options]  Build Tina
+  init [options]   Add Tina Cloud to an existing project
+  audit [options]  Audit your schema and the files to check for errors
+  help [command]   display help for command
 
 You can get help on any command with "-h" or "--help".
 e.g: "tinacms dev --help"
@@ -28,28 +28,30 @@ e.g: "tinacms dev --help"
 
 ### `tinacms dev`
 
-> To run this command, you must have a valid `.tina/config.{ts,tsx.js}` file.
+> To run this command, you must have a valid `tina/config.{ts,tsx,js,jsx}` file.
 
 `dev` will compile the schema into static files, generate typescript types for use in your project and start a graphQL server on http://localhost:4001
 
 This command takes the following arguments:
 
-| Argument        | Description                                                                                                                                                                  |
-| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `-c`            | `-c` allows you to optionally run a command as a child process. For example, you could run your Next.js project alongside the graphQL server `yarn tinacms dev -c next dev`. |
-| `--port <port>` | Specify a port to run the server on. (default 4001)                                                                                                                          |
-| `--noWatch`     | Don't regenerate config on file changes. This option is good to add when building in CI or if you do not want to watch the file system for changes.                          |
-| `--noSDK`       | Don't generate the generated client SDK. [Read here](/docs/graphql/client/) for more details about the SDK.                                                                  |
+| Argument         | Description                                                                                                                                                                  |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-c`             | `-c` allows you to optionally run a command as a child process. For example, you could run your Next.js project alongside the graphQL server `yarn tinacms dev -c next dev`. |
+| `--port <port>`  | Specify a port to run the server on. (default 4001)                                                                                                                          |
+| `--noWatch`      | Don't regenerate config on file changes. This option is good to add when building in CI or if you do not want to watch the file system for changes.                          |
+| `--noSDK`        | Don't generate the generated client SDK. [Read here](/docs/graphql/client/) for more details about the SDK.                                                                  |
+| `-v`,`--verbose` | increase verbosity of logged output (default: false)                                                                                                                         |
 
 ### `tinacms build`
 
 This command compiles and validates the schema and generates the client and types. It will also ensure your content has finished indexing.
 
-| Argument         | Description                                                                                             |
-| ---------------- | ------------------------------------------------------------------------------------------------------- |
-| `--noTelemetry`  | Disables Open Source Telemetry                                                                          |
-| `--local`        | If the local flag is passed it will setup the client with the local URL (http://localhost:4001/graphql) |
-| `-v`,`--verbose` | increase verbosity of logged output (default: false)                                                    |
+| Argument                 | Description                                                                                                 |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------- |
+| `--noTelemetry`          | Disables Open Source Telemetry                                                                              |
+| `--noSDK`                | Don't generate the generated client SDK. [Read here](/docs/graphql/client/) for more details about the SDK. |
+| `-v`,`--verbose`         | increase verbosity of logged output (default: false)                                                        |
+| `--tina-graphql-version` | Specify the version of `@tinacms/graphql` that the backend will use. (Only needed in advanced cases)        |
 
 ### `npx @tinacms/cli@latest init`
 
@@ -68,10 +70,9 @@ This will,
 
 #### Optional parameters
 
-| Argument           | Description                                                                             |
-| ------------------ | --------------------------------------------------------------------------------------- |
-| `--noTelemetry`    | Disables Open Source Telemetry                                                          |
-| `--schemaFileType` | Overrides default Tina schema file type. Valid values are: `.ts`, `.tsx`, `.js`, `.jsx` |
+| Argument        | Description                    |
+| --------------- | ------------------------------ |
+| `--noTelemetry` | Disables Open Source Telemetry |
 
 ### `tinacms audit`
 
@@ -84,7 +85,7 @@ By default the mutation will not change the content of the files.
 
 Takes the following options,
 
-| Argument  | Description                                                                                                                                                                                                                                                        |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `--clean` | When this flag is used, it really submits the Graphql mutations to the file system. This means that it will clean out any fields that are not defined in your schema. It is a good practice to do a `git commit` before doing this so one can undo changes easily. |
-|           |
+| Argument         | Description                                                                                                                                                                                                                                                        |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `--clean`        | When this flag is used, it submits actual Graphql mutations to the file system. This means that it will clean out any fields that are not defined in your schema. It is a good practice to do a `git commit` before doing this so unintended changes can be easily undone. |
+| `-v`,`--verbose` | increase verbosity of logged output (default: false)                                                                                                                                                                                                               |

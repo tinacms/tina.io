@@ -10,14 +10,18 @@ Requests can be made to the Tina Content API with Read Only Tokens. In the major
 
 > NOTE: for most cases the tina client can be used and it is not necessary to use fetch directly
 
-The Content API endpoint is `https://content.tinajs.io/content/<myClientId>/github/<myBranch>`. The token can be passed by including a `X-API-KEY` custom HTTP header with the token as the value.
+The Content API endpoint is `https://content.tinajs.io/<TinaGraphQLVersion>/content/<myClientId>/github/<myBranch>`. The token can be passed by including a `X-API-KEY` custom HTTP header with the token as the value.
+
+Where `myClientId` is the client id of your project and `myBranch` is the branch you want to query.
+
+`TinaGraphQLVersion` is the version of `@tinacms/graphql` you are using. You can find this by running `yarn list @tinacms/graphql` in your project.
 
 Here is an example curl request that will query the Content API for the list of collections:
 
 ### Curl
 
 ```bash
-curl --location --request POST 'https://content.tinajs.io/content/<ClientId>/github/main' \
+curl --location --request POST 'https://content.tinajs.io/<TinaGraphQLVersion>/content/<ClientId>/github/main' \
 --header 'X-API-KEY: <Your API KEY>' \
 --header 'Content-Type: application/json' \
 --data-raw '{"query":"{\n        collections{\n            name\n        }\n}","variables":{}}'
@@ -42,10 +46,10 @@ var requestOptions = {
 }
 
 fetch(
-  'https://content.tinajs.io/content/<ClientId>/github/main',
+  'https://content.tinajs.io/<TinaGraphQLVersion>/content/<ClientId>/github/main',
   requestOptions
 )
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error))
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.log('error', error))
 ```
