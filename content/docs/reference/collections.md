@@ -77,7 +77,7 @@ export const defineConfig({
 
 A [glob pattern](<https://en.wikipedia.org/wiki/Glob_(programming)>) that will be used to match a subset of the files in the `path` directory.
 
-The provided pattern does not have to include the file extension. The extension will be added automatically based on the [`format`](#format) of the collection. The final pattern that is used will be determined by match, format and path.
+The provided pattern does not have to include the file extension. The extension will be added automatically based on the [`format`](#format) of the collection. The final pattern that is used will be determined by `match`, `format` and `path`.
 
 `<path>/<match.include>.<format>`
 
