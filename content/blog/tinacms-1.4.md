@@ -35,7 +35,7 @@ This will not match on subdirectories. It will match `collections/posts/foo.md` 
 
 ## CLI updates
 
-The GraphQL playground is now hosted at \<YourDevUrl>/admin/index.html#/graphql (It was previously on the same port as the local GraphQL server). This allows the playground to be used in production and allows us to customize more in the feature. We have also updated are entire CLI to a more typesafe system allowing us to develop quicker and safer.
+The GraphQL playground is now hosted at <YourDevUrl>/admin/index.html#/graphql (It was previously on the same port as the local GraphQL server). This allows the playground to be used in production and allows us opportunity for more customization in the future.
 
 ## Other Updates
 
