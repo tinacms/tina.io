@@ -9,7 +9,7 @@ Today we are excited to release `tinacms@1.4.0` and `@tinacms/clil@1.4.0`. These
 
 ## The `match` property on a collection
 
-Now if you want to only include a subset of your documents in your collection this can be done with the match property.
+The match property allows you to only include a subset of your documents in your collection.
 
 For example,
 
