@@ -33,7 +33,6 @@ export default defineConfig({
 
 This will not match on subdirectories. It will match `collections/posts/foo.md` but not `collections/posts/nested/bar.md`. Check out the [docs for more info](/docs/reference/collections/#matchinclude "Match docs").
 
-\
 CLI updates
 -----------
 
