@@ -1,7 +1,7 @@
 ---
 title: TinaCMS Version 1.4
-date: '2023-03-23T04:00:00.000Z'
-last_edited: '2023-03-23T04:00:00.000Z'
+date: '2023-03-24T04:00:00.000Z'
+last_edited: '2023-03-24T04:00:00.000Z'
 author: Logan Anderson
 ---
 
@@ -33,8 +33,7 @@ export default defineConfig({
 
 This will not match on subdirectories. It will match `collections/posts/foo.md` but not `collections/posts/nested/bar.md`. Check out the [docs for more info](/docs/reference/collections/#matchinclude "Match docs").
 
-CLI updates
------------
+## CLI updates
 
 The GraphQL playground is now hosted at \<YourDevUrl>/admin/index.html#/graphql (It was previously on the same port as the local GraphQL server). This allows the playground to be used in production and allows us to customize more in the feature. We have also updated are entire CLI to a more typesafe system allowing us to develop quicker and safer.
 
@@ -42,8 +41,7 @@ The GraphQL playground is now hosted at \<YourDevUrl>/admin/index.html#/graphql 
 
 ### Use Markdown parser by default on .md files
 
-We are now going to use a markdown parser by default if format: 'md' is used. This means that if you are using markdown files that contain templates you will have to turn on the mdx parser on each field by doing\
-
+We are now going to use a markdown parser by default if format: 'md' is used. This means that if you are using markdown files that contain templates you will have to turn on the mdx parser on each field by doing\\
 
 ```typescript
 {
