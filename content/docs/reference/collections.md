@@ -172,7 +172,7 @@ This will match on `content/config/foo-bar.json` and `content/config/foo-baz.jso
 
 ## match.exclude
 
-This works the same as `match.include` but will exclude any files that match the pattern. This is useful for excluding files that you don't want to be editable or are apart of a different collection.
+This works the same as `match.include` but will exclude any files that match the pattern. This is useful for excluding files that you don't want to be editable or that are a part of a different collection.
 
 The resulting pattern is the same except that it is prefixed with `!`
 
