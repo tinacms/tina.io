@@ -1,7 +1,7 @@
 ---
 title: Collections
 id: collections
-last_edited: '2023-03-1T15:51:56.737Z'
+last_edited: '2023-03-01T15:51:56.737Z'
 next: /docs/reference/fields
 prev: /docs/reference/schema
 ---
