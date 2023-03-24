@@ -33,7 +33,7 @@ Collections represent a type of content (EX, blog post, page, author, etc). We r
 
 ## Name
 
-The name of the collection that is used in the GraphQL schema. A name can only be used once and an error will occur if two or more collections have the same name. This name can can not have spaces, dashes, or special characters. It must be a valid GraphQL name. We recommend using singular naming in a collection (Ex: use post and not posts).
+The name of the collection that is used in the GraphQL schema. A name can only be used once and an error will occur if two or more collections have the same name. This name cannot have spaces, dashes, or special characters. It must be a valid GraphQL name. We recommend using singular naming in a collection (Ex: use post and not posts).
 
 ## Path
 
