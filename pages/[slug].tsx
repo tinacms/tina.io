@@ -1,4 +1,4 @@
-import { client } from '../.tina/__generated__/client'
+import { client } from '../tina/__generated__/client'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { fileToUrl } from 'utils/urls'
 import { useTina } from 'tinacms/dist/react'
@@ -6,7 +6,7 @@ import { BlocksPage } from 'components/blocks/BlocksPage'
 
 const fg = require('fast-glob')
 
-const Page = props => {
+const Page = (props) => {
   const tinaData = useTina({
     query: props.query,
     data: props.data,
@@ -18,7 +18,7 @@ const Page = props => {
 }
 
 // Data Fetching
-export const getStaticProps: GetStaticProps = async function({
+export const getStaticProps: GetStaticProps = async function ({
   preview,
   previewData,
   ...ctx
@@ -26,7 +26,9 @@ export const getStaticProps: GetStaticProps = async function({
   const slug = ctx.params?.slug || 'home'
   const vars = { relativePath: slug + '.json' }
 
-  const res = await client.queries.pageWithRecentPosts({ relativePath: slug + '.json' })
+  const res = await client.queries.pageWithRecentPosts({
+    relativePath: slug + '.json',
+  })
 
   return {
     props: {
@@ -37,9 +39,9 @@ export const getStaticProps: GetStaticProps = async function({
   }
 }
 
-export const getStaticPaths: GetStaticPaths = async function() {
+export const getStaticPaths: GetStaticPaths = async function () {
   const pages = await fg(`./content/blocksPages/*.json`)
-  const paths = pages.map(file => {
+  const paths = pages.map((file) => {
     const slug = fileToUrl(file, 'blocksPages')
     return { params: { slug } }
   })

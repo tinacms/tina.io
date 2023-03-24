@@ -1,4 +1,4 @@
-import { client } from '../../.tina/__generated__/client'
+import { client } from '../../tina/__generated__/client'
 
 import * as React from 'react'
 import styled from 'styled-components'
