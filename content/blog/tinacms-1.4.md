@@ -41,7 +41,7 @@ The GraphQL playground is now hosted at <YourDevUrl>/admin/index.html#/graphql (
 
 ### Use Markdown parser by default on .md files
 
-We are now going to use a markdown parser by default if format: 'md' is used. This means that if you are using markdown files that contain templates you will have to turn on the mdx parser on each field by doing\\
+We are now going to use a markdown parser by default if format: 'md' is used. This means that if you are using markdown files that contain templates you will have to turn on the mdx parser on each field by doing:
 
 ```typescript
 {
