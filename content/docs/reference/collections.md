@@ -37,7 +37,7 @@ The name of the collection that is used in the GraphQL schema. A name can only b
 
 ## Path
 
-The path to a folder where the content is stored. By default, the path is relative to where the CLI is running but this can be changed by using the [`--rootPath` flag un the CLI](/docs/cli-overview). Paths do not have to be unique across collections as long as a different [`format`](#format) or [`match`](#match). The CLI will print a warning if there are overlapping documents.
+The path to a folder where the content is stored. By default, the path is relative to where the CLI is running but this can be changed by using the [`--rootPath`](/docs/cli-overview) CLI flag. Paths do not have to be unique across collections as long as a different [`format`](#format) or [`match`](#match) is specified. The CLI will print a warning if there are overlapping documents.
 
 ## Format
 
