@@ -24,7 +24,7 @@ The `.tina` folder is normally at the root of the repo (unless a [mono repo setu
 
 This file contains the [definition for the project's schema](/docs/schema), as well as the Tina configuration object. The schema must be the default export of this file.
 
-See our ["Tina Cloud Starter"](https://github.com/tinacms/tina-cloud-starter/blob/main/.tina/config.ts) for an example of how this file is used. The default export of the file must be `defineConfig({})`.
+See our ["Tina Cloud Starter"](https://github.com/tinacms/tina-cloud-starter/blob/main/tina/config.ts) for an example of how this file is used. The default export of the file must be `defineConfig({})`.
 
 ```ts
 import { defineConfig } from 'tinacms'
@@ -71,7 +71,7 @@ This file contains the raw Graphql fragments that are generated and used by the 
 
 ### `queries.gql`
 
-This file contains the raw graphql queries that are generated and used by the [experimental generated client](/docs/data-fetching/overview/). Does not need to be checked into source control since the the code for the generated client is `.tina/__generated__/types.ts`.
+This file contains the raw graphql queries that are generated and used by the [experimental generated client](/docs/data-fetching/overview/). Does not need to be checked into source control since the the code for the generated client is `tina/__generated__/types.ts`.
 
 ### `schema.gql`
 

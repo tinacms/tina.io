@@ -12,7 +12,7 @@ The only requirement for enabling "visual editing" is the `useTina` hook. -->
 
 # The config file
 
-When you provide a file at `.tina/config.{ts,tsx,js,jsx}` that exports a `defineConfig` function,
+When you provide a file at `tina/config.{ts,tsx,js,jsx}` that exports a `defineConfig` function,
 Tina will automatically generate TinaCMS as a static asset. Note that it **must be** the default export of this file.
 
 ## Definition

@@ -12,10 +12,10 @@ The Tina schema defines the shape of your content. Tina uses a "content-modeling
 - Mutating the schema is easy, as you can test out changes locally, or in a branch.
 - The developer can extend the schema in interesting ways (custom validation, custom UI fields, etc).
 
-The content model, and all configuration code is defined in a file called `.tina/config.{ts,js,tsx}`.
+The content model, and all configuration code is defined in a file called `tina/config.{ts,js,tsx}`.
 
 ```ts
-// .tina/config.{ts,js,tsx}
+// tina/config.{ts,js,tsx}
 import { defineConfig } from 'tinacms'
 
 export default defineConfig({
@@ -287,6 +287,6 @@ Each field in a collection can be of the following `type`:
 
 ## Summary
 
-- Your content is modeled in the `.tina/config.{ts,js,tsx}` in your repo using `defineConfig`.
+- Your content is modeled in the `tina/config.{ts,js,tsx}` in your repo using `defineConfig`.
 - Your content model contains an array of "collections". A "collection" maps a content type to a directory in your repo.
 - A "collection" contains multiple fields, which can be of multiple scalar or non-scalar data types.

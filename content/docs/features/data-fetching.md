@@ -18,12 +18,12 @@ To interface with the API, you can use Tina's type-safe client for data-fetching
 
 ## Making requests with the Tina Client
 
-The Tina client is the easiest way to fetch your site's content. The client can be configured the `.tina/config.<js|ts>` in the `defineConfig` function.
+The Tina client is the easiest way to fetch your site's content. The client can be configured the `tina/config.<js|ts>` in the `defineConfig` function.
 
 > Note: token, clientId and branch are **not** used in [local-mode](/docs/tina-cloud/#local-mode). To setup these values for production see [this doc](/docs/tina-cloud/connecting-site)
 
 ```js
-// .tina/config.{js,ts,tsx}
+// tina/config.{js,ts,tsx}
 export default defineConfig({
   schema,
   token: '***',
@@ -37,7 +37,7 @@ When working locally, the client is built with the local url (http://localhost:4
 Tina client provides a type-safe query builder, that is auto-generated based on your site's schema:
 
 ```js
-import { client } from '../[pathToTina]/.tina/__generated__/client'
+import { client } from '../[pathToTina]/tina/__generated__/client'
 
 const myPost = await client.queries.post({ relativePath: 'HelloWorld.md' })
 

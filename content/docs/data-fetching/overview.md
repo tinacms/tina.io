@@ -14,7 +14,7 @@ As mentioned in [Introduction to Data fetching](/docs/features/data-fetching/), 
 ## Querying a single document
 
 ```js
-import { client } from '../[pathToTina]/.tina/__generated__/client'
+import { client } from '../[pathToTina]/tina/__generated__/client'
 
 const myPost = await client.queries.post({ relativePath: 'HelloWorld.md' })
 

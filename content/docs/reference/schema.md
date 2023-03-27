@@ -6,7 +6,7 @@ next: /docs/reference/collections
 prev: /docs/reference/overview
 ---
 
-The Schema is located in `.tina/config.{ts,tsx,js,jsx}` and it is used to define the shape of the content.
+The Schema is located in `tina/config.{ts,tsx,js,jsx}` and it is used to define the shape of the content.
 
 ## Definition
 

@@ -32,7 +32,7 @@ Tina's extendability also allows dev's to create custom API-based media provider
 
 ### Repo-based media
 
-Out of the box, TinaCMS supports repo-based media. This is configured in `.tina/config.js`:
+Out of the box, TinaCMS supports repo-based media. This is configured in `tina/config.js`:
 
 ```ts
   export default defineConfig({

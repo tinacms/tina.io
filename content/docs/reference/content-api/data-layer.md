@@ -19,7 +19,7 @@ GitHub remote repository and storing a copy in the database. After the initial i
 index content that has been updated. There are some circumstances where a full re-indexing may be required. Some example
 scenarios are:
 
-- Changes to `.tina/config.{ts,js}`
+- Changes to `tina/config.{ts,js}`
 - Changes to the [path to tina](/docs/tina-cloud/dashboard/projects/#path-to-tina)
 - Changes to the configured [repository](/docs/tina-cloud/dashboard/projects/#changing-the-repository)
 - New branches in GitHub

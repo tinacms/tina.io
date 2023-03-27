@@ -50,7 +50,7 @@ Here's an example monorepo structure that works with Tina Cloud:
 
 See [Path To Tina](/docs/tina-cloud/dashboard/projects/#path-to-tina) for more information.
 
-## How do I resolve the `Unable to find record '.tina/__generated__/_graphql.json'` error?
+## How do I resolve the `Unable to find record 'tina/__generated__/_graphql.json'` error?
 
 Tina Cloud's GraphQL API returns this error when it cannot find a file in your GitHub repository. This may occur under the following circumstances:
 
@@ -76,6 +76,6 @@ The most common reasons for this issue are:
 ## How do I resolve errors caused by unindexed branches?
 
 If you receive an error like `The specified branch, 'my-branch-name', has not been indexed by Tina Cloud`, first verify that the correct branch has been specified in
-the config properties passed to defineConfig in `.tina/config.ts`. Note, that this value may be set as an environment variable in your CI build process. Second, verify that the branch exists
-in the GitHub repository. Lastly, you can force a reindexing of a particular branch by making a whitespace change to the `.tina/__generated__/_schema.json` file in that branch,
+the config properties passed to defineConfig in `tina/config.ts`. Note, that this value may be set as an environment variable in your CI build process. Second, verify that the branch exists
+in the GitHub repository. Lastly, you can force a reindexing of a particular branch by making a whitespace change to the `tina/__generated__/_schema.json` file in that branch,
 commit the change, and push it to GitHub. This will initiate indexing for the branch and (after a few minutes) the error should be resolved.

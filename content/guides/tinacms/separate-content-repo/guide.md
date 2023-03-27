@@ -70,7 +70,7 @@ yarn dev
 
 Open [http://localhost:3000/admin/index.html](http://localhost:3000/admin/index.html)
 
-From here you can add more fields to you content models in `.tina/config.js`. [Visit the docs](https://tina.io/docs/schema/) to learn more about content modeling.
+From here you can add more fields to you content models in `tina/config.js`. [Visit the docs](https://tina.io/docs/schema/) to learn more about content modeling.
 
 ## Deploying your content repo
 
