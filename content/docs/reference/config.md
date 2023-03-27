@@ -1,5 +1,5 @@
 ---
-title: Static Mode (experimental)
+title: Config Reference
 id: /docs/reference/config/
 last_edited: '2022-09-29T15:51:56.737Z'
 next: /docs/reference/schema
@@ -14,6 +14,16 @@ The only requirement for enabling "visual editing" is the `useTina` hook. -->
 
 When you provide a file at `tina/config.{ts,tsx,js,jsx}` that exports a `defineConfig` function,
 Tina will automatically generate TinaCMS as a static asset. Note that it **must be** the default export of this file.
+
+<div class="short-code-warning">
+  <div>
+    <p>The location for the config file was previously at <code>.tina/config.{ts,tsx,js,jsx}</code>
+  </div>
+
+  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+    <path d="M32 464h448L256 48 32 464zm248-64h-48v-48h48v48zm0-80h-48v-96h48v96z" />
+  </svg>
+</div>
 
 ## Definition
 
