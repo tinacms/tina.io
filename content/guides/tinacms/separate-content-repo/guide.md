@@ -40,7 +40,7 @@ We have deployed a basic starting "website repo", which you can clone to get sta
 git clone git@github.com:tinacms/separate-website-repo.git
 ```
 
-The "website repo" contains the NextJS site, and the .tina config.
+The "website repo" contains the NextJS site, and the `tina` config.
 
 ## Create the content repository
 

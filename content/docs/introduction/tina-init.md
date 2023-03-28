@@ -20,7 +20,7 @@ _For help with the prompts for non-NextJS based sites, see [this guide](/docs/fr
 This command will ask you a few questions, and sets up the Tina boilerplate in your application:
 
 1. Installs all required dependencies for Tina.
-2. Defines a basic content schema in the `.tina` directory.
+2. Defines a basic content schema in the `tina` directory.
 3. Creates example content in the demo directory.
 4. **(NextJS-only)**: Edits the `package.json` to have the `dev`, `build`, and `start` scripts run the tina GraphQL API.
 

@@ -36,9 +36,9 @@ We will contact you if we believe your use case may eventually fit within our po
 
 ## **Does Tina Cloud work with Monorepos?**
 
-It does! Tina Cloud can work with sites inside monorepos by specifying the path to your `.tina` folder in your Project configuration.
+It does! Tina Cloud can work with sites inside monorepos by specifying the path to your `tina` folder in your Project configuration.
 
-If your repo is not a monorepo, there's no need to do any configuration. We'll expect your `.tina` folder at the root of your repo.
+If your repo is not a monorepo, there's no need to do any configuration. We'll expect your `tina` folder at the root of your repo.
 
 Here's an example monorepo structure that works with Tina Cloud:
 
@@ -54,10 +54,10 @@ See [Path To Tina](/docs/tina-cloud/dashboard/projects/#path-to-tina) for more i
 
 Tina Cloud's GraphQL API returns this error when it cannot find a file in your GitHub repository. This may occur under the following circumstances:
 
-- The `.tina` folder (and `__generated__` subfolder) is not in your GitHub repository remote.
+- The `tina` folder (and `__generated__` subfolder) is not in your GitHub repository remote.
   - If the folder is in your local repository, but not in your remote, make sure there isn't a `.gitignore` file excluding it.
-- Tina is configured with a branch that doesn't exist or a branch that doesn't contain the `.tina` folder.
-  - The referenced branch should be created and should contain the `.tina` folder.
+- Tina is configured with a branch that doesn't exist or a branch that doesn't contain the `tina` folder.
+  - The referenced branch should be created and should contain the `tina` folder.
 - The apiURL prop is misconfigured on the TinaCMS component.
   - Check the apiURL and make sure it looks like `https://content.tinajs.io/content/{tina_client_id}/github/{branch}` where `{tina_client_id}` matches the Client ID on the Project in Tina Cloud and `{branch}` is a valid branch.
 

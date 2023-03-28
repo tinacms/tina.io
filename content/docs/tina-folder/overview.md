@@ -1,14 +1,14 @@
 ---
-title: The .tina folder
+title: The tina folder
 id: /docs/tina-folder/overview/
 # next: '/docs/features/data-fetching'
 ---
 
 ## Overview
 
-The `.tina` folder is where the configuration, schema and UI customization for TinaCMS is located.
+The `tina` folder is where the configuration, schema and UI customization for TinaCMS is located.
 
-The `.tina` folder is normally at the root of the repo (unless a [mono repo setup](/docs/tina-cloud/faq/#does-tina-cloud-work-with-monorepos) is being used). It has the following folder structure:
+The `tina` folder is normally at the root of the repo (unless a [mono repo setup](/docs/tina-cloud/faq/#does-tina-cloud-work-with-monorepos) is being used). It has the following folder structure:
 
 - `config.{ts,tsx,js}`
 - `queries` folder (_optional_)
