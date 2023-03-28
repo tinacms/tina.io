@@ -103,6 +103,8 @@ In Netlify, your build configuration can be updated at **Settings** > **Build & 
 
 > If your package.json has a "build" script like `tinacms && <your-site-build-cmd>`, this likely doesn't need to be changed. If your Netlify config is not running a custom build script (e.g `next build`), you would have to change this to `tinacms build && next build`
 
+> If your project has a `netlify.toml` with a build command set, that will take precendence over the above build command UI
+
 #### Environment variables
 
 Assuming that your Tina `clientID` and `token` are setup as environment variables, you will need to add those to the Netlify UI for your project. You can learn more about environment variables [here](https://docs.netlify.com/environment-variables/overview/?_ga=2.128850127.213489666.1674607241-1149277376.1674150726 'netlify environment variables')
