@@ -7,3 +7,9 @@ In Tina, single document collections are collections that can only every contain
 \
 Once these are both set to false and the document contains a single file the UI will not go to the list page but straight to the document. \
 \
+[Single\_Collection\_Demo](https://res.cloudinary.com/forestry-demo/video/upload/v1680013970/tina-io/docs/extending-tina/Single_Collection_Demo.mov "Single_Collection_Demo")\
+
+
+### Caveats
+
+Right now there is no query generation that comes with this so you will have to [write a custom query](/docs/data-fetching/custom-queries/ "Custom Query Docs"). \
