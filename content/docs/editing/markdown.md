@@ -1,6 +1,7 @@
 ---
 title: Markdown & MDX
 id: '/docs/editing/markdown'
+prev: '/docs/editing/overview'
 next: '/docs/editing/blocks'
 ---
 
@@ -189,7 +190,7 @@ Custom components can be defined with the `components` prop on `<TinaMarkdown>`.
 const components = {
   // The "NewsletterSignup" key maps to a "template" defined
   // on our "rich-text" field
-  NewsletterSignup: props => {
+  NewsletterSignup: (props) => {
     return (
       <>
         <div>
@@ -207,7 +208,7 @@ const components = {
   },
 }
 
-const MyBlogPost = props => {
+const MyBlogPost = (props) => {
   return (
     <>
       <h1>{props.data.title}</h1>
