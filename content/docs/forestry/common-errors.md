@@ -71,22 +71,7 @@ You would have to update your content to be
 
 Since you have updated your content you will have to update all uses of `template` in your rendering code to be `_template` and update `template-name` to be `template_name`.
 
-### templates with common field names of different types
-
-If you have multiple block templates that share a common field name, but the types differ (E.g, multiple templates with a `heading` field, where one is required and the other is not), then you may run into [this GraphQL error](/docs/forestry/common-errors/#graphql-error).
-
 ## Common error message and how to fix them
-
-### GraphQL error
-
-```
-Error: GraphQL Document Validation failed with 11 errors;
-  Error 0: Fields "<FieldName>" conflict because they return conflicting types "String!" and "String". Use different aliases on the fields to fetch both if this was intentional.
-```
-
-This error is because two fiends in your schema have the same name with different types and when querying for both GraphQL throws an error. This error occurs when generating the GraphQL client so if you are not using our data fetching you can mitigate this error by passing the `--noSDK` option to both `tinacms dev` and `tinacms build`.
-
-You can [read more about this issue here](https://github.com/tinacms/tinacms/issues/3150#issuecomment-1239796350)
 
 ### Error when getting content in the admin
 
