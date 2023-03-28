@@ -141,3 +141,24 @@ It will have to be changed to
 date: 2021-01-02
 ---
 ```
+
+## Info: Match ${match} was transformed to ${newMatch}
+
+The match property works a bit differently in TinaCMS than it does in Forestry. In Forestry, the match property is a glob pattern that includes the file extension. In TinaCMS, the match property is a glob pattern that does not include the file extension.
+
+In TinaCMS the match property is set for each collection and is nested.
+
+```js
+{
+  label: 'Pages',
+  name: 'pages',
+  match: {
+    include: "{foo,ba}/**/*"
+  }
+  //..
+}
+```
+
+Check out the [match property docs](/docs/collections/#match) for more info.
+
+Since this migration tool is converting from Forestry to TinaCMS, it will automatically convert the match property to the TinaCMS format. It is a good idea to double check that is matching correctly.
