@@ -142,17 +142,47 @@ By clicking "Configure" on the action it's created for us, we can then tweak the
 
 Add the following step **before** your site's build step:
 
+If you are using npm as your package name, you can use the following:
+
 ```yml
 - name: Build TinaCMS
   env:
-    CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
+    TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
     TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
-  run: ${{ steps.detect-package-manager.outputs.runner }} tinacms build
+  run: npx tinacms build
+```
+
+or if you are using yarn:
+
+```yml
+- name: Build TinaCMS
+  env:
+    TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
+    TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
+  run: yarn tinacms build
 ```
 
 Your GitHub Action will look something like:
 
 ![Github Action](https://res.cloudinary.com/forestry-demo/image/upload/v1675783496/tina-io/docs/tina-cloud/gh-config.png 'Github Action')
+
+#### Common error: Tina is not showing up at /admin
+
+This can happen for a number of reasons but here is the most common reasons and fixes.
+
+##### 1. The .gitignore added by tina is blocking upload
+
+We add a .gitignore to the admin folder so that the admin folder does not get committed to your repo. Depending on how you are using Github Pages you may need to run `rm <YourPublicFolder>/admin/.gitignore` to remove the .gitignore file.
+
+##### 2. The build command is not running the build script
+
+Check to make sure that the build command is running and not failing
+
+##### 3. Error: "npm ERR! could not determine executable to run" or "command `tinacms` is not found"
+
+This is because the `@tinacms/cli` package is not installed. Make sure you are installing javascript dependencies before running the build command. If you are using npm make sure that `npm ci` is being run before the TinaCMS build command. If you are using yarn, make sure you are running `yarn install --frozen-lockfile` before running the build command.
+
+> Note: If you are using [the github pages setup from hugo](https://gohugo.io/hosting-and-deployment/hosting-on-github/) you will need to make sure that a `package-lock.json` exists in the root of your repo.
 
 #### Environment variables
 
