@@ -30,7 +30,7 @@ export default defineConfig({
 })
 ```
 
-This would cause an overlap because the Blog Post collection will contain all of teh files in the Featured Posts collection. This can be fixed by changing update the [`match.exclude` property](/docs/reference/collections#matchexclude) on the Blog Posts collection to exclude all of the files in the Features Posts collection.
+The example configuration above would cause an overlap because the Blog Post collection will contain all of the files in the Featured Posts collection. This can be fixed by updating the [`match.exclude` property](/docs/reference/collections#matchexclude) on the Blog Posts collection to exclude all of the files in the Features Posts collection.
 
 ```ts
 // tina/schema.ts
