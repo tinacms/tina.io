@@ -2,7 +2,7 @@
 title: 'File is Multiple Collections Error'
 ---
 
-This error occurs when a file is in multiple collections. This is usually causes by overlapping paths in in your collections or an error in a [match property](/docs/reference/collections#matchinclude).
+This error occurs when a file is in multiple collections. This is usually caused by overlapping paths in in your collections or an error in a [match property](/docs/reference/collections#matchinclude).
 
 The common fix for this is updating or adding the [match property](/docs/reference/collections#matchinclude) to exclude or include certain files.
 
