@@ -122,7 +122,7 @@ If you are using `mdx` as the format, you'll have the ability to define custom c
 
 ### Defining a "template" in a collection
 
-Tina needs to have each MDX component defined in advance, in the `.tina/config.{ts,js,tsx}` file.
+Tina needs to have each MDX component defined in advance, in the `tina/config.{ts,js,tsx}` file.
 
 ```diff
 export default defineConfig({

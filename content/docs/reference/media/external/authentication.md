@@ -112,10 +112,10 @@ app.use('/api/', router)
 
 Now, you can replace the default repo-based media with the external media store. You can register a media store via the `loadCustomStore` prop.
 
-The `loadCustomStore` prop can be configured within `.tina/schema.ts`.
+The `loadCustomStore` prop can be configured within `tina/schema.ts`.
 
 ```diff
-// .tina/schema.ts
+// tina/schema.ts
 
 // ...
 

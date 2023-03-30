@@ -41,10 +41,10 @@ SPACES_SECRET_KEY=<Your Digital Ocean Spaces access secret>
 
 You can register the Digital Ocean Space Media store via the `loadCustomStore` prop.
 
-The `loadCustomStore` prop can be configured within `.tina/config.{js,ts,tsx}`.
+The `loadCustomStore` prop can be configured within `tina/config.{js,ts,tsx}`.
 
 ```tsx
-//.tina/config.{ts,js}
+//tina/config.{ts,js}
 //...
 
 export default defineConfig({

@@ -10,9 +10,9 @@ You can view the branches that have been indexed by Tina Cloud by visiting `http
 
 ![Indexed Branches](https://res.cloudinary.com/forestry-demo/image/upload/v1673277689/tina-io/docs/tina-cloud/Screen_Shot_2023-01-09_at_11.20.46_AM.png)
 
-## .tina directory not pushed to git
+## tina directory not pushed to git
 
-The `.tina` directory and everything inside, including the `__generated__` directory, needs to be pushed up as well. Be sure to add it to your git repository (and make sure you **don't** have it listed in a `.gitignore`). And also make sure that the branch you're trying to use has the `.tina` directory and is up to date.
+The `tina` directory and everything inside, including the `__generated__` directory, needs to be pushed up as well. Be sure to add it to your git repository (and make sure you **don't** have it listed in a `.gitignore`). And also make sure that the branch you're trying to use has the `tina` directory and is up to date.
 
 ## API URL is misformatted
 

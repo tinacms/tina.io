@@ -29,7 +29,7 @@ This will ask you a few questions. When it asks you if you want to migrate your 
 
 ## Migrating your content
 
-This will migrate your content from Forestry to TinaCMS. It will create a `.tina/config.{ts,js}` that will contain the setup for Tina as well as the schema for your content. However, this migration will not be perfect. You will have to make some changes to your site to get it working with TinaCMS. We will go over these changes in the next section.
+This will migrate your content from Forestry to TinaCMS. It will create a `tina/config.{ts,js}` that will contain the setup for Tina as well as the schema for your content. However, this migration will not be perfect. You will have to make some changes to your site to get it working with TinaCMS. We will go over these changes in the next section.
 
 This migration tool takes each section in your `.forestry/settings.yaml` file and turns it into a [TinaCMS collection](http://localhost:3000/docs/schema/#defining-collections). If one or more templates are defined in the section, it will create a [TinaCMS template](docs/reference/templates/) for each fontmatter template. If only one template is defined it will create a [TinaCMS collection with fields](/docs/reference/collections/#basic-example)
 
@@ -64,7 +64,7 @@ At this point, you should be able to see the Tina admin, select a post, save cha
 
 ## Model your content
 
-In Forestry, your content models were defined as "Front Matter Templates", but in TinaCMS these are called "Collections". These are defined in your `.tina/config.js` file. The migration tool will have created a collection for each section in your `.forestry/settings.yaml` file but if you wish to update or change any of these you can do so in the `.tina/config.js` file.
+In Forestry, your content models were defined as "Front Matter Templates", but in TinaCMS, these are called "Collections". These are defined in your `tina/config.js` file. The migration tool will have created a collection for each section in your `.forestry/settings.yaml` file but if you wish to update or change any of these you can do so in the `tina/config.js` file.
 
 ```diff
 // ...
@@ -108,7 +108,7 @@ Next we'll take you from editing with TinaCMS locally to editing in production w
 
 ### Step 1) Push your repo to git
 
-Push your repo up to git, along with its new Tina configuration (including `.tina/__generated__`).
+Push your repo up to git, along with its new Tina configuration (including `tina/__generated__`).
 
 ### Step 2) Set up a Tina Cloud project
 
@@ -119,7 +119,7 @@ See our [Tina Cloud docs](https://tina.io/docs/tina-cloud/) for help using Tina 
 
 ### Step 3) Connect the Tina Cloud config to your site
 
-Locally, in your .tina/config.js file, set the following config properties:
+Locally, in your tina/config.js file, set the following config properties:
 
 ```diff
 export default defineConfig({
