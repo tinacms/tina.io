@@ -31,7 +31,7 @@ E.g:
 
 The concept of using [blocks as field types in forestry](https://forestry.io/docs/settings/fields/blocks/) is supported in TinaCMS as [providing templates in an object field](/docs/editing/blocks/). During the migration, the migration tool will convert your blocks into templates.
 
-> In TinaCMS, instead of the `template` key we use `_template` by default. The forestry migration tool will handle this automically by setting the `templateKey` to "template" for Forestry sites, but it's something to be aware of.
+> In TinaCMS, instead of the `template` key we use `_template` by default. The forestry migration tool will handle this automatically by setting the `templateKey` to "template" for Forestry sites, but it's something to be aware of.
 
 In TinaCMS, it is common for front matter templates to have `-` in the name and since TinaCMS does not support `-` in the name you will have to update the name of the template to use `_` instead.
 
