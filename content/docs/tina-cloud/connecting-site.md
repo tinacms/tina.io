@@ -9,10 +9,10 @@ Once you've created a project in **Tina Cloud**, the next step is to connect you
 
 In the [Contextual Editing doc](/docs/tinacms-context/), we showed you how the Tina context is setup on your site.
 
-To have editing work in production, in the `.tina/config.<ts|js>` file, configure the `clientId` to point to your Tina Cloud project, and add your generated `token`.
+To have editing work in production, in the `tina/config.<ts|js>` file, configure the `clientId` to point to your Tina Cloud project, and add your generated `token`.
 
 ```tsx
-// .tina/config.ts
+// tina/config.ts
 //...
 export default defineConfig({
   //...
@@ -42,7 +42,7 @@ export default defineConfig({
 Typically you'll want to use the branch that you're deploying with your site. This will vary depending on your host, but most will provide an environment variable of some sort that you can use.
 
 ```diff
-// .tina/config.ts
+// tina/config.ts
 //...
 + const branch =
 +  process.env.NEXT_PUBLIC_TINA_BRANCH ||
@@ -65,7 +65,7 @@ export default defineConfig({
 > `NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF` is Vercel's [system environment variable](https://vercel.com/docs/concepts/projects/environment-variables#system-environment-variables) that represents the branch that has made the deployment commit.
 > `HEAD` is the equivalent system environment variable used by [Netlify](https://docs.netlify.com/configure-builds/environment-variables/#git-metadata).
 
-Your fully configured `.tina/config.{js,ts}` should look something like this:
+Your fully configured `tina/config.{js,ts}` should look something like this:
 
 ```ts
 import {  defineConfig } from 'tinacms'

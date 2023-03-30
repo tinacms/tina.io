@@ -40,7 +40,7 @@ We have deployed a basic starting "website repo", which you can clone to get sta
 git clone git@github.com:tinacms/separate-website-repo.git
 ```
 
-The "website repo" contains the NextJS site, and the .tina config.
+The "website repo" contains the NextJS site, and the `tina` config.
 
 ## Create the content repository
 
@@ -70,7 +70,7 @@ yarn dev
 
 Open [http://localhost:3000/admin/index.html](http://localhost:3000/admin/index.html)
 
-From here you can add more fields to you content models in `.tina/config.js`. [Visit the docs](https://tina.io/docs/schema/) to learn more about content modeling.
+From here you can add more fields to you content models in `tina/config.js`. [Visit the docs](https://tina.io/docs/schema/) to learn more about content modeling.
 
 ## Deploying your content repo
 

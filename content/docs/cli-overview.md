@@ -64,7 +64,7 @@ npx @tinacms/cli init
 This will,
 
 1. Install all required dependencies for Tina.
-2. Define a basic content schema in the `.tina` directory.
+2. Define a basic content schema in the `tina` directory.
 3. Create example content in the demo directory.
 4. Edit the `package.json` to have the `dev`, `build`, and `start` scripts run the tina GraphQL API.
 
@@ -85,7 +85,7 @@ By default the mutation will not change the content of the files.
 
 Takes the following options,
 
-| Argument         | Description                                                                                                                                                                                                                                                        |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Argument         | Description                                                                                                                                                                                                                                                                |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `--clean`        | When this flag is used, it submits actual Graphql mutations to the file system. This means that it will clean out any fields that are not defined in your schema. It is a good practice to do a `git commit` before doing this so unintended changes can be easily undone. |
-| `-v`,`--verbose` | increase verbosity of logged output (default: false)                                                                                                                                                                                                               |
+| `-v`,`--verbose` | increase verbosity of logged output (default: false)                                                                                                                                                                                                                       |

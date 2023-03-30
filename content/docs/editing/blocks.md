@@ -172,7 +172,7 @@ We can render out the blocks on a page by creating a new `Blocks` component, whi
 // Blocks.tsx
 
 import React from 'react'
-import type { Pages } from '../.tina/__generated__/types'
+import type { Pages } from '../tina/__generated__/types'
 import { Content } from './blocks/content'
 import { Features } from './blocks/features'
 import { Hero } from './blocks/hero'

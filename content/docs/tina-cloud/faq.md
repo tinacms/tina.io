@@ -36,9 +36,9 @@ We will contact you if we believe your use case may eventually fit within our po
 
 ## **Does Tina Cloud work with Monorepos?**
 
-It does! Tina Cloud can work with sites inside monorepos by specifying the path to your `.tina` folder in your Project configuration.
+It does! Tina Cloud can work with sites inside monorepos by specifying the path to your `tina` folder in your Project configuration.
 
-If your repo is not a monorepo, there's no need to do any configuration. We'll expect your `.tina` folder at the root of your repo.
+If your repo is not a monorepo, there's no need to do any configuration. We'll expect your `tina` folder at the root of your repo.
 
 Here's an example monorepo structure that works with Tina Cloud:
 
@@ -50,14 +50,14 @@ Here's an example monorepo structure that works with Tina Cloud:
 
 See [Path To Tina](/docs/tina-cloud/dashboard/projects/#path-to-tina) for more information.
 
-## How do I resolve the `Unable to find record '.tina/__generated__/_graphql.json'` error?
+## How do I resolve the `Unable to find record 'tina/__generated__/_graphql.json'` error?
 
 Tina Cloud's GraphQL API returns this error when it cannot find a file in your GitHub repository. This may occur under the following circumstances:
 
-- The `.tina` folder (and `__generated__` subfolder) is not in your GitHub repository remote.
+- The `tina` folder (and `__generated__` subfolder) is not in your GitHub repository remote.
   - If the folder is in your local repository, but not in your remote, make sure there isn't a `.gitignore` file excluding it.
-- Tina is configured with a branch that doesn't exist or a branch that doesn't contain the `.tina` folder.
-  - The referenced branch should be created and should contain the `.tina` folder.
+- Tina is configured with a branch that doesn't exist or a branch that doesn't contain the `tina` folder.
+  - The referenced branch should be created and should contain the `tina` folder.
 - The apiURL prop is misconfigured on the TinaCMS component.
   - Check the apiURL and make sure it looks like `https://content.tinajs.io/content/{tina_client_id}/github/{branch}` where `{tina_client_id}` matches the Client ID on the Project in Tina Cloud and `{branch}` is a valid branch.
 
@@ -76,6 +76,6 @@ The most common reasons for this issue are:
 ## How do I resolve errors caused by unindexed branches?
 
 If you receive an error like `The specified branch, 'my-branch-name', has not been indexed by Tina Cloud`, first verify that the correct branch has been specified in
-the config properties passed to defineConfig in `.tina/config.ts`. Note, that this value may be set as an environment variable in your CI build process. Second, verify that the branch exists
-in the GitHub repository. Lastly, you can force a reindexing of a particular branch by making a whitespace change to the `.tina/__generated__/_schema.json` file in that branch,
+the config properties passed to defineConfig in `tina/config.ts`. Note, that this value may be set as an environment variable in your CI build process. Second, verify that the branch exists
+in the GitHub repository. Lastly, you can force a reindexing of a particular branch by making a whitespace change to the `tina/__generated__/_schema.json` file in that branch,
 commit the change, and push it to GitHub. This will initiate indexing for the branch and (after a few minutes) the error should be resolved.
