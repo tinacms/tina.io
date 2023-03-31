@@ -61,6 +61,9 @@ export const contentTemplate: TinaTemplate = {
       name: 'content',
       label: 'Content',
       type: 'rich-text',
+      parser: {
+        type: 'mdx',
+      },
       templates: [
         // @ts-ignore
         actionsTemplate,
