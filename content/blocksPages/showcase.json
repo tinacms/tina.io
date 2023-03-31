@@ -12,6 +12,14 @@
     {
       "items": [
         {
+          "headline": "Roev",
+          "text": "[Roev](https://www.roev.com/) is a company innovating at the intersection of electric vehicles and renewable energy. They are focused on local manufacturing, establishing a vehicle to grid power exchange, and building the first EV open-source software ecosystem. \n",
+          "url": "https://www.roev.com/",
+          "media": {
+            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_700/v1680268314/tina-showcase/roev-.gif"
+          }
+        },
+        {
           "headline": "Shadow Lion",
           "text": "[Shadow Lion](https://shadowlion.com/) was founded in 2017 with the goal of supporting Tom Brady’s off-field media efforts but quickly began providing creative services to other athletes, influencers and organizations. The site was built by [VisualBoston](https://visualboston.com/) a digital studio based out of Boston, MA. ",
           "url": "https://shadowlion.com/",
