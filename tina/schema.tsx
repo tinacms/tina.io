@@ -182,6 +182,9 @@ export const schema = defineSchema({
           name: 'body',
           label: 'Body',
           isBody: true,
+          parser: {
+            type: 'mdx',
+          },
           templates: [
             {
               name: 'Youtube',

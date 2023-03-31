@@ -75,6 +75,9 @@ export const columnsTemplate: TinaTemplate = {
       name: 'columnOne',
       label: 'Column One',
       type: 'rich-text',
+      parser: {
+        type: 'mdx',
+      },
       templates: [
         // @ts-ignore
         actionsTemplate,
@@ -88,6 +91,9 @@ export const columnsTemplate: TinaTemplate = {
       name: 'columnTwo',
       label: 'Column Two',
       type: 'rich-text',
+      parser: {
+        type: 'mdx',
+      },
       templates: [
         // @ts-ignore
         actionsTemplate,
