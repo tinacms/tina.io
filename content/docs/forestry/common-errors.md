@@ -29,9 +29,13 @@ E.g:
 
 ### \_template vs template
 
-The concept of using [blocks as field types in forestry](https://forestry.io/docs/settings/fields/blocks/) is supported in TinaCMS as [providing templates in an object field](/docs/editing/blocks/). During the migration, the migration tool will convert your blocks into templates in the Tina schema but it will not update your content.
+The concept of using [blocks as field types in forestry](https://forestry.io/docs/settings/fields/blocks/) is supported in TinaCMS as [providing templates in an object field](/docs/editing/blocks/). During the migration, the migration tool will convert your blocks into templates.
 
-In TinaCMS, instead of the `template` key we use `_template` to avoid name collisions. You will have to update this in your content. As well, it is common for front matter templates to have `-` in the name and since TinaCMS does not support `-` in the name you will have to update the name of the template to use `_` instead.
+> In TinaCMS, instead of the `template` key we use `_template` by default. The forestry migration tool will handle this automatically by setting the `templateKey` to "template" for Forestry sites, but it's something to be aware of.
+
+### Using dashes in block names
+
+In TinaCMS, it is common for front matter templates to have `-` in the name. TinaCMS doesn't natively support dashes in a field name, however it does support a `nameOverride` property to handle this case.
 
 For example if you had a front matter template that looked like this.
 
@@ -43,7 +47,7 @@ fields:
     name: sections
     label: Sections
     template_types:
-      - template-name
+      - call-to-action
       - feature
       - hero
 ```
@@ -52,24 +56,44 @@ And content that looked like this
 
 ```yaml
 sections:
-  - template: template-name
+  - template: call-to-action
   #   ...
   - template: feature
   #   ...
 ```
 
-You would have to update your content to be
+Then in Tina, your block field would look like:
 
-```yaml
-- _template: call_to_action
-#   ...
-- _template: feature
-#   ...
+```js
+// ...
+{
+  type: "object",
+  list: true,
+  name: "sections",
+  label: "sections",
+  templateKey: 'template',
+  templates: [
+    {
+      name: 'call-to-action',
+      nameOverride: 'call_to_action',
+      fields: [
+        //...
+      ]
+    },
+    // ...
+  ]
+}
 ```
 
-> NOTE: when you update your content you should restart your dev server to see the change in the admin
+Your output content would continue to look like:
 
-Since you have updated your content you will have to update all uses of `template` in your rendering code to be `_template` and update `template-name` to be `template_name`.
+```yaml
+- template: call-to-action
+#   ...
+# this assumes your block has templateKey: 'template' set on your blocks field.
+- template: feature
+#   ...
+```
 
 ## Common error message and how to fix them
 

@@ -14,6 +14,10 @@ type ObjectField = {
   /** `fields OR `templates` may be provided, not both **/
   fields?: Field[]
   templates?: Template[]
+  /** Customize the default "_template" key that gets set
+     in a document to identify a block-type.
+     Only applicable when list: true **/
+  templatesKey?: string
   list?: boolean
   /** See https://tina.io/docs/extending-tina/overview/ for customizing the UI **/
   ui?: {
