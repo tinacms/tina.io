@@ -9,6 +9,8 @@ next: /docs/product-tour
 
 Tina is a Git-backed headless content management system that enables developers and content creators to collaborate seamlessly. With Tina, developers can create a custom visual editing experience that is perfectly tailored to their site.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/zRkeKSZjlyw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 ## Advantages of Tina
 
 #### Backed by Git
