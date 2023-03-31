@@ -65,7 +65,7 @@ export default handler
 
 Both of these files are based on the [Next.js preview-mode api handlers](https://nextjs.org/docs/advanced-features/preview-mode#step-1-create-and-access-a-preview-api-route).
 
-## 2. Update `.tina/config`
+## 2. Update `tina/config`
 
 ```ts
 export default defineConfig({
@@ -120,7 +120,7 @@ First we will create a util function that will either return all the documents o
 _`util/getPosts.{ts,js}`_
 
 ```ts
-import { client } from '../<PathToTina>/.tina/__generated__/client'
+import { client } from '../<PathToTina>/tina/__generated__/client'
 
 export const getPosts = async ({ preview }) => {
   // by default get non-draft posts

@@ -1,4 +1,4 @@
-import { client } from '../../.tina/__generated__/client'
+import { client } from '../../tina/__generated__/client'
 
 import * as React from 'react'
 import styled from 'styled-components'
@@ -233,11 +233,11 @@ function BlogTemplate({ file, siteConfig, ...props }) {
           description: excerpt,
           images: [
             frontmatter.opengraph?.image ||
-              openGraphImage(
-                frontmatter.title,
-                ' | TinaCMS Blog',
-                frontmatter.author
-              ),
+            openGraphImage(
+              frontmatter.title,
+              ' | TinaCMS Blog',
+              frontmatter.author
+            ),
           ],
         }}
       />

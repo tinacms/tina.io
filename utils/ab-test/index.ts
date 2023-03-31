@@ -1,6 +1,6 @@
 import { getBucket } from './getBucket'
 import abTestDB from '../../content/ab-tests/index.json'
-import { AbtestTests } from '.tina/__generated__/types'
+import { AbtestTests } from 'tina/__generated__/types'
 
 export const getABTestResult = (
   matchingABTest: AbtestTests,
@@ -10,10 +10,12 @@ export const getABTestResult = (
     bucketCookie ||
     getBucket([
       matchingABTest.testId,
-      ...matchingABTest.variants.map(t => t.testId),
+      ...matchingABTest.variants.map((t) => t.testId),
     ])
 
-  const matchingVariant = matchingABTest.variants.find(t => t.testId == bucket)
+  const matchingVariant = matchingABTest.variants.find(
+    (t) => t.testId == bucket
+  )
   if (matchingVariant) {
     return {
       url: matchingVariant.href,
@@ -29,4 +31,4 @@ export const getABTestResult = (
 }
 
 export const getExperiment = (pathname: string) =>
-  abTestDB.tests.find(test => test.href == pathname)
+  abTestDB.tests.find((test) => test.href == pathname)

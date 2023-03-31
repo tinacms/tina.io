@@ -70,18 +70,9 @@ You would have to update your content to be
 #   ...
 ```
 
+> NOTE: when you update your content you should restart your dev server to see the change in the admin
+
 ## Common error message and how to fix them
-
-### GraphQL error
-
-```
-Error: GraphQL Document Validation failed with 11 errors;
-  Error 0: Fields "<FieldName>" conflict because they return conflicting types "String!" and "String". Use different aliases on the fields to fetch both if this was intentional.
-```
-
-This error is because two fiends in your schema have the same name with different types and when querying for both GraphQL throws an error. This error occurs when generating the GraphQL client so if you are not using our data fetching you can mitigate this error by passing the `--noSDK` option to both `tinacms dev` and `tinacms build`.
-
-You can [read more about this issue here](https://github.com/tinacms/tinacms/issues/3150#issuecomment-1239796350)
 
 ### Error when getting content in the admin
 
@@ -136,3 +127,24 @@ It will have to be changed to
 date: 2021-01-02
 ---
 ```
+
+## Info: Match ${match} was transformed to ${newMatch}
+
+The match property works a bit differently in TinaCMS than it does in Forestry. In Forestry, the match property is a glob pattern that includes the file extension. In TinaCMS, the match property is a glob pattern that does not include the file extension.
+
+In TinaCMS the match property is set for each collection and is nested.
+
+```js
+{
+  label: 'Pages',
+  name: 'pages',
+  match: {
+    include: "{foo,ba}/**/*"
+  }
+  //..
+}
+```
+
+Check out the [match property docs](/docs/collections/#match) for more info.
+
+Since this migration tool is converting from Forestry to TinaCMS, it will automatically convert the match property to the TinaCMS format. It is a good idea to double check that it is matching correctly.

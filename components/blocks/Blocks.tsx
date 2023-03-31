@@ -1,7 +1,7 @@
 import type {
   PageBlocks,
   PostConnection,
-} from '../../.tina/__generated__/types'
+} from '../../tina/__generated__/types'
 import {
   StoryBlock,
   FeatureGridBlock,

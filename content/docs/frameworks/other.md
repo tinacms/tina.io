@@ -47,7 +47,7 @@ These should be applied manually if they haven't been set by the CLI.
 
 ## Model your content
 
-To edit your site's content in Tina, you can model your content in the .tina/config.ts file.
+To edit your site's content in Tina, you can model your content in the tina/config.ts file.
 
 Learn more about content modelling [here](/docs/schema/)
 
@@ -85,7 +85,7 @@ Next we'll take you from editing with TinaCMS locally, to editing in production 
 
 ### Step 1) Push your repo to git
 
-Push your repo up to git, along with its new Tina configuration (including `.tina/__generated__`).
+Push your repo up to git, along with its new Tina configuration (including `tina/__generated__`).
 
 ### Step 2) Setup a Tina Cloud project
 
@@ -96,7 +96,7 @@ See our [Tina Cloud docs](https://tina.io/docs/tina-cloud/) for help using Tina 
 
 ### Step 3) Connect the Tina Cloud config to your site
 
-Locally, in your .tina/config.js file, set the following config properties:
+Locally, in your tina/config.js file, set the following config properties:
 
 ```diff
 export default defineConfig({

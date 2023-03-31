@@ -33,7 +33,7 @@ export default defineConfig({
             label: 'Title',
             name: 'title',
             ui: {
-              validate: value => {
+              validate: (value) => {
                 if (value?.length > 40) {
                   return 'Title cannot be more than 40 characters long'
                 }
@@ -51,7 +51,7 @@ export default defineConfig({
 
 ## Customizing the CMS instance
 
-The `.tina/config.{ts,js,tsx}` config has an optional `cmsCallback` parameter that can be added to customize the CMS instance.
+The `tina/config.{ts,js,tsx}` config has an optional `cmsCallback` parameter that can be added to customize the CMS instance.
 
 ```diff
 // ...

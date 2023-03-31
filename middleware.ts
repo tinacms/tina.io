@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getExperiment, getABTestResult } from '../utils/ab-test'
+import { getExperiment, getABTestResult } from './utils/ab-test'
 
 // Check for AB tests on a given page
 export function middleware(req: NextRequest) {
@@ -20,8 +20,20 @@ export function middleware(req: NextRequest) {
 
   // Add the bucket to cookies if it's not there
   if (!req.cookies[COOKIE_NAME]) {
-    res.cookie(COOKIE_NAME, abTestResult.bucket)
+    res.cookies.set(COOKIE_NAME, abTestResult.bucket)
   }
 
   return res
+}
+
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - favicon.ico (favicon file)
+     */
+    '/((?!api|_next/static|favicon.ico).*)',
+  ],
 }

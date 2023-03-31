@@ -13,7 +13,7 @@ In NextJS, content can be queried statically at build-time or dynamically at run
 
 ```tsx
 // pages/home.js
-import { client } from '../[pathToTina]/.tina/__generated__/client'
+import { client } from '../[pathToTina]/tina/__generated__/client'
 const getStaticProps = async () => {
   let postResponse = {}
   try {
@@ -59,7 +59,7 @@ For a full working example of Tina + NextJS, [check out our "Barebones Starter"]
 
 ```tsx
 // pages/home.js
-import { client } from '../[pathToTina]/.tina/__generated__/client'
+import { client } from '../[pathToTina]/tina/__generated__/client'
 const getServerSideProps = async () => {
   let postResponse = {}
   try {

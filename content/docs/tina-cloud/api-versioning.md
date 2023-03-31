@@ -16,16 +16,14 @@ Prior to the 1.0.0 release, there may be breaking changes between _minor_ versio
 
 For example:
 
-
 | Local Version | Tina Cloud Version |
-| ------ | ---------- |
-| 0.59.1 |     0.59.3 |
-| 0.59.2 |     0.59.3 |
-| 0.59.3 |     0.59.3 |
-| 0.60.0 |     0.60.1 |
-| 0.60.1 |     0.60.1 |
-
+| ------------- | ------------------ |
+| 0.59.1        | 0.59.3             |
+| 0.59.2        | 0.59.3             |
+| 0.59.3        | 0.59.3             |
+| 0.60.0        | 0.60.1             |
+| 0.60.1        | 0.60.1             |
 
 ### What if my local version of Tina is different than what is in GitHub?
 
-If you are running Tina locally with Tina Cloud, it is possible to upgrade the GraphQL API to a different version than what is compiled into the schema and committed to GitHub. Since Tina Cloud uses the version in GitHub to determine what version of the GraphQL API to serve, you may encounter incompatibilities. To resolve the issue, commit and changes to your Tina schema directory (`.tina`) whenever you upgrade Tina and make sure these changes are pushed to GitHub whenever you are working locally.
+If you are running Tina locally with Tina Cloud, it is possible to upgrade the GraphQL API to a different version than what is compiled into the schema and committed to GitHub. Since Tina Cloud uses the version in GitHub to determine what version of the GraphQL API to serve, you may encounter incompatibilities. To resolve the issue, commit and changes to your Tina schema directory (`tina`) whenever you upgrade Tina and make sure these changes are pushed to GitHub whenever you are working locally.

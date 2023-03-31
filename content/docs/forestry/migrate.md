@@ -7,11 +7,11 @@ next: '/docs/forestry/common-errors'
 
 ## Introduction
 
-TinaCMS can be added to your site locally. In this doc, we'll guide through the local setup, as well as editing on your production site.
+TinaCMS can be added to your site locally. In this doc, we'll guide you through the local setup, as well as editing on your production site.
 
 ## Getting Started
 
-> Note: This Tina Migration will change your site's content files. Please backup your sites content before proceeding. This is best done by doing a git commit before proceeding.
+> Note: This Tina Migration will change your site's content files. Please back up your site's content before proceeding. This is best done by doing a git commit before proceeding.
 
 From within your site's directory, run:
 
@@ -25,17 +25,17 @@ Then, run the migration command:
  npx @tinacms/cli@latest init
 ```
 
-This will ask you a few questions, when it asks you if you went to migrate your forestry folder please answer `y` for yes.
+This will ask you a few questions. When it asks you if you want to migrate your forestry folder please answer `y` for yes.
 
 ## Migrating your content
 
-This will migrate your content from Forestry to TinaCMS. It will create a `.tina/config.{ts,js}` that will contain the setup for Tina as well as the schema for your content. However, this migration will not be perfect. You will have to make some changes to your site to get it working with TinaCMS. We will go over these changes in the next section.
+This will migrate your content from Forestry to TinaCMS. It will create a `tina/config.{ts,js}` that will contain the setup for Tina as well as the schema for your content. However, this migration will not be perfect. You will have to make some changes to your site to get it working with TinaCMS. We will go over these changes in the next section.
 
 This migration tool takes each section in your `.forestry/settings.yaml` file and turns it into a [TinaCMS collection](http://localhost:3000/docs/schema/#defining-collections). If one or more templates are defined in the section, it will create a [TinaCMS template](docs/reference/templates/) for each fontmatter template. If only one template is defined it will create a [TinaCMS collection with fields](/docs/reference/collections/#basic-example)
 
 TinaCMS will use the `label` field in the `.forestry/settings.yaml` file as the name of the collection.
 
-TinaCMS is a bit handles a few things differently that will cause you to have to make some updates to your site.
+TinaCMS handles a few things differently that will cause you to have to make some updates to your site.
 
 Here is a list of the changes that will need to be made to your site:
 
@@ -64,7 +64,7 @@ At this point, you should be able to see the Tina admin, select a post, save cha
 
 ## Model your content
 
-In Forestry, your content models were defined as "Front Matter Templates", but in TinaCMS, these are called "Collections". These are defined in your `.tina/config.js` file. The migration tool will have created a collection for each section in your `.forestry/settings.yaml` file but if you wish to update or change any of these you can do so in the `.tina/config.js` file.
+In Forestry, your content models were defined as "Front Matter Templates", but in TinaCMS, these are called "Collections". These are defined in your `tina/config.js` file. The migration tool will have created a collection for each section in your `.forestry/settings.yaml` file but if you wish to update or change any of these you can do so in the `tina/config.js` file.
 
 ```diff
 // ...
@@ -100,26 +100,26 @@ schema: {
 // ...
 ```
 
-You can lean more about content modelling in Tina's [content modeling docs](https://tina.io/docs/schema/).
+You can lean more about content modeling in Tina's [content modeling docs](https://tina.io/docs/schema/).
 
 ## Deploy Tina to your site
 
-Next we'll take you from editing with TinaCMS locally, to editing in production with your team.
+Next we'll take you from editing with TinaCMS locally to editing in production with your team.
 
 ### Step 1) Push your repo to git
 
-Push your repo up to git, along with its new Tina configuration (including `.tina/__generated__`).
+Push your repo up to git, along with its new Tina configuration (including `tina/__generated__`).
 
-### Step 2) Setup a Tina Cloud project
+### Step 2) Set up a Tina Cloud project
 
-In production, we'll want to make sure only authorized users can access your Tina admin, and make changes to your content. You can setup a [Tina Cloud project](https://app.tina.io/) to handle this.
+In production, we'll want to make sure only authorized users can access your Tina admin, and make changes to your content. You can set up a [Tina Cloud project](https://app.tina.io/) to handle this.
 Once your project is created, you'll also need to generate a read-only-token.
 
 See our [Tina Cloud docs](https://tina.io/docs/tina-cloud/) for help using Tina Cloud.
 
 ### Step 3) Connect the Tina Cloud config to your site
 
-Locally, in your .tina/config.js file, set the following config properties:
+Locally, in your tina/config.js file, set the following config properties:
 
 ```diff
 export default defineConfig({

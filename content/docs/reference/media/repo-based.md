@@ -9,10 +9,10 @@ Repo-based media storage is the default media storage solution for TinaCMS.
 
 ## Configuration
 
-To configure repo-based media in your project, add the following to your schema definition in `.tina/config.{ts,js}`
+To configure repo-based media in your project, add the following to your schema definition in `tina/config.{ts,js}`
 
 ```ts
-//.tina/config.{ts,js}
+//tina/config.{ts,js}
 
 export default defineConfig({
   // ...

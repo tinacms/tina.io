@@ -46,7 +46,6 @@ If Tina Cloud is configured on your production site, this value might be somethi
 
 ##### Glob Patterns
 
-
 Tina also supports Glob patterns for the Site URL. This can be useful if you want to allow editing on dynamic preview deployments.
 
 E.g. on Vercel this may look like: `https://<VERCEL-PROJECT-NAME>-*-<VERCEL-ACCOUNT-OWNER>.vercel.app`
@@ -76,7 +75,7 @@ The Advanced Settings button is located in the Configuration tab of your project
 ##### Path To Tina
 
 If your GitHub repository uses a monorepo structure, the Path To Tina Config input can be used to specify the path to the
-`.tina` directory in your repository. For example, if you have a project named `my-site`, and it is located in the
+`tina` directory in your repository. For example, if you have a project named `my-site`, and it is located in the
 `projects` directory of your repository, you would enter `projects/my-site` in this field and click Save Project to
 update the project.
 

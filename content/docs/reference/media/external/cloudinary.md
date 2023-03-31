@@ -32,10 +32,10 @@ CLOUDINARY_API_SECRET=<Your Cloudinary API secret>
 
 Now, you can replace the default repo-based media with the external media store. You can register the Cloudinary Media store via the `loadCustomStore` prop.
 
-The `loadCustomStore` prop can be configured within `.tina/config.{js,ts}`.
+The `loadCustomStore` prop can be configured within `tina/config.{js,ts}`.
 
 ```diff
-//.tina/config.{ts,js}
+//tina/config.{ts,js}
 
 export default defineConfig({
   //...
@@ -106,7 +106,7 @@ export default createMediaHandler({
 
 Now that the media store is registered and the API route for media set up, let's add an image to your schema.
 
-In your `.tina/config.{ts,tsx,js}` add a new field for the image, e.g:
+In your `tina/config.{ts,tsx,js}` add a new field for the image, e.g:
 
 ```ts
  {
