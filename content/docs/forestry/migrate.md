@@ -9,6 +9,12 @@ next: '/docs/forestry/common-errors'
 
 TinaCMS can be added to your site locally. In this doc, we'll guide you through the local setup, as well as editing on your production site.
 
+<div style="position:relative;padding-top:56.25%;">
+  <iframe width="560" frameborder="0" allowfullscreen
+      style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/ApWqWDzhxnI" title="Migrating from TinaCMS to Forestry" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+  </iframe>
+</div>
+
 ## Getting Started
 
 > Note: This Tina Migration will change your site's content files. Please back up your site's content before proceeding. This is best done by doing a git commit before proceeding.
