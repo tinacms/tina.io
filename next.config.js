@@ -11,7 +11,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const dummyMailchimpEndpoint =
   'https://theDomainHere.us18.list-manage.com/subscribe/post?u=1512315231252&amp;id=0asd21t12e1'
 
-
 const config = {
   async rewrites() {
     return [
@@ -43,23 +42,31 @@ const config = {
   },
   //avoiding CORS error, more here: https://vercel.com/support/articles/how-to-enable-cors
   async headers() {
+    const headers = [
+      {
+        key: 'Access-Control-Allow-Origin',
+        value: '*',
+      },
+      {
+        key: 'Access-Control-Allow-Methods',
+        value: 'GET,OPTIONS,PATCH,DELETE,POST,PUT',
+      },
+      {
+        key: 'Access-Control-Allow-Headers',
+        value: 'Accept, Content-Length, Content-Type',
+      },
+    ]
+    if (process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview') {
+      headers.push({
+        key: 'X-Robots-Tag',
+        value: 'noindex',
+      })
+    }
+
     return [
       {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'Access-Control-Allow-Origin',
-            value: '*',
-          },
-          {
-            key: 'Access-Control-Allow-Methods',
-            value: 'GET,OPTIONS,PATCH,DELETE,POST,PUT',
-          },
-          {
-            key: 'Access-Control-Allow-Headers',
-            value: 'Accept, Content-Length, Content-Type',
-          },
-        ],
+        source: '/:path*',
+        headers,
       },
     ]
   },
