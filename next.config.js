@@ -65,7 +65,7 @@ const config = {
 
     return [
       {
-        source: '/(.*)',
+        source: '/:path*',
         headers,
       },
     ]
