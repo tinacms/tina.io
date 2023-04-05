@@ -23,6 +23,36 @@ When prompted for the "**public assets directory**", enter: **static**.
 
 > If you are importing your site from Forestry.io CMS, some models & config will be auto-imported.
 
+### Workaround for GraphQL Mismatch issue
+
+For Gatsby sites, you may run into the following error:
+
+```
+> "Duplicate "graphql" modules cannot be used at the same time since different versions may have different capabilities and behavior."
+```
+
+To work around this, add the following lines to your **tina/config.ts** file.
+
+```diff
+export default defineConfig({
++  client: { skip: true },
+// ...
+```
+
+### Allowing static /admin/index.html file in dev-mode
+
+Depending on your Gatsby version, you may need to add the following code to your **gatsby-config.js** file, so that the Tina admin is accessible in dev-mode.
+
+```diff
++ const express = require(`express`);
+
+module.exports = {
+// ...
++  developMiddleware: (app) => {
++    app.use("/admin", express.static("public/admin"));
++  },
+```
+
 ## Model your content
 
 To edit your site's content in Tina, you can model your content in the tina/config.ts file.
@@ -43,7 +73,7 @@ With TinaCMS running, navigate to `http://localhost:8000/admin/index.html`
 
 > ^ The above default port may differ depending on your framework.
 
-> Hint: If you are getting error when running this command please see the [Common Errors](/docs/forestry/common-errors) page.
+> Hint: One common error is caused by running `gatsby clean` **after** `tinacms build`. This causes your admin html file to be wiped out. For more common errors, please see the [Common Errors](/docs/forestry/common-errors) page.
 
 At this point, you should be able to see the Tina admin, select a post, save changes, and see the changes persisted to your local markdown files.
 
