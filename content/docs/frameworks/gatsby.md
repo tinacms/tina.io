@@ -73,7 +73,7 @@ With TinaCMS running, navigate to `http://localhost:8000/admin/index.html`
 
 > ^ The above default port may differ depending on your framework.
 
-> Hint: If you are getting error when running this command please see the [Common Errors](/docs/forestry/common-errors) page.
+> Hint: One common error is caused by running `gatsby clean` **after** `tinacms build`. This causes your admin html file to be wiped out. For more common errors, please see the [Common Errors](/docs/forestry/common-errors) page.
 
 At this point, you should be able to see the Tina admin, select a post, save changes, and see the changes persisted to your local markdown files.
 
