@@ -55,3 +55,31 @@ export default defineConfig({
 ```
 
 Please see [the media docs](/docs/reference/media/external/cloudinary/) for how to set up media in your site.
+
+## Customizing an image formatting
+
+If you need to customize how an image is formatted in a field, you can use the `format` & `parse` options.
+
+```js
+//tina/config.ts
+
+// fields
+// ...
+{
+  type: "image",
+  name: "heroImg",
+  label: "Hero Image",
+  ui: {
+    format(value) {
+      //add leading slash to value if it doesnt exist
+      return value.startsWith("/") ? value : `/${value}`;
+    },
+    parse(value) {
+      //remove leading slash if it exists
+      return value.startsWith("/") ? value.slice(1) : value;
+    },
+  }
+}
+```
+
+You can read more about `format` & `parse` [here](/docs/extending-tina/format-and-parse/).
