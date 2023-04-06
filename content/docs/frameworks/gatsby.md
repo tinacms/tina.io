@@ -41,16 +41,14 @@ export default defineConfig({
 
 ### Allowing static /admin/index.html file in dev-mode
 
-Depending on your Gatsby version, you may need to add the following code to your **gatsby-config.js** file, so that the Tina admin is accessible in dev-mode.
+Depending on your Gatsby version, you may need to add the following code to your **gatsby-node.js** file, so that the Tina admin is accessible in dev-mode.
 
 ```diff
-+ const express = require(`express`);
++ const express = require("express");
 
-module.exports = {
-// ...
-+  developMiddleware: (app) => {
-+    app.use("/admin", express.static("public/admin"));
-+  },
++ exports.onCreateDevServer = ({ app }) => {
++   app.use("/admin", express.static("public/admin"));
++ };
 ```
 
 ## Model your content
