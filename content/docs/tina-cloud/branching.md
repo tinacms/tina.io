@@ -1,19 +1,30 @@
 ---
-title: Branching (Experimental)
-last_edited: '2021-11-06T18:00:00.000Z'
+title: Using Multiple Branches
+last_edited: '2023-04-12T10:00:00.000Z'
 ---
 
-<div class="short-code-warning">
-   <div>
-      <p>This is an experimental feature, and the API is subject to change. Have any thoughts? Let us know in the chat, or through one of our <a href="/community/">community channels</a></p>
-   </div>
-   <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-      <path d="M32 464h448L256 48 32 464zm248-64h-48v-48h48v48zm0-80h-48v-96h48v96z"></path>
-   </svg>
+If your content editors need to work on multiple branches, you can enable Tina's branch switching plugin.  This allows you to create new branches and switch between them from Tina's UI. In the future, we'll build on this foundation and support creating pull requests, merging, and other related workflows.  ![Switch Branches](https://res.cloudinary.com/forestry-demo/image/upload/v1681311018/tina-io/docs/branch-selector_e5ndeg.gif "Switch Branches")
+
+## Installation
+
+Simply add the branch-switcher flag to your CMS callback function in your tina [config file](http://localhost:3000/docs/reference/config/). If your site does not already make use of the CMS callback function, add this to your config.
+
+```javascript
+cmsCallback: cms => {
+    cms.flags.set("branch-switcher", true);
+    return cms;
+  }
+```
+
+\
+For an example, see [this repo](https://github.com/tinacms/demo-incremental/blob/main/.tina/config.tsx#L16). 
+
+## Demo
+
+Here is a quick video demo of Tina's branch plugin
+
+<div style="position:relative;padding-top:56.25%;">
+  <iframe width="560" frameborder="0" allowfullscreen
+      style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/XvL3pFiYaVw" title="TinaCMS Branching Demo video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+  </iframe>
 </div>
-
-## Try it out
-
-The branching plugin adds an item to the global menu that allows you to switch between branches of your repository via a dropdown menu.
-
-[See the readme for more information](https://github.com/tinacms/tinacms/tree/main/packages/%40tinacms/toolkit/src/plugins/branch-switcher)
