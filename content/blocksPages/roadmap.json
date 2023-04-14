@@ -38,6 +38,20 @@
           "headline": "Document Search",
           "status": "Released",
           "content": "Document Discoverability can be a challenge as the number of posts grow. We're looking into improving this either by providing our own search.\n"
+        },
+        {
+          "headline": "Forestry.io -> Tina Migration CLI Tool",
+          "status": "Released",
+          "content": "When you run \\`@tinacms/cli init@latest init\\` on a site with Forestry config, we will import some defaults, as well as your front-matter-templates.\n",
+          "actions": [
+            {
+              "label": "See Guide",
+              "icon": false,
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://tina.io/docs/forestry/migrate/"
+            }
+          ]
         }
       ],
       "options": {
@@ -50,9 +64,9 @@
       "headline": "Next 3 months",
       "items": [
         {
-          "headline": "Improve Forestry.io -> Tina Migration",
+          "headline": "Drafts / Branching",
           "status": "In Progress",
-          "content": "There are a number of features/concepts from Forestry.io that haven't made their way to TinaCMS. We're looking to smooth over the process for migrating from Forestry.io to TinaCMS by filling in some feature gaps, and adding some \"configuration migration tooling\". \n"
+          "content": "Supporting Drafts on un-published documents through a \"`draft: true`\" front-matter field. \\\nWe are also looking into some ways to better support working from separate branch deployments, for bigger sets of changes.\n"
         },
         {
           "headline": "Improving Media Management UX",
@@ -67,11 +81,6 @@
               "url": "https://github.com/tinacms/tinacms/discussions/3418"
             }
           ]
-        },
-        {
-          "headline": "Drafts",
-          "status": "In Progress",
-          "content": "Supporting Drafts on un-published documents through a \"`draft: true`\" front-matter field. \\\nWe are also looking into some ways to better support working from separate branch deployments, for bigger sets of changes. \n"
         },
         {
           "headline": "Registering Multiple Forms Per Page",
