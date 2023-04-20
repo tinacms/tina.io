@@ -1,8 +1,8 @@
 {
   "blocks": [
     {
-      "headline": "Forestry.io has been replaced by TinaCMS",
-      "text": "The Forestry.io team is focused on building TinaCMS.  Try Tina by running the command below. ",
+      "headline": "Goodbye Forestry.io, hello TinaCMS",
+      "text": "The Forestry.io team is focused on building TinaCMS, the next iteration of our vision. See the migration guide or test it with the following command. ",
       "actions": [
         {
           "label": "Tina Migration Guide",
