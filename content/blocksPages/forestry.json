@@ -2,7 +2,7 @@
   "blocks": [
     {
       "headline": "Forestry.io has been replaced by TinaCMS",
-      "text": "The Forestry.io team is focused on building TinaCMS, the next iteration of our vision.  To migrate your Forestry site to Tina, follow this guide: ",
+      "text": "The Forestry.io team is focused on building TinaCMS, the next iteration of our vision.  See the migration guide or test TinaCMS",
       "actions": [
         {
           "label": "Tina Migration Guide",
@@ -10,6 +10,13 @@
           "variant": "blue",
           "size": "small",
           "url": "http://localhost:3000/docs/forestry/overview/"
+        },
+        {
+          "label": "npx create-tina-app@latest",
+          "icon": false,
+          "variant": "command",
+          "size": "medium",
+          "url": "/"
         }
       ],
       "videoSrc": "",
@@ -50,7 +57,7 @@
       "questions": [
         {
           "question": "How are Tina and Forestry different?",
-          "answer": "Forestry and Tina share a lot in common but there are some key differences.\n\n* Tina's UI is an open-source single page application that you host with your site (i.e. mysite.com/admin).\n* Tina does not have a preview button like Forestry. If previewing is needed, we recommend setting up visual editing for a live  preview. \n* Tina only supports GitHub repositories at this time.\n* Tina offers an API so you can query for your content much like you would with a traditional headless CMS. This supports complex queries (filter, sort, etc), server-side rendering, client-side rendering, and incremental static regeneration. \n\nYou can see a full list of missing features between Forestry.io and TinaCMS [here](https://tina.io/docs/forestry/missing-forestry-features/).\n"
+          "answer": "Forestry and Tina share a lot in common but there are some key differences.\n\n* Tina's UI is an open-source single page application that you host with your site (i.e. mysite.com/admin).\n* Tina does not have a preview button like Forestry. If previewing is needed, we recommend setting up visual editing for a live  preview.\n* Tina only supports GitHub repositories at this time.\n* Tina offers an API so you can query for your content much like you would with a traditional headless CMS. This supports complex queries (filter, sort, etc), server-side rendering, client-side rendering, and incremental static regeneration.\n\nYou can see a full list of missing features between Forestry.io and TinaCMS [here](https://tina.io/docs/forestry/missing-forestry-features/).\n"
         },
         {
           "question": "How do I migrate my site from Forestry to Tina?",
