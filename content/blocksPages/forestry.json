@@ -9,7 +9,7 @@
           "icon": false,
           "variant": "blue",
           "size": "small",
-          "url": "http://localhost:3000/docs/forestry/overview/"
+          "url": "/docs/forestry/overview/"
         },
         {
           "label": "npx create-tina-app@latest",
