@@ -30,7 +30,7 @@ const MainLayout = ({ Component, pageProps }) => {
               url: 'https://tinacms.org/img/tina-twitter-share.png',
               width: 1200,
               height: 628,
-              alt: `TinaCMS`,
+              alt: `Tina - The Markdown CMS`,
             },
           ],
         }}
@@ -78,9 +78,7 @@ class Site extends App {
 
   render() {
     const { Component, pageProps } = this.props
-    return (
-        <MainLayout Component={Component} pageProps={pageProps} />
-    )
+    return <MainLayout Component={Component} pageProps={pageProps} />
   }
 }
 
