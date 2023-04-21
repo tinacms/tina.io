@@ -1,7 +1,7 @@
 ---
 title: Projects
-id: '/docs/tina-cloud/dashboard/projects'
-next: '/docs/tina-cloud/dashboard/users'
+id: /docs/tina-cloud/dashboard/projects
+next: /docs/tina-cloud/dashboard/users
 ---
 
 **Projects** connect Tina Cloud with a GitHub repository. A project is the **link between your site and your site's editors**, allowing users that you have authorized to access and modify the site's content.
@@ -74,6 +74,8 @@ The Advanced Settings button is located in the Configuration tab of your project
 
 ##### Path To Tina
 
+If your \`tina\` directory is at the project root (as is for most site), this field can be left blank.\
+\
 If your GitHub repository uses a monorepo structure, the Path To Tina Config input can be used to specify the path to the
 `tina` directory in your repository. For example, if you have a project named `my-site`, and it is located in the
 `projects` directory of your repository, you would enter `projects/my-site` in this field and click Save Project to
