@@ -6,12 +6,6 @@
     "external": false
   },
   {
-    "id": "community",
-    "label": "Community",
-    "href": "/community",
-    "external": false
-  },
-  {
     "id": "pricing",
     "label": "Pricing",
     "href": "/pricing",
@@ -28,12 +22,6 @@
         "external": false
       },
       {
-        "id": "showcase",
-        "label": "Showcase",
-        "href": "/showcase",
-        "external": false
-      },
-      {
         "id": "roadmap",
         "label": "Roadmap",
         "href": "/roadmap",
@@ -44,6 +32,36 @@
         "label": "Blog",
         "href": "/blog",
         "external": false
+      }
+    ]
+  },
+  {
+    "id": "community",
+    "label": "Community",
+    "items": [
+      {
+        "id": "showcase",
+        "label": "Showcase",
+        "href": "/showcase",
+        "external": false
+      },
+      {
+        "id": "plugins",
+        "label": "Plugins & Themes",
+        "href": "https://github.com/tinacms/ecosystem/",
+        "external": true
+      },
+      {
+        "id": "discord",
+        "label": "Discord",
+        "href": "https://discord.com/invite/zumN63Ybpf",
+        "external": true
+      },
+      {
+        "id": "forum",
+        "label": "Forum",
+        "href": "https://github.com/tinacms/tinacms/discussions",
+        "external": true
       }
     ]
   }
