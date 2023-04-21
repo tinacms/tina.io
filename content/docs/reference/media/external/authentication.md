@@ -115,7 +115,7 @@ router.get('/cloudinary/media', mediaHandler)
 
 router.post('/cloudinary/media', mediaHandler)
 
-router.delete('/cloudinary/:media', (req, res) => {
+router.delete('/cloudinary/media/:media', (req, res) => {
   req.query.media = ['media', req.params.media]
   return mediaHandler(req, res)
 })
