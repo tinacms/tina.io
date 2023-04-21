@@ -97,6 +97,12 @@ Your output content would continue to look like:
 
 ## Common error message and how to fix them
 
+### Error: Block template "TemplateName" is not defined for field "FieldName"
+
+In forestry you could have a block field that had a template that was not defined in the front matter template. In TinaCMS, this is not allowed. You will have to add the template from forestry to to the list of templates in the blocks field and define the fields for that template.
+
+> [See a more in depth video explaining here](https://www.loom.com/share/6dee678048314f7d9afaa6fd8fa59154)
+
 ### Error when getting content in the admin
 
 ```
