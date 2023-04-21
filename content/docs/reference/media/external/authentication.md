@@ -54,32 +54,47 @@ export default createMediaHandler({
 
 ### Option 2) Netlify Functions
 
-If your site is hosted on Netlify, you can use "Netlify Functions" to host your media handler.
+If your site is hosted on Netlify, you can use ["Netlify Functions"](https://docs.netlify.com/functions/overview/) to host your media handler.
 
-First, you must set up redirects so that all requests to `/api/*` can be redirected to Netlify Functions. You can set up redirects at `netlify.toml`.
+First, you must set up redirects so that all requests to `/api/*` can be redirected to Netlify Functions. You can set up redirects at `netlify.toml`. We are also going to build our functions with [esbuild](https://docs.netlify.com/configure-builds/file-based-configuration/#functions) so we will set that in the `netlify.toml` as well.
 
-```
-...
+Add the following to the `netlify.toml` file in the root of your project.
+
+```text
 [[redirects]]
-  from = '/api/*'
-  to = '/.netlify/functions/api/:splat'
-  status = 200
+    from = '/api/*'
+    to = '/.netlify/functions/api/:splat'
+    status = 200
+
+[functions]
+    node_bundler = 'esbuild'
 ```
 
 Next, you must set up api routes for the media handler.
 
+Install the following dependencies.
+
+```bash
+yarn add serverless-http express @tinacms/auth next-tinacms-<YOUR_MEDIA_STORE_NAME>
+```
+
+Make a new file called `netlify/functions/api/api.js` and add the following code.
+
+> Note: the file path could be different if you are using a different [functions directory](https://docs.netlify.com/configure-builds/file-based-configuration/#functions).
+
 ```js
-const serverless = require('serverless-http')
-const express, { Router } = require('express')
-const { isAuthorized } = require('@tinacms/auth')
-const { createMediaHandler } = require('next-tinacms-<YOUR_MEDIA_STORE_NAME>/dist/handlers')
+import ServerlessHttp from 'serverless-http'
+import express, { Router } from 'express'
+import { isAuthorized } from '@tinacms/auth'
+import { createMediaHandler } from 'next-tinacms-<YOUR_MEDIA_STORE_NAME>/dist/handlers'
 
 const app = express()
 
 const router = Router()
 
-const handler = createMediaHandler({
+const mediaHandler = createMediaHandler({
   // ...
+  // See the next section for more details on what goes in the createMediaHandler
   authorized: async (req, _res) => {
     try {
       if (process.env.NODE_ENV == 'development') {
@@ -96,16 +111,19 @@ const handler = createMediaHandler({
   },
 })
 
-router.get('/<YOUR_MEDIA_STORE_NAME>/media', handler)
+router.get('/cloudinary/media', mediaHandler)
 
-router.post('/<YOUR_MEDIA_STORE_NAME>/media', handler)
+router.post('/cloudinary/media', mediaHandler)
 
-router.delete('/<YOUR_MEDIA_STORE_NAME>/:media', (req, res) => {
+router.delete('/cloudinary/:media', (req, res) => {
   req.query.media = ['media', req.params.media]
-  return handler(req, res)
+  return mediaHandler(req, res)
 })
 
 app.use('/api/', router)
+app.use('/.netlify/functions/api/', router)
+
+export const handler = ServerlessHttp(app)
 ```
 
 ## Register the Media Store on the frontend
