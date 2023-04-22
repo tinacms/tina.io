@@ -37,7 +37,7 @@ This will ask you a few questions. When it asks you if you want to migrate your 
 
 This will migrate your content from Forestry to TinaCMS. It will create a `tina/config.{ts,js}` that will contain the setup for Tina as well as the schema for your content. However, this migration will not be perfect. You will have to make some changes to your site to get it working with TinaCMS. We will go over these changes in the next section.
 
-This migration tool takes each section in your `.forestry/settings.yaml` file and turns it into a [TinaCMS collection](http://localhost:3000/docs/schema/#defining-collections). If one or more templates are defined in the section, it will create a [TinaCMS template](docs/reference/templates/) for each fontmatter template. If only one template is defined it will create a [TinaCMS collection with fields](/docs/reference/collections/#basic-example)
+This migration tool takes each section in your `.forestry/settings.yaml` file and turns it into a [TinaCMS collection](http://localhost:3000/docs/schema/#defining-collections). If one or more templates are defined in the section, it will create a [TinaCMS template](docs/reference/templates/) for each front matter template. If only one template is defined it will create a [TinaCMS collection with fields](/docs/reference/collections/#basic-example)
 
 TinaCMS will use the `label` field in the `.forestry/settings.yaml` file as the name of the collection.
 
