@@ -122,7 +122,7 @@ export default defineConfig({
 Tina's build will need to be apart of your site's static generation.
 If you are using Netlify, this is configured in `app.netlify.com/sites/<your-site-id>/settings/deploys`
 
-You should prepend `yarn tinacms && ` or `npm run tinacms && ` to your site's build command:
+You should prepend `yarn tinacms build && ` or `npm run tinacms build && ` to your site's build command:
 
 ![](https://res.cloudinary.com/forestry-demo/image/upload/v1670337650/tina-io/docs/forestry-migration/Screen_Shot_2022-12-06_at_10.38.10_AM.png)
 

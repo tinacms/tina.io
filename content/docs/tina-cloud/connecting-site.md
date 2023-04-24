@@ -101,7 +101,7 @@ In Netlify, your build configuration can be updated at **Settings** > **Build & 
 
 ![Netlify build config](http://res.cloudinary.com/forestry-demo/image/upload/v1674607585/Screen_Shot_2023-01-24_at_8.45.23_PM_gbqyqb.png 'Netlify build config')
 
-> If your package.json has a "build" script like `tinacms && <your-site-build-cmd>`, this likely doesn't need to be changed. If your Netlify config is not running a custom build script (e.g `next build`), you would have to change this to `tinacms build && next build`
+> If your package.json has a "build" script like `tinacms build && <your-site-build-cmd>`, this likely doesn't need to be changed. If your Netlify config is not running a custom build script (e.g `next build`), you would have to change this to `tinacms build && next build`
 
 > If your project has a `netlify.toml` with a build command set, that will take precendence over the above build command UI
 
@@ -117,7 +117,7 @@ In Vercel, your build configuration can be updated at **Settings** > **General**
 
 ![Vercel Build Settings](https://res.cloudinary.com/forestry-demo/image/upload/v1674653527/tina-io/docs/tina-cloud/vercel-build-settings_vubza8.png 'Vercel Build Settings')
 
-> If your package.json has a "build" script like `tinacms && <your-site-build-cmd>`, this likely doesn't need to be changed. If your Vercel config is not running a custom build script (e.g `next build` instead of `npm run build`), you would have to change this to `tinacms build && next build`
+> If your package.json has a "build" script like `tinacms build && <your-site-build-cmd>`, this likely doesn't need to be changed. If your Vercel config is not running a custom build script (e.g `next build` instead of `npm run build`), you would have to change this to `tinacms build && next build`
 
 #### Environment variables
 
