@@ -90,7 +90,9 @@ You should prepend `yarn tinacms build && ` or `npm run tinacms build && ` to yo
 
 ![](https://res.cloudinary.com/forestry-demo/image/upload/v1670337650/tina-io/docs/forestry-migration/Screen_Shot_2022-12-06_at_10.38.10_AM.png)
 
-> If you're using the build command defined in your package.json, this value is likely something like: `yarn build`
+> If your package.json has a "build" script like `tinacms build && <your-site-build-cmd>`, this likely doesn't need to be changed. If your Netlify config is not running a custom build script (e.g `hugo`), you would have to change this to `tinacms build && hugo`
+
+> If your project has a `netlify.toml` with a build command set, that will take precendence over the above build command UI
 
 For more information on deploying Tina with Netlify, Vercel, or GitHub Pages, [see this doc](/docs/tina-cloud/connecting-site/#deploying-your-site-with-the-tinacms-admin)
 
