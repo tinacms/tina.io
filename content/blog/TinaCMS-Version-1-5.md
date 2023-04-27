@@ -27,6 +27,8 @@ Tina now allows collections to be configured at the root, by setting path: '/' o
 
 When your users save in Tina, the commit message now includes the author's name (or email).
 
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1682616496/blog-media/1.5/commit_message.png)
+
 ## Bug fixes & Other Improvements
 
 * fix issue where SVG's without explicitly defined widths weren't rendering in image field.
