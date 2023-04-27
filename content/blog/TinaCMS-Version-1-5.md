@@ -1,7 +1,7 @@
 ---
 title: TinaCMS Version 1.5
-date: 2023-04-27T03:00:00.000Z
-last_edited: 2023-04-27T03:00:00.000Z
+date: '2023-04-27T03:00:00.000Z'
+last_edited: '2023-04-27T03:00:00.000Z'
 author: James O'Halloran
 ---
 
@@ -21,7 +21,7 @@ In the document list, editors now have the ability to duplicate a document.
 
 ## Support for collections at the root
 
-TIna now allows collections to be configured at the root, by setting path: '/' on a collection. This is common for sites migrating from Forestry, which want to allow editing on their root-level config files. 
+TIna now allows collections to be configured at the root, by setting path: '/' on a collection. This is common for sites migrating from Forestry, which want to allow editing on their root-level config files.
 
 ## Commit messages show author name
 

@@ -145,15 +145,21 @@ export const schema = defineSchema({
         },
         {
           // note: default to current date/time
-          type: 'datetime',
+          type: 'string',
           name: 'date',
           label: 'Date Created',
+          ui: {
+            component: 'date',
+          },
         },
         {
           // note: this should be a hidden field that auto-updates
-          type: 'datetime',
+          type: 'string',
           name: 'last_edited',
           label: 'Last Edited',
+          ui: {
+            component: 'date',
+          },
         },
         {
           // TODO create an authors collection and make this a relation field
