@@ -5,7 +5,7 @@ last_edited: '2023-04-27T03:00:00.000Z'
 author: James O'Halloran
 ---
 
-Today we are excited to release `tinacms@1.5.0` and `@tinacms/clil@1.5.7`. The full list of changes can be found [in the changeset PR](https://github.com/tinacms/tinacms/pull/3819 "changesets PR").
+Today we are excited to release `tinacms@1.5.1` and `@tinacms/clil@1.5.8`. The full list of changes can be found [in the changeset PR](https://github.com/tinacms/tinacms/pull/3819 "changesets PR").
 
 ## Directories in Document List
 
