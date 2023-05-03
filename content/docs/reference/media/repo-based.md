@@ -74,6 +74,8 @@ When your editors add an image to a document, the value that is saved will be a 
 
 `"/<mediaRoot>/<imgName>"`
 
+> Not seeing your media? To see your media in the media manager, you will need to press the "Sync Media" button in the media manager. This will pull all of your media from Github and add it to TinaCMS.
+
 ## Branching Caveats
 
 Repo-based media is designed to be used around a single-branch workflow. If your project is using the [experimental branching plugin](https://github.com/tinacms/tinacms/tree/main/packages/%40tinacms/toolkit/src/plugins/branch-switcher), there's some known caveats to be aware of.
