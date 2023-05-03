@@ -22,7 +22,7 @@ For example, to use the `title` field as the label for this image gallery collec
   list: true,
   ui: {
     itemProps: (item) => {
-// Field values are accessed by title?.<Field name>
+      // Field values are accessed by item?.<Field name>
       return { label: item?.title };
     },
   },
@@ -62,7 +62,7 @@ For example:
       if (item?.title === "Dog") {
         return { label: item?.title, style: { backgroundColor: "blue" } };
       }
-// Field values are accessed by title?.<Field name>
+      // Field values are accessed by item?.<Field name>
       return { label: item?.title };
     },
   },
