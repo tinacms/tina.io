@@ -149,7 +149,7 @@ If you are using npm as your package name, you can use the following:
   env:
     TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
     TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
-  run: npx tinacms build
+  run: npm tinacms build
 ```
 
 or if you are using yarn:
@@ -166,23 +166,51 @@ Your GitHub Action will look something like:
 
 ![Github Action](https://res.cloudinary.com/forestry-demo/image/upload/v1675783496/tina-io/docs/tina-cloud/gh-config.png 'Github Action')
 
-#### Common error: Tina is not showing up at /admin
+#### Common Issues:
+
+##### Common Issue: 'Missing script: "tinacms"'
+
+This error might occur from the following reasons:
+
+###### 1. tinacms dependencies not added to package.json.
+
+Make sure that both the `tinacms` & `@tinacms/cli` dependencies are listed in your package.json.
+
+###### 2. Dependencies aren't being installed in CI.
+
+If you are using npm make sure that `npm ci` is being run before the TinaCMS build command. If you are using yarn, make sure you are running `yarn install --frozen-lockfile` before running the build command.
+
+###### 3. Needing to define a 'tinacms' script.
+
+To run your site's 'tinacms' dependency script from CI, you'll need to add a custom script to your package.json:
+
+```json
+  "scripts": {
+    "tinacms": "tinacms",
+    // ...
+```
+
+##### Common Issue: Tina is not showing up at /admin
 
 This can happen for a number of reasons but here is the most common reasons and fixes.
 
-##### 1. The .gitignore added by tina is blocking upload
+###### 1. Not providing a custom build workflow
 
-We add a .gitignore to the admin folder so that the admin folder does not get committed to your repo. Depending on how you are using Github Pages you may need to run `rm <YourPublicFolder>/admin/.gitignore` to remove the .gitignore file.
+If your site is deploying with GitHub Pages, it may be using GitHub's default build steps. In this case, TinaCMS won't be included in the build.
 
-##### 2. The build command is not running the build script
+![GitHub Pages configuration](https://res.cloudinary.com/forestry-demo/image/upload/v1683212636/gh-pages.png).
+
+To fix this, you'll need to select the "GitHub Actions" source, and build the tinacms admin along with your site. You can see our [GitHub Pages docs](/docs/tina-cloud/connecting-site/#option-github-pages) for help setting up this GitHub Action.
+
+###### 2. 'tinacms build' is not running in CI
 
 Check to make sure that the build command is running and not failing
 
-##### 3. Error: "npm ERR! could not determine executable to run" or "command `tinacms` is not found"
-
-This is because the `@tinacms/cli` package is not installed. Make sure you are installing javascript dependencies before running the build command. If you are using npm make sure that `npm ci` is being run before the TinaCMS build command. If you are using yarn, make sure you are running `yarn install --frozen-lockfile` before running the build command.
-
 > Note: If you are using [the github pages setup from hugo](https://gohugo.io/hosting-and-deployment/hosting-on-github/) you will need to make sure that a `package-lock.json` exists in the root of your repo.
+
+###### 3. Site is building on a sub-path
+
+A known limitation is that tinacms doesn't load assets correct when the admin is deployed to a subpath: (e.g: `https://jamespohalloran.github.io/my-site-root/admin/`). We have an [incoming update](https://github.com/tinacms/tinacms/pull/3911) to support this use-case.
 
 #### Environment variables
 
