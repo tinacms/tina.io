@@ -149,7 +149,7 @@ If you are using npm as your package name, you can use the following:
   env:
     TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
     TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
-  run: npm tinacms build
+  run: npm run tinacms build
 ```
 
 or if you are using yarn:
