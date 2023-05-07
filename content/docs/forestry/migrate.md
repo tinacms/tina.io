@@ -45,7 +45,7 @@ TinaCMS handles a few things differently that will cause you to have to make som
 
 Here is a list of the changes that will need to be made to your site:
 
-- You can only have alphanumeric characters or underscores in your field names, templates names, and collection names (**This includes `-`**). You will likely have to updates your template names in your content and code. See [this doc](/docs/forestry/common-errors/#migrating-fields-with-non-alphanumeric-characters) for more details.
+- You can only have alphanumeric characters or underscores in your field names, templates names, and collection names (**This includes `-`**). You will likely have to update your template names in your content and code. See [this doc](/docs/forestry/common-errors/#migrating-fields-with-non-alphanumeric-characters) for more details.
 - If you are using the "blocks" field see [this doc](/docs/forestry/common-errors/#migrating-blocks) for how to migrate your blocks.
 
 ## Starting TinaCMS
