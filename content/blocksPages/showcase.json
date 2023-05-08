@@ -12,14 +12,6 @@
     {
       "items": [
         {
-          "headline": "bunny.net",
-          "text": "Hop on [bunny.net](https://bunny.net/) and speed up your web presence with the next-generation Content Delivery Service (CDN), Edge Storage, and Optimization Services at any scale.",
-          "url": "https://bunny.net/",
-          "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_800/v1683568421/tina-showcase/bunny-net.png"
-          }
-        },
-        {
           "headline": "comedia",
           "text": "[comedia](\nhttp://www.comediadesign.com) is a digital product agency with offices in San Francisco and Vancouver. We craft product and experiences for clients large and small. Our clients include Vodafone, Ericsson, NEC,  and Postmates.",
           "url": " http://www.comediadesign.com",
@@ -49,6 +41,14 @@
           "url": "https://www.devolverdigital.com/",
           "media": {
             "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_700/v1680282376/tina-showcase/devolver.png"
+          }
+        },
+        {
+          "headline": "bunny.net",
+          "text": "Hop on [bunny.net](https://bunny.net/) and speed up your web presence with the next-generation Content Delivery Service (CDN), Edge Storage, and Optimization Services at any scale.",
+          "url": "https://bunny.net/",
+          "media": {
+            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_800/v1683568421/tina-showcase/bunny-net.png"
           }
         },
         {
