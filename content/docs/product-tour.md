@@ -5,7 +5,7 @@ last_edited: '2022-01-17T15:51:56.737Z'
 next: '/docs/setup-overview'
 ---
 
-To understand the power of Tina, let us first break down Tina into it’s components.
+To understand the power of Tina, let us first break down Tina into its components.
 
 ## Tina CLI
 
@@ -15,7 +15,7 @@ TinaCMS CLI is a quick and easy way to set up a project with Tina. The CLI can i
 
 A Tina-ified site includes:
 
-- A Tina config file that be used to structure your content and configure tina.
+- A Tina config file that be used to structure your content and configure Tina.
 - A local version of the Tina GraphQL API (see below!) used to fetch your content.
 
 The Tina schema file is used to define the shape of your content. To learn more about content modelling within the Tina schema file, click [here](/docs/schema).
@@ -27,7 +27,7 @@ For a list of CLI commands or to learn more about Tina’s CLI, click [here](/do
 
 Tina’s GraphQL API provides a structured API that can be used to fetch your site’s content. This GraphQL API uses your local filesystem as a database. When you define your schema in the Tina schema file, the Tina GraphQL API will generate queries specific to your schema.
 
-When running your site locally, Tina spins up a local GraphQL server at `http://localhost:3000` as well as an Altair client at `http://localhost:4001/altair/` . This allows developers to test out the API and it’s file fetching capabilities.
+When running your site locally, Tina spins up a local GraphQL server at `http://localhost:3000` as well as an Altair client at `http://localhost:4001/altair/` . This allows developers to test out the API and its file fetching capabilities.
 
 > When running your site in production with Tina Cloud, instead of the local GraphQL server, your site will run using our hosted content API (more info below!).
 
@@ -37,7 +37,7 @@ For more info on Tina’s GraphQL API or to understand content fetching, click [
 
 Tina's editing UI is compiled statically into the sites public directory. This allows Tina to be used in any site, regardless of the framework it is built with.
 
-When a Tina site is served, navigating to the `/admin` (or `/admin/index.html`) route take you to the Tina editing UI. This UI is used to edit content and manage your site’s content.
+When a Tina site is served, navigating to the `/admin` (or `/admin/index.html`) route takes you to the Tina editing UI. This UI is used to edit content and manage your site’s content.
 
 For more info on Tina’s editing UI, click [here](/docs/using-tina-editor).
 
