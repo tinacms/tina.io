@@ -212,6 +212,10 @@ Check to make sure that the build command is running and not failing
 
 A known limitation is that tinacms doesn't load assets correct when the admin is deployed to a subpath: (e.g: `https://jamespohalloran.github.io/my-site-root/admin/`). We have an [incoming update](https://github.com/tinacms/tinacms/pull/3911) to support this use-case.
 
+###### 4. User has pushed the development admin/index.html to production
+
+When you run `tinacms dev` locally, Tina will generate a development admin.html file, which loads its assets from localhost. For production, this file should be built in CI using `tinacmd build`. If the developer manually removes the file from their .gitignore, they may run into this issue.
+
 #### Environment variables
 
 Assuming that your Tina `clientID` and `token` are setup as environment variables, you will need to add those to the GitHub Secrets for your project. The secrets we used in the code snippet above were `TINA_PUBLIC_CLIENT_ID` & `TINA_TOKEN`
