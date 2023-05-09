@@ -58,13 +58,13 @@ export default defineConfig({
 })
 ```
 
-## Set up API routes (Next.js example)
-
-> ** NOTE: **this step will show you how to set up an API route for Next.js. If you are using a different framework, you will need to set up your own API route.
+## Set up API routes
 
 Tina's "external media provider" support requires a light backend media handler, that needs to be setup/hosted by the user. There are multiple ways to do this, including the framework-agnostic [Netlify Functions implementation](/docs/reference/media/external/authentication/#netlify).
 
-### "NextJS API Routes" example (NextJS-only)
+> **NOTE:** this step will show you how to set up an API route for Next.js. If you are using a different framework, you will need to set up your own API route.
+
+### Next.js Example
 
 Set up a new API route in the `pages` directory of your Next.js app, e.g. `pages/api/dos/[...media].ts`.
 Then add a new catch all API route for media.
@@ -114,6 +114,22 @@ export default createMediaHandler({
 ```
 
 For Netlify usecase, please read how to set up Netlify Functions [here](/docs/reference/media/external/authentication/#netlify)
+
+### Using a Custom URL
+
+If you're using a custom URL for your S3 bucket, you can pass in a `cdnUrl` value to `createMediaHandler`.
+
+```ts
+export default createMediaHandler({
+  config: ...,
+  bucket: ...,
+  authorized: ...,
+},
+{
+ cdnUrl: "https://my-custom-domain.com"
+}
+)
+```
 
 ## Update Schema
 

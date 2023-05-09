@@ -149,7 +149,7 @@ If you are using npm as your package name, you can use the following:
   env:
     TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
     TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
-  run: npm run tinacms build
+  run: npx tinacms build
 ```
 
 or if you are using yarn:
@@ -159,7 +159,9 @@ or if you are using yarn:
   env:
     TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
     TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
-  run: yarn tinacms build
+  run: yarn build
+  # This assumes that your "build" script in your
+  # package.json is "tinacms build"
 ```
 
 Your GitHub Action will look something like:
@@ -182,7 +184,7 @@ If you are using npm make sure that `npm ci` is being run before the TinaCMS bui
 
 ###### 3. Needing to define a 'tinacms' script.
 
-To run your site's 'tinacms' dependency script from CI, you'll need to add a custom script to your package.json:
+If your CI is running something like `yarn tinacms build` instead of `npx tinacms build`, you'll need to add a custom script to your package.json:
 
 ```json
   "scripts": {
@@ -190,9 +192,9 @@ To run your site's 'tinacms' dependency script from CI, you'll need to add a cus
     // ...
 ```
 
-##### Common Issue: Tina is not showing up at /admin
+##### Common Issue: /admin is giving a 404
 
-This can happen for a number of reasons but here is the most common reasons and fixes.
+This can happen for a number of reasons but here are the most common reasons and fixes:
 
 ###### 1. Not providing a custom build workflow
 
@@ -207,14 +209,6 @@ To fix this, you'll need to select the "GitHub Actions" source, and build the ti
 Check to make sure that the build command is running and not failing
 
 > Note: If you are using [the github pages setup from hugo](https://gohugo.io/hosting-and-deployment/hosting-on-github/) you will need to make sure that a `package-lock.json` exists in the root of your repo.
-
-###### 3. Site is building on a sub-path
-
-A known limitation is that tinacms doesn't load assets correct when the admin is deployed to a subpath: (e.g: `https://jamespohalloran.github.io/my-site-root/admin/`). We have an [incoming update](https://github.com/tinacms/tinacms/pull/3911) to support this use-case.
-
-###### 4. User has pushed the development admin/index.html to production
-
-When you run `tinacms dev` locally, Tina will generate a development admin.html file, which loads its assets from localhost. For production, this file should be built in CI using `tinacmd build`. If the developer manually removes the file from their .gitignore, they may run into this issue.
 
 #### Environment variables
 
