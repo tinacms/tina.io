@@ -79,3 +79,15 @@ If you receive an error like `The specified branch, 'my-branch-name', has not be
 the config properties passed to defineConfig in `tina/config.ts`. Note, that this value may be set as an environment variable in your CI build process. Second, verify that the branch exists
 in the GitHub repository. Lastly, you can force a reindexing of a particular branch by making a whitespace change to the `tina/tina-lock.json` file in that branch,
 commit the change, and push it to GitHub. This will initiate indexing for the branch and (after a few minutes) the error should be resolved.
+
+## How do I resolve "Failed loading TinaCMS assets" error
+
+This error means that the TinaCMS admin HTML file failed to load the JavaScript bundle. This generally happens for a few reasons:
+
+### User has pushed the development admin/index.html to production
+
+When you run `tinacms dev` locally, Tina will generate a development admin/index.html file, which loads its assets from localhost. For production, this file should be built in CI using `tinacms build`. If a developer manually removes the admin/index.html file from their `.gitignore`, they may run into this issue.
+
+### Site is building on a sub-path
+
+A known limitation is that tinacms doesn't load assets correctly when the admin is deployed to a subpath: (e.g: `https://jamespohalloran.github.io/my-site-root/admin/`). We have an [incoming update](https://github.com/tinacms/tinacms/pull/3911) to support this use-case.
