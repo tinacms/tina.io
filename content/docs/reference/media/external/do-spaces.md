@@ -24,16 +24,19 @@ npm install next-tinacms-dos
 
 ## Connect with Digital Ocean Spaces
 
-You need some credentials provided by Digital Ocean Spaces to set this up properly. If you do not already have an account, you can (register here)[https://cloud.digitalocean.com/registrations/new].
+You need some credentials provided by Digital Ocean Spaces to set this up properly. If you do not already have an account, you can [register here](https://cloud.digitalocean.com/registrations/new) .
 
 **next-tinacms-dos** uses environment variables within the context of a Next.js site to properly access your Digital Ocean Spaces account.
 
 Add the following variables to an `.env` file.
 
-```
-NEXT_PUBLIC_SPACES_ENDPOINT=<Your Digital Ocean Spaces Endpoint: ex. https://fra1.digitaloceanspaces.com>
+```env
+NEXT_PUBLIC_SPACES_ENDPOINT=<Your Digital Ocean Spaces Endpoint: ex. https://fra1.digitaloceanspaces.com> (Does not include the space name)
+
 NEXT_PUBLIC_SPACES_NAME=<Your Digital Ocean Spaces Name: ex. my-spaces>
+
 NEXT_PUBLIC_SPACES_KEY=<Your Digital Ocean Spaces access key>
+
 SPACES_SECRET_KEY=<Your Digital Ocean Spaces access secret>
 ```
 
