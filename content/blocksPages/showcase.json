@@ -12,6 +12,13 @@
     {
       "items": [
         {
+          "headline": "Locality Bank",
+          "text": "[Locality](https://localitybank.com/about-us/) is reinventing local business banking – pairing the best of personal relationships with comprehensive financing experience and innovative technology to help South Florida businesses flourish. ",
+          "media": {
+            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_800/v1683740576/tina-showcase/locality-bank.png"
+          }
+        },
+        {
           "headline": "comedia",
           "text": "[comedia](\nhttp://www.comediadesign.com) is a digital product agency with offices in San Francisco and Vancouver. We craft product and experiences for clients large and small. Our clients include Vodafone, Ericsson, NEC,  and Postmates.",
           "url": " http://www.comediadesign.com",
