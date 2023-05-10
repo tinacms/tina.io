@@ -1,7 +1,7 @@
 ---
 title: Config Reference
 id: /docs/reference/config/
-last_edited: 2022-09-29T15:51:56.737Z
+last_edited: '2022-09-29T15:51:56.737Z'
 next: /docs/reference/schema
 prev: /docs/reference/overview
 ---
@@ -36,7 +36,7 @@ Tina will automatically generate TinaCMS as a static asset. Note that it **must 
 | `build`              | Build configuration for storing Tina as a static asset                                                                      |
 | `build.publicFolder` | The public asset folder for your framework                                                                                  |
 | `build.outputFolder` | Within the public asset folder, the desired output location                                                                 |
-| `build.basePath` | If your site will be served at a sub-path like `my-domain.com/my-site`, provide `"my-site"`                                                                 |
+| `build.basePath`     | If your site will be served at a sub-path like `my-domain.com/my-site`, provide `"my-site"`                                 |
 | `media`              | [Media configuration](/docs/reference/media/overview/) for external and git backed media                                    |
 | `schema`             | The [schema](/docs/reference/schema/) defines the shape of your content.                                                    |
 
@@ -76,5 +76,5 @@ For more information [check out the content modeling section](/docs/schema/)
 For NextJS sites, the [visual-editing](/docs/tinacms-context/) guide is still applicable for static mode, with 2 key differences:
 
 1. The `useTina` hook should be imported from `tinacms/dist/react`.
-2. Visual mode is only enabled when you visit your site *through* the Tina CMS iframe. For the example config
+2. Visual mode is only enabled when you visit your site _through_ the Tina CMS iframe. For the example config
    above, this would be at `<my-site-url>/admin/index.html#/preview`.
