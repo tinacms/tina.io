@@ -22,9 +22,11 @@ You need to provide your Cloudinary credentials to connect to your media library
 
 Add the following variables to an `.env` file.
 
-```
+```env
 NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=<Your Cloudinary Cloud Name>
+
 NEXT_PUBLIC_CLOUDINARY_API_KEY=<Your Cloudinary API key>
+
 CLOUDINARY_API_SECRET=<Your Cloudinary API secret>
 ```
 
@@ -54,7 +56,7 @@ export default defineConfig({
 
 ## Set up API routes (Next.js example)
 
-> ** NOTE: **this step will show you how to set up an API route for Next.js. If you are using a different framework, you will need to set up your own API route.
+> \*\* NOTE: \*\*this step will show you how to set up an API route for Next.js. If you are using a different framework, you will need to set up your own API route.
 
 Tina's "external media provider" support requires a light backend media handler, that needs to be setup/hosted by the user. There are multiple ways to do this, including the framework-agnostic [Netlify Functions implementation](/docs/reference/media/external/authentication/#netlify).
 
