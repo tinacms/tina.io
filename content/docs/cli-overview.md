@@ -5,7 +5,6 @@ title: The TinaCMS CLI
 ## Available Commands
 
 ```sh
-
   $ tinacms <command>
 
 ━━━ Commands ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -25,47 +24,89 @@ title: The TinaCMS CLI
   tinacms init [--forestryPath #0] [--rootPath #0] [--noTelemetry]
     Add Tina to an existing project
 
-You can also print more details about any of these commands by calling them with 
+You can also print more details about any of these commands by calling them with
 the `-h,--help` flag right after the command name.
 ```
 
 ## Common options
 
 Here are some common options that can be used in both `tinacms dev` and `tiancms build`
-| Argument         | Description                                                                                                                                                                  |
+| Argument | Description |
 | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `-c`             | `-c` allows you to optionally run a command as a child process. For example, you could run your Next.js project alongside the graphQL server `yarn tinacms dev -c next dev`. |
-| `--port <port>`  | Specify a port to run the server on. (default 4001)                                                                                                                          |
-| `--datalayer-port <port>`  | Specify a port to run the local level server. (default 9000)                                                                                                                          |
-| `--noWatch`      | Don't regenerate config on file changes. This option is good to add when building in CI or if you do not want to watch the file system for changes.                          |
-| `--noSDK`        | Don't generate the generated client SDK. [Read here](/docs/graphql/client/) for more details about the SDK.                                                                  |
-| `-v`,`--verbose` | increase verbosity of logged output (default: false)                                                                                                                         |
-| `--rootPath` | Specify the root directory to run the CLI from (defaults to current working directory)  |
+| `-c` | `-c` allows you to optionally run a command as a child process. For example, you could run your Next.js project alongside the graphQL server `yarn tinacms dev -c next dev`. |
+| `--port <port>` | Specify a port to run the server on. (default 4001) |
+| `--datalayer-port <port>` | Specify a port to run the local level server. (default 9000) |
+| `--noWatch` | Don't regenerate config on file changes. This option is good to add when building in CI or if you do not want to watch the file system for changes. |
+| `--noSDK` | Don't generate the generated client SDK. [Read here](/docs/graphql/client/) for more details about the SDK. |
+| `-v`,`--verbose` | increase verbosity of logged output (default: false) |
+| `--rootPath` | Specify the root directory to run the CLI from (defaults to current working directory) |
 |`--noTelemetry`| don't report anonyymous telemetry |
 
 ## Basic Usage:
 
-### `tinacms dev`
+### "tinacms dev"
 
 > To run this command, you must have a valid `tina/config.{ts,tsx,js,jsx}` file.
 
 `dev` will compile the schema into static files, generate typescript types for use in your project and start a graphQL server on http://localhost:4001
 
-This command takes the following arguments listed in [the common options](#common-options)
+This command takes the arguments listed in [the common options](#common-options)
 
-### `tinacms build`
+Examples:
+
+NextJS
+
+```bash
+tinacms dev -c \"next dev\"
+```
+
+Other SSG frameworks
+
+```bash
+tinacms dev -c \"<Yor Dev Command>\"
+```
+
+### "tinacms build"
 
 This command compiles and validates the schema and generates the client and types. It will also ensure your content has finished indexing.
 
 This command takes all of the [the common options](#common-options) as well as a few others;
 
-| Argument                 | Description                                                                                                 |
-| ------------------------ | ----------------------------------------------------------------------------------------------------------- |
-| `--tina-graphql-version` | Specify the version of `@tinacms/graphql` that the backend will use. (Only needed in advanced cases)        |
-| `--local` | Will start the local Graphql server and generate the local client. This is usefull for static builds but will not work with SSR       |
-| `--skip-cloud-checks` | Skip the tina cloud checks (dangerous and not recommended)    |
+| Argument                 | Description                                                                                                                     |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------- |
+| `--tina-graphql-version` | Specify the version of `@tinacms/graphql` that the backend will use. (Only needed in advanced cases)                            |
+| `--local`                | Will start the local Graphql server and generate the local client. This is usefull for static builds but will not work with SSR |
+| `--skip-cloud-checks`    | Skip the tina cloud checks (dangerous and not recommended)                                                                      |
 
-### `npx @tinacms/cli@latest init`
+Examples:
+
+building for production with Tina Cloud for data fetching
+
+```bash
+tinacms build && next build
+```
+
+building for production with a SSG
+
+```bash
+tinacms build && <Your SSG build command>
+```
+
+using the local client and local graphql server
+
+```bash
+tinacms build --local -c "next build"
+```
+
+This will
+
+- Start the local graphql server
+- Generate the local TinaCMS client that will query the local file system
+- Produce local image paths
+- build production SPA
+- run Next build
+
+### "npx @tinacms/cli@latest init"
 
 > The init command must be run inside of an existing project (E.g a NextJS project, Hugo, Jekyll, etc).
 
@@ -86,9 +127,9 @@ This will,
 | --------------- | ------------------------------ |
 | `--noTelemetry` | Disables Open Source Telemetry |
 
-### `tinacms audit`
+### "tinacms audit"
 
-`audit` is used for checking for errors in your in your files. It currently does two things.
+The `audit` command is used for checking for errors in your in your files. It currently does two things.
 
 1. Checks to see if the files have the correct extension
 2. Submits each file as a Graphql mutation and checks for Graphql errors
