@@ -57,12 +57,13 @@ This command takes the following arguments listed in [the common options](#commo
 
 This command compiles and validates the schema and generates the client and types. It will also ensure your content has finished indexing.
 
+This command takes all of the [the common options](#common-options) as well as a few others;
+
 | Argument                 | Description                                                                                                 |
 | ------------------------ | ----------------------------------------------------------------------------------------------------------- |
-| `--noTelemetry`          | Disables Open Source Telemetry                                                                              |
-| `--noSDK`                | Don't generate the generated client SDK. [Read here](/docs/graphql/client/) for more details about the SDK. |
-| `-v`,`--verbose`         | increase verbosity of logged output (default: false)                                                        |
 | `--tina-graphql-version` | Specify the version of `@tinacms/graphql` that the backend will use. (Only needed in advanced cases)        |
+| `--local` | Will start the local Graphql server and generate the local client. This is usefull for static builds but will not work with SSR       |
+| `--skip-cloud-checks` | Skip the tina cloud checks (dangerous and not recommended)    |
 
 ### `npx @tinacms/cli@latest init`
 
