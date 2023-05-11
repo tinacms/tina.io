@@ -51,7 +51,7 @@ Here are some common options that can be used in both `tinacms dev` and `tiancms
 
 `dev` will compile the schema into static files, generate typescript types for use in your project and start a graphQL server on http://localhost:4001
 
-This command takes the following arguments listed in the common arguments
+This command takes the following arguments listed in [the common options](#common-options)
 
 ### `tinacms build`
 
