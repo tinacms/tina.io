@@ -29,7 +29,7 @@ type="video/mp4"
 />
 </video>
 
-#### [Try the demo](https://quick-edit-demo.vercel.app/admin#/~)!
+> [Try the demo](https://quick-edit-demo.vercel.app/admin#/~)!
 
 In order for this to work, Tina needs to know what document and field the
 element is associated with. Tina makes this easy with the `tinaField` helper
