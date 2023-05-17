@@ -1,6 +1,6 @@
 ---
 title: Media Overview
-last_edited: '2022-06-29T00:00:00.000Z'
+last_edited: 2022-06-29T00:00:00.000Z
 next: /docs/reference/media/repo-based
 ---
 
@@ -32,7 +32,7 @@ export default defineConfig({
 })
 ```
 
-> Note: Can only Repo-based Media or an External Media Provider but **not both**
+> Note: Only Repo-based Media or an External Media Provider can be configured, but **not both**
 
 ## Repo-based Media (default)
 
