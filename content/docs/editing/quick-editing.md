@@ -42,17 +42,22 @@ that's been configured.
 
 > Quick editing will work for any field in your query, this means you can add quick editing to references too
 
-## The Quick Editing interface
+## Styling the Quick Editing interface
 
 When Tina finds an element with the `[data-tina-field]` attribute, it will attach some CSS to it when in edit mode, clicking on the element triggers
 the Tina form to open and focus the matching field.
 
 Since Tina uses CSS to achieve the quick-editing interface, it's possible for styles to collide. Overriding and customizing Tina's
-quick-editing styles are encouraged. There are a couple of ways to customize Tina's quick edit UI to overcome any styling conflicts
+quick-editing styles are encouraged. Here's an example of overriding the outline color to red:
 
-### Styling an full-width element which a background
-
-Tina's quick-editing styles use the `outline` property, which can get cut off when the element takes up the full width of the page.
+```css
+.__tina-quick-editing-enabled [data-tina-field] {
+  outline: 2px dashed rgba(254, 34, 56, 0.5);
+}
+.__tina-quick-editing-enabled [data-tina-field]:hover {
+  outline: 2px dashed rgba(254, 34, 56, 1);
+}
+```
 
 ## The `tinaField` helper
 
