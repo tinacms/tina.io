@@ -111,7 +111,7 @@ export const HeroComponent = (props) => {
 }
 ```
 
-Notice that the link data attribute only needs access to the `link` data object.
+Notice that the `<a>` tag's data attribute only needs access to the `link` data object.
 
 ### How does the `tinaField` helper work?
 
