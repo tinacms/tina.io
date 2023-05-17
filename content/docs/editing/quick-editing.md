@@ -15,6 +15,20 @@ last_edited: '2021-11-06T18:00:00.000Z'
 Tina's quick-editing feature allows editors to select the element they want
 to edit on the page in order to see it in the sidebar.
 
+<video
+className="video"
+autoPlay="true"
+loop
+muted
+playsInline><source
+src="https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/v1684344056/tina-io/docs/quick-edit-demo.mp4"
+type="video/webm"
+/><source
+src="https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/v1684344056/tina-io/docs/quick-edit-demo.mp4"
+type="video/mp4"
+/>
+</video>
+
 #### [Try the demo](https://quick-edit-demo.vercel.app/admin#/~)!
 
 In order for this to work, Tina needs to know what document and field the
