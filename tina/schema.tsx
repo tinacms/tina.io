@@ -100,9 +100,12 @@ export const schema = defineSchema({
         },
         {
           // note: this should be a hidden field that auto-updates
-          type: 'datetime',
+          type: 'string',
           name: 'last_edited',
           label: 'Last Edited',
+          ui: {
+            component: 'date',
+          },
         },
         {
           name: 'prev',
