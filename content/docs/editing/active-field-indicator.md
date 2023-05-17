@@ -5,14 +5,12 @@ last_edited: '2021-11-06T18:00:00.000Z'
 
 <div class="short-code-warning">
    <div>
-      <p>This is an experimental feature, and the API is subject to change. We don't yet suggest using this for production use-cases. Have any thoughts? Let us know in the chat, or through the <a href="https://github.com/tinacms/tinacms/discussions/2250">GitHub discussion</a>!</p>
+      <p>This API will be phased out and replaced with <a href="/docs/editing/quick-editing/">Quick Editing</a> in the future!</p>
    </div>
    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
       <path d="M32 464h448L256 48 32 464zm248-64h-48v-48h48v48zm0-80h-48v-96h48v96z"></path>
    </svg>
 </div>
-
-> Note: The active field indicator is not yet compatible with the new iframe approach introduced in `0.69.23`. Support will be added soon.
 
 ## Try it out
 

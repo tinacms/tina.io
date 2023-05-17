@@ -1,5 +1,5 @@
 ---
-title: Quick Editing (Experimental)
+title: Click to Edit (Experimental)
 last_edited: '2021-11-06T18:00:00.000Z'
 ---
 
@@ -12,7 +12,7 @@ last_edited: '2021-11-06T18:00:00.000Z'
    </svg>
 </div>
 
-Tina's quick-editing feature allows editors to select the element they want
+Tina's "click to edit" feature allows editors to select the element they want
 to edit on the page in order to see it in the sidebar.
 
 <video
@@ -52,15 +52,15 @@ const Page = (props) => {
 Now, when you open the Tina sidebar you'll see editing overlays on any element
 that's been configured.
 
-> Quick editing will work for any field in your query, this means you can add quick editing to references too
+> "Click to editing" will work for any field in your query, this means you can also click on fields from references as well.
 
-## Styling the Quick Editing interface
+## Styling the visual editing interface
 
 When Tina finds an element with the `[data-tina-field]` attribute, it will attach some CSS to it when in edit mode, clicking on the element triggers
 the Tina form to open and focus the matching field.
 
-Since Tina uses CSS to achieve the quick-editing interface, it's possible for styles to collide. Overriding and customizing Tina's
-quick-editing styles are encouraged. Here's an example of overriding the outline color to red:
+Since Tina uses CSS to achieve the interface, it's possible for styles to collide. Overriding and customizing Tina's
+styles are encouraged. Here's an example of overriding the outline color to red:
 
 ```css
 .__tina-quick-editing-enabled [data-tina-field] {

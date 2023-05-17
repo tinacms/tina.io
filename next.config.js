@@ -23,6 +23,11 @@ const config = {
   async redirects() {
     return [
       {
+        source: '/docs/editing/quick-editing',
+        destination: '/docs/editing/click-to-edit',
+        permanent: true,
+      },
+      {
         source: '/docs/tinacms-context',
         destination: '/docs/contextual-editing/overview',
         permanent: true,
