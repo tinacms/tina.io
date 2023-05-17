@@ -15,8 +15,6 @@ last_edited: '2021-11-06T18:00:00.000Z'
 Tina's quick-editing feature allows editors to select the element they want
 to edit on the page in order to see it in the sidebar.
 
-{/_ insert gif _/}
-
 #### [Try the demo](https://quick-edit-demo.vercel.app/admin#/~)!
 
 In order for this to work, Tina needs to know what document and field the
