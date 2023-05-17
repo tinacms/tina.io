@@ -1,6 +1,6 @@
 ---
 title: Media Overview
-last_edited: 2022-06-29T00:00:00.000Z
+last_edited: '2022-06-29T00:00:00.000Z'
 next: /docs/reference/media/repo-based
 ---
 
