@@ -4,10 +4,36 @@ date: '2023-05-17T03:00:00.000Z'
 author: Scott Gallant
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Aenean lacinia bibendum nulla sed consectetur. Curabitur blandit tempus porttitor. Nulla vitae elit libero, a pharetra augue.
+I’m excited to share that Tina’s visual editing UX just got a lot better with click-to-edit functionality.
 
-Maecenas sed diam eget risus varius blandit sit amet non magna. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas faucibus mollis interdum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+This pops open the Tina sidebar at the right location when you click editable elements on the page.  
 
-Vestibulum id ligula porta felis euismod semper. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec sed odio dui. Nullam id dolor id nibh ultricies vehicula ut id elit. Nullam id dolor id nibh ultricies vehicula ut id elit.
+<Youtube embedSrc="https://www.youtube.com/embed/Yoh2c5RUTiY" />
 
-Curabitur blandit tempus porttitor. Donec sed odio dui. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Our goal is to make visual editing the most intuitive editing experience *without* compromising developer experience and code-quality.  We've been using this internally for some time now and it's one of those features that makes you think "how did we do it before?".   Going back to the old way where you have to traverse nested forms in Tina's sidebar to find the right field feels cumbersome.  This is a big UX win.
+
+## Demo
+
+If you want to get a feel for the UX, try this demo (no auth required). 
+
+<Callout title="" description="" url="https://quick-edit-demo.vercel.app/admin" buttonText="Demo" />
+
+## Getting Started
+
+If you're already using visual editing, you can enable click-to-edit by adding the `data-tina-field` attribute to your DOM elements which allows Tina to map your content to the correct element on your page.  Note, this is different from the data-tinafield attribute used by our [Active Field Indicator](https://tina.io/docs/editing/active-field-indicator/).
+
+```javascript
+<h1 data-tina-field={tinaField(rest, "title")}>{title}</h1>
+```
+
+We provide a helper that makes this easier for pages with complex data structures.
+
+See the click-to-edit [docs here](/docs/editing/click-to-edit).
+
+We're excited to hear your feedback on this feature. 
+
+Happy editing!
+
+# To do
+
+* Compare it with before: traversing complex data structure in the U

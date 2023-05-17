@@ -203,6 +203,7 @@ export const schema = defineSchema({
                   type: 'string',
                   name: 'embedSrc',
                   label: 'Embed URL',
+                  description: 'Looks like this https://www.youtube.com/embed/Yoh2c5RUTiY',
                 },
               ],
             },
