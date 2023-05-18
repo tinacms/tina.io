@@ -6,7 +6,7 @@ author: Scott Gallant
 
 I’m excited to share that Tina’s visual editing UX just got a lot better with click-to-edit functionality.
 
-This pops open the Tina sidebar at the right location when you click editable elements on the page.  See it in action on [roev.com](https://www.roev.com/).
+This pops open the Tina sidebar at the right location when you click editable elements on the page.  See it in action on [roev.com](https://www.roev.com/) here: 
 
 <CloudinaryVideo src="https://res.cloudinary.com/forestry-demo/video/upload/v1684428946/blog-media/click-to-edit-may-2023/click-to-edit-demo" />
 
