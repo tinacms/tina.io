@@ -52,7 +52,7 @@ const Page = (props) => {
 Now, when you open the Tina sidebar you'll see editing overlays on any element
 that's been configured.
 
-> "Click to editing" will work for any field in your query, this means you can also click on fields from references as well.
+> "Click to edit" will work for any field in your query, this means you can also click on fields from references as well.
 
 ## Styling the visual editing interface
 
