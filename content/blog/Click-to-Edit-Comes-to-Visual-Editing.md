@@ -28,4 +28,4 @@ We provide a helper that makes it easy to add this to pages with complex data st
 
 We've been using this internally for a while now and it's one of those features that makes you think "how did we do it before?".   Going back to the old way where you have to traverse nested forms in Tina's sidebar to find the right field feels very cumbersome.
 
-We're excited to hear what you think about this.  Please hop in our [Discord server](https://discord.com/invite/zumN63Ybpf) if you have feedback.
+We're excited to hear what you think about click-to-edit.  Please hop in our [Discord server](https://discord.com/invite/zumN63Ybpf) if you have feedback.
