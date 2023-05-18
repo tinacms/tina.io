@@ -202,6 +202,7 @@ const components: Components<{
       <a
         className="px-6 pt-[12px] pb-[10px] text-base font-medium transition duration-150 ease-out rounded-full flex items-center gap-1 font-tuner whitespace-nowrap focus:outline-none focus:shadow-outline hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px leading-tight text-white hover:text-gray-50 border border-orange-600 bg-gradient-to-br from-orange-400 to-orange-600"
         href={link}
+        target="_blank"
       >
         {label} <BiRightArrowAlt className="h-5 w-auto -mt-1 opacity-70" />
       </a>
