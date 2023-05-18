@@ -24,7 +24,12 @@ const config = {
     return [
       {
         source: '/docs/editing/quick-editing',
-        destination: '/docs/editing/click-to-edit',
+        destination: '/docs/contextual-editing/react',
+        permanent: true,
+      },
+      {
+        source: '/docs/editing/click-to-edit',
+        destination: '/docs/contextual-editing/react',
         permanent: true,
       },
       {
