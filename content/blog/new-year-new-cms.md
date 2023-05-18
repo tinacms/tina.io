@@ -24,7 +24,7 @@ Traditionally when you sign up for a CMS, your content is locked into the vendor
 - CI / CD support
 - No vendor lock in
 
-### Contextual Editing
+### Visual Editing
 
 Tina is different from a traditional headless CMS, where you enter your data into a form with no context of how it will behave or look on your site. You then have to kick off a build and navigate to your site to see the changes.
 When you use Tina, the content is edited using a sidebar on your site, you get to see the changes in real time as you make them. This allows you to see exactly what you are editing or creating and how it will look and behave. No more saves, previews, refreshes after every few edits. Once you are happy with the changes, you can hit save and Tina will commit it directly to your GitHub repository and the rebuild process will begin.

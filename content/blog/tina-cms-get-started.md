@@ -4,24 +4,24 @@ date: '2022-03-04T08:00:00-04:00'
 author: James Perkins
 ---
 
-Until now, as a Tina user, you have enjoyed contextual editing when interacting with your content. We know that while this experience is first class for your content team, the amount of time it takes to implement Tina with contextual editing into your application is longer than you may want to invest when testing a new CMS.
+Until now, as a Tina user, you have enjoyed visual editing when interacting with your content. We know that while this experience is first class for your content team, the amount of time it takes to implement Tina with visual editing into your application is longer than you may want to invest when testing a new CMS.
 
 ## Tina as a CMS in a traditional way
 
-In order to give the best experience to all users, Tina now offers two ways to edit content, contextual editing and a more traditional looking CMS. Except with our traditional CMS, we are still powered by Markdown, JSON, or MDX and backed by Git. Here is a quick GIF of what it looks like implemented on a deployed website:
+In order to give the best experience to all users, Tina now offers two ways to edit content, visual editing and a more traditional looking CMS. Except with our traditional CMS, we are still powered by Markdown, JSON, or MDX and backed by Git. Here is a quick GIF of what it looks like implemented on a deployed website:
 
 ![Example Gif of Tina CMS](https://res.cloudinary.com/forestry-demo/video/upload/c_scale,w_1174/v1646412458/blog-media/getting-started-tina-admin/example.gif)
 
 ### How to implement Tina?
 
-When we launched Tina + Cloud in it’s alpha, you had to do the following to get Tina integrated and we only supported contextual editing:
+When we launched Tina + Cloud in it’s alpha, you had to do the following to get Tina integrated and we only supported visual editing:
 
 1. Add Tina using `npx @tinacms/cli init`
 2. Create your schema for your Markdown
 3. Implement your queries, for `getStaticPaths` and `getStaticProps`
 4. Handle the props to make your content editable.
 
-These steps are now cut in half. When you use just Tina as a CMS without contextual editing, you will only need to do:
+These steps are now cut in half. When you use just Tina as a CMS without visual editing, you will only need to do:
 
 1. Add Tina using `npx @tinacms/cli init`
 2. Create your schema for your Markdown

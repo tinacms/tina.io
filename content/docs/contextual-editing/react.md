@@ -1,17 +1,17 @@
 ---
-title: Contextual Editing in React
+title: Visual Editing in React
 id: '/docs/contextual-editing/react'
 prev: '/docs/contextual-editing/overview'
 next: '/docs/contextual-editing/router'
 ---
 
-> **Contextual Editing Requirements:**
+> **Visual Editing Requirements:**
 >
-> - Before a page can be setup with contextual editing, it first needs to be using [Tina's data-fetching](/docs/features/data-fetching/).
+> - Before a page can be setup with visual editing, it first needs to be using [Tina's data-fetching](/docs/features/data-fetching/).
 
-In react, (or react based frameworks like Next.js) contextual editing can be set up on a page with the `useTina` hook
+In react, (or react based frameworks like Next.js) visual editing can be set up on a page with the `useTina` hook
 
-Here is an example of setting up contextual editing, on a NextJS-based site.
+Here is an example of setting up visual editing, on a NextJS-based site.
 
 ```jsx
 // ...

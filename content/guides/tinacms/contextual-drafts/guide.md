@@ -1,5 +1,5 @@
 ---
-title: Using Drafts with Contextual Editing
+title: Using Drafts with Visual Editing
 last_edited: '2022-12-05T10:00:00.000Z'
 ---
 
@@ -7,11 +7,11 @@ last_edited: '2022-12-05T10:00:00.000Z'
 
 > Want to skip the the end result? [Check out the final result](https://github.com/tinacms/tina-barebones-starter-preview-mode)
 
-## Adding contextual editing with Drafts
+## Adding visual editing with Drafts
 
-## Using Drafts with Contextual Editing
+## Using Drafts with Visual Editing
 
-In most cases, you will not want to create pages on your production site for your draft documents. This makes [handling drafts](/docs/drafts/overview/) a challenge with contextual editing. In this example we will show how to add contextual editing to a draft document using [Next.js preview-mode](https://nextjs.org/docs/advanced-features/preview-mode).
+In most cases, you will not want to create pages on your production site for your draft documents. This makes [handling drafts](/docs/drafts/overview/) a challenge with visual editing. In this example we will show how to add visual editing to a draft document using [Next.js preview-mode](https://nextjs.org/docs/advanced-features/preview-mode).
 
 In preview-mode `getStaticProps` will be called on every request. This means that we can conditionally grab draft documents in preview-mode, and keep them out of your production site.
 

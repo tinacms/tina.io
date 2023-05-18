@@ -7,7 +7,7 @@ Once you've created a project in **Tina Cloud**, the next step is to connect you
 
 ## Enabling Tina Cloud in TinaCMS
 
-In the [Contextual Editing doc](/docs/tinacms-context/), we showed you how the Tina context is setup on your site.
+In the [Visual Editing doc](/docs/tinacms-context/), we showed you how the Tina context is setup on your site.
 
 To have editing work in production, in the `tina/config.<ts|js>` file, configure the `clientId` to point to your Tina Cloud project, and add your generated `token`.
 

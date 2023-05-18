@@ -47,7 +47,7 @@ Each one of these components is easily edited by content teams with no developme
 
 ## Tina
 
-The MDX-powered Tina delivers a world-class experience for both developers and content teams. We allow you to create new documentation with ease by unlocking a contextual editing experience versus a traditional CMS.
+The MDX-powered Tina delivers a world-class experience for both developers and content teams. We allow you to create new documentation with ease by unlocking a visual editing experience versus a traditional CMS.
 
 ## How the flow works for teams
 

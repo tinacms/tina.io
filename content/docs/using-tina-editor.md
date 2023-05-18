@@ -29,7 +29,7 @@ The table here lists all documents for the chosen Collection. This page also all
 
 If **contextual-editing** has been configured, clicking on a document will navigate the user to that document's preview with the Sidebar open and ready for editing.
 
-![Tina Editor Contextual Editing](/img/tina-contextual-editing.png)
+![Tina Editor Visual Editing](/img/tina-contextual-editing.png)
 
 However, if **contextual-editing** is not configured or simply not available for a particular Collection, clicking on a document will present the user with the basic editor.
 

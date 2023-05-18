@@ -41,15 +41,15 @@ When a Tina site is served, navigating to the `/admin` (or `/admin/index.html`) 
 
 For more info on Tina’s editing UI, click [here](/docs/using-tina-editor).
 
-Tina has two editing modes. Basic editing, which allows an editor to edit in a "basic editor" and contextual editing which can be used on any Reactive site (currently only support react).
+Tina has two editing modes. Basic editing, which allows an editor to edit in a "basic editor" and visual editing which can be used on any Reactive site (currently only support react).
 
-### Contextual editing
+### Visual editing
 
 ![Real-time editing with TinaCMS and Tina Cloud](https://res.cloudinary.com/forestry-demo/image/upload/v1619023278/tina-cms-visual-editing.gif 'Real-time editing with TinaCMS and Tina Cloud')
 
 Tina’s sidebar editor allows users to make changes to text, styling or components. Tina’s sidebar editor is set up on the frontend of your site and can be customizable to suit the needs of your site.
 
-To learn more about contextual editing and setting up the sidebar, click [here](/docs/tinacms-context).
+To learn more about visual editing and setting up the sidebar, click [here](/docs/tinacms-context).
 
 ## Tina Cloud
 

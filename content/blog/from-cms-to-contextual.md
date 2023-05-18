@@ -1,10 +1,10 @@
 ---
-title: From CMS To Contextual Editing
+title: From CMS To Visual Editing
 date: '2022-03-16T07:00:00.000Z'
 author: James Perkins
 ---
 
-Tina allows you as a developer to create an amazing editing experience. By default the editing experience is a more traditional CMS, where you login to a specific URL and you edit your content without being able to see the content till after you finish your changes. But, if you are looking for a more transparent real-time editing experience, Tina has a superpower, called Contextual Editing. Just as it sounds, you get instant feedback on the page as well as being able to preview the changes before publishing live to your site.
+Tina allows you as a developer to create an amazing editing experience. By default the editing experience is a more traditional CMS, where you login to a specific URL and you edit your content without being able to see the content till after you finish your changes. But, if you are looking for a more transparent real-time editing experience, Tina has a superpower, called Visual Editing. Just as it sounds, you get instant feedback on the page as well as being able to preview the changes before publishing live to your site.
 
 ![Example of Tina Context editing](https://res.cloudinary.com/forestry-demo/video/upload/q_100/v1647436971/blog-media/cms-to-contextual/TinaSuper.gif)
 
@@ -52,15 +52,15 @@ The `components` folder inside the `.tina` holds both our `TinaProvider` and `Dy
 
 This folder holds all the auto generated files from Tina, if you open this up you will see files that contain queries, fragments and types. You won’t need to make changes here but it’s good to know what you might find in there.
 
-Before we add contextual editing, go ahead and launch the application using `yarn tina-dev` and navigate to [`http://localhost:3000/`](http://localhost:3000/). You will notice that it is a static blog. Feel free to navigate around and get a feel for the blog.
+Before we add visual editing, go ahead and launch the application using `yarn tina-dev` and navigate to [`http://localhost:3000/`](http://localhost:3000/). You will notice that it is a static blog. Feel free to navigate around and get a feel for the blog.
 
 Now if you navigate to [http://localhost:3000/admin](http://localhost:3000/admin) you will be presented with a screen to login, if you login you will land on the CMS dashboard. Selecting a collection on the left will bring you to a screen with all the current files in that space. Then selecting a file will allow you to edit it as you see fit.
 
 ![Tina CMS Example](https://res.cloudinary.com/forestry-demo/video/upload/c_scale,w_1174/v1646412458/blog-media/getting-started-tina-admin/example.gif)
 
-## Adding Contextual Editing.
+## Adding Visual Editing.
 
-Now you have an understanding of both how the CMS works, and how the code behind is laid out we can start working on adding contextual editing to our project. What do we need to do to make contextual editing work?
+Now you have an understanding of both how the CMS works, and how the code behind is laid out we can start working on adding visual editing to our project. What do we need to do to make visual editing work?
 
 1. Update `getStaticPaths` and `getStaticProps` to use Tina’s graphql layer
 
@@ -331,7 +331,7 @@ We are going to update our props from `({ post, morePosts, preview })` to `(prop
 +  })
 ```
 
-As you can see, we are reusing our query from before and passing the variables, and data to `useTina`. This now means we can power our site using contextual editing. Congratulations your site now has superpowers!
+As you can see, we are reusing our query from before and passing the variables, and data to `useTina`. This now means we can power our site using visual editing. Congratulations your site now has superpowers!
 
 ### Update our elements to use Tina data
 
@@ -382,9 +382,9 @@ const router = useRouter()
   )
 ```
 
-### The final piece of Contextual Editing.
+### The final piece of Visual Editing.
 
-One piece of code that the original was doing was taking the markdown and turning it into HTML, inside of the `getStaticPriops`. We currently aren’t doing that with our body and just returning the string. Due to the nature of contextual editing, we need to make sure that we are always passing the latest content through the `markdownToHtml` function provided by the team at Next.js. This is where `useState` and `useEffect` come in, first create a content variable that is track by a state:
+One piece of code that the original was doing was taking the markdown and turning it into HTML, inside of the `getStaticPriops`. We currently aren’t doing that with our body and just returning the string. Due to the nature of visual editing, we need to make sure that we are always passing the latest content through the `markdownToHtml` function provided by the team at Next.js. This is where `useState` and `useEffect` come in, first create a content variable that is track by a state:
 
 > Note you could use another markdown to html package that would not require this, but in this example we want to reuse as much of the original code as possible to show how you could integrate with minimal code replacement.
 
@@ -407,10 +407,10 @@ Now all we need to do is update our post body content from `data.post.body` to `
 
 ## Next steps
 
-Now that you have contextual editing here are a few things you can explore with Tina
+Now that you have visual editing here are a few things you can explore with Tina
 
 - [Media management through Cloudinary](https://tina.io/docs/reference/media/external/cloudinary/)
-- [Route Mapping (connect the CMS to contextual editing](https://tina.io/docs/tinacms-context/#the-routemappingplugin)
+- [Route Mapping (connect the CMS to visual editing](https://tina.io/docs/tinacms-context/#the-routemappingplugin)
 
 ## How to keep up to date with Tina?
 

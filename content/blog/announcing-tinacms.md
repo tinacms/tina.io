@@ -15,7 +15,7 @@ Tina is not a CMS, in the traditional sense. As in, it’s not a _separate_ syst
 
 ![tina-announcement-gif](https://res.cloudinary.com/forestry-demo/image/upload/v1571244588/tina-cms-announcement-post.gif)
 
-When you install Tina, your site gets a floating _edit_ icon in the corner that toggles an editing pane (left) to expose the CMS fields. This gives your content editors a contextual editing experience that’s super intuitive. When you click "Save" Tina writes your content to external data sources, such as markdown or json files. Try the [Gatsby starter site](https://tinacms.org/guides/gatsby/adding-tina/project-setup) to see for yourself.
+When you install Tina, your site gets a floating _edit_ icon in the corner that toggles an editing pane (left) to expose the CMS fields. This gives your content editors a visual editing experience that’s super intuitive. When you click "Save" Tina writes your content to external data sources, such as markdown or json files. Try the [Gatsby starter site](https://tinacms.org/guides/gatsby/adding-tina/project-setup) to see for yourself.
 
 ### Where does Tina store my content?
 

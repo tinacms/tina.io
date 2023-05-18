@@ -80,7 +80,7 @@
         "slug": "/docs/features/data-fetching/"
       },
       {
-        "title": "Contextual Editing",
+        "title": "Visual Editing",
         "items": [
           {
             "slug": "/docs/contextual-editing/overview/",
@@ -272,7 +272,7 @@
                 "title": "Adding Internationalization to Tina"
               },
               {
-                "title": "Using Drafts with Contextual Editing",
+                "title": "Using Drafts with Visual Editing",
                 "slug": "/guides/tinacms/contextual-drafts/guide/"
               }
             ]
