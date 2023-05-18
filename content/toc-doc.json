@@ -544,6 +544,10 @@
         "slug": "/docs/extending-tina/edit-state/"
       },
       {
+        "title": "The \"tinaField\" helper",
+        "slug": "/docs/contextual-editing/tinafield/"
+      },
+      {
         "title": "CMS Toolkit",
         "items": [
           {
