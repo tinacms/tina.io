@@ -203,6 +203,8 @@ export const schema = defineSchema({
                   type: 'string',
                   name: 'embedSrc',
                   label: 'Embed URL',
+                  description:
+                    'Looks like this https://www.youtube.com/embed/Yoh2c5RUTiY',
                 },
               ],
             },
@@ -309,6 +311,34 @@ export const schema = defineSchema({
               name: 'CustomFieldComponentDemo',
               label: 'Field Component Demo [do not use]',
               fields: [{ type: 'string', name: 'test' }],
+            },
+            {
+              name: 'CloudinaryVideo',
+              label: 'Cloudinary Video',
+              fields: [
+                {
+                  type: 'string',
+                  name: 'src',
+                  label: 'Cloudinary URL',
+                  description: 'Full URL with no file extension',
+                },
+              ],
+            },
+            {
+              name: 'Button',
+              label: 'Button',
+              fields: [
+                {
+                  type: 'string',
+                  name: 'label',
+                  label: 'Label',
+                },
+                {
+                  type: 'string',
+                  name: 'link',
+                  label: 'Link',
+                },
+              ],
             },
           ],
         },

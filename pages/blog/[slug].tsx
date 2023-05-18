@@ -23,6 +23,7 @@ import path from 'path'
 import { TinaMarkdown, Components } from 'tinacms/dist/rich-text'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import atomOneDark from 'react-syntax-highlighter/dist/cjs/styles/prism/atom-dark'
+import { BiRightArrowAlt } from 'react-icons/bi'
 
 const components: Components<{
   Iframe: { iframeSrc: string; height: string }
@@ -38,6 +39,8 @@ const components: Components<{
   Diagram: { alt: string; src: string }
   WideImage: { alt: string; src: string }
   CustomFieldComponentDemo: {}
+  CloudinaryVideo: { src: string }
+  Button: { link: string; label: string }
 }> = {
   Iframe: ({ iframeSrc, height }) => {
     return <iframe width="100%" height={`${height}px`} src={iframeSrc} />
@@ -188,6 +191,23 @@ const components: Components<{
       <a href="https://codepen.io">CodePen</a>.
     </iframe>
   ),
+  CloudinaryVideo: ({ src }) => (
+    <video className="video my-6" autoPlay loop muted playsInline>
+      <source src={src + `.webm`} type="video/webm" />
+      <source src={src + `.mp4`} type="video/mp4" />
+    </video>
+  ),
+  Button: ({ link, label }) => (
+    <div className="w-full flex justify-start my-6">
+      <a
+        className="px-6 pt-[12px] pb-[10px] text-base font-medium transition duration-150 ease-out rounded-full flex items-center gap-1 font-tuner whitespace-nowrap focus:outline-none focus:shadow-outline hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px leading-tight text-white hover:text-gray-50 border border-orange-600 bg-gradient-to-br from-orange-400 to-orange-600"
+        href={link}
+        target="_blank"
+      >
+        {label} <BiRightArrowAlt className="h-5 w-auto -mt-1 opacity-70" />
+      </a>
+    </div>
+  ),
 }
 
 function BlogTemplate({ file, siteConfig, ...props }) {
@@ -233,11 +253,11 @@ function BlogTemplate({ file, siteConfig, ...props }) {
           description: excerpt,
           images: [
             frontmatter.opengraph?.image ||
-            openGraphImage(
-              frontmatter.title,
-              ' | TinaCMS Blog',
-              frontmatter.author
-            ),
+              openGraphImage(
+                frontmatter.title,
+                ' | TinaCMS Blog',
+                frontmatter.author
+              ),
           ],
         }}
       />
