@@ -6,7 +6,7 @@ author: Scott Gallant
 
 I’m excited to share that Tina’s visual editing UX just got a lot better with click-to-edit functionality.
 
-This pops open the Tina sidebar at the right location when you click editable elements on the page.  See it in action on [roev.com](https://www.roev.com/) here: 
+This pops open the Tina sidebar at the right location when you click editable elements on the page.  See it in action on [roev.com](https://www.roev.com/) here:
 
 <CloudinaryVideo src="https://res.cloudinary.com/forestry-demo/video/upload/v1684428946/blog-media/click-to-edit-may-2023/click-to-edit-demo" />
 
@@ -20,9 +20,11 @@ If you want to get a feel for the UX, try this demo (no log in required).
 
 ## Getting Started
 
-If you're already using visual editing, you can enable click-to-edit by adding the `data-tina-field` attribute to your DOM elements which allows Tina to map the editable elements on your page to the correct CMS field.  Note, this is different from the data-tinafield attribute used by our [Active Field Indicator](https://tina.io/docs/editing/active-field-indicator/).
+If you're already using visual editing, you can enable click-to-edit by adding the `data-tina-field` attribute to your DOM elements which allows Tina to map the editable elements on your page to the correct CMS field.  We provide a helper that makes it easy to add this to pages with complex data structures. 
 
-We provide a helper that makes it easy to add this to pages with complex data structures. See the click-to-edit [docs here](/docs/editing/click-to-edit).
+<Button link="https://tina.io/docs/contextual-editing/react/#click-to-edit-experimental" label="See the Docs" />
+
+Note, the `data-tina-field` attribute is different from the `data-tinafield` attribute used by our [Active Field Indicator](https://tina.io/docs/editing/active-field-indicator/) (which will be phased out in the future). 
 
 ## No Going Back
 
