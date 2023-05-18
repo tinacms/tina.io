@@ -8,7 +8,7 @@ Tina's default "basic editor" works in a wide varierty of frameworks. It reads/w
 
 ![basic editor](https://res.cloudinary.com/forestry-demo/image/upload/v1647455231/tina-io/docs/basic-editor.png)
 
-> Tina also allows support for ["Contextual Editing"](/docs/contextual-editing/overview/) so that editors can see their pages being updated in real-time as they make changes. Contextual editing is currently limited to React-based frameworks (NextJS, React, etc).
+> Tina also allows support for ["Visual Editing"](/docs/contextual-editing/overview/) so that editors can see their pages being updated in real-time as they make changes. Visual editing is currently limited to React-based frameworks (NextJS, React, etc).
 
 ## Configuring Tina with each framework
 

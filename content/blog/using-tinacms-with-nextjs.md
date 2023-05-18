@@ -464,7 +464,7 @@ Now that you are returning only two props from `getStaticProps` you need to upda
 export default function BlogTemplate(props) {
 ```
 
-Now you can use the `useTina` hook to handle contextual editing. The useTina hook expects the query, variables and data. Which you can pass in from your props.
+Now you can use the `useTina` hook to handle visual editing. The useTina hook expects the query, variables and data. Which you can pass in from your props.
 
 ```
 const { data } = useTina({
@@ -567,7 +567,7 @@ cmsCallback={cms => {
 Here you are passing the `cms` and now you can import our component you installed to add to the plugins.
 
 ```javascript
-import('react-tinacms-editor').then(field => {
+import('react-tinacms-editor').then((field) => {
   cms.plugins.add(field.MarkdownFieldPlugin)
 })
 ```

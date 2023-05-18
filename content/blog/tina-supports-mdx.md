@@ -5,7 +5,7 @@ author: James Perkins
 last_edited: '2021-10-26T08:00:00-04:00'
 ---
 
-The team at Tina is dedicated to revolutionizing the CMS space. We were the first to offer contextual editing in real-time which enabled teams to be more productive. Now we are introducing the world’s first UI editor for MDX. This empowers content teams to add components to a page with a single click.
+The team at Tina is dedicated to revolutionizing the CMS space. We were the first to offer visual editing in real-time which enabled teams to be more productive. Now we are introducing the world’s first UI editor for MDX. This empowers content teams to add components to a page with a single click.
 
 <Youtube embedSrc={"https://www.youtube.com/embed/yYysK7rCNM4"} />
 
@@ -78,7 +78,7 @@ import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import Callout from '../../blocks/callout-block'
 
 const components = {
-  Callout: props => {
+  Callout: (props) => {
     return <Callout callout={props} />
   },
 }

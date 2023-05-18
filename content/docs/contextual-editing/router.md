@@ -1,5 +1,5 @@
 ---
-title: Setting up a Router for Contextual Editing
+title: Setting up a Router for Visual Editing
 id: '/docs/contextual-editing/router'
 prev: '/docs/contextual-editing/overview'
 ---
@@ -71,7 +71,7 @@ const default defineConfig({
 })
 ```
 
-Now when a document is clicked in the CMS we will be re-directed to the page in the site with contextual editing.
+Now when a document is clicked in the CMS we will be re-directed to the page in the site with visual editing.
 
 <video
 className="video"

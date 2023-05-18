@@ -1,5 +1,5 @@
 ---
-title: Contextual Editing in Vue
+title: Visual Editing in Vue
 id: '/docs/contextual-editing/vue'
 prev: '/docs/contextual-editing/overview'
 next: '/docs/contextual-editing/router'

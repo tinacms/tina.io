@@ -68,7 +68,7 @@ const App = ({ Component, pageProps }) => {
 
 ## The introduction of `useTina`
 
-`useTina` allows devs to register forms, and setup contextual editing on a page-level, rather than having to pass everything through the root `<TinaCMS>` provider
+`useTina` allows devs to register forms, and setup visual editing on a page-level, rather than having to pass everything through the root `<TinaCMS>` provider
 
 ### Example implementation
 

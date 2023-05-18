@@ -17,7 +17,7 @@ The Tina team is off-to-the races on an exciting year. We’re on a mission to r
 Tina has two unique differentiators from other, more traditional, CMSs:
 
 1.  **Git -** We’re big believers in using files (Markdown, MDX, JSON, etc) and Git for content storage
-2.  **Contextual Editing -** The best editing experience is contextual, where your content editors can see their changes reflected on their site in real-time
+2.  **Visual Editing -** The best editing experience is contextual, where your content editors can see their changes reflected on their site in real-time
 
 Using Git to store your content is the dream. When your content is in Markdown and JSON files, it simplifies your stack. You get the benefits of structured content without a database. You own your content in _your_ repo, in open-formats, instead of renting space in a 3rd-party database or managing a backend server.  When you use the file system + Git for your content you get version control (history, roll-backs, etc) and a CI/CD-friendly workflow. Most importantly, you gain portability and aren’t locked into any one system. With Git, you’re in control of your site: code and content.
 
@@ -72,7 +72,7 @@ We’ve been making major improvements to Tina’s UI. Specifically:
 
 ### 1. Revamped UI
 
-Tina’s UI will offer a more-traditional CMS experience for browsing content on your site.  That way, you can browse and edit content that isn’t associated with a view, like an author in the example below and you will get the rich preview of your site only when you wire up “contextual editing” on specific pages.
+Tina’s UI will offer a more-traditional CMS experience for browsing content on your site.  That way, you can browse and edit content that isn’t associated with a view, like an author in the example below and you will get the rich preview of your site only when you wire up “visual editing” on specific pages.
 
 <Youtube embedSrc={"https://youtube.com/embed/GMe8F7vyUa0"} />
 

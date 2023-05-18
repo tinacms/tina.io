@@ -57,4 +57,4 @@ Read more about querying data [here](/docs/data-fetching/overview).
 
 ## Caveats:
 
-- The above solution won't work as-is with [contextual editing](/docs/contextual-editing/overview). To setup contextual editing with drafts, you will need to implement [NextJS Preview-Mode](/guides/tinacms/contextual-drafts/guide/).
+- The above solution won't work as-is with [visual editing](/docs/contextual-editing/overview). To setup visual editing with drafts, you will need to implement [NextJS Preview-Mode](/guides/tinacms/contextual-drafts/guide/).

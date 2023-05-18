@@ -22,15 +22,15 @@ TinaCMS is focused on providing live, in-context editing capabilities, while For
 
 TinaCMS allows devs to iterate more quickly by allowing TinaCMS to be run in dev-mode, locally alongside your site. For example, you can make changes to your content models and fields and see the results immediately, without having to wait for them to be synchronized with a hosted dashboard.
 
-To read more about some of the specific conceptual difference of TinaCMS vs Forestry, read our [Comparing Forestry & Tina Concepts doc](/docs/forestry/accessing-cms/ "")
+To read more about some of the specific conceptual difference of TinaCMS vs Forestry, read our [Comparing Forestry & Tina Concepts doc](/docs/forestry/accessing-cms/)
 
 ## Caveats of using TinaCMS
 
-* As mentioned above, TinaCMS's contextual editing only supports React-based websites and applications. If your website or application is not built with React, you will still be able to use the TinaCMS standalone editor, but there will be no previews.
-* TinaCMS is a relatively new and rapidly evolving CMS, so there may be some missing Framework-specific features compared to Forestry.
-* Since TinaCMS uses code by configuration, the initial setup process may take a bit more effort compared to Forestry's UI import. This is a tradeoff for the amount of customizability TinaCMS provides.
+- As mentioned above, TinaCMS's visual editing only supports React-based websites and applications. If your website or application is not built with React, you will still be able to use the TinaCMS standalone editor, but there will be no previews.
+- TinaCMS is a relatively new and rapidly evolving CMS, so there may be some missing Framework-specific features compared to Forestry.
+- Since TinaCMS uses code by configuration, the initial setup process may take a bit more effort compared to Forestry's UI import. This is a tradeoff for the amount of customizability TinaCMS provides.
 
-For a list of Forestry features that that haven't (yet) made their way to TinaCMS, see our ["Missing Features Doc"](/docs/forestry/missing-forestry-features/ "").
+For a list of Forestry features that that haven't (yet) made their way to TinaCMS, see our ["Missing Features Doc"](/docs/forestry/missing-forestry-features/).
 
 TinaCMS is our V2 CMS, and where our future development efforts will be focused. We're confident TinaCMS will eclipse Forestry's feature-set, and provide a much improved editor experience & developer experience to teams.
 
