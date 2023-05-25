@@ -25,9 +25,9 @@ export default function Home(props) {
     data: props.data,
   })
 
-  // Note how our page body uses "data", and not the original "props.data".
+  // Note how our page title uses "data", and not the original "props.data".
   // This ensures that the content will be updated in edit-mode as the user types
-  return <h1>{data.page.body}</h1>
+  return <h1>{data.page.title}</h1>
 }
 
 export const getStaticProps = async () => {
