@@ -96,10 +96,9 @@ exisitng branch name. Next, select the point in time from which you want to push
 a few minutes, the new branch will be available in your GitHub repository with any changes in Tina Cloud. A pull request
 can then be created to merge the changes to your desired branch.
 
-##### Reset Repository Cache
+##### Branch "Resync"
 
-Clicking this will completely reset the cached copy of your GitHub repository and initiate a reindexing process. Any
-changes only present in the cached copy will be lost. Before resetting the cache, you should ensure that any changes have
+Clicking "Resync" on a branch will completely reset the cached copy of your GitHub repository and initiate a reindexing process. Any changes only present in the cached copy will be lost. Before resetting the cache, you should ensure that any changes have
 been successfully pushed to GitHub using the Export Branch feature.
 
 ##### Force Push
