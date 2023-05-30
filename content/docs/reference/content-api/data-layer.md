@@ -37,15 +37,15 @@ Use the [Refresh Webhooks](/docs/tina-cloud/dashboard/projects/#refresh-webhooks
 
 In some cases, Tina Cloud's repository cache may become out of sync with your GitHub repository which might result in
 changes being present in your repository but not in TinaCMS. Generally this should only happen if there is a problem
-with the GitHub webhook. If this does occur, you can reset the cached repository, restoring the cache to the current
-state of your repository. This will discard any updates in Tina Cloud that haven't been pushed to your repository.
+with the GitHub webhook. If this does occur, you can re-index the branch that is out of sync, restoring it to the current
+state of your repository. This will discard any updates in the branch in Tina Cloud that haven't been pushed to your repository.
 
 Use the [Refresh Webhooks](/docs/tina-cloud/dashboard/projects/#refresh-webhooks) button to re-initialize the webhook.
 
 ### Export Branch
 
-Using "Resync" on a branch will discard any changes in
-Tina Cloud that haven't been pushed to your repository. If you need to export your unsaved content from Tina Cloud, you
+Using "Reindex" on a branch will discard any changes in
+Tina Cloud that haven't been pushed to your repository for that branch. If you need to export your unsaved content from Tina Cloud, you
 can use the [Export Branch](/docs/tina-cloud/dashboard/projects/#export-branch) button to export the current state of
 your repository to a new branch.
 
