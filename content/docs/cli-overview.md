@@ -32,7 +32,7 @@ e.g: "tinacms dev --help"
 
 `dev` will compile the schema into static files, generate typescript types for use in your project and start a graphQL server on http://localhost:4001
 
-This command takes the following arguments:
+#### Options
 
 | Argument         | Description                                                                                                                                                                  |
 | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -45,6 +45,8 @@ This command takes the following arguments:
 ### `tinacms build`
 
 This command compiles and validates the schema and generates the client and types. It will also ensure your content has finished indexing.
+
+#### Options
 
 | Argument                 | Description                                                                                                 |
 | ------------------------ | ----------------------------------------------------------------------------------------------------------- |
@@ -61,14 +63,14 @@ This command compiles and validates the schema and generates the client and type
 npx @tinacms/cli init
 ```
 
-This will,
+This will:
 
-1. Install all required dependencies for Tina.
-2. Define a basic content schema in the `tina` directory.
-3. Create example content in the demo directory.
-4. Edit the `package.json` to have the `dev`, `build`, and `start` scripts run the tina GraphQL API.
+- Install all required dependencies for Tina.
+- Define a basic content schema in the `tina` directory.
+- Create example content in the demo directory.
+- Edit the `package.json` to have the `dev`, `build`, and `start` scripts run the tina GraphQL API.
 
-#### Optional parameters
+#### Options
 
 | Argument        | Description                    |
 | --------------- | ------------------------------ |
@@ -78,12 +80,12 @@ This will,
 
 `audit` is used for checking for errors in your in your files. It currently does two things.
 
-1. Checks to see if the files have the correct extension
-2. Submits each file as a Graphql mutation and checks for Graphql errors
+- Checks to see if the files have the correct extension
+- Submits each file as a Graphql mutation and checks for Graphql errors
 
 By default the mutation will not change the content of the files.
 
-Takes the following options,
+#### Options
 
 | Argument         | Description                                                                                                                                                                                                                                                                |
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
