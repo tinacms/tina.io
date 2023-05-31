@@ -528,6 +528,10 @@
     {
       "source": "/guides/tinacms/non-react-based-ssg/guide/",
       "destination": "/docs/frameworks/other/"
+    },
+    {
+      "source": "/docs/editing/active-field-indicator",
+      "destination": "/docs/contextual-editing/react/#click-to-edit-experimental"
     }
   ]
 }

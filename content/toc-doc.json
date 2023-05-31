@@ -134,11 +134,6 @@
       {
         "title": "Single Document Collections",
         "slug": "/docs/editing/single-document-collections/"
-      },
-      {
-        "title": "Active Field Indicator",
-        "slug": "/docs/editing/active-field-indicator/",
-        "status": "Beta"
       }
     ]
   },
