@@ -3302,10 +3302,10 @@
   resolved "https://registry.yarnpkg.com/@tinacms/sharedctx/-/sharedctx-1.0.1.tgz#ccd6ace6c7ede477fc94aa4704faac13e39cff31"
   integrity sha512-DXxTKupAMg+gO6zRJOxKlvaZGpWcyJXi1d+At/Ev5C6/jRN//BqUgVMRC2y5hcHhfWK2bkNQ4ZfVvWWrA3//qw==
 
-"@tinacms/toolkit@0.0.0-20230602184939":
-  version "0.0.0-20230602184939"
-  resolved "https://registry.yarnpkg.com/@tinacms/toolkit/-/toolkit-0.0.0-20230602184939.tgz#3741795602dbfe50d08aafe897ae68974ced8a4c"
-  integrity sha512-nUuYqkui8gderfi8wrHQK0PjdAxMztssLKDENCF5hk1Sa/BeaTqKuvAQRvitLkcDkSdlt6S0H4Srv3l7zTclGw==
+"@tinacms/toolkit@0.0.0-20230602190944":
+  version "0.0.0-20230602190944"
+  resolved "https://registry.yarnpkg.com/@tinacms/toolkit/-/toolkit-0.0.0-20230602190944.tgz#9dcd159908985d31f2ddfb0f59e4edd3b489c2c1"
+  integrity sha512-7OCIaHKRl3OO/8Dnf7p4ya19P2cdFkeKVCOznksveSAHSWrrgKxK46nBgqtgQu4y8ppcjIHMDQEmq7SFisLxDA==
   dependencies:
     "@floating-ui/dom" "^0.1.7"
     "@floating-ui/react-dom" "^0.3.3"
@@ -15376,10 +15376,10 @@ through2@^2.0.0:
     readable-stream "~2.3.6"
     xtend "~4.0.1"
 
-tinacms@1.5.7:
-  version "1.5.7"
-  resolved "https://registry.yarnpkg.com/tinacms/-/tinacms-1.5.7.tgz#310edd79ff89280eecf550a8c6360ec7ee06516a"
-  integrity sha512-t3U6HowE/3MYT+sgEhCKyaWB9DVolMBmTYBkBnDLWH0EzCYvMvVBDOgOfu6IHjsmsrwoh43Xh6ZQRAvRkrUpmg==
+tinacms@0.0.0-20230602190944:
+  version "0.0.0-20230602190944"
+  resolved "https://registry.yarnpkg.com/tinacms/-/tinacms-0.0.0-20230602190944.tgz#9dd2e6cc63e3e7acf1677b52f0e772033385b298"
+  integrity sha512-/63nH95OShSoPZejPlT9721X7/uWVIvEmI6jceexEhdXrqqazMY+lmKyUiatJFhstYu7x4jBT4VqKCHUWfjeNw==
   dependencies:
     "@graphql-inspector/core" "^4.0.0"
     "@graphql-tools/relay-operation-optimizer" "^6.4.1"
@@ -15388,7 +15388,7 @@ tinacms@1.5.7:
     "@react-hook/window-size" "^3.0.7"
     "@tinacms/schema-tools" "1.4.4"
     "@tinacms/sharedctx" "1.0.1"
-    "@tinacms/toolkit" "1.7.3"
+    "@tinacms/toolkit" "0.0.0-20230602190944"
     crypto-js "^4.0.0"
     encoding "0.1.13"
     fetch-ponyfill "^7.1.0"
@@ -15402,10 +15402,10 @@ tinacms@1.5.7:
     yup "^0.32.0"
     zod "^3.14.3"
 
-tinacms@fix-external-media:
-  version "0.0.0-20230602184939"
-  resolved "https://registry.yarnpkg.com/tinacms/-/tinacms-0.0.0-20230602184939.tgz#6915c02bbef9f0b9326fa658c36a091c385cad6a"
-  integrity sha512-9Rvrs15McoZyYXQFYMgEljcAccecUgZaNT81pFYeVoNUrGEqG45xaAjIcTOH0da4yjl2Myc9xx9zoJFplNWo4g==
+tinacms@1.5.7:
+  version "1.5.7"
+  resolved "https://registry.yarnpkg.com/tinacms/-/tinacms-1.5.7.tgz#310edd79ff89280eecf550a8c6360ec7ee06516a"
+  integrity sha512-t3U6HowE/3MYT+sgEhCKyaWB9DVolMBmTYBkBnDLWH0EzCYvMvVBDOgOfu6IHjsmsrwoh43Xh6ZQRAvRkrUpmg==
   dependencies:
     "@graphql-inspector/core" "^4.0.0"
     "@graphql-tools/relay-operation-optimizer" "^6.4.1"
@@ -15414,7 +15414,7 @@ tinacms@fix-external-media:
     "@react-hook/window-size" "^3.0.7"
     "@tinacms/schema-tools" "1.4.4"
     "@tinacms/sharedctx" "1.0.1"
-    "@tinacms/toolkit" "0.0.0-20230602184939"
+    "@tinacms/toolkit" "1.7.3"
     crypto-js "^4.0.0"
     encoding "0.1.13"
     fetch-ponyfill "^7.1.0"
