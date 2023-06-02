@@ -102,7 +102,7 @@
     "strip-markdown": "^3.1.1",
     "styled-components": "^5.3.3",
     "styled-jsx-plugin-sass": "^1.0.0",
-    "tinacms": "^1.5.7",
+    "tinacms": "0.0.0-20230602183254",
     "unist-util-visit": "^4.1.1",
     "webpack": "^5.76.0"
   },
