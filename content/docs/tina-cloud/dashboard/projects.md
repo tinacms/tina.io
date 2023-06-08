@@ -28,7 +28,7 @@ In the last step, the following properties must be configured:
 
 #### Project Name
 
-This name is shown to your users when they login to the project. Defaults to the repository name.
+This name is shown to your users when they log in to the project. Defaults to the repository name.
 
 #### Site URL(s)
 
@@ -91,7 +91,7 @@ not execute, Tina Cloud may become out of sync with your GitHub repository. Clic
 Clicking this opens a modal dialog that allows you to push a new branch with the changes from an existing branch at a
 particular point in time. First select the branch where the changes are located under Source Branch. An export branch
 name is auto-generated from this selection, but can also be edited as desired as long as it doesn't conflict with an
-exisitng branch name. Next, select the point in time from which you want to push the changes, either
+existing branch name. Next, select the point in time from which you want to push the changes, either
 'Last Successful Push' or a custom date in the past. Once these selections are made, click the 'Export Branch' button. After
 a few minutes, the new branch will be available in your GitHub repository with any changes in Tina Cloud. A pull request
 can then be created to merge the changes to your desired branch.
