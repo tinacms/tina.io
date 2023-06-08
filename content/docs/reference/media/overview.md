@@ -19,7 +19,7 @@ export default defineConfig({
     collections: [
       // Array of collections
     ]
-  }
+  },
   media: {
     // Media config
     tina: {
