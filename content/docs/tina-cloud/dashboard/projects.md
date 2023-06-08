@@ -108,12 +108,22 @@ necessary to execute a force push. With a force push, the commit history on the 
 with the history in the repository cache. This should only be used if you are confident that the changes in the
 TinaCMS repository cache are correct.
 
-### API Tokens
+### API tokens
 
 There are two types of tokens associated with projects in Tina Cloud: Content (Read-only) and Search.
 
 * Content tokens provide read-only access to your project's content.
 * Search tokens provide write access to the Tina Cloud search API.
+
+<div class="short-code-warning">
+  <div>
+    <p>Warning: API tokens should be considered sensitive and not be committed to your project repository. Content tokens allow clients read-only access to your repository content. Search tokens allow clients to update the Tina Cloud hosted search index for your site. Please use environment variables for these in your Tina configuration.</p>
+  </div>
+
+  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+    <path d="M32 464h448L256 48 32 464zm248-64h-48v-48h48v48zm0-80h-48v-96h48v96z" />
+  </svg>
+</div>
 
 #### Generate tokens from the dashboard
 
