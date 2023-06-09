@@ -42,7 +42,7 @@ export default defineConfig({
 
 ### Development
 
-When search is configured and a site running locally with the `dev` command, content will be automatically indexed at startup. Any changes to local content will also trigger updates to the search index.
+When search is configured and a site is running locally with the `dev` command, content will be automatically indexed at startup. Any changes to local content will also trigger updates to the (local) search index.
 
 ### Production
 
