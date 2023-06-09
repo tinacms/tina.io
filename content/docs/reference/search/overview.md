@@ -91,4 +91,4 @@ fields: [
 
 ## Alternative Search Providers
 
-Currently only Tina Cloud's search API is supported but we plan to provide alternative providers in the near future, as well as documentation for implementing custom search providers.
+Currently only Tina Cloud's search API is supported but we plan to provide alternative providers in the near future, as well as documentation for implementing custom search providers. If you'd like support for a specific search provider, [let us know](https://github.com/tinacms/tinacms/discussions).
