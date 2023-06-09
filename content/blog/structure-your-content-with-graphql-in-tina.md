@@ -47,7 +47,7 @@ We also need to define a collection for the authors, as well as a basic template
 
 > 💡 To get type autocompletion when you edit the schema install the [VSCode GraphQL extension](https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql).
 
-The corresponding schema stored in `.tina/schema.ts` lools like this:
+The corresponding schema stored in `.tina/schema.ts` looks like this:
 
 ```js
 import { defineSchema } from 'tina-graphql-gateway-cli'

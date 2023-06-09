@@ -14,7 +14,7 @@ Developers can setup a "draft" field on a document, which can be toggled to cond
 
 ## Working in branches
 
-Some editoral teams like to work in branches, for more control over what gets merged into production.
+Some editorial teams like to work in branches, for more control over what gets merged into production.
 
 In these cases, you may want to have your editors work from your hosting provider's preview deployments, instead of `<your-production-site>/admin`.
 

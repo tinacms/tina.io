@@ -56,7 +56,7 @@ Once that's done, go to: `http://localhost:3000/home-b` to confirm that your new
 
 ## Setting up our A/B tests
 
-Utlimately, we want our site to dynamically swap out certain pages for alternate page-variants, but we will first need a place to reference these active A/b tests.
+Ultimately, we want our site to dynamically swap out certain pages for alternate page-variants, but we will first need a place to reference these active A/b tests.
 
 Let's create the following file at `content/ab-test/index.json`:
 

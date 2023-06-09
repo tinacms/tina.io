@@ -136,7 +136,7 @@ export default defineConfig({
 +    token: "<your-tina-cloud-projects-token>"
 ```
 
-> You should apply the token above in an environment variable, instead of hardcoding it.
+> You should apply the token above in an environment variable, instead of hard-coding it.
 
 ### Step 4) Configure build commands
 

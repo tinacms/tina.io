@@ -4,7 +4,7 @@ title: Frameworks
 
 ## Which Frameworks does Tina support?
 
-Tina's default "basic editor" works in a wide varierty of frameworks. It reads/writes file-based content (Markdown, MDX, JSON, etc).
+Tina's default "basic editor" works in a wide variety of frameworks. It reads/writes file-based content (Markdown, MDX, JSON, etc).
 
 ![basic editor](https://res.cloudinary.com/forestry-demo/image/upload/v1647455231/tina-io/docs/basic-editor.png)
 

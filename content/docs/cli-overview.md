@@ -29,7 +29,7 @@ Here are some common options that can be used in both `tinacms dev` and `tiancms
 | `--noSDK` | Don't generate the generated client SDK. [Read here](/docs/graphql/client/) for more details about the SDK. |
 | `-v`,`--verbose` | increase verbosity of logged output (default: false) |
 | `--rootPath` | Specify the root directory to run the CLI from (defaults to current working directory) |
-|`--noTelemetry`| don't report anonyymous telemetry |
+|`--noTelemetry`| don't report anonymous telemetry |
 
 ## Basic Usage:
 
@@ -64,7 +64,7 @@ This command takes all the common [options](#common-options) as well as a few ot
 | Argument                 | Description                                                                                                                     |
 | ------------------------ |---------------------------------------------------------------------------------------------------------------------------------|
 | `--tina-graphql-version` | Specify the version of `@tinacms/graphql` that the backend will use. (Only needed in advanced cases)                            |
-| `--local`                | Will start the local Graphql server and generate the local client. This is usefull for static builds but will not work with SSR |
+| `--local`                | Will start the local Graphql server and generate the local client. This is useful for static builds but will not work with SSR |
 | `--skip-cloud-checks`    | Skip the tina cloud checks (dangerous and not recommended)                                                                      |
 | `--skip-search-indexing` | Skip the search indexing                                                                                                        |
 

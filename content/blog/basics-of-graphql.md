@@ -154,7 +154,7 @@ query {
 
 This query will return the age field for the person with the given name. This isn’t great because we are hard coding the name of `John`. This is where we start to use variables. To use a variable, you need three things:
 
-1. Replace the hardcoded value with `$variableName`. So for this, we would use `$name` instead of hardcoding `John`.
+1. Replace the hardcoded value with `$variableName`. So for this, we would use `$name` instead of hard-coding `John`.
 2. Declare the variable as one of the accepted variables in the query along with the Type. The name variable would have the type `String` in this case.
 3. Include the `variableName: value` in the query:
 

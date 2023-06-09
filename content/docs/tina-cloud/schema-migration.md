@@ -146,7 +146,7 @@ cms.fields.add({
 
 #### One important gotcha
 
-Every property in the `defineSchema` API must be serlializable. Meaning functions will not work. For example, there's no way to define a `validate` or `parse` function at this level. However, you can either use the [formifyCallback](/docs/advanced/customizing-forms/#customizing-a-form) API to get access to the Tina form, or provide your own logic by specifying a plugin of your choice:
+Every property in the `defineSchema` API must be serializable. Meaning functions will not work. For example, there's no way to define a `validate` or `parse` function at this level. However, you can either use the [formifyCallback](/docs/advanced/customizing-forms/#customizing-a-form) API to get access to the Tina form, or provide your own logic by specifying a plugin of your choice:
 
 ```js
 {
@@ -216,7 +216,7 @@ While this, is a `checkbox` field
 
 ### Introducing the `object` type
 
-Tina currently represents the concept of an _object_ in two ways: a `group` (and `group-list`), which is a uniform collection of fields; and `blocks`, which is a polymporphic collection. Moving forward, we'll be introducing a more comporehensive type, which envelopes the behavior of both `group` and `blocks`, and since _every_ field can be a `list`, this also makes `group-list` redundant.
+Tina currently represents the concept of an _object_ in two ways: a `group` (and `group-list`), which is a uniform collection of fields; and `blocks`, which is a polymporphic collection. Moving forward, we'll be introducing a more comprehensive type, which envelopes the behavior of both `group` and `blocks`, and since _every_ field can be a `list`, this also makes `group-list` redundant.
 
 > Note: we've previously assumed that `blocks` usage would _always_ be as an array. We'll be keeping that assumption with the `blocks` type for compatibility, but `object` will allow for non-array polymorphic objects.
 
@@ -226,7 +226,7 @@ An `object` type takes either a `fields` _or_ `templates` property (just like th
 
 Likewise, if you supply a `templates` field and `list: true`, you'll get the same API as `blocks`. However you can also say `list: false` (or omit it entirely), and you'll have a polymorphic object which is _not_ an array.
 
-> Gotcha - `type: object` with `templates: []` and `list: false` is not yet suppored for form generation. You can use it your API but won't be able to edit that field.
+> Gotcha - `type: object` with `templates: []` and `list: false` is not yet supported for form generation. You can use it your API but won't be able to edit that field.
 
 This is identical to the current `blocks` definition:
 
@@ -265,7 +265,7 @@ And here is one for `group`:
 
 ### Introducing the `dataJSON` field
 
-You can now request `dataJSON` for the entire data object as a single query key. This is great for more tedius queries like theme files where including each item in the result is cumbersome.
+You can now request `dataJSON` for the entire data object as a single query key. This is great for more tedious queries like theme files where including each item in the result is cumbersome.
 
 > Note there is no typescript help for this feature for now
 
@@ -289,7 +289,7 @@ getThemeDocument(relativePath: $relativePath) {
 }
 ```
 
-Keep in mind, `dataJSON` does _not_ resolve acrosss multiple documents. Instead, it will return the foreign key for a reference:
+Keep in mind, `dataJSON` does _not_ resolve across multiple documents. Instead, it will return the foreign key for a reference:
 
 ```json
 {
@@ -466,7 +466,7 @@ myBlocks:
 
 ### `data` `__typename` values have changed
 
-They now include the proper namespace to prevent naming collisions and no longer require `_Doc_Data` suffix. All generated `__typename` properties are going to be slightly different. We weren't fully namespacing fields so it wasn't possible to guarantee that no collisions would occur. The pain felt here will likely be most seen when querying and filtering through blocks. This ensures the stability of this type in the future
+They now include the proper namespace to prevent naming collisions and no longer require `_Doc_Data` suffix. All generated `__typename` properties are going to be slightly different. We weren't fully namespacing fields, so it wasn't possible to guarantee that no collisions would occur. The pain felt here will likely be most seen when querying and filtering through blocks. This ensures the stability of this type in the future
 
 ```graphql
 {
@@ -494,7 +494,7 @@ categories: []
 ---
 ```
 
-The responsee would be `categories: []`. If you omit the field entirely:
+The response would be `categories: []`. If you omit the field entirely:
 
 ```md
 ---

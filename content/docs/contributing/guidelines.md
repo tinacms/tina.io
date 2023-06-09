@@ -30,11 +30,11 @@ TinaCMS uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.
 
 Packages in Tina are organized according to their name
 
-| Type | Naming Convention | Example Path |
-| --- | --- | --- |
-| Internal packages | `@tinacms/*` | `@tinacms/core` |
-| Node API extensions | `@tinacms/api-*` | `@tinacms/api-git` |
+| Type                    | Naming Convention | Example Path |
+|-------------------------| --- | --- |
+| Internal packages       | `@tinacms/*` | `@tinacms/core` |
+| Node API extensions     | `@tinacms/api-*` | `@tinacms/api-git` |
 | React specific packages | `react-tinacms-*` | `react-tinacms-remark` |
-| Gastby plugins | `gatsby-tinacms-*` | `gatsby-tinacms-json` |
-| NextJS package | `next-tinacms-*` | `next-tinacms-markdown` |
-| Demo Projects | `demo-*` | `demo-gatsby` |
+| Gatsby plugins          | `gatsby-tinacms-*` | `gatsby-tinacms-json` |
+| NextJS package          | `next-tinacms-*` | `next-tinacms-markdown` |
+| Demo Projects           | `demo-*` | `demo-gatsby` |
