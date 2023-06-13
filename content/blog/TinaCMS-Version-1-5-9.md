@@ -9,7 +9,7 @@ Today we are excited to release `tinacms@1.5.9` and `@tinacms/clil@1.5.18`. The 
 
 ## Improved Search
 
-It's now easier than ever to find your documents in TinaCMS. TinaCMS's search was previously limited to filtering on specific fields, search was case-sensitive, and it was difficult for editors to use without knowing the exact value of a field. Now editors can now search for documents across any of its fields. 
+It's now easier than ever to find your documents in TinaCMS. TinaCMS's search was previously limited to filtering on specific fields, search was case-sensitive, and it was difficult for editors to use without knowing the exact value of a field. Now editors can search for documents across any of its fields. 
 
 ![](https://res.cloudinary.com/forestry-demo/image/upload/v1686669366/tina-io/blog/changelog/search_uxd1di.png)
 
