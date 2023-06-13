@@ -9,7 +9,7 @@ Today we are excited to release `tinacms@1.5.9` and `@tinacms/clil@1.5.18`. The 
 
 ## Improved Search
 
-It's now easier than ever to find your documents in TinaCMS. TinaCMS's search was previously limited to filtering on specific fields, and was one of the weaker points of Tina's user-experience. Now editors can now search for documents across any of its fields. 
+It's now easier than ever to find your documents in TinaCMS. TinaCMS's search was previously limited to filtering on specific fields, search was case-sensitive, and it was difficult for editors to use without knowing the exact value of a field. Now editors can now search for documents across any of its fields. 
 
 ![](https://res.cloudinary.com/forestry-demo/image/upload/v1686669366/tina-io/blog/changelog/search_uxd1di.png)
 
@@ -21,7 +21,7 @@ Since our last [changelog post](/blog/TinaCMS-Version-1-5/ "Changelog post"), th
 
 ### Media Syncing
 
-When repo-based media is setup on a project, we need to trigger an initial sync on the project's configured asset directory. This was previously done in the CMS media-manager, but its UX caused some confusion. It was also a bit black-box in terms of which branch was being used as the media source-of-truth.\
+When repo-based media is setup on a project, we need to trigger an initial sync on the project's configured asset directory. This was previously done in the CMS' media-manager, but its UX caused some confusion. It was also a bit black-box in terms of which branch was being used as the media source-of-truth.\
 \
 We've since added a "Media" tab to the Tina Cloud dashboard to improve this experience.
 
@@ -32,9 +32,11 @@ We plan on adding configuration to this tab in the future, and we hope it improv
 
 ### Click-to-Edit
 
-We [recently announced](/blog/Click-to-Edit-Comes-to-Visual-Editing/ "recently announced") some updates to Visual Editing, introducing our new "Click to Edit" functionality. 
+We recently announced some improvements to Visual Editing with our new "Click to Edit" functionality.
 
 <CloudinaryVideo src="https://res.cloudinary.com/forestry-demo/video/upload/v1684428946/blog-media/click-to-edit-may-2023/click-to-edit-demo" />
+
+Read more about that announcement [here](/blog/Click-to-Edit-Comes-to-Visual-Editing/ "here").
 
 ### Bug fixes & Other Improvements
 
