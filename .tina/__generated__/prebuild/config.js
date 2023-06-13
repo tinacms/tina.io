@@ -68,21 +68,6 @@ const t = {
     },
     { name: "url", label: "URL", type: "string" }
   ]
-}, A = {
-  label: "Hero with Form",
-  name: "heroForm",
-  ui: {
-    defaultItem: {
-      headline: "Next Gen Content Management",
-      text: "Tina is an open-source, Git-backed CMS with the ability to add visual editing to your NextJS site",
-    }
-  },
-  fields: [
-    { name: "headline", label: "Headline", type: "string" },
-    { name: "text", label: "Text", type: "string" },
-    t,
-    { name: "videoSrc", label: "Video Source", type: "string" }
-  ]
 }, r = {
   label: "Hero",
   name: "hero",
@@ -701,8 +686,7 @@ Tina\u2019s source code is open-source. Your content lives in accessible formats
             f,
             h,
             T,
-            v,
-            A
+            v
           ]
         }
       ]
