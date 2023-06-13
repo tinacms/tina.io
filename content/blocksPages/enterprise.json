@@ -1,5 +1,67 @@
 {
+  "blocks": [
+    {
+      "headline": "Reduce costs. Increase security & performance.",
+      "text": "Most customers see greater than 50% reduction in licensing and operating costs when switching from enterprise-level CMS platforms to TinaCMS",
+      "videoSrc": "",
+      "_template": "hero"
+    },
+    {
+      "items": [
+        {
+          "headline": "CI/CD ",
+          "text": "Integration with your CI/CD pipeline, pre-prod env VS prod environment. \n"
+        },
+        {
+          "headline": "No More Caching",
+          "text": "Reduce the need for caching layers. Isn’t of caching layers, your content is statically generated and distributed through CDN networks. \n"
+        },
+        {
+          "headline": "Version Control for your Content",
+          "text": "Developers know how much of a lifesaver Git is, but it's just as big a deal when it comes to website content as well. Screw-ups can be rolled back to earlier commits, meaning you can always go back to a previous version of your site with a few keystrokes."
+        },
+        {
+          "headline": "Reduced Hosting and Operating Costs",
+          "text": "Most customers see greater than 50% reduction in licensing and operating costs when switching from enterprise-level CMS platforms to TinaCMS"
+        },
+        {
+          "headline": "Simplified Development and Maintenance",
+          "text": "Developers become much more efficient when using modern static site frameworks and a headless CMS. Updates and deployments become simpler, reducing the risk of bugs and downtime."
+        },
+        {
+          "headline": "Enhanced Security",
+          "text": "Static sites reduce the attack surface by eliminating server-side processing. Static files and strict access controls minimize vulnerabilities, offering a more secure architecture for enterprise organizations. This means that DDOS attacks, scripting hacks, and database exploits are not an issue. "
+        },
+        {
+          "headline": "Better Performance and Scalability",
+          "text": "There's a reason that a normal static site hosted on a CDN is often 10 times faster time-to-first-byte than a site built with a legacy CMS.  Static architecture delivers fast load times and scalability by pre-rendering pages as static assets and serving them from a CDN, ensuring a seamless user experience even during high traffic periods."
+        }
+      ],
+      "_template": "featureGrid"
+    },
+    {
+      "title": "FAQ",
+      "intro": "",
+      "questions": [
+        {
+          "question": "How are Tina and Forestry different?",
+          "answer": "Forestry and Tina share a lot in common but there are some key differences.\n\n* Tina's UI is an open-source single page application that you host with your site (i.e. mysite.com/admin).\n* Tina does not have a preview button like Forestry. If previewing is needed, we recommend setting up visual editing for a live  preview.\n* Tina only supports GitHub repositories at this time.\n* Tina offers an API so you can query for your content much like you would with a traditional headless CMS. This supports complex queries (filter, sort, etc), server-side rendering, client-side rendering, and incremental static regeneration.\n\nYou can see a full list of missing features between Forestry.io and TinaCMS [here](https://tina.io/docs/forestry/missing-forestry-features/).\n"
+        },
+        {
+          "question": "How do I migrate my site from Forestry to Tina?",
+          "answer": "To migrate a Forestry site to Tina, see this [migration guide](https://gmail.us20.list-manage.com/track/click?u=1fea337bee20e7270d025ea8a\\&id=5196507034\\&e=963e000296) or [video walkthrough](https://gmail.us20.list-manage.com/track/click?u=1fea337bee20e7270d025ea8a\\&id=4589793572\\&e=963e000296)\n"
+        },
+        {
+          "question": "More questions? ",
+          "answer": "Contact us at [info@tina.io](mailto\\:info@tina.io)\n"
+        }
+      ],
+      "color": "white",
+      "_template": "faq"
+    }
+  ],
   "seo": {
-    "title": "Enterprise"
+    "title": "Enterprise",
+    "description": ""
   }
 }
