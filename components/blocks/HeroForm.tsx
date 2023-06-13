@@ -22,7 +22,6 @@ export function HeroBlock({ data, index }) {
             Your message:
             <textarea name="message"></textarea>
           </label>
-          <!-- your other form fields go here -->
           <button type="submit">Send</button>
         </form>
 
