@@ -11,7 +11,7 @@ author: James O'Halloran
 
 Previously, Tina's setup required you to wrap your site in a `TinaProvider` component. Tina would only be run from within your site.
 
-In `0.70.0`, we have introduced a "standalone tinacms build process", which instead runs your site's preview in sandboxed iframe.
+In `0.70.0`, we have introduced a "standalone tinacms build process", which instead runs your site's preview in a sandboxed iframe.
 
 This offers several benefits including:
 
@@ -38,7 +38,7 @@ Switch any instance of the `useTina` hook to come from `tinacms/dist/react`
 + import { useTina } from "tinacms/dist/react";
 ```
 
-### Remove the Tina wraper from your \_app.tsx
+### Remove the Tina wrapper from your \_app.tsx
 
 ```diff
   return (
@@ -89,7 +89,7 @@ Replace `defineSchema` with `defineConfig`. This contains both your schema, and 
 + export default config;
 ```
 
-Most of the `defineConfig` properties will look familiar, apart from the new `build` property. This is required now that the Tina admin gets built outsite your site's build-process.
+Most of the `defineConfig` properties will look familiar, apart from the new `build` property. This is required now that the Tina admin gets built outside your site's build-process.
 
 For NextJS sites, use these values:
 

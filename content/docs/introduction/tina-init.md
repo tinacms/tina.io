@@ -51,7 +51,7 @@ These should be applied manually if they haven't been set by the CLI.
 
 ### A quick test
 
-Now that we have a basic Tina boilerplate setup, you can launch your application using the following commmand:
+Now that we have a basic Tina boilerplate setup, you can launch your application using the following command:
 
 ```bash,copy
 yarn dev

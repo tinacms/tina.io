@@ -11,4 +11,4 @@ The back-and-forth workflow between Forestry's dashboard and git made it hard to
 
 ## Schema changes in Tina, using "local-mode"
 
-In Tina, you can run the Tina dashboard locally alongside your site. If you want to do a migration (E.g, renaming a field), you can test everything out locally with the CMS before pushing anything to git. When you're ready, everything get's pushed to Git together.
+In Tina, you can run the Tina dashboard locally alongside your site. If you want to do a migration (E.g, renaming a field), you can test everything out locally with the CMS before pushing anything to git. When you're ready, everything gets pushed to Git together.

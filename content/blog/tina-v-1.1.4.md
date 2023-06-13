@@ -38,5 +38,5 @@ Several improvements have been made to the rich-text editor to better safe-guard
 * Fix issue where user could not save top level empty array
 * Fix issue with billing warning showing when not logged in
 * Don't clog CI logs with spinners
-* More improvements to Foresry.io migration tool
+* More improvements to Forestry.io migration tool
 * Fix bug where 2 versions of Graphql could be installed

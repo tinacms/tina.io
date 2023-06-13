@@ -153,7 +153,7 @@ will be treated as html
 
 ## Handling markdown
 
-Since markdown is an open-format Tina does it's best to handle the most common syntaxes, but in some scenarios Tina will ignore or automatically alter content:
+Since markdown is an open-format Tina does its best to handle the most common syntax's, but in some scenarios Tina will ignore or automatically alter content:
 
 ### Unsupported elements
 

@@ -186,7 +186,7 @@ const components: Components<{
       <a href="https://codepen.io/kendallstrautman/pen/WNbzLJZ">
         CSS Filters + A Springer Spaniel
       </a>{' '}
-      by Kendall strautman (
+      by Kendall Strautman (
       <a href="https://codepen.io/kendallstrautman">@kendallstrautman</a>) on{' '}
       <a href="https://codepen.io">CodePen</a>.
     </iframe>

@@ -103,7 +103,7 @@ In Netlify, your build configuration can be updated at **Settings** > **Build & 
 
 > If your package.json has a "build" script like `tinacms build && <your-site-build-cmd>`, this likely doesn't need to be changed. If your Netlify config is not running a custom build script (e.g `next build`), you would have to change this to `tinacms build && next build`
 
-> If your project has a `netlify.toml` with a build command set, that will take precendence over the above build command UI
+> If your project has a `netlify.toml` with a build command set, that will take precedence over the above build command UI
 
 #### Environment variables
 

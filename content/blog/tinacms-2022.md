@@ -25,7 +25,7 @@ Your content creators don't need to know that - under the hood - Tina is powered
 
 Here’s a summary of what’s coming in 2022 with more details below.
 
-![Tina launches version 1. More frameworks (Remix, Nuxt, SvelteKit, etc). A Headless API on top of your Git content. Markdown at scale. New UI. More open and more extendible](https://res.cloudinary.com/forestry-demo/image/upload/v1645630893/blog-media/tinacms-2022-vision.png)
+![Tina launches version 1. More frameworks (Remix, Nuxt, SvelteKit, etc). A Headless API on top of your Git content. Markdown at scale. New UI. More open and more extendable](https://res.cloudinary.com/forestry-demo/image/upload/v1645630893/blog-media/tinacms-2022-vision.png)
 
 ## Tina Goes 1.0
 
@@ -40,7 +40,7 @@ As Tina approaches 1.0 you will see some rough edges smoothed out like the UX ar
 
 ![next.js, remix, nuxt, hugo, eleventy](https://res.cloudinary.com/forestry-demo/image/upload/v1645631638/blog-media/SSG-logos.png)
 
-Tina has been focused on Next.js while in beta. This has reduced our maintenance “surface area” while we get the product right.  Before 1.0, we will open up Tina to other frameworks.  Phase 1 will include modern, data-agnostic, Javascript frameworks like Remix, Nuxt, and SveltKit.  Phase 2 will include all JAMstack frameworks (Jekyll, Hugo, 11ty, etc).
+Tina has been focused on Next.js while in beta. This has reduced our maintenance “surface area” while we get the product right.  Before 1.0, we will open up Tina to other frameworks.  Phase 1 will include modern, data-agnostic, Javascript frameworks like Remix, Nuxt, and SvelteKit.  Phase 2 will include all JAMstack frameworks (Jekyll, Hugo, 11ty, etc).
 
 ## A Headless API on top of your Git content
 
@@ -92,7 +92,7 @@ Tina’s rich text editing (with embeddable [MDX](https://mdxjs.com/) components
 
 <Youtube embedSrc={"https://youtube.com/embed/rZG_HxT-2Bc"} />
 
-## A more open and more extendible Tina
+## A more open and more extendable Tina
 
 In a previous chapter of my life, I was a freelance and agency developer and I benefited greatly from using open-source WordPress. I was a part of the so-called “WordPress economy”. Now with TinaCMS, we want to allow others to leverage our open-source software.
 

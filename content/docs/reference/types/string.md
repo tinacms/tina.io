@@ -59,7 +59,7 @@ Setting `list: true` and providing `options` will make the value an array with a
 
 ## The `isBody` property
 
-When working with markdown, you can indicate that a given field should repesent the markdown body
+When working with markdown, you can indicate that a given field should represent the markdown body
 
 <a href="https://tina-gql-playground.vercel.app/string-body" target="_blank">See Example</a>
 

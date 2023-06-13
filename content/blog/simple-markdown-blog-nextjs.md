@@ -562,7 +562,7 @@ Clone it with the command below:
 git clone https://github.com/tinalabs/brevifolia-next-2023
 ```
 
-Enter the project folder, and launch the following command to install the dependencies and launch the Mardkown-based Next.js blog app:
+Enter the project folder, and launch the following command to install the dependencies and launch the Markdown-based Next.js blog app:
 
 ```
 cd brevifolia-next-2023

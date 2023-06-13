@@ -31,7 +31,7 @@ outputs `<<% rimg myprop="" %>>`
 
 Previously, this would match any content within `{{<` and `>}}`. Now, this will only match when the name of the shortcode also matches.
 
-Editors will also be able to edit fields in the shortcodes indivudually, instead of through a global `text` field.
+Editors will also be able to edit fields in the shortcodes individually, instead of through a global `text` field.
 
 ![shortcode ui](https://res.cloudinary.com/forestry-demo/image/upload/v1673527397/tina-io/docs/shortcodes.png)
 

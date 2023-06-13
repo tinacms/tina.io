@@ -16,7 +16,7 @@ To set this up, your site's build script will change to something like:
 + build: tinacms build && hugo
 ```
 
-The `tinacms build` step outputs the Tina admin's dashboard SPA in your site's build directory.
+The `tinacms build` step outputs the TinaCMS dashboard SPA in your site's build directory.
 
 Once TinaCMS is setup, your editors will access the CMS via (`<your-site-url>/admin`)
 ![](https://res.cloudinary.com/forestry-demo/image/upload/v1670430150/tina-io/docs/forestry-migration/accessing-admin.gif)
