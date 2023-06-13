@@ -1,0 +1,79 @@
+{
+  "blocks": [
+    {
+      "headline": "Create Beautiful Documentation Sites with Ease",
+      "text": "TinaCMS offers a powerful solution for managing and maintaining documentation sites. Whether you're documenting an API, a library, or a software product, TinaCMS provides the tools you need to streamline your documentation workflow.",
+      "videoSrc": "",
+      "_template": "hero"
+    },
+    {
+      "items": [
+        {
+          "headline": "Effortless Content Editing",
+          "text": "With TinaCMS, your content authors can edit documentation pages directly in a user-friendly interface. No more struggling with complex markup or coding. Simply make changes, preview them, and publish with ease."
+        },
+        {
+          "headline": "Git-Powered Version Control",
+          "text": "TinaCMS integrates seamlessly with Git, allowing you to track changes, collaborate with your team, and roll back to previous versions of your documentation. Say goodbye to manual file management and enjoy the benefits of version control."
+        },
+        {
+          "headline": "Markdown Support",
+          "text": "TinaCMS embraces the simplicity and flexibility of Markdown for writing documentation. Enjoy the familiar syntax while creating rich, formatted content for your documentation site."
+        },
+        {
+          "headline": "Live Previews",
+          "text": "Preview your documentation pages in real-time as you make edits. See exactly how your content will appear to users before publishing it, ensuring a polished and error-free documentation experience."
+        },
+        {
+          "headline": "Customizable Templates",
+          "text": "Tailor your documentation site to match your brand and style. Customize templates, layouts, and stylesheets to create a unique and cohesive look for your documentation pages."
+        },
+        {
+          "headline": "Search Functionality",
+          "text": "Help your users find the information they need quickly and easily. TinaCMS offers built-in search functionality, allowing visitors to search through your documentation and find relevant content in no time."
+        },
+        {
+          "headline": "SEO Optimization",
+          "text": "Optimize your documentation site for search engines with TinaCMS. Set metadata, such as page titles, descriptions, and keywords, to improve your site's visibility and drive organic traffic."
+        }
+      ],
+      "_template": "featureGrid"
+    },
+    {
+      "title": "FAQ",
+      "intro": "",
+      "questions": [
+        {
+          "question": "Can I integrate TinaCMS with my existing documentation site?",
+          "answer": "Yes! TinaCMS can be seamlessly integrated with your existing documentation site. Simply follow the integration guide and incorporate the necessary components into your site's architecture."
+        },
+        {
+          "question": "Does TinaCMS support multiple contributors?",
+          "answer": "Absolutely! TinaCMS supports collaboration among multiple contributors. Each team member can make edits, review changes, and contribute to the documentation site using the version control capabilities of TinaCMS."
+        },
+        {
+          "question": "Can I customize the look and feel of my documentation site?",
+          "answer": "Yes, you can fully customize the look and feel of your documentation site with TinaCMS. From templates to stylesheets, you have complete control over the visual aspects to create a cohesive brand experience."
+        },
+        {
+          "question": "Is TinaCMS suitable for large-scale documentation sites?",
+          "answer": "TinaCMS is designed to handle documentation sites of all sizes, including large-scale projects. Its efficient architecture ensures optimal performance and scalability, even when dealing with extensive documentation content."
+        },
+        {
+          "question": "How can I get started with TinaCMS for my documentation site?",
+          "answer": "To get started with TinaCMS, refer to our comprehensive documentation and installation guide. It provides step-by-step instructions to help you set up TinaCMS for your documentation site quickly."
+        },
+        {
+          "question": "Have more questions?",
+          "answer": "Feel free to reach out to our team at [info@tina.io](mailto:info@tina.io). We're here to assist you!"
+        }
+      ],
+      "color": "white",
+      "_template": "faq"
+    }
+  ],
+  "seo": {
+    "title": "Documentation Sites",
+    "description": "Build and manage beautiful documentation sites effortlessly with TinaCMS."
+  }
+}
