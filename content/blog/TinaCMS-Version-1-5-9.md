@@ -13,7 +13,7 @@ It's now easier than ever to find your documents in TinaCMS. TinaCMS's search wa
 
 ![](https://res.cloudinary.com/forestry-demo/image/upload/v1686669366/tina-io/blog/changelog/search_uxd1di.png)
 
-Setting up search does require some light configuration to be enabled. Learn more about setting up search [in the docs](https://tina.io/docs/ "in the docs").
+Setting up search does require some light configuration to be enabled. Learn more about setting up search [in the docs](/docs/reference/search/overview/ "in the docs").
 
 ## Recent Updates
 
