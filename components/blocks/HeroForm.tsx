@@ -16,7 +16,7 @@ export function HeroBlock({ data, index }) {
         >
           <label>
             Your email:
-            <input type="email" name="email">
+            <input type="email" name="email" />
           </label>
           <label>
             Your message:
