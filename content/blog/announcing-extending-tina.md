@@ -55,10 +55,10 @@ must be changed to
 import { defineConfig } from 'tinacms'
 
 export default defineConfig({
-  // pass schema and apiUrl to the config (required) (this is how it is passed to the fronend)
+  // pass schema and apiUrl to the config (required) (this is how it is passed to the frontend)
   schema: schema,
   apiUrl: apiUrl,
-  // add other config that would have previosly been in the _app.{js,tsx} file in the <TinaCMS> component.
+  // add other config that would have previously been in the _app.{js,tsx} file in the <TinaCMS> component.
   cmsCallback: (cms) => {
     //...
   },

@@ -37,7 +37,7 @@ npx create-next-app --example blog-starter tina-cms-blog
 # Move into your new blog
 cd tina-cms-blog
 
-# Intialize Tina
+# Initialize Tina
 npx @tinacms/cli@latest init
 
 ```

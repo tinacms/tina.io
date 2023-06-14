@@ -71,7 +71,7 @@ If you need to customize how an image is formatted in a field, you can use the `
   label: "Hero Image",
   ui: {
     format(value) {
-      //add leading slash to value if it doesnt exist
+      //add leading slash to value if it doesn't exist
       return value.startsWith("/") ? value : `/${value}`;
     },
     parse(value) {
