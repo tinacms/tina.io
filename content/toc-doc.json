@@ -235,10 +235,6 @@
         "status": "beta"
       },
       {
-        "slug": "/docs/tina-cloud/branching/",
-        "title": "Branching"
-      },
-      {
         "slug": "/docs/drafts/protected-branches/",
         "title": "Protected Branches",
         "status": "Premium Plans"
