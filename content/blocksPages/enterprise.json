@@ -2,12 +2,40 @@
   "blocks": [
     {
       "headline": "Reduce costs. Increase security & performance.",
-      "text": "Most customers see greater than 50% reduction in licensing and operating costs when switching from enterprise-level CMS platforms to TinaCMS",
+      "text": "",
       "videoSrc": "",
       "_template": "hero"
     },
     {
+      "options": {
+        "narrow": true,
+        "color": "white"
+      },
+      "content": "## Reduced Hosting and Operating Costs\n\nMost customers see greater than 50% reduction in licensing and operating costs when switching from enterprise-level CMS platforms to TinaCMS\n\n\n",
+      "_template": "content"
+    },
+    {
       "items": [
+        {
+          "headline": "Training & Support",
+          "text": "Get access to the team behind TinaCMS for training, priority support, and custom development. "
+        },
+        {
+          "headline": "Editorial Workflow",
+          "text": "Empower your team with editorial workflows backed by Git. "
+        },
+        {
+          "headline": "Single Sign On",
+          "text": "Compatible with the most popular IdPs like Okta and support for both SAML and OIDC."
+        },
+        {
+          "headline": "SOC 2 and GDPR",
+          "text": "Actively pursuing SOC 2 certification and GDPR compliance."
+        },
+        {
+          "headline": "Uptime SLAs",
+          "text": "99.95% server uptime with swift communications if something impacts your sending integration."
+        },
         {
           "headline": "CI/CD ",
           "text": "Integration with your CI/CD pipeline, pre-prod env VS prod environment. \n"
@@ -40,23 +68,14 @@
       "_template": "featureGrid"
     },
     {
-      "title": "FAQ",
-      "intro": "",
+      "title": "",
       "questions": [
         {
-          "question": "How are Tina and Forestry different?",
-          "answer": "Forestry and Tina share a lot in common but there are some key differences.\n\n* Tina's UI is an open-source single page application that you host with your site (i.e. mysite.com/admin).\n* Tina does not have a preview button like Forestry. If previewing is needed, we recommend setting up visual editing for a live  preview.\n* Tina only supports GitHub repositories at this time.\n* Tina offers an API so you can query for your content much like you would with a traditional headless CMS. This supports complex queries (filter, sort, etc), server-side rendering, client-side rendering, and incremental static regeneration.\n\nYou can see a full list of missing features between Forestry.io and TinaCMS [here](https://tina.io/docs/forestry/missing-forestry-features/).\n"
-        },
-        {
-          "question": "How do I migrate my site from Forestry to Tina?",
-          "answer": "To migrate a Forestry site to Tina, see this [migration guide](https://gmail.us20.list-manage.com/track/click?u=1fea337bee20e7270d025ea8a\\&id=5196507034\\&e=963e000296) or [video walkthrough](https://gmail.us20.list-manage.com/track/click?u=1fea337bee20e7270d025ea8a\\&id=4589793572\\&e=963e000296)\n"
-        },
-        {
-          "question": "More questions? ",
-          "answer": "Contact us at [info@tina.io](mailto\\:info@tina.io)\n"
+          "question": "Reduced Hosting and Operating Costs",
+          "answer": "Most customers see greater than 50% reduction in licensing and operating costs when switching from enterprise-level CMS platforms to TinaCMS\n"
         }
       ],
-      "color": "white",
+      "color": "seafoam",
       "_template": "faq"
     }
   ],
