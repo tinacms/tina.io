@@ -44,7 +44,7 @@ The `queries` folder is optional and is used by the [experimental generated clie
 
 ## `tina-lock.json`
 
-This is where the compiled schema info is stored. This file **must be checked into source control and pushed to github**. The reason for this is that Tina Cloud uses the generated files in order to resolve documents. Any time your site's schema or tina versions are updated, you will need to run `tinacms dev` locally to trigger an update to this file, and push the updated version to GitHub.
+This is where the compiled schema info is stored. This file **must be checked into source control and pushed to GitHub**. The reason for this is that Tina Cloud uses the compiled schema in order to resolve documents. Any time your site's schema or tina versions are updated, you will need to run `tinacms dev` locally to trigger an update to this file, and push the updated version to GitHub.
 
 ## `__generated__` folder
 
