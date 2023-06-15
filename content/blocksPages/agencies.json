@@ -1,0 +1,57 @@
+{
+  "blocks": [
+    {
+      "headline": "TinaCMS is a perfect match for agencies.",
+      "text": "Treat your clients to an amazing editor experience to go along with your beautiful websites. ",
+      "videoSrc": "",
+      "_template": "hero"
+    },
+    {
+      "options": {
+        "narrow": true,
+        "color": "white"
+      },
+      "content": "## Go above and beyond for your clients\n\nLeverage TinaCMS to deliver top-tier websites with an intuitive interface for content management. Stay ahead of the competition.\n",
+      "_template": "content"
+    },
+    {
+      "items": [
+        {
+          "headline": "Visual Editing",
+          "text": "TinaCMS provides an unmatched visual editing experience compared to other CMS'. "
+        },
+        {
+          "headline": "Customizable Interface",
+          "text": "Deliver tailored CMS experiences that suit your clients' brand and needs. "
+        },
+        {
+          "headline": "Leverage Git",
+          "text": "Since TinaCMS is a Git-backed CMS, it comes with the best version-control on the planet. Say goodbye to the fear of breaking changes and hello to a stress-free development process."
+        },
+        {
+          "headline": "Accelerate Development",
+          "text": "TinaCMS allows you to accelerate development by reusing existing templates and components. Tina's configuration is setup through code, so once you build a template you like, it can easily be reused to spin up new projects for new clients."
+        }
+      ],
+      "_template": "featureGrid"
+    },
+    {
+      "headline": "Let's talk! ",
+      "text": "Interested in using TinaCMS for your agency? We'd love to chat! ",
+      "actions": [
+        {
+          "label": "Contact Us",
+          "icon": false,
+          "variant": "blue",
+          "size": "medium",
+          "url": "mailto:info@tina.io"
+        }
+      ],
+      "_template": "flying"
+    }
+  ],
+  "seo": {
+    "title": "Agencies",
+    "description": "Unleash the potential of your agency with TinaCMS. Simplify website development and content management for your clients."
+  }
+}
