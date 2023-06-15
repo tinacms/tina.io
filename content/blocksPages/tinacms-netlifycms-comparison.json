@@ -1,0 +1,65 @@
+{
+  "blocks": [
+    {
+      "headline": "TinaCMS vs Netlify CMS: Why TinaCMS Stands Out",
+      "text": "Unlock the unique capabilities of TinaCMS for your projects.",
+      "videoSrc": "",
+      "_template": "hero"
+    },
+    {
+      "options": {
+        "narrow": true,
+        "color": "white"
+      },
+      "content": "## Why Choose TinaCMS Over Netlify CMS?\n\nTinaCMS offers a content API, visual editing capabilities, and an enhanced local development workflow that sets it apart from Netlify CMS. Here's why TinaCMS might be a better fit for your project:\n",
+      "_template": "content"
+    },
+    {
+      "items": [
+        {
+          "headline": "Visual Editing Capabilities",
+          "text": "With TinaCMS, what you see is what you get. Our visual editing capabilities provide an interactive, intuitive, and user-friendly content editing experience."
+        },
+        {
+          "headline": "Content API",
+          "text": "TinaCMS provides a content API for your content, enabling you to query your content for server-side rendering. This feature offers flexibility in how and where you render your content."
+        },
+        {
+          "headline": "Seamless Local-Development Workflow",
+          "text": "TinaCMS supports a local development workflow, allowing you to change your schema and your content, and merge them in one commit. This ensures an efficient and effective development process."
+        },
+        {
+          "headline": "Git-Based Content Management",
+          "text": "TinaCMS is a Git-backed CMS, offering the best version control system on the planet. This makes TinaCMS an excellent choice for both open-source and closed-source projects."
+        },
+        {
+          "headline": "Customizable and Flexible",
+          "text": "TinaCMS is built with customization and flexibility in mind. You have the power to create custom field widgets, add custom validation to fields, and design the exact experience you want for your website."
+        },
+        {
+          "headline": "Markdown Support",
+          "text": "TinaCMS's markdown support simplifies content creation and management. The simplicity of markdown combined with the flexibility of TinaCMS empowers your content creators."
+        }
+      ],
+      "_template": "featureGrid"
+    },
+    {
+      "headline": "Ready to get started with TinaCMS?",
+      "text": "Experience the difference with TinaCMS now.",
+      "actions": [
+        {
+          "label": "Learn More",
+          "icon": false,
+          "variant": "blue",
+          "size": "medium",
+          "url": "https://tina.io/docs/setup-overview/"
+        }
+      ],
+      "_template": "flying"
+    }
+  ],
+  "seo": {
+    "title": "TinaCMS vs Netlify CMS: Unleash the Power of TinaCMS",
+    "description": "Explore why TinaCMS might be the right choice for your project. Discover features like a content API, visual editing, seamless local development workflow, Git-based content management, and more with TinaCMS."
+  }
+}

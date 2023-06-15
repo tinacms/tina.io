@@ -1,0 +1,67 @@
+{
+  "blocks": [
+    {
+      "headline": "TinaCMS for Astro",
+      "text": "Combine the best of Astro and TinaCMS to create dynamic, content-rich websites with ease.",
+      "videoSrc": "",
+      "_template": "hero"
+    },
+    {
+      "items": [
+        {
+          "headline": "Markdown Support",
+          "text": "Leverage the simplicity and readability of Markdown to manage content in your Astro projects. TinaCMS streamlines the process and amplifies productivity."
+        },
+        {
+          "headline": "Shortcodes Support",
+          "text": "Exploit the power of shortcodes to extend the capabilities of your Astro site. With TinaCMS, configuring shortcodes to suit your project's needs is easy."
+        },
+        {
+          "headline": "Git-Backed Version Control",
+          "text": "TinaCMS stores all your content in Git, delivering top-notch version control. This simplifies change tracking and version management."
+        },
+        {
+          "headline": "Open Source Frontend",
+          "text": "With its open-source frontend, TinaCMS allows for flexibility and customization, benefiting from a vibrant community and regular updates."
+        },
+        {
+          "headline": "Unmatched Developer Experience",
+          "text": "TinaCMS boosts the developer experience with a seamless local development workflow, making changes to content and schema and merging them in a single commit."
+        },
+        {
+          "headline": "Customizable and Flexible",
+          "text": "TinaCMS's high level of flexibility and customization options allows you to tailor your Astro project to fit your unique requirements."
+        }
+      ],
+      "_template": "featureGrid"
+    },
+    {
+      "title": "FAQ",
+      "intro": "",
+      "questions": [
+        {
+          "question": "Can I use TinaCMS with my existing Astro project?",
+          "answer": "Absolutely! TinaCMS is designed to seamlessly integrate with existing Astro projects. You can easily incorporate TinaCMS into your Astro website and start managing your content efficiently without any major modifications."
+        },
+        {
+          "question": "Is TinaCMS suitable for both small and large-scale Astro websites?",
+          "answer": "Yes! TinaCMS is built to scale and can be used for both small and large-scale Astro websites. Whether you're building a simple portfolio site or a complex web application, TinaCMS provides the flexibility and functionality you need."
+        },
+        {
+          "question": "Can I customize the TinaCMS interface for Astro editing?",
+          "answer": "Definitely! TinaCMS offers extensive customization options. You can tailor the editing interface to match your Astro website's design and branding, providing a seamless and consistent editing experience for content authors."
+        },
+        {
+          "question": "How can I get started with TinaCMS and Astro?",
+          "answer": "To begin using TinaCMS with Astro, refer to our comprehensive documentation and integration guides. We provide step-by-step instructions and examples to help you set up TinaCMS and unlock the full potential of content management in Astro."
+        }
+      ],
+      "color": "white",
+      "_template": "faq"
+    }
+  ],
+  "seo": {
+    "title": "TinaCMS for Astro",
+    "description": "Enhance your Astro development workflow with TinaCMS. Seamlessly manage content, enable live editing, and streamline collaboration for your Astro websites."
+  }
+}
