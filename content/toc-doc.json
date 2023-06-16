@@ -218,7 +218,21 @@
       },
       {
         "slug": "/docs/self-hosted/overview/",
-        "title": "Self Hosted Tina"
+        "title": "Self Hosted Tina",
+        "items": [
+          {
+            "slug": "/docs/self-hosted/overview/",
+            "title": "Overview"
+          },
+          {
+            "slug": "/docs/self-hosted/getting-started/",
+            "title": "Getting Started"
+          },
+          {
+            "slug": "/docs/self-hosted/configuration/",
+            "title": "Configuration"
+          }
+        ]
       }
     ]
   },
