@@ -1,0 +1,53 @@
+{
+  "blocks": [
+    {
+      "headline": "TinaCMS + Jekyll = ❤️",
+      "text": "Harness the strength of Markdown and Git to enhance your Jekyll projects with TinaCMS.",
+      "videoSrc": "",
+      "_template": "hero"
+    },
+    {
+      "options": {
+        "narrow": true,
+        "color": "white"
+      },
+      "content": "## Bring TinaCMS into Your Jekyll Workflow\n\nIntegrate TinaCMS into your Jekyll projects and enjoy the advantages of markdown content and Git-backed version control.\n",
+      "_template": "content"
+    },
+    {
+      "items": [
+        {
+          "headline": "Markdown Support",
+          "text": "Easily create and manage content with Markdown, a format perfectly suited for Jekyll. TinaCMS simplifies the process and enhances productivity."
+        },
+        {
+          "headline": "Git-Backed Version Control",
+          "text": "With TinaCMS, all your content is stored in Git, providing the best version control system. This makes tracking changes and managing different versions a breeze."
+        },
+        {
+          "headline": "Flexible and Customizable",
+          "text": "TinaCMS offers a high level of flexibility and customization options, allowing you to shape your Jekyll project to fit your unique requirements."
+        }
+      ],
+      "_template": "featureGrid"
+    },
+    {
+      "headline": "Boost Your Jekyll Project",
+      "text": "Experience the benefits of TinaCMS for your Jekyll workflow.",
+      "actions": [
+        {
+          "label": "Learn More",
+          "icon": false,
+          "variant": "blue",
+          "size": "medium",
+          "url": "https://tina.io/docs/setup-overview/"
+        }
+      ],
+      "_template": "flying"
+    }
+  ],
+  "seo": {
+    "title": "TinaCMS + Jekyll: Enhance Your Workflow",
+    "description": "Bring the power of Markdown and Git into your Jekyll projects with TinaCMS. Experience a seamless, highly customizable content management solution."
+  }
+}

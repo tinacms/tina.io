@@ -1,0 +1,65 @@
+{
+  "blocks": [
+    {
+      "headline": "TinaCMS: Empowering Teams to Achieve More",
+      "text": "TinaCMS seamlessly integrates with your team's workflow, whether you're a developer needing control and flexibility or an editor wanting an intuitive interface.",
+      "videoSrc": "",
+      "_template": "hero"
+    },
+    {
+      "options": {
+        "narrow": true,
+        "color": "white"
+      },
+      "content": "## Supercharge Your Team’s Productivity with TinaCMS\n\nTinaCMS offers the best of both worlds: the power of Git and the ease of a CMS, making it perfect for teams working on new or existing sites.\n",
+      "_template": "content"
+    },
+    {
+      "items": [
+        {
+          "headline": "Intuitive for Editors",
+          "text": "TinaCMS abstracts away the complexities of Git, providing a user-friendly interface. Editors don't need to know anything about Git to use TinaCMS."
+        },
+        {
+          "headline": "Flexible for Developers",
+          "text": "Developers retain control and flexibility with TinaCMS. It's built to work with existing sites (brownfield sites) and allows developers to create an optimal editor experience."
+        },
+        {
+          "headline": "Work how you want!",
+          "text": "With TinaCMS, team members can choose to edit directly in Markdown files in the repository or through the TinaCMS interface. Choose the way that works best for your workflow."
+        },
+        {
+          "headline": "Editorial Workflow Capabilities",
+          "text": "Leverage the power of Git-based workflows for editing and reviewing changes. TinaCMS's branching and merging features facilitate efficient collaboration."
+        },
+        {
+          "headline": "Open Source Frontend",
+          "text": "TinaCMS's open-source frontend fosters an environment of community contribution and regular updates, ensuring your team stays ahead."
+        },
+        {
+          "headline": "Git-Backed Version Control",
+          "text": "With TinaCMS, all your content is stored in Git, providing the best version control system. This makes tracking changes and managing different versions a breeze."
+        }
+      ],
+      "_template": "featureGrid"
+    },
+    {
+      "headline": "Elevate Your Team’s Workflow Today",
+      "text": "Start using TinaCMS to boost your team’s productivity and collaboration.",
+      "actions": [
+        {
+          "label": "Get Started",
+          "icon": false,
+          "variant": "blue",
+          "size": "medium",
+          "url": "https://tina.io/docs/setup-overview/"
+        }
+      ],
+      "_template": "flying"
+    }
+  ],
+  "seo": {
+    "title": "TinaCMS for Teams: Boost Your Team’s Productivity",
+    "description": "Unleash your team’s potential with TinaCMS. Offering Git power with CMS simplicity, TinaCMS is an excellent choice for teams seeking a flexible, intuitive solution."
+  }
+}

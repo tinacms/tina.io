@@ -1,0 +1,65 @@
+{
+  "blocks": [
+    {
+      "headline": "TinaCMS: The perfect partner for your documentation.",
+      "text": "Leverage the power of Markdown and Git-backed content to elevate your open-source documentation projects.",
+      "videoSrc": "",
+      "_template": "hero"
+    },
+    {
+      "options": {
+        "narrow": true,
+        "color": "white"
+      },
+      "content": "## Simplify your documentation with TinaCMS\n\nTinaCMS can be added to your Git-based documentation sites with ease. TinaCMS provides an easy-to-use interface that your editors and developers will love.\n",
+      "_template": "content"
+    },
+    {
+      "items": [
+        {
+          "headline": "Markdown-based content",
+          "text": "Utilize the simplicity of Markdown for creating and managing your documentation content."
+        },
+        {
+          "headline": "Flexible User Interaction",
+          "text": "TinaCMS allows users to interact via Git for those who prefer it, while others can use the CMS. This creates a flexible, user-friendly environment."
+        },
+        {
+          "headline": "Framework-Agnostic",
+          "text": "TinaCMS works with all popular web development frameworks. You are not locked into a specific technology stack."
+        },
+        {
+          "headline": "Open-Source Friendly",
+          "text": "TinaCMS integrates seamlessly with open-source projects, supporting community contributions to your documentation."
+        },
+        {
+          "headline": "Static and Dynamic",
+          "text": "Query your Markdown content like you would with a headless CMS. Tina’s GraphQL Data Layer supports filtering, sorting, pagination, and more."
+        },
+        {
+          "headline": "Develop Locally",
+          "text": "Run Tina locally and talk to your local filesystem. This makes for an amazing developer experience while building your docs site."
+        }
+      ],
+      "_template": "featureGrid"
+    },
+    {
+      "headline": "Ready to upgrade your documentation?",
+      "text": "Get started with TinaCMS for your documentation projects.",
+      "actions": [
+        {
+          "label": "Learn More",
+          "icon": false,
+          "variant": "blue",
+          "size": "medium",
+          "url": "https://tina.io/docs/setup-overview/"
+        }
+      ],
+      "_template": "flying"
+    }
+  ],
+  "seo": {
+    "title": "Documentation",
+    "description": "Enhance your open-source documentation projects with TinaCMS. Benefit from markdown-based content, flexible user interactions, and cross-framework compatibility."
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "blocks": [
+    {
+      "headline": "TinaCMS vs Storyblok: Why TinaCMS Could Be Your Choice",
+      "text": "Discover the unique benefits of TinaCMS for your projects.",
+      "videoSrc": "",
+      "_template": "hero"
+    },
+    {
+      "options": {
+        "narrow": true,
+        "color": "white"
+      },
+      "content": "## Why Choose TinaCMS Over Storyblok?\n\nTinaCMS provides markdown support, local development workflow, and visual editing capabilities that set it apart from Storyblok. Let's explore why TinaCMS might be the right fit for your project:\n",
+      "_template": "content"
+    },
+    {
+      "items": [
+        {
+          "headline": "Markdown Support",
+          "text": "TinaCMS's markdown support makes content creation and management a breeze. Combine the simplicity of markdown with the flexibility of TinaCMS to empower your content creators."
+        },
+        {
+          "headline": "Visual Editing Capabilities",
+          "text": "TinaCMS offers real-time, visual editing. This interactive, intuitive process delivers an amazing user experience."
+        },
+        {
+          "headline": "Seamless Local-Development Workflow",
+          "text": "TinaCMS facilitates a seamless local development workflow. Modify your schema and content, and merge them in one commit. This feature ensures an efficient and effective development process."
+        },
+        {
+          "headline": "Git-Based Content Management",
+          "text": "Leverage the power of Git with TinaCMS. Built-in version control for your site makes it a preferred choice for both open-source and closed-source projects."
+        },
+        {
+          "headline": "Open Source Frontend",
+          "text": "TinaCMS's frontend codebase is open-source, supported by a vibrant community. This transparency encourages continuous improvement and fosters trust."
+        },
+        {
+          "headline": "Customizable and Flexible",
+          "text": "Experience the power of customization with TinaCMS. Built with flexibility in mind, you can create the exact experience you want for your website."
+        }
+      ],
+      "_template": "featureGrid"
+    },
+    {
+      "headline": "Ready to explore TinaCMS?",
+      "text": "Get started with TinaCMS now, and experience the difference.",
+      "actions": [
+        {
+          "label": "Learn More",
+          "icon": false,
+          "variant": "blue",
+          "size": "medium",
+          "url": "https://tina.io/docs/setup-overview/"
+        }
+      ],
+      "_template": "flying"
+    }
+  ],
+  "seo": {
+    "title": "TinaCMS vs Storyblok: Discover the TinaCMS Advantage",
+    "description": "Uncover why TinaCMS might be the best choice for your project. Experience markdown support, visual editing, seamless local development workflow, Git-based content management, and more with TinaCMS."
+  }
+}
