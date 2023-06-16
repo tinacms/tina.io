@@ -31,3 +31,30 @@ Once you enter the new branch name, the following actions will occur:
 ## Publishing Content
 
 When you are ready to publish your content, merge the draft pull request into the protected branch (e.g., main) through GitHub. After the pull request is successfully merged, the new branch will be deleted, and the content will be available on the protected branch.
+
+## Github Pull Request links
+
+In the branch list modal, you can click on the dropdown and click "View Pull Request" to view the pull request on Github. This will open a new tab in your browser. This link will only aprear of the pull request has been created with TinaCMS and not if it was created manually.
+
+## Preview links
+
+You can setup preview links for your pull requests. This will allow you to preview your content changes before merging them into the protected branch. To setup preview links, In your config file add a `previewUrl` function to the `ui` object. This function will receive the branch name as an argument and should return the preview url for that branch. For example:
+
+```js
+// tina/config.{ts,tsx,js}
+
+export default defineConfig({
+  // ...
+  ui: {
+    // Eg. If you're deplying to Vercel, and your repo name is 'my-app', Vercel's preview URL would be based on the branch:
+    previewUrl: (context) => {
+      const repoName = 'my-app'
+      // `https://<project-name>-git-<branch-name>.vercel.app`
+      return { url: `https://my-app-git-${context.branch}` }
+    },
+  },
+  //...
+})
+```
+
+Now you will be able to click on the "View Preview" button in the branch list modal to preview your changes.
