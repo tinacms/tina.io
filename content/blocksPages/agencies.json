@@ -18,7 +18,7 @@
       "items": [
         {
           "headline": "Visual Editing",
-          "text": "TinaCMS provides an unmatched visual editing experience compared to other CMS'. "
+          "text": "TinaCMS provides an unmatched visual editing experience compared to other CMSs. "
         },
         {
           "headline": "Customizable Interface",
@@ -30,7 +30,7 @@
         },
         {
           "headline": "Accelerate Development",
-          "text": "TinaCMS allows you to accelerate development by reusing existing templates and components. Tina's configuration is setup through code, so once you build a template you like, it can easily be reused to spin up new projects for new clients."
+          "text": "TinaCMS allows you to accelerate development by reusing existing templates and components. Tina's configuration is set up through code, so once you build a template you like, it can easily be reused to spin up new projects for new clients."
         }
       ],
       "_template": "featureGrid"

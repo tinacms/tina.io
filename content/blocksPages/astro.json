@@ -30,7 +30,7 @@
         },
         {
           "headline": "Customizable and Flexible",
-          "text": "TinaCMS's high level of flexibility and customization options allows you to tailor your Astro project to fit your unique requirements."
+          "text": "TinaCMS's high level of flexibility and customization options allow you to tailor your Astro project to fit your unique requirements."
         }
       ],
       "_template": "featureGrid"
