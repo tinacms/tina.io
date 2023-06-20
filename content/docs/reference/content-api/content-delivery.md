@@ -14,7 +14,7 @@ The Content API endpoint is `https://content.tinajs.io/<TinaGraphQLVersion>/cont
 
 Where `myClientId` is the client id of your project and `myBranch` is the branch you want to query.
 
-`TinaGraphQLVersion` is the version of `@tinacms/graphql` you are using. You can find this by running `yarn list @tinacms/graphql` in your project.
+`TinaGraphQLVersion` is the version of `@tinacms/graphql` you are using. You can find this by running `yarn list @tinacms/graphql` in your project. Use only the "major"."minor" values for the `TinaGraphQLVersion`. So, if using version `1.4.17`, the `TinaGraphQLVersion` would be `1.4`.
 
 Here is an example curl request that will query the Content API for the list of collections:
 
