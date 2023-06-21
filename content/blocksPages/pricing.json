@@ -55,8 +55,8 @@
         },
         {
           "name": "Enterprise",
-          "price": "$2999",
-          "interval": "month",
+          "price": "",
+          "interval": " ",
           "body": "**Bulk pricing available**\n\n* Custom Users\n* Custom Roles\n* No User Limit\n* Variable user pricing\n* Enterprise Support\n* SSO \n* Custom workflows\n",
           "actions": [
             {
