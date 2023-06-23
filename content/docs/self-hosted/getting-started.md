@@ -24,7 +24,7 @@ git clone https://github.com/<YOUR_GITHUB_ACCOUNT>/tina-self-hosted-demo self-ho
 
 Setup the .env file:
 
-```
+```bash
 cp .env.example .env
 ```
 
@@ -32,13 +32,13 @@ We'll configure these values so that TinaCMS can run in your production environm
 
 Install the project's dependencies:
 
-```
+```bash
 yarn install
 ```
 
 Run the project locally:
 
-```
+```bash
 yarn dev
 ```
 
