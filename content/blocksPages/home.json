@@ -1,6 +1,7 @@
 {
   "blocks": [
     {
+      "title": "asdf",
       "_template": "story"
     },
     {
@@ -62,10 +63,5 @@
       "title": "Recent Posts",
       "_template": "recentPosts"
     }
-  ],
-  "_collection": "page",
-  "_keepTemplateKey": false,
-  "_template": "page",
-  "_relativePath": "home.json",
-  "_id": "content/blocksPages/home.json"
+  ]
 }
