@@ -53,14 +53,14 @@ export function Navbar({}) {
     <>
       <div ref={ref}>
         {/* <LaunchBanner /> */}
-        <div className="flex lg:hidden w-full py-4 pr-4 pl-18 items-center justify-between gap-6">
+        <div className="flex lg:hidden w-full py-4 pl-4 pr-18 items-center justify-between gap-6">
           <div
-            className={`fixed top-0 left-0 h-full w-3/4 bg-gradient-to-t from-blue-50 to-white shadow-2xl z-50 transition ease-out duration-200 ${
-              open ? 'translate-x-0' : '-translate-x-full'
+            className={`fixed top-0 right-0 h-full w-3/4 bg-gradient-to-t from-blue-50 to-white shadow-2xl z-50 transition ease-out duration-200 ${
+              open ? 'translate-x-0' : 'translate-x-full'
             }`}
           >
             <button
-              className="absolute top-6 right-0 translate-x-full transition duration-150 ease-out rounded-r-full flex items-center font-tuner whitespace-nowrap leading-tight hover:shadow active:shadow-none text-orange-500 hover:text-orange-400 border border-gray-100/60 bg-gradient-to-br from-white to-gray-50 pl-3 pr-4 pt-[8px] pb-[6px] text-sm font-medium cursor-pointer"
+              className="absolute top-6 left-0 -translate-x-full transition duration-150 ease-out rounded-l-full flex items-center font-tuner whitespace-nowrap leading-tight hover:shadow active:shadow-none text-orange-500 hover:text-orange-400 border border-gray-100/60 bg-gradient-to-br from-white to-gray-50 pr-3 pl-4 pt-[8px] pb-[6px] text-sm font-medium cursor-pointer"
               onClick={() => {
                 setOpen(!open)
               }}
