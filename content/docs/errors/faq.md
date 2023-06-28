@@ -12,7 +12,7 @@ You can view the branches that have been indexed by Tina Cloud by visiting `http
 
 ## tina directory not pushed to git
 
-Everything in the `tina` directory (except the `__generated__` folder) needs to be pushed up as well. Be sure to add it to your git repository (and make sure you **don't** have it listed in a `.gitignore`). Also make sure that the branch you're trying to use has the `tina` directory and is up to date.
+Everything in the `tina` directory (except the `__generated__` folder) needs to be pushed up to the git repository. Be sure to add it to your git repository (and make sure you **don't** have it listed in a `.gitignore`). Also make sure that the branch you're trying to use has the `tina` directory and is up to date.
 
 ## API URL is misformatted
 
