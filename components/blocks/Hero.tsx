@@ -5,10 +5,12 @@ export function HeroBlock({ data, index }) {
   return (
     <section
       key={index}
-      className={`relative overflow-visible z-10 text-center px-8 py-12 lg:py-16`}
+      className={`relative overflow-visible z-10 text-center ${
+        data.margin ? data.margin : 'px-8 py-12 lg:py-16'
+      }`}
     >
       <Container width="narrow" center>
-        <HeroFeature item={data} />
+        <HeroFeature item={data} spacing={data.spacing} />
       </Container>
       {data.videoSrc && (
         <Container>
@@ -19,12 +21,12 @@ export function HeroBlock({ data, index }) {
   )
 }
 
-export const HeroFeature = ({ item }) => {
+export const HeroFeature = ({ item, spacing }) => {
   return (
     <>
-      <div className="feature">
+      <div className={`flex flex-col ${spacing ? spacing : 'gap-6'}`}>
         {item.headline && <h2 className="heading">{item.headline}</h2>}
-        {item.text && <p className="text-xl mt-6">{item.text}</p>}
+        {item.text && <p className="text-xl">{item.text}</p>}
         {item.actions && <Actions items={item.actions} align="center" />}
       </div>
       <style jsx>{`
