@@ -32,6 +32,7 @@
     "@tinacms/auth": "1.0.3",
     "@tinacms/datalayer-old": "npm:@tinacms/datalayer@0.2.3",
     "@tinacms/graphql-old": "npm:@tinacms/graphql@0.60.0",
+    "@tinacms/vercel-previews": "^0.0.4",
     "@types/react-instantsearch-dom": "^5.2.6",
     "@types/styled-components": "^5.1.21",
     "@typescript-eslint/eslint-plugin": "^5.42.0",
@@ -94,6 +95,7 @@
     "react-syntax-highlighter": "^15.5.0",
     "react-textarea-autosize": "^7.1.2",
     "react-tinacms-editor": "^0.53.26",
+    "react-use-size": "^3.0.1",
     "rehype-raw": "^6.1.1",
     "remark": "^11.0.2",
     "remark-gfm": "^3.0.1",
@@ -104,8 +106,7 @@
     "styled-jsx-plugin-sass": "^1.0.0",
     "tinacms": "1.5.9",
     "unist-util-visit": "^4.1.1",
-    "webpack": "^5.76.0",
-    "@tinacms/vercel-previews": "^0.0.4"
+    "webpack": "^5.76.0"
   },
   "devDependencies": {
     "@babel/plugin-syntax-jsx": "^7.10.4",

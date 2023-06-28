@@ -1,12 +1,11 @@
 import { Actions } from './Actions'
 import { Container } from './Container'
-import HeroBg from '../../public/svg/hero-bg.svg'
 
 export function HeroBlock({ data, index }) {
   return (
     <section
       key={index}
-      className={`relative overflow-visible z-10 text-center px-8 pb-10 md:pb-16 lg:pb-28 pt-32 lg:pt-40`}
+      className={`relative overflow-visible z-10 text-center px-8 py-12 lg:py-16`}
     >
       <Container width="narrow" center>
         <HeroFeature item={data} />
@@ -16,7 +15,6 @@ export function HeroBlock({ data, index }) {
           <Video src={data.videoSrc} />
         </Container>
       )}
-      <HeroBg className="absolute pointer-events-none -z-1 left-0 bottom-0 w-full h-auto" />
     </section>
   )
 }

@@ -1,14 +1,12 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import HeroBg from '../../public/svg/hero-bg.svg'
 
 export const Hero = ({ narrow = false, children }) => {
   return (
     <div
-      className={`relative overflow-visible z-10 text-center px-8 pb-10 md:pb-16 lg:pb-28 pt-32 lg:pt-40`}
+      className={`relative overflow-visible z-10 text-center px-8 py-12 lg:py-16`}
     >
       <HeroTitle narrow={narrow}>{children}</HeroTitle>
-      <HeroBg className="absolute pointer-events-none -z-1 left-0 bottom-0 w-full h-auto" />
     </div>
   )
 }
@@ -44,7 +42,7 @@ export const HeroTitle = styled(({ narrow, children, ...styleProps }) => {
     font-size: 3.5rem;
   }
 
-  ${props =>
+  ${(props) =>
     props.narrow &&
     css`
       max-width: 9em;

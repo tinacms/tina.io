@@ -261,25 +261,27 @@ function BlogTemplate({ file, siteConfig, ...props }) {
           ],
         }}
       />
-      <Hero>{frontmatter.title}</Hero>
-      <BlogWrapper>
-        <DocsTextWrapper>
-          <BlogMeta>
-            <MetaWrap>
-              <MetaBit>{formatDate(frontmatter.date)}</MetaBit>
-              <MetaBit>
-                <span>By</span> <strong>{frontmatter.author}</strong>
-              </MetaBit>
-            </MetaWrap>
-          </BlogMeta>
-          {warningMessage && <WarningCallout text={warningMessage} />}
-          <TinaMarkdown components={components} content={body} />
-          <LastEdited date={frontmatter.last_edited} />
-          {(prevPage?.slug !== null || nextPage?.slug !== null) && (
-            <DocsPagination prevPage={prevPage} nextPage={nextPage} />
-          )}
-        </DocsTextWrapper>
-      </BlogWrapper>
+      <Hero>{frontmatter.title}</Hero>{' '}
+      <div className="p-6">
+        <div className="py-12 lg:py-16 last:pb-20 last:lg:pb-32 max-w-prose mx-auto">
+          <DocsTextWrapper>
+            <BlogMeta>
+              <MetaWrap>
+                <MetaBit>{formatDate(frontmatter.date)}</MetaBit>
+                <MetaBit>
+                  <span>By</span> <strong>{frontmatter.author}</strong>
+                </MetaBit>
+              </MetaWrap>
+            </BlogMeta>
+            {warningMessage && <WarningCallout text={warningMessage} />}
+            <TinaMarkdown components={components} content={body} />
+            <LastEdited date={frontmatter.last_edited} />
+            {(prevPage?.slug !== null || nextPage?.slug !== null) && (
+              <DocsPagination prevPage={prevPage} nextPage={nextPage} />
+            )}
+          </DocsTextWrapper>
+        </div>
+      </div>
     </Layout>
   )
 }
@@ -327,12 +329,6 @@ export const getStaticPaths: GetStaticPaths = async function () {
 /*
  ** STYLES ---------------------------------------------------------
  */
-
-const BlogWrapper = styled(Wrapper)`
-  padding-top: 4rem;
-  padding-bottom: 3rem;
-  max-width: 768px;
-`
 
 const BlogMeta = styled.div`
   width: 100%;

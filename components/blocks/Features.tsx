@@ -172,7 +172,7 @@ export function FeaturesBlock({ data, index }) {
   return (
     <section
       key={'features-' + index}
-      className={'section white featureSection'}
+      className={'py-12 lg:py-16 last:pb-20 last:lg:pb-32'}
     >
       <Container>
         {/* TODO: why is there a type error here */}

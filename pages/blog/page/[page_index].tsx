@@ -25,32 +25,34 @@ const Index = (props) => {
           title: 'Blog',
         }}
       />
-      <BlogWrapper>
-        {props.posts.map((post) => (
-          <DynamicLink
-            key={post.data.slug}
-            href={`/blog/${post.data.slug}`}
-            passHref
-          >
-            <a className="w-full group flex flex-col gap-6 lg:gap-8 items-start mb-6 lg:mb-8">
-              <h3 className="font-tuner inline-block text-3xl lg:text-4xl lg:leading-tight bg-gradient-to-br from-blue-700/70 via-blue-900/90 to-blue-1000 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent">
-                {post.data.title}
-              </h3>
-              <RichTextWrapper>
-                <BlogMeta>
-                  <MetaBit>
-                    <span>By</span> <strong>{post.data.author}</strong>
-                  </MetaBit>
-                  <MetaBit>{formatDate(post.data.date)}</MetaBit>
-                </BlogMeta>
-                <MarkdownContent skipHtml={true} content={post.content} />
-                <hr />
-              </RichTextWrapper>
-            </a>
-          </DynamicLink>
-        ))}
-        <BlogPagination currentPage={currentPage} numPages={numPages} />
-      </BlogWrapper>
+      <div className="p-6">
+        <div className="py-12 lg:py-16 last:pb-20 last:lg:pb-32 max-w-prose mx-auto">
+          {props.posts.map((post) => (
+            <DynamicLink
+              key={post.data.slug}
+              href={`/blog/${post.data.slug}`}
+              passHref
+            >
+              <a className="w-full group flex flex-col gap-6 lg:gap-8 items-start mb-6 lg:mb-8">
+                <h3 className="font-tuner inline-block text-3xl lg:text-4xl lg:leading-tight bg-gradient-to-br from-blue-700/70 via-blue-900/90 to-blue-1000 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent">
+                  {post.data.title}
+                </h3>
+                <RichTextWrapper>
+                  <BlogMeta>
+                    <MetaBit>
+                      <span>By</span> <strong>{post.data.author}</strong>
+                    </MetaBit>
+                    <MetaBit>{formatDate(post.data.date)}</MetaBit>
+                  </BlogMeta>
+                  <MarkdownContent skipHtml={true} content={post.content} />
+                  <hr />
+                </RichTextWrapper>
+              </a>
+            </DynamicLink>
+          ))}
+          <BlogPagination currentPage={currentPage} numPages={numPages} />
+        </div>
+      </div>
     </Layout>
   )
 }
@@ -150,15 +152,6 @@ const getLocalFiles = async (filePath: string) => {
 /**
  *  STYLES -----------------------------------------------------
  */
-
-export const BlogWrapper = styled(Wrapper)`
-  padding-top: 4rem;
-  max-width: 768px;
-
-  @media (min-width: 1024px) {
-    padding-top: 12rem;
-  }
-`
 
 export const MetaBit = styled.p`
   display: flex;
