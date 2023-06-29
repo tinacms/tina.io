@@ -11,11 +11,19 @@ const PricingCard = ({ data, single = false }) => {
       <div className={`card ${single ? 'single' : 'grouped'}`}>
         <div className="header">
           <h3 className="title">{data.name}</h3>
-          {data.price && <span className="dotted"></span>}
-          <h3 className="price !text-blue-800">
-            <span className="number">{data.price}&#8203;</span>
-            <span className="interval">{data.interval}&#8203;</span>
-          </h3>
+          {data.price ? (
+            <>
+              <span className="dotted"></span>
+              <h3 className="price !text-blue-800">
+                <span className="number">{data.price}</span>
+                {data.interval && (
+                  <span className="interval">{data.interval}</span>
+                )}
+              </h3>
+            </>
+          ) : (
+            <div className="price-placeholder"></div>
+          )}
         </div>
         <div className="body">
           <div className="content">
@@ -75,7 +83,13 @@ const PricingCard = ({ data, single = false }) => {
           flex: 0 0 auto;
           margin: 0;
         }
+        .price-placeholder {
+          flex: 1 1 auto;
+          min-width: 1px;
+          height: 56px;
+        }
         .price {
+          height: 56px;
           font-family: var(--font-tuner);
           font-size: 1.5rem;
           flex: 0 0 auto;
@@ -83,6 +97,7 @@ const PricingCard = ({ data, single = false }) => {
           display: flex;
           flex-direction: column;
           item-align: center;
+          justify-content: center;
           text-align: center;
         }
         .interval {
