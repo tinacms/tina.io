@@ -11,17 +11,11 @@ const PricingCard = ({ data, single = false }) => {
       <div className={`card ${single ? 'single' : 'grouped'}`}>
         <div className="header">
           <h3 className="title">{data.name}</h3>
-          {data.price && (
-            <>
-              <span className="dotted"></span>
-              <h3 className="price !text-blue-800">
-                <span className="number">{data.price}</span>
-                {data.interval && (
-                  <span className="interval">{data.interval}</span>
-                )}
-              </h3>
-            </>
-          )}
+          {data.price && <span className="dotted"></span>}
+          <h3 className="price !text-blue-800">
+            <span className="number">{data.price}&#8203;</span>
+            <span className="interval">{data.interval}&#8203;</span>
+          </h3>
         </div>
         <div className="body">
           <div className="content">
