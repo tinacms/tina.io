@@ -5,7 +5,7 @@
       "text": "Reduce costs. Increase security & performance.",
       "actions": [
         {
-          "label": "Request 1-pager",
+          "label": "Request 1-Pager",
           "icon": false,
           "variant": "white",
           "size": "small",
@@ -20,25 +20,53 @@
         }
       ],
       "videoSrc": "",
+      "margin": "",
+      "spacing": "gap-10",
       "_template": "hero"
+    },
+    {
+      "items": [
+        {
+          "headline": "Built-in Version Control",
+          "text": "Tina is built on Git. Easily revert to earlier versions, undo mistakes, work on branches, and deploy with confidence."
+        },
+        {
+          "headline": "Reduced Costs",
+          "text": "When switching to TinaCMS, most customers reduce licensing and operating costs by more than 50%. "
+        },
+        {
+          "headline": "Self-host",
+          "text": "TinaCMS can be self-hosted behind your firewall for increased security. "
+        },
+        {
+          "headline": "Editorial Workflow",
+          "text": "Editorial workflows backed by Git are built into Tina. Your content team can make Pull Requests (PRs) without leaving the CMS. "
+        },
+        {
+          "headline": "Performance and Scalability",
+          "text": "Static architecture delivers fast load times and scalability by pre-rendering pages as static assets and serving them from a CDN. This often  eliminates down-time and results in a 10 x time-to-first-byte."
+        },
+        {
+          "headline": "Enhanced Security",
+          "text": "Reduce the attack surface without a database and server-side processing. Static files and strict access controls minimize vulnerabilities, offering a more secure architecture. "
+        }
+      ],
+      "_template": "featureGrid"
     },
     {
       "options": {
         "narrow": true,
-        "color": "white"
+        "color": "white",
+        "align": "center"
       },
-      "content": "## Reduced Hosting and Operating Costs\n\nMost customers see greater than 50% reduction in licensing and operating costs when switching from enterprise-level CMS platforms to TinaCMS\n",
+      "content": "## Reduced Hosting and Operating Costs\n\nMost customers see greater than 50% reduction in licensing and operating costs when switching from other enterprise-level CMS platforms to TinaCMS\n",
       "_template": "content"
     },
     {
       "items": [
         {
-          "headline": "Training & Support",
-          "text": "Get access to the team behind TinaCMS for training, priority support, and custom development. "
-        },
-        {
-          "headline": "Editorial Workflow",
-          "text": "Empower your team with editorial workflows backed by Git. "
+          "headline": "Simplified Development & Maintenance",
+          "text": "Web teams become efficient when using modern frameworks and TinaCMS. Updates and deployments become simpler, reducing the risk of bugs and downtime."
         },
         {
           "headline": "Single Sign On",
@@ -50,50 +78,41 @@
         },
         {
           "headline": "Uptime SLAs",
-          "text": "99.95% server uptime with swift communications if something impacts your sending integration."
+          "text": "99.9% server uptime with swift communications if something impacts your sending integration."
         },
         {
           "headline": "CI/CD ",
-          "text": "Integration with your CI/CD pipeline, pre-prod env VS prod environment. \n"
+          "text": "Integration with a modern CI/CD pipeline to perform all checks and run scripts.   Easily configure separate environments such as pre-production and  production. \n"
         },
         {
           "headline": "No More Caching",
-          "text": "Reduce the need for caching layers. Isn’t of caching layers, your content is statically generated and distributed through CDN networks. \n"
-        },
-        {
-          "headline": "Version Control for your Content",
-          "text": "Developers know how much of a lifesaver Git is, but it's just as big a deal when it comes to website content as well. Screw-ups can be rolled back to earlier commits, meaning you can always go back to a previous version of your site with a few keystrokes."
-        },
-        {
-          "headline": "Reduced Hosting and Operating Costs",
-          "text": "Most customers see greater than 50% reduction in licensing and operating costs when switching from enterprise-level CMS platforms to TinaCMS"
-        },
-        {
-          "headline": "Simplified Development and Maintenance",
-          "text": "Developers become much more efficient when using modern static site frameworks and a headless CMS. Updates and deployments become simpler, reducing the risk of bugs and downtime."
-        },
-        {
-          "headline": "Enhanced Security",
-          "text": "Static sites reduce the attack surface by eliminating server-side processing. Static files and strict access controls minimize vulnerabilities, offering a more secure architecture for enterprise organizations. This means that DDOS attacks, scripting hacks, and database exploits are not an issue. "
-        },
-        {
-          "headline": "Better Performance and Scalability",
-          "text": "There's a reason that a normal static site hosted on a CDN is often 10 times faster time-to-first-byte than a site built with a legacy CMS.  Static architecture delivers fast load times and scalability by pre-rendering pages as static assets and serving them from a CDN, ensuring a seamless user experience even during high traffic periods."
+          "text": "Reduce the need for complex caching layers. Caching is built it with statically generated content distributed through CDN networks. \n"
         }
       ],
       "_template": "featureGrid"
     },
     {
-      "title": "",
-      "intro": "",
-      "questions": [
+      "items": [
         {
-          "question": "Reduced Hosting and Operating Costs",
-          "answer": "Most customers see greater than 50% reduction in licensing and operating costs when switching from enterprise-level CMS platforms to TinaCMS\n"
+          "headline": "Training & Support",
+          "text": "Get access to the team behind TinaCMS for training, priority support, and custom development."
         }
       ],
-      "color": "seafoam",
-      "_template": "faq"
+      "_template": "featureGrid"
+    },
+    {
+      "headline": "Request a Demo",
+      "text": "",
+      "actions": [
+        {
+          "label": "Contact Us",
+          "icon": false,
+          "variant": "blue",
+          "size": "large",
+          "url": "mailto:info@tina.io?subject=TinaCMS Enterprise Demo&body=Hi, I'd like to book a demo of TinaCMS."
+        }
+      ],
+      "_template": "hero"
     }
   ],
   "seo": {
