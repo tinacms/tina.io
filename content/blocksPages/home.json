@@ -7,11 +7,29 @@
       "items": [
         {
           "headline": "Visual Editing",
-          "text": "See content changes in real-time as you edit. "
+          "text": "See content changes in real-time as you edit. ",
+          "actions": [
+            {
+              "label": "Try Demo",
+              "icon": false,
+              "variant": "default",
+              "size": "small",
+              "url": "https://quick-edit-demo.vercel.app/admin#/~"
+            }
+          ]
         },
         {
           "headline": "Static and Dynamic",
-          "text": "Query your Markdown content like you would with a headless CMS. Tina’s GraphQL Data Layer supports filtering, sorting, pagination, and more."
+          "text": "Query your Markdown content like you would with a headless CMS. Tina’s GraphQL Data Layer supports filtering, sorting, pagination, and more.",
+          "actions": [
+            {
+              "label": "Read Docs",
+              "icon": false,
+              "variant": "default",
+              "size": "small",
+              "url": "/docs/data-fetching/overview/"
+            }
+          ]
         },
         {
           "headline": "Develop Locally",
@@ -19,11 +37,29 @@
         },
         {
           "headline": "3rd-party Media",
-          "text": "Store Media assets in your repo or connect to S3, Cloudinary, etc."
+          "text": "Store Media assets in your repo or connect to S3, Cloudinary, etc.",
+          "actions": [
+            {
+              "label": "Read Docs",
+              "icon": false,
+              "variant": "default",
+              "size": "small",
+              "url": "/docs/reference/media/external/authentication/"
+            }
+          ]
         },
         {
           "headline": "Composable Blocks",
-          "text": "Create reusable components that you can edit with Tina. Let your team assemble pages like a site-builder."
+          "text": "Create reusable components that you can edit with Tina. Let your team assemble pages like a site-builder.",
+          "actions": [
+            {
+              "label": "Read Docs",
+              "icon": false,
+              "variant": "default",
+              "size": "small",
+              "url": "/docs/editing/blocks/"
+            }
+          ]
         },
         {
           "headline": "Markdown at Scale ",
@@ -62,10 +98,5 @@
       "title": "Recent Posts",
       "_template": "recentPosts"
     }
-  ],
-  "_collection": "page",
-  "_keepTemplateKey": false,
-  "_template": "page",
-  "_relativePath": "home.json",
-  "_id": "content/blocksPages/home.json"
+  ]
 }
