@@ -31,5 +31,17 @@ export const heroTemplate: TinaTemplate = {
     // @ts-ignore
     actionsTemplate,
     { name: 'videoSrc', label: 'Video Source', type: 'string' },
+    {
+      name: 'margin',
+      description: 'Default is px-8 py-12 lg:py-16',
+      label: 'Custom Margin',
+      type: 'string',
+    },
+    {
+      name: 'spacing',
+      description: 'Default is gap-6',
+      label: 'Custom Spacing',
+      type: 'string',
+    },
   ],
 }

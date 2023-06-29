@@ -95,6 +95,7 @@
     "react-syntax-highlighter": "^15.5.0",
     "react-textarea-autosize": "^7.1.2",
     "react-tinacms-editor": "^0.53.26",
+    "react-use-size": "^3.0.1",
     "rehype-raw": "^6.1.1",
     "remark": "^11.0.2",
     "remark-gfm": "^3.0.1",

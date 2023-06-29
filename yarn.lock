@@ -15277,6 +15277,11 @@ react-tracked@^1.7.9:
     proxy-compare "2.4.0"
     use-context-selector "1.4.1"
 
+react-use-size@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/react-use-size/-/react-use-size-3.0.1.tgz#e5932d10f8e8001e620b1f8f92959ec3789ec8d2"
+  integrity sha512-pkO/UIqeWQTS0NVbgh/FrHkWDqkQnaOQfd+6Hj6w9SewiP3CtqcW3rbfDktvwl6vDtz/a+/0rP/e3tJyFT0RAQ==
+
 react@17.0.2:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
