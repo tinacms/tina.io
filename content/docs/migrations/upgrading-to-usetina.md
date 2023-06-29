@@ -134,7 +134,7 @@ export const getStaticProps = async () => {
 }
 ```
 
-> Note! You can only have one `useTina` registered at a time, or they will step over eachother.
+> Note! You can only have one `useTina` registered at a time, or they will step on each other.
 
 You will also notice that `TinaCMS` now renders a ReactNode, instead of render props as its children:
 

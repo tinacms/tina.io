@@ -76,7 +76,7 @@ const default defineConfig({
 ```
 
 - `format`, at the root of the collection, defines the filetype (`md` in this case).
-- All of the **frontmatter** fields can be registed, and assigned a type.
+- All the **frontmatter** fields can be registered, and assigned a type.
 - Your markdown body is registered by defining a `rich-text` field, and setting `isBody: true`.
 
 ## Rendering content with `TinaMarkdown`
@@ -218,7 +218,7 @@ const MyBlogPost = (props) => {
 }
 ```
 
-Once our custom component has been registered with TinaMarkdown, editors can easily add components, and immedietly see them rendered on the page.
+Once our custom component has been registered with TinaMarkdown, editors can easily add components, and immediately see them rendered on the page.
 
 ![MDX Template](https://res.cloudinary.com/forestry-demo/image/upload/v1663774068/tina-io/docs/md/Screen_Shot_2022-09-21_at_12.25.11_PM.png)
 

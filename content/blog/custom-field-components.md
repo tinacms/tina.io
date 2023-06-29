@@ -103,7 +103,7 @@ _Pretty cool huh?_ 🤩
 
 Notice how in all of the other field objects, the `component` property is referencing a Tina field plugin, whereas **with our custom inline field, we are passing in a React component.**
 
-![Custom Inline Field In Sidbar](/img/blog/custom-field-inline.png)
+![Custom Inline Field In Sidebar](/img/blog/custom-field-inline.png)
 
 Now this example component is super simple — a glorified label. This type of component can be helpful with organizing or customizing the sidebar, but _we can go further and pass in more complex fields_.
 
@@ -164,7 +164,7 @@ When the custom field is registered with Tina, this **input object** is passed i
 - `field` — A reference to the [field definition](https://tinacms.org/docs/plugins/fields).
 - `input` — The object with data and callbacks for the field to set and update data. _Outlined above_ ☝️.
 - `meta` — This provides [metadata](https://final-form.org/docs/react-final-form/types/FieldRenderProps#metaactive) about the state of the field.
-- `tinaForm` — A reference to the form where this field is registerd.
+- `tinaForm` — A reference to the form where this field is registered.
 
 The [react-final-form documentation](https://final-form.org/docs/react-final-form/api/Field#3-connect-the-callbacks-to-your-input) describes the `input` and `meta` props incredibly well. When creating custom fields, you'll typically be accessing the `field` and `input` props.
 
@@ -235,7 +235,7 @@ AboutMe.getInitialProps = async function() {
 }
 ```
 
-As with many things in development, the answer **depends on your usecase** 😉. Feel free to reference this [demo repo](https://github.com/kendallstrautman/llama-filters/blob/master/pages/Index.js) to see a working example structure for Next.js.
+As with many things in development, the answer **depends on your use case** 😉. Feel free to reference this [demo repo](https://github.com/kendallstrautman/llama-filters/blob/master/pages/Index.js) to see a working example structure for Next.js.
 
 ### 2. Add the value to the source data
 

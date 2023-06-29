@@ -78,7 +78,7 @@ Next we'll want to create a Tina Cloud project from our "content repo"
 
 Initialize Git in your content repo and push it to Github. From there [connect to Tina Cloud](https://tina.io/docs/tina-cloud/dashboard/projects/)
 
-Once that's done, [create a token](https://tina.io/docs/tina-cloud/dashboard/projects/#read-only-tokens) for the `main` branch, or use `*` to allow all branches.
+Once that's done, [create a token](https://tina.io/docs/tina-cloud/dashboard/projects/#api-tokens) for the `main` branch, or use `*` to allow all branches.
 
 Switch back to your "website repo" and set up an `.env` file to use when connecting to Tina Cloud:
 

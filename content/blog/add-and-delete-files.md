@@ -280,7 +280,7 @@ Both the frontmatter and body functions receive the data captured by fields in t
 With the power to create, comes the power to delete 🧙‍♀️. I promise you this step is much simpler.
 
 Instead of adding a ‘delete’ plugin, we simply need to pass a `delete-action` to the main form options.
-Head to a file where you have a Tina form configured in your project. This will typically be a template file that generates multiple posts, casestudies, etc. If you don’t have a Tina form configured in your project, learn more about creating forms with Gatsby+Tina [here](https://tinacms.org/guides/gatsby/adding-tina/project-setup).
+Head to a file where you have a Tina form configured in your project. This will typically be a template file that generates multiple posts, case studies, etc. If you don’t have a Tina form configured in your project, learn more about creating forms with Gatsby+Tina [here](https://tinacms.org/guides/gatsby/adding-tina/project-setup).
 
 You don't want to give the editors the power to delete files that they shouldn't. So think about where you want this action to be available. For something like a blog, it makes sense to add the `delete-action` to a blog template form. But it might not make sense to add the `delete-action` to a form that edits global site configuration, for example.
 

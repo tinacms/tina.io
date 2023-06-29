@@ -20,7 +20,7 @@ Depending on your site's framework & hosting provider, there are multiple ways t
 
 Set up a new API route in the `pages` directory of your Next.js app at `pages/api/<YOUR_MEDIA_STORE_NAME>/[...media].ts`.
 
-Then add a new catch all API route for media by calling createMediaHanlder method of your media store library.
+Then add a new catch-all API route for media by calling createMediaHandler method of your media store library.
 
 Import `isAuthorized` from ["@tinacms/auth"](https://github.com/tinacms/tinacms/tree/main/packages/%40tinacms/auth).
 

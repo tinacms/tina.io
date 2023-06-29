@@ -1,0 +1,65 @@
+{
+  "blocks": [
+    {
+      "headline": "TinaCMS: The Ultimate CMS for Next.js",
+      "text": "TinaCMS was built with NextJS in mind. It provides an unmatched developer workflow, with amazing visual editing capabilities that your editors will love.",
+      "videoSrc": "",
+      "_template": "hero"
+    },
+    {
+      "options": {
+        "narrow": true,
+        "color": "white"
+      },
+      "content": "## Boost Your Next.js Projects with TinaCMS\n\nDeveloped with Next.js in mind, TinaCMS offers MDX support, visual editing, and the flexibility to deliver content statically or dynamically.\n",
+      "_template": "content"
+    },
+    {
+      "items": [
+        {
+          "headline": "Visual Editing",
+          "text": "Experience the ease of TinaCMS's visual editing features, designed to make content management more intuitive and efficient."
+        },
+        {
+          "headline": "MDX Support",
+          "text": "Harness the power of MDX to create interactive, component-driven content. With TinaCMS, you can register your MDX components and provide a UI for them."
+        },
+        {
+          "headline": "Dynamic & Static Content",
+          "text": "Whether you're serving your content statically or dynamically, TinaCMS can adapt to your needs, providing a versatile platform for your Next.js projects."
+        },
+        {
+          "headline": "Open Source Frontend",
+          "text": "TinaCMS's open-source frontend means greater flexibility and customization for your projects. Benefit from regular updates and a thriving community."
+        },
+        {
+          "headline": "Seamless Integration",
+          "text": "TinaCMS is built to work smoothly with Next.js, making it a perfect fit for your Next.js projects."
+        },
+        {
+          "headline": "Customizable and Extendable",
+          "text": "TinaCMS allows you to create custom field widgets, add custom validation to fields, and create workflows outside of TinaCMS itself, leveraging Git-based content."
+        }
+      ],
+      "_template": "featureGrid"
+    },
+    {
+      "headline": "Ready to Supercharge Your Next.js Projects?",
+      "text": "Explore how TinaCMS can enhance your Next.js development.",
+      "actions": [
+        {
+          "label": "Learn More",
+          "icon": false,
+          "variant": "blue",
+          "size": "medium",
+          "url": "https://tina.io/docs/setup-overview/"
+        }
+      ],
+      "_template": "flying"
+    }
+  ],
+  "seo": {
+    "title": "TinaCMS for Next.js: Power Up Your Development",
+    "description": "Transform your Next.js projects with TinaCMS, offering visual editing, MDX support, and the flexibility to deliver content in both static and dynamic ways. Experience a seamless, customizable CMS solution."
+  }
+}

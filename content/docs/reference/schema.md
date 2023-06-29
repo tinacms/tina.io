@@ -10,14 +10,14 @@ The Schema is located in `tina/config.{ts,tsx,js,jsx}` and it is used to define 
 
 ## Definition
 
-| Property          | Description                                                                                        |
-| ----------------- | -------------------------------------------------------------------------------------------------- |
-| `collections`     | An array of [collections](/docs/reference/collections/).                                           |
-| `config`          | The configuration for tinaCMS                                                                      |
-| `config.branch`   | The branch that will be used to query content on Tina Cloud. (Not used in local mode )             |
-| `config.clientId` | The ClientId [generated on Tina Cloud](/docs/tina-cloud/dashboard/)                                |
-| `config.token`    | A read only token [generated on Tina Cloud](/docs/tina-cloud/dashboard/projects/#read-only-tokens) |
-| `config.media`    | [Media configuration](/docs/reference/media/overview/) for external and git backed media           |
+| Property          | Description                                                                                  |
+| ----------------- |----------------------------------------------------------------------------------------------|
+| `collections`     | An array of [collections](/docs/reference/collections/).                                     |
+| `config`          | The configuration for tinaCMS                                                                |
+| `config.branch`   | The branch that will be used to query content on Tina Cloud. (Not used in local mode )       |
+| `config.clientId` | The ClientId [generated on Tina Cloud](/docs/tina-cloud/dashboard/)                          |
+| `config.token`    | A read only token [generated on Tina Cloud](/docs/tina-cloud/dashboard/projects/#api-tokens) |
+| `config.media`    | [Media configuration](/docs/reference/media/overview/) for external and git backed media     |
 
 ## Example
 
@@ -31,7 +31,7 @@ const branch =
 export default defineConfig({
   //...
   branch,
-  token: '<Your Read Only Token>' // generated on app.tina.io
+  token: '<Your Read Only Token>', // generated on app.tina.io
   clientId: '<Your Client ID>', // generated on app.tina.io
   schema: {
     collections: [

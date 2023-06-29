@@ -67,7 +67,7 @@
     "next": "^12.1.0",
     "next-seo": "^4.1.0",
     "next-svgr": "0.0.2",
-    "next-tinacms-cloudinary": "4.3.0",
+    "next-tinacms-cloudinary": "4.3.1",
     "nextjs-cors": "^2.1.0",
     "node-fetch": "^2.6.1",
     "node-sass": "^7.0.0",
@@ -102,14 +102,15 @@
     "strip-markdown": "^3.1.1",
     "styled-components": "^5.3.3",
     "styled-jsx-plugin-sass": "^1.0.0",
-    "tinacms": "^1.5.0",
+    "tinacms": "1.5.9",
     "unist-util-visit": "^4.1.1",
-    "webpack": "^5.76.0"
+    "webpack": "^5.76.0",
+    "@tinacms/vercel-previews": "^0.0.4"
   },
   "devDependencies": {
     "@babel/plugin-syntax-jsx": "^7.10.4",
     "@tailwindcss/forms": "^0.5.3",
-    "@tinacms/cli": "^1.5.7",
+    "@tinacms/cli": "1.5.18",
     "@types/cookie": "^0.3.3",
     "@types/glob": "^7.1.1",
     "@types/jest": "^25.1.2",

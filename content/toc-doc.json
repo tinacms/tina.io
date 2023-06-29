@@ -464,6 +464,15 @@
         ]
       },
       {
+        "title": "Search",
+        "items": [
+          {
+            "title": "Overview",
+            "slug": "/docs/reference/search/overview/"
+          }
+        ]
+      },
+      {
         "title": "Content API",
         "items": [
           {

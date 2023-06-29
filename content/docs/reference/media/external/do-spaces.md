@@ -116,7 +116,7 @@ export default createMediaHandler({
 })
 ```
 
-For Netlify usecase, please read how to set up Netlify Functions [here](/docs/reference/media/external/authentication/#netlify)
+For Netlify use case, please read how to set up Netlify Functions [here](/docs/reference/media/external/authentication/#netlify)
 
 ### Using a Custom URL
 

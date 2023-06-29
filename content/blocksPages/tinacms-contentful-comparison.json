@@ -1,0 +1,65 @@
+{
+  "blocks": [
+    {
+      "headline": "TinaCMS vs Contentful: Why TinaCMS Could Be Right For You",
+      "text": "Discover the advantages of TinaCMS",
+      "videoSrc": "",
+      "_template": "hero"
+    },
+    {
+      "options": {
+        "narrow": true,
+        "color": "white"
+      },
+      "content": "## Why Choose TinaCMS Over Contentful?\n\nTinaCMS's open-source frontend, customizability, and visual editing capabilities make it a powerful alternative to Contentful. Here's why TinaCMS might be the perfect choice for your project:\n",
+      "_template": "content"
+    },
+    {
+      "items": [
+        {
+          "headline": "Visual Editing Capabilities",
+          "text": "TinaCMS provides an unmatched visual editing experience. Our inline editing capabilities allow content creators to see their changes in real-time, enhancing the overall content creation process."
+        },
+        {
+          "headline": "Open Source Frontend",
+          "text": "TinaCMS's frontend is open-source, enabling you to benefit from community-driven improvements and regular updates. This also makes it easier to integrate TinaCMS into your existing technology stack."
+        },
+        {
+          "headline": "Extendable and Customizable",
+          "text": "With TinaCMS, you can extend the CMS's functionality to suit your specific needs. Create custom field widgets, add custom validation to fields, and design a CMS that truly fits your project."
+        },
+        {
+          "headline": "Markdown Support",
+          "text": "TinaCMS supports markdown content, simplifying content creation and management. This provides a straightforward and accessible method of content creation for your team."
+        },
+        {
+          "headline": "Git-Based Content Management",
+          "text": "Content in TinaCMS is stored in Git, offering the best version control system available. This is beneficial for both open-source and closed-source projects."
+        },
+        {
+          "headline": "Great Local-Development Workflow",
+          "text": "TinaCMS supports a seamless local development workflow. This allows you to change your schema and your content, and merge them in one commit, enhancing the developer experience."
+        }
+      ],
+      "_template": "featureGrid"
+    },
+    {
+      "headline": "Discover the power of TinaCMS",
+      "text": "Experience a new standard of content management with TinaCMS.",
+      "actions": [
+        {
+          "label": "Learn More",
+          "icon": false,
+          "variant": "blue",
+          "size": "medium",
+          "url": "https://tina.io/docs/setup-overview/"
+        }
+      ],
+      "_template": "flying"
+    }
+  ],
+  "seo": {
+    "title": "TinaCMS vs Contentful: Explore the TinaCMS Advantage",
+    "description": "See why TinaCMS could be the perfect fit for your project. Experience the benefits of an open-source frontend, customizability, visual editing capabilities, and more with TinaCMS."
+  }
+}

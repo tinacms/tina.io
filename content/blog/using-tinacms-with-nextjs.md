@@ -12,7 +12,7 @@ This blog is a part of a series exploring the use of Next.js + Tina. In [Part I]
 
 ### Next.js Recap ▲
 
-[Next.js](https://nextjs.org/) is **a React “metaframework”** (a framework built on a framework) for developing web applications, built by the team at [Vercel](https://vercel.com/). Read [Part I](/blog/simple-markdown-blog-nextjs/) to get familiar with Next.js basics.
+[Next.js](https://nextjs.org/) is **a React “meta-framework”** (a framework built on a framework) for developing web applications, built by the team at [Vercel](https://vercel.com/). Read [Part I](/blog/simple-markdown-blog-nextjs/) to get familiar with Next.js basics.
 
 ### Tina Overview 🦙
 

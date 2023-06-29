@@ -61,8 +61,8 @@ Push your repo up to git, along with its new Tina configuration (including `tina
 
 ### Step 2) Setup a Tina Cloud project
 
-In production, we'll want to make sure only authorized users can access your Tina admin, and make changes to your content. You can setup a [Tina Cloud project](https://app.tina.io/) to handle this.
-Once your project is created, you'll also need to generate a read-only-token.
+In production, we'll want to make sure only authorized users can access your Tina admin, and make changes to your content. You can set up a [Tina Cloud project](https://app.tina.io/) to handle this.
+A read-only content token will be automatically generated when the project is created.
 
 See our [Tina Cloud docs](https://tina.io/docs/tina-cloud/) for help using Tina Cloud.
 
@@ -79,11 +79,11 @@ export default defineConfig({
 +    token: "<your-tina-cloud-projects-token>"
 ```
 
-> You should apply the token above in an environment variable, instead of hardcoding it.
+> You should apply the token above in an environment variable, instead of hard-coding it.
 
 ### Step 4) Configure build commands
 
-Tina's build will need to be apart of your site's static generation.
+Tina's build will need to be a part of your site's static generation.
 If you are using Netlify, this is configured in `app.netlify.com/sites/<your-site-id>/settings/deploys`
 
 You should prepend `yarn tinacms build && ` or `npm run tinacms build && ` to your site's build command:
@@ -92,7 +92,7 @@ You should prepend `yarn tinacms build && ` or `npm run tinacms build && ` to yo
 
 > If your package.json has a "build" script like `tinacms build && <your-site-build-cmd>`, this likely doesn't need to be changed. If your Netlify config is not running a custom build script (e.g `hugo`), you would have to change this to `tinacms build && hugo`
 
-> If your project has a `netlify.toml` with a build command set, that will take precendence over the above build command UI
+> If your project has a `netlify.toml` with a build command set, that will take precedence over the above build command UI
 
 For more information on deploying Tina with Netlify, Vercel, or GitHub Pages, [see this doc](/docs/tina-cloud/connecting-site/#deploying-your-site-with-the-tinacms-admin)
 

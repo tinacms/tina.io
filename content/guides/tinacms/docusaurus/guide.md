@@ -18,7 +18,7 @@ This guide is based on adapting the [Docusaurus Classic Example](https://github.
 
 ## Setup
 
-To start, we have to shape the data to be more consistent so it will align with the schema we're going to write. The docs and blog content is a mixture of `.md` and `.mdx` files alongside some `.json` meta files used to describe how the folders get displayed in the docs sidebar. We'll remove the meta files given we're going to write a schema for the sidebar to be manuallly controlled by the editor, and we'll migrate all the `.md` files to `.mdx`. For the blog, we'll extract the filename embedded dates to the MDX frontmatter, and we'll inline authors given Tina's reference system is based on individual file references and not a single data file like `authors.yml`.
+To start, we have to shape the data to be more consistent so it will align with the schema we're going to write. The docs and blog content is a mixture of `.md` and `.mdx` files alongside some `.json` meta files used to describe how the folders get displayed in the "docs" sidebar. We'll remove the meta files given we're going to write a schema for the sidebar to be manually controlled by the editor, and we'll migrate all the `.md` files to `.mdx`. For the blog, we'll extract the filename embedded dates to the MDX frontmatter, and we'll inline authors given Tina's reference system is based on individual file references and not a single data file like `authors.yml`.
 
 ```md
 // Authors.yml key reference
