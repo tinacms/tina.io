@@ -30,7 +30,13 @@ export const heroTemplate: TinaTemplate = {
     { name: 'text', label: 'Text', type: 'string' },
     // @ts-ignore
     actionsTemplate,
-    { name: 'videoSrc', label: 'Video Source', type: 'string' },
+    {
+      name: 'videoSrc',
+      label: 'Video Source',
+      description:
+        'This is the Cloudinary Public ID, for example "tina-io/docs/quick-edit-demo".',
+      type: 'string',
+    },
     {
       name: 'margin',
       description: 'Default is px-8 py-12 lg:py-16',
