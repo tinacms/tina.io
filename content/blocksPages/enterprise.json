@@ -1,8 +1,8 @@
 {
   "blocks": [
     {
-      "headline": "Reduce costs. Increase security & performance.",
-      "text": "",
+      "headline": "Tina for Enterpise",
+      "text": "Reduce costs. Increase security & performance.",
       "videoSrc": "",
       "_template": "hero"
     },
@@ -11,7 +11,7 @@
         "narrow": true,
         "color": "white"
       },
-      "content": "## Reduced Hosting and Operating Costs\n\nMost customers see greater than 50% reduction in licensing and operating costs when switching from enterprise-level CMS platforms to TinaCMS\n\n\n",
+      "content": "## Reduced Hosting and Operating Costs\n\nMost customers see greater than 50% reduction in licensing and operating costs when switching from enterprise-level CMS platforms to TinaCMS\n",
       "_template": "content"
     },
     {
@@ -69,6 +69,7 @@
     },
     {
       "title": "",
+      "intro": "",
       "questions": [
         {
           "question": "Reduced Hosting and Operating Costs",
