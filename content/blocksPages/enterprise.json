@@ -3,6 +3,22 @@
     {
       "headline": "Tina for Enterpise",
       "text": "Reduce costs. Increase security & performance.",
+      "actions": [
+        {
+          "label": "Request 1-pager",
+          "icon": false,
+          "variant": "white",
+          "size": "small",
+          "url": "mailto:info@tina.io?subject=TinaCMS Enterprise 1-Pager&body=Hi, I'd like more information about the TinaCMS Enterprise Solution.\""
+        },
+        {
+          "label": "Get a Demo",
+          "icon": false,
+          "variant": "blue",
+          "size": "small",
+          "url": "mailto:info@tina.io?subject=TinaCMS Enterprise Demo&body=Hi, I'd like to book a demo of TinaCMS."
+        }
+      ],
       "videoSrc": "",
       "_template": "hero"
     },
