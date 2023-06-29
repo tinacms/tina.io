@@ -8,7 +8,7 @@ interface SectionProps {
 export const Section = ({ children, color = 'white' }: SectionProps) => {
   return (
     <section
-      className={`py-20 lg:py-28 ${
+      className={`py-12 lg:py-16 ${
         color === 'seafoam'
           ? 'bg-gradient-to-br from-seafoam-150/50 via-seafoam-100/30 to-white'
           : ''

@@ -12,11 +12,11 @@ You can view the branches that have been indexed by Tina Cloud by visiting `http
 
 ## tina directory not pushed to git
 
-The `tina` directory and everything inside, including the `__generated__` directory, needs to be pushed up as well. Be sure to add it to your git repository (and make sure you **don't** have it listed in a `.gitignore`). And also make sure that the branch you're trying to use has the `tina` directory and is up to date.
+Everything in the `tina` directory (except the `__generated__` folder) needs to be pushed up to the git repository. Be sure to add it to your git repository (and make sure you **don't** have it listed in a `.gitignore`). Also make sure that the branch you're trying to use has the `tina` directory and is up to date.
 
 ## API URL is misformatted
 
-The ContentAPI URL isn't formatted correctly. See [here](/docs/tina-cloud/connecting-site/#enabling-tina-cloud-in-tinacms) for information on how the URL _should_ be formatted.
+The ContentAPI URL isn't formatted correctly. See [here](/docs/tina-cloud/connecting-site/#enabling-tina-cloud-in-tinacms) for information on how the URL *should* be formatted.
 
 ## Trying to access local GraphQL server when it's not running or in prod.
 
