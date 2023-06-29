@@ -10,24 +10,22 @@ export function HeroBlock({ data, index }) {
       }`}
     >
       <Container width="narrow" center>
-        <HeroFeature item={data} spacing={data.spacing} />
+        <HeroFeature item={data} spacing={data.spacing}>
+          {data.videoSrc && <Video src={data.videoSrc} />}
+        </HeroFeature>
       </Container>
-      {data.videoSrc && (
-        <Container>
-          <Video src={data.videoSrc} />
-        </Container>
-      )}
     </section>
   )
 }
 
-export const HeroFeature = ({ item, spacing }) => {
+export const HeroFeature = ({ item, spacing, children }) => {
   return (
     <>
       <div className={`flex flex-col ${spacing ? spacing : 'gap-6'}`}>
         {item.headline && <h2 className="heading">{item.headline}</h2>}
         {item.text && <p className="text-xl">{item.text}</p>}
         {item.actions && <Actions items={item.actions} align="center" />}
+        {children}
       </div>
       <style jsx>{`
         .heading {
@@ -76,31 +74,27 @@ export const Video = ({ src }) => {
         poster={`https://res.cloudinary.com/forestry-demo/video/upload/so_0/${src}.jpg`}
       >
         <source
-          src={`https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/${src}.webm`}
+          src={`https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_562/${src}.webm`}
           type="video/webm"
         />
         <source
-          src={`https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/${src}.mp4`}
+          src={`https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_562/${src}.mp4`}
           type="video/mp4"
         />
       </video>
       <style jsx>{`
         .video {
-          width: 100%;
+          position: relative;
+          left: 50%;
+          transform: translateX(-50%);
+          width: calc(100vw - 2rem);
+          max-width: 1000px;
+          margin: 1.5rem 0;
           border-radius: 0.5rem;
           box-shadow: inset 0 0 0 1px rgba(236, 72, 21, 0.03),
             0 6px 24px rgba(0, 37, 91, 0.05), 0 2px 4px rgba(0, 37, 91, 0.03);
           display: flex;
           justify-content: center;
-
-          @media (min-width: 1100px) {
-            width: 90%;
-            margin: 0 auto;
-          }
-
-          @media (min-width: 1400px) {
-            width: 80%;
-          }
         }
       `}</style>
     </>
