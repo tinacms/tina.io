@@ -1,7 +1,4 @@
-import type {
-  PageBlocks,
-  PostConnection,
-} from '../../tina/__generated__/types'
+import type { PageBlocks, PostConnection } from '../../tina/__generated__/types'
 import {
   StoryBlock,
   FeatureGridBlock,
@@ -17,6 +14,7 @@ import { ColumnsBlock } from './Columns'
 import { RecentPostsBlock } from './RecentPosts'
 import { RoadmapGridBlock } from './RoadmapGrid'
 import { ShowcaseItemsBlock } from './Showcase'
+import { TestimonialsBlock } from './Testimonials'
 
 export const Blocks = ({
   blocks,
@@ -79,6 +77,14 @@ export const Blocks = ({
             data={block}
             index={index}
             recentPosts={recentPosts}
+          />
+        )
+      case 'PageBlocksTestimonials':
+        return (
+          <TestimonialsBlock
+            key={`block-${index}`}
+            data={block}
+            index={index}
           />
         )
       default:

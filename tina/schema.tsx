@@ -28,6 +28,7 @@ import { featureGridTemplate } from '../components/blocks/FeatureGrid.template'
 import { logoGridTemplate } from '../components/blocks/LogoGrid.template'
 import { roadmapGridTemplate } from '../components/blocks/RoadmapGrid.template'
 import { recentPostsTemplate } from '../components/blocks/RecentPosts.template'
+import { testimonialsTemplate } from '../components/blocks/Testimonials.template'
 
 export const schema = defineSchema({
   collections: [
@@ -83,6 +84,7 @@ export const schema = defineSchema({
             logoGridTemplate as Template,
             roadmapGridTemplate as Template,
             recentPostsTemplate as Template,
+            testimonialsTemplate as Template,
           ],
         },
       ],
