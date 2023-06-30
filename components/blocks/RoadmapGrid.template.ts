@@ -4,6 +4,9 @@ import { actionsTemplate } from './Actions.template'
 export const roadmapGridTemplate: TinaTemplate = {
   label: 'Roadmap Grid',
   name: 'roadmapGrid',
+  ui: {
+    previewSrc: '/img/blocks/roadmap.png',
+  },
   fields: [
     { name: 'headline', label: 'Headline', type: 'string' },
     {
