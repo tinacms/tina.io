@@ -16,7 +16,7 @@ Vercel KV is a durable Redis database that enables you to store and retrieve JSO
 
 ## How is TinaCMS using Vercel KV for the data layer?
 
-When you build your site with TinaCMS, the ultimate source of truth is your Markdown files. Features like search and filtering of content while editing, though, require a data layer on top of those Markdown files. TinaCMS has incorporated an open source library called [LevelDB](https://github.com/Level/abstract-level) to provide a further layer of abstraction between TinaCMS's data layer and the underlying database implementation (Redis).
+When you build your site with TinaCMS, the ultimate source of truth is your Markdown files. Features like search and filtering of content while editing, though, require a data layer on top of those Markdown files. TinaCMS has incorporated an open source library called [LevelDB](https://github.com/Level/abstract-level) to provide a further layer of abstraction between TinaCMS's data layer and the underlying database implementation. Using LevelDB, virtually any database can be adapted for use with TinaCMS. To allow Vercel KV to work with TinaCMS, we have implemented a new Upstash Redis LevelDB [implementation](https://github.com/tinacms/upstash-redis-level). 
 
 How is TinaCMS using NextAuth.js
 
