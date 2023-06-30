@@ -65,10 +65,6 @@
     {
       "items": [
         {
-          "headline": "Simplified Development & Maintenance",
-          "text": "Web teams become efficient when using modern frameworks and TinaCMS. Updates and deployments become simpler, reducing the risk of bugs and downtime."
-        },
-        {
           "headline": "Single Sign On",
           "text": "Compatible with the most popular IdPs like Okta and support for both SAML and OIDC."
         },
@@ -81,12 +77,16 @@
           "text": "99.9% server uptime with swift communications if something impacts your sending integration."
         },
         {
+          "headline": "Simplified Development & Maintenance",
+          "text": "Web teams become efficient when using modern frameworks and TinaCMS. Updates and deployments become simpler, reducing the risk of bugs and downtime."
+        },
+        {
           "headline": "CI/CD ",
           "text": "Integration with a modern CI/CD pipeline to perform all checks and run scripts.   Easily configure separate environments such as pre-production and  production. \n"
         },
         {
           "headline": "No More Caching",
-          "text": "Reduce the need for complex caching layers. Caching is built it with statically generated content distributed through CDN networks. \n"
+          "text": "Remove the need for complex caching layers. Caching is built it with statically generated content distributed through CDN networks. \n"
         }
       ],
       "_template": "featureGrid"
