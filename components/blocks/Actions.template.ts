@@ -4,6 +4,9 @@ export const actionsTemplate = {
   type: 'object',
   list: true,
   ui: {
+    itemProps: (item) => {
+      return { label: item?.label }
+    },
     defaultItem: {
       variant: 'default',
       label: 'Secondary Action',
