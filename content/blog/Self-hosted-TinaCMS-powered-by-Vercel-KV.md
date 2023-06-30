@@ -14,10 +14,8 @@ Since then, we've been hard at work on improving our self-hosted offering to mak
 
 Vercel KV is a durable Redis database that enables you to store and retrieve JSON data and is available on both hobby (free) and paid plans. The service is provided in partnership with [Upstash](https://upstash.com/about) and does not require a separate account. Because of it's flexibility and performance, Vercel KV is a great fit for powering the self-hosted TinaCMS data layer.
 
-## How is TinaCMS using Vercel KV for the data layer?
+## Using Vercel KV in the TinaCMS data layer
 
-When you build your site with TinaCMS, the ultimate source of truth is your Markdown files. Features like search and filtering of content while editing, though, require a data layer on top of those Markdown files. TinaCMS has incorporated an open source library called [LevelDB](https://github.com/Level/abstract-level) to provide a further layer of abstraction between TinaCMS's data layer and the underlying database implementation. Using LevelDB, virtually any database can be adapted for use with TinaCMS. To allow Vercel KV to work with TinaCMS, we have implemented a new Upstash Redis LevelDB [implementation](https://www.npmjs.com/package/upstash-redis-level). 
+When you build your site with TinaCMS, the ultimate source of truth is your Markdown files. Features like search and filtering of content while editing, though, require a data layer on top of those Markdown files. TinaCMS has incorporated an open source library called [LevelDB](https://github.com/Level/abstract-level) to provide a further layer of abstraction between TinaCMS's data layer and the underlying database implementation. By leveraging LevelDB in the data layer, virtually any database can be adapted for use with TinaCMS. To enable Vercel KV to work with TinaCMS, we have implemented a new Upstash Redis LevelDB [implementation](https://www.npmjs.com/package/upstash-redis-level). This provides all the data functionality needed by TinaCMS entirely within the Vercel ecosystem.
 
 How is TinaCMS using NextAuth.js
-
-Internally Tina uses LevelDB as an abstraction over the 
