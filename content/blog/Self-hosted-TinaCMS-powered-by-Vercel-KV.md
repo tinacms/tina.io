@@ -6,4 +6,4 @@ author: Kelly Davis
 prev: content/blog/self-hosted-datalayer.md
 ---
 
-TODO
+Earlier this year, we [released](/blog/self-hosted-datalayer/ "released") the first iteration of Self-hosted Tina.
