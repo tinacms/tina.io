@@ -4,6 +4,9 @@ import { actionsTemplate } from './Actions.template'
 export const featureGridTemplate: TinaTemplate = {
   label: 'Feature Grid',
   name: 'featureGrid',
+  ui: {
+    previewSrc: '/img/blocks/feature-grid.png',
+  },
   fields: [
     {
       name: 'items',
