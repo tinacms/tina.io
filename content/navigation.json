@@ -64,5 +64,11 @@
         "external": true
       }
     ]
+  },
+  {
+    "id": "enterprise",
+    "label": "Enterprise",
+    "href": "/enterprise",
+    "external": false
   }
 ]
