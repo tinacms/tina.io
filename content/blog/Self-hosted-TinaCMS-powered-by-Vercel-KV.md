@@ -6,6 +6,6 @@ author: Kelly Davis
 prev: content/blog/self-hosted-datalayer.md
 ---
 
-Earlier this year, we [released](/blog/self-hosted-datalayer/ "released") the first iteration of Self-hosted Tina. The initial demo relied on Tina Cloud for authorization and used MongoDB for the data layer. Today we are excited to announce the next iteration of self-hosted Tina, leveraging [Vercel KV](https://vercel.com/docs/storage/vercel-kv) for the data layer and [NextAuth.js](NextAuth.js).
+Earlier this year, we [released](/blog/self-hosted-datalayer/ "released") the first iteration of self-hosted TinaCMS. The initial demo relied on Tina Cloud for authorization and used MongoDB for the data layer. That was the first step in freeing TinaCMS users from vendor lock-in, but in the meantime we've been hard at work on improving self-hosted. Today we are excited to announce the next iteration of our self-hosted Tina demo, leveraging [Vercel KV](https://vercel.com/docs/storage/vercel-kv) for the data layer and [NextAuth.js](NextAuth.js). It is now possible for a developer to setup a fully functioning [Next.js](https://nextjs.org/) site running TinaCMS relying on just GitHub and Vercel provided services.
 
 Internally Tina uses LevelDB as an abstraction over the 
