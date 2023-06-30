@@ -15,14 +15,14 @@ const Testimonial = ({ data, ...props }) => {
       href={data.link}
       {...props}
     >
-      <div className="text-base lg:text-lg">
-        {data.testimonial && (
+      {data.testimonial && (
+        <div className="text-base lg:text-lg">
           <TinaMarkdown
             // components={contentComponents}
             content={data.testimonial}
           />
-        )}
-      </div>
+        </div>
+      )}
       <div className="flex gap-4 items-center">
         {data.avatar && (
           <div className="relative shrink-0 w-14 h-14 rounded-full shadow-[0_1px_3px_1px_rgba(66,_153,_225,0.3)] overflow-hidden">
@@ -43,16 +43,16 @@ const Testimonial = ({ data, ...props }) => {
               {data.name}
             </h4>
           )}
-          {data.username && (
+          {(data.username || data.date) && (
             <p className="text-base font-medium text-blue-700">
-              @{data.username}
+              {data.username && <>@{data.username}</>}
+              {data.username && data.date && (
+                <span className="mx-1.5 opacity-30">&ndash;</span>
+              )}
               {data.date && (
-                <>
-                  <span className="mx-1.5 opacity-30">&ndash;</span>
-                  <span className="opacity-70 text-blue-600">
-                    {formatDate(data.date)}
-                  </span>
-                </>
+                <span className="opacity-70 text-blue-600">
+                  {formatDate(data.date)}
+                </span>
               )}
             </p>
           )}
