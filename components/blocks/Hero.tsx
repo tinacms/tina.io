@@ -11,7 +11,25 @@ export function HeroBlock({ data, index }) {
     >
       <Container width="narrow" center>
         <HeroFeature item={data} spacing={data.spacing}>
-          {data.videoSrc && <Video src={data.videoSrc} />}
+          {data.media && data.media[0] && (
+            <div
+              className={`mt-6 min-w-0 w-full ${
+                (data.media[0].image || data.media[0].src) &&
+                'rounded-lg shadow-panel overflow-hidden bg-gradient-to-br from-blue-800 via-blue-900 to-slate-900'
+              }`}
+            >
+              {data.media && data.media[0].image && (
+                <img
+                  src={data.media[0].image}
+                  alt={data.headline}
+                  className="w-full h-auto"
+                />
+              )}
+              {data.media && data.media[0].src && (
+                <Video className="w-full h-auto" src={data.media[0].src} />
+              )}
+            </div>
+          )}
         </HeroFeature>
       </Container>
     </section>
@@ -62,41 +80,24 @@ export const HeroFeature = ({ item, spacing, children }) => {
   )
 }
 
-export const Video = ({ src }) => {
+export const Video = ({ src, className }) => {
   return (
-    <>
-      <video
-        className="video"
-        autoPlay={true}
-        loop
-        muted
-        playsInline
-        poster={`https://res.cloudinary.com/forestry-demo/video/upload/so_0/${src}.jpg`}
-      >
-        <source
-          src={`https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_562/${src}.webm`}
-          type="video/webm"
-        />
-        <source
-          src={`https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_562/${src}.mp4`}
-          type="video/mp4"
-        />
-      </video>
-      <style jsx>{`
-        .video {
-          position: relative;
-          left: 50%;
-          transform: translateX(-50%);
-          width: calc(100vw - 2rem);
-          max-width: 1000px;
-          margin: 1.5rem 0;
-          border-radius: 0.5rem;
-          box-shadow: inset 0 0 0 1px rgba(236, 72, 21, 0.03),
-            0 6px 24px rgba(0, 37, 91, 0.05), 0 2px 4px rgba(0, 37, 91, 0.03);
-          display: flex;
-          justify-content: center;
-        }
-      `}</style>
-    </>
+    <video
+      className={className}
+      autoPlay={true}
+      loop
+      muted
+      playsInline
+      poster={`https://res.cloudinary.com/forestry-demo/video/upload/so_0/${src}.jpg`}
+    >
+      <source
+        src={`https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_562/${src}.webm`}
+        type="video/webm"
+      />
+      <source
+        src={`https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_562/${src}.mp4`}
+        type="video/mp4"
+      />
+    </video>
   )
 }
