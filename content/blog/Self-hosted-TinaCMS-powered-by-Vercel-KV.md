@@ -21,3 +21,7 @@ When you build your site with TinaCMS, the ultimate source of truth is your Mark
 ## Using NextAuth.js in TinaCMS
 
 Tina Cloud provides organization and project-level user & role management, but we recognize that every project has its own specific authentication and authorization requirements. TinaCMS already provides built-in support for custom auth solutions that can be adapted for a wide variety of situations. The latest iteration of self-hosted TinaCMS takes this a step further by integrating with [NextAuth.js](https://next-auth.js.org/). By leveraging NextAuth.js, any of the available auth providers [offered by the framework](https://next-auth.js.org/providers/) (e.g Github, Twitter, Google, etc...) can easily be integrated with TinaCMS. It also allows fully customizable login screens, allowing your site to be fully branded. Lastly, the latest iteration of the self-hosted demo provides a basic Credentials provider that leverages the Vercel KV store to immediately enable auth without additional configuration.
+
+## Future Plans
+
+Repo-based media is not currently available for self-hosted TinaCMS. We currently recommend one of our other media manager solutions when self-hosting, such as Cloudinary, AWS S3 or Digital Oceans. This is something that we are exploring and hope to make available. Additionally our new search capability currently requires Tina Cloud but is something we expect to add soon to self-hosting.
