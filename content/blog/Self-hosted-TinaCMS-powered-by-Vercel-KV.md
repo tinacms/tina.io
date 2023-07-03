@@ -27,3 +27,5 @@ Tina Cloud provides organization and project-level user & role management, but w
 ## Future Plans
 
 Repo-based media is not currently available for self-hosted TinaCMS. We currently recommend one of our other media manager solutions when self-hosting, such as Cloudinary, AWS S3 or Digital Oceans. This is something that we are exploring and hope to make available. Additionally our new search capability currently requires Tina Cloud but is something we expect to add soon to self-hosting.
+
+\[TODO - call to action here]
