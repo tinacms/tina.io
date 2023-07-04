@@ -11,13 +11,15 @@ author: Logan Anderson
 
 Are you looking to take your markdown content to the next level? With the power of AI, this new GitHub bot will make content suggestions right in your pull request. If you like the suggestions, you can commit them with the click of a button. If you don't like them, they can easily be ignored. In this blog post, we'll introduce you to the AI-driven GitHub bot that offers content suggestions, unlocking a new realm of productivity. Get ready to supercharge your markdown content and witness the magic of AI in action.
 
+![AI Suggestion in Github](http://res.cloudinary.com/forestry-demo/image/upload/v1688483462/blog-media/supercharge-markdown-blog/Screenshot_2023-07-04_at_11.03.24_AM_bfqnld.png "AI Suggestion in Github")
+
 ## The Power of AI-driven Content Suggestions
 
 AI has been a hot topic as of late, but its not always easy to get AI suggestions for your content that you can quickly accept or ignore. Right now, getting suggestions often involves a lot of copy and pasting from ChatGTP and then making piecemeal updates to your real content. We where tired of this so we decided to make a Github that allows us to get the suggestions right in a Github pull request.
 
 ## How The GitHub Bot Works
 
-Once you have followed all the steps and integrated the bot into your repository, the bot can make suggestions when you comment "ai fix: \<path to file\>. The bot will then make commit suggestion comments in the form of a pull request review.
+Once you have followed all the steps and integrated the bot into your repository, the bot can make suggestions when you comment "ai fix: \<path to file>. The bot will then make commit suggestion comments in the form of a pull request review.
 
 ## Conclusion
 
