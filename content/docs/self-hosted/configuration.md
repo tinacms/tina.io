@@ -1,5 +1,5 @@
 ---
-title: Getting Started with Self-Hosting TinaCMS
+title: TinaCMS Self-Hosted Configuration
 id: /docs/self-hosted/configuration
 last_edited: '2023-02-01T04:00:00.000Z'
 ---
