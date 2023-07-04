@@ -1,5 +1,5 @@
 ---
-title: 'Self-hosted TinaCMS, now powered by Vercel KV & NextAuth!'
+title: Using Vercel KV & NextAuth to Self-host TinaCMS
 date: '2023-06-30T04:00:00.000Z'
 last_edited: '2023-06-30T04:00:00.000Z'
 author: Kelly Davis
