@@ -1,17 +1,129 @@
 {
   "blocks": [
     {
-      "_template": "story"
+      "features": [
+        {
+          "headline": "Edit Markdown, Visually",
+          "text": "Tina is an open-source, headless CMS for Markdown, MDX, and JSON.",
+          "actions": [
+            {
+              "label": "Get Started",
+              "icon": false,
+              "variant": "blue",
+              "size": "large",
+              "url": "docs/setup-overview/"
+            },
+            {
+              "label": "npx create-tina-app@latest",
+              "icon": false,
+              "variant": "command",
+              "size": "large",
+              "url": "/"
+            }
+          ],
+          "media": [
+            {
+              "src": "tina-io/new-homepage/homepage-demo-2",
+              "_template": "video"
+            }
+          ]
+        },
+        {
+          "headline": "Own Your Content",
+          "text": "Store content in your repo. Tina saves to MDX, Markdown, and JSON and provides a powerful data layer on top of your static files.",
+          "actions": [
+            {
+              "label": "Learn More",
+              "icon": false,
+              "variant": "default",
+              "size": "large",
+              "url": "https://tina.io/docs/product-tour/"
+            }
+          ],
+          "media": [
+            {
+              "file": "about.mdx",
+              "code": "---\ntitle: Collaborate With Your Team\n---\n\nOnline tools help drive your business forward.\nReach new audiences and collaborate with your\nteam – **All in the cloud.**\n\n<Button\ntext=\"Get Started\"\nlink=\"/get-started\"\n/>",
+              "language": "mdx",
+              "scale": 1,
+              "_template": "code"
+            }
+          ]
+        },
+        {
+          "headline": "Simple CMS Configuration",
+          "text": "Define your content's schema and Tina will provide you with a user friendly editing experience.",
+          "actions": [
+            {
+              "label": "Read The Docs",
+              "icon": false,
+              "variant": "default",
+              "size": "large",
+              "url": "docs/schema/"
+            }
+          ],
+          "media": [
+            {
+              "file": "config.tsx",
+              "code": "{\n  type: \"string\",\n  label: \"Title\",\n  name: \"title\"\n},\n{\n  type: 'string',\n  label: 'Body',\n  name: 'body',\n  isBody: true,\n},",
+              "language": "javascript",
+              "scale": 1.25,
+              "_template": "code"
+            }
+          ]
+        },
+        {
+          "headline": "Powered by Git",
+          "text": "Let your editorial team focus on writing content, while Tina commits to your repository.",
+          "actions": [
+            {
+              "label": "Learn More",
+              "icon": false,
+              "variant": "default",
+              "size": "large",
+              "url": "docs/"
+            }
+          ],
+          "media": [
+            {
+              "file": "",
+              "code": "commit 4ca9edc2ee64c1ab5127a1fd4519a83426731cd7\nAuthor:  Scott Gallant <scottgallant@gmail.com>\nDate:    Thu May 26 13:31:02 2022 -0300\nMessage: Update From Tina",
+              "language": "md",
+              "scale": 1,
+              "_template": "code"
+            }
+          ]
+        }
+      ],
+      "_template": "features"
     },
     {
       "items": [
         {
           "headline": "Visual Editing",
-          "text": "See content changes in real-time as you edit. "
+          "text": "See content changes in real-time as you edit. ",
+          "actions": [
+            {
+              "label": "Try Demo",
+              "icon": false,
+              "variant": "default",
+              "size": "small",
+              "url": "https://quick-edit-demo.vercel.app/admin#/~"
+            }
+          ]
         },
         {
           "headline": "Static and Dynamic",
-          "text": "Query your Markdown content like you would with a headless CMS. Tina’s GraphQL Data Layer supports filtering, sorting, pagination, and more."
+          "text": "Query your Markdown content like you would with a headless CMS. Tina’s GraphQL Data Layer supports filtering, sorting, pagination, and more.",
+          "actions": [
+            {
+              "label": "Read Docs",
+              "icon": false,
+              "variant": "default",
+              "size": "small",
+              "url": "/docs/data-fetching/overview/"
+            }
+          ]
         },
         {
           "headline": "Develop Locally",
@@ -19,11 +131,29 @@
         },
         {
           "headline": "3rd-party Media",
-          "text": "Store Media assets in your repo or connect to S3, Cloudinary, etc."
+          "text": "Store Media assets in your repo or connect to S3, Cloudinary, etc.",
+          "actions": [
+            {
+              "label": "Read Docs",
+              "icon": false,
+              "variant": "default",
+              "size": "small",
+              "url": "/docs/reference/media/external/authentication/"
+            }
+          ]
         },
         {
           "headline": "Composable Blocks",
-          "text": "Create reusable components that you can edit with Tina. Let your team assemble pages like a site-builder."
+          "text": "Create reusable components that you can edit with Tina. Let your team assemble pages like a site-builder.",
+          "actions": [
+            {
+              "label": "Read Docs",
+              "icon": false,
+              "variant": "default",
+              "size": "small",
+              "url": "/docs/editing/blocks/"
+            }
+          ]
         },
         {
           "headline": "Markdown at Scale ",
@@ -62,10 +192,5 @@
       "title": "Recent Posts",
       "_template": "recentPosts"
     }
-  ],
-  "_collection": "page",
-  "_keepTemplateKey": false,
-  "_template": "page",
-  "_relativePath": "home.json",
-  "_id": "content/blocksPages/home.json"
+  ]
 }

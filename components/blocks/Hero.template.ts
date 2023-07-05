@@ -31,11 +31,40 @@ export const heroTemplate: TinaTemplate = {
     // @ts-ignore
     actionsTemplate,
     {
-      name: 'videoSrc',
-      label: 'Video Source',
-      description:
-        'This is the Cloudinary Public ID, for example "tina-io/docs/quick-edit-demo".',
-      type: 'string',
+      name: 'media',
+      label: 'Media',
+      type: 'object',
+      list: true,
+      ui: {
+        min: 0,
+        max: 1,
+      },
+      templates: [
+        {
+          name: 'image',
+          label: 'Image',
+          fields: [
+            {
+              name: 'image',
+              label: 'Image',
+              type: 'image',
+            },
+          ],
+        },
+        {
+          name: 'video',
+          label: 'Video',
+          fields: [
+            {
+              name: 'src',
+              label: 'Video Source',
+              description:
+                'This is the Cloudinary Public ID, for example "tina-io/docs/quick-edit-demo".',
+              type: 'string',
+            },
+          ],
+        },
+      ],
     },
     {
       name: 'margin',

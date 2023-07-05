@@ -2,7 +2,7 @@ export const testimonialsTemplate = {
   label: 'Testimonials',
   name: 'testimonials',
   ui: {
-    // previewSrc: '/img/blocks/faq.png',
+    previewSrc: '/img/blocks/testimonials.png',
     // defaultItem: {},
   },
   fields: [
@@ -18,6 +18,12 @@ export const testimonialsTemplate = {
       },
       fields: [
         { name: 'name', label: 'Name', type: 'string' },
+        { name: 'username', label: 'Username', type: 'string' },
+        {
+          name: 'avatar',
+          label: 'Avatar',
+          type: 'image',
+        },
         {
           name: 'date',
           label: 'Date',

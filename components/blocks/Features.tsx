@@ -1,167 +1,150 @@
-import ReactMarkdown from 'react-markdown'
 import { Actions } from './Actions'
 import { Container } from './Container'
-import BlobOne from '../../public/svg/blob-1.svg'
-import BlobTwo from '../../public/svg/blob-2.svg'
-import BlobThree from '../../public/svg/blob-3.svg'
-import BlobFour from '../../public/svg/blob-4.svg'
-import BlobFive from '../../public/svg/blob-5.svg'
-import BlobSix from '../../public/svg/blob-6.svg'
-
-const blobSvgOptions = [
-  BlobOne,
-  BlobTwo,
-  BlobThree,
-  BlobFour,
-  BlobFive,
-  BlobSix,
-]
+import SyntaxHighlighter from 'react-syntax-highlighter'
 
 export function FeatureBlock({ data, index }) {
   const isReversed = index % 2 === 1
-  const FeatureBlobSvg = blobSvgOptions[index % blobSvgOptions.length]
 
   return (
     <>
       <div
         key={'feature-' + index}
-        className={`feature ${isReversed ? 'featureReverse' : ''}`}
+        className={`relative w-full flex flex-col-reverse items-center lg:justify-center lg:min-h-[70vh] gap-12 perspective ${
+          isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'
+        }`}
       >
-        <div className="featureText">
-          {data.headline && <h3 className="featureTitle">{data.headline}</h3>}
-          {(data.text || data.actions) && <hr className="dottedBorder" />}
-          {data.text && (
-            <div className="textLarge">
-              <ReactMarkdown>{data.text}</ReactMarkdown>
-            </div>
+        <div className="w-full lg:w-2/5 max-w-prose flex flex-col gap-6 lg:gap-8">
+          {data.headline && (
+            <h3 className="font-tuner inline-block text-3xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance">
+              {data.headline}
+            </h3>
           )}
+          <hr className="!my-0" />
+          <p className="text-lg lg:text-xl lg:leading-normal block bg-gradient-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent -mb-2 max-w-prose text-balance">
+            {data.text}
+          </p>
           {data.actions && <Actions items={data.actions} />}
-          <div className="blob">
-            <FeatureBlobSvg />
-          </div>
         </div>
-        {data.media && data.media.src && (
-          <div className={`featureImage`}>
-            <img
-              src={data.media.src}
-              alt={data.headline}
-              width="1120px"
-              height="800px"
-            />
-          </div>
-        )}
-        {data.media && data.media.videoSrc && (
-          <FeatureVideo src={data.media.videoSrc} />
-        )}
-        {data.media && data.media.cli && (
-          <div className={`featureImage`}>
-            <FeatureCLI />
+        {data.media && data.media[0] && (
+          <div
+            className={`w-full min-w-0 lg:w-1/2 ${
+              isReversed ? 'pivot-reverse' : 'pivot'
+            } ${
+              (data.media[0].image || data.media[0].src) &&
+              'rounded-lg shadow-panel overflow-hidden bg-gradient-to-br from-blue-800 via-blue-900 to-slate-900'
+            }`}
+          >
+            {data.media && data.media[0].image && (
+              <img
+                src={data.media[0].image}
+                alt={data.headline}
+                className="w-full h-auto"
+                // width="1120px"
+                // height="800px"
+              />
+            )}
+            {data.media && data.media[0].src && (
+              <FeatureVideo className="w-full h-auto" src={data.media[0].src} />
+            )}
+            {data.media && data.media[0].code && (
+              <div className="flex flex-col justify-start items-start">
+                {data.media[0].file && (
+                  <div className="inline-block rounded-t-lg overflow-hidden text-white border-2 border-b-0 border-blue-800 bg-gradient-to-tl from-blue-800 to-blue-900 px-7 py-3 font-tuner">
+                    {data.media[0].file}
+                  </div>
+                )}
+                <div
+                  className={`file relative ${
+                    data.media[0].file
+                      ? 'rounded-lg rounded-tl-none'
+                      : 'rounded-lg'
+                  } overflow-hidden w-full text-blue-50 border-2 border-blue-800 bg-gradient-to-br from-blue-800 via-blue-900 to-blue-1000 shadow-panel`}
+                  style={{
+                    fontSize:
+                      1.25 * (data.media[0].scale ? data.media[0].scale : 1) +
+                      'em',
+                  }}
+                >
+                  <SyntaxHighlighter
+                    language={
+                      data.media[0].language
+                        ? data.media[0].language
+                        : 'javascript'
+                    }
+                    useInlineStyles={false}
+                    // wrapLines={true}
+                    // wrapLongLines={true}
+                  >
+                    {data.media[0].code}
+                  </SyntaxHighlighter>
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>
       <style jsx>{`
-        .feature {
-          position: relative;
-          width: 100%;
-          display: grid;
-          grid-template-columns: 1fr;
-          grid-gap: var(--spacer-size);
-          align-items: center;
-          z-index: 2;
-
-          :not(:last-child) {
-            margin-bottom: 9rem;
-          }
-
-          @media (min-width: 900px) {
-            grid-template-columns: 1fr 1fr;
-            grid-gap: var(--spacer-size);
-          }
+        .pane-container {
+          perspective: 1000px;
+          -moz-perspective: none;
+          transform: scale(0.85);
+          --right-rotation: -5deg;
         }
 
-        .featureTitle {
-          font-family: var(--font-tuner);
-          font-weight: bold;
-          line-height: 1.4;
-          margin-bottom: 1rem;
-          font-size: 2.25rem;
-          color: #00255b;
+        .perspective {
+          perspective: 1000px;
+          perspective-origin: 50% 50%;
         }
 
-        .featureReverse {
-          direction: rtl;
-          > * {
-            direction: ltr;
-          }
+        .pivot {
+          transform: rotateY(-5deg);
         }
 
-        .featureText {
-          position: relative;
-          max-width: 28rem;
-          min-width: 8rem;
-          justify-self: center;
-          margin-top: 1rem;
-
-          :global(p > a) {
-            text-decoration: underline;
-            transition: all ease-out 150ms;
-            color: var(--color-tina-blue-dark);
-            text-decoration-color: var(--color-seafoam-dark);
-            &:hover {
-              color: var(--color-tina-blue);
-              text-decoration-color: var(--color-tina-blue);
-            }
-          }
-
-          :global(p) {
-            max-width: 400px;
-          }
+        .pivot-reverse {
+          transform: rotateY(5deg);
         }
 
-        .featureImage {
-          box-shadow: 0 6px 24px rgba(0, 37, 91, 0.05),
-            0 2px 4px rgba(0, 37, 91, 0.03);
-          border: 1px solid rgba(0, 0, 0, 0.07);
-          margin: 0;
-          overflow: hidden;
-          border-radius: 0.5rem;
-
-          :global(img) {
-            display: block;
-            width: 100%;
-            height: auto;
-            margin: 0;
-          }
+        .text-balance {
+          text-wrap: balance;
         }
 
-        .dottedBorder {
-          display: block;
-          border: none;
-          border-image: initial;
-          background: url('/svg/hr.svg');
-          background-size: auto 100%;
-          background-repeat: no-repeat;
-          height: 7px;
-          width: 100%;
-          margin: 2rem 0px;
+        /* Code Styles */
+
+        :global(.hljs) {
+          font-size: unquote('clamp(0.75em,0.676em + 0.37vw, 1em)			');
+          padding: 1.5em;
+          color: var(--blue-250);
+          font-weight: medium;
+          font-family: SFMono-Regular, Menlo, Monaco, Consolas,
+            'Liberation Mono', 'Courier New', monospace;
+          text-shadow: 0 0 7px rgba(var(--blue-250-rgb), 0.15),
+            0 0 12px rgba(var(--blue-250-rgb), 0.2),
+            0 0 32px rgba(var(--blue-250-rgb), 0.3);
         }
 
-        .blob {
-          position: absolute;
-          top: -3rem;
-          left: -10%;
-          right: 33.3%;
-          bottom: -3rem;
-          z-index: -1;
-          opacity: 0.5;
+        :global(.hljs-number) {
+          color: var(--blue-400);
+          text-shadow: 0 0 7px rgba(var(--blue-400-rgb), 0.15),
+            0 0 12px rgba(var(--blue-400-rgb), 0.2),
+            0 0 32px rgba(var(--blue-400-rgb), 0.3);
+        }
 
-          :global(svg) {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-          }
+        :global(.hljs-meta) {
+          color: var(--blue-650);
+          text-shadow: 0 0 7px rgba(var(--blue-650-rgb), 0.15),
+            0 0 12px rgba(var(--blue-650-rgb), 0.2),
+            0 0 32px rgba(var(--blue-650-rgb), 0.3);
+        }
+
+        :global(.hljs-attr),
+        :global(.hljs-attribute) {
+          color: #d07ea5;
+          text-shadow: 0 0 7px rgba(208, 126, 165, 0.15),
+            0 0 12px rgba(208, 126, 165, 0.2), 0 0 32px rgba(208, 126, 165, 0.5);
+        }
+
+        :global(.hljs-string) {
+          color: var(--blue-400);
         }
       `}</style>
     </>
@@ -174,113 +157,38 @@ export function FeaturesBlock({ data, index }) {
       key={'features-' + index}
       className={'py-12 lg:py-16 last:pb-20 last:lg:pb-32'}
     >
-      <Container>
-        {/* TODO: why is there a type error here */}
-        {/* @ts-ignore */}
-        {data.items &&
-          data.items.map((data, index) => {
-            return <FeatureBlock data={data} index={index} />
-          })}
+      <Container width="wide">
+        <div className="flex flex-col gap-16 w-full">
+          {/* TODO: why is there a type error here */}
+          {/* @ts-ignore */}
+          {data.features &&
+            data.features.map((data, index) => {
+              return <FeatureBlock data={data} index={index} />
+            })}
+        </div>
       </Container>
     </section>
   )
 }
 
-export const FeatureVideo = ({ src }) => {
+export const FeatureVideo = ({ src, className = '' }) => {
   return (
-    <>
-      <video
-        className="video"
-        autoPlay={true}
-        loop
-        muted
-        playsInline
-        poster={`https://res.cloudinary.com/forestry-demo/video/upload/so_0/${src}.jpg`}
-      >
-        <source
-          src={`https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/e_accelerate:-20/${src}.webm`}
-          type="video/webm"
-        />
-        <source
-          src={`https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/e_accelerate:-20/${src}.mp4`}
-          type="video/mp4"
-        />
-      </video>
-      <style jsx>{`
-        .video {
-          width: 100%;
-          border-radius: 0.5rem;
-          box-shadow: 0 6px 24px rgba(0, 37, 91, 0.05),
-            0 2px 4px rgba(0, 37, 91, 0.03);
-          border: 1px solid rgba(0, 0, 0, 0.07);
-          display: flex;
-          justify-content: center;
-        }
-      `}</style>
-    </>
-  )
-}
-
-export const FeatureCLI = () => {
-  return (
-    <>
-      <pre className="pre">
-        <code>
-          <span
-            style={{ display: 'block', marginBottom: '1.25rem' }}
-          >{`$ npx create-tina-app@latest`}</span>
-
-          <span style={{ display: 'block' }}>
-            <span
-              style={{
-                display: 'inline',
-                fontWeight: 'bold',
-                color: '#49AF25',
-              }}
-            >{`?`}</span>
-
-            <span
-              style={{
-                display: 'inline',
-                fontWeight: 'bold',
-              }}
-            >{` What starter code would you like to use?`}</span>
-            {` 
-› Bare bones starter
-  Tina Cloud Starter
-  Documentation Starter
-`}
-          </span>
-
-          <span
-            style={{
-              display: 'block',
-              marginTop: '1.25rem',
-              marginBottom: '1.25rem',
-              fontWeight: 'bold',
-              color: '#49AF25',
-            }}
-          >{`Setting up Tina...`}</span>
-          <span
-            style={{ display: 'block', marginBottom: '1.25rem' }}
-          >{`Installing Tina packages. This might take a moment... ✅`}</span>
-        </code>
-      </pre>
-      <style jsx>{`
-        .pre {
-          padding: 3.5rem;
-          background: linear-gradient(to top, #f5fdfc, #ecfcfa, #cef9f5);
-          white-space: pre-wrap;
-          color: #1d2b68;
-          font-size: 1rem;
-          line-height: 1.5;
-          font-family: monospace;
-
-          @media (min-width: 1300px) {
-            font-size: 1.365rem;
-          }
-        }
-      `}</style>
-    </>
+    <video
+      className={className}
+      autoPlay={true}
+      loop
+      muted
+      playsInline
+      poster={`https://res.cloudinary.com/forestry-demo/video/upload/so_0/${src}.jpg`}
+    >
+      <source
+        src={`https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/e_accelerate:-20/${src}.webm`}
+        type="video/webm"
+      />
+      <source
+        src={`https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/e_accelerate:-20/${src}.mp4`}
+        type="video/mp4"
+      />
+    </video>
   )
 }
