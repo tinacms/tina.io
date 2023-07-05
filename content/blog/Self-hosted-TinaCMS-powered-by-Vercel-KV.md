@@ -28,6 +28,6 @@ Tina Cloud provides organization and project-level user & role management, but w
 
 Repo-based media is not currently available for self-hosted TinaCMS. We currently recommend one of our other media manager solutions when self-hosting, such as Cloudinary, AWS S3 or Digital Oceans. This is something that we are exploring and hope to make available. Additionally our new search capability currently requires Tina Cloud but is something we expect to add soon to self-hosting.
 
-Getting Started
+## Getting Started
 
 Visit the self-hosted [demo](https://github.com/tinacms/tina-self-hosted-demo#deploy-this-repository-to-vercel) repo and click the Deploy button to launch the demo on Vercel.
