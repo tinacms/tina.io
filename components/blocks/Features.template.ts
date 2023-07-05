@@ -1,7 +1,7 @@
-import type { TinaTemplate } from 'tinacms'
+import type { Template, TinaField } from 'tinacms'
 import { actionsTemplate } from './Actions.template'
 
-export const featuresTemplate: TinaTemplate = {
+export const featuresTemplate: Template = {
   label: 'Features',
   name: 'features',
   ui: {
@@ -102,7 +102,7 @@ export const featuresTemplate: TinaTemplate = {
             },
           ],
         },
-      ],
+      ] as TinaField[],
     },
   ],
 }
