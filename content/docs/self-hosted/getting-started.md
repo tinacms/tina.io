@@ -6,11 +6,49 @@ last_edited: '2023-02-01T04:00:00.000Z'
 
 ## Introduction
 
-This doc will guide you through setting up our pre-configured self-hosted starter repository.
+This doc will guide you through setting up our pre-configured self-hosted starter repository. This implementation uses our NextJS starter, Vercel KV for its data-storage, and NextAuth for its authentication.
 
-## Fork The Repo
+## Deploy The Starter Template
 
-Fork [the self-hosted repository](https://github.com/tinacms/tina-self-hosted-demo) into your GitHub account.
+Deploy the [the self-hosted starter](https://github.com/tinacms/tina-self-hosted-demo) using our preconfigured Vercel template:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo&env=GITHUB_PERSONAL_ACCESS_TOKEN,GITHUB_BRANCH,NEXTAUTH_SECRET,KV_REST_API_JAMES_REST_API_URL,KV_REST_API_JAMES_REST_API_TOKEN,NEXTAUTH_CREDENTIALS_KEY&envDescription=See%20the%20self-hosted%20demo%20README%20for%20more%20information&envLink=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo%2Fblob%2Fmain%2FREADME.md&project-name=tina-self-hosted-demo&repository-name=tina-self-hosted-demo&stores=%5B%7B%22type%22%3A%22kv%22%7D%5D&)
+
+### Setup KV Store
+
+In the initial Vercel project setup. You will be prompted to setup your Vercel KV store in a few clicks. Use the default `KV_` environment variables prefix.
+
+### Setup Environment Variables
+
+You will be prompted to enter values for the following environment variables:
+
+#### `GITHUB_PERSONAL_ACCESS_TOKEN`
+
+A GitHub Personal access token can be generated in your [GitHub developer settings](https://github.com/settings/personal-access-tokens/new). Make sure to assign it `repo` access to your new repository.
+
+#### `GITHUB_OWNER`
+
+Your GitHub account name in which this repository lives.
+
+#### `GITHUB_REPO`
+
+The name of the new repo
+
+#### `GITHUB_BRANCH`
+
+The branch name of your content (e.g: "main")
+
+#### `NEXTAUTH_SECRET`
+
+Assign this a private value used for your JWT encryption
+
+#### `NEXTAUTH_CREDENTIALS_KEY`
+
+The key you want to use for storing user credentials in the KV database (i.e. `tinacms_users`).
+
+### Test Out Your New Deployment
+
+At this point you'll be able to poke around with your new starter. If you add `/admin` to the URL, you'll see that you'll be prompted to login. We'll configure out users in the following steps.
 
 ## Clone your repo locally
 
@@ -28,7 +66,14 @@ Setup the .env file:
 cp .env.example .env
 ```
 
-We'll configure these values so that TinaCMS can run in your production environment shortly. For now let's continue on so we can test TinaCMS locally.
+Use the same values locally that you setup with the Vercel project earlier.
+You will also need to add some environment variables that are applied automatically in Vercel for your Vercel KV Store.
+
+```env
+# These can be found in your Vercel KV store settings.
+KV_REST_API_URL="https://<REPLACE-THIS-VALUE>.kv.vercel-storage.com"
+KV_REST_API_TOKEN="<REPLACE-THIS-VALUE>"
+```
 
 Install the project's dependencies:
 
@@ -44,38 +89,15 @@ yarn dev
 
 You will be able to view your starter on http://localhost:3000. To play around with TinaCMS and edit some content, you can go to http://localhost:3000/admin
 
-### Configure environment for production
+## Add Users to Your Project
 
-At this point, we're able to run the starter locally. Any changes that you make through TinaCMS modify the local markdown files.
+When you are testing TinaCMS locally, you don't need to be logged in to access the CMS.
+When you navigate to /admin on your Vercel deployment, or if you run `yarn build` & `yarn start`, you will be prompted to login.
 
-When you get to the point of hosting this website, some extra configuration is needed.
+To setup users for your project, you can run:
 
-Let's take a look at the .env file we created earlier:
-
-```env
-MONGODB_URI=***
-GITHUB_OWNER=***
-GITHUB_REPO=***
-GITHUB_BRANCH=***
-GITHUB_PERSONAL_ACCESS_TOKEN=***
-TINA_PUBLIC_IS_LOCAL=true
-
-# _optionally_ Use Tina Cloud for user authentication
-NEXT_PUBLIC_TINA_CLIENT_ID=***
+```bash
+yarn setup:users
 ```
 
-Here's a rundown of what each of these values do.
-
-`MONGODB_URI` is the connection string to your MongoDB database. You can use [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) to get a free database.
-
-`GITHUB_OWNER` is the owner of the repository you want to use for your content.
-
-`GITHUB_REPO` is the name of the repository you want to use for your content.
-
-`GIT_BRANCH` is the branch of the repository you want to use for your content.
-
-`GITHUB_PERSONAL_ACCESS_TOKEN` is a [personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) with `repo` access.
-
-`TINA_PUBLIC_IS_LOCAL` is a flag that tells Tina to use the local filesystem as the backend.
-
-`NEXT_PUBLIC_TINA_CLIENT_ID` (_optionally_ use Tina Cloud for auth) is the client id for your Tina Cloud application. You can create a Tina Cloud application [here](https://app.tina.io/projects/choose).
+Once you have created a user with a password, they will be able to login to your production site, make changes, and have those updates persisted to your live site.
