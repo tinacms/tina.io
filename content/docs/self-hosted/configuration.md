@@ -187,33 +187,7 @@ const config = defineConfig({
 
 ### Authentication&#x20;
 
-#### Using Tina Cloud for Authentication
-
-If you just wish to self host your content and you don't need to customize authentication, you can use Tina Cloud for authorization and authentication. This can be done by adding the following to your endpoint:
-
-##### `pages/api/gql.{ts,js}`
-
-```diff
-import { isUserAuthorized } from "@tinacms/auth";
-
-import { databaseRequest } from "../../lib/databaseConnection";
-import createDatabase from "../../.tina/database";
-const database = createDatabase();
-
-export default async function handler(req, res) {
-+  const isAuthorized = await isUserAuthorized({
-+    token: req.headers.authorization,
-+    clientID: "<YourClientIdFromTinaCloud>",
-+  });
-+  if (!isAuthorized) {
-+    return res.status(401).json({ message: "Unauthorized" });
-+  }
-
-  const { query, variables } = req.body;
-  const result = await databaseRequest({ query, variables, database });
-  return res.json(result);
-}
-```
+Self hosted Tina allows you to integrate your own Auth provder. Our self-hosted-starter uses NextAuth, which provides connections to various auth providers under the hood.
 
 #### Self hosting your Authentication
 
