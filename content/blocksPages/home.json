@@ -100,6 +100,19 @@
     {
       "items": [
         {
+          "headline": "Editorial Workflow",
+          "text": "Create changes with your team through an editorial workflow",
+          "actions": [
+            {
+              "label": "Learn More",
+              "icon": false,
+              "variant": "default",
+              "size": "medium",
+              "url": "/"
+            }
+          ]
+        },
+        {
           "headline": "Visual Editing",
           "text": "See content changes in real-time as you edit. ",
           "actions": [
