@@ -1,14 +1,14 @@
 ---
 title: Self Hosted Tina
-last_edited: '2023-02-01T04:00:00.000Z'
-next: '/docs/self-hosted/getting-started'
+last_edited: '2023-07-06T07:00:00.000Z'
+next: /docs/self-hosted/getting-started
 ---
 
 ## Introduction
 
-By default, TinaCMS uses Tina Cloud as its backend solution. Tina Cloud is a powerful, out-of-the-box solution that handles reading/writing to your GitHub repository, caching content in a queryably data-layer, and also handles authentication & permissions.
+By default, TinaCMS uses Tina Cloud as its backend. Tina Cloud is a powerful, out-of-the-box solution that handles reading/writing to your GitHub repository, caching content in a queryable data layer, and handling authentication & authorization.
 
-For users who do not wish to rely on Tina Cloud, **we also offer a self-hosted alternative** where you can host your own Tina Data Layer and provide your own user authentication and GitHub connection. We love the control and portability you get when storing content in Markdown and JSON files and want to extend that to the rest of the CMS.
+For users who do not wish to rely on Tina Cloud, **we also offer a self-hosted alternative** where you can host your own Tina Data Layer and provide your own user authentication and git integration. We love the control and portability you get when storing content in Markdown and JSON files and want to extend that to the rest of the CMS.
 
 ## Note on Licensing
 
