@@ -80,6 +80,13 @@ When your editors add an image to a document, the value that is saved will be a 
 
 Repo-based media is designed to be used around a single-branch workflow. If your project is using the [experimental branching plugin](https://github.com/tinacms/tinacms/tree/main/packages/%40tinacms/toolkit/src/plugins/branch-switcher), there's some known caveats to be aware of.
 
-- Images cannot be altered, once uploaded any subsequent changes to an asset will not be reflected.
-- If you only have a single branch with media enabled, the media store will source/upload images to/from that branch.
-- If you have multiple branches with media enabled, then all media will be sourced/uploaded to/from the repository's default branch.
+* Images cannot be altered, once uploaded any subsequent changes to an asset will not be reflected.
+* If you only have a single branch with media enabled, the media store will source/upload images to/from that branch.
+* If you have multiple branches with media enabled, then all media will be sourced/uploaded to/from the repository's default branch.
+
+If you are configuring Tina on a non-default branch (and the Tina config has not yet been merged to your default branch), you may see this message in the Tina Cloud media settings:\
+
+
+![](http://res.cloudinary.com/forestry-demo/image/upload/v1688478218/tina-io/docs/media-not-configured_lnr5lw.png)\
+\
+To workaround this, you may need to enable media **after** merging Tina to your default branch.
