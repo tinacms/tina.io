@@ -1,7 +1,7 @@
 ---
 title: Getting Started with Self-Hosting TinaCMS
 id: /docs/self-hosted/getting-started
-last_edited: '2023-02-01T04:00:00.000Z'
+last_edited: '2023-07-07T04:00:00.000Z'
 ---
 
 ## Introduction
