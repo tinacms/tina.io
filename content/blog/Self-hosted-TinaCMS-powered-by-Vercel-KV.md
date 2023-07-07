@@ -30,4 +30,4 @@ Repo-based media is not currently available for self-hosted TinaCMS. We currentl
 
 Visit the self-hosted [demo](https://github.com/tinacms/tina-self-hosted-demo#deploy-this-repository-to-vercel) repo and click the Deploy button to launch the demo on Vercel.
 
-<Youtube embedSrc="https://www.youtube.com/embed/K3LG2kqcYVs" />
+<Youtube embedSrc="https://www.youtube.com/embed/Y_ACBtzf0gs" />
