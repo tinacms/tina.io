@@ -38,7 +38,7 @@ Random string used by NextAuth.js for JWT encryption
 
 The key name to use for storing user credentials in the KV database (i.e. `tinacms_users`).
 
-Click the Deploy button to finish deploying the site.
+Click the **Deploy** button to finish deploying the site.
 
 ### Test Out Your New Deployment
 
