@@ -5,7 +5,8 @@ last_edited: '2023-07-06T03:00:00.000Z'
 author: James O'Halloran
 ---
 
-We're excited to introduce some new Editorial Workflow features for teams! Enabling "Editorial Workflow" features on a project allow editors to work in a branch/review-based workflow.
+      We're excited to introduce some new Editorial Workflow features for teams! Enabling "Editorial Workflow" features on a project allows editors to work in a branch/review-based workflow.
+      ```
 
 <WarningCallout body="&#x22;Editorial Workflow&#x22; features are available today on the Tina Cloud business plan." />
 
