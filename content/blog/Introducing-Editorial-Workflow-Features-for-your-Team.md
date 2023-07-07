@@ -10,7 +10,8 @@ author: James O'Halloran
 
 <WarningCallout body="&#x22;Editorial Workflow&#x22; features are available today on the Tina Cloud business plan." />
 
-We understand that Git concepts are new to many content editors, so we try and strike the balance between a workflow that works for teams, and an approachable UX for editors.
+      We understand that Git concepts are new to many content editors, so we strive to strike a balance between a workflow that works for teams and an approachable UX for editors.
+      ```
 
 ## Protected Branches
 
