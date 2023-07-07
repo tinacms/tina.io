@@ -48,7 +48,9 @@ At this point you'll be able to poke around with your new starter. If you add `/
 
 When you first visit the sign in screen, you will be prompted to setup a user to login. Once the user is created, you will be redirected to login. Use the new account credentials to sign in and you will be redirected to TinaCMS.
 
-## Clone your repo locally
+## Local Development
+
+### Clone the Repository
 
 (Replace the URL with your newly forked repo)
 
@@ -56,7 +58,13 @@ When you first visit the sign in screen, you will be prompted to setup a user to
 git clone https://github.com/<YOUR_GITHUB_ACCOUNT>/tina-self-hosted-demo self-hosted-demo
 ```
 
-## Local Development
+Install the project's dependencies:
+
+```bash
+yarn install
+```
+
+### Configure the Development Environment
 
 Setup the .env file:
 
@@ -73,13 +81,7 @@ KV_REST_API_URL="https://<REPLACE-THIS-VALUE>.kv.vercel-storage.com"
 KV_REST_API_TOKEN="<REPLACE-THIS-VALUE>"
 ```
 
-Install the project's dependencies:
-
-```bash
-yarn install
-```
-
-Run the project locally:
+### Run the Project Locally
 
 ```bash
 yarn dev
@@ -87,15 +89,13 @@ yarn dev
 
 You will be able to view your starter on http://localhost:3000. To play around with TinaCMS and edit some content, you can go to http://localhost:3000/admin
 
-## Add Users to Your Project
+## Adding Additional Users
 
 When you are testing TinaCMS locally, you don't need to be logged in to access the CMS.
-When you navigate to /admin on your Vercel deployment, or if you run `yarn build` & `yarn start`, you will be prompted to login.
-
-To setup users for your project, you can run:
+When you navigate to /admin on your Vercel deployment, or if you run `yarn build` & `yarn start`, you will be required to login. If you want to add additional users or update a user's password, you can run the user management script:
 
 ```bash
 yarn setup:users
 ```
 
-Once you have created a user with a password, they will be able to login to your production site, make changes, and have those updates persisted to your live site.
+If the KV\_REST\_API\_URL & KV\_REST\_API\_TOKEN variables are not set, you will be prompted for them the first time the script is executed. Once you have created a user with a password, they will be able to login to your production site, make changes, and have those updates persisted to your live site.
