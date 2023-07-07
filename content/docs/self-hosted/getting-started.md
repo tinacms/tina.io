@@ -54,13 +54,13 @@ When you first visit the sign in screen, you will be prompted to setup a user to
 
 (Replace the URL with your newly forked repo)
 
-```bash
+```shell
 git clone https://github.com/<YOUR_GITHUB_ACCOUNT>/tina-self-hosted-demo self-hosted-demo
 ```
 
 Install the project's dependencies:
 
-```bash
+```shell
 yarn install
 ```
 
@@ -68,7 +68,7 @@ yarn install
 
 Setup the .env file:
 
-```bash
+```shell
 cp .env.example .env
 ```
 
@@ -83,7 +83,7 @@ KV_REST_API_TOKEN="<REPLACE-THIS-VALUE>"
 
 ### Run the Project Locally
 
-```bash
+```shell
 yarn dev
 ```
 
@@ -94,7 +94,7 @@ You will be able to view your starter on http://localhost:3000. To play around w
 When you are testing TinaCMS locally, you don't need to be logged in to access the CMS.
 When you navigate to /admin on your Vercel deployment, or if you run `yarn build` & `yarn start`, you will be required to login. If you want to add additional users or update a user's password, you can run the user management script:
 
-```bash
+```shell
 yarn setup:users
 ```
 
