@@ -12,7 +12,7 @@ This doc will guide you through setting up our pre-configured self-hosted starte
 
 Deploy the [the self-hosted starter](https://github.com/tinacms/tina-self-hosted-demo) using our preconfigured Vercel template:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo&env=GITHUB_PERSONAL_ACCESS_TOKEN,GITHUB_BRANCH,NEXTAUTH_SECRET,KV_REST_API_JAMES_REST_API_URL,KV_REST_API_JAMES_REST_API_TOKEN,NEXTAUTH_CREDENTIALS_KEY&envDescription=See%20the%20self-hosted%20demo%20README%20for%20more%20information&envLink=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo%2Fblob%2Fmain%2FREADME.md&project-name=tina-self-hosted-demo&repository-name=tina-self-hosted-demo&stores=%5B%7B%22type%22%3A%22kv%22%7D%5D&)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo\&env=GITHUB_PERSONAL_ACCESS_TOKEN,GITHUB_BRANCH,NEXTAUTH_SECRET,KV_REST_API_JAMES_REST_API_URL,KV_REST_API_JAMES_REST_API_TOKEN,NEXTAUTH_CREDENTIALS_KEY\&envDescription=See%20the%20self-hosted%20demo%20README%20for%20more%20information\&envLink=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo%2Fblob%2Fmain%2FREADME.md\&project-name=tina-self-hosted-demo\&repository-name=tina-self-hosted-demo\&stores=%5B%7B%22type%22%3A%22kv%22%7D%5D&)
 
 ### Setup KV Store
 
@@ -24,27 +24,19 @@ You will be prompted to enter values for the following environment variables:
 
 #### `GITHUB_PERSONAL_ACCESS_TOKEN`
 
-A GitHub Personal access token can be generated in your [GitHub developer settings](https://github.com/settings/personal-access-tokens/new). Make sure to assign it `repo` access to your new repository.
-
-#### `GITHUB_OWNER`
-
-Your GitHub account name in which this repository lives.
-
-#### `GITHUB_REPO`
-
-The name of the new repo
+GitHub personal access token generated in your [GitHub developer settings](https://github.com/settings/personal-access-tokens/new). Make sure to assign it `repo` access to your new repository with Read/Write access to Contents.
 
 #### `GITHUB_BRANCH`
 
-The branch name of your content (e.g: "main")
+Branch name with your site's content (e.g: "main")
 
 #### `NEXTAUTH_SECRET`
 
-Assign this a private value used for your JWT encryption
+Random string used by NextAuth.js for JWT encryption
 
 #### `NEXTAUTH_CREDENTIALS_KEY`
 
-The key you want to use for storing user credentials in the KV database (i.e. `tinacms_users`).
+The key name to use for storing user credentials in the KV database (i.e. `tinacms_users`).
 
 ### Test Out Your New Deployment
 
