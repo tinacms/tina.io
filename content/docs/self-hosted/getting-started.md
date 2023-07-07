@@ -38,9 +38,15 @@ Random string used by NextAuth.js for JWT encryption
 
 The key name to use for storing user credentials in the KV database (i.e. `tinacms_users`).
 
+Click the Deploy button to finish deploying the site.
+
 ### Test Out Your New Deployment
 
-At this point you'll be able to poke around with your new starter. If you add `/admin` to the URL, you'll see that you'll be prompted to login. We'll configure out users in the following steps.
+At this point you'll be able to poke around with your new starter. If you add `/admin` to the URL, you'll see that you'll be prompted to login.
+
+### Creating Your First User
+
+When you first visit the sign in screen, you will be prompted to setup a user to login. Once the user is created, you will be redirected to login. Use the new account credentials to sign in and you will be redirected to TinaCMS.
 
 ## Clone your repo locally
 
