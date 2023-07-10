@@ -6,12 +6,12 @@ author: James O'Halloran
 ---
 
       We're excited to introduce some new Editorial Workflow features for teams! Enabling "Editorial Workflow" features on a project allows editors to work in a branch/review-based workflow.
-      ```
+
+<Youtube embedSrc={"https://www.youtube.com/embed/gYukiULGqGc"} />
 
 <WarningCallout body="&#x22;Editorial Workflow&#x22; features are available today on the Tina Cloud business plan." />
 
       We understand that Git concepts are new to many content editors, so we strive to strike a balance between a workflow that works for teams and an approachable UX for editors.
-      ```
 
 ## Protected Branches
 
