@@ -100,6 +100,10 @@
     {
       "items": [
         {
+          "headline": "My new feature",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur imperdiet tincidunt metus et bibendum. Nunc maximus mauris sit amet arcu fermentum feugiat."
+        },
+        {
           "headline": "Visual Editing",
           "text": "See content changes in real-time as you edit. ",
           "actions": [
