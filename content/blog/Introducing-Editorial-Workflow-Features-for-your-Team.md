@@ -15,11 +15,13 @@ We understand that Git concepts are new to many content editors, so the TinaCMS 
 
 ## Protected Branches
 
-In Tina Cloud, you can assign a "protected branch". When editors make a change on a protected branch, they will be prompted to create a new branch where those changes will be applied.
+In Tina Cloud, you can assign a "protected branch". 
 
-`<insert video>`
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1689016108/blog-media/editorial-workflow/enable-editorial-workflow.png)
 
-Editors can continue making changes to the branch changeset, or they can switch back to the default branch.
+When editors make a change on a protected branch, they will be prompted to create a new branch where those changes will be applied.\
+\
+![](http://res.cloudinary.com/forestry-demo/image/upload/v1689033651/blog-media/editorial-workflow/create-branch_bgpgwn.png)
 
 ## Sharing Previews
 
