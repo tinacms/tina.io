@@ -35,6 +35,7 @@ const components: Components<{
     url: string
     buttonText: string
   }
+  WarningCallout: { body: string }
   Codesandbox: { embedSrc: string; title: string }
   Diagram: { alt: string; src: string }
   WideImage: { alt: string; src: string }
@@ -92,6 +93,7 @@ const components: Components<{
       </div>
     </>
   ),
+  WarningCallout: ({ body }) => <WarningCallout text={body} />,
   Callout: ({ title, description, url, buttonText }) => (
     <div className="callout">
       <img
