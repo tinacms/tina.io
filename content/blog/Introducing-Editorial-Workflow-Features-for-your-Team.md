@@ -39,7 +39,6 @@ If you've used our experimental branch plugin in the past, the branch UI can be 
 
 <Youtube embedSrc="https://www.youtube.com/embed/LvMgC6D6Sms" />
 
-To learn more about setting up the Editorial Workflow feature for your team, check out [our docs](/docs/drafts/editorial-workflow/).\
-
+To learn more about setting up the Editorial Workflow feature for your team, check out [our docs](/docs/drafts/editorial-workflow/).
 
 <Callout title="Request a Demo" description="Want to see a demo of editorial workflow features in action? Let's chat!" buttonText="Request a Demo" url="mailto:demo@tina.io" />
