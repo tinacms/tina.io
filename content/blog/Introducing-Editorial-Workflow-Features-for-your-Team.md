@@ -25,11 +25,15 @@ When editors make a change on a protected branch, they will be prompted to creat
 
 ## Sharing Previews
 
-When on a branch, editors now have an accessible link to the GitHub PR. This allows editors to easily share their site preview with other stakeholders.
+When on a branch, editors now have an accessible link to a configurable preview link. This allows editors to easily share their site preview with other stakeholders.
+
+![](http://res.cloudinary.com/forestry-demo/image/upload/v1689035096/blog-media/editorial-workflow/share-btn_xvmxii.png)
 
 ## Leverage GitHub's Reviews
 
 When editors make changes, commits and pull-requests are made to GitHub under the hood. Reviewers are able to use the Git workflow that they're comfortable with to review changes. This also allows teams to ensure that their CI/CD workflow all passes before merging any content updates to their main branch.
+
+![](http://res.cloudinary.com/forestry-demo/image/upload/v1689035294/blog-media/editorial-workflow/github-pr_vbyqbs.png)
 
 ## Improved Branch UI
 
