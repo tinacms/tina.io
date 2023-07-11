@@ -39,4 +39,6 @@ When editors make changes, commits and pull-requests are made to GitHub under th
 
 If you've used our experimental branch plugin in the past, the branch UI can be a bit overwhelming. The new editorial workflow branch UI contains some quality of life improvements, like only displaying content branches by default, allowing you  to exclude branches such as those from developers or Dependabot.
 
+<Youtube embedSrc="https://www.youtube.com/embed/LvMgC6D6Sms" />
+
 To learn more about setting up the Editorial Workflow feature for your team, check out [our docs](/docs/drafts/editorial-workflow/).
