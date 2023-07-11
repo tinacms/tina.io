@@ -1,0 +1,64 @@
+{
+  "blocks": [
+    {
+      "headline": "Boost your SEO with TinaCMS.",
+      "text": "Unlock the full potential of your SEO efforts with the flexibility and control provided by TinaCMS.",
+      "_template": "hero"
+    },
+    {
+      "options": {
+        "narrow": true,
+        "color": "white"
+      },
+      "content": "## Supercharge Your SEO with TinaCMS\n\nWith TinaCMS, you're in control. Configure any of your SEO fields as you like, and leverage the power of a headless CMS to create lightning-fast, SEO-optimized websites.\n",
+      "_template": "content"
+    },
+    {
+      "items": [
+        {
+          "headline": "Complete SEO Control",
+          "text": "Configure your SEO fields as per your strategy and requirements. You have full control."
+        },
+        {
+          "headline": "Speed is Key",
+          "text": "TinaCMS empowers you to create ultra-fast websites, a critical factor in SEO ranking."
+        },
+        {
+          "headline": "Lighthouse Champion",
+          "text": "Achieve 100 Lighthouse scores with sites built using TinaCMS, further boosting your SEO."
+        },
+        {
+          "headline": "Open Source Frontend",
+          "text": "TinaCMS's frontend codebase is open-source, backed by a vibrant community and regular updates."
+        },
+        {
+          "headline": "SSR & Static Support",
+          "text": "Supports both Server Side Rendered and Static websites, providing flexibility in your SEO strategy."
+        },
+        {
+          "headline": "Headless CMS",
+          "text": "Being a headless CMS, TinaCMS provides more flexibility and speed, leading to better SEO performance."
+        }
+      ],
+      "_template": "featureGrid"
+    },
+    {
+      "headline": "Ready to supercharge your SEO?",
+      "text": "Get started with TinaCMS now.",
+      "actions": [
+        {
+          "label": "Learn More",
+          "icon": false,
+          "variant": "blue",
+          "size": "medium",
+          "url": "https://tina.io/docs/setup-overview/"
+        }
+      ],
+      "_template": "flying"
+    }
+  ],
+  "seo": {
+    "title": "Supercharge Your SEO with TinaCMS",
+    "description": "Unlock your SEO potential with the flexibility and control provided by TinaCMS. Configure your SEO fields as you like, and create fast, SEO-optimized websites."
+  }
+}

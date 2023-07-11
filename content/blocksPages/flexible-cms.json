@@ -1,0 +1,64 @@
+{
+  "blocks": [
+    {
+      "headline": "TinaCMS: The Epitome of Flexibility and Customization.",
+      "text": "Open your world to endless customization and flexible workflows with the open-source frontend of TinaCMS.",
+      "_template": "hero"
+    },
+    {
+      "options": {
+        "narrow": true,
+        "color": "white"
+      },
+      "content": "## Experience Limitless Flexibility with TinaCMS\n\nWith TinaCMS, there are no bounds to your creativity. Craft custom field widgets, add bespoke validation to fields, and take advantage of Git-based content to create workflows beyond the CMS interface, including Github Actions.\n",
+      "_template": "content"
+    },
+    {
+      "items": [
+        {
+          "headline": "Open Source Frontend",
+          "text": "Enjoy the transparency and flexibility of an open-source frontend, supported by a vibrant developer community."
+        },
+        {
+          "headline": "Custom Field Widgets",
+          "text": "Exercise full creative control with the ability to create your custom field widgets."
+        },
+        {
+          "headline": "Bespoke Field Validation",
+          "text": "Ensure your data integrity with custom validation for your fields, tailored to your needs."
+        },
+        {
+          "headline": "Leverage Git",
+          "text": "Maximize the power of Git-based content for creating flexible workflows, extending the potential of your project beyond the CMS."
+        },
+        {
+          "headline": "Github Actions Integration",
+          "text": "Automate your workflows and improve productivity by integrating with Github Actions."
+        },
+        {
+          "headline": "Limitless Flexibility",
+          "text": "TinaCMS is designed with flexibility in mind, allowing you to create the exact experience you want."
+        }
+      ],
+      "_template": "featureGrid"
+    },
+    {
+      "headline": "Ready for limitless customization and flexibility?",
+      "text": "Get started with TinaCMS now.",
+      "actions": [
+        {
+          "label": "Learn More",
+          "icon": false,
+          "variant": "blue",
+          "size": "medium",
+          "url": "https://tina.io/docs/setup-overview/"
+        }
+      ],
+      "_template": "flying"
+    }
+  ],
+  "seo": {
+    "title": "Experience Limitless Flexibility with TinaCMS",
+    "description": "Experience the limitless customization and flexible workflows with TinaCMS. Craft custom field widgets, add bespoke validation to fields, and leverage Git-based content to create workflows beyond the CMS."
+  }
+}

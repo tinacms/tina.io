@@ -30,6 +30,53 @@ export const heroTemplate: TinaTemplate = {
     { name: 'text', label: 'Text', type: 'string' },
     // @ts-ignore
     actionsTemplate,
-    { name: 'videoSrc', label: 'Video Source', type: 'string' },
+    {
+      name: 'media',
+      label: 'Media',
+      type: 'object',
+      list: true,
+      ui: {
+        min: 0,
+        max: 1,
+      },
+      templates: [
+        {
+          name: 'image',
+          label: 'Image',
+          fields: [
+            {
+              name: 'image',
+              label: 'Image',
+              type: 'image',
+            },
+          ],
+        },
+        {
+          name: 'video',
+          label: 'Video',
+          fields: [
+            {
+              name: 'src',
+              label: 'Video Source',
+              description:
+                'This is the Cloudinary Public ID, for example "tina-io/docs/quick-edit-demo".',
+              type: 'string',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'margin',
+      description: 'Default is px-8 py-12 lg:py-16',
+      label: 'Custom Margin',
+      type: 'string',
+    },
+    {
+      name: 'spacing',
+      description: 'Default is gap-6',
+      label: 'Custom Spacing',
+      type: 'string',
+    },
   ],
 }

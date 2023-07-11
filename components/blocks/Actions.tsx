@@ -1,6 +1,5 @@
 import React from 'react'
-import { BiCopy } from 'react-icons/bi'
-import { IconRight } from './Icons'
+import { BiArrowBack, BiCopy } from 'react-icons/bi'
 import { copyToClipboard } from '../../components/layout/MarkdownContent'
 import { LinkButton } from '../../components/ui'
 
@@ -29,7 +28,10 @@ export const Actions = ({ items, align = 'left' }) => {
                 link={url}
                 color={variant}
               >
-                {label} {icon && <IconRight />}
+                {label}{' '}
+                {icon && (
+                  <BiArrowBack className="h-[1.125em] w-auto opacity-70 ml-2 -mr-1 -mt-1 rotate-180" />
+                )}
               </LinkButton>
             )
           })}

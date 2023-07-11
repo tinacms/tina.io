@@ -1,0 +1,64 @@
+{
+  "blocks": [
+    {
+      "headline": "TinaCMS vs Sanity: Elevate Your Experience with TinaCMS",
+      "text": "See why TinaCMS is the preferred choice for developers and content creators alike.",
+      "_template": "hero"
+    },
+    {
+      "options": {
+        "narrow": true,
+        "color": "white"
+      },
+      "content": "## Why Choose TinaCMS Over Sanity?\n\nTinaCMS provides a seamless local development workflow, markdown support, and visual editing capabilities that set it apart from Sanity. Here's why TinaCMS might be the right fit for your project:\n",
+      "_template": "content"
+    },
+    {
+      "items": [
+        {
+          "headline": "Markdown Support",
+          "text": "TinaCMS's markdown support is a game changer for developers and writers. The simplicity of markdown coupled with the flexibility of TinaCMS makes content creation and management a breeze."
+        },
+        {
+          "headline": "Visual Editing Capabilities",
+          "text": "TinaCMS provides a live editing experience that is unmatched. This allows for real-time feedback, making content creation intuitive and interactive."
+        },
+        {
+          "headline": "Seamless Local-Development Workflow",
+          "text": "With TinaCMS, you can change your schema and content, and merge them in one commit. This powerful feature facilitates a seamless local development workflow."
+        },
+        {
+          "headline": "Git-Based Content Management",
+          "text": "TinaCMS's Git-based content management provides built-in version control for your site. This makes it perfect for open-source or closed-source projects."
+        },
+        {
+          "headline": "No Vendor Lock-In",
+          "text": "Avoid the pitfalls of vendor lock-in. With TinaCMS, your content is stored in a Git repository. Own your content!"
+        },
+        {
+          "headline": "Customizable and Flexible",
+          "text": "TinaCMS is built to be customizable, empowering you to create the exact experience you want for your website."
+        }
+      ],
+      "_template": "featureGrid"
+    },
+    {
+      "headline": "Ready to switch to TinaCMS?",
+      "text": "Get started with TinaCMS now, and see the difference it makes.",
+      "actions": [
+        {
+          "label": "Learn More",
+          "icon": false,
+          "variant": "blue",
+          "size": "medium",
+          "url": "https://tina.io/docs/setup-overview/"
+        }
+      ],
+      "_template": "flying"
+    }
+  ],
+  "seo": {
+    "title": "TinaCMS vs Sanity: Why Choose TinaCMS",
+    "description": "Discover why TinaCMS is the preferred choice over Sanity. Experience markdown support, live editing, a seamless local development workflow, Git-based content management, and more with TinaCMS."
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "blocks": [
+    {
+      "headline": "Harness the Power of Git with TinaCMS.",
+      "text": "Unleash superior content management by merging the capabilities of Git with the intuitiveness of TinaCMS.",
+      "_template": "hero"
+    },
+    {
+      "options": {
+        "narrow": true,
+        "color": "white"
+      },
+      "content": "## TinaCMS: A Git-backed CMS for the modern web\n\nTinaCMS provides a user-friendly interface that sits atop your Git repository, providing you with robust version control for your website content. Your editors won't need to know what Git is.\n",
+      "_template": "content"
+    },
+    {
+      "items": [
+        {
+          "headline": "Robust Version Control",
+          "text": "Leverage Git's unrivalled version control capabilities to manage your website content more effectively."
+        },
+        {
+          "headline": "Editor-friendly Interface",
+          "text": "Provide a simple, user-friendly content editing interface for your editors. No need to know Git."
+        },
+        {
+          "headline": "Git-backed Storage",
+          "text": "With TinaCMS, all your content is stored directly in your Git repository, ensuring consistency and reliability."
+        },
+        {
+          "headline": "Open Source Frontend",
+          "text": "TinaCMS's frontend codebase is open-source, backed by a vibrant community and regular updates."
+        },
+        {
+          "headline": "Ideal for Any Project",
+          "text": "Whether you're managing an open-source or closed-source project, TinaCMS with Git support is an ideal choice."
+        },
+        {
+          "headline": "Streamlined Workflow",
+          "text": "Improve collaboration and streamline your content production workflow with TinaCMS's Git integration."
+        }
+      ],
+      "_template": "featureGrid"
+    },
+    {
+      "headline": "Ready to take your content management to the next level?",
+      "text": "Get started with TinaCMS and Git now.",
+      "actions": [
+        {
+          "label": "Learn More",
+          "icon": false,
+          "variant": "blue",
+          "size": "medium",
+          "url": "https://tina.io/docs/setup-overview/"
+        }
+      ],
+      "_template": "flying"
+    }
+  ],
+  "seo": {
+    "title": "Power of Git with TinaCMS",
+    "description": "Experience superior content management with the power of Git and the intuitiveness of TinaCMS. Ideal for both open-source and closed-source projects."
+  }
+}

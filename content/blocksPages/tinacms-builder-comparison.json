@@ -1,0 +1,64 @@
+{
+  "blocks": [
+    {
+      "headline": "Looking For a Builder.io Alternative?",
+      "text": "TinaCMS might be the right fit for your project.",
+      "_template": "hero"
+    },
+    {
+      "options": {
+        "narrow": true,
+        "color": "white"
+      },
+      "content": "## Why Choose TinaCMS Over Builder.io?\n\nWhile both platforms offer visual editing, TinaCMS takes a different approach. Builder has you render all your visual components with a special `<Builder` component, but TinaCMS is designed to work with your existing site structure.",
+      "_template": "content"
+    },
+    {
+      "items": [
+        {
+          "headline": "Unmatched Local-Development Experience",
+          "text": "TinaCMS supports a seamless local development workflow, allowing changes to schema and content to be merged in a single commit. This greatly enhances the developer experience."
+        },
+        {
+          "headline": "Visual Editing Capabilities",
+          "text": "TinaCMS provides an unmatched visual editing experience. See changes in real-time and streamline the content creation process."
+        },
+        {
+          "headline": "Ideal for Long-Form Content",
+          "text": "TinaCMS is particularly adept at managing long-form content such as documentation. This makes it a great fit for projects that require comprehensive written content."
+        },
+        {
+          "headline": "Git-Based Content Management",
+          "text": "With TinaCMS, content is stored in Git, providing a robust version control system. This aids in creating seamless editorial workflows and is beneficial for both open-source and closed-source projects."
+        },
+        {
+          "headline": "Markdown Support",
+          "text": "TinaCMS supports markdown content, simplifying the process of content creation and management. Markdown provides a straightforward and accessible method of creating content."
+        },
+        {
+          "headline": "Open Source Frontend",
+          "text": "TinaCMS's frontend is open-source, enabling you to benefit from community-driven improvements and regular updates. It also makes TinaCMS more adaptable to your existing technology stack."
+        }
+      ],
+      "_template": "featureGrid"
+    },
+    {
+      "headline": "Discover the power of TinaCMS",
+      "text": "Experience a new standard of content management with TinaCMS.",
+      "actions": [
+        {
+          "label": "Learn More",
+          "icon": false,
+          "variant": "blue",
+          "size": "medium",
+          "url": "https://tina.io/docs/setup-overview/"
+        }
+      ],
+      "_template": "flying"
+    }
+  ],
+  "seo": {
+    "title": "TinaCMS vs Builder.io: Why Choose TinaCMS",
+    "description": "Find out why TinaCMS could be the best choice for your project. Benefit from superior local development, long-form content management, Git integration, and more with TinaCMS."
+  }
+}

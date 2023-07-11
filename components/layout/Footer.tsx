@@ -1,13 +1,11 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
-import { LinkNav } from '../ui/LinkNav'
 import TwitterIconSvg from '../../public/svg/twitter-icon.svg'
 import GithubIconSvg from '../../public/svg/github-icon.svg'
 import { EmailForm } from '../forms/EmailForm'
 import { TinaIcon } from '../../components/logo'
 import Link from 'next/link'
-import TinaIconSvg from '../../public/svg/tina-icon.svg'
 import { DynamicLink } from '../../components/ui'
+
 import { BsDiscord } from 'react-icons/bs'
 
 const footerNav = [
@@ -26,11 +24,6 @@ const footerNav = [
         link: 'https://app.tina.io/',
         label: 'Tina Cloud',
       },
-    ],
-  },
-  {
-    label: 'Docs',
-    items: [
       {
         link: '/docs/',
         label: 'Introduction',
@@ -38,6 +31,111 @@ const footerNav = [
       {
         link: '/docs/product-tour/',
         label: 'How Tina Works',
+      },
+    ],
+  },
+  {
+    label: 'Resources',
+    items: [
+      {
+        label: 'Use Cases',
+        children: [
+          {
+            link: '/agencies',
+            label: 'Agencies',
+          },
+          {
+            link: '/documentation',
+            label: 'Documentation',
+          },
+          {
+            link: '/cms-for-teams',
+            label: 'Teams',
+          },
+          {
+            link: '/jamstack-cms',
+            label: 'Jamstack CMS',
+          },
+        ],
+      },
+      {
+        label: 'Benefits',
+        children: [
+          {
+            link: '/mdx-cms',
+            label: 'MDX',
+          },
+          {
+            link: '/markdown-cms',
+            label: 'Markdown',
+          },
+          {
+            link: '/git-cms',
+            label: 'Git',
+          },
+          {
+            link: '/editorial-workflow',
+            label: 'Editorial Workflow',
+          },
+          {
+            link: '/flexible-cms',
+            label: 'Customization',
+          },
+          {
+            link: '/seo',
+            label: 'SEO',
+          },
+        ],
+      },
+      {
+        label: 'Comparisons',
+        children: [
+          {
+            link: '/tinacms-storyblok-comparison',
+            label: 'TinaCMS vs Storyblok',
+          },
+          {
+            link: '/sanity-tina-comparison',
+            label: 'TinaCMS vs Sanity',
+          },
+          {
+            link: '/tinacms-netlifycms-comparison',
+            label: 'TinaCMS vs NetlifyCMS',
+          },
+          {
+            link: '/tinacms-contentful-comparison',
+            label: 'TinaCMS vs Contentful',
+          },
+          {
+            link: '/tinacms-builder-comparison',
+            label: 'TinaCMS vs Builder.io',
+          },
+          {
+            link: '/tinacms-strapi-comparison',
+            label: 'TinaCMS vs Strapi',
+          },
+        ],
+      },
+      {
+        label: 'Integrations',
+        children: [
+          {
+            link: '/astro',
+            label: 'Astro',
+          },
+          {
+            link: '/hugo-cms',
+            label: 'Hugo',
+          },
+          {
+            link: '/nextjs-cms',
+            label: 'NextJS',
+          },
+          {
+            link: '/jekyll-cms',
+            label: 'Jekyll',
+          },
+        ],
       },
       // {
       //   link: '/',
@@ -70,8 +168,35 @@ const footerLinks = [
   },
 ]
 
+const LinkGroup = ({ item }: { item: { children: any[]; label } }) => {
+  const [open, setOpen] = React.useState(false)
+
+  return (
+    <details
+      className="inline-block drop-shadow-sm relative opacity-90 text-white uppercase text-lg lg:text-xl font-tuner transition duration-150 ease-out "
+      onClick={() => setOpen(!open)}
+    >
+      <summary className="hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px hover:opacity-100 cursor-pointer">
+        {item.label}
+      </summary>
+      <div className="p-4">
+        {item.children.map((subItem) => (
+          <div>
+            <DynamicLink href={subItem.link} passHref>
+              <a className="hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px hover:opacity-100 cursor-pointer">
+                {subItem.label}
+              </a>
+            </DynamicLink>
+          </div>
+        ))}
+      </div>
+    </details>
+  )
+}
+
 export const LinkItem = ({ item }) => {
   const { id, link, label } = item
+
   return (
     <DynamicLink href={link} passHref>
       <a className="inline-block drop-shadow-sm relative opacity-90 hover:opacity-100 text-white uppercase text-lg lg:text-xl font-tuner transition duration-150 ease-out hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px">
@@ -113,7 +238,11 @@ export const Footer = ({}) => {
                   {label}
                 </p>
                 {items.map((item) => {
-                  return <LinkItem key={item.label} item={item} />
+                  return item.children ? (
+                    <LinkGroup key={item.label} item={item} />
+                  ) : (
+                    <LinkItem key={item.label} item={item} />
+                  )
                 })}
               </div>
             )

@@ -3,6 +3,9 @@ import type { TinaTemplate } from 'tinacms'
 export const logoGridTemplate: TinaTemplate = {
   label: 'Logo Grid',
   name: 'logoGrid',
+  ui: {
+    previewSrc: '/img/blocks/logo-grid.png',
+  },
   fields: [
     {
       label: 'Title',

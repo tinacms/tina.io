@@ -121,7 +121,10 @@ export function ShowcaseBlock({ data, index }) {
 
 export function ShowcaseItemsBlock({ data, index }) {
   return (
-    <section key={'features-' + index} className={'section featureSection'}>
+    <section
+      key={'features-' + index}
+      className={'py-12 lg:py-16 last:pb-20 last:lg:pb-32'}
+    >
       <Container>
         {/* TODO: why is there a type error here */}
         {/* @ts-ignore */}

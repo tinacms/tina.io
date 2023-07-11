@@ -28,25 +28,3 @@ TINA=../path/to/tinacms TINA_WATCH=@tinacms/forms,react-tinacms-inline
 >
 > This will only work for packages loaded by webpack. That means that environments which don't use
 > webpack (i.e. SSR builds) will not use this alias.
-
-## Copy-able Code Blocks
-
-A "Copy" button can be added to Code Blocks by adding the `copy` tag to fenced code blocks.
-
-Non-copyable JS
-
-```js
-const christmastPresent = new Banana()
-```
-
-Copyable JS
-
-```js,copy
-const christmastPresent = new Banana()
-```
-
-Copyable Text
-
-    ```copy
-    Hello World
-    ```

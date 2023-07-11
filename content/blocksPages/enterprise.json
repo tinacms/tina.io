@@ -1,0 +1,121 @@
+{
+  "blocks": [
+    {
+      "headline": "Tina for Enterprise",
+      "text": "Reduce costs. Increase security & performance.",
+      "actions": [
+        {
+          "label": "Request 1-Pager",
+          "icon": false,
+          "variant": "white",
+          "size": "large",
+          "url": "mailto:info@tina.io?subject=TinaCMS Enterprise 1-Pager&body=Hello, I'd like more information about the TinaCMS Enterprise Solution."
+        },
+        {
+          "label": "Get a Demo",
+          "icon": false,
+          "variant": "blue",
+          "size": "large",
+          "url": "mailto:info@tina.io?subject=TinaCMS Enterprise Demo&body=Hello, I'd like to schedule a demo of TinaCMS."
+        }
+      ],
+      "margin": "",
+      "spacing": "gap-10",
+      "_template": "hero"
+    },
+    {
+      "items": [
+        {
+          "headline": "Built-in Version Control",
+          "text": "Tina is built on Git. Easily revert to earlier versions, undo mistakes, work on branches, and deploy with confidence."
+        },
+        {
+          "headline": "Reduced Costs",
+          "text": "When switching to TinaCMS, most customers reduce licensing and operating costs by more than 50%. "
+        },
+        {
+          "headline": "Self-host",
+          "text": "TinaCMS can be self-hosted behind your firewall for increased security. "
+        },
+        {
+          "headline": "Editorial Workflow",
+          "text": "Editorial workflows backed by Git are built into Tina. Your content team can make Pull Requests (PRs) without leaving the CMS. "
+        },
+        {
+          "headline": "Performance and Scalability",
+          "text": "Static architecture delivers fast load times and scalability by pre-rendering pages as static assets and serving them from a CDN. This often  eliminates down-time and results in a 10 x time-to-first-byte."
+        },
+        {
+          "headline": "Enhanced Security",
+          "text": "Reduce the attack surface without a database and server-side processing. Static files and strict access controls minimize vulnerabilities, offering a more secure architecture. "
+        }
+      ],
+      "_template": "featureGrid"
+    },
+    {
+      "options": {
+        "narrow": true,
+        "color": "white",
+        "align": "center"
+      },
+      "content": "## Reduced Hosting and Operating Costs\n\nMost customers see greater than 50% reduction in licensing and operating costs when switching from other enterprise-level CMS platforms to TinaCMS\n",
+      "_template": "content"
+    },
+    {
+      "items": [
+        {
+          "headline": "Single Sign On",
+          "text": "Compatible with the most popular IdPs like Okta and support for both SAML and OIDC."
+        },
+        {
+          "headline": "SOC 2 and GDPR",
+          "text": "Actively pursuing SOC 2 certification and GDPR compliance."
+        },
+        {
+          "headline": "Uptime SLAs",
+          "text": "99.9% server uptime with swift communications if something impacts your sending integration."
+        },
+        {
+          "headline": "Simplified Development & Maintenance",
+          "text": "Web teams become efficient when using modern frameworks and TinaCMS. Updates and deployments become simpler, reducing the risk of bugs and downtime."
+        },
+        {
+          "headline": "CI/CD ",
+          "text": "Integration with a modern CI/CD pipeline to perform all checks and run scripts.   Easily configure separate environments such as pre-production and  production. \n"
+        },
+        {
+          "headline": "No More Caching",
+          "text": "Remove the need for complex caching layers. Caching is built it with statically generated content distributed through CDN networks. \n"
+        }
+      ],
+      "_template": "featureGrid"
+    },
+    {
+      "items": [
+        {
+          "headline": "Training & Support",
+          "text": "Get access to the team behind TinaCMS for training, priority support, and custom development."
+        }
+      ],
+      "_template": "featureGrid"
+    },
+    {
+      "headline": "Request a Demo",
+      "text": "",
+      "actions": [
+        {
+          "label": "Contact Us",
+          "icon": false,
+          "variant": "blue",
+          "size": "large",
+          "url": "mailto:info@tina.io?subject=TinaCMS Enterprise Demo&body=Hello, I'd like to schedule a demo of TinaCMS."
+        }
+      ],
+      "_template": "hero"
+    }
+  ],
+  "seo": {
+    "title": "Enterprise",
+    "description": ""
+  }
+}

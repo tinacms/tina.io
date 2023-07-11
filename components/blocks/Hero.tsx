@@ -1,33 +1,49 @@
 import { Actions } from './Actions'
 import { Container } from './Container'
-import HeroBg from '../../public/svg/hero-bg.svg'
 
 export function HeroBlock({ data, index }) {
   return (
     <section
       key={index}
-      className={`relative overflow-visible z-10 text-center px-8 pb-10 md:pb-16 lg:pb-28 pt-32 lg:pt-40`}
+      className={`relative overflow-visible z-10 text-center ${
+        data.margin ? data.margin : 'px-8 py-12 lg:py-16'
+      }`}
     >
       <Container width="narrow" center>
-        <HeroFeature item={data} />
+        <HeroFeature item={data} spacing={data.spacing}>
+          {data.media && data.media[0] && (
+            <div
+              className={`mt-6 min-w-0 w-full ${
+                (data.media[0].image || data.media[0].src) &&
+                'rounded-lg shadow-panel overflow-hidden bg-gradient-to-br from-blue-800 via-blue-900 to-slate-900'
+              }`}
+            >
+              {data.media && data.media[0].image && (
+                <img
+                  src={data.media[0].image}
+                  alt={data.headline}
+                  className="w-full h-auto"
+                />
+              )}
+              {data.media && data.media[0].src && (
+                <Video className="w-full h-auto" src={data.media[0].src} />
+              )}
+            </div>
+          )}
+        </HeroFeature>
       </Container>
-      {data.videoSrc && (
-        <Container>
-          <Video src={data.videoSrc} />
-        </Container>
-      )}
-      <HeroBg className="absolute pointer-events-none -z-1 left-0 bottom-0 w-full h-auto" />
     </section>
   )
 }
 
-export const HeroFeature = ({ item }) => {
+export const HeroFeature = ({ item, spacing, children }) => {
   return (
     <>
-      <div className="feature">
+      <div className={`flex flex-col ${spacing ? spacing : 'gap-6'}`}>
         {item.headline && <h2 className="heading">{item.headline}</h2>}
-        {item.text && <p className="text-xl mt-6">{item.text}</p>}
+        {item.text && <p className="text-xl">{item.text}</p>}
         {item.actions && <Actions items={item.actions} align="center" />}
+        {children}
       </div>
       <style jsx>{`
         .heading {
@@ -64,45 +80,24 @@ export const HeroFeature = ({ item }) => {
   )
 }
 
-export const Video = ({ src }) => {
+export const Video = ({ src, className }) => {
   return (
-    <>
-      <video
-        className="video"
-        autoPlay={true}
-        loop
-        muted
-        playsInline
-        poster={`https://res.cloudinary.com/forestry-demo/video/upload/so_0/${src}.jpg`}
-      >
-        <source
-          src={`https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/${src}.webm`}
-          type="video/webm"
-        />
-        <source
-          src={`https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/${src}.mp4`}
-          type="video/mp4"
-        />
-      </video>
-      <style jsx>{`
-        .video {
-          width: 100%;
-          border-radius: 0.5rem;
-          box-shadow: inset 0 0 0 1px rgba(236, 72, 21, 0.03),
-            0 6px 24px rgba(0, 37, 91, 0.05), 0 2px 4px rgba(0, 37, 91, 0.03);
-          display: flex;
-          justify-content: center;
-
-          @media (min-width: 1100px) {
-            width: 90%;
-            margin: 0 auto;
-          }
-
-          @media (min-width: 1400px) {
-            width: 80%;
-          }
-        }
-      `}</style>
-    </>
+    <video
+      className={className}
+      autoPlay={true}
+      loop
+      muted
+      playsInline
+      poster={`https://res.cloudinary.com/forestry-demo/video/upload/so_0/${src}.jpg`}
+    >
+      <source
+        src={`https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_562/${src}.webm`}
+        type="video/webm"
+      />
+      <source
+        src={`https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_562/${src}.mp4`}
+        type="video/mp4"
+      />
+    </video>
   )
 }

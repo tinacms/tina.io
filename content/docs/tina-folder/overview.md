@@ -19,6 +19,7 @@ The `tina` folder is normally at the root of the repo (unless a [mono repo setup
   - `frags.gql`
   - `queries.gql`
   - `schema.gql`
+- `tina-lock.json`
 
 ## `Config.{ts,tsx,js}`
 
@@ -41,9 +42,13 @@ export default defineConfig({
 
 The `queries` folder is optional and is used by the [experimental generated client](/docs/data-fetching/overview/). The queries that are defined in this folder will automatically be attached to the generated client when it is built.
 
-## `__generated___` folder
+## `tina-lock.json`
 
-This is where all the files that are generated during the schema build process are stored. Generally speaking, these files **must be checked into source control and pushed to github** with a couple of exceptions (Listed below). The reason for this is that Tina Cloud uses the generated files in order to resolve documents.
+This is where the compiled schema info is stored. This file **must be checked into source control and pushed to GitHub**. The reason for this is that Tina Cloud uses the compiled schema in order to resolve documents. Any time your site's schema or tina versions are updated, you will need to run `tinacms dev` locally to trigger an update to this file, and push the updated version to GitHub.
+
+## `__generated__` folder
+
+This is where all the files that are generated during the schema build process are stored. This directory can be ignored from git, as it is generated at build time with `tinacms build`.
 
 ### `_graphql.json`
 

@@ -1,0 +1,60 @@
+{
+  "blocks": [
+    {
+      "headline": "TinaCMS: The Best CMS For MDX.",
+      "text": "Configure TinaCMS to work with your MDX files and create a tailored UI for your components.",
+      "_template": "hero"
+    },
+    {
+      "options": {
+        "narrow": true,
+        "color": "white"
+      },
+      "content": "## Elevate your MDX projects with TinaCMS\n\nUnlock the full potential of your MDX files with a CMS that can be tailored to your components. Enhance your developer experience and create more dynamic content.\n",
+      "_template": "content"
+    },
+    {
+      "items": [
+        {
+          "headline": "Tailored CMS for MDX",
+          "text": "Configure TinaCMS to seamlessly work with your MDX files."
+        },
+        {
+          "headline": "MDX Component UI",
+          "text": "Register your MDX components with TinaCMS to create a UI that matches your needs."
+        },
+        {
+          "headline": "Dynamic Content",
+          "text": "Create more dynamic and interactive content with the power of MDX and the flexibility of TinaCMS."
+        },
+        {
+          "headline": "Enhanced Developer Experience",
+          "text": "Reduce the complexity of handling MDX files and improve your developer workflow with TinaCMS."
+        },
+        {
+          "headline": "Efficient Content Management",
+          "text": "Manage your MDX-based content more efficiently with TinaCMS's user-friendly interface."
+        },
+        {
+          "headline": "Open Source Frontend",
+          "text": "TinaCMS's frontend codebase is open-source, backed by a vibrant community and regular updates."
+        }
+      ],
+      "_template": "featureGrid"
+    },
+    {
+      "headline": "Ready to transform your MDX projects?",
+      "text": "Get started with TinaCMS now.",
+      "actions": [
+        {
+          "label": "Learn More",
+          "icon": false,
+          "variant": "blue",
+          "size": "medium",
+          "url": "https://tina.io/docs/setup-overview/"
+        }
+      ],
+      "_template": "flying"
+    }
+  ]
+}
