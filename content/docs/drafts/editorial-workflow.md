@@ -4,11 +4,21 @@ last_edited: '2023-06-14T04:00:00.000Z'
 id: '/docs/drafts/editorial-workflow'
 ---
 
+<div style="position:relative;padding-top:56.25%;">
+  <iframe width="560" frameborder="0" allowfullscreen
+      style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/gYukiULGqGc" title="TinaCMS Demo video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+  </iframe>
+</div>
+
 > Note: The editorial workflow feature is only available for projects on the business and enterprise plans.
 
 If your content editors need to work on multiple branches, you can utilize the Editorial Workflow feature. Instead of saving your content directly to a protected branch (e.g., `main`), a new branch is created. A draft pull request is generated, and all subsequent edits are made on this new branch. When your content is ready to be published, it can be merged back into the protected branch (e.g., `main`) via GitHub.
 
 ## Setting Up
+
+The Editorial Workflow can be enabled in Tina Cloud.
+
+![Editorial Workflow Setup](https://res.cloudinary.com/forestry-demo/image/upload/v1689016108/blog-media/editorial-workflow/enable-editorial-workflow.png)
 
 To set up the Editorial Workflow, follow these steps:
 
@@ -21,6 +31,8 @@ To set up the Editorial Workflow, follow these steps:
 
 After completing the setup, you can access the CMS, and a new branch switcher button will appear at the top. When you are on a protected branch and click "Save," a modal will prompt you to enter the name of the new branch you wish to save to.
 
+![Editorial Workflow Save](https://res.cloudinary.com/forestry-demo/image/upload/v1689033651/blog-media/editorial-workflow/create-branch_bgpgwn.png)
+
 Once you enter the new branch name, the following actions will occur:
 
 - The new branch will be created.
@@ -30,7 +42,7 @@ Once you enter the new branch name, the following actions will occur:
 
 ## Publishing Content
 
-When you are ready to publish your content, merge the draft pull request into the protected branch (e.g., main) through GitHub. After the pull request is successfully merged, the new branch will be deleted, and the content will be available on the protected branch.
+When you are ready to publish your content, merge the draft pull request into the protected branch (e.g., main) through GitHub. After the pull request is successfully merged, the updated content will be available on the protected branch.
 
 ## Github Pull Request links
 
@@ -38,7 +50,11 @@ In the branch list modal, you can click on the dropdown and click "View Pull Req
 
 ## Preview links
 
-You can setup preview links for your pull requests. This will allow you to preview your content changes before merging them into the protected branch. To setup preview links, In your config file add a `previewUrl` function to the `ui` object. This function will receive the branch name as an argument and should return the preview url for that branch. For example:
+You can setup preview links for your pull requests.
+
+![Editorial Workflow Save](https://res.cloudinary.com/forestry-demo/image/upload/v1689035096/blog-media/editorial-workflow/share-btn_xvmxii.png)
+
+This will allow you to preview your content changes before merging them into the protected branch. To setup preview links, In your config file add a `previewUrl` function to the `ui` object. This function will receive the branch name as an argument and should return the preview url for that branch. For example:
 
 ```js
 // tina/config.{ts,tsx,js}
