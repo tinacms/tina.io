@@ -1,6 +1,6 @@
 ---
 title: Introducing Editorial Workflow Features for your Team!
-date: '2023-07-06T03:00:00.000Z'
+date: '2023-07-10T03:00:00.000Z'
 last_edited: '2023-07-06T03:00:00.000Z'
 author: James O'Halloran
 ---
