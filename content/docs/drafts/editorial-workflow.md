@@ -48,6 +48,8 @@ When you are ready to publish your content, merge the draft pull request into th
 
 In the branch list modal, you can click on the dropdown and click "View Pull Request" to view the pull request on Github. This will open a new tab in your browser. This link will only aprear of the pull request has been created with TinaCMS and not if it was created manually.
 
+![PR Links](https://res.cloudinary.com/forestry-demo/image/upload/v1689082820/blog-media/editorial-workflow/preview-link.png)
+
 ## Preview links
 
 You can setup preview links for your pull requests.
