@@ -9,7 +9,7 @@
       "intro": "Tina has a **per-project** pricing model that can scale to meet your needs.\n",
       "base": {
         "name": "Basic",
-        "price": "Free",
+        "price": "Free Forever",
         "interval": "",
         "body": "* 2 Users\n* 2 Roles\n* No Additional Users\n* Forum Support\n",
         "actions": [
@@ -42,7 +42,7 @@
           "name": "Business",
           "price": "$599",
           "interval": "month",
-          "body": "* 10 Users\n* 3 Roles *(coming soon)*\n* No User Limit\n* Additional Users $9/seat\n* Priority Support\n* SSO \n* Approval flow *(coming soon)*\n",
+          "body": "* 10 Users\n* 3 Roles *(coming soon)*\n* No User Limit\n* Additional Users $9/seat\n* Priority Support\n* SSO\n* Approval flow *(coming soon)*\n",
           "actions": [
             {
               "label": "Sign Up",
@@ -57,7 +57,7 @@
           "name": "Enterprise",
           "price": "",
           "interval": " ",
-          "body": "**Bulk pricing available**\n\n* Custom Users\n* Custom Roles\n* No User Limit\n* Variable user pricing\n* Enterprise Support\n* SSO \n* Custom workflows\n",
+          "body": "**Bulk pricing available**\n\n* Custom Users\n* Custom Roles\n* No User Limit\n* Variable user pricing\n* Enterprise Support\n* SSO\n* Custom workflows\n",
           "actions": [
             {
               "label": "Contact Us",
