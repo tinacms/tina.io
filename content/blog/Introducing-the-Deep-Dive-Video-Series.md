@@ -11,7 +11,7 @@ The 5-part series includes
 
 #### Part 1 - Introducing Tina and getting started with schema design and data-fetching
 
-<Youtube embedSrc="https://youtu.be/PcgnJDILv4w" />
+<Youtube embedSrc="https://www.youtube.com/embed/PcgnJDILv4w" />
 
 #### Part 2 - Customizing the CMS to fit your needs
 
