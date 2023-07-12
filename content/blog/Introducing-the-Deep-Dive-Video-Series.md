@@ -9,14 +9,20 @@ We're excited to announce the TinaCMS Deep Dive tutorial series with Tina archit
 
 The 5-part series includes
 
-1. Introducing Tina and getting started with schema design and data-fetching 
+1. Introducing Tina and getting started with schema design and data-fetching
 
 <Youtube embedSrc="https://youtu.be/PcgnJDILv4w" />
 
 1. Customizing the CMS to fit your needs
-2. Working with references and making them editable visually
-3. Customizing the GraphQL client queries and and working with global documents
-4. Going to production. Shipping Tina to a Vercel-hosted website and connecting to Tina Cloud.
+
+<Youtube embedSrc="https://youtu.be/amSRwAbgMR0" />
+
+1. Working with references and making them editable visually
+
+<Youtube embedSrc="https://youtu.be/amSRwAbgMR0" />
+
+1. Customizing the GraphQL client queries and and working with global documents
+2. Going to production. Shipping Tina to a Vercel-hosted website and connecting to Tina Cloud.
 
 "NextCMS Mastery" is designed to benefit both experienced NextJS developers and beginners. Our goal is to equip you with the skills and knowledge to create dynamic, interactive, and visually appealing websites with ease.
 
