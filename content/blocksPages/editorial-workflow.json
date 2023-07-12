@@ -6,6 +6,21 @@
       "_template": "hero"
     },
     {
+      "features": [
+        {
+          "headline": "Protect Branches",
+          "text": "Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. ",
+          "media": [
+            {
+              "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1689016108/blog-media/editorial-workflow/enable-editorial-workflow.png",
+              "_template": "image"
+            }
+          ]
+        }
+      ],
+      "_template": "features"
+    },
+    {
       "options": {
         "narrow": true,
         "color": "white"
