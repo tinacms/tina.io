@@ -5,7 +5,7 @@ last_edited: '2023-07-12T07:00:00.000Z'
 author: Jeff See
 ---
 
-We're excited to announce the Deep Dive tutorial series with Tina architect Jeff See. In this series, we'll take you through every step of integrating content into your NextJS website, providing clear explanations and practical demonstrations along the way. 
+Today I'm excited to announce the Deep Dive tutorial series, an A to Z introduction of all things Tina. In this series, I'll take you through every step of integrating content into your NextJS website, providing clear explanations and practical demonstrations along the way.
 
 ![LLamaLink Website Screenshot](http://res.cloudinary.com/forestry-demo/image/upload/v1689181932/llama-link_gzdv9e.png "Introducing the Llama Link Deep Dive series")
 
