@@ -3,6 +3,12 @@
     {
       "headline": "Editorial Workflows",
       "text": "Review, approve, and manage content changes using version control",
+      "media": [
+        {
+          "src": "v1685546813/blog-media/vercel-edit/Vercel-demo2",
+          "_template": "video"
+        }
+      ],
       "_template": "hero"
     },
     {
