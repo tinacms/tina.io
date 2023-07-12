@@ -3,7 +3,11 @@
     {
       "features": [
         {
-          "headline": "Edit Markdown, Visually",
+          "headline": "Something random",
+          "text": "Ok"
+        },
+        {
+          "headline": "Edit Markdown, Visually!",
           "text": "Tina is an open-source, headless CMS for Markdown, MDX, and JSON.",
           "actions": [
             {
