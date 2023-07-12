@@ -1,8 +1,8 @@
 {
   "blocks": [
     {
-      "headline": "Superior Editorial Workflow with TinaCMS.",
-      "text": "Effortlessly manage your team's changes and review them through an integrated Git workflow.",
+      "headline": "Editorial Workflows",
+      "text": "Review, approve and manage your content changes using version control",
       "_template": "hero"
     },
     {
