@@ -14,4 +14,3 @@ Host: https://tina.io
 
 # Sitemaps
 Sitemap: https://tina.io/sitemap.xml
-Sitemap: https://tina.io/sitemap-0.xml

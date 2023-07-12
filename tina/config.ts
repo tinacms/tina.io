@@ -27,6 +27,9 @@ const tinaConfig = defineConfig({
     import('react-tinacms-editor').then(({ MarkdownFieldPlugin }) => {
       cms.plugins.add(MarkdownFieldPlugin)
     })
+    cms.events.subscribe('branch:change', async ({ branchName }) => {
+      return fetch(`/api/preview?branchName=${branchName}`)
+    })
     cms.flags.set('branch-switcher', true)
 
     // import('tinacms').then(({ RouteMappingPlugin }) => {
