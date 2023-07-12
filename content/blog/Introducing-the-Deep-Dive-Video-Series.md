@@ -25,7 +25,7 @@ The 5-part series includes
 
 #### Part 5 - Going to production. Shipping Tina to a Vercel-hosted website and connecting to Tina Cloud (Coming Soon)
 
-The deep dive seriese is designed to benefit both experienced NextJS developers and beginners. Our goal is to equip you with the skills and knowledge to create dynamic, interactive, and visually appealing websites with ease.
+The deep dive series is designed to benefit both experienced NextJS developers and beginners. Our goal is to equip you with the skills and knowledge to create dynamic, interactive, and visually appealing websites with ease.
 
 Subscribe to our YouTube channel to stay updated on the latest episodes of the deep dive series and join us on this exciting journey of enabling Visual Editing on your NextJS site.
 
