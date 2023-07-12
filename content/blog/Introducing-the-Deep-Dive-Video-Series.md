@@ -21,15 +21,11 @@ The 5-part series includes
 
 <Youtube embedSrc="https://youtu.be/amSRwAbgMR0" />
 
-1. Customizing the GraphQL client queries and and working with global documents
-2. Going to production. Shipping Tina to a Vercel-hosted website and connecting to Tina Cloud.
+1. Customizing the GraphQL client queries and and working with global documents. (Coming Soon)
+2. Going to production. Shipping Tina to a Vercel-hosted website and connecting to Tina Cloud (Coming Soon)
 
-"NextCMS Mastery" is designed to benefit both experienced NextJS developers and beginners. Our goal is to equip you with the skills and knowledge to create dynamic, interactive, and visually appealing websites with ease.
+The deep dive seriese is designed to benefit both experienced NextJS developers and beginners. Our goal is to equip you with the skills and knowledge to create dynamic, interactive, and visually appealing websites with ease.
 
-Subscribe to our YouTube channel to stay updated on the latest episodes of "NextCMS Mastery" and join us on this exciting journey of enabling Visual Editing on your NextJS site.
+Subscribe to our YouTube channel to stay updated on the latest episodes of the deep dive series and join us on this exciting journey of enabling Visual Editing on your NextJS site.
 
-📺 Subscribe now: \[Insert YouTube channel link]
-
-Get ready to enhance your NextJS website management workflow and unlock new possibilities with Visual Editing!
-
-Happy learning and editing! ✨
+Happy editing! ✨
