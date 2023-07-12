@@ -8,6 +8,10 @@
     {
       "features": [
         {
+          "headline": "Publish with Confindence",
+          "text": "TinaCMS allows your team to create content on new branches. Under the hood a Pull Request is made in GitHub. "
+        },
+        {
           "headline": "Protect Branches",
           "text": "Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. ",
           "media": [
