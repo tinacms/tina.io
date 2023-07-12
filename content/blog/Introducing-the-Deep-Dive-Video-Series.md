@@ -9,7 +9,9 @@ We're excited to announce the Deep Dive tutorial series with Tina architect Jeff
 
 ![LLamaLink Website Screenshot](http://res.cloudinary.com/forestry-demo/image/upload/v1689181932/llama-link_gzdv9e.png "Introducing the Llama Link Deep Dive series")
 
-The 5-part series includes
+### The 5-part series includes:
+
+***
 
 #### Part 1 - Introducing Tina and getting started with schema design and data-fetching
 
