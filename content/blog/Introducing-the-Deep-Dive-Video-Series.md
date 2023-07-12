@@ -15,7 +15,7 @@ The 5-part series includes
 
 #### Part 2 - Customizing the CMS to fit your needs
 
-<Youtube embedSrc="https://youtu.be/amSRwAbgMR0" />
+<Youtube embedSrc="https://youtu.be/embed/amSRwAbgMR0" />
 
 #### Part 3- Working with references and making them editable visually
 
