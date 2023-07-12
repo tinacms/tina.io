@@ -19,7 +19,7 @@ The 5-part series includes
 
 #### Part 3- Working with references and making them editable visually
 
-<Youtube embedSrc="https://youtu.be/amSRwAbgMR0" />
+<Youtube embedSrc="https://youtu.be/embed/amSRwAbgMR0" />
 
 #### Part 4 - Customizing the GraphQL client queries and and working with global documents. (Coming Soon)
 
