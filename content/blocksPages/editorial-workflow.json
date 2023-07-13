@@ -1,8 +1,17 @@
 {
   "blocks": [
     {
-      "headline": "Editorial Workflows",
+      "headline": "Editorial Workflow",
       "text": "Review, approve, and manage content changes with version control",
+      "actions": [
+        {
+          "label": "Get a Demo",
+          "icon": true,
+          "variant": "blue",
+          "size": "small",
+          "url": "mailto:info@tina.io?subject=TinaCMS Editorial Workflow Demo&body=Hello, I'd like to schedule a demo of TinaCMS."
+        }
+      ],
       "media": [
         {
           "src": "v1685546813/blog-media/vercel-edit/Vercel-demo2",
