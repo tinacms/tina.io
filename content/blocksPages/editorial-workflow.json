@@ -26,6 +26,16 @@
               "_template": "image"
             }
           ]
+        },
+        {
+          "headline": "Branches & Pull Request",
+          "text": "When creating new branches, Tina will automatically create a related new Pull Request. ",
+          "media": [
+            {
+              "image": "http://res.cloudinary.com/forestry-demo/image/upload/v1689258281/blog-media/editorial-workflow/create-branch-small_kzubqs.png",
+              "_template": "image"
+            }
+          ]
         }
       ],
       "_template": "features"
