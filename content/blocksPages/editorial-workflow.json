@@ -57,15 +57,15 @@
       "_template": "features"
     },
     {
-      "headline": "Elevate your content production process.",
-      "text": "Get started with TinaCMS's superior editorial workflow now.",
+      "headline": "Learn more",
+      "text": "Tina's editorial workflow is only available on the Business and Enterprise plans. Contact us for a demo. ",
       "actions": [
         {
-          "label": "Learn More",
-          "icon": false,
+          "label": "Get a demo",
+          "icon": true,
           "variant": "blue",
           "size": "medium",
-          "url": "https://tina.io/docs/setup-overview/"
+          "url": "mailto:info@tina.io?subject=TinaCMS Editorial Workflow Demo&body=Hello, I'd like to schedule a demo of TinaCMS."
         }
       ],
       "_template": "flying"
