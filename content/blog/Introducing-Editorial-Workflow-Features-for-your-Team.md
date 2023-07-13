@@ -5,7 +5,7 @@ last_edited: '2023-07-06T03:00:00.000Z'
 author: James O'Halloran
 ---
 
-We're excited to introduce some new Editorial Workflow features for teams on Tina Cloud's Business and Enterprise plans! Enabling Editorial Workflow features on a project allows editors to work on branches and make PRs without logging into GitHub.
+We're excited to introduce some new [Editorial Workflow features](https://tina.io/editorial-workflow/) for teams on Tina Cloud's Business and Enterprise plans! Enabling Editorial Workflow features on a project allows editors to work on branches and make PRs without logging into GitHub.
 
 <Youtube embedSrc="https://www.youtube.com/embed/gYukiULGqGc" />
 
