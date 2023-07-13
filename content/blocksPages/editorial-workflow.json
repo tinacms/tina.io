@@ -12,20 +12,13 @@
       "_template": "hero"
     },
     {
-      "options": {
-        "narrow": true
-      },
-      "content": "## Publish with Confidence\n\nTinaCMS allows your team to create content on new branches. Under the hood a Pull Request is made in GitHub. \n",
-      "_template": "content"
-    },
-    {
       "features": [
         {
-          "headline": "Shareable Previews",
-          "text": "Easily get to your preview on Netlify, Vercel, AWS, etc. This allows editors to easily share their site preview with other stakeholders.\n\n",
+          "headline": "Branches & Pull Request",
+          "text": "When creating new branches, Tina will automatically create a related new Pull Request. ",
           "media": [
             {
-              "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1689035096/blog-media/editorial-workflow/share-btn_xvmxii.png",
+              "image": "http://res.cloudinary.com/forestry-demo/image/upload/v1689258281/blog-media/editorial-workflow/create-branch-small_kzubqs.png",
               "_template": "image"
             }
           ]
@@ -41,54 +34,17 @@
           ]
         },
         {
-          "headline": "Branches & Pull Request",
-          "text": "When creating new branches, Tina will automatically create a related new Pull Request. ",
+          "headline": "Shareable Previews",
+          "text": "Easily get to your preview on Netlify, Vercel, AWS, etc. This allows editors to easily share their site preview with other stakeholders.\n\n",
           "media": [
             {
-              "image": "http://res.cloudinary.com/forestry-demo/image/upload/v1689258281/blog-media/editorial-workflow/create-branch-small_kzubqs.png",
+              "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1689035096/blog-media/editorial-workflow/share-btn_xvmxii.png",
               "_template": "image"
             }
           ]
         }
       ],
       "_template": "features"
-    },
-    {
-      "options": {
-        "narrow": true,
-        "color": "white"
-      },
-      "content": "## Optimize Your Editorial Workflow with TinaCMS\n\nTinaCMS supports Editorial workflow through branching, providing a seamless way to review and manage your team's content changes.\n",
-      "_template": "content"
-    },
-    {
-      "items": [
-        {
-          "headline": "Integrated Git Workflow",
-          "text": "Enjoy the advantages of a built-in Git workflow for managing and reviewing content changes."
-        },
-        {
-          "headline": "Efficient Team Collaboration",
-          "text": "With branch support, easily manage multiple changes from your team simultaneously."
-        },
-        {
-          "headline": "Robust Version Control",
-          "text": "Leverage the power of Git's version control to effectively manage and track content revisions."
-        },
-        {
-          "headline": "Open Source Frontend",
-          "text": "TinaCMS's frontend codebase is open-source, backed by a vibrant community and regular updates."
-        },
-        {
-          "headline": "Quality Assurance",
-          "text": "Review and approve changes before they go live, ensuring quality and accuracy in your content."
-        },
-        {
-          "headline": "Streamlined Workflow",
-          "text": "Simplify and optimize your content production process with TinaCMS's efficient editorial workflow."
-        }
-      ],
-      "_template": "featureGrid"
     },
     {
       "headline": "Elevate your content production process.",
@@ -103,6 +59,13 @@
         }
       ],
       "_template": "flying"
+    },
+    {
+      "options": {
+        "narrow": true
+      },
+      "content": "## Publish with Confidence\n\n### Create content with branches and Pull Requests in a user-friendly CMS interface without going to GitHub.\n\nReview and manage your team's content changes with a robust workflow \n",
+      "_template": "content"
     }
   ],
   "seo": {
