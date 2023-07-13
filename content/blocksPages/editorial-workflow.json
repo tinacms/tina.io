@@ -21,6 +21,16 @@
     {
       "features": [
         {
+          "headline": "Shareable Previews",
+          "text": "Easily get to your preview on Netlify, Vercel, AWS, etc. This allows editors to easily share their site preview with other stakeholders.\n\n",
+          "media": [
+            {
+              "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1689035096/blog-media/editorial-workflow/share-btn_xvmxii.png",
+              "_template": "image"
+            }
+          ]
+        },
+        {
           "headline": "Protect Branches",
           "text": "Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. ",
           "media": [
