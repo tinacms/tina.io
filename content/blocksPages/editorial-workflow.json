@@ -14,8 +14,8 @@
     {
       "features": [
         {
-          "headline": "Branches & Pull Request",
-          "text": "When creating new branches, Tina will automatically create a related new Pull Request. ",
+          "headline": "Branching",
+          "text": "Create content on new branches without going to GitHub.",
           "media": [
             {
               "image": "http://res.cloudinary.com/forestry-demo/image/upload/v1689258281/blog-media/editorial-workflow/create-branch-small_kzubqs.png",
@@ -29,6 +29,16 @@
           "media": [
             {
               "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1689016108/blog-media/editorial-workflow/enable-editorial-workflow.png",
+              "_template": "image"
+            }
+          ]
+        },
+        {
+          "headline": "Merge With Confidence",
+          "text": "A Pull Request is automatically created when a content editor creates a new branch.  This also allows teams to ensure that their CI/CD workflow all passes before merging content into production.",
+          "media": [
+            {
+              "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1689259549/blog-media/editorial-workflow/github-pr.png",
               "_template": "image"
             }
           ]
