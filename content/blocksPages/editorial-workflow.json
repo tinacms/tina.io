@@ -2,7 +2,7 @@
   "blocks": [
     {
       "headline": "Editorial Workflows",
-      "text": "Review, approve, and manage content changes using version control",
+      "text": "Review, approve, and manage content changes with version control",
       "media": [
         {
           "src": "v1685546813/blog-media/vercel-edit/Vercel-demo2",
@@ -69,13 +69,6 @@
         }
       ],
       "_template": "flying"
-    },
-    {
-      "options": {
-        "narrow": true
-      },
-      "content": "## Publish with Confidence\n\n### Create content with branches and Pull Requests in a user-friendly CMS interface without going to GitHub.\n\nReview and manage your team's content changes with a robust workflow \n",
-      "_template": "content"
     }
   ],
   "seo": {
