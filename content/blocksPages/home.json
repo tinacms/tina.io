@@ -3,12 +3,6 @@
     {
       "testimonials": [
         {
-          "name": "Sean Pearce",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1689355790/testimonials/avatars/sean_gnbsew.webp",
-          "date": "2023-03-30T03:00:00.000Z",
-          "testimonial": "We really liked using Tina and we will definitely suggest it to clients in the future. Tina's in-context editor cannot be beaten. We are actually planning on using it for our new website as well, so we’re all in on it.\n"
-        },
-        {
           "name": "",
           "username": "ccapndave",
           "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1689355588/testimonials/avatars/ccapndave_ka7f5u.webp",
@@ -39,6 +33,20 @@
           "date": "2022-12-06T04:00:00.000Z",
           "testimonial": "@tinacms is a dream come true.\n",
           "link": "https://twitter.com/rascode11/status/1600175861621088266"
+        },
+        {
+          "name": "Sean Pearce",
+          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1689355790/testimonials/avatars/sean_gnbsew.webp",
+          "date": "2023-03-30T03:00:00.000Z",
+          "testimonial": "We really liked using Tina and we will definitely suggest it to clients in the future. Tina's in-context editor cannot be beaten. We are actually planning on using it for our new website as well, so we’re all in on it.\n"
+        },
+        {
+          "name": "Vatosteve",
+          "username": "vatosteve",
+          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1689356052/testimonials/avatars/vatosteve_ppkbvj.webp",
+          "date": "2023-01-30T04:00:00.000Z",
+          "testimonial": "Hi all! Loving Tina CMS so far. It is exactly what I’ve been looking for. \n",
+          "link": "https://discord.com/channels/835168149439643678/835168149439643681/1069765204130398247"
         }
       ],
       "_template": "testimonials"
