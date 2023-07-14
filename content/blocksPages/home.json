@@ -80,28 +80,24 @@
     {
       "features": [
         {
-          "headline": "Own Your Content",
-          "text": "Tina is an open-source, headless CMS that supports Markdown, MDX, and JSON.",
+          "headline": "Configure with Code",
+          "text": "Define your content's schema and Tina will provide you with a user friendly editing experience.",
           "actions": [
             {
-              "label": "Get Started",
+              "label": "Read The Docs",
               "icon": false,
-              "variant": "blue",
+              "variant": "default",
               "size": "large",
-              "url": "docs/setup-overview/"
-            },
-            {
-              "label": "npx create-tina-app@latest",
-              "icon": false,
-              "variant": "command",
-              "size": "large",
-              "url": "/"
+              "url": "docs/schema/"
             }
           ],
           "media": [
             {
-              "src": "tina-io/new-homepage/homepage-demo-2",
-              "_template": "video"
+              "file": "config.tsx",
+              "code": "{\n  type: \"string\",\n  label: \"Title\",\n  name: \"title\"\n},\n{\n  type: 'string',\n  label: 'Body',\n  name: 'body',\n  isBody: true,\n},",
+              "language": "javascript",
+              "scale": 1.25,
+              "_template": "code"
             }
           ]
         },
@@ -128,29 +124,7 @@
           ]
         },
         {
-          "headline": "Simple CMS Configuration",
-          "text": "Define your content's schema and Tina will provide you with a user friendly editing experience.",
-          "actions": [
-            {
-              "label": "Read The Docs",
-              "icon": false,
-              "variant": "default",
-              "size": "large",
-              "url": "docs/schema/"
-            }
-          ],
-          "media": [
-            {
-              "file": "config.tsx",
-              "code": "{\n  type: \"string\",\n  label: \"Title\",\n  name: \"title\"\n},\n{\n  type: 'string',\n  label: 'Body',\n  name: 'body',\n  isBody: true,\n},",
-              "language": "javascript",
-              "scale": 1.25,
-              "_template": "code"
-            }
-          ]
-        },
-        {
-          "headline": "Powered by Git",
+          "headline": "Built-in Version Control ",
           "text": "Let your editorial team focus on writing content, while Tina commits to your repository.",
           "actions": [
             {
