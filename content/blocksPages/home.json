@@ -138,7 +138,7 @@
           "media": [
             {
               "file": "",
-              "code": "commit 4ca9edc2ee64c1ab5127a1fd4519a83426731cd7\nAuthor:  Scott Gallant <scottgallant@gmail.com>\nDate:    Thu May 26 13:31:02 2022 -0300\nMessage: Update From Tina",
+              "code": "commit 4ca9edc2ee64c1ab5127a1fd4519a83426731cd7\nAuthor:  Scott Gallant <scott@acme.com>\nDate:    Thu May 26 13:31:02 2022 -0300\nMessage: Update From Tina",
               "language": "md",
               "scale": 1,
               "_template": "code"
