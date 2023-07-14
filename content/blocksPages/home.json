@@ -1,61 +1,36 @@
 {
   "blocks": [
     {
-      "testimonials": [
+      "headline": "Own  Your Content",
+      "text": "Tina is an open-source, headless CMS that supports Markdown",
+      "actions": [
         {
-          "name": "",
-          "username": "ccapndave",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1689355588/testimonials/avatars/ccapndave_ka7f5u.webp",
-          "date": "2023-06-02T03:00:00.000Z",
-          "testimonial": "Hey! I’ve been playing with TinaCMS for the last week and it’s absolutely amazing. Its so simple to install, the typed NextJS integration is amazing, the live editor is as good as it gets and compared to other CMSs the admin is incredibly easy for editors to understand and use.\n",
-          "link": "https://discord.com/channels/835168149439643678/848932514911354880/1113764832668299274"
+          "label": "Documentation",
+          "icon": false,
+          "variant": "blue",
+          "size": "medium",
+          "url": "https://tina.io/docs/setup-overview/"
         },
         {
-          "name": "david.oviedo",
-          "username": "david.oviedo",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1689355030/testimonials/avatars/david-oviedo_htuynx.png",
-          "date": "2023-07-30T03:00:00.000Z",
-          "testimonial": "Been running a project with Tina for a few months now, and I have to say we absolutely love it. I had been for quite a time looking for a CMS that let us build our sites the way we wanted to while letting the non-techies edit the content in a visual and painless way, and Tina just lets you do that. Awesome work really.\n",
-          "link": "https://discord.com/channels/835168149439643678/848932514911354880/1124253741802061934"
-        },
-        {
-          "name": "Mravec",
-          "username": "mravec",
-          "avatar": "http://res.cloudinary.com/forestry-demo/image/upload/v1689354995/testimonials/avatars/mravec_tglyht.webp",
-          "date": "2023-06-14T03:00:00.000Z",
-          "testimonial": "Just tried out click-to-edit and wanted to let you know it's really awesome, great feature, super easy to use and to setup, love that it's fully typed and works passed down as a prop, kinda feels like magic tbh.\n",
-          "link": "https://discord.com/channels/835168149439643678/848932514911354880/1118255235706663103"
-        },
-        {
-          "name": "rascode",
-          "username": "rascode11",
-          "avatar": "http://res.cloudinary.com/forestry-demo/image/upload/v1689354758/testimonials/avatars/rascode11_elrciv.jpg",
-          "date": "2022-12-06T04:00:00.000Z",
-          "testimonial": "@tinacms is a dream come true.\n",
-          "link": "https://twitter.com/rascode11/status/1600175861621088266"
-        },
-        {
-          "name": "Sean Pearce",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1689356500/testimonials/avatars/sean_bnwhd9.png",
-          "date": "2023-03-30T03:00:00.000Z",
-          "testimonial": "We really liked using Tina and we will definitely suggest it to clients in the future. Tina's in-context editor cannot be beaten. We are actually planning on using it for our new website as well, so we’re all in on it.\n"
-        },
-        {
-          "name": "Vatosteve",
-          "username": "vatosteve",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1689356052/testimonials/avatars/vatosteve_ppkbvj.webp",
-          "date": "2023-01-30T04:00:00.000Z",
-          "testimonial": "Hi all! Loving Tina CMS so far. It is exactly what I’ve been looking for. \n",
-          "link": "https://discord.com/channels/835168149439643678/835168149439643681/1069765204130398247"
+          "label": "npx create-tina-app@latest",
+          "icon": true,
+          "variant": "command",
+          "url": "/"
         }
       ],
-      "_template": "testimonials"
+      "media": [
+        {
+          "src": "tina-io/new-homepage/homepage-demo-2",
+          "_template": "video"
+        }
+      ],
+      "_template": "hero"
     },
     {
       "features": [
         {
-          "headline": "Edit Markdown, Visually",
-          "text": "Tina is an open-source, headless CMS for Markdown, MDX, and JSON.",
+          "headline": "Own Your Content",
+          "text": "Tina is an open-source, headless CMS that supports Markdown, MDX, and JSON.",
           "actions": [
             {
               "label": "Get Started",
@@ -212,6 +187,57 @@
         }
       ],
       "_template": "featureGrid"
+    },
+    {
+      "testimonials": [
+        {
+          "name": "",
+          "username": "ccapndave",
+          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1689355588/testimonials/avatars/ccapndave_ka7f5u.webp",
+          "date": "2023-06-02T03:00:00.000Z",
+          "testimonial": "Hey! I’ve been playing with TinaCMS for the last week and it’s absolutely amazing. Its so simple to install, the typed NextJS integration is amazing, the live editor is as good as it gets and compared to other CMSs the admin is incredibly easy for editors to understand and use.\n",
+          "link": "https://discord.com/channels/835168149439643678/848932514911354880/1113764832668299274"
+        },
+        {
+          "name": "david.oviedo",
+          "username": "david.oviedo",
+          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1689355030/testimonials/avatars/david-oviedo_htuynx.png",
+          "date": "2023-07-30T03:00:00.000Z",
+          "testimonial": "Been running a project with Tina for a few months now, and I have to say we absolutely love it. I had been for quite a time looking for a CMS that let us build our sites the way we wanted to while letting the non-techies edit the content in a visual and painless way, and Tina just lets you do that. Awesome work really.\n",
+          "link": "https://discord.com/channels/835168149439643678/848932514911354880/1124253741802061934"
+        },
+        {
+          "name": "Mravec",
+          "username": "mravec",
+          "avatar": "http://res.cloudinary.com/forestry-demo/image/upload/v1689354995/testimonials/avatars/mravec_tglyht.webp",
+          "date": "2023-06-14T03:00:00.000Z",
+          "testimonial": "Just tried out click-to-edit and wanted to let you know it's really awesome, great feature, super easy to use and to setup, love that it's fully typed and works passed down as a prop, kinda feels like magic tbh.\n",
+          "link": "https://discord.com/channels/835168149439643678/848932514911354880/1118255235706663103"
+        },
+        {
+          "name": "rascode",
+          "username": "rascode11",
+          "avatar": "http://res.cloudinary.com/forestry-demo/image/upload/v1689354758/testimonials/avatars/rascode11_elrciv.jpg",
+          "date": "2022-12-06T04:00:00.000Z",
+          "testimonial": "@tinacms is a dream come true.\n",
+          "link": "https://twitter.com/rascode11/status/1600175861621088266"
+        },
+        {
+          "name": "Sean Pearce",
+          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1689356500/testimonials/avatars/sean_bnwhd9.png",
+          "date": "2023-03-30T03:00:00.000Z",
+          "testimonial": "We really liked using Tina and we will definitely suggest it to clients in the future. Tina's in-context editor cannot be beaten. We are actually planning on using it for our new website as well, so we’re all in on it.\n"
+        },
+        {
+          "name": "Vatosteve",
+          "username": "vatosteve",
+          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1689356052/testimonials/avatars/vatosteve_ppkbvj.webp",
+          "date": "2023-01-30T04:00:00.000Z",
+          "testimonial": "Hi all! Loving Tina CMS so far. It is exactly what I’ve been looking for. \n",
+          "link": "https://discord.com/channels/835168149439643678/835168149439643681/1069765204130398247"
+        }
+      ],
+      "_template": "testimonials"
     },
     {
       "title": "Trusted by",
