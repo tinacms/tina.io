@@ -1,64 +1,87 @@
 {
   "blocks": [
     {
-      "headline": "Superior Editorial Workflow with TinaCMS.",
-      "text": "Effortlessly manage your team's changes and review them through an integrated Git workflow.",
+      "headline": "Editorial Workflow",
+      "text": "Review, approve, and manage content changes with version control",
+      "actions": [
+        {
+          "label": "Get a Demo",
+          "icon": true,
+          "variant": "blue",
+          "size": "small",
+          "url": "mailto:info@tina.io?subject=TinaCMS Editorial Workflow Demo&body=Hello, I'd like to schedule a demo of TinaCMS."
+        }
+      ],
+      "media": [
+        {
+          "src": "v1689260393/blog-media/editorial-workflow/create-branch",
+          "_template": "video"
+        }
+      ],
       "_template": "hero"
     },
     {
-      "options": {
-        "narrow": true,
-        "color": "white"
-      },
-      "content": "## Optimize Your Editorial Workflow with TinaCMS\n\nTinaCMS supports Editorial workflow through branching, providing a seamless way to review and manage your team's content changes.\n",
-      "_template": "content"
-    },
-    {
-      "items": [
+      "features": [
         {
-          "headline": "Integrated Git Workflow",
-          "text": "Enjoy the advantages of a built-in Git workflow for managing and reviewing content changes."
+          "headline": "Branching",
+          "text": "Create content on new branches without going to GitHub.",
+          "media": [
+            {
+              "image": "http://res.cloudinary.com/forestry-demo/image/upload/v1689258281/blog-media/editorial-workflow/create-branch-small_kzubqs.png",
+              "_template": "image"
+            }
+          ]
         },
         {
-          "headline": "Efficient Team Collaboration",
-          "text": "With branch support, easily manage multiple changes from your team simultaneously."
+          "headline": "Protect Branches",
+          "text": "Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. ",
+          "media": [
+            {
+              "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1689016108/blog-media/editorial-workflow/enable-editorial-workflow.png",
+              "_template": "image"
+            }
+          ]
         },
         {
-          "headline": "Robust Version Control",
-          "text": "Leverage the power of Git's version control to effectively manage and track content revisions."
+          "headline": "Merge With Confidence",
+          "text": "A Pull Request is automatically created when a content editor creates a new branch.  This also allows teams to ensure that their CI/CD workflow all passes before merging content into production.",
+          "media": [
+            {
+              "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1689259549/blog-media/editorial-workflow/github-pr.png",
+              "_template": "image"
+            }
+          ]
         },
         {
-          "headline": "Open Source Frontend",
-          "text": "TinaCMS's frontend codebase is open-source, backed by a vibrant community and regular updates."
-        },
-        {
-          "headline": "Quality Assurance",
-          "text": "Review and approve changes before they go live, ensuring quality and accuracy in your content."
-        },
-        {
-          "headline": "Streamlined Workflow",
-          "text": "Simplify and optimize your content production process with TinaCMS's efficient editorial workflow."
+          "headline": "Shareable Previews",
+          "text": "Easily get to your preview on Netlify, Vercel, AWS, etc. This allows editors to easily share their site preview with other stakeholders.\n\n",
+          "media": [
+            {
+              "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1689035096/blog-media/editorial-workflow/share-btn_xvmxii.png",
+              "_template": "image"
+            }
+          ]
         }
       ],
-      "_template": "featureGrid"
+      "_template": "features"
     },
     {
-      "headline": "Elevate your content production process.",
-      "text": "Get started with TinaCMS's superior editorial workflow now.",
+      "headline": "Get a demo",
+      "text": "Tina's editorial workflow is only available on the Business and Enterprise plans. Contact us for a demo. ",
       "actions": [
         {
-          "label": "Learn More",
-          "icon": false,
+          "label": "Get a demo",
+          "icon": true,
           "variant": "blue",
           "size": "medium",
-          "url": "https://tina.io/docs/setup-overview/"
+          "url": "mailto:info@tina.io?subject=TinaCMS Editorial Workflow Demo&body=Hello, I'd like to schedule a demo of TinaCMS."
         }
       ],
       "_template": "flying"
     }
   ],
   "seo": {
-    "title": "Superior Editorial Workflow with TinaCMS",
-    "description": "Efficiently manage and review your team's content changes through an integrated Git workflow. Optimize your content production with TinaCMS."
+    "title": "Editorial Workflow with TinaCMS",
+    "description": "Efficiently manage and review your team's content changes through an integrated Git workflow. "
   }
 }

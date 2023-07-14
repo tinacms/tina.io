@@ -198,6 +198,17 @@ export const schema = defineSchema({
           },
           templates: [
             {
+              name: 'WarningCallout',
+              label: 'Warning Callout',
+              fields: [
+                {
+                  name: 'body',
+                  label: 'Body',
+                  type: 'string',
+                },
+              ],
+            },
+            {
               name: 'Youtube',
               label: 'Youtube Embed',
               fields: [
