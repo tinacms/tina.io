@@ -5,7 +5,7 @@
       "text": "Tina is an open-source, headless CMS that supports Markdown",
       "actions": [
         {
-          "label": "Documentation",
+          "label": "Getting Started",
           "icon": false,
           "variant": "blue",
           "size": "medium",
