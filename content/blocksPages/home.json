@@ -103,7 +103,7 @@
         },
         {
           "headline": "Own Your Content",
-          "text": "Store content in your repo. Tina saves to MDX, Markdown, and JSON and provides a powerful data layer on top of your static files.",
+          "text": "Tina saves to MDX, Markdown, and JSON and provides a queryable data layer on top of your static files.",
           "actions": [
             {
               "label": "Learn More",
