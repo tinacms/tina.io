@@ -39,6 +39,8 @@ AI's increasing role in content development can't be ignored. However, getting u
 
 After you've integrated the bot into your repository, you can command it to make suggestions by commenting `ai fix: <path to file>`.  A custom prompt can be added by using `prompt: <Custom Prompt>`  underneath. The bot will then offer commit suggestions in the form of a pull request review.
 
+To get started [check out the open source repo](https://github.com/tinacms/ai-content "AI Content Github repo").
+
 ## Looking Ahead: AI and Git-based Content
 
 Our GitHub bot works hand in hand with TinaCMS to enhance the content creation process. No longer do you need to manually copy and paste suggestions. The bot brings suggestions right to your pull requests for a smooth, efficient experience.
