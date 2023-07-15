@@ -99,7 +99,7 @@ Here are some popular deployment options:
 
 In Netlify, your build configuration can be updated at **Settings** > **Build & Deploy** > **Build Command**.
 
-![Netlify build config](http://res.cloudinary.com/forestry-demo/image/upload/v1674607585/Screen_Shot_2023-01-24_at_8.45.23_PM_gbqyqb.png 'Netlify build config')
+![Netlify build config](https://res.cloudinary.com/forestry-demo/image/upload/v1674607585/Screen_Shot_2023-01-24_at_8.45.23_PM_gbqyqb.png 'Netlify build config')
 
 > If your package.json has a "build" script like `tinacms build && <your-site-build-cmd>`, this likely doesn't need to be changed. If your Netlify config is not running a custom build script (e.g `next build`), you would have to change this to `tinacms build && next build`
 
