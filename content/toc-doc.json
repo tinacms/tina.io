@@ -104,6 +104,76 @@
     ]
   },
   {
+    "title": "Self Hosting Tina",
+    "items": [
+      {
+        "title": "Overview",
+        "slug": "/docs/self-hosting-tina/overview/"
+      },
+      {
+        "title": "Use The Self Hosted Starter",
+        "slug": "/docs/self-hosting-tina/starter/"
+      },
+      {
+        "title": "Core Concepts",
+        "items": [
+          {
+            "title": "Overview",
+            "slug": "/docs/self-hosting-tina/core-concepts/overview/"
+          },
+          {
+            "title": "Choosing a Git Provider",
+            "items": [
+              {
+                "title": "Overview"
+              },
+              {
+                "title": "GitHub"
+              },
+              {
+                "title": "Bring Your Own Git Provider"
+              }
+            ]
+          },
+          {
+            "title": "Choosing a Data",
+            "items": [
+              {
+                "title": "Overview"
+              },
+              {
+                "title": "Vercel KV"
+              },
+              {
+                "title": "Mongo DB"
+              },
+              {
+                "title": "Bring Your Own Data Engine"
+              }
+            ]
+          },
+          {
+            "title": "Choosing an Authentication Provider",
+            "items": [
+              {
+                "title": "Overview"
+              },
+              {
+                "title": "Next Auth"
+              },
+              {
+                "title": "Using Tina Cloud for Authentication"
+              },
+              {
+                "title": "Bring Your Own Authentication"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
     "title": "Querying Content",
     "items": [
       {
