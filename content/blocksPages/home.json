@@ -2,7 +2,7 @@
   "blocks": [
     {
       "headline": "Own  Your Content",
-      "text": "Tina is an open-source, headless CMS that supports Markdown",
+      "text": "Tina is an open-source headless CMS that supports Markdown",
       "actions": [
         {
           "label": "Getting Started",
