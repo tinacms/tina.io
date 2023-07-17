@@ -13,6 +13,8 @@ Now, here we are in December, and Tina has evolved significantly. We're truly pr
 
 In the new year, we look forward to sharing our vision for 2022 and talking about all the exciting features we have planned for TinaCMS.
 
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1689604536/create-branch_dlpqmc.png)
+
 <CreateAppCta ctaText="Test" cliText="Thing" />
 
 ## January - March
@@ -29,9 +31,9 @@ April was the launch of the cloud product. Scott Gallant (CEO) made the announce
 
 May is when we went "all in" on using Next.js, the biggest appeals to us were:
 
-- Dynamic imports
-- Flexible data fetching
-- Next.js was becoming the leader in the Jamstack and had a great community.
+* Dynamic imports
+* Flexible data fetching
+* Next.js was becoming the leader in the Jamstack and had a great community.
 
 Working with a single framework helped us iterate quickly and focus on the right problems versus worrying about edge cases and nuances with each framework we supported.
 
@@ -67,15 +69,15 @@ We wanted to make it as easy as possible to add Cloudinary support for your site
 
 In August we made the biggest announcement since I started at Tina. We placed the product in beta. I remember the buzz around the "office" as we got closer and closer to the announcement. There was a lot of hard work that went into our beta release, so the team were excited to see what the world though of these changes. We had no idea how we were going to fit it all in a blog post, the announcement wasn't just about changing the words alpha to beta we also had:
 
-- Better documentation
-- A new CLI
-- Better guides
-- Better starters
-- Caching improvements
-- Creating @tinacms/toolkit
-- Vercel integration
-- Dashboard overhaul
-- Changes to content modeling
+* Better documentation
+* A new CLI
+* Better guides
+* Better starters
+* Caching improvements
+* Creating @tinacms/toolkit
+* Vercel integration
+* Dashboard overhaul
+* Changes to content modeling
 
 ![Beta Tweet](https://res.cloudinary.com/forestry-demo/image/upload/v1640092818/blog-media/year-in-review/beta.png)
 
