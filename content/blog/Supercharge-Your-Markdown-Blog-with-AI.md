@@ -7,7 +7,7 @@ author: Logan Anderson
 
 ## Leveraging Your Workflow with TinaCMS
 
-With TinaCMS, all your content changes are committed directly to Git. This enables your team to create a variety of workflows for reviewing and merging content updates. By leaning on GitHub's robust infrastructure, you're empowered to seamlessly integrate CI/CD into your content workflow.
+With TinaCMS, all your content changes are committed directly to Git. This enables your team to create a variety of workflows for reviewing and merging content updates. By leaning on GitHub, you can integrate CI/CD into your content workflow.
 
 To illustrate the potential of this combination, we're excited to introduce:
 
