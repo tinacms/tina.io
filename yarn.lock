@@ -6906,20 +6906,20 @@ clone-deep@^0.2.4:
     lazy-cache "^1.0.3"
     shallow-clone "^0.1.2"
 
-cloudinary-core@^2.10.2:
+cloudinary-core@2.13.0:
   version "2.13.0"
   resolved "https://registry.yarnpkg.com/cloudinary-core/-/cloudinary-core-2.13.0.tgz#b59f90871b6c708c3d0735b9be47ac08181c57fb"
   integrity sha512-Nt0Q5I2FtenmJghtC4YZ3MZZbGg1wLm84SsxcuVwZ83OyJqG9CNIGp86CiI6iDv3QobaqBUpOT7vg+HqY5HxEA==
 
-cloudinary@^1.34.0:
-  version "1.35.0"
-  resolved "https://registry.yarnpkg.com/cloudinary/-/cloudinary-1.35.0.tgz#37a061342fd5b810aa3165d68c2e6933f3d4829f"
-  integrity sha512-0aRLVOaVsoiqDCNkSzlPGR/oYOlE3AGrtwFTPx7xlZCPyKNzqeD9t9ENmPwzHn3yn/afAvy4h1sqb2yPyJOAow==
+cloudinary@1.37.2:
+  version "1.37.2"
+  resolved "https://registry.yarnpkg.com/cloudinary/-/cloudinary-1.37.2.tgz#a2b5670a18ac8b267e9f822bbfbdbc1c9cca0b94"
+  integrity sha512-xxENxedG9wSf46BfMUD08AQwzRFbbbVclqBzTGYHEON/lfQ2Y26D0pqErDdSZ61yciZ69zwCxArKtzyoVcZZcw==
   dependencies:
-    cloudinary-core "^2.10.2"
-    core-js "^3.6.5"
-    lodash "^4.17.21"
-    q "^1.5.1"
+    cloudinary-core "2.13.0"
+    core-js "3.30.2"
+    lodash "4.17.21"
+    q "1.5.1"
   optionalDependencies:
     proxy-agent "^5.0.0"
 
@@ -7183,12 +7183,17 @@ core-js-compat@^3.25.1:
   dependencies:
     browserslist "^4.21.5"
 
+core-js@3.30.2:
+  version "3.30.2"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.30.2.tgz#6528abfda65e5ad728143ea23f7a14f0dcf503fc"
+  integrity sha512-uBJiDmwqsbJCWHAwjrx3cvjbMXP7xD72Dmsn5LOJpiRmE3WbBbN5rCqQ2Qh6Ek6/eOrjlWngEynBWo4VxerQhg==
+
 core-js@^2.5.0:
   version "2.6.12"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.12.tgz#d9333dfa7b065e347cc5682219d6f690859cc2ec"
   integrity sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==
 
-core-js@^3.14.0, core-js@^3.6.5:
+core-js@^3.14.0:
   version "3.29.1"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.29.1.tgz#40ff3b41588b091aaed19ca1aa5cb111803fa9a6"
   integrity sha512-+jwgnhg6cQxKYIIjGtAHq2nwUOolo9eoFZ4sHfUH09BLXBgxnH4gA0zEd+t+BO2cNB8idaBtZFcFTRjQJRJmAw==
@@ -12518,12 +12523,12 @@ next-svgr@0.0.2:
   dependencies:
     "@svgr/webpack" "^4.3.0"
 
-next-tinacms-cloudinary@4.3.1:
-  version "4.3.1"
-  resolved "https://registry.yarnpkg.com/next-tinacms-cloudinary/-/next-tinacms-cloudinary-4.3.1.tgz#fcdd916289f8cb0bd3a1a7a12ae0d36863eb80bf"
-  integrity sha512-QYAiBz2BsDP3UEzfncWGmcTK9xWOkk4gER+q6BC8ZcGLW8JpkNjrIXpyZZbnuDr5q5B0sUkbZlPdnyd1IEA03g==
+next-tinacms-cloudinary@cloudinary-https-fix:
+  version "0.0.0-20230717141517"
+  resolved "https://registry.yarnpkg.com/next-tinacms-cloudinary/-/next-tinacms-cloudinary-0.0.0-20230717141517.tgz#bc5916d4ec800fe851340ccc79bab1ea747000bf"
+  integrity sha512-v5+Vsdx2NXn1j/7Jj3n23VRwKd+gJTkm80bpMq5qKzBKwsnbk1IP+DN3imxD3arSv0Qh4L1NQrvmtqk4PNn4NQ==
   dependencies:
-    cloudinary "^1.34.0"
+    cloudinary "1.37.2"
     multer "1.4.5-lts.1"
 
 next@^12.1.0:
@@ -13649,7 +13654,7 @@ punycode@^2.1.0, punycode@^2.1.1:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.3.0.tgz#f67fa67c94da8f4d0cfff981aee4118064199b8f"
   integrity sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==
 
-q@^1.1.2, q@^1.5.1:
+q@1.5.1, q@^1.1.2:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
   integrity sha512-kV/CThkXo6xyFEZUugw/+pIOywXcDbFYgSct5cT3gqlbkBE1SJdwy6UQoZvodiWF/ckQLZyDE/Bu1M6gVu5lVw==

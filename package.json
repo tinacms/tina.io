@@ -68,7 +68,7 @@
     "next": "^12.1.0",
     "next-seo": "^4.1.0",
     "next-svgr": "0.0.2",
-    "next-tinacms-cloudinary": "4.3.1",
+    "next-tinacms-cloudinary": "cloudinary-https-fix",
     "nextjs-cors": "^2.1.0",
     "node-fetch": "^2.6.1",
     "node-sass": "^7.0.0",
