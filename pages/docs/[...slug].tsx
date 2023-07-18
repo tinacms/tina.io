@@ -14,12 +14,20 @@ import * as ga from '../../utils/ga'
 import { Breadcrumbs } from 'components/DocumentationNavigation/Breadcrumbs'
 import { useTocListener } from 'utils/toc_helpers'
 import SetupOverview from '../../components/layout/setup-overview'
+import client from 'tina/__generated__/client'
+import { useTina } from 'tinacms/dist/react'
 
 export function DocTemplate(props) {
   if (props.file.fileRelativePath.includes('setup-overview')) {
     return <SetupOverview {...props} />
   }
   return <_DocTemplate {...props} />
+}
+
+export default function DocWithTina(props) {
+  console.log('DocTemplate props ', props.tina)
+  useTina(props.tina)
+  return <DocTemplate {...props} />
 }
 
 function _DocTemplate(props) {
@@ -94,20 +102,28 @@ function _DocTemplate(props) {
   )
 }
 
-export default DocTemplate
-
 /*
  * DATA FETCHING ------------------------------------------------------
  */
 
 export const getStaticProps: GetStaticProps = async function (props) {
+  console.log('getStaticProps')
   let { slug: slugs } = props.params
 
   // @ts-ignore This should maybe always be a string[]?
   const slug = slugs.join('/')
 
+  const variables = { relativePath: `${slug}.md` }
+
+  const res = await client.queries.doc(variables)
+  console.log(res)
   try {
-    return await getDocProps(props, slug)
+    return {
+      props: {
+        ...(await getDocProps(props, slug)).props,
+        tina: { query: res.query, data: res.data, variables },
+      },
+    }
   } catch (e) {
     if (e) {
       return {
