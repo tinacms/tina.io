@@ -1,13 +1,13 @@
 ---
 title: Tina Docs
 id: introduction
-last_edited: '2021-07-27T15:51:56.737Z'
+last_edited: '2023-07-18T15:51:56.737Z'
 next: /docs/product-tour
 ---
 
 ## Introduction
 
-Tina is a Git-backed headless content management system that enables developers and content creators to collaborate seamlessly. With Tina, developers can create a custom visual editing experience that is perfectly tailored to their site.
+Tina is an open-source, Git-backed headless content management system (CMS) that empowers both developers and content creators to collaborate seamlessly on a single platform. Tina enables developers to craft a custom visual editing experience perfectly tailored to their website or application while supporting a broad range of content types such as Markdown, MDX, and JSON.
 
 <div style="position:relative;padding-top:56.25%;">
   <iframe width="560" frameborder="0" allowfullscreen
@@ -17,12 +17,23 @@ Tina is a Git-backed headless content management system that enables developers 
 
 ## Advantages of Tina
 
-#### Backed by Git
+### Git-based content management
 
-- Both developers and editors collaborate on a single source of truth making site management harmonious.
-- Collaborate on content in real-time with live multi-user editing and change tracking.
+- Tina uses Git to provide a single source of truth for content and code, enhancing collaboration between developers and content editors.
+- Content changes are committed directly to your repository, ensuring version control and content history.
 
-#### Visual Editing
+### Real-time visual editing
 
-- Select and build using your predefined components. Edit text. Adjust the style. Empower editors to edit.
-- Get instant feedback with Tina’s intuitive sidebar editor. Allow your editors to preview their changes before publishing live to your site.
+- Create and edit content directly in the context of your website or application with Tina's real-time visual editor.
+- Customizable content blocks allow content editors to assemble pages and manage content intuitively, similar to using a site builder.
+- The changes made by the editors can be previewed in real-time before publishing, ensuring the quality of the content.
+
+### Control over content
+
+- Tina's open-source model gives you complete control and ownership over your content.
+- Tina's (optional) self-hosted backend gives you piece of mind from vendor lock-in.
+
+### Scalability
+
+- **Performance at Scale:** Tina is designed for large-scale projects. Whether your site has hundreds or tens of thousands of pages, Tina ensures optimal performance.
+- **Powerful Query Capabilities:** With Tina's unique data layer, your Markdown content becomes as flexible and queryable as if it were in a database.
