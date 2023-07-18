@@ -19,19 +19,19 @@ In Tina Cloud, you can assign a "protected branch".
 
 If an editor tries to make a change on a protected branch, they will be prompted to create a new branch where those changes will be applied.
 
-![](http://res.cloudinary.com/forestry-demo/image/upload/v1689033651/blog-media/editorial-workflow/create-branch_bgpgwn.png)
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1689033651/blog-media/editorial-workflow/create-branch_bgpgwn.png)
 
 ## Sharing Previews
 
 When on a branch, editors now have an accessible link to a configurable preview link. This allows editors to easily share their site preview with other stakeholders.
 
-![](http://res.cloudinary.com/forestry-demo/image/upload/v1689035096/blog-media/editorial-workflow/share-btn_xvmxii.png)
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1689035096/blog-media/editorial-workflow/share-btn_xvmxii.png)
 
 ## Leverage GitHub's Reviews
 
 When editors make changes, commits and pull-requests are made to GitHub under the hood. Reviewers are able to use the Git workflow that they're comfortable with to review changes. This also allows teams to ensure that their CI/CD workflow all passes before merging any content updates to their main branch.
 
-![](http://res.cloudinary.com/forestry-demo/image/upload/v1689035294/blog-media/editorial-workflow/github-pr_vbyqbs.png)
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1689035294/blog-media/editorial-workflow/github-pr_vbyqbs.png)
 
 ## Improved Branch UI
 

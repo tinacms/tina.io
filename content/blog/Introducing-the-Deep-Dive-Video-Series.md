@@ -7,7 +7,7 @@ author: Jeff See
 
 Today I'm excited to announce the Deep Dive tutorial series, an A to Z introduction of all things Tina. In this series, I'll take you through every step of integrating content into your NextJS website, providing clear explanations and practical demonstrations along the way.
 
-![LLamaLink Website Screenshot](http://res.cloudinary.com/forestry-demo/image/upload/v1689181932/llama-link_gzdv9e.png "Introducing the Llama Link Deep Dive series")
+![LLamaLink Website Screenshot](https://res.cloudinary.com/forestry-demo/image/upload/v1689181932/llama-link_gzdv9e.png "Introducing the Llama Link Deep Dive series")
 
 The website we'll be building is a fictional (obviously) SaaS company where you can chat live with Llama's online! Check it out [here.](https://llama-link.vercel.app/)
 

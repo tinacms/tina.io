@@ -27,7 +27,7 @@
           "text": "Create content on new branches without going to GitHub.",
           "media": [
             {
-              "image": "http://res.cloudinary.com/forestry-demo/image/upload/v1689258281/blog-media/editorial-workflow/create-branch-small_kzubqs.png",
+              "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1689258281/blog-media/editorial-workflow/create-branch-small_kzubqs.png",
               "_template": "image"
             }
           ]

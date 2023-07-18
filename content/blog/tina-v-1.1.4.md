@@ -17,7 +17,7 @@ Read our guide for setting this up [here](https://tina.io/guides/tinacms/separat
 
 Editors can now rename documents from the document list view
 
-![Renaming Document](http://res.cloudinary.com/forestry-demo/image/upload/v1675179770/Screen_Shot_2023-01-31_at_11.13.32_AM_jnw3qo.png "Renaming Document")
+![Renaming Document](https://res.cloudinary.com/forestry-demo/image/upload/v1675179770/Screen_Shot_2023-01-31_at_11.13.32_AM_jnw3qo.png "Renaming Document")
 
 ## Rich-text editor improvements
 
@@ -29,7 +29,7 @@ Several improvements have been made to the rich-text editor to better safe-guard
 * Rich-text error links to raw-mode editor
 * Fix bug where switching from raw-mode to rich-text editor with errors would lose unsaved changes.
 
-![rich-text-error](http://res.cloudinary.com/forestry-demo/image/upload/v1675180829/Screen_Shot_2023-01-26_at_10.53.16_AM_v4lfjo.png "rich-text-error")
+![rich-text-error](https://res.cloudinary.com/forestry-demo/image/upload/v1675180829/Screen_Shot_2023-01-26_at_10.53.16_AM_v4lfjo.png "rich-text-error")
 
 ## Other fixes & improvements
 

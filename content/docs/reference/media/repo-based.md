@@ -87,6 +87,6 @@ Repo-based media is designed to be used around a single-branch workflow. If your
 If you are configuring Tina on a non-default branch (and the Tina config has not yet been merged to your default branch), you may see this message in the Tina Cloud media settings:\
 
 
-![](http://res.cloudinary.com/forestry-demo/image/upload/v1688478218/tina-io/docs/media-not-configured_lnr5lw.png)\
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1688478218/tina-io/docs/media-not-configured_lnr5lw.png)\
 \
 To workaround this, you may need to enable media **after** merging Tina to your default branch.
