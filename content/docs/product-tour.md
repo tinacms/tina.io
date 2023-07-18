@@ -5,60 +5,58 @@ last_edited: '2022-01-17T15:51:56.737Z'
 next: '/docs/setup-overview'
 ---
 
-To understand the power of Tina, let us first break down Tina into its components.
+## Introduction
 
-## Tina CLI
+TinaCMS is an open-source Content Management System (CMS) that seamlessly integrates with your Markdown workflow.
 
-![TinaCMS CLI](https://res.cloudinary.com/forestry-demo/image/upload/v1642516210/img/create-tina-app.png 'Setup a project with TinaCMS CLI')
+## The CMS Backend
 
-TinaCMS CLI is a quick and easy way to set up a project with Tina. The CLI can inject Tina into a pre-existing Next.js site, or create a Tina starter site (see our list of [starters](https://app.tina.io/quickstart)) with Tina pre-configured.
+- The TinaCMS backend provides the API for querying your content, offering support for filtering, searching, and pagination.
 
-A Tina-ified site includes:
+### Tina Cloud
 
-- A Tina config file that be used to structure your content and configure Tina.
-- A local version of the Tina GraphQL API (see below!) used to fetch your content.
+- Out of the box, we provide an easy-to-use hosted version of the backend, called Tina Cloud.
 
-The Tina schema file is used to define the shape of your content. To learn more about content modelling within the Tina schema file, click [here](/docs/schema).
-For a list of CLI commands or to learn more about Tina’s CLI, click [here](/docs/cli-overview).
+### Self-hosted Backend
 
-## Tina GraphQl API
+- For those preferring more control and customization, TinaCMS also allows you to host the backend entirely on your own stack.
 
-![Tina GraphQL API](https://res.cloudinary.com/deuzrsg3m/image/upload/v1651008834/carbon_csq54s.png "Fetch data using Tina's GraphQL API")
+### Git-Sync
 
-Tina’s GraphQL API provides a structured API that can be used to fetch your site’s content. This GraphQL API uses your local filesystem as a database. When you define your schema in the Tina schema file, the Tina GraphQL API will generate queries specific to your schema.
+- Regardless of whether you're using Tina Cloud or a self-hosted solution, TinaCMS syncs with your Git repository.
 
-When running your site locally, Tina spins up a local GraphQL server at `http://localhost:3000` as well as an Altair client at `http://localhost:4001/altair/` . This allows developers to test out the API and its file fetching capabilities.
+## The CMS Frontend
 
-> When running your site in production with Tina Cloud, instead of the local GraphQL server, your site will run using our hosted content API (more info below!).
+- The intuitive TinaCMS user interface is accessible via an `/admin` page on your site.
 
-For more info on Tina’s GraphQL API or to understand content fetching, click [here](/docs/features/data-fetching).
+### Visual Editing
 
-## Tina Editing UI
+- On React sites, TinaCMS enables "Visual Editing" to allow content editors to see real-time changes, thus improving the content creation process.
 
-Tina's editing UI is compiled statically into the sites public directory. This allows Tina to be used in any site, regardless of the framework it is built with.
+### Saving
 
-When a Tina site is served, navigating to the `/admin` (or `/admin/index.html`) route takes you to the Tina editing UI. This UI is used to edit content and manage your site’s content.
+- When users make a change in the CMS, a commit is made back to your Git repository.
 
-For more info on Tina’s editing UI, click [here](/docs/using-tina-editor).
+## Integrating TinaCMS into a site
 
-Tina has two editing modes. Basic editing, which allows an editor to edit in a "basic editor" and visual editing which can be used on any Reactive site (currently only support react).
+TinaCMS can be setup on your site with `tinacms init`. This installs a few Tina packages, and add some boilerplate
 
-### Visual editing
+### Running TinaCMS Locally
 
-![Real-time editing with TinaCMS and Tina Cloud](https://res.cloudinary.com/forestry-demo/image/upload/v1619023278/tina-cms-visual-editing.gif 'Real-time editing with TinaCMS and Tina Cloud')
+- You also have the flexibility to run TinaCMS locally, sourcing local files instead of interacting with the hosted API, making it ideal for offline or isolated environments.
 
-Tina’s sidebar editor allows users to make changes to text, styling or components. Tina’s sidebar editor is set up on the frontend of your site and can be customizable to suit the needs of your site.
+### Content Modelling
 
-To learn more about visual editing and setting up the sidebar, click [here](/docs/tinacms-context).
+- Content in TinaCMS is modelled using a `tina/config.ts` file in your project. Through this, you can define "collections" that model various content types on your site.
 
-## Tina Cloud
+### Data-fetching
 
-![Tina Cloud Dashboard](https://res.cloudinary.com/forestry-demo/image/upload/v1642524904/tina-dashboard.png 'Tina Cloud Dashboard')
+- TinaCMS provides a GraphQL API, making data-fetching more efficient and powerful.
 
-Tina Cloud is our final piece to providing a full content management experience!
+### Client
 
-When working with Tina in a local environment, **changes made through the Tina sidebar editor are saved locally to your content files** using the local GraphQL API. When editing with Tina Cloud, **edits are saved directly to GitHub** using our hosted content API. The Tina Cloud Dashboard enables you to connect Tina Cloud to your site’s GitHub repo.
+- Moreover, we also generate a user-friendly client that simplifies the process of querying your content.
 
-Additionally, when a site is configured with Tina Cloud, the editing capability is set behind an authentication wall. This allows only authorized users to make changes to your site. The Tina Cloud Dashboard enables you to invite other users, thus granting them access to edit content on your site and permitting their changes to reflect directly in GitHub.
+### Type-safety
 
-Currently Tina Cloud is free to sign up - check it out [here](https://app.tina.io/register)! Or to learn more about Tina Cloud, click [here](/docs/tina-cloud).
+- TinaCMS emphasizes type safety, ensuring your content queries remain error-free and consistent, thus improving code reliability and maintainability.
