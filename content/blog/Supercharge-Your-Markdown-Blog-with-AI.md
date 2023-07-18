@@ -11,10 +11,6 @@ To illustrate the potential of this combination, we're excited to introduce Mark
 
 ![AI Suggestion in Github](http://res.cloudinary.com/forestry-demo/image/upload/v1688483462/blog-media/supercharge-markdown-blog/Screenshot_2023-07-04_at_11.03.24_AM_bfqnld.png 'AI Suggestion in Github')
 
-# Introducing a GitHub Bot for Content Suggestions
-
-<Youtube embedSrc="https://www.youtube.com/embed/3SkumYmH8nc" />
-
 > Want to skip the reading and jump straight to the code? [Check out the open source repo](https://github.com/tinacms/ai-content).
 
 ## A Useful Aid, Not a Replacement
@@ -32,6 +28,8 @@ After you've integrated the bot into your repository, you can command it to make
 To get started [check out the open source repo](https://github.com/tinacms/ai-content 'AI Content Github repo').
 
 ## Looking Ahead: AI and Git-based Content
+
+<Youtube embedSrc="https://www.youtube.com/embed/3SkumYmH8nc" />
 
 Our GitHub bot works hand in hand with TinaCMS to enhance the content creation process. No longer do you need to manually copy and paste suggestions. The bot brings suggestions right to your pull requests for a smooth, efficient experience.
 
