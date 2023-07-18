@@ -2,6 +2,7 @@ import React from 'react'
 import { BiArrowBack, BiCopy } from 'react-icons/bi'
 import { copyToClipboard } from '../../components/layout/MarkdownContent'
 import { LinkButton } from '../../components/ui'
+import { tinaField } from 'tinacms/dist/react'
 
 export const Actions = ({ items, align = 'left' }) => {
   return (
@@ -15,7 +16,9 @@ export const Actions = ({ items, align = 'left' }) => {
         {items &&
           items.map((item) => {
             if (item.variant == 'command') {
-              return <CodeButton key={item.label}>{item.label}</CodeButton>
+              return <CodeButton key={item.label}
+                data-tina-field={tinaField(item, 'label')}
+              > {item.label}</CodeButton>
             }
             const { variant, label, icon, url } = item
             const externalUrlPattern = /^((http|https|ftp):\/\/)/
@@ -27,6 +30,7 @@ export const Actions = ({ items, align = 'left' }) => {
                 size={item.size ? item.size : 'medium'}
                 link={url}
                 color={variant}
+                data-tina-field={tinaField(item, 'label')}
               >
                 {label}{' '}
                 {icon && (
@@ -35,7 +39,7 @@ export const Actions = ({ items, align = 'left' }) => {
               </LinkButton>
             )
           })}
-      </div>
+      </div >
       <style jsx>{`
         .actionGroup {
           display: flex;
