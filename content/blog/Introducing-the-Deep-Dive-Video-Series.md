@@ -27,9 +27,13 @@ The website we'll be building is a fictional (obviously) SaaS company where you 
 
 <Youtube embedSrc="https://www.youtube.com/embed/x0ACBQeNcts" />
 
-#### Part 4 - Customizing the GraphQL client queries and and working with global documents. (Coming Soon)
+#### Part 4 - Customizing the GraphQL client queries and and working with global documents
 
-#### Part 5 - Going to production. Shipping Tina to a Vercel-hosted website and connecting to Tina Cloud (Coming Soon)
+<Youtube embedSrc="https://www.youtube.com/embed/arTioOC4o-k" />
+
+#### Part 5 - Going to production. Shipping Tina to a Vercel-hosted website and connecting to Tina Cloud
+
+<Youtube embedSrc="https://www.youtube.com/embed/r9vzL_8PEW8" />
 
 The deep dive series is designed to benefit both experienced NextJS developers and beginners. Our goal is to equip you with the skills and knowledge to create dynamic, interactive, and visually appealing websites with ease.
 
