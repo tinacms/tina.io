@@ -1,6 +1,9 @@
 import React from 'react'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import { formatDate } from 'utils'
+import { useTina, tinaField } from 'tinacms/dist/react'
+
+
 
 const Testimonial = ({ data, ...props }) => {
   const Elem = data.link ? 'a' : 'div'
@@ -13,6 +16,7 @@ const Testimonial = ({ data, ...props }) => {
         }`}
       href={data.link}
       {...props}
+      data-tina-field={tinaField(data, 'name')}
     >
       {data.testimonial && (
         <div className="text-base lg:text-lg">
