@@ -77,10 +77,12 @@ export default function Page(props) {
     } else {
       transitionImg.current.src = imageSrc
       transitionImg.current.style.opacity = '1'
+      activeImg.current.style.opacity = '0'
 
       setTimeout(function () {
         activeImg.current.src = imageSrc
         transitionImg.current.style.opacity = '0'
+        activeImg.current.style.opacity = '1'
       }, 500)
     }
   }, [activeIds, transitionImg, activeImg])
