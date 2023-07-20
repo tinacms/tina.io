@@ -112,7 +112,16 @@
       },
       {
         "title": "Use The Self Hosted Starter",
-        "slug": "/docs/self-hosted/getting-started/"
+        "items": [
+          {
+            "title": "Getting Started",
+            "slug": "/docs/self-hosted/getting-started/"
+          },
+          {
+            "title": "Configuration",
+            "slug": "/docs/self-hosted/configuration/"
+          }
+        ]
       },
       {
         "title": "Core Concepts",
@@ -296,23 +305,6 @@
       {
         "slug": "/docs/tina-cloud/api-versioning/",
         "title": "API Versioning"
-      },
-      {
-        "title": "Self Hosted Tina",
-        "items": [
-          {
-            "slug": "/docs/self-hosted/overview/",
-            "title": "Overview"
-          },
-          {
-            "slug": "/docs/self-hosted/getting-started/",
-            "title": "Getting Started"
-          },
-          {
-            "slug": "/docs/self-hosted/configuration/",
-            "title": "Configuration"
-          }
-        ]
       }
     ]
   },
