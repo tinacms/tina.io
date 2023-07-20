@@ -11,11 +11,23 @@ TinaCMS is an open-source Content Management System (CMS) that seamlessly integr
 
 ![](https://res.cloudinary.com/forestry-demo/image/upload/v1645712511/tina-io/docs/your-blocks.gif)
 
+### Your Website
+
+- With TinaCMS, The developer hosts the site where they like.
+
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1689868504/tina-io/docs/product-tour/headless1.png)
+
+### Headless CMS
+
+- TinaCMS is a "Headless CMS". TinaCMS provides a queryable content API that your website's code consumes.
+
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1689868524/tina-io/docs/product-tour/headless2.png)
+
 ## The CMS Backend
 
 - The TinaCMS backend provides the API for querying your content, offering support for filtering, searching, and pagination.
 
-![](https://placehold.co/600x400?text=Backend+Image)
+![](https://placehold.co/600x400?text=Fade+To+TinaCMS+Backend)
 
 ### Tina Cloud
 
