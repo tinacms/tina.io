@@ -15,67 +15,67 @@ TinaCMS is an open-source Content Management System (CMS) that seamlessly integr
 
 - With TinaCMS, The developer hosts the site where they like.
 
-![](https://res.cloudinary.com/forestry-demo/image/upload/v1689868504/tina-io/docs/product-tour/headless1.png)
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1689874025/tina-io/docs/product-tour/headless_cms1.png)
 
 ### Headless CMS
 
 - TinaCMS is a "Headless CMS". TinaCMS provides a queryable content API that your website's code consumes.
 
-![](https://res.cloudinary.com/forestry-demo/image/upload/v1689868524/tina-io/docs/product-tour/headless2.png)
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1689874025/tina-io/docs/product-tour/headless_cms2.png)
 
 ## The CMS Backend
 
 - The TinaCMS backend provides the API for querying your content, offering support for filtering, searching, and pagination.
 
-![](https://placehold.co/600x400?text=Fade+To+TinaCMS+Backend)
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1689874024/tina-io/docs/product-tour/queryable_database.png)
+
+### Git-backed Content
+
+- All your content gets backed by git into JSON/Markdown/MDX files
+
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1689874025/tina-io/docs/product-tour/git-backed.png)
 
 ### Tina Cloud
 
 - Out of the box, we provide an easy-to-use hosted version of the backend, called Tina Cloud.
 
-![](https://placehold.co/600x400?text=Fade+To+Tina+Cloud+Path)
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1689874024/tina-io/docs/product-tour/tina-cloud.png)
 
 ### Self-hosted Backend
 
 - For those preferring more control and customization, TinaCMS also allows you to host the backend entirely on your own stack.
 
-![](https://placehold.co/600x400?text=Fade+To+Self+Hosted+Path)
-
-### Git-Sync
-
-- Regardless of whether you're using Tina Cloud or a self-hosted solution, TinaCMS syncs with your Git repository.
-
-![](https://placehold.co/600x400?text=Show+Git+Sync_Diagram)
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1689874024/tina-io/docs/product-tour/self-host-backend.png)
 
 ## The CMS Frontend
 
-- The intuitive TinaCMS user interface is accessible via an `/admin` page on your site.
+- TinaCMS provides an intuitive CMS interface for your editors. On React sites, TinaCMS enables "Visual Editing" to allow content editors to see real-time changes.
 
-![](https://placehold.co/600x400?text=Show+admin+URL)
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1645712511/tina-io/docs/your-blocks.gif)
 
-### Visual Editing
+### /admin route
 
-- On React sites, TinaCMS enables "Visual Editing" to allow content editors to see real-time changes, thus improving the content creation process.
+- Users interact with the CMS by navigating to the `/admin` page on your site.
 
-![](https://placehold.co/600x400?text=Visual+Editing)
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1689874024/tina-io/docs/product-tour/admin.png)
 
 ### Saving
 
 - When users make a change in the CMS, a commit is made back to your Git repository.
 
-![](https://placehold.co/600x400?text=Show+Commit+Msg)
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1689874024/tina-io/docs/product-tour/git-save.png)
 
 ## Integrating TinaCMS into a site
 
 TinaCMS can be setup on your site with `tinacms init`. This installs a few Tina packages, and add some boilerplate
 
-![](https://placehold.co/600x400?text=CLI+INIT)
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1689819318/tina-io/docs/product-tour/cli-init.png)
 
 ### Running TinaCMS Locally
 
 - You also have the flexibility to run TinaCMS locally, sourcing local files instead of interacting with the hosted API, making it ideal for offline or isolated environments.
 
-![](https://placehold.co/600x400?text=Show+Local+Dev)
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1689874024/tina-io/docs/product-tour/local-workflow.png)
 
 ### Content Modelling
 
