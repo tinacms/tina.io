@@ -100,9 +100,30 @@ function useHookWithRefCallback() {
   return [setRef, ref]
 }
 
+function useWindowSize() {
+  if (typeof window !== 'undefined') {
+    return { width: 1200, height: 800 }
+  }
+
+  const [windowSize, setWindowSize] = React.useState<{
+    width: number
+    height: number
+  }>()
+
+  React.useEffect(() => {
+    window.addEventListener('resize', () => {
+      setWindowSize({ width: window.innerWidth, height: window.innerHeight })
+    })
+  }, [])
+
+  return windowSize
+}
+
 export function useTocListener(data) {
   const [activeIds, setActiveIds] = React.useState([])
   const [setRef, ref] = useHookWithRefCallback()
+
+  const windowSize = useWindowSize()
 
   React.useEffect(() => {
     if (typeof window === `undefined` || !(ref as any).current) {
@@ -113,7 +134,7 @@ export function useTocListener(data) {
     window.addEventListener('scroll', activeTocListener)
 
     return () => window.removeEventListener('scroll', activeTocListener)
-  }, [(ref as any).current, data])
+  }, [(ref as any).current, data, windowSize])
 
   return { contentRef: setRef, activeIds }
 }
