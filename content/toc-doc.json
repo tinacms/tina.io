@@ -108,47 +108,54 @@
     "items": [
       {
         "title": "Overview",
-        "slug": "/docs/self-hosting-tina/overview/"
+        "slug": "/docs/self-hosted/overview/"
       },
       {
         "title": "Use The Self Hosted Starter",
-        "slug": "/docs/self-hosting-tina/starter/"
+        "slug": "/docs/self-hosted/getting-started/"
       },
       {
         "title": "Core Concepts",
         "items": [
           {
             "title": "Overview",
-            "slug": "/docs/self-hosting-tina/core-concepts/overview/"
+            "slug": "/docs/self-hosted/core-concepts/overview/"
           },
           {
             "title": "Choosing a Git Provider",
             "items": [
               {
-                "title": "Overview"
+                "title": "Overview",
+                "slug": "/docs/self-hosted/git-provider/overview/"
               },
               {
-                "title": "GitHub"
+                "title": "GitHub",
+                "slug": "/docs/self-hosted/git-provider/github/"
               },
               {
-                "title": "Bring Your Own Git Provider"
+                "title": "Bring Your Own Git Provider",
+                "slug": "/docs/self-hosted/git-provider/make-your-own/"
               }
             ]
           },
           {
-            "title": "Choosing a Data",
+            "title": "Choosing a Database Adapter",
             "items": [
               {
-                "title": "Overview"
+                "title": "Overview",
+                "slug": "/docs/self-hosted/database-adapter/overview/"
               },
               {
-                "title": "Vercel KV"
+                "title": "Vercel KV",
+                "slug": "/docs/self-hosted/database-adapter/vercel-kv/"
               },
               {
-                "title": "Mongo DB"
+                "title": "Mongo DB",
+                "slug": "/docs/self-hosted/database-adapter/mongodb/"
               },
               {
-                "title": "Bring Your Own Data Engine"
+                "title": "Bring Your Own Data Engine",
+                "slug": "/docs/self-hosted/database-adapter/make-your-own/"
               }
             ]
           },
@@ -156,16 +163,20 @@
             "title": "Choosing an Authentication Provider",
             "items": [
               {
-                "title": "Overview"
+                "title": "Overview",
+                "slug": "/docs/self-hosted/authentication-provider/overview/"
               },
               {
-                "title": "Next Auth"
+                "title": "Next Auth",
+                "slug": "/docs/self-hosted/authentication-provider/next-auth/"
               },
               {
-                "title": "Using Tina Cloud for Authentication"
+                "title": "Using Tina Cloud for Authentication",
+                "slug": "/docs/self-hosted/authentication-provider/tina-cloud/"
               },
               {
-                "title": "Bring Your Own Authentication"
+                "title": "Bring Your Own Authentication",
+                "slug": "/docs/self-hosted/authentication-provider/bring-your-own/"
               }
             ]
           }
