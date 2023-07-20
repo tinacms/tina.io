@@ -43,6 +43,7 @@ export default function Page(props) {
   const transitionImg = useRef(null)
 
   useEffect(() => {
+    let imgTransitionTimeout: NodeJS.Timeout
     if (typeof window === 'undefined') return
     if (!activeIds.length) {
       return
@@ -79,11 +80,21 @@ export default function Page(props) {
       transitionImg.current.style.opacity = '1'
       activeImg.current.style.opacity = '0'
 
-      setTimeout(function () {
+      imgTransitionTimeout = setTimeout(function () {
         activeImg.current.src = imageSrc
         transitionImg.current.style.opacity = '0'
         activeImg.current.style.opacity = '1'
-      }, 500)
+      }, 350)
+    }
+
+    return () => {
+      if (imgTransitionTimeout) {
+        activeImg.current.src = imageSrc
+        transitionImg.current.style.opacity = '0'
+        activeImg.current.style.opacity = '1'
+
+        clearTimeout(imgTransitionTimeout)
+      }
     }
   }, [activeIds, transitionImg, activeImg])
 
@@ -176,7 +187,7 @@ const SplitContent = styled.div`
   @media (min-width: 769px) {
     #main-content-container > h3:not(:first-child),
     #main-content-container > h2:not(:first-child) {
-      margin-top: 4rem !important;
+      margin-top: 4.5rem !important;
     }
 
     ul {
@@ -229,7 +240,7 @@ const SplitContent = styled.div`
       width: 100%;
       position: absolute;
       top: 0;
-      transition: opacity 0.5s ease-in-out;
+      transition: opacity 0.35s ease-in-out;
     }
   }
 
