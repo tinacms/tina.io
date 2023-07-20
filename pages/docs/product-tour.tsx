@@ -2,7 +2,7 @@ import { getDocProps } from 'utils/docs/getDocProps'
 import { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import { useTocListener } from 'utils/toc_helpers'
-import React, { useMemo } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef } from 'react'
 import * as ga from '../../utils/ga'
 import { NextSeo } from 'next-seo'
 import { openGraphImage } from 'utils/open-graph-image'
@@ -39,17 +39,34 @@ export default function Page(props) {
 
   const { activeIds, contentRef } = useTocListener(data)
 
-  const activeImage = useMemo(() => {
+  const activeImg = useRef(null)
+  const transitionImg = useRef(null)
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
     if (!activeIds.length) {
-      return ''
+      return
     }
-    const image = (
+    const imageSrc = (
       document.querySelector(
         `h2#${activeIds[activeIds.length - 1]} ~ *:has(img) img`
       ) as any
     )?.src
-    return image
-  }, [activeIds])
+
+    if (activeImg.current.src === imageSrc) return
+
+    if (!activeImg.current.src) {
+      activeImg.current.src = imageSrc
+    } else {
+      transitionImg.current.src = imageSrc
+      transitionImg.current.style.opacity = '1'
+
+      setTimeout(function () {
+        activeImg.current.src = imageSrc
+        transitionImg.current.style.opacity = '0'
+      }, 500)
+    }
+  }, [activeIds, transitionImg, activeImg])
 
   React.useEffect(() => {
     const handleRouteChange = (url) => {
@@ -92,8 +109,11 @@ export default function Page(props) {
               <div>
                 <MarkdownContent escapeHtml={false} content={markdownBody} />
               </div>
-              <div>
-                <img src={activeImage} />
+              <div id="sticky-img-container">
+                <div className="img-container">
+                  <img ref={activeImg} />
+                  <img ref={transitionImg} />
+                </div>
               </div>
             </SplitContent>
             <LastEdited date={frontmatter.last_edited} />
@@ -122,9 +142,21 @@ const SplitContent = styled.div`
     box-sizing: border-box;
   }
 
-  img {
-    width: 100%;
+  #sticky-img-container {
     position: sticky;
     top: 10px;
+    width: 100%;
+    height: fit-content;
+
+    img {
+      width: 100%;
+      position: absolute;
+      top: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+  }
+
+  .img-container {
+    position: relative;
   }
 `
