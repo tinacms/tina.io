@@ -37,8 +37,8 @@ export default function Page(props) {
   const excerpt = props.file.data.excerpt
   const tocItems = props.tocItems
 
-  const { activeIds, contentRef } = useTocListener(data)
-
+  const { activeIds: _activeIds, contentRef } = useTocListener(data)
+  const activeIds = _activeIds.filter((id) => !!id)
   const activeImg = useRef(null)
   const transitionImg = useRef(null)
 
@@ -49,7 +49,9 @@ export default function Page(props) {
     }
     const imageSrc = (
       document.querySelector(
-        `h2#${activeIds[activeIds.length - 1]} ~ *:has(img) img`
+        `h2#${activeIds[0]} ~ *:has(img) img, ` +
+          `h3#${activeIds[0]} ~ *:has(img) img, ` +
+          `h4#${activeIds[0]} ~ *:has(img) img`
       ) as any
     )?.src
 
