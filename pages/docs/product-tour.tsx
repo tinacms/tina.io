@@ -181,21 +181,25 @@ const SplitContent = styled.div`
       list-style: none;
     }
 
-    h2, h3, h4 {
+    h2,
+    h3,
+    h4 {
       color: var(--color-primary);
 
-      + p, + ul {
+      + p,
+      + ul {
         padding-left: 1rem;
         border-left: 4px solid var(--color-light-dark);
-
       }
 
       &.focused {
         color: var(--color-orange);
 
-        + p, + ul {
+        + p,
+        + ul {
           border-left: 4px solid var(--color-orange);
         }
+      }
     }
   }
 
