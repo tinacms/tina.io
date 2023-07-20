@@ -97,14 +97,14 @@ export default function Page(props) {
         }}
       />
       <DocsLayout navItems={props.docsNav}>
-        <DocsGrid>
+        <DocContainer>
           <DocGridHeader>
             <Breadcrumbs navItems={props.docsNav} />
             <DocsPageTitle>{frontmatter.title}</DocsPageTitle>
           </DocGridHeader>
-          <DocGridToc>
+          {/* <DocGridToc>
             <Toc tocItems={tocItems} activeIds={activeIds} />
-          </DocGridToc>
+          </DocGridToc> */}
           <DocGridContent ref={contentRef}>
             <hr />
             <SplitContent>
@@ -127,11 +127,19 @@ export default function Page(props) {
               />
             )}
           </DocGridContent>
-        </DocsGrid>
+        </DocContainer>
       </DocsLayout>
     </>
   )
 }
+
+export const DocContainer = styled.div`
+  display: block;
+  width: 100%;
+  position: relative;
+  padding: 1rem 2rem 3rem 2rem;
+  margin: 0 auto;
+`
 
 const MAX_SPLIT_IMG_WIDTH = 768
 const SplitContent = styled.div`
@@ -143,6 +151,11 @@ const SplitContent = styled.div`
     margin: 0 10px;
     padding: 10px;
     box-sizing: border-box;
+  }
+
+  #main-content-container > h3,
+  #main-content-container > h2 {
+    margin-top: 2rem !important;
   }
 
   #main-content-container img {
