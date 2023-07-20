@@ -1,8 +1,8 @@
 ---
 title: Migrate from Forestry
-id: '/docs/forestry/migrate/'
-prev: '/docs/forestry/overview'
-next: '/docs/forestry/common-errors'
+id: /docs/forestry/migrate/
+prev: /docs/forestry/overview
+next: /docs/forestry/common-errors
 ---
 
 ## Introduction
@@ -45,8 +45,8 @@ TinaCMS handles a few things differently that will cause you to have to make som
 
 Here is a list of the changes that will need to be made to your site:
 
-- You can only have alphanumeric characters or underscores in your field names, templates names, and collection names (**This includes `-`**). You will likely have to update your template names in your content and code. See [this doc](/docs/forestry/common-errors/#migrating-fields-with-non-alphanumeric-characters) for more details.
-- If you are using the "blocks" field see [this doc](/docs/forestry/common-errors/#migrating-blocks) for how to migrate your blocks.
+* You can only have alphanumeric characters or underscores in your field names, templates names, and collection names (**This includes `-`**). You will likely have to update your template names in your content and code. See [this doc](/docs/forestry/common-errors/#migrating-fields-with-non-alphanumeric-characters) for more details.
+* If you are using the "blocks" field see [this doc](/docs/forestry/common-errors/#migrating-blocks) for how to migrate your blocks.
 
 ## Starting TinaCMS
 
@@ -60,9 +60,7 @@ npx tinacms dev -c "<your-dev-process>"
 
 With TinaCMS running, navigate to `http://localhost:1313/admin`
 
-> ^ The above default port may differ depending on your framework.
-
-> Hint: If you are getting error when running this command please see the [Common Errors](/docs/forestry/common-errors) page.
+> ^ The above default port may differ depending on your framework.Hint: If you are getting error when running this command please see the [Common Errors](/docs/forestry/common-errors) page.
 
 At this point, you should be able to see the Tina admin, select a post, save changes, and see the changes persisted to your local markdown files.
 
@@ -114,7 +112,7 @@ Next we'll take you from editing with TinaCMS locally to editing in production w
 
 ### Step 1) Push your repo to git
 
-Push your repo up to git, along with its new Tina configuration (including `tina/__generated__`).
+Push your repo up to git, along with its new Tina configuration.
 
 ### Step 2) Set up a Tina Cloud project
 

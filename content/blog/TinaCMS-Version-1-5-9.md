@@ -25,7 +25,7 @@ When repo-based media is setup on a project, we need to trigger an initial sync 
 \
 We've since added a "Media" tab to the Tina Cloud dashboard to improve this experience.
 
-![](http://res.cloudinary.com/forestry-demo/image/upload/v1686670223/tina-io/blog/changelog/media-dashboard_qjwkr2.png)
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1686670223/tina-io/blog/changelog/media-dashboard_qjwkr2.png)
 
 When new projects are setup, Tina media can be enabled from this tab.\
 We plan on adding configuration to this tab in the future, and we hope it improves the initial media setup in the meantime.

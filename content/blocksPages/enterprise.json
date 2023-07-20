@@ -39,7 +39,16 @@
         },
         {
           "headline": "Editorial Workflow",
-          "text": "Editorial workflows backed by Git are built into Tina. Your content team can make Pull Requests (PRs) without leaving the CMS. "
+          "text": "Editorial workflows backed by Git are built into Tina. Your content team can make Pull Requests (PRs) without leaving the CMS. ",
+          "actions": [
+            {
+              "label": "Learn More",
+              "icon": false,
+              "variant": "white",
+              "size": "small",
+              "url": "https://tina.io/editorial-workflow/"
+            }
+          ]
         },
         {
           "headline": "Performance and Scalability",

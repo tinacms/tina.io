@@ -1,5 +1,3 @@
-
-
 name: Node CI
 on:
   pull_request:
@@ -8,7 +6,7 @@ env:
   NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
   TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
   NEXT_PUBLIC_TINA_BRANCH: ${{ github.head_ref }}
-  NODE_OPTIONS: "--max_old_space_size=4096"
+  NODE_OPTIONS: '--max_old_space_size=4096'
   TINA_SEARCH_TOKEN: ${{ secrets.TINA_SEARCH_TOKEN }}
 jobs:
   build:
@@ -16,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [18.x]
 
     steps:
       - uses: actions/checkout@v3

@@ -307,7 +307,6 @@
   },
   {
     "title": "Drafts",
-    "status": "beta",
     "items": [
       {
         "slug": "/docs/drafts/overview/",
@@ -316,11 +315,12 @@
       {
         "slug": "/docs/drafts/drafts-fields/",
         "title": "Draft Fields",
-        "status": "Considering"
+        "status": "beta"
       },
       {
-        "slug": "/docs/tina-cloud/branching/",
-        "title": "Branching"
+        "slug": "/docs/drafts/editorial-workflow/",
+        "title": "Editorial Workflow",
+        "status": "Premium Plans"
       }
     ]
   },

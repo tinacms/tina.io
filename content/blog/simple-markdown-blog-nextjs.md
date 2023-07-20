@@ -41,7 +41,7 @@ npm run dev
 
 After cloning the project and starting the [Next.js dev server](https://nextjs.org/docs/api-reference/cli#development), navigate to `http://localhost:3000/` in your browser and you should be able to see the following page:
 
-![The starter project in action](http://res.cloudinary.com/forestry-demo/image/upload/v1673425637/hm8AJj0t_hi0mer.png "The starter project in action")
+![The starter project in action](https://res.cloudinary.com/forestry-demo/image/upload/v1673425637/hm8AJj0t_hi0mer.png "The starter project in action")
 
 As you can see, the blog app is pretty simple at the moment. Let's now dig into the structure of this starter project to **learn how to turn this app into a real Markdown-based blog**.
 
@@ -390,7 +390,7 @@ In the return object from `getStaticPaths()`, the following two keys are require
 
 Now, navigate to [`http://localhost:3000/blog/my-post`](http://localhost:3000/blog/my-post). This is what the BlogTemplate component looks like:
 
-![http://localhost:3000/blog/my-post in action](http://res.cloudinary.com/forestry-demo/image/upload/v1673426650/mArAHU8g_1_bedrfy.gif "http://localhost:3000/blog/my-post in action")
+![http://localhost:3000/blog/my-post in action](https://res.cloudinary.com/forestry-demo/image/upload/v1673426650/mArAHU8g_1_bedrfy.gif "http://localhost:3000/blog/my-post in action")
 
 As you can see, it perfectly renders the blog post data stored in Markdown format.
 
