@@ -55,6 +55,21 @@ export default function Page(props) {
       ) as any
     )?.src
 
+    // limit activeIds to 1
+    const deepestActiveIds = activeIds.slice(0, 1)
+    document.querySelectorAll('.focused').forEach((el) => {
+      if (deepestActiveIds.indexOf(el.id) === -1) {
+        el.classList.remove('focused')
+      }
+    })
+
+    deepestActiveIds.forEach((id) => {
+      const el = document.querySelector(`#${id}`)
+      if (el) {
+        el.classList.add('focused')
+      }
+    })
+
     if (activeImg.current.src === imageSrc) return
 
     if (!activeImg.current.src) {
@@ -113,7 +128,10 @@ export default function Page(props) {
               </div>
               <div id="sticky-img-container">
                 <div className="img-container">
-                  <img ref={activeImg} />
+                  <img
+                    ref={activeImg}
+                    src="https://res.cloudinary.com/forestry-demo/image/upload/v1645712511/tina-io/docs/your-blocks.gif"
+                  />
                   <img ref={transitionImg} />
                 </div>
               </div>
@@ -153,9 +171,32 @@ const SplitContent = styled.div`
     box-sizing: border-box;
   }
 
-  #main-content-container > h3,
-  #main-content-container > h2 {
-    margin-top: 2rem !important;
+  @media (min-width: 769px) {
+    #main-content-container > h3:not(:first-child),
+    #main-content-container > h2:not(:first-child) {
+      margin-top: 4rem !important;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    h2, h3, h4 {
+      color: var(--color-primary);
+
+      + p, + ul {
+        padding-left: 1rem;
+        border-left: 4px solid var(--color-light-dark);
+
+      }
+
+      &.focused {
+        color: var(--color-orange);
+
+        + p, + ul {
+          border-left: 4px solid var(--color-orange);
+        }
+    }
   }
 
   #main-content-container img {
