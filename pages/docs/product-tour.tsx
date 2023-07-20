@@ -108,7 +108,7 @@ export default function Page(props) {
           <DocGridContent ref={contentRef}>
             <hr />
             <SplitContent>
-              <div>
+              <div id="main-content-container">
                 <MarkdownContent escapeHtml={false} content={markdownBody} />
               </div>
               <div id="sticky-img-container">
@@ -133,6 +133,7 @@ export default function Page(props) {
   )
 }
 
+const MAX_SPLIT_IMG_WIDTH = 768
 const SplitContent = styled.div`
   display: flex;
   position: relative;
@@ -142,6 +143,20 @@ const SplitContent = styled.div`
     margin: 0 10px;
     padding: 10px;
     box-sizing: border-box;
+  }
+
+  #main-content-container img {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    #sticky-img-container {
+      display: none;
+    }
+
+    #main-content-container img {
+      display: initial;
+    }
   }
 
   #sticky-img-container {
