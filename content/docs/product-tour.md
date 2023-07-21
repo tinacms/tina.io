@@ -81,7 +81,7 @@ TinaCMS can be setup on your site with `tinacms init`. This installs a few Tina 
 
 - Content in TinaCMS is modelled using a `tina/config.ts` file in your project. Through this, you can define "collections" that model various content types on your site.
 
-![](https://placehold.co/600x400?text=Content+Modelling+Code+Snippet)
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1689950496/tina-io/docs/product-tour/Tina_Content_Modelling.png)
 
 ### Data-fetching
 

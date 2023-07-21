@@ -197,12 +197,21 @@ const SplitContent = styled.div`
     h2,
     h3,
     h4 {
-      color: var(--color-primary);
+      color: var(--color-light-dark);
+
+      &:not(.focused) * {
+        color: var(--color-light-dark);
+      }
 
       + p,
       + ul {
         padding-left: 1rem;
         border-left: 4px solid var(--color-light-dark);
+
+        color: var(--color-light-dark);
+        * {
+          color: var(--color-light-dark);
+        }
       }
 
       &.focused {
@@ -211,6 +220,11 @@ const SplitContent = styled.div`
         + p,
         + ul {
           border-left: 4px solid var(--color-orange);
+
+          color: var(--color-primary);
+          * {
+            color: var(--color-primary);
+          }
         }
       }
     }
