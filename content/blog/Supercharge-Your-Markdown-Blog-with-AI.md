@@ -17,7 +17,7 @@ To illustrate the potential of this combination, we're excited to introduce **Ma
 
 AI can be a valuable tool for assisting with writing and editing content. We've designed this bot not to replace content editors, but rather to augment their capabilities. The bot offers content suggestions directly in your pull requests. If you find the suggestions helpful, you can commit them with a click. If not, they're just as easily dismissed.
 
-![AI Suggestion in Github](http://res.cloudinary.com/forestry-demo/image/upload/v1689957326/blog-media/markdown-bot/Screenshot_2023-07-21_at_12.34.42_PM_kh2czf.png "AI Suggestion in Github")
+![AI Suggestion in Github](https://res.cloudinary.com/forestry-demo/image/upload/v1689957451/blog-media/markdown-bot/Screenshot_2023-07-21_at_12.36.48_PM_ztpdes.png "AI Suggestion in Github")
 
 ## Markdown Bot Works On Your PRs
 
