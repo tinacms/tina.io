@@ -7,15 +7,17 @@ author: Logan Anderson
 
 With [TinaCMS](https://tina.io), all your content changes are committed directly to Git. This enables your team to create a variety of workflows for reviewing and merging content updates. By leaning on GitHub, you can integrate CI/CD into your content workflow.
 
-To illustrate the potential of this combination, we're excited to introduce Markdown Bot, an AI friend who improves your content by making suggestions to your Pull Requests.
+To illustrate the potential of this combination, we're excited to introduce **Markdown Bot**, an AI friend who improves your content by making suggestions to your Pull Requests.
 
-![AI Suggestion in Github](http://res.cloudinary.com/forestry-demo/image/upload/v1688483462/blog-media/supercharge-markdown-blog/Screenshot_2023-07-04_at_11.03.24_AM_bfqnld.png 'AI Suggestion in Github')
+<Youtube embedSrc="https://www.youtube.com/embed/3SkumYmH8nc" />
 
 > Want to skip the reading and jump straight to the code? [Check out the open source repo](https://github.com/tinacms/ai-content).
 
 ## A Useful Aid, Not a Replacement
 
 AI can be a valuable tool for assisting with writing and editing content. We've designed this bot not to replace content editors, but rather to augment their capabilities. The bot offers content suggestions directly in your pull requests. If you find the suggestions helpful, you can commit them with a click. If not, they're just as easily dismissed.
+
+![AI Suggestion in Github](http://res.cloudinary.com/forestry-demo/image/upload/v1688483462/blog-media/supercharge-markdown-blog/Screenshot_2023-07-04_at_11.03.24_AM_bfqnld.png 'AI Suggestion in Github')
 
 ## Markdown Bot Works On Your PRs
 
@@ -28,8 +30,6 @@ After you've integrated the bot into your repository, you can command it to make
 To get started [check out the open source repo](https://github.com/tinacms/ai-content 'AI Content Github repo').
 
 ## Looking Ahead: AI and Git-based Content
-
-<Youtube embedSrc="https://www.youtube.com/embed/3SkumYmH8nc" />
 
 Our GitHub bot works hand in hand with TinaCMS to enhance the content creation process. No longer do you need to manually copy and paste suggestions. The bot brings suggestions right to your pull requests for a smooth, efficient experience.
 
