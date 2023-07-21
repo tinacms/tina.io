@@ -14,7 +14,6 @@ import * as shortcodeRenderers from '../../utils/shortcodes'
 
 import GithubSlugger from 'github-slugger'
 
-
 interface MarkdownContentProps {
   content: string
   escapeHtml?: boolean // eq:false --> if the component needs to render html
@@ -174,6 +173,12 @@ export function MarkdownContent({
       rehypePlugins={[rehypeRaw, remarkGfm]}
       skipHtml={skipHtml ? skipHtml : false}
       components={{
+        ul: ({ node, ...props }) => {
+          return <ul className="list-disc ml-6" {...props} />
+        },
+        ol: ({ node, ...props }) => {
+          return <ul className="list-decimal ml-6" {...props} />
+        },
         pre({ node, ...props }) {
           return <>{props.children}</>
         },
