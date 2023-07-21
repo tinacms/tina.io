@@ -11,7 +11,7 @@ To illustrate the potential of this combination, we're excited to introduce **Ma
 
 <Youtube embedSrc="https://www.youtube.com/embed/3SkumYmH8nc" />
 
-> Want to skip the reading and jump straight to the code? [Check out the open source repo](https://github.com/tinacms/ai-content).
+> Want to skip the reading and jump straight to the code? [Check out the open source repo](https://github.com/tinacms/markdown-bot).
 
 ## A Useful Aid, Not a Replacement
 
@@ -27,7 +27,7 @@ There are many AI writing tools out there but if you use them with markdown cont
 
 After you've integrated the bot into your repository, you can command it to make suggestions by commenting `ai fix: <path to file>`. A custom prompt can be added by using `prompt: <Custom Prompt>` underneath. The bot will then offer commit suggestions in the form of a pull request review.
 
-To get started [check out the open source repo](https://github.com/tinacms/ai-content "AI Content Github repo").
+To get started [check out the open source repo](https://github.com/tinacms/markdown-bot "AI Content Github repo").
 
 ## Looking Ahead: AI and Git-based Content
 
