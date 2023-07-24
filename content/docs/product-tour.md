@@ -5,6 +5,9 @@ last_edited: '2022-01-17T15:51:56.737Z'
 next: '/docs/setup-overview'
 ---
 
+Here we give a quick 2 minute overview of TinaCMS, and how it fits into your website.
+If you're instead just looking to quicky get started, jump to our ["Getting Started"](/docs/setup-overview/) doc.
+
 ## Introduction
 
 TinaCMS is an open-source Content Management System (CMS) that seamlessly integrates with your Markdown workflow.
@@ -13,9 +16,15 @@ TinaCMS is an open-source Content Management System (CMS) that seamlessly integr
 
 ### Your Website
 
-- With TinaCMS, The developer hosts the site where they like.
+- With TinaCMS, The developer hosts the site where they like, using whichever framework they choose.
 
 ![](https://res.cloudinary.com/forestry-demo/image/upload/v1689874025/tina-io/docs/product-tour/headless_cms1.png)
+
+### Headless CMS
+
+- TinaCMS is "Headless", meaning it's decoupled from your website. TinaCMS provides a queryable content API that your website's code consumes.
+
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1689874025/tina-io/docs/product-tour/headless_cms2.png)
 
 ## The CMS Backend
 
@@ -67,7 +76,7 @@ TinaCMS can be setup on your site with `tinacms init`. This installs a few Tina 
 
 ### Running TinaCMS Locally
 
-- You also have the flexibility to run TinaCMS locally, sourcing local files instead of interacting with the hosted API, making it ideal for offline or isolated environments.
+- You also have the flexibility to run TinaCMS locally, sourcing local files instead of interacting with the hosted API. This gives developers an ultra-fast feedback loop.
 
 ![](https://res.cloudinary.com/forestry-demo/image/upload/v1689874024/tina-io/docs/product-tour/local-workflow.png)
 
