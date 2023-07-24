@@ -17,12 +17,6 @@ TinaCMS is an open-source Content Management System (CMS) that seamlessly integr
 
 ![](https://res.cloudinary.com/forestry-demo/image/upload/v1689874025/tina-io/docs/product-tour/headless_cms1.png)
 
-### Headless CMS
-
-- TinaCMS is a "Headless CMS". TinaCMS provides a queryable content API that your website's code consumes.
-
-![](https://res.cloudinary.com/forestry-demo/image/upload/v1689874025/tina-io/docs/product-tour/headless_cms2.png)
-
 ## The CMS Backend
 
 - The TinaCMS backend provides the API for querying your content, offering support for filtering, searching, and pagination.
@@ -81,22 +75,22 @@ TinaCMS can be setup on your site with `tinacms init`. This installs a few Tina 
 
 - Content in TinaCMS is modelled using a `tina/config.ts` file in your project. Through this, you can define "collections" that model various content types on your site.
 
-![](https://res.cloudinary.com/forestry-demo/image/upload/v1689950496/tina-io/docs/product-tour/Tina_Content_Modelling.png)
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1690204857/tina-io/docs/product-tour/content-model.png)
 
 ### Data-fetching
 
 - TinaCMS provides a GraphQL API, making data-fetching more efficient and powerful.
 
-![](https://placehold.co/600x400?text=GraphQL+Query)
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1690204115/tina-io/docs/product-tour/graphql-api.png)
 
 ### Client
 
 - Moreover, we also generate a user-friendly client that simplifies the process of querying your content.
 
-![](https://placehold.co/600x400?text=Client+Query)
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1690204192/tina-io/docs/product-tour/client2.png)
 
 ### Type-safety
 
 - TinaCMS emphasizes type safety, ensuring your content queries remain error-free and consistent, thus improving code reliability and maintainability.
 
-![](https://placehold.co/600x400?text=Type+Safety+Example)
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1690205236/tina-io/docs/product-tour/typesafety-example.png)
