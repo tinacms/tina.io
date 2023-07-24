@@ -43,7 +43,7 @@ TinaCMS is an open-source Content Management System (CMS) that seamlessly integr
 
 ## The CMS Frontend
 
-- TinaCMS provides an intuitive CMS interface for your editors. On React sites, TinaCMS enables "Visual Editing" to allow content editors to see real-time changes.
+- TinaCMS provides an intuitive CMS interface for your editors. For sites using React, TinaCMS supports "Visual Editing" to allow content editors to see real-time changes.
 
 ![](https://res.cloudinary.com/forestry-demo/image/upload/v1645712511/tina-io/docs/your-blocks.gif)
 
@@ -75,22 +75,22 @@ TinaCMS can be setup on your site with `tinacms init`. This installs a few Tina 
 
 - Content in TinaCMS is modelled using a `tina/config.ts` file in your project. Through this, you can define "collections" that model various content types on your site.
 
-![](https://res.cloudinary.com/forestry-demo/image/upload/v1690204857/tina-io/docs/product-tour/content-model.png)
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1690206543/tina-io/docs/product-tour/content-modelling.png)
 
 ### Data-fetching
 
 - TinaCMS provides a GraphQL API, making data-fetching more efficient and powerful.
 
-![](https://res.cloudinary.com/forestry-demo/image/upload/v1690204115/tina-io/docs/product-tour/graphql-api.png)
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1690205968/tina-io/docs/product-tour/graphql-query_5.png)
 
 ### Client
 
 - Moreover, we also generate a user-friendly client that simplifies the process of querying your content.
 
-![](https://res.cloudinary.com/forestry-demo/image/upload/v1690204192/tina-io/docs/product-tour/client2.png)
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1690206445/tina-io/docs/product-tour/client.png)
 
 ### Type-safety
 
 - TinaCMS emphasizes type safety, ensuring your content queries remain error-free and consistent, thus improving code reliability and maintainability.
 
-![](https://res.cloudinary.com/forestry-demo/image/upload/v1690205236/tina-io/docs/product-tour/typesafety-example.png)
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1690206441/tina-io/docs/product-tour/client-typesafe.png)

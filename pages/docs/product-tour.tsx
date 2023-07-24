@@ -177,6 +177,10 @@ const SplitContent = styled.div`
   display: flex;
   position: relative;
 
+  h3 {
+    font-size: 1.2rem;
+  }
+
   > * {
     flex: 1;
     margin: 0 10px;
@@ -184,7 +188,7 @@ const SplitContent = styled.div`
     box-sizing: border-box;
   }
 
-  @media (min-width: 769px) {
+  @media (min-width: ${MAX_SPLIT_IMG_WIDTH + 1}px) {
     #main-content-container > h3:not(:first-child),
     #main-content-container > h2:not(:first-child) {
       margin-top: 4.5rem !important;
@@ -234,7 +238,7 @@ const SplitContent = styled.div`
     display: none;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: ${MAX_SPLIT_IMG_WIDTH}px) {
     #sticky-img-container {
       display: none;
     }
