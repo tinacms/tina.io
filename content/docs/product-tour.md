@@ -1,5 +1,5 @@
 ---
-title: Product Tour
+title: Introduction to TinaCMS
 id: /docs/product-tour/
 last_edited: '2022-01-17T15:51:56.737Z'
 next: '/docs/setup-overview'
