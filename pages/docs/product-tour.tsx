@@ -255,8 +255,11 @@ const SplitContent = styled.div`
     height: fit-content;
 
     img {
-      width: 100%;
+      max-width: 100%;
+      max-height: calc(100vh - 100px);
       position: absolute;
+      left: 50%;
+      transform: translate(-50%, 0%);
       top: 0;
       transition: opacity 0.35s ease-in-out;
     }
