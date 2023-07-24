@@ -5,8 +5,9 @@ last_edited: '2022-01-17T15:51:56.737Z'
 next: '/docs/setup-overview'
 ---
 
-Here we give a quick 2 minute overview of TinaCMS, and how it fits into your website.
-If you're instead just looking to quicky get started, jump to our ["Getting Started"](/docs/setup-overview/) doc.
+Here we give a quick **2 minute overview of TinaCMS**, and how it fits into your website.
+
+> If you're instead just looking to quicky get started, jump to our [Getting Started Guide](/docs/setup-overview/).
 
 ## Introduction
 
