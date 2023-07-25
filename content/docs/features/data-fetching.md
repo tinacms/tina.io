@@ -64,6 +64,16 @@ When developing locally, it's often beneficial to talk to the content on your lo
 
 > If you setup Tina via `@tinacms/cli init`, or used one of our starters, this should be setup by default. (Read about the CLI [here](/docs/graphql/cli/.)
 
+## Video Tutorial
+
+For those who prefer to learn from video, you can check out a snippet on "Data Fetching" from our ["TinaCMS Deep Dive"](https://www.youtube.com/watch?v=PcgnJDILv4w&list=PLPar4H9PHKVqoCwZy79PHr8-W_vA3lAOB&pp=iAQB) series.
+
+<div style="position:relative;padding-top:56.25%;">
+  <iframe width="560" frameborder="0" allowfullscreen
+      style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/PcgnJDILv4w?start=402&end=534" title="TinaCMS Deep Dive (Data Fetching)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+  </iframe>
+</div>
+
 ## Summary
 
 - Tina provides a GraphQL API for querying your git-based content.
