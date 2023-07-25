@@ -11,9 +11,9 @@ Tina Cloud adds a GraphQL API to Tina's open-source content editor allowing it t
 
 ## Where do I start?
 
-- Have a look at the updated [Tina Cloud docs](/docs/setup-overview/) and try out a starter.
-- [Sign up for Tina Cloud](https://app.tina.io/register)!
-- [Find us on Discord](https://discord.com/invite/zumN63Ybpf)
+* Have a look at the updated [Tina Cloud docs](/docs/setup-overview/) and try out a starter.
+* [Sign up for Tina Cloud](https://app.tina.io/register)!
+* [Find us on Discord](https://discord.com/invite/zumN63Ybpf)
 
 ## Does Tina Cloud only work with GitHub repositories?
 
@@ -21,10 +21,10 @@ Currently, yes, the first Git provider that Tina Cloud integrates with is GitHub
 
 ## How can I share an idea or get help using Tina Cloud?
 
-- If you haven't checked yet, the [docs](/docs/) may have the answer you are looking for!
-- Connect with us on [Discord](https://discord.com/invite/zumN63Ybpf).
-- We can help you at support@tina.io. Email us if you would like to schedule a chat!
-- Chat with us from your Tina Cloud dashboard (there's a chat widget on the bottom right of the browser window).
+* If you haven't checked yet, the [docs](/docs/) may have the answer you are looking for!
+* Connect with us on [Discord](https://discord.com/invite/zumN63Ybpf).
+* We can help you at support@tina.io. Email us if you would like to schedule a chat!
+* Chat with us from your Tina Cloud dashboard (there's a chat widget on the bottom right of the browser window).
 
 ## What is the pricing for Tina Cloud?
 
@@ -34,7 +34,7 @@ A fair use policy will be coming soon.
 
 We will contact you if we believe your use case may eventually fit within our post-beta paid plans.
 
-## **Does Tina Cloud work with Monorepos?**
+## Does Tina Cloud work with Monorepos?
 
 It does! Tina Cloud can work with sites inside monorepos by specifying the path to your `tina` folder in your Project configuration.
 
@@ -54,12 +54,12 @@ See [Path To Tina](/docs/tina-cloud/dashboard/projects/#path-to-tina) for more i
 
 Tina Cloud's GraphQL API returns this error when it cannot find a file in your GitHub repository. This may occur under the following circumstances:
 
-- The `tina` folder (and `__generated__` subfolder) is not in your GitHub repository remote.
-  - If the folder is in your local repository, but not in your remote, make sure there isn't a `.gitignore` file excluding it.
-- Tina is configured with a branch that doesn't exist or a branch that doesn't contain the `tina` folder.
-  - The referenced branch should be created and should contain the `tina` folder.
-- The apiURL prop is misconfigured on the TinaCMS component.
-  - Check the apiURL and make sure it looks like `https://content.tinajs.io/content/{tina_client_id}/github/{branch}` where `{tina_client_id}` matches the Client ID on the Project in Tina Cloud and `{branch}` is a valid branch.
+* The `tina` folder (and `__generated__` subfolder) is not in your GitHub repository remote.
+  * If the folder is in your local repository, but not in your remote, make sure there isn't a `.gitignore` file excluding it.
+* Tina is configured with a branch that doesn't exist or a branch that doesn't contain the `tina` folder.
+  * The referenced branch should be created and should contain the `tina` folder.
+* The apiURL prop is misconfigured on the TinaCMS component.
+  * Check the apiURL and make sure it looks like `https://content.tinajs.io/content/{tina_client_id}/github/{branch}` where `{tina_client_id}` matches the Client ID on the Project in Tina Cloud and `{branch}` is a valid branch.
 
 ## Tina.io login window doesn't close when logging in from a site
 
@@ -67,11 +67,17 @@ When a user logs in from your site, we will pop open a login window. When login 
 
 The most common reasons for this issue are:
 
-- The Site URL is not properly set for the Tina project. The main window's base URL will need to match the Tina project's Site URL setup in the Tina Cloud Dashboard.
-- The Client ID setup in your site's environment variables does not match the Client ID in your project's settings on the Tina Cloud dashboard.
-- The user attempting to login to Tina Cloud does not have access to edit this site. Ensure that this user is authorized on the Tina Cloud dashboard.
+* The Site URL is not properly set for the Tina project. The main window's base URL will need to match the Tina project's Site URL setup in the Tina Cloud Dashboard.
+* The Client ID setup in your site's environment variables does not match the Client ID in your project's settings on the Tina Cloud dashboard.
+* The user attempting to login to Tina Cloud does not have access to edit this site. Ensure that this user is authorized on the Tina Cloud dashboard.
 
 > Make sure to include `https` in the Site URL eg: https://forestry.io or if you are testing locally, it might be something like `http://localhost:3000`
+
+## How do I resolve "The local GraphQL schema doesn't match the remote GraphQL schema." errors?
+
+If you are getting this error in your build logs, it means that the tina/tina-lock.json in your deployed site doesn't match the version that is in Tina Cloud. To resolve it, make sure you have latest versions of @tinacms/cli and tinacms in your project, and then run the dev command locally. Commit any changes to the tina/tina-lock.json and push those to the git repository linked in Tina Cloud.
+
+If you are getting this error when access the TinaCMS interface, it can be caused by a mismatch between the version of tinacms and @tinacms/cli on the project. Update both dependencies to the latest versions and run the dev command locally. Commit any changes to the tina/tina-lock.json and push those to the git repository linked in Tina Cloud.
 
 ## How do I resolve errors caused by unindexed branches?
 

@@ -285,6 +285,16 @@ Each field in a collection can be of the following `type`:
 - [object](/docs/reference/types/object/)
 - [rich-text](/docs/reference/types/rich-text/)
 
+## Video Tutorial
+
+For those who prefer to learn from video, you can check out a snippet on media from our ["TinaCMS Deep Dive"](https://www.youtube.com/watch?v=PcgnJDILv4w&list=PLPar4H9PHKVqoCwZy79PHr8-W_vA3lAOB&pp=iAQB) series.
+
+<div style="position:relative;padding-top:56.25%;">
+  <iframe width="560" frameborder="0" allowfullscreen
+      style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/PcgnJDILv4w?start=554&end=777" title="TinaCMS Deep Dive (Content Modeling)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+  </iframe>
+</div>
+
 ## Summary
 
 - Your content is modeled in the `tina/config.{ts,js,tsx}` in your repo using `defineConfig`.

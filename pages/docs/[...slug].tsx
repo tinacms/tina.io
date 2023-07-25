@@ -132,7 +132,10 @@ export const getStaticPaths: GetStaticPaths = async function () {
   return {
     fallback: false,
     paths: files
-      .filter((file) => !file.endsWith('index.md'))
+      .filter(
+        (file) =>
+          !file.endsWith('index.md') && !file.endsWith('product-tour.md')
+      )
       .map((file) => {
         const path = file.substring(contentDir.length, file.length - 3)
         return { params: { slug: path.split('/') } }

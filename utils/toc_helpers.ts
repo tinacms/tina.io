@@ -14,7 +14,7 @@ function createHeadings(
     'h1, h2, h3, h4, h5, h6'
   )
 
-  htmlElements.forEach(function(heading: HTMLHeadingElement) {
+  htmlElements.forEach(function (heading: HTMLHeadingElement) {
     headings.push({
       id: heading.id,
       offset: heading.offsetTop,
@@ -36,7 +36,7 @@ export function createTocListener(
   const throttledScroll = () => {
     const scrollPos = window.scrollY
     const newActiveIds = []
-    const activeHeadingCandidates = headings.filter(heading => {
+    const activeHeadingCandidates = headings.filter((heading) => {
       return heading.offset - scrollPos < BASE_OFFSET
     })
 
@@ -51,7 +51,7 @@ export function createTocListener(
     if (activeHeading.level != 'H2') {
       const activeHeadingParentCandidates =
         activeHeadingCandidates.length > 0
-          ? activeHeadingCandidates.filter(heading => {
+          ? activeHeadingCandidates.filter((heading) => {
               return heading.level == 'H2'
             })
           : []
@@ -72,7 +72,7 @@ export function createTocListener(
 
   return function onScroll(): void {
     if (!tick) {
-      setTimeout(function() {
+      setTimeout(function () {
         throttledScroll()
         tick = false
       }, THROTTLE_INTERVAL)
@@ -81,20 +81,60 @@ export function createTocListener(
   }
 }
 
-export function useTocListener(data) {
-  const [activeIds, setActiveIds] = React.useState([])
-  const contentRef = React.useRef<HTMLDivElement>(null)
+function useHookWithRefCallback() {
+  const ref = React.useRef(null)
+  const setRef = React.useCallback((node) => {
+    if (ref.current) {
+      // Make sure to cleanup any events/references added to the last instance
+    }
+
+    if (node) {
+      // Check if a node is actually passed. Otherwise node would be null.
+      // You can now do what you need to, addEventListeners, measure, etc.
+    }
+
+    // Save a reference to the node
+    ref.current = node
+  }, [])
+
+  return [setRef, ref]
+}
+
+function useWindowSize() {
+  if (typeof window !== 'undefined') {
+    return { width: 1200, height: 800 }
+  }
+
+  const [windowSize, setWindowSize] = React.useState<{
+    width: number
+    height: number
+  }>()
 
   React.useEffect(() => {
-    if (typeof window === `undefined` || !contentRef.current) {
+    window.addEventListener('resize', () => {
+      setWindowSize({ width: window.innerWidth, height: window.innerHeight })
+    })
+  }, [])
+
+  return windowSize
+}
+
+export function useTocListener(data) {
+  const [activeIds, setActiveIds] = React.useState([])
+  const [setRef, ref] = useHookWithRefCallback()
+
+  const windowSize = useWindowSize()
+
+  React.useEffect(() => {
+    if (typeof window === `undefined` || !(ref as any).current) {
       return
     }
 
-    const activeTocListener = createTocListener(contentRef, setActiveIds)
+    const activeTocListener = createTocListener(ref as any, setActiveIds)
     window.addEventListener('scroll', activeTocListener)
 
     return () => window.removeEventListener('scroll', activeTocListener)
-  }, [contentRef, data])
+  }, [(ref as any).current, data, windowSize])
 
-  return { contentRef, activeIds }
+  return { contentRef: setRef, activeIds }
 }

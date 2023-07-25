@@ -1,64 +1,106 @@
 ---
-title: Product Tour
+title: Introduction to TinaCMS
 id: /docs/product-tour/
 last_edited: '2022-01-17T15:51:56.737Z'
 next: '/docs/setup-overview'
 ---
 
-To understand the power of Tina, let us first break down Tina into its components.
+Here we give a quick **2 minute overview of TinaCMS**, and how it fits into your website.
 
-## Tina CLI
+> If you're instead just looking to quicky get started, jump to our [Getting Started Guide](/docs/setup-overview/).
 
-![TinaCMS CLI](https://res.cloudinary.com/forestry-demo/image/upload/v1642516210/img/create-tina-app.png 'Setup a project with TinaCMS CLI')
+## Introduction
 
-TinaCMS CLI is a quick and easy way to set up a project with Tina. The CLI can inject Tina into a pre-existing Next.js site, or create a Tina starter site (see our list of [starters](https://app.tina.io/quickstart)) with Tina pre-configured.
+TinaCMS is an open-source Content Management System (CMS) that seamlessly integrates with your Markdown workflow.
 
-A Tina-ified site includes:
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1645712511/tina-io/docs/your-blocks.gif)
 
-- A Tina config file that be used to structure your content and configure Tina.
-- A local version of the Tina GraphQL API (see below!) used to fetch your content.
+### Your Website
 
-The Tina schema file is used to define the shape of your content. To learn more about content modelling within the Tina schema file, click [here](/docs/schema).
-For a list of CLI commands or to learn more about Tina’s CLI, click [here](/docs/cli-overview).
+- With TinaCMS, The developer hosts the site where they like, using whichever framework they choose.
 
-## Tina GraphQl API
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1689874025/tina-io/docs/product-tour/headless_cms1.png)
 
-![Tina GraphQL API](https://res.cloudinary.com/deuzrsg3m/image/upload/v1651008834/carbon_csq54s.png "Fetch data using Tina's GraphQL API")
+### Headless CMS
 
-Tina’s GraphQL API provides a structured API that can be used to fetch your site’s content. This GraphQL API uses your local filesystem as a database. When you define your schema in the Tina schema file, the Tina GraphQL API will generate queries specific to your schema.
+- TinaCMS is "Headless", meaning it's decoupled from your website. TinaCMS provides a queryable content API that your website's code consumes.
 
-When running your site locally, Tina spins up a local GraphQL server at `http://localhost:3000` as well as an Altair client at `http://localhost:4001/altair/` . This allows developers to test out the API and its file fetching capabilities.
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1689874025/tina-io/docs/product-tour/headless_cms2.png)
 
-> When running your site in production with Tina Cloud, instead of the local GraphQL server, your site will run using our hosted content API (more info below!).
+## The CMS Backend
 
-For more info on Tina’s GraphQL API or to understand content fetching, click [here](/docs/features/data-fetching).
+- The TinaCMS backend provides the API for querying your content, offering support for filtering, searching, and pagination.
 
-## Tina Editing UI
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1689874024/tina-io/docs/product-tour/queryable_database.png)
 
-Tina's editing UI is compiled statically into the sites public directory. This allows Tina to be used in any site, regardless of the framework it is built with.
+### Git-backed Content
 
-When a Tina site is served, navigating to the `/admin` (or `/admin/index.html`) route takes you to the Tina editing UI. This UI is used to edit content and manage your site’s content.
+- All your content gets backed by git into JSON/Markdown/MDX files
 
-For more info on Tina’s editing UI, click [here](/docs/using-tina-editor).
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1689874025/tina-io/docs/product-tour/git-backed.png)
 
-Tina has two editing modes. Basic editing, which allows an editor to edit in a "basic editor" and visual editing which can be used on any Reactive site (currently only support react).
+### Tina Cloud
 
-### Visual editing
+- Out of the box, we provide an easy-to-use hosted version of the backend, called Tina Cloud.
 
-![Real-time editing with TinaCMS and Tina Cloud](https://res.cloudinary.com/forestry-demo/image/upload/v1619023278/tina-cms-visual-editing.gif 'Real-time editing with TinaCMS and Tina Cloud')
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1689874024/tina-io/docs/product-tour/tina-cloud.png)
 
-Tina’s sidebar editor allows users to make changes to text, styling or components. Tina’s sidebar editor is set up on the frontend of your site and can be customizable to suit the needs of your site.
+### Self-hosted Backend
 
-To learn more about visual editing and setting up the sidebar, click [here](/docs/tinacms-context).
+- For those preferring more control and customization, TinaCMS also allows you to host the backend entirely on your own stack.
 
-## Tina Cloud
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1689874024/tina-io/docs/product-tour/self-host-backend.png)
 
-![Tina Cloud Dashboard](https://res.cloudinary.com/forestry-demo/image/upload/v1642524904/tina-dashboard.png 'Tina Cloud Dashboard')
+## The CMS Frontend
 
-Tina Cloud is our final piece to providing a full content management experience!
+- TinaCMS provides an intuitive CMS interface for your editors. For sites using React, TinaCMS supports "Visual Editing" to allow content editors to see real-time changes.
 
-When working with Tina in a local environment, **changes made through the Tina sidebar editor are saved locally to your content files** using the local GraphQL API. When editing with Tina Cloud, **edits are saved directly to GitHub** using our hosted content API. The Tina Cloud Dashboard enables you to connect Tina Cloud to your site’s GitHub repo.
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1645712511/tina-io/docs/your-blocks.gif)
 
-Additionally, when a site is configured with Tina Cloud, the editing capability is set behind an authentication wall. This allows only authorized users to make changes to your site. The Tina Cloud Dashboard enables you to invite other users, thus granting them access to edit content on your site and permitting their changes to reflect directly in GitHub.
+### /admin route
 
-Currently Tina Cloud is free to sign up - check it out [here](https://app.tina.io/register)! Or to learn more about Tina Cloud, click [here](/docs/tina-cloud).
+- Users interact with the CMS by navigating to the `/admin` page on your site.
+
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1689874024/tina-io/docs/product-tour/admin.png)
+
+### Saving
+
+- When users make a change in the CMS, a commit is made back to your Git repository.
+
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1689874024/tina-io/docs/product-tour/git-save.png)
+
+## Integrating TinaCMS into a site
+
+TinaCMS can be setup on your site with `tinacms init`. This installs a few Tina packages, and add some boilerplate
+
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1689819318/tina-io/docs/product-tour/cli-init.png)
+
+### Running TinaCMS Locally
+
+- You also have the flexibility to run TinaCMS locally, sourcing local files instead of interacting with the hosted API. This gives developers an ultra-fast feedback loop.
+
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1689874024/tina-io/docs/product-tour/local-workflow.png)
+
+### Content Modelling
+
+- Content in TinaCMS is modelled using a `tina/config.ts` file in your project. Through this, you can define "collections" that model various content types on your site.
+
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1690206543/tina-io/docs/product-tour/content-modelling.png)
+
+### Data-fetching
+
+- TinaCMS provides a GraphQL API, making data-fetching more efficient and powerful.
+
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1690205968/tina-io/docs/product-tour/graphql-query_5.png)
+
+### Client
+
+- Moreover, we also generate a user-friendly client that simplifies the process of querying your content.
+
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1690206445/tina-io/docs/product-tour/client.png)
+
+### Type-safety
+
+- TinaCMS emphasizes type safety, ensuring your content queries remain error-free and consistent, thus improving code reliability and maintainability.
+
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1690206441/tina-io/docs/product-tour/client-typesafe.png)

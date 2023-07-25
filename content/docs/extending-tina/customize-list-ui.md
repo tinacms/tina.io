@@ -85,3 +85,13 @@ For example:
 
 which will render as:
 ![List UI with label and style prop](https://res.cloudinary.com/forestry-demo/image/upload/v1649941182/tina-io/docs/extending-tina/Extending_Tina_Style_List_Props.png)
+
+## Video Tutorial
+
+For those who prefer to learn from video, you can check out a snippet on "Customizing List Items" from our ["TinaCMS Deep Dive"](https://www.youtube.com/watch?v=PcgnJDILv4w&list=PLPar4H9PHKVqoCwZy79PHr8-W_vA3lAOB&pp=iAQB) series.
+
+<div style="position:relative;padding-top:56.25%;">
+  <iframe width="560" frameborder="0" allowfullscreen
+      style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/amSRwAbgMR0?start=545&end=727" title="TinaCMS Deep Dive (List Item Rendering)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+  </iframe>
+</div>
