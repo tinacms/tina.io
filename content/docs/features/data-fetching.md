@@ -70,7 +70,7 @@ For those who prefer to learn from video, you can check out a snippet on "Data F
 
 <div style="position:relative;padding-top:56.25%;">
   <iframe width="560" frameborder="0" allowfullscreen
-      style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/PcgnJDILv4w?start=402&end=534" title="TinaCMS Deep Dive (Data Fetching)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+      style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/PcgnJDILv4w?start=403&end=534" title="TinaCMS Deep Dive (Data Fetching)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
   </iframe>
 </div>
 
