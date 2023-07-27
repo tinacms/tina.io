@@ -78,7 +78,7 @@ const OverviewTemplate = (props) => {
               experience that is perfectly tailored to their site.
             </p>
           </div>
-          <div className="cards">
+          <div className="cards grid-cols-1 md:grid-cols-2">
             {cards.map((card) => (
               <a className="card" href={card.link}>
                 <h2>{card.header}</h2>
@@ -130,7 +130,6 @@ const OverviewTemplate = (props) => {
             border-radius: 0.75rem;
             overflow: hidden;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             width: 100%;
             border: 1px solid var(--color-seafoam-300);
             box-shadow: 0 6px 24px rgba(0, 37, 91, 0.05),
