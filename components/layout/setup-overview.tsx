@@ -80,7 +80,7 @@ const OverviewTemplate = (props) => {
           </div>
           <div className="cards">
             {cards.map((card) => (
-              <a className="card" href={card.link}>
+              <a className="card [&>*>*]:!m-auto" href={card.link}>
                 <h2>{card.header}</h2>
                 <p>{card.description}</p>
                 <div className="spacer"></div>
@@ -130,11 +130,20 @@ const OverviewTemplate = (props) => {
             border-radius: 0.75rem;
             overflow: hidden;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             width: 100%;
             border: 1px solid var(--color-seafoam-300);
             box-shadow: 0 6px 24px rgba(0, 37, 91, 0.05),
               0 2px 4px rgba(0, 37, 91, 0.03);
+          }
+
+          .card:first-child {
+            grid-column: 1 / -1;
+            text-align: center;
+
+            a {
+              margin: auto !important;
+            }
           }
 
           .card {
