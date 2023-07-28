@@ -52,15 +52,15 @@ This is where all the files that are generated during the schema build process a
 
 ### `_graphql.json`
 
-The Graphql AST (represented in JSON). Must be pushed to GitHub.
+The Graphql AST (represented in JSON).
 
 ### `_lookup.json`
 
-This is a lookup file that is used to resolve document names. Must be pushed to GitHub.
+This is a lookup file that is used to resolve document names.
 
 ### `_schema.json`
 
-The Graphql Schema AST (represented in JSON). Must be pushed to GitHub.
+The Graphql Schema AST (represented in JSON).
 
 ### `types.{js,ts}`
 
