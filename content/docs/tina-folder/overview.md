@@ -52,32 +52,32 @@ This is where all the files that are generated during the schema build process a
 
 ### `_graphql.json`
 
-The Graphql AST (represented in JSON). Must be pushed to GitHub.
+The Graphql AST (represented in JSON).
 
 ### `_lookup.json`
 
-This is a lookup file that is used to resolve document names. Must be pushed to GitHub.
+This is a lookup file that is used to resolve document names.
 
 ### `_schema.json`
 
-The Graphql Schema AST (represented in JSON). Must be pushed to GitHub.
+The Graphql Schema AST (represented in JSON).
 
 ### `types.{js,ts}`
 
-This file is where all the types of the schema are generated. This file is for the user to use in there site if they want to use the types. It is generated on every build, and does not need to be pushed to GitHub.
+This file is where all the types of the schema are generated. This file is for the user to use in there site if they want to use the types. It is generated on every build.
 
 ### `client.{js,ts}`
 
-This file is where all client is generated. This client can be used on the backend and the frontend. It is very lightweight as to not bloat the bundle size. It is generated on every build, and does not need to be pushed to GitHub. [Check out this document](/docs/data-fetching/overview/) for more information on how to use the client.
+This file is where all client is generated. This client can be used on the backend and the frontend. It is very lightweight as to not bloat the bundle size. It is generated on every build. [Check out this document](/docs/data-fetching/overview/) for more information on how to use the client.
 
 ### `frags.gql`
 
-This file contains the raw Graphql fragments that are generated and used by the [experimental generated client](/docs/data-fetching/overview/). Does not need to be checked into source control.
+This file contains the raw Graphql fragments that are generated and used by the [experimental generated client](/docs/data-fetching/overview/).
 
 ### `queries.gql`
 
-This file contains the raw graphql queries that are generated and used by the [experimental generated client](/docs/data-fetching/overview/). Does not need to be checked into source control since the the code for the generated client is `tina/__generated__/types.ts`.
+This file contains the raw graphql queries that are generated and used by the [experimental generated client](/docs/data-fetching/overview/).
 
 ### `schema.gql`
 
-This file contains the raw graphql schema. Does not need to be checked into source control.
+This file contains the raw graphql schema.
