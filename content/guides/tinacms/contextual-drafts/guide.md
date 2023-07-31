@@ -218,3 +218,68 @@ export default App
 Now when an editor logs in they will enter preview mode and be able to contextual edit draft documents.
 
 You can see the [final result here](https://github.com/tinacms/tina-barebones-starter-preview-mode) and if you want to learn more about preview mode [see the Next.js docs](https://nextjs.org/docs/advanced-features/preview-mode).
+
+## Working with editorial workflows
+
+If you're using [editorial workflows](https://tina.io/docs/drafts/editorial-workflow/), you'll likely want to ensure that the preview data is fetching content from the branch
+you're editing. To enable this, subscribe to the `branch:change` event via the `cmsCallback` function in the config:
+
+```ts
+// tina/config.ts
+import { defineConfig } from 'tinacms'
+
+export default defineConfig({
+  // ...
+  cmsCallback: (cms) => {
+    cms.events.subscribe('branch:change', async ({ branchName }) => {
+      console.log(`branch change detected. setting branch to ${branchName}`)
+      return fetch(`/api/preview/change-branch?branchName=${branchName}`)
+    })
+    return cms
+  },
+})
+```
+
+Add another api endpoint at `/api/preview/change-branch`, which only updates the branch data if we're
+in preview mode:
+
+```ts
+// api/preview/change-branch
+export default function handler(req, res) {
+  if (req.preview && req.query?.branchName) {
+    res.setPreviewData({ branch: req.query.branchName })
+    return res.status(200).json({ message: 'Success' })
+  }
+  return res.status(403).json({ message: 'Unauthorized' })
+}
+```
+
+Update our request to include the branch (if provided) in `getStaticProps`:
+
+```ts
+export const getStaticProps = async ({
+  params,
+  preview = false,
+  previewData = {},
+}) => {
+  const { data, query, variables } = await client.queries.post(
+    {
+      relativePath: params.slug + '.md',
+    },
+    {
+      branch: preview && previewData?.branch,
+    }
+  )
+
+  return {
+    // the post is not found if its a draft and the preview is false
+    notFound: data?.post?.draft && !preview,
+    props: {
+      preview,
+      data,
+      query,
+      variables,
+    },
+  }
+}
+```
