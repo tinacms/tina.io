@@ -376,61 +376,61 @@
       {
         "slug": "/guides/tinacms/react-data-fetching/guide/",
         "title": "Querying Tina Content at Runtime"
-      }
-    ]
-  },
-  {
-    "title": "Migrating From Forestry",
-    "slug": "/docs/forestry/overview/",
-    "items": [
+      },
       {
+        "title": "Migrating From Forestry",
         "slug": "/docs/forestry/overview/",
-        "title": "Overview"
-      },
-      {
-        "slug": "/docs/forestry/migrate/",
-        "title": "Setting up Tina"
-      },
-      {
-        "slug": "/docs/forestry/common-errors/",
-        "title": "Common Errors & Fixes when Migrating to TinaCMS"
-      },
-      {
-        "title": "Comparing Forestry & Tina Concepts",
         "items": [
           {
-            "slug": "/docs/forestry/accessing-cms/",
-            "title": "Accessing the CMS"
+            "slug": "/docs/forestry/overview/",
+            "title": "Overview"
           },
           {
-            "slug": "/docs/forestry/local-workflow/",
-            "title": "Local Workflow"
+            "slug": "/docs/forestry/migrate/",
+            "title": "Setting up Tina"
           },
           {
-            "slug": "/docs/forestry/previews/",
-            "title": "Previews"
+            "slug": "/docs/forestry/common-errors/",
+            "title": "Common Errors & Fixes when Migrating to TinaCMS"
           },
           {
-            "slug": "/docs/forestry/content-modelling/",
-            "title": "Content Modelling"
+            "title": "Comparing Forestry & Tina Concepts",
+            "items": [
+              {
+                "slug": "/docs/forestry/accessing-cms/",
+                "title": "Accessing the CMS"
+              },
+              {
+                "slug": "/docs/forestry/local-workflow/",
+                "title": "Local Workflow"
+              },
+              {
+                "slug": "/docs/forestry/previews/",
+                "title": "Previews"
+              },
+              {
+                "slug": "/docs/forestry/content-modelling/",
+                "title": "Content Modelling"
+              },
+              {
+                "slug": "/docs/forestry/drafts/",
+                "title": "Drafts"
+              },
+              {
+                "slug": "/docs/forestry/data-files/",
+                "title": "Data Files"
+              },
+              {
+                "slug": "/docs/forestry/media/",
+                "title": "Media"
+              }
+            ]
           },
           {
-            "slug": "/docs/forestry/drafts/",
-            "title": "Drafts"
-          },
-          {
-            "slug": "/docs/forestry/data-files/",
-            "title": "Data Files"
-          },
-          {
-            "slug": "/docs/forestry/media/",
-            "title": "Media"
+            "slug": "/docs/forestry/missing-forestry-features/",
+            "title": "Missing Forestry Features"
           }
         ]
-      },
-      {
-        "slug": "/docs/forestry/missing-forestry-features/",
-        "title": "Missing Forestry Features"
       }
     ]
   },
