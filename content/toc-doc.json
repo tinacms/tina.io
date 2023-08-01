@@ -163,8 +163,21 @@
                 "slug": "/docs/self-hosted/database-adapter/mongodb/"
               },
               {
-                "title": "Bring Your Own Data Engine",
+                "title": "Bring Your Own  Database Adapter",
                 "slug": "/docs/self-hosted/database-adapter/make-your-own/"
+              }
+            ]
+          },
+          {
+            "title": "Querying Content",
+            "slug": "/docs/self-hosted/querying-data/"
+          },
+          {
+            "title": "Hosting the GraphQL API",
+            "items": [
+              {
+                "title": "Overview",
+                "slug": "/docs/self-hosted/graphql-endpoint/overview/"
               }
             ]
           },

@@ -20,7 +20,7 @@ export default isLocal ? createLocalDatabase() ? createDatabase({
         owner: process.env.GITHUB_OWNER,
         repo: process.env.GITHUB_REPO,
         token: process.env.GITHUB_PERSONAL_ACCESS_TOKEN,
-      }),,
+      }),
     // ...
 })
 ```

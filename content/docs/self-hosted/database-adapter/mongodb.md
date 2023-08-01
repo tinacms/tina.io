@@ -24,8 +24,8 @@ export default isLocal
   : createDatabase({
       // ...
       databaseAdapter: new MongodbLevel<string, Record<string, any>>({
-        // If you wanted to use a different collection for each branch the branch name could be used as the collection name
-        collectionName: 'tinacms',
+        // Create a new collection for each branch (if you are using branches). If you are not using branches you can pass a static collection nam. ie: "tinacms"
+        collectionName: branchName,
         dbName: 'tinacms',
         mongoUri: process.env.MONGODB_URI as string,
       }),
