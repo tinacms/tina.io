@@ -308,6 +308,10 @@
                 "slug": "/docs/self-hosted/authentication-provider/next-auth/"
               },
               {
+                "title": "Clerk Auth",
+                "slug": "/docs/self-hosted/authentication-provider/clerk-auth/"
+              },
+              {
                 "title": "Using Tina Cloud for Authentication",
                 "slug": "/docs/self-hosted/authentication-provider/tina-cloud/"
               },

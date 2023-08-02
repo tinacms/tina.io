@@ -5,7 +5,7 @@ prev: '/docs/self-hosted/authentication-provider/overview'
 next: '/docs/self-hosted/authentication-provider/tina-cloud'
 ---
 
-Clerk is a SaaS auth service for user management. You can use Clerk as the authentication layer for any self-hosted Tina setup.
+[Clerk](https://clerk.com) is a user management service which you can use for any self-hosted Tina setup.
 
 ## Getting Started
 
@@ -21,7 +21,7 @@ Visit [clerk.com](https://clerk.com/) to create an account and an "application".
 
 ![Clerk API Keys screenshot](/img/clerk-api-keys-screenshot.png)
 
-```.env
+```bash
 CLERK_SECRET=sk_test_my-clerk-secret
 TINA_PUBLIC_CLERK_PUBLIC_KEY=pk_test_my-clerk-public-key
 TINA_PUBLIC_IS_LOCAL=false
@@ -31,7 +31,7 @@ TINA_PUBLIC_IS_LOCAL=false
 
 ## Update your Tina Config
 
-Add the following to your `tina/config.{ts.js}` file
+Add the following to your `tina/config.{ts.js}` file, be sure to replace "my-email@gmail.com" with the email you're signing in with:
 
 ```ts
 import Clerk from '@clerk/clerk-js'
@@ -43,7 +43,7 @@ const clerk = new Clerk(process.env.TINA_PUBLIC_CLERK_PUBLIC_KEY)
  * https://clerk.com/docs/authentication/allowlist
  */
 export const isUserAllowed = (emailAddress: string) => {
-  const allowList = ['jeffsee.55@gmail.com']
+  const allowList = ['my-email@gmail.com']
   if (allowList.includes(emailAddress)) {
     return true
   }
