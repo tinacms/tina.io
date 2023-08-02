@@ -83,6 +83,12 @@ export default defineConfig({
             elements: {
               // Tina's sign in modal is in the way without this
               modalBackdrop: { zIndex: 20000 },
+              // Some styles clash with Tina's styling
+              socialButtonsBlockButton: 'px-4 py-2 border border-gray-100',
+              formFieldInput: `px-4 py-2`,
+              formButtonPrimary: 'bg-blue-600 text-white p-4',
+              formFieldInputShowPasswordButton: 'm-2',
+              dividerText: 'px-2',
             },
           },
         })
