@@ -4,7 +4,7 @@ import rehypeRaw from 'rehype-raw'
 // Need this to render tables
 import remarkGfm from 'remark-gfm'
 
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
 import CodeStyle from '../styles/Code'
 
 import LinkSvg from '../../public/svg/link.svg'
@@ -13,7 +13,6 @@ import styled from 'styled-components'
 import * as shortcodeRenderers from '../../utils/shortcodes'
 
 import GithubSlugger from 'github-slugger'
-
 
 interface MarkdownContentProps {
   content: string

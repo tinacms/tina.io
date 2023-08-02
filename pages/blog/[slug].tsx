@@ -21,7 +21,7 @@ import { WarningCallout } from '../../utils/shortcodes'
 import { useTina } from 'tinacms/dist/react'
 import path from 'path'
 import { TinaMarkdown, Components } from 'tinacms/dist/rich-text'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
 import atomOneDark from 'react-syntax-highlighter/dist/cjs/styles/prism/atom-dark'
 import { BiRightArrowAlt } from 'react-icons/bi'
 

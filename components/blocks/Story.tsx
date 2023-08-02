@@ -1,6 +1,6 @@
 import React from 'react'
 import { useInView } from 'react-intersection-observer'
-import SyntaxHighlighter from 'react-syntax-highlighter'
+import { Light as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { Container } from './Container'
 import { Actions } from './Actions'
 import type { TinaTemplate } from '@tinacms/cli'
