@@ -12,6 +12,16 @@ const dummyMailchimpEndpoint =
   'https://theDomainHere.us18.list-manage.com/subscribe/post?u=1512315231252&amp;id=0asd21t12e1'
 
 const config = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        port: '',
+        pathname: '/forestry-demo/**',
+      },
+    ],
+  },
   async rewrites() {
     return [
       {
