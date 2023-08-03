@@ -58,7 +58,7 @@ The `npx @tinacms/cli@latest init` command does a few things in your Next.js app
 
 Now that you have a basic Tina setup you can launch your application using the following command:
 
-```bash,copy
+```bash
 yarn dev
 ```
 
@@ -165,7 +165,7 @@ You have only replaced a single line so far, which is to update the `path` to th
 
 Now you need to handle each field for your posts frontmatter, below is the finished file:
 
-```js,copy
+```js
 import { defineSchema } from 'tinacms'
 
 export default defineSchema({
@@ -225,7 +225,7 @@ The `getStaticPaths` query is going to need to know where all of your markdown f
 
 So based upon the `postConnection` you will want to query the `sys` which is the filesystem and retrieve the `filename`, which will return all the filenames without the extension.
 
-```graphql,copy
+```graphql
 query {
   postConnection {
     edges {
@@ -241,7 +241,7 @@ query {
 
 If you run this query in the GraphQL client you will see the following returned:
 
-```json,copy
+```json
 {
   "data": {
     "postConnection": {
@@ -308,7 +308,7 @@ staticRequest({
 
 You can use the `postConnection` query from earlier to build your dynamic routes:
 
-```js,copy
+```js
 export async function getStaticPaths() {
   const postsListData = await staticRequest({
     query: `
@@ -327,7 +327,7 @@ export async function getStaticPaths() {
     variables: {},
   })
   return {
-    paths: postsListData.postConnection.edges.map(edge => ({
+    paths: postsListData.postConnection.edges.map((edge) => ({
       params: { slug: edge.node._sys.filename },
     })),
     fallback: false,
@@ -399,7 +399,7 @@ import { useTina } from 'tinacms/dist/edit-state'
 
 You can now use your query that you created as a variable, this variable will be used both in your `getStaticProps` and in your `useTina` hook.
 
-```javascript,copy
+```javascript
 const query = `query BlogPostQuery($relativePath: String!) {
   post(relativePath: $relativePath) {
     title
