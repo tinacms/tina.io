@@ -324,7 +324,7 @@ export default defineConfig({
           {
             label: 'Date',
             name: 'date',
-            type: 'date',
+            type: 'datetime',
           },
         ],
       },
