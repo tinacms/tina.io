@@ -34,7 +34,7 @@
         },
         {
           "headline": "Protect Branches",
-          "text": "Prevent editing on specific branches. When attempting to save to a protected branch, content editors will be prompted to create a new branch instead.  ",
+          "text": "Prevent editing on specific branches. When attempting to save to a protected branch, content editors will be prompted to create a new branch instead.   ",
           "media": [
             {
               "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1689016108/blog-media/editorial-workflow/enable-editorial-workflow.png",
