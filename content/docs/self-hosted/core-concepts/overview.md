@@ -46,7 +46,7 @@ If you wanted to use MongoDB for your database and Github for your Git Provider 
 ```ts
 // tina/database.ts
 import { createDatabase, createLocalDatabase } from '@tinacms/datalayer'
-import { GithubProvider } from 'tinacms-gitprovider-github'
+import { GitHubProvider } from 'tinacms-gitprovider-github'
 import { MongodbLevel } from 'mongodb-level'
 
 const branch =
