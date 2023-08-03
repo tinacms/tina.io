@@ -226,15 +226,11 @@
         "slug": "/docs/self-hosted/overview/"
       },
       {
-        "title": "Use The Self Hosted Starter",
+        "title": "Using a Starter (Recommended)",
         "items": [
           {
-            "title": "Getting Started",
+            "title": "NextJS + Next Auth + Vercel KV",
             "slug": "/docs/self-hosted/getting-started/"
-          },
-          {
-            "title": "Configuration",
-            "slug": "/docs/self-hosted/configuration/"
           }
         ]
       },

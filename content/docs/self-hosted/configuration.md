@@ -1,5 +1,5 @@
 ---
-title: TinaCMS Self-Hosted Configuration
+title: Using the Next.js Vercel Starter
 id: /docs/self-hosted/configuration
 last_edited: '2023-02-01T04:00:00.000Z'
 ---

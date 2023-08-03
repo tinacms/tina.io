@@ -49,3 +49,15 @@ const nextApiHandler: NextApiHandler = async (req, res) => {
 
 export defualt nextApiHandler
 ```
+
+Next Make sure to update your TinaCMS config to use the new endpoint.
+
+```js
+// tina/config.{js,ts}
+
+export default defineConfig({
+  // This is the url to your graphql endpoint
+  contentApiUrlOverride: '/api/gql',
+  //...
+})
+```
