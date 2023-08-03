@@ -5,9 +5,9 @@ prev: '/docs/self-hosted/database-adapter/overview'
 next: '/docs/self-hosted/database-adapter/mongodb'
 ---
 
-The vercel KV database adapter allows you to store your data in the [Vercel KV](https://vercel.com/docs/concepts/projects#environment-variables). This adapter uses the [upstash redis client](https://www.npmjs.com/package/@upstash/redis) so will work on [upstash redis](https://docs.upstash.com/redis) as well.
+The Vercel KV database adapter allows you to use the [Vercel KV](https://vercel.com/docs/storage/vercel-kv) database with Tina. This adapter uses the [upstash redis client](https://www.npmjs.com/package/@upstash/redis), allowing it to also work with [upstash redis](https://docs.upstash.com/redis) as well.
 
-To get started you will need to setup some en  environment variables.
+To get started, you will need to setup some environment variables.
 
 First copy your values from the Vercel or Upstash dashboard.
 

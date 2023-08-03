@@ -1,13 +1,13 @@
 ---
-title: Github Git Provider
+title: GitHub Git Provider
 id: '/docs/self-hosted/git-provider/github'
 prev: '/docs/self-hosted/git-provider/overview'
 next: '/docs/self-hosted/git-provider/make-your-own'
 ---
 
-The Github Git Provider handles saving and deleting content to github. It can be used as a prop to the `createDatabase` function.
+The GitHub Git Provider handles saving and deleting content to a GitHub hosted git repository. It is configured as a parameter to the `createDatabase` function.
 
-## Adding the Github Git Provider
+## Adding the GitHub Git Provider
 
 ```ts
 import { GitHubProvider } from 'tinacms-gitprovider-github'
@@ -27,7 +27,7 @@ export default isLocal ? createLocalDatabase() ? createDatabase({
 
 ## Github Git Provider Options
 
-### Required Options
+### Required Parameters
 
 | Option   | Description                                                                               |
 | -------- | ----------------------------------------------------------------------------------------- |
@@ -36,10 +36,10 @@ export default isLocal ? createLocalDatabase() ? createDatabase({
 | `repo`   | The repo to save content to.                                                              |
 | `token`  | A [Github Personal Access Token](https://github.com/settings/personal-access-tokens/new). |
 
-### Optional Options
+### Optional Parameters
 
 | Option           | Description                                                                                                                 |
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------- |
 | `commitMessage`  | The commit message to use when saving content. Defaults to `Edited with TinaCMS`.                                           |
-| `rootPath`       | This path will be prefixed to all paths (good for monorepos)                                                                |
+| `rootPath`       | This path will be prefixed to all paths. Usually only used in monorepos. Optional. |
 | `octokitOptions` | Options passed to the [Octokit constructor ](https://github.com/octokit/octokit.js/blob/main/README.md#constructor-options) |

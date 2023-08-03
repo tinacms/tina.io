@@ -1,11 +1,11 @@
 ---
-title: Self Hosted Core Concepts
+title: Self-Hosted Core Concepts
 id: '/docs/self-hosted/core-concepts/overview'
 prev: null
 next: null
 ---
 
-The Datalayer contains 3 main components all of these components are meant to be interchangeable, meaning you can use any of the components with any other component.
+The self-hosted architecture consists of three components, all of which are designed to be fully configurable by the developer.
 
 ![Self Hosted Core Concepts](/Datalayer.svg)
 
@@ -16,7 +16,7 @@ The Datalayer contains 3 main components all of these components are meant to be
 - [Authentication](/docs/self-hosted/authentication/overview)
   - Handles authentication and authorization
 
-## Configuring the Datalayer
+## Configuring the Data Layer
 
 ### tina/database.{ts,js}
 
@@ -30,7 +30,7 @@ Example:
 // tina/database.ts
 import { createDatabase, createLocalDatabase } from '@tinacms/datalayer'
 
-// isLocal will decide weather to use a local file system database or a remote database
+// isLocal will decide whether to use a local file system database or a remote database
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
 
 export default isLocal
@@ -54,7 +54,7 @@ const branch =
   process.env.VERCEL_GIT_COMMIT_REF ||
   process.env.HEAD ||
   'main'
-
+const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
 export default isLocal
   ? createLocalDatabase()
   : createDatabase({
@@ -82,20 +82,20 @@ This is a factory function that creates a new instance of the TinaCMS Database. 
 | `databaseAdapter`     | The [database adapter](/docs/self-hosted/database-adapter/overview) to use. (Required)                                                                                                                                                                                                     |
 | `gitProvider`         | The [git provider](/docs/self-hosted/git-provider/overview) to use. (Required)                                                                                                                                                                                                             |
 | `tinaDirectory`       | The directory used to store tina files. Defaults to `tina` (Optional)                                                                                                                                                                                                                      |
-| `bridge`              | The bridge used to index the content to the database adapter. This defaults to the FileSystem. The `bridge` is a more advanced use case if you want to index from a differt souce other then the fileSystem, please [reach out a discord](https://discord.gg/zumN63Ybpf) for further help. |
-| `indexStatusCallback` | an async function that is called to report the status on the current indexing                                                                                                                                                                                                              |
+| `bridge`              | The bridge used to index the content to the database adapter. This defaults to the FileSystem. The `bridge` is a more advanced use case if you want to index from a different source other than the filesystem. Please [reach out a discord](https://discord.gg/zumN63Ybpf) for further help. |
+| `indexStatusCallback` | an async function that is called to report the status on the current indexing. (Optional)                                                                                                                                                                                                              |
 
 ### CreateLocalDatabase Function
 
-This is a factory function that creates a database that can be used for locally development or [static builds](/docs/cli-overview/#examples).
+This is a factory function that creates a database that can be used for local development or [static builds](/docs/cli-overview/#examples).
 
-It uses a local in memory database adapter and a file system git provider that just writes changes to the file system (note: it does not commit them).
+It uses a local in-memory database adapter and a file-system git provider that only writes changes to the file-system without committing them.
 
 (_does not take any parameter_)
 
 ## Custom Authentication
 
-Custom authentication is setup in **`tina/config.{js,ts}`** file. Tina Cloud can also be used for authentication. For more info checkout the [auth provider docs](/docs/self-hosted/authentication-provider/overview/).
+Custom authentication is setup in the **`tina/config.{js,ts}`** file. Tina Cloud can also be used for authentication. For more info check out the [auth provider docs](/docs/self-hosted/authentication-provider/overview/).
 
 Example:
 

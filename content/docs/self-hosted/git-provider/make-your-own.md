@@ -26,7 +26,7 @@ This is used to delete content from git. It is called whenever a value is delete
 
 ## Example
 
-Here is the source code for the [Github Git Provider](/docs/self-hosted/git-provider/github). It is a good example of how to implement the `GitProvider` interface.
+Here is the source code for the [GitHub Git Provider](/docs/self-hosted/git-provider/github). It is a good example of how to implement the `GitProvider` interface.
 
 ```ts
 import { Octokit } from '@octokit/rest'
@@ -45,7 +45,7 @@ export interface GitHubProviderOptions {
   octokitOptions?: OctokitOptions
 }
 
-export class MyGithubProvider implements GitProvider {
+export class MyGitHubProvider implements GitProvider {
   octokit: Octokit
   owner: string
   repo: string
@@ -134,11 +134,11 @@ database.{ts,js}
 
 ```ts
 import { createDatabase, createLocalDatabase } from '@tinacms/datalayer'
-import { MyGithubProvider } from './my-git-provider'
+import { MyGitHubProvider } from './my-git-provider'
 //...
 
 export default isLocal ? createLocalDatabase() ? createDatabase({
-    gitProvider: new MyGithubProvider({
+    gitProvider: new MyGitHubProvider({
         //... Options
     }),
     // ...

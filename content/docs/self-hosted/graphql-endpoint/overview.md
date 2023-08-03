@@ -3,12 +3,12 @@ title: Hosting the GraphQL Endpoint
 id: '/docs/self-hosted/graphql-endpoint/overview'
 ---
 
-The graphQL endpoint it was it used when a Edior goes into admin mode and starts to edit the content of the site. It is responsible passing graphQL queries to the backend, returning the results and ensuring that the user is authenticated.
+The GraphQL endpoint is used when an Editor switches to edit mode to edit the content of the site. It is responsible for passing GraphQL queries to the backend and returning the results. The endpoint should also ensure that the user is authenticated.
 
 
 ## Configuration
 
-You need to create a endpoint that can handle post requests. In this example we will use next.js api routes but you can use any framework you want.
+You need to create an endpoint that can handle post requests. In this example we will use Next.js api routes, but you can use any framework you want.
 
 ```js
 // pages/api/graphql.js
@@ -21,18 +21,17 @@ const nextApiHandler: NextApiHandler = async (req, res) => {
   return res.json(result);
 };
 
-export defualt nextApiHandler
+export default nextApiHandler
 ```
 
 ## Authentication
 
-We need to add authentication to the endpoint so that only editors can access it. For more info on authentication see [Authentication Provider docs](/docs/self-hosted/authentication-provider/overview)
+We need to add authentication to the endpoint so that only editors can access it. For more information on authentication see the [Authentication Provider docs](/docs/self-hosted/authentication-provider/overview)
 
 
-Depending on the authentication provider the code will look a bit differnt but in general it will look something like this.
+Depending on the authentication provider, the code may look a bit different, but in general it will look something like this:
 
 ```js
-// pages/api/graphql.js
 // pages/api/graphql.js
 import { NextApiHandler } from "next";
 import databaseClient from "../../tina/__generated__/databaseClient";
