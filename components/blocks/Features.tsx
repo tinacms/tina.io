@@ -1,6 +1,6 @@
 import { Actions } from './Actions'
 import { Container } from './Container'
-import { Light as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { Prism } from '../styles/Prism'
 import { tinaField } from 'tinacms/dist/react'
 
 export function FeatureBlock({ data, index }) {
@@ -72,18 +72,17 @@ export function FeatureBlock({ data, index }) {
                       'em',
                   }}
                 >
-                  <SyntaxHighlighter
-                    language={
-                      data.media[0].language
-                        ? data.media[0].language
-                        : 'javascript'
-                    }
-                    useInlineStyles={false}
-                    // wrapLines={true}
-                    // wrapLongLines={true}
-                  >
-                    {data.media[0].code}
-                  </SyntaxHighlighter>
+                  <div className="p-2 [&>pre]:!bg-transparent">
+                    <Prism
+                      lang={
+                        data.media[0].language
+                          ? data.media[0].language
+                          : 'javascript'
+                      }
+                      theme="nightOwl"
+                      value={data.media[0].code}
+                    />
+                  </div>
                 </div>
               </div>
             )}

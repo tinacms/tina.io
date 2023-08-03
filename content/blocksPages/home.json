@@ -117,7 +117,7 @@
             {
               "file": "about.mdx",
               "code": "---\ntitle: Collaborate With Your Team\n---\n\nOnline tools help drive your business forward.\nReach new audiences and collaborate with your\nteam – **All in the cloud.**\n\n<Button\ntext=\"Get Started\"\nlink=\"/get-started\"\n/>",
-              "language": "mdx",
+              "language": "markdown",
               "scale": 1,
               "_template": "code"
             }
