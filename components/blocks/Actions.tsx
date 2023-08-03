@@ -18,7 +18,7 @@ export const Actions = ({ items, align = 'left' }) => {
             if (item.variant == 'command') {
               return <CodeButton key={item.label}
                 data-tina-field={tinaField(item, 'label')}
-              > {item.label}</CodeButton>
+              >{item.label}</CodeButton>
             }
             const { variant, label, icon, url } = item
             const externalUrlPattern = /^((http|https|ftp):\/\/)/

@@ -48,13 +48,24 @@ export default function Page(props) {
     if (!activeIds.length) {
       return
     }
-    const imageSrc = (
-      document.querySelector(
-        `h2#${activeIds[0]} ~ *:has(img) img, ` +
-          `h3#${activeIds[0]} ~ *:has(img) img, ` +
-          `h4#${activeIds[0]} ~ *:has(img) img`
-      ) as any
-    )?.src
+
+    const heading = document.querySelector(
+      `h2#${activeIds[0]}, h3#${activeIds[0]}, h4#${activeIds[0]}`
+    )
+    let imageSrc = null
+
+    if (heading) {
+      let sibling = heading.nextElementSibling
+
+      while (sibling) {
+        const image = sibling.querySelector('img')
+        if (image) {
+          imageSrc = image.src
+          break
+        }
+        sibling = sibling.nextElementSibling
+      }
+    }
 
     // limit activeIds to 1
     const deepestActiveIds = activeIds.slice(0, 1)

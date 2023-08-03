@@ -18,7 +18,7 @@ export default defineConfig({
   schema: {
     collections: [
       // Array of collections
-    ]
+    ],
   },
   media: {
     // Media config
@@ -45,3 +45,13 @@ With the built-in repo-based media option, media is stored within the site's rep
 TinaCMS also supports pluggable external media providers.
 
 [Read more about the external media store implementation here](/docs/reference/media/external/authentication)
+
+## Video Tutorial
+
+For those who prefer to learn from video, you can check out a snippet on media from our ["TinaCMS Deep Dive"](https://www.youtube.com/watch?v=PcgnJDILv4w&list=PLPar4H9PHKVqoCwZy79PHr8-W_vA3lAOB&pp=iAQB) series.
+
+<div style="position:relative;padding-top:56.25%;">
+  <iframe width="560" frameborder="0" allowfullscreen
+      style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/x0ACBQeNcts?start=388&end=469" title="TinaCMS Deep Dive (Media)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+  </iframe>
+</div>
