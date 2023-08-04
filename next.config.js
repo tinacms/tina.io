@@ -13,6 +13,7 @@ const dummyMailchimpEndpoint =
 
 const config = {
   images: {
+    unoptimized: process.env.UNOPTIMIZED_IMAGES === 'true',
     remotePatterns: [
       {
         protocol: 'https',
