@@ -9,7 +9,7 @@ The _TinaCMS CLI_ can be used to set up your project with a TinaCMS schema confi
 
 The `@tinacms/cli` package will be installed as a dev dependency with the [tina init](/docs/setup-overview/#manual-setup-on-an-existing-site) command.
 
-```bash,copy
+```bash
 npx @tinacms/cli init
 ```
 
@@ -21,7 +21,7 @@ This will setup a dummy `tina/config.{js,ts}` in your site, and install any requ
 
 This command also takes an argument (`-c`) that allows you to run a command as a child process. This is very helpful for running a dev server and building your next.js app. The scripts portion of your package.json should look like this.
 
-```json,copy
+```json
 "scripts": {
   "dev": "tinacms dev -c \"next dev\"",
   "build": "tinacms build && next build",
@@ -37,13 +37,13 @@ The reason we want to run the GraphQL API with our site is so that:
 
 Now if you run the updated `dev` script with:
 
-```bash,copy
+```bash
 npm run dev
 ```
 
 or
 
-```bash,copy
+```bash
 yarn dev
 ```
 

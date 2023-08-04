@@ -11,7 +11,7 @@ next: '/docs/using-tina-editor'
 
 We created a quick way to bootstrap a Tina application to show the power of visual editing; from your terminal, enter the following command:
 
-```bash,copy
+```bash
 npx @tinacms/cli@latest init
 ```
 
@@ -53,7 +53,7 @@ These should be applied manually if they haven't been set by the CLI.
 
 Now that we have a basic Tina boilerplate setup, you can launch your application using the following command:
 
-```bash,copy
+```bash
 yarn dev
 ```
 

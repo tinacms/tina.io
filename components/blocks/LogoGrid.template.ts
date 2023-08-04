@@ -30,6 +30,19 @@ export const logoGridTemplate: TinaTemplate = {
       },
       fields: [
         { name: 'name', label: 'Name', type: 'string' },
+        {
+          name: 'link',
+          label: 'Link',
+          type: 'string',
+          ui: {
+            validate: (val) => {
+              // make sure value is https url
+              if (!val?.startsWith('https://')) {
+                return 'Must be a valid https url'
+              }
+            },
+          },
+        },
         { name: 'logo', label: 'Logo Link', type: 'string' },
         { name: 'size', label: 'Size', type: 'number' },
       ],

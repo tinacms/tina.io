@@ -21,8 +21,7 @@ import { WarningCallout } from '../../utils/shortcodes'
 import { useTina } from 'tinacms/dist/react'
 import path from 'path'
 import { TinaMarkdown, Components } from 'tinacms/dist/rich-text'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import atomOneDark from 'react-syntax-highlighter/dist/cjs/styles/prism/atom-dark'
+import { Prism } from '../../components/styles/Prism'
 import { BiRightArrowAlt } from 'react-icons/bi'
 
 const components: Components<{
@@ -166,10 +165,10 @@ const components: Components<{
   // @ts-ignore TODO: fix this in TinaCMS
   code_block: ({ value, lang, children }) => {
     return (
-      <SyntaxHighlighter
-        code={children || value || ''}
-        language={lang || 'jsx'}
-        style={atomOneDark}
+      <Prism
+        value={children || value || ''}
+        lang={lang || 'jsx'}
+        theme="nightOwl"
       />
     )
   },

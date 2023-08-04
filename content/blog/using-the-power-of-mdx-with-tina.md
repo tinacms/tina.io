@@ -13,7 +13,7 @@ Tina allows content teams and developers to work at a fast pace and removes the 
 
 Step 1: Create a project with tailwind
 
-```bash,copy
+```bash
 npx create-next-app -e with-tailwindcss tina-demo
 cd tina-demo
 ```
@@ -22,7 +22,7 @@ Step 2: Add Tina to the project
 
 Use the following command inside of the project to add all the Tina dependencies and wrap the application, ready to be used.
 
-```bash,copy
+```bash
 npx @tinacms/cli@latest init
 ```
 
@@ -39,7 +39,7 @@ To first use an MDX component we need to use Tina's rich editor, this will allow
 
 Open up the `.tina/schema.ts` file and edit the body section from the following
 
-```typescript,copy
+```typescript
 {
   type: "string",
   label: "Blog Post Body",
@@ -53,7 +53,7 @@ Open up the `.tina/schema.ts` file and edit the body section from the following
 
 to
 
-```typescript,copy
+```typescript
   {
     type: 'rich-text',
     label: "Blog Post Body",
@@ -94,7 +94,7 @@ Now that you have removed the first part of the unused code, we can import `Tina
 
 At the top of the file your import section should now look like:
 
-```javascript,copy
+```javascript
 import { staticRequest, gql, getStaticPropsForTina } from 'tinacms'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import { createGlobalStyle } from 'styled-components'
@@ -133,7 +133,7 @@ Adding components to Tina requires the following:
 
 For this blog post, let's create a customized callout that changes based on the selection. We can have a "default", "warning", "error". To save time I have created the component for you, go ahead and create a new folder called `components` on the root of the project and create a file called `Callout.js` and paste in the following code:
 
-```javascript,copy
+```javascript
 const backgroundColor = {
   warning: 'bg-yellow-200',
   error: 'bg-red-600',
@@ -170,7 +170,7 @@ The important thing to note is the name needs to match our component name, so ou
 
 To make the experience more enjoyable, we are going to add a UI object that holds the defaults. When someone adds our Callout it will automatically have content. Below goes in our templates array.
 
-```typescript,copy
+```typescript
 {
   name: "Callout",
   label: "Callout",
@@ -200,15 +200,15 @@ To make the experience more enjoyable, we are going to add a UI object that hold
 
 The piece is to register the component with our `TinaMarkdown` . Open up the `[filename].js` file again. First, we need to import our component so add the following to the top of the file:
 
-```javascript,copy
+```javascript
 import Callout from '../../../components/Callout'
 ```
 
 For code clarity, we can create an object that contains all the different Tina-powered components. We are going to pass the props through to our components so we can define that here.
 
-```javascript,copy
+```javascript
 const components = {
-  Callout: props => {
+  Callout: (props) => {
     return <Callout callout={props} />
   },
 }
@@ -216,7 +216,7 @@ const components = {
 
 Finally, we can update your `TinaMarkdown` component to pass the components for our users to use.
 
-```javascript,copy
+```javascript
 <TinaMarkdown content={content} components={components} />
 ```
 

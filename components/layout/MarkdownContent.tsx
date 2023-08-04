@@ -4,8 +4,7 @@ import rehypeRaw from 'rehype-raw'
 // Need this to render tables
 import remarkGfm from 'remark-gfm'
 
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import CodeStyle from '../styles/Code'
+import { Prism } from '../styles/Prism'
 
 import LinkSvg from '../../public/svg/link.svg'
 import styled from 'styled-components'
@@ -14,30 +13,11 @@ import * as shortcodeRenderers from '../../utils/shortcodes'
 
 import GithubSlugger from 'github-slugger'
 
-
 interface MarkdownContentProps {
   content: string
   escapeHtml?: boolean // eq:false --> if the component needs to render html
   skipHtml?: boolean
 }
-
-// export function WithCodeStyles({ language: tags, value, ...props }) {
-//   const [language, ...other] = tags?.split(',') || []
-//   const copy = other.includes('copy') || language === 'copy'
-//   return (
-//     <CodeWrapper>
-//       <SyntaxHighlighter
-//         {...props}
-//         language={language}
-//         style={CodeStyle}
-//         PreTag="div"
-//       >
-//         {String(value).replace(/\n$/, '')}
-//       </SyntaxHighlighter>
-//       {copy ? <CopyCodeButton value={value} /> : null}
-//     </CodeWrapper>
-//   )
-// }
 
 export const copyToClipboard = (text: string) => {
   const el = document.createElement('textarea')
@@ -181,9 +161,11 @@ export function MarkdownContent({
           const match = /language-(\w+)/.exec(className || '') || props.lang
           return !inline && match ? (
             <CodeWrapper>
-              <SyntaxHighlighter style={CodeStyle} language={match[1]}>
-                {String(children).replace(/\n$/, '')}
-              </SyntaxHighlighter>
+              <Prism
+                lang={match[1]}
+                theme="nightOwl"
+                value={String(children).replace(/\n$/, '')}
+              />
             </CodeWrapper>
           ) : (
             <code className={className} {...props}>
