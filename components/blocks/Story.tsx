@@ -3,6 +3,8 @@ import { useInView } from 'react-intersection-observer'
 import { Container } from './Container'
 import { Actions } from './Actions'
 import { Prism } from '../styles/Prism'
+import styled from 'styled-components'
+import DocsRichText from 'components/styles/DocsRichText'
 
 const features = [
   {
@@ -227,13 +229,17 @@ const Pane = ({ data, position, ...props }) => {
                   1.25 * (data.file.textScale ? data.file.textScale : 1) + 'em',
               }}
             >
-              <div className="p-2 [&>pre]:!bg-transparent">
-                <Prism
-                  lang={data.file.language ? data.file.language : 'javascript'}
-                  theme="nightOwl"
-                  value={data.file.code}
-                />
-              </div>
+              <CodeWrapper>
+                <div className="[&>pre]:!bg-transparent [&>pre]:!border-none">
+                  <Prism
+                    lang={
+                      data.file.language ? data.file.language : 'javascript'
+                    }
+                    theme="nightOwl"
+                    value={data.file.code}
+                  />
+                </div>
+              </CodeWrapper>
             </div>
           </div>
         )}
@@ -500,3 +506,7 @@ export function StoryBlock({ data, index }) {
     </>
   )
 }
+
+const CodeWrapper = styled.div`
+  ${DocsRichText}
+`

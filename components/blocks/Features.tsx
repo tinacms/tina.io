@@ -2,6 +2,8 @@ import { Actions } from './Actions'
 import { Container } from './Container'
 import { Prism } from '../styles/Prism'
 import { tinaField } from 'tinacms/dist/react'
+import DocsRichText from '../styles/DocsRichText'
+import styled from 'styled-components'
 
 export function FeatureBlock({ data, index }) {
   const isReversed = index % 2 === 1
@@ -72,17 +74,19 @@ export function FeatureBlock({ data, index }) {
                       'em',
                   }}
                 >
-                  <div className="p-2 [&>pre]:!bg-transparent">
-                    <Prism
-                      lang={
-                        data.media[0].language
-                          ? data.media[0].language
-                          : 'javascript'
-                      }
-                      theme="nightOwl"
-                      value={data.media[0].code}
-                    />
-                  </div>
+                  <CodeWrapper>
+                    <div className="[&>pre]:!bg-transparent [&>pre]:!border-none">
+                      <Prism
+                        lang={
+                          data.media[0].language
+                            ? data.media[0].language
+                            : 'javascript'
+                        }
+                        theme="nightOwl"
+                        value={data.media[0].code}
+                      />
+                    </div>
+                  </CodeWrapper>
                 </div>
               </div>
             )}
@@ -198,3 +202,7 @@ export const FeatureVideo = ({ src, className = '' }) => {
     </video>
   )
 }
+
+const CodeWrapper = styled.div`
+  ${DocsRichText}
+`
