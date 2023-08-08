@@ -1,12 +1,12 @@
 ---
-title: Using the Next.js Vercel Starter
+title: Using the Next.js Vercel Example
 id: /docs/self-hosted/starters/nextjs-vercel
 last_edited: '2023-07-07T04:00:00.000Z'
 ---
 
 ## Introduction
 
-This doc will guide you through setting up our pre-configured self-hosted starter repository. This implementation uses;
+This doc will guide you through setting up our pre-configured self-hosted example repository. This implementation uses;
 
 - [NextJS](https://nextjs.org/)
 - [Vercel](/docs/self-hosted/database-adapters/vercel-kv) KV for the [databasae adapter](/docs/self-hosted/database-adapters/overview)

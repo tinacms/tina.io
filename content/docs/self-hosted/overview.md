@@ -17,9 +17,9 @@ You create a Tina Data Layer by creating backend functions that host the GraphQL
 
 ## Getting Started
 
-### Using a Starter (Recommended)
+### Using a Example (Recommended)
 
-Self hosting TinaCMS can be a bit of a challenge. We have created a [starter](/docs/self-hosted/starters/overview/) that you can use to get started. This starter is a Next.js app that uses Vercel for hosting and GitHub for git integration. It also includes Next Auth authentication.
+Self hosting TinaCMS can be a bit of a challenge. We have created a [example](/docs/self-hosted/starters/overview/) that you can use to get started. This starter is a Next.js app that uses Vercel for hosting and GitHub for git integration. It also includes Next Auth authentication.
 
 
 ### Using the CLI init command

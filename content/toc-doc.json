@@ -226,7 +226,7 @@
         "slug": "/docs/self-hosted/overview/"
       },
       {
-        "title": "Using a Starter (Recommended)",
+        "title": "Using a Example (Recommended)",
         "items": [
           {
             "title": "NextJS + Next Auth + Vercel KV",
