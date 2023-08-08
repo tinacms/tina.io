@@ -2,10 +2,20 @@
 title: Filename customization
 id: '/docs/extending-tina/filename-customization'
 prev: /docs/extending-tina/format-and-parse
-# next: /docs/extending-tina/format-and-parse
+next: /docs/extending-tina/before-submit
 ---
 
 The filename customization API allows you to customize the filename of a document based on its content. This is useful when you do not want your editors to have to worry about the filename of a document.
+
+A couple things to keep in mind when customizing the filename:
+
+- Filename can not contain any spaces
+- Filename must contain only a-z, A-Z, 0-9, -, \_, ., or /.
+- Filename must be unique within the collection
+- If the filename starts with `/` it will be treated as an absolute path relative to the collection root
+  - Example: `/foo/bar/blog-post` will be saved as `<MyCollectionPath>/post/blog-post.md`
+- If the filename does not start with `/` it will be treated as a relative to your current folder
+  - Example: `bar/blog-post` will be saved as `<MyCollectionPath>/<CurrentDirectory>/bar/blog-post.md`
 
 ## Definition
 
@@ -35,10 +45,11 @@ export default defineConfig({
             // if disabled, the editor can not edit the filename
             readonly: true,
             // Example of using a custom slugify function
-            slugify: values => {
+            slugify: (values) => {
               // Values is an object containing all the values of the form. In this case it is {title?: string, topic?: string}
-              return `${values?.topic ||
-                'no-topic'}-${values?.title?.toLowerCase().replace(/ /g, '-')}`
+              return `${values?.topic || 'no-topic'}-${values?.title
+                ?.toLowerCase()
+                .replace(/ /g, '-')}`
             },
           },
         },
