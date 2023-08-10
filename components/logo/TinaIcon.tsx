@@ -9,7 +9,7 @@ export const TinaIcon = ({
   color = 'white',
 }) => {
   return (
-    <Link href={link}>
+    <Link legacyBehavior href={link}>
       <a className={className}>
         <h1 className="flex items-center">
           <TinaIconSvg

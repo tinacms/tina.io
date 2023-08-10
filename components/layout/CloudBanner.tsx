@@ -11,7 +11,7 @@ export function CloudBanner() {
           <span className="desktop">
             <p className="text">We're excited about what's coming in 2022!</p>
           </span>
-          <Link href="/blog/tinacms-2022/">
+          <Link legacyBehavior href="/blog/tinacms-2022/">
             <a className="link">
               <span className="desktop">Read more</span>
               <span className="mobile">From the blog: TinaCMS in 2022</span>
@@ -21,12 +21,12 @@ export function CloudBanner() {
         </div>
         <div className="actions">
           <ButtonGroup>
-            <Link href="https://app.tina.io/">
+            <Link legacyBehavior href="https://app.tina.io/">
               <Button size="small" color="white">
                 Sign In
               </Button>
             </Link>
-            <Link href="https://tina.io/docs/setup-overview/">
+            <Link legacyBehavior href="https://tina.io/docs/setup-overview/">
               <Button size="small" color="blue">
                 Get Started
               </Button>

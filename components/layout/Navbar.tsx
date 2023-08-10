@@ -61,7 +61,7 @@ export function Navbar({}) {
             </button>
             <ul className="flex flex-col py-4 px-6 relative z-20">
               <li className="pb-4 pt-2">
-                <Link href={'/'}>
+                <Link legacyBehavior href={'/'}>
                   <a
                     onClick={() => {
                       setOpen(false)
@@ -80,7 +80,7 @@ export function Navbar({}) {
                   const { id, href, label, external } = item
                   return (
                     <li key={id} className={`group ${navLinkClasses}`}>
-                      <Link href={href}>
+                      <Link legacyBehavior href={href}>
                         <a
                           className="py-2"
                           onClick={() => {
@@ -104,7 +104,7 @@ export function Navbar({}) {
                       const { id, href, label, external } = child
                       return (
                         <li key={id} className={`group ${navLinkClasses}`}>
-                          <Link href={href}>
+                          <Link legacyBehavior href={href}>
                             <a
                               className="py-2"
                               onClick={() => {
@@ -137,7 +137,7 @@ export function Navbar({}) {
               setOpen(false)
             }}
           ></div>
-          <Link href={'/'}>
+          <Link legacyBehavior href={'/'}>
             <a>
               <h1 className="flex items-center">
                 <TinaIconSvg className={`w-10 h-auto fill-orange-500`} />
@@ -169,7 +169,7 @@ export function Navbar({}) {
               : `translate-y-2 px-4 pt-4 pb-6`
           } z-40 w-full min-[1135px]:px-10 hidden min-[1135px]:flex items-center justify-between gap-6`}
         >
-          <Link href={'/'}>
+          <Link legacyBehavior href={'/'}>
             <a>
               <h1 className="flex items-center">
                 <TinaIconSvg
@@ -187,7 +187,7 @@ export function Navbar({}) {
                   const { id, href, label, external } = item
                   return (
                     <li key={id} className={`group ${navLinkClasses}`}>
-                      <Link href={href}>
+                      <Link legacyBehavior href={href}>
                         <a className="py-2">
                           {label}{' '}
                           {external ? (
@@ -216,7 +216,7 @@ export function Navbar({}) {
                                 key={id}
                                 className={`${navLinkClasses} w-full whitespace-nowrap`}
                               >
-                                <Link href={href}>
+                                <Link legacyBehavior href={href}>
                                   <a className="block px-2 py-1.5 text-gray-600 hover:text-blue-500">
                                     {label}{' '}
                                     {external ? (

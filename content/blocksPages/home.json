@@ -9,7 +9,7 @@
           "icon": false,
           "variant": "blue",
           "size": "medium",
-          "url": "https://tina.io/docs/setup-overview/"
+          "url": "/docs/setup-overview/"
         },
         {
           "label": "npx create-tina-app@latest",
