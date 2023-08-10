@@ -30,6 +30,7 @@ const Testimonial = ({ data, ...props }) => {
         {data.avatar && (
           <div className="relative shrink-0 w-14 h-14 rounded-full shadow-[0_1px_3px_1px_rgba(66,_153,_225,0.3)] overflow-hidden">
             <Image
+              alt="Testimonial avatar"
               width={56}
               height={56}
               className={`block absolute w-full h-full top-0 left-0 object-fill ${

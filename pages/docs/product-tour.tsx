@@ -100,9 +100,11 @@ export default function Page(props) {
 
     return () => {
       if (imgTransitionTimeout) {
-        activeImg.current.src = imageSrc
-        transitionImg.current.style.opacity = '0'
-        activeImg.current.style.opacity = '1'
+        if (activeImg?.current && transitionImg?.current) {
+          activeImg.current.src = imageSrc
+          transitionImg.current.style.opacity = '0'
+          activeImg.current.style.opacity = '1'
+        }
 
         clearTimeout(imgTransitionTimeout)
       }

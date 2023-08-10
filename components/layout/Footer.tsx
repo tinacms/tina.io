@@ -293,7 +293,7 @@ export const Footer = ({}) => {
 
 const FooterLink = ({ link, label }) => {
   return (
-    <Link href={link} passHref>
+    <Link legacyBehavior href={link} passHref>
       <a className="transition ease-out duration-150 hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] hover:opacity-100 opacity-70 whitespace-nowrap">
         {label}
       </a>

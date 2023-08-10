@@ -311,7 +311,7 @@ export const getStaticProps: GetStaticProps = async function ({
       query: res.query,
       data: res.data,
       vars,
-      siteConfig: { title: siteConfig.title },
+      siteConfig: { title: siteConfig.title || 'TinaCMS' },
     },
   }
 }
