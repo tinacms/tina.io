@@ -10,11 +10,12 @@ The before submit function allows you to run a function on the frontend before t
 ## Definition
 
 ```ts
+import { TinaCMS, Form } from 'tinacms'
+
 type BeforeSubmitFunction = (args: {
   values: Record<string, unknown>
-  cms: CMS
+  cms: TinaCMS
   form: Form
-  tinaForm: TinaForm
 }) => Promise<void | Record<string, unknown>>
 ```
 
@@ -31,7 +32,15 @@ export default defineConfig({
       {
         ui: {
           // Example of beforeSubmit
-          beforeSubmit: async ({ values }) => {
+          beforeSubmit: async ({
+            form,
+            cms,
+            values,
+          }: {
+            form: Form
+            cms: TinaCMS
+            values: Record<string, any>
+          }) => {
             return {
               ...values,
               lastUpdated: new Date().toISOString(),
@@ -56,7 +65,15 @@ export default defineConfig({
     collections: [
       {
         ui: {
-          beforeSubmit: async ({ values, form }) => {
+          beforeSubmit: async ({
+            form,
+            cms,
+            values,
+          }: {
+            form: Form
+            cms: TinaCMS
+            values: Record<string, any>
+          }) => {
             if (form.crudType === 'create') {
               return {
                 ...values,
@@ -83,7 +100,15 @@ export default defineConfig({
     collections: [
       {
         ui: {
-          beforeSubmit: async ({ values, form }) => {
+          beforeSubmit: async ({
+            form,
+            cms,
+            values,
+          }: {
+            form: Form
+            cms: TinaCMS
+            values: Record<string, any>
+          }) => {
             return {
               ...values,
               slug: values.title
