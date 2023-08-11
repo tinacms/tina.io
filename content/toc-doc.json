@@ -163,6 +163,10 @@
       {
         "title": "Filename Customization",
         "slug": "/docs/extending-tina/filename-customization/"
+      },
+      {
+        "title": "Before Submit function",
+        "slug": "/docs/extending-tina/before-submit"
       }
     ]
   },
