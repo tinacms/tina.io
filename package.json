@@ -104,14 +104,14 @@
     "strip-markdown": "^3.1.1",
     "styled-components": "^5.3.3",
     "styled-jsx-plugin-sass": "^1.0.0",
-    "tinacms": "^1.5.17",
+    "tinacms": "^1.5.18",
     "unist-util-visit": "^4.1.1",
     "webpack": "^5.76.0"
   },
   "devDependencies": {
     "@babel/plugin-syntax-jsx": "^7.10.4",
     "@tailwindcss/forms": "^0.5.3",
-    "@tinacms/cli": "^1.5.26",
+    "@tinacms/cli": "^1.5.27",
     "@types/cookie": "^0.3.3",
     "@types/glob": "^7.1.1",
     "@types/jest": "^25.1.2",
