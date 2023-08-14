@@ -96,4 +96,4 @@ When you run `tinacms dev` locally, Tina will generate a development admin/index
 
 ### Site is building on a sub-path
 
-A known limitation is that tinacms doesn't load assets correctly when the admin is deployed to a subpath: (e.g: `https://jamespohalloran.github.io/my-site-root/admin/`). We have an [incoming update](https://github.com/tinacms/tinacms/pull/3911) to support this use-case.
+There is a known limitation where Tinacms doesn't load assets correctly when the admin is deployed to a sub-path: (`https://jamespohalloran.github.io/my-site-root/admin/` for example). To resolve the issue, set the `build.basePath` property to value of the sub-path (e.g. `my-site-root`).
