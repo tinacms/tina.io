@@ -1,17 +1,17 @@
 ---
-title: Self-Hosted Core Concepts
+title: Self-Hosted Architecture
 id: '/docs/self-hosted/core-concepts/overview'
 prev: null
-next: null
+next: /docs/self-hosted/querying-data
 ---
 
 The self-hosted architecture consists of three components, all of which are designed to be fully configurable by the developer.
 
 ![Self Hosted Core Concepts](/Datalayer.svg)
 
-- [Git Provider](/docs/self-hosted/git-provider/overview)
+- [Git Provider](/docs/reference/self-hosted/git-provider/overview)
   - Handles saving content to git
-- [Database Adapter](/docs/self-hosted/database-adapter/overview)
+- [Database Adapter](/docs/reference/self-hosted/database-adapter/overview)
   - Handles indexing and interaction with the database
 - [Authentication](/docs/self-hosted/authentication/overview)
   - Handles authentication and authorization
@@ -22,7 +22,7 @@ The self-hosted architecture consists of three components, all of which are desi
 
 The database is configured in **`.tina/database.{js,ts}`** .
 
-This file is the main element of the self hosted solution. It exports an instance of the TinaCMS Database, which handles indexing, queries and CRUD operations. A database instance requires a [`databaseAdapter`](/docs/self-hosted/database-adapter/overview/) and a [`gitProvider`](/docs/self-hosted/git-provider/overview/). The database acts as an ephemeral caching layer, so that when you query your content it is not necessary to retrieve it from the git provider.
+This file is the main element of the self hosted solution. It exports an instance of the TinaCMS Database, which handles indexing, queries and CRUD operations. A database instance requires a [`databaseAdapter`](/docs/reference/self-hosted/database-adapter/overview/) and a [`gitProvider`](/docs/reference/self-hosted/git-provider/overview/). The database acts as an ephemeral caching layer, so that when you query your content it is not necessary to retrieve it from the git provider.
 
 Example:
 
@@ -75,15 +75,15 @@ export default isLocal
 
 ### CreateDatabase Function
 
-This is a factory function that creates a new instance of the TinaCMS Database. It takes a [`databaseAdapter`](/docs/self-hosted/database-adapter/overview/) and a [`gitProvider`](/docs/self-hosted/git-provider/overview/).
+This is a factory function that creates a new instance of the TinaCMS Database. It takes a [`databaseAdapter`](/docs/reference/self-hosted/database-adapter/overview/) and a [`gitProvider`](/docs/reference/self-hosted/git-provider/overview/).
 
-| Parameter             | Description                                                                                                                                                                                                                                                                                |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `databaseAdapter`     | The [database adapter](/docs/self-hosted/database-adapter/overview) to use. (Required)                                                                                                                                                                                                     |
-| `gitProvider`         | The [git provider](/docs/self-hosted/git-provider/overview) to use. (Required)                                                                                                                                                                                                             |
-| `tinaDirectory`       | The directory used to store tina files. Defaults to `tina` (Optional)                                                                                                                                                                                                                      |
+| Parameter             | Description                                                                                                                                                                                                                                                                                   |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `databaseAdapter`     | The [database adapter](/docs/reference/self-hosted/database-adapter/overview) to use. (Required)                                                                                                                                                                                              |
+| `gitProvider`         | The [git provider](/docs/reference/self-hosted/git-provider/overview) to use. (Required)                                                                                                                                                                                                      |
+| `tinaDirectory`       | The directory used to store tina files. Defaults to `tina` (Optional)                                                                                                                                                                                                                         |
 | `bridge`              | The bridge used to index the content to the database adapter. This defaults to the FileSystem. The `bridge` is a more advanced use case if you want to index from a different source other than the filesystem. Please [reach out a discord](https://discord.gg/zumN63Ybpf) for further help. |
-| `indexStatusCallback` | an async function that is called to report the status on the current indexing. (Optional)                                                                                                                                                                                                              |
+| `indexStatusCallback` | an async function that is called to report the status on the current indexing. (Optional)                                                                                                                                                                                                     |
 
 ### CreateLocalDatabase Function
 
@@ -95,7 +95,7 @@ It uses a local in-memory database adapter and a file-system git provider that o
 
 ## Custom Authentication
 
-Custom authentication is setup in the **`tina/config.{js,ts}`** file. Tina Cloud can also be used for authentication. For more info check out the [auth provider docs](/docs/self-hosted/authentication-provider/overview/).
+Custom authentication is setup in the **`tina/config.{js,ts}`** file. Tina Cloud can also be used for authentication. For more info check out the [auth provider docs](/docs/reference/self-hosted/authentication-provider/overview/).
 
 Example:
 

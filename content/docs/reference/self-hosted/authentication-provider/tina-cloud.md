@@ -1,8 +1,8 @@
 ---
 title: Tina Cloud Authentication Provider
-id: '/docs/self-hosted/authentication-provider/tina-cloud'
-prev: '/docs/self-hosted/authentication-provider/next-auth'
-next: '/docs/self-hosted/authentication-provider/bring-your-own'
+id: '/docs/reference/self-hosted/authentication-provider/tina-cloud'
+prev: '/docs/reference/self-hosted/authentication-provider/next-auth'
+next: '/docs/reference/self-hosted/authentication-provider/bring-your-own'
 ---
 
 You can use Tina Cloud for your authenticaion. This is the easiet way to get up and running quickly.
@@ -20,6 +20,7 @@ NEXT_PUBLIC_TINA_CLIENT_ID=***
 Since we are using Tina Cloud no extra setup is required.
 
 `tina/config.{ts,js}`
+
 ```ts
 //...
 export defualt defineConfig({
@@ -40,31 +41,32 @@ export defualt defineConfig({
 Update your graphql endpoint to look like the following
 
 `/pages/api/gql.{ts,js}`
+
 ```ts
-import { NextApiHandler } from "next";
-import { isUserAuthorized } from "@tinacms/auth";
-import databaseClient from "../../tina/__generated__/databaseClient";
+import { NextApiHandler } from 'next'
+import { isUserAuthorized } from '@tinacms/auth'
+import databaseClient from '../../tina/__generated__/databaseClient'
 
 const nextApiHandler: NextApiHandler = async (req, res) => {
   // Example if using TinaCloud for auth
   const tinaCloudUser = await isUserAuthorized({
     clientID: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
     token: req.headers.authorization,
-  });
+  })
 
   const isAuthorized =
-    process.env.TINA_PUBLIC_IS_LOCAL === "true" ||
+    process.env.TINA_PUBLIC_IS_LOCAL === 'true' ||
     tinaCloudUser?.verified ||
-    false;
+    false
 
   if (isAuthorized) {
-    const { query, variables } = req.body;
-    const result = await databaseClient.request({ query, variables });
-    return res.json(result);
+    const { query, variables } = req.body
+    const result = await databaseClient.request({ query, variables })
+    return res.json(result)
   } else {
-    return res.status(401).json({ error: "Unauthorized" });
+    return res.status(401).json({ error: 'Unauthorized' })
   }
-};
+}
 
-export default nextApiHandler;
+export default nextApiHandler
 ```

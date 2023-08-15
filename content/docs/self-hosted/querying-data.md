@@ -1,6 +1,7 @@
 ---
 title: Querying Content in Self-Hosted Backend
 id: '/docs/self-hosted/querying-data'
+next: '/docs/self-hosted/graphql-endpoint/overview'
 ---
 
 ## Overview

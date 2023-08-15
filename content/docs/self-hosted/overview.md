@@ -12,7 +12,7 @@ For users who want to be independent of Tina Cloud, **we also offer a self-hoste
 
 ## How does it work?
 
-You create a Tina Data Layer by creating backend functions that host the GraphQL API and you create a Data Layer that indexes content from the filesystem into a databse. This database is used to retrive the data. When an editor updates the data a [Gitprovider](/docs/self-hosted/git-provider/overview/) is used to commit the changes to the filesystem.
+You create a Tina Data Layer by creating backend functions that host the GraphQL API and you create a Data Layer that indexes content from the filesystem into a databse. This database is used to retrive the data. When an editor updates the data a [Gitprovider](/docs/reference/self-hosted/git-provider/overview/) is used to commit the changes to the filesystem.
 
 ## Getting Started
 

@@ -10,8 +10,8 @@ next: /docs/self-hosted/existing-site
 This doc will guide you through setting up our pre-configured self-hosted example repository. This implementation uses;
 
 - [NextJS](https://nextjs.org/)
-- [Vercel](/docs/self-hosted/database-adapters/vercel-kv) KV for the [databasae adapter](/docs/self-hosted/database-adapters/overview)
-- [NextAuth](/docs/self-hosted/authentication-provider/next-auth) for its [authentication provider](/docs/self-hosted/authentication-providers/overview)
+- [Vercel](/docs/reference/self-hosted/database-adapters/vercel-kv) KV for the [databasae adapter](/docs/reference/self-hosted/database-adapters/overview)
+- [NextAuth](/docs/reference/self-hosted/authentication-provider/next-auth) for its [authentication provider](/docs/reference/self-hosted/authentication-providers/overview)
 
 ## Deploy The Starter Template
 

@@ -1,10 +1,9 @@
 ---
 title: Bring your own Authentication Provider
-id: '/docs/self-hosted/authentication-provider/bring-your-own'
-prev: '/docs/self-hosted/authentication-provider/tina-cloud'
+id: '/docs/reference/self-hosted/authentication-provider/bring-your-own'
+prev: '/docs/reference/self-hosted/authentication-provider/tina-cloud'
 next: null
 ---
-
 
 To self host your own authentication, you must implement several functions. These functions are passed to the TinaCMS client when it is initialized. The following functions are available:
 
@@ -71,22 +70,24 @@ Next you can use the value passed from `getToken` in your backend function to ma
 `pages/api/gql.{js,ts}`
 
 ```ts
-import { NextApiHandler } from "next";
-import { isUserAuthorized } from "@tinacms/auth";
-import databaseClient from "../../tina/__generated__/databaseClient";
+import { NextApiHandler } from 'next'
+import { isUserAuthorized } from '@tinacms/auth'
+import databaseClient from '../../tina/__generated__/databaseClient'
 
 const nextApiHandler: NextApiHandler = async (req, res) => {
   // Example if using custom auth
-  const isAuthorized = await myCustomAuthFunction({token: req.headers.authorization});
+  const isAuthorized = await myCustomAuthFunction({
+    token: req.headers.authorization,
+  })
 
   if (isAuthorized) {
-    const { query, variables } = req.body;
-    const result = await databaseClient.request({ query, variables });
-    return res.json(result);
+    const { query, variables } = req.body
+    const result = await databaseClient.request({ query, variables })
+    return res.json(result)
   } else {
-    return res.status(401).json({ error: "Unauthorized" });
+    return res.status(401).json({ error: 'Unauthorized' })
   }
-};
+}
 
-export default nextApiHandler;
+export default nextApiHandler
 ```

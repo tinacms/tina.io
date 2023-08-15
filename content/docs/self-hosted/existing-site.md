@@ -23,7 +23,7 @@ To setup the TinaCMS admin on your site, follow the [getting started guide](/doc
 
 ### 2. Choose a Git provider, database adapter, and authentication provider
 
-You will need to choose a [Git provider](/docs/self-hosted/git-provider/overview/), [database adapter](/docs/self-hosted/database-adapter/overview/), and [authentication provider](/docs/self-hosted/authentication-provider/overview/). You can use any of the providers we have created or you can create your own. In the example below we will use GitHub, VercelKV, and Next Auth.
+You will need to choose a [Git provider](/docs/reference/self-hosted/git-provider/overview/), [database adapter](/docs/reference/self-hosted/database-adapter/overview/), and [authentication provider](/docs/reference/self-hosted/authentication-provider/overview/). You can use any of the providers we have created or you can create your own. In the example below we will use GitHub, VercelKV, and Next Auth.
 
 ### 3. Install the dependencies
 

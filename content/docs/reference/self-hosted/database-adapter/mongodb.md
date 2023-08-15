@@ -1,8 +1,8 @@
 ---
 title: MongoDB Database Adapter
-id: '/docs/self-hosted/database-adapter/mongodb'
-prev: '/docs/self-hosted/database-adapter/vercel-kv'
-next: '/docs/self-hosted/database-adapter/make-your-own'
+id: '/docs/reference/self-hosted/database-adapter/mongodb'
+prev: '/docs/reference/self-hosted/database-adapter/vercel-kv'
+next: '/docs/reference/self-hosted/database-adapter/make-your-own'
 ---
 
 The MongoDB database adapter allows you to store your data in a [MongoDB](https://www.mongodb.com/) database. This adapter uses the [MongoDB Node.js Driver](https://www.npmjs.com/package/mongodb), so it will work on any MongoDB database.

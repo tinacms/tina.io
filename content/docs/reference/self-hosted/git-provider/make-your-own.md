@@ -1,7 +1,7 @@
 ---
 title: Making your own Git Provider
-id: '/docs/self-hosted/git-provider/make-your-own'
-prev: '/docs/self-hosted/git-provider/github'
+id: '/docs/reference/self-hosted/git-provider/make-your-own'
+prev: '/docs/reference/self-hosted/git-provider/github'
 next: null
 ---
 
@@ -26,7 +26,7 @@ This is used to delete content from git. It is called whenever a value is delete
 
 ## Example
 
-Here is the source code for the [GitHub Git Provider](/docs/self-hosted/git-provider/github). It is a good example of how to implement the `GitProvider` interface.
+Here is the source code for the [GitHub Git Provider](/docs/reference/self-hosted/git-provider/github). It is a good example of how to implement the `GitProvider` interface.
 
 ```ts
 import { Octokit } from '@octokit/rest'

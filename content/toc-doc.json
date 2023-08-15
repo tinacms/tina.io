@@ -230,10 +230,6 @@
         "slug": "/docs/self-hosted/overview/"
       },
       {
-        "title": "Architecture",
-        "slug": "/docs/self-hosted/core-concepts/overview/"
-      },
-      {
         "title": "Getting Started",
         "items": [
           {
@@ -245,6 +241,10 @@
             "slug": "/docs/self-hosted/existing-site/"
           }
         ]
+      },
+      {
+        "title": "Architecture",
+        "slug": "/docs/self-hosted/core-concepts/overview/"
       },
       {
         "title": "Querying Content",
@@ -682,15 +682,15 @@
             "items": [
               {
                 "title": "Overview",
-                "slug": "/docs/self-hosted/git-provider/overview/"
+                "slug": "/docs/reference/self-hosted/git-provider/overview/"
               },
               {
                 "title": "GitHub",
-                "slug": "/docs/self-hosted/git-provider/github/"
+                "slug": "/docs/reference/self-hosted/git-provider/github/"
               },
               {
                 "title": "Bring Your Own Git Provider",
-                "slug": "/docs/self-hosted/git-provider/make-your-own/"
+                "slug": "/docs/reference/self-hosted/git-provider/make-your-own/"
               }
             ]
           },
@@ -699,19 +699,19 @@
             "items": [
               {
                 "title": "Overview",
-                "slug": "/docs/self-hosted/database-adapter/overview/"
+                "slug": "/docs/reference/self-hosted/database-adapter/overview/"
               },
               {
                 "title": "Vercel KV",
-                "slug": "/docs/self-hosted/database-adapter/vercel-kv/"
+                "slug": "/docs/reference/self-hosted/database-adapter/vercel-kv/"
               },
               {
                 "title": "Mongo DB",
-                "slug": "/docs/self-hosted/database-adapter/mongodb/"
+                "slug": "/docs/reference/self-hosted/database-adapter/mongodb/"
               },
               {
                 "title": "Bring Your Own  Database Adapter",
-                "slug": "/docs/self-hosted/database-adapter/make-your-own/"
+                "slug": "/docs/reference/self-hosted/database-adapter/make-your-own/"
               }
             ]
           },
@@ -720,23 +720,23 @@
             "items": [
               {
                 "title": "Overview",
-                "slug": "/docs/self-hosted/authentication-provider/overview/"
+                "slug": "/docs/reference/self-hosted/authentication-provider/overview/"
               },
               {
                 "title": "Next Auth",
-                "slug": "/docs/self-hosted/authentication-provider/next-auth/"
+                "slug": "/docs/reference/self-hosted/authentication-provider/next-auth/"
               },
               {
                 "title": "Clerk Auth",
-                "slug": "/docs/self-hosted/authentication-provider/clerk-auth/"
+                "slug": "/docs/reference/self-hosted/authentication-provider/clerk-auth/"
               },
               {
                 "title": "Using Tina Cloud for Authentication",
-                "slug": "/docs/self-hosted/authentication-provider/tina-cloud/"
+                "slug": "/docs/reference/self-hosted/authentication-provider/tina-cloud/"
               },
               {
                 "title": "Bring Your Own Authentication",
-                "slug": "/docs/self-hosted/authentication-provider/bring-your-own/"
+                "slug": "/docs/reference/self-hosted/authentication-provider/bring-your-own/"
               }
             ]
           }

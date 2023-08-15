@@ -1,8 +1,8 @@
 ---
 title: Vercel KV Database Adapter (Upstash Redis)
-id: '/docs/self-hosted/database-adapter/vercel-kv'
-prev: '/docs/self-hosted/database-adapter/overview'
-next: '/docs/self-hosted/database-adapter/mongodb'
+id: '/docs/reference/self-hosted/database-adapter/vercel-kv'
+prev: '/docs/reference/self-hosted/database-adapter/overview'
+next: '/docs/reference/self-hosted/database-adapter/mongodb'
 ---
 
 The Vercel KV database adapter allows you to use the [Vercel KV](https://vercel.com/docs/storage/vercel-kv) database with Tina. This adapter uses the [upstash redis client](https://www.npmjs.com/package/@upstash/redis), allowing it to also work with [upstash redis](https://docs.upstash.com/redis) as well.

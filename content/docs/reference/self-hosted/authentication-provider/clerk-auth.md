@@ -1,8 +1,8 @@
 ---
-id: '/docs/self-hosted/authentication-provider/next-auth'
+id: '/docs/reference/self-hosted/authentication-provider/next-auth'
 title: NextAuth Authentication Provider
-prev: '/docs/self-hosted/authentication-provider/overview'
-next: '/docs/self-hosted/authentication-provider/tina-cloud'
+prev: '/docs/reference/self-hosted/authentication-provider/overview'
+next: '/docs/reference/self-hosted/authentication-provider/tina-cloud'
 ---
 
 [Clerk](https://clerk.com) is a user management service which you can use for any self-hosted Tina setup.
