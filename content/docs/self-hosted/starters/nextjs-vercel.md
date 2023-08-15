@@ -2,6 +2,7 @@
 title: Using the Next.js Vercel Example
 id: /docs/self-hosted/starters/nextjs-vercel
 last_edited: '2023-07-07T04:00:00.000Z'
+next: /docs/self-hosted/existing-site
 ---
 
 ## Introduction
@@ -12,15 +13,14 @@ This doc will guide you through setting up our pre-configured self-hosted exampl
 - [Vercel](/docs/self-hosted/database-adapters/vercel-kv) KV for the [databasae adapter](/docs/self-hosted/database-adapters/overview)
 - [NextAuth](/docs/self-hosted/authentication-provider/next-auth) for its [authentication provider](/docs/self-hosted/authentication-providers/overview)
 
-
 ## Deploy The Starter Template
-
 
 First you can, deploy the [the self-hosted starter](https://github.com/tinacms/tina-self-hosted-demo) using our preconfigured Vercel template:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo\&env=GITHUB_PERSONAL_ACCESS_TOKEN,GITHUB_BRANCH,NEXTAUTH_SECRET,KV_REST_API_JAMES_REST_API_URL,KV_REST_API_JAMES_REST_API_TOKEN,NEXTAUTH_CREDENTIALS_KEY\&envDescription=See%20the%20self-hosted%20demo%20README%20for%20more%20information\&envLink=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo%2Fblob%2Fmain%2FREADME.md\&project-name=tina-self-hosted-demo\&repository-name=tina-self-hosted-demo\&stores=%5B%7B%22type%22%3A%22kv%22%7D%5D&)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo&env=GITHUB_PERSONAL_ACCESS_TOKEN,GITHUB_BRANCH,NEXTAUTH_SECRET,KV_REST_API_JAMES_REST_API_URL,KV_REST_API_JAMES_REST_API_TOKEN,NEXTAUTH_CREDENTIALS_KEY&envDescription=See%20the%20self-hosted%20demo%20README%20for%20more%20information&envLink=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo%2Fblob%2Fmain%2FREADME.md&project-name=tina-self-hosted-demo&repository-name=tina-self-hosted-demo&stores=%5B%7B%22type%22%3A%22kv%22%7D%5D&)
 
 This will
+
 - Create a copy of the [self-hosted starter](https://github.com/tinacms/tina-self-hosted-demo) to your github account
 - Create a new Vercel project with the starter code
 - Create a new Vercel KV store for your project
@@ -36,7 +36,6 @@ You will be prompted to enter values for the following environment variables:
 #### `GITHUB_PERSONAL_ACCESS_TOKEN`
 
 GitHub personal access token generated in your [GitHub developer settings](https://github.com/settings/personal-access-tokens/new). Make sure to assign it `repo` access to your new repository with Read/Write access to Contents.
-
 
 #### `NEXTAUTH_SECRET`
 
@@ -107,4 +106,4 @@ When you navigate to /admin on your Vercel deployment, or if you run `yarn build
 yarn setup:users
 ```
 
-If the KV\_REST\_API\_URL & KV\_REST\_API\_TOKEN variables are not set, you will be prompted for them the first time the script is executed. Once you have created a user with a password, they will be able to login to your production site, make changes, and have those updates persisted to your live site.
+If the KV_REST_API_URL & KV_REST_API_TOKEN variables are not set, you will be prompted for them the first time the script is executed. Once you have created a user with a password, they will be able to login to your production site, make changes, and have those updates persisted to your live site.

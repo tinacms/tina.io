@@ -230,13 +230,12 @@
         "slug": "/docs/self-hosted/overview/"
       },
       {
-        "title": "Using a Example (Recommended)",
-        "items": [
-          {
-            "title": "NextJS + Next Auth + Vercel KV",
-            "slug": "/docs/self-hosted/starters/nextjs-vercel/"
-          }
-        ]
+        "title": "Self-Hosted Starter",
+        "slug": "/docs/self-hosted/starters/nextjs-vercel/"
+      },
+      {
+        "title": "Implementing on an Existing Site",
+        "slug": "/docs/self-hosted/existing-site/"
       },
       {
         "title": "Core Concepts",
