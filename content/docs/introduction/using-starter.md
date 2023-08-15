@@ -7,7 +7,7 @@ next: '/docs/using-tina-editor'
 
 To quickly setup a new Tina starter, from the command line:
 
-```bash,copy
+```bash
 npx create-tina-app@latest
 ```
 
@@ -18,7 +18,7 @@ From there, you will be prompted a few quick setup questions:
 Once your local starter has been created, to run the starter:
 `cd <your-starter-name>` into its new directory & run:
 
-```bash,copy
+```bash
 yarn dev
 ```
 

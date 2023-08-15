@@ -9,7 +9,7 @@
           "icon": false,
           "variant": "blue",
           "size": "medium",
-          "url": "https://tina.io/docs/setup-overview/"
+          "url": "/docs/setup-overview/"
         },
         {
           "label": "npx create-tina-app@latest",
@@ -29,39 +29,47 @@
     {
       "testimonials": [
         {
-          "name": " Dave Keen",
-          "username": "ccapndave",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1689355588/testimonials/avatars/ccapndave_ka7f5u.webp",
-          "date": "2023-06-02T03:00:00.000Z",
-          "testimonial": "I’ve been playing with TinaCMS for the last week and it’s absolutely amazing. Its so simple to install, the typed NextJS integration is amazing, the live editor is as good as it gets and compared to other CMSs the admin is incredibly easy for editors to understand and use.\n",
-          "link": "https://discord.com/channels/835168149439643678/848932514911354880/1113764832668299274"
-        },
-        {
           "name": "Vatosteve",
           "username": "vatosteve",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1689356052/testimonials/avatars/vatosteve_ppkbvj.webp",
+          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689356052/testimonials/avatars/vatosteve_ppkbvj.webp",
           "date": "2023-01-30T04:00:00.000Z",
           "testimonial": "Loving Tina CMS so far. It is exactly what I’ve been looking for.\n",
           "link": "https://discord.com/channels/835168149439643678/835168149439643681/1069765204130398247"
         },
         {
+          "name": " Dave Keen",
+          "username": "ccapndave",
+          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689355588/testimonials/avatars/ccapndave_ka7f5u.webp",
+          "date": "2023-06-02T03:00:00.000Z",
+          "testimonial": "I’ve been playing with TinaCMS for the last week and it’s absolutely amazing. Its so simple to install, the typed NextJS integration is amazing, the live editor is as good as it gets and compared to other CMSs the admin is incredibly easy for editors to understand and use.\n",
+          "link": "https://discord.com/channels/835168149439643678/848932514911354880/1113764832668299274"
+        },
+        {
           "name": "david.oviedo",
           "username": "david.oviedo",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1689355030/testimonials/avatars/david-oviedo_htuynx.png",
+          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689355030/testimonials/avatars/david-oviedo_htuynx.png",
           "date": "2023-07-30T03:00:00.000Z",
           "testimonial": "Been running a project with Tina for a few months now, and I have to say we absolutely love it. I had been for quite a time looking for a CMS that let us build our sites the way we wanted to while letting the non-techies edit the content in a visual and painless way, and Tina just lets you do that. Awesome work really.\n",
           "link": "https://discord.com/channels/835168149439643678/848932514911354880/1124253741802061934"
         },
         {
           "name": "Sean Pearce",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1689356500/testimonials/avatars/sean_bnwhd9.png",
+          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689356500/testimonials/avatars/sean_bnwhd9.png",
           "date": "2023-03-30T03:00:00.000Z",
           "testimonial": "We really liked using Tina and we will definitely suggest it to clients in the future. Tina's in-context editor cannot be beaten. We are actually planning on using it for our new website as well, so we’re all in on it.\n"
         },
         {
+          "name": "Billy Best",
+          "username": "billybest5276",
+          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1691504396/testimonials/avatars/billy-best_wbcpsb.jpg",
+          "date": "2023-08-06T03:00:00.000Z",
+          "testimonial": "Just found this and I think I am already in love. \n",
+          "link": "https://www.youtube.com/watch?v=PcgnJDILv4w&lc=Ugy92XCmtPug2_1Lr554AaABAg"
+        },
+        {
           "name": "Mravec",
           "username": "mravec",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1689354995/testimonials/avatars/mravec_tglyht.webp",
+          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689354995/testimonials/avatars/mravec_tglyht.webp",
           "date": "2023-06-14T03:00:00.000Z",
           "testimonial": "Just tried out click-to-edit and wanted to let you know it's really awesome, great feature, super easy to use and to setup, love that it's fully typed and works passed down as a prop, kinda feels like magic tbh.\n",
           "link": "https://discord.com/channels/835168149439643678/848932514911354880/1118255235706663103"
@@ -69,7 +77,7 @@
         {
           "name": "rascode",
           "username": "rascode11",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1689354758/testimonials/avatars/rascode11_elrciv.jpg",
+          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689354758/testimonials/avatars/rascode11_elrciv.jpg",
           "date": "2022-12-06T04:00:00.000Z",
           "testimonial": "@tinacms is a dream come true.\n",
           "link": "https://twitter.com/rascode11/status/1600175861621088266"
@@ -117,7 +125,7 @@
             {
               "file": "about.mdx",
               "code": "---\ntitle: Collaborate With Your Team\n---\n\nOnline tools help drive your business forward.\nReach new audiences and collaborate with your\nteam – **All in the cloud.**\n\n<Button\ntext=\"Get Started\"\nlink=\"/get-started\"\n/>",
-              "language": "mdx",
+              "language": "markdown",
               "scale": 1,
               "_template": "code"
             }
@@ -153,21 +161,25 @@
       "items": [
         {
           "name": "Devolver Digital",
+          "link": "https://www.devolverdigital.com/",
           "logo": "/svg/logos/devolverdigital.svg",
           "size": 209
         },
         {
           "name": "Planet Scale",
+          "link": "https://planetscale.com/",
           "logo": "/svg/logos/planetscale.svg",
           "size": 110
         },
         {
           "name": "Protocol Labs",
+          "link": "https://protocol.ai/",
           "logo": "/svg/logos/protocollabs.svg",
           "size": 110
         },
         {
           "name": "Smashing Magazine",
+          "link": "https://www.smashingmagazine.com/",
           "logo": "/svg/logos/smashing.svg",
           "size": 128
         }

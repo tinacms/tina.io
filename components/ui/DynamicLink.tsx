@@ -9,9 +9,8 @@ interface DynamicLinkProps extends ExtraProps {
 }
 
 export const DynamicLink = ({ children, href, ...props }: DynamicLinkProps) => {
-  const dynamicHref = getDynamicPath(href)
   return (
-    <Link href={dynamicHref} as={href} {...props}>
+    <Link legacyBehavior href={href} {...props}>
       {children}
     </Link>
   )

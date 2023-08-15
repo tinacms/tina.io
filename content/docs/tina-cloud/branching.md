@@ -3,6 +3,8 @@ title: Using Multiple Branches
 last_edited: '2023-04-12T10:00:00.000Z'
 ---
 
+> For a more advanced branching and Pull-Request workflow, checkout Tina Cloud's [editorial workflow](https://tina.io/editorial-workflow/) (only available on Business and Enterprise plans).
+
 If your content editors need to work on multiple branches, you can enable Tina's branch switching plugin.  This allows you to create new branches and switch between them from Tina's UI. In the future, we'll build on this foundation and support creating pull requests, merging, and other related workflows.  ![Switch Branches](https://res.cloudinary.com/forestry-demo/image/upload/v1681311018/tina-io/docs/branch-selector_e5ndeg.gif "Switch Branches")
 
 ## Installation
@@ -17,7 +19,7 @@ cmsCallback: cms => {
 ```
 
 \
-For an example, see [this repo](https://github.com/tinacms/demo-incremental/blob/main/.tina/config.tsx#L16). 
+For an example, see [this repo](https://github.com/tinacms/demo-incremental/blob/main/.tina/config.tsx#L16).
 
 ## Demo
 

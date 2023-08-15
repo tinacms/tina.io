@@ -262,7 +262,6 @@ const DocsRichText = css`
   pre {
     background-color: var(--color-light);
     border: 1px solid var(--color-light-dark);
-    text-shadow: white 0px 1px;
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
     text-align: left;
     word-spacing: normal;

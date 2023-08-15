@@ -5,9 +5,7 @@ last_edited: '2022-12-05T10:00:00.000Z'
 
 > The following guide requires tinacms: 1.0.2 or later.
 
-> Want to skip the the end result? [Check out the final result](https://github.com/tinacms/tina-barebones-starter-preview-mode)
-
-## Adding visual editing with Drafts
+> Want to skip to the end result? [Check out the final result](https://github.com/tinacms/tina-barebones-starter-preview-mode)
 
 ## Using Drafts with Visual Editing
 

@@ -1,9 +1,10 @@
 import React from 'react'
 import { useInView } from 'react-intersection-observer'
-import SyntaxHighlighter from 'react-syntax-highlighter'
 import { Container } from './Container'
 import { Actions } from './Actions'
-import type { TinaTemplate } from '@tinacms/cli'
+import { Prism } from '../styles/Prism'
+import styled from 'styled-components'
+import DocsRichText from 'components/styles/DocsRichText'
 
 const features = [
   {
@@ -228,16 +229,17 @@ const Pane = ({ data, position, ...props }) => {
                   1.25 * (data.file.textScale ? data.file.textScale : 1) + 'em',
               }}
             >
-              <SyntaxHighlighter
-                language={
-                  data.file.language ? data.file.language : 'javascript'
-                }
-                useInlineStyles={false}
-                // wrapLines={true}
-                // wrapLongLines={true}
-              >
-                {data.file.code}
-              </SyntaxHighlighter>
+              <CodeWrapper>
+                <div className="[&>pre]:!bg-transparent [&>pre]:!border-none">
+                  <Prism
+                    lang={
+                      data.file.language ? data.file.language : 'javascript'
+                    }
+                    theme="nightOwl"
+                    value={data.file.code}
+                  />
+                </div>
+              </CodeWrapper>
             </div>
           </div>
         )}
@@ -504,3 +506,7 @@ export function StoryBlock({ data, index }) {
     </>
   )
 }
+
+const CodeWrapper = styled.div`
+  ${DocsRichText}
+`

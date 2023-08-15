@@ -109,7 +109,7 @@ export const CodeButton = ({ children, ...props }) => {
           Copied to clipboard!
         </span>
         <span className="text">
-          <span className="bash">$</span> {children}
+          <span className="bash">&gt;</span> {children}
         </span>
         <span className="icon">
           <BiCopy />
@@ -179,7 +179,6 @@ export const CodeButton = ({ children, ...props }) => {
           align-items: center;
           background-color: white;
           color: var(--color-secondary);
-          text-transform: uppercase;
           font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
           padding: 0;
           border: 1px solid #b4f4e0;
