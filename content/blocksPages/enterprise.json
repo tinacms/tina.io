@@ -8,14 +8,14 @@
           "label": "Request 1-Pager",
           "icon": false,
           "variant": "white",
-          "size": "large",
+          "size": "small",
           "url": "mailto:info@tina.io?subject=TinaCMS Enterprise 1-Pager&body=Hello, I'd like more information about the TinaCMS Enterprise Solution."
         },
         {
-          "label": "Get a Demo",
+          "label": "Schedule a Demo",
           "icon": false,
           "variant": "blue",
-          "size": "large",
+          "size": "small",
           "url": "https://meetings-eu1.hubspot.com/scott15"
         }
       ],
