@@ -230,97 +230,29 @@
         "slug": "/docs/self-hosted/overview/"
       },
       {
-        "title": "Self-Hosted Starter",
-        "slug": "/docs/self-hosted/starters/nextjs-vercel/"
+        "title": "Architecture",
+        "slug": "/docs/self-hosted/core-concepts/overview/"
       },
       {
-        "title": "Implementing on an Existing Site",
-        "slug": "/docs/self-hosted/existing-site/"
-      },
-      {
-        "title": "Core Concepts",
+        "title": "Getting Started",
         "items": [
           {
-            "title": "Overview",
-            "slug": "/docs/self-hosted/core-concepts/overview/"
+            "title": "Self-Hosted Starter",
+            "slug": "/docs/self-hosted/starters/nextjs-vercel/"
           },
           {
-            "title": "Choosing a Git Provider",
-            "items": [
-              {
-                "title": "Overview",
-                "slug": "/docs/self-hosted/git-provider/overview/"
-              },
-              {
-                "title": "GitHub",
-                "slug": "/docs/self-hosted/git-provider/github/"
-              },
-              {
-                "title": "Bring Your Own Git Provider",
-                "slug": "/docs/self-hosted/git-provider/make-your-own/"
-              }
-            ]
-          },
-          {
-            "title": "Choosing a Database Adapter",
-            "items": [
-              {
-                "title": "Overview",
-                "slug": "/docs/self-hosted/database-adapter/overview/"
-              },
-              {
-                "title": "Vercel KV",
-                "slug": "/docs/self-hosted/database-adapter/vercel-kv/"
-              },
-              {
-                "title": "Mongo DB",
-                "slug": "/docs/self-hosted/database-adapter/mongodb/"
-              },
-              {
-                "title": "Bring Your Own  Database Adapter",
-                "slug": "/docs/self-hosted/database-adapter/make-your-own/"
-              }
-            ]
-          },
-          {
-            "title": "Querying Content",
-            "slug": "/docs/self-hosted/querying-data/"
-          },
-          {
-            "title": "Hosting the GraphQL API",
-            "items": [
-              {
-                "title": "Overview",
-                "slug": "/docs/self-hosted/graphql-endpoint/overview/"
-              }
-            ]
-          },
-          {
-            "title": "Choosing an Authentication Provider",
-            "items": [
-              {
-                "title": "Overview",
-                "slug": "/docs/self-hosted/authentication-provider/overview/"
-              },
-              {
-                "title": "Next Auth",
-                "slug": "/docs/self-hosted/authentication-provider/next-auth/"
-              },
-              {
-                "title": "Clerk Auth",
-                "slug": "/docs/self-hosted/authentication-provider/clerk-auth/"
-              },
-              {
-                "title": "Using Tina Cloud for Authentication",
-                "slug": "/docs/self-hosted/authentication-provider/tina-cloud/"
-              },
-              {
-                "title": "Bring Your Own Authentication",
-                "slug": "/docs/self-hosted/authentication-provider/bring-your-own/"
-              }
-            ]
+            "title": "Implementing on an Existing Site",
+            "slug": "/docs/self-hosted/existing-site/"
           }
         ]
+      },
+      {
+        "title": "Querying Content",
+        "slug": "/docs/self-hosted/querying-data/"
+      },
+      {
+        "title": "Hosting the GraphQL API",
+        "slug": "/docs/self-hosted/graphql-endpoint/overview/"
       }
     ]
   },
@@ -737,6 +669,74 @@
               {
                 "slug": "/docs/reference/toolkit/fields/html/",
                 "title": "HTML"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Self-Hosted Components",
+        "items": [
+          {
+            "title": "Git Providers",
+            "items": [
+              {
+                "title": "Overview",
+                "slug": "/docs/self-hosted/git-provider/overview/"
+              },
+              {
+                "title": "GitHub",
+                "slug": "/docs/self-hosted/git-provider/github/"
+              },
+              {
+                "title": "Bring Your Own Git Provider",
+                "slug": "/docs/self-hosted/git-provider/make-your-own/"
+              }
+            ]
+          },
+          {
+            "title": "Database Adapters",
+            "items": [
+              {
+                "title": "Overview",
+                "slug": "/docs/self-hosted/database-adapter/overview/"
+              },
+              {
+                "title": "Vercel KV",
+                "slug": "/docs/self-hosted/database-adapter/vercel-kv/"
+              },
+              {
+                "title": "Mongo DB",
+                "slug": "/docs/self-hosted/database-adapter/mongodb/"
+              },
+              {
+                "title": "Bring Your Own  Database Adapter",
+                "slug": "/docs/self-hosted/database-adapter/make-your-own/"
+              }
+            ]
+          },
+          {
+            "title": "Authentication Providers",
+            "items": [
+              {
+                "title": "Overview",
+                "slug": "/docs/self-hosted/authentication-provider/overview/"
+              },
+              {
+                "title": "Next Auth",
+                "slug": "/docs/self-hosted/authentication-provider/next-auth/"
+              },
+              {
+                "title": "Clerk Auth",
+                "slug": "/docs/self-hosted/authentication-provider/clerk-auth/"
+              },
+              {
+                "title": "Using Tina Cloud for Authentication",
+                "slug": "/docs/self-hosted/authentication-provider/tina-cloud/"
+              },
+              {
+                "title": "Bring Your Own Authentication",
+                "slug": "/docs/self-hosted/authentication-provider/bring-your-own/"
               }
             ]
           }
