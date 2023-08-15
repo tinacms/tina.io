@@ -9,7 +9,7 @@
           "icon": true,
           "variant": "blue",
           "size": "small",
-          "url": "mailto:info@tina.io?subject=TinaCMS Editorial Workflow Demo&body=Hello, I'd like to schedule a demo of TinaCMS."
+          "url": "https://meetings-eu1.hubspot.com/scott15"
         }
       ],
       "media": [
@@ -74,7 +74,7 @@
           "icon": true,
           "variant": "blue",
           "size": "medium",
-          "url": "mailto:info@tina.io?subject=TinaCMS Editorial Workflow Demo&body=Hello, I'd like to schedule a demo of TinaCMS."
+          "url": "https://meetings-eu1.hubspot.com/scott15"
         }
       ],
       "_template": "flying"

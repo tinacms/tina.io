@@ -16,7 +16,7 @@
           "icon": false,
           "variant": "blue",
           "size": "large",
-          "url": "mailto:info@tina.io?subject=TinaCMS Enterprise Demo&body=Hello, I'd like to schedule a demo of TinaCMS."
+          "url": "https://meetings-eu1.hubspot.com/scott15"
         }
       ],
       "margin": "",
@@ -117,7 +117,7 @@
           "icon": false,
           "variant": "blue",
           "size": "large",
-          "url": "mailto:info@tina.io?subject=TinaCMS Enterprise Demo&body=Hello, I'd like to schedule a demo of TinaCMS."
+          "url": "https://meetings-eu1.hubspot.com/scott15"
         }
       ],
       "_template": "hero"
