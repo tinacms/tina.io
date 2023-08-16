@@ -21,13 +21,24 @@ Visit [clerk.com](https://clerk.com/) to create an account and an "application".
 
 ![Clerk API Keys screenshot](/img/clerk-api-keys-screenshot.png)
 
+Be sure to update `TINA_PUBLIC_ALLOWED_EMAIL` with the email address you'll use to sign in to Clerk.
+
 ```bash
 CLERK_SECRET=sk_test_my-clerk-secret
 TINA_PUBLIC_CLERK_PUBLIC_KEY=pk_test_my-clerk-public-key
-TINA_PUBLIC_IS_LOCAL=false
+TINA_PUBLIC_ALLOWED_EMAIL="your-email@gmail.com"
 ```
 
-> Note: In order to test the Clerk flow locally `TINA_PUBLIC_IS_LOCAL` is set to true. You can set that to false when not testing the Clerk integration.
+## Update the dev command
+
+When self-hosting, you may want to disable auth for local development.
+
+```json
+"scripts": {
+  "dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev\"",
+  "dev:prod": "tinacms dev -c \"next dev\"",
+}
+```
 
 ## Update your Tina Config
 
@@ -43,7 +54,7 @@ const clerk = new Clerk(process.env.TINA_PUBLIC_CLERK_PUBLIC_KEY)
  * https://clerk.com/docs/authentication/allowlist
  */
 export const isUserAllowed = (emailAddress: string) => {
-  const allowList = ['my-email@gmail.com']
+  const allowList = [process.env.TINA_PUBLIC_ALLOWED_EMAIL]
   if (allowList.includes(emailAddress)) {
     return true
   }
@@ -51,62 +62,71 @@ export const isUserAllowed = (emailAddress: string) => {
 }
 
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
+let clerk: Clerk | null = null
+let auth: Config['admin']['auth']
+if (!isLocal) {
+  clerk = new Clerk(process.env.TINA_PUBLIC_CLERK_PUBLIC_KEY)
+  auth = {
+    useLocalAuth: false,
+    customAuth: true,
+    /**
+     * Generates a short-lived token when Tina makes a request
+     */
+    getToken: async () => {
+      await clerk.load()
+      if (clerk.session) {
+        return { id_token: await clerk.session.getToken() }
+      }
+    },
+    logout: async () => {
+      await clerk.load()
+      await clerk.session.remove()
+    },
+    /**
+     * Prompts the Clerk auth
+     */
+    authenticate: async () => {
+      clerk.openSignIn({
+        redirectUrl: '/admin/index.html', // This should be the Tina admin path
+        appearance: {
+          elements: {
+            // Tina's sign in modal is in the way without this
+            modalBackdrop: { zIndex: 20000 },
+            // Some styles clash with Tina's styling
+            socialButtonsBlockButton: 'px-4 py-2 border border-gray-100',
+            formFieldInput: `px-4 py-2`,
+            formButtonPrimary: 'bg-blue-600 text-white p-4',
+            formFieldInputShowPasswordButton: 'm-2',
+            dividerText: 'px-2',
+          },
+        },
+      })
+    },
+    /**
+     * A falsey response here will prompt the login screen to be displayed
+     */
+    getUser: async () => {
+      await clerk.load()
+      console.log('info', clerk)
+      if (clerk.user) {
+        if (isUserAllowed(clerk.user.primaryEmailAddress.emailAddress)) {
+          return true
+        }
+        // Handle when a user is logged in outside of the org
+        clerk.session.end()
+      }
+      return false
+    },
+  }
+} else {
+  auth = { useLocalAuth: true }
+}
 
 export default defineConfig({
   //...
   contentApiUrlOverride: '/api/gql',
   admin: {
-    auth: {
-      useLocalAuth: isLocal,
-      customAuth: !isLocal,
-      /**
-       * A falsey response here will prompt the login screen to be displayed
-       */
-      getUser: async () => {
-        await clerk.load()
-        if (clerk.user) {
-          if (isUserAllowed(clerk.user.primaryEmailAddress.emailAddress)) {
-            return true
-          }
-          // Handle when a user is logged in outside of the org
-          clerk.session.end()
-        }
-        return false
-      },
-      /**
-       * Prompts the Clerk auth
-       */
-      authenticate: async () => {
-        clerk.openSignIn({
-          redirectUrl: '/admin/index.html', // This should be the Tina admin path
-          appearance: {
-            elements: {
-              // Tina's sign in modal is in the way without this
-              modalBackdrop: { zIndex: 20000 },
-              // Some styles clash with Tina's styling
-              socialButtonsBlockButton: 'px-4 py-2 border border-gray-100',
-              formFieldInput: `px-4 py-2`,
-              formButtonPrimary: 'bg-blue-600 text-white p-4',
-              formFieldInputShowPasswordButton: 'm-2',
-              dividerText: 'px-2',
-            },
-          },
-        })
-      },
-      /**
-       * Generates a short-lived token when Tina makes a request
-       */
-      getToken: async () => {
-        await clerk.load()
-        if (clerk.session) {
-          return { id_token: await clerk.session.getToken() }
-        }
-      },
-      logout: async () => {
-        await clerk.load()
-        await clerk.session.remove()
-      },
-    },
+    auth: auth,
   },
   //...
 })
