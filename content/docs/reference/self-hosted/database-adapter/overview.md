@@ -5,6 +5,8 @@ prev: null
 next: /docs/reference/self-hosted/database-adapter/vercel-kv
 ---
 
+## Overview
+
 A database adapter provides an interface between the Tina database and the underlying database implementation. It implements a limited subset of functionality required by a sorted key-value store, which can be provided by almost any database implementation. We currently have database adapters for the following database implementations:
 
 - [Vercel KV](/docs/reference/self-hosted/database-adapter/vercel-kv)
@@ -22,3 +24,23 @@ export isLocal ? createLocalDatabase() : createDatabase({
     databaseAdapter: new DatabaseAdapter()
 })
 ```
+
+## createDatabase Function
+
+This is a factory function that creates a new instance of the TinaCMS Database. It takes a [`databaseAdapter`](/docs/reference/self-hosted/database-adapter/overview/) and a [`gitProvider`](/docs/reference/self-hosted/git-provider/overview/).
+
+| Parameter             | Description                                                                                                                                                                                                                                                                                   |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `databaseAdapter`     | The [database adapter](/docs/reference/self-hosted/database-adapter/overview) to use. (Required)                                                                                                                                                                                              |
+| `gitProvider`         | The [git provider](/docs/reference/self-hosted/git-provider/overview) to use. (Required)                                                                                                                                                                                                      |
+| `tinaDirectory`       | The directory used to store tina files. Defaults to `tina` (Optional)                                                                                                                                                                                                                         |
+| `bridge`              | The bridge used to index the content to the database adapter. This defaults to the FileSystem. The `bridge` is a more advanced use case if you want to index from a different source other than the filesystem. Please [reach out a discord](https://discord.gg/zumN63Ybpf) for further help. |
+| `indexStatusCallback` | an async function that is called to report the status on the current indexing. (Optional)                                                                                                                                                                                                     |
+
+## createLocalDatabase Function
+
+This is a factory function that creates a database that can be used for local development or [static builds](/docs/cli-overview/#examples).
+
+It uses a local in-memory database adapter and a file-system Git provider that only writes changes to the file-system without committing them.
+
+(_does not take any parameter_)
