@@ -243,10 +243,6 @@
         ]
       },
       {
-        "title": "Architecture",
-        "slug": "/docs/self-hosted/core-concepts/overview/"
-      },
-      {
         "title": "Querying Content",
         "slug": "/docs/self-hosted/querying-data/"
       },
