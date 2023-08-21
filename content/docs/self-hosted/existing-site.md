@@ -2,7 +2,7 @@
 title: Setting up Self-Hosted Backend on an existing project
 id: /docs/self-hosted/existing-site
 last_edited: '2023-07-07T04:00:00.000Z'
-next: /docs/self-hosted/core-concepts/overview
+next: /docs/self-hosted/querying-data
 ---
 
 If you want to self-host the Tina backend, and don't want to use our [pre-configured starter](/docs/self-hosted/starters/nextjs-vercel/), you can follow the steps below.
