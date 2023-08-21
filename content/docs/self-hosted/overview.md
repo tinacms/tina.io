@@ -14,7 +14,32 @@ For users who want to be independent of Tina Cloud, **we also offer a self-hoste
 
 ## How does it work?
 
-By Self-hosting TinaCMS's backend, you can host the API in a single API function. This API function acts as a GraphQL endpoint w/ CRUD for your content. The backend relies upon a three configurable modules:
+By Self-hosting TinaCMS's backend, you can host the API in a single API function. This API function acts as a GraphQL endpoint w/ CRUD for your content.
+
+```js
+// pages/api/graphql.js
+import databaseClient from '../../tina/__generated__/databaseClient'
+
+const apiHandler = async (req, res) => {
+  const { query, variables } = req.body
+
+  // Your custom authentication function
+  const isAuthenticated = await authenticate({
+    token: req.headers.authorization,
+  })
+  if (!isAuthenticated) {
+    return res.status(401).json({ message: 'Unauthorized' })
+  }
+
+  // make the request
+  const result = await databaseClient.request({ query, variables })
+  return res.json(result)
+}
+
+export default apiHandler
+```
+
+The backend relies upon a three configurable modules:
 
 - [Auth](/docs/self-hosted/authentication/overview)
   - Handles authentication and authorization for CMS operations.
@@ -45,7 +70,7 @@ export default defineConfig({
 
 There are also a few boilerplate auth files that are generated in your project during the `tina init` process.
 
-For more info, check out the [auth provider docs](/docs/reference/self-hosted/authentication-provider/overview/).
+> For more information on configuring auth, check out the [Auth Provider docs](/docs/reference/self-hosted/authentication-provider/overview/).
 
 ### Configuring the database
 
@@ -76,6 +101,8 @@ export default isLocal
     })
 ```
 
+> For more information of configuring a Database Provider, check out our [reference docs](/docs/reference/self-hosted/database-adapter/overview/).
+
 ### Configuring the Git Provider
 
 The Git Provider is responsible for saving content to git when your editors make updates. It is configured within a prop on the `createDatabase` function. Out of the box we support a [GitHub Git Provider](/docs/reference/self-hosted/git-provider/github).
@@ -90,4 +117,4 @@ export default isLocal ? createLocalDatabase() ? createDatabase({
 })
 ```
 
-If you do not use Github, you can [make your own Git Provider](/docs/reference/self-hosted/git-provider/make-your-own).
+> If you do not use Github, you can [make your own Git Provider](/docs/reference/self-hosted/git-provider/make-your-own).
