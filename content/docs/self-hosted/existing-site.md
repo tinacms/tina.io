@@ -9,23 +9,47 @@ If you want to self-host the Tina backend, and don't want to use our [pre-config
 
 We offer a CLI init to quickly setup the backend on NextJS sites, or you can take the manual setup approach if you're using another framework.
 
+> This guide assumes that you have already init the TinaCMS admin into your site. If you haven't already done so, see our [Getting Started Guide](docs/setup-overview/)
+
 ## Using the CLI init command (NextJS Only)
 
-This will add the files needed to self host TinaCMS to your project.
+In the terminal, run:
 
-TODO
+```bash
+npx @tinacms/cli@latest init backend
+```
+
+This will prompt you to answer some questions:
+
+### GitHub Personal Access Token
+
+A Github Personal Access Token can be created in the [GitHub account settings](https://github.com/settings/personal-access-tokens/new).
+
+Make sure to assign it `repo` access to your new repository with Read/Write access to Contents.
+
+### Choosing a Database Adapter
+
+Out of the box, TinaCMS provides two database adapters in the init workflow: "Redis" & "Vercel KV". Learn more about Database Adapters [here](/docs/reference/self-hosted/database-adapter/overview/).
+
+### Enable NextAuth.js integration
+
+The "init-backend" command offers one out-of-the-box auth solution, which is built with Next-Auth. The will store your CMS users inside your own database alongside your content.
+
+If you wish to use another auth provider, or want to learn more about Tina auth, see our [reference docs](/docs/reference/self-hosted/authentication-provider/overview/).
+
+### Apply Output self-hosted config
+
+Once you've finished going through all the prompts, the CLI will output some code that needs to be added to your tina/config.ts file.
+
+At this point, your self-hosted setup should be complete.
 
 ## Manually configuring the Self-hosted backend
 
-### 1. Setup TinaCMS on your site
-
-To setup the TinaCMS admin on your site, follow the [getting started guide](/docs/setup-overview/). (You can skip this step if you already have TinaCMS setup on your site).
-
-### 2. Choose a Git provider, database adapter, and authentication provider
+### 1. Choose a Git provider, database adapter, and authentication provider
 
 You will need to choose a [Git provider](/docs/reference/self-hosted/git-provider/overview/), [database adapter](/docs/reference/self-hosted/database-adapter/overview/), and [authentication provider](/docs/reference/self-hosted/authentication-provider/overview/). You can use any of the providers we have created or you can create your own. In the example below we will use GitHub, VercelKV, and Next Auth.
 
-### 3. Install the dependencies
+### 2. Install the dependencies
 
 ```bash
 yarn add tinacms @tinacms/datalayer
@@ -41,7 +65,7 @@ Install any dependencies for your chosen git provider, database adapter, and aut
 yarn add tinacms-gitprovider-github tinacms-next-auth upstash-redis-level @upstash/redis
 ```
 
-### 4. Create a database file
+### 3. Create a database file
 
 Create a file called `database.{js,ts}` in the the `/tina` folder of your project. This file will be used to create the database.
 
@@ -94,7 +118,7 @@ export default isLocal
     })
 ```
 
-### 5. Host the GraphQL API
+### 4. Host the GraphQL API
 
 You will need a [backend endpoint](/docs/self-hosted/graphql-endpoint/overview) that hosts the GraphQL API.
 
@@ -123,7 +147,7 @@ export default nextApiHandler
 
 > For more info see [GraphQL endpont docs](/docs/self-hosted/graphql-endpoint/overview)
 
-### 6. Update the TinaCMS config
+### 5. Update the TinaCMS config
 
 Update the TinaCMS config to use the GraphQL API you created in the previous step.
 
@@ -143,4 +167,4 @@ export default defineConfig({
 })
 ```
 
-Now you should be able to run your site and use TinaCMS to edit your content. Pleas see our [core concept docs](/docs/self-hosted/core-concepts/overview/) for more info on how to self host TinaCMS.
+Now you should be able to run your site and use TinaCMS to edit your content. Pleas see our [Hosting the API docs](/docs/self-hosted/graphql-endpoint/overview/) for more info on how to self-host TinaCMS.
